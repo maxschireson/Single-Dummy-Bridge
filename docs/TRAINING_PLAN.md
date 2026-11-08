@@ -4,8 +4,9 @@ Max's updated direction, 8 November 2026: start with a small belief model,
 condition on bidding as well as play, generate evaluation data concurrently with
 training, and use BEN to bid contracts that our engine then plays.
 
-No first model training may start before the independent 10,000-complete-deal
-collection audit passes. This document and the BEN experiment do not start training.
+The independent 10,000-complete-deal collection audit passed on 8 November
+2026. Max subsequently authorized starting the first small model. The initial
+fit is explicitly play-only; real bidding-aware training still needs BEN data.
 
 ## Data streams and separation
 
@@ -40,9 +41,11 @@ collection audit passes. This document and the BEN experiment do not start train
 
 ## First model
 
-Start around 100,000 parameters (compare roughly 30,000 and 300,000). Small
-recurrent encoders preserve the ordered calls and ordered card play, followed by
-shared state features and ownership/shape heads. These are experimental sizes,
+Start around 100,000 parameters (later compare roughly 30,000 and 300,000).
+The first executable baseline uses ordered card/seat embeddings flattened into
+a small MLP, preserving order while keeping CPU training/inference cheap. The
+planned bidding-aware successor can use small recurrent encoders for calls and
+card play, followed by shared state features and ownership/shape heads. These are experimental sizes,
 not established sample-complexity thresholds. Around 8,000 training deals do not
 become independent merely because they provide hundreds of thousands of positions.
 
@@ -113,3 +116,41 @@ python3 -m bridge_harness.selfplay --corpus data/ben-frozen.jsonl --count 10000 
 These existing commands perform bidding followed by PIMC play; they do not fit a
 model. Audit complete played games separately from passed-out auctions. Do not
 include bulk games, archives, model files or logs in Git.
+
+
+## Executable first baseline
+
+`bridge_harness/belief_model.py` and `scripts/train_belief.py` implement a
+90,856-parameter observation-only play baseline (default hidden widths 80/64).
+A fixed ordered embedding of cards and seats preserves sequence positions;
+this initial version uses an MLP rather than a recurrent network. Loss is
+ownership cross entropy over uncertain hidden cards only. Support masks remove
+impossible owners. No privileged target, future result, behavior policy or
+example identifier enters the encoder.
+
+The training script verifies the 10,000-deal audit and original grouped split
+counts, records input file hashes, uses only validation NLL for early stopping,
+and never evaluates test labels. The selected checkpoint is compared with
+uniform legal ownership and an approximate capacity-balanced marginal prior.
+The latter is a diagnostic baseline, not an exact uniform feasible-deal sampler.
+`--residual-prior` learns corrections to that prior and starts from zero
+correction; `--augment` applies consistent seat rotations and suit permutations
+to play-only observations and targets. Those permutations must not be applied
+blindly to real bidding conventions. Learned marginals still need a legal joint
+deal sampler before they can guide PIMC; this script does not deploy a bot.
+
+TensorFlow is optional for the harness; the first run used TensorFlow 2.21.0.
+To reproduce the regularized baseline from the complete dataset archive:
+
+```sh
+python scripts/train_belief.py --data /path/to/extracted-dataset \
+  --audit /path/to/extracted-dataset/audit-10000.json \
+  --out results/belief-small-v2 --epochs 20 --patience 4 --threads 4 \
+  --residual-prior --augment
+```
+
+A saved `.keras` file contains raw logits (residual logits with
+`--residual-prior`). Read its accompanying manifest and add the observation-only
+log capacity prior before applying the hard support mask and softmax. Preserve
+all model/data/schema provenance. The first-run report records both the initial
+unregularized attempt and the subsequent correction; neither is a strength claim.

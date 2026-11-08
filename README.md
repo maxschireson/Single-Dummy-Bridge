@@ -257,3 +257,14 @@ reproduction scripts, and compact historical reports in `reports/`. Bulk deal
 corpora, per-decision JSONL records, generated JSON summaries, server/test logs,
 compiled binaries, and model weights are excluded. The original experiment
 archive remains unchanged. See `CREDITS.md` for attribution.
+
+
+The 10,000 independent complete self-play deals passed the cross-shard audit.
+See [completed collection](reports/selfplay_initial_2026-11-08.md) and the
+[small-model training plan](docs/TRAINING_PLAN.md). The optional
+`scripts/train_belief.py` fits an observation-only ownership baseline; real
+auction training needs additional BEN data, and bot strength is evaluated
+separately from supervised validation metrics.
+
+[First training results](reports/first_belief_training_2026-11-08.md): two small
+fits completed; neither beat the ownership prior on validation.

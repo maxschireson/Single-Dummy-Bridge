@@ -2,8 +2,8 @@
 
 The bot now evaluates sampled worlds through an all-legal-moves batch DDS
 binding. A self-play collector randomizes near-equal moves and records separate
-policy-return and hidden-ownership targets. No neural net has been trained and
-no playing-strength improvement is claimed.
+policy-return and hidden-ownership targets. The first small belief-model training was authorized only after the complete
+10,000-deal audit passed. No playing-strength improvement is claimed.
 
 ## Implemented and checked
 
@@ -112,22 +112,49 @@ implementations used identical 32-sample self-play choices and agreed on all
 values/actions. CPU time was 53.274 vs 53.215 s respectively; this small test
 does not justify changing the table choice for the larger collection.
 
-## 10,000-game target before training
+## Completed 10,000-game collection
 
-Max requested **10,000 independent games before the first training**. The
-completed checkpoint is chunk 0. Nine additional 1,000-game jobs were launched
-in [GitHub Actions run 42491138682](https://github.com/maxschireson/Single-Dummy-Bridge/actions/runs/42491138682),
-using deal seeds 20261111 through 20261119 and decision seeds 10173 through
-18173. They keep 32 PIMC samples and the 0.125-trick exploration threshold.
-Artifacts contain complete records, summaries, manifests and three NPZ splits;
-no bulk data is committed to Git. Training is on hold until all chunks pass
-the cross-chunk audit for 10,000 distinct original deals, legal replay, correct
-labels and no split leakage. At publication of this checkpoint these jobs were
-running/queued; do not treat the 9,000 as already completed.
+The full cross-chunk audit passed on 8 November 2026, **before any model fit**.
+All ten chunks contain 1,000 independent complete games each, with **zero
+failures**, no repeated original deals and no cross-split groups. Exact legal
+pre-action observations, complete replay, true hidden-card ownership, behavior
+probabilities and outcomes passed `scripts/audit_selfplay.py`.
 
-Use `scripts/audit_selfplay.py --expected-games 10000 --out audit.json` followed
-by the ten chunk directories. Combining chunks does not mean concatenating
-their input and label fields indiscriminately; retain the documented schema.
+| Quantity | Audited total |
+|---|---:|
+| Independent complete deals / failures | 10,000 / 0 |
+| Pre-action rows | 520,000 |
+| Non-forced policy decisions | 410,228 |
+| Multiple-eligible-action selector rows | 324,067 |
+| Hidden-card ownership labels | 6,890,593 |
+| Train / validation / test deals | 7,993 / 1,008 / 999 |
+| Train / validation / test rows | 415,636 / 52,416 / 51,948 |
+
+[GitHub Actions run 42491138682](https://github.com/maxschireson/Single-Dummy-Bridge/actions/runs/42491138682)
+completed all nine additional chunks successfully. Individual four-worker
+collection chunks took 1,901.57–2,708.33 seconds (0.369–0.526 games/second).
+The hosted workflow elapsed 79 minutes 40 seconds including queues, build,
+exports and uploads; 9,000 deals over that interval is 1.88 deals/second across
+jobs. This is parallel collection throughput, not a DDS kernel speedup.
+Chunk 0's separate eight-worker measurement remains documented above.
+
+All games retain batch PIMC, 32 worlds per non-forced decision, expected-tricks
+objective and uniform selection within 0.125 estimated tricks. NPZ files remain
+sharded with their original grouped splits. Inputs and privileged labels remain
+separate. Synthetic contracts/auctions cannot teach real bidding inference, and
+10,000 deals remain 10,000 independent units despite 520,000 correlated positions.
+
+The complete `Bridge_Selfplay_10000_2026-11-08.zip` contains every replay/training
+episode, 30 split NPZ files, manifests, summaries, audit, schema, source provenance,
+workflow job timings and per-file SHA256 checksums. Archive SHA256:
+`505635aeb0e53fbfaef87ab785e500d0148153234aca37d651d99b0301598857`.
+[Download the complete dataset](https://chatgpt.com/library?file_id=libfile_fde3_f-0d1514d017cc8191b179f535766591ab_cf78a91e4b8c81918243c2c17fc9b8b9&account_id=personal).
+No records, logs, binaries or model weights are committed to Git.
+
+Source: implementation `d51679839c451e39efba587c6c329b771d3abd38`, audit source
+`74de27d06bdbc43cf149d423b1e5bc8a877f66d4`, collection workflow
+`6efcc7cee4b490978812bc63006da7548ce83bd7`; audited against current research
+source `7b2c17a6cf0556bc0730b9bbec536ea55b6b58da` (audit code unchanged).
 
 ## First learning experiment and hardware planning
 
