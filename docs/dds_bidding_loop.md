@@ -29,7 +29,7 @@ card-play learning loop.
    BEN. At launch all three are B0. Both learner seats always use the same version.
 7. At 10k, 50k and 250k cumulative training deals per attempt, screen the candidate
    on 1k fresh development deals. If all three mean results are positive, run a
-   fixed 10k-pair confirmation against parent, original BEN and older league.
+   fixed 5k-pair confirmation against parent, original BEN and older league.
    All evaluation bidders use greedy legal calls, without exploration.
 8. Promote only if all three adjusted confidence-interval lower bounds exceed
    zero. Alpha is 0.05 divided by `attempt*(attempt+1)*stages*3`, accounting for
@@ -126,3 +126,20 @@ one solver context; this small timing sample is not an end-to-end throughput cla
 DDS rewards omit real-play effects, including the information revealed by bids.
 This is intentional for the initial experiment. Learned bidding changes should
 later be reflected in the auction belief model before integration with card play.
+
+## Confirmation budget update — 8 November 2026
+
+At Max's request, the production configuration now uses 5,000 confirmation
+pairs instead of 10,000. The in-progress additional review of the 21,904-pair
+candidate uses the same fixed 5,000-pair limit. Its first 1,024 completed pairs
+were retained, with the same test seed, split and frozen model. No interim
+confirmation IMP results were inspected to choose this limit. Inconclusive
+results lead to more training, not an expanded confirmation sample.
+
+Both workers were paused for the documented migration. The production manifest
+was changed only at config.confirmation_pairs. Hashes verified that training
+state, model/Adam checkpoint, both DDS caches and completed evaluation shards
+were unchanged. Runtime source hashes and promotion thresholds remain unchanged.
+The before/after audit is in the run's migrations/confirmation-5000-2026-11-08
+directory. The CLI default without the campaign config remains historical;
+resume this campaign with configs/bidding_dds.json as documented above.
