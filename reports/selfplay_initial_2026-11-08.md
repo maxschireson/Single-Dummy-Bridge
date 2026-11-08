@@ -73,12 +73,75 @@ the two-visible-hand positions. After the opening lead, reuse reduced node
 counts, but lookup/validation overhead and the largest early searches limited
 the net timing gain. The cold path remains available with `--serial-dds`.
 
-## Larger run and next learning experiment
+## Completed 1,000-game checkpoint
 
-A 1,000-deal, 32-sample run with eight workers and deal seed 20261110 was started
-after the pilot. Its completed results will be added to this report when the
-run finishes. Use measured throughput, not a speculative solver-speed factor,
-to estimate data collection time.
+The 1,000 independent full games at 32 samples completed with **zero failures**.
+Every game was replay-validated. CPU: eight worker processes on the available
+AMD EPYC 9V74 virtual CPUs, GCC 14.2, Python stdlib collector, C++20 `-O3` build.
+The overall time includes overlap with the explicitly noted profiling work.
+
+| Quantity | Observed |
+|---|---:|
+| Elapsed wall time | 890.99 s (14.85 minutes) |
+| Aggregate throughput | 1.122 games/second |
+| Pre-action rows | 52,000 |
+| Non-forced policy decisions | 41,044 |
+| Multiple-eligible-action selector rows | 32,469 |
+| Hidden-card ownership labels | 689,195 |
+| Sampled-world DDS solves | 1,313,408 |
+| Train / validation / test deals | 800 / 99 / 101 |
+| Train / validation / test rows | 41,600 / 5,148 / 5,252 |
+| Mean / 95th-percentile concurrent game latency | 6.92 / 13.21 s |
+| Mean sampled PIMC gap of chosen non-forced move | 0.00902 tricks |
+
+All three NPZ splits were exported and checked for legal chosen actions,
+normalized behavior probabilities and owner-label compatibility with input
+support masks. A complete archive, including replay records and input/target
+arrays, was saved as `Bridge_Selfplay_1000_2026-11-08.zip`.
+
+## Confirmation timing without concurrent self play
+
+Repeating the identical 141-position, two-pass benchmark after local self play
+finished gave serial **61.072 s**, batch **61.805 s**, or **0.988×** overall.
+By remaining tricks: 13 → 0.983×, 10 → 1.067×, 7 → 1.137×, 4 → 1.001×.
+Again, no move/value differences. The honest conclusion is approximate overall
+parity with some later-position gains, not a demonstrated full-game speedup.
+
+An additional eight-full-game comparison of the Large and Pattern native TT
+implementations used identical 32-sample self-play choices and agreed on all
+values/actions. CPU time was 53.274 vs 53.215 s respectively; this small test
+does not justify changing the table choice for the larger collection.
+
+## 10,000-game target before training
+
+Max requested **10,000 independent games before the first training**. The
+completed checkpoint is chunk 0. Nine additional 1,000-game jobs were launched
+in [GitHub Actions run 42491138682](https://github.com/maxschireson/Single-Dummy-Bridge/actions/runs/42491138682),
+using deal seeds 20261111 through 20261119 and decision seeds 10173 through
+18173. They keep 32 PIMC samples and the 0.125-trick exploration threshold.
+Artifacts contain complete records, summaries, manifests and three NPZ splits;
+no bulk data is committed to Git. Training is on hold until all chunks pass
+the cross-chunk audit for 10,000 distinct original deals, legal replay, correct
+labels and no split leakage. At publication of this checkpoint these jobs were
+running/queued; do not treat the 9,000 as already completed.
+
+Use `scripts/audit_selfplay.py --expected-games 10000 --out audit.json` followed
+by the ten chunk directories. Combining chunks does not mean concatenating
+their input and label fields indiscriminately; retain the documented schema.
+
+## First learning experiment and hardware planning
+
+At the measured local rate, 10,000 games take about 2.5 hours and 30,000 about
+7.4 hours on this worker allocation. Parallel independent hosted jobs shorten
+elapsed collection time; this is not a solver speed improvement.
+
+For Max's 18-core M5 Max MacBook Pro and discussed 36-core M5 Ultra Studio, a
+rough unmeasured estimate is 2–4 and 4–8 games/second respectively at this same
+32-sample workload. That implies about 40–85 minutes and 20–45 minutes per
+10,000 games. These are engineering extrapolations, not Apple DDS measurements;
+calibrate with a 100-game local run. CPU resources and sustained thermals matter
+more than GPU size or 512 GB capacity for this collector. Apple configuration
+reference: https://www.apple.com/mac/compare/?modelList=MacBook-Pro-16-M5-Max%2CMac-Studio-M5-Ultra
 
 As engineering starting budgets, 10,000–30,000 independent games should be a
 reasonable first belief-model experiment (roughly 0.5–1.6 million positions).

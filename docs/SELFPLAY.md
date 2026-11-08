@@ -9,6 +9,7 @@ The sampler does not yet use the likelihood of earlier card choices or bidding.
 
 ```sh
 python3 scripts/build_dds.py
+python3 -m pip install numpy  # export and its validation test; play itself is stdlib-only
 python3 -m unittest discover -s tests -v
 python3 -m bridge_harness.selfplay --count 1000 --workers 8 --samples 32 \
   --deal-seed 20261110 --seed 9173 --objective tricks --near-tie 0.125 \
@@ -185,6 +186,9 @@ context. Owner targets and loss masks, chosen-action targets, returns, behavior
 probabilities, PIMC values, selector masks and split identifiers are separate
 arrays. Auctions are preserved in JSON but intentionally omitted from this
 initial tensor encoder because the synthetic auctions carry no hand evidence.
+The owner-support mask encodes visibility, observed voids and zero remaining
+counts; it does not implement all deductions from joint hand capacities. The
+exact constrained sampler remains the appropriate baseline for those deductions.
 The exporter currently materializes one split in memory: export run shards
 separately for larger datasets, or stream `training.iter_examples()` into a
 minibatch loader. Never combine input and target arrays indiscriminately.
@@ -213,3 +217,17 @@ No playing-strength gain has been established by collecting this dataset.
 
 All source, validation and compact reports belong in Git. Bulk game records,
 training arrays, logs, native binaries and weights remain outside Git.
+
+For the requested 10,000-game first dataset, validate all ten 1,000-game
+directories together before any training:
+
+```sh
+python3 scripts/audit_selfplay.py --expected-games 10000 --out data/audit-10000.json \
+  data/chunk-0 data/chunk-1 data/chunk-2 data/chunk-3 data/chunk-4 \
+  data/chunk-5 data/chunk-6 data/chunk-7 data/chunk-8 data/chunk-9
+```
+
+This replays every game, checks pre-action observations and hidden labels,
+rejects repeated original deals and cross-split groups, and verifies the fixed
+32-sample/0.125-trick collection settings. Failed or incomplete chunks do not
+qualify. No training command is included in the collection workflow.
