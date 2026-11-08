@@ -5,6 +5,36 @@ the same belief sampler with zero-band PIMC, and one against bidding-blind zero-
 PIMC. The additional 500-deal belief-control follow-up and full-search BEN comparison
 remain separate pending work. All auctions use BEN neural-only bidding.
 
+## Preliminary extension result: first 200 new deals, pooled 700
+
+The fixed first 200 generation-order deals of the fresh belief-control extension
+passed the full audit: 400 complete table games and zero recorded failed pairs.
+Both sides use the same frozen bidding belief sampler; the candidate adds the
+frozen policy selector and 0.125 window, while the control uses zero-band PIMC.
+
+| Cohort | Tricks/deal (nominal 95% interval) | IMPs/deal (nominal 95% interval) | IMP wins/ties/losses |
+|---|---:|---:|---:|
+| First 200 new deals | +0.005 (-0.110 to +0.115) | -0.205 (-0.690 to +0.260) | 40 / 119 / 41 |
+| Original 500 plus new 200 | +0.0457 (-0.0200 to +0.1086) | -0.0014 (-0.2757 to +0.2657) | 153 / 418 / 129 |
+
+Both analyses remain inconclusive. The pooled 700 deals represent 1,400 complete
+games with disjoint original hands. The extension was authorized after seeing
+the first 500-deal uncertainty, so pooled intervals are nominal follow-up estimates,
+not an originally predeclared 1,000-deal test or an optional-extension correction.
+The new 500-deal horizon and frozen settings remain unchanged.
+
+The new-200 audit verified 20,800 legal plays, 16,484 non-forced decisions,
+527,488 sampled-world solves, 6,652 policy selections and 167 selections below
+the sampled PIMC maximum within the authorized window. All 417 shared non-forced
+positions had matching world hashes and estimates. Pre-action predictions, support,
+scores, orientation, cohort uniqueness and the 64,486 exclusions passed.
+
+The extension later reached 334 pairs before both its worker and queue exited;
+the exit cause was unavailable and no per-pair failures were recorded. Only missing
+pairs were resumed. BEN still had zero pairs and its waiting queue was restored;
+it cannot launch until the extension audit passes and memory/server resources are
+available. No unrelated worker was stopped or reconfigured.
+
 ## Final total-improvement result: 500 deals versus bidding-blind PIMC
 
 All **500 independent paired deals / 1,000 complete games** passed the full audit.
