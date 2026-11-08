@@ -8,6 +8,8 @@ deliberately modest.
 This branch adds **batch PIMC and self-play training data**. See
 [self-play usage and training schema](docs/SELFPLAY.md) and
 [the measured first-run report](reports/selfplay_initial_2026-11-08.md).
+The [updated training plan](docs/TRAINING_PLAN.md) covers small bidding-aware belief
+models, independent evaluation data, and BEN-bid/PIMC-play collection.
 
 ```sh
 python3 scripts/build_dds.py
@@ -185,6 +187,15 @@ and BEN swapping partnerships. It stops the server afterward. It writes the exac
 BEN config and revision alongside the records. It disables BBA, BGA PIMC, ACE and
 SuitC extensions to use BEN's portable neural/DDS path. That configuration must be
 named when interpreting results; it does not stand for every BEN setup.
+
+For larger calibration runs, `scripts/ben_integration.py` accepts `--count`,
+`--deal-seed`, `--decision-seed`, `--samples`, `--objective`, `--near-tie`, and
+`--resume`. Defaults for our player are batch PIMC, 32 worlds, expected tricks,
+and uniform selection within 0.125 estimated tricks. BEN defaults to two DDS
+threads to bound parallel server resource use; its search sample counts are
+unchanged. Resume checks saved deals, BEN configuration and match settings and
+preserves completed auctions/games. Match reports include candidate-oriented
+paired tricks as well as IMPs, with uncertainty clustered by deal/family.
 
 With your own BEN server already running:
 

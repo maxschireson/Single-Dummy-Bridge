@@ -5,6 +5,9 @@ import random
 import threading
 import time
 import unittest
+from unittest.mock import patch
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import parse_qs, urlparse
 
@@ -13,7 +16,7 @@ from bridge_harness.corpus import generate, read_pbn, write_pbn, freeze_auction
 from bridge_harness.sampling import Sampler, allocations, ways
 from bridge_harness.players import RandomPlayer, GreedyPlayer, PIMCPlayer, BenPlayer, Decision
 from bridge_harness.runner import run_pair, replay, play_table, isolated_pair
-from bridge_harness.report import summarize
+from bridge_harness.report import summarize, trick_difference
 
 
 class CoreTests(unittest.TestCase):
@@ -197,6 +200,16 @@ class DDSTests(unittest.TestCase):
 
 
 class HarnessTests(unittest.TestCase):
+    def test_paired_tricks_orientation(self):
+        for mode in ('declarer','defence','partnership'):
+            for declarer in SEATS:
+                r=dict(board=dict(contract='3N',declarer=declarer),config=dict(mode=mode),
+                       tables=[dict(declarer_tricks=10),dict(declarer_tricks=8)])
+                expected=-2 if mode=='defence' or (mode=='partnership' and declarer in 'EW') else 2
+                self.assertEqual(trick_difference(r),expected)
+        r['board']['contract']=None
+        self.assertEqual(trick_difference(r),0)
+
     def test_self_matches_zero_and_replay(self):
         for mode in ('declarer','defence','partnership'):
             for b in generate(8):
@@ -237,6 +250,31 @@ class HarnessTests(unittest.TestCase):
 
 
 class BenAdapterTests(unittest.TestCase):
+    def test_freeze_resume_preserves_completed_auction(self):
+        from bridge_harness.cli import main
+        from bridge_harness.corpus import save, load
+        class PassBidder:
+            def __init__(self): self.calls=0
+            def bid(self,*args):
+                self.calls+=1
+                return 'PASS',{}
+        with TemporaryDirectory() as directory:
+            source=Path(directory)/'source.jsonl';out=Path(directory)/'frozen.jsonl'
+            boards=list(generate(3,seed=843));save(boards[:1],source)
+            bidder=PassBidder()
+            with patch('bridge_harness.cli.BenPlayer',return_value=bidder):
+                main(['freeze-auctions',str(source),str(out)])
+                prefix=out.read_bytes();self.assertEqual(bidder.calls,4)
+                save(boards,source)
+                main(['freeze-auctions',str(source),str(out),'--resume'])
+                self.assertEqual(bidder.calls,12)
+                self.assertTrue(out.read_bytes().startswith(prefix))
+                self.assertEqual(len(load(out)),3)
+                save(list(generate(3,seed=844)),source)
+                with self.assertRaisesRegex(ValueError,'original deal'):
+                    main(['freeze-auctions',str(source),str(out),'--resume'])
+                self.assertEqual(bidder.calls,12)
+
     def test_request_visibility_and_controller(self):
         b=next(generate(1));g=Game(b);g.play(g.observation().legal[0]);o=g.observation()
         p=BenPlayer();seen=[]

@@ -40,6 +40,7 @@ def main(argv=None):
     p.add_argument("input"); p.add_argument("output")
     p.add_argument("--ben-url",default="http://127.0.0.1:8085")
     p.add_argument("--timeout",type=float,default=120)
+    p.add_argument("--resume",action="store_true",help="Continue a validated frozen-auction prefix")
     p = sub.add_parser("match")
     p.add_argument("corpus"); p.add_argument("--out",required=True)
     p.add_argument("--mode",choices=("declarer","defence","partnership"),default="declarer")
@@ -75,10 +76,27 @@ def main(argv=None):
     elif args.command == "freeze-auctions":
         bidder = BenPlayer(args.ben_url,args.timeout)
         out = Path(args.output); out.parent.mkdir(parents=True,exist_ok=True)
-        if out.exists():
+        log_path = out.with_suffix(".auctions.jsonl")
+        boards = load(args.input)
+        if len({b.id for b in boards}) != len(boards):
+            raise ValueError("Duplicate board IDs")
+        if (out.exists() or log_path.exists()) and not args.resume:
             raise ValueError("Output exists; choose a new filename")
-        with out.open("x") as f, out.with_suffix(".auctions.jsonl").open("x") as log:
-            for b in load(args.input):
+        frozen_prefix = load(out) if out.exists() else []
+        logs = records(log_path) if log_path.exists() else []
+        if len(frozen_prefix) != len(logs) or len(frozen_prefix) > len(boards):
+            raise ValueError("Frozen-auction/transcript prefix length mismatch; repair explicitly")
+        for original, frozen, logged in zip(boards, frozen_prefix, logs):
+            identity = lambda b: (b.id, b.hands, b.dealer, b.vulnerability, b.family)
+            if identity(original) != identity(frozen) or frozen.auction_source != "BEN" \
+                    or frozen.opening_lead is not None or logged["board"] != original.id \
+                    or tuple(t["bid"] for t in logged["transcript"]) != frozen.auction \
+                    or [t["seat"] for t in logged["transcript"]] != [
+                        "NESW"[(original.dealer+i)%4] for i in range(len(frozen.auction))]:
+                raise ValueError("Frozen auction does not match original deal/transcript")
+        mode = "a" if args.resume else "x"
+        with out.open(mode) as f, log_path.open(mode) as log:
+            for b in boards[len(frozen_prefix):]:
                 frozen, transcript = freeze_auction(b,bidder)
                 f.write(json.dumps(frozen.to_dict())+"\n"); f.flush()
                 log.write(json.dumps(dict(board=b.id,transcript=transcript))+"\n"); log.flush()
