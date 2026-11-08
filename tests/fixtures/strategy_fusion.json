@@ -1,0 +1,224 @@
+{
+  "id": 516,
+  "cards": 3,
+  "worlds": 8,
+  "strain": "S",
+  "pimc": 12.875,
+  "exact": 12.875,
+  "pimc_root_achievable": 12.625,
+  "fusion_gap": 0.0,
+  "root_regret": 0.25,
+  "pimc_card": "ST",
+  "exact_card": "HQ",
+  "example": [
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "H8",
+          "HT",
+          "HJ"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "S4",
+          "SJ",
+          "H6"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "H6",
+          "H8",
+          "HJ"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "S4",
+          "SJ",
+          "HT"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "SJ",
+          "H8",
+          "HT"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "S4",
+          "H6",
+          "HJ"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "SJ",
+          "H6",
+          "H8"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "S4",
+          "HT",
+          "HJ"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "S4",
+          "H8",
+          "HT"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "SJ",
+          "H6",
+          "HJ"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "S4",
+          "H6",
+          "HT"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "SJ",
+          "H8",
+          "HJ"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "SJ",
+          "H8",
+          "HJ"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "S4",
+          "H6",
+          "HT"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    },
+    {
+      "hands": [
+        [
+          "S7",
+          "SK",
+          "H2"
+        ],
+        [
+          "S4",
+          "SJ",
+          "HT"
+        ],
+        [
+          "ST",
+          "H4",
+          "HQ"
+        ],
+        [
+          "H6",
+          "H8",
+          "HJ"
+        ]
+      ],
+      "leader": 2,
+      "tricks": 10
+    }
+  ],
+  "generation_seed": 620517
+}

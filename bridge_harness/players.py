@@ -118,13 +118,21 @@ class BenPlayer:
         return normalize_bid(response["bid"]), {"request": params, "response": response}
 
 
-def make_player(spec, samples=32, ben_url="http://127.0.0.1:8085", timeout=120, objective="score"):
+def make_player(spec, samples=32, ben_url="http://127.0.0.1:8085", timeout=120, objective="score",
+                strategy_decisions=2, strategy_continuation="greedy", strategy_model="greedy", strategy_policy_samples=2):
     if spec == "random":
         return RandomPlayer()
     if spec == "greedy":
         return GreedyPlayer()
     if spec == "pimc":
         return PIMCPlayer(samples, objective)
+    if spec in ("strategy", "alphamu", "continuation"):
+        from .rollout import StrategyPlayer, AlphaMuPlayer, ContinuationPlayer
+        if spec == "alphamu":
+            return AlphaMuPlayer(samples, objective)
+        if spec == "continuation":
+            return ContinuationPlayer(strategy_continuation, strategy_policy_samples, objective)
+        return StrategyPlayer(samples, objective, strategy_decisions, strategy_continuation, strategy_model, strategy_policy_samples)
     if spec == "ben":
         return BenPlayer(ben_url, timeout)
     raise ValueError(f"Unknown player: {spec}")

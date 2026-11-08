@@ -43,6 +43,9 @@ threads. Matches are serial, with each paired board in its own worker process.
 | `random` | Uniform random legal card; useful as a smoke baseline. |
 | `greedy` | Tries to win the current trick cheaply, avoids overtaking partner, leads a high card. Deliberately weak. |
 | `pimc` | Samples hidden hands consistent with hard public information; asks DDS to score every legal card in each sampled world; maximizes average utility. Default 32 samples. |
+| `strategy` | Experimental declarer policy search: two nonforced choices, executable greedy continuation, fixed greedy defender model. |
+| `continuation` | Matched control: runs the configured strategy continuation without planning. |
+| `alphamu` | PIMC earlier; attempts exact alpha-mu policies on sampled endings with at most three cards per hand. |
 | `ben` | Calls a separately running BEN engine through `/lead` and `/play`; `/bid` supplies frozen auctions. |
 
 Only the runner owns all four actual hands. Players receive an immutable
@@ -58,8 +61,8 @@ It does **not** use auction likelihoods, opponent skill, signals, or likelihoods
 earlier card choices. This is the intended first baseline, not a belief network.
 
 PIMC assumes perfect-information continuations inside each sampled world. It can
-choose incompatible future lines across worlds (strategy fusion). It does not yet
-search information-consistent contingent strategies. DDS values are converted
+choose incompatible future lines across worlds (strategy fusion). The separate `strategy` and `alphamu` players add experimental consistent-strategy
+search; see [design, assumptions and reproduction](docs/consistent_strategies.md). DDS values are converted
 from the acting partnership's remaining tricks to declarer's final trick total
 before scoring. `--objective score` maximizes expected duplicate score; alternatives
 are `tricks` and `make`. IMPs are used to report paired results, not as an assumed
@@ -207,7 +210,7 @@ the match command's hard process deadline does not).
 | `report.py` | Paired IMPs, cluster uncertainty, timings and discrepancies |
 
 Next useful additions are auction-conditioned belief sampling, a small policy or
-value model measured against this baseline, and information-consistent strategy
+value model measured against this baseline, and faster, stronger information-consistent strategy
 search. Solver reuse and cached leaves are not implemented here; no speedup from
 them is assumed. Training, self-play learning, model fitting and opponent skill
 inference are also not implemented. Current recorded play can support those
@@ -222,3 +225,11 @@ reproduction scripts, and compact historical reports in `reports/`. Bulk deal
 corpora, per-decision JSONL records, generated JSON summaries, server/test logs,
 compiled binaries, and model weights are excluded. The original experiment
 archive remains unchanged. See `CREDITS.md` for attribution.
+
+## Consistent strategies
+
+See [the strategy design](docs/consistent_strategies.md) and
+[measured experiments](reports/consistent_strategies.md). The new players are
+declarer-only; use `--mode declarer` and a different `--common` defender.
+Alpha-mu credits and the distinction between publication and software licensing
+are recorded in [CREDITS.md](CREDITS.md).
