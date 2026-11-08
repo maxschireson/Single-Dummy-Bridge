@@ -268,3 +268,7 @@ separately from supervised validation metrics.
 
 [First training results](reports/first_belief_training_2026-11-08.md): two small
 fits completed; neither beat the ownership prior on validation.
+
+[Fast bidding and auction-belief results](reports/fast_bidding_and_belief_2026-11-08.md):
+50,000 independent auctions collected; a 46,582-parameter model improved
+validation ownership predictions. Playing strength has not yet been measured.

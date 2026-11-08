@@ -28,3 +28,10 @@ terms apply. See `VALIDATION.md` for the tested revision and configuration.
 
 This harness is independent research work. It is not an official DDS or BEN
 release, and no endorsement by those projects or their authors is implied.
+
+The fast auction collector calls the externally installed BEN v3 encoder and
+neural bidder (revision `9b5f43104aeac713a80b73513f2f2d6daf9f8769`). BEN is
+GPL-3.0; its source and trained models are not redistributed here, and their
+own licensing terms apply. BEN and its contributors supplied the bidding
+models and feature encoding; this project adds batching, collection/audit
+logic, explicit data separation and the small experimental belief models.

@@ -154,3 +154,42 @@ A saved `.keras` file contains raw logits (residual logits with
 log capacity prior before applying the hard support mask and softmax. Preserve
 all model/data/schema provenance. The first-run report records both the initial
 unregularized attempt and the subsequent correction; neither is a strength claim.
+
+
+## Fast hand-dependent auction collection
+
+Max approved weaker, faster bidding for training data. Use BEN's neural-only
+configuration (`bidding.search_threshold=-1`,
+`bidding.check_final_contract=False`, `sampling.no_samples_when_no_search=True`),
+with the pinned portable external models and BBA disabled. The collector batches
+independent public-prefix requests of equal length, selects the best legal
+neural call and skips search, DDS, rescue bidding and auxiliary hand inference.
+This changes the bidding policy relative to full-search BEN; it is explicitly
+identified as `BEN-neural-only-batched`. It is not a claim of equal strength.
+
+`scripts/collect_ben_auctions.py` reserves original deal hashes before bidding,
+requires an exclusion registry, records source/model/config hashes and grouped
+splits, independently validates complete auctions and stores privileged full
+hands separately from public transcripts. All 10,000 original play deals,
+200 reserved calibration deals and 1,000 development auctions were excluded
+from the 50,000-auction collection. Passed-out auctions remain valid belief
+examples and are reported separately; no auction is counted as a complete
+52-card-play game.
+
+`scripts/prepare_auction_belief.py` audits all auctions and constructs four
+completed-auction views plus one sampled pre-call view for each seat per deal.
+The input function accepts only own hand, observer, dealer, vulnerability and
+public prefix. It accepts neither a full board nor future calls/contract.
+Ownership targets are separate, seats are relative to the observer, and all
+views of a deal retain its original split. No future call is supplied to a
+prefix example.
+
+`scripts/train_auction_belief.py` fits a roughly 47,000-parameter baseline with
+ordered call/seat embeddings and a small MLP. It early-stops on validation NLL,
+keeps test metrics untouched, and checks a validation ablation with auction
+information removed. This is auction-only pretraining; combined bidding/play
+training needs newly played trajectories under these actual contracts.
+
+A future mixture can include other neural or rules-based bidding systems, with
+source/system identifiers in the model input. A single BEN-style data source
+cannot demonstrate generalization to human conventions or other systems.
