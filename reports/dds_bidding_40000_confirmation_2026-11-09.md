@@ -32,3 +32,5 @@ Snapshot SHA256:
 Fresh test seed: `2326250810`. Original runtime source unchanged. The separate
 40k model/Adam/DDS milestone remains preserved; source commits contain no
 weights, datasets or logs.
+
+[Download the complete 5,000-pair results](https://chatgpt.com/library?file_id=libfile_fde3_f-59e9e5bcacd08191b36a104a196585ad_cf78a91e4b8c81918243c2c17fc9b8b9&account_id=personal).
