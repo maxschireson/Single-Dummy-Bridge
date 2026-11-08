@@ -29,7 +29,7 @@ def main():
         if state['complete']:
             for f in (fit/'result.json',fit/'best.npz'):
                 if f.exists():data[str(f.relative_to(root))]=f.read_bytes()
-    for f in (run/'comparison.json',run/'sources.json'):
+    for f in (run/'comparison.json',run/'sources.json',run/'RUN_NOTES.json'):
         if f.exists():data[str(f.relative_to(root))]=f.read_bytes()
     recovery=dict(source_commit=a.source_commit,repository='maxschireson/Single-Dummy-Bridge',
         branch='research/belief-size-comparison',run=str(prefix),
