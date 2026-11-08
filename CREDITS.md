@@ -35,3 +35,17 @@ GPL-3.0; its source and trained models are not redistributed here, and their
 own licensing terms apply. BEN and its contributors supplied the bidding
 models and feature encoding; this project adds batching, collection/audit
 logic, explicit data separation and the small experimental belief models.
+
+The DDS-only bidding league was requested and directed by Max Schireson, with
+implementation and validation assisted by OpenAI ChatGPT/Codex. Its initial
+policy is BEN's external `GIB-BBO-8742_2026-10-23-E30.keras`, trained by BEN's
+contributors on auctions from Edward Piwowar's EPBot/Bridge Bidding Analyser.
+The new encoder implements the public 193-feature model interface and is
+audited against BEN at runtime; no BEN source or weights are bundled. External
+and fine-tuned model artifacts remain subject to the applicable upstream terms.
+
+The design is informed by Edward Lockhart et al., *Human-Agent Cooperation in
+Bridge Bidding* (2020), https://arxiv.org/abs/2011.14124, and John Schulman et al.,
+*Proximal Policy Optimization Algorithms* (2017), https://arxiv.org/abs/1707.06347.
+This implementation uses direct paired terminal-reward PPO, not the bridge
+paper's search-distillation implementation. No code from either paper is copied.

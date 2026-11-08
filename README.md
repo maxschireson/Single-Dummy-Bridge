@@ -1,5 +1,10 @@
 # Bridge harness 0.1
 
+The **DDS-only bidding self-improvement loop** is described in
+[docs/dds_bidding_loop.md](docs/dds_bidding_loop.md). It fine-tunes the external
+BEN bidder on paired duplicate IMP rewards without playing cards, with cached
+DDS tables, optimizer checkpoints, a frozen league and held-out promotion gates.
+
 A working baseline for single-dummy bridge experiments: legal play, simple players,
 paired comparisons, saved deals, deterministic local decisions, and replay.
 The goal of this version is to make an improvement measurable. Playing strength is
