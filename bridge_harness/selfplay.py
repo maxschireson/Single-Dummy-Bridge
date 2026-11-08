@@ -54,6 +54,7 @@ def run_job(board, episode, config, deadline):
 
 def summarize_run(directory, wall_seconds, attempted):
     times, rows, choices, selectors, explored, nodes, solves = [], 0, 0, 0, 0, 0, 0
+    native_solves = cache_hits = duplicate_worlds = 0
     gaps = []
     splits = {s: dict(games=0, rows=0, choices=0, selectors=0) for s in ("train", "validation", "test")}
     contracts = {}
@@ -79,6 +80,9 @@ def summarize_run(directory, wall_seconds, attempted):
             if choice: gaps.append(gap)
             explored += gap > 0
             nodes += action.get("dds_nodes", 0); solves += action.get("dds_calls", 0)
+            native_solves += action.get('dds_native_solves',action.get('dds_calls',0))
+            cache_hits += action.get('dds_cache_hits',0)
+            duplicate_worlds += action.get('dds_duplicate_worlds',0)
     games = len(times)
     failures = len(list((Path(directory) / "failures").glob("*.json.gz")))
     return dict(games=games, independent_deals=len(deal_ids), failures=failures,
@@ -86,6 +90,7 @@ def summarize_run(directory, wall_seconds, attempted):
         hidden_card_labels=owner_cards, selected_below_pimc_best=explored,
         mean_selected_pimc_gap=statistics.mean(gaps) if gaps else 0,
         dds_world_solves=solves, dds_nodes=nodes, splits=splits,
+        dds_native_solves=native_solves, dds_cache_hits=cache_hits, dds_duplicate_worlds=duplicate_worlds,
         total_wall_seconds=wall_seconds, attempted_games=attempted,
         games_per_second=games / wall_seconds if wall_seconds else None,
         mean_game_seconds=statistics.mean(times) if times else None,
