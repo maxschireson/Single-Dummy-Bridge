@@ -1,9 +1,57 @@
 # Frozen policy+belief versus best PIMC and BEN — 8 November 2026
 
-**Both original 500-deal PIMC comparisons are complete and audited:** one against
-the same belief sampler with zero-band PIMC, and one against bidding-blind zero-band
-PIMC. The additional 500-deal belief-control follow-up and full-search BEN comparison
-remain separate pending work. All auctions use BEN neural-only bidding.
+**All PIMC comparisons are complete and audited:** 1,000 independent paired deals
+against belief-informed zero-band PIMC and 500 paired deals against bidding-blind
+zero-band PIMC. The full-search BEN card-play comparison remains pending.
+
+## Completed belief-control extension: 500 new deals and 1,000 pooled
+
+All 500 new independent paired deals (1,000 complete table games) passed the full
+settings/prediction/replay audit. Combining them with the original 500 gives 1,000
+independent deals and 2,000 complete games, with no repeated original hands and
+zero recorded failed pairs. Positive results favor policy+belief over the same
+belief sampler with zero-band PIMC.
+
+| Cohort | Tricks/deal (nominal 95% interval) | IMPs/deal (nominal 95% interval) | IMP wins/ties/losses |
+|---|---:|---:|---:|
+| New 500 | +0.048 (-0.032 to +0.128) | -0.032 (-0.372 to +0.306) | 108 / 296 / 96 |
+| Pooled 1,000 | +0.055 (+0.002 to +0.108) | +0.024 (-0.205 to +0.243) | 221 / 595 / 184 |
+
+The fresh 500 alone is inconclusive on both outcomes. The pooled trick interval
+barely excludes zero, suggesting a small trick-taking benefit; the IMP estimate
+is near zero and its interval includes both benefit and harm. This does not establish
+an IMP improvement or equivalence. Because the extension was selected after seeing
+the first 500-deal result, the pooled interval is a nominal data-dependent follow-up,
+not an originally predeclared 1,000-deal test or a corrected significance claim.
+The new cohort and fixed 500 horizon were frozen before play; no tuning occurred.
+
+The new-500 audit verified 52,000 legal plays, 41,165 non-forced
+PIMC decisions, 1,317,280 world solves, 16,664 policy
+selections and 400 choices below the sampled maximum within
+the authorized window. All 1,042 shared non-forced positions had matching
+world hashes and estimates. Exact pre-action selector predictions, support, 32-world
+native-batch settings, scores/IMPs, orientation, cohort identities and 64,486 exclusions
+passed. The combined audit independently replayed all 2,000 games and checked disjoint
+original hands after both full per-cohort audits. Two new source deals passed out
+before selection and ten playable deals remain unused and reserved.
+
+Execution was interrupted at 334 and 483 pairs with no logged exit cause. Only missing
+pairs were resumed; all 351 extension pairs in the recovery checkpoint are byte-for-byte
+unchanged. Observed active execution segments total 20.5 minutes, approximately
+1,460 pairs/hour; first start to last saved pair was 59.0 minutes
+including gaps. These timings exclude final audit and may omit unfinished lost work.
+They measure shared workers, not a controlled hardware benchmark.
+
+Both sides used the same frozen bidding belief sampler, 32 worlds and expected tricks.
+Only the candidate used the frozen policy selector and 0.125 eligibility window; the
+control uniformly chose exact PIMC maxima. Auctions were BEN neural-only. Policy training
+was originally bidding-blind; no combined retraining was performed. This is incremental
+policy/window value over belief-informed strict PIMC, not a full-search BEN comparison.
+It cannot be added to earlier effects on other cohorts. All source deals remain
+reserved for evaluation and excluded from future training.
+
+The full-search BEN card-play evaluation remains pending and resource-gated; it is
+not part of these completed playing-strength results.
 
 ## Preliminary extension result: first 200 new deals, pooled 700
 
