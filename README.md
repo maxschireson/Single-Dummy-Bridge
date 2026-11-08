@@ -14,6 +14,12 @@ strategy-search and related-deal solver-reuse work in progress.
 
 An [editable Word version](docs/Single_Dummy_Machine_v4.docx) is included.
 
+The [PIMC research checkpoint, 8 November 2026](reports/pimc_findings_and_next_steps_2026-11-08.md)
+records the alpha-mu and rollout experiments, the 1,000-board quality/cost results,
+small-ending partitions, and the next belief-model and learned-selector experiments.
+The experimental source is preserved separately on
+[`research/pimc-study-2026-11-08`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/pimc-study-2026-11-08).
+
 ## Start on a Mac or Linux machine
 
 Requires Python 3.11+ and a C++20 compiler. On a Mac, install Apple's command-line
