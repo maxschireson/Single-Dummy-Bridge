@@ -1,10 +1,51 @@
 # Frozen policy+belief versus best PIMC and BEN — 8 November 2026
 
-Two fixed 500-deal paired evaluations are authorized and prepared. Card play is
-running for the best-PIMC comparison. The full-search BEN comparison has a live
-worker waiting for memory; it must not be described as playing until records exist.
-Results will be reported after the fixed first 200 deals and after all 500 in each
-comparison. Play continues while the interim audit runs in a separate process.
+**The zero-band PIMC comparison is complete: 500 independent paired deals,
+1,000 complete table games, fully audited.** The full-search BEN comparison is
+still pending, with zero played deals while its worker waits for memory. Both
+comparisons use the same frozen BEN neural-only auctions and unchanged models.
+
+## Final result versus zero-band PIMC
+
+| Outcome | Mean per paired deal | Nominal 95% deal-cluster interval |
+|---|---:|---:|
+| Tricks | +0.062 | −0.014 to +0.142 |
+| IMPs | +0.080 | −0.234 to +0.408 |
+
+IMP wins/ties/losses: **113 / 299 / 88**. Positive values favor the policy+belief
+candidate. Both intervals include zero: **this test does not establish an improvement
+over strict PIMC maximization with the same belief model**. It also does not establish
+equivalence or rule out a modest benefit. No model or setting was changed after
+the 200-deal preliminary look.
+
+The full audit verified 52,000 legal card plays, 41,217 non-forced PIMC decisions
+and 1,318,944 sampled-world DDS solves. There were 16,768 policy decisions, including
+446 choices below the sampled PIMC maximum within the unchanged 0.125 window.
+All 1,024 shared non-forced positions had identical sampled-world hashes and
+estimates. Exact pre-action selector predictions, legal support, zero-band maxima,
+partnership orientation, scores, IMPs, exclusions and all 500 unique cohort identities
+passed. Zero per-pair failure records occurred. One process interruption was recovered
+at 332 pairs; its cause was not established. All 390 pairs from the recovery checkpoint
+are byte-for-byte unchanged.
+
+Measured execution segments, from invocation start to each segment's last saved pair,
+were 10.6 seconds for the first smoke-validation pair, 752.9 seconds for the next
+331 pairs and 424.2 seconds for the final 168 pairs. These sum to **19.8 minutes**,
+about **1,516 paired deals/hour** on four shared workers. First launch to final saved
+pair was 27.7 minutes including intervening gaps. These descriptive timings exclude
+final auditing and may omit lost work after the last saved pair of the interrupted
+process; they are not a controlled hardware benchmark.
+
+The earlier 1,000-deal gain against uniform selection inside a 0.125 window does
+not establish a gain against this stronger zero-band control. The experiments use
+different deals, so their effect estimates must not be added or subtracted as a
+direct paired measurement of the controls. Policy training remains frozen and was
+originally based on bidding-blind PIMC; no combined retraining was performed.
+
+The complete strict-comparison records and the pending BEN cohort are preserved in
+`Bridge_Strict_PIMC_500_Complete_BEN_Pending_2026-11-08.zip`. This is **not** a completed
+BEN evaluation. BEN still requires approximately 5 GiB free memory and the shared
+server slot; no other campaign was stopped to obtain those resources.
 
 ## Preliminary result: first 200 deals versus zero-band PIMC
 
