@@ -19,7 +19,8 @@ import time
 from .core import Board, Game, imps
 from .corpus import generate, load, save
 from .loop_registry import freeze_bot, verify_bot, sha, source_hash
-from .loop_stats import gate, plan_arena
+from .loop_stats import gate, plan_arena, estimate
+from .loop_runtime import managed_ben
 from .runner import isolated_pair, replay
 from .selfplay import atomic_json
 from .training import digest, examples_from_record, split_for
@@ -128,6 +129,15 @@ class Campaign:
         self.state.update(changes)
         atomic_json(self.state_path, self.state)
 
+    @contextmanager
+    def timed(self,phase):
+        started=time.monotonic()
+        try:yield
+        finally:
+            totals=dict(self.state.get('phase_seconds',{}))
+            totals[phase]=totals.get(phase,0)+time.monotonic()-started
+            self.checkpoint(phase_seconds=totals)
+
     def bot(self, name): return self.root / 'bots' / name / 'bot.json'
 
     def preflight(self):
@@ -223,6 +233,7 @@ class Campaign:
                    seed=int(digest([self.config['settings']['seed'], board.id, 'decision'])[:12], 16),
                    behavior_id=read(self.bot(candidate))['identity'],
                    objective=read(self.bot(candidate))['spec']['budget'].get('objective', 'tricks'))
+        if not selfplay:cfg['rng_group']='loop-common-worlds-v1'
         path = Path(path)
         if path.exists():
             r = read(path)
@@ -251,13 +262,23 @@ class Campaign:
 
     def collect(self, generation, target, parent, retry=False):
         s = self.config['settings']; shards = []
+        collector=parent
+        epsilon=s.get('selfplay_exploration',0.)
+        if epsilon:
+            m=read(self.bot(parent));spec=json.loads(json.dumps(m['spec']))
+            spec.pop('source_sha256',None);spec.pop('factory_sha256',None)
+            if spec['factory']!='bridge_harness.combined_player:CombinedPlayer':
+                raise ValueError('Exploration override requires the combined v2 factory')
+            spec['artifacts']={k:str(self.bot(parent).parent/v['file']) for k,v in spec['artifacts'].items()}
+            spec['kwargs']['exploration']=epsilon;collector=parent+'-explore'
+            freeze_bot(self.root,collector,spec)
         for start in range(0, target, s['shard_size']):
             count = min(s['shard_size'], target-start)
             unit = f'g{generation}/selfplay/{start:06d}'
             boards = self.corpus(unit, count, 'selfplay')
             d = self.root / unit
             def work(b):
-                return self.pair(b, parent, parent, d / 'episodes' / f'{digest(b.hands)}.json.gz', True, retry)
+                return self.pair(b, collector, collector, d / 'episodes' / f'{digest(b.hands)}.json.gz', True, retry)
             completed = 0
             for _ in bounded_map(work, boards, s['workers']):
                 completed += 1
@@ -266,6 +287,7 @@ class Campaign:
             files = {p.name: sha(p) for p in sorted((d / 'episodes').glob('*.json.gz'))}
             if len(files) != count: raise ValueError('Missing or extra self-play records')
             summary = dict(count=count, parent=read(self.bot(parent))['identity'], episodes=files,
+                           behavior=read(self.bot(collector))['identity'],exploration=epsilon,
                            splits={key: sum(split_for(b) == key for b in boards) for key in ('train','validation','test')},
                            passed_out=sum(b.contract is None for b in boards))
             atomic_json(d / 'shard.json', summary)
@@ -273,7 +295,7 @@ class Campaign:
         dataset = dict(schema=1, generation=generation, independent_deals=target,
                        parent=read(self.bot(parent))['identity'], shards=shards,
                        allowed_fit_splits=['train'], allowed_selection_splits=['validation'],
-                       test_access=False, behavior='frozen parent, all four seats',
+                       test_access=False, behavior='frozen parent, all four seats, logged exploration', exploration=epsilon,
                        policy_labels='actual return/propensity; never an unplayed counterfactual return')
         path = self.root / f'g{generation}/dataset-{target}.json'
         atomic_json(path, dataset)
@@ -307,30 +329,43 @@ class Campaign:
         freeze_bot(self.root, name, spec)
         return name
 
-    def arena(self, generation, target, candidate, parent, count, retry=False):
+    def arena(self, generation, target, candidate, parent, count, retry=False, screen_only=False):
         s = self.config['settings']; all_rows = []
         unit_base = f'g{generation}/arena-{target}'
         comparisons = dict(vs_parent=(candidate, parent), vs_original=(candidate, s['original']),
                            vs_ben=(candidate, s['ben']), parent_vs_ben=(parent, s['ben']))
+        if screen_only:comparisons={'vs_parent':(candidate,parent)}
         for start in range(0, count, s['shard_size']):
-            unit = unit_base + f'/boards/{start:06d}'
+            # One reserved cohort per generation permits caching parent-vs-BEN
+            # across the three predeclared data stages. Never train on it or tune
+            # model choices from its outcomes; all stage/look tests spend alpha.
+            unit = f'g{generation}/arena-boards/{start:06d}'
             boards = self.corpus(unit, min(s['shard_size'], count-start), 'arena')
             def work(board):
                 row = dict(deal_id=digest(board.hands), timings={}, trick_swings={})
                 for label, (a, b) in comparisons.items():
                     # Same pair can serve two labels without replaying identical games.
                     pair_id = digest([a, b])[:24]
-                    p = self.root / unit_base / 'games' / pair_id / f'{row["deal_id"]}.json.gz'
+                    p = self.root / f'g{generation}/arena-games' / pair_id / f'{row["deal_id"]}.json.gz'
                     r = self.pair(board, a, b, p, retry=retry)
                     row[label] = r['imps']
                     row['timings'][label] = sum(t['seconds'] for t in r['tables'])
                     row['trick_swings'][label] = ((r['tables'][0]['declarer_tricks'] - r['tables'][1]['declarer_tricks'])
                         * (1 if board.contract.declarer % 2 == 0 else -1)) if board.contract else 0
                 return row
-            for row in bounded_map(work, boards, s['workers']): all_rows.append(row)
+            workers=s['workers'] if screen_only else s.get('arena_workers',s['workers'])
+            for row in bounded_map(work, boards, workers): all_rows.append(row)
             print(json.dumps(dict(event='arena', generation=generation, training_deals=target,
                                   completed=len(all_rows), target=count)), flush=True)
         all_rows.sort(key=lambda r:r['deal_id'])
+        if screen_only:
+            stat=estimate(r['vs_parent'] for r in all_rows)
+            result=dict(generation=generation,training_deals=target,evaluation_deals=count,candidate=candidate,parent=parent,
+                        decision='screen-pass' if stat['mean']>s.get('screen_min_mean',0.) else 'screen-reject',
+                        vs_parent=stat,screen_only=True,rows_sha256=digest(all_rows),
+                        note='Compute-allocation screen only; never a promotion test')
+            atomic_json(self.root/unit_base/f'screen-{count}.json',result)
+            self.report();return result
         result = gate(all_rows, generation, len(s['training_stages']), len(s['evaluation_looks']),
                       s['family_alpha'], s['minimum_imp_gain'])
         result.update(generation=generation, training_deals=target, evaluation_deals=count,
@@ -371,9 +406,9 @@ class Campaign:
             g = self.state['generation']; parent = self.state['champion']; promoted = False
             for target in s['training_stages']:
                 self.checkpoint(status='collecting', training_deals=target)
-                dataset = self.collect(g, target, parent, retry)
+                with self.timed('collection'):dataset = self.collect(g, target, parent, retry)
                 self.checkpoint(status='training')
-                candidate = self.train(g, target, parent, dataset)
+                with self.timed('training'):candidate = self.train(g, target, parent, dataset)
                 if read(self.bot(candidate))['behavior_identity'] == read(self.bot(parent))['behavior_identity']:
                     atomic_json(self.root/f'g{g}/fit-{target}/unchanged.json',
                                 dict(generation=g, training_deals=target, evaluation_deals=0,
@@ -381,11 +416,17 @@ class Campaign:
                     self.report()
                     continue
                 self.checkpoint(status='evaluating', candidate=candidate)
-                for count in s['evaluation_looks']:
-                    result = self.arena(g, target, candidate, parent, count, retry)
-                    if result['decision'] == 'promote':
-                        self.promote(result); promoted = True; break
-                    if result['decision'] == 'futile': break
+                if s.get('screen_deals'):
+                    with self.timed('screening'):
+                        screen=self.arena(g,target,candidate,parent,s['screen_deals'],retry,screen_only=True)
+                    if screen['decision']=='screen-reject':continue
+                with self.timed('confirmation'):
+                    with managed_ben(s.get('managed_ben'),self.root/f'g{g}/arena-{target}/ben.log',self.checkpoint):
+                        for count in s['evaluation_looks']:
+                            result = self.arena(g, target, candidate, parent, count, retry)
+                            if result['decision'] == 'promote':
+                                self.promote(result); promoted = True; break
+                            if result['decision'] == 'futile': break
                 if promoted: break
             if not promoted:
                 self.checkpoint(status='exhausted')
@@ -396,10 +437,13 @@ class Campaign:
     def report(self):
         results = [read(p) for p in sorted(self.root.glob('g*/arena-*/result-*.json'))]
         results += [read(p) for p in sorted(self.root.glob('g*/fit-*/unchanged.json'))]
+        screens=[read(p) for p in sorted(self.root.glob('g*/arena-*/screen-*.json'))]
         latest = {}
         for r in results:
             key = (r['generation'], r['training_deals'])
             if key not in latest or r['evaluation_deals'] > latest[key]['evaluation_deals']: latest[key] = r
+        for r in screens:
+            if (r['generation'],r['training_deals']) not in latest:latest[(r['generation'],r['training_deals'])]=r
         rows = [latest[k] for k in sorted(latest)]
         atomic_json(self.root / 'progress.json', dict(state=self.state, candidates=rows))
         title = 'SMOKE TEST — NO STRENGTH CLAIMS' if self.config['settings'].get('smoke') else 'Self-improvement progress'
@@ -412,6 +456,10 @@ class Campaign:
         for r in rows:
             if r['decision']=='unchanged':
                 lines.append(f'| {r["generation"]} | {r["training_deals"]} | 0 | — | — | — | — | unchanged |')
+                continue
+            if r.get('screen_only'):
+                lines.append(f'| {r["generation"]} | {r["training_deals"]} | {r["evaluation_deals"]} | — | '
+                             f'{cell(r["vs_parent"])} | — | — | {r["decision"]} |')
                 continue
             d = r['descriptive']
             lines.append(f'| {r["generation"]} | {r["training_deals"]} | {r["evaluation_deals"]} | '
@@ -438,6 +486,11 @@ def initialize(root, settings):
             raise ValueError('Stage sizes must be multiples of shard_size for stable cumulative chunks')
     if not 0 < settings['family_alpha'] < 1 or settings['minimum_imp_gain'] < 0:
         raise ValueError('Invalid promotion thresholds')
+    if not 0 <= settings.get('selfplay_exploration',0.) <= 1 or settings.get('arena_workers',1) < 1:
+        raise ValueError('Invalid exploration or arena worker count')
+    screen=settings.get('screen_deals',0)
+    if screen and (screen<2 or screen % settings['shard_size']):
+        raise ValueError('Screen size must be a positive multiple of shard_size')
     for role in ('initial', 'original', 'ben'):
         if settings[role] not in settings['bots']: raise ValueError(f'Missing {role} bot definition')
     for name, spec in settings.pop('bots').items(): freeze_bot(root, name, spec)

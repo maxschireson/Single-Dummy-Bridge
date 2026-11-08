@@ -129,7 +129,7 @@ def input_tensors(observation):
         if c // 13 != led:
             voids[s, led] = 1
     legal = np.zeros(52, dtype=np.bool_)
-    legal[o["legal"]] = True
+    legal[list(o["legal"])] = True
     support = np.zeros((52, 4), dtype=np.bool_)
     remaining_counts = 13 - played.sum(axis=1)
     for c in range(52):

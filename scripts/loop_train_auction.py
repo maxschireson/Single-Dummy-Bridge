@@ -70,8 +70,8 @@ def main():
     a = p.parse_args()
     if min(a.epochs, a.patience, a.batch_size, a.threads) < 1: raise ValueError('Positive settings required')
     req = read(a.request); parent = verify_bot(req['parent_manifest'])
-    if parent['spec']['factory'] != 'bridge_harness.loop_registry:auction_pimc':
-        raise ValueError('Reference trainer supports auction-only PIMC; bind the final policy trainer for other v2s')
+    if parent['spec']['factory'] not in ('bridge_harness.loop_registry:auction_pimc','bridge_harness.combined_player:CombinedPlayer'):
+        raise ValueError('Unsupported parent belief factory')
     if parent['identity'] != req['parent_identity']: raise ValueError('Parent changed')
     output = Path(req['output']); work = output.parent / 'auction-training'; work.mkdir(exist_ok=True)
     os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL','3')
@@ -87,7 +87,8 @@ def main():
         with np.load(path, allow_pickle=False) as z: return {k:z[k] for k in z.files}
     first = load(paths['train'][0])
     model = make_model(first['state'].shape[1])
-    weight_key = parent['spec']['kwargs']['weights'].removeprefix('$artifact:')
+    weight_argument='belief' if parent['spec']['factory'].endswith(':CombinedPlayer') else 'weights'
+    weight_key = parent['spec']['kwargs'][weight_argument].removeprefix('$artifact:')
     weights = Path(req['parent_manifest']).parent / parent['spec']['artifacts'][weight_key]['file']
     with np.load(weights, allow_pickle=False) as z: model.set_weights([z[f'w{i}'] for i in range(8)])
     optimizer = tf.keras.optimizers.AdamW(.001, weight_decay=.0001, clipnorm=1.)

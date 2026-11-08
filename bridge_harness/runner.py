@@ -19,7 +19,7 @@ def decision_rng(seed, board_id, spec, observation):
     return random.Random(int.from_bytes(hashlib.sha256(payload.encode()).digest(), "big"))
 
 
-def play_table(board, assignments, players, seed=1, prefix=(), on_event=None):
+def play_table(board, assignments, players, seed=1, prefix=(), on_event=None, rng_group=None):
     game = Game(board)
     actions = []
     started = time.perf_counter()
@@ -33,7 +33,7 @@ def play_table(board, assignments, players, seed=1, prefix=(), on_event=None):
             elif not actions and board.opening_lead is not None:
                 d = Decision(board.opening_lead, {"fixed_opening_lead": True})
             else:
-                d = players[spec].choose(o, decision_rng(seed, board.id, spec, o))
+                d = players[spec].choose(o, decision_rng(seed, board.id, rng_group or spec, o))
             elapsed = time.perf_counter() - before
             game.play(d.card)
             action = dict(ply=len(actions), seat=SEATS[o.actor], controller=SEATS[o.controller],
@@ -89,7 +89,7 @@ def run_pair(board, config, event=None):
             def emit(action):
                 if event:
                     event({"table": index, "action": action})
-            table = play_table(board, assignment, players, seed, on_event=emit)
+            table = play_table(board, assignment, players, seed, on_event=emit, rng_group=config.get('rng_group'))
             result["tables"].append(table)
         result["status"] = "ok" if all(t["status"] == "ok" for t in result["tables"]) else "error"
         if result["status"] == "ok" and mode != "selfplay":

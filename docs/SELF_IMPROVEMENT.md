@@ -1,258 +1,164 @@
 # Self-improvement loop
 
-The processes are implemented on `research/self-improvement-loop`. No production
-self-play, network fitting, BEN match, recurring task, or paid job was started as
-part of setting this up. Finalize v2, bind its weights and trainer, then launch.
+The combined v2 uses the published auction belief net to weight PIMC samples and
+an outcome-trained policy net to rank PIMC-near-equal plays. Both are warm-started
+and retrained in each generation. The selector sees public play/state and the
+auction-informed PIMC values; it does not directly encode the auction. Combining
+them is an experimental starting point, not an established strength gain.
 
-The controller supports frozen bot factories, so the remaining v2 policy work
-can land without changing the experiment protocol. The supplied reference
-trainer **only updates the existing auction belief model**. It is not a claim
-that a policy network has been completed or that self-play already improves it.
+## Cycle and objective
 
-## Experiment
+1. Freeze v1 (uniform PIMC), v2, both network artifacts, the bidder, BEN card-play
+   reference, source, native DDS, and external model/configuration hashes.
+2. Collect 10,000 independent self-play deals. BEN supplies neural-only auctions:
+   no bidding search, rescue, BBA, or auction DDS calls. The four players use the
+   combined parent plus 20% uniform exploration within its PIMC near-tie window.
+3. Fit both nets using training deals and select each against its epoch-zero
+   parent using validation only. Retain unchanged parents when fitting hurts.
+4. Screen changed candidates against the parent on 1,000 paired deals. A
+   nonpositive mean advances to more data without spending full-search BEN time.
+   This is a compute-allocation heuristic; it can discard a small real gain.
+5. For positive screens, confirm against parent, original, and BEN. Also measure
+   parent versus BEN on the identical deals. Confirmation looks are 250, 1,000,
+   then 4,000 independent deals. These deliberately bounded defaults prioritize
+   iteration time and may be underpowered for small improvements.
+6. Promote only if both improvement over the parent and improvement in score
+   against BEN pass the predeclared statistical gate. Otherwise extend cumulative
+   self-play to 50k, then 250k (40k and 200k additional deals).
+7. A promotion becomes v3, then v4, etc. Preserve all historical bots. A new
+   generation gets fresh self-play and arena deals. If all three data stages fail,
+   retain the champion and stop for review of the learning recipe.
 
-1. Freeze v1 (original uniform PIMC), finalized v2, the bidder, and full-search
-   BEN, including model/config hashes and search settings.
-2. Generate 10,000 independent deals with genuine frozen auctions and have v2
-   play all four seats. Train/select a candidate using train/validation only.
-3. Compare candidate versus parent, original, and BEN on fresh independent
-   deals. Also play the parent versus BEN on those **same** deals.
-4. Promote only when both the head-to-head improvement over the parent and the
-   improvement in performance against BEN pass the predeclared statistical gate.
-5. Otherwise extend the same generation to 50,000, then 250,000 total deals.
-   These require 40,000 and 200,000 additional deals, not three separate corpora.
-6. If all three fail, retain the parent and stop for review. If promoted, label
-   the accepted candidate v3, preserve every older version, and optionally start
-   the next generation from v3 with fresh data. One generation per invocation is
-   the default; `--generations N` explicitly bounds a longer run.
+“Improvement against BEN” is `IMPs(candidate vs BEN) - IMPs(parent vs BEN)` on
+identical deals. BEN need not be beaten outright. All evaluations swap
+partnerships, use frozen auctions/contracts, and let each engine choose its
+opening leads. Positive IMP/board favors the candidate. This measures card play,
+not bidding strength. Passed-out deals remain in the population as zero IMPs.
 
-“Improvement against BEN” means
-`IMPs(candidate vs BEN) - IMPs(parent vs BEN)` on each identical deal.
-A candidate can improve against BEN while still losing to BEN overall.
-This is not the same statistic as its head-to-head score versus its parent.
+## Progress per time
 
-All comparisons swap partnerships at two tables. Positive IMPs favor the first
-named engine. Auctions, contracts, vulnerability, deals, and the BEN reference
-remain fixed within a comparison. Opening leads are chosen by each engine.
-This measures **card play including opening leads**, with bidding frozen; it is
-not a comparison of the bots' bidding strength. Passed-out deals remain in the
-population as zero-IMP boards and are counted separately in training summaries.
+Self-play defaults to eight bounded workers, NumPy inference, 32 related DDS
+samples, and the batch DDS interface. Neural auctions are batched and load only
+the bidder network; the collector checks scalar versus batched output. Training
+runs separately to avoid contending with play workers. Both learners stop after
+two nonimproving validation epochs, at most eight epochs.
 
-## Size, uncertainty, and promotion
+Unchanged models skip evaluation. Common sampling seeds reduce comparison noise
+when public histories coincide. The three predeclared training stages share one
+reserved arena cohort within a generation, allowing parent-versus-BEN games to
+be cached. Candidates and training are never selected using individual arena
+outcomes; only the predetermined data ladder responds to success or failure.
+Statistical error spending covers all stages and looks despite cohort reuse.
 
-Training size and evaluation size are independent controls. Default training
-stages are 10k/50k/250k; evaluation looks are 2k/8k/32k independent deals for each
-candidate as provisional defaults. Size the arena for the desired effect, not
-as a fixed 10% of training data. Halving the target gain approximately quadruples
-the required number of independent evaluation deals. `size-arena` computes an
-approximate plan from prior-pilot standard deviations of the two paired IMP
-endpoints, including the actual BEN difference (not separate unpaired scores).
-It accounts for the promotion alpha budget and targets 80% joint power by
-conservatively splitting the power shortfall between endpoints. Freeze the final
-evaluation sizes before looking at candidate arena outcomes; its estimate is not
-a guarantee. Example with **illustrative**, not yet measured, standard deviations:
+A managed BEN server starts only after screening, uses one arena worker, and
+releases its resources afterward. Shared resource locks serialize it with other
+BEN experiments. Its bidding search is disabled; its card-play sampling and DDS
+remain enabled. Existing servers are never reconfigured or terminated.
+
+## Training and validation
+
+The existing hash split is 80% training, 10% validation, 10% unused internal test,
+by complete deal. Thus 10k collected deals give approximately 8k fitting and 1k
+validation deals. All positions from one deal stay together. This validation
+fraction is a reasonable starting point for network selection; it does not
+size the promotion arena.
+
+The belief learner fits hidden-card labels from legitimate observations and
+frozen auctions. With bidding fixed, stronger card play does not improve the
+auction-only label distribution; its benefit here is additional data. The policy
+learner fits actual chosen-action remaining-trick returns, with logged behavior
+propensities correcting to uniform support over eligible actions. With 20%
+exploration, the importance weight is at most five. Unplayed actions receive no
+invented outcome label. Neither learner accesses the internal test or arena.
+Each exports NumPy inference weights; policy export is checked against TensorFlow.
+Better validation loss alone never establishes stronger card play.
+
+## Arena size and statistical gate
+
+Evaluation size depends on effect and variance, not a fixed fraction of training.
+Halving the target effect requires approximately four times as many independent
+deals. Use earlier pilot SDs of the paired parent score and paired BEN difference:
 
 ```sh
 python3 -m bridge_harness.improvement size-arena \
   --effect 0.10 --sd-parent 2.0 --sd-ben-delta 3.0
 ```
 
-The evaluation population grows cumulatively within one candidate;
-different candidates and generations get new evaluation deals. A clearly losing
-candidate can stop early; an inconclusive one gets the next evaluation look.
+Those SDs are illustrative. Freeze an evaluation ladder before the campaign;
+do not silently expand it after inspecting results. Smaller differences may
+remain inconclusive at the time-oriented 4k cap.
 
-No size is promised to be sufficient. Training split proportions remain the
-existing deal-hash 80/10/10 split: 10k self-play deals yield approximately 8k fit,
-1k validation, and 1k unused internal test deals, not 520k independent examples.
-All card decisions from one deal stay together. Passed-out deals have no policy
-decisions. More data can reduce variance without fixing weak targets or a model
-that cannot represent the information needed.
+Both primary lower confidence bounds must exceed `minimum_imp_gain` (zero by
+default). Family alpha .05 is allocated across generations using 1/[g(g+1)],
+three data stages, three confirmation looks, and both endpoints. Approximate
+Student-t intervals operate on independent deals. Zero-variance/all-tie results
+cannot promote. Screening never promotes and cannot relax the full gate.
+Original/BEN absolute intervals are descriptive 95% intervals. Restarts of the
+same campaign retain the budget; repeatedly starting new campaigns does not
+preserve a single global error guarantee.
 
-The primary endpoints are IMP/board versus parent and the paired BEN improvement.
-Promotion needs the lower confidence bound of **both** to exceed
-`minimum_imp_gain` (default zero). The controller allocates family alpha 0.05
-across data stages, evaluation looks, both endpoints, and generations. Generation
-g receives `0.05 / [g(g+1)]`, whose infinite sum is 0.05. The gate uses two-sided
-Student-t intervals with this conservative allocation. These are approximate
-large-sample intervals over independent deals, not exact anytime confidence
-sequences. All-tie/zero-variance results cannot promote. A fresh campaign is a
-new statistical family; repeatedly restarting campaigns is not a way to retain
-the same global error budget.
+## Prepare and run
 
-The original/BEN absolute columns also show descriptive 95% intervals; those
-intervals are not the promotion test. Raw rows, adjusted intervals, trick swings,
-and match time are retained. No single scalar chess-style rating is assumed:
-nontransitive matchups are possible. Evaluation reports are as-configured with
-the parent's search budget fixed for candidate training; they do not claim
-equal wall-clock strength. The added inference cost remains visible.
-
-32k evaluation deals can be expensive: up to four distinct paired comparisons
-means eight table games per independent deal, many involving full-search BEN.
-The ladder is configurable **before** initializing the campaign. It is a cap,
-not an estimate of affordable runtime. The existing 200-deal BEN calibration is
-still useful to select a sensible fixed BEN setup and estimate this cost.
-
-## Reproducibility and restart
-
-- Bot names are immutable. Registry entries copy artifacts, hash code and native
-  DDS, and record exact factory arguments. All accepted and rejected candidates
-  remain available. A promotion atomically updates the champion and version
-  history in one state file; failed candidates never replace the parent.
-  If fitting selects exactly unchanged behavior/weights, the expensive arena is
-  skipped and the controller advances to the next data stage.
-- The campaign uses one pinned code/solver checkout for weight-only iterations.
-  Source changes require a new campaign, preserving the old one for reproduction.
-  `pinned_files` additionally hashes external training/bidding dependencies.
-- Self-play uses 250-deal auction chunks and individually atomic compressed game
-  records. Successful games are replay-validated on resume; they are not played
-  again. Cumulative datasets reuse earlier shard identities. Training restarts a
-  deterministic interrupted fit, but does not discard completed game collection.
-- A SQLite ledger rejects duplicate cards and any self-play/arena overlap.
-  Independent deals only are accepted; related-layout families are rejected by
-  this initial arena. Optional exclusion lists reserve old v2 training/test IDs.
-- A single OS-owned lock prevents competing writers and releases on process
-  death. Workers are bounded and each table pair has a hard subprocess deadline.
-  A failed/illegal/timed-out game blocks its candidate; failures are not silently
-  dropped. `--retry-failures` explicitly retries the same deals/seeds, preserving
-  failed records. Repeated instability should be fixed, not selected away.
-- Genuine auctions are generated once and retained. A killed auction collector
-  restarts only its incomplete 250-deal chunk, with prior partial output archived.
-  The neural bidder can differ from full-search BEN's card-play configuration;
-  both remain fixed and separately identified.
-- Players receive the existing observation API, not hidden hands. Training inputs
-  must use observation fields only; labels are attached after replay. Actual
-  logged action probabilities/returns support policy learning. An unplayed action
-  has no observed return; cloning chosen moves is not evidence of improvement.
-  The trusted trainer API is not an operating-system security sandbox.
-
-## Bind final v2 and launch
-
-Use a stable persistent checkout/run directory on the eventual worker machine.
-The current implementation stores absolute paths, so resuming after moving a
-campaign requires preserving its mount paths. Archive the run directory together
-with its pinned checkout and external model/config files.
+Use a stable worker checkout. Install the loop dependencies, build DDS, and
+provide the existing belief/policy NPZ artifacts plus an external licensed BEN
+checkout and models. No model weights or external BEN distribution are in Git.
 
 ```sh
 python3 scripts/build_dds.py
 python3 -m pip install -e '.[loop]'
 python3 -m unittest discover -s tests -v
-cp configs/self_improvement.json /path/to/experiment.json
+python3 scripts/prepare_v2_loop.py --root runs/v2-loop-001 \
+  --belief /absolute/auction_weights.npz --policy /absolute/policy_weights.npz \
+  --ben-dir /absolute/ben --ben-python /absolute/tf-venv/bin/python \
+  --bid-config /absolute/neural-only.conf --play-config /absolute/full-cardplay.conf \
+  --exclude /absolute/prior-deal-ids.json --resource-lock /absolute/shared-ben.lock \
+  --workers 8 --verified-ben
+python3 -m bridge_harness.improvement check --root runs/v2-loop-001
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -u -m bridge_harness.improvement \
+  run --root runs/v2-loop-001 --generations 1
 ```
 
-The template intentionally contains unbound paths and null commands. It must not
-silently run an unfinished v2. Fill:
+`--verified-ben` records a successful live check of this source/models/card-play
+configuration. Without it the campaign remains prepared but cannot run. The
+helper disables server bidding search and rescue, preserves card-play settings,
+and freezes all referenced models and Python sources. `--exclude` can repeat to
+reserve all prior training/evaluation identities. A fully customized immutable
+campaign can instead be initialized from `configs/self_improvement.json`.
 
-- `bots.v2`: the final factory, inference arguments, search budget, and all
-  belief/policy artifact paths. The example uses the already-existing auction
-  weighting adapter; replace the factory if v2 includes the pending policy.
-- `trainer_command`: argv for the finalized learner. It receives `{request}` and
-  may also use `{output}`. No shell interpolation is performed.
-- `corpus_command`: argv for a genuine frozen auction collector. The existing
-  `scripts/collect_ben_auctions.py` now accepts `--input-corpus` to preserve the
-  loop's exact cards and identities. Its substitutions are `{input}`, `{output}`,
-  `{count}`, `{seed}`, and `{exclusions}`. Output is `{output}/frozen.jsonl` in
-  exactly input order; only auction and resulting contract may change.
-- `bots.ben`: the fixed full-search server endpoint, source revision, config,
-  and a nonempty model manifest mapping absolute model paths to SHA-256 hashes.
-  `operator_verified` records that the running HTTP server actually uses those
-  files. The client verifies local hashes but cannot independently attest a
-  remote server's internal configuration. No server is started automatically.
-- `pinned_files`: external scripts/config/model files used by the bidder/trainer.
-  Local package/scripts/native sources and solver are hashed automatically.
-- `exclusion_files`: optional JSON files with `{"deal_ids": ["sha256", ...]}`
-  covering prior data. Fresh namespaced random deals also prevent intentional
-  reuse; the ledger protects everything created during the campaign.
+The run command resumes completed games and fits, and advances at most one
+successful generation per invocation by default. A supervisor can invoke it again
+on promotion. Failed games block progression and are retained; explicit
+`--retry-failures` retries the same inputs, preserving the failed records.
+`status` is safe while a worker holds the writer lock. `report` rebuilds
+`progress.md`/`progress.json` when no writer is active.
 
-Example collector argv (use actual absolute paths):
+## Durability and audit
 
-```json
-["/path/to/ben-venv/bin/python", "scripts/collect_ben_auctions.py",
- "--ben-dir", "/path/to/ben", "--config", "/path/to/neural-only-bid.conf",
- "--input-corpus", "{input}", "--count", "{count}", "--seed", "{seed}",
- "--exclude-groups", "{exclusions}", "--out", "{output}"]
-```
+Bot manifests copy artifacts and are immutable. A promotion atomically updates
+champion, version history, and next generation. A single OS-owned writer lock
+prevents duplicate campaign controllers. Self-play auctions are frozen in
+250-deal chunks, and each game is atomically saved, replay-validated, and cached.
+The SQLite ledger rejects old-data reuse and training/evaluation overlap.
+Related-layout families are not treated as independent arena deals.
 
-For an auction-belief-only v2, a runnable reference learner is supplied:
+`state.json` includes cumulative collection/training/screening/confirmation wall
+time. Progress files retain IMPs against original, parent, BEN, paired BEN gain,
+uncertainty, match timing, and decisions. Raw games preserve predictions, actual
+propensities, seeds, legal moves, and DDS costs. Evaluation is as configured;
+there is no claim of equal wall-clock strength.
 
-```json
-["/path/to/tf-python", "scripts/loop_train_auction.py", "--request", "{request}"]
-```
+Keep the pinned checkout and run directory together with external configurations
+and models. Absolute paths are recorded, so relocation requires preserving mount
+paths. Archive state and completed chunks periodically on a persistent worker.
+The supervisor must acquire the existing writer lock and preserve completed
+work; elapsed time or a missing process in another namespace does not authorize
+starting a competing worker.
 
-It warm-starts the parent's eight-array auction model, trains on new train-split
-deals, retains the parent as the epoch-zero choice, selects by validation NLL,
-exports NumPy inference weights, and never uses the internal test or arena.
-It deliberately refuses a different parent factory. It is useful for checking
-the plumbing or a belief-only branch; choose the actual final v2 learner for the
-combined belief/policy loop. Auction-only training sees the same auction-label
-distribution when bidding is frozen; stronger play alone does not create better
-auction-only labels. Policy/play-aware learning is where changed trajectories
-can provide a new signal.
+## Attribution and evidence
 
-```sh
-python3 -m bridge_harness.improvement init \
-  --config /path/to/experiment.json --root runs/v2-loop
-python3 -m bridge_harness.improvement check --root runs/v2-loop
-# Later, when ready to spend the compute:
-python3 -m bridge_harness.improvement run --root runs/v2-loop --generations 1
-# The same command resumes interrupted work.
-python3 -m bridge_harness.improvement status --root runs/v2-loop
-python3 -m bridge_harness.improvement report --root runs/v2-loop
-```
-
-`progress.md` and `progress.json` record every candidate, sample size, IMP results
-against original/parent/BEN, BEN improvement, uncertainty, timing, and decision.
-`state.json` preserves v3/v4/... aliases and the actual immutable candidate names.
-Only runtime directories contain data, weights, logs, SQLite state, and raw
-matches. They are excluded from Git; source, tests, recipes, and this runbook are
-versioned. A long run must execute on a persistent worker, not rely on this chat
-remaining alive.
-
-## Final trainer interface
-
-The request JSON contains `dataset`, its SHA-256, `parent_manifest`,
-`parent_identity`, a deterministic training `seed`, and an `output` path.
-The dataset lists immutable self-play shards and the allowed fit/selection splits.
-The selected result is written atomically to `output`:
-
-```json
-{
-  "bot": {
-    "factory": "your_v2_module:make_player",
-    "kwargs": {"belief": "$artifact:belief", "policy": "$artifact:policy"},
-    "budget": {"samples": 32, "objective": "tricks", "batch": true, "near_tie": 0.125},
-    "artifacts": {"belief": "/path/belief.npz", "policy": "/path/policy.npz"}
-  },
-  "training": {
-    "dataset_sha256": "COPY_FROM_REQUEST",
-    "parent_identity": "COPY_FROM_REQUEST",
-    "seed": 123,
-    "selection_split": "validation",
-    "test_access": false
-  }
-}
-```
-
-Copy the actual request seed. The factory returns the existing
-`choose(observation, rng)` player interface and logs behavior probabilities,
-PIMC estimates and any search costs. Factory modules must be in the pinned
-checkout or have their source hash verified through the registry. Do model and
-hyperparameter selection on validation; submit one frozen candidate per data
-stage. Record separate belief/policy validation diagnostics in `training` so a
-failed generation can distinguish insufficient data from an unhelpful target.
-
-## Validation performed
-
-The new tests exercise full synthetic self-play → trainer handoff → paired arena
-at two cumulative sizes, restart/cache reuse, score orientation, immutable copied
-weights, writer exclusion, data overlap rejection, changed-corpus rejection,
-failed-game blocking/retry, and both promotion endpoints. Synthetic campaigns
-are visibly labelled and cannot promote a production bot. The fixture trainer
-submits a fixed simple player (or copies a parent for the unchanged-weight test)
-and is not a learning result. See the branch validation report
-for the actual test outcome and boundaries of what was run.
-
-Original bridge rules, scoring, PIMC, constrained sampler, replay harness, and DDS
-integration are reused from this repository. Auction belief code is reused from
-the existing bidding study. BEN and DDS retain their upstream attribution and
-licenses; BEN's external source/weights are not redistributed. The loop was
-implemented by OpenAI Codex in collaboration with Max Schireson.
+Bridge rules, PIMC, constrained sampling, replay, and DDS are reused from this
+repository. The auction model and selector come from the prior bidding and
+self-play studies (selector source commit f26f975a5c197def5e203dd2da87d84dd54aadb9).
+BEN and DDS retain their upstream licenses/credits. Implementation assistance:
+OpenAI Codex, working with Max Schireson. The launch report distinguishes tests
+and plumbing checks from actual strength evidence.

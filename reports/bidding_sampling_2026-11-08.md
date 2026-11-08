@@ -179,3 +179,5 @@ The latter replays both tables and measures beliefs on actual public histories.
 For the exploratory role decomposition run
 `scripts/evaluate_bidding_roles.py --run <output-directory> --workers 4`.
 It reuses the two completed tables and adds only the all-uniform table.
+
+[Complete evaluation archive](https://chatgpt.com/library?file_id=libfile_fde3_f-0d56a65a5f9481919ee20b533f271f62_cf78a91e4b8c81918243c2c17fc9b8b9&account_id=personal).
