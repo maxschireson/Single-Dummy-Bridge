@@ -11,7 +11,9 @@ The sampler remains the original bidding-blind uniform sampler, constrained
 by visible cards, hand sizes and observed voids. This isolates move selection
 from the separate [bidding-informed sampling experiment](bidding_sampling_2026-11-08.md).
 Synthetic auctions are excluded from the model. Bidding-informed sampling
-and this selector have not been tested in combination.
+and this selector were not combined in this experiment. A separate
+[follow-up test](policy_over_belief_2026-11-08.md) measures the frozen selector's
+increment over the frozen belief-informed sampler on fresh auctioned deals.
 
 ## Data and learning target
 
