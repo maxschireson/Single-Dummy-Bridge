@@ -15,6 +15,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--snapshot', type=Path, required=True)
     p.add_argument('--out', type=Path, required=True)
+    p.add_argument('--phase', choices=['dev', 'confirm'], default='dev')
     args = p.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     lock = (args.out/'worker.lock').open('a+')
@@ -35,10 +36,12 @@ def main():
     # This first-attempt review has three identical B0 endpoints.
     if state['promotions'] or state['parent'] != manifest['origin']:
         raise ValueError('This review requires the initial B0 league')
-    seed = cfg['seed'] + 200000000 + state['attempt']*100003 + state['trained_pairs']
+    split = 'dev' if args.phase == 'dev' else 'test'
+    count = 1000 if args.phase == 'dev' else 10000
+    seed = cfg['seed'] + (200000000 if args.phase == 'dev' else 300000000) + state['attempt']*100003 + state['trained_pairs']
     spec = dict(snapshot_sha256=digest, trained_pairs=state['trained_pairs'],
-                seed=seed, pairs=1000, split='dev', greedy=True,
-                purpose='Additional descriptive development screen; no promotion decision')
+                seed=seed, pairs=count, split=split, greedy=True,
+                purpose=('Additional descriptive development screen; no promotion decision' if args.phase == 'dev' else 'Additional held-out confirmation; no automatic promotion decision'))
     from bridge_harness.bidding_loop import atomic_json
     if (args.out/'spec.json').exists():
         assert json.loads((args.out/'spec.json').read_text()) == spec
@@ -64,19 +67,19 @@ def main():
     rows = []
     start = time.monotonic()
     try:
-        for offset in range(0, 1000, 128):
+        for offset in range(0, count, 128):
             dest = args.out/f'{offset:07d}.json'
             if dest.exists():
                 batch = json.loads(dest.read_text())
             else:
-                boards = [make_board(seed, i, 'dev') for i in range(offset, min(1000,offset+128))]
+                boards = [make_board(seed, i, split) for i in range(offset, min(count,offset+128))]
                 tables = cache.get_many(boards)
                 batch, _ = paired_auctions(boards, tables, candidate, [anchor]*len(boards),
                                            np.random.default_rng(seed+offset), explore=False)
                 atomic_json(dest, batch)
             rows.extend(batch)
-            print(json.dumps(dict(completed=len(rows), target=1000)), flush=True)
-        assert len({r['deal_id'] for r in rows}) == 1000
+            print(json.dumps(dict(completed=len(rows), target=count)), flush=True)
+        assert len({r['deal_id'] for r in rows}) == count
         values = [r['imps'] for r in rows]
         result = dict(**spec, descriptive=estimate(values), total_imps=sum(values),
                       wins=sum(x>0 for x in values), losses=sum(x<0 for x in values),
@@ -89,3 +92,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
