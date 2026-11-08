@@ -5,6 +5,15 @@ paired comparisons, saved deals, deterministic local decisions, and replay.
 The goal of this version is to make an improvement measurable. Playing strength is
 deliberately modest.
 
+## Design and roadmap
+
+The [version 4 design document (PDF)](docs/Single_Dummy_Machine_v4.pdf) describes
+the target hybrid bot, self-play learning, the research league and independent
+arena, and the staged path from this harness. It also records the alpha-mu
+strategy-search and related-deal solver-reuse work in progress.
+
+An [editable Word version](docs/Single_Dummy_Machine_v4.docx) is included.
+
 ## Start on a Mac or Linux machine
 
 Requires Python 3.11+ and a C++20 compiler. On a Mac, install Apple's command-line
