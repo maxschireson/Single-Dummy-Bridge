@@ -2,7 +2,7 @@
 
 A fixed 1,000-deal experiment compares belief-informed PIMC plus the frozen
 policy selector against the same belief-informed PIMC with uniform near-tie
-selection. **Collection is in progress.** The first 200 paired deals favor the
+selection. **Collection is in progress.** The first 400 paired deals favor the
 combined bot; this is a preliminary checkpoint, not the final result.
 
 ## Frozen comparison
@@ -49,9 +49,11 @@ deals (61,200 excluded original deals in total). Original-card hashes are unique
 | Fixed cohort prefix | Complete games | Tricks / paired deal (95% CI) | IMPs / paired deal (95% CI) | IMP wins / ties / losses |
 |---|---:|---:|---:|---:|
 | First 200 deals | 400 | +0.165 [+0.030, +0.295] | +0.615 [+0.130, +1.110] | 61 / 102 / 37 |
+| First 400 deals | 800 | +0.1675 [+0.0825, +0.2550] | +0.5925 [+0.2625, +0.9525] | 113 / 220 / 67 |
 
-These 400 games passed legal replay and the 32-world/batch/near-tie checks.
-They contain 16,429 non-forced decisions. Zero failed attempts were observed
+These 800 games passed legal replay and the 32-world/batch/near-tie checks.
+They contain 32,858 non-forced decisions. The second 200-deal block contributed
++0.170 tricks and +0.570 IMPs per paired deal, similar to the first block. Zero failed attempts were observed
 at this checkpoint. Full final auditing will also recompute selector predictions
 from each pre-action observation, verify identical worlds/estimates on shared
 histories, and independently recompute all paired scores and confidence intervals.
