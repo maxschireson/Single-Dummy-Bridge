@@ -41,7 +41,7 @@ def main():
     seed = cfg['seed'] + (200000000 if args.phase == 'dev' else 300000000) + state['attempt']*100003 + state['trained_pairs']
     spec = dict(snapshot_sha256=digest, trained_pairs=state['trained_pairs'],
                 seed=seed, pairs=count, split=split, greedy=True,
-                purpose=('Additional descriptive development screen; no promotion decision' if args.phase == 'dev' else 'Additional held-out confirmation; no automatic promotion decision'))
+                purpose=('Additional descriptive development screen; no promotion decision' if args.phase == 'dev' else 'Additional descriptive confirm review; no promotion decision'))
     from bridge_harness.bidding_loop import atomic_json
     if (args.out/'spec.json').exists():
         assert json.loads((args.out/'spec.json').read_text()) == spec
