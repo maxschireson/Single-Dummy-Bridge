@@ -27,7 +27,7 @@ card-play learning loop.
    into its equivalent Dense operation to avoid Keras 3.15 dynamic-length bugs.
 6. Opponents are 50% latest champion, 25% a sampled older champion, 25% original
    BEN. At launch all three are B0. Both learner seats always use the same version.
-7. At 10k, 50k and 250k cumulative training deals per attempt, screen the candidate
+7. At 10k, 40k and 250k cumulative training deals per attempt, screen the candidate
    on 1k fresh development deals. If all three mean results are positive, run a
    fixed 5k-pair confirmation against parent, original BEN and older league.
    All evaluation bidders use greedy legal calls, without exploration.
@@ -143,3 +143,21 @@ were unchanged. Runtime source hashes and promotion thresholds remain unchanged.
 The before/after audit is in the run's migrations/confirmation-5000-2026-11-08
 directory. The CLI default without the campaign config remains historical;
 resume this campaign with configs/bidding_dds.json as documented above.
+
+## Earlier checkpoint — 9 November 2026
+
+Max requested cutting the next training stage at 40,000 pairs, replacing
+50,000, followed directly by a fresh 5,000-pair validation. The campaign
+configuration and manifest now record stages [10000,40000,250000]. At migration
+there were 37,392 committed pairs. State, model/Adam checkpoint and DDS cache
+were hash-verified unchanged; seeds, splits and runtime source are unchanged.
+Audit files are under migrations/checkpoint-40000-2026-11-09 in the run.
+
+For this requested checkpoint, run only the remaining updates to exactly40k
+(using --max-updates), preserve the resulting recovery archive, then run
+review_bidding_snapshot.py --phase confirm on that frozen archive into
+runs/dds-bidding-40000-confirm. This directly evaluates5k fresh test pairs
+without the1k development screen. Keep production parked at40k while this
+validation runs. Do not reuse the21,904 candidate or its evaluation rows.
+Report the final result for review before promoting or restarting training;
+the user requested discussing the promotion threshold, not silently changing it.
