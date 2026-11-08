@@ -5,6 +5,10 @@ DDS source remains pinned at the revision in `vendor/DDS_SOURCE.md`. Exact
 commands and assumptions are in [the design document](../docs/consistent_strategies.md).
 Research attribution and license verification are in [CREDITS](../CREDITS.md).
 
+Follow-up: the [1,000-board study](strategy_cost_and_partitions.md) supersedes the
+100-board full-hand strength estimates below. These pilot measurements remain
+recorded for provenance; their small positive point estimates did not persist.
+
 ## Result
 
 The prototype finds and executes strategies whose values match independent

@@ -5,6 +5,15 @@ paired comparisons, saved deals, deterministic local decisions, and replay.
 The goal of this version is to make an improvement measurable. Playing strength is
 deliberately modest.
 
+## Design and roadmap
+
+The [version 4 design document (PDF)](docs/Single_Dummy_Machine_v4.pdf) describes
+the target hybrid bot, self-play learning, the research league and independent
+arena, and the staged path from this harness. It also records the alpha-mu
+strategy-search and related-deal solver-reuse work in progress.
+
+An [editable Word version](docs/Single_Dummy_Machine_v4.docx) is included.
+
 ## Start on a Mac or Linux machine
 
 Requires Python 3.11+ and a C++20 compiler. On a Mac, install Apple's command-line
@@ -208,6 +217,8 @@ the match command's hard process deadline does not).
 | `runner.py` | Paired matches, subprocess deadlines, action recording, replay |
 | `corpus.py` | Generation, frozen auctions, JSONL/PBN |
 | `report.py` | Paired IMPs, cluster uncertainty, timings and discrepancies |
+| `strategy.py` / `rollout.py` | Achievable strategy vectors, executable policies and actor-view rollouts |
+| `partitions.py` | Finite-domain strategy certificates and verified outcome partitions |
 
 Next useful additions are auction-conditioned belief sampling, a small policy or
 value model measured against this baseline, and faster, stronger information-consistent strategy
@@ -233,3 +244,11 @@ See [the strategy design](docs/consistent_strategies.md) and
 declarer-only; use `--mode declarer` and a different `--common` defender.
 Alpha-mu credits and the distinction between publication and software licensing
 are recorded in [CREDITS.md](CREDITS.md).
+
+The [information-state and partition model](docs/information_strategies_partitions.md)
+specifies what each actor knows, what a strategy may condition on, and the
+preservation guarantees required for reusable partitions. The
+[1,000-board cost study and ending-size analysis](reports/strategy_cost_and_partitions.md)
+grades tricks per board per compute-time doubling and reports complete-domain
+three-card certificate measurements. The larger study does not establish a
+playing-strength improvement from the present strategy prototypes.

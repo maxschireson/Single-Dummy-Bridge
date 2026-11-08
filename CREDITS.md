@@ -54,3 +54,34 @@ Max Schireson proposed and directed the consistent-strategy and related-layout
 experiments. ChatGPT/Codex assisted with the new implementation, independent
 policy-enumeration tests, benchmarking and documentation. No endorsement by the
 research authors, Nukkai, LAMSADE, DDS or BEN is implied.
+
+## Information-state partitions and ending counts
+
+Max Schireson proposed grading strength by tricks per board per compute-time
+doubling, broader paired tests, and semantic partitioning of information states
+instead of enumerating remaining card diagrams alone. ChatGPT/Codex assisted
+with the formal model, complete-domain strategy certificates, experiments,
+independent symmetry counts, and documentation.
+
+Isaac Stone, Nathan R. Sturtevant and Jonathan Schaeffer, *Set-Based Retrograde
+Analysis: Precomputing the Solution to 28-card Bridge Double Dummy Deals*,
+IJCAI 2025, provides the cited double-dummy database measurements and relevant
+ideas about verified set generalization. https://www.ijcai.org/proceedings/2025/0995.pdf
+No code, figures, paper text or pseudocode from this work was incorporated.
+Its results concern perfect-information values; our common-strategy proof
+obligation is explicitly stronger. The finite-domain prototype does not claim
+to reproduce Setrograde or its compression results.
+
+Richard Pavlicek's *Mapping Bridge Endings*, https://www.rpbridge.net/7z72.htm,
+was consulted as an independent check of raw card-allocation counts. Our
+relative-rank/suit orbit counts use an independently derived Burnside calculation,
+with a separate exhaustive one-card check. These count one specified mechanical
+normalization, not a minimal quotient or a single-dummy state space.
+
+The follow-up learning design also references *All Simulations Are Not Equal:
+Simulation Reweighing for Imperfect Information Games*, an ICLR 2020 submission.
+The retrieved primary version lists anonymous authors and describes learned
+likelihood weighting of bridge simulations:
+https://openreview.net/attachment?id=HJlyLgrFvB&name=original_pdf
+No implementation, text, or training data from it is incorporated, and its
+reported performance has not been reproduced here.

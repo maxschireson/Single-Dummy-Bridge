@@ -31,16 +31,18 @@ def play_table(board, assignments, players, seed=1, prefix=(), on_event=None):
             o = game.observation()
             spec = assignments[o.controller]
             before = time.perf_counter()
+            cpu_before = time.process_time()
             if len(actions) < len(prefix):
                 d = Decision(card(prefix[len(actions)]["card"]), {"replayed_prefix": True})
             elif not actions and board.opening_lead is not None:
                 d = Decision(board.opening_lead, {"fixed_opening_lead": True})
             else:
                 d = players[spec].choose(o, decision_rng(seed, board.id, getattr(players[spec], "rng_stream", spec), o))
+            cpu_elapsed = time.process_time() - cpu_before
             elapsed = time.perf_counter() - before
             game.play(d.card)
             action = dict(ply=len(actions), seat=SEATS[o.actor], controller=SEATS[o.controller],
-                          player=spec, card=symbol(d.card), seconds=elapsed, **d.details)
+                          player=spec, card=symbol(d.card), seconds=elapsed, cpu_seconds=cpu_elapsed, **d.details)
             actions.append(action)
             if on_event:
                 on_event(action)
