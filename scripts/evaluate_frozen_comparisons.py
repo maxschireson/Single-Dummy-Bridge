@@ -190,6 +190,10 @@ def exclusive(path):
 def ben_server(root):
     ext=read(root/'ben-runtime.json');lock=Path(ext['resource_lock']);proc=None
     while True:
+        plan=root/'evaluation-priority.json'
+        if plan.exists() and any(not Path(p).exists() for p in read(plan)['required_audits']):
+            atomic(root/'ben/status.json',dict(status='waiting_for_prioritized_comparisons',updated_unix=time.time()))
+            time.sleep(30);continue
         if (root/'total-protocol.json').exists() and not (root/'blind/audit-500.json').exists():
             atomic(root/'ben/status.json',dict(status='waiting_for_total_comparison',updated_unix=time.time()))
             time.sleep(30);continue

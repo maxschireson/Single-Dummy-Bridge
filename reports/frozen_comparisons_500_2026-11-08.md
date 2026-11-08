@@ -45,7 +45,65 @@ or retrain models. Resume with:
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -u scripts/evaluate_frozen_comparisons.py --run <run> --mode play --opponent blind --workers 4
 ```
 
-## Completed comparison: policy increment over belief-informed best PIMC
+### Preliminary total-improvement result: first 200 deals
+
+The fixed first 200 generation-order pairs passed full audit while play continued
+toward 500. These are 200 independent deals and 400 complete table games, with
+zero failed-pair records. Positive results favor frozen policy+belief.
+
+| Outcome | Mean per paired deal | Nominal 95% deal-cluster interval |
+|---|---:|---:|
+| Tricks | +0.095 | -0.035 to +0.230 |
+| IMPs | +0.450 | -0.095 to +1.020 |
+
+IMP wins/ties/losses: **56 / 103 / 41**. Both intervals include zero: the direction
+is positive but the preliminary result is inconclusive. Intervals have no adjustment
+for interim looks or multiple comparisons. The fixed horizon and models are unchanged.
+The audit verified 20,800 legal plays, 16,482 non-forced PIMC decisions, 527,424
+sampled-world solves, 6,685 policy selections and 182 selections below the sampled
+PIMC maximum within the authorized band. It regenerated every non-forced blind
+control sample, verified pre-action policy predictions and found no overlap with
+the 63,724 exclusions. The analysis was delivered directly at this milestone.
+
+## Authorized follow-up: 500 more deals against belief-informed best PIMC
+
+After the bidding-blind total-improvement comparison finishes and passes its audit,
+play 500 fresh independent paired deals against the same frozen belief sampler
+with zero-band PIMC. This brings the belief-informed comparison to 1,000 deals and
+has priority over the queued BEN card-play comparison. Neither model, the 32-world
+budget, nor either player's selection rule changes.
+
+The extension generated 512 new deals with seed 20261701 and BEN neural-only
+auctions: two passed out, the first 500 playable deals were frozen for evaluation,
+and ten unused playable deals remain reserved. The collector made 5,455 calls in
+1.96 seconds excluding startup; 16 scalar/batch checks agreed exactly. Decision
+seed remains 20261602. All 512 new deals were checked against 64,486 prior/reserved
+original-deal hashes and registered as evaluation-only in the training ledger.
+They cannot be used for training. Existing auctions and completed matches are retained.
+
+The extension lives under `results/strict-belief-extension-500`. Its queue waits for
+the total-comparison audit, then reserves the shared BEN server slot through play
+and audit, without interrupting a running server. A focused test verifies that no
+play subprocess starts before the prerequisite audit exists. All three scheduling
+and player-setting tests pass.
+
+Report the new 500 independently, plus the pooled 1,000 with original-deal bootstrap
+intervals. An interim at the first 200 new deals may also show the pooled 700.
+**The extension was selected after seeing the original 500-deal result.** Pooled
+intervals are nominal follow-up estimates, not an originally predeclared 1,000-deal
+test or a correction for optional extension. The new cohort and fixed 500-deal
+horizon were frozen before its play; no outcome-dependent tuning is permitted.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -u scripts/run_belief_extension.py --base results/frozen-comparisons-500 --extension results/strict-belief-extension-500
+```
+
+The sequence worker and each play worker own separate nonblocking locks. Resume
+only missing episodes if an owner exits; do not duplicate a healthy writer. Final
+combined auditing checks that the two cohorts are disjoint and legally replays all
+2,000 table games after both cohorts have passed their full setting/prediction audits.
+
+## Completed first 500: policy increment over belief-informed best PIMC
 
 | Outcome | Mean per paired deal | Nominal 95% deal-cluster interval |
 |---|---:|---:|
