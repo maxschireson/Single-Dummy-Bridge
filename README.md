@@ -279,3 +279,9 @@ The [frozen-model evaluation](reports/bidding_sampling_2026-11-08.md) compares
 auction-weighted and uniform PIMC at 32 worlds, measures card ownership after
 dummy appears, and separates declarer and defensive effects. Experimental
 inference needs NumPy; the default PIMC sampler is unchanged.
+
+The [small policy-selector experiment](reports/policy_selector_2026-11-08.md)
+trains a 25,170-parameter scorer from randomized self-play outcomes and tests
+it against random near-ties and highest-PIMC selection. Both comparisons are
+inconclusive at 200 independent test deals; the default bot remains unchanged.
+The longer-term target includes a standalone neural player with PIMC as a teacher.

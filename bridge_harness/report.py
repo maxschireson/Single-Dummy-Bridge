@@ -2,6 +2,8 @@ from collections import defaultdict
 import math
 import random
 import statistics
+from .core import Board
+from .training import split_identity
 
 
 def trick_difference(record):
@@ -32,7 +34,10 @@ def summarize(records):
     clusters = defaultdict(list)
     for r in ok:
         b = r["board"]
-        clusters[("family", b["family"]) if b.get("family") else ("board", b["id"])].append(
+        # Board/family names can repeat across independent collection chunks.
+        # Use actual cards (or fixed N/S cards for related layouts), as in the
+        # train/validation/test boundary, to define independent clusters.
+        clusters[split_identity(Board.from_dict(b))].append(
             (r["imps"], trick_difference(r)))
     rng = random.Random(194)
     groups = list(clusters.values())
