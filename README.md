@@ -272,3 +272,10 @@ fits completed; neither beat the ownership prior on validation.
 [Fast bidding and auction-belief results](reports/fast_bidding_and_belief_2026-11-08.md):
 50,000 independent auctions collected; a 46,582-parameter model improved
 validation ownership predictions. Playing strength has not yet been measured.
+
+## Bidding-informed sampling experiment
+
+The [frozen-model evaluation](reports/bidding_sampling_2026-11-08.md) compares
+auction-weighted and uniform PIMC at 32 worlds, measures card ownership after
+dummy appears, and separates declarer and defensive effects. Experimental
+inference needs NumPy; the default PIMC sampler is unchanged.

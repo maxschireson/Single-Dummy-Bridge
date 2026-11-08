@@ -35,7 +35,7 @@ class GreedyPlayer:
 
 
 class PIMCPlayer:
-    def __init__(self, samples=32, objective="score", batch=True, near_tie=0.0):
+    def __init__(self, samples=32, objective="score", batch=True, near_tie=0.0, sampler_factory=Sampler):
         if samples < 1 or objective not in ("score", "tricks", "make") \
                 or not math.isfinite(near_tie) or near_tie < 0:
             raise ValueError("Invalid PIMC settings")
@@ -43,6 +43,7 @@ class PIMCPlayer:
         self.dds = DDS()
         self.samples, self.objective = samples, objective
         self.batch, self.near_tie = batch, near_tie
+        self.sampler_factory = sampler_factory
 
     def close(self):
         self.dds.close()
@@ -51,7 +52,7 @@ class PIMCPlayer:
         if len(o.legal) == 1:
             return Decision(o.legal[0], {"samples": 0, "dds_calls": 0, "forced": True,
                 "behavior_probabilities": {symbol(o.legal[0]): 1.0}, "selected_probability": 1.0})
-        sampler = Sampler(o)
+        sampler = self.sampler_factory(o)
         sums = {c: 0.0 for c in o.legal}
         tricks_sum = dict(sums)
         utilities = {c: [] for c in o.legal}
