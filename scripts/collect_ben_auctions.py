@@ -21,7 +21,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from bridge_harness.core import SEATS, auction_contract, hand_text
-from bridge_harness.corpus import generate
+from bridge_harness.corpus import generate, load
 from bridge_harness.training import digest, split_for
 
 
@@ -35,6 +35,7 @@ def main():
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--exclude-groups", type=Path, required=True)
     p.add_argument("--count", type=int, default=1000)
+    p.add_argument("--input-corpus", type=Path, help="Use these exact deals instead of generating new cards")
     p.add_argument("--seed", type=int, default=20261301)
     p.add_argument("--batch-size", type=int, default=128)
     p.add_argument("--verify-scalar", type=int, default=16)
@@ -45,7 +46,10 @@ def main():
     excluded = set(exclusions["deal_ids"])
     if args.count < 1 or args.batch_size < 1: p.error("Positive count/batch required")
     if out.exists(): p.error("Refusing to overwrite an auction collection")
-    boards = [replace(b, id=f"{args.seed}-{b.id}") for b in generate(args.count, args.seed)]
+    boards = (load(args.input_corpus.resolve()) if args.input_corpus else
+              [replace(b, id=f"{args.seed}-{b.id}") for b in generate(args.count, args.seed)])
+    if len(boards) != args.count:
+        raise ValueError("Input corpus count differs from --count")
     ids = [digest(b.hands) for b in boards]
     if len(set(ids)) != len(ids) or excluded.intersection(ids):
         raise ValueError("Duplicate/reserved deal: select a new seed")

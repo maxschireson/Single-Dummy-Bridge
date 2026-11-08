@@ -146,6 +146,9 @@ class BenPlayer:
 
 def make_player(spec, samples=32, ben_url="http://127.0.0.1:8085", timeout=120, objective="score",
                 batch=True, near_tie=0.0):
+    if spec.startswith("manifest:"):
+        from .loop_registry import build_player
+        return build_player(spec.removeprefix("manifest:"))
     if spec == "random":
         return RandomPlayer()
     if spec == "greedy":

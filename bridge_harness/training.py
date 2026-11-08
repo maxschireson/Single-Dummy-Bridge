@@ -84,7 +84,7 @@ def examples_from_record(record, episode_id):
                 metadata=dict(episode_id=episode_id, table=table_index, ply=len(o.history),
                     deal_id=digest(board.hands), split_group=split_identity(board),
                     split=split_for(board), auction_source=board.auction_source,
-                    behavior="pimc-uniform-near-tie-v1"),
+                    behavior=record["config"].get("behavior_id", "pimc-uniform-near-tie-v1")),
                 observation=observation_dict(o), policy_target=policy,
                 belief_target=dict(remaining_owner=owners, unknown_mask=unknown,
                     remaining_suit_counts=shape)))

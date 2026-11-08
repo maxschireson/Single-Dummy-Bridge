@@ -19,6 +19,12 @@ python3 -m bridge_harness.selfplay --count 1000 --workers 8 --samples 32 \
 
 ## Design and roadmap
 
+The [self-improvement loop runbook](docs/SELF_IMPROVEMENT.md) describes the
+resumable 10k → 50k → 250k self-play/training ladder, immutable bot registry,
+paired IMP arena against original/parent/BEN, and controlled v3/v4 promotion.
+It is staged for the finalized v2 factory/weights/trainer; no production loop
+is launched automatically. See `configs/self_improvement.json` for the recipe.
+
 The [version 4 design document (PDF)](docs/Single_Dummy_Machine_v4.pdf) describes
 the target hybrid bot, self-play learning, the research league and independent
 arena, and the staged path from this harness. It also records the alpha-mu
