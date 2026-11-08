@@ -5,6 +5,16 @@ paired comparisons, saved deals, deterministic local decisions, and replay.
 The goal of this version is to make an improvement measurable. Playing strength is
 deliberately modest.
 
+This branch adds **batch PIMC and self-play training data**. See
+[self-play usage and training schema](docs/SELFPLAY.md) and
+[the measured first-run report](reports/selfplay_initial_2026-11-08.md).
+
+```sh
+python3 scripts/build_dds.py
+python3 -m bridge_harness.selfplay --count 1000 --workers 8 --samples 32 \
+  --near-tie 0.125 --out data/first_selfplay
+```
+
 ## Design and roadmap
 
 The [version 4 design document (PDF)](docs/Single_Dummy_Machine_v4.pdf) describes
@@ -221,12 +231,11 @@ the match command's hard process deadline does not).
 | `corpus.py` | Generation, frozen auctions, JSONL/PBN |
 | `report.py` | Paired IMPs, cluster uncertainty, timings and discrepancies |
 
-Next useful additions are auction-conditioned belief sampling, a small policy or
-value model measured against this baseline, and information-consistent strategy
-search. Solver reuse and cached leaves are not implemented here; no speedup from
-them is assumed. Training, self-play learning, model fitting and opponent skill
-inference are also not implemented. Current recorded play can support those
-experiments once training targets and evaluation splits are defined.
+Batch PIMC now retains native DDS proofs across the sampled worlds of one
+decision. Self play collects policy outcomes, PIMC values, behavior probabilities
+and hidden-hand labels with whole-deal splits. Model fitting, learned sampling,
+learned play selection, an endgame database and opponent-skill inference are not
+implemented. See `docs/SELFPLAY.md` for the next experiments and their limits.
 
 See `VALIDATION.md` for the actual runs and their limits.
 

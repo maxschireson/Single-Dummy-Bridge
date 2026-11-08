@@ -361,9 +361,10 @@ struct AbsRankType // 2 bytes
  * Contains absolute rank information for all possible card positions
  * across all suits. Used for quick lookup during position analysis.
  */
-struct RelRanksType // 120 bytes
+struct RelRanksType // 32 bytes; only the three highest ranks are consumed.
 {
-    AbsRankType abs_rank[15][DDS_SUITS];  ///< Rank information indexed by position and suit
+    static constexpr int StoredRanks = 3;
+    AbsRankType abs_rank[StoredRanks + 1][DDS_SUITS];  ///< Rank information indexed by position and suit
 };
 
 /**

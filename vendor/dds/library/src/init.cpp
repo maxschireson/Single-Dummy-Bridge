@@ -241,7 +241,7 @@ void SetDealTables(
 
     for (int s = 0; s < DDS_SUITS; s++)
     {
-        for (int ord = 1; ord <= 13; ord++)
+        for (int ord = 1; ord <= RelRanksType::StoredRanks; ord++)
         {
             thrp->rel[0].abs_rank[ord][s].hand = -1;
             thrp->rel[0].abs_rank[ord][s].rank = 0;
@@ -285,7 +285,7 @@ void SetDealTables(
         thrp->rel[aggr] = thrp->rel[aggr ^ topBitRank];
         relp = &thrp->rel[aggr];
 
-        int weight = count_table[aggr];
+        int weight = std::min(count_table[aggr], RelRanksType::StoredRanks);
         for (int c = weight; c >= 2; c--)
         {
             for (int s = 0; s < DDS_SUITS; s++)

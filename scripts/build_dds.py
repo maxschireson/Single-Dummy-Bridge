@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the bundled, unmodified DDS source using a C++20 compiler (Linux/macOS)."""
+"""Build DDS + compact ranks + related/all-moves batch adapters (Linux/macOS)."""
 import os
 from pathlib import Path
 import platform
@@ -11,10 +11,10 @@ src = root / "vendor/dds/library/src"
 build = root / "build/dds"
 build.mkdir(parents=True, exist_ok=True)
 compiler = os.environ.get("CXX", "c++")
-sources = sorted(src.rglob("*.cpp"))
+sources = sorted(src.rglob("*.cpp")) + sorted((root / "native").glob("*.cpp"))
 
 def compile_one(path):
-    obj = build / (str(path.relative_to(src)).replace("/", "_") + ".o")
+    obj = build / (str(path.relative_to(root)).replace("/", "_") + ".o")
     subprocess.run([compiler, "-std=c++20", "-O3", "-fPIC", "-pthread", "-I", str(src),
                     "-c", str(path), "-o", str(obj)], check=True)
     return str(obj)

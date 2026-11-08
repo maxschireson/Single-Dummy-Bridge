@@ -59,9 +59,9 @@ def run_pair(board, config, event=None):
     try:
         for spec in set((candidate, baseline, common)):
             players[spec] = make_player(spec, **{k: config[k] for k in
-                ("samples", "ben_url", "timeout", "objective") if k in config})
+                ("samples", "ben_url", "timeout", "objective", "batch", "near_tie") if k in config})
         lead_decision = None
-        if board.contract and mode != "partnership" and board.opening_lead is None:
+        if board.contract and mode not in ("partnership", "selfplay") and board.opening_lead is None:
             o = Game(board).observation()
             t = time.perf_counter()
             lead_decision = players[common].choose(o, decision_rng(seed, board.id, common, o))
@@ -71,7 +71,10 @@ def run_pair(board, config, event=None):
                                              seconds=time.perf_counter()-t, **lead_decision.details)
             board = replace(board, opening_lead=lead_decision.card)
         result["board"] = board.to_dict()
-        if mode == "partnership":
+        if mode == "selfplay":
+            assignments = [[candidate] * 4]
+            sign = 1
+        elif mode == "partnership":
             assignments = [[candidate, baseline, candidate, baseline], [baseline, candidate, baseline, candidate]]
             sign = 1
         elif mode in ("declarer", "defence"):
@@ -89,7 +92,7 @@ def run_pair(board, config, event=None):
             table = play_table(board, assignment, players, seed, on_event=emit)
             result["tables"].append(table)
         result["status"] = "ok" if all(t["status"] == "ok" for t in result["tables"]) else "error"
-        if result["status"] == "ok":
+        if result["status"] == "ok" and mode != "selfplay":
             a, b = result["tables"]
             result["score_difference"] = sign * (a["ns_score"] - b["ns_score"])
             result["imps"] = imps(result["score_difference"])

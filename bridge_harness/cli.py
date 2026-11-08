@@ -47,6 +47,8 @@ def main(argv=None):
         p.add_argument("--"+key,choices=("random","greedy","pimc","ben"),default=default)
     p.add_argument("--samples",type=int,default=32)
     p.add_argument("--objective",choices=("score","tricks","make"),default="score")
+    p.add_argument("--near-tie",type=float,default=0.0,help="Uniform exploration within this objective-unit gap")
+    p.add_argument("--serial-dds",dest="batch",action="store_false",help="Disable cross-world TT reuse")
     p.add_argument("--seed",type=int,default=731,help="Decision RNG; separate from corpus-generation seed")
     p.add_argument("--ben-url",default="http://127.0.0.1:8085")
     p.add_argument("--ben-label",default="unspecified external BEN configuration")
@@ -133,7 +135,7 @@ def main(argv=None):
             seat=SEATS.index(r["tables"][args.table]["actions"][ply]["controller"])
             for s in range(4):
                 if s%2==seat%2: assignment[s]=args.player
-        kwargs={k:r["config"][k] for k in ("samples","ben_url","timeout","objective") if k in r["config"]}
+        kwargs={k:r["config"][k] for k in ("samples","ben_url","timeout","objective","batch","near_tie") if k in r["config"]}
         players={p:make_player(p,**kwargs) for p in set(assignment)}
         try:
             table=play_table(board,assignment,players,r["config"]["seed"],r["tables"][args.table]["actions"][:ply])

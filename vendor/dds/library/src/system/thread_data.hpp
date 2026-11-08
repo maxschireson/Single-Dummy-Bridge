@@ -70,7 +70,7 @@ struct ThreadData
     uint64_t tt_hit_count = 0;
 
     // Constant for a given hand.
-    // 960 KB
+    // 256 KiB
     RelRanksType rel[8192];
 
     // Deferred TT configuration for context-owned construction
