@@ -6,6 +6,34 @@ worker waiting for memory; it must not be described as playing until records exi
 Results will be reported after the fixed first 200 deals and after all 500 in each
 comparison. Play continues while the interim audit runs in a separate process.
 
+## Preliminary result: first 200 deals versus zero-band PIMC
+
+The fixed first 200 original deals (400 complete table games) have passed the
+full audit. Positive results favor policy+belief.
+
+| Outcome | Mean per paired deal | Nominal 95% deal-cluster interval |
+|---|---:|---:|
+| Tricks | +0.060 | −0.055 to +0.185 |
+| IMPs | +0.180 | −0.310 to +0.700 |
+
+IMP wins/ties/losses: 40 / 129 / 31. This is **inconclusive**: both intervals include
+zero. The control has the same frozen belief sampler and chooses only sampled
+PIMC maxima. The fixed 500-deal horizon is unchanged; no model or setting has been
+tuned in response to this result.
+
+The audit verified 20,800 legal card plays, 16,444 non-forced PIMC decisions and
+526,208 sampled-world solves. The selector acted on 6,663 decisions; 175 selections
+were below the sampled PIMC maximum, within the unchanged 0.125 window. All 407
+shared non-forced positions had matching sampled-world hashes and estimates.
+Zero per-pair failure records were present at this checkpoint.
+
+The strict comparison later reached 332 complete pairs before its process ended.
+No exit reason was available, and successful records were retained. The remaining
+168 pairs were resumed without regenerating completed deals. The BEN comparison
+still has zero completed pairs; its waiting worker was also restarted and continues
+to wait for sufficient memory. An enabled scheduled monitor had no recorded run
+at this inspection, so the 200-deal result was delivered in the direct status reply.
+
 ## Comparisons
 
 The candidate is the same frozen 46,582-parameter bidding belief sampler plus
