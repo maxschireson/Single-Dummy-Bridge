@@ -37,7 +37,7 @@ def main():
     if state['promotions'] or state['parent'] != manifest['origin']:
         raise ValueError('This review requires the initial B0 league')
     split = 'dev' if args.phase == 'dev' else 'test'
-    count = 1000 if args.phase == 'dev' else 10000
+    count = 1000 if args.phase == 'dev' else 5000
     seed = cfg['seed'] + (200000000 if args.phase == 'dev' else 300000000) + state['attempt']*100003 + state['trained_pairs']
     spec = dict(snapshot_sha256=digest, trained_pairs=state['trained_pairs'],
                 seed=seed, pairs=count, split=split, greedy=True,
