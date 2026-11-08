@@ -1,9 +1,54 @@
 # Frozen policy+belief versus best PIMC and BEN — 8 November 2026
 
-**The zero-band PIMC comparison is complete: 500 independent paired deals,
-1,000 complete table games, fully audited.** The full-search BEN comparison is
-still pending, with zero played deals while its worker waits for memory. Both
-comparisons use the same frozen BEN neural-only auctions and unchanged models.
+**Both original 500-deal PIMC comparisons are complete and audited:** one against
+the same belief sampler with zero-band PIMC, and one against bidding-blind zero-band
+PIMC. The additional 500-deal belief-control follow-up and full-search BEN comparison
+remain separate pending work. All auctions use BEN neural-only bidding.
+
+## Final total-improvement result: 500 deals versus bidding-blind PIMC
+
+All **500 independent paired deals / 1,000 complete games** passed the full audit.
+Positive values favor frozen policy+belief over bidding-blind, zero-band best PIMC.
+
+| Outcome | Mean per paired deal | Nominal 95% deal-cluster interval |
+|---|---:|---:|
+| Tricks | +0.104 | +0.020 to +0.184 |
+| IMPs | +0.356 | +0.026 to +0.676 |
+
+IMP wins/ties/losses: **136 / 261 / 103**. Both intervals are above zero, supporting a positive effect on this evaluation cohort.
+There were **0 recorded failed pairs**. One process interruption at
+372 completed pairs was recovered by playing only the remaining 128; its cause is
+unknown. All 249 blind pairs in the saved recovery checkpoint remained byte-for-byte
+unchanged. One source deal passed out and was excluded before selection; the fixed
+500 playable deals contain no passed-out pairs, and 11 other playable source deals
+remain unused and reserved.
+
+The final audit checked 52,000 legal plays, 41,332 non-forced
+PIMC decisions, 1,322,624 sampled-world solves, and
+16,797 policy selections, including 448
+below the sampled maximum within the unchanged 0.125 window. Exact pre-action
+selector predictions, legal support, partnership orientation, scores, IMPs, unique
+original deals and all 63,724 exclusions passed. Every blind non-forced sample hash
+was regenerated. Both engines used 32 worlds and native batch DDS; only the candidate
+used the frozen bidding belief and policy models. There was no retraining.
+
+Observed execution segments totalled **23.8 minutes**, approximately
+**1,261 pairs/hour**, excluding final audit and gaps. First launch to
+last saved pair was **37.2 minutes** including the interruption. Segment
+timings end at each segment's last saved pair and may omit lost unfinished work;
+these shared-worker measurements are not controlled hardware benchmarks.
+
+This directly measures the total change relative to the bidding-blind strict
+baseline on these BEN neural-only auctions. It is not a full-search BEN playing
+strength result. The comparison was added after the earlier same-cohort strict
+belief result: it is a follow-up, not a fresh independent confirmation. The horizon
+and models remained fixed once added. Intervals use 2,000 original-deal bootstrap
+resamples and are nominal, without correction for multiple comparisons or interim
+looks. Earlier effects on other cohorts cannot be added to this estimate.
+
+The additional 500-deal comparison against belief-informed strict PIMC remains a
+separate follow-up; report its new cohort independently and pooled 1,000-deal
+estimates with the stated data-dependent-extension limitation. BEN remains pending.
 
 ## Added follow-up: total improvement versus bidding-blind PIMC
 
