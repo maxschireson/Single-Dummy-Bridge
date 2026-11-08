@@ -11,7 +11,7 @@ os.environ.setdefault('OPENBLAS_NUM_THREADS','1')
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 import numpy as np
 from bridge_harness.belief_capacity import INPUTS,Weights,load,batch,sha
-from bridge_harness.belief_model import masked_probabilities
+from bridge_harness.belief_model import masked_probabilities,capacity_prior
 from bridge_harness.selfplay import atomic_json
 
 
@@ -22,6 +22,7 @@ def main():
     if not all(r['complete'] for r in results.values()):raise ValueError('Both fixed-budget pilots must complete')
     weights={s:Weights(a.run/s/'best.npz') for s in results}
     groups=defaultdict(lambda:defaultdict(lambda:np.zeros(5)))
+    play_baselines={k:np.zeros(2) for k in ('uniform_support','capacity_prior')}
     sample=None
     for entry in ds['shards']:
         if entry['split']!='validation':continue
@@ -32,6 +33,12 @@ def main():
         for start in range(0,len(d['kind']),1024):
             ix=slice(start,start+1024);x,y,m,sup=batch(d,ix)
             if entry['source']!='play':m=m*(d['kind'][ix]==1)[:,None]
+            else:
+                priors={'uniform_support':sup/np.maximum(sup.sum(-1,keepdims=True),1),
+                        'capacity_prior':capacity_prior(sup,x['play'][:,484:488]*13)}
+                for name,prob in priors.items():
+                    true=np.take_along_axis(prob,y[...,None],axis=-1)[...,0]
+                    play_baselines[name]+=[float((-np.log(np.maximum(true,1e-30))*m).sum()),float(m.sum())]
             rows=[]
             for size in ('small','large'):
                 prob=masked_probabilities(weights[size].predict(x),sup)
@@ -60,6 +67,7 @@ def main():
                 timings.append((time.perf_counter()-start)*1000/reps)
             latency[size][f'batch_{n}_median_ms']=float(np.median(timings))
     out=dict(results=results,paired_validation=paired,numpy_inference_latency=latency,
+        play_baseline_nll={k:float(v[0]/v[1]) for k,v in play_baselines.items()},
         dataset_sha256=sha(a.run/'data/dataset.json'),test_evaluated=False,playing_strength_evaluated=False,promoted=False,
         uncertainty_note='Descriptive paired normal intervals across held-out deal groups after epoch selection; not independent final-test or IMP evidence.')
     atomic_json(a.run/'comparison.json',out)
