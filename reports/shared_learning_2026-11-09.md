@@ -44,3 +44,7 @@ Changing the belief network or trajectory may sharply reduce overlap. The implem
 ## Deployment
 
 No active frozen experiment was modified. Adopt the cache at the next explicit source/generation boundary and freeze both comparison sides on the same code. The candidate belief requires paired play evaluation before promotion. See [the runbook](../docs/shared_bidding_play_learning.md) for exporter/trainer commands, cache settings, and checkpoint requirements.
+
+## Follow-up prediction test
+
+The frozen epoch-eight candidate has now been evaluated on the reserved prediction test splits. See [the paired, deal-clustered analysis](prediction_test_2026-11-09.md) for cross-entropy significance and separate dummy-visible declarer/defender accuracy. It remains untested for playing strength.
