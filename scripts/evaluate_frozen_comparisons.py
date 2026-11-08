@@ -24,14 +24,15 @@ from scripts.evaluate_policy_over_belief import CoupledBeliefPlayer, BELIEF_HASH
 from bridge_harness.bidding_sampling import AuctionWeights
 from bridge_harness.core import Board, Game, SEATS, card, hand_text, imps, symbol, auction_contract
 from bridge_harness.corpus import load, save
-from bridge_harness.players import PIMCPlayer, BenPlayer
+from bridge_harness.players import PIMCPlayer, BenPlayer, Decision
+from bridge_harness.sampling import Sampler
 from bridge_harness.policy_selector import SelectorPlayer, SelectorWeights
 from bridge_harness.report import summarize
-from bridge_harness.runner import play_table, replay
+from bridge_harness.runner import play_table, replay, decision_rng
 from bridge_harness.training import digest
 
 CANDIDATE='belief-policy32'
-BASELINES={'strict':'belief-best32','ben':'ben-full'}
+BASELINES={'strict':'belief-best32','ben':'ben-full','blind':'blind-best32'}
 SEED=20261602
 NATIVE_HASH='7c76508d7082e5665872d89bcc580915ff90f8cd434a39d3704d762e72dc9870'
 BEN_REVISION='9b5f43104aeac713a80b73513f2f2d6daf9f8769'
@@ -50,17 +51,42 @@ def store_episode(path,record):
     with gzip.open(tmp,'wt') as f:json.dump(record,f)
     tmp.replace(path)
 
+class BlindPlayer:
+    """Uniform legal worlds constrained by visible cards/play, never auction inference."""
+    def __init__(self,board_id,seed=SEED):
+        self.board_id,self.seed=board_id,seed;self.worlds=[]
+        def factory(o):
+            sampler=Sampler(o);owner=self
+            class Traced:
+                def draw(self,rng):
+                    world=sampler.draw(rng);owner.worlds.append(world);return world
+            return Traced()
+        self.player=PIMCPlayer(32,'tricks',True,0.,sampler_factory=factory)
+    def choose(self,o,ignored):
+        self.worlds=[]
+        d=self.player.choose(o,decision_rng(self.seed,self.board_id,'belief32-shared',o))
+        assert len(self.worlds)==(0 if d.details.get('forced') else 32)
+        return Decision(d.card,dict(d.details,belief_sha256=None,sampler='uniform-legal',strength=0.,
+            sampled_worlds_sha256=hashlib.sha256(json.dumps(self.worlds,separators=(',',':')).encode()).hexdigest()))
+    def close(self):self.player.close()
+
 def settings(root,kind):
     p=read(root/'protocol.json')
-    return dict(mode='partnership',candidate=CANDIDATE,baseline=BASELINES[kind],seed=SEED,
+    result=dict(mode='partnership',candidate=CANDIDATE,baseline=BASELINES[kind],seed=SEED,
         samples=32,batch=True,objective='tricks',near_tie=.125,
         candidate_belief_sha256=BELIEF_HASH,policy_sha256=POLICY_HASH,
         baseline_belief_sha256=BELIEF_HASH if kind=='strict' else None,
-        baseline_near_tie=0. if kind=='strict' else None,
+        baseline_near_tie=0. if kind in ('strict','blind') else None,
         ben_revision=BEN_REVISION if kind=='ben' else None,
         ben_config_sha256=p['ben_config_sha256'] if kind=='ben' else None,
         ben_url=p['ben_url'] if kind=='ben' else None,
         comparison=kind,protocol_sha256=sha(root/'protocol.json'))
+    if kind=='blind':
+        extra=read(root/'total-protocol.json')
+        assert extra['base_protocol_sha256']==sha(root/'protocol.json') and extra['count']==500
+        assert extra['baseline']=='blind-best32' and extra['baseline_sampler']=='uniform-legal' and extra['baseline_near_tie']==0.
+        result['total_protocol_sha256']=sha(root/'total-protocol.json')
+    return result
 
 def validate_run(root):
     p=read(root/'protocol.json');boards=load(root/'play-corpus.jsonl')
@@ -109,7 +135,8 @@ def pair(job,emit=None):
     data,root,kind=job;root=Path(root);b=Board.from_dict(data);cfg=settings(root,kind)
     belief=AuctionWeights(root/'belief_weights.npz')
     players={CANDIDATE:CoupledBeliefPlayer(SelectorPlayer(root/'policy_weights.npz'),belief,b.id,SEED)}
-    players[BASELINES[kind]]=CoupledBeliefPlayer(PIMCPlayer(32,'tricks',True,0.),belief,b.id,SEED) if kind=='strict' else BenPlayer(cfg['ben_url'],600)
+    players[BASELINES[kind]]=(CoupledBeliefPlayer(PIMCPlayer(32,'tricks',True,0.),belief,b.id,SEED) if kind=='strict'
+                            else BlindPlayer(b.id) if kind=='blind' else BenPlayer(cfg['ben_url'],600))
     assignments=[[CANDIDATE,BASELINES[kind]]*2,[BASELINES[kind],CANDIDATE]*2]
     r=dict(schema_version=1,board=data,config=cfg,assignments=assignments,tables=[],status='error')
     try:
@@ -163,6 +190,9 @@ def exclusive(path):
 def ben_server(root):
     ext=read(root/'ben-runtime.json');lock=Path(ext['resource_lock']);proc=None
     while True:
+        if (root/'total-protocol.json').exists() and not (root/'blind/audit-500.json').exists():
+            atomic(root/'ben/status.json',dict(status='waiting_for_total_comparison',updated_unix=time.time()))
+            time.sleep(30);continue
         memory=next(int(x.split()[1]) for x in Path('/proc/meminfo').read_text().splitlines() if x.startswith('MemAvailable:'))
         if memory<5*1024*1024:
             atomic(root/'ben/status.json',dict(status='waiting_for_memory',available_kib=memory,minimum_kib=5*1024*1024,updated_unix=time.time()))
@@ -194,10 +224,24 @@ def ben_server(root):
             except subprocess.TimeoutExpired:proc.kill();proc.wait()
         handle.close()
 
+@contextmanager
+def priority(root,kind):
+    """User requested total-improvement play before queued BEN evaluations."""
+    if kind!='blind':yield;return
+    handle=Path(read(root/'ben-runtime.json')['resource_lock']).open('a')
+    try:
+        while True:
+            try:fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB);break
+            except BlockingIOError:
+                atomic(root/'blind/status.json',dict(status='waiting_for_existing_BEN_server',updated_unix=time.time()))
+                time.sleep(30)
+        yield
+    finally:handle.close()
+
 def play(root,kind,workers,stop_after=None):
     protocol,boards=validate_run(root);folder=root/kind
     for sub in ['episodes','failures']:(folder/sub).mkdir(parents=True,exist_ok=True)
-    with exclusive(folder/'worker.lock'):
+    with exclusive(folder/'worker.lock'), priority(root,kind):
         jobs=[];completed=0
         for b in boards:
             path=folder/'episodes'/f'{digest(b.hands)}.json.gz'
@@ -270,7 +314,9 @@ def audit(root,kind,count):
                         assert a['request']==params and a['endpoint']==('play' if o.history else 'lead')
                         assert card(a['response']['card'])==card(a['card'])
                 else:
-                    assert a['belief_sha256']==BELIEF_HASH and a['sampler']=='auction-weighted-dp' and a['strength']==1.
+                    blind=a['player']=='blind-best32'
+                    if blind:assert a['belief_sha256'] is None and a['sampler']=='uniform-legal' and a['strength']==0.
+                    else:assert a['belief_sha256']==BELIEF_HASH and a['sampler']=='auction-weighted-dp' and a['strength']==1.
                     if len(o.legal)==1:assert a['forced'] and a['samples']==a['dds_calls']==0
                     else:
                         counts['pimc_nonforced']+=1;band=.125 if a['player']==CANDIDATE else 0.
@@ -282,7 +328,11 @@ def audit(root,kind,count):
                         assert all(abs(support[c]-1/len(eligible))<1e-8 for c in eligible)
                         assert a['card'] in eligible and a['selected_pimc_gap']<=band+1e-9
                         assert abs(sum(a['behavior_probabilities'].values())-1)<1e-8 and a['behavior_probabilities'][a['card']]>0
-                        key=(o.controller,o.history);signature=(a['sampled_worlds_sha256'],a['estimates'])
+                        if blind:
+                            sampler=Sampler(o);rng=decision_rng(SEED,b.id,'belief32-shared',o)
+                            worlds=[sampler.draw(rng) for _ in range(32)]
+                            assert hashlib.sha256(json.dumps(worlds,separators=(',',':')).encode()).hexdigest()==a['sampled_worlds_sha256']
+                        key=(o.controller,o.history,a['player'] if kind=='blind' else None);signature=(a['sampled_worlds_sha256'],a['estimates'])
                         if key in common:assert signature==common[key];counts['common_positions']+=1
                         else:common[key]=signature
                         if a.get('selector'):
@@ -310,7 +360,7 @@ def audit(root,kind,count):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run',type=Path,required=True)
-    p.add_argument('--mode',choices=['prepare','play','audit'],required=True);p.add_argument('--opponent',choices=['strict','ben'],default='strict')
+    p.add_argument('--mode',choices=['prepare','play','audit'],required=True);p.add_argument('--opponent',choices=['strict','ben','blind'],default='strict')
     p.add_argument('--workers',type=int,default=4);p.add_argument('--count',type=int,choices=[1,200,500],default=500)
     p.add_argument('--stop-after',type=int);a=p.parse_args();root=a.run.resolve()
     if a.mode=='prepare':prepare(root)

@@ -5,7 +5,47 @@
 still pending, with zero played deals while its worker waits for memory. Both
 comparisons use the same frozen BEN neural-only auctions and unchanged models.
 
-## Final result versus zero-band PIMC
+## Added follow-up: total improvement versus bidding-blind PIMC
+
+Max clarified that the desired total-improvement control has **neither belief nor
+policy inference**. A third fixed 500-deal paired comparison is now running on the
+same already-reserved cohort and unchanged neural-only BEN auctions. It has priority
+over the queued BEN card-play comparison. Its records live separately under `blind/`;
+the original strict and BEN records, settings and protocol remain unchanged.
+
+The candidate remains frozen policy+belief, 32 worlds and a 0.125-trick window.
+The new control samples uniformly from deals consistent with visible cards, card
+counts and observed voids, ignores the bidding sequence for hand placement, and
+chooses the highest 32-world PIMC expected-trick estimate (zero band, uniform exact
+ties). Both use native batch DDS. They share the decision seed but their sampled
+worlds should differ because their samplers differ; identical-world assertions are
+not applied between these two players. This directly estimates the combined change
+from bidding-blind best PIMC to policy+belief, rather than adding earlier effects.
+
+The new frozen `total-protocol.json` records 500 pairs, first-200 interim analysis,
+and the original cohort/protocol hash. All 512 source deals remain evaluation-only.
+This follow-up was requested after the prior result on this cohort, so it is not a
+fresh independent confirmation; no model, budget or policy was tuned in response.
+Report nominal original-deal bootstrap 95% intervals and retain the fixed horizon.
+
+A focused test verifies that the control's 32 worlds match the uniform legal sampler,
+that changing only the auction leaves its worlds and decision unchanged, and that
+its selected PIMC gap is zero. Existing strict/BEN configurations were checked for
+exact equality before and after adding this mode. All three focused tests pass.
+The first real new paired deal passed full legal replay and policy/settings audit;
+the auditor independently regenerates every non-forced control sample to verify
+the uniform sampler hash. That completed pair is preserved on resume.
+
+The priority run holds the shared BEN resource lock through its final audit, without
+interrupting a running server. Newly launched BEN workers also check that the total
+comparison has completed before starting a server. Do not start duplicate workers
+or retrain models. Resume with:
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -u scripts/evaluate_frozen_comparisons.py --run <run> --mode play --opponent blind --workers 4
+```
+
+## Completed comparison: policy increment over belief-informed best PIMC
 
 | Outcome | Mean per paired deal | Nominal 95% deal-cluster interval |
 |---|---:|---:|

@@ -1,4 +1,5 @@
 import random
+from dataclasses import replace
 import unittest
 from unittest.mock import patch
 import numpy as np
@@ -6,7 +7,9 @@ from bridge_harness.core import Game, card
 from bridge_harness.corpus import generate
 from bridge_harness.players import PIMCPlayer
 from bridge_harness.policy_selector import SelectorPlayer
-from scripts.evaluate_frozen_comparisons import CoupledBeliefPlayer, SEED
+from scripts.evaluate_frozen_comparisons import CoupledBeliefPlayer, BlindPlayer, SEED
+from bridge_harness.sampling import Sampler
+from bridge_harness.runner import decision_rng
 
 class Belief:
     def logits(self,o):return np.arange(208).reshape(52,4)%7/3.
@@ -25,6 +28,23 @@ class DDS:
         return [({c:4+int(i==0 and c in best) for c in legal},1) for i in range(len(worlds))]
 
 class ComparisonTests(unittest.TestCase):
+    @patch('bridge_harness.dds.DDS',DDS)
+    def test_blind_sampler_matches_uniform_and_ignores_auction(self):
+        game=Game(next(generate(1,728391)));o=game.observation()
+        player=BlindPlayer(game.board.id)
+        try:
+            d=player.choose(o,random.Random(8));worlds=list(player.worlds)
+            sampler=Sampler(o);rng=decision_rng(SEED,game.board.id,'belief32-shared',o)
+            self.assertEqual(worlds,[sampler.draw(rng) for _ in range(32)])
+            changed=replace(o,auction=('7N','PASS','PASS','PASS'))
+            other=player.choose(changed,random.Random(78))
+            self.assertEqual(worlds,player.worlds)
+            self.assertEqual(d,other)
+            self.assertEqual(d.details['selected_pimc_gap'],0)
+            self.assertIsNone(d.details['belief_sha256'])
+            self.assertNotIn('selector',d.details)
+        finally:player.close()
+
     @patch('bridge_harness.dds.DDS',DDS)
     @patch('bridge_harness.policy_selector.SelectorWeights',Policy)
     def test_zero_band_keeps_only_exact_best_with_identical_belief_worlds(self):
