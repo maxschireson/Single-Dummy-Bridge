@@ -44,9 +44,13 @@ def main(argv=None):
     p.add_argument("corpus"); p.add_argument("--out",required=True)
     p.add_argument("--mode",choices=("declarer","defence","partnership"),default="declarer")
     for key, default in (("candidate","pimc"),("baseline","greedy"),("common","greedy")):
-        p.add_argument("--"+key,choices=("random","greedy","pimc","ben"),default=default)
+        p.add_argument("--"+key,choices=("random","greedy","pimc","ben","strategy","alphamu","continuation"),default=default)
     p.add_argument("--samples",type=int,default=32)
     p.add_argument("--objective",choices=("score","tricks","make"),default="score")
+    p.add_argument("--strategy-decisions",type=int,default=2)
+    p.add_argument("--strategy-continuation",choices=("greedy","pimc"),default="greedy")
+    p.add_argument("--strategy-model",choices=("greedy","pimc"),default="greedy")
+    p.add_argument("--strategy-policy-samples",type=int,default=2)
     p.add_argument("--seed",type=int,default=731,help="Decision RNG; separate from corpus-generation seed")
     p.add_argument("--ben-url",default="http://127.0.0.1:8085")
     p.add_argument("--ben-label",default="unspecified external BEN configuration")
@@ -62,7 +66,7 @@ def main(argv=None):
     p.add_argument("records"); p.add_argument("--board",required=True)
     p.add_argument("--table",type=int,choices=(0,1),default=0)
     p.add_argument("--ply",type=int,help="Resume just before this decision; default first difference")
-    p.add_argument("--player",choices=("random","greedy","pimc","ben"),required=True)
+    p.add_argument("--player",choices=("random","greedy","pimc","ben","strategy","alphamu","continuation"),required=True)
     p.add_argument("--out",required=True)
     args = parser.parse_args(argv)
     if args.command == "generate":
@@ -133,7 +137,7 @@ def main(argv=None):
             seat=SEATS.index(r["tables"][args.table]["actions"][ply]["controller"])
             for s in range(4):
                 if s%2==seat%2: assignment[s]=args.player
-        kwargs={k:r["config"][k] for k in ("samples","ben_url","timeout","objective") if k in r["config"]}
+        kwargs={k:r["config"][k] for k in ("samples","ben_url","timeout","objective","strategy_decisions","strategy_continuation","strategy_model","strategy_policy_samples") if k in r["config"]}
         players={p:make_player(p,**kwargs) for p in set(assignment)}
         try:
             table=play_table(board,assignment,players,r["config"]["seed"],r["tables"][args.table]["actions"][:ply])
