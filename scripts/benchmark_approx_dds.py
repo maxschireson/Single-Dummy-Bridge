@@ -46,6 +46,6 @@ def main():
             result.append(dict(remaining=remaining,budget_per_move=budget,positions=len(rr),speedup=sum(r['exact_seconds'] for r in rr)/sum(r['approx_seconds'] for r in rr),
                 exact_ms=1000*np.mean([r['exact_seconds'] for r in rr]),approx_ms=1000*np.mean([r['approx_seconds'] for r in rr]),
                 **{k:float(np.mean([r[k] for r in rr])) for k in ('mae','move_regret','optimal_fraction','certified_fraction','interval_width')}))
-    atomic_json(a.out/'summary.json',dict(families=len(families),results=result,interpretation='Full-information DD approximation; not single-dummy playing strength. Equal weight per decision, total-time speedup. Node budget per legal move; Python rollout overhead included.'))
+    atomic_json(a.out/'summary.json',dict(families=len(families),results=result,interpretation='Full-information DD approximation; not single-dummy playing strength. Equal weight per decision, total-time speedup. Node budget per nonequivalent legal move; native rollout and Python wrapper overhead included.'))
     print(json.dumps(result),flush=True)
 if __name__=='__main__':main()

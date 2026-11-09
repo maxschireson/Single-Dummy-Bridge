@@ -75,7 +75,11 @@ def main():
     # One original contract per independent family; no filtering by outcome.
     items=[(f['family'],f['boards'][0]) for f in fs]
     config=dict(count=len(items),variants=a.variants,baseline='Gen3 both partnerships,32 samples,.125 near tie',objective='expected tricks for every tested player',seed_rule='family plus ply plus actor',weights_sha256=hashlib.sha256(a.weights.read_bytes()).hexdigest(),families=[f for f,_ in items],promoted=False)
-    atomic_json(a.out/'config.json',config);rows=[]
+    config_path=a.out/'config.json'
+    if config_path.exists() and json.loads(config_path.read_text())!=config:raise ValueError('Existing evaluation configuration changed')
+    atomic_json(config_path,config)
+    rows=[json.loads((a.out/(f+'.json')).read_text()) for f,_ in items if (a.out/(f+'.json')).exists()]
+    completed={r['family'] for r in rows};items=[it for it in items if it[0] not in completed]
     with ProcessPoolExecutor(a.workers) as pool:
         futures=[pool.submit(job,it,str(a.models),str(a.weights),a.variants,str(a.controls) if a.controls else None) for it in items]
         for future in as_completed(futures):

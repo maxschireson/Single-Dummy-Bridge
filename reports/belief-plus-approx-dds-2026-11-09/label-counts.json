@@ -1,0 +1,20 @@
+{
+  "train": {
+    "positions": 457308,
+    "uncertain_card_labels": 6183171,
+    "dds_action_labels": 2057869,
+    "early_positions": 332996
+  },
+  "validation": {
+    "positions": 57893,
+    "uncertain_card_labels": 783980,
+    "dds_action_labels": 261498,
+    "early_positions": 42159
+  },
+  "test": {
+    "positions": 57069,
+    "uncertain_card_labels": 774896,
+    "dds_action_labels": 257564,
+    "early_positions": 41513
+  }
+}

@@ -1,0 +1,12 @@
+1: None
+2: None
+3: None
+.......................................WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794260334.052461       5 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794260337.045669       5 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+....
+----------------------------------------------------------------------
+Ran 43 tests in 11.049s
+
+OK
