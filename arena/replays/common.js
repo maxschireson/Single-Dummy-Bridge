@@ -1,13 +1,13 @@
 'use strict';
 window.ReplayCommon = (() => {
   const FEED = 'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-feed/arena/replays/catalog.json';
-  const labels = {A:'Gen 3', B:'Gen 3-early', C:'Gen 2'};
+  const labels = {A:'Gen 3.5', B:'Gen 3', C:'Gen 2',4:'Gen 4',3:'Gen 3',2:'Gen 2',1:'Gen 1'};
   const $ = id => document.getElementById(id);
   const pairLabel = p => labels[p[0]] + ' vs ' + labels[p[1]];
-  const signed = n => n > 0 ? '+' + n : String(n);
+  const signed = n => n==null?'—':n > 0 ? '+' + n : String(n);
   const date = epoch => new Date(epoch * 1000).toLocaleString();
   const el = (tag, text, cls) => {const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
-  async function get(url) {const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
+  async function get(url) {url=new URL(url,location.href);if(url.hostname==='raw.githubusercontent.com')url.searchParams.set('v',Math.floor(Date.now()/30000));const r=await fetch(url.href,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
   async function catalog() {
     const urls=[new URL('catalog.json',location.href).href];
     if(location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') urls.push(FEED);
