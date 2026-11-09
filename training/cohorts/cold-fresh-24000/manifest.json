@@ -1,0 +1,183 @@
+{
+  "format": "bridge-frozen-auction-dd-cohort-v1",
+  "cohort": "cold-fresh-24000-2026-11-09",
+  "boards": 24000,
+  "contracted": 23940,
+  "passed_out": 60,
+  "arena_selected": 21300,
+  "reserve_contracted": 2640,
+  "seed": 151584524400174,
+  "auction_corpus_sha256": "8e76804a09c5f18f9a207db339d4b74b53dce3cee72cecdc564d1985ca738bd2",
+  "bidder_sha256": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3",
+  "ben_commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+  "solver_sha256": "98ef01456e64d31f53e14c7e51c9928421015d92a7fd79513dcb5eb8845d0262",
+  "split_rule": "Canonical rotated family hash; validation if int(family[:8],16)%5==0, train otherwise; matches current play feed",
+  "board_shards": [
+    {
+      "file": "boards/000000.jsonl.gz",
+      "sha256": "9502c3e84b1dd6874682ebcc3bd4ed02777f2e8706b4432c56806cd8eff99289",
+      "size_bytes": 138420,
+      "boards": 1000
+    },
+    {
+      "file": "boards/001000.jsonl.gz",
+      "sha256": "e92ccbf83996db017a9dba4a3f33851f2128760fec2dd3d3683f4ebc92fffef9",
+      "size_bytes": 137518,
+      "boards": 1000
+    },
+    {
+      "file": "boards/002000.jsonl.gz",
+      "sha256": "49c7da00fbbf943ae382dff7804c434ce29ed6f86d9294dfb518fedf44822ae2",
+      "size_bytes": 137718,
+      "boards": 1000
+    },
+    {
+      "file": "boards/003000.jsonl.gz",
+      "sha256": "3c22fe65795536dde8ea95fba33402326a3aea62d17a4dd864379d50b44647da",
+      "size_bytes": 137614,
+      "boards": 1000
+    },
+    {
+      "file": "boards/004000.jsonl.gz",
+      "sha256": "6e9a9c655cc5d8defb4285ffdc3a100cbc78a6e306893cf8769f3e5864fb5e17",
+      "size_bytes": 137950,
+      "boards": 1000
+    },
+    {
+      "file": "boards/005000.jsonl.gz",
+      "sha256": "545cc7730bc885abf697d3d6b49469cd21b215d68603b031cf7e29f0b2c7bcdd",
+      "size_bytes": 137158,
+      "boards": 1000
+    },
+    {
+      "file": "boards/006000.jsonl.gz",
+      "sha256": "f138ba21abbed95da113c1f4c0465e07a430be97d7a0bbc61b1a65c7efa75a5f",
+      "size_bytes": 137556,
+      "boards": 1000
+    },
+    {
+      "file": "boards/007000.jsonl.gz",
+      "sha256": "7e41f01a64a468d81c67cda56abdc014de1715101abae92c573586a0f6ab12ab",
+      "size_bytes": 137205,
+      "boards": 1000
+    },
+    {
+      "file": "boards/008000.jsonl.gz",
+      "sha256": "84c32f47cf5cda0c174484338cc15e832558424f307044c0cdc463f54a2e46a1",
+      "size_bytes": 137709,
+      "boards": 1000
+    },
+    {
+      "file": "boards/009000.jsonl.gz",
+      "sha256": "ea09f4a18d308393c19d10822437584492d2978e33b27448fe05246627627f0a",
+      "size_bytes": 137557,
+      "boards": 1000
+    },
+    {
+      "file": "boards/010000.jsonl.gz",
+      "sha256": "6b5ab50694c88a32056f109864d36cdb13352c7a7447f9cae9373d9b169782eb",
+      "size_bytes": 137481,
+      "boards": 1000
+    },
+    {
+      "file": "boards/011000.jsonl.gz",
+      "sha256": "042483aefe00d3a25e7f1b5e7c1bb6c59641dc6a7c60ac09c6e43f07b830368b",
+      "size_bytes": 138505,
+      "boards": 1000
+    },
+    {
+      "file": "boards/012000.jsonl.gz",
+      "sha256": "34e915657fcd09eea13e9920c17a851cd04d01d5b2301d22c87fed72f36fbd85",
+      "size_bytes": 138050,
+      "boards": 1000
+    },
+    {
+      "file": "boards/013000.jsonl.gz",
+      "sha256": "18dc3f326da20bf20812e4a3fef8378abef912edfba41a1489ee950005f8ee14",
+      "size_bytes": 136964,
+      "boards": 1000
+    },
+    {
+      "file": "boards/014000.jsonl.gz",
+      "sha256": "d340e0c9ae6421f4b031cfe777de62d7201bd183d610fd598a5ef8d07073c1e4",
+      "size_bytes": 137667,
+      "boards": 1000
+    },
+    {
+      "file": "boards/015000.jsonl.gz",
+      "sha256": "ca2a2ec8eb27c34db732f15165ef20a70019d4161e0e33a728fbff7c191465d9",
+      "size_bytes": 137439,
+      "boards": 1000
+    },
+    {
+      "file": "boards/016000.jsonl.gz",
+      "sha256": "87ff20b6b955bd14b617313293b254662bb6d13101a44040e632e1c8b700a0dd",
+      "size_bytes": 137716,
+      "boards": 1000
+    },
+    {
+      "file": "boards/017000.jsonl.gz",
+      "sha256": "f9ba75929183732f4cf421710ece8457f5b5db3185743ee13e0901c0d8626abd",
+      "size_bytes": 138126,
+      "boards": 1000
+    },
+    {
+      "file": "boards/018000.jsonl.gz",
+      "sha256": "3d1fc918c5b0735148814c693163e598ce074cb64d4ff848bd54ccc034887b46",
+      "size_bytes": 137563,
+      "boards": 1000
+    },
+    {
+      "file": "boards/019000.jsonl.gz",
+      "sha256": "f130fec6046fb04661a9c3fe787c8443d835f6f6607cc6348c6d02df37a85e4f",
+      "size_bytes": 137779,
+      "boards": 1000
+    },
+    {
+      "file": "boards/020000.jsonl.gz",
+      "sha256": "e6f370a9d83ea749f8eb0625ff5d08256dd41fbc1817dece90ba512d77ad0425",
+      "size_bytes": 137893,
+      "boards": 1000
+    },
+    {
+      "file": "boards/021000.jsonl.gz",
+      "sha256": "7f751b7954a91eb1c90391bf5b451a099f9634a28cbc8a7b0c09552cb13ad35c",
+      "size_bytes": 137795,
+      "boards": 1000
+    },
+    {
+      "file": "boards/022000.jsonl.gz",
+      "sha256": "21f0661d52b84b818efabae5f88dbdee3060bac254e2402c080e6cd191dbba82",
+      "size_bytes": 137777,
+      "boards": 1000
+    },
+    {
+      "file": "boards/023000.jsonl.gz",
+      "sha256": "5ef47af9c2ca6f27abd8a5075e4ca852bb3a14a0ee30d616b7d52b4c83bcdf5d",
+      "size_bytes": 138197,
+      "boards": 1000
+    }
+  ],
+  "dd_shards": [],
+  "dd_completed": 0,
+  "dd_complete": false,
+  "created_epoch": 1794220217.0464296,
+  "dd_axis_order": {
+    "strains": [
+      "S",
+      "H",
+      "D",
+      "C",
+      "N"
+    ],
+    "declarers": [
+      "N",
+      "E",
+      "S",
+      "W"
+    ]
+  },
+  "notes": "These are complete deal/auction observations, not extra played boards. DD labels are added incrementally and only when verified. Keep canonical family splits consistent with all imported play/belief/bidding data. DD information is a training target, never bidder input. Training on any of these hands excludes them from v4 held-out evaluation.",
+  "dd_status": "paused-per-user-compute-in-another-environment",
+  "benchmark_note": "Ten hands were benchmarked before the pause; benchmark output is not included as a DD dataset."
+}

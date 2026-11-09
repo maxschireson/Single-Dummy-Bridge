@@ -1,5 +1,10 @@
 # Gen 3.5 arena training feed
 
+Additional full frozen deals and auctions are listed at
+[cohorts/cold-fresh-24000/README.md](cohorts/cold-fresh-24000/README.md).
+Those 24,000 hand sets include unplayed boards; do not count them as extra played
+pairs or add their count to the incremental played-board count.
+
 This branch contains **training-only supplements**, not a restored campaign or
 complete base dataset. Collection continues in the original environment.
 
