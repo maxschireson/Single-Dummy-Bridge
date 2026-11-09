@@ -1,5 +1,11 @@
 # Mixed branching arena launch — 9 November 2026
 
+**Superseded launch record:** this original `g0001` run stopped cleanly at 351
+pairs, 2,090 audited deviations and +24 IMPs. The user requested a restart with
+the new bidding network shared by all play versions. The active run is
+`g0001-bid40k`; see [the restart record](bid40k_restart_2026-11-09.md). Earlier
+counts and commands below describe the preserved original launch only.
+
 The first production generation is running for **25,000 unique contracted boards**.
 Latest verified snapshot: **63 completed pairs**, **358
 audited deviations**, **484 complete table trajectories**. These are startup

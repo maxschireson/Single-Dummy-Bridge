@@ -68,6 +68,11 @@ Detailed results: [size study](belief_size_study_2026-11-09.md) and
 
 ## Next experiment
 
+The [40k bidder restart](bid40k_restart_2026-11-09.md) gives **every current and
+historical play version the same latest bidding network**. It replaces the
+initial original-BEN-auction launch. Cardplay promotion uses identical frozen
+auctions in each pair, so bidding differences cannot drive the comparison.
+
 The [mixed branching arena](../docs/mixed_fork_generations.md) combines training
 trajectories, held-out belief validation, random policy audits, and matched
 whole-bot play. Its first generation is 25,000 fresh contracted boards.

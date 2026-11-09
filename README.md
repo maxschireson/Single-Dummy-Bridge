@@ -180,7 +180,10 @@ Use unique Board IDs. Original imported auctions must agree with the contract.
 
 The adapter was checked against BEN commit
 `9b5f43104aeac713a80b73513f2f2d6daf9f8769` (API version 0.9.0.2).
-BEN's source and large model files remain external to this package.
+BEN's source and original large model files remain external to this package.
+The user-adopted 40k DDS fine-tune is published separately under
+[models/bidding/dds-40000](models/bidding/dds-40000), with upstream attribution
+and license.
 
 ```sh
 git clone https://github.com/lorserker/ben.git ../ben

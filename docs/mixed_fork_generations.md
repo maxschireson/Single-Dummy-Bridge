@@ -2,10 +2,19 @@
 
 Each long run evaluates its frozen candidate while collecting data for its
 successor. Generation one contains **25,000 distinct, fresh contracted deals**,
-with BEN neural-only auctions. Passed-out deals are excluded before selecting
+with shared neural-only auctions. Passed-out deals are excluded before selecting
 the cohort, never on the basis of a play result.
 
 ## Frozen actors and environment
+
+All current and historical play versions use the **same latest bidding network**.
+The restart on 9 November adopts the validated 40,000-pair DDS bidder for every
+seat and every version. Auctions are generated once with that actor and frozen
+for both root tables and all forks. Historical versions retain their play and
+belief differences, but do not retain historical bidding. Promotion therefore
+compares cardplay under common auctions, without attributing gains to bidding.
+The next boundary reads the shared bidder registry and freezes it for all bots
+again. A live generation never silently changes its auction distribution.
 
 | Environment partnership | Initial probability |
 |---|---:|
@@ -90,7 +99,7 @@ snapshots and completed pair results remain available to monitoring agents.
 
 ## Operations and verification
 
-Runtime root: `runs/mixed-fork-25k/g0001`. The parent `current.json` points to
+Runtime root: `runs/mixed-fork-25k/g0001-bid40k`. The parent `current.json` points to
 the active generation. `manifest.json` contains immutable identities;
 `state.json` contains paired IMPs, split counts, audit counts, and best status;
 `heartbeat.json` names work currently in flight. Atomic compressed episodes and
@@ -104,9 +113,9 @@ allows in-flight complete boards to be preserved.
 
 ```sh
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python ops/mixed_generation.py status \
-  --run runs/mixed-fork-25k/g0001
+  --run runs/mixed-fork-25k/g0001-bid40k
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python ops/supervise_mixed.py supervise \
-  --run runs/mixed-fork-25k/g0001 --seconds 240 --workers 4
+  --run runs/mixed-fork-25k/g0001-bid40k --seconds 240 --workers 8
 ```
 
 Use `status --audit` for full replay and receipt verification. Failures are
@@ -117,3 +126,8 @@ inspect committed board counts and heartbeat times.
 
 Model results and exact checkpoints are documented in
 [the v2 component report](../reports/v2_network_results_2026-11-09.md).
+
+The original `g0001` is permanently stopped at 351 pairs. Its observations are
+preserved separately and never pooled into the restarted 25k result. The
+[restart record](../reports/bid40k_restart_2026-11-09.md) identifies the promoted
+bidder, source review, deployment checks and recovery instructions.
