@@ -1,0 +1,35 @@
+{
+  "schema": "gen4-training-readiness-v1",
+  "complete": true,
+  "ready_for_review": true,
+  "arena_deployed": false,
+  "promoted": false,
+  "value_network_deferred_to": "Gen 5",
+  "models": {
+    "belief": {
+      "path": "models/cardplay/gen4-2026-11-09/belief.npz",
+      "sha256": "b23eb37554a26abb5a5eaa03f547472c489abd00dd6f3c9b0cada96cc46eb7d9",
+      "training_families": 126608,
+      "epochs_attempted": 12,
+      "selected_epoch": 3
+    },
+    "policy": {
+      "path": "models/cardplay/gen4-2026-11-09/policy.npz",
+      "sha256": "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed",
+      "audit_training_families": 3432,
+      "epochs_attempted": 8,
+      "selected_epoch": 3
+    },
+    "bidding": {
+      "path": "models/bidding/v4-actual-outcomes-2026-11-09/candidate.keras",
+      "sha256": "04ca7157df3ffab5f7644a150cde5af538e5f48ee1338a9368a43c94f67a449a",
+      "training_families": 2939,
+      "validation_families": 761,
+      "epochs_attempted": 6,
+      "selected_epoch": 6,
+      "control_outperformed_on_validation": true
+    }
+  },
+  "training_notes": "reports/gen4_model_training_notes_2026-11-09.md",
+  "interpretation": "Complete model training and saved artifacts; no claimed playing-strength improvement or arena promotion."
+}

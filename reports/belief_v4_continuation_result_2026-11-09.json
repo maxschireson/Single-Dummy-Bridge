@@ -1,0 +1,1003 @@
+{
+  "complete": true,
+  "promoted": false,
+  "best_epoch": 0,
+  "initial": {
+    "score": 0.8644040055562285,
+    "accuracy": 0.5102949603816604,
+    "domains": {
+      "base/ben/all": {
+        "nll": 1.0573295658432897,
+        "accuracy": 0.4289435264450196,
+        "families": 5023,
+        "card_observations": 1567176,
+        "card_weighted_nll": 1.0573295658432895,
+        "card_weighted_accuracy": 0.4289435264450196
+      },
+      "base/ben/complete_auction": {
+        "nll": 1.0520703547273398,
+        "accuracy": 0.43857869186358145,
+        "families": 5023,
+        "card_observations": 783588,
+        "card_weighted_nll": 1.0520703547273398,
+        "card_weighted_accuracy": 0.4385786918635814
+      },
+      "base/bidding/all": {
+        "nll": 1.0587692317638977,
+        "accuracy": 0.4266220378918094,
+        "families": 3983,
+        "card_observations": 1791504,
+        "card_weighted_nll": 1.057428530154752,
+        "card_weighted_accuracy": 0.42905793121310365
+      },
+      "base/bidding/complete_auction": {
+        "nll": 1.0533447847424227,
+        "accuracy": 0.4363504831431018,
+        "families": 3983,
+        "card_observations": 895752,
+        "card_weighted_nll": 1.0519285522617792,
+        "card_weighted_accuracy": 0.43879109396350774
+      },
+      "base/play/all": {
+        "nll": 0.6946413136768136,
+        "accuracy": 0.5543422806877871,
+        "families": 1971,
+        "card_observations": 471144,
+        "card_weighted_nll": 0.6935464542959501,
+        "card_weighted_accuracy": 0.5586360008829572
+      },
+      "recent/ben/all": {
+        "nll": 1.0510147686512055,
+        "accuracy": 0.4380381969500168,
+        "families": 533,
+        "card_observations": 166296,
+        "card_weighted_nll": 1.0510147686512055,
+        "card_weighted_accuracy": 0.43803819695001683
+      },
+      "recent/ben/complete_auction": {
+        "nll": 1.045274956915557,
+        "accuracy": 0.4473468995044981,
+        "families": 533,
+        "card_observations": 83148,
+        "card_weighted_nll": 1.045274956915557,
+        "card_weighted_accuracy": 0.447346899504498
+      },
+      "recent/bidding/all": {
+        "nll": 1.0570679055861367,
+        "accuracy": 0.42996664846309873,
+        "families": 9860,
+        "card_observations": 3076320,
+        "card_weighted_nll": 1.0570679055861367,
+        "card_weighted_accuracy": 0.4299666484630988
+      },
+      "recent/bidding/complete_auction": {
+        "nll": 1.051670211819868,
+        "accuracy": 0.4399100223643834,
+        "families": 9860,
+        "card_observations": 1538160,
+        "card_weighted_nll": 1.0516702118198678,
+        "card_weighted_accuracy": 0.4399100223643834
+      },
+      "recent/play/all": {
+        "nll": 0.6617945544455065,
+        "accuracy": 0.6057445124010725,
+        "families": 976,
+        "card_observations": 984528,
+        "card_weighted_nll": 0.6604883583086417,
+        "card_weighted_accuracy": 0.6060376139632392
+      }
+    }
+  },
+  "selected": {
+    "score": 0.8644040055562285,
+    "accuracy": 0.5102949603816604,
+    "domains": {
+      "base/ben/all": {
+        "nll": 1.0573295658432897,
+        "accuracy": 0.4289435264450196,
+        "families": 5023,
+        "card_observations": 1567176,
+        "card_weighted_nll": 1.0573295658432895,
+        "card_weighted_accuracy": 0.4289435264450196
+      },
+      "base/ben/complete_auction": {
+        "nll": 1.0520703547273398,
+        "accuracy": 0.43857869186358145,
+        "families": 5023,
+        "card_observations": 783588,
+        "card_weighted_nll": 1.0520703547273398,
+        "card_weighted_accuracy": 0.4385786918635814
+      },
+      "base/bidding/all": {
+        "nll": 1.0587692317638977,
+        "accuracy": 0.4266220378918094,
+        "families": 3983,
+        "card_observations": 1791504,
+        "card_weighted_nll": 1.057428530154752,
+        "card_weighted_accuracy": 0.42905793121310365
+      },
+      "base/bidding/complete_auction": {
+        "nll": 1.0533447847424227,
+        "accuracy": 0.4363504831431018,
+        "families": 3983,
+        "card_observations": 895752,
+        "card_weighted_nll": 1.0519285522617792,
+        "card_weighted_accuracy": 0.43879109396350774
+      },
+      "base/play/all": {
+        "nll": 0.6946413136768136,
+        "accuracy": 0.5543422806877871,
+        "families": 1971,
+        "card_observations": 471144,
+        "card_weighted_nll": 0.6935464542959501,
+        "card_weighted_accuracy": 0.5586360008829572
+      },
+      "recent/ben/all": {
+        "nll": 1.0510147686512055,
+        "accuracy": 0.4380381969500168,
+        "families": 533,
+        "card_observations": 166296,
+        "card_weighted_nll": 1.0510147686512055,
+        "card_weighted_accuracy": 0.43803819695001683
+      },
+      "recent/ben/complete_auction": {
+        "nll": 1.045274956915557,
+        "accuracy": 0.4473468995044981,
+        "families": 533,
+        "card_observations": 83148,
+        "card_weighted_nll": 1.045274956915557,
+        "card_weighted_accuracy": 0.447346899504498
+      },
+      "recent/bidding/all": {
+        "nll": 1.0570679055861367,
+        "accuracy": 0.42996664846309873,
+        "families": 9860,
+        "card_observations": 3076320,
+        "card_weighted_nll": 1.0570679055861367,
+        "card_weighted_accuracy": 0.4299666484630988
+      },
+      "recent/bidding/complete_auction": {
+        "nll": 1.051670211819868,
+        "accuracy": 0.4399100223643834,
+        "families": 9860,
+        "card_observations": 1538160,
+        "card_weighted_nll": 1.0516702118198678,
+        "card_weighted_accuracy": 0.4399100223643834
+      },
+      "recent/play/all": {
+        "nll": 0.6617945544455065,
+        "accuracy": 0.6057445124010725,
+        "families": 976,
+        "card_observations": 984528,
+        "card_weighted_nll": 0.6604883583086417,
+        "card_weighted_accuracy": 0.6060376139632392
+      }
+    }
+  },
+  "parameters": 308726,
+  "parent_optimizer_steps": 8118,
+  "optimizer_steps": 15498,
+  "training_positions": 1630369,
+  "training_card_observations": 47247357,
+  "epochs": 9,
+  "training_families": 126608,
+  "recent_families": 39149,
+  "seconds": 716.9546735639997,
+  "selected_sha256": "b23eb37554a26abb5a5eaa03f547472c489abd00dd6f3c9b0cada96cc46eb7d9",
+  "parent_sha256": "b23eb37554a26abb5a5eaa03f547472c489abd00dd6f3c9b0cada96cc46eb7d9",
+  "selected_checkpoint": "models/cardplay/gen4-2026-11-09/belief-resume.tar.gz",
+  "selection_data_only": true,
+  "playing_strength_evaluated": false,
+  "history": [
+    {
+      "epoch": 1,
+      "seconds": 80.37009431800016,
+      "metrics": {
+        "score": 0.8648734645608604,
+        "accuracy": 0.510636614080531,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0575850876867203,
+            "accuracy": 0.429010525939652,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0575850876867203,
+            "card_weighted_accuracy": 0.42901052593965194
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.052368405454359,
+            "accuracy": 0.43861187256568496,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.052368405454359,
+            "card_weighted_accuracy": 0.438611872565685
+          },
+          "base/bidding/all": {
+            "nll": 1.0590578520326475,
+            "accuracy": 0.42651742662726844,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0577536848035174,
+            "card_weighted_accuracy": 0.4288899159588815
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.0536819308746979,
+            "accuracy": 0.4365299316968913,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0523023724972254,
+            "card_weighted_accuracy": 0.438871473354232
+          },
+          "base/play/all": {
+            "nll": 0.6951390306058963,
+            "accuracy": 0.5546049114824388,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6940928102064946,
+            "card_weighted_accuracy": 0.5584449764827738
+          },
+          "recent/ben/all": {
+            "nll": 1.051267864304187,
+            "accuracy": 0.437779621879059,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.051267864304187,
+            "card_weighted_accuracy": 0.437779621879059
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0455861928665189,
+            "accuracy": 0.44715447154471544,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.045586192866519,
+            "card_weighted_accuracy": 0.44715447154471544
+          },
+          "recent/bidding/all": {
+            "nll": 1.0573198342066619,
+            "accuracy": 0.42963735892234883,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0573198342066619,
+            "card_weighted_accuracy": 0.4296373589223488
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0519776822971703,
+            "accuracy": 0.4396174650231445,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0519776822971705,
+            "card_weighted_accuracy": 0.4396174650231445
+          },
+          "recent/play/all": {
+            "nll": 0.6625477218911725,
+            "accuracy": 0.6069846744244671,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6612562089336274,
+            "card_weighted_accuracy": 0.6071945135130743
+          }
+        }
+      }
+    },
+    {
+      "epoch": 2,
+      "seconds": 81.15875484000026,
+      "metrics": {
+        "score": 0.864613208803831,
+        "accuracy": 0.5107166180375113,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.057514823759699,
+            "accuracy": 0.42875465167919874,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0575148237596987,
+            "card_weighted_accuracy": 0.42875465167919874
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0522635669521605,
+            "accuracy": 0.4385059495551234,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0522635669521603,
+            "card_weighted_accuracy": 0.43850594955512334
+          },
+          "base/bidding/all": {
+            "nll": 1.0589792326616392,
+            "accuracy": 0.42621284690704725,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0576454551889678,
+            "card_weighted_accuracy": 0.4286616161616162
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.0535626296170952,
+            "accuracy": 0.43628530227827245,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0521484715232334,
+            "card_weighted_accuracy": 0.43867499039912833
+          },
+          "base/play/all": {
+            "nll": 0.6949436944817278,
+            "accuracy": 0.5557434354832306,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6939741467471593,
+            "card_weighted_accuracy": 0.559642062723923
+          },
+          "recent/ben/all": {
+            "nll": 1.051378188255047,
+            "accuracy": 0.4378277288690047,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.0513781882550468,
+            "card_weighted_accuracy": 0.4378277288690047
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0457269614259075,
+            "accuracy": 0.4469379900899601,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0457269614259075,
+            "card_weighted_accuracy": 0.44693799008996005
+          },
+          "recent/bidding/all": {
+            "nll": 1.0572138926686143,
+            "accuracy": 0.42973487803609506,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0572138926686143,
+            "card_weighted_accuracy": 0.42973487803609506
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0518152136298482,
+            "accuracy": 0.4397689447131638,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0518152136298482,
+            "card_weighted_accuracy": 0.4397689447131638
+          },
+          "recent/play/all": {
+            "nll": 0.6618249549210907,
+            "accuracy": 0.6063739433485548,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6604802586976493,
+            "card_weighted_accuracy": 0.6068268246306859
+          }
+        }
+      }
+    },
+    {
+      "epoch": 3,
+      "seconds": 78.09271644,
+      "metrics": {
+        "score": 0.8645335380842434,
+        "accuracy": 0.5106657545892128,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0573510347245396,
+            "accuracy": 0.4288446224291336,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0573510347245396,
+            "card_weighted_accuracy": 0.4288446224291337
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0520919805899729,
+            "accuracy": 0.4383055891616513,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0520919805899729,
+            "card_weighted_accuracy": 0.4383055891616513
+          },
+          "base/bidding/all": {
+            "nll": 1.0588187000820057,
+            "accuracy": 0.4263351616163567,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0574927663150249,
+            "card_weighted_accuracy": 0.42873808822084686
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.0533958627915228,
+            "accuracy": 0.43627725525792316,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0519953752686393,
+            "card_weighted_accuracy": 0.4386080075735248
+          },
+          "base/play/all": {
+            "nll": 0.6949052910480491,
+            "accuracy": 0.5558156301178102,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6939091220424362,
+            "card_weighted_accuracy": 0.559709982510655
+          },
+          "recent/ben/all": {
+            "nll": 1.05109473768581,
+            "accuracy": 0.438014143455044,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.05109473768581,
+            "card_weighted_accuracy": 0.438014143455044
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0453912634786924,
+            "accuracy": 0.4473589262519844,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0453912634786924,
+            "card_weighted_accuracy": 0.4473589262519844
+          },
+          "recent/bidding/all": {
+            "nll": 1.0570885016194385,
+            "accuracy": 0.4298044416705674,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0570885016194382,
+            "card_weighted_accuracy": 0.4298044416705674
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0516863935009988,
+            "accuracy": 0.4397832475165132,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0516863935009988,
+            "card_weighted_accuracy": 0.4397832475165132
+          },
+          "recent/play/all": {
+            "nll": 0.6619461111083309,
+            "accuracy": 0.6059848791450053,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6606351671085713,
+            "card_weighted_accuracy": 0.6062834170282613
+          }
+        }
+      }
+    },
+    {
+      "epoch": 4,
+      "seconds": 79.15161761000036,
+      "metrics": {
+        "score": 0.8648744804684286,
+        "accuracy": 0.5106868105622543,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.057479112142942,
+            "accuracy": 0.4290864587002354,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.057479112142942,
+            "card_weighted_accuracy": 0.4290864587002353
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0522152363197894,
+            "accuracy": 0.4387535286400507,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0522152363197894,
+            "card_weighted_accuracy": 0.4387535286400506
+          },
+          "base/bidding/all": {
+            "nll": 1.0589473019326976,
+            "accuracy": 0.42634723214688064,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0576297875883465,
+            "card_weighted_accuracy": 0.4286884092918576
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.0535470162353249,
+            "accuracy": 0.4365065953378783,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.052157890195233,
+            "card_weighted_accuracy": 0.43879667586564136
+          },
+          "base/play/all": {
+            "nll": 0.6953959238922887,
+            "accuracy": 0.5556538797202081,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6944410521789532,
+            "card_weighted_accuracy": 0.559429813390386
+          },
+          "recent/ben/all": {
+            "nll": 1.051305322619109,
+            "accuracy": 0.4380201568287872,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.051305322619109,
+            "card_weighted_accuracy": 0.4380201568287872
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0456528749657255,
+            "accuracy": 0.44739500649444364,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0456528749657255,
+            "card_weighted_accuracy": 0.44739500649444364
+          },
+          "recent/bidding/all": {
+            "nll": 1.0572169154099669,
+            "accuracy": 0.42958827430176316,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0572169154099669,
+            "card_weighted_accuracy": 0.42958827430176316
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0518266087458288,
+            "accuracy": 0.4396187652779945,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0518266087458288,
+            "card_weighted_accuracy": 0.4396187652779945
+          },
+          "recent/play/all": {
+            "nll": 0.6624811298480914,
+            "accuracy": 0.6059564146536257,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6611087683179041,
+            "card_weighted_accuracy": 0.6064824971966262
+          }
+        }
+      }
+    },
+    {
+      "epoch": 5,
+      "seconds": 79.86021480900035,
+      "metrics": {
+        "score": 0.8651022326541116,
+        "accuracy": 0.5105475042015041,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0574447265919276,
+            "accuracy": 0.42898500232264913,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0574447265919276,
+            "card_weighted_accuracy": 0.42898500232264913
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0521926555024916,
+            "accuracy": 0.4386590912571402,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0521926555024916,
+            "card_weighted_accuracy": 0.43865909125714025
+          },
+          "base/bidding/all": {
+            "nll": 1.0589120232382139,
+            "accuracy": 0.4262341715109729,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0576003262499454,
+            "card_weighted_accuracy": 0.4286554760692692
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.053514469727171,
+            "accuracy": 0.43595376503988104,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0521285169385595,
+            "card_weighted_accuracy": 0.4384360849878091
+          },
+          "base/play/all": {
+            "nll": 0.6957594452033597,
+            "accuracy": 0.5561346121713894,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6950651165337965,
+            "card_weighted_accuracy": 0.5598097396974173
+          },
+          "recent/ben/all": {
+            "nll": 1.051288567987729,
+            "accuracy": 0.4380201568287872,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.051288567987729,
+            "card_weighted_accuracy": 0.4380201568287872
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0456438008144762,
+            "accuracy": 0.44811661134362823,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0456438008144762,
+            "card_weighted_accuracy": 0.44811661134362823
+          },
+          "recent/bidding/all": {
+            "nll": 1.0571847526270841,
+            "accuracy": 0.42941208976959483,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0571847526270841,
+            "card_weighted_accuracy": 0.42941208976959483
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.051779036309372,
+            "accuracy": 0.43946143444115043,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0517790363093722,
+            "card_weighted_accuracy": 0.4394614344411505
+          },
+          "recent/play/all": {
+            "nll": 0.6630845042363314,
+            "accuracy": 0.6049599535937271,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6617636817241314,
+            "card_weighted_accuracy": 0.6054860806396568
+          }
+        }
+      }
+    },
+    {
+      "epoch": 6,
+      "seconds": 75.34543228200073,
+      "metrics": {
+        "score": 0.8660496597284942,
+        "accuracy": 0.5100393173488397,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0578268141497194,
+            "accuracy": 0.4285089868655466,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0578268141497194,
+            "card_weighted_accuracy": 0.42850898686554667
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.052635597324772,
+            "accuracy": 0.43807842897032623,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.052635597324772,
+            "card_weighted_accuracy": 0.43807842897032623
+          },
+          "base/bidding/all": {
+            "nll": 1.0592868592441238,
+            "accuracy": 0.42600885494119234,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0579934846448966,
+            "card_weighted_accuracy": 0.42830325804463737
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.053915779243286,
+            "accuracy": 0.4360599857084919,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0525560481278589,
+            "card_weighted_accuracy": 0.4383155159017228
+          },
+          "base/play/all": {
+            "nll": 0.6971966250952586,
+            "accuracy": 0.5547880673348834,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6966021113738357,
+            "card_weighted_accuracy": 0.5584428539894385
+          },
+          "recent/ben/all": {
+            "nll": 1.0517576281376468,
+            "accuracy": 0.4365228267667292,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.0517576281376466,
+            "card_weighted_accuracy": 0.4365228267667292
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0461823023511956,
+            "accuracy": 0.4470462308173378,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0461823023511956,
+            "card_weighted_accuracy": 0.44704623081733774
+          },
+          "recent/bidding/all": {
+            "nll": 1.0575363748474227,
+            "accuracy": 0.4292781635200498,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.057536374847423,
+            "card_weighted_accuracy": 0.42927816352004994
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0521984360076313,
+            "accuracy": 0.43940747386487744,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0521984360076313,
+            "card_weighted_accuracy": 0.4394074738648775
+          },
+          "recent/play/all": {
+            "nll": 0.6645359563552758,
+            "accuracy": 0.6050731423799589,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6634573372033234,
+            "card_weighted_accuracy": 0.6056313279053516
+          }
+        }
+      }
+    },
+    {
+      "epoch": 7,
+      "seconds": 77.37320499500038,
+      "metrics": {
+        "score": 0.8651311740920719,
+        "accuracy": 0.5107444158307125,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0574373982325416,
+            "accuracy": 0.4290373257375049,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0574373982325416,
+            "card_weighted_accuracy": 0.4290373257375049
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0521799555498934,
+            "accuracy": 0.4385952822146332,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0521799555498934,
+            "card_weighted_accuracy": 0.4385952822146332
+          },
+          "base/bidding/all": {
+            "nll": 1.058892440458846,
+            "accuracy": 0.4268437333024328,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0575875642028822,
+            "card_weighted_accuracy": 0.42920529342943137
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.053491872280497,
+            "accuracy": 0.4369475720530202,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0521138960829945,
+            "card_weighted_accuracy": 0.4392432280363315
+          },
+          "base/play/all": {
+            "nll": 0.6959605063415535,
+            "accuracy": 0.556746997911544,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.69517615220507,
+            "card_weighted_accuracy": 0.5603191380979063
+          },
+          "recent/ben/all": {
+            "nll": 1.0512495883679775,
+            "accuracy": 0.43726848511088656,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.0512495883679775,
+            "card_weighted_accuracy": 0.4372684851108866
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0456551698033312,
+            "accuracy": 0.4464328666955309,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0456551698033312,
+            "card_weighted_accuracy": 0.44643286669553084
+          },
+          "recent/bidding/all": {
+            "nll": 1.0571424030294134,
+            "accuracy": 0.4295778722629636,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0571424030294134,
+            "card_weighted_accuracy": 0.42957787226296357
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0517515504900226,
+            "accuracy": 0.4395804077599209,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0517515504900228,
+            "card_weighted_accuracy": 0.43958040775992097
+          },
+          "recent/play/all": {
+            "nll": 0.6630249159648617,
+            "accuracy": 0.6054526010497532,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6616878662742555,
+            "card_weighted_accuracy": 0.6060762111387386
+          }
+        }
+      }
+    },
+    {
+      "epoch": 8,
+      "seconds": 80.38237210399984,
+      "metrics": {
+        "score": 0.8652809895921928,
+        "accuracy": 0.510977224793504,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0574366915047502,
+            "accuracy": 0.42909283960448596,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0574366915047502,
+            "card_weighted_accuracy": 0.429092839604486
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0521958880113738,
+            "accuracy": 0.4389640984803239,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0521958880113735,
+            "card_weighted_accuracy": 0.43896409848032386
+          },
+          "base/bidding/all": {
+            "nll": 1.0589402401293122,
+            "accuracy": 0.42634481804077584,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.057638829586715,
+            "card_weighted_accuracy": 0.4287486938349007
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.0535482562814555,
+            "accuracy": 0.436347264334962,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.052177396024309,
+            "card_weighted_accuracy": 0.4386928524859559
+          },
+          "base/play/all": {
+            "nll": 0.6962097505956801,
+            "accuracy": 0.5564896418254008,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6955101729464968,
+            "card_weighted_accuracy": 0.5600559489243204
+          },
+          "recent/ben/all": {
+            "nll": 1.0513528687685445,
+            "accuracy": 0.43757516717179,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.0513528687685445,
+            "card_weighted_accuracy": 0.43757516717179007
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0457687484826361,
+            "accuracy": 0.4473468995044981,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0457687484826361,
+            "card_weighted_accuracy": 0.447346899504498
+          },
+          "recent/bidding/all": {
+            "nll": 1.057171783476034,
+            "accuracy": 0.42963280803037396,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0571717834760341,
+            "card_weighted_accuracy": 0.42963280803037396
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.0517923080190181,
+            "accuracy": 0.4397578925469392,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.0517923080190181,
+            "card_weighted_accuracy": 0.4397578925469392
+          },
+          "recent/play/all": {
+            "nll": 0.663261607375849,
+            "accuracy": 0.6062111799152536,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6619143518028034,
+            "card_weighted_accuracy": 0.6068268246306859
+          }
+        }
+      }
+    },
+    {
+      "epoch": 9,
+      "seconds": 78.61445656000069,
+      "metrics": {
+        "score": 0.8657404221751214,
+        "accuracy": 0.5104329312560127,
+        "domains": {
+          "base/ben/all": {
+            "nll": 1.0576333567358098,
+            "accuracy": 0.4287757086632261,
+            "families": 5023,
+            "card_observations": 1567176,
+            "card_weighted_nll": 1.0576333567358098,
+            "card_weighted_accuracy": 0.42877570866322606
+          },
+          "base/ben/complete_auction": {
+            "nll": 1.0524296567508882,
+            "accuracy": 0.43811288585328007,
+            "families": 5023,
+            "card_observations": 783588,
+            "card_weighted_nll": 1.0524296567508882,
+            "card_weighted_accuracy": 0.43811288585328007
+          },
+          "base/bidding/all": {
+            "nll": 1.0590423530998376,
+            "accuracy": 0.4265130007660764,
+            "families": 3983,
+            "card_observations": 1791504,
+            "card_weighted_nll": 1.0577560632912302,
+            "card_weighted_accuracy": 0.4288703793014138
+          },
+          "base/bidding/complete_auction": {
+            "nll": 1.0536704780158532,
+            "accuracy": 0.4363633583756607,
+            "families": 3983,
+            "card_observations": 895752,
+            "card_weighted_nll": 1.0523165291808672,
+            "card_weighted_accuracy": 0.43874532236601205
+          },
+          "base/play/all": {
+            "nll": 0.6969182868027194,
+            "accuracy": 0.5555139790979506,
+            "families": 1971,
+            "card_observations": 471144,
+            "card_weighted_nll": 0.6961925774065417,
+            "card_weighted_accuracy": 0.5593173212436113
+          },
+          "recent/ben/all": {
+            "nll": 1.0516129709479498,
+            "accuracy": 0.4378277288690047,
+            "families": 533,
+            "card_observations": 166296,
+            "card_weighted_nll": 1.0516129709479498,
+            "card_weighted_accuracy": 0.4378277288690047
+          },
+          "recent/ben/complete_auction": {
+            "nll": 1.0460696784931671,
+            "accuracy": 0.4473950064944437,
+            "families": 533,
+            "card_observations": 83148,
+            "card_weighted_nll": 1.0460696784931671,
+            "card_weighted_accuracy": 0.44739500649444364
+          },
+          "recent/bidding/all": {
+            "nll": 1.0573156823108514,
+            "accuracy": 0.42931684610183607,
+            "families": 9860,
+            "card_observations": 3076320,
+            "card_weighted_nll": 1.0573156823108514,
+            "card_weighted_accuracy": 0.42931684610183596
+          },
+          "recent/bidding/complete_auction": {
+            "nll": 1.051961732636117,
+            "accuracy": 0.439393821188953,
+            "families": 9860,
+            "card_observations": 1538160,
+            "card_weighted_nll": 1.051961732636117,
+            "card_weighted_accuracy": 0.43939382118895304
+          },
+          "recent/play/all": {
+            "nll": 0.6639776289497533,
+            "accuracy": 0.6055852099699314,
+            "families": 976,
+            "card_observations": 984528,
+            "card_weighted_nll": 0.6627347978629206,
+            "card_weighted_accuracy": 0.605929948157899
+          }
+        }
+      }
+    }
+  ]
+}

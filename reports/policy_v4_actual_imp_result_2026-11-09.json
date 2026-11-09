@@ -1,0 +1,207 @@
+{
+  "complete": true,
+  "promoted": false,
+  "eligible": true,
+  "best_epoch": 3,
+  "selected_weights": "models/cardplay/gen4-2026-11-09/policy.npz",
+  "selected_sha256": "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed",
+  "initial": {
+    "mse": 2.4591575890392066,
+    "zero_mse": 2.4591575890392066,
+    "rows": 7628,
+    "families": 565,
+    "family_mean_delta": 0.0,
+    "family_se": 0.0
+  },
+  "selected_validation": {
+    "mse": 2.459101836442837,
+    "zero_mse": 2.4591575890392066,
+    "rows": 7628,
+    "families": 565,
+    "family_mean_delta": -5.5728864195927024e-05,
+    "family_se": 0.0001856219941271266
+  },
+  "initial_auxiliary": {
+    "mse": 0.81304826347008,
+    "zero_mse": 23.120703960415767,
+    "rows": 58288,
+    "families": 2466,
+    "family_mean_delta": -22.141415307042305,
+    "family_se": 0.22209866617369392
+  },
+  "selected_auxiliary": {
+    "mse": 0.8140115392568352,
+    "zero_mse": 23.120703960415767,
+    "rows": 58288,
+    "families": 2466,
+    "family_mean_delta": -22.140294092829784,
+    "family_se": 0.22207075522759034
+  },
+  "parameters": 39522,
+  "active_seconds": 35.020238923000306,
+  "training_families": 3432,
+  "validation_families": 565,
+  "playing_strength_evaluated": false,
+  "history": [
+    {
+      "epoch": 1,
+      "validation": {
+        "mse": 2.4591537143493385,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": -3.827765207894834e-06,
+        "family_se": 6.320456726372002e-05
+      },
+      "historical_auxiliary": {
+        "mse": 0.814440578488277,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.140511743543556,
+        "family_se": 0.2220215907945451
+      },
+      "export_max_error": 3.725290298461914e-09
+    },
+    {
+      "epoch": 2,
+      "validation": {
+        "mse": 2.4591255739311997,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": -3.190064938978572e-05,
+        "family_se": 0.0001192541540811607
+      },
+      "historical_auxiliary": {
+        "mse": 0.8194273390317904,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.136120048958215,
+        "family_se": 0.22189266678100847
+      },
+      "export_max_error": 8.381903171539307e-09
+    },
+    {
+      "epoch": 3,
+      "validation": {
+        "mse": 2.459101836442837,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": -5.5728864195927024e-05,
+        "family_se": 0.0001856219941271266
+      },
+      "historical_auxiliary": {
+        "mse": 0.8140115392568352,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.140294092829784,
+        "family_se": 0.22207075522759034
+      },
+      "export_max_error": 1.862645149230957e-08
+    },
+    {
+      "epoch": 4,
+      "validation": {
+        "mse": 2.4591142219802795,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": -4.329025449184699e-05,
+        "family_se": 0.00025635891793654615
+      },
+      "historical_auxiliary": {
+        "mse": 0.8131449737653603,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.14187372584849,
+        "family_se": 0.22189877057608393
+      },
+      "export_max_error": 3.166496753692627e-08
+    },
+    {
+      "epoch": 5,
+      "validation": {
+        "mse": 2.4591076169429713,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": -5.001440410581933e-05,
+        "family_se": 0.0003294938642104255
+      },
+      "historical_auxiliary": {
+        "mse": 0.8225157865703576,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.130879073568803,
+        "family_se": 0.2221674535617992
+      },
+      "export_max_error": 3.4458935260772705e-08
+    },
+    {
+      "epoch": 6,
+      "validation": {
+        "mse": 2.4591558847540713,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": -1.7335227032528676e-06,
+        "family_se": 0.000423568861135671
+      },
+      "historical_auxiliary": {
+        "mse": 0.8133026001568205,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.140774426402732,
+        "family_se": 0.2220833415309588
+      },
+      "export_max_error": 2.9802322387695312e-08
+    },
+    {
+      "epoch": 7,
+      "validation": {
+        "mse": 2.4591971502167445,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": 3.9635277253691254e-05,
+        "family_se": 0.0005141458938590762
+      },
+      "historical_auxiliary": {
+        "mse": 0.8135829512325253,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.14062085690411,
+        "family_se": 0.2220790783788101
+      },
+      "export_max_error": 4.470348358154297e-08
+    },
+    {
+      "epoch": 8,
+      "validation": {
+        "mse": 2.459225781184742,
+        "zero_mse": 2.4591575890392066,
+        "rows": 7628,
+        "families": 565,
+        "family_mean_delta": 6.819545964592646e-05,
+        "family_se": 0.0006334490355620261
+      },
+      "historical_auxiliary": {
+        "mse": 0.8150520273417944,
+        "zero_mse": 23.120703960415767,
+        "rows": 58288,
+        "families": 2466,
+        "family_mean_delta": -22.138915397489583,
+        "family_se": 0.22196625409967924
+      },
+      "export_max_error": 4.470348358154297e-08
+    }
+  ]
+}

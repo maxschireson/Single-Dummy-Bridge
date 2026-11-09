@@ -1,0 +1,413 @@
+{
+  "complete": true,
+  "promoted": false,
+  "arena_deployed": false,
+  "playing_strength_evaluated": false,
+  "counts": {
+    "excluded_source_tables": 702,
+    "actual_tables": 7400,
+    "source:g0001-bid40k": 6470,
+    "source:g0001-direct": 930,
+    "distinct_auctions": 3700,
+    "decisions": 38823,
+    "train_families": 2939,
+    "train_decisions": 30873,
+    "validation_families": 761,
+    "validation_decisions": 7950
+  },
+  "parent": {
+    "weighted_nll": 0.06628073718791913,
+    "nll": 0.0674167214332138,
+    "kl": 0.0,
+    "changed": 0.0,
+    "families": 761,
+    "decisions": 7950
+  },
+  "models": {
+    "outcome": {
+      "complete": true,
+      "best_epoch": 6,
+      "validation": {
+        "weighted_nll": 0.061078815272811886,
+        "nll": 0.06222849977233151,
+        "kl": 0.0010479303908775654,
+        "changed": 0.005200185626383907,
+        "families": 761,
+        "decisions": 7950
+      },
+      "vs_parent": {
+        "reduction": 0.005201921915107249,
+        "se": 0.00032548226398329604,
+        "families": 761,
+        "descriptive_95": [
+          0.004563976677699988,
+          0.005839867152514509
+        ]
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "seconds": 43.20847647500068,
+          "validation": {
+            "weighted_nll": 0.0644998788736893,
+            "nll": 0.06558470882852073,
+            "kl": 0.00021558796292517996,
+            "changed": 0.002352272485221486,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.06357303157334389,
+            "nll": 0.06401111804274369,
+            "kl": 0.0002512970837817676,
+            "changed": 0.0015247870710789495,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.13199204218781685,
+            7.548646660105458e-05,
+            0.8723546158183705
+          ]
+        },
+        {
+          "epoch": 2,
+          "seconds": 34.962673868999445,
+          "validation": {
+            "weighted_nll": 0.06352786309522288,
+            "nll": 0.06462446864101028,
+            "kl": 0.0003892807825907609,
+            "changed": 0.003826679589117165,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.06156247305840387,
+            "nll": 0.062260926171901904,
+            "kl": 0.0004827990483000774,
+            "changed": 0.001504871541545937,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.12736231633577466,
+            0.0003405887051966534,
+            0.8384595690679945
+          ]
+        },
+        {
+          "epoch": 3,
+          "seconds": 35.931130627999664,
+          "validation": {
+            "weighted_nll": 0.0627845248231509,
+            "nll": 0.06390679909793882,
+            "kl": 0.0005446283718411445,
+            "changed": 0.004652660439409468,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.05989222299431076,
+            "nll": 0.060852060666006055,
+            "kl": 0.0007127551288884209,
+            "changed": 0.0015960104137151074,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.12383343171605393,
+            0.00043534062233222415,
+            0.817874749091046
+          ]
+        },
+        {
+          "epoch": 4,
+          "seconds": 33.68405355499999,
+          "validation": {
+            "weighted_nll": 0.06215350004858527,
+            "nll": 0.06329078067643426,
+            "kl": 0.0007050747187921726,
+            "changed": 0.004762165478272933,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.05840642933372767,
+            "nll": 0.05959338395908803,
+            "kl": 0.0009620384944719185,
+            "changed": 0.0015903395521790736,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.12074277291366876,
+            0.0006306651815645058,
+            0.7919943098686943
+          ]
+        },
+        {
+          "epoch": 5,
+          "seconds": 32.170642907999536,
+          "validation": {
+            "weighted_nll": 0.06165600156660637,
+            "nll": 0.0628076720836151,
+            "kl": 0.0008272063183418421,
+            "changed": 0.004818482353922482,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.05710918644300187,
+            "nll": 0.058523634918476876,
+            "kl": 0.0011750987000398849,
+            "changed": 0.0015660358535423793,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.11811259518231242,
+            0.0007465437080130012,
+            0.7750113850290125
+          ]
+        },
+        {
+          "epoch": 6,
+          "seconds": 30.763309879999724,
+          "validation": {
+            "weighted_nll": 0.061078815272811886,
+            "nll": 0.06222849977233151,
+            "kl": 0.0010479303908775654,
+            "changed": 0.005200185626383907,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.05579995492184033,
+            "nll": 0.05738762439729185,
+            "kl": 0.001507620741041272,
+            "changed": 0.00150932722134795,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.11561396576402601,
+            0.0008443901690554398,
+            0.750298326665705
+          ]
+        }
+      ],
+      "actor_sha256": "04ca7157df3ffab5f7644a150cde5af538e5f48ee1338a9368a43c94f67a449a",
+      "optimizer_steps": 4458
+    },
+    "control": {
+      "complete": true,
+      "best_epoch": 6,
+      "validation": {
+        "weighted_nll": 0.060376001091189874,
+        "nll": 0.06133671038358941,
+        "kl": 0.001496028746946212,
+        "changed": 0.006023359833887528,
+        "families": 761,
+        "decisions": 7950
+      },
+      "vs_parent": {
+        "reduction": 0.005904736096729264,
+        "se": 0.00037970484087514547,
+        "families": 761,
+        "descriptive_95": [
+          0.005160514608613979,
+          0.006648957584844549
+        ]
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "seconds": 36.6208281119998,
+          "validation": {
+            "weighted_nll": 0.06403269580391024,
+            "nll": 0.06503353102400405,
+            "kl": 0.0004913299967559795,
+            "changed": 0.004705848599182135,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.06334737923776568,
+            "nll": 0.06332763808655903,
+            "kl": 0.0005467757605597026,
+            "changed": 0.002839150754073409,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.13071492954719166,
+            0.000200582640400633,
+            0.7265030197368181
+          ]
+        },
+        {
+          "epoch": 2,
+          "seconds": 31.21070015799978,
+          "validation": {
+            "weighted_nll": 0.0629941195866435,
+            "nll": 0.063971497713818,
+            "kl": 0.0006898312337571262,
+            "changed": 0.005200967802610474,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.06138859999011857,
+            "nll": 0.061334253742709566,
+            "kl": 0.0008100537150498155,
+            "changed": 0.0023326211622037344,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.12610882459100614,
+            0.0006505998257020381,
+            0.69474627754905
+          ]
+        },
+        {
+          "epoch": 3,
+          "seconds": 31.221012138000333,
+          "validation": {
+            "weighted_nll": 0.06217298253331063,
+            "nll": 0.0631512793424895,
+            "kl": 0.0009137861895723282,
+            "changed": 0.005299844407106335,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.059747239011804745,
+            "nll": 0.059683101210112485,
+            "kl": 0.0011250867973363837,
+            "changed": 0.002132790747933713,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.1227535017081036,
+            0.0007606180762864403,
+            0.6868878250772302
+          ]
+        },
+        {
+          "epoch": 4,
+          "seconds": 31.572308955000153,
+          "validation": {
+            "weighted_nll": 0.06148437964844307,
+            "nll": 0.06245928696028611,
+            "kl": 0.0011082140278900641,
+            "changed": 0.0062212510796254275,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.058312192649583865,
+            "nll": 0.058232253229513906,
+            "kl": 0.0014228466035468494,
+            "changed": 0.0019001503400485457,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.11992345174605196,
+            0.0009903639837837786,
+            0.6573004375311954
+          ]
+        },
+        {
+          "epoch": 5,
+          "seconds": 31.2496603339996,
+          "validation": {
+            "weighted_nll": 0.06094322929207558,
+            "nll": 0.06190852465559673,
+            "kl": 0.00124410414712468,
+            "changed": 0.005941231055963744,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.05703909987389175,
+            "nll": 0.05697541991384342,
+            "kl": 0.0016730396347765491,
+            "changed": 0.0017026827848839069,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.11747735258468911,
+            0.0011299456135862437,
+            0.6469771624350351
+          ]
+        },
+        {
+          "epoch": 6,
+          "seconds": 30.510097580000547,
+          "validation": {
+            "weighted_nll": 0.060376001091189874,
+            "nll": 0.06133671038358941,
+            "kl": 0.001496028746946212,
+            "changed": 0.006023359833887528,
+            "families": 761,
+            "decisions": 7950
+          },
+          "train": {
+            "weighted_nll": 0.055810897720967735,
+            "nll": 0.055731623280826974,
+            "kl": 0.002056243326615497,
+            "changed": 0.0015906832392131307,
+            "families": 2939,
+            "decisions": 30873
+          },
+          "selected": true,
+          "mean_batch_metrics": [
+            0.11520763886861565,
+            0.001208493062237293,
+            0.6369831776323397
+          ]
+        }
+      ],
+      "actor_sha256": "6a82849949eb4c45b2de83df4d2da940a484e90e226904257530625cc9b878da",
+      "optimizer_steps": 4458
+    }
+  },
+  "baseline": {
+    "train_crossfit": {
+      "families": 2939,
+      "baseline_rmse_imp_units": 5.737342834472656,
+      "zero_rmse_imp_units": 7.494843482971191
+    },
+    "validation": {
+      "families": 761,
+      "baseline_rmse_imp_units": 5.781335353851318,
+      "zero_rmse_imp_units": 7.325118064880371
+    }
+  },
+  "outcome_vs_control": {
+    "reduction": -0.000702814181622015,
+    "se": 0.0001358519222550757,
+    "families": 761,
+    "descriptive_95": [
+      -0.0009690839492419634,
+      -0.00043654441400206665
+    ]
+  },
+  "elapsed_seconds": 442.5457553059996,
+  "interpretation": "Descriptive outcome-weighted prediction fit on selection validation; not IMP strength."
+}
