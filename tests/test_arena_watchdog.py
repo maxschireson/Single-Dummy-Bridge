@@ -6,6 +6,19 @@ from unittest.mock import patch
 from ops.watch_direct_arena import lock,lock_state,report_views,transient_failures,recover,check,launch_settings
 
 class WatchdogTests(unittest.TestCase):
+    def test_check_preserves_recovery_callable(self):
+        with tempfile.TemporaryDirectory() as td:
+            r=Path(td)/'run';r.mkdir();pointer=Path(td)/'current.json'
+            pointer.write_text(json.dumps(dict(run=str(r))))
+            (r/'manifest.json').write_text(json.dumps(dict(protocol='direct-pairs-v1',identity='m',target=10,created_epoch=0)))
+            (r/'telemetry-ramp.json').write_text(json.dumps(dict(status='running-verified',launcher='ops/independent_supervisor.py',workers=3)))
+            with patch('ops.watch_direct_arena.verify_generation'),patch('ops.watch_direct_arena.receipts',return_value=[]),patch('ops.summarize_arena_health.summarize',return_value={}),patch('ops.watch_direct_arena.launch') as launch:
+                launch.return_value.pid=123
+                result=check(pointer,2,launcher=launch)
+                self.assertEqual(result['action'],'restarted-awaiting-progress')
+                self.assertEqual(result['launcher'],'ops/independent_supervisor.py')
+                launch.assert_called_once_with(r,3)
+
     def test_verified_launcher_settings(self):
         with tempfile.TemporaryDirectory() as td:
             p=Path(td)
