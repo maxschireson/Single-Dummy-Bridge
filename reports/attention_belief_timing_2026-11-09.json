@@ -1,0 +1,121 @@
+{
+  "v4_archived_fit": {
+    "parameters": 308726,
+    "training_positions": 1630369,
+    "epochs": 3,
+    "total_seconds": 202.4870305759996,
+    "epoch_seconds": [
+      67.5413796619996,
+      66.12816315500004,
+      62.72644209800001
+    ],
+    "batch_size": 2048,
+    "timer_scope": "initial validation/export, three complete training passes with validation and checkpoints; excludes data loading/preparation before initial validation",
+    "source": "models/cardplay/gen4-2026-11-09/belief-resume.tar.gz at research/v4-belief-and-arena"
+  },
+  "attention_parameters": 431236,
+  "benchmarks": [
+    {
+      "model": "attention",
+      "kind": "play",
+      "threads": 1,
+      "batch_size": 32,
+      "positions_per_second": 159.1230964837324,
+      "seconds_per_step": 0.20110217000001285,
+      "cpu_seconds_per_step": 0.20106501829999993,
+      "mean_tokens": 109.6
+    },
+    {
+      "model": "attention",
+      "kind": "auction_length_proxy",
+      "threads": 1,
+      "batch_size": 32,
+      "positions_per_second": 293.65227163523963,
+      "seconds_per_step": 0.10897242449991609,
+      "cpu_seconds_per_step": 0.1089671503999999,
+      "mean_tokens": 69.4
+    },
+    {
+      "model": "attention",
+      "kind": "play",
+      "threads": 1,
+      "batch_size": 128,
+      "positions_per_second": 152.09422143958014,
+      "seconds_per_step": 0.8415835840998624,
+      "cpu_seconds_per_step": 0.8414539557999996,
+      "mean_tokens": 112.4
+    },
+    {
+      "model": "attention",
+      "kind": "auction_length_proxy",
+      "threads": 1,
+      "batch_size": 128,
+      "positions_per_second": 288.1190258878447,
+      "seconds_per_step": 0.44426083840025965,
+      "cpu_seconds_per_step": 0.4441088420999996,
+      "mean_tokens": 70.6
+    },
+    {
+      "model": "attention",
+      "kind": "play",
+      "threads": 2,
+      "batch_size": 32,
+      "positions_per_second": 274.83120105956795,
+      "seconds_per_step": 0.11643510590001824,
+      "cpu_seconds_per_step": 0.23312575949999995,
+      "mean_tokens": 109.6
+    },
+    {
+      "model": "attention",
+      "kind": "auction_length_proxy",
+      "threads": 2,
+      "batch_size": 32,
+      "positions_per_second": 440.7411269165757,
+      "seconds_per_step": 0.07260497840052267,
+      "cpu_seconds_per_step": 0.14415791830000008,
+      "mean_tokens": 69.4
+    },
+    {
+      "model": "attention",
+      "kind": "play",
+      "threads": 2,
+      "batch_size": 128,
+      "positions_per_second": 271.91520828958795,
+      "seconds_per_step": 0.47073497950023013,
+      "cpu_seconds_per_step": 0.9410276799999998,
+      "mean_tokens": 112.4
+    },
+    {
+      "model": "attention",
+      "kind": "auction_length_proxy",
+      "threads": 2,
+      "batch_size": 128,
+      "positions_per_second": 473.8585426753948,
+      "seconds_per_step": 0.27012280769977226,
+      "cpu_seconds_per_step": 0.5390166419,
+      "mean_tokens": 70.6
+    },
+    {
+      "model": "dense",
+      "threads": 1,
+      "batch_size": 2048,
+      "positions_per_second": 30980.166536004566,
+      "seconds_per_step": 0.06610681054989982,
+      "cpu_seconds_per_step": 0.06604524319999996
+    },
+    {
+      "model": "dense",
+      "threads": 2,
+      "batch_size": 2048,
+      "positions_per_second": 42470.25817972838,
+      "seconds_per_step": 0.048221981400092775,
+      "cpu_seconds_per_step": 0.07776221025000005
+    }
+  ],
+  "method": "CPU forward/backward, clipped AdamW update; 80 prepared training families, 1277 public-play positions, 3 warmup batches, 10 measured attention batches or 20 dense batches. Separate processes per thread count and framework. Preparation continues independently. No production checkpoint altered. Shorter-sequence timing is a length proxy, not a valid auction training dataset.",
+  "frameworks": {
+    "attention": "PyTorch 2.5.1+cpu",
+    "dense": "TensorFlow from existing v4 environment"
+  },
+  "limits": "Throughput benchmarks exclude dataset preparation, validation and checkpoint I/O; projections assume similar batch/token lengths. Historical actual hardware/explicit thread flag not in saved v4 config; trainer default was two threads. Three equal passes do not imply equal convergence when attention starts from scratch."
+}
