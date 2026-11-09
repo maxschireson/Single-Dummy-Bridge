@@ -18,8 +18,16 @@ for(let iteration=0;iteration<1440;iteration++){
   const old=new Map(previous.tree.map(x=>[x.path,x.sha]));const elements=[];
   for(const file of names){if(old.get(file.path)===file.sha)continue;
    if(!/^[a-zA-Z0-9_./-]+$/.test(file.path))throw Error('Unexpected export path');
-   const content=await shell('cat publication/'+file.path,200000);
+   // Read bounded JSON strings: large cat output can be silently truncated by
+   // the execution transport, producing corrupt replay blobs.
+   const length=Number(await shell("python - <<'PY'\nfrom pathlib import Path\nprint(len(Path('publication/"+file.path+"').read_text()))\nPY"));
+   let content='';
+   for(let offset=0;offset<length;offset+=100000){
+    content+=JSON.parse(await shell("python - <<'PY'\nimport json\nfrom pathlib import Path\nprint(json.dumps(Path('publication/"+file.path+"').read_text()["+offset+":"+(offset+100000)+"]))\nPY",100000));
+   }
+   if(content.length!==length)throw Error('Incomplete export read: '+file.path);
    const blob=result(await tools.mcp__codex_apps__github_create_blob({repository_full_name:repo,content,encoding:'utf-8'}));
+   if(blob.sha!==file.sha)throw Error('Published blob hash mismatch: '+file.path);
    elements.push({path:file.path,mode:'100644',type:'blob',sha:blob.sha});
   }
   if(elements.length){
