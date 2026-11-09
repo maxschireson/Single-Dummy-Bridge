@@ -20,7 +20,7 @@ class Future(C.Structure):
 
 class DDS:
     """One persistent context per player/process; never share across threads."""
-    def __init__(self, path=None, tt_kind=2):
+    def __init__(self, path=None, tt_kind=2, cache_path=None):
         path = path or os.environ.get("BRIDGE_DDS_LIBRARY") or Path(__file__).with_name(
             "libbridge_dds.dylib" if platform.system() == "Darwin" else "libbridge_dds.so")
         try:
@@ -44,8 +44,17 @@ class DDS:
         self.ctx = self.lib.dds_c_create_solvercontext(tt_kind, 16, 64)
         if not self.ctx:
             raise RuntimeError("Could not allocate DDS context")
+        self.cache = None
+        self.cache_hits = self.cache_misses = self.native_solves = self.duplicate_worlds = 0
+        cache_path = cache_path if cache_path is not None else os.environ.get('BRIDGE_DDS_CACHE')
+        if cache_path:
+            from .dds_cache import PositionCache
+            self.cache = PositionCache(cache_path,path)
 
     def close(self):
+        if getattr(self, 'cache', None):
+            self.cache.close()
+            self.cache = None
         if getattr(self, "ctx", None):
             self.lib.dds_c_destroy_solvercontext(self.ctx)
             self.ctx = None
@@ -74,6 +83,15 @@ class DDS:
 
     def solve(self, hands, trump, leader, trick):
         d = self._deal(hands, trump, leader, trick)
+        if self.cache:
+            from .dds_cache import position_key, validate_positions
+            validate_positions([d])
+            key = position_key(d)
+            hit = self.cache.get_many([key])
+            if key in hit:
+                self.cache_hits += 1
+                return hit[key], 0
+            self.cache_misses += 1
         f = Future()
         # Mode 1 handles new worlds safely; solutions=3 scores all legal cards.
         status = self.lib.dds_c_solve_board(self.ctx, C.byref(d), -1, 3, 1, C.byref(f))
@@ -81,7 +99,15 @@ class DDS:
             msg = C.create_string_buffer(80)
             self.lib.dds_c_error_message(status, msg)
             raise RuntimeError(f"DDS {status}: {msg.value.decode()}")
-        return self._scores(f), f.nodes
+        self.native_solves += 1
+        values = self._scores(f)
+        if self.cache:
+            self.cache.put_many([(key,values)])
+        return values, f.nodes
+
+    def cache_stats(self):
+        return dict(hits=self.cache_hits,misses=self.cache_misses,
+                    native_solves=self.native_solves,duplicate_worlds=self.duplicate_worlds)
 
     @staticmethod
     def _scores(f):
@@ -103,13 +129,45 @@ class DDS:
         if not self.batch_available:
             raise RuntimeError("Rebuild DDS for batch support: python3 scripts/build_dds.py")
         worlds = list(worlds)
+        fixed_seats = tuple(fixed_seats)
         if not 1 <= len(worlds) <= 100000 or any(s not in range(4) for s in fixed_seats):
             raise ValueError("Invalid batch size or fixed seats")
         deals = (Deal * len(worlds))(*(self._deal(h, trump, leader, trick) for h in worlds))
-        output = (Future * len(worlds))()
+        if self.cache:
+            from .dds_cache import position_key, validate_positions
+            validate_positions(deals,fixed_seats)
+            keys = [position_key(d) for d in deals]
+            hits = self.cache.get_many(keys)
+            missing = {}
+            for i,key in enumerate(keys):
+                if key not in hits:
+                    missing.setdefault(key,i)
+            self.cache_hits += sum(k in hits for k in keys)
+            self.cache_misses += len(missing)
+            self.duplicate_worlds += sum(k not in hits for k in keys)-len(missing)
+            if missing:
+                subset = (Deal * len(missing))(*(deals[i] for i in missing.values()))
+                solved = self._solve_batch_native(subset,fixed_seats,retain)
+                self.cache.put_many((k,result[0]) for k,result in zip(missing,solved))
+                new = dict(zip(missing,solved))
+            else:
+                new = {}
+            # Nodes measure work performed now, never historical cached nodes.
+            result = []
+            for key in keys:
+                result.append((dict(hits[key]),0) if key in hits else new[key])
+                if key not in hits:
+                    hits[key] = new[key][0]
+            return result
+        return self._solve_batch_native(deals,fixed_seats,retain)
+
+    def _solve_batch_native(self, deals, fixed_seats, retain):
+        """One validated native invocation; exact misses retain related reuse."""
+        output = (Future * len(deals))()
         error = C.create_string_buffer(512)
-        status = self.lib.bridge_dds_all_moves_batch(self.ctx, deals, len(worlds),
+        status = self.lib.bridge_dds_all_moves_batch(self.ctx, deals, len(deals),
             sum(1 << s for s in set(fixed_seats)), int(retain), output, error, len(error))
         if status != 1:
             raise ValueError(error.value.decode())
+        self.native_solves += len(deals)
         return [(self._scores(f), f.nodes) for f in output]
