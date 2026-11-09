@@ -8,6 +8,7 @@
 */
 
 #include <cassert>
+#include <approx_budget.hpp>
 
 #include "ab_search.hpp"
 #include <ab_stats.hpp>
@@ -199,6 +200,7 @@ bool ab_search(
      the value of the subtree is returned.
      This is a specialized AB function for hand_rel_first == 0. */
 
+    approx_dds::tick();
     ThreadData* thrp = ctx.thread_ptr();
     int hand = posPoint->first[depth];
     int tricks = depth >> 2;
@@ -301,6 +303,7 @@ static bool ab_search_0_ctx(
      the value of the subtree is returned.
      This is a specialized AB function for hand_rel_first == 0. */
 
+    approx_dds::tick();
     ThreadData* thrp = ctx.thread_ptr();
     int trump = thrp->trump;
     int hand = posPoint->first[depth];
@@ -481,6 +484,7 @@ static bool ab_search_1_ctx(
     const int depth,
     SolverContext& ctx)
 {
+    approx_dds::tick();
     ThreadData* thrp = ctx.thread_ptr();
     int trump = thrp->trump;
     int hand = HAND_ID(posPoint->first[depth], 1);
@@ -578,6 +582,7 @@ static bool ab_search_2_ctx(
     SolverContext& ctx)
 {
 #ifdef DDS_AB_STATS
+    approx_dds::tick();
     ThreadData* thrp = ctx.thread_ptr();
 #endif
     int hand = HAND_ID(posPoint->first[depth], 2);
@@ -671,6 +676,7 @@ static bool ab_search_3_ctx(
     unsigned short int makeWinRank[DDS_SUITS];
 
 #ifdef DDS_AB_STATS
+    approx_dds::tick();
     ThreadData* thrp = ctx.thread_ptr();
 #endif
     int hand = HAND_ID(posPoint->first[depth], 3);
@@ -796,6 +802,7 @@ void make_3(
     MoveType const * mply,
     SolverContext& ctx)
 {
+    approx_dds::tick();
     ThreadData* thrp = ctx.thread_ptr();
     int firstHand = posPoint->first[depth];
 
