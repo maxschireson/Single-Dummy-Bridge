@@ -104,9 +104,22 @@
         "policy_validation": 3162
       },
       "manifest_identity": "7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404"
+    },
+    {
+      "path": "snapshots/snapshot-0009",
+      "sha256": "0c7bb5e3c51138af15fe68cafff2889ffd59677059bd6f490f2050ef3925a080",
+      "size_bytes": 5992869,
+      "boards": 264,
+      "rows": {
+        "belief_train": 25666,
+        "policy_train": 10315,
+        "belief_validation": 6331,
+        "policy_validation": 2747
+      },
+      "manifest_identity": "7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404"
     }
   ],
-  "path": "snapshots/snapshot-0008",
-  "updated_epoch": 1794235986.535172,
-  "total_exported_boards": 2736
+  "path": "snapshots/snapshot-0009",
+  "updated_epoch": 1794238739.636829,
+  "total_exported_boards": 3000
 }
