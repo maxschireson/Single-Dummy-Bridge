@@ -10,7 +10,7 @@ window.ReplayCommon = (() => {
   async function get(url) {url=new URL(url,location.href);if(url.hostname==='raw.githubusercontent.com')url.searchParams.set('v',Math.floor(Date.now()/30000));const r=await fetch(url.href,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
   async function catalog() {
     const urls=[new URL('catalog.json',location.href).href];
-    if(location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') urls.push(FEED);
+    if(location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') urls.push(FEED,'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-local-feed/arena/replays/catalog.json');
     const results=await Promise.allSettled(urls.map(get)); const map=new Map();
     results.forEach((r,i)=>{if(r.status==='fulfilled'&&r.value.schema==='bridge-replay-catalog-v1')
       for(const c of r.value.cohorts){if(!/^[a-f0-9]{64}$/.test(c.id))continue;
@@ -22,3 +22,4 @@ window.ReplayCommon = (() => {
   function formatCard(card) {return ({S:'♠',H:'♥',D:'♦',C:'♣'})[card[0]]+(card[1]==='T'?'10':card[1]);}
   return {$,pairLabel,signed,date,el,get,catalog,labels,formatCard};
 })();
+
