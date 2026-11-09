@@ -42,6 +42,8 @@ class OutcomePolicyTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             path=Path(folder)/'model.npz';export_distribution(model,path,0.)
             p=DistributionWeights(path).probabilities(x)
+            from bridge_harness.mixed_arena import selector
+            self.assertIsInstance(selector(path),DistributionWeights)
         np.testing.assert_allclose(p.sum(-1),1,atol=1e-7)
         self.assertTrue((p[...,ct['remaining'][0]+1:]==0).all())
 

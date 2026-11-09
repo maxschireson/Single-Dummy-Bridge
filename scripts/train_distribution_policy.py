@@ -101,7 +101,16 @@ def evaluate_choices(folder,manifest,model_path,scalar_path,rank_path,old_famili
 
 
 def train(folder,out,parent,parent4,scalar,ranking,old_families,epochs=8):
-    if out.exists():raise ValueError('Use a fresh fit directory')
+    if out.exists():
+        config_path=out/'config.json'
+        if config_path.exists():
+            existing=json.loads(config_path.read_text())
+            if (existing['dataset_sha256']==sha(folder/'dataset.json') and
+                existing['parent_sha256']==sha(parent) and existing['epochs']==epochs):
+                print(json.dumps(dict(event='existing-experiment',directory=str(out),
+                    complete=(out/'result.json').exists(),started_duplicate=False)),flush=True)
+                return
+        raise ValueError('Use a fresh fit directory')
     out.mkdir(parents=True)
     ds=json.loads((folder/'dataset.json').read_text())
     if ds['schema']!='arena-individual-outcomes-v1' or not ds['validated']:raise ValueError('Wrong data')
