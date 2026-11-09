@@ -51,3 +51,9 @@ failure history, and at most3retries at the same missing index. Unknown errors
 remain blocked. The watchdog is still the fallback if the supervisor itself dies.
 Neither can survive full destruction of their hosting environment; the existing
 external monitors check their health and can restore them.
+
+The later verified operational handoff uses `ops/independent_supervisor.py` with
+three workers. The watchdog's `launch_settings` reads ACTIVE_RUN/telemetry-ramp.json
+when its status is running-verified, accepts only the three known diagnostic
+launchers, and bounds worker counts. This avoids silently restoring the former
+pooled implementation after a failure. Consult the live handoff over older prose.

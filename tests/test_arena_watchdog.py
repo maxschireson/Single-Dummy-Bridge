@@ -3,9 +3,18 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
-from ops.watch_direct_arena import lock,lock_state,report_views,transient_failures,recover,check
+from ops.watch_direct_arena import lock,lock_state,report_views,transient_failures,recover,check,launch_settings
 
 class WatchdogTests(unittest.TestCase):
+    def test_verified_launcher_settings(self):
+        with tempfile.TemporaryDirectory() as td:
+            p=Path(td)
+            self.assertEqual(launch_settings(p,2),('ops/diagnostic_supervisor.py',2))
+            (p/'telemetry-ramp.json').write_text(json.dumps(dict(status='running-verified',launcher='ops/independent_supervisor.py',workers=3)))
+            self.assertEqual(launch_settings(p,2),('ops/independent_supervisor.py',3))
+            (p/'telemetry-ramp.json').write_text(json.dumps(dict(status='running-verified',launcher='unknown.py',workers=3)))
+            self.assertRaises(ValueError,launch_settings,p,2)
+
     def test_windows(self):
         rows=[dict(pair='AB',completed_epoch=t,imps=v) for t,v in [(1000,3),(1100,-2),(1500,4),(1600,9)]]
         views=report_views(rows,dict(created_epoch=0),1500)

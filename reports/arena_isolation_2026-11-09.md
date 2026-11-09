@@ -29,3 +29,23 @@ A local watchdog maintains12rolling report views(three matchups x four windows).
 All four existing external monitors know the isolation directive and new launcher.
 External GitHub execution was investigated but not launched; migration is deferred
 while this isolated baseline is measured. No new external compute jobs were started.
+
+## Captured failure and independent-worker fix
+
+At07:48:23UTC, worker13 exited with SIGKILL. The process-pool manager then
+requested terminate() on peers; workers10 and14 exited with SIGTERM. The
+signal-sender log identifies the manager's cleanup signals. It does not identify
+the original SIGKILL sender. This establishes that the old pool amplified one
+worker death into loss of healthy peers and a stopped collection slice.
+
+A concurrent authorized monitor deployed independent spawned board workers,
+three at a time, using `ops/independent_supervisor.py`. A killed worker retries
+only its missing board while healthy peers continue; ordinary application errors
+still stop for investigation. Worker self-telemetry samples each second. A crash
+injection check was implemented in `tests/manual_independent_worker_crash.py`.
+The watchdog now reads verified `telemetry-ramp.json` settings, preserving this
+launcher and worker count on recovery. All four external monitors received the
+updated operational handoff. Models, deal identities, PIMC budgets and scoring
+remain unchanged. At07:52UTC the arena had297direct pairs, with73completed in
+the preceding five minutes(876/hour). This is an early observation, not a claim
+of long-term stability or recovery to4000/hour.
