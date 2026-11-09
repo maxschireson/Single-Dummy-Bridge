@@ -1,6 +1,6 @@
 {
   "schema": "bridge-global-tracking-v1",
-  "updated_utc": "2026-11-09T10:12:04.184908+00:00",
+  "updated_utc": "2026-11-09T10:20:42.670518+00:00",
   "coverage": "Archived reports verified; complete historical ledger and live audit totals pending.",
   "training": {
     "bidding": {
@@ -35,9 +35,11 @@
         "kind": "decisions",
         "coverage": "pending",
         "scope": "latest_fit",
-        "detail": "40,000 training boards are confirmed. The published promotion record does not contain an exact trained-decision count; do not infer it from boards or PPO updates.",
+        "detail": "Inherited pretrained BEN bidding model, then fine-tuned with 40,000 DDS-scored boards. The base model\u2019s training is additional. The published promotion record does not contain an exact fine-tuning decision count; do not infer it from boards or PPO updates.",
         "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/models/bidding/dds-40000/promotion.json"
-      }
+      },
+      "training_summary": "Fine-tuned with 40,000 DDS-scored boards",
+      "training_base": "Inherited pretrained BEN bidding model"
     },
     {
       "component": "Belief",
@@ -47,12 +49,15 @@
       "used_by": "Gen 3.5 \u00b7 Gen 3",
       "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json",
       "decisions_seen": {
-        "value": 963304,
-        "kind": "observations",
+        "value": 30605384,
+        "kind": "unseen-card observations",
         "coverage": "exact",
         "scope": "latest_fit",
-        "detail": "Frozen training observations used by the selected epoch-6 public-belief fit. Includes auction and public-play observations, not action choices. Excludes validation/test, repeated epochs and inherited parent training.",
-        "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/belief_size_study_2026-11-09.md"
+        "detail": "One observation per unseen-card ownership target used in training, per recorded position/view: 30,605,384 targets across 963,304 input rows. Re-observing a card at another position counts again. Six passes gave the selected checkpoint 183,632,304 target presentations. Visible/known or forced owners, validation/test data and inherited parent training are excluded.",
+        "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/belief_card_observations_2026-11-09.json",
+        "training_rows": 963304,
+        "selected_epoch": 6,
+        "presentations": 183632304
       }
     },
     {

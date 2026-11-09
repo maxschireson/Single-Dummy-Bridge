@@ -1,0 +1,29 @@
+{
+  "schema": "belief-card-observation-count-v1",
+  "model_sha256": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+  "dataset_sha256": "be5909eaa070d14e4d8fbff1dc5244275bd0c97e3c49d86979f11b815025c5c7",
+  "dataset_archive_path": "workspace/scratch/9357bfc2ac0b/bridge-belief-sizes/runs/belief-sizes-v1/data/dataset.json",
+  "training_rows": 963304,
+  "training_unseen_card_observations": 30605384,
+  "selected_epoch": 6,
+  "selected_checkpoint_card_presentations": 183632304,
+  "by_source": {
+    "bidding": {
+      "rows": 372104,
+      "unseen_card_targets": 14512056,
+      "shards": 91
+    },
+    "ben": {
+      "rows": 319608,
+      "unseen_card_targets": 12464712,
+      "shards": 79
+    },
+    "play": {
+      "rows": 271592,
+      "unseen_card_targets": 3628616,
+      "shards": 67
+    }
+  },
+  "definition": "One observation per unseen-card ownership target included in owner_loss_mask, per stored training row. Excludes visible/known or forced owners, validation/test rows, repeated optimizer epochs and inherited parent training. Re-observation of a card at a different stored position or perspective counts again.",
+  "verification": "Every counted training shard matched its frozen dataset SHA256; all masks checked as binary arrays of shape (rows, 52)."
+}

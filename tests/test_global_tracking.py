@@ -43,6 +43,8 @@ class GlobalTrackingTests(unittest.TestCase):
                      decisions_seen=dict(value=100, kind='decisions', scope='latest_fit', coverage='exact'))
         result = build_tracking(self.baseline(), dict(models=[model]))
         self.assertEqual(result['models'][0]['decisions_seen']['value'], 100)
+        model['decisions_seen']['kind'] = 'unseen-card observations'
+        self.assertEqual(build_tracking(self.baseline(), dict(models=[model]))['models'][0]['decisions_seen']['kind'], 'unseen-card observations')
         model['decisions_seen'].update(value=None, coverage='pending')
         self.assertIsNone(build_tracking(self.baseline(), dict(models=[model]))['models'][0]['decisions_seen']['value'])
         for value in [-1, True, 1.5]:

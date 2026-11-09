@@ -56,24 +56,36 @@ publisher lives in another environment; this change does not claim its private
 training counters have already been connected. The source JSON and exporter
 are ready for that integration and historical backfill.
 
-## Decisions seen for each latest model
+## Training observations and fine-tuning for each latest model
 
 The model table reports parameter counts and `decisions_seen` together, tied to
-the model SHA256. This counter covers training rows once in the **latest fit**,
-not a claimed lifetime total through its inherited parent. Validation/test rows,
-repeated optimizer epochs and newly collected but untrained play do not add rows.
-Belief rows are labelled **observations**, since card ownership is a prediction
-rather than an action decision.
+the model SHA256. These counts cover the **latest fit**, with inherited base-model
+training additional. Validation/test and repeated optimizer epochs are excluded.
 
-| Deployed component | Parameters | Latest-fit training rows | Source |
-|---|---:|---:|---|
-| Bidding | 1,524,776 | Pending | Promotion confirms 40,000 boards and 314 PPO updates, not a trained-decision count |
-| Public belief | 308,726 | 963,304 observations | `reports/belief_size_study_2026-11-09.md` |
+For belief, **one observation is one unseen-card ownership target per recorded
+position/view**. Count nonzero entries of `owner_loss_mask` across the frozen
+training shards, after verifying each shard SHA256. Visible/known cards and
+forced owners are excluded by that loss mask. A card seen from another position
+or perspective supplies another observation. Input rows are a separate quantity;
+these targets are correlated and are not independent deals.
+
+| Deployed component | Parameters | Latest-fit training | Source |
+|---|---:|---|---|
+| Bidding | 1,524,776 | Fine-tuned with 40,000 DDS-scored boards from a pretrained BEN base; decision count pending | `models/bidding/dds-40000/promotion.json` |
+| Public belief | 308,726 | 30,605,384 unseen-card observations | `reports/belief_card_observations_2026-11-09.json` |
 | Auction-aware policy | 39,512 | 363,868 decisions | `reports/auction_policy_bootstrap_2026-11-09.md` |
 
+The belief tally has 14,512,056 card targets from DDS-bidding auction rows,
+12,464,712 from BEN auction rows, and 3,628,616 from public-play rows. These
+span 963,304 input rows. Six passes to the deployed epoch-6 checkpoint produced
+183,632,304 card-target presentations, excluding inherited parent training.
+All 237 training shards were verified against the frozen manifest before counting.
+
 A model ledger entry may include `decisions_seen` with `value`, `kind`
-(`decisions` or `observations`), `scope: latest_fit`, `coverage` (`exact`,
-`lower_bound` or `pending`), `detail`, and `source_url`. Pending uses null,
-not zero. Populate this from the frozen training manifest when publishing a
-checkpoint; preserve the identity and training scope. Do not carry counts from
-a previous model to a new SHA256. The builder validates these optional fields.
+(`decisions`, `unseen-card observations`, or legacy row-level `observations`),
+`scope: latest_fit`, `coverage` (`exact`, `lower_bound` or `pending`), `detail`,
+and `source_url`. Pending uses null, not zero. Populate this from the frozen
+training manifest when publishing a checkpoint; preserve identity and scope.
+Do not carry counts from a previous model to a new SHA256. The builder validates
+these optional fields. Optional `training_summary` and `training_base` describe
+fine-tuning without implying the inherited model was trained from scratch.

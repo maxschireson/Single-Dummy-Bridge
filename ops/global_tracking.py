@@ -100,7 +100,7 @@ def build_tracking(baseline, ledger):
             integer(model['parameters'])
             decisions = model.get('decisions_seen')
             if decisions is not None:
-                if decisions.get('kind') not in ('decisions', 'observations') or decisions.get('scope') != 'latest_fit':
+                if decisions.get('kind') not in ('decisions', 'observations', 'unseen-card observations') or decisions.get('scope') != 'latest_fit':
                     raise ValueError('Training counts require an explicit kind and latest-fit scope')
                 if decisions.get('coverage') == 'pending':
                     if decisions.get('value') is not None:
