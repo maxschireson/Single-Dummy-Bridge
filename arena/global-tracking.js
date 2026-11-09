@@ -3,7 +3,6 @@
   const url = 'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/research/direct-pairs-current/arena/global-stats.json';
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const number = value => Number.isFinite(value) ? value.toLocaleString() : 'Pending';
-  const scientific = value => Number.isFinite(value) ? value.toExponential(3) : 'Pending';
   const link = (label, target) => typeof target === 'string' && target.startsWith('https://github.com/maxschireson/Single-Dummy-Bridge/') ? '<a href="'+esc(target)+'" target="_blank" rel="noopener">'+esc(label)+'</a>' : esc(label);
   let stats = JSON.parse(document.getElementById('global-baseline').textContent);
   const section = document.getElementById('global-tracking');
@@ -25,7 +24,6 @@
       '<p class="muted">Bidding supervision: '+number(stats.bidding_supervision?.dd_boards)+' DD boards · '+number(stats.bidding_supervision?.single_dummy_boards)+' single-dummy boards used in fitting. A board with both targets counts once in the total.</p>'+
       '<h3>Latest deployed component models</h3><div class="global-table"><table><thead><tr><th>Component</th><th>Model</th><th>Parameters</th><th>Training seen · latest fit</th><th>Used by</th></tr></thead><tbody>'+stats.models.map(m=>'<tr><td>'+esc(m.component)+'</td><td>'+link(m.name,m.source_url)+'</td><td>'+number(m.parameters)+'</td><td>'+decisions(m)+'</td><td>'+esc(m.used_by)+'</td></tr>').join('')+'</tbody></table></div>'+
       '<p class="muted">Belief observations count each unseen-card ownership target at each recorded position. Policy counts action decisions. Counts exclude validation and repeated epochs. Bidding is fine-tuning of an inherited BEN model; earlier pretraining is additional. Pending does not mean zero.</p>'+
-      '<h3>Learning by generation</h3><p class="muted">Gain in IMPs per evaluation board, divided by new training work in 32-sample-equivalent paired boards. Evaluate both components at 32 samples, changing one component at a time. Partial audit continuations add fractional work.</p><div class="global-table"><table><thead><tr><th>Generation</th><th>Bidding IMP gain / normalized board</th><th>Play IMP gain / normalized board</th></tr></thead><tbody>'+stats.generations.map(g=>'<tr><td>'+esc(g.name)+'</td>'+['bidding','play'].map(k=>'<td>'+scientific(g.learning_efficiency?.[k]?.value)+(g.learning_efficiency?.[k]?.ci95 ? '<span class="ci">95% CI ['+g.learning_efficiency[k].ci95.map(scientific).join(', ')+']</span>' : '')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div><p class="muted">Pending values need matched parent comparisons and recorded training work. Bidding needs a measured DDS-to-cardplay cost conversion.</p>'+
       '<p class="muted" id="global-status">Global summary: '+esc(stats.updated_utc)+' · '+esc(stats.coverage)+'</p>';
   }
   function valid(s) {
