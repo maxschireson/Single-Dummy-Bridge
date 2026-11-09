@@ -27,8 +27,14 @@ Retain complete trajectories, canonical family grouping, the 80/20 split, post-c
 
 Freeze ranking/demotion rules and any multiplicity allocation for the new comparison schedule before collecting its data. Do not reuse the current substitution-test thresholds unchanged or mix its outcomes into a new direct-match estimate. The newest validated candidate remains provisional by default; inconclusive IMPs do not block the authorized successor fitting.
 
+## Conditional 10,000-board decision for the current generation
+
+User amendment, 9 November 2026: we may close the current run and train its successor at 10,000 completed paired boards if the result is a clear blowout. Review the complete contiguous 10,000-board prefix, using whole-pair IMPs, uncertainty and stability across blocks. Treat a clear win or a clear regression as potential grounds to finish early; a merely positive estimate or nominal significance alone is not the intended blowout. The user has not specified a numerical effect-size cutoff, so this is an explicit decision checkpoint rather than an automatic numerical stopping rule. If evidence remains inconclusive, continue toward the existing 25,000-board target.
+
+At an early finish, preserve all completed and already-in-flight completed records, publish the actual cohort size and stopping decision, snapshot models/data/results, and have the owner train the successor from the retained data. Keep the original manifest and target as historical evidence; record an early-completion event rather than rewriting history or discarding excess records. The owner must provide a versioned early-boundary handoff because the current supervisor only trains automatically at its manifest target. No competing trainers. Apply the new two-version-per-match 4:2:1 design to the successor. Do not pool generations or describe an outcome-selected stopping interval as a fixed-sample confirmatory result.
+
 ## Delivery boundary
 
-This document changes future planning only. It is not implemented by the current collector. Preserve the active g0001-bid40k manifest, source, models, completed results and existing score interpretation.
+The direct-pair design changes future planning and is not implemented by the current collector. The separate 10,000-board review above applies to the current generation. Preserve the active g0001-bid40k manifest, source, models, completed results and existing score interpretation.
 
 The owner must implement and test direct two-way pair scheduling/scoring in a separate versioned collector before launching the next generation. Pin its source and pair allocation in a new manifest and update the versioned boundary handoff explicitly. Required checks include swapped-seat score orientation, correct model assignment, deterministic disjoint family allocation, duplicate-free resume and separate per-pair reporting. Do not launch a second writer or trainer for the active run. The existing successor authorization remains in force; this is a requirement on its match design.
