@@ -38,3 +38,41 @@ At an early finish, preserve all completed and already-in-flight completed recor
 The direct-pair design changes future planning and is not implemented by the current collector. The separate 10,000-board review above applies to the current generation. Preserve the active g0001-bid40k manifest, source, models, completed results and existing score interpretation.
 
 The owner must implement and test direct two-way pair scheduling/scoring in a separate versioned collector before launching the next generation. Pin its source and pair allocation in a new manifest and update the versioned boundary handoff explicitly. Required checks include swapped-seat score orientation, correct model assignment, deterministic disjoint family allocation, duplicate-free resume and separate per-pair reporting. Do not launch a second writer or trainer for the active run. The existing successor authorization remains in force; this is a requirement on its match design.
+
+
+## Executed correction: direct matches in the current batch (9 November 2026)
+
+The user explicitly corrected the earlier future-only scope. That restriction is superseded.
+The substitution phase is permanently stopped after 3,235 completed paired boards.
+The remaining 21,765 original, unused deal families now use direct A–B/A–C/B–C
+matches, shuffled in seven-board blocks with weights 4:2:1. Actual allocations
+are 12,438 AB, 6,218 AC and 3,109 BC. The same three frozen models, auctions,
+32 samples and near-tie setting are retained. No mid-batch model training occurred.
+
+The new collector is `bridge_harness/direct_arena.py`, dispatched by manifest
+protocol `direct-pairs-v1`. It swaps whole partnerships, randomizes table order,
+and reports independent pair scores. Local A-policy audits use B's policy on
+A's own search estimates, including against C; C's different beliefs never
+become a policy training contrast. Both tables may supply audits under a shared
+CPU budget and a combined 64-fork cap. B–C games supply belief trajectories but
+no A-policy audit labels. Audits do not contribute to match scores.
+
+`ops/switch_direct_pairs.py` requires the old STOP and both free OS locks. It
+copies frozen artifacts, removes all completed families from the remaining
+cohort, freezes a new manifest and updates the shared pointer and handoffs.
+Atomic receipts and replay validation remain in force. Restart only missing
+indices from the new checkout. The former collector must never be resumed.
+
+Training retains the 3,235 legacy families and the direct phase, validating
+each with its original manifest. Their match statistics remain separate.
+The overall training batch is still 25,000 deals. Direct results have no automatic
+pooled demotion rule; the planned 10k review uses separate pair results and
+must not pool legacy substitution scores. The successor training authorization
+remains in force; new generation labels follow the frozen roster and require
+component-hash inspection before claiming policy-only or belief-only effects.
+
+Operational source checkout: `/workspace/scratch/a1f2b806f0ac/bridge-direct`.
+Authoritative pointer: `/workspace/scratch/a1f2b806f0ac/bridge-arena/runs/mixed-fork-25k/current.json`.
+Run: sibling `g0001-direct`. Read `match-format-change.json` before recovery.
+Use two workers; check both OS locks before restarting. All four active arena/
+belief monitors received the correction without changing their schedules.

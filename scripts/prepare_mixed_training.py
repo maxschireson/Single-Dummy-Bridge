@@ -46,14 +46,18 @@ def build(run, out, base, parent):
         np.savez_compressed(path,**{k:np.stack([r[k] for r in rows]) for k in rows[0]})
         listing.append(dict(file=path.name,sha256=sha(path),source='play',split=split,rows=len(rows)))
         counts[domain+'_'+split]+=len(rows);rows.clear()
-    for file in sorted((run/'episodes').glob('*.json.gz')):
-        r=read(file);board=Board.from_dict(r['board']);validate_pair(r,m,board,r['index'])
-        split=r['split'];family=r['family'];families[split].add(family)
+    source_runs = [Path(p) for p in m.get('retained_training_runs', [])] + [run]
+    files = [(p, read(p/'manifest.json'), f) for p in source_runs for f in sorted((p/'episodes').glob('*.json.gz'))]
+    for source_run, source_manifest, file in files:
+        r=read(file);board=Board.from_dict(r['board']);validate_pair(r,source_manifest,board,r['index'])
+        split=r['split'];family=r['family']
+        if family in families['train'] or family in families['validation']: raise ValueError('Duplicate training family')
+        families[split].add(family)
         sources.append(dict(path=str(file),sha256=sha(file),family=family,split=split,versions=r['versions']))
         # Only completed audited contrasts label the policy, including losses.
-        events=[e for e in r['focal']['audits'] if not e['identical_action']]
-        for event in events:
-            table=r['focal']['tables'][event['candidate_table']];ply=event['ply']
+        events=[(episode,e) for episode in (r['focal'],r['control']) for e in episode['audits'] if not e['identical_action']]
+        for episode,event in events:
+            table=episode['tables'][event['candidate_table']];ply=event['ply']
             game=Game(board)
             for action in table['actions'][:ply]:game.play(card(action['card']))
             action=table['actions'][ply];x,cards=encode_decision(game.observation(),action)
@@ -94,7 +98,7 @@ def build(run, out, base, parent):
             atomic_json(out/'progress.json',dict(deals=len(sources),target=m['target'],rows=dict(counts)))
     for domain in buffers:
         for split in buffers[domain]:flush(domain,split)
-    if len(sources)!=m['target'] or families['train'] & families['validation']:raise ValueError('Invalid family partition')
+    if len(sources)!=m['target']+m.get('legacy_completed',0) or families['train'] & families['validation']:raise ValueError('Invalid family partition')
     atomic_json(out/'sources.json',sources)
     atomic_json(belief/'dataset.json',dict(schema=SCHEMA,validated=True,shards=entries,counts=dict(counts),
         parent_sha256=sha(parent),base_dataset_sha256=sha(base/'dataset.json'),source_files_sha256=sha(out/'sources.json'),

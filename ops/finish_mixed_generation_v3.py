@@ -102,6 +102,11 @@ def finish(run):
                 demotion_looks=sorted({min(target,k) for k in (500,1000,2500,5000,10000,25000,50000,100000,target)}),
                 next_generation_target=min(250000,target*2),
                 created_epoch=time.time(),component_validation=dict(belief=belief['promotion_eligible'],policy=policy['eligible']))
+            if m.get('protocol') == 'direct-pairs-v1':
+                new.update(direct_versions=dict(zip('ABC', roster[:3])), legacy_completed=0,
+                    retained_training_runs=[], batch_target=target,
+                    pair_protocol='Direct swapped-partnership two-table matches, separate pair scores',
+                    pair_interpretation='Labels follow frozen successor roster; consult component hashes for attribution')
             new.pop('identity',None);new['identity']=digest(new)
             atomic_json(next_run/'manifest.json',new);atomic_json(next_run/'state.json',summarize([],new))
         checkpoints=dict(cfg.get('belief_checkpoints',{}))

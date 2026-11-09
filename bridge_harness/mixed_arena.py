@@ -232,3 +232,31 @@ def summarize(rows, manifest):
         candidate_status='demoted' if demotion else 'latest-validated-default', epoch=time.time(),
         interpretation='Whole-bot matched IMPs. Local audit rewards are training contrasts, never summed into the match score.',
         next_step='train-successor' if n==manifest['target'] else 'collect')
+
+# Schema dispatch preserves validation of retained substitution training data.
+_legacy_run_board, _legacy_validate_pair = run_board, validate_pair
+_legacy_compact, _legacy_summarize = compact, summarize
+
+def run_board(root, manifest, board_dict, index):
+    if manifest.get('protocol') == 'direct-pairs-v1':
+        from .direct_arena import run_board as direct
+        return direct(root, manifest, board_dict, index)
+    return _legacy_run_board(root, manifest, board_dict, index)
+
+def validate_pair(r, manifest, board, index):
+    if manifest.get('protocol') == 'direct-pairs-v1':
+        from .direct_arena import validate_pair as direct
+        return direct(r, manifest, board, index)
+    return _legacy_validate_pair(r, manifest, board, index)
+
+def compact(r):
+    if r.get('schema') == 'direct-fork-pair-v1':
+        from .direct_arena import compact as direct
+        return direct(r)
+    return _legacy_compact(r)
+
+def summarize(rows, manifest):
+    if manifest.get('protocol') == 'direct-pairs-v1':
+        from .direct_arena import summarize as direct
+        return direct(rows, manifest)
+    return _legacy_summarize(rows, manifest)
