@@ -133,6 +133,14 @@ the exact manifest; the collector derives receipts and replay-validates them.
 Do not treat a reinitialization as continuation. The collector and publisher
 still require a surviving environment; GitHub holds recovery artifacts.
 
+`ops/watch_component_mix.py` is also running locally and records
+`watchdog-status.json`. It checks the collector's known PID, production locks,
+STOP marker, preserved failures and frozen hashes before a replay-audited
+restart. It caps restarts without progress at three and recovers the dedicated
+publisher if its known process exits. `WATCHDOG_STOP` stops the watchdog;
+`STOP` drains collection. The watchdog cannot survive destruction of this
+environment, so the feed's full episode backups remain necessary.
+
 Verification: three focused tests passed; all ten matchups replayed in tests,
 and 41 real-DDS mix records passed a full replay audit. Browser checks passed
 for all-source visibility, the six-bot matrix, hidden unavailable bidding
