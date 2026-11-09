@@ -1,0 +1,18 @@
+{
+  "seed": 2026110909,
+  "pairs_per_candidate": 2048,
+  "batch_pairs": 128,
+  "ppo_epochs": 2,
+  "learning_rate": 0.00001,
+  "minibatch": 256,
+  "exploration": 0.005,
+  "tf_threads": 2,
+  "variants": [
+    {"name": "play25_anchor002", "play_fraction": 0.25, "anchor_weight": 0.02},
+    {"name": "play50_anchor002", "play_fraction": 0.50, "anchor_weight": 0.02},
+    {"name": "play75_anchor002", "play_fraction": 0.75, "anchor_weight": 0.02},
+    {"name": "play25_anchor020", "play_fraction": 0.25, "anchor_weight": 0.20},
+    {"name": "play50_anchor020", "play_fraction": 0.50, "anchor_weight": 0.20},
+    {"name": "play75_anchor020", "play_fraction": 0.75, "anchor_weight": 0.20}
+  ]
+}
