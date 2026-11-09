@@ -1,0 +1,283 @@
+{
+  "schema": "legacy-non-v4-training-additions-v1",
+  "source_repository": "maxschireson/Single-Dummy-Bridge",
+  "source_branch": "transfer/gen3-training-feed",
+  "source_commit": "3ddf598944dee097a530c2dd2c3804627fb26bad",
+  "snapshots": [
+    {
+      "path": "legacy/gen2-gen3/snapshot-0001",
+      "boards": 660,
+      "counts": {
+        "belief_train": 54046,
+        "belief_validation": 14540,
+        "policy_train": 5990,
+        "policy_validation": 1638
+      },
+      "manifest_identity": "5169b9090c9b6bc3d95fbc6069d6ad76a817053c0903741e5ea84649891115e4",
+      "archive_sha256": "302a69e75c3b885cb77cc0966160b5af33d1e3338c22d682717c09cec476eaf9",
+      "archive_bytes": 8423089,
+      "target": "audited chosen-minus-reference IMP contrast",
+      "raw_decision_traces": false
+    },
+    {
+      "path": "legacy/gen2-gen3/snapshot-0002",
+      "boards": 357,
+      "counts": {
+        "belief_train": 29475,
+        "belief_validation": 7515,
+        "policy_train": 3162,
+        "policy_validation": 806
+      },
+      "manifest_identity": "5169b9090c9b6bc3d95fbc6069d6ad76a817053c0903741e5ea84649891115e4",
+      "archive_sha256": "e6058ec9ae0f776d7acc465ed0b3ac17e7105878c1b69a637a9d46c8658c63a2",
+      "archive_bytes": 4517811,
+      "target": "audited chosen-minus-reference IMP contrast",
+      "raw_decision_traces": false
+    },
+    {
+      "path": "legacy/gen2-gen3/snapshot-0003",
+      "boards": 296,
+      "counts": {
+        "belief_train": 24962,
+        "policy_train": 2698,
+        "belief_validation": 5339,
+        "policy_validation": 519
+      },
+      "manifest_identity": "5169b9090c9b6bc3d95fbc6069d6ad76a817053c0903741e5ea84649891115e4",
+      "archive_sha256": "b56ad7d0fb808c7ae187a1cc912b95661d5c8b608e8b573f4cca485ee0cbc171",
+      "archive_bytes": 3676289,
+      "target": "audited chosen-minus-reference IMP contrast",
+      "raw_decision_traces": false
+    },
+    {
+      "path": "legacy/gen2-gen3/snapshot-0004",
+      "boards": 336,
+      "counts": {
+        "belief_train": 28020,
+        "belief_validation": 6618,
+        "policy_train": 3041,
+        "policy_validation": 626
+      },
+      "manifest_identity": "5169b9090c9b6bc3d95fbc6069d6ad76a817053c0903741e5ea84649891115e4",
+      "archive_sha256": "4b1960fe195d64e71cb7b88ec3faaff65599c10c80939fb030b5d8b755ce8e51",
+      "archive_bytes": 4214310,
+      "target": "audited chosen-minus-reference IMP contrast",
+      "raw_decision_traces": false
+    },
+    {
+      "path": "legacy/gen2-gen3/snapshot-0005",
+      "boards": 264,
+      "counts": {
+        "belief_train": 21323,
+        "belief_validation": 6000,
+        "policy_train": 2275,
+        "policy_validation": 658
+      },
+      "manifest_identity": "5169b9090c9b6bc3d95fbc6069d6ad76a817053c0903741e5ea84649891115e4",
+      "archive_sha256": "f6c7f5d23da98bebd486c56e699dbd9141eb884a21485b427b01471e398363d0",
+      "archive_bytes": 3338950,
+      "target": "audited chosen-minus-reference IMP contrast",
+      "raw_decision_traces": false
+    }
+  ],
+  "unique_families": 1913,
+  "families_by_split": {
+    "train": 1514,
+    "validation": 399
+  },
+  "counts": {
+    "belief_train": 157826,
+    "belief_validation": 40012,
+    "policy_train": 17166,
+    "policy_validation": 4247
+  },
+  "active_policy_sha256": [
+    "02b6885e8f07da473970052d7f9ea9dc2a10fa34505ad60186e4a14d02218c60",
+    "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5"
+  ],
+  "excluded_policy_sha256": "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed",
+  "overlap_with_previous_export": 0,
+  "raw_pimc_artifacts": [
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-1",
+      "sha256": "33fc2beeb9aa938fe1f301dee55492411d6545aeb5d2c90eb93e90c4cf8d2398",
+      "size_bytes": 16395244,
+      "source_artifact_id": 13622955843,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 40935,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 785,
+        "validation": 105,
+        "test": 110
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-2",
+      "sha256": "e82d3e06b83cec3ce77b152be831de64c3bd5ffa2b2107b7b0efa9a8c4229b91",
+      "size_bytes": 16431787,
+      "source_artifact_id": 13623288173,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 41056,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "validation": 98,
+        "train": 808,
+        "test": 94
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-3",
+      "sha256": "c45530cd824e8df9b48ce221d501903f600dabec61e2dc74fbbb715fb2a17d71",
+      "size_bytes": 16423094,
+      "source_artifact_id": 13623111303,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 41134,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 814,
+        "test": 96,
+        "validation": 90
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-4",
+      "sha256": "f849eabf3e87f83d6bd68b3e00cf5e32be8c1b43d18c0e7cc17bacd113247509",
+      "size_bytes": 16417821,
+      "source_artifact_id": 13624046116,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 41051,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 801,
+        "test": 99,
+        "validation": 100
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-5",
+      "sha256": "35f3bfdd0cbfb15fe592e9203519c1f0d3551a3880708ab5bd112306fc0a7bcd",
+      "size_bytes": 16418186,
+      "source_artifact_id": 13624655042,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 41032,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 796,
+        "validation": 110,
+        "test": 94
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-6",
+      "sha256": "b0c523b9a03b61c86d7e838e14bdaa6a78a08d65e23f42dd0aba077b2e187d71",
+      "size_bytes": 16362244,
+      "source_artifact_id": 13621559875,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 40926,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 798,
+        "test": 109,
+        "validation": 93
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-7",
+      "sha256": "400e85e84361fbcce4881e063ca94087880fde620e5a6fa56d30539f0ad6f3a6",
+      "size_bytes": 16431304,
+      "source_artifact_id": 13622753700,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 40964,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "test": 117,
+        "train": 781,
+        "validation": 102
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-8",
+      "sha256": "161dd603cf02239dcd4bf2213d2d804ca6e411ab58d62222dfcca3fd58657d48",
+      "size_bytes": 16411686,
+      "source_artifact_id": 13622753475,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 41076,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 809,
+        "validation": 99,
+        "test": 92
+      }
+    },
+    {
+      "path": "legacy/pimc-baseline/selfplay-32-chunk-9",
+      "sha256": "441a3d57cbe671aba902d1d2e54275f34c936478971e8b1a0b38d4b048a491bc",
+      "size_bytes": 16418506,
+      "source_artifact_id": 13624282271,
+      "counts": {
+        "games": 1000,
+        "tables": 1000,
+        "actions": 52000,
+        "actions_with_pimc": 41010,
+        "examples": 52000
+      },
+      "families_by_split": {
+        "train": 801,
+        "test": 87,
+        "validation": 112
+      }
+    }
+  ],
+  "raw_archives_not_available_here": [
+    "Bridge_Gen3_Final_Migration_3700_2026-11-09.zip",
+    "original stopped 8315-board v2 collection"
+  ],
+  "raw_pimc_counts": {
+    "games": 9000,
+    "tables": 9000,
+    "actions": 468000,
+    "actions_with_pimc": 369184,
+    "examples": 468000
+  },
+  "raw_pimc_unique_families": 9000,
+  "raw_pimc_families_by_split": {
+    "train": 7193,
+    "validation": 909,
+    "test": 898
+  },
+  "raw_pimc_overlap_with_legacy_tensors": 0,
+  "raw_pimc_overlap_with_previous_export": 0
+}

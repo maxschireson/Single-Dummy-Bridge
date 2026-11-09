@@ -1,3 +1,25 @@
+# Added: older Gen 2 / Gen 3 training data
+
+Run this in addition to the original restore command below:
+
+    python restore_legacy.py --output /workspace/non-v4-policy-legacy
+
+Use --group gen2-gen3 to restore only the older model data, or --group pimc for only the raw baseline play. The default restores both groups.
+
+Verified additions:
+
+- **1,913 Gen 2 / Gen 3 era deal families:** 21,413 policy rows and 197,838 belief rows, in five disjoint increments from transfer/gen3-training-feed pinned at 3ddf598944dee097a530c2dd2c3804627fb26bad. All participating policies have SHA256 8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5 (Gen3) or 02b6885e8f07da473970052d7f9ea9dc2a10fa34505ad60186e4a14d02218c60 (prior selector/Gen2). None uses the Gen4 policy.
+- **9,000 original plain-PIMC self-play games:** full compressed episodes, original manifests, outcomes, logged probabilities and estimates for 369,184 non-forced decisions. This is an additional baseline dataset, not mislabeled Gen2 or Gen3 play. GitHub Actions artifacts and original commit IDs are recorded in each transfer manifest. Every game was replayed to its final score.
+- No canonical families overlap between these two additions or the preceding 972-family export. Together the available groups contain 11,885 distinct families. Additional trajectories and tensor rows do not increase that count.
+
+The Gen2/Gen3 policy tensors include the PIMC q values and complete model inputs. Their y target is an **audited chosen-minus-reference IMP contrast**, not observed remaining tricks. Keep them as a separate loss/dataset if training a predictive trick policy; do not reinterpret y as tricks. The raw PIMC games and the original 1,944 games below provide chosen-action trick outcomes for the Gen3-style predictive recipe. The legacy belief tensors are included unchanged for future use.
+
+All part, archive and tensor checksums were verified. Original files, schema manifests, source hashes and family splits are retained. The legacy raw PIMC data retains its original train/validation/test membership. Preserve that membership when assessing held-out strength; a family used for fitting is no longer independent evaluation evidence.
+
+The additions are under legacy/. Exact counts, active policy hashes and source IDs are in legacy/manifest.json. Increments snapshot-0006 onward are intentionally omitted because they introduced Gen4 policy records. The original stopped 8,315-board v2 collection and the old 3,700-board migration ZIP are not available in this environment or the reachable repository; this package does not claim those absent raw archives. Their eligible records can be appended if the original archives are recovered.
+
+---
+
 # Policy-clean play export for Gen 3 style training
 
 Snapshot: 2026-11-09 23:28:22 UTC. This is a fixed export of all eligible complete local records available at that cutoff.
