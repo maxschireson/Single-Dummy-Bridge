@@ -4,8 +4,12 @@ The public arena supports drill-down from each net IMP total and comparison
 matrix cell. Board lists sort by newest/oldest completion time, absolute IMP
 swing, largest gain, or largest loss. Ties can be included. Clicking a board
 opens the two actual root tables side by side, with card/trick navigation,
-autoplay, a slider, deep links to a card position, an auction, trick history,
-and a jump to the first different play.
+independent controls, autoplay, and a slider for each table. Each table shows its
+own contract, declarer and auction, and can jump to the first different play.
+Trick-history jumps also affect only their table. Deep links preserve separate
+`ply1` and `ply2` positions; old `ply` links still set both initial positions.
+Table-level contract/declarer/auction fields override the shared board fields;
+older records fall back to the shared board contract.
 
 The initial publication includes all 465 audited pre-migration direct pairs
 (930 root tables). Live aggregates are currently published separately without

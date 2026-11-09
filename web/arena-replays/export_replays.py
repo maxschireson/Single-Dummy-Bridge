@@ -46,7 +46,11 @@ def compact(episode, manifest, digest):
         expected = [y, x, y, x] if swapped else [x, y, x, y]
         assignments = [ROLES[x] for x in episode[side]['assignments']]
         assert assignments == expected
-        tables.append({'assignments': assignments, 'ns_score': table['ns_score'],
+        board = {**episode['board'], **episode[side].get('board', {}), **table.get('board', {})}
+        tables.append({'contract': table.get('contract', board['contract']),
+                       'declarer': table.get('declarer', board['declarer']),
+                       'auction': table.get('auction', board['auction']),
+                       'assignments': assignments, 'ns_score': table['ns_score'],
                        'declarer_tricks': table['declarer_tricks'],
                        'plays': [a['seat'] + a['card'] for a in actions]})
     assert tables[0]['ns_score'] - tables[1]['ns_score'] == episode['score_difference']
@@ -85,7 +89,8 @@ def export(manifest, names, get_bytes, output, title, receipt_hash):
                        ('id', 'index', 'pair', 'imps', 'completed_epoch', 'family', 'episode_sha256')}
         rows[index].update(shard=shard, board_id=record['board']['id'],
                            contract=record['board']['contract'], declarer=record['board']['declarer'],
-                           scores=[t['ns_score'] for t in record['tables']])
+                           scores=[t['ns_score'] for t in record['tables']],
+                           contracts=[{'contract': t['contract'], 'declarer': t['declarer']} for t in record['tables']])
         count += 1
     for name, records in shards.items():
         write_json(dest / name, records)
