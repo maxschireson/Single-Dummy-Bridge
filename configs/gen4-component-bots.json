@@ -1,0 +1,47 @@
+{
+  "schema": "component-bots-v1",
+  "bots": {
+    "4p": {
+      "id": "gen4p",
+      "label": "Gen 4p",
+      "samples": 32,
+      "near_tie": 0.125,
+      "exploration": 0.0,
+      "bidding": "models/bidder-v3.keras",
+      "belief": "models/public-belief.npz",
+      "belief_kind": "public",
+      "policy": "models/policy-v4.npz",
+      "artifact_sha256": {
+        "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+        "policy": "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed",
+        "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+      },
+      "identity": "11d561c4f0eb3abb8e040ff1985d08b663a943016ef4f28d26caaffb48828c5c"
+    },
+    "4b": {
+      "id": "gen4b",
+      "label": "Gen 4b",
+      "samples": 32,
+      "near_tie": 0.125,
+      "exploration": 0.0,
+      "bidding": "models/bidder-v3.keras",
+      "belief": "models/belief-v4.npz",
+      "belief_kind": "public",
+      "policy": "models/auction-policy.npz",
+      "artifact_sha256": {
+        "belief": "b23eb37554a26abb5a5eaa03f547472c489abd00dd6f3c9b0cada96cc46eb7d9",
+        "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+        "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+      },
+      "identity": "82dd86a927b21268dbc2f5c7a3b63f1b5bafa6a4c740af5ece0e71dcee32bfff"
+    }
+  },
+  "definitions": {
+    "4p": "Gen 3 plus only the Gen 4 policy",
+    "4b": "Gen 3 plus only the Gen 4 belief"
+  },
+  "base_model_branches": [
+    "research/v4-belief-and-arena",
+    "research/direct-pairs-current"
+  ]
+}

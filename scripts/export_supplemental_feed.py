@@ -10,6 +10,7 @@ import sys
 import time
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from scipy.stats import t
+from bridge_harness.arena_pairs import pair_id,pair_members
 from bridge_harness.runner import replay
 from bridge_harness.selfplay import atomic_json
 
@@ -26,20 +27,23 @@ def stats(values):
         ci=[mean-half,mean+half] if half is not None else None,
         wins=sum(x>0 for x in v),ties=sum(x==0 for x in v),losses=sum(x<0 for x in v))
 
-def view(rows,own=False,window=0):
-    groups={};matrix={k:{} for k in LABELS}
-    for pair in PAIRS:
+def view(rows,own=False,window=0,pairs=None,labels=None):
+    groups={};matrix={k:{} for k in (labels or LABELS)}
+    for pair in (pairs or PAIRS):
         selected=[r for r in rows if r['pair']==pair]
         if window:selected=selected[-window:]
         if not selected:continue
         values=[r['own_imps' if own else 'imps'] for r in selected];s=stats(values);groups[pair]=s
-        a,b=pair;matrix[a][b]=s
+        a,b=pair_members(pair);matrix[a][b]=s
         if a!=b:matrix[b][a]=stats([-v for v in values])
     return dict(groups=groups,matrix=matrix)
 
 def export(root,out):
     m=json.loads((root/'manifest.json').read_text());status=json.loads((root/'status.json').read_text())
     cohort=m['identity'];now=time.time();records=[];shards=defaultdict(dict);seen=set()
+    labels={k:v['label'] for k,v in m['bots'].items()}
+    pairs=list(dict.fromkeys(pair_id(*pair_members(p)) for p in m.get('pair_schedule',PAIRS)))
+    order=m.get('display_order',['4','3','2','1'])
     cached={}
     for old in (out/'arena/replays/data'/cohort).glob('boards-*.json'):
         cached.update(json.loads(old.read_text()))
@@ -57,14 +61,14 @@ def export(root,out):
         seen.add(r['family'])
         for table in r['unique_tables'].values():
             if table.get('schema_version')!='v4-passed-out-v1':replay(table)
-        pair=r['pair'];index=r['index'];conditions={}
+        pair=r['pair'];a,b=pair_members(pair);index=r['index'];conditions={}
         for regime in ('common','own'):
             source=r['regimes'].get('native' if regime=='own' else 'common',r['regimes'].get('self'))
             tables=[]
             for table_id in source['tables']:
                 e=r['unique_tables'][table_id];b=e['board'];t0=e['tables'][0]
                 tables.append(dict(contract=b.get('contract'),declarer=b.get('declarer'),auction=b.get('auction',[]),
-                    assignments=[pair[0] if v=='candidate' else pair[1] for v in e['assignments']],
+                    assignments=[a if v=='candidate' else b for v in e['assignments']],
                     ns_score=t0['ns_score'],declarer_tricks=t0.get('declarer_tricks'),
                     plays=[a['seat']+a['card'] for a in t0['actions']]))
             conditions[regime]=dict(tables=tables,imps=source['imps'],label='Common v4 bidder' if regime=='common' else 'Historical bidders')
@@ -79,11 +83,11 @@ def export(root,out):
         records.append(row);shards[row['shard']][str(index)]={**row,'conditions':conditions,'board':first,'tables':common}
     replay_dir=out/'arena/replays/data'/cohort;replay_dir.mkdir(parents=True,exist_ok=True)
     for name,rows in shards.items():atomic_json(replay_dir/name,rows)
-    title='ChatGPT Gen 4 supplement';versions={k:s['identity'] for k,s in m['bots'].items()}
+    title=m.get('title','ChatGPT Gen 4 supplement');versions={k:s['identity'] for k,s in m['bots'].items()}
     record_shards=[]
     for offset in range(0,len(records),100):
         name=f'index-{offset//100:05d}.json';atomic_json(replay_dir/name,records[offset:offset+100]);record_shards.append(name)
-    atomic_json(replay_dir/'index.json',dict(schema='bridge-replay-index-v1',cohort=cohort,title=title,labels=LABELS,pairs=PAIRS,versions=versions,records=[],record_shards=record_shards))
+    atomic_json(replay_dir/'index.json',dict(schema='bridge-replay-index-v1',cohort=cohort,title=title,labels=labels,pairs=pairs,versions=versions,records=[],record_shards=record_shards))
     atomic_json(out/'arena/replays/catalog.json',dict(schema='bridge-replay-catalog-v1',cohorts=[dict(id=cohort,title=title,count=len(records),index_url=f'data/{cohort}/index.json')]))
     contiguous=0;indices={r['index'] for r in records}
     while contiguous in indices:contiguous+=1
@@ -92,18 +96,18 @@ def export(root,out):
         n=sum(r['completed_epoch']>=now-minutes*60 for r in records)
         span=min(minutes*60,max(1,now-json.loads((root/'created_epoch.json').read_text())))
         rates[str(minutes)]=dict(pairs=n,per_hour=n*3600/span,full_window=span>=minutes*60)
-    curves={p:[] for p in PAIRS if p[0]!=p[1]}
+    curves={p:[] for p in pairs if pair_members(p)[0]!=pair_members(p)[1]}
     for pair in curves:
         rows=[r for r in records if r['pair']==pair]
         for n in sorted(set(list(range(10,len(rows)+1,10))+([len(rows)] if rows else []))):
             curves[pair].append(dict(index=n,**stats([r['imps'] for r in rows[:n]])))
-    d=dict(generated_epoch=now,campaign=title,manifest_identity=cohort,labels=LABELS,order=['4','3','2','1'],versions=versions,
+    d=dict(generated_epoch=now,campaign=title,manifest_identity=cohort,labels=labels,order=order,versions=versions,
         completed=len(records),target=m['target'],contiguous=contiguous,failures=status['failures'],configured_workers=status['workers'],worker_experiment=None,
         last_commit_epoch=max((r['completed_epoch'] for r in records),default=None),rates=rates,
-        views={str(n):view(records,window=n) for n in (0,100,500,1000)},
-        own_views={str(n):view(records,own=True,window=n) for n in (0,100,500,1000)},curves=curves,
+        views={str(n):view(records,window=n,pairs=pairs,labels=labels) for n in (0,100,500,1000)},
+        own_views={str(n):view(records,own=True,window=n,pairs=pairs,labels=labels) for n in (0,100,500,1000)},curves=curves,
         model_artifacts={k:s['artifact_sha256'] for k,s in m['bots'].items()},
-        interpretation='Independent fresh cohort, 32 samples, two root tables per board, random policy audits. Common-v4 and historical-bidder results remain separate. Self-play supplies training only. Student-t intervals are exploratory and unadjusted for repeated looks. Only complete replay-validated boards are included. Cohorts are selectable separately; their IMP statistics are not pooled.',
+        interpretation='Independent cohort, 32 samples, two root tables per board, random policy audits. Common-v4 and historical-bidder results remain separate. Self-play supplies training only. Student-t intervals are exploratory and unadjusted for repeated looks. Only complete replay-validated boards are included. Cohorts are selectable separately; their IMP statistics are not pooled.',
         feed=dict(published_epoch=now,interval_seconds=60,next_update_epoch=now+60),
         collection=dict(updated_epoch=status['updated_epoch'],running=now-status['updated_epoch']<30,workers=status['workers']))
     atomic_json(out/'arena/data.json',d)

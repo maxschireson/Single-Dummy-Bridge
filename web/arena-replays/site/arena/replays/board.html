@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Card-by-card replay · Bridge arena</title><link rel="stylesheet" href="style.css?v=independent-1"></head>
 <body><div class="topline"><a id="back" href="index.html">← Board swings</a><a href="../">Arena scores</a></div>
-<h1 id="title">Loading board…</h1><p id="meta" class="subtitle"></p><p id="result"></p><p id="loading" role="status">Loading the recorded play…</p>
-<main id="viewer" class="hidden"><p class="muted">Each table has its own controls. Use ← / → or Space while focused on that table.</p><p id="difference-status" class="status muted"></p>
+<h1 id="title">Loading board…</h1><p id="meta" class="subtitle"></p><p id="result"></p><p id="bidding-result" class="muted"></p><p id="loading" role="status">Loading the recorded play…</p>
+<p><label>Bidding condition <select id="condition"></select></label><span id="condition-note" class="muted"></span></p><main id="viewer" class="hidden"><p class="muted">Each table has its own controls. Use ← / → or Space while focused on that table.</p><p id="difference-status" class="status muted"></p>
 <div class="tables"><section class="bridge-table" id="table0"></section><section class="bridge-table" id="table1"></section></div>
 <details class="details"><summary>Trick-by-trick record</summary><div id="history" class="table-wrap"></div></details>
 <details class="details"><summary>Board details</summary><p id="provenance" class="muted"></p></details>
 <footer>Each table advances independently and shows its own contract and auction. Leaders and trick winners may differ. All four hands are visible in this replay; the bots did not have access to hidden hands. “First different play” marks a divergence, not proof that it caused the final swing.</footer></main>
-<script src="core.js?v=independent-1"></script><script src="common.js"></script><script src="board.js?v=independent-1"></script></body></html>
+<script src="core.js?v=v4-conditions-3"></script><script src="common.js?v=v4-conditions-3"></script><script src="board.js?v=v4-conditions-3"></script></body></html>

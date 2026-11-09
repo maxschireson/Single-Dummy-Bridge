@@ -11,12 +11,14 @@
     return trick.reduce((best, play) => power(play.card) > power(best.card) ? play : best).seat;
   }
   function tableBoard(board, table) {
-    return {...board, contract: table.contract ?? board.contract, declarer: table.declarer ?? board.declarer, auction: table.auction ?? board.auction};
+    return {...board, contract: Object.hasOwn(table,'contract')?table.contract:board.contract, declarer: Object.hasOwn(table,'declarer')?table.declarer:board.declarer, auction: table.auction ?? board.auction};
   }
   function replay(board, table, ply) {
     board = tableBoard(board, table);
     const hands = initialHands(board), tricks = [0, 0], history = [];
     let turn = seats[(seats.indexOf(board.declarer) + 1) % 4], trick = [], shown = [];
+    if(!board.contract){if(table.plays.length)throw Error('Passed-out hand contains play');return {hands,tricks,history,shown:[],next:null,last:null,finishedTrick:false};}
+    if(ply>table.plays.length)throw Error('Requested position exceeds recorded play');
     const trump = board.contract[1];
     for (let i = 0; i < ply; i++) {
       if (trick.length === 4) trick = [];
@@ -34,7 +36,7 @@
     return {hands, tricks, history, shown, next: ply < 52 ? turn : null,
       last: ply ? table.plays[ply - 1] : null, finishedTrick: ply > 0 && ply % 4 === 0};
   }
-  function firstDifference(a, b) { const i = a.findIndex((x, i) => x !== b[i]); return i < 0 ? null : i; }
+  function firstDifference(a,b){for(let i=0;i<Math.min(a.length,b.length);i++)if(a[i]!==b[i])return i;return a.length===b.length?null:Math.min(a.length,b.length);}
   global.BridgeReplay = {seats, suits, ranks, initialHands, winner, tableBoard, replay, firstDifference};
   if (typeof module !== 'undefined') module.exports = global.BridgeReplay;
 })(typeof window !== 'undefined' ? window : globalThis);

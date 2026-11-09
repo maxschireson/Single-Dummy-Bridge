@@ -12,6 +12,7 @@ from .fork_audit import collect_board, ForkBudget, stream
 from .mixed_arena import ArenaPlayer, split
 from .runner import replay
 from .training import digest
+from .arena_pairs import pair_id,pair_members
 
 
 def schedule(manifest, index):
@@ -57,7 +58,7 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
     current,reference=manifest['roster'][:2];opponent=schedule(manifest,index)
     if manifest.get('pair_schedule'):
         pairs=list(manifest['pair_schedule']);stream(manifest['seed'],'pair-block',index//len(pairs)).shuffle(pairs)
-        current,opponent=pairs[index%len(pairs)]
+        current,opponent=pair_members(pairs[index%len(pairs)])
         reference=manifest['audit_references'][current]
     board=Board.from_dict(board_dict);specs=manifest['bots']
     versions={k:specs[k]['identity'] for k in {current,opponent}}
@@ -95,7 +96,7 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
             regimes[regime]=dict(tables=room_ids,score_difference=delta,imps=None if delta is None else imps(delta))
         family=deal_key(board.hands,True)
         return dict(schema='v4-two-auction-arena-v1',index=index,family=family,split=split(family),
-            candidate=current,pair=current+opponent,opponent=opponent,versions=versions,manifest_identity=manifest['identity'],regimes=regimes,
+            candidate=current,pair=pair_id(current,opponent),opponent=opponent,versions=versions,manifest_identity=manifest['identity'],regimes=regimes,
             unique_tables=records,bidding=bidding_records,base_cpu=budget.base_cpu,branch_cpu=budget.branch_cpu,
             completed_epoch=time.time(),interpretation='Report common and native separately; self-play supplies training only.')
     finally:
