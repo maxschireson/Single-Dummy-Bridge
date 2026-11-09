@@ -42,11 +42,13 @@ class ApproxDDS(DDS):
         status=self.lib.bridge_dds_approx_value(self.ctx,C.byref(d),budget,guess,C.byref(v),C.byref(lo),C.byref(hi),C.byref(nodes),C.byref(exact))
         if status!=1:raise RuntimeError(f'Approx DDS status {status}')
         return dict(estimate=v.value,lower=lo.value,upper=hi.value,nodes=nodes.value,exact=bool(exact.value))
-    def all_moves(self,hands,trump,leader,trick,budget=1000):
+    def all_moves(self,hands,trump,leader,trick,budget=1000,guesses=None):
         actor=(leader+len(trick))%4;legal=sorted(hands[actor]);out={}
         if trick:
             follow=[c for c in legal if c//13==trick[0][1]//13]
             if follow:legal=follow
+        if guesses is not None and any(c not in guesses or not np.isfinite(guesses[c]) for c in legal):
+            raise ValueError('A finite actor-partnership guess is required for every legal move')
         live=set(c for hand in hands for c in hand)|set(c for _,c in trick)
         representative={};previous=None
         for c in sorted(live):
@@ -60,7 +62,12 @@ class ApproxDDS(DDS):
             if len(tr)==4:
                 lead=winner(tr,trump);reward=int(lead%2==actor%2);tr=[]
             child=(lead+len(tr))%4;remaining=(sum(map(len,hs))+len(tr))//4
-            r=self.value(hs,trump,lead,tr,budget)
+            guess=None
+            if guesses is not None:
+                guess=float(guesses[c])-reward
+                if child%2!=actor%2:guess=remaining-guess
+                guess=float(np.clip(guess,0,remaining))
+            r=self.value(hs,trump,lead,tr,budget,guess)
             if child%2!=actor%2:r=dict(r,estimate=remaining-r['estimate'],lower=remaining-r['upper'],upper=remaining-r['lower'])
             out[c]=dict(r,estimate=reward+r['estimate'],lower=reward+r['lower'],upper=reward+r['upper'])
         return out

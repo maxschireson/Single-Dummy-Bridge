@@ -1,0 +1,59 @@
+{
+  "model": "full-information-dds-value-quick-v1",
+  "filename": "dds-value.npz",
+  "parameters": 509912,
+  "checkpoint_epoch": 5,
+  "training_positions": 600000,
+  "training_move_labels": 3394317,
+  "remaining_tricks": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "size": 1894349,
+  "sha256": "4f301380b696972b126d5df296a6f7cb050d4944d866931932a760be4a7d50b0",
+  "parts": [
+    {
+      "file": "dds-value.npz.part000",
+      "size": 262144,
+      "sha256": "1316800c30c87fdf9a95363aef4aa5dffe60e4577b1a6b14bac2805cd49572bb"
+    },
+    {
+      "file": "dds-value.npz.part001",
+      "size": 262144,
+      "sha256": "3cab8ea3ccb65119430e289b7a06462de5d45c2a0abbb5833e8b4a3b869fafb7"
+    },
+    {
+      "file": "dds-value.npz.part002",
+      "size": 262144,
+      "sha256": "b43d8d4397b1d27e96b5865ebccd390b07b3b62b476b9cf7c42b10a87bc03396"
+    },
+    {
+      "file": "dds-value.npz.part003",
+      "size": 262144,
+      "sha256": "ef76b5191d3bab307ed52205f88ca27806761392b9096fc2b0e37481603874b1"
+    },
+    {
+      "file": "dds-value.npz.part004",
+      "size": 262144,
+      "sha256": "91a22a48e87c257248ef99478a660c219abb331d111ed26ee7fd25f528f681d0"
+    },
+    {
+      "file": "dds-value.npz.part005",
+      "size": 262144,
+      "sha256": "71bbc24baeff47b10cf42380d34b3f09a998e5ab4b5ba8df977c46edad9f26ad"
+    },
+    {
+      "file": "dds-value.npz.part006",
+      "size": 262144,
+      "sha256": "a1a75b428db5fa545b08ecf7ffe5e3e208c7f3e3b2bc024b7968eab4f1436312"
+    },
+    {
+      "file": "dds-value.npz.part007",
+      "size": 59341,
+      "sha256": "8d28b1a9d60d1a04490d22c24cc7fbed9e84b1156b8e5e340652ff981e40feb5"
+    }
+  ],
+  "status": "experimental-not-promoted"
+}
