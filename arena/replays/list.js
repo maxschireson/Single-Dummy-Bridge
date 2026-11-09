@@ -7,7 +7,7 @@ let linked=params.has('n'),cutoff=Number(params.get('cutoff'))||Infinity,windowS
 $('condition').value=params.get('condition')==='own'?'own':'common';
 $('zeros').value=params.get('zeros')==='show'?'show':'hide';
 $('sort').value=['swing','newest','oldest','gain','loss'].includes(params.get('sort'))?params.get('sort'):'swing';
-function urlFor(row,condition=$('condition').value){const u=new URL('board.html?v=v4-conditions-3',location.href);for(const [k,v]of Object.entries({cohort:active.id,board:row.id,pair:row.pair,condition,...(biddingMetric?{metric:'bidding',model}:{})}))u.searchParams.set(k,v);return u;}
+function urlFor(row,condition=$('condition').value){const u=new URL('board.html?v=hybrids-recovery-1',location.href);for(const [k,v]of Object.entries({cohort:active.id,board:row.id,pair:row.pair,condition,...(biddingMetric?{metric:'bidding',model}:{})}))u.searchParams.set(k,v);return u;}
 function draw(){
  const pair=$('pair').value,own=$('condition').value==='own';let selected=records.filter(r=>(pair==='all'||r.pair===pair)&&r.completed_epoch<=cutoff&&(!biddingMetric||Object.hasOwn(r.dd_bidding_imps||{},model))).sort((a,b)=>a.index-b.index);
  if(windowSize)selected=selected.slice(-windowSize);
