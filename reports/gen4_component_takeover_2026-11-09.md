@@ -69,6 +69,71 @@ Validation: all four exact model combinations loaded; two tests cover full toy
 bridge replay, swapped-seat assignments, score corruption rejection, and paired
 component/interaction statistics. First real-DDS families committed successfully.
 
-The new variants are collecting in this separate diagnostic; they have **not**
-been inserted into the existing primary mix or public dashboard. That requires
-recovering control of the primary environment, or an explicit new publisher.
+## Active recovered six-bot mix
+
+Following the user's request to insert both bots into the mix and publish it,
+the initial matched diagnostic drained at 35 complete families. Its full games
+are retained. A new 10,000-hand six-bot mix is running with four workers in
+`/workspace/work/gen4-hybrid-mix`. The primary external workers remain alive;
+this takeover controls the recovered environment, not those inaccessible hosts.
+
+The frozen manifest identity is
+`7729472d36914fd1dce8ecfcc2d520cfc1c03ce737ac99511093e94ebce33a4c`.
+It includes 4, 4p, 4b, 3, 2, and 1. In each shuffled 26-board block allocation is:
+
+| Matchup | Hands |
+| --- | ---: |
+| 4–4, 4–3, 4p–3, 4b–3 | 4 each |
+| 4–4p, 4–4b, 4p–4b, 4–2 | 2 each |
+| 4–1, 3–2 | 1 each |
+
+Each hand supplies two swapped-seat root games on its frozen Gen4 auction.
+Original random policy audits are enabled for the first partnership when it
+uses the Gen4 policy. Models, sample budget, zero exploration, and near-tie
+window remain frozen. Bidding is common, so this run measures cardplay rather
+than native-bidder whole-system changes. The 10,000 source-cohort families are
+selected by outcome-independent hashes; cross-cohort overlap is explicit.
+
+The other ChatGPT environment concurrently created a fresh component cohort
+on `research/gen4-components` and `arena-components-feed`. That branch is a
+different writer and must never be overwritten by this run.
+
+This environment's publisher owns **`arena-recovery-feed`**. It exports validated
+root-game replays, dashboard statistics, exact manifests and schedule, and full
+compressed episodes including audit forks every minute. The initial 35-family
+diagnostic is backed up under `recovery/initial-diagnostic`. Public root replays
+and complete episode backups are already pushed; local caches are not uploaded.
+
+The shared webpage is deployed on `gh-pages` and exposes all sources separately:
+<https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=recovery>.
+Counts are run observations, not claimed distinct families across sources.
+Model matrix, hand lists and replays display 4p and 4b labels. Selecting a
+source preserves its manifest and snapshot cutoff in hand links.
+
+Resume the mixed run only with a free supervisor/writer lock and no STOP:
+
+```sh
+cd /workspace/work/v4-recovery/Single-Dummy-Bridge
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -u ops/gen4_mix.py run \
+  --run /workspace/work/gen4-hybrid-mix --workers 4
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python ops/gen4_mix.py audit \
+  --run /workspace/work/gen4-hybrid-mix
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -u ops/publish_component_mix.py \
+  --run /workspace/work/gen4-hybrid-mix \
+  --publication /workspace/work/gen4-diagnostic-publication \
+  --diagnostic /workspace/work/gen4-components
+```
+
+The publication checkout is a dedicated repository on `arena-recovery-feed`.
+Never point it at the primary, supplemental, or ChatGPT component feed branch.
+For full environment recovery, restore the original capsule, overlay the new
+`ops/` scripts, copy the backed-up manifest/corpus/schedule/episodes into a new
+run directory and restore `artifacts/` and `assets/` from the capsule. Preserve
+the exact manifest; the collector derives receipts and replay-validates them.
+Do not treat a reinitialization as continuation. The collector and publisher
+still require a surviving environment; GitHub holds recovery artifacts.
+
+Verification: three focused tests passed; all ten matchups replayed in tests,
+and 41 real-DDS mix records passed a full replay audit. Browser checks passed
+for all-source visibility, the six-bot matrix, hidden unavailable bidding
+condition, snapshot-matched 4p hand lists, and a complete 4p board replay.
