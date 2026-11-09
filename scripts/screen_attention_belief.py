@@ -81,15 +81,9 @@ def worker_init(parent):
     SOLVER = DDS()
 
 
-def prepare_family(entry, output):
+def selected_observations(entry):
     if entry['split'] == 'test': raise ValueError('Test families must remain unprepared')
-    output = Path(output); target = output/'data'/f"{entry['family']}.npz"
-    meta = target.with_suffix('.json')
-    if target.exists() and meta.exists():
-        info = json.loads(meta.read_text())
-        if sha(target) != info['sha256']: raise ValueError('Data shard changed')
-        return info
-    started = time.time(); candidates = {}
+    candidates = {}
     for source in entry['sources']:
         raw = Path(source['path']).read_bytes()
         if hashlib.sha256(raw).hexdigest() != source['sha256']:
@@ -97,7 +91,8 @@ def prepare_family(entry, output):
         episode = json.loads(gzip.decompress(raw))
         expected = 'validation' if int(entry['family'][:8],16) % 5 == 0 else 'train'
         if episode['split'] != expected: raise ValueError('Historical split mismatch')
-        for room in episode['unique_tables'].values():
+        rooms = episode['unique_tables'].values() if 'unique_tables' in episode else [episode]
+        for room in rooms:
             if room['status'] != 'ok': continue
             board = Board.from_dict(room['board'])
             if deal_key(board.hands, True) != entry['family']: raise ValueError('Family mismatch')
@@ -120,9 +115,20 @@ def prepare_family(entry, output):
         chosen.extend(sorted(k for k, (o, _) in candidates.items()
                              if low <= len(o.history) < high)[:4])
     chosen += [k for k in sorted(candidates) if k not in chosen][:16-len(chosen)]
+    return [(key,*candidates[key]) for key in chosen]
+
+
+def prepare_family(entry, output):
+    if entry['split'] == 'test': raise ValueError('Test families must remain unprepared')
+    output = Path(output); target = output/'data'/f"{entry['family']}.npz"
+    meta = target.with_suffix('.json')
+    if target.exists() and meta.exists():
+        info = json.loads(meta.read_text())
+        if sha(target) != info['sha256']: raise ValueError('Data shard changed')
+        return info
+    started = time.time()
     rows = []; infos = []
-    for key in chosen:
-        o, owners = candidates[key]
+    for key,o,owners in selected_observations(entry):
         x, dense = encode(o); mask = x['support'].sum(-1) > 1
         if not mask.any(): continue
         if not np.all(x['support'][np.arange(52), owners] | ~mask):
@@ -310,6 +316,8 @@ def main():
     p.add_argument('--profile-steps',type=int,default=0)
     p.add_argument('--stage',choices=['all','prepare','train'],default='all')
     args=p.parse_args();args.output.mkdir(parents=True,exist_ok=True)
+    if (args.output/'PAUSED_BY_USER').exists():
+        raise SystemExit('Attention run paused by user; do not resume it')
     import fcntl
     with (args.output/'writer.lock').open('w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
