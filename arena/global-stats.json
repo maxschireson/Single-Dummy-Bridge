@@ -1,6 +1,6 @@
 {
   "schema": "bridge-global-tracking-v1",
-  "updated_utc": "2026-11-09T09:54:00+00:00",
+  "updated_utc": "2026-11-09T10:12:04.184908+00:00",
   "coverage": "Archived reports verified; complete historical ledger and live audit totals pending.",
   "training": {
     "bidding": {
@@ -29,7 +29,15 @@
       "parameters": 1524776,
       "sha256": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3",
       "used_by": "All generations",
-      "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/models/bidding/dds-40000/promotion.json"
+      "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/models/bidding/dds-40000/promotion.json",
+      "decisions_seen": {
+        "value": null,
+        "kind": "decisions",
+        "coverage": "pending",
+        "scope": "latest_fit",
+        "detail": "40,000 training boards are confirmed. The published promotion record does not contain an exact trained-decision count; do not infer it from boards or PPO updates.",
+        "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/models/bidding/dds-40000/promotion.json"
+      }
     },
     {
       "component": "Belief",
@@ -37,7 +45,15 @@
       "parameters": 308726,
       "sha256": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
       "used_by": "Gen 3.5 \u00b7 Gen 3",
-      "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json"
+      "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json",
+      "decisions_seen": {
+        "value": 963304,
+        "kind": "observations",
+        "coverage": "exact",
+        "scope": "latest_fit",
+        "detail": "Frozen training observations used by the selected epoch-6 public-belief fit. Includes auction and public-play observations, not action choices. Excludes validation/test, repeated epochs and inherited parent training.",
+        "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/belief_size_study_2026-11-09.md"
+      }
     },
     {
       "component": "Policy",
@@ -45,7 +61,15 @@
       "parameters": 39512,
       "sha256": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
       "used_by": "Gen 3.5",
-      "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json"
+      "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json",
+      "decisions_seen": {
+        "value": 363868,
+        "kind": "decisions",
+        "coverage": "exact",
+        "scope": "latest_fit",
+        "detail": "Training decision rows in the selected epoch-8 auction-aware policy fit. Excludes 58,288 validation rows, repeated epochs and inherited parent training.",
+        "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/auction_policy_bootstrap_2026-11-09.md"
+      }
     }
   ],
   "bidding_supervision": {
