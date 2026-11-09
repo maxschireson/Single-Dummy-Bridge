@@ -46,6 +46,9 @@ class IMPSelector(AuctionSelectorWeights):
 
 def selector(path):
     with np.load(path, allow_pickle=False) as z:
+        if 'outcome_distribution' in z:
+            from .outcome_distribution import DistributionWeights
+            return DistributionWeights(path)
         cls = IMPSelector if 'imp_neural' in z else AuctionSelectorWeights if 'call_embedding' in z else SelectorWeights
     return cls(path)
 
@@ -89,7 +92,8 @@ class ArenaPlayer(PIMCPlayer):
             ref, _ = self.reference.choose(o, d, reference_rng)
             details.update(reference_card=symbol(ref),
                 expected_gain_imps=float(values[chosen] - values[ref]) if isinstance(self.selector, IMPSelector) else None,
-                prediction_units='matched-fork-imps' if isinstance(self.selector, IMPSelector) else 'remaining-partnership-tricks')
+                prediction_units=getattr(self.selector,'prediction_units',
+                    'matched-fork-imps' if isinstance(self.selector, IMPSelector) else 'remaining-partnership-tricks'))
         return Decision(chosen, details)
 
 
