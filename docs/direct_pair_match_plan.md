@@ -12,7 +12,7 @@ All share the latest bidder, frozen at generation launch. The next generation mu
 
 ## Board allocation and scoring
 
-Default to equal, disjoint, deterministically shuffled board-family cohorts for A-B, A-C and B-C. This is a planning default, not a user-prescribed percentage. For the already-authorized next 50,000-board generation, allocate 16,667 / 16,667 / 16,666 boards respectively, unless a revised allocation is explicitly frozen before play. Select the pair and orientation before seeing outcomes. A board belongs to one pair only; there is no requirement to run all three pairings on every board.
+Use the user's rank-weighted allocation: A-B : A-C : B-C = 4 : 2 : 1, with A ranked first, B second and C third. Thus A plays B twice as often as C, and B plays C one quarter as often as A. Allocate disjoint, deterministically shuffled board-family cohorts in proportions 4/7, 2/7 and 1/7. For the already-authorized next 50,000-board generation, use 28,571 / 14,286 / 7,143 paired boards respectively (largest-remainder integer allocation). For a 25,000-board example, the counts would be 14,286 / 7,143 / 3,571. This replaces the earlier equal-allocation proposal. The ratios are consistent with pair weights proportional to the product of geometric rank weights 1/2, 1/4, 1/8, excluding self-pairs and normalizing over eligible pairs. Freeze the roster ranks and allocation in the manifest; apply subsequent ranking changes at the declared boundary. Select the pair and orientation before seeing outcomes. A board belongs to one pair only; there is no requirement to run all three pairings on every board.
 
 For a pair X-Y, play two root tables on the identical deal and frozen auction:
 1. X in North-South, Y in East-West.
