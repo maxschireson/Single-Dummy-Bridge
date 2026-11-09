@@ -1,5 +1,22 @@
 # Gen 4 collection from the ChatGPT environment
 
+## 2026-11-09: cancel remaining Gen4 versus Gen4 games
+
+Max requested no further 4-versus-4 games. The original collector drained at
+2,011 completed episodes. Resume this run with `scripts/run_filtered_arena.py`
+instead of `scripts/run_supplemental_arena.py`, retaining eight workers and the
+same `--run` and `--seconds` arguments. The replacement dispatcher calls the
+original frozen play implementation and verifies every original pinned hash.
+It writes an immutable `collection-plan.json` that cancels only unplayed 4–4
+indices. Completed self-play episodes remain available for training. Every
+other index keeps its frozen matchup, deal, seeds, models and family split.
+The active completion target excludes the cancelled slots; status and export
+also expose the original 10,000-slot target and number skipped. Preserve the
+plan in all recovery checkpoints and never resume the unfiltered collector.
+
+The component cohort already contains no 4–4 games and continues unchanged.
+This local change does not control the separate Codex hosts.
+
 This independent 10,000-deal cohort supplements the existing `g0004` arena.
 It uses 32 sampled worlds, frozen Gen 4 bidder/belief/policy artifacts, two
 root tables, both common-v4 and native-bidder conditions, and independent

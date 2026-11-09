@@ -98,17 +98,25 @@ def export(root,out):
         for n in sorted(set(list(range(10,len(rows)+1,10))+([len(rows)] if rows else []))):
             curves[pair].append(dict(index=n,**stats([r['imps'] for r in rows[:n]])))
     d=dict(generated_epoch=now,campaign=title,manifest_identity=cohort,labels=LABELS,order=['4','3','2','1'],versions=versions,
-        completed=len(records),target=m['target'],contiguous=contiguous,failures=status['failures'],configured_workers=status['workers'],worker_experiment=None,
+        completed=len(records),target=status.get('target',m['target']),frozen_target=m['target'],
+        skipped_unplayed_self=status.get('skipped_unplayed_self',0),
+        collection_plan_identity=status.get('collection_plan_identity'),
+        contiguous=contiguous,failures=status['failures'],configured_workers=status['workers'],worker_experiment=None,
         last_commit_epoch=max((r['completed_epoch'] for r in records),default=None),rates=rates,
         views={str(n):view(records,window=n) for n in (0,100,500,1000)},
         own_views={str(n):view(records,own=True,window=n) for n in (0,100,500,1000)},curves=curves,
         model_artifacts={k:s['artifact_sha256'] for k,s in m['bots'].items()},
         interpretation='Independent fresh cohort, 32 samples, two root tables per board, random policy audits. Common-v4 and historical-bidder results remain separate. Self-play supplies training only. Student-t intervals are exploratory and unadjusted for repeated looks. Only complete replay-validated boards are included. Cohorts are selectable separately; their IMP statistics are not pooled.',
         feed=dict(published_epoch=now,interval_seconds=60,next_update_epoch=now+60),
-        collection=dict(updated_epoch=status['updated_epoch'],running=now-status['updated_epoch']<30,workers=status['workers']))
+        collection=dict(updated_epoch=status['updated_epoch'],
+            running=now-status['updated_epoch']<30 and not status.get('stopping',False) and not status.get('collection_complete',False),
+            complete=status.get('collection_complete',False),workers=status['workers']))
     atomic_json(out/'arena/data.json',d)
     atomic_json(out/'arena/manifest.json',m)
+    if (root/'collection-plan.json').exists():
+        atomic_json(out/'arena/collection-plan.json',json.loads((root/'collection-plan.json').read_text()))
     print(json.dumps(dict(completed=len(records),tables=sum(len(v['tables']) for s in shards.values() for v in s.values()),
+        target=d['target'],collection_complete=status.get('collection_complete',False),
         rate=rates['5'],files=len(list(out.rglob('*.json'))),output=str(out))))
 
 if __name__=='__main__':

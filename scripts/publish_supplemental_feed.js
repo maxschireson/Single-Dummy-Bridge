@@ -31,7 +31,7 @@ for(let iteration=0;iteration<1440;iteration++){
   consecutiveFailures=0;
   if(iteration===0)notify({publisher:'running',completed:exported.completed,interval_seconds:60});
   lastCount=exported.completed;
-  if(lastCount>=10000){notify({publisher:'finished',completed:lastCount});break;}
+  if(exported.collection_complete||lastCount>=exported.target){notify({publisher:'finished',completed:lastCount});break;}
  }catch(error){consecutiveFailures++;notify({publisher:'retrying',error:String(error),consecutiveFailures});if(consecutiveFailures>=3)throw error;}
  await new Promise(resolve=>setTimeout(resolve,60000));
 }
