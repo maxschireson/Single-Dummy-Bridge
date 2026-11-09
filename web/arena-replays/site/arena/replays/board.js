@@ -18,7 +18,7 @@ function renderTable(index){
     }layout.append(hand);
   }
   const center=el('div',null,'center');center.append(el('span',ply?'Trick '+Math.ceil(ply/4):'Lead','center-label'));
-  for(const p of state.shown)center.append(el('span',C.formatCard(p.card),'card-'+p.seat.toLowerCase()+' '+('HD'.includes(p.card[0])?'red':'black'));
+  for(const p of state.shown)center.append(el('span',C.formatCard(p.card),'card-'+p.seat.toLowerCase()+' '+('HD'.includes(p.card[0])?'red':'black')));
   layout.append(center);root.append(layout);
   const score=el('div',null,'scoreline');score.append(el('span',`Tricks: N/S ${state.tricks[0]} · E/W ${state.tricks[1]}`));
   const last=state.last?`${state.last[0]} played ${C.formatCard(state.last.slice(1))}`:'Opening lead';
