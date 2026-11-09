@@ -1,0 +1,21 @@
+{
+  "format": "bridge-training-feed-v1",
+  "increments": [
+    {
+      "path": "snapshots/snapshot-0001",
+      "sha256": "302a69e75c3b885cb77cc0966160b5af33d1e3338c22d682717c09cec476eaf9",
+      "size_bytes": 8423089,
+      "boards": 660,
+      "rows": {
+        "belief_train": 54046,
+        "belief_validation": 14540,
+        "policy_train": 5990,
+        "policy_validation": 1638
+      },
+      "manifest_identity": "5169b9090c9b6bc3d95fbc6069d6ad76a817053c0903741e5ea84649891115e4"
+    }
+  ],
+  "path": "snapshots/snapshot-0001",
+  "updated_epoch": 1794218128.779119,
+  "total_exported_boards": 660
+}
