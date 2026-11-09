@@ -8,7 +8,7 @@
   {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
  ];
  const labels={'4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['4','4p','4b','3','2','1'];
- const names={all:'All environments',chatgpt:'ChatGPT',codex:'Codex'};
+ const names={all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex'};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
@@ -35,28 +35,40 @@
  function view(rows,windowSize=0){const groups={},matrix=Object.fromEntries(order.map(k=>[k,{}])),pairs=[...new Set(rows.map(r=>r.pair))].sort((a,b)=>{const [a0,a1]=members(a),[b0,b1]=members(b);return order.indexOf(a0)-order.indexOf(b0)||order.indexOf(a1)-order.indexOf(b1);});
   for(const pair of pairs){let selected=rows.filter(r=>r.pair===pair);if(windowSize)selected=selected.slice(-windowSize);const values=selected.map(r=>r.imps),s=stats(values),[a,b]=members(pair);groups[pair]=s;matrix[a][b]=s;if(a!==b)matrix[b][a]=stats(values.map(x=>-x));}return {groups,matrix};
  }
- function build(inputs,scope='all',snapshots=null){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key));if(!chosen.length)throw Error('Reports are still loading');
+ function build(inputs,scope='all',snapshots=null,now=Date.now()/1000){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key));
   const common=rowsFor(chosen,scope,'common',snapshots),own=rowsFor(chosen,scope,'own',snapshots),views={},own_views={},curves={},own_curves={};
   for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
-  for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=10)targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
-  const generated_epoch=Math.max(...chosen.map(x=>x.data.generated_epoch)),rates={};for(const m of [5,15,30,60]){const pairs=chosen.reduce((n,x)=>n+(x.data.rates[m]?.pairs||0),0),per_hour=chosen.reduce((n,x)=>n+(x.data.rates[m]?.per_hour||0),0);rates[m]={pairs,per_hour,full_window:chosen.every(x=>x.data.rates[m]?.full_window)};}
+  for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=Math.max(10,Math.floor(rows.length/50)))targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
+  const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
+  const observations=chosen.flatMap(x=>x.index.records.filter(r=>r.completed_epoch<=x.data.generated_epoch));
+  for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
+  const stale=chosen.filter(x=>now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
   return {campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order,versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
    completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,own_views:own.rows.length?own_views:null,curves,own_curves,
-   report:{scope,snapshots:reportSnapshots,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
-   feed:{published_epoch:generated_epoch,next_update_epoch:Math.min(...chosen.map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60))},
-   interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
+   report:{scope,snapshots:reportSnapshots,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
+   feed:{published_epoch:generated_epoch,next_update_epoch:chosen.length?Math.min(...chosen.map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
+   interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
    model_note:'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
  }
- async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
+ async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
+ function verify(data,records){
+  if(!data.views?.[0]?.groups)throw Error('Invalid score snapshot');
+  if(!Number.isFinite(data.generated_epoch)||records.length!==data.completed||new Set(records.map(r=>String(r.id))).size!==records.length)throw Error('Score and replay publication are not yet synchronized');
+  for(const [kind,views] of [['imps',data.views],['own_imps',data.own_views]]){if(!views)continue;const groups=views['0']?.groups;if(!groups)throw Error('Invalid score snapshot');
+   for(const [p,s] of Object.entries(groups)){const rows=records.filter(r=>r.pair===p),self=members(p)[0]===members(p)[1];const total=rows.reduce((n,r)=>n+(r[kind]??0),0);if(rows.length!==s.n||(s.total!==null&&Math.abs(total-s.total)>1e-8)||(!self&&rows.some(r=>!Number.isFinite(r[kind]))))throw Error('Score/replay totals do not agree');}
+   if(Object.values(groups).reduce((n,s)=>n+s.n,0)!==records.length)throw Error('Incomplete score coverage');
+  }
+ }
  const shardCache=new Map();
  async function loadSource(source,{indexOnly=false,cutoff=null}={}){const path=base+source.branch+'/arena/',data=indexOnly?{generated_epoch:cutoff??Infinity,own_views:source.key==='recovery'?null:{}}:await get(path+'data.json');
   if(!indexOnly&&data.manifest_identity!==source.cohort)throw Error('Run identity changed');
   const indexURL=path+'replays/data/'+source.cohort+'/index.json',index=await get(indexURL);if(index.cohort!==source.cohort)throw Error('Replay run identity mismatch');
   if(index.record_shards){index.records=(await Promise.all(index.record_shards.map(async(p,i)=>{const url=new URL(p,indexURL).href;if(shardCache.has(url))return shardCache.get(url);const rows=await get(url);if(i<index.record_shards.length-1&&rows.length===100)shardCache.set(url,rows);return rows;}))).flat();}
-  if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);if(index.records.length!==data.completed)throw Error('Score and replay publication are not yet synchronized');}
+  if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);verify(data,index.records);}
   return {source,data,index,indexURL};
  }
- const api={sources,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,loadSource};
+ const api={sources,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,loadSource,verify};
  root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
+

@@ -49,4 +49,17 @@ test('aggregate replay windows reproduce every displayed n and total',()=>{
  }}
 });
 test('Student-t intervals include small-sample correction',()=>{assert.ok(Math.abs(R.stats([1,3]).ci[1]-(2+12.706204736))<1e-8);assert.equal(R.stats([2]).ci,null);assert.equal(R.stats([null,null]).mean,null);});
+test('score/replay verification rejects changed outcomes and missing records',()=>{
+ for(const input of inputs){R.verify(input.data,input.index.records);assert.throws(()=>R.verify(input.data,input.index.records.slice(1)),/synchronized/);const changed=structuredClone(input.index.records),r=changed.find(r=>r.imps!=null);r.imps+=1;assert.throws(()=>R.verify(input.data,changed),/totals/);}
+});
+test('rates use actual completion timestamps and stale streams decay to zero',()=>{
+ const now=Math.max(...inputs.map(x=>x.data.generated_epoch))+1,d=R.build(inputs,'all',null,now);
+ for(const m of [5,15,30,60]){const count=inputs.flatMap(x=>x.index.records).filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;assert.equal(d.rates[m].pairs,count);assert.equal(d.rates[m].per_hour,count*60/m);}
+ const stale=R.build(inputs,'all',null,now+3601);assert.equal(stale.rates[5].per_hour,0);assert.equal(stale.report.stale.length,4);
+});
+test('empty and partial reports disclose the streams actually included',()=>{
+ const empty=R.build([],'all');assert.equal(empty.completed,0);assert.deepEqual(empty.report.sources,[]);assert.equal(empty.own_views,null);
+ const partial=R.build(inputs.slice(0,2));assert.equal(partial.report.sources.length,2);assert.equal(Object.keys(partial.report.snapshots).length,2);
+});
 console.log(JSON.stringify({checks,summary:['all','chatgpt','codex'].map(s=>{const d=R.build(inputs,s);return {scope:s,completed:d.completed,observations:d.report.observations,duplicates:d.report.duplicates,matchups:Object.keys(d.views[0].groups).length};})}));
+
