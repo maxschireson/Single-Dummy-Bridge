@@ -1,0 +1,171 @@
+{
+  "belief": {
+    "best_epoch": 8,
+    "seconds": 132.62687009299407,
+    "parent_validation": {
+      "bidding": {
+        "all": {
+          "nll": 1.05876075840822,
+          "accuracy": 0.4277768846734364,
+          "brier": 0.6398811945624747,
+          "uncertain_card_labels": 1791504
+        },
+        "prefix": {
+          "nll": 1.0639521054328354,
+          "accuracy": 0.41796390072252143,
+          "brier": 0.6432844550782261,
+          "uncertain_card_labels": 895752
+        },
+        "complete_auction": {
+          "nll": 1.0535694113836045,
+          "accuracy": 0.4375898686243514,
+          "brier": 0.6364779340467234,
+          "uncertain_card_labels": 895752
+        }
+      },
+      "ben": {
+        "all": {
+          "nll": 1.0587174449733778,
+          "accuracy": 0.4277541258926885,
+          "brier": 0.6398627039802355,
+          "uncertain_card_labels": 1567176
+        },
+        "prefix": {
+          "nll": 1.0636684470488735,
+          "accuracy": 0.41869451803754015,
+          "brier": 0.6431141609135488,
+          "uncertain_card_labels": 783588
+        },
+        "complete_auction": {
+          "nll": 1.0537664428978821,
+          "accuracy": 0.4368137337478369,
+          "brier": 0.6366112470469222,
+          "uncertain_card_labels": 783588
+        }
+      }
+    },
+    "selected_validation": {
+      "bidding": {
+        "all": {
+          "nll": 1.057652864301961,
+          "accuracy": 0.42933535174914483,
+          "brier": 0.6391427630696866,
+          "uncertain_card_labels": 1791504
+        },
+        "prefix": {
+          "nll": 1.062998318289967,
+          "accuracy": 0.4195569755914583,
+          "brier": 0.6426529032950395,
+          "uncertain_card_labels": 895752
+        },
+        "complete_auction": {
+          "nll": 1.0523074103139551,
+          "accuracy": 0.43911372790683134,
+          "brier": 0.6356326228443338,
+          "uncertain_card_labels": 895752
+        }
+      },
+      "ben": {
+        "all": {
+          "nll": 1.0577569113460628,
+          "accuracy": 0.4290571065406821,
+          "brier": 0.6392138967246507,
+          "uncertain_card_labels": 1567176
+        },
+        "prefix": {
+          "nll": 1.0628606980386108,
+          "accuracy": 0.4192241330903485,
+          "brier": 0.6425738394705547,
+          "uncertain_card_labels": 783588
+        },
+        "complete_auction": {
+          "nll": 1.0526531246535147,
+          "accuracy": 0.4388900799910157,
+          "brier": 0.6358539539787467,
+          "uncertain_card_labels": 783588
+        }
+      }
+    },
+    "selected_sha256": "65b70d30d15e8de661b93c3bd4d662e8fbf34b045df29353208f0c92591ec12b",
+    "numpy_max_error": 6.332993507385254e-07,
+    "test_evaluated": false,
+    "playing_strength_evaluated": false,
+    "promoted": false
+  },
+  "export_counts": {
+    "source_pairs": 40000,
+    "source_auctions": 80000,
+    "train_unique_auctions": 46513,
+    "train_rows": 372104,
+    "duplicate_room_auctions": 21998,
+    "validation_unique_auctions": 5742,
+    "validation_rows": 45936,
+    "test_unique_auctions": 5747
+  },
+  "splits": {
+    "train": {
+      "deals": 32057,
+      "rows": 372104
+    },
+    "validation": {
+      "deals": 3983,
+      "rows": 45936
+    },
+    "test": {
+      "deals": 3960,
+      "rows": 0
+    }
+  },
+  "cache": {
+    "deals": 4,
+    "samples": 8,
+    "results": {
+      "uncached": {
+        "seconds": 6.785691147000762,
+        "requested_worlds": 1328,
+        "hits": 0,
+        "misses": 0,
+        "native_solves": 1328,
+        "duplicate_worlds": 0
+      },
+      "cold_cache": {
+        "seconds": 7.939120947994525,
+        "requested_worlds": 1328,
+        "hits": 0,
+        "misses": 1125,
+        "native_solves": 1125,
+        "duplicate_worlds": 203
+      },
+      "warm_replay": {
+        "seconds": 0.0990354980021948,
+        "requested_worlds": 1328,
+        "hits": 1328,
+        "misses": 0,
+        "native_solves": 0,
+        "duplicate_worlds": 0
+      },
+      "changed_uncached": {
+        "seconds": 6.918176963998121,
+        "requested_worlds": 1296,
+        "hits": 0,
+        "misses": 0,
+        "native_solves": 1296,
+        "duplicate_worlds": 0
+      },
+      "changed_near_tie": {
+        "seconds": 3.6443010549992323,
+        "requested_worlds": 1296,
+        "hits": 256,
+        "misses": 857,
+        "native_solves": 857,
+        "duplicate_worlds": 183
+      }
+    },
+    "warm_speedup": 68.51776669866777,
+    "changed_speedup": 1.898354954651127,
+    "cache_bytes": 339968,
+    "identical_replay_verified": true,
+    "limitation": "Small uniform-PIMC benchmark. Changed near-tie behavior is not a trained candidate or updated belief net.",
+    "test_promotion": false
+  }
+}

@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
 import json
 import math
+import os
+from pathlib import Path
 import random
 from urllib.request import urlopen
 from urllib.parse import urlencode
@@ -40,7 +42,11 @@ class PIMCPlayer:
                 or not math.isfinite(near_tie) or near_tie < 0:
             raise ValueError("Invalid PIMC settings")
         from .dds import DDS
-        self.dds = DDS()
+        # Share exact position answers across new training/evaluation runs.
+        # An explicit empty BRIDGE_DDS_CACHE disables persistence for timing.
+        cache_root = Path(os.environ.get('XDG_CACHE_HOME',Path.home()/'.cache'))
+        cache_path = os.environ.get('BRIDGE_DDS_CACHE',str(cache_root/'single-dummy-bridge'/'dds-positions.sqlite'))
+        self.dds = DDS(cache_path=cache_path)
         self.samples, self.objective = samples, objective
         self.batch, self.near_tie = batch, near_tie
         self.sampler_factory = sampler_factory
@@ -61,6 +67,7 @@ class PIMCPlayer:
         future_tricks = 13 - len(o.history) // 4
         vul = vulnerable(o.vulnerability, o.contract.declarer)
         worlds = [sampler.draw(rng) for _ in range(self.samples)]
+        before = self.dds.cache_stats()
         if self.batch:
             solved = self.dds.solve_batch(worlds, o.contract.trump, o.leader, o.trick,
                 fixed_seats=[s for s, h in enumerate(o.known_hands) if h is not None])
@@ -86,7 +93,11 @@ class PIMCPlayer:
                 return None
             mean = sum(values) / self.samples
             return math.sqrt(sum((v - mean) ** 2 for v in values) / (self.samples * (self.samples - 1)))
+        after = self.dds.cache_stats()
         return Decision(choice, {"samples": self.samples, "dds_calls": self.samples,
+            "dds_native_solves": after['native_solves']-before['native_solves'],
+            "dds_cache_hits": after['hits']-before['hits'],
+            "dds_duplicate_worlds": after['duplicate_worlds']-before['duplicate_worlds'],
             "dds_nodes": nodes, "objective": self.objective, "batch": self.batch,
             "unique_worlds": len(set(worlds)), "near_tie": self.near_tie,
             "behavior_probabilities": {symbol(c): (1.0 / len(eligible) if c in eligible else 0.0) for c in sums},
