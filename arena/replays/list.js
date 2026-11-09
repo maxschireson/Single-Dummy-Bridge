@@ -1,21 +1,22 @@
 'use strict';
 const C=ReplayCommon,{$,el}=C,params=new URLSearchParams(location.search);
 let cohorts=[],active=null,records=[],page=0,filtered=[];
+const biddingMetric=params.get('metric')==='bidding',model=params.get('model');
 const expected={n:Number(params.get('n')),total:params.has('total')?Number(params.get('total')):null};
 let linked=params.has('n'),cutoff=Number(params.get('cutoff'))||Infinity,windowSize=Number(params.get('window'))||0;
 $('condition').value=params.get('condition')==='own'?'own':'common';
 $('zeros').value=params.get('zeros')==='show'?'show':'hide';
 $('sort').value=['swing','newest','oldest','gain','loss'].includes(params.get('sort'))?params.get('sort'):'swing';
-function urlFor(row,condition=$('condition').value){const u=new URL('board.html',location.href);for(const [k,v]of Object.entries({cohort:active.id,board:row.id,pair:row.pair,condition}))u.searchParams.set(k,v);return u;}
+function urlFor(row,condition=$('condition').value){const u=new URL('board.html?v=v4-conditions-3',location.href);for(const [k,v]of Object.entries({cohort:active.id,board:row.id,pair:row.pair,condition,...(biddingMetric?{metric:'bidding',model}:{})}))u.searchParams.set(k,v);return u;}
 function draw(){
- const pair=$('pair').value,own=$('condition').value==='own';let selected=records.filter(r=>(pair==='all'||r.pair===pair)&&r.completed_epoch<=cutoff).sort((a,b)=>a.index-b.index);
+ const pair=$('pair').value,own=$('condition').value==='own';let selected=records.filter(r=>(pair==='all'||r.pair===pair)&&r.completed_epoch<=cutoff&&(!biddingMetric||Object.hasOwn(r.dd_bidding_imps||{},model))).sort((a,b)=>a.index-b.index);
  if(windowSize)selected=selected.slice(-windowSize);
- selected=selected.map(r=>({...r,imps:own?r.own_imps??r.imps:r.imps,scores:own?r.own_scores||r.scores:r.scores,contracts:own?r.own_contracts||r.contracts:r.contracts}));
+ selected=selected.map(r=>({...r,imps:biddingMetric?r.dd_bidding_imps[model]:own?r.own_imps??r.imps:r.imps,scores:own?r.own_scores||r.scores:r.scores,contracts:own?r.own_contracts||r.contracts:r.contracts}));
  const total=selected.reduce((s,r)=>s+(r.imps??0),0);
- if(active){let message=`${selected.length.toLocaleString()} published hand sets · ${own?'historical bidder condition':'common auction condition'}`;
-  if(pair!=='all'&&pair[0]!==pair[1])message+=` · ${C.signed(total)} IMPs for ${C.pairLabel(pair)}`;
+ if(active){let message=`${selected.length.toLocaleString()} published hand sets · ${biddingMetric?'DD bidding delta for '+C.labels[model]:own?'historical bidder condition':'common auction condition'}`;
+  if(!biddingMetric&&pair!=='all'&&pair[0]!==pair[1])message+=` · ${C.signed(total)} IMPs for ${C.pairLabel(pair)}`;
   if(linked){const same=selected.length===expected.n&&(expected.total===null||total===expected.total);message+=same?' · Matches the linked dashboard snapshot.':` · Linked snapshot: ${expected.n} hands${expected.total===null?'':' / '+C.signed(expected.total)+' IMPs'}. Replay coverage is incomplete or has changed; no other cohort is substituted.`;}
-  if(cutoff!==Infinity)message+=' Snapshot at '+C.date(cutoff)+'.';$('coverage').textContent=message;
+  if(biddingMetric)message+=' · DD auction changes are separate from played-game IMPs.';if(cutoff!==Infinity)message+=' Snapshot at '+C.date(cutoff)+'.';$('coverage').textContent=message;
  }
  filtered=selected.filter(r=>$('zeros').value==='show'||(r.imps!=null&&r.imps!==0));const sort=$('sort').value;
  filtered.sort((a,b)=>sort==='newest'?b.completed_epoch-a.completed_epoch:sort==='oldest'?a.completed_epoch-b.completed_epoch:sort==='gain'?(b.imps??0)-(a.imps??0):sort==='loss'?(a.imps??0)-(b.imps??0):Math.abs(b.imps??0)-Math.abs(a.imps??0)||b.completed_epoch-a.completed_epoch);
@@ -30,7 +31,7 @@ function draw(){
   else{const link=el('a','View play →');link.href=urlFor(r);cell.append(link);}tr.append(cell);$('rows').append(tr);
  }
  if(!filtered.length){const td=el('td',active?'No published hands match these filters.':'Choose an available run.');td.colSpan=8;const tr=el('tr');tr.append(td);$('rows').append(tr);}
- $('page').textContent=`Page ${page+1} of ${pages}`;$('prev').disabled=page===0;$('next').disabled=page>=pages-1;
+ for(const n of document.querySelectorAll('th:nth-child(5),th:nth-child(6),#rows td:nth-child(5),#rows td:nth-child(6)'))n.style.display=biddingMetric?'none':'';document.querySelector('thead th:nth-child(7)').textContent=biddingMetric?'DD bidder IMP delta':'IMPs';$('page').textContent=`Page ${page+1} of ${pages}`;$('prev').disabled=page===0;$('next').disabled=page>=pages-1;
 }
 async function selectCohort(){active=cohorts.find(c=>c.id===$('cohort').value);records=[];if(!active){$('coverage').textContent='Replay records for this exact cohort are not published yet.';draw();return;}
  try{const data=await C.get(active.indexURL);if(data.cohort!==active.id)throw Error('Cohort identity mismatch');Object.assign(C.labels,data.labels);records=data.records;

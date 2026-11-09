@@ -95,10 +95,11 @@ function activate(initial=false){
   $('title').textContent=`Board ${record.index+1} · ${C.pairLabel(record.pair)}`;document.title=$('title').textContent+' · Replay';
   $('meta').textContent=`Dealer ${record.board.dealer} · Vulnerability ${record.board.vulnerability} · ${C.date(record.completed_epoch)}`;
   $('result').textContent=record.imps==null?'Self-play: training trajectories; no head-to-head IMP estimate':`${C.signed(record.imps)} IMPs for ${C.labels[record.pair[0]]} · ${C.signed(record.tables[0].ns_score)} − (${C.signed(record.tables[1].ns_score)}) points`;
+  $('bidding-result').textContent=params.get('metric')==='bidding'?'DD bidder change for '+C.labels[params.get('model')]+': '+C.signed(fullRecord.dd_bidding_imps?.[params.get('model')])+' IMPs (separate from actual play above).':'';
   $('result').className=record.imps>0?'pos':record.imps<0?'neg':'';
   $('condition-note').textContent=key==='own'?(condition?.different?'Different historical bidding: these are the actual additional games.':'Identical auctions: the common games are reused; no extra games counted.'):fullRecord.conditions?.own?'Play comparison under the same v4 auction.':'Historical play under its frozen shared auction.';
   $('provenance').textContent=`${cohort.title} · Original board ID ${record.board.id} · Source index ${record.index} · Record SHA256 ${record.episode_sha256}`;
-  const back=new URL('index.html',location.href);back.searchParams.set('cohort',cohort.id);back.searchParams.set('pair',record.pair);back.searchParams.set('condition',key);$('back').href=back;
+  const back=new URL('index.html',location.href);back.searchParams.set('cohort',cohort.id);back.searchParams.set('pair',record.pair);back.searchParams.set('condition',key);if(params.get('metric')==='bidding'){back.searchParams.set('metric','bidding');back.searchParams.set('model',params.get('model'));}$('back').href=back;
   $('difference-status').textContent=difference===null?'Both tables played the same cards in the same order.':`First different play: card ${difference+1} · differences are observational, not causal attribution.`;
   setupTable(0);setupTable(1);renderHistory();$('loading').classList.add('hidden');$('viewer').classList.remove('hidden');
   positions=initial?positions.map((_,i)=>Math.max(0,Math.min(record.tables[i].plays.length,Math.floor(Number(params.get('ply'+(i+1))??params.get('ply'))||0)))):[0,0];
