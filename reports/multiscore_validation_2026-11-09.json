@@ -1,0 +1,182 @@
+{
+  "schema": "multiscore-validation-v1",
+  "manifest_identity": "09c13570763e5ba836424c9992579a0bb400e5e5e7ca9caae4c138b921654a73",
+  "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+  },
+  "positions": 10,
+  "budget_decisions": 30,
+  "exact_cards_estimates_probabilities_reference_and_rng": true,
+  "cpu_seconds": {
+    "joint": 6.001613083000004,
+    "separate": 11.748002572000006,
+    "solo64": 6.017436658
+  },
+  "joint_over_separate": 0.5108624250137763,
+  "joint_over_solo64": 0.9973703794656552,
+  "caveat": "Small alternating-order CPU check on random legal trajectories, cache disabled. Not a full-board collection throughput claim.",
+  "rows": [
+    {
+      "board": "1",
+      "ply": 0,
+      "cards": {
+        "16": 38,
+        "32": 38,
+        "64": 38
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 7430556
+      }
+    },
+    {
+      "board": "1",
+      "ply": 12,
+      "cards": {
+        "16": 9,
+        "32": 9,
+        "64": 9
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 166813
+      }
+    },
+    {
+      "board": "1",
+      "ply": 24,
+      "cards": {
+        "16": 51,
+        "32": 51,
+        "64": 51
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 22149
+      }
+    },
+    {
+      "board": "1",
+      "ply": 36,
+      "cards": {
+        "16": 42,
+        "32": 42,
+        "64": 42
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 1077
+      }
+    },
+    {
+      "board": "1",
+      "ply": 44,
+      "cards": {
+        "16": 3,
+        "32": 3,
+        "64": 3
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 768
+      }
+    },
+    {
+      "board": "2",
+      "ply": 0,
+      "cards": {
+        "16": 51,
+        "32": 51,
+        "64": 51
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 6267110
+      }
+    },
+    {
+      "board": "2",
+      "ply": 12,
+      "cards": {
+        "16": 41,
+        "32": 41,
+        "64": 41
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 350299
+      }
+    },
+    {
+      "board": "2",
+      "ply": 24,
+      "cards": {
+        "16": 18,
+        "32": 18,
+        "64": 18
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 6245
+      }
+    },
+    {
+      "board": "2",
+      "ply": 36,
+      "cards": {
+        "16": 4,
+        "32": 4,
+        "64": 4
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 589
+      }
+    },
+    {
+      "board": "2",
+      "ply": 44,
+      "cards": {
+        "16": 26,
+        "32": 26,
+        "64": 26
+      },
+      "shared_work": {
+        "dds_calls": 64,
+        "dds_native_solves": 64,
+        "dds_cache_hits": 0,
+        "dds_duplicate_worlds": 0,
+        "dds_nodes": 123
+      }
+    }
+  ]
+}
