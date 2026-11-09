@@ -2,6 +2,7 @@
 (function(root){'use strict';
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
+  {key:'primarycomponents',environment:'codex',name:'Codex primary 4p / 4b (no self-play)',branch:'arena-primary-components-feed',cohort:'4f43d6f3f234b9e561671f6958bbe2785e8896181791632ee4b1569a5ab062e0'},
   {key:'primary',environment:'codex',name:'Codex main',branch:'arena-feed',cohort:'7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404'},
   {key:'recovery',environment:'codex',name:'Codex six-bot mix',branch:'arena-recovery-feed',cohort:'7729472d36914fd1dce8ecfcc2d520cfc1c03ce737ac99511093e94ebce33a4c'},
   {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},

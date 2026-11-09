@@ -10,7 +10,7 @@ window.ReplayCommon = (() => {
   const el = (tag, text, cls) => {const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
   async function get(url) {url=new URL(url,location.href);if(url.hostname==='raw.githubusercontent.com')url.searchParams.set('v',Math.floor(Date.now()/30000));const r=await fetch(url.href,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const data=await r.json();if(data.schema==='bridge-replay-index-v1'&&Array.isArray(data.record_shards)){data.records=(await Promise.all(data.record_shards.map(p=>get(new URL(p,url).href)))).flat();}return data;}
   async function catalog() {
-    const urls=[new URL('catalog.json',location.href).href,'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-recovery-feed/arena/replays/catalog.json'];
+    const urls=['https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-primary-components-feed/arena/replays/catalog.json',new URL('catalog.json',location.href).href,'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-recovery-feed/arena/replays/catalog.json'];
     if(location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') urls.push(FEED,'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-local-feed/arena/replays/catalog.json','https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-components-feed/arena/replays/catalog.json');
     const results=await Promise.allSettled(urls.map(get)); const map=new Map();
     results.forEach((r,i)=>{if(r.status==='fulfilled'&&r.value.schema==='bridge-replay-catalog-v1')
