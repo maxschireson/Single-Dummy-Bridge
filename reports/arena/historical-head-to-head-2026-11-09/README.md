@@ -71,6 +71,22 @@ Its displayed model labels match this dataset. Its full scientific manifest
 and individual deal families must be checked by the receiving collector.
 This summary does not freeze or copy live dashboard totals.
 
+## More frequent live updates
+
+Max subsequently asked for more frequent dashboard updates because he enjoys
+watching the results. The page already reloads every 30 seconds; the first two
+`gh-pages` publications were at 09:08:20 and 09:18:36 UTC on 9 November 2026,
+roughly ten minutes apart. Shorten the running publisher's actual publication
+interval, with 60 seconds as the proposed target, and retain the existing
+30-second browser refresh. Publish only when committed results change and
+coalesce overlapping publication attempts. Keep publication asynchronous so
+it does not stop collection. Preserve a visible snapshot timestamp.
+
+The active publisher is in the receiving Codex environment, and its code or
+configuration is not present on this source branch. This export records the
+request; it has not changed the running publisher. The receiving task should
+apply the interval there and verify two successive fresh publications.
+
 ## Scope and verification
 
 The 3,235 older substitution-comparison pairs, other-bidder cohorts, and
