@@ -10,7 +10,11 @@
     const power = c => (c[0] === trump ? 30 : c[0] === lead ? 15 : 0) + ranks.indexOf(c[1]);
     return trick.reduce((best, play) => power(play.card) > power(best.card) ? play : best).seat;
   }
+  function tableBoard(board, table) {
+    return {...board, contract: table.contract ?? board.contract, declarer: table.declarer ?? board.declarer, auction: table.auction ?? board.auction};
+  }
   function replay(board, table, ply) {
+    board = tableBoard(board, table);
     const hands = initialHands(board), tricks = [0, 0], history = [];
     let turn = seats[(seats.indexOf(board.declarer) + 1) % 4], trick = [], shown = [];
     const trump = board.contract[1];
@@ -31,6 +35,6 @@
       last: ply ? table.plays[ply - 1] : null, finishedTrick: ply > 0 && ply % 4 === 0};
   }
   function firstDifference(a, b) { const i = a.findIndex((x, i) => x !== b[i]); return i < 0 ? null : i; }
-  global.BridgeReplay = {seats, suits, ranks, initialHands, winner, replay, firstDifference};
+  global.BridgeReplay = {seats, suits, ranks, initialHands, winner, tableBoard, replay, firstDifference};
   if (typeof module !== 'undefined') module.exports = global.BridgeReplay;
 })(typeof window !== 'undefined' ? window : globalThis);

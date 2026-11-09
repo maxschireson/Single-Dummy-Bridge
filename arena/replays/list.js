@@ -28,7 +28,7 @@ function draw(){
   $('rows').replaceChildren();
   for(const r of filtered.slice(page*50,(page+1)*50)){
     const tr=el('tr'),board=el('td'),a=el('a',`#${r.index+1}`,'record-link');a.href=urlFor(r);board.append(a);tr.append(board);
-    for(const text of [C.pairLabel(r.pair),C.date(r.completed_epoch),r.contract+' by '+r.declarer])tr.append(el('td',text));
+    for(const text of [C.pairLabel(r.pair),C.date(r.completed_epoch),(r.contracts?r.contracts.map(c=>c.contract+' by '+c.declarer).filter((c,i,a)=>a.indexOf(c)===i).join(' / '):r.contract+' by '+r.declarer)])tr.append(el('td',text));
     for(const score of r.scores)tr.append(el('td',C.signed(score),'num'));
     const td=el('td',null,'num '+(r.imps>0?'pos':r.imps<0?'neg':''));td.append(el('strong',C.signed(r.imps)));tr.append(td);
     const replay=el('td'),link=el('a','View play →');link.href=urlFor(r);replay.append(link);tr.append(replay);$('rows').append(tr);
