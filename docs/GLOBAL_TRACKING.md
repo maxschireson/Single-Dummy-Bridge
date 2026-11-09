@@ -55,3 +55,25 @@ Publish updated complete `arena/global-stats.json` snapshots on
 publisher lives in another environment; this change does not claim its private
 training counters have already been connected. The source JSON and exporter
 are ready for that integration and historical backfill.
+
+## Decisions seen for each latest model
+
+The model table reports parameter counts and `decisions_seen` together, tied to
+the model SHA256. This counter covers training rows once in the **latest fit**,
+not a claimed lifetime total through its inherited parent. Validation/test rows,
+repeated optimizer epochs and newly collected but untrained play do not add rows.
+Belief rows are labelled **observations**, since card ownership is a prediction
+rather than an action decision.
+
+| Deployed component | Parameters | Latest-fit training rows | Source |
+|---|---:|---:|---|
+| Bidding | 1,524,776 | Pending | Promotion confirms 40,000 boards and 314 PPO updates, not a trained-decision count |
+| Public belief | 308,726 | 963,304 observations | `reports/belief_size_study_2026-11-09.md` |
+| Auction-aware policy | 39,512 | 363,868 decisions | `reports/auction_policy_bootstrap_2026-11-09.md` |
+
+A model ledger entry may include `decisions_seen` with `value`, `kind`
+(`decisions` or `observations`), `scope: latest_fit`, `coverage` (`exact`,
+`lower_bound` or `pending`), `detail`, and `source_url`. Pending uses null,
+not zero. Populate this from the frozen training manifest when publishing a
+checkpoint; preserve the identity and training scope. Do not carry counts from
+a previous model to a new SHA256. The builder validates these optional fields.

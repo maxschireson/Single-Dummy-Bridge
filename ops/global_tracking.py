@@ -98,6 +98,17 @@ def build_tracking(baseline, ledger):
     if 'models' in ledger:
         for model in ledger['models']:
             integer(model['parameters'])
+            decisions = model.get('decisions_seen')
+            if decisions is not None:
+                if decisions.get('kind') not in ('decisions', 'observations') or decisions.get('scope') != 'latest_fit':
+                    raise ValueError('Training counts require an explicit kind and latest-fit scope')
+                if decisions.get('coverage') == 'pending':
+                    if decisions.get('value') is not None:
+                        raise ValueError('Pending training count must be null')
+                elif decisions.get('coverage') in ('exact', 'lower_bound'):
+                    integer(decisions['value'])
+                else:
+                    raise ValueError('Unknown training-count coverage')
             if not model.get('sha256') or not model.get('component'):
                 raise ValueError('Model identity and component required')
         out['models'] = deepcopy(ledger['models'])

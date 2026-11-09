@@ -38,6 +38,21 @@ class GlobalTrackingTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             learning_metric(dict(e, samples=16), 1000)
 
+    def test_model_training_counts_preserve_scope_and_unknowns(self):
+        model = dict(parameters=12, component='Policy', sha256='checkpoint',
+                     decisions_seen=dict(value=100, kind='decisions', scope='latest_fit', coverage='exact'))
+        result = build_tracking(self.baseline(), dict(models=[model]))
+        self.assertEqual(result['models'][0]['decisions_seen']['value'], 100)
+        model['decisions_seen'].update(value=None, coverage='pending')
+        self.assertIsNone(build_tracking(self.baseline(), dict(models=[model]))['models'][0]['decisions_seen']['value'])
+        for value in [-1, True, 1.5]:
+            model['decisions_seen'].update(value=value, coverage='exact')
+            with self.assertRaises(ValueError):
+                build_tracking(self.baseline(), dict(models=[model]))
+        model['decisions_seen'].update(value=0, coverage='pending')
+        with self.assertRaises(ValueError):
+            build_tracking(self.baseline(), dict(models=[model]))
+
 
 if __name__ == '__main__':
     unittest.main()
