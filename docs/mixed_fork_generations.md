@@ -78,7 +78,10 @@ retained alongside the new trajectories. The policy's auction and action
 layers are fine-tuned solely on verified audited IMP contrasts, with equal
 total weight per family and held-out checkpoint selection. The new IMP output
 is explicitly in IMP units. No ordinary outcome labels are used. A component
-that fails predictive validation is retained from the parent.
+that fails predictive validation is retained from the parent. If neither
+component changes, retain the current actual best and do not add a duplicate
+version or re-promote a demoted parent. Historical optimizer checkpoints are
+retained with their versions.
 
 The automatic next generation uses fresh boards and the selected components,
 with the new version first provisionally. Default lengths grow 25k → 50k →
@@ -92,7 +95,9 @@ the active generation. `manifest.json` contains immutable identities;
 `state.json` contains paired IMPs, split counts, audit counts, and best status;
 `heartbeat.json` names work currently in flight. Atomic compressed episodes and
 small hashed receipts allow bounded slices to resume without replaying done
-boards. The supervisor starts another slice automatically and launches fitting
+boards. The versioned supervisor `ops/supervise_mixed.py` separately verifies the
+training-transition hash in `training-config.json`, preserving the frozen
+collection code. It starts another slice automatically and launches fitting
 at the boundary. OS-owned writer/supervisor locks prevent duplicate workers.
 Never delete a lock file to take ownership. A `STOP` file stops new dispatch and
 allows in-flight complete boards to be preserved.
@@ -100,7 +105,7 @@ allows in-flight complete boards to be preserved.
 ```sh
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python ops/mixed_generation.py status \
   --run runs/mixed-fork-25k/g0001
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python ops/mixed_generation.py supervise \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python ops/supervise_mixed.py supervise \
   --run runs/mixed-fork-25k/g0001 --seconds 240 --workers 4
 ```
 
