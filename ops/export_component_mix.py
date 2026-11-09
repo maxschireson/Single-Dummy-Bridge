@@ -87,6 +87,7 @@ def export(root,out):
     atomic_json(out/'arena/replays/catalog.json',dict(schema='bridge-replay-catalog-v1',cohorts=[dict(id=cohort,title=title,count=len(records),index_url=f'data/{cohort}/index.json')]))
     contiguous=0;indices={r['index'] for r in records}
     while contiguous in indices:contiguous+=1
+    now=time.time()  # Every included completion precedes the linked snapshot cutoff.
     rates={}
     for minutes in (5,15,30,60):
         n=sum(r['completed_epoch']>=now-minutes*60 for r in records)
