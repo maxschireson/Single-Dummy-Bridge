@@ -1,0 +1,62 @@
+/* Shared reporting rules for the dashboard and its exact replay drill-downs. */
+(function(root){'use strict';
+ const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
+ const sources=[
+  {key:'primary',environment:'codex',name:'Codex main',branch:'arena-feed',cohort:'7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404'},
+  {key:'recovery',environment:'codex',name:'Codex six-bot mix',branch:'arena-recovery-feed',cohort:'7729472d36914fd1dce8ecfcc2d520cfc1c03ce737ac99511093e94ebce33a4c'},
+  {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
+  {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
+ ];
+ const labels={'4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['4','4p','4b','3','2','1'];
+ const names={all:'All environments',chatgpt:'ChatGPT',codex:'Codex'};
+ const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
+ const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
+ function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
+ const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
+ const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===scope);
+ const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
+ function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
+ function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
+  if(v.length!==n)throw Error('Missing scored outcome');const total=v.reduce((a,b)=>a+b,0),mean=total/n,variance=n>1?v.reduce((s,x)=>s+(x-mean)**2,0)/(n-1):null,sd=variance===null?null:Math.sqrt(variance),se=sd===null?null:sd/Math.sqrt(n),half=se===null?null:critical(n-1)*se;
+  return {n,total,mean,variance,sd,se,ci:half===null?null:[mean-half,mean+half],wins:v.filter(x=>x>0).length,ties:v.filter(x=>x===0).length,losses:v.filter(x=>x<0).length};
+ }
+ function rowsFor(inputs,scope='all',condition='common',snapshots=null){const allowed=new Set(pickSources(scope).map(s=>s.key)),rows=[];
+  for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
+   const cutoff=snapshots? snapshots[source.cohort]:data.generated_epoch;if(cutoff==null)continue;
+   for(const r of index.records){if(r.completed_epoch>cutoff)continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
+    if(condition==='own'&&!Object.hasOwn(r,'own_imps'))continue;
+    rows.push({...r,pair,imps:value==null?null:flip?-value:value,scores:[...(condition==='own'?r.own_scores||r.scores:r.scores)].slice()[flip?'reverse':'slice'](),contracts:[...(condition==='own'?r.own_contracts||r.contracts:r.contracts)].slice()[flip?'reverse':'slice'](),_pair:r.pair,_flip:flip,_cohort:source.cohort,_source:source.key,_environment:source.environment,_title:source.name});
+   }
+  }
+  // One observation per family and matchup, independent of the outcome. Earliest wins.
+  rows.sort(byTime);const seen=new Set(),result=[];for(const row of rows){const key=row.family+'|'+row.pair;if(!seen.has(key)){seen.add(key);result.push(row);}}
+  return {rows:result,duplicates:rows.length-result.length,observations:rows.length};
+ }
+ function view(rows,windowSize=0){const groups={},matrix=Object.fromEntries(order.map(k=>[k,{}])),pairs=[...new Set(rows.map(r=>r.pair))].sort((a,b)=>{const [a0,a1]=members(a),[b0,b1]=members(b);return order.indexOf(a0)-order.indexOf(b0)||order.indexOf(a1)-order.indexOf(b1);});
+  for(const pair of pairs){let selected=rows.filter(r=>r.pair===pair);if(windowSize)selected=selected.slice(-windowSize);const values=selected.map(r=>r.imps),s=stats(values),[a,b]=members(pair);groups[pair]=s;matrix[a][b]=s;if(a!==b)matrix[b][a]=stats(values.map(x=>-x));}return {groups,matrix};
+ }
+ function build(inputs,scope='all',snapshots=null){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key));if(!chosen.length)throw Error('Reports are still loading');
+  const common=rowsFor(chosen,scope,'common',snapshots),own=rowsFor(chosen,scope,'own',snapshots),views={},own_views={},curves={},own_curves={};
+  for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
+  for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=10)targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
+  const generated_epoch=Math.max(...chosen.map(x=>x.data.generated_epoch)),rates={};for(const m of [5,15,30,60]){const pairs=chosen.reduce((n,x)=>n+(x.data.rates[m]?.pairs||0),0),per_hour=chosen.reduce((n,x)=>n+(x.data.rates[m]?.per_hour||0),0);rates[m]={pairs,per_hour,full_window:chosen.every(x=>x.data.rates[m]?.full_window)};}
+  const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
+  return {campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order,versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
+   completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,own_views:own.rows.length?own_views:null,curves,own_curves,
+   report:{scope,snapshots:reportSnapshots,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
+   feed:{published_epoch:generated_epoch,next_update_epoch:Math.min(...chosen.map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60))},
+   interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
+   model_note:'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
+ }
+ async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
+ const shardCache=new Map();
+ async function loadSource(source,{indexOnly=false,cutoff=null}={}){const path=base+source.branch+'/arena/',data=indexOnly?{generated_epoch:cutoff??Infinity,own_views:source.key==='recovery'?null:{}}:await get(path+'data.json');
+  if(!indexOnly&&data.manifest_identity!==source.cohort)throw Error('Run identity changed');
+  const indexURL=path+'replays/data/'+source.cohort+'/index.json',index=await get(indexURL);if(index.cohort!==source.cohort)throw Error('Replay run identity mismatch');
+  if(index.record_shards){index.records=(await Promise.all(index.record_shards.map(async(p,i)=>{const url=new URL(p,indexURL).href;if(shardCache.has(url))return shardCache.get(url);const rows=await get(url);if(i<index.record_shards.length-1&&rows.length===100)shardCache.set(url,rows);return rows;}))).flat();}
+  if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);if(index.records.length!==data.completed)throw Error('Score and replay publication are not yet synchronized');}
+  return {source,data,index,indexURL};
+ }
+ const api={sources,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,loadSource};
+ root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window==='undefined'?globalThis:window);

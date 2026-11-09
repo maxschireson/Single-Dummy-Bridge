@@ -21,6 +21,14 @@ A separate 500-family diagnostic replays one outcome-independent, family-hash-se
 
 Prepare a new run with `scripts/prepare_component_arena.py --source SOURCE_RUN --out NEW_RUN`. Run `scripts/run_supplemental_arena.py --run NEW_RUN --workers 4 --seconds 86400` with single-threaded BLAS. Only one collector may hold the writer lock. Stop markers drain the job; never overwrite frozen manifests. Run `scripts/publish_component_feed.js` in the authenticated functions runtime to publish roughly once per minute. It writes only its dedicated branch. Completed episodes are immutable and resumed by index.
 
-Multi-character IDs use explicit pair members and `~`-separated public keys, e.g. `4p~3`; legacy pair keys such as `43` remain valid. The dashboard selector links to the component cohort at `arena/?source=components`, and all IMP/count links retain cohort identity and snapshot cutoffs.
+Multi-character IDs use explicit pair members and `~`-separated public keys, e.g. `4p~3`; legacy pair keys such as `43` remain valid. The dashboard defaults to an integrated report, with ChatGPT and Codex filters. Each environment combines its main and component flows; individual runs remain available. Every IMP/count link retains per-run snapshot cutoffs and original replay provenance.
 
 Validation: 17 unit tests cover component artifact selection, unchanged native bidders, immutable source specs, multi-character scheduling, statistical signs, auction reuse and the existing arena behaviors. Published trajectories are replay-validated before export.
+
+## Integrated reporting
+
+The reporting layer combines the main/component feeds by environment without changing collectors, schedules or model weights. `P` and `Q` from Codex normalize to `4p` and `4b`. Each family/matchup counts once, retaining the earliest completed observation regardless of outcome. Distinct matchups may reuse families; collection observations and distinct-family counts are labeled separately. Native-bidder results exclude Codex's common-only recovery flow.
+
+Statistics are recomputed from replay-index rows: total IMPs, sample variance, SD, SE and Student-t intervals. Combined recent windows use completion time rather than unrelated source indices. Links carry one cutoff per source and use the identical deduplication and orientation code. Each board opens its original immutable record, with table order adjusted when its source matchup has the opposite orientation.
+
+Validation: eight reporting tests pass on a compact replay fixture and a full 2,759-observation publication snapshot (1,265 ChatGPT; 1,494 Codex). Every source's count, total, variance and SE reproduces its existing report. Tests also cover P/Q aliases, reversed pairs, duplicate families, unavailable native conditions, snapshot cutoffs, all selectable windows and replay counts/totals. Run `node web/arena-replays/site/arena/tests/reporting.test.cjs`. The code also repairs legacy malformed opponent assignment labels for display from the recorded matchup and swapped-table convention.
