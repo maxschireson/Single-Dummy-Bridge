@@ -33,6 +33,10 @@ overlap and must not be blindly summed.
 
 ## Learning efficiency
 
+The dashboard section is hidden at Max’s request until there is enough run
+history for meaningful comparisons. Keep the generation ledger and calculation
+code; re-enable the display when that evidence is available.
+
 For each generation record separate bidding-only and play-only matched gains
 against its parent, measured at 32 samples with the other component fixed.
 Divide the IMP gain per evaluation board by new training work in normalized
