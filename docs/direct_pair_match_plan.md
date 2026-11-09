@@ -38,3 +38,15 @@ At an early finish, preserve all completed and already-in-flight completed recor
 The direct-pair design changes future planning and is not implemented by the current collector. The separate 10,000-board review above applies to the current generation. Preserve the active g0001-bid40k manifest, source, models, completed results and existing score interpretation.
 
 The owner must implement and test direct two-way pair scheduling/scoring in a separate versioned collector before launching the next generation. Pin its source and pair allocation in a new manifest and update the versioned boundary handoff explicitly. Required checks include swapped-seat score orientation, correct model assignment, deterministic disjoint family allocation, duplicate-free resume and separate per-pair reporting. Do not launch a second writer or trainer for the active run. The existing successor authorization remains in force; this is a requirement on its match design.
+
+
+## Next-round multi-score player
+
+The user requested nested16/32/64 scoring for the successor. Use the separately
+versioned implementation and integration profile in [multiscore_player.md](multiscore_player.md).
+It shares one64-world solve across all three prefix decisions, with separately
+correct selectors/RNG and once-only cost accounting. This is orthogonal to the
+4:2:1 bot-pair allocation. Bind it in the new collector at the boundary; do not
+modify the active pinned checkout. Alternative score views are not completed
+counterfactual trajectories or independent board families. Active32 remains the
+profile default pending the separate64-vs32 evaluation/adoption decision.
