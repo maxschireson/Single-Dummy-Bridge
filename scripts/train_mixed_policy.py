@@ -1,5 +1,6 @@
 """Fine-tune the auction/history action network ONLY on audited IMP contrasts."""
 import argparse
+import json
 import os
 from pathlib import Path
 import shutil
@@ -21,7 +22,7 @@ def main():
     a=p.parse_args();a.out.mkdir(parents=True,exist_ok=True)
     import tensorflow as tf
     tf.config.threading.set_intra_op_parallelism_threads(1);tf.config.threading.set_inter_op_parallelism_threads(1)
-    tf.keras.utils.set_random_seed(202611091903);tf.config.experimental.enable_op_determinism()
+    tf.keras.utils.set_random_seed(202611093);tf.config.experimental.enable_op_determinism()
     with writer_lock(a.out):
         ds=read(a.data/'dataset.json')
         if ds['schema']!='audited-neural-imp-v1' or not ds['validated']:raise ValueError('Audited IMP data required')
@@ -79,7 +80,7 @@ def main():
             atomic_json(a.out/'state.json',state)
         started=time.monotonic()
         while state['epoch']<a.epochs and time.monotonic()-started<a.seconds:
-            epoch=state['epoch']+1;rng=np.random.default_rng(202611091903+epoch)
+            epoch=state['epoch']+1;rng=np.random.default_rng(202611093+epoch)
             for pi in rng.permutation(len(paths['train'])):
                 d=load(paths['train'][pi]);order=rng.permutation(len(d['y']))
                 for i in range(0,len(order),512):step({k:v[order[i:i+512]] for k,v in d.items() if k!='group'})

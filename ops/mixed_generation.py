@@ -48,13 +48,15 @@ def initialize(root, corpus, belief, policy, old_belief, old_policy, exclusions,
     for p in exclusions:
         d = read(p)
         if isinstance(d, dict):
+            blocked.update(k for k in d if len(k) == 64)
             for value in d.values():
                 if isinstance(value, list): blocked.update(v for v in value if isinstance(v, str))
         else: blocked.update(v['family'] for v in d if isinstance(v, dict) and 'family' in v)
     boards = []; seen = set(); excluded = 0
     for board in load(corpus):
         family = deal_key(board.hands, True)
-        if not board.contract or family in blocked or family in seen:
+        legacy_overlap = any(digest(board.hands[j:]+board.hands[:j]) in blocked for j in range(4))
+        if not board.contract or family in blocked or family in seen or legacy_overlap:
             excluded += 1; continue
         boards.append(board); seen.add(family)
         if len(boards) == target: break

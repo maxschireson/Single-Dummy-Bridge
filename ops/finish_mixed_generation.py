@@ -8,6 +8,7 @@ from copy import deepcopy
 from pathlib import Path
 import shutil
 import sys
+import time
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from bridge_harness.corpus import generate,save,load
 from bridge_harness.improvement import read,writer_lock
@@ -82,12 +83,12 @@ def finish(run):
                 previous_generation=str(run),previous_manifest_sha256=sha(run/'manifest.json'),
                 demotion_looks=sorted({min(target,k) for k in (500,1000,2500,5000,10000,25000,50000,100000,target)}),
                 next_generation_target=min(250000,target*2),
-                component_validation=dict(belief=belief['promotion_eligible'],policy=policy['eligible']))
+                created_epoch=time.time(),component_validation=dict(belief=belief['promotion_eligible'],policy=policy['eligible']))
             new.pop('identity',None);new['identity']=digest(new)
             atomic_json(next_run/'manifest.json',new);atomic_json(next_run/'state.json',summarize([],new))
-            next_cfg=dict(cfg,base_belief_data=str(data/'belief'),
-                belief_checkpoint=str((ROOT/belief['selected_checkpoint']).resolve()) if belief['promotion_eligible'] else cfg['belief_checkpoint'])
-            atomic_json(next_run/'training-config.json',next_cfg)
+        next_cfg=dict(cfg,base_belief_data=str(data/'belief'),
+            belief_checkpoint=str((ROOT/belief['selected_checkpoint']).resolve()) if belief['promotion_eligible'] else cfg['belief_checkpoint'])
+        atomic_json(next_run/'training-config.json',next_cfg)
         atomic_json(run/'next-generation.json',dict(run=str(next_run),generation=n,target=target,
             source_boundary_boards=m['target'],previous_demoted=bool(state['demotion']),inconclusive_does_not_block=True))
         atomic_json(run.parent/'current.json',dict(run=str(next_run),generation=n,target=target))
