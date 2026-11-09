@@ -14,7 +14,7 @@ function draw(){
  selected=selected.map(r=>({...r,imps:biddingMetric?r.dd_bidding_imps[model]:own?r.own_imps??r.imps:r.imps,scores:own?r.own_scores||r.scores:r.scores,contracts:own?r.own_contracts||r.contracts:r.contracts}));
  const total=selected.reduce((s,r)=>s+(r.imps??0),0);
  if(active){let message=`${selected.length.toLocaleString()} published hand sets · ${biddingMetric?'DD bidding delta for '+C.labels[model]:own?'historical bidder condition':'common auction condition'}`;
-  if(!biddingMetric&&pair!=='all'&&pair[0]!==pair[1])message+=` · ${C.signed(total)} IMPs for ${C.pairLabel(pair)}`;
+  if(!biddingMetric&&pair!=='all'&&C.pairMembers(pair)[0]!==C.pairMembers(pair)[1])message+=` · ${C.signed(total)} IMPs for ${C.pairLabel(pair)}`;
   if(linked){const same=selected.length===expected.n&&(expected.total===null||total===expected.total);message+=same?' · Matches the linked dashboard snapshot.':` · Linked snapshot: ${expected.n} hands${expected.total===null?'':' / '+C.signed(expected.total)+' IMPs'}. Replay coverage is incomplete or has changed; no other cohort is substituted.`;}
   if(biddingMetric)message+=' · DD auction changes are separate from played-game IMPs.';if(cutoff!==Infinity)message+=' Snapshot at '+C.date(cutoff)+'.';$('coverage').textContent=message;
  }

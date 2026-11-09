@@ -94,7 +94,7 @@ function activate(initial=false){
   difference=B.firstDifference(record.tables[0].plays,record.tables[1].plays);
   $('title').textContent=`Board ${record.index+1} · ${C.pairLabel(record.pair)}`;document.title=$('title').textContent+' · Replay';
   $('meta').textContent=`Dealer ${record.board.dealer} · Vulnerability ${record.board.vulnerability} · ${C.date(record.completed_epoch)}`;
-  $('result').textContent=record.imps==null?'Self-play: training trajectories; no head-to-head IMP estimate':`${C.signed(record.imps)} IMPs for ${C.labels[record.pair[0]]} · ${C.signed(record.tables[0].ns_score)} − (${C.signed(record.tables[1].ns_score)}) points`;
+  $('result').textContent=record.imps==null?'Self-play: training trajectories; no head-to-head IMP estimate':`${C.signed(record.imps)} IMPs for ${C.labels[C.pairMembers(record.pair)[0]]} · ${C.signed(record.tables[0].ns_score)} − (${C.signed(record.tables[1].ns_score)}) points`;
   $('bidding-result').textContent=params.get('metric')==='bidding'?'DD bidder change for '+C.labels[params.get('model')]+': '+C.signed(fullRecord.dd_bidding_imps?.[params.get('model')])+' IMPs (separate from actual play above).':'';
   $('result').className=record.imps>0?'pos':record.imps<0?'neg':'';
   $('condition-note').textContent=key==='own'?(condition?.different?'Different historical bidding: these are the actual additional games.':'Identical auctions: the common games are reused; no extra games counted.'):fullRecord.conditions?.own?'Play comparison under the same v4 auction.':'Historical play under its frozen shared auction.';
