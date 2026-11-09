@@ -91,6 +91,7 @@ function activate(initial=false){
   for(let i=0;i<2;i++)stop(i);
   const key=$('condition').value,condition=fullRecord.conditions?.[key];
   record={...fullRecord,tables:condition?.tables||fullRecord.tables,imps:condition?condition.imps:fullRecord.imps};
+  if(params.get('flip')==='1'){record={...record,pair:C.pairMembers(record.pair).reverse().join('~'),imps:record.imps==null?null:-record.imps,tables:[...record.tables].reverse()};}
   difference=B.firstDifference(record.tables[0].plays,record.tables[1].plays);
   $('title').textContent=`Board ${record.index+1} · ${C.pairLabel(record.pair)}`;document.title=$('title').textContent+' · Replay';
   $('meta').textContent=`Dealer ${record.board.dealer} · Vulnerability ${record.board.vulnerability} · ${C.date(record.completed_epoch)}`;
@@ -99,7 +100,7 @@ function activate(initial=false){
   $('result').className=record.imps>0?'pos':record.imps<0?'neg':'';
   $('condition-note').textContent=key==='own'?(condition?.different?'Different historical bidding: these are the actual additional games.':'Identical auctions: the common games are reused; no extra games counted.'):fullRecord.conditions?.own?'Play comparison under the same v4 auction.':'Historical play under its frozen shared auction.';
   $('provenance').textContent=`${cohort.title} · Original board ID ${record.board.id} · Source index ${record.index} · Record SHA256 ${record.episode_sha256}`;
-  const back=new URL('index.html',location.href);back.searchParams.set('cohort',cohort.id);back.searchParams.set('pair',record.pair);back.searchParams.set('condition',key);if(params.get('metric')==='bidding'){back.searchParams.set('metric','bidding');back.searchParams.set('model',params.get('model'));}$('back').href=back;
+  const back=new URL('index.html',location.href);back.searchParams.set('cohort',cohort.id);back.searchParams.set('pair',record.pair);back.searchParams.set('condition',key);if(params.get('metric')==='bidding'){back.searchParams.set('metric','bidding');back.searchParams.set('model',params.get('model'));}if(params.has('report')){back.searchParams.delete('cohort');back.searchParams.set('report',params.get('report'));if(params.has('snapshots'))back.searchParams.set('snapshots',params.get('snapshots'));const pair=C.pairMembers(record.pair).map(k=>({P:'4p',Q:'4b'}[k]||k));back.searchParams.set('pair',pair.join(pair.every(k=>k.length===1)?'':'~'));}$('back').href=back;
   $('difference-status').textContent=difference===null?'Both tables played the same cards in the same order.':`First different play: card ${difference+1} · differences are observational, not causal attribution.`;
   setupTable(0);setupTable(1);renderHistory();$('loading').classList.add('hidden');$('viewer').classList.remove('hidden');
   positions=initial?positions.map((_,i)=>Math.max(0,Math.min(record.tables[i].plays.length,Math.floor(Number(params.get('ply'+(i+1))??params.get('ply'))||0)))):[0,0];
@@ -110,8 +111,9 @@ async function load(){try{
   const catalog=await C.catalog();cohort=catalog.find(c=>c.id===params.get('cohort'));if(!cohort)throw Error('This run’s play records have not been published yet.');
   const index=await C.get(cohort.indexURL);Object.assign(C.labels,index.labels);const row=index.records.find(r=>r.id===params.get('board'));if(!row)throw Error('This board is not yet available in the play index.');
   const data=await C.get(new URL(row.shard,cohort.indexURL));fullRecord=data[row.id];if(!fullRecord||fullRecord.episode_sha256!==row.episode_sha256)throw Error('Play record does not match its index.');
-  for(const condition of Object.values(fullRecord.conditions||{common:{tables:fullRecord.tables}}))for(const table of condition.tables){const board=B.tableBoard(fullRecord.board,table),s=B.replay(board,table,table.plays.length);if(board.contract&&s.tricks[B.seats.indexOf(board.declarer)%2]!==table.declarer_tricks)throw Error('Recorded trick count mismatch');}
+  for(const condition of Object.values(fullRecord.conditions||{common:{tables:fullRecord.tables}}))for(const [i,table] of condition.tables.entries()){if(table.assignments.some(x=>typeof x!=='string')){const pair=C.pairMembers(fullRecord.pair);table.assignments=i===0?pair:[...pair].reverse();}const board=B.tableBoard(fullRecord.board,table),s=B.replay(board,table,table.plays.length);if(board.contract&&s.tricks[B.seats.indexOf(board.declarer)%2]!==table.declarer_tricks)throw Error('Recorded trick count mismatch');}
   $('condition').replaceChildren();for(const key of Object.keys(fullRecord.conditions||{common:{}})){const option=el('option',key==='common'?(fullRecord.conditions?.own?'Common v4 bidder':'Frozen shared auction'):'Historical bidders'+(fullRecord.different_bidding?' — different auctions':' — reused games'));option.value=key;$('condition').append(option);}
   $('condition').value=fullRecord.conditions?.[params.get('condition')]?params.get('condition'):'common';$('condition').onchange=()=>activate(false);activate(true);
 }catch(e){$('loading').textContent=e.message;$('loading').classList.add('notice');$('title').textContent='Play record unavailable';}}
 load();
+
