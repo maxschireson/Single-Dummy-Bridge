@@ -126,7 +126,7 @@ def recover(run, manifest, workers, history, launcher=launch):
 def check(pointer, workers=2, launcher=launch):
     home=pointer.parent; output=home/'watchdog';output.mkdir(exist_ok=True)
     current=read(pointer);run=Path(current['run']);manifest=read(run/'manifest.json')
-    launcher,workers=launch_settings(run,workers)
+    launcher_name,workers=launch_settings(run,workers)
     if manifest.get('protocol')!='direct-pairs-v1': raise ValueError('Unexpected protocol; do not revive legacy collector')
     # Read atomic receipts only: report generation must not repair/write episodes.
     rows=[read(p) for p in sorted((run/'receipts').glob('*.json'))]
@@ -143,7 +143,7 @@ def check(pointer, workers=2, launcher=launch):
     state=dict(epoch=now,run=str(run),manifest_identity=manifest['identity'],completed=len(rows),
         batch_completed=len(rows)+manifest.get('legacy_completed',0),target=manifest['target'],
         locks=locks,last_commit_age_seconds=now-last,reports=12,workers=workers,
-        interval_seconds=300,pid=os.getpid(),next_check_epoch=now+300,launcher=launcher)
+        interval_seconds=300,pid=os.getpid(),next_check_epoch=now+300,launcher=launcher_name)
     if (run/'STOP').exists():state['action']='intentional-stop'
     elif len(rows)>=manifest['target']:state['action']='collection-complete-transition-owned-by-supervisor-or-monitors'
     elif 'held' in locks.values():state['action']='running' if now-last<600 else 'held-lock-no-recent-progress-investigate'
