@@ -23,7 +23,7 @@
     document.getElementById('replay-availability').textContent=current?`${current.count} play records published for the live run.`:'Live-run card sequences have not been published yet. Archived matches below are ready to replay; live score links will show their coverage explicitly.';
     for(const c of cohorts.values()){
       if(typeof D!=='undefined'&&c.id===D.manifest_identity)continue;
-      try{const response=await fetch(new URL(c.index_url,c.base));if(!response.ok)continue;const data=await response.json();const h=document.createElement('h3');h.textContent=c.title;section.append(h);const p=document.createElement('p');
+      try{const response=await fetch(new URL(c.index_url,c.base));if(!response.ok)continue;const data=await response.json();data.labels={...data.labels,A:'Gen 3',B:'Gen 3-early',C:'Gen 2'};const h=document.createElement('h3');h.textContent=c.title;section.append(h);const p=document.createElement('p');
         for(const pair of ['AB','AC','BC']){const rows=data.records.filter(r=>r.pair===pair),stats={n:rows.length,total:rows.reduce((v,r)=>v+r.imps,0)};if(!stats.n)continue;const a=document.createElement('a');a.href=link(pair,stats,c.id,0,Math.max(...rows.map(r=>r.completed_epoch)));a.textContent=`${data.labels[pair[0]]} vs ${data.labels[pair[1]]}: ${stats.total>0?'+':''}${stats.total} IMPs (${stats.n} boards)`;a.style.display='block';a.style.margin='9px 0';p.append(a);}section.append(p);
       }catch(_){}
     }

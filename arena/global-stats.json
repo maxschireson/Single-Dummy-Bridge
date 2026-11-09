@@ -46,7 +46,7 @@
       "name": "Public belief \u00b7 epoch 6",
       "parameters": 308726,
       "sha256": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-      "used_by": "Gen 3.5 \u00b7 Gen 3",
+      "used_by": "Gen 3 \u00b7 Gen 3-early",
       "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json",
       "decisions_seen": {
         "value": 30605384,
@@ -65,7 +65,7 @@
       "name": "Auction-aware policy \u00b7 epoch 8",
       "parameters": 39512,
       "sha256": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-      "used_by": "Gen 3.5",
+      "used_by": "Gen 3",
       "source_url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/direct-pairs-current/reports/v2_network_results_2026-11-09.json",
       "decisions_seen": {
         "value": 363868,
@@ -105,14 +105,14 @@
       }
     },
     {
-      "name": "Gen 3",
+      "name": "Gen 3-early",
       "learning_efficiency": {
         "bidding": null,
         "play": null
       }
     },
     {
-      "name": "Gen 3.5",
+      "name": "Gen 3",
       "learning_efficiency": {
         "bidding": null,
         "play": null

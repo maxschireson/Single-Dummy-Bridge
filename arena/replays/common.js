@@ -1,7 +1,7 @@
 'use strict';
 window.ReplayCommon = (() => {
   const FEED = 'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-feed/arena/replays/catalog.json';
-  const labels = {A:'Gen 3.5', B:'Gen 3', C:'Gen 2'};
+  const labels = {A:'Gen 3', B:'Gen 3-early', C:'Gen 2'};
   const $ = id => document.getElementById(id);
   const pairLabel = p => labels[p[0]] + ' vs ' + labels[p[1]];
   const signed = n => n > 0 ? '+' + n : String(n);
