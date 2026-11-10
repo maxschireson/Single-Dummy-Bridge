@@ -1,0 +1,1784 @@
+{
+  "cohort": "gen5r",
+  "commit": "8f386190b57714f94c904c922cbcdf36ab7791a2",
+  "episodes": 2030,
+  "families": 2030,
+  "counts": {
+    "verified_audits": 72986,
+    "budget_skips": 76,
+    "continuation_tables": 28317,
+    "unique_rooms": 4070,
+    "passed_out_rooms": 16
+  },
+  "manifests": [
+    "cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3"
+  ],
+  "audit_references": {
+    "5R32": "3",
+    "5R192": "3"
+  },
+  "candidates": [
+    "5R192",
+    "5R32"
+  ],
+  "scopes": {
+    "common_root": {
+      "all": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 30939,
+            "families": 1857,
+            "total": 355,
+            "mean": 0.011474191150328064,
+            "cluster_se": 0.008224550292830462,
+            "ci95": [
+              -0.0046459274236196405,
+              0.02759430972427577
+            ],
+            "family_equal_mean": 0.012579388923177797,
+            "family_equal_se": 0.007872916534617814,
+            "positive": 628,
+            "negative": 551,
+            "zero": 29760
+          },
+          "tricks": {
+            "n": 30939,
+            "families": 1857,
+            "total": 71,
+            "mean": 0.002294838230065613,
+            "cluster_se": 0.0017375975775667796,
+            "ci95": [
+              -0.0011108530219652753,
+              0.005700529482096501
+            ],
+            "family_equal_mean": 0.002446776615307094,
+            "family_equal_se": 0.0017606798291793723,
+            "positive": 628,
+            "negative": 551,
+            "zero": 29760
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 10217,
+            "families": 1852,
+            "total": 355,
+            "mean": 0.03474601154937849,
+            "cluster_se": 0.02489973565137405,
+            "ci95": [
+              -0.01405747032731465,
+              0.08354949342607162
+            ],
+            "family_equal_mean": 0.04091062824864121,
+            "family_equal_se": 0.023278373678502388,
+            "positive": 628,
+            "negative": 551,
+            "zero": 9038
+          },
+          "tricks": {
+            "n": 10217,
+            "families": 1852,
+            "total": 71,
+            "mean": 0.006949202309875697,
+            "cluster_se": 0.00526176721523932,
+            "ci95": [
+              -0.00336386143199337,
+              0.017262266051744763
+            ],
+            "family_equal_mean": 0.009941062357369053,
+            "family_equal_se": 0.005810808122323191,
+            "positive": 628,
+            "negative": 551,
+            "zero": 9038
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 29064,
+            "families": 1857,
+            "total": 269,
+            "mean": 0.009255436278557665,
+            "cluster_se": 0.007755995471409296,
+            "ci95": [
+              -0.005946314845404555,
+              0.024457187402519884
+            ],
+            "family_equal_mean": 0.010124114646851265,
+            "family_equal_se": 0.007434984237732672,
+            "positive": 488,
+            "negative": 443,
+            "zero": 28133
+          },
+          "tricks": {
+            "n": 29064,
+            "families": 1857,
+            "total": 43,
+            "mean": 0.0014794935315166529,
+            "cluster_se": 0.0015868815522521544,
+            "ci95": [
+              -0.00163079431089757,
+              0.004589781373930875
+            ],
+            "family_equal_mean": 0.0015693903971211324,
+            "family_equal_se": 0.0015913358992887098,
+            "positive": 488,
+            "negative": 443,
+            "zero": 28133
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 9313,
+            "families": 1846,
+            "total": 269,
+            "mean": 0.02888435520240524,
+            "cluster_se": 0.024200741891047428,
+            "ci95": [
+              -0.01854909890404772,
+              0.0763178093088582
+            ],
+            "family_equal_mean": 0.0316487698529952,
+            "family_equal_se": 0.022239983013754523,
+            "positive": 488,
+            "negative": 443,
+            "zero": 8382
+          },
+          "tricks": {
+            "n": 9313,
+            "families": 1846,
+            "total": 43,
+            "mean": 0.004617201760979277,
+            "cluster_se": 0.004952494557523919,
+            "ci95": [
+              -0.005089687571767605,
+              0.01432409109372616
+            ],
+            "family_equal_mean": 0.007090288428316598,
+            "family_equal_se": 0.005200459373191549,
+            "positive": 488,
+            "negative": 443,
+            "zero": 8382
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 977,
+            "families": 752,
+            "total": 94,
+            "mean": 0.09621289662231321,
+            "cluster_se": 0.09704778593044698,
+            "ci95": [
+              -0.09400076380136287,
+              0.2864265570459893
+            ],
+            "family_equal_mean": 0.09951241134751773,
+            "family_equal_se": 0.10386631760650392,
+            "positive": 168,
+            "negative": 148,
+            "zero": 661
+          },
+          "tricks": {
+            "n": 977,
+            "families": 752,
+            "total": 31,
+            "mean": 0.03172978505629478,
+            "cluster_se": 0.02268536749149709,
+            "ci95": [
+              -0.012733535227039516,
+              0.07619310533962907
+            ],
+            "family_equal_mean": 0.03679078014184397,
+            "family_equal_se": 0.022846282502612072,
+            "positive": 168,
+            "negative": 148,
+            "zero": 661
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 8336,
+            "families": 1837,
+            "total": 175,
+            "mean": 0.020993282149712092,
+            "cluster_se": 0.02200233527726186,
+            "ci95": [
+              -0.022131294993721157,
+              0.06411785929314534
+            ],
+            "family_equal_mean": 0.01511139468406752,
+            "family_equal_se": 0.021596626415811705,
+            "positive": 320,
+            "negative": 295,
+            "zero": 7721
+          },
+          "tricks": {
+            "n": 8336,
+            "families": 1837,
+            "total": 12,
+            "mean": 0.0014395393474088292,
+            "cluster_se": 0.004440982502580392,
+            "ci95": [
+              -0.007264786357648739,
+              0.010143865052466398
+            ],
+            "family_equal_mean": 0.001385992281474045,
+            "family_equal_se": 0.004811988799583204,
+            "positive": 320,
+            "negative": 295,
+            "zero": 7721
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 1324,
+            "families": 916,
+            "total": 24,
+            "mean": 0.01812688821752266,
+            "cluster_se": 0.03554250348727682,
+            "ci95": [
+              -0.05153641861753991,
+              0.08779019505258523
+            ],
+            "family_equal_mean": 0.004930858806404658,
+            "family_equal_se": 0.03411151306502681,
+            "positive": 45,
+            "negative": 35,
+            "zero": 1244
+          },
+          "tricks": {
+            "n": 1324,
+            "families": 916,
+            "total": 5,
+            "mean": 0.0037764350453172208,
+            "cluster_se": 0.008714286473124621,
+            "ci95": [
+              -0.013303566442007038,
+              0.02085643653264148
+            ],
+            "family_equal_mean": 0.003111353711790393,
+            "family_equal_se": 0.00971827835182827,
+            "positive": 45,
+            "negative": 35,
+            "zero": 1244
+          }
+        }
+      },
+      "5R192": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        }
+      },
+      "5R32": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 30939,
+            "families": 1857,
+            "total": 355,
+            "mean": 0.011474191150328064,
+            "cluster_se": 0.008224550292830462,
+            "ci95": [
+              -0.0046459274236196405,
+              0.02759430972427577
+            ],
+            "family_equal_mean": 0.012579388923177797,
+            "family_equal_se": 0.007872916534617814,
+            "positive": 628,
+            "negative": 551,
+            "zero": 29760
+          },
+          "tricks": {
+            "n": 30939,
+            "families": 1857,
+            "total": 71,
+            "mean": 0.002294838230065613,
+            "cluster_se": 0.0017375975775667796,
+            "ci95": [
+              -0.0011108530219652753,
+              0.005700529482096501
+            ],
+            "family_equal_mean": 0.002446776615307094,
+            "family_equal_se": 0.0017606798291793723,
+            "positive": 628,
+            "negative": 551,
+            "zero": 29760
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 10217,
+            "families": 1852,
+            "total": 355,
+            "mean": 0.03474601154937849,
+            "cluster_se": 0.02489973565137405,
+            "ci95": [
+              -0.01405747032731465,
+              0.08354949342607162
+            ],
+            "family_equal_mean": 0.04091062824864121,
+            "family_equal_se": 0.023278373678502388,
+            "positive": 628,
+            "negative": 551,
+            "zero": 9038
+          },
+          "tricks": {
+            "n": 10217,
+            "families": 1852,
+            "total": 71,
+            "mean": 0.006949202309875697,
+            "cluster_se": 0.00526176721523932,
+            "ci95": [
+              -0.00336386143199337,
+              0.017262266051744763
+            ],
+            "family_equal_mean": 0.009941062357369053,
+            "family_equal_se": 0.005810808122323191,
+            "positive": 628,
+            "negative": 551,
+            "zero": 9038
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 29064,
+            "families": 1857,
+            "total": 269,
+            "mean": 0.009255436278557665,
+            "cluster_se": 0.007755995471409296,
+            "ci95": [
+              -0.005946314845404555,
+              0.024457187402519884
+            ],
+            "family_equal_mean": 0.010124114646851265,
+            "family_equal_se": 0.007434984237732672,
+            "positive": 488,
+            "negative": 443,
+            "zero": 28133
+          },
+          "tricks": {
+            "n": 29064,
+            "families": 1857,
+            "total": 43,
+            "mean": 0.0014794935315166529,
+            "cluster_se": 0.0015868815522521544,
+            "ci95": [
+              -0.00163079431089757,
+              0.004589781373930875
+            ],
+            "family_equal_mean": 0.0015693903971211324,
+            "family_equal_se": 0.0015913358992887098,
+            "positive": 488,
+            "negative": 443,
+            "zero": 28133
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 9313,
+            "families": 1846,
+            "total": 269,
+            "mean": 0.02888435520240524,
+            "cluster_se": 0.024200741891047428,
+            "ci95": [
+              -0.01854909890404772,
+              0.0763178093088582
+            ],
+            "family_equal_mean": 0.0316487698529952,
+            "family_equal_se": 0.022239983013754523,
+            "positive": 488,
+            "negative": 443,
+            "zero": 8382
+          },
+          "tricks": {
+            "n": 9313,
+            "families": 1846,
+            "total": 43,
+            "mean": 0.004617201760979277,
+            "cluster_se": 0.004952494557523919,
+            "ci95": [
+              -0.005089687571767605,
+              0.01432409109372616
+            ],
+            "family_equal_mean": 0.007090288428316598,
+            "family_equal_se": 0.005200459373191549,
+            "positive": 488,
+            "negative": 443,
+            "zero": 8382
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 977,
+            "families": 752,
+            "total": 94,
+            "mean": 0.09621289662231321,
+            "cluster_se": 0.09704778593044698,
+            "ci95": [
+              -0.09400076380136287,
+              0.2864265570459893
+            ],
+            "family_equal_mean": 0.09951241134751773,
+            "family_equal_se": 0.10386631760650392,
+            "positive": 168,
+            "negative": 148,
+            "zero": 661
+          },
+          "tricks": {
+            "n": 977,
+            "families": 752,
+            "total": 31,
+            "mean": 0.03172978505629478,
+            "cluster_se": 0.02268536749149709,
+            "ci95": [
+              -0.012733535227039516,
+              0.07619310533962907
+            ],
+            "family_equal_mean": 0.03679078014184397,
+            "family_equal_se": 0.022846282502612072,
+            "positive": 168,
+            "negative": 148,
+            "zero": 661
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 8336,
+            "families": 1837,
+            "total": 175,
+            "mean": 0.020993282149712092,
+            "cluster_se": 0.02200233527726186,
+            "ci95": [
+              -0.022131294993721157,
+              0.06411785929314534
+            ],
+            "family_equal_mean": 0.01511139468406752,
+            "family_equal_se": 0.021596626415811705,
+            "positive": 320,
+            "negative": 295,
+            "zero": 7721
+          },
+          "tricks": {
+            "n": 8336,
+            "families": 1837,
+            "total": 12,
+            "mean": 0.0014395393474088292,
+            "cluster_se": 0.004440982502580392,
+            "ci95": [
+              -0.007264786357648739,
+              0.010143865052466398
+            ],
+            "family_equal_mean": 0.001385992281474045,
+            "family_equal_se": 0.004811988799583204,
+            "positive": 320,
+            "negative": 295,
+            "zero": 7721
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 1324,
+            "families": 916,
+            "total": 24,
+            "mean": 0.01812688821752266,
+            "cluster_se": 0.03554250348727682,
+            "ci95": [
+              -0.05153641861753991,
+              0.08779019505258523
+            ],
+            "family_equal_mean": 0.004930858806404658,
+            "family_equal_se": 0.03411151306502681,
+            "positive": 45,
+            "negative": 35,
+            "zero": 1244
+          },
+          "tricks": {
+            "n": 1324,
+            "families": 916,
+            "total": 5,
+            "mean": 0.0037764350453172208,
+            "cluster_se": 0.008714286473124621,
+            "ci95": [
+              -0.013303566442007038,
+              0.02085643653264148
+            ],
+            "family_equal_mean": 0.003111353711790393,
+            "family_equal_se": 0.00971827835182827,
+            "positive": 45,
+            "negative": 35,
+            "zero": 1244
+          }
+        }
+      }
+    },
+    "all_unique_rooms_root": {
+      "all": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 31032,
+            "families": 1857,
+            "total": 352,
+            "mean": 0.01134312967259603,
+            "cluster_se": 0.008201688521921024,
+            "ci95": [
+              -0.0047321798303691775,
+              0.027418439175561235
+            ],
+            "family_equal_mean": 0.012604851721787845,
+            "family_equal_se": 0.007871018119982512,
+            "positive": 629,
+            "negative": 554,
+            "zero": 29849
+          },
+          "tricks": {
+            "n": 31032,
+            "families": 1857,
+            "total": 69,
+            "mean": 0.002223511214230472,
+            "cluster_se": 0.0017360772749884222,
+            "ci95": [
+              -0.0011792002447468353,
+              0.00562622267320778
+            ],
+            "family_equal_mean": 0.002427085438862205,
+            "family_equal_se": 0.0017609128156786682,
+            "positive": 629,
+            "negative": 554,
+            "zero": 29849
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 10249,
+            "families": 1852,
+            "total": 352,
+            "mean": 0.03434481412820763,
+            "cluster_se": 0.024827144218212208,
+            "ci95": [
+              -0.014316388539488294,
+              0.08300601679590355
+            ],
+            "family_equal_mean": 0.040891558345662014,
+            "family_equal_se": 0.023277821187569873,
+            "positive": 629,
+            "negative": 554,
+            "zero": 9066
+          },
+          "tricks": {
+            "n": 10249,
+            "families": 1852,
+            "total": 69,
+            "mean": 0.006732364133086155,
+            "cluster_se": 0.0052563482253697325,
+            "ci95": [
+              -0.0035700783886385206,
+              0.01703480665481083
+            ],
+            "family_equal_mean": 0.009912564637186667,
+            "family_equal_se": 0.005812054815235148,
+            "positive": 629,
+            "negative": 554,
+            "zero": 9066
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 29150,
+            "families": 1857,
+            "total": 267,
+            "mean": 0.009159519725557461,
+            "cluster_se": 0.007734331646290162,
+            "ci95": [
+              -0.005999770301171256,
+              0.024318809752286178
+            ],
+            "family_equal_mean": 0.010175682681583996,
+            "family_equal_se": 0.007433239461263563,
+            "positive": 489,
+            "negative": 445,
+            "zero": 28216
+          },
+          "tricks": {
+            "n": 29150,
+            "families": 1857,
+            "total": 42,
+            "mean": 0.0014408233276157804,
+            "cluster_se": 0.0015855979358015714,
+            "ci95": [
+              -0.0016669486265552995,
+              0.00454859528178686
+            ],
+            "family_equal_mean": 0.001580469487360158,
+            "family_equal_se": 0.0015914558101820058,
+            "positive": 489,
+            "negative": 445,
+            "zero": 28216
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 9342,
+            "families": 1846,
+            "total": 267,
+            "mean": 0.028580603725112397,
+            "cluster_se": 0.02412926206532507,
+            "ci95": [
+              -0.018712749922924737,
+              0.07587395737314953
+            ],
+            "family_equal_mean": 0.031631181807238146,
+            "family_equal_se": 0.02224041311365582,
+            "positive": 489,
+            "negative": 445,
+            "zero": 8408
+          },
+          "tricks": {
+            "n": 9342,
+            "families": 1846,
+            "total": 42,
+            "mean": 0.00449582530507386,
+            "cluster_se": 0.004947653678188435,
+            "ci95": [
+              -0.005201575904175473,
+              0.014193226514323191
+            ],
+            "family_equal_mean": 0.007150087783890601,
+            "family_equal_se": 0.005199315689374522,
+            "positive": 489,
+            "negative": 445,
+            "zero": 8408
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 985,
+            "families": 755,
+            "total": 91,
+            "mean": 0.09238578680203045,
+            "cluster_se": 0.09633150972040182,
+            "ci95": [
+              -0.0964239722499571,
+              0.281195545854018
+            ],
+            "family_equal_mean": 0.09836644591611479,
+            "family_equal_se": 0.1034655582224287,
+            "positive": 168,
+            "negative": 150,
+            "zero": 667
+          },
+          "tricks": {
+            "n": 985,
+            "families": 755,
+            "total": 29,
+            "mean": 0.029441624365482234,
+            "cluster_se": 0.022650571532865055,
+            "ci95": [
+              -0.014953495838933274,
+              0.07383674456989775
+            ],
+            "family_equal_mean": 0.036556291390728475,
+            "family_equal_se": 0.02275767375745815,
+            "positive": 168,
+            "negative": 150,
+            "zero": 667
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 8357,
+            "families": 1837,
+            "total": 176,
+            "mean": 0.021060189063060907,
+            "cluster_se": 0.02194787668667764,
+            "ci95": [
+              -0.021957649242827264,
+              0.06407802736894908
+            ],
+            "family_equal_mean": 0.015156758501886428,
+            "family_equal_se": 0.021596370752876307,
+            "positive": 321,
+            "negative": 295,
+            "zero": 7741
+          },
+          "tricks": {
+            "n": 8357,
+            "families": 1837,
+            "total": 13,
+            "mean": 0.0015555821467033624,
+            "cluster_se": 0.004434586429526393,
+            "ci95": [
+              -0.007136207255168366,
+              0.010247371548575092
+            ],
+            "family_equal_mean": 0.0014313560992929527,
+            "family_equal_se": 0.004810911723603458,
+            "positive": 321,
+            "negative": 295,
+            "zero": 7741
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 1329,
+            "families": 918,
+            "total": 23,
+            "mean": 0.01730624529721595,
+            "cluster_se": 0.03541832431153507,
+            "ci95": [
+              -0.05211367035339278,
+              0.08672616094782468
+            ],
+            "family_equal_mean": 0.004647785039941903,
+            "family_equal_se": 0.034038288738304424,
+            "positive": 45,
+            "negative": 36,
+            "zero": 1248
+          },
+          "tricks": {
+            "n": 1329,
+            "families": 918,
+            "total": 4,
+            "mean": 0.0030097817908201654,
+            "cluster_se": 0.00871485747434976,
+            "ci95": [
+              -0.014071338858905363,
+              0.020090902440545694
+            ],
+            "family_equal_mean": 0.002832244008714597,
+            "family_equal_se": 0.009701013604081857,
+            "positive": 45,
+            "negative": 36,
+            "zero": 1248
+          }
+        }
+      },
+      "5R192": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        }
+      },
+      "5R32": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 31032,
+            "families": 1857,
+            "total": 352,
+            "mean": 0.01134312967259603,
+            "cluster_se": 0.008201688521921024,
+            "ci95": [
+              -0.0047321798303691775,
+              0.027418439175561235
+            ],
+            "family_equal_mean": 0.012604851721787845,
+            "family_equal_se": 0.007871018119982512,
+            "positive": 629,
+            "negative": 554,
+            "zero": 29849
+          },
+          "tricks": {
+            "n": 31032,
+            "families": 1857,
+            "total": 69,
+            "mean": 0.002223511214230472,
+            "cluster_se": 0.0017360772749884222,
+            "ci95": [
+              -0.0011792002447468353,
+              0.00562622267320778
+            ],
+            "family_equal_mean": 0.002427085438862205,
+            "family_equal_se": 0.0017609128156786682,
+            "positive": 629,
+            "negative": 554,
+            "zero": 29849
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 10249,
+            "families": 1852,
+            "total": 352,
+            "mean": 0.03434481412820763,
+            "cluster_se": 0.024827144218212208,
+            "ci95": [
+              -0.014316388539488294,
+              0.08300601679590355
+            ],
+            "family_equal_mean": 0.040891558345662014,
+            "family_equal_se": 0.023277821187569873,
+            "positive": 629,
+            "negative": 554,
+            "zero": 9066
+          },
+          "tricks": {
+            "n": 10249,
+            "families": 1852,
+            "total": 69,
+            "mean": 0.006732364133086155,
+            "cluster_se": 0.0052563482253697325,
+            "ci95": [
+              -0.0035700783886385206,
+              0.01703480665481083
+            ],
+            "family_equal_mean": 0.009912564637186667,
+            "family_equal_se": 0.005812054815235148,
+            "positive": 629,
+            "negative": 554,
+            "zero": 9066
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 29150,
+            "families": 1857,
+            "total": 267,
+            "mean": 0.009159519725557461,
+            "cluster_se": 0.007734331646290162,
+            "ci95": [
+              -0.005999770301171256,
+              0.024318809752286178
+            ],
+            "family_equal_mean": 0.010175682681583996,
+            "family_equal_se": 0.007433239461263563,
+            "positive": 489,
+            "negative": 445,
+            "zero": 28216
+          },
+          "tricks": {
+            "n": 29150,
+            "families": 1857,
+            "total": 42,
+            "mean": 0.0014408233276157804,
+            "cluster_se": 0.0015855979358015714,
+            "ci95": [
+              -0.0016669486265552995,
+              0.00454859528178686
+            ],
+            "family_equal_mean": 0.001580469487360158,
+            "family_equal_se": 0.0015914558101820058,
+            "positive": 489,
+            "negative": 445,
+            "zero": 28216
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 9342,
+            "families": 1846,
+            "total": 267,
+            "mean": 0.028580603725112397,
+            "cluster_se": 0.02412926206532507,
+            "ci95": [
+              -0.018712749922924737,
+              0.07587395737314953
+            ],
+            "family_equal_mean": 0.031631181807238146,
+            "family_equal_se": 0.02224041311365582,
+            "positive": 489,
+            "negative": 445,
+            "zero": 8408
+          },
+          "tricks": {
+            "n": 9342,
+            "families": 1846,
+            "total": 42,
+            "mean": 0.00449582530507386,
+            "cluster_se": 0.004947653678188435,
+            "ci95": [
+              -0.005201575904175473,
+              0.014193226514323191
+            ],
+            "family_equal_mean": 0.007150087783890601,
+            "family_equal_se": 0.005199315689374522,
+            "positive": 489,
+            "negative": 445,
+            "zero": 8408
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 985,
+            "families": 755,
+            "total": 91,
+            "mean": 0.09238578680203045,
+            "cluster_se": 0.09633150972040182,
+            "ci95": [
+              -0.0964239722499571,
+              0.281195545854018
+            ],
+            "family_equal_mean": 0.09836644591611479,
+            "family_equal_se": 0.1034655582224287,
+            "positive": 168,
+            "negative": 150,
+            "zero": 667
+          },
+          "tricks": {
+            "n": 985,
+            "families": 755,
+            "total": 29,
+            "mean": 0.029441624365482234,
+            "cluster_se": 0.022650571532865055,
+            "ci95": [
+              -0.014953495838933274,
+              0.07383674456989775
+            ],
+            "family_equal_mean": 0.036556291390728475,
+            "family_equal_se": 0.02275767375745815,
+            "positive": 168,
+            "negative": 150,
+            "zero": 667
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 8357,
+            "families": 1837,
+            "total": 176,
+            "mean": 0.021060189063060907,
+            "cluster_se": 0.02194787668667764,
+            "ci95": [
+              -0.021957649242827264,
+              0.06407802736894908
+            ],
+            "family_equal_mean": 0.015156758501886428,
+            "family_equal_se": 0.021596370752876307,
+            "positive": 321,
+            "negative": 295,
+            "zero": 7741
+          },
+          "tricks": {
+            "n": 8357,
+            "families": 1837,
+            "total": 13,
+            "mean": 0.0015555821467033624,
+            "cluster_se": 0.004434586429526393,
+            "ci95": [
+              -0.007136207255168366,
+              0.010247371548575092
+            ],
+            "family_equal_mean": 0.0014313560992929527,
+            "family_equal_se": 0.004810911723603458,
+            "positive": 321,
+            "negative": 295,
+            "zero": 7741
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 1329,
+            "families": 918,
+            "total": 23,
+            "mean": 0.01730624529721595,
+            "cluster_se": 0.03541832431153507,
+            "ci95": [
+              -0.05211367035339278,
+              0.08672616094782468
+            ],
+            "family_equal_mean": 0.004647785039941903,
+            "family_equal_se": 0.034038288738304424,
+            "positive": 45,
+            "negative": 36,
+            "zero": 1248
+          },
+          "tricks": {
+            "n": 1329,
+            "families": 918,
+            "total": 4,
+            "mean": 0.0030097817908201654,
+            "cluster_se": 0.00871485747434976,
+            "ci95": [
+              -0.014071338858905363,
+              0.020090902440545694
+            ],
+            "family_equal_mean": 0.002832244008714597,
+            "family_equal_se": 0.009701013604081857,
+            "positive": 45,
+            "negative": 36,
+            "zero": 1248
+          }
+        }
+      }
+    },
+    "all_unique_rooms_all_depths": {
+      "all": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 72986,
+            "families": 1857,
+            "total": 326,
+            "mean": 0.004466610034801195,
+            "cluster_se": 0.0038786646592959073,
+            "ci95": [
+              -0.003135572697418783,
+              0.012068792767021174
+            ],
+            "family_equal_mean": 0.0042843820490144745,
+            "family_equal_se": 0.0034972525698531366,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 71038
+          },
+          "tricks": {
+            "n": 72986,
+            "families": 1857,
+            "total": 117,
+            "mean": 0.001603047159729263,
+            "cluster_se": 0.0008844908817954884,
+            "ci95": [
+              -0.00013055496858989423,
+              0.0033366492880484203
+            ],
+            "family_equal_mean": 0.0017428660748667435,
+            "family_equal_se": 0.0008538472423026553,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 71038
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 24247,
+            "families": 1852,
+            "total": 326,
+            "mean": 0.013444962263372788,
+            "cluster_se": 0.011674495793275853,
+            "ci95": [
+              -0.009437049491447884,
+              0.03632697401819346
+            ],
+            "family_equal_mean": 0.015924521754425238,
+            "family_equal_se": 0.012471519941721318,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 22299
+          },
+          "tricks": {
+            "n": 24247,
+            "families": 1852,
+            "total": 117,
+            "mean": 0.004825339217222749,
+            "cluster_se": 0.0026620655784493283,
+            "ci95": [
+              -0.0003923093165379343,
+              0.010042987750983431
+            ],
+            "family_equal_mean": 0.006327924735118134,
+            "family_equal_se": 0.0031637161578961692,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 22299
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 69606,
+            "families": 1857,
+            "total": 223,
+            "mean": 0.0032037468034364852,
+            "cluster_se": 0.003641296456506744,
+            "ci95": [
+              -0.003933194251316732,
+              0.010340687858189703
+            ],
+            "family_equal_mean": 0.003027881897335656,
+            "family_equal_se": 0.003300175205237397,
+            "positive": 801,
+            "negative": 732,
+            "zero": 68073
+          },
+          "tricks": {
+            "n": 69606,
+            "families": 1857,
+            "total": 70,
+            "mean": 0.0010056604315719908,
+            "cluster_se": 0.0008160585703591011,
+            "ci95": [
+              -0.0005938143663318473,
+              0.0026051352294758287
+            ],
+            "family_equal_mean": 0.001079873185561429,
+            "family_equal_se": 0.0007804704607043432,
+            "positive": 801,
+            "negative": 732,
+            "zero": 68073
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 22620,
+            "families": 1852,
+            "total": 223,
+            "mean": 0.009858532272325376,
+            "cluster_se": 0.011204996568739672,
+            "ci95": [
+              -0.012103261002404381,
+              0.031820325547055134
+            ],
+            "family_equal_mean": 0.013642216915673471,
+            "family_equal_se": 0.01180418372114109,
+            "positive": 801,
+            "negative": 732,
+            "zero": 21087
+          },
+          "tricks": {
+            "n": 22620,
+            "families": 1852,
+            "total": 70,
+            "mean": 0.003094606542882405,
+            "cluster_se": 0.0025111422407570637,
+            "ci95": [
+              -0.0018272322490014395,
+              0.00801644533476625
+            ],
+            "family_equal_mean": 0.004158436378562881,
+            "family_equal_se": 0.002873164483488993,
+            "positive": 801,
+            "negative": 732,
+            "zero": 21087
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 1820,
+            "families": 991,
+            "total": 75,
+            "mean": 0.04120879120879121,
+            "cluster_se": 0.06385205198126638,
+            "ci95": [
+              -0.08394123067449091,
+              0.16635881309207332
+            ],
+            "family_equal_mean": 0.043567103935418766,
+            "family_equal_se": 0.07119113891209125,
+            "positive": 247,
+            "negative": 237,
+            "zero": 1336
+          },
+          "tricks": {
+            "n": 1820,
+            "families": 991,
+            "total": 19,
+            "mean": 0.010439560439560439,
+            "cluster_se": 0.015547915972956704,
+            "ci95": [
+              -0.020034354867434698,
+              0.04091347574655558
+            ],
+            "family_equal_mean": 0.02202080630435827,
+            "family_equal_se": 0.016538805023633366,
+            "positive": 247,
+            "negative": 237,
+            "zero": 1336
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 20800,
+            "families": 1850,
+            "total": 148,
+            "mean": 0.007115384615384615,
+            "cluster_se": 0.010379436581398073,
+            "ci95": [
+              -0.013228311084155607,
+              0.02745908031492484
+            ],
+            "family_equal_mean": 0.005127656332789334,
+            "family_equal_se": 0.010412808662168831,
+            "positive": 554,
+            "negative": 495,
+            "zero": 19751
+          },
+          "tricks": {
+            "n": 20800,
+            "families": 1850,
+            "total": 51,
+            "mean": 0.002451923076923077,
+            "cluster_se": 0.00223579107085118,
+            "ci95": [
+              -0.0019302274219452358,
+              0.00683407357579139
+            ],
+            "family_equal_mean": 0.0016185778239954552,
+            "family_equal_se": 0.002548922044187875,
+            "positive": 554,
+            "negative": 495,
+            "zero": 19751
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 2354,
+            "families": 1194,
+            "total": -65,
+            "mean": -0.027612574341546302,
+            "cluster_se": 0.024589553651636537,
+            "ci95": [
+              -0.07580809949875392,
+              0.02058295081566131
+            ],
+            "family_equal_mean": -0.033879716040520064,
+            "family_equal_se": 0.026363755594988145,
+            "positive": 59,
+            "negative": 67,
+            "zero": 2228
+          },
+          "tricks": {
+            "n": 2354,
+            "families": 1194,
+            "total": -12,
+            "mean": -0.005097706032285472,
+            "cluster_se": 0.005914497768966878,
+            "ci95": [
+              -0.01669012165946055,
+              0.006494709594889609
+            ],
+            "family_equal_mean": -0.005376086783121959,
+            "family_equal_se": 0.006705442284329303,
+            "positive": 59,
+            "negative": 67,
+            "zero": 2228
+          }
+        }
+      },
+      "5R192": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 0,
+            "families": 0
+          },
+          "tricks": {
+            "n": 0,
+            "families": 0
+          }
+        }
+      },
+      "5R32": {
+        "all_gen3_reference_audits": {
+          "imps": {
+            "n": 72986,
+            "families": 1857,
+            "total": 326,
+            "mean": 0.004466610034801195,
+            "cluster_se": 0.0038786646592959073,
+            "ci95": [
+              -0.003135572697418783,
+              0.012068792767021174
+            ],
+            "family_equal_mean": 0.0042843820490144745,
+            "family_equal_se": 0.0034972525698531366,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 71038
+          },
+          "tricks": {
+            "n": 72986,
+            "families": 1857,
+            "total": 117,
+            "mean": 0.001603047159729263,
+            "cluster_se": 0.0008844908817954884,
+            "ci95": [
+              -0.00013055496858989423,
+              0.0033366492880484203
+            ],
+            "family_equal_mean": 0.0017428660748667435,
+            "family_equal_se": 0.0008538472423026553,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 71038
+          }
+        },
+        "changed_vs_gen3": {
+          "imps": {
+            "n": 24247,
+            "families": 1852,
+            "total": 326,
+            "mean": 0.013444962263372788,
+            "cluster_se": 0.011674495793275853,
+            "ci95": [
+              -0.009437049491447884,
+              0.03632697401819346
+            ],
+            "family_equal_mean": 0.015924521754425238,
+            "family_equal_se": 0.012471519941721318,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 22299
+          },
+          "tricks": {
+            "n": 24247,
+            "families": 1852,
+            "total": 117,
+            "mean": 0.004825339217222749,
+            "cluster_se": 0.0026620655784493283,
+            "ci95": [
+              -0.0003923093165379343,
+              0.010042987750983431
+            ],
+            "family_equal_mean": 0.006327924735118134,
+            "family_equal_se": 0.0031637161578961692,
+            "positive": 1030,
+            "negative": 918,
+            "zero": 22299
+          }
+        },
+        "reference_is_global_pimc_best": {
+          "imps": {
+            "n": 69606,
+            "families": 1857,
+            "total": 223,
+            "mean": 0.0032037468034364852,
+            "cluster_se": 0.003641296456506744,
+            "ci95": [
+              -0.003933194251316732,
+              0.010340687858189703
+            ],
+            "family_equal_mean": 0.003027881897335656,
+            "family_equal_se": 0.003300175205237397,
+            "positive": 801,
+            "negative": 732,
+            "zero": 68073
+          },
+          "tricks": {
+            "n": 69606,
+            "families": 1857,
+            "total": 70,
+            "mean": 0.0010056604315719908,
+            "cluster_se": 0.0008160585703591011,
+            "ci95": [
+              -0.0005938143663318473,
+              0.0026051352294758287
+            ],
+            "family_equal_mean": 0.001079873185561429,
+            "family_equal_se": 0.0007804704607043432,
+            "positive": 801,
+            "negative": 732,
+            "zero": 68073
+          }
+        },
+        "changed_vs_global_pimc_best": {
+          "imps": {
+            "n": 22620,
+            "families": 1852,
+            "total": 223,
+            "mean": 0.009858532272325376,
+            "cluster_se": 0.011204996568739672,
+            "ci95": [
+              -0.012103261002404381,
+              0.031820325547055134
+            ],
+            "family_equal_mean": 0.013642216915673471,
+            "family_equal_se": 0.01180418372114109,
+            "positive": 801,
+            "negative": 732,
+            "zero": 21087
+          },
+          "tricks": {
+            "n": 22620,
+            "families": 1852,
+            "total": 70,
+            "mean": 0.003094606542882405,
+            "cluster_se": 0.0025111422407570637,
+            "ci95": [
+              -0.0018272322490014395,
+              0.00801644533476625
+            ],
+            "family_equal_mean": 0.004158436378562881,
+            "family_equal_se": 0.002873164483488993,
+            "positive": 801,
+            "negative": 732,
+            "zero": 21087
+          }
+        },
+        "non_tie_override_vs_global_pimc_best": {
+          "imps": {
+            "n": 1820,
+            "families": 991,
+            "total": 75,
+            "mean": 0.04120879120879121,
+            "cluster_se": 0.06385205198126638,
+            "ci95": [
+              -0.08394123067449091,
+              0.16635881309207332
+            ],
+            "family_equal_mean": 0.043567103935418766,
+            "family_equal_se": 0.07119113891209125,
+            "positive": 247,
+            "negative": 237,
+            "zero": 1336
+          },
+          "tricks": {
+            "n": 1820,
+            "families": 991,
+            "total": 19,
+            "mean": 0.010439560439560439,
+            "cluster_se": 0.015547915972956704,
+            "ci95": [
+              -0.020034354867434698,
+              0.04091347574655558
+            ],
+            "family_equal_mean": 0.02202080630435827,
+            "family_equal_se": 0.016538805023633366,
+            "positive": 247,
+            "negative": 237,
+            "zero": 1336
+          }
+        },
+        "tie_change_vs_global_pimc_best": {
+          "imps": {
+            "n": 20800,
+            "families": 1850,
+            "total": 148,
+            "mean": 0.007115384615384615,
+            "cluster_se": 0.010379436581398073,
+            "ci95": [
+              -0.013228311084155607,
+              0.02745908031492484
+            ],
+            "family_equal_mean": 0.005127656332789334,
+            "family_equal_se": 0.010412808662168831,
+            "positive": 554,
+            "negative": 495,
+            "zero": 19751
+          },
+          "tricks": {
+            "n": 20800,
+            "families": 1850,
+            "total": 51,
+            "mean": 0.002451923076923077,
+            "cluster_se": 0.00223579107085118,
+            "ci95": [
+              -0.0019302274219452358,
+              0.00683407357579139
+            ],
+            "family_equal_mean": 0.0016185778239954552,
+            "family_equal_se": 0.002548922044187875,
+            "positive": 554,
+            "negative": 495,
+            "zero": 19751
+          }
+        },
+        "both_selectors_below_global_pimc_best": {
+          "imps": {
+            "n": 2354,
+            "families": 1194,
+            "total": -65,
+            "mean": -0.027612574341546302,
+            "cluster_se": 0.024589553651636537,
+            "ci95": [
+              -0.07580809949875392,
+              0.02058295081566131
+            ],
+            "family_equal_mean": -0.033879716040520064,
+            "family_equal_se": 0.026363755594988145,
+            "positive": 59,
+            "negative": 67,
+            "zero": 2228
+          },
+          "tricks": {
+            "n": 2354,
+            "families": 1194,
+            "total": -12,
+            "mean": -0.005097706032285472,
+            "cluster_se": 0.005914497768966878,
+            "ci95": [
+              -0.01669012165946055,
+              0.006494709594889609
+            ],
+            "family_equal_mean": -0.005376086783121959,
+            "family_equal_se": 0.006705442284329303,
+            "positive": 59,
+            "negative": 67,
+            "zero": 2228
+          }
+        }
+      }
+    }
+  },
+  "coverage": {
+    "common_root": {
+      "selector_decisions": 67623,
+      "overrides": 5211,
+      "override_with_gen3_global_best": 2122,
+      "override_audited_against_global_best": 977,
+      "override_gen3_agrees": 2239,
+      "total_audits": 30939
+    },
+    "all_unique_rooms_root": {
+      "selector_decisions": 68052,
+      "overrides": 5253,
+      "override_with_gen3_global_best": 2138,
+      "override_audited_against_global_best": 985,
+      "override_gen3_agrees": 2257,
+      "total_audits": 31032
+    },
+    "all_unique_rooms_all_depths": {
+      "selector_decisions": 226232,
+      "overrides": 11085,
+      "override_with_gen3_global_best": 4835,
+      "override_audited_against_global_best": 1820,
+      "override_gen3_agrees": 4689,
+      "total_audits": 72986
+    }
+  },
+  "common_root_override_by_role": {
+    "declarer": {
+      "imps": {
+        "n": 334,
+        "families": 296,
+        "total": -4,
+        "mean": -0.011976047904191617,
+        "cluster_se": 0.15977479997134475,
+        "ci95": [
+          -0.3251346558480273,
+          0.3011825600396441
+        ],
+        "family_equal_mean": -0.030968468468468468,
+        "family_equal_se": 0.16779164949738645,
+        "positive": 59,
+        "negative": 57,
+        "zero": 218
+      },
+      "tricks": {
+        "n": 334,
+        "families": 296,
+        "total": 4,
+        "mean": 0.011976047904191617,
+        "cluster_se": 0.037939923079902904,
+        "ci95": [
+          -0.06238620133241808,
+          0.08633829714080131
+        ],
+        "family_equal_mean": 0.01632882882882883,
+        "family_equal_se": 0.03837866188027799,
+        "positive": 59,
+        "negative": 57,
+        "zero": 218
+      }
+    },
+    "defence": {
+      "imps": {
+        "n": 643,
+        "families": 541,
+        "total": 98,
+        "mean": 0.15241057542768274,
+        "cluster_se": 0.12302350173243225,
+        "ci95": [
+          -0.08871548796788445,
+          0.39353663882324996
+        ],
+        "family_equal_mean": 0.151879235982748,
+        "family_equal_se": 0.12261963449781955,
+        "positive": 109,
+        "negative": 91,
+        "zero": 443
+      },
+      "tricks": {
+        "n": 643,
+        "families": 541,
+        "total": 27,
+        "mean": 0.041990668740279936,
+        "cluster_se": 0.028019935619033463,
+        "ci95": [
+          -0.012928405073025652,
+          0.09690974255358553
+        ],
+        "family_equal_mean": 0.04713493530499076,
+        "family_equal_se": 0.02815640180560593,
+        "positive": 109,
+        "negative": 91,
+        "zero": 443
+      }
+    }
+  }
+}
