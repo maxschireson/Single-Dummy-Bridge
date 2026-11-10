@@ -11,6 +11,7 @@ import subprocess
 import sys
 import time
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
+DEFAULT_PYTHON=Path('/workspace/work/ben-venv/bin/python')
 from bridge_harness.mixed_arena import verify_generation
 from bridge_harness.selfplay import atomic_json
 
@@ -24,9 +25,10 @@ def free(path):
         except BlockingIOError:return False
 
 def launch(root,name,args,log,cwd=ROOT):
+    executable=os.environ.get('BRIDGE_ARENA_PYTHON') or (str(DEFAULT_PYTHON) if DEFAULT_PYTHON.is_file() else sys.executable)
     with (root/log).open('a') as output:
-        child=subprocess.Popen([sys.executable,'-u',*args],cwd=cwd,
-            env=dict(os.environ,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',TF_NUM_INTRAOP_THREADS='1',TF_NUM_INTEROP_THREADS='1',XDG_CACHE_HOME='/workspace/work/gen5-cache',TF_CPP_MIN_LOG_LEVEL='3'),
+        child=subprocess.Popen([executable,'-u',*args],cwd=cwd,
+            env=dict(os.environ,BRIDGE_ARENA_PYTHON=executable,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',TF_NUM_INTRAOP_THREADS='1',TF_NUM_INTEROP_THREADS='1',XDG_CACHE_HOME='/workspace/work/gen5-cache',TF_CPP_MIN_LOG_LEVEL='3'),
             stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
     atomic_json(root/name,dict(pid=child.pid,epoch=time.time()));return child.pid
 

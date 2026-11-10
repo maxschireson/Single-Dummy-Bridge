@@ -22,6 +22,17 @@ def old_bots():
     return bots
 
 class Gen5RZTests(unittest.TestCase):
+    def test_watchdog_keeps_training_python_when_operator_uses_system_python(self):
+        import os
+        from types import SimpleNamespace
+        from ops.watch_gen5 import launch
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);python=root/'python';python.touch()
+            with patch.dict(os.environ,{},clear=True),patch('ops.watch_gen5.DEFAULT_PYTHON',python),patch('ops.watch_gen5.sys.executable','/system/python'),patch('ops.watch_gen5.subprocess.Popen',return_value=SimpleNamespace(pid=123)) as start:
+                launch(root,'process.json',['ops/gen5_runtime.py'],'log')
+            self.assertEqual(start.call_args.args[0][0],str(python))
+            self.assertEqual(start.call_args.kwargs['env']['BRIDGE_ARENA_PYTHON'],str(python))
+
     def test_exact_allocation_and_unchanged_other_ratios(self):
         plan=load_plan();n=sum(plan['pair_weights'].values());self.assertEqual(n,370)
         self.assertEqual(Fraction(PAIR_WEIGHTS['5R32~5-32'],n),Fraction(1,5))
