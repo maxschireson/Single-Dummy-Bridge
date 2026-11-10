@@ -38,6 +38,7 @@ def main():
     ap.add_argument("--reserved-dataset", type=Path, action="append", default=[])
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--threads", type=int, default=2)
+    ap.add_argument("--source-audit", type=Path)
     args = ap.parse_args()
     sys.path.insert(0, str(args.repo.resolve()))
     import numpy as np
@@ -66,6 +67,13 @@ def main():
     manifest = json.loads((args.batch / "manifest.json").read_text())
     if digest({k: v for k, v in manifest.items() if k != "identity"}) != manifest["identity"]:
         raise ValueError("Arena manifest changed")
+    source_audit = None
+    if args.source_audit:
+        source_audit = json.loads(args.source_audit.read_text())
+        if source_audit['receipts_sha256'] != sha(args.receipts):
+            raise ValueError("Derived receipts changed after source audit")
+        if source_audit['sources_sha256'] != sha(args.batch / 'sources.json'):
+            raise ValueError("Derived provenance changed after source audit")
     receipts = {r["index"]: r for r in json.loads(args.receipts.read_text())}
     old_groups = {"train": set(), "validation": set()}
     for entry in old_data["shards"]:
@@ -138,6 +146,9 @@ def main():
                   dds_sha256=sha(args.repo / "bridge_harness/libbridge_dds.so"),
                   reserved_json_sha256={str(p):sha(p) for p in args.reserved_json},
                   reserved_dataset_sha256={str(p):sha(p) for p in args.reserved_dataset})
+    if source_audit is not None:
+        frozen.update(source_audit=source_audit, source_audit_sha256=sha(args.source_audit),
+                      original_raw_episode_hashes='See compact sources.json; source file hashes refer to derived root-only episodes')
     source_file = out / "incremental-sources.json"
     if source_file.exists() and json.loads(source_file.read_text()) != frozen:
         raise ValueError("Frozen input changed on resume")
@@ -174,7 +185,7 @@ def main():
                    label_parent_sha256=label_sha,
                    families=old_manifest["families"]+families,
                    incremental_sources_sha256=sha(source_file),
-                   initial_partial_snapshot=True,
+                   initial_partial_snapshot=source_audit is None,
                    clean_sources_counts=dict(old_manifest["clean_sources_counts"],
                                              new_source_families=len(families),
                                              new_training_families=frozen["source_splits"].get("train",0),
