@@ -90,10 +90,10 @@ def export(root,out):
     replay_dir=out/'arena/replays/data'/cohort;replay_dir.mkdir(parents=True,exist_ok=True)
     for name,rows in shards.items():atomic_json(replay_dir/name,rows)
     title=policy.get('title','Gen 5R · Codex' if m.get('variant')=='5R' else 'Gen 5 · Codex');versions={k:s['identity'] for k,s in m['bots'].items()}
-    record_shards=[]
+    record_shards=[];record_shard_sha256={}
     for offset in range(0,len(records),100):
-        name=f'index-{offset//100:05d}.json';atomic_json(replay_dir/name,records[offset:offset+100]);record_shards.append(name)
-    atomic_json(replay_dir/'index.json',dict(schema='bridge-replay-index-v1',cohort=cohort,title=title,labels=LABELS,pairs=PAIRS,versions=versions,supports_own_bidding=True,records=[],record_shards=record_shards))
+        name=f'index-{offset//100:05d}.json';atomic_json(replay_dir/name,records[offset:offset+100]);record_shards.append(name);record_shard_sha256[name]=hashlib.sha256((replay_dir/name).read_bytes()).hexdigest()
+    atomic_json(replay_dir/'index.json',dict(schema='bridge-replay-index-v1',cohort=cohort,title=title,labels=LABELS,pairs=PAIRS,versions=versions,supports_own_bidding=True,records=[],record_shards=record_shards,record_shard_sha256=record_shard_sha256))
     atomic_json(out/'arena/replays/catalog.json',dict(schema='bridge-replay-catalog-v1',cohorts=[dict(id=cohort,title=title,count=len(records),index_url=f'data/{cohort}/index.json')]))
     contiguous=0;indices={r['index'] for r in records}
     while contiguous in indices:contiguous+=1
