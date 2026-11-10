@@ -125,7 +125,7 @@
     }
   },
   "execution": {
-    "phase": "first policy fit launched from gen5 on frozen union of prior corpus and first verified 192-record batch",
+    "phase": "Bidding and matched width comparison resumed; full1513 belief labeling started; initial192 belief and policy fits complete",
     "first_steps": [
       "Audit a pinned complete incremental batch from the live recovery feed; do not wait for the full campaign.",
       "Freeze data, parent, source and runtime hashes in a separate run manifest.",
@@ -139,7 +139,7 @@
     "initial_policy_run": {
       "local_root": "/workspace/scratch/a64f028bc002/gen6-work",
       "input": "policy-first-union",
-      "output": "policy-initial-fit",
+      "output": "policy-initial-fit-restart1",
       "log": "policy-initial-fit.log",
       "source_checkout": "/workspace/scratch/9a559aafe909/bridge-policy-v5",
       "python": "/workspace/scratch/bbe90ba77a68/venv/bin/python",
@@ -162,11 +162,16 @@
         "policy5_family_overlap": 0,
         "local_BEN100_and_DDSD_reserved_overlap": 0
       },
-      "status": "stopped before first completed epoch; session missing and writer lock free; restart after belief pass",
+      "status": "complete; selected epoch zero, no improvement",
       "limitation": "Initial partial-data fit only. Existing previously inspected policy tests are descriptive; any final confirmation must use newly reserved families. Later data stays separate, and final unchanged-recipe fit starts from pinned gen5 over full frozen union.",
-      "other_components": "Belief and bidding training not launched yet; ingest/prepare remaining complete records and carry forward all reservations before fitting."
+      "other_components": "Full1513 bidding running and full1513 belief labeling running",
+      "archive_library_file_id": "libfile_fde3_f-3a0f5c124c5881919158d6baf4a358d2_cf78a91e4b8c81918243c2c17fc9b8b9",
+      "selected_epoch": 0,
+      "selected_sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+      "epochs_completed": 8,
+      "promoted": false
     },
-    "priority": "Continue gen6 after completed initial belief refresh; policy restarted",
+    "priority": "Finish active unchanged-recipe bidding and full-data belief, preserve separate width experiment, prepare full-data policy",
     "initial_belief_run": {
       "source_code": "scripts/run_gen6_belief_refresh.py",
       "source_code_commit": "3f9061a8b0e8036f3d98df96b3c7dbd4042d6da7",
@@ -187,7 +192,7 @@
         "test_reserved": 27
       },
       "recipe": "unchanged current dense consequence recipe; fresh AdamW; automatic three-epoch fit after labeling",
-      "status": "labeling in progress",
+      "status": "complete",
       "reserved_sources": [
         "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/reports/gen5rz-ben192-16-2026-11-10/reserved-families.json",
         "/workspace/scratch/919dc41e3067/bridge-ddsd-corrector/reports/gen6-ddsd-fresh-256-2026-11-10/reserved-families.json",
@@ -211,7 +216,55 @@
       "session": 73868,
       "out": "/workspace/scratch/a64f028bc002/gen6-work/policy-initial-fit-restart1",
       "log": "/workspace/scratch/a64f028bc002/gen6-work/policy-initial-fit-restart1.log",
-      "status": "Launched; verify process liveness and completed epochs before reporting progress"
+      "status": "complete; do not rerun"
+    },
+    "full_belief_run": {
+      "plan": "configs/gen6-belief-full1513-plan.json",
+      "source_adapter": "scripts/prepare_gen6_belief_compact.py",
+      "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/belief-full1513",
+      "batch": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/compact-belief-1513",
+      "session": 48200,
+      "status": "labeling started; verify status and lock",
+      "source_families": 1513,
+      "source_train": 1182,
+      "source_validation": 154,
+      "source_test": 177,
+      "verified_compact_blobs": 43,
+      "exact_raw_non_test_input_matches": 190,
+      "exact_matched_positions": 3040,
+      "source_commit": "75f3219333abd3bb95e39135d7132f63561b6f54",
+      "parent": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+      "workers": 1,
+      "threads": 1,
+      "test_evaluated": false,
+      "promoted": false
+    },
+    "bidding_refresh": {
+      "branch": "research/gen6-bidding-refresh-20261110",
+      "source_commit": "77b3ff97f00fc375bf33f718ce9f2a4499855cc8",
+      "output": "/workspace/scratch/2c9025624949/gen6-bidding-run",
+      "session": 31443,
+      "committed_pairs_at_check": 512,
+      "target_pairs": 2048,
+      "status": "resumed preserved optimizer and pending batch; verify live state",
+      "data_families": 1513
+    },
+    "authorized_width_comparison": {
+      "branch": "research/gen6-policy-69k-20261110",
+      "commit": "0c954e08f31284e298c375217ca802d461ac5161",
+      "output": "/workspace/scratch/a64f028bc002/gen6-work/policy-width-69k-vs-99k",
+      "session": 7349,
+      "widths": [
+        40,
+        64
+      ],
+      "parameters": [
+        69113,
+        99161
+      ],
+      "status": "resumed from completed epochs 3 and 2",
+      "input": "frozen initial192 policy union, 436263 training outcomes",
+      "recipe_exception": "Max explicitly authorized intermediate ~70K and narrower attention; not an arena change"
     }
   }
 }
