@@ -1,0 +1,72 @@
+{
+  "stage": "complete",
+  "completed": 1794342936.7594552,
+  "families": 607,
+  "paired_validation_mse_small_minus_large": {
+    "mean": 0.003387654013243102,
+    "se": 0.0011139953700431842,
+    "ci95": [
+      0.0012042230879584608,
+      0.005571084938527743
+    ]
+  },
+  "arms": [
+    {
+      "name": "attention-40",
+      "width": 40,
+      "parameters": 69113,
+      "selected_epoch": 3,
+      "selected_sha256": "f31ccf27dac5f71948869e1007c158ef28bf5c92831e0c4043757e02b89eb386",
+      "validation": {
+        "rows": 55843,
+        "families": 607,
+        "new_mse": 0.5594956931019538,
+        "gen3_mse": 0.5573569922377849,
+        "state_only_mse": 0.5603415979072978,
+        "pimc_mse": 0.6106320848697823,
+        "mse_change": {
+          "rows": 607,
+          "families": 607,
+          "mean": 0.002138700864168932,
+          "se": 0.0033193075456158464,
+          "ci95": [
+            -0.004380041819260454,
+            0.008657443547598318
+          ]
+        },
+        "argmax_change_fraction": 0.23467578747560125
+      },
+      "numpy_max_error": 9.071691469131338e-07
+    },
+    {
+      "name": "attention-64",
+      "width": 64,
+      "parameters": 99161,
+      "selected_epoch": 3,
+      "selected_sha256": "0077748e160d77822fcd0b890b080fda2819934d5b0a5dd24b20bb50ccd8bb5a",
+      "validation": {
+        "rows": 55843,
+        "families": 607,
+        "new_mse": 0.5561080390887106,
+        "gen3_mse": 0.5573569922377849,
+        "state_only_mse": 0.5567996232032607,
+        "pimc_mse": 0.6106320848697823,
+        "mse_change": {
+          "rows": 607,
+          "families": 607,
+          "mean": -0.0012489531490741713,
+          "se": 0.0030099944264688067,
+          "ci95": [
+            -0.007160240028960536,
+            0.004662333730812194
+          ]
+        },
+        "argmax_change_fraction": 0.2088892072417313
+      },
+      "numpy_max_error": 1.3974217909495934e-06
+    }
+  ],
+  "test_evaluated": false,
+  "promoted": false,
+  "interpretation": "Single-seed validation screen; lower MSE is better. Independent confirmation is required before promotion."
+}
