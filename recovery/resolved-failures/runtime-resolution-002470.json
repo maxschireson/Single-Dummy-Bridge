@@ -1,0 +1,5 @@
+{
+  "epoch": 1794332024.2218146,
+  "failure": "runtime-002470.json",
+  "reason": "Watchdog was started using system Python; TensorFlow was missing during worker initialization after cache rotation. No game completed for this index. The new launcher pins the training virtual environment, and the unplayed family is retained for RZ allocation."
+}
