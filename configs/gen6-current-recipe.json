@@ -125,7 +125,7 @@
     }
   },
   "execution": {
-    "phase": "incremental feed located; full batch verification and data preparation can begin now",
+    "phase": "first policy fit launched from gen5 on frozen union of prior corpus and first verified 192-record batch",
     "first_steps": [
       "Audit a pinned complete incremental batch from the live recovery feed; do not wait for the full campaign.",
       "Freeze data, parent, source and runtime hashes in a separate run manifest.",
@@ -135,6 +135,36 @@
       "Save reproducible model artifacts, provenance and results. Stop the watcher when complete."
     ],
     "deployment": "Training and validation are authorized. Keep existing arena model snapshots immutable; this request does not by itself replace the arena lineup.",
-    "resources": "Do not restart paused research/collection jobs. Coordinate CPU/memory with active matches. No architecture/hyperparameter experiment sweep."
+    "resources": "Do not restart paused research/collection jobs. Coordinate CPU/memory with active matches. No architecture/hyperparameter experiment sweep.",
+    "initial_policy_run": {
+      "local_root": "/workspace/scratch/a64f028bc002/gen6-work",
+      "input": "policy-first-union",
+      "output": "policy-initial-fit",
+      "log": "policy-initial-fit.log",
+      "source_checkout": "/workspace/scratch/9a559aafe909/bridge-policy-v5",
+      "python": "/workspace/scratch/bbe90ba77a68/venv/bin/python",
+      "session_id": 56362,
+      "writer_lock": "policy-fit.lock",
+      "new_source_records": 192,
+      "new_training_families": 151,
+      "new_validation_families": 14,
+      "new_test_families": 27,
+      "new_training_outcomes": 25569,
+      "total_training_outcomes": 436263,
+      "total_training_families": 4658,
+      "total_validation_families": 608,
+      "total_test_families": 605,
+      "audits": {
+        "compressed_sha256": "all passed",
+        "canonical_deal_identity": "all passed",
+        "legal_replay_tables": 2641,
+        "bad_policy_records": 0,
+        "policy5_family_overlap": 0,
+        "local_BEN100_and_DDSD_reserved_overlap": 0
+      },
+      "status": "process launched; initial validation/checkpoint initialization; no validation result yet",
+      "limitation": "Initial partial-data fit only. Existing previously inspected policy tests are descriptive; any final confirmation must use newly reserved families. Later data stays separate, and final unchanged-recipe fit starts from pinned gen5 over full frozen union.",
+      "other_components": "Belief and bidding training not launched yet; ingest/prepare remaining complete records and carry forward all reservations before fitting."
+    }
   }
 }
