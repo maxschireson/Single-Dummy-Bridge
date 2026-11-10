@@ -1,7 +1,7 @@
 {
   "schema": "gen6-current-recipe-preparation-v1",
   "generation": 6,
-  "status": "awaiting_complete_new_data_export",
+  "status": "accept_complete_incremental_snapshots",
   "authorized": "Max, 2026-11-10: train gen 6 nets on the current recipe; Codex is about to push data to GitHub.",
   "repository": "maxschireson/Single-Dummy-Bridge",
   "intent": "Refresh all three components from promoted gen5 weights using newly available eligible data and the existing training recipes. Preserve the 5RZ runtime. No architecture/loss/mix/sampling sweep.",
@@ -97,19 +97,37 @@
     "export_ref": null,
     "export_commit": null,
     "manifest_sha256": null,
-    "readiness": "Locate the new completed Codex export (may update an existing transfer branch). Verify its manifest, every chunk/record count and checksums before freezing a training snapshot. Do not start from an incomplete export.",
+    "readiness": "Accept each complete immutable batch independently, including live arena recovery episodes with matching receipts and manifest. Verify compressed SHA256, decompression/schema, complete legal games and split/actor provenance. Do not wait for the campaign or monolithic export to finish. A partial archive is not a complete batch.",
     "merge": "Merge newly eligible records with the existing recipe's historical/recent replay pool. Deduplicate canonical families, trajectories and branch records across local and exported copies. Preserve source and generation metadata; report old/new counts per component.",
     "excluded_policy_sha256": [
       "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed"
     ],
     "exclusions": "Exclude v4/v4p bad-policy play on either partnership, including aliases by model hash. Retain 4b and other eligible clean play.",
     "splits": "Preserve canonical whole-deal-family train/validation/test assignments. Union all explicit reserved evaluation and audit manifests, including 5RZ-BEN-100, DDSD evaluation and later belief experiments. No held-out family enters training through branches, replays, repeated exports or inherited development/test labels.",
-    "test": "Use validation for checkpoint choice. Previously inspected tests are descriptive only. Freeze fresh confirmation families before opening final results."
+    "test": "Use validation for checkpoint choice. Previously inspected tests are descriptive only. Freeze fresh confirmation families before opening final results.",
+    "incremental_training": "Stage and label verified records immediately, with component-specific readiness; freeze each fit's input snapshot. Do not append data inside an epoch or repeatedly train the earliest arrivals at full weight. Accumulate later batches, then run the final unchanged-recipe fit from the same pinned gen5 parent over the full frozen union to preserve the intended recipe.",
+    "available_snapshot": {
+      "branch": "arena-gen5rz-ben-feed",
+      "commit": "7eecb9a49fff97da0dfae4e296c30e48bacec8b9",
+      "committed_utc": "2026-11-10T18:14:08Z",
+      "paired_records": 470,
+      "unique_families": 470,
+      "source_splits": {
+        "train": 357,
+        "validation": 113
+      },
+      "tables_including_branches": 6501,
+      "root_games": 953,
+      "episode_directory": "recovery/episodes",
+      "receipt_directory": "recovery/receipts",
+      "manifest": "recovery/manifest.json",
+      "audit_status": "Tree and all 470 receipts read; one raw episode decoded and inspected. Full episode SHA256/replay checks and overlap with previous training/reservations remain before fit."
+    }
   },
   "execution": {
-    "phase": "prepared; data import and training have not started",
+    "phase": "incremental feed located; full batch verification and data preparation can begin now",
     "first_steps": [
-      "Fetch and audit complete new export.",
+      "Audit a pinned complete incremental batch from the live recovery feed; do not wait for the full campaign.",
       "Freeze data, parent, source and runtime hashes in a separate run manifest.",
       "Restore all three parents; check inference equivalence and fit resumption on a small plumbing slice.",
       "Run only the three selected recipes with bounded resources; preserve checkpoints and restart interrupted jobs under a single-writer lock.",
