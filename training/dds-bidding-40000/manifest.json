@@ -1,0 +1,177 @@
+{
+  "schema": "bridge-dds-bidding-40000-v1",
+  "date": "2026-11-10",
+  "description": "Exact original 40,000 DDS bidding-training deals and separate 1,000 development deals.",
+  "fields": {
+    "index": "Original zero-based index within this split",
+    "family": "SHA256 canonical cyclic-seat-rotation family ID",
+    "hands": "Four exact PBN hands, NESW order, SHDC suit order",
+    "dealer": "N/E/S/W",
+    "vulnerability": "None/NS/EW/Both",
+    "dds": "5x4 declarer trick counts: rows S,H,D,C,NT; columns N,E,S,W"
+  },
+  "chunk_limit_bytes": 262144,
+  "provenance": {
+    "dataset_sha256": "5639592328092130a5d94e5b8954759b17fff0589ce488453ba1c763dbd30cc5",
+    "original_manifest_sha256": "e6323f418753f215752ec8490ed034847672fe61f07d55daa678833b37b20fc4",
+    "original_state_sha256": "ca3918714d495cea6cbec188edbb7236de783184db077a4affb6434ea3ffc2da",
+    "original_config": {
+      "seed": 2026110807,
+      "train_stages": [
+        10000,
+        40000,
+        250000
+      ],
+      "batch_pairs": 128,
+      "dev_pairs": 1000,
+      "confirmation_pairs": 5000,
+      "max_attempts": 20,
+      "dds_workers": 2,
+      "tf_threads": 2,
+      "ppo_epochs": 2,
+      "minibatch": 256,
+      "learning_rate": 1e-05,
+      "exploration": 0.005,
+      "anchor_weight": 0.02,
+      "family_alpha": 0.05
+    },
+    "original_trained_pairs": 40000,
+    "original_ppo_update": 314,
+    "original_ben_sha256": "b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3",
+    "original_dds_library_sha256": "e05d89584854cbeae132d71dcc3b807352374fc19cc26ecb3d22404a8140acc5",
+    "original_source_sha256": {
+      "bidding_env.py": "ef78477ed929025dffe28db399d5bf90357763c9b11c6857c7704a3b3dc94c60",
+      "bidding_ppo.py": "ebc633016ecd870cdd3224c91d21d0c127b4350289f2d2a9452e002091602093",
+      "bidding_loop.py": "f5442d6d6a7d5e9788821f78886d1b5e0301f7de21da73c779e6a5e6da078fb0",
+      "core.py": "1176bd2aca579a71489ed442f7cb99d153915223a84b3a97f37afb377b1f30ba",
+      "dds.py": "38db9bc27744ab5bc93801f0d5011f51985b5e42963c18381f9af62a7498ea0b",
+      "loop_stats.py": "e4ff321a45677d2153b32a205035acad03582ef8dd4d8f6143908cbdec0ba7bd"
+    },
+    "exporter_sha256": "08d9da4924eecfc35c5f49dbf558068779eb1d81b313435229d6303d0c1677d8"
+  },
+  "audit": {
+    "regenerated_deals": 41000,
+    "matching_cached_dds_tables": 41000,
+    "matching_recovered_dataset_rows": 41000,
+    "new_dds_solves": 0,
+    "split_overlap": 0
+  },
+  "splits": {
+    "train": {
+      "records": 40000,
+      "generator_seed": 2026210810,
+      "gzip_bytes": 3749653,
+      "gzip_sha256": "e4eb8c3f6b82aeebd5bfc29776f200035ceb6b21e782969f85118fcff5996ee7",
+      "jsonl_bytes": 10933820,
+      "jsonl_sha256": "0a0b725f459664c5a4469b088e4d02d9502839fda616eadd91d86eb4f51b8d6b",
+      "chunks": [
+        {
+          "file": "train.jsonl.gz.part000",
+          "bytes": 262144,
+          "sha256": "5def349907cfc4072e9d85cb1aea3a13037d0f086541453123bc9a9a3b9f72f5",
+          "git_blob_sha": "0898ac3034a1c04773adfc70e8267b74a2429d27"
+        },
+        {
+          "file": "train.jsonl.gz.part001",
+          "bytes": 262144,
+          "sha256": "0ea93a505144a3f4065d6e89db9bb189788196da3555839887f9798f112652f9",
+          "git_blob_sha": "4361e391368181b00eef852545225db4b430b1ca"
+        },
+        {
+          "file": "train.jsonl.gz.part002",
+          "bytes": 262144,
+          "sha256": "35f057154ec65d6c35b709ef445f0b86795e317ea5bfbcec14d79085c9f0b3ad",
+          "git_blob_sha": "30d90727273e9966b579461bfd4bec9f3051aebd"
+        },
+        {
+          "file": "train.jsonl.gz.part003",
+          "bytes": 262144,
+          "sha256": "8198d9b8c41d8ac367ffda3a3953bc4bacd6758bc66702459a148577fadd7b3b",
+          "git_blob_sha": "fb95fa3c4b6dab046834f3479052aa0388ea525c"
+        },
+        {
+          "file": "train.jsonl.gz.part004",
+          "bytes": 262144,
+          "sha256": "a1a35fcdf962b1d473d84969f027445555a34a4016b8435a478cad209c2c1ded",
+          "git_blob_sha": "e6729401baceb2ff856e08548fccbf7f011c778c"
+        },
+        {
+          "file": "train.jsonl.gz.part005",
+          "bytes": 262144,
+          "sha256": "3afbdb5e10ec39955bc9864837d50ca56af302e65aa29d6034c878f2dde29afc",
+          "git_blob_sha": "859deb596d012731b89e8c5988d3ee249d5a6ba4"
+        },
+        {
+          "file": "train.jsonl.gz.part006",
+          "bytes": 262144,
+          "sha256": "ed986aeaa194b4231bde07b4dd5921c4d714cb915d1566a05f2ef016228f2489",
+          "git_blob_sha": "16bc30247aa02bd5edb62aee88a85b8c0bbb303b"
+        },
+        {
+          "file": "train.jsonl.gz.part007",
+          "bytes": 262144,
+          "sha256": "eb4b9572d95096fcbfb91315bac3e299ea7d1b19b658022edab40768a22d05e7",
+          "git_blob_sha": "5f86ef2d29f42752c2adeef23d939b2629338045"
+        },
+        {
+          "file": "train.jsonl.gz.part008",
+          "bytes": 262144,
+          "sha256": "bf14943413fcf1cc1518655c49843616ae814e97679f1fa0d7393b5686db18eb",
+          "git_blob_sha": "ce6fa1e2dffad8fc1c22b5056586614ba7574e70"
+        },
+        {
+          "file": "train.jsonl.gz.part009",
+          "bytes": 262144,
+          "sha256": "5fa8a656d45be09fd25e62749f721d269da63734c22b90ee5683c5fd3c94e962",
+          "git_blob_sha": "4ec2727679f3311a15fefe1af0c1ad8adad3ab0e"
+        },
+        {
+          "file": "train.jsonl.gz.part010",
+          "bytes": 262144,
+          "sha256": "76bc52146016ac9ca41cea09e667d5f812edefe5b27363db1c3faac98419e025",
+          "git_blob_sha": "53d3e7b290d2a5ed963bea615c1332de17a26728"
+        },
+        {
+          "file": "train.jsonl.gz.part011",
+          "bytes": 262144,
+          "sha256": "bd7c24e15f6587c99fd3200c8c8b936019e7e73aeb6d5451cafde50a7b745df4",
+          "git_blob_sha": "77ee1786256a0cff8ee10f667285fd995bb30a45"
+        },
+        {
+          "file": "train.jsonl.gz.part012",
+          "bytes": 262144,
+          "sha256": "3e695ab18070e1a614234d9c908f9d09024c102a33d0501fdbfe8968944b7cbf",
+          "git_blob_sha": "5303a713afc21153cab620626b4da77052e4ad47"
+        },
+        {
+          "file": "train.jsonl.gz.part013",
+          "bytes": 262144,
+          "sha256": "4b7e60761689578288ea4c28ff6860c6d5735d0934714fc0233c6f6a6be2c4f9",
+          "git_blob_sha": "d0c612caea0b8162eb8e12f3f80feb80a80ffedf"
+        },
+        {
+          "file": "train.jsonl.gz.part014",
+          "bytes": 79637,
+          "sha256": "e593b070dcfd2b5ccb81a640c8478803f1d6adb0af177cbe53a8aa505a3b3660",
+          "git_blob_sha": "e878d90d6df79300805a097ea68858ab586a17f6"
+        }
+      ]
+    },
+    "dev": {
+      "records": 1000,
+      "generator_seed": 2076210810,
+      "gzip_bytes": 94381,
+      "gzip_sha256": "fe3f7346bb8fdb8c1088aed0371deeb4368ae119c3589db5bc022b8e4805ba36",
+      "jsonl_bytes": 271417,
+      "jsonl_sha256": "79e4a9b27bbb84c5e764b8b8342d68898076053c2ecda1d6d1e1922141dd16c3",
+      "chunks": [
+        {
+          "file": "dev.jsonl.gz.part000",
+          "bytes": 94381,
+          "sha256": "fe3f7346bb8fdb8c1088aed0371deeb4368ae119c3589db5bc022b8e4805ba36",
+          "git_blob_sha": "2cfe3c3a9144fcea6470ff82fa48c5ddcab77517"
+        }
+      ]
+    }
+  }
+}
