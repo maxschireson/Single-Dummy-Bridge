@@ -1,0 +1,59 @@
+{
+  "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513",
+  "raw": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/raw-policy-1513",
+  "base": "/workspace/scratch/9a559aafe909/bridge-policy-v5/runs/v5-clean/experiment/data",
+  "repository": "/workspace/scratch/a64f028bc002/policy-capacity-check",
+  "parent": "/workspace/scratch/a64f028bc002/policy-capacity-check/models/cardplay/gen5-2026-11-10/policy.npz.part000",
+  "feature_parent": "/workspace/scratch/a64f028bc002/policy-capacity-check/models/cardplay/gen3-2026-11-09/auction-policy.npz.part000",
+  "legacy_comparator": "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/models/cardplay/gen4-2026-11-09/policy.npz.part000",
+  "previous_families": "/workspace/scratch/a64f028bc002/gen6-work/policy-first-union/families.json",
+  "source_records": 1513,
+  "feed_commit": "75f3219333abd3bb95e39135d7132f63561b6f54",
+  "reserved_json": [
+    "/workspace/scratch/919dc41e3067/bridge-ddsd-corrector/reports/gen6-ddsd-fresh-256-2026-11-10/reserved-families.json",
+    "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/reports/gen5rz-ben192-16-2026-11-10/reserved-families.json",
+    "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/confirmation/vs_data_control/families.json",
+    "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/data/manifest.json"
+  ],
+  "reserved_datasets": [
+    "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/reserved/dataset.json"
+  ],
+  "excluded_policy_sha256": [
+    "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed"
+  ],
+  "recipe": "unchanged Gen5 width64 attention, eight epochs, fresh AdamW; validation-only fit then fixed confirmation",
+  "verified_files": [
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-capacity-check/models/cardplay/gen5-2026-11-10/policy.npz.part000",
+      "sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-capacity-check/models/cardplay/gen3-2026-11-09/auction-policy.npz.part000",
+      "sha256": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5"
+    },
+    {
+      "path": "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/models/cardplay/gen4-2026-11-09/policy.npz.part000",
+      "sha256": "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed"
+    },
+    {
+      "path": "/workspace/scratch/9a559aafe909/bridge-policy-v5/runs/v5-clean/experiment/data/dataset.json",
+      "sha256": "b4d40dccfd2f1c279e23586b2b72c4d423fd5f005f8cb4295588551709df7001"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-capacity-check/scripts/train_clean_policy_v5.py",
+      "sha256": "315f3f630fb86a23bd33d8b0af6c28455844661584c85677c84b04daaaf98d43"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-capacity-check/scripts/prepare_outcome_policy.py",
+      "sha256": "26fc8d6b478d64641f6f8519020ae919421a4a8bbe6a402085c7d33689fef42a"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-capacity-check/bridge_harness/policy_v5.py",
+      "sha256": "1824efff99112d751a782734ad152f496b5768e498d6c6cf3e04ab621e56558e"
+    },
+    {
+      "path": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/raw-policy-1513/receipts.json",
+      "sha256": "75f056b334111926fbb658c2f4d063b98f229bfa34174e5045702ccc12c0dc77"
+    }
+  ]
+}
