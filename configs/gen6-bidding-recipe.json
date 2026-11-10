@@ -1,0 +1,17 @@
+{
+  "seed": 2026110909,
+  "pairs_per_candidate": 2048,
+  "batch_pairs": 128,
+  "ppo_epochs": 2,
+  "learning_rate": 2.5e-06,
+  "minibatch": 64,
+  "exploration": 0.005,
+  "tf_threads": 2,
+  "variants": [
+    {
+      "name": "play50_anchor002",
+      "play_fraction": 0.5,
+      "anchor_weight": 0.02
+    }
+  ]
+}

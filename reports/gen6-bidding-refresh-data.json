@@ -1,0 +1,40 @@
+{
+  "schema": "gen6-bidding-data-v1",
+  "feed_commit": "75f3219333abd3bb95e39135d7132f63561b6f54",
+  "feed_branch": "arena-gen5rz-ben-feed",
+  "compact_full_play_export": true,
+  "source_records": 1513,
+  "audit": {
+    "historical_reserved_training_rows_removed": 0,
+    "raw_episodes_cross_checked": 222,
+    "legally_replayed_unique_games": 3053,
+    "duplicate_games_removed": 2999
+  },
+  "base_dataset_sha256": "254a5ecee234bad39705580732fdd789389f4930bcce8fef301381d003f847e0",
+  "dataset_sha256": "5639592328092130a5d94e5b8954759b17fff0589ce488453ba1c763dbd30cc5",
+  "old_play_families": 1868,
+  "new_families": 1513,
+  "new_counts": {
+    "train": 1182,
+    "test": 177,
+    "dev": 154
+  },
+  "counts": {
+    "play/train": 2659,
+    "play/historical_test": 192,
+    "play/test": 177,
+    "play/dev": 353,
+    "dds/train": 40000,
+    "dds/dev": 1000
+  },
+  "exact_auctions": 3440,
+  "reserved_hashes": {
+    "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/reports/gen5rz-ben192-16-2026-11-10/reserved-families.json": "4f09bc36aac3a891236748a5b0afaf5155d260f24bd66f6339b0c850fa10b831",
+    "/workspace/scratch/919dc41e3067/bridge-ddsd-corrector/reports/gen6-ddsd-fresh-256-2026-11-10/reserved-families.json": "359d639c77397dcfbe46770df719b693d7477d060c1a3f9ca59be43ee8941abb",
+    "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/confirmation/vs_data_control/families.json": "3eebb6e5c3ee9fb3a146b22d2043f81d5980aff4beaee58d53341a317fdf81ed",
+    "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/reserved/dataset.json": "b2c4bd4bf43d6fb95ec88fa4f42b06562fc8142b075112791148200bc27512ba"
+  },
+  "test_evaluated": false,
+  "prior_tests_descriptive_only": true,
+  "reward_note": "Exact full auction only. Unseen auctions use unchanged frozen Gen3/32 fallback. Root games only, as in prior bidding recipe; no counterfactual branches treated as root play."
+}
