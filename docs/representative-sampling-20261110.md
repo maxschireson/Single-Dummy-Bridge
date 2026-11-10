@@ -2,6 +2,33 @@
 
 The implementation is an opt-in change to the PIMC sampling path. The active experiment is restricted to positions with **10–13 tricks remaining**, using **128 fresh belief draws and at most 32 DDS representatives**. Smaller positions retain the existing player. No production promotion has occurred.
 
+## Completed 200-position screen
+
+The screen is complete: 200 large positions from 200 independent validation families, with settings frozen in advance. The large-only execution took 950 seconds (15.8 minutes), reusing 22 verified cases from the earlier mixed-scope run. There is no production promotion.
+
+| Method | Mean DDS solves | Mean regret, tricks | Mean total CPU |
+|---|---:|---:|---:|
+| Current random 32 | 32.00 | 0.011799 | 245.2 ms |
+| Random, matched solve count | 28.11 | 0.011154 | 234.4 ms |
+| Cluster masses | 28.11 | 0.008465 | 258.5 ms |
+| Fit candidate-pool moments | 28.11 | 0.008243 | 260.0 ms |
+| Fit exact belief moments | 28.11 | 0.007670 | 260.6 ms |
+| All 128 draws | 128.00 | 0.003599 | 940.0 ms |
+
+Exact-belief weighting has 35.0% lower mean regret than current random32 at 6.3% more CPU in this benchmark. The paired improvement is **+0.004130 tricks per position**, standard error **0.003354**, about **1.23 standard errors**. Its individual 95% family-bootstrap interval is **[-0.002359, +0.010863]**, so the improvement is not established.
+
+Full128 remains stronger on this screen. Exact-belief representatives lose 0.004071 tricks per position relative to full128 (individual 95% interval [-0.009021, -0.000579]) while using 27.7% of its CPU time. The representatives recover about half the point-estimate gain from going from random32 to full128. These are offline DDS action-value results, not IMP gains.
+
+The matrix calibration's advantage over simple cluster weights is small and inconclusive: +0.000795 tricks, interval [-0.004098, +0.004411]. All 200 fits converged; standardized feature-moment error fell from 0.009511 to 0.000355 on average. Better matching of linear features alone does not guarantee better nonlinear DDS decisions.
+
+At the quarter-trick regret threshold, random32 had 2 mistakes, cluster masses had 0, pool-moment fitting had 1, exact-belief fitting had 1 and full128 had 0. These small counts do not establish tail-risk differences.
+
+All 20 preselected reference checks completed. On that subset, doubling the reference from 512 to 1,024 changed the mean belief-versus-random32 comparison by -0.000057 tricks. Only three of those cases had nonzero paired value differences; this limited sensitivity check does not rule out reference noise elsewhere.
+
+The saved-label audit reproduces every recorded representative estimate and reference value with zero error. Thirty-one targeted/regression tests passed, followed by the focused seven tests after removing the optional value-model dependency. A complete native-DDS game on a development deal also passed: 52 legal plays, 15 reduced decisions, 27 ordinary decisions and 10 forced plays.
+
+The implementation is ready for further testing. This result does not yet justify enabling it by default, and it does not establish that fitted weights beat simple cluster weights. See [screen results](data/representative-large-200-result-20261110.json), [paired analysis and audit](data/representative-large-200-analysis-20261110.json), and [native integration check](data/representative-large-200-native-smoke-20261110.json).
+
 ## Selection and weighting
 
 1. Draw all 128 layouts through the existing `WeightedSampler` at strength 1. Keep duplicate draws: their multiplicity already encodes belief probability. Do not multiply by belief probabilities a second time.

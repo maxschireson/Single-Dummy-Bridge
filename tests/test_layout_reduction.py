@@ -5,10 +5,9 @@ import unittest
 from unittest.mock import patch
 import numpy as np
 
-from bridge_harness.layout_reduction import ReductionConfig, cluster_layouts, calibrate_weights, feature_mean
+from bridge_harness.layout_reduction import ReductionConfig, cluster_layouts, calibrate_weights, feature_mean, pack
 from bridge_harness.layout_geometry import encode
 from bridge_harness.bidding_sampling import WeightedSampler
-from bridge_harness.dds_value import pack
 from bridge_harness.core import Board, Game
 from bridge_harness.players import PIMCPlayer
 

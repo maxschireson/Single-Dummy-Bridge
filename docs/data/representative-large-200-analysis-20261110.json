@@ -1,0 +1,182 @@
+{
+  "comparisons": {
+    "belief_minus_cluster": {
+      "ci95": [
+        -0.004097951253255209,
+        0.004410878499348957
+      ],
+      "mean": 0.0007954915364583326,
+      "n": 200,
+      "negative": 6,
+      "positive": 8,
+      "standard_error": 0.0022033450115596072,
+      "ties": 186
+    },
+    "belief_minus_full128": {
+      "ci95": [
+        -0.00902073974609375,
+        -0.0005785629999069958
+      ],
+      "mean": -0.004071068173363095,
+      "n": 200,
+      "negative": 30,
+      "positive": 8,
+      "standard_error": 0.0021610278700291397,
+      "ties": 162
+    },
+    "belief_minus_pool": {
+      "ci95": [
+        -0.004765624999999996,
+        0.005634765625000003
+      ],
+      "mean": 0.0005729166666666696,
+      "n": 200,
+      "negative": 4,
+      "positive": 5,
+      "standard_error": 0.0025625087258239624,
+      "ties": 191
+    },
+    "belief_minus_random32": {
+      "ci95": [
+        -0.0023585097539992575,
+        0.010862509881882436
+      ],
+      "mean": 0.0041296386718750015,
+      "n": 200,
+      "negative": 19,
+      "positive": 23,
+      "standard_error": 0.0033539142713728074,
+      "ties": 158
+    },
+    "belief_minus_random_matched": {
+      "ci95": [
+        -0.002910426354786711,
+        0.010003463018508164
+      ],
+      "mean": 0.0034840223524305576,
+      "n": 200,
+      "negative": 17,
+      "positive": 25,
+      "standard_error": 0.003257817062802866,
+      "ties": 158
+    },
+    "cluster_minus_random32": {
+      "ci95": [
+        -0.0017096801757812536,
+        0.00940598377046131
+      ],
+      "mean": 0.0033341471354166683,
+      "n": 200,
+      "negative": 19,
+      "positive": 22,
+      "standard_error": 0.0028181036666541127,
+      "ties": 159
+    },
+    "pool_minus_random32": {
+      "ci95": [
+        -0.0027931565057663786,
+        0.010293931652250742
+      ],
+      "mean": 0.0035567220052083316,
+      "n": 200,
+      "negative": 20,
+      "positive": 21,
+      "standard_error": 0.0033009747285333534,
+      "ties": 159
+    }
+  },
+  "converged_weight_fits": 200,
+  "cpu_ratio_belief_vs_full128": 0.27724162879308367,
+  "cpu_ratio_belief_vs_random32": 1.062804969192272,
+  "families": 200,
+  "label_audit_max_error": 0.0,
+  "mean_exact_moment_cpu": 0.0006660466350027214,
+  "mean_moment_mse_after": 0.00035525955130080234,
+  "mean_moment_mse_before": 0.009510979557754026,
+  "mean_weight_fit_cpu": 0.002696748785003166,
+  "notes": [
+    "Positive paired differences mean better independent-reference action value.",
+    "Individual bootstrap intervals are exploratory, not multiplicity-adjusted.",
+    "No whole-play or IMP-strength claim."
+  ],
+  "positions": 200,
+  "reference_checks": 20,
+  "reference_sensitivity": {
+    "belief_minus_full128": {
+      "doubled1024": {
+        "ci95": [
+          -0.0048095703125,
+          0.0
+        ],
+        "mean": -0.002001953125,
+        "n": 20,
+        "negative": 3,
+        "positive": 0,
+        "standard_error": 0.001265819234735033,
+        "ties": 17
+      },
+      "primary512": {
+        "ci95": [
+          -0.004638671875,
+          0.0
+        ],
+        "mean": -0.001904296875,
+        "n": 20,
+        "negative": 3,
+        "positive": 0,
+        "standard_error": 0.001240282939113418,
+        "ties": 17
+      },
+      "reference_change": {
+        "ci95": [
+          -0.0002685546875,
+          0.0
+        ],
+        "mean": -9.765625e-05,
+        "n": 20,
+        "negative": 2,
+        "positive": 0,
+        "standard_error": 7.597525441557607e-05,
+        "ties": 18
+      }
+    },
+    "belief_minus_random32": {
+      "doubled1024": {
+        "ci95": [
+          -0.004248046875,
+          0.00029296875
+        ],
+        "mean": -0.0013916015625,
+        "n": 20,
+        "negative": 2,
+        "positive": 1,
+        "standard_error": 0.0012277627891289214,
+        "ties": 17
+      },
+      "primary512": {
+        "ci95": [
+          -0.0041015625,
+          0.0002604166666666741
+        ],
+        "mean": -0.001334635416666663,
+        "n": 20,
+        "negative": 2,
+        "positive": 1,
+        "standard_error": 0.0012083104033928217,
+        "ties": 17
+      },
+      "reference_change": {
+        "ci95": [
+          -0.0002197265625,
+          4.8828124999988896e-05
+        ],
+        "mean": -5.6966145833337034e-05,
+        "n": 20,
+        "negative": 1,
+        "positive": 1,
+        "standard_error": 7.586047076577568e-05,
+        "ties": 18
+      }
+    }
+  }
+}

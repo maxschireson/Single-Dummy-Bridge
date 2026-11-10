@@ -23,9 +23,8 @@ from bridge_harness.core import Board, Game, card
 from bridge_harness.belief_capacity import Weights
 from bridge_harness.bidding_sampling import WeightedSampler
 from bridge_harness.dds import DDS
-from bridge_harness.dds_value import pack
 from bridge_harness.layout_geometry import encode
-from bridge_harness.layout_reduction import ReductionConfig, cluster_layouts, feature_mean, reduce_pool
+from bridge_harness.layout_reduction import ReductionConfig, cluster_layouts, feature_mean, reduce_pool, pack
 from scripts.prepare_layout_embedding import save, CLEAN
 
 
@@ -239,6 +238,7 @@ def main():
                      'Independent 512-draw reference is itself noisy; paired differences share that reference.',
                      'Exact belief moments do not imply exact cluster probabilities or correct nonlinear DDS expectations.',
                      'Timing uses separate fresh DDS contexts with persistent cache disabled; shared production cache may change savings.',
+                     'Only large positions are evaluated; smaller-position runtime remains unchanged.' if a.large_only else
                      'Small-stage reduction is measured experimentally but remains disabled in the runtime schedule.'])
     save(a.out/'result.json',result);save(a.out/'status.json',dict(stage='complete',positions=len(output),updated=time.time()))
     print(json.dumps(result),flush=True)

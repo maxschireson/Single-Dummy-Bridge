@@ -13,7 +13,13 @@ from scipy.optimize import minimize
 from scipy.spatial.distance import pdist, squareform
 
 from .layout_geometry import encode, HONOR_WEIGHTS
-from .dds_value import pack
+from .dds import DDS
+from .dds_cache import position_key
+
+
+def pack(hands, trump, leader, trick):
+    """Use the existing DDS cache representation; no value-model dependency."""
+    return np.frombuffer(position_key(DDS._deal(hands, trump, leader, trick)), np.uint8).copy()
 
 
 @dataclass(frozen=True)

@@ -1,0 +1,122 @@
+{
+  "config": {
+    "large_budget": 32,
+    "large_from": 10,
+    "large_pool": 128,
+    "large_tolerance": 0.04214601748644102,
+    "medium_budget": 16,
+    "medium_enabled": false,
+    "medium_from": 7,
+    "medium_pool": 64,
+    "medium_tolerance": 0.04123330591722795,
+    "representative": "medoid",
+    "ridge": 0.001,
+    "weighting": "belief"
+  },
+  "elapsed_seconds": 950.2640098810007,
+  "inputs": {
+    "belief": "/workspace/scratch/8fd3c92bf5b8/bridge-belief-v5/models/cardplay/gen5-belief-2026-11-10/belief.npz",
+    "belief_sha256": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+    "calibration_families": 12,
+    "config_sha256": "31908afabeabc09cae83d8d42ad98590a7c172b8c0224703b19d14b8e7440319",
+    "context_sha256": "ab50b616922e41fb1c3c62e3d219211606f355e6bedae3b0c7bee5b4986c3e80",
+    "extended": true,
+    "large_only": true,
+    "library": "/workspace/scratch/e9691f0e7615/belief-lab/bridge_harness/libbridge_dds.so",
+    "library_sha256": "e05d89584854cbeae132d71dcc3b807352374fc19cc26ecb3d22404a8140acc5",
+    "primary": "Independent-reference expected action value versus random32, by stage",
+    "reference": 512,
+    "reserved_test": "Untouched; frozen validation pilot only; no policy reranking or whole-play claim",
+    "sampler": "WeightedSampler at strength=1; all draws retained with multiplicity",
+    "target": "Exact shape and honor-strength expectations from constrained sampler marginals",
+    "validation_families": 200
+  },
+  "limitations": [
+    "Validation pilot, not production promotion or a paired whole-play test.",
+    "Independent 512-draw reference is itself noisy; paired differences share that reference.",
+    "Exact belief moments do not imply exact cluster probabilities or correct nonlinear DDS expectations.",
+    "Timing uses separate fresh DDS contexts with persistent cache disabled; shared production cache may change savings.",
+    "Only large positions are evaluated; smaller-position runtime remains unchanged."
+  ],
+  "positions": 200,
+  "summary": {
+    "large": {
+      "families": 200,
+      "methods": {
+        "belief": {
+          "ci95": [
+            -0.0023368701753162103,
+            0.010671529424758195
+          ],
+          "improvement_vs_random32": 0.0041296386718750015,
+          "mean_cpu_seconds": 0.2605977636599996,
+          "mean_solve_count": 28.115,
+          "mistakes_over_quarter_trick": 1,
+          "regret": 0.00766970098586309,
+          "regret_std": 0.032986004818286035
+        },
+        "cluster": {
+          "ci95": [
+            -0.0017639979771205336,
+            0.009356462169828862
+          ],
+          "improvement_vs_random32": 0.0033341471354166683,
+          "mean_cpu_seconds": 0.2584859990499918,
+          "mean_solve_count": 28.115,
+          "mistakes_over_quarter_trick": 0,
+          "regret": 0.008465192522321422,
+          "regret_std": 0.026811499936762576
+        },
+        "full128": {
+          "ci95": [
+            0.002895205543154763,
+            0.014862693568638397
+          ],
+          "improvement_vs_random32": 0.008200706845238097,
+          "mean_cpu_seconds": 0.9399662121249978,
+          "mean_solve_count": 128.0,
+          "mistakes_over_quarter_trick": 0,
+          "regret": 0.0035986328124999944,
+          "regret_std": 0.018494739010663473
+        },
+        "pool": {
+          "ci95": [
+            -0.002686696951729917,
+            0.010141187104724711
+          ],
+          "improvement_vs_random32": 0.0035567220052083316,
+          "mean_cpu_seconds": 0.2599776911599979,
+          "mean_solve_count": 28.115,
+          "mistakes_over_quarter_trick": 1,
+          "regret": 0.008242617652529758,
+          "regret_std": 0.032163377162198234
+        },
+        "random32": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "improvement_vs_random32": 0.0,
+          "mean_cpu_seconds": 0.2451981042750044,
+          "mean_solve_count": 32.0,
+          "mistakes_over_quarter_trick": 2,
+          "regret": 0.01179933965773809,
+          "regret_std": 0.04557847035454984
+        },
+        "random_matched": {
+          "ci95": [
+            -0.0015657552083333337,
+            0.003144612630208331
+          ],
+          "improvement_vs_random32": 0.0006456163194444438,
+          "mean_cpu_seconds": 0.23435907227597802,
+          "mean_solve_count": 28.115,
+          "mistakes_over_quarter_trick": 2,
+          "regret": 0.011153723338293646,
+          "regret_std": 0.04431332372426496
+        }
+      },
+      "positions": 200
+    }
+  }
+}
