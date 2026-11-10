@@ -219,7 +219,7 @@
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/belief-full1513",
       "batch": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/compact-belief-1513",
       "session": null,
-      "status": "Full1513 fit complete: all1336 non-test families labeled and all3 epochs finished; selected epoch2. Fresh confirmation pending.",
+      "status": "Training and fixed150-family prediction confirmation complete; no demonstrated gain; retainGen5. Whole-game assessment remains.",
       "source_families": 1513,
       "source_train": 1182,
       "source_validation": 154,
@@ -231,11 +231,45 @@
       "parent": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
       "workers": 1,
       "threads": 1,
-      "test_evaluated": false,
+      "test_evaluated": true,
       "promoted": false,
       "completed_epochs": 3,
       "selected_epoch": 2,
-      "selected_sha256": "f6e3443b0e7fddcc51e6c4585cb5d5a8ece13077d33b772e8256a4e10fcec7a4"
+      "selected_sha256": "f6e3443b0e7fddcc51e6c4585cb5d5a8ece13077d33b772e8256a4e10fcec7a4",
+      "confirmation": {
+        "positions": 2392,
+        "card_targets": 36640,
+        "marginal_nll": {
+          "candidate": 0.665096018329921,
+          "gen5": 0.665057542748562
+        },
+        "paired_marginal_nll": {
+          "families": 150,
+          "mean": 0.00003847558135906611,
+          "se": 0.0003453922629308996,
+          "ci95": [
+            -0.0006384932539854971,
+            0.0007154444167036293
+          ],
+          "negative_favors_candidate": true
+        },
+        "paired_conditional_nll": {
+          "families": 150,
+          "mean": -0.00003752860523291453,
+          "se": 0.00040577106021743616,
+          "ci95": [
+            -0.0008328398832590894,
+            0.0007577826727932603
+          ],
+          "negative_favors_candidate": true
+        },
+        "test_evaluated": true,
+        "promoted": false,
+        "metric_note": "Prediction likelihood, not IMP/board; no tuning after confirmation.",
+        "selected_sha256": "f6e3443b0e7fddcc51e6c4585cb5d5a8ece13077d33b772e8256a4e10fcec7a4",
+        "scope": "Fresh for belief prediction confirmation; bidding outcomes for these families were previously evaluated. Not an untouched whole-game strength test."
+      },
+      "archive_library_file_id": "libfile_fde3_f-0f94bc780d3c8191bf96bc6ee45b9f32_cf78a91e4b8c81918243c2c17fc9b8b9"
     },
     "bidding_refresh": {
       "branch": "research/gen6-bidding-refresh-20261110",
