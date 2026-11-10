@@ -1,0 +1,12 @@
+{
+  "schema": "arena-statistics-policy-v1",
+  "epoch": 1794284299.4995883,
+  "eligible_pairs": [
+    "5~ben",
+    "5~5-32"
+  ],
+  "retired": true,
+  "target": 45,
+  "title": "Gen 5 \u00b7 retained BEN/control games",
+  "reason": "User requested 32 vs 32 historical comparisons. The 102 initial 192-vs-historical deals are training-only; raw episodes remain unchanged."
+}
