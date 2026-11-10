@@ -108,24 +108,19 @@
     "incremental_training": "Stage and label verified records immediately, with component-specific readiness; freeze each fit's input snapshot. Do not append data inside an epoch or repeatedly train the earliest arrivals at full weight. Accumulate later batches, then run the final unchanged-recipe fit from the same pinned gen5 parent over the full frozen union to preserve the intended recipe.",
     "available_snapshot": {
       "branch": "arena-gen5rz-ben-feed",
-      "commit": "7eecb9a49fff97da0dfae4e296c30e48bacec8b9",
-      "committed_utc": "2026-11-10T18:14:08Z",
-      "paired_records": 470,
-      "unique_families": 470,
-      "source_splits": {
-        "train": 357,
-        "validation": 113
-      },
-      "tables_including_branches": 6501,
-      "root_games": 953,
-      "episode_directory": "recovery/episodes",
-      "receipt_directory": "recovery/receipts",
-      "manifest": "recovery/manifest.json",
-      "audit_status": "Tree and all 470 receipts read; one raw episode decoded and inspected. Full episode SHA256/replay checks and overlap with previous training/reservations remain before fit."
+      "commit": "75f3219333abd3bb95e39135d7132f63561b6f54",
+      "paired_records": 1513,
+      "unique_families": 1513,
+      "training_families": 1182,
+      "validation_families": 154,
+      "test_families": 177,
+      "raw_downloaded_and_sha256_verified": 1513,
+      "audit_status": "Bidding, full belief and policy inputs accepted; fresh policy/belief test labels remain unprepared",
+      "root": "/workspace/scratch/d59c0a9fe14a/gen6-full-data"
     }
   },
   "execution": {
-    "phase": "Bidding and matched width comparison resumed; full1513 belief labeling started; initial192 belief and policy fits complete",
+    "phase": "Full1513 belief labeling and unchanged policy fitting; bidding and matched width experiment complete",
     "first_steps": [
       "Audit a pinned complete incremental batch from the live recovery feed; do not wait for the full campaign.",
       "Freeze data, parent, source and runtime hashes in a separate run manifest.",
@@ -171,7 +166,7 @@
       "epochs_completed": 8,
       "promoted": false
     },
-    "priority": "Finish active unchanged-recipe bidding and full-data belief, preserve separate width experiment, prepare full-data policy",
+    "priority": "Finish full-data belief/policy, then fixed confirmation and equal-settings gen6 versus frozen5RZ; no arena promotion",
     "initial_belief_run": {
       "source_code": "scripts/run_gen6_belief_refresh.py",
       "source_code_commit": "3f9061a8b0e8036f3d98df96b3c7dbd4042d6da7",
@@ -243,17 +238,26 @@
       "branch": "research/gen6-bidding-refresh-20261110",
       "source_commit": "77b3ff97f00fc375bf33f718ce9f2a4499855cc8",
       "output": "/workspace/scratch/2c9025624949/gen6-bidding-run",
-      "session": 31443,
-      "committed_pairs_at_check": 512,
+      "session": null,
+      "committed_pairs_at_check": 2048,
       "target_pairs": 2048,
-      "status": "resumed preserved optimizer and pending batch; verify live state",
-      "data_families": 1513
+      "status": "complete; no demonstrated gain; retain promoted Gen5",
+      "data_families": 1513,
+      "confirmation_families": 177,
+      "paired_imp_mean": -0.17796610169491525,
+      "paired_imp_se": 0.1281566080929427,
+      "paired_imp_ci95": [
+        -0.4291530535570829,
+        0.07322085016725241
+      ],
+      "archive_library_file_id": "libfile_fde3_f-0f656a05873c8191b932536408e7a799_cf78a91e4b8c81918243c2c17fc9b8b9",
+      "promoted": false
     },
     "authorized_width_comparison": {
       "branch": "research/gen6-policy-69k-20261110",
       "commit": "0c954e08f31284e298c375217ca802d461ac5161",
       "output": "/workspace/scratch/a64f028bc002/gen6-work/policy-width-69k-vs-99k",
-      "session": 7349,
+      "session": null,
       "widths": [
         40,
         64
@@ -262,9 +266,43 @@
         69113,
         99161
       ],
-      "status": "resumed from completed epochs 3 and 2",
+      "status": "complete; both selected epoch3; do not rerun",
       "input": "frozen initial192 policy union, 436263 training outcomes",
-      "recipe_exception": "Max explicitly authorized intermediate ~70K and narrower attention; not an arena change"
+      "recipe_exception": "Max explicitly authorized intermediate ~70K and narrower attention; not an arena change",
+      "paired_validation_mse_small_minus_large": {
+        "mean": 0.003387654013243102,
+        "se": 0.0011139953700431842,
+        "ci95": [
+          0.0012042230879584608,
+          0.005571084938527743
+        ]
+      },
+      "archive_library_file_id": "libfile_fde3_f-b038df3c333c8191a64604676cba75d0_cf78a91e4b8c81918243c2c17fc9b8b9",
+      "test_evaluated": false,
+      "promoted": false
+    },
+    "full_policy_run": {
+      "plan": "configs/gen6-policy-full1513-plan.json",
+      "runner": "scripts/run_gen6_policy_full.py",
+      "source_commit": "e71db2de4747cce155d72df7278bf62b6c7b7fa2",
+      "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513",
+      "session": 59059,
+      "status": "unchanged width64 Gen5 continuation launched after complete raw audit/extraction",
+      "train_outcomes": 601037,
+      "train_families": 5689,
+      "validation_families": 748,
+      "new_train_outcomes": 190343,
+      "new_train_families": 1182,
+      "new_validation_families": 154,
+      "reserved_source_test_families": 177,
+      "fresh_confirmation_families": 150,
+      "raw_root": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/raw-policy-1513",
+      "raw_episodes": 1513,
+      "legally_replayed_non_test_tables": 18145,
+      "passed_out_rooms": 14,
+      "test_evaluated": false,
+      "promoted": false,
+      "confirmation": "Validation-only fit. After selection, prepare and score the150 fresh reserved families; prior27 source tests were already inspected in initial policy fit."
     }
   }
 }
