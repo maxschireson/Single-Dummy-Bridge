@@ -1,0 +1,122 @@
+{
+  "schema": "gen6-current-recipe-preparation-v1",
+  "generation": 6,
+  "status": "awaiting_complete_new_data_export",
+  "authorized": "Max, 2026-11-10: train gen 6 nets on the current recipe; Codex is about to push data to GitHub.",
+  "repository": "maxschireson/Single-Dummy-Bridge",
+  "intent": "Refresh all three components from promoted gen5 weights using newly available eligible data and the existing training recipes. Preserve the 5RZ runtime. No architecture/loss/mix/sampling sweep.",
+  "components": {
+    "bidding": {
+      "parent": {
+        "path": "models/bidding/gen5-2026-11-10/bidder.keras",
+        "sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc"
+      },
+      "recipe_source": {
+        "ref": "50bc56a92ef7bc41ea2fe9448d504c5228393c75",
+        "branch": "research/bidding-clean-mixes-20261109",
+        "path": "models/bidding/gen5-2026-11-10/manifest.json"
+      },
+      "variant": "play50_anchor002",
+      "play_fraction": 0.5,
+      "dds_fraction": 0.5,
+      "anchor_weight": 0.02,
+      "anchor": "frozen original BEN",
+      "learning_rate": 0.0000025,
+      "ppo_epochs_per_batch": 2,
+      "minibatch": 64,
+      "batch_pairs": 128,
+      "pairs_per_candidate": 2048,
+      "exploration": 0.005,
+      "trainer": "scripts/run_bidding_refresh.py",
+      "missing_rewards": "Keep exact full-auction matching and the frozen clean Gen3/32 replay fallback from the current recipe; preserve historical/replayed reward provenance."
+    },
+    "belief": {
+      "parent": {
+        "path": "models/cardplay/gen5-belief-2026-11-10/belief.npz",
+        "sha256": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a"
+      },
+      "recipe_source": {
+        "ref": "4354810e0b2bd708592511fb86e363e6e01fe4b2",
+        "branch": "research/belief-lab-20261110",
+        "path": "models/cardplay/gen5-belief-2026-11-10/training.json"
+      },
+      "architecture": "dense 256/128",
+      "parameters": 308726,
+      "loss": "consequence-weighted masked ownership cross-entropy",
+      "optimizer": "fresh AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "clipnorm": 1,
+      "batch_size": 2048,
+      "epochs": 3,
+      "training_mass": {
+        "public_play": 0.5,
+        "bidding": 0.25,
+        "ben": 0.25,
+        "recent_family_multiplier": 2
+      },
+      "normalization": "Equal family mass within each source after uncertain-card weighting.",
+      "consequence_labels": "Keep current label recipe: 24 frozen-v4-belief plus 8 uniform legal worlds; cross-fit conditional owner information value, minimum 4/group/half and 4-world shrinkage; card weight 1+3*min(max(gain_IMP,0),1). No actual hidden owners/outcomes in importance computation.",
+      "selection": "Lowest composite validation NLL: 25% historical play, 25% recent weighted play, 25% complete bidding auctions, 25% complete BEN auctions; unchanged gen5 epoch zero eligible.",
+      "trainer": "scripts/train_belief_factorial.py --widths 256 128 --loss consequence --epochs 3"
+    },
+    "policy": {
+      "parent": {
+        "path": "models/cardplay/gen5-2026-11-10/policy.npz",
+        "sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18"
+      },
+      "recipe_source": {
+        "ref": "edc27400bec1966564e8a86fb69f939dfce7d40f",
+        "branch": "research/clean-policy-v5-20261110",
+        "path": "scripts/train_clean_policy_v5.py"
+      },
+      "architecture": "existing two-head cross-attention extension",
+      "parameters": 99161,
+      "loss": "MSE of individual remaining-partnership-trick outcomes, equal total family weight",
+      "optimizer": "fresh AdamW",
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0001,
+      "clipnorm": 1,
+      "batch_size": 128,
+      "epochs": 8,
+      "selection": "Minimum validation-family outcome MSE, unchanged gen5 epoch zero eligible; choice/IMP metrics do not select checkpoints.",
+      "trainer": "scripts/train_clean_policy_v5.py --mode attention --epochs 8",
+      "initialization_check": "Restore the complete gen5 attention checkpoint without adding/reinitializing attention; verify epoch-zero predictions agree within 1e-5."
+    }
+  },
+  "runtime": {
+    "baseline": "5RZ",
+    "reference_branch": "codex/launch-gen5rz-20261110",
+    "near_tie": 0,
+    "exploration": 0,
+    "policy_role": "PIMC exact ties only (existing floating-point tolerance)",
+    "layout_sampling": "Preserve existing Gen5R representative layout algorithm, budget-specific configuration, large-position threshold, medoid selection and belief-moment weighting.",
+    "comparisons": "Use equal sample budgets and the same frozen runtime on both sides for gen6 versus 5RZ. Bidding evaluation separate; common-auction cardplay for policy/belief."
+  },
+  "data": {
+    "export_ref": null,
+    "export_commit": null,
+    "manifest_sha256": null,
+    "readiness": "Locate the new completed Codex export (may update an existing transfer branch). Verify its manifest, every chunk/record count and checksums before freezing a training snapshot. Do not start from an incomplete export.",
+    "merge": "Merge newly eligible records with the existing recipe's historical/recent replay pool. Deduplicate canonical families, trajectories and branch records across local and exported copies. Preserve source and generation metadata; report old/new counts per component.",
+    "excluded_policy_sha256": [
+      "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed"
+    ],
+    "exclusions": "Exclude v4/v4p bad-policy play on either partnership, including aliases by model hash. Retain 4b and other eligible clean play.",
+    "splits": "Preserve canonical whole-deal-family train/validation/test assignments. Union all explicit reserved evaluation and audit manifests, including 5RZ-BEN-100, DDSD evaluation and later belief experiments. No held-out family enters training through branches, replays, repeated exports or inherited development/test labels.",
+    "test": "Use validation for checkpoint choice. Previously inspected tests are descriptive only. Freeze fresh confirmation families before opening final results."
+  },
+  "execution": {
+    "phase": "prepared; data import and training have not started",
+    "first_steps": [
+      "Fetch and audit complete new export.",
+      "Freeze data, parent, source and runtime hashes in a separate run manifest.",
+      "Restore all three parents; check inference equivalence and fit resumption on a small plumbing slice.",
+      "Run only the three selected recipes with bounded resources; preserve checkpoints and restart interrupted jobs under a single-writer lock.",
+      "Validate against gen5 component baselines and frozen 5RZ whole-game baseline; report paired family uncertainty.",
+      "Save reproducible model artifacts, provenance and results. Stop the watcher when complete."
+    ],
+    "deployment": "Training and validation are authorized. Keep existing arena model snapshots immutable; this request does not by itself replace the arena lineup.",
+    "resources": "Do not restart paused research/collection jobs. Coordinate CPU/memory with active matches. No architecture/hyperparameter experiment sweep."
+  }
+}
