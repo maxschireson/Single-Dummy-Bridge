@@ -33,7 +33,7 @@ def main():
     paths=[p for p in root.rglob('*') if p.is_file() and 'data' not in p.relative_to(root).parts and p.suffix not in ('.lock','.sqlite','.tmp') and not p.name.endswith(('-wal','-shm')) and 'checkpoints' not in p.parts]
     # Retain immutable epoch exports, selected models and exact in-progress state.
     overrides={}
-    for statepath in (root/'fits').glob('*/state.json'):
+    for statepath in root.rglob('state.json'):
         if (statepath.parent/'result.json').exists():continue
         for attempt in range(3):
             raw=statepath.read_bytes();state=json.loads(raw);prefix=Path(state['checkpoint'])
