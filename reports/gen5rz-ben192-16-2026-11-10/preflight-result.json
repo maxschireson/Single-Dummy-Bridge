@@ -1,0 +1,36 @@
+{
+  "boards": 2,
+  "target": 100,
+  "complete": false,
+  "total_imps": -11,
+  "imps_per_board": -5.5,
+  "se": 5.499999999999999,
+  "ci95": [
+    -75.38412604896081,
+    64.38412604896081
+  ],
+  "wins": 0,
+  "losses": 1,
+  "ties": 1,
+  "passed_out_tables": 0,
+  "candidate_nonforced_decisions": 80,
+  "candidate_policy_tiebreaks": 58,
+  "candidate_reduced_positions": 25,
+  "maximum_selected_pimc_gap": 0.0,
+  "timing": {
+    "5RZ": {
+      "decisions": 104,
+      "total_seconds": 38.309963380990666,
+      "seconds_per_paired_board": 19.154981690495333,
+      "nonforced_mean_ms": 478.8640378992568
+    },
+    "ben": {
+      "decisions": 104,
+      "total_seconds": 62.956316734082066,
+      "seconds_per_paired_board": 31.478158367041033,
+      "nonforced_mean_ms": 777.2290403836114
+    }
+  },
+  "replay_verified_tables": 4,
+  "updated": 1794332962.6928053
+}
