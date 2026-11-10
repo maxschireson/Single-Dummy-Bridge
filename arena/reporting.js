@@ -2,7 +2,8 @@
 (function(root){'use strict';
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
-  {"key": "gen5", "environment": "codex", "name": "Gen 5 \u00b7 current round", "branch": "arena-gen5-codex-feed", "cohort": "bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f"},
+  {key:'gen5',generation:5,environment:'codex',name:'Gen 5 · current round',branch:'arena-gen5-codex-32-feed',cohort:'c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59'},
+  {key:'gen5initial',generation:5,retired:true,allowed_pairs:['5~ben','5~5-32'],environment:'codex',name:'Gen 5 · retained BEN/control games',branch:'arena-gen5-codex-feed',cohort:'bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f'},
   {key:'primarycomponents',environment:'codex',name:'Codex primary 4p / 4b (no self-play)',branch:'arena-primary-components-feed',cohort:'4f43d6f3f234b9e561671f6958bbe2785e8896181791632ee4b1569a5ab062e0'},
   {key:'primary',environment:'codex',name:'Codex main',branch:'arena-feed',cohort:'7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404'},
   {key:'recovery',environment:'codex',name:'Codex six-bot mix',branch:'arena-recovery-feed',cohort:'7729472d36914fd1dce8ecfcc2d520cfc1c03ce737ac99511093e94ebce33a4c'},
@@ -15,7 +16,7 @@
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
- const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===scope);
+ const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===scope||(scope==='gen5'&&s.generation===5));
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
  function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
  function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
@@ -25,7 +26,7 @@
  function rowsFor(inputs,scope='all',condition='common',snapshots=null){const allowed=new Set(pickSources(scope).map(s=>s.key)),rows=[];
   for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
    const cutoff=snapshots? snapshots[source.cohort]:data.generated_epoch;if(cutoff==null)continue;
-   for(const r of index.records){if(r.completed_epoch>cutoff)continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
+   for(const r of index.records){if(r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
     if(condition==='own'&&!Object.hasOwn(r,'own_imps'))continue;
     rows.push({...r,pair,imps:value==null?null:flip?-value:value,scores:[...(condition==='own'?r.own_scores||r.scores:r.scores)].slice()[flip?'reverse':'slice'](),contracts:[...(condition==='own'?r.own_contracts||r.contracts:r.contracts)].slice()[flip?'reverse':'slice'](),_pair:r.pair,_flip:flip,_cohort:source.cohort,_source:source.key,_environment:source.environment,_title:source.name});
    }
@@ -53,16 +54,16 @@
   for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
   for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=Math.max(10,Math.floor(rows.length/50)))targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
   const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
-  const observations=chosen.flatMap(x=>x.index.records.filter(r=>r.completed_epoch<=x.data.generated_epoch));
+  const observations=chosen.flatMap(x=>x.index.records.filter(r=>r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
-  const stale=chosen.filter(x=>now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
+  const stale=chosen.filter(x=>!x.source.retired&&now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
   return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order:order.filter(k=>chosen.some(x=>(x.data.order||[]).map(canonical).includes(k))),versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
    completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,own_views:own.rows.length?own_views:null,curves,own_curves,
    report:{scope,snapshots:reportSnapshots,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
-   feed:{published_epoch:generated_epoch,next_update_epoch:chosen.length?Math.min(...chosen.map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
+   feed:{published_epoch:generated_epoch,next_update_epoch:chosen.some(x=>!x.source.retired)?Math.min(...chosen.filter(x=>!x.source.retired).map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
    interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
-   model_note:chosen.some(x=>x.source.key==='gen5')?'Gen 5 uses the promoted belief, attention policy and bidder at 192 samples; the 32-sample control has the same networks. Gen4b/3/2/1 retain 32 samples; BEN uses 16. Common-v5 and native partnership bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
+   model_note:chosen.some(x=>x.source.generation===5)?'Gen5 and older bots both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN (16) and Gen5 (32), with identical networks at both budgets. Earlier 192-vs-older games are preserved for training and excluded from statistics. Common-v5 and native bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
  }
  async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
  function verify(data,records){
@@ -78,6 +79,7 @@
   if(!indexOnly&&data.manifest_identity!==source.cohort)throw Error('Run identity changed');
   const indexURL=path+'replays/data/'+source.cohort+'/index.json',index=await get(indexURL);if(index.cohort!==source.cohort)throw Error('Replay run identity mismatch');
   if(index.record_shards){index.records=(await Promise.all(index.record_shards.map(async(p,i)=>{const url=new URL(p,indexURL).href;if(shardCache.has(url))return shardCache.get(url);const rows=await get(url);if(i<index.record_shards.length-1&&rows.length===100)shardCache.set(url,rows);return rows;}))).flat();}
+  if(source.allowed_pairs&&index.records.some(r=>!source.allowed_pairs.includes(r.pair)))throw Error('Awaiting the corrected sample-budget publication');
   if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);verify(data,index.records);}
   return {source,data,index,indexURL};
  }

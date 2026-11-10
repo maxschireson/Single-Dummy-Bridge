@@ -61,5 +61,16 @@ test('empty and partial reports disclose the streams actually included',()=>{
  const empty=R.build([],'all');assert.equal(empty.completed,0);assert.deepEqual(empty.report.sources,[]);assert.equal(empty.own_views,null);
  const partial=R.build(inputs.slice(0,2));assert.equal(partial.report.sources.length,2);assert.equal(Object.keys(partial.report.snapshots).length,2);
 });
+test('current generation excludes prior rounds and keeps only compatible initial budgets',()=>{
+ const make=(key,records)=>({source:R.sources.find(s=>s.key===key),data:{generated_epoch:100,target:records.length,failures:0,order:['5','5-32','4b','ben'],own_views:{}},index:{records}});
+ const row=(id,pair,imps)=>({id,index:Number(id),family:'family-'+id,pair,imps,own_imps:imps,scores:[0,0],contracts:[],completed_epoch:10});
+ const current=make('gen5',[row('900','5-32~4b',3)]);
+ const initial=make('gen5initial',[row('901','5~ben',2),row('902','5~4b',1000)]);
+ const d=R.build([...inputs,current,initial],'gen5',null,100);
+ assert.equal(d.completed,2);assert.deepEqual(d.report.sources,['gen5','gen5initial']);
+ assert.equal(d.views[0].groups['5-32~4b'].total,3);assert.equal(d.views[0].groups['5~ben'].total,2);
+ assert.equal(d.views[0].groups['5~4b'],undefined);assert.equal(d.rates[5].pairs,2);
+ assert.ok(R.build([...inputs,current,initial],'all').completed>d.completed);
+});
 console.log(JSON.stringify({checks,summary:['all','chatgpt','codex'].map(s=>{const d=R.build(inputs,s);return {scope:s,completed:d.completed,observations:d.report.observations,duplicates:d.report.duplicates,matchups:Object.keys(d.views[0].groups).length};})}));
 
