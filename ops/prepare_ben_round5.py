@@ -21,23 +21,26 @@ OVERRIDES={
     'dds':{'dds_max_threads':'1'}
 }
 
-def profile(ben):
+def profile(ben,samples=16):
     config=configparser.ConfigParser(interpolation=None)
     if not config.read(ben/'src/config/default_api.conf'):raise ValueError('BEN API config missing')
     for section,values in OVERRIDES.items():
         if not config.has_section(section):config.add_section(section)
         config[section].update(values)
+    for section,key in (("sampling","sample_hands_opening_lead"),("sampling","sample_hands_for_review"),("cardplay","sample_hands_play"),("cardplay","min_sample_hands_play"),("cardplay","min_sample_hands_play_bad")):
+        config[section][key]=str(samples)
     return config
 
-def validate(config):
+def validate(config,samples=16):
     for section,values in OVERRIDES.items():
         for key,expected in values.items():
+            if key in {'sample_hands_opening_lead','sample_hands_for_review','sample_hands_play','min_sample_hands_play','min_sample_hands_play_bad'}:expected=str(samples)
             if config.get(section,key).lower()!=expected.lower():raise ValueError(f'BEN profile drift: {section}.{key}')
 
-def prepare(ben,dest):
+def prepare(ben,dest,samples=16):
     revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ben,text=True).strip()
     if revision!=COMMIT:raise ValueError('Different BEN source revision')
-    config=profile(ben);validate(config);buffer=io.StringIO();config.write(buffer)
+    config=profile(ben,samples);validate(config,samples);buffer=io.StringIO();config.write(buffer)
     if dest.exists() and dest.read_text()!=buffer.getvalue():raise ValueError('Refusing to overwrite a different BEN profile')
     dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(buffer.getvalue())
     models={}
@@ -48,13 +51,13 @@ def prepare(ben,dest):
                 if not path.exists():raise ValueError('Missing BEN model: '+str(path))
                 models[section+'.'+key]=dict(path=value,sha256=sha(path))
     result=dict(source_commit=revision,config_sha256=sha(dest),model_sha256=models,bidding='neural-only',
-        opening_lead_samples=32,play_samples=32,dds_threads=1,
-        sample_interpretation='32 retained hand samples per searched lead/play; forced moves and endings with fewer possible worlds can use fewer.',
+        opening_lead_samples=samples,play_samples=samples,dds_threads=1,
+        sample_interpretation=f'{samples} retained hand samples per searched lead/play; forced moves and endings with fewer possible worlds can use fewer.',
         status='profile-and-model-files-verified')
     dest.with_suffix('.provenance.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--ben',type=Path,required=True)
-    p.add_argument('--out',type=Path,default=ROOT/'configs/ben-round5-32.conf');a=p.parse_args()
+    p.add_argument('--out',type=Path,default=ROOT/'configs/ben-gen5-16.conf');a=p.parse_args()
     print(json.dumps(prepare(a.ben.resolve(),a.out.resolve()),indent=2))

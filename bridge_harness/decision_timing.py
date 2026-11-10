@@ -45,6 +45,6 @@ def from_game(game,actor_bots):
 
 def from_record(record):
     pair=record['pair'];pair=pair.split('~') if '~' in pair else list(pair)
-    roles={'candidate':pair[0],'environment':pair[1]}
-    common=record['regimes'].get('common',record['regimes'].get('self'))
-    return merge(*(from_game(record['unique_tables'][key],roles) for key in dict.fromkeys(common['tables'])))
+    roles={'candidate':pair[0],'environment':pair[1],'opponent':pair[1]}
+    keys=dict.fromkeys(key for regime in record['regimes'].values() for key in regime['tables'])
+    return merge(*(from_game(record['unique_tables'][key],roles) for key in keys))

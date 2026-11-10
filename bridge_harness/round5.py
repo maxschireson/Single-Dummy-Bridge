@@ -25,7 +25,7 @@ def validate_plan(plan):
             ben_weight+=weight
     if Fraction(ben_weight,total)!=Fraction(str(plan['ben_match_fraction'])):raise ValueError('BEN allocation differs from declared fraction')
     ben=plan['ben']
-    if ben['bidding']!='neural-only' or ben['opening_lead_samples']!=32 or ben['play_samples']!=32:raise ValueError('BEN requires neural bidding and 32-sample lead/play')
+    if ben['bidding']!='neural-only' or ben['opening_lead_samples']!=16 or ben['play_samples']!=16:raise ValueError('BEN requires neural bidding and 16-sample lead/play')
     return plan
 
 

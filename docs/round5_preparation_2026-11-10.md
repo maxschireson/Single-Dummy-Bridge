@@ -1,5 +1,7 @@
 # V5 round preparation
 
+Historical preparation snapshot, superseded by [the Gen5 launch](gen5_launch_2026-11-10.md). The user subsequently selected BEN at 16 samples and the final allocation recorded there.
+
 The user retired 4 and 4p, retained 4b, and requested BEN with neural-only bidding
 and 32 samples for opening lead and play. BEN must face v5 only, in about 10% of
 scheduled matches. The remaining v5 upgrades and final actor handoff are pending.

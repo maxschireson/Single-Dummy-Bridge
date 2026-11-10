@@ -46,7 +46,7 @@ class IMPSelector(AuctionSelectorWeights):
 
 def selector(path):
     with np.load(path, allow_pickle=False) as z:
-        cls = IMPSelector if 'imp_neural' in z else AuctionSelectorWeights if 'call_embedding' in z else SelectorWeights
+        cls = IMPSelector if 'imp_neural' in z else AuctionSelectorWeights if 'call_embedding' in z or 'v5_mode' in z else SelectorWeights
     return cls(path)
 
 

@@ -7,7 +7,7 @@ from bridge_harness.decision_timing import from_game,merge
 class Round5Tests(unittest.TestCase):
     def test_roster_and_ben_allocation(self):
         plan=load_plan();rows=schedule(plan,1600,42)
-        self.assertEqual(sum('ben' in members(p) for p in rows),160)
+        self.assertEqual(sum('ben' in members(p) for p in rows),80)
         self.assertEqual(rows,schedule(plan,1600,42))
         for pair in rows:
             self.assertFalse(set(members(pair))&{'4','4p'})
