@@ -7,7 +7,7 @@ from scripts.snapshot_belief_lab import archive
 def main():
     p=argparse.ArgumentParser();p.add_argument('--run',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args();root=a.run.resolve();plan=json.loads((root/'plan.json').read_text())
     paths=[p for p in root.rglob('*') if p.is_file() and p.suffix not in ('.lock','.tmp') and 'checkpoints' not in p.parts];overrides={}
-    for s in root.glob('fits/*/state.json'):
+    for s in root.rglob('state.json'):
         for attempt in range(4):
             raw=s.read_bytes();state=json.loads(raw);prefix=Path(state['checkpoint']);needed=list(prefix.parent.glob(prefix.name+'.*'))
             try:captured={p.resolve():p.read_bytes() for p in needed}
