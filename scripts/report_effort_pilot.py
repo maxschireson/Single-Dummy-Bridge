@@ -20,6 +20,10 @@ def report(root):
             if kind=='belief':data={k:v['groups'] for k,v in data.items()}
             for left,right in [('high','low'),('high','quantity'),('low','none'),('high','none'),('quantity','none')]:
                 rows.append(dict(kind=kind,epoch=epoch,left=left,right=right,**contrast(data[left],data[right])))
+            budget=root/'fits'/f'{kind}_budget'/(f'joint-{epoch}.json' if kind=='belief' else f'epoch-{epoch}-families.json')
+            if budget.exists():
+                b=json.loads(budget.read_text());b=b['groups'] if kind=='belief' else b
+                rows.append(dict(kind=kind,epoch=epoch,left='high',right='budget',**contrast(data['high'],b)))
     atomic_json(root/'comparison.json',dict(rows=rows,counts=plan['counts'],interpretation='Development fixed-epoch screens. Negative is better. Family SE conditions on these trained models; no seed/data-subset replication or playing-strength confirmation yet.'))
     lines=['# Effort versus volume pilot','',f"Added training families: high {plan['counts']['high']['families']}, low {plan['counts']['low']['families']}, quantity {plan['counts']['quantity']['families']}. Common-auction roots only, matched opponent counts.",'','Negative change favors the left arm. Belief: exact conditional card NLL. Policy: observed remaining-trick MSE. Development only; conditional family SE excludes seed and training-set uncertainty.','','| Net | Epoch | Comparison | Change | Family SE | Dev families |','|---|---:|---|---:|---:|---:|']
     for r in rows:lines.append(f"| {r['kind']} | {r['epoch']} | {r['left']} minus {r['right']} | {r['delta']:.9f} | {r['se']:.9f} | {r['families']} |")

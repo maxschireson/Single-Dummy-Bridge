@@ -30,7 +30,7 @@ def main():
             if sp=='train':rows+=len(d['y'])
     assert not families['train']&families['validation']
     import tensorflow as tf
-    tf.config.threading.set_intra_op_parallelism_threads(2);tf.config.threading.set_inter_op_parallelism_threads(1)
+    tf.config.threading.set_intra_op_parallelism_threads(cfg.get('threads',2));tf.config.threading.set_inter_op_parallelism_threads(1)
     tf.keras.utils.set_random_seed(cfg['seed']);tf.config.experimental.enable_op_determinism()
     policy_v5.MODE='attention';d=load(Path(entries['validation'][0]['file']));model=policy_v5.build_model(d['state'].shape[1],d['actions'].shape[-1]);policy_v5.restore(model,cfg['parent'])
     opt=tf.keras.optimizers.AdamW(cfg['lr'],weight_decay=1e-4,clipnorm=1.);opt.build(model.trainable_variables)

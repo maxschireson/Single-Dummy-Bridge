@@ -55,7 +55,7 @@ def main():
     rows=[]
     for epoch in (0,1,2):
         scores={}
-        for arm in ('none','high','low','quantity'):
+        for arm in ('none','high','low','quantity','budget'):
             model=root/'fits'/('policy_'+arm)/f'epoch-{epoch}.npz';dest=model.with_name(f'fresh-{epoch}.json')
             if not model.exists():continue
             if dest.exists():scores[arm]=json.loads(dest.read_text());continue
@@ -65,10 +65,11 @@ def main():
                 for g,cohort,v in zip(b['group'],b['cohort'],error):
                     acc=groups.setdefault(str(cohort)+'|'+str(g),[0.,0]);acc[0]+=float(v);acc[1]+=1
             atomic_json(dest,groups);scores[arm]=groups
-        if len(scores)<4:continue
+        if any(k not in scores for k in ('none','high','low','quantity')):continue
         for cohort in ('high','low'):
             sub={k:{g:v for g,v in gs.items() if g.startswith(cohort+'|')} for k,gs in scores.items()}
             for left,right in [('high','low'),('high','quantity'),('high','none'),('quantity','none')]:rows.append(dict(epoch=epoch,cohort=cohort,left=left,right=right,**contrast(sub[left],sub[right])))
+            if 'budget' in sub:rows.append(dict(epoch=epoch,cohort=cohort,left='high',right='budget',**contrast(sub['high'],sub['budget'])))
     atomic_json(root/'fresh-policy-comparison.json',dict(rows=rows,interpretation='Secondary descriptive outcome MSE on new Gen5 development families, conditioned on recorded continuation effort; not an independent playing-strength test.'))
     print(json.dumps(dict(rows=rows)),flush=True)
 
