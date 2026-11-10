@@ -218,8 +218,8 @@
       "source_adapter": "scripts/prepare_gen6_belief_compact.py",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/belief-full1513",
       "batch": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/compact-belief-1513",
-      "session": 48200,
-      "status": "labeling started; verify status and lock",
+      "session": 43789,
+      "status": "resumed per-family labels;1090/1336 completed at check",
       "source_families": 1513,
       "source_train": 1182,
       "source_validation": 154,
@@ -286,8 +286,8 @@
       "runner": "scripts/run_gen6_policy_full.py",
       "source_commit": "e71db2de4747cce155d72df7278bf62b6c7b7fa2",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513",
-      "session": 59059,
-      "status": "unchanged width64 Gen5 continuation launched after complete raw audit/extraction",
+      "session": 43789,
+      "status": "resumed optimizer from completed epoch1 under diagnostic supervisor",
       "train_outcomes": 601037,
       "train_families": 5689,
       "validation_families": 748,
@@ -302,7 +302,30 @@
       "passed_out_rooms": 14,
       "test_evaluated": false,
       "promoted": false,
-      "confirmation": "Validation-only fit. After selection, prepare and score the150 fresh reserved families; prior27 source tests were already inspected in initial policy fit."
+      "confirmation": "Validation-only fit. After selection, prepare and score the150 fresh reserved families; prior27 source tests were already inspected in initial policy fit.",
+      "completed_epochs": 1,
+      "latest_validation": {
+        "mse": 0.530732452066718,
+        "parent_mse": 0.5318594734907276,
+        "paired_delta": -0.0011270214240094367,
+        "se": 0.004154454202582976,
+        "ci95": [
+          -0.009282869875276135,
+          0.007028827027257263
+        ],
+        "families": 745
+      },
+      "confirmation_script": "scripts/confirm_gen6_policy.py --plan configs/gen6-policy-full1513-plan.json; only after completed fit/result.json"
+    },
+    "supervisor": {
+      "script": "scripts/supervise_gen6.py",
+      "root": "/workspace/scratch/d59c0a9fe14a/gen6-full-data",
+      "session": 43789,
+      "started_utc": "2026-11-10T20:53:56Z",
+      "event_log": "supervisor-events.jsonl",
+      "heartbeat": "supervisor-status.json",
+      "lock": "supervisor.lock",
+      "note": "Both jobs stopped without recorded errors before this run. Diagnostic supervisor records child exits and received signals; cause remains unknown."
     }
   }
 }
