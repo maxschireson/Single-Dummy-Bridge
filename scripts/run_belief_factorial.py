@@ -1,5 +1,5 @@
 """Four sequential, resumable dense size/loss cells on one frozen dataset."""
-import argparse,fcntl,json,os,subprocess,sys,time
+import argparse,fcntl,json,os,resource,subprocess,sys,time
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from bridge_harness.belief_capacity import sha
@@ -36,7 +36,30 @@ def main():
             if a.smoke_shards:cmd+=['--smoke-shards',str(a.smoke_shards)]
             with (a.out/'pipeline.log').open('a',buffering=1) as log:
                 log.write(json.dumps(dict(cell=name,started=time.time()))+'\n')
-                subprocess.run(cmd,env=env,stdout=log,stderr=log,check=True)
+                proc=subprocess.Popen(cmd,env=env,stdout=log,stderr=log)
+                while True:
+                    try:
+                        code=proc.wait(timeout=10)
+                        break
+                    except subprocess.TimeoutExpired:
+                        mem={}
+                        try:
+                            for line in Path(f'/proc/{proc.pid}/status').read_text().splitlines():
+                                if line.startswith(('VmRSS:','VmHWM:')):
+                                    k,v=line.split(':',1);mem[k]=v.strip()
+                        except FileNotFoundError:pass
+                        save_json(a.out/'status.json',dict(stage='training',active_cell=name,completed=list(results),
+                            memory=mem,updated=time.time()))
+                log.write(json.dumps(dict(cell=name,exit_code=code,max_child_rss_kb=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss))+'\n')
+                if code==-9:
+                    failures=a.out/(name+'-interruptions.json')
+                    count=json.loads(failures.read_text())['count']+1 if failures.exists() else 1
+                    save_json(failures,dict(count=count,last_exit_code=code,updated=time.time()))
+                    if count<=5:
+                        # Epoch checkpoints are atomic; re-enter the same frozen pipeline.
+                        log.flush();lock.close()
+                        os.execv(sys.executable,[sys.executable,*sys.argv])
+                if code:raise subprocess.CalledProcessError(code,cmd)
         result=json.loads((out/'result.json').read_text())
         if result['config_sha256']!=sha(out/'config.json'):raise ValueError('Cell config changed')
         results[name]=dict(parameters=result['parameters'],selected_epoch=result['best_epoch'],
