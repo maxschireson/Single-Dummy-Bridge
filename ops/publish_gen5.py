@@ -30,9 +30,10 @@ def snapshot_runtime(run,backup):
         source=ROOT/'ops'/name;dest=backup/'runtime/ops'/name
         if name=='watch_gen5.py' and dest.exists():shutil.copy2(source,dest)
         else:copy_once(source,dest)
-    for name in ('prepare_gen5r.py','register_gen5r_report.py'):
+    for name in ('prepare_gen5r.py','register_gen5r_report.py','prepare_gen5rz.py'):
         if (ROOT/'ops'/name).exists():copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
     copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
+    if (ROOT/'configs/round5rz.json').exists():copy_once(ROOT/'configs/round5rz.json',backup/'runtime/configs/round5rz.json')
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     return True
 
