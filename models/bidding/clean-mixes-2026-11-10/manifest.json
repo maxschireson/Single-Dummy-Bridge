@@ -1,0 +1,81 @@
+{
+  "schema": "clean-bidding-mix-experiment-v1",
+  "config": {
+    "seed": 2026110909,
+    "pairs_per_candidate": 2048,
+    "batch_pairs": 128,
+    "ppo_epochs": 2,
+    "learning_rate": 2.5e-06,
+    "minibatch": 64,
+    "exploration": 0.005,
+    "tf_threads": 2,
+    "variants": [
+      {
+        "name": "play25_anchor002",
+        "play_fraction": 0.25,
+        "anchor_weight": 0.02
+      },
+      {
+        "name": "play50_anchor002",
+        "play_fraction": 0.5,
+        "anchor_weight": 0.02
+      },
+      {
+        "name": "play75_anchor002",
+        "play_fraction": 0.75,
+        "anchor_weight": 0.02
+      },
+      {
+        "name": "play25_anchor020",
+        "play_fraction": 0.25,
+        "anchor_weight": 0.2
+      },
+      {
+        "name": "play50_anchor020",
+        "play_fraction": 0.5,
+        "anchor_weight": 0.2
+      },
+      {
+        "name": "play75_anchor020",
+        "play_fraction": 0.75,
+        "anchor_weight": 0.2
+      }
+    ]
+  },
+  "dataset_sha256": "254a5ecee234bad39705580732fdd789389f4930bcce8fef301381d003f847e0",
+  "parent_sha256": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3",
+  "anchor_sha256": "b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3",
+  "source_sha256": {
+    "bridge_harness/bidding_refresh.py": "9cfc92bfa5b74d976acb7eb76d54e021f80cc5076d434c7695f3f27a26d87b2c",
+    "bridge_harness/bidding_ppo.py": "ebc633016ecd870cdd3224c91d21d0c127b4350289f2d2a9452e002091602093",
+    "bridge_harness/bidding_play_cache.py": "c61c5429e6a58992193eb3dd4dbc4dc74a1651ae87e2440429086bcb5ed9800a",
+    "scripts/run_bidding_refresh.py": "60384b4a90b5a182d90a8e302030e0a73b9e8d7ecd4761259a7fdf12f7a0ab90"
+  },
+  "tensorflow": "2.21.0",
+  "created_utc": "2026-11-10T00:00:56Z",
+  "parent": "/workspace/scratch/bbe90ba77a68/bridge-bidding-refresh/models/bidding/dds-40000/bidder.keras",
+  "anchor": "/workspace/scratch/bbe90ba77a68/bidding-inputs/checkpoint/dependencies/GIB-BBO-8742_2026-10-23-E30.keras",
+  "data": "/workspace/scratch/bbe90ba77a68/bridge-bidding-refresh/runs/bidding-exact-mixes-20261109/data/dataset.json",
+  "play_root": "/workspace/scratch/74fefc15be51/bridge-gen4-components/runs/gen4-components-20261109",
+  "play_spec": {
+    "id": "gen3",
+    "label": "Gen 3",
+    "samples": 32,
+    "near_tie": 0.125,
+    "exploration": 0.0,
+    "bidding": "models/bidder-v3.keras",
+    "belief": "models/public-belief.npz",
+    "belief_kind": "public",
+    "policy": "models/auction-policy.npz",
+    "artifact_sha256": {
+      "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+      "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+      "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+    },
+    "identity": "2847911905f03ba103db27bcba746985fc623f55a067b4c41e1371e295cb7255"
+  },
+  "dds_library_sha256": "e05d89584854cbeae132d71dcc3b807352374fc19cc26ecb3d22404a8140acc5",
+  "limitation": "Historical v2/v3/v4b results are treated as compatible; new play uses frozen Gen3. Exact auction required.",
+  "retention": "KL to frozen original BEN on collected observations; not replay of original BEN corpus",
+  "promotion": "No automatic promotion; test accessed only for preselected variant"
+}

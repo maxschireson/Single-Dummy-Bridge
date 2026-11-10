@@ -1,0 +1,56 @@
+[
+  {
+    "name": "play25_anchor002",
+    "play_fraction": 0.25,
+    "anchor_weight": 0.02,
+    "pairs": 2048,
+    "sha256": "da5076a9285c2a4a1c6be479babbe2de5bd1673466ede364ff3aec328e99bad1",
+    "bytes": 6153107,
+    "published_model": "play25_anchor002"
+  },
+  {
+    "name": "play50_anchor002",
+    "play_fraction": 0.5,
+    "anchor_weight": 0.02,
+    "pairs": 2048,
+    "sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+    "bytes": 6153107,
+    "published_model": "../gen5-2026-11-10"
+  },
+  {
+    "name": "play75_anchor002",
+    "play_fraction": 0.75,
+    "anchor_weight": 0.02,
+    "pairs": 2048,
+    "sha256": "bc8fa6e6504c7cbe1af70e45847a8c1c52a0c9a4846609643d21bfb319e30cdd",
+    "bytes": 6153107,
+    "published_model": "play75_anchor002"
+  },
+  {
+    "name": "play25_anchor020",
+    "play_fraction": 0.25,
+    "anchor_weight": 0.2,
+    "pairs": 2048,
+    "sha256": "ce0870a3f20cb146a251f6423eceebd15ba65f92e4bf89a4a01c20fa9965c91d",
+    "bytes": 6153107,
+    "published_model": "play25_anchor020"
+  },
+  {
+    "name": "play50_anchor020",
+    "play_fraction": 0.5,
+    "anchor_weight": 0.2,
+    "pairs": 2048,
+    "sha256": "318137c1603b635a0e622d5d6b7f2d0dc90870ecb465403c4386c7ca62d17c92",
+    "bytes": 6153107,
+    "published_model": "play50_anchor020"
+  },
+  {
+    "name": "play75_anchor020",
+    "play_fraction": 0.75,
+    "anchor_weight": 0.2,
+    "pairs": 2048,
+    "sha256": "ef8918727f683e30b2dc081d1d1415c4e9f1915d285b6a7e1f02ed3935f9629e",
+    "bytes": 6153107,
+    "published_model": "play75_anchor020"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "reason": "Load NPZ arrays once instead of repeatedly decompressing per decision; identical array values",
+  "old": {
+    "scripts/bidding_refresh_stage.py": "e0ca614e9dceaa1201292b6507f5a43dd18607042f0eda4e918486a01965f5f5"
+  },
+  "new": {
+    "scripts/bidding_refresh_stage.py": "3df61608cabd3d762da4513eb2a9b6a06d8870f2aef86c1ccd5765a20a9b88a0"
+  }
+}

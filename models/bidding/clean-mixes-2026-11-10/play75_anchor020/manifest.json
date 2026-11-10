@@ -1,0 +1,137 @@
+{
+  "schema": "clean-bidding-candidate-release-v1",
+  "variant": {
+    "name": "play75_anchor020",
+    "play_fraction": 0.75,
+    "anchor_weight": 0.2
+  },
+  "model": {
+    "file": "bidder.keras",
+    "bytes": 6153107,
+    "sha256": "ef8918727f683e30b2dc081d1d1415c4e9f1915d285b6a7e1f02ed3935f9629e",
+    "chunks": [
+      {
+        "file": "bidder.keras.part-000",
+        "bytes": 262144,
+        "sha256": "4dfcb1ec382164d5abe3b5e17c0687397f92e98e44465b940ed110e96f53c8d2"
+      },
+      {
+        "file": "bidder.keras.part-001",
+        "bytes": 262144,
+        "sha256": "e0fa809d9f8a5a44f97d8c24f301dd4038f4e08819aa75d3068e574aa5114af6"
+      },
+      {
+        "file": "bidder.keras.part-002",
+        "bytes": 262144,
+        "sha256": "471face1c0146700b1f2e0d170ab3108cf4b32a7152436a7df594312c6cce630"
+      },
+      {
+        "file": "bidder.keras.part-003",
+        "bytes": 262144,
+        "sha256": "f137a0cd08a857291e2ed555f3688d813fc6a82054b1d82cd6b39983b516aa2e"
+      },
+      {
+        "file": "bidder.keras.part-004",
+        "bytes": 262144,
+        "sha256": "b504c477bffc82a1b3413073ba86e25dd019946f85eb5e1ab8dc7283fc13e9d6"
+      },
+      {
+        "file": "bidder.keras.part-005",
+        "bytes": 262144,
+        "sha256": "e9212492467ee46e0d68e396e824b17466f5f5b865ee41b4ac7408b667f550d8"
+      },
+      {
+        "file": "bidder.keras.part-006",
+        "bytes": 262144,
+        "sha256": "39c066b27db02d9e240d2daeb21e9cb71cd9bc898b4bb7affbe611024d72e422"
+      },
+      {
+        "file": "bidder.keras.part-007",
+        "bytes": 262144,
+        "sha256": "aedcec8a1f78c2c54714a734d0bf9a959bcccc34f79b0995cf96b2662c95c940"
+      },
+      {
+        "file": "bidder.keras.part-008",
+        "bytes": 262144,
+        "sha256": "f15d6b7eadf027ebdd30eadac61c163ab2fe590de09d23254d216f034a0a2853"
+      },
+      {
+        "file": "bidder.keras.part-009",
+        "bytes": 262144,
+        "sha256": "f649049b5f60ca61c9b65663a1c4b348d1b6f4153440c94e32601ebda79216df"
+      },
+      {
+        "file": "bidder.keras.part-010",
+        "bytes": 262144,
+        "sha256": "74afbc680972e0b48a8fe8dee3f6882f8d1439619af3060473c997330dad16fe"
+      },
+      {
+        "file": "bidder.keras.part-011",
+        "bytes": 262144,
+        "sha256": "ef021b3261b840e2f2ab4665b4209f19ee97528c570af129bf94893ca3e7afb2"
+      },
+      {
+        "file": "bidder.keras.part-012",
+        "bytes": 262144,
+        "sha256": "0032866cded55374eb4d84c88a93c5293c4c52b91947cca471cd6c6b38e8f58e"
+      },
+      {
+        "file": "bidder.keras.part-013",
+        "bytes": 262144,
+        "sha256": "2e814613d0f08431bb18c3c543638aafb0a650011af445469228c5c1bf9fa181"
+      },
+      {
+        "file": "bidder.keras.part-014",
+        "bytes": 262144,
+        "sha256": "69b1f2e7f578f5e0ff6eb81f936eef237e3b62080a7b988c275e96557b06480b"
+      },
+      {
+        "file": "bidder.keras.part-015",
+        "bytes": 262144,
+        "sha256": "0831bc2663fa428f6bf7e563c42e468d94c20e7df21eeec621dba6d80d48cc73"
+      },
+      {
+        "file": "bidder.keras.part-016",
+        "bytes": 262144,
+        "sha256": "c04fb4a9bb927b2ea27d44a5ec88402de08bf505cbd2ff9daa66942abdeb754c"
+      },
+      {
+        "file": "bidder.keras.part-017",
+        "bytes": 262144,
+        "sha256": "13fe1b3f9ced88ecd7dedb5883758c4c747a448a21297bfe9a18c37f28c04948"
+      },
+      {
+        "file": "bidder.keras.part-018",
+        "bytes": 262144,
+        "sha256": "01bb690f80aa150cabd1282133cef01d17d22c024e8086bbb23d107d9c1ded63"
+      },
+      {
+        "file": "bidder.keras.part-019",
+        "bytes": 262144,
+        "sha256": "4c36ea18a86d73d4889b5fd820e950e371abeecf8f4acd86329fa86bb5580680"
+      },
+      {
+        "file": "bidder.keras.part-020",
+        "bytes": 262144,
+        "sha256": "8b15494805f920b8ed1f5a02a880db769336836e9983e1028c86f9418744fc66"
+      },
+      {
+        "file": "bidder.keras.part-021",
+        "bytes": 262144,
+        "sha256": "968cf200b8ef2dba67c2cc30cc1154495ae21d76de5e7d513bb57434eaee5379"
+      },
+      {
+        "file": "bidder.keras.part-022",
+        "bytes": 262144,
+        "sha256": "6911ed404639c08bd10b8ca2eca1fb48f4e73cd98a13fd8695befee74927092d"
+      },
+      {
+        "file": "bidder.keras.part-023",
+        "bytes": 123795,
+        "sha256": "624d67eeb81989c39df6b4ed5466e824fdd0e8c10f00b3b8ff69663765b57609"
+      }
+    ]
+  },
+  "status": "development_only_not_promoted",
+  "pairs": 2048
+}

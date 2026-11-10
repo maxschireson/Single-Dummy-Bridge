@@ -1,3 +1,7 @@
+## Completed six-way comparison (2026-11-10)
+
+All six models and development results are published under [models/bidding/clean-mixes-2026-11-10](../models/bidding/clean-mixes-2026-11-10/README.md). Every development confidence interval includes zero. Candidate 2 remains the initial Gen5 selection; no other candidate was evaluated on the final 192 families. The final result remains +0.0625 IMP/board, SE 0.0625, inconclusive.
+
 # Clean bidding mix refresh — 9 November 2026
 
 ## Initial Gen5 selection amendment — 10 November 2026

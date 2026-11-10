@@ -1,0 +1,324 @@
+{
+  "play": {
+    "total_families": 199,
+    "common_supported_families": 199,
+    "variants": {
+      "parent": {
+        "common": {
+          "families": 199,
+          "mean_imps": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "informative": false
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "informative": false
+        }
+      },
+      "play25_anchor002": {
+        "common": {
+          "families": 199,
+          "mean_imps": -0.06909547738693467,
+          "se": 0.057739958227831366,
+          "ci95": [
+            -0.18226579551348415,
+            0.044074840739614804
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": -0.06909547738693467,
+          "se": 0.057739958227831366,
+          "ci95": [
+            -0.18226579551348415,
+            0.044074840739614804
+          ],
+          "informative": true
+        }
+      },
+      "play50_anchor002": {
+        "common": {
+          "families": 199,
+          "mean_imps": 0.01507537688442211,
+          "se": 0.012799157483854202,
+          "ci95": [
+            -0.010010971783932125,
+            0.04016172555277635
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": 0.01507537688442211,
+          "se": 0.012799157483854202,
+          "ci95": [
+            -0.010010971783932125,
+            0.04016172555277635
+          ],
+          "informative": true
+        }
+      },
+      "play75_anchor002": {
+        "common": {
+          "families": 199,
+          "mean_imps": 0.01507537688442211,
+          "se": 0.012799157483854202,
+          "ci95": [
+            -0.010010971783932125,
+            0.04016172555277635
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": 0.01507537688442211,
+          "se": 0.012799157483854202,
+          "ci95": [
+            -0.010010971783932125,
+            0.04016172555277635
+          ],
+          "informative": true
+        }
+      },
+      "play25_anchor020": {
+        "common": {
+          "families": 199,
+          "mean_imps": -0.06030150753768844,
+          "se": 0.06030150753768844,
+          "ci95": [
+            -0.1784924623115578,
+            0.057889447236180905
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": -0.06030150753768844,
+          "se": 0.06030150753768844,
+          "ci95": [
+            -0.1784924623115578,
+            0.057889447236180905
+          ],
+          "informative": true
+        }
+      },
+      "play50_anchor020": {
+        "common": {
+          "families": 199,
+          "mean_imps": 0.01256281407035176,
+          "se": 0.013058101261224832,
+          "ci95": [
+            -0.013031064401648912,
+            0.03815669254235243
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": 0.01256281407035176,
+          "se": 0.013058101261224832,
+          "ci95": [
+            -0.013031064401648912,
+            0.03815669254235243
+          ],
+          "informative": true
+        }
+      },
+      "play75_anchor020": {
+        "common": {
+          "families": 199,
+          "mean_imps": 0.01507537688442211,
+          "se": 0.012799157483854202,
+          "ci95": [
+            -0.010010971783932125,
+            0.04016172555277635
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 199,
+          "mean_imps": 0.01507537688442211,
+          "se": 0.012799157483854202,
+          "ci95": [
+            -0.010010971783932125,
+            0.04016172555277635
+          ],
+          "informative": true
+        }
+      }
+    },
+    "support_note": "Missing contracts played with frozen clean Gen3; every evaluated deal must be scored"
+  },
+  "dds": {
+    "total_families": 1000,
+    "common_supported_families": 1000,
+    "variants": {
+      "parent": {
+        "common": {
+          "families": 1000,
+          "mean_imps": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "informative": false
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "informative": false
+        }
+      },
+      "play25_anchor002": {
+        "common": {
+          "families": 1000,
+          "mean_imps": 0.029,
+          "se": 0.026245911069114135,
+          "ci95": [
+            -0.0224419856954637,
+            0.08044198569546371
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": 0.029,
+          "se": 0.026245911069114135,
+          "ci95": [
+            -0.0224419856954637,
+            0.08044198569546371
+          ],
+          "informative": true
+        }
+      },
+      "play50_anchor002": {
+        "common": {
+          "families": 1000,
+          "mean_imps": 0.016,
+          "se": 0.029404227733586353,
+          "ci95": [
+            -0.04163228635782925,
+            0.07363228635782926
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": 0.016,
+          "se": 0.029404227733586353,
+          "ci95": [
+            -0.04163228635782925,
+            0.07363228635782926
+          ],
+          "informative": true
+        }
+      },
+      "play75_anchor002": {
+        "common": {
+          "families": 1000,
+          "mean_imps": -0.004,
+          "se": 0.02964562131011699,
+          "ci95": [
+            -0.062105417767829296,
+            0.0541054177678293
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": -0.004,
+          "se": 0.02964562131011699,
+          "ci95": [
+            -0.062105417767829296,
+            0.0541054177678293
+          ],
+          "informative": true
+        }
+      },
+      "play25_anchor020": {
+        "common": {
+          "families": 1000,
+          "mean_imps": 0.021,
+          "se": 0.02282717853962859,
+          "ci95": [
+            -0.02374126993767203,
+            0.06574126993767203
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": 0.021,
+          "se": 0.02282717853962859,
+          "ci95": [
+            -0.02374126993767203,
+            0.06574126993767203
+          ],
+          "informative": true
+        }
+      },
+      "play50_anchor020": {
+        "common": {
+          "families": 1000,
+          "mean_imps": 0.002,
+          "se": 0.026204630939638943,
+          "ci95": [
+            -0.04936107664169233,
+            0.05336107664169233
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": 0.002,
+          "se": 0.026204630939638943,
+          "ci95": [
+            -0.04936107664169233,
+            0.05336107664169233
+          ],
+          "informative": true
+        }
+      },
+      "play75_anchor020": {
+        "common": {
+          "families": 1000,
+          "mean_imps": -0.006,
+          "se": 0.02728935156262802,
+          "ci95": [
+            -0.059487129062750915,
+            0.04748712906275092
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 1000,
+          "mean_imps": -0.006,
+          "se": 0.02728935156262802,
+          "ci95": [
+            -0.059487129062750915,
+            0.04748712906275092
+          ],
+          "informative": true
+        }
+      }
+    },
+    "support_note": "Missing contracts played with frozen clean Gen3; every evaluated deal must be scored"
+  }
+}

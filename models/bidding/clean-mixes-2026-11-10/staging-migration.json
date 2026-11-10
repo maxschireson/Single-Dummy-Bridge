@@ -1,0 +1,10 @@
+{
+  "reason": "SIGKILL while DDS and TensorFlow resident together; separate collect/play/update processes, unchanged algorithm and recipe",
+  "old_source_sha256": "e92e93b7212cd5b9f3b88fc1fb93a42aaf36940e69a1ebec27489c6336b5b98a",
+  "new_source_sha256": "9cfc92bfa5b74d976acb7eb76d54e021f80cc5076d434c7695f3f27a26d87b2c",
+  "state": {
+    "offset": 384,
+    "checkpoint": "runs/bidding-exact-mixes-20261109/play25_anchor002/optimizer/ckpt-3"
+  },
+  "epoch": 1794269403.4661925
+}
