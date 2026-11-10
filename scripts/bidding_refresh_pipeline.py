@@ -37,7 +37,10 @@ def main():
                    selected_epoch=time.time(),test_unopened=True)
     path=a.out/'selection.json'
     if path.exists():
-        if json.load(open(path))['variant']!=selection['variant']:raise ValueError('Selection changed')
+        frozen=json.load(open(path))
+        if frozen.get('selection_mode')=='user_initial_gen5':
+            best=next(v for v in cfg['variants'] if v['name']==frozen['variant'])
+        elif frozen['variant']!=selection['variant']:raise ValueError('Selection changed')
     else:path.write_text(json.dumps(selection,indent=2))
     with (a.out/'pipeline.log').open('a') as log:
         subprocess.run(cmd+['--phase','test','--variant',best['name']],env=env,

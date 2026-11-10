@@ -1,5 +1,16 @@
 # Clean bidding mix refresh — 9 November 2026
 
+## Initial Gen5 selection amendment — 10 November 2026
+
+Max selected candidate 2 (`play50_anchor002`) as the initial Gen5 bidder before
+opening the final test. Its frozen selection now supersedes the planned automatic
+development winner for this run's final test. The remaining mixes continue on
+development; future replacements require fresh confirmation data. See
+[`models/bidding/gen5-2026-11-10`](../models/bidding/gen5-2026-11-10/README.md)
+for the released model, full provenance and the inconclusive +12 IMP / 192-deal
+final result. No further automatic promotion is enabled. The original protocol
+below is retained for historical context; training settings are unchanged.
+
 The experiment compares 25%, 50%, and 75% clean-play deal sampling, crossed
 with original-BEN KL weights 0.02 and 0.20. All six candidates start from the
 validated 40,000-deal DDS bidder. Each gets 2,048 duplicate training pairs.
