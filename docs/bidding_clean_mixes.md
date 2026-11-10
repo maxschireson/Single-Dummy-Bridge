@@ -65,9 +65,12 @@ example comparable to the initial 256 / 1e-5 recipe. Every candidate shares the
 same settings, initial weights, seed and frozen opponent.
 
 Two earlier combined training/play processes were terminated with exit 137.
-The exact run releases solver memory before backpropagation, disables oneDNN,
-and checkpoints model and Adam state after every batch. Its supervisor runs
-one batch per process, releasing memory between batches. Resume rejects changed
+The exact run separates auction collection, cardplay and gradient updates
+into three processes per batch, disables oneDNN, and checkpoints model and Adam
+state after every batch. Pending observations and RNG state are persisted so
+recovery retains the same on-policy decisions. Each gradient stage loads the
+compressed arrays once and slices that one allocation. Its supervisor lock
+prevents duplicate pipelines. Resume rejects changed
 source, data, initialization or recipe hashes. Model actors remain BEN-compatible
 Keras files.
 

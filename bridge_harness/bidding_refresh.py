@@ -180,7 +180,7 @@ def expected_imps(left, right):
     return float(np.mean([imps(a-b) for a in left for b in right]))
 
 
-def auction_pairs(rewards, candidate, opponent, rng, explore=False, epsilon=.005, missing_score=None):
+def auction_pairs(rewards, candidate, opponent, rng, explore=False, epsilon=.005, missing_score=None, keep_unscored=False):
     """Fresh on-policy auctions; historical greedy calls are never PPO samples."""
     boards = [Board.from_dict(r['board']) for r in rewards]
     active = [dict(board=i, room=room, calls=[]) for i in range(len(boards)) for room in (0, 1)]
@@ -237,7 +237,7 @@ def auction_pairs(rewards, candidate, opponent, rng, explore=False, epsilon=.005
     accepted = []
     for d in decisions:
         value = rows[d['pair']]['imps']
-        if value is not None:
+        if value is not None or keep_unscored:
             d['reward'] = value
             accepted.append(d)
     return rows, accepted
