@@ -137,3 +137,18 @@ then resumed; no failed or incomplete episode was counted as completed.
 
 The collector-host native preflight is preserved in
 `reports/gen5r-collector-preflight-20261110.json`.
+
+## Live dashboard refresh
+
+The collector publishes approximately every minute; the dashboard checks every
+30 seconds and refreshes when a tab regains focus or visibility. The default
+URL uses `source=latest`, currently Gen5R. Previous source-only bookmarks also
+open the current round. Clicking Older adds `older=1`, preserving deliberate
+historical selections across reloads.
+
+Index pages can change when games complete out of order, even after containing
+100 records. Published replay indices now include each page's SHA256. The
+browser caches only checksum-verified content and re-fetches changed pages;
+feeds without those hashes are re-fetched. A delayed CDN response cannot be
+retained under a newer page revision. Regression coverage includes inserted
+late completions, unchanged/changed pages, and recovery after stale responses.
