@@ -1,0 +1,14 @@
+{
+  "large_from": 10,
+  "medium_from": 7,
+  "medium_enabled": false,
+  "large_pool": 128,
+  "large_budget": 32,
+  "medium_pool": 64,
+  "medium_budget": 16,
+  "large_tolerance": 0.04214601748644102,
+  "medium_tolerance": 0.04123330591722795,
+  "weighting": "belief",
+  "ridge": 0.001,
+  "representative": "medoid"
+}

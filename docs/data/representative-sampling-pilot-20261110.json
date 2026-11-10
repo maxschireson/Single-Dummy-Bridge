@@ -1,0 +1,237 @@
+{
+  "config": {
+    "large_budget": 32,
+    "large_from": 10,
+    "large_pool": 128,
+    "large_tolerance": 0.04214601748644102,
+    "medium_budget": 16,
+    "medium_from": 7,
+    "medium_pool": 64,
+    "medium_tolerance": 0.04123330591722795,
+    "representative": "medoid",
+    "ridge": 0.001,
+    "weighting": "belief"
+  },
+  "elapsed_seconds": 225.29080273499858,
+  "inputs": {
+    "belief": "/workspace/scratch/8fd3c92bf5b8/bridge-belief-v5/models/cardplay/gen5-belief-2026-11-10/belief.npz",
+    "belief_sha256": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+    "calibration_families": 12,
+    "library": "/workspace/scratch/e9691f0e7615/belief-lab/bridge_harness/libbridge_dds.so",
+    "library_sha256": "e05d89584854cbeae132d71dcc3b807352374fc19cc26ecb3d22404a8140acc5",
+    "primary": "Independent-reference expected action value versus random32, by stage",
+    "reference": 512,
+    "reserved_test": "Untouched; frozen validation pilot only; no policy reranking or whole-play claim",
+    "sampler": "WeightedSampler at strength=1; all draws retained with multiplicity",
+    "target": "Exact shape and honor-strength expectations from constrained sampler marginals",
+    "validation_families": 24
+  },
+  "limitations": [
+    "Validation pilot, not production promotion or a paired whole-play test.",
+    "Independent 512-draw reference is itself noisy; paired differences share that reference.",
+    "Exact belief moments do not imply exact cluster probabilities or correct nonlinear DDS expectations.",
+    "Timing uses separate fresh DDS contexts with persistent cache disabled; shared production cache may change savings.",
+    "Small-stage reduction is measured experimentally but remains disabled in the runtime schedule."
+  ],
+  "positions": 72,
+  "summary": {
+    "large": {
+      "families": 24,
+      "methods": {
+        "belief": {
+          "ci95": [
+            -0.030477566189236218,
+            0.01271565755208326
+          ],
+          "improvement_vs_random32": -0.0047132703993056175,
+          "mean_cpu_seconds": 0.3717062630416675,
+          "mean_solve_count": 27.75,
+          "regret": 0.012084960937500036
+        },
+        "cluster": {
+          "ci95": [
+            -0.030558946397569554,
+            0.012634277343749964
+          ],
+          "improvement_vs_random32": -0.004794650607638951,
+          "mean_cpu_seconds": 0.36947024479166907,
+          "mean_solve_count": 27.75,
+          "regret": 0.01216634114583337
+        },
+        "full128": {
+          "ci95": [
+            8.138020833333333e-05,
+            0.006978352864583333
+          ],
+          "improvement_vs_random32": 0.0028143988715277533,
+          "mean_cpu_seconds": 1.5395749656249995,
+          "mean_solve_count": 128.0,
+          "regret": 0.004557291666666667
+        },
+        "pool": {
+          "ci95": [
+            -0.030558946397569554,
+            0.012634277343749964
+          ],
+          "improvement_vs_random32": -0.004794650607638951,
+          "mean_cpu_seconds": 0.3709234938750017,
+          "mean_solve_count": 27.75,
+          "regret": 0.01216634114583337
+        },
+        "random16": {
+          "ci95": [
+            -0.001937624007936493,
+            0.00567626953125
+          ],
+          "improvement_vs_random32": 0.0010046580481150869,
+          "mean_cpu_seconds": 0.15374118608333287,
+          "mean_solve_count": 16.0,
+          "regret": 0.006367032490079333
+        },
+        "random32": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "improvement_vs_random32": 0.0,
+          "mean_cpu_seconds": 0.32589660433333245,
+          "mean_solve_count": 32.0,
+          "regret": 0.00737169053819442
+        }
+      },
+      "positions": 24
+    },
+    "medium": {
+      "families": 24,
+      "methods": {
+        "belief": {
+          "ci95": [
+            -0.0032809787326389026,
+            0.0
+          ],
+          "improvement_vs_random32": -0.0012396918402777883,
+          "mean_cpu_seconds": 0.011085064458331536,
+          "mean_solve_count": 12.416666666666666,
+          "regret": 0.004599338107638895
+        },
+        "cluster": {
+          "ci95": [
+            -0.0032809787326389026,
+            0.0
+          ],
+          "improvement_vs_random32": -0.0012396918402777883,
+          "mean_cpu_seconds": 0.010078129583331282,
+          "mean_solve_count": 12.416666666666666,
+          "regret": 0.004599338107638895
+        },
+        "full64": {
+          "ci95": [
+            -3.6621093750022204e-05,
+            0.002156575520833315
+          ],
+          "improvement_vs_random32": 0.0007066514756944309,
+          "mean_cpu_seconds": 0.02386557470833071,
+          "mean_solve_count": 64.0,
+          "regret": 0.0026529947916666755
+        },
+        "pool": {
+          "ci95": [
+            -0.0032809787326389026,
+            0.0
+          ],
+          "improvement_vs_random32": -0.0012396918402777883,
+          "mean_cpu_seconds": 0.011026437374998255,
+          "mean_solve_count": 12.416666666666666,
+          "regret": 0.004599338107638895
+        },
+        "random16": {
+          "ci95": [
+            -0.004191080729166667,
+            0.0
+          ],
+          "improvement_vs_random32": -0.0016682942708333333,
+          "mean_cpu_seconds": 0.007569665541663754,
+          "mean_solve_count": 16.0,
+          "regret": 0.005027940538194439
+        },
+        "random32": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "improvement_vs_random32": 0.0,
+          "mean_cpu_seconds": 0.01310028874999756,
+          "mean_solve_count": 32.0,
+          "regret": 0.0033596462673611063
+        }
+      },
+      "positions": 24
+    },
+    "small": {
+      "families": 24,
+      "methods": {
+        "belief": {
+          "ci95": [
+            -0.010416666666666666,
+            0.0
+          ],
+          "improvement_vs_random32": -0.003960503472222219,
+          "mean_cpu_seconds": 0.004917565583334689,
+          "mean_solve_count": 9.666666666666666,
+          "regret": 0.003960503472222219
+        },
+        "cluster": {
+          "ci95": [
+            -0.00927734375,
+            0.0
+          ],
+          "improvement_vs_random32": -0.0033365885416666665,
+          "mean_cpu_seconds": 0.0040584508333338,
+          "mean_solve_count": 9.666666666666666,
+          "regret": 0.0033365885416666665
+        },
+        "full64": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "improvement_vs_random32": 0.0,
+          "mean_cpu_seconds": 0.006798765708331674,
+          "mean_solve_count": 64.0,
+          "regret": 0.0
+        },
+        "pool": {
+          "ci95": [
+            -0.010416666666666666,
+            0.0
+          ],
+          "improvement_vs_random32": -0.003960503472222219,
+          "mean_cpu_seconds": 0.004849938208333293,
+          "mean_solve_count": 9.666666666666666,
+          "regret": 0.003960503472222219
+        },
+        "random16": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "improvement_vs_random32": 0.0,
+          "mean_cpu_seconds": 0.0023635442499981654,
+          "mean_solve_count": 16.0,
+          "regret": 0.0
+        },
+        "random32": {
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "improvement_vs_random32": 0.0,
+          "mean_cpu_seconds": 0.0038387187916661216,
+          "mean_solve_count": 32.0,
+          "regret": 0.0
+        }
+      },
+      "positions": 24
+    }
+  }
+}

@@ -14,14 +14,15 @@ from .core import symbol
 
 class CombinedPlayer(PIMCPlayer):
     def __init__(self, belief, policy, samples=32, objective='tricks', batch=True,
-                 near_tie=.125, exploration=0., strength=1.):
+                 near_tie=.125, exploration=0., strength=1., layout_reduction=None):
         if objective != 'tricks': raise ValueError('Current selector requires trick-valued PIMC estimates')
         if not math.isfinite(exploration) or not 0 <= exploration <= 1:
             raise ValueError('Exploration must lie in [0,1]')
         self.belief=AuctionWeights(belief);self.selector=SelectorWeights(policy)
         self.exploration=exploration
         super().__init__(samples,objective,batch,near_tie,
-                         sampler_factory=lambda o:WeightedSampler(o,self.belief.logits(o),strength))
+                         sampler_factory=lambda o:WeightedSampler(o,self.belief.logits(o),strength),
+                         layout_reduction=layout_reduction)
 
     def choose(self,o,rng):
         result=super().choose(o,rng);d=result.details
