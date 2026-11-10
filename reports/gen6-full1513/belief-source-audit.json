@@ -1,0 +1,22 @@
+{
+  "adapter_sha256": "c505cb64b3fa47236e3e5da49aac2a68b3cd12854ba8d4b3291faa7affbc43ae",
+  "counts": {
+    "non_test_families": 1336,
+    "raw_matched_selected_positions": 3040,
+    "raw_non_test_episodes_exact_input_match": 190,
+    "replayed_unique_non_test_roots": 2693,
+    "test_families": 177,
+    "train_families": 1182,
+    "validation_families": 154,
+    "verified_compact_blobs": 43
+  },
+  "feed_branch": "arena-gen5rz-ben-feed",
+  "feed_commit": "75f3219333abd3bb95e39135d7132f63561b6f54",
+  "note": "Root-only adapter for unchanged belief selection. Derived and original compressed hashes are distinct. All non-test roots legally replayed; available raw non-test belief inputs checked exactly. Explicit reservation and historical-data exclusion occur in the refresh runner before labeling.",
+  "receipts_sha256": "9078f62f7d36b645120fe385aab4db151e376dccec271e60cb5df2401e0aa2ed",
+  "schema": "gen6-belief-compact-adapter-v1",
+  "source_records": 1513,
+  "source_snapshot_sha256": "ab9565137168b772d920df97159bdde6d5d87d4a3580970cb13f9d946f16340e",
+  "sources_sha256": "595f395972e5d48e5f56ed978d09334d89bb78b3188ab55d348888d8fbbf55ec",
+  "test_evaluated": false
+}
