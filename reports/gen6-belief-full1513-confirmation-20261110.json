@@ -1,0 +1,33 @@
+{
+  "positions": 2392,
+  "card_targets": 36640,
+  "marginal_nll": {
+    "candidate": 0.665096018329921,
+    "gen5": 0.665057542748562
+  },
+  "paired_marginal_nll": {
+    "families": 150,
+    "mean": 3.847558135906611e-05,
+    "se": 0.0003453922629308996,
+    "ci95": [
+      -0.0006384932539854971,
+      0.0007154444167036293
+    ],
+    "negative_favors_candidate": true
+  },
+  "paired_conditional_nll": {
+    "families": 150,
+    "mean": -3.752860523291453e-05,
+    "se": 0.00040577106021743616,
+    "ci95": [
+      -0.0008328398832590894,
+      0.0007577826727932603
+    ],
+    "negative_favors_candidate": true
+  },
+  "test_evaluated": true,
+  "promoted": false,
+  "metric_note": "Prediction likelihood, not IMP/board; no tuning after confirmation.",
+  "selected_sha256": "f6e3443b0e7fddcc51e6c4585cb5d5a8ece13077d33b772e8256a4e10fcec7a4",
+  "scope": "Fresh for belief prediction confirmation; bidding outcomes for these families were previously evaluated. Not an untouched whole-game strength test."
+}
