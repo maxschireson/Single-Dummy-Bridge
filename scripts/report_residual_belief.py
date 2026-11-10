@@ -21,7 +21,10 @@ def main():
         conf=json.loads((a.run/n/'config.json').read_text())
         summary['cells'][n]=dict(parameters=r['parameters'],best_epoch=r['best_epoch'],selected=r['selected'],last=r['history'][-1]['metrics'],
             history=r['history'],selected_sha256=r['selected_sha256'],export_max_abs_error=r['export_max_abs_error'],
-            training_positions=conf['training_positions'],training_card_targets=conf['training_card_targets'],training_families=conf['training_families'])
+            selected_optimizer_steps=r['selected_optimizer_steps'],wall_seconds=r['wall_seconds'],
+            active_epoch_seconds=sum(row['seconds'] for row in r['history']),
+            training_positions=conf['training_positions'],training_card_targets=conf['training_card_targets'],training_families=conf['training_families'],
+            validation_families=conf['validation_families'])
         summary['versus_parent'][n]={str(row['epoch']):contrasts({'candidate':fm(n,row['metrics']),'parent':fm(n,r['initial'])},{'candidate':1,'parent':-1}) for row in r['history']}
     for phase in ['last','selected']:
         maps={n:fm(n,c[phase]) for n,c in summary['cells'].items()}
@@ -41,9 +44,30 @@ def main():
         for metric,d in summary['comparisons'][phase]['recent|play'].items():
             lines+=[f"| {metric} | {d['delta']:+.8f} ± {d['se']:.8f} | {d['families']} |"]
         lines+=['']
+        lines+=['Recent validation accuracy and Brier details:','','| Model | Weighted accuracy | Weighted Brier | Consequential-only accuracy | Consequential-only Brier |','|---|---:|---:|---:|---:|']
+        for n,epoch,m in records:
+            d=m['domains']['recent/play']
+            lines+=[f"| {n} | {d['weighted_accuracy']:.4%} | {d['weighted_brier']:.8f} | {d['upweighted_card_accuracy']:.4%} | {d['upweighted_card_brier']:.8f} |"]
+        lines+=['']
+    lines+=['## All epochs','','| Model | Epoch | Composite | Recent ordinary NLL | Weighted NLL | Consequential-only NLL | Accuracy | Brier | Active epoch seconds |','|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+    for n,c in summary['cells'].items():
+        for row in c['history']:
+            m=row['metrics'];d=m['domains']['recent/play']
+            lines+=[f"| {n} | {row['epoch']} | {m['score']:.8f} | {d['nll']:.8f} | {d['weighted_nll']:.8f} | {d['upweighted_card_nll']:.8f} | {d['accuracy']:.4%} | {d['brier']:.8f} | {row['seconds']:.1f} |"]
+    lines+=['','Paired recent-play differences from the unchanged starting dense v5:','','| Model | Epoch | Ordinary NLL delta ± SE | Weighted NLL delta ± SE | Consequential-only NLL delta ± SE |','|---|---:|---:|---:|---:|']
+    for n,epochs in summary['versus_parent'].items():
+        for epoch,domains in epochs.items():
+            d=domains['recent|play'];values=[f"{d[k]['delta']:+.8f} ± {d[k]['se']:.8f}" for k in ('nll','weighted_nll','upweighted_card_nll')]
+            lines+=['| '+n+' | '+epoch+' | '+' | '.join(values)+' |']
+    lines+=['','## Fit and export checks','','| Model | Parameters | Active epoch minutes | Elapsed minutes | Selected Adam steps | Maximum NumPy prediction error |','|---|---:|---:|---:|---:|---:|']
+    for n,c in summary['cells'].items():
+        lines+=[f"| {n} | {c['parameters']:,} | {c['active_epoch_seconds']/60:.2f} | {c['wall_seconds']/60:.2f} | {c['selected_optimizer_steps']:,} | {max(c['export_max_abs_error'].values()):.3g} |"]
+    lines+=['','Active epoch time includes training and validation, excluding worker startup and interrupted downtime. Elapsed time includes those interruptions. Export checks cover all four validation domains.','']
     for n,c in summary['cells'].items():
         if c['best_epoch']==0:lines+=[f"{n}: epoch zero won; this fit did not improve its validation objective.",'']
     c=summary['cells']['dense'];lines+=[f"Each fit uses {c['training_positions']:,} positions, {c['training_card_targets']:,} uncertain-card targets, and {c['training_families']:,} training families."]
+    d=summary['baseline']['domains']['recent/play']
+    lines+=[f"Validation contains {c['validation_families']:,} distinct families in total. Recent play contributes {d['families']:,} families and {d['targets']:,} uncertain-card targets, including {d['upweighted_targets']:,} consequential targets in {d['upweighted_families']:,} families. Positions and targets within a family are correlated; SEs use families as the sampling unit."]
     lines+=['All domain metrics, every epoch, export checks and paired differences from the parent are in summary.json. Hybrid inference requires bridge_harness.residual_attention_belief.Weights; legacy loading deliberately rejects hybrid files.']
     (a.run/'report.md').write_text('\n'.join(lines)+'\n')
     print(json.dumps({n:dict(best_epoch=r['best_epoch'],score=r['selected']['score']) for n,r in results.items()}),flush=True)
