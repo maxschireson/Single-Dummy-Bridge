@@ -95,6 +95,10 @@ requires both recorded alternatives to be eligible under that rule; it retains
 methods are compared on exactly those retained forks. This is a two-alternative
 ranking diagnostic, not a replay of each method's preferred action among all
 legal cards. Those other actions do not all have recorded continuation labels.
+The PIMC column therefore selects the higher value of the two recorded cards;
+it is not necessarily the global PIMC maximum. The follow-up
+[fresh 256-board study](../gen6-ddsd-fresh-256-2026-11-10/README.md) explicitly
+plays out the global PIMC best and each network's actual selected alternative.
 
 | Test metric | PIMC | Sampled DD + new corrector | Current V5 policy |
 |---|---:|---:|---:|
