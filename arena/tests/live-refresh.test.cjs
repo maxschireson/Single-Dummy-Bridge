@@ -4,7 +4,7 @@ const modulePath=require.resolve('../reporting.js');
 const fresh=()=>{delete require.cache[modulePath];return require(modulePath);};
 const row=(i,epoch=10)=>({id:String(i),index:i,family:'family-'+i,pair:'5R32~4b',imps:i%3,own_imps:-(i%3),scores:[0,0],contracts:[],completed_epoch:epoch});
 function fixture(R,rows,epoch,checksums=false){
- const source=R.sources.find(s=>s.key==='gen5r'),base='arena/replays/data/'+source.cohort+'/',files={};
+ const source=R.latestSource,base='arena/replays/data/'+source.cohort+'/',files={};
  const index={cohort:source.cohort,record_shards:[]};if(checksums)index.record_shard_sha256={};
  for(let i=0;i<rows.length;i+=100){const name='index-'+String(i/100).padStart(5,'0')+'.json',body=JSON.stringify(rows.slice(i,i+100));files[base+name]=body;index.record_shards.push(name);if(checksums)index.record_shard_sha256[name]=createHash('sha256').update(body).digest('hex');}
  files[base+'index.json']=JSON.stringify(index);
@@ -45,7 +45,7 @@ function transport(current,counts){return async url=>{const path=new URL(url).pa
   const source=R.sources[0],first=await R.loadLiveSource(source);assert.equal(first.revision,a);head=b;
   assert.equal((await R.loadLiveSource(source)).data.completed,1);assert.equal(apiCalls,1);
   clock+=91000;const latest=await R.loadLiveSource(source);assert.equal(latest.revision,b);assert.equal(latest.data.completed,2);assert.equal(apiCalls,2);
-  const report=R.build([latest],'gen5r',null,clock/1000);assert.equal(report.report.revisions[source.cohort],b);assert.equal(R.rowsFor([latest],'gen5r').rows[0]._revision,b);
+  const report=R.build([latest],R.latestScope,null,clock/1000);assert.equal(report.report.revisions[source.cohort],b);assert.equal(R.rowsFor([latest],R.latestScope).rows[0]._revision,b);
   assert.equal((await R.loadLiveSource(source,{revision:a})).data.completed,1);assert.equal(apiCalls,2);
  }finally{Date.now=now;}
  console.log('PASS a refresh pins scores, hands and drill-downs to one publication without excessive API requests');

@@ -73,11 +73,22 @@ test('current generation excludes prior rounds and keeps only compatible initial
  assert.ok(R.build([...inputs,current,initial],'all').completed>d.completed);
 });
 test('fresh visits and old bookmarks default to latest; Older preserves explicit history',()=>{
- assert.equal(R.latestScope,'gen5r');
- for(const search of ['','?source=latest','?source=gen5','?source=all','?source=unknown'])assert.deepEqual(R.resolveSelection(search),{selected:'gen5r',older:false});
+ assert.equal(R.latestScope,'gen5rz');
+ for(const search of ['','?source=latest','?source=gen5','?source=gen5r','?source=all','?source=unknown'])assert.deepEqual(R.resolveSelection(search),{selected:'gen5rz',older:false});
  assert.deepEqual(R.resolveSelection('?source=gen5&older=1'),{selected:'gen5',older:true});
  assert.deepEqual(R.resolveSelection('?source=all&older=1'),{selected:'all',older:true});
- assert.deepEqual(R.pickSources('latest'),R.pickSources('gen5r'));
+ assert.deepEqual(R.pickSources('latest'),R.pickSources('gen5rz'));
+});
+test('latest RZ mix retains compatible R observations and keeps original Gen5 separate',()=>{
+ const row=(id,pair,imps)=>({id,index:Number(id),family:'rz-family-'+id,pair,imps,own_imps:imps,scores:[0,0],contracts:[],completed_epoch:10});
+ const input=(key,records)=>{const source=R.sources.find(s=>s.key===key);return {source,revision:source.revision||'a'.repeat(40),data:{generated_epoch:100,target:records.length,failures:0,order:['5RZ32','5R32','5-32'],own_views:{}},index:{records}};};
+ const current=input('gen5rz',[row('1','5RZ32~5R32',3),row('2','5R32~5-32',-1)]),prior=input('gen5r',[row('3','5R32~5-32',5)]),initial=input('gen5rzinitial',[row('5','5RZ32~5R32',2)]),older=input('gen5',[row('4','5~5-32',100)]);
+ const d=R.build([current,initial,prior,older],'latest',null,100);
+ assert.equal(d.completed,4);assert.deepEqual(d.report.sources,['gen5rz','gen5rzinitial','gen5r']);
+ assert.equal(d.views[0].groups['5RZ32~5R32'].total,5);assert.equal(d.views[0].groups['5R32~5-32'].total,4);assert.equal(d.views[0].groups['5R32~5-32'].n,2);
+ assert.equal(R.build([current,prior,older],'gen5r',null,100).completed,1);
+ assert.equal(R.build([current,prior,older],'gen5',null,100).completed,1);
+ assert.deepEqual(R.pickSources('gen5rz').map(s=>s.key),['gen5rz','gen5rzinitial','gen5r']);
 });
 console.log(JSON.stringify({checks,summary:['all','chatgpt','codex'].map(s=>{const d=R.build(inputs,s);return {scope:s,completed:d.completed,observations:d.report.observations,duplicates:d.report.duplicates,matchups:Object.keys(d.views[0].groups).length};})}));
 
