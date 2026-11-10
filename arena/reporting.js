@@ -2,7 +2,8 @@
 (function(root){'use strict';
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
-  {key:'gen5',generation:5,environment:'codex',name:'Gen 5 · current round',branch:'arena-gen5-codex-32-feed',cohort:'c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59'},
+  {key:'gen5r',generation:5,variant:'5R',environment:'codex',name:'Gen 5R · current round',branch:'arena-gen5r-feed',cohort:'cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3'},
+  {key:'gen5',generation:5,retired:true,environment:'codex',name:'Gen 5 · previous round',branch:'arena-gen5-codex-32-feed',cohort:'c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59'},
   {key:'gen5initial',generation:5,retired:true,allowed_pairs:['5~ben','5~5-32'],environment:'codex',name:'Gen 5 · retained BEN/control games',branch:'arena-gen5-codex-feed',cohort:'bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f'},
   {key:'primarycomponents',environment:'codex',name:'Codex primary 4p / 4b (no self-play)',branch:'arena-primary-components-feed',cohort:'4f43d6f3f234b9e561671f6958bbe2785e8896181791632ee4b1569a5ab062e0'},
   {key:'primary',environment:'codex',name:'Codex main',branch:'arena-feed',cohort:'7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404'},
@@ -10,13 +11,13 @@
   {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
   {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
  ];
- const labels={'5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['5','5-32','4','4p','4b','3','2','1','ben'];
+ const labels={'5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben'];
  const names={all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
- const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===scope||(scope==='gen5'&&s.generation===5));
+ const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===scope||(scope==='gen5'&&s.generation===5&&s.variant!=='5R'));
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
  function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
  function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
@@ -63,7 +64,7 @@
    report:{scope,snapshots:reportSnapshots,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
    feed:{published_epoch:generated_epoch,next_update_epoch:chosen.some(x=>!x.source.retired)?Math.min(...chosen.filter(x=>!x.source.retired).map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
    interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
-   model_note:chosen.some(x=>x.source.generation===5)?'Gen5 and older bots both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN (16) and Gen5 (32), with identical networks at both budgets. Earlier 192-vs-older games are preserved for training and excluded from statistics. Common-v5 and native bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
+   model_note:chosen.some(x=>x.source.variant==='5R')?'Gen5R keeps Gen5 networks and changes only 10–13-trick layout selection and belief-moment weights. Pools 128/768; DDS ceilings 32/192. Original Gen5 (32) is the random-sampling control. Smaller positions are unchanged. Common and native bidding remain separate.':chosen.some(x=>x.source.generation===5)?'Gen5 and older bots both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN (16) and Gen5 (32), with identical networks at both budgets. Earlier 192-vs-older games are preserved for training and excluded from statistics. Common-v5 and native bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
  }
  async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
  function verify(data,records){
