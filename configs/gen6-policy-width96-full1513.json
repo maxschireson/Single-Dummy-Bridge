@@ -1,0 +1,87 @@
+{
+  "experiment": "Matched attention width64 versus96 on the frozen full1513 policy union",
+  "python": "/workspace/scratch/bbe90ba77a68/venv/bin/python",
+  "repository": "/workspace/scratch/a64f028bc002/policy-width96-check",
+  "output": "/workspace/scratch/a64f028bc002/gen6-work/policy-width64-vs96-full1513",
+  "data": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513/union",
+  "parent": "/workspace/scratch/a64f028bc002/policy-width96-check/models/cardplay/gen3-2026-11-09/auction-policy.npz.part000",
+  "comparison_checkpoint": "/workspace/scratch/a64f028bc002/policy-width96-check/models/cardplay/gen5-2026-11-10/policy.npz.part000",
+  "previous_families": "/workspace/scratch/a64f028bc002/gen6-work/policy-first-union/families.json",
+  "epochs": 8,
+  "seed": 2026110923,
+  "learning_rate": 0.0002,
+  "weight_decay": 0.0001,
+  "batch_size": 128,
+  "selection": "Validation-family MSE with epoch zero eligible",
+  "test_evaluated": false,
+  "arms": [
+    {
+      "name": "attention-64",
+      "width": 64,
+      "parameters": 99161
+    },
+    {
+      "name": "attention-96",
+      "width": 96,
+      "parameters": 153561
+    }
+  ],
+  "verified_files": [
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-width96-check/models/cardplay/gen3-2026-11-09/auction-policy.npz.part000",
+      "sha256": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-width96-check/models/cardplay/gen5-2026-11-10/policy.npz.part000",
+      "sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/gen6-work/policy-first-union/families.json",
+      "sha256": "462175b9d911ad8c779a96ffc0b584898662f2b110ae7521757a9568294fa86b"
+    },
+    {
+      "path": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513/union/dataset.json",
+      "sha256": "9bb0b74139977e290abb6bafe88a10547b6e5e187ef0e3c0c1d81bb0d6011673"
+    },
+    {
+      "path": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513/union/families.json",
+      "sha256": "79ab97f81155d4b44328a29720d8b4506341411899f895810f43f2e616aa33f9"
+    },
+    {
+      "path": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513/union/snapshot.json",
+      "sha256": "dfa53b582a1580cd4c48564386de549467ac678cc5dd88c241282351736456a8"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-width96-check/bridge_harness/policy_v5.py",
+      "sha256": "1824efff99112d751a782734ad152f496b5768e498d6c6cf3e04ab621e56558e"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-width96-check/scripts/train_clean_policy_v5.py",
+      "sha256": "315f3f630fb86a23bd33d8b0af6c28455844661584c85677c84b04daaaf98d43"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-width96-check/scripts/run_policy_width_comparison.py",
+      "sha256": "8473c805cca203ccf7dfeb3e3fac442a13ed2e35e36ed6c3b1aca14c221b0080"
+    },
+    {
+      "path": "/workspace/scratch/a64f028bc002/policy-width96-check/tests/test_policy_v5.py",
+      "sha256": "be109f8578b50f007f423e40c214db402cc2f8c5bbf3d9e748e776bd202bd301"
+    }
+  ],
+  "authorization": "Max explicitly authorized width96 versus64 on2026-11-10 after narrower-attention validation result",
+  "feed_commit": "75f3219333abd3bb95e39135d7132f63561b6f54",
+  "source_branch": "research/gen6-policy-width96-full1513-20261110",
+  "source_base_commit": "0c954e08f31284e298c375217ca802d461ac5161",
+  "initialization": "Same later-Gen3 dense weights; zero attention readout; initial predictions match. Independent fresh AdamW for each width. This is separate from the Gen5 warm-start continuation.",
+  "threads_per_arm": 1,
+  "parallel_arms": 2,
+  "promoted": false,
+  "confirmation": "Validation screening only; no test scores or arena promotion. Fresh independent confirmation required before a strength claim.",
+  "dataset_counts": {
+    "training_outcomes": 601037,
+    "training_families": 5689,
+    "validation_outcomes": 78727,
+    "validation_families_metadata": 748,
+    "source_families": 1513
+  }
+}
