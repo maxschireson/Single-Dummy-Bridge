@@ -7,7 +7,7 @@ from bridge_harness.belief_capacity import INPUTS,sha
 from bridge_harness.selfplay import atomic_json
 from scripts.train_belief_factorial import read
 
-def prepare(data,smoke=0):
+def prepare(data,smoke=0,consequence=True):
     ds=json.loads((data/'dataset.json').read_text())
     if sha(data/'manifest.json')!=ds['manifest_sha256']:raise ValueError('Manifest changed')
     entries=ds['shards']
@@ -17,7 +17,7 @@ def prepare(data,smoke=0):
     train=[e for e in entries if e['split']=='train'];val=[e for e in entries if e['split']=='validation']
     counts=Counter();recent=set();families=set();val_families=set();positions=targets=0
     for e in train:
-        d=read(e);groups=d['split_group'].astype(str);mass=(d['owner_loss_mask']*d['card_weight']).sum(1)
+        d=read(e);groups=d['split_group'].astype(str);mass=(d['owner_loss_mask']*(d['card_weight'] if consequence else 1)).sum(1)
         for g,n in zip(groups,mass):counts[e['source'],g]+=float(n)
         families.update(groups);positions+=len(groups);targets+=int(d['owner_loss_mask'].sum())
         if e['cohort']=='recent':recent.update(groups)

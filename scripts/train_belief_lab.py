@@ -18,7 +18,7 @@ def main():
     if (out/'result.json').exists():return
     data=Path(cfg['data'])
     if json.loads((data/'dataset.json').read_text()).get('evaluation_only'):raise ValueError('Reserved evaluation data cannot be trained')
-    train,val,coeff,counts=prepare(data,cfg.get('smoke_shards',0))
+    train,val,coeff,counts=prepare(data,cfg.get('smoke_shards',0),consequence=cfg.get('consequence',True))
     import tensorflow as tf
     tf.config.threading.set_intra_op_parallelism_threads(cfg.get('threads',4));tf.config.threading.set_inter_op_parallelism_threads(1)
     tf.keras.utils.set_random_seed(cfg['seed']);tf.config.experimental.enable_op_determinism()

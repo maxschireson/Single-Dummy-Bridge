@@ -4,11 +4,12 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from bridge_harness.belief_capacity import sha
 
-def archive(target,paths,notes):
+def archive(target,paths,notes,overrides=None):
+    overrides=overrides or {}
     paths=sorted(set(Path(p).resolve() for p in paths if Path(p).is_file()));records=[]
     with zipfile.ZipFile(target.with_suffix('.tmp'),'w',zipfile.ZIP_DEFLATED,compresslevel=2) as z:
         for p in paths:
-            raw=p.read_bytes();name=str(p).lstrip('/');z.writestr(name,raw);records.append(dict(path='/'+name,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw)))
+            raw=overrides[p] if p in overrides else p.read_bytes();name=str(p).lstrip('/');z.writestr(name,raw);records.append(dict(path='/'+name,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw)))
         z.writestr('RECOVERY.json',json.dumps(dict(notes=notes,files=records),indent=2))
     target.with_suffix('.tmp').replace(target)
     with zipfile.ZipFile(target) as z:
@@ -31,9 +32,17 @@ def main():
         archive(a.out/'Belief_Lab_Frozen_Data_2026-11-10.zip',paths,notes)
     paths=[p for p in root.rglob('*') if p.is_file() and 'data' not in p.relative_to(root).parts and p.suffix not in ('.lock','.sqlite','.tmp') and not p.name.endswith(('-wal','-shm')) and 'checkpoints' not in p.parts]
     # Retain immutable epoch exports, selected models and exact in-progress state.
+    overrides={}
     for statepath in (root/'fits').glob('*/state.json'):
         if (statepath.parent/'result.json').exists():continue
-        state=json.loads(statepath.read_text());prefix=Path(state['checkpoint']);paths.extend(prefix.parent.glob(prefix.name+'.*'))
+        for attempt in range(3):
+            raw=statepath.read_bytes();state=json.loads(raw);prefix=Path(state['checkpoint'])
+            needed=list(prefix.parent.glob(prefix.name+'.*'))+[statepath.parent/'best.npz']
+            try:captured={p.resolve():p.read_bytes() for p in needed}
+            except FileNotFoundError:continue
+            if raw==statepath.read_bytes() and len([p for p in needed if p.name.startswith(prefix.name+'.')])>=2:
+                captured[statepath.resolve()]=raw;overrides.update(captured);paths.extend(needed);break
+        else:raise RuntimeError('Could not capture a consistent active checkpoint; retry at next worker boundary')
     for job in plan['jobs']:
         cfg=json.loads(Path(job['config']).read_text())
         if cfg.get('parent') and Path(cfg['parent']).exists():paths.append(Path(cfg['parent']))
@@ -41,6 +50,6 @@ def main():
         Path('/workspace/scratch/63fa72341134/bridge-v5-calibration/runs/v5-ben-100/models/policy.npz'),
         Path('/workspace/scratch/bbe90ba77a68/bridge-bidding-refresh/models/bidding/gen5-2026-11-10/bidder.keras'),
         Path(__file__).resolve().parents[1]/'bridge_harness/libbridge_dds.so']
-    archive(a.out/'Belief_Lab_Recovery_2026-11-10.zip',paths,notes)
+    archive(a.out/'Belief_Lab_Recovery_2026-11-10.zip',paths,notes,overrides)
 
 if __name__=='__main__':main()
