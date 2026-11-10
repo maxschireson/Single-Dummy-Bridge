@@ -120,7 +120,7 @@
     }
   },
   "execution": {
-    "phase": "Full1513 belief labeling and unchanged policy fitting; bidding and matched width experiment complete",
+    "phase": "All three component fits and prediction confirmations complete. Fixed100 combined cardplay recovery running; wider comparison checkpoint recovery blocked.",
     "first_steps": [
       "Audit a pinned complete incremental batch from the live recovery feed; do not wait for the full campaign.",
       "Freeze data, parent, source and runtime hashes in a separate run manifest.",
@@ -407,7 +407,7 @@
       "plan": "configs/gen6-policy-width96-full1513.json",
       "repository": "/workspace/scratch/a64f028bc002/policy-width96-check",
       "output": "/workspace/scratch/a64f028bc002/gen6-work/policy-width64-vs96-full1513",
-      "status": "Width64 complete8epochs, selected4, validationMSE.5256861348; width96 completed7epochs and remainslive. Wait for both final results before comparison.",
+      "status": "BLOCKED: original output directory, terminal and optimizer checkpoints unavailable in current environment. No final comparison or wider archive found in published branch or Library. Do not claim completion or restart the already-completed width64 arm.",
       "widths": [
         64,
         96
@@ -425,10 +425,11 @@
       "promoted": false,
       "note": "Separate authorized capacity experiment; keep unchanged-recipe gen6 jobs running. Native terminal persistence survived prior turn boundaries; verify locks and log progress before resuming.",
       "initial_prediction_max_difference_between_arms": 0,
-      "initial_prediction_max_difference_from_dense_parent": 7.741153247309285e-7
+      "initial_prediction_max_difference_from_dense_parent": 7.741153247309285e-7,
+      "previous_status": "Width64 complete8epochs, selected4, validationMSE.5256861348; width96 completed7epochs and remainslive. Wait for both final results before comparison."
     },
     "whole_game_confirmation": {
-      "status": "Running;10/100 paired families complete at check",
+      "status": "Recovery running after original runtime paths and terminal windows were absent; exact original 100 auctions, models and runtime hashes verified. No original room results recoverable here.",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/whole-game-100",
       "script": "scripts/match_gen6_5rz.py",
       "samples_each": 32,
@@ -438,7 +439,17 @@
       "native_terminal_tab": 4,
       "comparison": "Selected refreshed policy+belief vs frozen5RZ; common promotedGen5 bidder, bidding separately evaluated",
       "reservation": "reports/gen6-vs5rz-equal32-20261110/reserved-families.json",
-      "promoted": false
+      "promoted": false,
+      "previous_status": "Running;10/100 paired families complete at check",
+      "recovery": {
+        "verified_utc": "2026-11-10T23:16:00Z",
+        "python": "/workspace/scratch/87b7afee6da9/recovery-venv/bin/python",
+        "native_terminal_tab": 1,
+        "log": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/whole-game-100-recovered.log",
+        "all_original_model_runtime_hashes_match": true,
+        "original_auctions_sha256_match": true,
+        "archive_library_file_id": "libfile_fde3_f-3693a05851f48191bb64b66a5b8f55d8_cf78a91e4b8c81918243c2c17fc9b8b9"
+      }
     }
   }
 }
