@@ -1,0 +1,34 @@
+{
+  "greedy_dev": {
+    "rooms": {
+      "rooms": 398,
+      "exact_known_or_passed_out": 388,
+      "new_auction_same_contract": 4,
+      "new_strain_declarer": 4,
+      "new_contract_known_strain": 2
+    },
+    "unique": {
+      "exact_known_or_passed_out": 194,
+      "new_auction_same_contract": 2,
+      "new_strain_declarer": 2,
+      "new_contract_known_strain": 1
+    },
+    "deals": 199
+  },
+  "sampled_train": {
+    "rooms": {
+      "rooms": 512,
+      "exact_known_or_passed_out": 370,
+      "new_strain_declarer": 75,
+      "new_auction_same_contract": 29,
+      "new_contract_known_strain": 38
+    },
+    "unique": {
+      "exact_known_or_passed_out": 237,
+      "new_strain_declarer": 75,
+      "new_auction_same_contract": 29,
+      "new_contract_known_strain": 38
+    },
+    "deals": 256
+  }
+}

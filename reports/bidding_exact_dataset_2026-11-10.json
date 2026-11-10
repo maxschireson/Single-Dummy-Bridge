@@ -1,0 +1,30 @@
+{
+  "schema": "clean-bidding-refresh-data-v1",
+  "clean_play": {
+    "retained_games": 3824,
+    "rejected_policy_games": 9230,
+    "families_train": 1477,
+    "families_dev": 199,
+    "families_test": 192,
+    "unique_families": 1868
+  },
+  "excluded_pretrained_holdout": 0,
+  "counts": {
+    "play/test": 192,
+    "play/train": 1477,
+    "play/dev": 199,
+    "dds/train": 40000,
+    "dds/dev": 1000
+  },
+  "dataset_sha256": "254a5ecee234bad39705580732fdd789389f4930bcce8fef301381d003f847e0",
+  "sources_sha256": "71557d67e04597a47313b05172c97cf74c23863a024c4e9d556f6ea4a55c10b2",
+  "additional_dds_solves": 0,
+  "original_ben_training_corpus_available": false,
+  "dds_note": "40k prior training families and prior 1k development cache; no virgin DDS test claimed",
+  "reward_note": "Only identical auctions reuse historical play. Missing exact auctions are played with frozen clean Gen3.",
+  "export_sha256": "b9606277cb06752ff5bb17fe90bbf033d85b86127825988e23d2eb2e86055334",
+  "checkpoint_manifest_sha256": "e6323f418753f215752ec8490ed034847672fe61f07d55daa678833b37b20fc4",
+  "exact_auction_matching": true,
+  "parent_dataset_sha256": "0b600b9581817d5329d05e267c7dc2d469dd8581cd567f9ce4978974024b8e2b",
+  "exact_auctions": 1907
+}
