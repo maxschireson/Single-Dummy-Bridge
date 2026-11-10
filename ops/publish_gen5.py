@@ -16,6 +16,8 @@ def copy_once(source,dest):
 def publish(run,out):
     export(run,out);backup=out/'recovery';backup.mkdir(exist_ok=True)
     for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl'):shutil.copy2(run/name,backup/name)
+    for name in ('source-indices.json',):
+        if (run/name).exists():shutil.copy2(run/name,backup/name)
     for name in ('statistics-policy.json','retirement.json','STOP','WATCHDOG_STOP'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
     for folder in ('episodes','receipts','artifacts','assets'):
@@ -32,6 +34,9 @@ def publish(run,out):
     for path in (ROOT/'native').glob('*.cpp'):copy_once(path,backup/'runtime/native'/path.name)
     for name in ('gen5_runtime.py','prepare_gen5.py','publish_gen5.py','export_gen5.py','watch_gen5.py'):
         copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
+    for name in ('prepare_gen5r.py','register_gen5r_report.py'):
+        if (ROOT/'ops'/name).exists():copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
+    copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     git(out,'add','arena','recovery')
     if git(out,'status','--porcelain').stdout.strip():
@@ -41,7 +46,7 @@ def publish(run,out):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--run',type=Path,required=True);p.add_argument('--publication',type=Path,required=True);p.add_argument('--once',action='store_true');a=p.parse_args()
-    while True:
+    while not (a.run/'PUBLISH_STOP').exists():
         try:
             n=publish(a.run,a.publication)
             (a.run/'publisher-status.json').write_text(json.dumps(dict(epoch=time.time(),status='published',completed=n)))

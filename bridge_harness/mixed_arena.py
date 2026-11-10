@@ -59,9 +59,11 @@ class ArenaPlayer(PIMCPlayer):
         if belief:
             self.belief = (Weights if spec['belief_kind'] == 'public' else AuctionWeights)(belief)
             super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
-                sampler_factory=lambda o: WeightedSampler(o, self.belief.logits(o), 1.))
+                sampler_factory=lambda o: WeightedSampler(o, self.belief.logits(o), 1.),
+                layout_reduction=spec.get('layout_reduction'))
         else:
-            super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'])
+            super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+                layout_reduction=spec.get('layout_reduction'))
 
     def choose(self, o, rng):
         result = super().choose(o, rng)

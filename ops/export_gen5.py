@@ -89,7 +89,7 @@ def export(root,out):
         records.append(row);shards[row['shard']][str(index)]={**row,'conditions':conditions,'board':first,'tables':common}
     replay_dir=out/'arena/replays/data'/cohort;replay_dir.mkdir(parents=True,exist_ok=True)
     for name,rows in shards.items():atomic_json(replay_dir/name,rows)
-    title=policy.get('title','Gen 5 · Codex');versions={k:s['identity'] for k,s in m['bots'].items()}
+    title=policy.get('title','Gen 5R · Codex' if m.get('variant')=='5R' else 'Gen 5 · Codex');versions={k:s['identity'] for k,s in m['bots'].items()}
     record_shards=[]
     for offset in range(0,len(records),100):
         name=f'index-{offset//100:05d}.json';atomic_json(replay_dir/name,records[offset:offset+100]);record_shards.append(name)
@@ -118,6 +118,9 @@ def export(root,out):
         feed=dict(published_epoch=now,interval_seconds=60,next_update_epoch=now+60),
         model_note='Gen5: promoted dense belief, attention policy and bidder. Gen5/4b/3/2/1 comparisons use 32 vs 32. Gen5 uses 192 vs BEN (16) and Gen5 (32) only; the two Gen5 actors share all network weights.', source_cohort_overlap=False, allocation=m['pair_weights'], statistics_policy=policy,
         collection=dict(updated_epoch=status['epoch'],running=not policy.get('retired') and now-status['epoch']<30,workers=0 if policy.get('retired') else status['workers'],total_completed=len(episodes),training_only_completed=len(episodes)-len(records)))
+    if m.get('variant')=='5R':
+        d['interpretation']=m['interpretation']
+        d['model_note']='Gen5R uses the same bidder, belief and policy as Gen5; only large-position layout selection and weighting change. Nominal 32/192 are DDS ceilings, drawing pools of 128/768. Original Gen5 (32) is retained as the random-sampling control.'
     atomic_json(out/'arena/data.json',d)
     atomic_json(out/'arena/manifest.json',m)
     print(json.dumps(dict(completed=len(records),tables=sum(len(v['tables']) for s in shards.values() for v in s.values()),

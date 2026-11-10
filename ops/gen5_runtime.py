@@ -58,7 +58,7 @@ def validate(r,m,index):
             e=r['unique_tables'][key];expected=['candidate' if seat%2==room else 'opponent' for seat in range(4)]
             if e['assignments']!=expected:raise ValueError('Wrong partnership')
             scores.append(e['tables'][0]['ns_score']);bids=r['bidding'][f'{regime}/{room}']
-            actors=['5']*4 if regime=='common' else [candidate if role=='candidate' else r['opponent'] for role in expected]
+            actors=[m.get('common_bidder',candidate)]*4 if regime=='common' else [candidate if role=='candidate' else r['opponent'] for role in expected]
             if bids['bidders']!=actors or bids['calls']!=list(e['board']['auction']):raise ValueError('Wrong bidder/auction')
         if condition['score_difference']!=scores[0]-scores[1] or condition['imps']!=imps(scores[0]-scores[1]):raise ValueError('Wrong score orientation')
     common=[r['unique_tables'][k]['board']['auction'] for k in r['regimes']['common']['tables']]
