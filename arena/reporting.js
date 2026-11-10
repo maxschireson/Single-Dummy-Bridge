@@ -2,13 +2,14 @@
 (function(root){'use strict';
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
+  {"key": "gen5", "environment": "codex", "name": "Gen 5 \u00b7 current round", "branch": "arena-gen5-codex-feed", "cohort": "bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f"},
   {key:'primarycomponents',environment:'codex',name:'Codex primary 4p / 4b (no self-play)',branch:'arena-primary-components-feed',cohort:'4f43d6f3f234b9e561671f6958bbe2785e8896181791632ee4b1569a5ab062e0'},
   {key:'primary',environment:'codex',name:'Codex main',branch:'arena-feed',cohort:'7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404'},
   {key:'recovery',environment:'codex',name:'Codex six-bot mix',branch:'arena-recovery-feed',cohort:'7729472d36914fd1dce8ecfcc2d520cfc1c03ce737ac99511093e94ebce33a4c'},
   {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
   {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
  ];
- const labels={'4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['4','4p','4b','3','2','1'];
+ const labels={'5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['5','5-32','4','4p','4b','3','2','1','ben'];
  const names={all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
@@ -56,12 +57,12 @@
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
   const stale=chosen.filter(x=>now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
-  return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order,versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
+  return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order:order.filter(k=>chosen.some(x=>(x.data.order||[]).map(canonical).includes(k))),versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
    completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,own_views:own.rows.length?own_views:null,curves,own_curves,
    report:{scope,snapshots:reportSnapshots,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
    feed:{published_epoch:generated_epoch,next_update_epoch:chosen.length?Math.min(...chosen.map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
    interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
-   model_note:'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
+   model_note:chosen.some(x=>x.source.key==='gen5')?'Gen 5 uses the promoted belief, attention policy and bidder at 192 samples; the 32-sample control has the same networks. Gen4b/3/2/1 retain 32 samples; BEN uses 16. Common-v5 and native partnership bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
  }
  async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
  function verify(data,records){
