@@ -27,6 +27,8 @@ def build_model(state_size, action_size):
         return k.Model.from_config(config)
     if state_size != 737:
         raise ValueError('Attention token offsets require the audited 737-field encoding')
+    if WIDTH < 2 or WIDTH % 2:
+        raise ValueError('Attention width must be positive and divisible by two heads')
     base = base_model(state_size, action_size)
     state, actions, calls, seats = [base.input[n] for n in ('state','actions','calls','seats')]
     ops = k.ops
@@ -94,6 +96,8 @@ def restore(model,path):
 
 def export(model,path):
     arrays={'v5_mode':np.array(MODE)}
+    if MODE == 'attention':
+        arrays['attention_width']=np.array(model.get_layer('att_q').get_weights()[0].shape[1])
     for layer in model.layers:
         for i,w in enumerate(layer.get_weights()):arrays[f'layer_{layer.name}_{i}']=w
     for name in LAYERS:
@@ -114,6 +118,11 @@ def raw_scores(w,x):
     a=dense(a,'action_hidden_2',True)
     score=dense(a,'action_score')[...,0]
     if str(w.get('v5_mode','baseline'))!='attention':return val,score
+    # Read each checkpoint's width independently: small and full models can be
+    # evaluated side by side, including old exports with no width metadata.
+    width=w['layer_att_q_0'].shape[1]
+    if width % 2 or int(w.get('attention_width',width)) != width:
+        raise ValueError('Invalid checkpoint attention width')
     def d(x,name,relu=False):
         y=x@w['layer_'+name+'_0']+w['layer_'+name+'_1']
         return np.maximum(y,0) if relu else y
@@ -127,13 +136,13 @@ def raw_scores(w,x):
     context=d(np.concatenate([s[:,624:678],s[:,730:]],axis=-1),'att_context')
     memory=np.concatenate([cards,auction,context[:,None,:]],axis=1)
     query=np.concatenate([context[:,None,:],d(x['actions'],'att_move')],axis=1)
-    def heads(x):return x.reshape(n,-1,2,WIDTH//2).transpose(0,2,1,3)
+    def heads(x):return x.reshape(n,-1,2,width//2).transpose(0,2,1,3)
     q,key,value=heads(d(query,'att_q')),heads(d(memory,'att_k')),heads(d(memory,'att_v'))
-    logits=q@key.transpose(0,1,3,2)/np.sqrt(WIDTH//2)
+    logits=q@key.transpose(0,1,3,2)/np.sqrt(width//2)
     valid=np.concatenate([np.ones((n,52)),c>0,np.ones((n,1))],axis=1)
     logits+=(1-valid[:,None,None,:])*-1e9
     probs=np.exp(logits-logits.max(-1,keepdims=True));probs/=probs.sum(-1,keepdims=True)
-    attended=(probs@value).transpose(0,2,1,3).reshape(n,na+1,WIDTH)
+    attended=(probs@value).transpose(0,2,1,3).reshape(n,na+1,width)
     h=norm(query+d(attended,'att_out'),'att_norm1')
     h=norm(h+d(d(h,'att_ff1',True),'att_ff2'),'att_norm2')
     delta=d(h,'att_readout')[...,0]
