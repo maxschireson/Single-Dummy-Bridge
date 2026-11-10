@@ -33,4 +33,9 @@ function transport(current,counts){return async url=>{const path=new URL(url).pa
  await assert.rejects(()=>R.loadSource(stage.source),/checksum/i);corrupt=false;
  assert.equal((await R.loadSource(stage.source)).data.completed,101);
  console.log('PASS a stale CDN response cannot poison the next refresh');
+
+ R=fresh();stage=fixture(R,[row(1)],20);counts={};const requests=[],fetchFresh=transport(()=>stage,counts),now=Date.now;Date.now=()=>123456;
+ try{global.fetch=async url=>{requests.push(String(url));return fetchFresh(url);};await R.loadSource(stage.source);await R.loadSource(stage.source);const data=requests.filter(url=>new URL(url).pathname.endsWith('/arena/data.json'));assert.equal(data.length,2);assert.notEqual(data[0],data[1]);}
+ finally{Date.now=now;}
+ console.log('PASS metadata checks never share a stale URL, even within the same clock tick');
 })().catch(error=>{console.error(error);process.exitCode=1;});
