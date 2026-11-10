@@ -162,9 +162,39 @@
         "policy5_family_overlap": 0,
         "local_BEN100_and_DDSD_reserved_overlap": 0
       },
-      "status": "process launched; initial validation/checkpoint initialization; no validation result yet",
+      "status": "stopped before first completed epoch; session missing and writer lock free; restart after belief pass",
       "limitation": "Initial partial-data fit only. Existing previously inspected policy tests are descriptive; any final confirmation must use newly reserved families. Later data stays separate, and final unchanged-recipe fit starts from pinned gen5 over full frozen union.",
       "other_components": "Belief and bidding training not launched yet; ingest/prepare remaining complete records and carry forward all reservations before fitting."
+    },
+    "priority": "belief next, per Max",
+    "initial_belief_run": {
+      "source_code": "scripts/run_gen6_belief_refresh.py",
+      "source_code_commit": "3f9061a8b0e8036f3d98df96b3c7dbd4042d6da7",
+      "local_root": "/workspace/scratch/a64f028bc002/gen6-work/belief-initial-current192",
+      "log": "/workspace/scratch/a64f028bc002/gen6-work/belief-initial-current192.log",
+      "python": "/workspace/scratch/bbe90ba77a68/venv/bin/python",
+      "source_checkout": "/workspace/scratch/e9691f0e7615/belief-lab",
+      "source_batch": "/workspace/scratch/a64f028bc002/gen6-inputs/arena-gen5rz-ben-7eecb9a/initial-192",
+      "base_data": "/workspace/scratch/e9691f0e7615/belief-lab/runs/dense-impact-v5-clean-20261109",
+      "labeling_parent": "/workspace/scratch/8fd3c92bf5b8/bridge-belief-v5/models/belief-v4.npz",
+      "training_parent": "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/models/cardplay/gen5-belief-2026-11-10/belief.npz",
+      "session_id": 43718,
+      "workers": 2,
+      "threads": 2,
+      "new_families": {
+        "train": 151,
+        "validation": 14,
+        "test_reserved": 27
+      },
+      "recipe": "unchanged current dense consequence recipe; fresh AdamW; automatic three-epoch fit after labeling",
+      "status": "labeling in progress",
+      "reserved_sources": [
+        "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/reports/gen5rz-ben192-16-2026-11-10/reserved-families.json",
+        "/workspace/scratch/919dc41e3067/bridge-ddsd-corrector/reports/gen6-ddsd-fresh-256-2026-11-10/reserved-families.json",
+        "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/data/manifest.json",
+        "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/confirmation/vs_data_control/families.json",
+        "/workspace/scratch/e9691f0e7615/belief-lab/runs/belief-lab-20261110/reserved/dataset.json"
+      ]
     }
   }
 }
