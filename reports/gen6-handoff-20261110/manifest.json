@@ -1,0 +1,249 @@
+{
+  "bad_policy_records": 0,
+  "counts": {
+    "actions": 8057400,
+    "actions_with_pimc": 6178469,
+    "ben_actions_without_harness_pimc": 39925,
+    "compressed_episode_bytes": 1437214926,
+    "forced_or_replayed_actions_without_pimc": 1839006,
+    "passed_out_games": 58,
+    "records": 11115,
+    "root_games": 22411,
+    "tables": 155008,
+    "tables_with_final_tricks": 154950
+  },
+  "created_utc": "2026-11-10T19:28:09.589393+00:00",
+  "excluded_policy_sha256": [
+    "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed"
+  ],
+  "live_feed": "arena-gen5rz-ben-feed continues publishing new complete records; each fit must pin and audit its own immutable cutoff.",
+  "records_by_generation_variant": {
+    "5": 6754,
+    "5R": 2552,
+    "5RZ": 1809
+  },
+  "repository": "maxschireson/Single-Dummy-Bridge",
+  "schema": "gen6-arena-handoff-v1",
+  "sources": [
+    {
+      "branch": "arena-gen5-codex-feed",
+      "commit": "759365035cddadd6b5586bd8f10995aff40d9be3",
+      "committed_utc": "2026-11-10T04:18:20Z",
+      "corpus": "recovery/corpus.jsonl",
+      "corpus_sha256": "17b7e7bbf33ce6228c59e2b8e0b3d9157a6b7e3ee4f45dcc118a21fe943ce4e5",
+      "counts": {
+        "actions": 96824,
+        "actions_with_pimc": 73310,
+        "ben_actions_without_harness_pimc": 1157,
+        "compressed_episode_bytes": 14481145,
+        "forced_or_replayed_actions_without_pimc": 22357,
+        "passed_out_games": 2,
+        "records": 147,
+        "root_games": 298,
+        "tables": 1864,
+        "tables_with_final_tricks": 1862
+      },
+      "group": "5",
+      "inventory": "sources/gen5-initial/inventory.jsonl.gz",
+      "inventory_sha256": "d7594619c9b3a79d8ff1f275d3f542706e9a776e5347636cad10b8574e2d6f5e",
+      "last_completed_epoch": 1794284148.0339665,
+      "live": false,
+      "manifest": "recovery/manifest.json",
+      "manifest_identity": "bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f",
+      "manifest_sha256": "13dbdbb249e69cd385927401151f49df87f70b97d0439c25eb5ea89ef3297237",
+      "pairs": {
+        "51": 7,
+        "52": 18,
+        "53": 27,
+        "5~4b": 50,
+        "5~5-32": 18,
+        "5~ben": 27
+      },
+      "source_id": "gen5-initial",
+      "source_splits": {
+        "train": 112,
+        "validation": 35
+      }
+    },
+    {
+      "branch": "arena-gen5-codex-32-feed",
+      "commit": "231647b297ba7b05ee28e720d7f395bacbcff818",
+      "committed_utc": "2026-11-10T14:16:18Z",
+      "corpus": "recovery/corpus.jsonl",
+      "corpus_sha256": "7ab8de3e8125642cc8bc5b128e46a26105207e82347815294690ac61eb083bed",
+      "counts": {
+        "actions": 4832412,
+        "actions_with_pimc": 3705740,
+        "ben_actions_without_harness_pimc": 23878,
+        "compressed_episode_bytes": 670822804,
+        "forced_or_replayed_actions_without_pimc": 1102794,
+        "passed_out_games": 22,
+        "records": 6607,
+        "root_games": 13326,
+        "tables": 92953,
+        "tables_with_final_tricks": 92931
+      },
+      "group": "5",
+      "inventory": "sources/gen5-corrected/inventory.jsonl.gz",
+      "inventory_sha256": "7dfee6cb9e7d2835fd3bf139f7eb56f3325840ee2177c41315e7302758121e36",
+      "last_completed_epoch": 1794314121.7840455,
+      "live": false,
+      "manifest": "recovery/manifest.json",
+      "manifest_identity": "c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59",
+      "manifest_sha256": "74c99a970ac5ff83e3643b7b5ac8213ecdb969f0fabe223308c8f8ef2e7bc91c",
+      "pairs": {
+        "5-32~1": 319,
+        "5-32~2": 957,
+        "5-32~3": 1276,
+        "5-32~4b": 2551,
+        "5~5-32": 954,
+        "5~ben": 550
+      },
+      "source_id": "gen5-corrected",
+      "source_splits": {
+        "train": 5184,
+        "validation": 1423
+      }
+    },
+    {
+      "branch": "arena-gen5r-feed",
+      "commit": "ef13160a9c2412bdacae82bb9e26f5cd546e0446",
+      "committed_utc": "2026-11-10T17:33:52Z",
+      "corpus": "recovery/corpus.jsonl",
+      "corpus_sha256": "846c544964c7d02da68b5ade53161fecb2f1d6a2d1e9e31b293fb54e480117a9",
+      "counts": {
+        "actions": 1859832,
+        "actions_with_pimc": 1426352,
+        "ben_actions_without_harness_pimc": 8958,
+        "compressed_episode_bytes": 437388379,
+        "forced_or_replayed_actions_without_pimc": 424522,
+        "passed_out_games": 16,
+        "records": 2552,
+        "root_games": 5138,
+        "tables": 35782,
+        "tables_with_final_tricks": 35766
+      },
+      "group": "5R",
+      "inventory": "sources/gen5r/inventory.jsonl.gz",
+      "inventory_sha256": "058cc4108d41d1e7d52dfac60242f48901390df6d60638cd6d49eede4487617a",
+      "last_completed_epoch": 1794331198.8051434,
+      "live": false,
+      "manifest": "recovery/manifest.json",
+      "manifest_identity": "cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3",
+      "manifest_sha256": "82e94141ae8ea5e513e256d59bb32ac833186008806246f361f45b4ce43c329a",
+      "pairs": {
+        "5R192~ben": 206,
+        "5R32~1": 124,
+        "5R32~2": 369,
+        "5R32~3": 494,
+        "5R32~4b": 990,
+        "5R32~5-32": 183,
+        "5R32~5R192": 186
+      },
+      "source_id": "gen5r",
+      "source_splits": {
+        "train": 2016,
+        "validation": 536
+      }
+    },
+    {
+      "branch": "arena-gen5rz-feed",
+      "commit": "03fd90e694d02ba139559fc323e63e384da9e969",
+      "committed_utc": "2026-11-10T17:44:23Z",
+      "corpus": "recovery/corpus.jsonl",
+      "corpus_sha256": "8deb8d1fc2467e24bde2cb1dfd5e9b32ded00737098bfaf946e4de68fbfc9cd5",
+      "counts": {
+        "actions": 97448,
+        "actions_with_pimc": 75524,
+        "ben_actions_without_harness_pimc": 414,
+        "compressed_episode_bytes": 24430793,
+        "forced_or_replayed_actions_without_pimc": 21510,
+        "passed_out_games": 2,
+        "records": 151,
+        "root_games": 304,
+        "tables": 1876,
+        "tables_with_final_tricks": 1874
+      },
+      "group": "5RZ",
+      "inventory": "sources/gen5rz-initial/inventory.jsonl.gz",
+      "inventory_sha256": "9e3cccb3c824938b097add5925eb951bd12cafeed9001b7bf10d9547cf645c7c",
+      "last_completed_epoch": 1794332569.328254,
+      "live": false,
+      "manifest": "recovery/manifest.json",
+      "manifest_identity": "1f7081be958488897404148a96c3caffc2327d194a5b9acbcaa164802f17bbf6",
+      "manifest_sha256": "bf41c46fd69b9dac2a8b75d9789698d0a85b58f7097ffcde4d67e49ea9618455",
+      "pairs": {
+        "5R192~ben": 11,
+        "5R32~1": 4,
+        "5R32~2": 9,
+        "5R32~3": 17,
+        "5R32~4b": 28,
+        "5R32~5-32": 28,
+        "5R32~5R192": 5,
+        "5RZ32~5R32": 49
+      },
+      "source_id": "gen5rz-initial",
+      "source_splits": {
+        "train": 122,
+        "validation": 29
+      }
+    },
+    {
+      "branch": "arena-gen5rz-ben-feed",
+      "commit": "0780b44021acb1a716b5c01838fc7edccc8f58f6",
+      "committed_utc": "2026-11-10T19:22:39Z",
+      "corpus": "recovery/corpus.jsonl",
+      "corpus_sha256": "b28f33eaf28b884f918b2e943a4b12aab949a6a54bac25a8e2ff7393d666857f",
+      "counts": {
+        "actions": 1170884,
+        "actions_with_pimc": 897543,
+        "ben_actions_without_harness_pimc": 5518,
+        "compressed_episode_bytes": 290091805,
+        "forced_or_replayed_actions_without_pimc": 267823,
+        "passed_out_games": 16,
+        "records": 1658,
+        "root_games": 3345,
+        "tables": 22533,
+        "tables_with_final_tricks": 22517
+      },
+      "group": "5RZ",
+      "inventory": "sources/gen5rz-ben/inventory.jsonl.gz",
+      "inventory_sha256": "b21dbdf8c2384689d313393fdf5c13789f28a28bd49bc2f3fe822228555245af",
+      "last_completed_epoch": 1794338557.0051985,
+      "live": true,
+      "manifest": "recovery/manifest.json",
+      "manifest_identity": "c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba",
+      "manifest_sha256": "9f3fe901d3aa07d2a96b79ccff66e0cfe67cf2f9278e64af0d15fbc5b3b3bb88",
+      "pairs": {
+        "5R32~1": 42,
+        "5R32~2": 126,
+        "5R32~3": 163,
+        "5R32~4b": 342,
+        "5R32~5-32": 320,
+        "5R32~5R192": 67,
+        "5RZ192~ben": 126,
+        "5RZ32~5R32": 472
+      },
+      "source_id": "gen5rz-ben",
+      "source_splits": {
+        "train": 1296,
+        "validation": 362
+      }
+    }
+  ],
+  "speed_comparisons": {
+    "5R16_vs_5-32": "cancelled_by_user",
+    "5RZ32_vs_5RZ16": "cancelled_by_user"
+  },
+  "statistics_exclusions": "The first Gen5 phase includes 102 historical-opponent boards excluded from dashboard statistics by sample-budget policy; retain their raw records for training.",
+  "training_split_status": "Source splits preserved. Trainer must union all historical and later reserved evaluation/audit families before assigning training splits.",
+  "unique_families": 11115,
+  "verified": [
+    "Published Git blob identity for every manifest, corpus, episode and receipt",
+    "Compressed episode SHA256, decompression, schema, canonical family and source split",
+    "Participant identities, schedule, bidding conditions and swapped partnerships",
+    "Every completed main and branch table: legal replay, final score and trick count",
+    "Finite PIMC estimates on every non-forced harness decision",
+    "No banned Gen4 policy participants; no duplicate family between source phases"
+  ]
+}

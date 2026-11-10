@@ -1,0 +1,55 @@
+{
+  "schema": "gen6-arena-readiness-v1",
+  "generation": 6,
+  "status": "awaiting_three_promoted_model_artifacts",
+  "recipe": {
+    "repository": "maxschireson/Single-Dummy-Bridge",
+    "branch": "research/gen6-current-recipe-20261110",
+    "commit": "af2d7dc6d2ef72b95f23abe951e9f249c470d55b",
+    "path": "configs/gen6-current-recipe.json"
+  },
+  "data_handoff": {
+    "manifest": "reports/gen6-handoff-20261110/manifest.json",
+    "manifest_sha256": "0f3a43616813332928ba8714c6ba03ba2e33188a32404e50f04bf8c761a124d6",
+    "paired_records": 11115,
+    "distinct_families": 11115,
+    "download": "ops/fetch_gen6_handoff.py",
+    "source_splits": "Preserve provenance; trainer must union all reserved evaluation and audit families before assigning fit splits.",
+    "first_partial_batch": "The existing Gen6 fit already consumed 192 records from the live 5RZ-BEN feed. Deduplicate them when merging this larger handoff.",
+    "incremental": "Freeze each fit input. Accumulate later complete batches for the final fit from the same Gen5 parents."
+  },
+  "parents": {
+    "bidding": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+    "belief": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+    "policy": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18"
+  },
+  "runtime": {
+    "baseline": "5RZ",
+    "source_commit": "4969fc230e90fc53e24c31fa1ede344acd39216a",
+    "near_tie": 0,
+    "policy_role": "PIMC maximum ties only, preserving the existing numerical tolerance",
+    "exploration": 0,
+    "sampling": "Keep the current representative layout algorithm and budget-specific configuration.",
+    "historical_opponents": "32 samples for both sides",
+    "ben": "BEN uses 16; candidate uses 192",
+    "generation_comparison": "Use equal budgets and frozen runtime for Gen6 versus 5RZ; report common and native bidding separately."
+  },
+  "current_arena": {
+    "run": "gen5rz-ben",
+    "feed": "arena-gen5rz-ben-feed",
+    "manifest_identity": "c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba",
+    "action": "Continue current collection and automatic publication until the Gen6 model handoff.",
+    "dashboard": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest"
+  },
+  "cancelled_speed_comparisons": [
+    "5RZ32 versus 5RZ16",
+    "5R16 versus 5-32"
+  ],
+  "launch_requirements": [
+    "Receive the promoted bidding, belief and policy artifacts with full SHA256 and training manifests.",
+    "Verify restoration and inference against the promoted artifacts before freezing bot identities.",
+    "Freeze a fresh deal cohort, exact matchup allocation and common/native bidding conditions.",
+    "Drain and archive the current run; retain every complete raw record for training.",
+    "Register the new immutable feed on the dashboard, make Gen6 the default and retain older results behind Older."
+  ]
+}
