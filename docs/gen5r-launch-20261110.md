@@ -152,3 +152,6 @@ browser caches only checksum-verified content and re-fetches changed pages;
 feeds without those hashes are re-fetched. A delayed CDN response cannot be
 retained under a newer page revision. Regression coverage includes inserted
 late completions, unchanged/changed pages, and recovery after stale responses.
+
+Published index page URLs also include their content hash, so existing browser
+tabs using the previous URL-based cache recover on their next update.
