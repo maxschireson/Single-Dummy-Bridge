@@ -1,5 +1,9 @@
 # Dense v5 belief: bounded play smoke test
 
+Update: the [100-board follow-up](belief_v5_play_followup_2026-11-10.md)
+finished +13 IMPs, bringing the combined 150-board result to −13 ± 28 IMPs
+(one standard error). The original 50-board results below are unchanged.
+
 The selected current-size, consequence-weighted v5 belief checkpoint completed
 50 fresh paired boards against 4b without runtime or replay failures. The result
 was **−26 IMPs**, or **−0.52 ± 0.48 IMP/board (one standard error)**. This passes
