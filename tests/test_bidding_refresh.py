@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from bridge_harness.bidding_env import make_board, CALL_ID
 from bridge_harness.bidding_refresh import (BAD_POLICY, clean_actors, play_split,
-    terminal_scores, expected_imps, auction_pairs, common_support, clustered_summary)
+    terminal_scores, expected_imps, auction_pairs, common_support, clustered_summary,digest)
 from bridge_harness.core import score, vulnerable, auction_contract, imps
 
 
@@ -41,6 +41,13 @@ class RefreshTests(unittest.TestCase):
         c=auction_contract(self.b.dealer,['1N','PASS','PASS','PASS'])
         d={'outcomes':{f'{c.trump}/{c.declarer}':[7]},'dds':[[13]*4 for _ in range(5)]}
         self.assertEqual(terminal_scores(self.b,['1N','PASS','PASS','PASS'],d)[1], 'clean_play_reused')
+
+    def test_exact_mode_replays_new_level_despite_known_strain(self):
+        calls=['1N','PASS','PASS','PASS'];c=auction_contract(self.b.dealer,calls)
+        d={'outcomes':{f'{c.trump}/{c.declarer}':[9]},
+           'auction_outcomes':{digest(calls):{'tricks':[9]}}}
+        self.assertEqual(terminal_scores(self.b,calls,d)[1],'clean_play_exact_auction')
+        self.assertIsNone(terminal_scores(self.b,['3N','PASS','PASS','PASS'],d)[0])
 
     def test_imps_averaged_after_nonlinear_conversion(self):
         self.assertEqual(expected_imps([0,600],[0]), (imps(0)+imps(600))/2)

@@ -1,100 +1,87 @@
-# Clean bidding refresh, 9 November 2026
+# Clean bidding mix refresh — 9 November 2026
 
-The experiment starts from the validated 40,000-deal DDS bidder and asks whether
-clean actual-play outcomes improve completed auctions. The six candidates use
-25%, 50%, or 75% play-deal sampling, crossed with original-BEN KL weights 0.02
-and 0.20. Each receives 2,048 attempted duplicate pairs and two PPO epochs per
-batch at learning rate 1e-5. The unchanged parent is the control.
+The experiment compares 25%, 50%, and 75% clean-play deal sampling, crossed
+with original-BEN KL weights 0.02 and 0.20. All six candidates start from the
+validated 40,000-deal DDS bidder. Each gets 2,048 duplicate training pairs.
+The unchanged parent is the control. No model is automatically deployed.
 
-These are pilot fine-tunes, not six full retrainings. Attempted and scored sample fractions are both recorded. Missing play
-contracts are completed with the clean frozen Gen3 player, so every attempted
-pair can supply a reward. Every variant uses the same initialized actor,
-training seed, batch budget, optimizer settings and frozen parent opponent.
+## Data and representation
 
-## Original knowledge and representation
+The frozen data contain 3,824 legally replayed clean games on 1,868 distinct
+families: 1,477 train, 199 development, 192 final test. Both partnerships must
+avoid v4 and v4p, including aliases of their policy hash. Existing 40k DDS
+training deals and the prior 1k DDS development cache supply the other stream.
+No separate new DDS-table job is needed; normal cardplay uses DDS internally.
+The 1k DDS development cache was used previously and is not a virgin test.
 
-The original BEN corpus is absent from the recovered checkpoint. Its pretrained
-weights are available. Original-BEN KL retention on newly visited observations
-is therefore a practical approximation to preserving original behavior, not a
-literal old/new corpus ratio. The public 193-feature/40-call BEN interface is
-unchanged: own hand, dealer, vulnerability and prior public auction. Hidden
-cards and terminal outcomes reach only the reward calculator. Dropout is off
-and BatchNorm statistics remain frozen, as in the original bidding trainer.
+The original BEN training corpus is absent from the recovered checkpoint;
+its pretrained weights are present. KL retention on visited observations is
+an approximation to preserving original bidding behavior, not literal replay
+of BEN's base corpus. The 193-feature/40-call interface remains unchanged:
+own hand, dealer, vulnerability and past public calls. Hidden cards enter only
+the reward computation. Freeze BatchNorm moments and disable dropout.
 
-The risks are forgetting conventions, changing partner expectations, and a
-different distribution of auctions or contracts in the small new corpus. A
-stronger retention term can reduce drift but may also suppress improvements.
-Original bid imitation accuracy is a diagnostic, not the objective.
+## Exact auction rewards
 
-## Reward provenance
+Following Max's concern that play can differ within a strain, historical play
+is reused only for the identical auction, oriented deal, dealer and
+vulnerability. This also distinguishes levels, doubles, declarer and auction
+paths reaching the same final contract. There are 1,907 observed exact auctions.
+Missing auctions are played with frozen Gen3 cardplay (32 samples, clean policy
+and belief) on both sides. Preserve full records and verify legal replay.
 
-Reject every game with v4 or v4p on either partnership. Also reject the bad
-policy SHA under another name. Check active players rather than every unused
-bot listed in a manifest; v4b is allowed. Exported games have their file checksums
-verified. Retained trajectories are legally replayed and scores checked, then
-deduplicated across exports and local streams. Only root games provide outcomes;
-counterfactual play branches are not extra independent bidding examples.
+A shared cache includes the complete auction and frozen model/solver identity.
+Thus every sampled and held-out pair receives a score without borrowing another
+contract's tricks. Historical v2/v3/v4b games are still treated as compatible,
+as Max authorized. Multiple exact historical outcomes retain their empirical
+trick distribution; average IMPs after nonlinear duplicate scoring.
 
-For a new auction, reuse clean observed trick counts only for identical cards,
-dealer, vulnerability, strain and declarer. Recompute duplicate scores using
-the new contract level and double/redouble status. Preserve multiple observed
-trick outcomes and average IMPs *after* nonlinear scoring. This implements the
-temporary v2/v3/v4b play-equivalence assumption requested by Max. It still
-ignores changes in play caused by auction information and contract incentives.
+Fresh sampled auctions provide PPO behavior probabilities. Greedy historical
+softmax scores are never misused as sampling probabilities. The earlier
+same-strain approximation was stopped after 256 committed training pairs and
+is not used to initialize the exact-auction experiment.
 
-Use existing DDS labels on DDS-source deals; no standalone new DDS-table job.
-Following Max's instruction to play newly reached contracts, unobserved
-strain/declarer combinations are played with the frozen Gen3 cardplay bot
-(32 worlds, original Gen3 belief and policy) on both sides. The play process
-still uses DDS internally. Both rooms are fully scored. A shared cache reuses
-these trick results across variants and contract levels, preserves the first
-actual auction played, model/solver identity, complete cards and legal replay.
-No other strain's result is borrowed and no missing result is called a tie.
+## Held-out comparison
 
-Fresh sampled auctions provide PPO behavior probabilities. Historical greedy
-auction softmax scores are not misused as behavior propensities.
+Keep complete canonical families together, including every room and rotation.
+Retain the arena's original hash%5 training boundary; half the old validation
+families become development (hash%10=5), half final test (hash%10=0). Verify no
+held-out family was in the starting bidder's recovered training data.
 
-## Evaluation and selection (fixed before results)
+All candidates bid greedily against the frozen parent on all development deals,
+with partnerships swapped between rooms. Report paired mean IMPs and
+family-level standard errors. Replay missing auctions and require full coverage.
+Choose the highest clean-play development mean; break ties by DDS development
+mean, stronger BEN retention, then lower play fraction. Freeze selection.json
+before testing only that chosen variant on the final 192 clean families.
+Selection-set rankings are exploratory; final-test uncertainty remains visible.
 
-All rooms and rotations of a family stay together. Existing arena validation
-families are split into development (`hash % 10 == 5`) and untouched final test
-(`hash % 10 == 0`). Any overlap with prior bidder training excludes a family
-from held-out use. Reconstructed DDS data retain the old 40k train / 1k dev
-boundary. The DDS development set has been used in the earlier campaign and is
-not described as a virgin final test.
+## Runtime and reproducibility
 
-Generate greedy duplicate auctions against the frozen parent on the same
-development deals for all six candidates. Report mean IMPs, family-level
-standard errors and descriptive confidence intervals. Candidate comparison
-uses every development family for every candidate. Missing contracts are
-played, and the evaluator rejects incomplete coverage. Cached trick reuse
-across auction paths remains an explicit approximation.
+Use configs/bidding_exact_mixes.json: minibatch 64, learning rate 2.5e-6,
+two PPO epochs, exploration 0.005. The smaller batch and proportionately lower
+learning rate reduce memory demand while keeping the rough update budget per
+example comparable to the initial 256 / 1e-5 recipe. Every candidate shares the
+same settings, initial weights, seed and frozen opponent.
 
-Choose the highest clean-play common-support development mean for the final
-test, breaking ties by DDS development mean, then stronger BEN retention, then
-lower play fraction. Freeze selection.json before opening test outcomes. The
-test compares only that selected candidate with the unchanged parent. No
-automatic deployment or promotion follows this screen. Sampling uncertainty and the trick-reuse approximation remain explicit even
-if the test mean is positive.
-
-## Commands
+Two earlier combined training/play processes were terminated with exit 137.
+The exact run releases solver memory before backpropagation, disables oneDNN,
+and checkpoints model and Adam state after every batch. Its supervisor runs
+one batch per process, releasing memory between batches. Resume rejects changed
+source, data, initialization or recipe hashes. Model actors remain BEN-compatible
+Keras files.
 
 ```bash
 python scripts/prepare_bidding_refresh.py --export CLEAN_EXPORT \
   --local-run COMPONENT_RUN --local-run SUPPLEMENT_RUN \
-  --dds-checkpoint RECOVERED_40K_CHECKPOINT --out RUN/data
-
-python scripts/run_bidding_refresh.py --data RUN/data/dataset.json \
+  --dds-checkpoint RECOVERED_40K_CHECKPOINT --out INITIAL_RUN/data
+python scripts/prepare_exact_bidding_outcomes.py --source INITIAL_RUN/data \
+  --out RUN/data
+python scripts/bidding_refresh_pipeline.py --data RUN/data/dataset.json \
   --parent VALIDATED_40K_BIDDER.keras --anchor ORIGINAL_BEN.keras \
-  --out RUN --phase train --play-root CLEAN_ARENA_RUN --play-bot 3 \
-  --dds-library libbridge_dds.so
-
-python scripts/run_bidding_refresh.py --data RUN/data/dataset.json \
-  --parent VALIDATED_40K_BIDDER.keras --anchor ORIGINAL_BEN.keras \
-  --out RUN --phase dev --play-root CLEAN_ARENA_RUN --play-bot 3 \
-  --dds-library libbridge_dds.so
+  --out RUN --play-root CLEAN_ARENA_RUN --dds-library libbridge_dds.so
 ```
 
-Training checkpoints include Adam state after every committed batch. Restarting
-the same command resumes from the committed offset. Manifest hashes reject a
-changed dataset, source or recipe. Final actors preserve the BEN Keras format.
+The supervisor completes all six mixes, runs development, freezes the selected
+variant and runs its final test. It never deploys a candidate or overwrites arena
+models. Full model/data/source hashes and raw per-board comparisons are retained.

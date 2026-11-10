@@ -21,6 +21,7 @@ def main():
     p.add_argument('--out', required=True, type=Path)
     p.add_argument('--phase', choices=['train', 'dev', 'test'], required=True)
     p.add_argument('--variant')
+    p.add_argument('--max-batches',type=int,default=0)
     p.add_argument('--play-root', required=True, type=Path)
     p.add_argument('--play-bot', default='3')
     p.add_argument('--dds-library', required=True, type=Path)
@@ -42,7 +43,7 @@ def main():
         tensorflow=tf.__version__, created_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         parent=str(a.parent.resolve()), anchor=str(a.anchor.resolve()), data=str(a.data.resolve()),
         play_root=str(a.play_root.resolve()), play_spec=play_spec, dds_library_sha256=sha(a.dds_library),
-        limitation='Historical and new play reuse assumes unchanged trick outcomes across auctions/levels for same strain/declarer',
+        limitation='Historical v2/v3/v4b results are treated as compatible; new play uses frozen Gen3. Exact auction required.',
         retention='KL to frozen original BEN on collected observations; not replay of original BEN corpus',
         promotion='No automatic promotion; test accessed only for preselected variant')
     manifest_path = a.out/'manifest.json'
@@ -80,6 +81,7 @@ def main():
             state = json.loads((dest/'state.json').read_text()) if (dest/'state.json').exists() else dict(offset=0)
             if state.get('checkpoint'):
                 trainer.restore(state['checkpoint'])
+            batches_this_process=0
             for offset in range(state['offset'], cfg['pairs_per_candidate'], cfg['batch_pairs']):
                 start = time.monotonic()
                 rng = np.random.default_rng(np.random.SeedSequence([cfg['seed'], offset]))
@@ -90,6 +92,9 @@ def main():
                 rng.shuffle(batch)
                 rows, decisions = auction_pairs(batch, candidate, parent, rng, explore=True,
                     epsilon=cfg['exploration'],missing_score=cache.score)
+                # Release solver working memory before TensorFlow's backward pass.
+                for player in cache.players.values():player.close()
+                cache.players={}
                 metrics = trainer.train(decisions, rng, cfg['ppo_epochs'], cfg['minibatch']) if decisions else {}
                 coverage = {s: dict(attempted=sum(r['source']==s for r in batch),
                             scored=sum(b['source']==s and r['imps'] is not None for b,r in zip(batch,rows))) for s in pools}
@@ -100,6 +105,10 @@ def main():
                 event(phase='training', variant=variant['name'], completed_pairs=offset+n,
                       target_pairs=cfg['pairs_per_candidate'], coverage=coverage, seconds=time.monotonic()-start,
                       new_play_games=cache.plays,play_cache_hits=cache.hits)
+                batches_this_process+=1
+                if a.max_batches and batches_this_process>=a.max_batches and offset+n<cfg['pairs_per_candidate']:
+                    cache.close()
+                    return
             # Export the actor only, preserving BEN's native inference interface.
             actor = tf.keras.Model(candidate.model.inputs, candidate.model.outputs[0])
             actor.save(dest/'bidder.keras')

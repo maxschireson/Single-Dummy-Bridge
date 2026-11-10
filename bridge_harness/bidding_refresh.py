@@ -160,7 +160,11 @@ def terminal_scores(board, calls, reward):
     if c is None:
         return [0], 'passed_out'
     slot = f'{c.trump}/{c.declarer}'
-    if reward.get('outcomes', {}).get(slot):
+    exact = reward.get('auction_outcomes')
+    if exact is not None and exact.get(digest(list(calls))):
+        tricks = exact[digest(list(calls))]['tricks']
+        source = 'clean_play_exact_auction'
+    elif exact is None and reward.get('outcomes', {}).get(slot):
         tricks = reward['outcomes'][slot]
         source = 'clean_play_reused'
     elif reward.get('dds') is not None:

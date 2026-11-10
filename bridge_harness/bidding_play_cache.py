@@ -16,7 +16,7 @@ from .bidding_loop import atomic_json
 
 
 class MissingPlayCache:
-    def __init__(self, root, player_root, spec, *, dds_library, event=None, workers=2):
+    def __init__(self, root, player_root, spec, *, dds_library, event=None, workers=0):
         import os
         self.root = Path(root)
         self.root.mkdir(parents=True, exist_ok=True)
@@ -39,10 +39,11 @@ class MissingPlayCache:
         self.seconds = 0.
 
     def key(self,board,calls):
-        contract=auction_contract(board.dealer,calls)
-        return digest([self.identity, board_key(board), contract.trump, contract.declarer])
+        return digest([self.identity, board_key(board), list(calls)])
 
     def resolve_many(self,requests):
+        if self.workers == 0:
+            return [self.score(b,calls) for b,calls in requests]
         pending={}
         for b,calls in requests:
             key=self.key(b,calls)
@@ -64,9 +65,8 @@ class MissingPlayCache:
         contract = auction_contract(board.dealer, calls)
         if contract is None:
             return [0], 'passed_out'
-        # Explicit temporary assumption: reuse tricks across contract levels and
-        # auctions for the same deal/strain/declarer. Preserve the exact first
-        # auction actually played in each cache record for later reanalysis.
+        # Match the full auction as well as the oriented deal and vulnerability.
+        # A different level or auction path can change information and play.
         key = self.key(board,calls)
         path = self.root/(key+'.json.gz')
         if path.exists():
