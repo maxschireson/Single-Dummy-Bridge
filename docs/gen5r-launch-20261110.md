@@ -155,3 +155,17 @@ late completions, unchanged/changed pages, and recovery after stale responses.
 
 Published index page URLs also include their content hash, so existing browser
 tabs using the previous URL-based cache recover on their next update.
+
+The current round resolves the feed branch to one published Git revision and
+loads both scores and hand indices using that immutable revision. This avoids
+mixed metadata versions in GitHub's branch cache. Revision checks are shared
+across browser tabs and cached for 90 seconds to limit public API traffic; the
+30-second display checks normally pick up a new snapshot within about two
+minutes. Score links carry the displayed revision through hand lists, replays
+and back links, keeping their exact board counts intact. Historical views keep
+their explicit Older selection.
+
+Refresh regressions cover out-of-order completions, content hashes, changed
+page URLs, stale CDN payloads, unique metadata requests, coherent revisions,
+API request reuse and exact snapshot drill-downs. A browser using the live
+public feed advanced automatically from 1,221 to 1,253 deals during validation.
