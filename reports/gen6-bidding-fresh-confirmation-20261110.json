@@ -1,0 +1,53 @@
+{
+  "play": {
+    "total_families": 177,
+    "common_supported_families": 177,
+    "variants": {
+      "parent": {
+        "common": {
+          "families": 177,
+          "mean_imps": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "informative": false
+        },
+        "own_support": {
+          "families": 177,
+          "mean_imps": 0.0,
+          "se": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "informative": false
+        }
+      },
+      "play50_anchor002": {
+        "common": {
+          "families": 177,
+          "mean_imps": -0.17796610169491525,
+          "se": 0.1281566080929427,
+          "ci95": [
+            -0.4291530535570829,
+            0.07322085016725241
+          ],
+          "informative": true
+        },
+        "own_support": {
+          "families": 177,
+          "mean_imps": -0.17796610169491525,
+          "se": 0.1281566080929427,
+          "ci95": [
+            -0.4291530535570829,
+            0.07322085016725241
+          ],
+          "informative": true
+        }
+      }
+    },
+    "support_note": "Missing contracts played with frozen clean Gen3; every evaluated deal must be scored"
+  }
+}
