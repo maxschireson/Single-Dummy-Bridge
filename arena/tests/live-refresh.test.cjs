@@ -49,4 +49,10 @@ function transport(current,counts){return async url=>{const path=new URL(url).pa
   assert.equal((await R.loadLiveSource(source,{revision:a})).data.completed,1);assert.equal(apiCalls,2);
  }finally{Date.now=now;}
  console.log('PASS a refresh pins scores, hands and drill-downs to one publication without excessive API requests');
+
+ R=fresh();const c='c'.repeat(40),sources={[a]:fixture(R,Array.from({length:101},(_,i)=>row(i)),20,true),[b]:fixture(R,Array.from({length:102},(_,i)=>row(i)),40,true),[c]:fixture(R,[row(-1),...Array.from({length:102},(_,i)=>row(i))],60,true)};let firstPageFetches=0;
+ global.fetch=async url=>{const parts=new URL(url).pathname.split('/'),path=parts.slice(4).join('/');if(path.endsWith('index-00000.json'))firstPageFetches++;return new Response(sources[parts[3]].files[path]);};
+ for(const revision of [a,b])await R.loadSource(R.sources[0],{revision});assert.equal(firstPageFetches,1);
+ await R.loadSource(R.sources[0],{revision:c});await R.loadSource(R.sources[0],{revision:a});assert.equal(firstPageFetches,3);
+ console.log('PASS verified pages are reused across publications and obsolete versions are evicted');
 })().catch(error=>{console.error(error);process.exitCode=1;});
