@@ -55,3 +55,31 @@ existing R192-vs-BEN games remain a separately labeled baseline.
 A system-Python watchdog restart failure in the retired source was preserved
 under resolved-failures. The new launcher pins the training virtual environment
 and propagates that choice to its children, including cache-rotation restarts.
+
+## Active deployment
+
+The current collector is `/workspace/work/gen5rz-ben`, running from
+`/workspace/Single-Dummy-Bridge-5rz-ben`. Its immutable manifest is
+`c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba`.
+The live publication checkout is `/workspace/work/gen5rz-ben-publication`,
+branch `arena-gen5rz-ben-feed`. BEN now faces Z192 only in newly scheduled games.
+
+The default latest report combines the active cohort with 2,552 compatible
+initial R deals and 151 early Z deals. Their immutable final publications are
+`ef13160a9c2412bdacae82bb9e26f5cd546e0446` and
+`03fd90e694d02ba139559fc323e63e384da9e969`, tagged
+`gen5r-before-rz-20261110` and `gen5rz-initial-20261110`. All completed episodes
+and receipts are unchanged. The 15,690 remaining families exclude both sets of
+completed indices and complete the original 18,393-deal R budget.
+
+The public page defaults to the combined current mix, keeps original Gen5
+under Older, and pins each displayed snapshot through its hand links and
+replays. Original R192-vs-BEN observations are kept in a distinct row; they
+are not relabeled as Z192. Both new Z variants were verified to select only
+PIMC winners, including real Z192-versus-BEN records. The browser observed
+automatic updates and exact snapshot hand counts for the new BEN matchup.
+
+`reports/gen5rz-live-handoff-20261110.json` captures deployment checks and
+progress at validation. The launcher was also invoked from system Python and
+confirmed to start a child in the pinned virtual environment with TensorFlow
+2.21.0, without interrupting the collector.
