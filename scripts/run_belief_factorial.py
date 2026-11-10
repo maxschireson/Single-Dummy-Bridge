@@ -18,6 +18,7 @@ def main():
         code_sha256={n:sha(n) for n in ['scripts/train_belief_factorial.py','bridge_harness/belief_capacity.py']},
         cells=CELLS,epochs=3,threads=2,seed=2026111001,smoke_shards=a.smoke_shards,
         optimizer='Reset AdamW for all four cells; lr 0.0001, wd 0.0001, clip 1.',
+        dropout_rng='Explicit per-epoch reset; one epoch per worker invocation',
         primary='Paired size and loss contrasts at fixed epoch 3; same frozen composite validation objective.',
         secondary='Per-cell best epoch including v4 epoch 0; paired ordinary and consequential-card metrics; descriptive SE after selection.',
         test_evaluated=False,promoted=False)
@@ -32,7 +33,7 @@ def main():
         if not (out/'result.json').exists():
             save_json(a.out/'status.json',dict(stage='training',active_cell=name,completed=list(results),updated=time.time()))
             cmd=[sys.executable,'-u','scripts/train_belief_factorial.py','--data',str(a.data),'--out',str(out),
-                 '--widths',*map(str,widths),'--loss',loss,'--threads','2','--epochs','3']
+                 '--widths',*map(str,widths),'--loss',loss,'--threads','2','--epochs','3','--one-epoch']
             if a.smoke_shards:cmd+=['--smoke-shards',str(a.smoke_shards)]
             with (a.out/'pipeline.log').open('a',buffering=1) as log:
                 log.write(json.dumps(dict(cell=name,started=time.time()))+'\n')
@@ -60,6 +61,9 @@ def main():
                         log.flush();lock.close()
                         os.execv(sys.executable,[sys.executable,*sys.argv])
                 if code:raise subprocess.CalledProcessError(code,cmd)
+                if not (out/'result.json').exists():
+                    log.flush();lock.close()
+                    os.execv(sys.executable,[sys.executable,*sys.argv])
         result=json.loads((out/'result.json').read_text())
         if result['config_sha256']!=sha(out/'config.json'):raise ValueError('Cell config changed')
         results[name]=dict(parameters=result['parameters'],selected_epoch=result['best_epoch'],

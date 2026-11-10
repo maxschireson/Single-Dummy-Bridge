@@ -23,12 +23,22 @@ def loss_weights(d,mode):
     return d['card_weight'] if mode=='consequence' else np.ones_like(d['card_weight'])
 
 
+def reset_dropout(model,seed):
+    count=0
+    for layer in model.layers:
+        generator=getattr(layer,'seed_generator',None)
+        if generator is not None:
+            generator.state.assign([seed+count,0]);count+=1
+    if count!=1:raise ValueError('Expected exactly one dropout generator')
+
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--data',type=Path,required=True);ap.add_argument('--out',type=Path,required=True)
     ap.add_argument('--parent',type=Path,default=Path('models/belief-v4.npz'));ap.add_argument('--threads',type=int,default=2)
     ap.add_argument('--epochs',type=int,default=3);ap.add_argument('--smoke-shards',type=int,default=0)
     ap.add_argument('--widths',type=int,nargs=2,required=True)
     ap.add_argument('--loss',choices=['ordinary','consequence'],required=True)
+    ap.add_argument('--one-epoch',action='store_true')
     a=ap.parse_args();a.out.mkdir(parents=True,exist_ok=True)
     import fcntl
     lock=(a.out/'writer.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -67,6 +77,7 @@ def main():
     state_path=a.out/'state.json'
     cfg={**cfg,'parameters':model.count_params(),'epochs':a.epochs,'widths':a.widths,
         'card_loss':a.loss,'optimizer':'Fresh AdamW in every cell; v4 learned weights retained',
+        'dropout_rng':'Explicit per-epoch generator reset; identical across interrupted and continuous fits',
         'initialization':'Function-preserving widening of v4 with balanced copies and zero-sum perturbations',
         'seed':2026111001,'trainer_sha256':sha(__file__),'threads':a.threads}
     run_config=dict(**cfg,training_positions=positions,training_card_targets=targets,training_families=len(train_groups),
@@ -147,6 +158,7 @@ def main():
     start=time.time()
     for epoch in range(state['epoch']+1,a.epochs+1):
         epoch_start=time.time();rng=np.random.default_rng(cfg['seed']+epoch);tf.keras.utils.set_random_seed(cfg['seed']+epoch)
+        reset_dropout(model,cfg['seed']+epoch)
         total_loss=0.;seen=0
         for j in rng.permutation(len(train)):
             e=train[j];d=read(e);order=rng.permutation(len(d['kind']))
@@ -168,6 +180,7 @@ def main():
         save_json(a.out/f'epoch-{epoch}.json',row)
         save_json(a.out/'status.json',dict(stage='dense_training',epoch=epoch,epochs=a.epochs,best_epoch=state['best_epoch'],updated=time.time()))
         print(json.dumps(dict(stage='epoch_complete',epoch=epoch,seconds=row['seconds'],score=metrics['score'],paired_recent=paired)),flush=True)
+        if a.one_epoch and epoch<a.epochs:return
     export(a.out/'last.npz')
     ckpt.restore(state['selected_checkpoint']).assert_existing_objects_matched()
     sample=read(validation[0]);x={k:sample[k][:128] for k in INPUTS}
