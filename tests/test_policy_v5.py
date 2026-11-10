@@ -24,7 +24,7 @@ class PolicyV5Test(unittest.TestCase):
             parent=Path(directory)/'parent.npz'
             v5.MODE='baseline';base=v5.build_model(737,171);export_weights(base,parent)
             previous=v5.V5Weights(parent).predict(x)
-            for mode,width in [('baseline',64),('wide',64),('attention',40),('attention',64)]:
+            for mode,width in [('baseline',64),('wide',64),('attention',40),('attention',64),('attention',96)]:
                 with self.subTest(mode=mode,width=width):
                     v5.MODE=mode;v5.WIDTH=width;model=v5.build_model(737,171);v5.restore(model,parent)
                     def prediction():
