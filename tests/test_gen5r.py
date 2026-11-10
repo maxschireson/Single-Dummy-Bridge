@@ -28,6 +28,18 @@ class Toy:
     def close(self):pass
 
 class Gen5RTests(unittest.TestCase):
+    def test_finalizing_old_run_keeps_its_runtime_unchanged(self):
+        from ops.publish_gen5 import snapshot_runtime
+        with tempfile.TemporaryDirectory() as td:
+            source=Path(td)/'old';source.mkdir();backup=Path(td)/'backup'
+            (source/'manifest.json').write_text(json.dumps({'source_sha256':'older-frozen-source'}))
+            with self.assertRaisesRegex(ValueError,'another cohort'):snapshot_runtime(source,backup)
+            runtime=backup/'runtime/bridge_harness';runtime.mkdir(parents=True)
+            (runtime/'players.py').write_bytes(b'frozen original player')
+            before={p.relative_to(backup):p.read_bytes() for p in backup.rglob('*') if p.is_file()}
+            self.assertFalse(snapshot_runtime(source,backup))
+            self.assertEqual(before,{p.relative_to(backup):p.read_bytes() for p in backup.rglob('*') if p.is_file()})
+
     def test_allocation_and_scaled_budgets(self):
         plan=load_plan();bots=make_bots(source_manifest(),plan)
         self.assertEqual(sum(PAIR_WEIGHTS.values()),40)
