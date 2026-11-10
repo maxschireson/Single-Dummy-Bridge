@@ -120,7 +120,7 @@
     }
   },
   "execution": {
-    "phase": "All three component fits and prediction confirmations complete. Fixed100 combined cardplay recovery running; wider comparison checkpoint recovery blocked.",
+    "phase": "All three unchanged-recipe component fits, fixed prediction confirmations and fixed100 combined cardplay assessment COMPLETE. Wider-attention comparison remains blocked by unavailable checkpoints/results.",
     "first_steps": [
       "Audit a pinned complete incremental batch from the live recovery feed; do not wait for the full campaign.",
       "Freeze data, parent, source and runtime hashes in a separate run manifest.",
@@ -426,10 +426,11 @@
       "note": "Separate authorized capacity experiment; keep unchanged-recipe gen6 jobs running. Native terminal persistence survived prior turn boundaries; verify locks and log progress before resuming.",
       "initial_prediction_max_difference_between_arms": 0,
       "initial_prediction_max_difference_from_dense_parent": 7.741153247309285e-7,
-      "previous_status": "Width64 complete8epochs, selected4, validationMSE.5256861348; width96 completed7epochs and remainslive. Wait for both final results before comparison."
+      "previous_status": "Width64 complete8epochs, selected4, validationMSE.5256861348; width96 completed7epochs and remainslive. Wait for both final results before comparison.",
+      "recovery_data_check": "Available Outcome_Policy_Training_Data_2026-11-09.zip has dataset SHA bddd3f574788c67f2d51667b9d7d93f8222d81fe03eb1ca418e83c12422cff98, not required historical base SHA b4d40dccfd2f1c279e23586b2b72c4d423fd5f005f8cb4295588551709df7001. Not substituted."
     },
     "whole_game_confirmation": {
-      "status": "Recovery running after original runtime paths and terminal windows were absent; exact original 100 auctions, models and runtime hashes verified. No original room results recoverable here.",
+      "status": "COMPLETE: fixed100 independent paired families,200 legal rooms; no demonstrated gain; no promotion. Do not rerun or extend.",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/whole-game-100",
       "script": "scripts/match_gen6_5rz.py",
       "samples_each": 32,
@@ -448,8 +449,31 @@
         "log": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/whole-game-100-recovered.log",
         "all_original_model_runtime_hashes_match": true,
         "original_auctions_sha256_match": true,
-        "archive_library_file_id": "libfile_fde3_f-3693a05851f48191bb64b66a5b8f55d8_cf78a91e4b8c81918243c2c17fc9b8b9"
-      }
+        "archive_library_file_id": "libfile_fde3_f-3693a05851f48191bb64b66a5b8f55d8_cf78a91e4b8c81918243c2c17fc9b8b9",
+        "completed": true,
+        "archive_version": 1
+      },
+      "result": {
+        "boards": 100,
+        "target": 100,
+        "complete": true,
+        "total_imps": -49,
+        "imps_per_board": -0.49,
+        "se": 0.4103447675830999,
+        "ci95": [
+          -1.3042130438331756,
+          0.3242130438331755
+        ],
+        "positive_favors": "gen6",
+        "promoted": false
+      },
+      "audit": {
+        "unique_families": 100,
+        "legally_replayed_rooms": 200,
+        "all_models_runtime_auctions_hashes_verified": true,
+        "paired_statistics_verified": true
+      },
+      "archive_library_file_id": "libfile_fde3_f-3693a05851f48191bb64b66a5b8f55d8_cf78a91e4b8c81918243c2c17fc9b8b9"
     }
   }
 }
