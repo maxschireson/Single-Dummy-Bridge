@@ -86,4 +86,3 @@ class Corrector:
         with torch.no_grad():
             return self.model(torch.as_tensor(np.asarray(x),dtype=torch.float32),
                 torch.as_tensor(np.asarray(calls),dtype=torch.long)).numpy()
-
