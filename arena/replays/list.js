@@ -2,13 +2,14 @@
 const C=ReplayCommon,{$,el}=C,params=new URLSearchParams(location.search);
 let cohorts=[],active=null,records=[],page=0,filtered=[],reportInputs=[];
 const R=ArenaReporting,reportScope=params.get('report');let reportSnapshots=params.has('snapshots')?JSON.parse(params.get('snapshots')):null;
+let reportRevisions=params.has('revisions')?JSON.parse(params.get('revisions')):null;
 const biddingMetric=params.get('metric')==='bidding',model=params.get('model');
 const expected={n:Number(params.get('n')),total:params.has('total')?Number(params.get('total')):null};
 let linked=params.has('n'),cutoff=Number(params.get('cutoff'))||Infinity,windowSize=Number(params.get('window'))||0;
 $('condition').value=params.get('condition')==='own'?'own':'common';
 $('zeros').value=params.get('zeros')==='show'?'show':'hide';
 $('sort').value=['swing','newest','oldest','gain','loss'].includes(params.get('sort'))?params.get('sort'):'swing';
-function urlFor(row,condition=$('condition').value){const u=new URL('board.html?v=gen5r-live-3',location.href);for(const [k,v]of Object.entries({cohort:row._cohort||active.id,board:row.id,pair:row._pair||row.pair,condition,...(biddingMetric?{metric:'bidding',model}:{})}))u.searchParams.set(k,v);if(active.report){u.searchParams.set('flip',row._flip?'1':'0');u.searchParams.set('report',active.report);if(reportSnapshots)u.searchParams.set('snapshots',JSON.stringify(reportSnapshots));}return u;}
+function urlFor(row,condition=$('condition').value){const u=new URL('board.html?v=gen5r-live-4',location.href);for(const [k,v]of Object.entries({cohort:row._cohort||active.id,board:row.id,pair:row._pair||row.pair,condition,...(biddingMetric?{metric:'bidding',model}:{})}))u.searchParams.set(k,v);if(row._revision)u.searchParams.set('revision',row._revision);if(active.report){if(reportRevisions)u.searchParams.set('revisions',JSON.stringify(reportRevisions));u.searchParams.set('flip',row._flip?'1':'0');u.searchParams.set('report',active.report);if(reportSnapshots)u.searchParams.set('snapshots',JSON.stringify(reportSnapshots));}return u;}
 function draw(){
  const pair=$('pair').value,own=$('condition').value==='own';if(active?.report)records=R.rowsFor(reportInputs,active.report,own?'own':'common',reportSnapshots).rows;let selected=records.filter(r=>(pair==='all'||r.pair===pair)&&r.completed_epoch<=cutoff&&(!biddingMetric||Object.hasOwn(r.dd_bidding_imps||{},model))).sort(active?.report?R.byTime:(a,b)=>a.index-b.index);
  if(windowSize)selected=selected.slice(-windowSize);
@@ -36,7 +37,7 @@ function draw(){
 }
 async function selectReport(scope){
  active={id:'report:'+scope,title:R.names[scope],report:scope};records=[];$('coverage').textContent='Loading combined play records…';
- try{reportInputs=await Promise.all(R.pickSources(scope).filter(s=>!reportSnapshots||Object.hasOwn(reportSnapshots,s.cohort)).map(s=>R.loadSource(s,{indexOnly:true,cutoff:reportSnapshots?.[s.cohort]})));
+ try{reportInputs=await Promise.all(R.pickSources(scope).filter(s=>!reportSnapshots||Object.hasOwn(reportSnapshots,s.cohort)).map(s=>R.loadLiveSource(s,{indexOnly:true,cutoff:reportSnapshots?.[s.cohort],revision:reportRevisions?.[s.cohort]})));
  records=R.rowsFor(reportInputs,scope,'common',reportSnapshots).rows;const desired=params.get('pair');$('pair').replaceChildren();const all=el('option','All matchups');all.value='all';$('pair').append(all);for(const pair of Object.keys(R.view(records).groups)){const o=el('option',C.pairLabel(pair));o.value=pair;$('pair').append(o);}$('pair').value=[...$('pair').options].some(o=>o.value===desired)?desired:'all';$('condition').hidden=false;$('condition').options[0].textContent='Common bidder for each cohort';page=0;draw();
  }catch(e){active=null;records=[];$('coverage').textContent='Could not load the complete combined report: '+e.message;draw();}
 }
@@ -47,5 +48,5 @@ async function selectCohort(){if($('cohort').value.startsWith('report:'))return 
  }catch(e){$('coverage').textContent='Could not load records: '+e.message;records=[];active=null;draw();}}
 async function load(){try{cohorts=await C.catalog();const desired=$('cohort').value||(reportScope?'report:'+reportScope:params.get('cohort'))||'report:all';$('cohort').replaceChildren();for(const [scope,name]of Object.entries(R.names)){const o=el('option',name+' · main + components');o.value='report:'+scope;$('cohort').append(o);}if(!desired.startsWith('report:')&&!cohorts.some(c=>c.id===desired)){const o=el('option','Requested run · records pending');o.value=desired;$('cohort').append(o);}for(const c of cohorts){const o=el('option',`${c.title} (${c.count})`);o.value=c.id;$('cohort').append(o);}$('cohort').value=desired;await selectCohort();}catch(e){$('coverage').textContent=e.message;draw();}}
 for(const id of ['pair','sort','zeros','condition'])$(id).addEventListener('change',()=>{page=0;if(id==='pair'||id==='condition'){linked=false;windowSize=0;}draw();});
-$('cohort').addEventListener('change',()=>{linked=false;cutoff=Infinity;windowSize=0;reportSnapshots=null;selectCohort();});$('refresh').onclick=load;$('prev').onclick=()=>{page--;draw();};$('next').onclick=()=>{page++;draw();};load();
+$('cohort').addEventListener('change',()=>{linked=false;cutoff=Infinity;windowSize=0;reportSnapshots=null;reportRevisions=null;selectCohort();});$('refresh').onclick=load;$('prev').onclick=()=>{page--;draw();};$('next').onclick=()=>{page++;draw();};load();
 

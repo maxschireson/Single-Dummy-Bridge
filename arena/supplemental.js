@@ -23,7 +23,7 @@
  }
  document.getElementById('older').onclick=()=>{older=!older;selected=older?'all':R.latestScope;selector.value=selected;rememberSelection();report();refresh();};
  selector.addEventListener('change',()=>{selected=selector.value;rememberSelection();report();refresh();});
- async function refresh(){if(busy)return;busy=true;try{await Promise.allSettled((older?R.sources:R.pickSources(R.latestScope)).map(async source=>{try{const incoming=await R.loadSource(source);const previous=inputs.get(source.key);if(!previous||incoming.data.generated_epoch>=previous.data.generated_epoch)inputs.set(source.key,incoming);errors.delete(source.key);}catch(e){errors.set(source.key,e.message);}}));lastChecked=Date.now();report();}finally{busy=false;}}
+ async function refresh(){if(busy)return;busy=true;try{await Promise.allSettled((older?R.sources:R.pickSources(R.latestScope)).map(async source=>{try{const incoming=await R.loadLiveSource(source);const previous=inputs.get(source.key);if(!previous||incoming.data.generated_epoch>=previous.data.generated_epoch)inputs.set(source.key,incoming);errors.delete(source.key);}catch(e){errors.set(source.key,e.message);}}));lastChecked=Date.now();report();}finally{busy=false;}}
  window.renderArenaSources=()=>{};report();refresh();setInterval(refresh,30000);
  window.addEventListener('focus',refresh);window.addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();
