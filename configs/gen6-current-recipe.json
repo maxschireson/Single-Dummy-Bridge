@@ -324,7 +324,7 @@
       "source_commit": "e71db2de4747cce155d72df7278bf62b6c7b7fa2",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513",
       "session": null,
-      "status": "Resumed in native terminal at20:59 UTC from completed epoch1; writer lock held",
+      "status": "All8 epochs and fixed150-family confirmation complete; selectedepoch1; no demonstrated gain",
       "train_outcomes": 601037,
       "train_families": 5689,
       "validation_families": 748,
@@ -337,10 +337,10 @@
       "raw_episodes": 1513,
       "legally_replayed_non_test_tables": 18145,
       "passed_out_rooms": 14,
-      "test_evaluated": false,
+      "test_evaluated": true,
       "promoted": false,
       "confirmation": "Validation-only fit. After selection, prepare and score the150 fresh reserved families; prior27 source tests were already inspected in initial policy fit.",
-      "completed_epochs": 1,
+      "completed_epochs": 8,
       "latest_validation": {
         "mse": 0.530732452066718,
         "parent_mse": 0.5318594734907276,
@@ -352,7 +352,42 @@
         ],
         "families": 745
       },
-      "confirmation_script": "scripts/confirm_gen6_policy.py --plan configs/gen6-policy-full1513-plan.json; only after completed fit/result.json"
+      "confirmation_script": "scripts/confirm_gen6_policy.py --plan configs/gen6-policy-full1513-plan.json; only after completed fit/result.json",
+      "selected_epoch": 1,
+      "selected_sha256": "c48675e15adff57e5f662827ec4438b2803a63a88414b39aee69e9ac22a2fb99",
+      "confirmation_results": {
+        "selected_sha256": "c48675e15adff57e5f662827ec4438b2803a63a88414b39aee69e9ac22a2fb99",
+        "parent_sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+        "reserved_families": 150,
+        "evaluated_outcome_families": 150,
+        "candidate_mse": 0.42900390760071666,
+        "parent_mse": 0.4303136530946987,
+        "paired_mse": {
+          "rows": 150,
+          "families": 150,
+          "mean": -0.001309745493982102,
+          "se": 0.00625993380459019,
+          "ci95": [
+            -0.013679457183314356,
+            0.011059966195350154
+          ]
+        },
+        "recorded_choice_imp_difference": {
+          "rows": 1747,
+          "families": 132,
+          "mean": -0.008709400827270702,
+          "se": 0.02474605735124819,
+          "ci95": [
+            -0.05766300517351512,
+            0.04024420351897372
+          ]
+        },
+        "test_evaluated": true,
+        "whole_game_strength_tested": false,
+        "promoted": false,
+        "limitation": "Recorded-choice diagnostic uses mixed frozen continuations; not whole-game IMP/board evidence."
+      },
+      "archive_library_file_id": "libfile_fde3_f-4d9f8bf04ea08191ba5df123af012f30_cf78a91e4b8c81918243c2c17fc9b8b9"
     },
     "supervisor": {
       "script": "scripts/supervise_gen6.py",
@@ -372,7 +407,7 @@
       "plan": "configs/gen6-policy-width96-full1513.json",
       "repository": "/workspace/scratch/a64f028bc002/policy-width96-check",
       "output": "/workspace/scratch/a64f028bc002/gen6-work/policy-width64-vs96-full1513",
-      "status": "Launched in native Terminal third tab; writer lock held and both initialized checkpoints exist",
+      "status": "Width64 complete8epochs, selected4, validationMSE.5256861348; width96 completed7epochs and remainslive. Wait for both final results before comparison.",
       "widths": [
         64,
         96
@@ -391,6 +426,19 @@
       "note": "Separate authorized capacity experiment; keep unchanged-recipe gen6 jobs running. Native terminal persistence survived prior turn boundaries; verify locks and log progress before resuming.",
       "initial_prediction_max_difference_between_arms": 0,
       "initial_prediction_max_difference_from_dense_parent": 7.741153247309285e-7
+    },
+    "whole_game_confirmation": {
+      "status": "Running;10/100 paired families complete at check",
+      "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/whole-game-100",
+      "script": "scripts/match_gen6_5rz.py",
+      "samples_each": 32,
+      "target": 100,
+      "seed": 202611102150,
+      "workers": 2,
+      "native_terminal_tab": 4,
+      "comparison": "Selected refreshed policy+belief vs frozen5RZ; common promotedGen5 bidder, bidding separately evaluated",
+      "reservation": "reports/gen6-vs5rz-equal32-20261110/reserved-families.json",
+      "promoted": false
     }
   }
 }
