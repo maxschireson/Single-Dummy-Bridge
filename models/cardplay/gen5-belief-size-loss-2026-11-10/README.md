@@ -1,5 +1,10 @@
 # Dense belief size and consequence-weighting comparison
 
+**Promotion update, 10 November 2026:** Max selected `current_consequence` as
+the v5 belief component. The [promoted release](../gen5-belief-2026-11-10/README.md)
+contains its exact weights, manifest and restore script. The other three cells
+remain research comparisons. This does not restart arena collection.
+
 Four research candidates from the same frozen policy-clean dataset. Each starts
 from v4 predictions, resets AdamW, and trains for three epochs. All four use the
 same validation objective to select a checkpoint, including epoch zero.

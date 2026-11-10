@@ -1,0 +1,37 @@
+{
+  "batch_size": 2048,
+  "card_loss": "consequence",
+  "clean_sources_counts": {
+    "excluded_local_episodes": 4180,
+    "families_test": 186,
+    "families_train": 1411,
+    "families_validation": 193,
+    "retained_export_games": 1944,
+    "retained_local_episodes": 818
+  },
+  "clean_sources_sha256": "4fb016eca78e8228fe68e7e1addb0670e152937c12afa907f48a22c4ac42f2c9",
+  "dataset_sha256": "188d3ebe78e2c448b2a9f244d680a89e69f0aa787ee305477b35114e619aab76",
+  "epochs": 3,
+  "excluded_policy_sha256": "e179a71ed132dcd0f9ca06b486ec087e9f5b26edb4210e99ed2e04c9439b21ed",
+  "importance": "Cross-fitted single-card owner information value under 24 v4 + 8 uniform legal worlds. Both owner groups >=4 worlds; prior shrinkage 4 worlds. Per-card weight 1+3*min(max(0,value_IMP),1).",
+  "learning_rate": 0.0001,
+  "optimizer": "Fresh AdamW in every cell; v4 learned weights retained",
+  "parameters": 308726,
+  "parent_sha256": "b23eb37554a26abb5a5eaa03f547472c489abd00dd6f3c9b0cada96cc46eb7d9",
+  "replay_dataset_sha256": "f0c29b8fe8a3adde66e459839e5665c360e578739194ff860cce0ee76052904b",
+  "seed": 2026111001,
+  "selection": "50% play (equal historical ordinary and recent impactful family NLL), 25% historical complete bidding auctions, 25% historical complete BEN auctions; epoch zero eligible.",
+  "training_card_targets": 31120476,
+  "training_families": 89652,
+  "training_positions": 998425,
+  "validation_families": 11273,
+  "widths": [
+    256,
+    128
+  ],
+  "selected_epoch": 1,
+  "selected_optimizer_steps": 494,
+  "source_run": "runs/belief-size-loss-v2-20261110/current_consequence",
+  "training_code_commit": "e7bc310cf8b0a701f73d80df706e56454a23bf54",
+  "selected_checkpoint_recovery_library_id": "libfile_fde3_f-ee8f42e1a3888191bf5eebd25c003528_cf78a91e4b8c81918243c2c17fc9b8b9"
+}

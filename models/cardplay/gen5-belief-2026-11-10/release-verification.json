@@ -1,0 +1,14 @@
+{
+  "sha256": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+  "parts_verified": true,
+  "legacy_numpy_loader": true,
+  "validation_domains": [
+    "historical/bidding",
+    "historical/ben",
+    "historical/play",
+    "recent/play"
+  ],
+  "rows_per_domain": 16,
+  "predictions_identical_to_selected_candidate": true,
+  "reserved_test_evaluated": false
+}
