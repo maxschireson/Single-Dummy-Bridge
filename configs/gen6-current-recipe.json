@@ -327,6 +327,31 @@
       "lock": "supervisor.lock",
       "note": "Exec supervisors repeatedly disappeared near turn completion without signal/exit records. Resumed via native terminal with shared files; both child locks held and heartbeat advancing. Persistence beyond this turn is not yet verified. Do not close terminal or disturb unrelated bidding job in first tab.",
       "execution_surface": "Native Xfce Terminal second tab; terminal window10485763; supervisor PID757 at launch; verify locks/heartbeat, never infer liveness from PID"
+    },
+    "authorized_wider_attention_comparison": {
+      "authorization": "Max: Try width96 versus64, 2026-11-10",
+      "branch": "research/gen6-policy-width96-full1513-20261110",
+      "commit": "03b0f16952ae97dbaefc595e7adcd54a9329da8c",
+      "plan": "configs/gen6-policy-width96-full1513.json",
+      "repository": "/workspace/scratch/a64f028bc002/policy-width96-check",
+      "output": "/workspace/scratch/a64f028bc002/gen6-work/policy-width64-vs96-full1513",
+      "status": "Launched in native Terminal third tab; writer lock held and both initialized checkpoints exist",
+      "widths": [
+        64,
+        96
+      ],
+      "parameters": [
+        99161,
+        153561
+      ],
+      "epochs": 8,
+      "initialization": "Matched later-Gen3 dense parent with zero attention readout; same initial predictions. Gen5 frozen additional comparator.",
+      "data": "Same frozen full1513 union as gen6 policy:601037 train outcomes,5689 train families,78727 validation outcomes",
+      "selection": "Validation-family MSE with epoch0 eligible",
+      "paired_metric": "MSE64-minus96; positive favors width96; family SE and95%CI",
+      "test_evaluated": false,
+      "promoted": false,
+      "note": "Separate authorized capacity experiment; keep unchanged-recipe gen6 jobs running. Native terminal persistence survived prior turn boundaries; verify locks and log progress before resuming."
     }
   }
 }
