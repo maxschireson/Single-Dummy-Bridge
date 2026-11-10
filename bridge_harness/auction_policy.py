@@ -74,6 +74,11 @@ def export_weights(model,path):
 class AuctionSelectorWeights(SelectorWeights):
     def predict(self,x):
         w=self.weights
+        if 'v5_mode' in w:
+            from .policy_v5 import raw_scores
+            value,scores=raw_scores(w,x)
+            scores-=(scores*x['mask']).sum(1,keepdims=True)/x['mask'].sum(1,keepdims=True)
+            return x['q']+value+scores
         full=dict(x,state=np.concatenate([x['state'],w['call_embedding'][x['calls']].reshape(len(x['state']),-1),
                  w['seat_embedding'][x['seats']].reshape(len(x['state']),-1)],1))
         return super().predict(full)

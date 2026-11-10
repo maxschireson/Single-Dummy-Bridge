@@ -57,7 +57,10 @@ class ArenaPlayer(PIMCPlayer):
         self.reference = selector(Path(root) / reference['policy']) if reference else None
         belief = Path(root) / spec['belief'] if spec.get('belief') else None
         if belief:
-            self.belief = (Weights if spec['belief_kind'] == 'public' else AuctionWeights)(belief)
+            if spec['belief_kind']=='lab':
+                from .belief_lab import Weights as LabWeights
+                self.belief=LabWeights(belief)
+            else:self.belief = (Weights if spec['belief_kind'] == 'public' else AuctionWeights)(belief)
             super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
                 sampler_factory=lambda o: WeightedSampler(o, self.belief.logits(o), 1.))
         else:
