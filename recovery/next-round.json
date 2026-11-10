@@ -1,0 +1,31 @@
+{
+  "schema": "arena-round-plan-v1",
+  "round": "v5",
+  "status": "awaiting-v5-upgrades-and-model-handoff",
+  "launch_enabled": false,
+  "roster": ["5", "4b", "3", "2", "1", "ben"],
+  "retired": ["4", "4p"],
+  "pair_weights": {"55": 72, "5~4b": 36, "53": 18, "52": 9, "51": 9, "5~ben": 16},
+  "ben_match_fraction": 0.1,
+  "ben_only_opponent": "5",
+  "ben": {
+    "source": "https://github.com/lorserker/ben",
+    "commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+    "config": "configs/ben-round5-32.conf",
+    "bidding": "neural-only",
+    "opening_lead_samples": 32,
+    "play_samples": 32,
+    "dds_threads": 1,
+    "max_concurrent_matches": 1,
+    "http_timeout_seconds": 600
+  },
+  "timing": {
+    "measure": "elapsed wall seconds per actual root-game card decision",
+    "include_forced_decisions": true,
+    "exclude": ["training forks", "replayed prefixes", "counterfactual forced actions", "fixed opening leads"],
+    "breakdown": ["opening lead", "later play"],
+    "report_counts": true
+  },
+  "pending": ["final v5 upgrades", "v5 model identities and supported player factory", "v5 bidder and auction protocol", "fresh cohort size and training-family exclusions"],
+  "historical_results": "preserve all completed games and their frozen manifests"
+}
