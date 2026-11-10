@@ -33,7 +33,14 @@ print('All inference models restored and SHA256 verified.')
     (a.models/'README.md').write_text('# Residual belief attention comparison\n\nRun `python restore.py` to reconstruct the selected dense and attention exports. '
         'Hybrid inference uses `bridge_harness.residual_attention_belief.Weights`; legacy loading intentionally rejects hybrid exports. '
         'No arena promotion or reserved test evaluation occurred. See the run report for selection and paired family metrics.\n')
-    files={str(f.relative_to(a.run)):f for f in a.run.rglob('*') if f.is_file() and f.name not in ('best.npz','last.npz','writer.lock','pipeline.lock') and 'checkpoints' not in f.parts and f.suffix!='.tmp'}
+    files={str(f.relative_to(a.run)):f for f in a.run.rglob('*') if f.is_file() and not f.name.endswith('.lock') and 'checkpoints' not in f.parts and f.suffix!='.tmp'}
+    for mode in summary['cells']:
+        state=json.loads((a.run/mode/'state.json').read_text())
+        prefix=Path(state['checkpoint']).resolve()
+        checkpoint_files=list(prefix.parent.glob(prefix.name+'.*'))
+        if not any(f.suffix=='.index' for f in checkpoint_files) or not any('.data-' in f.name for f in checkpoint_files):
+            raise ValueError('Missing final model/Adam checkpoint: '+str(prefix))
+        for f in checkpoint_files:files[str(f.relative_to(a.run.resolve()))]=f
     data=Path(summary['experiment']['data'])
     for name in ['dataset.json','manifest.json']:files['frozen-data/'+name]=data/name
     for f in (data/'packed').glob('*.npz'):files['frozen-data/packed/'+f.name]=f
@@ -43,7 +50,7 @@ print('All inference models restored and SHA256 verified.')
         z.writestr('FILE_SHA256.json',json.dumps({n:sha(f) for n,f in files.items()},indent=2))
         z.writestr('RECOVERY.json',json.dumps(dict(repo='maxschireson/Single-Dummy-Bridge',branch='research/belief-v5-impactful-cards',
             run=str(a.run.resolve()),historical_data_library_file_id='libfile_fde3_f-99aac6e06a6481918563762b3a1cc949_cf78a91e4b8c81918243c2c17fc9b8b9',
-            note='Frozen recent data, parent, selected TF/Adam checkpoints and all per-family epoch evaluations included. Historical replay referenced. Code hashes are in experiment.json.'),indent=2))
+            note='Frozen recent data, parent, selected and final TF/Adam checkpoints, best/last NumPy models, and all per-family epoch evaluations included. Latest checkpoint prefixes are identified by state.json. Historical replay referenced. Code hashes are in experiment.json.'),indent=2))
     with zipfile.ZipFile(a.archive) as z:
         if z.testzip() is not None:raise ValueError('Archive corruption')
     print(json.dumps(dict(archive=str(a.archive),bytes=a.archive.stat().st_size,sha256=sha(a.archive))))
