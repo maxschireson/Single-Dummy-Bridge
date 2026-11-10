@@ -15,6 +15,8 @@ for p in (REPO/'configs').glob('*'):add(p,'runtime/'+str(p.relative_to(REPO)))
 for component in ('policy','belief'):add(ROOT/f'{component}-full1513/fit/best.npz',f'{component}-full1513/fit/best.npz')
 add(ROOT/'scripts/match_gen6_5rz.py','scripts/match_gen6_5rz.py')
 add(Path(__file__).with_name('rebuild_frozen_auctions.py'),'recovery/rebuild_frozen_auctions.py')
+add(Path(__file__).with_name('audit_fixed100.py'),'recovery/audit_fixed100.py')
+add(Path(__file__),'recovery/package_match.py')
 add(ROOT/'whole-game-100-recovered.log','whole-game-100-recovered.log')
 files['environment-freeze.txt']=subprocess.check_output(['/workspace/scratch/87b7afee6da9/recovery-venv/bin/python','-m','pip','freeze'])
 files['RESTORE.txt']=b'''Recovery of fixed100 Gen6 policy+belief versus frozen5RZ match, November10 2026.
