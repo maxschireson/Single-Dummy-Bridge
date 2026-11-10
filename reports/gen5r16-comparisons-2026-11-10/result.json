@@ -1,0 +1,89 @@
+{
+  "matches": {
+    "5R16-vs-5-32": {
+      "boards": 100,
+      "target": 100,
+      "complete": true,
+      "total_imps": -36,
+      "imps_per_board": -0.36,
+      "se": 0.33560438470065174,
+      "ci95": [
+        -1.0259119091497624,
+        0.3059119091497625
+      ],
+      "wins": 19,
+      "losses": 19,
+      "ties": 62,
+      "timing_and_checks": {
+        "5R16": {
+          "seconds": 202.9832290737395,
+          "cpu_seconds": 202.74479425100236,
+          "decisions": 5200.0,
+          "nonforced": 4145.0,
+          "samples": 63895.0,
+          "reduced_positions": 1412.0,
+          "policy_selections": 3325.0,
+          "max_selected_pimc_gap": 0.125,
+          "cpu_seconds_per_board": 2.027447942510024,
+          "seconds_per_board": 2.029832290737395
+        },
+        "5-32": {
+          "seconds": 397.8345530735678,
+          "cpu_seconds": 397.52344708000186,
+          "decisions": 5200.0,
+          "nonforced": 4164.0,
+          "samples": 133248.0,
+          "reduced_positions": 0.0,
+          "policy_selections": 3373.0,
+          "max_selected_pimc_gap": 0.125,
+          "cpu_seconds_per_board": 3.9752344708000185,
+          "seconds_per_board": 3.978345530735678
+        }
+      },
+      "replay_verified_tables": 200
+    },
+    "5RZ16-vs-5R32": {
+      "boards": 100,
+      "target": 100,
+      "complete": true,
+      "total_imps": 59,
+      "imps_per_board": 0.59,
+      "se": 0.3905693849298027,
+      "ci95": [
+        -0.18497439434839513,
+        1.364974394348395
+      ],
+      "wins": 22,
+      "losses": 11,
+      "ties": 67,
+      "timing_and_checks": {
+        "5RZ16": {
+          "seconds": 207.202556401724,
+          "cpu_seconds": 206.88935825299902,
+          "decisions": 5200.0,
+          "nonforced": 4132.0,
+          "samples": 63706.0,
+          "reduced_positions": 1413.0,
+          "policy_selections": 3102.0,
+          "max_selected_pimc_gap": 0.0,
+          "cpu_seconds_per_board": 2.06889358252999,
+          "seconds_per_board": 2.07202556401724
+        },
+        "5R32": {
+          "seconds": 389.85950101820345,
+          "cpu_seconds": 389.56688539200104,
+          "decisions": 5200.0,
+          "nonforced": 4139.0,
+          "samples": 125158.0,
+          "reduced_positions": 1416.0,
+          "policy_selections": 3372.0,
+          "max_selected_pimc_gap": 0.125,
+          "cpu_seconds_per_board": 3.8956688539200104,
+          "seconds_per_board": 3.8985950101820346
+        }
+      },
+      "replay_verified_tables": 200
+    }
+  },
+  "updated": 1794335715.3126326
+}
