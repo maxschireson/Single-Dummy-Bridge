@@ -82,7 +82,7 @@
  async function loadSource(source,{indexOnly=false,cutoff=null}={}){const path=base+source.branch+'/arena/',data=indexOnly?{generated_epoch:cutoff??Infinity,own_views:source.key==='recovery'?null:{}}:await get(path+'data.json');
   if(!indexOnly&&data.manifest_identity!==source.cohort)throw Error('Run identity changed');
   const indexURL=path+'replays/data/'+source.cohort+'/index.json',index=await get(indexURL);if(index.cohort!==source.cohort)throw Error('Replay run identity mismatch');
-  if(index.record_shards){index.records=(await Promise.all(index.record_shards.map(async p=>{const url=new URL(p,indexURL).href,revision=index.record_shard_sha256?.[p],cached=shardCache.get(url);if(revision&&cached?.revision===revision)return cached.rows;const rows=await get(url,revision);if(revision)shardCache.set(url,{revision,rows});return rows;}))).flat();}
+  if(index.record_shards){const urls=new Set(index.record_shards.map(p=>new URL(p,indexURL).href)),prefix=new URL('./',indexURL).href;for(const url of shardCache.keys())if(url.startsWith(prefix)&&!urls.has(url))shardCache.delete(url);index.records=(await Promise.all(index.record_shards.map(async p=>{const url=new URL(p,indexURL).href,revision=index.record_shard_sha256?.[p],cached=shardCache.get(url);if(revision&&cached?.revision===revision)return cached.rows;const rows=await get(url,revision);if(revision)shardCache.set(url,{revision,rows});return rows;}))).flat();}
   if(source.allowed_pairs&&index.records.some(r=>!source.allowed_pairs.includes(r.pair)))throw Error('Awaiting the corrected sample-budget publication');
   if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);verify(data,index.records);}
   return {source,data,index,indexURL};
