@@ -82,6 +82,12 @@ def extract(runs, out, parent3, parent4, positions=16):
         manifest = manifests[src['source']]
         if r['manifest_identity'] != manifest['identity']:
             raise ValueError('Wrong manifest')
+        if r.get('policy_clean'):
+            if manifest.get('schema') != 'normalized-policy-clean-v1' or not r.get('provenance'):
+                raise ValueError('Clean normalization requires provenance')
+            allowed=set(manifest['allowed_policy_sha256'])
+            if any(h is not None and h not in allowed for p in r['provenance'] for h in p['policies']):
+                raise ValueError('Disallowed play policy in normalized provenance')
         family = r['family']
         if family in seen_families:
             raise ValueError('Duplicate source family')
@@ -98,7 +104,7 @@ def extract(runs, out, parent3, parent4, positions=16):
                 family_counts['passed_out_rooms'] += 1
                 continue
             board = Board.from_dict(episode['board'])
-            if deal_key(board.hands, True) != family or episode['versions'] != r['versions']:
+            if deal_key(board.hands, True) != family or (not r.get('policy_clean') and episode['versions'] != r['versions']):
                 raise ValueError('Wrong nested deal/version identity')
             forced = {}
             audits = defaultdict(list)
@@ -140,7 +146,7 @@ def extract(runs, out, parent3, parent4, positions=16):
                         d = forced.get((ti,ply), action)
                         obs.append({k:v for k,v in input_tensors(asdict(o)).items() if k in INPUT_KEYS})
                         detail.append(d)
-                        extra.append(public_extra(o,d.get('samples',32),d.get('near_tie',.125),False))
+                        extra.append(public_extra(o,d.get('samples',32),d.get('near_tie',.125),board.auction_source in (None,'synthetic')))
                         decl = o.actor%2 == o.contract.declarer%2
                         final = table['declarer_tricks'] if decl else 13-table['declarer_tricks']
                         already = o.declarer_tricks if decl else len(o.history)//4-o.declarer_tricks
