@@ -19,7 +19,7 @@ def decision_rng(seed, board_id, spec, observation):
     return random.Random(int.from_bytes(hashlib.sha256(payload.encode()).digest(), "big"))
 
 
-def play_table(board, assignments, players, seed=1, prefix=(), on_event=None):
+def play_table(board, assignments, players, seed=1, prefix=(), on_event=None, rng_group=None):
     game = Game(board)
     actions = []
     started = time.perf_counter()
@@ -33,7 +33,7 @@ def play_table(board, assignments, players, seed=1, prefix=(), on_event=None):
             elif not actions and board.opening_lead is not None:
                 d = Decision(board.opening_lead, {"fixed_opening_lead": True})
             else:
-                d = players[spec].choose(o, decision_rng(seed, board.id, spec, o))
+                d = players[spec].choose(o, decision_rng(seed, board.id, rng_group or spec, o))
             elapsed = time.perf_counter() - before
             game.play(d.card)
             action = dict(ply=len(actions), seat=SEATS[o.actor], controller=SEATS[o.controller],
@@ -59,9 +59,9 @@ def run_pair(board, config, event=None):
     try:
         for spec in set((candidate, baseline, common)):
             players[spec] = make_player(spec, **{k: config[k] for k in
-                ("samples", "ben_url", "timeout", "objective") if k in config})
+                ("samples", "ben_url", "timeout", "objective", "batch", "near_tie") if k in config})
         lead_decision = None
-        if board.contract and mode != "partnership" and board.opening_lead is None:
+        if board.contract and mode not in ("partnership", "selfplay") and board.opening_lead is None:
             o = Game(board).observation()
             t = time.perf_counter()
             lead_decision = players[common].choose(o, decision_rng(seed, board.id, common, o))
@@ -71,7 +71,10 @@ def run_pair(board, config, event=None):
                                              seconds=time.perf_counter()-t, **lead_decision.details)
             board = replace(board, opening_lead=lead_decision.card)
         result["board"] = board.to_dict()
-        if mode == "partnership":
+        if mode == "selfplay":
+            assignments = [[candidate] * 4]
+            sign = 1
+        elif mode == "partnership":
             assignments = [[candidate, baseline, candidate, baseline], [baseline, candidate, baseline, candidate]]
             sign = 1
         elif mode in ("declarer", "defence"):
@@ -86,10 +89,10 @@ def run_pair(board, config, event=None):
             def emit(action):
                 if event:
                     event({"table": index, "action": action})
-            table = play_table(board, assignment, players, seed, on_event=emit)
+            table = play_table(board, assignment, players, seed, on_event=emit, rng_group=config.get('rng_group'))
             result["tables"].append(table)
         result["status"] = "ok" if all(t["status"] == "ok" for t in result["tables"]) else "error"
-        if result["status"] == "ok":
+        if result["status"] == "ok" and mode != "selfplay":
             a, b = result["tables"]
             result["score_difference"] = sign * (a["ns_score"] - b["ns_score"])
             result["imps"] = imps(result["score_difference"])
