@@ -1,0 +1,58 @@
+{
+  "schema": "dense-impactful-card-belief-v5-result-v1",
+  "architecture": "dense public-play ownership belief (256,128)",
+  "parameters": 308726,
+  "parent": "v4 selected checkpoint",
+  "selected_epoch": 2,
+  "epochs_run": 3,
+  "learning_rate": 0.0001,
+  "batch_size": 2048,
+  "training_positions": 998425,
+  "training_card_targets": 31120476,
+  "training_families": 89652,
+  "validation_families": 11273,
+  "recent": {
+    "train_families": 1408,
+    "train_positions": 22467,
+    "train_targets": 345490,
+    "train_upweighted_targets": 11413,
+    "validation_families": 192,
+    "validation_positions": 3063,
+    "validation_targets": 47004,
+    "validation_upweighted_targets": 1687
+  },
+  "v4": {
+    "composite_score": 0.867955755750448,
+    "recent_nll": 0.6713257823188933,
+    "recent_weighted_nll": 0.6728040126261811,
+    "recent_upweighted_card_nll": 0.754685811886085,
+    "recent_accuracy": 0.6009821212679146,
+    "recent_brier": 0.4678722188433189
+  },
+  "selected_v5": {
+    "composite_score": 0.8676134923358074,
+    "recent_nll": 0.6710646730790918,
+    "recent_weighted_nll": 0.6725457613033754,
+    "recent_upweighted_card_nll": 0.7553500563538358,
+    "recent_accuracy": 0.602796650013398,
+    "recent_brier": 0.4676003915342144,
+    "paired_recent_weighted_nll_delta_vs_v4": -0.00025825132280574,
+    "paired_family_cluster_se": 0.0003631003183300088
+  },
+  "timing_seconds": {
+    "card_labeling": 1326.531235218048,
+    "epoch_1": 37.4806182384491,
+    "epoch_2": 36.136882305145264,
+    "epoch_3": 54.66832637786865,
+    "end_to_end_approx": 1482
+  },
+  "verification": {
+    "numpy_sha256": "2ce3e0145363b62daacf86afde43a3c39fb8a7af7c94d7d721b08bb148545236",
+    "trainer_export_max_abs_error": 3.5762786865234375e-7,
+    "independent_checkpoint_export_max_abs_error": 5.9604644775390625e-7,
+    "optimizer_iterations": 9106,
+    "test_evaluated": false,
+    "promoted": false
+  },
+  "conclusion": "Small composite and ordinary-play gains are statistically inconclusive; NLL on the specifically upweighted consequential-card subset regressed slightly. Preserve as a research candidate but do not promote over v4."
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "chunked-dense-belief-v5-artifact-v1",
+  "selected_epoch": 2,
+  "files": [
+    {
+      "output": "belief.npz",
+      "size_bytes": 1142512,
+      "sha256": "2ce3e0145363b62daacf86afde43a3c39fb8a7af7c94d7d721b08bb148545236",
+      "parts": [
+        {"file": "belief.npz.part000", "size_bytes": 524288, "sha256": "298db9d5c1cb648a883b76faf0dd0f01b094fde2dea33f65e90a359d13ba341a"},
+        {"file": "belief.npz.part001", "size_bytes": 524288, "sha256": "b9b23aba723bc20ea657f315e0c2056931c6d208b0fa4f9a2782d0bcedae625a"},
+        {"file": "belief.npz.part002", "size_bytes": 93936, "sha256": "2748798796af5f829ed6c4d8da162eb68469e8b6be853ec1e20e54b9e7770337"}
+      ]
+    },
+    {
+      "output": "selected-checkpoint/ckpt-2.data-00000-of-00001",
+      "size_bytes": 3708601,
+      "sha256": "9a836c0cef9b58d1540c98ae2225bb98c631236acea772a94f01e7782bbe8a88",
+      "parts": [
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part000", "size_bytes": 524288, "sha256": "31bf7db4c6e0957ea025836d993484106a41713e20fb92446784e835817fa9e0"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part001", "size_bytes": 524288, "sha256": "3e6fda606e5e86d4ec85d9b15082526219f76611bc2127474db06463270e1dfa"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part002", "size_bytes": 524288, "sha256": "6808dd9428e5b1ea3a1108a39c17c70957cfd170cb52e0c5026f8061ebf9992c"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part003", "size_bytes": 524288, "sha256": "c1960dd2b77872cb2fc9410c3edcf2c2dee3ac101293b0859f50d5fb2866fdc7"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part004", "size_bytes": 524288, "sha256": "8cb5ab6ea1d607810266b8473115e024ef168443df83cc5fa884434a3f7c737b"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part005", "size_bytes": 524288, "sha256": "7ce628374a343851707c0a5f35535dc3ee68e9510c0ef3c451b5a8354fc5aa93"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part006", "size_bytes": 524288, "sha256": "4f8aa93ae1809aeac16d24b78b4de5e740af4836a63ef2ec6dcb2ab01c37635a"},
+        {"file": "selected-checkpoint/ckpt-2.data-00000-of-00001.part007", "size_bytes": 38585, "sha256": "d462d282e08a775a08ebc17c54671296fdbe9ae305fc89c561881c3e457fab7b"}
+      ]
+    }
+  ],
+  "checkpoint_index": {
+    "file": "selected-checkpoint/ckpt-2.index",
+    "size_bytes": 1707,
+    "sha256": "e4e62141a49a0c3b21e863336a1e242a19285479f6ffa5fcc6f8ba0ceff53742"
+  },
+  "test_evaluated": false,
+  "promoted": false
+}
