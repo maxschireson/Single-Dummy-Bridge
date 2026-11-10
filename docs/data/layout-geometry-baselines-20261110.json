@@ -1,0 +1,437 @@
+{
+  "audit": {
+    "note": "The neural comparator uses the exported NumPy inference. For the listed groups, tiny export-rounding differences change deterministic medoid choices; original PyTorch results reproduce exactly.",
+    "numpy_vs_torch_discrepancies": [
+      {
+        "group": "9c1ec59b69d801a2a08dfde51500de52cfbc91f16c62d71fc888f33f8ac144d1",
+        "max_embedding_difference": 5.960464477539062e-07,
+        "numpy_regret": 0.0703125,
+        "torch_regret": 0.0
+      },
+      {
+        "group": "11d5234cf77df59d050234d7c2265981c135980e6b129fb4a2bd782c91a6be06",
+        "max_embedding_difference": 5.364418029785156e-07,
+        "numpy_regret": 0.041666666666666075,
+        "torch_regret": 0.0625
+      },
+      {
+        "group": "f3e50d5552dbc9d6a3df406b40c67e617991b9b4d19ad29a5ed28aaf53b8b40f",
+        "max_embedding_difference": 7.152557373046875e-07,
+        "numpy_regret": 0.04375000000000018,
+        "torch_regret": 0.109375
+      },
+      {
+        "group": "d2276315938d8a520a7bc5212d4f4d9bfb7ac3505e7ef7e2d5e74c8f6198efe6",
+        "max_embedding_difference": 5.960464477539062e-07,
+        "numpy_regret": 0.125,
+        "torch_regret": 0.015625
+      },
+      {
+        "group": "d12acf5d77e32f81a80fafa13e0d6c1f55001114cd07aa6336e9a05d949ec457",
+        "max_embedding_difference": 4.76837158203125e-07,
+        "numpy_regret": 0.12053571428571441,
+        "torch_regret": 0.0
+      }
+    ],
+    "original_400_controls": "Card geometry and oracle reproduce exactly on identical groups/pools/budgets."
+  },
+  "comparison_cosine_minus_neural": {
+    "ci95": [
+      -0.007393963921814796,
+      0.0019267053449263292
+    ],
+    "family_regret_delta": -0.002585021018974508,
+    "resamples": 5000,
+    "seed": 2026111025
+  },
+  "config": {
+    "features": "32 coordinates: 16 suit lengths plus 16 per-seat/per-suit honor-strength sums",
+    "fit_parameters": 2,
+    "fixed_weights": [
+      1.0,
+      1.0
+    ],
+    "frozen_test": "Untouched. Validation was previously used to select the neural checkpoint.",
+    "honor_weights": {
+      "A": 4.0,
+      "J": 1.0,
+      "K": 3.0,
+      "Q": 2.0,
+      "T": 0.5,
+      "lower": 0.0
+    },
+    "neural_sha256": "aa9cacdc53a75559a0b16c94cf8e8e70623ad79a5e3e969811dc042aa505ca6a",
+    "primary": "Family-balanced mean candidate-pool action regret. All variants specified before inspecting their validation results.",
+    "repetitions": 64,
+    "train_sha256": "d38de783bd1085849704c5b466b8a1296110fef506952b25414150db121ae960",
+    "validation_sha256": "eff89ccd7211d50e43c4babd0f9e458fcac3d5a2b3c265e4ba53b62258834c61"
+  },
+  "fit": {
+    "coefficients": [
+      0.006502658790237348,
+      0.0028107690182863363
+    ],
+    "families": 396,
+    "groups": 4359,
+    "objective": "Family-balanced nonnegative least squares, squared centered DDS action-contrast distance; no intercept",
+    "pairs": 278976,
+    "parameters": 2,
+    "seconds": 1.1183153449965175,
+    "training_mse": 0.5818771785024366
+  },
+  "limitations": [
+    "Uniform mass over saved distinct layouts, not current belief probabilities.",
+    "32-to-8 or 64-to-16 finite-pool diagnostic, not weighted 128-to-32 live play.",
+    "Reference reuses candidate layouts; cannot demonstrate beating the full 128.",
+    "Multiple exploratory baselines; no production promotion."
+  ],
+  "seconds": 22.042043677000038,
+  "timing": {
+    "layouts": 128,
+    "methods": {
+      "neural": {
+        "encode_ms": 0.7588254166666667,
+        "select_ms": 1.1966306566666667,
+        "total_ms": 1.9554560733333333
+      },
+      "shape_honor": {
+        "encode_ms": 0.20076057666666666,
+        "select_ms": 1.20473859,
+        "total_ms": 1.4054991666666667
+      },
+      "shape_honor_cosine": {
+        "encode_ms": 0.21661847,
+        "select_ms": 1.20924486,
+        "total_ms": 1.42586333
+      },
+      "shape_honor_fitted": {
+        "encode_ms": 0.20043104333333334,
+        "select_ms": 1.1971146933333334,
+        "total_ms": 1.3975457366666666
+      }
+    },
+    "note": "One BLAS thread; mixed-position rows for computation timing only.",
+    "repetitions": 300,
+    "selected": 32
+  },
+  "validation": {
+    "additional_309": {
+      "families": 60,
+      "groups": 309,
+      "methods": {
+        "card_geometry": {
+          "delta_ci95": [
+            -0.006564072420722119,
+            0.003267129281545843
+          ],
+          "family_contrast_mse": 0.01078032127746912,
+          "family_delta_vs_random": -0.0017504174182057608,
+          "family_regret": 0.014325052202330863,
+          "group_regret": 0.0160148424256434
+        },
+        "honor_strength": {
+          "delta_ci95": [
+            -0.004034361089231259,
+            0.006527435294482467
+          ],
+          "family_contrast_mse": 0.009396894295103523,
+          "family_delta_vs_random": 0.0008854779003067184,
+          "family_regret": 0.01696094752084334,
+          "group_regret": 0.015293823288362115
+        },
+        "neural": {
+          "delta_ci95": [
+            -0.006756290601670781,
+            0.0022905858891001493
+          ],
+          "family_contrast_mse": 0.007972822331472486,
+          "family_delta_vs_random": -0.0024132991810224226,
+          "family_regret": 0.013662170439514202,
+          "group_regret": 0.013635094005239639
+        },
+        "oracle": {
+          "delta_ci95": [
+            -0.01763914156984123,
+            -0.013449251509431999
+          ],
+          "family_contrast_mse": 0.00038487292849018445,
+          "family_delta_vs_random": -0.01544185795827913,
+          "family_regret": 0.0006336116622574944,
+          "group_regret": 0.0007955771305285847
+        },
+        "random": {
+          "delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_contrast_mse": 0.00906249382301423,
+          "family_delta_vs_random": 0.0,
+          "family_regret": 0.016075469620536624,
+          "group_regret": 0.01611619546729102
+        },
+        "shape": {
+          "delta_ci95": [
+            -0.007594033224694446,
+            0.01276453279328726
+          ],
+          "family_contrast_mse": 0.009253330058652868,
+          "family_delta_vs_random": 0.0002769167806779075,
+          "family_regret": 0.016352386401214534,
+          "group_regret": 0.014827376136538764
+        },
+        "shape_honor": {
+          "delta_ci95": [
+            -0.007155130703341237,
+            0.0019039040406834548
+          ],
+          "family_contrast_mse": 0.007790069849697874,
+          "family_delta_vs_random": -0.0029915668214645546,
+          "family_regret": 0.013083902799072069,
+          "group_regret": 0.011734040298967479
+        },
+        "shape_honor_cosine": {
+          "delta_ci95": [
+            -0.00808655757950085,
+            0.0003164819391656652
+          ],
+          "family_contrast_mse": 0.007185596478512331,
+          "family_delta_vs_random": -0.004257377833369315,
+          "family_regret": 0.011818091787167308,
+          "group_regret": 0.011266662813992908
+        },
+        "shape_honor_fitted": {
+          "delta_ci95": [
+            -0.0033276221779460495,
+            0.006581537028219918
+          ],
+          "family_contrast_mse": 0.007854157912675115,
+          "family_delta_vs_random": 0.00131439113358195,
+          "family_regret": 0.017389860754118577,
+          "group_regret": 0.016329597845071143
+        },
+        "shape_honor_random_within": {
+          "delta_ci95": [
+            -0.0015091224316163543,
+            0.001511188514913094
+          ],
+          "family_contrast_mse": 0.009143397008512237,
+          "family_delta_vs_random": -1.9502576295353023e-05,
+          "family_regret": 0.01605596704424127,
+          "group_regret": 0.016316840737243783
+        }
+      }
+    },
+    "all": {
+      "families": 62,
+      "groups": 709,
+      "methods": {
+        "card_geometry": {
+          "delta_ci95": [
+            -0.0059939857141948424,
+            -8.870953360045901e-06
+          ],
+          "family_contrast_mse": 0.011957442976883916,
+          "family_delta_vs_random": -0.0029550919869969433,
+          "family_regret": 0.014724987383405944,
+          "group_regret": 0.01593048979112096
+        },
+        "honor_strength": {
+          "delta_ci95": [
+            -0.005083242688877877,
+            0.0011658332506386813
+          ],
+          "family_contrast_mse": 0.010682645859265979,
+          "family_delta_vs_random": -0.0018196587404697457,
+          "family_regret": 0.015860420629933144,
+          "group_regret": 0.01714658644423277
+        },
+        "neural": {
+          "delta_ci95": [
+            -0.006227148720718869,
+            0.0021541738015314433
+          ],
+          "family_contrast_mse": 0.009014342736252201,
+          "family_delta_vs_random": -0.002266125099936694,
+          "family_regret": 0.015413954270466197,
+          "group_regret": 0.01471251847001142
+        },
+        "oracle": {
+          "delta_ci95": [
+            -0.018366213536195025,
+            -0.01474097732953595
+          ],
+          "family_contrast_mse": 0.0003811417894502223,
+          "family_delta_vs_random": -0.016499374852785388,
+          "family_regret": 0.0011807045176175028,
+          "group_regret": 0.0011839347280990411
+        },
+        "random": {
+          "delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_contrast_mse": 0.010547428542920581,
+          "family_delta_vs_random": 0.0,
+          "family_regret": 0.017680079370402894,
+          "group_regret": 0.017481427326062293
+        },
+        "shape": {
+          "delta_ci95": [
+            -0.006867532605838125,
+            0.004657144154220101
+          ],
+          "family_contrast_mse": 0.009645561597888146,
+          "family_delta_vs_random": -0.0018962822337380174,
+          "family_regret": 0.015783797136664873,
+          "group_regret": 0.015612896545548169
+        },
+        "shape_honor": {
+          "delta_ci95": [
+            -0.0077387052185146936,
+            -0.001702994707857332
+          ],
+          "family_contrast_mse": 0.009745255303914267,
+          "family_delta_vs_random": -0.004631555416300967,
+          "family_regret": 0.013048523954101925,
+          "group_regret": 0.014259488014336382
+        },
+        "shape_honor_cosine": {
+          "delta_ci95": [
+            -0.008024159641441039,
+            -0.0018871146487845912
+          ],
+          "family_contrast_mse": 0.008575296631195075,
+          "family_delta_vs_random": -0.004851146118911202,
+          "family_regret": 0.012828933251491688,
+          "group_regret": 0.014201244512422221
+        },
+        "shape_honor_fitted": {
+          "delta_ci95": [
+            -0.004891638241865092,
+            0.0010496817988026625
+          ],
+          "family_contrast_mse": 0.007545892044459349,
+          "family_delta_vs_random": -0.0019626101999859645,
+          "family_regret": 0.015717469170416925,
+          "group_regret": 0.016542832045520685
+        },
+        "shape_honor_random_within": {
+          "delta_ci95": [
+            -0.001497598949115586,
+            0.0006425389879937659
+          ],
+          "family_contrast_mse": 0.011241675857058575,
+          "family_delta_vs_random": -0.00042433232564127824,
+          "family_regret": 0.017255747044761606,
+          "group_regret": 0.0170560978875465
+        }
+      }
+    },
+    "previous_400": {
+      "families": 62,
+      "groups": 400,
+      "methods": {
+        "card_geometry": {
+          "delta_ci95": [
+            -0.009962547626158462,
+            -0.0013671003976903214
+          ],
+          "family_contrast_mse": 0.011854459538695513,
+          "family_delta_vs_random": -0.005331778692372894,
+          "family_regret": 0.013148398311788751,
+          "group_regret": 0.01586532738095237
+        },
+        "honor_strength": {
+          "delta_ci95": [
+            -0.005373413246407858,
+            0.0027592074606227674
+          ],
+          "family_contrast_mse": 0.01075293537615612,
+          "family_delta_vs_random": -0.0013735066916361648,
+          "family_regret": 0.01710667031252548,
+          "group_regret": 0.018577845982142852
+        },
+        "neural": {
+          "delta_ci95": [
+            -0.008206374850623161,
+            0.0034096492653544453
+          ],
+          "family_contrast_mse": 0.008935223244954668,
+          "family_delta_vs_random": -0.0026626234219911285,
+          "family_regret": 0.015817553582170515,
+          "group_regret": 0.01554482886904762
+        },
+        "oracle": {
+          "delta_ci95": [
+            -0.020658368030976183,
+            -0.014240555594216135
+          ],
+          "family_contrast_mse": 0.00037553035725343414,
+          "family_delta_vs_random": -0.01712283757033532,
+          "family_regret": 0.0013573394338263227,
+          "group_regret": 0.0014839409722222185
+        },
+        "random": {
+          "delta_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_contrast_mse": 0.010719979003072254,
+          "family_delta_vs_random": 0.0,
+          "family_regret": 0.018480177004161644,
+          "group_regret": 0.0185360689369631
+        },
+        "shape": {
+          "delta_ci95": [
+            -0.006570976575756224,
+            0.000754077064397838
+          ],
+          "family_contrast_mse": 0.009370187174427924,
+          "family_delta_vs_random": -0.002964765556290528,
+          "family_regret": 0.015515411447871115,
+          "group_regret": 0.016219711061507932
+        },
+        "shape_honor": {
+          "delta_ci95": [
+            -0.0076589479124649085,
+            0.00010104854842836659
+          ],
+          "family_contrast_mse": 0.009663053962591194,
+          "family_delta_vs_random": -0.0037771753049822064,
+          "family_regret": 0.014703001699179435,
+          "group_regret": 0.016210396374458858
+        },
+        "shape_honor_cosine": {
+          "delta_ci95": [
+            -0.007970968129453904,
+            1.060033553718193e-06
+          ],
+          "family_contrast_mse": 0.009000140212784717,
+          "family_delta_vs_random": -0.003970240139764107,
+          "family_regret": 0.014509936864397537,
+          "group_regret": 0.016468208874458864
+        },
+        "shape_honor_fitted": {
+          "delta_ci95": [
+            -0.006346079882972836,
+            0.0010003181764288622
+          ],
+          "family_contrast_mse": 0.007343357142203764,
+          "family_delta_vs_random": -0.002752816106299847,
+          "family_regret": 0.015727360897861795,
+          "group_regret": 0.016707555465367955
+        },
+        "shape_honor_random_within": {
+          "delta_ci95": [
+            -0.0023323906424821362,
+            7.404481528154015e-05
+          ],
+          "family_contrast_mse": 0.011163204488495998,
+          "family_delta_vs_random": -0.0011405825456220515,
+          "family_regret": 0.017339594458539588,
+          "group_regret": 0.017627174036155355
+        }
+      }
+    }
+  }
+}
