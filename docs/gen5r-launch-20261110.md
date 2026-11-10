@@ -134,3 +134,6 @@ connection failure produced no completed episode and is preserved under
 `resolved-failures/`, with its resolution. The watchdog now starts BEN first
 and gates worker startup on listener readiness. The unchanged frozen cohort
 then resumed; no failed or incomplete episode was counted as completed.
+
+The collector-host native preflight is preserved in
+`reports/gen5r-collector-preflight-20261110.json`.
