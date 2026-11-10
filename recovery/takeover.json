@@ -1,0 +1,21 @@
+{
+  "status": "collecting-and-published",
+  "run": "/workspace/work/gen5r",
+  "manifest_identity": "cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3",
+  "publication_branch": "arena-gen5r-feed",
+  "watchdog_pid": 1644,
+  "allocation": {
+    "5R32~4b": 16,
+    "5R32~3": 8,
+    "5R32~2": 6,
+    "5R32~1": 2,
+    "5R192~ben": 2,
+    "5R32~5R192": 3,
+    "5R32~5-32": 3
+  },
+  "source_completed": 6607,
+  "remaining_target": 18393,
+  "epoch": 1794320383.4028943,
+  "resolved_startup_failures": 1,
+  "recovery": "BEN readiness now gates worker startup; initial failure retained under resolved-failures"
+}
