@@ -12,7 +12,7 @@ let lastCount=-1,consecutiveFailures=0;
 for(let iteration=0;iteration<1440;iteration++){
  try{
   const exported=JSON.parse(await shell('OPENBLAS_NUM_THREADS=1 '+py+' scripts/export_supplemental_feed.py --run '+run+' --out publication'));
-  const names=JSON.parse(await shell("python - <<'PY'\nimport json,hashlib\nfrom pathlib import Path\nr=Path('publication');print(json.dumps([{'path':str(p.relative_to(r)),'sha':hashlib.sha1(b'blob '+str(len(p.read_bytes())).encode()+b'\\0'+p.read_bytes()).hexdigest()} for p in sorted(r.rglob('*.json'))]))\nPY"));
+  const names=JSON.parse(await shell("python - <<'PY'\nimport json,hashlib\nfrom pathlib import Path\nr=Path('publication');print(json.dumps([{'path':str(p.relative_to(r)),'sha':hashlib.sha1(b'blob '+str(len(p.read_bytes())).encode()+b'\\0'+p.read_bytes()).hexdigest()} for p in sorted(r.rglob('*.json'))]))\nPY",100000));
   const head=JSON.parse(result(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/ref/heads/arena-components-feed'})).content).object.sha;
   const previous=JSON.parse(result(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/trees/'+head+'?recursive=1'})).content);
   const old=new Map(previous.tree.map(x=>[x.path,x.sha]));const elements=[];
