@@ -33,6 +33,7 @@ def main():
         for name,p in sorted(files.items()):z.write(p,name)
         z.writestr('FILE_SHA256.json',json.dumps(hashes,indent=2))
         z.writestr('RECOVERY.json',json.dumps(dict(repo='maxschireson/Single-Dummy-Bridge',branch='research/belief-v5-impactful-cards',
+            training_commit='e7bc310cf8b0a701f73d80df706e56454a23bf54',
             run=str(a.run.resolve()),historical_replay_library_file_id='libfile_fde3_f-99aac6e06a6481918563762b3a1cc949_cf78a91e4b8c81918243c2c17fc9b8b9',
             earlier_source_recovery_library_file_id='libfile_fde3_f-0d9324f7cff88191a5d1e60c4a4e59bd_cf78a91e4b8c81918243c2c17fc9b8b9',
             inference_models=str(a.models),note='All four selected model and optimizer checkpoints are stored in selected-checkpoint directories. Paths in manifests are original local paths. Recent packed data is included; historical replay is referenced. No test evaluation or arena promotion.'),indent=2))

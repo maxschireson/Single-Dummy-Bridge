@@ -1,0 +1,119 @@
+{
+  "files": [
+    {
+      "cell": "current_consequence",
+      "output": "current_consequence/belief.npz",
+      "parts": [
+        {
+          "file": "current_consequence/belief.npz.part000",
+          "sha256": "e5c9c98545fd5492f5b515ee4e233e57e67afe8e30e1cc82444c88db72ca147b",
+          "size_bytes": 524288
+        },
+        {
+          "file": "current_consequence/belief.npz.part001",
+          "sha256": "17818a2b1c5de1f043cd4a99ee2787d3c17c335c768440ca429d50b586e6b67c",
+          "size_bytes": 524288
+        },
+        {
+          "file": "current_consequence/belief.npz.part002",
+          "sha256": "ecc8343854273a579997ed45c7c3cebce1d68db9af90aa65cd8b28a8bb42dca8",
+          "size_bytes": 94157
+        }
+      ],
+      "sha256": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+      "size_bytes": 1142733
+    },
+    {
+      "cell": "current_ordinary",
+      "output": "current_ordinary/belief.npz",
+      "parts": [
+        {
+          "file": "current_ordinary/belief.npz.part000",
+          "sha256": "776d3ea7dc2806495562269464ae7d2df7f4defd9a3423ef2851c278c6ea7840",
+          "size_bytes": 524288
+        },
+        {
+          "file": "current_ordinary/belief.npz.part001",
+          "sha256": "d6a64049e96ddb63cbb5ab84453c7195dab9732238b6f9064cc40fd5b6229252",
+          "size_bytes": 524288
+        },
+        {
+          "file": "current_ordinary/belief.npz.part002",
+          "sha256": "37f033e94a4e25cf356db23920de40bb6dae8b712323ab5a72bc0164b3576a8f",
+          "size_bytes": 93998
+        }
+      ],
+      "sha256": "dae0ffcba7a7f3e38d27b7b834a7bc3fdae8de4de4f908487a9170a0d2844668",
+      "size_bytes": 1142574
+    },
+    {
+      "cell": "large_consequence",
+      "output": "large_consequence/belief.npz",
+      "parts": [
+        {
+          "file": "large_consequence/belief.npz.part000",
+          "sha256": "3fc9d3c96cd73c876c66e70f0bfa3395cc1c152bfd15eac2f28faf01b7a74f90",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_consequence/belief.npz.part001",
+          "sha256": "01066027d8c0a7d8d581a9f0233f95d696feb789253a0380b565fa16f8f59215",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_consequence/belief.npz.part002",
+          "sha256": "7102aa439beb6fec87ee8d7084db04e8635c683b28cdfe7e18968d669484d916",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_consequence/belief.npz.part003",
+          "sha256": "b692da9a7757a8f740bb28b7102e62892009c771e1acb165a05a95208f190630",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_consequence/belief.npz.part004",
+          "sha256": "75e8974cc2329f4d78c4aad6894e253e33e7a6159b00adc93c7b361c002fa290",
+          "size_bytes": 429767
+        }
+      ],
+      "sha256": "933e9fa412016e82d514c472549f0fbba1edf7ffb6ec9e69e1f4713292dcc3a3",
+      "size_bytes": 2526919
+    },
+    {
+      "cell": "large_ordinary",
+      "output": "large_ordinary/belief.npz",
+      "parts": [
+        {
+          "file": "large_ordinary/belief.npz.part000",
+          "sha256": "17b0c18cdc40a3b2f1d25273ad9af0545fab68a26c12b5262410b7ac65b64b59",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_ordinary/belief.npz.part001",
+          "sha256": "98821ca507168c37e2e4b36a95e66bb9e586e0d249b2e8f3503615d3bcd67629",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_ordinary/belief.npz.part002",
+          "sha256": "81d7d81ef39f4c495a66e3768d135b07825a27377ca71d9c8b66f25e0ee82a13",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_ordinary/belief.npz.part003",
+          "sha256": "612f9ef28bbef12f1dbec6b09f720979b2baaef14fe43d9364aeca163d2cd6de",
+          "size_bytes": 524288
+        },
+        {
+          "file": "large_ordinary/belief.npz.part004",
+          "sha256": "06575493284aaefbb8293b07d866d3581c609e110739fc36ed0884c081fab63d",
+          "size_bytes": 429580
+        }
+      ],
+      "sha256": "7a67bb8a21cd7a57c4074541ce0a9a40296312516b7fb1d0ffefd00de7c69f4a",
+      "size_bytes": 2526732
+    }
+  ],
+  "promoted": false,
+  "schema": "dense-belief-factorial-artifacts-v1",
+  "test_evaluated": false
+}
