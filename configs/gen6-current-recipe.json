@@ -219,7 +219,7 @@
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/belief-full1513",
       "batch": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/compact-belief-1513",
       "session": null,
-      "status": "Resumed in native terminal at 20:59 UTC; labels advanced from1120 to1130/1336; writer lock held",
+      "status": "Full1513 fit complete: all1336 non-test families labeled and all3 epochs finished; selected epoch2. Fresh confirmation pending.",
       "source_families": 1513,
       "source_train": 1182,
       "source_validation": 154,
@@ -232,7 +232,10 @@
       "workers": 1,
       "threads": 1,
       "test_evaluated": false,
-      "promoted": false
+      "promoted": false,
+      "completed_epochs": 3,
+      "selected_epoch": 2,
+      "selected_sha256": "f6e3443b0e7fddcc51e6c4585cb5d5a8ece13077d33b772e8256a4e10fcec7a4"
     },
     "bidding_refresh": {
       "branch": "research/gen6-bidding-refresh-20261110",
@@ -351,7 +354,9 @@
       "paired_metric": "MSE64-minus96; positive favors width96; family SE and95%CI",
       "test_evaluated": false,
       "promoted": false,
-      "note": "Separate authorized capacity experiment; keep unchanged-recipe gen6 jobs running. Native terminal persistence survived prior turn boundaries; verify locks and log progress before resuming."
+      "note": "Separate authorized capacity experiment; keep unchanged-recipe gen6 jobs running. Native terminal persistence survived prior turn boundaries; verify locks and log progress before resuming.",
+      "initial_prediction_max_difference_between_arms": 0,
+      "initial_prediction_max_difference_from_dense_parent": 7.741153247309285e-7
     }
   }
 }
