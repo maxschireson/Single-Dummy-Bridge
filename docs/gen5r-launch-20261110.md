@@ -1,9 +1,10 @@
 # Gen5R arena handoff — 2026-11-10
 
 Max authorized Gen5R to replace Gen5's ongoing arena allocation. The former
-15% 32-versus-192 slot splits equally into the two comparisons below. This
-branch is tested and ready to launch; it has not switched the separate live
-Codex collector. No existing game has been relabeled or overwritten.
+15% 32-versus-192 slot splits equally into the two comparisons below. The live
+Codex collector has switched to Gen5R. The original 6,607 completed Gen5 deals
+retain their identities and archive; Gen5R uses the remaining 18,393 unplayed
+deals. No existing game has been relabeled or overwritten.
 
 | Matchup | Share | Entries per shuffled 40-deal block |
 | --- | ---: | ---: |
@@ -100,7 +101,7 @@ against the same unplayed source families as independent evidence.
 
 ## Validation completed here
 
-- 6 Gen5/Gen5R tests: requested allocation, every actor/effort pairing, common
+- 7 Gen5/Gen5R tests: requested allocation, every actor/effort pairing, common
   bidder IDs, partnership swaps, auction reuse, preserving old records and
   excluding completed source deals.
 - 9 geometry/reduction tests: honor-swap similarity, draw multiplicity, exact
@@ -115,5 +116,21 @@ against the same unplayed source families as independent evidence.
   used exactly their original 32/192 budget. See
   `reports/gen5r-native-smoke-20261110.json`.
 
-The live handoff and browser display must still be verified on the collector
-host; they are not claimed as performed by these local tests.
+The live handoff and browser display have now been verified on the collector
+host. The default dashboard isolates Gen5R, while Older retains original Gen5.
+Actual published root games include all seven matchups. Snapshot-linked hand
+counts, native/common bidding, timing attribution and full replay were checked.
+See `reports/gen5r-live-handoff-20261110.json` for the frozen identity, sampled
+runtime evidence and progress at validation.
+
+The immutable Gen5R manifest is
+`cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3`.
+Tag `gen5-before-5r-20261110` preserves the final original Gen5 publication;
+its archived runtime still matches the original manifest's source checksum.
+The publisher preserves that runtime when finalizing a different cohort.
+
+The initial restart reached BEN before its listener was ready. That one
+connection failure produced no completed episode and is preserved under
+`resolved-failures/`, with its resolution. The watchdog now starts BEN first
+and gates worker startup on listener readiness. The unchanged frozen cohort
+then resumed; no failed or incomplete episode was counted as completed.
