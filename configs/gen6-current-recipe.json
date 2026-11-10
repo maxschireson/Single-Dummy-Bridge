@@ -159,7 +159,7 @@
       },
       "status": "complete; selected epoch zero, no improvement",
       "limitation": "Initial partial-data fit only. Existing previously inspected policy tests are descriptive; any final confirmation must use newly reserved families. Later data stays separate, and final unchanged-recipe fit starts from pinned gen5 over full frozen union.",
-      "other_components": "Full1513 bidding running and full1513 belief labeling running",
+      "other_components": "Bidding complete; full1513 belief and policy in progress",
       "archive_library_file_id": "libfile_fde3_f-3a0f5c124c5881919158d6baf4a358d2_cf78a91e4b8c81918243c2c17fc9b8b9",
       "selected_epoch": 0,
       "selected_sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
@@ -218,8 +218,8 @@
       "source_adapter": "scripts/prepare_gen6_belief_compact.py",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/belief-full1513",
       "batch": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/compact-belief-1513",
-      "session": 43789,
-      "status": "resumed per-family labels;1090/1336 completed at check",
+      "session": null,
+      "status": "Resumed in native terminal at 20:59 UTC; labels advanced from1120 to1130/1336; writer lock held",
       "source_families": 1513,
       "source_train": 1182,
       "source_validation": 154,
@@ -286,8 +286,8 @@
       "runner": "scripts/run_gen6_policy_full.py",
       "source_commit": "e71db2de4747cce155d72df7278bf62b6c7b7fa2",
       "output": "/workspace/scratch/d59c0a9fe14a/gen6-full-data/policy-full1513",
-      "session": 43789,
-      "status": "resumed optimizer from completed epoch1 under diagnostic supervisor",
+      "session": null,
+      "status": "Resumed in native terminal at20:59 UTC from completed epoch1; writer lock held",
       "train_outcomes": 601037,
       "train_families": 5689,
       "validation_families": 748,
@@ -320,12 +320,13 @@
     "supervisor": {
       "script": "scripts/supervise_gen6.py",
       "root": "/workspace/scratch/d59c0a9fe14a/gen6-full-data",
-      "session": 43789,
-      "started_utc": "2026-11-10T20:53:56Z",
+      "session": null,
+      "started_utc": "2026-11-10T20:59:50Z",
       "event_log": "supervisor-events.jsonl",
       "heartbeat": "supervisor-status.json",
       "lock": "supervisor.lock",
-      "note": "Both jobs stopped without recorded errors before this run. Diagnostic supervisor records child exits and received signals; cause remains unknown."
+      "note": "Exec supervisors repeatedly disappeared near turn completion without signal/exit records. Resumed via native terminal with shared files; both child locks held and heartbeat advancing. Persistence beyond this turn is not yet verified. Do not close terminal or disturb unrelated bidding job in first tab.",
+      "execution_surface": "Native Xfce Terminal second tab; terminal window10485763; supervisor PID757 at launch; verify locks/heartbeat, never infer liveness from PID"
     }
   }
 }
