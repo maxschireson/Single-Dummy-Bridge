@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import socket
 import sqlite3
 import subprocess
 import sys
@@ -29,6 +30,11 @@ def launch(root,name,args,log,cwd=ROOT):
             stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
     atomic_json(root/name,dict(pid=child.pid,epoch=time.time()));return child.pid
 
+def ben_ready():
+    try:
+        with socket.create_connection(('127.0.0.1',8087),timeout=1):return True
+    except OSError:return False
+
 def main(run,pub):
     with (run/'.watchdog.lock').open('a+') as guard:
         fcntl.flock(guard,fcntl.LOCK_EX|fcntl.LOCK_NB);attempts={}
@@ -37,6 +43,9 @@ def main(run,pub):
             status=dict(epoch=time.time(),collector='running',publisher='running');stop=run/'STOP'
             try:
                 m=json.loads((run/'manifest.json').read_text());s=json.loads((run/'state.json').read_text());complete=s['completed']>=m['target']
+                if not alive(Path('/workspace/work/round5/ben-process.json'),'gameapi.py'):
+                    status['ben_pid']=launch(Path('/workspace/work/round5'),'ben-process.json',['src/gameapi.py','--config',str(run/'assets/ben-16.conf'),'--port','8087','--host','127.0.0.1','--record','false'],'ben-gen5-server.log',cwd=Path('/workspace/work/ben-next-round'))
+                ready=ben_ready();status['ben']='ready' if ready else 'warming'
                 cache=run/'dds-cache.sqlite';size=cache.stat().st_size if cache.exists() else 0
                 if size>2*1024**3 and not stop.exists():stop.write_text(token);status['collector']='draining-for-cache-rotation'
                 if stop.exists() and stop.read_text()==token and not alive(run/'process.json','gen5_runtime.py') and free(run/'.writer.lock'):
@@ -50,6 +59,7 @@ def main(run,pub):
                     status['collector']='disk-space-guard'
                 if stop.exists():status['collector']='intentionally-stopped-or-draining'
                 elif complete:status['collector']='complete'
+                elif not ready:status['collector']='waiting-for-ben'
                 elif not alive(run/'process.json','gen5_runtime.py') and free(run/'.writer.lock'):
                     verify_generation(run,m);failures=list((run/'failures').glob('*.json'))
                     if failures:status['collector']='blocked-preserved-failure'
@@ -60,8 +70,6 @@ def main(run,pub):
                 published=json.loads((pub/'arena/data.json').read_text())['completed'] if (pub/'arena/data.json').exists() else 0
                 if (not complete or published<m['target']) and not alive(run/'publisher-process.json','publish_gen5.py'):
                     status['publisher_pid']=launch(run,'publisher-process.json',['ops/publish_gen5.py','--run',str(run),'--publication',str(pub)],'publisher.log')
-                if not alive(Path('/workspace/work/round5/ben-process.json'),'gameapi.py'):
-                    status['ben_pid']=launch(Path('/workspace/work/round5'),'ben-process.json',['src/gameapi.py','--config',str(run/'assets/ben-16.conf'),'--port','8087','--host','127.0.0.1','--record','false'],'ben-gen5-server.log',cwd=Path('/workspace/work/ben-next-round'))
                 if complete:status['collector']='complete'
             except Exception as e:status['error']=str(e)
             atomic_json(run/'watchdog-status.json',status);time.sleep(60)

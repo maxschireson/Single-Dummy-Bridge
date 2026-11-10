@@ -27,7 +27,9 @@ def snapshot_runtime(run,backup):
     for path in (ROOT/'scripts').glob('*.py'):copy_once(path,backup/'runtime/scripts'/path.name)
     for path in (ROOT/'native').glob('*.cpp'):copy_once(path,backup/'runtime/native'/path.name)
     for name in ('gen5_runtime.py','prepare_gen5.py','publish_gen5.py','export_gen5.py','watch_gen5.py'):
-        copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
+        source=ROOT/'ops'/name;dest=backup/'runtime/ops'/name
+        if name=='watch_gen5.py' and dest.exists():shutil.copy2(source,dest)
+        else:copy_once(source,dest)
     for name in ('prepare_gen5r.py','register_gen5r_report.py'):
         if (ROOT/'ops'/name).exists():copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
     copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
@@ -41,7 +43,7 @@ def publish(run,out):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
     for name in ('statistics-policy.json','retirement.json','STOP','WATCHDOG_STOP'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
-    for folder in ('episodes','receipts','artifacts','assets'):
+    for folder in ('episodes','receipts','artifacts','assets','resolved-failures'):
         for path in (run/folder).rglob('*'):
             if path.is_file() and not path.name.endswith('.tmp'):
                 dest=backup/folder/path.relative_to(run/folder)
