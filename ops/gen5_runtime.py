@@ -39,11 +39,14 @@ def player(spec,root,reference=None):
     return ArenaPlayer(spec,root,reference)
 
 def validate(r,m,index):
-    if r['manifest_identity']!=m['identity'] or r['index']!=index or r['candidate']!='5':raise ValueError('Changed record identity')
+    if r['manifest_identity']!=m['identity'] or r['index']!=index:raise ValueError('Changed record identity')
     schedule=m['pair_schedule'];block=schedule.copy()
     from bridge_harness.fork_audit import stream
     stream(m['seed'],'pair-block',index//len(block)).shuffle(block)
     if r['pair']!=block[index%len(block)]:raise ValueError('Changed matchup')
+    from bridge_harness.arena_pairs import pair_members
+    candidate,opponent=pair_members(r['pair'])
+    if r['candidate']!=candidate or r['opponent']!=opponent:raise ValueError('Changed candidate/opponent')
     if set(r['regimes'])!={'common','native'}:raise ValueError('Missing bidding condition')
     if r['versions']!={k:v['identity'] for k,v in m['bots'].items()}:raise ValueError('Wrong versions')
     for key,e in r['unique_tables'].items():
@@ -55,7 +58,7 @@ def validate(r,m,index):
             e=r['unique_tables'][key];expected=['candidate' if seat%2==room else 'opponent' for seat in range(4)]
             if e['assignments']!=expected:raise ValueError('Wrong partnership')
             scores.append(e['tables'][0]['ns_score']);bids=r['bidding'][f'{regime}/{room}']
-            actors=['5']*4 if regime=='common' else ['5' if role=='candidate' else r['opponent'] for role in expected]
+            actors=['5']*4 if regime=='common' else [candidate if role=='candidate' else r['opponent'] for role in expected]
             if bids['bidders']!=actors or bids['calls']!=list(e['board']['auction']):raise ValueError('Wrong bidder/auction')
         if condition['score_difference']!=scores[0]-scores[1] or condition['imps']!=imps(scores[0]-scores[1]):raise ValueError('Wrong score orientation')
     common=[r['unique_tables'][k]['board']['auction'] for k in r['regimes']['common']['tables']]

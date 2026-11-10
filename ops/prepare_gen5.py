@@ -37,6 +37,8 @@ def prepare(root,source,ben,count=25000):
     blocked={deal_key(b.hands,True) for b in load(source/'corpus.jsonl')}
     original=source.parent/'v4-recovery/arena-v4/g0004/corpus.jsonl'
     if original.exists():blocked.update(deal_key(b.hands,True) for b in load(original))
+    previous=Path('/workspace/work/gen5-codex/corpus.jsonl')
+    if previous.exists():blocked.update(deal_key(b.hands,True) for b in load(previous))
     with gzip.open(ROOT/'models/cardplay/gen5-2026-11-10/training-families.json.gz','rt') as f:
         blocked.update(r['family'] for r in json.load(f))
     for path in (Path('/workspace/work/legacy-restore-verification/gen2-gen3/family-splits.json'),Path('/workspace/work/legacy-restore-verification/pimc-baseline/family-splits.json')):
@@ -50,9 +52,9 @@ def prepare(root,source,ben,count=25000):
     if len(boards)!=count:raise ValueError('Insufficient fresh deals')
     save(boards,root/'corpus.jsonl')
     pair_schedule=[p for p,n in plan['pair_weights'].items() for _ in range(n)]
-    m=dict(schema='gen5-arena-manifest-v1',generation=5,campaign='gen5-codex-20261110',
+    m=dict(schema='gen5-arena-manifest-v1',generation=5,campaign='gen5-codex-32-20261110',
         target=count,seed=plan['seed'],roster=plan['roster'],bots=bots,pair_schedule=pair_schedule,
-        pair_weights=plan['pair_weights'],audit_references={'5':'3'},common_bidder='5',
+        pair_weights=plan['pair_weights'],audit_references={'5':'3','5-32':'3'},common_bidder='5',
         corpus='corpus.jsonl',corpus_sha256=sha(root/'corpus.jsonl'),source_sha256=source_hash(),
         runtime_sha256={name:sha(ROOT/name) for name in ('ops/gen5_runtime.py',)},
         audit=dict(probability=.5,multiplier=3.,max_depth=2,max_forks=64),
@@ -61,7 +63,7 @@ def prepare(root,source,ben,count=25000):
         labels={'5':'Gen 5 (192)','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1','ben':'BEN (16)','5-32':'Gen 5 (32)'},
         order=['5','4b','3','2','1','ben','5-32'],exclusion_families=len(blocked),
         fresh_deals='New seed; no available excluded family or previous Gen4 cohort overlap.',
-        interpretation='Same deals and swapped partnerships. Common Gen5 auction and native partnership auctions reported separately; identical auctions reuse physical games. Gen5 uses 192 worlds, retained historical bots 32 and BEN 16. The 32-vs-192 Gen5 matchup measures sample budget with identical networks. No automatic model replacement or next generation.')
+        interpretation='Same deals and swapped partnerships. Common Gen5 auction and native partnership auctions reported separately; identical auctions reuse physical games. Gen5 uses 32 worlds vs historical bots at 32, and 192 only vs BEN at 16 or its identical-network 32-sample control. The 32-vs-192 Gen5 matchup measures sample budget with identical networks. No automatic model replacement or next generation.')
     m['identity']=digest(m);atomic_json(root/'manifest.json',m)
     atomic_json(root/'state.json',dict(manifest_identity=m['identity'],completed=0,target=count,by_pair={},root_games=0,tables=0,epoch=time.time()))
     atomic_json(root/'heartbeat.json',dict(epoch=time.time(),completed=0,workers=4,ben_workers=1,in_flight=[]))

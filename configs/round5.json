@@ -17,10 +17,10 @@
     "4p"
   ],
   "pair_weights": {
-    "5~4b": 8,
-    "53": 4,
-    "52": 3,
-    "51": 1,
+    "5-32~4b": 8,
+    "5-32~3": 4,
+    "5-32~2": 3,
+    "5-32~1": 1,
     "5~ben": 1,
     "5~5-32": 3
   },
@@ -55,10 +55,11 @@
   "pending": [],
   "historical_results": "preserve all completed games and their frozen manifests",
   "target": 25000,
-  "seed": 202611100334,
+  "seed": 202611100419,
   "v5_samples": 192,
   "bidding_conditions": [
     "common-v5",
     "native-partnership-bidders"
-  ]
+  ],
+  "historical_v5_samples": 32
 }

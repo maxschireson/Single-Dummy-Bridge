@@ -16,6 +16,8 @@ def copy_once(source,dest):
 def publish(run,out):
     export(run,out);backup=out/'recovery';backup.mkdir(exist_ok=True)
     for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl'):shutil.copy2(run/name,backup/name)
+    for name in ('statistics-policy.json','retirement.json','STOP','WATCHDOG_STOP'):
+        if (run/name).exists():shutil.copy2(run/name,backup/name)
     for folder in ('episodes','receipts','artifacts','assets'):
         for path in (run/folder).rglob('*'):
             if path.is_file() and not path.name.endswith('.tmp'):
@@ -28,13 +30,13 @@ def publish(run,out):
     copy_once(ROOT/'bridge_harness/libbridge_dds.so',backup/'runtime/bridge_harness/libbridge_dds.so')
     for path in (ROOT/'scripts').glob('*.py'):copy_once(path,backup/'runtime/scripts'/path.name)
     for path in (ROOT/'native').glob('*.cpp'):copy_once(path,backup/'runtime/native'/path.name)
-    for name in ('gen5_runtime.py','prepare_gen5.py','publish_gen5.py','export_gen5.py'):
+    for name in ('gen5_runtime.py','prepare_gen5.py','publish_gen5.py','export_gen5.py','watch_gen5.py'):
         copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     git(out,'add','arena','recovery')
     if git(out,'status','--porcelain').stdout.strip():
         n=json.loads((out/'arena/data.json').read_text())['completed'];git(out,'commit','-m',f'Gen5: {n} verified paired deals, common/native bidding')
-    git(out,'push','-u','origin','arena-gen5-codex-feed')
+    git(out,'push','-u','origin','HEAD')
     return json.loads((out/'arena/data.json').read_text())['completed']
 
 if __name__=='__main__':

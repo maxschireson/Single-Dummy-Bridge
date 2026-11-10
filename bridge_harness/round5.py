@@ -15,11 +15,13 @@ def validate_plan(plan):
     roster=set(plan['roster'])
     if roster & {'4','4p','P'} or '4b' not in roster or not {'5','ben'}<=roster:
         raise ValueError('v5 roster must retain 4b, exclude 4/4p, and include v5/BEN')
+    if plan.get('v5_samples')!=192 or plan.get('historical_v5_samples')!=32:raise ValueError('Gen5 uses 32 vs older bots and 192 vs BEN/control')
     total=sum(plan['pair_weights'].values());ben_weight=0
     for pair,weight in plan['pair_weights'].items():
         pair_members=members(pair)
         if len(pair_members)!=2 or any(v not in roster for v in pair_members):raise ValueError('Invalid matchup')
         if not isinstance(weight,int) or isinstance(weight,bool) or weight<=0:raise ValueError('Positive integer weights required')
+        if set(pair_members)&{'4b','3','2','1'} and pair_members[0]!='5-32':raise ValueError('Historical comparisons require Gen5 at 32 samples')
         if 'ben' in pair_members:
             if set(pair_members)!={'5','ben'}:raise ValueError('BEN may only face v5')
             ben_weight+=weight
@@ -42,7 +44,7 @@ def schedule(plan,count,seed):
     for i in range((count+len(block)-1)//len(block)):
         shuffled=block.copy();random.Random(int(digest([seed,'round5-block',i])[:16],16)).shuffle(shuffled)
         rows.extend(shuffled[:count-len(rows)])
-    # Exact 10% in each full allocation block; a partial tail is approximately 10%.
+    # Exact declared allocation in each full block; a partial tail is approximate.
     return rows
 
 

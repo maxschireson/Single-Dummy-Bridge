@@ -41,21 +41,28 @@ def view(rows,own=False,window=0):
 
 def export(root,out):
     global LABELS, PAIRS
-    m=json.loads((root/'manifest.json').read_text());LABELS=m['labels'];PAIRS=list(m['pair_weights']);status=json.loads((root/'heartbeat.json').read_text())
+    m=json.loads((root/'manifest.json').read_text());LABELS=m['labels'];status=json.loads((root/'heartbeat.json').read_text())
+    policy_path=root/'statistics-policy.json'
+    policy=json.loads(policy_path.read_text()) if policy_path.exists() else {}
+    eligible=set(policy.get('eligible_pairs',m['pair_weights']))
+    PAIRS=[p for p in m['pair_weights'] if p in eligible]
     cohort=m['identity'];now=time.time();records=[];shards=defaultdict(dict);seen=set()
     cached={}
     for old in (out/'arena/replays/data'/cohort).glob('boards-*.json'):
         cached.update(json.loads(old.read_text()))
-    for path in sorted((root/'episodes').glob('*.json.gz')):
+    episodes=sorted((root/'episodes').glob('*.json.gz'))
+    for path in episodes:
         raw=path.read_bytes();checksum=hashlib.sha256(raw).hexdigest();key=str(int(path.name.split('.')[0]))
         if key in cached:
             full=cached[key]
             if full['episode_sha256']!=checksum:raise ValueError('Previously published episode changed')
+            if full['pair'] not in eligible:continue
             if full['family'] in seen:raise ValueError('Duplicate deal family')
             seen.add(full['family']);row={k:v for k,v in full.items() if k not in ('conditions','board','tables')}
             records.append(row);shards[row['shard']][key]=full;continue
         r=json.loads(gzip.decompress(raw))
         if r['manifest_identity']!=cohort:raise ValueError('Manifest mismatch')
+        if r['pair'] not in eligible:continue
         if r['family'] in seen:raise ValueError('Duplicate deal family')
         seen.add(r['family'])
         for table in r['unique_tables'].values():
@@ -82,7 +89,7 @@ def export(root,out):
         records.append(row);shards[row['shard']][str(index)]={**row,'conditions':conditions,'board':first,'tables':common}
     replay_dir=out/'arena/replays/data'/cohort;replay_dir.mkdir(parents=True,exist_ok=True)
     for name,rows in shards.items():atomic_json(replay_dir/name,rows)
-    title='Gen 5 · Codex';versions={k:s['identity'] for k,s in m['bots'].items()}
+    title=policy.get('title','Gen 5 · Codex');versions={k:s['identity'] for k,s in m['bots'].items()}
     record_shards=[]
     for offset in range(0,len(records),100):
         name=f'index-{offset//100:05d}.json';atomic_json(replay_dir/name,records[offset:offset+100]);record_shards.append(name)
@@ -102,14 +109,15 @@ def export(root,out):
         for n in sorted(set(list(range(10,len(rows)+1,10))+([len(rows)] if rows else []))):
             curves[pair].append(dict(index=n,**stats([r['imps'] for r in rows[:n]])))
     d=dict(generated_epoch=now,campaign=title,manifest_identity=cohort,labels=LABELS,order=m['order'],versions=versions,
-        completed=len(records),target=m['target'],contiguous=contiguous,failures=len(list((root/'failures').glob('*.json'))),configured_workers=status['workers'],worker_experiment=None,
+        completed=len(records),target=policy.get('target',m['target']),contiguous=contiguous,failures=len(list((root/'failures').glob('*.json'))),configured_workers=0 if policy.get('retired') else status['workers'],worker_experiment=None,
         last_commit_epoch=max((r['completed_epoch'] for r in records),default=None),rates=rates,
         views={str(n):view(records,window=n) for n in (0,100,500,1000)},
         own_views={str(n):view(records,own=True,window=n) for n in (0,100,500,1000)},curves=curves,decision_timing=merge(*(r.get('decision_timing') for r in records)),
         model_artifacts={k:s['artifact_sha256'] for k,s in m['bots'].items()},
-        interpretation='Gen5 uses the three promoted models and 192 samples. Retained historical versions use 32, BEN uses 16 and the identical-network Gen5 control uses 32. Each hand has common-v5 and native-partnership bidding conditions; identical auctions reuse played games. Pair allocations are 40% 4b, 20% Gen3, 15% Gen2, 5% Gen1, 5% BEN and 15% 32-vs-192 Gen5. Independent fresh families; report auction conditions separately. Exploratory Student-t intervals are not adjusted for repeated monitoring.',
+        interpretation='Gen5 and historical opponents both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN at 16 samples and its identical-network 32-sample control. Earlier 192-vs-historical games are excluded from statistics and preserved for training. Each hand has common-v5 and native-partnership bidding conditions; identical auctions reuse played games. Pair allocations are 40% 4b, 20% Gen3, 15% Gen2, 5% Gen1, 5% BEN and 15% 32-vs-192 Gen5. Independent fresh families; report auction conditions separately. Exploratory Student-t intervals are not adjusted for repeated monitoring.',
         feed=dict(published_epoch=now,interval_seconds=60,next_update_epoch=now+60),
-        model_note='Gen5: promoted dense belief, attention policy and Gen5 bidder; 192 samples. Gen4b/3/2/1 stay frozen at 32, BEN uses net-only bidding with 16 lead/play samples. Gen5 (32) differs only in its search budget.', source_cohort_overlap=False, allocation=m['pair_weights'], collection=dict(updated_epoch=status['epoch'],running=now-status['epoch']<30,workers=status['workers']))
+        model_note='Gen5: promoted dense belief, attention policy and bidder. Gen5/4b/3/2/1 comparisons use 32 vs 32. Gen5 uses 192 vs BEN (16) and Gen5 (32) only; the two Gen5 actors share all network weights.', source_cohort_overlap=False, allocation=m['pair_weights'], statistics_policy=policy,
+        collection=dict(updated_epoch=status['epoch'],running=not policy.get('retired') and now-status['epoch']<30,workers=0 if policy.get('retired') else status['workers'],total_completed=len(episodes),training_only_completed=len(episodes)-len(records)))
     atomic_json(out/'arena/data.json',d)
     atomic_json(out/'arena/manifest.json',m)
     print(json.dumps(dict(completed=len(records),tables=sum(len(v['tables']) for s in shards.values() for v in s.values()),

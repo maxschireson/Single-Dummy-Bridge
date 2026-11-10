@@ -1,4 +1,4 @@
-"""Current versus native bidding, with half self-play and a retained Gen 1.
+"""Gen5 at explicit 32/192 budgets under common and native bidding.
 
 Common and native auction results are separate estimands. Shared trajectories
 are stored once and referenced by regime, never duplicated as training samples.
