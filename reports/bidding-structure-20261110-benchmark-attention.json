@@ -1,0 +1,20 @@
+{
+  "variant": "attention_exact",
+  "parameters": 55625,
+  "pairs": 32,
+  "decisions": 339,
+  "collect_seconds": 4.658796641000663,
+  "update_seconds": 2.56110016599996,
+  "missing_play_rooms": 5,
+  "metrics": {
+    "minibatches": 12,
+    "kl_stopped": false,
+    "last": {
+      "loss": 0.009545184671878815,
+      "anchor_kl": 0.00032130724866874516,
+      "approx_kl": 8.493919449392706e-05,
+      "grad_norm": 0.37051016092300415
+    }
+  },
+  "synthetic_rewards_for_timing_only": true
+}

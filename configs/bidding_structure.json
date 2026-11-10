@@ -1,0 +1,29 @@
+{
+  "data": "/workspace/scratch/832d665e0384/bidding-structure/runs/bidding-structure-20261110/dataset.json",
+  "parent": "/workspace/scratch/bbe90ba77a68/bridge-bidding-refresh/models/bidding/gen5-2026-11-10/bidder.keras",
+  "out": "/workspace/scratch/832d665e0384/bidding-structure/runs/bidding-structure-20261110",
+  "play_root": "/workspace/scratch/74fefc15be51/bridge-gen4-components/runs/gen4-components-20261109",
+  "dds_library": "/workspace/scratch/919dc41e3067/bridge-gen5rz-ben/bridge_harness/libbridge_dds.so",
+  "seed_caches": [
+    "/workspace/scratch/bbe90ba77a68/bridge-bidding-refresh/runs/bidding-exact-mixes-20261109/play-cache",
+    "/workspace/scratch/2c9025624949/gen6-bidding-run/play-cache"
+  ],
+  "pairs": 2048,
+  "batch_pairs": 128,
+  "epochs": 2,
+  "minibatch": 64,
+  "learning_rate": 0.0001,
+  "exploration": 0.005,
+  "anchor_weight": 0.02,
+  "threads": 2,
+  "seeds": [
+    101,
+    202
+  ],
+  "variants": [
+    "dense_compressed",
+    "dense_exact",
+    "attention_exact"
+  ],
+  "benchmark_pairs": 32
+}

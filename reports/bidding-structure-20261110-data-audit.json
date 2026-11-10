@@ -1,0 +1,15 @@
+{
+  "rows": 44381,
+  "counts": {
+    "play/train": 2659,
+    "play/historical_test": 192,
+    "play/test": 177,
+    "play/dev": 353,
+    "dds/train": 40000,
+    "dds/dev": 1000
+  },
+  "cross_split_families": [],
+  "dataset_sha256": "5639592328092130a5d94e5b8954759b17fff0589ce488453ba1c763dbd30cc5",
+  "full_decks_verified": 44381,
+  "canonical_families_verified": 44381
+}
