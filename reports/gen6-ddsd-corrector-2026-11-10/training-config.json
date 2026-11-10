@@ -1,0 +1,19 @@
+{
+  "schema": "ddsd-full-deal-residual-v1",
+  "state_size": 516,
+  "width": 128,
+  "epochs": 20,
+  "seed": 617,
+  "training_rows": 72064,
+  "training_families": 4504,
+  "parameters": 107421,
+  "loss": "Equal-family-weighted observed residual MSE; no pairwise loss",
+  "selection": "Minimum validation outcome MSE, including epoch zero; test read after checkpoint selection",
+  "correction_weight_grid": [
+    0,
+    0.25,
+    0.5,
+    1
+  ],
+  "data": "/workspace/scratch/919dc41e3067/bridge-ddsd-corrector/runs/gen6-data-v2"
+}
