@@ -36,6 +36,17 @@
  function view(rows,windowSize=0){const groups={},matrix=Object.fromEntries(order.map(k=>[k,{}])),pairs=[...new Set(rows.map(r=>r.pair))].sort((a,b)=>{const [a0,a1]=members(a),[b0,b1]=members(b);return order.indexOf(a0)-order.indexOf(b0)||order.indexOf(a1)-order.indexOf(b1);});
   for(const pair of pairs){let selected=rows.filter(r=>r.pair===pair);if(windowSize)selected=selected.slice(-windowSize);const values=selected.map(r=>r.imps),s=stats(values),[a,b]=members(pair);groups[pair]=s;matrix[a][b]=s;if(a!==b)matrix[b][a]=stats(values.map(x=>-x));}return {groups,matrix};
  }
+
+ function decisionTiming(inputs){const totals={schema:'arena-decision-timing-v1',by_bot:{},sources:[],missing_sources:[]};
+  for(const input of inputs){const data=input.data.decision_timing;if(!data){totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
+   for(const [id,row] of Object.entries(data.by_bot||{})){const key=canonical(id),out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
+    for(const field of ['decisions','total_seconds','forced_decisions'])out[field]+=row[field]||0;
+    for(const phase of ['opening_lead','play'])for(const field of ['decisions','total_seconds'])out[phase][field]+=row[phase]?.[field]||0;
+   }
+  }
+  for(const row of Object.values(totals.by_bot))for(const part of [row,row.opening_lead,row.play])part.mean_seconds=part.decisions?part.total_seconds/part.decisions:null;
+  return totals;
+ }
  function build(inputs,scope='all',snapshots=null,now=Date.now()/1000){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key));
   const common=rowsFor(chosen,scope,'common',snapshots),own=rowsFor(chosen,scope,'own',snapshots),views={},own_views={},curves={},own_curves={};
   for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
@@ -45,7 +56,7 @@
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
   const stale=chosen.filter(x=>now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
-  return {campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order,versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
+  return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order,versions:Object.fromEntries(order.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
    completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,own_views:own.rows.length?own_views:null,curves,own_curves,
    report:{scope,snapshots:reportSnapshots,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
    feed:{published_epoch:generated_epoch,next_update_epoch:chosen.length?Math.min(...chosen.map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
@@ -69,7 +80,7 @@
   if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);verify(data,index.records);}
   return {source,data,index,indexURL};
  }
- const api={sources,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,loadSource,verify};
+ const api={sources,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,verify};
  root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
 
