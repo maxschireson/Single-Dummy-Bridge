@@ -1,0 +1,36 @@
+const assert=require('node:assert/strict');
+const {createHash}=require('node:crypto');
+const modulePath=require.resolve('../reporting.js');
+const fresh=()=>{delete require.cache[modulePath];return require(modulePath);};
+const row=(i,epoch=10)=>({id:String(i),index:i,family:'family-'+i,pair:'5R32~4b',imps:i%3,own_imps:-(i%3),scores:[0,0],contracts:[],completed_epoch:epoch});
+function fixture(R,rows,epoch,checksums=false){
+ const source=R.sources.find(s=>s.key==='gen5r'),base='arena/replays/data/'+source.cohort+'/',files={};
+ const index={cohort:source.cohort,record_shards:[]};if(checksums)index.record_shard_sha256={};
+ for(let i=0;i<rows.length;i+=100){const name='index-'+String(i/100).padStart(5,'0')+'.json',body=JSON.stringify(rows.slice(i,i+100));files[base+name]=body;index.record_shards.push(name);if(checksums)index.record_shard_sha256[name]=createHash('sha256').update(body).digest('hex');}
+ files[base+'index.json']=JSON.stringify(index);
+ files['arena/data.json']=JSON.stringify({manifest_identity:source.cohort,generated_epoch:epoch,completed:rows.length,views:{0:R.view(rows)},own_views:{0:R.view(rows.map(r=>({...r,imps:r.own_imps})))}});
+ return {source,files};
+}
+function transport(current,counts){return async url=>{const path=new URL(url).pathname.split('/').slice(4).join('/');counts[path]=(counts[path]||0)+1;return new Response(current().files[path]??'missing',{status:Object.hasOwn(current().files,path)?200:404});};}
+(async()=>{
+ let R=fresh(),stage=fixture(R,[...Array.from({length:100},(_,i)=>row(i+1)),row(1000)],20),counts={};
+ global.fetch=transport(()=>stage,counts);
+ const first=await R.loadSource(stage.source);assert.equal(first.data.completed,101);
+ stage=fixture(R,[row(0,30),...Array.from({length:100},(_,i)=>row(i+1)),row(1000)],40);
+ const second=await R.loadSource(stage.source);assert.equal(second.data.completed,102);assert.equal(new Set(second.index.records.map(r=>r.id)).size,102);assert.ok(second.index.records.some(r=>r.id==='0'));
+ console.log('PASS repeated refresh handles out-of-order completions without stale full pages');
+
+ R=fresh();stage=fixture(R,Array.from({length:201},(_,i)=>row(i)),20,true);counts={};global.fetch=transport(()=>stage,counts);
+ await R.loadSource(stage.source);const stable='arena/replays/data/'+stage.source.cohort+'/index-00000.json';
+ stage=fixture(R,[...Array.from({length:201},(_,i)=>row(i)),row(300,30)],40,true);
+ await R.loadSource(stage.source);assert.equal(counts[stable],1);
+ stage=fixture(R,[row(-1,50),...Array.from({length:201},(_,i)=>row(i)),row(300,30)],60,true);
+ await R.loadSource(stage.source);assert.equal(counts[stable],2);
+ console.log('PASS unchanged shards reuse verified hashes and changed shards refresh');
+
+ R=fresh();stage=fixture(R,Array.from({length:101},(_,i)=>row(i)),20,true);counts={};const good=transport(()=>stage,counts);let corrupt=true;
+ global.fetch=async url=>new URL(url).pathname.endsWith('index-00000.json')&&corrupt?new Response('[]'):good(url);
+ await assert.rejects(()=>R.loadSource(stage.source),/checksum/i);corrupt=false;
+ assert.equal((await R.loadSource(stage.source)).data.completed,101);
+ console.log('PASS a stale CDN response cannot poison the next refresh');
+})().catch(error=>{console.error(error);process.exitCode=1;});

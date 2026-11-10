@@ -72,5 +72,12 @@ test('current generation excludes prior rounds and keeps only compatible initial
  assert.equal(d.views[0].groups['5~4b'],undefined);assert.equal(d.rates[5].pairs,2);
  assert.ok(R.build([...inputs,current,initial],'all').completed>d.completed);
 });
+test('fresh visits and old bookmarks default to latest; Older preserves explicit history',()=>{
+ assert.equal(R.latestScope,'gen5r');
+ for(const search of ['','?source=latest','?source=gen5','?source=all','?source=unknown'])assert.deepEqual(R.resolveSelection(search),{selected:'gen5r',older:false});
+ assert.deepEqual(R.resolveSelection('?source=gen5&older=1'),{selected:'gen5',older:true});
+ assert.deepEqual(R.resolveSelection('?source=all&older=1'),{selected:'all',older:true});
+ assert.deepEqual(R.pickSources('latest'),R.pickSources('gen5r'));
+});
 console.log(JSON.stringify({checks,summary:['all','chatgpt','codex'].map(s=>{const d=R.build(inputs,s);return {scope:s,completed:d.completed,observations:d.report.observations,duplicates:d.report.duplicates,matchups:Object.keys(d.views[0].groups).length};})}));
 

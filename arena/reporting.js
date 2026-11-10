@@ -11,13 +11,15 @@
   {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
   {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
  ];
+ const latestSource=sources.find(s=>!s.retired),latestScope=latestSource.key;
+ function resolveSelection(search){const params=new URLSearchParams(search),requested=params.get('source'),scope=requested==='latest'?latestScope:requested,valid=['all','chatgpt','codex',...sources.map(s=>s.key)].includes(scope),older=params.get('older')==='1'&&valid;return {selected:older?scope:latestScope,older};}
  const labels={'5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben'];
- const names={all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
+ const names={latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
- const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===scope||(scope==='gen5'&&s.generation===5&&s.variant!=='5R'));
+ const pickSources=scope=>sources.filter(s=>scope==='all'||s.environment===scope||s.key===(scope==='latest'?latestScope:scope)||(scope==='gen5'&&s.generation===5&&s.variant!=='5R'));
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
  function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
  function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
@@ -67,7 +69,7 @@
    interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
    model_note:chosen.some(x=>x.source.variant==='5R')?'Gen5R keeps Gen5 networks and changes only 10–13-trick layout selection and belief-moment weights. Pools 128/768; DDS ceilings 32/192. Original Gen5 (32) is the random-sampling control. Smaller positions are unchanged. Common and native bidding remain separate.':chosen.some(x=>x.source.generation===5)?'Gen5 and older bots both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN (16) and Gen5 (32), with identical networks at both budgets. Earlier 192-vs-older games are preserved for training and excluded from statistics. Common-v5 and native bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
  }
- async function get(url){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+Math.floor(Date.now()/30000),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);return r.json();}
+ async function get(url,checksum=null){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+(checksum||Math.floor(Date.now()/30000)),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);if(!checksum)return r.json();const body=await r.arrayBuffer(),actual=[...new Uint8Array(await crypto.subtle.digest('SHA-256',body))].map(x=>x.toString(16).padStart(2,'0')).join('');if(actual!==checksum)throw Error('Replay shard checksum is not yet synchronized');return JSON.parse(new TextDecoder().decode(body));}
  function verify(data,records){
   if(!data.views?.[0]?.groups)throw Error('Invalid score snapshot');
   if(!Number.isFinite(data.generated_epoch)||records.length!==data.completed||new Set(records.map(r=>String(r.id))).size!==records.length)throw Error('Score and replay publication are not yet synchronized');
@@ -80,12 +82,12 @@
  async function loadSource(source,{indexOnly=false,cutoff=null}={}){const path=base+source.branch+'/arena/',data=indexOnly?{generated_epoch:cutoff??Infinity,own_views:source.key==='recovery'?null:{}}:await get(path+'data.json');
   if(!indexOnly&&data.manifest_identity!==source.cohort)throw Error('Run identity changed');
   const indexURL=path+'replays/data/'+source.cohort+'/index.json',index=await get(indexURL);if(index.cohort!==source.cohort)throw Error('Replay run identity mismatch');
-  if(index.record_shards){index.records=(await Promise.all(index.record_shards.map(async(p,i)=>{const url=new URL(p,indexURL).href;if(shardCache.has(url))return shardCache.get(url);const rows=await get(url);if(i<index.record_shards.length-1&&rows.length===100)shardCache.set(url,rows);return rows;}))).flat();}
+  if(index.record_shards){index.records=(await Promise.all(index.record_shards.map(async p=>{const url=new URL(p,indexURL).href,revision=index.record_shard_sha256?.[p],cached=shardCache.get(url);if(revision&&cached?.revision===revision)return cached.rows;const rows=await get(url,revision);if(revision)shardCache.set(url,{revision,rows});return rows;}))).flat();}
   if(source.allowed_pairs&&index.records.some(r=>!source.allowed_pairs.includes(r.pair)))throw Error('Awaiting the corrected sample-budget publication');
   if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);verify(data,index.records);}
   return {source,data,index,indexURL};
  }
- const api={sources,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,verify};
+ const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,verify};
  root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
 
