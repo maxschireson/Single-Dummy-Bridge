@@ -11,17 +11,29 @@ def contrast(a,b):
     for k,v in aa.items():
         if k.startswith('recent|play|') and k in bb and v[3] and bb[k][3]:d.append(v[2]/v[3]-bb[k][2]/bb[k][3])
     return dict(families=len(d),nll_delta=float(np.mean(d)) if d else None,se=float(np.std(d,ddof=1)/math.sqrt(len(d))) if len(d)>1 else None)
+def joint_contrast(a,b):
+    aa=json.loads(a.read_text())['groups'];bb=json.loads(b.read_text())['groups']
+    d=[v[0]/v[1]-bb[k][0]/bb[k][1] for k,v in aa.items() if v[1] and k in bb and bb[k][1]]
+    return dict(families=len(d),nll_delta=float(np.mean(d)) if d else None,se=float(np.std(d,ddof=1)/math.sqrt(len(d))) if len(d)>1 else None)
 def report(root):
     rows=[];control=root/'fits/dense_added';cp=control/'result.json'
     cr=json.loads(cp.read_text()) if cp.exists() else None
     for p in sorted((root/'fits').glob('*/result.json')):
         r=json.loads(p.read_text());row=dict(name=p.parent.name,score=r['best_score'],best_epoch=r['best_epoch'],parameters=r['parameters'],seconds=sum(x['seconds'] for x in r['history']),seed=r['config']['seed'])
         if cr:row['vs_data_control']=contrast(p.parent/f"epoch-{r['best_epoch']}-families.json.gz",control/f"epoch-{cr['best_epoch']}-families.json.gz")
+        jp=p.parent/'joint.json'
+        if jp.exists():
+            row['exact_two_seat_nll']=json.loads(jp.read_text())['exact_two_seat_nll']
+            if (control/'joint.json').exists():row['joint_vs_data_control']=joint_contrast(jp,control/'joint.json')
         rows.append(row)
     rows.sort(key=lambda r:r['score']);atomic_json(root/'leaderboard.json',dict(rows=rows,interpretation='Development selection; conditional paired SE is not retraining uncertainty. No confirmation claim.'))
     lines=['# Belief experiment development results','','Scores below are development measurements, not final confirmation. All cards and positions from the same canonical deal are clustered together. Seed variability is separate.','','| Recipe | Selected epoch | Composite NLL | Recent NLL delta vs data control | Family SE | Families | Training + validation minutes |','|---|---:|---:|---:|---:|---:|---:|']
     for r in rows:
         d=r.get('vs_data_control',{});lines.append(f"| {r['name']} | {r['best_epoch']} | {r['score']:.8f} | {d.get('nll_delta','')} | {d.get('se','')} | {d.get('families','')} | {r['seconds']/60:.1f} |")
+    lines += ['', 'Primary conditional-likelihood comparison (negative delta favors recipe). These paired family SEs condition on fitted models and exclude training-seed variability.', '', '| Recipe | Exact two-seat NLL | Delta vs data control | Family SE | Families |', '|---|---:|---:|---:|---:|']
+    for r in sorted(rows,key=lambda x:x.get('exact_two_seat_nll',float('inf'))):
+        if 'exact_two_seat_nll' not in r:continue
+        d=r.get('joint_vs_data_control',{});lines.append(f"| {r['name']} | {r['exact_two_seat_nll']:.9f} | {d.get('nll_delta','')} | {d.get('se','')} | {d.get('families','')} |")
     (root/'progress.md').write_text('\n'.join(lines)+'\n');return rows
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--run',type=Path,required=True);a=p.parse_args();report(a.run)
