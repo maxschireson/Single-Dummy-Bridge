@@ -1,0 +1,365 @@
+2026-11-11 13:45:29 gameapi.py - Version 0.9.0.2
+Running in a standard Python environment: 3.12.14
+Python version: 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ] False
+Loading TensorFlow 2.21.0 - Keras version: 3.15.1
+NumPy Version : 2.0.2
+Loading config file /workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/assets/ben-16.conf
+Config: /workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/assets/ben-16.conf
+Model:    GIB-BBO-8742_2026-10-23-E30.keras
+Opponent: GIB-BBO-8742_2026-10-23-E30.keras
+Playing IMPS mode
+No /workspace/scratch/c7932514d17d/ben/config/systems.conf, so requests cannot choose a system
+DDSolver enabled. Version 3.1.0 Max threads 1
+Setting seed = 42
+http://127.0.0.1:8087/
+Warmed up 17 models in 2.41 seconds
+
+Available memory after request: 5762.58 MB
+127.0.0.1 - - [2026-11-11 13:45:34] "GET / HTTP/1.1" 200 165 0.002243
+Leading: SA
+Request took 0.76 seconds
+Available memory after request: 5394.68 MB
+127.0.0.1 - - [2026-11-11 13:45:38] "GET /lead?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true HTTP/1.1" 200 2193 0.765857
+Playing: S3 Calculated
+Request took 1.75 seconds
+Available memory after request: 5269.43 MB
+127.0.0.1 - - [2026-11-11 13:45:42] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2&format=false HTTP/1.1" 200 2850 1.747130
+Playing: H8 Calculated
+Request took 0.56 seconds
+Available memory after request: 5220.33 MB
+127.0.0.1 - - [2026-11-11 13:45:42] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HK&format=false HTTP/1.1" 200 2593 0.560489
+Playing: H2 Calculated
+Request took 0.32 seconds
+Available memory after request: 5220.33 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5&format=false HTTP/1.1" 200 2850 0.316792
+Playing: H6 Calculated
+Request took 0.15 seconds
+Available memory after request: 5220.34 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHA&format=false HTTP/1.1" 200 2711 0.154871
+Playing: HJ Follow
+Request took 0.00 seconds
+Available memory after request: 5220.34 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7&format=false HTTP/1.1" 200 232 0.002498
+Playing: S4 Calculated
+Request took 0.12 seconds
+Available memory after request: 5240.34 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9&format=false HTTP/1.1" 200 3649 0.118064
+Playing: SQ Calculated
+Request took 0.11 seconds
+Available memory after request: 5240.34 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDA&format=false HTTP/1.1" 200 3346 0.113799
+Playing: S5 Calculated
+Request took 0.09 seconds
+Available memory after request: 5240.35 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3&format=false HTTP/1.1" 200 2765 0.090095
+Playing: C2 Calculated
+Request took 0.07 seconds
+Available memory after request: 5240.35 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7&format=false HTTP/1.1" 200 3157 0.073816
+Playing: C3 Calculated
+Request took 0.02 seconds
+Available memory after request: 5240.35 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8&format=false HTTP/1.1" 200 2076 0.026111
+Playing: C6 Calculated
+Request took 0.02 seconds
+Available memory after request: 5240.36 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQ&format=false HTTP/1.1" 200 1538 0.021559
+Playing: S8 Calculated
+Request took 0.02 seconds
+Available memory after request: 5240.36 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4&format=false HTTP/1.1" 200 1409 0.020893
+Playing: C4 Calculated
+Request took 0.03 seconds
+Available memory after request: 5240.36 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9&format=false HTTP/1.1" 200 1657 0.028355
+Playing: S9 Calculated
+Request took 0.02 seconds
+Available memory after request: 5240.36 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9C4DK&format=false HTTP/1.1" 200 1300 0.022466
+Playing: S7 Calculated
+Request took 0.15 seconds
+Available memory after request: 5241.82 MB
+127.0.0.1 - - [2026-11-11 13:45:43] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9C4DKS9CT&format=false HTTP/1.1" 200 1532 0.157590
+Playing: CJ Calculated
+Request took 0.03 seconds
+Available memory after request: 5241.82 MB
+127.0.0.1 - - [2026-11-11 13:45:44] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9C4DKS9CTS7C5&format=false HTTP/1.1" 200 919 0.033962
+Playing: C7 Calculated
+Request took 0.02 seconds
+Available memory after request: 5241.82 MB
+127.0.0.1 - - [2026-11-11 13:45:44] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9C4DKS9CTS7C5CJCA&format=false HTTP/1.1" 200 799 0.025673
+Playing: SJ Calculated
+Request took 0.03 seconds
+Available memory after request: 5241.84 MB
+127.0.0.1 - - [2026-11-11 13:45:44] "GET /play?hand=QJ73.QJ62.A.Q743&seat=E&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9C4DKS9CTS7C5CJCAC7H3&format=false HTTP/1.1" 200 804 0.028723
+Playing: CK Calculated
+Request took 0.02 seconds
+Available memory after request: 5241.84 MB
+127.0.0.1 - - [2026-11-11 13:45:44] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H5H2H9HTHAH6H7HJD9S4D5D6DJDASQD3S5S6D7C2D8C3H4HQDQC6D4S8C9C4DKS9CTS7C5CJCAC7H3SJC8&format=false HTTP/1.1" 200 663 0.021759
+Playing: S2 Calculated
+Request took 4.91 seconds
+Available memory after request: 5118.85 MB
+127.0.0.1 - - [2026-11-11 13:45:49] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SA&format=false HTTP/1.1" 200 2722 4.914113
+Playing: D2 Calculated
+Request took 2.69 seconds
+Available memory after request: 5152.71 MB
+127.0.0.1 - - [2026-11-11 13:45:52] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3&format=false HTTP/1.1" 200 4050 2.693349
+Playing: HK Calculated
+Request took 3.22 seconds
+Available memory after request: 5047.34 MB
+127.0.0.1 - - [2026-11-11 13:45:55] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2&format=false HTTP/1.1" 200 3948 3.222692
+Playing: H3 Calculated
+Request took 3.40 seconds
+Available memory after request: 5040.46 MB
+127.0.0.1 - - [2026-11-11 13:45:59] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8&format=false HTTP/1.1" 200 3007 3.408250
+Playing: H9 Calculated
+Request took 2.58 seconds
+Available memory after request: 5109.68 MB
+127.0.0.1 - - [2026-11-11 13:46:01] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2&format=false HTTP/1.1" 200 3824 2.587437
+Playing: HA Calculated
+Request took 2.04 seconds
+Available memory after request: 5122.68 MB
+127.0.0.1 - - [2026-11-11 13:46:03] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HT&format=false HTTP/1.1" 200 2837 2.044589
+Playing: H4 Calculated
+Request took 1.93 seconds
+Available memory after request: 5153.21 MB
+127.0.0.1 - - [2026-11-11 13:46:05] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6&format=false HTTP/1.1" 200 3615 1.931624
+Playing: D7 Calculated
+Request took 1.43 seconds
+Available memory after request: 5137.92 MB
+127.0.0.1 - - [2026-11-11 13:46:07] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJ&format=false HTTP/1.1" 200 3592 1.431058
+Playing: D3 Calculated
+Request took 1.01 seconds
+Available memory after request: 5171.72 MB
+127.0.0.1 - - [2026-11-11 13:46:08] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2&format=false HTTP/1.1" 200 3544 1.007372
+Playing: D8 Calculated
+Request took 0.87 seconds
+Available memory after request: 5183.54 MB
+127.0.0.1 - - [2026-11-11 13:46:09] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6&format=false HTTP/1.1" 200 2578 0.870291
+Playing: D4 Calculated
+Request took 0.68 seconds
+Available memory after request: 5191.80 MB
+127.0.0.1 - - [2026-11-11 13:46:09] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQ&format=false HTTP/1.1" 200 3349 0.678417
+Playing: H5 Calculated
+Request took 0.68 seconds
+Available memory after request: 5221.40 MB
+127.0.0.1 - - [2026-11-11 13:46:10] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6&format=false HTTP/1.1" 200 2502 0.677657
+Playing: C5 Calculated
+Request took 0.85 seconds
+Available memory after request: 5220.78 MB
+127.0.0.1 - - [2026-11-11 13:46:11] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5&format=false HTTP/1.1" 200 3236 0.855821
+Playing: CA Calculated
+Request took 0.36 seconds
+Available memory after request: 5224.67 MB
+127.0.0.1 - - [2026-11-11 13:46:11] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJ&format=false HTTP/1.1" 200 2633 0.368183
+Playing: H7 Calculated
+Request took 0.30 seconds
+Available memory after request: 5221.55 MB
+127.0.0.1 - - [2026-11-11 13:46:11] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3&format=false HTTP/1.1" 200 3059 0.298404
+Playing: C8 Calculated
+Request took 0.18 seconds
+Available memory after request: 5221.55 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJ&format=false HTTP/1.1" 200 3019 0.185566
+Playing: S6 Calculated
+Request took 0.12 seconds
+Available memory after request: 5223.56 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8&format=false HTTP/1.1" 200 2963 0.120641
+Playing: DQ Calculated
+Request took 0.10 seconds
+Available memory after request: 5225.69 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8S6S7&format=false HTTP/1.1" 200 2886 0.105365
+Playing: DK Calculated
+Request took 0.07 seconds
+Available memory after request: 5225.70 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8S6S7DQS9&format=false HTTP/1.1" 200 2822 0.075481
+Playing: DT Calculated
+Request took 0.05 seconds
+Available memory after request: 5225.70 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8S6S7DQS9DKS4DJSQ&format=false HTTP/1.1" 200 2448 0.048539
+Playing: ST Calculated
+Request took 0.03 seconds
+Available memory after request: 5225.70 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8S6S7DQS9DKS4DJSQDTS5&format=false HTTP/1.1" 200 1572 0.033216
+Playing: D9 Calculated
+Request took 0.03 seconds
+Available memory after request: 5225.71 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8S6S7DQS9DKS4DJSQDTS5STCQ&format=false HTTP/1.1" 200 1081 0.027636
+Playing: C9 Calculated
+Request took 0.03 seconds
+Available memory after request: 5225.71 MB
+127.0.0.1 - - [2026-11-11 13:46:12] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=4D----Db--4S5D----Db------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAH6H4HJD7C2D3D6D8DAHQD4C6H5C5CJCAC3H7SJC8S8S6S7DQS9DKS4DJSQDTS5STCQD9SK&format=false HTTP/1.1" 200 794 0.032420
+Playing: C3 Calculated
+Request took 1.42 seconds
+Available memory after request: 5232.40 MB
+127.0.0.1 - - [2026-11-11 13:46:14] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CA&format=false HTTP/1.1" 200 2863 1.425399
+Playing: C2 Calculated
+Request took 1.21 seconds
+Available memory after request: 5138.00 MB
+127.0.0.1 - - [2026-11-11 13:46:16] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5&format=false HTTP/1.1" 200 2842 1.218764
+Playing: H2 Calculated
+Request took 1.53 seconds
+Available memory after request: 5084.57 MB
+127.0.0.1 - - [2026-11-11 13:46:19] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HA&format=false HTTP/1.1" 200 2843 1.546090
+Playing: H8 Calculated
+Request took 0.73 seconds
+Available memory after request: 5090.43 MB
+127.0.0.1 - - [2026-11-11 13:46:19] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9&format=false HTTP/1.1" 200 2564 0.726555
+Playing: H6 Calculated
+Request took 0.75 seconds
+Available memory after request: 5150.46 MB
+127.0.0.1 - - [2026-11-11 13:46:20] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7&format=false HTTP/1.1" 200 2707 0.754835
+Playing: C6 Calculated
+Request took 0.27 seconds
+Available memory after request: 5158.46 MB
+127.0.0.1 - - [2026-11-11 13:46:20] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8&format=false HTTP/1.1" 200 2700 0.268184
+Playing: CQ Calculated
+Request took 0.21 seconds
+Available memory after request: 5158.46 MB
+127.0.0.1 - - [2026-11-11 13:46:21] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9&format=false HTTP/1.1" 200 2708 0.212364
+Playing: S3 Calculated
+Request took 0.46 seconds
+Available memory after request: 5154.86 MB
+127.0.0.1 - - [2026-11-11 13:46:21] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQ&format=false HTTP/1.1" 200 3520 0.465914
+Playing: SA Calculated
+Request took 0.17 seconds
+Available memory after request: 5165.64 MB
+127.0.0.1 - - [2026-11-11 13:46:21] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2&format=false HTTP/1.1" 200 3087 0.171391
+Playing: S4 Calculated
+Request took 0.18 seconds
+Available memory after request: 5165.64 MB
+127.0.0.1 - - [2026-11-11 13:46:21] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2&format=false HTTP/1.1" 200 3406 0.184011
+Playing: SQ Calculated
+Request took 0.19 seconds
+Available memory after request: 5167.57 MB
+127.0.0.1 - - [2026-11-11 13:46:22] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6&format=false HTTP/1.1" 200 2704 0.187548
+Playing: S7 Calculated
+Request took 0.36 seconds
+Available memory after request: 5177.81 MB
+127.0.0.1 - - [2026-11-11 13:46:22] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3&format=false HTTP/1.1" 200 3172 0.365417
+Playing: SK Calculated
+Request took 0.28 seconds
+Available memory after request: 5177.09 MB
+127.0.0.1 - - [2026-11-11 13:46:22] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5&format=false HTTP/1.1" 200 2765 0.285261
+Playing: CK Calculated
+Request took 0.29 seconds
+Available memory after request: 5177.10 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKST&format=false HTTP/1.1" 200 3078 0.291784
+Playing: C4 Calculated
+Request took 0.36 seconds
+Available memory after request: 5185.20 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCT&format=false HTTP/1.1" 200 2502 0.366519
+Playing: CJ Calculated
+Request took 0.17 seconds
+Available memory after request: 5186.76 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCTC4D7&format=false HTTP/1.1" 200 2950 0.172803
+Playing: S9 Calculated
+Request took 0.06 seconds
+Available memory after request: 5186.77 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCTC4D7CJD8C7D9&format=false HTTP/1.1" 200 2824 0.061628
+Playing: HQ Calculated
+Request took 0.03 seconds
+Available memory after request: 5186.77 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCTC4D7CJD8C7D9S9DJSJD4&format=false HTTP/1.1" 200 1663 0.033596
+Playing: D6 Calculated
+Request took 0.02 seconds
+Available memory after request: 5186.77 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCTC4D7CJD8C7D9S9DJSJD4HQDK&format=false HTTP/1.1" 200 803 0.021513
+Playing: DA Calculated
+Request took 0.02 seconds
+Available memory after request: 5186.77 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCTC4D7CJD8C7D9S9DJSJD4HQDKD6H5&format=false HTTP/1.1" 200 675 0.022243
+Playing: S5 Calculated
+Request took 0.02 seconds
+Available memory after request: 5186.77 MB
+127.0.0.1 - - [2026-11-11 13:46:23] "GET /play?hand=AK9854.T8.6.KJ62&seat=W&dealer=S&vul=Both&ctx=4D----Db--4S5D----5SDb------&matchtype=IMP&details=true&dummy=QJ73.QJ62.A.Q743&played=CAC3C5C2HAH2H9H8H7H6HKHTC8C6C9CQS3D2SAS2S4S6SQD3S7D5SKSTCKCTC4D7CJD8C7D9S9DJSJD4HQDKD6H5DADQ&format=false HTTP/1.1" 200 677 0.021583
+Playing: S2 Calculated
+Request took 1.15 seconds
+Available memory after request: 5185.43 MB
+127.0.0.1 - - [2026-11-11 13:46:25] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SA&format=false HTTP/1.1" 200 2651 1.153627
+Playing: D2 Calculated
+Request took 1.42 seconds
+Available memory after request: 5233.18 MB
+127.0.0.1 - - [2026-11-11 13:46:27] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3&format=false HTTP/1.1" 200 3979 1.436565
+Playing: HK Calculated
+Request took 1.88 seconds
+Available memory after request: 5187.69 MB
+127.0.0.1 - - [2026-11-11 13:46:28] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2&format=false HTTP/1.1" 200 3887 1.886668
+Playing: H3 Calculated
+Request took 1.86 seconds
+Available memory after request: 5231.82 MB
+127.0.0.1 - - [2026-11-11 13:46:30] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8&format=false HTTP/1.1" 200 2935 1.860914
+Playing: H9 Calculated
+Request took 2.33 seconds
+Available memory after request: 5218.88 MB
+127.0.0.1 - - [2026-11-11 13:46:33] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2&format=false HTTP/1.1" 200 3742 2.334543
+Playing: HA Calculated
+Request took 2.12 seconds
+Available memory after request: 5248.43 MB
+127.0.0.1 - - [2026-11-11 13:46:35] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HT&format=false HTTP/1.1" 200 2771 2.119535
+Playing: H4 Calculated
+Request took 2.10 seconds
+Available memory after request: 5187.80 MB
+127.0.0.1 - - [2026-11-11 13:46:37] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJ&format=false HTTP/1.1" 200 3540 2.108990
+Playing: D3 Calculated
+Request took 1.99 seconds
+Available memory after request: 5176.93 MB
+127.0.0.1 - - [2026-11-11 13:46:39] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6&format=false HTTP/1.1" 200 3520 1.994857
+Playing: CA Calculated
+Request took 0.92 seconds
+Available memory after request: 5166.26 MB
+127.0.0.1 - - [2026-11-11 13:46:40] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2&format=false HTTP/1.1" 200 2632 0.920959
+Playing: C5 Calculated
+Request took 0.82 seconds
+Available memory after request: 5135.45 MB
+127.0.0.1 - - [2026-11-11 13:46:41] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3&format=false HTTP/1.1" 200 2522 0.821072
+Playing: D8 Calculated
+Request took 1.06 seconds
+Available memory after request: 5109.38 MB
+127.0.0.1 - - [2026-11-11 13:46:42] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5&format=false HTTP/1.1" 200 3328 1.071702
+Playing: D4 Calculated
+Request took 0.51 seconds
+Available memory after request: 5105.39 MB
+127.0.0.1 - - [2026-11-11 13:46:42] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DA&format=false HTTP/1.1" 200 3141 0.517534
+Playing: D5 Calculated
+Request took 0.22 seconds
+Available memory after request: 5105.39 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJ&format=false HTTP/1.1" 200 3141 0.225612
+Playing: S6 Calculated
+Request took 0.14 seconds
+Available memory after request: 5121.36 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8&format=false HTTP/1.1" 200 2505 0.142569
+Playing: C8 Calculated
+Request took 0.14 seconds
+Available memory after request: 5121.39 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6&format=false HTTP/1.1" 200 3093 0.140509
+Playing: C9 Follow
+Request took 0.00 seconds
+Available memory after request: 5121.39 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJ&format=false HTTP/1.1" 200 232 0.001951
+Playing: D7 Calculated
+Request took 0.04 seconds
+Available memory after request: 5121.40 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJC9C4CKCTC7&format=false HTTP/1.1" 200 2779 0.043686
+Playing: DK Calculated
+Request took 0.04 seconds
+Available memory after request: 5121.40 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJC9C4CKCTC7D7&format=false HTTP/1.1" 200 2714 0.043940
+Playing: DQ Calculated
+Request took 0.03 seconds
+Available memory after request: 5121.41 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJC9C4CKCTC7D7DKS9DJS7&format=false HTTP/1.1" 200 1589 0.030477
+Playing: H5 Calculated
+Request took 0.03 seconds
+Available memory after request: 5121.41 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJC9C4CKCTC7D7DKS9DJS7DQS4&format=false HTTP/1.1" 200 1437 0.028307
+Playing: DT Calculated
+Request took 0.03 seconds
+Available memory after request: 5121.41 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJC9C4CKCTC7D7DKS9DJS7DQS4H5CQ&format=false HTTP/1.1" 200 956 0.030530
+Playing: H7 Calculated
+Request took 0.02 seconds
+Available memory after request: 5121.41 MB
+127.0.0.1 - - [2026-11-11 13:46:43] "GET /play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3C5D8DAD4C6SJD5S8S6C8CJC9C4CKCTC7D7DKS9DJS7DQS4H5CQDTS5&format=false HTTP/1.1" 200 801 0.025178
+Stop signal: no new connections, waiting for 0 request(s) in progress
+Stopped with 0 request(s) in progress
+

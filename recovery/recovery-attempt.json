@@ -330,5 +330,62 @@
       }
     ],
     "next_step": "Investigate BEN baseline selected-card variability before accepting a server lifecycle change. Do not mutate pinned BEN source or weaken exact-action gate silently."
+  },
+  "isolated_claim_rng_fullboard_20261111": {
+    "epoch": 1794433652.4265556,
+    "comparison": {
+      "status": "passed",
+      "manifest": "1bd71e5fd0f03fb834ed6cfc4a15502fdcf1e49594e1d9c70a372431ec4e3bd5",
+      "epoch": 1794433606.9213653,
+      "boards_per_lifecycle": 5,
+      "ben_replacements": 2,
+      "ben_index": 3062,
+      "self_indices": [
+        1930,
+        1931,
+        1932
+      ],
+      "production_commits": 0,
+      "fingerprints": [
+        "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+        "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+        "20e4d7cf1e178be62dcc3b2dd7c3da9fb4e612bb93cb96b1864da911a9ce2b72",
+        "6f457b028bedf9121dc38bad0220461287f95ee69dbb36f795eb5f53af0ba3e1",
+        "32eac2180122555e6f1a5c12cc3b20a1ec7126c6fc7197157d24a9e183c625a4"
+      ],
+      "ben_worker_pids": [
+        82,
+        98
+      ],
+      "ben_maxrss_kb": [
+        854808,
+        823176
+      ],
+      "scope": "Diagnostic isolated claim RNG applied to BOTH lifecycles, not equivalence to unchanged production BEN. Final claim RNG exact. Full runtime replay; root/tie-audit cards, probabilities, seeds, auctions, assignments and scores match; source/model/corpus hashes identical."
+    },
+    "failure_gate": {
+      "status": "passed",
+      "cases": [
+        {
+          "injected_sigkill": true,
+          "accepted": false,
+          "error": "BEN server exited unexpectedly: -9",
+          "private_claim_state_advanced": true,
+          "committed_checkpoint_changed": false
+        },
+        {
+          "injected_sigkill": false,
+          "accepted": true,
+          "error": null,
+          "private_claim_state_advanced": true,
+          "committed_checkpoint_changed": true
+        }
+      ],
+      "production_commits": 0,
+      "scope": "Real BEN HTTP request and actual candidate executor/server exit gate. Diagnostic single-file result+RNG checkpoint sketch only; production episode/receipt/RNG transaction and crash recovery are not implemented or validated."
+    },
+    "production_status": "stopped2015; failure003062 unchanged; candidate1bd STOP/not promoted",
+    "original_server_rng_recovered": false,
+    "next_step": "Broaden BEN families and design separately versioned atomic episode/receipt/RNG-state commit with crash-boundary tests. Diagnostic isolated protocol is not equivalence to unchanged production BEN or adoption authorization."
   }
 }
