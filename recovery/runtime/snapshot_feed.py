@@ -31,7 +31,9 @@ for receipt_path in sorted((run/'receipts').glob('*.json')):
 for folder,pattern in (('episodes','*.json.gz'),('receipts','*.json')):
     for old in (out/'recovery'/folder).glob(pattern):
         if old.name.split('.')[0] not in names:old.unlink()  # snapshot only; live records are untouched
-(out/'recovery/state.json').write_text(json.dumps(recovery_state(records,manifest)))
+snapshot_state=recovery_state(records,manifest)
+snapshot_state['failures']=len(list((out/'recovery/failures').glob('*.json')))
+(out/'recovery/state.json').write_text(json.dumps(snapshot_state))
 for folder in ('bridge_harness','ops','scripts','configs','native'):
     for p in (ROOT/folder).glob('*'):
         if p.is_file() and p.suffix in ('.py','.so','.json','.cpp','.conf'):
