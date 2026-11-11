@@ -48,6 +48,8 @@ class Gen6Config:
     early_source: str = 'scorer'        # after dummy, before the deal list: 'scorer' | 'gen5'
     leader_early_source: str = ''       # opening leader's seat in that phase: '' (= early_source) | 'lead_net'
     early_pick: str = 'spaced'          # layouts from the weighted classes: 'spaced' (evenly through the cumulative weight) | 'random'
+                                        # | 'strata' (one random member per cluster of a pool of draws) | 'centres' (each cluster's centre)
+    cluster_pool: int = 256             # independent draws that 'strata' and 'centres' cluster; only the picks are solved
     mid_from_trick: int = 3             # from this trick until the deal list starts, deal mid_samples layouts instead of spec['samples']
     mid_samples: int = 64               # solving is cheap by then and more layouts help most there; 14 above = never
     lead_pool: int = 32768              # uniform layouts weighted by the scorer when it has to make the opening lead
@@ -57,13 +59,14 @@ class Gen6Config:
 
     def __post_init__(self):
         if self.lead_source not in ('lead_net', 'scorer', 'gen5') or self.early_source not in ('scorer', 'gen5') \
-                or self.leader_early_source not in ('', 'lead_net') or self.early_pick not in ('spaced', 'random'):
+                or self.leader_early_source not in ('', 'lead_net') or self.early_pick not in ('spaced', 'random', 'strata', 'centres'):
             raise ValueError('Unknown Gen6 layout source')
-        for name in ('lead_pool', 'mid_from_trick', 'mid_samples', 'list_from_trick', 'list_max_layouts', 'list_solve'):
+        for name in ('lead_pool', 'cluster_pool', 'mid_from_trick', 'mid_samples', 'list_from_trick', 'list_max_layouts', 'list_solve'):
             if isinstance(getattr(self, name), bool) or not isinstance(getattr(self, name), int):
                 raise ValueError(f'Gen6 {name} must be an integer')
         if not (1 <= self.lead_pool <= 1 << 20 and 1 <= self.list_from_trick <= 14 and 1 <= self.mid_from_trick <= 14
-                and 1 <= self.mid_samples <= 4096 and 1 <= self.list_max_layouts <= 100000 and 0 <= self.list_solve <= 100000):
+                and 1 <= self.mid_samples <= 4096 and 1 <= self.cluster_pool <= 4096
+                and 1 <= self.list_max_layouts <= 100000 and 0 <= self.list_solve <= 100000):
             raise ValueError('Invalid Gen6 settings')
 
 
@@ -256,12 +259,51 @@ def systematic(weights, m, rng):
     return index, counts / m
 
 
-def _merge(worlds):
-    """Distinct layouts and the share of draws each received."""
-    counts = {}
-    for w in worlds:
-        counts[w] = counts.get(w, 0) + 1
-    return list(counts), np.array(list(counts.values())) / len(worlds)
+def _merge(worlds, weights=None):
+    """Distinct layouts and the weight each received (the share of draws when no weights are given)."""
+    total = {}
+    for i, w in enumerate(worlds):
+        total[w] = total.get(w, 0.) + (1. if weights is None else float(weights[i]))
+    values = np.array(list(total.values()))
+    return list(total), values / values.sum()
+
+
+CARD_WEIGHT = np.array([0.5] * 8 + [1.0, 1.5, 2.0, 3.0, 4.0])       # by rank: 2-9, T, J, Q, K, A
+
+
+def cluster_picks(pool, hand, unseen, trump, k, rng, centres):
+    """k-medoids over a pool of layouts described by one hidden hand (its cards weighted by rank,
+    its suit lengths, trumps counting more; L1 distance). Returns pool indices and cluster shares:
+    each cluster's centre, or one random member of it. The method of the layout-selection test
+    (analysis/auction_belief/select_layouts.py on the research branch: med_K and strat_K)."""
+    column = {int(c): i for i, c in enumerate(unseen)}
+    x = np.zeros((len(pool), len(unseen) + 4))
+    for r, world in enumerate(pool):
+        for c in world[hand]:
+            x[r, column[c]] = CARD_WEIGHT[c % 13]
+            x[r, len(unseen) + c // 13] += 3.0 if c // 13 == trump else 2.0
+    distance = np.abs(x[:, None, :] - x[None, :, :]).sum(axis=2)
+    medoids = [int(rng.integers(len(pool)))]
+    nearest = distance[medoids[0]].copy()
+    while len(medoids) < k and nearest.sum() > 0:
+        medoids.append(int(rng.choice(len(pool), p=nearest / nearest.sum())))
+        nearest = np.minimum(nearest, distance[medoids[-1]])
+    medoids = np.array(medoids)
+    for _ in range(20):
+        label = np.argmin(distance[:, medoids], axis=1)
+        moved = medoids.copy()
+        for j in range(len(medoids)):
+            members = np.flatnonzero(label == j)
+            if len(members):
+                moved[j] = members[np.argmin(distance[np.ix_(members, members)].sum(axis=1))]
+        if (moved == medoids).all():
+            break
+        medoids = moved
+    label = np.argmin(distance[:, medoids], axis=1)
+    size = np.bincount(label, minlength=len(medoids))
+    keep = size > 0
+    picks = medoids if centres else np.array([rng.choice(np.flatnonzero(label == j)) if size[j] else medoids[j] for j in range(len(medoids))])
+    return picks[keep], size[keep] / size.sum()
 
 
 def _effective(log_weights):
@@ -351,12 +393,15 @@ class Gen6Player(ArenaPlayer):
             n = c.mid_samples
         classes = Classes(view)
         logw = classes.logmult + self.type_log_weights(o, view, classes.length, classes.hon, source)
+        info = dict(classes=len(classes), effective=_effective(logw), draws=n, pick=c.early_pick)
         if c.early_pick == 'spaced':
-            picks = spaced(logw, n, rng.random())
-        else:
-            p = np.exp(logw - logw.max())
-            picks = rng.choice(len(p), n, p=p / p.sum())
-        return (*_merge(classes.worlds(picks, rng)), dict(classes=len(classes), effective=_effective(logw), draws=n, pick=c.early_pick))
+            return (*_merge(classes.worlds(spaced(logw, n, rng.random()), rng)), info)
+        p = np.exp(logw - logw.max())
+        if c.early_pick == 'random':
+            return (*_merge(classes.worlds(rng.choice(len(p), n, p=p / p.sum()), rng)), info)
+        pool = classes.worlds(rng.choice(len(p), c.cluster_pool, p=p / p.sum()), rng)
+        picks, share = cluster_picks(pool, view.hidden[0], view.unseen, o.contract.trump, n, rng, c.early_pick == 'centres')
+        return (*_merge([pool[i] for i in picks], share), dict(info, pool=len(pool), clusters=len(picks)))
 
     # ---- one decision --------------------------------------------------------------------
     def choose(self, o, rng):

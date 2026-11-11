@@ -186,7 +186,7 @@ class Gen6Tests(unittest.TestCase):
     def test_settings_are_validated(self):
         for bad in (dict(lead_source='bidder'), dict(early_source='lead_net'), dict(list_from_trick=0), dict(list_from_trick=15),
                     dict(lead_pool=0), dict(early_pick='best'), dict(list_solve=-1), dict(list_max_layouts=0), dict(list_solve=1.5),
-                    dict(mid_samples=0), dict(mid_from_trick=0)):
+                    dict(mid_samples=0), dict(mid_from_trick=0), dict(cluster_pool=0)):
             with self.assertRaises(ValueError):
                 Gen6Config(**bad)
         with self.assertRaises(TypeError):
@@ -288,12 +288,19 @@ class Gen6Tests(unittest.TestCase):
         board, game = position(13, 5)
         o = game.observation()
         v = View(o)
-        for pick in ('spaced', 'random'):
-            p = self.make(early_pick=pick)
+        for pick in ('spaced', 'random', 'strata', 'centres'):
+            p = self.make(early_pick=pick, cluster_pool=40)
             worlds, weights, info = p.layouts(o, v, 'scorer', np.random.default_rng(0))
             self.assertAlmostEqual(float(weights.sum()), 1.)
             self.assertLessEqual(len(worlds), 8)
+            self.assertEqual(len(set(worlds)), len(worlds))
             self.assertEqual(info['draws'], 8)
+            if pick in ('strata', 'centres'):
+                self.assertEqual((info['pool'], info['clusters'] <= 8), (40, True))
+                self.assertTrue(np.allclose(weights * 40, np.round(weights * 40)))      # cluster sizes out of the pool
+                d = p.choose(o, random.Random(2)).details
+                self.assertEqual((d['gen6']['pick'], d['gen6']['source']), (pick, 'scorer'))
+                self.assertLessEqual(d['selected_pimc_gap'], 1e-9)
             more = self.make(early_pick=pick, mid_from_trick=2, mid_samples=20)
             self.assertEqual(more.layouts(o, v, 'scorer', np.random.default_rng(0))[2]['draws'], 20)
             self.assertEqual(info['classes'], len(Classes(v)))

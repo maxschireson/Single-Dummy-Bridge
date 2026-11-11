@@ -3,7 +3,7 @@
 Uses ops/gen5_runtime.play (bidding by the frozen bidders, common and native auctions, swapped
 rooms, audit forks, replay and record validation). Nothing is written to the run.
 
-  python ops/smoke_gen6.py --run /path/to/prepared/run --out report.json [--deals 2]
+  python ops/smoke_gen6.py --run /path/to/prepared/run --out report.json [--deals 2] [--start 0]
 """
 import argparse
 import json
@@ -26,7 +26,7 @@ def pair_at(m, i):
     return block[i % len(block)]
 
 
-def smoke(run, out, deals=2):
+def smoke(run, out, deals=2, start=0):
     run = Path(run).resolve()
     m = json.loads((run / 'manifest.json').read_text())
     verify_generation(run, m)
@@ -38,7 +38,7 @@ def smoke(run, out, deals=2):
     report = dict(manifest=m['identity'], gen6_bots={k: dict(identity=m['bots'][k]['identity'], settings=m['bots'][k]['gen6'],
                   artifacts=m['bots'][k]['artifact_sha256']) for k in sorted(gen6)}, deals=[])
     phases = {}
-    chosen = [i for i in range(m['target']) if set(pair_members(pair_at(m, i))) & gen6 and 'ben' not in pair_members(pair_at(m, i))][:deals]
+    chosen = [i for i in range(start, m['target']) if set(pair_members(pair_at(m, i))) & gen6 and 'ben' not in pair_members(pair_at(m, i))][:deals]
     if not chosen:
         raise ValueError('No scheduled deal has a Gen6 bot')
     for index in chosen:
@@ -46,6 +46,7 @@ def smoke(run, out, deals=2):
         r = gen5_runtime.play(str(run), m, boards[index].to_dict(), index)      # run_board + validate + timing
         roles = dict(candidate=r['candidate'], opponent=r['opponent'])
         row = dict(index=index, pair=r['pair'], seconds=time.time() - started, tables=len(r['unique_tables']),
+                   native_auction_differs=[r['bidding'][f'native/{room}']['calls'] != r['bidding'][f'common/{room}']['calls'] for room in (0, 1)],
                    common_imps=r['regimes']['common']['imps'], native_imps=r['regimes']['native']['imps'], decisions=0, tie_breaks=0)
         for record in r['unique_tables'].values():
             for table in record['tables']:
@@ -90,5 +91,6 @@ if __name__ == '__main__':
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--deals', type=int, default=2)
+    p.add_argument('--start', type=int, default=0, help='first deal index to consider')
     a = p.parse_args()
-    print(json.dumps(smoke(a.run, a.out, a.deals)['phases'], indent=1))
+    print(json.dumps(smoke(a.run, a.out, a.deals, a.start)['phases'], indent=1))

@@ -78,7 +78,8 @@ writes every value into the bot spec, so the bot identity pins them.
 | `list_from_trick` | 6 | first trick decided from the deal list; 14 = never |
 | `list_solve` | 256 | most layouts solved from the list; 0 = the whole list |
 | `list_max_layouts` | 20000 | a longer list is not built; that decision uses the class method |
-| `early_pick` | `spaced` | `spaced` = evenly through the cumulative class weight; `random` = independent draws |
+| `early_pick` | `spaced` | `spaced` = evenly through the cumulative class weight; `random` = independent draws; `strata` = one random member per cluster of `cluster_pool` independent draws, weighted by cluster size; `centres` = each cluster's centre |
+| `cluster_pool` | 256 | draws clustered by `strata` and `centres`; only the picks are solved |
 | `lead_source` | `lead_net` | `lead_net`, `scorer` (weighted pool of `lead_pool` uniform layouts) or `gen5` |
 | `early_source` | `scorer` | `scorer` or `gen5`, for decisions after the lead and before the deal list |
 | `leader_early_source` | `` | `lead_net` = the opening leader's own tricks before the list use the lead net's probability of (declarer's hand, the actual dummy) as the class weight |
@@ -102,6 +103,8 @@ python ops/prepare_gen6.py --source /workspace/work/<current-run> --run /workspa
 # 3. Preflight through the real runtime path (bidding, both auction conditions, swapped rooms,
 #    audit forks, replay, record validation). Writes nothing into the run:
 python ops/smoke_gen6.py --run /workspace/work/gen6 --out reports/gen6-preflight.json --deals 4
+#    Each row reports native_auction_differs per room. If no deal has a native auction that
+#    differs from the common one, run more deals or use --start to reach one.
 # 4. Start as before:
 python ops/gen5_runtime.py --run /workspace/work/gen6 --workers 3
 ```
@@ -192,7 +195,12 @@ Trick 1 is the slow step: each seat's classes are listed and scored once there (
 later decisions of that seat reuse the scores. A deal (two rooms, both bots, audit forks at the
 mock run's reduced audit budget) took 4–16 s. That preflight passed its checks: every phase
 exercised, no Gen 6 card below the best, 73 policy tie-breaks, records replayed and validated by
-`ops/gen5_runtime.validate`.
+`ops/gen5_runtime.validate`. A second preflight on deals where the Gen 6 side's native auction
+differs from the common one (3 deals, 9 tables, 180 Gen 6 decisions) passed the same checks, and
+so did the first preflight repeated from a clean clone of the pushed branch.
+
+The cluster picks add about 0.02 s per decision in tricks 3–5 and nothing measurable at tricks
+1–2 (one board, two rooms).
 
 ## Code
 
