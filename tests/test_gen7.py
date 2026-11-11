@@ -346,6 +346,43 @@ class Gen7Tests(Fixture):
             Gen7Config(tie_break='coin')
 
 
+class TrainingDataTests(unittest.TestCase):
+    """How the trainer holds its data (scripts/train_gen7_policy.py)."""
+
+    def test_packed_tables_give_back_the_same_rows(self):
+        t = trainer()
+        rng = np.random.default_rng(0)
+        for dtype, lo, hi, width in ((bool, 0, 1, 52), (np.uint8, 0, 1, 152), (np.uint8, 0, 10, 52), (np.uint8, 0, 47, 52),
+                                     (np.int8, -1, 2, 52), (np.uint8, 3, 3, 5), (np.uint8, 0, 255, 3), (np.int8, -128, 127, 3)):
+            x = rng.integers(lo, hi + 1, (1000, width)).astype(dtype)
+            p = t.Packed(x, chunk=300)
+            self.assertEqual(len(p), 1000)
+            self.assertEqual(p.bits, max(1, (hi - lo).bit_length()))
+            for pick in (rng.permutation(1000)[:257], np.arange(1000), slice(10, 20), np.array([], np.int64)):
+                got = p[pick]
+                self.assertEqual(got.dtype, x.dtype)
+                self.assertTrue(np.array_equal(got, x[pick]))
+        calls = rng.integers(0, 2, (1000, 152)).astype(np.uint8)
+        self.assertEqual(t.Packed(calls).data.nbytes, 1000 * 19)
+
+    def test_stored_arrays_are_the_arrays_of_the_file(self):
+        t = trainer()
+        arrays = dict(x=np.arange(24, dtype=np.float16).reshape(6, 4), y=np.arange(-2, 3, dtype=np.int8), names=np.array(['a', 'bc']),
+                      empty=np.zeros((0, 3), np.int32), big=np.random.default_rng(0).standard_normal((300, 7)).astype(np.float32))
+        with tempfile.TemporaryDirectory() as d:
+            np.savez(Path(d) / 'plain.npz', **arrays)
+            np.savez_compressed(Path(d) / 'small.npz', **arrays)
+            for name in ('plain.npz', 'small.npz'):
+                z = t.stored_arrays(Path(d) / name)
+                for k, v in arrays.items():
+                    got = np.array(z[k])
+                    self.assertEqual(got.dtype, v.dtype)
+                    self.assertTrue(np.array_equal(got, v), (name, k))
+                mapped = isinstance(z['x'], np.memmap)
+                self.assertEqual(mapped, name == 'plain.npz')
+                del z, got
+
+
 class TreeTests(Fixture):
     """The tree search (bridge_harness/gen7_tree.py)."""
 

@@ -3,11 +3,11 @@
 
   python scripts/gen7_bench.py --episodes DIR --policy policy.npz [--tricks 1,2] [--breadth 2] [--mass 0.9]
                                [--layouts 8] [--from-trick 3] [--to-trick 13] [--pairs 2000] [--workers 2] [--out rows.json]
-                               [--policy2 other.npz] [--splits 1,2]
+                               [--policy2 other.npz] [--policy3 ...] [--policy4 ...] [--splits 1,2]
 
 --tricks lists the trees to score, ';' between them: a horizon in tricks, optionally ':' and tree
 settings that differ from the command line, e.g. "2;2:reply_power=2;2:breadth=1,reply_gap=0.2".
-"2:net=2" runs that tree on the net given by --policy2, on the same pairs. --splits keeps only
+"2:net=2" runs that tree on the net given by --policy2 (net=3, net=4: --policy3, --policy4), on the same pairs. --splits keeps only
 deals of those splits (0 train, 1 validation, 2 test): a net must be scored on deals it was not
 trained on. Files are read in a fixed order, so the same --pairs gives the same pairs.
 
@@ -101,13 +101,14 @@ def searching_reply(p, layouts=8, pool=64):
     return reply
 
 
-def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_trick=13, policy2=None, splits=None):
+def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_trick=13, policy2=None, splits=None, more=None):
     os.environ['BRIDGE_DDS_CACHE'] = ''                          # thousands of small batches: no disk cache
     STATE.update(player=Gen7Player(check.spec('gen7', policy, play_weight=0., tie_break='gen5'), ROOT), replier=None, splits=splits,
                  tricks=tricks, breadth=breadth, mass=mass, layouts=layouts, from_trick=from_trick, to_trick=to_trick, ties=ties)
     STATE['nets'] = {1: STATE['player'].net}
-    if policy2:
-        STATE['nets'][2] = PolicyNet(Path(policy2).resolve(), STATE['player'].scorer)
+    for k, path in {2: policy2, **(more or {})}.items():
+        if path:
+            STATE['nets'][k] = PolicyNet(Path(path).resolve(), STATE['player'].scorer)
     STATE['replier'] = searching_reply(STATE['player'])
 
 
@@ -162,8 +163,9 @@ def pairs_of(path):
             row = dict(family=d['family'], table=key, opponent=d['opponent'], player=root['actions'][ply].get('player'),
                        phase=phase(ply), ply=ply, band=band, estimated=estimated, propensity=propensity, imps=cost_imps,
                        final=sign * (root['declarer_tricks'] - fork['declarer_tricks']), **net_order(p.net, o, root['actions'][ply], a, b))
-            if 2 in STATE['nets']:
-                row.update({f'{x}_net2': v for x, v in net_order(STATE['nets'][2], o, root['actions'][ply], a, b).items()})
+            for k in sorted(STATE['nets']):
+                if k != 1:
+                    row.update({f'{x}_net{k}': v for x, v in net_order(STATE['nets'][k], o, root['actions'][ply], a, b).items()})
             view = View(o)
             rng = np.random.default_rng([ply, int(d['family'][:8], 16)])
             started = time.perf_counter()
@@ -214,7 +216,7 @@ def per_side(rows, tricks, tables, root_cards, root_mass):
         return round(float(t.sum() / tables), 3), round(float(math.sqrt(len(t) / max(1, len(t) - 1) * ((t - t.mean()) ** 2).sum()) / tables), 3)
 
     out = dict(sides=tables, pairs=len(rows), other_cards=total(np.ones(len(rows)))[0], candidates=total(candidate.astype(float))[0])
-    names = {'pimc': '', 'pimc_k': '', **{f'tree_{label(n, extra)}': '_net2' if extra.get('net') == 2 else '' for n, extra in tricks}}
+    names = {'pimc': '', 'pimc_k': '', **{f'tree_{label(n, extra)}': f"_net{extra['net']}" if extra.get('net', 1) != 1 else '' for n, extra in tricks}}
     for name, sfx in names.items():
         prefers = np.array([r[name] < -1e-9 for r in rows])
         for tag, keep in (('any_card', prefers), ('root_candidates', prefers & of_net(sfx))):
@@ -272,6 +274,8 @@ def main():
     p.add_argument('--from-trick', type=int, default=3)
     p.add_argument('--to-trick', type=int, default=13)
     p.add_argument('--policy2', type=Path, help='a second net, for trees marked net=2')
+    p.add_argument('--policy3', type=Path, help='a third net, for trees marked net=3')
+    p.add_argument('--policy4', type=Path, help='a fourth net, for trees marked net=4')
     p.add_argument('--splits', help='keep only deals of these splits, e.g. 1,2 (0 train, 1 validation, 2 test)')
     p.add_argument('--root-cards', type=int, default=3, help='per_side: the most root candidates taken from the net')
     p.add_argument('--root-mass', type=float, default=.98, help='per_side: root candidates are kept until their probabilities add to this')
@@ -292,7 +296,8 @@ def main():
         rows, tables, started = [], 0, time.time()
         splits = None if a.splits is None else tuple(int(x) for x in a.splits.split(','))
         with Pool(a.workers, initializer=start,
-                  initargs=(a.policy, tricks, a.breadth, a.mass, a.layouts, a.from_trick, a.ties, a.to_trick, a.policy2, splits)) as pool:
+                  initargs=(a.policy, tricks, a.breadth, a.mass, a.layouts, a.from_trick, a.ties, a.to_trick, a.policy2, splits,
+                            {3: a.policy3, 4: a.policy4})) as pool:
             for got, seen in pool.imap(pairs_of, files, chunksize=4):
                 rows += got
                 tables += len(seen)
@@ -301,7 +306,7 @@ def main():
                     break
         if a.out:
             a.out.write_text(json.dumps(dict(settings=dict(tricks=tricks, breadth=a.breadth, mass=a.mass, layouts=a.layouts, from_trick=a.from_trick,
-                                                           to_trick=a.to_trick, tables=tables, policy=str(a.policy), policy2=str(a.policy2), splits=a.splits,
+                                                           to_trick=a.to_trick, tables=tables, policy=str(a.policy), policy2=str(a.policy2), policy3=str(a.policy3), policy4=str(a.policy4), splits=a.splits,
                                                            seconds=round(time.time() - started)),
                                              rows=rows)))
     result = dict(all=summarize(rows, tricks), per_side=per_side(rows, tricks, tables, a.root_cards, a.root_mass) if 'rank_b' in rows[0] else {},

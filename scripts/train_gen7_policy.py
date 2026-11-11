@@ -23,6 +23,7 @@ import json
 from pathlib import Path
 import sys
 import time
+import zipfile
 
 import numpy as np
 
@@ -34,6 +35,62 @@ KINDS = {'mlp': 0, 'suit': 1}
 PHASES = ('lead', 'tricks 1-4', 'tricks 5-8', 'tricks 9-13')
 PERMS = np.array(list(permutations(range(4))), np.int64)        # PERMS[0] is the identity
 CARD_KEYS = ('state', 'order', 'legal', 'gap', 'owner')
+PACKED = ('state', 'order', 'legal', 'auction', 'owner')        # small whole numbers: held in memory at a few bits each
+
+
+def stored_arrays(path):
+    """The arrays of a data file. An uncompressed .npz gives read-only memory maps, so nothing is
+    read until it is used and no array is ever in memory twice; a compressed one is read the usual way."""
+    with zipfile.ZipFile(path) as z:
+        members = z.infolist()
+    if any(m.compress_type != zipfile.ZIP_STORED for m in members):
+        return np.load(path)
+    out = {}
+    with open(path, 'rb') as raw:
+        for m in members:
+            raw.seek(m.header_offset)
+            head = raw.read(30)
+            if head[:4] != b'PK\x03\x04':
+                raise ValueError(f'{path}: bad entry {m.filename}')
+            raw.seek(m.header_offset + 30 + int.from_bytes(head[26:28], 'little') + int.from_bytes(head[28:30], 'little'))
+            version = np.lib.format.read_magic(raw)
+            read = np.lib.format.read_array_header_1_0 if version == (1, 0) else np.lib.format.read_array_header_2_0
+            shape, fortran, dtype = read(raw)
+            if fortran or dtype.hasobject:
+                raise ValueError(f'{path}: cannot map {m.filename}')
+            name = m.filename[:-4] if m.filename.endswith('.npy') else m.filename
+            out[name] = np.memmap(path, dtype, 'r', raw.tell(), shape) if int(np.prod(shape)) else np.zeros(shape, dtype)
+    return out
+
+
+class Packed:
+    """A table of small whole numbers held at the fewest bits that carry them. Indexing with rows
+    gives those rows back exactly as they were, in the dtype they came in."""
+
+    def __init__(self, x, chunk=200_000):
+        self.shape, self.dtype = x.shape, x.dtype
+        lo, hi = 0, 0
+        for i in range(0, len(x), chunk):
+            c = np.asarray(x[i:i + chunk])
+            lo, hi = (int(c.min()), int(c.max())) if i == 0 else (min(lo, int(c.min())), max(hi, int(c.max())))
+        self.lo, self.bits = lo, max(1, (hi - lo).bit_length())
+        if self.bits > 8:
+            raise ValueError('values span more than 8 bits')
+        self.weights = (1 << np.arange(self.bits - 1, -1, -1)).astype(np.uint8)
+        self.data = np.empty((len(x), (x.shape[1] * self.bits + 7) // 8), np.uint8)
+        for i in range(0, len(x), chunk):
+            c = (np.asarray(x[i:i + chunk]).astype(np.int16) - lo).astype(np.uint8)
+            planes = np.unpackbits(c[:, :, None], axis=2)[:, :, 8 - self.bits:]
+            self.data[i:i + chunk] = np.packbits(planes.reshape(len(c), -1), axis=1)
+
+    def __len__(self):
+        return self.shape[0]
+
+    def __getitem__(self, rows):
+        p = self.data[rows]
+        planes = np.unpackbits(p, axis=1, count=self.shape[1] * self.bits).reshape(len(p), self.shape[1], self.bits)
+        values = planes[:, :, 0] if self.bits == 1 else planes @ self.weights
+        return (values.astype(np.int16) + self.lo).astype(self.dtype)
 
 
 def relabel(b, perm, auction='permute'):
@@ -150,10 +207,13 @@ def main():
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     kind = KINDS[a.kind]
-    z = np.load(a.data)
-    data = {k: z[k] for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal')}
-    bank = {k: z[k] for k in BANK_KEYS}
-    split = z['deal_split']
+    z = stored_arrays(a.data)
+    data = {k: Packed(z[k]) if k in PACKED else np.array(z[k]) for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal')}
+    bank = {k: np.array(z[k]) for k in BANK_KEYS}
+    split = np.array(z['deal_split'])
+    del z
+    print(f"data in memory {sum(v.data.nbytes if isinstance(v, Packed) else v.nbytes for v in data.values()) / 2**30:.2f} GB, "
+          f"{len(data['deal'])} examples", file=sys.stderr, flush=True)
     train_deals = np.flatnonzero(split == 0)
     keep = train_deals[:max(1, int(round(len(train_deals) * a.fraction)))]         # deal order is arbitrary but fixed
     kinds = [int(k) for k in a.kinds.split(',')]
@@ -214,6 +274,8 @@ def main():
             params, state, loss, parts = step(params, state, batch_of(order[i:i + a.batch]))
             total += np.array([float(x) for x in parts])
             count += 1
+            if count % 2000 == 0:
+                print(f"epoch {epoch + 1} step {count} of {len(order) // a.batch}, {round(time.time() - started)} s", file=sys.stderr, flush=True)
         v = evaluate(lambda b: predict(params, b), data, val)
         row = dict(epoch=epoch + 1, seconds=round(time.time() - started), train_ce=round(total[0] / count, 4),
                    train_gap=round(total[1] / count, 4), train_owner=round(total[2] / count, 4), val=v['all'])
