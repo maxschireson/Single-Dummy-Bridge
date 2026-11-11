@@ -21,7 +21,7 @@
  ];
  let latestSource=sources.find(s=>!s.retired);const latestScope=latestSource.group==='gen6'?'gen6':latestSource.key;
  function resolveSelection(search){const params=new URLSearchParams(search),requested=params.get('source'),scope=requested==='latest'?latestScope:requested,valid=['all','chatgpt','codex',...sources.map(s=>s.key)].includes(scope),older=params.get('older')==='1'&&valid;return {selected:older?scope:latestScope,older};}
- const labels={'6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','ben32':'BEN (32)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben','ben32'];
+ const labels={'6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','ben32':'BEN (32)','ben64':'BEN (64)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben','ben32','ben64'];
  const names={latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
