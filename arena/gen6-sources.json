@@ -205,8 +205,8 @@
       "source_commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5"
     },
     "gen6chatgpt": {
-      "status": "collecting; both BEN matchups completed and replay validated",
-      "updated_epoch": 1794377390.061,
+      "status": "collecting; recovered abrupt worker-process exit, failed board replay verified",
+      "updated_epoch": 1794381554.193,
       "ben_samples": 64,
       "gap_fork": {
         "per_band": 2,
@@ -222,9 +222,9 @@
       ],
       "retired_records": 188,
       "hidden_ben32_records": 9,
-      "full_checkpoint": "9514dd3865d5067fee29383de4296e32120f1414",
-      "full_checkpoint_files_verified": 3649,
-      "full_checkpoint_current_records": 19,
+      "full_checkpoint": "6d8bc6938e1f062c0bfa94702db984c4e3fbfc8b",
+      "full_checkpoint_files_verified": 4449,
+      "full_checkpoint_current_records": 407,
       "capture_equivalence": {
         "status": "passed",
         "deals": 3,
@@ -238,7 +238,20 @@
         "local_fix": "Select ben_audit when with_ben is true (engine=='ben' included). Preserve serial BEN pool for aliases.",
         "validation": "Current ChatGPT medium/BEN64 and fast/BEN16 actual records replay-valid, configured budgets64/16, zero audits and zero gap forks.",
         "ownership": "Primary producer owner should inspect and address via its own drained/versioned transition; no other collector/feed changed."
-      }
+      },
+      "recovery": {
+        "preserved_completed": 390,
+        "failed_index": 436,
+        "retried_index": 436,
+        "replay": "passed",
+        "root_cause": "unconfirmed",
+        "runtime_changed": false
+      },
+      "publisher_repairs": [
+        "Await snapshot process completion before inventory reads",
+        "Bounded retry of stale branch-head reads",
+        "Freeze and SHA-verify episode/receipt pairs; derive recovery state from copied records"
+      ]
     }
   }
 }
