@@ -1,0 +1,37 @@
+{
+  "checked_utc": "2026-11-11T09:20:15.472Z",
+  "observations": [
+    {
+      "key": "gen6chatgpt",
+      "branch": "arena-gen6-chatgpt-feed",
+      "completed": 243,
+      "published_epoch": 1794388435.8047867,
+      "heartbeat_epoch": 1794385725.0302954,
+      "reported_running": false
+    },
+    {
+      "key": "gen6cloudselfplay",
+      "branch": "arena-gen6-fast-selfplay-cloud-feed",
+      "completed": 158,
+      "published_epoch": 1794385875.0305316,
+      "heartbeat_epoch": 1794385870.799055,
+      "reported_running": true
+    },
+    {
+      "key": "gen6extraselfplay",
+      "branch": "arena-gen6-extra-selfplay-feed",
+      "completed": 68,
+      "published_epoch": 1794385812.4470816,
+      "heartbeat_epoch": 1794385811.2475457,
+      "reported_running": true
+    }
+  ],
+  "diagnosis": "Two remote self-play publications have not advanced since about 08:30 UTC. The ChatGPT producer republished the same 243 deals but its collector heartbeat remains at 08:28:45 UTC. A current publisher timestamp does not prove collection is running.",
+  "ownership": "Only the primary collector host is attached here. Other producer hosts require owner-side process/lock inspection and recovery; they were not taken over.",
+  "actions": [
+    "Primary adopted authoritative 37/3 fast self-play/BEN16 plan in a new immutable cohort",
+    "Collector and publisher remain independently supervised; Git operations time out and retry",
+    "Dashboard shows per-collector heartbeat/publication ages and explicit overdue states",
+    "Pinned retired feeds are displayed as archives and cached, preserving exact replay snapshots"
+  ]
+}
