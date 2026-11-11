@@ -24,6 +24,10 @@ from bridge_harness.loop_registry import sha
 from bridge_harness.training import digest
 
 BIDDERS={}
+def ben_pair(m,pair):
+    from bridge_harness.arena_pairs import pair_members
+    return any(k=='ben' or m['bots'][k].get('engine')=='ben' for k in pair_members(pair))
+
 def initialize_worker(root):
     import tensorflow as tf
     tf.config.threading.set_intra_op_parallelism_threads(1);tf.config.threading.set_inter_op_parallelism_threads(1)
@@ -106,8 +110,8 @@ def run(root,workers):
         from bridge_harness.fork_audit import stream
         def pair_at(i):
             block=m['pair_schedule'].copy();stream(m['seed'],'pair-block',i//len(block)).shuffle(block);return block[i%len(block)]
-        fast=iter(i for i in range(m['target']) if i not in done and 'ben' not in pair_at(i))
-        slow=iter(i for i in range(m['target']) if i not in done and 'ben' in pair_at(i))
+        fast=iter(i for i in range(m['target']) if i not in done and not ben_pair(m,pair_at(i)))
+        slow=iter(i for i in range(m['target']) if i not in done and ben_pair(m,pair_at(i)))
         os.environ['BRIDGE_DDS_CACHE']=str(root/'dds-cache.sqlite')
         pending={};started=time.time()
         with ProcessPoolExecutor(max_workers=workers,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as normal,ProcessPoolExecutor(max_workers=1,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as ben:

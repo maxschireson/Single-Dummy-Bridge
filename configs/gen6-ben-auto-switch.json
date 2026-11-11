@@ -1,0 +1,19 @@
+{
+  "control": "/workspace/work/gen6-auto-control",
+  "source": "/workspace/work/gen6-medium-ben",
+  "source_checkout": "/workspace/Single-Dummy-Bridge",
+  "source_publication": "/workspace/work/gen6-medium-ben-publication",
+  "target": "/workspace/work/gen6-ben-expansion",
+  "publication": "/workspace/work/gen6-ben-expansion-publication",
+  "branch": "arena-gen6-ben-expansion-feed",
+  "profile32": "/workspace/Single-Dummy-Bridge-gen6-auto/configs/ben-gen6-32.conf",
+  "python": "/workspace/work/gen6-venv/bin/python",
+  "ben_dir": "/workspace/work/gen6-ben",
+  "condition": "total",
+  "confidence": 0.95,
+  "allocation": {
+    "6-256~ben32": 0.075,
+    "6-32~ben": 0.075
+  },
+  "scope": "This collector switches using pooled and family-deduplicated dashboard evidence"
+}
