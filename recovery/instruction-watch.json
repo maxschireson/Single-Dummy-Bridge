@@ -1,15 +1,1 @@
-{
-  "checked_epoch": 1794425252.447298,
-  "main_revision": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-  "reviewed": [
-    "AGENTS.md",
-    "README.md",
-    "docs/current-system.md",
-    "docs/operations.md",
-    "configs/gen6-active-mix.json",
-    "configs/round6-fast-selfplay.json",
-    "open issues",
-    "PR13 and comments"
-  ],
-  "result": "No new instruction changes applied; new stream follows direct Gen6 fast self-play request."
-}
+{"schema":"collection-instruction-watch-v1","main_revision":"b0909bb90a2dc60b79cdb69b7481e34c35b405dd","reviewed_file_blobs":{"AGENTS.md":"0b79f4c67b58c8decbedb709e82c6b6f2bd3ade1","README.md":"ccf71e4ddba4a7ddfa0be2529d85bda39973ce11","docs/current-system.md":"b6a26a098a54e9b530421f1f391e06076314532d","docs/operations.md":"6e588011222932976931076a784d2df574803b1e","configs/gen6-active-mix.json":"433066756b8764d7dfe4df2754058d7c3e985649","configs/round6-fast-selfplay.json":"8a0e0d2e95ce93764c38b9ee433073d3f550f59f"},"arena_registry_blob":"26e17538bde2b3bea5e1816833fee4167fdd6a09","issue_and_pr_query":"repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-11T19:27:32Z","issue_and_pr_results":0,"pr13_comments":0,"handled_instructions":[],"result":"No applicable instruction changed. Main and adopted plans are unchanged. Continue this user's newer, separately identified 100% Gen6 fast self-play stream. Registry updates belonging to other producers do not change this stream's ownership or authorize adopting their diagnostic candidates.","action":"continued_current_frozen_run","validation":{"manifest":"19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936","source_and_artifacts_verified":true,"sampled_episode":849,"sampled_receipt_sha256":"6c599d554cba943672d402e4eb484eae73d86534dc66e5af5623d78d94450d5c","replay":"passed","state":{"manifest_identity":"19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936","completed":849,"target":25000,"contiguous":848,"by_pair":{"6-32~6-32":849},"root_games":849,"tables":20659,"failures":0,"epoch":1794430088.951845,"complete":false},"heartbeat":{"epoch":1794430088.8618207,"completed":848,"in_flight":[848,849,850],"workers":4,"ben_workers":1,"started_epoch":1794428894.8500822,"stopping":false},"publisher":{"epoch":1794430055.6750226,"status":"published","completed":842}},"notification":"suppressed_no_material_change","previous_checked_epoch":1794425252.447298,"checked_epoch":1794430120.304261}
