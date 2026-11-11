@@ -1,0 +1,14 @@
+{
+  "schema": "public-bidding-system-registry-v1",
+  "context_schema": "public-bidding-system-context-v1",
+  "systems": {
+    "unknown": {"id": 0, "display_name": "Unspecified bidding system"},
+    "gen5-ben": {"id": 1, "display_name": "Gen5 BEN-derived bidding", "notes": []},
+    "gen6": {"id": 2, "display_name": "Gen6 bidding system", "status": "awaiting_verified_Claude_spot_card_bidder", "notes": [], "source_commit": null}
+  },
+  "verified_generator_sha256": {
+    "gen5-ben": ["9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc"],
+    "gen6": []
+  },
+  "notes_contract": "Version public system descriptions/conventions with source references. Free-text notes are descriptive until explicitly encoded and trained; adding a note alone does not alter model inference. Keep hidden generator/model hashes separate from public declarations."
+}
