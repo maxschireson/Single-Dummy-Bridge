@@ -253,5 +253,15 @@
         "Freeze and SHA-verify episode/receipt pairs; derive recovery state from copied records"
       ]
     }
+  },
+  "requested_match_mix": {
+    "authority": "Max, 2026-11-11: stop all old bots and all Gen6 medium; only fast self-play and a little fast versus BEN16",
+    "plan": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/main/configs/round6-fast-selfplay.json",
+    "pair_weights": {
+      "6-32~6-32": 37,
+      "6-32~ben": 3
+    },
+    "instruction": "All producer owners: stop allocating old-bot and ALL medium matches now; drain, preserve historical results, prepare new fast-only cohort. Retain Gen7 capture. Do not resume previous schedules.",
+    "status": "authorized; ChatGPT draining, other owners must apply"
   }
 }
