@@ -133,5 +133,202 @@
     },
     "production_restart": false,
     "next_step": "Prepare safe versioned BEN server lifecycle with direct exitcode telemetry and equivalence preflight; do not blindly restart or clear3062."
+  },
+  "server_lifecycle_candidate_20261111": {
+    "status": "not_promoted_equivalence_failed",
+    "epoch": 1794422910.064065,
+    "candidate_manifest": "1bd71e5fd0f03fb834ed6cfc4a15502fdcf1e49594e1d9c70a372431ec4e3bd5",
+    "lifecycle_tests_passed": 6,
+    "production_commits": 0,
+    "baseline_plays": 6,
+    "candidate_plays": 6,
+    "matches": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "baseline_ben_fingerprints": [
+      "0c5805cfbcd3a7442bbe613aa08b4f0957a8d64668aa29b9f5b960e27ee04121",
+      "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+      "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d"
+    ],
+    "candidate_ben_fingerprints": [
+      "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+      "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+      "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d"
+    ],
+    "baseline_variation": {
+      "player": "BEN",
+      "table": "table-3",
+      "plies": [
+        19,
+        28
+      ],
+      "first_cards": [
+        "C8",
+        "C5"
+      ],
+      "later_cards": [
+        "C5",
+        "C8"
+      ],
+      "score_changed": false
+    },
+    "server_exits": [
+      {
+        "epoch": 1794422888.2898235,
+        "event": "server-exit",
+        "parent_pid": 59,
+        "pid": 113,
+        "exitcode": 0,
+        "unexpected_exitcode": null,
+        "intentional_stop": true,
+        "resources": {
+          "MemTotal_kb": 10206472,
+          "MemFree_kb": 5374276,
+          "MemAvailable_kb": 6489660,
+          "Cached_kb": 2466308,
+          "SwapTotal_kb": 0,
+          "SwapFree_kb": 0,
+          "allocstall_dma": 0,
+          "allocstall_dma32": 0,
+          "allocstall_normal": 0,
+          "allocstall_movable": 156,
+          "allocstall_device": 0,
+          "pgmajfault": 54500,
+          "oom_kill": 28,
+          "cgroup_metrics_available": false
+        }
+      },
+      {
+        "epoch": 1794422716.597164,
+        "event": "server-exit",
+        "parent_pid": 59,
+        "pid": 66,
+        "exitcode": 0,
+        "unexpected_exitcode": null,
+        "intentional_stop": true,
+        "resources": {
+          "MemTotal_kb": 10206472,
+          "MemFree_kb": 3996568,
+          "MemAvailable_kb": 4838472,
+          "Cached_kb": 2193192,
+          "SwapTotal_kb": 0,
+          "SwapFree_kb": 0,
+          "allocstall_dma": 0,
+          "allocstall_dma32": 0,
+          "allocstall_normal": 0,
+          "allocstall_movable": 156,
+          "allocstall_device": 0,
+          "pgmajfault": 54387,
+          "oom_kill": 28,
+          "cgroup_metrics_available": false
+        }
+      },
+      {
+        "epoch": 1794422801.2773018,
+        "event": "server-exit",
+        "parent_pid": 59,
+        "pid": 113,
+        "exitcode": 0,
+        "unexpected_exitcode": null,
+        "intentional_stop": true,
+        "resources": {
+          "MemTotal_kb": 10206472,
+          "MemFree_kb": 3045764,
+          "MemAvailable_kb": 4193336,
+          "Cached_kb": 2628408,
+          "SwapTotal_kb": 0,
+          "SwapFree_kb": 0,
+          "allocstall_dma": 0,
+          "allocstall_dma32": 0,
+          "allocstall_normal": 0,
+          "allocstall_movable": 156,
+          "allocstall_device": 0,
+          "pgmajfault": 54397,
+          "oom_kill": 28,
+          "cgroup_metrics_available": false
+        }
+      },
+      {
+        "epoch": 1794422714.4955037,
+        "event": "server-exit",
+        "parent_pid": 59,
+        "pid": 97,
+        "exitcode": 0,
+        "unexpected_exitcode": null,
+        "intentional_stop": true,
+        "resources": {
+          "MemTotal_kb": 10206472,
+          "MemFree_kb": 3022444,
+          "MemAvailable_kb": 3858736,
+          "Cached_kb": 2317864,
+          "SwapTotal_kb": 0,
+          "SwapFree_kb": 0,
+          "allocstall_dma": 0,
+          "allocstall_dma32": 0,
+          "allocstall_normal": 0,
+          "allocstall_movable": 156,
+          "allocstall_device": 0,
+          "pgmajfault": 54377,
+          "oom_kill": 28,
+          "cgroup_metrics_available": false
+        }
+      },
+      {
+        "epoch": 1794422803.0251715,
+        "event": "server-exit",
+        "parent_pid": 59,
+        "pid": 97,
+        "exitcode": 0,
+        "unexpected_exitcode": null,
+        "intentional_stop": true,
+        "resources": {
+          "MemTotal_kb": 10206472,
+          "MemFree_kb": 5209908,
+          "MemAvailable_kb": 6358120,
+          "Cached_kb": 2498800,
+          "SwapTotal_kb": 0,
+          "SwapFree_kb": 0,
+          "allocstall_dma": 0,
+          "allocstall_dma32": 0,
+          "allocstall_normal": 0,
+          "allocstall_movable": 156,
+          "allocstall_device": 0,
+          "pgmajfault": 54397,
+          "oom_kill": 28,
+          "cgroup_metrics_available": false
+        }
+      },
+      {
+        "epoch": 1794422628.276664,
+        "event": "server-exit",
+        "parent_pid": 59,
+        "pid": 66,
+        "exitcode": 0,
+        "unexpected_exitcode": null,
+        "intentional_stop": true,
+        "resources": {
+          "MemTotal_kb": 10206472,
+          "MemFree_kb": 5839840,
+          "MemAvailable_kb": 6282276,
+          "Cached_kb": 1796536,
+          "SwapTotal_kb": 0,
+          "SwapFree_kb": 0,
+          "allocstall_dma": 0,
+          "allocstall_dma32": 0,
+          "allocstall_normal": 0,
+          "allocstall_movable": 156,
+          "allocstall_device": 0,
+          "pgmajfault": 54073,
+          "oom_kill": 28,
+          "cgroup_metrics_available": false
+        }
+      }
+    ],
+    "next_step": "Investigate BEN baseline selected-card variability before accepting a server lifecycle change. Do not mutate pinned BEN source or weaken exact-action gate silently."
   }
 }

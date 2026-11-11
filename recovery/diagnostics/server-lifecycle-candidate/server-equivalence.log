@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/diagnostics/server_equivalence.py", line 45, in <module>
+    else:collect()
+         ^^^^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/diagnostics/server_equivalence.py", line 13, in collect
+    m=json.loads((RUN/'manifest.json').read_text());verify_generation(RUN,m);boards=load(RUN/m['corpus']);os.environ['BRIDGE_DDS_CACHE']=str(OUT/(MODE+'-server-cache.sqlite'))
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-fast-selfplay/bridge_harness/mixed_arena.py", line 124, in verify_generation
+    if sha(Path(__file__).resolve().parents[1]/file) != expected: raise ValueError('Pinned arena runtime changed')
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Pinned arena runtime changed
+Traceback (most recent call last):
+  File "/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/diagnostics/server_equivalence.py", line 44, in <module>
+    if MODE=='orchestrate':main()
+                           ^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/diagnostics/server_equivalence.py", line 36, in main
+    subprocess.run([sys.executable,__file__,'baseline'],cwd=NEW,check=True)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/.venv/bin/python', '/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111/diagnostics/server_equivalence.py', 'baseline']' returned non-zero exit status 1.

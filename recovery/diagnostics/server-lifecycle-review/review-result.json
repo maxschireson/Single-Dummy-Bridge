@@ -1,0 +1,44 @@
+{
+  "status": "qualified-not-exact-pass",
+  "epoch": 1794422854.5177703,
+  "candidate_manifest": "1bd71e5fd0f03fb834ed6cfc4a15502fdcf1e49594e1d9c70a372431ec4e3bd5",
+  "production_commits": 0,
+  "production_launched": false,
+  "plays_per_mode": 6,
+  "ben_index": 3062,
+  "self_indices": [
+    1930,
+    1931,
+    1932
+  ],
+  "baseline_fingerprints": [
+    "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+    "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+    "0c5805cfbcd3a7442bbe613aa08b4f0957a8d64668aa29b9f5b960e27ee04121",
+    "20e4d7cf1e178be62dcc3b2dd7c3da9fb4e612bb93cb96b1864da911a9ce2b72",
+    "6f457b028bedf9121dc38bad0220461287f95ee69dbb36f795eb5f53af0ba3e1",
+    "32eac2180122555e6f1a5c12cc3b20a1ec7126c6fc7197157d24a9e183c625a4"
+  ],
+  "candidate_fingerprints": [
+    "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+    "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+    "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+    "20e4d7cf1e178be62dcc3b2dd7c3da9fb4e612bb93cb96b1864da911a9ce2b72",
+    "6f457b028bedf9121dc38bad0220461287f95ee69dbb36f795eb5f53af0ba3e1",
+    "32eac2180122555e6f1a5c12cc3b20a1ec7126c6fc7197157d24a9e183c625a4"
+  ],
+  "finding": "All three candidate BEN fingerprints match baseline runs 1 and 2. Baseline run 3 alone swapped C8 and C5 at table-3 root plies 19 and 28 (BEN South); all scores, auctions, seeds and other captured fields identical. All three self-play fingerprints match. Thus baseline itself varies; do not label all six exact-equivalence passed.",
+  "tests": {
+    "server_lifecycle": "3 cases passed: intentional stop, SIGKILL, startup exit7",
+    "existing_executor": "3 unittest tests passed including exceptions, exit7, SIGKILL, large transfers and serialization",
+    "server_result_gate": "unexpected server exits 0,7,-9 reject otherwise successful worker result; intentional shutdown accepts"
+  },
+  "verified_pairs": 2015,
+  "retained_identities": {
+    "075a": 656,
+    "65a": 1359
+  },
+  "frozen_verified": true,
+  "original_failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+  "ownership_note": "Separate preparation is active in this candidate checkout. This independent review will not alter STOP, launch production, or overlap its publisher. Review the baseline nondeterminism before claiming exact equivalence."
+}
