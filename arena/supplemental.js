@@ -1,6 +1,7 @@
 /* Main and component runs share reporting; collectors retain their own manifests. */
-(()=>{'use strict';
+(async()=>{'use strict';
  const R=ArenaReporting,inputs=new Map(),errors=new Map(),currentName=R.latestSource.name.split(' · ')[0];let busy=false,lastChecked=null;
+ window.arenaSupplementSelected=true;try{await R.loadRegistry();}catch{}
  let {selected,older}=R.resolveSelection(location.search);
  function rememberSelection(){const u=new URL(location.href);u.searchParams.set('source',older?selected:'latest');if(older)u.searchParams.set('older','1');else u.searchParams.delete('older');history.replaceState(null,'',u);}
  rememberSelection();
@@ -8,6 +9,7 @@
  const section=document.createElement('section');section.id='arena-sources';
  section.innerHTML='<h2 id="collection-title">Gen 6 collection</h2><p id="source-totals" aria-live="polite">Loading Gen 6 results…</p><table><thead><tr><th>Environment</th><th>Paired boards</th><th>Collected observations</th><th>Recent observations/hour</th></tr></thead><tbody id="source-rows"></tbody></table><p><button id="older" type="button" aria-expanded="false">Older</button> <label id="older-reports" hidden>Report <select id="arena-source"><option value="gen6">Gen 6 · all collectors</option><option value="gen6chatgpt">Gen 6 · ChatGPT collector</option><option value="gen6independent">Gen 6 · independent collector</option><option value="gen5rz">Gen 5R / 5RZ · archived round</option><option value="gen5r">Gen 5R · initial allocation only</option><option value="gen5">Gen 5 · previous round</option><option value="all">All generations</option><option value="chatgpt">ChatGPT · all generations</option><option value="codex">Codex · all generations</option><optgroup label="Earlier runs"><option value="gen6initial">Gen 6 · retained early compatible games</option><option value="gen5rzinitial">Gen 5RZ · early allocation only</option><option value="gen5initial">Gen 5 · retained BEN/control games</option><option value="primarycomponents">Codex primary 4p / 4b</option><option value="primary">Codex Gen 4 main</option><option value="recovery">Codex Gen 4 six-bot mix</option><option value="supplement">ChatGPT Gen 4 main</option><option value="components">ChatGPT Gen 4p / 4b</option></optgroup></select></label></p><p id="source-status" class="muted" aria-live="polite"></p><details><summary>Run publications and provenance</summary><p id="run-publications" class="muted"></p></details>';
  document.getElementById('cards').before(section);const selector=document.getElementById('arena-source');selector.value=selected;
+ const gateStatus=document.createElement('p');gateStatus.id='ben-followup-status';gateStatus.className='muted';section.append(gateStatus);
  const windows=document.getElementById('window');for(const option of windows.options){if(option.value!=='0')option.textContent='Last '+Number(option.value).toLocaleString()+' completed per matchup';}
  const differences=document.createElement('section');differences.id='gen6-differences';section.after(differences);
  function renderDifferences(){
@@ -21,8 +23,10 @@
   for(const [pair,g] of Object.entries(groups)){const tr=document.createElement('tr');for(const text of [R.members(pair).map(k=>D.labels[k]||k).join(' vs '),g.play.n,g.different_bidding,value(g.bidding),value(g.play),value(g.total)]){const td=document.createElement('td');td.textContent=text;tr.append(td);}body.append(tr);}table.append(body);differences.append(table);
  }
  document.getElementById('window').addEventListener('change',renderDifferences);
- function report(){const available=[...inputs.values()].filter(x=>older||R.pickSources(R.latestScope).some(s=>s.key===x.source.key)),wanted=R.pickSources(selected),missing=wanted.filter(s=>!inputs.has(s.key));
+ function report(){const available=[...inputs.values()].filter(x=>R.sources.some(s=>s.key===x.source.key&&s.cohort===x.source.cohort)&&(older||R.pickSources(R.latestScope).some(s=>s.key===x.source.key))),wanted=R.pickSources(selected),missing=wanted.filter(s=>!inputs.has(s.key));
   D=R.build(available,selected);renderAll();renderDifferences();
+  for(const source of R.sources)if(![...selector.options].some(o=>o.value===source.key)){const o=document.createElement('option');o.value=source.key;o.textContent=source.name;selector.append(o);}
+  const gate=R.benGate,result=gate?.result;gateStatus.hidden=older;gateStatus.textContent=R.registry?.phase==='ben32-and-fast-ben16'?'BEN followups active: medium versus BEN32 and fast versus BEN16.':gate?.status==='blocked_retrying'?'BEN followup controller is retrying: '+gate.error:result?.estimate?'BEN followups queued: '+result.records+' baseline deals; overall total '+result.estimate?.mean.toFixed(3)+' IMPs/board, 95% interval ['+result.estimate?.low.toFixed(3)+', '+result.estimate?.high.toFixed(3)+']. Starts after the interval is above zero with at least '+result.minimum_deals+' deals.':'BEN followups are prepared: 7.5% medium versus BEN32 and 7.5% fast versus BEN16, conditional on the medium/BEN16 lead.';
   const tbody=document.getElementById('source-rows');tbody.replaceChildren();
   document.getElementById('older-reports').hidden=!older;document.getElementById('older').setAttribute('aria-expanded',String(older));document.getElementById('older').textContent=older?'Current generation':'Older';document.getElementById('collection-title').textContent=older?'Collection across generations':currentName+' collection';
   for(const scope of [...new Set((older?R.sources:R.pickSources(R.latestScope)).map(s=>s.environment))]){const has=available.some(x=>x.source.environment===scope),data=has?R.build(available,scope):null,tr=document.createElement('tr');
@@ -35,7 +39,7 @@
  }
  document.getElementById('older').onclick=()=>{older=!older;selected=older?'all':R.latestScope;selector.value=selected;rememberSelection();report();refresh();};
  selector.addEventListener('change',()=>{selected=selector.value;rememberSelection();report();refresh();});
- async function refresh(){if(busy)return;busy=true;try{await Promise.allSettled((older?R.sources:R.pickSources(R.latestScope)).map(async source=>{try{const incoming=await R.loadLiveSource(source);const previous=inputs.get(source.key);if(!previous||incoming.data.generated_epoch>=previous.data.generated_epoch)inputs.set(source.key,incoming);errors.delete(source.key);}catch(e){errors.set(source.key,e.message);}}));lastChecked=Date.now();report();}finally{busy=false;}}
+ async function refresh(){if(busy)return;busy=true;try{try{await R.loadRegistry();}catch{}await Promise.allSettled((older?R.sources:R.pickSources(R.latestScope)).map(async source=>{try{const incoming=await R.loadLiveSource(source);const previous=inputs.get(source.key);if(!previous||incoming.source.cohort!==previous.source.cohort||incoming.data.generated_epoch>=previous.data.generated_epoch)inputs.set(source.key,incoming);errors.delete(source.key);}catch(e){errors.set(source.key,e.message);}}));try{await R.loadBenGate();}catch{}lastChecked=Date.now();report();}finally{busy=false;}}
  window.renderArenaSources=()=>{};report();refresh();setInterval(refresh,30000);
  window.addEventListener('focus',refresh);window.addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();

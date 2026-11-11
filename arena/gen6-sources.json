@@ -1,0 +1,73 @@
+{
+  "schema": "arena-gen6-source-registry-v1",
+  "phase": "medium-ben16-baseline",
+  "gate_branch": "arena-gen6-codex-ben-gate",
+  "sources": [
+    {
+      "key": "gen6",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · primary Codex collector",
+      "branch": "arena-gen6-codex-feed",
+      "cohort": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea"
+    },
+    {
+      "key": "gen6chatgpt",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · ChatGPT independent collector",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035"
+    },
+    {
+      "key": "gen6independent",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · independent collector",
+      "branch": "arena-gen6-ben-expansion-feed",
+      "cohort": "77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6"
+    },
+    {
+      "key": "gen6ben16completed",
+      "group": "gen6",
+      "retired": true,
+      "revision": "ca95def619269e2eefaba8263134ff8154ff1171",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · completed medium vs BEN16 cohort",
+      "branch": "arena-gen6-medium-ben-feed",
+      "cohort": "9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284"
+    },
+    {
+      "key": "gen6initial",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "retired": true,
+      "revision": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+      "environment": "codex",
+      "name": "Gen 6 · retained early compatible games",
+      "branch": "arena-gen6-independent-feed",
+      "cohort": "497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63"
+    },
+    {
+      "key": "gen6chatgptearly",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "retired": true,
+      "revision": "f7834f2a1f5326acbb7125c06bca7f5b9f8a3040",
+      "environment": "chatgpt",
+      "name": "Gen 6 · retained early ChatGPT games",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177"
+    }
+  ]
+}

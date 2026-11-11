@@ -18,17 +18,18 @@
   {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
   {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
  ];
- const latestSource=sources.find(s=>!s.retired),latestScope=latestSource.key;
+ let latestSource=sources.find(s=>!s.retired);const latestScope=latestSource.group==='gen6'?'gen6':latestSource.key;
  function resolveSelection(search){const params=new URLSearchParams(search),requested=params.get('source'),scope=requested==='latest'?latestScope:requested,valid=['all','chatgpt','codex',...sources.map(s=>s.key)].includes(scope),older=params.get('older')==='1'&&valid;return {selected:older?scope:latestScope,older};}
- const labels={'ben32':'BEN (32)','6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['ben32','6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben'];
+ const labels={'6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','ben32':'BEN (32)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben','ben32'];
  const names={latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
  // Archived launch mismatch: retain raw records, exclude fast-vs-BEN from every report.
- const archivedPair=(p,source)=>normalizePair(p).pair==='6-32~ben'&&source?.cohort!=='77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6';
+ const accidentalCohorts=new Set(['497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63','e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177']);
+ const archivedPair=(p,source)=>normalizePair(p).pair==='6-32~ben'&&accidentalCohorts.has(source?.cohort);
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
- const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
+ const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved==='gen6'&&s.group==='gen6')||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
  function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
  function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
@@ -36,7 +37,7 @@
   return {n,total,mean,variance,sd,se,ci:half===null?null:[mean-half,mean+half],wins:v.filter(x=>x>0).length,ties:v.filter(x=>x===0).length,losses:v.filter(x=>x<0).length};
  }
  function rowsFor(inputs,scope='all',condition='common',snapshots=null){const allowed=new Set(pickSources(scope).map(s=>s.key)),rows=[];
-  for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
+  for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key)&&!(snapshots&&Object.hasOwn(snapshots,source.cohort)))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
    const cutoff=snapshots? snapshots[source.cohort]:data.generated_epoch;if(cutoff==null)continue;
    for(const r of index.records){if(archivedPair(r.pair,source)||r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
     if(condition==='own'&&!Object.hasOwn(r,'own_imps'))continue;
@@ -113,7 +114,24 @@
   const sha=gen6Heads.heads[source.branch];if(!sha)throw Error('This collector has not published a branch yet');return sha;
  }
  async function loadLiveSource(source,options={}){if(options.revision||source.retired||source.generation!==6&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await (source.generation===6?liveGen6Revision(source):liveRevision(source))});}
- const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,loadLiveSource,verify};
+ const registryURL=typeof document!=='undefined'&&document.currentScript?.src?new URL('gen6-sources.json',document.currentScript.src).href:'https://maxschireson.github.io/Single-Dummy-Bridge/arena/gen6-sources.json';
+ let registry=null,registryChecked=0,registryPending=null;
+ function applyRegistry(value){
+  if(value.schema!=='arena-gen6-source-registry-v1'||!Array.isArray(value.sources))throw Error('Invalid Gen6 source registry');
+  const keys=new Set(),cohorts=new Set();for(const entry of value.sources){
+   if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||entry.group!=='gen6'||entry.generation!==6||!/^arena-gen6-[a-zA-Z0-9_-]+$/.test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated Gen6 registry source');keys.add(entry.key);cohorts.add(entry.cohort);
+  }
+  for(const entry of value.sources){const i=sources.findIndex(s=>s.key===entry.key);if(i>=0)sources[i]={...sources[i],...entry};else sources.unshift({...entry});names[entry.key]=entry.name;}
+  if(latestScope==='gen6'){latestSource=sources.find(s=>s.group==='gen6'&&!s.retired);api.latestSource=latestSource;names.latest=names.gen6='Gen 6 · all collectors';}
+  registry=value;api.registry=value;return value;
+ }
+ async function loadRegistry(){
+  if(registry&&Date.now()-registryChecked>=0&&Date.now()-registryChecked<120000)return registry;
+  if(!registryPending)registryPending=get(registryURL).then(value=>{applyRegistry(value);registryChecked=Date.now();return value;}).finally(()=>{registryPending=null;});
+  return registryPending;
+ }
+ async function loadBenGate(){if(!registry?.gate_branch)return null;const revision=await liveGen6Revision({branch:registry.gate_branch});const value=await get(base+revision+'/status.json');api.benGate=value;return value;}
+ const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,loadLiveSource,verify,applyRegistry,loadRegistry,loadBenGate};
  root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
 

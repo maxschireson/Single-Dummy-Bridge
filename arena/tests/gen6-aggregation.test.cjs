@@ -12,6 +12,7 @@ const inputs=[
  input('gen6initial',[row(2,'6-32~5RZ32','early-compatible',1,1,1,5)]),
  input('gen5rz',[row(5,'5RZ32~5R32','old-generation',1,999,999,999)])
 ];
+inputs[2].source={...inputs[2].source,cohort:'e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177'};
 const d=R.build(inputs,'latest',null,100);
 assert.equal(R.latestScope,'gen6');assert.equal(d.completed,4);assert.equal(d.report.observations,5);assert.equal(d.report.duplicates,1);
 assert.deepEqual(d.report.sources,['gen6','gen6independent','gen6chatgpt','gen6initial']);
