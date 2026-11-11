@@ -12,7 +12,14 @@ const head=(await read('https://api.github.com/repos/'+repo+'/git/ref/heads/'+br
 const tree=await read('https://api.github.com/repos/'+repo+'/git/trees/'+head+'?recursive=1');
 if(tree.truncated)throw Error('Remote tree truncated; inspect before publication');
 const known=new Set(tree.tree.filter(x=>x.type==='blob').map(x=>x.sha));
-const rows=JSON.parse(await command('python -c '+shellQuote("from pathlib import Path; import json,hashlib; rows=[]\nfor p in Path('publication').rglob('*'):\n if not p.is_file() or '.git' in p.parts: continue\n b=p.read_bytes(); rows.append(dict(path=str(p.relative_to('publication')),size=len(b),sha=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\\0'+b).hexdigest()))\nprint(json.dumps(rows))"),100000));
+// Read the local manifest in bounded batches. A single JSON response eventually
+// exceeds the exec output limit as the recovery archive grows.
+const rows=[];
+for(let offset=0;;offset+=128){
+ const code="from pathlib import Path; import json,hashlib\npaths=sorted((p for p in Path('publication').rglob('*') if p.is_file() and '.git' not in p.parts),key=lambda p:str(p))\nrows=[]\nfor p in paths["+offset+":"+(offset+128)+"]:\n b=p.read_bytes(); rows.append(dict(path=str(p.relative_to('publication')),size=len(b),sha=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\\0'+b).hexdigest()))\nprint(json.dumps(rows))";
+ const batch=JSON.parse(await command('python -c '+shellQuote(code),30000));
+ rows.push(...batch);if(batch.length<128)break;
+}
 let position=0,uploaded=0;const pending=rows.filter(f=>!known.has(f.sha));
 const results=await Promise.allSettled(Array.from({length:4},async()=>{while(position<pending.length){
  const f=pending[position++];let content='';
