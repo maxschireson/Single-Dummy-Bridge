@@ -18,6 +18,25 @@ from bridge_harness.decision_timing import merge
 LABELS={}
 PAIRS=[]
 
+def gen6_differences(row):
+    """Paired auction-condition decomposition, in candidate-oriented IMPs."""
+    play=row['imps'];total=row['own_imps']
+    return dict(play=play,bidding=total-play,total=total)
+
+def difference_views(rows):
+    result={}
+    for window in (0,100,500,1000):
+        groups={}
+        for pair in PAIRS:
+            selected=[r for r in rows if r['pair']==pair]
+            if window:selected=selected[-window:]
+            if selected:
+                groups[pair]={name:stats([gen6_differences(r)[name] for r in selected])
+                              for name in ('bidding','play','total')}
+                groups[pair]['different_bidding']=sum(r['different_bidding'] for r in selected)
+        result[str(window)]=dict(groups=groups)
+    return result
+
 def stats(values):
     n=len(values);v=[x for x in values if x is not None]
     if not v:return dict(n=n,total=None,mean=None,variance=None,sd=None,se=None,ci=None,wins=0,ties=0,losses=0)
@@ -61,7 +80,7 @@ def export(root,out):
             seen.add(full['family']);row={k:v for k,v in full.items() if k not in ('conditions','board','tables')}
             records.append(row);shards[row['shard']][key]=full;continue
         r=json.loads(gzip.decompress(raw))
-        if r['manifest_identity'] not in {cohort,*m.get('prior_manifests',{})}:raise ValueError('Manifest mismatch')
+        if r['manifest_identity']!=cohort:raise ValueError('Manifest mismatch')
         if r['pair'] not in eligible:continue
         if r['family'] in seen:raise ValueError('Duplicate deal family')
         seen.add(r['family'])
@@ -77,7 +96,7 @@ def export(root,out):
                     assignments=[pair_members(pair)[0] if v=='candidate' else pair_members(pair)[1] for v in e['assignments']],
                     ns_score=t0['ns_score'],declarer_tricks=t0.get('declarer_tricks'),
                     plays=[a['seat']+a['card'] for a in t0['actions']]))
-            conditions[regime]=dict(tables=tables,imps=source['imps'],label='Common v5 bidder' if regime=='common' else 'Native partnership bidders')
+            conditions[regime]=dict(tables=tables,imps=source['imps'],label=('Common Gen6 bidder' if m.get('variant')=='6' else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
         common=conditions['common']['tables'];own=conditions['own']['tables']
         different=any(a['auction']!=b['auction'] for a,b in zip(common,own))
         first=r['unique_tables'][next(iter(r['unique_tables']))]['board']
@@ -87,6 +106,10 @@ def export(root,out):
             scores=[t0['ns_score'] for t0 in common],contracts=[{k:t0[k] for k in ('contract','declarer')} for t0 in common],
             own_scores=[t0['ns_score'] for t0 in own],own_contracts=[{k:t0[k] for k in ('contract','declarer')} for t0 in own])
         records.append(row);shards[row['shard']][str(index)]={**row,'conditions':conditions,'board':first,'tables':common}
+    if m.get('variant')=='6':
+        for row in records:
+            row['differences']=gen6_differences(row)
+            shards[row['shard']][str(row['index'])]['differences']=row['differences']
     replay_dir=out/'arena/replays/data'/cohort;replay_dir.mkdir(parents=True,exist_ok=True)
     for name,rows in shards.items():atomic_json(replay_dir/name,rows)
     title=policy.get('title',m.get('title','Gen 5R · Codex' if m.get('variant')=='5R' else 'Gen 5 · Codex'));versions={k:s['identity'] for k,s in m['bots'].items()}
@@ -127,6 +150,12 @@ def export(root,out):
         d['interpretation']=m['interpretation']
         d['model_note']='Gen5R uses the same bidder, belief and policy as Gen5; only large-position layout selection and weighting change. Nominal 32/192 are DDS ceilings, drawing pools of 128/768. Original Gen5 (32) is retained as the random-sampling control.'
         if m.get('model_note'):d['model_note']=m['model_note']
+    if m.get('variant')=='6':
+        d['difference_views']=difference_views(records)
+        d['difference_definition']=dict(unit='IMPs per board, candidate minus opponent',
+            play='Common Gen6-bidder auction result',total='Native partnership-bidder auction result',
+            bidding='Native minus common on the same board; includes auction/play interaction',
+            uncertainty='Student-t intervals on paired per-board differences; exploratory, unadjusted for repeated monitoring')
     atomic_json(out/'arena/data.json',d)
     atomic_json(out/'arena/manifest.json',m)
     print(json.dumps(dict(completed=len(records),tables=sum(len(v['tables']) for s in shards.values() for v in s.values()),
