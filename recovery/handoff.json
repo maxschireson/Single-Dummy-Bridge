@@ -17,7 +17,7 @@
     "6-32~1": 2
   },
   "common_bidder": "6-32",
-  "peer_feed": "arena-gen6-independent-feed",
+  "peer_feed": "arena-gen6-medium-ben-feed",
   "recovery": "RECOVERY.md",
   "epoch": 1794363679.6831117,
   "watchdog_pid": 51740,
@@ -34,10 +34,15 @@
     "different_native_auction": 17,
     "ben": "6-256~ben"
   },
-  "observed_epoch": 1794364446.5512218,
+  "observed_epoch": 1794364774.2720854,
   "completed": 108,
   "published": 105,
   "failures": 0,
   "collector_pid": 51741,
-  "publisher_pid": 51742
+  "publisher_pid": 51742,
+  "recovery_archive_verified": true,
+  "dashboard_verified": true,
+  "dashboard_revision": "04ff2a103eaa0f7c205e130ecf6fb4b297b8747c",
+  "dashboard": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest",
+  "chatgpt_feed": "arena-gen6-chatgpt-feed"
 }

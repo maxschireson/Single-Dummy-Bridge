@@ -23,6 +23,13 @@ phase is disabled. The policy only breaks PIMC maximum ties. Common auctions
 use the Gen6 bidder for all four seats; native auctions use each partnership's
 bidder. Both conditions and swapped partnerships are retained.
 
+| Artifact | SHA256 |
+| --- | --- |
+| Gen6 bidder | `5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff` |
+| Lead belief | `72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291` |
+| Hand-fit scorer | `56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73` |
+| Retained policy | `03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18` |
+
 ## Frozen source and records
 
 - Source checkout: `/workspace/Single-Dummy-Bridge-gen6`.
@@ -34,14 +41,19 @@ bidder. Both conditions and swapped partnerships are retained.
 - Target: 7,318 unplayed families from the drained source run.
 - Publication checkout: `/workspace/work/gen6-codex-publication`.
 - Publication branch: `arena-gen6-codex-feed`.
-- Other collector: `arena-gen6-independent-feed`; keep its own immutable
-  manifest, source and raw records. It has an independently seeded corpus.
+- Other Codex collector: `arena-gen6-medium-ben-feed`; its earlier phase is
+  archived on `arena-gen6-independent-feed`. Compatible earlier games remain
+  included; accidental fast-versus-BEN games are filtered from every report.
+- ChatGPT producer: `arena-gen6-chatgpt-feed`; its producer controls its own
+  lifecycle. Its compatible published results are combined with the Codex feeds.
 - Dashboard: https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest
 
 The previous run `/workspace/work/gen5rz-ben` drained cleanly at **8,372**
 complete paired records. Its source remains unchanged at
 `/workspace/Single-Dummy-Bridge-5rz-ben` (`4969fc2`). Its final archive stays on
-`arena-gen5rz-ben-feed`. Keep its STOP, WATCHDOG_STOP and PUBLISH_STOP markers.
+`arena-gen5rz-ben-feed`, tagged `gen5rz-before-gen6-20261111` at
+`a559ccb59e9d3ff09d8c759c016534b4efcef254`. Keep its STOP, WATCHDOG_STOP and
+PUBLISH_STOP markers.
 The first, empty Gen6 preparation with fast versus BEN is preserved separately
 at `/workspace/work/gen6-codex-staging-fast-ben-20261111`; it produced no games.
 
