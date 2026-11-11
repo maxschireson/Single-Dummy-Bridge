@@ -762,6 +762,58 @@ forks, +0.028 +- 0.029 tricks and +0.05 +- 0.12 IMPs a fork (48 better, 38 worse
 So three readings (two bench sets and the match) agree that the tree at trust 0.2 to 0.3 does not
 lose and has not been shown to gain; its cost is in the section above.
 
+## Breadth and depth by stake (23:30 UTC)
+
+Max's rule: the tree's width and depth should follow the IMPs at stake, more width where the call
+is close, more depth where a lot is at stake and the plays are clear, and the stake estimate
+should carry its own uncertainty.
+
+**How skewed the stake is.** Of the 3,448 fork pairs of the earlier unseen set, 1,483 changed the
+trick count. A one-trick swing was worth 0 or 1 IMP in 46% of them, 5 or more in 32% and 10 or
+more in 18%; the 36% of swings worth 4 or more IMPs a trick carry 72% of the IMPs. At the 60,010
+test decisions the trick at risk is worth 1 IMP at the median and 3.5 on average.
+
+**Breadth by stake, offline** (v4 on the test deals; no solving). Keep cards in order of
+probability while (probability not yet covered) x (IMPs a trick is worth) is above a threshold,
+against the stake-blind rule (cover a fixed probability), at the same average number of cards
+kept. IMPs given up because the best card was dropped: with the stake predicted from the net's
+tricks head (off by 0.63 tricks on average; correlation 0.56 with the true stake), 17% to 33%
+less at 1.9 to 2.5 cards; with the true stake (the board's result, a ceiling), 53% to 63% less.
+No intervals; neighbouring settings scatter between 7% and 33%.
+(`scripts/gen7_stake_breadth.py`.)
+
+**The rule in the tree** (`path` in `TreeConfig`; see the module's docstring). A node carries its
+share of the search: 1 at each root card, multiplied down the line by the probability of each
+card, the other seats' by the net's reply and the decider's own by the net's policy. A node is
+searched on only while share x stake >= `path`, and a card is kept only while the cards before it
+leave that much uncovered. The stake is the IMP swing at declarer's double-dummy result in each
+layout, averaged, plus `spread` standard deviations, so layouts that disagree about the contract
+give a high stake by themselves. With a vanishing `path` the tree is the uniform tree exactly, and
+with a huge one plain PIMC (tested).
+
+**Bench.** v4, the newer unseen set, the first 2,905 of its pairs, stake-rule trees with limits of
+3 tricks, 3 cards a node and probability 0.98, against the uniform two-trick tree on the same
+pairs:
+
+| Tree | Solves a pair | Against plain search, tricks a pair | Minus the uniform tree, tricks | Minus uniform, IMPs |
+| --- | --- | --- | --- | --- |
+| Uniform, 2 tricks | 151 | -0.023 +- 0.006 | | |
+| `path` 0.1 | 157 | -0.024 +- 0.006 | -0.001 +- 0.004 | -0.00 +- 0.02 |
+| `path` 0.25 | 90 | -0.017 +- 0.006 | +0.006 +- 0.005 | +0.03 +- 0.02 |
+| `path` 0.5 | 61 | -0.012 +- 0.006 | +0.011 +- 0.005 | +0.05 +- 0.02 |
+| 4 tricks, `path` 0.1, `spread` 1 | 220 | -0.020 +- 0.006 | +0.003 +- 0.005 | +0.01 +- 0.02 |
+
+As the alpha bot would use them (margin 0.25, weighted to sides): at trust 0.25 the uniform tree
+is -0.06 +- 0.04 tricks a side on these pairs, `path` 0.1 -0.04 +- 0.03, `path` 0.25 -0.03 +-
+0.03, `path` 0.5 -0.01 +- 0.04. The correction share is 0.10 to 0.13 for every tree.
+
+- At equal solves the stake rule is level with the uniform tree; with fewer it is better, and
+  `path` 0.5 loses half as much at 40% of the solves. More depth did not help.
+- On this set every tree loses to plain search, so what the stake rule buys here is less search
+  where little is at stake. Whether it gains where a lot is at stake cannot be read from these
+  rows: the bench did not record the stake of each pair. The alpha bot now logs it.
+- One set, one net. The uniform tree's own figure moved by 0.02 between two unseen sets.
+
 ## The net as a second opinion, and the opening lead (12:30 UTC)
 
 `scripts/gen7_second_opinion.py` writes, for every gap fork at any ply, where the net puts Gen 6's
@@ -856,13 +908,15 @@ Not verified:
 
 ## What this says to do next
 
-1. **No tree in the arena yet, but the gap is closing with the net.** On boards no net had seen,
-   the two-trick tree at tricks 3-6 was -0.020 a pair with v1, -0.013 to -0.019 with v2 and -0.006
-   +- 0.006 with v3 (+0.014 +- 0.006 over v2 on the same pairs). It loses clearly from trick 7,
-   where Gen 6 is exact and nearly free. Score each new net on held-out pairs (`--splits 1,2`, or
-   boards that arrived after its training set); the tree earns an arena alpha when it is ahead at
-   tricks 3-6 on such pairs. The gauges are the correction share (0.36 for v3; full use beats
-   none only above about 0.5) and what the net gives up right after a forced card (0.076 for v3).
+1. **The tree is not yet a gain, and the earlier trend was overstated** (see "The tree with v4").
+   As a replacement for plain search at tricks 3-6 the two-trick tree is about -0.012 a pair with
+   v3.1 pooled over two unseen sets, and v4 is level with v3.1. As a correction to Gen 6 at trust
+   0.2 to 0.3 it does not lose and has not been shown to gain; at trust 0.5 and above it loses.
+   It loses clearly from trick 7, where Gen 6 is exact and nearly free. One unseen set is not
+   enough to score a net's tree: two sets with the same design differed by 2.7 standard errors.
+   Score each new net on boards that arrived after its training set, pool the sets, and trust the
+   steps measured on the same pairs more than the levels. The gauge is the correction share
+   (0.14 to 0.25 so far; full trust beats none only above about 0.5).
 2. **More deals.** The curve is steep and still falling. Fast tables are the cheap source for
    tricks 3 on. They need the two ops files taught the `gen7` engine and a bot spec with
    `search_from_trick` 3 or 4, `play_weight` 0 and `tie_break` `gen5` so the searched decisions are
@@ -895,6 +949,11 @@ python scripts/gen7_lookahead.py       --episodes EPISODES_WITH_GAP_FORKS
 python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "1;2" --splits 1,2 --out rows.json
 python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --policy2 OTHER.npz --tricks "2;2:net=2" --from-trick 3 --to-trick 6 --splits 1,2
 python scripts/gen7_noise.py           --episodes SELF_PLAY_EPISODES --policy $P --tables 120
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "0:plain=1;2:plain=1;3:plain=1,breadth=3,mass=0.98,path=0.25" --from-trick 3 --to-trick 6 --out rows.json
+python scripts/gen7_sweep.py           rows.json:tree_2_plain1 [more.json:tree_2_plain1] [--other tree_2_net2_plain1]     # trust and margin
+python scripts/gen7_match_forks.py     ALPHA_RUN_DIR                                                                  # the same on a match's own forks
+python scripts/gen7_board_cost.py      EPISODES [MAX_FILES]                                                           # cpu by stage, root and fork tables
+python scripts/gen7_head_eval.py       gen7.npz 2 0 v4=$P                                                             # policy head against gap head
 python -m unittest discover -s tests -p "test_gen7.py"
 ```
 
