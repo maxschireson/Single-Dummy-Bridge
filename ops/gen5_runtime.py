@@ -36,6 +36,9 @@ def initialize_worker(root):
 
 def player(spec,root,reference=None):
     if spec.get('engine')=='ben':return Round5BenPlayer(spec['url'],timeout=600,samples=spec['samples'])
+    if spec.get('engine')=='gen6':
+        from bridge_harness.gen6 import Gen6Player
+        return Gen6Player(spec,root,reference)
     return ArenaPlayer(spec,root,reference)
 
 def validate(r,m,index):
