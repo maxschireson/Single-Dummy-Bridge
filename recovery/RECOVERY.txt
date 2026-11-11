@@ -1,0 +1,45 @@
+Gen6 new fast self-play stream
+
+This producer owns only arena-gen6-fast-selfplay-codex-20261111 and registry key
+gen6newselfplay. Preserve other producer feeds, workers, manifests and records.
+
+stream.json in the operations folder identifies the run, runtime and publication
+paths. The initial run has 25,000 fresh independent families, 100% 6-32~6-32,
+three normal workers, no BEN workers, 50% tie audits, and Gen7 gap/guess capture.
+Gen3 is retained solely as an audit reference, never a scheduled opponent.
+Root tables have Gen6 fast in all four seats. Self-play IMPs are null.
+
+Inspect fresh heartbeat.json, state.json, watchdog-status.json,
+publisher-status.json, failures, process records and actual lock ownership before
+launching anything. Frozen runtime, models, corpus, manifest and completed records
+must not be edited. Never clear failures or overwrite a completed episode.
+
+Start the supervisor only if no existing supervisor/writer owns the run:
+  /workspace/work/arena-venv/bin/python -u supervise_stream.py
+from /workspace/work/gen6-fast-selfplay-stream. It starts the collector and a
+separate publisher, protects disk space and drains before rotating the derived
+DDS cache. Initial launch follows a two-board real-model preflight.
+
+For an intentional drain, write STOP and WATCHDOG_STOP in the run and let the
+current boards finish. Keep publication alive for the final snapshot, then write
+PUBLISH_STOP. The writer, supervisor and publisher have distinct singleton locks.
+
+The publisher writes a receipt-consistent snapshot, checks episode SHA256 and
+immutable identities, archives the complete frozen runtime/models/corpus and
+operational scripts, pushes once per minute, and verifies the actual remote head.
+Source: arena-gen6-chatgpt-feed at 13e0fc7b884ecfa546f693a9bac0d92b520f1247.
+Its old run is only an artifact source; do not resume it or copy its failures here.
+
+After workspace loss, restore this feed's recovery directory as the run, its
+runtime directory as the runtime, and operations files at a separate producer
+root. Restore Python 3.12 and runtime-requirements.txt. Repoint the operational
+stream.json paths to the restored locations without editing the manifest.
+Restore a dedicated publication checkout tracking this stream's current branch;
+never initialize an unrelated branch over an existing remote feed. Verify the
+manifest, frozen hashes, legal replays and all episode/receipt SHA pairs. Inspect
+fresh ownership and preserved STOP/failure markers before any recovery launch.
+
+User instruction: check GitHub hourly for collection changes, and default to
+obeying current instructions addressed to collection workers in general. A
+changed collection setting requires draining and a new immutable run/cohort,
+retaining old records and recovery history. instruction-watch.json tracks checks.

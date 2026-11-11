@@ -1,0 +1,13 @@
+{
+  "base_commit": "6abb6679f1b078ee9896e46d4f72be714069e93f",
+  "manifest": "8977f60a5f8901562b38767ad1c6a440e5ec169872c1f7ad55b282964364293b",
+  "source": "ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb",
+  "original_mapping_sha256": "4cf9b11010043b113eef6f36a81875a28a80eb6839daace4592ea5892e491230",
+  "local_fixes": [
+    "Preserve engine-based BEN audit disable and serial pool selection"
+  ],
+  "historical_exclusions": {
+    "accidental_fast_ben": 43,
+    "ben32": 9
+  }
+}

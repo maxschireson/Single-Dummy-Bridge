@@ -1,0 +1,20 @@
+{
+  "seed": 2026110807,
+  "train_stages": [
+    10000,
+    40000,
+    250000
+  ],
+  "batch_pairs": 128,
+  "dev_pairs": 1000,
+  "confirmation_pairs": 5000,
+  "max_attempts": 20,
+  "dds_workers": 2,
+  "tf_threads": 2,
+  "ppo_epochs": 2,
+  "minibatch": 256,
+  "learning_rate": 1e-05,
+  "exploration": 0.005,
+  "anchor_weight": 0.02,
+  "family_alpha": 0.05
+}
