@@ -1,7 +1,7 @@
 'use strict';
 window.ReplayCommon = (() => {
   const FEED = 'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/arena-feed/arena/replays/catalog.json';
-  const labels = {'5RZ32':'Gen 5RZ (32)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)',ben:'BEN (16)',P:'Gen 4p',Q:'Gen 4b',A:'Gen 3.5', B:'Gen 3', C:'Gen 2',4:'Gen 4','4p':'Gen 4p','4b':'Gen 4b',3:'Gen 3',2:'Gen 2',1:'Gen 1'};
+  const labels = {'6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5RZ (32)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)',ben:'BEN (16)',P:'Gen 4p',Q:'Gen 4b',A:'Gen 3.5', B:'Gen 3', C:'Gen 2',4:'Gen 4','4p':'Gen 4p','4b':'Gen 4b',3:'Gen 3',2:'Gen 2',1:'Gen 1'};
   const $ = id => document.getElementById(id);
   const pairMembers = p => p.includes('~')?p.split('~'):[...p];
   const pairLabel = p => pairMembers(p).map(k=>labels[k]||k).join(' vs ');
