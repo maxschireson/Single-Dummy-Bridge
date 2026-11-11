@@ -1,0 +1,380 @@
+"""Gen7 prototype: the Gen6 search reading the policy net (bridge_harness/gen7.py, gen7_net.py)."""
+import importlib.util
+import json
+import os
+from pathlib import Path
+import random
+import tempfile
+import unittest
+from unittest.mock import patch
+
+import numpy as np
+
+from bridge_harness.core import Game, card
+from bridge_harness.corpus import generate
+from bridge_harness.gen6 import Gen6Player, View
+from bridge_harness.gen6_nets import FitScorer, HON_HCP
+from bridge_harness.gen7 import Gen7Config, Gen7Player, hidden_plays, past_view, player
+from bridge_harness.gen7_net import INPUTS, N_SHOWN, SEAT_SHOWN, Shown, encode, make_bank, stack
+from bridge_harness.players import GreedyPlayer
+from bridge_harness.runner import play_table, replay
+from test_gen6 import FakeBelief, FakeState, lead_weights, position, scorer_weights
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def trainer():
+    spec = importlib.util.spec_from_file_location('train_gen7_policy', ROOT / 'scripts' / 'train_gen7_policy.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def net_weights(path, seed=0, width=32):
+    """A random suit net with a small hand bank, in the exported layout."""
+    params = trainer().init(1, np.random.default_rng(seed), width)
+    length, hon, log_weight = make_bank(256)
+    np.savez(path, **params, kind=np.array(1), bank_length=length, bank_hon=hon, bank_log_weight=log_weight)
+
+
+def played(seed, plies):
+    """A random game: the Observation and all four hands before every play, and the position after `plies`."""
+    board = next(generate(1, seed))
+    game = Game(board)
+    rng = random.Random(seed)
+    before = []
+    for _ in range(plies):
+        o = game.observation()
+        before.append((o, [tuple(sorted(h)) for h in game.hands]))
+        game.play(rng.choice(o.legal))
+    return board, game, before
+
+
+class Gen7Tests(unittest.TestCase):
+    def setUp(self):
+        self.env = patch.dict(os.environ, {'BRIDGE_DDS_CACHE': ''})
+        self.env.start()
+        self.dir = tempfile.TemporaryDirectory()
+        self.root = Path(self.dir.name)
+        scorer_weights(self.root / 'scorer.npz')
+        lead_weights(self.root / 'lead.npz')
+        net_weights(self.root / 'gen7.npz')
+        for name in ('belief.npz', 'bidder.keras'):
+            (self.root / name).write_bytes(b'x')
+        self.players = []
+
+    def tearDown(self):
+        for p in self.players:
+            p.close()
+        self.dir.cleanup()
+        self.env.stop()
+
+    def make(self, cls=Gen7Player, gen7=None, **switches):
+        spec = dict(id='7-test', engine='gen7', samples=8, near_tie=0., exploration=0., scorer='scorer.npz', lead_belief='lead.npz',
+                    lead_state_bidder='bidder.keras', belief='belief.npz', belief_kind='public', gen6=switches,
+                    gen7_policy='gen7.npz', gen7=gen7 or {})
+        with patch('bridge_harness.gen6.BidderState', FakeState), patch('bridge_harness.mixed_arena.Weights', FakeBelief):
+            p = cls(spec, self.root)
+        self.players.append(p)
+        return p
+
+    def listed(self, seed, plies, most=4000, full=False):
+        """A position with two hidden hands and a short enough deal list, or None: (Observation, View, views before each play)."""
+        board, game, before = played(seed, plies)
+        o = game.observation()
+        v = View(o)
+        if len(v.hidden) != 2 or v.count() > most or len(o.legal) < 2:
+            return None
+        return (o, v, before, game) if full else (o, v, before)
+
+    # ---- a hidden seat's view ------------------------------------------------------------
+    def test_past_view_is_the_observation_that_seat_had(self):
+        """Built from the decider's Observation and the seat's cards alone, it equals what the game gave that seat."""
+        checked = set()
+        for seed in range(30):
+            board, game, before = played(seed, 22 + seed % 26)
+            o = game.observation()
+            for i, seat, chooser in hidden_plays(o):
+                true, hands = before[i]
+                self.assertEqual(true.controller, chooser)
+                self.assertIsNone(o.known_hands[chooser])
+                self.assertEqual(past_view(o, i, hands[chooser]), true)
+                checked.add((o.controller == o.contract.declarer, seat == o.contract.dummy, i == 0))
+        # declarer and defender deciding; cards from dummy and from a hidden hand; the opening lead
+        self.assertEqual(checked, {(True, False, False), (True, False, True), (False, False, False), (False, True, False),
+                                   (False, False, True)})
+
+    def test_own_plays_are_not_scored_and_the_lead_switch_works(self):
+        board, game, _ = played(3, 30)
+        o = game.observation()
+        c = o.contract
+        plays = hidden_plays(o)
+        self.assertTrue(all(chooser != o.controller and o.known_hands[chooser] is None for _, _, chooser in plays))
+        mine = sum(1 for seat, _ in o.history if (c.declarer if seat == c.dummy else seat) == o.controller)
+        self.assertEqual(len(plays) + mine, len(o.history))
+        leader_hidden = o.controller != (c.declarer + 1) % 4
+        self.assertEqual(len(hidden_plays(o, lead=False)), len(plays) - leader_hidden)
+
+    def test_layout_rows_are_the_encoder_on_that_seats_view(self):
+        """The batched inputs for a layout are exactly encode() of the Observation that seat would have had."""
+        p = self.make()
+        rows = 0
+        for seed in range(40):
+            spot = self.listed(seed, 24 + seed % 24)
+            if spot is None:
+                continue
+            o, v, _ = spot
+            every = v.every()
+            pick = every[np.random.default_rng(seed).choice(len(every), min(6, len(every)), replace=False)]
+            for i, seat, chooser in hidden_plays(o):
+                held = p.held_then(o, v, pick, i, chooser)
+                self.assertTrue((held.sum(axis=1) == 13 - sum(s == chooser for s, _ in o.history[:i])).all())
+                batch = p.play_arrays(o, i, seat, chooser, held)
+                want = stack([p.net.encode(past_view(o, i, [int(x) for x in np.flatnonzero(row)])) for row in held])
+                for k in INPUTS:
+                    np.testing.assert_array_equal(np.asarray(batch[k]), want[k], err_msg=k)
+                self.assertTrue(np.asarray(batch['legal'])[:, o.history[i][1]].all())
+                rows += len(held)
+        self.assertGreater(rows, 1000)
+
+    def test_true_layout_is_listed_and_scores_what_the_net_gave_each_play(self):
+        """For the real deal the likelihood is the sum, over the hidden seats' plays, of the net's (floored) log-probability
+        of the card from the Observation that seat really had."""
+        p = self.make(gen7=dict(play_floor=.1))
+        used = 0
+        for seed in range(30):
+            spot = self.listed(seed, 28 + seed % 20, full=True)
+            if spot is None:
+                continue
+            o, v, before, game = spot
+            every = v.every()
+            truth = np.array([[next(j for j, s in enumerate(v.hidden) if int(x) in game.hands[s]) for x in v.unseen]])
+            self.assertTrue((every == truth).all(axis=1).any())
+            want = 0.
+            for i, seat, chooser in hidden_plays(o):
+                seen = before[i][0]
+                if len(seen.legal) > 1:
+                    logp = p.net.log_policy([seen])[0][o.history[i][1]]
+                    want += np.log(.9 * np.exp(float(logp)) + .1 / len(seen.legal))
+            got = p.play_log_likelihood(o, v, truth)[0]
+            self.assertAlmostEqual(got, want, places=4)
+            used += 1
+        self.assertGreater(used, 8)
+
+    def test_cache_gives_what_a_fresh_player_computes(self):
+        a, b = self.make(), self.make()
+        checked = 0
+        for seed in range(30):
+            board, game, _ = played(seed, 30)
+            rng = random.Random(seed + 1)
+            o1 = game.observation()
+            v1 = View(o1)
+            if len(v1.hidden) != 2 or v1.count() > 4000:
+                continue
+            a.play_log_likelihood(o1, v1, v1.every())
+            for _ in range(4):
+                game.play(rng.choice(game.observation().legal))
+            o2 = game.observation()
+            v2 = View(o2)
+            if o2.controller != o1.controller:
+                continue
+            before = a.net_rows
+            again = a.play_log_likelihood(o2, v2, v2.every())
+            reused = a.net_rows - before
+            before = b.net_rows
+            fresh = b.play_log_likelihood(o2, v2, v2.every())
+            np.testing.assert_allclose(again, fresh, atol=1e-5)
+            self.assertLess(reused, b.net_rows - before)
+            checked += 1
+        self.assertGreater(checked, 3)
+
+    # ---- the deal list -------------------------------------------------------------------
+    def test_list_weights_are_scorer_weight_times_play_likelihood(self):
+        p = self.make(gen7=dict(play_weight=.7), list_solve=0)
+        plain = self.make(gen7=dict(play_weight=0.), list_solve=0)
+        six = self.make(Gen6Player, list_solve=0)
+        used = 0
+        for seed in range(30):
+            spot = self.listed(seed, 32 + seed % 12, most=600)
+            if spot is None:
+                continue
+            o, v, _ = spot
+            worlds, weights, info = p.layouts(o, v, 'list', np.random.default_rng(0))
+            every = v.every()
+            logw = p.layout_log_weights(o, v, every) + .7 * p.play_log_likelihood(o, v, every)
+            w = np.exp(logw - logw.max())
+            self.assertEqual(worlds, [v.world(row) for row in every])
+            np.testing.assert_allclose(weights, w / w.sum(), atol=1e-9)
+            self.assertAlmostEqual(float(weights.sum()), 1.)
+            self.assertEqual(info['play_layouts'], len(every))
+            self.assertEqual(info['play_decisions'], len(hidden_plays(o)))
+            off = plain.layouts(o, v, 'list', np.random.default_rng(0))
+            ref = six.layouts(o, v, 'list', np.random.default_rng(0))
+            self.assertEqual(off[0], ref[0])
+            np.testing.assert_array_equal(off[1], ref[1])
+            self.assertNotIn('play_layouts', off[2])
+            used += 1
+        self.assertGreater(used, 5)
+
+    def test_long_lists_are_cut_by_scorer_weight_before_the_net_scores_them(self):
+        p = self.make(gen7=dict(play_max_layouts=50), list_solve=16)
+        used = 0
+        for seed in range(30):
+            spot = self.listed(seed, 30 + seed % 8)
+            if spot is None or spot[1].count() <= 50:
+                continue
+            o, v, _ = spot
+            worlds, weights, info = p.layouts(o, v, 'list', np.random.default_rng(1))
+            self.assertLessEqual(info['play_layouts'], 50)
+            self.assertLessEqual(len(worlds), 16)
+            self.assertEqual(len(set(worlds)), len(worlds))
+            self.assertAlmostEqual(float(np.sum(weights)), 1.)
+            used += 1
+        self.assertGreater(used, 3)
+
+    # ---- whole tables --------------------------------------------------------------------
+    def table(self, p, board, room, seed=5):
+        result = play_table(board, ['x' if s % 2 == room else 'g' for s in range(4)], {'x': p, 'g': GreedyPlayer()}, seed=seed)
+        self.assertEqual(result['status'], 'ok', result.get('traceback'))
+        replay(dict(board=board.to_dict(), tables=[result]))
+        json.dumps(result, allow_nan=False)
+        return result
+
+    def test_switches_off_it_plays_gen6s_game_card_for_card(self):
+        six = self.make(Gen6Player, list_solve=16)
+        seven = self.make(gen7=dict(play_weight=0., tie_break='gen5'), list_solve=16)
+        compared = 0
+        for seed in (2, 3):
+            board = next(generate(1, 700 + seed))
+            for room in (0, 1):
+                a, b = self.table(six, board, room), self.table(seven, board, room)
+                self.assertEqual([x['card'] for x in a['actions']], [x['card'] for x in b['actions']])
+                for x, y in zip(a['actions'], b['actions']):
+                    if x['player'] == 'x' and 'gen6' in x:
+                        self.assertEqual(x['estimates'], y['estimates'])
+                        self.assertEqual(x['behavior_probabilities'], y['behavior_probabilities'])
+                        self.assertEqual({k: v for k, v in x['gen6'].items() if not k.endswith('seconds')},
+                                         {k: v for k, v in y['gen6'].items() if not k.endswith('seconds')})
+                        self.assertEqual(y['gen7'], dict(Gen7Config(play_weight=0., tie_break='gen5').__dict__))
+                        compared += 1
+        self.assertGreater(compared, 40)
+
+    def test_full_tables_with_everything_on(self):
+        p = self.make(list_solve=16, list_from_trick=5)
+        with_play = 0
+        for seed in (2, 3):
+            board = next(generate(1, 700 + seed))
+            for room in (0, 1):
+                for a in self.table(p, board, room)['actions']:
+                    if a['player'] != 'x' or 'gen6' not in a:
+                        continue
+                    self.assertLessEqual(a['selected_pimc_gap'], 1e-9)
+                    if a['gen6']['source'] == 'deal_list':
+                        self.assertGreater(a['gen6']['play_decisions'], 0)
+                        self.assertGreaterEqual(a['gen6']['effective'] + 1e-9, 1.)
+                        with_play += 1
+                    else:
+                        self.assertNotIn('play_decisions', a['gen6'])
+        self.assertGreater(with_play, 10)
+
+    def test_early_tricks_from_the_net_carry_no_search_estimates(self):
+        for sample in (False, True):
+            p = self.make(gen7=dict(search_from_trick=3, net_sample=sample), list_solve=16)
+            unsearched = searched = 0
+            board = next(generate(1, 702))
+            for room in (0, 1):
+                for a in self.table(p, board, room)['actions']:
+                    if a['player'] != 'x' or a.get('forced'):
+                        continue
+                    if a['ply'] < 8:
+                        self.assertTrue(a['unsearched'])
+                        self.assertNotIn('estimates', a)
+                        self.assertNotIn('gen6', a)
+                        self.assertEqual(a['gen7']['source'], 'net')
+                        self.assertAlmostEqual(sum(a['net_probabilities'].values()), 1., places=5)
+                        self.assertGreater(a['behavior_probabilities'][a['card']], 0.)
+                        unsearched += 1
+                    else:
+                        self.assertIn('estimates', a)
+                        searched += 1
+            self.assertGreater(unsearched, 3)
+            self.assertGreater(searched, 15)
+
+    # ---- ties ----------------------------------------------------------------------------
+    def test_ties_go_to_the_nets_most_probable_card(self):
+        p = self.make(list_solve=0)
+        old = self.make(gen7=dict(tie_break='gen5'), list_solve=0)
+        used = 0
+        for seed in range(40):
+            spot = self.listed(seed, 34 + seed % 10, most=300)
+            if spot is None:
+                continue
+            o, v, _ = spot
+            worlds, weights, _ = p.layouts(o, v, 'list', np.random.default_rng(0))
+            stats = p.dds.cache_stats()
+            solved = p.dds.solve_batch(worlds, o.contract.trump, o.leader, o.trick, fixed_seats=[s for s, h in enumerate(o.known_hands) if h is not None])
+            search = p.search_decision(o, random.Random(seed), solved, weights, stats, p.dds.cache_stats(), dict(source='test'))
+            eligible = [card(k) for k, q in search.details['behavior_probabilities'].items() if q > 0]
+            got = p.break_ties(o, random.Random(seed), search)
+            self.assertIs(old.break_ties(o, random.Random(seed), search), search)        # no Gen5 net in this spec
+            if len(eligible) < 2:
+                self.assertIs(got, search)
+                continue
+            logp = p.net.log_policy([o])[0]
+            self.assertEqual(got.card, max(eligible, key=lambda x: logp[x]))
+            self.assertEqual(got.details['proposal_probabilities'], search.details['behavior_probabilities'])
+            self.assertEqual(set(got.details['selector_predictions']), set(k for k, q in search.details['behavior_probabilities'].items() if q > 0))
+            self.assertEqual(got.details['selected_probability'], 1.)
+            self.assertLessEqual(got.details['selected_pimc_gap'], 1e-9)
+            used += 1
+        self.assertGreater(used, 5)
+
+    def test_factory(self):
+        with patch('bridge_harness.gen6.BidderState', FakeState), patch('bridge_harness.mixed_arena.Weights', FakeBelief):
+            base = dict(samples=8, near_tie=0., scorer='scorer.npz', lead_belief='lead.npz', lead_state_bidder='bidder.keras')
+            a = player(dict(base, id='7', engine='gen7', gen7_policy='gen7.npz'), self.root)
+            b = player(dict(base, id='6', engine='gen6'), self.root)
+        self.players += [a, b]
+        self.assertIs(type(a), Gen7Player)
+        self.assertIs(type(b), Gen6Player)
+        with self.assertRaises(ValueError):
+            Gen7Config(tie_break='coin')
+
+
+class ShownTests(unittest.TestCase):
+    """What the calls show: the scorer's posterior over a reweighted bank of random hands."""
+
+    def test_bank_reweighted_is_plain_dealing(self):
+        length, hon, log_weight = make_bank(4096)
+        w = np.exp(log_weight.astype(np.float64))
+        w /= w.sum()
+        points = HON_HCP[hon.astype(np.int64)].sum(axis=1)
+        self.assertTrue((length.sum(axis=1) == 13).all())
+        self.assertAlmostEqual(float(w @ points), 10., delta=.25)
+        self.assertAlmostEqual(float(w @ (points >= 16)), .098, delta=.012)
+        self.assertAlmostEqual(float(w @ (length.max(axis=1) >= 6)), .2075, delta=.02)
+        np.testing.assert_allclose(w @ length, [3.25] * 4, atol=.08)
+        ordinary = (points < 16) & (length.max(axis=1) < 6)
+        self.assertGreater(float(np.exp(log_weight[ordinary]).min()), 1.)           # ordinary hands are under-drawn, by a fifth
+        self.assertAlmostEqual(float(np.exp(-log_weight[ordinary]).mean()), .8, delta=.01)
+        self.assertLess(float(np.exp(-log_weight).max()), 3.)                       # nothing more than three times as common as dealt
+
+    def test_view_is_in_the_controllers_seat_order_and_needs_only_the_observation(self):
+        with tempfile.TemporaryDirectory() as d:
+            scorer_weights(Path(d) / 's.npz')
+            shown = Shown(FitScorer(Path(d) / 's.npz'), *make_bank(256))
+            board, game, _ = played(5, 9)
+            o = game.observation()
+            rows = shown.seats(o.auction, o.dealer, o.vulnerability)
+            self.assertEqual(rows.shape, (4, SEAT_SHOWN))
+            x = encode(o, shown)['shown']
+            self.assertEqual(x.shape, (N_SHOWN,))
+            for r in range(4):
+                np.testing.assert_array_equal(x[r * SEAT_SHOWN:(r + 1) * SEAT_SHOWN], rows[(o.controller + r) % 4])
+            self.assertTrue((encode(o)['shown'] == 0).all())
+            self.assertTrue(np.isfinite(rows).all())
+            np.testing.assert_allclose(rows[:, :4].sum(axis=1) * 5, 13., atol=1e-4)      # expected lengths add to thirteen
+
+
+if __name__ == '__main__':
+    unittest.main()

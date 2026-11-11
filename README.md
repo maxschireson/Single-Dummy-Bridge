@@ -28,6 +28,10 @@ python3 -m bridge_harness.selfplay --count 1000 --workers 8 --samples 32 \
 says what to change at the next cutover: the `gap_fork` plan block, gap forks to inferior cards,
 the guess-size log fields, what they cost, and what was and was not verified.
 
+**Gen 7 prototype.** [Gen 7 prototype, 11 November 2026](docs/gen7_prototype_2026-11-11.md): a policy
+net trained to predict Gen 6's card, a player that is the Gen 6 search reading that net, and what
+the measurements say to build next. Not an arena bot.
+
 The [self-improvement loop runbook](docs/SELF_IMPROVEMENT.md) describes the
 resumable 10k → 50k → 250k self-play/training ladder, immutable bot registry,
 paired IMP arena against original/parent/BEN, and controlled v3/v4 promotion.
