@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parent
 run=ROOT/'runs/gen6-chatgpt-ben-followups-20261111'
 out=ROOT/'publication'
 export(run,out)
-for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json'):
+for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','source-indices.json','significance-trigger.json'):
     dest=out/'recovery'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(run/name,dest)
 for folder in ('artifacts','assets','episodes','receipts','resolved-failures','history'):
     for p in (run/folder).rglob('*'):
