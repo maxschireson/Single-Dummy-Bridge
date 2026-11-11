@@ -41,6 +41,8 @@ for(let offset=0;offset<inv.length;offset+=60){
 const parent=head;
 const c=unwrap(await tools.mcp__codex_apps__github_create_commit({repository_full_name:repo,parent_sha:parent,tree_sha:t.sha,message:"Gen6 ChatGPT: verified independent cohort snapshot and complete recovery records"}));
 text(await tools.mcp__codex_apps__github_update_ref({repository_full_name:repo,branch_name:"arena-gen6-chatgpt-feed",sha:c.sha,expected_sha:head}));
+const liveRef=JSON.parse((await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/ref/heads/arena-gen6-chatgpt-feed"})).structuredContent.content);
+if(liveRef.object.sha!==c.sha)throw Error("Feed ref did not advance to verified commit");
 const check=JSON.parse((await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/trees/"+c.sha+"?recursive=1"})).structuredContent.content);
 const actual=new Map(check.tree.map(f=>[f.path,f.sha]));
 for(const f of inv)if(actual.get(f.path)!==f.sha)throw Error("published mismatch "+f.path);
