@@ -267,7 +267,7 @@
       "source_state": "/workspace/work/gen6-fast-selfplay-cutover.json"
     },
     "gen6chatgpt": {
-      "status": "Instrumented recovery progressing after recurrent process loss; root cause remains unconfirmed",
+      "status": "Stopped at 656: recurrent BEN pool process loss; original failure retained",
       "pair_weights": {
         "6-32~6-32": 37,
         "6-32~ben": 3
@@ -277,10 +277,10 @@
       "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
       "preflight": "2 real-model self-play deals,12gapforks; full BEN16 paired preflight52 BEN decisions; first actual records of BOTH matchups replay validated",
       "source_note": "Frozen source/runtime/models and fast-only 37/3 mix unchanged. External process-memory observer wraps unchanged launcher; no automatic restart loop.",
-      "full_checkpoint": "f59f2be0e717b38216857d16681c666f7db809e5",
-      "full_checkpoint_records": 542,
-      "full_checkpoint_verified_files": 6012,
-      "operator_handoff": "All in-flight boards passed isolated and concurrent diagnostics: 45 self-play tests, then 45 self-play plus BEN16 index376 with exit/resource telemetry; no worker deaths or shared OOM-counter increase. Original233 failure archived unchanged after diagnosis, production233 replay+receipt verified. Resource evidence and observer driver in recovery/diagnostics. Inspect current locks/heartbeat/failures; never duplicate held writer."
+      "full_checkpoint": "7fc545f038169050e891ab3b5acbdb8a2de76977",
+      "full_checkpoint_records": 656,
+      "full_checkpoint_verified_files": 6255,
+      "operator_handoff": "No blind restart. Failure001082.json remains unresolved. Resource observer shows BEN worker PID49 disappeared first at11:25:41, lastRSS1.58GB/available1.39GB. Fresh BEN1082 diagnostic passes replay in36.65s at832884KiB maxRSS,exit0. Shared OOM counter rose16to20 across interval but no victim/timestamp correlation; memory pressure remains hypothesis. Complete evidence in recovery/diagnostics/ben1082-investigation.json. Next evaluate versioned bounded BEN-worker recycling with exit telemetry, preserving inputs/actions/RNG/models/scoring/provenance. Frozen runtime unchanged; retired cohorts remain stopped."
     },
     "gen6cloudselfplay": {
       "status": "Collecting independent fast self-play only for Gen7",
