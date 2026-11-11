@@ -49,7 +49,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from bridge_harness.core import Board, Game, card, imps, symbol
 from bridge_harness.gen6 import View, systematic
-from bridge_harness.gen7 import Gen7Player, floored, hidden_plays, player
+from bridge_harness.gen7 import Gen7Player, floored, hidden_plays, player, resolved
 from bridge_harness.runner import play_table
 
 SCORER = 'models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz'
@@ -77,7 +77,7 @@ def records(directory, split, seed=0):
     for path in files:
         with gzip.open(path, 'rt') as f:
             d = json.load(f)
-        if split_of(d['family']) != split:
+        if split >= 0 and split_of(d['family']) != split:
             continue
         who = {'candidate': d['candidate'], 'opponent': d['opponent']}
         for e in d['unique_tables'].values():
@@ -235,12 +235,41 @@ def inference(a):
     print(json.dumps(result, indent=1))
 
 
+def gen7_block(a):
+    """The Gen 7 bot's settings: --gen7 (a JSON object, a file holding one, or a plan file with --bot) or the single switches."""
+    if not a.gen7:
+        return dict(play_weight=a.tau, play_floor=a.floor, tie_break=a.tie_break, search_from_trick=a.search_from_trick,
+                    play_max_layouts=a.play_max_layouts)
+    block = json.loads(Path(a.gen7).read_text() if Path(a.gen7).exists() else a.gen7)
+    if 'gen7_bots' in block:
+        block = block['gen7_bots'][a.bot or next(iter(block['gen7_bots']))].get('gen7', {})
+    return resolved(block)
+
+
+def tree_use(tables):
+    """What the tree did at the Gen 7 seats' decisions of these tables."""
+    notes = [x['gen7_tree'] for t in tables for x in t['actions'] if x['player'] == '7' and 'gen7_tree' in x]
+    used = [n for n in notes if n['consulted']]
+    switched = sum(1 for t in tables for x in t['actions'] if x['player'] == '7' and x.get('gen7_tree', {}).get('consulted')
+                   and x['selected_pimc_gap'] > 1e-9)
+    out = dict(decisions_in_a_stage=len(notes), consulted=len(used), switched=switched, over_budget=sum(bool(n.get('over_budget')) for n in notes))
+    if used:
+        solves = np.array([n['solves'] for n in used])
+        seconds = np.array([n['seconds'] for n in used])
+        out.update(seconds_per_consulted=round(float(seconds.mean()), 3), seconds_p95=round(float(np.quantile(seconds, .95)), 3),
+                   seconds_max=round(float(seconds.max()), 2), solves_per_consulted=round(float(solves.mean()), 1),
+                   solves_p95=int(np.quantile(solves, .95)), solves_p99=int(np.quantile(solves, .99)), solves_max=int(solves.max()),
+                   lines_per_consulted=round(float(np.mean([n['lines'] for n in used])), 1),
+                   net_rows_per_consulted=round(float(np.mean([n['net_rows'] for n in used])), 1))
+    return out
+
+
 def match(a):
     six = player(spec('gen6'), ROOT)
-    seven = Gen7Player(spec('gen7', a.policy, play_weight=a.tau, play_floor=a.floor, tie_break=a.tie_break,
-                            search_from_trick=a.search_from_trick, play_max_layouts=a.play_max_layouts), ROOT)
+    block = gen7_block(a)
+    seven = Gen7Player(spec('gen7', a.policy, **block), ROOT)
     players = {'6': six, '7': seven}
-    results, seen, started = [], set(), time.time()
+    results, seen, started, played = [], set(), time.time(), []
     for family, bots, e in records(a.episodes, a.split):
         if len(results) >= a.boards or time.time() - started > a.seconds:
             break
@@ -257,6 +286,7 @@ def match(a):
                 raise RuntimeError(t.get('traceback'))
             cpu.append(time.process_time() - before)
             scores.append(t['ns_score'])
+            played.append(t)
         results.append(dict(family=family, contract=e['board']['contract'], declarer=e['board']['declarer'], ns_scores=scores,
                             imps=imps(scores[0] - scores[1]), cpu=cpu))
         if len(results) % 5 == 0:
@@ -270,7 +300,7 @@ def match(a):
                standard_error=round(float(x.std(ddof=1) / math.sqrt(len(x))), 3) if len(x) > 1 else None,
                nonflat_boards=int((x != 0).sum()), won=int((x > 0).sum()), lost=int((x < 0).sum()),
                cpu_seconds_per_table=round(float(np.mean([c for r in results for c in r['cpu']])), 2),
-               settings=dict(tau=a.tau, floor=a.floor, tie_break=a.tie_break, search_from_trick=a.search_from_trick), seconds=round(time.time() - started))
+               tree=tree_use(played) if seven.stages else None, settings=block, seconds=round(time.time() - started))
     if a.out:
         Path(a.out).write_text(json.dumps(dict(out, boards_detail=results), indent=1))
     print(json.dumps(out, indent=1))
@@ -377,7 +407,7 @@ def main():
     p.add_argument('check', choices=('fidelity', 'inference', 'match', 'speed', 'auction'))
     p.add_argument('--episodes', type=Path, required=True)
     p.add_argument('--policy', type=Path)
-    p.add_argument('--split', type=int, default=2)
+    p.add_argument('--split', type=int, default=2, help='0 train, 1 validation, 2 test (default), -1 every deal')
     p.add_argument('--tables', type=int, default=60)
     p.add_argument('--decisions', type=int, default=300)
     p.add_argument('--boards', type=int, default=40)
@@ -389,6 +419,9 @@ def main():
     p.add_argument('--tie-break', default='net')
     p.add_argument('--search-from-trick', type=int, default=1)
     p.add_argument('--play-max-layouts', type=int, default=1024)
+    p.add_argument('--gen7', help="match: the Gen 7 bot's whole `gen7` block as JSON, a file holding it, or a plan file "
+                                  '(configs/round7-alpha.json); replaces the five switches above')
+    p.add_argument('--bot', help='with a plan file in --gen7: which of its gen7_bots (default: the first)')
     p.add_argument('--seed', type=int, default=1)
     p.add_argument('--out')
     a = p.parse_args()

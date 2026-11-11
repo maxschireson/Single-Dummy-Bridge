@@ -39,6 +39,9 @@ def player(spec,root,reference=None):
     if spec.get('engine')=='gen6':
         from bridge_harness.gen6 import Gen6Player
         return Gen6Player(spec,root,reference)
+    if spec.get('engine')=='gen7':
+        from bridge_harness.gen7 import Gen7Player
+        return Gen7Player(spec,root,reference)
     return ArenaPlayer(spec,root,reference)
 
 def validate(r,m,index):

@@ -1,0 +1,248 @@
+"""Gen7 alpha launch files: the plan, cohort preparation, the runtime's player factory and the preflight's checks."""
+from copy import deepcopy
+from dataclasses import fields
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from bridge_harness.corpus import generate
+from bridge_harness.gen6 import Gen6Player
+from bridge_harness.gen7 import USE_KEYS, Gen7Config, Gen7Player, resolved
+from bridge_harness.gen7_tree import TreeConfig
+from bridge_harness.loop_registry import sha
+from bridge_harness.mixed_arena import verify_generation
+from bridge_harness.players import GreedyPlayer
+from bridge_harness.runner import play_table
+from bridge_harness.selfplay import atomic_json
+from bridge_harness.training import digest
+from ops import gen5_runtime, prepare_gen6
+from ops.prepare_gen6 import GEN6_FILES
+from ops.prepare_gen7_alpha import CARRIED, GEN7_POLICY, RUNTIME, load_plan, make_bots, prepare
+from ops.smoke_gen7 import check_decision
+from test_gen6 import FakeBelief, FakeState
+from test_gen6_launch import source_run
+from test_gen7 import Fixture
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def gen6_run(root):
+    """A drained Gen6 run: test_gen6_launch's three-bot run plus the shipped plan's Gen6 bots, with stand-in files."""
+    old = source_run(root)
+    plan = json.loads((ROOT / 'configs/round6.json').read_text())
+    for key, target in GEN6_FILES.items():
+        (root / target).parent.mkdir(parents=True, exist_ok=True)
+        (root / target).write_bytes(key.encode())
+        plan['artifacts'][key]['sha256'] = sha(root / target)
+    plan['lead_state_bidder_sha256'] = old['bots']['5RZ32']['artifact_sha256']['bidding']
+    m = dict(old, bots=prepare_gen6.make_bots(old, plan), generation=6, variant='6', independent_room_seeds=True,
+             gap_fork=dict(per_band=2, bands=[.125, .5], max_cpu_share=1.5), allocation_trigger=dict(state='watching'))
+    m.pop('identity')
+    m['identity'] = digest(m)
+    atomic_json(root / 'manifest.json', m)
+    return m
+
+
+class Gen7LaunchTests(unittest.TestCase):
+    def setUp(self):
+        self.dir = tempfile.TemporaryDirectory()
+        self.tmp = Path(self.dir.name)
+        self.old = gen6_run(self.tmp / 'source')
+        release = self.tmp / 'release'
+        release.mkdir()
+        (release / 'policy.npz').write_bytes(b'policy')
+        self.scorer = self.old['bots']['6-32']['artifact_sha256']['scorer']
+        (release / 'manifest.json').write_text(json.dumps(dict(scorer_sha256=self.scorer)))
+        plan = json.loads((ROOT / 'configs/round7-alpha.json').read_text())
+        plan.update(launch_enabled=True, pending=[])
+        plan['artifacts']['gen7_policy'] = dict(release=str(release), file='policy.npz', restore='restore.py', sha256=sha(release / 'policy.npz'))
+        self.plan, self.plan_path, self.release = plan, self.tmp / 'plan.json', release
+        self.write()
+
+    def tearDown(self):
+        self.dir.cleanup()
+
+    def write(self):
+        self.plan_path.write_text(json.dumps(self.plan))
+
+    # ---- the plan ------------------------------------------------------------------------
+    def test_shipped_plan_is_closed_and_spells_out_every_setting(self):
+        with self.assertRaises(ValueError):
+            load_plan()
+        shipped = load_plan(require_ready=False)
+        self.assertFalse(shipped['launch_enabled'])
+        self.assertTrue(shipped['pending'])
+        entry = shipped['artifacts']['gen7_policy']
+        manifest = json.loads((ROOT / entry['release'] / 'manifest.json').read_text())
+        self.assertIn(entry['sha256'], json.dumps(manifest))
+        self.assertTrue((ROOT / entry['release'] / entry['restore']).exists())
+        for bot in shipped['gen7_bots'].values():
+            block = bot['gen7']
+            self.assertEqual(resolved(block), block)        # nothing is left to a default in code
+            self.assertEqual(set(block) - {'tree'}, {f.name for f in fields(Gen7Config)})
+            for stage in block['tree']:
+                self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
+
+    def test_bad_plans_are_refused(self):
+        for edit in (lambda p: p['gen7_bots']['7a-32']['gen7']['tree'][0].update(depth=3),
+                     lambda p: p['gen7_bots']['7a-32']['gen7'].update(tie_break='coin'),
+                     lambda p: p['gen7_bots']['7a-32'].update(gen6=dict(early_source='bidder')),
+                     lambda p: p['gen7_bots']['7a-32'].update(samples=0),
+                     lambda p: p.update(gen7_bots={}),
+                     lambda p: p['artifacts'].update(extra=dict(release='x', file='y', restore='z', sha256='0')),
+                     lambda p: p['artifacts']['gen7_policy'].pop('sha256'),
+                     lambda p: p.update(roster=['7a-32']),
+                     lambda p: p.update(pair_weights={'7a-32~6-32': 0}),
+                     lambda p: p.update(pending=['the model'])):
+            plan = deepcopy(self.plan)
+            edit(plan)
+            self.plan_path.write_text(json.dumps(plan))
+            with self.assertRaises((ValueError, TypeError)):
+                load_plan(self.plan_path)
+
+    # ---- the bots ------------------------------------------------------------------------
+    def test_gen7_bot_is_its_gen6_base_plus_engine_policy_and_settings(self):
+        bots = make_bots(self.old, self.plan)
+        for key, spec in self.old['bots'].items():
+            self.assertEqual(bots[key], spec)
+        seven, base = deepcopy(bots['7a-32']), deepcopy(self.old['bots']['6-32'])
+        self.assertEqual(seven['identity'], digest({k: v for k, v in seven.items() if k != 'identity'}))
+        self.assertEqual((seven.pop('engine'), seven.pop('gen7_policy'), seven.pop('policy_role')), ('gen7', GEN7_POLICY, 'gen7-alpha'))
+        self.assertEqual(seven.pop('gen7'), resolved(self.plan['gen7_bots']['7a-32']['gen7']))
+        self.assertEqual(seven.pop('artifact_sha256'), dict(base.pop('artifact_sha256'), gen7_policy=self.plan['artifacts']['gen7_policy']['sha256']))
+        for key in ('id', 'identity'):
+            seven.pop(key)
+            base.pop(key)
+        base.pop('engine')
+        base.pop('policy_role')
+        self.assertEqual(seven, base)       # same bidder, lead net, scorer, policy, sample count and Gen6 layout settings
+
+    def test_every_setting_is_part_of_the_bots_identity(self):
+        plain = make_bots(self.old, self.plan)['7a-32']
+        seen = {plain['identity']}
+        for edit in (lambda b: b['gen7']['tree'][0].update(tricks=3), lambda b: b['gen7']['tree'][0].update(breadth=2),
+                     lambda b: b['gen7']['tree'][0].update(layouts=16), lambda b: b['gen7']['tree'][0].update(from_trick=5),
+                     lambda b: b['gen7']['tree'][0].update(root_margin=.25), lambda b: b['gen7']['tree'][0].update(trust=.5),
+                     lambda b: b['gen7']['tree'][0].update(reply='search'), lambda b: b['gen7'].update(play_weight=0.),
+                     lambda b: b['gen7'].pop('tree'), lambda b: b.update(gen6=dict(list_from_trick=8)), lambda b: b.update(samples=64),
+                     lambda b: b['gen7'].update(tree=[dict(b['gen7']['tree'][0], to_trick=6), dict(b['gen7']['tree'][0], from_trick=7, tricks=3)])):
+            plan = deepcopy(self.plan)
+            edit(plan['gen7_bots']['7a-32'])
+            seen.add(make_bots(self.old, plan)['7a-32']['identity'])
+        self.assertEqual(len(seen), 13)
+        plan = deepcopy(self.plan)
+        plan['artifacts']['gen7_policy']['sha256'] = '0' * 64       # another model is another bot
+        self.assertNotIn(make_bots(self.old, plan)['7a-32']['identity'], seen)
+        for edit in (lambda p: p['gen7_bots']['7a-32'].update(base='missing'), lambda p: p['gen7_bots']['7a-32'].update(base='5RZ32'),
+                     lambda p: p['gen7_bots'].update({'6-32': dict(base='6-32', gen7={})})):
+            plan = deepcopy(self.plan)
+            edit(plan)
+            with self.assertRaises(ValueError):
+                make_bots(self.old, plan)
+
+    # ---- the cohort ----------------------------------------------------------------------
+    def test_prepare_freezes_unplayed_deals_bots_policy_and_carried_settings(self):
+        self.plan.update(roster=['7a-32', '6-32', '5RZ32'], pair_weights={'7a-32~6-32': 1, '6-32~5RZ32': 3}, audit_references={'7a-32': '3', '6-32': '3'})
+        self.write()
+        run = self.tmp / 'run'
+        m = prepare(run, self.tmp / 'source', self.plan_path)
+        verify_generation(run, m)
+        self.assertEqual((m['generation'], m['variant'], m['target'], m['common_bidder'], m['seed']), (6, '6', 6, '6-32', self.old['seed']))
+        self.assertEqual(m['pair_schedule'], ['7a-32~6-32'] + ['6-32~5RZ32'] * 3)
+        self.assertEqual(m['audit_references'], dict(self.old['audit_references'], **{'7a-32': '3', '6-32': '3'}))
+        self.assertEqual(m['source_generation'], self.old['identity'])
+        self.assertEqual(set(m['runtime_sha256']), set(RUNTIME))
+        self.assertEqual(sha(run / GEN7_POLICY), self.plan['artifacts']['gen7_policy']['sha256'])
+        self.assertEqual(m['gen7_alpha'], dict(bots=['7a-32'], policy_release=str(self.release), policy_sha256=sha(run / GEN7_POLICY)))
+        for key in CARRIED:
+            self.assertEqual(m.get(key), self.old.get(key), key)
+        self.assertEqual((m['gap_fork'], m['independent_room_seeds'], m['audit']), (self.old['gap_fork'], True, self.old['audit']))
+        self.assertNotIn('allocation_trigger', m)           # a producer's own state is not carried
+        for key, spec in self.old['bots'].items():
+            self.assertEqual(m['bots'][key], spec)
+        self.assertEqual(m['labels']['7a-32'], 'Gen 7 alpha (32)')
+        with self.assertRaises(ValueError):
+            prepare(run, self.tmp / 'source', self.plan_path)                   # never overwrites
+
+    def test_prepare_refuses_a_live_source_a_bad_mix_or_the_wrong_scorer(self):
+        source = self.tmp / 'source'
+        (source / 'STOP').unlink()
+        with self.assertRaises(ValueError):
+            prepare(self.tmp / 'run', source, self.plan_path)
+        (source / 'STOP').write_text('drained')
+        good = dict(pair_weights={'7a-32~6-32': 1}, audit_references={'7a-32': '3'}, common_bidder='6-32', roster=['7a-32', '6-32'])
+        for mix in (dict(pair_weights={'7a-32~4b': 1}), dict(audit_references={}), dict(common_bidder='9'), dict(roster=['7a-32', 'x']),
+                    dict(pair_weights={'6-32~5RZ32': 1}, audit_references={'6-32': '3'})):          # the last leaves the Gen7 bot in no pair
+            self.plan.update(good)
+            self.plan.update(mix)
+            self.write()
+            with self.assertRaises(ValueError):
+                prepare(self.tmp / 'run', source, self.plan_path)
+            self.assertFalse((self.tmp / 'run').exists())
+        self.plan.update(good)
+        self.write()
+        for manifest in (dict(scorer_sha256='0' * 64), {}):
+            (self.release / 'manifest.json').write_text(json.dumps(manifest))
+            with self.assertRaises(ValueError):
+                prepare(self.tmp / 'run', source, self.plan_path)
+            self.assertFalse((self.tmp / 'run').exists())
+        (self.release / 'policy.npz').write_bytes(b'another model')
+        (self.release / 'manifest.json').write_text(json.dumps(dict(scorer_sha256=self.scorer)))
+        with self.assertRaises(ValueError):
+            prepare(self.tmp / 'run', source, self.plan_path)
+
+
+class RuntimeAndPreflightTests(Fixture):
+    TREE = dict(from_trick=1, root_margin=.5, root_cards=3, tricks=1, breadth=2, layouts=4, max_solves=2000)
+
+    def spec(self, **gen7):
+        return dict(id='7-test', engine='gen7', samples=8, near_tie=0., exploration=0., scorer='scorer.npz', lead_belief='lead.npz',
+                    lead_state_bidder='bidder.keras', belief='belief.npz', belief_kind='public', gen6=dict(list_solve=16),
+                    gen7_policy='gen7.npz', gen7=gen7)
+
+    def test_the_runtime_builds_a_gen7_player_for_a_gen7_spec(self):
+        with patch('bridge_harness.gen6.BidderState', FakeState), patch('bridge_harness.mixed_arena.Weights', FakeBelief):
+            seven = gen5_runtime.player(self.spec(tree=self.TREE), self.root)
+            six = gen5_runtime.player(dict(self.spec(), engine='gen6'), self.root)
+        self.players += [seven, six]
+        self.assertIs(type(seven), Gen7Player)
+        self.assertIs(type(six), Gen6Player)
+        self.assertEqual(len(seven.stages), 1)
+
+    def test_the_preflight_accepts_real_decisions_and_catches_a_broken_record(self):
+        with patch('bridge_harness.gen6.BidderState', FakeState), patch('bridge_harness.mixed_arena.Weights', FakeBelief):
+            p = gen5_runtime.player(self.spec(tree=self.TREE), self.root)
+        self.players.append(p)
+        board = next(generate(1, 702))
+        actions = []
+        for room in (0, 1):
+            t = play_table(board, ['x' if s % 2 == room else 'g' for s in range(4)], {'x': p, 'g': GreedyPlayer()}, seed=5)
+            self.assertEqual(t['status'], 'ok', t.get('traceback'))
+            actions += [a for a in t['actions'] if a['player'] == 'x' and 'gen6' in a]
+        got = [check_decision(a, p.stages) for a in actions]
+        self.assertGreater(sum(c for _, c, _, _ in got), 5)                     # consulted
+        self.assertEqual(sum(s for s, _, _, _ in got), sum(a['ply'] > 0 for a in actions))
+        used = next(a for a in actions if a.get('gen7_tree', {}).get('consulted'))
+        for edit in (lambda a: a.update(selected_pimc_gap=.75),
+                     lambda a: a['gen7_tree']['candidates'][0].update(adjusted=a['gen7_tree']['candidates'][0]['adjusted'] + .5),
+                     lambda a: a['gen7_tree']['candidates'][-1].update(gap=.6),
+                     lambda a: a.update(card=next(c for c in a['estimates'] if all(c not in x['cards'] or not x['kept']
+                                                                                   for x in a['gen7_tree']['candidates']))),
+                     lambda a: a['gen7_tree'].update(stage=0, solves=5000),
+                     lambda a: a.update(near_tie=.125)):
+            broken = deepcopy(used)
+            try:
+                edit(broken)
+            except StopIteration:               # every legal card was kept: nothing to break this way
+                continue
+            with self.assertRaises(AssertionError):
+                check_decision(broken, p.stages)
+        outside = next(a for a in actions if 'gen7_tree' not in a)
+        with self.assertRaises(AssertionError):
+            check_decision(dict(outside, selected_pimc_gap=.1), p.stages)
+
+
+if __name__ == '__main__':
+    unittest.main()
