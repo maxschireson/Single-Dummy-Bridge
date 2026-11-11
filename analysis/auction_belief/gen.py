@@ -58,7 +58,7 @@ def hand_inputs(hands, vul):
     return x, m
 
 
-def simulate(bidder, hands, dealer, vul, max_calls=44):
+def simulate(bidder, hands, dealer, vul, max_calls=44, keep_legal=False):
     """Greedy auctions for a batch. Returns dict with calls (-1 padded) and contract fields."""
     B = len(hands)
     x, member = hand_inputs(hands, vul)
@@ -75,6 +75,7 @@ def simulate(bidder, hands, dealer, vul, max_calls=44):
     first = np.full((B, 2, 5), -1)
     active = np.ones(B, bool)
     orders = np.arange(35)
+    legal_log = np.zeros((B, max_calls, 40), bool) if keep_legal else None
     for t in range(max_calls):
         idx = np.flatnonzero(active)
         if not len(idx):
@@ -103,6 +104,8 @@ def simulate(bidder, hands, dealer, vul, max_calls=44):
         legal[:, 4] = (db == 1) & (seat % 2 == ls % 2)
         call = np.argmax(np.where(legal, logits, -np.inf), axis=1)
         calls[idx, t] = call
+        if keep_legal:
+            legal_log[idx, t] = legal
         bid = call >= 5
         order = call - 5
         b_idx = idx[bid]
@@ -124,7 +127,7 @@ def simulate(bidder, hands, dealer, vul, max_calls=44):
     ix = np.flatnonzero(has)
     declarer[ix] = first[ix, last_seat[ix] % 2, last_order[ix] % 5]
     return dict(calls=calls, length=(calls >= 0).sum(1), finished=finished, contract=has, last_order=last_order,
-                doubled=doubled, declarer=declarer, out3=out3, member=member)
+                doubled=doubled, declarer=declarer, out3=out3, member=member, legal=legal_log)
 
 
 def types(member):
