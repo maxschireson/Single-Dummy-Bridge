@@ -127,7 +127,7 @@ class Gen7LaunchTests(unittest.TestCase):
                      lambda b: b['gen7']['tree'][0].update(root_margin=.25), lambda b: b['gen7']['tree'][0].update(trust=.5),
                      lambda b: b['gen7']['tree'][0].update(reply='search'), lambda b: b['gen7'].update(play_weight=0.),
                      lambda b: b['gen7'].pop('tree'), lambda b: b.update(gen6=dict(list_from_trick=8)), lambda b: b.update(samples=64),
-                     lambda b: b['gen7'].update(tree=[dict(b['gen7']['tree'][0], to_trick=6), dict(b['gen7']['tree'][0], from_trick=7, tricks=3)])):
+                     lambda b: b['gen7'].update(tree=[dict(b['gen7']['tree'][0], to_trick=5), dict(b['gen7']['tree'][0], from_trick=6, to_trick=13, tricks=3)])):
             plan = deepcopy(self.plan)
             edit(plan['gen7_bots']['7a-32'])
             seen.add(make_bots(self.old, plan)['7a-32']['identity'])

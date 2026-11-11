@@ -1,9 +1,9 @@
 # Gen 7 prototype (11 November 2026)
 
-> Later the same day: the tree search described under "What this says to do next" was built, wired
-> into the player and packaged for the arena. See [Gen 7 alpha](gen7_alpha_2026-11-11.md). The
-> statements below that the tree is not in the branch and that the collectors do not know the
-> `gen7` engine describe the prototype as first written.
+> On `feature/gen7-alpha-20261111` the player consults the tree and the runtime knows the `gen7`
+> engine: see [Gen 7 alpha](gen7_alpha_2026-11-11.md). The lines below saying that nothing was run
+> through the collectors, and that the ops files need teaching the engine, describe the prototype
+> branch this write-up came from.
 
 **Status: prototype. Not an arena bot, and not recommended as one yet.** Branch
 `transfer/gen7-prototype-20261111`, cut from `transfer/gen7-capture-forks-20261111`. Nothing here
