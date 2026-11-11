@@ -43,6 +43,8 @@ def snapshot_runtime(run,backup):
     for name in ('round6.json','round6-cutover.json','round6-independent.json','round6-codex.json','round6-ben-followups.json','ben-gen6-32.conf','ben-gen6-64.conf'):
         if (ROOT/'configs'/name).exists():copy_once(ROOT/'configs'/name,backup/'runtime/configs'/name)
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
+    for name in ('gen7_data_capture_2026-11-11.md','gen6-v7-capture-recovery-20261111.md'):
+        if (ROOT/'docs'/name).exists():copy_once(ROOT/'docs'/name,backup/'runtime/docs'/name)
     return True
 
 def publish(run,out):

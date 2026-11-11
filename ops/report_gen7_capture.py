@@ -62,9 +62,10 @@ def touching(record,event):
     game=Game(Board.from_dict(record['board']))
     for a in record['tables'][event['candidate_table']]['actions'][:event['ply']]:game.play(card(a['card']))
     a,b=card(event['candidate_card']),card(event['reference_card'])
-    # Consecutive cards within this hand's remaining cards of the same suit.
-    hand=sorted(c for c in game.hands[event['actor']] if c//13==a//13)
-    return a//13==b//13 and a in hand and b in hand and abs(hand.index(a)-hand.index(b))==1
+    # Same-suit rank sequence: any ranks between the two cards must be held by
+    # this hand or already played. An outstanding intervening opponent rank breaks it.
+    hand=game.hands[event['actor']];known=hand|{c for _,c in game.history}
+    return a//13==b//13 and a in hand and b in hand and all(c in known for c in range(min(a,b)+1,max(a,b)))
 
 
 def deal_rate(run):
@@ -132,7 +133,8 @@ def report(run,before,threshold=2000,force=False):
         added_cpu_share=gap_cpu/root_cpu if root_cpu else None,bands=by_band,
         residual_within_table_correlation=correlation(gaps),tie_audit_noise_control=noise,
         rate_before=deal_rate(before),rate_after=deal_rate(run),
-        uncertainty='Means and standard errors cluster by deal family. Rates compare observed cohort lifetimes with the same match mix.')
+        uncertainty='Means and standard errors cluster by deal family. Rates compare observed cohort lifetimes with the same match mix.',
+        touching_definition='Same-suit sequence in the actor hand, allowing publicly played intervening ranks; no outstanding intervening opponent rank.')
     atomic_json(run/'gen7-capture-report.json',result);return result
 
 
