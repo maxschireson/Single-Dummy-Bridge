@@ -1,5 +1,5 @@
 {
-  "status": "versioned_recovery_operating",
+  "status": "stalled_server_loss",
   "epoch": 1794403149.9869657,
   "prior_manifest": "075a02098c3cf109eadabf6c6e79e7caa490557c06b03b025c90e04132143078",
   "manifest": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
@@ -30,7 +30,7 @@
   },
   "worker_exit_telemetry": "diagnostics/ben-board-worker-*.jsonl",
   "recovery_20261111_1635": {
-    "status": "controlled_restart_started",
+    "status": "recovered",
     "stopped_completed": 1673,
     "last_observed_epoch": 1794409595.9763792,
     "cause": "Unconfirmed whole-session disappearance; all locks free, no STOP or unresolved failure; external observer ends without final exit status",
@@ -42,6 +42,96 @@
     "last_shared_oom_counter": 24,
     "launcher_unchanged": true,
     "session": 61231,
-    "epoch": 1794414862.6833723
+    "epoch": 1794414862.6833723,
+    "production_replay_and_receipt_sha_verified": [
+      1600,
+      1601,
+      1602,
+      2561
+    ],
+    "observed_state": {
+      "manifest_identity": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
+      "completed": 1684,
+      "target": 8128,
+      "contiguous": 1611,
+      "by_pair": {
+        "6-32~6-32": 1491,
+        "6-32~ben": 193
+      },
+      "root_games": 1931,
+      "tables": 35709,
+      "failures": 0,
+      "epoch": 1794414935.0265973,
+      "complete": false
+    },
+    "proof_epoch": 1794414942.1446695
+  },
+  "server_loss_20261111_1711": {
+    "epoch": 1794417617.8210106,
+    "status": "stalled_server_loss",
+    "completed": 2015,
+    "failure": "failures/003062.json",
+    "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+    "worker_exitcode": 1,
+    "exception": "RemoteDisconnected: Remote end closed connection without response",
+    "server_pid": 6,
+    "server_last_rss_GB": 1.392,
+    "server_last_seen_epoch": 1794417084.399045,
+    "server_absent_epoch": 1794417089.407068,
+    "shared_oom_before": 24,
+    "shared_oom_after": 28,
+    "oom_victim_attribution": "unavailable; correlated interval is not proof of victim",
+    "launcher_exit": 1,
+    "isolated_probe": {
+      "epoch": 1794417520.6726596,
+      "baseline": {
+        "MemTotal_kb": 10206472,
+        "MemFree_kb": 1293816,
+        "MemAvailable_kb": 7113248,
+        "Cached_kb": 7068212,
+        "SwapTotal_kb": 0,
+        "SwapFree_kb": 0,
+        "allocstall_dma": 0,
+        "allocstall_dma32": 0,
+        "allocstall_normal": 0,
+        "allocstall_movable": 84,
+        "allocstall_device": 0,
+        "pgmajfault": 51333,
+        "oom_kill": 28,
+        "cgroup_metrics_available": false
+      },
+      "production_commits": 0,
+      "status": "passed",
+      "completed": 1,
+      "seconds": 72.89607810974121,
+      "rows": [
+        {
+          "index": 3062,
+          "pid": 26,
+          "seconds": 69.46463799476624,
+          "maxrss_kb": 856112,
+          "status": "replay_validated",
+          "tables": 4
+        }
+      ],
+      "final": {
+        "MemTotal_kb": 10206472,
+        "MemFree_kb": 2364780,
+        "MemAvailable_kb": 6899404,
+        "Cached_kb": 5800156,
+        "SwapTotal_kb": 0,
+        "SwapFree_kb": 0,
+        "allocstall_dma": 0,
+        "allocstall_dma32": 0,
+        "allocstall_normal": 0,
+        "allocstall_movable": 84,
+        "allocstall_device": 0,
+        "pgmajfault": 51363,
+        "oom_kill": 28,
+        "cgroup_metrics_available": false
+      }
+    },
+    "production_restart": false,
+    "next_step": "Prepare safe versioned BEN server lifecycle with direct exitcode telemetry and equivalence preflight; do not blindly restart or clear3062."
   }
 }

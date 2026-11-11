@@ -1,0 +1,68 @@
+{
+  "epoch": 1794417617.8210106,
+  "status": "stalled_server_loss",
+  "completed": 2015,
+  "failure": "failures/003062.json",
+  "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+  "worker_exitcode": 1,
+  "exception": "RemoteDisconnected: Remote end closed connection without response",
+  "server_pid": 6,
+  "server_last_rss_GB": 1.392,
+  "server_last_seen_epoch": 1794417084.399045,
+  "server_absent_epoch": 1794417089.407068,
+  "shared_oom_before": 24,
+  "shared_oom_after": 28,
+  "oom_victim_attribution": "unavailable; correlated interval is not proof of victim",
+  "launcher_exit": 1,
+  "isolated_probe": {
+    "epoch": 1794417520.6726596,
+    "baseline": {
+      "MemTotal_kb": 10206472,
+      "MemFree_kb": 1293816,
+      "MemAvailable_kb": 7113248,
+      "Cached_kb": 7068212,
+      "SwapTotal_kb": 0,
+      "SwapFree_kb": 0,
+      "allocstall_dma": 0,
+      "allocstall_dma32": 0,
+      "allocstall_normal": 0,
+      "allocstall_movable": 84,
+      "allocstall_device": 0,
+      "pgmajfault": 51333,
+      "oom_kill": 28,
+      "cgroup_metrics_available": false
+    },
+    "production_commits": 0,
+    "status": "passed",
+    "completed": 1,
+    "seconds": 72.89607810974121,
+    "rows": [
+      {
+        "index": 3062,
+        "pid": 26,
+        "seconds": 69.46463799476624,
+        "maxrss_kb": 856112,
+        "status": "replay_validated",
+        "tables": 4
+      }
+    ],
+    "final": {
+      "MemTotal_kb": 10206472,
+      "MemFree_kb": 2364780,
+      "MemAvailable_kb": 6899404,
+      "Cached_kb": 5800156,
+      "SwapTotal_kb": 0,
+      "SwapFree_kb": 0,
+      "allocstall_dma": 0,
+      "allocstall_dma32": 0,
+      "allocstall_normal": 0,
+      "allocstall_movable": 84,
+      "allocstall_device": 0,
+      "pgmajfault": 51363,
+      "oom_kill": 28,
+      "cgroup_metrics_available": false
+    }
+  },
+  "production_restart": false,
+  "next_step": "Prepare safe versioned BEN server lifecycle with direct exitcode telemetry and equivalence preflight; do not blindly restart or clear3062."
+}
