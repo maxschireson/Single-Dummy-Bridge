@@ -1,0 +1,25 @@
+{
+  "status": "diagnosed_baseline_claim_rng_variation_not_promoted",
+  "epoch": 1794424963.1982086,
+  "unchanged_requests": 40,
+  "unchanged_cards": {
+    "C5": 33,
+    "C8": 7
+  },
+  "seed_control_requests": 10,
+  "seed_control_cards": {
+    "C8": 10
+  },
+  "sample_lists_identical": true,
+  "request": "http://127.0.0.1:8087/play?hand=.K9.KQT975432.85&seat=S&dealer=S&vul=Both&ctx=5D------&matchtype=IMP&details=true&dummy=T62.A7543.J8.AT9&played=SAS2S3D2HKH8H3H2H9HTHAHJH4H6D3D6C2CAC3&format=false",
+  "source_evidence": [
+    "ben/src/claim.py:124 random.sample uses Python process-global RNG",
+    "ben/src/botcardplayer.py:1028 invokes claimcheck; line1090 penalizes bad_play by -0.05",
+    "ben/src/gameapi.py:728-729 seeds NumPy and TensorFlow; does not seed Python random"
+  ],
+  "interpretation": "Repeated identical requests to unchanged BEN vary. C5 response penalizes C8 -0.05; C8 response has both candidates tied and NN favors C8. Fixed Python random seed42 immediately before claimcheck in isolated diagnostic makes all10 choose C8. This supports claim RNG variation, not proof of production crash cause or exact old/new lifecycle equivalence.",
+  "production_commits": 0,
+  "production_runtime_changed": false,
+  "candidate_promoted": false,
+  "next_step": "Design a separately versioned deterministic claim-RNG protocol and equivalence harness, or preserve compatible RNG state across server recycling; do not silently change live BEN RNG or relax exact-action gate."
+}
