@@ -1,0 +1,25 @@
+{
+  "task": "Train cardplay policy with Claude spot-card bidder auctions and optional Gen6 bidding-system information",
+  "status": "metadata_and_provenance_gate_prepared_training_not_started",
+  "authorization": "Max, 11 November 2026: train a new policy net using the new bidding system; support unspecified and known system inference",
+  "parent_policy_sha256": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+  "bidding_system_id": "gen6",
+  "bidding_engine_commit": null,
+  "bidding_engine_sha256": null,
+  "blocker": "Claude spot-card-aware bidder not identified among currently accessible repository branches. Claude joint-auction-belief branch52797cee uses the old Gen5 bidder.",
+  "inputs": ["existing player-visible cards and public play history", "ordered auction", "optional per-seat public system ID with explicit known mask"],
+  "training_views": ["system declarations supplied", "all system declarations hidden", "partnership declarations partially hidden"],
+  "unknown_mode": "Mask system metadata only. Retain observed auction and play so inference can learn evidence about bidding behavior. Never expose hidden actor/model identity through another input.",
+  "model_work_pending": "Integrate optional context into policy with parent-preserving initialization; verify portable inference, save/restore and omission defaults before fitting.",
+  "data_rules": [
+    "Bind Gen6 label only after verifying exact new bidder code/model and auction-generation settings.",
+    "Use eligible records actually generated with this bidder, or generate new auctions and legally played continuations with frozen cardplay settings.",
+    "Never attach outcomes from old contracts/auctions to newly generated auctions, even when the deal or final contract agrees.",
+    "Mix eligible historical data with new-system data; preserve whole-family splits and all existing explicit evaluation reservations, including the fixed100 Gen6-versus5RZ families.",
+    "Freeze dataset, source, generator and parent hashes before fitting. Do not substitute the mismatched historical training archive.",
+    "Mask metadata as training views without multiplying family weight or moving any views across splits."
+  ],
+  "validation": "Select with epochzero eligible. Report family-paired outcome MSE and uncertainty separately for declared and unspecified systems, with common held-out families and frozen Gen5 comparator; mixed declared partnerships as secondary robustness. Freeze candidate before fresh confirmation. Prediction gain is not automatically whole-game IMP gain.",
+  "future_notes": "Keep an extensible versioned system registry. Train explicit structured convention features or a text encoder before claiming arbitrary added notes affect inference.",
+  "deployment": "Separate candidate; no arena changes or repeated earlier Gen6 fits"
+}
