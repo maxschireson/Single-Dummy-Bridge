@@ -1,1 +1,196 @@
-{"schema":"arena-gen6-source-registry-v1","phase":"ben64-and-fast-ben16","gate_branch":"arena-gen6-codex-ben-gate","sources":[{"key":"gen6codexv7capture","group":"gen6","generation":6,"variant":"6","environment":"codex","name":"Gen 6 \u00b7 BEN64 and Gen7 capture","branch":"arena-gen6-codex-v7-capture-feed","cohort":"203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a"},{"key":"gen6codexbenfollowups","group":"gen6","generation":6,"variant":"6","environment":"codex","name":"Gen 6 \u00b7 completed BEN followup cohort","branch":"arena-gen6-codex-ben-followups-feed","cohort":"73519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60","retired":true,"revision":"9e35788b7db67bd31dd589b9c6087c8e8e92e3be"},{"key":"gen6","group":"gen6","generation":6,"variant":"6","environment":"codex","name":"Gen 6 \u00b7 primary Codex collector","branch":"arena-gen6-codex-feed","cohort":"168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea","retired":true,"revision":"20a82a253bc4f90a396a3f8991c935e4530df7f0"},{"key":"gen6chatgpt","group":"gen6","generation":6,"variant":"6","environment":"chatgpt","name":"Gen 6 \u00b7 ChatGPT BEN followups","branch":"arena-gen6-chatgpt-feed","cohort":"ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb"},{"key":"gen6independent","group":"gen6","generation":6,"variant":"6","environment":"codex","name":"Gen 6 \u00b7 independent capture (BEN64)","branch":"arena-gen6-gen7-capture-feed","cohort":"a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb"},{"key":"gen6ben16completed","group":"gen6","retired":true,"revision":"ca95def619269e2eefaba8263134ff8154ff1171","generation":6,"variant":"6","environment":"codex","name":"Gen 6 \u00b7 completed medium vs BEN16 cohort","branch":"arena-gen6-medium-ben-feed","cohort":"9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284"},{"key":"gen6initial","group":"gen6","generation":6,"variant":"6","retired":true,"revision":"1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83","environment":"codex","name":"Gen 6 \u00b7 retained early compatible games","branch":"arena-gen6-independent-feed","cohort":"497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63"},{"key":"gen6chatgptearly","group":"gen6","generation":6,"variant":"6","retired":true,"revision":"f7834f2a1f5326acbb7125c06bca7f5b9f8a3040","environment":"chatgpt","name":"Gen 6 \u00b7 retained early ChatGPT games","branch":"arena-gen6-chatgpt-feed","cohort":"e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177"},{"key":"gen6chatgptcompleted","group":"gen6","generation":6,"variant":"6","environment":"chatgpt","name":"Gen 6 \u00b7 ChatGPT completed medium/BEN16 cohort","branch":"arena-gen6-chatgpt-feed","cohort":"ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035","retired":true,"revision":"382fbceed0984d0c941f4ee737d5a9d451dfdf09"},{"key":"gen6beforecapture","group":"gen6","generation":6,"variant":"6","environment":"codex","name":"Gen 6 \u00b7 compatible results before capture","branch":"arena-gen6-ben-expansion-feed","cohort":"77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6","retired":true,"revision":"b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2"}],"activation":{"epoch":1794374109.4813075,"result":{"qualified":true,"metric":"native partnership bidding / total IMPs per board","minimum_deals":200,"records":370,"estimate":{"mean":0.5405405405405406,"se":0.2587074663637703,"n":370,"low":0.031814638544025886,"high":1.0492664425370553,"alpha":0.05,"informative":true},"inference_note":"Operational gate uses the existing dashboard exploratory paired Student-t 95% interval, not an always-valid confidence sequence."},"snapshots":[{"branch":"arena-gen6-codex-feed","commit":"19cf2f851d14efa9874268214174c834313f67a5","cohort":"168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea","records":155,"generated_epoch":1794374063.7296224},{"branch":"arena-gen6-medium-ben-feed","commit":"ca95def619269e2eefaba8263134ff8154ff1171","cohort":"9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284","records":145,"generated_epoch":1794373836.3427587},{"branch":"arena-gen6-chatgpt-feed","commit":"923eb8b32ddaa7d17e204306792d77724919011f","cohort":"ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035","records":70,"generated_epoch":1794373528.2232208}],"plan_sha256":"80c5c7fa791600833fd728708201b570ef933891308b78e04adeb950bf6d0b31"},"ben_upgrade":{"samples":64,"medium_share":0.075,"fast_ben16_share":0.075,"status":"active","epoch":1794376512.0777361,"gap_fork":{"per_band":2,"bands":[0.125,0.5],"max_cpu_share":1.5},"replaced_samples":32}}
+{
+  "schema": "arena-gen6-source-registry-v1",
+  "phase": "ben64-and-fast-ben16",
+  "gate_branch": "arena-gen6-codex-ben-gate",
+  "sources": [
+    {
+      "key": "gen6codexv7capture",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 BEN64 and Gen7 capture",
+      "branch": "arena-gen6-codex-v7-capture-feed",
+      "cohort": "203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a"
+    },
+    {
+      "key": "gen6codexbenfollowups",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 completed BEN followup cohort",
+      "branch": "arena-gen6-codex-ben-followups-feed",
+      "cohort": "73519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60",
+      "retired": true,
+      "revision": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be"
+    },
+    {
+      "key": "gen6",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 primary Codex collector",
+      "branch": "arena-gen6-codex-feed",
+      "cohort": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea",
+      "retired": true,
+      "revision": "20a82a253bc4f90a396a3f8991c935e4530df7f0"
+    },
+    {
+      "key": "gen6chatgpt",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 \u00b7 ChatGPT BEN followups",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb"
+    },
+    {
+      "key": "gen6independent",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 independent capture (BEN64)",
+      "branch": "arena-gen6-gen7-capture-feed",
+      "cohort": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb"
+    },
+    {
+      "key": "gen6ben16completed",
+      "group": "gen6",
+      "retired": true,
+      "revision": "ca95def619269e2eefaba8263134ff8154ff1171",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 completed medium vs BEN16 cohort",
+      "branch": "arena-gen6-medium-ben-feed",
+      "cohort": "9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284"
+    },
+    {
+      "key": "gen6initial",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "retired": true,
+      "revision": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 retained early compatible games",
+      "branch": "arena-gen6-independent-feed",
+      "cohort": "497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63"
+    },
+    {
+      "key": "gen6chatgptearly",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "retired": true,
+      "revision": "f7834f2a1f5326acbb7125c06bca7f5b9f8a3040",
+      "environment": "chatgpt",
+      "name": "Gen 6 \u00b7 retained early ChatGPT games",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177"
+    },
+    {
+      "key": "gen6chatgptcompleted",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 \u00b7 ChatGPT completed medium/BEN16 cohort",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035",
+      "retired": true,
+      "revision": "382fbceed0984d0c941f4ee737d5a9d451dfdf09"
+    },
+    {
+      "key": "gen6beforecapture",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 compatible results before capture",
+      "branch": "arena-gen6-ben-expansion-feed",
+      "cohort": "77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6",
+      "retired": true,
+      "revision": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2"
+    }
+  ],
+  "activation": {
+    "epoch": 1794374109.4813075,
+    "result": {
+      "qualified": true,
+      "metric": "native partnership bidding / total IMPs per board",
+      "minimum_deals": 200,
+      "records": 370,
+      "estimate": {
+        "mean": 0.5405405405405406,
+        "se": 0.2587074663637703,
+        "n": 370,
+        "low": 0.031814638544025886,
+        "high": 1.0492664425370553,
+        "alpha": 0.05,
+        "informative": true
+      },
+      "inference_note": "Operational gate uses the existing dashboard exploratory paired Student-t 95% interval, not an always-valid confidence sequence."
+    },
+    "snapshots": [
+      {
+        "branch": "arena-gen6-codex-feed",
+        "commit": "19cf2f851d14efa9874268214174c834313f67a5",
+        "cohort": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea",
+        "records": 155,
+        "generated_epoch": 1794374063.7296224
+      },
+      {
+        "branch": "arena-gen6-medium-ben-feed",
+        "commit": "ca95def619269e2eefaba8263134ff8154ff1171",
+        "cohort": "9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284",
+        "records": 145,
+        "generated_epoch": 1794373836.3427587
+      },
+      {
+        "branch": "arena-gen6-chatgpt-feed",
+        "commit": "923eb8b32ddaa7d17e204306792d77724919011f",
+        "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035",
+        "records": 70,
+        "generated_epoch": 1794373528.2232208
+      }
+    ],
+    "plan_sha256": "80c5c7fa791600833fd728708201b570ef933891308b78e04adeb950bf6d0b31"
+  },
+  "ben_upgrade": {
+    "samples": 64,
+    "medium_share": 0.075,
+    "fast_ben16_share": 0.075,
+    "status": "active",
+    "epoch": 1794376512.0777361,
+    "gap_fork": {
+      "per_band": 2,
+      "bands": [
+        0.125,
+        0.5
+      ],
+      "max_cpu_share": 1.5
+    },
+    "replaced_samples": 32
+  },
+  "collector_updates": {
+    "gen6independent": {
+      "status": "running",
+      "updated_epoch": 1794376560.8628855,
+      "ben_samples": 64,
+      "gap_fork": {
+        "per_band": 2,
+        "bands": [
+          0.125,
+          0.5
+        ],
+        "max_cpu_share": 1.5
+      },
+      "source_commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5"
+    }
+  }
+}
