@@ -116,5 +116,13 @@
     "5RZ32": "Gen 5 (32)",
     "ben": "BEN (16)"
   },
-  "authorized_engine_commit": "717cd87d57b61d7f7d3a41fa48228d849c9544bf"
+  "authorized_engine_commit": "717cd87d57b61d7f7d3a41fa48228d849c9544bf",
+  "gap_fork": {
+    "per_band": 2,
+    "bands": [
+      0.125,
+      0.5
+    ],
+    "max_cpu_share": 1.5
+  }
 }

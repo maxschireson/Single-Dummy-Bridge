@@ -44,7 +44,24 @@ def load_plan(path=None, require_ready=True):
         pair_members(pair)
         if isinstance(weight, bool) or not isinstance(weight, int) or weight < 1:
             raise ValueError('Pair weights are positive integers')
+    gap_fork_block(plan)
     return plan
+
+
+def gap_fork_block(plan):
+    """The plan's optional `gap_fork` settings, checked, as they go into the manifest (None = no gap forks).
+
+    {"per_band": 2, "bands": [0.125, 0.5], "max_cpu_share": 1.5}; see bridge_harness.fork_audit.GapForks
+    and docs/gen7_data_capture_2026-11-11.md.
+    """
+    value = plan.get('gap_fork')
+    if not value:
+        return None
+    from bridge_harness.fork_audit import GapForks
+    if set(value) - {'per_band', 'bands', 'max_cpu_share'}:
+        raise ValueError('Unknown gap_fork setting')
+    checked = GapForks(**value)
+    return dict(per_band=checked.per_band, bands=list(checked.bands), max_cpu_share=checked.max_cpu_share)
 
 
 def make_bots(old, plan):
@@ -162,12 +179,15 @@ def prepare(root, source, plan_path=None):
             created_epoch=time.time(), source_generation=old['identity'], source_completed=len(done),
             source_indices='source-indices.json', source_indices_sha256=sha(root / 'source-indices.json'),
             labels=labels, order=plan['roster'], plan_sha256=sha(Path(plan_path or ROOT / 'configs/round6.json')),
+            engine_commit=plan.get('authorized_engine_commit'),
             model_note='Gen6 bots use the gen6 play engine (bridge_harness/gen6.py): lead belief net at the opening lead, '
                        'hand-fit scorer on hand-type classes until the deal list starts, the scorer-weighted deal list after that, '
                        'and the policy net only among cards within near_tie of the best. Their bidder is the Gen 6 candidate. '
                        'Every other bot is unchanged from the source run. docs/gen6_architecture_2026-11-11.md has the details.',
             interpretation='Common and native auctions are separate conditions; identical auctions reuse physical games. '
                            'Only unplayed source deals are allocated; completed source records are unchanged.')
+        if gap_fork_block(plan):
+            m['gap_fork'] = gap_fork_block(plan)
         m['identity'] = digest(m)
         atomic_json(root / 'manifest.json', m)
         atomic_json(root / 'state.json', dict(manifest_identity=m['identity'], completed=0, target=len(keep), by_pair={}, root_games=0, tables=0, epoch=time.time()))
