@@ -2,9 +2,11 @@
 (function(root){'use strict';
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
+  {key:'gen6',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · primary Codex collector',branch:'arena-gen6-codex-feed',cohort:'168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea'},
   {key:'gen6chatgpt',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT independent collector',branch:'arena-gen6-chatgpt-feed',cohort:'e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177'},
   {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent collector',branch:'arena-gen6-medium-ben-feed',cohort:'9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284'},
-  {key:'gen5rz',group:'5r',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5R / 5RZ · current mix',branch:'arena-gen5rz-ben-feed',cohort:'c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba'},
+  {key:'gen6initial',group:'gen6',generation:6,variant:'6',retired:true,revision:'1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83',environment:'codex',name:'Gen 6 · retained early compatible games',branch:'arena-gen6-independent-feed',cohort:'497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63'},
+  {key:'gen5rz',group:'5r',retired:true,revision:'a559ccb59e9d3ff09d8c759c016534b4efcef254',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5R / 5RZ · archived before Gen6',branch:'arena-gen5rz-ben-feed',cohort:'c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba'},
   {key:'gen5rzinitial',group:'5r',retired:true,revision:'03fd90e694d02ba139559fc323e63e384da9e969',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5RZ · early allocation (retained)',branch:'arena-gen5rz-feed',cohort:'1f7081be958488897404148a96c3caffc2327d194a5b9acbcaa164802f17bbf6'},
   {key:'gen5r',group:'5r',retired:true,revision:'ef13160a9c2412bdacae82bb9e26f5cd546e0446',generation:5,variant:'5R',environment:'codex',name:'Gen 5R · initial allocation (retained)',branch:'arena-gen5r-feed',cohort:'cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3'},
   {key:'gen5',generation:5,retired:true,environment:'codex',name:'Gen 5 · previous round',branch:'arena-gen5-codex-32-feed',cohort:'c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59'},
@@ -25,7 +27,7 @@
  // Archived launch mismatch: retain raw records, exclude fast-vs-BEN from every report.
  const archivedPair=p=>normalizePair(p).pair==='6-32~ben';
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
- const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
+ const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
  function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
  function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
@@ -49,8 +51,8 @@
  }
 
  function decisionTiming(inputs){const totals={schema:'arena-decision-timing-v1',by_bot:{},sources:[],missing_sources:[]};
-  for(const input of inputs){const data=input.data.decision_timing;if(!data){totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
-   for(const [id,row] of Object.entries(data.by_bot||{})){const key=canonical(id),out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
+  for(const input of inputs){const records=input.index?.records?.filter(r=>!archivedPair(r.pair)&&r.completed_epoch<=input.data.generated_epoch&&(!input.source.allowed_pairs||input.source.allowed_pairs.includes(r.pair))),individual=records&&records.every(r=>r.decision_timing),data=individual?records.map(r=>r.decision_timing):input.source.generation===6&&input.index?.records?.some(r=>archivedPair(r.pair))?[]:[input.data.decision_timing].filter(Boolean);if(!data.length){if(!records||records.length)totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
+   for(const item of data)for(const [id,row] of Object.entries(item.by_bot||{})){const key=canonical(id),out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
     for(const field of ['decisions','total_seconds','forced_decisions'])out[field]+=row[field]||0;
     for(const phase of ['opening_lead','play'])for(const field of ['decisions','total_seconds'])out[phase][field]+=row[phase]?.[field]||0;
    }
@@ -99,7 +101,17 @@
  }
  const revisionCache=new Map();
  async function liveRevision(source){const key='arena-revision:'+source.branch+':'+source.cohort;let cached=revisionCache.get(key);if(!cached)try{cached=JSON.parse(localStorage.getItem(key));}catch{}if(cached&&/^[a-f0-9]{40}$/.test(cached.sha)&&Date.now()-cached.checked>=0&&Date.now()-cached.checked<90000)return cached.sha;const ref=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/ref/heads/'+encodeURIComponent(source.branch)),sha=ref.object?.sha;if(!/^[a-f0-9]{40}$/.test(sha||''))throw Error('Latest publication revision is unavailable');cached={sha,checked:Date.now()};revisionCache.set(key,cached);try{localStorage.setItem(key,JSON.stringify(cached));}catch{}return sha;}
- async function loadLiveSource(source,options={}){if(options.revision||source.key!==latestScope||source.retired)return loadSource(source,options);return loadSource(source,{...options,revision:await liveRevision(source)});}
+ // Share one branch-head request across producers and browser tabs.
+ let gen6Heads=null,gen6HeadsPending=null;
+ async function liveGen6Revision(source){
+  const key='arena-gen6-heads-v1';if(!gen6Heads)try{gen6Heads=JSON.parse(localStorage.getItem(key));}catch{}
+  if(!gen6Heads||Date.now()-gen6Heads.checked<0||Date.now()-gen6Heads.checked>=120000){
+   if(!gen6HeadsPending)gen6HeadsPending=(async()=>{const heads={};for(let page=1;page<=10;page++){const rows=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches?per_page=100&page='+page);if(!Array.isArray(rows))throw Error('Producer publication heads are unavailable');for(const row of rows)if(/^arena-gen6-/.test(row.name)&&/^[a-f0-9]{40}$/.test(row.commit?.sha||''))heads[row.name]=row.commit.sha;if(rows.length<100)break;}const snapshot={checked:Date.now(),heads};gen6Heads=snapshot;try{localStorage.setItem(key,JSON.stringify(snapshot));}catch{}return snapshot;})().finally(()=>{gen6HeadsPending=null;});
+   await gen6HeadsPending;
+  }
+  const sha=gen6Heads.heads[source.branch];if(!sha)throw Error('This collector has not published a branch yet');return sha;
+ }
+ async function loadLiveSource(source,options={}){if(options.revision||source.retired||source.generation!==6&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await (source.generation===6?liveGen6Revision(source):liveRevision(source))});}
  const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,loadLiveSource,verify};
  root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
