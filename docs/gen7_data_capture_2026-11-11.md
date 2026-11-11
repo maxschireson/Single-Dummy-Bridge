@@ -10,7 +10,10 @@ fewer deals per hour. Tie audits stay at 50%.
 
 1. **Merge this branch** into the source the next cohort will pin. The runtime files it changes
    (`fork_audit.py`, `gen5_arena.py`, `gen6.py`) were byte-identical to the collectors'
-   `recovery/runtime` copies when it was cut.
+   `recovery/runtime` copies when it was cut. As a patch it also applies cleanly to
+   `codex/gen6-auto-ben-20261111`, `codex/gen6-ben-followups-20261111`,
+   `codex/gen6-medium-ben-correction-20261111` and `codex/gen6-independent-collector-20261111`
+   as they stood at 05:15 UTC on 11 Nov.
 2. **Add one block to every plan** the next cohort uses (`configs/round6-codex.json`,
    `configs/round6-independent.json`, and any other):
 

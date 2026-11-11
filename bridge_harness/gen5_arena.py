@@ -62,17 +62,17 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
         reference=manifest['audit_references'][current]
     board=Board.from_dict(board_dict);specs=manifest['bots']
     versions={k:v['identity'] for k,v in specs.items()}
-    players={'candidate':player_factory(specs[current],root,specs[reference])}
-    if opponent!=current:players['opponent']=player_factory(specs[opponent],root)
-    seed=int(digest([manifest['seed'],index,'gen5-play'])[:12],16)
-    records={};regimes={};bidding_records={};cache={}
-    budget=ForkBudget(**(manifest['ben_audit'] if opponent=='ben' else manifest['audit'])); max_forks=budget.max_forks
     # Gap forks: only when the manifest asks, only with the standard collector, never on a BEN board
     # (the BEN lane is single and slow). Without the manifest key every record is as before.
     with_ben=any(k=='ben' or specs[k].get('engine')=='ben' for k in (current,opponent))
     gap=GapForks(**manifest['gap_fork']) if manifest.get('gap_fork') and collector is collect_board and not with_ben else None
     if gap is not None and gap.per_band==0:gap=None
     extra={} if gap is None else {'gap':gap}
+    players={'candidate':player_factory(specs[current],root,specs[reference])}
+    if opponent!=current:players['opponent']=player_factory(specs[opponent],root)
+    seed=int(digest([manifest['seed'],index,'gen5-play'])[:12],16)
+    records={};regimes={};bidding_records={};cache={}
+    budget=ForkBudget(**(manifest['ben_audit'] if opponent=='ben' else manifest['audit'])); max_forks=budget.max_forks
     try:
         common,common_bids=auction(board,[bidders[manifest.get('common_bidder',current)]]*4)
         for regime in (('self',) if opponent==current else ('common','native')):
