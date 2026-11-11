@@ -192,6 +192,19 @@ manifest and artifacts to rebuild the players, so it is left to the team that ha
 - A gap-fork table follows one deliberately inferior card. Use its decisions as labels for
   positions off the best line; do not count its result as the root line's result.
 
+## If you were given the chat change note
+
+A change note ("v2") was written in chat before this code existed. This document and the code
+replace it. They differ from it in four ways:
+
+- **CPU cap.** `max_cpu_share` is 1.5 × the root table's CPU and is checked against CPU the gap
+  forks have already spent. The note had 0.75 with a check against each fork's estimate, which
+  would have excluded every opening-lead fork.
+- **Fork prefixes** are stored as bare cards, to limit the growth of the episode files.
+- **Eligibility** is any committed Gen 6 search decision at the root table, by either
+  partnership, recognised by the action's `gen6` block.
+- **Backfill** is specified above but not implemented here.
+
 ## Verified, and not
 
 Run here (no models, no BEN; DDS built from `vendor/dds`):

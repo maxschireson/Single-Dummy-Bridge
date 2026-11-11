@@ -24,6 +24,10 @@ python3 -m bridge_harness.selfplay --count 1000 --workers 8 --samples 32 \
 
 ## Design and roadmap
 
+**Running the collectors?** [Gen 7 data capture, 11 November 2026](docs/gen7_data_capture_2026-11-11.md)
+says what to change at the next cutover: the `gap_fork` plan block, gap forks to inferior cards,
+the guess-size log fields, what they cost, and what was and was not verified.
+
 The [self-improvement loop runbook](docs/SELF_IMPROVEMENT.md) describes the
 resumable 10k → 50k → 250k self-play/training ladder, immutable bot registry,
 paired IMP arena against original/parent/BEN, and controlled v3/v4 promotion.
