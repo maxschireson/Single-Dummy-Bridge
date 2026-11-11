@@ -1,0 +1,178 @@
+{
+  "branch": "codex/gen6-gen7-capture-20261111",
+  "commit": "b81d674d983e2bb3b158400192a82c41177fde55",
+  "engine_blobs": [
+    {
+      "path": "bridge_harness/__init__.py",
+      "sha": "0ef117fcc55700e505e25a857282f26fc4a9b3e8"
+    },
+    {
+      "path": "bridge_harness/__main__.py",
+      "sha": "5fe53a55c8c52f7ad055e520d6aedec61b20d484"
+    },
+    {
+      "path": "bridge_harness/arena_pairs.py",
+      "sha": "9affa64661ade85d6438a1bcb568445803a76e52"
+    },
+    {
+      "path": "bridge_harness/auction_belief.py",
+      "sha": "1b942cc4bca3031bc942d1b89df21468d5cb1ce1"
+    },
+    {
+      "path": "bridge_harness/auction_policy.py",
+      "sha": "f7b43e793704f2af31e1678d0afaedd10c0c4766"
+    },
+    {
+      "path": "bridge_harness/belief_capacity.py",
+      "sha": "966d513b2550cbc134b8a7012b48f4eb395b99a0"
+    },
+    {
+      "path": "bridge_harness/belief_model.py",
+      "sha": "e9e31d757be1a811e80e0e1812afdd22f135aa5e"
+    },
+    {
+      "path": "bridge_harness/bidding_env.py",
+      "sha": "89f3b03ce37052a93e50024510cdef347dfb951d"
+    },
+    {
+      "path": "bridge_harness/bidding_loop.py",
+      "sha": "fabab6d3fc06d23fc41f3198291c5ce2cb9ab345"
+    },
+    {
+      "path": "bridge_harness/bidding_ppo.py",
+      "sha": "6532ea0247d54e8f37ebe8f60bf694db48f67ef6"
+    },
+    {
+      "path": "bridge_harness/bidding_sampling.py",
+      "sha": "200ca331f4f27abff2e7f3f17b955db2b1a6f4b6"
+    },
+    {
+      "path": "bridge_harness/cli.py",
+      "sha": "fe538f05c4246366740397812456ac8e82f6207c"
+    },
+    {
+      "path": "bridge_harness/combined_player.py",
+      "sha": "10256fe6ea8a671fb7c50a1f91864d7f629336b9"
+    },
+    {
+      "path": "bridge_harness/core.py",
+      "sha": "c5fa7e901268ec3a99a19a1c291f9aaa1c94a2ce"
+    },
+    {
+      "path": "bridge_harness/corpus.py",
+      "sha": "6e50f1367d21031004630dd2a90c27c4872b7dd8"
+    },
+    {
+      "path": "bridge_harness/dds.py",
+      "sha": "9caed57cd5fb0f82a35d960c946c27a736a9f4e6"
+    },
+    {
+      "path": "bridge_harness/dds_cache.py",
+      "sha": "c2eb70ae007c9b1dd58172cfbe352053f6ec7b4f"
+    },
+    {
+      "path": "bridge_harness/decision_timing.py",
+      "sha": "b6b0874b27cc084dbc22c49c199bcd13e53c7896"
+    },
+    {
+      "path": "bridge_harness/direct_arena.py",
+      "sha": "dd6be346f564d839f47b46db9b5c7b28ae75e586"
+    },
+    {
+      "path": "bridge_harness/fork_audit.py",
+      "sha": "9c05bc06ad85ae392ed6c275ac58208945d7505a"
+    },
+    {
+      "path": "bridge_harness/fork_policy.py",
+      "sha": "cbdb6f688ab956f576a282666ab354baee20cb8d"
+    },
+    {
+      "path": "bridge_harness/gen5_arena.py",
+      "sha": "f5ad5c0086ded83581ade7790570703a55bc459a"
+    },
+    {
+      "path": "bridge_harness/gen5r.py",
+      "sha": "95cdfe2d5afa42a2f94553b6983692f85665b684"
+    },
+    {
+      "path": "bridge_harness/gen6.py",
+      "sha": "01b38d6dc717cf4314781805e2d96a8a91e155cf"
+    },
+    {
+      "path": "bridge_harness/gen6_nets.py",
+      "sha": "271e91f8ff105bc641ed5c8a263345a405b7d6bf"
+    },
+    {
+      "path": "bridge_harness/improvement.py",
+      "sha": "075bf3a51f3befb31a5c93182e9ca4f09ebacfd2"
+    },
+    {
+      "path": "bridge_harness/layout_geometry.py",
+      "sha": "5a1e987e4addf9aca00f2b40817c65deea40b8a1"
+    },
+    {
+      "path": "bridge_harness/layout_reduction.py",
+      "sha": "ad703b01c97e66a3b878dd700f12e0cadef4eee2"
+    },
+    {
+      "path": "bridge_harness/loop_registry.py",
+      "sha": "d21a6cbe5f6a551f6251dc614b509c4012652076"
+    },
+    {
+      "path": "bridge_harness/loop_runtime.py",
+      "sha": "1e384adb1af603d1dea030aea148fc2121061f20"
+    },
+    {
+      "path": "bridge_harness/loop_stats.py",
+      "sha": "f4b446910f22de3694f03ef9f62e3777e6902a6d"
+    },
+    {
+      "path": "bridge_harness/mixed_arena.py",
+      "sha": "9f0f2c075ad5cda881b5fae1a87f03a18ab4249c"
+    },
+    {
+      "path": "bridge_harness/players.py",
+      "sha": "d386f1cb6a9cc41ede0c9f6ae9c67f39668e56ed"
+    },
+    {
+      "path": "bridge_harness/policy_selector.py",
+      "sha": "bf89f3e948e537f20bc9b0bb70aaa91f045518a3"
+    },
+    {
+      "path": "bridge_harness/policy_v5.py",
+      "sha": "53acc0eda5e7fe307e2b70d020498c15d5915dd5"
+    },
+    {
+      "path": "bridge_harness/public_belief_player.py",
+      "sha": "dfced002edabb501c6f1413aa5e50432634e4b49"
+    },
+    {
+      "path": "bridge_harness/report.py",
+      "sha": "0d9016529250f20644649d4baf25fbe5560ff370"
+    },
+    {
+      "path": "bridge_harness/round5.py",
+      "sha": "65e0bf466c45dfc4cf2623999345dabbe2df3253"
+    },
+    {
+      "path": "bridge_harness/round5_ben.py",
+      "sha": "4ac65cbad37ca3e537a123756281f5561704eace"
+    },
+    {
+      "path": "bridge_harness/runner.py",
+      "sha": "c8853e7d39d119e6db1b72674f740ed06ce36438"
+    },
+    {
+      "path": "bridge_harness/sampling.py",
+      "sha": "8d7800444b52bfedecdde55ab8f66e17b8760f89"
+    },
+    {
+      "path": "bridge_harness/selfplay.py",
+      "sha": "64bc2fa32504c48f6e0c35e4992d14d7910071ea"
+    },
+    {
+      "path": "bridge_harness/training.py",
+      "sha": "b55e3dfa79d1a91edb765bafb0c4217e29e3a2a0"
+    }
+  ]
+}
