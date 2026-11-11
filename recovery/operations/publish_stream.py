@@ -41,7 +41,8 @@ def publish():
     recovery.mkdir(parents=True, exist_ok=True)
     for name in ('manifest.json', 'corpus.jsonl', 'plan.json', 'preflight.json',
                  'artifact-source-manifest.json', 'runtime-requirements.txt',
-                 'environment.json', 'launch.json', 'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
+                 'environment.json', 'launch.json', 'production-validation.json',
+                 'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
         if (RUN / name).exists():
             copy_file(RUN / name, recovery / name)
     for folder in ('artifacts', 'assets'):
