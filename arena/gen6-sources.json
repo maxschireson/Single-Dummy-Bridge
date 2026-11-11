@@ -267,7 +267,7 @@
       "source_state": "/workspace/work/gen6-fast-selfplay-cutover.json"
     },
     "gen6chatgpt": {
-      "status": "Versioned BEN-worker recycling active; first new self-play and BEN1082 replay validated",
+      "status": "Versioned BEN-worker recovery operating; 759 completed, zero unresolved failures",
       "pair_weights": {
         "6-32~6-32": 37,
         "6-32~ben": 3
@@ -277,10 +277,12 @@
       "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
       "preflight": "8 lifecycle/report/play tests; 6 real-model plays per old/new lifecycle under 3normal+1BEN load matched cards, probabilities, seeds, auctions and scores; 3 distinct BEN processes exited0; production621 and1082 replay+SHA+same play fingerprints passed.",
       "source_note": "Original 8128 corpus indices/seeds and frozen actors/source unchanged. 656 exact prior receipts retained and pinned in new runtime continuation; no duplicate dashboard source for prior075a. One spawned BEN board per process, parent-observed exit status required before committing; no retry loop.",
-      "full_checkpoint": "7fc545f038169050e891ab3b5acbdb8a2de76977",
-      "full_checkpoint_records": 656,
-      "full_checkpoint_verified_files": 6255,
-      "operator_handoff": "CURRENT /workspace/scratch/c7932514d17d/gen6-ben-recycled, runs/gen6-chatgpt-ben-recycled-20261111, manifest65a7fd0... . One controlled observe_launcher.py launch, live session40462. Prior075a permanently STOP/WATCHDOG_STOP at656; failure1082 unchanged in history/075a.../failures. All656 originals retained with exact receipts and pinned prior identity. Preserve old raw manifest identities; pending indices7472 unchanged. Dashboard26e595bb... verified44files; full recovery of NEW runtime pending (lastfull7fc545... is OLD075a). Restore only verified FULL; do not combine new dashboard controls with old episodes blindly. OOM cause unconfirmed; monitor child exit telemetry and resources; no blind retry."
+      "full_checkpoint": "b01bdfaa349acf066ebdfcb1783e0b5a7df16f80",
+      "full_checkpoint_records": 674,
+      "full_checkpoint_verified_files": 7785,
+      "operator_handoff": "CURRENT /workspace/scratch/c7932514d17d/gen6-ben-recycled; run runs/gen6-chatgpt-ben-recycled-20261111; immutable65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5. Live combined observer/launcher session40462. 759completed=668self+91BEN,3locksheld,freshheartbeat,zero failures. 10production BEN processes exited0, each replaced after1board. Old075a permanently stopped656; these656 exact original receipts REMAIN active in new8128-index continuation, don't doublecount or add duplicate dashboard source. Source/model/corpus/seeds/schedule unchanged; retained-receipts.json pins prior provenance. NewFULL b01bdf... verified7785hashes+actualref,674pairedSHA256s (656retained+18new),source/runtime/model/corpus reconstruction and originalfailure verified. Newdashboard b85df... verified49hashes,remote740runningtrue. No publisher left. SharedOOMcounter20->24 later with no observed local process loss; all3originalnormalPIDs andBENserver remainalive,10BENexits0; cannot attribute globalOOMs. Check logs, no blind restart. LatestverifiedFULL supersedes7fc545...for restoringnewruntime. OnlyFASTself37/BEN16 3; alloldbots/medium stopped. Current8128+retired1863+9freshtopup=10000. Preserveotherproducerownership.",
+      "dashboard_checkpoint": "b85df3297367176d14d81e02c5b0158c4971b8f9",
+      "dashboard_checkpoint_records": 740
     },
     "gen6cloudselfplay": {
       "status": "Collecting independent fast self-play only for Gen7",
