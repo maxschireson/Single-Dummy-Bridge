@@ -43,9 +43,9 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · ChatGPT BEN64 and Gen7 capture",
+      "name": "Gen 6 · ChatGPT fast self-play and BEN16",
       "branch": "arena-gen6-chatgpt-feed",
-      "cohort": "8977f60a5f8901562b38767ad1c6a440e5ec169872c1f7ad55b282964364293b"
+      "cohort": "075a02098c3cf109eadabf6c6e79e7caa490557c06b03b025c90e04132143078"
     },
     {
       "key": "gen6independent",
@@ -128,6 +128,18 @@
       "cohort": "ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb",
       "retired": true,
       "revision": "b23d56bb826868703e7cc35a065cf81545728a3b"
+    },
+    {
+      "key": "gen6chatgptcapturecompleted",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · ChatGPT completed mixed capture cohort",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "8977f60a5f8901562b38767ad1c6a440e5ec169872c1f7ad55b282964364293b",
+      "retired": true,
+      "revision": "8019191d1172f7a94b3428b738423ab650aa7dc9"
     }
   ],
   "activation": {
@@ -205,53 +217,16 @@
       "source_commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5"
     },
     "gen6chatgpt": {
-      "status": "collecting; recovered abrupt worker-process exit, failed board replay verified",
-      "updated_epoch": 1794381554.193,
-      "ben_samples": 64,
-      "gap_fork": {
-        "per_band": 2,
-        "bands": [
-          0.125,
-          0.5
-        ],
-        "max_cpu_share": 1.5
+      "status": "fast-only collection active; first self-play and BEN16 completed and replay validated",
+      "pair_weights": {
+        "6-32~6-32": 37,
+        "6-32~ben": 3
       },
-      "source_commit": "6abb6679f1b078ee9896e46d4f72be714069e93f",
-      "local_fixes": [
-        "engine-based BEN audit disable and serial BEN pool"
-      ],
-      "retired_records": 188,
-      "hidden_ben32_records": 9,
-      "full_checkpoint": "6d8bc6938e1f062c0bfa94702db984c4e3fbfc8b",
-      "full_checkpoint_files_verified": 4449,
-      "full_checkpoint_current_records": 407,
-      "capture_equivalence": {
-        "status": "passed",
-        "deals": 3,
-        "root_tables": 7,
-        "audit_forks": 31,
-        "gap_forks": 38
-      },
-      "operator_handoff": {
-        "issue": "Published primary BEN64 runtime still selects ben_audit only for opponent=='ben'; ben64 receives ordinary audits despite intended disabled BEN audits.",
-        "observed_runtime": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/arena-gen6-codex-v7-capture-feed/recovery/runtime/bridge_harness/gen5_arena.py",
-        "local_fix": "Select ben_audit when with_ben is true (engine=='ben' included). Preserve serial BEN pool for aliases.",
-        "validation": "Current ChatGPT medium/BEN64 and fast/BEN16 actual records replay-valid, configured budgets64/16, zero audits and zero gap forks.",
-        "ownership": "Primary producer owner should inspect and address via its own drained/versioned transition; no other collector/feed changed."
-      },
-      "recovery": {
-        "preserved_completed": 390,
-        "failed_index": 436,
-        "retried_index": 436,
-        "replay": "passed",
-        "root_cause": "unconfirmed",
-        "runtime_changed": false
-      },
-      "publisher_repairs": [
-        "Await snapshot process completion before inventory reads",
-        "Bounded retry of stale branch-head reads",
-        "Freeze and SHA-verify episode/receipt pairs; derive recovery state from copied records"
-      ]
+      "manifest": "075a02098c3cf109eadabf6c6e79e7caa490557c06b03b025c90e04132143078",
+      "retired_capture_records": 550,
+      "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
+      "preflight": "2 real-model self-play deals,12gapforks; full BEN16 paired preflight52 BEN decisions; first actual records of BOTH matchups replay validated",
+      "source_note": "Frozen source unchanged; runtime validator/receipt and exporter null-score handling extended for existing self-play path. Recovery publication pending."
     }
   },
   "requested_match_mix": {
