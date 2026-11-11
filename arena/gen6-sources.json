@@ -41,9 +41,9 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen 6 \u00b7 independent collector",
-      "branch": "arena-gen6-ben-expansion-feed",
-      "cohort": "77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6"
+      "name": "Gen 6 \u00b7 independent capture (BEN64)",
+      "branch": "arena-gen6-gen7-capture-feed",
+      "cohort": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb"
     },
     {
       "key": "gen6ben16completed",
@@ -92,6 +92,18 @@
       "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035",
       "retired": true,
       "revision": "382fbceed0984d0c941f4ee737d5a9d451dfdf09"
+    },
+    {
+      "key": "gen6beforecapture",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 \u00b7 compatible results before capture",
+      "branch": "arena-gen6-ben-expansion-feed",
+      "cohort": "77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6",
+      "retired": true,
+      "revision": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2"
     }
   ],
   "activation": {
