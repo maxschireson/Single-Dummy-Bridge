@@ -183,6 +183,16 @@
       "name": "Gen 6 · additional fast self-play only",
       "branch": "arena-gen6-extra-selfplay-feed",
       "cohort": "55f11f996cfb2846436a68246e17819f5fff5fadd7030335bd2f1df5df82255c"
+    },
+    {
+      "key": "gen6selfplay19bbdce5",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · new fast self-play stream",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "cohort": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936"
     }
   ],
   "activation": {
@@ -357,6 +367,18 @@
       "source_commit": "57d3633a07fafa30121667d7618fc2d3c337ad1f",
       "retired_mixed_records": 1134,
       "retired_mixed_revision": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98"
+    },
+    "gen6selfplay19bbdce5": {
+      "status": "New independent Gen6 fast self-play stream started",
+      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "pair_weights": {
+        "6-32~6-32": 1
+      },
+      "workers": 3,
+      "target": 25000,
+      "source_feed_revision": "13e0fc7b884ecfa546f693a9bac0d92b520f1247",
+      "preflight": "Two real-model boards: legal replay, fast phases, tie audits and gap forks passed",
+      "excluded_families": 90737
     }
   },
   "requested_match_mix": {
