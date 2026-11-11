@@ -18,6 +18,7 @@ Whole play after the opening lead (199 tables, 8,014 decisions, 32 layouts per s
 - Over the whole play the scorer on classes beats v5 by 0.18 ± 0.06 tricks per table and is not distinguishable from the bidder-built ceiling.
 - The gain is at tricks 3, 4 and 6. Nothing is measurable at tricks 1, 2 and 5 or from trick 7 on.
 - Bidding information held, nats per decision: v5 0.52, scorer 1.50, bidder test 1.91.
+- Which layouts are solved matters less than the belief: within the scorer's posterior, 256 layouts instead of 32 are worth 0.05 tricks per table in tricks 1–5, and 32 cluster centres 0.02.
 
 Late play only (tricks 6–12), larger samples:
 
@@ -184,7 +185,36 @@ Cost, Python and NumPy on one thread:
 
 ### Which layouts to solve
 
-`select_layouts.py`, `analyze_select.py`. Results follow in the next commit.
+`select_layouts.py`, `analyze_select.py`. 80 tables (episodes 300–310 even and 326–399), 1,356 decisions in tricks 1–5. For each decision 512 layouts are drawn independently from the scorer posterior and solved: 256 form a pool and 256 are held out as the reference. A scheme chooses a card from the layouts it selects, and the choice is scored by the reference's mean double-dummy value. Every scheme uses the same belief, so this isolates the choice of layouts from the quality of the belief and carries no true-deal noise.
+
+Tricks per table over tricks 1–5, relative to 32 independent picks:
+
+| Scheme | Solves | vs 32 independent picks |
+|---|---:|---:|
+| Independent picks | 4 | −0.410 ± 0.035 |
+| | 8 | −0.170 ± 0.020 |
+| | 16 | −0.048 ± 0.011 |
+| | 64 | +0.033 ± 0.009 |
+| | 128 | +0.048 ± 0.009 |
+| | 256 | +0.053 ± 0.009 |
+| Classes spaced evenly through the cumulative weight (the play test's method) | 32 | −0.004 ± 0.012 |
+| The 32 most likely classes, weighted by their mass | 32 | −0.092 ± 0.017 |
+| Cluster centres, weighted by cluster size | 8 | −0.146 ± 0.020 |
+| | 16 | −0.031 ± 0.014 |
+| | 32 | +0.022 ± 0.008 |
+| | 64 | +0.040 ± 0.009 |
+| One random member per cluster, weighted by cluster size | 8 | −0.156 ± 0.025 |
+| | 16 | −0.034 ± 0.012 |
+| | 32 | +0.013 ± 0.012 |
+| | 64 | +0.039 ± 0.009 |
+
+- Clusters are k-medoids on the 256 pool layouts. Distance: L1 over one hidden hand's unseen cards (A 4, K 3, Q 2, J 1.5, T 1, lower cards 0.5) plus its suit lengths (2 per card, 3 in trumps). One hand-made distance; no other was tried.
+- Layout count: 256 independent picks are worth 0.053 ± 0.009 over 32, and 64 give 0.033 ± 0.009 of that.
+- Cluster centres against independent picks at equal solves: +0.024 ± 0.027 at 8, +0.017 ± 0.017 at 16, +0.022 ± 0.008 at 32, +0.007 ± 0.005 at 64. 32 centres are behind 64 independent picks by 0.011 ± 0.005.
+- Cluster centres against evenly spaced classes at 32: +0.026 ± 0.009.
+- The 32 most likely classes lose 0.092 ± 0.017 to 32 independent picks.
+- These are expectations under the scorer posterior, not true-deal results. For scale, the scorer's gain over v5 in tricks 1–5 is 0.112 ± 0.047 on the true deal.
+- Solving takes about 35 s per table per core for 576 layouts per decision.
 
 ## Limits and checks not run
 
@@ -227,5 +257,5 @@ python play_classes.py $S out/cls_0.jsonl 1400 1600 2 0
 python late_classes.py $S out/clsx_0.jsonl 1400 1600 2 0
 python late_v5x.py out/clsv_0.jsonl 1400 1600 2 0
 python conc.py $S 1400 1424
-python select_layouts.py $S out/sel_1.jsonl 326 400 2 1
+python select_layouts.py $S out/sel_1.jsonl 326 400 2 1               # stored: sel_0 holds 300-310 even, sel_1 to sel_4 hold 326-399
 ```

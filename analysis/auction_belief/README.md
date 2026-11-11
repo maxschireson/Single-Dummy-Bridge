@@ -20,6 +20,6 @@ Layout-selection test (which layouts to solve; about 90 s per table per core):
 export SDB_FEED=/path/to/feed/recovery
 (cd ../../models/cardplay/hand-fit-scorer-v0-2026-11-11 && python restore.py)
 S=../../models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz
-python select_layouts.py $S out/sel_0.jsonl 300 326 2 0    # offset 1 in a second process
+python select_layouts.py $S out/sel_0.jsonl 300 326 2 0    # offset 1 in a second process; out/sel_* already holds 80 tables (300-310 even, 326-399)
 python analyze_select.py
 ```
