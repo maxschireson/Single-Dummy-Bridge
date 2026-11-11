@@ -1,0 +1,20 @@
+{
+  "status": "running",
+  "epoch": 1794383687.7433965,
+  "manifest_identity": "63d7bee704eae61f070af1dca0476e2171b66b4fb084a1b78c11df18d76ed5e7",
+  "pair_weights": {
+    "6-32~6-32": 37,
+    "6-32~ben": 3
+  },
+  "gap_fork": {
+    "per_band": 2,
+    "bands": [
+      0.125,
+      0.5
+    ],
+    "max_cpu_share": 1.5
+  },
+  "authority": "5b020bcd86ac32fc63559732832e57e796e00121",
+  "predecessor": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb",
+  "source_completed": 725
+}
