@@ -277,9 +277,9 @@
       "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
       "preflight": "2 real-model self-play deals,12gapforks; full BEN16 paired preflight52 BEN decisions; first actual records of BOTH matchups replay validated",
       "source_note": "Frozen source/runtime/models and fast-only 37/3 mix unchanged. External process-memory observer wraps unchanged launcher; no automatic restart loop.",
-      "full_checkpoint": "ceb0b0b845bb344a66b3fa881e3def9ae5bba09f",
-      "full_checkpoint_records": 255,
-      "full_checkpoint_verified_files": 5424,
+      "full_checkpoint": "f59f2be0e717b38216857d16681c666f7db809e5",
+      "full_checkpoint_records": 542,
+      "full_checkpoint_verified_files": 6012,
       "operator_handoff": "All in-flight boards passed isolated and concurrent diagnostics: 45 self-play tests, then 45 self-play plus BEN16 index376 with exit/resource telemetry; no worker deaths or shared OOM-counter increase. Original233 failure archived unchanged after diagnosis, production233 replay+receipt verified. Resource evidence and observer driver in recovery/diagnostics. Inspect current locks/heartbeat/failures; never duplicate held writer."
     },
     "gen6cloudselfplay": {
