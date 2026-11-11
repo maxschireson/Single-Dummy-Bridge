@@ -1,10 +1,12 @@
 {
-  "status": "refresh-ready-report-complete",
+  "status": "publisher-refreshed-collector-unchanged",
   "epoch": 1794439722.803319,
   "old_publisher_pid": 1431,
   "collector_pid": 9795,
   "reason": "Publish first 2000-root-table capture report and its input provenance; collector and frozen run unchanged.",
   "marker_token": "OWNED_PUBLISHER_REFRESH_FOR_FIRST_CAPTURE_REPORT\n",
   "report_sha256": "aaa5bb78c935081dca59b38436f05a56e42cdb0bf7ac97f586d4ee91516f70c6",
-  "collector_still_running": 9795
+  "collector_still_running": 9795,
+  "new_publisher_pid": 10757,
+  "completed_epoch": 1794439731.2651174
 }
