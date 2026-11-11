@@ -15,8 +15,10 @@ def snapshot(run,out):
         if (run/n).exists():shutil.copy2(run/n,b/n)
     for d in ('artifacts','assets','episodes','receipts'):
         shutil.copytree(run/d,b/d,dirs_exist_ok=True)
+    for d in ('failure-history','diagnostics'):
+        if (run/d).exists():shutil.copytree(run/d,b/d,dirs_exist_ok=True)
     snapshot_runtime(run,b)
-    for n in ('prepare_gen7_selfplay_cloud.py','export_cloud_selfplay.py','supervise_cloud_selfplay.py','publish_cloud_capture.js'):
+    for n in ('prepare_gen7_selfplay_cloud.py','export_cloud_selfplay.py','supervise_cloud_selfplay.py','publish_cloud_capture.js','cloud_observed.py','diagnostic_supervisor.py'):
         shutil.copy2(ROOT/'ops'/n,b/'runtime/ops'/n)
     p=b/'corpus-parts'
     if not p.exists():
