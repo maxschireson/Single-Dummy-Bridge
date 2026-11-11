@@ -1,5 +1,11 @@
 # Current system
 
+## Current collection instruction — 11 November 2026
+
+Max replaced all old-bot and all Gen6 medium matchups with **92.5% Gen6 fast self-play and 7.5% Gen6 fast versus BEN16**. [Current mix](../configs/gen6-active-mix.json) and [fast-only plan](../configs/round6-fast-selfplay.json) are authoritative. Keep Gen7 capture and 50% tie audits; BEN audits/gap forks stay disabled. Self-play has no strength IMP estimate. Preserve completed historical observations, with the short BEN32 comparison hidden from the dashboard.
+
+The ChatGPT producer has completed its drained, immutable-cohort cutover and verified actual self-play and BEN16 records. Other producer owners must apply this instruction through their own versioned transitions; consult fresh manifests and status rather than assuming fleet-wide deployment. The configuration snapshot below describes the preceding system.
+
 Checked 11 November 2026 against Gen6 source commit
 `b34a40fd7829ebeaaf96b86a424289e3f938a868`, incorporated into `main`
 by the repository cleanup. This is a configuration snapshot, not a claim that
