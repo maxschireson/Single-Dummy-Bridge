@@ -38,10 +38,11 @@
   const age=Number.isFinite(published)?Math.max(0,now-published):null,heartbeatAge=Number.isFinite(heartbeat)?Math.max(0,now-heartbeat):null;
   let state,label;
   if(source.retired||data?.statistics_policy?.retired||data?.collection?.status==='archived'){state='archived';label='Archived';}
+  else if(data?.collection?.status==='complete'||Number.isFinite(data?.target)&&data.target>0&&data.completed>=data.target){state='complete';label='Complete';}
+  else if(data?.collection?.status==='stopped'){state='paused';label='Stopped intentionally';}
   else if(!data){state='pending';label='Loading';}
   else if(age===null||age>Math.max(240,4*(data.feed?.interval_seconds||60))){state='overdue';label='Update overdue';}
-  else if(data.collection?.status==='complete'){state='complete';label='Complete';}
-  else if(data.collection?.status==='stopped'||data.collection?.status==='not_running'){state='stopped';label='No collector observed';}
+  else if(data.collection?.status==='not_running'){state='stopped';label='No collector observed';}
   else if(data.collection?.status==='draining'){state='draining';label='Draining current deals';}
   else if(data.collection?.running===false||heartbeatAge!==null&&heartbeatAge>180){state='no-heartbeat';label='Collector heartbeat overdue';}
   else{state='live';label=heartbeatAge===null?'Publishing':'Collecting and publishing';}
