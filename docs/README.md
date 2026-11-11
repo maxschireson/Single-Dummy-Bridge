@@ -19,6 +19,11 @@
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
+## Gen 7 (in development; not the adopted system)
+
+- [Gen 7 alpha: the arena bot, its settings, launch steps and what was checked](gen7_alpha_2026-11-11.md)
+- [Gen 7 prototype: the policy net, play weights and the measurements behind them](gen7_prototype_2026-11-11.md)
+
 ## Historical material
 
 The dated launch documents and design PDFs preserve what was believed or planned

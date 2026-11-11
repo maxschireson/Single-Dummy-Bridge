@@ -1,6 +1,9 @@
 """Gen7 alpha: the tree search inside the player, driven by spec['gen7']['tree'] (bridge_harness/gen7.py)."""
 from dataclasses import asdict, fields
+import gzip
+import importlib.util
 import json
+from pathlib import Path
 import random
 import unittest
 from unittest.mock import patch
@@ -17,6 +20,7 @@ from bridge_harness.players import GreedyPlayer
 from bridge_harness.runner import play_table, replay
 from test_gen7 import Fixture, played
 
+ROOT = Path(__file__).resolve().parents[1]
 OFF = dict(play_weight=0., tie_break='gen5')        # the switches that leave Gen6's play alone
 WIDE = dict(from_trick=1, root_margin=13., root_cards=13)       # every distinguishable card is a candidate
 
@@ -248,6 +252,45 @@ class TreeInThePlayerTests(Fixture):
         # tree_audit off: same cards at the table, and no decision names a no-tree reference
         self.assertEqual([a['card'] for a in quiet['tables'][0]['actions']], [a['card'] for a in root['actions']])
         self.assertFalse(any(a.get('gen7_tree', {}).get('audit_reference') for t in quiet['tables'] for a in t['actions']))
+
+    def test_the_cohort_report_counts_what_the_records_hold(self):
+        class Lowest:
+            def choose(self, o, details, rng):
+                return min(card(k) for k, q in details['behavior_probabilities'].items() if q > 0), {}
+
+        def values(tree, o, worlds, weights, cards=None):
+            return {x: float(x == cards[-1]) for x in cards}
+
+        spec = importlib.util.spec_from_file_location('gen7_alpha_report', ROOT / 'scripts' / 'gen7_alpha_report.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        p = self.make(gen7=dict(tree=dict(from_trick=1, root_margin=.5, root_cards=3, tricks=1, layouts=4)), list_solve=16)
+        p.reference = Lowest()
+        board = next(generate(1, 703))
+        with patch.object(Tree, 'values', values):
+            record = collect_board(board, {'candidate': p, 'opponent': GreedyPlayer()}, ['candidate' if s % 2 == 0 else 'opponent' for s in range(4)],
+                                   11, ForkBudget(probability=1., multiplier=1000., max_depth=1, max_forks=64), {})
+        episode = dict(candidate='7-test', opponent='g', family='ab' * 32, regimes=dict(common=dict(imps=3), native=dict(imps=-1)),
+                       unique_tables={'table-0': record})
+        folder = self.root / 'episodes'
+        folder.mkdir()
+        with gzip.open(folder / '000000.json.gz', 'wt') as f:
+            json.dump(episode, f)
+        out = module.report(*module.read(folder))
+        json.dumps(out, allow_nan=False)
+        fresh = [a for t in record['tables'] for a in t['actions'] if a['player'] == 'candidate' and 'gen6' in a
+                 and not a.get('replayed_prefix') and not a.get('counterfactual_forced')]
+        got = out['tree']['7-test']['all_tables']
+        self.assertEqual(got['searched_decisions'], len(fresh))
+        self.assertEqual(got['consulted'], sum(bool(a.get('gen7_tree', {}).get('consulted')) for a in fresh))
+        self.assertEqual(got['moved'], sum(bool(a.get('gen7_tree', {}).get('consulted')) and a['selected_pimc_gap'] > 1e-9 for a in fresh))
+        self.assertGreater(got['moved'], 3)
+        forks = [x for x in record['audits'] if not x['identical_action']
+                 and record['tables'][x['candidate_table']]['actions'][x['ply']].get('gen7_tree', {}).get('audit_reference')]
+        self.assertEqual(out['audits']['all']['forks'], len(forks))
+        self.assertEqual(out['audits']['all']['tree_card_better'] + out['audits']['all']['worse'] + out['audits']['all']['same'], len(forks))
+        self.assertEqual(out['audits']['all']['imps_per_fork'][0], round(sum(x['gain_imps'] for x in forks) / len(forks), 4))
+        self.assertEqual(out['match'], {'7-test against g': dict(boards=1, common_imps_per_board=(3.0, None), native_imps_per_board=(-1.0, None))})
 
     # ---- real trees, whole tables --------------------------------------------------------
     def test_whole_tables_with_the_tree_deciding(self):
