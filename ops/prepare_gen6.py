@@ -162,6 +162,7 @@ def prepare(root, source, plan_path=None):
             created_epoch=time.time(), source_generation=old['identity'], source_completed=len(done),
             source_indices='source-indices.json', source_indices_sha256=sha(root / 'source-indices.json'),
             labels=labels, order=plan['roster'], plan_sha256=sha(Path(plan_path or ROOT / 'configs/round6.json')),
+            engine_commit=plan.get('authorized_engine_commit'),
             model_note='Gen6 bots use the gen6 play engine (bridge_harness/gen6.py): lead belief net at the opening lead, '
                        'hand-fit scorer on hand-type classes until the deal list starts, the scorer-weighted deal list after that, '
                        'and the policy net only among cards within near_tie of the best. Their bidder is the Gen 6 candidate. '

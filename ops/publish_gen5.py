@@ -36,7 +36,7 @@ def snapshot_runtime(run,backup):
     copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
     if (ROOT/'configs/round5rz.json').exists():copy_once(ROOT/'configs/round5rz.json',backup/'runtime/configs/round5rz.json')
     if (ROOT/'configs/round5rz-ben.json').exists():copy_once(ROOT/'configs/round5rz-ben.json',backup/'runtime/configs/round5rz-ben.json')
-    for name in ('round6.json','round6-cutover.json','round6-independent.json'):
+    for name in ('round6.json','round6-cutover.json','round6-independent.json','round6-codex.json'):
         if (ROOT/'configs'/name).exists():copy_once(ROOT/'configs'/name,backup/'runtime/configs'/name)
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     return True
@@ -44,7 +44,8 @@ def snapshot_runtime(run,backup):
 def publish(run,out):
     export(run,out);backup=out/'recovery';backup.mkdir(exist_ok=True)
     for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl'):shutil.copy2(run/name,backup/name)
-    for name in ('source-indices.json','preflight.json','ben-preflight.json','launch.json','runtime-requirements.txt'):
+    for name in ('source-indices.json','preflight.json','ben-preflight.json','launch.json','runtime-requirements.txt',
+                 'RECOVERY.md','handoff.json','plan.json','environment.json','ben-recovery.json'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
     for name in ('statistics-policy.json','retirement.json','STOP','WATCHDOG_STOP'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
