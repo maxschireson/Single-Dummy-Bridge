@@ -10,11 +10,21 @@ the same number of unseen low cards in each suit are interchangeable for the bid
 a set is a class; its multiplicity is the number of layouts in it. Weighting classes instead
 of layouts gives the same posterior as listing every layout, at any trick.
 """
+import itertools
 import math
 
 import numpy as np
 
 from gen import POP
+
+COMB = {}
+
+
+def comb_list(n, k):
+    if (n, k) not in COMB:
+        COMB[(n, k)] = list(itertools.combinations(range(n), k))
+    return COMB[(n, k)]
+
 
 LOGC = np.array([[math.log(math.comb(n, k)) if k <= n else -np.inf for k in range(9)] for n in range(9)])
 
@@ -162,6 +172,47 @@ class ClassView:
             hands[a], hands[b] = tuple(sorted(ha)), tuple(sorted(hb))
             out.append(tuple(hands))
         return out
+
+
+    def world(self, i, j, st):
+        """Layout number j (0 <= j < multiplicity) of class i."""
+        a, b = self.hidden
+        ha, hb = [], []
+        for s in range(4):
+            op, o = self.opts[s], self.idx[i, s]
+            m, nl = int(op['mask'][o]), int(op['n'][o])
+            for t, c in enumerate(self.hon[s]):
+                (ha if m >> t & 1 else hb).append(c)
+            low = self.low[s]
+            combs = comb_list(len(low), nl)
+            j, r = divmod(int(j), len(combs))
+            chosen = set(combs[r])
+            for t, c in enumerate(low):
+                (ha if t in chosen else hb).append(c)
+        hands = [st['rem'][s] for s in range(4)]
+        hands[a], hands[b] = tuple(sorted(ha)), tuple(sorted(hb))
+        return tuple(hands)
+
+    def spaced_layouts(self, logw, m, u, st):
+        """Layouts and weights for a class posterior exp(logw) (multiplicity included; -inf drops a class).
+
+        If no more than m layouts carry weight, all of them with their exact weights. Otherwise m picks
+        evenly spaced through the cumulative weight over layouts, so no layout is taken more often than
+        its weight calls for.
+        """
+        keep = np.flatnonzero(np.isfinite(logw))
+        p = np.exp(logw[keep] - logw[keep].max())
+        p /= p.sum()
+        mult = np.rint(np.exp(self.logmult[keep])).astype(np.int64)
+        if mult.sum() <= m:
+            pairs = [(int(i), j) for i, mi in zip(keep, mult) for j in range(int(mi))]
+            return [self.world(i, j, st) for i, j in pairs], np.repeat(p / mult, mult)
+        c = np.cumsum(p)
+        pos = (u + np.arange(m)) / m
+        ci = np.searchsorted(c, pos, side='right').clip(max=len(p) - 1)
+        j = np.floor((pos - (c[ci] - p[ci])) / (p[ci] / mult[ci])).astype(np.int64).clip(0, mult[ci] - 1)
+        pairs, counts = np.unique(np.stack([keep[ci], j], axis=1), axis=0, return_counts=True)
+        return [self.world(int(i), int(jj), st) for i, jj in pairs], counts / m
 
 
 def logsumexp(x):

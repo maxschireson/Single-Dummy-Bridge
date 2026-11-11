@@ -2,7 +2,11 @@ import os as _os
 HERE = _os.path.dirname(_os.path.abspath(__file__))
 FEED = _os.environ.get('SDB_FEED', '/home/claude/wt/feed/recovery')        # folder holding artifacts/, episodes/ and runtime/ (the arena feed's recovery folder)
 RUNTIME = _os.environ.get('SDB_RUNTIME', FEED + '/runtime')
-"""Analyse play_classes.py output: whole-play decisions from hand-type classes, scored on the true deal."""
+"""Analyse play_classes.py output: whole-play decisions from hand-type classes, scored on the true deal.
+
+If late_classes.py output is present (out/clsx_*), arms netx and exactx use its layout-level picks
+in tricks 6-12 and the play_classes.py picks in tricks 1-5.
+"""
 import os
 import sys
 
@@ -17,8 +21,17 @@ ARMS = ('v5', 'uniform', 'net', 'exact')
 PAIRS = (('net', 'v5'), ('exact', 'v5'), ('exact', 'net'), ('v5', 'uniform'), ('net', 'uniform'))
 
 
-def main(pattern):
+def main(pattern, pattern_x, pattern_v):
+    global ARMS, PAIRS
     rows = load(pattern)
+    late = {(r['index'], d['ply']): d for r in load(pattern_x) for d in r['decisions']}
+    late_v = {(r['index'], d['ply']): d for r in load(pattern_v) for d in r['decisions']}
+    if late:
+        ARMS = ARMS + ('netx', 'exactx')
+        PAIRS = (('netx', 'v5'), ('exactx', 'v5'), ('exactx', 'netx'), ('netx', 'net'), ('exactx', 'exact')) + PAIRS
+    if late and late_v:
+        ARMS = ARMS + ('v5x', 'unix')
+        PAIRS = (('netx', 'v5x'), ('exactx', 'v5x'), ('v5x', 'v5'), ('v5x', 'unix'), ('v5', 'unix'), ('unix', 'uniform'), ('netx', 'unix')) + PAIRS
     dec, no_exact = [], 0
     for r in rows:
         c = Contract.parse(r['contract'], r['declarer'])
@@ -30,6 +43,14 @@ def main(pattern):
             if 'exact' not in d or d['lp_bidder'] is None:
                 no_exact += 1
                 continue
+            if late:
+                x = late.get((r['index'], d['ply']), {})
+                d = dict(d, netx=x.get('net_x', d['net']), exactx=x.get('exact_x', d['exact']))
+            if late and late_v:
+                x = late_v.get((r['index'], d['ply']), {})
+                if x:
+                    assert abs(x['lp_v5_list'] - d['lp_v5']) < 2e-3, (r['index'], d['ply'])
+                d = dict(d, v5x=x.get('v5x', d['v5']), unix=x.get('unix', d['uniform']))
             p = plies[d['ply']]
             true = np.array(p['true_dd'], float)
             declaring = p['actor'] % 2 == c.declarer % 2
@@ -72,18 +93,16 @@ def main(pattern):
             m, s = mean_se(v)
             vi, _ = by_deal(lambda r: r[f'imp_{a}_{b}'], keep)
             mi, si = mean_se(vi)
-            print(f'  {a:6s} - {b:8s}: {m:+.4f} +- {s:.4f} tricks ({m/s:+.1f} SE); {mi:+.3f} +- {si:.3f} IMPs')
-        g, _ = by_deal(lambda r: r['cost_v5'] - r['cost_net'], keep)
-        h, _ = by_deal(lambda r: r['cost_v5'] - r['cost_exact'], keep)
-        print(f'  share of the ceiling gain over v5 that the scorer recovers: {100*g.mean()/h.mean():.0f}%')
+            print(f'  {a:6s} - {b:8s}: {m:+.4f} +- {s:.4f} tricks ({m/s if s > 0 else 0:+.1f} SE); {mi:+.3f} +- {si:.3f} IMPs')
+    best = ('netx', 'exactx') if late else ('net', 'exact')
     for name, keep in (('declaring side', lambda r: r['declaring']), ('defenders', lambda r: not r['declaring'])):
-        for a, b in (('net', 'v5'), ('exact', 'v5')):
+        for a, b in ((best[0], 'v5'), (best[1], 'v5')):
             v, n = by_deal(lambda r: r['cost_' + b] - r['cost_' + a], keep)
             m, s = mean_se(v)
             print(f'{name}, all tricks, {a} - {b}: {m:+.4f} +- {s:.4f} ({n} decisions)')
     for name, keep in (('notrump contracts', lambda r: r['nt']), ('suit contracts', lambda r: not r['nt'])):
         ids = sorted({r['index'] for r in dec if keep(r)})
-        for x, y in (('net', 'v5'), ('exact', 'v5')):
+        for x, y in ((best[0], 'v5'), (best[1], 'v5')):
             tot = {i: 0.0 for i in ids}
             for r in dec:
                 if keep(r):
@@ -91,14 +110,14 @@ def main(pattern):
             m, e = mean_se(list(tot.values()))
             print(f'{name} ({len(ids)} tables), all tricks, {x} - {y}: {m:+.4f} +- {e:.4f}')
     print('By trick: paired gains (tricks per table) and information beyond cards and show-outs (nats per decision)')
-    print(f'  {"trick":>5} {"n":>5} {"net-v5":>16} {"exact-v5":>16} {"exact-net":>16} | {"v5":>6} {"scorer":>6} {"bidder":>6} {"share":>5} | {"median classes":>14} {"layouts cards":>13} {"bidder":>9}')
+    print(f'  {"trick":>5} {"n":>5} {best[0] + "-v5":>16} {best[1] + "-v5":>16} {best[1] + "-" + best[0]:>16} | {"v5":>6} {"scorer":>6} {"bidder":>6} {"share":>5} | {"median classes":>14} {"layouts cards":>13} {"bidder":>9}')
     for t in list(range(1, 13)) + ['all']:
         keep = (lambda r: True) if t == 'all' else (lambda r, t=t: r['trick'] == t)
         rs = [r for r in dec if keep(r)]
         if not rs:
             continue
         cells = []
-        for a, b in (('net', 'v5'), ('exact', 'v5'), ('exact', 'net')):
+        for a, b in ((best[0], 'v5'), (best[1], 'v5'), (best[1], best[0])):
             v, n = by_deal(lambda r: r['cost_' + b] - r['cost_' + a], keep)
             m, s = mean_se(v)
             cells.append(f'{m:+.4f} +-{s:.4f}')
@@ -123,4 +142,5 @@ def main(pattern):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else HERE + '/out/cls_[01].jsonl*')
+    main(sys.argv[1] if len(sys.argv) > 1 else HERE + '/out/cls_[01].jsonl*', sys.argv[2] if len(sys.argv) > 2 else HERE + '/out/clsx_[01].jsonl*',
+         sys.argv[3] if len(sys.argv) > 3 else HERE + '/out/clsv_[01].jsonl*')

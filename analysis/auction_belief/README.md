@@ -5,7 +5,7 @@
 Results, method and limits:
 
 - Opening lead: [reports/auction_belief_lead_2026-11-10.md](../../reports/auction_belief_lead_2026-11-10.md)
-- The play after the lead: `reports/auction_belief_play_2026-11-11.md` (follows in the next commit, with the whole-play results)
+- The play after the lead: [reports/auction_belief_play_2026-11-11.md](../../reports/auction_belief_play_2026-11-11.md)
 
 Trained nets (run `python restore.py` in each folder to rebuild the weights):
 

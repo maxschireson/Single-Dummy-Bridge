@@ -61,4 +61,4 @@ def main(pattern):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else HERE + '/out/sel_[01].jsonl*')
+    main(sys.argv[1] if len(sys.argv) > 1 else HERE + '/out/sel_*.jsonl*')
