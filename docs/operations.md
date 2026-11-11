@@ -50,3 +50,13 @@ budgets or bidder conditions. Use a separate run and publication checkout.
 Run the relevant preflight, replay and record validation before publishing.
 For BEN, name its effort profile; the active primary mix is medium Gen6 versus
 BEN16. The historical fast-vs-BEN archive must stay excluded from headline metrics.
+
+## Independent cloud fast-only Gen7 capture (2026-11-11)
+
+Source branch: `ops/gen7-fast-selfplay-cloud-20261111`. Feed: `arena-gen6-fast-selfplay-cloud-feed`, registered as `gen6cloudselfplay` in the dashboard source registry. This additional producer is 100% `6-32~6-32`, with 25,000 fresh seeded families, three workers, 50% tie audits and gap forks (2/band, 1.5 root CPU budget). Frozen models and capture engine are adopted from independent self-play feed revision `989d498484e4eff706342d4c767ebeba2c9154cb`.
+
+Owner workspace: `/workspace/scratch/f846a051cf69`; run: `gen7-selfplay-run`; source: `bridge`; Python: `arena-venv/bin/python`. Manifest: `7ce4bf4a07ee08d6bd89fb25a927fc119ef79cd77217b0960f980b01a7dec0c9`. Gen3 is solely the existing tie-audit selector, never a scheduled opponent.
+
+The owning host uses `ops/supervise_cloud_selfplay.py` for collection. STOP/WATCHDOG_STOP drain and prevent restart. Inspect fresh heartbeat, failures and writer locks before any recovery. Preflight: 28 tests; two real-model boards; root and tie-audit card sequences and bidding identical with gap capture on/off.
+
+Git transport here has no push credentials. `ops/publish_cloud_capture.js` runs through the GitHub connector (AsyncFunction arguments `tools,text`) to export, upload new blobs, and update only the dedicated feed with an expected-head lease. It preserves full raw episodes, receipts, actor artifacts and runtime. Corpus is compressed into parts; `recovery/restore_corpus.py` reconstructs it and verifies SHA256. Scheduled publication is hourly; collectors continue between snapshots. The file contains this producer's paths and must only run on its owning host.
