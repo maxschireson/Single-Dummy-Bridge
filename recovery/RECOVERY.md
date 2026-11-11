@@ -1,3 +1,15 @@
+# Current arena: Gen6 BEN followups
+
+Status: running. The previous primary medium/BEN16 run drained at 1,545 complete deals and is archived.
+
+- Run: `/workspace/work/gen6-ben-followups`
+- Source: `/workspace/Single-Dummy-Bridge-gen6-ben-followups`
+- Manifest: `73519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60`
+- Feed: `arena-gen6-codex-ben-followups-feed`
+- Active primary mix: 7.5% medium256/BEN32, 7.5% fast32/BEN16; other shares unchanged.
+- Gate: overall native-bidding total +0.54054 IMPs/board on 370 deals, 95% interval [0.03181, 1.04927].
+- V7 source watcher: `/workspace/work/v7-logging-watch`, GitHub `arena-gen6-codex-v7-watch`.
+
 # Conditional Gen6 BEN followups
 
 Max authorized two new matches after Gen6 medium establishes a lead over BEN16:
