@@ -22,6 +22,8 @@
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
+ // Archived launch mismatch: retain raw records, exclude fast-vs-BEN from every report.
+ const archivedPair=p=>normalizePair(p).pair==='6-32~ben';
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
  const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
@@ -33,7 +35,7 @@
  function rowsFor(inputs,scope='all',condition='common',snapshots=null){const allowed=new Set(pickSources(scope).map(s=>s.key)),rows=[];
   for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
    const cutoff=snapshots? snapshots[source.cohort]:data.generated_epoch;if(cutoff==null)continue;
-   for(const r of index.records){if(r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
+   for(const r of index.records){if(archivedPair(r.pair)||r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
     if(condition==='own'&&!Object.hasOwn(r,'own_imps'))continue;
     rows.push({...r,pair,common_imps:flip?-r.imps:r.imps,native_imps:flip?-r.own_imps:r.own_imps,imps:value==null?null:flip?-value:value,scores:[...(condition==='own'?r.own_scores||r.scores:r.scores)].slice()[flip?'reverse':'slice'](),contracts:[...(condition==='own'?r.own_contracts||r.contracts:r.contracts)].slice()[flip?'reverse':'slice'](),_pair:r.pair,_flip:flip,_cohort:source.cohort,_source:source.key,_environment:source.environment,_title:source.name,_revision:/^[a-f0-9]{40}$/.test(input.revision||'')?input.revision:null});
    }
@@ -64,7 +66,7 @@
   const paired=common.rows.filter(r=>Number.isFinite(r.native_imps));
   for(const n of [0,100,500,1000]){const groups={};for(const pair of new Set(paired.map(r=>r.pair))){let rows=paired.filter(r=>r.pair===pair);if(n)rows=rows.slice(-n);groups[pair]={play:stats(rows.map(r=>r.common_imps)),total:stats(rows.map(r=>r.native_imps)),bidding:stats(rows.map(r=>r.native_imps-r.common_imps)),different_bidding:rows.filter(r=>r.different_bidding).length};}difference_views[n]={groups};}
   const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
-  const observations=chosen.flatMap(x=>x.index.records.filter(r=>r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
+  const observations=chosen.flatMap(x=>x.index.records.filter(r=>!archivedPair(r.pair)&&r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
   const stale=chosen.filter(x=>!x.source.retired&&now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
