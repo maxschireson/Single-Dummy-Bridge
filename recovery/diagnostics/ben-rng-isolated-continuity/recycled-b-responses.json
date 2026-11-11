@@ -1,0 +1,447 @@
+[
+  {
+    "card": "C8",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "candidates": [
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C5",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "claim": 7.0,
+    "candidates": [
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 6.95,
+        "p_make_contract": 0.0,
+        "expected_score_imp": -0.05,
+        "msg": "|adjust=-0.05"
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C5",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "claim": 7.0,
+    "candidates": [
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 6.95,
+        "p_make_contract": 0.0,
+        "expected_score_imp": -0.05,
+        "msg": "|adjust=-0.05"
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C5",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "claim": 7.0,
+    "candidates": [
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 6.95,
+        "p_make_contract": 0.0,
+        "expected_score_imp": -0.05,
+        "msg": "|adjust=-0.05"
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C5",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "claim": 7.0,
+    "candidates": [
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 6.95,
+        "p_make_contract": 0.0,
+        "expected_score_imp": -0.05,
+        "msg": "|adjust=-0.05"
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C8",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "candidates": [
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C8",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "candidates": [
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C8",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "candidates": [
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C8",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "candidates": [
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  },
+  {
+    "card": "C5",
+    "who": "IMP-calc",
+    "quality": "0.9132",
+    "claim": 7.0,
+    "candidates": [
+      {
+        "card": "C5",
+        "insta_score": 0.368,
+        "expected_tricks_dd": 7.0,
+        "p_make_contract": 0.0,
+        "expected_score_imp": 0.0,
+        "msg": ""
+      },
+      {
+        "card": "C8",
+        "insta_score": 0.632,
+        "expected_tricks_dd": 6.95,
+        "p_make_contract": 0.0,
+        "expected_score_imp": -0.05,
+        "msg": "|adjust=-0.05"
+      }
+    ],
+    "samples": [
+      "AKJ98x.T8.x.Kxxx Txx.Axxxx.J8.AT9 Qxxx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.12386 0.31837 0.05012 1.00000 1.00000 ",
+      "AKJ9xxx.T8.x.xxx Txx.Axxxx.J8.AT9 Q8x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.04040 0.30064 0.06162 1.00000 1.00000 ",
+      "AKQ8xxx.T8.x.xxx Txx.Axxxx.J8.AT9 J9x.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.06516 0.28693 0.05779 1.00000 1.00000 ",
+      "AK9x.T8.x.QJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Kx .K9.KQT9xxxxx.8x - 0.98151 0.01759 0.32200 0.05207 1.00000 1.00000 ",
+      "AK9x.T8.x.KJxxxx Txx.Axxxx.J8.AT9 QJ8xxx.QJxx.A.Qx .K9.KQT9xxxxx.8x - 0.98898 0.01772 0.40679 0.05090 1.00000 1.00000 ",
+      "AKJxxx.T8.x.Jxxx Txx.Axxxx.J8.AT9 Q98x.QJxx.A.KQxx .K9.KQT9xxxxx.8x - 0.83493 0.02992 0.36946 0.05006 1.00000 1.00000 ",
+      "AKJ9xx.T8.x.Kxxx Txx.Axxxx.J8.AT9 Q8xx.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.98753 0.10617 0.33694 0.05506 1.00000 1.00000 ",
+      "AKJ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Qxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.75165 0.13468 0.27759 0.05653 1.00000 1.00000 ",
+      "AKQ9x.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J8xxx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.45388 0.06294 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Qxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.KJx .K9.KQT9xxxxx.8x - 0.94423 0.03384 0.30262 0.05133 1.00000 1.00000 ",
+      "AKQ98x.T8.x.xxxx Txx.Axxxx.J8.AT9 Jxxx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.07731 0.35409 0.05887 1.00000 1.00000 ",
+      "AKQ98xx.T8.x.xxx Txx.Axxxx.J8.AT9 Jxx.QJxx.A.KQJxx .K9.KQT9xxxxx.8x - 0.90919 0.13033 0.29044 0.05646 1.00000 1.00000 ",
+      "AKJ9x.T8.x.Kxxxx Txx.Axxxx.J8.AT9 Q8xxx.QJxx.A.QJx .K9.KQT9xxxxx.8x - 0.99049 0.07099 0.35658 0.05965 1.00000 1.00000 ",
+      "AKQ8xx.T8.x.xxxx Txx.Axxxx.J8.AT9 J9xx.QJxx.A.KQJx .K9.KQT9xxxxx.8x - 0.86294 0.01546 0.34087 0.06009 1.00000 1.00000 ",
+      "AK9xxx.T8.x.Kxxx Txx.Axxxx.J8.AT9 QJ8x.QJxx.A.QJxx .K9.KQT9xxxxx.8x - 0.96204 0.06895 0.31859 0.05447 1.00000 1.00000 ",
+      "AKQxx.T8.x.Jxxxx Txx.Axxxx.J8.AT9 J98xx.QJxx.A.KQx .K9.KQT9xxxxx.8x - 0.94317 0.03380 0.44847 0.05660 1.00000 1.00000 "
+    ],
+    "player": 3,
+    "matchpoint": false,
+    "MP_or_IMP": true
+  }
+]

@@ -1,0 +1,46 @@
+persistent 0 C5
+persistent 1 C5
+persistent 2 C5
+persistent 3 C8
+persistent 4 C5
+persistent 5 C5
+persistent 6 C5
+persistent 7 C5
+persistent 8 C8
+persistent 9 C5
+persistent 10 C5
+persistent 11 C5
+persistent 12 C5
+persistent 13 C5
+persistent 14 C5
+persistent 15 C5
+persistent 16 C5
+persistent 17 C5
+persistent 18 C5
+persistent 19 C8
+recycled-a 0 C5
+recycled-a 1 C5
+recycled-a 2 C5
+recycled-a 3 C8
+recycled-a 4 C5
+recycled-a 5 C5
+recycled-a 6 C5
+recycled-a 7 C5
+recycled-a 8 C8
+recycled-a 9 C5
+recycled-b 0 C5
+recycled-b 1 C5
+recycled-b 2 C5
+recycled-b 3 C5
+recycled-b 4 C5
+recycled-b 5 C5
+recycled-b 6 C8
+recycled-b 7 C5
+recycled-b 8 C8
+recycled-b 9 C5
+{"status": "failed", "requests": 20, "exact_full_responses": false, "final_python_rng_equal": false, "persistent_cards": ["C5", "C5", "C5", "C8", "C5", "C5", "C5", "C5", "C8", "C5", "C5", "C5", "C5", "C5", "C5", "C5", "C5", "C5", "C5", "C8"], "recycled_cards": ["C5", "C5", "C5", "C8", "C5", "C5", "C5", "C5", "C8", "C5", "C5", "C5", "C5", "C5", "C5", "C5", "C8", "C5", "C8", "C5"], "production_commits": 0, "scope": "Isolated single-position request sequence, not full board equivalence or production adoption. No claim seeding; carries actual Python RNG state."}
+Traceback (most recent call last):
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/runs/gen6-chatgpt-ben-recycled-20261111/diagnostics/ben-rng-continuity/probe.py", line 27, in <module>
+    assert report['exact_full_responses'] and report['final_python_rng_equal']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
