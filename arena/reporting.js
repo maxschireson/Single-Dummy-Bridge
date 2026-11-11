@@ -3,7 +3,7 @@
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
   {key:'gen6',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · primary Codex collector',branch:'arena-gen6-codex-feed',cohort:'168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea'},
-  {key:'gen6chatgpt',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT independent collector',branch:'arena-gen6-chatgpt-feed',cohort:'e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177'},
+  {key:'gen6chatgpt',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT independent collector',branch:'arena-gen6-chatgpt-feed',cohort:'ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035'},
   {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent collector',branch:'arena-gen6-medium-ben-feed',cohort:'9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284'},
   {key:'gen6initial',group:'gen6',generation:6,variant:'6',retired:true,revision:'1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83',environment:'codex',name:'Gen 6 · retained early compatible games',branch:'arena-gen6-independent-feed',cohort:'497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63'},
   {key:'gen5rz',group:'5r',retired:true,revision:'a559ccb59e9d3ff09d8c759c016534b4efcef254',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5R / 5RZ · archived before Gen6',branch:'arena-gen5rz-ben-feed',cohort:'c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba'},
