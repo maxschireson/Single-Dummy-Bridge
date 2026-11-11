@@ -14,3 +14,6 @@ Run `.venv/bin/python -u launch_selfplay.py` from the source directory. Inspect 
 Publish by reading `publish_feed.js` and executing it as an async function with `tools,text`; it uses authenticated GitHub tools. The snapshot contains full episodes, receipts, corpus, models and pinned runtime, plus normal arena exports. It verifies hashes before and after publication. Do not modify other producers or their feed branches. The dashboard registry key is `gen6extraselfplay`.
 
 If restoring elsewhere, copy `recovery/runtime` to a new source directory and `recovery` run artifacts to `runs/fast-only-20261111`, install the original TensorFlow/NumPy/SciPy environment, verify DDS compatibility and all manifest hashes, and resume only after confirming the old writer is gone.
+
+## Observed interruptions — 11 November 2026
+The first two launches stopped without STOP, recorded game failure, or a traceback, after roughly nine minutes of collector activity (57 and 106 total boards). Both writer and supervisor locks were free at inspection. Cause is unconfirmed; do not describe the worker as continuously running. At the second recovery it was resumed in a PTY exec session (89092), retaining the same frozen runtime and manifest. Verify fresh receipts and locks on future checks.
