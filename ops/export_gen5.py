@@ -21,6 +21,7 @@ PAIRS=[]
 def gen6_differences(row):
     """Paired auction-condition decomposition, in candidate-oriented IMPs."""
     play=row['imps'];total=row['own_imps']
+    if play is None and total is None:return dict(play=None,bidding=None,total=None)
     return dict(play=play,bidding=total-play,total=total)
 
 def difference_views(rows):
@@ -96,7 +97,7 @@ def export(root,out):
                     assignments=[pair_members(pair)[0] if v=='candidate' else pair_members(pair)[1] for v in e['assignments']],
                     ns_score=t0['ns_score'],declarer_tricks=t0.get('declarer_tricks'),
                     plays=[a['seat']+a['card'] for a in t0['actions']]))
-            conditions[regime]=dict(tables=tables,imps=source['imps'],label=('Common Gen6 bidder' if m.get('variant')=='6' else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
+            conditions[regime]=dict(tables=tables,imps=source['imps'],label='Fast self-play (training only)' if pair_members(pair)[0]==pair_members(pair)[1] else ('Common Gen6 bidder' if m.get('variant')=='6' else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
         common=conditions['common']['tables'];own=conditions['own']['tables']
         different=any(a['auction']!=b['auction'] for a,b in zip(common,own))
         first=r['unique_tables'][next(iter(r['unique_tables']))]['board']
