@@ -732,6 +732,69 @@ class TreeTests(Fixture):
         with self.assertRaises(ValueError):
             TreeConfig(mass=0.)
 
+    def test_stake_rule_runs_from_the_uniform_tree_to_pimc(self):
+        """With no threshold to speak of the stake rule cuts nothing; with a huge one every root card is a leaf."""
+        used = 0
+        for seed in range(40):
+            got = self.spot(seed, 26 + seed % 12, most=200)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            index = np.argsort(-np.asarray(weights))[:6]
+            sub, share = [worlds[i] for i in index], [weights[i] for i in index]
+            for plain in (0, 1):
+                uniform = Tree(p.net, p.dds, TreeConfig(tricks=2, layouts=6, plain=plain))
+                want = uniform.values(o, sub, share)
+                wide = Tree(p.net, p.dds, TreeConfig(tricks=2, layouts=6, plain=plain, path=1e-30))
+                self.assertEqual(wide.values(o, sub, share), want)
+                self.assertEqual(wide.lines, uniform.lines)
+                pimc = Tree(p.net, p.dds, TreeConfig(tricks=0, plain=plain)).values(o, sub, share)
+                shut = Tree(p.net, p.dds, TreeConfig(tricks=2, layouts=6, plain=plain, path=1e9))
+                got_values = shut.values(o, sub, share)
+                for x in o.legal:
+                    self.assertAlmostEqual(got_values[x], pimc[x], places=9)
+                    self.assertAlmostEqual(shut.flat[x], pimc[x], places=9)          # the tree's own double-dummy values
+                self.assertEqual(shut.net_rows, 0)
+                self.assertEqual(shut.lines, len(o.legal))
+                self.assertGreaterEqual(wide.stake, 0.)
+                lines = []
+                for path in (.05, .5, 5.):                                          # a higher threshold never searches more
+                    tree = Tree(p.net, p.dds, TreeConfig(tricks=3, breadth=3, mass=.98, layouts=6, plain=plain, path=path))
+                    values = tree.values(o, sub, share)
+                    self.assertEqual(set(values), set(o.legal))
+                    self.assertTrue(all(-13 <= v <= 13 for v in values.values()))
+                    lines.append(tree.lines)
+                self.assertEqual(lines, sorted(lines, reverse=True))
+                capped = Tree(p.net, p.dds, TreeConfig(tricks=3, breadth=3, mass=.98, layouts=6, plain=plain, path=.05, path_solves=12))
+                capped.values(o, sub, share)
+                self.assertLessEqual(capped.lines, lines[0])
+                handed = Tree(p.net, p.dds, TreeConfig(tricks=2, layouts=6, plain=plain, path=1.))
+                handed.values(o, sub, share, stake=1e12)                            # a stake handed in replaces the tree's own
+                self.assertEqual(handed.lines, uniform.lines)
+            used += 1
+            if used >= 4:
+                break
+        self.assertGreaterEqual(used, 4)
+        for bad in (dict(path=-1.), dict(spread=-1.), dict(path_solves=-1), dict(path_solves=1.5)):
+            with self.assertRaises(ValueError):
+                TreeConfig(**bad)
+
+    def test_the_stake_is_the_imps_of_the_trick_at_risk(self):
+        from types import SimpleNamespace
+        from bridge_harness.core import Contract
+        tree = Tree(None, None, TreeConfig(path=1.))
+        tree.o = SimpleNamespace(contract=Contract(4, 'S', 0), vulnerability='Both')
+        tree.declaring = True
+        self.assertEqual([tree.swing(t) for t in (9, 10, 11)], [3, 12, 1])       # one more down; the game; an overtrick
+        tree.declaring = False
+        self.assertEqual([tree.swing(t) for t in (8, 9, 10)], [3, 12, 1])        # the trick a defender would give away
+        self.assertEqual(tree.swing(13), tree.swing(12))
+        reach = np.array([.5, .25, .25, 0.])
+        self.assertAlmostEqual(tree.stake_of([9, 9, 10], reach), .75 * 12 + .25 * 1)
+        wary = Tree(None, None, TreeConfig(path=1., spread=1.))
+        wary.o, wary.declaring = tree.o, False
+        self.assertAlmostEqual(wary.stake_of([9, 9, 10], reach), 9.25 + float(np.sqrt(.75 * 2.75 ** 2 + .25 * 8.25 ** 2)))
+
 
 class ShownTests(unittest.TestCase):
     """What the calls show: the scorer's posterior over a reweighted bank of random hands."""
