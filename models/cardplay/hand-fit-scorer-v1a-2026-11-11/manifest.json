@@ -1,0 +1,71 @@
+{
+  "schema": "chunked-hand-fit-scorer-artifact-v1",
+  "status": "research release; no arena bot uses it; candidate for Gen 7",
+  "description": "Hand-fit scorer v1a: P(a hand would have made a seat's calls in a given auction), trained on auctions of the Gen 6 candidate bidder; see README.md",
+  "parameters": 1435393,
+  "bidder_sha256": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+  "files": [
+    {
+      "output": "hand_fit_v1a.npz",
+      "size_bytes": 5743718,
+      "sha256": "875eb826624e821a88dc2b8fb3a9bf05190060e0547b8b2b239a3b4b8ec4ce49",
+      "parts": [
+        {
+          "file": "hand_fit_v1a.npz.part000",
+          "size_bytes": 524288,
+          "sha256": "8dad9e22020053ee64236d8dee54f23b229209c95106b4d36bdc2633d1b23c8a"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part001",
+          "size_bytes": 524288,
+          "sha256": "dbf5825c52837d180a1a603e6903ec50fde806dc6e016cfc61b4bc35d1ffac6c"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part002",
+          "size_bytes": 524288,
+          "sha256": "2cb8aea496c6138ea0313a155a4cd9b3e6c725f582f288bc405cc6a899251762"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part003",
+          "size_bytes": 524288,
+          "sha256": "476139036dad80e9275e79dee9178c5b69c9b0c983a94ac7fc9bc951c93a321d"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part004",
+          "size_bytes": 524288,
+          "sha256": "0162041315dcc9d3a78db2070300a7e16f1dbe8748f6d6de576d667940d89c52"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part005",
+          "size_bytes": 524288,
+          "sha256": "0118f8f60f727e672f5c783a03b835750c13c02424c1c27881e22ef51cd2f5ef"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part006",
+          "size_bytes": 524288,
+          "sha256": "1ba74bb140972dbd915addd1014070ca85f67cf0442f435b5d1f605589b7e01e"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part007",
+          "size_bytes": 524288,
+          "sha256": "bbe95f4e8ea5b1f8fc2611a3bc5f71e4a9934ee7014f530e34508347932e2944"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part008",
+          "size_bytes": 524288,
+          "sha256": "a52b6acfe2fd9e12a7e1b4ff7a7dc42edc3072ca7cc535b539864a78024f94f4"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part009",
+          "size_bytes": 524288,
+          "sha256": "cb699a58b44ef26c217546167415df0c5360992ca546435413bdd273e57f41ff"
+        },
+        {
+          "file": "hand_fit_v1a.npz.part010",
+          "size_bytes": 500838,
+          "sha256": "5c69eaf770229b745d309783010e4669a1f49c942d562ce4720bd309f0d6b4c7"
+        }
+      ]
+    }
+  ]
+}

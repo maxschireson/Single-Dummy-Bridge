@@ -1,0 +1,53 @@
+diff --git a/analysis/auction_belief/gen.py b/analysis/auction_belief/gen.py
+index 5a89a38..9f8f563 100644
+--- a/analysis/auction_belief/gen.py
++++ b/analysis/auction_belief/gen.py
+@@ -171,7 +171,7 @@ def examples(sim, hands, dealer, vul):
+ 
+ if __name__ == '__main__':
+     import time
+-    bidder = NumpyBidder(FEED + '/artifacts/v5/bidder.keras')
++    bidder = NumpyBidder(_os.environ.get('SDB_BIDDER', FEED + '/artifacts/v5/bidder.keras'))
+     rng = np.random.default_rng(int(sys.argv[2]))
+     out, total, chunk = sys.argv[1], int(sys.argv[3]), 4096
+     parts, n, t0, passed, dropped = [], 0, time.time(), 0, 0
+diff --git a/analysis/auction_belief/gen_fit.py b/analysis/auction_belief/gen_fit.py
+index 99e3c6e..d5d4751 100644
+--- a/analysis/auction_belief/gen_fit.py
++++ b/analysis/auction_belief/gen_fit.py
+@@ -94,7 +94,7 @@ def label(bidder, alt, sim, dealer, vul):
+ 
+ def main():
+     out, seed, total = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+-    bidder = NumpyBidder(ROOT + '/artifacts/v5/bidder.keras')
++    bidder = NumpyBidder(_os.environ.get('SDB_BIDDER', FEED + '/artifacts/v5/bidder.keras'))
+     rng = np.random.default_rng(seed)
+     chunk, K = 768, K_RAND + K_NEAR
+     D = dict(calls=[], dealer=[], vul=[])
+diff --git a/analysis/auction_belief/nbid.py b/analysis/auction_belief/nbid.py
+index 87cc6e1..5b13a7e 100644
+--- a/analysis/auction_belief/nbid.py
++++ b/analysis/auction_belief/nbid.py
+@@ -66,7 +66,8 @@ class NumpyBidder:
+             gamma, beta, mean, var = (g(f'layers/{n}/vars/{i}') for i in range(4))
+             scale = gamma / np.sqrt(var + 1e-3)
+             self.bn.append((scale.astype(np.float32), (beta - mean * scale).astype(np.float32)))
+-        self.wd, self.bd = g('layers/dense/vars/0'), g('layers/dense/vars/1')
++        out = 'layers/dense' if 'layers/dense' in f else 'layers/time_distributed/layer'   # BEN's base file names its output layer differently
++        self.wd, self.bd = g(out + '/vars/0'), g(out + '/vars/1')
+         self.w_hand = self.lstm[0][0][:33]      # hand features -> gates
+         self.w_ctx = self.lstm[0][0][33:]       # 4 x 40 call one-hots -> gates
+ 
+diff --git a/analysis/auction_belief/verify_bidder.py b/analysis/auction_belief/verify_bidder.py
+index 0f48127..5560d8f 100644
+--- a/analysis/auction_belief/verify_bidder.py
++++ b/analysis/auction_belief/verify_bidder.py
+@@ -8,7 +8,7 @@ sys.path.insert(0, HERE)
+ from nbid import NumpyBidder, AuctionModel, RUNTIME
+ from bridge_harness.core import Board
+ ROOT = FEED
+-b = NumpyBidder(ROOT + '/artifacts/v5/bidder.keras')
++b = NumpyBidder(_os.environ.get('SDB_BIDDER', FEED + '/artifacts/v5/bidder.keras'))
+ files = sorted(glob.glob(ROOT + '/episodes/*.json.gz'))[:int(sys.argv[1])]
+ ok = bad = passed_out = 0; seat_checks = 0
+ t0 = time.time()

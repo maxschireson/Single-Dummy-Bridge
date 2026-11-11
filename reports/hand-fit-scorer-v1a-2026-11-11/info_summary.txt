@@ -1,0 +1,48 @@
+== all tricks: 8762 decisions on 369 boards; median layouts listed 70, median fitting the auction 11
+   exact bidder list        1.441 +- 0.035
+   v0                       a=0.75: 1.084+-0.030 a=1.0: 1.097+-0.032 a=1.25: 1.097+-0.034 a=1.5: 1.091+-0.036
+   v1a                      a=0.75: 1.091+-0.028 a=1.0: 1.118+-0.029 a=1.25: 1.131+-0.030 a=1.5: 1.137+-0.031
+   v1a - v0 (both a=1): +0.021 +- 0.012 | v1a at its best a=1.5 - v0 a=1: +0.040 +- 0.013
+   exact - v0: +0.344 +- 0.021 (what a perfect scorer would add)
+== trick 6: 1263 decisions on 369 boards; median layouts listed 6435, median fitting the auction 314
+   exact bidder list        2.453 +- 0.062
+   v0                       a=0.75: 1.835+-0.050 a=1.0: 1.860+-0.053 a=1.25: 1.865+-0.055 a=1.5: 1.858+-0.058
+   v1a                      a=0.75: 1.831+-0.047 a=1.0: 1.875+-0.049 a=1.25: 1.897+-0.050 a=1.5: 1.906+-0.052
+   v1a - v0 (both a=1): +0.015 +- 0.017 | v1a at its best a=1.5 - v0 a=1: +0.046 +- 0.019
+   exact - v0: +0.593 +- 0.035 (what a perfect scorer would add)
+== trick 7: 1275 decisions on 369 boards; median layouts listed 924, median fitting the auction 104
+   exact bidder list        2.161 +- 0.057
+   v0                       a=0.75: 1.603+-0.047 a=1.0: 1.623+-0.049 a=1.25: 1.625+-0.052 a=1.5: 1.616+-0.054
+   v1a                      a=0.75: 1.609+-0.046 a=1.0: 1.650+-0.047 a=1.25: 1.670+-0.049 a=1.5: 1.678+-0.050
+   v1a - v0 (both a=1): +0.026 +- 0.017 | v1a at its best a=1.5 - v0 a=1: +0.055 +- 0.018
+   exact - v0: +0.538 +- 0.033 (what a perfect scorer would add)
+== trick 8: 1227 decisions on 369 boards; median layouts listed 252, median fitting the auction 39
+   exact bidder list        1.816 +- 0.052
+   v0                       a=0.75: 1.363+-0.044 a=1.0: 1.378+-0.046 a=1.25: 1.378+-0.049 a=1.5: 1.369+-0.051
+   v1a                      a=0.75: 1.374+-0.043 a=1.0: 1.409+-0.044 a=1.25: 1.425+-0.046 a=1.5: 1.431+-0.047
+   v1a - v0 (both a=1): +0.030 +- 0.017 | v1a at its best a=1.5 - v0 a=1: +0.053 +- 0.019
+   exact - v0: +0.437 +- 0.029 (what a perfect scorer would add)
+== trick 9: 1265 decisions on 369 boards; median layouts listed 70, median fitting the auction 14
+   exact bidder list        1.475 +- 0.042
+   v0                       a=0.75: 1.104+-0.036 a=1.0: 1.116+-0.038 a=1.25: 1.115+-0.040 a=1.5: 1.106+-0.043
+   v1a                      a=0.75: 1.110+-0.034 a=1.0: 1.137+-0.035 a=1.25: 1.151+-0.037 a=1.5: 1.156+-0.038
+   v1a - v0 (both a=1): +0.022 +- 0.015 | v1a at its best a=1.5 - v0 a=1: +0.041 +- 0.016
+   exact - v0: +0.359 +- 0.026 (what a perfect scorer would add)
+== trick 10: 1268 decisions on 369 boards; median layouts listed 20, median fitting the auction 6
+   exact bidder list        1.080 +- 0.035
+   v0                       a=0.75: 0.822+-0.032 a=1.0: 0.830+-0.034 a=1.25: 0.828+-0.036 a=1.5: 0.822+-0.038
+   v1a                      a=0.75: 0.833+-0.030 a=1.0: 0.853+-0.031 a=1.25: 0.863+-0.032 a=1.5: 0.867+-0.033
+   v1a - v0 (both a=1): +0.023 +- 0.012 | v1a at its best a=1.5 - v0 a=1: +0.037 +- 0.013
+   exact - v0: +0.250 +- 0.021 (what a perfect scorer would add)
+== trick 11: 1232 decisions on 369 boards; median layouts listed 6, median fitting the auction 3
+   exact bidder list        0.715 +- 0.028
+   v0                       a=0.75: 0.563+-0.026 a=1.0: 0.569+-0.027 a=1.25: 0.570+-0.028 a=1.5: 0.566+-0.029
+   v1a                      a=0.75: 0.570+-0.025 a=1.0: 0.584+-0.026 a=1.25: 0.592+-0.027 a=1.5: 0.595+-0.027
+   v1a - v0 (both a=1): +0.015 +- 0.009 | v1a at its best a=1.5 - v0 a=1: +0.026 +- 0.009
+   exact - v0: +0.146 +- 0.014 (what a perfect scorer would add)
+== trick 12: 1232 decisions on 369 boards; median layouts listed 2, median fitting the auction 1
+   exact bidder list        0.351 +- 0.017
+   v0                       a=0.75: 0.272+-0.016 a=1.0: 0.273+-0.017 a=1.25: 0.271+-0.019 a=1.5: 0.268+-0.020
+   v1a                      a=0.75: 0.281+-0.016 a=1.0: 0.289+-0.016 a=1.25: 0.293+-0.016 a=1.5: 0.296+-0.016
+   v1a - v0 (both a=1): +0.015 +- 0.007 | v1a at its best a=1.5 - v0 a=1: +0.022 +- 0.007
+   exact - v0: +0.078 +- 0.010 (what a perfect scorer would add)

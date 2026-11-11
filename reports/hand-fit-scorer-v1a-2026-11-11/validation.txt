@@ -1,0 +1,4 @@
+val9_gen6.npz          v0.npz                 rows 110052 | loss 0.1378 (true 0.2505, random 0.0863, near 0.1461) | acc true 0.907 random 0.963 near 0.936 | mean P(fit) true 0.854 | fit share random 0.184 near 0.309
+val9_gen6.npz          v1a.npz                rows 110052 | loss 0.1214 (true 0.2116, random 0.0725, near 0.1326) | acc true 0.919 random 0.968 near 0.940 | mean P(fit) true 0.857 | fit share random 0.184 near 0.309
+val9_v5.npz            v0.npz                 rows 109908 | loss 0.1115 (true 0.2077, random 0.0644, near 0.1205) | acc true 0.922 random 0.972 near 0.945 | mean P(fit) true 0.867 | fit share random 0.202 near 0.325
+val9_v5.npz            v1a.npz                rows 109908 | loss 0.1271 (true 0.2325, random 0.0754, near 0.1370) | acc true 0.910 random 0.967 near 0.939 | mean P(fit) true 0.853 | fit share random 0.202 near 0.325

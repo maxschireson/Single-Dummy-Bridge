@@ -1,0 +1,12 @@
+8762 deal-list decisions, 369 boards, one core each, per-player caches
+t_list    mean    0.5 ms, p95    2.1 ms, max    10 ms
+t_scorer  mean    4.2 ms, p95   16.6 ms, max   176 ms
+t_exact   mean    8.0 ms, p95   48.7 ms, max   915 ms
+trick  6: exact mean   52.4 ms, p95  194.8 ms, max   915 ms | scorer mean   16.4 ms, p95   49.0 ms, max   176 ms
+trick  7: exact mean    2.5 ms, p95   12.8 ms, max   138 ms | scorer mean    3.2 ms, p95    6.2 ms, max    35 ms
+trick  8: exact mean    0.3 ms, p95    0.5 ms, max    12 ms | scorer mean    2.1 ms, p95    2.8 ms, max     5 ms
+trick  9: exact mean    0.1 ms, p95    0.3 ms, max     5 ms | scorer mean    1.9 ms, p95    2.4 ms, max     8 ms
+trick 10: exact mean    0.1 ms, p95    0.1 ms, max     0 ms | scorer mean    1.9 ms, p95    2.3 ms, max     5 ms
+trick 11: exact mean    0.1 ms, p95    0.1 ms, max     0 ms | scorer mean    1.9 ms, p95    2.4 ms, max     5 ms
+trick 12: exact mean    0.1 ms, p95    0.1 ms, max     1 ms | scorer mean    1.9 ms, p95    2.4 ms, max     9 ms
+per board, all four players: exact 0.19 s, scorer 0.10 s
