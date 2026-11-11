@@ -1,0 +1,67 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794393547.420749      20 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794393547.420749      17 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794393547.420749      21 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794393547.752201      20 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1794393547.752222      17 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1794393547.752222      21 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794393549.648905      20 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794393549.648904      17 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794393549.648904      21 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+E0000 00:00:1794393551.862850      21 util.cc:131] oneDNN supports DT_HALF only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+E0000 00:00:1794393551.863845      20 util.cc:131] oneDNN supports DT_HALF only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+E0000 00:00:1794393551.883279      17 util.cc:131] oneDNN supports DT_HALF only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+{"index": 235, "pid": 17, "seconds": 13.409876585006714, "maxrss_kb": 877844, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 21, "seconds": 17.50532102584839, "maxrss_kb": 872932, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 17, "seconds": 9.177673101425171, "maxrss_kb": 877844, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 20, "seconds": 30.20874261856079, "maxrss_kb": 893716, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 8.783638000488281, "maxrss_kb": 893344, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 21, "seconds": 14.190476417541504, "maxrss_kb": 910604, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 8.851015567779541, "maxrss_kb": 893716, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 21, "seconds": 8.858887434005737, "maxrss_kb": 910604, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 17, "seconds": 14.650953769683838, "maxrss_kb": 958904, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 8.426862716674805, "maxrss_kb": 897868, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 21, "seconds": 15.09254264831543, "maxrss_kb": 962016, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 9.701075792312622, "maxrss_kb": 958904, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 9.54806661605835, "maxrss_kb": 920080, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 9.265763998031616, "maxrss_kb": 969548, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 9.291956186294556, "maxrss_kb": 945308, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 21, "seconds": 14.737388134002686, "maxrss_kb": 992240, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 20, "seconds": 8.689879417419434, "maxrss_kb": 979072, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 17, "seconds": 13.527098655700684, "maxrss_kb": 1035712, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 21, "seconds": 8.287556886672974, "maxrss_kb": 992240, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 21, "seconds": 8.876580476760864, "maxrss_kb": 994064, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 9.012755632400513, "maxrss_kb": 1035712, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 20, "seconds": 13.612943887710571, "maxrss_kb": 1045680, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 8.637700319290161, "maxrss_kb": 1045240, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 9.232196569442749, "maxrss_kb": 1045680, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 21, "seconds": 14.478376865386963, "maxrss_kb": 1068160, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 20, "seconds": 8.270402669906616, "maxrss_kb": 1057764, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 17, "seconds": 13.932036876678467, "maxrss_kb": 1114028, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 21, "seconds": 8.166810989379883, "maxrss_kb": 1068160, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 8.094125986099243, "maxrss_kb": 1114028, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 21, "seconds": 8.752272129058838, "maxrss_kb": 1072216, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 20, "seconds": 13.919556856155396, "maxrss_kb": 1124132, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 21, "seconds": 8.493088960647583, "maxrss_kb": 1104720, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 8.125302791595459, "maxrss_kb": 1124132, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 17, "seconds": 13.119910955429077, "maxrss_kb": 1167712, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 20, "seconds": 8.152541160583496, "maxrss_kb": 1137072, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 17, "seconds": 8.127354145050049, "maxrss_kb": 1167712, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 21, "seconds": 13.47979187965393, "maxrss_kb": 1171216, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 17, "seconds": 8.582563161849976, "maxrss_kb": 1175428, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 21, "seconds": 8.313368797302246, "maxrss_kb": 1171216, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 20, "seconds": 13.555466175079346, "maxrss_kb": 1203088, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 21, "seconds": 9.08919882774353, "maxrss_kb": 1175332, "status": "replay_validated", "tables": 1}
+{"index": 233, "pid": 20, "seconds": 8.535157203674316, "maxrss_kb": 1203088, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 17, "seconds": 14.337206840515137, "maxrss_kb": 1243360, "status": "replay_validated", "tables": 1}
+{"index": 235, "pid": 20, "seconds": 8.459269762039185, "maxrss_kb": 1203088, "status": "replay_validated", "tables": 1}
+{"index": 234, "pid": 21, "seconds": 13.656600952148438, "maxrss_kb": 1175332, "status": "replay_validated", "tables": 1}
+{"epoch": 1794393546.5095634, "baseline": {"MemTotal_kb": 10206472, "MemFree_kb": 5100856, "MemAvailable_kb": 7995772, "Cached_kb": 3896544, "SwapTotal_kb": 0, "SwapFree_kb": 0, "allocstall_dma": 0, "allocstall_dma32": 0, "allocstall_normal": 0, "allocstall_movable": 2, "allocstall_device": 0, "pgmajfault": 21100, "oom_kill": 16, "cgroup_metrics_available": false}, "production_commits": 0, "status": "passed", "completed": 45, "seconds": 177.6556887626648, "final": {"MemTotal_kb": 10206472, "MemFree_kb": 4906552, "MemAvailable_kb": 7925164, "Cached_kb": 4028964, "SwapTotal_kb": 0, "SwapFree_kb": 0, "allocstall_dma": 0, "allocstall_dma32": 0, "allocstall_normal": 0, "allocstall_movable": 2, "allocstall_device": 0, "pgmajfault": 21697, "oom_kill": 16, "cgroup_metrics_available": false}}
