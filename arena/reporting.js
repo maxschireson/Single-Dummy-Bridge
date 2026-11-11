@@ -3,7 +3,7 @@
  const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
  const sources=[
   {key:'gen6chatgpt',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT independent collector',branch:'arena-gen6-chatgpt-feed',cohort:'e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177'},
-  {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent collector',branch:'arena-gen6-independent-feed',cohort:'497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63'},
+  {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent collector',branch:'arena-gen6-medium-ben-feed',cohort:'9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284'},
   {key:'gen5rz',group:'5r',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5R / 5RZ · current mix',branch:'arena-gen5rz-ben-feed',cohort:'c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba'},
   {key:'gen5rzinitial',group:'5r',retired:true,revision:'03fd90e694d02ba139559fc323e63e384da9e969',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5RZ · early allocation (retained)',branch:'arena-gen5rz-feed',cohort:'1f7081be958488897404148a96c3caffc2327d194a5b9acbcaa164802f17bbf6'},
   {key:'gen5r',group:'5r',retired:true,revision:'ef13160a9c2412bdacae82bb9e26f5cd546e0446',generation:5,variant:'5R',environment:'codex',name:'Gen 5R · initial allocation (retained)',branch:'arena-gen5r-feed',cohort:'cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3'},
