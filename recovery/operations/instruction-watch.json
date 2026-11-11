@@ -237,7 +237,10 @@
     "gap_forks": 11838,
     "gap_forks_per_root": 5.919,
     "added_cpu_share": 0.6239061691088384,
-    "before_rate_available": false
+    "before_rate_available": false,
+    "publication_revision": "aca896ccce9cd9c717964eab5741f85d03897466",
+    "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
+    "publication_verified": true
   },
   "research_disposition": {
     "gen7_alpha": "Plan closed; no authorized adoption or deployment change.",
@@ -252,18 +255,20 @@
   "next_check": "2026-11-12T00:25:53+00:00",
   "stream_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
   "health": {
-    "completed": 2112,
+    "completed": 2132,
     "target": 25000,
     "pair_weights": {
       "6-32~6-32": 1
     },
-    "heartbeat_age_seconds": 6.75,
+    "heartbeat_age_seconds": 1.68,
     "failures": 0,
-    "published": 2086,
-    "published_commit": "87f59a923dcb7e6efd9947a992d041acbd38c886",
-    "publisher_status": "Intentional graceful refresh to archive derived capture report; collector remains live",
+    "published": 2124,
+    "published_commit": "23c67153419f699b60aa36276aa39d0722235dcc",
+    "publisher_status": "running after graceful report-only refresh",
     "source_runtime_and_artifacts": "verified",
-    "ownership": "Owned supervisor and collector retained; publisher singleton confirmed free for refresh"
+    "ownership": "All three expected locks held; original collector and supervisor retained",
+    "collector_pid": 9795,
+    "publisher_pid": 10757
   },
   "previous_check": {
     "checked_at": "2026-11-11T22:31:45.731936+00:00",
@@ -284,7 +289,7 @@
       ]
     }
   ],
-  "completed_at": "2026-11-11T23:28:42.800647+00:00",
+  "completed_at": "2026-11-11T23:30:50.190550+00:00",
   "next_comment_scan_since": "2026-11-11T23:24:14.517786+00:00",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll."
 }
