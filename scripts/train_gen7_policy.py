@@ -146,6 +146,7 @@ def main():
     p.add_argument('--patience', type=int, default=0, help='stop after this many epochs without a better held-out loss; 0 = never')
     p.add_argument('--weight-decay', type=float, default=1e-4)
     p.add_argument('--kinds', default='0,1,2', help='table kinds to train on: 0 root tables, 1 tie-fork tables, 2 gap-fork tables')
+    p.add_argument('--save-epochs', action='store_true', help="also write each epoch's weights as policy_epoch<n>.npz")
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     kind = KINDS[a.kind]
@@ -218,6 +219,8 @@ def main():
                    train_gap=round(total[1] / count, 4), train_owner=round(total[2] / count, 4), val=v['all'])
         history.append(row)
         print(json.dumps(row), flush=True)
+        if a.save_epochs:                   # every epoch's weights, so an epoch can be chosen by another measure
+            np.savez(a.out / f'policy_epoch{epoch + 1}.npz', **{k: np.asarray(x) for k, x in params.items()}, kind=np.array(kind), **bank)
         if best is None or v['all']['nll'] < best[0]:
             best = (v['all']['nll'], epoch + 1, {k: np.asarray(x) for k, x in params.items()})
         elif a.patience and epoch + 1 - best[1] >= a.patience:
