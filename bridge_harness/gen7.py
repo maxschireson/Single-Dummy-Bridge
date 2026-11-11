@@ -18,23 +18,34 @@ trained to predict Gen6's own card from one seat's view) is read in three places
                     search time); those cards carry no search estimates and are not training
                     examples.
 
-With play_weight 0, tie_break 'gen5' and search_from_trick 1 the player is Gen6, card for card
-and draw for draw (tested).
+  4. Tree search.   From the tricks named in `tree`, the cards the search rates within
+                    `root_margin` of its best are valued again by a few tricks of play from
+                    each seat's own view (gen7_tree.py), on a few of the same layouts. A card's
+                    value becomes the search's estimate plus `trust` times what the tree changed
+                    on those layouts (tree value minus plain double dummy on them), and the best
+                    of those cards is played. Cards the solves cannot tell apart (same suit, same
+                    result in every layout) are one candidate. Every number is a setting; with no
+                    `tree` entry the tree is never consulted.
+
+With play_weight 0, tie_break 'gen5', search_from_trick 1 and no tree the player is Gen6, card for
+card and draw for draw (tested). So it is with a tree whose `trust` is 0 or whose horizon is 0.
 
 A hypothetical seat's view is built from the decider's Observation and the layout only
 (`past_view`); the test suite checks it against the Observation the game itself would have
 given that seat.
 """
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 import random
+import time
 
 import numpy as np
 
 from .core import Observation, card, symbol, winner
-from .gen6 import POLICY_SAMPLE_RANGE, Gen6Player, _effective, systematic
+from .gen6 import POLICY_SAMPLE_RANGE, Gen6Player, View, _effective, systematic
 from .gen6 import player as gen6_player
 from .gen7_net import INPUTS, PolicyNet
+from .gen7_tree import OverBudget, Tree, TreeConfig
 from .players import Decision
 
 ENGINE = 'gen7'
@@ -56,6 +67,78 @@ class Gen7Config:
         if self.tie_break not in ('net', 'gen5') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
                 or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000:
             raise ValueError('Invalid Gen7 settings')
+
+
+@dataclass(frozen=True)
+class TreeUse:
+    """One stage of spec['gen7']['tree']: at which tricks the tree search is consulted and how its answer is used.
+    Every other key of a stage is a setting of the search itself (gen7_tree.TreeConfig: tricks, breadth, mass,
+    layouts, reply, own, ...)."""
+    from_trick: int = 3         # first trick at which this stage applies; the tree needs dummy, so never the opening lead
+    to_trick: int = 13          # last trick at which it applies
+    root_margin: float = .125   # candidates: cards the Gen6 search rates within this many tricks of its best
+    root_cards: int = 3         # at most this many candidates, best-rated first (level ones: the net's likeliest first)
+    trust: float = 1.           # value = the search's estimate + trust x (tree value - double-dummy value on the tree's layouts)
+    max_solves: int = 0         # a decision whose tree needs more layout solves than this keeps the search's card; 0 = no limit
+    search: TreeConfig = field(default_factory=TreeConfig)
+
+    def __post_init__(self):
+        for name in ('from_trick', 'to_trick', 'root_cards', 'max_solves'):
+            if isinstance(getattr(self, name), bool) or not isinstance(getattr(self, name), int):
+                raise ValueError(f'Gen7 tree {name} must be an integer')
+        if not (1 <= self.from_trick <= self.to_trick <= 13 and 0 <= self.root_margin <= 13 and 2 <= self.root_cards <= 13
+                and 0 <= self.trust <= 4 and self.max_solves >= 0):
+            raise ValueError('Invalid Gen7 tree settings')
+
+
+USE_KEYS = tuple(f.name for f in fields(TreeUse) if f.name != 'search')
+
+
+def tree_stages(block):
+    """spec['gen7']['tree'] -> (TreeUse, ...). One stage (a dict) or a list of them; none when absent or empty.
+    No trick may belong to two stages."""
+    if not block:
+        return ()
+    stages = []
+    for b in [block] if isinstance(block, dict) else list(block):
+        if not isinstance(b, dict):
+            raise ValueError('A Gen7 tree stage is a mapping of settings')
+        try:
+            stages.append(TreeUse(**{k: v for k, v in b.items() if k in USE_KEYS},
+                                  search=TreeConfig(**{k: v for k, v in b.items() if k not in USE_KEYS})))
+        except TypeError as e:
+            raise ValueError(f'Unknown Gen7 tree setting: {e}') from None
+    tricks = [t for s in stages for t in range(s.from_trick, s.to_trick + 1)]
+    if len(tricks) != len(set(tricks)):
+        raise ValueError('Gen7 tree stages overlap')
+    return tuple(stages)
+
+
+def gen7_settings(block):
+    """spec['gen7'] -> (Gen7Config, tree stages)."""
+    block = dict(block or {})
+    tree = block.pop('tree', None)
+    return Gen7Config(**block), tree_stages(tree)
+
+
+def resolved(block):
+    """spec['gen7'] with every setting written out, defaults included: what a manifest should pin."""
+    config, stages = gen7_settings(block)
+    out = asdict(config)
+    if stages:
+        out['tree'] = [dict({k: getattr(s, k) for k in USE_KEYS}, **asdict(s.search)) for s in stages]
+    return out
+
+
+def utilities(o, values):
+    """Per legal card, the deciding side's final tricks (negated for the defence), from one layout's solve."""
+    declaring = o.actor % 2 == o.contract.declarer % 2
+    remaining = 13 - len(o.history) // 4
+    out = {}
+    for c, t in values.items():
+        total = o.declarer_tricks + (t if declaring else remaining - t)
+        out[c] = total if declaring else -total
+    return out
 
 
 def hidden_plays(o, lead=True):
@@ -101,10 +184,12 @@ class Gen7Player(Gen6Player):
 
     def __init__(self, spec, root, reference=None):
         super().__init__(spec, root, reference)
-        self.g7 = Gen7Config(**spec.get('gen7', {}))
+        self.g7, self.stages = gen7_settings(spec.get('gen7'))
         self.net = PolicyNet(Path(root) / spec['gen7_policy'], self.scorer)
         self.play_cache = (None, {})
         self.net_rows = 0
+        self.solved_layouts = None      # the layouts of the decision in hand, for the tree
+        self.repliers = {}
 
     # ---- how likely was the play so far, layout by layout --------------------------------
     def held_then(self, o, view, assign, i, chooser):
@@ -173,6 +258,11 @@ class Gen7Player(Gen6Player):
         return floored(logp, options, self.g7.play_floor).sum(axis=0)
 
     def layouts(self, o, view, source, rng):
+        worlds, weights, info = self.weighted_layouts(o, view, source, rng)
+        self.solved_layouts = worlds
+        return worlds, weights, info
+
+    def weighted_layouts(self, o, view, source, rng):
         g = self.g7
         if source != 'list' or g.play_weight <= 0:
             return super().layouts(o, view, source, rng)
@@ -194,6 +284,103 @@ class Gen7Player(Gen6Player):
         else:
             index, weights = np.arange(len(assign)), w / w.sum()
         return [view.world(assign[i]) for i in index], weights, info
+
+    # ---- the tree ------------------------------------------------------------------------
+    def stage(self, o):
+        """Index of the tree stage for this decision, or None: dummy must be down and the trick inside a stage."""
+        if not o.history or o.known_hands[o.contract.dummy] is None:
+            return None
+        trick = len(o.history) // 4 + 1
+        for i, s in enumerate(self.stages):
+            if s.from_trick <= trick <= s.to_trick:
+                return i
+        return None
+
+    def searching_reply(self, layouts=8, pool=64):
+        """reply='search' / own='search': what a small PIMC from the seat's own view plays. `pool` card-fit layouts
+        weighted by the hand-fit scorer, `layouts` of them solved; its equal-best cards share the probability."""
+        def reply(o):
+            view = View(o)
+            rng = np.random.default_rng([len(o.history), o.controller, *o.known_hands[o.controller][:3]])
+            assign = view.uniform(pool, rng)
+            logw = self.layout_log_weights(o, view, assign)
+            index, weights = systematic(np.exp(logw - logw.max()), layouts, rng)
+            solved = self.dds.solve_batch([view.world(assign[i]) for i in index], o.contract.trump, o.leader, o.trick,
+                                          fixed_seats=[s for s, h in enumerate(o.known_hands) if h is not None])
+            means = {x: 0. for x in o.legal}
+            for (values, _), w in zip(solved, weights):
+                for x, u in utilities(o, values).items():
+                    means[x] += float(w) * u
+            top = max(means.values())
+            best = [x for x, v in means.items() if top - v <= 1e-9]
+            return {x: 1. / len(best) for x in best}
+        return reply
+
+    def replier(self, search):
+        if 'search' not in (search.reply, search.own):
+            return None
+        key = (search.reply_layouts, search.reply_pool)
+        if key not in self.repliers:
+            self.repliers[key] = self.searching_reply(*key)
+        return self.repliers[key]
+
+    def search_decision(self, o, rng, solved, weights, before, after, info):
+        result = super().search_decision(o, rng, solved, weights, before, after, info)
+        index = self.stage(o)
+        return result if index is None else self.tree_decision(o, rng, result, solved, weights, index)
+
+    def tree_decision(self, o, rng, result, solved, weights, index):
+        """The Gen6 decision with its near-best cards valued again by the tree. Returns the same kind of Decision:
+        the cards left eligible are the tree's best, and break_ties chooses among them as it does among Gen6's."""
+        stage, d, legal = self.stages[index], result.details, list(o.legal)
+        note = dict(stage=index, consulted=False)
+        w = np.asarray(weights, np.float64)
+        w = w / w.sum()
+        u = np.array([[row[x] for x in legal] for row in (utilities(o, values) for values, _ in solved)])      # [layout, card]
+        groups = {}                 # cards the solves cannot tell apart: same suit, same result in every layout
+        for j, x in enumerate(legal):
+            groups.setdefault((x // 13, u[:, j].tobytes()), []).append(j)
+        groups = list(groups.values())
+        value = np.array([float(w @ u[:, g[0]]) for g in groups])
+        best = float(value.max())
+        near = [i for i in range(len(groups)) if best - value[i] <= stage.root_margin + 1e-9]
+        if len(near) < 2:
+            return Decision(result.card, dict(d, gen7_tree=dict(note, candidates=len(near))))
+        logp = self.net.log_policy([o])[0].astype(np.float64)
+        mass = {i: float(np.exp(logp[[legal[j] for j in groups[i]]]).sum()) for i in near}
+        near = sorted(near, key=lambda i: (round(best - value[i], 9), -mass[i], legal[groups[i][0]]))[:stage.root_cards]
+        searched = [legal[max(groups[i], key=lambda j: (logp[legal[j]], -legal[j]))] for i in near]     # each candidate's likeliest card
+        worlds = self.solved_layouts
+        if worlds is None or len(worlds) != len(solved):
+            raise RuntimeError('The tree was handed solves without their layouts')
+        fork = random.Random()      # the tree's draws come from a copy: the table's own random stream is as Gen6 left it
+        fork.setstate(rng.getstate())
+        k = stage.search.layouts
+        pick, share = systematic(w, k, np.random.default_rng(fork.getrandbits(64))) if len(worlds) > k else (np.arange(len(worlds)), w)
+        tree = Tree(self.net, self.dds, stage.search, replier=self.replier(stage.search), max_solves=stage.max_solves)
+        started = time.perf_counter()
+        try:
+            got = tree.values(o, [worlds[i] for i in pick], share, cards=searched)
+        except OverBudget:
+            return Decision(result.card, dict(d, gen7_tree=dict(note, candidates=len(near), over_budget=True, solves=tree.solves,
+                                                                seconds=time.perf_counter() - started)))
+        seconds = time.perf_counter() - started
+        column = {x: j for j, x in enumerate(legal)}
+        same = {x: float(share @ u[pick, column[x]]) for x in searched}        # plain double dummy on the tree's own layouts
+        adjusted = {i: float(value[i]) + stage.trust * (got[x] - same[x]) for i, x in zip(near, searched)}
+        top = max(adjusted.values())
+        winners = [i for i in near if top - adjusted[i] <= 1e-9]
+        eligible = sorted(legal[j] for i in winners for j in groups[i])
+        choice = result.card if result.card in eligible else fork.choice(eligible)
+        note.update(consulted=True, layouts=len(pick), seconds=seconds, lines=tree.lines, nodes=tree.nodes, net_rows=tree.net_rows,
+                    solves=tree.solves, replies=tree.replies,
+                    gen6_cards=sorted(k for k, q in d['behavior_probabilities'].items() if q > 0),
+                    candidates=[dict(cards=[symbol(legal[j]) for j in groups[i]], searched=symbol(x), gap=best - float(value[i]),
+                                     same_layouts=same[x], tree=float(got[x]), adjusted=adjusted[i], kept=i in winners)
+                                for i, x in zip(near, searched)])
+        return Decision(choice, dict(d, behavior_probabilities={symbol(x): (1 / len(eligible) if x in eligible else 0.) for x in legal},
+                                     selected_probability=1 / len(eligible),
+                                     selected_pimc_gap=d['estimates'][symbol(choice)]['gap_to_best'], gen7_tree=note))
 
     # ---- one decision --------------------------------------------------------------------
     def choose(self, o, rng):

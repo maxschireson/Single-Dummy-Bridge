@@ -53,12 +53,21 @@ class TreeConfig:
     own_breadth: int = 0        # most cards considered at the decider's own later turn; 0 = `breadth`
     own: str = 'best'           # the decider's own later card: 'best' the best average over the layouts that still look alike
                                 # | 'net' drawn from the net like any other seat | 'search' what the `replier` plays from the decider's view
+    reply_layouts: int = 8      # reply/own 'search': layouts the stand-in searcher solves at each such choice
+    reply_pool: int = 64        # ... picked from this many card-fit layouts weighted by the hand-fit scorer
 
     def __post_init__(self):
         if not (0 <= self.tricks <= 13 and 1 <= self.breadth <= 13 and 0 < self.mass <= 1 and 1 <= self.layouts <= 4096
                 and 0 < self.reply_power <= 64 and self.reply_gap >= 0 and self.reply in ('net', 'dd', 'search') and 0 <= self.own_breadth <= 13
-                and self.own in ('best', 'net', 'search')):
+                and self.own in ('best', 'net', 'search') and 1 <= self.reply_layouts <= self.reply_pool <= 65536):
             raise ValueError('Invalid tree settings')
+        for name in ('tricks', 'breadth', 'layouts', 'own_breadth', 'reply_layouts', 'reply_pool'):
+            if isinstance(getattr(self, name), bool) or not isinstance(getattr(self, name), int):
+                raise ValueError(f'Tree {name} must be an integer')
+
+
+class OverBudget(RuntimeError):
+    """The search needed more double-dummy solves than its caller allowed."""
 
 
 def seat_view(o, history, dummy_hand, chooser, seat, hand, declarer_tricks=None):
@@ -81,9 +90,12 @@ def seat_view(o, history, dummy_hand, chooser, seat, hand, declarer_tricks=None)
 class Tree:
     """One decision's search. `net` is a gen7_net.PolicyNet, `dds` a bridge_harness.dds.DDS."""
 
-    def __init__(self, net, dds, config, replier=None):
-        """`replier(observation) -> {card: probability}` is what reply='search' asks for another seat's card."""
-        self.net, self.dds, self.config, self.replier = net, dds, config, replier
+    def __init__(self, net, dds, config, replier=None, max_solves=0):
+        """`replier(observation) -> {card: probability}` is what reply='search' asks for another seat's card.
+        With `max_solves` above zero, `values` raises OverBudget once the search has solved more layouts than that."""
+        if replier is None and 'search' in (config.reply, config.own):
+            raise ValueError("reply='search' and own='search' need a replier")
+        self.net, self.dds, self.config, self.replier, self.max_solves = net, dds, config, replier, max_solves
         self.replies = self.own_nodes = self.own_live = 0
         self.lines = self.net_rows = self.solves = self.nodes = 0
 
@@ -146,6 +158,7 @@ class Tree:
                 if cfg.own == 'search':             # the decider's later self is a searching player too: its card, not the layout's best
                     share = self.replier(view)
                     self.replies += 1
+                    self.spend(cfg.reply_layouts)
                     kept = sorted(share, key=lambda x: (-share[x], x))[:cfg.own_breadth or cfg.breadth]
                     total = sum(share[x] for x in kept)
                     return sum(share[x] / total * self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x in kept)
@@ -161,7 +174,7 @@ class Tree:
         if cfg.reply == 'dd':               # the seat sees every hand, as in PIMC; only the decider's own later cards are made honest
             worlds = [tuple(tuple(int(x) for x in np.flatnonzero(self.member[i, s] & ~gone)) for s in range(4)) for i in live]
             solved = self.dds.solve_batch(worlds, c.trump, trick[0][0] if trick else seat, tuple(trick), fixed_seats=self.visible)
-            self.solves += len(live)
+            self.spend(len(live))
             children = {}
             for layout, (values, _) in zip(live, solved):
                 best = max(values.values())
@@ -179,6 +192,7 @@ class Tree:
                     view = seat_view(self.o, history, dummy_hand, chooser, seat, np.flatnonzero(self.member[layout, chooser] & ~gone), declarer_tricks)
                     share = self.replier(view)
                     self.replies += 1
+                    self.spend(cfg.reply_layouts)
                     kept = sorted(share, key=lambda x: (-share[x], x))[:cfg.breadth]
                     total = sum(share[x] for x in kept)
                     share = {x: share[x] / total for x in kept}
@@ -212,6 +226,12 @@ class Tree:
             batch['legal'] = legal
         return batch
 
+    def spend(self, solves):
+        """Count layouts solved (a searched reply counts the layouts its stand-in searcher solves)."""
+        self.solves += solves
+        if self.max_solves and self.solves > self.max_solves:
+            raise OverBudget(f'{self.solves} solves')
+
     def keep(self, p, breadth=None, mass=None):
         """(indices of the cards kept, their renormalised probabilities): most probable first, at most
         `breadth`, stopping once they add to `mass`."""
@@ -229,7 +249,7 @@ class Tree:
         leader = trick[0][0] if trick else winner(history[-4:], c.trump)
         mover = (leader + len(trick)) % 4
         solved = self.dds.solve_batch(worlds, c.trump, leader, tuple(trick), fixed_seats=self.visible)
-        self.solves += len(live)
+        self.spend(len(live))
         remaining = 13 - len(history) // 4
         total = 0.
         for i, (values, _) in zip(live, solved):

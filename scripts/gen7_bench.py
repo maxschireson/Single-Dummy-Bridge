@@ -83,22 +83,8 @@ def variants(text):
 
 
 def searching_reply(p, layouts=8, pool=64):
-    """What a small PIMC from the seat's own view plays: uniform card-fit layouts weighted by the hand-fit scorer,
-    `layouts` of them solved; its equal-best cards share the probability."""
-    def reply(o):
-        view = View(o)
-        rng = np.random.default_rng([len(o.history), o.controller, *o.known_hands[o.controller][:3]])
-        assign = view.uniform(pool, rng)
-        logw = p.layout_log_weights(o, view, assign)
-        index, weights = systematic(np.exp(logw - logw.max()), layouts, rng)
-        means = {x: 0. for x in o.legal}
-        for (values, _), w in zip(check.solve(p, o, [view.world(assign[i]) for i in index]), weights):
-            for x, u in check.utilities(o, values).items():
-                means[x] += float(w) * u
-        top = max(means.values())
-        best = [x for x, v in means.items() if top - v <= 1e-9]
-        return {x: 1. / len(best) for x in best}
-    return reply
+    """The stand-in searcher for reply='search' and own='search' (Gen7Player.searching_reply)."""
+    return p.searching_reply(layouts, pool)
 
 
 def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_trick=13, policy2=None, splits=None):
