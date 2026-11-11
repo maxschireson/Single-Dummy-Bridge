@@ -27,6 +27,12 @@ tricks are played out first:
 The tree is walked once for all layouts together, carrying for each layout the probability of the
 play so far in that layout. That is what makes the decider's later choice a single choice.
 
+Layouts stay together only while the same cards are played in them, and sampled layouts give the
+hidden hands different spot cards, so the first low card a hidden hand plays tells them apart.
+`plain=1` removes that: the hidden hands' low cards (2-9) are dealt by a fixed rule, the same in
+every layout as far as the suit lengths allow, and at every node cards that do the same job count
+as one card (touching cards; low cards that do not take the trick; low cards that take it).
+
 With tricks=0 the value of a card is exactly PIMC's (tested). Not supported: the opening lead
 (dummy is not yet a public hand).
 """
@@ -38,6 +44,29 @@ from .core import Observation, winner
 from .gen7_net import INPUTS
 
 SUIT = np.arange(52)[None, :] // 13 == np.arange(4)[:, None]
+LOW = 8                     # rank index below which a card is a low card: 2 to 9
+
+
+def plain_spots(worlds, weights, hidden):
+    """(layouts, weights) with the hidden hands' low cards dealt by a fixed rule: in each suit the unseen low cards go
+    to the hidden hands in turn from the bottom, as far as each hand's count allows. Honours and every suit length
+    stay as they were. Layouts that become the same are merged."""
+    merged = {}
+    for w, weight in zip(worlds, weights):
+        hands = [[c for c in h if not (s in hidden and c % 13 < LOW)] for s, h in enumerate(w)]
+        for suit in range(4):
+            pool = sorted(c for s in hidden for c in w[s] if c // 13 == suit and c % 13 < LOW)
+            need = [sum(1 for c in w[s] if c // 13 == suit and c % 13 < LOW) for s in hidden]
+            turn = 0
+            for c in pool:
+                while not need[turn % len(hidden)]:
+                    turn += 1
+                hands[hidden[turn % len(hidden)]].append(c)
+                need[turn % len(hidden)] -= 1
+                turn += 1
+        key = tuple(tuple(sorted(h)) for h in hands)
+        merged[key] = merged.get(key, 0.) + float(weight)
+    return list(merged), list(merged.values())
 
 
 @dataclass(frozen=True)
@@ -53,11 +82,12 @@ class TreeConfig:
     own_breadth: int = 0        # most cards considered at the decider's own later turn; 0 = `breadth`
     own: str = 'best'           # the decider's own later card: 'best' the best average over the layouts that still look alike
                                 # | 'net' drawn from the net like any other seat | 'search' what the `replier` plays from the decider's view
+    plain: int = 0              # 1: hidden low cards dealt by a fixed rule, and cards that do the same job count as one (see above)
 
     def __post_init__(self):
         if not (0 <= self.tricks <= 13 and 1 <= self.breadth <= 13 and 0 < self.mass <= 1 and 1 <= self.layouts <= 4096
                 and 0 < self.reply_power <= 64 and self.reply_gap >= 0 and self.reply in ('net', 'dd', 'search') and 0 <= self.own_breadth <= 13
-                and self.own in ('best', 'net', 'search')):
+                and self.own in ('best', 'net', 'search') and self.plain in (0, 1)):
             raise ValueError('Invalid tree settings')
 
 
@@ -96,6 +126,8 @@ class Tree:
         self.o, self.me = o, o.controller
         self.declaring = o.controller % 2 == c.declarer % 2
         self.visible = [s for s, h in enumerate(o.known_hands) if h is not None]
+        if self.config.plain:
+            worlds, weights = plain_spots(worlds, weights, [s for s, h in enumerate(o.known_hands) if h is None])
         self.member = np.zeros((len(worlds), 4, 52), bool)              # [layout, seat, card] at the root
         for i, w in enumerate(worlds):
             for s in range(4):
@@ -143,15 +175,17 @@ class Tree:
                 self.own_nodes += 1                 # how many layouts still look the same to the decider here
                 self.own_live += len(live)
                 view = seat_view(self.o, history, dummy_hand, chooser, seat, np.flatnonzero(self.member[0, chooser] & ~gone), declarer_tricks)
+                mine = self.member[0, seat] & ~gone
                 if cfg.own == 'search':             # the decider's later self is a searching player too: its card, not the layout's best
                     share = self.replier(view)
                     self.replies += 1
-                    kept = sorted(share, key=lambda x: (-share[x], x))[:cfg.own_breadth or cfg.breadth]
-                    total = sum(share[x] for x in kept)
-                    return sum(share[x] / total * self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x in kept)
+                    cards, mass = self.same_job(np.array(list(share)), np.array(list(share.values())), mine, trick, seat, gone)
+                    kept, part = self.keep(mass, cfg.own_breadth or cfg.breadth, 1.)
+                    return sum(q * self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x, q in zip(cards[kept], part))
                 logp = self.net.log_policy([view])[0][options]
                 self.net_rows += 1
-                kept, share = self.keep(np.exp(logp.astype(np.float64)), cfg.own_breadth or cfg.breadth, 1. if cfg.own_breadth else cfg.mass)
+                options, mass = self.same_job(options, np.exp(logp.astype(np.float64)), mine, trick, seat, gone)
+                kept, share = self.keep(mass, cfg.own_breadth or cfg.breadth, 1. if cfg.own_breadth else cfg.mass)
                 if cfg.own == 'net':
                     return sum(q * self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x, q in zip(options[kept], share))
                 options = options[kept]
@@ -166,6 +200,8 @@ class Tree:
             for layout, (values, _) in zip(live, solved):
                 best = max(values.values())
                 x = min(k for k, v in values.items() if v == best)
+                if cfg.plain:
+                    x = self.plain(int(x), self.member[layout, seat] & ~gone, trick, seat, gone)
                 children.setdefault(int(x), np.zeros(len(reach)))[layout] = reach[layout]
             return sum(self.after(history, declarer_tricks, gone, tricks_done, seat, x, r) for x, r in children.items())
         if cfg.reply == 'search':           # the seat decides as a searching player would, from its own view alone
@@ -179,9 +215,9 @@ class Tree:
                     view = seat_view(self.o, history, dummy_hand, chooser, seat, np.flatnonzero(self.member[layout, chooser] & ~gone), declarer_tricks)
                     share = self.replier(view)
                     self.replies += 1
-                    kept = sorted(share, key=lambda x: (-share[x], x))[:cfg.breadth]
-                    total = sum(share[x] for x in kept)
-                    share = {x: share[x] / total for x in kept}
+                    cards, mass = self.same_job(np.array(list(share)), np.array(list(share.values())), self.member[layout, seat] & ~gone, trick, seat, gone)
+                    kept, part = self.keep(mass, cfg.breadth, 1.)
+                    share = {int(x): float(q) for x, q in zip(cards[kept], part)}
                 for x, q in share.items():
                     children.setdefault(int(x), np.zeros(len(reach)))[layout] = reach[layout] * q
             return sum(self.after(history, declarer_tricks, gone, tricks_done, seat, x, r) for x, r in children.items())
@@ -195,7 +231,8 @@ class Tree:
         children = {}
         for row, layout in enumerate(live):
             options = np.flatnonzero(legal[row])
-            kept, share = self.keep(p[row, options])
+            options, mass = self.same_job(options, p[row, options], held[row], trick, seat, gone)
+            kept, share = self.keep(mass)
             for x, q in zip(options[kept], share):
                 children.setdefault(int(x), np.zeros(len(reach)))[layout] = reach[layout] * q
         return sum(self.after(history, declarer_tricks, gone, tricks_done, seat, x, r) for x, r in children.items())
@@ -211,6 +248,40 @@ class Tree:
         if seat == chooser:
             batch['legal'] = legal
         return batch
+
+    def plain(self, x, held, trick, seat, gone):
+        """The card standing for x among the seat's cards that do the same job now. Touching cards (no card of this
+        trick and no unplayed card of another hand between them) are one choice, its lowest. A low card that does not
+        take the trick so far stands for the hand's lowest card of the suit; one that takes it, for the cheapest low
+        card that also does."""
+        suit = SUIT[x // 13]
+        mine = np.flatnonzero(held & suit)
+        out = ~held & ~gone & suit                                       # unplayed cards of the suit in other hands,
+        for _, c in trick:                                               # and the cards of this trick, which still count in it
+            out[c] = suit[c]
+        i = int(np.searchsorted(mine, x))
+        while i > 0 and not out[mine[i - 1] + 1:mine[i]].any():
+            i -= 1
+        x = int(mine[i])
+        if x % 13 >= LOW:
+            return x
+        lows = mine[mine % 13 < LOW]
+        if trick:
+            trump = self.o.contract.trump
+            takes = lambda c: winner(tuple(trick) + ((seat, int(c)),), trump) == seat
+            if takes(x):
+                return int(next(c for c in lows if takes(c)))
+        return int(lows[0])
+
+    def same_job(self, cards, mass, held, trick, seat, gone):
+        """(cards, mass) with cards that do the same job merged into the one that stands for them; unchanged without `plain`."""
+        if not self.config.plain:
+            return np.asarray(cards), np.asarray(mass, float)
+        total = {}
+        for x, m in zip(cards, mass):
+            y = self.plain(int(x), held, trick, seat, gone)
+            total[y] = total.get(y, 0.) + float(m)
+        return np.array(list(total)), np.array(list(total.values()))
 
     def keep(self, p, breadth=None, mass=None):
         """(indices of the cards kept, their renormalised probabilities): most probable first, at most

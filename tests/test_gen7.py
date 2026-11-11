@@ -16,7 +16,7 @@ from bridge_harness.gen6 import Gen6Player, View
 from bridge_harness.gen6_nets import FitScorer, HON_HCP
 from bridge_harness.gen7 import Gen7Config, Gen7Player, hidden_plays, past_view, player
 from bridge_harness.gen7_net import INPUTS, N_SHOWN, SEAT_SHOWN, Shown, encode, make_bank, stack
-from bridge_harness.gen7_tree import Tree, TreeConfig, seat_view
+from bridge_harness.gen7_tree import Tree, TreeConfig, plain_spots, seat_view
 from bridge_harness.players import GreedyPlayer
 from bridge_harness.runner import play_table, replay
 from test_gen6 import FakeBelief, FakeState, lead_weights, position, scorer_weights
@@ -575,6 +575,103 @@ class TreeTests(Fixture):
             used += 1
         self.assertGreater(used, 4)
         self.assertGreater(asked_total, 50)
+
+    def test_plain_spots_keeps_honours_and_lengths_and_deals_low_cards_in_turn(self):
+        used = 0
+        for seed in range(30):
+            got = self.spot(seed, 26 + seed % 12, most=200)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            hidden = [s for s, h in enumerate(o.known_hands) if h is None]
+            new, share = plain_spots(worlds, weights, hidden)
+            self.assertAlmostEqual(sum(share), float(np.sum(weights)), places=9)
+            self.assertLessEqual(len(new), len(worlds))
+            self.assertEqual(len(set(new)), len(new))
+            shape = lambda w: tuple((tuple(sum(c // 13 == s for c in w[seat]) for s in range(4)), tuple(sorted(c for c in w[seat] if c % 13 >= 8)))
+                                    for seat in hidden)
+            self.assertEqual({shape(w) for w in new}, {shape(w) for w in worlds})        # same honours and lengths, layout by layout
+            for w in new:
+                self.assertEqual(sorted(c for h in w for c in h), sorted(c for h in worlds[0] for c in h))
+                for seat in range(4):
+                    if seat not in hidden:
+                        self.assertEqual(w[seat], worlds[0][seat])
+                for suit in range(4):
+                    lows = [[c for c in w[seat] if c // 13 == suit and c % 13 < 8] for seat in hidden]
+                    pool = sorted(lows[0] + lows[1])
+                    if lows[0]:
+                        self.assertEqual(lows[0][0], pool[0])                            # the first hidden hand holds the lowest
+                    if lows[0] and lows[1]:
+                        self.assertEqual(lows[1][0], pool[1])                            # and the second the next
+            tree = Tree(p.net, p.dds, TreeConfig(tricks=0, plain=1))
+            again = Tree(p.net, p.dds, TreeConfig(tricks=0))
+            for x, value in tree.values(o, worlds, weights).items():                     # no tricks: plain search on the re-dealt layouts
+                self.assertAlmostEqual(value, again.values(o, new, share)[x], places=9)
+            used += 1
+            if used >= 6:
+                break
+        self.assertGreaterEqual(used, 6)
+
+    def test_cards_that_do_the_same_job_are_one_card(self):
+        p = self.make(list_solve=0)
+        _, game, _ = played(3, 30)
+        tree = Tree(p.net, p.dds, TreeConfig(plain=1))
+        tree.o = game.observation()
+        trump = tree.o.contract.trump
+        suit = next(s for s in range(4) if s != trump)
+        c = lambda rank: 13 * suit + '23456789TJQKA'.index(rank)
+        held, gone = np.zeros(52, bool), np.zeros(52, bool)
+        held[[c('2'), c('5'), c('6'), c('9'), c('Q'), c('K')]] = True
+        self.assertEqual(tree.plain(c('K'), held, (), 0, gone), c('Q'))                  # touching honours: the lower
+        self.assertEqual(tree.plain(c('6'), held, (), 0, gone), c('2'))                  # a low card led: the lowest
+        gone[[c('7'), c('8')]] = True
+        lead = ((3, c('7')),)
+        self.assertEqual(tree.plain(c('5'), held, lead, 0, gone), c('2'))                # follows without taking the trick: the lowest
+        self.assertEqual(tree.plain(c('9'), held, lead, 0, gone), c('9'))                # takes it: the cheapest low card that does
+        gone[c('8')] = False
+        gone[c('4')] = True
+        self.assertEqual(tree.plain(c('6'), held, ((3, c('4')),), 0, gone), c('5'))      # 5 and 6 both take the 4: the 5
+        held[c('A')] = True
+        self.assertEqual(tree.plain(c('A'), held, (), 0, gone), c('Q'))                  # A K Q in one hand
+        held[c('K')] = False
+        self.assertEqual(tree.plain(c('A'), held, (), 0, gone), c('A'))                  # the king is out: the ace is its own card
+        gone[c('K')] = True
+        self.assertEqual(tree.plain(c('A'), held, (), 0, gone), c('Q'))                  # the king has gone: touching again
+        cards, mass = tree.same_job(np.array([c('2'), c('5'), c('Q'), c('A')]), np.array([.1, .2, .3, .4]), held, (), 0, gone)
+        self.assertEqual(dict(zip(cards.tolist(), np.round(mass, 9).tolist())), {c('2'): .3, c('Q'): .7})
+        off = Tree(p.net, p.dds, TreeConfig())
+        cards, mass = off.same_job(np.array([c('2'), c('5')]), np.array([.4, .6]), held, (), 0, gone)
+        self.assertEqual(cards.tolist(), [c('2'), c('5')])
+
+    def test_plain_trees_carry_the_probability_whole_and_play_legal_lines(self):
+        class Count(Tree):
+            def leaf(self, history, trick, declarer_tricks, gone, reach):
+                self.lines += 1
+                return float(reach.sum())
+        used = fewer = 0
+        for seed in range(40):
+            got = self.spot(seed, 26 + seed % 12, most=200)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            index = np.argsort(-np.asarray(weights))[:6]
+            sub, share = [worlds[i] for i in index], [weights[i] for i in index]
+            for reply in ('net', 'dd'):
+                counted = Count(p.net, p.dds, TreeConfig(tricks=2, breadth=13, mass=1., reply=reply, plain=1))
+                for value in counted.values(o, sub, share).values():
+                    self.assertAlmostEqual(value, 1., places=9)
+            exact = Tree(p.net, p.dds, TreeConfig(tricks=2, layouts=6))
+            plain = Tree(p.net, p.dds, TreeConfig(tricks=2, layouts=6, plain=1))
+            exact.values(o, sub, share)
+            values = plain.values(o, sub, share)                                         # DDS rejects any illegal position
+            self.assertEqual(set(values), set(o.legal))
+            self.assertTrue(all(-13 <= v <= 13 for v in values.values()))
+            fewer += plain.lines < exact.lines
+            used += 1
+            if used >= 5:
+                break
+        self.assertGreaterEqual(used, 5)
+        self.assertGreaterEqual(fewer, 3)
 
     def test_two_trick_trees_play_legal_lines_to_a_sane_value(self):
         used = 0

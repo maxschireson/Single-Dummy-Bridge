@@ -390,6 +390,67 @@ at tricks 3-6, and Gen 6's search from trick 7. The split by trick was chosen af
 pairs, so it needs pairs not used here; the 3,396 boards that arrived after them carry 9,615 at
 tricks 3-6 (5,848 of those from self-play).
 
+## The tree on boards no net had seen (11:40 UTC)
+
+1,381 boards reached the feeds between 10:05 and 10:58 UTC, after v2's training set was fixed.
+Their gap forks at tricks 3-6, read in file order until the time cap: 1,712 pairs from 658
+self-play deals. Two-trick tree, two cards a seat, 8 layouts, v1 and v2 as the reply model on the
+same pairs:
+
+| Reply model | Tricks a pair against plain search | Correction share | Tricks a side, B among the net's top three |
+| --- | --- | --- | --- |
+| v1 | -0.020 +- 0.008 | 0.08 +- 0.07 | -0.23 +- 0.22 |
+| v2 | -0.013 +- 0.008 | 0.15 +- 0.08 | -0.09 +- 0.24 |
+
+So the tree at tricks 3-6 does not beat Gen 6 with either net, and the +0.11 a side in the table
+above was the training deals speaking. v2 against v1 pair by pair is +0.007 +- 0.007.
+
+Both trees are too kind to the worse card. Over these pairs plain search puts the cost of B at
+0.47 tricks, it really cost 0.40, and the trees put it at 0.35 (v1) and 0.36 (v2). One pair shows
+the mechanism. 3NT by North; East wins the spade ace and returns the five, dummy (T97) plays the
+nine, West the queen, and North holds K3. Gen 6 wins the king. The tree prefers to duck, because in its
+lookahead West, left with J6, leads the jack into the K3 in most layouts; at the table West cashed
+the club ace and the duck cost a trick. Gen 6 never ducks there, so the net has few examples of
+what a defender does next, and the tree asks it about such positions for every card but the best.
+
+That was measured (`scripts/gen7_reply_check.py`, 2,222 gap forks at tricks
+3-6 on the same unseen boards): the next searched decision after the forked ply, scored by Gen 6's
+own estimates there, in the fork table and in the root table. Decisions with something to lose only.
+
+| | v1 gives up | v1 plays an equal-best card | v2 gives up | v2 plays an equal-best card |
+| --- | --- | --- | --- | --- |
+| Right after a forced card | 0.121 +- 0.008 | 70.7% | 0.093 +- 0.007 | 74.3% |
+| Right after the search's own card | 0.086 +- 0.006 | 72.5% | 0.077 +- 0.006 | 73.7% |
+
+The net is worse right after a forced card, by 40% for v1 and 20% for v2, which had 2.3 times as
+many gap forks to learn from. The larger fact is the second row: at a decision with something to
+lose the net's card is not an equal-best one a quarter of the time, wherever it comes from. A
+two-trick line asks for six or seven such replies.
+
+**Spot cards.** Sampled layouts give the hidden hands different low cards, so the first low card
+a hidden hand plays tells the layouts apart, and "one choice for layouts that look alike" stops
+binding. `plain=1` deals the hidden hands' low cards (2-9) by a fixed rule, the same in every layout
+as far as the suit lengths allow, and counts cards that do the same job as one card at every node
+(touching cards; low cards that do not take the trick; low cards that do). Re-dealing the low
+cards alone leaves the gap between A and B unchanged in 91% of pairs. 2,585 pairs from the same
+unseen boards, each tree against plain search on the same re-dealt layouts:
+
+| Tree, `plain=1` | Tricks a pair | Correction share | Seconds a pair | Layouts alike at the decider's later turn |
+| --- | --- | --- | --- | --- |
+| Net replies, v1 | -0.021 +- 0.007 | 0.14 +- 0.05 | 0.28 | 1.9 of 8 |
+| Net replies, v2 | -0.017 +- 0.006 | 0.13 +- 0.06 | 0.25 | 1.9 of 8 |
+| Double-dummy replies, every legal card at the decider's later turn | -0.007 +- 0.004 | 0.29 +- 0.10 | 0.41 | 2.1 of 8 |
+
+The tree is about three times cheaper (two cards a seat no longer go to two cards that do the same
+job) and no better. The last row needs no net: it is plain search with only the decider's own
+later cards made honest. It does not beat plain search either; with two layouts to an
+information set the constraint adds noise. That agrees with the consistent-strategy study of 8
+November (`research/consistent-strategies-alpha-mu`).
+
+So from trick 3 on no tree here beats Gen 6's search. For the net-reply tree the reply model has to
+be near search quality first; on the learning curve above, a fourfold cut in what a reply gives up
+is about thirteen times the deals.
+
 ## Sampling noise in Gen 6 (10:37 UTC)
 
 `scripts/gen7_noise.py`, 4,097 searched decisions from trick 3 on, 120 held-out self-play deals.
@@ -453,13 +514,13 @@ Not verified:
 
 ## What this says to do next
 
-1. **The tree, where the bench says it may pay.** Not from trick 3 to the end: it loses to Gen 6's
-   own search from trick 7, which is exact and nearly free there. The shape to test is Gen 6's
-   search through trick 2, the tree at tricks 3-6, Gen 6's search from trick 7. Before any arena
-   board: the same bench on held-out deals and unused pairs, with each new net. The gauge for a
-   net as the tree's reply model is the correction share; v1 is at 0.07 to 0.15 where a search
-   from each seat's own view reaches 0.85 late in the hand. Three tricks and three cards a seat
-   are not established either way (351 pairs) and cost 3 to 8 times two tricks two wide.
+1. **No tree in the arena yet.** On boards no net had seen, the tree is behind Gen 6's search at
+   tricks 3-6 with v1 and with v2, with and without merged spot cards, and with no net at all. It
+   loses clearly from trick 7, where Gen 6 is exact and nearly free. Keep scoring each new net on
+   held-out pairs (`--splits 1,2`, or boards that arrived after its training set): the gauges are
+   the correction share (0.08 to 0.15 now; a search from each seat's own view reaches 0.85 late in
+   the hand) and what the net gives up at the decision after a forced card (0.09 for v2). Three
+   tricks and three cards a seat are not established either way (351 pairs).
 2. **More deals.** The curve is steep and still falling. Fast tables are the cheap source for
    tricks 3 on. They need the two ops files taught the `gen7` engine and a bot spec with
    `search_from_trick` 3 or 4, `play_weight` 0 and `tie_break` `gen5` so the searched decisions are

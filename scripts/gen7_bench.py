@@ -184,11 +184,12 @@ def pairs_of(path):
                             TreeConfig(**dict(dict(tricks=n, breadth=STATE['breadth'], mass=STATE['mass'], layouts=k), **settings)), replier=STATE['replier'])
                 started = time.perf_counter()
                 v = tree.values(o, sub, share, cards=[a, b])
-                name = 'pimc_k' if n == 0 else f'tree_{label(n, extra)}'
+                name = f'tree_{label(n, extra)}' if n or extra else 'pimc_k'
                 row[name] = v[a] - v[b]
-                if n:
+                if n or extra:
                     t = label(n, extra)
                     row[f'seconds_{t}'], row[f'lines_{t}'], row[f'rows_{t}'], row[f'solves_{t}'] = time.perf_counter() - started, tree.lines, tree.net_rows, tree.solves
+                    row[f'own_{t}'] = (tree.own_nodes, tree.own_live)      # the decider's later decisions, and the layouts still alike at them
             rows.append(row)
     return rows, tables
 
