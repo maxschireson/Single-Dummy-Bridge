@@ -1,0 +1,1 @@
+{"schema":"gen6-independent-selfplay-plan-v1","authorized_by":"User: start a new Gen 6 fast self-play collection stream","target":25000,"pair_weights":{"6-32~6-32":1},"common_bidder":"6-32","audit":{"probability":0.5,"multiplier":3.0,"max_depth":2,"max_forks":64},"gap_fork":{"per_band":2,"bands":[0.125,0.5],"max_cpu_share":1.5},"workers":3}
