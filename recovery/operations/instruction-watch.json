@@ -82,6 +82,7 @@
     "research/gen6-policy-69k-20261110": "0c954e08f31284e298c375217ca802d461ac5161",
     "research/gen6-policy-width96-full1513-20261110": "03b0f16952ae97dbaefc595e7adcd54a9329da8c",
     "research/gen6-system-aware-policy-20261111": "76b8b722a0a264d982505c02cca51ca59f871992",
+    "research/hand-fit-scorer-v1a-20261111": "8ff85d4ae4e204c3b86150295f3c1475e66b9ea0",
     "research/imp-policy-draft": "d7ee77a8020bb97208cfbd4db5f187174064c078",
     "research/joint-auction-belief-20261110": "b13baddb6c01346d13ac65848c5cfd4865201a82",
     "research/large-belief-play-test": "be09f9f8da1ed53c53f7525da1490888733940c0",
@@ -104,7 +105,7 @@
     "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
     "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
     "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
-    "transfer/gen7-prototype-20261111": "490d957aaf97d09a69380e428cae0ecf3d6888cd",
+    "transfer/gen7-prototype-20261111": "d331727a364dd971725a3203d42069ac448c4a4a",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
     "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356"
@@ -202,14 +203,14 @@
       "pull_request": true
     }
   ],
-  "comments_since": "2026-11-11T20:31:25.481354+00:00",
+  "comments_since": "2026-11-11T21:32:06.558528+00:00",
   "new_issue_comments": 0,
   "new_review_comments": 0,
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "This stream is explicitly 100% Gen6 fast self-play. The shared 37/3 mix predates this direct user instruction; it is not a new instruction for this stream.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "no_applicable_instruction_changes",
-  "collection_action": "Continue the healthy owned all-Gen6-fast self-play stream unchanged. The collector's PID change followed the recorded, drained disposable-cache rotation at 653 deals; no failure or instruction change occurred.",
+  "collection_action": "Continue the healthy owned all-Gen6-fast self-play stream unchanged. Preserve the current scorer and policy; newly published v1a scorer and Gen7 policy v4 remain unadopted research.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -227,39 +228,59 @@
     "already_enabled": true,
     "first_report_root_tables": 2000,
     "report_status": "Not yet due; reassess at the 2000-root-table boundary. Do not invent an absent before-capture rate comparison.",
-    "current_root_tables": 1075
+    "current_root_tables": 1612
   },
   "research_disposition": {
     "gen7_alpha": "Plan closed; no authorized adoption or deployment change.",
-    "gen7_prototype": "Research and benchmark evidence only.",
+    "gen7_prototype": "Research policy v4 at d331727; training and benchmark changes only, no collection instruction or adoption.",
     "pr13": "Draft host-specific supervision work; not a general new engine adoption.",
-    "prs9_4": "Deferred prototypes/follow-up work, not collection launch instructions."
+    "prs9_4": "Deferred prototypes/follow-up work, not collection launch instructions.",
+    "hand_fit_scorer_v1a": "Research release at 8ff85d4; explicitly no arena bot uses it. No collection/model change authorized."
   },
   "notification": "none",
-  "checked_epoch": 1794432726.5585282,
-  "checked_at": "2026-11-11T21:32:06.558528+00:00",
-  "next_check": "2026-11-11T22:25:53+00:00",
+  "checked_epoch": 1794436305.731936,
+  "checked_at": "2026-11-11T22:31:45.731936+00:00",
+  "next_check": "2026-11-11T23:25:53+00:00",
   "stream_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
   "health": {
-    "completed": 1075,
+    "completed": 1612,
     "target": 25000,
     "pair_weights": {
       "6-32~6-32": 1
     },
-    "heartbeat_age_seconds": 3.52,
+    "heartbeat_age_seconds": 6.56,
     "failures": 0,
-    "published": 1069,
-    "published_commit": "8e5ceab817573c65c039656ddc9ccd2003438854",
+    "published": 1602,
+    "published_commit": "7b33301a844bab8f81beb95919f9a9934773811d",
     "source_runtime_and_artifacts": "verified",
     "locks": "writer, supervisor and publisher locks held by verified existing processes; ownership unchanged",
     "last_cache_rotation": {
-      "epoch": 1794429765.3686116,
-      "completed": 653,
-      "previous_bytes": 2156478464
+      "epoch": 1794434347.0798554,
+      "completed": 1307,
+      "previous_bytes": 2154962944
     }
   },
   "previous_check": {
-    "checked_at": "2026-11-11T20:31:25.481354+00:00",
+    "checked_at": "2026-11-11T21:32:06.558528+00:00",
     "result": "no_applicable_instruction_changes"
-  }
+  },
+  "reviewed_source_changes": [
+    {
+      "name": "research/hand-fit-scorer-v1a-20261111",
+      "sha": "8ff85d4ae4e204c3b86150295f3c1475e66b9ea0",
+      "date": "2026-11-11T21:38:51Z",
+      "message": "Hand-fit scorer v1a: v0's recipe retrained on the Gen 6 bidder's auctions",
+      "applicable": false,
+      "reason": "Explicit research release: no arena bot uses it; no engine, config or ops changes."
+    },
+    {
+      "name": "transfer/gen7-prototype-20261111",
+      "sha": "d331727a364dd971725a3203d42069ac448c4a4a",
+      "previous": "490d957aaf97d09a69380e428cae0ecf3d6888cd",
+      "date": "2026-11-11T22:15:01Z",
+      "message": "Gen 7 prototype: net v4 (17,207 training deals); the trainer packs its tables",
+      "applicable": false,
+      "reason": "Explicit Gen7 research prototype, with trainer/bench changes only; no collection directive or adoption authorization."
+    }
+  ]
 }
