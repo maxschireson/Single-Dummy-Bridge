@@ -21,7 +21,7 @@ PAIRS=[]
 def gen6_differences(row):
     """Paired auction-condition decomposition, in candidate-oriented IMPs."""
     play=row['imps'];total=row['own_imps']
-    return dict(play=play,bidding=total-play,total=total)
+    return dict(play=play,bidding=None if play is None or total is None else total-play,total=total)
 
 def difference_views(rows):
     result={}
