@@ -37,7 +37,8 @@ def ben_ready():
         with socket.create_connection(('127.0.0.1',8087),timeout=1):return True
     except OSError:return False
 
-def main(run,pub):
+def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('/workspace/work/round5')):
+    ben_state.mkdir(parents=True,exist_ok=True)
     with (run/'.watchdog.lock').open('a+') as guard:
         fcntl.flock(guard,fcntl.LOCK_EX|fcntl.LOCK_NB);attempts={}
         token='GEN5_DDS_CACHE_ROTATION\n'
@@ -45,8 +46,8 @@ def main(run,pub):
             status=dict(epoch=time.time(),collector='running',publisher='running');stop=run/'STOP'
             try:
                 m=json.loads((run/'manifest.json').read_text());s=json.loads((run/'state.json').read_text());complete=s['completed']>=m['target']
-                if not alive(Path('/workspace/work/round5/ben-process.json'),'gameapi.py'):
-                    status['ben_pid']=launch(Path('/workspace/work/round5'),'ben-process.json',['src/gameapi.py','--config',str(run/'assets/ben-16.conf'),'--port','8087','--host','127.0.0.1','--record','false'],'ben-gen5-server.log',cwd=Path('/workspace/work/ben-next-round'))
+                if not alive(ben_state/'ben-process.json','gameapi.py'):
+                    status['ben_pid']=launch(ben_state,'ben-process.json',['src/gameapi.py','--config',str(run/'assets/ben-16.conf'),'--port','8087','--host','127.0.0.1','--record','false'],'ben-gen5-server.log',cwd=ben_dir)
                 ready=ben_ready();status['ben']='ready' if ready else 'warming'
                 cache=run/'dds-cache.sqlite';size=cache.stat().st_size if cache.exists() else 0
                 if size>2*1024**3 and not stop.exists():stop.write_text(token);status['collector']='draining-for-cache-rotation'
@@ -77,4 +78,6 @@ def main(run,pub):
             atomic_json(run/'watchdog-status.json',status);time.sleep(60)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--run',type=Path,required=True);p.add_argument('--publication',type=Path,required=True);a=p.parse_args();main(a.run.resolve(),a.publication.resolve())
+    p=argparse.ArgumentParser();p.add_argument('--run',type=Path,required=True);p.add_argument('--publication',type=Path,required=True)
+    p.add_argument('--ben-dir',type=Path,default=Path('/workspace/work/ben-next-round'));p.add_argument('--ben-state',type=Path,default=Path('/workspace/work/round5'))
+    a=p.parse_args();main(a.run.resolve(),a.publication.resolve(),a.ben_dir.resolve(),a.ben_state.resolve())
