@@ -537,6 +537,47 @@ So the tree's result moves with the net: from v2 to v3 it went from clearly behi
 to level within the error. It is not yet ahead anywhere, and the lead and tricks 1-2 are not
 benched.
 
+## The tree with v3.1 (17:40 UTC)
+
+The same bench, run further through the 1,891 newest boards: 3,448 pairs at tricks 3-6 (the 1,962
+above, which reproduce exactly, and 1,486 more). Every figure here is against Gen 6's own card A,
+so it includes the cost of searching 8 layouts instead of Gen 6's 32:
+
+| Tricks a pair, against Gen 6's card | All | Tricks 3-4 | Tricks 5-6 |
+| --- | --- | --- | --- |
+| Plain search on 8 layouts | -0.006 +- 0.003 | -0.004 +- 0.003 | -0.009 +- 0.004 |
+| A fresh 32-layout search | -0.001 +- 0.002 | +0.000 +- 0.002 | -0.002 +- 0.003 |
+| Tree, v3 replies | -0.010 +- 0.005 | -0.021 +- 0.008 | +0.003 +- 0.007 |
+| Tree, v3.1 replies | -0.006 +- 0.005 | -0.011 +- 0.007 | +0.001 +- 0.007 |
+
+v3.1 against v3 pair by pair: +0.004 +- 0.003. Against plain search on the same 8 layouts the
+v3.1 tree is -0.002 +- 0.005 (tricks 5-6: +0.009 +- 0.007), so most of what it gives up against
+Gen 6 is the 8-layout cap. By Gen 6's estimated gap, against Gen 6's card: up to 0.125 -0.001 +-
+0.010, up to 0.5 -0.006 +- 0.009, above -0.011 +- 0.004. The correction share on this set is 0.25
++- 0.06 for both nets; 0.36 for v3 on the first 1,962 pairs was within its noise.
+
+Used only on close calls the v3.1 tree is about level: +0.003 +- 0.004 a pair when it may overrule
+only where its own 8-layout gap is at most 0.125, and +0.001 +- 0.004 where Gen 6's gap is at most
+0.25. These are the best of six gates tried, so they are optimistic.
+
+**16 layouts.** The same 3,448 pairs with the tree on 16 layouts (0.45 s a pair against 0.24):
+
+| Tricks a pair, against Gen 6's card | 8 layouts | 16 layouts |
+| --- | --- | --- |
+| Plain search | -0.006 +- 0.003 | -0.004 +- 0.003 |
+| Tree, v3.1 replies | -0.006 +- 0.005 | -0.005 +- 0.005 |
+
+16 against 8 for the tree, pair by pair: +0.001 +- 0.003. Doubling the layouts halves plain
+search's sampling loss but not the tree's deficit, which is in its correction (share 0.29 +- 0.06
+at 16 layouts, so about 70% noise) and does not shrink with more layouts.
+
+**Gen 6 with the tree's correction added**, the correction being the tree's gap minus plain
+search's on the same layouts, added to Gen 6's own estimated gap: at full weight -0.017 +- 0.005
+a pair (8 layouts) and -0.013 +- 0.005 (16). Shrunk to its measured share, with the weight (0.22
+to 0.32) fitted on the other half of the deals: +0.002 +- 0.002 (8 layouts) and +0.000 +- 0.002
+(16), overruling Gen 6 at 3% of decisions. So the tree can be added to Gen 6 without loss, but not
+yet for a gain that can be measured; what has moved it is the net.
+
 ## The net as a second opinion, and the opening lead (12:30 UTC)
 
 `scripts/gen7_second_opinion.py` writes, for every gap fork at any ply, where the net puts Gen 6's
