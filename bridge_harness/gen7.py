@@ -26,6 +26,10 @@ trained to predict Gen6's own card from one seat's view) is read in three places
                     of those cards is played. Cards the solves cannot tell apart (same suit, same
                     result in every layout) are one candidate. Every number is a setting; with no
                     `tree` entry the tree is never consulted.
+                    With `tree_audit`, an audited bot names as its reference card the card it
+                    would have played without the tree, so the collector's ordinary audit forks
+                    (fork_audit.collect_board) play that card out from the same position whenever
+                    the two differ: the tree's choices are scored by real play, table against table.
 
 With play_weight 0, tie_break 'gen5', search_from_trick 1 and no tree the player is Gen6, card for
 card and draw for draw (tested). So it is with a tree whose `trust` is 0 or whose horizon is 0.
@@ -62,6 +66,7 @@ class Gen7Config:
     tie_break: str = 'net'          # among exactly tied cards: 'net' | 'gen5' (the spec's policy net, as Gen6)
     search_from_trick: int = 1      # earlier tricks are played from the net without search; 1 = always search
     net_sample: bool = False        # unsearched cards: draw from the net's policy instead of taking its top card
+    tree_audit: bool = True         # where the tree was consulted, the audit's reference card is the card played without it
 
     def __post_init__(self):
         if self.tie_break not in ('net', 'gen5') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
@@ -189,6 +194,7 @@ class Gen7Player(Gen6Player):
         self.play_cache = (None, {})
         self.net_rows = 0
         self.solved_layouts = None      # the layouts of the decision in hand, for the tree
+        self.before_tree = None         # the search's own decision, when the tree was consulted on it
         self.repliers = {}
 
     # ---- how likely was the play so far, layout by layout --------------------------------
@@ -372,6 +378,7 @@ class Gen7Player(Gen6Player):
         winners = [i for i in near if top - adjusted[i] <= 1e-9]
         eligible = sorted(legal[j] for i in winners for j in groups[i])
         choice = result.card if result.card in eligible else fork.choice(eligible)
+        self.before_tree = result
         note.update(consulted=True, layouts=len(pick), seconds=seconds, lines=tree.lines, nodes=tree.nodes, net_rows=tree.net_rows,
                     solves=tree.solves, replies=tree.replies,
                     gen6_cards=sorted(k for k, q in d['behavior_probabilities'].items() if q > 0),
@@ -386,10 +393,18 @@ class Gen7Player(Gen6Player):
     def choose(self, o, rng):
         if len(o.legal) > 1 and len(o.history) // 4 + 1 < self.g7.search_from_trick:
             return self.net_decision(o, rng)
+        self.before_tree = None
         result = super().choose(o, rng)
         if 'gen6' not in result.details:
             return result
-        return Decision(result.card, dict(result.details, gen7=asdict(self.g7)))
+        details = dict(result.details, gen7=asdict(self.g7))
+        if self.before_tree is not None and self.reference and self.g7.tree_audit:
+            fork = random.Random()          # a copy again: the audit's reference costs the table's stream nothing
+            fork.setstate(rng.getstate())
+            plain = self.break_ties(o, fork, self.before_tree)
+            details.update(reference_card=symbol(plain.card), expected_gain_imps=None, prediction_units='tree-against-no-tree',
+                           gen7_tree=dict(details['gen7_tree'], audit_reference='without-tree'))
+        return Decision(result.card, details)
 
     def net_decision(self, o, rng):
         """A card straight from the net: no layouts, no DDS, no estimates."""

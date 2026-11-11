@@ -7,8 +7,9 @@ from unittest.mock import patch
 
 import numpy as np
 
-from bridge_harness.core import card, symbol
+from bridge_harness.core import Game, card, symbol
 from bridge_harness.corpus import generate
+from bridge_harness.fork_audit import ForkBudget, collect_board, stream
 from bridge_harness.gen6 import Gen6Player
 from bridge_harness.gen7 import USE_KEYS, Gen7Config, TreeUse, gen7_settings, resolved, tree_stages, utilities
 from bridge_harness.gen7_tree import OverBudget, Tree, TreeConfig
@@ -199,6 +200,54 @@ class TreeInThePlayerTests(Fixture):
         self.assertTrue(all(t.get('over_budget') and not t['consulted'] for t in notes))
         with self.assertRaises(OverBudget):
             Tree(None, None, TreeConfig(), max_solves=3).spend(4)
+
+    # ---- the audit scores the tree by play -----------------------------------------------
+    def test_an_audited_bot_names_the_card_it_would_have_played_without_the_tree(self):
+        """Through the collector: where the tree moved the card, a fork table plays the no-tree card from the same position."""
+        class Lowest:                       # stands in for the reference bot's policy net
+            def choose(self, o, details, rng):
+                return min(card(k) for k, q in details['behavior_probabilities'].items() if q > 0), {}
+
+        def values(tree, o, worlds, weights, cards=None):
+            return {x: float(x == cards[-1]) for x in cards}       # the tree always prefers its last candidate
+
+        tree = dict(from_trick=1, root_margin=.5, root_cards=3, trust=1., tricks=1, layouts=4)
+        with_tree, plain = self.make(gen7=dict(tree=tree), list_solve=16), self.make(gen7={}, list_solve=16)
+        silent = self.make(gen7=dict(tree=tree, tree_audit=False), list_solve=16)
+        for p in (with_tree, plain, silent):
+            p.reference = Lowest()
+        board = next(generate(1, 703))
+        assignments = ['candidate' if s % 2 == 0 else 'opponent' for s in range(4)]
+        run = lambda p: collect_board(board, {'candidate': p, 'opponent': GreedyPlayer()}, assignments, 11,
+                                      ForkBudget(probability=1., multiplier=1000., max_depth=1, max_forks=64), {})
+        with patch.object(Tree, 'values', values):
+            record, quiet = run(with_tree), run(silent)
+        replay(record)
+        root = record['tables'][0]
+        game, moved = Game(board), 0
+        for ply, a in enumerate(root['actions']):
+            o = game.observation()
+            note = a.get('gen7_tree', {})
+            if a['player'] == 'candidate' and note.get('consulted'):
+                self.assertEqual((note['audit_reference'], a['prediction_units']), ('without-tree', 'tree-against-no-tree'))
+                without = plain.choose(o, stream(11, 'play', board.id, ply, o.controller))
+                self.assertEqual(a['reference_card'], symbol(without.card))
+                self.assertIn(a['reference_card'], note['gen6_cards'])
+                moved += a['card'] != a['reference_card']
+            elif a['player'] == 'candidate' and 'reference_card' in a:
+                self.assertNotIn('audit_reference', note)           # an ordinary tie audit: the reference bot's pick among the eligible
+            game.play(card(a['card']))
+        self.assertGreater(moved, 3)
+        forks = [x for x in record['audits'] if not x['identical_action']
+                 and root['actions'][x['ply']].get('gen7_tree', {}).get('audit_reference') and x['parent_table'] == 0]
+        self.assertEqual(len(forks), moved)                         # probability 1 and room in the budget: every moved card is forked
+        for x in forks:
+            forced = record['tables'][x['reference_table']]['actions'][x['ply']]
+            self.assertTrue(forced['counterfactual_forced'])
+            self.assertEqual((forced['card'], x['candidate_card']), (root['actions'][x['ply']]['reference_card'], root['actions'][x['ply']]['card']))
+        # tree_audit off: same cards at the table, and no decision names a no-tree reference
+        self.assertEqual([a['card'] for a in quiet['tables'][0]['actions']], [a['card'] for a in root['actions']])
+        self.assertFalse(any(a.get('gen7_tree', {}).get('audit_reference') for t in quiet['tables'] for a in t['actions']))
 
     # ---- real trees, whole tables --------------------------------------------------------
     def test_whole_tables_with_the_tree_deciding(self):

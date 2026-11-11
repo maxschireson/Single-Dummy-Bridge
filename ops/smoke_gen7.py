@@ -59,6 +59,8 @@ def check_decision(a, stages):
     kept = {c for x in cands if x['kept'] for c in x['cards']}
     assert all((top - x['adjusted'] <= 1e-9) == x['kept'] for x in cands) and a['card'] in kept, 'The card played is not one the tree kept'
     assert a['selected_pimc_gap'] <= stage.root_margin + 1e-9
+    if note.get('audit_reference'):
+        assert a.get('reference_card') in note['gen6_cards'], 'The audit reference is not a card the search alone left eligible'
     return True, True, a['selected_pimc_gap'] > 1e-9, False
 
 
@@ -79,7 +81,7 @@ def smoke(run, out, deals=2, start=0):
     chosen = []
     for pair in wanted:
         chosen += [i for i in range(start, m['target']) if pair_at(m, i) == pair][:deals]
-    phases, tree = {}, dict(in_a_stage=0, consulted=0, moved=0, over_budget=0, seconds=[], solves=[])
+    phases, tree = {}, dict(in_a_stage=0, consulted=0, moved=0, over_budget=0, tree_forks=0, tree_fork_imps=0, seconds=[], solves=[])
     for index in sorted(chosen):
         started = time.time()
         r = gen5_runtime.play(str(run), m, boards[index].to_dict(), index)      # run_board + validate + timing
@@ -87,8 +89,14 @@ def smoke(run, out, deals=2, start=0):
         first = next(iter(r['regimes'].values()))
         row = dict(index=index, pair=r['pair'], seconds=time.time() - started, tables=len(r['unique_tables']),
                    imps={k: v['imps'] for k, v in r['regimes'].items()}, root_tables=len(first['tables']),
-                   decisions=0, unsearched=0, in_a_stage=0, consulted=0, moved=0, over_budget=0, tree_seconds=0.)
+                   decisions=0, unsearched=0, in_a_stage=0, consulted=0, moved=0, over_budget=0, tree_seconds=0.,
+                   tree_forks=0, tree_fork_imps=0)
         for record in r['unique_tables'].values():
+            for x in record.get('audits', []):          # audit forks that played the no-tree card against the tree's
+                act = record['tables'][x['candidate_table']]['actions'][x['ply']]
+                if roles.get(act['player']) in gen7 and (act.get('gen7_tree') or {}).get('audit_reference') and not x['identical_action']:
+                    row['tree_forks'] += 1
+                    row['tree_fork_imps'] += x['gain_imps']
             for table in record['tables']:
                 for a in table['actions']:
                     bot = roles.get(a['player'])
@@ -117,7 +125,7 @@ def smoke(run, out, deals=2, start=0):
                     x['seconds'] += a['seconds']
                     x['layouts'] += a['samples']
                     x['max_seconds'] = max(x['max_seconds'], a['seconds'])
-        for k in ('in_a_stage', 'consulted', 'moved', 'over_budget'):
+        for k in ('in_a_stage', 'consulted', 'moved', 'over_budget', 'tree_forks', 'tree_fork_imps'):
             tree[k] += row[k]
         report['deals'].append(row)
         print(json.dumps(row), flush=True)

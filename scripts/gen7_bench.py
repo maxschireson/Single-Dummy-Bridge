@@ -129,7 +129,8 @@ def pairs_of(path):
                  for g in e.get('gap_forks') or [] if ok(g['ply'])]
         if STATE['ties']:                       # tie audits: two cards Gen 6 rated exactly level, both played out
             forks += [(x['candidate_table'], x['reference_table'], x['ply'], x['reference_card'], -1, 0., x['audit_probability'], None)
-                      for x in e.get('audits') or [] if not x['identical_action'] and ok(x['ply'])]
+                      for x in e.get('audits') or [] if not x['identical_action'] and ok(x['ply'])
+                      and not (e['tables'][x['candidate_table']]['actions'][x['ply']].get('gen7_tree') or {}).get('audit_reference')]
         if not forks:
             continue
         board = Board.from_dict(e['board'])
