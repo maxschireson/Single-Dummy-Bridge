@@ -1,1 +1,43 @@
-{"status":"starting","run":"/workspace/work/gen6-codex","manifest_identity":"168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea","source_commit":"23e2590245c12a2eee97769d072c5750595302aa","publication_branch":"arena-gen6-codex-feed","publication":"/workspace/work/gen6-codex-publication","source_run":"/workspace/work/gen5rz-ben","source_completed":8372,"target":7318,"mix":{"6-32~5RZ32":8,"6-32~6-256":3,"6-256~ben":3,"6-32~3":2,"6-32~2":2,"6-32~1":2},"common_bidder":"6-32","peer_feed":"arena-gen6-independent-feed","recovery":"RECOVERY.md","epoch":1794363679.6831117,"watchdog_pid":51740,"allocation":{"6-32~5RZ32":8,"6-32~6-256":3,"6-256~ben":3,"6-32~3":2,"6-32~2":2,"6-32~1":2},"preflight":{"normal_deals":4,"different_native_auction":17,"ben":"6-256~ben"}}
+{
+  "status": "running",
+  "run": "/workspace/work/gen6-codex",
+  "manifest_identity": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea",
+  "source_commit": "23e2590245c12a2eee97769d072c5750595302aa",
+  "publication_branch": "arena-gen6-codex-feed",
+  "publication": "/workspace/work/gen6-codex-publication",
+  "source_run": "/workspace/work/gen5rz-ben",
+  "source_completed": 8372,
+  "target": 7318,
+  "mix": {
+    "6-32~5RZ32": 8,
+    "6-32~6-256": 3,
+    "6-256~ben": 3,
+    "6-32~3": 2,
+    "6-32~2": 2,
+    "6-32~1": 2
+  },
+  "common_bidder": "6-32",
+  "peer_feed": "arena-gen6-independent-feed",
+  "recovery": "RECOVERY.md",
+  "epoch": 1794363679.6831117,
+  "watchdog_pid": 51740,
+  "allocation": {
+    "6-32~5RZ32": 8,
+    "6-32~6-256": 3,
+    "6-256~ben": 3,
+    "6-32~3": 2,
+    "6-32~2": 2,
+    "6-32~1": 2
+  },
+  "preflight": {
+    "normal_deals": 4,
+    "different_native_auction": 17,
+    "ben": "6-256~ben"
+  },
+  "observed_epoch": 1794364446.5512218,
+  "completed": 108,
+  "published": 105,
+  "failures": 0,
+  "collector_pid": 51741,
+  "publisher_pid": 51742
+}
