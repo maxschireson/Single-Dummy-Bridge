@@ -1,0 +1,17 @@
+.....Process SpawnProcess-1:
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/ops/ben_board_executor.py", line 20, in _one_board
+    result = function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/tests/test_ben_board_executor.py", line 18, in job
+    raise ValueError('deliberate test error')
+ValueError: deliberate test error
+...
+----------------------------------------------------------------------
+Ran 8 tests in 1.285s
+
+OK

@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "manifest": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
+  "epoch": 1794403023.863042,
+  "boards_per_lifecycle": 6,
+  "ben_replacements": 3,
+  "ben_index": 1082,
+  "self_indices": [
+    621,
+    622,
+    623
+  ],
+  "production_commits": 0,
+  "fingerprints": [
+    "75e2b5f63111cc5ac2623ed767a5bc45829ef7920a6c6f183e869782a952bf02",
+    "75e2b5f63111cc5ac2623ed767a5bc45829ef7920a6c6f183e869782a952bf02",
+    "75e2b5f63111cc5ac2623ed767a5bc45829ef7920a6c6f183e869782a952bf02",
+    "b6b799f3373becf32a9898f94bf8f21ca66d9e5069730deb040129bc8d4139e2",
+    "a1c6599aae916e2f74c73de53716004f6eda1f2fe8e51576eb349811a3c72acc",
+    "b0d945ca653121a027bbf10a6c67b79b69398e398ff334992fa01ee4fdad1731"
+  ],
+  "ben_worker_pids": [
+    52,
+    74,
+    81
+  ],
+  "ben_maxrss_kb": [
+    845444,
+    832636,
+    832964
+  ],
+  "scope": "Full runtime replay; root/tie-audit cards, probabilities, seeds, auctions, assignments and scores match; source/model/corpus hashes identical.",
+  "tested_manifest": "dbaf30f8f8c821972352fb0dc12501cfe182a30f61be0d29f650d28c842f8221",
+  "binding": {
+    "changed_manifest_fields": [
+      "identity",
+      "runtime_sha256",
+      "created_epoch"
+    ],
+    "play_runtime_identical": true,
+    "source_models_corpus_seeds_and_schedule_identical": true,
+    "report_monitor_now_pinned": true,
+    "lifecycle_tests": 8
+  }
+}

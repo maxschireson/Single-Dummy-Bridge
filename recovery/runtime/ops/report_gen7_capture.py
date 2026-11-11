@@ -18,6 +18,7 @@ from bridge_harness.core import Board,Game,card
 from bridge_harness.loop_registry import sha
 from bridge_harness.selfplay import atomic_json
 from bridge_harness.training import digest
+from ops.retained_receipts import verify_retained,allowed_identity
 
 
 def clustered(values, families):
@@ -78,13 +79,14 @@ def report(run,before,threshold=2000,force=False):
     manifest=json.loads((run/'manifest.json').read_text())
     if digest({k:v for k,v in manifest.items() if k!='identity'})!=manifest['identity']:raise ValueError('Manifest changed')
     if not manifest.get('gap_fork',{}).get('per_band'):raise ValueError('Capture is not enabled')
+    verify_retained(run,manifest)
     receipts=sorted((run/'receipts').glob('*.json'))
     # Before the reporting threshold, read small receipts only; reserve gzip verification
     # and analysis for a possible full report, rather than competing with the collector.
     possible=0
     for p in receipts:
         r=json.loads(p.read_text())
-        if r['manifest_identity']!=manifest['identity']:raise ValueError('Receipt manifest mismatch')
+        if not allowed_identity(manifest,r['manifest_identity']):raise ValueError('Receipt manifest mismatch')
         if not any(manifest['bots'][k].get('engine')=='ben' for k in r['pair'].split('~')):possible+=r['root_games']
     if possible<threshold and not force:
         progress=dict(status='collecting',epoch=time.time(),manifest=manifest['identity'],root_tables=None,
@@ -93,7 +95,7 @@ def report(run,before,threshold=2000,force=False):
     roots=[];episodes=0;gaps=[];ties=[];skips=defaultdict(int);root_cpu=gap_cpu=0.
     for receipt in receipts:
         r=json.loads(receipt.read_text());path=run/'episodes'/f"{r['index']:06d}.json.gz"
-        if r['manifest_identity']!=manifest['identity'] or sha(path)!=r['episode_sha256']:raise ValueError('Episode receipt mismatch')
+        if not allowed_identity(manifest,r['manifest_identity']) or sha(path)!=r['episode_sha256']:raise ValueError('Episode receipt mismatch')
         with gzip.open(path,'rt') as f:episode=json.load(f)
         episodes+=1
         for key,record in episode['unique_tables'].items():

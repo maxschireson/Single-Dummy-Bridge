@@ -1,5 +1,5 @@
 import pathlib,subprocess,psutil,time,json,os
-base=pathlib.Path(__file__).resolve().parent;r=base/'runs/gen6-chatgpt-fast-selfplay-20261111';d=r/'diagnostics';p=subprocess.Popen([str(base/'.venv/bin/python'),'launch_local.py'],cwd=base)
+base=pathlib.Path(__file__).resolve().parent;r=base/'runs/gen6-chatgpt-ben-recycled-20261111';d=r/'diagnostics';p=subprocess.Popen([str(base/'.venv/bin/python'),'launch_local.py'],cwd=base)
 f=d/f'launcher-resources-{int(time.time())}.jsonl';known=set()
 while True:
  rows=[]
@@ -15,3 +15,5 @@ while True:
  if p.poll() is not None:break
  time.sleep(5)
 print(json.dumps(dict(launcher_exit=p.returncode,resource_log=str(f))),flush=True)
+
+raise SystemExit(p.returncode)
