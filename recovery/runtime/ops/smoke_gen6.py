@@ -47,8 +47,8 @@ def smoke(run, out, deals=2, start=0):
         r = gen5_runtime.play(str(run), m, boards[index].to_dict(), index)      # run_board + validate + timing
         roles = dict(candidate=r['candidate'], opponent=r['opponent'])
         row = dict(index=index, pair=r['pair'], seconds=time.time() - started, tables=len(r['unique_tables']),
-                   native_auction_differs=[r['bidding'][f'native/{room}']['calls'] != r['bidding'][f'common/{room}']['calls'] for room in (0, 1)],
-                   common_imps=r['regimes']['common']['imps'], native_imps=r['regimes']['native']['imps'], decisions=0, tie_breaks=0,
+                   native_auction_differs=[r['bidding'][f'native/{room}']['calls'] != r['bidding'][f'common/{room}']['calls'] for room in ((0, 1) if 'native' in r['regimes'] else ())],
+                   common_imps=r['regimes'].get('common',r['regimes'].get('self'))['imps'], native_imps=r['regimes'].get('native',r['regimes'].get('self'))['imps'], decisions=0, tie_breaks=0,
                    gap_forks=0, gap_cpu=r.get('gap_cpu'))
         for record in r['unique_tables'].values():
             for e in record.get('gap_forks', []):
