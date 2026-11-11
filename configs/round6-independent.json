@@ -90,14 +90,15 @@
   "pair_weights": {
     "6-32~5RZ32": 8,
     "6-32~6-256": 3,
-    "6-32~ben": 3,
+    "6-256~ben": 3,
     "6-32~3": 2,
     "6-32~2": 2,
     "6-32~1": 2
   },
   "common_bidder": "6-32",
   "audit_references": {
-    "6-32": "3"
+    "6-32": "3",
+    "6-256": "3"
   },
   "notes": [
     "User authorized independent collector from 717cd87 with its own fresh seeded corpus and separate GitHub dashboard feed.",
@@ -108,7 +109,8 @@
     "Provisionally use package recommendation list_solve=256, overriding the earlier 8x fallback as authorized. list_max_layouts remains 20000. Final parameters may supersede these.",
     "Common bidder is Gen6 fast for all four seats. Native condition uses each partnership's bidder. Matching full auctions reuse physical tables, including Gen6 fast vs medium (same bidder).",
     "Report play=common-auction IMPs; total=native-auction IMPs; bidding=total-play, paired per board. This is an auction-condition effect including interaction with play, not a double-dummy bidder estimate.",
-    "Trailing 10 from initial match instructions remains unspecified; do not infer a run size or worker count."
+    "Trailing 10 from initial match instructions remains unspecified; do not infer a run size or worker count.",
+    "User correction: medium (256) vs BEN16 at 15%; initial cohort is archived and removed from dashboard."
   ],
   "labels": {
     "5RZ32": "Gen 5 (32)",
