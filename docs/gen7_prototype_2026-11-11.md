@@ -18,8 +18,10 @@ cards), which is not in this branch.
 | `scripts/gen7_build_dataset.py` | Published Gen 6 episodes to a training set |
 | `scripts/train_gen7_policy.py` | Trains the net (JAX, CPU); writes the weights and a report that includes the auction-use test |
 | `scripts/gen7_check.py` | Five checks against recorded Gen 6 tables: `fidelity`, `inference`, `match`, `speed`, `auction` |
+| `scripts/gen7_lookahead.py` | From gap forks and root tables: tricks lost at each trick, Gen 6's estimates against real play, and what one to three tricks of lookahead could recover |
 | `tests/test_gen7.py` | 14 tests |
-| `models/cardplay/gen7-policy-v0-2026-11-11/` | The trained net (258,434 parameters), in parts, with its training report |
+| `models/cardplay/gen7-policy-v0-2026-11-11/` | The trained net (258,434 parameters), in parts, with its training report. Every check below used it |
+| `models/cardplay/gen7-policy-v1-2026-11-11/` | A wider net (828,098 parameters) trained on 5,240 deals (see "More boards") |
 
 ## The net
 
@@ -198,6 +200,73 @@ times faster on table time, not 10 and 20: the scorer's one-off hand-type scorin
 moves to the first searched trick. Tie forks (about 1.2 cpu-seconds per root table) and the
 per-board work do not shrink.
 
+## More boards (07:30 UTC)
+
+2,325 boards had reached the feeds beyond the 4,169 used above: 1,194 on the two v7-capture feeds
+(with gap forks), 571 on the chatgpt feed, 479 on the two Gen 6 against BEN feeds, 81 on the
+independent feed. Adding them takes training deals from 3,355 to 5,240 and decisions from 519,094
+to 1,003,622 (gap forks add many decisions per board). Same recipe, same test deals as above:
+
+| | v0 (3,355 deals) | Same net, 5,240 deals | v1: wider net, 5,240 deals |
+| --- | --- | --- | --- |
+| Parameters | 258,434 | 258,434 | 828,098 |
+| Tricks given up per decision | 0.080 | 0.062 | 0.057 |
+| Plays Gen 6's exact card | 61.0% | 63.8% | 65.2% |
+| An equal-best card in its top 3 | 97.3% | 97.9% | 98.0% |
+| Cards kept until probabilities add to 0.98 | 3.42 | 3.25 | 3.14 |
+
+The learning curve predicted about 0.065 for the same net. Breadth for the same coverage is already
+falling. With 3,355 deals the two widths scored the same; with 5,240 the wider one is better, so it
+is the one released as v1. It is about four times slower to evaluate.
+
+## What lookahead could be worth
+
+`scripts/gen7_lookahead.py` on 700 capture-feed episodes: 500 root tables and 8,809 gap-fork pairs.
+In a pair, A is the card Gen 6 played and B a card it rated worse, which the collector forced and
+played out from the same position.
+
+**Tricks lost at each trick.** Double-dummy cost, on the real deal, of the card a Gen 6 seat played,
+per searched decision:
+
+| Lead | Trick 1 | Trick 2 | Tricks 3-4 | Tricks 5-6 | Tricks 7-9 | Tricks 10-13 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0.26 | 0.013 | 0.042 | 0.027 | 0.023 | 0.014 | 0.005 |
+
+This is a ceiling: it includes what cannot be avoided without seeing the cards. The opening lead is
+one decision in forty and 27% of Gen 6's search time, and also 27% of the tricks its seats lose this
+way.
+
+**Gen 6's estimates against real play.** Over all pairs Gen 6 estimated that B would cost 0.47
+tricks and it cost 0.39. B did better than A in 8.2% of pairs, worse in 38.7%, the same in the rest.
+B did better most often early: 18% at the lead, 11.5% at tricks 1 and 2, 10% at tricks 3-4, 7% at
+tricks 5-6, 4% at tricks 7-9, 1% later.
+
+**What a trick of lookahead recovers.** Both lines of a pair are valued double dummy on the real
+deal straight after the card and after 4, 8 and 12 plies of the play that actually followed, and
+that value is used to choose between A and B. Tricks lost per pair by that choice, against choosing
+with hindsight:
+
+| Decision at | Pairs | Always A (Gen 6) | Now | +1 trick | +2 tricks | +3 tricks |
+| --- | --- | --- | --- | --- | --- | --- |
+| Lead | 715 | 0.231 | 0.150 | 0.126 | 0.117 | 0.101 |
+| Trick 1 | 494 | 0.146 | 0.140 | 0.136 | 0.130 | 0.119 |
+| Trick 2 | 1,048 | 0.146 | 0.132 | 0.112 | 0.101 | 0.083 |
+| Tricks 3-4 | 2,012 | 0.123 | 0.100 | 0.087 | 0.071 | 0.055 |
+| Tricks 5-6 | 1,793 | 0.086 | 0.069 | 0.047 | 0.032 | 0.021 |
+| Tricks 7-9 | 2,032 | 0.045 | 0.031 | 0.019 | 0.008 | 0.004 |
+| Tricks 10-13 | 715 | 0.011 | 0.001 | 0.000 | 0.000 | 0.000 |
+
+"Now" is the double-dummy assumption with the layout known. Two tricks of real play before it
+removes 22% of its error at the lead, 7% at trick 1, 23% at trick 2, 29% at tricks 3-4, 54% at
+tricks 5-6 and 75% at tricks 7-9. So depth alone has a modest ceiling early in the hand, where a
+decision pays off over many tricks; a leaf value learned from how hands finish matters more there
+than going from eight plies to twelve.
+
+Limits: the real deal is used at the leaf, so these are ceilings for a search that must also guess
+the layout. Part of every figure is chance in how two lines happen to finish, which no evaluation
+can predict. Pairs are sampled by band (estimated gap up to 0.125, up to 0.5, above), a third each,
+so the figures are per sampled pair and not per decision.
+
 ## What is and is not verified
 
 Verified:
@@ -264,6 +333,7 @@ python scripts/gen7_check.py inference --episodes EPISODES --policy $P
 python scripts/gen7_check.py match     --episodes EPISODES --policy $P
 python scripts/gen7_check.py speed     --episodes EPISODES --policy $P --search-from-trick 3
 python scripts/gen7_check.py auction   --episodes EPISODES
+python scripts/gen7_lookahead.py       --episodes EPISODES_WITH_GAP_FORKS
 python -m unittest discover -s tests -p "test_gen7.py"
 ```
 

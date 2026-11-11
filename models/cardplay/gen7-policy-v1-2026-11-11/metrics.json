@@ -1,0 +1,411 @@
+{
+ "kind": "suit",
+ "width": 512,
+ "augment": "none",
+ "identity": 0.5,
+ "weight_decay": 0.0001,
+ "parameters": 828098,
+ "epochs": 3,
+ "selected_epoch": 2,
+ "fraction": 1.0,
+ "train_deals": 5240,
+ "train_examples": 1003622,
+ "validation": {
+  "all": {
+   "n": 112533,
+   "nll": 0.8361,
+   "uniform_nll": 1.2745,
+   "tie_nll": 0.7582,
+   "agree": 0.6556,
+   "in_best": 0.8572,
+   "regret": 0.0579,
+   "regret_gap_head": 0.0455,
+   "regret_random": 0.2132,
+   "regret_lowest": 0.234
+  },
+  "root_tables": {
+   "n": 32440,
+   "nll": 0.8938,
+   "uniform_nll": 1.3982,
+   "tie_nll": 0.7506,
+   "agree": 0.642,
+   "in_best": 0.8251,
+   "regret": 0.0597,
+   "regret_gap_head": 0.0513,
+   "regret_random": 0.2352,
+   "regret_lowest": 0.2583
+  },
+  "by_phase": {
+   "lead": {
+    "n": 802,
+    "nll": 1.4052,
+    "uniform_nll": 2.5649,
+    "tie_nll": 0.7183,
+    "agree": 0.5162,
+    "in_best": 0.5711,
+    "regret": 0.0614,
+    "regret_gap_head": 0.0668,
+    "regret_random": 0.2562,
+    "regret_lowest": 0.2749
+   },
+   "tricks 1-4": {
+    "n": 17124,
+    "nll": 0.8552,
+    "uniform_nll": 1.4655,
+    "tie_nll": 0.7247,
+    "agree": 0.6613,
+    "in_best": 0.8139,
+    "regret": 0.0482,
+    "regret_gap_head": 0.0476,
+    "regret_random": 0.2395,
+    "regret_lowest": 0.2755
+   },
+   "tricks 5-8": {
+    "n": 35354,
+    "nll": 1.0089,
+    "uniform_nll": 1.511,
+    "tie_nll": 0.8087,
+    "agree": 0.6015,
+    "in_best": 0.8038,
+    "regret": 0.072,
+    "regret_gap_head": 0.0591,
+    "regret_random": 0.273,
+    "regret_lowest": 0.2992
+   },
+   "tricks 9-13": {
+    "n": 59253,
+    "nll": 0.7197,
+    "uniform_nll": 1.0608,
+    "tie_nll": 0.7383,
+    "agree": 0.6881,
+    "in_best": 0.9055,
+    "regret": 0.0522,
+    "regret_gap_head": 0.0365,
+    "regret_random": 0.1694,
+    "regret_lowest": 0.1825
+   }
+  },
+  "declaring": {
+   "n": 57586,
+   "nll": 0.8791,
+   "uniform_nll": 1.316,
+   "tie_nll": 0.733,
+   "agree": 0.6411,
+   "in_best": 0.853,
+   "regret": 0.073,
+   "regret_gap_head": 0.0544,
+   "regret_random": 0.2974,
+   "regret_lowest": 0.3446
+  },
+  "defending": {
+   "n": 54947,
+   "nll": 0.791,
+   "uniform_nll": 1.2311,
+   "tie_nll": 0.7846,
+   "agree": 0.6707,
+   "in_best": 0.8617,
+   "regret": 0.042,
+   "regret_gap_head": 0.0361,
+   "regret_random": 0.125,
+   "regret_lowest": 0.118
+  }
+ },
+ "test": {
+  "all": {
+   "n": 116139,
+   "nll": 0.8288,
+   "uniform_nll": 1.2682,
+   "tie_nll": 0.7563,
+   "agree": 0.6548,
+   "in_best": 0.8571,
+   "regret": 0.0564,
+   "regret_gap_head": 0.0471,
+   "regret_random": 0.2011,
+   "regret_lowest": 0.2193
+  },
+  "root_tables": {
+   "n": 33194,
+   "nll": 0.8886,
+   "uniform_nll": 1.3958,
+   "tie_nll": 0.7548,
+   "agree": 0.6396,
+   "in_best": 0.8269,
+   "regret": 0.0587,
+   "regret_gap_head": 0.0507,
+   "regret_random": 0.2253,
+   "regret_lowest": 0.2523
+  },
+  "by_phase": {
+   "lead": {
+    "n": 799,
+    "nll": 1.3943,
+    "uniform_nll": 2.5649,
+    "tie_nll": 0.71,
+    "agree": 0.5319,
+    "in_best": 0.572,
+    "regret": 0.0566,
+    "regret_gap_head": 0.0686,
+    "regret_random": 0.2592,
+    "regret_lowest": 0.2968
+   },
+   "tricks 1-4": {
+    "n": 17770,
+    "nll": 0.856,
+    "uniform_nll": 1.4661,
+    "tie_nll": 0.7325,
+    "agree": 0.6613,
+    "in_best": 0.8163,
+    "regret": 0.0469,
+    "regret_gap_head": 0.044,
+    "regret_random": 0.2298,
+    "regret_lowest": 0.2683
+   },
+   "tricks 5-8": {
+    "n": 37048,
+    "nll": 0.9904,
+    "uniform_nll": 1.4917,
+    "tie_nll": 0.8005,
+    "agree": 0.6007,
+    "in_best": 0.7992,
+    "regret": 0.0716,
+    "regret_gap_head": 0.0635,
+    "regret_random": 0.2525,
+    "regret_lowest": 0.2744
+   },
+   "tricks 9-13": {
+    "n": 60522,
+    "nll": 0.7143,
+    "uniform_nll": 1.0563,
+    "tie_nll": 0.7369,
+    "agree": 0.6877,
+    "in_best": 0.9083,
+    "regret": 0.0498,
+    "regret_gap_head": 0.0378,
+    "regret_random": 0.1604,
+    "regret_lowest": 0.1701
+   }
+  },
+  "declaring": {
+   "n": 58658,
+   "nll": 0.8765,
+   "uniform_nll": 1.306,
+   "tie_nll": 0.729,
+   "agree": 0.6371,
+   "in_best": 0.8512,
+   "regret": 0.0717,
+   "regret_gap_head": 0.0567,
+   "regret_random": 0.2781,
+   "regret_lowest": 0.3169
+  },
+  "defending": {
+   "n": 57481,
+   "nll": 0.7801,
+   "uniform_nll": 1.2297,
+   "tie_nll": 0.7842,
+   "agree": 0.6728,
+   "in_best": 0.8632,
+   "regret": 0.0407,
+   "regret_gap_head": 0.0374,
+   "regret_random": 0.1225,
+   "regret_lowest": 0.1197
+  }
+ },
+ "auction_use": {
+  "real": {
+   "all": {
+    "nll": 0.8361,
+    "agree": 0.6556,
+    "regret": 0.0579
+   },
+   "lead": {
+    "nll": 1.4052,
+    "agree": 0.5162,
+    "regret": 0.0614
+   },
+   "tricks 1-4": {
+    "nll": 0.8552,
+    "agree": 0.6613,
+    "regret": 0.0482
+   },
+   "tricks 5-8": {
+    "nll": 1.0089,
+    "agree": 0.6015,
+    "regret": 0.072
+   },
+   "tricks 9-13": {
+    "nll": 0.7197,
+    "agree": 0.6881,
+    "regret": 0.0522
+   }
+  },
+  "blank": {
+   "all": {
+    "nll": 0.9099,
+    "agree": 0.636,
+    "regret": 0.0776
+   },
+   "lead": {
+    "nll": 1.6788,
+    "agree": 0.4377,
+    "regret": 0.0986
+   },
+   "tricks 1-4": {
+    "nll": 0.9094,
+    "agree": 0.6463,
+    "regret": 0.0591
+   },
+   "tricks 5-8": {
+    "nll": 1.0908,
+    "agree": 0.5767,
+    "regret": 0.0939
+   },
+   "tricks 9-13": {
+    "nll": 0.7918,
+    "agree": 0.6711,
+    "regret": 0.073
+   }
+  },
+  "another_deals": {
+   "all": {
+    "nll": 0.856,
+    "agree": 0.6457,
+    "regret": 0.0621
+   },
+   "lead": {
+    "nll": 1.7516,
+    "agree": 0.4102,
+    "regret": 0.1079
+   },
+   "tricks 1-4": {
+    "nll": 0.8823,
+    "agree": 0.6508,
+    "regret": 0.0547
+   },
+   "tricks 5-8": {
+    "nll": 1.0318,
+    "agree": 0.5927,
+    "regret": 0.0775
+   },
+   "tricks 9-13": {
+    "nll": 0.7315,
+    "agree": 0.6791,
+    "regret": 0.0545
+   }
+  },
+  "blank_calls_only": {
+   "all": {
+    "nll": 0.8345,
+    "agree": 0.6559,
+    "regret": 0.0577
+   },
+   "lead": {
+    "nll": 1.4119,
+    "agree": 0.5137,
+    "regret": 0.0617
+   },
+   "tricks 1-4": {
+    "nll": 0.8536,
+    "agree": 0.6651,
+    "regret": 0.0471
+   },
+   "tricks 5-8": {
+    "nll": 1.0072,
+    "agree": 0.6011,
+    "regret": 0.0712
+   },
+   "tricks 9-13": {
+    "nll": 0.7181,
+    "agree": 0.6877,
+    "regret": 0.0526
+   }
+  },
+  "blank_shown_only": {
+   "all": {
+    "nll": 0.9097,
+    "agree": 0.6364,
+    "regret": 0.0766
+   },
+   "lead": {
+    "nll": 1.6622,
+    "agree": 0.4489,
+    "regret": 0.094
+   },
+   "tricks 1-4": {
+    "nll": 0.9089,
+    "agree": 0.6469,
+    "regret": 0.0595
+   },
+   "tricks 5-8": {
+    "nll": 1.0914,
+    "agree": 0.577,
+    "regret": 0.0938
+   },
+   "tricks 9-13": {
+    "nll": 0.7913,
+    "agree": 0.6714,
+    "regret": 0.071
+   }
+  }
+ },
+ "numpy_parity_max_abs_logit": 2.86102294921875e-06,
+ "seconds": 244,
+ "history": [
+  {
+   "epoch": 1,
+   "seconds": 79,
+   "train_ce": 0.9353,
+   "train_gap": 0.0767,
+   "train_owner": 0.6613,
+   "val": {
+    "n": 112533,
+    "nll": 0.8673,
+    "uniform_nll": 1.2745,
+    "tie_nll": 0.7582,
+    "agree": 0.6311,
+    "in_best": 0.8409,
+    "regret": 0.0717,
+    "regret_gap_head": 0.0569,
+    "regret_random": 0.2132,
+    "regret_lowest": 0.234
+   }
+  },
+  {
+   "epoch": 2,
+   "seconds": 151,
+   "train_ce": 0.7503,
+   "train_gap": 0.0534,
+   "train_owner": 0.5962,
+   "val": {
+    "n": 112533,
+    "nll": 0.8361,
+    "uniform_nll": 1.2745,
+    "tie_nll": 0.7582,
+    "agree": 0.6556,
+    "in_best": 0.8572,
+    "regret": 0.0579,
+    "regret_gap_head": 0.0455,
+    "regret_random": 0.2132,
+    "regret_lowest": 0.234
+   }
+  },
+  {
+   "epoch": 3,
+   "seconds": 222,
+   "train_ce": 0.6354,
+   "train_gap": 0.0454,
+   "train_owner": 0.5818,
+   "val": {
+    "n": 112533,
+    "nll": 0.8479,
+    "uniform_nll": 1.2745,
+    "tie_nll": 0.7582,
+    "agree": 0.6569,
+    "in_best": 0.8576,
+    "regret": 0.0575,
+    "regret_gap_head": 0.0453,
+    "regret_random": 0.2132,
+    "regret_lowest": 0.234
+   }
+  }
+ ]
+}
