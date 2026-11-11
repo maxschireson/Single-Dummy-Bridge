@@ -22,6 +22,8 @@ def snapshot_runtime(run,backup):
             raise ValueError('Archive runtime is missing and this checkout belongs to another cohort')
         # Finalizing an older cohort must preserve its frozen runtime verbatim.
         return False
+    from bridge_harness.mixed_arena import verify_generation
+    verify_generation(run,manifest)
     for path in (ROOT/'bridge_harness').glob('*.py'):copy_once(path,backup/'runtime/bridge_harness'/path.name)
     copy_once(ROOT/'bridge_harness/libbridge_dds.so',backup/'runtime/bridge_harness/libbridge_dds.so')
     for path in (ROOT/'scripts').glob('*.py'):copy_once(path,backup/'runtime/scripts'/path.name)
@@ -31,20 +33,26 @@ def snapshot_runtime(run,backup):
         if name=='watch_gen5.py' and dest.exists():shutil.copy2(source,dest)
         else:copy_once(source,dest)
     for name in ('prepare_gen5r.py','register_gen5r_report.py','prepare_gen5rz.py','prepare_gen5rz_ben.py',
-                 'prepare_gen6.py','prepare_gen6_independent.py','retarget_gen6_ben.py','prepare_gen6_ben_expansion.py','auto_ben_switch.py','register_gen6_report.py','smoke_gen6.py'):
+                 'prepare_gen6.py','prepare_gen6_independent.py','register_gen6_report.py','smoke_gen6.py',
+                 'prepare_gen6_ben_followups.py','watch_gen6_ben_gate.py','watch_v7_logging_updates.py',
+                 'check_gen6_capture_equivalence.py','report_gen7_capture.py','launch_gen6_v7_capture.py'):
         if (ROOT/'ops'/name).exists():copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
     copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
     if (ROOT/'configs/round5rz.json').exists():copy_once(ROOT/'configs/round5rz.json',backup/'runtime/configs/round5rz.json')
     if (ROOT/'configs/round5rz-ben.json').exists():copy_once(ROOT/'configs/round5rz-ben.json',backup/'runtime/configs/round5rz-ben.json')
-    for name in ('round6.json','round6-cutover.json','round6-independent.json'):
+    for name in ('round6.json','round6-cutover.json','round6-independent.json','round6-codex.json','round6-ben-followups.json','ben-gen6-32.conf','ben-gen6-64.conf'):
         if (ROOT/'configs'/name).exists():copy_once(ROOT/'configs'/name,backup/'runtime/configs'/name)
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     return True
 
 def publish(run,out):
+    if json.loads((run/'manifest.json').read_text()).get('preflight_only'):
+        raise ValueError('Preflight-only records cannot be published as arena results')
     export(run,out);backup=out/'recovery';backup.mkdir(exist_ok=True)
     for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl'):shutil.copy2(run/name,backup/name)
-    for name in ('source-indices.json','preflight.json','ben-preflight.json','launch.json','runtime-requirements.txt','significance-trigger.json'):
+    for name in ('source-indices.json','preflight.json','ben-preflight.json','launch.json','runtime-requirements.txt',
+                 'RECOVERY.md','handoff.json','plan.json','environment.json','ben-recovery.json','gate-trigger.json',
+                 'capture-equivalence.json','gen7-capture-report.json','gen7-capture-monitor.json','capture-report-process.json'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
     for name in ('statistics-policy.json','retirement.json','STOP','WATCHDOG_STOP'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)

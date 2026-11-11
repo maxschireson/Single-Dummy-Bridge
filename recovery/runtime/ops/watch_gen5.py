@@ -33,21 +33,34 @@ def launch(root,name,args,log,cwd=ROOT):
             stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
     atomic_json(root/name,dict(pid=child.pid,epoch=time.time()));return child.pid
 
-def ben_ready(port=8087):
+def ben_ready():
     try:
-        with socket.create_connection(('127.0.0.1',port),timeout=1):return True
+        with socket.create_connection(('127.0.0.1',8087),timeout=1):return True
     except OSError:return False
 
-def ben_services(m,run):
-    services={}
-    for spec in m['bots'].values():
+def ensure_ben_servers(run,manifest,ben_dir,ben_state):
+    """Each sample budget has its own pinned BEN configuration and process."""
+    from bridge_harness.loop_registry import sha
+    used={bot for pair in manifest['pair_schedule'] for bot in pair.split('~')}
+    ready=True;details={}
+    for key in sorted(used):
+        spec=manifest['bots'][key]
         if spec.get('engine')!='ben':continue
-        url=urlparse(spec['url'])
-        if url.hostname!='127.0.0.1' or not url.port:raise ValueError('BEN watchdog expects a local service with an explicit port')
+        address=urlparse(spec['url']);port=address.port or 80
+        if address.hostname not in ('127.0.0.1','localhost'):raise ValueError('BEN recovery expects a local managed server')
         config=run/spec['config']
-        if url.port in services and services[url.port]!=config:raise ValueError('Conflicting BEN configs on one port')
-        services[url.port]=config
-    return services
+        if sha(config)!=spec['artifact_sha256']['config']:raise ValueError('BEN configuration changed')
+        process=ben_state/('ben-process.json' if key=='ben' else key+'-process.json')
+        if not alive(process,'gameapi.py'):
+            launch(ben_state,process.name,['src/gameapi.py','--config',str(config),'--port',str(port),'--host','127.0.0.1','--record','false'],key+'-server.log',cwd=ben_dir)
+        else:
+            pid=json.loads(process.read_text())['pid'];args=Path(f'/proc/{pid}/cmdline').read_bytes().decode().split('\0')
+            actual=Path(args[args.index('--config')+1])
+            if sha(actual)!=spec['artifact_sha256']['config']:raise ValueError('Running BEN server has the wrong sample configuration')
+        try:
+            with socket.create_connection((address.hostname,port),timeout=1):details[key]='ready'
+        except OSError:ready=False;details[key]='warming'
+    return ready,details
 
 def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('/workspace/work/round5')):
     ben_state.mkdir(parents=True,exist_ok=True)
@@ -58,12 +71,8 @@ def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('
             status=dict(epoch=time.time(),collector='running',publisher='running');stop=run/'STOP'
             try:
                 m=json.loads((run/'manifest.json').read_text());s=json.loads((run/'state.json').read_text());complete=s['completed']>=m['target']
-                services=ben_services(m,run)
-                for port,config in services.items():
-                    marker='ben-process.json' if port==8087 else f'ben-{port}-process.json'
-                    if not alive(ben_state/marker,'gameapi.py'):
-                        status[f'ben_{port}_pid']=launch(ben_state,marker,['src/gameapi.py','--config',str(config),'--port',str(port),'--host','127.0.0.1','--record','false'],f'ben-{port}-server.log',cwd=ben_dir)
-                ready=all(ben_ready(port) for port in services);status['ben']='ready' if ready else 'warming'
+                if m.get('preflight_only'):raise ValueError('A preflight-only cohort cannot collect production records')
+                ready,servers=ensure_ben_servers(run,m,ben_dir,ben_state);status['ben']='ready' if ready else 'warming';status['ben_servers']=servers
                 cache=run/'dds-cache.sqlite';size=cache.stat().st_size if cache.exists() else 0
                 if size>2*1024**3 and not stop.exists():stop.write_text(token);status['collector']='draining-for-cache-rotation'
                 if stop.exists() and stop.read_text()==token and not alive(run/'process.json','gen5_runtime.py') and free(run/'.writer.lock'):
