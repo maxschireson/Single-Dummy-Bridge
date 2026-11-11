@@ -205,8 +205,8 @@
       "source_commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5"
     },
     "gen6chatgpt": {
-      "status": "BEN preflight; production capture preflight and equivalence passed",
-      "updated_epoch": 1794376761.863,
+      "status": "collecting; both BEN matchups completed and replay validated",
+      "updated_epoch": 1794377390.061,
       "ben_samples": 64,
       "gap_fork": {
         "per_band": 2,
@@ -221,7 +221,24 @@
         "engine-based BEN audit disable and serial BEN pool"
       ],
       "retired_records": 188,
-      "hidden_ben32_records": 9
+      "hidden_ben32_records": 9,
+      "full_checkpoint": "9514dd3865d5067fee29383de4296e32120f1414",
+      "full_checkpoint_files_verified": 3649,
+      "full_checkpoint_current_records": 19,
+      "capture_equivalence": {
+        "status": "passed",
+        "deals": 3,
+        "root_tables": 7,
+        "audit_forks": 31,
+        "gap_forks": 38
+      },
+      "operator_handoff": {
+        "issue": "Published primary BEN64 runtime still selects ben_audit only for opponent=='ben'; ben64 receives ordinary audits despite intended disabled BEN audits.",
+        "observed_runtime": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/arena-gen6-codex-v7-capture-feed/recovery/runtime/bridge_harness/gen5_arena.py",
+        "local_fix": "Select ben_audit when with_ben is true (engine=='ben' included). Preserve serial BEN pool for aliases.",
+        "validation": "Current ChatGPT medium/BEN64 and fast/BEN16 actual records replay-valid, configured budgets64/16, zero audits and zero gap forks.",
+        "ownership": "Primary producer owner should inspect and address via its own drained/versioned transition; no other collector/feed changed."
+      }
     }
   }
 }
