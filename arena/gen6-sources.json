@@ -267,7 +267,7 @@
       "source_state": "/workspace/work/gen6-fast-selfplay-cutover.json"
     },
     "gen6chatgpt": {
-      "status": "Recovered stopped session; 1755 completed, zero failures",
+      "status": "Stopped2015: BEN server connection lost; failure preserved, diagnosis published",
       "pair_weights": {
         "6-32~6-32": 37,
         "6-32~ben": 3
@@ -277,12 +277,12 @@
       "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
       "preflight": "8 lifecycle/report/play tests; 6 real-model plays per old/new lifecycle under 3normal+1BEN load matched cards, probabilities, seeds, auctions and scores; 3 distinct BEN processes exited0; production621 and1082 replay+SHA+same play fingerprints passed.",
       "source_note": "Original 8128 corpus indices/seeds and frozen actors/source unchanged. 656 exact prior receipts retained and pinned in new runtime continuation; no duplicate dashboard source for prior075a. One spawned BEN board per process, parent-observed exit status required before committing; no retry loop.",
-      "full_checkpoint": "aa03ab8b69700bc0ded8a04d896d4b1237149230",
-      "full_checkpoint_records": 1673,
-      "full_checkpoint_verified_files": 9827,
-      "operator_handoff": "LATEST RECOVERY Nov11 ~16:44 UTC: Current65a found stopped1673 (1481self192BEN) since15:06; all3locksfree,noSTOP,no unresolvedfailure. Entire observer log ends abruptly with launcher_exit:null; old session40462 unavailable. Lastcompleted111 BEN exits0,OOM24; no exit/victim evidence, causeunconfirmed. Verified all1673episode/receiptSHA256pairs,656retained and frozen source/runtime/models/corpus. One controlled UNCHANGED .venv/bin/python observe_launcher.py restart CURRENT checkout in LIVE session61231. Allfour priorinflight1600/1601/1602/2561 completed, fullreplay+receiptSHA passed. Latest1755=1554self201BEN,all3locksheld,heartbeat7s,zero failures,noSTOP,35.75GBfree,cache3.34GB;9newBEN child exits0. Capturemonitorfresh1553eligible-root upperbound below2000. No durableuptimeclaim. recovery-attempt.json preserves stop/restart/proof; no failure cleared. NEW FULL aa03ab8b69700bc0ded8a04d896d4b1237149230 verifiedALL9827filehashes+actualref,1673pairs,source/runtime/models/corpus reconstructed; fetched recovery/state1673. Includes restart-start evidence; local recovery-attempt now additionally contains replay proof. Supersedesf8b969...1432. LatestDASHBOARD0b86d5ebc57a398cb52ebb3f23e0acd4f9dcf91e verified92hashes+actualhead,fetched1749runningtrue,zero failures. No publisherleft. Mainb0909bb/configunchanged,PR13/9/4draft; independent5111snapshot15:54,primary2020@12:05stillstale; otherownersuntouched. Allretiredcohorts STOP/WATCHDOG_STOP/free locks. Continuecurrent65a onlyFASTself37/BEN16 3,target8128+1863historic+9fresh topup. This supersedes older health/session/checkpoint headers.\n\n",
-      "dashboard_checkpoint": "0b86d5ebc57a398cb52ebb3f23e0acd4f9dcf91e",
-      "dashboard_checkpoint_records": 1749
+      "full_checkpoint": "c6222a12c45a24584fe73ef0c9aae72cab2dcb30",
+      "full_checkpoint_records": 2015,
+      "full_checkpoint_verified_files": 10535,
+      "operator_handoff": "LATEST STALL/DIAGNOSIS Nov11 ~17:36 UTC: Current65a stopped2015=1786self229BEN at17:11:26, unresolvedfailures/003062.json preserved unchanged. All3locksfree,noSTOP,34.6GBfree,cache4.13GB; NO productionrestart. Actual BENboardworker exit1 from HTTP RemoteDisconnected, not unexplained child disappearance. Observer shows BENserverPID6 RSS0.805->1.392GB then disappeared in same interval as worker314; sharedOOM24->28 within~4s, but no server exitcode/victim attribution, OOM remains unproven. Launcher correctly exited1. 37completedBEN child exits0 then1failed. Isolateddiagnostic3062 freshBENserver/separatecache passed fullruntime replay69.46s,maxRSS856112KiB,driverexit0,sharedOOM28unchanged,zero productioncommits. diagnostics/ben3062_probe.py,probe-summary,serverlog,investigation and recovery-attempt preserve evidence. Next engineering step SAFE VERSIONED bounded BEN SERVER lifetime plus direct server exitcode telemetry, with equivalence/preflight preserving playerinputs/actions/RNG/models/provenance; current perboard BENworker recycling works but server longlived. Do NOT simply repeat unchangedrestart or clear3062. Frozenruntimeunchanged,all2015pairs+656retained+source/runtime/models/corpusverified. NEW FULL c6222a12c45a24584fe73ef0c9aae72cab2dcb30 verified ALL10535filehashes+actualref,2015episode/receiptSHA256pairs,unresolved3062failure+diagnostics+allhistory. Remote recovery/state confirms2015/failures1. Fixed unpinned snapshot_feed.py recovery failures counter (was hardcoded0 via state helper); amended twofiles atop fullc6b56ae and reverifiedall10535; restore c6222a not intermediatec6b56ae. Latest dashboard1d95bcb4240186d30e1df73bb52b13bae46dad9e verified104hashes+actualhead,fetched2015runningfalse/failures1; latestFULL alsoexports2015. No publisher/diagnostic job left. Mainb0909bb/configunchanged,PR13/9/4draft. Otherfeedsprimary2020@12:05andindependent5111@15:54stale; ownershippreserved. AllretiredcohortsSTOP/WATCHDOG_STOP/free locks. Totaleligible3878=1863historic+2015current;8128target+9freshtopupunchanged. Continueengineeringoversight, notblindrestart. This supersedes older health/session/checkpoint headers.\n\n",
+      "dashboard_checkpoint": "1d95bcb4240186d30e1df73bb52b13bae46dad9e",
+      "dashboard_checkpoint_records": 2015
     },
     "gen6cloudselfplay": {
       "status": "Collecting independent fast self-play only for Gen7",
