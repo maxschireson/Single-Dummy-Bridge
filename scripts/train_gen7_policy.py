@@ -145,6 +145,7 @@ def main():
     p.add_argument('--identity', type=float, default=.5, help="with --augment cards: share of positions left as recorded")
     p.add_argument('--patience', type=int, default=0, help='stop after this many epochs without a better held-out loss; 0 = never')
     p.add_argument('--weight-decay', type=float, default=1e-4)
+    p.add_argument('--kinds', default='0,1,2', help='table kinds to train on: 0 root tables, 1 tie-fork tables, 2 gap-fork tables')
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     kind = KINDS[a.kind]
@@ -154,7 +155,8 @@ def main():
     split = z['deal_split']
     train_deals = np.flatnonzero(split == 0)
     keep = train_deals[:max(1, int(round(len(train_deals) * a.fraction)))]         # deal order is arbitrary but fixed
-    train = np.flatnonzero(np.isin(data['deal'], keep))
+    kinds = [int(k) for k in a.kinds.split(',')]
+    train = np.flatnonzero(np.isin(data['deal'], keep) & np.isin(data['meta'][:, 2], kinds))
     val = np.flatnonzero(split[data['deal']] == 1)
     test = np.flatnonzero(split[data['deal']] == 2)
     rng = np.random.default_rng(a.seed)
@@ -245,7 +247,7 @@ def main():
         'blank_calls_only': short(evaluate(lambda b: predict(final, b), dict(held, auction=np.zeros_like(held['auction'])), everyone)),
         'blank_shown_only': short(evaluate(lambda b: predict(final, b), dict(held, shown=np.zeros_like(held['shown'])), everyone)),
     }
-    metrics = dict(kind=a.kind, width=a.width, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
+    metrics = dict(kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
                    selected_epoch=best[1], fraction=a.fraction, train_deals=int(len(keep)), train_examples=int(len(train)),
                    validation=evaluate(lambda b: predict(final, b), data, val),
                    test=evaluate(lambda b: predict(final, b), data, test) if a.fraction == 1. else None,
