@@ -10,12 +10,13 @@ from unittest.mock import patch
 
 import numpy as np
 
-from bridge_harness.core import Game, card
+from bridge_harness.core import Game, card, symbol
 from bridge_harness.corpus import generate
 from bridge_harness.gen6 import Gen6Player, View
 from bridge_harness.gen6_nets import FitScorer, HON_HCP
 from bridge_harness.gen7 import Gen7Config, Gen7Player, hidden_plays, past_view, player
 from bridge_harness.gen7_net import INPUTS, N_SHOWN, SEAT_SHOWN, Shown, encode, make_bank, stack
+from bridge_harness.gen7_tree import Tree, TreeConfig, seat_view
 from bridge_harness.players import GreedyPlayer
 from bridge_harness.runner import play_table, replay
 from test_gen6 import FakeBelief, FakeState, lead_weights, position, scorer_weights
@@ -50,7 +51,9 @@ def played(seed, plies):
     return board, game, before
 
 
-class Gen7Tests(unittest.TestCase):
+class Fixture(unittest.TestCase):
+    """A temporary model folder with random scorer, lead net and policy net; no tests of its own."""
+
     def setUp(self):
         self.env = patch.dict(os.environ, {'BRIDGE_DDS_CACHE': ''})
         self.env.start()
@@ -78,6 +81,8 @@ class Gen7Tests(unittest.TestCase):
         self.players.append(p)
         return p
 
+
+class Gen7Tests(Fixture):
     def listed(self, seed, plies, most=4000, full=False):
         """A position with two hidden hands and a short enough deal list, or None: (Observation, View, views before each play)."""
         board, game, before = played(seed, plies)
@@ -339,6 +344,185 @@ class Gen7Tests(unittest.TestCase):
         self.assertIs(type(b), Gen6Player)
         with self.assertRaises(ValueError):
             Gen7Config(tie_break='coin')
+
+
+class TreeTests(Fixture):
+    """The tree search (bridge_harness/gen7_tree.py)."""
+
+    def spot(self, seed, plies, most=400):
+        """A position after the lead with a short deal list: (player, Observation, layouts, weights, game, views before each play)."""
+        p = self.make(list_solve=0)
+        board, game, before = played(seed, plies)
+        o = game.observation()
+        v = View(o)
+        if len(v.hidden) != 2 or v.count() > most or len(o.legal) < 2:
+            return None
+        worlds, weights, _ = p.layouts(o, v, 'list', np.random.default_rng(0))
+        return p, o, worlds, weights, game, before
+
+    def test_seat_view_is_the_observation_that_seat_had(self):
+        checked = 0
+        for seed in range(12):
+            board, game, before = played(seed, 30 + seed)
+            o = game.observation()
+            dummy = o.contract.dummy
+            for i in range(1, len(before)):
+                true, hands = before[i]
+                self.assertEqual(seat_view(o, o.history[:i], hands[dummy], true.controller, true.actor, hands[true.controller]), true)
+                self.assertEqual(seat_view(o, o.history[:i], hands[dummy], true.controller, true.actor, hands[true.controller], true.declarer_tricks), true)
+                checked += 1
+        self.assertGreater(checked, 300)
+
+    def test_no_tricks_is_pimc(self):
+        used = 0
+        for seed in range(30):
+            got = self.spot(seed, 30 + seed % 14)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            solved = p.dds.solve_batch(worlds, o.contract.trump, o.leader, o.trick, fixed_seats=[s for s, h in enumerate(o.known_hands) if h is not None])
+            stats = p.dds.cache_stats()
+            want = p.search_decision(o, random.Random(0), solved, weights, stats, stats, {}).details['estimates']
+            tree = Tree(p.net, p.dds, TreeConfig(tricks=0))
+            for x, value in tree.values(o, worlds, weights).items():
+                self.assertAlmostEqual(value, want[symbol(x)]['utility'], places=9)
+            self.assertEqual(tree.net_rows, 0)
+            used += 1
+        self.assertGreater(used, 6)
+
+    def test_reply_rows_are_the_encoder_on_that_seats_view_in_each_layout(self):
+        rows = 0
+        for seed in range(30):
+            got = self.spot(seed, 26 + seed % 16)
+            if got is None:
+                continue
+            p, o, worlds, weights, game, _ = got
+            tree = Tree(p.net, p.dds, TreeConfig(tricks=2))
+            tree.values(o, worlds, weights, cards=[])                    # sets the search up; no card is searched
+            c = o.contract
+            history, tricks, gone = tuple(o.history), o.declarer_tricks, np.zeros(52, bool)
+            rng = random.Random(seed)
+            for _ in range(6):                                           # walk the real game on from here
+                if game.done:
+                    break
+                now = game.observation()
+                if now.controller != o.controller:
+                    live = np.arange(len(worlds))
+                    held = tree.member[:, now.actor] & ~gone
+                    led = now.trick[0][1] // 13 if now.trick else None
+                    in_suit = held & (np.arange(52) // 13 == led) if now.trick else held
+                    legal = np.where(in_suit.any(axis=1)[:, None], in_suit, held)
+                    batch = tree.reply_inputs(history, tricks, gone, now.actor, now.controller, live, legal)
+                    dummy_hand = [x for x in o.known_hands[c.dummy] if not gone[x]]
+                    want = stack([p.net.encode(seat_view(o, history, dummy_hand, now.controller, now.actor,
+                                                         [x for x in w[now.controller] if not gone[x]])) for w in worlds])
+                    for k in INPUTS:
+                        np.testing.assert_array_equal(np.asarray(batch[k]), want[k], err_msg=k)
+                    rows += len(worlds)
+                x = rng.choice(now.legal)
+                game.play(x)
+                history += ((now.actor, x),)
+                gone[x] = True
+                tricks = game.declarer_tricks
+                # keep only layouts in which that card was that seat's to play
+                keep = [i for i, w in enumerate(worlds) if x in w[now.actor]]
+                if len(keep) < len(worlds):
+                    worlds = [worlds[i] for i in keep]
+                    tree.member = tree.member[keep]
+                if not worlds:
+                    break
+        self.assertGreater(rows, 200)
+
+    def test_probability_of_the_play_is_carried_whole(self):
+        """With every card kept, the layouts' weights reach the leaves undiminished."""
+        class Count(Tree):
+            def leaf(self, history, trick, declarer_tricks, gone, reach):
+                self.lines += 1
+                return float(reach.sum())
+        used = 0
+        for seed in range(30):
+            got = self.spot(seed, 28 + seed % 12, most=60)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            for breadth, mass in ((13, 1.), (2, .9)):
+                tree = Count(p.net, p.dds, TreeConfig(tricks=2, breadth=breadth, mass=mass))
+                for value in tree.values(o, worlds, weights).values():
+                    self.assertAlmostEqual(value, 1., places=9)
+            used += 1
+        self.assertGreater(used, 4)
+
+    def test_the_deciders_later_card_is_one_choice_for_all_layouts(self):
+        """At the decider's own later turn the value is the best single card's average, never each layout's own best."""
+        used = fused_would_differ = 0
+        for seed in range(60):
+            got = self.spot(seed, 24 + seed % 20)
+            if got is None:
+                continue
+            p, o, worlds, weights, game, _ = got
+            c = o.contract
+            if game.done or len(worlds) < 2:
+                continue
+            tree = Tree(p.net, p.dds, TreeConfig(tricks=2, breadth=3, mass=1.))
+            tree.values(o, worlds, weights, cards=[])
+            payoff = np.random.default_rng(seed).random((len(worlds), 52))
+            seen = []
+
+            def after(history, declarer_tricks, gone, tricks_done, seat, x, reach):
+                seen.append(x)
+                return float((reach * payoff[:, x]).sum())
+            tree.after = after
+            reach = np.asarray(weights, float) / float(np.sum(weights))
+            value = tree.node(tuple(o.history), o.declarer_tricks, np.zeros(52, bool), 0, reach)     # the decider is to play now
+            self.assertTrue(set(seen) <= set(o.legal))
+            self.assertLessEqual(len(seen), 3)
+            self.assertAlmostEqual(value, max(float((reach * payoff[:, x]).sum()) for x in seen), places=12)
+            fused = float((reach * payoff[:, seen].max(axis=1)).sum())
+            self.assertLessEqual(value, fused + 1e-12)
+            fused_would_differ += fused > value + 1e-6
+            used += 1
+        self.assertGreater(used, 8)
+        self.assertGreater(fused_would_differ, 4)
+
+    def test_double_dummy_replies_with_honest_own_cards_never_beat_pimc(self):
+        used = 0
+        for seed in range(40):
+            got = self.spot(seed, 26 + seed % 12, most=200)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            index = np.argsort(-np.asarray(weights))[:6]
+            sub, share = [worlds[i] for i in index], [weights[i] for i in index]
+            pimc = Tree(p.net, p.dds, TreeConfig(tricks=0)).values(o, sub, share)
+            honest = Tree(p.net, p.dds, TreeConfig(tricks=2, reply='dd', own_breadth=13)).values(o, sub, share)
+            for x in o.legal:
+                self.assertLessEqual(honest[x], pimc[x] + 1e-9)
+            used += 1
+            if used >= 6:
+                break
+        self.assertGreaterEqual(used, 6)
+
+    def test_two_trick_trees_play_legal_lines_to_a_sane_value(self):
+        used = 0
+        for seed in range(40):
+            got = self.spot(seed, 26 + seed % 12, most=200)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            index = np.argsort(-np.asarray(weights))[:6]
+            tree = Tree(p.net, p.dds, TreeConfig(tricks=2, breadth=2, mass=.9, layouts=6))
+            values = tree.values(o, [worlds[i] for i in index], [weights[i] for i in index])     # DDS rejects any illegal position
+            self.assertEqual(set(values), set(o.legal))
+            self.assertTrue(all(-13 <= v <= 13 for v in values.values()))
+            self.assertGreater(tree.lines, len(o.legal))
+            with self.assertRaises(ValueError):
+                Tree(p.net, p.dds, TreeConfig()).values(played(seed, 0)[1].observation(), worlds, weights)      # the opening lead
+            used += 1
+            if used >= 5:
+                break
+        self.assertGreaterEqual(used, 5)
+        with self.assertRaises(ValueError):
+            TreeConfig(mass=0.)
 
 
 class ShownTests(unittest.TestCase):
