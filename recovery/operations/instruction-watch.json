@@ -202,14 +202,14 @@
       "pull_request": true
     }
   ],
-  "comments_since": "2026-11-11T19:28:03Z",
+  "comments_since": "2026-11-11T20:31:25.481354+00:00",
   "new_issue_comments": 0,
   "new_review_comments": 0,
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "This stream is explicitly 100% Gen6 fast self-play. The shared 37/3 mix predates this direct user instruction; it is not a new instruction for this stream.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "no_applicable_instruction_changes",
-  "collection_action": "Leave the owned healthy collector and publisher running; no runtime, model, manifest or schedule changes.",
+  "collection_action": "Continue the healthy owned all-Gen6-fast self-play stream unchanged. The collector's PID change followed the recorded, drained disposable-cache rotation at 653 deals; no failure or instruction change occurred.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -227,7 +227,7 @@
     "already_enabled": true,
     "first_report_root_tables": 2000,
     "report_status": "Not yet due; reassess at the 2000-root-table boundary. Do not invent an absent before-capture rate comparison.",
-    "current_root_tables": 556
+    "current_root_tables": 1075
   },
   "research_disposition": {
     "gen7_alpha": "Plan closed; no authorized adoption or deployment change.",
@@ -236,21 +236,30 @@
     "prs9_4": "Deferred prototypes/follow-up work, not collection launch instructions."
   },
   "notification": "none",
-  "checked_epoch": 1794429085.4813542,
-  "checked_at": "2026-11-11T20:31:25.481354+00:00",
-  "next_check": "2026-11-11T21:25:53+00:00",
+  "checked_epoch": 1794432726.5585282,
+  "checked_at": "2026-11-11T21:32:06.558528+00:00",
+  "next_check": "2026-11-11T22:25:53+00:00",
   "stream_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
   "health": {
-    "completed": 556,
+    "completed": 1075,
     "target": 25000,
     "pair_weights": {
       "6-32~6-32": 1
     },
-    "heartbeat_age_seconds": 9.32,
+    "heartbeat_age_seconds": 3.52,
     "failures": 0,
-    "published": 550,
-    "published_commit": "44459401e03ef3aff3602a048e2a50fb604c742e",
+    "published": 1069,
+    "published_commit": "8e5ceab817573c65c039656ddc9ccd2003438854",
     "source_runtime_and_artifacts": "verified",
-    "locks": "writer, supervisor and publisher confirmed held by existing processes; ownership unchanged"
+    "locks": "writer, supervisor and publisher locks held by verified existing processes; ownership unchanged",
+    "last_cache_rotation": {
+      "epoch": 1794429765.3686116,
+      "completed": 653,
+      "previous_bytes": 2156478464
+    }
+  },
+  "previous_check": {
+    "checked_at": "2026-11-11T20:31:25.481354+00:00",
+    "result": "no_applicable_instruction_changes"
   }
 }
