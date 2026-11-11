@@ -139,27 +139,28 @@ Measured, all offline, double-dummy scored, on recorded Gen5 common-auction tabl
 | Policy on exact ties only | 5RZ32 vs 5R32 +0.23 ± 0.08 IMPs/board (1,759 arena boards) | policy-threshold chat, 11 Nov |
 | Bidder vs Gen5 bidder | +0.331 ± 0.068 IMPs/board, double-dummy duplicate on 2,270 solved deals | `models/bidding/gen6-candidate-2026-11-11` |
 
-Layout choice in tricks 1–5 (54 tables, 919 decisions, still running; expected double-dummy loss
-in tricks per table against 256 held-out posterior layouts; scorer = a 7-minute copy, not v0):
+Layout choice in tricks 1–5 (109 tables, 1,841 decisions; expected double-dummy loss in tricks
+per table against 256 held-out posterior layouts; scorer = a 7-minute copy, not v0; records and
+method in `reports/gen6-layout-selection-2026-11-11/`):
 
 | Layouts solved | Loss | Against 32 independent draws |
 | --- | --- | --- |
-| 32 independent draws | 0.077 | |
-| 32 evenly spaced | 0.047 | +0.030 ± 0.018 |
-| 32, one random member per cluster | 0.045 | +0.032 ± 0.018 |
-| 32 cluster centres | 0.054 | +0.023 ± 0.016 |
-| 32 most likely classes | 0.142 | −0.065 ± 0.020 |
-| 64 independent draws | 0.028 | +0.049 ± 0.017 |
-| 128 independent draws | 0.019 | +0.058 ± 0.017 |
-| 256 independent draws | 0.010 | +0.067 ± 0.017 |
+| 32 independent draws | 0.073 | |
+| 32 evenly spaced | 0.039 | +0.035 ± 0.011 |
+| 32 cluster centres | 0.047 | +0.026 ± 0.011 |
+| 32, one random member per cluster | 0.050 | +0.024 ± 0.011 |
+| 32 most likely classes | 0.151 | −0.078 ± 0.016 |
+| 64 independent draws | 0.030 | +0.043 ± 0.011 |
+| 128 independent draws | 0.017 | +0.056 ± 0.011 |
+| 256 independent draws | 0.009 | +0.064 ± 0.011 |
 
-The number of layouts matters more than how they are picked: 64 independent draws beat the best
-32-layout method by +0.019 ± 0.006. At 32, one per cluster against evenly spaced is
-+0.003 ± 0.008, so clustering is not shown to add anything over even spacing. The gain from 64
-over 32 is +0.026 ± 0.011 in tricks 1–2 and +0.027 ± 0.013 in tricks 3–5 (53 tables), and a
-layout costs about four times as much to solve at tricks 1–2. Hence the defaults: 32 evenly
-spaced at tricks 1–2, 64 at tricks 3–5. `mid_from_trick: 1` gives 64 from trick 1. Test code:
-`analysis/auction_belief/select_layouts.py` on the research branch.
+Evenly spaced picks at 64 (39 of the tables): loss 0.019, level with 128 independent draws
+(128 is +0.002 ± 0.006 better), +0.020 ± 0.008 better than 64 independent draws and
++0.003 ± 0.006 better than 64 cluster centres. Against evenly spaced 32 it gains
++0.005 ± 0.004 in tricks 1–2 and +0.009 ± 0.006 in tricks 3–5. At 32, one per cluster is
+0.011 ± 0.006 behind evenly spaced. Hence the defaults: evenly spaced, 32 at tricks 1–2 where a
+layout costs about four times as much to solve, 64 at tricks 3–5. `mid_from_trick: 1` gives 64
+from trick 1. The cluster picks stay available as switch values.
 
 Port checks (this package): lead net log-likelihoods equal the research code's to 1e-4 nats and
 its samples are identical draw for draw on 120 leads; bidder features to 2e-6; scorer scores equal
