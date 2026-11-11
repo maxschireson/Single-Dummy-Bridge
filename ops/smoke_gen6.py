@@ -44,11 +44,21 @@ def smoke(run, out, deals=2, start=0):
     for index in chosen:
         started = time.time()
         r = gen5_runtime.play(str(run), m, boards[index].to_dict(), index)      # run_board + validate + timing
+        common=r['regimes'].get('common',r['regimes'].get('self'))
+        native=r['regimes'].get('native',r['regimes'].get('self'))
         roles = dict(candidate=r['candidate'], opponent=r['opponent'])
         row = dict(index=index, pair=r['pair'], seconds=time.time() - started, tables=len(r['unique_tables']),
-                   native_auction_differs=[r['bidding'][f'native/{room}']['calls'] != r['bidding'][f'common/{room}']['calls'] for room in (0, 1)],
-                   common_imps=r['regimes']['common']['imps'], native_imps=r['regimes']['native']['imps'], decisions=0, tie_breaks=0)
+                   native_auction_differs=[False] if 'self' in r['regimes'] else [r['bidding'][f'native/{room}']['calls'] != r['bidding'][f'common/{room}']['calls'] for room in (0, 1)],
+                   common_imps=common['imps'], native_imps=native['imps'], decisions=0, tie_breaks=0,
+                   gap_forks=0, gap_cpu=r.get('gap_cpu'))
         for record in r['unique_tables'].values():
+            for e in record.get('gap_forks', []):
+                fork, parent = record['tables'][e['fork_table']], record['tables'][e['parent_table']]
+                assert fork.get('fork_kind') == 'gap' and e['parent_table'] == 0 and e['estimated_gap'] > 1e-9
+                assert fork['actions'][e['ply']]['card'] == e['forced_card'] != parent['actions'][e['ply']]['card']
+                assert [a['card'] for a in fork['actions'][:e['ply']]] == [a['card'] for a in parent['actions'][:e['ply']]]
+                assert not any('audit_draw' in a for a in fork['actions'][e['ply']:]), 'audit drawn inside a gap fork'
+                row['gap_forks'] += 1
             for table in record['tables']:
                 for a in table['actions']:
                     if roles.get(a['player']) not in gen6 or a.get('forced') or a.get('replayed_prefix') or a.get('counterfactual_forced') or a.get('fixed_opening_lead'):
@@ -59,6 +69,8 @@ def smoke(run, out, deals=2, start=0):
                     assert max(a['estimates'][c]['gap_to_best'] for c, p in proposal.items() if p > 0) <= 1e-9
                     if a.get('selector'):
                         assert sum(p > 0 for p in proposal.values()) >= 2, 'policy consulted without a tie'
+                    if g['source'] != 'gen5':
+                        assert a['guess_size'] >= 0. and all(0. <= v['best_share'] <= 1. + 1e-9 for v in a['estimates'].values())
                     row['decisions'] += 1
                     row['tie_breaks'] += bool(a.get('selector'))
                     key = g['source'] + (' (trick 1)' if g['trick'] == 1 and g['source'] != 'lead_net' else '')
@@ -82,6 +94,11 @@ def smoke(run, out, deals=2, start=0):
     seen = {k.split(' ')[0] for k in phases}
     assert expected <= seen, f'Phases not exercised: {sorted(expected - seen)}'
     assert sum(d['tie_breaks'] for d in report['deals']) > 0, 'No policy tie-break occurred'
+    report['gap_fork'] = m.get('gap_fork')
+    if (m.get('gap_fork') or {}).get('per_band', 0) > 0:
+        assert sum(d['gap_forks'] for d in report['deals']) > 0, 'Gap forks are configured but none was played'
+    else:
+        assert sum(d['gap_forks'] for d in report['deals']) == 0, 'Gap forks played without being configured'
     atomic_json(out, report)
     return report
 

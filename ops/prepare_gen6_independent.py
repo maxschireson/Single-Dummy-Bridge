@@ -17,7 +17,7 @@ from bridge_harness.loop_registry import sha,source_hash
 from bridge_harness.mixed_arena import verify_generation
 from bridge_harness.selfplay import atomic_json
 from bridge_harness.training import digest
-from ops.prepare_gen6 import load_plan,make_bots,check_mix,release_file,GEN6_FILES
+from ops.prepare_gen6 import load_plan,make_bots,check_mix,release_file,gap_fork_block,GEN6_FILES
 
 
 def prepare(root,artifacts,source_manifest,plan_path,count=25000,seed=None):
@@ -71,6 +71,7 @@ def prepare(root,artifacts,source_manifest,plan_path,count=25000,seed=None):
         independent_cohort=True,
         model_note='Gen6 fast: 32 layouts until trick7; medium: 256 until trick6. Lead belief net only on opening lead, then hand-fit scorer; late compatible-layout list solves up to 256. Policy breaks exact ties. Gen5 is the frozen 5RZ32 actor; BEN uses 16 samples.',
         interpretation='Independent fresh seed and cohort. Excludes the published prior corpus and available Gen5 training families. Common Gen6 auctions and native partnership auctions are paired on each board, with swapped rooms; identical full auctions reuse physical games. Play=common IMPs; total=native IMPs; bidding=total-play (includes auction/play interaction). Exploratory paired intervals are unadjusted for repeated monitoring.')
+    if gap_fork_block(plan):m['gap_fork']=gap_fork_block(plan)
     m['identity']=digest(m)
     atomic_json(root/'manifest.json',m)
     atomic_json(root/'state.json',dict(manifest_identity=m['identity'],completed=0,target=count,by_pair={},root_games=0,tables=0,epoch=time.time()))
