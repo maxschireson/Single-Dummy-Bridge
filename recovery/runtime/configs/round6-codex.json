@@ -1,0 +1,121 @@
+{
+  "schema": "arena-round-plan-v1",
+  "round": "v6",
+  "status": "launch-authorized-live-source-drained",
+  "launch_enabled": true,
+  "pending": [],
+  "seed": 202611110300,
+  "campaign": "gen6-codex-20261111",
+  "title": "Gen 6 \u00b7 Codex primary collector",
+  "artifacts": {
+    "bidding": {
+      "release": "models/bidding/gen6-candidate-2026-11-11",
+      "file": "bidder.keras",
+      "restore": "restore_model.py",
+      "sha256": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+      "what": "Gen 6 candidate bidder (graded alternatives)"
+    },
+    "lead_belief": {
+      "release": "models/cardplay/joint-auction-belief-lead-v0-2026-11-10",
+      "file": "joint_lead_v0.npz",
+      "restore": "restore.py",
+      "sha256": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+      "what": "opening leader's belief net"
+    },
+    "scorer": {
+      "release": "models/cardplay/hand-fit-scorer-v0-2026-11-11",
+      "file": "hand_fit_v0.npz",
+      "restore": "restore.py",
+      "sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+      "what": "hand-fit scorer v0"
+    }
+  },
+  "lead_state_bidder_sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+  "gen6_bots": {
+    "6-32": {
+      "label": "Gen 6 fast (32)",
+      "base": "5RZ32",
+      "samples": 32,
+      "gen6": {
+        "mid_from_trick": 14,
+        "mid_samples": 32,
+        "list_from_trick": 7,
+        "list_solve": 256
+      }
+    },
+    "6-256": {
+      "label": "Gen 6 medium (256)",
+      "base": "5RZ32",
+      "samples": 256,
+      "gen6": {
+        "mid_from_trick": 14,
+        "mid_samples": 256,
+        "list_from_trick": 6,
+        "list_solve": 256
+      }
+    }
+  },
+  "gen6_variants_for_ablation": {
+    "6g-32": {
+      "label": "Gen 6, Gen5 beliefs in tricks 1-5",
+      "base": "5RZ32",
+      "gen6": {
+        "early_source": "gen5"
+      }
+    },
+    "6n-32": {
+      "label": "Gen 6, no deal list",
+      "base": "5RZ32",
+      "gen6": {
+        "list_from_trick": 14
+      }
+    },
+    "6l-32": {
+      "label": "Gen 6, lead net weights the leader's tricks 1-5",
+      "base": "5RZ32",
+      "gen6": {
+        "leader_early_source": "lead_net"
+      }
+    }
+  },
+  "roster": [
+    "6-32",
+    "6-256",
+    "5RZ32",
+    "ben",
+    "3",
+    "2",
+    "1"
+  ],
+  "pair_weights": {
+    "6-32~5RZ32": 8,
+    "6-32~6-256": 3,
+    "6-256~ben": 3,
+    "6-32~3": 2,
+    "6-32~2": 2,
+    "6-32~1": 2
+  },
+  "common_bidder": "6-32",
+  "audit_references": {
+    "6-32": "3",
+    "6-256": "3"
+  },
+  "notes": [
+    "User authorized launch from 717cd87; engine parameters pinned. Preparation remains gated on live source access and drain; collector starts after real-runtime preflight.",
+    "Latest user allocation: 40% vs promoted Gen5, 15% vs Gen6 medium, 15% vs BEN16, 10% each vs Gen3/2/1. Exact blocks of 20 boards; partial blocks may differ.",
+    "5RZ32 is the launch package base; confirm it is the user's 5rx before launch. Display as Gen5 without changing historical identity.",
+    "Fast stays at 32 samples and medium at 256 before the list; disable the package's automatic midgame increase to 64.",
+    "Opening lead uses lead_net; subsequent play uses scorer. Full compatible-layout cutover: fast trick7, medium trick6.",
+    "Provisionally use package recommendation list_solve=256, overriding the earlier 8x fallback as authorized. list_max_layouts remains 20000. Final parameters may supersede these.",
+    "Common bidder is Gen6 fast for all four seats. Native condition uses each partnership's bidder. Matching full auctions reuse physical tables, including Gen6 fast vs medium (same bidder).",
+    "Report play=common-auction IMPs; total=native-auction IMPs; bidding=total-play, paired per board. This is an auction-condition effect including interaction with play, not a double-dummy bidder estimate.",
+    "Primary host drained Gen5RZ at 8372 completed deals. This run consumes only the 7318 unplayed source families; the independent collector uses its own fresh corpus. Actor configurations match arena-gen6-independent-feed exactly.",
+    "Fast and medium retain the package late-list solve ceiling of 256; fast uses 32 before trick7 and medium 256 before trick6. No automatic 64-sample middle phase.",
+    "Latest explicit correction from Max: the 15% BEN16 allocation is Gen6 MEDIUM (256), not fast. This supersedes the earlier screenshot row. Other collectors must drain and switch their future BEN allocation; retain earlier raw games for training."
+  ],
+  "labels": {
+    "5RZ32": "Gen 5 (32)",
+    "ben": "BEN (16)"
+  },
+  "authorized_engine_commit": "717cd87d57b61d7f7d3a41fa48228d849c9544bf"
+}
