@@ -267,7 +267,7 @@
       "source_state": "/workspace/work/gen6-fast-selfplay-cutover.json"
     },
     "gen6chatgpt": {
-      "status": "Collecting fast self-play/BEN16; 1633 completed, zero unresolved failures; 108 BEN child exits0",
+      "status": "Recovered stopped session; 1755 completed, zero failures",
       "pair_weights": {
         "6-32~6-32": 37,
         "6-32~ben": 3
@@ -277,12 +277,12 @@
       "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
       "preflight": "8 lifecycle/report/play tests; 6 real-model plays per old/new lifecycle under 3normal+1BEN load matched cards, probabilities, seeds, auctions and scores; 3 distinct BEN processes exited0; production621 and1082 replay+SHA+same play fingerprints passed.",
       "source_note": "Original 8128 corpus indices/seeds and frozen actors/source unchanged. 656 exact prior receipts retained and pinned in new runtime continuation; no duplicate dashboard source for prior075a. One spawned BEN board per process, parent-observed exit status required before committing; no retry loop.",
-      "full_checkpoint": "f8b9694201af6391e0f400d3de5e8d4d246d26cd",
-      "full_checkpoint_records": 1432,
-      "full_checkpoint_verified_files": 9332,
-      "operator_handoff": "Nov11 ~15:04 UTC: CURRENT /workspace/scratch/c7932514d17d/gen6-ben-recycled; run runs/gen6-chatgpt-ben-recycled-20261111; immutable65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5. Combined observer/launcher session40462 unchanged. 1633=1444self+189BEN, all3locksheld, heartbeat3.6s, zero failures/noSTOP; 108 production BEN child exits0, globalOOM24 unchanged,36.4GBfree,cache2.97GB. No restart needed. FULL f8b9694201af6391e0f400d3de5e8d4d246d26cd verified ALL9332 hashes+actualref,1432 paired episode/receiptSHA256s incl656retained, source/runtime/model/corpus reconstruction verified; fetched recovery state confirms1432. Newdashboard5a42c03ebeef2b07dcf7502c61561e34af565fad verified85hashes+actualref,remote1627runningtrue,zero failures. No publisher left. Restore verifiedFULL, not dashboard-only runtime blindly. Old075a permanently stopped656; those exact656 remain active and pinned, no duplicate dashboard source. All earlier cohorts stay stopped. OnlyFASTself37/BEN16 3,8128target+1863historic+9fresh topup=10000. Capturemonitorfresh,below2000eligible roots. Mainb0909bb/config unchanged; PR13/9/4draft, no adoption. Preserve other producer ownership. Do not infer primary liveness from stale2020@12:05 snapshot. No durable uptime claim.",
-      "dashboard_checkpoint": "5a42c03ebeef2b07dcf7502c61561e34af565fad",
-      "dashboard_checkpoint_records": 1627
+      "full_checkpoint": "aa03ab8b69700bc0ded8a04d896d4b1237149230",
+      "full_checkpoint_records": 1673,
+      "full_checkpoint_verified_files": 9827,
+      "operator_handoff": "LATEST RECOVERY Nov11 ~16:44 UTC: Current65a found stopped1673 (1481self192BEN) since15:06; all3locksfree,noSTOP,no unresolvedfailure. Entire observer log ends abruptly with launcher_exit:null; old session40462 unavailable. Lastcompleted111 BEN exits0,OOM24; no exit/victim evidence, causeunconfirmed. Verified all1673episode/receiptSHA256pairs,656retained and frozen source/runtime/models/corpus. One controlled UNCHANGED .venv/bin/python observe_launcher.py restart CURRENT checkout in LIVE session61231. Allfour priorinflight1600/1601/1602/2561 completed, fullreplay+receiptSHA passed. Latest1755=1554self201BEN,all3locksheld,heartbeat7s,zero failures,noSTOP,35.75GBfree,cache3.34GB;9newBEN child exits0. Capturemonitorfresh1553eligible-root upperbound below2000. No durableuptimeclaim. recovery-attempt.json preserves stop/restart/proof; no failure cleared. NEW FULL aa03ab8b69700bc0ded8a04d896d4b1237149230 verifiedALL9827filehashes+actualref,1673pairs,source/runtime/models/corpus reconstructed; fetched recovery/state1673. Includes restart-start evidence; local recovery-attempt now additionally contains replay proof. Supersedesf8b969...1432. LatestDASHBOARD0b86d5ebc57a398cb52ebb3f23e0acd4f9dcf91e verified92hashes+actualhead,fetched1749runningtrue,zero failures. No publisherleft. Mainb0909bb/configunchanged,PR13/9/4draft; independent5111snapshot15:54,primary2020@12:05stillstale; otherownersuntouched. Allretiredcohorts STOP/WATCHDOG_STOP/free locks. Continuecurrent65a onlyFASTself37/BEN16 3,target8128+1863historic+9fresh topup. This supersedes older health/session/checkpoint headers.\n\n",
+      "dashboard_checkpoint": "0b86d5ebc57a398cb52ebb3f23e0acd4f9dcf91e",
+      "dashboard_checkpoint_records": 1749
     },
     "gen6cloudselfplay": {
       "status": "Collecting independent fast self-play only for Gen7",
