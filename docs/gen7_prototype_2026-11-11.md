@@ -23,6 +23,7 @@ cards), which is not in this branch.
 | `models/cardplay/gen7-policy-v0-2026-11-11/` | The trained net (258,434 parameters), in parts, with its training report. Every check below used it |
 | `models/cardplay/gen7-policy-v1-2026-11-11/` | A wider net (828,098 parameters) trained on 5,240 deals (see "More boards") |
 | `models/cardplay/gen7-policy-v2-2026-11-11/` | The same net trained on 7,968 deals (see "More boards again") |
+| `models/cardplay/gen7-policy-v3-2026-11-11/` | The same net trained on 12,111 deals (see "And again") |
 | `bridge_harness/gen7_tree.py`, `scripts/gen7_bench.py` | A few tricks of play from each seat's own view before solving, and the fork-pair bench that scores it |
 | `scripts/gen7_noise.py` | What sampling noise costs a Gen 6 decision, and where the net stands against it |
 
@@ -239,6 +240,26 @@ Tricks given up fell by 20% for 52% more deals, as it did for the step before (2
 narrower width). On that slope (given up proportional to deals to the power -0.54) halving it again
 takes 3.6 times the deals. Two steps of one curve; the new deals also carry twice the decisions
 per deal, most of them in fork tables. The feeds were adding about 1,560 boards an hour at 11:00.
+
+## And again (15:57 UTC): v3
+
+5,163 more boards: the 1,381 held back for the bench above and two thirds of the 5,673 that reached
+the feeds between 10:58 and 15:24 UTC (about 1,275 an hour). 12,111 training deals and 3,696,408
+decisions. The other third of the newest boards (1,891) is in no net's training set.
+
+| | v2 (7,968 deals) | v3 (12,111 deals) |
+| --- | --- | --- |
+| Tricks given up per decision | 0.046 | 0.041 |
+| Plays Gen 6's exact card | 67.9% | 70.1% |
+| An equal-best card in its top 3 | 98.3% | 98.5% |
+| Cards kept until probabilities add to 0.90 | 2.23 | 2.16 |
+| Cards kept until probabilities add to 0.98 | 2.98 | 2.90 |
+
+This step is smaller than the last: 52% more deals cut tricks given up by 11%, not 20%. Held-out
+log-loss was flat from epoch 2 to epoch 3 while held-out tricks given up still fell (0.041 to
+0.039), and the recipe keeps the epoch with the best log-loss. So the slope above (deals to the
+power -0.54) is not safe to extrapolate, and whether the data or this net's size is flattening is
+open.
 
 ## What lookahead could be worth
 
