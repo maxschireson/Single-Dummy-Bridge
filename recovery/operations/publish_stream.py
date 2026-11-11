@@ -42,6 +42,7 @@ def publish():
     for name in ('manifest.json', 'corpus.jsonl', 'plan.json', 'preflight.json',
                  'artifact-source-manifest.json', 'runtime-requirements.txt',
                  'environment.json', 'launch.json', 'production-validation.json',
+                 'gen7-capture-report.json', 'gen7-capture-inputs.json', 'gen7-capture-monitor.json',
                  'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
         if (RUN / name).exists():
             copy_file(RUN / name, recovery / name)
@@ -80,7 +81,8 @@ def publish():
     if not (recovery / 'runtime').exists():
         shutil.copytree(RUNTIME, recovery / 'runtime', ignore=shutil.ignore_patterns('__pycache__'))
     for name in ('stream.json', 'prepare_stream.py', 'publish_stream.py',
-                 'supervise_stream.py', 'instruction-watch.json'):
+                 'supervise_stream.py', 'instruction-watch.json', 'report_capture.py',
+                 'publisher-maintenance.json'):
         if (BASE / name).exists():
             copy_file(BASE / name, recovery / 'operations' / name)
     export(recovery, OUT)

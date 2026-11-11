@@ -105,7 +105,7 @@
     "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
     "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
     "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
-    "transfer/gen7-prototype-20261111": "d331727a364dd971725a3203d42069ac448c4a4a",
+    "transfer/gen7-prototype-20261111": "5f9c41b8304065f693aba81b5f8034f75177f09c",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
     "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356"
@@ -203,14 +203,14 @@
       "pull_request": true
     }
   ],
-  "comments_since": "2026-11-11T21:32:06.558528+00:00",
+  "comments_since": "2026-11-11T22:31:45.731936+00:00",
   "new_issue_comments": 0,
   "new_review_comments": 0,
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "This stream is explicitly 100% Gen6 fast self-play. The shared 37/3 mix predates this direct user instruction; it is not a new instruction for this stream.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "no_applicable_instruction_changes",
-  "collection_action": "Continue the healthy owned all-Gen6-fast self-play stream unchanged. Preserve the current scorer and policy; newly published v1a scorer and Gen7 policy v4 remain unadopted research.",
+  "result": "first_capture_report_completed_no_new_collection_instructions",
+  "collection_action": "Completed the existing general-worker instruction to report after the first 2000 eligible root tables. Kept collection settings, manifest, models, runtime and all episodes/receipts unchanged; gracefully refreshed only the publisher to archive the derived report and its inputs.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -227,60 +227,64 @@
     "tie_audit_probability": 0.5,
     "already_enabled": true,
     "first_report_root_tables": 2000,
-    "report_status": "Not yet due; reassess at the 2000-root-table boundary. Do not invent an absent before-capture rate comparison.",
-    "current_root_tables": 1612
+    "report_status": "completed",
+    "current_root_tables": 2112,
+    "report_root_tables": 2000,
+    "report_path": "recovery/gen7-capture-report.json",
+    "report_sha256": "aaa5bb78c935081dca59b38436f05a56e42cdb0bf7ac97f586d4ee91516f70c6",
+    "inputs_path": "recovery/gen7-capture-inputs.json",
+    "inputs_sha256": "b710ef7ceb70afffe7164255047d7726a761f4dd7ca79d0dd6ad921559162180",
+    "gap_forks": 11838,
+    "gap_forks_per_root": 5.919,
+    "added_cpu_share": 0.6239061691088384,
+    "before_rate_available": false
   },
   "research_disposition": {
     "gen7_alpha": "Plan closed; no authorized adoption or deployment change.",
-    "gen7_prototype": "Research policy v4 at d331727; training and benchmark changes only, no collection instruction or adoption.",
+    "gen7_prototype": "5f9c41b: stake-rule and benchmark research only; no deployment or collection directive.",
     "pr13": "Draft host-specific supervision work; not a general new engine adoption.",
     "prs9_4": "Deferred prototypes/follow-up work, not collection launch instructions.",
     "hand_fit_scorer_v1a": "Research release at 8ff85d4; explicitly no arena bot uses it. No collection/model change authorized."
   },
-  "notification": "none",
-  "checked_epoch": 1794436305.731936,
-  "checked_at": "2026-11-11T22:31:45.731936+00:00",
-  "next_check": "2026-11-11T23:25:53+00:00",
+  "notification": "first_capture_report_completion",
+  "checked_epoch": 1794439454.5177863,
+  "checked_at": "2026-11-11T23:24:14.517786+00:00",
+  "next_check": "2026-11-12T00:25:53+00:00",
   "stream_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
   "health": {
-    "completed": 1612,
+    "completed": 2112,
     "target": 25000,
     "pair_weights": {
       "6-32~6-32": 1
     },
-    "heartbeat_age_seconds": 6.56,
+    "heartbeat_age_seconds": 6.75,
     "failures": 0,
-    "published": 1602,
-    "published_commit": "7b33301a844bab8f81beb95919f9a9934773811d",
+    "published": 2086,
+    "published_commit": "87f59a923dcb7e6efd9947a992d041acbd38c886",
+    "publisher_status": "Intentional graceful refresh to archive derived capture report; collector remains live",
     "source_runtime_and_artifacts": "verified",
-    "locks": "writer, supervisor and publisher locks held by verified existing processes; ownership unchanged",
-    "last_cache_rotation": {
-      "epoch": 1794434347.0798554,
-      "completed": 1307,
-      "previous_bytes": 2154962944
-    }
+    "ownership": "Owned supervisor and collector retained; publisher singleton confirmed free for refresh"
   },
   "previous_check": {
-    "checked_at": "2026-11-11T21:32:06.558528+00:00",
+    "checked_at": "2026-11-11T22:31:45.731936+00:00",
     "result": "no_applicable_instruction_changes"
   },
   "reviewed_source_changes": [
     {
-      "name": "research/hand-fit-scorer-v1a-20261111",
-      "sha": "8ff85d4ae4e204c3b86150295f3c1475e66b9ea0",
-      "date": "2026-11-11T21:38:51Z",
-      "message": "Hand-fit scorer v1a: v0's recipe retrained on the Gen 6 bidder's auctions",
-      "applicable": false,
-      "reason": "Explicit research release: no arena bot uses it; no engine, config or ops changes."
-    },
-    {
       "name": "transfer/gen7-prototype-20261111",
-      "sha": "d331727a364dd971725a3203d42069ac448c4a4a",
-      "previous": "490d957aaf97d09a69380e428cae0ecf3d6888cd",
-      "date": "2026-11-11T22:15:01Z",
-      "message": "Gen 7 prototype: net v4 (17,207 training deals); the trainer packs its tables",
+      "sha": "5f9c41b8304065f693aba81b5f8034f75177f09c",
+      "previous": "d331727a364dd971725a3203d42069ac448c4a4a",
       "applicable": false,
-      "reason": "Explicit Gen7 research prototype, with trainer/bench changes only; no collection directive or adoption authorization."
+      "reason": "Gen7 prototype tree/bench research and documentation updates only; no general collection directive or adoption authorization.",
+      "commits": [
+        {
+          "sha": "5f9c41b8304065f693aba81b5f8034f75177f09c",
+          "message": "Gen 7 prototype: the stake rule in the tree; v4's tree bench; trust and margin; board cost"
+        }
+      ]
     }
-  ]
+  ],
+  "completed_at": "2026-11-11T23:28:42.800647+00:00",
+  "next_comment_scan_since": "2026-11-11T23:24:14.517786+00:00",
+  "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll."
 }
