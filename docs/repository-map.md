@@ -21,6 +21,7 @@ a list of active workers. Branch age/name alone does not establish abandonment.
 | --- | --- | --- |
 | Bidding | [bidding loop](dds_bidding_loop.md), [Gen6 model](../models/bidding/gen6-candidate-2026-11-11/README.md) | `research/bidding-structure-20261110`, `research/gen6-bidding-refresh-20261110`, `transfer/dds-bidding-40000-20261110` |
 | Hidden-hand inference | [Gen6 implementation](../bridge_harness/gen6.py), [model releases](../models/cardplay) | `research/joint-auction-belief-20261110`, `research/belief-lab-20261110` |
+| Bidding and carding systems | [system layer](gen8_systems.md): packages in `configs/systems/`, `bridge_harness/systems.py`, `system_nets.py`, `system_bidders.py`, `system_fit.py`; work in progress, not deployed | `research/gen6-system-aware-policy-20261111` (integer-id prototype it replaces) |
 | Policy | [Gen5 policy](../bridge_harness/policy_v5.py), [release](../models/cardplay/gen5-2026-11-10/README.md) | `research/clean-policy-v5-20261110`, `research/gen6-system-aware-policy-20261111`, `research/gen6-policy-width96-full1513-20261110` |
 | Representative sampling | [Gen5R](../bridge_harness/gen5r.py), [Gen6 layout study](../reports/gen6-layout-selection-2026-11-11/README.md) | `experiment/representative-pool-tuning-20261110`, `research/layout-embedding-20261110` |
 | DDS and approximations | [binding](../bridge_harness/dds.py), [cache](../bridge_harness/dds_cache.py) | `research/dds-value-quick-20261109`, `research/ddsd-corrector-20261110` |
