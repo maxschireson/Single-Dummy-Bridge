@@ -31,7 +31,13 @@ content+=r.output.trim();
 const r=await tools.mcp__codex_apps__github_create_blob({repository_full_name:repo,encoding:"base64",content});
 const d=unwrap(r);if(d.sha!==f.sha)throw Error("blob mismatch "+f.path+" "+JSON.stringify(d));known.add(f.sha);await tools.exec_command({cmd:"printf '%s\\n' "+f.sha+" >> uploaded-blobs.txt",workdir:base,max_output_tokens:50});uploaded++;if(uploaded%100===0)text({uploaded,remaining:pending.length});
 }}));
-const t=unwrap(await tools.mcp__codex_apps__github_create_tree({repository_full_name:repo,tree_elements:inv.map(f=>({path:f.path,mode:"100644",type:"blob",...(inline.has(f.path)?{content:inline.get(f.path)}:{sha:f.sha})}))}));
+let t={};
+for(let offset=0;offset<inv.length;offset+=60){
+ const entries=inv.slice(offset,offset+60).map(f=>({path:f.path,mode:"100644",type:"blob",...(inline.has(f.path)?{content:inline.get(f.path)}:{sha:f.sha})}));
+ const result=await tools.mcp__codex_apps__github_create_tree({repository_full_name:repo,...(t.sha?{base_tree_sha:t.sha}:{}),tree_elements:entries});
+ t=unwrap(result);if(!t.sha)throw Error(JSON.stringify(result));
+}
+
 const parent=head;
 const c=unwrap(await tools.mcp__codex_apps__github_create_commit({repository_full_name:repo,parent_sha:parent,tree_sha:t.sha,message:"Gen6 ChatGPT: verified independent cohort snapshot and complete recovery records"}));
 text(await tools.mcp__codex_apps__github_update_ref({repository_full_name:repo,branch_name:"arena-gen6-chatgpt-feed",sha:c.sha,expected_sha:head}));
