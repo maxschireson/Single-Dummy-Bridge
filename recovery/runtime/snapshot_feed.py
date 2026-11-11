@@ -17,7 +17,7 @@ for folder in ('bridge_harness','ops','scripts','configs','native'):
         if p.is_file() and p.suffix in ('.py','.so','.json','.cpp'):
             d=out/'recovery/runtime'/p.relative_to(ROOT);d.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(p,d)
-for name in ('launch_local.py','snapshot_feed.py','publish_authenticated.js','source-manifest.json'):
+for name in ('launch_local.py','snapshot_feed.py','publish_authenticated.js','publish_dashboard.js','source-manifest.json'):
     shutil.copy2(ROOT/name,out/'recovery/runtime'/name)
 shutil.copy2(ROOT/'reports/gen6-chatgpt-preflight.json',out/'recovery/preflight.json')
 rows=[]
