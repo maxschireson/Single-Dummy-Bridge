@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parent
 run=ROOT/'runs/gen6-chatgpt-ben64-capture-20261111'
 out=ROOT/'publication'
 export(run,out)
-for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','source-indices.json','significance-trigger.json','plan.json','original-source-indices.json','ben-preflight.json','capture-equivalence.json','gen7-capture-monitor.json','gen7-capture-report.json'):
+for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','source-indices.json','significance-trigger.json','plan.json','original-source-indices.json','ben-preflight.json','capture-equivalence.json','gen7-capture-monitor.json','gen7-capture-report.json','recovery-attempt.json'):
     if not (run/name).exists(): continue
     dest=out/'recovery'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(run/name,dest)
 for folder in ('artifacts','assets','resolved-failures','history'):
