@@ -56,7 +56,7 @@
       "environment": "chatgpt",
       "name": "Gen 6 · ChatGPT fast self-play and BEN16",
       "branch": "arena-gen6-chatgpt-feed",
-      "cohort": "075a02098c3cf109eadabf6c6e79e7caa490557c06b03b025c90e04132143078"
+      "cohort": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5"
     },
     {
       "key": "gen6independent",
@@ -267,20 +267,20 @@
       "source_state": "/workspace/work/gen6-fast-selfplay-cutover.json"
     },
     "gen6chatgpt": {
-      "status": "Stopped at 656: recurrent BEN pool process loss; original failure retained",
+      "status": "Versioned BEN-worker recycling active; first new self-play and BEN1082 replay validated",
       "pair_weights": {
         "6-32~6-32": 37,
         "6-32~ben": 3
       },
-      "manifest": "075a02098c3cf109eadabf6c6e79e7caa490557c06b03b025c90e04132143078",
+      "manifest": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
       "retired_capture_records": 550,
       "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
-      "preflight": "2 real-model self-play deals,12gapforks; full BEN16 paired preflight52 BEN decisions; first actual records of BOTH matchups replay validated",
-      "source_note": "Frozen source/runtime/models and fast-only 37/3 mix unchanged. External process-memory observer wraps unchanged launcher; no automatic restart loop.",
+      "preflight": "8 lifecycle/report/play tests; 6 real-model plays per old/new lifecycle under 3normal+1BEN load matched cards, probabilities, seeds, auctions and scores; 3 distinct BEN processes exited0; production621 and1082 replay+SHA+same play fingerprints passed.",
+      "source_note": "Original 8128 corpus indices/seeds and frozen actors/source unchanged. 656 exact prior receipts retained and pinned in new runtime continuation; no duplicate dashboard source for prior075a. One spawned BEN board per process, parent-observed exit status required before committing; no retry loop.",
       "full_checkpoint": "7fc545f038169050e891ab3b5acbdb8a2de76977",
       "full_checkpoint_records": 656,
       "full_checkpoint_verified_files": 6255,
-      "operator_handoff": "No blind restart. Failure001082.json remains unresolved. Resource observer shows BEN worker PID49 disappeared first at11:25:41, lastRSS1.58GB/available1.39GB. Fresh BEN1082 diagnostic passes replay in36.65s at832884KiB maxRSS,exit0. Shared OOM counter rose16to20 across interval but no victim/timestamp correlation; memory pressure remains hypothesis. Complete evidence in recovery/diagnostics/ben1082-investigation.json. Next evaluate versioned bounded BEN-worker recycling with exit telemetry, preserving inputs/actions/RNG/models/scoring/provenance. Frozen runtime unchanged; retired cohorts remain stopped."
+      "operator_handoff": "CURRENT /workspace/scratch/c7932514d17d/gen6-ben-recycled, runs/gen6-chatgpt-ben-recycled-20261111, manifest65a7fd0... . One controlled observe_launcher.py launch, live session40462. Prior075a permanently STOP/WATCHDOG_STOP at656; failure1082 unchanged in history/075a.../failures. All656 originals retained with exact receipts and pinned prior identity. Preserve old raw manifest identities; pending indices7472 unchanged. Dashboard26e595bb... verified44files; full recovery of NEW runtime pending (lastfull7fc545... is OLD075a). Restore only verified FULL; do not combine new dashboard controls with old episodes blindly. OOM cause unconfirmed; monitor child exit telemetry and resources; no blind retry."
     },
     "gen6cloudselfplay": {
       "status": "Collecting independent fast self-play only for Gen7",
