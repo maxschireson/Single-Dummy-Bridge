@@ -73,3 +73,5 @@ The GitHub logging/forking observer remains at `/workspace/work/v7-logging-watch
 `arena-gen6-codex-v7-watch` every ten minutes. It stages candidates in detached checkouts before
 validation and never patches a running cohort. Additional producers register their immutable
 manifests in `gh-pages:arena/gen6-sources.json`; preserve completed cohorts and revision-pinned links.
+
+Operational update: the unused BEN32 server was stopped after the old cohort drained. BEN16 and BEN64 remain supervised. Before/after throughput includes both the capture update and the BEN budget change.
