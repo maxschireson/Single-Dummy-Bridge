@@ -1,0 +1,18 @@
+{
+  "recorded_epoch": 1794363163.1594942,
+  "python": "Python 3.12.14",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "executable": "/workspace/work/ben-venv/bin/python",
+  "source_commit": "23e2590245c12a2eee97769d072c5750595302aa",
+  "engine_commit": "717cd87d57b61d7f7d3a41fa48228d849c9544bf",
+  "source_sha256": "aa11eef02d23c3e2bc219ed711881f4eaed6837ac7d9f3ceb80952f223d71a52",
+  "runtime_sha256": {
+    "ops/gen5_runtime.py": "f957a42aa5429ab9a3f1f304498fc8d4d6e2fbb7876d87aed38c4ffce8922d60",
+    "ops/prepare_gen6.py": "694e9e38ef987882c05961896106d3b54067eca1bfe7122133a95e9a0a395b15"
+  },
+  "publication_branch": "arena-gen6-codex-feed",
+  "previous_run_completed": 8372,
+  "peer_branch": "arena-gen6-independent-feed",
+  "peer_manifest": "497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63",
+  "manifest_identity": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea"
+}
