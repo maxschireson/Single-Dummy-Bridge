@@ -125,3 +125,11 @@ Keep common play, native total and paired native-minus-common auction effects
 separate. Different configurations and earlier fast-versus-BEN records remain
 available in provenance/history and training archives. Dashboard drill-downs
 must retain exact publication revisions and displayed snapshot cutoffs.
+
+## Accidental fast-versus-BEN archive
+
+The 13 accidental paired records (11 from the early Codex run and 2 from the
+ChatGPT run) are preserved separately on `archive/gen6-fast-ben-20261111`,
+commit `802f69ad6e1416a5a7200d5e6c29f8beca2a8275`. The archive contains original manifests,
+compressed episodes and receipts, with compressed SHA256 and legal replay
+checks passed. They are excluded from all dashboard scores, rates and timing.
