@@ -1,0 +1,47 @@
+{
+  "checked_utc": "2026-11-11T05:26:27.587Z",
+  "phase": "ben32-and-fast-ben16",
+  "scope": "latest",
+  "completed": 4148,
+  "sources": [
+    "gen6chatgptearly",
+    "gen6codexbenfollowups",
+    "gen6",
+    "gen6chatgpt",
+    "gen6independent",
+    "gen6ben16completed",
+    "gen6initial"
+  ],
+  "followup_records": 47,
+  "fast_ben16": {
+    "n": 10,
+    "total": -22,
+    "mean": -2.2,
+    "variance": 21.733333333333338,
+    "sd": 4.661902329879224,
+    "se": 1.4742229591663987,
+    "ci": [
+      -5.534924026937325,
+      1.134924026937325
+    ],
+    "wins": 1,
+    "ties": 6,
+    "losses": 3
+  },
+  "medium_ben32": {
+    "n": 9,
+    "total": 14,
+    "mean": 1.5555555555555556,
+    "variance": 2.527777777777778,
+    "sd": 1.5898986690282428,
+    "se": 0.5299662230094143,
+    "ci": [
+      0.3334512538855141,
+      2.777659857225597
+    ],
+    "wins": 6,
+    "ties": 3,
+    "losses": 0
+  },
+  "new_followup_revision": "ccc6ddcf7fec0e7dd6079c21aa7d2635904b2455"
+}
