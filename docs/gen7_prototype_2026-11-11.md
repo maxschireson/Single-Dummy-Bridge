@@ -19,9 +19,12 @@ cards), which is not in this branch.
 | `scripts/train_gen7_policy.py` | Trains the net (JAX, CPU); writes the weights and a report that includes the auction-use test |
 | `scripts/gen7_check.py` | Five checks against recorded Gen 6 tables: `fidelity`, `inference`, `match`, `speed`, `auction` |
 | `scripts/gen7_lookahead.py` | From gap forks and root tables: tricks lost at each trick, Gen 6's estimates against real play, and what one to three tricks of lookahead could recover |
-| `tests/test_gen7.py` | 14 tests |
+| `tests/test_gen7.py` | 23 tests |
 | `models/cardplay/gen7-policy-v0-2026-11-11/` | The trained net (258,434 parameters), in parts, with its training report. Every check below used it |
 | `models/cardplay/gen7-policy-v1-2026-11-11/` | A wider net (828,098 parameters) trained on 5,240 deals (see "More boards") |
+| `models/cardplay/gen7-policy-v2-2026-11-11/` | The same net trained on 7,968 deals (see "More boards again") |
+| `bridge_harness/gen7_tree.py`, `scripts/gen7_bench.py` | A few tricks of play from each seat's own view before solving, and the fork-pair bench that scores it |
+| `scripts/gen7_noise.py` | What sampling noise costs a Gen 6 decision, and where the net stands against it |
 
 ## The net
 
@@ -218,6 +221,24 @@ to 1,003,622 (gap forks add many decisions per board). Same recipe, same test de
 The learning curve predicted about 0.065 for the same net. Breadth for the same coverage is already
 falling. With 3,355 deals the two widths scored the same; with 5,240 the wider one is better, so it
 is the one released as v1. It is about four times slower to evaluate.
+
+## More boards again (11:08 UTC): v2
+
+3,396 more boards by 10:05 UTC, mostly the fast self-play feeds (2,237), with their tie and gap
+forks: 7,968 training deals and 2,042,221 decisions. Same net and recipe as v1, same test deals:
+
+| | v1 (5,240 deals) | v2 (7,968 deals) |
+| --- | --- | --- |
+| Tricks given up per decision | 0.057 | 0.046 |
+| Plays Gen 6's exact card | 65.2% | 67.9% |
+| An equal-best card in its top 3 | 98.0% | 98.3% |
+| Cards kept until probabilities add to 0.90 | 2.35 | 2.23 |
+| Cards kept until probabilities add to 0.98 | 3.14 | 2.98 |
+
+Tricks given up fell by 20% for 52% more deals, as it did for the step before (22% for 56%, at the
+narrower width). On that slope (given up proportional to deals to the power -0.54) halving it again
+takes 3.6 times the deals. Two steps of one curve; the new deals also carry twice the decisions
+per deal, most of them in fork tables. The feeds were adding about 1,560 boards an hour at 11:00.
 
 ## What lookahead could be worth
 
@@ -455,7 +476,7 @@ Not verified:
 ```
 python models/cardplay/hand-fit-scorer-v0-2026-11-11/restore.py
 python models/cardplay/gen5-2026-11-10/restore_policy.py
-python models/cardplay/gen7-policy-v0-2026-11-11/restore.py
+python models/cardplay/gen7-policy-v0-2026-11-11/restore.py      # and -v1-, -v2-
 python scripts/build_dds.py
 
 python scripts/gen7_build_dataset.py --episodes EPISODES --scorer models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz --out gen7.npz
