@@ -1,0 +1,22 @@
+{
+  "checked_utc": "2026-11-11T05:38:13.005367+00:00",
+  "status": "BEN followups active: medium versus BEN32 and fast versus BEN16.",
+  "summary": {
+    "scope": "gen6",
+    "completed": 4555,
+    "sources": [
+      "gen6initial",
+      "gen6ben16completed",
+      "gen6chatgptearly",
+      "gen6",
+      "gen6chatgptcompleted",
+      "gen6independent",
+      "gen6codexbenfollowups"
+    ],
+    "fast": 22,
+    "medium": 22
+  },
+  "coverage": "22 published hand sets \u00b7 common auction condition \u00b7 +18 IMPs for Gen 6 medium (256) vs BEN (32) \u00b7 Matches the linked dashboard snapshot. \u00b7 2 contributing runs; repeated family/matchup observations counted once. Snapshot at 11/11/2026, 5:37:54 AM.",
+  "replay_url": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/replays/board.html?v=gen6-ben-followups-1&cohort=77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6&board=177&pair=6-256%7Eben32&condition=common&revision=d619d44078178dada99f436b930913655fa41e23&revisions=%7B%22497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63%22%3A%221bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83%22%2C%229a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284%22%3A%22ca95def619269e2eefaba8263134ff8154ff1171%22%2C%22e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177%22%3A%22f7834f2a1f5326acbb7125c06bca7f5b9f8a3040%22%2C%22168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea%22%3A%2220a82a253bc4f90a396a3f8991c935e4530df7f0%22%2C%22ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035%22%3A%22382fbceed0984d0c941f4ee737d5a9d451dfdf09%22%2C%2277fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6%22%3A%22d619d44078178dada99f436b930913655fa41e23%22%2C%2273519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60%22%3A%227a51e90e5241379954f73640d7e9264d55b45326%22%7D&flip=0&report=gen6&snapshots=%7B%22497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63%22%3A1794363304.3218217%2C%229a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284%22%3A1794373836.3427587%2C%22e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177%22%3A1794363235.4205728%2C%22168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea%22%3A1794374192.3181567%2C%22ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035%22%3A1794375023.2330396%2C%2277fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6%22%3A1794375474.9307773%2C%2273519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60%22%3A1794375469.4894009%7D",
+  "page_errors": []
+}

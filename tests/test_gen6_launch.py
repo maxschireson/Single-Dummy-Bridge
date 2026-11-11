@@ -122,6 +122,7 @@ class Gen6LaunchTests(unittest.TestCase):
                 make_bots(self.old, load_plan(self.plan_path))
 
     def test_prepare_freezes_unplayed_deals_bots_and_artifacts(self):
+        self.plan.pop('gap_fork', None)  # explicitly exercise a plan without capture
         self.plan.update(roster=['6-32', '5RZ32', '5R32'], pair_weights={'6-32~5RZ32': 3, '5RZ32~5R32': 1}, audit_references={'6-32': '3'})
         self.write()
         run = self.tmp / 'run'

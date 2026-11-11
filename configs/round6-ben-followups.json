@@ -3,12 +3,12 @@
   "authorized_by": "Max, 2026-11-11: after a significant lead over BEN16, start medium versus BEN32 and fast versus BEN16",
   "allocation": "split_two",
   "seed": 202611113216,
-  "campaign": "gen6-ben-followups-20261111",
-  "title": "Gen 6 \u00b7 BEN32 and fast/BEN16 followups",
+  "campaign": "gen6-ben-followups-v7-capture-20261111",
+  "title": "Gen 6 \u00b7 BEN64 followups and Gen7 training capture",
   "pair_weights": {
     "6-32~5RZ32": 16,
     "6-32~6-256": 6,
-    "6-256~ben32": 3,
+    "6-256~ben64": 3,
     "6-32~ben": 3,
     "6-32~3": 4,
     "6-32~2": 4,
@@ -22,18 +22,12 @@
     "2",
     "1",
     "ben",
-    "ben32"
+    "ben64"
   ],
   "common_bidder": "6-32",
   "audit_references": {
     "6-32": "3",
     "6-256": "3"
-  },
-  "ben32": {
-    "id": "ben32",
-    "url": "http://127.0.0.1:8088",
-    "samples": 32,
-    "config": "configs/ben-gen6-32.conf"
   },
   "fallback_target": 25000,
   "gate": {
@@ -53,9 +47,24 @@
     "metric_confirmation": "Max explicitly confirmed OVERALL native-bidding total, not common-auction play"
   },
   "notes": [
-    "The existing 15% BEN allocation is split evenly: 7.5% medium256/BEN32 and 7.5% fast32/BEN16. Other shares stay at 40/15/10/10/10.",
+    "The existing 15% BEN allocation is split evenly: 7.5% medium256/BEN64 and 7.5% fast32/BEN16. Other shares stay at 40/15/10/10/10.",
     "BEN bidding remains neural-only; both opening lead and card play use the named sample budget.",
-    "Existing 13 accidental fast/BEN records remain archived; newly authorized fast/BEN records belong to a new immutable cohort."
+    "Existing 13 accidental fast/BEN records remain archived; newly authorized fast/BEN records belong to a new immutable cohort.",
+    "Max replaced BEN32 by BEN64. BEN32 records remain for training and are excluded from the dashboard."
   ],
-  "allocation_confirmation": "Max explicitly selected splitting the current 15% evenly: medium/BEN32 and fast/BEN16"
+  "allocation_confirmation": "Max selected equal 7.5% shares; then replaced medium/BEN32 by medium/BEN64.",
+  "gap_fork": {
+    "per_band": 2,
+    "bands": [
+      0.125,
+      0.5
+    ],
+    "max_cpu_share": 1.5
+  },
+  "ben64": {
+    "id": "ben64",
+    "url": "http://127.0.0.1:8089",
+    "samples": 64,
+    "config": "configs/ben-gen6-64.conf"
+  }
 }

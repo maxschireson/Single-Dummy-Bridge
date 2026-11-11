@@ -133,11 +133,12 @@ def register_source(a,m,retired_revision):
             if attempt==2:raise
 
 
-def preflight(run,pairs=('6-256~ben32','6-32~ben')):
+def preflight(run,pairs=None):
     from ops import gen5_runtime
     from ops.smoke_gen6 import pair_at
     from bridge_harness.corpus import load
     m=json.loads((run/'manifest.json').read_text());boards=load(run/m['corpus'])
+    if pairs is None:pairs=[pair for pair in m['pair_weights'] if any(m['bots'][k].get('engine')=='ben' for k in pair.split('~'))]
     gen5_runtime.initialize_worker(str(run));reports=[]
     for pair in pairs:
         for i in range(m['target']):
@@ -146,7 +147,9 @@ def preflight(run,pairs=('6-256~ben32','6-32~ben')):
             actions=[a for game in r['unique_tables'].values() for a in game['tables'][0]['actions']]
             ben=[a for a in actions if a.get('engine')=='BEN']
             if not ben:continue
-            budget=32 if pair.endswith('ben32') else 16
+            budget=next(m['bots'][k]['samples'] for k in pair.split('~') if m['bots'][k].get('engine')=='ben')
+            if 'gap_cpu' in r or any('gap_forks' in record for record in r['unique_tables'].values()):
+                raise ValueError('Gap capture must be disabled on BEN boards')
             if not all(a['configured_opening_lead_samples']==a['configured_play_samples']==budget for a in ben):
                 raise ValueError('BEN decision metadata budget mismatch')
             reports.append(dict(pair=pair,index=i,configured_samples=budget,ben_decisions=len(ben),status='passed'))
@@ -264,5 +267,5 @@ if __name__=='__main__':
     p.add_argument('--ben-dir',type=Path,default=Path('/workspace/work/ben-next-round'))
     p.add_argument('--ben-state',type=Path,default=Path('/workspace/work/round5'))
     p.add_argument('--interval',type=int,default=300);p.add_argument('--once',action='store_true');a=p.parse_args()
-    if a.preflight_run:print(json.dumps(preflight(a.preflight_run,('6-256~ben32',) if a.preflight_only_ben32 else ('6-256~ben32','6-32~ben'))))
+    if a.preflight_run:print(json.dumps(preflight(a.preflight_run,('6-256~ben32',) if a.preflight_only_ben32 else None)))
     else:main(a)

@@ -38,7 +38,8 @@ def smoke(run, out, deals=2, start=0):
     report = dict(manifest=m['identity'], gen6_bots={k: dict(identity=m['bots'][k]['identity'], settings=m['bots'][k]['gen6'],
                   artifacts=m['bots'][k]['artifact_sha256']) for k in sorted(gen6)}, deals=[])
     phases = {}
-    chosen = [i for i in range(start, m['target']) if set(pair_members(pair_at(m, i))) & gen6 and 'ben' not in pair_members(pair_at(m, i))][:deals]
+    chosen = [i for i in range(start, m['target']) if set(pair_members(pair_at(m, i))) & gen6
+              and not any(m['bots'][k].get('engine') == 'ben' for k in pair_members(pair_at(m, i)))][:deals]
     if not chosen:
         raise ValueError('No scheduled deal has a Gen6 bot')
     for index in chosen:
