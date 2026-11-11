@@ -2,6 +2,7 @@
 import argparse
 from collections import defaultdict
 import gzip
+import fcntl
 import hashlib
 import json
 import math
@@ -18,9 +19,26 @@ from bridge_harness.decision_timing import merge
 LABELS={}
 PAIRS=[]
 
+def collection_status(root,status,now,policy,total,target):
+    """Observe the collector on its owner host; a publisher process alone is not proof of play."""
+    heartbeat=root/'heartbeat.json'
+    if heartbeat.exists():status=json.loads(heartbeat.read_text())
+    active=False;lock=root/'.writer.lock'
+    if lock.exists():
+        with lock.open() as f:
+            try:fcntl.flock(f,fcntl.LOCK_SH|fcntl.LOCK_NB)
+            except BlockingIOError:active=True
+    age=max(0.,now-status['epoch']);stopping=(root/'STOP').exists() or status.get('stopping',False)
+    state=('archived' if policy.get('retired') else 'draining' if stopping and active else 'stopped' if stopping
+           else 'complete' if total>=target else 'heartbeat_overdue' if active and age>90 else 'running' if active else 'not_running')
+    return dict(updated_epoch=status['epoch'],observed_epoch=now,status=state,writer_active=active,
+                running=active and age<=90,workers=status.get('workers',0) if active else 0,
+                total_completed=total,heartbeat_age_seconds=age)
+
 def gen6_differences(row):
     """Paired auction-condition decomposition, in candidate-oriented IMPs."""
     play=row['imps'];total=row['own_imps']
+    if play is None and total is None:return dict(play=None,bidding=None,total=None)
     return dict(play=play,bidding=total-play,total=total)
 
 def difference_views(rows):
@@ -96,7 +114,7 @@ def export(root,out):
                     assignments=[pair_members(pair)[0] if v=='candidate' else pair_members(pair)[1] for v in e['assignments']],
                     ns_score=t0['ns_score'],declarer_tricks=t0.get('declarer_tricks'),
                     plays=[a['seat']+a['card'] for a in t0['actions']]))
-            conditions[regime]=dict(tables=tables,imps=source['imps'],label=('Common Gen6 bidder' if m.get('variant')=='6' else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
+            conditions[regime]=dict(tables=tables,imps=source['imps'],label='Fast self-play (training only)' if pair_members(pair)[0]==pair_members(pair)[1] else ('Common Gen6 bidder' if m.get('variant')=='6' else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
         common=conditions['common']['tables'];own=conditions['own']['tables']
         different=any(a['auction']!=b['auction'] for a,b in zip(common,own))
         first=r['unique_tables'][next(iter(r['unique_tables']))]['board']
@@ -156,6 +174,8 @@ def export(root,out):
             play='Common Gen6-bidder auction result',total='Native partnership-bidder auction result',
             bidding='Native minus common on the same board; includes auction/play interaction',
             uncertainty='Student-t intervals on paired per-board differences; exploratory, unadjusted for repeated monitoring')
+    d['collection']=dict(collection_status(root,status,time.time(),policy,len(episodes),m['target']),
+                         training_only_completed=len(episodes)-len(records))
     atomic_json(out/'arena/data.json',d)
     atomic_json(out/'arena/manifest.json',m)
     print(json.dumps(dict(completed=len(records),tables=sum(len(v['tables']) for s in shards.values() for v in s.values()),

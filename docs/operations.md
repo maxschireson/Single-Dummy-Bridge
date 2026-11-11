@@ -50,3 +50,5 @@ budgets or bidder conditions. Use a separate run and publication checkout.
 Run the relevant preflight, replay and record validation before publishing.
 For BEN, name its effort profile; the active primary mix is medium Gen6 versus
 BEN16. The historical fast-vs-BEN archive must stay excluded from headline metrics.
+
+For publication delays, owner-side heartbeat/lock evidence and current fast-only recovery, see [collector health](collector-health.md).

@@ -24,6 +24,10 @@ from bridge_harness.loop_registry import sha
 from bridge_harness.training import digest
 
 BIDDERS={}
+def ben_pair(m,pair):
+    from bridge_harness.arena_pairs import pair_members
+    return any(k=='ben' or m['bots'][k].get('engine')=='ben' for k in pair_members(pair))
+
 def initialize_worker(root):
     import tensorflow as tf
     tf.config.threading.set_intra_op_parallelism_threads(1);tf.config.threading.set_inter_op_parallelism_threads(1)
@@ -50,10 +54,20 @@ def validate(r,m,index):
     from bridge_harness.arena_pairs import pair_members
     candidate,opponent=pair_members(r['pair'])
     if r['candidate']!=candidate or r['opponent']!=opponent:raise ValueError('Changed candidate/opponent')
-    if set(r['regimes'])!={'common','native'}:raise ValueError('Missing bidding condition')
+    self_play=candidate==opponent
+    if set(r['regimes'])!=({'self'} if self_play else {'common','native'}):raise ValueError('Missing bidding condition')
     if r['versions']!={k:v['identity'] for k,v in m['bots'].items()}:raise ValueError('Wrong versions')
     for key,e in r['unique_tables'].items():
         if e.get('schema_version')!='v4-passed-out-v1':replay(e)
+    if self_play:
+        condition=r['regimes']['self']
+        if condition['imps'] is not None or condition['score_difference'] is not None:raise ValueError('Self-play has no strength comparison')
+        if len(condition['tables'])!=(2 if m.get('two_self_rooms') else 1):raise ValueError('Wrong self-play table count')
+        for room,key in enumerate(condition['tables']):
+            e=r['unique_tables'][key];bids=r['bidding'][f'self/{room}']
+            if e['assignments']!=['candidate']*4:raise ValueError('Wrong self-play assignments')
+            if bids['bidders']!=[m.get('common_bidder',candidate)]*4 or bids['calls']!=list(e['board']['auction']):raise ValueError('Wrong self-play auction')
+        return
     for regime,condition in r['regimes'].items():
         if len(condition['tables'])!=2:raise ValueError('Missing swapped room')
         scores=[]
@@ -80,9 +94,11 @@ def state(rows,m):
         tables=sum(r['tables'] for r in rows),failures=0,epoch=time.time(),complete=len(rows)==m['target'])
 
 def receipt(r,path):
+    common=r['regimes'].get('common',r['regimes'].get('self'))
+    native=r['regimes'].get('native',r['regimes'].get('self'))
     return dict(index=r['index'],family=r['family'],split=r['split'],pair=r['pair'],
         manifest_identity=r['manifest_identity'],episode_sha256=sha(path),completed_epoch=r['completed_epoch'],
-        imps=r['regimes']['common']['imps'],own_imps=r['regimes']['native']['imps'],
+        imps=common['imps'],own_imps=native['imps'],
         root_games=len(r['unique_tables']),tables=sum(len(e['tables']) for e in r['unique_tables'].values()),decision_timing=r['decision_timing'])
 
 def run(root,workers):
@@ -106,8 +122,8 @@ def run(root,workers):
         from bridge_harness.fork_audit import stream
         def pair_at(i):
             block=m['pair_schedule'].copy();stream(m['seed'],'pair-block',i//len(block)).shuffle(block);return block[i%len(block)]
-        fast=iter(i for i in range(m['target']) if i not in done and 'ben' not in pair_at(i))
-        slow=iter(i for i in range(m['target']) if i not in done and 'ben' in pair_at(i))
+        fast=iter(i for i in range(m['target']) if i not in done and not ben_pair(m,pair_at(i)))
+        slow=iter(i for i in range(m['target']) if i not in done and ben_pair(m,pair_at(i)))
         os.environ['BRIDGE_DDS_CACHE']=str(root/'dds-cache.sqlite')
         pending={};started=time.time()
         with ProcessPoolExecutor(max_workers=workers,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as normal,ProcessPoolExecutor(max_workers=1,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as ben:
