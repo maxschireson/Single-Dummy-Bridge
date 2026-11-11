@@ -8,11 +8,28 @@ export(run,out)
 for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','source-indices.json','significance-trigger.json','plan.json','original-source-indices.json','ben-preflight.json','capture-equivalence.json','gen7-capture-monitor.json','gen7-capture-report.json'):
     if not (run/name).exists(): continue
     dest=out/'recovery'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(run/name,dest)
-for folder in ('artifacts','assets','episodes','receipts','resolved-failures','history'):
+for folder in ('artifacts','assets','resolved-failures','history'):
     for p in (run/folder).rglob('*'):
         if p.is_file() and not p.name.endswith('.tmp'):
             d=out/'recovery'/p.relative_to(run);d.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(p,d)
+# Receipts are the commit marker. Freeze the set once, then copy each verified pair.
+# This keeps a live completion between folder copies from creating an orphan.
+from ops.gen5_runtime import state as recovery_state
+manifest=json.loads((out/'recovery/manifest.json').read_text())
+records=[];names=set()
+for receipt_path in sorted((run/'receipts').glob('*.json')):
+    receipt_bytes=receipt_path.read_bytes();receipt=json.loads(receipt_bytes)
+    stem=f"{receipt['index']:06d}";episode_bytes=(run/'episodes'/f'{stem}.json.gz').read_bytes()
+    if receipt['manifest_identity']!=manifest['identity'] or hashlib.sha256(episode_bytes).hexdigest()!=receipt['episode_sha256']:
+        raise ValueError('Snapshot receipt/episode identity or hash mismatch: '+stem)
+    for folder,name,data in (('episodes',stem+'.json.gz',episode_bytes),('receipts',stem+'.json',receipt_bytes)):
+        dest=out/'recovery'/folder/name;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+    records.append(receipt);names.add(stem)
+for folder,pattern in (('episodes','*.json.gz'),('receipts','*.json')):
+    for old in (out/'recovery'/folder).glob(pattern):
+        if old.name.split('.')[0] not in names:old.unlink()  # snapshot only; live records are untouched
+(out/'recovery/state.json').write_text(json.dumps(recovery_state(records,manifest)))
 for folder in ('bridge_harness','ops','scripts','configs','native'):
     for p in (ROOT/folder).glob('*'):
         if p.is_file() and p.suffix in ('.py','.so','.json','.cpp','.conf'):
