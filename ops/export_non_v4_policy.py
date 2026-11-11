@@ -61,6 +61,10 @@ def validate_game(e, actor_bots, manifest):
     if e['family']!=family:raise ValueError('Changed family')
     stats=Counter(tables=len(e['tables']));encodings=0
     for table in e['tables']:
+        if table.get('fork_kind')=='gap':
+            # A gap fork follows a deliberately inferior card and stores its prefix as bare cards
+            # (docs/gen7_data_capture_2026-11-11.md); it is not policy-audit material. replay() above covered it.
+            stats['gap_fork_tables_skipped']+=1;continue
         game=Game(board)
         for action in table['actions']:
             stats['actions']+=1

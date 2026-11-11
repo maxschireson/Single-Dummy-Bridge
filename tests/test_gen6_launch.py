@@ -138,6 +138,20 @@ class Gen6LaunchTests(unittest.TestCase):
             self.assertEqual(m['bots'][key], spec)
         with self.assertRaises(ValueError):
             prepare(run, self.tmp / 'source', self.plan_path)                   # never overwrites
+        self.assertNotIn('gap_fork', m)                                          # no plan block, no gap forks
+
+    def test_gap_fork_block_goes_from_the_plan_into_the_manifest(self):
+        self.plan.update(roster=['6-32', '5RZ32', '5R32'], pair_weights={'6-32~5RZ32': 1}, audit_references={'6-32': '3'},
+                         gap_fork=dict(per_band=2, bands=[.125, .5]))
+        self.write()
+        m = prepare(self.tmp / 'run', self.tmp / 'source', self.plan_path)
+        verify_generation(self.tmp / 'run', m)
+        self.assertEqual(m['gap_fork'], dict(per_band=2, bands=[.125, .5], max_cpu_share=1.5))
+        self.assertEqual(m['audit'], self.old['audit'])                          # the tie audits are left as they were
+        self.plan['gap_fork'] = dict(rate=1.)
+        self.write()
+        with self.assertRaises(ValueError):
+            prepare(self.tmp / 'run2', self.tmp / 'source', self.plan_path)
 
     def test_prepare_refuses_a_live_source_or_an_unknown_pair(self):
         (self.tmp / 'source' / 'STOP').unlink()
