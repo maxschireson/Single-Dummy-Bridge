@@ -18,9 +18,8 @@ const ref=JSON.parse(unwrap(await tools.mcp__codex_apps__github_fetch({url:'http
 const head=ref.object.sha;
 const remote=JSON.parse(unwrap(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/trees/'+head+'?recursive=1'})).content);
 const known=new Set(remote.tree.map(f=>f.sha));
-// Reuse existing immutable blobs without uploading shared model/runtime bytes again.
-const source=JSON.parse(unwrap(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/trees/arena-gen6-fast-selfplay-independent-feed?recursive=1'})).content);
-for(const f of source.tree)known.add(f.sha);
+// Reuse this producer's published blobs. Another producer's tree is not required
+// for a complete snapshot and must not block publication if unavailable.
 const pending=[...new Map(inv.filter(f=>!known.has(f.sha)).map(f=>[f.sha,f])).values()];
 text({files:inv.length,new_blobs:pending.length});
 let uploaded=0;
