@@ -279,11 +279,137 @@ thousandths of a trick per pair, and the feeds add about six pairs per board.
 gap-fork tables 0.065, with both 0.063. On the self-play feed tie forks take 20% of a board's CPU
 and gap forks 28%.
 
+## The tree on the bench (to 10:50 UTC)
+
+`bridge_harness/gen7_tree.py` plays the next few tricks from each seat's own view before solving.
+All layouts are walked together, each carrying the probability of the play so far in that layout.
+Another seat's card comes from the net on what that seat sees there (`reply='net'`), from a small
+search from that seat's view (`'search'`), or double dummy as in PIMC (`'dd'`). The decider's own
+later card is one choice for every layout that still looks the same to it (`own='best'`), or is
+treated like any other seat (`'net'`, `'search'`). With `tricks=0` the values are PIMC's exactly.
+
+`scripts/gen7_bench.py` scores an evaluator on fork pairs. In a pair, A is the card Gen 6 played
+and B a card the collector forced at the same decision and played out with the same bots, so both
+have a real result. An evaluator that prefers B is charged B's result minus A's. Figures are tricks
+per sampled pair against plain search on the same layouts. Pairs are a third each from estimated
+gaps up to 0.125, up to 0.5, and above; tricks 3-13; opponents 45% Gen 5, 18% 6-256, the rest bots
+1-3. Net v1, 8 layouts, two cards a seat kept to probability 0.90, unless stated.
+
+The **correction** is the tree's gap between A and B minus plain search's gap on the same layouts.
+Its **share** is the coefficient c in: realized cost of B = a + b x plain gap + c x correction. At 1
+the results move as far as the tree moved its estimate; at 0 the movement is noise.
+
+| Tree | Pairs | Tricks a pair | Correction share | Seconds a pair |
+| --- | --- | --- | --- | --- |
+| One trick | 5,950 | -0.005 +- 0.003 | 0.13 +- 0.06 | 0.08 |
+| Two tricks | 5,950 | -0.011 +- 0.004 | 0.13 +- 0.04 | 0.42 |
+| Two tricks, one card a seat | 3,727 | -0.010 +- 0.004 | 0.07 +- 0.04 | 0.03 |
+| Two tricks, replies sharpened (`reply_power=3`) | 3,727 | -0.001 +- 0.004 | 0.12 +- 0.05 | 0.14 |
+| Two tricks, net-rated mistakes dropped (`reply_gap=0.15`) | 3,727 | -0.002 +- 0.004 | 0.15 +- 0.07 | 0.24 |
+| Three tricks | 351 | -0.009 +- 0.021 | 0.40 +- 0.16 | 3.2 |
+| Two tricks, three cards a seat | 351 | -0.023 +- 0.020 | 0.32 +- 0.19 | 1.2 |
+| Two tricks, every legal card at the decider's later turn | 351 | -0.003 +- 0.010 | 0.35 +- 0.14 | 3.2 |
+| Two tricks, decider's later card from the net | 1,178 | -0.040 +- 0.011 | 0.12 +- 0.08 | 0.43 |
+| Two tricks, every later card by a search from that seat's view | 1,178 | -0.015 +- 0.010 | 0.34 +- 0.12 | 1.6 |
+
+The 3,727-pair rows include 2,355 tie-audit pairs (two cards Gen 6 rated level); on those the
+two-trick tree is +0.006 +- 0.004. On the 1,178 pairs of the last two rows the plain two-trick tree
+is -0.015 +- 0.010, so the decider's later card from the net is worse by 0.025 +- 0.007 pair by pair
+and search replies score the same.
+
+Four in five of the 5,950 pairs are on deals the net was trained on: the boards were split by deal
+for the net, and the bench read every deal. On the 1,081 pairs from held-out deals the two-trick
+tree is -0.023 +- 0.010 with a share of 0.07 +- 0.08; on training deals it is -0.009 +- 0.004 and
+0.14 +- 0.04. So the table flatters the tree somewhat, and the same holds for the weighting to
+tables below. `--splits 1,2` keeps the bench to held-out deals and should always be given.
+
+What the rows say:
+
+- No tree beats plain search from trick 3 on. By estimated gap the two-trick tree is +0.016 +-
+  0.008 up to 0.125, -0.029 +- 0.007 up to 0.5, and -0.020 +- 0.005 above. It prefers B in 16% of
+  pairs where plain search on the same layouts does in 2%.
+- With double-dummy replies and only the decider's later cards made honest, the tree equals plain
+  search in 90% of pairs and never prefers a different card. With 8 layouts the other seats' cards
+  split the sample, and at the decider's next turn 1.4 layouts still look alike (2.6 of 32), so
+  "one choice for layouts that look alike" barely binds.
+- Treating the decider's later self like the other seats did not fix it.
+- The correction share follows how faithfully the reply model plays what the seats really play.
+  The stand-in searcher (8 layouts from 64 random hands fitted to the auction) is crude early and
+  close to the real seats late: its share is 0.10 +- 0.15 at tricks 3-6 and 0.85 +- 0.17 at tricks
+  7-13. With net replies the share at tricks 7-13 is 0.15 +- 0.09. The share is a gauge to put on
+  each new net.
+
+**Weighted back to tables.** Every gap fork records the probability with which it was drawn, so the
+pairs can be weighted to the total over every (decision, other card) of one side at one table
+(1,372 tables, the candidate's decisions; about 36 such pairs a side). Two-trick tree, B among the
+net's top three cards (kept to probability 0.98):
+
+| | Overrules of Gen 6 a side | Tricks a side | IMPs a side |
+| --- | --- | --- | --- |
+| Tricks 3-13 | 3.8 | -0.16 +- 0.16 | -0.31 +- 0.75 |
+| Tricks 3-6 | 2.3 | +0.11 +- 0.13 | +0.34 +- 0.63 |
+| Tricks 7-13 | 1.5 | -0.27 +- 0.10 | -0.65 +- 0.35 |
+| Estimated gap up to 0.125 | 2.0 | +0.18 +- 0.08 | +0.38 +- 0.47 |
+| Up to 0.5 | 1.3 | -0.14 +- 0.11 | +0.23 +- 0.46 |
+| Above 0.5 | 0.5 | -0.20 +- 0.08 | -0.92 +- 0.35 |
+
+With any card allowed it is 5.2 overrules and -0.46 +- 0.22 tricks a side. Counting the 6-256
+seats as well, the first row is -0.06 +- 0.16. A bot plays both sides of a board in a match, so a
+board is about twice a side: -0.33 +- 0.31 tricks, -0.6 +- 1.5 IMPs. On the boards on hand 6-32
+beats 5RZ32 by 0.73 +- 0.08 IMPs a board (3,018 boards), bots 2 and 3 by 0.7, bot 1 by 1.7, and
+trails 6-256 by 0.14 +- 0.11 (1,130). So the bench cannot place a bot that uses the tree from
+trick 3 to the end between Gen 5 and Gen 6. Limits of the weighting: one card is swapped and the
+arena's bots play the rest; the tree was two wide below the root; overrules of the same decision
+are added.
+
+The loss is at tricks 7-13. From trick 7 Gen 6 solves the list of deals still consistent, which
+costs 0.29 cpu-s of a 9.1 s table and has no sampling noise (below). The tree replaces that with 8
+layouts and a reply model. So the shape to test first is Gen 6's search through trick 2, the tree
+at tricks 3-6, and Gen 6's search from trick 7. The split by trick was chosen after seeing these
+pairs, so it needs pairs not used here; the 3,396 boards that arrived after them carry 9,615 at
+tricks 3-6 (5,848 of those from self-play).
+
+## Sampling noise in Gen 6 (10:37 UTC)
+
+`scripts/gen7_noise.py`, 4,097 searched decisions from trick 3 on, 120 held-out self-play deals.
+Each decision is searched again nine times with fresh layouts: one draw is a fresh 6-32, four
+pooled are a 128-layout search, four more pooled are the yardstick on which every card is valued.
+Tricks given up per decision to the 128-layout search:
+
+| Decider | All | Tricks 3-4 | 5-6 | 7-9 | 10-13 |
+| --- | --- | --- | --- | --- | --- |
+| Card played at the table (6-32) | 0.0007 +- 0.0001 | 0.0019 | 0.0013 | 0.0001 | 0.0000 |
+| Fresh 6-32 | 0.0006 +- 0.0001 | 0.0018 | 0.0011 | 0.0001 | 0.0000 |
+| 8 layouts | 0.0053 +- 0.0004 | 0.0099 | 0.0071 | 0.0055 | 0.0007 |
+| Net v1, most probable card | 0.063 +- 0.005 | 0.061 | 0.059 | 0.076 | 0.052 |
+| Net v1, gap head | 0.054 +- 0.005 | 0.060 | 0.047 | 0.071 | 0.038 |
+| 8 layouts with the net's gap head as 8 more | 0.0074 +- 0.0007 | 0.0092 | 0.0108 | 0.0095 | 0.0017 |
+
+A fresh 6-32 search plays the 128-layout search's card 97.5% of the time (99.5% at tricks 7-9, all
+of the time after). So from trick 3 on:
+
+- More layouts buy nothing: a 6-128 would gain 0.0006 tricks a decision. On the bench a redraw at
+  close decisions had looked like a gain (+0.0017 +- 0.0010 a pair with two draws pooled); this
+  bounds it lower.
+- The net is a hundred times further from the 128-layout search than 6-32 is. Its labels are
+  clean; what it lacks is deals, or capacity, or inputs.
+- The net's gap head makes an 8-layout search worse, not better.
+
+This is noise only. Every decider here, and the yardstick, shares the double-dummy assumption.
+The opening lead and tricks 1-2 are not measured (the lead needs the lead net; tricks 1-2 are
+slow), and that is where the time is. On 260 new self-play boards a root table is 9.1 cpu-s of
+search: 4.4 s building layouts, which does not grow with the number of layouts, and 4.7 s of
+solves. By trick: lead 17%, trick 1 50%, trick 2 22%, tricks 3-13 12%. A second card within 0.125
+tricks of the best: 23% of decisions, 73% of opening leads, and half of all solve time. So 6-128
+costs about 2.5 times a table, and extra layouts only at close decisions cost 26% for double, 78%
+for 128.
+
 ## What is and is not verified
 
 Verified:
 
-- 14 new tests pass; the Gen 6 and gap-fork tests still pass.
+- 23 new tests pass (`tests/test_gen7.py`: 12 for the player, 9 for the tree, 2 for the auction
+  reading); the Gen 6 and gap-fork tests still pass.
 - Switches off, Gen 7 plays Gen 6's game card for card.
 - A hidden seat's rebuilt view equals the real one, for declarer and defender deciding, cards from
   dummy and from a hidden hand, and the opening lead.
@@ -306,17 +432,13 @@ Not verified:
 
 ## What this says to do next
 
-1. **Tree search over the net's top few cards.** A few plies now, two tricks as the target. Each
-   seat's candidate moves are the cards its own view makes likely (variable breadth by probability,
-   table above); other seats' nodes average over those; the decider's own later card is one choice
-   per thing it will have seen; DDS at the leaves. A move enters the tree only by being likely from
-   that seat's view. No double-dummy reply is added. Deeper solves are cheaper (a solve with cards
-   already on the table costs a fifth of the opening-lead solve, a third at trick 2, under half at
-   trick 3), which pays for part of it. Sized from 150 recorded tables with this net's breadth at
-   every ply, expanding every kept move for eight plies over 32 layouts costs about 590
-   cpu-seconds a table at probability 0.90, 1,800 at 0.95 and 4,800 at 0.98, against 7.6 today. So
-   full width is for the first two plies only; deeper plies need one or two moves or sampled lines,
-   fewer layouts, and in time a learned leaf value in place of the solve.
+1. **The tree, where the bench says it may pay.** Not from trick 3 to the end: it loses to Gen 6's
+   own search from trick 7, which is exact and nearly free there. The shape to test is Gen 6's
+   search through trick 2, the tree at tricks 3-6, Gen 6's search from trick 7. Before any arena
+   board: the same bench on held-out deals and unused pairs, with each new net. The gauge for a
+   net as the tree's reply model is the correction share; v1 is at 0.07 to 0.15 where a search
+   from each seat's own view reaches 0.85 late in the hand. Three tricks and three cards a seat
+   are not established either way (351 pairs) and cost 3 to 8 times two tricks two wide.
 2. **More deals.** The curve is steep and still falling. Fast tables are the cheap source for
    tricks 3 on. They need the two ops files taught the `gen7` engine and a bot spec with
    `search_from_trick` 3 or 4, `play_weight` 0 and `tie_break` `gen5` so the searched decisions are
@@ -346,6 +468,9 @@ python scripts/gen7_check.py match     --episodes EPISODES --policy $P
 python scripts/gen7_check.py speed     --episodes EPISODES --policy $P --search-from-trick 3
 python scripts/gen7_check.py auction   --episodes EPISODES
 python scripts/gen7_lookahead.py       --episodes EPISODES_WITH_GAP_FORKS
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "1;2" --splits 1,2 --out rows.json
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --policy2 OTHER.npz --tricks "2;2:net=2" --from-trick 3 --to-trick 6 --splits 1,2
+python scripts/gen7_noise.py           --episodes SELF_PLAY_EPISODES --policy $P --tables 120
 python -m unittest discover -s tests -p "test_gen7.py"
 ```
 

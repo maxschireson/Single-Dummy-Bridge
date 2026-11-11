@@ -11,9 +11,16 @@ tricks are played out first:
                         from that seat's own view; no double-dummy reply is ever added.
                         The net is unsure where Gen 6 is not, and that doubt would be read as the
                         seat making mistakes; `reply_power` and `reply_gap` sharpen its choice.
+                        reply='search' asks a search from that seat's own view instead (slow; it is
+                        the model the net stands in for). reply='dd' is PIMC's own assumption.
   the decider's later   one choice for every layout that looks the same to the decider at that point
   card                  (same cards played so far): the card with the best average over those layouts.
                         Candidates are the net's most probable cards from the decider's own view.
+                        With a handful of layouts this is weaker than it sounds: the other seats'
+                        cards split the sample, and at the decider's next turn only one or two
+                        layouts still look alike (measured: 1.4 of 8, 2.6 of 32, over two tricks),
+                        so the choice is made nearly with the layout known. own='search' or
+                        own='net' treats the decider's later self like any other seat instead.
   the end of the        each layout is solved double dummy from there.
   horizon
 
@@ -42,11 +49,15 @@ class TreeConfig:
     reply_power: float = 1.     # another seat's probabilities are raised to this power: above 1 trusts its likeliest cards more
     reply_gap: float = 99.      # another seat's cards the net rates this many tricks worse than its best-rated card are dropped
     reply: str = 'net'          # another seat's card: 'net' as above | 'dd' its double-dummy best in each layout, as PIMC assumes
+                                # | 'search' what a search from that seat's own view plays (the tree's `replier`)
     own_breadth: int = 0        # most cards considered at the decider's own later turn; 0 = `breadth`
+    own: str = 'best'           # the decider's own later card: 'best' the best average over the layouts that still look alike
+                                # | 'net' drawn from the net like any other seat | 'search' what the `replier` plays from the decider's view
 
     def __post_init__(self):
         if not (0 <= self.tricks <= 13 and 1 <= self.breadth <= 13 and 0 < self.mass <= 1 and 1 <= self.layouts <= 4096
-                and 0 < self.reply_power <= 64 and self.reply_gap >= 0 and self.reply in ('net', 'dd') and 0 <= self.own_breadth <= 13):
+                and 0 < self.reply_power <= 64 and self.reply_gap >= 0 and self.reply in ('net', 'dd', 'search') and 0 <= self.own_breadth <= 13
+                and self.own in ('best', 'net', 'search')):
             raise ValueError('Invalid tree settings')
 
 
@@ -59,8 +70,8 @@ def seat_view(o, history, dummy_hand, chooser, seat, hand, declarer_tricks=None)
     if declarer_tricks is None:
         declarer_tricks = sum(winner(history[t:t + 4], c.trump) % 2 == c.declarer % 2 for t in range(0, start, 4))
     known = [None] * 4
-    known[chooser] = tuple(sorted(hand))
-    known[c.dummy] = tuple(sorted(dummy_hand))
+    known[chooser] = tuple(sorted(int(x) for x in hand))
+    known[c.dummy] = tuple(sorted(int(x) for x in dummy_hand))
     cards = known[seat]
     follow = [x for x in cards if x // 13 == trick[0][1] // 13] if trick else []
     return Observation(chooser, seat, tuple(known), tuple(follow or cards), tuple(history), trick,
@@ -70,8 +81,10 @@ def seat_view(o, history, dummy_hand, chooser, seat, hand, declarer_tricks=None)
 class Tree:
     """One decision's search. `net` is a gen7_net.PolicyNet, `dds` a bridge_harness.dds.DDS."""
 
-    def __init__(self, net, dds, config):
-        self.net, self.dds, self.config = net, dds, config
+    def __init__(self, net, dds, config, replier=None):
+        """`replier(observation) -> {card: probability}` is what reply='search' asks for another seat's card."""
+        self.net, self.dds, self.config, self.replier = net, dds, config, replier
+        self.replies = self.own_nodes = self.own_live = 0
         self.lines = self.net_rows = self.solves = self.nodes = 0
 
     def values(self, o, worlds, weights, cards=None):
@@ -127,10 +140,21 @@ class Tree:
         if chooser == self.me:                                           # the decider's own later card: one choice for all layouts
             options = np.flatnonzero(legal[0])
             if len(options) > 1:
+                self.own_nodes += 1                 # how many layouts still look the same to the decider here
+                self.own_live += len(live)
                 view = seat_view(self.o, history, dummy_hand, chooser, seat, np.flatnonzero(self.member[0, chooser] & ~gone), declarer_tricks)
+                if cfg.own == 'search':             # the decider's later self is a searching player too: its card, not the layout's best
+                    share = self.replier(view)
+                    self.replies += 1
+                    kept = sorted(share, key=lambda x: (-share[x], x))[:cfg.own_breadth or cfg.breadth]
+                    total = sum(share[x] for x in kept)
+                    return sum(share[x] / total * self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x in kept)
                 logp = self.net.log_policy([view])[0][options]
                 self.net_rows += 1
-                options = options[self.keep(np.exp(logp.astype(np.float64)), cfg.own_breadth or cfg.breadth, 1. if cfg.own_breadth else cfg.mass)[0]]
+                kept, share = self.keep(np.exp(logp.astype(np.float64)), cfg.own_breadth or cfg.breadth, 1. if cfg.own_breadth else cfg.mass)
+                if cfg.own == 'net':
+                    return sum(q * self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x, q in zip(options[kept], share))
+                options = options[kept]
             return max(self.after(history, declarer_tricks, gone, tricks_done, seat, int(x), reach) for x in options)
         if legal.sum(axis=1).max() == 1 and len({int(row.argmax()) for row in legal}) == 1:      # forced, and the same card everywhere
             return self.after(history, declarer_tricks, gone, tricks_done, seat, int(legal[0].argmax()), reach)
@@ -143,6 +167,23 @@ class Tree:
                 best = max(values.values())
                 x = min(k for k, v in values.items() if v == best)
                 children.setdefault(int(x), np.zeros(len(reach)))[layout] = reach[layout]
+            return sum(self.after(history, declarer_tricks, gone, tricks_done, seat, x, r) for x, r in children.items())
+        if cfg.reply == 'search':           # the seat decides as a searching player would, from its own view alone
+            dummy_hand = np.flatnonzero(self.member[0, c.dummy] & ~gone)
+            children = {}
+            for row, layout in enumerate(live):
+                options = np.flatnonzero(legal[row])
+                if len(options) == 1:
+                    share = {int(options[0]): 1.}
+                else:
+                    view = seat_view(self.o, history, dummy_hand, chooser, seat, np.flatnonzero(self.member[layout, chooser] & ~gone), declarer_tricks)
+                    share = self.replier(view)
+                    self.replies += 1
+                    kept = sorted(share, key=lambda x: (-share[x], x))[:cfg.breadth]
+                    total = sum(share[x] for x in kept)
+                    share = {x: share[x] / total for x in kept}
+                for x, q in share.items():
+                    children.setdefault(int(x), np.zeros(len(reach)))[layout] = reach[layout] * q
             return sum(self.after(history, declarer_tricks, gone, tricks_done, seat, x, r) for x, r in children.items())
         batch = self.reply_inputs(history, declarer_tricks, gone, seat, chooser, live, legal)
         logp, gap = self.net.policy_and_gap_arrays(batch)
