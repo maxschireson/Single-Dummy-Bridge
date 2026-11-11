@@ -391,7 +391,7 @@
       "excluded_families": 90737
     },
     "gen6newselfplay": {
-      "status": "Collecting a new independent Gen6 fast self-play stream",
+      "status": "Gen6 fast self-play; first 2000-root-table capture report published",
       "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
       "pair_weights": {
         "6-32~6-32": 1
@@ -402,7 +402,24 @@
       "source_feed_revision": "13e0fc7b884ecfa546f693a9bac0d92b520f1247",
       "preflight": "Two real-model full-game boards passed replay, all Gen6 phases, tie audits, gap forks and capture checks.",
       "excluded_families": 13807,
-      "instructions": "Hourly GitHub checks enabled; follow current instructions addressed to collection workers in general."
+      "instructions": "Hourly GitHub checks enabled; follow current instructions addressed to collection workers in general.",
+      "capture_report": {
+        "status": "completed",
+        "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+        "publication_revision": "aca896ccce9cd9c717964eab5741f85d03897466",
+        "path": "recovery/gen7-capture-report.json",
+        "sha256": "aaa5bb78c935081dca59b38436f05a56e42cdb0bf7ac97f586d4ee91516f70c6",
+        "inputs_path": "recovery/gen7-capture-inputs.json",
+        "inputs_sha256": "b710ef7ceb70afffe7164255047d7726a761f4dd7ca79d0dd6ad921559162180",
+        "root_tables": 2000,
+        "episodes_scanned": 2003,
+        "gap_forks": 11838,
+        "gap_forks_per_root": 5.919,
+        "gap_cpu_over_root_cpu": 0.6239061691088384,
+        "residual_within_table_icc": 0.02088426833597948,
+        "before_rate_comparison_available": false,
+        "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/aca896ccce9cd9c717964eab5741f85d03897466/recovery/gen7-capture-report.json"
+      }
     }
   },
   "requested_match_mix": {
