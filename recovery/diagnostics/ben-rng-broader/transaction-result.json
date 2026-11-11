@@ -1,0 +1,71 @@
+{
+  "stale_pre_state_rejected": true,
+  "missing_rng_rejected": true,
+  "status": "passed",
+  "schema": "diagnostic-rng-marker-v1",
+  "crash_cases": [
+    {
+      "cut": "mkdir",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "episode.json.gz",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "receipt.json",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "rng.json",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "manifest",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "generation_fsync",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "parent_fsync",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "next_fsync",
+      "exitcode": -9,
+      "recovered": "g0",
+      "coherent": true
+    },
+    {
+      "cut": "pointer_replace",
+      "exitcode": -9,
+      "recovered": "g1",
+      "coherent": true
+    },
+    {
+      "cut": "commit_fsync",
+      "exitcode": -9,
+      "recovered": "g1",
+      "coherent": true
+    }
+  ],
+  "corruption_rejected": true,
+  "production_commits": 0,
+  "scope": "Real SIGKILL process interruptions, existing episode/receipt fixture, and captured diagnostic RNG states. Recovery sees old or complete new generation, never mixed. No power-loss simulation; no production collector/export integration; single serial writer assumed; no retry; initial lost production RNG not recovered."
+}
