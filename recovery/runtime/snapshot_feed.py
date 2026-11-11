@@ -2,7 +2,7 @@ from pathlib import Path
 import shutil,json,hashlib
 from ops.export_gen5 import export
 ROOT=Path(__file__).resolve().parent
-run=ROOT/'runs/gen6-chatgpt-20261111'
+run=ROOT/'runs/gen6-chatgpt-ben-followups-20261111'
 out=ROOT/'publication'
 export(run,out)
 for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json'):
