@@ -1,0 +1,49 @@
+{
+  "schema": "gen6-active-match-mix-v1",
+  "status": "authorized",
+  "authority": "Max in arena supervision chat, 2026-11-11; subsequent BEN correction supersedes screenshot",
+  "plan": "configs/round6-codex.json",
+  "pair_weights": {
+    "6-32~5RZ32": 8,
+    "6-32~6-256": 3,
+    "6-256~ben": 3,
+    "6-32~3": 2,
+    "6-32~2": 2,
+    "6-32~1": 2
+  },
+  "common_bidder": "6-32",
+  "gen6_bots": {
+    "6-32": {
+      "label": "Gen 6 fast (32)",
+      "base": "5RZ32",
+      "samples": 32,
+      "gen6": {
+        "mid_from_trick": 14,
+        "mid_samples": 32,
+        "list_from_trick": 7,
+        "list_solve": 256
+      }
+    },
+    "6-256": {
+      "label": "Gen 6 medium (256)",
+      "base": "5RZ32",
+      "samples": 256,
+      "gen6": {
+        "mid_from_trick": 14,
+        "mid_samples": 256,
+        "list_from_trick": 6,
+        "list_solve": 256
+      }
+    }
+  },
+  "labels": {
+    "5RZ32": "Gen 5 (32)",
+    "ben": "BEN (16)"
+  },
+  "active_source_branch": "codex/launch-gen6-20261111",
+  "notes": [
+    "15% BEN allocation MUST use Gen6 medium (256) versus BEN16.",
+    "Keep raw prior fast-vs-BEN games for training; the current headline mix uses medium-vs-BEN.",
+    "Source branches publishing arena-gen6-*-feed will be aggregated by immutable actor configuration and common-bidder identity."
+  ]
+}

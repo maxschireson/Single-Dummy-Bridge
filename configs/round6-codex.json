@@ -90,14 +90,15 @@
   "pair_weights": {
     "6-32~5RZ32": 8,
     "6-32~6-256": 3,
-    "6-32~ben": 3,
+    "6-256~ben": 3,
     "6-32~3": 2,
     "6-32~2": 2,
     "6-32~1": 2
   },
   "common_bidder": "6-32",
   "audit_references": {
-    "6-32": "3"
+    "6-32": "3",
+    "6-256": "3"
   },
   "notes": [
     "User authorized launch from 717cd87; engine parameters pinned. Preparation remains gated on live source access and drain; collector starts after real-runtime preflight.",
@@ -109,7 +110,8 @@
     "Common bidder is Gen6 fast for all four seats. Native condition uses each partnership's bidder. Matching full auctions reuse physical tables, including Gen6 fast vs medium (same bidder).",
     "Report play=common-auction IMPs; total=native-auction IMPs; bidding=total-play, paired per board. This is an auction-condition effect including interaction with play, not a double-dummy bidder estimate.",
     "Primary host drained Gen5RZ at 8372 completed deals. This run consumes only the 7318 unplayed source families; the independent collector uses its own fresh corpus. Actor configurations match arena-gen6-independent-feed exactly.",
-    "Fast and medium retain the package late-list solve ceiling of 256; fast uses 32 before trick7 and medium 256 before trick6. No automatic 64-sample middle phase."
+    "Fast and medium retain the package late-list solve ceiling of 256; fast uses 32 before trick7 and medium 256 before trick6. No automatic 64-sample middle phase.",
+    "Latest explicit correction from Max: the 15% BEN16 allocation is Gen6 MEDIUM (256), not fast. This supersedes the earlier screenshot row. Other collectors must drain and switch their future BEN allocation; retain earlier raw games for training."
   ],
   "labels": {
     "5RZ32": "Gen 5 (32)",
