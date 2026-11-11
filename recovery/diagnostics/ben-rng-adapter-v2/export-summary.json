@@ -1,0 +1,668 @@
+{
+  "completed": 3,
+  "views": {
+    "0": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    },
+    "100": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    },
+    "500": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    },
+    "1000": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    }
+  },
+  "own_views": {
+    "0": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    },
+    "100": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    },
+    "500": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    },
+    "1000": {
+      "groups": {
+        "6-32~6-32": {
+          "n": 2,
+          "total": null,
+          "mean": null,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 0
+        },
+        "6-32~ben": {
+          "n": 1,
+          "total": -1,
+          "mean": -1.0,
+          "variance": null,
+          "sd": null,
+          "se": null,
+          "ci": null,
+          "wins": 0,
+          "ties": 0,
+          "losses": 1
+        }
+      },
+      "matrix": {
+        "5RZ192": {},
+        "5RZ32": {},
+        "5R32": {},
+        "5R192": {},
+        "5-32": {},
+        "4b": {},
+        "3": {},
+        "2": {},
+        "1": {},
+        "ben": {
+          "6-32": {
+            "n": 1,
+            "total": 1,
+            "mean": 1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 1,
+            "ties": 0,
+            "losses": 0
+          }
+        },
+        "6-32": {
+          "6-32": {
+            "n": 2,
+            "total": null,
+            "mean": null,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 0
+          },
+          "ben": {
+            "n": 1,
+            "total": -1,
+            "mean": -1.0,
+            "variance": null,
+            "sd": null,
+            "se": null,
+            "ci": null,
+            "wins": 0,
+            "ties": 0,
+            "losses": 1
+          }
+        },
+        "6-256": {},
+        "ben32": {},
+        "ben64": {}
+      }
+    }
+  },
+  "allocation": {
+    "6-32~6-32": 37,
+    "6-32~ben": 3
+  },
+  "manifest_identity": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5"
+}

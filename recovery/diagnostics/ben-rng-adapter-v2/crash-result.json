@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "lane": "BEN",
+      "cut": "mkdir",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "episode",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "receipt.json",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "rng.json",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "manifest",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "generation_fsync",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "parent_fsync",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "next_fsync",
+      "exitcode": -9,
+      "accepted": 1,
+      "export_count": 1,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "pointer_replace",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "commit_fsync",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "mkdir",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "episode",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "receipt.json",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "rng.json",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "manifest",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "generation_fsync",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "parent_fsync",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "next_fsync",
+      "exitcode": -9,
+      "accepted": 2,
+      "export_count": 2,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "pointer_replace",
+      "exitcode": -9,
+      "accepted": 3,
+      "export_count": 3,
+      "rng_coherent": true
+    },
+    {
+      "lane": "normal",
+      "cut": "commit_fsync",
+      "exitcode": -9,
+      "accepted": 3,
+      "export_count": 3,
+      "rng_coherent": true
+    }
+  ],
+  "production_commits": 0,
+  "scope": "20 actual SIGKILL interruptions of diagnostic adapter using archived fixtures; recovery and actual exporter agree. No live server/collector loop wiring or power-loss simulation."
+}
