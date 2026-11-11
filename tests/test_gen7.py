@@ -502,6 +502,80 @@ class TreeTests(Fixture):
                 break
         self.assertGreaterEqual(used, 6)
 
+    def test_the_deciders_later_card_from_the_net_or_a_search_is_an_average_not_the_best(self):
+        """own='net' and own='search' treat the decider's later self like any other seat: a weighted mean over its cards."""
+        used = below_best = 0
+        for seed in range(60):
+            got = self.spot(seed, 24 + seed % 20)
+            if got is None:
+                continue
+            p, o, worlds, weights, game, _ = got
+            if game.done or len(worlds) < 2:
+                continue
+            payoff = np.random.default_rng(seed).random((len(worlds), 52))
+            reach = np.asarray(weights, float) / float(np.sum(weights))
+            worth = lambda x: float((reach * payoff[:, x]).sum())
+            asked = []
+
+            def replier(view):
+                asked.append(view)
+                first, second = view.legal[0], view.legal[1]
+                return {first: .75, second: .25}
+            for own in ('net', 'search'):
+                tree = Tree(p.net, p.dds, TreeConfig(tricks=2, breadth=2, mass=1., own=own), replier=replier)
+                tree.values(o, worlds, weights, cards=[])
+                seen = []
+
+                def after(history, declarer_tricks, gone, tricks_done, seat, x, reach):
+                    seen.append(x)
+                    return float((reach * payoff[:, x]).sum())
+                tree.after = after
+                value = tree.node(tuple(o.history), o.declarer_tricks, np.zeros(52, bool), 0, reach)
+                self.assertEqual(len(seen), 2)
+                if own == 'search':
+                    self.assertEqual(asked[-1], o)                     # asked with the decider's own view, nothing more
+                    self.assertAlmostEqual(value, .75 * worth(o.legal[0]) + .25 * worth(o.legal[1]), places=12)
+                else:
+                    q = np.exp(p.net.log_policy([o])[0][seen].astype(np.float64))
+                    self.assertAlmostEqual(value, float(q @ [worth(x) for x in seen] / q.sum()), places=9)
+                self.assertLessEqual(value, max(worth(x) for x in seen) + 1e-12)
+                below_best += value < max(worth(x) for x in seen) - 1e-6
+            used += 1
+        self.assertGreater(used, 8)
+        self.assertGreater(below_best, 8)
+
+    def test_search_replies_ask_from_that_seats_view_and_carry_the_probability_whole(self):
+        class Count(Tree):
+            def leaf(self, history, trick, declarer_tricks, gone, reach):
+                self.lines += 1
+                return float(reach.sum())
+        used = asked_total = 0
+        for seed in range(30):
+            got = self.spot(seed, 28 + seed % 12, most=60)
+            if got is None:
+                continue
+            p, o, worlds, weights, _, _ = got
+            asked = []
+
+            def replier(view):
+                asked.append(view)
+                return {x: 1. / len(view.legal) for x in view.legal}
+            tree = Count(p.net, p.dds, TreeConfig(tricks=2, breadth=13, reply='search', own='search'), replier=replier)
+            for value in tree.values(o, worlds, weights).values():
+                self.assertAlmostEqual(value, 1., places=9)
+            self.assertEqual(tree.replies, len(asked))
+            self.assertEqual(tree.net_rows, 0)
+            dummy = o.contract.dummy
+            for view in asked:
+                seats = [s for s, h in enumerate(view.known_hands) if h is not None]
+                self.assertEqual(sorted(seats), sorted({view.controller, dummy}))          # its own hand and dummy, nothing else
+                gone = {x for _, x in view.history}
+                self.assertTrue(any(set(view.known_hands[view.controller]) == set(w[view.controller]) - gone for w in worlds))
+            asked_total += len(asked)
+            used += 1
+        self.assertGreater(used, 4)
+        self.assertGreater(asked_total, 50)
+
     def test_two_trick_trees_play_legal_lines_to_a_sane_value(self):
         used = 0
         for seed in range(40):
