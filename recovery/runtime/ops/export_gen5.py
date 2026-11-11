@@ -15,6 +15,7 @@ from bridge_harness.selfplay import atomic_json
 
 from bridge_harness.arena_pairs import pair_members
 from bridge_harness.decision_timing import merge
+from ops.retained_receipts import verify_retained,allowed_identity
 LABELS={}
 PAIRS=[]
 
@@ -65,6 +66,7 @@ def export(root,out):
     policy=json.loads(policy_path.read_text()) if policy_path.exists() else {}
     eligible=set(policy.get('eligible_pairs',m['pair_weights']))
     PAIRS=[p for p in m['pair_weights'] if p in eligible]
+    verify_retained(root,m)
     cohort=m['identity'];now=time.time();records=[];shards=defaultdict(dict);seen=set()
     cached={}
     for old in (out/'arena/replays/data'/cohort).glob('boards-*.json'):
@@ -80,7 +82,7 @@ def export(root,out):
             seen.add(full['family']);row={k:v for k,v in full.items() if k not in ('conditions','board','tables')}
             records.append(row);shards[row['shard']][key]=full;continue
         r=json.loads(gzip.decompress(raw))
-        if r['manifest_identity']!=cohort:raise ValueError('Manifest mismatch')
+        if not allowed_identity(m,r['manifest_identity']):raise ValueError('Manifest mismatch')
         if r['pair'] not in eligible:continue
         if r['family'] in seen:raise ValueError('Duplicate deal family')
         seen.add(r['family'])

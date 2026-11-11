@@ -22,6 +22,8 @@ from bridge_harness.selfplay import atomic_json
 from bridge_harness.runner import replay
 from bridge_harness.loop_registry import sha
 from bridge_harness.training import digest
+from ops.ben_board_executor import BenBoardExecutor
+from ops.retained_receipts import verify_retained,allowed_identity
 
 BIDDERS={}
 def ben_pair(m,pair):
@@ -103,12 +105,14 @@ def run(root,workers):
     with (root/'.writer.lock').open('a+') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         m=json.loads((root/'manifest.json').read_text());verify_generation(root,m)
+        retained=verify_retained(root,m)
         boards=load(root/m['corpus']);rows=[]
         for path in sorted((root/'episodes').glob('*.json.gz')):
             item=root/'receipts'/(path.name.removesuffix('.json.gz')+'.json')
             if item.exists():
                 r=json.loads(item.read_text())
-                if r['manifest_identity']!=m['identity'] or r['episode_sha256']!=sha(path):raise ValueError('Changed archived record')
+                if not allowed_identity(m,r['manifest_identity']) or r['episode_sha256']!=sha(path):raise ValueError('Changed archived record')
+                if r['manifest_identity']!=m['identity'] and item.name not in retained:raise ValueError('Unpinned prior receipt')
             else:
                 with gzip.open(path,'rt') as f:record=json.load(f)
                 validate(record,m,record['index']);r=receipt(record,path);atomic_json(item,r)
@@ -123,7 +127,7 @@ def run(root,workers):
         slow=iter(i for i in range(m['target']) if i not in done and ben_pair(m,pair_at(i)))
         os.environ['BRIDGE_DDS_CACHE']=str(root/'dds-cache.sqlite')
         pending={};started=time.time()
-        with ProcessPoolExecutor(max_workers=workers,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as normal,ProcessPoolExecutor(max_workers=1,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as ben:
+        with ProcessPoolExecutor(max_workers=workers,mp_context=mp.get_context('spawn'),initializer=initialize_worker,initargs=(str(root),)) as normal,BenBoardExecutor(root,initializer=initialize_worker,initargs=(str(root),)) as ben:
             def submit(pool,jobs):
                 if (root/'STOP').exists():return
                 index=next(jobs,None)

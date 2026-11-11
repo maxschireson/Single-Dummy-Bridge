@@ -1,4 +1,4 @@
-const repo="maxschireson/Single-Dummy-Bridge",base="/workspace/scratch/c7932514d17d/gen6-fast-selfplay";
+const repo="maxschireson/Single-Dummy-Bridge",base="/workspace/scratch/c7932514d17d/gen6-ben-recycled";
 const unwrap=r=>r.structuredContent;
 let snapshot=await tools.exec_command({cmd:".venv/bin/python snapshot_feed.py",workdir:base,max_output_tokens:1000});
 while(snapshot.session_id) snapshot=await tools.write_stdin({session_id:snapshot.session_id,chars:"",yield_time_ms:1000,max_output_tokens:1000});
@@ -53,7 +53,7 @@ if(liveRef.object.sha!==c.sha)throw Error("Feed ref did not advance to verified 
 const check=JSON.parse((await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/trees/"+c.sha+"?recursive=1"})).structuredContent.content);
 const actual=new Map(check.tree.map(f=>[f.path,f.sha]));
 for(const f of inv)if(actual.get(f.path)!==f.sha)throw Error("published mismatch "+f.path);
-await tools.exec_command({cmd:"python -c "+quote("import json,time;open('runs/gen6-chatgpt-fast-selfplay-20261111/publisher-status.json','w').write(json.dumps(dict(epoch=time.time(),commit="+JSON.stringify(c.sha)+",files="+inv.length+")))"),workdir:base,max_output_tokens:100});
+await tools.exec_command({cmd:"python -c "+quote("import json,time;open('runs/gen6-chatgpt-ben-recycled-20261111/publisher-status.json','w').write(json.dumps(dict(epoch=time.time(),commit="+JSON.stringify(c.sha)+",files="+inv.length+")))"),workdir:base,max_output_tokens:100});
 text({published:c.sha,verified_files:inv.length});
 function quote(s){return "'"+s.replaceAll("'","'\\''")+"'";}
 

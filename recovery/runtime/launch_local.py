@@ -1,6 +1,6 @@
 import os,sys,time,subprocess,urllib.request,urllib.error,fcntl,json
 from pathlib import Path
-root=Path(__file__).resolve().parent;run=root/'runs/gen6-chatgpt-fast-selfplay-20261111'
+root=Path(__file__).resolve().parent;run=root/'runs/gen6-chatgpt-ben-recycled-20261111'
 env=dict(os.environ,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',TF_NUM_INTRAOP_THREADS='1',TF_NUM_INTEROP_THREADS='1',TF_CPP_MIN_LOG_LEVEL='3')
 with (run/'.supervisor.lock').open('a+') as lock:
  fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -29,11 +29,9 @@ with (run/'.supervisor.lock').open('a+') as lock:
   if not (run/'gen7-capture-report.json').exists():
    report_log=(run/'capture-report.log').open('a')
    reporter=subprocess.Popen([sys.executable,'ops/report_gen7_capture.py','--run',str(run),'--before',str(run/'history/ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb'),'--watch'],cwd=root,env=env,stdout=report_log,stderr=subprocess.STDOUT)
-  while not (run/'STOP').exists():
-   result=subprocess.run([sys.executable,'ops/gen5_runtime.py','--run',str(run),'--workers','3'],cwd=root,env=env)
-   if list((run/'failures').glob('*.json')) or json.loads((run/'state.json').read_text()).get('complete'):break
-   if result.returncode:time.sleep(10)
-   else:break
+  result=subprocess.run([sys.executable,'ops/gen5_runtime.py','--run',str(run),'--workers','3'],cwd=root,env=env)
+  if result.returncode or list((run/'failures').glob('*.json')):
+   raise RuntimeError(f'Collector failed with exit code {result.returncode}; inspect preserved failure and diagnostics')
  finally:
   if reporter is not None and reporter.poll() is None:
    reporter.terminate();reporter.wait(timeout=30)
