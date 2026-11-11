@@ -451,6 +451,34 @@ So from trick 3 on no tree here beats Gen 6's search. For the net-reply tree the
 be near search quality first; on the learning curve above, a fourfold cut in what a reply gives up
 is about thirteen times the deals.
 
+## The net as a second opinion, and the opening lead (12:30 UTC)
+
+`scripts/gen7_second_opinion.py` writes, for every gap fork at any ply, where the net puts Gen 6's
+card A and the forced card B, beside what really happened. No search is run, so the opening lead
+is included. v1 on the 29,956 pairs of the 4,777 boards it never saw (2,232 of them leads):
+
+| Decision at | Pairs | B estimated to cost, gap up to 0.125 | B really cost | When the net's first choice is B within 0.125, B then cost | Net's log-odds for B, tricks per unit |
+| --- | --- | --- | --- | --- | --- |
+| Lead | 2,232 | 0.080 | +0.020 +- 0.031 | -0.09 +- 0.08 (170 pairs) | -0.019 +- 0.013 |
+| Tricks 1-2 | 5,197 | 0.069 | +0.080 +- 0.016 | +0.07 +- 0.04 | -0.009 +- 0.005 |
+| Tricks 3-6 | 12,748 | 0.070 | +0.059 +- 0.009 | +0.04 +- 0.02 | -0.010 +- 0.003 |
+| Tricks 7-13 | 9,779 | 0.038 | +0.038 +- 0.007 | +0.02 +- 0.02 | -0.002 +- 0.002 |
+
+The last column is the coefficient of log(net's probability of B / of A) when the realized cost of
+B is regressed on Gen 6's estimated gap and that log-odds.
+
+- From trick 1 on, a close call by the search is worth what the search says it is, and playing the
+  net's first choice instead loses or breaks even. The net knows a little the search does not at
+  tricks 3-6 (the coefficient is three standard errors from zero) but not enough to overrule it.
+- At the opening lead a close call is nearly a coin flip: the other lead cost 0.02 +- 0.03 tricks
+  where the search said 0.08. 73% of leads are close calls. Playing the net's first choice there
+  is +0.09 +- 0.08 tricks a switched lead for v1 (v2, on 828 unseen lead pairs: +0.23 +- 0.14):
+  positive, not established.
+- So at three leads in four neither the search nor a net that imitates it has the information.
+  Real results could supply it. Because those leads are close to coin flips, self-play is already
+  a natural experiment in them (like hands, different leads, real outcomes), and a lead model
+  trained on results needs no forks. About 9,000 Gen 6 leads are on hand, which is too few.
+
 ## Sampling noise in Gen 6 (10:37 UTC)
 
 `scripts/gen7_noise.py`, 4,097 searched decisions from trick 3 on, 120 held-out self-play deals.
