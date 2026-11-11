@@ -1,0 +1,156 @@
+{
+ "kind": "suit",
+ "width": 512,
+ "kinds": [
+  0,
+  1,
+  2
+ ],
+ "augment": "none",
+ "weight_decay": 0.0001,
+ "parameters": 828098,
+ "epochs": 3,
+ "fraction": 1.0,
+ "train_deals": 12111,
+ "train_examples": 3696408,
+ "history": [
+  {
+   "epoch": 1,
+   "seconds": 283,
+   "train_ce": 0.8055,
+   "train_gap": 0.059,
+   "train_owner": 0.6043,
+   "val": {
+    "n": 433774,
+    "nll": 0.7594,
+    "uniform_nll": 1.253,
+    "tie_nll": 0.7683,
+    "agree": 0.6848,
+    "in_best": 0.8816,
+    "regret": 0.0438,
+    "regret_gap_head": 0.0394,
+    "regret_random": 0.2035,
+    "regret_lowest": 0.2243
+   }
+  },
+  {
+   "epoch": 2,
+   "seconds": 554,
+   "train_ce": 0.6601,
+   "train_gap": 0.0429,
+   "train_owner": 0.571,
+   "val": {
+    "n": 433774,
+    "nll": 0.7179,
+    "uniform_nll": 1.253,
+    "tie_nll": 0.7683,
+    "agree": 0.705,
+    "in_best": 0.8879,
+    "regret": 0.0408,
+    "regret_gap_head": 0.0323,
+    "regret_random": 0.2035,
+    "regret_lowest": 0.2243
+   }
+  },
+  {
+   "epoch": 3,
+   "seconds": 839,
+   "train_ce": 0.5851,
+   "train_gap": 0.0377,
+   "train_owner": 0.563,
+   "val": {
+    "n": 433774,
+    "nll": 0.7186,
+    "uniform_nll": 1.253,
+    "tie_nll": 0.7683,
+    "agree": 0.709,
+    "in_best": 0.8907,
+    "regret": 0.0387,
+    "regret_gap_head": 0.0309,
+    "regret_random": 0.2035,
+    "regret_lowest": 0.2243
+   }
+  }
+ ],
+ "selected_epoch": 3,
+ "selected_by": "the last epoch (held-out tricks given up still falling); not the best held-out log-loss, which was epoch 2 (v3)",
+ "temperature": 1.246,
+ "temperature_fitted_on": "validation deals of gen7_v2 (112,533 decisions), log-loss 0.7215 -> 0.7085",
+ "note": "policy logits are divided by the temperature inside the file (columns of wd1 and bd1 for channel 0); the gap and owner heads are unchanged",
+ "test_v0_deals": {
+  "rows": 60010,
+  "deals": 406,
+  "nll": 0.7131,
+  "agree": 0.7048,
+  "top1": {
+   "best_kept": 0.8841,
+   "gives_up": 0.0374
+  },
+  "top2": {
+   "best_kept": 0.9604,
+   "gives_up": 0.0094
+  },
+  "top3": {
+   "best_kept": 0.9847,
+   "gives_up": 0.0026
+  },
+  "p0.9": {
+   "kept": 2.31,
+   "best_kept": 0.9883,
+   "gives_up": 0.0032,
+   "played_kept": 0.9657
+  },
+  "p0.95": {
+   "kept": 2.68,
+   "best_kept": 0.9951,
+   "gives_up": 0.0015,
+   "played_kept": 0.9853
+  },
+  "p0.98": {
+   "kept": 3.09,
+   "best_kept": 0.9979,
+   "gives_up": 0.0005,
+   "played_kept": 0.9947
+  },
+  "by_table_kind": {
+   "root": {
+    "rows": 21411,
+    "gives_up": 0.0391,
+    "agree": 0.6879
+   },
+   "tie fork": {
+    "rows": 38599,
+    "gives_up": 0.0365,
+    "agree": 0.7142
+   }
+  }
+ },
+ "wrong_auction_validation": {
+  "rows": 112533,
+  "leads": 802,
+  "real": {
+   "all": {
+    "nll": 0.7085,
+    "agree": 0.71,
+    "regret": 0.038
+   },
+   "lead": {
+    "nll": 1.3241,
+    "agree": 0.5387,
+    "regret": 0.0482
+   }
+  },
+  "another_deals": {
+   "all": {
+    "nll": 0.7326,
+    "agree": 0.6989,
+    "regret": 0.0428
+   },
+   "lead": {
+    "nll": 1.7063,
+    "agree": 0.4314,
+    "regret": 0.1017
+   }
+  }
+ }
+}

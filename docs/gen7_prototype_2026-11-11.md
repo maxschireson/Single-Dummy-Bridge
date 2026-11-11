@@ -24,6 +24,7 @@ cards), which is not in this branch.
 | `models/cardplay/gen7-policy-v1-2026-11-11/` | A wider net (828,098 parameters) trained on 5,240 deals (see "More boards") |
 | `models/cardplay/gen7-policy-v2-2026-11-11/` | The same net trained on 7,968 deals (see "More boards again") |
 | `models/cardplay/gen7-policy-v3-2026-11-11/` | The same net trained on 12,111 deals (see "And again") |
+| `models/cardplay/gen7-policy-v3.1-2026-11-11/` | v3's run taken at epoch 3, with a fitted temperature (see "Width, epochs and calibration") |
 | `bridge_harness/gen7_tree.py`, `scripts/gen7_bench.py` | A few tricks of play from each seat's own view before solving, and the fork-pair bench that scores it |
 | `scripts/gen7_noise.py` | What sampling noise costs a Gen 6 decision, and where the net stands against it |
 
@@ -273,8 +274,33 @@ The last step is flatter: the exponent's change is +0.25 [+0.02, +0.48]. The fla
 tricks 7-13, which are 70% of the decisions and 74% of what v3 still gives up; tricks 3-6, where
 the tree asks for its replies, kept the earlier pace. Held-out log-loss was flat from epoch 2 to
 epoch 3 while held-out tricks given up still fell (0.041 to 0.039), and the recipe keeps the epoch
-with the best log-loss. A 768-wide net on the same data is the next test (`--save-epochs` writes
-every epoch's weights, so each can be scored).
+with the best log-loss.
+
+## Width, epochs and calibration (17:15 UTC): v3.1
+
+A 768-wide net (1,709,058 parameters) on v3's data and recipe. Tricks given up on 433,774
+validation decisions, by epoch:
+
+| Epoch | 512 wide | 768 wide |
+| --- | --- | --- |
+| 1 | 0.0438 | 0.0433 |
+| 2 | 0.0408 | 0.0402 |
+| 3 | 0.0387 | 0.0387 |
+
+The wider net fits the training deals better (training loss 0.54 against 0.59) and does worse on
+held-out log-loss (0.733 against 0.719). Width is not what limits the net; the number of deals is.
+
+Epoch 3 is better than epoch 2 at both widths, but overconfident. Every net here is: the
+temperatures that minimise held-out log-loss are 1.21 (v0), 1.25 (v1), 1.24 (v2), 1.17 (v3), 1.25
+(512 wide, epoch 3) and 1.36 (768 wide, epoch 3). So the cards-kept figures in the tables above
+are 0.2 to 0.3 cards low. Calibrated, cards kept until probabilities add to 0.98 are 3.63, 3.42,
+3.27 and 3.12 for v0 to v3, and to 0.90 2.84, 2.61, 2.47 and 2.34. Coverage at a fixed number of
+cards (top 2, top 3) does not depend on calibration.
+
+v3.1 is the 512-wide run at epoch 3 with its temperature (1.246) built in. On v0's test deals it
+gives up 0.0374 against v3's 0.0406, 7.8% [4.6%, 11.0%] less: lead 14% [3, 24], tricks 1-2 13%
+[3, 23], tricks 3-6 3% [-2, 9], tricks 7-13 9% [5, 12]. The 768-wide net at epoch 3 with its own
+temperature is level with it (-0.2%, [-6.3%, 5.6%]).
 
 ## What lookahead could be worth
 
