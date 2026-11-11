@@ -28,5 +28,20 @@
     "epoch": 1794403282.5228992,
     "complete": false
   },
-  "worker_exit_telemetry": "diagnostics/ben-board-worker-*.jsonl"
+  "worker_exit_telemetry": "diagnostics/ben-board-worker-*.jsonl",
+  "recovery_20261111_1635": {
+    "status": "controlled_restart_started",
+    "stopped_completed": 1673,
+    "last_observed_epoch": 1794409595.9763792,
+    "cause": "Unconfirmed whole-session disappearance; all locks free, no STOP or unresolved failure; external observer ends without final exit status",
+    "verified_pairs": 1673,
+    "retained_verified": 656,
+    "frozen_hashes_verified": true,
+    "completed_ben_child_exits": 111,
+    "all_completed_ben_exitcodes": 0,
+    "last_shared_oom_counter": 24,
+    "launcher_unchanged": true,
+    "session": 61231,
+    "epoch": 1794414862.6833723
+  }
 }
