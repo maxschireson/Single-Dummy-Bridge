@@ -33,6 +33,20 @@
  const archivedPair=(p,source)=>members(p).some(k=>hiddenDashboardActors.has(k))||normalizePair(p).pair==='6-32~ben'&&accidentalCohorts.has(source?.cohort);
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
  const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved==='gen6'&&s.group==='gen6')||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
+ function feedHealth(source,data=null,now=Date.now()/1000){
+  const published=data?.feed?.published_epoch??data?.generated_epoch,heartbeat=data?.collection?.updated_epoch;
+  const age=Number.isFinite(published)?Math.max(0,now-published):null,heartbeatAge=Number.isFinite(heartbeat)?Math.max(0,now-heartbeat):null;
+  let state,label;
+  if(source.retired||data?.statistics_policy?.retired||data?.collection?.status==='archived'){state='archived';label='Archived';}
+  else if(!data){state='pending';label='Loading';}
+  else if(age===null||age>Math.max(240,4*(data.feed?.interval_seconds||60))){state='overdue';label='Update overdue';}
+  else if(data.collection?.status==='complete'){state='complete';label='Complete';}
+  else if(data.collection?.status==='stopped'||data.collection?.status==='not_running'){state='stopped';label='No collector observed';}
+  else if(data.collection?.status==='draining'){state='draining';label='Draining current deals';}
+  else if(data.collection?.running===false||heartbeatAge!==null&&heartbeatAge>180){state='no-heartbeat';label='Collector heartbeat overdue';}
+  else{state='live';label=heartbeatAge===null?'Publishing':'Collecting and publishing';}
+  return {state,label,published:Number.isFinite(published)?published:null,heartbeat:Number.isFinite(heartbeat)?heartbeat:null,publication_age:age,heartbeat_age:heartbeatAge,completed:data?.completed??null};
+ }
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
  function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
  function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
@@ -65,7 +79,7 @@
   for(const row of Object.values(totals.by_bot))for(const part of [row,row.opening_lead,row.play])part.mean_seconds=part.decisions?part.total_seconds/part.decisions:null;
   return totals;
  }
- function build(inputs,scope='all',snapshots=null,now=Date.now()/1000){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key));
+ function build(inputs,scope='all',snapshots=null,now=Date.now()/1000){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key)).map(x=>({...x,source:sources.find(s=>s.key===x.source.key&&s.cohort===x.source.cohort)||x.source}));
   const common=rowsFor(chosen,scope,'common',snapshots),own=rowsFor(chosen,scope,'own',snapshots),views={},own_views={},curves={},own_curves={};
   for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
   for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=Math.max(10,Math.floor(rows.length/50)))targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
@@ -75,12 +89,13 @@
   const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
   const observations=chosen.flatMap(x=>x.index.records.filter(r=>!archivedPair(r.pair,x.source)&&r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
-  const stale=chosen.filter(x=>!x.source.retired&&now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
+  const health=Object.fromEntries(chosen.map(x=>[x.source.key,feedHealth(x.source,x.data,now)]));
+  const stale=chosen.filter(x=>['overdue','no-heartbeat','stopped'].includes(health[x.source.key].state)).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
   const activeOrder=order.filter(k=>!hiddenDashboardActors.has(k)&&chosen.some(x=>(x.data.order||[]).map(canonical).includes(k)));
   return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order:activeOrder,versions:Object.fromEntries(activeOrder.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
    completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,difference_views,own_views:own.rows.length?own_views:null,curves,own_curves,
-   report:{scope,snapshots:reportSnapshots,revisions:Object.fromEntries(chosen.filter(x=>/^[a-f0-9]{40}$/.test(x.revision||'')).map(x=>[x.source.cohort,x.revision])),stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
+   report:{scope,snapshots:reportSnapshots,revisions:Object.fromEntries(chosen.filter(x=>/^[a-f0-9]{40}$/.test(x.revision||'')).map(x=>[x.source.cohort,x.revision])),health,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
    feed:{published_epoch:generated_epoch,next_update_epoch:chosen.some(x=>!x.source.retired)?Math.min(...chosen.filter(x=>!x.source.retired).map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
    interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
    model_note:chosen.some(x=>x.source.variant==='6')?'Gen6: opening-lead belief net, then hand-fit scorer. Fast 32 layouts to trick7; medium 256 to trick6; compatible-layout lists solve up to 256. Common Gen6 bidding measures play; native partnership bidding measures total; bidding is paired native minus common and includes auction/play interaction. Fresh independent cohorts.':chosen.some(x=>x.source.variant==='5RZ')?'5RZ (32 and 192) keeps the same networks and representative sampler as same-budget 5R, with zero near-tie margin: the policy only breaks PIMC ties. New BEN games use 5RZ (192) vs BEN (16). New matches: 30% Z32 vs R32, 20% R32 vs Gen5 (32), with the other half in the previous proportions. Earlier compatible R and Z games remain included; original R192 vs BEN stays a distinct baseline. Common and native bidding stay separate.':chosen.some(x=>x.source.variant==='5R')?'Gen5R keeps Gen5 networks and changes only 10–13-trick layout selection and belief-moment weights. Pools 128/768; DDS ceilings 32/192. Original Gen5 (32) is the random-sampling control. Smaller positions are unchanged. Common and native bidding remain separate.':chosen.some(x=>x.source.generation===5)?'Gen5 and older bots both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN (16) and Gen5 (32), with identical networks at both budgets. Earlier 192-vs-older games are preserved for training and excluded from statistics. Common-v5 and native bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
@@ -116,7 +131,15 @@
   }
   const sha=gen6Heads.heads[source.branch];if(!sha)throw Error('This collector has not published a branch yet');return sha;
  }
- async function loadLiveSource(source,options={}){if(options.revision||source.retired||source.generation!==6&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await (source.generation===6?liveGen6Revision(source):liveRevision(source))});}
+ const archivedCache=new Map();
+ async function loadLiveSource(source,options={}){
+  if(source.retired&&/^[a-f0-9]{40}$/.test(source.revision||'')&&!Object.keys(options).length){
+   const key=source.cohort+':'+source.revision;
+   if(!archivedCache.has(key))archivedCache.set(key,loadSource(source).catch(e=>{archivedCache.delete(key);throw e;}));
+   return {...await archivedCache.get(key),source};
+  }
+  if(options.revision||source.retired||source.generation!==6&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await (source.generation===6?liveGen6Revision(source):liveRevision(source))});
+ }
  const registryURL=typeof document!=='undefined'&&document.currentScript?.src?new URL('gen6-sources.json',document.currentScript.src).href:'https://maxschireson.github.io/Single-Dummy-Bridge/arena/gen6-sources.json';
  let registry=null,registryChecked=0,registryPending=null;
  function applyRegistry(value){
@@ -134,7 +157,7 @@
   return registryPending;
  }
  async function loadBenGate(){if(!registry?.gate_branch)return null;const revision=await liveGen6Revision({branch:registry.gate_branch});const value=await get(base+revision+'/status.json');api.benGate=value;return value;}
- const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,loadSource,loadLiveSource,verify,applyRegistry,loadRegistry,loadBenGate};
+ const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,feedHealth,loadSource,loadLiveSource,verify,applyRegistry,loadRegistry,loadBenGate};
  root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window==='undefined'?globalThis:window);
 
