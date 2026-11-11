@@ -9,7 +9,11 @@ const shell=async(cmd,max_output_tokens=2000)=>{
  if(r.exit_code!==0)throw Error(r.output);return r.output;
 };
 text(await shell('.venv/bin/python snapshot_feed.py'));
-const inv=JSON.parse(await shell("cat inventory.json",25000));
+const inv=[];
+for(let offset=0;;offset+=100){
+ const batch=JSON.parse(await shell('python -c '+quote('import json;print(json.dumps(json.load(open("inventory.json"))['+offset+':'+(offset+100)+']))'),15000));
+ inv.push(...batch);if(batch.length<100)break;
+}
 const ref=JSON.parse(unwrap(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/ref/heads/'+branch})).content);
 const head=ref.object.sha;
 const remote=JSON.parse(unwrap(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/trees/'+head+'?recursive=1'})).content);

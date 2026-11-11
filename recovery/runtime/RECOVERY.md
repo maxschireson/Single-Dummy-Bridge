@@ -17,3 +17,5 @@ If restoring elsewhere, copy `recovery/runtime` to a new source directory and `r
 
 ## Observed interruptions — 11 November 2026
 The first two launches stopped without STOP, recorded game failure, or a traceback, after roughly nine minutes of collector activity (57 and 106 total boards). Both writer and supervisor locks were free at inspection. Cause is unconfirmed; do not describe the worker as continuously running. At the second recovery it was resumed in a PTY exec session (89092), retaining the same frozen runtime and manifest. Verify fresh receipts and locks on future checks.
+
+At the 10:20 Lisbon check, collector was stopped at 159 receipts, no STOP or failure and both locks free. Resumed in PTY session 27333. Publisher inventory reads are now paginated to avoid output truncation as the cohort grows; frozen play/runtime/manifest unchanged.
