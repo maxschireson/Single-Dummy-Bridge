@@ -28,7 +28,8 @@
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
  // Archived launch mismatch: retain raw records, exclude fast-vs-BEN from every report.
  const accidentalCohorts=new Set(['497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63','e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177']);
- const archivedPair=(p,source)=>normalizePair(p).pair==='6-32~ben'&&accidentalCohorts.has(source?.cohort);
+ const hiddenDashboardActors=new Set(['ben32']); // Max: hide short BEN32 comparison; keep raw records.
+ const archivedPair=(p,source)=>members(p).some(k=>hiddenDashboardActors.has(k))||normalizePair(p).pair==='6-32~ben'&&accidentalCohorts.has(source?.cohort);
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
  const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved==='gen6'&&s.group==='gen6')||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
@@ -55,7 +56,7 @@
 
  function decisionTiming(inputs){const totals={schema:'arena-decision-timing-v1',by_bot:{},sources:[],missing_sources:[]};
   for(const input of inputs){const records=input.index?.records?.filter(r=>!archivedPair(r.pair,input.source)&&r.completed_epoch<=input.data.generated_epoch&&(!input.source.allowed_pairs||input.source.allowed_pairs.includes(r.pair))),individual=records&&records.every(r=>r.decision_timing),data=individual?records.map(r=>r.decision_timing):input.source.generation===6&&input.index?.records?.some(r=>archivedPair(r.pair,input.source))?[]:[input.data.decision_timing].filter(Boolean);if(!data.length){if(!records||records.length)totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
-   for(const item of data)for(const [id,row] of Object.entries(item.by_bot||{})){const key=canonical(id),out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
+   for(const item of data)for(const [id,row] of Object.entries(item.by_bot||{})){const key=canonical(id);if(hiddenDashboardActors.has(key))continue;const out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
     for(const field of ['decisions','total_seconds','forced_decisions'])out[field]+=row[field]||0;
     for(const phase of ['opening_lead','play'])for(const field of ['decisions','total_seconds'])out[phase][field]+=row[phase]?.[field]||0;
    }
@@ -75,7 +76,7 @@
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
   const stale=chosen.filter(x=>!x.source.retired&&now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
-  const activeOrder=order.filter(k=>chosen.some(x=>(x.data.order||[]).map(canonical).includes(k)));
+  const activeOrder=order.filter(k=>!hiddenDashboardActors.has(k)&&chosen.some(x=>(x.data.order||[]).map(canonical).includes(k)));
   return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order:activeOrder,versions:Object.fromEntries(activeOrder.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
    completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,difference_views,own_views:own.rows.length?own_views:null,curves,own_curves,
    report:{scope,snapshots:reportSnapshots,revisions:Object.fromEntries(chosen.filter(x=>/^[a-f0-9]{40}$/.test(x.revision||'')).map(x=>[x.source.cohort,x.revision])),stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
