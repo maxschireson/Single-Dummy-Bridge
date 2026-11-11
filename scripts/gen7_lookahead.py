@@ -15,7 +15,10 @@ Three tables, by the trick of the decision:
             by choosing between A and B on that value (ties go to A); `correlation` and `slope` are of
             the final difference on that value. Depth 0 is the double-dummy assumption with the layout
             known; deeper rows are that assumption postponed by real play. Part of every error is the
-            chance in how two lines happen to finish, which no evaluation can predict.
+            chance in how two lines happen to finish, which no evaluation can predict, and the deeper
+            rows have seen some of that chance already. They bound what a search of that depth could
+            do; they do not measure it. To measure a search, run it on these same pairs and average
+            the realized cost of B over the pairs where it prefers B.
 
 Gap forks are sampled by band, not in proportion to how often such cards arise, so `estimate` and
 `ahead` describe the sampled pairs and are reported by band.
@@ -89,7 +92,7 @@ def main():
     a = p.parse_args()
     solver = Solver()
     files = sorted(a.episodes.glob('*.json.gz'))
-    lost, pairs, episodes, lost_tables = {}, [], 0, 0
+    lost, pairs, episodes, lost_tables, tables_with_forks = {}, [], 0, 0, 0
     for path in files:
         with gzip.open(path, 'rt') as f:
             d = json.load(f)
@@ -101,6 +104,7 @@ def main():
             break
         who = {'candidate': d['candidate'], 'opponent': d['opponent']}
         for e in records:
+            tables_with_forks += 1
             board = Board.from_dict(e['board'])
             declarer = board.contract.declarer
             root = e['tables'][0]
@@ -124,7 +128,8 @@ def main():
                 final = sign * (root['declarer_tricks'] - fork['declarer_tricks'])      # realized cost of B to the decider
                 if final != g['realized_cost_tricks']:
                     raise ValueError('Recorded realized cost disagrees with the two tables')
-                row = dict(phase=phase(ply), band=g['band'], estimated=g['estimated_gap'], final=final, family=d['family'])
+                row = dict(phase=phase(ply), band=g['band'], estimated=g['estimated_gap'], final=final, family=d['family'],
+                           ply=ply, propensity=g['propensity'])
                 line_a, line_b = solver.line(board, root['actions'], ply), solver.line(board, fork['actions'], ply)
                 for depth, x, y in zip(DEPTHS, line_a, line_b):
                     row[f'd{depth}'] = sign * (x - y)
@@ -148,7 +153,7 @@ def main():
                                          slope=round(float(np.polyfit(v, f, 1)[0]), 3) if spread else None)
         return out
 
-    result = dict(episodes=min(episodes, a.limit or episodes), pairs=len(pairs), depths=DEPTHS,
+    result = dict(episodes=min(episodes, a.limit or episodes), pairs=len(pairs), depths=DEPTHS, root_tables_with_gap_forks=tables_with_forks,
                   lost={k: dict(decisions=lost[k][0], dd_cost=round(lost[k][1] / lost[k][0], 4)) for k in PHASES if k in lost},
                   by_phase={k: summary([r for r in pairs if r['phase'] == k]) for k in PHASES if any(r['phase'] == k for r in pairs)},
                   by_band={str(b): summary([r for r in pairs if r['band'] == b]) for b in sorted({r['band'] for r in pairs})},

@@ -262,10 +262,22 @@ tricks 5-6 and 75% at tricks 7-9. So depth alone has a modest ceiling early in t
 decision pays off over many tricks; a leaf value learned from how hands finish matters more there
 than going from eight plies to twelve.
 
-Limits: the real deal is used at the leaf, so these are ceilings for a search that must also guess
-the layout. Part of every figure is chance in how two lines happen to finish, which no evaluation
-can predict. Pairs are sampled by band (estimated gap up to 0.125, up to 0.5, above), a third each,
-so the figures are per sampled pair and not per decision.
+Limits, and they matter. These are upper bounds, not estimates of what a search would gain. The
+real deal is used at the leaf, and a search must guess the layout. Part of every figure is chance in
+how two lines happen to finish; the deeper columns have already seen some of that chance play out,
+which a search at the table cannot. Pairs are sampled by band (estimated gap up to 0.125, up to
+0.5, above), a third each, so the figures are per sampled pair, and they cannot be added up into
+tricks per table: one changed card changes every later decision.
+
+The same pairs are the way to measure a real search before any match is played: run it on the
+position, see whether it prefers A or B, and average the realized cost of B over the pairs where it
+prefers B. Gen 6 scores zero by construction. With 8,809 pairs the standard error is a few
+thousandths of a trick per pair, and the feeds add about six pairs per board.
+
+**Fork tables as training data.** The same net trained on the same 5,240 deals, scored on root-table
+(real play) test positions: root tables only 0.068 tricks given up, with tie-fork tables 0.064, with
+gap-fork tables 0.065, with both 0.063. On the self-play feed tie forks take 20% of a board's CPU
+and gap forks 28%.
 
 ## What is and is not verified
 
