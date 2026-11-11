@@ -4,7 +4,8 @@
  const sources=[
   {key:'gen6',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · primary Codex collector',branch:'arena-gen6-codex-feed',cohort:'168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea'},
   {key:'gen6chatgpt',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT independent collector',branch:'arena-gen6-chatgpt-feed',cohort:'ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035'},
-  {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent collector',branch:'arena-gen6-medium-ben-feed',cohort:'9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284'},
+  {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent collector',branch:'arena-gen6-ben-expansion-feed',cohort:'77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6'},
+  {key:'gen6ben16completed',group:'gen6',retired:true,revision:'ca95def619269e2eefaba8263134ff8154ff1171',generation:6,variant:'6',environment:'codex',name:'Gen 6 · completed medium vs BEN16 cohort',branch:'arena-gen6-medium-ben-feed',cohort:'9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284'},
   {key:'gen6initial',group:'gen6',generation:6,variant:'6',retired:true,revision:'1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83',environment:'codex',name:'Gen 6 · retained early compatible games',branch:'arena-gen6-independent-feed',cohort:'497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63'},
   {key:'gen5rz',group:'5r',retired:true,revision:'a559ccb59e9d3ff09d8c759c016534b4efcef254',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5R / 5RZ · archived before Gen6',branch:'arena-gen5rz-ben-feed',cohort:'c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba'},
   {key:'gen5rzinitial',group:'5r',retired:true,revision:'03fd90e694d02ba139559fc323e63e384da9e969',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5RZ · early allocation (retained)',branch:'arena-gen5rz-feed',cohort:'1f7081be958488897404148a96c3caffc2327d194a5b9acbcaa164802f17bbf6'},
@@ -19,13 +20,13 @@
  ];
  const latestSource=sources.find(s=>!s.retired),latestScope=latestSource.key;
  function resolveSelection(search){const params=new URLSearchParams(search),requested=params.get('source'),scope=requested==='latest'?latestScope:requested,valid=['all','chatgpt','codex',...sources.map(s=>s.key)].includes(scope),older=params.get('older')==='1'&&valid;return {selected:older?scope:latestScope,older};}
- const labels={'6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben'];
+ const labels={'ben32':'BEN (32)','6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['ben32','6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben'];
  const names={latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
  // Archived launch mismatch: retain raw records, exclude fast-vs-BEN from every report.
- const archivedPair=p=>normalizePair(p).pair==='6-32~ben';
+ const archivedPair=(p,source)=>normalizePair(p).pair==='6-32~ben'&&source?.cohort!=='77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6';
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
  const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
  const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
@@ -37,7 +38,7 @@
  function rowsFor(inputs,scope='all',condition='common',snapshots=null){const allowed=new Set(pickSources(scope).map(s=>s.key)),rows=[];
   for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
    const cutoff=snapshots? snapshots[source.cohort]:data.generated_epoch;if(cutoff==null)continue;
-   for(const r of index.records){if(archivedPair(r.pair)||r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
+   for(const r of index.records){if(archivedPair(r.pair,source)||r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
     if(condition==='own'&&!Object.hasOwn(r,'own_imps'))continue;
     rows.push({...r,pair,common_imps:flip?-r.imps:r.imps,native_imps:flip?-r.own_imps:r.own_imps,imps:value==null?null:flip?-value:value,scores:[...(condition==='own'?r.own_scores||r.scores:r.scores)].slice()[flip?'reverse':'slice'](),contracts:[...(condition==='own'?r.own_contracts||r.contracts:r.contracts)].slice()[flip?'reverse':'slice'](),_pair:r.pair,_flip:flip,_cohort:source.cohort,_source:source.key,_environment:source.environment,_title:source.name,_revision:/^[a-f0-9]{40}$/.test(input.revision||'')?input.revision:null});
    }
@@ -51,7 +52,7 @@
  }
 
  function decisionTiming(inputs){const totals={schema:'arena-decision-timing-v1',by_bot:{},sources:[],missing_sources:[]};
-  for(const input of inputs){const records=input.index?.records?.filter(r=>!archivedPair(r.pair)&&r.completed_epoch<=input.data.generated_epoch&&(!input.source.allowed_pairs||input.source.allowed_pairs.includes(r.pair))),individual=records&&records.every(r=>r.decision_timing),data=individual?records.map(r=>r.decision_timing):input.source.generation===6&&input.index?.records?.some(r=>archivedPair(r.pair))?[]:[input.data.decision_timing].filter(Boolean);if(!data.length){if(!records||records.length)totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
+  for(const input of inputs){const records=input.index?.records?.filter(r=>!archivedPair(r.pair,input.source)&&r.completed_epoch<=input.data.generated_epoch&&(!input.source.allowed_pairs||input.source.allowed_pairs.includes(r.pair))),individual=records&&records.every(r=>r.decision_timing),data=individual?records.map(r=>r.decision_timing):input.source.generation===6&&input.index?.records?.some(r=>archivedPair(r.pair,input.source))?[]:[input.data.decision_timing].filter(Boolean);if(!data.length){if(!records||records.length)totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
    for(const item of data)for(const [id,row] of Object.entries(item.by_bot||{})){const key=canonical(id),out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
     for(const field of ['decisions','total_seconds','forced_decisions'])out[field]+=row[field]||0;
     for(const phase of ['opening_lead','play'])for(const field of ['decisions','total_seconds'])out[phase][field]+=row[phase]?.[field]||0;
@@ -68,7 +69,7 @@
   const paired=common.rows.filter(r=>Number.isFinite(r.native_imps));
   for(const n of [0,100,500,1000]){const groups={};for(const pair of new Set(paired.map(r=>r.pair))){let rows=paired.filter(r=>r.pair===pair);if(n)rows=rows.slice(-n);groups[pair]={play:stats(rows.map(r=>r.common_imps)),total:stats(rows.map(r=>r.native_imps)),bidding:stats(rows.map(r=>r.native_imps-r.common_imps)),different_bidding:rows.filter(r=>r.different_bidding).length};}difference_views[n]={groups};}
   const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
-  const observations=chosen.flatMap(x=>x.index.records.filter(r=>!archivedPair(r.pair)&&r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
+  const observations=chosen.flatMap(x=>x.index.records.filter(r=>!archivedPair(r.pair,x.source)&&r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
   const stale=chosen.filter(x=>!x.source.retired&&now-(x.data.feed?.published_epoch||x.data.generated_epoch)>240).map(x=>x.source.name);
   const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
