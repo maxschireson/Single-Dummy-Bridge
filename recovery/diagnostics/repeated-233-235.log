@@ -1,0 +1,22 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794388577.906154       6 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794388577.975016       6 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794388579.705485       6 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+E0000 00:00:1794388581.511646       6 util.cc:131] oneDNN supports DT_HALF only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+{"index": 233, "status": "replay_validated", "seconds": 9.224650382995605, "maxrss_kb": 853080, "tables": 1}
+{"index": 234, "status": "replay_validated", "seconds": 14.114225149154663, "maxrss_kb": 927908, "tables": 1}
+{"index": 235, "status": "replay_validated", "seconds": 8.346738815307617, "maxrss_kb": 928744, "tables": 1}
+{"index": 233, "status": "replay_validated", "seconds": 8.791047811508179, "maxrss_kb": 931988, "tables": 1}
+{"index": 234, "status": "replay_validated", "seconds": 15.06045150756836, "maxrss_kb": 945764, "tables": 1}
+{"index": 235, "status": "replay_validated", "seconds": 9.408165216445923, "maxrss_kb": 945764, "tables": 1}
+{"index": 233, "status": "replay_validated", "seconds": 9.539339780807495, "maxrss_kb": 945764, "tables": 1}
+{"index": 234, "status": "replay_validated", "seconds": 15.392280340194702, "maxrss_kb": 1012384, "tables": 1}
+{"index": 235, "status": "replay_validated", "seconds": 8.45823335647583, "maxrss_kb": 1012384, "tables": 1}
+{"index": 233, "status": "replay_validated", "seconds": 8.605008840560913, "maxrss_kb": 1017096, "tables": 1}
+{"index": 234, "status": "replay_validated", "seconds": 13.532159805297852, "maxrss_kb": 1091624, "tables": 1}
+{"index": 235, "status": "replay_validated", "seconds": 8.205471515655518, "maxrss_kb": 1091624, "tables": 1}
+{"index": 233, "status": "replay_validated", "seconds": 8.342933654785156, "maxrss_kb": 1091624, "tables": 1}
+{"index": 234, "status": "replay_validated", "seconds": 14.031628131866455, "maxrss_kb": 1152184, "tables": 1}
+{"index": 235, "status": "replay_validated", "seconds": 8.107032775878906, "maxrss_kb": 1152184, "tables": 1}
