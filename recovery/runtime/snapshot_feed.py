@@ -8,7 +8,7 @@ export(run,out)
 for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','source-indices.json','significance-trigger.json','plan.json','original-source-indices.json','ben-preflight.json','capture-equivalence.json','gen7-capture-monitor.json','gen7-capture-report.json','recovery-attempt.json'):
     if not (run/name).exists(): continue
     dest=out/'recovery'/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(run/name,dest)
-for folder in ('artifacts','assets','resolved-failures','history'):
+for folder in ('artifacts','assets','failures','resolved-failures','history'):
     for p in (run/folder).rglob('*'):
         if p.is_file() and not p.name.endswith('.tmp'):
             d=out/'recovery'/p.relative_to(run);d.parent.mkdir(parents=True,exist_ok=True)
