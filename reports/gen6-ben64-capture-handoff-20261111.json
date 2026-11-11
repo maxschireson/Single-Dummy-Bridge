@@ -1,0 +1,55 @@
+{
+  "checked_epoch": 1794376721.3971577,
+  "current": {
+    "status": "running",
+    "manifest_identity": "203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a",
+    "run": "/workspace/work/gen6-v7-capture",
+    "source": "/workspace/Single-Dummy-Bridge-gen6-v7-capture",
+    "source_commit": "42124442939b2baeb2c510c50f4a3045f9db6d63",
+    "publication": "/workspace/work/gen6-v7-capture-publication",
+    "publication_branch": "arena-gen6-codex-v7-capture-feed",
+    "epoch": 1794376502.0967834,
+    "watchdog_pid": 61488
+  },
+  "state": {
+    "manifest_identity": "203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a",
+    "completed": 24,
+    "target": 5556,
+    "contiguous": 22,
+    "by_pair": {
+      "6-32~5RZ32": 9,
+      "6-32~6-256": 4,
+      "6-32~1": 3,
+      "6-32~3": 2,
+      "6-32~2": 1,
+      "6-256~ben64": 2,
+      "6-32~ben": 3
+    },
+    "root_games": 55,
+    "tables": 531,
+    "failures": 0,
+    "epoch": 1794376713.9140048,
+    "complete": false
+  },
+  "publication": {
+    "epoch": 1794376699.6692872,
+    "status": "published",
+    "completed": 21
+  },
+  "report_monitor": {
+    "status": "collecting",
+    "epoch": 1794376690.0703008,
+    "manifest": "203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a",
+    "root_tables": null,
+    "eligible_root_tables_upper_bound": 39,
+    "threshold": 2000,
+    "episodes_scanned": 0
+  },
+  "ben32_retired": {
+    "pid": 58584,
+    "epoch": 1794376689.5899937,
+    "reason": "BEN32 replaced by BEN64; old cohort drained; original records archived"
+  },
+  "tests": "44 focused engine/capture/launch/followup/report tests passed; real-net on/off equivalence and both BEN budget preflights passed",
+  "note": "Observed before/after deal rates will include the simultaneous BEN32 to BEN64 change; gap CPU is measured separately from root CPU."
+}
