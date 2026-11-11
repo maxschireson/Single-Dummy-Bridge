@@ -61,7 +61,7 @@ def export(root,out):
             seen.add(full['family']);row={k:v for k,v in full.items() if k not in ('conditions','board','tables')}
             records.append(row);shards[row['shard']][key]=full;continue
         r=json.loads(gzip.decompress(raw))
-        if r['manifest_identity']!=cohort:raise ValueError('Manifest mismatch')
+        if r['manifest_identity'] not in {cohort,*m.get('prior_manifests',{})}:raise ValueError('Manifest mismatch')
         if r['pair'] not in eligible:continue
         if r['family'] in seen:raise ValueError('Duplicate deal family')
         seen.add(r['family'])
@@ -123,7 +123,7 @@ def export(root,out):
         feed=dict(published_epoch=now,interval_seconds=60,next_update_epoch=now+60),
         model_note='Gen5: promoted dense belief, attention policy and bidder. Gen5/4b/3/2/1 comparisons use 32 vs 32. Gen5 uses 192 vs BEN (16) and Gen5 (32) only; the two Gen5 actors share all network weights.', source_cohort_overlap=False, allocation=m['pair_weights'], statistics_policy=policy,
         collection=dict(updated_epoch=status['epoch'],running=not policy.get('retired') and now-status['epoch']<30,workers=0 if policy.get('retired') else status['workers'],total_completed=len(episodes),training_only_completed=len(episodes)-len(records)))
-    if m.get('variant') in ('5R','5RZ'):
+    if m.get('variant') in ('5R','5RZ','6'):
         d['interpretation']=m['interpretation']
         d['model_note']='Gen5R uses the same bidder, belief and policy as Gen5; only large-position layout selection and weighting change. Nominal 32/192 are DDS ceilings, drawing pools of 128/768. Original Gen5 (32) is retained as the random-sampling control.'
         if m.get('model_note'):d['model_note']=m['model_note']

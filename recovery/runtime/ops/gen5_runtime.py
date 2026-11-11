@@ -91,11 +91,20 @@ def run(root,workers):
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         m=json.loads((root/'manifest.json').read_text());verify_generation(root,m)
         boards=load(root/m['corpus']);rows=[]
+        prior={}
+        for identity,expected in m.get('prior_manifests',{}).items():
+            path=root/'history'/identity/'manifest.json'
+            if sha(path)!=expected:raise ValueError('Prior manifest changed')
+            prior[identity]=json.loads(path.read_text())
         for path in sorted((root/'episodes').glob('*.json.gz')):
             item=root/'receipts'/(path.name.removesuffix('.json.gz')+'.json')
             if item.exists():
                 r=json.loads(item.read_text())
-                if r['manifest_identity']!=m['identity'] or r['episode_sha256']!=sha(path):raise ValueError('Changed archived record')
+                if r['manifest_identity'] not in {m['identity'],*prior} or r['episode_sha256']!=sha(path):raise ValueError('Changed archived record')
+                if r['manifest_identity']!=m['identity']:
+                    with gzip.open(path,'rt') as f:record=json.load(f)
+                    validate(record,prior[r['manifest_identity']],record['index'])
+                    if record['pair']=='6-32~ben':raise ValueError('Retired BEN matchup in active records')
             else:
                 with gzip.open(path,'rt') as f:record=json.load(f)
                 validate(record,m,record['index']);r=receipt(record,path);atomic_json(item,r)
