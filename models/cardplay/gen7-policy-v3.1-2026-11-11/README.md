@@ -20,7 +20,7 @@ On v0's 406 test deals (60,010 decisions):
 | | v3 | v3.1 |
 | --- | --- | --- |
 | Tricks given up per decision, by Gen 6's estimates | 0.0406 | 0.0374 |
-| Plays Gen 6's exact card | 70.1% | 70.9% |
+| Plays Gen 6's exact card | 70.1% | 70.5% |
 | Log-loss on Gen 6's card | 0.727 | 0.713 |
 | An equal-best card is in its top 3 | 98.5% | 98.5% |
 | Cards kept until probabilities add to 0.98, and an equal-best card kept | 2.90, 99.7% | 3.09, 99.8% |
