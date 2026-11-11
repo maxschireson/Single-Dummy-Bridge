@@ -417,6 +417,39 @@ class Gen6Tests(unittest.TestCase):
                 sources |= {a['gen6']['source'] for a in result['actions'] if a['player'] == '6' and 'gen6' in a}
         self.assertEqual(sources, {'lead_net', 'scorer', 'deal_list'})
 
+    def test_gap_forks_and_guess_size_on_real_search_decisions(self):
+        """The engine's own estimates drive the gap forks; the root game is the same with and without them."""
+        from bridge_harness.fork_audit import ForkBudget, GapForks, collect_board
+        board = next(generate(1, 705))
+        records = []
+        for gap in (None, GapForks(per_band=1, max_cpu_share=1e9)):
+            players = {'candidate': self.make(list_solve=16), 'opponent': GreedyPlayer()}
+            budget = ForkBudget(probability=0., multiplier=1000, max_depth=0, max_forks=0)
+            records.append(collect_board(board, players, ['candidate', 'opponent'] * 2, 5, budget, {},
+                                         **({} if gap is None else {'gap': gap})))
+        plain, forked = records
+        root = forked['tables'][0]
+        self.assertEqual([a['card'] for a in root['actions']], [a['card'] for a in plain['tables'][0]['actions']])
+        searched = [a for a in root['actions'] if a.get('gen6') and a.get('estimates')]
+        self.assertTrue(searched)
+        for a in searched:
+            best = max(e['utility'] for e in a['estimates'].values())
+            self.assertGreaterEqual(a['guess_size'], 0.)
+            self.assertAlmostEqual(a['layout_best_utility'] - a['guess_size'], best, places=9)
+            self.assertLessEqual(max(e['best_share'] for e in a['estimates'].values()), 1. + 1e-9)
+            self.assertGreaterEqual(sum(e['best_share'] for e in a['estimates'].values()), 1. - 1e-9)
+        self.assertTrue(any(a['guess_size'] > 0 for a in searched))
+        self.assertTrue(forked['gap_forks'])
+        labelled = 0
+        for e in forked['gap_forks']:
+            fork = forked['tables'][e['fork_table']]
+            self.assertEqual(fork['fork_kind'], 'gap')
+            self.assertEqual(fork['actions'][e['ply']]['card'], e['forced_card'])
+            self.assertGreater(e['estimated_gap'], 0.)
+            labelled += sum(1 for a in fork['actions'][e['ply'] + 1:] if a.get('gen6') and a.get('estimates'))
+        self.assertGreater(labelled, 0)          # the engine's estimates after an inferior card
+        json.dumps(forked, allow_nan=False)
+
     def test_factory_gives_other_specs_the_unchanged_arena_player(self):
         with patch('bridge_harness.gen6.BidderState', FakeState), patch('bridge_harness.mixed_arena.Weights', FakeBelief):
             a = player(self.spec(), self.root)

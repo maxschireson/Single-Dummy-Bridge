@@ -5,6 +5,12 @@ actor/configuration, dataset, sample count and uncertainty behind a claim.
 
 ## Start here
 
+- [Collector feed health diagnosis](arena-feed-health-20261111.json)
+- [Live dashboard health/refresh verification](arena-feed-health-browser-20261111.json)
+- [Primary fast-only archive verification](gen6-fast-selfplay-primary-archive-20261111.json)
+
+- [Primary fast-only preflight and export checks](gen6-fast-selfplay-primary-preflight-20261111.json)
+
 - [Gen6 primary launch snapshot](gen6-primary-launch-20261111.json)
 - [Gen6 dashboard verification snapshot](gen6-primary-dashboard-verification-20261111.json)
 - [Gen6 layout-selection study](gen6-layout-selection-2026-11-11/README.md)

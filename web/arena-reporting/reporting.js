@@ -1,0 +1,164 @@
+/* Shared reporting rules for the dashboard and its exact replay drill-downs. */
+(function(root){'use strict';
+ const base='https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/';
+ const sources=[
+  {key:'gen6',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · primary Codex collector',branch:'arena-gen6-codex-feed',cohort:'168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea'},
+  {key:'gen6chatgpt',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT BEN follow-ups',branch:'arena-gen6-chatgpt-feed',cohort:'ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb'},
+  {key:'gen6chatgptcompleted',retired:true,revision:'382fbceed0984d0c941f4ee737d5a9d451dfdf09',group:'gen6',generation:6,variant:'6',environment:'chatgpt',name:'Gen 6 · ChatGPT completed medium/BEN16 cohort',branch:'arena-gen6-chatgpt-feed',cohort:'ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035'},
+  {key:'gen6independent',group:'gen6',generation:6,variant:'6',environment:'codex',name:'Gen 6 · independent capture (BEN64)',branch:'arena-gen6-gen7-capture-feed',cohort:'a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb'},
+  {key:'gen6beforecapture',group:'gen6',retired:true,revision:'b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2',generation:6,variant:'6',environment:'codex',name:'Gen 6 · compatible results before capture',branch:'arena-gen6-ben-expansion-feed',cohort:'77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6'},
+  {key:'gen6ben16completed',group:'gen6',retired:true,revision:'ca95def619269e2eefaba8263134ff8154ff1171',generation:6,variant:'6',environment:'codex',name:'Gen 6 · completed medium vs BEN16 cohort',branch:'arena-gen6-medium-ben-feed',cohort:'9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284'},
+  {key:'gen6initial',group:'gen6',generation:6,variant:'6',retired:true,revision:'1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83',environment:'codex',name:'Gen 6 · retained early compatible games',branch:'arena-gen6-independent-feed',cohort:'497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63'},
+  {key:'gen5rz',group:'5r',retired:true,revision:'a559ccb59e9d3ff09d8c759c016534b4efcef254',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5R / 5RZ · archived before Gen6',branch:'arena-gen5rz-ben-feed',cohort:'c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba'},
+  {key:'gen5rzinitial',group:'5r',retired:true,revision:'03fd90e694d02ba139559fc323e63e384da9e969',generation:5,variant:'5RZ',environment:'codex',name:'Gen 5RZ · early allocation (retained)',branch:'arena-gen5rz-feed',cohort:'1f7081be958488897404148a96c3caffc2327d194a5b9acbcaa164802f17bbf6'},
+  {key:'gen5r',group:'5r',retired:true,revision:'ef13160a9c2412bdacae82bb9e26f5cd546e0446',generation:5,variant:'5R',environment:'codex',name:'Gen 5R · initial allocation (retained)',branch:'arena-gen5r-feed',cohort:'cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3'},
+  {key:'gen5',generation:5,retired:true,environment:'codex',name:'Gen 5 · previous round',branch:'arena-gen5-codex-32-feed',cohort:'c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59'},
+  {key:'gen5initial',generation:5,retired:true,allowed_pairs:['5~ben','5~5-32'],environment:'codex',name:'Gen 5 · retained BEN/control games',branch:'arena-gen5-codex-feed',cohort:'bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f'},
+  {key:'primarycomponents',environment:'codex',name:'Codex primary 4p / 4b (no self-play)',branch:'arena-primary-components-feed',cohort:'4f43d6f3f234b9e561671f6958bbe2785e8896181791632ee4b1569a5ab062e0'},
+  {key:'primary',environment:'codex',name:'Codex main',branch:'arena-feed',cohort:'7559edd31715b71f77a47af22a87cb64b2a72c3da4b0cf262fd76003628f2404'},
+  {key:'recovery',environment:'codex',name:'Codex six-bot mix',branch:'arena-recovery-feed',cohort:'7729472d36914fd1dce8ecfcc2d520cfc1c03ce737ac99511093e94ebce33a4c'},
+  {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
+  {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
+ ];
+ let latestSource=sources.find(s=>!s.retired);const latestScope=latestSource.group==='gen6'?'gen6':latestSource.key;
+ function resolveSelection(search){const params=new URLSearchParams(search),requested=params.get('source'),scope=requested==='latest'?latestScope:requested,valid=['all','chatgpt','codex',...sources.map(s=>s.key)].includes(scope),older=params.get('older')==='1'&&valid;return {selected:older?scope:latestScope,older};}
+ const labels={'6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','ben32':'BEN (32)','ben64':'BEN (64)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben','ben32','ben64'];
+ const names={latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
+ const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
+ const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
+ function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
+ // Archived launch mismatch: retain raw records, exclude fast-vs-BEN from every report.
+ const accidentalCohorts=new Set(['497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63','e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177']);
+ const hiddenDashboardActors=new Set(['ben32']); // Max: hide short BEN32 comparison; keep raw records.
+ const archivedPair=(p,source)=>members(p).some(k=>hiddenDashboardActors.has(k))||normalizePair(p).pair==='6-32~ben'&&accidentalCohorts.has(source?.cohort);
+ const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
+ const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(resolved==='gen6'&&s.group==='gen6')||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
+ function feedHealth(source,data=null,now=Date.now()/1000){
+  const published=data?.feed?.published_epoch??data?.generated_epoch,heartbeat=data?.collection?.updated_epoch;
+  const age=Number.isFinite(published)?Math.max(0,now-published):null,heartbeatAge=Number.isFinite(heartbeat)?Math.max(0,now-heartbeat):null;
+  let state,label;
+  if(source.retired||data?.statistics_policy?.retired||data?.collection?.status==='archived'){state='archived';label='Archived';}
+  else if(data?.collection?.status==='complete'||Number.isFinite(data?.target)&&data.target>0&&data.completed>=data.target){state='complete';label='Complete';}
+  else if(data?.collection?.status==='stopped'){state='paused';label='Stopped intentionally';}
+  else if(!data){state='pending';label='Loading';}
+  else if(age===null||age>Math.max(240,4*(data.feed?.interval_seconds||60))){state='overdue';label='Update overdue';}
+  else if(data.collection?.status==='not_running'){state='stopped';label='No collector observed';}
+  else if(data.collection?.status==='draining'){state='draining';label='Draining current deals';}
+  else if(data.collection?.running===false||heartbeatAge!==null&&heartbeatAge>180){state='no-heartbeat';label='Collector heartbeat overdue';}
+  else{state='live';label=heartbeatAge===null?'Publishing':'Collecting and publishing';}
+  return {state,label,published:Number.isFinite(published)?published:null,heartbeat:Number.isFinite(heartbeat)?heartbeat:null,publication_age:age,heartbeat_age:heartbeatAge,completed:data?.completed??null};
+ }
+ const t95=[0,12.706204736,4.30265273,3.182446305,2.776445105,2.570581836,2.446911851,2.364624252,2.306004135,2.262157163,2.228138852,2.20098516,2.17881283,2.160368656,2.144786688,2.131449546,2.119905299,2.109815578,2.10092204,2.093024054,2.085963447,2.079613845,2.073873068,2.06865761,2.063898562,2.059538553,2.055529439,2.051830516,2.048407142,2.045229642,2.042272456];
+ function critical(df){if(df<=30)return t95[df];const z=1.95996398454;return z+(z**3+z)/(4*df)+(5*z**5+16*z**3+3*z)/(96*df**2)+(3*z**7+19*z**5+17*z**3-15*z)/(384*df**3);}
+ function stats(values){const n=values.length,v=values.filter(Number.isFinite);if(!v.length)return {n,total:null,mean:null,variance:null,sd:null,se:null,ci:null,wins:0,ties:0,losses:0};
+  if(v.length!==n)throw Error('Missing scored outcome');const total=v.reduce((a,b)=>a+b,0),mean=total/n,variance=n>1?v.reduce((s,x)=>s+(x-mean)**2,0)/(n-1):null,sd=variance===null?null:Math.sqrt(variance),se=sd===null?null:sd/Math.sqrt(n),half=se===null?null:critical(n-1)*se;
+  return {n,total,mean,variance,sd,se,ci:half===null?null:[mean-half,mean+half],wins:v.filter(x=>x>0).length,ties:v.filter(x=>x===0).length,losses:v.filter(x=>x<0).length};
+ }
+ function rowsFor(inputs,scope='all',condition='common',snapshots=null){const allowed=new Set(pickSources(scope).map(s=>s.key)),rows=[];
+  for(const input of inputs){const {source,data,index}=input;if(!allowed.has(source.key)&&!(snapshots&&Object.hasOwn(snapshots,source.cohort)))continue;if(condition==='own'&&(!data.own_views||index.supports_own_bidding===false))continue;
+   const cutoff=snapshots? snapshots[source.cohort]:data.generated_epoch;if(cutoff==null)continue;
+   for(const r of index.records){if(archivedPair(r.pair,source)||r.completed_epoch>cutoff||source.allowed_pairs&&!source.allowed_pairs.includes(r.pair))continue;if(!r.family)throw Error('Missing deal-family identity');const {pair,flip}=normalizePair(r.pair),value=condition==='own'?r.own_imps:r.imps;
+    if(condition==='own'&&!Object.hasOwn(r,'own_imps'))continue;
+    rows.push({...r,pair,common_imps:flip?-r.imps:r.imps,native_imps:flip?-r.own_imps:r.own_imps,imps:value==null?null:flip?-value:value,scores:[...(condition==='own'?r.own_scores||r.scores:r.scores)].slice()[flip?'reverse':'slice'](),contracts:[...(condition==='own'?r.own_contracts||r.contracts:r.contracts)].slice()[flip?'reverse':'slice'](),_pair:r.pair,_flip:flip,_cohort:source.cohort,_source:source.key,_environment:source.environment,_title:source.name,_revision:/^[a-f0-9]{40}$/.test(input.revision||'')?input.revision:null});
+   }
+  }
+  // One observation per family and matchup, independent of the outcome. Earliest wins.
+  rows.sort(byTime);const seen=new Set(),result=[];for(const row of rows){const key=row.family+'|'+row.pair;if(!seen.has(key)){seen.add(key);result.push(row);}}
+  return {rows:result,duplicates:rows.length-result.length,observations:rows.length};
+ }
+ function view(rows,windowSize=0){const groups={},matrix=Object.fromEntries(order.map(k=>[k,{}])),pairs=[...new Set(rows.map(r=>r.pair))].sort((a,b)=>{const [a0,a1]=members(a),[b0,b1]=members(b);return order.indexOf(a0)-order.indexOf(b0)||order.indexOf(a1)-order.indexOf(b1);});
+  for(const pair of pairs){let selected=rows.filter(r=>r.pair===pair);if(windowSize)selected=selected.slice(-windowSize);const values=selected.map(r=>r.imps),s=stats(values),[a,b]=members(pair);groups[pair]=s;matrix[a][b]=s;if(a!==b)matrix[b][a]=stats(values.map(x=>-x));}return {groups,matrix};
+ }
+
+ function decisionTiming(inputs){const totals={schema:'arena-decision-timing-v1',by_bot:{},sources:[],missing_sources:[]};
+  for(const input of inputs){const records=input.index?.records?.filter(r=>!archivedPair(r.pair,input.source)&&r.completed_epoch<=input.data.generated_epoch&&(!input.source.allowed_pairs||input.source.allowed_pairs.includes(r.pair))),individual=records&&records.every(r=>r.decision_timing),data=individual?records.map(r=>r.decision_timing):input.source.generation===6&&input.index?.records?.some(r=>archivedPair(r.pair,input.source))?[]:[input.data.decision_timing].filter(Boolean);if(!data.length){if(!records||records.length)totals.missing_sources.push(input.source.name);continue;}totals.sources.push(input.source.name);
+   for(const item of data)for(const [id,row] of Object.entries(item.by_bot||{})){const key=canonical(id);if(hiddenDashboardActors.has(key))continue;const out=totals.by_bot[key]||={decisions:0,total_seconds:0,forced_decisions:0,opening_lead:{decisions:0,total_seconds:0},play:{decisions:0,total_seconds:0}};
+    for(const field of ['decisions','total_seconds','forced_decisions'])out[field]+=row[field]||0;
+    for(const phase of ['opening_lead','play'])for(const field of ['decisions','total_seconds'])out[phase][field]+=row[phase]?.[field]||0;
+   }
+  }
+  for(const row of Object.values(totals.by_bot))for(const part of [row,row.opening_lead,row.play])part.mean_seconds=part.decisions?part.total_seconds/part.decisions:null;
+  return totals;
+ }
+ function build(inputs,scope='all',snapshots=null,now=Date.now()/1000){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key)).map(x=>({...x,source:sources.find(s=>s.key===x.source.key&&s.cohort===x.source.cohort)||x.source}));
+  const common=rowsFor(chosen,scope,'common',snapshots),own=rowsFor(chosen,scope,'own',snapshots),views={},own_views={},curves={},own_curves={};
+  for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
+  for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=Math.max(10,Math.floor(rows.length/50)))targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
+  const difference_views={};
+  const paired=common.rows.filter(r=>Number.isFinite(r.native_imps));
+  for(const n of [0,100,500,1000]){const groups={};for(const pair of new Set(paired.map(r=>r.pair))){let rows=paired.filter(r=>r.pair===pair);if(n)rows=rows.slice(-n);groups[pair]={play:stats(rows.map(r=>r.common_imps)),total:stats(rows.map(r=>r.native_imps)),bidding:stats(rows.map(r=>r.native_imps-r.common_imps)),different_bidding:rows.filter(r=>r.different_bidding).length};}difference_views[n]={groups};}
+  const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
+  const observations=chosen.flatMap(x=>x.index.records.filter(r=>!archivedPair(r.pair,x.source)&&r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
+  for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}
+  const health=Object.fromEntries(chosen.map(x=>[x.source.key,feedHealth(x.source,x.data,now)]));
+  const stale=chosen.filter(x=>['overdue','no-heartbeat','stopped'].includes(health[x.source.key].state)).map(x=>x.source.name);
+  const reportSnapshots=snapshots||Object.fromEntries(chosen.map(x=>[x.source.cohort,x.data.generated_epoch]));
+  const activeOrder=order.filter(k=>!hiddenDashboardActors.has(k)&&chosen.some(x=>(x.data.order||[]).map(canonical).includes(k)));
+  return {decision_timing:decisionTiming(chosen),campaign:(names[scope]||sources.find(s=>s.key===scope)?.name)+' · integrated arena',manifest_identity:'report:'+scope,labels,order:activeOrder,versions:Object.fromEntries(activeOrder.map(k=>[k,k==='4p'?'v4 policy / v3 belief':k==='4b'?'v3 policy / v4 belief':'v'+k])),generated_epoch,
+   completed:common.rows.length,target:chosen.reduce((n,x)=>n+x.data.target,0),contiguous:common.observations,failures:chosen.reduce((n,x)=>n+x.data.failures,0),configured_workers:chosen.reduce((n,x)=>n+(x.data.configured_workers||0),0),rates,views,difference_views,own_views:own.rows.length?own_views:null,curves,own_curves,
+   report:{scope,snapshots:reportSnapshots,revisions:Object.fromEntries(chosen.filter(x=>/^[a-f0-9]{40}$/.test(x.revision||'')).map(x=>[x.source.cohort,x.revision])),health,stale,duplicates:common.duplicates,observations:common.observations,families:new Set(common.rows.map(r=>r.family)).size,sources:chosen.map(x=>x.source.key),own_excluded:chosen.filter(x=>!x.data.own_views||x.index.supports_own_bidding===false).map(x=>x.source.name)},
+   feed:{published_epoch:generated_epoch,next_update_epoch:chosen.some(x=>!x.source.retired)?Math.min(...chosen.filter(x=>!x.source.retired).map(x=>x.data.feed?.next_update_epoch||x.data.generated_epoch+60)):now+60},
+   interpretation:'Completed paired boards are combined by matchup across the selected environment’s main and component runs. P/Q aliases are mapped to 4p/4b. Repeat deal families within a matchup count once, retaining the earliest completed observation regardless of outcome. Different matchups may share families. This descriptive rollup weights each counted board equally; runtime and deal mix can differ by stream. Collection rates count run observations, including repeats, over the current wall-clock window. Common auctions and native bidders are separate; runs without native-bidder games are excluded from that condition. Student-t intervals are exploratory and unadjusted for repeated looks. Self-play has no strength estimate.',
+   model_note:chosen.some(x=>x.source.variant==='6')?'Gen6: opening-lead belief net, then hand-fit scorer. Fast 32 layouts to trick7; medium 256 to trick6; compatible-layout lists solve up to 256. Common Gen6 bidding measures play; native partnership bidding measures total; bidding is paired native minus common and includes auction/play interaction. Fresh independent cohorts.':chosen.some(x=>x.source.variant==='5RZ')?'5RZ (32 and 192) keeps the same networks and representative sampler as same-budget 5R, with zero near-tie margin: the policy only breaks PIMC ties. New BEN games use 5RZ (192) vs BEN (16). New matches: 30% Z32 vs R32, 20% R32 vs Gen5 (32), with the other half in the previous proportions. Earlier compatible R and Z games remain included; original R192 vs BEN stays a distinct baseline. Common and native bidding stay separate.':chosen.some(x=>x.source.variant==='5R')?'Gen5R keeps Gen5 networks and changes only 10–13-trick layout selection and belief-moment weights. Pools 128/768; DDS ceilings 32/192. Original Gen5 (32) is the random-sampling control. Smaller positions are unchanged. Common and native bidding remain separate.':chosen.some(x=>x.source.generation===5)?'Gen5 and older bots both use 32 samples in historical comparisons. Gen5 uses 192 only against BEN (16) and Gen5 (32), with identical networks at both budgets. Earlier 192-vs-older games are preserved for training and excluded from statistics. Common-v5 and native bidding are separate.':'Gen 4p: Gen 4 policy + Gen 3 belief and bidder. Gen 4b: Gen 4 belief + Gen 3 policy and bidder. All common-auction results use the frozen Gen 4 bidder and 32 samples. Click any score to inspect its contributing runs and plays.'};
+ }
+ let requestSerial=0;
+ async function get(url,checksum=null){const r=await fetch(url+(url.includes('?')?'&':'?')+'v='+(checksum||Date.now()+'-'+(++requestSerial)),{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);if(!checksum)return r.json();const body=await r.arrayBuffer(),actual=[...new Uint8Array(await crypto.subtle.digest('SHA-256',body))].map(x=>x.toString(16).padStart(2,'0')).join('');if(actual!==checksum)throw Error('Replay shard checksum is not yet synchronized');return JSON.parse(new TextDecoder().decode(body));}
+ function verify(data,records){
+  if(!data.views?.[0]?.groups)throw Error('Invalid score snapshot');
+  if(!Number.isFinite(data.generated_epoch)||records.length!==data.completed||new Set(records.map(r=>String(r.id))).size!==records.length)throw Error('Score and replay publication are not yet synchronized');
+  for(const [kind,views] of [['imps',data.views],['own_imps',data.own_views]]){if(!views)continue;const groups=views['0']?.groups;if(!groups)throw Error('Invalid score snapshot');
+   for(const [p,s] of Object.entries(groups)){const rows=records.filter(r=>r.pair===p),self=members(p)[0]===members(p)[1];const total=rows.reduce((n,r)=>n+(r[kind]??0),0);if(rows.length!==s.n||(s.total!==null&&Math.abs(total-s.total)>1e-8)||(!self&&rows.some(r=>!Number.isFinite(r[kind]))))throw Error('Score/replay totals do not agree');}
+   if(Object.values(groups).reduce((n,s)=>n+s.n,0)!==records.length)throw Error('Incomplete score coverage');
+  }
+ }
+ const shardCache=new Map();
+ async function loadSource(source,{indexOnly=false,cutoff=null,revision=source.revision||source.branch}={}){if(revision!==source.branch&&!/^[a-f0-9]{40}$/.test(revision))throw Error('Invalid publication revision');const path=base+revision+'/arena/',data=indexOnly?{generated_epoch:cutoff??Infinity,own_views:source.key==='recovery'?null:{}}:await get(path+'data.json');
+  if(!indexOnly&&data.manifest_identity!==source.cohort)throw Error('Run identity changed');
+  const indexURL=path+'replays/data/'+source.cohort+'/index.json',index=await get(indexURL);if(index.cohort!==source.cohort)throw Error('Replay run identity mismatch');
+  if(index.record_shards){const prefix=source.cohort+':',wanted=new Set(Object.values(index.record_shard_sha256||{}).map(hash=>prefix+hash));for(const key of shardCache.keys())if(key.startsWith(prefix)&&!wanted.has(key))shardCache.delete(key);index.records=(await Promise.all(index.record_shards.map(async p=>{const url=new URL(p,indexURL).href,revision=index.record_shard_sha256?.[p],key=prefix+revision,cached=shardCache.get(key);if(revision&&cached)return cached;const rows=await get(url,revision);if(revision)shardCache.set(key,rows);return rows;}))).flat();}
+  if(source.allowed_pairs&&index.records.some(r=>!source.allowed_pairs.includes(r.pair)))throw Error('Awaiting the corrected sample-budget publication');
+  if(!indexOnly){index.records=index.records.filter(r=>r.completed_epoch<=data.generated_epoch);verify(data,index.records);}
+  return {source,data,index,indexURL,revision};
+ }
+ const revisionCache=new Map();
+ async function liveRevision(source){const key='arena-revision:'+source.branch+':'+source.cohort;let cached=revisionCache.get(key);if(!cached)try{cached=JSON.parse(localStorage.getItem(key));}catch{}if(cached&&/^[a-f0-9]{40}$/.test(cached.sha)&&Date.now()-cached.checked>=0&&Date.now()-cached.checked<90000)return cached.sha;const ref=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/ref/heads/'+encodeURIComponent(source.branch)),sha=ref.object?.sha;if(!/^[a-f0-9]{40}$/.test(sha||''))throw Error('Latest publication revision is unavailable');cached={sha,checked:Date.now()};revisionCache.set(key,cached);try{localStorage.setItem(key,JSON.stringify(cached));}catch{}return sha;}
+ // Share one branch-head request across producers and browser tabs.
+ let gen6Heads=null,gen6HeadsPending=null;
+ async function liveGen6Revision(source){
+  const key='arena-gen6-heads-v1';if(!gen6Heads)try{gen6Heads=JSON.parse(localStorage.getItem(key));}catch{}
+  if(!gen6Heads||Date.now()-gen6Heads.checked<0||Date.now()-gen6Heads.checked>=120000){
+   if(!gen6HeadsPending)gen6HeadsPending=(async()=>{const heads={};for(let page=1;page<=10;page++){const rows=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches?per_page=100&page='+page);if(!Array.isArray(rows))throw Error('Producer publication heads are unavailable');for(const row of rows)if(/^arena-gen6-/.test(row.name)&&/^[a-f0-9]{40}$/.test(row.commit?.sha||''))heads[row.name]=row.commit.sha;if(rows.length<100)break;}const snapshot={checked:Date.now(),heads};gen6Heads=snapshot;try{localStorage.setItem(key,JSON.stringify(snapshot));}catch{}return snapshot;})().finally(()=>{gen6HeadsPending=null;});
+   await gen6HeadsPending;
+  }
+  const sha=gen6Heads.heads[source.branch];if(!sha)throw Error('This collector has not published a branch yet');return sha;
+ }
+ const archivedCache=new Map();
+ async function loadLiveSource(source,options={}){
+  if(source.retired&&/^[a-f0-9]{40}$/.test(source.revision||'')&&!Object.keys(options).length){
+   const key=source.cohort+':'+source.revision;
+   if(!archivedCache.has(key))archivedCache.set(key,loadSource(source).catch(e=>{archivedCache.delete(key);throw e;}));
+   return {...await archivedCache.get(key),source};
+  }
+  if(options.revision||source.retired||source.generation!==6&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await (source.generation===6?liveGen6Revision(source):liveRevision(source))});
+ }
+ const registryURL=typeof document!=='undefined'&&document.currentScript?.src?new URL('gen6-sources.json',document.currentScript.src).href:'https://maxschireson.github.io/Single-Dummy-Bridge/arena/gen6-sources.json';
+ let registry=null,registryChecked=0,registryPending=null;
+ function applyRegistry(value){
+  if(value.schema!=='arena-gen6-source-registry-v1'||!Array.isArray(value.sources))throw Error('Invalid Gen6 source registry');
+  const keys=new Set(),cohorts=new Set();for(const entry of value.sources){
+   if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||entry.group!=='gen6'||entry.generation!==6||!/^arena-gen6-[a-zA-Z0-9_-]+$/.test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated Gen6 registry source');keys.add(entry.key);cohorts.add(entry.cohort);
+  }
+  for(const entry of value.sources){const i=sources.findIndex(s=>s.key===entry.key);if(i>=0)sources[i]={...sources[i],...entry};else sources.unshift({...entry});names[entry.key]=entry.name;}
+  if(latestScope==='gen6'){latestSource=sources.find(s=>s.group==='gen6'&&!s.retired);api.latestSource=latestSource;names.latest=names.gen6='Gen 6 · all collectors';}
+  registry=value;api.registry=value;return value;
+ }
+ async function loadRegistry(){
+  if(registry&&Date.now()-registryChecked>=0&&Date.now()-registryChecked<120000)return registry;
+  if(!registryPending)registryPending=get(registryURL).then(value=>{applyRegistry(value);registryChecked=Date.now();return value;}).finally(()=>{registryPending=null;});
+  return registryPending;
+ }
+ async function loadBenGate(){if(!registry?.gate_branch)return null;const revision=await liveGen6Revision({branch:registry.gate_branch});const value=await get(base+revision+'/status.json');api.benGate=value;return value;}
+ const api={sources,latestSource,latestScope,resolveSelection,labels,order,names,canonical,members,pairID,normalizePair,byTime,pickSources,stats,view,rowsFor,build,decisionTiming,feedHealth,loadSource,loadLiveSource,verify,applyRegistry,loadRegistry,loadBenGate};
+ root.ArenaReporting=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window==='undefined'?globalThis:window);
+

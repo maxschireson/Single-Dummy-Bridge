@@ -14,6 +14,7 @@
 ## Operate and interpret results
 
 - [Operations and recovery](operations.md)
+- [Collector health, feed freshness and supervision](collector-health.md)
 - [Gen6 recovery details](gen6-arena-recovery-20261111.md)
 - [Watchdog implementation/runbook](arena_watchdog.md)
 - [Model release folders](../models)

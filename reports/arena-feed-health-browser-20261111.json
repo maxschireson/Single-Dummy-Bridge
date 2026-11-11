@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "checked_utc": "2026-11-11T09:19:57.249467+00:00",
+  "summary": "2 of 5 collectors publishing current snapshots \u00b7 3 need attention \u00b7 11 archived runs retained.",
+  "collectors": [
+    {
+      "source": "gen6extraselfplay",
+      "state": "no-heartbeat",
+      "text": "Gen 6 \u00b7 additional fast self-play only\tCollector heartbeat overdue\t49 minutes ago\t49 minutes ago\t68"
+    },
+    {
+      "source": "gen6cloudselfplay",
+      "state": "overdue",
+      "text": "Gen 6 \u00b7 cloud fast self-play only\tUpdate overdue\t48 minutes ago\t48 minutes ago\t158"
+    },
+    {
+      "source": "gen6codexfast",
+      "state": "live",
+      "text": "Gen6 primary \u00b7 fast self-play and BEN16\tCollecting and publishing\t1 minutes ago\t1 minutes ago\t23"
+    },
+    {
+      "source": "gen6chatgpt",
+      "state": "overdue",
+      "text": "Gen 6 \u00b7 ChatGPT fast self-play and BEN16\tUpdate overdue\t50 minutes ago\t5 minutes ago\t243"
+    },
+    {
+      "source": "gen6independent",
+      "state": "live",
+      "text": "Gen6 independent \u00b7 fast self-play and BEN16\tCollecting and publishing\tLess than a minute ago\tLess than a minute ago\t907"
+    }
+  ],
+  "current_mix": "Current collection: 92.5% Gen6 fast self-play and 7.5% fast versus BEN16. Completed earlier results remain available.",
+  "regular_refresh_verified": true,
+  "archives_fetched_once": true,
+  "page_errors": [],
+  "api_rates": [
+    {
+      "x-ratelimit-limit": "15000",
+      "x-ratelimit-remaining": "14973",
+      "x-ratelimit-reset": "1794391627",
+      "x-ratelimit-used": "27",
+      "x-ratelimit-resource": "core"
+    }
+  ]
+}
