@@ -1,5 +1,5 @@
 {
-  "status": "launch-authorized-blocked-on-live-source",
+  "status": "superseded-by-live-primary-run",
   "upstream_branch": "transfer/gen6-launch-package-20261111",
   "upstream_commit": "717cd87d57b61d7f7d3a41fa48228d849c9544bf",
   "plan": "configs/round6-cutover.json",
@@ -13,13 +13,10 @@
     "mix_and_audit_references_valid": true,
     "targeted_tests_passed": 28
   },
-  "not_yet_done": [
-    "Access and drain the live source collector; published snapshot is not proof of drain",
-    "Freeze only remaining source families with prepare_gen6",
-    "Pass real-runtime smoke_gen6 preflight, including BEN connectivity check",
-    "Register and verify visible Gen6 bidding/play/total report on publication checkout",
-    "Start collector and publisher after final parameters are pinned"
-  ],
-  "launch_enabled": false,
-  "launch_authorized": true
+  "not_yet_done": [],
+  "launch_enabled": true,
+  "launch_authorized": true,
+  "production_plan": "configs/round6-codex.json",
+  "production_report": "reports/gen6-primary-launch-20261111.json",
+  "source_drained_completed": 8372
 }
