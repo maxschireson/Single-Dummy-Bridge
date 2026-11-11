@@ -30,18 +30,21 @@ def snapshot_runtime(run,backup):
         source=ROOT/'ops'/name;dest=backup/'runtime/ops'/name
         if name=='watch_gen5.py' and dest.exists():shutil.copy2(source,dest)
         else:copy_once(source,dest)
-    for name in ('prepare_gen5r.py','register_gen5r_report.py','prepare_gen5rz.py','prepare_gen5rz_ben.py'):
+    for name in ('prepare_gen5r.py','register_gen5r_report.py','prepare_gen5rz.py','prepare_gen5rz_ben.py',
+                 'prepare_gen6.py','prepare_gen6_independent.py','retarget_gen6_ben.py','prepare_gen6_ben_expansion.py','auto_ben_switch.py','register_gen6_report.py','smoke_gen6.py'):
         if (ROOT/'ops'/name).exists():copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
     copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
     if (ROOT/'configs/round5rz.json').exists():copy_once(ROOT/'configs/round5rz.json',backup/'runtime/configs/round5rz.json')
     if (ROOT/'configs/round5rz-ben.json').exists():copy_once(ROOT/'configs/round5rz-ben.json',backup/'runtime/configs/round5rz-ben.json')
+    for name in ('round6.json','round6-cutover.json','round6-independent.json'):
+        if (ROOT/'configs'/name).exists():copy_once(ROOT/'configs'/name,backup/'runtime/configs'/name)
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     return True
 
 def publish(run,out):
     export(run,out);backup=out/'recovery';backup.mkdir(exist_ok=True)
     for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl'):shutil.copy2(run/name,backup/name)
-    for name in ('source-indices.json',):
+    for name in ('source-indices.json','preflight.json','ben-preflight.json','launch.json','runtime-requirements.txt','significance-trigger.json'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
     for name in ('statistics-policy.json','retirement.json','STOP','WATCHDOG_STOP'):
         if (run/name).exists():shutil.copy2(run/name,backup/name)
@@ -54,7 +57,9 @@ def publish(run,out):
                     try:os.link(path,dest)
                     except OSError:shutil.copy2(path,dest)
     snapshot_runtime(run,backup)
-    git(out,'add','arena','recovery')
+    git(out,'add','arena')
+    # Recovery deliberately contains ignored model binaries, corpus and native library.
+    git(out,'add','-f','recovery')
     if git(out,'status','--porcelain').stdout.strip():
         n=json.loads((out/'arena/data.json').read_text())['completed'];git(out,'commit','-m',f'Gen5: {n} verified paired deals, common/native bidding')
     git(out,'push','-u','origin','HEAD')

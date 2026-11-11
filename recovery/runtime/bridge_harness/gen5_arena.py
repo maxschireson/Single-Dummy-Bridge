@@ -66,7 +66,7 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
     if opponent!=current:players['opponent']=player_factory(specs[opponent],root)
     seed=int(digest([manifest['seed'],index,'gen5-play'])[:12],16)
     records={};regimes={};bidding_records={};cache={}
-    budget=ForkBudget(**(manifest['ben_audit'] if opponent=='ben' else manifest['audit'])); max_forks=budget.max_forks
+    budget=ForkBudget(**(manifest['ben_audit'] if opponent=='ben' or specs[opponent].get('engine')=='ben' else manifest['audit'])); max_forks=budget.max_forks
     try:
         common,common_bids=auction(board,[bidders[manifest.get('common_bidder',current)]]*4)
         for regime in (('self',) if opponent==current else ('common','native')):

@@ -150,7 +150,8 @@ def prepare(root, source, plan_path=None):
             (root / folder).mkdir()
         save([boards[i] for i in keep], root / 'corpus.jsonl')
         atomic_json(root / 'source-indices.json', keep)
-        labels = dict(old.get('labels', {}), **{key: entry.get('label', key) for key, entry in plan['gen6_bots'].items()})
+        labels = dict(old.get('labels', {}), **plan.get('labels', {}))
+        labels.update({key: entry.get('label', key) for key, entry in plan['gen6_bots'].items()})
         m = dict(schema='gen5-arena-manifest-v1', generation=6, variant='6', campaign=plan['campaign'], title=plan['title'],
             target=len(keep), seed=plan['seed'], roster=plan['roster'], bots=bots,
             pair_weights=plan['pair_weights'], pair_schedule=[p for p, n in plan['pair_weights'].items() for _ in range(n)],
