@@ -12,6 +12,17 @@
  "before_epoch": {
   "2": [
    {
+    "event": "activate",
+    "player": "9a-32",
+    "authority": "arrival run plan (g9, 12 Nov 11:32 UTC): 9a-32 activated before epoch 2 so that its test can open"
+   },
+   {
+    "event": "open-test",
+    "player": "9a-32",
+    "champion": "8p-32",
+    "authority": "arrival run plan (g9, 12 Nov 11:32 UTC): the test of 9a-32 against 8p-32 opened by plan; not expected to decide"
+   },
+   {
     "event": "submit",
     "player": "guest-a",
     "authority": "arrival run plan: guest-a arrives before epoch 2"
@@ -35,6 +46,6 @@
   "pair": "9a-32~guest-a"
  },
  "notes": [
-  "G9-D6. Written before the run; the runner queues each event before the boundary at which it takes effect."
+  "G9-D6. Written before the run; the runner queues each event before the boundary at which it takes effect. Revised 12 Nov after g9's 11:32 UTC answers (the test of 9a-32 opened by plan)."
  ]
 }

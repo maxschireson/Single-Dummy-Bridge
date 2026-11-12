@@ -9,6 +9,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from bridge_harness import arena9 as a9  # noqa: E402
+from bridge_harness import arena_ratings as ar  # noqa: E402
 
 RULES = dict(schema='arena-rules-v1', version='test', condition='native', reference='anchor-a',
              promotion=dict(alpha=0.05, beta=0.10, d=0.1, cap=10000), admission=dict(se=0.15, max_boards=2000),
@@ -181,6 +182,39 @@ class Rules(Base):
         self.assertGreaterEqual(promote['evidence']['K'], 20.0)
         st = a9.fold(a9.read_log(c))
         self.assertEqual(st['champ']['status'], 'active')       # the old champion stays in the league
+
+
+class GainSchedule(Base):
+    """The arrival run's shares (G9-D6): self-play only for training, and a gain pool of admission and panel pairs."""
+    GAIN = dict(RULES, shares=dict(training=0.10, promotion=0.30, gain=0.60), gain_purposes=['admission', 'panel'],
+                training_pairs='self-play', epoch=dict(sizes=[300, 600, 900], boards=1200))
+
+    def test_epoch_sizes_by_epoch(self):
+        self.assertEqual([a9.epoch_boards(self.GAIN, n) for n in (1, 2, 3, 4)], [300, 600, 900, 1200])
+        self.assertEqual([a9.epoch_boards(RULES, n) for n in (1, 2)], [600, 600])
+
+    def test_a_newcomer_draws_the_gain_before_a_well_measured_pair(self):
+        pairs = [ar.Pair('champ', 'anchor-a', 400, 0.5, 14.0), ar.Pair('champ', 'anchor-b', 400, 1.5, 14.0), ar.Pair('anchor-a', 'anchor-b', 400, 1.0, 14.0)]
+        R = ar.fit(pairs, ['champ', 'anchor-a', 'anchor-b'], 'anchor-a')
+        got = a9.gain_units(['new~champ', 'champ~anchor-a'], 10, R, {}, 30)
+        self.assertGreater(got['new~champ'], got['champ~anchor-a'])
+        self.assertEqual(sum(got.values()), 10)
+        fed = a9.gain_units(['new~champ', 'champ~anchor-a'], 10, R, {'new~champ': 3000}, 30)    # a floor already measures it
+        self.assertLess(fed['new~champ'], got['new~champ'])
+
+    def test_shares_with_a_test_open_and_without(self):
+        c = self.control(rules=self.GAIN)
+        m = a9.current(c)
+        w = m['schedule']['pair_weights']
+        self.assertEqual(w['champ~champ'], 10)                         # no test open: its 0.30 joins the pool, not training
+        self.assertEqual(sum(w.values()), 100)
+        self.queue(c, 'activate', 'weak')
+        (c / 'queue' / '1-open.json').write_text(json.dumps(a9.event('open-test', 'weak', 'max', 'unit test', champion='champ', epoch=2)))
+        nxt, _ = self.epoch(c)
+        w = nxt['schedule']['pair_weights']
+        self.assertEqual((w['champ~champ'], w['weak~champ']), (10, 30))
+        self.assertNotIn('champ~weak', w)                               # an active player under test is not trained against
+        self.assertEqual(sum(v for p, v in w.items() if p not in ('champ~champ', 'weak~champ')), 60)
 
 
 class PlayerFiles(unittest.TestCase):

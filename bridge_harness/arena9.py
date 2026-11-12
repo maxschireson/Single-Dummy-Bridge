@@ -172,10 +172,64 @@ def pair_name(a, b):
     return f'{a}~{b}'
 
 
-def schedule(st, rules, previous=None):
+def gain_units(pairs, units, ratings, fixed, chunk):
+    """{pair: units} for the pairs of the gain pool: `units` chunks of `chunk` boards each, one at a time, to the pair
+    whose next chunk most reduces the total variance of the centred ratings (G9-A4's gain rule; scripts/arena_sim.py's
+    variance schedule). The covariance starts from `ratings` (a newcomer it does not know gets the weak prior S_PRIOR)
+    and first takes in `fixed` ({pair: boards} this epoch outside the pool: floors, promotion). A board's variance is
+    V0; ties go to the first pair in sorted order."""
+    names = sorted({x for p in list(pairs) + list(fixed) for x in p.split('~')} | set(ratings.players if ratings else ()))
+    k = {x: i for i, x in enumerate(names)}
+    C = np.diag([ar.S_PRIOR ** 2] * len(names)).astype(float)
+    if ratings is not None:
+        for a in ratings.players:
+            for b in ratings.players:
+                C[k[a], k[b]] = ratings.C[ratings.index(a), ratings.index(b)]
+    J = np.ones((len(names), len(names))) / len(names)
+    S = (np.eye(len(names)) - J) @ C @ (np.eye(len(names)) - J)
+
+    def vec(pair):
+        a, b = pair.split('~')
+        v = np.zeros(len(names))
+        v[k[a]] += 1; v[k[b]] -= 1
+        return v
+
+    def add(S, v, boards):
+        w = boards / ar.V0
+        Sv = S @ v
+        return S - np.outer(Sv, Sv) * (w / (1 + w * (v @ Sv)))
+
+    for pair, boards in sorted(fixed.items()):
+        if boards > 0 and len(set(pair.split('~'))) == 2:
+            S = add(S, vec(pair), boards)
+    out = {p: 0 for p in sorted(pairs)}
+    w = chunk / ar.V0
+    for _ in range(int(units)):
+        best, top = None, -1.0
+        for p in sorted(pairs):
+            v = vec(p)
+            Sv = S @ v
+            g = w * (Sv @ Sv) / (1 + w * (v @ Sv))
+            if g > top + 1e-12:
+                best, top = p, g
+        if best is None:
+            break
+        out[best] += 1
+        S = add(S, vec(best), chunk)
+    return out
+
+
+def schedule(st, rules, previous=None, ratings=None, boards=None):
     """Purposes and integer pair weights for the next epoch (docs/gen9/arena.md section 4). `previous` is the last
     epoch's schedule: a pair that keeps its purpose may not more than double or halve its weight; a pair whose purpose
-    changed (an admission becoming a promotion test, say) or that is new takes its weight at once."""
+    changed (an admission becoming a promotion test, say) or that is new takes its weight at once.
+
+    Two options in the rules (the arrival run's, G9-D6): `training_pairs: "self-play"` keeps the training purpose to
+    the champion's self-play; a `gain` share, with `gain_purposes` (say admission and panel), puts those purposes'
+    pairs in one pool whose units go by gain_units, from `ratings` (the last close's table for the rules' condition)
+    with the epoch's floors and promotion boards taken in first; `boards` is the epoch's boards less its floors. An
+    empty purpose's share goes to the gain pool when there is one, else to training. The weight cap does not apply
+    to the pool's pairs."""
     champ = champion_of(st)
     anchors = sorted(p for p, s in st.items() if s['status'] == 'anchor')
     actives = sorted(p for p, s in st.items() if s['status'] == 'active')
@@ -185,26 +239,47 @@ def schedule(st, rules, previous=None):
         'promotion': [pair_name(p, champ) for p in testing],
         'admission': [pair_name(p, q) for p in candidates for q in [champ, *anchors[:2]]],
         'panel': [pair_name(champ, a) for a in anchors],
-        'training': [pair_name(champ, champ)] + [pair_name(champ, a) for a in actives if a not in testing],
+        'training': [pair_name(champ, champ)] + ([] if rules.get('training_pairs') == 'self-play' else [pair_name(champ, a) for a in actives if a not in testing]),
     }
     shares = dict(rules['shares'])
-    spare = sum(shares[k] for k, v in purposes.items() if not v and k != 'training')
-    shares['training'] += spare
+    pool_of = tuple(rules.get('gain_purposes') or ()) if 'gain' in shares else ()
+    pool = sorted({p for k in pool_of for p in purposes.get(k, [])})
+    spare = sum(shares.get(k, 0) for k, v in purposes.items() if not v and k != 'training')
+    shares['gain' if pool else 'training'] = shares.get('gain' if pool else 'training', 0) + spare
+    if not pool:
+        shares['training'] += shares.pop('gain', 0)
     units = rules.get('weight_units', 100)
     weights = {}
     for purpose, pairs in purposes.items():
-        if not pairs or shares.get(purpose, 0) <= 0:
+        if not pairs or purpose in pool_of or shares.get(purpose, 0) <= 0:
             continue
         w = max(1, round(shares[purpose] * units / len(pairs)))
         for p in pairs:
             weights[p] = weights.get(p, 0) + w
+    if pool:
+        n_units = max(1, round(shares['gain'] * units))
+        if ratings is None or not boards:           # nothing rated yet (the first epoch): the pool is split evenly
+            each = max(1, round(n_units / len(pool)))
+            got = {p: each for p in pool}
+        else:
+            chunk = boards / units
+            fixed = {}
+            for f in floors(st, rules):
+                for p in f['pairs']:
+                    fixed[p] = fixed.get(p, 0) + f['boards']
+            for p in purposes['promotion']:
+                fixed[p] = fixed.get(p, 0) + weights.get(p, 0) * chunk
+            got = gain_units(pool, n_units, ratings, fixed, chunk)
+        for p, w in got.items():
+            if w > 0:
+                weights[p] = weights.get(p, 0) + w
     if previous:
         ratio = rules.get('max_weight_ratio', 2)
         was = {p: k for k, ps in previous.get('purposes', {}).items() for p in ps}
         now = {p: k for k, ps in purposes.items() for p in ps}
         for p, w in weights.items():
             old = previous['pair_weights'].get(p)
-            if old and was.get(p) == now.get(p):
+            if old and was.get(p) == now.get(p) and p not in pool:       # the gain pool's units are the gain rule's alone
                 weights[p] = int(min(max(w, math.ceil(old / ratio)), old * ratio))
     return dict(purposes={k: v for k, v in purposes.items() if v}, pair_weights=dict(sorted(weights.items())), floors=floors(st, rules))
 
@@ -242,8 +317,10 @@ FLOOR_BASE, FLOOR_GROUP, FLOOR_PAIR = 1 << 19, 1 << 15, 1 << 11
 # ---- epochs ---------------------------------------------------------------------------------
 
 def epoch_boards(rules, n):
-    """Boards in epoch n: the rules' epoch size, or its `first` size for epoch 1."""
+    """Boards in epoch n: `sizes[n - 1]` when the rules list sizes by epoch, else the epoch size (`first` for epoch 1)."""
     e = rules['epoch']
+    if e.get('sizes') and n <= len(e['sizes']):
+        return int(e['sizes'][n - 1])
     return int(e.get('first', e['boards'])) if n == 1 else int(e['boards'])
 
 
@@ -263,8 +340,9 @@ def epoch_id(m):
     return sha({k: v for k, v in m.items() if k not in ('id', 'opened_utc')})
 
 
-def make_epoch(n, previous, st, packages, rules, snapshot_id, applied, source_commit=None):
-    sch = schedule(st, rules, previous['schedule'] if previous else None)
+def make_epoch(n, previous, st, packages, rules, snapshot_id, applied, source_commit=None, ratings=None):
+    scheduled = epoch_boards(rules, n) - sum(f['boards'] * len(f['pairs']) for f in floors(st, rules))
+    sch = schedule(st, rules, previous['schedule'] if previous else None, ratings=ratings, boards=max(scheduled, 0))
     rostered = sorted({x for p in sch['pair_weights'] for x in p.split('~')} | {x for f in sch['floors'] for p in f['pairs'] for x in p.split('~')})
     players = {p: dict(package_sha256=st[p]['package_sha256'], identity=identity(packages[p]), status=st[p]['status'],
                        protected=st[p]['protected'], test=st[p]['test'], model=st[p].get('model')) for p in rostered}
@@ -473,7 +551,7 @@ def close_epoch(control, packages, author='controller', source_commit=None, arri
     st = fold(read_log(control))
     log = read_log(control)
     applied = [e['seq'] for e in log if e['seq'] not in set(_applied_so_far(control))]
-    nxt = make_epoch(n + 1, m, st, packages, rules, snap['id'], applied, source_commit=source_commit)
+    nxt = make_epoch(n + 1, m, st, packages, rules, snap['id'], applied, source_commit=source_commit, ratings=R)
     write_epoch(control, nxt)
     return nxt, decisions
 
