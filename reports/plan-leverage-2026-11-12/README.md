@@ -118,6 +118,11 @@ Declaring +0.021 +- 0.007, defending +0.029 +- 0.012. Margin 0.125 gets +0.041 o
 
 **A 64-layout ceiling for close decisions at tricks 3 to 6**, to check the model's layout curve directly: *pending*.
 
+**Cards the search rates exactly level.** The gap forks above contain none (the smallest recorded gap is above zero),
+so none of these figures covers the choice among level cards, which the bots make with a net. The collector's tie
+forks (the card another selector would have played from the same search) are the data for it; a ceiling on them,
+equivalent cards left out, is *pending* (`ceilTies`). The played test does re-value level cards.
+
 Examples of what the ceiling finds (`scripts/plan_examples.py`: real playouts say the other card is better by more
 than two standard errors): dummy cashing a side king at trick 5 in 3S where a trump first is 0.75 +-
 0.21 better; a defender with KQ63 of trumps ducking where the king is 0.56 +- 0.16 better; declarer in 4H taking a
@@ -249,6 +254,11 @@ information: -0.693), which is the figure to compare.
 | v4.1 net | +0.92 | 0.32 | -0.552 | -0.388 |
 
 So where a card sits within a suit is only read by something close to the bot itself; lengths survive a cheap model.
+
+**Does a bot whose ties its own net breaks read better with that net?** Little. Net-only runs of the same bench
+(`--net-only`), policy v4, trick 6, honour with lengths kept: Gen 7 self-play (`7s-32`, ties broken by v4; 601 seats)
+evidence +0.91 +- 0.04, wrong 0.29, log-probability -0.523 +- 0.011; Gen 6 self-play (ties broken by the Gen 5 selector;
+521 seats) +0.84 +- 0.05, 0.31, -0.555 +- 0.014. Two small cards exchanged: +0.33 against +0.25.
 
 **The whole layout** (82 seats, 34 deals; a pool of about 690 distinct layouts from Gen 6's beliefs; the bot is run
 on 50 drawn by the net's reading and its reading of the pool follows by importance weights).
