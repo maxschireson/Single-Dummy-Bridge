@@ -132,8 +132,8 @@ Generated 2026-11-12 11:54 UTC by `tools/workq.py` after a change by `will`. Do 
 | e9-12-u | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-us | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-xs | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-6-vs-8p | E9-6 | sam | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 | e9-6-att-vs-reader | E9-6 | sam | 6 | 4 | not seen yet | 0 of 1,600 |  |  |  |
+| e9-6-vs-8p | E9-6 | sam | 6 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 | e9-6-vs-reader | E9-6 | sam | 6 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 
 ## Boxes
