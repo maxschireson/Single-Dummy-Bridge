@@ -1266,5 +1266,15 @@
         "2561": true
       }
     }
+  },
+  "oversight_20261112_0940": {
+    "epoch": 1794476995.3219686,
+    "restoration": "diagnostics/workspace-restore-20261112-0940.json",
+    "diagnostic": "diagnostics/ben-rng-fullsize-v4/result.json",
+    "pairs_verified": 2015,
+    "retained_verified": 656,
+    "frozen_verified": true,
+    "production_started": false,
+    "free_GB": 53.643472896
   }
 }
