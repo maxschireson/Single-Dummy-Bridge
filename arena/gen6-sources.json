@@ -487,6 +487,108 @@
       "cohort": "c50412d34108b09cb5bc2cc3db45ce6764fae7901a878e7bca13117c21d6900a"
     },
     {
+      "key": "gen71azure3ben64l1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 1)",
+      "branch": "arena-gen7-1-azure3-ben64-1-feed",
+      "cohort": "7fde78e35bfd6b4f03914259cdb4661fc5d9d67d465a449f30630c1665394ef7"
+    },
+    {
+      "key": "gen71azure3ben64l2",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 2)",
+      "branch": "arena-gen7-1-azure3-ben64-2-feed",
+      "cohort": "3c83438c70c2e2465f4ef1e2f631714ad6c0b57b0c95fa866251dda1f9648abd"
+    },
+    {
+      "key": "gen71azure3ben64l3",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 3)",
+      "branch": "arena-gen7-1-azure3-ben64-3-feed",
+      "cohort": "10464138167d6ae56caa83594570b69f584518495b40544130319adb016bf7ba"
+    },
+    {
+      "key": "gen71azure3ben64l4",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 4)",
+      "branch": "arena-gen7-1-azure3-ben64-4-feed",
+      "cohort": "73754c5505f75246d3c9d89555310eb7cd8cf4a3370afaa90b63c3a62cd6dcd0"
+    },
+    {
+      "key": "gen71azure3ben64l5",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 5)",
+      "branch": "arena-gen7-1-azure3-ben64-5-feed",
+      "cohort": "f7344023728be768343b3b521f5d273b91b4de680e385840b751342b90c8ace9"
+    },
+    {
+      "key": "gen71azure3ben64l6",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 6)",
+      "branch": "arena-gen7-1-azure3-ben64-6-feed",
+      "cohort": "caabb9b1fdc0e0e2b87f372d8632bcbc21f29791df2125f363e917361046eda8"
+    },
+    {
+      "key": "gen71azure3ben64l7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 7)",
+      "branch": "arena-gen7-1-azure3-ben64-7-feed",
+      "cohort": "3139a449d11be03a1e358dcb5738f3ea1fd3085faa9307ad43db29b8c5682db9"
+    },
+    {
+      "key": "gen71azure3ben64l8",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 8)",
+      "branch": "arena-gen7-1-azure3-ben64-8-feed",
+      "cohort": "a5be45396a82605149ffaf94159a21667f137bd8284e3a04451988253b44405e"
+    },
+    {
+      "key": "gen71azure2compare",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure2 first cohort (against Gen 7.0 and Gen 6)",
+      "branch": "arena-gen7-1-compare-azure2-feed",
+      "cohort": "f171cc038c645df36c8f62b83ba28ada62cea9eb9387a92237226f5d102b41fd",
+      "retired": true,
+      "revision": "239815e87f10bc14471e2c08b227f4e039e6a732"
+    },
+    {
+      "key": "gen71azure2vs70",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure2 against Gen 7.0, every board",
+      "branch": "arena-gen7-1-vs70-azure2-feed",
+      "cohort": "7207e693b7405bd455411c5d15f290b22f2a1ff88108a7c08bec9d17e64d8c8d"
+    },
+    {
       "key": "gen7azure1pre7",
       "group": "gen7",
       "generation": 7,
@@ -912,6 +1014,14 @@
     "plan": "configs/round7-phase1-selfplay.json on feature/gen7-selfplay-20261112: 7s-32~6-32 one board in three, 7s-32~7s-32 two. Self-play boards are one table, carry no IMP comparison and are counted without a score.",
     "source": "Commit 7780e5e, which also records gap forks and the guess-size fields. The cohort took over the deals azure2's phase 1 cohort had not played.",
     "notice": "docs/gen7_selfplay_2026-11-12.md on that branch",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
+  },
+  "gen71_azure": {
+    "authority": "Max, 2026-11-12 05:42 UTC (in chat): push Gen 7.1 from 06:00 UTC unless revoked; replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes a 95% CI lead, then 7.1 self play; all other matches replace 7 with 7.1. 05:54 UTC: azure2 plays 7.1 against 7.0 on every board.",
+    "bot": "71s-32 is 7s-32 with policy net v4.1 (sha256 cb3fcfd5...) and nothing else changed; identity 7b0f58b4... on these cohorts. 7s-32 keeps f0a57859....",
+    "feeds": "azure2: 71s-32~7s-32 on every board with eight workers, after a first cohort of 8 boards on the 1:2 mix (pinned). azure3: eight lanes of 71s-32~ben64, each taking over the deals its Gen 7.0 lane had not played.",
+    "finished_gen7": "The Azure Gen 7.0 BEN lanes ended at 06:00 UTC with 1,195 boards against BEN (16) and 606 against BEN (64); their feeds stay registered.",
+    "notice": "docs/gen71_2026-11-12.md on feature/gen7-selfplay-20261112",
     "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
   }
 }
