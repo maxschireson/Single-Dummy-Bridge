@@ -8,3 +8,4 @@ Traceback (most recent call last):
     bots[key] = deepcopy(old['bots'][key])
                          ~~~~~~~~~~~^^^^^
 KeyError: '8n-32'
+8n-32 v 8p-32: 2000 boards to play (0 done), 8 workers

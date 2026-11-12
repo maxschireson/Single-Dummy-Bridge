@@ -19,3 +19,7 @@ KeyError: '8x-32'
 351 boards: 0.3248 +- 0.179 IMPs/board for 8x-32; 1504 boards/hour; 0 failed
 401 boards: 0.2943 +- 0.1668 IMPs/board for 8x-32; 1498 boards/hour; 0 failed
 451 boards: 0.3503 +- 0.1585 IMPs/board for 8x-32; 1475 boards/hour; 0 failed
+501 boards: 0.3433 +- 0.1529 IMPs/board for 8x-32; 1466 boards/hour; 0 failed
+551 boards: 0.2886 +- 0.1452 IMPs/board for 8x-32; 1461 boards/hour; 0 failed
+600 boards: 0.3033 +- 0.1396 IMPs/board for 8x-32; 1459 boards/hour; 0 failed
+{"pair": "8x-32~t-random", "boards": 600, "cpu_per_board": 19.7, "common": {"imps_per_board": 0.3033, "se": 0.1396, "boards": 600, "won": 129, "lost": 71, "flat": 400}, "native": {"imps_per_board": 0.3033, "se": 0.1396, "boards": 600, "won": 129, "lost": 71, "flat": 400}}
