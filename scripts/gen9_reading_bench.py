@@ -416,8 +416,9 @@ def box(a):
     progress()
     if any(p.returncode for p in procs):
         raise SystemExit(f'pools: exit codes {[p.returncode for p in procs]}')
-    if a.reading:
-        subprocess.run(me + ['readings', *common, '--source', a.source, '--bots', a.bots] + [f'--reading={r}' for r in a.reading], check=True)
+    if a.reading or a.expert_reading or a.head_reading:
+        subprocess.run(me + ['readings', *common, '--source', a.source, '--bots', a.bots] + [f'--reading={r}' for r in a.reading]
+                       + [f'--expert-reading={r}' for r in a.expert_reading] + [f'--head-reading={r}' for r in a.head_reading], check=True)
 
 
 def main():
