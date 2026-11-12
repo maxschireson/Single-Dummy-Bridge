@@ -1,6 +1,6 @@
 {
-  "status": "validated-ready-to-resume",
-  "epoch": 1794461735.7298234,
+  "status": "resuming-same-immutable-cohort",
+  "epoch": 1794461772.7552242,
   "reason": "Verified authorized captured independent selfplay/BEN producer uses gen7-independent-selfplay-ben campaign; prefix check excludes its comparison boards from global stopping counts.",
   "peer_manifest": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00",
   "peer_feed": "arena-gen7-independent-selfplay-feed",
@@ -285,5 +285,13 @@
     "campaign": "gen7-independent-selfplay-ben-20261112"
   },
   "scientific_manifest_unchanged": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
-  "runtime_source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842"
+  "runtime_source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842",
+  "resume_from_completed": 214,
+  "paused_publication": {
+    "status": "published",
+    "epoch": 1794461754.3505654,
+    "completed": 214,
+    "commit": "555b4c97dccc2d0eeb278596cb696cfc727647df",
+    "branch": "arena-gen7-selfplay-capture-codex-20261112-feed"
+  }
 }
