@@ -1,0 +1,28 @@
+{
+ "arena-gen8-candidate-codex-20261112-feed": {
+  "tip": "7dcd79038345bf9be805c7efddf7e86621bf04da",
+  "committed": "2026-11-12T17:00:43Z",
+  "cohorts": {
+   "recovery": {
+    "corpus": 18283,
+    "played": 18,
+    "lists": {
+     "evaluation-exclusions.json": {
+      "corpus": 0,
+      "played": 0,
+      "waiting": 0
+     },
+     "v41_training_families.txt.gz": {
+      "corpus": 0,
+      "played": 0,
+      "waiting": 0
+     }
+    }
+   },
+   "recovery/preflight-": {
+    "episodes": 10,
+    "corpus": null
+   }
+  }
+ }
+}
