@@ -1,4 +1,5 @@
 # Ending table
 
-Empty until built. The build specification is [`../TABLE_BUILD.md`](../TABLE_BUILD.md); all new code for the
-table goes in this directory. Table files (`*.et`) are not committed.
+Index, reader, evaluator and builder for the resident ending table of the sure-trick search. Specification:
+[`../TABLE_BUILD.md`](../TABLE_BUILD.md). Results, checks and deviations from the specification: [`REPORT.md`](REPORT.md).
+Table files (`*.et`) are not committed.
