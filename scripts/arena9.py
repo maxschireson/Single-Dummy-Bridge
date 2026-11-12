@@ -86,6 +86,34 @@ def _worker_play(index, seed):
     return row
 
 
+OVERRIDE_FILES = ('gen7_policy', 'scorer', 'bidding', 'lead_belief', 'system_scorer')     # gen8_match.build_manifest's path keys
+
+
+def file_sha256(path, _cache={}):
+    import hashlib
+    path = Path(path)
+    if path not in _cache:
+        h = hashlib.sha256()
+        with open(path, 'rb') as f:
+            for chunk in iter(lambda: f.read(1 << 20), b''):
+                h.update(chunk)
+        _cache[path] = h.hexdigest()
+    return _cache[path]
+
+
+def override_files(bundle):
+    """{artifact name: path} of the files a capsule bundle's overrides put in place of its base bot's nets."""
+    out = {}
+    for k in OVERRIDE_FILES:
+        v = (bundle.get('overrides') or {}).get(k)
+        if isinstance(v, str):
+            path = (ROOT / v).resolve()
+            if not path.is_file():
+                raise ValueError(f'{v}: not in this checkout (restore the nets first)')
+            out[k] = path
+    return out
+
+
 class MatchBackend:
     """Real bots through gen9_match: one single-pair manifest (forks off) per pair, as scripts/gen8_match.py builds it.
     A Gen 9 bot whose package asks for it (`bundle.epoch_models`) is handed every rostered player's model with the epoch's
@@ -95,11 +123,16 @@ class MatchBackend:
         self.packages, self.capsule, self.control = packages, Path(capsule).resolve(), Path(control) if control else None
         self.experience = experience
         bots = json.loads((self.capsule / 'manifest.json').read_text())['bots']
-        for pid, p in packages.items():           # a package names its nets by hash: the capsule's bot must be those nets
+        for pid, p in packages.items():           # a package names its nets by hash: they must be the nets it plays with
             b = p['bundle']
             if b.get('source') != 'capsule':
                 continue
-            want = {k: v for k, v in (b.get('artifact_sha256') or {}).items() if k in bots[b['bot']].get('artifact_sha256', {})}
+            named = b.get('artifact_sha256') or {}
+            files = override_files(b)
+            for k, path in files.items():         # an override's file replaces the capsule bot's net of that name
+                if k in named and file_sha256(path) != named[k]:
+                    raise ValueError(f'{pid}: {k} is {path.relative_to(ROOT)} ({file_sha256(path)[:8]}), not the {named[k][:8]} the package names')
+            want = {k: v for k, v in named.items() if k in bots[b['bot']].get('artifact_sha256', {}) and k not in files}
             have = {k: bots[b['bot']]['artifact_sha256'][k] for k in want}
             if want != have:
                 raise ValueError(f'{pid}: the capsule bot {b["bot"]} is not the nets the package names')
@@ -135,6 +168,13 @@ class MatchBackend:
         a, b = pair.split('~')
         if a == b:              # self-play: run_board wants two distinct roster ids; the second (the audit reference) never sits
             man['roster'] = [a, man['audit_references'][a]]
+        for pid in set(pair.split('~')):     # gen8_match copies the base bot's hashes; record the nets an override plays with
+            files = override_files(self.packages[pid]['bundle'])
+            spec = man['bots'].get(pid)
+            if files and spec is not None:
+                spec['artifact_sha256'] = dict(spec.get('artifact_sha256') or {}, **{k: file_sha256(v) for k, v in files.items()})
+                spec.pop('identity', None)
+                spec['identity'] = digest(spec)
         man['arena_epoch'], man['arena_epoch_id'], man['experience_snapshot'] = m['epoch'], m['id'], m['experience_snapshot']
         man.pop('identity', None)
         man['identity'] = digest(man)

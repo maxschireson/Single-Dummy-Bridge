@@ -183,5 +183,27 @@ class Rules(Base):
         self.assertEqual(st['champ']['status'], 'active')       # the old champion stays in the league
 
 
+class PlayerFiles(unittest.TestCase):
+    """configs/players: a package's override files are the nets its artifact_sha256 names (guest-b bids the Gen 5 net)."""
+
+    def test_every_override_file_is_the_net_the_package_names(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('arena9_cli', ROOT / 'scripts' / 'arena9.py')
+        cli = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cli)
+        checked = 0
+        for f in sorted((ROOT / 'configs' / 'players').glob('*.json')):
+            b = json.loads(f.read_text())['bundle']
+            named = b.get('artifact_sha256') or {}
+            for k in cli.OVERRIDE_FILES:
+                v = (b.get('overrides') or {}).get(k)
+                if not isinstance(v, str) or not (ROOT / v).is_file() or k not in named:
+                    continue                    # a net kept as parts is checked by the runner once it is restored
+                self.assertEqual(cli.file_sha256(ROOT / v), named[k], f'{f.stem}: {k}')
+                checked += 1
+        if not checked:
+            self.skipTest('no override files restored in this checkout')
+
+
 if __name__ == '__main__':
     unittest.main()
