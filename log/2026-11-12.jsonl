@@ -38,3 +38,5 @@
 {"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "bill/20261112T0727Z-g9-g9-b2-resolved-accepted-rule-f", "note": "G9-B2 resolved (accepted): Rule filter: the card as a scorer over hand types", "task": "G9-B2"}
 {"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "bill/20261112T0727Z-g9-b1-and-b2-accepted-and-merged", "note": "B1 and B2 accepted and merged; card-only profile stands; please run E9-8 (read house auctions by replaying the bidder)"}
 {"at": "2026-11-12T07:27:00Z", "by": "sam", "op": "lease", "target": "G9-S5", "until": "2026-11-12T11:27Z"}
+{"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "new", "target": "E9-8", "note": "What replaying the bidder is worth over the hand-fit scorer"}
+{"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "bill/20261112T0727Z-g9-new-experiment-for-you-e9-8-wh", "note": "New experiment for you: E9-8, What replaying the bidder is worth over the hand-fit scorer", "task": "E9-8"}
