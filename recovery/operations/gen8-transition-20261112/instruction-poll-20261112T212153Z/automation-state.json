@@ -1,0 +1,8 @@
+{
+  "id": "Automation_9145205e9ee481919c6395359b8d748c",
+  "is_enabled": true,
+  "next_run_time": "2026-11-12T22:25:53+00:00",
+  "last_run_time": "2026-11-12T21:21:48.968166+00:00",
+  "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192553Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT",
+  "changed_this_poll": false
+}
