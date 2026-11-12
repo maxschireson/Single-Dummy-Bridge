@@ -396,7 +396,7 @@
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "supplemental_training_exclusions_applied",
-  "collection_action": "Added pinned trainer list to operational gate exclusions (union34092) without editing scientific manifest/runtime/models/corpus or the original32205-list proof. Gracefully drained1603boards, all receipts/episodes and science hashes verified before and after intentional reload;14guard tests and independent counter matched;3resumedboards passed replay/score and observed gap/guess capture. Same2:1comparison mix,3workers,0BEN. No failures cleared.",
+  "collection_action": "Authorized Gen8 transition in progress; Gen7.1 permanently draining with completed records preserved. Read gen8-transition.json before any restart.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -3592,5 +3592,22 @@
     "notice_missing_at_named_path": true,
     "disposition": "Explicitly not authorized; no Gen8 launch or reuse of retired anchors."
   },
-  "registry_metadata_update_pending": false
+  "registry_metadata_update_pending": false,
+  "pending_transition": {
+    "journal": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition.json",
+    "status": "draining-gen71",
+    "old_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+    "authorized_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+    "authority": {
+      "issued": "2026-11-12T16:11:00Z",
+      "board_entry": "2026-11-12T16:24:00Z",
+      "board_commit": "633246b058f31fb35256e1fe08a0bbb1137ab433",
+      "current_board_commit": "ae9f949b88e4ff71ba153d922c4d796a2b7c227c",
+      "source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+      "notice": "docs/gen8_candidate_2026-11-12.md",
+      "plan": "configs/round8-candidate.json",
+      "instruction": "The arena goes to Gen8 now. All collectors, please switch. Codex primary drains Gen7.1, prepares from unused deals with the union exclusions, preflights and starts."
+    },
+    "poll_start": "2026-11-12T16:24:42Z"
+  }
 }
