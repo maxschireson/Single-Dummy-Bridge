@@ -1098,7 +1098,7 @@
       "restart_authorized": false
     },
     "gen71codexcompare": {
-      "status": "Scientific cohort unchanged; pooled gate includes scored comparisons from authorized mixed peers",
+      "status": "Scientific cohort unchanged; expanded trainer-published v4.1 training exclusions applied to pooled eligibility",
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
       "authority": "Max05:42 Nov12 effective06:00; all arena collectors, relayed05:44 and reaffirmed05:57 on box/coordination",
@@ -1126,9 +1126,10 @@
         "registered_feeds_only": true,
         "training_families_excluded": true,
         "eligibility_rebuilt_each_check": true,
-        "guard_version": "gen71-eligible-gate-v2",
+        "guard_version": "gen71-eligible-gate-v3",
         "authorized_mixed_peer_comparisons_supported": true,
-        "selfplay_rows_excluded": true
+        "selfplay_rows_excluded": true,
+        "supplemental_trainer_exclusions_required": true
       },
       "gen8_authorized": false,
       "evaluation_exclusions": {
@@ -1139,9 +1140,20 @@
         "audit_path": "recovery/evaluation-exclusion-audit.json",
         "list_path": "recovery/evaluation-exclusions.json",
         "existing_immutable_manifest_kept": true,
-        "new_cohorts_require": "41b18c1 or later, --exclude-families"
+        "new_cohorts_require": "41b18c1 or later and --exclude-families with the34092-family union",
+        "supplemental_source_revision": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+        "supplemental_source_blob": "7343d35d79a5c8ca2263918e20680d473c15ae90",
+        "supplemental_sha256": "4f50529634bca3432331e2a65accdc7889651d7d355f6077bd37baf10b77bdc1",
+        "supplemental_training_families": 34029,
+        "supplemental_new_families": 1887,
+        "effective_excluded_families": 34092,
+        "effective_exclusion_sha256": "7b0c6ced74b99c999184b8a6259157e49ef12ebf546e57bab810be2a149d9250",
+        "effective_exclusion_path": "recovery/operations/training-family-review-20261112/p41-families-1427/all-training-families-union.json",
+        "supplemental_audit_path": "recovery/operations/training-family-review-20261112/p41-families-1427/full-corpus-audit.json",
+        "full_corpus_union_overlap": 0,
+        "base_frozen_list_manifest_and_proof_preserved": true
       },
-      "guard_validation": "12 guard tests; official check_gen71_gate.py matched on identical pinned snapshots; all1174 pre-reload receipt/episode pairs and scientific files reverified"
+      "guard_validation": "14 guard tests; official checker matched identical pinned refs with the union; all1603 pre-reload receipt/episode pairs and scientific files reverified; three resumed boards replayed with observed gap/guess capture"
     }
   },
   "requested_match_mix": {
