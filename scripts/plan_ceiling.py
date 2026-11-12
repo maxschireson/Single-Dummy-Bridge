@@ -66,9 +66,12 @@ def pairs_of(path):
     for key, e in d['unique_tables'].items():
         if 'tables' not in e:
             continue
+        forks = plan_bench.forks_of(e)
+        if not forks:                   # a passed-out board has no contract and no forks
+            continue
         board = Board.from_dict(e['board'])
         declarer = board.contract.declarer
-        for table_a, table_b, ply, forced, band, estimated, propensity, cost_imps in plan_bench.forks_of(e):
+        for table_a, table_b, ply, forced, band, estimated, propensity, cost_imps in forks:
             if (STATE['bands'] is not None and band not in STATE['bands']) or estimated > STATE.get('max_gap', 99.) + 1e-9:
                 continue
             root, fork = e['tables'][table_a], e['tables'][table_b]
