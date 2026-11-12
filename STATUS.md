@@ -74,7 +74,7 @@ Generated 2026-11-12 07:07 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| will | Workflow and infrastructure lead | 11-12 07:06 | 10 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-12 07:06 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
