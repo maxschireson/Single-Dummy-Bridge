@@ -27,7 +27,9 @@ readings  For every stored decision, the log weight a bot spec from --bots (buil
           other plays and the opponents'), with the bot's own factors and signal terms already in it, so the bench's report
           scores it at exponent 1 like a net. Nothing is solved again. NAME=BOT@ID meets ID in place of the table's opponent.
           --head-reading NAME=HEADS.json:VERSION:HEAD:FACTOR is --head-base (8x-32) with the opposing declarer's plays read by
-          an E9-14 head (scripts/gen9_play_head.py's heads.json, role ben.declarer) at FACTOR in place of the net at 0.3.
+          an E9-14 head (scripts/gen9_play_head.py's heads.json, role ben.declarer) at FACTOR in place of the net at 0.3;
+          HEAD written defender:NAME or both:NAME also reads the opposing defenders' classes by the ben.defender head, on
+          --expert-base (r9b-32), whose signal model keeps the spots.
           --expert-reading NAME=MODELS.json:VERSION:SIZE:MODEL is --expert-base (r9b-32) with the opposing defenders' spots,
           wherever bridge_harness.signal_expert finds an occasion, read by an E9-15 model (m1, m2 or m3 of
           scripts/gen9_signal_expert.py's models.json; MODEL-first reads first rounds only) in place of its emission table;
@@ -167,11 +169,13 @@ def reading_parts(q, o, view, both):
 
 
 class HeadReading:
-    """A bot's reading with the opposing declarer's plays read by a per-player head (E9-14) at a factor."""
+    """A bot's reading with an opponent's choices read by per-player heads (E9-14): the opposing declarer's cards by
+    `declarer` at `factor`; the opposing defenders' classes of card by `defender` in place of the net's class term (their
+    spots stay with the base's signal model, so the base must read signals: r9b-32). A head left None reads as the base."""
 
-    def __init__(self, base, head, factor):
+    def __init__(self, base, declarer=None, factor=.3, defender=None):
         from bridge_harness.play_head import policy_column
-        self.base, self.head, self.factor = base, head, factor
+        self.base, self.declarer, self.factor, self.defender = base, declarer, factor, defender
         self.g7 = base.g7
         self.W, self.b = policy_column(base.net.params)
         self.cache = (None, {})
@@ -179,17 +183,23 @@ class HeadReading:
     def meet(self, opponent):
         self.base.meet(opponent)
 
-    def head_log_likelihood(self, o, view, assign, play):
+    def head_log_likelihood(self, o, view, assign, play, head, K=None):
+        """[layouts] the floored log-probability of the card (or, with K [layouts, 52], of its class) under a head."""
         from bridge_harness.play_head import decoder_state
         i, seat, chooser = play
-        ident = (o.auction, o.dealer, o.contract, tuple(o.history[:i + 1]))
-        if self.cache[0] != ident[:3]:
-            self.cache = (ident[:3], {})
+        ident = (o.auction, o.dealer, o.contract)
+        if self.cache[0] != ident:
+            self.cache = (ident, {})
         cache = self.cache[1]
         q, f, played = self.base, self.g7.play_floor, o.history[i][1]
         held = q.held_then(o, view, assign, i, chooser)
-        keys = (held.astype(np.uint64) @ (np.uint64(1) << np.arange(52, dtype=np.uint64))).tolist()
-        todo = [r for r, k in enumerate(keys) if (i, k) not in cache]
+        if K is None:
+            K = np.zeros_like(held)
+            K[:, played] = True
+        bit = np.uint64(1) << np.arange(52, dtype=np.uint64)
+        keys = list(zip((held.astype(np.uint64) @ bit).tolist(), (K.astype(np.uint64) @ bit).tolist()))
+        tag = id(head)
+        todo = [r for r, k in enumerate(keys) if (tag, i, k) not in cache]
         if todo:
             batch = q.play_arrays(o, i, seat, chooser, held[todo])
             legal = np.asarray(batch['legal'])
@@ -198,20 +208,35 @@ class HeadReading:
             choice = np.flatnonzero(count > 1)
             if len(choice):
                 d, _ = decoder_state(q.net.params, {k: batch[k][choice] for k in batch})
-                pr = np.exp(self.head.log_policy(d, legal[choice], self.W, self.b))[:, played]
-                vals[choice] = np.log((1 - f) * pr + f / count[choice])
+                members = K[np.array(todo)[choice]] & legal[choice]
+                pr = (np.exp(head.log_policy(d, legal[choice], self.W, self.b)) * members).sum(axis=1)
+                vals[choice] = np.log((1 - f) * pr + f * members.sum(axis=1) / count[choice])
             for j, r in enumerate(todo):
-                cache[(i, keys[r])] = vals[j]
-        return np.array([cache[(i, k)] for k in keys])
+                cache[(tag, i, keys[r])] = vals[j]
+        return np.array([cache[(tag, i, k)] for k in keys])
 
     def play_log_likelihood(self, o, view, assign, plays):
+        q, c = self.base, o.contract
         out = np.zeros(len(assign))
+        exponent = max(q.reading_exponent(o, view), 1e-6) if hasattr(q, 'reading_exponent') else 1.
         for play in plays:
-            chooser = play[2]
-            if chooser == o.contract.declarer and chooser % 2 != o.controller % 2:
-                out += self.factor * self.head_log_likelihood(o, view, assign, play)
+            i, seat, chooser = play
+            opponent = chooser % 2 != o.controller % 2
+            if opponent and chooser == c.declarer and self.declarer is not None:
+                out += self.factor * self.head_log_likelihood(o, view, assign, play, self.declarer)
+                continue
+            if opponent and chooser != c.declarer and self.defender is not None and getattr(q, 'opponent_signals', None) is not None:
+                from gen9_play_head import class_mask
+                held = q.held_then(o, view, assign, i, chooser)
+                K = class_mask(o.history, i, c, held, q.opponent_signals)
+                _, _, ls = q.signal_row(o, view, assign, *play, q.opponent_signals)
+                out += q.opponent_phi * self.head_log_likelihood(o, view, assign, play, self.defender, K) + ls / exponent
+                continue
+            if hasattr(q, 'play_log_terms'):
+                net, signal = q.play_log_terms(o, view, assign, [play])
+                out += net + signal / exponent
             else:
-                out += self.base.play_log_likelihood(o, view, assign, [play])
+                out += q.play_log_likelihood(o, view, assign, [play])
         return out
 
 
@@ -264,10 +289,16 @@ def readings(a):
     for item in a.head_reading:
         from bridge_harness.play_head import PlayHead
         name, rest = item.split('=', 1)
-        path, version, head_name, factor = rest.rsplit(':', 3)
-        heads = json.loads(Path(path).read_text())['heads']
-        base = player_of(a.head_base)
-        readers[name], meets[name] = HeadReading(base, PlayHead.from_json(heads[version]['ben.declarer'][head_name]), float(factor)), ''
+        path, tail = rest.split('.json:', 1)
+        version, *middle, factor = tail.split(':')
+        head_name = ':'.join(middle)
+        heads = json.loads(Path(path + '.json').read_text())['heads'][version]
+        which = 'both' if head_name.startswith('both:') else 'defender' if head_name.startswith('defender:') else 'declarer'
+        head_name = head_name.split(':', 1)[1] if ':' in head_name else head_name
+        decl = PlayHead.from_json(heads['ben.declarer'][head_name]) if which in ('declarer', 'both') else None
+        dfd = PlayHead.from_json(heads['ben.defender'][head_name]) if which in ('defender', 'both') else None
+        base = player_of(a.head_base if dfd is None else a.expert_base)
+        readers[name], meets[name] = HeadReading(base, decl, float(factor), dfd), ''
     for item in a.expert_reading:
         from gen9_signal_expert import build
         name, rest = item.split('=', 1)
