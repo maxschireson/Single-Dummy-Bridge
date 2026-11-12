@@ -40,7 +40,7 @@ from bridge_harness.core import SEATS, Board, Game, card
 from bridge_harness.gen6 import View
 from bridge_harness.gen7 import player
 from bridge_harness.gen7_net import PolicyNet
-from bridge_harness.plan_rollout import Believer, NetPlayer, Public, card_values
+from bridge_harness.plan_rollout import Believer, NetPlayer, Public, card_values, plan_values
 import gen7_check as check
 
 STATE = {}
@@ -133,8 +133,21 @@ def pairs_of(path):
                 net = STATE['nets'][sim['net']]
                 if sim['net'] not in publics:
                     publics[sim['net']] = Public(net, o)
-                who = seat_player(net, six.dds, sim['mode'], [STATE['seed'], ply, int(d['family'][8:16], 16)])
                 started = time.perf_counter()
+                if sim['mode'].startswith('own'):       # the decider's side plays for the likeliest of its own layouts that fits; others believe
+                    more = list(worlds) if truth in worlds else list(worlds) + [truth]
+                    w2 = np.concatenate([weights, [1e-9] * (len(more) - len(worlds))])
+                    m, _ = plan_values(o, more, w2, [a, b], [-1], net, six.dds, public=publics[sim['net']], own_layouts=int(sim['mode'][3:] or 1))
+                    v = m[:, 0, :len(worlds)].T
+                    at = more.index(truth)
+                    row[sim['name']] = float(weights @ (v[:, 0] - v[:, 1]))
+                    change = (v[:, 0] - v[:, 1]) - (u[:, 0] - u[:, 1])
+                    row['sd_' + sim['name']] = float(np.sqrt(weights @ change ** 2))
+                    row['var_' + sim['name']] = float(weights @ (change - weights @ change) ** 2)
+                    row['true_' + sim['name']], row['true_a_' + sim['name']] = float(m[0, 0, at] - m[1, 0, at]), float(m[0, 0, at])
+                    row['seconds_' + sim['name']] = time.perf_counter() - started
+                    continue
+                who = seat_player(net, six.dds, sim['mode'], [STATE['seed'], ply, int(d['family'][8:16], 16)])
                 v = card_values(o, worlds, [a, b], who, publics[sim['net']], sim['repeats'], sim['tricks'], six.dds)
                 row[sim['name']] = float(weights @ (v[:, 0] - v[:, 1]))
                 change = (v[:, 0] - v[:, 1]) - (u[:, 0] - u[:, 1])
@@ -153,7 +166,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--episodes', type=Path, required=True, help='a folder of *.json.gz, or a text file listing them')
     p.add_argument('--nets', required=True, help='name=path,name=path')
-    p.add_argument('--sims', required=True, help='NET:MODE[:repeats[:tricks]];...  modes: top, blend, draw (the net plays); map, bdraw, map3 (the solver plays the believed layout)')
+    p.add_argument('--sims', required=True, help='NET:MODE[:repeats[:tricks]];...  modes: top, blend, draw (the net plays); map, bdraw, map3 (the solver plays the '
+                                                 "believed layout); own, own4 (as map, but the decider's side plays for the likeliest of its own layouts that still fits)")
     p.add_argument('--from-trick', type=int, default=3)
     p.add_argument('--to-trick', type=int, default=6)
     p.add_argument('--ties', action='store_true')
