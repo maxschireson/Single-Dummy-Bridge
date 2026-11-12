@@ -293,6 +293,29 @@ class PlanPlayerTests(Fixture):
             consulted += bool(b.details.get('gen7_tree', {}).get('consulted'))
         self.assertGreater(consulted, 0)
 
+    def test_wide_playouts_use_fresh_layouts_and_blend(self):
+        """wide > 0 plays out fresh draws of the search's layouts; trust 0 is still Gen 7's card, and at trust 1 the
+        kept candidates are the ones with the best playout mean."""
+        plain, zero, full = self.make(list_from_trick=14), self.plan(trust=0., seat='top', wide=64), self.plan(trust=1., seat='top', wide=64)
+        consulted = 0
+        for seed in range(6):
+            game, o, world = spot(seed, 9 + 4 * seed)
+            if len(o.legal) < 2:
+                continue
+            a, b, c = (p.choose(o, random.Random(seed)) for p in (plain, zero, full))
+            self.assertEqual(a.card, b.card)
+            note = c.details.get('gen7_tree', {})
+            if not note.get('consulted'):
+                continue
+            consulted += 1
+            self.assertEqual(note['wide'], 64)
+            self.assertGreaterEqual(note['layouts'], 64)
+            best = max(x['tree'] for x in note['candidates'])
+            for x in note['candidates']:
+                self.assertEqual(x['kept'], best - x['tree'] <= 1e-9)
+                self.assertAlmostEqual(x['adjusted'], x['tree'])
+        self.assertGreater(consulted, 0)
+
     def test_the_note_holds_the_search_and_the_playouts(self):
         for seat in ('top', 'map'):
             plan = self.plan(trust=1., seat=seat)
