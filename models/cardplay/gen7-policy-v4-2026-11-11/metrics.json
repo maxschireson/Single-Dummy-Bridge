@@ -1,0 +1,207 @@
+{
+ "kind": "suit",
+ "width": 512,
+ "kinds": [
+  0,
+  1,
+  2
+ ],
+ "augment": "none",
+ "weight_decay": 0.0001,
+ "parameters": 828098,
+ "epochs": 3,
+ "fraction": 1.0,
+ "train_deals": 17207,
+ "train_examples": 5826238,
+ "history": [
+  {
+   "epoch": 1,
+   "seconds": 381,
+   "train_ce": 0.7754,
+   "train_gap": 0.0549,
+   "train_owner": 0.5919,
+   "val": {
+    "n": 700551,
+    "nll": 0.7288,
+    "uniform_nll": 1.2496,
+    "tie_nll": 0.7745,
+    "agree": 0.6991,
+    "in_best": 0.8902,
+    "regret": 0.039,
+    "regret_gap_head": 0.0344,
+    "regret_random": 0.2012,
+    "regret_lowest": 0.2222
+   }
+  },
+  {
+   "epoch": 2,
+   "seconds": 755,
+   "train_ce": 0.6471,
+   "train_gap": 0.0413,
+   "train_owner": 0.5644,
+   "val": {
+    "n": 700551,
+    "nll": 0.69,
+    "uniform_nll": 1.2496,
+    "tie_nll": 0.7745,
+    "agree": 0.7167,
+    "in_best": 0.897,
+    "regret": 0.0347,
+    "regret_gap_head": 0.0289,
+    "regret_random": 0.2012,
+    "regret_lowest": 0.2222
+   }
+  },
+  {
+   "epoch": 3,
+   "seconds": 1122,
+   "train_ce": 0.5846,
+   "train_gap": 0.0369,
+   "train_owner": 0.5565,
+   "val": {
+    "n": 700551,
+    "nll": 0.683,
+    "uniform_nll": 1.2496,
+    "tie_nll": 0.7745,
+    "agree": 0.7221,
+    "in_best": 0.8977,
+    "regret": 0.0342,
+    "regret_gap_head": 0.0271,
+    "regret_random": 0.2012,
+    "regret_lowest": 0.2222
+   }
+  }
+ ],
+ "selected_epoch": 3,
+ "selected_by": "the epoch with the lowest held-out tricks given up (epoch 3; also the best held-out log-loss)",
+ "temperature": 1.201,
+ "temperature_fitted_on": "validation deals of gen7_v2 (112,533 decisions), log-loss 0.6890 -> 0.6809",
+ "note": "policy logits are divided by the temperature inside the file (columns of wd1 and bd1 for channel 0); the gap and owner heads are unchanged",
+ "test_v0_deals": {
+  "rows": 60010,
+  "deals": 406,
+  "nll": 0.682,
+  "agree": 0.7204,
+  "top1": {
+   "best_kept": 0.8915,
+   "gives_up": 0.0333
+  },
+  "top2": {
+   "best_kept": 0.9631,
+   "gives_up": 0.0082
+  },
+  "top3": {
+   "best_kept": 0.986,
+   "gives_up": 0.0023
+  },
+  "p0.9": {
+   "kept": 2.25,
+   "best_kept": 0.9875,
+   "gives_up": 0.0033,
+   "played_kept": 0.9665
+  },
+  "p0.95": {
+   "kept": 2.62,
+   "best_kept": 0.9941,
+   "gives_up": 0.0013,
+   "played_kept": 0.9848
+  },
+  "p0.98": {
+   "kept": 3.02,
+   "best_kept": 0.9982,
+   "gives_up": 0.0004,
+   "played_kept": 0.9957
+  },
+  "by_table_kind": {
+   "root": {
+    "rows": 21411,
+    "gives_up": 0.0351,
+    "agree": 0.7006
+   },
+   "tie fork": {
+    "rows": 38599,
+    "gives_up": 0.0322,
+    "agree": 0.7314
+   }
+  }
+ },
+ "wrong_auction_validation": {
+  "rows": 112533,
+  "leads": 802,
+  "real": {
+   "all": {
+    "nll": 0.6809,
+    "agree": 0.7211,
+    "regret": 0.0347
+   },
+   "lead": {
+    "nll": 1.3025,
+    "agree": 0.5611,
+    "regret": 0.044
+   }
+  },
+  "another_deals": {
+   "all": {
+    "nll": 0.7054,
+    "agree": 0.7112,
+    "regret": 0.0373
+   },
+   "lead": {
+    "nll": 1.702,
+    "agree": 0.4302,
+    "regret": 0.0973
+   }
+  }
+ },
+ "validation_own_split": {
+  "n": 700551,
+  "nll": 0.683,
+  "uniform_nll": 1.2496,
+  "tie_nll": 0.7745,
+  "agree": 0.7221,
+  "in_best": 0.8977,
+  "regret": 0.0342,
+  "regret_gap_head": 0.0271,
+  "regret_random": 0.2012,
+  "regret_lowest": 0.2222
+ },
+ "test_own_split": {
+  "n": 730692,
+  "nll": 0.6851,
+  "uniform_nll": 1.2486,
+  "tie_nll": 0.7636,
+  "agree": 0.7203,
+  "in_best": 0.8968,
+  "regret": 0.0337,
+  "regret_gap_head": 0.0264,
+  "regret_random": 0.2043,
+  "regret_lowest": 0.2241
+ },
+ "auction_use": {
+  "real": {
+   "nll": 0.683,
+   "agree": 0.7221,
+   "regret": 0.0342
+  },
+  "blank": {
+   "nll": 0.8574,
+   "agree": 0.677,
+   "regret": 0.0586
+  },
+  "another_deals": {
+   "nll": 0.7081,
+   "agree": 0.7129,
+   "regret": 0.0376
+  },
+  "blank_calls_only": {
+   "nll": 0.684,
+   "agree": 0.7222,
+   "regret": 0.0351
+  },
+  "blank_shown_only": {
+   "nll": 0.8461,
+   "agree": 0.6791,
+   "regret": 0.0566
+  }
+ }
+}
