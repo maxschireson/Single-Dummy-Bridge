@@ -1,0 +1,46 @@
+21417 decisions on 530 tables of 329 deals; nets ['v0', 'v2', 'v4', 'v4.1', 'e5']; mean layouts 343; before the deal list 10683, deal list 10734
+no reading: cost 0.0181 +- 0.0013 a decision with 32 layouts solved (deal list: up to 256), 0.0173 +- 0.0013 with every stored layout; the weights themselves expect 0.0183 +- 0.0008
+
+== each net against v4.1, as built, paired on the same decisions (tricks saved a decision; positive = better than v4.1)
+  v0       tricks 1-2            log-weight -0.215 +- 0.022 | saved -0.00149 +- 0.00093 a decision, -0.0094 +- 0.0058 a table | every layout -0.00090 +- 0.00137
+  v0       tricks 3-4            log-weight -0.386 +- 0.029 | saved -0.00183 +- 0.00167 a decision, -0.0128 +- 0.0117 a table | every layout -0.00134 +- 0.00213
+  v0       tricks 5-6            log-weight -0.448 +- 0.034 | saved -0.00588 +- 0.00162 a decision, -0.0402 +- 0.0110 a table | every layout -0.00635 +- 0.00194
+  v0       tricks 7-9            log-weight -0.393 +- 0.030 | saved -0.00162 +- 0.00116 a decision, -0.0165 +- 0.0119 a table | every layout -0.00167 +- 0.00118
+  v0       tricks 10-13          log-weight -0.239 +- 0.022 | saved -0.00019 +- 0.00050 a decision, -0.0019 +- 0.0050 a table | every layout -0.00019 +- 0.00050
+  v0       before the deal list  log-weight -0.354 +- 0.024 | saved -0.00310 +- 0.00092 a decision, -0.0624 +- 0.0185 a table | every layout -0.00290 +- 0.00118
+  v0       deal list             log-weight -0.316 +- 0.023 | saved -0.00091 +- 0.00068 a decision, -0.0184 +- 0.0138 a table | every layout -0.00093 +- 0.00068
+  v0       declarer deciding     log-weight -0.306 +- 0.027 | saved -0.00147 +- 0.00090 a decision, -0.0310 +- 0.0190 a table | every layout -0.00169 +- 0.00100
+  v0       defender deciding     log-weight -0.368 +- 0.026 | saved -0.00259 +- 0.00077 a decision, -0.0498 +- 0.0148 a table | every layout -0.00216 +- 0.00091
+  v0       all                   log-weight -0.335 +- 0.021 | saved -0.00200 +- 0.00058 a decision, -0.0808 +- 0.0236 a table | every layout -0.00191 +- 0.00068
+  v2       tricks 1-2            log-weight -0.077 +- 0.019 | saved -0.00003 +- 0.00075 a decision, -0.0002 +- 0.0047 a table | every layout -0.00060 +- 0.00095
+  v2       tricks 3-4            log-weight -0.215 +- 0.027 | saved -0.00056 +- 0.00130 a decision, -0.0039 +- 0.0091 a table | every layout +0.00107 +- 0.00255
+  v2       tricks 5-6            log-weight -0.239 +- 0.033 | saved -0.00300 +- 0.00128 a decision, -0.0205 +- 0.0088 a table | every layout -0.00414 +- 0.00142
+  v2       tricks 7-9            log-weight -0.242 +- 0.028 | saved +0.00029 +- 0.00085 a decision, +0.0029 +- 0.0086 a table | every layout +0.00019 +- 0.00085
+  v2       tricks 10-13          log-weight -0.135 +- 0.020 | saved -0.00037 +- 0.00046 a decision, -0.0038 +- 0.0046 a table | every layout -0.00037 +- 0.00046
+  v2       before the deal list  log-weight -0.180 +- 0.022 | saved -0.00122 +- 0.00068 a decision, -0.0247 +- 0.0138 a table | every layout -0.00122 +- 0.00103
+  v2       deal list             log-weight -0.189 +- 0.021 | saved -0.00004 +- 0.00050 a decision, -0.0008 +- 0.0102 a table | every layout -0.00009 +- 0.00050
+  v2       declarer deciding     log-weight -0.137 +- 0.024 | saved -0.00066 +- 0.00063 a decision, -0.0140 +- 0.0133 a table | every layout -0.00018 +- 0.00090
+  v2       defender deciding     log-weight -0.237 +- 0.024 | saved -0.00060 +- 0.00066 a decision, -0.0115 +- 0.0127 a table | every layout -0.00118 +- 0.00077
+  v2       all                   log-weight -0.185 +- 0.019 | saved -0.00063 +- 0.00045 a decision, -0.0255 +- 0.0182 a table | every layout -0.00065 +- 0.00058
+  v4       tricks 1-2            log-weight -0.039 +- 0.017 | saved -0.00135 +- 0.00060 a decision, -0.0085 +- 0.0038 a table | every layout -0.00060 +- 0.00073
+  v4       tricks 3-4            log-weight -0.057 +- 0.023 | saved +0.00086 +- 0.00090 a decision, +0.0060 +- 0.0063 a table | every layout +0.00107 +- 0.00208
+  v4       tricks 5-6            log-weight -0.040 +- 0.025 | saved -0.00133 +- 0.00125 a decision, -0.0091 +- 0.0085 a table | every layout -0.00055 +- 0.00161
+  v4       tricks 7-9            log-weight -0.042 +- 0.024 | saved -0.00025 +- 0.00073 a decision, -0.0025 +- 0.0075 a table | every layout -0.00037 +- 0.00074
+  v4       tricks 10-13          log-weight -0.021 +- 0.016 | saved +0.00019 +- 0.00073 a decision, +0.0019 +- 0.0073 a table | every layout +0.00019 +- 0.00073
+  v4       before the deal list  log-weight -0.046 +- 0.019 | saved -0.00058 +- 0.00051 a decision, -0.0116 +- 0.0102 a table | every layout +0.00000 +- 0.00092
+  v4       deal list             log-weight -0.032 +- 0.018 | saved -0.00003 +- 0.00051 a decision, -0.0006 +- 0.0103 a table | every layout -0.00009 +- 0.00050
+  v4       declarer deciding     log-weight -0.029 +- 0.020 | saved +0.00004 +- 0.00061 a decision, +0.0009 +- 0.0129 a table | every layout +0.00080 +- 0.00086
+  v4       defender deciding     log-weight -0.050 +- 0.020 | saved -0.00068 +- 0.00051 a decision, -0.0131 +- 0.0099 a table | every layout -0.00098 +- 0.00063
+  v4       all                   log-weight -0.039 +- 0.016 | saved -0.00030 +- 0.00038 a decision, -0.0122 +- 0.0152 a table | every layout -0.00005 +- 0.00052
+  e5       tricks 1-2            log-weight +0.012 +- 0.016 | saved +0.00058 +- 0.00068 a decision, +0.0037 +- 0.0043 a table | every layout +0.00000 +- 0.00085
+  e5       tricks 3-4            log-weight -0.001 +- 0.023 | saved -0.00107 +- 0.00113 a decision, -0.0075 +- 0.0079 a table | every layout -0.00027 +- 0.00159
+  e5       tricks 5-6            log-weight +0.013 +- 0.025 | saved -0.00204 +- 0.00107 a decision, -0.0139 +- 0.0073 a table | every layout -0.00331 +- 0.00145
+  e5       tricks 7-9            log-weight +0.005 +- 0.022 | saved -0.00065 +- 0.00112 a decision, -0.0066 +- 0.0114 a table | every layout -0.00093 +- 0.00116
+  e5       tricks 10-13          log-weight -0.006 +- 0.014 | saved -0.00037 +- 0.00038 a decision, -0.0038 +- 0.0038 a table | every layout -0.00037 +- 0.00038
+  e5       before the deal list  log-weight +0.008 +- 0.018 | saved -0.00088 +- 0.00058 a decision, -0.0178 +- 0.0116 a table | every layout -0.00122 +- 0.00076
+  e5       deal list             log-weight -0.000 +- 0.016 | saved -0.00051 +- 0.00061 a decision, -0.0104 +- 0.0123 a table | every layout -0.00065 +- 0.00062
+  e5       declarer deciding     log-weight +0.006 +- 0.019 | saved -0.00132 +- 0.00058 a decision, -0.0279 +- 0.0122 a table | every layout -0.00125 +- 0.00065
+  e5       defender deciding     log-weight +0.001 +- 0.018 | saved -0.00001 +- 0.00057 a decision, -0.0002 +- 0.0110 a table | every layout -0.00059 +- 0.00075
+  e5       all                   log-weight +0.004 +- 0.015 | saved -0.00070 +- 0.00042 a decision, -0.0282 +- 0.0168 a table | every layout -0.00093 +- 0.00051
+
+(a table has 40.4 such decisions over its four seats; one side of one table is half of the per-table figure)

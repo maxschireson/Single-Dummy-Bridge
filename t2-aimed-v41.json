@@ -1,0 +1,43 @@
+{
+ "net": "v4.1",
+ "decisions": 21417,
+ "tables": 530,
+ "settings": {
+  "+1.05 nats, every decision": {
+   "near": 0.24198442324995995,
+   "helped": 21417,
+   "nats_a_helped_decision": 1.0499999887934963,
+   "tricks_a_board_over_reading": [
+    0.18965633423180595,
+    0.021671904881558186
+   ]
+  },
+  "+1.85 nats, every decision": {
+   "near": 0.49004555866122246,
+   "helped": 21417,
+   "nats_a_helped_decision": 1.8500000091080036,
+   "tricks_a_board_over_reading": [
+    0.3011905612731084,
+    0.028869393024674114
+   ]
+  },
+  "near of +1.05, tricks 1 to 6 only": {
+   "near": 0.24198442324995995,
+   "helped": 10683,
+   "nats_a_helped_decision": 1.6870187361510165,
+   "tricks_a_board_over_reading": [
+    0.15592991913746632,
+    0.01933328864400435
+   ]
+  },
+  "near of +1.05, from trick 7 only": {
+   "near": 0.24198442324995995,
+   "helped": 10734,
+   "nats_a_helped_decision": 0.4160078816553941,
+   "tricks_a_board_over_reading": [
+    0.03372641509433962,
+    0.007741835383606204
+   ]
+  }
+ }
+}

@@ -1,0 +1,87 @@
+{
+ "net": "v4.1",
+ "decisions": 21417,
+ "tables": 530,
+ "settings": {
+  "near 0.05, every decision": {
+   "near": 0.05,
+   "helped": 21417,
+   "nats_a_helped_decision": 0.24295614326165899,
+   "nats_without_the_reading": 0.28577670788507126,
+   "tricks_a_board_over_reading": [
+    0.05338105618176374,
+    0.007945821396282849
+   ]
+  },
+  "near 0.1, every decision": {
+   "near": 0.1,
+   "helped": 21417,
+   "nats_a_helped_decision": 0.4718621785928234,
+   "nats_without_the_reading": 0.5551371916441513,
+   "tricks_a_board_over_reading": [
+    0.09495648023360288,
+    0.012478557482518549
+   ]
+  },
+  "near 0.2, every decision": {
+   "near": 0.2,
+   "helped": 21417,
+   "nats_a_helped_decision": 0.8895332533933875,
+   "nats_without_the_reading": 1.0459834791315132,
+   "tricks_a_board_over_reading": [
+    0.1707302897574124,
+    0.020169796830353585
+   ]
+  },
+  "near 0.4, every decision": {
+   "near": 0.4,
+   "helped": 21417,
+   "nats_a_helped_decision": 1.5856367121012898,
+   "nats_without_the_reading": 1.857619594742906,
+   "tricks_a_board_over_reading": [
+    0.26263580038933815,
+    0.02621029308680413
+   ]
+  },
+  "near 0.2, tricks 1 to 6 only": {
+   "near": 0.2,
+   "helped": 10683,
+   "nats_a_helped_decision": 1.4294493758805156,
+   "nats_without_the_reading": 1.5947440640353234,
+   "tricks_a_board_over_reading": [
+    0.1432538746630728,
+    0.017947724773181076
+   ]
+  },
+  "near 0.2, from trick 7 only": {
+   "near": 0.2,
+   "helped": 10734,
+   "nats_a_helped_decision": 0.35218241153294505,
+   "nats_without_the_reading": 0.4998301971744227,
+   "tricks_a_board_over_reading": [
+    0.027476415094339623,
+    0.007262522819628128
+   ]
+  },
+  "near 0.2, declarer only": {
+   "near": 0.2,
+   "helped": 11212,
+   "nats_a_helped_decision": 0.9612809338486397,
+   "nats_without_the_reading": 1.1016600467127782,
+   "tricks_a_board_over_reading": [
+    0.10788774707996407,
+    0.017463430504022943
+   ]
+  },
+  "near 0.2, defenders only": {
+   "near": 0.2,
+   "helped": 10205,
+   "nats_a_helped_decision": 0.810705718531625,
+   "nats_without_the_reading": 0.9848129082622195,
+   "tricks_a_board_over_reading": [
+    0.06284254267744833,
+    0.009941265247909567
+   ]
+  }
+ }
+}
