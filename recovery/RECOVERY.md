@@ -1,0 +1,1 @@
+Resume only this immutable Gen7 phase1 run with its pinned checkout and Python; verify source/model hashes and locks first. Never restart the Gen6 predecessor. Watch pooled family-deduplicated native counts; STOP at2000 in every pair. Phase2 remains closed. BEN16/64 ports8087/8089, pinned source /workspace/work/gen6-ben. Watchdog arguments are recorded in launch.json.
