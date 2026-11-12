@@ -1,23 +1,23 @@
 {
  "pair": "8c-32-v41~8a-32-v41",
- "boards": 250,
- "cpu_per_board": 51.16,
+ "boards": 300,
+ "cpu_per_board": 51.19,
  "common": {
   "imps_per_board": 0.0,
   "se": 0.0,
-  "boards": 250,
+  "boards": 300,
   "won": 0,
   "lost": 0,
-  "flat": 250
+  "flat": 300
  },
  "native": {
-  "imps_per_board": -0.244,
-  "se": 0.4179,
-  "boards": 250,
-  "won": 89,
-  "lost": 89,
-  "flat": 72
+  "imps_per_board": -0.34,
+  "se": 0.3869,
+  "boards": 300,
+  "won": 106,
+  "lost": 110,
+  "flat": 84
  },
  "failures": 0,
- "boards_per_hour": 552
+ "boards_per_hour": 554
 }
