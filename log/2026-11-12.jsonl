@@ -32,3 +32,5 @@
 {"at": "2026-11-12T07:25:00Z", "by": "will", "op": "lease", "target": "G9-W6", "until": "2026-11-12T11:25Z"}
 {"at": "2026-11-12T07:27:00Z", "by": "sam", "op": "lease", "target": "E9-4", "until": "2026-11-12T11:27Z"}
 {"at": "2026-11-12T07:27:00Z", "by": "sam", "op": "log", "target": "E9-4", "note": "sam: sharpened before the full run (a 4-table test only checked the script). Part 1 is done without a box: defenders' spots on recorded boards (arena-gen7-phase1-azure1-feed, first 300 main tables, house bots defending) are re-chosen by the carding bot's rule within the recorded tie set and the two "}
+{"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "resolve", "target": "G9-B1", "note": "Merged at 39ef8ca. card-only profile accepted; reader gains profile= keyword; see inbox.", "resolution": "accepted"}
+{"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "bill/20261112T0727Z-g9-g9-b1-resolved-accepted-design", "note": "G9-B1 resolved (accepted): Design note: card IR for bidding, card to rules, the rule filter", "task": "G9-B1"}
