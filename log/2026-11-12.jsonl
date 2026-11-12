@@ -619,3 +619,5 @@
 {"at": "2026-11-12T21:08:00Z", "by": "sam", "op": "renew", "target": "E9-4", "until": "2026-11-13T01:08Z"}
 {"at": "2026-11-12T21:08:00Z", "by": "sam", "op": "renew", "target": "E9-6", "until": "2026-11-13T01:08Z"}
 {"at": "2026-11-12T21:08:00Z", "by": "sam", "op": "edit", "target": "E9-10"}
+{"at": "2026-11-12T21:08:00Z", "by": "sam", "op": "submit", "target": "E9-10", "note": "Not played; the bench puts the model of BEN at +0.015 \u00b1 0.016 tricks a board over Gen 8 (pooled), about +0.05 IMPs, below what the match could see; jobs cancelled by g9 at 13:02.", "branch": "feature/gen9-reading-bench", "commit": "1ccd2a2"}
+{"at": "2026-11-12T21:08:00Z", "by": "sam", "op": "send", "target": "g9/20261112T2108Z-sam-e9-10-submitted-for-your-revie", "note": "E9-10 submitted for your review: Gen 9 against BEN with a model of BEN", "task": "E9-10"}
