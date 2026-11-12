@@ -17,10 +17,10 @@ Generated 2026-11-12 08:02 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
-| g9 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | feature/gen9-bidding-cards |
-| g9 | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | feature/gen9-bidding-cards |
-| g9 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | feature/gen9-arena-epochs |
-| g9 | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | feature/gen9-workflow-tests-2 |
+| dave | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | feature/gen9-workflow-tests-2 |
+| sam | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | feature/gen9-bidding-cards |
+| sam | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | feature/gen9-bidding-cards |
+| will | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | feature/gen9-arena-epochs |
 
 ## Tasks
 
