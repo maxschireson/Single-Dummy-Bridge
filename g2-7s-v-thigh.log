@@ -13,3 +13,6 @@
 600 boards: 0.4583 +- 0.1376 IMPs/board for 7s-32; 1547 boards/hour; 0 failed
 650 boards: 0.4954 +- 0.1378 IMPs/board for 7s-32; 1546 boards/hour; 0 failed
 700 boards: 0.4714 +- 0.1353 IMPs/board for 7s-32; 1541 boards/hour; 0 failed
+750 boards: 0.4467 +- 0.1274 IMPs/board for 7s-32; 1544 boards/hour; 0 failed
+800 boards: 0.4487 +- 0.1228 IMPs/board for 7s-32; 1541 boards/hour; 0 failed
+{"pair": "7s-32~t-high", "boards": 800, "cpu_per_board": 18.53, "common": {"imps_per_board": 0.4487, "se": 0.1228, "boards": 800, "won": 175, "lost": 85, "flat": 540}, "native": {"imps_per_board": 0.4487, "se": 0.1228, "boards": 800, "won": 175, "lost": 85, "flat": 540}}
