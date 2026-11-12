@@ -932,5 +932,15 @@
   },
   "published_family_audit_recovery_path": "recovery/operations/gen8-transition-20261112/feed-family-validation.json",
   "publisher_live_code_matches_recovery": true,
-  "publisher_restart_needed": false
+  "publisher_restart_needed": false,
+  "instruction_poll_finalized": "2026-11-12T17:27:15.560497Z",
+  "instruction_watch_start": "2026-11-12T16:24:42Z",
+  "browser_reporting_validation": {
+    "raw_feed_and_reporting_api": "passed",
+    "records": 57,
+    "all_five_pairs": true,
+    "visible_result_table": "empty",
+    "shared_ui_files_modified": false,
+    "diagnostic": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/browser-api-diagnostic.json"
+  }
 }

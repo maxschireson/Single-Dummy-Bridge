@@ -436,7 +436,7 @@
     "publication_verified": true
   },
   "research_disposition": "Gen9, plan research, optional floor/exponent changes and host-specific Azure controls are not adopted. BEN remains read-only on this host.",
-  "notification": "Meaningful authorized Gen8 transition; report when recovery verification completes.",
+  "notification": "Authorized Gen8 transition complete; Gen7.1 retired1974 preserved; three normal workers healthy, zero failures, training exclusions and actual capture verified. Shared UI rendering limitation recorded.",
   "checked_epoch": 1794500682.0,
   "checked_at": "2026-11-12T16:24:42Z",
   "next_check": "2026-11-12T17:25:53Z",
@@ -777,7 +777,7 @@
       "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": "2026-11-12T17:25:41.490647Z",
+  "completed_at": "2026-11-12T17:27:15.560497Z",
   "next_comment_scan_since": "2026-11-12T16:24:42Z",
   "poll_checkpoint_note": "Next comments scan starts at poll START 16:24:42Z, not completion. All changes during this long transition remain covered.",
   "candidate_notice": {
@@ -1274,7 +1274,7 @@
     "read_back_verified": true
   },
   "recovery_validation": {
-    "status": "awaiting_final_watch_copy",
+    "status": "verified_pinned_publication",
     "current_publication": {
       "status": "published",
       "epoch": 1794504287.520619,
@@ -1284,7 +1284,11 @@
     },
     "retired1974pairs_and_science_reverified": true,
     "new_preflight_and_live_capture_verified": true,
-    "all18283families_recomputed_no_training_or_ancestor_overlap": true
+    "all18283families_recomputed_no_training_or_ancestor_overlap": true,
+    "verified_revision": "25f980d06e35047648d668943072d38ab1a84c9c",
+    "watch_blob": "884da11acf07b67ed90cb7ee619194849eb236f1",
+    "verification": "Exact local bytes matched committed recovery for watch, current stream, operational journal, supervisor, manifest, exclusion list, capture/preflight/production validation and source-family audit; GitHub contents readback matched watch blob; remote ref independently verified.",
+    "checkpoint_note": "This final watch refers to the independently verified preceding checkpoint; final bytes are checked separately after publisher next pass."
   },
   "source_adoption_review": {
     "frozen_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
@@ -2289,7 +2293,7 @@
   },
   "browser_scope": {
     "scope": "Only own source and pinned retired parent; no shared UI files or other producers modified.",
-    "status": "Feed and reporting API valid; visible dashboard result table empty, diagnosis retained under transition case.",
+    "status": "Raw feed and browser reporting API verified57records/all5pairs. Shared visible dashboard remains empty despite source health reflecting production; no shared UI mutation within producer-only scope.",
     "diagnostic": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/browser-api-diagnostic.json"
   },
   "source_versioned_plans": {

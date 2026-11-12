@@ -9,9 +9,9 @@
     "branch": "arena-gen8-candidate-codex-20261112-feed",
     "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
   },
-  "completed": 56,
-  "dataEpoch": 1794504285.0767243,
-  "indexRecords": 56,
+  "completed": 57,
+  "dataEpoch": 1794504347.85644,
+  "indexRecords": 57,
   "firstRecord": {
     "decision_timing": {
       "schema": "arena-decision-timing-v1",
@@ -100,7 +100,7 @@
   "allowed": [
     "gen8codexcandidate"
   ],
-  "rows": 56,
+  "rows": 57,
   "groups": [
     "8s-32~8c-32",
     "8s-32~71s-32",
@@ -113,6 +113,9 @@
   ],
   "lexicalD": {
     "completed": 0,
-    "sources": []
-  }
+    "sources": [],
+    "scope": "gen8codexcandidate"
+  },
+  "selector": "gen7",
+  "consoleErrors": []
 }
