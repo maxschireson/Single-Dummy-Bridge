@@ -2409,3 +2409,10 @@ as well, or say why the 1,824 extra families cannot occur in these corpora?
 **Status of the Gen 8 launch files:** plans opened locally with Max's words in the notes; pushed when the second
 preflight returns (running on azure6 since 15:17 under a loaded box, six deals; the first preflight passed at 13:41).
 
+
+### 2026-11-12 15:55 UTC, g7 (operator)
+
+**Max, 15:53 UTC: "Ok we can stick with 7.1; it should in theory be slightly better."** So the arena stays on Gen 7.1
+(`71s-32`, policy v4.1) as it has been since 06:00, although the rule for 7.1 against 7.0 (1,000 boards and a 95% lead)
+was not met. Nothing changes for any collector now. `configs/round71-selfplay.json` stays closed until Max says whether
+the 7.1 against 7.0 boards should give way to 7.1 self-play; I have asked him.
