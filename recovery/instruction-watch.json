@@ -23,7 +23,7 @@
   "operational_revision": "50990002b64833073b04e1bad025241109033ad3",
   "authority_path": "docs/gen71_2026-11-12.md",
   "authority_blob": "858e24fdd5449b397a612a8361c960c8e6071b41",
-  "registry_blob": "3e6e862e8302deb50883af9eee01468f8522e392",
+  "registry_blob": "33f3708f9bdfc51d5a8eea0549d2cb5ac600a397",
   "current_manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
   "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
   "registry_key": "gen6selfplay19bbdce5",
@@ -70,14 +70,19 @@
       "authority_revision": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
       "action": "Canonical deal hashes recomputed for all18225 corpus families and1763 completed receipts; zero overlap with producer34029 or notice32205. Archived both lists and34092-family union; pooled gate identical under union. Descriptor records additional qualification; frozen runtime/manifests unchanged.",
       "classification": "Additional provenance qualification; no behavior or schedule change"
+    },
+    {
+      "instruction": "All collectors including19bbdce5 switch to authorized Gen8 plan792c4cb with the34092-family union.",
+      "authority": "Max16:11 and operator16:24, box/coordination ae9f949b88e4ff71ba153d922c4d796a2b7c227c",
+      "action": "Drained in-flight work; disabled watchdog and publisher; preserved2189 Gen7.1 completed families; separate successor preparation follows."
     }
   ],
   "result": "No new applicable instruction. Source, actors, corpus and both exclusion qualifications remain verified. Official notice and34092-family union gates agree across21 pinned compatible feeds; positive95% lower-bound requirement remains unmet. General self-play stays closed. Continue the current comparison cohort.",
-  "action": "continued_qualified_current_comparison_plan",
-  "status": "checked_no_runtime_change",
+  "action": "drained_gen71_for_authorized_gen8",
+  "status": "permanently_retired_for_gen8",
   "notification": "suppressed_no_material_change",
-  "previous_checked_epoch": 1794494094.2774932,
-  "checked_epoch": 1794497308.5207837,
+  "previous_checked_epoch": 1794497308.5207837,
+  "checked_epoch": 1794501042.1596029,
   "evaluation_exclusions": {
     "schema": "gen71-evaluation-exclusion-audit-v1",
     "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
@@ -280,8 +285,8 @@
   "source_and_artifacts_verified": true,
   "writer_and_watchdog_locks": "held",
   "unresolved_failures": 0,
-  "coordination_revision": "a2eeb137e7caf8461bae86dd7b8a651aafd030e1",
-  "coordination_blob": "e3490eb6943f3bc17cc2ae0ce7f0096748023d19",
+  "coordination_revision": "ae9f949b88e4ff71ba153d922c4d796a2b7c227c",
+  "coordination_blob": "9704fdc6f56e1703766e18c0f9a7d8315ef3b90d",
   "selfplay_plan_blob": "b97f2ea8d2fff12e33eeb82ccf0e5b57649a9966",
   "selfplay_plan_launch_enabled": false,
   "reviewed_discussions": [
@@ -485,5 +490,8 @@
     ],
     "errors": [],
     "checked_epoch": 1794497254.509633
-  }
+  },
+  "current_completed": 2189,
+  "gen71_promotion_gate": "Superseded by Max16:11 explicit Gen8 arena cutover; no Gen7.1 self-play transition",
+  "transition_state": "/workspace/work/bridge-gen8-transition-state.json"
 }
