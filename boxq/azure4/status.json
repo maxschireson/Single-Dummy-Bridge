@@ -6,7 +6,7 @@
    "state": "running",
    "owner": "dave",
    "experiment": "G9-D6",
-   "boards": 238,
+   "boards": 396,
    "target": 6200,
    "restarts": 0,
    "submitted": "2026-11-12T13:21:00Z",
@@ -15,10 +15,10 @@
    "started": "2026-11-12T15:03:58Z",
    "resumed": "2026-11-12T15:03:58Z",
    "source": "/home/bridgebots/work/g9/src/8cb0348",
-   "rate_per_hour": 1368.7,
-   "eta": "2026-11-12T19:35:45Z",
-   "published_at": "2026-11-12T15:04:42Z",
-   "published": "transfer/gen9-d6-arrival-azure4-20261112@6ad33edbd"
+   "rate_per_hour": 1528.0,
+   "eta": "2026-11-12T19:07:25Z",
+   "published_at": "2026-11-12T15:14:56Z",
+   "published": "transfer/gen9-d6-arrival-azure4-20261112@5913a21a3"
   },
   "e9-0-n005": {
    "state": "waiting",
@@ -327,10 +327,43 @@
    "submitted": "2026-11-12T14:51:00Z",
    "priority": 3,
    "cores": 4
+  },
+  "e9-16-h-v-p": {
+   "state": "waiting",
+   "owner": "g9",
+   "experiment": "E9-16",
+   "boards": 0,
+   "target": 800,
+   "restarts": 0,
+   "submitted": "2026-11-12T15:15:00Z",
+   "priority": 3,
+   "cores": 4
+  },
+  "e9-16-r-v-p": {
+   "state": "waiting",
+   "owner": "g9",
+   "experiment": "E9-16",
+   "boards": 0,
+   "target": 800,
+   "restarts": 0,
+   "submitted": "2026-11-12T15:14:00Z",
+   "priority": 2,
+   "cores": 4
+  },
+  "e9-16-r-v-x": {
+   "state": "waiting",
+   "owner": "g9",
+   "experiment": "E9-16",
+   "boards": 0,
+   "target": 800,
+   "restarts": 0,
+   "submitted": "2026-11-12T15:15:00Z",
+   "priority": 2,
+   "cores": 4
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T15:14:24Z",
+ "updated": "2026-11-12T15:19:31Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
