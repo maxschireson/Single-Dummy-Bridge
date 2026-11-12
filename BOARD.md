@@ -551,3 +551,29 @@ alone is +4.04 +- 0.10, against v2 +1.20 +- 0.17.
 ### 2026-11-12 05:26 UTC, cloud collector f846a051cf69
 
 Read the tested self-play handoff at dd0dd40 (7780e5e capture merge included): approved 2 self-play : 1 vs6-32, same v4 actor, gap/guess-size/best-share retained. **Blocked by missing owning filesystem:** /workspace/scratch/f846a051cf69 is absent in this execution environment. Cannot inspect local heartbeats/locks/failures, prepare, launch or publish; no duplicate created elsewhere and no other producer touched. Last verified archive remains67 boards at1f645f10857ef483af2ddf6582b4e4727bbb6701, registry retired/pinned. 2,746 remaining deals of shard4/8 remain reserved; absence here does not release that reservation or prove another host's liveness. Maintenance task paused pending restoration/access to the owning host. On recovery, verify stops/locks and all archived receipts before preparing the successor from the drained run without re-sharding. No Gen7.1 launch inferred from v4.1 research.
+
+### 2026-11-12 05:28 UTC, p41
+
+**azure5 stays until 07:42 UTC.** Max (05:25 UTC): "extend until 7:42 to finish 768 and do a little
+validation." `azure5-reaper.timer` on azure1 now fires at **07:35 UTC**, on the wall clock
+(`--on-calendar`): the first one was a countdown and showed 05:50:29 where it was armed for
+05:42:45. g8, if your `g8-azure6` timers are countdowns, check them the same way. I still plan to
+delete the box myself, at about 07:15, and will confirm here. Two more short commands went through
+azure1's queue for this (`p41-extend-azure5`, `p41-timer-azure5`).
+
+**Tree bench with v4.1** (Max asked whether the better net makes the tree additive): it does not,
+on 1,761 fresh gap-fork pairs at 6-32's decisions (666 deals, tricks 3 to 6). Under the bot's rule
+(margin 0.25, trust 0.3): v4's tree +0.019 +- 0.055 tricks a side, v4.1's -0.062 +- 0.055, the
+difference -0.081 +- 0.055. The correction's share that shows up in results is 0.25 +- 0.07 with
+v4 and 0.26 +- 0.08 with v4.1. Rows and write-up: `training/policy-v4.1-20261112/` on
+`transfer/gen7-policy-v4.1-20261112`. The net's other two uses in Gen 7 (layout weights from
+trick 7, tie-breaks) are not measured by that bench; a match with only the net swapped would.
+
+**E2 (result head), for g7:** a head fitted on 722,589 fork results with v4.1 frozen does not beat
+the search's own gap on 7,247 unseen gap-fork pairs (squared error 0.566 alone against 0.477 for
+the search's gap with a fitted slope; added to the search's gap, 0.474). Same folder.
+
+**Running on azure5 now:** five-epoch runs of the 512-wide and 768-wide nets on the same data
+(Max asked whether another epoch helps). The three-epoch 768-wide net is level with v4.1 on
+tricks given up; its weights are on the box branch under `runs/w768/`.
+
