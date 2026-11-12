@@ -130,10 +130,10 @@ First run on real bidders: [reports/gen8-system-scorer-smoke-2026-11-11](../repo
   the Gen 7 net's carding inputs are not.
 - Carding: the descriptor and its encoding exist. The rule that picks among equal cards
   according to the descriptor does not, and no net reads the descriptor.
-- No system outside the house lineage has a generator. An EPBot adapter would be a `python`
-  factory; it is not written, its licence is unresolved, and nothing here depends on it.
-- Convention-card readers: only `.bbsa`. ACBL and WBF cards, notes and system summary forms
-  need a reader that produces a descriptor.
+- No system outside the house lineage has a generator. A rule engine or another bidder plugs in
+  as a `python` factory; none is in use.
+- Convention-card readers: none. ACBL and WBF cards, notes and system summary forms need a
+  reader that produces a descriptor.
 - A gate computed from a card's descriptor instead of a per-system row needs a population of
   systems to learn from. The file format and scorer already accept any gate matrix; the
   trainer writes only shared-plus-correction.

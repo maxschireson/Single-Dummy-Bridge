@@ -107,7 +107,7 @@ def auction_any(board, bidders):
     The board's auction_source names the system each side bid, so tables that differ only in that are told apart."""
     calls, decisions = [], []
     booked = STATE.get('booked')
-    if booked is not None:              # the table's auction was bid beforehand (scripts/gen8_auction_book.py)
+    if booked is not None:              # the table's auction was bid beforehand (--book)
         systems, calls = booked
         decisions = [dict(seat=(board.dealer + k) % 4, ply=k, call=c, behavior='book', behavior_probability=1.) for k, c in enumerate(calls)]
         return replace(board, contract=auction_contract(board.dealer, list(calls)), auction=tuple(calls), opening_lead=None,
@@ -138,7 +138,8 @@ def auction_any(board, bidders):
 
 
 def load_book(path):
-    """index -> (deal key, (NS system, EW system), calls) from a file made by scripts/gen8_auction_book.py."""
+    """index -> (deal key, (NS system, EW system), calls) from a book: gzip JSON with seed, first, tables (a list of
+    [NS system, EW system]), keys (deal ids), table_of (index into tables per deal) and auctions (calls per deal)."""
     with gzip.open(path, 'rt') as f:
         book = json.load(f)
     return book['seed'], {book['first'] + k: (key, tuple(book['tables'][t]), tuple(calls))
@@ -241,7 +242,7 @@ def main():
     ap.add_argument('--workers', type=int, default=os.cpu_count())
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--episodes', action='store_true', help='keep full records (collector format) under episodes/')
-    ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (scripts/gen8_auction_book.py); '
+    ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (see load_book for the format); '
                                    'both rooms of a board then play the same auction')
     args = ap.parse_args()
     if args.book and load_book(args.book)[0] != args.seed:

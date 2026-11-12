@@ -246,20 +246,7 @@ class DescriptorVocabulary:
         return cls(json.loads(text))
 
 
-def parse_bbsa(text):
-    """A BBA/EPBot convention card (*.bbsa) as a descriptor: 'System type' plus its named
-    on/off conventions. Unnamed placeholder lines are dropped."""
-    out = {}
-    for line in text.replace('\r', '').split('\n'):
-        name, sep, value = line.rpartition(' = ')
-        if sep and name.strip() and name.strip() != 'Not defined':
-            out[name.strip()] = value.strip()
-    if 'System type' not in out:
-        raise ValueError('not a .bbsa card: no "System type" line')
-    return out
-
-
-CARD_READERS = {'bbsa': parse_bbsa}
+CARD_READERS = {}       # card format -> function(text) -> descriptor. No format has a reader yet.
 
 
 def card_descriptor(card: Mapping, root='.'):

@@ -19,8 +19,7 @@ from bridge_harness.core import auction_contract
 from bridge_harness.gen6_nets import FitScorer
 from bridge_harness.system_bidders import PASS, ToyBidder, VUL_NAMES, _RuleSession, bid, make_bidder, options_sha256
 from bridge_harness.system_nets import OWN_ROWS, SystemFitScorer
-from bridge_harness.systems import (DescriptorVocabulary, SystemPackage, SystemRegistry, TableSystems, card_descriptor,
-                                    parse_bbsa)
+from bridge_harness.systems import (DescriptorVocabulary, SystemPackage, SystemRegistry, TableSystems, card_descriptor)
 
 ROOT = Path(__file__).resolve().parents[1]
 TOYS = {'toy-strong': ToyBidder((15, 17), 5), 'toy-weak': ToyBidder((12, 14), 4), 'toy-club': ToyBidder((13, 15), 5, 16),
@@ -167,16 +166,21 @@ class VocabularyTests(unittest.TestCase):
         self.assertEqual(v.fields, {'Drury': ('0', '1'), 'Multi': ('1',), 'System type': ('0', '3')})
         self.assertEqual(int(v.encode(cards[1]).sum()), 3)
 
-    def test_bbsa_card(self):
-        text = 'System type = 3\r\n1NT opening range 13-15 = 1\r\nNot defined = 0\r\nPrecision 2D = 1\r\nNot defined = 0\r\n'
-        self.assertEqual(parse_bbsa(text), {'System type': '3', '1NT opening range 13-15': '1', 'Precision 2D': '1'})
-        with self.assertRaises(ValueError):
-            parse_bbsa('Drury = 1\n')
+    def test_card_reader(self):
+        from bridge_harness import systems
+        def lines(text):            # a stand-in format: "name = value" lines
+            return dict(line.split(' = ') for line in text.splitlines() if ' = ' in line)
         with tempfile.TemporaryDirectory() as d:
-            (Path(d) / 'card.bbsa').write_text(text)
-            self.assertEqual(card_descriptor(dict(format='bbsa', path='card.bbsa'), d)['System type'], '3')
-            with self.assertRaises(ValueError):
-                card_descriptor(dict(format='wbf', path='card.bbsa'), d)
+            (Path(d) / 'card.txt').write_text('Opening one no trump = 15-17\nMajors = five\n')
+            with self.assertRaises(ValueError):             # no format has a reader yet
+                card_descriptor(dict(format='lines', path='card.txt'), d)
+            systems.CARD_READERS['lines'] = lines
+            try:
+                self.assertEqual(card_descriptor(dict(format='lines', path='card.txt'), d)['Majors'], 'five')
+                with self.assertRaises(ValueError):
+                    card_descriptor(dict(format='lines'), d)
+            finally:
+                del systems.CARD_READERS['lines']
 
 
 class ScorerTests(unittest.TestCase):

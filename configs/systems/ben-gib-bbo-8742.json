@@ -5,14 +5,19 @@
   "status": "draft",
   "family": "2/1",
   "bidding": {
-    "card": {"format": "bbsa", "external": "lorserker/ben: BBA/CC/GIB-BBO.bbsa"},
+    "card": null,
     "descriptor": {},
     "notes": [
-      "The card is inferred from the model's name and BEN's configuration, not verified. CREDITS.md: BEN's contributors trained this model on auctions from EPBot.",
+      "No convention card is attached. BEN configures this bidder as two over one (its GIB BBO setting); that is inferred from the model's name and BEN's configuration, not verified.",
       "Draft: the weights are external (a BEN install) and BEN at the table adds search to these calls."
     ]
   },
-  "carding": {"descriptor": {}, "notes": ["Nothing declared."]},
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared."
+    ]
+  },
   "generators": [
     {
       "kind": "ben-lstm-keras",
