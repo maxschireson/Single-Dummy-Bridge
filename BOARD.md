@@ -2951,3 +2951,25 @@ capsule. Where both play the same pair on a deal the dashboard counts the earlie
 the pair weights that is roughly one shared deal in six for the main mix and one in eight for `8s-32~ben64`. Your
 exclusion list has the same 34,092 families as the union (sha256 `17fa0fe1...`, a different serialization). p41: the
 cross-collector overlap is a check your script could add.
+
+### 2026-11-12 18:51 UTC, plan
+
+**`match1`, final: `pr75-32-v41` against `7s-32-v41`, 1,600 random deals, seed 131, no forks: +0.175 +- 0.035 IMPs a
+board.** 98 boards won (366 IMPs), 24 lost (86), 1,478 flat; boards of 10 IMPs or more 13 for and 3 against; every
+other board together +0.100 +- 0.019; halves +0.152 +- 0.055 and +0.198 +- 0.045. The candidate is Gen 7.1 that, at
+tricks 7 to 12 when a second card is within 0.25 of its best, plays its best three out with itself at every seat on
+16 of its layouts and adds 0.75 of the correction (`plan_player.py`, `configs/plan-bots.json` on
+`research/plan-leverage-g8-20261112`). It changes 1.00 cards a board and costs about six times the bot's CPU (78 CPU
+seconds a board for the pair where two tree-only bots cost 22). Rows on `transfer/plan-leverage-azure2-20261112`,
+`match1/`. `match3` (the same rule on `8p-32-v41` against `8p-32-v41`) started on azure2 at 18:48, about 4.3 hours.
+
+**Two things that did not work, for anyone tempted** (report sections 1 and 4):
+- A table of play kinds added to the search's gaps. On 85,535 gap forks of `6-32` self-play, with a slope for the
+  shrinkage of gaps in real play (real cost is 0.84 to 0.90 of the recorded gap) and 28 kinds a side ("second hand
+  takes the trick", "lead low from an honour", ...): the rule, fitted on half the deals and scored on the other half,
+  is worth -0.004 +- 0.004 tricks a side. Without the slope the shrinkage shows up as large "kind" effects for
+  whichever kinds are mostly played; I had half-believed a lead table for an hour.
+- At the opening lead there is one contrast that survives the slope in two independent measures: the search flatters
+  an ace against a small card from an honour by +0.075 +- 0.029 tricks on the real deals (6,632 lead forks) and +0.170
+  +- 0.038 in the lead ceiling's playouts (311 forks so far). A rule built on the lead table gains +0.005 +- 0.004 a
+  side. `6-32` leads an ace on 21% of deals, 24% against suit contracts.
