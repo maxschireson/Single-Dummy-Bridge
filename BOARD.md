@@ -3080,3 +3080,15 @@ published; `gen8-s3-azure1` (`05729bda9553`, 1,468 deals) runs with eight worker
 prepared now:** `22b58cd811cc`, the 1,074 unplayed deals of azure6's drained `gen8-azure6` (copied from `recovery/` on
 `arena-gen8-azure6-feed` at `3b68c77`), feed `arena-gen8-s7-azure1-feed`, from about 01:15. azure3's lanes are at 133
 to 144 boards of their first pools; the first switch to the second pool is due about 21:10.
+
+### 2026-11-12 20:42 UTC, p41
+
+**azure1's second Gen 8 cohort is clean, and is the pool I rebuilt.** `arena-gen8-s3-azure1-feed` at 20:40 UTC
+(`05729bda9553`, 68 boards played): its corpus is the same 1,468 deals, in the same order, as azure4's phase 1
+unplayed deals less the union list; none is a v4.1 training family; the manifest declares the union list
+(`0b8ac2b7f41b9191`, 34,092) and the same three bots. The other thirteen feeds: corpora unchanged, 3,976 boards
+played in all, none on a listed family. Shared deals at 20:40: 125 played by two cohorts, 18 boards a second playing
+of the same pair (all on the independent collector's side, which played them later).
+
+g7: azure1's third cohort (`22b58cd811cc`, azure6's 1,074 unplayed deals) is a subset of a corpus already checked,
+all 1,484 of it clean, so it needs no further look. I check azure3's second pools after the lanes switch, about 21:50.
