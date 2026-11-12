@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """How much the hidden seats' plays say about their hands when the reader's model of them is the bot itself.
 
-  python scripts/plan_reading_bound.py --episodes DIR --net gen7_policy.npz [--trick 6] [--candidates 48]
+  python scripts/plan_reading_bound.py --episodes DIR --net gen7_policy.npz [--trick 6] [--pool 2000] [--candidates 96]
         [--seeds 2] [--files 200] [--workers 8] [--out rows.json]
 
 Gen 7 and the Gen 8 prototype weigh layouts by the policy net's probability of every card a hidden hand has played.
@@ -30,8 +30,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'scripts'))
 from bridge_harness.core import SEATS, Board, Game, card, symbol
-from bridge_harness.gen6 import Classes, View
-from bridge_harness.gen7 import hidden_plays, past_view, player
+from bridge_harness.gen6 import Classes, View, systematic
+from bridge_harness.gen7 import floored, hidden_plays, past_view, player
 import gen7_check as check
 
 STATE = {}
@@ -39,10 +39,10 @@ PRUNE = 9.          # a candidate this many nats behind the best (by the crude c
 MISS, HIT = np.log(.05), np.log(.9)
 
 
-def start(net, trick, candidates, seeds, seed):
+def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     STATE.update(six=player(check.spec('gen6'), ROOT), seven=player(check.spec('gen7', policy=net), ROOT), trick=trick,
-                 candidates=candidates, seeds=seeds, seed=seed)
+                 candidates=candidates, seeds=seeds, seed=seed, pool=pool, floor=floor)
 
 
 def assignment(view, world):
@@ -92,15 +92,21 @@ def one(family, key, board, o):
     classes = Classes(view)
     logw = classes.logmult + six.type_log_weights(o, view, classes.length, classes.hon, 'scorer' if source == 'list' else source)
     p = np.exp(logw - logw.max())
-    worlds = classes.worlds(rng.choice(len(p), STATE['candidates'] * 2, p=p / p.sum()), rng)
+    worlds = classes.worlds(rng.choice(len(p), STATE['pool'], p=p / p.sum()), rng)
     truth = assignment(view, [tuple(c for c in board.hands[s] if c in set(view.unseen)) if s in view.hidden else () for s in range(4)])
-    rows, seen = [truth], {truth.tobytes()}
-    for w in worlds:
-        a = assignment(view, w)
-        if a.tobytes() not in seen and len(rows) <= STATE['candidates']:
-            seen.add(a.tobytes())
-            rows.append(a)
-    assign = np.array(rows)
+    pool = np.unique(np.array([assignment(view, w) for w in worlds]), axis=0)
+    pool = pool[~(pool == truth[None, :]).all(1)]
+    # the net reads the whole pool; the candidates the bot is run on are drawn from the pool by the net's reading
+    logp, opts = seven.play_log_probabilities(o, view, np.concatenate([truth[None, :], pool]), plays)
+    read = floored(logp, opts, STATE['floor']).sum(axis=0)
+    true_net, read = float(read[0]), read[1:]
+    w = np.exp(read - read.max())
+    index, share = systematic(w, STATE['candidates'], rng)
+    agree = pool == truth[None, :]
+    pool_info = dict(n=len(pool), logz_net=float(read.max() + np.log(w.mean())), true_net=true_net, effective=float(w.sum() ** 2 / (w ** 2).sum()),
+                     prior_agree=np.round(agree.mean(0), 4).tolist(), net_agree=np.round((w / w.sum()) @ agree, 4).tolist())
+    assign = np.concatenate([truth[None, :], pool[index]])
+    share = np.concatenate([[0.], share])
     net_logp, options = seven.play_log_probabilities(o, view, assign, plays)       # [plays, candidates]
     n, m = len(assign), STATE['seeds']
     same = np.full((len(plays), n, m), -1, np.int8)                                  # -1 = not simulated (pruned)
@@ -135,6 +141,7 @@ def one(family, key, board, o):
                 plays=[dict(i=i, trick=i // 4 + 1, seat=SEATS[seat], chooser=SEATS[chooser], card=symbol(o.history[i][1]),
                             partner=chooser % 2 == o.controller % 2) for i, seat, chooser in plays],
                 unseen=[symbol(x) for x in view.unseen], hidden=[SEATS[s] for s in view.hidden],
+                pool=pool_info, share=np.round(share, 5).tolist(),
                 assign=assign.tolist(), net_logp=np.round(net_logp, 4).tolist(), options=options.tolist(),
                 same=same.tolist(), gap=np.where(np.isnan(gap), -1., np.round(gap, 4)).tolist(), eligible=eligible.tolist(), calls=calls)
 
@@ -144,7 +151,9 @@ def main():
     p.add_argument('--episodes', required=True)
     p.add_argument('--net', required=True)
     p.add_argument('--trick', type=int, default=6)
-    p.add_argument('--candidates', type=int, default=48)
+    p.add_argument('--candidates', type=int, default=96)
+    p.add_argument('--pool', type=int, default=2000)
+    p.add_argument('--floor', type=float, default=.05)
     p.add_argument('--seeds', type=int, default=2)
     p.add_argument('--files', type=int, default=200)
     p.add_argument('--skip-files', type=int, default=0)
@@ -159,11 +168,11 @@ def main():
 
     def save():
         part = a.out.with_suffix('.part')
-        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, seeds=a.seeds, files=done,
+        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, seeds=a.seeds, files=done,
                                                       skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
         part.replace(a.out)
 
-    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor)) as pool:
         for part in pool.imap_unordered(sample_of, files):
             rows += part
             done += 1
