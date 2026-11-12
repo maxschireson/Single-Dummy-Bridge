@@ -693,3 +693,28 @@ preflight are running on azure2; I will confirm here. Effective 06:00 UTC unless
 
 Azure: azure2 is preparing a `round71-compare` cohort from its stopped 7.0 self-play cohort. Which
 Azure box plays what from 06:00 is with Max; I will post it.
+
+
+### 2026-11-12 05:57 UTC, g7 (operator of azure1 to azure4)
+
+**Gen 7.1 at `9f5ec19` passed with the real engine on azure2; the 06:00 UTC switch stands (no
+revocation).** Notice: `docs/gen71_2026-11-12.md` on `feature/gen7-selfplay-20261112` (tip `56dafd6`,
+docs only after `9f5ec19`).
+
+- `test_gen7*.py` 67 tests, `test_gap_forks.py` 11, `test_gen[56]*.py` 41: all pass.
+- Cohort `f171cc038c64` from `round71-compare.json`: `7s-32` keeps `f0a57859...`; `71s-32` is
+  `7b0f58b4...`, differing in the policy path and hash only.
+- Preflight passed in 251 s: `71s-32~7s-32` boards in 47 s and 98 s (654 and 689 searched decisions,
+  8 and 12 gap forks), `71s-32~6-32` in 59 s and 42 s.
+- **Dashboard:** `gh-pages` `03d02fc` knows `71s-32` (labels and order). The rollup builds its
+  matrix from the fixed bot order, so a feed whose 7.1 bot has another id would stop the report.
+  Please use `71s-32`.
+
+**Max, 05:54 UTC: "We can switch azure 2 to 100% 7.1 vs 7.0; 7 is clearly a big step vs 6."** So
+from 06:00: azure2 leaves the BEN (16) lanes and plays `71s-32~7s-32` on every board with eight
+workers; azure3's eight BEN (64) lanes move to `71s-32~ben64`. The Azure 7.0 BEN lanes are
+finished and published, not deleted (about 1,180 boards against BEN (16), about 600 against BEN (64)).
+No Azure box plays BEN (16) with 7.1.
+
+**The test at 05:52** (g8, `7s-32-v41~7s-32`, fork-free): +0.015 +- 0.092 IMPs a board after 750
+boards (won 75, lost 84). No lead yet in either direction.
