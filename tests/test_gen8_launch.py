@@ -15,6 +15,7 @@ from bridge_harness.gen5_arena import run_board
 from bridge_harness.gen7 import resolved
 from bridge_harness.loop_registry import sha
 from bridge_harness.mixed_arena import verify_generation
+from bridge_harness.system_bidders import make_bidder
 from ops.gen5_runtime import validate
 from ops.prepare_gen7_alpha import SYSTEM_SCORER, SYSTEM_SCORER_KEY, load_plan, make_bots, prepare
 from test_gen5 import Toy
@@ -65,6 +66,32 @@ class Gen8PlanTests(unittest.TestCase):
 
     def write(self, plan=None):
         self.plan_path.write_text(json.dumps(plan or self.plan))
+
+    def test_the_shipped_candidate_is_closed_and_names_the_frozen_pieces(self):
+        path = ROOT / 'configs/round8-candidate.json'
+        with self.assertRaises(ValueError):
+            load_plan(path)
+        shipped = load_plan(path, require_ready=False)
+        self.assertFalse(shipped['launch_enabled'])
+        self.assertTrue(shipped['pending'])
+        # the rule bidder is the packaged system's, pin for pin, and the code builds exactly it
+        package = json.loads((ROOT / 'configs/systems/rules-precision.json').read_text())
+        entry = shipped['gen7_bots']['8c-32']['bidder']
+        self.assertEqual(entry['sha256'], package['generators'][0]['sha256'])
+        self.assertEqual(make_bidder(entry, ROOT).sha256, entry['sha256'])
+        self.assertEqual(make_bidder(package['generators'][0], ROOT).sha256, entry['sha256'])
+        self.assertEqual(shipped['systems'], {'8s-32': HOUSE, '8c-32': RULES, '71s-32': HOUSE, '6-32': HOUSE})
+        # the scorer release: built on the bots' hand-fit scorer, with its table trained for that identity of the rule system
+        art = shipped['artifacts'][SYSTEM_SCORER_KEY]
+        manifest = json.loads((ROOT / art['release'] / 'manifest.json').read_text())
+        self.assertIn(art['sha256'], json.dumps(manifest))
+        self.assertEqual(manifest['rules_precision_identity'], entry['sha256'])
+        self.assertTrue((ROOT / art['release'] / art['restore']).exists())
+        for key in ('8s-32', '8c-32'):
+            bot = shipped['gen7_bots'][key]
+            self.assertEqual(resolved(bot['gen7']), bot['gen7'])        # nothing is left to a default in code
+            self.assertTrue(bot['system_scorer'])
+        self.assertNotIn('bidder', shipped['gen7_bots']['8s-32'])
 
     def test_a_plan_without_systems_builds_the_bots_it_always_built(self):
         seven_only = deepcopy(self.plan)

@@ -1,0 +1,274 @@
+{
+ "schema": "gen7-alpha-plan-v1",
+ "campaign": "gen8-candidate-20261112",
+ "title": "Gen 8 candidate \u00b7 the play read from trick 1, and two bidding systems at the table",
+ "launch_enabled": false,
+ "pending": [
+  "Not authorized. Max has said he will want to push Gen 8 when it has bidding diversity (12 November 2026, 06:54 UTC) and that nothing launches without him. Whoever opens this plan records his authorization here and in the notice.",
+  "Match mix: `pair_weights` is a proposal (Gen 8 against Gen 7.1 two boards in four; the Precision bot against Gen 7.1 and against Gen 8 one each). Max and g7 set the arena's mix, the BEN lanes and the self-play cohorts.",
+  "BEN: the candidate reads BEN's plays at half weight (`opponent_play_weight` 0.5, Gen 7's exponent) from trick 1. No Gen 8 board has been played against BEN; the first BEN lane is that measurement."
+ ],
+ "notes": [
+  "docs/gen8_candidate_2026-11-12.md is the notice this file belongs to: what was measured, on how many boards, and what was not.",
+  "Gen 8 candidate (8s-32) is Gen 7.1 standard (71s-32: Gen 6 fast with the gen7 engine and policy net v4.1) with three changes. (1) The play so far is read at every trick, from trick 1, at exponent 1.0 (Gen 7.1: from trick 7 at 0.5): before the deal list, a pool of 512 layouts drawn by the hand-fit scorer is weighted by the policy net's probability of the hidden seats' plays and resampled for the solver. (2) The reading of the opponents' plays is scaled by who they are (`opponent_play_weight`, by bot id; partner is always read in full): 1.0 for the house family, 0.2 for bot 1, 0.5 for BEN, 0.3 for anyone else. (3) Each side's calls are read by the system that side declares (`system_scorer`), and the lead net is used only at tables where both sides bid the house system (`lead_systems`).",
+  "8c-32 is 8s-32 that bids by the project's own rule bidder (bridge_harness/rule_bidder.py, a Precision-style strong club; rules r3 with judgement from a trick estimate; settings and identity in configs/rule-systems/precision-r4.json) in place of the house net. Its bidding net stays in its spec because the lead net takes that net's features as an input.",
+  "`systems` says which system each bot declares. The runner labels every table with the two sides' systems and tells both players before the table is played; in a pair's common-auction rooms every seat is bid by the common bidder (6-32, the house net), in its own-auction rooms each bot bids its own system, so 8c-32 against a house-bidding bot is a table with two systems.",
+  "71s-32 here is the arena's 71s-32: same settings, same policy file at the same path, so the same identity; 6-32 is unchanged from the source run.",
+  "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here. Prepare at the commit named in the notice or later: earlier sources do not know `systems`, a bot's `bidder`, or the `system_scorer` artifact."
+ ],
+ "model_note": "Gen 8 candidate (8s-32) is Gen 7.1 standard with the play read from trick 1 at exponent 1.0 (opponents' plays scaled by opponent type), and with each side's calls read by the bidding system that side declares (system-aware hand-fit scorer v1; the lead net serves house auctions only). 8c-32 is the same bot bidding the project's rule system (Precision style, rules r3) instead of the house net. Gen 7.1 standard (71s-32) and Gen 6 fast (6-32) are unchanged. Settings are in each bot's `gen7` block. docs/gen8_candidate_2026-11-12.md has the details.",
+ "interpretation": "Gen 8 against Gen 7.1 in common auctions is card play alone. A pair with 8c-32 has two readings: in common auctions (bid by the house net) it is card play between the two bots, which for 8c-32 against 8s-32 is the same engine twice; in own auctions 8c-32 bids the rule system and its opponent the house system, so the difference includes the bidding. Report the two conditions separately. Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
+ "roster": [
+  "8s-32",
+  "8c-32",
+  "71s-32",
+  "6-32"
+ ],
+ "pair_weights": {
+  "8s-32~71s-32": 2,
+  "8c-32~71s-32": 1,
+  "8c-32~8s-32": 1
+ },
+ "common_bidder": "6-32",
+ "audit_references": {
+  "8s-32": "3",
+  "8c-32": "3"
+ },
+ "systems": {
+  "8s-32": "house-gen6",
+  "8c-32": "rules-precision",
+  "71s-32": "house-gen6",
+  "6-32": "house-gen6"
+ },
+ "artifacts": {
+  "gen7_policy_v41": {
+   "release": "models/cardplay/gen7-policy-v4.1-2026-11-12",
+   "file": "gen7_policy_v4.1.npz",
+   "restore": "restore.py",
+   "sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed"
+  },
+  "system_scorer": {
+   "release": "models/cardplay/gen8-system-scorer-v1-2026-11-12",
+   "file": "system_scorer_v1.npz",
+   "restore": "restore_model.py",
+   "sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d"
+  }
+ },
+ "gen7_bots": {
+  "8s-32": {
+   "base": "6-32",
+   "label": "Gen 8 candidate (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0,
+    "opponent_play_weight": {
+     "8s-32": 1.0,
+     "8c-32": 1.0,
+     "71s-32": 1.0,
+     "7s-32": 1.0,
+     "7f-32": 1.0,
+     "6-32": 1.0,
+     "5RZ32": 1.0,
+     "1": 0.2,
+     "ben": 0.5,
+     "ben64": 0.5,
+     "*": 0.3
+    },
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "reply": "net",
+      "own_breadth": 0,
+      "own": "best",
+      "plain": 1,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   },
+   "system_scorer": true,
+   "lead_systems": [
+    "house-gen6"
+   ]
+  },
+  "8c-32": {
+   "base": "6-32",
+   "label": "Gen 8 candidate, Precision rule bidder (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0,
+    "opponent_play_weight": {
+     "8s-32": 1.0,
+     "8c-32": 1.0,
+     "71s-32": 1.0,
+     "7s-32": 1.0,
+     "7f-32": 1.0,
+     "6-32": 1.0,
+     "5RZ32": 1.0,
+     "1": 0.2,
+     "ben": 0.5,
+     "ben64": 0.5,
+     "*": 0.3
+    },
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "reply": "net",
+      "own_breadth": 0,
+      "own": "best",
+      "plain": 1,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   },
+   "system_scorer": true,
+   "lead_systems": [
+    "house-gen6"
+   ],
+   "bidder": {
+    "kind": "python",
+    "factory": "bridge_harness.rule_bidder:from_package",
+    "options": {
+     "settings": {
+      "style": "precision",
+      "club_min": 16,
+      "open_min": 11,
+      "open_light": 1,
+      "limited_max": 15,
+      "nt_lo": 14,
+      "nt_hi": 16,
+      "nt_five_major": false,
+      "two_clubs_len": 6,
+      "two_diamonds": true,
+      "weak_lo": 4,
+      "weak_hi": 10,
+      "weak_quality": 1,
+      "preempt_len": 6,
+      "neg_max": 7,
+      "resp_min": 6,
+      "two_over_one": 11,
+      "game": 25,
+      "game_minor": 27,
+      "slam": 32,
+      "grand": 37,
+      "invite_width": 2,
+      "overcall_min1": 7,
+      "overcall_min2": 11,
+      "overcall_max": 17,
+      "overcall_quality": 1,
+      "takeout_min": 12,
+      "nt_overcall_lo": 15,
+      "nt_overcall_hi": 18,
+      "jump_overcalls": true,
+      "balance": 3,
+      "compete": 0,
+      "penalty": 24,
+      "stayman": true,
+      "transfers": true,
+      "estimate": "configs/rule-systems/precision-estimate-r4.json",
+      "est_band": 2,
+      "est_weight": 5,
+      "est_nv": 3,
+      "est_v": 5,
+      "est_slam_band": 4,
+      "est_slam": 5,
+      "est_contest": 5,
+      "est_sigma": 12,
+      "est_reach": 2,
+      "est_double": 35
+     }
+    },
+    "sha256": "f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c"
+   }
+  },
+  "71s-32": {
+   "base": "6-32",
+   "label": "Gen 7.1 standard (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 0.5,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   }
+  }
+ }
+}
