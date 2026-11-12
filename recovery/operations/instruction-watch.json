@@ -249,8 +249,8 @@
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "applied_pooled_accounting_guard_correction",
-  "collection_action": "Accept authorized ready Gen7 campaign variants regardless of phase1 name prefix. Clean maintenance drain at214records; all hashes preserved, science/runtime/models/mix unchanged. Corrected guard loaded; same cohort resumed with3workers. Future selfplay-only empty-owned comparison lists cannot falsely stop.",
+  "result": "authorized_gen71_transition_in_progress",
+  "collection_action": "Gen7.0 mixed cohort drained at437completed records,zero failures. All-arena Gen7.1 instruction at05:42 effective06:00 supersedes old7.0 schedule. Validate newround71-compare cohort before launch.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -714,7 +714,7 @@
       "previous": "0453fcab42ae9c73423918265c581e1ac0e6a79d"
     }
   ],
-  "completed_at": "2026-11-12T05:39:23Z",
+  "completed_at": "2026-11-12T06:28:35Z",
   "next_comment_scan_since": "2026-11-12T05:29:34Z",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
@@ -1428,5 +1428,198 @@
     "plan_blob": "b5a4be428b4d8f3d5c1df32a0e9cb72938ee25b5",
     "result": "Same2:1mix and v4 actor. The old05d2capture warning addresses retired32e1cohort. Current e050capture successor is explicitly listed and verified; keep its frozen tested317cearuntime. No scientific change requested here.",
     "upstream_capture_commit": "7780e5e"
+  },
+  "gen71_authority": {
+    "issued": "2026-11-12T05:42:00Z",
+    "effective": "2026-11-12T06:00:00Z",
+    "relayed": "2026-11-12T05:44:00Z",
+    "reaffirmed": "2026-11-12T05:57:00Z",
+    "board_commit": "bbc7de47409b85ef2a3ffe46ca8156c01dfe9f98",
+    "scope": "TO ALL ARENA COLLECTORS;explicit standing user delegation"
+  },
+  "gen71_transition": {
+    "status": "gen70-drained",
+    "epoch": 1794464857.9462485,
+    "authority": {
+      "issued": "2026-11-12T05:42:00Z",
+      "effective": "2026-11-12T06:00:00Z",
+      "relayed": "2026-11-12T05:44:00Z",
+      "reaffirmed": "2026-11-12T05:57:00Z",
+      "board_commit": "bbc7de47409b85ef2a3ffe46ca8156c01dfe9f98",
+      "scope": "TO ALL ARENA COLLECTORS;explicit standing user delegation"
+    },
+    "source_config": {
+      "run": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
+      "runtime": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/runtime",
+      "publication": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/publication",
+      "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+      "key": "gen7codexselfplaycapture",
+      "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "target": 20694,
+      "seed": 6586995816951042092,
+      "effective_generation": 7,
+      "phase": "gen7-phase1-selfplay",
+      "preparation_script": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/prepare_owned.py",
+      "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+      "validation_logs": [
+        "/workspace/work/gen7-selfplay-capture-final-codex-20261112/tests.log",
+        "/workspace/work/gen7-selfplay-capture-final-codex-20261112/gap-tests.log",
+        "/workspace/work/gen7-selfplay-capture-final-codex-20261112/guard-tests.log",
+        "/workspace/work/gen7-selfplay-capture-final-codex-20261112/preflight.log"
+      ],
+      "retired_gen6": {
+        "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+        "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+        "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+        "branch": "arena-gen6-fast-selfplay-codex-20261111",
+        "key": "gen6newselfplay",
+        "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+        "target": 25000,
+        "seed": 6586995816951042092,
+        "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+        "completed": 3710,
+        "restart_authorized": false
+      },
+      "retired_gen7_phase1": {
+        "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+        "runtime": "/workspace/work/gen7-phase1-codex-20261112/runtime",
+        "publication": "/workspace/work/gen7-phase1-codex-20261112/publication",
+        "branch": "arena-gen7-phase1-codex-20261112-feed",
+        "key": "gen7codexphase1",
+        "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+        "target": 21290,
+        "seed": 6586995816951042092,
+        "effective_generation": 7,
+        "phase": "gen7-phase1",
+        "preparation_script": "/workspace/work/gen7-phase1-codex-20261112/prepare_owned.py",
+        "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+        "retired_gen6": {
+          "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+          "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+          "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+          "branch": "arena-gen6-fast-selfplay-codex-20261111",
+          "key": "gen6newselfplay",
+          "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+          "target": 25000,
+          "seed": 6586995816951042092,
+          "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+          "completed": 3710,
+          "restart_authorized": false
+        },
+        "validation_logs": [
+          "/workspace/work/gen7-phase1-codex-20261112/tests.log",
+          "/workspace/work/gen7-phase1-codex-20261112/test-fixture-rerun.log",
+          "/workspace/work/gen7-phase1-codex-20261112/preflight.log"
+        ],
+        "completed": 564,
+        "final_commit": "dfe3233dec356e48da065702964892354e0db16c",
+        "restart_authorized": false
+      },
+      "retired_without_capture": {
+        "run": "/workspace/work/gen7-selfplay-codex-20261112/run",
+        "runtime": "/workspace/work/gen7-selfplay-codex-20261112/runtime",
+        "publication": "/workspace/work/gen7-selfplay-codex-20261112/publication",
+        "branch": "arena-gen7-selfplay-codex-20261112-feed",
+        "key": "gen7codexselfplay",
+        "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+        "target": 20726,
+        "seed": 6586995816951042092,
+        "effective_generation": 7,
+        "phase": "gen7-phase1-selfplay",
+        "preparation_script": "/workspace/work/gen7-selfplay-codex-20261112/prepare_owned.py",
+        "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+        "validation_logs": [
+          "/workspace/work/gen7-selfplay-codex-20261112/tests.log",
+          "/workspace/work/gen7-selfplay-codex-20261112/tests-before-native-setup.log",
+          "/workspace/work/gen7-selfplay-codex-20261112/guard-tests.log",
+          "/workspace/work/gen7-selfplay-codex-20261112/preflight.log"
+        ],
+        "retired_gen6": {
+          "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+          "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+          "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+          "branch": "arena-gen6-fast-selfplay-codex-20261111",
+          "key": "gen6newselfplay",
+          "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+          "target": 25000,
+          "seed": 6586995816951042092,
+          "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+          "completed": 3710,
+          "restart_authorized": false
+        },
+        "retired_gen7_phase1": {
+          "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+          "runtime": "/workspace/work/gen7-phase1-codex-20261112/runtime",
+          "publication": "/workspace/work/gen7-phase1-codex-20261112/publication",
+          "branch": "arena-gen7-phase1-codex-20261112-feed",
+          "key": "gen7codexphase1",
+          "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+          "target": 21290,
+          "seed": 6586995816951042092,
+          "effective_generation": 7,
+          "phase": "gen7-phase1",
+          "preparation_script": "/workspace/work/gen7-phase1-codex-20261112/prepare_owned.py",
+          "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+          "retired_gen6": {
+            "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+            "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+            "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+            "branch": "arena-gen6-fast-selfplay-codex-20261111",
+            "key": "gen6newselfplay",
+            "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+            "target": 25000,
+            "seed": 6586995816951042092,
+            "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+            "completed": 3710,
+            "restart_authorized": false
+          },
+          "validation_logs": [
+            "/workspace/work/gen7-phase1-codex-20261112/tests.log",
+            "/workspace/work/gen7-phase1-codex-20261112/test-fixture-rerun.log",
+            "/workspace/work/gen7-phase1-codex-20261112/preflight.log"
+          ],
+          "completed": 564,
+          "final_commit": "dfe3233dec356e48da065702964892354e0db16c",
+          "restart_authorized": false
+        },
+        "completed": 32,
+        "final_commit": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+        "restart_authorized": false,
+        "capture_incomplete": true
+      }
+    },
+    "source_state": {
+      "manifest_identity": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "completed": 434,
+      "target": 20694,
+      "contiguous": 434,
+      "by_pair": {
+        "7s-32~7s-32": 290,
+        "7s-32~6-32": 144
+      },
+      "root_games": 578,
+      "tables": 10963,
+      "failures": 0,
+      "epoch": 1794464786.134579,
+      "complete": false
+    },
+    "stop_token": "Max05:42 Nov12, all-arena Gen7.1 effective06:00, reaffirmed05:57/no revocation: drain Gen7.0 for new v4.1-policy cohort and identity.\n",
+    "selected_plan": "configs/round71-compare.json",
+    "replacement": "Two71s-32~7s-32 boards for one71s-32~6-32; retain capture/audits; new model policyv4.1; no Gen8 research.",
+    "final_source_state": {
+      "manifest_identity": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "completed": 437,
+      "target": 20694,
+      "contiguous": 437,
+      "by_pair": {
+        "7s-32~7s-32": 292,
+        "7s-32~6-32": 145
+      },
+      "root_games": 582,
+      "tables": 11028,
+      "failures": 0,
+      "epoch": 1794464857.2285266,
+      "complete": false
+    }
   }
 }
