@@ -1,0 +1,292 @@
+{
+ "all|declarer": {
+  "decisions": 1555,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.6559,
+   "se": 0.0845
+  },
+  "scheme_read": {
+   "mean": 0.9725,
+   "se": 0.1037
+  },
+  "scheme_house": {
+   "mean": -0.0728,
+   "se": 0.0948
+  },
+  "scheme_read_minus_today": {
+   "mean": 0.3167,
+   "se": 0.1067
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.7287,
+   "se": 0.0781
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.1954,
+   "se": 0.1017,
+   "n": 762
+  }
+ },
+ "all|defender": {
+  "decisions": 1399,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.7426,
+   "se": 0.0635
+  },
+  "scheme_read": {
+   "mean": 0.873,
+   "se": 0.0729
+  },
+  "scheme_house": {
+   "mean": 0.4539,
+   "se": 0.0698
+  },
+  "scheme_read_minus_today": {
+   "mean": 0.1304,
+   "se": 0.0558
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.2887,
+   "se": 0.0449
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.116,
+   "se": 0.0591,
+   "n": 667
+  }
+ },
+ "attitude|declarer": {
+  "decisions": 1555,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.6559,
+   "se": 0.0845
+  },
+  "scheme_read": {
+   "mean": 0.686,
+   "se": 0.0854
+  },
+  "scheme_house": {
+   "mean": 0.3214,
+   "se": 0.0904
+  },
+  "scheme_read_minus_today": {
+   "mean": 0.0301,
+   "se": 0.0455
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.3345,
+   "se": 0.0495
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.0589,
+   "se": 0.0381,
+   "n": 762
+  }
+ },
+ "attitude|defender": {
+  "decisions": 1399,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.7426,
+   "se": 0.0635
+  },
+  "scheme_read": {
+   "mean": 0.7738,
+   "se": 0.0643
+  },
+  "scheme_house": {
+   "mean": 0.6211,
+   "se": 0.065
+  },
+  "scheme_read_minus_today": {
+   "mean": 0.0312,
+   "se": 0.0307
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.1215,
+   "se": 0.0285
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.0522,
+   "se": 0.025,
+   "n": 667
+  }
+ },
+ "count|declarer": {
+  "decisions": 1555,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.6559,
+   "se": 0.0845
+  },
+  "scheme_read": {
+   "mean": 0.8351,
+   "se": 0.0878
+  },
+  "scheme_house": {
+   "mean": 0.4146,
+   "se": 0.089
+  },
+  "scheme_read_minus_today": {
+   "mean": 0.1792,
+   "se": 0.0473
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.2413,
+   "se": 0.0435
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.0648,
+   "se": 0.0291,
+   "n": 762
+  }
+ },
+ "count|defender": {
+  "decisions": 1399,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.7426,
+   "se": 0.0635
+  },
+  "scheme_read": {
+   "mean": 0.8073,
+   "se": 0.0612
+  },
+  "scheme_house": {
+   "mean": 0.621,
+   "se": 0.0636
+  },
+  "scheme_read_minus_today": {
+   "mean": 0.0647,
+   "se": 0.0265
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.1216,
+   "se": 0.0219
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.0481,
+   "se": 0.0206,
+   "n": 667
+  }
+ },
+ "discards|declarer": {
+  "decisions": 1555,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.6559,
+   "se": 0.0845
+  },
+  "scheme_read": {
+   "mean": 0.6188,
+   "se": 0.0805
+  },
+  "scheme_house": {
+   "mean": 0.5027,
+   "se": 0.0844
+  },
+  "scheme_read_minus_today": {
+   "mean": -0.0371,
+   "se": 0.0303
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.1532,
+   "se": 0.0306
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": -0.0228,
+   "se": 0.0158,
+   "n": 762
+  }
+ },
+ "discards|defender": {
+  "decisions": 1399,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.7426,
+   "se": 0.0635
+  },
+  "scheme_read": {
+   "mean": 0.7339,
+   "se": 0.0606
+  },
+  "scheme_house": {
+   "mean": 0.6836,
+   "se": 0.0627
+  },
+  "scheme_read_minus_today": {
+   "mean": -0.0087,
+   "se": 0.0201
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.059,
+   "se": 0.0184
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": -0.0084,
+   "se": 0.0131,
+   "n": 667
+  }
+ },
+ "leads|declarer": {
+  "decisions": 1555,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.6559,
+   "se": 0.0845
+  },
+  "scheme_read": {
+   "mean": 0.6168,
+   "se": 0.0825
+  },
+  "scheme_house": {
+   "mean": 0.2687,
+   "se": 0.09
+  },
+  "scheme_read_minus_today": {
+   "mean": -0.039,
+   "se": 0.0773
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.3871,
+   "se": 0.0634
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.0028,
+   "se": 0.0842,
+   "n": 762
+  }
+ },
+ "leads|defender": {
+  "decisions": 1399,
+  "tables": 148,
+  "recorded_house": {
+   "mean": 0.7426,
+   "se": 0.0635
+  },
+  "scheme_read": {
+   "mean": 0.7241,
+   "se": 0.0686
+  },
+  "scheme_house": {
+   "mean": 0.5865,
+   "se": 0.0682
+  },
+  "scheme_read_minus_today": {
+   "mean": -0.0185,
+   "se": 0.045
+  },
+  "scheme_house_minus_today": {
+   "mean": -0.1561,
+   "se": 0.0377
+  },
+  "scheme_read_minus_today_tricks_1_3": {
+   "mean": 0.0148,
+   "se": 0.0522,
+   "n": 667
+  }
+ }
+}

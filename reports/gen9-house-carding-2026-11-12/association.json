@@ -1,0 +1,290 @@
+{
+ "1|declarer_lead.count": {
+  "n": 432,
+  "high_given_first": 0.44,
+  "high_given_second": 0.436,
+  "association": 0.004,
+  "se": 0.048,
+  "mid_share": 0.225
+ },
+ "1|declarer_lead.suit_preference": {
+  "n": 296,
+  "high_given_first": 0.457,
+  "high_given_second": 0.429,
+  "association": 0.028,
+  "se": 0.058,
+  "mid_share": 0.24
+ },
+ "1|first_discard.attitude": {
+  "n": 332,
+  "high_given_first": 0.448,
+  "high_given_second": 0.42,
+  "association": 0.028,
+  "se": 0.056,
+  "mid_share": 0.202
+ },
+ "1|first_discard.count": {
+  "n": 332,
+  "high_given_first": 0.383,
+  "high_given_second": 0.497,
+  "association": -0.114,
+  "se": 0.054,
+  "mid_share": 0.202
+ },
+ "1|first_discard.lavinthal": {
+  "n": 332,
+  "high_given_first": 0.428,
+  "high_given_second": 0.444,
+  "association": -0.016,
+  "se": 0.055,
+  "mid_share": 0.202
+ },
+ "1|partner_lead.attitude": {
+  "n": 210,
+  "high_given_first": 0.44,
+  "high_given_second": 0.393,
+  "association": 0.047,
+  "se": 0.071,
+  "mid_share": 0.205
+ },
+ "1|partner_lead.count": {
+  "n": 210,
+  "high_given_first": 0.426,
+  "high_given_second": 0.389,
+  "association": 0.037,
+  "se": 0.068,
+  "mid_share": 0.205
+ },
+ "1|partner_lead.suit_preference": {
+  "n": 159,
+  "high_given_first": 0.348,
+  "high_given_second": 0.467,
+  "association": -0.119,
+  "se": 0.078,
+  "mid_share": 0.189
+ },
+ "1|trump.count": {
+  "n": 142,
+  "high_given_first": 0.472,
+  "high_given_second": 0.429,
+  "association": 0.044,
+  "se": 0.083,
+  "mid_share": 0.134
+ },
+ "5RZ32|declarer_lead.count": {
+  "n": 480,
+  "high_given_first": 0.241,
+  "high_given_second": 0.295,
+  "association": -0.054,
+  "se": 0.041,
+  "mid_share": 0.146
+ },
+ "5RZ32|declarer_lead.suit_preference": {
+  "n": 325,
+  "high_given_first": 0.247,
+  "high_given_second": 0.291,
+  "association": -0.044,
+  "se": 0.049,
+  "mid_share": 0.138
+ },
+ "5RZ32|first_discard.attitude": {
+  "n": 357,
+  "high_given_first": 0.279,
+  "high_given_second": 0.283,
+  "association": -0.004,
+  "se": 0.049,
+  "mid_share": 0.168
+ },
+ "5RZ32|first_discard.count": {
+  "n": 357,
+  "high_given_first": 0.3,
+  "high_given_second": 0.262,
+  "association": 0.038,
+  "se": 0.048,
+  "mid_share": 0.168
+ },
+ "5RZ32|first_discard.lavinthal": {
+  "n": 357,
+  "high_given_first": 0.273,
+  "high_given_second": 0.286,
+  "association": -0.014,
+  "se": 0.048,
+  "mid_share": 0.168
+ },
+ "5RZ32|partner_lead.attitude": {
+  "n": 260,
+  "high_given_first": 0.337,
+  "high_given_second": 0.239,
+  "association": 0.098,
+  "se": 0.058,
+  "mid_share": 0.188
+ },
+ "5RZ32|partner_lead.count": {
+  "n": 260,
+  "high_given_first": 0.299,
+  "high_given_second": 0.254,
+  "association": 0.045,
+  "se": 0.055,
+  "mid_share": 0.188
+ },
+ "5RZ32|partner_lead.suit_preference": {
+  "n": 204,
+  "high_given_first": 0.316,
+  "high_given_second": 0.236,
+  "association": 0.08,
+  "se": 0.063,
+  "mid_share": 0.206
+ },
+ "5RZ32|trump.count": {
+  "n": 185,
+  "high_given_first": 0.339,
+  "high_given_second": 0.26,
+  "association": 0.079,
+  "se": 0.068,
+  "mid_share": 0.092
+ },
+ "6-32|declarer_lead.count": {
+  "n": 411,
+  "high_given_first": 0.317,
+  "high_given_second": 0.246,
+  "association": 0.071,
+  "se": 0.044,
+  "mid_share": 0.151
+ },
+ "6-32|declarer_lead.suit_preference": {
+  "n": 257,
+  "high_given_first": 0.284,
+  "high_given_second": 0.265,
+  "association": 0.02,
+  "se": 0.057,
+  "mid_share": 0.183
+ },
+ "6-32|first_discard.attitude": {
+  "n": 328,
+  "high_given_first": 0.299,
+  "high_given_second": 0.26,
+  "association": 0.04,
+  "se": 0.05,
+  "mid_share": 0.149
+ },
+ "6-32|first_discard.count": {
+  "n": 328,
+  "high_given_first": 0.312,
+  "high_given_second": 0.262,
+  "association": 0.05,
+  "se": 0.051,
+  "mid_share": 0.149
+ },
+ "6-32|first_discard.lavinthal": {
+  "n": 328,
+  "high_given_first": 0.25,
+  "high_given_second": 0.31,
+  "association": -0.06,
+  "se": 0.05,
+  "mid_share": 0.149
+ },
+ "6-32|partner_lead.attitude": {
+  "n": 210,
+  "high_given_first": 0.282,
+  "high_given_second": 0.273,
+  "association": 0.009,
+  "se": 0.064,
+  "mid_share": 0.186
+ },
+ "6-32|partner_lead.count": {
+  "n": 210,
+  "high_given_first": 0.277,
+  "high_given_second": 0.275,
+  "association": 0.002,
+  "se": 0.062,
+  "mid_share": 0.186
+ },
+ "6-32|partner_lead.suit_preference": {
+  "n": 168,
+  "high_given_first": 0.293,
+  "high_given_second": 0.237,
+  "association": 0.057,
+  "se": 0.069,
+  "mid_share": 0.202
+ },
+ "6-32|trump.count": {
+  "n": 145,
+  "high_given_first": 0.273,
+  "high_given_second": 0.235,
+  "association": 0.037,
+  "se": 0.072,
+  "mid_share": 0.103
+ },
+ "7s-32|declarer_lead.count": {
+  "n": 1474,
+  "high_given_first": 0.27,
+  "high_given_second": 0.241,
+  "association": 0.029,
+  "se": 0.023,
+  "mid_share": 0.161
+ },
+ "7s-32|declarer_lead.suit_preference": {
+  "n": 976,
+  "high_given_first": 0.26,
+  "high_given_second": 0.266,
+  "association": -0.006,
+  "se": 0.028,
+  "mid_share": 0.164
+ },
+ "7s-32|first_discard.attitude": {
+  "n": 1030,
+  "high_given_first": 0.27,
+  "high_given_second": 0.246,
+  "association": 0.024,
+  "se": 0.028,
+  "mid_share": 0.164
+ },
+ "7s-32|first_discard.count": {
+  "n": 1030,
+  "high_given_first": 0.302,
+  "high_given_second": 0.223,
+  "association": 0.079,
+  "se": 0.027,
+  "mid_share": 0.164
+ },
+ "7s-32|first_discard.lavinthal": {
+  "n": 1030,
+  "high_given_first": 0.214,
+  "high_given_second": 0.294,
+  "association": -0.08,
+  "se": 0.027,
+  "mid_share": 0.164
+ },
+ "7s-32|partner_lead.attitude": {
+  "n": 729,
+  "high_given_first": 0.228,
+  "high_given_second": 0.221,
+  "association": 0.007,
+  "se": 0.032,
+  "mid_share": 0.165
+ },
+ "7s-32|partner_lead.count": {
+  "n": 729,
+  "high_given_first": 0.231,
+  "high_given_second": 0.217,
+  "association": 0.013,
+  "se": 0.031,
+  "mid_share": 0.165
+ },
+ "7s-32|partner_lead.suit_preference": {
+  "n": 568,
+  "high_given_first": 0.227,
+  "high_given_second": 0.206,
+  "association": 0.021,
+  "se": 0.035,
+  "mid_share": 0.169
+ },
+ "7s-32|trump.count": {
+  "n": 503,
+  "high_given_first": 0.244,
+  "high_given_second": 0.268,
+  "association": -0.024,
+  "se": 0.039,
+  "mid_share": 0.091
+ }
+}

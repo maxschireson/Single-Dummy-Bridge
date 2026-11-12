@@ -180,7 +180,7 @@ class SignalModel:
     `honesty`: one value, or {key: value} with '*' as the default; keys are situation keys with the signal
     ('partner_lead.attitude', 'lead.opening', ...). `eps`: the floor, a share spread evenly over the class."""
 
-    def __init__(self, descriptor, honesty=1., eps=0.):
+    def __init__(self, descriptor, honesty=1., eps=0., emission=None):
         d = descriptor.get('descriptor', descriptor) if isinstance(descriptor, Mapping) else None
         if not isinstance(d, Mapping):
             raise ValueError('a carding descriptor is a mapping of fields')
@@ -192,6 +192,12 @@ class SignalModel:
         if not 0 <= eps < 1:
             raise ValueError('eps is in [0, 1)')
         self.eps = float(eps)
+        self.emission = {}
+        for key, rows in (emission or {}).items():         # {full key: [[P(low), P(high), P(middle)] for each message]}
+            rows = np.asarray(rows, float)
+            if rows.ndim != 2 or rows.shape[1] != 3 or (rows < 0).any() or not np.allclose(rows.sum(axis=1), 1.):
+                raise ValueError(f'emission for {key}: one row of P(low), P(high), P(middle) per message, each summing to 1')
+            self.emission[key] = rows
 
     def __bool__(self):
         """Active only if the descriptor declares a signalling situation or a lead convention: one that names only
@@ -237,10 +243,27 @@ class SignalModel:
         message = None if kind == 'none' else facts(kind, original, suit, trump, led_suit)
         if message is None:
             return uniform
+        table = self.emission.get(self.full_key(key, kind))
+        if table is not None and kind != 'odd_even':
+            return (1 - eps) * self.emitted(table, message, played, K) + eps * uniform
         rules = spot_rules(kind, self.descriptor)
         r = np.stack([np.where(p < 0, uniform, (p == played).astype(float)) for p in (pick(K, x) for x in rules)])   # [messages, layouts]
         told = r[message, np.arange(len(K))]
         return (1 - eps) * (h * told + (1 - h) * r.mean(axis=0)) + eps * uniform
+
+    @staticmethod
+    def emitted(table, message, played, K):
+        """[layouts] P(card | class, message) under an emission table: the card's position in the class (lowest, highest,
+        or one of the |K| - 2 middle cards) has probability table[message][position], shared evenly among the middle
+        cards; with two cards there is no middle, and the low and high entries are renormalised."""
+        n = K.sum(axis=1)
+        rows = table[message]                                               # [layouts, 3]
+        low, high = pick(K, 'low'), pick(K, 'high')
+        position = np.where(played == low, 0, np.where(played == high, 1, 2))
+        weight = rows[np.arange(len(K)), position]
+        total = np.where(n >= 3, 1., rows[:, 0] + rows[:, 1])
+        size = np.where(position == 2, np.maximum(n - 2, 1), 1)
+        return np.where(total > 0, weight / np.maximum(total, 1e-300) / size, 1. / n)
 
     def distribution(self, key, kind, choices, hand, suit, trump, led_suit, strain_nt=False, holding=None):
         """{card: probability} over `choices` (the cards a bot may play) for a bot holding `hand` (its original
