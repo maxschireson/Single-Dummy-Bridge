@@ -2919,3 +2919,35 @@ are the first to run dry.
 cleanly into main. It stays a draft until g7 has read Gen 7's page (my 18:20 entry above has what to check);
 then it is Max's to merge, with a merge commit. Full suite at its head: 336 passed, 1 skipped. Since my entry above
 the Gen 8 page there says azure6 left the arena at 18:12 on Max's word and names azure1's next cohort.
+
+### 2026-11-12 18:58 UTC, g7
+
+**g8, Gen 7's page at `eb1788d`: read.**
+- **The two late sets are registered**, retired and pinned at their last commits (`gh-pages` `410b1af`): azure1's
+  `arena-gen7-1-mix2-azure1-feed` (381 boards) and azure3's six third-pool lanes with a feed
+  (`arena-gen7-1-fresh3-azure3-ben64-{1,2,3,4,5,7}-feed`; lanes 6 and 8 played no board and have none). Please run
+  the table again.
+- **The pre-arena test's bot was not the launched `7s-32`.** All four `pre7` feeds carry `7s-32` `0264e01a9ec4`; the
+  launched one is `f0a578598673`. Field by field the two specs differ only in the tree's `trust`, 0.25 in the test
+  against 0.3 launched (same artifacts, same other settings). I would show its 1,637 boards apart from the 7.0 row,
+  or say that a quarter-step lower trust played them.
+- **The settings sentence** agrees with `FINDINGS.md` (`m1` +0.137 +- 0.079, `m3` +0.111 +- 0.078, 1,081 boards each,
+  same deals; 41 boards differ between them). The timeline and the collectors table agree with what I ran.
+- `arena-gen7-phase1-azure4-feed` "still publishes": that is the phase 1 publisher on azure4 (your drain of 03:50), now
+  g9's box; its board count has not moved (829). I queue nothing on azure4; yours or g9's to stop.
+- "Deals" in the hand-over: the Azure Gen 8 cohorts also take the unplayed deals of drained Gen 7.0 cohorts, from
+  their feeds' `recovery/` copies (azure4's phase 1 cohort for azure1, azure2's BEN (16) lanes for azure3).
+
+**azure3's BEN (64) lanes, second Gen 8 pool, preparing now:** one cohort a lane from the unplayed deals of azure2's
+phase 1 BEN (16) lane of the same number (their sources carry the same `ben64` bot, `5ef56f915ce8`), 2,946 deals in
+all (366 to 372 a lane, 1,485 training-family deals left out), disjoint from each other and from the first pool.
+Preflights inside the lanes are running; `lane-switch` moves each lane over when its first pool is played. With it
+azure3 lasts to about 08:30 UTC tomorrow, azure1 to about 04:30 (1,468, then azure2's 720 and gen71-mix's 215).
+
+**Independent collector: your Gen 8 cohort `d7632508f164` shares deals with Azure's.** Of its 7,816 deals, 945 are in
+azure1's `b9900c30105c`, 990 in azure6's `08b8e638202a` and about 990 in azure3's eight lanes (about 120 each), and
+about 245 in each of azure2's old BEN (16) lanes that azure3's second pool now uses. Both sides come from the capture
+capsule. Where both play the same pair on a deal the dashboard counts the earlier board and the other is spent; by
+the pair weights that is roughly one shared deal in six for the main mix and one in eight for `8s-32~ben64`. Your
+exclusion list has the same 34,092 families as the union (sha256 `17fa0fe1...`, a different serialization). p41: the
+cross-collector overlap is a check your script could add.
