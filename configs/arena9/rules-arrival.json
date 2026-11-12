@@ -53,6 +53,13 @@
  "notes": [
   "The arrival run (G9-D6) on a box: five epochs, 600 boards then 1,200; guest-a submitted before epoch 2, guest-b before epoch 4.",
   "Floors: the Gen 9 bot and its control play each guest on the same deals, 300 (guest-a) and 200 (guest-b) boards a pair an epoch, while the guest is in the arena. The scheduler places the rest.",
-  "Other settings are rules v0 (A4 with E9-5: d = 0.1, cap 10,000). A proposal, not adopted."
- ]
+  "Other settings are rules v0 (A4 with E9-5: d = 0.1, cap 10,000). A proposal, not adopted.",
+  "experience.occasions: g9's unit of repetition (deal family, seats, auction) for bid and card statistics; card may be 'opponent' or 'play' (bridge_harness/arena9_pipeline.occasion_rule). g9's call before the box run."
+ ],
+ "experience": {
+  "occasions": {
+   "bid": "auction",
+   "card": "auction"
+  }
+ }
 }

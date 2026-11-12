@@ -13,8 +13,11 @@ The loop the architecture is built around (docs/gen9/architecture.md sections 3 
             gets its deltas: bidding statistics (bill's cards.factor.bidding_delta, with the
             'profile' evidence of cards.match.profile_evidence) to whoever made the calls at each
             table, card statistics (sam's signal_experience.card_delta) to whoever played the cards.
-            Envelopes name the occasion (deal family, seats, auction, the opponents) so a replayed deal counts
-            once, while the same deal against two opponents (a floor's bot and its control) counts twice.
+            Envelopes name the occasion so that evidence seen twice counts once. The unit is g9's (07:27, E9-5
+            item 5): deal family, seats, auction; the rules file's experience.occasions can add, for card
+            statistics, the opponent or the whole play (see OCCASIONS). Bid statistics are a function of the
+            hands, the seats and the auction, so the same deal and auction against a floor's bot and its
+            control is one occasion.
   boundary  arena9.close_epoch merges every envelope of the epochs that have closed into stores and
             freezes a snapshot (experience_store); the next epoch's manifest names it.
   the table each Gen 9 bot is handed, in its spec, every rostered player's model with that
@@ -153,28 +156,64 @@ def reads_bidding(decl):
     return decl is not None and (decl.get('card') is not None or decl.get('kind') in ('guest', 'outside'))
 
 
-def board_envelopes(record, key, models, decl, source, completed, root='.'):
+OCCASIONS = dict(bid='auction', card='auction')
+OCCASION_CHOICES = dict(bid=('auction', 'opponent'), card=('auction', 'opponent', 'play'))
+
+
+def occasion_rule(rules=None):
+    """What makes two deltas the same occasion, from a rules file's experience.occasions; each value one of
+      auction   deal family, seats, auction (g9's unit, the default)
+      opponent  the same, and the opponent: the same deal against a floor's bot and its control counts twice
+      play      cards only: the same, and every card played at the table; two plays of a deal that differ in any
+                card count twice, an identical play once"""
+    rule = dict(OCCASIONS, **(((rules or {}).get('experience') or {}).get('occasions') or {}))
+    for k, v in rule.items():
+        if v not in OCCASION_CHOICES.get(k, ()):
+            raise ValueError(f'experience.occasions.{k}: {v!r} is not one of {OCCASION_CHOICES.get(k)}')
+    return rule
+
+
+def _occasion_seats(name, what, rule, opponent, actions):
+    if rule == 'auction':
+        return f'{name}/{what}'
+    if rule == 'opponent':
+        return f'{name}/{what}/{opponent}'
+    play = hashlib.sha256(canonical([[a.get('seat'), a.get('card')] for a in actions]).encode()).hexdigest()[:16]
+    return f'{name}/{what}/play:{play}'
+
+
+def board_envelopes(record, key, models, decl, source, completed, root='.', occasions=None):
     """Experience envelopes for one finished board (all hands known): bidding statistics to whoever made the calls at each
-    distinct table, card statistics to whoever played the cards, for partnerships with something declared."""
+    distinct table, card statistics to whoever played the cards, for partnerships with something declared.
+
+    A table that two regimes share (the native auction equal to the common one) is credited, for each side, to every
+    distinct bidder that the regimes using it seated there; the occasion removes the repeat."""
     from .cards.factor import CardFactor, bidding_delta, deviation_from
     from .cards.match import profile_evidence
     from .core import Board
     from .signal_experience import card_delta, replay_plays
     ids = dict(candidate=record['candidate'], opponent=record['opponent'])
     other = {record['candidate']: record['opponent'], record['opponent']: record['candidate']}
+    rule = occasion_rule(dict(experience=dict(occasions=occasions))) if occasions else dict(OCCASIONS)
     bidders_of = {}
     for b in record['bidding'].values():
-        bidders_of.setdefault(b['table'], b['bidders'])
+        bidders_of.setdefault(b['table'], []).append(b['bidders'])
     out = []
     for tkey, e in sorted(record['unique_tables'].items()):
         board = Board.from_dict(e['board'])
         auction = list(e['board'].get('auction') or [])
         hands = [list(h) for h in board.hands]
         family = record['family']
+        actions = e['tables'][0]['actions']
         for side, seats, name in SIDES:
-            bidder = (bidders_of.get(tkey) or [None] * 4)[seats[0]]
-            d = decl.get(bidder)
-            if bidder is not None and reads_bidding(d) and auction:
+            credited = []
+            for bs in bidders_of.get(tkey, []):
+                if bs[seats[0]] not in credited:
+                    credited.append(bs[seats[0]])
+            for bidder in credited:
+                d = decl.get(bidder)
+                if bidder is None or not reads_bidding(d) or not auction:
+                    continue
                 model = PlayerModel.from_dict(models[bidder]) if bidder in models else PlayerModel(bidder)
                 systems, flat = _systems(root)
                 factor = CardFactor(dict(d['card']), deviation_from(model)) if d.get('card') is not None else None
@@ -183,14 +222,16 @@ def board_envelopes(record, key, models, decl, source, completed, root='.'):
                 delta = (bidding_delta(bidder, k, factor, hands, board.dealer, board.vulnerability, auction, seats, profile_loglik=evidence)
                          if factor is not None else xp.delta(bidder, k, {'profile': xp.loglik(**evidence)} if evidence else {}))
                 if delta['stats']:
-                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, f'{name}/bid/{other.get(bidder, "")}', auction)))
+                    seat_text = _occasion_seats(name, 'bid', rule['bid'], other.get(bidder, ''), actions)
+                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, seat_text, auction)))
             player = ids[e['assignments'][seats[0]]]
             d = decl.get(player)
             if d and d.get('carding') is not None and e.get('schema_version') != 'v4-passed-out-v1':
-                plays = replay_plays(board, e['tables'][0]['actions'])
+                plays = replay_plays(board, actions)
                 delta = card_delta(player, f'{key}/{tkey}/{name}/card', board, plays, d['carding'], side)
                 if delta['stats']:
-                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, f'{name}/card/{other.get(player, "")}', auction)))
+                    seat_text = _occasion_seats(name, 'card', rule['card'], other.get(player, ''), actions)
+                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, seat_text, auction)))
     return out
 
 
@@ -229,7 +270,9 @@ def epoch_experience(control, n, reader_spec=None):
         stats = (md.get('experience') or {}).get('stats') or {}
         same = canonical(stats) == canonical((rebuilt.get(pid) or {}).get('stats') or {})
         dev = deviation_from(model)
-        row = dict(boards=md['experience']['boards'], snapshot_matches_envelopes=same,
+        applied = (rebuilt.get(pid) or {}).get('applied') or []
+        deals = len({'/'.join(k.split('/')[:3]) for k in applied})     # key: epoch id/pair/deal index/table/side/kind
+        row = dict(boards=md['experience']['boards'], deals=deals, snapshot_matches_envelopes=same,
                    profiles_declared=[[s_, round(p_, 4)] for s_, p_ in model.profiles],
                    profiles_read=[[s_, round(p_, 4)] for s_, p_ in live.profiles])
         if model.carding is not None:

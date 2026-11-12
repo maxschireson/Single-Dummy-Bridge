@@ -194,20 +194,56 @@ class BoardDeltas(unittest.TestCase):
         stores, report = xs.merge(envs)
         self.assertEqual(stores['guest-a']['boards'] + len(report['occasion_repeats']), len(envs))
 
-    def test_the_same_deal_against_another_opponent_is_another_occasion(self):
-        card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
-        decl = {'guest-a': dict(card=card, carding=CARDING, kind='guest', profiles=None)}
-        one = pl.board_envelopes(self.record, 'k1', {}, decl, 'test', 1.0, root=str(ROOT))
+    def _control_record(self):
         rec = json.loads(json.dumps(self.record))
         rec['candidate'] = '8p-32'                                      # the floor's control on the same deal
         for b in rec['bidding'].values():
             b['bidders'] = ['8p-32' if x == '9a-32' else x for x in b['bidders']]
-        two = pl.board_envelopes(rec, 'k2', {}, decl, 'test', 2.0, root=str(ROOT))
-        stores, report = xs.merge(one + two)
+        return rec
+
+    def test_the_same_deal_and_auction_against_the_control_is_one_occasion(self):
+        card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
+        decl = {'guest-a': dict(card=card, carding=CARDING, kind='guest', profiles=None)}
+        one = pl.board_envelopes(self.record, 'k1', {}, decl, 'test', 1.0, root=str(ROOT))
+        two = pl.board_envelopes(self._control_record(), 'k2', {}, decl, 'test', 2.0, root=str(ROOT))
         alone, _ = xs.merge(one)
-        self.assertEqual(stores['guest-a']['boards'], 2 * alone['guest-a']['boards'])
-        again, rep2 = xs.merge(one + pl.board_envelopes(self.record, 'k3', {}, decl, 'test', 3.0, root=str(ROOT)))
-        self.assertEqual(again['guest-a']['boards'], alone['guest-a']['boards'])   # the same deal against the same opponent: a replay
+        stores, report = xs.merge(one + two)                            # g9's unit: family, seats, auction
+        self.assertEqual(stores['guest-a']['boards'], alone['guest-a']['boards'])
+        self.assertEqual(len(report['occasion_repeats']), len(two))
+        again, _ = xs.merge(one + pl.board_envelopes(self.record, 'k3', {}, decl, 'test', 3.0, root=str(ROOT)))
+        self.assertEqual(again['guest-a']['boards'], alone['guest-a']['boards'])   # a replay counts once
+
+    def test_the_rules_file_can_count_card_occasions_by_opponent_or_by_play(self):
+        card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
+        decl = {'guest-a': dict(card=card, carding=CARDING, kind='guest', profiles=None)}
+        rec2 = self._control_record()
+        for rule in ('opponent', 'play'):
+            occ = dict(bid='auction', card=rule)
+            one = pl.board_envelopes(self.record, 'k1', {}, decl, 'test', 1.0, root=str(ROOT), occasions=occ)
+            two = pl.board_envelopes(rec2, 'k2', {}, decl, 'test', 2.0, root=str(ROOT), occasions=occ)
+            alone, _ = xs.merge(one)
+            stores, _ = xs.merge(one + two)
+            cards = sum(1 for e in one if e['delta']['key'].endswith('/card'))
+            want = cards if rule == 'opponent' else 0                   # bids once; the same play once under 'play'
+            self.assertEqual(stores['guest-a']['boards'], alone['guest-a']['boards'] + want, rule)
+        acts = self.record['unique_tables']['table-2']['tables'][0]['actions']
+        changed = json.loads(json.dumps(acts)); changed[-1]['card'] = 'X'
+        self.assertNotEqual(pl._occasion_seats('NS', 'card', 'play', 'a', acts), pl._occasion_seats('NS', 'card', 'play', 'a', changed))
+        self.assertEqual(pl._occasion_seats('NS', 'card', 'play', 'a', acts), pl._occasion_seats('NS', 'card', 'play', 'b', acts))
+        self.assertEqual(pl.occasion_rule(None), dict(bid='auction', card='auction'))
+        with self.assertRaises(ValueError):
+            pl.occasion_rule(dict(experience=dict(occasions=dict(bid='play'))))
+
+    def test_a_table_two_regimes_share_is_credited_to_each_declared_bidder(self):
+        card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
+        decl = {'guest-a': dict(card=card, carding=CARDING, kind='guest', profiles=None)}
+        rec = json.loads(json.dumps(self.record))                       # will's case: native/0 bid as the common bidder did
+        rec['bidding']['native/0']['table'] = 'table-0'
+        del rec['unique_tables']['table-2']
+        envs = pl.board_envelopes(rec, 'k', {}, decl, 'test', 1.0, root=str(ROOT))
+        bid_tables = sorted(e['delta']['key'].split('/')[1] for e in envs if e['delta']['key'].endswith('/bid'))
+        self.assertEqual(bid_tables, ['table-0', 'table-3'])
+        self.assertEqual({e['delta']['player'] for e in envs}, {'guest-a'})
 
     def test_the_trace_changes_with_any_card(self):
         t = pl.trace(self.record)

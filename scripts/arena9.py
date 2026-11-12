@@ -82,7 +82,7 @@ def _worker_play(index, seed):
         row[regime] = None if v['imps'] is None else sign * v['imps']
     if WORKER.get('experience'):
         row['envelopes'] = pl.board_envelopes(r, f"{WORKER['epoch_id'][:16]}/{WORKER['pair']}/{index}", WORKER['models'], WORKER['declared'],
-                                              WORKER['pair'], row['completed_epoch'], root=str(ROOT))
+                                              WORKER['pair'], row['completed_epoch'], root=str(ROOT), occasions=WORKER.get('occasions'))
     return row
 
 
@@ -143,7 +143,9 @@ class MatchBackend:
     def play(self, m, pair, indices, seed, workers=1):
         from bridge_harness import arena9_pipeline as pl
         man, models = self.manifest(m, pair, seed)
-        ctx = dict(epoch_id=m['id'], pair=pair, models=models or {}, declared=pl.declared_map(self.packages, ROOT), experience=self.experience)
+        rules = json.loads((self.control / 'rules.json').read_text()) if self.control and (self.control / 'rules.json').exists() else None
+        ctx = dict(epoch_id=m['id'], pair=pair, models=models or {}, declared=pl.declared_map(self.packages, ROOT), experience=self.experience,
+                   occasions=pl.occasion_rule(rules))
         with ProcessPoolExecutor(workers, initializer=_worker_start, initargs=(str(self.capsule), man, ctx)) as pool:
             for idx, row in zip(indices, pool.map(_worker_play, indices, [seed] * len(indices))):
                 yield idx, row
@@ -205,7 +207,7 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
                 L.append(f'| {g} | {ep} | {nat["n"]} | {f(nat)} | {f(com)} |')
     L += ['', '## 2. What experience adds', '',
           'What each epoch\'s bots were handed for each guest (the snapshot frozen when the previous epoch closed), read as the Gen 9 bot reads it.', '',
-          '| Guest | Epoch | Boards in the snapshot | P(card) as read | Honesty as read | Play factor | Snapshot = envelopes of earlier epochs |', '| --- | --- | ---: | ---: | ---: | --- | --- |']
+          '| Guest | Epoch | Boards in the snapshot | Deltas (board-sides) | P(card) as read | Honesty as read | Play factor | Snapshot = envelopes of earlier epochs |', '| --- | --- | ---: | ---: | ---: | ---: | --- | --- |']
     for ep in sorted(int(p.stem) for p in (control / 'epochs').glob('*.json')):
         rep = pl.epoch_experience(control, ep, spec)
         for g in guests:
@@ -214,7 +216,7 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
                 continue
             pc = dict(map(tuple, row['profiles_read'])).get('card')
             h = (row.get('honesty_read') or {}).get('*')
-            L.append(f"| {g} | {ep} | {row['boards']} | {'—' if pc is None else f'{pc:.3f}'} | {'— (prior)' if h is None else f'{h:.3f}'} | "
+            L.append(f"| {g} | {ep} | {row.get('deals', '—')} | {row['boards']} | {'—' if pc is None else f'{pc:.3f}'} | {'— (prior)' if h is None else f'{h:.3f}'} | "
                      f"{row.get('play_factor', '—')} | {'yes' if row['snapshot_matches_envelopes'] else '**no**'} |")
     L += ['', '## 4. The arena', '', '**Registry events**', '']
     for e in log:
