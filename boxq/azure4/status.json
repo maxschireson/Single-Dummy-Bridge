@@ -6,7 +6,7 @@
    "state": "running",
    "owner": "dave",
    "experiment": "G9-D6",
-   "boards": 1465,
+   "boards": 1483,
    "target": 6200,
    "restarts": 0,
    "submitted": "2026-11-12T13:21:00Z",
@@ -15,10 +15,10 @@
    "started": "2026-11-12T15:03:58Z",
    "resumed": "2026-11-12T15:03:58Z",
    "source": "/home/bridgebots/work/g9/src/8cb0348",
-   "rate_per_hour": 700.6,
-   "eta": "2026-11-12T23:21:47Z",
-   "published_at": "2026-11-12T16:26:34Z",
-   "published": "transfer/gen9-d6-arrival-azure4-20261112@798902537"
+   "rate_per_hour": 709.1,
+   "eta": "2026-11-12T23:17:29Z",
+   "published_at": "2026-11-12T16:36:48Z",
+   "published": "transfer/gen9-d6-arrival-azure4-20261112@b37717da3"
   },
   "e9-0-n005": {
    "state": "waiting",
@@ -285,7 +285,7 @@
    "cores": 4
   },
   "g9-x2-ben16": {
-   "state": "waiting",
+   "state": "cancelled",
    "owner": "sam",
    "experiment": "G9-X2",
    "boards": 0,
@@ -296,7 +296,7 @@
    "cores": 4
   },
   "g9-x2-ben64": {
-   "state": "waiting",
+   "state": "cancelled",
    "owner": "sam",
    "experiment": "G9-X2",
    "boards": 0,
@@ -363,7 +363,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T16:36:16Z",
+ "updated": "2026-11-12T16:38:22Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
