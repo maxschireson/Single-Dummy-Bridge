@@ -12,7 +12,10 @@ units with NetworkNamespacePath= (systemd 242 or later; Ubuntu 24.04 has 255). N
       --source ~/work/g9/capsule/recovery --bots configs/gen9-proto-bots.json --out ~/work/g9/runs/w7-smoke
   python3 ops/gen9_ben_lanes.py status | measure | down [--lanes N]
 
-`run` is `up`, then `play` (start one match unit per lane, wait for them), then `merge`. `merge` refuses lanes
+`run` is `up`, then `play` (start one match unit per lane, wait for them), then `merge`. On SIGTERM (a box queue
+preempting it) it takes its lanes down; run again, it resumes, since the split is the same and each lane's
+gen9_match.py skips the boards already in its results.jsonl. As a tools/boxq.py job: `cores` = --lanes, `progress`
+`{"results": "lane-*/results.jsonl", "target": DEALS}`, `preemptible: true`. `merge` refuses lanes
 whose manifests name different bots. A finished run leaves results.jsonl (one line per board, sorted by deal
 index), summary.json (as scripts/gen8_match.py writes it) and lanes.json (ranges, units, seconds) in --out, and
 each lane's own folder as lane-<k>/. Nothing here touches another session's units, namespaces or folders: all
@@ -295,6 +298,13 @@ def main() -> int:
         up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or CONF)
     elif a.cmd == "run":
         split(a.first, a.deals, a.lanes)  # fail early on a bad split
+        import signal
+
+        def stopped(signum, frame):  # the box queue stops a preempted job with SIGTERM: take the lanes down with it
+            print(f"signal {signum}: stopping {a.lanes} lanes; a rerun resumes (same split, each lane skips its played boards)", flush=True)
+            down(a.lanes)
+            raise SystemExit(143)
+        signal.signal(signal.SIGTERM, stopped)
         up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or conf_for(a.source))
         play(a, a.lanes)
         if not DRY:
