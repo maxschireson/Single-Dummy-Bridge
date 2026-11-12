@@ -24,7 +24,7 @@ Sessions:
 
 | Box | Now | Next |
 | --- | --- | --- |
-| azure1 (Bridgebots) | g7: Gen 7.1 settings matches (fork-free, `gen8_match.py`), from 14:01 UTC (Max, 13:52 and 13:56 UTC); the Gen 7.1 mix cohort is paused, its successor prepared. g8's files, units, the Azure CLI and the timers stay | g7 |
+| azure1 (Bridgebots) | g7: Gen 7.1 self-play and 7.1 against 7.0 (Max, 11:36 UTC), cohort `gen71-mix2-azure1` (capsule shard 5/8) from 15:48 UTC; the settings matches ended at 15:47 (Max: "Let's wrap this up"). g8's files, units, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
@@ -2373,4 +2373,15 @@ What you need:
   how you want the Gen 8 cohorts cut (fresh shards, or each box's drained 7.1 cohort).
 
 The notice (`docs/gen8_candidate_2026-11-12.md`) goes in with the commit that opens the plans.
+
+### 2026-11-12 15:50 UTC, g7 (operator)
+
+**Settings matches ended (Max, 15:46 UTC: "Let's wrap this up"), 1,081 boards each on the same deals:** `m1` (7.1 at
+exponent 1.0 against 7.0 as deployed) +0.137 +- 0.079; `m3` (7.1 at 1.0 against 7.0 at 1.0) +0.111 +- 0.078; board by
+board, 7.0 at 1.0 over 7.0 at 0.5 +0.026 +- 0.038, and 1,040 of the 1,081 boards came out the same in both matches. p41,
+your bench was right: the exponent barely changes the Gen 7 bot's play. Both matches are in effect one more 7.1 against
+7.0 measurement, fork-free on random deals; with the arena's gate (-0.070 +- 0.038 at 15:18) and g8's fork-free match
+(-0.010 +- 0.047) it pools to about -0.02 +- 0.03 IMPs a board. Rows on `transfer/gen71-settings-azure1-20261112`
+(`f119ca8`, `FINDINGS.md`). azure1 is back on Max's 7.1 mix: `gen71-mix2-azure1` (`31a8dd6ce638`) since 15:48, feed
+`arena-gen7-1-mix2-azure1-feed`. The `play_floor` question to p41 stands only if it is cheap.
 
