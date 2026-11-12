@@ -1,13 +1,13 @@
 # Gen 9 status
 
-Generated 2026-11-12 08:45 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 08:54 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 1 | 3 | 0 | 1 | 0 | 2 |
-| dave | 0 | 0 | 0 | 2 | 0 | 5 |
+| dave | 1 | 0 | 0 | 1 | 0 | 5 |
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 1 | 0 | 0 | 0 | 0 | 0 |
 | sam | 2 | 0 | 0 | 0 | 0 | 5 |
@@ -27,6 +27,7 @@ Generated 2026-11-12 08:45 UTC by `tools/workq.py` after a change by `sam`. Do n
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
+| [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave | dave until 11-12 12:54 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 12:08 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool | sam until 11-12 12:19 | leased | high | 2026-11-13T12:00Z |  |
@@ -39,7 +40,6 @@ Generated 2026-11-12 08:45 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave |  | open | high | 2026-11-13T12:00Z | after G9-D7, G9-B7 |
-| [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
@@ -86,7 +86,7 @@ Generated 2026-11-12 08:45 UTC by `tools/workq.py` after a change by `sam`. Do n
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 08:27 | 32 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-12 08:37 | 4 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-12 08:54 | 4 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:56 | 8 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 08:43 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 08:22 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
