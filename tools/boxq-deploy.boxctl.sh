@@ -53,6 +53,8 @@ done
 CAP=$HOME/work/capsule-gen7-capture/recovery
 [ -f "$CAP/manifest.json" ] && say "capsule: $CAP ($(python3 -c "import json; print(len(json.load(open('$CAP/manifest.json'))['bots']), 'bots')" 2>/dev/null))" || say "capsule MISSING at $CAP"
 say "disk free in ~/work: $(df -h "$HOME/work" | awk 'NR==2{print $4}'); CPUs $(nproc)"
+timeout 30 env -u GIT_SSH_COMMAND git ls-remote https://github.com/maxschireson/Single-Dummy-Bridge HEAD >/dev/null 2>&1 \
+  && say "jobs can fetch the public repository over https" || say "jobs CANNOT fetch github.com over https"
 
 say "== the queue"
 sudo systemctl stop g9-boxq 2>/dev/null; sudo systemctl reset-failed g9-boxq 2>/dev/null || true
