@@ -71,5 +71,16 @@
     "scientific_changes": false,
     "manifest_unchanged": true,
     "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3"
+  },
+  "authorized_mixed_peer_gate_review": {
+    "epoch": 1794486627.5019186,
+    "guard_tests": 12,
+    "official_gate_matched": true,
+    "all_pre_reload_records_verified": 1174,
+    "peer": "arena-gen7-1-mix-azure1-feed",
+    "scored_comparison_only": true,
+    "selfplay_unscored": true,
+    "own_selfplay_launch_enabled": false,
+    "local_scientific_changes": false
   }
 }
