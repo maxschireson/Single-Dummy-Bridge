@@ -197,7 +197,7 @@ A box pulls its work from this branch. To run something on a Gen 9 box, write a 
 ```json
 {"id": "e9-0", "box": "azure4", "experiment": "E9-0", "owner": "g9", "priority": 1, "cores": 4,
  "source": {"branch": "feature/gen9", "commit": "1a89446"},
- "argv": ["{python}", "scripts/gen9_match.py", "--source", "{work}/capsule/recovery", "--bots", "configs/gen9-proto-bots.json",
+ "argv": ["{python}", "scripts/gen9_match.py", "--source", "{home}/work/capsule-gen7-capture/recovery", "--bots", "configs/gen9-proto-bots.json",
           "--pair", "9t1-32~8p-32", "--deals", "800", "--seed", "91", "--workers", "4", "--out", "{out}"],
  "progress": {"results": "results.jsonl", "target": 800},
  "preemptible": true, "publish": ["results.jsonl", "summary.json", "manifest.json"]}
@@ -208,8 +208,9 @@ A box pulls its work from this branch. To run something on a Gen 9 box, write a 
 - A `preemptible` job (resumable: `gen8_match.py` and `gen9_match.py` skip boards already in `results.jsonl`) is
   stopped when a higher-priority job needs its cores and restarted later. Set it false for a job that cannot resume.
 - The job runs in a checkout of `source.commit`, as unit `g9-job-<id>`, with one thread per process and the solver
-  cache off. `{python}`, `{src}`, `{out}` and `{work}` in `argv` are the box's venv Python, the checkout,
-  `~/work/g9/runs/<id>` and `~/work/g9`. A failed job is restarted twice, then marked failed.
+  cache off. `{python}`, `{src}`, `{out}`, `{work}` and `{home}` in `argv` are the box's venv Python, the checkout,
+  `~/work/g9/runs/<id>`, `~/work/g9` and the home folder (the Gen 7 capture capsule is at
+  `{home}/work/capsule-gen7-capture/recovery` on the Azure boxes). A failed job is restarted twice, then marked failed.
 - Results matching `publish` go to `transfer/gen9-<id>-<box>-<yyyymmdd>` every 10 minutes and at the end. The box
   writes `boxq/<box>/status.json` here, and STATUS.md shows the queue in a "Box queue" table.
 

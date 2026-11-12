@@ -16,7 +16,8 @@ team/gen9). The box's `boxq.py serve` (a systemd unit, `g9-boxq`) fetches the ch
 A job runs as the unit `g9-job-<id>`, in a checkout of its `source` commit under ~/work/g9/src/, with one thread per
 process and the solver cache off (BRIDGE_DDS_CACHE empty) unless its `env` says otherwise. Its exit code is written to
 `<out>/.exit`. In `argv`, `{python}`, `{src}`, `{out}` and `{work}` are replaced by the box's Python, the checkout, the
-job's output folder and ~/work/g9.
+job's output folder, ~/work/g9 and the home folder
+(the Gen 7 capture capsule is at {home}/work/capsule-gen7-capture/recovery on the Azure boxes).
 
 Job file (JSON):
 
@@ -237,7 +238,7 @@ class Box:
         return self.work / "runs" / job["id"]
 
     def argv(self, job: dict, src: Path) -> list[str]:
-        subs = {"{python}": self.python, "{src}": str(src), "{out}": str(self.out_dir(job)), "{work}": str(self.work)}
+        subs = {"{python}": self.python, "{src}": str(src), "{out}": str(self.out_dir(job)), "{work}": str(self.work), "{home}": str(Path.home())}
         out = []
         for a in job["argv"]:
             for k, v in subs.items():
