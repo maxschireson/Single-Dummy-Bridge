@@ -126,6 +126,29 @@ nat about small cards about 0.06. The nets sit at 0.24 to 0.34 tricks a nat (v4.
 solves 32 of them; a bot told the deal gains the whole 0.73 against no reading, and about 0.54
 against `8p-32`.
 
+### Aimed information on top of a net's reading (`report --aim`, `--near`)
+
+The table above is against no reading. The Gen 9 session plays the same idea on a box (its E9-0:
+`8p-32` with every layout's weight times `exp(-near x misplaced cards)`, a misplaced card counting
+0.5 for a 2 to 9, 1 for a ten, 1.5, 2, 3 and 4 for J, Q, K and A). The proxy for those settings,
+on top of v4's reading (`t2-near-v4.txt`; `t2-near-v41.txt` and `t2-aimed-*.txt` are the same with
+v4.1 and with `near` set from a target in nats):
+
+| Setting | Nats for the true layout, without the reading | On top of the reading | Tricks a board over the reading |
+| --- | --- | --- | --- |
+| near 0.05, every decision | +0.29 | +0.25 | +0.046 +- 0.009 |
+| near 0.1 | +0.56 | +0.48 | +0.093 +- 0.014 |
+| near 0.2 | +1.05 | +0.90 | +0.170 +- 0.019 |
+| near 0.4 | +1.86 | +1.60 | +0.290 +- 0.028 |
+| near 0.2, tricks 1 to 6 only | +1.59 | +1.44 | +0.141 +- 0.017 |
+| near 0.2, from trick 7 only | +0.50 | +0.36 | +0.029 +- 0.007 |
+| near 0.2, declarer's decisions only | +1.10 | +0.97 | +0.105 +- 0.016 |
+| near 0.2, defenders' decisions only | +0.98 | +0.82 | +0.065 +- 0.010 |
+
+These were posted on `box/coordination` at 13:05 UTC, before the box runs of E9-0 started; its
+first played figure, from 91 sandbox boards at near 0.4, was +1.39 +- 0.39 IMPs a board, against
+about +1.04 from the proxy at 3.6 IMPs a trick.
+
 ## The tree, by net and by layouts
 
 Not part of the reading, measured the same morning because it is the other place the net enters
