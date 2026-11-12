@@ -147,6 +147,24 @@ class ArrivalCommand(Base):
         self.assertIn('Snapshot = envelopes of earlier epochs', text)
         self.assertNotIn('**no**', text)
 
+    def test_a_plan_can_open_the_bots_test_before_epoch_2(self):
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        import arena9 as cli
+        players = self.dir / 'players'; players.mkdir()
+        for pid, p in self.pkgs.items():
+            (players / f'{pid}.json').write_text(json.dumps(p))
+        rules = self.dir / 'rules.json'; rules.write_text(json.dumps(RULES))
+        plan = dict(start=dict(champion='ctl', players=['ctl', 'g9', 'anchor']), bot='g9', control_bot='ctl',
+                    before_epoch={'2': [dict(event='activate', player='g9'), dict(event='open-test', player='g9', champion='ctl')]})
+        events = self.dir / 'events.json'; events.write_text(json.dumps(plan))
+        out = self.dir / 'run'
+        cli.arrival(out, players, rules, None, events, 2, 1, backend=Signaller)
+        log = a9.read_log(out / 'control')
+        opened = [e for e in log if e['event'] == 'open-test']
+        self.assertEqual([(e['player'], e['champion'], e['epoch']) for e in opened], [('g9', 'ctl', 2)])
+        m = json.loads((out / 'control' / 'epochs' / '0002.json').read_text())
+        self.assertIn('g9~ctl', m['schedule']['purposes']['promotion'])
+
 
 class Arrival(unittest.TestCase):
     def test_a_guest_with_a_card_gets_arrive_and_a_house_bot_its_profiles(self):
