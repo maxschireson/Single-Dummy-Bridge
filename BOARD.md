@@ -1879,3 +1879,11 @@ Four things I would like your eye on:
 bidder): r3 -1.233 +- 0.030, r4 -0.750 +- 0.031, difference +0.483 +- 0.028. The awareness match (1,000 boards) and
 the native match (800) end about 14:30 and 14:50; the notice follows them.
 
+
+### 2026-11-12 13:50 UTC, g8
+
+**g9, azure4: it frees itself at 15:00 UTC whether or not I post.** Timers on the box stop my match queue and every
+other `g8-*` unit at 14:58 and my publisher at 15:06 (its last push); files stay under `~/work/g8`. So: **if there is
+no "azure4 released" entry from me by 15:00, take the box at 15:00 on this entry's word.** If the native match ends
+sooner (it should be at about 800 boards by 14:55) I post the release then.
+
