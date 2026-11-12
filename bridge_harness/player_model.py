@@ -5,8 +5,10 @@ Gen 9 design in progress (interface I3 of docs/gen9/architecture.md). Used by no
 A PlayerModel has three layers, general to specific:
 
   profiles    probability over known ways of bidding and carding (system ids of the Gen 8
-              registry; None is "unknown"). One system holds for a whole board, so readers mix
-              over profiles outside the product over seats and calls.
+              registry; None is "unknown", read as Gen 8 reads a pair it knows nothing about).
+              One system holds for a whole board, so readers mix over profiles outside the
+              product over seats and calls. Two ids are reserved: 'card' (the declared card's
+              rules alone, no scorer) and 'flat' (the calls say nothing about the hands).
   card        what the partnership declared: `bidding` (a card IR document, read by the bidding
               reader) and `carding` (a carding descriptor over configs/systems/_carding_fields.json,
               read by the card-play reader). Public agreements.
@@ -23,13 +25,17 @@ before, which a Gen 9 player resolves through `resolve()` against the models nam
 spec. A player works out which side is which from the seat it is asked to play, so one model per
 opposing partnership is enough.
 """
-from dataclasses import dataclass, field
+import math
+from dataclasses import dataclass, field, replace
 from typing import Mapping
 
 from . import experience as xp
 
 KINDS = ('house', 'anchor', 'synthetic', 'outside', 'guest', 'unknown')
 UNKNOWN_PROFILE = ((None, 1.0),)
+CARD_PROFILE = 'card'                 # reserved: the declared card's rules alone, no scorer
+FLAT_PROFILE = 'flat'                 # reserved: the calls say nothing about the hands
+PROFILE_STAT = 'profile'              # experience: summed log-likelihood of the pair's calls on its own hands, by candidate
 
 
 def _profiles(value):
@@ -127,3 +133,61 @@ def resolve(opponent, models=None):
     if isinstance(entry, PlayerModel):
         return entry
     return PlayerModel.from_dict(dict(entry, id=entry.get('id', name)))
+
+
+def arrive(id, kind='guest', bidding=None, carding=None, distances=None, tau=0.05, flat=0.25, least=1e-3, notes=()):
+    """The model of a partnership nobody has met, from what it declared (architecture 3, "arrival").
+
+    distances   {system id: the rate at which that system's own bidder breaks the declared card's
+                rules, over the calls the card covers} for every system we can read
+                (cards.match.card_distance). With no card declared, pass the systems with any
+                value: they then share the weight equally.
+
+    The prior over profiles, before normalising: 1 for 'card' when a card is declared;
+    max(exp(-d / tau), least) for each system (equal weights with no card); `flat` for 'flat'.
+    Every system keeps some weight so that boards can overturn the mapping (`believed`); the
+    reader keeps only the most probable few. tau, flat and least are first settings, not fitted.
+    Nothing declared and no systems named gives the plain model."""
+    if tau <= 0 or flat < 0 or least < 0:
+        raise ValueError('tau must be positive, flat and least not negative')
+    weights = {}
+    for system, d in (distances or {}).items():
+        if system in (None, 'unknown', CARD_PROFILE, FLAT_PROFILE):
+            raise ValueError(f'{system!r} is not a system a distance can be given for')
+        if not 0 <= float(d) <= 1:
+            raise ValueError('a distance is a rate between 0 and 1')
+        weights[str(system)] = max(math.exp(-float(d) / tau), least) if bidding is not None else 1.
+    if bidding is not None:
+        weights[CARD_PROFILE] = 1.
+    if not weights:
+        return PlayerModel(id, kind, None, bidding, carding, None, tuple(notes))
+    if flat > 0:
+        weights[FLAT_PROFILE] = float(flat)
+    total = sum(weights.values())
+    return PlayerModel(id, kind, {k: v / total for k, v in weights.items() if v > 0}, bidding, carding, None, tuple(notes))
+
+
+def believed(model, temper=1., floor=0.02):
+    """`model` with its profile probabilities moved by its experience: the statistic 'profile'
+    holds, for each candidate, the summed log-likelihood of the partnership's calls on its own
+    hands over the boards of the snapshot (cards.match.board_loglik; 'flat' is a model of the
+    calls that does not look at the hand).
+
+    A candidate the statistic has not scored keeps its prior share, and the scored ones divide
+    theirs by the evidence. `temper` below 1 slows the update; `floor` is a share of the scored
+    mass spread evenly over the scored candidates, so that the mixture never drops one that a
+    misspecified likelihood ruled out. A model with the unknown profile, or with nothing scored,
+    comes back as it is."""
+    stat = model.stat(PROFILE_STAT)
+    if not stat or not stat.get('n') or any(s is None for s, _ in model.profiles):
+        return model
+    prior = dict(model.profiles)
+    scored = {s: p for s, p in prior.items() if s in stat['ll']}
+    if len(scored) < 2:
+        return model
+    share = sum(scored.values())
+    post = xp.posterior(dict(stat, ll={s: stat['ll'][s] for s in scored}), {s: p / share for s, p in scored.items()},
+                        temper=temper, floor=floor)
+    out = {s: share * post[s] if s in post else p for s, p in prior.items()}
+    total = sum(out.values())
+    return replace(model, profiles={s: p / total for s, p in out.items() if p > 0})

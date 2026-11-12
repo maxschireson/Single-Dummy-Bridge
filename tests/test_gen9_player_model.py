@@ -1,11 +1,12 @@
 """Gen 9 interfaces I3 and I6: the player model a bot is handed, and experience as additive statistics."""
 import itertools
 import json
+import math
 import random
 import unittest
 
 from bridge_harness import experience as xp
-from bridge_harness.player_model import PlayerModel, resolve
+from bridge_harness.player_model import CARD_PROFILE, FLAT_PROFILE, PlayerModel, arrive, believed, resolve
 
 
 def board_delta(player, i, rng):
@@ -116,6 +117,7 @@ class Estimators(unittest.TestCase):
                 tallies[f'hit/{n}'] = tallies.get(f'hit/{n}', 0) + hit
             self.assertAlmostEqual(xp.choice_honesty(xp.count(**tallies), prior=(1., 1.)), true_h, delta=.04)
         self.assertAlmostEqual(xp.choice_honesty(None, prior=(3., 1.)), .75, delta=.001)
+        self.assertAlmostEqual(xp.choice_honesty(None), .5, delta=.001)                     # the default prior sits at one half (E9-4)
 
     def test_posterior_over_profiles(self):
         prior = {'house': .5, 'precision': .3, 'unknown': .2}
@@ -177,6 +179,59 @@ class Models(unittest.TestCase):
         self.assertTrue(resolve(None).plain)
         m = PlayerModel('x')
         self.assertIs(resolve(m, models), m)
+
+
+class Arrival(unittest.TestCase):
+    def test_a_declared_card_ranks_the_systems_by_how_often_their_bidder_breaks_it(self):
+        m = arrive('guest-1', bidding=dict(card='x'), carding=dict(count='upside-down'),
+                   distances={'near': 0., 'close': .05, 'far': .4})
+        p = dict(m.profiles)
+        self.assertEqual((m.kind, m.bidding, m.carding, m.boards), ('guest', dict(card='x'), dict(count='upside-down'), 0))
+        self.assertAlmostEqual(sum(p.values()), 1.)
+        self.assertAlmostEqual(p['near'], p[CARD_PROFILE])                  # a bidder that never breaks the card weighs as much as the card
+        self.assertAlmostEqual(p['close'] / p['near'], math.exp(-1.))       # tau = 0.05
+        self.assertAlmostEqual(p[FLAT_PROFILE] / p[CARD_PROFILE], .25)
+        self.assertAlmostEqual(p['far'] / p['near'], 1e-3)                  # never ruled out before a board is seen
+        self.assertFalse(m.plain)
+
+    def test_nothing_near_leaves_the_card_and_flat(self):
+        p = dict(arrive('g', bidding=dict(card='x'), distances={'a': .5, 'b': .7}).profiles)
+        self.assertAlmostEqual(p[CARD_PROFILE] + p[FLAT_PROFILE], 1.25 / 1.252)
+
+    def test_without_a_card_the_systems_share_and_nothing_at_all_is_plain(self):
+        p = dict(arrive('g', distances={'a': 0., 'b': 1.}).profiles)
+        self.assertEqual(sorted(p), ['a', 'b', 'flat'])
+        self.assertAlmostEqual(p['a'], p['b'])
+        self.assertTrue(arrive('g').plain)
+        with self.assertRaises(ValueError):
+            arrive('g', distances={'card': .1})
+        with self.assertRaises(ValueError):
+            arrive('g', distances={'a': 1.5})
+
+    def test_boards_move_the_profiles_and_can_overturn_the_mapping(self):
+        m = arrive('g', bidding=dict(card='x'), distances={'near': 0., 'far': .4})
+        self.assertIs(believed(m), m)                                        # nothing seen yet
+        ll = {'near': -80., 'far': -20., CARD_PROFILE: -40., FLAT_PROFILE: -60.}
+        seen = PlayerModel.from_dict(dict(m.to_dict(), experience=xp.snapshot(
+            dict(xp.empty('g'), boards=12, stats={'profile': dict(kind='loglik', n=12., ll=ll)}), 'e1')))
+        b = dict(believed(seen, floor=0.).profiles)
+        self.assertGreater(b['far'], .999)                                   # 60 nats beat a prior of one in a thousand
+        self.assertEqual(believed(seen).snapshot, 'e1')
+        floored = dict(believed(seen, floor=.02).profiles)
+        self.assertAlmostEqual(floored['near'], .02 / 4, delta=1e-6)         # the floor keeps every scored candidate alive
+        slow = dict(believed(seen, temper=.05, floor=0.).profiles)
+        self.assertLess(slow['far'], b['far'])
+        self.assertIs(believed(seen, temper=1.).__class__, PlayerModel)
+
+    def test_an_unscored_candidate_keeps_its_share_and_unknown_is_left_alone(self):
+        prior = {'a': .5, 'b': .3, 'new': .2}
+        snap = xp.snapshot(dict(xp.empty('g'), boards=5, stats={'profile': dict(kind='loglik', n=5., ll={'a': -1., 'b': -1. - math.log(3.)})}), 'e1')
+        b = dict(believed(PlayerModel('g', 'guest', prior, experience=snap), floor=0.).profiles)
+        self.assertAlmostEqual(b['new'], .2)
+        self.assertAlmostEqual(b['a'] / b['b'], (.5 / .3) * 3.)
+        self.assertAlmostEqual(sum(b.values()), 1.)
+        plain = PlayerModel('g', 'guest', {'unknown': .5, 'a': .5}, experience=snap)
+        self.assertIs(believed(plain), plain)
 
 
 if __name__ == '__main__':

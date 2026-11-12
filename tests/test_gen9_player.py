@@ -263,6 +263,22 @@ class CardProfileTests(Shell):
         silent.meet('them')
         self.assertLess(float(np.ptp(self.weights(silent))), 1e-12)
 
+    def test_the_flat_profile_adds_nothing_and_bounds_what_a_wrong_reading_can_cost(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        alpha = FitScorer(self.root / 'alpha.npz')
+        o = self.o
+        net = sum(alpha.type_log_score(self.length[j], self.hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(self.view.hidden))
+        flat = self.make9(gen9=dict(models={'them': dict(profiles={'flat': 1.})}))
+        flat.meet('them')
+        self.assertFalse(flat.opponent.plain)
+        self.assertLess(float(np.ptp(self.weights(flat))), 1e-12)
+        mixed = self.make9(gen9=dict(models={'them': dict(profiles={'alpha': .8, 'flat': .2})}))
+        mixed.profile_scorer = lambda side, system: alpha
+        mixed.meet('them')
+        got = self.weights(mixed)
+        np.testing.assert_allclose(got, np.logaddexp(math.log(.8) + net, math.log(.2)), atol=1e-9)
+        self.assertTrue(np.all(got >= math.log(.2) - 1e-12))                 # no layout falls below the flat share
+
     def test_net_profiles_get_the_residual_and_the_mixture_weighs_both(self):
         scorer_weights(self.root / 'alpha.npz', seed=31)
         alpha = FitScorer(self.root / 'alpha.npz')
@@ -388,6 +404,19 @@ class TableTests(Shell):
         p.meet(PlayerModel('ben', 'outside', experience=plenty))            # enough: the factor with the best mean gain
         self.assertEqual(p.opponent_factor, .3)
         self.assertEqual(p.opponent.snapshot, 'e2')
+
+    def test_meet_and_auction_by_take_the_profiles_from_experience(self):
+        stats = {'profile': dict(kind='loglik', n=9., ll={'alpha': -30., 'beta': -5.})}
+        seen = PlayerModel('g', 'guest', {'alpha': .9, 'beta': .1}, experience=xp.snapshot(dict(xp.empty('g'), boards=9, stats=stats), 'e3'))
+        p = self.make9(gen9={})
+        p.meet(seen)
+        self.assertGreater(dict(p.opponent.profiles)['beta'], .98)
+        self.assertIs(p.opponent, p.opponent_model)
+        p.auction_by([seen, 'x', seen, 'x'])
+        self.assertGreater(dict(p.bidders[0].profiles)['beta'], .98)
+        still = self.make9(gen9=dict(profile_temper=0.))                     # switched off: the declared prior stands
+        still.meet(seen)
+        self.assertAlmostEqual(dict(still.opponent.profiles)['alpha'], .9)
 
 
 class OracleTests(Shell):
