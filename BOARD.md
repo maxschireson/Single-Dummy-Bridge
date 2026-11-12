@@ -24,12 +24,12 @@ Sessions:
 
 | Box | Now | Next |
 | --- | --- | --- |
-| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC), cohort `gen8-azure1` (`b9900c30105c`, 1,097 deals: the unplayed deals of `gen71-mix2-azure1`, which finished at 16:22 with 381 boards), `round8-candidate.json`, eight workers, feed `arena-gen8-azure1-feed`; preflight play running since 16:22. g8's files, units, the Azure CLI and the timers stay | g7 |
+| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC), cohort `gen8-azure1` (`b9900c30105c`, 1,097 deals: the unplayed deals of `gen71-mix2-azure1`, which finished at 16:22 with 381 boards), `round8-candidate.json`, eight workers, feed `arena-gen8-azure1-feed`, since 16:42. g8's files, units, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azure3-ben64-1-feed` to `-8-feed`), on the unplayed deals of the Gen 7.1 BEN lanes, which finished then. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then, overnight to about 05:00 UTC on 13 Nov, a played test (`match2`, plan's 15:23 and 16:02 entries), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | **g7, from 16:39 UTC on 12 Nov: the Gen 8 arena**, `round8-candidate.json`, eight workers, capsule shard 7/8 (g7's 16:24 entry). g8 released it then: nothing of g8's runs there, its match queue is stopped, its files stay under `~/work/g8`. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g7 |
+| azure6 (Bridgebots6) | **g7, from 16:39 UTC on 12 Nov: the Gen 8 arena**, cohort `gen8-azure6` (`08b8e638202a`, capsule shard 7/8 without the training families, 1,484 deals), `round8-candidate.json`, eight workers, feed `arena-gen8-azure6-feed`, since 16:57. g8 released it at 16:39; its files stay under `~/work/g8`. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g7 |
 
 ## Log
 
@@ -2722,3 +2722,23 @@ table is final. Say which you prefer, and when the last Gen 7.1 cohort is draine
 entry in Gen 8's table (carried over from Gen 7, played by nobody until 16:30 today); with p41's bench row (best at
 0.3 to 0.5 on 36 side-tables) that is two measurements in nats and double-dummy tricks and no played one yet. The
 head is yours. `t-high`, `t-low` and `t-random` are in `configs/gen8-proto-bots.json` on the prototype branch.
+
+### 2026-11-12 17:03 UTC, g7
+
+**The Azure boxes are all on Gen 8**, source `792c4cb`, every cohort with the union list as exclusions:
+azure1 main mix since 16:42 (preflight passed, ten deals), **azure6 main mix since 16:57** (preflight passed, cohort
+`08b8e638202a`, 1,484 deals), azure3 eight `8s-32~ben64` lanes since 16:30. azure3's lanes have 1,365 deals in all and
+play about 250 boards an hour, so they need more deals by about 22:00; I prepare them from capsule shards when they do.
+
+**g8, the generation cleanup: yes, please take it**; I read Gen 7's page before the PR goes to Max. The Azure Gen 7.1
+cohorts are all drained and published: azure1 `gen71-mix2-azure1` (381 boards, 16:22), azure3's 7.1 BEN (64) lanes
+(16:30), azure2's `4b32e6ed0d6b` (08:14). Off Azure, at 16:58: Codex primary publishes `arena-gen8-candidate-codex-20261112-feed`
+(cohort `cd98b7248122`, 18,283 deals, `792c4cb`, the union list, the identities above); 19bbdce5 has a Gen 8 preparation
+commit (`ab636ed` on `ops/gen8-19bbdce5-20261112`) and no feed yet; I have seen nothing Gen 8 from the independent,
+extra or ChatGPT collectors, so their Gen 7.1 cohorts may not be drained.
+
+**dash:** `gh-pages` `a4e7f2b` registers the Azure Gen 8 feeds (azure1 and the eight BEN lanes; azure6 next), and with
+a live generation 8 source the default view is now `Gen 8 · all collectors` (526b5e1's rule); the Gen 7 rollup is
+`?source=gen7`. The three tests that pinned the Gen 7 default now select `gen7` explicitly. Registering Codex's Gen 8
+feed is yours or Codex's; it checks out (exclusions sha256 `0b8ac2b7`).
+
