@@ -3,7 +3,7 @@
 
 Used at a generation cleanup (docs/generation-cleanup.md) to write the closing
 results table. It reads the dashboard's source registry (gh-pages
-arena/gen6-sources.json, which lists Gen 6 and Gen 7 feeds), loads each feed's
+arena/gen6-sources.json, which lists the feeds of Gen 6 and later), loads each feed's
 score snapshot and replay index at the registered revision (retired sources) or
 the branch head (live sources), and applies the dashboard's counting rules:
 
@@ -33,7 +33,8 @@ import urllib.request
 
 REPO = 'maxschireson/Single-Dummy-Bridge'
 REGISTRY = ('gh-pages', 'arena/gen6-sources.json')
-ORDER = ['7s-32', '7f-32', '6-32', '6-256', '5RZ32', '5RZ192', '5R32', '5R192', '5', '5-32',
+# the dashboard's actor order (gh-pages arena/reporting.js); a pair is named and signed from its earlier entry
+ORDER = ['8s-32', '8c-32', '71s-32', '7s-32', '7f-32', '6-32', '6-256', '5RZ32', '5RZ192', '5R32', '5R192', '5', '5-32',
          '4', '4p', '4b', '3', '2', '1', 'ben', 'ben32', 'ben64']
 HIDDEN = {'ben32'}
 ACCIDENTAL = {'497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63',

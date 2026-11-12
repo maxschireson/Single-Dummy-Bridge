@@ -40,7 +40,7 @@ feed counts the boards and shows no IMP figure for the pair.
 ## The code
 
 Before this branch no source had both the Gen 7 engine and a collector that accepts a bot playing
-itself ([backlog](backlog.md), item 1). `bridge_harness/gen5_arena.py` on `main` already played
+itself ([backlog](../../backlog.md), item 1). `bridge_harness/gen5_arena.py` on `main` already played
 such a pair; the collector refused its record.
 
 | Commit | Adds | Gap forks and guess-size fields recorded |

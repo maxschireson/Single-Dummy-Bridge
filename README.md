@@ -13,18 +13,19 @@ A research bridge engine combining learned bidding and hidden-hand inference wit
 | Work out which bot/configuration is current | [Current system and authority](docs/current-system.md) |
 | Find code, models, data or an old experiment | [Repository map](docs/repository-map.md) and [branch inventory](docs/branch-inventory.md) |
 | Operate or recover a collector | [Operations](docs/operations.md) |
-| Run a Gen 7 collector | [Phase 1 notice: mix, plans and launch steps](docs/gen7_candidate_2026-11-11.md) |
+| Run a Gen 8 collector | [Notice: what was built and measured, plans and launch steps](docs/gen8_candidate_2026-11-12.md) |
 | See what each generation was and how it scored | [Generations](docs/generations/README.md) |
 | Decide what needs doing | [Backlog](docs/backlog.md) |
 | Work with an agent | [AGENTS.md](AGENTS.md) and [contribution workflow](CONTRIBUTING.md) |
 
 ## Current baseline
 
-As of 12 November 2026 the arena runs **Gen 7 phase 1**: Gen 6 fast with a new policy net
-(v4) and a shallow tree search at tricks 3–6, cross-matched against Gen 6 fast, BEN and
-older bots. Phase 2 (self-play volume) is not authorized. `main` contains the deployed
-Gen 7 source (`fe382f9b`) and the Gen 6 source. Gen 6 is closed:
-[results](docs/generations/gen6/README.md#results).
+As of 12 November 2026 the arena runs **Gen 8**: the Gen 7.1 bot with the play read from the
+first trick, the opponents' plays read by who they are and each side's calls read by the system
+it declares, and a second bot that bids the project's own rule system (Precision). They are
+cross-matched against Gen 7.1, BEN and older bots. `main` contains the deployed Gen 8 source
+(`792c4cb` and the two collector branches built on it) and the Gen 6 and Gen 7 sources. Gen 7
+is closed: [results](docs/generations/gen7/README.md#results).
 
 [Current system](docs/current-system.md) lists the authorities; each run's frozen manifest
 takes precedence over prose. Each generation change ends with a

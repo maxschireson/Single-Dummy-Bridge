@@ -8,15 +8,14 @@
 - [Repository map: code, models, data and research](repository-map.md)
 - [Backlog: open work](backlog.md)
 - [Branch inventory](branch-inventory.md)
-- [Gen 8: the play read from trick 1, and two bidding systems at the table (authorized by Max on 12 November 2026 at 15:32 UTC; in the arena from 16:30 UTC)](gen8_candidate_2026-11-12.md)
-- [Gen 8 system layer: systems as data and a system-aware scorer (the layer Gen 8 rests on)](gen8_systems.md)
 - [Contribution workflow](../CONTRIBUTING.md)
 - [Agent entry point](../AGENTS.md)
 
 ## Generations
 
 - [Index: one page per generation, with results](generations/README.md)
-- [Gen 7 (current)](generations/gen7/README.md): [phase 1 notice](gen7_candidate_2026-11-11.md), [self-play notice of 12 November](gen7_selfplay_2026-11-12.md), [Gen 7.1 notice](gen71_2026-11-12.md), [alpha guide](gen7_alpha_2026-11-11.md), [prototype notes](gen7_prototype_2026-11-11.md)
+- [Gen 8 (current)](generations/gen8/README.md): [notice](gen8_candidate_2026-11-12.md), [system layer](gen8_systems.md), [the independent collector's cohort](generations/gen8/independent-collector.md)
+- [Gen 7 and 7.1 (closed 12 November)](generations/gen7/README.md): [phase 1 notice](generations/gen7/gen7_candidate_2026-11-11.md), [self-play notice](generations/gen7/gen7_selfplay_2026-11-12.md), [Gen 7.1 notice](generations/gen7/gen71_2026-11-12.md), [alpha guide](generations/gen7/gen7_alpha_2026-11-11.md), [prototype notes](generations/gen7/gen7_prototype_2026-11-11.md)
 - [Gen 6 (closed 12 November)](generations/gen6/README.md)
 - [Gen 5 / 5R / 5RZ](generations/gen5/README.md)
 - [Generation cleanup procedure](generation-cleanup.md)
