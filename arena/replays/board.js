@@ -68,7 +68,7 @@ function renderTable(index){
   $('table'+index).classList.toggle('different',difference!==null&&ply>difference);
 }
 function renderHistory(){
-  const table=el('table',null,'tricks'),head=el('tr');for(const s of ['Trick','Table 1','Winner','Table 2','Winner'])head.append(el('th',s));
+  const table=el('table',null,'tricks'),head=el('tr');for(const s of ['Trick',...record.tables.flatMap((_,i)=>['Table '+(i+1),'Winner'])])head.append(el('th',s));
   const th=el('thead');th.append(head);table.append(th);const tbody=el('tbody'),states=record.tables.map(t=>B.replay(record.board,t,t.plays.length));
   for(let i=0;i<Math.max(...states.map(s=>s.history.length));i++){
     const tr=el('tr');tr.append(el('td',i+1));
@@ -92,18 +92,18 @@ function activate(initial=false){
   const key=$('condition').value,condition=fullRecord.conditions?.[key];
   record={...fullRecord,tables:condition?.tables||fullRecord.tables,imps:condition?condition.imps:fullRecord.imps};
   if(params.get('flip')==='1'){record={...record,pair:C.pairMembers(record.pair).reverse().join('~'),imps:record.imps==null?null:-record.imps,tables:[...record.tables].reverse()};}
-  difference=B.firstDifference(record.tables[0].plays,record.tables[1].plays);
+  const single=record.tables.length===1;difference=single?null:B.firstDifference(record.tables[0].plays,record.tables[1].plays);
   $('title').textContent=`Board ${record.index+1} · ${C.pairLabel(record.pair)}`;document.title=$('title').textContent+' · Replay';
   $('meta').textContent=`Dealer ${record.board.dealer} · Vulnerability ${record.board.vulnerability} · ${C.date(record.completed_epoch)}`;
   $('result').textContent=record.imps==null?'Self-play: training trajectories; no head-to-head IMP estimate':`${C.signed(record.imps)} IMPs for ${C.labels[C.pairMembers(record.pair)[0]]} · ${C.signed(record.tables[0].ns_score)} − (${C.signed(record.tables[1].ns_score)}) points`;
   $('bidding-result').textContent=params.get('metric')==='bidding'?'DD bidder change for '+C.labels[params.get('model')]+': '+C.signed(fullRecord.dd_bidding_imps?.[params.get('model')])+' IMPs (separate from actual play above).':'';
   $('result').className=record.imps>0?'pos':record.imps<0?'neg':'';
-  $('condition-note').textContent=key==='own'?((condition?.different||fullRecord.different_bidding)?'Different native bidding: these are the actual additional games.':'Identical auctions: the common games are reused; no extra games counted.'):fullRecord.conditions?.own?'Play comparison under the same common auction.':'Historical play under its frozen shared auction.';
+  $('condition-note').textContent=single?'One self-play table under the frozen common bidder; training trajectories only.':key==='own'?((condition?.different||fullRecord.different_bidding)?'Different native bidding: these are the actual additional games.':'Identical auctions: the common games are reused; no extra games counted.'):fullRecord.conditions?.own?'Play comparison under the same common auction.':'Historical play under its frozen shared auction.';
   $('provenance').textContent=`${cohort.title} · Original board ID ${record.board.id} · Source index ${record.index} · Record SHA256 ${record.episode_sha256}`;
   const back=new URL('index.html',location.href);back.searchParams.set('cohort',cohort.id);back.searchParams.set('pair',record.pair);back.searchParams.set('condition',key);if(params.get('metric')==='bidding'){back.searchParams.set('metric','bidding');back.searchParams.set('model',params.get('model'));}if(params.has('report')){back.searchParams.delete('cohort');back.searchParams.set('report',params.get('report'));if(params.has('snapshots'))back.searchParams.set('snapshots',params.get('snapshots'));if(params.has('revisions'))back.searchParams.set('revisions',params.get('revisions'));const pair=C.pairMembers(record.pair).map(k=>({P:'4p',Q:'4b'}[k]||k));back.searchParams.set('pair',pair.join(pair.every(k=>k.length===1)?'':'~'));}$('back').href=back;
-  $('difference-status').textContent=difference===null?'Both tables played the same cards in the same order.':`First different play: card ${difference+1} · differences are observational, not causal attribution.`;
-  setupTable(0);setupTable(1);renderHistory();$('loading').classList.add('hidden');$('viewer').classList.remove('hidden');
-  positions=initial?positions.map((_,i)=>Math.max(0,Math.min(record.tables[i].plays.length,Math.floor(Number(params.get('ply'+(i+1))??params.get('ply'))||0)))):[0,0];
+  $('difference-status').hidden=single;$('difference-status').textContent=difference===null?'Both tables played the same cards in the same order.':`First different play: card ${difference+1} · differences are observational, not causal attribution.`;
+  $('table1').classList.toggle('hidden',single);record.tables.forEach((_,i)=>setupTable(i));renderHistory();$('loading').classList.add('hidden');$('viewer').classList.remove('hidden');
+  positions=initial?record.tables.map((_,i)=>Math.max(0,Math.min(record.tables[i].plays.length,Math.floor(Number(params.get('ply'+(i+1))??params.get('ply'))||0)))):record.tables.map(()=>0);
   const u=new URL(location.href);u.searchParams.set('condition',key);history.replaceState(null,'',u);
   positions.forEach((ply,i)=>setPly(i,ply));
 }
