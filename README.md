@@ -186,6 +186,33 @@ left running.
 - Nothing made with the EPBot/BBA bidding engine or its card files goes into Gen 9 (Max,
   12 November 2026).
 
+## Box jobs (tools/boxq.py)
+
+A box pulls its work from this branch. To run something on a Gen 9 box, write a job file and submit it:
+
+    $Q job submit e9-0.json            # owner or g9; the box sees it within a minute
+    $Q jobs                            # every job: state, boards of target, boards an hour, expected finish
+    $Q job cancel e9-0 --box azure4    # owner or g9
+
+```json
+{"id": "e9-0", "box": "azure4", "experiment": "E9-0", "owner": "g9", "priority": 1, "cores": 4,
+ "source": {"branch": "feature/gen9", "commit": "1a89446"},
+ "argv": ["{python}", "scripts/gen9_match.py", "--source", "{work}/capsule/recovery", "--bots", "configs/gen9-proto-bots.json",
+          "--pair", "9t1-32~8p-32", "--deals", "800", "--seed", "91", "--workers", "4", "--out", "{out}"],
+ "progress": {"results": "results.jsonl", "target": 800},
+ "preemptible": true, "publish": ["results.jsonl", "summary.json", "manifest.json"]}
+```
+
+- Priority 1 is highest; the box runs the highest-priority jobs that fit its cores, and fills leftover cores with
+  smaller jobs. `cores` should equal the job's `--workers`.
+- A `preemptible` job (resumable: `gen8_match.py` and `gen9_match.py` skip boards already in `results.jsonl`) is
+  stopped when a higher-priority job needs its cores and restarted later. Set it false for a job that cannot resume.
+- The job runs in a checkout of `source.commit`, as unit `g9-job-<id>`, with one thread per process and the solver
+  cache off. `{python}`, `{src}`, `{out}` and `{work}` in `argv` are the box's venv Python, the checkout,
+  `~/work/g9/runs/<id>` and `~/work/g9`. A failed job is restarted twice, then marked failed.
+- Results matching `publish` go to `transfer/gen9-<id>-<box>-<yyyymmdd>` every 10 minutes and at the end. The box
+  writes `boxq/<box>/status.json` here, and STATUS.md shows the queue in a "Box queue" table.
+
 ## Boxes
 
 The Azure boxes are allocated on `box/coordination` (`BOARD.md`). Gen 9 has none yet. Ask g9

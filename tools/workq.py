@@ -32,6 +32,8 @@ The tool keeps its own clone in ~/.cache/workq and never touches a checkout.
   workq.py send TO SUBJECT (--body TEXT | --file PATH) [--task ID] [--reply-to MSG]   TO may be "all"
   workq.py inbox [--all] [--agent N]               workq.py read MSG        workq.py ack   (all read)
 
+  workq.py job submit FILE [--box B] [--replace]   queue a box job (tools/boxq.py says the format); job cancel ID --box B
+  workq.py jobs                                    the box queues: each job's state, boards, boards an hour, expected finish
   workq.py fleet                                   box heartbeats and the board's allocation table, into STATUS.md
   workq.py issue [--create] [--print]              rewrite the "Gen 9 queue" GitHub issue (Max's phone view): decisions
                                                    for Max, reviews waiting, blocked, in progress, next checkpoint. Also
@@ -623,10 +625,66 @@ def render_status(st: State) -> bytes:
         L.append("_none_")
     L.append("")
 
+    L += render_queues(st)
     L += render_fleet(st.load("fleet.json"), {})
     if errors:
         L += ["## Files with a malformed header", ""] + [f"- {e}" for e in errors] + [""]
     return "\n".join(L).encode()
+
+
+# ---------------------------------------------------------------- box queue (tools/boxq.py)
+
+def box_queues(st: State) -> dict[str, dict]:
+    """Per box: its status file, plus job files it has not reported yet."""
+    out = {}
+    for p in st.paths("boxq/"):
+        parts = p.split("/")
+        if len(parts) != 3 or not p.endswith(".json"):
+            continue
+        box = parts[1]
+        q = out.setdefault(box, dict(status=None, jobs={}))
+        if parts[2] == "status.json":
+            q["status"] = st.load(p)
+        else:
+            try:
+                j = st.load(p)
+                q["jobs"][j["id"]] = j
+            except (ValueError, KeyError, TypeError):
+                pass
+    return out
+
+
+def queue_rows(q: dict) -> list[dict]:
+    reported = (q.get("status") or {}).get("jobs", {})
+    rows = []
+    for jid, j in q["jobs"].items():
+        r = dict(id=jid, owner=j.get("owner"), experiment=j.get("experiment") or "", priority=j.get("priority"), cores=j.get("cores"),
+                 target=(j.get("progress") or {}).get("target"))
+        r.update({k: v for k, v in reported.get(jid, {}).items() if k in ("state", "boards", "rate_per_hour", "eta", "published", "short")})
+        r.setdefault("state", "cancelled" if j.get("state") == "cancelled" else "not seen yet")
+        rows.append(r)
+    order = {"running": 0, "paused": 1, "waiting": 2, "not seen yet": 3, "done": 4, "failed": 5, "cancelled": 6}
+    return sorted(rows, key=lambda r: (order.get(r["state"], 9), r.get("priority") or 99, r["id"]))
+
+
+def render_queues(st: State) -> list[str]:
+    qs = box_queues(st)
+    if not qs:
+        return []
+    L = ["## Box queue", ""]
+    for box, q in sorted(qs.items()):
+        stt = q.get("status") or {}
+        L += [f"**{box}**: {stt.get('cores_busy', '?')} of {stt.get('cores', '?')} cores busy, reported {short(stt.get('updated'))} UTC"
+              + (f"; malformed job files: {'; '.join(stt['bad_jobs'])}" if stt.get("bad_jobs") else "") + ".", "",
+              "| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |",
+              "| --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |"]
+        for r in queue_rows(q):
+            boards = f"{r.get('boards', 0):,} of {r['target']:,}" if r.get("target") else str(r.get("boards", ""))
+            L.append(f"| {r['id']} | {r['experiment']} | {r['owner']} | {r.get('priority')} | {r.get('cores')} | {r['state']}"
+                     f"{' (short)' if r.get('short') else ''} | {boards} | {r.get('rate_per_hour') or ''} | {short(r.get('eta'))} | "
+                     f"{('`' + r['published'] + '`') if r.get('published') else ''} |")
+        L.append("")
+    return L
 
 
 # ---------------------------------------------------------------- fleet view
@@ -776,6 +834,10 @@ def queue_summary(st: State, decisions: list[dict]) -> str:
     today = [d for d in docs.values() if d.get("state") == "resolved"
              and re.search(rf"^- {st.at:%Y-%m-%d}\S* \S+: resolved", d.section("Log"), re.M)]
     open_ = sum(1 for d in docs.values() if d.get("state") in ("open", "proposed"))
+    for box, q in sorted(box_queues(st).items()):
+        bits = [f"{r['id']} {r['state']} {r.get('boards', 0):,}/{r['target']:,}" + (f", {r['rate_per_hour']:.0f}/h, ETA {short(r['eta'])[6:]}" if r.get("rate_per_hour") and r.get("eta") else "")
+                for r in queue_rows(q) if r["state"] in ("running", "paused", "waiting", "not seen yet") and r.get("target")]
+        L.append(f"**Box {box}**: " + (" · ".join(bits) if bits else "idle"))
     L += [f"**Resolved today**: {len(today)}. **Open, not started**: {open_}.",
           f"**Next checkpoint**: {next_checkpoint(st)}"]
     if errors:
@@ -1196,6 +1258,39 @@ class Ledger:
         if (self.snapshot().load("issues.json") or {}).get("queue"):
             self.issue_refresh(force=True)
 
+    def job_submit(self, job: dict, replace: bool = False):
+        spec = importlib_boxq()
+        spec.validate(job)
+
+        def fn(st):
+            owner = job["owner"]
+            if st.agent not in (owner, st.lead):
+                raise Conflict(f"a job is submitted by its owner ({owner}) or {st.lead}")
+            if job.get("experiment"):
+                st.doc(job["experiment"])
+            path = f"boxq/{job['box']}/{job['id']}.json"
+            old = st.load(path)
+            if old and not replace:
+                raise Conflict(f"job {job['id']} exists on {job['box']}; use --replace (the box uses the new spec the next time it starts the job)")
+            j = dict(job, submitted=(old or {}).get("submitted") or st.at.strftime("%Y-%m-%dT%H:%M:%SZ"), by=st.agent)
+            st.save(path, j)
+            st.event("job-submit", f"{job['box']}/{job['id']}", f"priority {job['priority']}, {job['cores']} cores", task=job.get("experiment"))
+            return j
+        return self.mutate(f"job {job['id']} on {job['box']}", fn)
+
+    def job_cancel(self, box: str, jid: str, note: str):
+        def fn(st):
+            path = f"boxq/{box}/{jid}.json"
+            j = st.load(path)
+            if not j:
+                raise Conflict(f"no job {jid} on {box}")
+            if st.agent not in (j["owner"], st.lead):
+                raise Conflict(f"job {jid} is cancelled by its owner ({j['owner']}) or {st.lead}")
+            j["state"] = "cancelled"
+            st.save(path, j)
+            st.event("job-cancel", f"{box}/{jid}", note)
+        return self.mutate(f"cancel job {jid} on {box}", fn)
+
     def fleet(self):
         snap = collect_fleet(self.store, self.clock())
         self.mutate("fleet snapshot", lambda st: st.save("fleet.json", snap))
@@ -1210,6 +1305,15 @@ def commits_since(store: Store, since: str) -> list[tuple[str, str, str]]:
         store.git("fetch", "--quiet", "--no-tags", "--depth=200", "origin", f"+{store.ref}:{store.local}", check=False)
     out = store.out("log", f"--since={since}", "--reverse", "--format=%cI%x09%an%x09%s", store.local)
     return [tuple(l.split("\t", 2)) for l in out.splitlines() if l.count("\t") >= 2]
+
+
+def importlib_boxq():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("boxq", Path(__file__).resolve().parent / "boxq.py")
+    m = importlib.util.module_from_spec(spec)
+    sys.modules.setdefault("workq", sys.modules[__name__])
+    spec.loader.exec_module(m)
+    return m
 
 
 def seen_file(lg: Ledger, who: str) -> Path:
@@ -1227,6 +1331,9 @@ def main(argv=None) -> int:
     p = sub.add_parser("brief"); p.add_argument("id")
     sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
     p = sub.add_parser("issue"); p.add_argument("--create", action="store_true"); p.add_argument("--print", action="store_true")
+    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel"]); p.add_argument("arg", help="a job file (submit) or a job id (cancel)")
+    p.add_argument("--box"); p.add_argument("--replace", action="store_true"); p.add_argument("--note", default="")
+    sub.add_parser("jobs")
     p = sub.add_parser("decision"); p.add_argument("title"); p.add_argument("--body"); p.add_argument("--file")
     p.add_argument("--close", type=int, metavar="NUMBER"); p.add_argument("--note", default="")
     p = sub.add_parser("tasks"); p.add_argument("--owner"); p.add_argument("--state"); p.add_argument("--mine", action="store_true")
@@ -1316,6 +1423,16 @@ def run(lg: Ledger, a) -> int:
         print(f"To {m['to']}, from {m['from']}, {m['stamp']}\n\n{m['body']}"); return 0
     if c == "ack":
         lg.mark_read(all_=True); print("all read"); return 0
+    if c == "job":
+        if a.action == "submit":
+            job = json.loads(text_of(a.arg))
+            if a.box:
+                job["box"] = a.box
+            j = lg.job_submit(job, a.replace)
+            print(f"job {j['id']} queued on {j['box']} (priority {j['priority']}, {j['cores']} cores)"); return 0
+        if not a.box:
+            raise SystemExit("--box is required to cancel")
+        lg.job_cancel(a.box, a.arg, a.note); print(f"job {a.arg} on {a.box} cancelled"); return 0
     if c == "issue":
         if a.print:
             st = lg.snapshot(); sys.stdout.write(queue_summary(st, [])); return 0
@@ -1336,6 +1453,8 @@ def run(lg: Ledger, a) -> int:
         raise SystemExit(f"branch {lg.store.branch} does not exist")
     if c == "status":
         sys.stdout.write(render_status(st).decode()); return 0
+    if c == "jobs":
+        print("\n".join(render_queues(st)) or "no box queue yet"); return 0
     if c == "refresh":
         lg.refresh(); print("STATUS.md regenerated"); return 0
     if c == "brief":
