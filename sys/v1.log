@@ -1,0 +1,46 @@
+rules-precision (NS) vs rules-precision (EW): 24000 deals in 63s; positive share: random hands 0.221, near hands 0.364
+rules-precision (NS) vs house-gen6 (EW): 24000 deals in 56s; positive share: random hands 0.228, near hands 0.357
+house-gen6 (NS) vs rules-precision (EW): 24000 deals in 56s; positive share: random hands 0.225, near hands 0.357
+/home/bridgebots/work/g8/sys/v1-train.npz: 72000 deals, 2592000 examples, systems ['rules-precision', 'house-gen6']
+rules-precision (NS) vs rules-precision (EW): 3000 deals in 8s; positive share: random hands 0.222, near hands 0.366
+rules-precision (NS) vs house-gen6 (EW): 3000 deals in 7s; positive share: random hands 0.225, near hands 0.355
+house-gen6 (NS) vs rules-precision (EW): 3000 deals in 7s; positive share: random hands 0.226, near hands 0.358
+/home/bridgebots/work/g8/sys/v1-val.npz: 9000 deals, 324000 examples, systems ['rules-precision', 'house-gen6']
+2592000 examples from 72000 deals; model systems ['rules-precision']; training only ['rules-precision']
+  0.0 min step 0 (0.00 passes) lr 0.00000: declared val loss 0.9089; accuracy true 0.709, random 0.929, near 0.876
+  0.7 min step 669 (0.26 passes) lr 0.00199: declared val loss 0.1962; accuracy true 0.876, random 0.943, near 0.903
+  1.4 min step 1339 (0.53 passes) lr 0.00198: declared val loss 0.1718; accuracy true 0.903, random 0.950, near 0.913
+  2.0 min step 2010 (0.79 passes) lr 0.00195: declared val loss 0.1594; accuracy true 0.912, random 0.956, near 0.921
+  2.7 min step 2679 (1.06 passes) lr 0.00192: declared val loss 0.1520; accuracy true 0.910, random 0.958, near 0.926
+  3.4 min step 3349 (1.32 passes) lr 0.00187: declared val loss 0.1457; accuracy true 0.920, random 0.961, near 0.926
+  4.0 min step 4021 (1.59 passes) lr 0.00182: declared val loss 0.1430; accuracy true 0.921, random 0.960, near 0.928
+  4.7 min step 4692 (1.85 passes) lr 0.00176: declared val loss 0.1386; accuracy true 0.924, random 0.962, near 0.930
+  5.4 min step 5362 (2.12 passes) lr 0.00169: declared val loss 0.1369; accuracy true 0.922, random 0.963, near 0.933
+  6.0 min step 6033 (2.38 passes) lr 0.00161: declared val loss 0.1350; accuracy true 0.922, random 0.964, near 0.935
+  6.7 min step 6705 (2.65 passes) lr 0.00152: declared val loss 0.1339; accuracy true 0.919, random 0.964, near 0.935
+  7.4 min step 7377 (2.91 passes) lr 0.00144: declared val loss 0.1327; accuracy true 0.926, random 0.965, near 0.937
+  8.0 min step 8048 (3.18 passes) lr 0.00134: declared val loss 0.1312; accuracy true 0.920, random 0.965, near 0.937
+  8.7 min step 8719 (3.44 passes) lr 0.00125: declared val loss 0.1308; accuracy true 0.930, random 0.966, near 0.937
+  9.4 min step 9390 (3.71 passes) lr 0.00115: declared val loss 0.1284; accuracy true 0.929, random 0.967, near 0.939
+ 10.0 min step 10061 (3.97 passes) lr 0.00105: declared val loss 0.1282; accuracy true 0.924, random 0.967, near 0.937
+ 10.7 min step 10731 (4.24 passes) lr 0.00095: declared val loss 0.1283; accuracy true 0.925, random 0.967, near 0.938
+ 11.4 min step 11402 (4.50 passes) lr 0.00085: declared val loss 0.1272; accuracy true 0.927, random 0.967, near 0.939
+ 12.0 min step 12073 (4.77 passes) lr 0.00076: declared val loss 0.1262; accuracy true 0.927, random 0.967, near 0.939
+ 12.7 min step 12744 (5.03 passes) lr 0.00066: declared val loss 0.1263; accuracy true 0.926, random 0.967, near 0.940
+ 13.4 min step 13414 (5.30 passes) lr 0.00057: declared val loss 0.1263; accuracy true 0.925, random 0.968, near 0.939
+ 14.0 min step 14085 (5.56 passes) lr 0.00049: declared val loss 0.1261; accuracy true 0.923, random 0.968, near 0.940
+ 14.7 min step 14756 (5.83 passes) lr 0.00041: declared val loss 0.1258; accuracy true 0.927, random 0.969, near 0.940
+ 15.4 min step 15427 (6.09 passes) lr 0.00034: declared val loss 0.1255; accuracy true 0.927, random 0.969, near 0.940
+ 16.0 min step 16098 (6.36 passes) lr 0.00028: declared val loss 0.1256; accuracy true 0.927, random 0.968, near 0.941
+ 16.7 min step 16768 (6.62 passes) lr 0.00023: declared val loss 0.1256; accuracy true 0.930, random 0.968, near 0.939
+ 17.4 min step 17439 (6.89 passes) lr 0.00018: declared val loss 0.1254; accuracy true 0.927, random 0.969, near 0.940
+ 18.0 min step 18109 (7.15 passes) lr 0.00015: declared val loss 0.1257; accuracy true 0.928, random 0.968, near 0.941
+ 18.7 min step 18781 (7.42 passes) lr 0.00012: declared val loss 0.1254; accuracy true 0.926, random 0.969, near 0.940
+ 19.4 min step 19453 (7.69 passes) lr 0.00010: declared val loss 0.1255; accuracy true 0.925, random 0.969, near 0.941
+ 20.0 min step 20108 (7.94 passes) lr 0.00010: declared val loss 0.1254; accuracy true 0.927, random 0.969, near 0.940
+/home/bridgebots/work/g8/sys/v1-scorer.npz: sha256 965a98e8021d102785a84ed590a0f39399d2608edcd0b693530ddfdc0285c826; kept the state at step 20108 of 20108
+validation loss by table (lower is better); "wrong" declares another system on purpose:
+           rules-precision vs rules-precision          declared 0.1190  unknown 1.3194
+           rules-precision vs house-gen6               declared 0.1299  unknown 0.7093
+                house-gen6 vs rules-precision          declared 0.1287  unknown 0.7164
+exit 0

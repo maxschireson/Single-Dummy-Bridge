@@ -1,0 +1,77 @@
+{
+  "steps": 20108,
+  "best_step": 20108,
+  "best_loss": 0.12536437809467316,
+  "minutes": 20.26,
+  "views": "1,0,0",
+  "lr": "2e-3,1e-4",
+  "only": [
+    "rules-precision"
+  ],
+  "seed": 0,
+  "init": {
+    "file": "/home/bridgebots/work/capsule-gen7-capture/recovery/artifacts/gen6/scorer.npz",
+    "sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73"
+  },
+  "generators": {
+    "rules-precision": "7ee5d918af803a9009083adc8688f49d755ffe040fd910d02838a85a4d3f1d4f",
+    "house-gen6": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff"
+  },
+  "train_deals": 72000,
+  "validation": [
+    {
+      "ns": "rules-precision",
+      "ew": "rules-precision",
+      "declared": {
+        "loss": 0.11903102695941925,
+        "true": 0.9311666666666667,
+        "random": 0.9707222222222223,
+        "near": 0.9462333333333334,
+        "examples": 108000
+      },
+      "unknown": {
+        "loss": 1.3193541765213013,
+        "true": 0.5951666666666666,
+        "random": 0.9075277777777778,
+        "near": 0.8447,
+        "examples": 108000
+      }
+    },
+    {
+      "ns": "rules-precision",
+      "ew": "house-gen6",
+      "declared": {
+        "loss": 0.12988542020320892,
+        "true": 0.918,
+        "random": 0.9656111111111111,
+        "near": 0.9412666666666667,
+        "examples": 108000
+      },
+      "unknown": {
+        "loss": 0.7093392014503479,
+        "true": 0.749,
+        "random": 0.9392777777777778,
+        "near": 0.8952833333333333,
+        "examples": 108000
+      }
+    },
+    {
+      "ns": "house-gen6",
+      "ew": "rules-precision",
+      "declared": {
+        "loss": 0.1287195384502411,
+        "true": 0.9248333333333333,
+        "random": 0.9657777777777777,
+        "near": 0.9392333333333334,
+        "examples": 108000
+      },
+      "unknown": {
+        "loss": 0.7164392471313477,
+        "true": 0.75725,
+        "random": 0.9393611111111111,
+        "near": 0.8946333333333333,
+        "examples": 108000
+      }
+    }
+  ]
+}
