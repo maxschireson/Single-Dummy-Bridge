@@ -50,6 +50,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
+sys.path.insert(0, str(ROOT))
 
 BOUND = 24.0          # IMPs on one board are within 24 either way
 
@@ -345,6 +346,233 @@ def promotion(noises, gaps, rules, runs=2000, cap=40000, chunk=250, seed=9):
     return out
 
 
+# --------------------------------------------------------------------------- the betting test of G9-A4
+
+def betting_first_crossings(X, alpha=0.05, beta=0.10, ds=(0.05, 0.1), bet_cap=0.5):
+    """Vectorised BettingTest (bridge_harness/arena_ratings.py) over runs x boards. Returns the first board at which
+    the promotion capital reaches 1/alpha (0 if never) and, for each futility margin d, the first board at which the
+    futility capital reaches 1/beta (0 if never). Outcomes at any cap follow from these times."""
+    runs, n = X.shape
+    Z = X.astype(np.float64) / BOUND
+    logA, logB = math.log(1 / alpha), math.log(1 / beta)
+    def state():
+        return [np.zeros(runs), np.full(runs, (3 / 24) ** 2), np.ones(runs), np.zeros(runs), np.zeros(runs, np.int64)]
+    prom = state(); fut = {d: state() for d in ds}
+    def step(st, val, t, level):
+        s1, s2, c, logk, hit = st
+        m = s1 / c; v = np.maximum(s2 / c - m * m, 1e-9)
+        b = np.clip(m / (v + m * m), 0, bet_cap)
+        logk += np.log1p(b * val)
+        s1 += val; s2 += val * val; c += 1
+        new = (hit == 0) & (logk >= level)
+        hit[new] = t
+    for t in range(1, n + 1):
+        z = Z[:, t - 1]
+        step(prom, z, t, logA)
+        for d in ds:
+            step(fut[d], -(z - d / BOUND), t, logB)
+    return prom[4], {d: fut[d][4] for d in ds}
+
+
+def display_disagreement(X, decided_at, decision, d, r2=7.94 / 1500, first=300):
+    """At each decision board, does the displayed always-valid 95% interval agree? Promotion with its lower end at or
+    below 0, or futility with its upper end at or above d, is a disagreement. Boards before `first` show no interval."""
+    from bridge_harness.arena_ratings import display_radius
+    out = dict(promote_shown=0, promote_disagree=0, futility_shown=0, futility_disagree=0)
+    c1 = np.cumsum(X, axis=1, dtype=np.float64); c2 = np.cumsum(X.astype(np.float64) ** 2, axis=1)
+    for r in np.nonzero(decision != 0)[0]:
+        t = int(decided_at[r])
+        if t < first:
+            continue
+        m = c1[r, t - 1] / t; sd = math.sqrt(max(c2[r, t - 1] / t - m * m, 1e-12))
+        h = display_radius(t, sd, r2=r2)
+        if decision[r] == 1:
+            out['promote_shown'] += 1; out['promote_disagree'] += int(m - h <= 0)
+        else:
+            out['futility_shown'] += 1; out['futility_disagree'] += int(m + h >= d)
+    return out
+
+
+def promotion_bet(noises, gaps, runs=2000, caps=(3000, 6000, 10000, 20000), ds=(0.05, 0.1), chunk=250, seed=9):
+    """E9-5 for G9-A4's test: per noise source and true gap, outcomes at each cap and futility margin, the fixed-sample
+    comparison, and agreement of the displayed interval with the decisions (at the default cap 6,000 and d 0.05)."""
+    out = []
+    max_cap = max(caps)
+    for ni, noise in enumerate(noises):
+        for gi, gap in enumerate(gaps):
+            rng = np.random.default_rng([seed, 1000 + ni, gi])
+            P, F = [], {d: [] for d in ds}
+            disagree = dict(promote_shown=0, promote_disagree=0, futility_shown=0, futility_disagree=0)
+            started = time.time()
+            for c0 in range(0, runs, chunk):
+                k = min(chunk, runs - c0)
+                X = noise.draw(rng, (k, max_cap)) + np.float32(gap)
+                p, f = betting_first_crossings(X, ds=ds)
+                P.append(p)
+                for d in ds:
+                    F[d].append(f[d])
+                dec, when = outcome(p, f[0.05] if 0.05 in f else f[ds[0]], 6000)
+                for key, v in display_disagreement(X, when, dec, 0.05 if 0.05 in ds else ds[0]).items():
+                    disagree[key] += v
+                del X
+            P = np.concatenate(P)
+            for d in ds:
+                Fd = np.concatenate(F[d])
+                for cap in caps:
+                    dec, when = outcome(P, Fd, cap)
+                    promoted = dec == 1
+                    row = dict(noise=noise.name, sigma=round(noise.sigma, 3), gap=gap, rule='bet', d=d, cap=cap, runs=runs,
+                               promote=float(promoted.mean()), futility=float((dec == -1).mean()), undecided=float((dec == 0).mean()),
+                               mean_boards=float(when.mean()), median_boards_decided=float(np.median(when[dec != 0])) if (dec != 0).any() else None,
+                               median_boards_promoted=float(np.median(when[promoted])) if promoted.any() else None)
+                    t_promote = np.where(promoted, when, np.inf)
+                    for q in (0.8, 0.9):
+                        tag = int(q * 100)
+                        n_seq = float(np.quantile(t_promote, q)) if promoted.mean() >= q else None
+                        n_fix = fixed_sample_size(q, gap, noise.sigma)
+                        row[f'boards_to_power{tag}'] = n_seq
+                        row[f'fixed_boards_power{tag}'] = None if n_fix is None else round(n_fix)
+                        row[f'ratio_power{tag}'] = round(n_seq / n_fix, 3) if n_seq and n_fix else None
+                    if d == 0.05 and cap == 6000:
+                        row['display'] = dict(disagree)
+                    out.append(row)
+            r = next(x for x in out[::-1] if x['noise'] == noise.name and x['gap'] == gap and x['d'] == ds[0] and x['cap'] == 6000)
+            print(f"{noise.name:20s} gap {gap:+.2f}: bet(d={ds[0]}, cap 6000) P={r['promote']:.3f} F={r['futility']:.3f} "
+                  f"U={r['undecided']:.3f} mean boards {r['mean_boards']:.0f}  ({time.time() - started:.0f}s)", flush=True)
+    return out
+
+
+def outcome(prom_time, fut_time, cap):
+    """Which bound is crossed first within the cap: +1 promote, -1 futility, 0 undecided; and the board it ends at."""
+    p = np.where((prom_time > 0) & (prom_time <= cap), prom_time, np.iinfo(np.int64).max)
+    f = np.where((fut_time > 0) & (fut_time <= cap), fut_time, np.iinfo(np.int64).max)
+    dec = np.where(p <= f, np.where(p <= cap, 1, 0), -1)
+    dec = np.where((p > cap) & (f > cap), 0, dec)
+    when = np.minimum(np.minimum(p, f), cap)
+    return dec.astype(np.int8), when
+
+
+# --------------------------------------------------------------------------- rating coverage and the gain rule of G9-A4
+
+def _arena_truth(rng, players, lineages=4):
+    base = np.array(list(PUBLISHED.values()))
+    s = rng.choice(base, size=players) + rng.normal(0, 0.15, size=players)
+    return s, rng.integers(lineages, size=players)
+
+
+def coverage_experiment(pools, runs=1000, players=12, boards=150, seed=9):
+    """Coverage of the rating table's 95% intervals (G9-A4 section 1) for strengths and cells, with an equal design
+    (every pair `boards` boards) and a sparse one (champion and two anchors against all, a fifth of the other pairs),
+    in three slices: no pair effects; one pair 0.3 better than the model; one pair with its noise doubled."""
+    from bridge_harness import arena_ratings as ar
+    sib, unr = pools['sibling'], pools['unrelated']
+    names = [f'p{k}' for k in range(players)]
+    out = []
+    for design in ('equal', 'sparse'):
+        for slice_ in ('base', 'pair-effect-0.3', 'pair-noise-x2'):
+            rng = np.random.default_rng([seed, 7, len(design), len(slice_)])
+            hits = dict(strength=[0, 0], cell_played=[0, 0], cell_unplayed=[0, 0], cell_target=[0, 0])
+            t2s, started = [], time.time()
+            for _ in range(runs):
+                s, lin = _arena_truth(rng, players)
+                g = np.zeros((players, players))
+                target = (players - 1, players - 2)
+                all_pairs = [(a, b) for a in range(players) for b in range(a + 1, players)]
+                if design == 'equal':
+                    played = all_pairs
+                else:
+                    hubs = {0, 1, 2}
+                    played = [p for p in all_pairs if p[0] in hubs or p[1] in hubs or rng.random() < 0.2]
+                    if (min(target), max(target)) not in played:
+                        played.append((min(target), max(target)))
+                if slice_ == 'pair-effect-0.3':
+                    g[target[0], target[1]], g[target[1], target[0]] = 0.3, -0.3
+                pairs = []
+                for a, b in played:
+                    pool = sib if lin[a] == lin[b] else unr
+                    scale = 2.0 if (slice_ == 'pair-noise-x2' and {a, b} == set(target)) else 1.0
+                    x = pool[rng.integers(0, pool.size, boards)] * scale + (s[a] - s[b] + g[a, b])
+                    pairs.append(ar.Pair(names[a], names[b], boards, float(x.mean()), float(x.var(ddof=1))))
+                R = ar.fit(pairs, names, names[0])
+                t2s.append(R.t2)
+                for k in range(1, players):
+                    est, v = R.strength(names[k])
+                    hits['strength'][0] += abs(est - (s[k] - s[0])) <= 1.96 * math.sqrt(v); hits['strength'][1] += 1
+                played_set = set(played)
+                for a, b in all_pairs:
+                    est, v = R.cell(names[a], names[b])
+                    ok = abs(est - (s[a] - s[b] + g[a, b])) <= 1.96 * math.sqrt(v)
+                    key = 'cell_played' if (a, b) in played_set else 'cell_unplayed'
+                    hits[key][0] += ok; hits[key][1] += 1
+                    if {a, b} == set(target):
+                        hits['cell_target'][0] += ok; hits['cell_target'][1] += 1
+            row = dict(design=design, slice=slice_, runs=runs, players=players, boards_per_played_pair=boards,
+                       coverage={k: (round(h / n, 4) if n else None) for k, (h, n) in hits.items()},
+                       count={k: n for k, (h, n) in hits.items()}, mean_t2=round(float(np.mean(t2s)), 5),
+                       share_t2_positive=round(float(np.mean(np.array(t2s) > 0)), 3))
+            out.append(row)
+            print(f"coverage {design:6s} {slice_:16s} " + ' '.join(f"{k}={v}" for k, v in row['coverage'].items()) +
+                  f" t2={row['mean_t2']} ({time.time() - started:.0f}s)", flush=True)
+    return out
+
+
+def gain_experiment(pools, runs=300, players=12, field=5, steps=40, chunk=100, seed=9):
+    """Field-score precision for the champion (player 0) against a field of `field` opponents with equal shares:
+    boards in chunks to (a) all pairs equally, (b) champion against the field equally, (c) the pair with the largest
+    gain of G9-A4 section 4 for the field-score contrast. Starts from 50 boards on every champion-field pair.
+    Reports the reported SE of F and its actual error, by boards added."""
+    from bridge_harness import arena_ratings as ar
+    sib, unr = pools['sibling'], pools['unrelated']
+    names = [f'p{k}' for k in range(players)]
+    q = {names[k]: 1 / field for k in range(1, field + 1)}
+    out = []
+    for sched in ('equal', 'field', 'gain'):
+        rng = np.random.default_rng([seed, 11, players])
+        se_curve, err_curve, started = np.zeros(steps + 1), np.zeros(steps + 1), time.time()
+        for _ in range(runs):
+            s, lin = _arena_truth(rng, players)
+            acc = {}
+            def play(a, b, n):
+                pool = sib if lin[a] == lin[b] else unr
+                x = pool[rng.integers(0, pool.size, n)] + (s[a] - s[b])
+                st = acc.setdefault((a, b), [0, 0.0, 0.0])
+                st[0] += n; st[1] += float(x.sum()); st[2] += float((x * x).sum())
+            for k in range(1, field + 1):
+                play(0, k, 50)
+            true_F = float(sum((s[0] - s[k]) / field for k in range(1, field + 1)))
+            all_pairs = [(a, b) for a in range(players) for b in range(a + 1, players)]
+            field_pairs = [(0, k) for k in range(1, field + 1)]
+            u = np.zeros(players); u[0] = 1.0
+            for k in range(1, field + 1):
+                u[k] -= 1 / field
+            for step in range(steps + 1):
+                pairs = [ar.Pair(names[a], names[b], n, s1 / n, (s2 - s1 * s1 / n) / (n - 1)) for (a, b), (n, s1, s2) in acc.items()]
+                R = ar.fit(pairs, names, names[0])
+                F, vF, _ = R.field_score(names[0], q)
+                se_curve[step] += math.sqrt(vF); err_curve[step] += (F - true_F) ** 2
+                if step == steps:
+                    break
+                if sched == 'equal':
+                    for a, b in [all_pairs[i] for i in rng.choice(len(all_pairs), size=4, replace=False)]:
+                        play(a, b, chunk // 4)
+                elif sched == 'field':
+                    play(*field_pairs[step % field], chunk)
+                else:
+                    def v_ij(p):
+                        if p not in acc or acc[p][0] < 2:
+                            return ar.V0
+                        n, s1, s2 = acc[p]
+                        return ar.Pair('a', 'b', n, s1 / n, (s2 - s1 * s1 / n) / (n - 1)).shrunk_var()
+                    best = max(all_pairs, key=lambda p: R.gain(names[p[0]], names[p[1]], u, v_ij(p)))
+                    play(*best, chunk)
+        row = dict(schedule=sched, runs=runs, players=players, field=field, boards_added=[k * chunk for k in range(steps + 1)],
+                   reported_se=[round(v / runs, 4) for v in se_curve], rmse=[round(math.sqrt(v / runs), 4) for v in err_curve])
+        out.append(row)
+        print(f"gain {sched:6s} field-score SE after 0, 1000, 2000, 4000 boards: " +
+              ' '.join(f"{row['reported_se'][k]:.3f}/{row['rmse'][k]:.3f}" for k in (0, 10, 20, 40)) + f" ({time.time() - started:.0f}s)", flush=True)
+    return out
+
+
 # --------------------------------------------------------------------------- ratings and schedules
 
 PUBLISHED = {   # strengths relative to Gen 6 fast, common auction, from the published pair means (12 Nov)
@@ -521,6 +749,13 @@ def main():
     p.add_argument('--noise', nargs='*'); p.add_argument('--rules', nargs='*', default=['hand', 'mix', 'eb'])
     p.add_argument('--futility', type=float, default=0.05); p.add_argument('--out', type=Path, required=True); p.add_argument('--seed', type=int, default=9)
     p.add_argument('--plan-boards', type=int, default=2000); p.add_argument('--plan-sd', type=float, default=3.5); p.add_argument('--alpha', type=float, default=0.05)
+    p = sub.add_parser('bet'); p.add_argument('--pools', type=Path, required=True); p.add_argument('--runs', type=int, default=2000)
+    p.add_argument('--gaps', type=float, nargs='*', default=[-0.1, 0, 0.05, 0.1, 0.2, 0.4]); p.add_argument('--noise', nargs='*')
+    p.add_argument('--out', type=Path, required=True); p.add_argument('--seed', type=int, default=9)
+    p = sub.add_parser('coverage'); p.add_argument('--pools', type=Path, required=True); p.add_argument('--runs', type=int, default=1000)
+    p.add_argument('--out', type=Path, required=True); p.add_argument('--seed', type=int, default=9)
+    p = sub.add_parser('gain'); p.add_argument('--pools', type=Path, required=True); p.add_argument('--runs', type=int, default=300)
+    p.add_argument('--out', type=Path, required=True); p.add_argument('--seed', type=int, default=9)
     p = sub.add_parser('schedule'); p.add_argument('--pools', type=Path, required=True); p.add_argument('--runs', type=int, default=200)
     p.add_argument('--sizes', type=int, nargs='*', default=[8, 12, 20]); p.add_argument('--out', type=Path, required=True); p.add_argument('--seed', type=int, default=9)
     a = ap.parse_args()
@@ -540,6 +775,18 @@ def main():
         rules = [makers[r]() for r in a.rules]
         rows = promotion(noises, a.gaps, rules, runs=a.runs, cap=a.cap, seed=a.seed)
         doc = dict(experiment='E9-5 promotion', rules={r.name: r.params() for r in rules}, pools=str(a.pools), results=rows)
+    elif a.cmd == 'bet':
+        noises = [n for n in noise_sources(pools) if not a.noise or n.name in a.noise]
+        rows = promotion_bet(noises, a.gaps, runs=a.runs, seed=a.seed)
+        doc = dict(experiment='E9-5 betting test (G9-A4 section 3)', rules=dict(bet=dict(alpha=0.05, beta=0.10, bet_cap=0.5,
+                   prior='one board at 0 with second moment (3/24)^2', caps=[3000, 6000, 10000, 20000], d=[0.05, 0.1])),
+                   pools=str(a.pools), results=rows)
+    elif a.cmd == 'coverage':
+        rows = coverage_experiment(pools, runs=a.runs, seed=a.seed)
+        doc = dict(experiment='E9-5 rating-table coverage (G9-A4 section 1)', pools=str(a.pools), results=rows)
+    elif a.cmd == 'gain':
+        rows = gain_experiment(pools, runs=a.runs, seed=a.seed)
+        doc = dict(experiment='E9-5 gain rule for field-score precision (G9-A4 section 4)', pools=str(a.pools), results=rows)
     else:
         rows = schedule_experiment(pools, runs=a.runs, sizes=a.sizes, seed=a.seed)
         doc = dict(experiment='E9-5 schedule', pools=str(a.pools), results=rows)
