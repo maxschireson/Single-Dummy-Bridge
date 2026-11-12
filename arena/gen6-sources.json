@@ -465,6 +465,16 @@
       "cohort": "56c7bff8f4a3d38ba836baa26cc59c057b8727fd9784ae61dfe2bedeb10982c1"
     },
     {
+      "key": "gen7azure2selfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 standard self-play and Gen 6 comparison",
+      "branch": "arena-gen7-phase1-selfplay-azure2-feed",
+      "cohort": "c50412d34108b09cb5bc2cc3db45ce6764fae7901a878e7bca13117c21d6900a"
+    },
+    {
       "key": "gen7azure1pre7",
       "group": "gen7",
       "generation": 7,
@@ -883,6 +893,13 @@
     "authority": "Max, 2026-11-12 03:20 and 03:26 UTC (in chat): one Azure box plays Gen 7 standard against BEN (16) and one against BEN (64). 04:13 UTC: the boxes' operator adds these feeds to the dashboard.",
     "lanes": "The collector plays BEN boards with one worker, so each box runs eight cohorts side by side (lanes), each with its own BEN server, run and feed: azure2 plays 7s-32~ben, azure3 plays 7s-32~ben64. Plan: configs/round7-candidate-phase1-ben.json at fe382f9 reduced to one pair; each run's plan.json, preflight.json and ben-recovery.json are in its feed's recovery folder.",
     "deals": "Sub-shards of 32 of the arena-gen6-gen7-capture-feed capsule at 8833c62, all inside azure shards 0-3 of 8. Lanes hold disjoint deals; they repeat deals of the azure non-BEN cohorts in another matchup.",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
+  },
+  "gen7_azure_selfplay": {
+    "authority": "Max, 2026-11-12 04:09 UTC (in chat): \"We can stop collecting on 5 and on 1; it's clear enough. Put those deals toward self play.\"",
+    "plan": "configs/round7-phase1-selfplay.json on feature/gen7-selfplay-20261112: 7s-32~6-32 one board in three, 7s-32~7s-32 two. Self-play boards are one table, carry no IMP comparison and are counted without a score.",
+    "source": "Commit 7780e5e, which also records gap forks and the guess-size fields. The cohort took over the deals azure2's phase 1 cohort had not played.",
+    "notice": "docs/gen7_selfplay_2026-11-12.md on that branch",
     "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
   }
 }
