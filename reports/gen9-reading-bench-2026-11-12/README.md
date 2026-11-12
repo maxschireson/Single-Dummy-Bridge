@@ -72,7 +72,8 @@ bots they are); `g9` = r9-32 told the scheme and its honesty (class term at 8x-3
 
 - Reading a declared scheme is worth about +0.06 tricks a board to declarer, +0.22 IMPs at 3.6 a trick, at honesty 0.8
   and at 0.5 alike (the two cells' difference is within their errors). This is E9-4 part 2's prediction.
-- It is the largest reading gain measured on the bench today, and the first to be clear of zero by two standard errors.
+- It is the largest reading gain over Gen 8 measured on the bench today; the only other one clear of zero by two
+  standard errors is E9-14's head on BEN 64's declarer play (+0.035 ± 0.014).
 - E9-4 part 1's +0.72 nats (std-80, tricks 1 to 6, pool 256) is +0.53 nats here over every trick; g9's rate
   (0.14 tricks a nat at every decision, scaled to declarer's) predicted 0.03 to 0.05 tricks.
 
