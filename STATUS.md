@@ -10,7 +10,7 @@ Generated 2026-11-12 08:08 UTC by `tools/workq.py` after a change by `sam`. Do n
 | dave | 0 | 1 | 0 | 2 | 0 | 4 |
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
-| sam | 1 | 1 | 0 | 1 | 0 | 4 |
+| sam | 2 | 1 | 0 | 0 | 0 | 4 |
 | will | 1 | 1 | 1 | 1 | 0 | 4 |
 
 ## Waiting for review
@@ -31,6 +31,7 @@ Generated 2026-11-12 08:08 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
+| [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 12:08 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will | will until 11-12 11:50 | leased | medium | 2026-11-12T16:00Z |  |
 | [G9-B7](tasks/G9-B7.md) | Replay reader: read a profile's calls by replaying its own bidder | bill | bill | submitted | high | 2026-11-12T11:00Z |  |
 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | dave | submitted | high | 2026-11-13T14:00Z |  |
@@ -44,7 +45,6 @@ Generated 2026-11-12 08:08 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave |  | open | high | 2026-11-13T12:00Z | after G9-D4, G9-D7, G9-B7, G9-S5 |
 | [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave |  | open | high | 2026-11-13T10:00Z | after G9-D4, G9-S5 |
-| [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
