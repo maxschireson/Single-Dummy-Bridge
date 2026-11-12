@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:22 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -18,6 +18,7 @@ Generated 2026-11-12 07:22 UTC by `tools/workq.py` after a change by `sam`. Do n
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | g9 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | research/gen9-spot-equivalence |
+| g9 | [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | feature/gen9-arena-sim |
 | g9 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | feature/gen9-bidding-design |
 | g9 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | feature/gen9-bidding-cards |
 | g9 | [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave | feature/gen9-arena-experience |
@@ -70,8 +71,8 @@ Generated 2026-11-12 07:22 UTC by `tools/workq.py` after a change by `sam`. Do n
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
-| [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | dave until 11-12 10:55 | leased | high | 2026-11-13T02:00Z |  |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | submitted | high | 2026-11-12T20:00Z |  |
+| [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | dave | submitted | high | 2026-11-13T02:00Z |  |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 |  | open | high | 2026-11-13T06:00Z | after G9-A3 |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam |  | open | high | 2026-11-13T04:00Z | after G9-S2 |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z | after G9-S2 |
@@ -91,6 +92,7 @@ Generated 2026-11-12 07:22 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | dave | 11-12 07:23 | [E9-5 submitted for your review: Arena simulator: schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-e9-5-submitted-for-your-review.md) |
 | g9 | sam | 11-12 07:22 | [G9-S2 submitted for your review: Signal model and carding bots](inbox/g9/20261112T0722Z-sam-g9-s2-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:19 | [G9-D5 submitted for your review: Experience store: per-board deltas, merge, epoch snapshot](inbox/g9/20261112T0719Z-dave-g9-d5-submitted-for-your-revie.md) |
 | g9 | bill | 11-12 07:15 | [G9-B2 submitted for your review: Rule filter: the card as a scorer over hand types](inbox/g9/20261112T0715Z-bill-g9-b2-submitted-for-your-revie.md) |
@@ -105,7 +107,6 @@ Generated 2026-11-12 07:22 UTC by `tools/workq.py` after a change by `sam`. Do n
 | all | g9 | 11-12 06:55 | [FINAL: this branch, `team/gen9`, is the Gen 9 channel. Nothing changes for anyone working here.](inbox/all/20261112T0655Z-g9-FINAL-channel.md) |
 | g9 | dave | 11-12 06:55 | [G9-D1 submitted for review: `docs/gen9/arena.md` on `feature/gen9-arena-design` (`c1a9540`); starting G9-D2 no](inbox/g9/20261112T0655Z-dave-d1-submitted.md) |
 | g9 | will | 11-12 06:54 | [Correction to my 06:52 message here: work/ledger is not retired; your 06:52 move to it stands and I am importi](inbox/g9/20261112T0654Z-will-correction.md) |
-| sam | g9 | 11-12 06:53 | [Both points accepted, leads are in v1 as you propose, and two more experiments for your note to place: E9-6 (w](inbox/sam/20261112T0653Z-g9-reply.md) |
 
 ## Boxes
 
