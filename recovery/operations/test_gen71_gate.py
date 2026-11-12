@@ -1,5 +1,7 @@
 import hashlib
 import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest import TestCase, main
 from unittest.mock import patch
 
@@ -36,6 +38,62 @@ class GateTests(TestCase):
             with self.assertRaises(ValueError):
                 g.observation(self.row(imps=value), 'a')
         self.assertIsNone(g.observation(self.row(pair='71s-32~6-32', imps=None), 'a'))
+        with self.assertRaisesRegex(ValueError, 'different common/native'):
+            g.observation(self.row(imps=1, own_imps=2), 'a')
+
+    def test_training_families_do_not_satisfy_minimum_board_gate(self):
+        rows = [g.observation(self.row(i=i), 'a') for i in range(1000)]
+        clean, excluded = g.eligible_rows(rows, {'family999'})
+        self.assertEqual(excluded, {'family999'})
+        self.assertEqual(len(clean), 999)
+        self.assertFalse(g.statistics_for(clean)['qualified'])
+
+    def test_registry_controls_membership_and_retired_revision(self):
+        registry = dict(sources=[
+            dict(group='gen7',branch='arena-gen71-live-feed',cohort='a'),
+            dict(group='gen7',branch='arena-gen71-retired-feed',cohort='b',revision='b'*40),
+            dict(group='gen7',branch='transfer/gen8-prototype-test',cohort='c'),
+            dict(group='gen7',branch='arena-gen7-pre7-test-feed',cohort='d'),
+            dict(group='gen6',branch='arena-gen6-feed',cohort='e')])
+        selected = g.registered_heads(registry, {'arena-gen71-live-feed':'a'*40,
+                                                'arena-gen71-retired-feed':'c'*40,
+                                                'arena-gen71-unregistered-feed':'d'*40})
+        self.assertEqual(selected, [('arena-gen71-live-feed','a'*40,'a'),
+                                    ('arena-gen71-retired-feed','b'*40,'b')])
+
+    def test_changed_registry_rebuilds_prior_inventory_and_filters_training(self):
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary);(root/'receipts').mkdir()
+            actors = {'71s-32':'actor71','7s-32':'actor7'}
+            manifest = dict(identity='mine',corpus_sha256='corpus',target=1,
+                            bots={k:dict(identity=v) for k,v in actors.items()})
+            trained='f'*64;raw=json.dumps([trained]).encode();checksum=hashlib.sha256(raw).hexdigest()
+            (root/'manifest.json').write_text(json.dumps(manifest))
+            (root/'evaluation-exclusions.json').write_bytes(raw)
+            (root/'evaluation-exclusion-audit.json').write_text(json.dumps(dict(manifest='mine',
+                corpus_sha256='corpus',training_list_sha256=checksum,corpus_training_overlap=0,distinct_corpus_families=1)))
+            previous = [g.observation(self.row(i=2), 'unregistered-old'),
+                        g.observation(self.row(i=3,family=trained), 'mine')]
+            (root/'gen71-gate-inventory.json').write_text(json.dumps(dict(actors=actors,rows=previous)))
+            registry = dict(sources=[dict(group='gen7',branch='arena-gen71-mine-feed',cohort='mine')])
+            current = [g.observation(self.row(), 'mine'),g.observation(self.row(i=1,family=trained), 'mine')]
+            output = 'a'*40+' refs/heads/gh-pages\n'+'b'*40+' refs/heads/arena-gen71-mine-feed\n'
+            with patch.object(g,'TRAINING_SHA256',checksum),patch.object(g.subprocess,'check_output',return_value=output), \
+                    patch.object(g,'fetch_bytes',return_value=json.dumps(registry).encode()), \
+                    patch.object(g,'fetch_registered_snapshot',return_value=dict(cohort='mine',rows=current)):
+                result=g.update(root,root)
+            inventory=json.loads((root/'gen71-gate-inventory.json').read_text())
+            self.assertEqual(result['boards'],1)
+            self.assertEqual(result['excluded_training_families'],1)
+            self.assertEqual(len(inventory['rows']),1)
+            self.assertFalse(result['qualified'])
+            self.assertFalse((root/'STOP').exists())
+
+    def test_exclusion_list_integrity_required(self):
+        with TemporaryDirectory() as temporary:
+            root=Path(temporary);(root/'evaluation-exclusions.json').write_text('[]')
+            with self.assertRaisesRegex(ValueError,'checksum'):
+                g.exclusion_list(root,{})
 
     def fixture(self, ready=True, corrupt=False, wrong_actor=False):
         actors = {'71s-32': '71actor', '7s-32': '7actor'}

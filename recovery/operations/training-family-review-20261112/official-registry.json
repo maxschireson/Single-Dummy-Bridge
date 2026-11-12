@@ -1,0 +1,1108 @@
+{
+  "schema": "arena-gen6-source-registry-v1",
+  "phase": "fast-selfplay-and-ben16",
+  "sources": [
+    {
+      "key": "gen71codexcompare",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · Codex policy comparison and Gen6",
+      "branch": "arena-gen7-1-compare-codex-20261112-feed",
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+    },
+    {
+      "key": "gen71independent",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · independent policy comparison, Gen6 and BEN",
+      "branch": "arena-gen71-independent-feed",
+      "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+    },
+    {
+      "key": "gen7independentselfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen7 independent · completed v4 self-play and anchors",
+      "branch": "arena-gen7-independent-selfplay-feed",
+      "cohort": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00",
+      "retired": true,
+      "revision": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d"
+    },
+    {
+      "key": "gen7codexselfplaycapture",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.0 · Codex completed self-play with gap capture",
+      "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+      "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "retired": true,
+      "revision": "09950642e0d40dc68fecf511569bb72935ba7782"
+    },
+    {
+      "key": "gen7codexselfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex initial self-play (capture incomplete)",
+      "branch": "arena-gen7-selfplay-codex-20261112-feed",
+      "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "retired": true,
+      "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638"
+    },
+    {
+      "key": "gen7independentphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen7 independent · completed five-pair phase1 cohort",
+      "branch": "arena-gen7-phase1-independent-feed",
+      "cohort": "819d904b4f1c3b98fe2835c74188834b3f6165aff7c8914c412e26c1f1180518",
+      "retired": true,
+      "revision": "fe58353807589d4f14965aa96e2f9ec2abe1462a"
+    },
+    {
+      "key": "gen7codexphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex completed phase 1 anchors",
+      "branch": "arena-gen7-phase1-codex-20261112-feed",
+      "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "retired": true,
+      "revision": "dfe3233dec356e48da065702964892354e0db16c"
+    },
+    {
+      "key": "gen6codexfast",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen6 primary · fast self-play and BEN16",
+      "branch": "arena-gen6-fast-selfplay-primary-feed",
+      "cohort": "4e60d9cd921b2ea25d800be0d91cc9678f8ab86aca86636549d41ff9c1158b6e"
+    },
+    {
+      "key": "gen6codexv7capture",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen6 primary · completed mixed capture cohort",
+      "branch": "arena-gen6-codex-v7-capture-feed",
+      "cohort": "203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a",
+      "retired": true,
+      "revision": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98"
+    },
+    {
+      "key": "gen6codexbenfollowups",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · completed BEN followup cohort",
+      "branch": "arena-gen6-codex-ben-followups-feed",
+      "cohort": "73519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60",
+      "retired": true,
+      "revision": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be"
+    },
+    {
+      "key": "gen6",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · primary Codex collector",
+      "branch": "arena-gen6-codex-feed",
+      "cohort": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea",
+      "retired": true,
+      "revision": "20a82a253bc4f90a396a3f8991c935e4530df7f0"
+    },
+    {
+      "key": "gen6chatgpt",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · ChatGPT fast self-play and BEN16",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5"
+    },
+    {
+      "key": "gen6independent",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen6 independent · completed fast self-play and BEN16",
+      "branch": "arena-gen6-fast-selfplay-independent-feed",
+      "cohort": "63d7bee704eae61f070af1dca0476e2171b66b4fb084a1b78c11df18d76ed5e7",
+      "retired": true,
+      "revision": "937792a17084d0bbaa6a044e9b6e0f3aaeb80483"
+    },
+    {
+      "key": "gen6ben16completed",
+      "group": "gen6",
+      "retired": true,
+      "revision": "ca95def619269e2eefaba8263134ff8154ff1171",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · completed medium vs BEN16 cohort",
+      "branch": "arena-gen6-medium-ben-feed",
+      "cohort": "9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284"
+    },
+    {
+      "key": "gen6initial",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "retired": true,
+      "revision": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+      "environment": "codex",
+      "name": "Gen 6 · retained early compatible games",
+      "branch": "arena-gen6-independent-feed",
+      "cohort": "497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63"
+    },
+    {
+      "key": "gen6chatgptearly",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "retired": true,
+      "revision": "f7834f2a1f5326acbb7125c06bca7f5b9f8a3040",
+      "environment": "chatgpt",
+      "name": "Gen 6 · retained early ChatGPT games",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177"
+    },
+    {
+      "key": "gen6chatgptcompleted",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · ChatGPT completed medium/BEN16 cohort",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035",
+      "retired": true,
+      "revision": "382fbceed0984d0c941f4ee737d5a9d451dfdf09"
+    },
+    {
+      "key": "gen6beforecapture",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · compatible results before capture",
+      "branch": "arena-gen6-ben-expansion-feed",
+      "cohort": "77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6",
+      "retired": true,
+      "revision": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2"
+    },
+    {
+      "key": "gen6chatgptben32completed",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · ChatGPT compatible results before capture",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb",
+      "retired": true,
+      "revision": "b23d56bb826868703e7cc35a065cf81545728a3b"
+    },
+    {
+      "key": "gen6chatgptcapturecompleted",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · ChatGPT completed mixed capture cohort",
+      "branch": "arena-gen6-chatgpt-feed",
+      "cohort": "8977f60a5f8901562b38767ad1c6a440e5ec169872c1f7ad55b282964364293b",
+      "retired": true,
+      "revision": "8019191d1172f7a94b3428b738423ab650aa7dc9"
+    },
+    {
+      "key": "gen6capturemixedcompleted",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen6 independent · completed mixed capture cohort",
+      "branch": "arena-gen6-gen7-capture-feed",
+      "cohort": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb",
+      "retired": true,
+      "revision": "8833c62f83687293ad6b3ebfa10b58d1a25961f7"
+    },
+    {
+      "key": "gen6cloudselfplay",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · cloud fast self-play only",
+      "branch": "arena-gen6-fast-selfplay-cloud-feed",
+      "cohort": "7ce4bf4a07ee08d6bd89fb25a927fc119ef79cd77217b0960f980b01a7dec0c9"
+    },
+    {
+      "key": "gen6extraselfplay",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen 6 · additional fast self-play only",
+      "branch": "arena-gen6-extra-selfplay-feed",
+      "cohort": "55f11f996cfb2846436a68246e17819f5fff5fadd7030335bd2f1df5df82255c"
+    },
+    {
+      "key": "gen6selfplay19bbdce5",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "chatgpt",
+      "name": "Gen 7.1 · stream 19bbdce5 comparisons",
+      "branch": "arena-gen71-19bbdce5-20261112-feed",
+      "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
+    },
+    {
+      "key": "gen6newselfplay",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · completed Codex fast self-play",
+      "branch": "arena-gen6-fast-selfplay-codex-20261111",
+      "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "retired": true,
+      "revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0"
+    },
+    {
+      "key": "gen7azure1phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure1 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure1-feed",
+      "cohort": "002cbafd32e1f74b57021c15ba7db2841aaf63b002822246caac9bb443b50027"
+    },
+    {
+      "key": "gen7azure2phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure2-feed",
+      "cohort": "10772c07d1a778eae7481ac843d9c0d351fc3689b3bd1e5c32eb8b647d167e0b"
+    },
+    {
+      "key": "gen7azure3phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure3-feed",
+      "cohort": "d75a644daf203c58189edcc0ec50c041bfc1ed373607625dbdad88b63fe4dac5"
+    },
+    {
+      "key": "gen7azure4phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure4 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure4-feed",
+      "cohort": "869ada89eaf3c23a392f3fdcd100a1cc4a35e456bf499194cc7572e448379097"
+    },
+    {
+      "key": "gen7azure2ben16l1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 1)",
+      "branch": "arena-gen7-phase1-azure2-ben16-1-feed",
+      "cohort": "21e33977501e564fb1a43fe2ed843ce1142891a303362ff74afa6383b6940d3f"
+    },
+    {
+      "key": "gen7azure2ben16l2",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 2)",
+      "branch": "arena-gen7-phase1-azure2-ben16-2-feed",
+      "cohort": "31a6f480a65f9038902c378a62be3817c226c1f97f26454eeaa2b18d1b59a7a2"
+    },
+    {
+      "key": "gen7azure2ben16l3",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 3)",
+      "branch": "arena-gen7-phase1-azure2-ben16-3-feed",
+      "cohort": "4dfe193fae341dd8bf9b7b827f724c38172d78eb6f38c6fa6d0f49bb4d32b8b2"
+    },
+    {
+      "key": "gen7azure2ben16l4",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 4)",
+      "branch": "arena-gen7-phase1-azure2-ben16-4-feed",
+      "cohort": "9d0b3e3907020670a01461af70875312b34592357de1ed584b4ceef66410dd59"
+    },
+    {
+      "key": "gen7azure2ben16l5",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 5)",
+      "branch": "arena-gen7-phase1-azure2-ben16-5-feed",
+      "cohort": "77a6611cc6dc9d47a4426c29d48f706b153586b5b38401d9dba441b2a1f118bb"
+    },
+    {
+      "key": "gen7azure2ben16l6",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 6)",
+      "branch": "arena-gen7-phase1-azure2-ben16-6-feed",
+      "cohort": "52c9d7f1b547fa515683850b813bbb16f1907c804550d247f8c94e5fd3b4bb04"
+    },
+    {
+      "key": "gen7azure2ben16l7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 7)",
+      "branch": "arena-gen7-phase1-azure2-ben16-7-feed",
+      "cohort": "55b0be4a60dc9a1e0f8e3b8d8c377c8722c6f9a4f171ab0d3ac37ea22a14b42f"
+    },
+    {
+      "key": "gen7azure2ben16l8",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (BEN 16, lane 8)",
+      "branch": "arena-gen7-phase1-azure2-ben16-8-feed",
+      "cohort": "efdf7bec3f5caa98a93830c59a1fdbec4f681897139b55b32234ce8703c9ebdb"
+    },
+    {
+      "key": "gen7azure3ben64l1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 1)",
+      "branch": "arena-gen7-phase1-azure3-ben64-1-feed",
+      "cohort": "0a5dd6cb578ddb654e9a64f964efde8d13ab7c7a7a30a74acb149b83bde80f13"
+    },
+    {
+      "key": "gen7azure3ben64l2",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 2)",
+      "branch": "arena-gen7-phase1-azure3-ben64-2-feed",
+      "cohort": "441933e79ab25e82bc1f2e740945c0139d56b8c5b882d194dabd35cc10a84b9b"
+    },
+    {
+      "key": "gen7azure3ben64l3",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 3)",
+      "branch": "arena-gen7-phase1-azure3-ben64-3-feed",
+      "cohort": "7100832b460724f3f08c295132179165ad929a512b79d1c7429da011cfde7123"
+    },
+    {
+      "key": "gen7azure3ben64l4",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 4)",
+      "branch": "arena-gen7-phase1-azure3-ben64-4-feed",
+      "cohort": "c408ecbb2b48b870137eaac93522afbd95a7996f86a0a1bbcfbadc38955c4844"
+    },
+    {
+      "key": "gen7azure3ben64l5",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 5)",
+      "branch": "arena-gen7-phase1-azure3-ben64-5-feed",
+      "cohort": "c7ea0350a69e1ee5074e954f1ce194b6a9d925362c23c3c6594b997c1c555611"
+    },
+    {
+      "key": "gen7azure3ben64l6",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 6)",
+      "branch": "arena-gen7-phase1-azure3-ben64-6-feed",
+      "cohort": "b0c53930ed127e6d2a0ba493a5e94b4d5b4ed01b6224e272faec2e1097eba446"
+    },
+    {
+      "key": "gen7azure3ben64l7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 7)",
+      "branch": "arena-gen7-phase1-azure3-ben64-7-feed",
+      "cohort": "4797ea730e8eafc027d67cc0a92517d8eee94be924865d536d39c547216277bb"
+    },
+    {
+      "key": "gen7azure3ben64l8",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (BEN 64, lane 8)",
+      "branch": "arena-gen7-phase1-azure3-ben64-8-feed",
+      "cohort": "56c7bff8f4a3d38ba836baa26cc59c057b8727fd9784ae61dfe2bedeb10982c1"
+    },
+    {
+      "key": "gen7azure2selfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 standard self-play and Gen 6 comparison",
+      "branch": "arena-gen7-phase1-selfplay-azure2-feed",
+      "cohort": "c50412d34108b09cb5bc2cc3db45ce6764fae7901a878e7bca13117c21d6900a"
+    },
+    {
+      "key": "gen71azure3ben64f1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 1)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+      "cohort": "cafb5c90115ef7b57fd45e83e3372bc2721bd2b56aa8cf6b7f0ed08bbd54759a"
+    },
+    {
+      "key": "gen71azure3ben64f2",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 2)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+      "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
+    },
+    {
+      "key": "gen71azure3ben64f3",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 3)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+      "cohort": "5739d5b18d1246d7162d89aa20cb22d5cd3c4db50fe424023023fca9f2cbaaad"
+    },
+    {
+      "key": "gen71azure3ben64f4",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 4)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+      "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
+    },
+    {
+      "key": "gen71azure3ben64f5",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 5)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+      "cohort": "b1668f080ab8f23e276a4a9bc16d59b7fd526de1969adfd6fc987662cf64406b"
+    },
+    {
+      "key": "gen71azure3ben64f6",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 6)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+      "cohort": "050b664fdf3d7abd3622eb51e517e7a083b9ab34b24cc984247b1c954c2a9c44"
+    },
+    {
+      "key": "gen71azure3ben64f7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 7)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+      "cohort": "dd96458b675cbc6a76841206baab2b614b7b913ff0063891fd2b6a471d6eb59b"
+    },
+    {
+      "key": "gen71azure3ben64f8",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 8)",
+      "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+      "cohort": "6e37908f191d657bc18101ad79ec9d85d3af39ae3cde64741e182ba600a1e1cd"
+    },
+    {
+      "key": "gen71azure2vs70f",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure2 against Gen 7.0, every board",
+      "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+      "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
+    },
+    {
+      "key": "gen7azure1pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure1 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure1-feed",
+      "cohort": "fa01e3cdd490b43a9653278a9b130a5421cdd91236c74a8f79e51538a0358936",
+      "retired": true,
+      "revision": "86385be46eb54bca35a8e04697d412cb64eb6467"
+    },
+    {
+      "key": "gen7azure2pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure2-feed",
+      "cohort": "91cdcac2811559de599bf077a88dfb81fbd0b0dbc733f7c6d4abb4bddd695294",
+      "retired": true,
+      "revision": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39"
+    },
+    {
+      "key": "gen7azure3pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure3-feed",
+      "cohort": "4e902762c000eb74f29add036243ca1ed78fffb4d3e26b4d5a1778e59ad62cae",
+      "retired": true,
+      "revision": "8c854a58b27729e97bd809484a7e0850cf855550"
+    },
+    {
+      "key": "gen7azure4pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure4 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure4-feed",
+      "cohort": "9721e6b687b8202221d16e2fe957b66c5f258b33308a3663262bfe3cb49400fb",
+      "retired": true,
+      "revision": "2968b84979c87ccb4102d164013e62ce2cf60c07"
+    },
+    {
+      "key": "gen7extraselfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "chatgpt",
+      "name": "Gen7 additional phase1 non-BEN",
+      "branch": "arena-gen7-phase1-extra-feed",
+      "cohort": "83494027403ef3bcf9c0e26dbbb593e98077410d78dbdaf530fe86cf1fe09204",
+      "retired": true,
+      "revision": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac"
+    },
+    {
+      "key": "gen7cloudphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "chatgpt",
+      "name": "Gen 7 · cloud phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-cloud-feed",
+      "cohort": "815f21b54b23f6612b89425f721cfc5941add53ed2d6a0f3aca27c5a45f73236",
+      "retired": true,
+      "revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701"
+    },
+    {
+      "key": "gen6selfplay19bbdce5retired",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen6 · completed self-play stream 19bbdce5",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "cohort": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "retired": true,
+      "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24"
+    }
+  ],
+  "activation": {
+    "epoch": 1794374109.4813075,
+    "result": {
+      "qualified": true,
+      "metric": "native partnership bidding / total IMPs per board",
+      "minimum_deals": 200,
+      "records": 370,
+      "estimate": {
+        "mean": 0.5405405405405406,
+        "se": 0.2587074663637703,
+        "n": 370,
+        "low": 0.031814638544025886,
+        "high": 1.0492664425370553,
+        "alpha": 0.05,
+        "informative": true
+      },
+      "inference_note": "Operational gate uses the existing dashboard exploratory paired Student-t 95% interval, not an always-valid confidence sequence."
+    },
+    "snapshots": [
+      {
+        "branch": "arena-gen6-codex-feed",
+        "commit": "19cf2f851d14efa9874268214174c834313f67a5",
+        "cohort": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea",
+        "records": 155,
+        "generated_epoch": 1794374063.7296224
+      },
+      {
+        "branch": "arena-gen6-medium-ben-feed",
+        "commit": "ca95def619269e2eefaba8263134ff8154ff1171",
+        "cohort": "9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284",
+        "records": 145,
+        "generated_epoch": 1794373836.3427587
+      },
+      {
+        "branch": "arena-gen6-chatgpt-feed",
+        "commit": "923eb8b32ddaa7d17e204306792d77724919011f",
+        "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035",
+        "records": 70,
+        "generated_epoch": 1794373528.2232208
+      }
+    ],
+    "plan_sha256": "80c5c7fa791600833fd728708201b570ef933891308b78e04adeb950bf6d0b31"
+  },
+  "ben_upgrade": {
+    "samples": 64,
+    "medium_share": 0.075,
+    "fast_ben16_share": 0.075,
+    "status": "active",
+    "epoch": 1794376512.0777361,
+    "gap_fork": {
+      "per_band": 2,
+      "bands": [
+        0.125,
+        0.5
+      ],
+      "max_cpu_share": 1.5
+    },
+    "replaced_samples": 32
+  },
+  "collector_updates": {
+    "gen6independent": {
+      "status": "fast-only collection active",
+      "updated_epoch": 1794383788.2334263,
+      "pair_weights": {
+        "6-32~6-32": 37,
+        "6-32~ben": 3
+      },
+      "manifest": "63d7bee704eae61f070af1dca0476e2171b66b4fb084a1b78c11df18d76ed5e7",
+      "retired_capture_records": 725,
+      "retired_capture_revision": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+      "gap_fork": {
+        "per_band": 2,
+        "bands": [
+          0.125,
+          0.5
+        ],
+        "max_cpu_share": 1.5
+      },
+      "authority": "5b020bcd86ac32fc63559732832e57e796e00121",
+      "source_state": "/workspace/work/gen6-fast-selfplay-cutover.json"
+    },
+    "gen6chatgpt": {
+      "status": "Stopped2015; missing local workspace restored and frozen checkpoint verified; no restart or adoption",
+      "pair_weights": {
+        "6-32~6-32": 37,
+        "6-32~ben": 3
+      },
+      "manifest": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
+      "retired_capture_records": 550,
+      "retired_capture_revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
+      "preflight": "8 lifecycle/report/play tests; 6 real-model plays per old/new lifecycle under 3normal+1BEN load matched cards, probabilities, seeds, auctions and scores; 3 distinct BEN processes exited0; production621 and1082 replay+SHA+same play fingerprints passed.",
+      "source_note": "Original 8128 corpus indices/seeds and frozen actors/source unchanged. 656 exact prior receipts retained and pinned in new runtime continuation; no duplicate dashboard source for prior075a. One spawned BEN board per process, parent-observed exit status required before committing; no retry loop.",
+      "full_checkpoint": "0ca25a4049907d8a67a8cfd1cec6922688ccd8ab",
+      "full_checkpoint_records": 2015,
+      "full_checkpoint_verified_files": 17323,
+      "operator_handoff": "LATEST OVERSIGHT Nov12 ~07:13 UTC: Reverified all2015episode/receiptSHA pairs,656retained and frozen generation; failure003062 SHA unchanged c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b. Restored root three lockfiles absent/noSTOP, heartbeat and capture status stale Nov11; no production launch or new records. Capture upperbound1786 below2000. Free56.36GB decimal (~52.49GiB), run DDS caches absent. Dashboard e9a31c71eacfb0371961bedfcd6cda0d192561fa verified104selectedhashes+actualref, remote2015/failure1. Latest verifiedFULL remains0ca25a4049907d8a67a8cfd1cec6922688ccd8ab (17323files); no new FULL needed for unchanged diagnostic/runtime evidence. No new crash/scale/integration test this pass. Main62bd8a, PR15/13/9/4draft, local37/3unchanged. Fresh box/coordination06:51 reports other-owner Azure Gen7.1 in-sample cohorts closed and fresh-family successors launched; all future7.1 preparation must exclude32,205training families from independent validation list; 06:47pooledgate177boards CIcrossingzero, notpassed. Gen8/9 research and resource assignments remain other-owner scope; no localGen6cutover inferred. Preserve all prior gates and production stop; NEXT robust ownership/cleanup, full-size scaling, accepted-marker-only scanner diagnostic integration. Oversight continues; target10000eligible notcomplete.\n\nLATEST V4 SUPERVISOR LOSS Nov12 ~06:00 UTC: Production65a stopped2015=1786self229BEN, all2015pairs+656retained+frozen source/runtime/models/corpus reverified. Failure003062 SHA c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b intact. Restored root has no lock files/noSTOP; stale heartbeat, no production launch. Candidate/retired siblings remain absent after workspace restore; archived evidence preserved, never launch them. New diagnostics/ben-rng-supervisor-v4: supervisor holds sole write end of anonymous pipe; independent guard detects EOF and kills dedicated collector process group. Actual3normal+BEN futures, prior4 accepted seed; supervisor SIGKILL after private BEN2561 RNG advance before acceptance. Guard cleanup passed before observer emergency cleanup; all7 recorded collector/child identities inactive (zombies inactive/notreaped). Acceptedprefix7 retained priorRNG, snapshot/fresh-process continuation8, all8fullreplay and exporter8, finalRNGexact vsV3.1. Four newly completed/four retained diagnostic records; zero productioncommits. Captured fingerprints7/8 (new3/4), self1934 differs again; gate NOT waived. V4 protocol e6e29e8c36ba4c18bf7d95b7a34290d251b73704b3baa14a0dfd81e0572805eb unchanged with driver binding. Independent guard must survive; NOT guard+supervisor loss/hostdeath/powerloss/escapedgroups/productionintegration. Group-ID reuse risk documented. NEXT robust ownership/cleanup design, full-size scale, accepted-marker-only production scanner integration; no adoption. Original deadserver RNG unavailable; isolated protocol NOT unchanged-production equivalence. Do NOT promote1bd/change liveRNG/clear3062/restart unchanged. Dashboard9546f81f37119c3189958e61cd1c41fcd1391a7c verified104. NEW FULL0ca25a4049907d8a67a8cfd1cec6922688ccd8ab verifiedALL17323inventoryhashes+actualref,2015snapshotSHA pairs and fetchedstate2015/failures1+diagnosticresult; supersedes3101988, restore65a; FULL supersedes dashboard. No diagnostic/publisherjobs remain;53.71GBfree. Main62bd8a,PR15/13/9/4draft. New Max05:42 instruction relayed05:44: existingGen7 collectors upgrade7.1 effective06:00 unlessrevoked, selfplay share becomes71s-32~7s-32 until at least1000 and95%CIlead; plans9f5ec19, enginepreflight pending atlastboard05:50. No localGen6cutover inferred; otherowners untouched. Local37/3,target8128+1863historic+9freshtopup,totaleligible3878 unchanged.",
+      "dashboard_checkpoint": "e9a31c71eacfb0371961bedfcd6cda0d192561fa",
+      "dashboard_checkpoint_records": 2015,
+      "independent_server_lifecycle_review": {
+        "status": "qualified-not-exact-pass",
+        "epoch": 1794422854.5177703,
+        "candidate_manifest": "1bd71e5fd0f03fb834ed6cfc4a15502fdcf1e49594e1d9c70a372431ec4e3bd5",
+        "production_commits": 0,
+        "production_launched": false,
+        "plays_per_mode": 6,
+        "ben_index": 3062,
+        "self_indices": [
+          1930,
+          1931,
+          1932
+        ],
+        "baseline_fingerprints": [
+          "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+          "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+          "0c5805cfbcd3a7442bbe613aa08b4f0957a8d64668aa29b9f5b960e27ee04121",
+          "20e4d7cf1e178be62dcc3b2dd7c3da9fb4e612bb93cb96b1864da911a9ce2b72",
+          "6f457b028bedf9121dc38bad0220461287f95ee69dbb36f795eb5f53af0ba3e1",
+          "32eac2180122555e6f1a5c12cc3b20a1ec7126c6fc7197157d24a9e183c625a4"
+        ],
+        "candidate_fingerprints": [
+          "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+          "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+          "808f276724704076173af79fca16290ae4af8a6595e755e99cd5e7a13cd89f2d",
+          "20e4d7cf1e178be62dcc3b2dd7c3da9fb4e612bb93cb96b1864da911a9ce2b72",
+          "6f457b028bedf9121dc38bad0220461287f95ee69dbb36f795eb5f53af0ba3e1",
+          "32eac2180122555e6f1a5c12cc3b20a1ec7126c6fc7197157d24a9e183c625a4"
+        ],
+        "finding": "All three candidate BEN fingerprints match baseline runs 1 and 2. Baseline run 3 alone swapped C8 and C5 at table-3 root plies 19 and 28 (BEN South); all scores, auctions, seeds and other captured fields identical. All three self-play fingerprints match. Thus baseline itself varies; do not label all six exact-equivalence passed.",
+        "tests": {
+          "server_lifecycle": "3 cases passed: intentional stop, SIGKILL, startup exit7",
+          "existing_executor": "3 unittest tests passed including exceptions, exit7, SIGKILL, large transfers and serialization",
+          "server_result_gate": "unexpected server exits 0,7,-9 reject otherwise successful worker result; intentional shutdown accepts"
+        },
+        "verified_pairs": 2015,
+        "retained_identities": {
+          "075a": 656,
+          "65a": 1359
+        },
+        "frozen_verified": true,
+        "original_failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+        "ownership_note": "Separate preparation is active in this candidate checkout. This independent review will not alter STOP, launch production, or overlap its publisher. Review the baseline nondeterminism before claiming exact equivalence."
+      }
+    },
+    "gen6cloudselfplay": {
+      "status": "Stopped at1672; preserved failure001673; successor gen7cloudphase1",
+      "pair_weights": {
+        "6-32~6-32": 1
+      },
+      "workers": 0,
+      "target": 25000,
+      "source_commit": "b89d8d58a43896b709c47708f06bfe518605f6fc",
+      "preflight": "28 tests; 2 real-model boards; root/tie-audit card equivalence with gap capture on/off",
+      "gap_fork": {
+        "per_band": 2,
+        "bands": [
+          0.125,
+          0.5
+        ],
+        "max_cpu_share": 1.5
+      },
+      "completed": 1672,
+      "successor": "gen7cloudphase1"
+    },
+    "gen6codexfast": {
+      "status": "Primary fast-only cutover preflight passed; supervised collector and publisher started",
+      "manifest": "4e60d9cd921b2ea25d800be0d91cc9678f8ab86aca86636549d41ff9c1158b6e",
+      "updated_epoch": 1794388574.9385557,
+      "pair_weights": {
+        "6-32~6-32": 37,
+        "6-32~ben": 3
+      },
+      "source_commit": "57d3633a07fafa30121667d7618fc2d3c337ad1f",
+      "retired_mixed_records": 1134,
+      "retired_mixed_revision": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98"
+    },
+    "gen6selfplay19bbdce5": {
+      "status": "Gen7.1 general-collector push applied; validated successor collecting",
+      "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+      "pair_weights": {
+        "71s-32~6-32": 1,
+        "71s-32~7s-32": 2
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "target": 18225,
+      "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+      "source_base": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+      "authority": "Max's docs/gen71_2026-11-12.md notice explicitly addresses all general arena collectors, effective06:00UTC; applied under this user's standing delegation.",
+      "predecessor": {
+        "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+        "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+        "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+        "completed": 6775,
+        "retired": true
+      },
+      "initial_target": 25000,
+      "preflight": "67 Gen7 tests +11 gap-fork tests; four real-model boards,8 roots,38 gap forks,148 tree consultations,no budget overruns",
+      "instructions": "Follow current general collector notices. Remain in the comparison plan until pooled71s-32~7s-32 has>=1000 boards and a positive95% lower bound, and the authorized self-play plan is opened."
+    },
+    "gen6newselfplay": {
+      "status": "Retired cleanly for authorized Gen7 phase1; all 3710 completed deals retained",
+      "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "pair_weights": {
+        "6-32~6-32": 1
+      },
+      "workers": 0,
+      "ben_workers": 0,
+      "target": 25000,
+      "source_feed_revision": "13e0fc7b884ecfa546f693a9bac0d92b520f1247",
+      "preflight": "Two real-model full-game boards passed replay, all Gen6 phases, tie audits, gap forks and capture checks.",
+      "excluded_families": 13807,
+      "instructions": "Hourly GitHub checks enabled; follow current instructions addressed to collection workers in general.",
+      "capture_report": {
+        "status": "completed",
+        "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+        "publication_revision": "aca896ccce9cd9c717964eab5741f85d03897466",
+        "path": "recovery/gen7-capture-report.json",
+        "sha256": "aaa5bb78c935081dca59b38436f05a56e42cdb0bf7ac97f586d4ee91516f70c6",
+        "inputs_path": "recovery/gen7-capture-inputs.json",
+        "inputs_sha256": "b710ef7ceb70afffe7164255047d7726a761f4dd7ca79d0dd6ad921559162180",
+        "root_tables": 2000,
+        "episodes_scanned": 2003,
+        "gap_forks": 11838,
+        "gap_forks_per_root": 5.919,
+        "gap_cpu_over_root_cpu": 0.6239061691088384,
+        "residual_within_table_icc": 0.02088426833597948,
+        "before_rate_comparison_available": false,
+        "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/aca896ccce9cd9c717964eab5741f85d03897466/recovery/gen7-capture-report.json"
+      },
+      "completed": 3710,
+      "final_revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+      "successor": "gen7codexphase1"
+    },
+    "gen7codexphase1": {
+      "status": "Drained after Max04:09 anchor-stop directive;564 completed boards preserved",
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~5RZ32": 1,
+        "7s-32~1": 1
+      },
+      "workers": 0,
+      "ben_workers": 0,
+      "source_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+      "source_completed_preserved": 3710,
+      "preflight": "54 Gen7 tests passed; 2 full-game boards of each of 3 pairs; 3 fleet guard tests; first 9 production records replay-validated",
+      "pooled_target_per_pair": 2000,
+      "phase2_authorized": false,
+      "updated_epoch": 1794451880.966539,
+      "completed": 564,
+      "final_revision": "dfe3233dec356e48da065702964892354e0db16c",
+      "successor": "gen7codexselfplay",
+      "capture_status": "Gap forks and guess-size/best-share were absent in these frozen runtime versions; root trajectories and tie/tree audits preserved. Superseded by capture-enabled cohort.",
+      "capture_incomplete": true
+    },
+    "gen7cloudphase1": {
+      "status": "Drained at67 per Max04:09 stop Gen5/Gen1; awaiting tested Gen7 standard selfplay handoff",
+      "manifest": "815f21b54b23f6612b89425f721cfc5941add53ed2d6a0f3aca27c5a45f73236",
+      "source_commit": "522eda6d5c13230a541ea40dc9cae497ed4c6088",
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~5RZ32": 1,
+        "7s-32~1": 1
+      },
+      "workers": 0,
+      "ben_workers": 0,
+      "shard": "4/8",
+      "source_capsule": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+      "preflight": "55 Gen7 tests, 11 gap-fork tests, six real-model boards passed",
+      "pooled_target_per_pair": 2000,
+      "phase2_authorized": false,
+      "completed": 67,
+      "final_revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+      "remaining_owned_deals": 2746,
+      "selfplay_handoff": "feature/gen7-selfplay-20261112 (not yet published at04:25)",
+      "by_pair": {
+        "7s-32~5RZ32": 23,
+        "7s-32~6-32": 22,
+        "7s-32~1": 22
+      }
+    },
+    "gen7codexselfplay": {
+      "status": "Drained32 completed records after capture omission diagnosis; preserved without modifying frozen data",
+      "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "source_commit": "05d2cd82a9078bdd47a0ee312122c957367758ec",
+      "authority": {
+        "issued": "2026-11-12T04:09:00Z",
+        "board_commit": "6ecc02f045b783ceb91525acad816bada86b55ea",
+        "plan": "configs/round7-phase1-selfplay.json"
+      },
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~7s-32": 2
+      },
+      "workers": 0,
+      "ben_workers": 0,
+      "preflight": "59 Gen7 tests;two real-model boards of each pair;5 fleet-guard tests;single-table selfplay with null IMPs",
+      "preserved_parent_deals": 564,
+      "preserved_gen6_deals": 3710,
+      "comparison_pooled_target": 2000,
+      "broad_phase2_authorized": false,
+      "capture_status": "Gap forks and guess-size/best-share were absent in these frozen runtime versions; root trajectories and tie/tree audits preserved. Superseded by capture-enabled cohort.",
+      "capture_incomplete": true,
+      "completed": 32,
+      "final_revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+      "successor": "gen7codexselfplaycapture"
+    },
+    "gen7codexselfplaycapture": {
+      "status": "Retired cleanly for authorized Gen7.1; all 437 completed deals preserved",
+      "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "source_commit": "317cea385dad6bdceda266ec0b750dc48c98340f",
+      "source_pr": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/15",
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~7s-32": 2
+      },
+      "workers": 0,
+      "ben_workers": 0,
+      "preflight": "59 Gen7 tests,11 gap capture tests,5 guard tests;4 real-model boards,35 gap forks,137 tree consultations,no budget overruns",
+      "single_table_selfplay_null_imps": true,
+      "preserved_parent_deals": 32,
+      "preserved_earlier_phase1_deals": 564,
+      "preserved_gen6_deals": 3710,
+      "comparison_pooled_target": 2000,
+      "broad_phase2_authorized": false,
+      "completed": 437,
+      "by_pair": {
+        "7s-32~7s-32": 292,
+        "7s-32~6-32": 145
+      },
+      "final_revision": "09950642e0d40dc68fecf511569bb72935ba7782",
+      "successor": "gen71codexcompare",
+      "restart_authorized": false
+    },
+    "gen71codexcompare": {
+      "status": "Validated Gen7.1 comparison mix; supervised launch",
+      "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+      "authority": "Max05:42 Nov12 effective06:00; all arena collectors, relayed05:44 and reaffirmed05:57 on box/coordination",
+      "plan": "configs/round71-compare.json",
+      "pair_weights": {
+        "71s-32~6-32": 1,
+        "71s-32~7s-32": 2
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "target": 20257,
+      "policy_v41_sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed",
+      "preflight": "67 Gen7 tests;11 gap tests;41 Gen5/6 tests;6 pooled-gate tests;4 real-model boards,45 gap forks,186 tree consultations,zero budget overruns",
+      "preserved_gen70_capture_deals": 437,
+      "preserved_earlier_gen7_deals": 596,
+      "preserved_gen6_deals": 3710,
+      "gate": {
+        "pair": "71s-32~7s-32",
+        "pooled_minimum_distinct_boards": 1000,
+        "require_ci95_lower_above_zero": true,
+        "condition": "common",
+        "selfplay_launch_enabled": false,
+        "published_opening_required": true,
+        "external_research_excluded": true
+      },
+      "gen8_authorized": false
+    }
+  },
+  "requested_match_mix": {
+    "authority": "Max, 2026-11-11: stop all old bots and all Gen6 medium; only fast self-play and a little fast versus BEN16",
+    "plan": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/main/configs/round6-fast-selfplay.json",
+    "pair_weights": {
+      "6-32~6-32": 37,
+      "6-32~ben": 3
+    },
+    "instruction": "All producer owners: stop allocating old-bot and ALL medium matches now; drain, preserve historical results, prepare new fast-only cohort. Retain Gen7 capture. Do not resume previous schedules.",
+    "status": "Primary and independent collectors applied the fast-only plan; inspect current feed health for other producers"
+  },
+  "historic_gate_branch": "arena-gen6-codex-ben-gate",
+  "gen7_phase1": {
+    "authority": "Max, 2026-11-12 02:09 and 02:16 UTC; applies here under standing delegation to collection-worker instructions",
+    "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+    "plan": "configs/round7-candidate-phase1-nonben.json",
+    "notice": "docs/gen7_candidate_2026-11-11.md",
+    "pooled_target_per_pair": 2000,
+    "phase2_authorized": false,
+    "scope": "This entry registers this owned stream only; other producers retain their current metadata"
+  },
+  "gen7_azure": {
+    "authority": "Max, 2026-11-12 03:05 UTC (in chat): put the pre-arena azure test boards through the arena and dashboard; tree trust 0.25 there vs 0.3 in phase 1 is not distinguished at summary level or in the interface.",
+    "pre_arena_test": "Four frozen feeds exported read-only from transfer/pre7-test-azureN-20261112 (7s-32 vs 6-32, 1,637 boards); manifests keep the exact settings.",
+    "phase1": "The four azure phase 1 feeds (non-BEN plan at fe382f9, shards 0-3 of 4 on the arena-gen6-gen7-capture-feed capsule at 8833c62), published by the boxes.",
+    "note": "Some azure phase 1 deals repeat pre-arena test deals (same capsule); the rollup counts a repeated family once per matchup.",
+    "session": "https://claude.ai/code/session_01N2EvxC2gaLqtkd36gpH8U2"
+  },
+  "gen7_azure_ben": {
+    "authority": "Max, 2026-11-12 03:20 and 03:26 UTC (in chat): one Azure box plays Gen 7 standard against BEN (16) and one against BEN (64). 04:13 UTC: the boxes' operator adds these feeds to the dashboard.",
+    "lanes": "The collector plays BEN boards with one worker, so each box runs eight cohorts side by side (lanes), each with its own BEN server, run and feed: azure2 plays 7s-32~ben, azure3 plays 7s-32~ben64. Plan: configs/round7-candidate-phase1-ben.json at fe382f9 reduced to one pair; each run's plan.json, preflight.json and ben-recovery.json are in its feed's recovery folder.",
+    "deals": "Sub-shards of 32 of the arena-gen6-gen7-capture-feed capsule at 8833c62, all inside azure shards 0-3 of 8. Lanes hold disjoint deals; they repeat deals of the azure non-BEN cohorts in another matchup.",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
+  },
+  "gen7_azure_selfplay": {
+    "authority": "Max, 2026-11-12 04:09 UTC (in chat): \"We can stop collecting on 5 and on 1; it's clear enough. Put those deals toward self play.\"",
+    "plan": "configs/round7-phase1-selfplay.json on feature/gen7-selfplay-20261112: 7s-32~6-32 one board in three, 7s-32~7s-32 two. Self-play boards are one table, carry no IMP comparison and are counted without a score.",
+    "source": "Commit 7780e5e, which also records gap forks and the guess-size fields. The cohort took over the deals azure2's phase 1 cohort had not played.",
+    "notice": "docs/gen7_selfplay_2026-11-12.md on that branch",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
+  },
+  "gen71_azure": {
+    "authority": "Max, 2026-11-12 05:42 UTC (in chat): push Gen 7.1 from 06:00 UTC unless revoked; replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes a 95% CI lead, then 7.1 self play; all other matches replace 7 with 7.1. 05:54 UTC: azure2 plays 7.1 against 7.0 on every board.",
+    "bot": "71s-32 is 7s-32 with policy net v4.1 (sha256 cb3fcfd5...) and nothing else changed; identity 7b0f58b4... on these cohorts. 7s-32 keeps f0a57859....",
+    "feeds": "azure2: 71s-32~7s-32 on every board with eight workers. azure3: eight lanes of 71s-32~ben64. Every cohort was prepared with --exclude-families (source codex/gen71-independent-20261112 at a588e09) and has no deal from the 32,205 families policy v4.1 was trained on (the independent collector's all-training-families.json, sha256 4818856d731bee23...).",
+    "finished_gen7": "The Azure Gen 7.0 BEN lanes ended at 06:00 UTC with 1,195 boards against BEN (16) and 606 against BEN (64); their feeds stay registered.",
+    "notice": "docs/gen71_2026-11-12.md on feature/gen7-selfplay-20261112",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ",
+    "closed_in_sample": {
+      "reason": "The Azure Gen 7.1 cohorts started at 06:06 UTC played only deals from families v4.1 was trained on: the Azure pools are slices of the independent collector's Gen 6 self-play cohort a76a39f13d9d, which had played those deals before v4.1 was trained. They were closed between 06:32 and 06:39 UTC and are not registered here, so the dashboard's Gen 7.1 figures hold no board that is in-sample for v4.1. Their feeds stay on GitHub at the commits below.",
+      "boards": {
+        "azure2_71s32_7s32": 165,
+        "azure2_71s32_632": 3,
+        "azure3_71s32_ben64": 225
+      },
+      "feeds": {
+        "arena-gen7-1-azure3-ben64-1-feed": "e8f1a1c158c57f3fc067d981de746f671822d71b",
+        "arena-gen7-1-azure3-ben64-2-feed": "586e5c91f0f33aeb4c82b565fd2c5c6307081008",
+        "arena-gen7-1-azure3-ben64-3-feed": "8e0f634de40661c955ed9b2d8a2b301b2d68d2e9",
+        "arena-gen7-1-azure3-ben64-4-feed": "b2207d8c33cd69baa99b7dfa4cf4f984b151889e",
+        "arena-gen7-1-azure3-ben64-5-feed": "b374fd983d26036c4ecaf72d5464dc274758b7e8",
+        "arena-gen7-1-azure3-ben64-6-feed": "467a873a701f23601c5bddc28533f5130186a2fc",
+        "arena-gen7-1-azure3-ben64-7-feed": "6c78f9e07ee59dfd4395ae7f4d0edc7338062ee1",
+        "arena-gen7-1-azure3-ben64-8-feed": "78d69694722b092e4953f0db9196be10a0a898a3",
+        "arena-gen7-1-compare-azure2-feed": "239815e87f10bc14471e2c08b227f4e039e6a732",
+        "arena-gen7-1-vs70-azure2-feed": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d"
+      }
+    }
+  }
+}

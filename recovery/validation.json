@@ -58,5 +58,18 @@
     "errors": [],
     "evidence_sha256": "7d88e7d2a1e488100028c742fb91afcfcb9e1ba9649d0f16c07b41f6a66d9e05",
     "scope": "Direct owned source; global aggregate replay URL exceeds serving-layer URL length; use source=gen71codexcompare&older=1."
+  },
+  "training_family_exclusion_review": {
+    "epoch": 1794469324.9492548,
+    "full_corpus_families": 20257,
+    "training_families": 32205,
+    "corpus_overlap": 0,
+    "completed_at_drain": 195,
+    "all195_receipt_episode_hashes_verified": true,
+    "gate_tests": 10,
+    "official_gate_matched": true,
+    "scientific_changes": false,
+    "manifest_unchanged": true,
+    "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3"
   }
 }

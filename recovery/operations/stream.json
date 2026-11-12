@@ -18,7 +18,8 @@
     "/workspace/work/gen71-compare-codex-20261112/tests-gen56-fixture-rerun.log",
     "/workspace/work/gen71-compare-codex-20261112/tests-gate.log",
     "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log",
-    "/workspace/work/gen71-compare-codex-20261112/preflight.log"
+    "/workspace/work/gen71-compare-codex-20261112/preflight.log",
+    "/workspace/work/gen71-compare-codex-20261112/tests-gate-training-exclusions.log"
   ],
   "retired_gen70_capture": {
     "run": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
@@ -282,5 +283,13 @@
     "final_commit": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
     "restart_authorized": false,
     "capture_incomplete": true
+  },
+  "gate_accounting_version": "gen71-eligible-gate-v2",
+  "evaluation_exclusion_proof": {
+    "path": "/workspace/work/gen71-compare-codex-20261112/run/evaluation-exclusion-audit.json",
+    "families": "/workspace/work/gen71-compare-codex-20261112/run/evaluation-exclusions.json",
+    "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+    "corpus_training_overlap": 0,
+    "manifest_unchanged": true
   }
 }

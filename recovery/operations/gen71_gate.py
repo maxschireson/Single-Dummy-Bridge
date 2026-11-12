@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import re
 import statistics
 import subprocess
 import time
@@ -15,6 +16,7 @@ from phase1_fleet import fetch_bytes
 
 PAIR = '71s-32~7s-32'
 ALLOWED_OTHERS = {'7s-32', '6-32', 'ben64', 'ben'}
+TRAINING_SHA256 = '4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3'
 
 
 def orientation(pair):
@@ -33,6 +35,8 @@ def observation(row, cohort):
     value = row['imps']
     if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
         raise ValueError('Comparison record lacks finite played common-bidding IMPs')
+    if row.get('own_imps', value) != value:
+        raise ValueError('Canonical Gen7.1/Gen7.0 pair has different common/native results')
     if not isinstance(row['family'], str) or not row['family']:
         raise ValueError('Comparison record lacks deal family')
     return dict(cohort=cohort, index=int(row['index']), family=row['family'],
@@ -67,6 +71,48 @@ def statistics_for(rows):
                 minimum_boards_met=n >= 1000,
                 positive_lower_bound=bool(ci and ci[0] > 0),
                 qualified=bool(n >= 1000 and ci and ci[0] > 0))
+
+
+def registered_heads(registry, heads):
+    """Use only registered arena cohorts, honoring each retired source's pinned revision."""
+    selected = []
+    for source in registry['sources']:
+        branch = source['branch']
+        if not (source.get('group') == 'gen7' or str(source.get('generation', '')).startswith('7')):
+            continue
+        if not branch.startswith(('arena-gen7-', 'arena-gen71-')) or any(x in branch for x in ('pre7', 'trial', 'test', 'prototype')):
+            continue
+        revision = source.get('revision') or heads.get(branch)
+        if not revision or not re.fullmatch('[0-9a-f]{40}', revision):
+            raise ValueError('Registered arena source lacks an available pinned revision: ' + branch)
+        selected.append((branch, revision, source['cohort']))
+    return selected
+
+
+def exclusion_list(run, manifest):
+    declared = manifest.get('evaluation_exclusions')
+    path = run / (declared['path'] if declared else 'evaluation-exclusions.json')
+    raw = path.read_bytes()
+    checksum = hashlib.sha256(raw).hexdigest()
+    if checksum != TRAINING_SHA256 or declared and declared['sha256'] != checksum:
+        raise ValueError('Training-family exclusion checksum mismatch')
+    values = json.loads(raw)
+    if not isinstance(values, list) or any(not isinstance(v, str) or not re.fullmatch('[0-9a-f]{64}', v) for v in values):
+        raise ValueError('Invalid training-family exclusion list')
+    if not declared:
+        # Existing immutable cohorts may supply a full-corpus disjointness proof rather
+        # than rewrite their manifest. New preparations use --exclude-families.
+        audit = json.loads((run / 'evaluation-exclusion-audit.json').read_text())
+        if (audit['manifest'] != manifest['identity'] or audit['corpus_sha256'] != manifest['corpus_sha256']
+                or audit['training_list_sha256'] != checksum or audit['corpus_training_overlap'] != 0
+                or audit['distinct_corpus_families'] != manifest['target']):
+            raise ValueError('Existing cohort lacks a matching full-corpus exclusion proof')
+    return set(values), dict(path=str(path.relative_to(run)), sha256=checksum, families=len(set(values)))
+
+
+def eligible_rows(rows, trained):
+    excluded = {r['family'] for r in rows if r['family'] in trained}
+    return deduplicate([r for r in rows if r['family'] not in trained]), excluded
 
 
 def fetch_snapshot(item, actors):
@@ -108,6 +154,14 @@ def fetch_snapshot(item, actors):
     return dict(branch=branch, revision=revision, cohort=manifest['identity'], rows=rows)
 
 
+def fetch_registered_snapshot(item, actors):
+    branch, revision, cohort = item
+    result = fetch_snapshot((branch, revision), actors)
+    if result.get('cohort') and result['cohort'] != cohort:
+        raise ValueError('Registered cohort/manifest mismatch: ' + branch)
+    return result
+
+
 def update(run, runtime):
     run, runtime = Path(run), Path(runtime)
     m = json.loads((run / 'manifest.json').read_text())
@@ -116,14 +170,21 @@ def update(run, runtime):
     previous = json.loads(inventory_path.read_text()) if inventory_path.exists() else {}
     if previous and previous['actors'] != actors:
         raise ValueError('Inventory belongs to different actors')
-    rows = previous.get('rows', [])
-    # External transfer/research tests cannot enter this enumeration.
+    trained, exclusion = exclusion_list(run, m)
+    # Rebuild eligibility from the current pinned registry. A previously counted
+    # unregistered or training-family row must never survive by monotone union.
+    rows = []
     output = subprocess.check_output(['git', '-C', str(runtime), 'ls-remote', '--heads',
-        'origin', 'arena-gen7*'], text=True, timeout=40)
-    heads = [(l.split()[1].removeprefix('refs/heads/'), l.split()[0]) for l in output.splitlines() if l.strip()]
+        'origin', 'gh-pages', 'arena-gen7*'], text=True, timeout=40)
+    heads = {l.split()[1].removeprefix('refs/heads/'):l.split()[0] for l in output.splitlines() if l.strip()}
+    registry_revision = heads['gh-pages']
+    registry = json.loads(fetch_bytes(registry_revision, 'arena/gen6-sources.json'))
+    selected = registered_heads(registry, heads)
+    if not any(s[2] == m['identity'] for s in selected):
+        raise ValueError('This cohort is not registered for the arena gate')
     snapshots, errors = [], []
     with ThreadPoolExecutor(max_workers=4) as pool:
-        futures = [(branch, pool.submit(fetch_snapshot, (branch, rev), actors)) for branch, rev in heads]
+        futures = [(item[0], pool.submit(fetch_registered_snapshot, item, actors)) for item in selected]
         for branch, future in futures:
             try:
                 result = future.result()
@@ -138,17 +199,23 @@ def update(run, runtime):
         row = observation(receipt, m['identity'])
         if row is not None:
             rows.append(row)
-    unique = deduplicate(rows)
+    unique, excluded_training = eligible_rows(rows, trained)
     from bridge_harness.selfplay import atomic_json
-    atomic_json(inventory_path, dict(actors=actors, rows=unique))
+    atomic_json(inventory_path, dict(schema='gen71-eligible-gate-v2', actors=actors, rows=unique,
+                                    registry_revision=registry_revision, training_exclusions=exclusion))
     result = dict(epoch=time.time(), status='partial' if errors else 'checked', actors=actors,
         pair=PAIR, condition='common', metric='played IMPs per board for 71s-32',
         **statistics_for(unique), snapshots=snapshots, errors=errors,
+        registry_revision=registry_revision, training_exclusions=exclusion,
+        excluded_training_families=len(excluded_training),
         selfplay_launch_enabled=False,
-        method='Completed published arena records plus local atomic receipts; exact actors, ready published plan, '
+        method='Current registered, revision-pinned arena records plus this registered producer\'s local atomic receipts; '
+               'published v4.1 training families excluded; eligibility rebuilt on every check; '
+               'exact actors, ready published plan, '
                'checksum and snapshot cutoff checked; one earliest completion per family; '
                'two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. '
                'External research tests and native duplicate rooms excluded. A published opening is required before selfplay.')
+    result['qualified'] = bool(result['qualified'] and not errors)
     atomic_json(run / 'gen71-gate-progress.json', result)
     if result['qualified'] and not errors:
         stop = run / 'STOP'

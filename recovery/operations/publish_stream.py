@@ -47,6 +47,7 @@ def publish():
                  'actor-source-manifest.json', 'phase1-global-progress.json', 'phase1-seen-families.json',
                  'phase1-stop.json', 'phase1-guard-error.json', 'supervisor-failure.json',
                  'gen71-gate-progress.json', 'gen71-gate-inventory.json', 'gen71-gate-stop.json', 'gen71-gate-error.json',
+                 'evaluation-exclusions.json', 'evaluation-exclusion-audit.json',
                  'validation.json', 'gen7-alpha-report.json', 'browser-preview.json', 'browser-live.json',
                  'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
         if (RUN / name).exists():
@@ -92,9 +93,12 @@ def publish():
                  'gen7-selfplay-transition.json', 'gen7-phase1-final-publication.json', 'guard-maintenance.json',
                  'gen7-selfplay-before-capture-final-publication.json', 'capture-diagnosis.json',
                  'gen71_gate.py', 'supervise_gen71.py', 'test_gen71_gate.py',
-                 'gen71-transition.json', 'gen70-capture-final-publication.json'):
+                 'gen71-transition.json', 'gen70-capture-final-publication.json', 'gen71-guard-maintenance.json'):
         if (BASE / name).exists():
             copy_file(BASE / name, recovery / 'operations' / name)
+    for path in (BASE / 'training-family-review-20261112').rglob('*'):
+        if path.is_file():
+            copy_file(path, recovery / 'operations' / path.relative_to(BASE))
     if CONFIG.get('preparation_script'):
         copy_file(Path(CONFIG['preparation_script']), recovery / 'operations' / 'prepare_owned.py')
     for path in CONFIG.get('validation_logs', []):
