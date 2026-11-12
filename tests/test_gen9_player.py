@@ -284,6 +284,55 @@ class CardProfileTests(Shell):
         np.testing.assert_allclose(self.weights(q), np.logaddexp(math.log(.7) + net, math.log(.3) + self.term(12, -3.)), atol=1e-9)
 
 
+class ToyReplay:
+    """A stand-in for a replay reader: it holds the bidder of profile 'alpha' only, under which a hand with 13 points
+    or more is 20 times as likely to have made the calls."""
+    def type_log_score(self, length, hon, seat, dealer, vulnerability, auction, profile=None):
+        if profile != 'alpha':
+            return None
+        return np.where(HON_HCP[hon].sum(axis=1) >= 13, 0., -3.)
+
+
+def toy_replay(model, other, root):
+    return ToyReplay() if model.id == 'them' else None
+
+
+class ReplayTests(Shell):
+    def test_replay_rereads_the_pool_and_only_for_the_profiles_it_holds(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        scorer_weights(self.root / 'beta.npz', seed=32)
+        scorers = {'alpha': FitScorer(self.root / 'alpha.npz'), 'beta': FitScorer(self.root / 'beta.npz')}
+        model = dict(profiles={'alpha': .6, 'beta': .4})
+        p = self.make9(gen7=EARLY, gen9=dict(models={'them': model, 'others': model}, replay_reader='test_gen9_player:toy_replay'))
+        q = self.make9(gen7=EARLY, gen9=dict(models={'them': model}))
+        for x in (p, q):
+            x.profile_scorer = lambda side, system: scorers[system]
+            x.meet('them')
+        checked = 0
+        for o, game in self.two_hidden(range(40), (5, 9), declarer=True):
+            view = View(o)
+            assign = view.uniform(64, np.random.default_rng(3))
+            types = [hand_types(view.original(assign, j)) for j in range(2)]
+            length, hon = [t[0] for t in types], [t[1] for t in types]
+            drawn = p.type_log_weights(o, view, length, hon, 'scorer')                 # how the pool was drawn: scorers only
+            np.testing.assert_allclose(drawn, q.type_log_weights(o, view, length, hon, 'scorer'), atol=1e-12)
+            change = p.replay_correction(o, view, assign)
+            alpha = sum(np.where(HON_HCP[hon[j]].sum(axis=1) >= 13, 0., -3.) for j in range(2))
+            beta = sum(scorers['beta'].type_log_score(length[j], hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(view.hidden))
+            want = np.logaddexp(math.log(.6) + alpha, math.log(.4) + beta)              # alpha by replay, beta still by its scorer
+            np.testing.assert_allclose(drawn + change, want, atol=1e-9)
+            self.assertIsNone(q.replay_correction(o, view, assign))
+            # in the reading itself: the same change, over the exponent the caller applies
+            np.testing.assert_allclose(p.play_log_likelihood(o, view, assign) - q.play_log_likelihood(o, view, assign),
+                                       change / p.reading_exponent(o, view), atol=1e-9)
+            checked += 1
+        self.assertGreater(checked, 3)
+        p.meet('others')                                # a partnership the factory declines: nothing changes
+        o, game = next(self.two_hidden(range(40), (5,), declarer=True))
+        view = View(o)
+        self.assertIsNone(p.replay_correction(o, view, view.uniform(16, np.random.default_rng(0))))
+
+
 class CardsTests(Shell):
     STANDARD = dict(length_lead_vs_suit='4th', length_lead_vs_nt='4th', lead_from_ak='ace', honor_sequence_lead='top', attitude='standard',
                     count='standard', signal_on_partner_lead='attitude', signal_on_declarer_lead='count', first_discard='attitude', trump_signal='none')
