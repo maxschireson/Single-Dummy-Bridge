@@ -125,3 +125,34 @@ class CardingRuleTests(Fixture):
                             self.assertEqual(card(a['card']) % 13, max(x % 13 for x in tied))
                         chosen += 1
             self.assertGreater(chosen, 10)
+
+
+class OpponentTypeTests(Fixture):
+    def test_opponent_factor_scales_only_the_opponents_plays(self):
+        def player(weights, opponent):
+            spec_extra = dict(early_play_weight=1., opponent_play_weight=weights)
+            p = self.make(gen7=spec_extra, list_from_trick=14)
+            p.opponent_factor = float(weights.get(opponent, weights.get('*', 1.)))
+            return p
+        full, half, none = player({}, 'x'), player({'x': .5}, 'x'), player({'*': 0.}, 'y')
+        self.assertEqual((full.opponent_factor, half.opponent_factor, none.opponent_factor), (1., .5, 0.))
+        seen = 0
+        for o, game in early_positions(range(20, 60), (9, 13)):
+            view = View(o)
+            plays = hidden_plays(o)
+            partner = [ch % 2 == o.controller % 2 for _, _, ch in plays]
+            if not any(partner) or all(partner):
+                continue
+            assign = view.uniform(24, np.random.default_rng(0))
+            a, b, c = (p.play_log_likelihood(o, view, assign, plays) for p in (full, half, none))
+            own = full.play_log_likelihood(o, view, assign, [x for x, mine in zip(plays, partner) if mine])
+            self.assertTrue(np.allclose(c, own))                            # factor 0: only partner's plays are read
+            self.assertTrue(np.allclose(b, own + .5 * (a - own)))
+            seen += 1
+            if seen >= 4:
+                break
+        self.assertGreaterEqual(seen, 2)
+        with self.assertRaises(ValueError):
+            Gen7Config(opponent_play_weight={'x': -1})
+        self.assertNotIn('opponent_play_weight', resolved(None))
+        self.assertEqual(resolved(dict(opponent_play_weight={'x': 0}))['opponent_play_weight'], {'x': 0})

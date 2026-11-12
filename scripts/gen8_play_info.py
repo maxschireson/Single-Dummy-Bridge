@@ -47,6 +47,7 @@ def main():
     ap.add_argument('--until', type=int, default=7, help='first trick not scored')
     ap.add_argument('--tables', type=int, default=10 ** 9)
     ap.add_argument('--out')
+    ap.add_argument('--mover', help="only decisions made by this role: 'candidate' or 'opponent'")
     args = ap.parse_args()
     m = build_manifest(args.source.resolve(), args.bots, f'{args.bot}~6-32', 1)
     p = player(m['bots'][args.bot], str(args.source.resolve()))
@@ -79,21 +80,30 @@ def main():
                             owner[list(world[view.hidden[0]])] = 0
                             assign[k] = owner[view.unseen]
                         logp, options = p.play_log_probabilities(o, view, assign, plays)
-                        fit = floored(logp, options, p.g7.play_floor).sum(axis=0)
-                        gains = [float(q * fit[-1] - (np.logaddexp.reduce(q * fit[:-1]) - np.log(len(fit) - 1))) for q in POWERS]
+                        each = floored(logp, options, p.g7.play_floor)                      # [plays, layouts]
+                        theirs = np.array([chooser % 2 != o.controller % 2 for _, _, chooser in plays])
+
+                        def gain(rows_used):
+                            fit = each[rows_used].sum(axis=0)
+                            return [float(q * fit[-1] - (np.logaddexp.reduce(q * fit[:-1]) - np.log(len(fit) - 1))) for q in POWERS]
                         declaring = o.controller % 2 == o.contract.declarer % 2
-                        rows.append(dict(table=tables, trick=trick, plays=len(plays), declaring=bool(declaring), gains=gains,
-                                         mover=a['player'], spread=float(np.std(fit[:-1]))))
+                        rows.append(dict(table=tables, trick=trick, plays=len(plays), declaring=bool(declaring), gains=gain(np.ones(len(plays), bool)),
+                                         theirs=gain(theirs), partner=gain(~theirs), mover=a['player']))
                 game.play(card(a['card']))
     p.close()
     table = np.array([r['table'] for r in rows])
+    if args.mover:
+        rows = [r for r in rows if r['mover'] == args.mover]
+        table = np.array([r['table'] for r in rows])
     gains = np.array([r['gains'] for r in rows])
+    by_side = dict(theirs=np.array([r['theirs'] for r in rows]), partner=np.array([r['partner'] for r in rows]))
     trick = np.array([r['trick'] for r in rows])
     side = np.array([r['declaring'] for r in rows])
 
-    def line(mask):
+    def line(mask, values=None):
+        values = gains if values is None else values
         ids = np.unique(table[mask])
-        per = np.array([gains[mask & (table == t)].sum(axis=0) for t in ids])
+        per = np.array([values[mask & (table == t)].sum(axis=0) for t in ids])
         n = np.array([(mask & (table == t)).sum() for t in ids])
         mean = per.sum(axis=0) / n.sum()
         se = np.sqrt(len(ids) / max(len(ids) - 1, 1) * ((per - mean * n[:, None]) ** 2).sum(axis=0)) / n.sum()
@@ -109,6 +119,12 @@ def main():
         n, mean, se = line(mask)
         report[name] = dict(decisions=n, mean=[round(float(x), 4) for x in mean], se=[round(float(x), 4) for x in se])
         print(f'{name:>10} {n:6d} ' + ' '.join(f'{a:+.3f}+-{b:.3f}' for a, b in zip(mean, se)))
+    for name, values in (("opponents' plays only", by_side['theirs']), ("partner's plays only (defenders)", by_side['partner'])):
+        mask = ~side if name.startswith('partner') else np.ones(len(rows), bool)
+        if mask.sum() > 1:
+            n, mean, se = line(mask, values)
+            report[name] = dict(decisions=n, mean=[round(float(x), 4) for x in mean], se=[round(float(x), 4) for x in se])
+            print(f'{name}: {n} ' + ' '.join(f'{a:+.3f}+-{b:.3f}' for a, b in zip(mean, se)))
     if args.out:
         Path(args.out).write_text(json.dumps(dict(powers=POWERS, groups=report, tables=tables), indent=1))
 

@@ -77,6 +77,8 @@ def build_manifest(source, bots_file, pair, seed):
                 if block in entry:
                     entry[block] = dict(spec.get(block, {}), **entry[block])
             spec.update(entry, id=key)
+            if key in (a, b):
+                spec['table_opponent'] = b if key == a else a       # who sits against this bot, for settings keyed by opponent type
             spec.pop('identity', None)
             spec['identity'] = digest(spec)
             bots[key] = spec

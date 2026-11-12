@@ -73,11 +73,16 @@ class Gen7Config:
                                     # observed hidden play; 0 = Gen6's layouts there, as in Gen 7
     early_pool: int = 512           # layouts drawn by the hand-fit scorer's class weights, scored by the net, and resampled for the solver
     early_min_effective: float = 8. # the exponent is halved until the scored pool amounts to at least this many layouts
+    opponent_play_weight: dict = field(default_factory=dict)    # by opponent bot id ('*' = any other): a factor on the reading of
+                                    # the opponents' plays, at every trick. 1 = read them as the house bots' (the default), 0 = ignore
+                                    # them. Partner's plays always count in full. The opponent is the spec's `table_opponent`.
 
     def __post_init__(self):
         if self.tie_break not in ('net', 'gen5', 'low', 'high', 'random') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
                 or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000 \
-                or not 0 <= self.early_play_weight <= 4 or not 16 <= self.early_pool <= 65536 or not 1 <= self.early_min_effective <= 4096:
+                or not 0 <= self.early_play_weight <= 4 or not 16 <= self.early_pool <= 65536 or not 1 <= self.early_min_effective <= 4096 \
+                or not isinstance(self.opponent_play_weight, dict) \
+                or not all(isinstance(v, (int, float)) and not isinstance(v, bool) and 0 <= v <= 4 for v in self.opponent_play_weight.values()):
             raise ValueError('Invalid Gen7 settings')
 
 
@@ -139,6 +144,8 @@ def resolved(block):
     out = asdict(config)
     if not config.early_play_weight:        # inert, so a Gen 7 bot's settings read as they did before these existed
         out = {k: v for k, v in out.items() if not k.startswith('early_')}
+    if not config.opponent_play_weight:
+        out.pop('opponent_play_weight')
     if stages:
         out['tree'] = [dict({k: getattr(s, k) for k in USE_KEYS}, **asdict(s.search)) for s in stages]
     return out
@@ -200,6 +207,8 @@ class Gen7Player(Gen6Player):
         super().__init__(spec, root, reference)
         self.g7, self.stages = gen7_settings(spec.get('gen7'))
         self.net = PolicyNet(Path(root) / spec['gen7_policy'], self.scorer)
+        by_type = self.g7.opponent_play_weight
+        self.opponent_factor = float(by_type.get(spec.get('table_opponent'), by_type.get('*', 1.)))
         self.play_cache = (None, {})
         self.net_rows = 0
         self.solved_layouts = None      # the layouts of the decision in hand, for the tree
@@ -269,8 +278,12 @@ class Gen7Player(Gen6Player):
 
     def play_log_likelihood(self, o, view, assign, plays=None):
         """[layouts] sum over the hidden choosers' past plays of the floored log-probability of the card played."""
+        plays = hidden_plays(o, self.g7.play_lead) if plays is None else plays
         logp, options = self.play_log_probabilities(o, view, assign, plays)
-        return floored(logp, options, self.g7.play_floor).sum(axis=0)
+        fit = floored(logp, options, self.g7.play_floor)
+        if self.opponent_factor != 1. and plays:       # the opponents are a known other type: their plays count for less, or not at all
+            fit = fit * np.array([1. if chooser % 2 == o.controller % 2 else self.opponent_factor for _, _, chooser in plays])[:, None]
+        return fit.sum(axis=0)
 
     def layouts(self, o, view, source, rng):
         worlds, weights, info = self.weighted_layouts(o, view, source, rng)
