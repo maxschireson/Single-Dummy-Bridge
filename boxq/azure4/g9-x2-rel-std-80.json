@@ -1,0 +1,56 @@
+{
+ "id": "g9-x2-rel-std-80",
+ "box": "azure4",
+ "experiment": "G9-X2",
+ "owner": "sam",
+ "priority": 3,
+ "cores": 4,
+ "source": {
+  "branch": "feature/gen9-reading-bench",
+  "commit": "144b59f"
+ },
+ "argv": [
+  "{python}",
+  "scripts/gen9_reading_bench.py",
+  "box",
+  "--house-feed",
+  "arena-gen7-phase1-azure1-feed@f9dad79c4cbfcd32b77d44e363c3000640f2fc00",
+  "--cell",
+  "std-80",
+  "--tables",
+  "300",
+  "--workers",
+  "4",
+  "--part",
+  "2",
+  "--seconds",
+  "30000",
+  "--feeds-dir",
+  "{work}/house-feeds",
+  "--out",
+  "{out}",
+  "--source",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--reading",
+  "g8=8x-32@c-std-80",
+  "--reading",
+  "full=8x-32@7s-32",
+  "--reading",
+  "g9=r9-32@c-std-80"
+ ],
+ "progress": {
+  "results": "progress.jsonl",
+  "target": 300
+ },
+ "preemptible": true,
+ "publish": [
+  "pools-*.npz",
+  "fit-*.npz",
+  "pools-*.log",
+  "tables.json",
+  "progress.jsonl"
+ ],
+ "state": "queued",
+ "submitted": "2026-11-12T14:51:00Z",
+ "by": "sam"
+}

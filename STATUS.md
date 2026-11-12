@@ -122,6 +122,7 @@ Generated 2026-11-12 14:51 UTC by `tools/workq.py` after a change by `sam`. Do n
 | e9-12-x | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | not seen yet | 0 of 55 |  |  |  |
 | g9-x2-ben64 | G9-X2 | sam | 3 | 4 | not seen yet | 0 of 47 |  |  |  |
+| g9-x2-rel-std-80 | G9-X2 | sam | 3 | 4 | not seen yet | 0 of 300 |  |  |  |
 | e9-0-n005 | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n01 | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n02d | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
