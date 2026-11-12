@@ -129,10 +129,10 @@ def fold(log):
     st = {}
     for e in sorted(log, key=lambda e: e['seq']):
         p, k = e['player'], e['event']
-        s = st.setdefault(p, dict(status=None, protected=False, package_sha256=None, kind=None, test=None, since=None))
+        s = st.setdefault(p, dict(status=None, protected=False, package_sha256=None, kind=None, test=None, since=None, model=None))
         if k == 'submit':
             s.update(status='anchor' if e.get('kind') == 'anchor' else 'candidate', package_sha256=e['package_sha256'],
-                     kind=e.get('kind'), since=e.get('epoch'), protected=e.get('kind') == 'anchor')
+                     kind=e.get('kind'), since=e.get('epoch'), protected=e.get('kind') == 'anchor', model=e.get('model'))
         elif k == 'activate':
             s['status'] = 'active' if s['status'] == 'candidate' else s['status']
             s['since'] = e.get('epoch')
@@ -206,7 +206,20 @@ def schedule(st, rules, previous=None):
             old = previous['pair_weights'].get(p)
             if old and was.get(p) == now.get(p):
                 weights[p] = int(min(max(w, math.ceil(old / ratio)), old * ratio))
-    return dict(purposes={k: v for k, v in purposes.items() if v}, pair_weights=dict(sorted(weights.items())))
+    return dict(purposes={k: v for k, v in purposes.items() if v}, pair_weights=dict(sorted(weights.items())), floors=floors(st, rules))
+
+
+def floors(st, rules):
+    """The rules' fixed floors whose players are all in the arena: groups of pairs that play the same deals, n boards
+    each, every epoch (a comparison such as the Gen 9 bot and its control against one guest). The scheduler places
+    the rest of an epoch's boards."""
+    out = []
+    for f in rules.get('floors', []):
+        players = {x for p in f['pairs'] for x in p.split('~')}
+        if all((st.get(x) or {}).get('status') not in (None, 'retired') for x in players):
+            out.append(dict(pairs=list(f['pairs']), boards=int(f['boards']), same_deals=bool(f.get('same_deals', True)),
+                            purpose=f.get('purpose', 'comparison')))
+    return out
 
 
 def pair_at(seed, slot, k, weights):
@@ -221,7 +234,18 @@ def deal_index(slot, k):
     return slot * (1 << 20) + k
 
 
+# k of a floor board: above the scheduler's boards, by floor group, pair and board; pairs of a same-deals group share
+# the deal index of board j
+FLOOR_BASE, FLOOR_GROUP, FLOOR_PAIR = 1 << 19, 1 << 15, 1 << 11
+
+
 # ---- epochs ---------------------------------------------------------------------------------
+
+def epoch_boards(rules, n):
+    """Boards in epoch n: the rules' epoch size, or its `first` size for epoch 1."""
+    e = rules['epoch']
+    return int(e.get('first', e['boards'])) if n == 1 else int(e['boards'])
+
 
 def epoch_path(control, n):
     return Path(control) / 'epochs' / f'{n:04d}.json'
@@ -241,15 +265,17 @@ def epoch_id(m):
 
 def make_epoch(n, previous, st, packages, rules, snapshot_id, applied, source_commit=None):
     sch = schedule(st, rules, previous['schedule'] if previous else None)
-    rostered = sorted({x for p in sch['pair_weights'] for x in p.split('~')})
+    rostered = sorted({x for p in sch['pair_weights'] for x in p.split('~')} | {x for f in sch['floors'] for p in f['pairs'] for x in p.split('~')})
     players = {p: dict(package_sha256=st[p]['package_sha256'], identity=identity(packages[p]), status=st[p]['status'],
-                       protected=st[p]['protected'], test=st[p]['test']) for p in rostered}
+                       protected=st[p]['protected'], test=st[p]['test'], model=st[p].get('model')) for p in rostered}
+    if sum(f['boards'] * len(f['pairs']) for f in sch['floors']) > epoch_boards(rules, n):
+        raise ValueError('the floors need more boards than an epoch has')
     excluded = sorted({f for p in rostered for f in (packages[p].get('lineage') or {}).get('training_families', {}).values()})
     m = dict(schema=EPOCH, epoch=n, previous=previous['id'] if previous else None, rules=dict(version=rules['version'], sha256=sha(rules)),
              source_commit=source_commit, champion=champion_of(st), players=players, schedule=sch,
              conditions=dict(regimes=['common', 'native'], common_bidder=rules.get('common_bidder')),
              deals=dict(generator='gen8_match.deal(seed, slot * 2**20 + k)', seed=None, exclude_training_family_lists=excluded),
-             experience_snapshot=snapshot_id, end=dict(boards=rules['epoch']['boards']), events_applied=applied)
+             experience_snapshot=snapshot_id, end=dict(boards=epoch_boards(rules, n)), events_applied=applied)
     m['deals']['seed'] = int(sha(dict(m, deals=None))[:8], 16)
     m['id'] = epoch_id(m)
     m['opened_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
@@ -267,7 +293,7 @@ def write_epoch(control, m):
     tmp.replace(Path(control) / 'CURRENT')
 
 
-def init(control, packages, rules, champion, author, authority):
+def init(control, packages, rules, champion, author, authority, arrival=None):
     control = Path(control)
     if (control / 'CURRENT').exists():
         raise ValueError('control directory already initialised')
@@ -278,7 +304,8 @@ def init(control, packages, rules, champion, author, authority):
         problems = check_package(p)
         if problems:
             raise ValueError(f'{pid}: {problems}')
-        events.append(event('submit', pid, author, authority, kind=p['kind'], package_sha256=sha(p), epoch=0))
+        extra = dict(model=arrival(p)) if arrival is not None else {}
+        events.append(event('submit', pid, author, authority, kind=p['kind'], package_sha256=sha(p), epoch=0, **extra))
     events.append(event('champion', champion, author, authority, epoch=0))
     append_log(control, events)
     (control / 'rules.json').write_text(json.dumps(rules, indent=1, sort_keys=True))
@@ -294,7 +321,7 @@ def init(control, packages, rules, champion, author, authority):
 
 def read_results(control):
     rows = []
-    for path in sorted((Path(control) / 'results').glob('e*/*.jsonl')):
+    for path in sorted((Path(control) / 'results').glob('e*/slot*.jsonl')):       # board rows; experience-*.jsonl are envelopes
         rows += [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
     return rows
 
@@ -316,7 +343,7 @@ def pooled(rows, condition):
 
 # ---- the boundary ------------------------------------------------------------------------------
 
-def close_epoch(control, packages, author='controller', source_commit=None):
+def close_epoch(control, packages, author='controller', source_commit=None, arrival=None):
     """Decide what the results of the current epoch change and open the next epoch. Returns (next manifest, decisions)."""
     control = Path(control)
     rules = json.loads((control / 'rules.json').read_text())
@@ -411,6 +438,8 @@ def close_epoch(control, packages, author='controller', source_commit=None):
                 path.rename(path.with_suffix('.refused'))
                 continue
             e = dict(e, kind=pkg['kind'], package_sha256=sha(pkg), epoch=n + 1)
+            if arrival is not None:
+                e['model'] = arrival(pkg)
         queued.append((path, e))
     append_log(control, new + [e for _, e in queued])
     for path, _ in queued:
@@ -445,16 +474,35 @@ def play_epoch(control, backend, slot=0, workers=1, limit=None):
     out = Path(control) / 'results' / f'e{n:04d}' / f'slot{slot}.jsonl'
     out.parent.mkdir(parents=True, exist_ok=True)
     done = {json.loads(l)['k'] for l in out.read_text().splitlines() if l.strip()} if out.exists() else set()
-    total = m['end']['boards'] if limit is None else min(limit, m['end']['boards'])
-    todo = [k for k in range(total) if k not in done]
-    jobs = {}
-    for k in todo:
-        jobs.setdefault(pair_at(seed, slot, k, weights), []).append(k)
-    with out.open('a') as f:
-        for pair, ks in sorted(jobs.items()):
-            for k, row in backend.play(m, pair, [deal_index(slot, k) for k in ks], seed, workers):
-                k = k - deal_index(slot, 0)
-                f.write(canonical(dict(row, epoch=n, epoch_id=m['id'], slot=slot, k=k, pair=pair)) + '\n')
+    jobs = {}                                   # pair -> [(k, deal index, floor group or None)]
+    floor_total = 0
+    for g, fl in enumerate(m['schedule'].get('floors', [])):
+        for pi, pair in enumerate(fl['pairs']):
+            for j in range(fl['boards']):
+                k = FLOOR_BASE + g * FLOOR_GROUP + pi * FLOOR_PAIR + j
+                d = FLOOR_BASE + g * FLOOR_GROUP + (j if fl['same_deals'] else pi * FLOOR_PAIR + j)
+                jobs.setdefault(pair, []).append((k, deal_index(slot, d), g))
+        floor_total += fl['boards'] * len(fl['pairs'])
+    rest = m['end']['boards'] - floor_total
+    for k in range(rest):
+        jobs.setdefault(pair_at(seed, slot, k, weights), []).append((k, deal_index(slot, k), None))
+    if limit is not None:
+        jobs = {p: v[:limit] for p, v in jobs.items()}
+    xp_out = out.parent / f'experience-slot{slot}.jsonl'
+    with out.open('a') as f, xp_out.open('a') as fx:
+        for pair, items in sorted(jobs.items()):
+            items = [x for x in items if x[0] not in done]
+            if not items:
+                continue
+            for (k, idx, g), (got, row) in zip(items, backend.play(m, pair, [x[1] for x in items], seed, workers)):
+                if got != idx:
+                    raise ValueError('the backend answered for another deal')
+                envelopes = row.pop('envelopes', None) or []
+                for e in envelopes:
+                    fx.write(canonical(dict(e, epoch=n)) + '\n')
+                fx.flush()
+                f.write(canonical(dict(row, epoch=n, epoch_id=m['id'], slot=slot, k=k, pair=pair, floor=g,
+                                       experience_snapshot=m['experience_snapshot'])) + '\n')
                 f.flush()
     return out
 

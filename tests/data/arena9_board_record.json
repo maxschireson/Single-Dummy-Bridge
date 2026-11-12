@@ -1,0 +1,1190 @@
+{
+ "candidate": "9a-32",
+ "opponent": "guest-a",
+ "pair": "9a-32~guest-a",
+ "family": "9001223b38dfc02b8cec6b4c8f3cd85735a7ae32d8968bc85cf254b5e79fc717",
+ "index": 3,
+ "regimes": {
+  "common": {
+   "tables": [
+    "table-0",
+    "table-1"
+   ],
+   "score_difference": 0,
+   "imps": 0
+  },
+  "native": {
+   "tables": [
+    "table-2",
+    "table-3"
+   ],
+   "score_difference": 500,
+   "imps": 11
+  }
+ },
+ "bidding": {
+  "common/0": {
+   "bidders": [
+    "6-32",
+    "6-32",
+    "6-32",
+    "6-32"
+   ],
+   "table": "table-0",
+   "calls": [
+    "PASS",
+    "1H",
+    "PASS",
+    "1S",
+    "PASS",
+    "4S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "X",
+    "5D",
+    "PASS",
+    "5S",
+    "PASS",
+    "6C",
+    "PASS",
+    "6D",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ]
+  },
+  "common/1": {
+   "bidders": [
+    "6-32",
+    "6-32",
+    "6-32",
+    "6-32"
+   ],
+   "table": "table-1",
+   "calls": [
+    "PASS",
+    "1H",
+    "PASS",
+    "1S",
+    "PASS",
+    "4S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "X",
+    "5D",
+    "PASS",
+    "5S",
+    "PASS",
+    "6C",
+    "PASS",
+    "6D",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ]
+  },
+  "native/0": {
+   "bidders": [
+    "9a-32",
+    "guest-a",
+    "9a-32",
+    "guest-a"
+   ],
+   "table": "table-2",
+   "calls": [
+    "PASS",
+    "1H",
+    "PASS",
+    "1S",
+    "PASS",
+    "4S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ]
+  },
+  "native/1": {
+   "bidders": [
+    "guest-a",
+    "9a-32",
+    "guest-a",
+    "9a-32"
+   ],
+   "table": "table-3",
+   "calls": [
+    "PASS",
+    "1H",
+    "2C",
+    "2S",
+    "PASS",
+    "4D",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "5D",
+    "PASS",
+    "5N",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ]
+  }
+ },
+ "unique_tables": {
+  "table-0": {
+   "schema_version": "random-fork-audit-v1",
+   "board": {
+    "id": "e53a0fbd1d879335a9cfdc5fe282878d6100014d3263448b1051fc454371e150",
+    "hands": [
+     "Q7.KT2.J43.KQ754",
+     "T8643..AKT92.AJ9",
+     "95.98543.Q865.32",
+     "AKJ2.AQJ76.7.T86"
+    ],
+    "contract": "6S",
+    "declarer": "E",
+    "dealer": "S",
+    "vulnerability": "NS",
+    "auction": [
+     "PASS",
+     "1H",
+     "PASS",
+     "1S",
+     "PASS",
+     "4S",
+     "PASS",
+     "4N",
+     "PASS",
+     "5C",
+     "X",
+     "5D",
+     "PASS",
+     "5S",
+     "PASS",
+     "6C",
+     "PASS",
+     "6D",
+     "PASS",
+     "6S",
+     "PASS",
+     "PASS",
+     "PASS"
+    ],
+    "auction_source": "g8:house|house",
+    "family": null,
+    "opening_lead": null
+   },
+   "assignments": [
+    "candidate",
+    "opponent",
+    "candidate",
+    "opponent"
+   ],
+   "tables": [
+    {
+     "actions": [
+      {
+       "seat": "S",
+       "card": "H3"
+      },
+      {
+       "seat": "W",
+       "card": "HA"
+      },
+      {
+       "seat": "N",
+       "card": "H2"
+      },
+      {
+       "seat": "E",
+       "card": "C9"
+      },
+      {
+       "seat": "W",
+       "card": "H7"
+      },
+      {
+       "seat": "N",
+       "card": "HT"
+      },
+      {
+       "seat": "E",
+       "card": "S6"
+      },
+      {
+       "seat": "S",
+       "card": "H8"
+      },
+      {
+       "seat": "E",
+       "card": "CA"
+      },
+      {
+       "seat": "S",
+       "card": "C2"
+      },
+      {
+       "seat": "W",
+       "card": "C6"
+      },
+      {
+       "seat": "N",
+       "card": "C7"
+      },
+      {
+       "seat": "E",
+       "card": "S3"
+      },
+      {
+       "seat": "S",
+       "card": "S5"
+      },
+      {
+       "seat": "W",
+       "card": "SA"
+      },
+      {
+       "seat": "N",
+       "card": "S7"
+      },
+      {
+       "seat": "W",
+       "card": "D7"
+      },
+      {
+       "seat": "N",
+       "card": "D4"
+      },
+      {
+       "seat": "E",
+       "card": "DA"
+      },
+      {
+       "seat": "S",
+       "card": "D5"
+      },
+      {
+       "seat": "E",
+       "card": "S4"
+      },
+      {
+       "seat": "S",
+       "card": "S9"
+      },
+      {
+       "seat": "W",
+       "card": "SK"
+      },
+      {
+       "seat": "N",
+       "card": "SQ"
+      },
+      {
+       "seat": "W",
+       "card": "H6"
+      },
+      {
+       "seat": "N",
+       "card": "HK"
+      },
+      {
+       "seat": "E",
+       "card": "S8"
+      },
+      {
+       "seat": "S",
+       "card": "H5"
+      },
+      {
+       "seat": "E",
+       "card": "D2"
+      },
+      {
+       "seat": "S",
+       "card": "D8"
+      },
+      {
+       "seat": "W",
+       "card": "S2"
+      },
+      {
+       "seat": "N",
+       "card": "D3"
+      },
+      {
+       "seat": "W",
+       "card": "HJ"
+      },
+      {
+       "seat": "N",
+       "card": "C5"
+      },
+      {
+       "seat": "E",
+       "card": "CJ"
+      },
+      {
+       "seat": "S",
+       "card": "H4"
+      },
+      {
+       "seat": "W",
+       "card": "HQ"
+      },
+      {
+       "seat": "N",
+       "card": "C4"
+      },
+      {
+       "seat": "E",
+       "card": "D9"
+      },
+      {
+       "seat": "S",
+       "card": "H9"
+      },
+      {
+       "seat": "W",
+       "card": "C8"
+      },
+      {
+       "seat": "N",
+       "card": "CQ"
+      },
+      {
+       "seat": "E",
+       "card": "ST"
+      },
+      {
+       "seat": "S",
+       "card": "C3"
+      },
+      {
+       "seat": "E",
+       "card": "DK"
+      },
+      {
+       "seat": "S",
+       "card": "D6"
+      },
+      {
+       "seat": "W",
+       "card": "CT"
+      },
+      {
+       "seat": "N",
+       "card": "DJ"
+      },
+      {
+       "seat": "E",
+       "card": "DT"
+      },
+      {
+       "seat": "S",
+       "card": "DQ"
+      },
+      {
+       "seat": "W",
+       "card": "SJ"
+      },
+      {
+       "seat": "N",
+       "card": "CK"
+      }
+     ],
+     "ns_score": -1010
+    }
+   ]
+  },
+  "table-1": {
+   "schema_version": "random-fork-audit-v1",
+   "board": {
+    "id": "e53a0fbd1d879335a9cfdc5fe282878d6100014d3263448b1051fc454371e150",
+    "hands": [
+     "Q7.KT2.J43.KQ754",
+     "T8643..AKT92.AJ9",
+     "95.98543.Q865.32",
+     "AKJ2.AQJ76.7.T86"
+    ],
+    "contract": "6S",
+    "declarer": "E",
+    "dealer": "S",
+    "vulnerability": "NS",
+    "auction": [
+     "PASS",
+     "1H",
+     "PASS",
+     "1S",
+     "PASS",
+     "4S",
+     "PASS",
+     "4N",
+     "PASS",
+     "5C",
+     "X",
+     "5D",
+     "PASS",
+     "5S",
+     "PASS",
+     "6C",
+     "PASS",
+     "6D",
+     "PASS",
+     "6S",
+     "PASS",
+     "PASS",
+     "PASS"
+    ],
+    "auction_source": "g8:house|house",
+    "family": null,
+    "opening_lead": null
+   },
+   "assignments": [
+    "opponent",
+    "candidate",
+    "opponent",
+    "candidate"
+   ],
+   "tables": [
+    {
+     "actions": [
+      {
+       "seat": "S",
+       "card": "H5"
+      },
+      {
+       "seat": "W",
+       "card": "HJ"
+      },
+      {
+       "seat": "N",
+       "card": "HK"
+      },
+      {
+       "seat": "E",
+       "card": "S6"
+      },
+      {
+       "seat": "E",
+       "card": "S3"
+      },
+      {
+       "seat": "S",
+       "card": "S5"
+      },
+      {
+       "seat": "W",
+       "card": "SA"
+      },
+      {
+       "seat": "N",
+       "card": "S7"
+      },
+      {
+       "seat": "W",
+       "card": "H7"
+      },
+      {
+       "seat": "N",
+       "card": "H2"
+      },
+      {
+       "seat": "E",
+       "card": "S4"
+      },
+      {
+       "seat": "S",
+       "card": "H4"
+      },
+      {
+       "seat": "E",
+       "card": "DA"
+      },
+      {
+       "seat": "S",
+       "card": "D5"
+      },
+      {
+       "seat": "W",
+       "card": "D7"
+      },
+      {
+       "seat": "N",
+       "card": "D4"
+      },
+      {
+       "seat": "E",
+       "card": "S8"
+      },
+      {
+       "seat": "S",
+       "card": "S9"
+      },
+      {
+       "seat": "W",
+       "card": "SK"
+      },
+      {
+       "seat": "N",
+       "card": "SQ"
+      },
+      {
+       "seat": "W",
+       "card": "C6"
+      },
+      {
+       "seat": "N",
+       "card": "CQ"
+      },
+      {
+       "seat": "E",
+       "card": "CA"
+      },
+      {
+       "seat": "S",
+       "card": "C2"
+      },
+      {
+       "seat": "E",
+       "card": "D2"
+      },
+      {
+       "seat": "S",
+       "card": "D8"
+      },
+      {
+       "seat": "W",
+       "card": "S2"
+      },
+      {
+       "seat": "N",
+       "card": "D3"
+      },
+      {
+       "seat": "W",
+       "card": "HA"
+      },
+      {
+       "seat": "N",
+       "card": "HT"
+      },
+      {
+       "seat": "E",
+       "card": "C9"
+      },
+      {
+       "seat": "S",
+       "card": "H8"
+      },
+      {
+       "seat": "W",
+       "card": "HQ"
+      },
+      {
+       "seat": "N",
+       "card": "C7"
+      },
+      {
+       "seat": "E",
+       "card": "CJ"
+      },
+      {
+       "seat": "S",
+       "card": "H3"
+      },
+      {
+       "seat": "W",
+       "card": "C8"
+      },
+      {
+       "seat": "N",
+       "card": "CK"
+      },
+      {
+       "seat": "E",
+       "card": "ST"
+      },
+      {
+       "seat": "S",
+       "card": "C3"
+      },
+      {
+       "seat": "E",
+       "card": "DK"
+      },
+      {
+       "seat": "S",
+       "card": "D6"
+      },
+      {
+       "seat": "W",
+       "card": "H6"
+      },
+      {
+       "seat": "N",
+       "card": "DJ"
+      },
+      {
+       "seat": "E",
+       "card": "D9"
+      },
+      {
+       "seat": "S",
+       "card": "DQ"
+      },
+      {
+       "seat": "W",
+       "card": "SJ"
+      },
+      {
+       "seat": "N",
+       "card": "C5"
+      },
+      {
+       "seat": "W",
+       "card": "CT"
+      },
+      {
+       "seat": "N",
+       "card": "C4"
+      },
+      {
+       "seat": "E",
+       "card": "DT"
+      },
+      {
+       "seat": "S",
+       "card": "H9"
+      }
+     ],
+     "ns_score": -1010
+    }
+   ]
+  },
+  "table-2": {
+   "schema_version": "random-fork-audit-v1",
+   "board": {
+    "id": "e53a0fbd1d879335a9cfdc5fe282878d6100014d3263448b1051fc454371e150",
+    "hands": [
+     "Q7.KT2.J43.KQ754",
+     "T8643..AKT92.AJ9",
+     "95.98543.Q865.32",
+     "AKJ2.AQJ76.7.T86"
+    ],
+    "contract": "4S",
+    "declarer": "E",
+    "dealer": "S",
+    "vulnerability": "NS",
+    "auction": [
+     "PASS",
+     "1H",
+     "PASS",
+     "1S",
+     "PASS",
+     "4S",
+     "PASS",
+     "PASS",
+     "PASS"
+    ],
+    "auction_source": "g8:house|rb-precision",
+    "family": null,
+    "opening_lead": null
+   },
+   "assignments": [
+    "candidate",
+    "opponent",
+    "candidate",
+    "opponent"
+   ],
+   "tables": [
+    {
+     "actions": [
+      {
+       "seat": "S",
+       "card": "C3"
+      },
+      {
+       "seat": "W",
+       "card": "C8"
+      },
+      {
+       "seat": "N",
+       "card": "CK"
+      },
+      {
+       "seat": "E",
+       "card": "CA"
+      },
+      {
+       "seat": "E",
+       "card": "S3"
+      },
+      {
+       "seat": "S",
+       "card": "S5"
+      },
+      {
+       "seat": "W",
+       "card": "SK"
+      },
+      {
+       "seat": "N",
+       "card": "S7"
+      },
+      {
+       "seat": "W",
+       "card": "H7"
+      },
+      {
+       "seat": "N",
+       "card": "HT"
+      },
+      {
+       "seat": "E",
+       "card": "S8"
+      },
+      {
+       "seat": "S",
+       "card": "H5"
+      },
+      {
+       "seat": "E",
+       "card": "S6"
+      },
+      {
+       "seat": "S",
+       "card": "S9"
+      },
+      {
+       "seat": "W",
+       "card": "SA"
+      },
+      {
+       "seat": "N",
+       "card": "SQ"
+      },
+      {
+       "seat": "W",
+       "card": "D7"
+      },
+      {
+       "seat": "N",
+       "card": "D4"
+      },
+      {
+       "seat": "E",
+       "card": "DA"
+      },
+      {
+       "seat": "S",
+       "card": "D5"
+      },
+      {
+       "seat": "E",
+       "card": "D2"
+      },
+      {
+       "seat": "S",
+       "card": "D8"
+      },
+      {
+       "seat": "W",
+       "card": "S2"
+      },
+      {
+       "seat": "N",
+       "card": "D3"
+      },
+      {
+       "seat": "W",
+       "card": "HA"
+      },
+      {
+       "seat": "N",
+       "card": "H2"
+      },
+      {
+       "seat": "E",
+       "card": "CJ"
+      },
+      {
+       "seat": "S",
+       "card": "H8"
+      },
+      {
+       "seat": "W",
+       "card": "HJ"
+      },
+      {
+       "seat": "N",
+       "card": "HK"
+      },
+      {
+       "seat": "E",
+       "card": "S4"
+      },
+      {
+       "seat": "S",
+       "card": "H4"
+      },
+      {
+       "seat": "E",
+       "card": "D9"
+      },
+      {
+       "seat": "S",
+       "card": "D6"
+      },
+      {
+       "seat": "W",
+       "card": "SJ"
+      },
+      {
+       "seat": "N",
+       "card": "DJ"
+      },
+      {
+       "seat": "W",
+       "card": "HQ"
+      },
+      {
+       "seat": "N",
+       "card": "C5"
+      },
+      {
+       "seat": "E",
+       "card": "C9"
+      },
+      {
+       "seat": "S",
+       "card": "H3"
+      },
+      {
+       "seat": "W",
+       "card": "H6"
+      },
+      {
+       "seat": "N",
+       "card": "C4"
+      },
+      {
+       "seat": "E",
+       "card": "ST"
+      },
+      {
+       "seat": "S",
+       "card": "H9"
+      },
+      {
+       "seat": "E",
+       "card": "DK"
+      },
+      {
+       "seat": "S",
+       "card": "DQ"
+      },
+      {
+       "seat": "W",
+       "card": "C6"
+      },
+      {
+       "seat": "N",
+       "card": "C7"
+      },
+      {
+       "seat": "E",
+       "card": "DT"
+      },
+      {
+       "seat": "S",
+       "card": "C2"
+      },
+      {
+       "seat": "W",
+       "card": "CT"
+      },
+      {
+       "seat": "N",
+       "card": "CQ"
+      }
+     ],
+     "ns_score": -510
+    }
+   ]
+  },
+  "table-3": {
+   "schema_version": "random-fork-audit-v1",
+   "board": {
+    "id": "e53a0fbd1d879335a9cfdc5fe282878d6100014d3263448b1051fc454371e150",
+    "hands": [
+     "Q7.KT2.J43.KQ754",
+     "T8643..AKT92.AJ9",
+     "95.98543.Q865.32",
+     "AKJ2.AQJ76.7.T86"
+    ],
+    "contract": "6S",
+    "declarer": "E",
+    "dealer": "S",
+    "vulnerability": "NS",
+    "auction": [
+     "PASS",
+     "1H",
+     "2C",
+     "2S",
+     "PASS",
+     "4D",
+     "PASS",
+     "4N",
+     "PASS",
+     "5C",
+     "PASS",
+     "5D",
+     "PASS",
+     "5N",
+     "PASS",
+     "6S",
+     "PASS",
+     "PASS",
+     "PASS"
+    ],
+    "auction_source": "g8:rb-precision|house",
+    "family": null,
+    "opening_lead": null
+   },
+   "assignments": [
+    "opponent",
+    "candidate",
+    "opponent",
+    "candidate"
+   ],
+   "tables": [
+    {
+     "actions": [
+      {
+       "seat": "S",
+       "card": "C3"
+      },
+      {
+       "seat": "W",
+       "card": "C8"
+      },
+      {
+       "seat": "N",
+       "card": "CK"
+      },
+      {
+       "seat": "E",
+       "card": "CA"
+      },
+      {
+       "seat": "E",
+       "card": "S6"
+      },
+      {
+       "seat": "S",
+       "card": "S5"
+      },
+      {
+       "seat": "W",
+       "card": "SK"
+      },
+      {
+       "seat": "N",
+       "card": "S7"
+      },
+      {
+       "seat": "W",
+       "card": "HA"
+      },
+      {
+       "seat": "N",
+       "card": "H2"
+      },
+      {
+       "seat": "E",
+       "card": "CJ"
+      },
+      {
+       "seat": "S",
+       "card": "H9"
+      },
+      {
+       "seat": "W",
+       "card": "HJ"
+      },
+      {
+       "seat": "N",
+       "card": "HK"
+      },
+      {
+       "seat": "E",
+       "card": "S8"
+      },
+      {
+       "seat": "S",
+       "card": "H5"
+      },
+      {
+       "seat": "E",
+       "card": "S3"
+      },
+      {
+       "seat": "S",
+       "card": "S9"
+      },
+      {
+       "seat": "W",
+       "card": "SA"
+      },
+      {
+       "seat": "N",
+       "card": "SQ"
+      },
+      {
+       "seat": "W",
+       "card": "D7"
+      },
+      {
+       "seat": "N",
+       "card": "D4"
+      },
+      {
+       "seat": "E",
+       "card": "DA"
+      },
+      {
+       "seat": "S",
+       "card": "D5"
+      },
+      {
+       "seat": "E",
+       "card": "D2"
+      },
+      {
+       "seat": "S",
+       "card": "D8"
+      },
+      {
+       "seat": "W",
+       "card": "S2"
+      },
+      {
+       "seat": "N",
+       "card": "D3"
+      },
+      {
+       "seat": "W",
+       "card": "H7"
+      },
+      {
+       "seat": "N",
+       "card": "HT"
+      },
+      {
+       "seat": "E",
+       "card": "S4"
+      },
+      {
+       "seat": "S",
+       "card": "H3"
+      },
+      {
+       "seat": "E",
+       "card": "D9"
+      },
+      {
+       "seat": "S",
+       "card": "D6"
+      },
+      {
+       "seat": "W",
+       "card": "SJ"
+      },
+      {
+       "seat": "N",
+       "card": "DJ"
+      },
+      {
+       "seat": "W",
+       "card": "HQ"
+      },
+      {
+       "seat": "N",
+       "card": "C4"
+      },
+      {
+       "seat": "E",
+       "card": "C9"
+      },
+      {
+       "seat": "S",
+       "card": "H4"
+      },
+      {
+       "seat": "W",
+       "card": "H6"
+      },
+      {
+       "seat": "N",
+       "card": "C5"
+      },
+      {
+       "seat": "E",
+       "card": "ST"
+      },
+      {
+       "seat": "S",
+       "card": "H8"
+      },
+      {
+       "seat": "E",
+       "card": "DK"
+      },
+      {
+       "seat": "S",
+       "card": "DQ"
+      },
+      {
+       "seat": "W",
+       "card": "C6"
+      },
+      {
+       "seat": "N",
+       "card": "C7"
+      },
+      {
+       "seat": "E",
+       "card": "DT"
+      },
+      {
+       "seat": "S",
+       "card": "C2"
+      },
+      {
+       "seat": "W",
+       "card": "CT"
+      },
+      {
+       "seat": "N",
+       "card": "CQ"
+      }
+     ],
+     "ns_score": -1010
+    }
+   ]
+  }
+ },
+ "note": "One board of 9a-32~guest-a played by scripts/gen9_match.py machinery (dave, 12 Nov 2026), stripped to what the experience pipeline reads."
+}

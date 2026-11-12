@@ -1,0 +1,46 @@
+{
+ "schema": "arena-rules-v1",
+ "condition": "native",
+ "common_bidder": "6-32",
+ "promotion": {
+  "alpha": 0.05,
+  "beta": 0.1,
+  "d": 0.1,
+  "cap": 10000
+ },
+ "admission": {
+  "se": 0.15,
+  "max_boards": 2000
+ },
+ "retirement": {
+  "min_epochs": 3,
+  "gap": 1.0
+ },
+ "shares": {
+  "training": 0.55,
+  "promotion": 0.2,
+  "panel": 0.15,
+  "admission": 0.1
+ },
+ "weight_units": 100,
+ "max_weight_ratio": 2,
+ "version": "arrival-rehearsal",
+ "reference": "1",
+ "epoch": {
+  "boards": 24
+ },
+ "floors": [
+  {
+   "pairs": [
+    "9a-32~guest-a",
+    "8p-32~guest-a"
+   ],
+   "boards": 6,
+   "same_deals": true,
+   "purpose": "comparison"
+  }
+ ],
+ "notes": [
+  "One-machine rehearsal of the arrival run: two epochs of 24 boards, guest-a submitted before the second; 6 floor boards a pair."
+ ]
+}

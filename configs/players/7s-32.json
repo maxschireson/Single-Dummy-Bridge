@@ -59,7 +59,10 @@
  "declaration": {
   "system": "house-gen6",
   "card": null,
-  "carding": null
+  "carding": null,
+  "profiles": {
+   "house-gen6": 1.0
+  }
  },
  "lineage": {
   "parents": [],
@@ -68,7 +71,8 @@
  },
  "needs": {
   "ben_server": false,
-  "tensorflow": false
+  "tensorflow": false,
+  "h5py": true
  },
  "licence": "redistributable",
  "notes": "Gen 7 standard as launched on 12 November: Gen 6 fast with the gen7 engine and policy net v4 (configs/gen9-proto-bots.json, 7s-32)."
