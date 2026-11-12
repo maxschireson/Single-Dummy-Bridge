@@ -22,7 +22,8 @@ class FleetTests(unittest.TestCase):
         return {p: json.dumps(d).encode() for p,d in files.items()}
 
     def test_independent_and_selfplay_campaigns_contribute_comparison_families(self):
-        for campaign in ['gen7-phase1-independent-20261112', 'gen7-phase1-selfplay-20261112']:
+        for campaign in ['gen7-phase1-independent-20261112', 'gen7-phase1-selfplay-20261112',
+                         'gen7-independent-selfplay-ben-20261112']:
             with self.subTest(campaign=campaign), patch('phase1_fleet.fetch_bytes', side_effect=lambda rev,path:self.snapshot(campaign)[path]):
                 result = fetch_snapshot(('feed', 'revision'), 'actor')
                 self.assertEqual(result['rows'], [dict(pair='7s-32~6-32', family='family')])
@@ -34,6 +35,39 @@ class FleetTests(unittest.TestCase):
         for campaign, ready, actor in cases:
             with self.subTest(campaign=campaign, ready=ready, actor=actor), patch('phase1_fleet.fetch_bytes', side_effect=lambda rev,path:self.snapshot(campaign, ready, actor)[path]):
                 self.assertIn('excluded', fetch_snapshot(('feed', 'revision'), 'actor'))
+
+    def test_manifest_and_ready_plan_must_agree(self):
+        campaign = 'gen7-independent-selfplay-ben-20261112'
+        files = self.snapshot(campaign)
+        plan = json.loads(files['recovery/plan.json'])
+        plan['pair_weights'] = {'7s-32~1': 1}
+        files['recovery/plan.json'] = json.dumps(plan).encode()
+        with patch('phase1_fleet.fetch_bytes', side_effect=lambda rev,path:files[path]):
+            with self.assertRaisesRegex(ValueError, 'plan/manifest mismatch'):
+                fetch_snapshot(('feed', 'revision'), 'actor')
+
+    def test_outcomes_published_after_the_snapshot_do_not_count(self):
+        campaign = 'gen7-independent-selfplay-ben-20261112'
+        files = self.snapshot(campaign)
+        path = 'arena/replays/data/cohort/index.json'
+        index = json.loads(files[path])
+        index['records'].append(dict(pair='7s-32~6-32', family='later', completed_epoch=3))
+        files[path] = json.dumps(index).encode()
+        with patch('phase1_fleet.fetch_bytes', side_effect=lambda rev,path:files[path]):
+            result = fetch_snapshot(('feed', 'revision'), 'actor')
+        self.assertEqual([row['family'] for row in result['rows']], ['family'])
+
+    def test_replay_shard_checksum_failure_stops_accounting(self):
+        campaign = 'gen7-independent-selfplay-ben-20261112'
+        files = self.snapshot(campaign)
+        prefix = 'arena/replays/data/cohort/'
+        index = json.loads(files[prefix+'index.json'])
+        index.update(records=[], record_shards=['shard.json'], record_shard_sha256={'shard.json': '0'*64})
+        files[prefix+'index.json'] = json.dumps(index).encode()
+        files[prefix+'shard.json'] = b'[]'
+        with patch('phase1_fleet.fetch_bytes', side_effect=lambda rev,path:files[path]):
+            with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
+                fetch_snapshot(('feed', 'revision'), 'actor')
 
     def test_mirrored_feeds_and_unpublished_local_receipts_do_not_double_count(self):
         first = [dict(pair='7s-32~6-32', family=str(i), imps=10) for i in range(2000)]
@@ -70,6 +104,19 @@ class FleetTests(unittest.TestCase):
             self.assertFalse(result['all_five_complete'])
             self.assertFalse(result['phase2_authorized'])
             self.assertIn('drain', (run / 'STOP').read_text())
+
+    def test_selfplay_only_has_no_comparison_stop_predicate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run = Path(tmp); (run / 'receipts').mkdir()
+            (run / 'manifest.json').write_text(json.dumps(dict(identity='cohort',
+                bots={'7s-32': {'identity': 'actor'}}, phase1=dict(owned_pairs=[]))))
+            (run / 'phase1-seen-families.json').write_text(json.dumps(dict(actor_identity='actor',
+                families={p:[str(i) for i in range(2000)] for p in PAIRS})))
+            with patch('phase1_fleet.subprocess.check_output', return_value=''):
+                result = update(run, run)
+            self.assertTrue(result['all_five_complete'])
+            self.assertFalse(result['owned_complete'])
+            self.assertFalse((run / 'STOP').exists())
 
 
 if __name__ == '__main__':

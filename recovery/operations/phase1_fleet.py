@@ -39,12 +39,12 @@ def fetch_snapshot(item, actor_identity):
     branch, revision = item
     manifest = json.loads(fetch_bytes(revision, 'arena/manifest.json'))
     campaign = manifest.get('campaign', '')
-    if not campaign.startswith('gen7-phase1-'):
-        return dict(branch=branch, revision=revision, excluded='not-phase1')
+    if not campaign.startswith('gen7-') or 'pre7' in campaign:
+        return dict(branch=branch, revision=revision, excluded='not-current-gen7-collection')
     if manifest.get('bots', {}).get('7s-32', {}).get('identity') != actor_identity:
         return dict(branch=branch, revision=revision, excluded='different-actor-configuration')
-    # Independent producers and the authorized self-play replacement name their own campaign.
-    # For these, require their published ready plan in addition to the exact actor identity.
+    # Campaign names are producer-owned. Classify current matches by the exact actor,
+    # approved pair set and published ready plan rather than a phase1 name prefix.
     if campaign != 'gen7-phase1-20261112':
         plan = json.loads(fetch_bytes(revision, 'recovery/plan.json'))
         if not plan.get('launch_enabled') or plan.get('pending') or plan.get('campaign') != campaign:
@@ -110,7 +110,8 @@ def update(run, runtime):
     from bridge_harness.selfplay import atomic_json
     atomic_json(inventory_path, dict(actor_identity=actor, families={p:sorted(v) for p,v in seen.items()}))
     counts = {p:len(v) for p,v in seen.items()}
-    owned_complete = all(counts[p] >= 2000 for p in m['phase1']['owned_pairs'])
+    owned_pairs = m['phase1']['owned_pairs']
+    owned_complete = bool(owned_pairs) and all(counts[p] >= 2000 for p in owned_pairs)
     all_complete = all(v >= 2000 for v in counts.values())
     status = dict(epoch=time.time(), status='partial' if errors else 'checked',
         actor_identity=actor, counts=counts, target_per_pair=2000, owned_complete=owned_complete,
@@ -118,7 +119,7 @@ def update(run, runtime):
         method='Published authorized phase1 feeds plus local committed receipts; canonical actor identity; '
                'deduplicated by pair and deal family, independent of outcomes. Only published peers are observable.')
     atomic_json(run / 'phase1-global-progress.json', status)
-    if owned_complete or all_complete:
+    if owned_complete or (owned_pairs and all_complete):
         stop = run / 'STOP'
         if not stop.exists():
             stop.write_text('Gen7 shared comparison targets reached; drain for the next authorized cohort. Broad phase2 remains closed.\n')
