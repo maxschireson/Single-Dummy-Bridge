@@ -2,14 +2,15 @@
  "schema": "gen7-alpha-plan-v1",
  "campaign": "gen8-candidate-ben-20261112",
  "title": "Gen 8 candidate \u00b7 against BEN (64) and BEN (16)",
- "launch_enabled": false,
- "pending": [
-  "Not authorized. It opens with configs/round8-candidate.json, on Max's word, and whoever opens it records that word here. Max, 12 November 2026, 15:12 UTC: \"We should have some Ben boards, but those can come in the arena.\"",
-  "This lane is the first measurement of Gen 8 against BEN. The candidate reads BEN's plays at half weight (`opponent_play_weight` 0.5) from trick 1: Gen 7's exponent carried over, tuned on nothing. Gen 7.1 reads BEN from about trick 7 at the same exponent, so the early reading of a player the net was not trained on is what is new here. If the lane shows a loss against Gen 7.1's result on BEN, lower the factor before anything else.",
-  "Not preflighted: the preflight plays boards and a BEN board needs BEN's server. Prepare was checked (it accepts this plan from the capture capsule); the first boards on a machine with BEN are the check of the rest."
- ],
+ "launch_enabled": true,
+ "pending": [],
+ "exclude_training_families": true,
  "notes": [
+  "Authorized by Max, 12 November 2026. 15:30 UTC: \"Leaning towards pushing sooner rather than later. When might we go?\" 15:32 UTC, in answer to \"if you say go now, I open the plans as soon as the preflight returns clean and post the box question to g7 on the board\": \"Go ahead\". 15:33 UTC: \"All machines not working on 9 and other future projects can switch from 7 work to 8 arena.\" The collectors are started by g7, the arena's operator. On BEN, 15:12 UTC: \"We should have some Ben boards, but those can come in the arena.\"",
   "docs/gen8_candidate_2026-11-12.md is the notice this file belongs to.",
+  "Deals. Max, 12 November 2026, 15:50 UTC: \"In general I would never want a bot to play a board in a family it has been trained on, other than as a specific experiment to measure that particular effect. Never in the arena.\" The Gen 8 bots play with policy net v4.1, so a cohort is prepared with --exclude-families and the list of the families v4.1 was trained on, as the Gen 7.1 cohorts are; `exclude_training_families` makes ops/prepare_gen7_alpha.py refuse this plan without a list. The rule bidder's trick estimate and the system scorer's table were fitted on deals drawn by seed outside the arena's corpus.",
+  "This lane is the first measurement of Gen 8 against BEN. The candidate reads BEN's plays at half weight (`opponent_play_weight` 0.5) from trick 1: Gen 7's exponent carried over, tuned on nothing. Gen 7.1 reads BEN from about trick 7 at the same exponent, so the early reading of a player the net was not trained on is what is new here. If the lane shows a loss against Gen 7.1's result on BEN, lower the factor before anything else.",
+  "Not preflighted by Gen 8: the preflight plays boards and a BEN board needs BEN's server. Prepare was checked on azure6 from the capture capsule. The preflight on the machine with BEN is the check of the rest.",
   "This is configs/round71-ben.json with 71s-32 replaced by 8s-32, the Gen 8 candidate of configs/round8-candidate.json: the same entry, so the same identity in both cohorts. BEN boards carry no audits (`ben_audit`) and no gap forks. A machine that plays one BEN level keeps one of the two pairs, as the Azure lanes do.",
   "Systems: BEN declares `ben-gib-bbo-8742` (configs/systems; BEN's own two-over-one, as far as that package knows it). The system scorer holds no table for it, so BEN's calls are read by the base hand-fit scorer exactly as Gen 7.1 reads them, and the candidate's `lead_systems` names it, so the lead net is used at BEN tables as in Gen 7.1. What differs from Gen 7.1 at a BEN table is the play reading alone. Records are labelled `systems:house-gen6|ben-gib-bbo-8742` (or the reverse) in the own-auction rooms.",
   "The collector plays BEN boards with one worker and stops on the first failed board, so each BEN pair needs its server up at the URL in the bot's spec.",

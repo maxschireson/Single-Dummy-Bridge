@@ -278,6 +278,10 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
             raise ValueError('Inspect preserved source failures first')
         old = json.loads((source / 'manifest.json').read_text())
         plan = load_plan(plan_path)
+        if plan.get('exclude_training_families') and exclude_families is None:
+            # No bot plays a board in a family one of its nets was trained on (Max, 12 November 2026): a plan that
+            # says so is prepared only with the list of those families.
+            raise ValueError('This plan\'s bots carry a released net: prepare it with --exclude-families, the list of the deal families that net was trained on')
         verify_source(source, old)
         boards = list(load(source / old['corpus']))
         done = set()

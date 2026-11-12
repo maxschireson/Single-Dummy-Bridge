@@ -67,13 +67,13 @@ class Gen8PlanTests(unittest.TestCase):
     def write(self, plan=None):
         self.plan_path.write_text(json.dumps(plan or self.plan))
 
-    def test_the_shipped_candidate_is_closed_and_names_the_frozen_pieces(self):
+    def test_the_shipped_plan_is_open_on_maxs_word_and_names_the_frozen_pieces(self):
         path = ROOT / 'configs/round8-candidate.json'
-        with self.assertRaises(ValueError):
-            load_plan(path)
-        shipped = load_plan(path, require_ready=False)
-        self.assertFalse(shipped['launch_enabled'])
-        self.assertTrue(shipped['pending'])
+        shipped = load_plan(path)                        # open: Max, 12 November 2026, 15:32 UTC
+        self.assertTrue(shipped['launch_enabled'])
+        self.assertEqual(shipped['pending'], [])
+        self.assertTrue(shipped['notes'][0].startswith('Authorized by Max, 12 November 2026') and '"Go ahead"' in shipped['notes'][0])
+        self.assertIs(shipped['exclude_training_families'], True)       # no arena board in a family its policy net was trained on
         # the rule bidder is the packaged system's, pin for pin, and the code builds exactly it
         package = json.loads((ROOT / 'configs/systems/rules-precision.json').read_text())
         entry = shipped['gen7_bots']['8c-32']['bidder']
@@ -100,14 +100,13 @@ class Gen8PlanTests(unittest.TestCase):
         table = shipped['gen7_bots']['8s-32']['gen7']['opponent_play_weight']
         self.assertTrue(set(shipped['roster']) <= set(table) and '*' in table)
 
-    def test_the_shipped_ben_lane_is_closed_and_plays_the_same_candidate(self):
-        main = load_plan(ROOT / 'configs/round8-candidate.json', require_ready=False)
-        path = ROOT / 'configs/round8-candidate-ben.json'
-        with self.assertRaises(ValueError):
-            load_plan(path)
-        lane = load_plan(path, require_ready=False)
-        self.assertFalse(lane['launch_enabled'])
-        self.assertTrue(lane['pending'])
+    def test_the_shipped_ben_lane_is_open_and_plays_the_same_candidate(self):
+        main = load_plan(ROOT / 'configs/round8-candidate.json')
+        lane = load_plan(ROOT / 'configs/round8-candidate-ben.json')
+        self.assertTrue(lane['launch_enabled'])
+        self.assertEqual(lane['pending'], [])
+        self.assertTrue(lane['notes'][0].startswith('Authorized by Max, 12 November 2026') and '"Go ahead"' in lane['notes'][0])
+        self.assertIs(lane['exclude_training_families'], True)
         self.assertEqual(lane['gen7_bots'], {'8s-32': main['gen7_bots']['8s-32']})        # the same entry, so the same identity
         self.assertEqual(lane['artifacts'], main['artifacts'])
         self.assertEqual(lane['roster'], ['8s-32', 'ben64', 'ben'])
@@ -183,6 +182,21 @@ class Gen8PlanTests(unittest.TestCase):
         self.assertEqual(m['gen7_alpha']['bots'], ['7a-32', '8c-32', '8s-32'])
         for key, spec in self.old['bots'].items():
             self.assertEqual(m['bots'][key], spec)
+
+    def test_a_plan_that_demands_it_is_prepared_only_with_the_training_families_left_out(self):
+        from bridge_harness.bidding_env import deal_key
+        from bridge_harness.corpus import load
+        self.write(dict(self.plan, exclude_training_families=True))
+        with self.assertRaisesRegex(ValueError, 'exclude-families'):
+            prepare(self.tmp / 'bare', self.tmp / 'source', self.plan_path)
+        self.assertFalse((self.tmp / 'bare').exists())
+        family = deal_key(load(self.tmp / 'source/corpus.jsonl')[0].hands, True)
+        excluded = self.tmp / 'excluded.json'
+        excluded.write_text(json.dumps([family]))
+        m = prepare(self.tmp / 'run', self.tmp / 'source', self.plan_path, exclude_families=excluded)
+        self.assertEqual(m['target'], self.old['target'] - 1)
+        self.assertNotIn(family, {deal_key(b.hands, True) for b in load(self.tmp / 'run/corpus.jsonl')})
+        self.assertEqual(m['evaluation_exclusions']['families'], 1)
 
     def test_prepare_refuses_a_bidder_that_is_not_the_pinned_one_or_a_scorer_built_on_another(self):
         source = self.tmp / 'source'

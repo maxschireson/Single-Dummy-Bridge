@@ -47,7 +47,8 @@ instruction to that producer. Gen 6's scored results are closed:
 - Gen 7 phase 2 (self-play volume with the fast bot). The self-play regime, the gen7 engine and
   the capture port are in one runtime on `feature/gen7-selfplay-20261112`, which is not on main;
   [backlog item 1](backlog.md).
-- Gen 8 systems layer: WIP on `feature/gen8-systems-20261111`.
+- Gen 8: a candidate on `feature/gen8-prototype-20261112` ([notice](gen8_candidate_2026-11-12.md)); not authorized,
+  its plan `configs/round8-candidate.json` is closed. The systems layer it rests on: [gen8_systems.md](gen8_systems.md).
 - Hand-fit scorer v1a: packaged on `research/hand-fit-scorer-v1a-20261111`; phase 1 uses v0.
 
 ## Evidence rules
