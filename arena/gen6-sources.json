@@ -3,6 +3,16 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen7codexselfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex standard self-play and Gen6 comparison",
+      "branch": "arena-gen7-selfplay-codex-20261112-feed",
+      "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8"
+    },
+    {
       "key": "gen7independentphase1",
       "group": "gen7",
       "generation": 7,
@@ -18,9 +28,11 @@
       "generation": 7,
       "variant": "7",
       "environment": "codex",
-      "name": "Gen 7 · Codex phase 1 (non-BEN)",
+      "name": "Gen 7 · Codex completed phase 1 anchors",
       "branch": "arena-gen7-phase1-codex-20261112-feed",
-      "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
+      "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "retired": true,
+      "revision": "dfe3233dec356e48da065702964892354e0db16c"
     },
     {
       "key": "gen6codexfast",
@@ -723,21 +735,24 @@
       "successor": "gen7codexphase1"
     },
     "gen7codexphase1": {
-      "status": "Validated Gen7 phase1 non-BEN cohort started",
+      "status": "Drained after Max04:09 anchor-stop directive;564 completed boards preserved",
       "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
       "pair_weights": {
         "7s-32~6-32": 1,
         "7s-32~5RZ32": 1,
         "7s-32~1": 1
       },
-      "workers": 3,
+      "workers": 0,
       "ben_workers": 0,
       "source_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
       "source_completed_preserved": 3710,
       "preflight": "54 Gen7 tests passed; 2 full-game boards of each of 3 pairs; 3 fleet guard tests; first 9 production records replay-validated",
       "pooled_target_per_pair": 2000,
       "phase2_authorized": false,
-      "updated_epoch": 1794451880.966539
+      "updated_epoch": 1794451880.966539,
+      "completed": 564,
+      "final_revision": "dfe3233dec356e48da065702964892354e0db16c",
+      "successor": "gen7codexselfplay"
     },
     "gen7cloudphase1": {
       "status": "Drained at67 per Max04:09 stop Gen5/Gen1; awaiting tested Gen7 standard selfplay handoff",
@@ -764,6 +779,27 @@
         "7s-32~6-32": 22,
         "7s-32~1": 22
       }
+    },
+    "gen7codexselfplay": {
+      "status": "Authorized standard self-play mix validated and started",
+      "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "source_commit": "05d2cd82a9078bdd47a0ee312122c957367758ec",
+      "authority": {
+        "issued": "2026-11-12T04:09:00Z",
+        "board_commit": "6ecc02f045b783ceb91525acad816bada86b55ea",
+        "plan": "configs/round7-phase1-selfplay.json"
+      },
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~7s-32": 2
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "preflight": "59 Gen7 tests;two real-model boards of each pair;5 fleet-guard tests;single-table selfplay with null IMPs",
+      "preserved_parent_deals": 564,
+      "preserved_gen6_deals": 3710,
+      "comparison_pooled_target": 2000,
+      "broad_phase2_authorized": false
     }
   },
   "requested_match_mix": {
