@@ -250,17 +250,23 @@ def readings(a):
     # the bench numbers its tables in the order `pools` took them (passed-out tables left out): the same order here
     yielded = [(path, key) for path, key, *_ in table_source([tuple(x) for x in listed['tables']])(None, None)]
     source = str(Path(a.source).resolve())
-    readers, meets = {}, {}
+    readers, meets, built = {}, {}, {}
+
+    def player_of(bot):
+        """One player per bot spec, shared by the readings built on it, so that their nets' rows are computed once."""
+        if bot not in built:
+            built[bot] = gen9.player(bot_spec(source, a.bots, bot), source)
+        return built[bot]
     for item in a.reading:
         name, bot = item.split('=', 1)
         bot, _, meets[name] = bot.partition('@')
-        readers[name] = gen9.player(bot_spec(source, a.bots, bot), source)
+        readers[name] = player_of(bot) if not meets[name] else gen9.player(bot_spec(source, a.bots, bot), source)
     for item in a.head_reading:
         from bridge_harness.play_head import PlayHead
         name, rest = item.split('=', 1)
         path, version, head_name, factor = rest.rsplit(':', 3)
         heads = json.loads(Path(path).read_text())['heads']
-        base = gen9.player(bot_spec(source, a.bots, a.head_base), source)
+        base = player_of(a.head_base)
         readers[name], meets[name] = HeadReading(base, PlayHead.from_json(heads[version]['ben.declarer'][head_name]), float(factor)), ''
     for item in a.expert_reading:
         from gen9_signal_expert import build
@@ -268,7 +274,7 @@ def readings(a):
         path, version, size, which = rest.rsplit(':', 3)
         first = which.endswith('-first')                  # e.g. m3-first: the second rounds left as today (uniform)
         spec = json.loads(Path(path).read_text())['models'][version][size]
-        base = gen9.player(bot_spec(source, a.bots, a.expert_base), source)
+        base = player_of(a.expert_base)
         readers[name], meets[name] = ExpertReading(base, build(spec)[which.replace('-first', '')], first), ''
     decisions = kept(bench.decisions, listed.get('deciders', 'house'))
     for part in sorted(out.glob('pools-*-*.npz')):
