@@ -387,3 +387,4 @@
 {"at": "2026-11-12T11:54:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-6-vs-8p", "note": "5 -> 6: g9's order by value for Friday (11:49)", "task": "E9-6"}
 {"at": "2026-11-12T11:54:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-6-vs-reader", "note": "6 -> 6: g9's order by value for Friday (11:49)", "task": "E9-6"}
 {"at": "2026-11-12T11:55:00Z", "by": "sam", "op": "job-submit", "target": "azure4/e9-6-vs-8p", "note": "priority 6, 4 cores", "task": "E9-6"}
+{"at": "2026-11-12T11:55:00Z", "by": "sam", "op": "send", "target": "will/20261112T1155Z-sam-e9-10-on-your-ben-lanes-two-th", "note": "E9-10 on your BEN lanes: two things the runner needs before my jobs can run safely (BEN 64; two runs at once collide on lane names)", "task": "G9-W7"}
