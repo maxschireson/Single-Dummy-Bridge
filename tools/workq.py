@@ -660,6 +660,7 @@ def queue_rows(q: dict) -> list[dict]:
     for jid, j in q["jobs"].items():
         r = dict(id=jid, owner=j.get("owner"), experiment=j.get("experiment") or "", priority=j.get("priority"), cores=j.get("cores"),
                  target=(j.get("progress") or {}).get("target"))
+        r["sandbox_rate"] = j.get("sandbox_rate")
         r.update({k: v for k, v in reported.get(jid, {}).items() if k in ("state", "boards", "rate_per_hour", "eta", "published", "short")})
         r.setdefault("state", "cancelled" if j.get("state") == "cancelled" else "not seen yet")
         rows.append(r)
@@ -674,14 +675,17 @@ def render_queues(st: State) -> list[str]:
     L = ["## Box queue", ""]
     for box, q in sorted(qs.items()):
         stt = q.get("status") or {}
-        L += [f"**{box}**: {stt.get('cores_busy', '?')} of {stt.get('cores', '?')} cores busy, reported {short(stt.get('updated'))} UTC"
+        idle = (f"; idle {stt.get('idle_core_hours', 0):.1f} core-hours since {short(stt.get('serving_since'))} UTC, "
+                f"{stt.get('idle_core_hours_while_waiting', 0):.1f} of them while jobs waited") if stt.get("serving_since") else ""
+        L += [f"**{box}**: {stt.get('cores_busy', '?')} of {stt.get('cores', '?')} cores busy, reported {short(stt.get('updated'))} UTC{idle}"
               + (f"; malformed job files: {'; '.join(stt['bad_jobs'])}" if stt.get("bad_jobs") else "") + ".", "",
-              "| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |",
+              "| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |",
               "| --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |"]
         for r in queue_rows(q):
             boards = f"{r.get('boards', 0):,} of {r['target']:,}" if r.get("target") else str(r.get("boards", ""))
+            rate = f"{r.get('rate_per_hour') or ''}" + (f" ({r['sandbox_rate']:g})" if r.get("sandbox_rate") else "")
             L.append(f"| {r['id']} | {r['experiment']} | {r['owner']} | {r.get('priority')} | {r.get('cores')} | {r['state']}"
-                     f"{' (short)' if r.get('short') else ''} | {boards} | {r.get('rate_per_hour') or ''} | {short(r.get('eta'))} | "
+                     f"{' (short)' if r.get('short') else ''} | {boards} | {rate} | {short(r.get('eta'))} | "
                      f"{('`' + r['published'] + '`') if r.get('published') else ''} |")
         L.append("")
     return L

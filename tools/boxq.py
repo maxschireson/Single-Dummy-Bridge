@@ -100,6 +100,8 @@ def validate(job: dict, box: str | None = None, cores: int | None = None) -> dic
     need(isinstance(job.get("preemptible", True), bool), "preemptible is true or false")
     need(isinstance(job.get("env", {}), dict), "env is an object")
     need(isinstance(job.get("publish", []), list), "publish is a list of file patterns")
+    need(job.get("sandbox_rate") is None or (isinstance(job["sandbox_rate"], (int, float)) and job["sandbox_rate"] > 0),
+         "sandbox_rate is boards an hour measured off the box at this job's cores (a positive number)")
     for key in ("experiment", "task"):
         if job.get(key):
             need(isinstance(job[key], str) and wq.ID_RE.match(job[key]), f"{key} is an id like E9-0 or G9-D6")
@@ -289,6 +291,8 @@ class Box:
             s = S.setdefault(jid, dict(state="waiting", owner=j["owner"], experiment=j.get("experiment") or j.get("task"), boards=0,
                                        target=j["progress"]["target"], restarts=0, samples=[], submitted=j.get("submitted")))
             s["target"], s["priority"], s["cores"] = j["progress"]["target"], j["priority"], j["cores"]
+            if j.get("sandbox_rate"):
+                s["sandbox_rate"] = j["sandbox_rate"]
             if j.get("state") == "cancelled" and s["state"] in ("waiting", "paused"):
                 s["state"] = "cancelled"; changed.append((jid, "cancelled"))
         # what finished since the last pass
@@ -339,8 +343,18 @@ class Box:
                 s["rate_per_hour"], s["eta"] = rate_and_eta(s["samples"], s["boards"], s["target"], now)
                 if j.get("publish") and (not s.get("published_at") or now - parse(s["published_at"]) >= PUBLISH_EVERY):
                     self.publish(j, s, now)
+        # idle cores since the queue started serving, counted at the previous pass's load over the interval
+        prev, busy_before = self.status.get("updated"), self.status.get("cores_busy", 0)
+        if prev:
+            hours = max(0.0, (now - parse(prev)).total_seconds() / 3600)
+            idle = max(0, self.cores - busy_before) * hours
+            self.status["idle_core_hours"] = round(self.status.get("idle_core_hours", 0.0) + idle, 3)
+            if self.status.get("waiting_before"):
+                self.status["idle_core_hours_while_waiting"] = round(self.status.get("idle_core_hours_while_waiting", 0.0) + idle, 3)
+        self.status.setdefault("serving_since", stamp(now))
         self.status.update(box=self.box, cores=self.cores, updated=stamp(now), bad_jobs=bad,
-                           cores_busy=sum(s["cores"] for s in S.values() if s["state"] == "running" and "cores" in s))
+                           cores_busy=sum(s["cores"] for s in S.values() if s["state"] == "running" and "cores" in s),
+                           waiting_before=any(s["state"] in ("waiting", "paused") for s in S.values()))
         self.state_file.parent.mkdir(parents=True, exist_ok=True)
         self.state_file.write_text(json.dumps(self.status, indent=1) + "\n")
         if changed or not self.last_write or now - self.last_write >= STATUS_EVERY:

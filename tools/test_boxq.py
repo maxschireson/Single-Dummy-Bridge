@@ -145,6 +145,25 @@ class LoopTest(unittest.TestCase):
         self.assertEqual(len(files["results.jsonl"].decode().splitlines()), 4)
         self.assertIn(b'"id": "low"', files["job.json"])
 
+    def test_idle_core_hours_and_sandbox_rate(self):
+        t = [datetime(2026, 11, 12, 13, 0, tzinfo=timezone.utc)]
+        self.box.clock = lambda: t[0]
+        self.box.once()                                          # serving from 13:00, nothing queued
+        self.submit(job("small", 1, 1, target=1000, delay=1, commit=self.commit, sandbox_rate=120))
+        self.submit(job("wide", 2, 2, commit=self.commit))
+        t[0] += timedelta(hours=1)
+        s = self.box.once()                                      # 13:00-14:00: both cores idle, nothing waiting
+        self.assertEqual((s["idle_core_hours"], s.get("idle_core_hours_while_waiting", 0)), (2.0, 0))
+        self.assertEqual((s["jobs"]["small"]["state"], s["jobs"]["wide"]["state"]), ("running", "waiting"))
+        t[0] += timedelta(minutes=30)
+        s = self.box.once()                                      # 14:00-14:30: one core idle while `wide` waits for two
+        self.assertEqual((s["idle_core_hours"], s["idle_core_hours_while_waiting"]), (2.5, 0.5))
+        self.assertEqual(s["jobs"]["small"]["sandbox_rate"], 120)
+        self.box.write_status([])
+        text = self.g9.snapshot().get("STATUS.md").decode()
+        self.assertIn("idle 2.5 core-hours since 11-12 13:00 UTC, 0.5 of them while jobs waited", text)
+        self.assertIn("(120)", text)
+
     def test_preemption_pauses_and_resumes_without_losing_boards(self):
         self.submit(job("slow", 5, 2, target=40, delay=0.1, commit=self.commit))
         self.run_until(lambda J: J["slow"]["state"] == "running" and J["slow"]["boards"] >= 3)
