@@ -1,0 +1,188 @@
+{
+  "status": "passed",
+  "schema": "diagnostic-rng-live-v3.1",
+  "cases": [
+    {
+      "lane": "BEN",
+      "cut": "mkdir",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "episode",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "receipt.json",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "rng.json",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "manifest",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "generation_fsync",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "parent_fsync",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "next_fsync",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "pointer_replace",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "BEN",
+      "cut": "commit_fsync",
+      "exitcode": -9,
+      "complete_count": 3,
+      "continued": true,
+      "export_count": 3,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "mkdir",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "episode",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "receipt.json",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "rng.json",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "manifest",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "generation_fsync",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "parent_fsync",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "next_fsync",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "pointer_replace",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    },
+    {
+      "lane": "normal",
+      "cut": "commit_fsync",
+      "exitcode": -9,
+      "complete_count": 4,
+      "continued": true,
+      "export_count": 4,
+      "rng_exact": true
+    }
+  ],
+  "production_commits": 0,
+  "scope": "20 actual SIGKILL interruptions and successful continuation using records newly played by V3. V3.1 changes only generation naming; live futures were exercised with V3. No power-loss simulation or production adoption."
+}

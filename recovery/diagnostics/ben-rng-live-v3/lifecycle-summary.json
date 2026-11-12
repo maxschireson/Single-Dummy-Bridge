@@ -1,0 +1,110 @@
+{
+  "exits": [
+    {
+      "epoch": 1794443187.1562896,
+      "event": "server-exit",
+      "parent_pid": 46,
+      "pid": 54,
+      "exitcode": 0,
+      "unexpected_exitcode": null,
+      "intentional_stop": true,
+      "resources": {
+        "MemTotal_kb": 10206472,
+        "MemFree_kb": 2669588,
+        "MemAvailable_kb": 6168920,
+        "Cached_kb": 4756436,
+        "SwapTotal_kb": 0,
+        "SwapFree_kb": 0,
+        "allocstall_dma": 0,
+        "allocstall_dma32": 0,
+        "allocstall_normal": 0,
+        "allocstall_movable": 814,
+        "allocstall_device": 0,
+        "pgmajfault": 66492,
+        "oom_kill": 32,
+        "cgroup_metrics_available": false
+      }
+    },
+    {
+      "epoch": 1794443118.5453815,
+      "event": "server-exit",
+      "parent_pid": 7,
+      "pid": 15,
+      "exitcode": 0,
+      "unexpected_exitcode": null,
+      "intentional_stop": true,
+      "resources": {
+        "MemTotal_kb": 10206472,
+        "MemFree_kb": 2435060,
+        "MemAvailable_kb": 5884884,
+        "Cached_kb": 4718560,
+        "SwapTotal_kb": 0,
+        "SwapFree_kb": 0,
+        "allocstall_dma": 0,
+        "allocstall_dma32": 0,
+        "allocstall_normal": 0,
+        "allocstall_movable": 814,
+        "allocstall_device": 0,
+        "pgmajfault": 66485,
+        "oom_kill": 32,
+        "cgroup_metrics_available": false
+      }
+    },
+    {
+      "epoch": 1794443117.1244555,
+      "event": "worker-exit",
+      "parent_pid": 7,
+      "pid": 38,
+      "exitcode": 0,
+      "signal": null,
+      "resources": {
+        "MemTotal_kb": 10206472,
+        "MemFree_kb": 1796892,
+        "MemAvailable_kb": 5246716,
+        "Cached_kb": 4849020,
+        "SwapTotal_kb": 0,
+        "SwapFree_kb": 0,
+        "allocstall_dma": 0,
+        "allocstall_dma32": 0,
+        "allocstall_normal": 0,
+        "allocstall_movable": 814,
+        "allocstall_device": 0,
+        "pgmajfault": 66485,
+        "oom_kill": 32,
+        "cgroup_metrics_available": false
+      },
+      "result_received": true,
+      "note": "Signals alone do not establish OOM; no automatic retry."
+    },
+    {
+      "epoch": 1794443185.635996,
+      "event": "worker-exit",
+      "parent_pid": 46,
+      "pid": 77,
+      "exitcode": 0,
+      "signal": null,
+      "resources": {
+        "MemTotal_kb": 10206472,
+        "MemFree_kb": 2006020,
+        "MemAvailable_kb": 5505232,
+        "Cached_kb": 4886768,
+        "SwapTotal_kb": 0,
+        "SwapFree_kb": 0,
+        "allocstall_dma": 0,
+        "allocstall_dma32": 0,
+        "allocstall_normal": 0,
+        "allocstall_movable": 814,
+        "allocstall_device": 0,
+        "pgmajfault": 66492,
+        "oom_kill": 32,
+        "cgroup_metrics_available": false
+      },
+      "result_received": true,
+      "note": "Signals alone do not establish OOM; no automatic retry."
+    }
+  ],
+  "oom_range": [
+    32,
+    32
+  ]
+}

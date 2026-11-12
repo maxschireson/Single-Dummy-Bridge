@@ -1,0 +1,24 @@
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-nq745no0/export"}
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-aq436o12/export"}
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-q2c2eyzf/export"}
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-5ce04eg0/export"}
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-p47arzrq/export"}
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-ku0wdn8u/export"}
+{"completed": 3, "tables": 4, "rate": {"pairs": 3, "per_hour": 36.0, "full_window": true}, "files": 8, "output": "/tmp/rng-live-continue-jqn0voeg/export"}
+Traceback (most recent call last):
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/runs/gen6-chatgpt-ben-recycled-20261111/diagnostics/ben-rng-live-v3/crash_continue.py", line 20, in <module>
+    if not advanced:add(j,index)
+                    ^^^^^^^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/runs/gen6-chatgpt-ben-recycled-20261111/diagnostics/ben-rng-live-v3/crash_continue.py", line 7, in add
+    r=fixtures[index];return commit(j,index,post_rng=r[2] if index==1082 else None,raw=r[1])
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/runs/gen6-chatgpt-ben-recycled-20261111/diagnostics/ben-rng-live-v3/adapter_v31.py", line 54, in commit
+    durable(root/'NEXT',encoded);cut('next_fsync');os.replace(root/'NEXT',root/'CURRENT');cut('pointer_replace');syncdir(root);cut('commit_fsync')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/c7932514d17d/gen6-ben-recycled/runs/gen6-chatgpt-ben-recycled-20261111/diagnostics/ben-rng-broader/transaction_probe.py", line 12, in durable
+    with p.open('xb') as f:f.write(data);f.flush();os.fsync(f.fileno())
+         ^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/tmp/rng-live-continue-itv6s7zl/journal/NEXT'

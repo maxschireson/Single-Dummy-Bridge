@@ -1,0 +1,18 @@
+{
+  "schema": "diagnostic-rng-live-v3-source",
+  "production_identity": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
+  "production_eligible": false,
+  "files": {
+    "resume_probe.py": "fce349755a8ef95e5e338c2752b951fec869e7d70f8ac81fe2e9b83b73a3a27b",
+    "live_executor.py": "d2a32f69659a9e63a7a27a86d63f9088437ab0397bf2cf0c9d7c5a4541f6d474",
+    "live_server.py": "0ebafc7062b46f0adf87842b5f2004659cc68c7030e97749f413c66639d7afeb",
+    "semantics.py": "0cfee608b054cec5aec6e729aacaa1e28a6608a3bba15ef7b681fae4482c1b53",
+    "collect.py": "445737867c3dfd2a1007a1aae94b03632269ab3d711f5ddfd512aad8561550ea",
+    "crash_continue.py": "7850fdd0fcc735fda6cf51958321098794ec5b680044d3d3670d68d141c5ba02",
+    "adapter.py": "f8c5b673cf0feac953eb51bb0f21413bb35175559dfc8dfeb949f82009e22eca",
+    "adapter_v31_generation_only.py": "144227d95f5db8c5c313c284ec5b7bfbda5465e40f4deae83342bc6b05f635b4",
+    "adapter_v31.py": "b51d16f23ed090e24385a7137358bb65829435c63076338fa882c057e8dd4397",
+    "server.py": "539d78179428e622b67d88d9c6db640b8f4890dfeac5dae169c79119670b6ede"
+  },
+  "initial_rng_sha256": "9da10db374c0e91aee177d874d9d5a1bc548cc98c688612929e6ea458331b2ae"
+}

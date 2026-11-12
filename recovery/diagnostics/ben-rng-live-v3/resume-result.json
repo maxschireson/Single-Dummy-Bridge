@@ -1,0 +1,10 @@
+{
+  "status": "blocked",
+  "cause": "Unaccepted generation directory collides with next sequence-derived generation name",
+  "interrupted_exitcode": -9,
+  "accepted_marker_unchanged": true,
+  "accepted_count": 1,
+  "next_commit_error": "FileExistsError",
+  "production_commits": 0,
+  "next_step": "Use collision-safe generation identity or explicit verified orphan handling, then test crash/restart/continuation at every commit boundary."
+}
