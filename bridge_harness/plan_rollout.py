@@ -7,6 +7,8 @@ after the card: the hand is played out, and the value of a card in a layout is t
 play really took. What that play is depends on the `Seat player`:
 
   NetPlayer      the policy net's card from that seat's view (most probable, or drawn)
+  Believer       the seat's most likely layout of the unseen cards (the net's owner head, from its view), and the
+                 solver's card for that layout: a plan for one layout, revised as the play contradicts it
 
 A playout is a row. Rows are advanced together, one card each per step, so a batch of rows is one
 net evaluation per ply. Rows share the public facts (contract, auction, dummy as first shown) and
@@ -19,7 +21,7 @@ checks that on recorded positions.
 import numpy as np
 
 from .core import normalize_bid, vulnerable
-from .gen7_net import CALL_ID, CALLS, INPUTS, N_CTX
+from .gen7_net import CALL_ID, CALLS, INPUTS, N_CTX, forward
 
 SUIT_OF = np.arange(52) // 13
 RANK_OF = np.arange(52) % 13
@@ -60,6 +62,11 @@ class Rows:
             self.trick[:, k] = x
         self.leader = np.full(n, o.leader, np.int8)
         self.won = np.full(n, o.declarer_tricks, np.int16)
+        self.void = np.zeros((n, 4, 4), bool)                               # [row, seat, suit] the seat has shown out of the suit
+        for k, (seat, x) in enumerate(o.history):
+            led = o.history[k - k % 4][1] // 13
+            if x // 13 != led:
+                self.void[:, seat, led] = True
 
     # ---- who is to play ----------------------------------------------------------------
     @property
@@ -85,7 +92,7 @@ class Rows:
     def copy(self):
         r = object.__new__(Rows)
         r.__dict__.update(self.__dict__)
-        for k in ('holder', 'by', 'order', 'trick', 'leader', 'won'):
+        for k in ('holder', 'by', 'order', 'trick', 'leader', 'won', 'void'):
             setattr(r, k, getattr(self, k).copy())
         return r
 
@@ -93,7 +100,7 @@ class Rows:
         """The rows `index` (repeats allowed) as a new batch."""
         r = object.__new__(Rows)
         r.__dict__.update(self.__dict__)
-        for k in ('holder', 'by', 'order', 'trick', 'leader', 'won'):
+        for k in ('holder', 'by', 'order', 'trick', 'leader', 'won', 'void'):
             setattr(r, k, getattr(self, k)[index].copy())
         r.n = len(r.leader)
         return r
@@ -109,6 +116,10 @@ class Rows:
         self.holder[rows, cards] = -1
         self.by[rows, cards] = actor
         self.order[rows, cards] = self.played + 1
+        if self.on_table:
+            led = SUIT_OF[self.trick[:, 0]]
+            out = SUIT_OF[cards] != led
+            self.void[rows[out], actor[out], led[out]] = True
         self.trick[:, self.on_table] = cards
         self.played += 1
         if self.played % 4 == 0:
@@ -208,6 +219,78 @@ class NetPlayer:
                     cum = np.cumsum(p, axis=1)
                     ticket = self.rng.random(len(free)) * cum[:, -1]
                     out[free] = (cum < ticket[:, None]).sum(axis=1).clip(max=51)
+        return out
+
+
+class Believer:
+    """Every seat works out what is going on, then plays the double-dummy card for it.
+
+    At each choice the seat takes one layout of the cards it cannot see and the solver plays that layout; the net's
+    policy breaks ties among the solver's best cards. The layout comes from the net's owner head, read from that
+    seat's own view (its hand, dummy, the auction, the play so far):
+
+      belief='map'    the most likely layout: the hidden hand to the seat's left gets the cards most likely to be
+                      there, as many as it holds; show-outs are respected exactly
+      belief='draw'   a layout drawn card by card from the owner probabilities raised to `power`
+
+    So a seat's line is a plan for one layout, revised as the play contradicts it. Guesses are resolved the way the
+    seat's own beliefs lean, not the way the layout really is, and that is the difference from double dummy.
+    `layouts` above 1 draws that many (the first by `belief`, the rest drawn) and plays the card with the best total.
+    """
+
+    def __init__(self, net, dds, belief='map', power=1., layouts=1, seed=0):
+        if belief not in ('map', 'draw'):
+            raise ValueError('Unknown belief')
+        self.net, self.dds, self.belief, self.power, self.layouts = net, dds, belief, power, layouts
+        self.rng = np.random.default_rng(seed)
+        self.net_rows = self.solves = 0
+
+    def believed(self, lean, held, cap, void_a, void_b, draw):
+        """Cards of the first hidden hand. `lean[c]` is the log-odds that a card is there, `held` the unseen cards,
+        `cap` how many of them that hand holds."""
+        cards = np.flatnonzero(held)
+        score = lean[cards].astype(np.float64)
+        if draw:
+            score = self.power * score + self.rng.gumbel(size=len(cards)) - self.rng.gumbel(size=len(cards))
+        suit = SUIT_OF[cards]
+        score = np.where(void_a[suit], -np.inf, np.where(void_b[suit], np.inf, score))
+        return cards[np.argsort(-score, kind='stable')[:cap]]
+
+    def cards(self, rows, public):
+        legal = rows.legal()
+        out = legal.argmax(axis=1)
+        free = np.flatnonzero(legal.sum(axis=1) > 1)
+        if not len(free):
+            return out
+        batch = inputs(rows, public)
+        heads = forward(self.net.params, {k: batch[k][free] for k in INPUTS})
+        self.net_rows += len(free)
+        logp, owner = heads['policy'], heads['owner']
+        actor, controller = rows.actor(), rows.controller()
+        on_table = rows.on_table
+        remaining = 13 - rows.played // 4
+        for j, i in enumerate(free):
+            k = int(controller[i])
+            a, b = [s for s in range(4) if s != k and s != rows.dummy]      # the two seats this seat cannot see
+            held = (rows.holder[i] == a) | (rows.holder[i] == b)
+            lean = owner[j, :, (a - k) % 4 - 1] - owner[j, :, (b - k) % 4 - 1]
+            cap = int((rows.holder[i] == a).sum())
+            mine = [int(x) for x in np.flatnonzero(rows.holder[i] == k)]
+            dummy = [int(x) for x in np.flatnonzero(rows.holder[i] == rows.dummy)]
+            trick = [((int(rows.leader[i]) + t) % 4, int(rows.trick[i, t])) for t in range(on_table)]
+            total = {}
+            for n in range(self.layouts):
+                first = self.believed(lean, held, cap, rows.void[i, a], rows.void[i, b], draw=self.belief == 'draw' or n > 0)
+                hands = [None] * 4
+                hands[k], hands[rows.dummy] = mine, dummy
+                hands[a] = [int(x) for x in first]
+                hands[b] = [int(x) for x in np.flatnonzero(held) if x not in set(hands[a])]
+                values, _ = self.dds.solve(hands, rows.trump, int(rows.leader[i]), trick)
+                self.solves += 1
+                for x, v in values.items():
+                    total[x] = total.get(x, 0) + v
+            best = max(total.values())
+            out[i] = max((x for x, v in total.items() if v == best), key=lambda x: (logp[j, x], -x))
         return out
 
 
