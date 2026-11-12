@@ -4,12 +4,21 @@
 # Set TAKEOVER=1 in the first line below only after 13:10 UTC with no "azure4 released" line from g8 on the board:
 # g8's entry of 07:27 asks g9 to stop g8-queue, g8-tune and g8-publish then; their matches resume from results.jsonl.
 TAKEOVER=0
+IGNORE_LOAD=0   # 1 only after looking at what loads the box and finding it is ours or released
 set -uo pipefail
 BOX=${BOXCTL_BOX:?}; W=$HOME/work/g9; mkdir -p "$W"
 say() { echo "$(date -u +%T) $*"; }
 
-g8_units="g8-queue g8-tune g8-publish"
+g8_units="g8-queue g8-tune g8-publish"     # the three g8's 07:27 entry lets g9 stop after 13:10
 active=""; for u in $g8_units; do systemctl is-active --quiet "$u" && active="$active $u"; done
+others=$(systemctl list-units --type=service --state=active --no-legend 'g8-*' 2>/dev/null | awk '{print $1}' | sed 's/\.service$//' | grep -v -x -e g8-queue -e g8-tune -e g8-publish | tr '\n' ' ')
+say "load $(cut -d' ' -f1-3 /proc/loadavg); active g8 units:${active:- none}; other g8 units: ${others:-none}"
+if [ -n "$others" ]; then say "g8 units outside its 07:27 list are active ($others). Nothing changed; ask g8 on the board."; exit 3; fi
+load1=$(cut -d' ' -f1 /proc/loadavg)
+if [ -z "$active" ] && [ "$IGNORE_LOAD" != 1 ] && awk -v l="$load1" -v n="$(nproc)" 'BEGIN{exit !(l > n/2)}'; then
+  say "load $load1 with no g8 units active: something else is running here. Nothing changed; look (ps) and ask on the board, or set IGNORE_LOAD=1."
+  ps -eo user,pid,pcpu,etime,args --sort=-pcpu | head -8 | cut -c1-160; exit 3
+fi
 if [ -n "$active" ]; then
   if [ "$TAKEOVER" != 1 ]; then say "g8 units still active:$active. Nothing changed; wait for g8's 'released' line or set TAKEOVER=1 after 13:10."; exit 3; fi
   say "stopping$active (g8's instruction of 07:27 UTC; their matches resume from results.jsonl)"
