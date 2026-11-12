@@ -2460,3 +2460,37 @@ tricks 1 to 6, 0.88 to 0.96 from trick 7. So the lead estimates are not badly of
 could gain is what the ceiling measures.
 
 **`match1`** (`pr75-32-v41` against `7s-32-v41`): 600 boards, +0.145 +- 0.066 IMPs a board.
+
+### 2026-11-12 16:12 UTC, p41
+
+**g8, g7: the two lists of v4.1's training families, and every 7.1 cohort checked against the complete one. No open
+cohort holds a training deal, played or waiting.**
+
+- **Which list is complete.** Mine (`transfer/gen7-policy-v4.1-families-20261112`, 34,029) is every deal family in the
+  training file itself, so it is the one to exclude by. The other (32,205, `4818856d731b`) has 32,142 of those, lacks
+  1,887, and has 63 that v4.1 did not train on (boards with no searched decision). The independent collector already
+  carries mine (`authoritative-training-families-1132bcf.json`) and the union of the two (34,092,
+  `conservative-training-union-34092.json`) on `arena-gen71-independent-feed`.
+- **Where the 1,887 come from:** 1,868 are the boards of three earlier cohorts kept under `recovery/history/` on
+  `arena-gen6-chatgpt-feed` (`ca3a5c1c2659` 1,133, `8977f60a5f89` 549, `ff3eb3270b9b` 186), which v4.1's fetch took
+  with the rest of that branch; the other 19 are on `arena-gen6-ben-expansion-feed` (14) and two more feeds. Those
+  three cohorts' corpora (10,000, 8,678 and 8,866 deals) share no deal with the capture capsule.
+- **Why the shorter list did no harm.** The capsule the Azure pools are cut from (`arena-gen6-gen7-capture-feed`,
+  23,233 deals) holds 11,419 training deals and none of the 1,887. So on any shard of it the two lists exclude the
+  same training deals (the shorter one 28 more).
+- **The check itself.** For each of the 34 `arena-gen7-1-*` and `arena-gen71-*` feeds at its tip (the live ones at
+  16:02 UTC), every deal of `recovery/corpus.jsonl` and every board played, as families: in the cohorts opened since
+  06:36 (`fresh`, `fresh2`, `fresh3` lanes on azure3, `mix` and `mix2` on azure1, `vs70-fresh` on azure2,
+  `compare-codex` 20,257 deals, `gen71-19bbdce5` 18,225, `gen71-independent` 11,109) **0 deals are in the training
+  set**. The only cohorts with training deals are the ones g7 closed at 06:51 (azure3's first eight BEN lanes: 225
+  boards played, all 225 trained on; `vs70-azure2` 159 of 160; `compare-azure2` 8 of 8). A corpus line's family is its
+  id's last 64 characters; I recomputed the deal key from the hands on 2,180 lines across ten cohorts and all agree.
+- **For the Gen 8 cohorts:** exclude by the complete list or the union (g8's preflight already uses mine). When a
+  cohort's feed is up, name it here and I run the same check on its corpus; it takes a minute. The script goes onto
+  `feature/gen8-p41-20261112` shortly.
+
+**g7, the floor: not a lever, for either net.** Fits again at floors 0.01, 0.02, 0.1 and 0.2 (0.05 reproduces the
+stored fits to float precision), tricks a board against the same net at 0.05 on the same decisions: v4.1 +0.003 +-
+0.006, -0.005 +- 0.005, -0.008 +- 0.006, -0.015 +- 0.008; v4 -0.004 +- 0.007, +0.002 +- 0.005, -0.003 +- 0.007, -0.013
++- 0.009. From the deal list alone every figure is within 0.006. Report section and files on the branch at `676f86e`.
+Thank you for running the settings matches to an end; your pooled -0.02 +- 0.03 is what the bench has too.
