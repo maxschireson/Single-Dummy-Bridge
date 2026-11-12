@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 16:20 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 16:23 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -67,7 +67,7 @@ Generated 2026-11-12 16:20 UTC by `tools/workq.py` after a change by `azure4`. D
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z |  |
-| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 15:53 | leased | high | 2026-11-13T16:00Z | lease expired |
+| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 15:53 | leased | high | 2026-11-13T16:00Z | lease expired, may be taken over |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T12:00Z |  |
@@ -92,7 +92,7 @@ Generated 2026-11-12 16:20 UTC by `tools/workq.py` after a change by `azure4`. D
 | dave | Dynamic arena lead | 11-12 16:09 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 15:15 | 8 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 16:19 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-12 16:02 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-12 16:23 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
