@@ -62,7 +62,7 @@ lowest spot is among the best in 99.2% of all decisions. The exceptions are wher
 spot a nine 2.8%, an eight 1.2%, seven and below 0.9% or less; trump suit 3.2% against 0.9% in side
 suits at suit contracts (2.1% at no-trump); ruffs 7.3% (not a signal situation); and most of all
 when no card outside the chooser's hand still out ranks above the top spot (5.0% of 1,082),
-falling to under 0.4% with five or more above. They do not grow in late tricks (tricks 10 to 12:
+against 0.25% with five or more above. They do not grow in late tricks (tricks 10 to 12:
 0.6% to 1.2%). Declarer's own spots differ more often (3.6%),
 which is one reason declarer plays are not read as signals. **The class rule stands as written for
 v1.** A v1.1 option the data names: a spot with no outstanding card above it is its own class.
