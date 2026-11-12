@@ -1,0 +1,22 @@
+{
+  "status": "needs_explicit_shared_UI_publish_authorization",
+  "detected_at": "2026-11-12T17:36:26.016563Z",
+  "repository": "maxschireson/Single-Dummy-Bridge",
+  "branch": "gh-pages",
+  "path": "arena/replays/common.js",
+  "based_on_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
+  "problem": "ReplayCommon.catalog filters registered feed generations to6/7, omitting Gen8; own board2 is unavailable despite complete indexed records.",
+  "proposed_change": "Include generation8 in existing catalog source filter.",
+  "patch": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/shared-replay-catalog-fix/shared-replay-catalog.patch",
+  "validation": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/shared-replay-catalog-fix/validation.json",
+  "original_own_replay_defect_reproduced": true,
+  "local_browser_both_conditions_52_cards_two_rooms_verified": true,
+  "common_score": 0,
+  "native_score": -1,
+  "patch_applies_cleanly": true,
+  "public_shared_file_modified": false,
+  "collection_modified": false,
+  "scope_limit_source": "User: Update ONLY this stream's feed/registry entries.",
+  "reason_authorization_required": "This fix changes shared gh-pages replay UI for every producer, outside the explicit producer-only publication scope.",
+  "notification_policy": "Notify user once for shared replay blocker and concrete publish approval; continue collection and routine instruction checks without restarting."
+}

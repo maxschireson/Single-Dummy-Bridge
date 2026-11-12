@@ -591,7 +591,7 @@
   "instruction": "Continue authoritative Gen8 main mix from frozen792c4cb, five approved pairs2/1/1/1/1,3normal workers0BEN, canonical actors and mandatory34092-family exclusion union. Old Gen7.1 CI and Gen7.0 pair-target stop predicates are disabled; no selfplay scheduled. Preserve all history and science. Own producer only.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "no_applicable_instruction_change",
+  "result": "no_collection_instruction_change_shared_replay_ui_blocker",
   "collection_action": "No source/model/settings/manifest/worker changes or restart. Continue current approved Gen8 five-pair cohort.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
@@ -625,13 +625,13 @@
     "publication_verified": true
   },
   "research_disposition": "Gen9 and plan research unadopted; Azure host controls remain host-specific; g7/g8 own global cleanup.",
-  "notification": "No new applicable instruction; remain quiet for this poll.",
+  "notification": "Shared Gen8 replay catalog blocker: tested local one-line fix is ready, shared UI publication requires approval beyond producer-only scope; collection healthy.",
   "checked_epoch": 1794504480.0,
   "checked_at": "2026-11-12T17:28:00Z",
   "next_check": "2026-11-12T18:25:53Z",
   "stream_manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
   "health": {
-    "epoch": 1794504637.366698,
+    "epoch": 1794504986.022146,
     "scientific_hashes_verified": true,
     "all_lineage_locks": {
       "/workspace/work/gen6-fast-selfplay-stream/run/.writer.lock": {
@@ -725,25 +725,25 @@
     },
     "state": {
       "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-      "completed": 67,
+      "completed": 75,
       "target": 18283,
-      "contiguous": 67,
+      "contiguous": 75,
       "by_pair": {
-        "8s-32~1": 12,
-        "8s-32~71s-32": 22,
-        "8c-32~8s-32": 11,
-        "8c-32~71s-32": 11,
-        "8s-32~5RZ32": 11
+        "8s-32~1": 13,
+        "8s-32~71s-32": 24,
+        "8c-32~8s-32": 13,
+        "8c-32~71s-32": 12,
+        "8s-32~5RZ32": 13
       },
-      "root_games": 224,
-      "tables": 2671,
+      "root_games": 252,
+      "tables": 3025,
       "failures": 0,
-      "epoch": 1794504621.109185,
+      "epoch": 1794504948.9025574,
       "complete": false
     },
     "watchdog": {
-      "epoch": 1794504629.6105633,
-      "completed": 67,
+      "epoch": 1794504979.76341,
+      "completed": 75,
       "target": 18283,
       "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
       "workers": 3,
@@ -757,9 +757,9 @@
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794504609.1489577,
-      "completed": 64,
-      "commit": "009580eaa42a27568a1901d6114f95776643270f",
+      "epoch": 1794504926.6437488,
+      "completed": 73,
+      "commit": "9bc7a71cc828e30b6e54b481b96c8caa68184bce",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
     "pids": {
@@ -1044,7 +1044,7 @@
       "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": "2026-11-12T17:31:55.987752Z",
+  "completed_at": "2026-11-12T17:36:26.021855Z",
   "next_comment_scan_since": "2026-11-12T17:28:00Z",
   "poll_checkpoint_note": "Next comments scan starts at poll START17:28:00Z; completion time must not move the cursor past changes made while checking.",
   "candidate_notice": {
@@ -2491,10 +2491,13 @@
     }
   },
   "browser_scope": {
-    "scope": "Own pinned feed reporting and read-only public Gen8 display; no shared page mutation.",
-    "status": "Default Gen8 dashboard successfully renders809pairedboards and includes this stream. Own browser reporting API verifies63records across all5pairs. Earlier history-view polling repeatedly reset page before full source load; no shared defect established.",
-    "diagnostic": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/browser-latest-diagnostic.json",
-    "own_replay_validation": "Scientific replay/score of first6production records remains passed; optional browser game replay under review."
+    "default_gen8_dashboard": "verified renders and includes own stream",
+    "own_feed_reporting_api": "all5pairs passed",
+    "public_own_board_replay": "blocked: shared catalog excludesgeneration8",
+    "local_patch_browser_validation": "passed common/native two rooms through52cards, common0/native-1IMPs, zero page errors",
+    "shared_ui_published": false,
+    "review": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/shared-replay-catalog-fix/review.json",
+    "patch": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/shared-replay-catalog-fix/shared-replay-catalog.patch"
   },
   "source_versioned_plans": {
     "source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
@@ -3720,5 +3723,30 @@
     "audit": "/workspace/work/gen8-candidate-codex-20261112/run/evaluation-exclusion-audit.json",
     "training_overlap": 0,
     "completed_ancestor_overlap": 0
-  }
+  },
+  "blockers": [
+    {
+      "status": "needs_explicit_shared_UI_publish_authorization",
+      "detected_at": "2026-11-12T17:36:26.016563Z",
+      "repository": "maxschireson/Single-Dummy-Bridge",
+      "branch": "gh-pages",
+      "path": "arena/replays/common.js",
+      "based_on_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
+      "problem": "ReplayCommon.catalog filters registered feed generations to6/7, omitting Gen8; own board2 is unavailable despite complete indexed records.",
+      "proposed_change": "Include generation8 in existing catalog source filter.",
+      "patch": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/shared-replay-catalog-fix/shared-replay-catalog.patch",
+      "validation": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/shared-replay-catalog-fix/validation.json",
+      "original_own_replay_defect_reproduced": true,
+      "local_browser_both_conditions_52_cards_two_rooms_verified": true,
+      "common_score": 0,
+      "native_score": -1,
+      "patch_applies_cleanly": true,
+      "public_shared_file_modified": false,
+      "collection_modified": false,
+      "scope_limit_source": "User: Update ONLY this stream's feed/registry entries.",
+      "reason_authorization_required": "This fix changes shared gh-pages replay UI for every producer, outside the explicit producer-only publication scope.",
+      "notification_policy": "Notify user once for shared replay blocker and concrete publish approval; continue collection and routine instruction checks without restarting."
+    }
+  ],
+  "pending_shared_ui_publish_approval": true
 }
