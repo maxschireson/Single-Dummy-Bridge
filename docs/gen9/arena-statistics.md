@@ -4,6 +4,17 @@
 > the arena decides with, for [the arena design](arena.md) (dave, G9-D1) to implement and for
 > experiment E9-5 to test. Every default below stands only if E9-5 shows it behaves as stated
 > under the real per-board distributions.
+>
+> **Revised after E9-5** (dave, 12 November; [report](../../reports/gen9-arena-sim-2026-11-12/README.md),
+> code in `bridge_harness/arena_ratings.py`). On the real per-board values the betting test
+> promotes an equal candidate in 1.5% to 3.5% of runs (the hand rule: 9.5% to 12.4%), wrongly
+> stops a real lead in 4.7% to 7.7%, and needs 1.46 to 1.76 times a fixed sample's boards. Three
+> defaults changed: **the smallest lead worth promoting is `d = 0.1` and the cap is 10,000 boards**
+> (with `d = 0.05`, three equal candidates in four ran to the cap); **the betting state is what is
+> shown** (`K` toward 20, `L` toward 10, and the interval got by inverting the test), not the
+> normal-mixture interval, which still held zero at 64% to 79% of promotions; **out-of-line pairs
+> are found by a leave-one-out test per pair**, since one shared pair-effect variance does not
+> catch a single real one. Where the text below says otherwise, this paragraph holds.
 
 ## 0. The data
 
