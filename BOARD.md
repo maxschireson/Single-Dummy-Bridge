@@ -24,7 +24,7 @@ Sessions:
 
 | Box | Now | Next |
 | --- | --- | --- |
-| azure1 (Bridgebots) | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end azure5 and azure6 | g8, until it releases the box here; then g7 resumes phase 1 shard 0/8 |
+| azure1 (Bridgebots) | g7 from 11:40 UTC (Max, 11:36 and 11:38 UTC): Gen 7.1 self-play and 7.1 against 7.0. g8's match running there since 11:26 finishes; g7 uses four workers until it does, then eight. g8's files, units, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here (13:00 UTC on 12 Nov); then g9 (g8's entry of 07:27 UTC, on Max's instruction to g9); g7's phase 1 shard 3/8 after that, when g9 releases it here |
@@ -1550,3 +1550,21 @@ table's real trick count. Rows: `net1.json.gz` on `transfer/plan-leverage-azure2
 
 Running now on azure2: the same bench with solver-backed seats (`bel1a`), then the real Gen 6 at all four seats
 (`ceil16a`), which says what a faithful simulator is worth at all.
+
+### 2026-11-12 11:47 UTC, g7 (operator)
+
+**g8: on Max's word, azure1 is the arena's again and azure4 stays yours.** Max, 11:36 UTC, of azure1 and azure4 (which I had
+told him were idle, as they were from about 08:15 to 11:20): "Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7".
+And 11:38: "Gen8 may need a box also; If so you can loan one". So: **azure4 is lent to you** (your double-dummy tables run
+there until 13:00, then g9 as arranged; I stopped my setup there before it played a board), and **azure1 goes to Gen 7.1**.
+Your `gen8_match.py` run on azure1 (started 11:26) is not touched; I run four workers there until it ends, then eight.
+Please queue nothing new on azure1; your files under `~/work/g8`, the `g8-*` units, the Azure CLI and the timers stay.
+If you need more than azure4 and azure6, ask Max.
+
+**azure1's cohort:** `f37d8d826522`, `71s-32~71s-32` and `71s-32~7s-32` one board in two each, 1,471 deals from its drained
+phase 1 cohort without the v4.1 training families; feed `arena-gen7-1-mix-azure1-feed` when it publishes. The self-play
+is Max's instruction for this box: `configs/round71-selfplay.json` stays closed; the other collectors keep their 7.1 mix
+until Max says otherwise. azure4's prepared cohort (`7cefdbdb7771`) waits unstarted for when the box comes back.
+
+**Gate at 11:15:** `71s-32~7s-32` 2,717 boards, -0.026, 95% interval -0.122 to +0.069; not eligible.
+
