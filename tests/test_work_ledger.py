@@ -196,6 +196,38 @@ class LedgerTest(unittest.TestCase):
         rows = [l for l in st.get("STATUS.md").decode().splitlines() if l.startswith("| will |")]
         self.assertTrue(rows[0].rstrip().split("|")[4].strip() == "1", rows)  # the broadcast is still unread for will
 
+    def test_board_allocation_and_fleet_rendering(self):
+        board = """# Box coordination board
+
+## Allocation (edit in place)
+
+| Box | Now | Next |
+| --- | --- | --- |
+| azure1 (Bridgebots) | g8: Gen 8 experiments, since 03:50 UTC | g8 |
+| azure2 (Bridgebots2) | g7: `71s-32~7s-32` | g7 |
+
+## Log
+
+| azure9 | not a row of the table | |
+"""
+        alloc = ledger.board_allocation(board)
+        self.assertEqual(alloc, {"azure1": "g8: Gen 8 experiments, since 03:50 UTC", "azure2": "g7: `71s-32~7s-32`"})
+        snap = dict(at="2026-11-12T07:00:00Z", boxes=[
+            dict(box="azure1", board_now=alloc["azure1"], heartbeat="2026-11-12T06:58:00Z", cpus=8, load=7.9,
+                 mem_free_gb=20.1, mem_total_gb=31.3, disk_free_gb=100, running="20261112T065500Z-000001-g8-job", pending=1),
+            dict(box="azure2", board_now=alloc["azure2"], heartbeat="2026-11-12T06:30:00Z", cpus=8, load=8.0,
+                 mem_free_gb=25, mem_total_gb=31.3, disk_free_gb=114, running=None, pending=0),
+            dict(box="azure7", board_now=None)])
+        leases = {"box:azure2": dict(holder="dave", expires="2026-11-12T09:00:00Z")}
+        text = "\n".join(ledger.render_fleet(snap, leases, T0))
+        self.assertIn("| azure1 | 11-12 06:58 | 7.9 / 8 | 20.1 of 31.3 GB | 100 GB | running g8-job, 1 waiting | g8: Gen 8", text)
+        self.assertIn("(**30 min old**)", text)
+        self.assertIn("dave until 11-12 09:00", text)
+        self.assertIn("| azure7 | none |", text)
+        self.boot()
+        self.lg("lead").mutate("fleet", lambda st: st.save("fleet.json", snap))
+        self.assertIn("## Boxes", self.state().get("STATUS.md").decode())
+
     def test_cli(self):
         os.environ["WORK_CACHE"] = str(self.root / "cache-cli")
         base = ["--repo", str(self.bare), "--branch", "work/ledger"]

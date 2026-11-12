@@ -104,19 +104,27 @@ are advisory for now: they do not replace the allocation table on `box/coordinat
 lead or Max adopts them, and the [operations rules](operations.md) still apply (a lapsed lease or
 an old heartbeat is a reason to ask, not to take over a running job).
 
+## Fleet view
+
+`ledger.py --as NAME fleet` reads every box's heartbeat from `box/<box>/status` and the "Now" column
+of the allocation table in `BOARD.md`, stores them in `fleet.json` and adds a **Boxes** table to
+`STATUS.md`: heartbeat time (flagged when more than 12 minutes old), load against CPUs, free memory
+and disk, the boxctl command queue, what the board says, and any ledger lease. It takes about ten
+seconds and changes nothing on the boxes or the board. The table is as fresh as the last `fleet`
+run, whose time it shows.
+
 ## Not done yet
 
 - No leases are imported from `BOARD.md`; the two would disagree if both were edited.
-- `STATUS.md` does not show box heartbeats from `box/<box>/status`.
 - No GitHub-side protection on the branch beyond the no-force convention.
 
 ## Tested scope
 
-`tests/test_work_ledger.py` (9 tests) runs the script against a local bare repository, with each
+`tests/test_work_ledger.py` (10 tests) runs the script against a local bare repository, with each
 agent in its own cache as separate sessions would be: a claim race in which a second agent checks
 the task out between the first agent's read and push (exactly one holder results), unrelated
 concurrent changes that both land, lapsed claims and leases needing `--takeover` and telling the
 previous holder, dependencies and assignment checks, review and close messages, block, reopen and
-cancel, read receipts and broadcasts, and the command line. Not covered: `dispatch` (it calls the
-boxctl client, which has its own tests), and pushes to GitHub, checked by hand when the branch was
-opened.
+cancel, read receipts and broadcasts, the allocation-table parser and the Boxes table, and the command line. Not covered: `dispatch` (it calls the
+boxctl client, which has its own tests), and the live reads and pushes to GitHub, checked by hand
+when the branch was opened (six boxes read in about nine seconds).

@@ -34,6 +34,8 @@ check out the same task or hold the same lease. Protocol: docs/work-ledger.md.
   ledger.py dispatch ID BOX (--cmd TEXT | --file PATH) [--slug S] [--timeout SEC]
                                                     queue a boxctl command for a task, if you hold box:BOX
 
+  ledger.py fleet                                   read every box's heartbeat and the board's allocation table into
+                                                    fleet.json, shown in STATUS.md (read-only for the boxes and the board)
   ledger.py export                                  the whole ledger as JSON, for other tools
 
 $WORK_TRAILERS, if set, is appended to each commit message (for session attribution).
@@ -77,6 +79,7 @@ never merge it into source, never force-push it.
 | `inbox/<name>/<id>.md` | Messages to one agent; `inbox/all/` is for everyone |
 | `leases/<resource>.json` | Who holds a resource (for example `box:azure2`) and until when |
 | `log/<date>.jsonl` | One line per change |
+| `fleet.json` | Last `ledger.py fleet` reading: each box's heartbeat and the board's allocation table |
 """
 
 
@@ -383,6 +386,7 @@ def render_status(st: State) -> bytes:
         if p.startswith(f"inbox/{BROADCAST}/"):  # shown for a day; each agent's own count is in the table above
             return at - parse_time(m["sent"]) < timedelta(days=1)
         return m.get("to") not in m["read_by"]
+    L += render_fleet(st.load("fleet.json"), leases, at)
     unread_all = [(p, m) for p, m in msgs if pending(p, m)]
     L += ["## Unread messages", ""]
     if unread_all:
@@ -717,6 +721,14 @@ class Ledger:
             return l
         return self.mutate(f"release {resource}", fn)
 
+    def fleet(self):
+        snap = collect_fleet(self.clock())
+
+        def fn(st: State):
+            st.save("fleet.json", snap)
+        self.mutate("fleet snapshot", fn)
+        return snap
+
     def dispatch(self, tid: str, box: str, script: bytes, slug: str | None, timeout: int | None, check_lease: bool = True):
         st = self.snapshot()
         t = st.task(tid)
@@ -736,6 +748,80 @@ class Ledger:
             st2.save_task(t2)
         self.mutate(f"dispatch {tid} to {box}", fn)
         return cid
+
+
+# ---------------------------------------------------------------- fleet view
+
+def board_allocation(text: str) -> dict[str, str]:
+    """The 'Now' column of the allocation table in BOARD.md (branch box/coordination), by box."""
+    out, on = {}, False
+    for line in text.splitlines():
+        if line.startswith("## Allocation"):
+            on = True
+            continue
+        if on and line.startswith("## "):
+            break
+        if on and line.startswith("| ") and not line.startswith("| Box") and not line.startswith("| ---"):
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            m = re.match(r"([a-z0-9-]+)", cells[0])
+            if m and len(cells) > 1:
+                out[m.group(1)] = cells[1]
+    return out
+
+
+def collect_fleet(at: datetime) -> dict:
+    """Read every box's heartbeat from box/<box>/status, and the board's allocation table. Read-only."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "boxctl"))
+    import client as boxctl  # ops/boxctl/client.py
+    remote = boxctl.Remote(os.environ.get("BOXCTL_REPO", boxctl.DEFAULT_REPO))
+    heads = remote.out("ls-remote", "--heads", "origin")
+    boxes = sorted({m.group(1) for m in re.finditer(r"refs/heads/box/([a-z0-9-]+)/status$", heads, re.M)})
+    alloc = {}
+    if re.search(r"refs/heads/box/coordination$", heads, re.M):
+        local = "refs/remotes/origin/box/coordination"
+        if remote.fetch("refs/heads/box/coordination", local):
+            alloc = board_allocation((remote.blob(f"{local}:BOARD.md") or b"").decode(errors="replace"))
+    rows = []
+    for box in boxes:
+        row = dict(box=box, board_now=alloc.get(box))
+        local = boxctl.fetch_status(remote, box)
+        hb = json.loads(remote.blob(f"{local}:heartbeat.json") or b"{}") if local else {}
+        if hb:
+            mem = hb.get("memory_mb") or {}
+            disk = (hb.get("disk") or {}).get("home") or {}
+            row.update(host=hb.get("hostname"), heartbeat=hb.get("time"), cpus=hb.get("cpus"),
+                       load=(hb.get("load") or [None])[0], mem_free_gb=round(mem.get("MemAvailable", 0) / 1024, 1),
+                       mem_total_gb=round(mem.get("MemTotal", 0) / 1024, 1), disk_free_gb=disk.get("free_gb"),
+                       running=hb.get("running"), pending=len(hb.get("pending") or []),
+                       fetch=(hb.get("last_fetch") or {}).get("outcome"), uptime_h=round(hb.get("uptime_s", 0) / 3600, 1))
+        rows.append(row)
+    return dict(at=iso(at), boxes=rows)
+
+
+def render_fleet(f: dict | None, leases: dict, at: datetime) -> list[str]:
+    if not f:
+        return []
+    L = ["## Boxes", "",
+         f"Heartbeats from `box/<box>/status` and the allocation table on `box/coordination`, read at "
+         f"{short(f['at'])} by `ledger.py fleet`. Heartbeats are pushed at least every 5 minutes.", "",
+         "| Box | Heartbeat | Load / CPUs | Free memory | Free disk | boxctl queue | Board says (allocation table) | Ledger lease |",
+         "| --- | --- | --- | --- | --- | --- | --- | --- |"]
+    snap = parse_time(f["at"])
+    for r in f["boxes"]:
+        l = leases.get(f"box:{r['box']}")
+        lease = f"{l['holder']} until {short(l['expires'])}" if l else ""
+        board = (r.get("board_now") or "").replace("|", "/")
+        board = board[:90] + ("..." if len(board) > 90 else "")
+        if not r.get("heartbeat"):
+            L.append(f"| {r['box']} | none | | | | | {board} | {lease} |")
+            continue
+        age = int((snap - parse_time(r["heartbeat"])).total_seconds() // 60)
+        hb = f"{short(r['heartbeat'])}" + (f" (**{age} min old**)" if age > 12 else "")
+        queue = ("running " + r["running"].split("-", 2)[-1] if r.get("running") else "idle") + (f", {r['pending']} waiting" if r.get("pending") else "")
+        L.append(f"| {r['box']} | {hb} | {r.get('load')} / {r.get('cpus')} | {r.get('mem_free_gb')} of {r.get('mem_total_gb')} GB | "
+                 f"{r.get('disk_free_gb')} GB | {queue} | {board} | {lease} |")
+    L.append("")
+    return L
 
 
 # ---------------------------------------------------------------- command line
@@ -824,6 +910,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("leases")
     p = sub.add_parser("dispatch"); p.add_argument("id"); p.add_argument("box"); p.add_argument("--cmd"); p.add_argument("--file")
     p.add_argument("--slug"); p.add_argument("--timeout", type=int); p.add_argument("--no-lease-check", action="store_true")
+    sub.add_parser("fleet")
     sub.add_parser("export")
     a = ap.parse_args(argv)
     lg = Ledger(a.repo, a.branch, a.agent)
@@ -884,6 +971,10 @@ def run(lg: Ledger, a: argparse.Namespace) -> int:
         l = lg.lease(a.resource, a.hours, a.purpose, a.task, a.takeover); print(f"{l['resource']} held by {l['holder']} until {l['expires']}"); return 0
     if c == "unlease":
         lg.unlease(a.resource); print(f"released {a.resource}"); return 0
+    if c == "fleet":
+        snap = lg.fleet()
+        print("\n".join(render_fleet(snap, lg.snapshot().leases(), now())))
+        return 0
     if c == "dispatch":
         script = Path(a.file).read_bytes() if a.file else (a.cmd or "").encode()
         if not script:
