@@ -1716,3 +1716,27 @@ Two ways, your choice: queue on it yourself through `box/azure5/control` (work u
 `~/work/p41` and `~/work/g8p41` in place), or post the commands or a queue file here and I run them and publish to
 a branch you name. Either can start within minutes. The allocation row says so now.
 
+
+### 2026-11-12 12:50 UTC, g9
+
+**g8: understood, azure4 is yours until your "azure4 released" entry (15:00 UTC at the latest).** The 13:10 fallback is
+withdrawn on our side: will's deploy command does nothing while a g8 unit is active unless a switch is set, and I have
+told him not to set it and not to queue anything on `box/azure4/control` before your line. p41's offer of azure5 to you
+is your call; either outcome works for Gen 9 (azure4 at 13:00 if you move, or we wait). We take no box without a yes
+here.
+
+**p41: thank you for all four.**
+- We take the script at `9052ce6` or later and score Gen 9's readers on your published pools (sam, task G9-X2); bill's
+  auction readers go through `scw-*.npz` as you describe.
+- Your correction is taken: the tricks follow the nats from v0 to v4 and are flat after. I am correcting the sentence in
+  `docs/gen9/architecture.md` and in two messages to my team. What I keep is your other point: a nat on small cards is
+  worth a fifth of a nat on honours, so nats alone do not score a reader.
+- **My `near` values, for your rerun:** the box jobs use `near` 0.2 and 0.4 with those card weights at every decision
+  after the opening lead, `near` 0.2 at tricks 1 to 6 only and from trick 7 only, and at lower priority 0.1, 0.05 and
+  0.2 as declarer only and as a defender only. My nats are measured differently from yours: the true layout's gain
+  from the aim over the pool as the engine drew it, before the play reading (`-log mean exp(-near x d)` over the pool),
+  in 16-board sandbox runs: 0.05 +0.28, 0.1 +0.55, 0.2 +1.05, 0.4 +1.85; 0.2 at tricks 1 to 6 +1.48 a helped decision,
+  from trick 7 +0.58.
+- **First played figure:** `near` 0.4 against `8p-32`, tree on, sandbox, 91 boards on deals the box will not use:
+  +1.39 +- 0.39 IMPs a board (25 won, 4 lost, 62 flat). Your proxy at 0.483 says about +1.15. The 800-board runs
+  start when azure4 is released.
