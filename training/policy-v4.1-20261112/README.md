@@ -79,29 +79,65 @@ A fork pair records what a forced card B really did against the card played A. `
 lists every pair with the row of its decision in the set: 722,589 pairs from the training boards
 (169,601 gap forks, 552,988 audits; the two cards' results differ in 12.9%). `scripts/gen7_result_head.py`
 fits one more decoder channel on those results by ridge regression, with v4.1 frozen, and scores it
-on pairs from sets B and C (deals the training set has are dropped): 22,312 pairs on 1,024 deals,
-6,161 of them gap forks. Squared error against the realized cost of B, gap forks only:
+on pairs from sets B, C and D (deals the training set has are dropped): 26,449 pairs on 1,206 deals,
+7,247 of them gap forks. Squared error against the realized cost of B, gap forks only:
 
 | Predictor | Squared error | Minus the search's gap with a fitted slope |
 | --- | --- | --- |
-| Zero | 0.8289 | +0.3611 |
-| The search's gap as recorded | 0.4770 | +0.0092 [+0.0049, +0.0140] |
-| The search's gap, fitted slope (0.87) | 0.4678 | |
-| The net's gap head, fitted slope | 0.5595 | +0.0917 [+0.0759, +0.1081] |
-| Result head alone | 0.5540 | +0.0862 [+0.0694, +0.1030] |
-| The search's gap + result head | 0.4639 | -0.0040 [-0.0060, -0.0020] |
+| Zero | 0.8446 | +0.3673 |
+| The search's gap as recorded | 0.4864 | +0.0090 [+0.0050, +0.0129] |
+| The search's gap, fitted slope (0.87) | 0.4773 | |
+| The net's gap head, fitted slope | 0.5706 | +0.0933 [+0.0779, +0.1098] |
+| Result head alone | 0.5656 | +0.0883 [+0.0729, +0.1045] |
+| The search's gap + result head | 0.4736 | -0.0037 [-0.0056, -0.0019] |
 
 The head adds a little to the search's gap (0.8% lower error) and cannot replace it. It does not
-find better cards: on the 285 gap-fork pairs where the combined predictor preferred B, B gained
-0.018 tricks on average. On the 16,151 audit pairs (two cards the search rated level, result
-differs in 3.2%) nothing beats predicting zero.
+find better cards: on the 337 gap-fork pairs where the combined predictor preferred B, B gained
+0.012 tricks on average. On the 19,202 audit pairs (two cards the search rated level, result
+differs in 3.1%) nothing beats predicting zero. The search overstates the cost of its worse cards:
+the fitted slope on its gap is 0.87.
 
 Limits: one linear layer on a frozen net; a head trained with the net, or with more capacity, was
-not tried. The test pairs come from 1,024 deals. Files: `result-head/result_head.json` and
+not tried. The test pairs come from 1,206 deals. Files: `result-head/result_head.json` and
 `.log`; the pair sets are `data/pairs*.npz` on `transfer/gen7-policy-v4.1-box-20261112`.
+
+## 768 wide, three epochs
+
+The same data and recipe at `--width 768` (1,709,058 parameters), trained beside the 512-wide run.
+Held-out tricks given up on set B by epoch: 0.0312, 0.0265, 0.0243 (512 wide: 0.0303, 0.0272,
+0.0245). Fitted temperature 1.132. Against the 512-wide net (v4.1), same decisions:
+
+| | 512 wide | 768 wide | 768 relative to 512 |
+| --- | --- | --- | --- |
+| Tricks given up, set C | 0.0256 | 0.0249 | 2.4% less [-1.9%, 6.7%] |
+| Tricks given up, set B | 0.0245 | 0.0243 | 0.8% less [-3.3%, 4.7%] |
+| Log-loss, set C | 0.608 | 0.597 | |
+| Exact card, set C | 75.0% | 75.5% | |
+| Gap head's card gives up, set C | 0.0216 | 0.0202 | |
+| Training loss (card), epoch 3 | 0.572 | 0.539 | |
+
+At three epochs the wider net is not measurably better in tricks and a little better in log-loss.
+At epoch 1 it was behind (5.9% more given up on C, [0.9%, 11.7%]) and at epoch 2 ahead (6.2% less
+on C, [1.9%, 10.2%]; 2.5% less on B, [-1.6%, 6.5%]). Its weights by epoch are on the box branch
+(`runs/w768/`, and calibrated in chunked form under `packaged/gen7_policy_v4.1_w768/`).
+
+## Every fresh board together
+
+Set D is 182 more boards (80,123 decisions) fetched at 05:18 UTC. On C and D together (632 boards,
+260,438 decisions) v4.1 gives up 0.0258 against v4's 0.0340: 24.2% less [21.1%, 27.2%]; lead 10%
+[-6, 22], tricks 1-2 21% [12, 30], tricks 3-6 18% [14, 22], tricks 7-13 26% [22, 31]. Exponent on
+training deals -0.35 [-0.40, -0.30], against -0.36 [-0.46, -0.25] for v3.1 to v4 on the same boards.
+
+Logs: `eval512.log`, `eval768.log`, `final_eval.log`. Fetch manifests: `fetch1.json` (the training
+set) and `fetchB.json`, `fetchC.json`, `fetchD.json`.
 
 ## Still running when this was written
 
-- The 768-wide run on the same data, and one more batch of fresh boards (set D) to score every net on.
+Max extended the box to 07:42 UTC (05:25 UTC) to see whether more epochs help:
+
+- 512 wide and 768 wide with the schedule stretched to five epochs, every epoch saved.
+- `scripts/gen7_check.py inference` with v4 and with v4.1 on the same fresh tables: the net's
+  reading of the play as layout weights from trick 7, one of its two uses the tree bench does not
+  cover.
 
 Their results will be added here.
