@@ -1,7 +1,8 @@
 # Gen 8 candidate: the play read from trick 1, and two bidding systems at the table (12 November 2026)
 
-**Status: authorized. Max said go on 12 November 2026 at 15:32 UTC. Both plans are open; g7, the arena's operator,
-began switching the collectors to them at 16:24 UTC.** Branch `feature/gen8-prototype-20261112`, which contains the Gen 7.1 launch
+**Status: authorized and in the arena. Max said go on 12 November 2026 at 15:32 UTC. Both plans are open; g7, the
+arena's operator, announced the switch at 16:14 UTC and the first Gen 8 collectors started at 16:30.** Since the
+Gen 7 → Gen 8 cleanup this source is on `main` and the [Gen 8 page](generations/gen8/README.md) is the index. Branch `feature/gen8-prototype-20261112`, which contains the Gen 7.1 launch
 line (`codex/gen71-independent-20261112` at `a588e09`, merged at `9c40d64`) and main. This page is what was built,
 what was measured and on how many boards, and what was not. It was written as the candidate's notice and its
 findings stand as they were when Max decided, the caveat on gate 3 among them.
@@ -291,9 +292,10 @@ and g7's to set. A self-play cohort of the Precision bot needs `common_bidder` `
 
 Max said go at 15:32 UTC on 12 November (his words are in the plans' notes), and at 15:33 that every machine on
 Gen 7 work, other than those on Gen 9 and other future projects, switches to the Gen 8 arena. The plans are open at
-`792c4cb`. g7 operates the collectors and began switching them at 16:24 UTC, on Max's message to it of 16:11 ("I want
-to switch the arena to gen 8. Keeping 7.1 meant as the representative of the 7 family, but the 8 chat has a board mix
-in mind for the arena."); which machines run what is on the coordination board. This is what a collector needs.
+`792c4cb`. g7 operates the collectors. On Max's message to it of 16:11 ("I want to switch the arena to gen 8. Keeping
+7.1 meant as the representative of the 7 family, but the 8 chat has a board mix in mind for the arena.") it announced
+the switch at 16:14, and the first Gen 8 collectors started at 16:30; which machines run what is on the
+[Gen 8 page](generations/gen8/README.md) and, fresher, on the coordination board. This is what a collector needs.
 
 1. **Source.** A collector runs this branch at `792c4cb` (it contains the Gen 7.1 launch line). Earlier sources do not know `systems`, `bidder` or `system_scorer` and refuse the plan.
 2. **Restore the two artifacts** in the checkout: `python models/cardplay/gen7-policy-v4.1-2026-11-12/restore.py`
@@ -329,8 +331,8 @@ in mind for the arena."); which machines run what is on the coordination board. 
 6. **Records.** Every table's `auction_source` is `systems:NS|EW` in a cohort that declares systems
    (`gen5-neural-only` in one that does not), and `bidding_records` name the bidder of each seat. Dashboards and
    exporters that filter on `gen5-neural-only` will not see these tables until they accept the new label.
-7. **After it is authorized**: the generation cleanup of `docs/generation-cleanup.md` (Gen 7.1's close-out, this
-   source onto main).
+7. **The generation cleanup** of `docs/generation-cleanup.md` was run on 12 November: Gen 7 is
+   [closed out](generations/gen7/README.md) and this source is on main.
 
 ## What this package does not do
 
