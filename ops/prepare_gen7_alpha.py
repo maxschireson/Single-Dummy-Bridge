@@ -17,6 +17,12 @@ shard is written into the manifest, so each machine's cohort has its own identit
 The source may also be a drained Gen7 cohort: a new plan then takes over the deals that cohort had
 not played, with the same Gen7 bots (same settings, same identity) and a different match mix.
 
+Gen 8 (nothing changes for a plan that uses none of it): a plan may give `systems`, the bidding system
+each bot of the cohort declares, and a bot entry may give `bidder` (it bids by a system bidder, a
+rule system, in place of its bidding net), `system_scorer` (true: it reads each side's calls by the
+declared system, with the plan's `system_scorer` artifact) and `lead_systems` (the systems whose
+auctions the lead net serves). docs/gen8_candidate_2026-11-12.md.
+
   python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json] [--shard K/N]
 """
 import argparse
@@ -57,6 +63,8 @@ def policy_path(key):
     """Where a policy release sits in a run. The first policy keeps the path it has always had, so a bot that
     uses it keeps its identity; any other is named by its artifact key."""
     return GEN7_POLICY if key == POLICY_KEY else f'artifacts/gen7/{key}.npz'
+SYSTEM_SCORER_KEY = 'system_scorer'            # Gen 8: the artifact key of a system-aware hand-fit scorer
+SYSTEM_SCORER = 'artifacts/gen8/system_scorer.npz'
 RUNTIME = ('ops/gen5_runtime.py', 'ops/prepare_gen7_alpha.py')
 # What the plan does not own: how tables are audited and forked, how rooms are seeded, the labels the
 # exporter and report registration key on, and facts about the corpus the unplayed deals come from.
@@ -71,8 +79,11 @@ def load_plan(path=None, require_ready=True):
     if not plan['gen7_bots']:
         raise ValueError('Gen7 alpha plan needs at least one Gen7 bot')
     used = {policy_key(bot) for bot in plan['gen7_bots'].values()}
-    if not plan['artifacts'] or set(plan['artifacts']) != used or not all(isinstance(k, str) and POLICY_KEYS.fullmatch(k) for k in used):
+    aware = any(bot.get('system_scorer') for bot in plan['gen7_bots'].values())
+    if not plan['artifacts'] or set(plan['artifacts']) - {SYSTEM_SCORER_KEY} != used or not all(isinstance(k, str) and POLICY_KEYS.fullmatch(k) for k in used):
         raise ValueError('Gen7 alpha plan artifacts are exactly the policy releases its bots use: gen7_policy, and gen7_policy_<name> for a bot that names another')
+    if (SYSTEM_SCORER_KEY in plan['artifacts']) != aware:
+        raise ValueError('The `system_scorer` artifact is there exactly when a bot asks for it (`system_scorer`: true)')
     for entry in plan['artifacts'].values():
         if not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
             raise ValueError('A Gen7 policy artifact needs release, file, restore and sha256')
@@ -88,7 +99,37 @@ def load_plan(path=None, require_ready=True):
         pair_members(pair)
         if isinstance(weight, bool) or not isinstance(weight, int) or weight < 1:
             raise ValueError('Pair weights are positive integers')
+    check_systems(plan)
     return plan
+
+
+def check_systems(plan):
+    """Gen 8: what a plan says about bidding systems. `systems` maps every bot that bids in the cohort (the roster
+    and the common bidder) to the system it declares. Without it nothing is declared and no bot may use a system
+    setting."""
+    systems = plan.get('systems')
+    using = sorted(k for k, bot in plan['gen7_bots'].items() if bot.get('bidder') or bot.get('system_scorer') or 'lead_systems' in bot)
+    if systems is None:
+        if using:
+            raise ValueError(f'Bots {using} use bidding-system settings: the plan needs `systems`')
+        return
+    if not isinstance(systems, dict) or not systems or not all(isinstance(k, str) and isinstance(v, str) and v for k, v in systems.items()):
+        raise ValueError('`systems` maps bot ids to the ids of the systems they declare')
+    missing = sorted((set(plan['roster']) | {plan['common_bidder']}) - set(systems))
+    if missing:
+        raise ValueError(f'`systems` names no system for {missing}')
+    for key, bot in plan['gen7_bots'].items():
+        entry = bot.get('bidder')
+        if entry is not None and not (isinstance(entry, dict) and entry.get('kind') in ('python', 'toy')
+                                      and re.fullmatch('[0-9a-f]{64}', str(entry.get('sha256')))):
+            raise ValueError(f'{key}: `bidder` is the generator entry of a system bidder (kind python or toy) with its sha256 pin')
+        if bot.get('system_scorer') not in (None, False, True):
+            raise ValueError(f'{key}: `system_scorer` is true or absent; the file is the plan\'s `system_scorer` artifact')
+        if 'lead_systems' in bot and not (isinstance(bot['lead_systems'], list) and all(isinstance(x, str) for x in bot['lead_systems'])):
+            raise ValueError(f'{key}: `lead_systems` is a list of system ids')
+    entry = plan['artifacts'].get(SYSTEM_SCORER_KEY)
+    if entry is not None and not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
+        raise ValueError('The system scorer artifact needs release, file, restore and sha256')
 
 
 def make_bots(old, plan):
@@ -107,6 +148,13 @@ def make_bots(old, plan):
                     gen6=asdict(Gen6Config(**dict(base['gen6'], **entry.get('gen6', {})))),
                     gen7=resolved(entry.get('gen7')), gen7_policy=policy_path(policy_key(entry)))
         spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts'][policy_key(entry)]['sha256'])
+        if entry.get('system_scorer'):                  # Gen 8: each side's calls are read by the system it declares
+            spec['system_scorer'] = SYSTEM_SCORER
+            spec['artifact_sha256'][SYSTEM_SCORER_KEY] = plan['artifacts'][SYSTEM_SCORER_KEY]['sha256']
+        if 'lead_systems' in entry:
+            spec['lead_systems'] = list(entry['lead_systems'])
+        if entry.get('bidder'):                         # Gen 8: this bot bids by a system bidder, not by its net
+            spec['bidder'] = deepcopy(entry['bidder'])
         spec['identity'] = digest(spec)
         if key in bots and bots[key] != spec:
             raise ValueError(f'The source run has a different bot called {key}: give the Gen7 bot a new id, or the settings of the bot it continues')
@@ -140,7 +188,7 @@ def gen7_block(plan):
     first = plan['artifacts'].get(POLICY_KEY)
     if first:
         block.update(policy_release=first['release'], policy_sha256=first['sha256'])
-    if set(plan['artifacts']) != {POLICY_KEY}:
+    if set(plan['artifacts']) - {SYSTEM_SCORER_KEY} != {POLICY_KEY}:
         block['policies'] = {k: dict(artifact=policy_key(e), release=plan['artifacts'][policy_key(e)]['release'], sha256=plan['artifacts'][policy_key(e)]['sha256'])
                              for k, e in sorted(plan['gen7_bots'].items())}
     return block
@@ -159,6 +207,32 @@ def release_file(entry, scorers):
     if trained_with is None or scorers != {trained_with}:
         raise ValueError("The policy release names a different hand-fit scorer from the base bots'; its inputs would not mean what it learned")
     return path
+
+
+def system_scorer_file(entry, scorers):
+    """The system-aware scorer of a release folder, rebuilt from its parts if needed, checked against the plan, and
+    checked to extend the hand-fit scorer the bots play with: an auction with nothing declared, or declared as a
+    system the file does not hold, then reads exactly as that scorer reads it."""
+    folder = ROOT / entry['release']
+    path = folder / entry['file']
+    if not path.exists():
+        subprocess.run([sys.executable, str(folder / entry['restore'])], check=True, cwd=folder, stdout=subprocess.DEVNULL)
+    if sha(path) != entry['sha256']:
+        raise ValueError('System scorer does not match the plan: ' + entry['file'])
+    extends = json.loads((folder / 'manifest.json').read_text()).get('init_sha256')
+    if extends is None or scorers != {extends}:
+        raise ValueError("The system scorer release was not built on the base bots' hand-fit scorer; undeclared auctions would read differently")
+    return path
+
+
+def system_bidders(plan):
+    """Every system bidder the plan's bots name, built once to check it against its pinned identity."""
+    from bridge_harness.system_bidders import make_bidder
+    out = {}
+    for key, bot in sorted(plan['gen7_bots'].items()):
+        if bot.get('bidder'):
+            out[key] = make_bidder(bot['bidder'], ROOT).sha256
+    return out
 
 
 def commit():
@@ -241,7 +315,12 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
         policies = {}                           # artifact key -> the release file, checked against the scorer of the bots that use it
-        for key in sorted(plan['artifacts']):
+        system_scorer = None
+        if SYSTEM_SCORER_KEY in plan['artifacts']:
+            system_scorer = system_scorer_file(plan['artifacts'][SYSTEM_SCORER_KEY],
+                                               {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if e.get('system_scorer')})
+        rule_bidders = system_bidders(plan)
+        for key in sorted(set(plan['artifacts']) - {SYSTEM_SCORER_KEY}):
             policies[key] = release_file(plan['artifacts'][key], {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if policy_key(e) == key})
         root.mkdir(parents=True)
         for folder in ('artifacts', 'assets'):
@@ -259,6 +338,9 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
         for key, policy in policies.items():
             (root / policy_path(key)).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(policy, root / policy_path(key))
+        if system_scorer is not None:
+            (root / SYSTEM_SCORER).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(system_scorer, root / SYSTEM_SCORER)
         if exclude_families is not None:
             exclusion_path = root / 'artifacts/validation/evaluation-exclusions.json'
             exclusion_path.parent.mkdir(parents=True, exist_ok=True)
@@ -290,6 +372,11 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
         for key in CARRIED:
             if key in old:
                 m[key] = deepcopy(old[key])
+        if plan.get('systems'):                 # Gen 8: the runner tells every player the systems declared at each table
+            m['systems'] = dict(plan['systems'])
+            m['gen8'] = dict(rule_bidders=rule_bidders,
+                             system_scorer=None if system_scorer is None else dict(release=plan['artifacts'][SYSTEM_SCORER_KEY]['release'],
+                                                                                 sha256=plan['artifacts'][SYSTEM_SCORER_KEY]['sha256']))
         if ancestor:
             m['actor_source_generation'] = ancestor['identity']
             m['labels'].update(ancestor.get('labels', {}))

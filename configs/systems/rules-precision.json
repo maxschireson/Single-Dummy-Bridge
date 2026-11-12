@@ -26,13 +26,13 @@
       "two_over_one": 11,
       "game": 25,
       "game_minor": 28,
-      "slam": 33,
+      "slam": 32,
       "grand": 37,
       "invite_width": 2,
-      "overcall_min1": 8,
+      "overcall_min1": 7,
       "overcall_min2": 11,
       "overcall_max": 17,
-      "overcall_quality": 2,
+      "overcall_quality": 1,
       "takeout_min": 12,
       "nt_overcall_lo": 15,
       "nt_overcall_hi": 18,
@@ -62,7 +62,7 @@
       "options": {
         "settings_file": "configs/rule-systems/precision.json"
       },
-      "sha256": "12a68e5e2887c06a00a69f41980d8864d83f96fec335b0c159369aee9f9aca13"
+      "sha256": "a067b6e35cc2a9c198524350505259d18460f6bea88e5b99a14621448b3e366e"
     }
   ],
   "lineage": {}

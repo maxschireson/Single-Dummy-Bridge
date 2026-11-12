@@ -1,5 +1,6 @@
 {
- "note": "Precision-style strong club, untuned first settings",
+ "note": "Precision-style strong club, rules r2, settings tuned on 4,000 deals (seed 301) for double-dummy IMPs against the house bidder (scripts/tune_rule_bidder.py tune --keep 1.5 --passes 3; three changes kept: slam 33 to 32, overcall_min1 8 to 7, overcall_quality 2 to 1). On 4,000 deals it never saw (seed 302): -1.238 +- 0.083 IMPs a board against the house bidder (-1.275 with the untuned settings), 3.9% of its contracts three or more down, no failing rule. Frozen 12 November 2026 as the Gen 8 candidate's second system.",
+ "rules": "r2",
  "settings": {
   "style": "precision",
   "club_min": 16,
@@ -20,13 +21,13 @@
   "two_over_one": 11,
   "game": 25,
   "game_minor": 28,
-  "slam": 33,
+  "slam": 32,
   "grand": 37,
   "invite_width": 2,
-  "overcall_min1": 8,
+  "overcall_min1": 7,
   "overcall_min2": 11,
   "overcall_max": 17,
-  "overcall_quality": 2,
+  "overcall_quality": 1,
   "takeout_min": 12,
   "nt_overcall_lo": 15,
   "nt_overcall_hi": 18,
@@ -36,5 +37,55 @@
   "penalty": 25,
   "stayman": true,
   "transfers": true
+ },
+ "measured": {
+  "reference": "house bidder (capsule 6-32)",
+  "tuning": {
+   "seed": 301,
+   "deals": 4000,
+   "boards": 4000,
+   "imps_per_board": -1.072,
+   "se": 0.083,
+   "won": 846,
+   "lost": 1422,
+   "flat": 1732,
+   "lost_10_or_more": 0.099,
+   "declared_per_board": 0.871,
+   "three_down_share": 0.0393,
+   "slams_bid": 75,
+   "slams_made": 59,
+   "rule_failures": 0
+  },
+  "unseen": {
+   "seed": 302,
+   "tuned": {
+    "boards": 4000,
+    "imps_per_board": -1.238,
+    "se": 0.083,
+    "won": 779,
+    "lost": 1459,
+    "flat": 1762,
+    "lost_10_or_more": 0.103,
+    "declared_per_board": 0.894,
+    "three_down_share": 0.0391,
+    "slams_bid": 86,
+    "slams_made": 62,
+    "rule_failures": 0
+   },
+   "start": {
+    "boards": 4000,
+    "imps_per_board": -1.275,
+    "se": 0.083,
+    "won": 779,
+    "lost": 1461,
+    "flat": 1760,
+    "lost_10_or_more": 0.1047,
+    "declared_per_board": 0.875,
+    "three_down_share": 0.0354,
+    "slams_bid": 39,
+    "slams_made": 31,
+    "rule_failures": 0
+   }
+  }
  }
 }
