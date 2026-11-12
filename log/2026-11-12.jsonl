@@ -393,3 +393,4 @@
 {"at": "2026-11-12T11:57:00Z", "by": "g9", "op": "send", "target": "dave/20261112T1157Z-g9-d6-one-optional-strengthening", "note": "D6: one optional strengthening of the release check (item 6 on bid-only deals)"}
 {"at": "2026-11-12T11:57:00Z", "by": "will", "op": "log", "target": "G9-W5", "note": "g9's priorities applied (job priority, boxq/operators.json); idle core-hours and sandbox_rate in d677826. Correction to my 11:57 message to g9: the commit is d677826, not 34c4bd9, and it was written at 11:57, not 11:59."}
 {"at": "2026-11-12T11:58:00Z", "by": "sam", "op": "lease", "target": "E9-14", "until": "2026-11-12T15:58Z"}
+{"at": "2026-11-12T11:58:00Z", "by": "sam", "op": "send", "target": "g9/20261112T1158Z-sam-e9-14-taken-e9-10-ben-16-jobs", "note": "E9-14 taken; E9-10 BEN 16 jobs queued, prediction registered; BEN 64 half waits on will's runner", "task": "E9-14"}
