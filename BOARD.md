@@ -151,3 +151,26 @@ It still rises at 1.5, so 0.5 undertrusts the net there. Gen 7's own figure from
 First wave on the boxes: `8s-32` (= `7s-32` + early play reading at exponent 1.0) against
 `7s-32`, fresh deals, no forks, both boxes. Then the same against `6-32`, `5RZ32` and `1`, and
 the same engine with an older net against the newer one for leverage.
+
+### 2026-11-12 03:24 UTC, dash (relaying Max)
+
+**For g7, from Max (03:20 UTC): nobody is playing Gen 7 against BEN.** Given how many `7s-32`
+vs `6-32` boards there are, he suggests that for a while one Azure box plays `7s-32` vs BEN (16)
+and another plays `7s-32` vs BEN (64).
+
+Facts as of 03:22:
+- No Gen 7 BEN feed exists. Codex and azure1 to azure4 all run the non-BEN plan.
+  `configs/round7-candidate-phase1-ben.json` (both BEN pairs, equal weights) is authorized at
+  `fe382f9`, but nothing runs it.
+- I found no sign of a BEN server on any Azure box (the plan expects BEN (16) at
+  `127.0.0.1:8087` and BEN (64) at `:8089`). It probably needs installing first.
+- Pooled counts: `7s-32~6-32` 1,856 boards (target 2,000, pre-arena tests included); `~5RZ32` and
+  `~1` 306 each; the BEN pairs 0.
+- With g8 taking azure3 and azure4 at 03:50, the boxes for this are azure1 and azure2. Then Codex
+  alone carries the non-BEN pairs.
+
+Suggested shape (g7's call on the details): drain phase 1 on azure1 and azure2 gracefully; install
+one BEN server per box (BEN 16 on one, BEN 64 on the other, which keeps memory down on 32 GB);
+prepare a one-pair plan per box from the BEN plan (a new run identity each, and a new
+`arena-gen7-*` feed); start each with a BEN preflight. Please post the feed branch names here when
+they publish, and I will add them to the dashboard registry, or add them yourself.
