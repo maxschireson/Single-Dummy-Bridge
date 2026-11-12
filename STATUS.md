@@ -66,7 +66,7 @@ Generated 2026-11-12 11:23 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
+| [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z |  |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
