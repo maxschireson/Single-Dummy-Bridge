@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794503535.564109,
+  "checked_epoch": 1794504837.4595542,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "45fa41bc94e8ff5cb1ee54f8a9968400b5d6e1cd",
-  "coordination_blob": "20c3235b39f3de8c0f90478e26a94b7f467b9903",
-  "registry_blob": "5c805a4103fe8a0259d65009de72d7c063c1d6db",
+  "coordination_revision": "7306e4a82f9d5b23b58d0c2b73282c7de601ed36",
+  "coordination_blob": "84e2eb208f206d443dea5869b451c61725798311",
+  "registry_blob": "c7289b88049b88de19607c8c077c160f01c4372f",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -67,9 +67,9 @@
     },
     "status": "passed"
   },
-  "action": "applied_authorized_gen8_cutover",
-  "status": "completed_authorized_cutover_live",
-  "notification": "meaningful_transition_ready",
+  "action": "continued_current_gen8_collection",
+  "status": "checked_no_runtime_change",
+  "notification": "suppressed_no_material_change",
   "source_and_artifacts_verified": true,
   "gen71_gate": "Historical; superseded by explicit Gen8 arena cutover. No Gen7.1 self-play transition.",
   "handled_instructions": [
@@ -97,29 +97,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 27,
+      "completed": 71,
       "target": 16036,
-      "contiguous": 27,
+      "contiguous": 71,
       "by_pair": {
-        "8s-32~71s-32": 9,
-        "8s-32~1": 5,
-        "8s-32~5RZ32": 4,
-        "8c-32~71s-32": 5,
-        "8c-32~8s-32": 4
+        "8s-32~71s-32": 24,
+        "8s-32~1": 12,
+        "8s-32~5RZ32": 12,
+        "8c-32~71s-32": 12,
+        "8c-32~8s-32": 11
       },
-      "root_games": 90,
-      "tables": 1169,
+      "root_games": 236,
+      "tables": 2958,
       "failures": 0,
-      "epoch": 1794503524.6793785,
+      "epoch": 1794504836.4935174,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794503534.6830566,
-      "completed": 27,
+      "epoch": 1794504836.1088274,
+      "completed": 70,
       "in_flight": [
-        27,
-        28,
-        29
+        70,
+        71,
+        72
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -127,15 +127,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794503524.3325982,
+      "epoch": 1794504784.434303,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794503503.3679075,
+      "epoch": 1794504805.8056269,
       "status": "published",
-      "completed": 24
+      "completed": 68
     },
     "process.json": {
       "pid": 79917,
@@ -152,7 +152,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "Gen8 launched, registered and publishing all five adopted pairs. Exact released actors retained; complete training-family exclusion and original25000-family accounting pass. Both predecessors are permanently retired; source remains frozen. Operator handoff and hourly automation updated.",
+  "result": "No new applicable instruction. Current immutable Gen8 mix, released actors and union exclusion remain valid. Independent17:17 full-corpus audit agrees with this stream qualification. Fresh collector, watchdog and single publisher healthy; no failure or stop marker.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -165,15 +165,53 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T16:26:00Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T17:12:15Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 team queue; no collector change"
+      "disposition": "Gen9 work queue; no instruction to current arena collectors"
+    }
+  ],
+  "observed_notices": [
+    {
+      "notice": "p41 2026-11-12 17:17 UTC",
+      "classification": "Independent fixed-corpus qualification, not a runtime instruction",
+      "owned_feed": "arena-gen8-19bbdce5-20261112-feed",
+      "corpus_families": 16036,
+      "played_at_audit": 34,
+      "training_overlap": 0,
+      "action": "Existing full-corpus exclusion qualification confirmed; no collection change."
     },
     {
-      "number": 30,
-      "disposition": "Gen9 reading bench; unadopted research"
+      "notice": "plan 2026-11-12 17:11 UTC",
+      "classification": "Future research and Azure host assignment",
+      "action": "Outside this owned stream; no adoption."
     }
-  ]
+  ],
+  "registry_disposition": "Owned active and both pinned retired entries unchanged. Other producer recovery metadata and Azure6 source registration do not change this stream.",
+  "previous_checked_epoch": 1794503535.564109,
+  "main_snapshot_unchanged": true,
+  "operational_snapshot_unchanged": true,
+  "processes": {
+    "process.json": {
+      "pid": 79917,
+      "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 "
+    },
+    "watchdog-process.json": {
+      "pid": 79983,
+      "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/watch_gen5.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --publication /workspace/work/bridge-gen8-19bbdce5-publication --ben-state /workspace/work/bridge-gen8-no-ben-state "
+    },
+    "publisher-process.json": {
+      "pid": 79982,
+      "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/publish_gen5.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --publication /workspace/work/bridge-gen8-19bbdce5-publication "
+    }
+  },
+  "ownership_locks": {
+    ".writer.lock": "held",
+    ".watchdog.lock": "held"
+  },
+  "heartbeat_age": 1.350726842880249,
+  "publisher_age": 31.653927326202393,
+  "free_bytes": 22948384768,
+  "new_applicable_instructions": []
 }
