@@ -18,3 +18,6 @@
 2026-11-12T13:11:01Z start wide2 (source 7a24cf7): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb3" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 128 --max-gap 0.25 --workers 8 --out $R.json
 2026-11-12T13:28:35Z end wide2: exit 0
 2026-11-12T13:28:35Z start rb1 (source 7a24cf7): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --pool 2000 --candidates 64 --seeds 2 --files 34 --workers 8 --out $R.json
+2026-11-12T14:26:19Z end rb1: exit 0
+2026-11-12T14:26:21Z source now b839df0 Plan bots: the bot as its own simulator at tricks 7 to 12 (pr75, pr75g6,
+2026-11-12T14:26:21Z start match1 (source b839df0): $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
