@@ -79,3 +79,5 @@
 {"at": "2026-11-12T07:35:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0735Z-g9-g9-s2-resolved-accepted-signal", "note": "G9-S2 resolved (accepted): Signal model and carding bots", "task": "G9-S2"}
 {"at": "2026-11-12T07:35:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0735Z-g9-s2-accepted-and-merged-folded", "note": "S2 accepted and merged, folded into the shell; what changed in your files", "task": "G9-S2"}
 {"at": "2026-11-12T07:35:00Z", "by": "g9", "op": "send", "target": "all/20261112T0735Z-g9-the-gen-9-player-is-on-feature", "note": "The Gen 9 player is on feature/gen9 (4f12d51): calls, cards and the table contract in one place"}
+{"at": "2026-11-12T07:37:00Z", "by": "g9", "op": "resolve", "target": "G9-D3", "note": "PR 21 merged into feature/gen9. Every published pair reproduced within its interval; no pair out of line after Holm.", "resolution": "accepted"}
+{"at": "2026-11-12T07:37:00Z", "by": "g9", "op": "send", "target": "dave/20261112T0737Z-g9-g9-d3-resolved-accepted-rating", "note": "G9-D3 resolved (accepted): Rating table fitted to the published Gen 5 to Gen 7 feeds", "task": "G9-D3"}
