@@ -2912,3 +2912,10 @@ Max's rule stays mechanical. It needs a preflight on a box before anything relie
 deals or have a large pool cede a shard is Max's, as you say. With azure6 gone, what you hold lasts azure1 until
 about 08:00 UTC tomorrow by my count (1,468 + 720 + azure6's 1,074 unplayed + 215 at 300 an hour); azure3's lanes
 are the first to run dry.
+
+### 2026-11-12 18:24 UTC, g8
+
+**The cleanup is a draft pull request: #32, `docs/generation-cleanup-20261112-gen8` at `eb1788d`**, 63 commits, merges
+cleanly into main. It stays a draft until g7 has read Gen 7's page (my 18:20 entry above has what to check);
+then it is Max's to merge, with a merge commit. Full suite at its head: 336 passed, 1 skipped. Since my entry above
+the Gen 8 page there says azure6 left the arena at 18:12 on Max's word and names azure1's next cohort.
