@@ -64,3 +64,27 @@ def test_relabelled_table(tmp_path):
         v4, g8, full = r['fit']['v4'], r['fit']['g8'], r['fit']['full']
         assert np.allclose(full, v4, atol=1e-4)                  # house bots met as themselves: the net in full
         assert np.allclose(g8[2], .3 * v4[2], atol=1e-4)         # an outside player Gen 8 does not know: 0.3
+
+
+def test_touching_and_equal_classes():
+    sys.argv = ['x']
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import gen9_reading_bench as g
+
+    class O:
+        pass
+    o = O()
+    o.history = [(1, 9), (2, 6), (3, 20), (0, 10)]          # the jack and eight of spades gone; the queen played
+    r = g.ClassReading.__new__(g.ClassReading)
+    r.kind = 'touching'
+    held = np.zeros((2, 52), bool)
+    held[0, [11, 10, 7, 5, 30]] = True                     # K Q 9 7 of spades: Q touches K only (the ten is out)
+    held[1, [12, 10, 8, 30]] = True                        # A Q T: Q touches T through the gone jack, and not the A (K out)
+    K = r.klass(o, 3, held)
+    assert sorted(np.flatnonzero(K[0])) == [10, 11]
+    assert sorted(np.flatnonzero(K[1])) == [8, 10]
+    o.history[3] = (0, 7)                                  # the nine: touches the seven through the gone eight
+    assert sorted(np.flatnonzero(r.klass(o, 3, held)[0])) == [5, 7]
+    r.kind, r.equal, r.table_id = 'equal', {'t': {'3': [7, 30]}}, 't'
+    K = r.klass(o, 3, held)
+    assert sorted(np.flatnonzero(K[0])) == [7, 30]          # the listed set; the reader then keeps what the layout holds
