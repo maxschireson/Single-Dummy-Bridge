@@ -249,8 +249,10 @@ class ClassReading:
     the class chosen evenly; `who` ('all', 'opponents' or 'partner') says whose plays are read so (the others by the
     card). Classes: 'spots' (E9-3's: the spots nine and below of the suit held, or the card itself if higher),
     'touching' (the cards of the suit held that touch the card played, honours included, two cards touching when only
-    cards already played lie between them), or 'card' (the net on the card: the prototype's reading). Readings on one
-    base share its net rows."""
+    cards already played lie between them), 'equal' (E9-16 part 1c: the cards the chooser's own weighted solves rated
+    exactly equal best at that play, as listed for p41's pools, restricted to those the layout gives it; approximate,
+    since in another layout the chooser would hold other cards and other ties), or 'card' (the net on the card: the
+    prototype's reading). Readings on one base share its net rows."""
 
     def __init__(self, base, kind='spots', who='all'):
         self.base, self.kind, self.who = base, kind, who
@@ -281,10 +283,20 @@ class ClassReading:
         got = [cache[(i, k)] for k in keys]
         return np.stack([g[0] for g in got]), np.array([g[1] for g in got])
 
+    equal = None                # part 1c: {table: {ply: the chooser's own exactly equal-best cards}}, set by readings
+    table_id = None
+
     def klass(self, o, i, held):
         played = o.history[i][1]
         suit, rank = played // 13, played % 13
         K = np.zeros_like(held)
+        if self.kind == 'equal':                                    # the play's own equal-best set, where the layout's hand holds it
+            listed = (self.equal or {}).get(self.table_id, {}).get(str(i))
+            if listed is None:
+                raise KeyError(f'no equal-best set for {self.table_id} ply {i}')
+            K[:, listed] = True
+            K[:, played] = True
+            return K
         if self.kind == 'spots':
             if rank <= SPOT:
                 K = held & SPOT_MASK[suit][None, :]
@@ -320,7 +332,10 @@ class ClassReading:
                 if q.opponent_factor != 1. and not partner:
                     v = v * q.opponent_factor
             else:
-                K = self.klass(o, i, held) & (p > 0)
+                try:
+                    K = self.klass(o, i, held) & (p > 0)
+                except KeyError:                                     # no listed set: a play with no choice, or not stored
+                    K = np.zeros_like(held)
                 K[:, played] = True
                 size = K.sum(axis=1)
                 v = np.log((1 - f) * (p * K).sum(axis=1) + f * size / np.maximum(count, 1)) - np.log(size)
@@ -391,10 +406,15 @@ def readings(a):
         dfd = PlayHead.from_json(heads['ben.defender'][head_name]) if which in ('defender', 'both') else None
         base = player_of(a.head_base if dfd is None else a.expert_base)
         readers[name], meets[name] = HeadReading(base, decl, float(factor), dfd, float(factor) if dfd is not None else None), ''
+    equal = None
+    if a.equal_best:
+        with gzip.open(a.equal_best, 'rt') as f:
+            equal = json.load(f)['tables']
     for item in a.class_reading:
         name, rest = item.split('=', 1)
         kind, _, who = rest.partition(':')
         readers[name], meets[name] = ClassReading(player_of(a.class_base), kind, who or 'all'), ''
+        readers[name].equal = equal
     for item in a.expert_reading:
         from gen9_signal_expert import build
         name, rest = item.split('=', 1)
@@ -435,6 +455,8 @@ def readings(a):
                 opponent = d['opponent']
             for n in todo:
                 readers[n].meet(meets[n] or opponent)
+                if isinstance(readers[n], ClassReading):
+                    readers[n].table_id = f"{info.get('directory')}/{info.get('path')}#{info.get('key')}"
             for k, o, game in decisions(e):
                 if k in wanted:
                     r = wanted[k]
@@ -597,8 +619,9 @@ def main():
     ap.add_argument('--head-base', default='8x-32')
     ap.add_argument('--expert-reading', action='append', default=[], help='NAME=MODELS.json:VERSION:SIZE:MODEL (E9-15)')
     ap.add_argument('--expert-base', default='r9b-32')
-    ap.add_argument('--class-reading', action='append', default=[], help='NAME=KIND[:WHO], KIND spots|touching|card, WHO all|opponents|partner (E9-16)')
+    ap.add_argument('--class-reading', action='append', default=[], help='NAME=KIND[:WHO], KIND spots|touching|equal|card, WHO all|opponents|partner (E9-16)')
     ap.add_argument('--class-base', default='8p-32')
+    ap.add_argument('--equal-best', help="class readings of kind 'equal': reports/gen9-leakage-2026-11-12/equal_best.json.gz")
     ap.add_argument('--part-shard', default='0/1', help='readings: this process takes part files k, k + n, ... (k/n)')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
