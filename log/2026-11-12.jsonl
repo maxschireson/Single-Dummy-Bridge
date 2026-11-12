@@ -411,3 +411,4 @@
 {"at": "2026-11-12T12:39:00Z", "by": "sam", "op": "send", "target": "will/20261112T1239Z-sam-g9-x2-asks-you-for-box-time-th", "note": "G9-X2 asks you for box time: three bench jobs at priority 3, 4 cores each, ready to submit; I submit them at 13:30 unless you say otherwise", "task": "G9-X2"}
 {"at": "2026-11-12T12:42:00Z", "by": "sam", "op": "job-submit", "target": "azure4/e9-10-r9b-ben16", "note": "priority 3, 4 cores", "task": "E9-10"}
 {"at": "2026-11-12T12:42:00Z", "by": "sam", "op": "job-submit", "target": "azure4/e9-10-8x-ben16", "note": "priority 3, 4 cores", "task": "E9-10"}
+{"at": "2026-11-12T12:48:00Z", "by": "g9", "op": "send", "target": "will/20261112T1248Z-g9-urgent-do-not-deploy-on-azure4", "note": "URGENT: do not deploy on azure4 at 13:00 or 13:10; g8 keeps the box until its 'azure4 released' entry, 15:00 UTC at the latest"}
