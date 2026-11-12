@@ -32,19 +32,129 @@
     "docs/gen8_candidate_2026-11-12.md": "cadcc0e74cd216811ac547f71223856ca86a2981"
   },
   "watched_source_refs": {
-    "box/azure1/control": "47472d7e5c804a03160a022ca06853e1d96660b5",
-    "box/azure1/status": "50b5c380630e7ea93599c852a2b5e1a66e395851",
-    "box/azure2/control": "13eec2754bca65e584be1169adf9b22abb5d6d6a",
-    "box/azure2/status": "0bccf2ea961c0a55214e4ea1353ed7ad5507c146",
-    "box/azure3/control": "09c7430db9dc0179870aa947392e0e896da5f838",
-    "box/azure3/status": "930d42a64647980d051087fee363b18a5e3169fd",
-    "box/azure4/control": "4ce4e421be33e227be89c5578e56230b3ba441c2",
-    "box/azure4/status": "2904233c06eeb9a4402cea9cef60c341f4ee293d",
-    "box/azure5/control": "66effc04017c21d71433155468690f3a6b7fb736",
-    "box/azure5/status": "da726ef4722f968d327ecc374bed33bf555989be",
-    "box/azure6/control": "8c411a8a47bbbd3cd966ccd9403916dc17233e24",
-    "box/azure6/status": "829f4f37702facd9248bbe088e708ccb9728fab7",
-    "box/coordination": "45fa41bc94e8ff5cb1ee54f8a9968400b5d6e1cd",
+    "archive/gen6-fast-ben-20261111": "802f69ad6e1416a5a7200d5e6c29f8beca2a8275",
+    "arena-components-feed": "78345ca62fe0d81979a9d861da0cd88f32ac58cb",
+    "arena-feed": "0c1cfa02beea115e4636947e9a13a5d2360c59ca",
+    "arena-gen5-codex-32-feed": "231647b297ba7b05ee28e720d7f395bacbcff818",
+    "arena-gen5-codex-feed": "759365035cddadd6b5586bd8f10995aff40d9be3",
+    "arena-gen5r-feed": "ef13160a9c2412bdacae82bb9e26f5cd546e0446",
+    "arena-gen5rz-ben-feed": "a559ccb59e9d3ff09d8c759c016534b4efcef254",
+    "arena-gen5rz-feed": "03fd90e694d02ba139559fc323e63e384da9e969",
+    "arena-gen6-ben-expansion-feed": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
+    "arena-gen6-chatgpt-feed": "647a74b533d1bbfd91ad0140b61ff8174c2af193",
+    "arena-gen6-codex-ben-followups-feed": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
+    "arena-gen6-codex-ben-gate": "32d459d5513005f3c032a04fb6c785d4a0db4d6f",
+    "arena-gen6-codex-feed": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
+    "arena-gen6-codex-v7-capture-feed": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98",
+    "arena-gen6-codex-v7-cutover": "019a7503a67f34771792b933e8ebfdd11e40e70c",
+    "arena-gen6-codex-v7-watch": "6ca5d82f3705dc1f72b2741b2cb3d63e9fdad61b",
+    "arena-gen6-extra-selfplay-feed": "40a2b2462d73a32fc3d974ca0e014c33f5ff30e1",
+    "arena-gen6-fast-selfplay-20261111-19bbdce5-feed": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "arena-gen6-fast-selfplay-cloud-feed": "37bb31e1489621e1c4ba3ce06aa9b98e92311098",
+    "arena-gen6-fast-selfplay-codex-20261111": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+    "arena-gen6-fast-selfplay-independent-feed": "937792a17084d0bbaa6a044e9b6e0f3aaeb80483",
+    "arena-gen6-fast-selfplay-primary-feed": "d5a1f25688ca1e9c2b2c25c351f967e134adb10f",
+    "arena-gen6-gen7-capture-feed": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+    "arena-gen6-independent-feed": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+    "arena-gen6-medium-ben-feed": "ca95def619269e2eefaba8263134ff8154ff1171",
+    "arena-gen7-1-azure3-ben64-1-feed": "e8f1a1c158c57f3fc067d981de746f671822d71b",
+    "arena-gen7-1-azure3-ben64-2-feed": "586e5c91f0f33aeb4c82b565fd2c5c6307081008",
+    "arena-gen7-1-azure3-ben64-3-feed": "8e0f634de40661c955ed9b2d8a2b301b2d68d2e9",
+    "arena-gen7-1-azure3-ben64-4-feed": "b2207d8c33cd69baa99b7dfa4cf4f984b151889e",
+    "arena-gen7-1-azure3-ben64-5-feed": "b374fd983d26036c4ecaf72d5464dc274758b7e8",
+    "arena-gen7-1-azure3-ben64-6-feed": "467a873a701f23601c5bddc28533f5130186a2fc",
+    "arena-gen7-1-azure3-ben64-7-feed": "6c78f9e07ee59dfd4395ae7f4d0edc7338062ee1",
+    "arena-gen7-1-azure3-ben64-8-feed": "78d69694722b092e4953f0db9196be10a0a898a3",
+    "arena-gen7-1-compare-azure2-feed": "239815e87f10bc14471e2c08b227f4e039e6a732",
+    "arena-gen7-1-compare-codex-20261112-feed": "71a6dc2dbc8985175c476388115bc4f301e7452f",
+    "arena-gen7-1-fresh2-azure3-ben64-1-feed": "976822c654f72017a60eeda457a8b2ba87f8ef65",
+    "arena-gen7-1-fresh2-azure3-ben64-2-feed": "3dd1086351efe90f6ba3582f7d7b6a3575d7836b",
+    "arena-gen7-1-fresh2-azure3-ben64-3-feed": "dec43d30f8d15e4a0d9274d01b5d3f1fba6a43c8",
+    "arena-gen7-1-fresh2-azure3-ben64-4-feed": "e5078f5d51fb2de42e06fc36f6cc71b68c05b5cf",
+    "arena-gen7-1-fresh2-azure3-ben64-5-feed": "3f03a751d999ba676359ee8e6240844be2a290d1",
+    "arena-gen7-1-fresh2-azure3-ben64-6-feed": "b7707f556212e9d14d98b0e9e9e336dd3d4a6436",
+    "arena-gen7-1-fresh2-azure3-ben64-7-feed": "f56bf95812291db53f464eea69a812c57c7724b2",
+    "arena-gen7-1-fresh2-azure3-ben64-8-feed": "b1ce784998959a34d85d228783a1269bfad4af17",
+    "arena-gen7-1-fresh3-azure3-ben64-1-feed": "c14b37cdb0276a7e71212d135241f0300fdb835a",
+    "arena-gen7-1-fresh3-azure3-ben64-2-feed": "06c45434db5b47388cb918c786d4b9386ec439ff",
+    "arena-gen7-1-fresh3-azure3-ben64-3-feed": "106ce99d11e10ba1c056cbf68260398df24c0ccb",
+    "arena-gen7-1-fresh3-azure3-ben64-4-feed": "5a41f09fe901b54198b8602d92c40cdc0424063d",
+    "arena-gen7-1-fresh3-azure3-ben64-5-feed": "0c4ab5f5459d3d131cb2a9f1828c4de4c34882d2",
+    "arena-gen7-1-fresh3-azure3-ben64-7-feed": "80681d7804dd57bd66582c311c3cad0d9168fc0d",
+    "arena-gen7-1-fresh-azure3-ben64-1-feed": "c7a4e5b79c7a7648bbda0c61557e52dd8f31c53e",
+    "arena-gen7-1-fresh-azure3-ben64-2-feed": "0219e1b142d8a7211b60ef262c61b7c677848c64",
+    "arena-gen7-1-fresh-azure3-ben64-3-feed": "79d1891b889c1222169178155c095d340621b261",
+    "arena-gen7-1-fresh-azure3-ben64-4-feed": "e74503532ae896a406a5b8834ae2c23d6cebfad6",
+    "arena-gen7-1-fresh-azure3-ben64-5-feed": "83df6942792e4bbe9e0ff0dd482745e8da0573c6",
+    "arena-gen7-1-fresh-azure3-ben64-6-feed": "7536c10dc6a8b891317eb354c21722f9bcdb7b83",
+    "arena-gen7-1-fresh-azure3-ben64-7-feed": "2f215568e813598eec7d72885dfd6a1cf513c429",
+    "arena-gen7-1-fresh-azure3-ben64-8-feed": "35b0ff330a4dc66f5dd4e2f58c6e0b2d00ca03e0",
+    "arena-gen7-1-mix2-azure1-feed": "b417f16dfbbca25e0a759ed5402afa6579ac7acb",
+    "arena-gen7-1-mix-azure1-feed": "486843d9494fe8826f45d2c23179baafa070dbf0",
+    "arena-gen7-1-vs70-azure2-feed": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d",
+    "arena-gen7-1-vs70-fresh-azure2-feed": "67dd0edee1f790ff954ee2bb1565b51d80b2ba5b",
+    "arena-gen7-independent-selfplay-feed": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d",
+    "arena-gen7-phase1-azure1-feed": "419d7e1009bb559b816adfc69a67b39d7ed55ebb",
+    "arena-gen7-phase1-azure2-ben16-1-feed": "07674c65f86efe1649c8dc6c81be7e2ab45c4e3d",
+    "arena-gen7-phase1-azure2-ben16-2-feed": "79bb5e848440907394137f219607c32647b14b97",
+    "arena-gen7-phase1-azure2-ben16-3-feed": "1f6f581aef379f44385deee7b0a9a5871f1a87ee",
+    "arena-gen7-phase1-azure2-ben16-4-feed": "dbff573e35d1c838b5c4641b7f58dcc417a50749",
+    "arena-gen7-phase1-azure2-ben16-5-feed": "f5ca8133c1f9be100959d8a312b004a0d354efd0",
+    "arena-gen7-phase1-azure2-ben16-6-feed": "58ed24ce1d0e2ff79988117b3e3010b7e84dc778",
+    "arena-gen7-phase1-azure2-ben16-7-feed": "65e22f8336c618ed276d05422aa8c0658a66bd44",
+    "arena-gen7-phase1-azure2-ben16-8-feed": "650431ab87d8d78043edb3bec60949ee33c00d3b",
+    "arena-gen7-phase1-azure2-feed": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+    "arena-gen7-phase1-azure3-ben64-1-feed": "1c9b8979bff94069748db8040fed28c82bbc55ef",
+    "arena-gen7-phase1-azure3-ben64-2-feed": "075d74f1d9070591bdbd75419ccc73c3f1c81283",
+    "arena-gen7-phase1-azure3-ben64-3-feed": "bed7024f4f3fd90deea200f756a38223929eb844",
+    "arena-gen7-phase1-azure3-ben64-4-feed": "755372135b6127ea21aa0ee64c3fe71ee4aeddf2",
+    "arena-gen7-phase1-azure3-ben64-5-feed": "823bc797c4855fadd6bb286167f93969e13b1e45",
+    "arena-gen7-phase1-azure3-ben64-6-feed": "a4c399365d3bf3931d424932589e372f35db1340",
+    "arena-gen7-phase1-azure3-ben64-7-feed": "62b082a31ce2c82927420438998f0d4b265eea81",
+    "arena-gen7-phase1-azure3-ben64-8-feed": "0aaf87097a19f2b69226c511231178064d975761",
+    "arena-gen7-phase1-azure3-feed": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+    "arena-gen7-phase1-azure4-feed": "bf3c48998c40266907ee000d5c92939eae2d331c",
+    "arena-gen7-phase1-cloud-feed": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+    "arena-gen7-phase1-codex-20261112-feed": "dfe3233dec356e48da065702964892354e0db16c",
+    "arena-gen7-phase1-extra-feed": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
+    "arena-gen7-phase1-independent-feed": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+    "arena-gen7-phase1-selfplay-azure2-feed": "87faa7ee2d92966512b0535b78f69198c81a87e0",
+    "arena-gen7-pre7-azure1-feed": "86385be46eb54bca35a8e04697d412cb64eb6467",
+    "arena-gen7-pre7-azure2-feed": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39",
+    "arena-gen7-pre7-azure3-feed": "8c854a58b27729e97bd809484a7e0850cf855550",
+    "arena-gen7-pre7-azure4-feed": "2968b84979c87ccb4102d164013e62ce2cf60c07",
+    "arena-gen7-selfplay-capture-codex-20261112-feed": "09950642e0d40dc68fecf511569bb72935ba7782",
+    "arena-gen7-selfplay-codex-20261112-feed": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+    "arena-gen8-19bbdce5-20261112-feed": "c6b9d60399991e99c3f8c6e12d2fb30a95de0752",
+    "arena-gen8-azure1-feed": "f39bb5ec4ec1d1214a1d7494f012b6a032d79b48",
+    "arena-gen8-azure3-ben64-1-feed": "fb820544932c604f2c23360e891288be2f24b1e9",
+    "arena-gen8-azure3-ben64-2-feed": "1c31941bebce293d6e66be2f6ae554b9f3ea1777",
+    "arena-gen8-azure3-ben64-3-feed": "aabce0e4aa654ca3579bb8b199736ced185dbe5d",
+    "arena-gen8-azure3-ben64-4-feed": "856147e2f291c0c1af49448ad0e39fe57252b87b",
+    "arena-gen8-azure3-ben64-5-feed": "4e348ab359f628c3aabc9aa879365d1de72bd2b7",
+    "arena-gen8-azure3-ben64-6-feed": "ae293dc686eac975bf846ae4ae2a76f7ea4d6bb2",
+    "arena-gen8-azure3-ben64-7-feed": "a3ed41cf2cb719362fe527aa6c823765fabcfa1a",
+    "arena-gen8-azure3-ben64-8-feed": "44cc43a340b01058fcf09c10bad6d808e39fcd06",
+    "arena-gen8-azure6-feed": "8a6223370d5f39322f853b61264a226e5d592140",
+    "arena-gen8-candidate-codex-20261112-feed": "053a11d911cda1678cd608fc731ad58e470c5590",
+    "arena-gen71-19bbdce5-20261112-feed": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+    "arena-gen71-independent-feed": "2919a0b5d449506506f5de79db8dd9cfcbea8526",
+    "arena-local-feed": "7201f5a2e5b8f4ca6e03bc6769633b48ca39590e",
+    "arena-primary-components-feed": "f11ab55e16787069dfd5c25cf539592c85b7c699",
+    "arena-recovery-feed": "599abfc69b17d1e6e4c4c5e5c505d241d2120bbf",
+    "box/azure1/control": "6a5bad9b9f052b851f5ea692f7abe5889eaebe9f",
+    "box/azure1/status": "3591886f5f45e94cba0a8e0bfccce6806be82b54",
+    "box/azure2/control": "09062260821092eaf4a953ffe37ca13a0ff76f94",
+    "box/azure2/status": "959fc200e882204c8a10302e70a16ab17d82b133",
+    "box/azure3/control": "105fe215dc72c911b3284e97677ef1e5a1141633",
+    "box/azure3/status": "d5985828b3d39edca61f8a82da670eb56ed93287",
+    "box/azure4/control": "eca6e26dfab7f81dd18903f20463ed5b9723f571",
+    "box/azure4/status": "3d6baa2806bba81a60a06bf2fb83da641291197e",
+    "box/azure5/control": "22460356dc256b6dc9c3bb2c92583227308bee3f",
+    "box/azure5/status": "7a59719518700ed2876220afbe992bb5ddf06629",
+    "box/azure6/control": "1df1c97f455298b7a45b64cca6ef4b4b5e178f00",
+    "box/azure6/status": "731076743ee6a58d13df89d2aa62118d34438fab",
+    "box/coordination": "7306e4a82f9d5b23b58d0c2b73282c7de601ed36",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
     "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
@@ -85,23 +195,25 @@
     "feature/gen9-arena-sim": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
     "feature/gen9-bidding-cards": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
     "feature/gen9-bidding-design": "a01cab885378cc421b352dc289abc15532026425",
-    "feature/gen9-reading-bench": "463d5da83b1b7d168ee6aaad165209a858405906",
+    "feature/gen9-e9-17": "8740a0d6c861ad592273e0f1fa8d93a41a4919c0",
+    "feature/gen9-reading-bench": "45d0f740962cb7a793a64a1b2c536329a3b3ff73",
     "feature/gen9-signals": "d2092edf7cf6c34303768cc45f2b2bf280532263",
     "feature/gen9-signals-design": "16bf806f974a3b7ba472832bb8c819cc051a6fc0",
-    "feature/gen9-signals-v2": "0ad4971853e57780b057fd9ffdd3f12d9620a917",
+    "feature/gen9-signals-v2": "ecd8946c597a30a277391a63e2f83e5b7b4ac6fe",
     "feature/gen9-workflow-ben-lanes": "3cb55a01b61bd3ad5cd31bcef4f6677ebd16389f",
     "feature/gen9-workflow-design": "57c43dd6a0793cb61c0c9031a776219990b0888d",
     "feature/gen9-workflow-tests": "6f9d3cba1e35c3077194106b900dfc9306f63d73",
     "feature/gen9-workflow-tests-2": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
     "feature/gen9-workflow-tests-3": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
-    "feature/gen9": "e3ab67b185869199ccaae65152846da01ad76b54",
+    "feature/gen9": "aa04065fa15aa58e61977e15048c068250faba32",
     "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
-    "fleet/azure": "883fe556be89427bc8691c9cdb3512d917bde3bc",
-    "gh-pages": "d9eddb68dc79395a7f56504b8055b92b0822447b",
+    "fleet/azure": "ab708475899fa0101c7772ac9c8ba8debdc710af",
+    "gh-pages": "adca1c1cb8023165451f388f2ee07cbe064ad03c",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
+    "ops/gen8-19bbdce5-20261112": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
     "ops/gen71-19bbdce5-20261112": "7d96087a3a501909c0441837b95498001e1923de",
     "research/auxiliary-auction-play-10000": "5f86e973dedbf4bda7db32e631b58073cf33a003",
     "research/belief-lab-20261110": "182e74b6d76b899c0a79990221d948da711279df",
@@ -135,8 +247,8 @@
     "research/multiscore-16-32-64": "6e87791efe91686c5e22350b708fa0fb582e41db",
     "research/outcome-policy-20261109": "f6507f0544ec59caef64589b273ab105142d7d1e",
     "research/pimc-study-2026-11-08": "6525707e394b7df095ad458cac40835ba8ae5b61",
-    "research/plan-leverage-20261112": "5c8931f62113539e9d4b094e707394d2d155fdea",
-    "research/plan-leverage-g8-20261112": "1cae1f1584878d66ed7d79edb71d302c4fda0b0b",
+    "research/plan-leverage-20261112": "60acff22c1b91d5690b0f869357baed46a25685d",
+    "research/plan-leverage-g8-20261112": "0f0f4f895449ccfe2fc917c73e3b503d709a9c0f",
     "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
     "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
     "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
@@ -145,7 +257,7 @@
     "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
-    "team/gen9": "6a9ab0b91e1544ad5d2d931c7f4ceb4bad083b35",
+    "team/gen9": "159f543d14d5fc6c8c4261fb9d80309413b282be",
     "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
     "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
@@ -170,12 +282,13 @@
     "transfer/gen9-arrival-rehearsal-2-20261112": "39f63e5bad34c1a260b61f108d80c3af3132ebf2",
     "transfer/gen9-arrival-rehearsal-20261112": "4366d9b37d59f99e34d4d2a8817607f26131bbff",
     "transfer/gen9-arrival-rehearsal-full-20261112": "8d9aa04bf04866e12e0296e203103bb7682760ac",
-    "transfer/gen9-d6-arrival-azure4-20261112": "9b9dd35db7edafb458ee3a020df43f9e8dd0acf1",
+    "transfer/gen9-d6-arrival-azure4-20261112": "0f72a86b403a27ea0285ba428a113caa1de06e9e",
+    "transfer/gen9-e9-16-pilot-sandbox-20261112": "fa29bc4a8c76fa94d2cab17ea6c87e7ca46c9848",
     "transfer/gen71-settings-azure1-20261112": "f119ca8a01ee5711c86f1f3c7d59f44171199b3c",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
-    "transfer/plan-leverage-azure2-20261112": "2d5742d9fe88548ebeae05fc42c2d4ef1f6118c9",
-    "transfer/plan-leverage-azure5-20261112": "e4aa3517fa809ad16e549b1af07f0980033dc36b",
+    "transfer/plan-leverage-azure2-20261112": "cc4dd322df6f2b0f3634186e357978874e97e927",
+    "transfer/plan-leverage-azure5-20261112": "917bddef663d477726fedacb0a3be89820eb635a",
     "transfer/pre7-test-azure1-20261112": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
     "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
     "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
@@ -186,224 +299,300 @@
   },
   "recent_issues": [
     {
+      "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22",
+      "repository_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+      "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22/labels{/name}",
+      "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22/comments",
+      "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22/events",
+      "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/22",
+      "id": 6345225392,
+      "node_id": "I_kwDOVnCzR88AAAABejR0sA",
       "number": 22,
       "title": "Gen 9 queue",
+      "user": {
+        "login": "maxschireson",
+        "id": 354054191,
+        "node_id": "U_kgDOFRpwLw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/maxschireson",
+        "html_url": "https://github.com/maxschireson",
+        "followers_url": "https://api.github.com/users/maxschireson/followers",
+        "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+        "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+        "repos_url": "https://api.github.com/users/maxschireson/repos",
+        "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
       "state": "open",
-      "updated_at": "2026-11-12T16:23:32Z",
-      "pull_request": false
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-11-12T07:41:01Z",
+      "updated_at": "2026-11-12T17:23:40Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "issue_field_values": [],
+      "type": null,
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "<!-- workq -->\n**Gen 9 queue**, Thu 12 Nov 17:23 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (2)**\n- [#24 DECISION: Smallest lead the arena promotes on: 0.10 IMPs a board, or smaller?](https://github.com/maxschireson/Single-Dummy-Bridge/issues/24), raised 9 h ago\n- [#23 DECISION: May the Gen 9 leads start sub-agents for self-contained tasks?](https://github.com/maxschireson/Single-Dummy-Bridge/issues/23), raised 9 h ago\n\n**Reviews waiting (1)**\n- g9: E9-14 (sam, 16 min)\n\n**Blocked (1)**\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (14)**: bill: E9-11, E9-12 \u00b7 dave: E9-17, G9-D6 \u00b7 g9: E9-0, G9-A7 \u00b7 sam: E9-10, E9-4, E9-6, G9-S4, G9-S7, G9-X2 \u00b7 will: G9-W4, G9-W5\n**Box azure4**: d6-arrival running 2,061/6,200, 950/h, ETA 21:41 \u00b7 e9-0-n02 waiting 0/800 \u00b7 e9-0-n02e waiting 0/800 \u00b7 e9-0-n04 waiting 0/800 \u00b7 e9-16-r-v-p waiting 0/800 \u00b7 e9-16-r-v-x waiting 0/800 \u00b7 e9-12-c waiting 0/1,200 \u00b7 e9-12-u waiting 0/600 \u00b7 e9-12-x waiting 0/1,200 \u00b7 e9-16-h-v-p waiting 0/800 \u00b7 e9-0-n005 waiting 0/800 \u00b7 e9-0-n01 waiting 0/800 \u00b7 e9-0-n02d waiting 0/800 \u00b7 e9-0-n02f waiting 0/800 \u00b7 e9-0-n02l waiting 0/800 \u00b7 e9-11-p7 waiting 0/800 \u00b7 e9-11-r7 waiting 0/800 \u00b7 e9-11-r8 waiting 0/1,600 \u00b7 e9-12-cs waiting 0/600 \u00b7 e9-12-us waiting 0/600 \u00b7 e9-12-xs waiting 0/600 \u00b7 e9-4-8x waiting 0/1,600 \u00b7 e9-4-r9 waiting 0/1,600 \u00b7 e9-6-att-vs-reader waiting 0/1,600 \u00b7 e9-6-vs-8p waiting 0/1,600 \u00b7 e9-6-vs-reader waiting 0/1,600\n**Resolved today**: 31. **Open, not started**: 5.\n**Next checkpoint**: Fri 13 Nov 02:00 UTC: Checkpoint 2: first measurements from each area's prototype; plans adjusted\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22/timeline",
+      "performed_via_github_app": {
+        "id": 1236702,
+        "client_id": "Iv23liqTIFEtdIu6Vn1r",
+        "slug": "claude",
+        "node_id": "A_kwHOBIuudM4AEt7e",
+        "owner": {
+          "login": "anthropics",
+          "id": 76263028,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjc2MjYzMDI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/76263028?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/anthropics",
+          "html_url": "https://github.com/anthropics",
+          "followers_url": "https://api.github.com/users/anthropics/followers",
+          "following_url": "https://api.github.com/users/anthropics/following{/other_user}",
+          "gists_url": "https://api.github.com/users/anthropics/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/anthropics/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/anthropics/subscriptions",
+          "organizations_url": "https://api.github.com/users/anthropics/orgs",
+          "repos_url": "https://api.github.com/users/anthropics/repos",
+          "events_url": "https://api.github.com/users/anthropics/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/anthropics/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "Claude",
+        "description": "Run Claude Code from your GitHub Pull Requests and Issues to respond to reviewer feedback, fix CI errors, or modify code, turning it into a virtual teammate that works alongside your development pipelines.\r\n\r\nThis is built on the publicly available Claude Code SDK.",
+        "external_url": "https://anthropic.com/claude-code",
+        "html_url": "https://github.com/apps/claude",
+        "created_at": "2025-04-30T17:54:24Z",
+        "updated_at": "2026-11-06T04:29:41Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "checks": "write",
+          "contents": "write",
+          "discussions": "write",
+          "issues": "write",
+          "members": "read",
+          "merge_queues": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "repository_creation": "write",
+          "repository_hooks": "write",
+          "statuses": "read",
+          "workflows": "write"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "commit_comment",
+          "discussion",
+          "discussion_comment",
+          "issues",
+          "issue_comment",
+          "merge_group",
+          "merge_queue_entry",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "push",
+          "release",
+          "repository_ruleset",
+          "status",
+          "sub_issues"
+        ]
+      },
+      "state_reason": null,
+      "pinned_comment": null
     },
     {
+      "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30",
+      "repository_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+      "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/labels{/name}",
+      "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/comments",
+      "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/events",
+      "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30",
+      "id": 6350516602,
+      "node_id": "PR_kwDOVnCzR88AAAABOpfetA",
       "number": 30,
       "title": "G9-X2: Gen 9 readers on the reading bench (tricks saved a board beside nats)",
+      "user": {
+        "login": "maxschireson",
+        "id": 354054191,
+        "node_id": "U_kgDOFRpwLw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/maxschireson",
+        "html_url": "https://github.com/maxschireson",
+        "followers_url": "https://api.github.com/users/maxschireson/followers",
+        "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+        "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+        "repos_url": "https://api.github.com/users/maxschireson/repos",
+        "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
       "state": "open",
-      "updated_at": "2026-11-12T16:04:55Z",
-      "pull_request": true
-    },
-    {
-      "number": 29,
-      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
-      "state": "open",
-      "updated_at": "2026-11-12T14:13:03Z",
-      "pull_request": true
-    },
-    {
-      "number": 26,
-      "title": "Gen 9 bidding: distance and detection (B4), real cards (B6), replay reader (B7), reports (WIP)",
-      "state": "open",
-      "updated_at": "2026-11-12T10:01:53Z",
-      "pull_request": true
-    },
-    {
-      "number": 28,
-      "title": "run_tests.py: a test file with no tests found fails the run (G9-W8 follow-up)",
-      "state": "closed",
-      "updated_at": "2026-11-12T08:56:10Z",
-      "pull_request": true
-    },
-    {
-      "number": 27,
-      "title": "Gen 9 population arena on one machine: packages, registry, epochs, controller (G9-D4)",
-      "state": "closed",
-      "updated_at": "2026-11-12T08:24:40Z",
-      "pull_request": true
-    },
-    {
-      "number": 25,
-      "title": "G9-W3 follow-up: run pytest-style test files; --prepare idempotent for all 13 releases",
-      "state": "closed",
-      "updated_at": "2026-11-12T07:54:14Z",
-      "pull_request": true
-    },
-    {
-      "number": 24,
-      "title": "DECISION: Smallest lead the arena promotes on: 0.10 IMPs a board, or smaller?",
-      "state": "open",
-      "updated_at": "2026-11-12T07:42:56Z",
-      "pull_request": false
-    },
-    {
-      "number": 23,
-      "title": "DECISION: May the Gen 9 leads start sub-agents for self-contained tasks?",
-      "state": "open",
-      "updated_at": "2026-11-12T07:42:39Z",
-      "pull_request": false
-    },
-    {
-      "number": 20,
-      "title": "G9-W3: scripts/run_tests.py, prepare an environment and run every test with honest skips",
-      "state": "closed",
-      "updated_at": "2026-11-12T07:32:55Z",
-      "pull_request": true
-    },
-    {
-      "number": 21,
-      "title": "Gen 9 ratings-v1 from every published result, Gen 5 to 7.1 (G9-D3)",
-      "state": "open",
-      "updated_at": "2026-11-12T07:29:11Z",
-      "pull_request": true
-    },
-    {
-      "number": 19,
-      "title": "Gen 9 experience store: envelopes, order-free merge, epoch snapshots (G9-D5)",
-      "state": "closed",
-      "updated_at": "2026-11-12T07:26:25Z",
-      "pull_request": true
-    },
-    {
-      "number": 18,
-      "title": "Gen 9 bidding: rule filter over hand types, card meanings, cards for the rule bidder (G9-B2, WIP)",
-      "state": "closed",
-      "updated_at": "2026-11-12T07:26:25Z",
-      "pull_request": true
-    },
-    {
-      "number": 17,
-      "title": "Gen 9 arena simulator and E9-5: promotion rules and schedules (G9-D2)",
-      "state": "closed",
-      "updated_at": "2026-11-12T07:26:25Z",
-      "pull_request": true
-    },
-    {
-      "number": 16,
-      "title": "Gen 9 \u00b7 Bill (bidding systems): check-in, listening for requests",
-      "state": "closed",
-      "updated_at": "2026-11-12T06:41:34Z",
-      "pull_request": false
-    },
-    {
-      "number": 15,
-      "title": "Preserve gap and guess capture in Gen7 self-play collection",
-      "state": "open",
-      "updated_at": "2026-11-12T04:45:18Z",
-      "pull_request": true
-    },
-    {
-      "number": 14,
-      "title": "Gen 6 \u2192 Gen 7 cleanup: close out Gen 6, bring Gen 7 source and docs onto main",
-      "state": "closed",
-      "updated_at": "2026-11-12T03:13:25Z",
-      "pull_request": true
-    },
-    {
-      "number": 13,
-      "title": "Show collector freshness and supervise the primary fast-only run",
-      "state": "open",
-      "updated_at": "2026-11-11T09:22:44Z",
-      "pull_request": true
-    },
-    {
-      "number": 9,
-      "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
-      "state": "open",
-      "updated_at": "2026-11-11T03:53:49Z",
-      "pull_request": true
-    },
-    {
-      "number": 1,
-      "title": "Add consistent strategy search, certified partitions and cost benchmarks",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:47Z",
-      "pull_request": true
-    },
-    {
-      "number": 2,
-      "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:46Z",
-      "pull_request": true
-    },
-    {
-      "number": 3,
-      "title": "Train bidding through DDS-only paired-IMP self-play",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:44Z",
-      "pull_request": true
-    },
-    {
-      "number": 4,
-      "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
-      "state": "open",
-      "updated_at": "2026-11-11T03:53:43Z",
-      "pull_request": true
-    },
-    {
-      "number": 5,
-      "title": "Train two belief sizes with pooled auctions and public play",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:41Z",
-      "pull_request": true
-    },
-    {
-      "number": 6,
-      "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:40Z",
-      "pull_request": true
-    },
-    {
-      "number": 7,
-      "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:38Z",
-      "pull_request": true
-    },
-    {
-      "number": 8,
-      "title": "Run mixed branching play generations with a shared validated40k bidder",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:37Z",
-      "pull_request": true
-    },
-    {
-      "number": 10,
-      "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:35Z",
-      "pull_request": true
-    },
-    {
-      "number": 11,
-      "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:33Z",
-      "pull_request": true
-    },
-    {
-      "number": 12,
-      "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:32Z",
-      "pull_request": true
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-11-12T13:10:31Z",
+      "updated_at": "2026-11-12T17:08:21Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "issue_field_values": [],
+      "type": null,
+      "active_lock_reason": null,
+      "draft": false,
+      "pull_request": {
+        "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30",
+        "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30",
+        "diff_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30.diff",
+        "patch_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30.patch",
+        "merged_at": null
+      },
+      "body": "G9-X2: Gen 9's readers scored on p41's reading bench, in double-dummy tricks saved a board, with nats beside.\n\n**What is in it**\n\n- `scripts/gen8_reading_bench.py`: p41's bench, a snapshot of `feature/gen8-p41-20261112` (bb1cd2c in 57696ab, updated to cdde42a in c11fbee as p41 asked), unchanged; to be dropped at the base swap.\n- `scripts/gen9_reading_bench.py`, around the bench without changing its pools or its report:\n  - `pools` on E9-7's held-out tables against one BEN version, at the house bots' decisions only (BEN's own decisions say nothing about how a house bot reads); or on any folder of tables, with `--deciders declarer`.\n  - `relabel`: E9-4 part 1's tables with the defenders' spots drawn again by a declared scheme at an honesty, with E9-4's seeds (the swap counts match E9-4's rows).\n  - `readings`: the log weight a bot spec gives every stored layout after `meet()` (the table's opponent, or `NAME=BOT@ID`), with its own factors and signal terms, stored as the bench stores a net, so the bench's report scores it at exponent 1. Two readers that are not bot specs: `--head-reading` (E9-14: the opposing declarer read by a per-player head) and `--expert-reading` (E9-15: the opposing defenders' spots read by a signal expert).\n  - `box`: one argv for a box job (fetch the feeds, pools in shards, readings), resumable from its saved part files.\n  - `report`: the bench's report on the part files every reading has reached.\n- `scripts/gen9_reading_bench_report.py`: the nats-and-tricks tables, by trick band and by declarer or defender deciding, standard errors by deal.\n- `tests/test_gen9_reading_bench.py`: two BEN tables (pools, Gen 8's and Gen 9's readings, report; Gen 8's reading of partner equals the stored net's, of BEN is 0.3 of it, the emission model changes only the reading of BEN) and one relabelled table.\n\n**Carried with it.** This branch is based on `feature/gen9-signals-v2`, which `feature/gen9` does not have yet: the signal code it scores (SignalPlayer with emission tables, `signal_experience`, `configs/carding/ben16.json` and `ben64.json`, `r9b-32`), E9-14's `play_head` and E9-15's `signal_expert`, and one fix found here: `SignalModel.emitted` now treats a class of one card as certain (8be31d6). Review the bench parts as G9-X2; the rest is the signals branch's work, merged so that the bench can run it.\n\n**Report.** `reports/gen9-reading-bench-2026-11-12` (300 held-out tables a version, house decisions, paired): E9-7's emission model of BEN is worth +0.021 \u00b1 0.023 (BEN 16) and +0.009 \u00b1 0.023 (BEN 64) tricks a board over Gen 8; E9-15's expert adds nothing measurable; E9-14's head on BEN's declarer play +0.013 \u00b1 0.012 and +0.035 \u00b1 0.014. E9-16 part 1b on p41's house pools: `reports/gen9-leakage-classes-2026-11-12` (which equal card we play is worth 0.038 \u00b1 0.013 tricks a board to a reader of our strength). Still to come on this branch: reading (2), the relabelled E9-4 tables (box jobs `g9-x2-rel-std-80`, `-50`), and E9-16 part 1c.\n\nReviewer: bill (per G9-X2).\n\nhttps://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/timeline",
+      "performed_via_github_app": {
+        "id": 1236702,
+        "client_id": "Iv23liqTIFEtdIu6Vn1r",
+        "slug": "claude",
+        "node_id": "A_kwHOBIuudM4AEt7e",
+        "owner": {
+          "login": "anthropics",
+          "id": 76263028,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjc2MjYzMDI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/76263028?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/anthropics",
+          "html_url": "https://github.com/anthropics",
+          "followers_url": "https://api.github.com/users/anthropics/followers",
+          "following_url": "https://api.github.com/users/anthropics/following{/other_user}",
+          "gists_url": "https://api.github.com/users/anthropics/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/anthropics/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/anthropics/subscriptions",
+          "organizations_url": "https://api.github.com/users/anthropics/orgs",
+          "repos_url": "https://api.github.com/users/anthropics/repos",
+          "events_url": "https://api.github.com/users/anthropics/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/anthropics/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "Claude",
+        "description": "Run Claude Code from your GitHub Pull Requests and Issues to respond to reviewer feedback, fix CI errors, or modify code, turning it into a virtual teammate that works alongside your development pipelines.\r\n\r\nThis is built on the publicly available Claude Code SDK.",
+        "external_url": "https://anthropic.com/claude-code",
+        "html_url": "https://github.com/apps/claude",
+        "created_at": "2025-04-30T17:54:24Z",
+        "updated_at": "2026-11-06T04:29:41Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "checks": "write",
+          "contents": "write",
+          "discussions": "write",
+          "issues": "write",
+          "members": "read",
+          "merge_queues": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "repository_creation": "write",
+          "repository_hooks": "write",
+          "statuses": "read",
+          "workflows": "write"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "commit_comment",
+          "discussion",
+          "discussion_comment",
+          "issues",
+          "issue_comment",
+          "merge_group",
+          "merge_queue_entry",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "push",
+          "release",
+          "repository_ruleset",
+          "status",
+          "sub_issues"
+        ]
+      },
+      "state_reason": null
     }
   ],
-  "comments_since": "2026-11-12T15:29:21Z",
+  "comments_since": "2026-11-12T16:24:42Z",
   "new_issue_comments": [],
   "new_review_comments": [],
-  "instruction": "Follow current authoritative notices to collection workers under standing user delegation; only this owned stream. Max05:42 Gen7.1 comparison notice now supersedes this stream's Gen7.0 selfplay allocation. Scientific behavior is frozen by new manifest, not silently edited.",
+  "instruction": "Continue authoritative Gen8 main mix from frozen792c4cb, five approved pairs2/1/1/1/1,3normal workers0BEN, canonical actors and mandatory34092-family exclusion union. Old Gen7.1 CI and Gen7.0 pair-target stop predicates are disabled; no selfplay scheduled. Preserve all history and science. Own producer only.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "authorized_gen8_transition_applied",
-  "collection_action": "Drained Gen7.1 at1974 completed boards, permanently retired it, prepared and validated independent Gen8 successor from18283 unused families, registered only own entries, started3normal workers/0BEN. Old Gen7.1 gate disabled; no selfplay scheduled.",
+  "result": "no_applicable_instruction_change",
+  "collection_action": "No source/model/settings/manifest/worker changes or restart. Continue current approved Gen8 five-pair cohort.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -435,25 +624,99 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "Gen9, plan research, optional floor/exponent changes and host-specific Azure controls are not adopted. BEN remains read-only on this host.",
-  "notification": "Authorized Gen8 transition complete; Gen7.1 retired1974 preserved; three normal workers healthy, zero failures, training exclusions and actual capture verified. Shared UI rendering limitation recorded.",
-  "checked_epoch": 1794500682.0,
-  "checked_at": "2026-11-12T16:24:42Z",
-  "next_check": "2026-11-12T17:25:53Z",
+  "research_disposition": "Gen9 and plan research unadopted; Azure host controls remain host-specific; g7/g8 own global cleanup.",
+  "notification": "No new applicable instruction; remain quiet for this poll.",
+  "checked_epoch": 1794504480.0,
+  "checked_at": "2026-11-12T17:28:00Z",
+  "next_check": "2026-11-12T18:25:53Z",
   "stream_manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
   "health": {
-    "epoch": 1794504341.4892762,
-    "configured_normal_workers": 3,
+    "epoch": 1794504637.366698,
+    "scientific_hashes_verified": true,
+    "all_lineage_locks": {
+      "/workspace/work/gen6-fast-selfplay-stream/run/.writer.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen6-fast-selfplay-stream/run/.watchdog.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen6-fast-selfplay-stream/run/.publisher.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-phase1-codex-20261112/run/.writer.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-phase1-codex-20261112/run/.watchdog.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-phase1-codex-20261112/run/.publisher.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.writer.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.watchdog.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.publisher.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-selfplay-codex-20261112/run/.writer.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-selfplay-codex-20261112/run/.watchdog.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen7-selfplay-codex-20261112/run/.publisher.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen71-compare-codex-20261112/run/.writer.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen71-compare-codex-20261112/run/.watchdog.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen71-compare-codex-20261112/run/.publisher.lock": {
+        "held": false,
+        "current": false
+      },
+      "/workspace/work/gen8-candidate-codex-20261112/run/.writer.lock": {
+        "held": true,
+        "current": true
+      },
+      "/workspace/work/gen8-candidate-codex-20261112/run/.watchdog.lock": {
+        "held": true,
+        "current": true
+      },
+      "/workspace/work/gen8-candidate-codex-20261112/run/.publisher.lock": {
+        "held": true,
+        "current": true
+      }
+    },
+    "configured_workers": 3,
     "configured_ben_workers": 0,
-    "gen71_comparison_gate_enabled": false,
-    "selfplay_launch_enabled": false,
+    "gen71_gate_enabled": false,
     "heartbeat": {
-      "epoch": 1794504332.4998887,
-      "completed": 56,
+      "epoch": 1794504631.1105268,
+      "completed": 67,
       "in_flight": [
-        55,
-        57,
-        58
+        67,
+        68,
+        69
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -462,25 +725,25 @@
     },
     "state": {
       "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-      "completed": 57,
+      "completed": 67,
       "target": 18283,
-      "contiguous": 55,
+      "contiguous": 67,
       "by_pair": {
-        "8s-32~1": 10,
-        "8s-32~71s-32": 19,
-        "8c-32~8s-32": 9,
-        "8c-32~71s-32": 9,
-        "8s-32~5RZ32": 10
+        "8s-32~1": 12,
+        "8s-32~71s-32": 22,
+        "8c-32~8s-32": 11,
+        "8c-32~71s-32": 11,
+        "8s-32~5RZ32": 11
       },
-      "root_games": 190,
-      "tables": 2280,
+      "root_games": 224,
+      "tables": 2671,
       "failures": 0,
-      "epoch": 1794504332.7236292,
+      "epoch": 1794504621.109185,
       "complete": false
     },
     "watchdog": {
-      "epoch": 1794504339.4203653,
-      "completed": 57,
+      "epoch": 1794504629.6105633,
+      "completed": 67,
       "target": 18283,
       "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
       "workers": 3,
@@ -494,46 +757,50 @@
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794504287.520619,
-      "completed": 56,
-      "commit": "e963358f4c8b328d7024efa87a4bec3d445e7fb1",
+      "epoch": 1794504609.1489577,
+      "completed": 64,
+      "commit": "009580eaa42a27568a1901d6114f95776643270f",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
-    "ownership_locks": {
-      "current/.writer.lock": {
-        "held": true,
-        "owner": ""
-      },
-      "current/.publisher.lock": {
-        "held": true,
-        "owner": ""
-      },
-      "current/.watchdog.lock": {
-        "held": true,
-        "owner": ""
-      },
-      "retired_gen71/.writer.lock": {
-        "held": false,
-        "owner": ""
-      },
-      "retired_gen71/.publisher.lock": {
-        "held": false,
-        "owner": ""
-      },
-      "retired_gen71/.watchdog.lock": {
-        "held": false,
-        "owner": ""
-      }
+    "pids": {
+      "collector": 68687,
+      "supervisor": 68686,
+      "publisher": 68688
     },
-    "memory_current": 5006659584,
-    "memory_max": "17179869184",
-    "disk_free_bytes": 19029057536
+    "collector_children": [
+      {
+        "pid": 68689,
+        "ppid": 68687,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8)"
+      },
+      {
+        "pid": 68690,
+        "ppid": 68687,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork"
+      },
+      {
+        "pid": 68693,
+        "ppid": 68687,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork"
+      },
+      {
+        "pid": 68694,
+        "ppid": 68687,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork"
+      }
+    ],
+    "failure_files": [],
+    "resolved_failures": [],
+    "disk_free_bytes": 18967584768,
+    "memory_current": 5075206144,
+    "memory_limit": "17179869184",
+    "dds_cache_bytes": 366739456
   },
   "previous_check": {
-    "checked_at": "2026-11-12T15:29:21Z",
-    "result": "supplemental_training_exclusions_applied",
+    "checked_at": "2026-11-12T16:24:42Z",
+    "result": "authorized_gen8_transition_applied",
     "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-    "path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-watch-before.json"
+    "checkpoint_copy": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261112T172800Z/instruction-watch-before.json"
   },
   "reviewed_source_changes": [
     {
@@ -777,83 +1044,15 @@
       "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": "2026-11-12T17:27:15.560497Z",
-  "next_comment_scan_since": "2026-11-12T16:24:42Z",
-  "poll_checkpoint_note": "Next comments scan starts at poll START 16:24:42Z, not completion. All changes during this long transition remain covered.",
+  "completed_at": "2026-11-12T17:31:55.987752Z",
+  "next_comment_scan_since": "2026-11-12T17:28:00Z",
+  "poll_checkpoint_note": "Next comments scan starts at poll START17:28:00Z; completion time must not move the cursor past changes made while checking.",
   "candidate_notice": {
-    "branch": "feature/gen7-candidate-20261111",
-    "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
-    "notice_path": "docs/gen7_candidate_2026-11-11.md",
-    "notice_blob_sha": "583cfb2a162a289300e223df4bfec81287913f43",
-    "status": "phase1_authorized",
-    "acknowledged": true,
-    "operational_direction": "Phase1 may be prepared and run. Phase2 remains closed.",
-    "mix_path": "configs/gen7-candidate-mix.json",
-    "mix_blob_sha": "7baad1d22e9b9037c589478963ef0af7d3c1d29c",
-    "authority": "Max, 2026-11-12 02:09 and 02:16 UTC: launch Gen7 phase1 with standard tree margin0.25, trust0.3, path0.5, three tricks. Applied under user standing authority for generally addressed collector instructions.",
-    "plans": {
-      "phase1": {
-        "path": "configs/round7-candidate-phase1.json",
-        "blob_sha": "d6827a7caeaf154706b1863e4c5ffa58b2c97a32",
-        "launch_enabled": true,
-        "pending": [],
-        "pair_weights": {
-          "7s-32~6-32": 1,
-          "7s-32~ben64": 1,
-          "7s-32~ben": 1,
-          "7s-32~5RZ32": 1,
-          "7s-32~1": 1
-        }
-      },
-      "phase1_nonben": {
-        "path": "configs/round7-candidate-phase1-nonben.json",
-        "blob_sha": "457dddcd730d91a8d502068726011ade454dafaf",
-        "launch_enabled": true,
-        "pending": [],
-        "pair_weights": {
-          "7s-32~6-32": 1,
-          "7s-32~5RZ32": 1,
-          "7s-32~1": 1
-        }
-      },
-      "phase1_ben": {
-        "path": "configs/round7-candidate-phase1-ben.json",
-        "blob_sha": "763039c42bad604fa8b7d3ac637e3de440ccc002",
-        "launch_enabled": true,
-        "pending": [],
-        "pair_weights": {
-          "7s-32~ben64": 1,
-          "7s-32~ben": 1
-        }
-      },
-      "phase2": {
-        "path": "configs/round7-candidate-phase2.json",
-        "blob_sha": "e46dbbcf3999d77be30aac58cc28e2713eb4d7af",
-        "launch_enabled": false,
-        "pending": [
-          "Phase 1 first: this plan opens when every phase 1 pair has 2,000 completed boards.",
-          "Self-play pairs (7f-32~7f-32, 7s-32~7s-32) need a runtime with the self-play regime. The collectors' branches have it; this branch, like `main` at b0909bb, validates common and native only. The engine files of this branch have to be carried onto that runtime, as a new source identity."
-        ],
-        "pair_weights": {
-          "7f-32~7f-32": 6,
-          "7s-32~7s-32": 6,
-          "7s-32~6-32": 4,
-          "7s-32~ben64": 1,
-          "7s-32~ben": 1,
-          "7s-32~5RZ32": 1,
-          "7s-32~1": 1
-        }
-      }
-    },
-    "rehearsal": "Historical isolated rehearal gate superseded by fe382f9 phase1 authorization. Phase2 remains closed.",
-    "phase1_launch_enabled": true,
-    "phase1_pending": [],
-    "phase2_launch_enabled": false,
-    "replaced_notice": {
-      "commit": "1042db5036e0a8071e9cc90f511d941c3de92270",
-      "status": "closed candidate gate; historical only"
-    },
-    "adopted_on_main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664"
+    "path": "docs/gen8_candidate_2026-11-12.md",
+    "deployed_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+    "latest_documentation": "695078457205693f48a24c355681aef47ca21935",
+    "blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
+    "launch_enabled": true
   },
   "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer.",
   "transition": {
@@ -1288,7 +1487,9 @@
     "verified_revision": "25f980d06e35047648d668943072d38ab1a84c9c",
     "watch_blob": "884da11acf07b67ed90cb7ee619194849eb236f1",
     "verification": "Exact local bytes matched committed recovery for watch, current stream, operational journal, supervisor, manifest, exclusion list, capture/preflight/production validation and source-family audit; GitHub contents readback matched watch blob; remote ref independently verified.",
-    "checkpoint_note": "This final watch refers to the independently verified preceding checkpoint; final bytes are checked separately after publisher next pass."
+    "checkpoint_note": "This final watch refers to the independently verified preceding checkpoint; final bytes are checked separately after publisher next pass.",
+    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261112T172800Z",
+    "final_watch_copy_to_verify_separately": true
   },
   "source_adoption_review": {
     "frozen_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
@@ -1296,14 +1497,10 @@
     "disposition": "Later source commits change documentation only and explicitly retain792c4cb for collectors; no scientific runtime update."
   },
   "coordination_review": {
-    "revision": "45fa41bc94e8ff5cb1ee54f8a9968400b5d6e1cd",
-    "board_blob": "20c3235b39f3de8c0f90478e26a94b7f467b9903",
-    "initial_revision": "ae9f949b88e4ff71ba153d922c4d796a2b7c227c",
-    "initial_blob": "9704fdc6f56e1703766e18c0f9a7d8315ef3b90d",
-    "authority_commit": "633246b058f31fb35256e1fe08a0bbb1137ab433",
-    "issued": "2026-11-12T16:11:00Z",
-    "entry": "2026-11-12T16:24:00Z",
-    "instruction": "All collectors including Codex primary switch to Gen8; drain current source and use unused deals plus union exclusions. Latest16:11authority supersedes15:53stick-with7.1."
+    "revision": "7306e4a82f9d5b23b58d0c2b73282c7de601ed36",
+    "blob": "84e2eb208f206d443dea5869b451c61725798311",
+    "disposition": "Four new commits: peer launch/status and training-family audit confirmations; host-specific plan research. No changed collection instruction for owned stream.",
+    "peer_training_audit": "p41 17:17 confirms all18283 current families and released union hash clean; dated played41 checkpoint, not current count."
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -1366,17 +1563,18 @@
     }
   },
   "operational_guard_review": {
-    "diagnosis": "An authorized independent peer uses a campaign variant and was excluded by exact campaign string.",
-    "fix": "Accept phase1 campaign variants only with exact actor and a published launch-enabled matching plan; retain pair/family deduplication;5 tests passed.",
-    "active_owned_comparison": [
-      "7s-32~6-32"
-    ],
-    "retired_anchors": [
-      "7s-32~5RZ32",
-      "7s-32~1"
-    ],
-    "next_action": "At2000pooled comparison families, drain andpreparea newself-only identity;disablecomparisonstop predicate inself-only mode.",
-    "historical_for_retired_gen70": true
+    "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen8.py",
+    "enabled": true,
+    "normal_workers": 3,
+    "BEN_workers": 0,
+    "gen71_gate_enabled": false,
+    "old_phase1_2000_stop_enabled": false,
+    "selfplay_scheduled": false,
+    "source_budget": 18283,
+    "cache_rotate_bytes": 2147483648,
+    "disk_stop_bytes": 3221225472,
+    "unexpected_failure_auto_restart": false,
+    "all_lineage_locks_checked": 18
   },
   "guard_accounting_correction": {
     "status": "active-verified",
@@ -1700,13 +1898,14 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "poll_start": "2026-11-12T16:24:42Z",
-    "comments_since": "2026-11-12T15:29:21Z",
-    "next_comment_scan_since": "2026-11-12T16:24:42Z",
+    "poll_start": "2026-11-12T17:28:00Z",
+    "comments_since": "2026-11-12T16:24:42Z",
+    "next_comment_scan_since": "2026-11-12T17:28:00Z",
     "new_issue_comments": [],
     "new_review_comments": [],
+    "new_review_submissions": [],
     "new_commit_comments": [],
-    "new_review_submissions": []
+    "commit_comments_complete_readonly_fallback": true
   },
   "selfplay_handoff_review": {
     "branch": "feature/gen7-selfplay-20261112",
@@ -2292,18 +2491,20 @@
     }
   },
   "browser_scope": {
-    "scope": "Only own source and pinned retired parent; no shared UI files or other producers modified.",
-    "status": "Raw feed and browser reporting API verified57records/all5pairs. Shared visible dashboard remains empty despite source health reflecting production; no shared UI mutation within producer-only scope.",
-    "diagnostic": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/browser-api-diagnostic.json"
+    "scope": "Own pinned feed reporting and read-only public Gen8 display; no shared page mutation.",
+    "status": "Default Gen8 dashboard successfully renders809pairedboards and includes this stream. Own browser reporting API verifies63records across all5pairs. Earlier history-view polling repeatedly reset page before full source load; no shared defect established.",
+    "diagnostic": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/browser-latest-diagnostic.json",
+    "own_replay_validation": "Scientific replay/score of first6production records remains passed; optional browser game replay under review."
   },
   "source_versioned_plans": {
-    "revision": "50990002b64833073b04e1bad025241109033ad3",
-    "files": {
-      "configs/round71-compare.json": "a682714b53f5ca8a811a2fa4c63766a57c01e25f",
-      "configs/round71-selfplay.json": "b97f2ea8d2fff12e33eeb82ccf0e5b57649a9966",
-      "configs/round71-ben.json": "c34d7a5e313613cff192b09ed8ab30b81684ab26",
-      "docs/gen71_2026-11-12.md": "858e24fdd5449b397a612a8361c960c8e6071b41"
-    }
+    "source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+    "latest_documentation": "695078457205693f48a24c355681aef47ca21935",
+    "plans": {
+      "configs/round8-candidate.json": "ef7d46f25911557737b2a8da0acfe8f38700bb20",
+      "configs/round8-candidate-ben.json": "50aed7ea04937bd3322913a638373eca5a2f374c"
+    },
+    "owned_plan": "configs/round8-candidate.json",
+    "BEN_plan_read_only": true
   },
   "training_family_review": {
     "status": "running-verified",
@@ -2958,249 +3159,387 @@
   },
   "recent_prs": [
     {
+      "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30",
+      "id": 5277998772,
+      "node_id": "PR_kwDOVnCzR88AAAABOpfetA",
+      "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30",
+      "diff_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30.diff",
+      "patch_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30.patch",
+      "issue_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30",
       "number": 30,
+      "state": "open",
+      "locked": false,
       "title": "G9-X2: Gen 9 readers on the reading bench (tricks saved a board beside nats)",
-      "draft": true,
-      "state": "open",
-      "updated_at": "2026-11-12T16:04:55Z",
-      "head": "463d5da83b1b7d168ee6aaad165209a858405906",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 29,
-      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
+      "user": {
+        "login": "maxschireson",
+        "id": 354054191,
+        "node_id": "U_kgDOFRpwLw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/maxschireson",
+        "html_url": "https://github.com/maxschireson",
+        "followers_url": "https://api.github.com/users/maxschireson/followers",
+        "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+        "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+        "repos_url": "https://api.github.com/users/maxschireson/repos",
+        "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "G9-X2: Gen 9's readers scored on p41's reading bench, in double-dummy tricks saved a board, with nats beside.\n\n**What is in it**\n\n- `scripts/gen8_reading_bench.py`: p41's bench, a snapshot of `feature/gen8-p41-20261112` (bb1cd2c in 57696ab, updated to cdde42a in c11fbee as p41 asked), unchanged; to be dropped at the base swap.\n- `scripts/gen9_reading_bench.py`, around the bench without changing its pools or its report:\n  - `pools` on E9-7's held-out tables against one BEN version, at the house bots' decisions only (BEN's own decisions say nothing about how a house bot reads); or on any folder of tables, with `--deciders declarer`.\n  - `relabel`: E9-4 part 1's tables with the defenders' spots drawn again by a declared scheme at an honesty, with E9-4's seeds (the swap counts match E9-4's rows).\n  - `readings`: the log weight a bot spec gives every stored layout after `meet()` (the table's opponent, or `NAME=BOT@ID`), with its own factors and signal terms, stored as the bench stores a net, so the bench's report scores it at exponent 1. Two readers that are not bot specs: `--head-reading` (E9-14: the opposing declarer read by a per-player head) and `--expert-reading` (E9-15: the opposing defenders' spots read by a signal expert).\n  - `box`: one argv for a box job (fetch the feeds, pools in shards, readings), resumable from its saved part files.\n  - `report`: the bench's report on the part files every reading has reached.\n- `scripts/gen9_reading_bench_report.py`: the nats-and-tricks tables, by trick band and by declarer or defender deciding, standard errors by deal.\n- `tests/test_gen9_reading_bench.py`: two BEN tables (pools, Gen 8's and Gen 9's readings, report; Gen 8's reading of partner equals the stored net's, of BEN is 0.3 of it, the emission model changes only the reading of BEN) and one relabelled table.\n\n**Carried with it.** This branch is based on `feature/gen9-signals-v2`, which `feature/gen9` does not have yet: the signal code it scores (SignalPlayer with emission tables, `signal_experience`, `configs/carding/ben16.json` and `ben64.json`, `r9b-32`), E9-14's `play_head` and E9-15's `signal_expert`, and one fix found here: `SignalModel.emitted` now treats a class of one card as certain (8be31d6). Review the bench parts as G9-X2; the rest is the signals branch's work, merged so that the bench can run it.\n\n**Report.** `reports/gen9-reading-bench-2026-11-12` (300 held-out tables a version, house decisions, paired): E9-7's emission model of BEN is worth +0.021 \u00b1 0.023 (BEN 16) and +0.009 \u00b1 0.023 (BEN 64) tricks a board over Gen 8; E9-15's expert adds nothing measurable; E9-14's head on BEN's declarer play +0.013 \u00b1 0.012 and +0.035 \u00b1 0.014. E9-16 part 1b on p41's house pools: `reports/gen9-leakage-classes-2026-11-12` (which equal card we play is worth 0.038 \u00b1 0.013 tricks a board to a reader of our strength). Still to come on this branch: reading (2), the relabelled E9-4 tables (box jobs `g9-x2-rel-std-80`, `-50`), and E9-16 part 1c.\n\nReviewer: bill (per G9-X2).\n\nhttps://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "created_at": "2026-11-12T13:10:31Z",
+      "updated_at": "2026-11-12T17:08:21Z",
+      "closed_at": null,
+      "merged_at": null,
+      "merge_commit_sha": "c813dc5898077c3774781bd982b8d5d3199f59a8",
+      "assignees": [],
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "labels": [],
+      "milestone": null,
       "draft": false,
-      "state": "open",
-      "updated_at": "2026-11-12T14:13:03Z",
-      "head": "8b106a58a4d701fced82c138d2131e6d6cba0639",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 26,
-      "title": "Gen 9 bidding: distance and detection (B4), real cards (B6), replay reader (B7), reports (WIP)",
-      "draft": false,
-      "state": "open",
-      "updated_at": "2026-11-12T10:01:53Z",
-      "head": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 28,
-      "title": "run_tests.py: a test file with no tests found fails the run (G9-W8 follow-up)",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T08:56:10Z",
-      "head": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 27,
-      "title": "Gen 9 population arena on one machine: packages, registry, epochs, controller (G9-D4)",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T08:24:40Z",
-      "head": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 25,
-      "title": "G9-W3 follow-up: run pytest-style test files; --prepare idempotent for all 13 releases",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T07:54:14Z",
-      "head": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 20,
-      "title": "G9-W3: scripts/run_tests.py, prepare an environment and run every test with honest skips",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T07:32:55Z",
-      "head": "75c9f2c3fe29648578795a027162ff582ee91b6b",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 21,
-      "title": "Gen 9 ratings-v1 from every published result, Gen 5 to 7.1 (G9-D3)",
-      "draft": false,
-      "state": "open",
-      "updated_at": "2026-11-12T07:29:11Z",
-      "head": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
-      "base": "feature/gen9-arena-sim"
-    },
-    {
-      "number": 19,
-      "title": "Gen 9 experience store: envelopes, order-free merge, epoch snapshots (G9-D5)",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T07:26:25Z",
-      "head": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 18,
-      "title": "Gen 9 bidding: rule filter over hand types, card meanings, cards for the rule bidder (G9-B2, WIP)",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T07:26:25Z",
-      "head": "f1b731e4a3896093e39a9bc629cbffb4afa502db",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 17,
-      "title": "Gen 9 arena simulator and E9-5: promotion rules and schedules (G9-D2)",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T07:26:25Z",
-      "head": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
-      "base": "feature/gen9"
-    },
-    {
-      "number": 15,
-      "title": "Preserve gap and guess capture in Gen7 self-play collection",
-      "draft": true,
-      "state": "open",
-      "updated_at": "2026-11-12T04:45:18Z",
-      "head": "b8575715457afdf23149bc6908af07e60df93310",
-      "base": "main"
-    },
-    {
-      "number": 14,
-      "title": "Gen 6 \u2192 Gen 7 cleanup: close out Gen 6, bring Gen 7 source and docs onto main",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-12T03:13:25Z",
-      "head": "5ddb8c30555558ef41a7a6632a283ffb4a7fff4e",
-      "base": "main"
-    },
-    {
-      "number": 13,
-      "title": "Show collector freshness and supervise the primary fast-only run",
-      "draft": true,
-      "state": "open",
-      "updated_at": "2026-11-11T09:22:44Z",
-      "head": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
-      "base": "main"
-    },
-    {
-      "number": 9,
-      "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
-      "draft": true,
-      "state": "open",
-      "updated_at": "2026-11-11T03:53:49Z",
-      "head": "6e87791efe91686c5e22350b708fa0fb582e41db",
-      "base": "research/mixed-fork-generations"
-    },
-    {
-      "number": 1,
-      "title": "Add consistent strategy search, certified partitions and cost benchmarks",
-      "draft": true,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:47Z",
-      "head": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
-      "base": "main"
-    },
-    {
-      "number": 2,
-      "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:46Z",
-      "head": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
-      "base": "research/three-engine-play-200"
-    },
-    {
-      "number": 3,
-      "title": "Train bidding through DDS-only paired-IMP self-play",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:44Z",
-      "head": "16834962ede44e72f366ff741a0bb8b4dbf58609",
-      "base": "research/self-improvement-loop"
-    },
-    {
-      "number": 4,
-      "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
-      "draft": true,
-      "state": "open",
-      "updated_at": "2026-11-11T03:53:43Z",
-      "head": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
-      "base": "research/dds-bidding-loop"
-    },
-    {
-      "number": 5,
-      "title": "Train two belief sizes with pooled auctions and public play",
-      "draft": true,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:41Z",
-      "head": "78e135856ac90d92e0277379db0f5313ff4aea45",
-      "base": "research/dds-bidding-loop"
-    },
-    {
-      "number": 6,
-      "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
-      "draft": true,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:40Z",
-      "head": "be09f9f8da1ed53c53f7525da1490888733940c0",
-      "base": "research/belief-size-comparison"
-    },
-    {
-      "number": 7,
-      "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
-      "draft": true,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:38Z",
-      "head": "d7ee77a8020bb97208cfbd4db5f187174064c078",
-      "base": "research/large-belief-play-test"
-    },
-    {
-      "number": 8,
-      "title": "Run mixed branching play generations with a shared validated40k bidder",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:37Z",
-      "head": "7e84281a1943e71e83b67e63af7433ac795902cb",
-      "base": "research/imp-policy-draft"
-    },
-    {
-      "number": 10,
-      "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
-      "draft": true,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:35Z",
-      "head": "a7e00fb0b6241166da847661788dc82b8091761e",
-      "base": "research/v4-belief-and-arena"
-    },
-    {
-      "number": 11,
-      "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:33Z",
-      "head": "b463e56e8fbdad97251d4680075c3ccda636a848",
-      "base": "codex/gen4-component-ablation"
-    },
-    {
-      "number": 12,
-      "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
-      "draft": false,
-      "state": "closed",
-      "updated_at": "2026-11-11T03:53:32Z",
-      "head": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
-      "base": "codex/round5-ben-and-timing"
+      "commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30/commits",
+      "review_comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30/comments",
+      "review_comment_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/comments{/number}",
+      "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/comments",
+      "statuses_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/45d0f740962cb7a793a64a1b2c536329a3b3ff73",
+      "head": {
+        "label": "maxschireson:feature/gen9-reading-bench",
+        "ref": "feature/gen9-reading-bench",
+        "sha": "45d0f740962cb7a793a64a1b2c536329a3b3ff73",
+        "user": {
+          "login": "maxschireson",
+          "id": 354054191,
+          "node_id": "U_kgDOFRpwLw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/maxschireson",
+          "html_url": "https://github.com/maxschireson",
+          "followers_url": "https://api.github.com/users/maxschireson/followers",
+          "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+          "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+          "repos_url": "https://api.github.com/users/maxschireson/repos",
+          "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "repo": {
+          "id": 1450226503,
+          "node_id": "R_kgDOVnCzRw",
+          "name": "Single-Dummy-Bridge",
+          "full_name": "maxschireson/Single-Dummy-Bridge",
+          "private": false,
+          "owner": {
+            "login": "maxschireson",
+            "id": 354054191,
+            "node_id": "U_kgDOFRpwLw",
+            "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/maxschireson",
+            "html_url": "https://github.com/maxschireson",
+            "followers_url": "https://api.github.com/users/maxschireson/followers",
+            "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+            "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+            "repos_url": "https://api.github.com/users/maxschireson/repos",
+            "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "description": null,
+          "fork": false,
+          "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+          "forks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/forks",
+          "keys_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/teams",
+          "hooks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/hooks",
+          "issue_events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/events",
+          "assignees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/tags",
+          "blobs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/languages",
+          "stargazers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/stargazers",
+          "contributors_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contributors",
+          "subscribers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscribers",
+          "subscription_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscription",
+          "commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/merges",
+          "archive_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/downloads",
+          "issues_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/labels{/name}",
+          "releases_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/deployments",
+          "created_at": "2026-11-08T11:39:44Z",
+          "updated_at": "2026-11-12T04:13:31Z",
+          "pushed_at": "2026-11-12T17:27:55Z",
+          "git_url": "git://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "ssh_url": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
+          "clone_url": "https://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "svn_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "homepage": null,
+          "size": 14386861,
+          "stargazers_count": 0,
+          "watchers_count": 0,
+          "language": "Python",
+          "has_issues": true,
+          "has_projects": true,
+          "has_downloads": false,
+          "has_wiki": true,
+          "has_pages": true,
+          "has_discussions": false,
+          "forks_count": 0,
+          "mirror_url": null,
+          "archived": false,
+          "disabled": false,
+          "open_issues_count": 11,
+          "license": {
+            "key": "apache-2.0",
+            "name": "Apache License 2.0",
+            "spdx_id": "Apache-2.0",
+            "url": "https://api.github.com/licenses/apache-2.0",
+            "node_id": "MDc6TGljZW5zZTI="
+          },
+          "allow_forking": true,
+          "is_template": false,
+          "web_commit_signoff_required": false,
+          "has_pull_requests": true,
+          "pull_request_creation_policy": "all",
+          "topics": [],
+          "visibility": "public",
+          "forks": 0,
+          "open_issues": 11,
+          "watchers": 0,
+          "default_branch": "main"
+        }
+      },
+      "base": {
+        "label": "maxschireson:feature/gen9",
+        "ref": "feature/gen9",
+        "sha": "cc51feed8846e3b0a6652d1af54aba79d76c82b6",
+        "user": {
+          "login": "maxschireson",
+          "id": 354054191,
+          "node_id": "U_kgDOFRpwLw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/maxschireson",
+          "html_url": "https://github.com/maxschireson",
+          "followers_url": "https://api.github.com/users/maxschireson/followers",
+          "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+          "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+          "repos_url": "https://api.github.com/users/maxschireson/repos",
+          "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "repo": {
+          "id": 1450226503,
+          "node_id": "R_kgDOVnCzRw",
+          "name": "Single-Dummy-Bridge",
+          "full_name": "maxschireson/Single-Dummy-Bridge",
+          "private": false,
+          "owner": {
+            "login": "maxschireson",
+            "id": 354054191,
+            "node_id": "U_kgDOFRpwLw",
+            "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/maxschireson",
+            "html_url": "https://github.com/maxschireson",
+            "followers_url": "https://api.github.com/users/maxschireson/followers",
+            "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+            "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+            "repos_url": "https://api.github.com/users/maxschireson/repos",
+            "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "description": null,
+          "fork": false,
+          "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+          "forks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/forks",
+          "keys_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/teams",
+          "hooks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/hooks",
+          "issue_events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/events",
+          "assignees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/tags",
+          "blobs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/languages",
+          "stargazers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/stargazers",
+          "contributors_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contributors",
+          "subscribers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscribers",
+          "subscription_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscription",
+          "commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/merges",
+          "archive_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/downloads",
+          "issues_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/labels{/name}",
+          "releases_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/deployments",
+          "created_at": "2026-11-08T11:39:44Z",
+          "updated_at": "2026-11-12T04:13:31Z",
+          "pushed_at": "2026-11-12T17:27:55Z",
+          "git_url": "git://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "ssh_url": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
+          "clone_url": "https://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "svn_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "homepage": null,
+          "size": 14386861,
+          "stargazers_count": 0,
+          "watchers_count": 0,
+          "language": "Python",
+          "has_issues": true,
+          "has_projects": true,
+          "has_downloads": false,
+          "has_wiki": true,
+          "has_pages": true,
+          "has_discussions": false,
+          "forks_count": 0,
+          "mirror_url": null,
+          "archived": false,
+          "disabled": false,
+          "open_issues_count": 11,
+          "license": {
+            "key": "apache-2.0",
+            "name": "Apache License 2.0",
+            "spdx_id": "Apache-2.0",
+            "url": "https://api.github.com/licenses/apache-2.0",
+            "node_id": "MDc6TGljZW5zZTI="
+          },
+          "allow_forking": true,
+          "is_template": false,
+          "web_commit_signoff_required": false,
+          "has_pull_requests": true,
+          "pull_request_creation_policy": "all",
+          "topics": [],
+          "visibility": "public",
+          "forks": 0,
+          "open_issues": 11,
+          "watchers": 0,
+          "default_branch": "main"
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30"
+        },
+        "html": {
+          "href": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/30"
+        },
+        "issue": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30"
+        },
+        "comments": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/30/comments"
+        },
+        "review_comments": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30/comments"
+        },
+        "review_comment": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/comments{/number}"
+        },
+        "commits": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/30/commits"
+        },
+        "statuses": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/45d0f740962cb7a793a64a1b2c536329a3b3ff73"
+        }
+      },
+      "author_association": "OWNER",
+      "auto_merge": null,
+      "assignee": null,
+      "active_lock_reason": null
     }
   ],
   "registry_review": {
-    "commit": "465012d5bc1ac12b5ad7902fa46aaccd43164d5b",
-    "blob": "9812e30263957cfb107fd46a0aa1cf2c09aeef06",
-    "owned_key": "gen71codexcompare",
-    "only_owned_entry_changed": true,
-    "read_back_verified": true,
-    "scientific_cohort_unchanged": true
+    "revision": "adca1c1cb8023165451f388f2ee07cbe064ad03c",
+    "blob": "c7289b88049b88de19607c8c077c160f01c4372f",
+    "owned_entries": [
+      {
+        "key": "gen71codexcompare",
+        "group": "gen7",
+        "generation": 7,
+        "variant": "7",
+        "environment": "codex",
+        "name": "Gen 7.1 \u00b7 Codex policy comparison and Gen6",
+        "branch": "arena-gen7-1-compare-codex-20261112-feed",
+        "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+        "retired": true,
+        "revision": "71a6dc2dbc8985175c476388115bc4f301e7452f"
+      },
+      {
+        "key": "gen8codexcandidate",
+        "group": "gen8",
+        "generation": 8,
+        "variant": "8",
+        "environment": "codex",
+        "name": "Gen8 \u00b7 Codex main mix (standard and Precision)",
+        "branch": "arena-gen8-candidate-codex-20261112-feed",
+        "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
+      }
+    ],
+    "disposition": "Own Gen8 remains live; owned Gen7.1 remains permanently pinned retired. No registry writes in this poll."
   },
-  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-scan-1624.json",
+  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261112T172800Z/github-scan.json",
   "interrupted_check": {
     "poll_start": "2026-11-12T14:27:45Z",
     "actions_completed": "Validated operational reload and resumed capture before interruption; registry/automation/watch finalization resumed in15:29poll. No collection failure or unexpected process restart.",
@@ -3371,5 +3710,15 @@
     },
     "production_validation": "/workspace/work/gen8-candidate-codex-20261112/run/production-validation.json",
     "training_family_validation": "/workspace/work/gen8-candidate-codex-20261112/run/feed-family-validation.json"
+  },
+  "current_training_exclusions": {
+    "path": "/workspace/work/gen8-candidate-codex-20261112/run/artifacts/validation/evaluation-exclusions.json",
+    "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "families": 34092,
+    "source_revision": "fccbbd80504272151e298799878bdd37db632c47",
+    "source_branch": "transfer/v41-training-families-union-20261112",
+    "audit": "/workspace/work/gen8-candidate-codex-20261112/run/evaluation-exclusion-audit.json",
+    "training_overlap": 0,
+    "completed_ancestor_overlap": 0
   }
 }
