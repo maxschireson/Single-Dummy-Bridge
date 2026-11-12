@@ -150,13 +150,13 @@ Generated 2026-11-12 17:53 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 ## Boxes
 
-Heartbeats from `box/<box>/status` and the allocation table on `box/coordination` (which decides who holds a box), read at 11-12 11:02 UTC by `workq.py fleet`.
+Heartbeats from `box/<box>/status` and the allocation table on `box/coordination` (which decides who holds a box), read at 11-12 17:53 UTC by `workq.py fleet`.
 
 | Box | Heartbeat | Load / CPUs | Free memory | Free disk | boxctl queue | Board says |
 | --- | --- | --- | --- | --- | --- | --- |
-| azure1 | 11-12 11:01 | 0.09 / 8 | 30.3 of 31.3 GB | 121.3 GB | idle | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end a... |
-| azure2 | 11-12 10:57 | 0.13 / 8 | 30.3 of 31.3 GB | 112.1 GB | idle | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 en... |
-| azure3 | 11-12 11:02 | 8.77 / 8 | 15.9 of 31.3 GB | 109.5 GB | idle | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since ... |
-| azure4 | 11-12 11:01 | 0.15 / 8 | 30.3 of 31.3 GB | 109.5 GB | idle | g8: Gen 8 experiments, since 03:50 UTC |
-| azure5 | 11-12 11:00 | 0.12 / 8 | 30.4 of 31.3 GB | 107.9 GB | idle | p41: Gen 8 tasks from g8 (Max, 06:32 UTC); until about 07:20 UTC also the last run of poli... |
-| azure6 | 11-12 11:02 | 0.07 / 8 | 30.4 of 31.3 GB | 125.7 GB | idle | g8: Gen 8 experiments. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azu... |
+| azure1 | 11-12 17:50 | 8.25 / 8 | 21.1 of 31.3 GB | 118.3 GB | idle | g7: **the Gen 8 arena** (Max, 16:11 UTC), cohort `gen8-azure1` (`b9900c30105c`, 1,097 deal... |
+| azure2 | 11-12 17:50 | 8.1 / 8 | 26.5 of 31.3 GB | 109.9 GB | idle | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 en... |
+| azure3 | 11-12 17:50 | 8.99 / 8 | 19.4 of 31.3 GB | 102.9 GB | idle | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azu... |
+| azure4 | 11-12 17:49 | 7.08 / 8 | 26.9 of 31.3 GB | 108.5 GB | idle | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publ... |
+| azure5 | 11-12 17:50 | 8.28 / 8 | 25.0 of 31.3 GB | 105.5 GB | idle | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it... |
+| azure6 | 11-12 17:50 | 8.27 / 8 | 20.9 of 31.3 GB | 123.5 GB | idle | **g7, from 16:39 UTC on 12 Nov: the Gen 8 arena**, cohort `gen8-azure6` (`08b8e638202a`, c... |
