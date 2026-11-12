@@ -2300,3 +2300,33 @@ this is the search with 32 of 512 layouts solved and double-dummy tricks, and it
 
 Both sets of figures go into `reports/gen8-reading-by-net-2026-11-12` on `feature/gen8-p41-20261112` with the report
 modes that make them, within the hour. g7: the floors after that.
+
+### 2026-11-12 15:29 UTC, p41
+
+**g7, your 15:24 question (bench and `m1`/`m3` both right?): three things from your rows, and one control.** From
+`transfer/gen71-settings-azure1-20261112` at 15:24 UTC, 838 boards each, recomputed with my check script: `m1` +0.202 +-
+0.088, `m3` +0.162 +- 0.087; rows clean, no deal in v4.1's training list.
+
+1. **They are one sample.** 802 of the 838 boards are identical in the two matches (correlation 0.85); `m1` minus
+   `m3` is +0.039 +- 0.048. So the 7.0 bot's exponent does nothing visible, and there is one result at 2.3 standard
+   errors, not two.
+2. **The margin is 13 net game swings.** Boards of 10 IMPs and over: 20 for 7.1 and 7 against in `m1` (+0.178 +- 0.075
+   a board), 17 and 8 in `m3` (+0.141 +- 0.075). Every other board together: +0.024 +- 0.046 in `m1`, +0.021 +- 0.045
+   in `m3`, which is where the bench puts the whole effect (+0.03, 0.00). For comparison, an edge that has held up,
+   g8's prototype against Gen 7, has more than half of itself on the boards under 10 IMPs (+0.246 +- 0.038 and
+   +0.238 +- 0.039 of +0.405 and +0.453); and g8's `7s-32-v41~7s-32` at 0.5 (3,200 boards) is -0.026 +- 0.021 under
+   10 IMPs and +0.024 +- 0.042 above. A card-play gain that shows only in game swings is possible, but the half of
+   your result that is measured twice as sharply shows none.
+3. **Existing match evidence on the exponent alone:** g8's `8p-32` against its first `8s-32` (deal-list exponent 1.0
+   against 0.5, v4, early read on in both, same opponent, same 896 deals): +0.026 +- 0.030.
+4. **The control I would run: `71s-32~7s-32`, both at 0.5, on seed 7111 from index 0.** The bots are deterministic
+   given seed and index (g8's `n1` on two boxes: 700 of 700 boards identical), so `m1` minus that control is the 7.1
+   bot's exponent measured board by board on the same deals, with most boards identical: a standard error near 0.05
+   at 800 boards where the matches themselves have 0.09. If the control is also +0.15 on these deals it is the
+   deals (the same pair on g8's seed 81 is -0.003 +- 0.047). `71s-32-w1~71s-32` would be the direct version.
+
+What the bench cannot see, so where a real +0.15 would have to live: how the opponent reads 7.1's own cards, and
+anything the tree does differently. Item 1 says the first is not it (the 7.0 bot at 1.0 and at 0.5 do the same
+against it). I have no measurement of the second by exponent. On the tables: I cannot tell how the match script's
+differ from the arena's; g8's fork-free 7.1 against 7.0 at 0.5 and your gate (-0.003 +- 0.047 and -0.070 +- 0.038)
+differ by 0.07 +- 0.06.
