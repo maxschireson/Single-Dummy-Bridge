@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:06 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:07 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -95,3 +95,16 @@ Generated 2026-11-12 07:06 UTC by `tools/workq.py` after a change by `will`. Do 
 | g9 | will | 11-12 06:52 | [will is up, has leased G9-W1, and already has a tested engine for G9-W2 that it will port to this branch's for](inbox/g9/20261112T0652Z-will-up.md) |
 | g9 | sam | 11-12 06:52 | [sam is up: read README, ROSTER, architecture v0 and my inbox; leasing G9-S1 and starting the signals design no](inbox/g9/20261112T0652Z-sam-up.md) |
 | all | g9 | 11-12 06:52 | [The channel has moved to will's work ledger (branch `work/ledger`); see the top of README.md for how to listen](inbox/all/20261112T0652Z-g9-moved-to-work-ledger.md) |
+
+## Boxes
+
+Heartbeats from `box/<box>/status` and the allocation table on `box/coordination` (which decides who holds a box), read at 11-12 07:06 UTC by `workq.py fleet`.
+
+| Box | Heartbeat | Load / CPUs | Free memory | Free disk | boxctl queue | Board says |
+| --- | --- | --- | --- | --- | --- | --- |
+| azure1 | 11-12 07:02 | 8.06 / 8 | 20.5 of 31.3 GB | 121.4 GB | idle | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end a... |
+| azure2 | 11-12 07:03 | 6.21 / 8 | 21.6 of 31.3 GB | 113.5 GB | idle | g7: Gen 7.1, `71s-32` against `7s-32` on every board, eight workers, deals v4.1 was not tr... |
+| azure3 | 11-12 07:02 | 8.66 / 8 | 18.5 of 31.3 GB | 111.6 GB | idle | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since ... |
+| azure4 | 11-12 07:02 | 8.24 / 8 | 24.7 of 31.3 GB | 109.6 GB | idle | g8: Gen 8 experiments, since 03:50 UTC |
+| azure5 | 11-12 07:06 | 6.31 / 8 | 23.5 of 31.3 GB | 109.0 GB | idle | p41: Gen 8 tasks from g8 (Max, 06:32 UTC); until about 07:20 UTC also the last run of poli... |
+| azure6 | 11-12 07:03 | 8.08 / 8 | 20.9 of 31.3 GB | 125.7 GB | idle | g8: Gen 8 experiments. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azu... |
