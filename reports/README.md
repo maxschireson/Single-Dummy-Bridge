@@ -11,6 +11,8 @@ actor/configuration, dataset, sample count and uncertainty behind a claim.
 - [Gen6 dashboard verification snapshot](gen6-primary-dashboard-verification-20261111.json)
 - [Gen6 layout-selection study](gen6-layout-selection-2026-11-11/README.md)
 - [System-aware hand-fit scorer: first run on the house bidders (pipeline check)](gen8-system-scorer-smoke-2026-11-11/README.md)
+- [Gen 9 arena simulator: promotion rules and schedules (E9-5, simulation)](gen9-arena-sim-2026-11-12/README.md)
+- [Gen 9 ratings-v1: every published paired result, Gen 5 to 7.1, fitted with one strength per bot (G9-D3)](gen9-ratings-v1-2026-11-12/README.md)
 - [Excluded fast-vs-BEN archive receipt](gen6-accidental-fast-ben-archive-20261111.json)
 - [Historical generation and research reading guide](../docs/archive/README.md)
 - [Full branch inventory](../docs/branch-inventory.md)
@@ -20,6 +22,7 @@ A launch snapshot's board count or running flag should never be presented as a
 current live reading.
 
 - [Gen 9 promotion test, first check on synthetic boards (simulation; design in progress)](gen9-promotion-test-check-2026-11-12/README.md)
+- [Gen 9 test run in a fresh session sandbox: 298 tests, all pass with TensorFlow and h5py installed](gen9-test-run-2026-11-12/README.md)
 
 ## Adding a report
 
