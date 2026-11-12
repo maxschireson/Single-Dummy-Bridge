@@ -5,7 +5,7 @@ import unittest
 import numpy as np
 
 from bridge_harness.core import Game
-from bridge_harness.gen6 import Classes, View
+from bridge_harness.gen6 import Classes, View, Gen6Player
 from bridge_harness.gen7 import utilities
 from bridge_harness.gen7_net import INPUTS
 from bridge_harness.plan_families import Features, held_out, key_variables
@@ -315,6 +315,28 @@ class PlanPlayerTests(Fixture):
                 self.assertEqual(x['kept'], best - x['tree'] <= 1e-9)
                 self.assertAlmostEqual(x['adjusted'], x['tree'])
         self.assertGreater(consulted, 0)
+
+    def test_the_bot_as_its_own_simulator(self):
+        """seat 'gen6': every later card comes from the search itself, each seat from its own view. With one layout that
+        is the true deal and trust 1, the candidate kept is the one the real continuation scores best."""
+        plan = self.plan(trust=1., seat='gen6', layouts=2, from_trick=8)
+        found = 0
+        for seed in range(8):
+            game, o, world = spot(seed, 29 + 2 * seed)
+            if len(o.legal) < 2:
+                continue
+            d = plan.choose(o, random.Random(seed))
+            note = d.details.get('gen7_tree', {})
+            if not note.get('consulted'):
+                continue
+            found += 1
+            self.assertEqual(note['seat'], 'gen6')
+            self.assertLessEqual(note['layouts'], 2)
+            for x in note['candidates']:
+                self.assertTrue(-13 <= x['tree'] <= 13)
+                self.assertEqual(x['tree'], round(x['tree'] * note['layouts']) / note['layouts'])       # whole tricks in each layout
+            self.assertIs(type(plan.inner), Gen6Player)
+        self.assertGreater(found, 0)
 
     def test_the_note_holds_the_search_and_the_playouts(self):
         for seat in ('top', 'map'):
