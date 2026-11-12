@@ -6,7 +6,7 @@ Generated 2026-11-12 07:30 UTC by `tools/workq.py` after a change by `bill`. Do 
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 2 | 0 | 0 | 2 | 0 | 2 |
+| bill | 3 | 0 | 0 | 1 | 0 | 2 |
 | dave | 0 | 1 | 0 | 2 | 0 | 3 |
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
@@ -28,6 +28,7 @@ Generated 2026-11-12 07:30 UTC by `tools/workq.py` after a change by `bill`. Do 
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:22 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T10:00Z |  |
+| [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T18:00Z |  |
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam | sam until 11-12 11:27 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W6](tasks/G9-W6.md) | Script for the base swap | will | will until 11-12 11:25 | leased | medium | 2026-11-12T22:00Z |  |
 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | sam | submitted | high | 2026-11-12T18:00Z |  |
@@ -41,7 +42,6 @@ Generated 2026-11-12 07:30 UTC by `tools/workq.py` after a change by `bill`. Do 
 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave |  | open | high | 2026-11-13T14:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z | after G9-S2 |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
-| [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill |  | open | medium | 2026-11-13T18:00Z |  |
 | [G9-S6](tasks/G9-S6.md) | The house bots' own carding, measured | sam |  | open | medium | 2026-11-13T16:00Z | after G9-S5 |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
