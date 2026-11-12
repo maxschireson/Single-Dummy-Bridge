@@ -1,0 +1,26 @@
+20261112T191250Z-452605-endtable-setup on azure6: exit 0 in 24.5s
+--- output ---
+19:12:59 checkout: c9cc58d99d54309d8a8cbd961801756aaef4cf4e Ending table: index, reader, evaluator, builder; 1-3 card tables chec
+19:12:59 compiler: g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0; python: Python 3.12.3
+19:13:05 built: 7367617036ced2f2 39c5b979606e3c99 
+k=1: 32 suit types; notrump 21 classes, 69 positions; trump 52 classes, 144 positions; entries 426; 2 bits; 107 bytes of data; class table 0.000 s: as specified
+k=2: 171 suit types; notrump 1008 classes, 21113 positions; trump 3374 classes, 63116 positions; entries 168458; 2 bits; 42115 bytes of data; class table 0.001 s: as specified
+k=3: 544 suit types; notrump 18290 classes, 4725808 positions; trump 68230 classes, 16232054 positions; entries 41915724; 2 bits; 10478931 bytes of data; class table 0.009 s: as specified
+k=4: 1230 suit types; notrump 184288 classes, 800290430 positions; trump 711733 classes, 2928416406 positions; entries 7457413672; 3 bits; 2796530127 bytes of data; class table 0.094 s: as specified
+{"k": 1, "file": "/home/bridgebots/work/endtable/tables/k1.et", "entries": 426, "entries_computed": 426, "chunks": 1, "chunks_resumed": 0, "threads": 8, "plain": true, "index_seconds": 0.000, "build_seconds": 0.2, "cpu_seconds": 0.0, "core_us_per_entry": 3244.939, "nodes_per_entry": 4.61, "leaves_per_entry": 1.25, "sha256": "74fb94555dc245713bf4329efd76f3cc439070aa75a1c50e6cb0cfde3f4b7249"}
+{"k": 2, "file": "/home/bridgebots/work/endtable/tables/k2.et", "entries": 168458, "entries_computed": 168458, "chunks": 1, "chunks_resumed": 0, "threads": 8, "plain": true, "index_seconds": 0.003, "build_seconds": 0.1, "cpu_seconds": 0.1, "core_us_per_entry": 5.057, "nodes_per_entry": 10.85, "leaves_per_entry": 6.60, "sha256": "784914b44807ac0daf73573f0a40bd95802376665090fb8786a74967e23f3f94"}
+{"k": 3, "file": "/home/bridgebots/work/endtable/tables/k3.et", "entries": 41915724, "entries_computed": 41915724, "chunks": 10, "chunks_resumed": 0, "threads": 8, "plain": true, "index_seconds": 0.011, "build_seconds": 10.6, "cpu_seconds": 51.8, "core_us_per_entry": 2.024, "nodes_per_entry": 20.68, "leaves_per_entry": 17.15, "sha256": "636b5ecc717d05bf36c10335efded98fff8154f320084e82920fb44823053cdd"}
+{"file": "/home/bridgebots/work/endtable/tables/k1.et", "k": 1, "entries": 426, "sha256": "74fb94555dc245713bf4329efd76f3cc439070aa75a1c50e6cb0cfde3f4b7249", "hash_ok": true, "padding_zero": true, "histogram": [225, 201], "values_above_k": 0}
+{"file": "/home/bridgebots/work/endtable/tables/k2.et", "k": 2, "entries": 168458, "sha256": "784914b44807ac0daf73573f0a40bd95802376665090fb8786a74967e23f3f94", "hash_ok": true, "padding_zero": true, "histogram": [63358, 62159, 42941], "values_above_k": 0}
+{"file": "/home/bridgebots/work/endtable/tables/k3.et", "k": 3, "entries": 41915724, "sha256": "636b5ecc717d05bf36c10335efded98fff8154f320084e82920fb44823053cdd", "hash_ok": true, "padding_zero": true, "histogram": [12255836, 12706333, 10721881, 6231674], "values_above_k": 0}
+be646285f1b1cfc819164d51a20c0f2200f2270bb5acd7b6a7d4e77c3b5e7dd6  k1.et
+f5733f22a4c97af868ac1037f55d1b351cb71a9ac2e488ad36b9227c12e94aee  k2.et
+cfafa36d8f07976312c0ac2b4912c1f961f4221d1b388c85f781ce3b0c83c74d  k3.et
+k=1: 426 vectors; slot mismatches 0; unrank-line mismatches 0; values checked 426, mismatches 0
+k=2: 3000 vectors; slot mismatches 0; unrank-line mismatches 0; values checked 3000, mismatches 0
+k=3: 2000 vectors; slot mismatches 0; unrank-line mismatches 0; values checked 2000, mismatches 0
+k=4: 300 vectors; slot mismatches 0; unrank-line mismatches 0
+k=4 evalbench plain: 50000 random entries, 3.693 us, 33.5 nodes, 32.8 leaves per entry
+k3.et equals the session's build
+Running as unit: endtable-k4.service; invocation ID: c784b301855f4b43a5fb438f27831fe6
+active

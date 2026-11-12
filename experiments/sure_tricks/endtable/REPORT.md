@@ -1,8 +1,8 @@
 # Ending table: build report
 
-Status, 12 November 2026: index, reader, evaluator and builder written; 1-, 2- and 3-card tables built and checked
-(sections 1 to 4 below). The 4-card table is being built on azure6 (assigned by Max, 18:18 UTC); its results go in
-section 5 when it finishes. Specification: [`../TABLE_BUILD.md`](../TABLE_BUILD.md).
+Status, 12 November 2026: all four tables built; every acceptance check of section 8 that applies passes (T6 does not
+apply to the 4-card table, which uses no equivalences). The 4-card table was built on azure6 (assigned by Max, 18:18 UTC)
+in 34.5 minutes. Specification: [`../TABLE_BUILD.md`](../TABLE_BUILD.md).
 
 ## 1. Deviation from the specification: no defender equivalences
 
@@ -32,8 +32,9 @@ last trump and cashes the red two South let go: no trick. The section 6.2 rule n
 
 **`sure.cpp` and `sure.py` use the same rule** (`genDef`, "both ends of each run") and give 1 on this position
 (`./sure_cpp --value`, `sure.Sure.can`); `pooled_ref.py` gives 0. Their values can therefore be too high for declarer.
-Among all 21,869,828 show-out-only 3-card entries this is the only disagreement with the table (section 4, T4); the rate
-at more cards is not measured. These files belong to the search owner and are not changed here.
+Among all 21,869,828 show-out-only 3-card entries this is the only disagreement with the table (section 4, T4). Among
+1,000,000 random show-out-only 4-card entries there are 4, all with the table lower and `pooled_ref.py` agreeing with the
+table (section 5). These files belong to the search owner and are not changed here.
 
 Declarer's equivalence (one card per run of his own legal cards with no live card of another hand and no card of the
 current trick between them) is implemented as an option. Tables built with it are byte-identical to the plain ones for
@@ -84,13 +85,13 @@ Slot computation, random raw positions (transformed as in T3), best of 5, `-marc
 | k | Slot | Slot and read |
 | --- | --- | --- |
 | 3 | 78 ns | 199 ns |
-| 4 | 133 to 151 ns (3 runs) | after the build |
+| 4 | 133 to 151 ns (3 runs); azure6: 78 ns | azure6: 281 ns |
 
 Of the 3-card figure, normalization is 28 ns and the four pattern ranks 11 ns (BMI2 `pext` with a colex table; 60 ns
 with the bit loop). At k = 4 the rest is mostly the class lookup: a 16.8 MB array that random positions miss in cache.
-The target in section 4.7 is the stand-in key's 65 to 110 ns measured inside the search; random positions are the worst
-case for this lookup, so the in-search figure (section 5, `split.py`) is the comparable one. The portable build takes
-250 ns at k = 3.
+The target in section 4.7 is the stand-in key's cost measured inside the search; random positions are the worst case for
+this lookup, so the in-search figure (section 5, `split.py`) is the comparable one. The portable build takes 250 ns at
+k = 3 in the sandbox.
 
 ## 4. Tables of 1, 2 and 3 cards (T4 to T6, T8)
 
@@ -111,17 +112,69 @@ case for this lookup, so the in-search figure (section 5, `split.py`) is the com
 Build cost (sandbox, `-march=native`): k = 3, 1.5 core-µs an entry (31.6 s on 2 threads), 20.7 nodes and 17.2 leaves an
 entry. The 4-card evaluator on 50,000 random entries, one thread: 5.18 µs, 33.5 nodes, 32.8 leaves an entry; with
 declarer equivalences 5.16 µs, 30.7 nodes, 28.8 leaves. Most of the time is the leaves' reads of the 3-card table.
-At 5.2 µs, 7,457,413,672 entries are about 11 core-hours; the specification's estimate was 23.
+At 5.2 µs, 7,457,413,672 entries would be about 11 core-hours (the specification estimated 23, later 17); the build in
+build order on azure6 took 2.2 core-µs an entry, 4.6 core-hours (section 5).
 
 End to end with the 3-card table (`sure_cpp` built `-DENDTABLE`, `--front 3 --table k3.et`): `check_cpp.py` 0 mismatches on
 300 4-card and 100 5-card endings; per-card values on A6_6, A6_7, B6_7, S6_7 and A6_8 equal those with the stand-in.
 
 ## 5. The 4-card table
 
-Running on azure6. Results to follow: build time and µs an entry, hashes, histogram, T2 to T5 and T7, read and slot
-timings in the search (`split.py`).
+Built on azure6: Standard_F8as_v6, AMD EPYC 9V74, 8 cores (one thread each), 32 GB, Ubuntu 24.04, g++ 13.3,
+`-O2 -march=native`; source at `c9cc58d`. Its 1-, 2- and 3-card tables, built there first, are byte-identical to the
+sandbox's (the 4-card build checks the 3-card file's data hash). Raw outputs: [`results/`](results/).
+
+| Item | Value |
+| --- | --- |
+| Entries | 7,457,413,672 |
+| Values 0, 1, 2, 3, 4 tricks | 1,726,176,471, 1,933,765,271, 1,802,048,322, 1,300,570,961, 694,852,647 |
+| Data SHA-256 (header) | `ec792f75087aada01bd46062bab57d44ce92ee6fe0c9d1c8c0795432a62bbd9d` |
+| File SHA-256 | `4f455627f5c12f60ea90fe23ed65c57edc139f77cb8ea58b8bac99d6815f4f02` |
+| File | 2,796,534,231 bytes, `~/work/endtable/tables/k4.et` on azure6 |
+| Build | 2,068 s on 8 threads, 16,463 CPU seconds (4.6 core-hours), 2.22 core-µs, 33.5 nodes, 32.8 leaves an entry; 1,778 chunks of 2^22 entries |
+
+Checks (azure6):
+
+- **T2.** All 300 vectors: slot and canonical line equal, values equal. 1e8 random slots: unrank then rank, 0 failures.
+- **T3.** 1e6 random entries transformed, 0 failures.
+- **T4.** 2,000 random entries of any knowledge (8 seeds of 250, 101 to 108) equal `pooled_ref.py`. 1,000,000 random
+  entries with show-out knowledge only (seed 21; 2,487,831 drawn) run through `sure_cpp --value` (the search at
+  `38863de`): 4 differ, the table giving 0 and `sure_cpp` 1 in each, and `pooled_ref.py` agrees with the table in all 4:
+
+  ```
+  slot 4495819439  0 1 18004000001 40000018002 20038026004 4 4 2 8
+  slot 1249588313  4 1 18040004000 40028000001 2009401a002 4 4 4 8
+  slot 4258561922  0 0 30004000001 28018000 805000600e 4 4 2 8
+  slot 1256918789  4 1 28020002000 50008001 d008c004002 4 4 4 2
+  ```
+  (`sure_cpp` input lines: trump leader hN hS pool cE cW vE vW.)
+- **T5.** 1e6 random entries with an unknown suit, 5,496,315 comparisons, 0 lower.
+- **T6.** Not applicable: no equivalences.
+- **T7.** `sure_cpp` built `-DENDTABLE`: `check_cpp.py 5 250 --front 4 --table k4.et` and `check_cpp.py 6 30 --front 4 --table k4.et`, 0 mismatches. Per-card values on all 19 positions of `bench_lines.json` equal those with the stand-in (`compare_bench.py`). Without `--warm` the node counts above the table differ slightly on 4 of the 19 (for example A6 at 10 cards, 578,230 against 579,055): the stand-in fills itself with searches that share the transposition table. With `--warm` (`split.py` below) the counts are identical.
+- **T8.** One 4-card build; the section requires repeat builds at k <= 3 only (section 4).
+
+Time split, contract question, azure6, 8 rounds, minimum, milliseconds (`split.py`, the configurations of `SEARCH.md`
+plus `table=--table k4.et`). ns a lookup = (configuration − free) / lookups.
+
+| Position | Lookups | Free | Stand-in in cache | Stand-in cold | Stand-in cold, 2 MB pages | Built table | ns a lookup: stand-in cold | built table |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A6, 8 cards | 3,930 | 1.58 | 1.65 | 2.06 | 1.85 | 1.77 | 122 | 48 |
+| S6, 8 cards | 3,332 | 1.69 | 1.99 | 2.25 | 2.03 | 1.90 | 168 | 64 |
+| B6, 8 cards | 1,144 | 0.43 | 0.55 | 0.65 | 0.56 | 0.47 | 195 | 37 |
+| A6, 9 cards | 24,646 | 11.2 | 12.6 | 13.7 | 12.7 | 11.6 | 101 | 15 |
+| S6, 9 cards | 13,613 | 6.05 | 7.05 | 8.03 | 7.20 | 7.03 | 146 | 72 |
+| A6, 10 cards | 81,986 | 37.9 | 42.2 | 45.3 | 43.2 | 42.4 | 90 | 54 |
+| S6, 10 cards | 35,994 | 17.0 | 19.4 | 21.9 | 19.9 | 20.4 | 136 | 95 |
+
+The built table costs 15 to 95 ns a lookup in the search, slot computation and read together; the stand-in, read cold
+from a 2.5 GB array, 90 to 195 ns. Not equal conditions: before timing, the stand-in's touched cache lines are flushed
+with `clflush`, while the built table's are only pushed out by the 96 MB read `sure.cpp` does for every configuration,
+so its figures may be slightly warm. The medians of the built-table runs are 0.5 to 22 percent above their
+minimums, more spread than the stand-in and free configurations (at most 8.5 percent). Not measured: Apple silicon, and the table's reads with huge pages.
 
 ## 6. For Max
 
-- Where the 2.8 GB file is kept for good. It is on azure6 in `~/work/endtable/tables/` and is not committed.
+- Where the 2.8 GB file is kept for good. It is on azure6 in `~/work/endtable/tables/k4.et` (the 1-, 2- and 3-card files
+  beside it) and is not committed. Anyone can rebuild it from this branch with the commands in section 2 and compare
+  the hashes in section 5.
 - `sure.cpp` and `sure.py` carry the unsound defender rule (section 1); the search owner should know.

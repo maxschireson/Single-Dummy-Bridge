@@ -89,7 +89,9 @@ cmd_checks4() {
   esac
   case $step in all|split)
     cd "$ST"
-    run split $PY split.py A6_8,S6_8,B6_8,A6_9,S6_9,A6_10,S6_10 6 "free=--replay" "table=--table $T4" "cold4k=--cells 2.5" "coldhuge=--cells 2.5 --huge" ;;
+    # the configurations of SEARCH.md's time split, and the built table; split.py also asserts equal card values
+    run split $PY split.py A6_8,S6_8,B6_8,A6_9,S6_9,A6_10,S6_10 8 "free=--replay" "cache=--cells 0.002 --noflush" \
+      "cold4k=--cells 2.5" "coldhuge=--cells 2.5 --huge" "table=--table $T4" ;;
   esac
 }
 
