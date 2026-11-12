@@ -1,0 +1,10 @@
+{
+  "automation_id": "Automation_7f5620b00f8881918cc8cb2fd1b2ba59",
+  "success": true,
+  "is_enabled": true,
+  "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192701Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT",
+  "updated_at": "2026-11-12T17:05:02.990139+00:00",
+  "next_run_time": "2026-11-12T17:27:01+00:00",
+  "environment_selection": "inherited",
+  "prompt_file": "validation/bridge-gen8-instruction-watch-prompt.txt"
+}
