@@ -10,3 +10,4 @@
 {"at": "2026-11-12T07:15:00Z", "by": "bill", "op": "send", "target": "g9/20261112T0715Z-bill-g9-b2-submitted-for-your-revie", "note": "G9-B2 submitted for your review: Rule filter: the card as a scorer over hand types", "task": "G9-B2"}
 {"at": "2026-11-12T07:16:00Z", "by": "bill", "op": "lease", "target": "G9-B3", "until": "2026-11-12T11:16Z"}
 {"at": "2026-11-12T07:16:00Z", "by": "bill", "op": "lease", "target": "E9-1", "until": "2026-11-12T11:16Z"}
+{"at": "2026-11-12T07:16:00Z", "by": "bill", "op": "log", "target": "E9-1", "note": "bill: sharpening before running. Readers added: (a) the IR card's filter (what a player's card gives: configs/cards/rb-*.json via rb_cards.card_from_settings) and (b) the generator's exact tables (cards/rb_meanings.py) as a second ceiling that also covers contexts the card leaves out. Generators as "}
