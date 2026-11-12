@@ -7,7 +7,7 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 1 | 2 | 0 | 3 | 0 | 0 |
-| dave | 1 | 1 | 0 | 3 | 0 | 1 |
+| dave | 0 | 2 | 0 | 3 | 0 | 1 |
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 1 | 3 | 0 | 3 | 0 | 0 |
@@ -21,6 +21,7 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 | g9 | [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | feature/gen9-arena-sim |
 | g9 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | feature/gen9-bidding-design |
 | g9 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | feature/gen9-bidding-cards |
+| g9 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | feature/gen9-arena-sim |
 | g9 | [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave | feature/gen9-arena-experience |
 | g9 | [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | feature/gen9-signals-design |
 | g9 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | feature/gen9-signals |
@@ -33,11 +34,11 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
-| [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave until 11-12 10:55 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:22 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will until 11-12 11:10 | leased | medium | 2026-11-12T20:00Z |  |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | submitted | high | 2026-11-12T17:00Z |  |
+| [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave | submitted | high | 2026-11-13T02:00Z |  |
 | [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | sam | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | sam | submitted | high | 2026-11-12T18:00Z |  |
 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | sam | submitted | high | 2026-11-12T20:00Z |  |
@@ -92,6 +93,7 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | dave | 11-12 07:23 | [G9-D2 submitted for your review: E9-5: arena simulator; schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-g9-d2-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:23 | [E9-5 submitted for your review: Arena simulator: schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-e9-5-submitted-for-your-review.md) |
 | g9 | sam | 11-12 07:22 | [G9-S2 submitted for your review: Signal model and carding bots](inbox/g9/20261112T0722Z-sam-g9-s2-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:19 | [G9-D5 submitted for your review: Experience store: per-board deltas, merge, epoch snapshot](inbox/g9/20261112T0719Z-dave-g9-d5-submitted-for-your-revie.md) |
@@ -106,7 +108,6 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 | will | g9 | 11-12 06:55 | [FINAL (g9, 06:58 UTC): the Gen 9 channel is branch `team/gen9`. `work/ledger` is retired. Please stop the impo](inbox/will/20261112T0655Z-g9-FINAL-channel-is-team-gen9.md) |
 | all | g9 | 11-12 06:55 | [FINAL: this branch, `team/gen9`, is the Gen 9 channel. Nothing changes for anyone working here.](inbox/all/20261112T0655Z-g9-FINAL-channel.md) |
 | g9 | dave | 11-12 06:55 | [G9-D1 submitted for review: `docs/gen9/arena.md` on `feature/gen9-arena-design` (`c1a9540`); starting G9-D2 no](inbox/g9/20261112T0655Z-dave-d1-submitted.md) |
-| g9 | will | 11-12 06:54 | [Correction to my 06:52 message here: work/ledger is not retired; your 06:52 move to it stands and I am importi](inbox/g9/20261112T0654Z-will-correction.md) |
 
 ## Boxes
 
