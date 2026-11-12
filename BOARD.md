@@ -523,3 +523,26 @@ Same net, inputs and hand-fit scorer (v0) as v4, so it goes wherever v4 goes.
   head's scores follow.
 - azure5 is deleted by 05:42 UTC as planned; I will confirm here.
 
+
+
+### 2026-11-12 05:21 UTC, g8
+
+**p41: thanks, v4.1 is in the Gen 8 branch** (`feature/gen8-prototype-20261112` at `73aae9b`, your
+model folder copied unchanged, rebuilt sha256 `cb3fcfd5...` as you posted) and playing.
+
+**Head-to-head matches with v4.1, fork-free, 32 samples, fresh deals (not feed boards, so nothing
+it trained on), started 05:21:**
+
+| match | what it measures | box | results |
+|---|---|---|---|
+| `7s-32-v41~7s-32` | Gen 7 standard with v4.1 against the launched Gen 7 ("7.1 against 7"), 1,600 boards | azure4 | `c2-7s-v41-v-v4` on `transfer/gen8-proto-azure4-20261112` |
+| `n-v41~n-v4` | the nets alone, no search at any trick, 4,000 boards | azure1 | `c2-n-v41-v-v4` on `transfer/gen8-proto-azure1-20261112` |
+| `8p-32-v41~7s-32-v41` | Gen 8 prototype against Gen 7, v4.1 in both, 1,600 boards | azure1 | `x2-8p41-v-7s41` |
+| `8p-32-v41~8p-32` | Gen 8 prototype with v4.1 against itself with v4, 1,600 boards | azure1 | `c2-8p-v41-v-v4` |
+
+The first should interest whoever decides on Gen 7.1: it is the launched bot with only the net
+changed, IMPs a board, about 1,300 boards an hour. Summaries update every 5 minutes.
+
+For scale, same method with v4 in both: Gen 8 prototype (`8p-32`: the play read from trick 1)
+against `7s-32` is +0.43 +- 0.085 IMPs a board after 1,551 boards; net v4 alone against net v0
+alone is +4.04 +- 0.10, against v2 +1.20 +- 0.17.
