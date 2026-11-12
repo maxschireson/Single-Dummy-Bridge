@@ -1,0 +1,848 @@
+{
+ "all": {
+  "pairs": 1761,
+  "deals": 666,
+  "realized_cost_of_b": [
+   0.3907,
+   0.0197
+  ],
+  "b_did_better": 0.066,
+  "hindsight": [
+   0.0761,
+   0.0086
+  ],
+  "pimc": {
+   "prefers_b": 0.022,
+   "gain": [
+    -0.0017,
+    0.0026
+   ],
+   "over_pimc": [
+    0.0,
+    0.0
+   ],
+   "cost_of_b_when_preferred": 0.077
+  },
+  "pimc_k": {
+   "prefers_b": 0.034,
+   "gain": [
+    0.0006,
+    0.0028
+   ],
+   "over_pimc": [
+    0.0,
+    0.0
+   ],
+   "cost_of_b_when_preferred": -0.017
+  },
+  "tree_0_plain1": {
+   "prefers_b": 0.035,
+   "gain": [
+    -0.0023,
+    0.0027
+   ],
+   "over_pimc": [
+    -0.0028,
+    0.0013
+   ],
+   "cost_of_b_when_preferred": 0.066,
+   "seconds": 0.021,
+   "lines": 2.0,
+   "net_rows": 0.0,
+   "solves": 15.8
+  },
+  "mix_0_plain1": {
+   "prefers_b": 0.043,
+   "gain": [
+    -0.0057,
+    0.0033
+   ],
+   "over_pimc": [
+    -0.004,
+    0.002
+   ],
+   "cost_of_b_when_preferred": 0.133
+  },
+  "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+   "prefers_b": 0.186,
+   "gain": [
+    -0.0085,
+    0.0076
+   ],
+   "over_pimc": [
+    -0.0091,
+    0.0075
+   ],
+   "cost_of_b_when_preferred": 0.046,
+   "seconds": 0.078,
+   "lines": 23.9,
+   "net_rows": 97.9,
+   "solves": 59.5
+  },
+  "mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+   "prefers_b": 0.183,
+   "gain": [
+    -0.0119,
+    0.0075
+   ],
+   "over_pimc": [
+    -0.0102,
+    0.0078
+   ],
+   "cost_of_b_when_preferred": 0.065
+  },
+  "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+   "prefers_b": 0.159,
+   "gain": [
+    -0.0108,
+    0.0071
+   ],
+   "over_pimc": [
+    -0.0114,
+    0.007
+   ],
+   "cost_of_b_when_preferred": 0.068,
+   "seconds": 0.077,
+   "lines": 23.0,
+   "net_rows": 96.7,
+   "solves": 56.3
+  },
+  "mix_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+   "prefers_b": 0.162,
+   "gain": [
+    -0.0119,
+    0.0068
+   ],
+   "over_pimc": [
+    -0.0102,
+    0.0066
+   ],
+   "cost_of_b_when_preferred": 0.074
+  }
+ },
+ "per_side": {
+  "sides": 1378,
+  "pairs": 1761,
+  "other_cards": 21.95,
+  "candidates": 11.066,
+  "pimc/any_card": {
+   "overrules": 0.393,
+   "tricks_lost": [
+    -0.007,
+    0.024
+   ],
+   "imps_lost": [
+    0.001,
+    0.08
+   ]
+  },
+  "pimc/root_candidates": {
+   "overrules": 0.322,
+   "tricks_lost": [
+    -0.007,
+    0.024
+   ],
+   "imps_lost": [
+    0.001,
+    0.08
+   ]
+  },
+  "pimc_k/any_card": {
+   "overrules": 0.629,
+   "tricks_lost": [
+    -0.008,
+    0.055
+   ],
+   "imps_lost": [
+    -0.197,
+    0.191
+   ]
+  },
+  "pimc_k/root_candidates": {
+   "overrules": 0.481,
+   "tricks_lost": [
+    -0.011,
+    0.043
+   ],
+   "imps_lost": [
+    -0.182,
+    0.144
+   ]
+  },
+  "tree_0_plain1/any_card": {
+   "overrules": 0.566,
+   "tricks_lost": [
+    0.028,
+    0.053
+   ],
+   "imps_lost": [
+    -0.075,
+    0.174
+   ]
+  },
+  "tree_0_plain1/root_candidates": {
+   "overrules": 0.41,
+   "tricks_lost": [
+    0.025,
+    0.04
+   ],
+   "imps_lost": [
+    -0.06,
+    0.121
+   ]
+  },
+  "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1/any_card": {
+   "overrules": 3.707,
+   "tricks_lost": [
+    0.003,
+    0.229
+   ],
+   "imps_lost": [
+    0.858,
+    0.894
+   ]
+  },
+  "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1/root_candidates": {
+   "overrules": 2.623,
+   "tricks_lost": [
+    0.028,
+    0.165
+   ],
+   "imps_lost": [
+    0.272,
+    0.645
+   ]
+  },
+  "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1/any_card": {
+   "overrules": 3.16,
+   "tricks_lost": [
+    0.098,
+    0.21
+   ],
+   "imps_lost": [
+    0.793,
+    0.863
+   ]
+  },
+  "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1/root_candidates": {
+   "overrules": 2.003,
+   "tricks_lost": [
+    0.161,
+    0.116
+   ],
+   "imps_lost": [
+    0.343,
+    0.549
+   ]
+  }
+ },
+ "by_phase": {
+  "tricks 3-4": {
+   "pairs": 909,
+   "deals": 539,
+   "realized_cost_of_b": [
+    0.3597,
+    0.0273
+   ],
+   "b_did_better": 0.083,
+   "hindsight": [
+    0.0957,
+    0.0119
+   ],
+   "pimc": {
+    "prefers_b": 0.025,
+    "gain": [
+     0.0011,
+     0.0029
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": -0.043
+   },
+   "pimc_k": {
+    "prefers_b": 0.041,
+    "gain": [
+     0.0011,
+     0.0045
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": -0.027
+   },
+   "tree_0_plain1": {
+    "prefers_b": 0.044,
+    "gain": [
+     -0.0022,
+     0.0044
+    ],
+    "over_pimc": [
+     -0.0033,
+     0.0019
+    ],
+    "cost_of_b_when_preferred": 0.05,
+    "seconds": 0.033,
+    "lines": 2.0,
+    "net_rows": 0.0,
+    "solves": 15.9
+   },
+   "mix_0_plain1": {
+    "prefers_b": 0.055,
+    "gain": [
+     -0.0044,
+     0.0047
+    ],
+    "over_pimc": [
+     -0.0055,
+     0.0036
+    ],
+    "cost_of_b_when_preferred": 0.08
+   },
+   "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.188,
+    "gain": [
+     0.0033,
+     0.0099
+    ],
+    "over_pimc": [
+     0.0022,
+     0.01
+    ],
+    "cost_of_b_when_preferred": -0.018,
+    "seconds": 0.108,
+    "lines": 24.6,
+    "net_rows": 102.3,
+    "solves": 61.2
+   },
+   "mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.19,
+    "gain": [
+     -0.0044,
+     0.01
+    ],
+    "over_pimc": [
+     -0.0055,
+     0.0101
+    ],
+    "cost_of_b_when_preferred": 0.023
+   },
+   "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.177,
+    "gain": [
+     -0.0099,
+     0.0105
+    ],
+    "over_pimc": [
+     -0.011,
+     0.0106
+    ],
+    "cost_of_b_when_preferred": 0.056,
+    "seconds": 0.106,
+    "lines": 23.7,
+    "net_rows": 101.2,
+    "solves": 58.0
+   },
+   "mix_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.173,
+    "gain": [
+     -0.0077,
+     0.0098
+    ],
+    "over_pimc": [
+     -0.0088,
+     0.0098
+    ],
+    "cost_of_b_when_preferred": 0.045
+   }
+  },
+  "tricks 5-6": {
+   "pairs": 852,
+   "deals": 534,
+   "realized_cost_of_b": [
+    0.4237,
+    0.0259
+   ],
+   "b_did_better": 0.049,
+   "hindsight": [
+    0.0552,
+    0.0095
+   ],
+   "pimc": {
+    "prefers_b": 0.019,
+    "gain": [
+     -0.0047,
+     0.0044
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": 0.25
+   },
+   "pimc_k": {
+    "prefers_b": 0.026,
+    "gain": [
+     0.0,
+     0.0033
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": 0.0
+   },
+   "tree_0_plain1": {
+    "prefers_b": 0.025,
+    "gain": [
+     -0.0023,
+     0.0029
+    ],
+    "over_pimc": [
+     -0.0023,
+     0.0017
+    ],
+    "cost_of_b_when_preferred": 0.095,
+    "seconds": 0.007,
+    "lines": 2.0,
+    "net_rows": 0.0,
+    "solves": 15.7
+   },
+   "mix_0_plain1": {
+    "prefers_b": 0.029,
+    "gain": [
+     -0.007,
+     0.0047
+    ],
+    "over_pimc": [
+     -0.0023,
+     0.0017
+    ],
+    "cost_of_b_when_preferred": 0.24
+   },
+   "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.183,
+    "gain": [
+     -0.0211,
+     0.0103
+    ],
+    "over_pimc": [
+     -0.0211,
+     0.01
+    ],
+    "cost_of_b_when_preferred": 0.115,
+    "seconds": 0.047,
+    "lines": 23.1,
+    "net_rows": 93.3,
+    "solves": 57.6
+   },
+   "mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.176,
+    "gain": [
+     -0.02,
+     0.0097
+    ],
+    "over_pimc": [
+     -0.0153,
+     0.0105
+    ],
+    "cost_of_b_when_preferred": 0.113
+   },
+   "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.14,
+    "gain": [
+     -0.0117,
+     0.0083
+    ],
+    "over_pimc": [
+     -0.0117,
+     0.0081
+    ],
+    "cost_of_b_when_preferred": 0.084,
+    "seconds": 0.047,
+    "lines": 22.2,
+    "net_rows": 92.0,
+    "solves": 54.5
+   },
+   "mix_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.15,
+    "gain": [
+     -0.0164,
+     0.0084
+    ],
+    "over_pimc": [
+     -0.0117,
+     0.0078
+    ],
+    "cost_of_b_when_preferred": 0.109
+   }
+  }
+ },
+ "by_band": {
+  "0": {
+   "pairs": 579,
+   "deals": 455,
+   "realized_cost_of_b": [
+    0.0881,
+    0.0219
+   ],
+   "b_did_better": 0.078,
+   "hindsight": [
+    0.0794,
+    0.0125
+   ],
+   "pimc": {
+    "prefers_b": 0.052,
+    "gain": [
+     -0.0017,
+     0.0067
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": 0.033
+   },
+   "pimc_k": {
+    "prefers_b": 0.069,
+    "gain": [
+     0.0,
+     0.006
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": 0.0
+   },
+   "tree_0_plain1": {
+    "prefers_b": 0.074,
+    "gain": [
+     -0.0035,
+     0.0055
+    ],
+    "over_pimc": [
+     -0.0035,
+     0.0024
+    ],
+    "cost_of_b_when_preferred": 0.047,
+    "seconds": 0.024,
+    "lines": 2.0,
+    "net_rows": 0.0,
+    "solves": 15.8
+   },
+   "mix_0_plain1": {
+    "prefers_b": 0.093,
+    "gain": [
+     -0.0035,
+     0.0077
+    ],
+    "over_pimc": [
+     -0.0017,
+     0.0039
+    ],
+    "cost_of_b_when_preferred": 0.037
+   },
+   "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.325,
+    "gain": [
+     -0.0104,
+     0.0117
+    ],
+    "over_pimc": [
+     -0.0104,
+     0.0115
+    ],
+    "cost_of_b_when_preferred": 0.032,
+    "seconds": 0.084,
+    "lines": 23.3,
+    "net_rows": 97.0,
+    "solves": 58.7
+   },
+   "mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.339,
+    "gain": [
+     -0.0104,
+     0.0112
+    ],
+    "over_pimc": [
+     -0.0086,
+     0.0124
+    ],
+    "cost_of_b_when_preferred": 0.031
+   },
+   "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.278,
+    "gain": [
+     -0.0069,
+     0.0125
+    ],
+    "over_pimc": [
+     -0.0069,
+     0.0122
+    ],
+    "cost_of_b_when_preferred": 0.025,
+    "seconds": 0.083,
+    "lines": 22.5,
+    "net_rows": 96.4,
+    "solves": 55.4
+   },
+   "mix_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.288,
+    "gain": [
+     -0.0155,
+     0.0128
+    ],
+    "over_pimc": [
+     -0.0138,
+     0.0115
+    ],
+    "cost_of_b_when_preferred": 0.054
+   }
+  },
+  "1": {
+   "pairs": 630,
+   "deals": 487,
+   "realized_cost_of_b": [
+    0.2413,
+    0.0293
+   ],
+   "b_did_better": 0.078,
+   "hindsight": [
+    0.0984,
+    0.0143
+   ],
+   "pimc": {
+    "prefers_b": 0.014,
+    "gain": [
+     -0.0032,
+     0.0039
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": 0.222
+   },
+   "pimc_k": {
+    "prefers_b": 0.03,
+    "gain": [
+     0.0016,
+     0.0057
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": -0.053
+   },
+   "tree_0_plain1": {
+    "prefers_b": 0.029,
+    "gain": [
+     -0.0032,
+     0.0055
+    ],
+    "over_pimc": [
+     -0.0048,
+     0.0027
+    ],
+    "cost_of_b_when_preferred": 0.111,
+    "seconds": 0.022,
+    "lines": 2.0,
+    "net_rows": 0.0,
+    "solves": 15.8
+   },
+   "mix_0_plain1": {
+    "prefers_b": 0.033,
+    "gain": [
+     -0.0127,
+     0.0059
+    ],
+    "over_pimc": [
+     -0.0095,
+     0.0045
+    ],
+    "cost_of_b_when_preferred": 0.381
+   },
+   "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.186,
+    "gain": [
+     0.0,
+     0.0146
+    ],
+    "over_pimc": [
+     -0.0016,
+     0.0143
+    ],
+    "cost_of_b_when_preferred": 0.0,
+    "seconds": 0.08,
+    "lines": 24.1,
+    "net_rows": 98.7,
+    "solves": 59.1
+   },
+   "mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.165,
+    "gain": [
+     -0.0079,
+     0.0141
+    ],
+    "over_pimc": [
+     -0.0048,
+     0.0146
+    ],
+    "cost_of_b_when_preferred": 0.048
+   },
+   "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.165,
+    "gain": [
+     -0.0127,
+     0.0119
+    ],
+    "over_pimc": [
+     -0.0143,
+     0.0118
+    ],
+    "cost_of_b_when_preferred": 0.077,
+    "seconds": 0.078,
+    "lines": 23.1,
+    "net_rows": 97.8,
+    "solves": 55.8
+   },
+   "mix_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.162,
+    "gain": [
+     -0.0111,
+     0.0116
+    ],
+    "over_pimc": [
+     -0.0079,
+     0.0122
+    ],
+    "cost_of_b_when_preferred": 0.069
+   }
+  },
+  "2": {
+   "pairs": 552,
+   "deals": 435,
+   "realized_cost_of_b": [
+    0.8786,
+    0.0397
+   ],
+   "b_did_better": 0.042,
+   "hindsight": [
+    0.0471,
+    0.0103
+   ],
+   "pimc": {
+    "prefers_b": 0.0,
+    "gain": [
+     0.0,
+     0.0
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": null
+   },
+   "pimc_k": {
+    "prefers_b": 0.0,
+    "gain": [
+     0.0,
+     0.0
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": null
+   },
+   "tree_0_plain1": {
+    "prefers_b": 0.0,
+    "gain": [
+     0.0,
+     0.0
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": null,
+    "seconds": 0.016,
+    "lines": 2.0,
+    "net_rows": 0.0,
+    "solves": 15.8
+   },
+   "mix_0_plain1": {
+    "prefers_b": 0.0,
+    "gain": [
+     0.0,
+     0.0
+    ],
+    "over_pimc": [
+     0.0,
+     0.0
+    ],
+    "cost_of_b_when_preferred": null
+   },
+   "tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.04,
+    "gain": [
+     -0.0163,
+     0.0101
+    ],
+    "over_pimc": [
+     -0.0163,
+     0.0101
+    ],
+    "cost_of_b_when_preferred": 0.409,
+    "seconds": 0.071,
+    "lines": 24.1,
+    "net_rows": 98.0,
+    "solves": 60.7
+   },
+   "mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.042,
+    "gain": [
+     -0.0181,
+     0.0099
+    ],
+    "over_pimc": [
+     -0.0181,
+     0.0099
+    ],
+    "cost_of_b_when_preferred": 0.435
+   },
+   "tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.027,
+    "gain": [
+     -0.0127,
+     0.0094
+    ],
+    "over_pimc": [
+     -0.0127,
+     0.0094
+    ],
+    "cost_of_b_when_preferred": 0.467,
+    "seconds": 0.07,
+    "lines": 23.3,
+    "net_rows": 95.9,
+    "solves": 57.8
+   },
+   "mix_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1": {
+    "prefers_b": 0.029,
+    "gain": [
+     -0.0091,
+     0.0075
+    ],
+    "over_pimc": [
+     -0.0091,
+     0.0075
+    ],
+    "cost_of_b_when_preferred": 0.312
+   }
+  }
+ }
+}
