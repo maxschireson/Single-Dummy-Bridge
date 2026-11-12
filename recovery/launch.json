@@ -1,0 +1,8 @@
+{
+ "launched_epoch": 1794483713.1720338,
+ "authority": "Max, 12 November 2026, 05:42 UTC: push 7.1 from 06:00 UTC unless revoked; replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes a 95% CI lead. 05:54 UTC: 'We can switch azure 2 to 100% 7.1 vs 7.0; 7 is clearly a big step vs 6.'",
+ "notice": "docs/gen71_2026-11-12.md on feature/gen7-selfplay-20261112",
+ "host": "azure1",
+ "reason": "Max, 11:36 UTC: 'Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7'",
+ "steps": "prepare from the drained cohort with --exclude-families, preflight with ops/smoke_gen7.py, then the collector under systemd"
+}
