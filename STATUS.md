@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 11:57 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 11:58 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -63,9 +63,9 @@ Generated 2026-11-12 11:57 UTC by `tools/workq.py` after a change by `will`. Do 
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 15:53 | leased | high | 2026-11-13T16:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z |  |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z |  |
+| [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam | sam until 11-12 15:58 | leased | high | 2026-11-13T12:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T10:00Z |  |
-| [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam |  | open | high | 2026-11-13T12:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z |  |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | rejected. **Part 1 (prediction), 12 November 2026, bill.** Registered protocol, 2,000 deals a system, leader and declarer views, pools of 512 (about 4,000 decisions a system). Gain in nats of the true layout's weight: |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | adopted. **The class rule holds.** Defenders' spots (two to nine) in the suit played do not all take the same number of tricks on the true deal in **1.49% ± 0.08%** of 21,057 decisions (prediction: at most 5%). When they differ, the worst spot costs 1.13 tricks on average; the lowest spot is among the best in 99.2% of all decisions |
@@ -109,7 +109,7 @@ Generated 2026-11-12 11:57 UTC by `tools/workq.py` after a change by `will`. Do 
 
 **azure4**: ? of ? cores busy, reported  UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
