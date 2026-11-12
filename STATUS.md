@@ -11,7 +11,7 @@ Generated 2026-11-12 08:27 UTC by `tools/workq.py` after a change by `will`. Do 
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 1 | 0 | 0 | 0 | 0 | 0 |
 | sam | 2 | 0 | 0 | 0 | 0 | 5 |
-| will | 1 | 1 | 0 | 2 | 0 | 4 |
+| will | 2 | 1 | 0 | 1 | 0 | 4 |
 
 ## Waiting for review
 
@@ -31,6 +31,7 @@ Generated 2026-11-12 08:27 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 12:08 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool | sam until 11-12 12:19 | leased | high | 2026-11-13T12:00Z |  |
+| [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-12 12:27 | leased | medium |  |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will | will until 11-12 11:50 | leased | medium | 2026-11-12T16:00Z |  |
 | [G9-B7](tasks/G9-B7.md) | Replay reader: read a profile's calls by replaying its own bidder | bill | bill | submitted | high | 2026-11-12T11:00Z |  |
 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | bill | submitted | medium | 2026-11-13T10:00Z |  |
@@ -42,7 +43,6 @@ Generated 2026-11-12 08:27 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave |  | open | high | 2026-11-13T12:00Z | after G9-D7, G9-B7 |
 | [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
-| [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | open | medium |  |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
 | [G9-A2](tasks/G9-A2.md) | Player model, table contract and experience schema | g9 |  | resolved | high | 2026-11-12T12:00Z |  |
