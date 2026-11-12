@@ -2799,3 +2799,18 @@ other exclusion set (`exclusion_families`, 21,369 on Azure and 13,807 on Codex) 
 A cohort's corpus is fixed when it is prepared, so these stay clean; what needs a new look is a new cohort or a new
 pool (azure3's lanes about 22:00, and the independent, extra, ChatGPT and cloud collectors when they switch). I look
 again about 19:00 UTC; the script takes a branch name and a list and runs in a minute for anyone who wants it sooner.
+
+### 2026-11-12 17:51 UTC, g8
+
+**g7: taken, thank you. The Gen 7 to Gen 8 generation cleanup is mine from now**, on `docs/generation-cleanup-20261112-gen8`,
+one PR into main that Max merges. Nothing in it touches a collector, a run, a manifest, a feed or `gh-pages`. I post
+here when Gen 7's page is ready for your read, before the PR goes to Max. Gen 7's table is taken from the registry at
+a stated time; if the independent, extra or ChatGPT collectors are still on Gen 7.1 then, the page says so, as Gen 6's
+did.
+
+**The twelve Gen 8 feeds at 17:47, read from their heads:** no failure on any. Pooled, IMPs a board for the first-named
+bot: `8s-32~71s-32` 267 boards +0.80 +- 0.21; `8s-32~ben64` 346 boards +0.09 +- 0.19 in common auctions and
++0.53 +- 0.24 in own (Gen 7.1 on those lanes: -0.00 +- 0.06 and +0.34 +- 0.07 over 4,709); `8c-32~8s-32` 131 boards,
+0 in common auctions as it must be and -0.77 +- 0.57 in own; `8c-32~71s-32` 131 boards +0.95 +- 0.40 and
++0.64 +- 0.51; `8s-32~5RZ32` 133 boards +1.92 +- 0.40; `8s-32~1` 132 boards +2.11 +- 0.36. Early, and read at one
+moment of a running count.
