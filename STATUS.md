@@ -62,7 +62,7 @@ Generated 2026-11-12 21:07 UTC by `tools/workq.py` after a change by `sam`. Do n
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z | lease expired, may be taken over |
-| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 21:08 | leased | high | 2026-11-13T16:00Z |  |
+| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-13 01:07 | leased | high | 2026-11-13T16:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T04:00Z |  |
