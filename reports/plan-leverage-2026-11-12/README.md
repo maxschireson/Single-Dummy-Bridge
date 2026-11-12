@@ -21,11 +21,12 @@ key variables instead of 32 layouts, nets that work out what is going on.
 
 **In short.** Against these bots and with their beliefs, the choice of card has little left in it: about 0.10 tricks a
 side at tricks 3 to 6 and 0.07 at tricks 7 to 12 if every card's real expectation were known exactly, 0.02 in level
-cards late. The bot simulating itself from trick 7 collects 0.043 of the late part, and in a played test it is worth
-+0.175 +- 0.035 IMPs a board at about six times the CPU. Nothing I tried gives the net more leverage: it reaches the
+cards late. The bot simulating itself from trick 7 collects 0.043 of the late part, and in played tests it is worth
++0.175 +- 0.035 IMPs a board on Gen 7.1 and +0.198 +- 0.033 on Gen 8's card play, at about six times the CPU. Nothing I tried gives the net more leverage: it reaches the
 table as a predictor of the bots' cards, and that predictor improves slowly with data. Plans as layout families, a
-head fitted on outcomes and tables of play kinds add nothing measurable. The opening lead holds 0.01 to 0.03. Tricks
-1 to 2 after the lead are being measured.
+head fitted on outcomes and tables of play kinds add nothing measurable. The opening lead holds 0.01 to 0.03, tricks
+1 to 2 after it about 0.14, which 16 layouts of playouts do not collect. Using the claim finder inside the playouts
+halves their cost and loses most of the played gain (section 6).
 
 1. **Why the tree shows no gain from a better net.** At tricks 3 to 6, knowing exactly what every other card would
    bring with the bots playing on is worth about 0.10 tricks a side at one table (a fit gives 0.140 +- 0.047 and a
@@ -42,8 +43,8 @@ head fitted on outcomes and tables of play kinds add nothing measurable. The ope
 3. **Where look-ahead does pay: tricks 7 to 12 with the bot as its own simulator.** From the deal list a playout by
    the real bot costs 0.08 s. Half of the list's layouts choose, the other half score: +0.043 +- 0.012 tricks a side
    (2,990 forks, 1,561 boards), mostly at trick 7; exact knowledge there would be worth 0.07. Played against Gen 7.1:
-   +0.175 +- 0.035 IMPs a board over 1,600 boards (98 boards won, 24 lost), at roughly six times the bot's CPU.
-   (Sections 1 and 6.)
+   +0.175 +- 0.035 IMPs a board over 1,600 boards (98 boards won, 24 lost), at roughly six times the bot's CPU; on
+   Gen 8's card play against the same without it, +0.198 +- 0.033. (Sections 1 and 6.)
 4. **Plans as layout families do not carry it.** About four double-dummy outcome families hold 90% of the weight at
    a decision, but three simple variables explain a third of the double-dummy swing, and grouping layouts by
    double-dummy outcome explains a quarter of where real play departs from double dummy. (Section 3.)
@@ -75,7 +76,8 @@ In one unit (tricks a side at one table, Gen 6 among Gen 6; a board is two sides
 | A different card at tricks 7 to 12 | 0.07 +- 0.01 (fit) | 0.043 +- 0.012 with the bot as its own simulator |
 | Level cards, tricks 7 to 12 | 0.02 | 0.01 |
 | The opening lead | 0.01 to 0.03 | a table by kind of lead +0.005 +- 0.004; real playouts on 12 layouts +0.027 +- 0.015 |
-| Tricks 1 to 2 after the lead, level cards at tricks 3 to 6 | not measured yet | |
+| Tricks 1 to 2 after the lead | about 0.14 (fit 0.173 +- 0.064, less its error of 0.036) | real playouts on 8 of 16 layouts +0.007 +- 0.013 |
+| Level cards at tricks 3 to 6 | half the pairs differ in real play with the same double dummy | real playouts on 12 of 16 layouts -0.007 +- 0.007 |
 | Reading the play (p41's bench, double-dummy tricks) | 0.37 if told the deal | 0.10 with v4.1; 0.07 to 0.10 more with the bot as the model |
 
 ## Units and method
@@ -218,12 +220,18 @@ and the simulation says it errs high by 0.050 +- 0.005 at this number of pairs, 
 between about 0.01 and 0.03 a side, and a playout from the lead costs a whole board of the bot's search. The lead is
 not where the tricks are.
 
-**Tricks 1 to 2 after the lead:** *pending* (`ceilT12b`, azure5, from 19:40 UTC, about three hours).
+**Tricks 1 to 2 after the lead** (`ceilT12b`: 413 gap forks on 400 boards, 16 layouts): the forced card costs
++0.343 +- 0.020 by the playouts where double dummy on the same layouts says +0.413. Half the layouts choosing gains
++0.007 +- 0.013 tricks a side at trust 0.25, nothing at 0.5 or 0.75 of the layouts or at higher trust. The fit of
+exact knowledge gives 0.173 +- 0.064, of which 0.036 +- 0.014 is its own error at this number of pairs: about 0.14 is
+there, as at tricks 3 to 6, and the playouts are too noisy at this length to find it.
 
-**A 64-layout ceiling for close decisions at tricks 3 to 6** (recorded gap up to 0.25), to check the fit on other
-boards and more layouts: 94 pairs on 80 boards so far. 48 of 64 layouts choosing gains +0.04 +- 0.04 to +0.07 +- 0.06
-by rule; hindsight on all 64 layouts, the upper bound, 0.20 +- 0.06. (The fit on 94 pairs, 0.134 +- 0.051, is too few
-pairs to trust.) 300 more boards *pending* (`ceil64b`).
+**A 64-layout ceiling for close decisions at tricks 3 to 6** (recorded gap up to 0.25; `ceil64`, `ceil64b`: 347 pairs
+on 380 boards), to check the fit on other boards and more layouts. 32 of 64 layouts choosing gains +0.014 +- 0.009 at
+trust 0.25 and +0.027 +- 0.016 at 0.5; 48 of 64, +0.016 +- 0.009 and +0.025 +- 0.016. The fit of exact knowledge gives
+0.094 +- 0.026 at these gaps, where the 16-layout data, less the fit's error, gave about 0.09. More layouts per pair
+do not raise what a rule collects much: the real departures from double dummy are small beside the per-layout noise
+even at 64.
 
 **Cards the search rates exactly level.** The gap forks above contain none (the smallest recorded gap is above zero),
 so none of the figures above covers the choice among level cards, which the bots make with a net. The collector's
@@ -232,7 +240,23 @@ search, equivalent cards left out. At tricks 7 to 12 (4,356 pairs on 566 boards,
 cost +0.001 +- 0.002; the playouts say +0.0025 +- 0.0010; half the layouts choosing gains +0.009 +- 0.003 tricks a side;
 the fit gives 0.024 +- 0.003 for exact knowledge and hindsight on all layouts 0.020 +- 0.004. So late level cards hold
 about a fiftieth of a trick a side between these two selectors. Level cards neither selector chose are not in the
-data. Tricks 3 to 6: *pending* (`ceilTies`, azure5, overnight). The played test does re-value level cards.
+data. The played test does re-value level cards.
+
+**The same double dummy is not the same plan.** On each layout of the ceiling both cards are played out, so a pair
+can be split three ways (share of the weight):
+
+| Pairs | Same on every layout | Same double dummy, real results differ | Double dummy differs |
+|---|---|---|---|
+| Level cards, tricks 7 to 12 (4,356) | 95% | 4.5% | 0.5% |
+| Level cards, tricks 3 to 6 (369, `ceilTies`, 150 boards) | 43% | 50% | 6% |
+| Rated behind, tricks 7 to 12 (2,990) | 7% | 2% | 91% |
+
+The middle column is a commitment double dummy cannot see, such as a two-way finesse taken one way. It is where the
+playouts earn most per pair: late, all of the level cards' +0.009 +- 0.003 comes from it, and among cards rated behind
+its 2% of the pairs give +0.010 +- 0.003 of the +0.043. The difference shows on few layouts (a median of 2 in 16; after
+4 identical layouts half of these pairs still differ later), so playouts cannot stop early on agreement. At tricks 3
+to 6 half the level choices are such commitments, the other card costs +0.028 +- 0.008 by the playouts, and 16
+layouts cannot pick between them (12 of 16 choosing: -0.007 +- 0.007; hindsight +0.054 +- 0.009).
 
 Examples of what the ceiling finds (`scripts/plan_examples.py`: real playouts say the other card is better by more
 than two standard errors): dummy cashing a side king at trick 5 in 3S where a trump first is 0.75 +-
@@ -296,8 +320,9 @@ Seats that search more of what they believe (the solver's choice among the net's
 believed layouts; 327 pairs on the first 250 boards, 32 layouts a pair, sandbox): coefficient 0.39 and 0.41, and they
 account for about three quarters of what real play adds to double dummy (0.75, 0.79; noisy at this size), against
 0.44 for three layouts and 0.15 to 0.29 for the net alone. At 32 layouts the rule still gains little (+0.017 +- 0.014,
-+0.012 +- 0.031): the layouts limit it, not the seats. `v41:hyb5`, `v41:hyb8` at 128 layouts: *pending* (`wide3`,
-azure5, overnight).
++0.012 +- 0.031): the layouts limit it, not the seats. At 128 layouts (`wide3`: 629 pairs) the same seats over 5 and 8
+believed layouts have coefficients 0.38 and 0.41 and gain +0.017 +- 0.019 and +0.021 +- 0.012 at trust 0.25 (+0.026
+and +0.029 as a plain quarter blend): no better than three layouts.
 
 ## 3. Plans, layout families and key variables
 
@@ -442,13 +467,32 @@ The bench figure it tests (+0.043 +- 0.012 tricks a side) is for Gen 6 among Gen
 reads the play from trick 7, which the bench does not include. At the fork pairs' 3.6 IMPs a trick that figure
 would be 0.3 IMPs a board; the same rule priced in IMPs from the real deals of the bench gives +0.33 +- 0.35 a board.
 
-`match3`: the same rule on the Gen 8 prototype's card play (`pr75-8p-32-v41` against `8p-32-v41`: the play read from
-trick 1 at exponent 1.0, policy v4.1; the arena's `8s-32` has these card-play settings), 1,600 deals, seed 131:
-*pending* (azure2, from 18:48 UTC, about 4.3 hours).
+`match3`: the same rule on the Gen 8 prototype's card play (`pr75-8p-32-v41` against `8p-32-v41`: the play read
+from trick 1 at exponent 1.0, policy v4.1; the arena's `8s-32` has these card-play settings), 1,600 deals, seed 131:
+**+0.198 +- 0.033 IMPs a board**. 95 boards won (356 IMPs), 15 lost (40); boards of 10 IMPs or more 16 for, 1
+against, every other board +0.096 +- 0.018; halves +0.205 and +0.190; 79 CPU seconds a board for the pair.
+
+**The claim finder** (`research/sure-trick-table-20261112`, `sure.cpp`: what the declaring side can guarantee
+against every split of the unseen cards, 0.5 ms a decision from trick 7; `bridge_harness/claims.py`, setting
+`claim` in `plan_player.py`). Two uses: at the declaring side's own decisions, no playouts where it settles the
+contract (a card guarantees it, its tricks are in, or too few are left) and a guaranteeing card first; and inside the
+playouts, the simulated declarer plays the card guaranteeing most tricks without searching once the contract is
+settled, and a playout stops when every trick left is guaranteed. On `match1`'s first 40 deals (sandbox) the
+candidate's CPU a board falls from 63.2 (playouts 56.4) to 30.2 (playouts 22.1); the opponent's is 8.9. Settled
+declaring decisions held 38% of the playout CPU and, on the late ceiling, +0.005 of the +0.043 tricks a side.
+
+Played, both uses (`match4`, `prc-32-v41` against `7s-32-v41` on `match1`'s deals, stopped at 773 boards): +0.047 +-
+0.051 IMPs a board, where `match1` has +0.139 on the same deals; paired by deal -0.092 +- 0.042. The boards it gives up
+are small swings: 18 that `match1` won where it was flat, 19 it lost where `match1` was flat. The reading I take:
+once the contract is settled, a simulated declarer that plays only for its guaranteed tricks hides every later
+finesse and guess from the playouts, at the defenders' decisions too, and much of the late rule's IMP gain is over-
+and undertricks (`match1`'s boards under 10 IMPs alone +0.100). The ceiling check priced only the first use.
+`match6` (`prr-32-v41`, the first use alone, 38% of the playout CPU saved) and `match5` (`cl-32-v41`, the claim rule
+alone, no playouts) on the same deals: *pending* (azure5).
 
 `match2`: `pr75x-32-v41` (the late rule, and from trick 5 on 12 layouts at trust 0.5, its tree stopping after
 trick 4) against `7s-32-v41` on `match1`'s deals. 199 CPU seconds a board on four boards timed, so about 11 hours:
-*pending* (azure2, after `match3`).
+*pending* (azure2, from 23:13 UTC).
 
 ## 7. What a better net buys
 
@@ -473,10 +517,11 @@ a pair). None of them asks the net to judge a position.
 
 ## What I would do next
 
-1. **If `match3` holds on Gen 8's card play: put the late rule forward as a candidate change**, with its cost stated
-   (five to six times the card-play CPU). It is the one thing here that has gained in play. Before that, a 1,600-board
-   match of `pr75n-32-v41` (no playouts between level cards; a quarter cheaper) against `pr75-32-v41` on the same
-   deals would say whether the cheaper form keeps the gain.
+1. **Put the late rule forward as a candidate change on Gen 8** (+0.198 +- 0.033 IMPs a board on its card play),
+   with its cost stated: about six times the card-play CPU. It is the one thing here that has gained in play. The
+   cheaper forms are not free: the claim finder inside the playouts loses most of the gain; at the root only it is
+   being played (`match6`). Skipping playouts between level cards would drop exactly the commitments the playouts
+   earn most on (section 1).
 2. **Stop expecting the tree at tricks 3 to 6 to carry a better net.** About 0.10 tricks a side is there in all; the
    tree collects 0.01 to 0.03; what limits it is how well the net reproduces the bots, and the last 2.3-fold of data
    moved that by two points. `match2` says whether brute force (the bot simulating itself from trick 5, at 199 CPU
@@ -503,9 +548,9 @@ a pair). None of them asks the net to judge a position.
 - The "exact knowledge" figures are a fit, corrected at tricks 3 to 6 for an error found by simulating it. The direct
   figures are the split tables; hindsight on all layouts is the only model-free upper bound and it is loose at 16
   layouts.
-- The ceiling covers the gap forks (a second card the search rated behind) at the opening lead and from trick 3,
-  and, for level cards, one other selector's card at tricks 7 to 12. Tricks 1 to 2 after the lead and level cards at
-  tricks 3 to 6 are pending.
+- The ceiling covers the gap forks (a second card the search rated behind) at the opening lead and at every trick
+  from 1, and, for level cards, one other selector's card at tricks 3 to 12. The level-card set at tricks 3 to 6 is
+  small (150 boards).
 - The reading figures are for a bot read by an exact copy of itself. Against BEN, or a bot that plays its level
   cards at random, the evidence in section 5 is not there.
 - One result here has been played (`match1`); two more matches are running.
