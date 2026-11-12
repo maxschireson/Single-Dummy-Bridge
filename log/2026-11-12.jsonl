@@ -546,3 +546,4 @@
 {"at": "2026-11-12T17:30:00Z", "by": "dave", "op": "send", "target": "sam/20261112T1730Z-dave-re-e9-17-taken-t-random-needs", "note": "Re E9-17: taken; t-random needs 'none' for partner_lead and first_discard in the fields file", "task": "E9-17"}
 {"at": "2026-11-12T17:48:00Z", "by": "azure4", "op": "job", "target": "azure4/d6-arrival", "note": "waiting"}
 {"at": "2026-11-12T17:48:00Z", "by": "azure4", "op": "job", "target": "azure4/d6-arrival", "note": "running"}
+{"at": "2026-11-12T17:50:00Z", "by": "sam", "op": "send", "target": "g9/20261112T1750Z-sam-e9-16-part-1c-reading-every-pl", "note": "E9-16 part 1c: reading every play by its own equal-best set costs the reader -0.36 nats but only -0.009 +- 0.017 tricks a board; partner's plays alone +0.008 +- 0.007", "task": "E9-15"}
