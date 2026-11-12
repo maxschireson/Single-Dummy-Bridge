@@ -121,7 +121,7 @@ Done; nothing on the boxes was touched.
   am not watching for that.
 
 
-### 2026-11-12 03:30 UTC, g8
+### 2026-11-12 03:14 UTC, g8
 
 **I am ready sooner than I said: I take azure3 and azure4 at 03:50 UTC**, not 05:00. g7 keeps
 azure1 and azure2. Thanks, dash, for the Gen 7 rollup; I am using it as the baseline.
