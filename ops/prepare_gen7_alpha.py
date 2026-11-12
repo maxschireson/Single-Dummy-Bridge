@@ -191,7 +191,7 @@ def inherited_actors(source, old, actor_source):
     return ancestor
 
 
-def prepare(root, source, plan_path=None, shard=None, actor_source=None):
+def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude_families=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -220,6 +220,13 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
                 raise ValueError('Source receipt/episode mismatch')
             done.add(i)
         keep = [i for i in range(old['target']) if i not in done]
+        excluded = set()
+        if exclude_families is not None:
+            values = json.loads(Path(exclude_families).read_text())
+            if not isinstance(values, list) or any(not isinstance(v, str) or not re.fullmatch(r'[0-9a-f]{64}', v) for v in values):
+                raise ValueError('Evaluation exclusions must be a JSON list of canonical family hashes')
+            excluded = set(values)
+            keep = [i for i in keep if deal_key(boards[i].hands, True) not in excluded]
         if not keep:
             raise ValueError('No unplayed source deals remain')
         if shard is not None:                   # this machine's share: every n-th unplayed deal, starting at the k-th
@@ -252,6 +259,10 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
         for key, policy in policies.items():
             (root / policy_path(key)).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(policy, root / policy_path(key))
+        if exclude_families is not None:
+            exclusion_path = root / 'artifacts/validation/evaluation-exclusions.json'
+            exclusion_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(exclude_families, exclusion_path)
         for folder in ('episodes', 'receipts', 'failures'):
             (root / folder).mkdir()
         save([boards[i] for i in keep], root / 'corpus.jsonl')
@@ -286,6 +297,12 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
         for key in ('generation', 'variant'):
             if key in plan:
                 m[key] = plan[key]
+        pairs = [pair_members(p) for p in plan['pair_weights']]
+        m['bidding_conditions'] = (['self'] if any(a == b for a, b in pairs) else []) + (
+            ['common', 'native'] if any(a != b for a, b in pairs) else [])
+        if exclude_families is not None:
+            m['evaluation_exclusions'] = dict(path='artifacts/validation/evaluation-exclusions.json',
+                sha256=sha(exclusion_path), families=len(excluded), reason='Exclude released-policy training families from fresh comparisons')
         if shard is not None:
             m['shard'] = dict(index=k, of=n)
         m['identity'] = digest(m)
@@ -303,7 +320,8 @@ if __name__ == '__main__':
     p.add_argument('--plan', type=Path)
     p.add_argument('--shard', help='K/N: take every N-th unplayed deal starting at the K-th (K from 0), for machines sharing one source run')
     p.add_argument('--actor-source', type=Path, help='Verified direct predecessor supplying actors pruned by self-play; deals come only from --source')
+    p.add_argument('--exclude-families', type=Path, help='JSON family hashes to exclude from evaluation, preserved with their hash')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source)
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families)
     print(json.dumps(dict(identity=m['identity'], target=m['target'], shard=m.get('shard'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))

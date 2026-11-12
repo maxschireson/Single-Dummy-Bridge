@@ -39,6 +39,26 @@ def stand_in(tmp, name, source, **changes):
 
 
 class Gen71Tests(unittest.TestCase):
+    def test_training_family_exclusion_is_frozen_and_applied(self):
+        from bridge_harness.corpus import load
+        from bridge_harness.bidding_env import deal_key
+        with tempfile.TemporaryDirectory() as name:
+            tmp = Path(name)
+            old = gen6_run(tmp / 'source')
+            plan = stand_in(tmp, 'compare', COMPARE)
+            family = deal_key(load(tmp / 'source/corpus.jsonl')[0].hands, True)
+            excluded = tmp / 'excluded.json'
+            excluded.write_text(json.dumps([family]))
+            m = prepare(tmp / 'run', tmp / 'source', plan, exclude_families=excluded)
+            self.assertEqual(m['target'], old['target'] - 1)
+            self.assertNotIn(family, {deal_key(b.hands, True) for b in load(tmp / 'run/corpus.jsonl')})
+            self.assertEqual(m['evaluation_exclusions']['sha256'], sha(excluded))
+            self.assertEqual(sha(tmp / 'run' / m['evaluation_exclusions']['path']), sha(excluded))
+            verify_generation(tmp / 'run', m)
+            excluded.write_text('{"wrong": true}')
+            with self.assertRaisesRegex(ValueError, 'canonical family hashes'):
+                prepare(tmp / 'bad', tmp / 'source', plan, exclude_families=excluded)
+
     def test_the_shipped_plans_are_gen7_with_the_net_changed(self):
         compare, ben, base = load_plan(COMPARE), load_plan(BEN), load_plan(PHASE1)
         with self.assertRaises(ValueError):
