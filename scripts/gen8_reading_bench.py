@@ -194,11 +194,14 @@ def pools(a):
     shard, of = (int(x) for x in a.shard.split('/'))
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    store, part, started, done = Store(nets), 0, time.time(), 0
+    store, part, started, done, seen = Store(nets), a.part_offset, time.time(), 0, 0
     log = open(out / f'pools-{shard:02d}.log', 'a')
     house = ('6-32', '6-256', '7s-32', '71s-32')
     for index, (path, key, family, bots, e) in enumerate(tables(a.episodes, skip)):
         if index % of != shard:
+            continue
+        seen += 1
+        if seen <= a.skip_tables:
             continue
         if done >= a.tables or time.time() - started > a.seconds:
             break
@@ -325,7 +328,7 @@ def score(r, fit, power, min_effective=8., solved=32, list_solve=256, offsets=8,
         f = f + beta * own
     pool, true = f[:L].astype(np.float64), float(f[L])
     prior = r['prior'].astype(np.float64)
-    keep = slice(None, None, stride)
+    keep = slice(None, None, stride if r['regime'] == 0 else 1)         # a smaller pool; the deal list is never thinned
     if r['regime'] == 0:
         used = power
         while used > 1e-3 and _effective(used * pool[keep]) < min_effective:
@@ -495,6 +498,8 @@ def main():
     ap.add_argument('--tables', type=int, default=10 ** 9)
     ap.add_argument('--seconds', type=float, default=1e9)
     ap.add_argument('--part', type=int, default=4, help='tables per part file')
+    ap.add_argument('--skip-tables', type=int, default=0, help="pools: leave out this many of the shard's first tables (a run continued)")
+    ap.add_argument('--part-offset', type=int, default=0, help='pools: number of the first part file written (a run continued)')
     ap.add_argument('--pool', type=int, default=512)
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--skip-families', action='append', default=[], help='a built set whose deals are left out')
