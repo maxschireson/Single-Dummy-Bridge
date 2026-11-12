@@ -1,6 +1,6 @@
 # G9-S6: the house bots' own carding, measured
 
-Gen 9 research (sam, signals), 12 November 2026. Experiment file: `experiments/E9-8.md` on
+Gen 9 research (sam, signals), 12 November 2026. Experiment file: `experiments/E9-9.md` on
 `team/gen9`. Kind of evidence: exact counts on recorded boards (all hands known afterwards).
 Nothing adopted.
 
