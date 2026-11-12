@@ -13,7 +13,6 @@ rb1 $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models
 @source b839df0e178bb2bfca014c686c92581813a8910e
 match1 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 @source 1cae1f1584878d66ed7d79edb71d302c4fda0b0b
-ceilLead $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --leads --max-ply 0 --from-trick 1 --to-trick 1 --workers 8 --seconds 17000 --out $R.json
 ceilT12 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 1 --to-trick 2 --skip-files 120 --files 400 --workers 8 --out $R.json
 ceilTies $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --ties --bands=-1 --from-trick 3 --to-trick 9 --files 400 --workers 8 --out $R.json
 lab1 $PY scripts/plan_ceiling.py --episodes $P/data/g6sp_train --worlds 16 --ties --from-trick 7 --to-trick 12 --workers 8 --out $R.json
