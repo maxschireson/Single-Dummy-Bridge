@@ -1,0 +1,96 @@
+{
+ "schema": "arena9-reading-check-v1",
+ "bot": "9a-32",
+ "control_bot": "8p-32",
+ "rows": 392,
+ "guests": {
+  "guest-a": {
+   "arrival": {
+    "epoch": 2,
+    "bot": {
+     "n": 130,
+     "mean": 1.6622,
+     "se": 0.1092
+    },
+    "control": {
+     "n": 130,
+     "mean": -3.1992,
+     "se": 0.9559
+    },
+    "difference": {
+     "n": 65,
+     "mean": 4.8615,
+     "se": 0.8681
+    },
+    "threshold": 3.0,
+    "met": true,
+    "errors": 0
+   },
+   "snapshot": {
+    "epoch": 5,
+    "bot": {
+     "n": 130,
+     "mean": 1.6901,
+     "se": 0.1137
+    },
+    "control": {
+     "n": 130,
+     "mean": -3.1992,
+     "se": 0.9559
+    },
+    "difference": {
+     "n": 65,
+     "mean": 4.8894,
+     "se": 0.8824
+    },
+    "threshold": 3.0,
+    "met": true,
+    "errors": 0
+   }
+  },
+  "guest-b": {
+   "arrival": {
+    "epoch": 4,
+    "bot": {
+     "n": 132,
+     "mean": 2.0941,
+     "se": 0.1684
+    },
+    "control": {
+     "n": 132,
+     "mean": 2.5695,
+     "se": 0.1335
+    },
+    "difference": {
+     "n": 66,
+     "mean": -0.4753,
+     "se": 0.1056
+    },
+    "threshold": -0.45,
+    "met": false,
+    "errors": 0
+   },
+   "snapshot": {
+    "epoch": 5,
+    "bot": {
+     "n": 130,
+     "mean": 2.1563,
+     "se": 0.1913
+    },
+    "control": {
+     "n": 130,
+     "mean": 2.5854,
+     "se": 0.1347
+    },
+    "difference": {
+     "n": 65,
+     "mean": -0.4292,
+     "se": 0.1237
+    },
+    "threshold": -0.15,
+    "met": false,
+    "errors": 0
+   }
+  }
+ }
+}

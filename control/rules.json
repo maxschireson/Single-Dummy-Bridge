@@ -1,0 +1,73 @@
+{
+ "admission": {
+  "max_boards": 2000,
+  "se": 0.15
+ },
+ "common_bidder": "6-32",
+ "condition": "native",
+ "epoch": {
+  "boards": 40,
+  "sizes": [
+   16,
+   24,
+   24,
+   40,
+   40
+  ]
+ },
+ "experience": {
+  "occasions": {
+   "bid": "auction",
+   "card": "play"
+  }
+ },
+ "floors": [
+  {
+   "boards": 6,
+   "pairs": [
+    "9a-32~guest-a",
+    "8p-32~guest-a"
+   ],
+   "purpose": "comparison",
+   "same_deals": true
+  },
+  {
+   "boards": 10,
+   "pairs": [
+    "9a-32~guest-b",
+    "8p-32~guest-b"
+   ],
+   "purpose": "comparison",
+   "same_deals": true
+  }
+ ],
+ "gain_purposes": [
+  "admission",
+  "panel"
+ ],
+ "max_weight_ratio": 2,
+ "notes": [
+  "Shares of the scheduled boards, for this run only (nothing trains on it; rules v0 stays as accepted): self-play 0.10, promotion 0.30, the rest (0.60, and any empty purpose's share) to admission and panel pairs by the gain rule of G9-A4 (bridge_harness/arena9.gain_units).",
+  "Full-path rehearsal (not committed): rules-arrival.json with epochs of 16, 24, 24, 40 and 40 boards and floors of 6 (guest-a) and 10 (guest-b) boards a pair."
+ ],
+ "promotion": {
+  "alpha": 0.05,
+  "beta": 0.1,
+  "cap": 10000,
+  "d": 0.1
+ },
+ "reference": "1",
+ "retirement": {
+  "gap": 1.0,
+  "min_epochs": 3
+ },
+ "schema": "arena-rules-v1",
+ "shares": {
+  "gain": 0.6,
+  "promotion": 0.3,
+  "training": 0.1
+ },
+ "training_pairs": "self-play",
+ "version": "arrival-v2-fullpath-rehearsal",
+ "weight_units": 100
+}

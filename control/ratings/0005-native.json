@@ -1,0 +1,114 @@
+{
+ "condition": "native",
+ "epoch": 5,
+ "pairs": [
+  {
+   "boards": 2,
+   "mean": 2.5,
+   "pair": "9a-32~5RZ32"
+  },
+  {
+   "boards": 3,
+   "mean": 2.0,
+   "pair": "8p-32~1"
+  },
+  {
+   "boards": 4,
+   "mean": 0.0,
+   "pair": "7s-32~1"
+  },
+  {
+   "boards": 2,
+   "mean": 5.5,
+   "pair": "9a-32~1"
+  },
+  {
+   "boards": 9,
+   "mean": 1.8888888888888888,
+   "pair": "7s-32~5RZ32"
+  },
+  {
+   "boards": 15,
+   "mean": 0.26666666666666666,
+   "pair": "9a-32~8p-32"
+  },
+  {
+   "boards": 3,
+   "mean": 0.0,
+   "pair": "7s-32~8p-32"
+  },
+  {
+   "boards": 2,
+   "mean": 0.5,
+   "pair": "8p-32~5RZ32"
+  },
+  {
+   "boards": 6,
+   "mean": -1.1666666666666667,
+   "pair": "guest-a~5RZ32"
+  },
+  {
+   "boards": 24,
+   "mean": 3.0416666666666665,
+   "pair": "9a-32~guest-a"
+  },
+  {
+   "boards": 24,
+   "mean": 2.0,
+   "pair": "8p-32~guest-a"
+  },
+  {
+   "boards": 2,
+   "mean": 1.5,
+   "pair": "guest-a~1"
+  },
+  {
+   "boards": 4,
+   "mean": 0.0,
+   "pair": "guest-b~5RZ32"
+  },
+  {
+   "boards": 20,
+   "mean": -0.55,
+   "pair": "9a-32~guest-b"
+  },
+  {
+   "boards": 20,
+   "mean": -0.45,
+   "pair": "8p-32~guest-b"
+  }
+ ],
+ "players": {
+  "1": {
+   "se": 0.0,
+   "strength": 0.0
+  },
+  "5RZ32": {
+   "se": 1.1152235057562792,
+   "strength": 0.19957176772248264
+  },
+  "7s-32": {
+   "se": 1.1248445045670559,
+   "strength": 1.189283212858931
+  },
+  "8p-32": {
+   "se": 0.9560780077921253,
+   "strength": 1.307130640483047
+  },
+  "9a-32": {
+   "se": 0.987801765105567,
+   "strength": 1.727762370396781
+  },
+  "guest-a": {
+   "se": 1.0200928138919223,
+   "strength": -0.8110826933378568
+  },
+  "guest-b": {
+   "se": 1.031882369439875,
+   "strength": 1.7860508564327406
+  }
+ },
+ "reference": "1",
+ "schema": "ratings-v1",
+ "t2": 0.0
+}

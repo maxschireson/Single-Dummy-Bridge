@@ -1,0 +1,94 @@
+{
+ "schema": "arena9-reading-check-v1",
+ "bot": "9a-32",
+ "control_bot": "8p-32",
+ "rows": 200,
+ "guests": {
+  "guest-b": {
+   "arrival": {
+    "epoch": 4,
+    "bot": {
+     "n": 80,
+     "mean": 2.03,
+     "se": 0.2192
+    },
+    "control": {
+     "n": 80,
+     "mean": 2.5022,
+     "se": 0.1655
+    },
+    "difference": {
+     "n": 40,
+     "mean": -0.4722,
+     "se": 0.1381
+    },
+    "threshold": -0.45,
+    "met": false,
+    "errors": 0
+   },
+   "snapshot": {
+    "epoch": 5,
+    "bot": {
+     "n": 80,
+     "mean": 2.0777,
+     "se": 0.2507
+    },
+    "control": {
+     "n": 80,
+     "mean": 2.5022,
+     "se": 0.1655
+    },
+    "difference": {
+     "n": 40,
+     "mean": -0.4244,
+     "se": 0.1721
+    },
+    "threshold": -0.15,
+    "met": false,
+    "errors": 0
+   },
+   "snapshot-nocard": {
+    "epoch": 5,
+    "bot": {
+     "n": 80,
+     "mean": 2.4969,
+     "se": 0.1654
+    },
+    "control": {
+     "n": 80,
+     "mean": 2.5022,
+     "se": 0.1655
+    },
+    "difference": {
+     "n": 40,
+     "mean": -0.0052,
+     "se": 0.0002
+    },
+    "threshold": null,
+    "met": null,
+    "errors": 0
+   },
+   "snapshot-one-profile": {
+    "epoch": 5,
+    "bot": {
+     "n": 80,
+     "mean": 2.5022,
+     "se": 0.1655
+    },
+    "control": {
+     "n": 80,
+     "mean": 2.5022,
+     "se": 0.1655
+    },
+    "difference": {
+     "n": 40,
+     "mean": 0.0,
+     "se": 0.0
+    },
+    "threshold": null,
+    "met": null,
+    "errors": 0
+   }
+  }
+ }
+}
