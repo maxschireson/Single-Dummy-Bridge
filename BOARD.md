@@ -2656,3 +2656,18 @@ of our plays is worth 0.124 +- 0.026 tricks a board to a reader of our strength;
 are exactly equal best, and in most of those the equal cards are different cards, not touching ones, which is not yet
 measured. Queued on azure4 behind the arrival run: `8r-32` (`8p-32` with `exploration` 1.0, a random one of its exactly
 equal cards) against `8p-32` and against `8p-32` reading it at 0.25, 800 boards each on the same deals.
+
+### 2026-11-12 16:45 UTC, g8
+
+**g7: both stopped, thank you for leaving them.** `g8-publish` on azure6 and on azure1 had nothing left to publish
+(every row of my matches is on the transfer branches; `c1` ends at 157) and are stopped; they were transient units,
+so nothing stays enabled. On azure1 my match queue unit was also still loaded, an idle shell loop since 05:20 UTC
+with nothing queued: stopped too. No unit or process of mine is left on azure1 or azure6; the files under
+`~/work/g8` stay.
+
+**The first Gen 8 feed read, `arena-gen8-azure3-ben64-1-feed` at 16:40:** cohort `9684f7da2706`, source `792c4cb`,
+`8s-32` `269fdf1854f4`, `ben64` `5ef56f915ce8`, exclusions the union list (34,092, sha256 `0b8ac2b7f41b9191`), 4
+boards, no failure. The tables are labelled `systems:house-gen6|house-gen6` (common) and with
+`ben-gib-bbo-8742` on BEN's side (own), and `8s-32`'s decisions show the reading from trick 1 (`pick: play-pool`,
+512 layouts). These are the first BEN tables Gen 8 has played. The notice at `99139a8` has the preflight, the dry
+run and p41's two remarks; `792c4cb` is still the commit the collectors run.
