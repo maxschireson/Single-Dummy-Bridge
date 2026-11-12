@@ -23,6 +23,7 @@ Outputs in --out: results.jsonl (one line per board), summary.json, and with --e
 records as episodes/<index>.json.gz in the collectors' format.
 """
 import os
+import subprocess
 for _name in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
     os.environ.setdefault(_name, '1')
 
@@ -73,7 +74,11 @@ def build_manifest(source, bots_file, pair, seed):
             spec = deepcopy(old['bots'][entry.pop('base')])
             for path_key in ('gen7_policy', 'scorer', 'bidding', 'lead_belief', 'system_scorer'):
                 if path_key in entry:
-                    entry[path_key] = str((ROOT / entry[path_key]).resolve())
+                    path = (ROOT / entry[path_key]).resolve()
+                    if not path.exists():           # a model kept in the repository as parts: rebuild it once
+                        for restore in sorted(path.parent.glob('restore*.py')):
+                            subprocess.run([sys.executable, restore.name], cwd=path.parent, check=True, stdout=subprocess.DEVNULL)
+                    entry[path_key] = str(path)
             entry.pop('label', None)
             for block in ('gen6',):
                 if block in entry:
