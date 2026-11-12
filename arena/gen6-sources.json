@@ -3,14 +3,26 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen71independent",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · independent policy comparison, Gen6 and BEN",
+      "branch": "arena-gen71-independent-feed",
+      "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+    },
+    {
       "key": "gen7independentselfplay",
       "group": "gen7",
       "generation": 7,
       "variant": "7",
       "environment": "codex",
-      "name": "Gen 7 · independent standard self-play, Gen6 and BEN",
+      "name": "Gen7 independent · completed v4 self-play and anchors",
       "branch": "arena-gen7-independent-selfplay-feed",
-      "cohort": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00"
+      "cohort": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00",
+      "retired": true,
+      "revision": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d"
     },
     {
       "key": "gen7codexselfplaycapture",
