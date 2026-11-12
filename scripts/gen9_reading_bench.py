@@ -256,6 +256,9 @@ class ClassReading:
 
     def __init__(self, base, kind='spots', who='all'):
         self.base, self.kind, self.who = base, kind, who
+        self.temperature = 1.                                   # 'card@T': the net's probabilities sharpened as p^T
+        if kind.startswith('card@'):
+            self.kind, self.temperature = 'card', float(kind.split('@', 1)[1])
         self.g7 = base.g7
 
     def meet(self, opponent):
@@ -328,6 +331,9 @@ class ClassReading:
             p, count = self.probabilities(o, i, seat, chooser, held)
             played = o.history[i][1]
             if self.kind == 'card' or (self.who == 'opponents' and partner) or (self.who == 'partner' and not partner):
+                if self.temperature != 1.:
+                    p = p ** self.temperature
+                    p = p / np.maximum(p.sum(axis=1, keepdims=True), 1e-300)
                 v = np.log((1 - f) * p[:, played] + f / np.maximum(count, 1))
                 if q.opponent_factor != 1. and not partner:
                     v = v * q.opponent_factor
@@ -623,7 +629,7 @@ def main():
     ap.add_argument('--head-base', default='8x-32')
     ap.add_argument('--expert-reading', action='append', default=[], help='NAME=MODELS.json:VERSION:SIZE:MODEL (E9-15)')
     ap.add_argument('--expert-base', default='r9b-32')
-    ap.add_argument('--class-reading', action='append', default=[], help='NAME=KIND[:WHO], KIND spots|touching|equal|card, WHO all|opponents|partner (E9-16)')
+    ap.add_argument('--class-reading', action='append', default=[], help='NAME=KIND[:WHO], KIND spots|touching|equal|card|card@T (the net sharpened as p^T), WHO all|opponents|partner (E9-16)')
     ap.add_argument('--class-base', default='8p-32')
     ap.add_argument('--equal-best', help="class readings of kind 'equal': reports/gen9-leakage-2026-11-12/equal_best.json.gz")
     ap.add_argument('--part-shard', default='0/1', help='readings: this process takes part files k, k + n, ... (k/n)')
