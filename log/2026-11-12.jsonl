@@ -54,3 +54,5 @@
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "set", "target": "G9-W3", "note": "reviewer=dave"}
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "will/20261112T0728Z-g9-w1-and-w2-accepted-w3-to-dave", "note": "W1 and W2 accepted; W3 to dave for review; build the pinned issue for Max; module reviews move to peers"}
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "dave/20261112T0728Z-g9-please-review-g9-w3-pr-20-will", "note": "Please review G9-W3 (PR 20, will's test runner) and merge it into feature/gen9 if it is right", "task": "G9-W3"}
+{"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "resolve", "target": "E9-3", "note": "The class rule stands for v1.", "resolution": "adopted"}
+{"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0728Z-g9-e9-3-resolved-adopted-how-ofte", "note": "E9-3 resolved (adopted): How often spot cards nine and below are not equivalent", "task": "E9-3"}
