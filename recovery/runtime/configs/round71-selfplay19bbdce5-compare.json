@@ -1,0 +1,134 @@
+{
+  "schema": "gen7-alpha-plan-v1",
+  "campaign": "gen71-compare-selfplay19bbdce5-20261112",
+  "title": "Gen 7.1 \u00b7 stream 19bbdce5 comparison",
+  "launch_enabled": true,
+  "pending": [],
+  "notes": [
+    "Authorized by Max, 12 November 2026, 05:42 UTC: \"Pull the 4.1 policy net and prepare to upgrade the bots with them effective 6AM unless testing tells otherwise. Replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes a 95% CI lead, then switch to 7.1 self play. All other matches should replace 7 with 7.1. All of this is effective 6:00 unless revoked.\" It applies to the arena's collectors, not to Gen 8 research. docs/gen71_2026-11-12.md is the notice this file belongs to.",
+    "Gen 7.1 standard (71s-32) is Gen 7 standard (7s-32) with policy net v4.1 in place of v4 and nothing else changed: the same Gen 6 base bot (6-32), the same gen7 settings, the same tree. v4.1 has v4's shape, inputs and hand-fit scorer and was trained on every board on the feeds at 03:59 UTC on 12 November.",
+    "This is configs/round7-phase1-selfplay.json with 7s-32 against itself replaced by 71s-32 against 7s-32, weight for weight, and the Gen 6 pair played by 71s-32: 71s-32~6-32 one board in three, 71s-32~7s-32 two. Every board is two tables on one deal, and IMPs are for 71s-32.",
+    "7s-32 here is the bot of phase 1: same settings, same policy file at the same path, so the same identity. The two bots differ only in the policy release.",
+    "Stop rule for 71s-32~7s-32, over all collectors together: at least 1,000 boards, and 7.1 ahead with the lower end of a 95% interval above zero. Then this cohort is drained and its successor is prepared from configs/round71-selfplay.json, which is closed until then. A plan has no per-pair switch.",
+    "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here. Prepare at the commit named in the notice or later: earlier sources ignore the gap_fork setting, and before this branch a plan could name only one policy release.",
+    "Source run. A machine prepares from the drained cohort it is replacing (STOP and WATCHDOG_STOP in place, its feed complete), so the deals that cohort had not played are the ones used; the cohort it replaces is then finished for good. A machine starting fresh prepares from the capture capsule with its own --shard K/N.",
+    "This owned stream replaces its Gen6 fast self-play cohort under the all-general-arena-collectors push effective06:00UTC. Only unplayed families are inherited; completed records and actor artifacts remain frozen. Internal variant6 retains the established common/native exporter schema."
+  ],
+  "model_note": "Gen 7.1 standard (71s-32) is Gen 7 standard with policy net v4.1 in place of v4; nothing else differs. Gen 7 standard (7s-32) is Gen 6 fast (6-32: same bidder, lead net, hand-fit scorer, layouts and 32 samples) with the gen7 engine (bridge_harness/gen7.py) and policy net v4: layouts weighted by the play so far from trick 7, exact ties broken by the net, and at tricks 3 to 6 a tree search over the net's likeliest cards that re-values the cards the search rates within 0.25 tricks of its best (trust 0.3, stake rule at 0.5 IMPs, at most 3 tricks, 8 layouts). Settings are in the bot's `gen7` block. Every other bot is unchanged from the source run. docs/gen7_alpha_2026-11-11.md has the details.",
+  "interpretation": "Gen 7.1 against Gen 7: the same bot with policy net v4.1 against itself with v4, so the result is what the new net is worth in play; and Gen 7.1 against Gen 6 fast as the generation comparison. Common and native auctions are separate conditions; both bots bid alike, so identical auctions reuse physical games. Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
+  "roster": [
+    "71s-32",
+    "7s-32",
+    "6-32"
+  ],
+  "pair_weights": {
+    "71s-32~6-32": 1,
+    "71s-32~7s-32": 2
+  },
+  "common_bidder": "6-32",
+  "audit_references": {
+    "71s-32": "3",
+    "7s-32": "3"
+  },
+  "artifacts": {
+    "gen7_policy": {
+      "release": "models/cardplay/gen7-policy-v4-2026-11-11",
+      "file": "gen7_policy_v4.npz",
+      "restore": "restore.py",
+      "sha256": "d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13"
+    },
+    "gen7_policy_v41": {
+      "release": "models/cardplay/gen7-policy-v4.1-2026-11-12",
+      "file": "gen7_policy_v4.1.npz",
+      "restore": "restore.py",
+      "sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed"
+    }
+  },
+  "gen7_bots": {
+    "71s-32": {
+      "base": "6-32",
+      "label": "Gen 7.1 standard (32)",
+      "policy": "gen7_policy_v41",
+      "gen7": {
+        "play_weight": 0.5,
+        "play_floor": 0.05,
+        "play_max_layouts": 1024,
+        "play_lead": true,
+        "tie_break": "net",
+        "search_from_trick": 1,
+        "net_sample": false,
+        "tree_audit": true,
+        "tree": [
+          {
+            "from_trick": 3,
+            "to_trick": 6,
+            "root_margin": 0.25,
+            "root_cards": 3,
+            "trust": 0.3,
+            "max_solves": 12000,
+            "tricks": 3,
+            "breadth": 3,
+            "mass": 0.98,
+            "layouts": 8,
+            "reply": "net",
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
+            "own": "best",
+            "own_breadth": 0,
+            "reply_layouts": 8,
+            "reply_pool": 64,
+            "plain": 1,
+            "path": 0.5,
+            "spread": 0.0,
+            "path_solves": 3000
+          }
+        ]
+      }
+    },
+    "7s-32": {
+      "base": "6-32",
+      "label": "Gen 7 standard (32)",
+      "gen7": {
+        "play_weight": 0.5,
+        "play_floor": 0.05,
+        "play_max_layouts": 1024,
+        "play_lead": true,
+        "tie_break": "net",
+        "search_from_trick": 1,
+        "net_sample": false,
+        "tree_audit": true,
+        "tree": [
+          {
+            "from_trick": 3,
+            "to_trick": 6,
+            "root_margin": 0.25,
+            "root_cards": 3,
+            "trust": 0.3,
+            "max_solves": 12000,
+            "tricks": 3,
+            "breadth": 3,
+            "mass": 0.98,
+            "layouts": 8,
+            "reply": "net",
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
+            "own": "best",
+            "own_breadth": 0,
+            "reply_layouts": 8,
+            "reply_pool": 64,
+            "plain": 1,
+            "path": 0.5,
+            "spread": 0.0,
+            "path_solves": 3000
+          }
+        ]
+      }
+    }
+  },
+  "generation": 7,
+  "variant": "6",
+  "bidding_conditions": [
+    "common",
+    "native"
+  ]
+}

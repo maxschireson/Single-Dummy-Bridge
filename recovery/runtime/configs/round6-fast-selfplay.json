@@ -1,0 +1,33 @@
+{
+  "schema": "gen6-fast-selfplay-plan-v1",
+  "authorized_by": "Max, 2026-11-11: stop all old bots and all Gen6 medium; only fast self-play and a little fast versus BEN16",
+  "campaign": "gen6-fast-selfplay-20261111",
+  "title": "Gen 6 fast self-play and BEN16",
+  "pair_weights": {
+    "6-32~6-32": 37,
+    "6-32~ben": 3
+  },
+  "roster": [
+    "6-32",
+    "ben"
+  ],
+  "common_bidder": "6-32",
+  "audit_references": {
+    "6-32": "3"
+  },
+  "gap_fork": {
+    "per_band": 2,
+    "bands": [
+      0.125,
+      0.5
+    ],
+    "max_cpu_share": 1.5
+  },
+  "notes": [
+    "All medium and old-bot matchups are stopped for NEW work. Drain current tables before cutover; retain historical data and scores, with BEN32 still hidden.",
+    "Keep unchanged fast model, belief, bidder, sampling and capture settings, 50% tie audits, and BEN audit/gap exclusion.",
+    "The Gen3 actor is retained solely as the existing tie-audit reference, never scheduled as an opponent.",
+    "Self-play supplies training data and has null IMP comparison; do not fabricate wins or zero-valued strength measurements.",
+    "Maintain remaining unused-family target; new immutable cohort and source/run identities required."
+  ]
+}

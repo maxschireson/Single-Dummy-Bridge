@@ -1,0 +1,34 @@
+{
+  "schema": "collection-instruction-watch-v1",
+  "checked_epoch": 1794465613.6226397,
+  "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+  "operational_branch": "feature/gen7-selfplay-20261112",
+  "operational_revision": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+  "authority_path": "docs/gen71_2026-11-12.md",
+  "authority_blob": "78ac948749a9422ae9de4f0c8261e4e9309047c4",
+  "handled_instructions": [
+    {
+      "instruction": "General arena Gen7.1 policy4.1 push effective06:00UTC",
+      "action": "Drained and archived predecessor; prepared independently pinned successor with untouched released actors and remaining families"
+    }
+  ],
+  "tests": {
+    "gen7": 67,
+    "gap_forks": 11,
+    "status": "passed"
+  },
+  "status": "preflight_passed",
+  "predecessor": {
+    "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+    "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+    "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "completed": 6775
+  },
+  "preflight": {
+    "boards": 4,
+    "root_tables": 8,
+    "gap_forks": 38,
+    "tree_consultations": 148,
+    "over_budget": 0
+  }
+}

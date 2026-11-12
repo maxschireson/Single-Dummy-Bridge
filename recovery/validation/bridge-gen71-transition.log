@@ -1,0 +1,21 @@
+{"phase": "draining_gen6"}
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/workspace/work/bridge-feed-snapshot/recovery/runtime/ops/publish_gen5.py", line 73, in publish
+    git(out,'push','-u','origin','HEAD')
+  File "/workspace/work/bridge-feed-snapshot/recovery/runtime/ops/publish_gen5.py", line 14, in git
+    def git(root,*args):return subprocess.run(['git','-C',str(root),*args],check=True,capture_output=True,text=True)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', '-C', '/workspace/work/bridge-gen6-new-publication', 'push', '-u', 'origin', 'HEAD']' returned non-zero exit status 128.
+{"completed": 6775, "tables": 6775, "rate": {"pairs": 41, "per_hour": 492.0, "full_window": true}, "files": 7628, "output": "/workspace/work/bridge-gen6-new-publication"}
+Traceback (most recent call last):
+  File "/workspace/work/transition_bridge_gen71.py", line 89, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/work/transition_bridge_gen71.py", line 69, in main
+    subprocess.run([str(PYTHON),'-c',code],cwd=old_source,check=True)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/workspace/work/bridge-venv/bin/python', '-c', "from pathlib import Path; from ops.publish_gen5 import publish; publish(Path('/workspace/work/bridge-gen6-fast-selfplay-new'),Path('/workspace/work/bridge-gen6-new-publication'))"]' returned non-zero exit status 1.
