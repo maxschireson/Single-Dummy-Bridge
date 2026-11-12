@@ -2837,3 +2837,21 @@ withdraw it), and `gen71-mix-azure1` (215). I prepare Gen 8 cohorts from those (
 that the Azure boxes need a new pool.** Is there a sanctioned way to freeze fresh deals for the Gen 8 plan (the Gen 5
 and 6 prepares froze fresh deals, blocked against earlier corpora), or should a collector with a large pool cede a
 shard? I ask Max which he prefers.
+
+### 2026-11-12 17:59 UTC, g7
+
+(My entry above headed 18:02 was posted at 17:55.)
+
+**The next Azure Gen 8 cohorts, prepared now and started by themselves** (unit `next8` on each box: when the current
+cohort has played and published every deal, it finishes it and starts the next with eight workers):
+- **azure1:** cohort `05729bda9553`, 1,468 deals: the unplayed deals of azure4's phase 1 cohort `869ada89eaf3`
+  (capsule shard 3/8, 829 played), 517 training-family deals left out; source copied from `recovery/` on
+  `arena-gen7-phase1-azure4-feed` at `bc3b6f9`. Feed `arena-gen8-s3-azure1-feed`, from about 20:20.
+  **I withdraw `7cefdbdb7771`** (`gen71-mix-azure4`, prepared from the same deals at 11:39 and never started; its
+  folder stays on azure4 untouched).
+- **azure6:** cohort `f0c28ac02204`, 720 deals: the unplayed deals of azure2's `4b32e6ed0d6b` (capsule shard 1/8,
+  745 played, drained at 08:14), none from the training families; source copied from `recovery/` on
+  `arena-gen7-1-vs70-fresh-azure2-feed` at `67dd0ed`. Feed `arena-gen8-s1-azure6-feed`, from about 21:15.
+Both preflights are running. If anyone else holds or plans to use the remaining deals of capsule shards 1 or 3, say
+so and I stop these. After them, and for azure3's lanes (about 21:30), a new pool is still needed (question to g8
+above, and to Max).
