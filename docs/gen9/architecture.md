@@ -286,19 +286,29 @@ every statistic is exact.
 | --- | --- | --- |
 | Profile probability | Likelihood of the pair's calls on their actual hands under each profile | 4.1 |
 | Off-card rate `eps`, and where the ends of each declared range really are | Each covered call: did the hand fit the card's meaning, and by how much not | 4.2 |
-| Honesty `h` per kind of signal | Each signalling chance with two or more spots: was the prescribed spot played | 4.3 |
+| Honesty `h` per kind of signal, then an emission table | Each signalling chance with two or more spots: was the prescribed spot played; and which of lowest, highest or a middle spot, given what the signal would say | 4.3 |
 | Play factor `phi`, floor | Gain in the true layout's weight at a grid of factors (Gen 8's play-information measure, per player) | 4.3 |
 | Error profile | Tricks given up against the solver by role and trick | Opponent replies in the tree (later) |
 
-Updates are sums keyed by board, so collectors on different machines add theirs in any order
-and a board counted twice is detected. A snapshot of the store is frozen at each epoch boundary
-and named in every record played under it. Schema `experience-v1`; the shrinkage toward the
-profile's values is part of the schema, so a player with ten boards is read almost as their
-profile and one with a thousand as themselves.
+Updates are sums keyed by occasion, so collectors on different machines add theirs in any order
+and an occasion counted twice is detected. What counts as one occasion matters when the same
+deal is played at several tables: a pair's calls count once for each deal, seats and auction
+(the same auction against two opponents is the same evidence), and its card play once for each
+distinct play of the deal (the same deal played differently against two opponents is two
+observations). Two plays that agree for some tricks and then part still count the shared tricks
+twice; a unit per decision would fix that and is not built. A snapshot of the store is frozen at
+each epoch boundary and named in every record played under it. Schema `experience-v1`; the
+shrinkage toward the profile's values is part of the schema, so a player with ten boards is read
+almost as their profile and one with a thousand as themselves.
 
-A learned per-player vector fed to the policy net (fitted from the same boards) is the step
-after these statistics. It is not in v1; the statistics come first because each is one or two
-numbers that a few dozen boards can estimate.
+A newcomer is read from its arrival model alone until the first boundary after it joins. With
+long epochs that is a long time to be read badly; an arena with arrivals needs either short
+epochs or a short first epoch for a newcomer. The arrival run (G9-D6) shows the cost.
+
+Fitting the play inference itself to a player (a small head on the policy net fitted on that
+player's own cards) is the next step after these statistics: experiment E9-14, on BEN's record,
+as a curve over boards of experience.
+
 
 ## 6. The arena as a population
 
@@ -328,7 +338,7 @@ the arena, and a generation number is a label put on a champion afterwards.
 | I3 | Player model at the table | [`bridge_harness/player_model.py`](../../bridge_harness/player_model.py): `PlayerModel(id, kind, profiles, bidding, carding, experience)`, read-only. Two facts reach a player. Who plays the cards against it: the runner's existing `meet(opponent)`, once a board, with a `PlayerModel` or a bot id resolved against the models in the player's own spec. Who made the calls at this table: `auction_by(bidders)`, before each table, four models or ids in seat order; without it each side is taken to have bid for itself. In a common auction the bidding layer read for both sides is the common bidder's, while carding and play experience stay the card player's | g9 | bill, sam, dave |
 | I4 | Bidding reader | An object with `type_log_weights(o, view, length, hon)` (4.1 and 4.2); the rule filter alone has `FitScorer`'s `type_log_score` | bill | engine |
 | I5 | Play reader | An object with `play_log_likelihood(o, view, assign, plays)` (4.3) | sam | engine |
-| I6 | Experience | [`bridge_harness/experience.py`](../../bridge_harness/experience.py), `experience-v1`: four additive kinds of statistic (`count`, `hist`, `moment`, `loglik`), per-board deltas keyed by board, a merged store, a frozen snapshot, and estimators that shrink toward a prior. Names: `bid.<family>`, `profile` (bill); `card.<signal>`, `play.<what>` (sam) | g9 (schema and algebra), bill and sam (their statistics), dave (storage, merge across collectors, snapshots) | readers |
+| I6 | Experience | [`bridge_harness/experience.py`](../../bridge_harness/experience.py), `experience-v1`: four additive kinds of statistic (`count`, `hist`, `moment`, `loglik`), per-board deltas keyed by board, a merged store, a frozen snapshot, and estimators that shrink toward a prior. Names: `bid.<family>`, `profile` (keys: system ids, `card`, `flat`) (bill); `card.<signal>`, `card.<signal>.emit`, `play.<what>` (sam). `player_model.arrive` makes a newcomer's first model from its card; `player_model.believed` moves the profile probabilities by the `profile` statistic, and the shell calls it in `meet` and `auction_by` | g9 (schema and algebra), bill and sam (their statistics), dave (storage, merge across collectors, snapshots) | readers |
 | I7 | Epoch manifest, result record, rating table | `epoch-v1` on a control branch; in the first phase the epoch, player and snapshot ids ride in each cohort's run manifest, so records and the collector runtime are unchanged; `ratings-v1`, one table per bidding condition ([statistics](arena-statistics.md)) | dave | collectors, dashboard |
 | I8 | Task and experiment files | `team/gen9` branch, README there | will | everyone |
 
