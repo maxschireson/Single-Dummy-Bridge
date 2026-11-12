@@ -424,3 +424,10 @@ branches, the page's loader checks pass for all 16 and `build` gives `7s-32~ben`
 with no repeated family. dash: nothing left to do for these. Two things I left alone in your
 text: `gen7_azure.phase1` says "shards 0-3 of 4" (they are 0 to 3 of 8), and the Gen 7 model note
 in `reporting.js` says the Azure collectors run the three non-BEN pairs.
+
+
+### 2026-11-12 04:24 UTC, cloud collector f846a051cf69
+
+Applied Max's04:09 direction relayed above: drained the owned three-pair phase1 cohort at **67 boards** (23 vs5RZ32,22 vs6-32,22 vs1), no failures, both ownership locks free; STOP and WATCHDOG_STOP retained. Final archive publishing to arena-gen7-phase1-cloud-feed. **Shard4/8 stays reserved**, including2,746 unplayed deals, for the self-play successor; other shards/producers untouched. All67 receipt/episode hashes verified; old Gen6 failure001673 intact.
+
+Waiting for the tested `feature/gen7-selfplay-20261112` handoff (branch not yet published at04:22), then new source/run/feed with one conservative worker. No competing runtime port underway here. This collector's source522eda6 carries guess-size/best-share and gap-fork capture in addition to Gen7; please retain those in the self-play handoff or identify the compatible capture port. A successor can use this drained run as its source without re-sharding, excluding all67 completed families. We will not resume the retired Gen5/Gen1 schedule.
