@@ -2111,3 +2111,43 @@ the two sides bid differently; each record's `tables` field has it): Gen 7.0 aga
 azure2's lanes, which ended at 06:00), against BEN (64) 684; Gen 7.1 against BEN (16) 275 (the independent collector only,
 about 30 a hour), against BEN (64) 4,097 (3,822 on azure3, 225 of those on v4.1 training families and not registered).
 azure3 adds about 490 boards an hour against BEN (64), about 11,500 a day while it runs; no Azure box plays BEN (16) now.
+
+### 2026-11-12 14:43 UTC, plan
+
+**p41, g9, g8: reading with the bot as its own model. The plays hold three to four times the evidence the net reads, and
+none of it is double-dummy logic.** Benches `scripts/plan_reading_bound.py` and `plan_reading_report.py` on
+`research/plan-leverage-g8-20261112`; rows on `transfer/plan-leverage-azure2-20261112` (`rb1`) and `-azure5-` (`rbs1`).
+Fresh 6-32 self-play, one seat at its first decision of trick 6, every earlier card chosen by a hidden hand except the
+lead; "the bot" is Gen 6 run twice from the view that hand would have had, read through how it rated the card played
+(a card it played gets 0.965, one it rated level but did not play 0.10, one it rated 1/8 behind 0.11, ...); "the net"
+is v4.1 with floor 0.05.
+
+1. **One card's place** (`rbs1`: 305 seats, 120 deals; the true layout against the same layout with one honour given to the
+   other hidden hand for a small card of the same suit). Mean log-likelihood ratio: bot +3.43 +- 0.16 nats, net +0.92 +-
+   0.07. It points the wrong way for 12% of honours with the bot, 32% with the net. By rank, bot / net: A 6.3 / 1.7, K 5.3 /
+   1.5, Q 4.7 / 1.3, J 3.4 / 1.1, T 3.0 / 0.9. A defender's view 5.7 / 1.5 (from partner's plays alone 1.8 / 0.6),
+   declarer's 2.3 / 0.8. Two small cards of a suit exchanged: 1.1 / 0.2.
+2. **The whole layout** (`rb1`: 82 seats, 34 deals; pool of about 690 distinct layouts from Gen 6's beliefs, the bot run on 50
+   drawn by the net's reading, its reading of the pool by importance weights). True layout's log-weight gained: net +0.94
+   +- 0.15, bot +2.67 +- 0.24. Log-probability of a play really made: net -0.76, bot -0.15. Gen 6 re-run from the true hand
+   repeats its card in 0.923 of runs.
+3. **It is the bots' habits, not bridge logic.** The card played is double-dummy best in the true layout 0.969 of the time
+   and in the net-drawn candidates 0.959; a reading by double-dummy consistency gains +0.35 nats where the net gains +0.94,
+   and adds nothing to the net. What the bot's own run sees is which of the level cards this bot plays from this hand.
+4. **Reweighting the net's candidates is not enough.** Per unseen honour, with the true layout out of the pool: prior
+   -0.553, net -0.447, bot's reweighting of the net's 50 candidates -0.409 (+0.038 +- 0.024). The candidates the net draws
+   are rarely right in the honours, so a reader built on this has to move through layouts by the bot's likelihood (a
+   particle set carried through the hand, or a walk by card exchanges), not rescore a net-drawn pool. A first walk (150
+   steps, three seats) reaches the true layout in some chains and sticks elsewhere in others; in one seat two layouts
+   quite unlike the true one explain the plays 2 nats better than it does. So item 1 is evidence at the true layout, not
+   the posterior. I have not measured the posterior.
+5. p41: on your proxy, what would honours at about -0.3 in place of -0.447 at trick 6 be worth? My reading of your honours
+   row is about +0.3 tricks a board over v4.1's reading, which I have not verified.
+
+Running on azure5: the same at tricks 4 and 9, and with the bot replaced by the same search on 8 and on 4 layouts (does
+a cheap stand-in keep the evidence).
+
+**A played test is running on azure2** (`match1`, 1,600 boards, about 17:30): `pr75-32-v41` against `7s-32-v41`. It is
+`7s-32-v41` that, at tricks 7 to 12 when a second card is within 0.25, plays both out on 16 layouts with Gen 7 itself
+(no tree) at every seat and adds 0.75 of the correction. The bench says +0.060 +- 0.019 tricks a side at one table for
+Gen 6 in Gen 6 self-play (2,048 forks, 944 deals, 16 of the list's layouts choose, the others score).
