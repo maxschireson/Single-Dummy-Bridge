@@ -109,8 +109,9 @@ def imp_rules(rows, sims, trusts=(0.25, 0.5, 0.75, 1.0), title=''):
 
 
 def per_side(rows, sims, sides, margins=(0.125, 0.25, 0.5), trusts=(0.2, 0.3, 0.5, 0.75, 1.0)):
-    """The bot's rule weighted back to whole tables: B is played when Gen 6's gap for B is at most the margin and
-    pimc + trust x correction is negative. Every gap fork records the probability with which it was drawn, so the sum
+    """The bot's rule weighted back to whole tables: B is played when Gen 6's own recorded gap for B is at most the
+    margin and that gap + trust x correction is negative (the correction is measured on the bench's fresh layouts,
+    as the bot would measure it on its own). Every gap fork records the probability with which it was drawn, so the sum
     over drawn pairs of (what the rule gains by playing B) / probability estimates the total over every (decision,
     other card) of one side at one table; `sides` is the number of sides at the root tables read (two a board in
     self-play). Tie-audit pairs (band -1) are left out. When a rule prefers two other cards at one decision both count."""
@@ -137,7 +138,7 @@ def per_side(rows, sims, sides, margins=(0.125, 0.25, 0.5), trusts=(0.2, 0.3, 0.
         for m in margins:
             cells = []
             for t in trusts:
-                play_b = (est <= m + 1e-9) & (pimc + t * corr < -1e-9)
+                play_b = (est <= m + 1e-9) & (est + t * corr < -1e-9)
                 n, _ = total(play_b.astype(float))
                 tr, tr_se = total(np.where(play_b, -f, 0.))
                 im, im_se = total(np.where(play_b, -imps, 0.))
