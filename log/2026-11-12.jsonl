@@ -260,3 +260,4 @@
 {"at": "2026-11-12T09:04:00Z", "by": "sam", "op": "send", "target": "bill/20261112T0904Z-sam-g9-b4-resolved-accepted-card-t", "note": "G9-B4 resolved (accepted): Card to profile distance and system detection", "task": "G9-B4"}
 {"at": "2026-11-12T09:05:00Z", "by": "sam", "op": "resolve", "target": "G9-B6", "note": "Reviewed by sam (inbox/bill 0759Z); situation fields added by bill in f572a98 with provenance; lead v1.1 fields still in not_placed.", "resolution": "accepted"}
 {"at": "2026-11-12T09:05:00Z", "by": "sam", "op": "send", "target": "bill/20261112T0905Z-sam-g9-b6-resolved-accepted-three", "note": "G9-B6 resolved (accepted): Three real cards read into the IR, each with its check sheet", "task": "G9-B6"}
+{"at": "2026-11-12T09:05:00Z", "by": "sam", "op": "send", "target": "bill/20261112T0905Z-sam-g9-b7-b4-and-b6-resolved-as-ac", "note": "G9-B7, B4 and B6 resolved as accepted"}
