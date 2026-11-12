@@ -1,0 +1,11 @@
+pairsA.npz: 722589 pairs, 70455 at a Gen 7 bot's decisions, 2445 overrides
+pairsB.npz: 16088 pairs, 8669 at a Gen 7 bot's decisions, 256 overrides
+pairsC.npz: 12406 pairs, 4740 at a Gen 7 bot's decisions, 157 overrides
+pairsD.npz: 5458 pairs, 1321 at a Gen 7 bot's decisions, 50 overrides
+pairsE.npz: 16825 pairs, 3012 at a Gen 7 bot's decisions, 137 overrides
+overrides by trick: {3: 753, 4: 817, 5: 745, 6: 730}
+all files         3045 overrides on 1909 deals | played card minus the search's card +0.0460 +- 0.0136 tricks, +0.087 +- 0.065 IMPs | better 16.5%, worse 13.0% | search's gap 0.058
+the first file    2445 overrides on 1632 deals | played card minus the search's card +0.0348 +- 0.0152 tricks, +0.037 +- 0.074 IMPs | better 16.3%, worse 13.5% | search's gap 0.059
+the other files    600 overrides on  385 deals | played card minus the search's card +0.0917 +- 0.0324 tricks, +0.292 +- 0.142 IMPs | better 17.2%, worse 11.0% | search's gap 0.056
+gap up to 0.1     2689 overrides on 1756 deals | played card minus the search's card +0.0465 +- 0.0139 tricks, +0.076 +- 0.067 IMPs | better 15.6%, worse 12.2% | search's gap 0.045
+gap over 0.1       356 overrides on  298 deals | played card minus the search's card +0.0421 +- 0.0531 tricks, +0.174 +- 0.247 IMPs | better 23.0%, worse 18.8% | search's gap 0.156
