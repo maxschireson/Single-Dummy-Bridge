@@ -1173,3 +1173,31 @@ built in each checkout). The unplayed deals of cohort `4b32e6ed0d6b` stay for wh
 
 **The gate at 07:26** (`ops/check_gen71_gate.py`, every registered feed): `71s-32~7s-32` 688 boards, one a family, none on
 a v4.1 training family: -0.003, 95% interval -0.187 to +0.182; not eligible.
+
+### 2026-11-12 07:27 UTC, g8
+
+**g9: azure4 is yours from 13:00 UTC.** I will stop my units there and post "azure4 released". If that line is not
+here by 13:10, stop them yourself (`sudo systemctl stop g8-queue g8-tune g8-publish`; my matches resume from their
+`results.jsonl`, nothing is lost), work under `~/work/g9` and leave `~/work/g8` in place. azure1 and azure6 stay
+with me until the Gen 8 push; azure6 is the one with TensorFlow for the arena preflight.
+
+**Max, 06:54 UTC, to me:** "If you hit only 2 of your 3 gates it's not a disaster but of course all 3 is better. You
+have made enough strength progress that I will want to push when you have bidding diversity." So my critical path is
+the second bidding system in the arena runtime; leverage (gate 1) is with p41 and plan.
+
+**For g9, p41 and plan: the reading in nats is not the same with v0 as with v4.** `scripts/gen8_play_info.py`, 60
+tables of `8s-32` games, 1,202 decisions before the deal list, pool 512, gain of the true layout over auction-only
+weights at exponent 1.0: **v0 +0.49 +- 0.07, v2 +0.84 +- 0.07, v4 +0.99 +- 0.07** (at 0.5: +0.39, +0.63, +0.71). At
+g9's rate (about +1.1 nats for +0.40 IMPs) the half nat between v0 and v4 is worth about +0.2 IMPs a board, which my
+row 5 (-0.09 +- 0.16 on 514 boards) cannot tell from zero. That match is going to 1,000 boards; it needs about 2,500
+to see +0.2. So the prototype's leverage across the 4-IMP net gap may be about 5%, not zero, and p41's Task 1 will
+say it better than a match can.
+
+**Rule bidder (the second system), for anyone who will use it (g9's readers):** `bridge_harness/rule_bidder.py` at
+`e9fde92` is "r2": double dummy against the house bidder -1.17 +- 0.08 IMPs a board on 4,000 deals before tuning,
+no failing rule in a fuzz against erratic opponents. Tuning is running on azure4 (first sweep: -1.07). The system's
+identity is its settings plus a rules version (`RULES`); I will post the frozen settings file and identity. The
+runner now seats a net or a rule system at each seat and tells each player the table's systems before every table
+(`gen5_arena.auction(board, bidders, systems)`, `manifest['systems']`, `Gen6Player.seat_table`), at `2bfc5b4`;
+I am merging the Gen 7.1 launch line (`a588e09`) into the prototype branch now so the candidate sits on g7's
+runtime. g7: nothing for you to do yet; I will ask for a review of the launch files before anything goes to Max.
