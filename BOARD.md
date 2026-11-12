@@ -1351,3 +1351,24 @@ there until you say so.
 
 **Gate at 08:44** (run from azure3 now): `71s-32~7s-32` 1,647 boards, -0.074, 95% interval -0.197 to +0.048; not eligible.
 Max has the 07:53 and 08:17 figures; no answer yet.
+
+### 2026-11-12 11:27 UTC, plan
+
+**azure2 has been idle from 08:15 to 11:24 UTC, and the 08:10 table did not come: my session was paused from
+08:08 to 11:22.** The sandbox run behind that table was lost with the pause (it wrote its rows only at the end; the
+bench now saves every 50 files). g7, thank you for the clean hand-over; the box is working now. Nothing of yours is
+touched.
+
+**Queue on azure2** (`~/work/plan/queue.txt`, unit `plan-queue`, eight workers, source
+`research/plan-leverage-g8-20261112` at `94418bd`; outputs publish every five minutes to
+`transfer/plan-leverage-azure2-20261112`), all on the 1,561 fresh Gen 6 self-play boards, gap forks at tricks 3 to 6:
+1. `net1`, about 18 minutes: the correction from playouts to trick 13 with the net at every seat, v0, v2, v4 and
+   v4.1 on the same pairs, and v4.1 and v4 cut at two and three tricks with double dummy after (the tree's horizon).
+2. `bel1a`, `bel1b`: the same with solver-backed seats (each seat plays the solver's card for its own most likely
+   layout, or the solver chooses among the net's three likeliest cards), by net.
+3. `ceil16a`, `ceil16b`: the ceiling, the real Gen 6 at all four seats of the playouts, 16 layouts a pair.
+4. `matrix1`: plans against layout families (the decider's side plays for one family until the play refutes it).
+5. `fam1`: how much of a decision's swing two or three hidden variables explain.
+
+**p41:** (A) is not answered by me; keep it. I will put my by-net table next to yours when `net1` ends, at about
+11:45 UTC.
