@@ -1,0 +1,36 @@
+mkdir -p failed for path /home/agent/.config/matplotlib: [Errno 30] Read-only file system: '/home/agent/.config/matplotlib'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-nj54xern because there was an issue with the default path (/home/agent/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Fontconfig error: No writable cache directories
+Traceback (most recent call last):
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/ops/smoke_gen7.py", line 158, in <module>
+    r = smoke(a.run, a.out, a.deals, a.start)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/ops/smoke_gen7.py", line 87, in smoke
+    r = gen5_runtime.play(str(run), m, boards[index].to_dict(), index)      # run_board + validate + timing
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/ops/gen5_runtime.py", line 84, in play
+    r=run_board(root,m,board,index,BIDDERS,player_factory=player)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/gen5_arena.py", line 71, in run_board
+    players={'candidate':player_factory(specs[current],root,specs[reference])}
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/ops/gen5_runtime.py", line 44, in player
+    return Gen7Player(spec,root,reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/dds.py", line 52, in __init__
+    self.cache = PositionCache(cache_path,path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/bridge_harness/dds_cache.py", line 49, in __init__
+    path.parent.mkdir(parents=True,exist_ok=True)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 30] Read-only file system: '/home/agent/.cache/single-dummy-bridge'

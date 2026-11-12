@@ -1,0 +1,22 @@
+.......................................E.
+======================================================================
+ERROR: test_shipped_plan_is_closed_until_the_match_mix_is_set (test_gen6_launch.Gen6LaunchTests.test_shipped_plan_is_closed_until_the_match_mix_is_set)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen71-compare-codex-20261112/runtime/tests/test_gen6_launch.py", line 86, in test_shipped_plan_is_closed_until_the_match_mix_is_set
+    manifest = json.loads((ROOT / entry['release'] / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/gen71-compare-codex-20261112/runtime/models/bidding/gen6-candidate-2026-11-11/manifest.json'
+
+----------------------------------------------------------------------
+Ran 41 tests in 10.792s
+
+FAILED (errors=1)
+{"completed": 1, "tables": 2, "rate": {"pairs": 1, "per_hour": 12.0, "full_window": true}, "files": 7, "output": "/tmp/tmpyn7r8ccv/out"}
+{"completed": 1, "tables": 2, "rate": {"pairs": 1, "per_hour": 12.0, "full_window": true}, "files": 7, "output": "/tmp/tmpyn7r8ccv/out"}

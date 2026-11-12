@@ -1,0 +1,79 @@
+{
+  "schema": "gen7-alpha-plan-v1",
+  "campaign": "gen7-phase1-selfplay-20261112",
+  "title": "Gen 7 · phase 1 without the Gen 5 and Gen 1 anchors: standard against Gen 6, and standard self-play",
+  "launch_enabled": true,
+  "pending": [],
+  "notes": [
+    "Authorized by Max, 12 November 2026, 04:09 UTC: \"We can stop collecting on 5 and on 1; it's clear enough. Put those deals toward self play.\" At that point 7s-32 led Gen 5 (32) by +1.11 +- 0.12 IMPs a board over 1,218 boards and Gen 1 by +2.19 +- 0.13 over 1,217, all collectors together. docs/gen7_selfplay_2026-11-12.md is the notice this file belongs to.",
+    "This is configs/round7-candidate-phase1-nonben.json with its Gen 5 and Gen 1 pairs replaced by 7s-32 against itself, weight for weight: 7s-32~6-32 keeps one board in three, self-play gets two. The bot, the policy release, the common bidder and the audit reference are unchanged, so 7s-32 has the identity it has in phase 1.",
+    "A self-play board is one table: the same bot in all four seats, the common bidder's auction, no swapped room. It supplies training data and has no IMP comparison; its records carry null scores, never zeros. A 7s-32~6-32 board is two tables on one deal, as before.",
+    "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here, and apply to self-play tables as to any other. Gap forks and the guess-size fields are recorded only from the commit that merges the capture port (codex/gen7-phase1-independent-20261112 at 522eda6) into this branch; the launch source fe382f9 and this branch's commits 05d2cd8 to 81707b2 carry the gap_fork setting without acting on it. A cohort's manifest names its source commit.",
+    "A plan has no per-pair target. To end the Gen 6 comparison, stop the cohort and prepare a new one from a copy of this file that keeps the self-play pair; the roster must still name two bots, because the runtime's schedule needs two.",
+    "Source run. A machine that was collecting phase 1 prepares from its own drained phase 1 cohort (STOP and WATCHDOG_STOP in place, its feed complete), so the deals that cohort had not played are the ones used and none is played twice in the Gen 6 matchup; that cohort is then finished for good. A machine starting fresh prepares from the capture capsule with its own --shard K/N to ops/prepare_gen7_alpha.py. A deal already played in another matchup may be used for self-play.",
+    "Needs the runtime of this branch or later: before it, ops/gen5_runtime.py refused the record of a bot playing itself."
+  ],
+  "model_note": "Gen 7 standard (7s-32) is Gen 6 fast (6-32: same bidder, lead net, hand-fit scorer, layouts and 32 samples) with the gen7 engine (bridge_harness/gen7.py) and policy net v4: layouts weighted by the play so far from trick 7, exact ties broken by the net, and at tricks 3 to 6 a tree search over the net's likeliest cards that re-values the cards the search rates within 0.25 tricks of its best (trust 0.3, stake rule at 0.5 IMPs, at most 3 tricks, 8 layouts). Settings are in the bot's `gen7` block. Every other bot is unchanged from the source run. docs/gen7_alpha_2026-11-11.md has the details.",
+  "interpretation": "Gen 7 phase 1 after Max's instruction of 12 November 2026, 04:09 UTC: standard against Gen 6 fast remains the generation comparison; standard self-play replaces the Gen 5 and Gen 1 anchors and supplies training data only, one table a deal, with no IMP comparison and no strength estimate. For the comparison pair, common and native auctions are separate conditions and identical auctions reuse physical games. Only unplayed source deals are allocated; completed source records are unchanged. Intervals are descriptive and unadjusted for repeated monitoring.",
+  "roster": [
+    "7s-32",
+    "6-32"
+  ],
+  "pair_weights": {
+    "7s-32~6-32": 1,
+    "7s-32~7s-32": 2
+  },
+  "common_bidder": "6-32",
+  "audit_references": {
+    "7s-32": "3"
+  },
+  "artifacts": {
+    "gen7_policy": {
+      "release": "models/cardplay/gen7-policy-v4-2026-11-11",
+      "file": "gen7_policy_v4.npz",
+      "restore": "restore.py",
+      "sha256": "d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13"
+    }
+  },
+  "gen7_bots": {
+    "7s-32": {
+      "base": "6-32",
+      "label": "Gen 7 standard (32)",
+      "gen7": {
+        "play_weight": 0.5,
+        "play_floor": 0.05,
+        "play_max_layouts": 1024,
+        "play_lead": true,
+        "tie_break": "net",
+        "search_from_trick": 1,
+        "net_sample": false,
+        "tree_audit": true,
+        "tree": [
+          {
+            "from_trick": 3,
+            "to_trick": 6,
+            "root_margin": 0.25,
+            "root_cards": 3,
+            "trust": 0.3,
+            "max_solves": 12000,
+            "tricks": 3,
+            "breadth": 3,
+            "mass": 0.98,
+            "layouts": 8,
+            "reply": "net",
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
+            "own": "best",
+            "own_breadth": 0,
+            "reply_layouts": 8,
+            "reply_pool": 64,
+            "plain": 1,
+            "path": 0.5,
+            "spread": 0.0,
+            "path_solves": 3000
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/workspace/work/arena-venv/bin/python",
+    "-u",
+    "ops/gen5_runtime.py",
+    "--run",
+    "/workspace/work/gen71-compare-codex-20261112/run",
+    "--workers",
+    "3"
+  ],
+  "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen71.py",
+  "publisher": "/workspace/work/gen6-fast-selfplay-stream/publish_stream.py",
+  "guard": "/workspace/work/gen6-fast-selfplay-stream/gen71_gate.py",
+  "normal_workers": 3,
+  "ben_workers": 0,
+  "selfplay_authorized": false,
+  "gen8_authorized": false,
+  "comparison_pooled_minimum": 1000,
+  "require_positive_ci95_lower": true,
+  "published_selfplay_opening_required": true
+}

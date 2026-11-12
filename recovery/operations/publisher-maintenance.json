@@ -1,0 +1,22 @@
+{
+  "epoch": 1794452568.642993,
+  "status": "activated",
+  "reason": "Activate changed recovery archival list for browser and validation-log evidence, and updated stream configuration. Scientific runtime and collector unchanged.",
+  "previous_process": {
+    "pid": 24380,
+    "epoch": 1794451882.345341
+  },
+  "previous_publication": {
+    "status": "published",
+    "epoch": 1794452511.014326,
+    "completed": 54,
+    "commit": "a6542662b8d8321e1d42fa9457bb5a1be76f13a0",
+    "branch": "arena-gen7-phase1-codex-20261112-feed"
+  },
+  "new_publisher_sha256": "8107c02fb056fdf057fbd1e1d0059c4512932e7af1d59691f114ff5e80dabeda",
+  "activated_epoch": 1794452636.674809,
+  "new_process": {
+    "pid": 26730,
+    "epoch": 1794452575.7105384
+  }
+}

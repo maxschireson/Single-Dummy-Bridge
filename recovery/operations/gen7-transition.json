@@ -1,0 +1,65 @@
+{
+  "status": "complete-running",
+  "epoch": 1794452636.681286,
+  "authorization_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+  "source_run": "/workspace/work/gen6-fast-selfplay-stream/run",
+  "source_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+  "completed_at_request": 3707,
+  "source_preservation": "All frozen files and completed records retained; only lifecycle markers added",
+  "selected_plan": "configs/round7-candidate-phase1-nonben.json",
+  "reason": "This owned producer has no BEN server; the authorized non-BEN half applies.",
+  "final_gen6_completed": 3710,
+  "new_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+  "new_run": "/workspace/work/gen7-phase1-codex-20261112/run",
+  "final_gen6_publication": {
+    "status": "published",
+    "epoch": 1794451427.2176917,
+    "completed": 3710,
+    "commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+    "branch": "arena-gen6-fast-selfplay-codex-20261111"
+  },
+  "new_config": {
+    "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+    "runtime": "/workspace/work/gen7-phase1-codex-20261112/runtime",
+    "publication": "/workspace/work/gen7-phase1-codex-20261112/publication",
+    "branch": "arena-gen7-phase1-codex-20261112-feed",
+    "key": "gen7codexphase1",
+    "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+    "target": 21290,
+    "seed": 6586995816951042092,
+    "effective_generation": 7,
+    "phase": "gen7-phase1",
+    "preparation_script": "/workspace/work/gen7-phase1-codex-20261112/prepare_owned.py",
+    "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+    "retired_gen6": {
+      "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+      "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+      "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+      "branch": "arena-gen6-fast-selfplay-codex-20261111",
+      "key": "gen6newselfplay",
+      "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "target": 25000,
+      "seed": 6586995816951042092,
+      "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+      "completed": 3710,
+      "restart_authorized": false
+    }
+  },
+  "dashboard_commit": "07f344ef6f4e34a89d76ad4c1ed40f6814ffc008",
+  "production_validation": "9 records;1431 Gen7 decisions;135 tree consultations;0 budget overruns",
+  "validation": {
+    "gen7_tests": 54,
+    "preflight_deals": 6,
+    "guard_tests": 3,
+    "dashboard_test_files": 7
+  },
+  "live_dashboard_verified": true,
+  "publisher_process": {
+    "pid": 26730,
+    "epoch": 1794452575.7105384
+  },
+  "phase1_guard": {
+    "published_feeds_seen": 5,
+    "errors": []
+  }
+}

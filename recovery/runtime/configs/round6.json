@@ -1,0 +1,70 @@
+{
+  "schema": "arena-round-plan-v1",
+  "round": "v6",
+  "status": "awaiting-match-mix",
+  "launch_enabled": false,
+  "pending": [
+    "match mix from Max: roster, pair_weights, common_bidder, audit_references"
+  ],
+  "seed": 202611110300,
+  "campaign": "gen6-20261111",
+  "title": "Gen 6 · new play architecture",
+  "artifacts": {
+    "bidding": {
+      "release": "models/bidding/gen6-candidate-2026-11-11",
+      "file": "bidder.keras",
+      "restore": "restore_model.py",
+      "sha256": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+      "what": "Gen 6 candidate bidder (graded alternatives)"
+    },
+    "lead_belief": {
+      "release": "models/cardplay/joint-auction-belief-lead-v0-2026-11-10",
+      "file": "joint_lead_v0.npz",
+      "restore": "restore.py",
+      "sha256": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+      "what": "opening leader's belief net"
+    },
+    "scorer": {
+      "release": "models/cardplay/hand-fit-scorer-v0-2026-11-11",
+      "file": "hand_fit_v0.npz",
+      "restore": "restore.py",
+      "sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+      "what": "hand-fit scorer v0"
+    }
+  },
+  "lead_state_bidder_sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+  "gen6_bots": {
+    "6-32": {
+      "label": "Gen 6 (32)",
+      "base": "5RZ32",
+      "gen6": {}
+    }
+  },
+  "gen6_variants_for_ablation": {
+    "6g-32": {
+      "label": "Gen 6, Gen5 beliefs in tricks 1-5",
+      "base": "5RZ32",
+      "gen6": {"early_source": "gen5"}
+    },
+    "6n-32": {
+      "label": "Gen 6, no deal list",
+      "base": "5RZ32",
+      "gen6": {"list_from_trick": 14}
+    },
+    "6l-32": {
+      "label": "Gen 6, lead net weights the leader's tricks 1-5",
+      "base": "5RZ32",
+      "gen6": {"leader_early_source": "lead_net"}
+    }
+  },
+  "roster": ["6-32", "5RZ32"],
+  "pair_weights": {"6-32~5RZ32": 1},
+  "common_bidder": "5RZ32",
+  "audit_references": {"6-32": "3"},
+  "notes": [
+    "pair_weights, roster, common_bidder and audit_references above are placeholders. Set them to Max's match mix, empty `pending`, and set launch_enabled to true.",
+    "A bot under gen6_bots is built from its base bot's spec in the source run: same policy net, belief net (used only by a 'gen5' switch) and sample count; near_tie 0; engine gen6; the three artifacts above; and the Gen5 bidder as the lead net's feature extractor.",
+    "Move an entry from gen6_variants_for_ablation to gen6_bots to add that variant as its own bot.",
+    "common_bidder names the bot whose bidder bids all four seats in the common condition. 5RZ32 keeps the common condition on Gen5 auctions, which the two nets were trained on; a Gen6 bot there puts the common condition on the graded bidder's auctions."
+  ]
+}

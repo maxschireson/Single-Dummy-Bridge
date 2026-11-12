@@ -1,0 +1,127 @@
+{
+  "checked_date": "2026-11-11",
+  "adopted_source": "b34a40fd7829ebeaaf96b86a424289e3f938a868",
+  "original_main": "8362e8bf7e7b004ecf31051e9e45d75b83ee557d",
+  "pull_requests": [
+    {
+      "number": 12,
+      "head": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
+      "branch": "codex/launch-gen5-20261110",
+      "original_base": "codex/round5-ben-and-timing",
+      "comparison": "ahead",
+      "unique_commits": 0,
+      "disposition": "Close: contained in Gen6",
+      "reason": "Exact PR head is an ancestor; Gen5 launch is historical."
+    },
+    {
+      "number": 11,
+      "head": "b463e56e8fbdad97251d4680075c3ccda636a848",
+      "branch": "codex/round5-ben-and-timing",
+      "original_base": "codex/gen4-component-ablation",
+      "comparison": "ahead",
+      "unique_commits": 0,
+      "disposition": "Close: contained in Gen6",
+      "reason": "Exact PR head is an ancestor; its BEN32 preparation is superseded by the current BEN16 plan."
+    },
+    {
+      "number": 10,
+      "head": "a7e00fb0b6241166da847661788dc82b8091761e",
+      "branch": "codex/gen4-component-ablation",
+      "original_base": "research/v4-belief-and-arena",
+      "comparison": "ahead",
+      "unique_commits": 0,
+      "disposition": "Close: contained in Gen6",
+      "reason": "Exact PR head is an ancestor; Gen4 recovery is historical."
+    },
+    {
+      "number": 9,
+      "head": "6e87791efe91686c5e22350b708fa0fb582e41db",
+      "branch": "research/multiscore-16-32-64",
+      "original_base": "research/mixed-fork-generations",
+      "comparison": "diverged",
+      "unique_commits": 7,
+      "disposition": "Keep draft: deferred prototype",
+      "reason": "All seven unique commits remain outside Gen6. Prefix scoring at a shared state does not supply divergent trajectories, and Gen6 weighted layouts need a separate compatibility decision."
+    },
+    {
+      "number": 8,
+      "head": "7e84281a1943e71e83b67e63af7433ac795902cb",
+      "branch": "research/mixed-fork-generations",
+      "original_base": "research/imp-policy-draft",
+      "comparison": "ahead",
+      "unique_commits": 0,
+      "disposition": "Close: contained in Gen6",
+      "reason": "Exact PR head is an ancestor; this generation's launch is historical."
+    },
+    {
+      "number": 7,
+      "head": "d7ee77a8020bb97208cfbd4db5f187174064c078",
+      "branch": "research/imp-policy-draft",
+      "original_base": "research/large-belief-play-test",
+      "comparison": "ahead",
+      "unique_commits": 0,
+      "disposition": "Close: contained in Gen6",
+      "reason": "Exact PR head is an ancestor. Historical IMP-policy work is not a recommendation to replace the current retained Gen5 policy."
+    },
+    {
+      "number": 6,
+      "head": "be09f9f8da1ed53c53f7525da1490888733940c0",
+      "branch": "research/large-belief-play-test",
+      "original_base": "research/belief-size-comparison",
+      "comparison": "ahead",
+      "unique_commits": 0,
+      "disposition": "Close: contained in Gen6",
+      "reason": "Exact PR head is an ancestor of the adopted Gen6 source."
+    },
+    {
+      "number": 5,
+      "head": "78e135856ac90d92e0277379db0f5313ff4aea45",
+      "branch": "research/belief-size-comparison",
+      "original_base": "research/dds-bidding-loop",
+      "comparison": "diverged",
+      "unique_commits": 6,
+      "disposition": "Close completed historical training",
+      "reason": "Continuation report records completion and promotion. continue_large_belief.py is identical in Gen6; old promotion script and reports remain preserved on the branch. Do not replay a historical promotion."
+    },
+    {
+      "number": 4,
+      "head": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
+      "branch": "research/shared-beliefs-dds-cache",
+      "original_base": "research/dds-bidding-loop",
+      "comparison": "diverged",
+      "unique_commits": 2,
+      "disposition": "Keep draft: scoped follow-up",
+      "reason": "DDS binding, cache and cache test are byte-identical to Gen6, but bidding_belief_data.py and exporter/trainer/prediction tools are absent. Review/port only that missing work against main."
+    },
+    {
+      "number": 3,
+      "head": "16834962ede44e72f366ff741a0bb8b4dbf58609",
+      "branch": "research/dds-bidding-loop",
+      "original_base": "research/self-improvement-loop",
+      "comparison": "diverged",
+      "unique_commits": 2,
+      "disposition": "Close completed milestone",
+      "reason": "Bidding loop lineage is in Gen6. The unique tail is the 40k confirmation report; preserve and index that evidence."
+    },
+    {
+      "number": 2,
+      "head": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
+      "branch": "research/self-improvement-loop",
+      "original_base": "research/three-engine-play-200",
+      "comparison": "diverged",
+      "unique_commits": 2,
+      "disposition": "Close historical launch",
+      "reason": "Most lineage is in Gen6; the two unique commits are the old bounded collection supervisor and its test. Gen6 has its own watchdog. Preserve the old launcher for reproducing that run."
+    },
+    {
+      "number": 1,
+      "head": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
+      "branch": "research/consistent-strategies-alpha-mu",
+      "original_base": "main",
+      "comparison": "diverged",
+      "unique_commits": 2,
+      "disposition": "Archive research",
+      "reason": "The 1,000-board report says the alpha-mu/rollout variants did not earn their extra compute. Preserve branch and negative results; do not integrate as current engine."
+    }
+  ]
+}

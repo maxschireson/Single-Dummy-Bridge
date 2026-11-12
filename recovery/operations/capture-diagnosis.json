@@ -1,0 +1,30 @@
+{
+  "epoch": 1794458568.6145,
+  "status": "repaired-and-production-verified",
+  "cause": "Gen7 sourcefe382and the05d2selfplay port carried gap_fork manifest settings without the engine instrumentation.",
+  "affected_cohorts": [
+    {
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "completed": 564,
+      "final_commit": "dfe3233dec356e48da065702964892354e0db16c"
+    },
+    {
+      "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "completed": 32,
+      "final_commit": "2df00f7cfb102fdefe1874b76ebc294af47a8638"
+    }
+  ],
+  "preserved": "All root trajectories, tie/tree audits, manifests, models, source and receipts preserved; these cohorts lack gap forks/guess labels and must not be represented as capture-complete.",
+  "repair": "Integrate existingcapture522eda6with authorizedselfplay05d2; newsource317cea385dad6bdceda266ec0b750dc48c98340f andnewmanifest e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e.",
+  "prevention": "Supervisor refuses a configured gap-capture run unless real-model preflight observed gap forks. Production must also verify guess_size/best_share fields before declaring launch complete.",
+  "validated_manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+  "preflight_gap_forks": 35,
+  "source_commit": "317cea385dad6bdceda266ec0b750dc48c98340f",
+  "metrics": {
+    "gap_forks": 46,
+    "guess_fields": 5129,
+    "best_share_fields": 23962,
+    "gen7_decisions": 2293,
+    "tree_consulted": 209
+  }
+}

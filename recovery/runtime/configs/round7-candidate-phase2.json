@@ -1,0 +1,103 @@
+{
+  "schema": "gen7-alpha-plan-v1",
+  "campaign": "gen7-phase2-20261112",
+  "title": "Gen 7 · phase 2: volume (30% fast self-play, 30% standard self-play, 20% standard v Gen 6, 5% each of four anchors)",
+  "launch_enabled": false,
+  "pending": [
+    "Phase 1 first: this plan opens when every phase 1 pair has 2,000 completed boards.",
+    "Self-play pairs (7f-32~7f-32, 7s-32~7s-32) need a runtime with the self-play regime. The collectors' branches have it; this branch, like `main` at b0909bb, validates common and native only. The engine files of this branch have to be carried onto that runtime, as a new source identity."
+  ],
+  "notes": [
+    "Not open yet: `launch_enabled` is false and `pending` is not empty, so ops/prepare_gen7_alpha.py refuses this file. Max accepted Gen 7 and set the standard bot's tree on 12 November 2026 (margin 0.25, trust 0.3, `path` 0.5, 3 tricks); what remains is in `pending`.",
+    "A Gen 7 bot is its Gen 6 base bot (same bidder, lead net, scorer, layouts and sample count) with the gen7 engine and policy v4. docs/gen7_alpha_2026-11-11.md explains every setting.",
+    "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here. BEN boards carry no audits (`ben_audit`). Gen 5 and Gen 1 boards carry the cohort's: there is no per-pair switch.",
+    "Weights are twentieths of the boards: 6, 6, 4, 1, 1, 1, 1. A self-play board is one table; a two-bot board is two tables on one deal, so in tables the two-bot pairs weigh double.",
+    "Self-play supplies training data and has no IMP comparison, as for Gen 6."
+  ],
+  "roster": [
+    "7f-32",
+    "7s-32",
+    "6-32",
+    "ben64",
+    "ben",
+    "5RZ32",
+    "1"
+  ],
+  "pair_weights": {
+    "7f-32~7f-32": 6,
+    "7s-32~7s-32": 6,
+    "7s-32~6-32": 4,
+    "7s-32~ben64": 1,
+    "7s-32~ben": 1,
+    "7s-32~5RZ32": 1,
+    "7s-32~1": 1
+  },
+  "common_bidder": "6-32",
+  "audit_references": {
+    "7f-32": "3",
+    "7s-32": "3"
+  },
+  "artifacts": {
+    "gen7_policy": {
+      "release": "models/cardplay/gen7-policy-v4-2026-11-11",
+      "file": "gen7_policy_v4.npz",
+      "restore": "restore.py",
+      "sha256": "d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13"
+    }
+  },
+  "gen7_bots": {
+    "7f-32": {
+      "base": "6-32",
+      "label": "Gen 7 fast (32)",
+      "gen7": {
+        "play_weight": 0.5,
+        "play_floor": 0.05,
+        "play_max_layouts": 1024,
+        "play_lead": true,
+        "tie_break": "net",
+        "search_from_trick": 1,
+        "net_sample": false,
+        "tree_audit": true
+      }
+    },
+    "7s-32": {
+      "base": "6-32",
+      "label": "Gen 7 standard (32)",
+      "gen7": {
+        "play_weight": 0.5,
+        "play_floor": 0.05,
+        "play_max_layouts": 1024,
+        "play_lead": true,
+        "tie_break": "net",
+        "search_from_trick": 1,
+        "net_sample": false,
+        "tree_audit": true,
+        "tree": [
+          {
+            "from_trick": 3,
+            "to_trick": 6,
+            "root_margin": 0.25,
+            "root_cards": 3,
+            "trust": 0.3,
+            "max_solves": 12000,
+            "tricks": 3,
+            "breadth": 3,
+            "mass": 0.98,
+            "layouts": 8,
+            "reply": "net",
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
+            "own": "best",
+            "own_breadth": 0,
+            "reply_layouts": 8,
+            "reply_pool": 64,
+            "plain": 1,
+            "path": 0.5,
+            "spread": 0.0,
+            "path_solves": 3000
+          }
+        ]
+      }
+    }
+  }
+}

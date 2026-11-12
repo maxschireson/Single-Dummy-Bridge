@@ -1,0 +1,44 @@
+{
+  "epoch": 1794465497.6620564,
+  "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+  "tests": {
+    "gen7": 67,
+    "gap_capture": 11,
+    "gen56": 41,
+    "operational_gate": 6
+  },
+  "preflight": {
+    "deals": 4,
+    "each_pair": 2,
+    "gap_forks": 45,
+    "tree_consulted": 186,
+    "tree_over_budget": 0,
+    "all_paired_two_tables": true
+  },
+  "frozen_source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842",
+  "actor_identities": {
+    "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
+    "7s-32": "f0a57859867353d654ebb9cf03844631d49c948bebcffbb91c441294684ae62e"
+  },
+  "policy_v41_sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed",
+  "remaining_families": 20257,
+  "preserved": {
+    "gen6": 3710,
+    "gen7_phase1_capture_incomplete": 564,
+    "gen7_first_selfplay_capture_incomplete": 32,
+    "gen70_capture": 437
+  },
+  "setup_issues_resolved": [
+    "Missing sparse-checkout legacy release test fixtures restored from the same pinned commit;41 tests passed on rerun.",
+    "Preflight initially hit read-only default home cache;rerun with writable task cache passed. No production failure cleared."
+  ],
+  "logs": {
+    "/workspace/work/gen71-compare-codex-20261112/tests-gen7.log": "5f8986317343e902f78375ed80b9e6758a49a67a574558066ea434c0144f6093",
+    "/workspace/work/gen71-compare-codex-20261112/tests-gap.log": "5070e2908321266eb707344d1a16563a499342b01eaef2fb3bc76036225ed4a8",
+    "/workspace/work/gen71-compare-codex-20261112/tests-gen56.log": "954ce4f7c2a6ab9eb81a7a0598af33e3f63ff82a91850d248cafd53b9bcbde16",
+    "/workspace/work/gen71-compare-codex-20261112/tests-gen56-fixture-rerun.log": "b42fc2f115273b1b3e5e20d0f16de218b99758d69c34fa969031464dd5269009",
+    "/workspace/work/gen71-compare-codex-20261112/tests-gate.log": "72432f74190a393d2ee7d63ad023e30858fc1803d68b8909971a01c02859f35f",
+    "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log": "41c43108a5253dbe327328c20800e5e1d1189d9f1bf6562d5b5ed0e672344548",
+    "/workspace/work/gen71-compare-codex-20261112/preflight.log": "bbe8abfef7a8f32a319a3b0004f7d2caf5ccbfbdf871e189aaec5d6f07300e8d"
+  }
+}
