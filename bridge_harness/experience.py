@@ -194,9 +194,14 @@ def rate(stat, yes, total=None, no=None, prior=(1., 1.)):
     return (a + k) / (a + b + k + miss)
 
 
-def choice_honesty(stat, prior=(3., 1.), options=range(2, 14), steps=200):
+def choice_honesty(stat, prior=(1., 1.), options=range(2, 14), steps=200):
     """Honesty h when the prescribed card is played with probability h + (1 - h) / n among n
     choices: the posterior mean on a grid, under a Beta prior on h.
+
+    The default prior has mean 0.5 and the weight of two occasions. E9-4 part 1: assuming more
+    honesty than there is costs far more than assuming less (against honesty 0, assuming 0.9
+    reads 0.86 nats a decision worse than the right reading; against honesty 1, assuming 0.5
+    reads 0.12 worse), and among 0, 0.5, 0.8 and 0.9, 0.5 has the smallest worst case.
 
     The statistic is a count with labels 'hit/<n>' (prescribed card played) and 'all/<n>'
     (occasions) for each number of choices n. With no data it returns the prior mean."""

@@ -263,6 +263,22 @@ class CardProfileTests(Shell):
         silent.meet('them')
         self.assertLess(float(np.ptp(self.weights(silent))), 1e-12)
 
+    def test_the_flat_profile_adds_nothing_and_bounds_what_a_wrong_reading_can_cost(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        alpha = FitScorer(self.root / 'alpha.npz')
+        o = self.o
+        net = sum(alpha.type_log_score(self.length[j], self.hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(self.view.hidden))
+        flat = self.make9(gen9=dict(models={'them': dict(profiles={'flat': 1.})}))
+        flat.meet('them')
+        self.assertFalse(flat.opponent.plain)
+        self.assertLess(float(np.ptp(self.weights(flat))), 1e-12)
+        mixed = self.make9(gen9=dict(models={'them': dict(profiles={'alpha': .8, 'flat': .2})}))
+        mixed.profile_scorer = lambda side, system: alpha
+        mixed.meet('them')
+        got = self.weights(mixed)
+        np.testing.assert_allclose(got, np.logaddexp(math.log(.8) + net, math.log(.2)), atol=1e-9)
+        self.assertTrue(np.all(got >= math.log(.2) - 1e-12))                 # no layout falls below the flat share
+
     def test_net_profiles_get_the_residual_and_the_mixture_weighs_both(self):
         scorer_weights(self.root / 'alpha.npz', seed=31)
         alpha = FitScorer(self.root / 'alpha.npz')
@@ -282,6 +298,55 @@ class CardProfileTests(Shell):
         q.profile_scorer = lambda side, system: alpha
         q.meet('them')
         np.testing.assert_allclose(self.weights(q), np.logaddexp(math.log(.7) + net, math.log(.3) + self.term(12, -3.)), atol=1e-9)
+
+
+class ToyReplay:
+    """A stand-in for a replay reader: it holds the bidder of profile 'alpha' only, under which a hand with 13 points
+    or more is 20 times as likely to have made the calls."""
+    def type_log_score(self, length, hon, seat, dealer, vulnerability, auction, profile=None):
+        if profile != 'alpha':
+            return None
+        return np.where(HON_HCP[hon].sum(axis=1) >= 13, 0., -3.)
+
+
+def toy_replay(model, other, root):
+    return ToyReplay() if model.id == 'them' else None
+
+
+class ReplayTests(Shell):
+    def test_replay_rereads_the_pool_and_only_for_the_profiles_it_holds(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        scorer_weights(self.root / 'beta.npz', seed=32)
+        scorers = {'alpha': FitScorer(self.root / 'alpha.npz'), 'beta': FitScorer(self.root / 'beta.npz')}
+        model = dict(profiles={'alpha': .6, 'beta': .4})
+        p = self.make9(gen7=EARLY, gen9=dict(models={'them': model, 'others': model}, replay_reader='test_gen9_player:toy_replay'))
+        q = self.make9(gen7=EARLY, gen9=dict(models={'them': model}))
+        for x in (p, q):
+            x.profile_scorer = lambda side, system: scorers[system]
+            x.meet('them')
+        checked = 0
+        for o, game in self.two_hidden(range(40), (5, 9), declarer=True):
+            view = View(o)
+            assign = view.uniform(64, np.random.default_rng(3))
+            types = [hand_types(view.original(assign, j)) for j in range(2)]
+            length, hon = [t[0] for t in types], [t[1] for t in types]
+            drawn = p.type_log_weights(o, view, length, hon, 'scorer')                 # how the pool was drawn: scorers only
+            np.testing.assert_allclose(drawn, q.type_log_weights(o, view, length, hon, 'scorer'), atol=1e-12)
+            change = p.replay_correction(o, view, assign)
+            alpha = sum(np.where(HON_HCP[hon[j]].sum(axis=1) >= 13, 0., -3.) for j in range(2))
+            beta = sum(scorers['beta'].type_log_score(length[j], hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(view.hidden))
+            want = np.logaddexp(math.log(.6) + alpha, math.log(.4) + beta)              # alpha by replay, beta still by its scorer
+            np.testing.assert_allclose(drawn + change, want, atol=1e-9)
+            self.assertIsNone(q.replay_correction(o, view, assign))
+            # in the reading itself: the same change, over the exponent the caller applies
+            np.testing.assert_allclose(p.play_log_likelihood(o, view, assign) - q.play_log_likelihood(o, view, assign),
+                                       change / p.reading_exponent(o, view), atol=1e-9)
+            checked += 1
+        self.assertGreater(checked, 3)
+        p.meet('others')                                # a partnership the factory declines: nothing changes
+        o, game = next(self.two_hidden(range(40), (5,), declarer=True))
+        view = View(o)
+        self.assertIsNone(p.replay_correction(o, view, view.uniform(16, np.random.default_rng(0))))
 
 
 class CardsTests(Shell):
@@ -339,6 +404,19 @@ class TableTests(Shell):
         p.meet(PlayerModel('ben', 'outside', experience=plenty))            # enough: the factor with the best mean gain
         self.assertEqual(p.opponent_factor, .3)
         self.assertEqual(p.opponent.snapshot, 'e2')
+
+    def test_meet_and_auction_by_take_the_profiles_from_experience(self):
+        stats = {'profile': dict(kind='loglik', n=9., ll={'alpha': -30., 'beta': -5.})}
+        seen = PlayerModel('g', 'guest', {'alpha': .9, 'beta': .1}, experience=xp.snapshot(dict(xp.empty('g'), boards=9, stats=stats), 'e3'))
+        p = self.make9(gen9={})
+        p.meet(seen)
+        self.assertGreater(dict(p.opponent.profiles)['beta'], .98)
+        self.assertIs(p.opponent, p.opponent_model)
+        p.auction_by([seen, 'x', seen, 'x'])
+        self.assertGreater(dict(p.bidders[0].profiles)['beta'], .98)
+        still = self.make9(gen9=dict(profile_temper=0.))                     # switched off: the declared prior stands
+        still.meet(seen)
+        self.assertAlmostEqual(dict(still.opponent.profiles)['alpha'], .9)
 
 
 class OracleTests(Shell):
