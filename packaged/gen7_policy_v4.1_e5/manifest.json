@@ -1,0 +1,51 @@
+{
+ "schema": "chunked-gen7-policy-artifact-v1",
+ "status": "research prototype: no arena bot uses it",
+ "description": "Gen 7 policy net: Gen 6's card from one seat's view (prototype); see README.md",
+ "parameters": 828098,
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "files": [
+  {
+   "output": "gen7_policy_v4.1_e5.npz",
+   "size_bytes": 3365906,
+   "sha256": "a473c11bd59dadc77c478513b07149b2cccf623261e406d637dbfe7a67f0b269",
+   "parts": [
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part000",
+     "size_bytes": 524288,
+     "sha256": "85046ae2390efdfb1840ede59e96a96f8b98598e04f670e82b8ffa20e04cfe21"
+    },
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part001",
+     "size_bytes": 524288,
+     "sha256": "6cbd57659b10b50744f92015e64f3de7da90e8c9dfc8d2045829ba89c2f726ee"
+    },
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part002",
+     "size_bytes": 524288,
+     "sha256": "ed3e3785f1eb2a007390774a2fe35a8dd1ef9dedfd8f1dfc663f15f8319a8169"
+    },
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part003",
+     "size_bytes": 524288,
+     "sha256": "dbdf9253834367817c90c913bfcabb2d24d143fbde8d91de7702779542677c09"
+    },
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part004",
+     "size_bytes": 524288,
+     "sha256": "f579d0c9ccdffaa1ad3e88a05cb666ba1184189b3d2f980d64bd5e2a25698457"
+    },
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part005",
+     "size_bytes": 524288,
+     "sha256": "e2747a7696116f52809e1c51c14884010dea5d044873fefdde8affb0efe104b8"
+    },
+    {
+     "file": "gen7_policy_v4.1_e5.npz.part006",
+     "size_bytes": 220178,
+     "sha256": "6ad612f518a87d51e6f34827614b1749e0c7e1793e365ec577ade01bae9c5e87"
+    }
+   ]
+  }
+ ]
+}

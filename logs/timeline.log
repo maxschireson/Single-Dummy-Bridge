@@ -1,0 +1,64 @@
+fetch1 start 03:58:08
+fetch1 exit 0 03:59:06
+buildA start 04:02:34
+buildA done: {"parts": 16, "deals": 38128, "unique_families": 34029, "examples": 13239367, "deals_by_hash_split": [30607, 3661, 3860]} 04:28:29
+freshB done: {"deals_in": 1112, "deals_kept": 631, "dropped_as_seen": 481, "examples": 218537} 04:29:25
+w512 start 04:29:25
+scoreB_old done 04:29:54
+w768 start (beside 512) 04:31:51
+pairsA exit 0 04:34:31
+pairsB exit 0 04:34:41
+w512 done 05:00:12
+freshC done: {"deals_in": 878, "deals_kept": 450, "dropped_as_seen": 428, "examples": 180315} 05:01:23
+chain end 05:01:23
+bench start 05:04:43
+eval512 done 05:05:37
+push1 done 05:05:44
+pairsC exit 0 05:05:52
+result_head exit 0 05:07:08
+push2 done 05:07:16
+bench exit 0 05:09:49
+bench pushed 05:09:51
+w768 exit 0 05:18:25
+freshD done: {"deals_in": 435, "deals_kept": 182, "dropped_as_seen": 253, "examples": 80123} 05:18:53
+final_eval done 05:20:45
+push4 done 05:20:57
+pairsD exit 0 05:20:59
+result_head_final exit 0 05:21:49
+push5 done 05:22:01
+final end 05:22:01
+w512e5 start 05:23:32
+w768e5 start 05:26:37
+eval768 done 05:29:17
+push3 done 05:29:30
+inf v41 s0 exit 1 05:30:44
+inf v4 s0 exit 0 05:30:44
+inf v4 s1 exit 0 05:30:44
+inf v41 s1 exit 0 05:30:44
+checks stopped, runs unpinned 05:41:25
+w512c1 start 06:00:31
+w512c1 stopped and removed (not asked for) 06:01:05
+w512e5 exit 0 06:16:48
+freshE done: {"deals_in": 1194, "deals_kept": 611, "dropped_as_seen": 583, "examples": 265124} 06:20:03
+eval w512e5 done 06:26:53
+push w512e5 done 06:27:05
+w768e5 was restarted by the daily unattended upgrade at 06:23:48 (needrestart); it runs again from the start. needrestart set to list-only 06:28:40
+neartie exit 0 06:37:37
+neartie exit 0 06:42:35
+neartie pushed 06:42:36
+neartie bot 0 exit 0 06:44:53
+neartie bot 2 exit 0 06:45:01
+neartie pushed 06:45:02
+neartie bot 2 source 1 exit 0 06:47:05
+neartie bot 2 source 0 exit 0 06:47:13
+neartie bot 0 source 1 exit 0 06:47:21
+neartie bot 0 source 0 exit 0 06:47:30
+neartie pushed 06:47:59
+neartie pushed 07:06:19
+w768e5 exit 0 07:10:40
+reading bench starts 07:10:41
+neartie pushed 07:12:47
+reading bench paused for the 768-wide scoring 07:17:25
+freshF done: {"deals_in": 144, "deals_kept": 144, "dropped_as_seen": 0, "examples": 65888} 07:19:09
+eval w768e5 done 07:34:01
+reading bench resumed 07:34:02

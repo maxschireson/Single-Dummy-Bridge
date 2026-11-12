@@ -1,0 +1,86 @@
+{
+ "schema": "chunked-gen7-policy-artifact-v1",
+ "status": "research prototype: no arena bot uses it",
+ "description": "Gen 7 policy net: Gen 6's card from one seat's view (prototype); see README.md",
+ "parameters": 1709058,
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "files": [
+  {
+   "output": "gen7_policy_v4.1_w768_e5.npz",
+   "size_bytes": 6889746,
+   "sha256": "839762cc1258453172ee66e6ed58dd508ea1834888612f46a82fc94e899e3dda",
+   "parts": [
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part000",
+     "size_bytes": 524288,
+     "sha256": "7f9857ea7066a8f326549135003240fba2abbf9a1e2e5da9d45af1e47271b0e9"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part001",
+     "size_bytes": 524288,
+     "sha256": "f43a5017c39f20b3a1b949c6d6eb5e715861a96ab1773078db0e6d853b33a021"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part002",
+     "size_bytes": 524288,
+     "sha256": "fed57a901aeb403ac02bdda5cbb382f9df886ef4756c730508013043eb275058"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part003",
+     "size_bytes": 524288,
+     "sha256": "60e47378c4b705ebdd834c535be53cdfa2519d6e2bd745b2a998f0ff4d742065"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part004",
+     "size_bytes": 524288,
+     "sha256": "a1bb75693d77f809546b50757aa4b7cdd40d81f1353c6fdc1d1cb080a6db91ad"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part005",
+     "size_bytes": 524288,
+     "sha256": "3d9efb83a3513b5b450845d54b1b78f09dd7926507889fe42aa18d1dfd294478"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part006",
+     "size_bytes": 524288,
+     "sha256": "a849cb385450b22c92f02381786d0cbcc232b64162a378bc8bda1668e0ac02bc"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part007",
+     "size_bytes": 524288,
+     "sha256": "12eb6760623b486948b4af03907356acc67cae63121176d6d0d9e1c79f657bd5"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part008",
+     "size_bytes": 524288,
+     "sha256": "6878e267485c1217e11d0302812b2832a99717ace6e673250769f5ceb15104ed"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part009",
+     "size_bytes": 524288,
+     "sha256": "084e00afb41f6837f473b50843ef0e3c9c83c625179bcda8e82c372a40c5c9b8"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part010",
+     "size_bytes": 524288,
+     "sha256": "0686e4043f6d2bad9aaf49997fa87609b6f887cec150272da07a05a63150a6bd"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part011",
+     "size_bytes": 524288,
+     "sha256": "7d2d9a4c6741804517b251e7e6d1c55a5186d3ad165717a47025caf89f4b041c"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part012",
+     "size_bytes": 524288,
+     "sha256": "c15a49a79ca2f168ebbd57d91bb5c93699df229af614f4778d7e8cde93f7e179"
+    },
+    {
+     "file": "gen7_policy_v4.1_w768_e5.npz.part013",
+     "size_bytes": 74002,
+     "sha256": "f9360a5199e80215f791124c89072335f035cacfb343fc4ae3c376a32e059623"
+    }
+   ]
+  }
+ ]
+}

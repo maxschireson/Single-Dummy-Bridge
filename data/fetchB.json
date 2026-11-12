@@ -1,0 +1,331 @@
+{
+ "repo": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "patterns": [
+  "arena-gen6-*",
+  "arena-gen7-phase1-*",
+  "transfer/pre7-test-azure*-20261112"
+ ],
+ "finished_utc": "2026-11-12T04:28:38Z",
+ "seconds": 8,
+ "new_blobs": 1115,
+ "new_bytes": 183902538,
+ "branches": {
+  "arena-gen6-ben-expansion-feed": {
+   "tip": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
+   "tip_time": "2026-11-11T05:46:53+00:00",
+   "episodes": 262,
+   "new": 0
+  },
+  "arena-gen6-chatgpt-feed": {
+   "tip": "990e889a3ab5c3be023f2e3cbcc9daf4cc4435e0",
+   "tip_time": "2026-11-12T04:32:01+01:00",
+   "episodes": 4864,
+   "new": 0
+  },
+  "arena-gen6-codex-ben-followups-feed": {
+   "tip": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
+   "tip_time": "2026-11-11T05:52:24+00:00",
+   "episodes": 217,
+   "new": 0
+  },
+  "arena-gen6-codex-ben-gate": {
+   "tip": "32d459d5513005f3c032a04fb6c785d4a0db4d6f",
+   "tip_time": "2026-11-11T05:21:10+00:00",
+   "episodes": 0,
+   "new": 0
+  },
+  "arena-gen6-codex-feed": {
+   "tip": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
+   "tip_time": "2026-11-11T05:16:32+00:00",
+   "episodes": 1544,
+   "new": 0
+  },
+  "arena-gen6-codex-v7-capture-feed": {
+   "tip": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98",
+   "tip_time": "2026-11-11T09:16:02+00:00",
+   "episodes": 1134,
+   "new": 0
+  },
+  "arena-gen6-codex-v7-cutover": {
+   "tip": "019a7503a67f34771792b933e8ebfdd11e40e70c",
+   "tip_time": "2026-11-11T05:56:14+00:00",
+   "episodes": 0,
+   "new": 0
+  },
+  "arena-gen6-codex-v7-watch": {
+   "tip": "6ca5d82f3705dc1f72b2741b2cb3d63e9fdad61b",
+   "tip_time": "2026-11-11T11:58:00+00:00",
+   "episodes": 0,
+   "new": 0
+  },
+  "arena-gen6-extra-selfplay-feed": {
+   "tip": "40a2b2462d73a32fc3d974ca0e014c33f5ff30e1",
+   "tip_time": "2026-11-12T04:34:02+01:00",
+   "episodes": 1083,
+   "new": 0
+  },
+  "arena-gen6-fast-selfplay-20261111-19bbdce5-feed": {
+   "tip": "cf82ebb843fcb3cf89b71d6acd7992ecc9712c24",
+   "tip_time": "2026-11-12T04:27:49+00:00",
+   "episodes": 5518,
+   "new": 304
+  },
+  "arena-gen6-fast-selfplay-cloud-feed": {
+   "tip": "37bb31e1489621e1c4ba3ce06aa9b98e92311098",
+   "tip_time": "2026-11-12T03:24:16+01:00",
+   "episodes": 1672,
+   "new": 0
+  },
+  "arena-gen6-fast-selfplay-codex-20261111": {
+   "tip": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+   "tip_time": "2026-11-12T02:43:45+00:00",
+   "episodes": 3710,
+   "new": 0
+  },
+  "arena-gen6-fast-selfplay-independent-feed": {
+   "tip": "937792a17084d0bbaa6a044e9b6e0f3aaeb80483",
+   "tip_time": "2026-11-12T03:29:57+00:00",
+   "episodes": 9884,
+   "new": 0
+  },
+  "arena-gen6-fast-selfplay-primary-feed": {
+   "tip": "d5a1f25688ca1e9c2b2c25c351f967e134adb10f",
+   "tip_time": "2026-11-11T12:05:36+00:00",
+   "episodes": 2020,
+   "new": 0
+  },
+  "arena-gen6-gen7-capture-feed": {
+   "tip": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+   "tip_time": "2026-11-11T07:54:09+00:00",
+   "episodes": 725,
+   "new": 0
+  },
+  "arena-gen6-independent-feed": {
+   "tip": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+   "tip_time": "2026-11-11T02:15:04+00:00",
+   "episodes": 81,
+   "new": 0
+  },
+  "arena-gen6-medium-ben-feed": {
+   "tip": "ca95def619269e2eefaba8263134ff8154ff1171",
+   "tip_time": "2026-11-11T05:10:36+00:00",
+   "episodes": 1424,
+   "new": 0
+  },
+  "arena-gen7-phase1-azure1-feed": {
+   "tip": "8c587d43f49c0bcf5b4b7e6dd08eab9168dfe625",
+   "tip_time": "2026-11-12T04:27:41+00:00",
+   "episodes": 828,
+   "new": 0
+  },
+  "arena-gen7-phase1-azure2-ben16-1-feed": {
+   "tip": "cb80589830c3962f92668cca8c7fd71a9ea490ec",
+   "tip_time": "2026-11-12T04:27:38+00:00",
+   "episodes": 47,
+   "new": 34
+  },
+  "arena-gen7-phase1-azure2-ben16-2-feed": {
+   "tip": "518520f39bd780a08b9876c8fd4f382361d16b54",
+   "tip_time": "2026-11-12T04:28:27+00:00",
+   "episodes": 49,
+   "new": 35
+  },
+  "arena-gen7-phase1-azure2-ben16-3-feed": {
+   "tip": "4e7d2ed325db6e6cbb3bce2122ae68e954589184",
+   "tip_time": "2026-11-12T04:27:40+00:00",
+   "episodes": 48,
+   "new": 36
+  },
+  "arena-gen7-phase1-azure2-ben16-4-feed": {
+   "tip": "42d9fd93d435ae8e71b07d51c13a699c107e1330",
+   "tip_time": "2026-11-12T04:27:32+00:00",
+   "episodes": 51,
+   "new": 36
+  },
+  "arena-gen7-phase1-azure2-ben16-5-feed": {
+   "tip": "0e1b3ac179819756f4099c5c45c013bbb55d5a69",
+   "tip_time": "2026-11-12T04:28:10+00:00",
+   "episodes": 45,
+   "new": 33
+  },
+  "arena-gen7-phase1-azure2-ben16-6-feed": {
+   "tip": "4dcd62de60c19a39ef91865014e625f6de05351c",
+   "tip_time": "2026-11-12T04:27:52+00:00",
+   "episodes": 45,
+   "new": 35
+  },
+  "arena-gen7-phase1-azure2-ben16-7-feed": {
+   "tip": "477f4572ec7e5758646e1002bca627603ef211be",
+   "tip_time": "2026-11-12T04:27:42+00:00",
+   "episodes": 50,
+   "new": 37
+  },
+  "arena-gen7-phase1-azure2-ben16-8-feed": {
+   "tip": "b379ed8d44f172bc5fd979ca5297183c551cab4d",
+   "tip_time": "2026-11-12T04:27:30+00:00",
+   "episodes": 45,
+   "new": 32
+  },
+  "arena-gen7-phase1-azure2-feed": {
+   "tip": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+   "tip_time": "2026-11-12T03:48:23+00:00",
+   "episodes": 608,
+   "new": 0
+  },
+  "arena-gen7-phase1-azure3-ben64-1-feed": {
+   "tip": "98a9cead6e626bc4b81932bd63198b480cad5cdf",
+   "tip_time": "2026-11-12T04:27:51+00:00",
+   "episodes": 25,
+   "new": 18
+  },
+  "arena-gen7-phase1-azure3-ben64-2-feed": {
+   "tip": "6e81d7f5a1a31d67a6e759a1882f5f74a5206fac",
+   "tip_time": "2026-11-12T04:27:50+00:00",
+   "episodes": 20,
+   "new": 17
+  },
+  "arena-gen7-phase1-azure3-ben64-3-feed": {
+   "tip": "b96f608cbf0a76aaeeb519a8ac6bf31a47eefbe5",
+   "tip_time": "2026-11-12T04:28:02+00:00",
+   "episodes": 19,
+   "new": 17
+  },
+  "arena-gen7-phase1-azure3-ben64-4-feed": {
+   "tip": "13ced70b0ebf70b2628bb8323ee82e51e37f4cc0",
+   "tip_time": "2026-11-12T04:27:42+00:00",
+   "episodes": 23,
+   "new": 19
+  },
+  "arena-gen7-phase1-azure3-ben64-5-feed": {
+   "tip": "f16526291592a431bbb45b1bbcd8b4c8179a67cb",
+   "tip_time": "2026-11-12T04:27:37+00:00",
+   "episodes": 22,
+   "new": 18
+  },
+  "arena-gen7-phase1-azure3-ben64-6-feed": {
+   "tip": "e1aff66fd06997eca33201a739c308a615f014b5",
+   "tip_time": "2026-11-12T04:27:47+00:00",
+   "episodes": 19,
+   "new": 15
+  },
+  "arena-gen7-phase1-azure3-ben64-7-feed": {
+   "tip": "f0cfe641f67789e75e216989fa87ce978e01c153",
+   "tip_time": "2026-11-12T04:28:28+00:00",
+   "episodes": 20,
+   "new": 16
+  },
+  "arena-gen7-phase1-azure3-ben64-8-feed": {
+   "tip": "c9db02d99a646eb1248d7b7d02bbc17503ce34d5",
+   "tip_time": "2026-11-12T04:28:11+00:00",
+   "episodes": 25,
+   "new": 20
+  },
+  "arena-gen7-phase1-azure3-feed": {
+   "tip": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+   "tip_time": "2026-11-12T03:51:29+00:00",
+   "episodes": 720,
+   "new": 0
+  },
+  "arena-gen7-phase1-azure4-feed": {
+   "tip": "375ba639fc0843518ff62e8dcd2578ee3e2b0fd4",
+   "tip_time": "2026-11-12T04:27:40+00:00",
+   "episodes": 829,
+   "new": 0
+  },
+  "arena-gen7-phase1-cloud-feed": {
+   "tip": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+   "tip_time": "2026-11-12T05:25:19+01:00",
+   "episodes": 67,
+   "new": 64
+  },
+  "arena-gen7-phase1-codex-20261112-feed": {
+   "tip": "dfe3233dec356e48da065702964892354e0db16c",
+   "tip_time": "2026-11-12T04:28:23+00:00",
+   "episodes": 564,
+   "new": 174
+  },
+  "arena-gen7-phase1-extra-feed": {
+   "tip": "cbbd5b70aa01b83cc54a06d30d7f4359a29397d2",
+   "tip_time": "2026-11-12T04:37:19+01:00",
+   "episodes": 7,
+   "new": 0
+  },
+  "arena-gen7-phase1-independent-feed": {
+   "tip": "6baa0d553e1442bec3e6c077d3e839a69d588499",
+   "tip_time": "2026-11-12T04:27:59+00:00",
+   "episodes": 285,
+   "new": 155
+  },
+  "transfer/pre7-test-azure1-20261112": {
+   "tip": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
+   "tip_time": "2026-11-12T03:12:16+00:00",
+   "episodes": 538,
+   "new": 0
+  },
+  "transfer/pre7-test-azure2-20261112": {
+   "tip": "49f592aa4246024f1c30a3074d0f7abd801366fe",
+   "tip_time": "2026-11-12T03:12:21+00:00",
+   "episodes": 363,
+   "new": 0
+  },
+  "transfer/pre7-test-azure3-20261112": {
+   "tip": "510435029c4be6b725d2496db01a8b64520bdc67",
+   "tip_time": "2026-11-12T03:12:26+00:00",
+   "episodes": 374,
+   "new": 0
+  },
+  "transfer/pre7-test-azure4-20261112": {
+   "tip": "159bd50e593e51afbceecf25b963db245609b6d4",
+   "tip_time": "2026-11-12T03:12:30+00:00",
+   "episodes": 362,
+   "new": 0
+  }
+ },
+ "new_by_branch": {
+  "arena-gen6-ben-expansion-feed": 0,
+  "arena-gen6-chatgpt-feed": 0,
+  "arena-gen6-codex-ben-followups-feed": 0,
+  "arena-gen6-codex-ben-gate": 0,
+  "arena-gen6-codex-feed": 0,
+  "arena-gen6-codex-v7-capture-feed": 0,
+  "arena-gen6-codex-v7-cutover": 0,
+  "arena-gen6-codex-v7-watch": 0,
+  "arena-gen6-extra-selfplay-feed": 0,
+  "arena-gen6-fast-selfplay-20261111-19bbdce5-feed": 304,
+  "arena-gen6-fast-selfplay-cloud-feed": 0,
+  "arena-gen6-fast-selfplay-codex-20261111": 0,
+  "arena-gen6-fast-selfplay-independent-feed": 0,
+  "arena-gen6-fast-selfplay-primary-feed": 0,
+  "arena-gen6-gen7-capture-feed": 0,
+  "arena-gen6-independent-feed": 0,
+  "arena-gen6-medium-ben-feed": 0,
+  "arena-gen7-phase1-azure1-feed": 0,
+  "arena-gen7-phase1-azure2-ben16-1-feed": 34,
+  "arena-gen7-phase1-azure2-ben16-2-feed": 35,
+  "arena-gen7-phase1-azure2-ben16-3-feed": 36,
+  "arena-gen7-phase1-azure2-ben16-4-feed": 36,
+  "arena-gen7-phase1-azure2-ben16-5-feed": 33,
+  "arena-gen7-phase1-azure2-ben16-6-feed": 35,
+  "arena-gen7-phase1-azure2-ben16-7-feed": 37,
+  "arena-gen7-phase1-azure2-ben16-8-feed": 32,
+  "arena-gen7-phase1-azure2-feed": 0,
+  "arena-gen7-phase1-azure3-ben64-1-feed": 18,
+  "arena-gen7-phase1-azure3-ben64-2-feed": 17,
+  "arena-gen7-phase1-azure3-ben64-3-feed": 17,
+  "arena-gen7-phase1-azure3-ben64-4-feed": 19,
+  "arena-gen7-phase1-azure3-ben64-5-feed": 18,
+  "arena-gen7-phase1-azure3-ben64-6-feed": 15,
+  "arena-gen7-phase1-azure3-ben64-7-feed": 16,
+  "arena-gen7-phase1-azure3-ben64-8-feed": 20,
+  "arena-gen7-phase1-azure3-feed": 0,
+  "arena-gen7-phase1-azure4-feed": 0,
+  "arena-gen7-phase1-cloud-feed": 64,
+  "arena-gen7-phase1-codex-20261112-feed": 174,
+  "arena-gen7-phase1-extra-feed": 0,
+  "arena-gen7-phase1-independent-feed": 155,
+  "transfer/pre7-test-azure1-20261112": 0,
+  "transfer/pre7-test-azure2-20261112": 0,
+  "transfer/pre7-test-azure3-20261112": 0,
+  "transfer/pre7-test-azure4-20261112": 0
+ }
+}
