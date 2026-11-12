@@ -26,7 +26,7 @@ Generated 2026-11-12 10:30 UTC by `tools/workq.py` after a change by `dave`. Do 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
-| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 12:55 | leased | high | 2026-11-13T12:00Z |  |
+| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 14:30 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 12:08 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-12 12:43 | leased | medium | 2026-11-13T12:00Z |  |
