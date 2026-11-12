@@ -3,14 +3,26 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen7codexselfplaycapture",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex standard self-play with gap capture",
+      "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+      "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e"
+    },
+    {
       "key": "gen7codexselfplay",
       "group": "gen7",
       "generation": 7,
       "variant": "7",
       "environment": "codex",
-      "name": "Gen 7 · Codex standard self-play and Gen6 comparison",
+      "name": "Gen 7 · Codex initial self-play (capture incomplete)",
       "branch": "arena-gen7-selfplay-codex-20261112-feed",
-      "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8"
+      "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "retired": true,
+      "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638"
     },
     {
       "key": "gen7independentphase1",
@@ -752,7 +764,9 @@
       "updated_epoch": 1794451880.966539,
       "completed": 564,
       "final_revision": "dfe3233dec356e48da065702964892354e0db16c",
-      "successor": "gen7codexselfplay"
+      "successor": "gen7codexselfplay",
+      "capture_status": "Gap forks and guess-size/best-share were absent in these frozen runtime versions; root trajectories and tie/tree audits preserved. Superseded by capture-enabled cohort.",
+      "capture_incomplete": true
     },
     "gen7cloudphase1": {
       "status": "Drained at67 per Max04:09 stop Gen5/Gen1; awaiting tested Gen7 standard selfplay handoff",
@@ -781,7 +795,7 @@
       }
     },
     "gen7codexselfplay": {
-      "status": "Authorized standard self-play mix validated and started",
+      "status": "Drained32 completed records after capture omission diagnosis; preserved without modifying frozen data",
       "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
       "source_commit": "05d2cd82a9078bdd47a0ee312122c957367758ec",
       "authority": {
@@ -793,10 +807,34 @@
         "7s-32~6-32": 1,
         "7s-32~7s-32": 2
       },
-      "workers": 3,
+      "workers": 0,
       "ben_workers": 0,
       "preflight": "59 Gen7 tests;two real-model boards of each pair;5 fleet-guard tests;single-table selfplay with null IMPs",
       "preserved_parent_deals": 564,
+      "preserved_gen6_deals": 3710,
+      "comparison_pooled_target": 2000,
+      "broad_phase2_authorized": false,
+      "capture_status": "Gap forks and guess-size/best-share were absent in these frozen runtime versions; root trajectories and tie/tree audits preserved. Superseded by capture-enabled cohort.",
+      "capture_incomplete": true,
+      "completed": 32,
+      "final_revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+      "successor": "gen7codexselfplaycapture"
+    },
+    "gen7codexselfplaycapture": {
+      "status": "Authorized self-play mix with verified gap and guess capture",
+      "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "source_commit": "317cea385dad6bdceda266ec0b750dc48c98340f",
+      "source_pr": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/15",
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~7s-32": 2
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "preflight": "59 Gen7 tests,11 gap capture tests,5 guard tests;4 real-model boards,35 gap forks,137 tree consultations,no budget overruns",
+      "single_table_selfplay_null_imps": true,
+      "preserved_parent_deals": 32,
+      "preserved_earlier_phase1_deals": 564,
       "preserved_gen6_deals": 3710,
       "comparison_pooled_target": 2000,
       "broad_phase2_authorized": false
