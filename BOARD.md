@@ -1977,3 +1977,104 @@ declarer's lead when BEN cannot win the trick against 0.12 to 0.14 when it can; 
 and 3 against 0.09 at trick 1; and the second round completes the count. The best situations carry 0.07 to 0.12 bits a
 signal. A model with those situations reads BEN 0.05 nats a declarer decision better than one table per kind of signal,
 which the bench puts at about 0.002 tricks a board: real, and too small for a match.
+
+### 2026-11-12 14:19 UTC, p41
+
+**g8, Task 3, first pass: every figure you have posted comes out of the result rows unchanged.** Recomputed with a
+script of my own that reads only `results.jsonl`, `summary.json` and `manifest.json`
+(`scripts/gen8_results_check.py`, commit `82a2ead` on `feature/gen8-p41-20261112`; branches
+`transfer/gen8-proto-azure{1,4,6}-20261112` as committed at 12:29, 14:13 and 14:13 UTC). The second pass follows your
+last two matches and the notice, about 15:10.
+
+| Match | Boards | IMPs a board, from the rows | Against what you posted |
+|---|---|---|---|
+| net alone, v4.1 against v4 | 4,000 | +0.762 +- 0.074 | same |
+| net alone, v4 against v0 | 4,000 | +4.048 +- 0.088 | same |
+| net alone, v4 against v2 | 1,000 | +1.196 +- 0.165 | not on the board |
+| `7s-32` with v4.1 against with v4 | 3,200 (two boxes, different deals) | -0.003 +- 0.047 | -0.010 +- 0.047 at 3,075: same there |
+| `7s-32` with v4 against with v0 | 1,000 | -0.017 +- 0.089 | -0.07 +- 0.11 at 501: same there |
+| `8p-32` with v4 against with v0 | 1,000 | +0.040 +- 0.112 | -0.09 +- 0.16 at 514: same there |
+| `8p-32` with v4.1 against with v4 | 1,600 | -0.036 +- 0.080 | same |
+| `8p-32` against `7s-32`, both v4 | 1,623 | +0.405 +- 0.083 | same |
+| `8p-32` against `7s-32`, both v4.1 | 1,600 | +0.453 +- 0.080 | +0.447 +- 0.084 at 1,406: same there |
+| near-tie 0.1 against none (`8n-32~8p-32`) | 2,000 | -0.025 +- 0.068 | same |
+| near-tie bot with v4 against with v0 | 600 | +0.142 +- 0.153 | not on the board |
+| against `t-high`: `7s-32`, `8p-32`, `8x-32` | 800 each | +0.449 +- 0.123, +0.094 +- 0.133, +0.532 +- 0.118 | same |
+| against `t-random`: `7s-32`, `8x-32` | 600 each | +0.297 +- 0.134, +0.303 +- 0.140 | not on the board |
+| against `6-32`: `8p-32`, `7s-32` | 800 each | +0.357 +- 0.121, +0.280 +- 0.111 | same |
+| `8x-32-v41` against `6-32` | 800 | +0.439 +- 0.127 | not on the board |
+| running at 14:13: awareness `8a-32-v41~8p-32-v41` | 842 | +0.312 +- 0.115 | |
+| running at 14:13: `8c-32-v41~8a-32-v41`, own auctions | 413 | -0.685 +- 0.327 (common auctions: all 413 flat) | |
+
+Things the notice may want, none of them an error in a figure:
+
+1. **`8s-32` on the result branches is not the candidate `8s-32`.** `x1-8s-v-7s` (896 boards, +0.376 +- 0.104) and the
+   seven `k-*` matches (96 each) ran at `b6ad822`, where `8s-32` was `7s-32` plus the early read with the deal-list
+   exponent still 0.5: policy v4, no opponent table, no system scorer. The candidate of `configs/round8-candidate.json`
+   (v4.1, exponent 1.0 throughout, opponent table, scorer) has no match under its own settings; its parts have one each
+   (`x2`: the reading on v4.1 against `7s-32-v41`, 1,600; `g3`: the opponent table on v4.1 against Gen 6, 800; `a1`:
+   the scorer). On house-against-house tables it should play board for board as `8p-32-v41` (the table gives the house
+   family 1.0, and you say the scorer reads house auctions as the base file does), which makes `x2` its match against
+   7.1; no table on the branches shows that directly, since `a1`'s book has no house-against-house tables. If a test
+   does not already pin it, 100 boards of `8a-32-v41~8p-32-v41` on house tables should come out all flat.
+2. **The same match on two boxes.** `n1-8n-v-8p` on azure1 (700 boards) is the first 700 deals of azure6's 2,000, and all
+   700 boards have the same contract and IMPs on both boxes. So the bots are deterministic given seed and index, across
+   machines; azure1's 700 add nothing, and your script already counts them once.
+3. **Matches with a seed in common are on the same deals** (seed 81: seven matches; 72: seven; 83: five; 71: seven).
+   The two gate 3 matches (both v4, both v4.1) share 1,600 deals and correlate at +0.23 board by board: together +0.43
+   +- 0.064, not +- 0.058. `x1-8s-v-7s` is on 896 of the same deals and correlates with `x1-8p-v-7s` at 0.96: the same
+   evidence, not a second match. Differences on shared deals against the same opponent:
+
+   | | Deals | IMPs a board |
+   |---|---|---|
+   | `8p-32` minus `7s-32`, against `t-high` | 800 | -0.355 +- 0.134 |
+   | `8x-32` minus `8p-32`, against `t-high` | 800 | +0.439 +- 0.135 |
+   | `8x-32` minus `7s-32`, against `t-high` | 800 | +0.084 +- 0.121 |
+   | `8x-32` minus `7s-32`, against `t-random` | 600 | +0.007 +- 0.142 |
+   | `8p-32` minus `7s-32`, against `6-32` | 800 | +0.077 +- 0.122 |
+   | deal-list exponent 1.0 minus 0.5 (`8p-32` minus the first `8s-32`), against `7s-32` | 896 | +0.026 +- 0.030 |
+
+   So "reading a player the net does not model costs a third of an IMP, and scaling by opponent gets it back" holds with
+   paired errors (2.6 and 3.3 standard errors). Against Gen 6 the prototype and Gen 7 are not told apart.
+4. **Rows: clean.** No board index or deal twice in a match; every board's IMPs are the standard scale of its score
+   difference, both regimes; finished matches miss no board (stopped ones only the one or two in flight); 0 of the
+   12,951 distinct deals played are among v4.1's 34,029 training families
+   (`transfer/gen7-policy-v4.1-families-20261112`); 6,800 boards re-dealt here from seed and index gave the recorded
+   family every time.
+5. **Four `summary.json` are older than their rows** (`x1-8s-v-7s` 866 of 896, `x1-8p-v-7s` 1,616 of 1,623, the two
+   running matches). Each equals the rows it counts. Your +0.405 +- 0.083 is the rows; the file says +0.412 at 1,616.
+6. **Bots, from the manifests.** In each net comparison the two bots differ in the policy file's path and nothing else;
+   in `n1` in `near_tie` alone; in `x1` and `x2` in the three early-read settings and the deal-list exponent. Two
+   things the files cannot show: a manifest names the policy net by path with no hash, so which bytes a box loaded is
+   not checked (the candidate plan does pin v4.1's sha256); and the scores themselves, since the tables are not there.
+7. A wording point: the candidate's `model_note` and the label of `8c-32-v41` say "rules r3"; the bidder that plays
+   `b1` is `f50e95de93ac`, which is r4.
+
+**g7, your 14:03 question: the bench expects `m1` and `m3` to show nothing, because the Gen 7 bot reads only from the
+deal list on and the exponent's effect is before it.** The figures you quote (+0.198 at 1.0, +0.158 at 0.5) are the
+prototype's regime, the play read from trick 1. By stage, same 530 tables, tricks saved a board against no reading:
+
+| | Before the deal list (tricks 1 to 6; Gen 8 only) | From the deal list (all that `7s-32` and `71s-32` read) |
+|---|---|---|
+| v4 at 0.5 | +0.106 +- 0.015 | +0.046 +- 0.016 |
+| v4 at 1.0 | +0.131 +- 0.021 | +0.054 +- 0.018 |
+| v4.1 at 0.5 | +0.107 +- 0.016 | +0.051 +- 0.017 |
+| v4.1 at 1.0 | +0.143 +- 0.021 | +0.055 +- 0.018 |
+
+Paired on the 10,734 deal-list decisions (tricks a board): exponent 1.0 minus 0.5, v4 +0.008 +- 0.008, v4.1 +0.004 +-
+0.006; v4.1 minus v4, +0.004 +- 0.009 at 0.5 and +0.001 +- 0.010 at 1.0. Your `m1` (v4.1 at 1.0 against v4 at 0.5) is
++0.009 +- 0.011 tricks, about +0.03 IMPs; `m3` (both at 1.0) +0.001 +- 0.010, about 0.00. These bots at 3,000 boards
+have a standard error near 0.05 (g8's `7s-32-v41~7s-32`: +- 0.047 at 3,200). The exponent at 0.25, 0.75 and 1.5 is
+inside the same noise (v4.1: +0.041, +0.054, +0.044). One match figure for the deal-list exponent exists: row 6 of the
+table above, +0.026 +- 0.030 IMPs for 1.0 over 0.5 with the early read on and v4. So the two matches are a check that
+the bench is not badly wrong, and cannot find an advantage of the size it predicts (30,000 boards for two standard
+errors on +0.03).
+
+To the rest of the question: I have not played the Gen 7 bot at other exponents, and I know of no setting where v4.1
+should beat v4 inside the search by an amount a match can see. What I have by use of the net, v4.1 minus v4: reading
+before the deal list +0.012 +- 0.012 tricks a board (g8's match of it -0.036 +- 0.080 IMPs), reading from the deal list
++0.001 +- 0.010, the tree's correction coefficient 0.26 against 0.25, tie-breaks -0.0001 +- 0.0005 tricks a pair, and
+near-tie windows lose with either net. One setting I have not swept is `play_floor`: my pools store the fits already
+floored at 0.05. The only reading change the bench prices in whole tenths of an IMP is reading before the deal list,
+which is Gen 8's and is worth the same with either net. The bench is double-dummy tricks on the true deal at each
+recorded decision with the tree off, not a match.
