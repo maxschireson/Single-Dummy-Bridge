@@ -14,6 +14,9 @@ Several machines can share one source run without playing a deal twice: each pre
 own `--shard K/N` (K from 0 to N-1) and gets every N-th unplayed deal starting at the K-th. The
 shard is written into the manifest, so each machine's cohort has its own identity.
 
+The source may also be a drained Gen7 cohort: a new plan then takes over the deals that cohort had
+not played, with the same Gen7 bots (same settings, same identity) and a different match mix.
+
   python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json] [--shard K/N]
 """
 import argparse
@@ -73,12 +76,15 @@ def load_plan(path=None, require_ready=True):
 
 
 def make_bots(old, plan):
-    """Source bots unchanged, plus each Gen7 bot built from its Gen6 base bot's spec."""
+    """Source bots unchanged, plus each Gen7 bot built from its Gen6 base bot's spec.
+
+    The source run may itself be a drained Gen7 cohort, whose unplayed deals a new plan takes over. It already
+    has the plan's Gen7 bots; each must then be exactly the bot this plan builds, and is kept as it is."""
     bots = deepcopy(old['bots'])
     for key, entry in plan['gen7_bots'].items():
         base = old['bots'].get(entry['base'])
-        if key in bots or base is None or base.get('engine') != 'gen6':
-            raise ValueError(f'Gen7 bot {key} needs a new id and a Gen6 base bot')
+        if base is None or base.get('engine') != 'gen6':
+            raise ValueError(f'Gen7 bot {key} needs a Gen6 base bot')
         spec = deepcopy(base)
         spec.pop('identity')
         spec.update(id=key, engine=ENGINE, policy_role='gen7-alpha', samples=entry.get('samples', base['samples']),
@@ -86,6 +92,8 @@ def make_bots(old, plan):
                     gen7=resolved(entry.get('gen7')), gen7_policy=GEN7_POLICY)
         spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts']['gen7_policy']['sha256'])
         spec['identity'] = digest(spec)
+        if key in bots and bots[key] != spec:
+            raise ValueError(f'The source run has a different bot called {key}: give the Gen7 bot a new id, or the settings of the bot it continues')
         bots[key] = spec
     return bots
 

@@ -7,7 +7,8 @@ import time
 import unittest
 from unittest.mock import patch
 
-from bridge_harness.corpus import generate
+from bridge_harness.bidding_env import deal_key
+from bridge_harness.corpus import generate, load
 from bridge_harness.gen5_arena import run_board
 from bridge_harness.loop_registry import sha
 from bridge_harness.mixed_arena import verify_generation
@@ -20,6 +21,7 @@ from test_gen7_launch import gen6_run
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = ROOT / 'configs/round7-phase1-selfplay.json'
+PHASE1 = ROOT / 'configs/round7-candidate-phase1-nonben.json'
 SELF, CROSS = '7s-32~7s-32', '7s-32~6-32'
 
 
@@ -33,6 +35,21 @@ def manifest(**extra):
              order=['7s-32', '6-32'], created_epoch=time.time(), interpretation='Self-play', model_note='Gen 7 standard')
     m.update(extra)
     return m
+
+
+def stand_in(tmp, name, source, **changes):
+    """A plan file in `tmp`: a shipped plan, pointed at a stand-in policy release that names the source run's scorer."""
+    old = json.loads((tmp / 'source' / 'manifest.json').read_text())
+    release = tmp / 'release'
+    if not release.exists():
+        release.mkdir()
+        (release / 'policy.npz').write_bytes(b'policy')
+        (release / 'manifest.json').write_text(json.dumps(dict(scorer_sha256=old['bots']['6-32']['artifact_sha256']['scorer'])))
+    plan = json.loads(Path(source).read_text())
+    plan['artifacts']['gen7_policy'] = dict(release=str(release), file='policy.npz', restore='restore.py', sha256=sha(release / 'policy.npz'))
+    plan.update(changes)
+    (tmp / f'{name}.json').write_text(json.dumps(plan))
+    return tmp / f'{name}.json'
 
 
 def played(m, index=0):
@@ -109,7 +126,7 @@ class Gen7SelfplayTests(unittest.TestCase):
 
     def test_the_shipped_plan_is_phase_1_without_the_two_anchors(self):
         plan = load_plan(PLAN)                                                      # open: preparation accepts it
-        base = load_plan(ROOT / 'configs/round7-candidate-phase1-nonben.json')
+        base = load_plan(PHASE1)
         self.assertEqual(plan['pair_weights'], {CROSS: 1, SELF: 2})
         self.assertEqual(plan['roster'], ['7s-32', '6-32'])
         self.assertEqual(sum(plan['pair_weights'].values()), sum(base['pair_weights'].values()))    # weight for weight
@@ -123,27 +140,48 @@ class Gen7SelfplayTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             old = gen6_run(tmp / 'source')
-            release = tmp / 'release'
-            release.mkdir()
-            (release / 'policy.npz').write_bytes(b'policy')
-            (release / 'manifest.json').write_text(json.dumps(dict(scorer_sha256=old['bots']['6-32']['artifact_sha256']['scorer'])))
-            entry = dict(release=str(release), file='policy.npz', restore='restore.py', sha256=sha(release / 'policy.npz'))
-            made = {}
-            for name, source in (('selfplay', PLAN), ('phase1', ROOT / 'configs/round7-candidate-phase1-nonben.json')):
-                plan = json.loads(source.read_text())
-                plan['artifacts']['gen7_policy'] = entry
-                if name == 'phase1':                                                # the stand-in source run has no Gen 5 or Gen 1 bot
-                    plan.update(roster=['7s-32', '6-32'], pair_weights={CROSS: 1})
-                (tmp / f'{name}.json').write_text(json.dumps(plan))
-                made[name] = prepare(tmp / name, tmp / 'source', tmp / f'{name}.json')
-                verify_generation(tmp / name, made[name])
-            m = made['selfplay']
+            m = prepare(tmp / 'selfplay', tmp / 'source', stand_in(tmp, 'selfplay', PLAN))
+            verify_generation(tmp / 'selfplay', m)
+            # the stand-in source run has no Gen 5 or Gen 1 bot, so phase 1 is prepared with its Gen 6 pair only
+            phase1 = prepare(tmp / 'phase1', tmp / 'source', stand_in(tmp, 'phase1', PHASE1, roster=['7s-32', '6-32'], pair_weights={CROSS: 1}))
             self.assertEqual(m['pair_schedule'], [CROSS, SELF, SELF])
-            self.assertEqual(m['bots']['7s-32'], made['phase1']['bots']['7s-32'])       # same bot, same identity, as in phase 1
+            self.assertEqual(m['bots']['7s-32'], phase1['bots']['7s-32'])           # same bot, same identity, as in phase 1
             self.assertEqual(m['audit_references']['7s-32'], '3')
-            self.assertNotEqual(m['identity'], made['phase1']['identity'])
+            self.assertNotEqual(m['identity'], phase1['identity'])
             self.assertFalse(m.get('two_self_rooms'))                               # carried from the source run: one table a deal
             self.assertEqual(m['audit'], old['audit'])
+
+    def test_the_plan_takes_over_the_unplayed_deals_of_a_drained_phase_1_cohort(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            gen6_run(tmp / 'source')
+            first = prepare(tmp / 'first', tmp / 'source', stand_in(tmp, 'phase1', PHASE1, roster=['7s-32', '6-32'], pair_weights={CROSS: 1}))
+            boards = list(load(tmp / 'first' / 'corpus.jsonl'))
+            for i in (0, 3):                                                        # two boards were played before the cohort was stopped
+                episode = tmp / 'first' / 'episodes' / f'{i:06d}.json.gz'
+                episode.write_bytes(b'episode %d' % i)
+                atomic_json(tmp / 'first' / 'receipts' / f'{i:06d}.json', dict(index=i, manifest_identity=first['identity'],
+                            family=deal_key(boards[i].hands, True), episode_sha256=sha(episode)))
+            plan = stand_in(tmp, 'selfplay', PLAN)
+            with self.assertRaises(ValueError):                                     # a cohort that is still collecting is not a source
+                prepare(tmp / 'next', tmp / 'first', plan)
+            for name in ('STOP', 'WATCHDOG_STOP'):
+                (tmp / 'first' / name).write_text('drained')
+            m = prepare(tmp / 'next', tmp / 'first', plan)
+            verify_generation(tmp / 'next', m)
+            left = [i for i in range(first['target']) if i not in (0, 3)]
+            self.assertEqual((m['target'], m['source_generation'], m['source_completed']), (len(left), first['identity'], 2))
+            self.assertEqual(json.loads((tmp / 'next' / 'source-indices.json').read_text()), left)
+            self.assertEqual([b.to_dict() for b in load(tmp / 'next' / 'corpus.jsonl')], [boards[i].to_dict() for i in left])
+            self.assertEqual(m['bots'], first['bots'])                              # every bot as it was, 7s-32 and its identity included
+            self.assertEqual(m['pair_schedule'], [CROSS, SELF, SELF])
+            self.assertEqual(sha(tmp / 'next' / 'artifacts/gen7/policy.npz'), sha(tmp / 'first' / 'artifacts/gen7/policy.npz'))
+            changed = json.loads(plan.read_text())
+            changed['gen7_bots']['7s-32']['gen7']['tree'][0]['trust'] = .25
+            (tmp / 'changed.json').write_text(json.dumps(changed))
+            with self.assertRaises(ValueError):                                     # the same id with other settings is another bot
+                prepare(tmp / 'other', tmp / 'first', tmp / 'changed.json')
+            self.assertFalse((tmp / 'other').exists())
 
 
 if __name__ == '__main__':
