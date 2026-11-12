@@ -240,8 +240,8 @@
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "authorized_anchor_stop_and_selfplay_transition_in_progress",
-  "collection_action": "STOP and WATCHDOG_STOP applied to old three-pair cohort; drained564 completed deals,188 per pair,zero failures. Validate new 2:1 standard selfplay/Gen6-comparison mix.",
+  "result": "selfplay_capture_omission_diagnosed_draining",
+  "collection_action": "Diagnosed capture omission: frozen Gen7 selfplay port does not execute gap/guess capture. Drain permanently; replace with a validated capture-enabled runtime and new identity.\n",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -536,7 +536,7 @@
       "sha": "159bd50e593e51afbceecf25b963db245609b6d4"
     }
   ],
-  "completed_at": "2026-11-12T04:28:09Z",
+  "completed_at": "2026-11-12T04:35:31Z",
   "next_comment_scan_since": "2026-11-12T03:24:49Z",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
@@ -816,5 +816,12 @@
       "complete": false
     },
     "candidate_runtime_commit": "05d2cd82a9078bdd47a0ee312122c957367758ec"
+  },
+  "capture_omission": {
+    "phase1_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+    "selfplay_manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+    "root_trajectories_and_tie_audits_preserved": true,
+    "missing": "gap forks and gen6 guess_size/best_share fields",
+    "repair_source": "522eda6d5c13230a541ea40dc9cae497ed4c6088"
   }
 }
