@@ -14,6 +14,12 @@ population that players join and leave.
 | [Arena statistics](arena-statistics.md) | Rating table, field score, admission, the promotion test |
 | Area design notes | `bidding.md`, `signals.md`, `arena.md`, `workflow.md`, added by the area leads at checkpoint 1 |
 
+**Tests.** `python3 scripts/run_tests.py --prepare` builds DDS, installs what is missing, restores
+the nets and runs every test file, reporting each skip and each test it could not run with the
+reason (`--set gen9` for the Gen 9 set, `--with tensorflow,h5py` to cover the six tests that need
+them). A fresh session sandbox runs everything in about 3.5 minutes:
+[first run](../../reports/gen9-test-run-2026-11-12/README.md).
+
 Live task and experiment state: branch `team/gen9` (`STATUS.md`). That branch is the team's
 channel and is never merged into source.
 
