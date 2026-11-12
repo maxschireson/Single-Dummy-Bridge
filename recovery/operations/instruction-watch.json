@@ -26,18 +26,18 @@
     "configs/round7-candidate-phase2.json": "e46dbbcf3999d77be30aac58cc28e2713eb4d7af"
   },
   "watched_source_refs": {
-    "box/azure1/control": "6f23d856cf1b63f1d27f48309f388934b5652f6a",
-    "box/azure1/status": "305a7ad87a4b8a633e23544768495cd6965dc43f",
+    "box/azure1/control": "8163ff9cfbe3796e1cdea396e88c0fc58b77d3c2",
+    "box/azure1/status": "429657ae8d34b097d2cbcf2b0c56a5a32647287e",
     "box/azure2/control": "44034581fc96a8a30c614e1432b47d61ed11d1d1",
-    "box/azure2/status": "a43b2ab8fcbd7c0f09775f502e3cb4dc9835adf0",
-    "box/azure3/control": "0d309138f54ddf87ac01140fbb20e1b75f0fae11",
-    "box/azure3/status": "02e1d7f556bd3a37a72fe4f50c1efaefde6835e1",
-    "box/azure4/control": "9e02b7de400067b2028df2dd10ddbe818d10c893",
-    "box/azure4/status": "d7443237d60dd69e2a8398ebfbeafa3b29dc7334",
+    "box/azure2/status": "ea1188257d73278c89ac497b48853b6db4ab7d3f",
+    "box/azure3/control": "9ddbd569faab61f37c0e85f91b67adc33bd51e26",
+    "box/azure3/status": "0c3e25eac00532549f9418b67b939a92c010b539",
+    "box/azure4/control": "e5d7918edf1c9bd5f5dcb6df542daa806e584157",
+    "box/azure4/status": "9f1e6b0c90a8481f9ddf53b091ba78ffa8df6f5a",
     "box/azure5/control": "eaa65c25a7e7e7b343a4b1ea56a3d49ddfa86c06",
-    "box/azure5/status": "236f6d715051a0ea737d47a017c045db830ce1e3",
+    "box/azure5/status": "d9c9fcef552687ad400a10e6d7f169c56ec98edd",
     "box/azure6/control": "6d9fdd5cc3c619a7274be2c3d680f87757176a6d",
-    "box/azure6/status": "b300566a38201b483b840c050d94e201f8eae32b",
+    "box/azure6/status": "05fc83d1a3109504befb4b5a73da579106ed60d8",
     "box/coordination": "8c58d0971b2c63137fb7cfa5e765bb58e04f6f3d",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
@@ -71,7 +71,7 @@
     "feature/gen8-p41-20261112": "49647795d80209863958da43588b2bc26bd5d0c8",
     "feature/gen8-prototype-20261112": "79ad0902ab305fc2f664bf5cc127776ac95dfdff",
     "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
-    "feature/gen9-arena-arrival": "32dcf6fbf71e018ac47da5521c5f4a4ae5c5e2c2",
+    "feature/gen9-arena-arrival": "65d77ec2b7535fd22d6618443fbdd21c279c9534",
     "feature/gen9-arena-design": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
     "feature/gen9-arena-epochs": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
     "feature/gen9-arena-experience": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
@@ -91,7 +91,7 @@
     "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
-    "fleet/azure": "f20d0c4ade5b8b9b45efadd6070348e46ceb9f22",
+    "fleet/azure": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf",
     "gh-pages": "3cd2a21e7705a4cd60f28d3dee8e4fc3cdfaca25",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
@@ -138,7 +138,7 @@
     "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
-    "team/gen9": "17b1315c67b4a5d9506d0132bc540a837d0fc07e",
+    "team/gen9": "7659af670c5b179258d5c9cbca7180fd4967155f",
     "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
     "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
@@ -157,8 +157,9 @@
     "transfer/gen8-proto-azure1-20261112": "127d766fbac368bfdaeeaf484498c9b9ce1651d9",
     "transfer/gen8-proto-azure3-20261112": "de801636aaed43af7d3d2337785580b5db7c7c54",
     "transfer/gen8-proto-azure4-20261112": "83d7dd2a2a84223df07f1278bba687fb63f77295",
-    "transfer/gen8-proto-azure6-20261112": "836bbe3b3499f7c6e35e8a80f7aa997a28c18617",
+    "transfer/gen8-proto-azure6-20261112": "1a8ffb68125cc485e7e3ae83b8b627f3d1e623be",
     "transfer/gen9-arrival-rehearsal-20261112": "4366d9b37d59f99e34d4d2a8817607f26131bbff",
+    "transfer/gen9-arrival-rehearsal-full-20261112": "8d9aa04bf04866e12e0296e203103bb7682760ac",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
     "transfer/plan-leverage-azure2-20261112": "3f12f4a97e303c72454af1fa9a9e399666e7a5ce",
@@ -174,14 +175,14 @@
       "number": 22,
       "title": "Gen 9 queue",
       "state": "open",
-      "updated_at": "2026-11-12T10:19:37Z",
+      "updated_at": "2026-11-12T11:18:42Z",
       "pull_request": false
     },
     {
       "number": 29,
       "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
       "state": "open",
-      "updated_at": "2026-11-12T10:07:17Z",
+      "updated_at": "2026-11-12T10:30:09Z",
       "pull_request": true
     },
     {
@@ -374,14 +375,14 @@
       "pull_request": true
     }
   ],
-  "comments_since": "2026-11-12T09:28:59Z",
+  "comments_since": "2026-11-12T10:21:32Z",
   "new_issue_comments": [],
   "new_review_comments": [],
   "instruction": "Follow current authoritative notices to collection workers under standing user delegation; only this owned stream. Max05:42 Gen7.1 comparison notice now supersedes this stream's Gen7.0 selfplay allocation. Scientific behavior is frozen by new manifest, not silently edited.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "no_applicable_instruction_change",
-  "collection_action": "No change: healthy owned stream continues authorized2:1comparison mix. Main, current notice and plans, and coordination board unchanged; no cohort, runtime, model, process, marker, failure, registry or supervisor setting changed by this poll.",
+  "collection_action": "No change: healthy owned stream continues authorized2:1comparison mix. Main, current notice/plans and coordination board unchanged; no cohort, runtime, model, process, marker, failure, registry or supervisor setting changed by this poll.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -413,47 +414,47 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "Gen9 arrival/bidding/experience/queue activity and external research feed updates are not adopted launch instructions. Other Gen6-owner dashboard handoff changes apply to that owner only. Current gate still requires1000plus positive95%lower bound and a published selfplay opening.",
+  "research_disposition": "Gen9 arrival rehearsal/full transfer, queue and source updates remain research, not an adopted arena launch. Current Gen7.1 files and owned registry entry unchanged. Other-host fleet reports/allocations remain read-only and dated; no takeover inferred. Gate still requires1000plus positive95%lower bound and published selfplay opening.",
   "notification": "quiet: no applicable collection change, completion, or blocker.",
-  "checked_epoch": 1794478892.0,
-  "checked_at": "2026-11-12T10:21:32Z",
-  "next_check": "2026-11-12T11:25:53Z",
+  "checked_epoch": 1794482469.0,
+  "checked_at": "2026-11-12T11:21:09Z",
+  "next_check": "2026-11-12T12:25:53Z",
   "stream_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "health": {
-    "epoch": 1794479057.2628,
+    "epoch": 1794482642.9216087,
     "configured_normal_workers": 3,
     "configured_ben_workers": 0,
     "heartbeat": {
-      "epoch": 1794479054.1401448,
-      "completed": 753,
+      "epoch": 1794482642.515895,
+      "completed": 961,
       "in_flight": [
-        753,
-        754,
-        755
+        961,
+        962,
+        963
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794474165.3856976,
+      "started_epoch": 1794481904.5705101,
       "stopping": false
     },
     "state": {
       "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "completed": 753,
+      "completed": 962,
       "target": 20257,
-      "contiguous": 753,
+      "contiguous": 962,
       "by_pair": {
-        "71s-32~7s-32": 502,
-        "71s-32~6-32": 251
+        "71s-32~7s-32": 642,
+        "71s-32~6-32": 320
       },
-      "root_games": 1506,
-      "tables": 18799,
+      "root_games": 1924,
+      "tables": 24184,
       "failures": 0,
-      "epoch": 1794479044.1365094,
+      "epoch": 1794482642.5943372,
       "complete": false
     },
     "watchdog": {
-      "epoch": 1794479050.177423,
-      "completed": 753,
+      "epoch": 1794482639.1522872,
+      "completed": 959,
       "target": 20257,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "workers": 3,
@@ -461,19 +462,19 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794479000.1591225,
-      "collector_pid": 42492,
+      "last_fleet_check": 1794482619.1492887,
+      "collector_pid": 48425,
       "publisher_pid": 39328
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794479002.9790843,
-      "completed": 749,
-      "commit": "c63e16dd7cb1fb4c1ff6f669fdfcb095b7d2f652",
+      "epoch": 1794482606.224289,
+      "completed": 957,
+      "commit": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
     "gate": {
-      "epoch": 1794479000.151956,
+      "epoch": 1794482619.1404994,
       "status": "checked",
       "actors": {
         "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
@@ -482,11 +483,11 @@
       "pair": "71s-32~7s-32",
       "condition": "common",
       "metric": "played IMPs per board for 71s-32",
-      "boards": 2352,
-      "mean_imps": -0.0391156462585034,
+      "boards": 2778,
+      "mean_imps": -0.029157667386609073,
       "ci95": [
-        -0.14033499346075828,
-        0.062103700943751464
+        -0.12336803854707003,
+        0.06505270377385187
       ],
       "minimum_boards_met": true,
       "positive_lower_bound": false,
@@ -494,12 +495,12 @@
       "snapshots": [
         {
           "branch": "arena-gen7-1-compare-codex-20261112-feed",
-          "revision": "59d4cfcb3abcc36c4d123350e9593ba5bb554c58",
+          "revision": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
           "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
         },
         {
           "branch": "arena-gen71-independent-feed",
-          "revision": "933613ffd621720bcc0c5174971fc6fae473c572",
+          "revision": "c1bc2d937ff5a75480d74a38118e1d10ecf7b588",
           "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         },
         {
@@ -529,12 +530,12 @@
         },
         {
           "branch": "arena-gen71-19bbdce5-20261112-feed",
-          "revision": "262a6440fbdbc2ff281d234086ab3fbc11e1ac89",
+          "revision": "6a5fbb4202d34641e420e5bff31f00076da066d0",
           "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
         },
         {
           "branch": "arena-gen7-phase1-azure1-feed",
-          "revision": "1492de0d561b3175566610ebe9b24bd269a81fc9",
+          "revision": "f36d4d5de8708685ae646819e89ffe32c0fe8fad",
           "excluded": "different-actors"
         },
         {
@@ -549,7 +550,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure4-feed",
-          "revision": "062f645b61f054950d54412633b741b064ea48fd",
+          "revision": "c76b995f3fcaef65dec5b08d0537d8f5a787c856",
           "excluded": "different-actors"
         },
         {
@@ -639,42 +640,42 @@
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
-          "revision": "aa09502f9db11fde200badab80d76e9fa7b5523d",
+          "revision": "adb2b3a28351c5d540c4f2d530ba4bc4b0ecb1b4",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
-          "revision": "4fd5c342971ce14584c95c4cd5f1194960e53bbe",
+          "revision": "cfa3baae7bb2ebf66e6ef42db58b8a7b7abfb366",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
-          "revision": "8b88764e95a10976b5341bb64b94d64f518f5e43",
+          "revision": "2017e34224b2405ad98b14e355240e1b3cd67291",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
-          "revision": "4109cf49b2e5148ea4c1a5d4cf25ca4b23f43872",
+          "revision": "5db75dd63c1d9d85d6385f6c310de8ace35e3081",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
-          "revision": "6dcfbaa1a0e8d2a65cef870b7a70a4e4081c936d",
+          "revision": "e6bfbf55b18a6f96b1c4193adf526da80e0c96c6",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
-          "revision": "78147cdd78cce0e4432c623e45403f743a42e273",
+          "revision": "81d7ba4cf439dc03b82c22b6c96e756b5b0eb6b3",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
-          "revision": "7b3ea82e5b182bf099cd732562cdeab089279c69",
+          "revision": "85350683082a02343c84c004c557ff466220108c",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
-          "revision": "022057f79870d2505e485ceb5da5f455b1e19636",
+          "revision": "778330ab8e4711167df26c35abf4fe909885caea",
           "excluded": "no-71-vs-70-pair"
         },
         {
@@ -711,7 +712,7 @@
     },
     "processes": {
       "process.json": {
-        "pid": 42492,
+        "pid": 48425,
         "command": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen71-compare-codex-20261112/run --workers 3 "
       },
       "watchdog-process.json": {
@@ -725,117 +726,108 @@
     },
     "failures": [],
     "stop_markers": [],
-    "memory_cgroup_bytes": 6513049600,
+    "memory_cgroup_bytes": 5314076672,
     "memory_limit_bytes": 17179869184,
     "heartbeat_worker_note": "Frozen runtime heartbeat includes reserved unused BEN executor; actual3normal workers,0BEN jobs/server. Watchdog/publisher report3/0.",
-    "last_expected_cache_rotation": {
-      "epoch": 1794474163.3154662,
-      "completed": 463,
-      "previous_bytes": 2154614784
+    "expected_cache_rotation": {
+      "epoch": 1794481902.4752135,
+      "completed": 920,
+      "previous_bytes": 2147119104,
+      "diagnosis": "New collector PID matches existing documented disposable-DDS-cache rotation: graceful drain at920completed, cache rotation, same immutable cohort resumed. No failures or scientific settings cleared/changed.",
+      "observed_current_collector_started_epoch": 1794481904.5705101
     },
     "fresh_capture_sample": {
       "indices": [
-        750,
-        751,
-        752
+        959,
+        960,
+        961
       ],
-      "gap_forks": 33,
-      "guess_fields": 2585,
-      "best_share_fields": 11552,
+      "gap_forks": 30,
+      "guess_fields": 1780,
+      "best_share_fields": 7948,
       "receipt_episode_hashes_match": true
     }
   },
   "previous_check": {
-    "checked_at": "2026-11-12T09:28:59Z",
-    "completed_at": "2026-11-12T09:31:44.573195Z",
+    "checked_at": "2026-11-12T10:21:32Z",
+    "completed_at": "2026-11-12T10:24:17.262800Z",
     "main_commit": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "result": "no_applicable_instruction_change"
   },
   "reviewed_source_changes": [
     {
       "name": "box/azure1/control",
-      "sha": "6f23d856cf1b63f1d27f48309f388934b5652f6a",
-      "previous": "41659ea2ede866100f93f1b97419100c8dd56aa2"
+      "sha": "8163ff9cfbe3796e1cdea396e88c0fc58b77d3c2",
+      "previous": "6f23d856cf1b63f1d27f48309f388934b5652f6a"
     },
     {
       "name": "box/azure1/status",
-      "sha": "305a7ad87a4b8a633e23544768495cd6965dc43f",
-      "previous": "62818c1b2f8a273bd9c066aa7bee68f48c4893ae"
+      "sha": "429657ae8d34b097d2cbcf2b0c56a5a32647287e",
+      "previous": "305a7ad87a4b8a633e23544768495cd6965dc43f"
     },
     {
       "name": "box/azure2/status",
-      "sha": "a43b2ab8fcbd7c0f09775f502e3cb4dc9835adf0",
-      "previous": "68ddadf9141a563eb3bdcfe2524b2717b57d7d3b"
+      "sha": "ea1188257d73278c89ac497b48853b6db4ab7d3f",
+      "previous": "a43b2ab8fcbd7c0f09775f502e3cb4dc9835adf0"
     },
     {
       "name": "box/azure3/control",
-      "sha": "0d309138f54ddf87ac01140fbb20e1b75f0fae11",
-      "previous": "e7344b2a6ee94a14c81e88bbfff7813c678cf007"
+      "sha": "9ddbd569faab61f37c0e85f91b67adc33bd51e26",
+      "previous": "0d309138f54ddf87ac01140fbb20e1b75f0fae11"
     },
     {
       "name": "box/azure3/status",
-      "sha": "02e1d7f556bd3a37a72fe4f50c1efaefde6835e1",
-      "previous": "192ef6ff913496a5ad339eb37b24364d0bd34fbe"
+      "sha": "0c3e25eac00532549f9418b67b939a92c010b539",
+      "previous": "02e1d7f556bd3a37a72fe4f50c1efaefde6835e1"
     },
     {
       "name": "box/azure4/control",
-      "sha": "9e02b7de400067b2028df2dd10ddbe818d10c893",
-      "previous": "10957412deae9ebc8010f41d561e7f869b6fd22a"
+      "sha": "e5d7918edf1c9bd5f5dcb6df542daa806e584157",
+      "previous": "9e02b7de400067b2028df2dd10ddbe818d10c893"
     },
     {
       "name": "box/azure4/status",
-      "sha": "d7443237d60dd69e2a8398ebfbeafa3b29dc7334",
-      "previous": "84cdf342f4156d0c4593a2525325fed65e695997"
+      "sha": "9f1e6b0c90a8481f9ddf53b091ba78ffa8df6f5a",
+      "previous": "d7443237d60dd69e2a8398ebfbeafa3b29dc7334"
     },
     {
       "name": "box/azure5/status",
-      "sha": "236f6d715051a0ea737d47a017c045db830ce1e3",
-      "previous": "56eb1cc32d58027753266435b2b03d8390bc453c"
+      "sha": "d9c9fcef552687ad400a10e6d7f169c56ec98edd",
+      "previous": "236f6d715051a0ea737d47a017c045db830ce1e3"
     },
     {
       "name": "box/azure6/status",
-      "sha": "b300566a38201b483b840c050d94e201f8eae32b",
-      "previous": "00d8b6fc6462f88680492dc3740dab12d32cfaed"
+      "sha": "05fc83d1a3109504befb4b5a73da579106ed60d8",
+      "previous": "b300566a38201b483b840c050d94e201f8eae32b"
     },
     {
       "name": "feature/gen9-arena-arrival",
-      "sha": "32dcf6fbf71e018ac47da5521c5f4a4ae5c5e2c2",
-      "previous": "da4f51f7d337202e986fc772f4604e56cc17f69b"
-    },
-    {
-      "name": "feature/gen9-bidding-cards",
-      "sha": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
-      "previous": "e626d738a269bc5db5d1ce9c5164d10abb0f5e38"
+      "sha": "65d77ec2b7535fd22d6618443fbdd21c279c9534",
+      "previous": "32dcf6fbf71e018ac47da5521c5f4a4ae5c5e2c2"
     },
     {
       "name": "fleet/azure",
-      "sha": "f20d0c4ade5b8b9b45efadd6070348e46ceb9f22",
-      "previous": "059a9fc4ce0350ade849e59eb25e1575c5d47fa5"
-    },
-    {
-      "name": "gh-pages",
-      "sha": "3cd2a21e7705a4cd60f28d3dee8e4fc3cdfaca25",
-      "previous": "b63a6a26e94cb35f3780196671c96e16c8dd5db6"
+      "sha": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf",
+      "previous": "f20d0c4ade5b8b9b45efadd6070348e46ceb9f22"
     },
     {
       "name": "team/gen9",
-      "sha": "17b1315c67b4a5d9506d0132bc540a837d0fc07e",
-      "previous": "bbdd0181e8aa9c4bf061bc2ecfff4b03a10ee620"
-    },
-    {
-      "name": "transfer/gen8-proto-azure1-20261112",
-      "sha": "127d766fbac368bfdaeeaf484498c9b9ce1651d9",
-      "previous": "b16d7d348e0f89c79a0a5e7ce631c2b85935aff6"
+      "sha": "7659af670c5b179258d5c9cbca7180fd4967155f",
+      "previous": "17b1315c67b4a5d9506d0132bc540a837d0fc07e"
     },
     {
       "name": "transfer/gen8-proto-azure6-20261112",
-      "sha": "836bbe3b3499f7c6e35e8a80f7aa997a28c18617",
-      "previous": "6f610ae491281eaedad03849c8d0734df0e26e04"
+      "sha": "1a8ffb68125cc485e7e3ae83b8b627f3d1e623be",
+      "previous": "836bbe3b3499f7c6e35e8a80f7aa997a28c18617"
+    },
+    {
+      "name": "transfer/gen9-arrival-rehearsal-full-20261112",
+      "sha": "8d9aa04bf04866e12e0296e203103bb7682760ac"
     }
   ],
-  "completed_at": "2026-11-12T10:24:17.262800Z",
-  "next_comment_scan_since": "2026-11-12T10:21:32Z",
-  "poll_checkpoint_note": "Next comments scan anchored to this poll START10:21:32Z; no gap during check/publication.",
+  "completed_at": "2026-11-12T11:24:02.921609Z",
+  "next_comment_scan_since": "2026-11-12T11:21:09Z",
+  "poll_checkpoint_note": "Next comments scan anchored to this poll START11:21:09Z; no gap during check/publication.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
     "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
@@ -1254,9 +1246,9 @@
   "recovery_validation": {
     "previous_verified_publication": {
       "status": "published",
-      "epoch": 1794479002.9790843,
-      "completed": 749,
-      "commit": "c63e16dd7cb1fb4c1ff6f669fdfcb095b7d2f652",
+      "epoch": 1794482606.224289,
+      "completed": 957,
+      "commit": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
     "fresh_capture_and_receipt_hashes_verified": true,
@@ -1281,15 +1273,14 @@
     "board_blob": "57aac16ad4091548911a794d6e23ffa251c6944b",
     "unchanged_since_previous_poll": true,
     "latest_relevant_entry": "2026-11-12T08:46:00Z",
-    "disposition": "Coordination board unchanged; no launch, schedule, capture or gate instruction changed. Other-host idleness/allocation not authority to take over.",
+    "disposition": "Board and current Gen7.1 authority unchanged. Other-host allocations/idleness and Gen9 research do not authorize local changes.",
     "fleet": {
-      "commit": "f20d0c4ade5b8b9b45efadd6070348e46ceb9f22",
-      "status_blob": "f5268b7d1594be69e24feb8fd629a855240ccfc9",
+      "commit": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf",
+      "status_blob": "a88bb2a5ebca80179a0ec69c6d8e1ed9e8435eb7",
       "experiments_blob": "e292189e5154a66291e7e886074fb6a17a14ec31",
-      "ben_read_only": "Azure3 BEN64 fresh lanes1591 completed at10:11, no failures,18.0GB available; observed read-only."
+      "ben_read_only": "Dated fleet status10:41: Azure3 BEN64 fresh lanes1819 completed at10:40, no failures,14.9GB available; observed read-only, not evidence of current process health there."
     },
-    "registry_blob": "9d5e60145146674548b78acb81c6150c47fd77da",
-    "dashboard_change_disposition": "3cd2a21 updates another Gen6 owner handoff/evidence only. This owned source/metadata remain unchanged."
+    "registry_blob": "9d5e60145146674548b78acb81c6150c47fd77da"
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -1685,7 +1676,7 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "since": "2026-11-12T09:28:59Z",
+    "since": "2026-11-12T10:21:32Z",
     "total_commit_comments": 0,
     "new_commit_comments": []
   },
