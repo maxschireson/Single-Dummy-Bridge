@@ -444,6 +444,18 @@ class LedgerTest(unittest.TestCase):
         self.assertIn("the cap is 2", str(cm.exception))
         lg.new("Sweep elsewhere", "signals", "experiment", "sam", "low", [], None, "", extra=dict(sweep="yes"))
 
+    def test_watch_stars_the_box_events_of_your_own_jobs(self):
+        self.boot(None, "bill")
+        job = dict(id="e9-1", box="azure4", owner="bill", priority=2, cores=4, source=dict(branch="b", commit="abcdef1"),
+                   argv=["x"], progress=dict(results="results.jsonl", target=10))
+        self.lg("g9").mutate("jobs", lambda st: st.save("boxq/azure4/e9-1.json", job))
+        self.lg("azure4").mutate("box", lambda st: st.event("job", "azure4/e9-1", "running"))
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-cli-bill")
+        out = io.StringIO()
+        with redirect_stdout(out), redirect_stderr(io.StringIO()):
+            ledger.main(["--repo", str(self.bare), "--channel", "team/gen9", "--as", "bill", "watch", "--no-heartbeat"])
+        self.assertRegex(out.getvalue(), r"\* \S+ \S+ azure4 +job +azure4/e9-1: running")
+
     def test_owner_proposed_and_blocked_rules(self):
         self.boot({"tasks/G9-W8.md": task("G9-W8", owner="will"), "tasks/G9-W7.md": task("G9-W7", state="proposed"),
                    "tasks/G9-W6.md": task("G9-W6")}, "bill", "will")
