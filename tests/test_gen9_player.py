@@ -9,10 +9,10 @@ import numpy as np
 
 from bridge_harness import experience as xp
 from bridge_harness.corpus import generate
-from bridge_harness.gen6 import View
+from bridge_harness.gen6 import Classes, View
 from bridge_harness.gen6_nets import FitScorer, HON_HCP, hand_types
 from bridge_harness.gen7 import Gen7Player
-from bridge_harness.gen9 import Gen9Config, Gen9Player, gen9_settings, player
+from bridge_harness.gen9 import Gen9Config, Gen9Player, class_log_layouts, gen9_settings, player
 from bridge_harness.player_model import PlayerModel
 from bridge_harness.players import GreedyPlayer
 from bridge_harness.runner import play_table, replay
@@ -48,6 +48,17 @@ class ResidualCard:
 
 def residual_card(model, other, root):
     return ResidualCard()
+
+
+def _lse(rows):
+    s = np.stack(rows)
+    return np.log(np.exp(s - s.max(axis=0)).sum(axis=0)) + s.max(axis=0)
+
+
+def lm(row, ref=None):
+    """log of the mean of exp(row) over the layouts (rows weighted by exp(ref))."""
+    w = np.ones(len(row)) if ref is None else np.exp(ref - np.max(ref))
+    return float(np.log((np.exp(row - row.max()) * w).sum() / w.sum()) + row.max())
 
 
 class Shell(Fixture):
@@ -276,8 +287,11 @@ class CardProfileTests(Shell):
         mixed.profile_scorer = lambda side, system: alpha
         mixed.meet('them')
         got = self.weights(mixed)
-        np.testing.assert_allclose(got, np.logaddexp(math.log(.8) + net, math.log(.2)), atol=1e-9)
+        # two kinds: the scorer's row relative to its own mean over the layouts, flat at its share
+        np.testing.assert_allclose(got, np.logaddexp(math.log(.8) + net - lm(net), math.log(.2)), atol=1e-9)
+        self.assertAlmostEqual(lm(got), 0., places=9)                        # the mixture's mean over the layouts is one
         self.assertTrue(np.all(got >= math.log(.2) - 1e-12))                 # no layout falls below the flat share
+        self.assertTrue(np.all(got >= math.log(.8) + net - lm(net) - 1e-12)) # and none more than -log 0.8 below the scorer alone
 
     def test_net_profiles_get_the_residual_and_the_mixture_weighs_both(self):
         scorer_weights(self.root / 'alpha.npz', seed=31)
@@ -291,22 +305,80 @@ class CardProfileTests(Shell):
         self.assertEqual(sorted(set(map(str, ResidualCard.asked))), ['None', 'alpha'])
         o = self.o
         net = sum(alpha.type_log_score(self.length[j], self.hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(self.view.hidden))
-        want = np.logaddexp(math.log(.7) + net + self.term(8, -1.), math.log(.3) + self.term(12, -3.))
+        a, c = net + self.term(8, -1.), self.term(12, -3.)
+        want = np.logaddexp(math.log(.7) + a - lm(a), math.log(.3) + c - lm(c))          # each kind relative to its own mean
         np.testing.assert_allclose(got, want, atol=1e-9)
         # a reader that cannot give a residual is left off the net profile when the card profile is a candidate
         q = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:toy_card'))
         q.profile_scorer = lambda side, system: alpha
         q.meet('them')
-        np.testing.assert_allclose(self.weights(q), np.logaddexp(math.log(.7) + net, math.log(.3) + self.term(12, -3.)), atol=1e-9)
+        np.testing.assert_allclose(self.weights(q), np.logaddexp(math.log(.7) + net - lm(net), math.log(.3) + c - lm(c)), atol=1e-9)
+
+    def test_card_and_flat_do_not_count_against_the_number_of_profiles_kept(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        alpha = FitScorer(self.root / 'alpha.npz')
+        asked = []
+        p = self.make9(gen9=dict(max_profiles=1, bidding_reader='test_gen9_player:toy_card'))
+        p.profile_scorer = lambda side, system: (asked.append(system), alpha)[1]
+        p.meet(PlayerModel('them', 'guest', {'alpha': .3, 'beta': .2, 'card': .4, 'flat': .1}, bidding=dict(toy=True)))
+        got = self.weights(p)
+        self.assertEqual(set(asked), {'alpha'})                                # one net kept, the more probable one
+        o = self.o
+        net = sum(alpha.type_log_score(self.length[j], self.hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(self.view.hidden))
+        c = self.term(12, -3.)
+        want = _lse([math.log(.3 / .8) + net - lm(net), math.log(.4 / .8) + c - lm(c), math.log(.1 / .8) + np.zeros(len(net))])
+        np.testing.assert_allclose(got, want, atol=1e-9)
+
+    def test_kinds_are_weighed_by_layouts_when_the_rows_are_classes(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        alpha = FitScorer(self.root / 'alpha.npz')
+        model = PlayerModel('them', 'guest', {'alpha': .5, 'card': .3, 'flat': .2}, bidding=dict(toy=True))
+        p = self.make9(gen7=EARLY, gen9=dict(bidding_reader='test_gen9_player:toy_card'))
+        p.profile_scorer = lambda side, system: alpha
+        p.meet(model)
+        checked = 0
+        for o, game in self.two_hidden(range(30), (1, 5, 9), declarer=True):
+            view = View(o)
+            classes = Classes(view)
+            np.testing.assert_allclose(class_log_layouts(view, classes.length[0], classes.hon[0]), classes.logmult, atol=1e-9)
+            seats = list(enumerate(view.hidden))
+            net = sum(alpha.type_log_score(classes.length[j], classes.hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in seats)
+            card = sum(np.where(HON_HCP[classes.hon[j]].sum(axis=1) >= 12, 0., -3.) for j, s in seats)
+            ref = classes.logmult
+            want = _lse([math.log(.5) + net - lm(net, ref), math.log(.3) + card - lm(card, ref), math.log(.2) + np.zeros(len(net))])
+            seen = []
+            real = p.read_calls
+            p.read_calls = lambda *a, **k: (seen.append(k.get('ref')), real(*a, **k))[1]
+            p.class_rows = True                                 # as layouts() sets it
+            got = p.type_log_weights(o, view, classes.length, classes.hon, 'scorer')
+            p.read_calls = real
+            np.testing.assert_allclose(got, want, atol=1e-9)
+            np.testing.assert_allclose(seen[0], ref, atol=1e-9)
+            self.assertFalse(p.class_rows)                      # used once
+            self.assertAlmostEqual(lm(got, ref), 0., places=9)  # mean over the layouts is one
+            # through the engine: layouts() tells the reader its rows are classes, and layout pools say they are not
+            seen.clear()
+            p.read_calls = lambda *a, **k: (seen.append(k.get('ref')), real(*a, **k))[1]
+            p.layouts(o, view, p.source(o, view), np.random.default_rng(1))
+            p.read_calls = real
+            if p.source(o, view) != 'list':
+                self.assertIsNotNone(seen[0])
+                self.assertEqual(len(seen[0]), len(classes))
+            else:
+                self.assertTrue(all(r is None for r in seen))
+            checked += 1
+        self.assertGreater(checked, 4)
 
 
 class ToyReplay:
-    """A stand-in for a replay reader: it holds the bidder of profile 'alpha' only, under which a hand with 13 points
-    or more is 20 times as likely to have made the calls."""
+    """A stand-in for a replay reader: it holds the bidders of profiles 'alpha' (a hand with 13 points or more is 20
+    times as likely to have made the calls) and 'alef' (9 points or more, and the calls are rarer under it)."""
     def type_log_score(self, length, hon, seat, dealer, vulnerability, auction, profile=None):
-        if profile != 'alpha':
-            return None
-        return np.where(HON_HCP[hon].sum(axis=1) >= 13, 0., -3.)
+        if profile == 'alpha':
+            return np.where(HON_HCP[hon].sum(axis=1) >= 13, 0., -3.) - 2.
+        if profile == 'alef':
+            return np.where(HON_HCP[hon].sum(axis=1) >= 9, 0., -3.) - 5.
+        return None
 
 
 def toy_replay(model, other, root):
@@ -318,7 +390,8 @@ class ReplayTests(Shell):
         scorer_weights(self.root / 'alpha.npz', seed=31)
         scorer_weights(self.root / 'beta.npz', seed=32)
         scorers = {'alpha': FitScorer(self.root / 'alpha.npz'), 'beta': FitScorer(self.root / 'beta.npz')}
-        model = dict(profiles={'alpha': .6, 'beta': .4})
+        scorers['alef'] = scorers['beta']
+        model = dict(profiles={'alpha': .6, 'alef': .4})
         p = self.make9(gen7=EARLY, gen9=dict(models={'them': model, 'others': model}, replay_reader='test_gen9_player:toy_replay'))
         q = self.make9(gen7=EARLY, gen9=dict(models={'them': model}))
         for x in (p, q):
@@ -333,9 +406,9 @@ class ReplayTests(Shell):
             drawn = p.type_log_weights(o, view, length, hon, 'scorer')                 # how the pool was drawn: scorers only
             np.testing.assert_allclose(drawn, q.type_log_weights(o, view, length, hon, 'scorer'), atol=1e-12)
             change = p.replay_correction(o, view, assign)
-            alpha = sum(np.where(HON_HCP[hon[j]].sum(axis=1) >= 13, 0., -3.) for j in range(2))
-            beta = sum(scorers['beta'].type_log_score(length[j], hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(view.hidden))
-            want = np.logaddexp(math.log(.6) + alpha, math.log(.4) + beta)              # alpha by replay, beta still by its scorer
+            alpha = sum(np.where(HON_HCP[hon[j]].sum(axis=1) >= 13, 0., -3.) - 2. for j in range(2))
+            alef = sum(np.where(HON_HCP[hon[j]].sum(axis=1) >= 9, 0., -3.) - 5. for j in range(2))
+            want = np.logaddexp(math.log(.6) + alpha, math.log(.4) + alef)              # both by replay: likelihoods, mixed as they are
             np.testing.assert_allclose(drawn + change, want, atol=1e-9)
             self.assertIsNone(q.replay_correction(o, view, assign))
             # in the reading itself: the same change, over the exponent the caller applies
@@ -347,6 +420,17 @@ class ReplayTests(Shell):
         o, game = next(self.two_hidden(range(40), (5,), declarer=True))
         view = View(o)
         self.assertIsNone(p.replay_correction(o, view, view.uniform(16, np.random.default_rng(0))))
+        # a candidate the reader does not hold, or a card or flat profile: the kinds were weighed over all layouts
+        # when the pool was drawn, so the pool stands
+        for profiles in ({'alpha': .6, 'beta': .4}, {'alpha': .9, 'flat': .1}, {'alpha': .5, 'alef': .3, 'card': .2}):
+            p.meet(PlayerModel('them', 'guest', profiles))
+            self.assertIsNone(p.replay_correction(o, view, view.uniform(16, np.random.default_rng(0))))
+        p.meet(PlayerModel('them', 'house', {'alpha': 1.}))    # one held profile: the replay alone
+        assign = view.uniform(16, np.random.default_rng(0))
+        types = [hand_types(view.original(assign, j)) for j in range(2)]
+        change = p.replay_correction(o, view, assign)
+        rep = sum(np.where(HON_HCP[types[j][1]].sum(axis=1) >= 13, 0., -3.) - 2. for j in range(2))
+        np.testing.assert_allclose(p.type_log_weights(o, view, [t[0] for t in types], [t[1] for t in types], 'scorer') + change, rep, atol=1e-9)
 
 
 class CardsTests(Shell):

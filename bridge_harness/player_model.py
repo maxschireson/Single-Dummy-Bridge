@@ -135,7 +135,7 @@ def resolve(opponent, models=None):
     return PlayerModel.from_dict(dict(entry, id=entry.get('id', name)))
 
 
-def arrive(id, kind='guest', bidding=None, carding=None, distances=None, tau=0.05, flat=0.25, least=1e-3, notes=()):
+def arrive(id, kind='guest', bidding=None, carding=None, distances=None, tau=0.05, slack=0.15, flat=0.25, least=1e-3, notes=()):
     """The model of a partnership nobody has met, from what it declared (architecture 3, "arrival").
 
     distances   {system id: the rate at which that system's own bidder breaks the declared card's
@@ -144,19 +144,22 @@ def arrive(id, kind='guest', bidding=None, carding=None, distances=None, tau=0.0
                 value: they then share the weight equally.
 
     The prior over profiles, before normalising: 1 for 'card' when a card is declared;
-    max(exp(-d / tau), least) for each system (equal weights with no card); `flat` for 'flat'.
+    max(exp(-max(d - slack, 0) / tau), least) for each system (equal weights with no card);
+    `flat` for 'flat'. `slack` is how far a player is from the best card that can be written
+    for it: a house net breaks the card fitted to that very net on about 15% of covered calls
+    (bill, 12 Nov), so a system within `slack` of the declared card is as likely as the card.
     Every system keeps some weight so that boards can overturn the mapping (`believed`); the
-    reader keeps only the most probable few. tau, flat and least are first settings, not fitted.
-    Nothing declared and no systems named gives the plain model."""
-    if tau <= 0 or flat < 0 or least < 0:
-        raise ValueError('tau must be positive, flat and least not negative')
+    reader keeps only the most probable few. tau, slack, flat and least are first settings,
+    not fitted. Nothing declared and no systems named gives the plain model."""
+    if tau <= 0 or slack < 0 or flat < 0 or least < 0:
+        raise ValueError('tau must be positive; slack, flat and least not negative')
     weights = {}
     for system, d in (distances or {}).items():
         if system in (None, 'unknown', CARD_PROFILE, FLAT_PROFILE):
             raise ValueError(f'{system!r} is not a system a distance can be given for')
         if not 0 <= float(d) <= 1:
             raise ValueError('a distance is a rate between 0 and 1')
-        weights[str(system)] = max(math.exp(-float(d) / tau), least) if bidding is not None else 1.
+        weights[str(system)] = max(math.exp(-max(float(d) - slack, 0.) / tau), least) if bidding is not None else 1.
     if bidding is not None:
         weights[CARD_PROFILE] = 1.
     if not weights:
