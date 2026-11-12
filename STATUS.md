@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:54 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:55 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -28,7 +28,7 @@ Generated 2026-11-12 07:54 UTC by `tools/workq.py` after a change by `sam`. Do n
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
-| [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:22 | leased | high | 2026-11-13T04:00Z |  |
+| [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam | sam until 11-12 11:27 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will | will until 11-12 11:50 | leased | medium | 2026-11-12T16:00Z |  |
 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | dave | submitted | high | 2026-11-13T14:00Z |  |
