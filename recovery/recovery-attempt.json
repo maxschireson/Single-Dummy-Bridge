@@ -1026,5 +1026,101 @@
     },
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "production_commits": 0
+  },
+  "diagnosis_20261112_prefix_v4": {
+    "epoch": 1794458567.378286,
+    "result": {
+      "status": "passed",
+      "production_commits": 0,
+      "collector_exit": -9,
+      "cut": {
+        "accepted_indices": [
+          1932,
+          1931,
+          1082,
+          1930,
+          1934,
+          1933
+        ],
+        "private_rng": "250059dcb5c4419bec8b0740f22ee6446c6e5f5bf1b2c13c216a6b19f258bddc",
+        "initial_rng": "ecb442ba0bb12e7000b3c0f3bcf691d0e03fd7bff85a0b0dbcdc08914a86a404",
+        "children": [
+          {
+            "pid": 9,
+            "created": 1794458359.12
+          },
+          {
+            "pid": 10,
+            "created": 1794458359.12
+          },
+          {
+            "pid": 13,
+            "created": 1794458359.12
+          },
+          {
+            "pid": 14,
+            "created": 1794458359.12
+          },
+          {
+            "pid": 15,
+            "created": 1794458359.12
+          },
+          {
+            "pid": 38,
+            "created": 1794458367.41
+          }
+        ]
+      },
+      "owned_children_inactive": true,
+      "accepted_after_kill": 6,
+      "restored_records": 8,
+      "final_rng_exact": true,
+      "all_replay_valid": true,
+      "scope": "Actual live normal/BEN futures. External parent cleans diagnostic process group after collector SIGKILL. Not autonomous orphan cleanup, power loss, unchanged-production equivalence or adoption."
+    },
+    "verification": {
+      "prior_four_exact_bytes_and_nodes": true,
+      "interrupted_six_exact_bytes_and_nodes": true,
+      "fingerprints_vs_v31": {
+        "1932": true,
+        "1931": true,
+        "1082": true,
+        "1930": true,
+        "1934": false,
+        "1933": true,
+        "1935": true,
+        "2561": true
+      },
+      "newly_completed_records": 4,
+      "prior_retained_records": 4
+    },
+    "difference": {
+      "index": 1934,
+      "common_nodes": 33,
+      "common_nodes_exact": true,
+      "root_exact": true,
+      "only_reference": [],
+      "only_current": [
+        [
+          "table-0",
+          "root/20/32"
+        ],
+        [
+          "table-0",
+          "root/21"
+        ],
+        [
+          "table-0",
+          "root/21/38"
+        ],
+        [
+          "table-0",
+          "root/21/39"
+        ]
+      ]
+    },
+    "production_commits": 0,
+    "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+    "next": "Supervisor-loss cleanup, full-size scale and production scanner integration remain diagnostic work; no adoption."
   }
 }
