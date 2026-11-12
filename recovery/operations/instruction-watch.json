@@ -212,10 +212,10 @@
   "new_issue_comments": 0,
   "new_review_comments": 0,
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
-  "initial_override": "This stream is explicitly 100% Gen6 fast self-play. The shared 37/3 mix predates this direct user instruction; it is not a new instruction for this stream.",
+  "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "no_applicable_instruction_changes",
-  "collection_action": "Continue the healthy owned Gen6 fast self-play collector and publisher unchanged. Gen7 candidate gates remain disabled at 1042db5. Preserve the completed first capture report.",
+  "result": "authorized_gen7_phase1_transition_in_progress",
+  "collection_action": "Standing user instruction to follow general collection-worker directions applies to authorized Gen7 phase 1 at fe382f9. Drained old Gen6 run, preserved all observations, prepared a new non-BEN cohort; real-model preflight pending.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -315,17 +315,17 @@
       "reason": "Research notes revise stake analysis and smoke-match evidence only; no current collection directive or model adoption."
     }
   ],
-  "completed_at": "2026-11-12T01:29:08.191267+00:00",
+  "completed_at": "2026-11-12T02:42:52Z",
   "next_comment_scan_since": "2026-11-12T01:27:28+00:00",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
-    "commit": "1042db5036e0a8071e9cc90f511d941c3de92270",
+    "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
     "notice_path": "docs/gen7_candidate_2026-11-11.md",
     "notice_blob_sha": "a92e93e2deced25c885b2c16824ec870ad4478b3",
-    "status": "candidate_not_authorized",
+    "status": "phase1_authorized",
     "acknowledged": true,
-    "operational_direction": "Do not drain, prepare a production cohort, or cut over on this notice. A later commit must settle pending items and enable launch.",
+    "operational_direction": "Phase1 may be prepared and run. Phase2 remains closed.",
     "mix_path": "configs/gen7-candidate-mix.json",
     "mix_blob_sha": "d9177040e6eaa1192bace34a2f01efeda4f30780",
     "authority": "Max, 2026-11-11 23:29 UTC: tell the workers that Gen 7 is coming and give them the match mix and a candidate build package, subject to final parameters and to his acceptance of Gen 7 (mostly policy v4 and the tree budgets). This file authorizes no cutover.",
@@ -369,7 +369,27 @@
         }
       }
     },
-    "rehearsal": "Optional isolated build rehearsal described in the notice; no production preparation or runtime change performed."
+    "rehearsal": "Optional isolated build rehearsal described in the notice; no production preparation or runtime change performed.",
+    "phase1_launch_enabled": true,
+    "phase1_pending": [],
+    "phase2_launch_enabled": false
   },
-  "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer."
+  "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer.",
+  "transition": {
+    "authorization_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+    "status": "drained-and-new-cohort-prepared",
+    "retired_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+    "retired_completed": 3710,
+    "new_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+    "new_run": "/workspace/work/gen7-phase1-codex-20261112/run",
+    "new_runtime": "/workspace/work/gen7-phase1-codex-20261112/runtime",
+    "remaining_families": 21290,
+    "selected_plan": "configs/round7-candidate-phase1-nonben.json",
+    "pairs": {
+      "7s-32~6-32": 1,
+      "7s-32~5RZ32": 1,
+      "7s-32~1": 1
+    },
+    "phase2_authorized": false
+  }
 }
