@@ -1,6 +1,6 @@
 // Execute as AsyncFunction('tools','text', source). Full, verified producer snapshot.
-const repo='maxschireson/Single-Dummy-Bridge',branch='arena-gen6-extra-selfplay-feed';
-const base='/workspace/scratch/43350986bc04/gen6-selfplay';
+const repo='maxschireson/Single-Dummy-Bridge',branch='arena-gen7-phase1-extra-feed';
+const base='/workspace/scratch/43350986bc04/gen7-phase1';
 const quote=s=>"'"+s.replaceAll("'","'\\''")+"'";
 const unwrap=r=>{if(r.isError)throw Error(JSON.stringify(r));return r.structuredContent;};
 const shell=async(cmd,max_output_tokens=2000)=>{
@@ -8,7 +8,7 @@ const shell=async(cmd,max_output_tokens=2000)=>{
  while(r.session_id)r=await tools.write_stdin({session_id:r.session_id,chars:'',yield_time_ms:1000,max_output_tokens});
  if(r.exit_code!==0)throw Error(r.output);return r.output;
 };
-text(await shell('.venv/bin/python snapshot_feed.py'));
+text(await shell('../gen6-selfplay/.venv/bin/python snapshot_feed.py'));
 const inv=[];
 for(let offset=0;;offset+=100){
  const batch=JSON.parse(await shell('python -c '+quote('import json;print(json.dumps(json.load(open("inventory.json"))['+offset+':'+(offset+100)+']))'),15000));
@@ -40,11 +40,11 @@ for(let off=0;off<inv.length;off+=80){
  tree=unwrap(await tools.mcp__codex_apps__github_create_tree({repository_full_name:repo,...(tree?{base_tree_sha:tree.sha}:{}),
   tree_elements:inv.slice(off,off+80).map(f=>({path:f.path,mode:'100644',type:'blob',sha:f.sha}))}));
 }
-const commit=unwrap(await tools.mcp__codex_apps__github_create_commit({repository_full_name:repo,parent_sha:head,tree_sha:tree.sha,message:'Additional Gen6 fast self-play: arena and complete Gen7 training recovery snapshot'}));
+const commit=unwrap(await tools.mcp__codex_apps__github_create_commit({repository_full_name:repo,parent_sha:head,tree_sha:tree.sha,message:'Gen7 phase1 additional producer: arena and complete Gen7 training recovery snapshot'}));
 unwrap(await tools.mcp__codex_apps__github_update_ref({repository_full_name:repo,branch_name:branch,sha:commit.sha,expected_sha:head}));
 const check=JSON.parse(unwrap(await tools.mcp__codex_apps__github_fetch({url:'https://api.github.com/repos/'+repo+'/git/trees/'+commit.sha+'?recursive=1'})).content);
 const actual=new Map(check.tree.map(f=>[f.path,f.sha]));
 for(const f of inv)if(actual.get(f.path)!==f.sha)throw Error('Published hash mismatch: '+f.path);
 const status={commit:commit.sha,files:inv.length,branch};
-await shell('python -c '+quote('import json,time;d='+JSON.stringify(status)+';d["epoch"]=time.time();open("runs/fast-only-20261111/publisher-status.json","w").write(json.dumps(d))'));
+await shell('python -c '+quote('import json,time;d='+JSON.stringify(status)+';d["epoch"]=time.time();open("runs/phase1-extra-20261112/publisher-status.json","w").write(json.dumps(d))'));
 text({published:commit.sha,verified_files:inv.length});

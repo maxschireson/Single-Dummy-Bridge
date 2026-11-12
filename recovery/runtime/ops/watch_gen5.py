@@ -10,7 +10,6 @@ import sqlite3
 import subprocess
 import sys
 import time
-from urllib.parse import urlparse
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 DEFAULT_PYTHON=Path('/workspace/work/ben-venv/bin/python')
 from bridge_harness.mixed_arena import verify_generation
@@ -38,30 +37,6 @@ def ben_ready():
         with socket.create_connection(('127.0.0.1',8087),timeout=1):return True
     except OSError:return False
 
-def ensure_ben_servers(run,manifest,ben_dir,ben_state):
-    """Each sample budget has its own pinned BEN configuration and process."""
-    from bridge_harness.loop_registry import sha
-    used={bot for pair in manifest['pair_schedule'] for bot in pair.split('~')}
-    ready=True;details={}
-    for key in sorted(used):
-        spec=manifest['bots'][key]
-        if spec.get('engine')!='ben':continue
-        address=urlparse(spec['url']);port=address.port or 80
-        if address.hostname not in ('127.0.0.1','localhost'):raise ValueError('BEN recovery expects a local managed server')
-        config=run/spec['config']
-        if sha(config)!=spec['artifact_sha256']['config']:raise ValueError('BEN configuration changed')
-        process=ben_state/('ben-process.json' if key=='ben' else key+'-process.json')
-        if not alive(process,'gameapi.py'):
-            launch(ben_state,process.name,['src/gameapi.py','--config',str(config),'--port',str(port),'--host','127.0.0.1','--record','false'],key+'-server.log',cwd=ben_dir)
-        else:
-            pid=json.loads(process.read_text())['pid'];args=Path(f'/proc/{pid}/cmdline').read_bytes().decode().split('\0')
-            actual=Path(args[args.index('--config')+1])
-            if sha(actual)!=spec['artifact_sha256']['config']:raise ValueError('Running BEN server has the wrong sample configuration')
-        try:
-            with socket.create_connection((address.hostname,port),timeout=1):details[key]='ready'
-        except OSError:ready=False;details[key]='warming'
-    return ready,details
-
 def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('/workspace/work/round5')):
     ben_state.mkdir(parents=True,exist_ok=True)
     with (run/'.watchdog.lock').open('a+') as guard:
@@ -71,8 +46,9 @@ def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('
             status=dict(epoch=time.time(),collector='running',publisher='running');stop=run/'STOP'
             try:
                 m=json.loads((run/'manifest.json').read_text());s=json.loads((run/'state.json').read_text());complete=s['completed']>=m['target']
-                if m.get('preflight_only'):raise ValueError('A preflight-only cohort cannot collect production records')
-                ready,servers=ensure_ben_servers(run,m,ben_dir,ben_state);status['ben']='ready' if ready else 'warming';status['ben_servers']=servers
+                if not alive(ben_state/'ben-process.json','gameapi.py'):
+                    status['ben_pid']=launch(ben_state,'ben-process.json',['src/gameapi.py','--config',str(run/'assets/ben-16.conf'),'--port','8087','--host','127.0.0.1','--record','false'],'ben-gen5-server.log',cwd=ben_dir)
+                ready=ben_ready();status['ben']='ready' if ready else 'warming'
                 cache=run/'dds-cache.sqlite';size=cache.stat().st_size if cache.exists() else 0
                 if size>2*1024**3 and not stop.exists():stop.write_text(token);status['collector']='draining-for-cache-rotation'
                 if stop.exists() and stop.read_text()==token and not alive(run/'process.json','gen5_runtime.py') and free(run/'.writer.lock'):

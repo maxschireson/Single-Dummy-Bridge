@@ -1,15 +1,11 @@
 {
   "schema": "gen6-active-match-mix-v1",
-  "status": "authorized",
-  "authority": "Max in arena supervision chat, 2026-11-11; subsequent BEN correction supersedes screenshot",
-  "plan": "configs/round6-codex.json",
+  "status": "authorized_cutover_in_progress",
+  "authority": "Max, 2026-11-11: stop all old bots and all Gen6 medium; only fast self-play and a little fast versus BEN16",
+  "plan": "configs/round6-fast-selfplay.json",
   "pair_weights": {
-    "6-32~5RZ32": 8,
-    "6-32~6-256": 3,
-    "6-256~ben": 3,
-    "6-32~3": 2,
-    "6-32~2": 2,
-    "6-32~1": 2
+    "6-32~6-32": 37,
+    "6-32~ben": 3
   },
   "common_bidder": "6-32",
   "gen6_bots": {
@@ -40,10 +36,12 @@
     "5RZ32": "Gen 5 (32)",
     "ben": "BEN (16)"
   },
-  "active_source_branch": "codex/launch-gen6-20261111",
+  "active_source_branch": "main",
   "notes": [
-    "15% BEN allocation MUST use Gen6 medium (256) versus BEN16.",
-    "Keep raw prior fast-vs-BEN games for training; the current headline mix uses medium-vs-BEN.",
-    "Source branches publishing arena-gen6-*-feed will be aggregated by immutable actor configuration and common-bidder identity."
+    "All medium and old-bot matchups are stopped for NEW work. Drain current tables before cutover; retain historical data and scores, with BEN32 still hidden.",
+    "Keep unchanged fast model, belief, bidder, sampling and capture settings, 50% tie audits, and BEN audit/gap exclusion.",
+    "The Gen3 actor is retained solely as the existing tie-audit reference, never scheduled as an opponent.",
+    "Self-play supplies training data and has null IMP comparison; do not fabricate wins or zero-valued strength measurements.",
+    "Maintain remaining unused-family target; new immutable cohort and source/run identities required."
   ]
 }
