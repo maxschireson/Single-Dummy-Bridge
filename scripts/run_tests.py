@@ -312,7 +312,7 @@ def render(results: list[dict], meta: dict) -> str:
               + "".join(f"; `{Path(m['script']).parent.name}` FAILED: {first_line(m['note'])}" for m in p["models"] if not m["ok"]), ""]
     L += ["## By file", "", "| File | Status | Passed | Failed/errors | Skipped | Not run | Seconds | Note |",
           "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |"]
-    order = {"failed": 0, "import error": 1, "crashed": 2, "timeout": 3, "not run": 4, "partly not run": 5, "skipped": 6, "no tests": 7, "passed": 8}
+    order = {"failed": 0, "import error": 1, "crashed": 2, "timeout": 3, "no tests": 4, "not run": 5, "partly not run": 6, "skipped": 7, "passed": 8}
     for r in sorted(results, key=lambda r: (order.get(r["status"], 9), r["file"])):
         c = {k: sum(1 for t in r["tests"] if t["outcome"] == k) for k in ("passed", "failed", "error", "skipped", "not run")}
         note = ""
@@ -397,7 +397,8 @@ def main() -> int:
         a.json.parent.mkdir(parents=True, exist_ok=True)
         a.json.write_text(json.dumps(dict(meta=meta, results=results), indent=1) + "\n")
     print("\n" + text.split("## By file")[0].strip())
-    bad = [r for r in results if r["status"] in ("failed", "import error", "crashed", "timeout")]
+    bad = [r for r in results if r["status"] in ("failed", "import error", "crashed", "timeout", "no tests")]  # a test file
+    # in which neither unittest nor pytest finds a test cannot pass unnoticed (dave's review of G9-W8)
     return 1 if bad else 0
 
 
