@@ -1676,9 +1676,11 @@ cards played out to trick 13 by Gen 6 in each; rest of the boards run until abou
   whole reason the tree and my playouts show a share and no gain: the estimate is noisier than what it estimates.
 - **A model of the same data** (true expected cost of B normal within bins of the recorded gap; not a measurement):
   knowing the expectation exactly would be worth about 0.20 tricks a side at one table at these tricks, and n layouts of
-  faithful playouts with the right shrinkage 0.04 (n = 8), 0.08 (16), 0.13 (32), 0.17 (64), 0.20 (128). The direct figures
-  above are in line with it (0.06 predicted at 12). Three quarters of it sits at recorded gaps up to 0.25, which are 8.5
-  of the 23 (decision, other card) pairs a side has at tricks 3 to 6.
+  faithful playouts with the right shrinkage 0.03 (n = 8), 0.06 (16), 0.10 (32), 0.14 (64), 0.17 (128). (Recorded gaps
+  above one trick are left out of these: the normal shape is wrong there and would add 0.01 to 0.03. Corrected at 12:33;
+  my first version mixed the two.) The direct figures above are in line with it (about 0.045 predicted at 12). Five
+  sixths of it sits at recorded gaps up to 0.25, which are 8.5 of the 23 (decision, other card) pairs a side has at
+  tricks 3 to 6.
 - Reading for the leverage question: there is something to find at close decisions, the house bots as their own model
   find it only with ten times the layouts, and my best simulated seat (net's top three, solver over three believed
   layouts) recovers half of the real bots' correction (coefficient 0.51 +- 0.07 against 0.34 for net-only seats, same
