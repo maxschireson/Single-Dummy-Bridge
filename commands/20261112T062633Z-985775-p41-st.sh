@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+P=$HOME/work/p41; date -u +%T; uptime; cat $P/logs/timeline.log | tail -6; ls -la --time-style=+%T $P/logs/w768e5.* $P/runs/w768e5/ 2>&1 | awk "{print \$5, \$6, \$7}"; cat $P/logs/w768e5.out | cut -c1-120; head -3 $P/logs/w768e5.err; tail -2 $P/logs/w768e5.err; ps -eo pid,lstart,etimes,pcpu,args | grep "train_gen7_policy" | grep -v grep | cut -c1-200; systemctl is-active p41-w768e5 p41-w512e5 p41-eval-w768e5; journalctl -u p41-w768e5 --no-pager -n 8 2>/dev/null | cut -c1-200; dmesg 2>/dev/null | tail -3 | cut -c1-160
