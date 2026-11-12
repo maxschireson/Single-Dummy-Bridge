@@ -83,6 +83,11 @@ class Settings:
     penalty: int = 25               # combined minimum to double the opponents for penalty
     stayman: bool = True
     transfers: bool = True
+    estimate: str = ''              # a trick estimate fitted to double-dummy results (a JSON file, path from the repository root); '' = point count
+    est_band: int = 2               # with an estimate: it may move the hand's worth by at most this many points either way
+    est_weight: int = 6             # ... by this many tenths of the way from the count to what the estimate implies
+    est_nv: int = 3                 # ... a game is worth bidding from this many tenths of a trick short of it on average, not vulnerable
+    est_v: int = 5                  # ... and vulnerable
 
     def __post_init__(self):
         if self.style not in ('precision', 'standard'):
@@ -100,7 +105,7 @@ STANDARD = Settings(style='standard', nt_lo=15, nt_hi=17, two_diamonds=False)
 
 class Hand:
     """What the rules look at: points, lengths and honours by strain (clubs, diamonds, hearts, spades)."""
-    __slots__ = ('len', 'hcp', 'hcp_in', 'top3', 'top5', 'aces', 'shape', 'balanced', 'longest', 'stop')
+    __slots__ = ('len', 'hcp', 'hcp_in', 'top3', 'top5', 'aces', 'shape', 'balanced', 'longest', 'stop', 'honours')
 
     def __init__(self, cards):
         ranks = [[], [], [], []]
@@ -112,6 +117,7 @@ class Hand:
         self.top3 = [sum(r >= 10 for r in rs) for rs in ranks]
         self.top5 = [sum(r >= 8 for r in rs) for rs in ranks]
         self.aces = sum(12 in rs for rs in ranks)
+        self.honours = [[float(r in rs) for r in (12, 11, 10, 9, 8)] for rs in ranks]      # ace to ten, by suit
         self.shape = tuple(sorted(self.len, reverse=True))
         self.balanced = self.shape in BALANCED
         self.longest = max(SUITS, key=lambda s: (self.len[s], s))          # the higher of equal lengths
@@ -646,6 +652,95 @@ def table_for(st, me):
     return []
 
 
+# ---- the trick estimate ------------------------------------------------------------------
+# Optional (Settings.estimate). A small network fitted to double-dummy results (scripts/fit_rule_estimator.py):
+# from this hand and what the other three seats have shown, the tricks each side would take as declarer in each
+# strain. With it the general procedure places games and slams by expected score in place of point count.
+
+def features(h, st, me):
+    """What the estimate sees: this hand card by card for the honours, and the three other seats' shown ranges."""
+    x = [h.hcp / 10.]
+    for suit in SUITS:
+        x.append(h.len[suit] / 4.)
+        x.extend(h.honours[suit])
+    for seat in ((me + 2) % 4, (me + 1) % 4, (me + 3) % 4):       # partner, left-hand opponent, right-hand opponent
+        sh = st.shown[seat]
+        x.append(sh.hcp[0] / 10.)
+        x.append(min(sh.hcp[1], sh.hcp[0] + 15, 37) / 10.)
+        for suit in SUITS:
+            x.append(sh.len[suit][0] / 4.)
+            x.append(min(sh.len[suit][1], 8) / 4.)
+    return x
+
+
+class Estimate:
+    """The fitted network: tricks as declarer for our side and for theirs in clubs, diamonds, hearts, spades and
+    no trump (ten numbers), with the spread of its errors."""
+
+    def __init__(self, path):
+        import hashlib
+        import json
+        raw = open(path, 'rb').read()
+        self.sha256 = hashlib.sha256(raw).hexdigest()
+        d = json.loads(raw)
+        self.layers = [(np.asarray(w, np.float32), np.asarray(b, np.float32)) for w, b in d['layers']]
+        self.sigma = np.asarray(d['sigma'], np.float32)
+
+    def tricks(self, x):
+        a = np.asarray(x, np.float32)
+        for k, (w, b) in enumerate(self.layers):
+            a = a @ w + b
+            if k < len(self.layers) - 1:
+                a = np.maximum(a, 0.)
+        return a
+
+
+IMP_STEPS = (20, 50, 90, 130, 170, 220, 270, 320, 370, 430, 500, 600, 750, 900, 1100, 1300, 1500, 1750, 2000, 2250, 2500, 3000, 3500, 4000)
+SPREAD = (-1.69, -1.1, -0.75, -0.47, -0.23, 0., 0.23, 0.47, 0.75, 1.1, 1.69)      # eleven equally likely points of a normal error
+
+
+def contract_score(level, strain, tricks, vul, doubled=0):
+    """Declarer's duplicate score."""
+    made = tricks - level - 6
+    if made < 0:
+        down = -made
+        if not doubled:
+            return -down * (100 if vul else 50)
+        penalty = (200 + 300 * (down - 1)) if vul else (100 + 200 * min(2, down - 1) + 300 * max(0, down - 3))
+        return -penalty * doubled
+    unit = 20 if strain in MINORS else 30
+    base = (level * unit + (10 if strain == N else 0)) * (2 ** doubled)
+    total = base + ((500 if vul else 300) if base >= 100 else 50)
+    if level == 6:
+        total += 750 if vul else 500
+    if level == 7:
+        total += 1500 if vul else 1000
+    if doubled:
+        total += 50 * doubled + made * ((200 if vul else 100) * doubled)
+    else:
+        total += made * unit
+    return total
+
+
+def imps_of(difference):
+    return (1 if difference >= 0 else -1) * sum(abs(difference) >= x for x in IMP_STEPS)
+
+
+ESTIMATES = {}
+JUDGED = None                                            # a list to collect each judgement in (for studies)
+
+
+def estimate_of(g):
+    """The settings' trick estimate, loaded once, or None."""
+    if not g.estimate:
+        return None
+    if g.estimate not in ESTIMATES:
+        from pathlib import Path
+        path = Path(g.estimate)
+        ESTIMATES[g.estimate] = Estimate(path if path.is_absolute() else Path(__file__).resolve().parents[1] / path)
+    return ESTIMATES[g.estimate]
+
+
 # ---- the general procedure ---------------------------------------------------------------
 
 def middle2(ps):
@@ -727,6 +822,20 @@ def plan(h, st, me):
         points = h.hcp + max(0, h.shape[0] - 5)
         cmin, cmax = points + plo, points + phi
     need = g.game_minor if target is not None and level_of(target) == 5 else g.game
+    counted = cmin                                       # by point count alone (a penalty double goes by this)
+    est = estimate_of(g)
+    if est is not None and target is not None and g.est_band > 0:
+        # judgement: the estimate's tricks in the game's strain, as the points that would expect them. The count
+        # moves part of the way there, and never more than a few points. (At the count's own game threshold the
+        # tricks average a little under the game: that is where a game starts to pay.)
+        x = strain_of(target)
+        tricks = float(est.tricks(features(h, st, me))[x])
+        short = (g.est_v if st.vulnerable(me) else g.est_nv) / 10.
+        worth = need - mid2 / 2. + (2.6 if x == N else 3.) * (tricks - level_of(target) - 6 + short)
+        move = max(-g.est_band, min(g.est_band, int(round(g.est_weight / 10. * (worth - points)))))
+        if JUDGED is not None:
+            JUDGED.append((me, len(st.calls), x, level_of(target), points, mid2, need, tricks, worth, move, int(ours), len(enemy)))
+        points, cmin, cmax = points + move, cmin + move, cmax + move
     in_game = ours and below_game_is_enough(over)
     if pact[0] == bid(3, N) and ours and rho_passed and any(k == 'transfer' for _, k in st.acts[partner]):
         for m in MAJORS:                                 # partner transferred and offered three no-trump: three cards make the major better
@@ -842,7 +951,7 @@ def plan(h, st, me):
                 c = cheapest(x)
                 if c is not None and level_of(c) <= 2 and x not in enemy and h.len[x] >= 6 and h.hcp >= my.hcp[0] + 1:
                     return c, ''
-        if st.legal(DOUBLE) and cmin >= g.penalty and level >= 2 and not forced and (fit is None or level >= 4):
+        if st.legal(DOUBLE) and counted >= g.penalty and level >= 2 and not forced and (fit is None or level >= 4):
             return DOUBLE, 'penalty'
         if not forced:
             return PASS, ''
@@ -1017,8 +1126,16 @@ class RuleSystemBidder(RuleBidder):
             self.opponents = STANDARD
         else:
             self.opponents = opponents if isinstance(opponents, Settings) else Settings(**opponents)
-        # the system it bids: the rules' version and the settings (how it reads the other side is not part of it)
-        self.sha256 = options_sha256(self.kind, dict(asdict(self.settings), rules=RULES))
+        # the system it bids: the rules' version, the settings and, if they name a trick estimate, that file's content
+        # (how it reads the other side is not part of it)
+        described = dict(asdict(self.settings), rules=RULES)
+        if self.settings.estimate:
+            described['estimate_sha256'] = estimate_of(self.settings).sha256
+        else:                                           # a system without an estimate keeps the identity it had before estimates existed
+            for key in ('estimate', 'est_band', 'est_weight', 'est_nv', 'est_v'):
+                described.pop(key)
+        self.sha256 = options_sha256(self.kind, described)
+        self.tap = None                                 # tap(hand, state, seat) is called before every call: for collecting states
         self.cache = {}
         self._facing = {}
         self.errors = 0                                  # calls where a rule failed and the bidder passed instead
@@ -1045,7 +1162,10 @@ class RuleSystemBidder(RuleBidder):
     def call(self, hand, seat, dealer, vul, calls):
         try:
             st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
-            return choose(Hand(hand), st, int(seat))
+            h = Hand(hand)
+            if self.tap is not None:
+                self.tap(h, st, int(seat))
+            return choose(h, st, int(seat))
         except Exception:                                # a bidder at a table must always produce a legal call
             if STRICT:
                 raise
