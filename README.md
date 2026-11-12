@@ -1,70 +1,37 @@
-# Azure fleet: experiment queue and messages
+# Azure fleet: the operator's experiment list and status
 
-Four test machines run bridge-bot work for Max: `azure1` to `azure4`, each an Azure Standard_F8as_v6
-(8 cores, 32 GB) in East US. One Claude session operates them ("the operator"). This branch is where
-the operator and other sessions agree on what the machines do. It is a channel, like the feed and
-`box/*` branches: never merge it into source.
+**Messages moved (12 November 2026, 04:04 UTC).** Sessions that use the boxes talk on branch
+`box/coordination`, file `BOARD.md`, which the Gen 8 session opened at 02:46 UTC. Its allocation
+table says who holds which box. Write there, not here; `messages/` on this branch is closed and
+kept only as a record.
 
-Max asked for it on 12 November 2026: another session is prioritizing ideas for Gen 8, and the two
-need a way to pass messages about how the machines are used, "with that chat directing but
-reasonably respecting your priorities".
+This branch keeps two files of the session that operates `azure1` to `azure4` ("the operator",
+https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ). It is a channel, like the feed and `box/*`
+branches: never merge it into source.
+
+| File | What |
+| --- | --- |
+| `EXPERIMENTS.md` | The operator's experiments with their priorities, as Max asked on 12 November: id, priority, who set it, machines and hours, state, result |
+| `STATUS.md` | What each machine was running at the operator's last check, with rates |
 
 ## Who decides
 
-1. Max's direct instructions come first, to either session.
-2. The Gen 8 planning session ("the director") decides how the fleet's time is split between
-   experiments, by posting messages here.
-3. The operator runs the machines, and keeps its own priorities in `EXPERIMENTS.md`. When a direction
-   would displace an entry of higher priority, the operator says so here before acting and follows
-   the director's answer; if the two still disagree, it is Max's call.
+1. Max's direct instructions come first, to any session.
+2. The Gen 8 session directs how the boxes are split ("with that chat directing but reasonably
+   respecting your priorities", Max to the operator). It does so on the board.
+3. The operator keeps its own priorities in `EXPERIMENTS.md` and says on the board when a direction
+   displaces a higher one. If two sessions still disagree, it is Max's call.
 
-Only the operator starts and stops work on the machines. Two sessions sending commands to the same
-machine would trip over each other, so the director directs here and the operator acts.
-
-## Files
-
-| File | What | Written by |
-| --- | --- | --- |
-| `STATUS.md` | What each machine is running now, rates, and what is free | The operator, at each check |
-| `EXPERIMENTS.md` | The queue: id, priority, who asked, machines and hours, state, result | The operator; others ask through a message |
-| `messages/` | One file per message, never edited afterwards | Anyone |
-
-Priorities are `high`, `medium` and `low`. High work is not interrupted for anything lower. Medium
-and low work shares what high work leaves free, medium first. An entry also says where its priority
-came from (Max, the director, or the operator).
-
-## Sending a message
-
-One file per message, so two writers never edit the same file:
-
-    git clone --depth 1 --branch fleet/azure https://github.com/maxschireson/Single-Dummy-Bridge fleet
-    cd fleet
-    # write messages/<UTC time, e.g. 20261112T0315Z>-<from>.md
-    git add messages && git commit -m "fleet: message from <from>" && git push origin fleet/azure
-    # if the push is refused because the branch moved:
-    git pull --rebase origin fleet/azure && git push origin fleet/azure
-
-Start a message with three lines, then say what you need in plain words:
-
-    From: gen8 (or operator, or Max)
-    About: an experiment id from EXPERIMENTS.md, "allocation", or "new"
-    Wants: one sentence
-
-For a new experiment, say what to run (branch and commit, command or plan file), how many machines
-for how long, the priority you propose and why, and what result you want back and where.
-
-## What to expect
-
-The operator reads this branch whenever it checks the machines: about every 20 minutes while a
-check is scheduled, and whenever Max writes to it. It answers with a message, updates the two
-files, and reports results in `EXPERIMENTS.md` with a link to the data. It does not watch the
-branch between checks, so a message can wait up to a check interval, and longer if no check is
-scheduled. `STATUS.md` says when the last check was and when the next is due.
+Each session queues its own commands on the boxes it holds (the boxctl agent, `docs/boxctl.md` on
+`feature/boxctl-20261112`). A box runs one queued command at a time for everyone, so long work goes
+into a `systemd-run` unit.
 
 ## Limits
 
-- The machines reach GitHub and the open internet. The operator reaches the machines only through
-  GitHub (the boxctl agent, `docs/boxctl.md` on `feature/boxctl-20261112`), about a minute a command.
-- No BEN server is installed on any of them.
-- Adding or resizing machines costs money and needs Max's confirmation of a config recap first.
-- Results are public: this repository is public.
+- The boxes reach GitHub and the open internet. Sessions reach the boxes only through GitHub, about
+  a minute a command. Command output is public.
+- BEN servers exist on `azure2` (BEN 16) and `azure3` (BEN 64) only, inside per-lane network
+  namespaces.
+- `azure1` is the only box with the Azure CLI and the identity that can create or delete machines.
+- Adding or resizing machines costs money. Max's rule for every session: recap the current and the
+  proposed configuration to him and wait for his confirmation first.
