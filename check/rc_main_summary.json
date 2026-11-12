@@ -2,25 +2,25 @@
  "schema": "arena9-reading-check-v1",
  "bot": "9a-32",
  "control_bot": "8p-32",
- "rows": 392,
+ "rows": 460,
  "guests": {
   "guest-a": {
    "arrival": {
     "epoch": 2,
     "bot": {
-     "n": 130,
-     "mean": 1.6622,
-     "se": 0.1092
+     "n": 154,
+     "mean": 1.6863,
+     "se": 0.1012
     },
     "control": {
-     "n": 130,
-     "mean": -3.1992,
-     "se": 0.9559
+     "n": 154,
+     "mean": -2.9917,
+     "se": 0.8539
     },
     "difference": {
-     "n": 65,
-     "mean": 4.8615,
-     "se": 0.8681
+     "n": 77,
+     "mean": 4.6779,
+     "se": 0.7776
     },
     "threshold": 3.0,
     "met": true,
@@ -29,19 +29,19 @@
    "snapshot": {
     "epoch": 5,
     "bot": {
-     "n": 130,
-     "mean": 1.6901,
-     "se": 0.1137
+     "n": 154,
+     "mean": 1.7272,
+     "se": 0.1054
     },
     "control": {
-     "n": 130,
-     "mean": -3.1992,
-     "se": 0.9559
+     "n": 154,
+     "mean": -2.9917,
+     "se": 0.8539
     },
     "difference": {
-     "n": 65,
-     "mean": 4.8894,
-     "se": 0.8824
+     "n": 77,
+     "mean": 4.7189,
+     "se": 0.7897
     },
     "threshold": 3.0,
     "met": true,
@@ -52,19 +52,19 @@
    "arrival": {
     "epoch": 4,
     "bot": {
-     "n": 132,
-     "mean": 2.0941,
-     "se": 0.1684
+     "n": 152,
+     "mean": 2.068,
+     "se": 0.1588
     },
     "control": {
-     "n": 132,
-     "mean": 2.5695,
-     "se": 0.1335
+     "n": 152,
+     "mean": 2.5616,
+     "se": 0.1283
     },
     "difference": {
-     "n": 66,
-     "mean": -0.4753,
-     "se": 0.1056
+     "n": 76,
+     "mean": -0.4936,
+     "se": 0.102
     },
     "threshold": -0.45,
     "met": false,
@@ -73,19 +73,19 @@
    "snapshot": {
     "epoch": 5,
     "bot": {
-     "n": 130,
-     "mean": 2.1563,
-     "se": 0.1913
+     "n": 152,
+     "mean": 2.1149,
+     "se": 0.1784
     },
     "control": {
-     "n": 130,
-     "mean": 2.5854,
-     "se": 0.1347
+     "n": 152,
+     "mean": 2.5616,
+     "se": 0.1283
     },
     "difference": {
-     "n": 65,
-     "mean": -0.4292,
-     "se": 0.1237
+     "n": 76,
+     "mean": -0.4466,
+     "se": 0.119
     },
     "threshold": -0.15,
     "met": false,
