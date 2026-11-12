@@ -285,3 +285,4 @@
 {"at": "2026-11-12T09:26:00Z", "by": "will", "op": "log", "target": "G9-W5", "note": "job files may name a task (e7b3684); dave's draft d6-arrival job validates (8 cores, non-preemptible, 5,400 boards); at deploy check h5py in {python} and the capsule path on azure4"}
 {"at": "2026-11-12T09:27:00Z", "by": "bill", "op": "send", "target": "g9/20261112T0927Z-bill-d6-guest-b-is-mapped-to-gen-5", "note": "D6: guest-b is mapped to Gen 5 within 10-20 boards after a fix to the profile statistic (temperature 0.25); Gen 5 and dds40k are one system", "task": "G9-D6"}
 {"at": "2026-11-12T09:27:00Z", "by": "bill", "op": "renew", "target": "E9-11", "until": "2026-11-12T13:27Z"}
+{"at": "2026-11-12T09:27:00Z", "by": "bill", "op": "renew", "target": "E9-12", "until": "2026-11-12T13:27Z"}
