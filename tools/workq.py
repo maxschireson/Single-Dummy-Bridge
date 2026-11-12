@@ -1516,6 +1516,7 @@ def run(lg: Ledger, a) -> int:
         new = [e for e in events if e["at"] > since and e["by"] != me]
         docs, errors = st.docs()
         mine = {k for k, d in docs.items() if me in (d.get("owner"), d.get("holder"), reviewer_of(d, lg.lead))}
+        mine |= {f"{box}/{jid}" for box, q in box_queues(st).items() for jid, j in q["jobs"].items() if j.get("owner") == me}
         print(f"{lg.store.branch} at {st.at:%Y-%m-%d %H:%M} UTC; {len(new)} change(s) by others since {since or 'the start'}")
         for e in new[-50:]:
             star = "*" if e.get("target", "").startswith(f"{me}/") or e.get("target") in mine or e.get("task") in mine else " "
