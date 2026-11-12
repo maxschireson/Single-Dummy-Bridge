@@ -84,15 +84,16 @@ the bot are the same in all.
 
 ## Who has switched
 
-As of 04:45 UTC. Check fresh feed heads before relying on a row.
+As of 04:56 UTC. Check fresh feed heads before relying on a row.
 
 | Producer | State |
 | --- | --- |
-| Codex | New cohort `gen7-selfplay-codex-20261112` from its phase 1 cohort `fe19dc48...`, prepared at `05d2cd8` (no gap forks); feed `arena-gen7-selfplay-codex-20261112-feed` |
+| Codex | First cohort prepared at `05d2cd8` from its phase 1 cohort (32 boards, no gap forks; feed `arena-gen7-selfplay-codex-20261112-feed`), then a successor with capture: feed `arena-gen7-selfplay-capture-codex-20261112-feed` |
 | Cloud | Phase 1 cohort drained at 67 boards; shard 4/8 kept for its self-play successor; waiting for this branch |
-| azure2 | Cohort `c50412d34108` prepared at `7780e5e` from the box's phase 1 deals (2,202 left); trial below. The box plays the BEN (16) pair until that reaches 2,000 boards, then this cohort |
+| azure2 | Cohort `c50412d34108` prepared at `7780e5e` from the box's phase 1 deals (2,202); 11 trial boards, then stopped; feed `arena-gen7-phase1-selfplay-azure2-feed`, registered. The box plays the BEN (16) pair until that reaches 2,000 boards, then this cohort with eight workers |
 | azure1, azure3, azure4 | Phase 1 cohorts stopped (828, 720 and 829 boards). azure3 is on the BEN (64) pair, azure1 and azure4 on Gen 8 experiments; their unplayed phase 1 deals wait |
-| Independent, extra | Still on their phase 1 plans at this writing |
+| Independent | Registered a self-play feed with capture at 04:51 (`gen7independentselfplay` in the registry) |
+| Extra | No change seen |
 
 ## What was tested
 
@@ -112,6 +113,14 @@ also playing the BEN (16) lanes:
   | 1 | `7s-32~6-32` | 63 | 2 | 346 | 24, 1 | 12 |
   | 2 | `7s-32~7s-32` | 51 | 1 | 538 | 46, 8 | 6 |
   | 3 | `7s-32~6-32` | 30 | 2 | 227 | 17, 0 | 11 |
+
+- A trial of that cohort through `ops/gen5_runtime.py` with two workers: 11 boards in 412 s, no
+  failures, published by `ops/publish_gen5.py`; the dashboard's checks pass on the feed.
+
+  | Pair | Boards | CPU seconds a board | Audit forks a board | Gap forks a board |
+  | --- | ---: | ---: | ---: | ---: |
+  | `7s-32~7s-32` | 8 | 33 | 58 | 5.8 |
+  | `7s-32~6-32` | 3 | 47 | 31 | 11.7 |
 
 Before the capture merge, at `81707b2`:
 
