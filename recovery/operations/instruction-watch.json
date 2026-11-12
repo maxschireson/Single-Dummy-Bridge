@@ -36,6 +36,8 @@
     }
   },
   "watched_source_refs": {
+    "box/azure1/control": "a7ddc5c9f46223fbf49b07c68044b117bf51f5d2",
+    "box/azure1/status": "329fd10e73eaf193488860cb7fd070216ddbb0a9",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
     "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
@@ -56,6 +58,7 @@
     "experiment/gen5r16-comparisons-20261110": "33ccf5231aa4b0d0049d5f629dd080460cba6397",
     "experiment/gen5rz-ben192-16-20261110": "8743125af15cf733356560ab9e268ac1157e4b1f",
     "experiment/representative-pool-tuning-20261110": "feaefe40ecce72425441cc46021b703174812212",
+    "feature/boxctl-20261112": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
     "feature/gen7-alpha-20261111": "7690c3c2014dd60ee349d8fff41985b4e811ff4e",
     "feature/gen7-candidate-20261111": "1042db5036e0a8071e9cc90f511d941c3de92270",
     "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
@@ -107,7 +110,7 @@
     "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
     "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
     "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
-    "transfer/gen7-prototype-20261111": "3482198757c1ccda7104d3539a7ffe31ce75c3f1",
+    "transfer/gen7-prototype-20261111": "c10ecfb584436e7ea5e9f578529f54f738e1d870",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
     "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356"
@@ -205,14 +208,14 @@
       "pull_request": true
     }
   ],
-  "comments_since": "2026-11-11T23:24:14.517786+00:00",
+  "comments_since": "2026-11-12T00:22:01+00:00",
   "new_issue_comments": 0,
   "new_review_comments": 0,
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "This stream is explicitly 100% Gen6 fast self-play. The shared 37/3 mix predates this direct user instruction; it is not a new instruction for this stream.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "candidate_notice_acknowledged_no_collection_change",
-  "collection_action": "Acknowledged the Gen7 collector heads-up and its disabled launch gates. Continue owned Gen6 fast self-play without draining, preparing or cutting over. Keep the completed first capture report unchanged.",
+  "result": "no_applicable_instruction_changes",
+  "collection_action": "Continue the healthy owned Gen6 fast self-play collector and publisher unchanged. Gen7 candidate gates remain disabled at 1042db5. Preserve the completed first capture report.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -230,7 +233,7 @@
     "already_enabled": true,
     "first_report_root_tables": 2000,
     "report_status": "completed",
-    "current_root_tables": 2630,
+    "current_root_tables": 3205,
     "report_root_tables": 2000,
     "report_path": "recovery/gen7-capture-report.json",
     "report_sha256": "aaa5bb78c935081dca59b38436f05a56e42cdb0bf7ac97f586d4ee91516f70c6",
@@ -246,34 +249,35 @@
   },
   "research_disposition": {
     "gen7_alpha": "Plan closed; no authorized adoption or deployment change.",
-    "gen7_prototype": "3482198: stake-rule bench and pruning research only.",
+    "gen7_prototype": "c10ecfb: revised research notes and smoke-match comparisons only; no cutover authorization.",
     "pr13": "Draft host-specific supervision work; not a general new engine adoption.",
     "prs9_4": "Deferred prototypes/follow-up work, not collection launch instructions.",
     "hand_fit_scorer_v1a": "Research release at 8ff85d4; explicitly no arena bot uses it. No collection/model change authorized.",
     "gen7_candidate": "1042db5: notice only; both phase plans launch_enabled=false, pending acceptance/parameters and runtime support.",
-    "gen8_systems": "dba31ae: unadopted WIP, explicitly not a cutover input."
+    "gen8_systems": "dba31ae: unadopted WIP, explicitly not a cutover input.",
+    "boxctl": "d5bb39f: remote-box operations tooling for separate machines; not adopted for this stream."
   },
   "notification": "none",
-  "checked_epoch": 1794442921.0,
-  "checked_at": "2026-11-12T00:22:01+00:00",
-  "next_check": "2026-11-12T01:25:53+00:00",
+  "checked_epoch": 1794446848.0,
+  "checked_at": "2026-11-12T01:27:28+00:00",
+  "next_check": "2026-11-12T02:25:53+00:00",
   "stream_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
   "health": {
-    "completed": 2630,
+    "completed": 3205,
     "target": 25000,
     "pair_weights": {
       "6-32~6-32": 1
     },
-    "heartbeat_age_seconds": 3.94,
+    "heartbeat_age_seconds": 4.21,
     "failures": 0,
-    "published": 2630,
-    "published_commit": "7f516deef31381c5160ed36610c8ae56ce742a81",
+    "published": 3199,
+    "published_commit": "47471c4b4cc9c50d51336b5b1d123dc26c247380",
     "publisher_status": "running",
     "collector_status": "running",
     "collector_pid": 13960,
     "publisher_pid": 10757,
     "source_runtime_and_artifacts": "verified",
-    "ownership": "All three singleton locks held; live command identities checked, no producer takeover",
+    "ownership": "All three singleton locks held; live command identities verified; no restart or takeover",
     "last_cache_rotation": {
       "epoch": 1794443060.7584658,
       "completed": 2630,
@@ -281,39 +285,38 @@
     }
   },
   "previous_check": {
-    "checked_at": "2026-11-11T23:24:14.517786+00:00",
-    "result": "first_capture_report_completed_no_new_collection_instructions"
+    "checked_at": "2026-11-12T00:22:01+00:00",
+    "result": "candidate_notice_acknowledged_no_collection_change"
   },
   "reviewed_source_changes": [
     {
-      "name": "feature/gen7-candidate-20261111",
-      "sha": "1042db5036e0a8071e9cc90f511d941c3de92270",
+      "name": "box/azure1/control",
+      "sha": "a7ddc5c9f46223fbf49b07c68044b117bf51f5d2",
       "collection_change_authorized": false,
-      "reason": "General collector heads-up acknowledged. Explicitly no launch authorization; both plans remain disabled with pending decisions."
+      "reason": "Command queue explicitly addressed to box azure1, a different host. Read as evidence only; no commands executed and no ownership assumed."
     },
     {
-      "name": "feature/gen8-systems-20261111",
-      "sha": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
+      "name": "box/azure1/status",
+      "sha": "329fd10e73eaf193488860cb7fd070216ddbb0a9",
       "collection_change_authorized": false,
-      "reason": "Explicit work in progress, unadopted; no bot/config/runtime uses it. Not a cutover input."
+      "reason": "Another host's status channel; no ownership or liveness action for this stream."
     },
     {
-      "name": "ops/gen7-fast-selfplay-cloud-20261111",
-      "sha": "d0fbb201e48c4ca9336371b9172b9450ce298098",
-      "previous": "38a0d7196fc9a063c1503ff262d863177175da85",
+      "name": "feature/boxctl-20261112",
+      "sha": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
       "collection_change_authorized": false,
-      "reason": "Other producer's publication/diagnostic operation only; preserve ownership."
+      "reason": "Remote-box operations tooling, unmerged and not a direction to install or move this owned cloud collector. Existing ownership/frozen-run rules preserved."
     },
     {
       "name": "transfer/gen7-prototype-20261111",
-      "sha": "3482198757c1ccda7104d3539a7ffe31ce75c3f1",
-      "previous": "5f9c41b8304065f693aba81b5f8034f75177f09c",
+      "sha": "c10ecfb584436e7ea5e9f578529f54f738e1d870",
+      "previous": "3482198757c1ccda7104d3539a7ffe31ce75c3f1",
       "collection_change_authorized": false,
-      "reason": "Stake-rule benchmark research, not an authorized collection or engine transition."
+      "reason": "Research notes revise stake analysis and smoke-match evidence only; no current collection directive or model adoption."
     }
   ],
-  "completed_at": "2026-11-12T00:24:38.877586+00:00",
-  "next_comment_scan_since": "2026-11-12T00:22:01+00:00",
+  "completed_at": "2026-11-12T01:29:08.191267+00:00",
+  "next_comment_scan_since": "2026-11-12T01:27:28+00:00",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
@@ -367,5 +370,6 @@
       }
     },
     "rehearsal": "Optional isolated build rehearsal described in the notice; no production preparation or runtime change performed."
-  }
+  },
+  "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer."
 }
