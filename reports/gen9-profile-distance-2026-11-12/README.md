@@ -62,3 +62,18 @@ Its column on this report's 500 deals (seed 5150; `house-gen5-fit-column.json`):
 - At full cover the fitted card does not separate Gen 5 from the rule bidder's standard settings
   (16.6 against 16.0); it does separate both from precision (30). Distances measured at different covers
   are not comparable: a card that covers less looks nearer.
+
+## Supplement, 12 Nov 09:44 UTC: the rb cards with responses covered (ea550d3)
+
+Same 500 deals (seed 5150), the regenerated rb cards (they now cover responder's first call):
+
+| Generator | rb-standard | rb-precision |
+| --- | ---: | ---: |
+| rb-standard | 3.0 | 18.5 |
+| rb-precision | 21.1 | 2.6 |
+| house-gen5 | 15.3 | 28.2 |
+| house-gen6 | 15.3 | 28.5 |
+
+The rule bidder now breaks its own card on about 3% of covered calls (raises valued by support points);
+the house nets are 15% from rb-standard (12.8-13.2 before, over fewer calls). The table above the
+supplements is for the old cards.
