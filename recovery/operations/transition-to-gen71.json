@@ -1,0 +1,35 @@
+{
+  "status": "active",
+  "initial_descriptor": {
+    "run": "/workspace/work/bridge-gen6-fast-selfplay-new",
+    "source": "/workspace/work/bridge-feed-snapshot/recovery/runtime",
+    "publication": "/workspace/work/bridge-gen6-new-publication",
+    "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+    "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+    "seed": 5713345875519330500,
+    "target": 25000
+  },
+  "new_run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+  "new_source": "/workspace/work/bridge-gen71-source",
+  "new_publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+  "branch": "arena-gen71-19bbdce5-20261112-feed",
+  "source_base": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+  "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+  "authority": "docs/gen71_2026-11-12.md: Tell all collectors; policy4.1 push effective06:00UTC; applies to general arena collectors",
+  "epoch": 1794465948.5563416,
+  "old_completed": 6775,
+  "old_local_archive_revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+  "publication_failure": "GitHub HTTP503 upstream connect timeout; local snapshot committed and clean",
+  "old_final_revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+  "new_manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+  "new_target": 18225,
+  "registry_commit": "7ed57a28dfcc610e85fef65bffc6349f4977e058",
+  "new_completed_at_check": 12,
+  "publication_recovery": {
+    "status": "resolved",
+    "method": "buffered Git HTTP transport using http.postBuffer524288000",
+    "old_archive_revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "source_pushed": true,
+    "new_feed_published": true
+  }
+}

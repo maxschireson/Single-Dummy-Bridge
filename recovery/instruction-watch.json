@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794465613.6226397,
+  "checked_epoch": 1794465948.5563416,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "operational_branch": "feature/gen7-selfplay-20261112",
   "operational_revision": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
@@ -17,7 +17,7 @@
     "gap_forks": 11,
     "status": "passed"
   },
-  "status": "preflight_passed",
+  "status": "applied_and_collecting",
   "predecessor": {
     "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
     "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
@@ -30,5 +30,88 @@
     "gap_forks": 38,
     "tree_consultations": 148,
     "over_budget": 0
+  },
+  "current_manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+  "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+  "registry_key": "gen6selfplay19bbdce5",
+  "registry_commit": "7ed57a28dfcc610e85fef65bffc6349f4977e058",
+  "registry_blob": "23697dcf6d39dcdd0724c8b410900862daa73828",
+  "automation_id": "Automation_7f5620b00f8881918cc8cb2fd1b2ba59",
+  "automation_status": "hourly enabled; prompt follows the current descriptor",
+  "transition": {
+    "status": "active",
+    "initial_descriptor": {
+      "run": "/workspace/work/bridge-gen6-fast-selfplay-new",
+      "source": "/workspace/work/bridge-feed-snapshot/recovery/runtime",
+      "publication": "/workspace/work/bridge-gen6-new-publication",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "seed": 5713345875519330500,
+      "target": 25000
+    },
+    "new_run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+    "new_source": "/workspace/work/bridge-gen71-source",
+    "new_publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+    "branch": "arena-gen71-19bbdce5-20261112-feed",
+    "source_base": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+    "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+    "authority": "docs/gen71_2026-11-12.md: Tell all collectors; policy4.1 push effective06:00UTC; applies to general arena collectors",
+    "epoch": 1794465948.5563416,
+    "old_completed": 6775,
+    "old_local_archive_revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "publication_failure": "GitHub HTTP503 upstream connect timeout; local snapshot committed and clean",
+    "old_final_revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "new_manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+    "new_target": 18225,
+    "registry_commit": "7ed57a28dfcc610e85fef65bffc6349f4977e058",
+    "new_completed_at_check": 12,
+    "publication_recovery": {
+      "status": "resolved",
+      "method": "buffered Git HTTP transport using http.postBuffer524288000",
+      "old_archive_revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+      "source_pushed": true,
+      "new_feed_published": true
+    }
+  },
+  "health": {
+    "state.json": {
+      "manifest_identity": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+      "completed": 12,
+      "target": 18225,
+      "contiguous": 12,
+      "by_pair": {
+        "71s-32~7s-32": 8,
+        "71s-32~6-32": 4
+      },
+      "root_games": 24,
+      "tables": 334,
+      "failures": 0,
+      "epoch": 1794465948.5125587,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794465948.3429942,
+      "completed": 11,
+      "in_flight": [
+        11,
+        12,
+        13
+      ],
+      "workers": 4,
+      "ben_workers": 1,
+      "started_epoch": 1794465728.7339818,
+      "stopping": false
+    },
+    "watchdog-status.json": {
+      "epoch": 1794465907.7563913,
+      "collector": "running",
+      "publisher": "running",
+      "ben": "ready"
+    },
+    "publisher-status.json": {
+      "epoch": 1794465914.5599551,
+      "status": "published",
+      "completed": 10
+    }
   }
 }
