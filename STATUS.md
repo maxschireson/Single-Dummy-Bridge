@@ -1,6 +1,6 @@
 # Fleet status
 
-**Last check:** 12 November 2026, 06:47 UTC. **Next check:** about 07:15 UTC. Who holds which box:
+**Last check:** 12 November 2026, 07:26 UTC. **Next check:** about 07:50 UTC. Who holds which box:
 the allocation table in `BOARD.md` on branch `box/coordination`.
 
 **Gen 7.1** (Max, 05:42: push 7.1, policy net v4.1, from 06:00 unless revoked; 7.1 plays 7.0 where
@@ -10,8 +10,8 @@ match 7 becomes 7.1. 05:54: azure2 plays 7.1 against 7.0 on every board).
 | Machine | Held by | Running | At the last check |
 | --- | --- | --- | --- |
 | `azure1` | Gen 8 session | Gen 8 matches | The operator's phase 1 cohort is stopped for good at 828 boards; 1,986 unplayed deals wait |
-| `azure2` | operator | `71s-32~7s-32` on every board, eight workers, cohort `4b32e6ed0d6b`, 1,465 deals v4.1 was not trained on, feed `arena-gen7-1-vs70-fresh-azure2-feed`, since 06:36 | 57 boards in ten minutes, no failures, 23.8 GB of memory available. Tooling `~/work/gen71/gen71c.sh`; `gen71-recycle` active |
-| `azure3` | operator | `71s-32~ben64`, eight lanes, 2,933 deals v4.1 was not trained on, feeds `arena-gen7-1-fresh-azure3-ben64-1-feed` to `-8-feed`, since 06:42 | 27 boards in the first four minutes, no failures; `lane-recycle` active. Tooling `~/work/lanes/lane71f.sh` |
+| `azure2` | operator, then the plan session from 08:15 (Max's authority) | `71s-32~7s-32` on every board, eight workers, cohort `4b32e6ed0d6b`, 1,465 deals v4.1 was not trained on, feed `arena-gen7-1-vs70-fresh-azure2-feed`, since 06:36 | 299 boards at 07:25, no failures. Solver cache on a RAM disk since 07:20 (workers 537% to 791% of 800%). Drained from 08:10 (`~/work/gen71/drain2.sh`); the unplayed deals stay |
+| `azure3` | operator | `71s-32~ben64`, eight lanes, 2,933 deals v4.1 was not trained on, feeds `arena-gen7-1-fresh-azure3-ben64-1-feed` to `-8-feed`, since 06:42 | 318 boards at 07:25 (about 450 an hour), no failures; `lane-recycle` active; CPU 93% busy, six cores of it the BEN (64) servers. Tooling `~/work/lanes/lane71f.sh` |
 | `azure4` | Gen 8 session | Gen 8 matches | Phase 1 cohort stopped for good at 829 boards; 1,985 unplayed deals wait |
 | `azure5` (Bridgebots5) | policy 4.1 session, then Gen 8 (about 07:40) | Training | Kept (Max, 05:59) |
 | `azure6` (Bridgebots6) | Gen 8 session | Gen 8 experiments | Kept (Max, 06:03) |
@@ -30,10 +30,10 @@ checkout `~/work/sdb-gen71x`). The unplayed pools on azure1 and azure4 have the 
 
 **The rule for `71s-32~7s-32`.** The independent collector's gate script (`ops/check_gen71_gate.py`,
 run from `/home/claude/watch/gate.sh` on azure2 at every check) counts one board a family over
-every registered feed, none on a training family: at 06:47, 177 boards, mean -0.169, 95% interval
--0.547 to +0.208, not eligible. `pool4.py` prints the raw counts. When it is met,
+every registered feed, none on a training family: at 07:26, 688 boards, mean -0.003, 95% interval
+-0.187 to +0.182, not eligible. `pool4.py` prints the raw counts. When it is met,
 `configs/round71-selfplay.json` is opened. The Gen 8 session's own fork-free match of the two bots
-stood at -0.008 +- 0.065 after 1,649 boards at 06:12.
+stood at -0.010 +- 0.047 after 3,075 boards (plan session's 07:15 entry).
 
 **Gen 7.1 on deals v4.1 was not trained on, all collectors, raw, 06:46:** `71s-32~7s-32` 153 boards,
 -0.08 +- 0.20; `71s-32~6-32` 49, +0.59 +- 0.46; `71s-32~ben64` 49, +0.96 +- 0.65; `71s-32~ben` 22,
@@ -60,3 +60,10 @@ policy 4.1 session saw it on azure5). All four boxes are set to list-only
 **Dashboard.** `gh-pages` `7c69d94`: the nine Azure 7.1 feeds on untrained deals are registered; the
 ten feeds of the closed 06:06 cohorts are not (their commits are under
 `gen71_azure.closed_in_sample`).
+
+**Throughput (07:13 to 07:25).** A `71s-32~7s-32` board costs 48 cpu-s: base 18, tie audits 9, gap forks 21. Phase 1
+boards cost 20 to 25 (no gap forks then) and ran about 960 an hour on azure2. Before 07:20 the shared solver cache
+(`dds_cache.py`: WAL, `synchronous=FULL`, one write lock for eight processes) kept a third of azure2's CPU idle; the
+cache now sits on `/mnt/ddscache` (tmpfs, in fstab) through a symlink at the run's `dds-cache.sqlite`, and
+`gen71-recycle` empties it at each restart. Asked of Max: keep gap forks on the comparison cohort or drop them
+(about 1.8 times the boards).
