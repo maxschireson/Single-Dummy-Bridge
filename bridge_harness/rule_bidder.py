@@ -28,7 +28,7 @@ from .system_bidders import RuleBidder, options_sha256
 
 PASS, DOUBLE, REDOUBLE = 2, 3, 4
 STRICT = False                      # tests and the tuner set this: a failing rule raises instead of passing
-RULES = 'r2'                        # raised whenever a rule changes what the bidder calls: part of a system's identity
+RULES = 'r3'                        # raised whenever a rule changes what the bidder calls: part of a system's identity
 C, D, H, S, N = range(5)
 MAJORS, MINORS, SUITS = (H, S), (C, D), (C, D, H, S)
 BALANCED = ((4, 3, 3, 3), (4, 4, 3, 2), (5, 3, 3, 2))
@@ -586,8 +586,9 @@ def advance_table(st, me, g):
         if s in MAJORS and bid(4, s) > over:
             t.append((bid(4, s), M((0, 40), kind='signoff', test=lambda h: h.support(s) >= game or h.len[s] >= need + 2
                                     or (h.len[s] >= need + 1 and h.support(s) >= game - 4), **{'CDHS'[s]: (need, 13)})))
+        mid = game - 4                                  # points for game opposite a middling overcall
         if bid(3, N) > over and pkind == 'overcall':
-            t.append((bid(3, N), M((game + 1, 40), kind='signoff', test=stops)))
+            t.append((bid(3, N), M((mid + 1, 40), kind='signoff', test=lambda h: stops(h) and h.shape[3] >= 2)))
         c = cheapest(s)
         if c and level_of(c) <= 3:
             if bid(level_of(c) + 1, s) > over and level_of(c) + 1 <= 3 and pkind == 'overcall':
@@ -598,7 +599,9 @@ def advance_table(st, me, g):
         if pkind == 'overcall':
             cn = cheapest(N)
             if cn and level_of(cn) <= 2 and theirs:
-                t.append((cn, M((game - 5, game - 1), kind='nt-response', test=lambda h: stops(h) and h.shape[3] >= 2 and h.shape[0] <= 6)))
+                rng = (mid - 6, mid - 2) if level_of(cn) == 1 else (mid - 3, mid)
+                t.append((cn, M(rng, kind='nt-response' if level_of(cn) == 1 else 'invite',
+                                test=lambda h: stops(h) and h.shape[3] >= 2 and h.shape[0] <= 6)))
             for x in (S, H, D, C):
                 c2 = cheapest(x)
                 if x != s and x not in theirs and c2 and level_of(c2) <= 2:
@@ -758,6 +761,8 @@ def plan(h, st, me):
         if cmin >= need and suit in MAJORS and h.len[suit] >= 4 and bid(4, suit) > over:
             return bid(4, suit), 'signoff'
         c = cheapest(suit)
+        if c is not None and cmin >= need - 1 and level_of(c) <= 2 and bid(level_of(c) + 1, suit) > over:
+            return bid(level_of(c) + 1, suit), 'invite'     # game values: a jump (the tables' jump is the same call on less)
         if c is not None and level_of(c) <= 4:
             return c, ''
     # ---- a game-forcing auction below game: describe before placing ----
@@ -774,12 +779,10 @@ def plan(h, st, me):
         for x in MAJORS:
             if bid(1, x) > over and x not in enemy and h.len[x] >= 4 and my.len[x][0] < 4 and ps.len[x][1] >= 4:
                 return bid(1, x), ''
-    if rho_passed and ours and level <= 2 and not in_game and cmin >= need - 4 and fit not in MAJORS and not invited:
-        for x in MAJORS:
-            if h.len[x] >= 5 and 4 <= my.len[x][0] < 5 and ps.len[x][1] >= 3 and bid(2, x) > over and x not in enemy:
-                return bid(2, x), ''
     # ---- game, or an invitation ----
     width = phi - plo
+    if pact[1] == 'stopper-ask' and rho_passed and ours and bid(3, N) > over and enemy and all(h.stop[x] for x in enemy):
+        return bid(3, N), 'signoff'                      # partner asked for a stopper in their suit, and here it is
     if cmin >= need or (side_gf and not in_game and rho_passed):
         if in_game and (strain == N or strain == fit or fit is None):
             return PASS, ''
@@ -787,8 +790,18 @@ def plan(h, st, me):
             return target, 'signoff'
         if in_game:
             return PASS, ''
+        asked = any(k == 'stopper-ask' for _, k in st.acts[me])
+        if target is None and enemy and rho_passed and not asked:
+            cue = min((c for c in (cheapest(x) for x in enemy) if c is not None), default=None)
+            if cue is not None and cue < bid(3, N):
+                return cue, 'stopper-ask'
+        if target is None and (asked or not enemy):      # no stopper anywhere: the best trump suit there is
+            best = max((x for x in SUITS if x not in enemy), key=lambda x: (trumps(x), x in MAJORS, x))
+            go = bid(4, best) if best in MAJORS or cmin < g.game_minor - 2 else bid(5, best)
+            if go > over and trumps(best) >= 7:
+                return go, 'signoff'
     elif cmax >= need and 2 * points + mid2 >= 2 * need - 2 - g.invite_width and not in_game and not invited:
-        inv = bid(3, fit) if fit in MAJORS else bid(2, N) if stoppers and fit is None else bid(3, fit) if fit is not None else None
+        inv = bid(3, fit) if fit in MAJORS else bid(2, N) if stoppers and fit is None and h.shape[3] >= 2 else bid(3, fit) if fit is not None else None
         if over_2nt and inv is not None and strain_of(inv) in MAJORS:
             inv = None                                   # three of a major over two no-trump is the forcing choice of games
         if inv is not None and level_of(inv) == 3 and not is_invitation(st, me, inv):
@@ -832,7 +845,8 @@ def plan(h, st, me):
     # ---- our contract, or we must speak: something natural and cheap ----
     wrong_strain = ours and strain != N and strain != fit and (fit is not None or (h.len[strain] <= 1 and ps.len[strain][0] <= 5) or (ps.len[strain][1] <= 2 and h.len[strain] <= 5))
     better_major = ours and strain == N and fit in MAJORS and level <= 2
-    if forced or wrong_strain or better_major:
+    shapely = ours and over == bid(1, N) and pact[1] == 'nt-response' and (h.shape[0] >= 6 or h.shape[1] >= 5)
+    if forced or wrong_strain or better_major or shapely:
         options = []
         if fit is not None and cheapest(fit) is not None:
             options.append((cheapest(fit), 2.5 + (fit in MAJORS)))
@@ -848,8 +862,8 @@ def plan(h, st, me):
                 options.append((c, 2.2 - 0.4 * (level_of(c) - level)))
         c = cheapest(N)
         if c is not None and (stoppers or not enemy):
-            options.append((c, 1.6 - 0.5 * (level_of(c) - level) + (0.5 if h.balanced else 0)))
-        misfit = wrong_strain and fit is None
+            options.append((c, 1.6 - 0.5 * (level_of(c) - level) + (0.5 if h.balanced else 0) + (0.6 if enemy and h.shape[3] >= 2 else 0)))
+        misfit = (wrong_strain and fit is None) or shapely
         if options and (forced or max(o[1] for o in options) >= (1.5 if misfit else 2.5)):
             best = max(options, key=lambda o: o[1])[0]
             if level_of(best) <= (5 if forced else 3):
@@ -919,6 +933,8 @@ def general_meaning(st, me, token):
     forced = st.forced(me)
     asks = level == 3 and strain != N and not forced and not st.game_force[me % 2] and is_invitation(st, me, token)
     floor = invite_floor(g, ps)
+    if strain in st.natural[1 - me % 2] and token < bid(3, N) and st.last is not None and st.last[0] % 2 == me % 2:
+        return M((max(my.hcp[0], min(my.hcp[1], game)), 40), force=1, kind='stopper-ask')
     if strain == N:
         if level == 2 and (not forced or st.last is None or bid(1, N) > st.last[1]):       # unforced, or a jump: an invitation
             return M((max(my.hcp[0], min(my.hcp[1], floor - 1)), max(my.hcp[0], floor - 1, g.game - 2 - ps.hcp[0])), kind='invite')
@@ -935,7 +951,10 @@ def general_meaning(st, me, token):
         return M(upper, kind='invite' if asks else '', **{'CDHS'[strain]: (longer, 13)})
     constructive = st.last is not None and st.last[0] % 2 == me % 2 and st.doubled == 0 and pact[1] != 'signoff'
     wide = my.hcp[1] - my.hcp[0] > 6                     # a new suit from a hand that may still be strong is forcing for a round
-    return M(force=1 if constructive and wide and not below_game_is_enough(token) else 0, **{'CDHS'[strain]: (4, 13)})
+    free = (0, 40)
+    if not wide and not forced and constructive and my.hcp[1] - my.hcp[0] >= 3:
+        free = ((my.hcp[0] + my.hcp[1] + 1) // 2, my.hcp[1])        # a limited hand that bids on unasked is in the top of its range
+    return M(free, force=1 if constructive and wide and not below_game_is_enough(token) else 0, **{'CDHS'[strain]: (4, 13)})
 
 
 def merged(entries):

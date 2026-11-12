@@ -1,6 +1,6 @@
 {
- "note": "Precision-style strong club, rules r2, settings tuned on 4,000 deals (seed 301) for double-dummy IMPs against the house bidder (scripts/tune_rule_bidder.py tune --keep 1.5 --passes 3; three changes kept: slam 33 to 32, overcall_min1 8 to 7, overcall_quality 2 to 1). On 4,000 deals it never saw (seed 302): -1.238 +- 0.083 IMPs a board against the house bidder (-1.275 with the untuned settings), 3.9% of its contracts three or more down, no failing rule. Frozen 12 November 2026 as the Gen 8 candidate's second system.",
- "rules": "r2",
+ "note": "Precision-style strong club, rules r3. Settings tuned with rules r2 on 4,000 deals (seed 301) for double-dummy IMPs against the house bidder (scripts/tune_rule_bidder.py tune --keep 1.5 --passes 3; three changes kept: slam 33 to 32, overcall_min1 8 to 7, overcall_quality 2 to 1). `measured` below is rules r2 with these settings; the r3 figure on deals nobody has looked at is in docs/gen8_candidate_2026-11-12.md. Frozen 12 November 2026 as the Gen 8 candidate's second system.",
+ "rules": "r3",
  "settings": {
   "style": "precision",
   "club_min": 16,
@@ -86,6 +86,7 @@
     "slams_made": 31,
     "rule_failures": 0
    }
-  }
+  },
+  "rules": "r2"
  }
 }

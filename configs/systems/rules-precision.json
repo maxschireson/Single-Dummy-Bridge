@@ -42,7 +42,7 @@
       "penalty": 25,
       "stayman": true,
       "transfers": true,
-      "rules": "r2"
+      "rules": "r3"
     },
     "notes": [
       "Bid by bridge_harness/rule_bidder.py from configs/rule-systems/precision.json. Every call the tables define has an exact meaning (bidder.describe).",
@@ -62,7 +62,7 @@
       "options": {
         "settings_file": "configs/rule-systems/precision.json"
       },
-      "sha256": "a067b6e35cc2a9c198524350505259d18460f6bea88e5b99a14621448b3e366e"
+      "sha256": "7ee5d918af803a9009083adc8688f49d755ffe040fd910d02838a85a4d3f1d4f"
     }
   ],
   "lineage": {}
