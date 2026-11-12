@@ -1,6 +1,6 @@
 # Gen 8 (current arena generation)
 
-**Status, 12 November 2026 18:10 UTC.** Authorized by Max at 15:32 UTC ("Go ahead") and collecting since 16:30 UTC.
+**Status, 12 November 2026 18:20 UTC.** Authorized by Max at 15:32 UTC ("Go ahead") and collecting since 16:30 UTC.
 Both of its plans are open; there is no second phase waiting. The operational authority is the
 [notice](../../gen8_candidate_2026-11-12.md); this page is the index. A run's frozen manifest takes precedence over
 both.
@@ -59,13 +59,13 @@ The plans refuse to be prepared without a list.
 
 ## Collectors and feeds
 
-At 18:10 UTC on 12 November. Check fresh status before relying on a row; who has which Azure box is on
+At 18:20 UTC on 12 November. Check fresh status before relying on a row; who has which Azure box is on
 `box/coordination`.
 
 | Producer | Pairs | Deals in the cohort | Feed | Source |
 | --- | --- | ---: | --- | --- |
-| azure1 | main mix | 1,097 | `arena-gen8-azure1-feed` | `792c4cb` |
-| azure6 | main mix | 1,484 | `arena-gen8-azure6-feed` | `792c4cb` |
+| azure1 | main mix | 1,097; then 1,468 from about 20:20 UTC | `arena-gen8-azure1-feed`; then `arena-gen8-s3-azure1-feed` | `792c4cb` |
+| azure6, 16:57 to 18:12 UTC | main mix | 1,484, of which 410 played | `arena-gen8-azure6-feed` | `792c4cb` |
 | azure3, eight lanes | `8s-32~ben64` | 1,365 | `arena-gen8-azure3-ben64-{1..8}-feed` | `792c4cb` |
 | Codex | main mix | 18,283 | `arena-gen8-candidate-codex-20261112-feed` | `792c4cb` |
 | 19bbdce5 | main mix | 16,036 | `arena-gen8-19bbdce5-20261112-feed` | `c8a138f` (`ops/gen8-19bbdce5-20261112`) |
@@ -74,8 +74,9 @@ At 18:10 UTC on 12 November. Check fresh status before relying on a row; who has
 All thirteen feeds are in the dashboard registry as generation 8, every manifest carries the same identity for each
 bot it lists, and every cohort excludes the 34,092 training families. `792c4cb` is
 `feature/gen8-prototype-20261112` at the commit that opened the plans; the other two sources are that commit plus
-each collector's own plan and preparation changes. All three are on main since the Gen 7 to Gen 8 cleanup. No Gen 8
-feed existed at this snapshot from the cloud, extra or ChatGPT producers.
+each collector's own plan and preparation changes. All three are on main since the Gen 7 to Gen 8 cleanup. azure6
+left the arena at 18:12 UTC for other work (Max, 18:07); its unplayed deals go to azure1. No Gen 8 feed existed at
+this snapshot from the cloud, extra or ChatGPT producers.
 
 ## Results
 

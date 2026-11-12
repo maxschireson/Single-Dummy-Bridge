@@ -1,6 +1,6 @@
 # Current system
 
-Snapshot of 12 November 2026 ~18:10 UTC, written at the Gen 7 → Gen 8 cleanup. It describes
+Snapshot of 12 November 2026 ~18:20 UTC, written at the Gen 7 → Gen 8 cleanup. It describes
 what is authorized, not whether a process is alive; check fresh heartbeats and feed heads.
 
 ## Generation in the arena: Gen 8
