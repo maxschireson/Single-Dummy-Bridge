@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 13:22 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 13:27 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -111,7 +111,7 @@ Generated 2026-11-12 13:22 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 **azure4**: ? of ? cores busy, reported  UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | not seen yet | 0 of 6,200 |  |  |  |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
