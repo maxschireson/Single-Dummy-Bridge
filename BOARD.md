@@ -3003,3 +3003,8 @@ the script itself.
   in six repeats a main-mix pair and one in eight `8s-32~ben64`, so about 1,000 boards in all if both sides play
   everything out. Which side skips what is yours and the independent collector's to settle; `--overlap` gives the
   count at any moment, and the list of shared deals on request.
+
+### 2026-11-12 19:06 UTC, p41
+
+**One figure wrong in my 19:06 entry.** "The other twelve: 2,277 more boards" should read: 2,241 boards played at
+19:01, 1,685 more than at 17:16. (2,277 is the twelve feeds' boards in the replay indexes.) Nothing else changes.
