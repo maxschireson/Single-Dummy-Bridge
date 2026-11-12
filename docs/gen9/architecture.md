@@ -5,6 +5,12 @@
 > between the four work areas so that they can be built in parallel; the area leads' design
 > notes (this folder) fill in each part and may change it. Numbers quoted from Gen 7 and Gen 8
 > work name their source; everything else is a proposal to be measured.
+>
+> **Revised 12 November, 07:40 UTC**, after the four area design notes and the first measurements:
+> section 4.2 (the card is a profile of its own, not a factor on every profile), 4.3 (the signal part is
+> not tempered), section 6 and 7 (who bid is told apart from who plays; promotion test), section 8 (what
+> perfect reading is worth). Area notes: [bidding](bidding.md), [signals](signals.md), [arena](arena.md),
+> [arena statistics](arena-statistics.md), [workflow](workflow.md).
 
 ## 1. What Gen 9 is for
 
@@ -126,41 +132,50 @@ auction weight of x for P  =  sum over k of  pi_P(k) * product over P's seats s 
   scorer pass per candidate profile. With at most four candidates kept, that is small next to
   the solver.
 
-### 4.2 The card as a filter, always on
+### 4.2 The card: a profile of its own, and a correction to the others
 
-The rule filter adds one term per hidden seat:
+The card compiles into rules: in each situation the card covers, an ordered list of calls with
+the hands that make them ([bidding note](bidding.md); 81 fields, five systems compile today:
+2/1, SAYC, Acol, Precision, Polish Club). From the rules, the likelihood of a call for any hand:
 
 ```
-F(hand | calls of s) = sum over the seat's calls t that the card covers of  log m_t(hand)
-m_t(hand) = 1                 if the hand fits the card's meaning of call t
-          = eps_P             if it does not (the player's measured rate of off-card calls)
-          = 1                 if the card says nothing about this situation
-total     = [mixture of 4.1] + beta * F
+P(call | hand) = (1 - eps) * [the first rule the hand satisfies is this call] + eps * (a soft share by how far the hand is from each rule)
+F(hand | calls of s) = sum over the seat's calls that the card covers of log P(call | hand)
 ```
 
-- **Why a filter and not a second scorer.** A factor that is 1 inside the declared meaning
-  changes nothing where the net already agrees with the card, so applying it on top of a
-  matching profile counts no evidence twice. It bites exactly where this player's card departs
-  from the profile (a 14 to 16 no-trump under a 15 to 17 profile), which is the case "even when
-  they match a profile their card filters the net".
-- **No profile.** With all weight on `unknown` the same formula is "rules from the card over a
-  generic net".
-- **Calls the net would misread.** If the card gives a call a different meaning from the
-  profile's (a strong club under a natural profile), multiplying is wrong: the net still pulls
-  toward clubs. Those calls are handed over to the rules: the scorer is trained with calls
-  dropped at random so that any subset of calls can be left out of its input, and the filter
-  alone speaks for them. Which calls to hand over is decided by comparing what the card says
-  the call shows with what the profile's scorer says it shows (the same `Shown` summary the
-  Gen 7 net already uses), per call.
-- **Negative inference.** The rule bidder's tables are ordered: a hand makes the first call
-  whose meaning it fits. Where the card's table for a situation is complete, "the hand would
-  have made an earlier call" also counts as not fitting, so a pass or a one-club opening denies
-  a no-trump opening.
-- **Soft edges.** A range off by one point is not a psych. Off-by-one costs less than `eps_P`,
-  and experience moves the ends of each declared range for this player (section 5).
-- **Cost.** Meanings are functions of points, lengths and honours, all of which the engine's
-  hand types carry, so the filter is evaluated on types and cached per seat and auction like
-  the scorer.
+`eps` is the player's measured rate of off-card calls, per family of calls (section 5). The
+ordered rules give negative inference (a pass denies an opening); a hand one point outside a
+range costs less than a hand five points outside.
+
+**First measurement (bill, 12 November; one seat's true hand over a uniform pool, nats):**
+
+| Auctions bid by | Hand-fit scorer `S` | Card `F` | `S + F` |
+| --- | ---: | ---: | ---: |
+| House Gen 5 bidder (read with an approximate 2/1 card) | 2.18 | 0.85 | 1.77 |
+| 2/1 card / SAYC card | 0.61 / 0.75 | 1.68 / 1.67 | 0.97 / 1.08 |
+| Acol card / Polish Club card | -1.34 / -1.16 | 1.65 / 1.43 | -0.55 / -0.72 |
+| Precision card | -2.49 | 1.42 | -1.90 |
+
+Two things follow, and they change the first version of this section:
+
+- **On a system it was not trained on, the house scorer is worse than not reading the auction
+  at all** (negative gains), and multiplying the card onto it does not rescue it. So the card
+  is not a factor on every profile. It is **a profile of its own** in the mixture of 4.1,
+  reserved id `card`: its row is `F` alone, with no scorer. A foreign system declared with a
+  card is read by its rules; the house scorer keeps only the weight that matching (section 3)
+  and the player's own boards give it.
+- **On the house system an approximate card costs weight** (2.18 falls to 1.77). So on a net
+  profile `k` the card's term is applied only on that profile's **residual**: the situations
+  where profile `k`'s own bidder breaks the card more often than a threshold, which is where
+  this player's card really departs from the profile (a 14 to 16 no-trump under a 15 to 17
+  profile). That is "even when they match a profile their card filters the net", without
+  paying for the card's approximations elsewhere.
+
+Still to come: handing single calls to the rules (a scorer trained with calls dropped), and
+experiment E9-8, which asks whether replaying a known bidder on each candidate hand reads the
+house auctions better than the scorer does. If it does, every profile whose bidder we hold
+(house nets, BEN's own bidder, rule bidders, compiled cards) is read by replay on the pool, the
+scorer only draws the pool, and the mixture compares like with like.
 
 ### 4.3 Cards: the net for the choice that matters, the carding rules for the spot
 
@@ -174,9 +189,11 @@ log P(card | view, x) = phi_P * log P_net(class of the card | view)       what t
                       + log P_signal(card | class, hand, situation; carding of P, h_P)
 ```
 
-- **Class.** In v1 the spot cards (nine and below) of the suit played form one class; an
-  honour is its own class. How often two spots are not in fact equivalent is measured on
-  recorded boards against the solver, and the class rule is refined if it matters.
+- **Class.** The spot cards (nine and below) of the suit played form one class; an honour is
+  its own class; on the opening lead the class is the whole suit led. Measured on 21,057
+  defender decisions (E9-3): the spots of a class differ in tricks on the true deal 1.49% of
+  the time, and almost never (0.10%) where the search itself rates them equal, so a carding bot
+  signals only among cards its search ties.
 - **Situation.** From public information: opening lead, following to partner's lead, following
   to declarer's lead, first discard, giving a ruff. The player's carding descriptor says which
   signal applies there (attitude, count, suit preference, none) and which way round.
@@ -192,6 +209,8 @@ log P(card | view, x) = phi_P * log P_net(class of the card | view)       what t
   calibration found the best factor to be 1.0 for the house bots, 0.2 to 0.5 for Gen 1 and the
   fixed-carding types, and used 0.3 for an unknown opponent (`configs/gen8-proto-bots.json`,
   bot `8x-32`).
+- **Not tempered.** The net's part keeps the exponent Gen 7 and Gen 8 fitted for it; the signal
+  part is a likelihood and is applied in full.
 - **House bots** keep the net's own reading of spots (their habits are in the net). Measuring
   those habits with the same tools gives the house bots' own carding card, which other players
   are owed (disclosure).
@@ -280,6 +299,13 @@ Rules that hold across all of them:
 4. **The arena runs itself.** A player is admitted from a card with no code change; the rating
    table reproduces the fixed-pair results of Gen 7 and Gen 8 within their intervals; a
    promotion is decided by the rule with no hand-written instruction to collectors.
+
+**What reading can be worth at most.** A test-only bot that is told the deal and otherwise is the
+Gen 8 prototype beats that prototype by +2.36 +- 0.61 IMPs a board (39 boards, 12 November; 20
+won, none lost). That is the whole prize for reading hidden cards better within this search;
+Gen 8's reading of the play from trick 1 took about 0.4 of it. Experiment E9-0 measures the
+curve in between (IMPs against nats of the true layout's weight), which turns every reader's
+offline gain into an expected gain at the table.
 
 The comparison used throughout is the prospectus's: generic reading, fixed mixture, inferred
 model, and an oracle told the true type. The oracle gap says what a perfect player model would
