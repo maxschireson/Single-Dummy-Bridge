@@ -50,7 +50,7 @@ UNTIL = 7
 SIZES = (50, 200, 1000)
 SUBSETS = 5
 ALPHAS = (2., 5., 10., 20., 50., 100.)
-LAMS = (1., 3., 10., 30., 100., 300.)
+LAMS = (.1, .3, 1., 3., 10., 30., 100., 300.)
 STATE = {}
 
 
@@ -173,23 +173,9 @@ def occasion_report(rows, models, out):
         for name, v in res.items():
             entry[name] = dict(all=clustered(v, tables), **{k: clustered(v[keys == k], tables[keys == k]) for k in KEYS if (keys == k).sum() >= 30})
         report['loglik'][ben] = dict(occasions=len(held), tables=int(len(np.unique(tables))), models=entry)
-        # effective honesty by public situation (first-round count keys): high card from even against odd
-        cells = {}
-        for r in held:
-            if r['key'].endswith('.r2'):
-                continue
-            p = r['public']
-            for label in (r['key'], f"{r['key']} | {'NT' if p['nt'] else 'suit'}",
-                          f"{r['key']} | led by {['declarer', 'dummy', 'partner', 'self'][p['leader']]}",
-                          f"{r['key']} | {'can win' if not r['hand']['decided'] else 'cannot win'}",
-                          f"{r['key']} | {r['n']} spots" if r['n'] < 4 else f"{r['key']} | 4+ spots"):
-                cells.setdefault(label, []).append(r)
-        hon = {}
-        for label, rs in sorted(cells.items()):
-            if len(rs) < 200:
-                continue
-            hon[label] = honesty_cell(rs)
-        report['honesty'][ben] = hon
+        # effective honesty and bits by situation: held-out tables (the measurement), and every table (a description)
+        report['honesty'][ben] = honesty_table(held)
+        report.setdefault('honesty_all_tables', {})[ben] = honesty_table([r for r in rows if r['ben'] == ben and r['side'] == 'ben'])
         # reliability: predicted against observed rate of the high card, by key, under M1 and M3 (all)
         rel = {}
         for m in ('m1', 'm3'):
@@ -216,14 +202,52 @@ def occasion_report(rows, models, out):
         spec = models['house'][ben]
         report['house'][ben] = dict(occasions=len(held), **{m: clustered(log_lik(spec[m], occ) - uni, tables) for m in ('m1', 'm2', 'm3')},
                                     m3_over_m1=clustered(log_lik(spec['m3'], occ) - log_lik(spec['m1'], occ), tables),
-                                    honesty={k: honesty_cell([r for r in held if r['key'] == k]) for k in KEYS[:4]
-                                             if sum(r['key'] == k for r in held) >= 200})
+                                    honesty=honesty_table(held))
     Path(out).write_text(json.dumps(report, indent=1))
     return report
 
 
+def bits(rs):
+    """I(parity; position of the card in its class: lowest, highest, middle) in bits, the plug-in estimate less the
+    Miller-Madow bias ((2 - 1)(3 - 1) / (2 N ln 2))."""
+    joint = np.zeros((2, 3))
+    for r in rs:
+        joint[int(r['hand']['parity']), r['pos']] += 1
+    n = joint.sum()
+    if n == 0:
+        return float('nan')
+    p = joint / n
+    px, py = p.sum(axis=1, keepdims=True), p.sum(axis=0, keepdims=True)
+    nz = p > 0
+    mi = float((p[nz] * np.log2(p[nz] / (px @ py)[nz])).sum())
+    used = (joint.sum(axis=0) > 0).sum()
+    return mi - (used - 1) / (2 * n * np.log(2))
+
+
+def honesty_table(rs_all):
+    """{situation: honesty_cell} for every cell with 200 or more occasions."""
+    cells = {}
+    for r in rs_all:
+        p = r['public']
+        labels = [r['key'], f"{r['key']} | {'NT' if p['nt'] else 'suit'}",
+                  f"{r['key']} | led by {['declarer', 'dummy', 'partner', 'self'][p['leader']]}",
+                  f"{r['key']} | {'can win' if not r['hand']['decided'] else 'cannot win'}",
+                  f"{r['key']} | {r['n']} spots" if r['n'] < 4 else f"{r['key']} | 4+ spots",
+                  f"{r['key']} | trick {'1' if r['trick'] == 1 else '2-3' if r['trick'] <= 3 else '4+'}",
+                  f"{r['key']} | {['', 'second', 'third', 'fourth'][p['position']]} hand",
+                  f"{r['key']} | dummy holds {min(p['dummy_now'], 4)}{'+' if p['dummy_now'] >= 4 else ''} now"]
+        if p['dummy_long_no_entry']:
+            labels.append(f"{r['key']} | dummy's long suit, no entry outside")
+        if r['key'].endswith('.r2'):
+            labels.append(f"{r['key']} | first card {['lowest', 'highest', 'middle', 'an honour', 'forced', ''][r['hand']['first']]}")
+        for label in labels:
+            cells.setdefault(label, []).append(r)
+    return {label: honesty_cell(rs) for label, rs in sorted(cells.items()) if len(rs) >= 200}
+
+
 def honesty_cell(rs, boots=200, seed=0):
-    """P(high | even), P(high | odd), prior of even, effective honesty, and a 90% interval from resampling tables."""
+    """P(high | even), P(high | odd), prior of even, effective honesty and the information in bits a signal, each with a
+    90% interval from resampling tables."""
     def stats(sel):
         even = np.array([r['hand']['parity'] for r in sel])
         high = np.array([r['pos'] == 1 for r in sel])
@@ -235,15 +259,17 @@ def honesty_cell(rs, boots=200, seed=0):
         by_table.setdefault(r['t'], []).append(r)
     groups = list(by_table.values())
     rng = np.random.default_rng(seed)
-    hs = []
+    hs, bs = [], []
     for _ in range(boots):
         pick = [x for g in rng.choice(len(groups), len(groups)) for x in groups[g]]
         ra, rb, rq = stats(pick)
         if np.isfinite(ra) and np.isfinite(rb):
             hs.append(effective_honesty(ra, rb, rq))
+        bs.append(bits(pick))
     h = effective_honesty(a, b, q) if np.isfinite(a) and np.isfinite(b) else float('nan')
     return dict(occasions=len(rs), tables=len(groups), p_high_even=float(a), p_high_odd=float(b), even=float(q), honesty=h,
-                interval=[float(np.quantile(hs, .05)), float(np.quantile(hs, .95))] if hs else None)
+                interval=[float(np.quantile(hs, .05)), float(np.quantile(hs, .95))] if hs else None,
+                bits=bits(rs), bits_interval=[float(np.quantile(bs, .05)), float(np.quantile(bs, .95))])
 
 
 def clustered(v, tables):
