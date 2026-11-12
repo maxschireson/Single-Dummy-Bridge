@@ -9,6 +9,11 @@ Carried over from the source run unchanged: tie-audit and fork settings, bidding
 seeding, the generation/variant labels the exporter keys on, and the facts about its corpus.
 
   python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json]
+      [--first N] [--count N]
+
+--first and --count keep only that block of the unplayed deals (positions in the source's order), so
+several hosts can play disjoint deals of one source. The block is recorded in the manifest as
+`source_slice`; without the two options the cohort and its identity are exactly as before.
 """
 import argparse
 from copy import deepcopy
@@ -125,7 +130,7 @@ def commit():
         return None
 
 
-def prepare(root, source, plan_path=None):
+def prepare(root, source, plan_path=None, first=0, count=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -154,8 +159,14 @@ def prepare(root, source, plan_path=None):
                 raise ValueError('Source receipt/episode mismatch')
             done.add(i)
         keep = [i for i in range(old['target']) if i not in done]
+        if first < 0 or (count is not None and count < 1):
+            raise ValueError('--first must be at least 0 and --count at least 1')
+        unplayed = len(keep)
+        sliced = first > 0 or count is not None
+        if sliced:
+            keep = keep[first:] if count is None else keep[first:first + count]
         if not keep:
-            raise ValueError('No unplayed source deals remain')
+            raise ValueError('No unplayed source deals remain' + (' in the requested block' if sliced else ''))
         bots = make_bots(old, plan)
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
@@ -194,6 +205,8 @@ def prepare(root, source, plan_path=None):
         for key in CARRIED:
             if key in old:
                 m[key] = deepcopy(old[key])
+        if sliced:
+            m['source_slice'] = dict(first=first, count=len(keep), unplayed=unplayed)
         m['identity'] = digest(m)
         atomic_json(root / 'manifest.json', m)
         atomic_json(root / 'state.json', dict(manifest_identity=m['identity'], completed=0, target=len(keep), by_pair={}, root_games=0, tables=0, epoch=time.time()))
@@ -207,7 +220,9 @@ if __name__ == '__main__':
     p.add_argument('--source', type=Path, required=True)
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--plan', type=Path)
+    p.add_argument('--first', type=int, default=0, help='first unplayed deal to keep, by position in the source order')
+    p.add_argument('--count', type=int, help='how many unplayed deals to keep from --first (default: the rest)')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan)
-    print(json.dumps(dict(identity=m['identity'], target=m['target'], allocation=m['pair_weights'], policy=m['gen7_alpha'],
+    m = prepare(a.run, a.source, a.plan, a.first, a.count)
+    print(json.dumps(dict(identity=m['identity'], target=m['target'], source_slice=m.get('source_slice'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))

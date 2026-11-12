@@ -193,6 +193,23 @@ class Gen7LaunchTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             prepare(run, self.tmp / 'source', self.plan_path)                   # never overwrites
 
+    def test_prepare_keeps_only_the_requested_block_of_unplayed_deals(self):
+        self.write()
+        whole = prepare(self.tmp / 'whole', self.tmp / 'source', self.plan_path)
+        self.assertNotIn('source_slice', whole)                              # no options: as before
+        kept = json.loads((self.tmp / 'whole' / 'source-indices.json').read_text())
+        part = prepare(self.tmp / 'part', self.tmp / 'source', self.plan_path, first=2, count=3)
+        verify_generation(self.tmp / 'part', part)
+        self.assertEqual(part['target'], 3)
+        self.assertEqual(json.loads((self.tmp / 'part' / 'source-indices.json').read_text()), kept[2:5])
+        self.assertEqual(part['source_slice'], dict(first=2, count=3, unplayed=len(kept)))
+        self.assertNotEqual(part['identity'], whole['identity'])
+        tail = prepare(self.tmp / 'tail', self.tmp / 'source', self.plan_path, first=4)
+        self.assertEqual(json.loads((self.tmp / 'tail' / 'source-indices.json').read_text()), kept[4:])
+        for first, count in ((len(kept), None), (-1, None), (0, 0)):
+            with self.assertRaises(ValueError):
+                prepare(self.tmp / f'bad{first}{count}', self.tmp / 'source', self.plan_path, first=first, count=count)
+
     def test_prepare_refuses_a_live_source_a_bad_mix_or_the_wrong_scorer(self):
         source = self.tmp / 'source'
         (source / 'STOP').unlink()
