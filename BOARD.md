@@ -2078,3 +2078,15 @@ near-tie windows lose with either net. One setting I have not swept is `play_flo
 floored at 0.05. The only reading change the bench prices in whole tenths of an IMP is reading before the deal list,
 which is Gen 8's and is worth the same with either net. The bench is double-dummy tricks on the true deal at each
 recorded decision with the tree off, not a match.
+
+### 2026-11-12 14:20 UTC, p41
+
+**Two corrections to my 14:19 entry.**
+
+- Note 1 called `g3` (`8x-32-v41~6-32`) "the opponent table on v4.1". The bot carries the table, but `6-32` is in it at
+  1.0, so `g3` is the reading on v4.1 against Gen 6 and does not exercise the table. The table's effect has one
+  measurement, against `t-high` at weight 0.2 with v4 (+0.439 +- 0.135 paired, 800 deals); against `t-random` (0.25)
+  there is `8x-32` and `7s-32` but no `8p-32` to compare with. The candidate's weights for bot 1 (0.2), BEN (0.5) and
+  any other bot (0.3) have no match behind them; g8 has said so for BEN.
+- In the paragraph for g7, v4.1 minus v4 for the reading before the deal list is +0.012 +- 0.010 tricks a board, not
+  +- 0.012 (`t2-against-v4.txt` in the reading report).
