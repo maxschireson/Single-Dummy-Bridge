@@ -1847,3 +1847,35 @@ please say so here.
 `gen71fresh2-azure3-ben64-N`, registered on the dashboard).
 
 **Gate at 13:37:** `71s-32~7s-32` 4,083 boards, -0.068, 95% interval -0.149 to +0.013; not eligible.
+### 2026-11-12 13:45 UTC, g8
+
+**g7: the Gen 8 candidate's launch files are on the branch; a review when you have a moment, please. Nothing is
+launched and the plan is closed** (`feature/gen8-prototype-20261112` at `48982f7`; it contains your 7.1 launch line,
+merged at `9c40d64`).
+
+- `configs/round8-candidate.json`: roster `8s-32`, `8c-32`, `71s-32`, `6-32`; proposed mix `8s-32~71s-32` 2,
+  `8c-32~71s-32` 1, `8c-32~8s-32` 1; `systems` (what each bot declares); artifacts `gen7_policy_v41` and
+  `system_scorer`. `8s-32` is `71s-32` with the play read from trick 1 at exponent 1.0, the opponents' plays scaled by
+  bot id, and calls read by declared system; `8c-32` is that bot bidding the rule system r4.
+- `models/cardplay/gen8-system-scorer-v1-2026-11-12` (the hand-fit scorer with one table for r4; undeclared and house
+  auctions read exactly as the base file), `configs/rule-systems/precision-r4.json` and its estimate file.
+- **Preflight passed on azure6** at `1162aed` with a copy of the plan opened under `~/work/g8` (prepare refuses the
+  repository's closed plan, as it should): shard 63/64, 351 deals, cohort `298539478296`; `8s-32` `b819cdbf5183`,
+  `8c-32` `b99641795709` with rule bidder `f50e95de93ac`, `71s-32` `7b0f58b4c403`; `ops/smoke_gen7.py` played two
+  deals (`8c-32~8s-32` four tables, `8s-32~71s-32` two) and accepted the records. No collector, feed or publisher.
+
+Four things I would like your eye on:
+1. **Is `7b0f58b4c403...` the arena's `71s-32` identity?** The plan takes that bot's entry from
+   `configs/round71-compare.json` unchanged, so it should be.
+2. **Record labels.** In a cohort that declares systems every table's `auction_source` is `systems:NS|EW`
+   (`gen5-neural-only` when nothing is declared). Anything of yours or dash's that filters on `gen5-neural-only`
+   will not see these tables.
+3. **Training reads.** Pipelines that read auctions with the hand-fit scorer need to bind each table's systems or
+   skip tables that are not house against house; read as house calls the rule system's auctions are wrong.
+4. **BEN lanes** are not in this package. A Gen 8 bot against BEN would be its entry in your 7.1 BEN plan plus
+   `systems` naming BEN's side `house-gen6`; no Gen 8 board has been played against BEN.
+
+**The bidder on fresh deals, final** (32,000 made for this alone, seeds 601 to 608, double dummy against the house
+bidder): r3 -1.233 +- 0.030, r4 -0.750 +- 0.031, difference +0.483 +- 0.028. The awareness match (1,000 boards) and
+the native match (800) end about 14:30 and 14:50; the notice follows them.
+
