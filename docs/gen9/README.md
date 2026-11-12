@@ -11,6 +11,7 @@ population that players join and leave.
 | --- | --- |
 | [Architecture](architecture.md) | The overall flow and the interfaces between the areas |
 | [Work plan](workplan.md) | Areas, tasks, checkpoints, team size |
+| [Arena statistics](arena-statistics.md) | Rating table, field score, admission, the promotion test |
 | Area design notes | `bidding.md`, `signals.md`, `arena.md`, `workflow.md`, added by the area leads at checkpoint 1 |
 
 Live task and experiment state: branch `team/gen9` (`STATUS.md`). That branch is the team's
