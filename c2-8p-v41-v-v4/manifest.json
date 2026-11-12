@@ -7,8 +7,8 @@
   "8p-32"
  ],
  "bots": {
-  "8p-32": {
-   "id": "8p-32",
+  "6-32": {
+   "id": "6-32",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -38,8 +38,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "gen8-proto",
-   "engine": "gen7",
+   "policy_role": "pimc-ties-only",
+   "engine": "gen6",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -56,47 +56,23 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "gen7_policy": "/home/bridgebots/work/g8/src/models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
-   "gen7": {
-    "play_weight": 1.0,
-    "play_floor": 0.05,
-    "play_max_layouts": 1024,
-    "play_lead": true,
-    "tie_break": "net",
-    "search_from_trick": 1,
-    "net_sample": false,
-    "tree_audit": true,
-    "tree": [
-     {
-      "from_trick": 3,
-      "to_trick": 6,
-      "root_margin": 0.25,
-      "root_cards": 3,
-      "trust": 0.3,
-      "max_solves": 12000,
-      "tricks": 3,
-      "breadth": 3,
-      "mass": 0.98,
-      "layouts": 8,
-      "reply": "net",
-      "reply_power": 1.0,
-      "reply_gap": 99.0,
-      "own": "best",
-      "own_breadth": 0,
-      "reply_layouts": 8,
-      "reply_pool": 64,
-      "plain": 1,
-      "path": 0.5,
-      "spread": 0.0,
-      "path_solves": 3000
-     }
-    ],
-    "early_play_weight": 1.0,
-    "early_pool": 512,
-    "early_min_effective": 8.0
+   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
+  },
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
    },
-   "table_opponent": "8p-32-v41",
-   "identity": "ce95068ee9d612e60fdb1772645634c1e4cb946071e7aed96fef8cbc68946fa8"
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   },
   "8p-32-v41": {
    "id": "8p-32-v41",
@@ -189,8 +165,8 @@
    "table_opponent": "8p-32",
    "identity": "f6a93246567d7878cb366ac8e60de3010f5db6d6cd31db2657e43fd8b6707815"
   },
-  "6-32": {
-   "id": "6-32",
+  "8p-32": {
+   "id": "8p-32",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -220,8 +196,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "pimc-ties-only",
-   "engine": "gen6",
+   "policy_role": "gen8-proto",
+   "engine": "gen7",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -238,23 +214,47 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
-  },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   "gen7_policy": "/home/bridgebots/work/g8/src/models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ],
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0
    },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+   "table_opponent": "8p-32-v41",
+   "identity": "ce95068ee9d612e60fdb1772645634c1e4cb946071e7aed96fef8cbc68946fa8"
   }
  },
  "pair_schedule": [
@@ -285,5 +285,5 @@
  "source": "/home/bridgebots/work/capsule-gen7-capture/recovery",
  "first": 0,
  "deals": 1600,
- "source_commit": "3f4263763010ef1ae759f93cf998c7473337ef4d"
+ "source_commit": "3d9e1f7f5a27ba265dd7e8f0e25391c7d7727c05"
 }
