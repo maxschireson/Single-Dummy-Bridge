@@ -850,6 +850,81 @@ boards differ). The stake from the search's 32 layouts averages 4.1 IMPs a trick
 solves follow it (correlation 0.86 in both runs). With the uniform tree of the 414-board match the
 tree cost 2.57 cpu-s a side a root table.
 
+## Sharp replies, depth, and all 32 layouts (12 Nov, 01:50 UTC)
+
+Max's point: a card should be judged on the other side's likely reply, and theirs on ours. A reply
+node that averages over the net's likely cards also plays the cards that seat would not choose,
+and credits the decider with mistakes nobody makes. A true minimum over the reply has to be taken
+from that seat's own view, over the deals it cannot tell apart, and the tree's layouts are drawn
+from the decider's view. The gap head is that own-view judgment already learned (it was trained on
+Gen 6's search of every card from the seat's own view), so `reply_gap` uses it: 0.0 keeps only the
+card it rates best, 0.1 the cards within 0.1 trick of that, weighted by the policy head. Does the
+tree then gain from depth?
+
+v4, `plain=1`, tricks 3 to 6, 8 layouts, pairs from the first 971 of the 1,680 boards that arrived
+after v4's training set: 2,270 pairs on 884 deals. Uniform trees have `breadth` 2 and `mass` 0.9;
+the stake-rule trees `breadth` 3 and `mass` 0.98. "Alike" is the number of the tree's layouts that
+still look the same to the decider at its later turns in the tree, averaged over those turns.
+Tricks and IMPs are per pair against plain search on the same layouts.
+
+| Tree | Solves | Alike | Tricks | IMPs | Correction share |
+| --- | --- | --- | --- | --- | --- |
+| Averaging, 2 tricks | 151 | 1.9 | -0.026 +- 0.007 | -0.097 +- 0.027 | 0.17 +- 0.05 |
+| Best reply only, 2 tricks | 52 | 1.9 | -0.023 +- 0.006 | -0.065 +- 0.023 | 0.18 +- 0.05 |
+| Best reply only, 3 tricks | 91 | 1.5 | -0.021 +- 0.006 | -0.059 +- 0.023 | 0.21 +- 0.05 |
+| Best reply only, 4 tricks | 180 | 1.2 | -0.019 +- 0.006 | -0.050 +- 0.026 | 0.20 +- 0.04 |
+| Replies within 0.1, 2 tricks | 109 | 1.9 | -0.024 +- 0.006 | -0.087 +- 0.024 | 0.18 +- 0.06 |
+| Replies within 0.1, 3 tricks | 385 | 1.4 | -0.023 +- 0.007 | -0.088 +- 0.028 | 0.23 +- 0.06 |
+| Standard (3 tricks, `path` 0.5), averaging | 60 | 3.6 | -0.017 +- 0.006 | -0.056 +- 0.025 | 0.14 +- 0.05 |
+| Standard, replies within 0.1 | 51 | 3.1 | -0.012 +- 0.007 | -0.043 +- 0.026 | 0.17 +- 0.06 |
+| Deep (4 tricks, `path` 0.1), replies within 0.1 | 122 | 1.9 | -0.023 +- 0.006 | -0.067 +- 0.022 | 0.21 +- 0.05 |
+
+Pair by pair:
+
+- Sharp against averaging: at 2 tricks +0.004 +- 0.005 tricks; in the standard tree +0.005 +-
+  0.004 tricks and +0.013 +- 0.018 IMPs. Under the bot's rule (margin 0.25, trust 0.25) the
+  standard tree with sharp replies minus the one that averages is -0.000 +- 0.020 tricks and +0.02
+  +- 0.06 IMPs a side a table.
+- Depth with best-reply-only: 3 tricks minus 2, +0.002 +- 0.005; 4 minus 2, +0.004 +- 0.006.
+- Under the bot's rule every tree is between -0.68 and -0.09 IMPs a side a table with errors of
+  0.14 to 0.47 (standard: averaging -0.14 +- 0.15, sharp -0.11 +- 0.14).
+- Four tricks with replies within 0.1 costs 1,431 solves and 2.1 s a pair and was run on the first
+  600 pairs only: +0.003 +- 0.014 against the averaging 2-trick tree.
+
+The first 600 pairs on their own had the deeper sharp trees ahead under the bot's rule (+0.2 to
++0.4 IMPs a side a table at 3 and 4 tricks against -0.1 to -0.3 at 2) and a correction share that
+rose with depth (0.05, 0.21, 0.24). Both went away with more pairs.
+
+**All 32 layouts.** The same 2,270 pairs with the tree on every layout the search holds
+(`--layouts 32`), each tree against plain search on the layouts it walks:
+
+| Tree | Solves, 8 and 32 | Alike | Tricks, 8 layouts | Tricks, 32 layouts | Share, 8 | Share, 32 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Standard, averaging | 60, 213 | 3.6, 13.9 | -0.017 +- 0.006 | -0.021 +- 0.007 | 0.14 +- 0.05 | 0.13 +- 0.06 |
+| Standard, replies within 0.1 | 51, 184 | 3.1, 12.1 | -0.012 +- 0.007 | -0.019 +- 0.007 | 0.17 +- 0.06 | 0.15 +- 0.07 |
+| Deep, replies within 0.1 | 122, 393 | 1.9, 6.2 | -0.023 +- 0.006 | -0.016 +- 0.006 | 0.21 +- 0.05 | 0.23 +- 0.06 |
+
+Against Gen 6's card, the tree on 32 layouts minus the tree on 8: +0.001 +- 0.006, -0.001 +- 0.005
+and +0.013 +- 0.007 tricks a pair. The correction on 32 layouts correlates 0.85 to 0.88 with the
+correction on 8, and its spread is 0.32 against 0.37. Under the bot's rule at trust 0.25 the
+32-layout trees are +0.02 +- 0.11, -0.06 +- 0.11 and -0.08 +- 0.14 IMPs a side a table (32 minus
+8: +0.16 +- 0.11, +0.06 +- 0.11, +0.60 +- 0.46).
+
+What this says:
+
+- The form of the net's reply is not what holds the tree back. Sharp replies score the same as
+  averaging for two thirds less search in the uniform tree and 15% less in the standard one.
+- Depth does not pay with sharp replies either.
+- The correction is not sampling noise. It is nearly the same number on 8 and on 32 layouts, and
+  0.13 to 0.23 of it shows up in results on both. With 12 to 14 layouts alike at the decider's
+  later turns the share is where it was with 3, so those turns being close to double dummy is not
+  the cause either. (16 layouts with v3.1 said the same.)
+- Trust on these v4 rows, all 2,905 pairs of the stake bench, IMPs a side a table: the standard
+  tree is +0.12 +- 0.15 at trust 0.19, +0.05 +- 0.17 at 0.25, -0.24 +- 0.25 at 0.31 and -0.76 +-
+  0.44 at 0.5; with `path` 0.1 it is -0.05 +- 0.16 at 0.25 and -0.50 +- 0.39 at 0.31. `path` 0.5
+  was chosen on these rows; trust 0.25 was not.
+- Nothing here changes the candidate's standard tree.
+
 ## The net as a second opinion, and the opening lead (12:30 UTC)
 
 `scripts/gen7_second_opinion.py` writes, for every gap fork at any ply, where the net puts Gen 6's

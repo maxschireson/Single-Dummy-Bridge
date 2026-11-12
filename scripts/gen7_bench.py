@@ -101,7 +101,25 @@ def searching_reply(p, layouts=8, pool=64):
     return reply
 
 
-def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_trick=13, policy2=None, splits=None, more=None):
+def gen6_reply(p):
+    """What Gen 6's own search plays from the seat's view: its layouts and weights, every one solved;
+    its equal-best cards share the probability. The seats in the episodes are Gen 6, so this is the
+    reply model with nothing learned in it (its sample of layouts is not the one the game used)."""
+    def reply(o):
+        view = View(o)
+        rng = np.random.default_rng([len(o.history), o.controller, *o.known_hands[o.controller][:3]])
+        worlds, weights, _ = p.layouts(o, view, p.source(o, view), rng)
+        means = {x: 0. for x in o.legal}
+        for (values, _), w in zip(check.solve(p, o, worlds), weights):
+            for x, u in check.utilities(o, values).items():
+                means[x] += float(w) * u
+        top = max(means.values())
+        best = [x for x, v in means.items() if top - v <= 1e-9]
+        return {x: 1. / len(best) for x in best}
+    return reply
+
+
+def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_trick=13, policy2=None, splits=None, more=None, replier='small'):
     os.environ['BRIDGE_DDS_CACHE'] = ''                          # thousands of small batches: no disk cache
     STATE.update(player=Gen7Player(check.spec('gen7', policy, play_weight=0., tie_break='gen5'), ROOT), replier=None, splits=splits,
                  tricks=tricks, breadth=breadth, mass=mass, layouts=layouts, from_trick=from_trick, to_trick=to_trick, ties=ties)
@@ -109,7 +127,7 @@ def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_tri
     for k, path in {2: policy2, **(more or {})}.items():
         if path:
             STATE['nets'][k] = PolicyNet(Path(path).resolve(), STATE['player'].scorer)
-    STATE['replier'] = searching_reply(STATE['player'])
+    STATE['replier'] = gen6_reply(STATE['player']) if replier == 'gen6' else searching_reply(STATE['player'])
 
 
 def net_order(net, o, act, a, b):
@@ -282,6 +300,8 @@ def main():
     p.add_argument('--pairs', type=int, default=2000)
     p.add_argument('--workers', type=int, default=2)
     p.add_argument('--seconds', type=float, default=1e9)
+    p.add_argument('--replier', choices=('small', 'gen6'), default='small',
+                   help="reply='search' trees: the searcher at the other seats (small: 8 layouts from 64 random hands; gen6: Gen 6's own search)")
     p.add_argument('--ties', action='store_true', help='also score tie-audit pairs (band -1): two cards Gen 6 rated level')
     p.add_argument('--rows', type=Path, help='summarize a rows file written earlier with --out instead of running')
     p.add_argument('--out', type=Path)
@@ -297,7 +317,7 @@ def main():
         splits = None if a.splits is None else tuple(int(x) for x in a.splits.split(','))
         with Pool(a.workers, initializer=start,
                   initargs=(a.policy, tricks, a.breadth, a.mass, a.layouts, a.from_trick, a.ties, a.to_trick, a.policy2, splits,
-                            {3: a.policy3, 4: a.policy4})) as pool:
+                            {3: a.policy3, 4: a.policy4}, a.replier)) as pool:
             for got, seen in pool.imap(pairs_of, files, chunksize=4):
                 rows += got
                 tables += len(seen)
@@ -306,7 +326,7 @@ def main():
                     break
         if a.out:
             a.out.write_text(json.dumps(dict(settings=dict(tricks=tricks, breadth=a.breadth, mass=a.mass, layouts=a.layouts, from_trick=a.from_trick,
-                                                           to_trick=a.to_trick, tables=tables, policy=str(a.policy), policy2=str(a.policy2), policy3=str(a.policy3), policy4=str(a.policy4), splits=a.splits,
+                                                           to_trick=a.to_trick, tables=tables, policy=str(a.policy), policy2=str(a.policy2), policy3=str(a.policy3), policy4=str(a.policy4), splits=a.splits, replier=a.replier,
                                                            seconds=round(time.time() - started)),
                                              rows=rows)))
     result = dict(all=summarize(rows, tricks), per_side=per_side(rows, tricks, tables, a.root_cards, a.root_mass) if 'rank_b' in rows[0] else {},
