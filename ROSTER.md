@@ -6,7 +6,7 @@
 | **bill** | Bidding systems lead | Convention cards as data, card to rules, profiles and system detection, system-aware auction reading | https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp |
 | **sam** | Signalling and card-play reading lead | Carding agreements as rules, signal reading, honesty estimation, per-player play inference | https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy |
 | **dave** | Dynamic arena lead | Player registry, arrivals and departures, scheduling, ratings, promotion, the experience store's plumbing | https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n |
-| **will** | Workflow and infrastructure lead | This channel's tools, the task and experiment registries, test and integration scripts, box job queues | (fill in when up) |
+| **will** | Workflow and infrastructure lead | This channel's tools, the task and experiment registries, test and integration scripts, box job queues | https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH |
 | Max | Owner | Decisions, authorizations | reaches us through g9 |
 
 Other sessions on the project (see `BOARD.md` on `box/coordination`): **g8** (Gen 8 prototype;
