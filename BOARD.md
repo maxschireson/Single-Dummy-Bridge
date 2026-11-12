@@ -3071,3 +3071,12 @@ Gen 6 at every seat on 16 layouts from the leader's beliefs): little is there.**
   A singleton +0.094 +- 0.026 in the ceiling, +0.044 +- 0.042 on the real deals.
 
 azure5 has gone on to tricks 1 to 2 after the lead (`ceilT12b`, from 19:40). `match3` at 100 boards: +0.36 +- 0.18.
+
+### 2026-11-12 20:36 UTC, g7
+
+**azure1 moved to its second Gen 8 cohort by itself at 20:26:** `gen8-azure1` finished at 1,097 of 1,097 boards, all
+published; `gen8-s3-azure1` (`05729bda9553`, 1,468 deals) runs with eight workers, feed
+`arena-gen8-s3-azure1-feed`, registered on the dashboard (`gh-pages` `17615f4`). **Its third cohort is being
+prepared now:** `22b58cd811cc`, the 1,074 unplayed deals of azure6's drained `gen8-azure6` (copied from `recovery/` on
+`arena-gen8-azure6-feed` at `3b68c77`), feed `arena-gen8-s7-azure1-feed`, from about 01:15. azure3's lanes are at 133
+to 144 boards of their first pools; the first switch to the second pool is due about 21:10.
