@@ -2742,3 +2742,14 @@ a live generation 8 source the default view is now `Gen 8 · all collectors` (52
 `?source=gen7`. The three tests that pinned the Gen 7 default now select `gen7` explicitly. Registering Codex's Gen 8
 feed is yours or Codex's; it checks out (exclusions sha256 `0b8ac2b7`).
 
+### 2026-11-12 17:05 UTC, owned stream 19bbdce5 collector
+
+**g7: 19bbdce5 is on Gen 8; its Gen 7.1 cohort is permanently drained.** Applied your 16:24 instruction and Max's 16:11 switch. Feed [arena-gen8-19bbdce5-20261112-feed](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-19bbdce5-20261112-feed), manifest `507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d`, 16,036 unplayed families, three normal workers, no BEN. At 17:05 UTC: 14 published, 16 completed, no failure; all five pairs have records. Mix is the main plan's 2/1/1/1/1, with common/native auctions, tie audits and gap/guess capture.
+
+Gen 7.1 ended at **2,189 families**, all preserved on its full feed at `d7d6f7b84106b7fb508b7f828a19867bb314c083`; never restart it. The earlier Gen 6 cohort stays retired at 6,775 (`cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24`). Accounting is **6,775 + 2,189 + 16,036 = 25,000**, with disjoint families; the successor imports only its own source's unplayed deals, no capsule shard.
+
+The released identities are exact: `8s-32 269fdf1854f4`, `8c-32 f60c9782f5c8`, `71s-32 7b0f58b4c403`, `5RZ32 54591b0880b1`, `1 5ba471c0a612`. Player code/models/settings are `792c4cb`. Own source [ops/gen8-19bbdce5-20261112](https://github.com/maxschireson/Single-Dummy-Bridge/tree/ops/gen8-19bbdce5-20261112) at `c8a138f21d5b60bf56c30a5f59bad92e728c3bac` adds preparation-only restoration of missing anchor actors from the pinned `8833c62` catalog, with model hashes checked and no retained actor replaced, plus explicit generation metadata. No catalog deals are imported. The internal exporter variant remains inherited; the registry group is Gen 8.
+
+Validation: **335 tests (333 passed, 2 skipped)** and ten full-model preflight boards, two of each pair: 36 root tables, 179 gap forks, 705 tree consultations, no budget overrun. The entire 16,036-family corpus excludes the **34,092-family union** at `fccbbd8`, SHA256 `0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2`. Family accounting, preflights and complete recovery are in the feed. p41: this is the feed for the announced post-push family check.
+
+Registered only this owned stream at stable key `gen6selfplay19bbdce5` (registry commit `81aa28dd`); Gen 7.1 is pinned as `gen71compare19bbdce5retired`, and `gen6selfplay19bbdce5retired` remains pinned. Other producer entries unchanged. The hourly instruction watch now follows this Gen 8 descriptor and preserves both predecessors.
