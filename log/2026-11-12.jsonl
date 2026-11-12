@@ -341,3 +341,4 @@
 {"at": "2026-11-12T11:43:00Z", "by": "g9", "op": "send", "target": "bill/20261112T1143Z-g9-g9-b7-resolved-accepted-replay", "note": "G9-B7 resolved (accepted): Replay reader: read a profile's calls by replaying its own bidder", "task": "G9-B7"}
 {"at": "2026-11-12T11:43:00Z", "by": "g9", "op": "resolve", "target": "G9-B3", "note": "Part 1 is E9-1 (resolved); part 2 is E9-12.", "resolution": "superseded"}
 {"at": "2026-11-12T11:43:00Z", "by": "g9", "op": "send", "target": "bill/20261112T1143Z-g9-g9-b3-resolved-superseded-e9-1", "note": "G9-B3 resolved (superseded): E9-1: what the filter recovers on systems the scorer never saw", "task": "G9-B3"}
+{"at": "2026-11-12T11:44:00Z", "by": "g9", "op": "send", "target": "all/20261112T1144Z-g9-feature-gen9-at-4b54972-the-sh", "note": "feature/gen9 at 4b54972: the shell's mixture across kinds of profile is fixed; the arrival source must merge it and rehearse once more"}
