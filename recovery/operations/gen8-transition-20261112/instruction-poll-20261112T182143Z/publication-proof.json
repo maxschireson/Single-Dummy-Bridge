@@ -1,0 +1,25 @@
+{
+  "verified_at": "2026-11-12T18:27:11.458315Z",
+  "revision": "5f92043b058bf3175547edc1c0a46a1db91f1191",
+  "published_completed": 164,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "poll_start": "2026-11-12T18:21:43Z",
+  "next_comment_scan_since": "2026-11-12T18:21:43Z",
+  "remote_ref_verified": true,
+  "all_paths_exact": true,
+  "watch_blob": "44779058ba7c6c5b88534ad517bcabec0018990a",
+  "paths": {
+    "recovery/operations/instruction-watch.json": "b05157ab14286c00a1a64568ccc8087bf45d57ef982beefa2907e42b01e6931e",
+    "recovery/operations/stream.json": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+    "recovery/manifest.json": "cc1fd53557009bede112bd361fc63e158d893b8fdf42b278b86222c36f17d8d0",
+    "recovery/artifacts/validation/evaluation-exclusions.json": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T182143Z/github-scan.json": "dc2ca1f7ef6d57537d62028c2868899958d738c9903461c8c46e55d343371b6f",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T182143Z/health-before.json": "cb64eb09e2df5f1aefe3822b257ac4670986de5a52e0c876f4e9a909fc972ac6",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T182143Z/health-after.json": "4c75a644189b519a92b783c314e5abca9e388ee60baad9d0d443455771b264cc",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T182143Z/commit-comments.json": "6280b40a047b77dd4d2d108a8100c27d3da4d7657519d8f7c6784d2034195d0e",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T182143Z/reporting-compatibility.json": "c15311315a83ba935481295506deec20cf6dc09415ccaa8fedfd3fc53022fbff",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T182143Z/automation-state.json": "a8eb24d3063dd838f6fa06bea041adda1e662ed74160ce9189568ce1513b4f52"
+  },
+  "no_collection_behavior_change": true,
+  "no_shared_ui_or_other_producer_write": true
+}
