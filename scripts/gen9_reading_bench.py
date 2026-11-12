@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """G9-X2: Gen 9 readers on p41's reading bench, scored in double-dummy tricks saved on the true deal, with nats beside.
 
-Gen 9 work in progress (sam, signals). scripts/gen8_reading_bench.py (a snapshot of p41's bench) does the solving and the
+Gen 9 work in progress (sam, signals). scripts/gen8_reading_bench.py (a snapshot of p41's bench, cdde42a) does the solving and the
 scoring; this script chooses the tables and decisions and adds Gen 9 readings to the stored pools.
 
   python scripts/gen9_reading_bench.py pools    --feeds DIR... --opponent ben --tables 300 --out OUT [--seconds 7200] [--pool 512]
@@ -483,7 +483,7 @@ def report(a):
                 (view / f.name).symlink_to(f.resolve())
         print(f'{len(done)} of {len(parts)} part files have every reading ({", ".join(names)})')
         bench.report(argparse.Namespace(out=str(view), mechanism=False, house=False, sweep=a.sweep, owner=[], against=a.against,
-                                        pairs_only=False, verbose=a.verbose, json=a.json))
+                                        pairs_only=False, verbose=a.verbose, json=a.json, aim=[], near=[], near_split=None, redo=False))
     finally:
         shutil.rmtree(view)
 
