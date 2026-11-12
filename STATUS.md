@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 09:11 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 09:11 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
