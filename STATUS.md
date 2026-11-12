@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 17:50 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 17:51 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -26,7 +26,7 @@ Generated 2026-11-12 17:50 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 20:10 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 21:50 | leased | high | 2026-11-13T04:00Z |  |
-| [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T10:00Z |  |
+| [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-X2](tasks/G9-X2.md) | Gen 9 readers on the reading bench: every reader scored in tricks saved a board | sam | sam until 11-12 21:08 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-12 18:46 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-12 18:46 | leased | medium |  |  |
