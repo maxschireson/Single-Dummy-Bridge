@@ -24,7 +24,7 @@ Generated 2026-11-12 11:23 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
+| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z | lease expired |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 14:30 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
