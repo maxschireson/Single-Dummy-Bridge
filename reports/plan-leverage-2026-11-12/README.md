@@ -19,6 +19,14 @@ key variables instead of 32 layouts, nets that work out what is going on.
 
 ## Answers
 
+**In short.** Against these bots and with their beliefs, the choice of card has little left in it: about 0.10 tricks a
+side at tricks 3 to 6 and 0.07 at tricks 7 to 12 if every card's real expectation were known exactly, 0.02 in level
+cards late. The bot simulating itself from trick 7 collects 0.043 of the late part, and in a played test it is worth
++0.175 +- 0.035 IMPs a board at about six times the CPU. Nothing I tried gives the net more leverage: it reaches the
+table as a predictor of the bots' cards, and that predictor improves slowly with data. Plans as layout families, a
+head fitted on outcomes and tables of play kinds add nothing measurable. The opening lead and tricks 1 to 2 are being
+measured.
+
 1. **Why the tree shows no gain from a better net.** At tricks 3 to 6, knowing exactly what every other card would
    bring with the bots playing on is worth about 0.10 tricks a side at one table (a fit gives 0.140 +- 0.047 and a
    simulation of the fit says it errs high by 0.03 to 0.04 at this sample size; section 1).
@@ -33,8 +41,9 @@ key variables instead of 32 layouts, nets that work out what is going on.
    play adds to double dummy; the small search 44%. (Section 2.)
 3. **Where look-ahead does pay: tricks 7 to 12 with the bot as its own simulator.** From the deal list a playout by
    the real bot costs 0.08 s. Half of the list's layouts choose, the other half score: +0.043 +- 0.012 tricks a side
-   (2,990 forks, 1,561 boards), mostly at trick 7; exact knowledge there would be worth 0.07. Played: +0.145 +- 0.059
-   IMPs a board after 675 of 1,600 boards, at roughly six times the bot's CPU. (Sections 1 and 6.)
+   (2,990 forks, 1,561 boards), mostly at trick 7; exact knowledge there would be worth 0.07. Played against Gen 7.1:
+   +0.175 +- 0.035 IMPs a board over 1,600 boards (98 boards won, 24 lost), at roughly six times the bot's CPU.
+   (Sections 1 and 6.)
 4. **Plans as layout families do not carry it.** About four double-dummy outcome families hold 90% of the weight at
    a decision, but three simple variables explain a third of the double-dummy swing, and grouping layouts by
    double-dummy outcome explains a quarter of where real play departs from double dummy. (Section 3.)
@@ -394,21 +403,28 @@ that, at tricks 7 to 12 when a second card is within 0.25 of its best, plays its
 with Gen 7 itself (no playouts) at every seat and adds 0.75 of the correction (`bridge_harness/plan_player.py`,
 seat `gen7`). Against `7s-32-v41`, 1,600 fresh random deals, seed 131, duplicate, no forks (`match1`, azure2).
 
-After 675 boards: +0.145 +- 0.059 IMPs a board. 39 boards won (151 IMPs), 12 lost (53), 624 flat. Boards of 10 IMPs
-or more: 5 for, 2 against; every other board together +0.086 +- 0.032. The candidate changes 0.98 cards a board
-(its opponent's tree 0.60). The match costs 73 CPU seconds a board. On six boards timed in the sandbox two
-tree-only bots cost 22 CPU seconds a board together and this pairing 83, so the candidate runs at roughly six times
-its opponent's CPU. Cheaper settings save little: a margin of 0.125 costs 72 on the same boards; tricks 7 to 9 only
-with two candidate cards and that margin, 65 (`pr75m-32-v41`, `pr75c-32-v41`; not played). Most consultations are at
-level or nearly level cards. *Final figure
-pending* (about 18:45 UTC).
+Result, 1,600 boards: **+0.175 +- 0.035 IMPs a board** for the candidate. 98 boards won (366 IMPs), 24 lost (86),
+1,478 flat. Boards of 10 IMPs or more: 13 for, 3 against; every other board together +0.100 +- 0.019. First half
++0.152 +- 0.055, second half +0.198 +- 0.045. The candidate changes 1.00 cards a board (its opponent's tree 0.61).
+
+Cost: the match ran at 78 CPU seconds a board. On six boards timed in the sandbox two tree-only bots cost 22 CPU
+seconds a board together and this pairing 83, so the candidate runs at roughly six times its opponent's CPU. Cheaper
+settings save little (same six boards; none played): a margin of 0.125 costs 72; tricks 7 to 9 only with two
+candidate cards and that margin, 65; no playouts where every near-best card is rated exactly level, 68
+(`pr75m-32-v41`, `pr75c-32-v41`, `pr75n-32-v41`). Half of the consultations are between level cards, and they are the
+cheap half.
 
 The bench figure it tests (+0.043 +- 0.012 tricks a side) is for Gen 6 among Gen 6 with Gen 6's beliefs. Gen 7
 reads the play from trick 7, which the bench does not include. At the fork pairs' 3.6 IMPs a trick that figure
 would be 0.3 IMPs a board; the same rule priced in IMPs from the real deals of the bench gives +0.33 +- 0.35 a board.
 
-`match2`: `pr75x-32-v41` (the same, and from trick 5 on 12 layouts at trust 0.5, its tree stopping after trick 4)
-against `7s-32-v41` on the same deals: *pending* (azure5, overnight).
+`match3`: the same rule on the Gen 8 prototype's card play (`pr75-8p-32-v41` against `8p-32-v41`: the play read from
+trick 1 at exponent 1.0, policy v4.1; the arena's `8s-32` has these card-play settings), 1,600 deals, seed 131:
+*pending* (azure2, from 18:48 UTC, about 4.3 hours).
+
+`match2`: `pr75x-32-v41` (the late rule, and from trick 5 on 12 layouts at trust 0.5, its tree stopping after
+trick 4) against `7s-32-v41` on `match1`'s deals. 199 CPU seconds a board on four boards timed, so about 11 hours:
+*pending* (azure2, after `match3`).
 
 ## 7. What a better net buys
 
@@ -447,7 +463,7 @@ a pair). None of them asks the net to judge a position.
   pending.
 - The reading figures are for a bot read by an exact copy of itself. Against BEN, or a bot that plays its level
   cards at random, the evidence in section 5 is not there.
-- One result here has been played, and it is not final.
+- One result here has been played (`match1`); two more matches are running.
 
 ## Reproduce
 
