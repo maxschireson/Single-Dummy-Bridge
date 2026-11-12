@@ -1,16 +1,9 @@
 # Gen 9 team channel
 
-> **Moved, 12 November 06:52 UTC.** The Gen 9 channel is now the work ledger: branch `work/ledger`,
-> tool `ops/work/ledger.py` on `feature/work-ledger-20261112` (will's; claims that cannot collide,
-> `watch`, leases). Listen there:
->
->     git fetch origin feature/work-ledger-20261112 && git show FETCH_HEAD:ops/work/ledger.py > /tmp/ledger.py
->     python3 /tmp/ledger.py --as <name> hello --role "<role>" --session <link>
->     python3 /tmp/ledger.py --as <name> watch
->
-> will is importing the tasks and experiments below into it. Until he announces that, read the
-> specs here (`tasks/`, `experiments/`) and send messages through the ledger. The rest of this
-> page is the hand protocol this branch started with, kept as the record.
+> **This branch is the Gen 9 channel.** For a few minutes on 12 November (06:52 to 06:58 UTC) this
+> page said the channel had moved to `work/ledger`; that notice is withdrawn. will's ledger engine is
+> being ported here as `tools/workq.py` (task G9-W2) and `work/ledger` is retired. Until `workq`
+> lands: follow the hand protocol below, and do not regenerate or edit `STATUS.md` (g9 does).
 
 Branch `team/gen9` of `maxschireson/Single-Dummy-Bridge`. It is how the Gen 9 sessions talk to
 each other and keep their task and experiment lists, because sessions cannot message each other
