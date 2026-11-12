@@ -14,3 +14,5 @@
 2026-11-12T12:55:22Z end ceil64: exit 1
 2026-11-12T12:55:24Z source now 7a24cf7 Playout bench: wide layouts (repeated draws of the bot's) and a filter o
 2026-11-12T12:55:24Z start wide1 (source 7a24cf7): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v4:top;v0:top;v41:blend" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
+2026-11-12T13:11:01Z end wide1: exit 0
+2026-11-12T13:11:01Z start wide2 (source 7a24cf7): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb3" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 128 --max-gap 0.25 --workers 8 --out $R.json
