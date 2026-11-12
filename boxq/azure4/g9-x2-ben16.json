@@ -7,7 +7,7 @@
  "cores": 4,
  "source": {
   "branch": "feature/gen9-reading-bench",
-  "commit": "144b59f"
+  "commit": "a20ce88"
  },
  "argv": [
   "{python}",
@@ -48,7 +48,11 @@
   "--head-reading",
   "hd05=reports/gen9-play-head-2026-11-12/heads.json:ben:all:0.5",
   "--head-reading",
-  "hc=reports/gen9-play-head-2026-11-12/heads.json:ben:defender:all:0.3"
+  "hc=reports/gen9-play-head-2026-11-12/heads.json:ben:defender:all:0.3",
+  "--head-reading",
+  "hc1=reports/gen9-play-head-2026-11-12/heads.json:ben:defender:all:1",
+  "--head-reading",
+  "hb1=reports/gen9-play-head-2026-11-12/heads.json:ben:both:all:1"
  ],
  "progress": {
   "results": "progress.jsonl",
