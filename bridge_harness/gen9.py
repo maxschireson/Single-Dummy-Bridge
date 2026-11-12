@@ -70,12 +70,11 @@ from . import experience as xp
 from .gen6_nets import hand_types
 from .gen7 import player as gen7_player
 from .gen9_play import SIGNAL_KEYS, SignalPlayer
-from .player_model import PlayerModel, resolve
+from .player_model import CARD_PROFILE, FLAT_PROFILE, PlayerModel, believed, resolve
 
 ENGINE = 'gen9'
-CONFIG_KEYS = ('max_profiles', 'card_weight', 'factor_min_plays', 'factor_prior_plays')
+CONFIG_KEYS = ('max_profiles', 'card_weight', 'factor_min_plays', 'factor_prior_plays', 'profile_temper', 'profile_floor')
 BLOCK_KEYS = CONFIG_KEYS + SIGNAL_KEYS + ('own', 'bidding_reader', 'replay_reader', 'oracle')
-CARD_PROFILE = 'card'                 # the reserved profile: the declared card's rules alone, no scorer
 RANK_WEIGHT = np.array([0.5] * 8 + [1.0, 1.5, 2.0, 3.0, 4.0])      # by rank, 2 to ace: how much a misplaced card counts (gen6.CARD_WEIGHT)
 
 
@@ -85,10 +84,13 @@ class Gen9Config:
     card_weight: float = 1.         # factor on the declared card's term; 0 = the card is not read
     factor_min_plays: float = 200.  # occasions of the 'play.info' statistic before experience sets the opponent's play factor
     factor_prior_plays: float = 50. # shrinkage of each factor's mean gain toward zero, as this many occasions
+    profile_temper: float = 1.      # exponent on the experience's evidence about a partnership's profile; 0 = the declared prior stands
+    profile_floor: float = 0.02     # share of the scored profiles' mass spread evenly over them, so none is ever ruled out
 
     def __post_init__(self):
         if isinstance(self.max_profiles, bool) or not isinstance(self.max_profiles, int) or not 1 <= self.max_profiles <= 16 \
-                or not 0 <= self.card_weight <= 8 or self.factor_min_plays < 1 or self.factor_prior_plays < 0:
+                or not 0 <= self.card_weight <= 8 or self.factor_min_plays < 1 or self.factor_prior_plays < 0 \
+                or not 0 <= self.profile_temper <= 1 or not 0 <= self.profile_floor < 1:
             raise ValueError('Invalid Gen9 settings')
 
 
@@ -173,7 +175,7 @@ class Gen9Player(SignalPlayer):
     def meet(self, opponent):
         """Who plays the cards against this bot: a PlayerModel, a bot id, or None."""
         super().meet(opponent)                              # SignalPlayer: resolves the model, its carding, Gen 8's factor by bot id
-        self.opponent = self.opponent_model
+        self.opponent = self.opponent_model = self.learned(self.opponent_model)
         self.bidders = None
         stat = self.opponent.stat('play.info')
         if stat is not None and stat['n'] >= self.g9.factor_min_plays:      # enough boards against them: their own best factor
@@ -189,7 +191,13 @@ class Gen9Player(SignalPlayer):
             return
         if len(bidders) != 4:
             raise ValueError('auction_by takes four bidders in seat order')
-        self.bidders = tuple(resolve(b, self.models) for b in bidders)
+        self.bidders = tuple(self.learned(resolve(b, self.models)) for b in bidders)
+
+    def learned(self, model):
+        """The model with its profile probabilities moved by its experience (player_model.believed)."""
+        if self.g9.profile_temper <= 0:
+            return model
+        return believed(model, self.g9.profile_temper, self.g9.profile_floor)
 
     def peek(self, hands):
         """TEST ONLY: the four original hands, for an oracle bot. Anything else refuses it."""
@@ -243,7 +251,8 @@ class Gen9Player(SignalPlayer):
         mixture over its profiles carried through the board, its visible hands included.
 
         A net profile's row is its scorer, plus the card's term on that profile's residual contexts when the reader can
-        give it. The profile 'card' is the card's term alone. A reader that cannot restrict itself to a profile's
+        give it. The profile 'card' is the card's term alone; the profile 'flat' is no term at all (a pair whose calls
+        we cannot read: any hands are as likely as the deal makes them). A reader that cannot restrict itself to a profile's
         residual is applied in full to net profiles only when 'card' is not among the candidates.
 
         With `replay` (a replay reader), a net profile whose bidder the reader holds is read by it instead: the row is
@@ -272,7 +281,9 @@ class Gen9Player(SignalPlayer):
         rows = []
         for system, p in profiles:
             row = math.log(p / total)
-            if system == CARD_PROFILE:                  # the rules alone; with no reader this profile says nothing about the hands
+            if system == FLAT_PROFILE:                  # the calls say nothing about the hands: the row is its prior alone
+                pass
+            elif system == CARD_PROFILE:                # the rules alone; with no reader this profile says nothing about the hands
                 for j, seat in seats:
                     row = row + card_term(seat, length[j], hon[j], None)
                 for s, _, (ln, hn) in seen:
