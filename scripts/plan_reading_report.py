@@ -49,6 +49,51 @@ def boot(values, groups, rng, n=1000):
     return sums.sum(0) / counts.sum(), means.std(0)
 
 
+def walks(rows, fam, a, rng):
+    """Rows made with --chain: the reading with the simulated bot as the model, sampled by walks over layouts."""
+    lp = lambda pt: np.log((1 - a.smooth) * np.clip(pt, 0, 1) + a.smooth / 2)
+    recs = []
+    for r in rows:
+        truth = np.array(r['truth'])
+        hon = np.array([c[1] in 'TJQKA' for c in r['unseen']])
+        each = [np.where(truth == 0, np.array(c['marginal']), 1 - np.array(c['marginal'])) for c in r['chains']]
+        pooled = np.mean(each, axis=0)
+        rec = dict(declaring=r['declaring'], differ=float(np.mean([np.abs(x - each[0]).mean() for x in each[1:]])) if len(each) > 1 else 0.,
+                   accepted=float(np.mean([c['accepted'] / max(1, c['proposed']) for c in r['chains']])),
+                   found=float(np.mean([c['end_agree'] for c in r['chains']])),
+                   beats_truth=float(np.mean([c['end_loglik'] + c.get('end_prior', 0.) > r['true_loglik'] + r.get('true_prior', 0.) + 1 for c in r['chains']])))
+        for name, pt in (('prior', np.array(r['pool']['prior_agree'])), ('net', np.array(r['pool']['net_agree'])), ('walk', pooled), ('one walk', each[0])):
+            v = lp(pt)
+            rec[name + ' honours'], rec[name + ' small'] = float(v[hon].mean()) if hon.any() else np.nan, float(v[~hon].mean()) if (~hon).any() else np.nan
+        recs.append(rec)
+    print(f"\n{len(rows)} seats on {len(set(fam))} deals; {np.mean([r['plays'] for r in rows]):.1f} past plays a seat; {np.mean([r['calls'] for r in rows]):.0f} runs of the "
+          f"simulated bot and {np.mean([r.get('seconds', 0) for r in rows]):.0f} s a seat; {len(rows[0]['chains'])} walks a seat")
+    print(f"   steps accepted {np.mean([x['accepted'] for x in recs]):.3f}; two walks' card marginals differ by {np.mean([x['differ'] for x in recs]):.3f} on average; "
+          f"cards placed as in the true layout where a walk ends {np.mean([x['found'] for x in recs]):.3f}; walks ending more than 1 nat above the true layout {np.mean([x['beats_truth'] for x in recs]):.3f}")
+    print('   mean log-probability of the true holder of an unseen card (the true layout is not in the net\'s pool; the walk may reach it):')
+
+    def line(label, sub, idx):
+        cells = []
+        for name in ('prior', 'net', 'walk', 'one walk'):
+            for kind in ('honours', 'small'):
+                v = [x[f'{name} {kind}'] for x in sub]
+                ok = [i for i, q in enumerate(v) if q == q]
+                m, e = boot([v[i] for i in ok], [fam[idx[i]] for i in ok], rng)
+                cells.append(f'{name} {kind} {m:+.3f} +- {e:.3f}')
+        print(f'   {label:10s} ({len(sub)}): ' + ' | '.join(cells))
+
+    line('all', recs, list(range(len(recs))))
+    for side in (True, False):
+        idx = [i for i, x in enumerate(recs) if x['declaring'] == side]
+        if len(idx) > 5:
+            line('declarer' if side else 'defenders', [recs[i] for i in idx], idx)
+    for kind in ('honours', 'small'):
+        d = [x[f'walk {kind}'] - x[f'net {kind}'] for x in recs]
+        ok = [i for i, q in enumerate(d) if q == q]
+        m, e = boot([d[i] for i in ok], [fam[i] for i in ok], rng)
+        print(f'   walk minus net, {kind}: {m:+.3f} +- {e:.3f}')
+
+
 def names_of(b):
     return (['played it', 'level, other played'] + [f'behind <= {e}' for e in EDGES[1:]] + ['behind > 1'])[b]
 
@@ -123,6 +168,8 @@ def main():
         print(f, d['settings'])
     rng = np.random.default_rng(0)
     fam = [r['family'] for r in rows]
+    if rows and rows[0].get('chains'):
+        return walks(rows, fam, a, rng)
     half = [int(f[:8], 16) % 2 for f in fam]
     S = []
     for r in rows:
