@@ -1,0 +1,42 @@
+{
+ "id": "e9-11-r8",
+ "box": "azure4",
+ "experiment": "E9-11",
+ "owner": "bill",
+ "priority": 2,
+ "cores": 4,
+ "source": {
+  "branch": "feature/gen9-bidding-cards",
+  "commit": "0f0990a"
+ },
+ "argv": [
+  "{python}",
+  "scripts/gen9_match.py",
+  "--source",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--bots",
+  "configs/gen9-bidding-bots.json",
+  "--pair",
+  "9r-32~8p-32",
+  "--deals",
+  "1600",
+  "--seed",
+  "9112",
+  "--workers",
+  "4",
+  "--out",
+  "{out}"
+ ],
+ "progress": {
+  "results": "results.jsonl",
+  "target": 1600
+ },
+ "preemptible": true,
+ "publish": [
+  "results.jsonl",
+  "summary.json",
+  "manifest.json"
+ ],
+ "submitted": "2026-11-12T08:35:00Z",
+ "by": "bill"
+}
