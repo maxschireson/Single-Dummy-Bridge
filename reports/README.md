@@ -27,3 +27,5 @@ artifact links. Link the report here or from the relevant subsystem guide.
 Distinguish prediction validation, double-dummy proxy evaluations and actual
 paired cardplay. Preserve negative results and separate reused families from new
 independent evidence.
+
+- [Independent Gen 8 cutover and validation](gen8-independent-cutover-2026-11-12/README.md)
