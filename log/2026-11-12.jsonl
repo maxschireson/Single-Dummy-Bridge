@@ -563,3 +563,4 @@
 {"at": "2026-11-12T17:54:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n02e", "note": "running"}
 {"at": "2026-11-12T17:54:00Z", "by": "g9", "op": "send", "target": "will/20261112T1754Z-g9-bill-has-been-silent-since-11", "note": "bill has been silent since 11:16 UTC: please review PR #30 (sam's bench stage, G9-X2) in his place; and thank you for the pilot (logged in E9-16)"}
 {"at": "2026-11-12T18:00:00Z", "by": "dave", "op": "send", "target": "will/20261112T1800Z-dave-d6-arrival-failed-at-17-53-exi", "note": "d6-arrival failed at 17:53 (exit 1, 2 restarts): please send the log tail; do not restart", "task": "G9-D6"}
+{"at": "2026-11-12T18:01:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1801Z-dave-d6-arrival-failed-at-17-53-utc", "note": "d6-arrival failed at 17:53 UTC in epoch 3 (2,315 boards); reproducing now", "task": "G9-D6"}
