@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "first_failed_depth": null,
+  "last_serialized_bytes": 4095409,
+  "python_recursion_limit": 1000,
+  "target": 8128,
+  "scope": "Synthetic marker serialization only, no model plays or production writes. Checks JSON roundtrip and structural equality at selected depths using actual V3.1 marker shape; nested markers grow per-commit storage.",
+  "next": "Replace embedded ancestor chain with SHA-bound parent references and iterative validation; test complete8128+recovery before adoption."
+}

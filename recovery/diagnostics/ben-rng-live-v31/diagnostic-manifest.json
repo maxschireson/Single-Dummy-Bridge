@@ -1,0 +1,14 @@
+{
+  "production_identity": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5",
+  "eligible": false,
+  "source_sha256": {
+    "live_executor.py": "d2a32f69659a9e63a7a27a86d63f9088437ab0397bf2cf0c9d7c5a4541f6d474",
+    "live_server.py": "0ebafc7062b46f0adf87842b5f2004659cc68c7030e97749f413c66639d7afeb",
+    "semantics.py": "0cfee608b054cec5aec6e729aacaa1e28a6608a3bba15ef7b681fae4482c1b53",
+    "collect.py": "08713f45a95935a892f9480d91d88b0a621e4317cfb4447fe2112347ba2ee90e",
+    "scaling_probe.py": "d7133fbc2450874d1d736e68e1f897d83707b5c299f1f45db4ac56ad3cb79a44",
+    "adapter.py": "b51d16f23ed090e24385a7137358bb65829435c63076338fa882c057e8dd4397",
+    "failure_probe.py": "b100de5b6f9399e63e25f5097dae79e3f5f823501e187f03ca1b657f1527cf69",
+    "server.py": "539d78179428e622b67d88d9c6db640b8f4890dfeac5dae169c79119670b6ede"
+  }
+}

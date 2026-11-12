@@ -735,5 +735,80 @@
     },
     "adoption": false,
     "next": "V3.1 live collector interruption, server/worker failure and restore continuation; immutable protocol binding, snapshot concurrency and scalability."
+  },
+  "diagnostic_v31_20261112": {
+    "health": {
+      "epoch": 1794447701.9114022,
+      "pairs": 2015,
+      "retained": 656,
+      "frozen_verified": true,
+      "locks": "all3free",
+      "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+      "free_GB": 31.12175616,
+      "STOP": false
+    },
+    "live": {
+      "status": "passed",
+      "schema": "diagnostic-rng-live-v3.1",
+      "newly_played_records": 8,
+      "ben_indices": [
+        1082,
+        2561
+      ],
+      "self_indices": [
+        1930,
+        1931,
+        1932,
+        1933,
+        1934,
+        1935
+      ],
+      "reference_fingerprints_exact": {
+        "1932": true,
+        "1931": true,
+        "1082": true,
+        "1930": true,
+        "2561": true
+      },
+      "final_rng_exact": true,
+      "snapshot_restore_export_exact": true,
+      "normal_commits_preserve_rng": true,
+      "actual_futures_server_exit_gate": true,
+      "production_commits": 0,
+      "scope": "Diagnostic isolated claim protocol on both reference and new run. Not unchanged-production equivalence, not recovered dead-server RNG, no power-loss validation or production adoption."
+    },
+    "failure": {
+      "status": "passed",
+      "cases": [
+        {
+          "mode": "worker",
+          "error": "BEN worker exited -9: missing successful result",
+          "accepted_count": 0,
+          "private_rng_advanced": true,
+          "private_rng_matches_reference": true,
+          "production_commits": 0
+        },
+        {
+          "mode": "server",
+          "error": "BEN server exited unexpectedly: -9",
+          "accepted_count": 0,
+          "private_rng_advanced": true,
+          "private_rng_matches_reference": true,
+          "production_commits": 0
+        }
+      ],
+      "scope": "Real full BEN1082 play followed by intentional SIGKILL worker before result delivery or server before lifecycle acceptance. Private state advances but no commit. No in-flight collector death or power-loss test."
+    },
+    "repeat_summary": "7of8 full fingerprints exact;1934 fewer audit nodes, root/common nodes exact; see diagnostic evidence",
+    "scaling": {
+      "status": "passed",
+      "first_failed_depth": null,
+      "last_serialized_bytes": 4095409,
+      "python_recursion_limit": 1000,
+      "target": 8128,
+      "scope": "Synthetic marker serialization only, no model plays or production writes. Checks JSON roundtrip and structural equality at selected depths using actual V3.1 marker shape; nested markers grow per-commit storage.",
+      "next": "Replace embedded ancestor chain with SHA-bound parent references and iterative validation; test complete8128+recovery before adoption."
+    },
+    "adopted": false
   }
 }

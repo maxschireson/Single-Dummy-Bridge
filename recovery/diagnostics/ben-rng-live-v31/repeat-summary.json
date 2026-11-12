@@ -1,0 +1,141 @@
+{
+  "index": 1934,
+  "full_fingerprint_equal": false,
+  "root_exact": true,
+  "common_node_count": 33,
+  "common_nodes_exact": true,
+  "only_v3": [
+    "root/20/32",
+    "root/21",
+    "root/21/38",
+    "root/21/39",
+    "root/25",
+    "root/25/39",
+    "root/6/24"
+  ],
+  "only_v31": [],
+  "budget_skips": [
+    [
+      {
+        "actor": 1,
+        "audit_probability": 0.5,
+        "candidate_card": "H4",
+        "depth": 1,
+        "estimated_cpu": 0.3756851350000012,
+        "expected_gain_imps": null,
+        "parent_table": 25,
+        "ply": 24,
+        "reason": "shared-compute-budget",
+        "reference_card": "S9",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 2,
+        "audit_probability": 0.5,
+        "candidate_card": "D9",
+        "depth": 1,
+        "estimated_cpu": 0.19239389599999868,
+        "expected_gain_imps": null,
+        "parent_table": 6,
+        "ply": 25,
+        "reason": "shared-compute-budget",
+        "reference_card": "S7",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 2,
+        "audit_probability": 0.5,
+        "candidate_card": "S2",
+        "depth": 1,
+        "estimated_cpu": 0.09411831399999926,
+        "expected_gain_imps": null,
+        "parent_table": 4,
+        "ply": 31,
+        "reason": "shared-compute-budget",
+        "reference_card": "D9",
+        "selection": "independent-random-post-commit"
+      }
+    ],
+    [
+      {
+        "actor": 2,
+        "audit_probability": 0.5,
+        "candidate_card": "DJ",
+        "depth": 0,
+        "estimated_cpu": 0.33114443400000226,
+        "expected_gain_imps": null,
+        "parent_table": 0,
+        "ply": 21,
+        "reason": "shared-compute-budget",
+        "reference_card": "S7",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 1,
+        "audit_probability": 0.5,
+        "candidate_card": "H4",
+        "depth": 1,
+        "estimated_cpu": 0.44147374700000164,
+        "expected_gain_imps": null,
+        "parent_table": 2,
+        "ply": 24,
+        "reason": "shared-compute-budget",
+        "reference_card": "S9",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 2,
+        "audit_probability": 0.5,
+        "candidate_card": "D4",
+        "depth": 0,
+        "estimated_cpu": 0.25591983500000204,
+        "expected_gain_imps": null,
+        "parent_table": 0,
+        "ply": 25,
+        "reason": "shared-compute-budget",
+        "reference_card": "S7",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 3,
+        "audit_probability": 0.5,
+        "candidate_card": "DK",
+        "depth": 1,
+        "estimated_cpu": 0.09898080700000023,
+        "expected_gain_imps": null,
+        "parent_table": 1,
+        "ply": 32,
+        "reason": "shared-compute-budget",
+        "reference_card": "HT",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 2,
+        "audit_probability": 0.5,
+        "candidate_card": "D9",
+        "depth": 1,
+        "estimated_cpu": 0.22467372799999907,
+        "expected_gain_imps": null,
+        "parent_table": 6,
+        "ply": 25,
+        "reason": "shared-compute-budget",
+        "reference_card": "S7",
+        "selection": "independent-random-post-commit"
+      },
+      {
+        "actor": 2,
+        "audit_probability": 0.5,
+        "candidate_card": "S2",
+        "depth": 1,
+        "estimated_cpu": 0.08859841300000504,
+        "expected_gain_imps": null,
+        "parent_table": 4,
+        "ply": 31,
+        "reason": "shared-compute-budget",
+        "reference_card": "D9",
+        "selection": "independent-random-post-commit"
+      }
+    ]
+  ],
+  "scope": "Additional full-repeat comparison; not an exact-all-eight pass. Old semantics gap filter checks startswith gap but actual gap nodes start root/gap, so old fingerprints also include those. No gate relaxed."
+}

@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "schema": "diagnostic-rng-live-v3.1",
+  "newly_played_records": 8,
+  "ben_indices": [
+    1082,
+    2561
+  ],
+  "self_indices": [
+    1930,
+    1931,
+    1932,
+    1933,
+    1934,
+    1935
+  ],
+  "reference_fingerprints_exact": {
+    "1932": true,
+    "1931": true,
+    "1082": true,
+    "1930": true,
+    "2561": true
+  },
+  "final_rng_exact": true,
+  "snapshot_restore_export_exact": true,
+  "normal_commits_preserve_rng": true,
+  "actual_futures_server_exit_gate": true,
+  "production_commits": 0,
+  "scope": "Diagnostic isolated claim protocol on both reference and new run. Not unchanged-production equivalence, not recovered dead-server RNG, no power-loss validation or production adoption."
+}
