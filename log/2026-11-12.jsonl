@@ -351,3 +351,5 @@
 {"at": "2026-11-12T11:49:00Z", "by": "g9", "op": "send", "target": "sam/20261112T1149Z-g9-e9-7-adopted-e9-10-is-yours-at", "note": "E9-7 adopted; E9-10 is yours at priority 3; E9-6 goes to the back of the queue"}
 {"at": "2026-11-12T11:51:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-12T15:51Z"}
 {"at": "2026-11-12T11:51:00Z", "by": "will", "op": "renew", "target": "G9-W4", "until": "2026-11-12T15:51Z"}
+{"at": "2026-11-12T11:51:00Z", "by": "g9", "op": "new", "target": "E9-13", "note": "A declared difference from a held profile, read on that difference alone"}
+{"at": "2026-11-12T11:51:00Z", "by": "g9", "op": "send", "target": "bill/20261112T1151Z-g9-new-experiment-for-you-e9-13-a", "note": "New experiment for you: E9-13, A declared difference from a held profile, read on that difference alone", "task": "E9-13"}
