@@ -41,3 +41,17 @@ What it says:
   leave out. Wider coverage is worth about as much again.
 - The leader gains far more than declarer (more hidden hands, and the opening bidder's partner's
   calls are covered).
+
+## Supplement: the scorer's weight (`weight-grid.json`)
+
+Same protocol, 500 deals a system (about 1,000 decisions), readers `w * S + F` for a grid of `w`:
+
+| Generator | w = 0 | 0.1 | 0.25 | 0.5 | 0.75 | 1 | S alone |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| standard | 2.29 | **2.74** | 2.73 | 2.25 | 1.62 | 0.92 | 0.66 |
+| precision | 2.19 | **2.35** | 1.66 | −0.08 | −2.05 | −4.13 | −5.34 |
+| standard, 1NT 12-14 | 2.27 | **2.61** | 2.34 | 1.14 | −0.34 | −1.91 | −2.97 |
+| mixed: house Gen 5 vs precision | 2.98 | **3.08** | 2.82 | 2.09 | 1.27 | 0.39 | 0.01 |
+
+On every generator the best weight is about 0.1: the scorer still adds 0.1 to 0.45 nats at that weight
+over the card alone, and costs more and more above it.
