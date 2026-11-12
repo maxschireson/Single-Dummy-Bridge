@@ -155,26 +155,48 @@ def main():
     G = lambda x: math.exp(-x * x / 2) / math.sqrt(2 * math.pi) - x * (1 - 0.5 * (1 + math.erf(x / math.sqrt(2))))
     edges = [-1, 1e-9, .0625, .125, .25, .5, 1., 99.]
     per_layout = np.where(neff > 1.5, ((d - truth[:, None]) ** 2 * sh).sum(1) * neff / np.maximum(neff - 1, 1e-9), 0.)   # variance of one layout's result
+    luck_d = luck(d)
+    ns = ('exact', 8, 16, 32, 64, 128, 512)
+
+    def model(index, sides_, text=False):
+        totals, low = {n: 0. for n in ns}, {n: 0. for n in ns}
+        e_, t_, w_, l_, p_ = est[index], truth[index], w[index], luck_d[index], per_layout[index]
+        for lo, hi in zip(edges[:-1], edges[1:]):
+            m_ = (e_ > lo) & (e_ <= hi)
+            if m_.sum() < 10:
+                continue
+            mu = float(np.average(t_[m_], weights=w_[m_]))
+            tau2 = max(0., float(np.average((t_[m_] - mu) ** 2, weights=w_[m_])) - float(np.average(l_[m_], weights=w_[m_])))
+            s2 = float(np.average(p_[m_], weights=w_[m_]))
+            tau = math.sqrt(tau2)
+            pairs = float(w_[m_].sum() / sides_)
+            line = f'     gap ({max(lo, 0):.4f}, {hi:.4f}]: {m_.sum():4d} pairs, {pairs:5.2f} a side; m {mu:+.3f}, s {tau:.3f}, one layout sd {math.sqrt(s2):.2f};'
+            for n in ns:
+                t = tau if n == 'exact' else (tau2 / math.sqrt(tau2 + s2 / n) if tau2 > 0 else 0.)
+                g = t * G(mu / t) if t > 1e-9 else max(0., -mu)
+                totals[n] += pairs * g
+                if hi <= 1.:
+                    low[n] += pairs * g
+                line += f' {n}: {pairs * g:.4f}'
+            if text:
+                print(line)
+        return totals, low
+
     print(f'\n2b. Model: in each bin of the recorded gap the true expected cost of B is normal (mean m, sd s after taking out layout luck). '
           f'Tricks a side at one table from knowing it exactly, and from n layouts of real playouts used with the right shrinkage.')
-    totals = {n: 0. for n in ('exact', 8, 16, 32, 64, 128, 512)}
-    for lo, hi in zip(edges[:-1], edges[1:]):
-        m_ = (est > lo) & (est <= hi)
-        if m_.sum() < 20:
-            continue
-        mu = float(np.average(truth[m_], weights=w[m_]))
-        tau2 = max(0., float(np.average((truth[m_] - mu) ** 2, weights=w[m_])) - float(np.average(luck(d)[m_], weights=w[m_])))
-        s2 = float(np.average(per_layout[m_], weights=w[m_]))
-        tau = math.sqrt(tau2)
-        pairs = float(w[m_].sum() / sides)
-        line = f'     gap ({max(lo, 0):.4f}, {hi:.4f}]: {m_.sum():4d} pairs, {pairs:5.2f} a side; m {mu:+.3f}, s {tau:.3f}, one layout sd {math.sqrt(s2):.2f};'
-        for n in totals:
-            t = tau if n == 'exact' else (tau2 / math.sqrt(tau2 + s2 / n) if tau2 > 0 else 0.)
-            g = t * G(mu / t) if t > 1e-9 else max(0., -mu)
-            totals[n] += pairs * g
-            line += f' {n}: {pairs * g:.4f}'
-        print(line)
-    print('     total a side: ' + ', '.join(f'{n}: {v:.4f}' for n, v in totals.items()))
+    totals, low = model(np.arange(len(rows)), sides, True)
+    ids = sorted(set(fam))
+    where = {g: [] for g in ids}
+    for i, g in enumerate(fam):
+        where[g].append(i)
+    reps = []
+    brng = np.random.default_rng(a.seed + 1)
+    for _ in range(200):
+        pick = brng.integers(0, len(ids), len(ids))
+        index = np.concatenate([where[ids[j]] for j in pick])
+        reps.append(model(index, sides)[1])
+    print('     total a side:                      ' + ', '.join(f'{n}: {v:.3f}' for n, v in totals.items()))
+    print('     without recorded gaps above 1:     ' + ', '.join(f'{n}: {low[n]:.3f} +- {np.std([r[n] for r in reps]):.3f}' for n in ns) + '   (+- from resampling deals)')
 
     # 3. rules from other benches
     for path in a.sims:

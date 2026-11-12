@@ -39,13 +39,13 @@ import plan_bench
 STATE = plan_bench.STATE
 
 
-def start(from_trick, to_trick, ties, seed, worlds, bands, sim_samples):
+def start(from_trick, to_trick, ties, seed, worlds, bands, sim_samples, max_gap=99.):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     spec = check.spec('gen6')
     if sim_samples:
         spec = dict(spec, samples=sim_samples, id=f'6-{sim_samples}')
     STATE.update(six=player(check.spec('gen6'), ROOT), sim=player(spec, ROOT), sim_id=spec['id'], from_trick=from_trick, to_trick=to_trick,
-                 ties=ties, seed=seed, worlds=worlds, bands=bands)
+                 ties=ties, seed=seed, worlds=worlds, bands=bands, max_gap=max_gap)
 
 
 def played_out(o, board, world, x, tag):
@@ -69,7 +69,7 @@ def pairs_of(path):
         board = Board.from_dict(e['board'])
         declarer = board.contract.declarer
         for table_a, table_b, ply, forced, band, estimated, propensity, cost_imps in plan_bench.forks_of(e):
-            if STATE['bands'] is not None and band not in STATE['bands']:
+            if (STATE['bands'] is not None and band not in STATE['bands']) or estimated > STATE.get('max_gap', 99.) + 1e-9:
                 continue
             root, fork = e['tables'][table_a], e['tables'][table_b]
             act = root['actions'][ply]
@@ -99,6 +99,17 @@ def pairs_of(path):
             t = check.utilities(o, values)
             row['true_dd'], row['true_dd_a'] = float(t[a] - t[b]), float(t[a])
             k = STATE['worlds']
+            draws = 1
+            while 8 <= len(worlds) < k and draws < 16:                               # more layouts than one draw of the bot's gives
+                more, w2, _ = six.layouts(o, view, six.source(o, view), np.random.default_rng([STATE['seed'], ply, int(d['family'][:8], 16), draws]))
+                if draws == 1:
+                    worlds, pool_w = list(worlds), [weights]
+                worlds += list(more)
+                pool_w.append(np.asarray(w2, float))
+                u = np.concatenate([u, np.array([[x[a], x[b]] for x in (check.utilities(o, values) for values, _ in check.solve(six, o, more))])])
+                draws += 1
+            if draws > 1:
+                weights = np.concatenate(pool_w) / draws
             index, share = systematic(weights, k, rng) if len(worlds) > k else (np.arange(len(worlds)), weights)
             started = time.perf_counter()
             r = np.array([[sign * played_out(o, board, worlds[i], x, f'{ply}-{n}') for x in (a, b)] for n, i in enumerate(index)], float)
@@ -126,6 +137,7 @@ def main():
     p.add_argument('--from-trick', type=int, default=3)
     p.add_argument('--to-trick', type=int, default=6)
     p.add_argument('--bands', help='keep only these bands, e.g. 0,1')
+    p.add_argument('--max-gap', type=float, default=99., help='keep only pairs whose recorded gap is at most this')
     p.add_argument('--ties', action='store_true')
     p.add_argument('--pairs', type=int, default=10 ** 9)
     p.add_argument('--files', type=int, default=10 ** 9)
@@ -142,10 +154,10 @@ def main():
 
     def save():
         a.out.write_text(json.dumps(dict(settings=dict(sims=[dict(name='gen6', net=None, mode='gen6', repeats=1, tricks=0)], worlds=a.worlds,
-                                                       sim_samples=a.sim_samples, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, bands=a.bands,
+                                                       sim_samples=a.sim_samples, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, bands=a.bands, max_gap=a.max_gap,
                                                        files=done, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
 
-    with Pool(a.workers, initializer=start, initargs=(a.from_trick, a.to_trick, a.ties, a.seed, a.worlds, bands, a.sim_samples)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(a.from_trick, a.to_trick, a.ties, a.seed, a.worlds, bands, a.sim_samples, a.max_gap)) as pool:
         for got in pool.imap(pairs_of, files, chunksize=1):
             rows += got
             done += 1
