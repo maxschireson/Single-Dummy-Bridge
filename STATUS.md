@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:43 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:44 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -59,6 +59,7 @@ Generated 2026-11-12 07:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:27 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-2](experiments/E9-2.md) | Boards needed to identify a system from finished boards | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T10:00Z |  |
+| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | g9 |  | open | high | 2026-11-13T16:00Z | after E9-7 |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [E9-8](experiments/E9-8.md) | What replaying the bidder is worth over the hand-fit scorer | bill |  | open | high | 2026-11-12T12:00Z |  |
