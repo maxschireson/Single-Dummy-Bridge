@@ -6,7 +6,7 @@ from ops.gen5_runtime import state
 ROOT=Path(__file__).resolve().parent
 run=ROOT/'runs/fast-only-20261111';out=ROOT/'publication';rec=out/'recovery'
 rec.mkdir(parents=True,exist_ok=True)
-for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','plan.json','capture-equivalence.json','preflight.json','supervisor.json'):
+for name in ('manifest.json','corpus.jsonl','state.json','heartbeat.json','plan.json','capture-equivalence.json','preflight.json','supervisor.json','STOP','WATCHDOG_STOP'):
     if (run/name).exists():shutil.copy2(run/name,rec/name)
 for folder in ('artifacts','assets'):
     if (run/folder).exists():shutil.copytree(run/folder,rec/folder,dirs_exist_ok=True)
