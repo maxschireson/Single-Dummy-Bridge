@@ -18,7 +18,7 @@ Generated 2026-11-12 12:54 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
-| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 14:30 | leased | high | 2026-11-13T12:00Z |  |
+| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 16:54 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-X2](tasks/G9-X2.md) | Gen 9 readers on the reading bench: every reader scored in tricks saved a board | sam | sam until 11-12 16:09 | leased | high | 2026-11-13T06:00Z |  |
