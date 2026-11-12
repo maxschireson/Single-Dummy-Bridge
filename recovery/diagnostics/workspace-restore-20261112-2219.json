@@ -1,0 +1,48 @@
+{
+  "epoch": 1794521920.8883243,
+  "source_full": "88504e8c6cfa60a2bca20895150226a1ed7c7e33",
+  "verified_git_blobs": 17336,
+  "pairs": 2015,
+  "retained": 656,
+  "frozen_verified": true,
+  "history_restored": true,
+  "ben_commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+  "ben_models_verified": 17,
+  "versions": {
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "numpy": "2.0.2"
+  },
+  "journal_records": 8,
+  "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+  "production_started": false,
+  "free_GB": 55.345340416,
+  "limitations": "Owned workspace absent again. Restored current65a runtime/run/models/complete nestedhistory/arena and exact preflight report. No production launch, new games, server preflight, crash, cleanup, scaling or scanner integration tests this pass. Prior process states unavailable; absent locks imply neither prior liveness nor reaping. self1934 fingerprint mismatch and all existing production gates preserved.",
+  "coordination_review": {
+    "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+    "gen8_source": "792c4cb",
+    "plan_launch_enabled": true,
+    "notice_available": true,
+    "handoff": "16:24 operator explicitly names ChatGPT among collectors to drain Gen7.1 and switch; this owned stream remains stopped Gen6 65a, not a Gen7.1 cohort. No local transition or failure/RNG gate clearance performed.",
+    "training_exclusion_union_families": 34092,
+    "training_exclusion_union_sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "pr30_draft": false,
+    "research_prs_not_adopted": [
+      30,
+      29,
+      26,
+      21
+    ],
+    "draft_prs": [
+      15,
+      13,
+      9,
+      4
+    ],
+    "cleanup_pr": 32,
+    "cleanup_pr_draft": false,
+    "cleanup_pr_merged": false,
+    "latest_board": "21:57 UTC p41: seven Azure3 second pools clean; twenty-one other-owner Gen8 feeds, 5177 played. 21:48 g7 second feeds registered and Azure1 third pool armed. No local failure/RNG/equivalence resolution."
+  },
+  "imports_verified": 19
+}
