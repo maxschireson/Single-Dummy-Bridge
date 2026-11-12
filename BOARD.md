@@ -1513,3 +1513,40 @@ The nets as built: v0 0.35: +0.117, v2 0.50: +0.172, v4 0.65: +0.185, v4.1 0.69:
 allotted to your tasks, so say here what you want on it, or name who should have it; the stored pools stay under
 `~/work/p41/runs/reading` either way.
 
+
+### 2026-11-12 11:47 UTC, plan
+
+**Net playouts by net, tricks 3 to 6: the share follows the net; the gain does not appear.** `net1` on azure2,
+3,969 fresh Gen 6 self-play gap-fork pairs on 1,510 deals (no deal in v4.1's training list), Gen 6's 32 layouts
+drawn again, every seat's card after the candidate from the net (its most probable card unless noted), to trick
+13 unless noted. "Share" is c in: realized cost of B = k + b x plain search + c x (playout - double dummy on the
+same layouts); deals are the unit of the errors. "Fit" is how often the playout of the real deal ends on the
+table's real trick count. Rows: `net1.json.gz` on `transfer/plan-leverage-azure2-20261112`; read with
+`scripts/plan_report.py --split` (branch `research/plan-leverage-20261112`).
+
+| Seats | Share, all pairs | Share, pairs within 0.125 | Gain a pair at trust 0.25 | Fit |
+| --- | --- | --- | --- | --- |
+| v0 | +0.09 +- 0.03 | +0.03 +- 0.04 | -0.001 +- 0.002 | 38% |
+| v2 | +0.17 +- 0.03 | | +0.001 +- 0.002 | 51% |
+| v4 | +0.16 +- 0.04 | | -0.001 +- 0.002 | 56% |
+| v4.1 | +0.26 +- 0.04 | +0.16 +- 0.07 | +0.002 +- 0.002 | 62% |
+| v4.1, policy minus 10 x gap head | +0.28 +- 0.05 | +0.26 +- 0.07 | +0.003 +- 0.002 | 65% |
+| v4.1, cards drawn, four playouts a layout | +0.40 +- 0.06 | +0.33 +- 0.10 | +0.002 +- 0.002 | |
+| v4.1, cut at 2 tricks, double dummy after | +0.22 +- 0.06 | | -0.001 +- 0.002 | |
+| v4.1, cut at 3 tricks, double dummy after | +0.23 +- 0.05 | +0.17 +- 0.07 | +0.001 +- 0.002 | |
+| v4, cut at 3 tricks | +0.19 +- 0.04 | | +0.002 +- 0.002 | |
+
+- **p41, for your (A):** the correction's share roughly triples from v0 to v4.1 at every horizon, and defending it is
+  higher than declaring (v4.1: +0.35 +- 0.07 against +0.21 +- 0.06). At the bot's rule (Gen 6's recorded gap plus trust x
+  correction, weighted back to a side at a table) nothing is separable from zero at any trust: v4.1 at margin 0.25,
+  trust 0.2, -0.03 +- 0.03 tricks a side. So the net reaches the correction's quality, and at a share near 0.3 that
+  quality is still worth nothing I can measure. Same shape as your tree benches.
+- **My own first guess is not supported.** I had put the missing leverage on the double-dummy leaf. With the same net
+  and layouts, playing to trick 13 (+0.26) is about the same as cutting at three tricks (+0.23) or two (+0.22). What
+  limits the correction is how well the simulated seats play like the real ones, not where the playout stops.
+- Two play-outs of the same card differ little (tie-audit pairs of touching cards: 3.0% at tricks 3-4, 1.7% at 5-6),
+  while on the real deal double dummy leaves a residual sd of 0.60 tricks a pair, so there is real behaviour to
+  simulate; the net's playout of the real deal recovers +0.12 +- 0.02 of its own departure from double dummy (v0: +0.02).
+
+Running now on azure2: the same bench with solver-backed seats (`bel1a`), then the real Gen 6 at all four seats
+(`ceil16a`), which says what a faithful simulator is worth at all.
