@@ -152,3 +152,61 @@ def test_written_cards_match_generated():
         written = json.loads((root / f'{name}.json').read_text())
         gen = card_from_settings(asdict(g), name)
         assert written['descriptor'] == gen['descriptor'] and written['cover'] == gen['cover']
+
+
+# ---- G9-B4: distance and detection ---------------------------------------------------------------
+from pathlib import Path as _Path                                                     # noqa: E402
+
+from bridge_harness.cards.match import (DeterministicProfile, UnknownMixture, board_loglik,   # noqa: E402
+                                        boards_to_identify, card_distance, experience_delta)
+
+GEN5 = _Path(__file__).resolve().parents[1] / 'models/bidding/gen5-2026-11-10/bidder.keras'
+
+
+def test_own_generator_is_at_distance_zero_and_others_are_not():
+    gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
+    bid_deal = lambda h, d, v: bid_table([gen] * 4, h, d, v)[0]
+    own = card_distance(card_from_settings(asdict(rb.Settings()), 'rb-p'), bid_deal, deals=150, seed=3)
+    other = card_distance('two-over-one', bid_deal, deals=150, seed=3)
+    assert own['rate'] == 0 and own['residual'] == []
+    assert other['rate'] > 0.1 and 'open_minor' in other['residual']
+
+
+def test_detection_prefers_the_generator():
+    gens = {'p': rb.RuleSystemBidder(rb.Settings(), 'standard'), 's': rb.RuleSystemBidder(rb.STANDARD, 'standard')}
+    cands = [DeterministicProfile('p', gens['p']), DeterministicProfile('s', gens['s'])]
+    profiles = cands + [UnknownMixture(cands)]
+    ll = []
+    for hands, dealer, vul in deals(40, 5):
+        try:
+            calls, _ = bid_table([gens['p']] * 4, hands, dealer, vul)
+        except (ValueError, IndexError):
+            continue
+        b = board_loglik(profiles, hands, dealer, vul, calls, (0, 2))
+        ll.append([b['p'], b['s'], b['unknown']])
+    ll = np.array(ll)
+    assert ll[:, 0].sum() > ll[:, 1].sum() and ll[:, 0].sum() > ll[:, 2].sum()
+    reached = boards_to_identify(ll, 0, orderings=20)
+    assert all(r is not None and r <= 20 for r in reached)
+    d = experience_delta('pair-x', 'test/0', dict(zip(['p', 's', 'unknown'], ll[0])))
+    from bridge_harness import experience as E
+    store = E.add(E.empty('pair-x'), d)
+    post = E.posterior(store['stats']['profile'], {'p': 1 / 3, 's': 1 / 3, 'unknown': 1 / 3})
+    assert abs(sum(post.values()) - 1) < 1e-9
+
+
+@pytest.mark.skipif(not GEN5.exists(), reason='restore models/bidding/gen5-2026-11-10 first (needs h5py)')
+def test_net_profile_logits_reproduce_its_calls():
+    pytest.importorskip('h5py')
+    from bridge_harness.cards.match import NetProfile
+    from bridge_harness.system_bidders import BenLstmBidder
+    from bridge_harness.system_fit import simulate
+    from bridge_harness.bidding_env import CALLS
+    b, prof = BenLstmBidder(str(GEN5)), NetProfile('gen5', str(GEN5))
+    ds = list(deals(30, 6))
+    hands = np.array([d[0] for d in ds])
+    sim = simulate([b, b], hands, np.array([d[1] for d in ds]), np.array([VULS.index(d[2]) for d in ds]))
+    for i, (h, d, v) in enumerate(ds):
+        calls = [CALLS[int(t)] for t in sim['calls'][i] if t >= 0]
+        for p, c, n in prof.call_probs(h, d, v, calls, [0, 1, 2, 3]):
+            assert max(p, key=p.get) == c

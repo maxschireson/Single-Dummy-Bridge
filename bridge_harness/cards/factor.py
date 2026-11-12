@@ -43,7 +43,7 @@ class Deviation:
         return {'prior_eps': self.prior_eps, 'prior_weight': self.prior_weight, 'counts': self.counts}
 
 
-def call_log_prob(rules, call, f, eps, lam=DEFAULT_LAM, exhaustive=True):
+def call_log_prob(rules, call, f, eps, lam=DEFAULT_LAM, exhaustive=True, negative=True):
     """log P(call | hand) for feature arrays f under a context's rules; None if the card does not list the call.
     With exhaustive=False a hand that fits no rule is uninformative (log P = 0)."""
     calls = [r.call for r in rules]
@@ -55,7 +55,7 @@ def call_log_prob(rules, call, f, eps, lam=DEFAULT_LAM, exhaustive=True):
     first = np.where(sat.any(0), sat.argmax(0), len(rules) - 1)
     # rules sharing a call: the call is made if any of them is the first satisfied
     idx = [i for i, c in enumerate(calls) if c == call]
-    hit = np.isin(first, idx)
+    hit = np.isin(first, idx) if negative else sat[idx].any(0)
     z = -lam * dist
     z = z - z.max(0, keepdims=True)
     soft = np.exp(z)
@@ -92,7 +92,7 @@ class CardFactor:
         self.exhaustive = getattr(self.system, 'exhaustive', True)
         self.dev = deviation or Deviation()
         self.lam = lam
-        self.covered = self.listed = 0
+        self.negative = True               # negative inference from the order of a table
 
     def seat_terms(self, auction, dealer, seat, vulnerability):
         """(turn index, context, rules) for each call `seat` made in a covered context."""
@@ -116,7 +116,7 @@ class CardFactor:
             if fam is None:
                 parts.append((t, calls[t], None))
                 continue
-            lp = call_log_prob(rules, calls[t], f, self.dev.eps(fam), self.lam, self.exhaustive)
+            lp = call_log_prob(rules, calls[t], f, self.dev.eps(fam), self.lam, self.exhaustive, self.negative)
             total += lp
             parts.append((t, calls[t], fam))
         return (total, parts) if explain else total
