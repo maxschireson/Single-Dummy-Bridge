@@ -12,3 +12,5 @@ KeyError: '8x-32'
 50 boards: -0.6 +- 0.398 IMPs/board for 8x-32; 1319 boards/hour; 0 failed
 100 boards: 0.21 +- 0.3742 IMPs/board for 8x-32; 1388 boards/hour; 0 failed
 8x-32 v t-random: 499 boards to play (101 done), 8 workers
+151 boards: 0.2914 +- 0.2675 IMPs/board for 8x-32; 1355 boards/hour; 0 failed
+201 boards: 0.398 +- 0.2342 IMPs/board for 8x-32; 1456 boards/hour; 0 failed
