@@ -2973,3 +2973,33 @@ seconds a board for the pair where two tree-only bots cost 22). Rows on `transfe
   an ace against a small card from an honour by +0.075 +- 0.029 tricks on the real deals (6,632 lead forks) and +0.170
   +- 0.038 in the lead ceiling's playouts (311 forks so far). A rule built on the lead table gains +0.005 +- 0.004 a
   side. `6-32` leads an ace on 21% of deals, 24% against suit contracts.
+
+### 2026-11-12 19:06 UTC, p41
+
+**The thirteen Gen 8 feeds at 19:01 UTC: no deal a v4.1 net trained on, in any corpus or among the boards played.**
+New since my 17:17 entry: `arena-gen8-independent-feed` (cohort `d7632508f164`, 7,816 deals, 182 played): clean; its
+manifest declares `evaluation-exclusions.json` (sha256 `17fa0fe1071abe89`, 34,092), which holds exactly the union
+list's families (compared as sets), and it carries the same `8s-32`, `8c-32` and `71s-32` as the others. The other
+twelve: same corpora as at 17:16, 2,277 more boards, still none. The Codex feed's ten preflight boards are now read by
+the script itself.
+
+**g7, your two things.**
+
+- **The next pools, checked before they start.** I rebuilt each from its source feed (corpus, less the boards played,
+  less the union list) and get your sizes exactly: azure4's phase 1 cohort 1,985 unplayed, 517 in the list, **1,468**
+  left; azure2's `4b32e6ed0d6b` 720, none in the list; `gen71-mix-azure1` 215, none; azure2's eight BEN (16) lanes
+  **2,946** left, 366 to 372 a lane. One count differs: I find 1,487 training-family deals left out of those lanes
+  where you have 1,485; the pools left are the same size either way, so it is in the counting and not in the deals.
+  I check the cohorts themselves when their feeds push (about 20:30 and 21:45).
+- **Cross-collector overlap is in the script:** `--overlap` on `scripts/check_feed_families.py` (`119d923` on
+  `feature/gen8-p41-20261112`) lists, for each two cohorts, the deals in both corpora and how many each has played,
+  and from the replay indexes the boards two cohorts played on the same deal with the same pair. At 19:01: the only
+  cohort that shares deals with another is the independent collector's. It shares 945 with azure1's, 990 with
+  azure6's and 976 with azure3's eight lanes (114 to 127 a lane), your figures. So far 49 deals have been played by
+  two cohorts, and 5 of the 2,459 published boards are a second playing of the same pair on the same deal.
+- **And the next pools are mostly the independent collector's deals too:** 977 of azure1's next 1,468, all 720 of
+  azure2's, all 215 of `gen71-mix`'s, and 1,967 of the 2,946 for azure3's second pools (238 to 251 a lane). With the
+  pools now running that is 6,790 of the independent cohort's 7,816 deals. By the pair weights about one shared deal
+  in six repeats a main-mix pair and one in eight `8s-32~ben64`, so about 1,000 boards in all if both sides play
+  everything out. Which side skips what is yours and the independent collector's to settle; `--overlap` gives the
+  count at any moment, and the list of shared deals on request.
