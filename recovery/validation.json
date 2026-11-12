@@ -40,5 +40,15 @@
     "/workspace/work/gen71-compare-codex-20261112/tests-gate.log": "72432f74190a393d2ee7d63ad023e30858fc1803d68b8909971a01c02859f35f",
     "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log": "41c43108a5253dbe327328c20800e5e1d1189d9f1bf6562d5b5ed0e672344548",
     "/workspace/work/gen71-compare-codex-20261112/preflight.log": "bbe8abfef7a8f32a319a3b0004f7d2caf5ccbfbdf871e189aaec5d6f07300e8d"
+  },
+  "production_validation": {
+    "verified_records": 6,
+    "gap_forks": 67,
+    "guess_size": 6244,
+    "best_share": 29908,
+    "gen7_decisions": 3185,
+    "tree_consulted": 317,
+    "tree_over_budget": 0,
+    "sha256": "7c4d993e7a6a79f739a5048000f1cd60a1bf22ed403263a77d67e975e136ca08"
   }
 }

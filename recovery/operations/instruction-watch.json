@@ -251,7 +251,7 @@
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "authorized_gen71_transition_applied_validating_production",
+  "result": "authorized_gen71_transition_applied",
   "collection_action": "Drained Gen7.0 at437; archived it permanently; prepared new Gen7.1 policy comparison identity from20257 unused families; validated and launched only this owned stream.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
@@ -288,27 +288,45 @@
   "notification": "Meaningful applied Gen7.1 change; final notification after production/recovery verification.",
   "checked_epoch": 1794464671.0,
   "checked_at": "2026-11-12T06:24:31Z",
-  "next_check": "2026-11-12T06:25:53Z",
+  "next_check": "2026-11-12T07:25:53Z",
   "stream_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "health": {
+    "epoch": 1794465884.7113385,
+    "configured_normal_workers": 3,
+    "configured_ben_workers": 0,
+    "heartbeat": {
+      "epoch": 1794465876.5953448,
+      "completed": 15,
+      "in_flight": [
+        13,
+        16,
+        17
+      ],
+      "workers": 4,
+      "ben_workers": 1,
+      "started_epoch": 1794465569.1341488,
+      "stopping": false
+    },
+    "heartbeat_age_seconds": 8.115993738174438,
     "state": {
       "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "completed": 7,
+      "completed": 15,
       "target": 20257,
-      "contiguous": 7,
+      "contiguous": 13,
       "by_pair": {
-        "71s-32~6-32": 2,
-        "71s-32~7s-32": 5
+        "71s-32~6-32": 6,
+        "71s-32~7s-32": 9
       },
-      "root_games": 14,
-      "tables": 200,
+      "root_games": 30,
+      "tables": 382,
       "failures": 0,
-      "epoch": 1794465718.6957612,
+      "epoch": 1794465856.5868495,
       "complete": false
     },
+    "state_age_seconds": 28.124489068984985,
     "watchdog": {
-      "epoch": 1794465715.4287708,
-      "completed": 6,
+      "epoch": 1794465873.5040588,
+      "completed": 15,
       "target": 20257,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "workers": 3,
@@ -316,19 +334,21 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794465695.42317,
+      "last_fleet_check": 1794465823.4845655,
       "collector_pid": 36450,
       "publisher_pid": 36451
     },
+    "watchdog_age_seconds": 11.207279682159424,
     "publisher": {
       "status": "published",
-      "epoch": 1794465695.832622,
-      "completed": 4,
-      "commit": "a4cd342d53865f04e6b40130c8fb4689f45503a1",
+      "epoch": 1794465883.7568846,
+      "completed": 15,
+      "commit": "ada65609d553e6dde1f7038a5ac517f08517fcfc",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
+    "publisher_age_seconds": 0.9544539451599121,
     "gate": {
-      "epoch": 1794465695.420168,
+      "epoch": 1794465823.4783945,
       "status": "checked",
       "actors": {
         "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
@@ -337,11 +357,11 @@
       "pair": "71s-32~7s-32",
       "condition": "common",
       "metric": "played IMPs per board for 71s-32",
-      "boards": 282,
-      "mean_imps": -0.0035460992907801418,
+      "boards": 307,
+      "mean_imps": -0.04234527687296417,
       "ci95": [
-        -0.33604856454211646,
-        0.32895636596055616
+        -0.35439267659727897,
+        0.2697021228513506
       ],
       "minimum_boards_met": false,
       "positive_lower_bound": false,
@@ -394,8 +414,48 @@
         },
         {
           "branch": "arena-gen7-1-compare-codex-20261112-feed",
-          "revision": "83f44a9c04ed24ed5508cdeb9623fd390637d029",
+          "revision": "7d4790cdaa27286a6b21ab591a9919352758f7d3",
           "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+          "revision": "a52a1fdb0bc6ce1ae8952a8e45fd2b62771c8f32",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+          "revision": "cd94523f1d503c9fda86e98da3be791074fb0309",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+          "revision": "f89b3494fb516c478485bdcdb213ce78d8a95b8b",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+          "revision": "178a80748aa9233cc9b123361eda2f90ecbeb5f4",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+          "revision": "bc59e64bc43f838c90d6022a713fc652bd5905f5",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+          "revision": "4f8fa84c5e52d25a31d8a5bac4dfc5f6313efbf1",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+          "revision": "7fc84153a763cbe941a9ba7ab6a235756212ccdd",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+          "revision": "15380cc879398eb159d228ae0c0fb822113f24fa",
+          "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-vs70-azure2-feed",
@@ -404,7 +464,7 @@
         },
         {
           "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
-          "revision": "b1ce7fb0e4ff9c07a81590ea38928204fe4e1256",
+          "revision": "99962cff1c2cbae815a3af758aa34291dbf10b8e",
           "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
         },
         {
@@ -414,7 +474,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure1-feed",
-          "revision": "ceef9a7e8773b1688f382626af1914eea4a2aa0a",
+          "revision": "5403b4fa6ad90798a54a1323e05149bde234f85b",
           "excluded": "different-actors"
         },
         {
@@ -509,7 +569,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure4-feed",
-          "revision": "ca23d25ef3c093ea5d858fd4fb3f3a942648f19a",
+          "revision": "5afcea1e817ea222fae5063b0fe787214268c00e",
           "excluded": "different-actors"
         },
         {
@@ -569,12 +629,12 @@
         },
         {
           "branch": "arena-gen71-19bbdce5-20261112-feed",
-          "revision": "42ffbeb91bc5ebc501775143b355a6b57049003a",
+          "revision": "cf3a4cbc7a76a7a58268e458c9fbce94b43a982e",
           "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
         },
         {
           "branch": "arena-gen71-independent-feed",
-          "revision": "8385f7fc2f428e4b2d254bbc296aa46936b6911c",
+          "revision": "e58947a5aeaa6ea3cac5158cfab4041265f5fb05",
           "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         }
       ],
@@ -582,6 +642,46 @@
       "selfplay_launch_enabled": false,
       "method": "Completed published arena records plus local atomic receipts; exact actors, ready published plan, checksum and snapshot cutoff checked; one earliest completion per family; two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. External research tests and native duplicate rooms excluded. A published opening is required before selfplay."
     },
+    "gate_age_seconds": 61.23294401168823,
+    "locks": {
+      ".writer.lock": true,
+      ".watchdog.lock": true,
+      ".publisher.lock": true
+    },
+    "failures": [],
+    "processes": {
+      "process.json": {
+        "pid": 36450,
+        "command": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen71-compare-codex-20261112/run --workers 3 "
+      },
+      "watchdog-process.json": {
+        "pid": 36441,
+        "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/supervise_gen71.py "
+      },
+      "publisher-process.json": {
+        "pid": 36451,
+        "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py "
+      }
+    },
+    "collector_children": [
+      {
+        "pid": 36462,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8) "
+      },
+      {
+        "pid": 36463,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork "
+      },
+      {
+        "pid": 36466,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork "
+      },
+      {
+        "pid": 36467,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork "
+      }
+    ],
+    "heartbeat_worker_note": "Shared stock runtime counts an unused BEN executor in heartbeat; actual three normal workers, zero BEN jobs/server. Publisher and watchdog report configured3/0.",
     "production_validation": {
       "epoch": 1794465806.0093236,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
@@ -1154,7 +1254,8 @@
   },
   "dashboard_registration": {
     "commit_sha": "1db60ace0ffdf4214b8b43b7614f293310e627e4",
-    "content_sha": "3450121ea4e41dcf7008bd22024b5759b3068da2"
+    "content_sha": "3450121ea4e41dcf7008bd22024b5759b3068da2",
+    "peer_entries_preserved": true
   },
   "recovery_validation": {
     "source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842",
@@ -1612,7 +1713,7 @@
     "no_revocation": true
   },
   "gen71_transition": {
-    "status": "running-production-verification",
+    "status": "production-validated",
     "epoch": 1794464857.9462485,
     "authority": {
       "issued": "2026-11-12T05:42:00Z",
@@ -2136,5 +2237,14 @@
   "browser_scope": {
     "status": "own-source replay verification pending",
     "global_latest_list_link": "Latest aggregate report renders the new source, but its replay list URL gets URI Too Long from the serving layer. Not a collection failure; no global site source changed. Retesting this owned source with its shorter snapshot link."
+  },
+  "source_versioned_plans": {
+    "revision": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+    "files": {
+      "configs/round71-compare.json": "a682714b53f5ca8a811a2fa4c63766a57c01e25f",
+      "configs/round71-selfplay.json": "b97f2ea8d2fff12e33eeb82ccf0e5b57649a9966",
+      "configs/round71-ben.json": "c34d7a5e313613cff192b09ed8ab30b81684ab26",
+      "docs/gen71_2026-11-12.md": "78ac948749a9422ae9de4f0c8261e4e9309047c4"
+    }
   }
 }
