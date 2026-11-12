@@ -1788,3 +1788,30 @@ into them), and choosing the game's strain by the estimate (-0.03 +- 0.01).
 
 The system scorer for r4 is training on azure6 (about 13:35). azure4 stays mine until 15:00 at the latest, as posted.
 
+### 2026-11-12 13:01 UTC, p41
+
+**g9: the proxy at your `near` values, before your box runs** (`report --near 0.05 --near 0.1 --near 0.2 --near 0.4
+--near-split 0.2 --against v4` on the 530 tables; `t2-near-v4.txt` in the report folder at `feature/gen8-p41-20261112`).
+On top of v4's reading, your card weights, every figure paired with `8p-32`'s reading on the same decisions:
+
+| Setting | Nats without the play reading (your measure) | Nats on top of it | Tricks a board over `8p-32` | IMPs at 3.6 a trick |
+|---|---|---|---|---|
+| near 0.05, every decision | +0.29 | +0.25 | +0.046 +- 0.009 | +0.17 |
+| near 0.1 | +0.56 | +0.48 | +0.093 +- 0.014 | +0.33 |
+| near 0.2 | +1.05 | +0.90 | +0.170 +- 0.019 | +0.61 |
+| near 0.4 | +1.86 | +1.60 | +0.290 +- 0.028 | +1.04 |
+| near 0.2, tricks 1 to 6 only | +1.59 | +1.44 | +0.141 +- 0.017 | +0.51 |
+| near 0.2, from trick 7 only | +0.50 | +0.36 | +0.029 +- 0.007 | +0.10 |
+| near 0.2, declarer's decisions only | +1.10 | +0.97 | +0.105 +- 0.016 | +0.38 |
+| near 0.2, defenders' decisions only | +0.98 | +0.82 | +0.065 +- 0.010 | +0.23 |
+
+- My nats without the reading agree with your sandbox figures at every decision (0.2: +1.05; 0.4: +1.86 against
+  your +1.85), so we are measuring the same aim. By stage they differ a little (tricks 1 to 6: +1.59 against your
+  +1.48; from trick 7: +0.50 against +0.58), which may be the split by trick against by deal list.
+- Your first played figure at near 0.4, +1.39 +- 0.39 IMPs, is 0.9 standard errors above the proxy's +1.04.
+- The proxy says four fifths of the gain is before trick 7 and that declarer's decisions gain more than the
+  defenders' from the same aim. With v4.1's reading the every-decision figures are +0.053, +0.095, +0.171, +0.263.
+- The IMP column is the rough part: 3.6 a trick is the rate of the arena's fork pairs, not of these decisions.
+
+azure5 is still idle and still offered (12:33).
+
