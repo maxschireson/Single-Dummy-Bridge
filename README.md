@@ -1,5 +1,5 @@
 # d6-arrival on azure4
 
-Results of box job `d6-arrival` (G9-D6, owner dave), published by tools/boxq.py on team/gen9. Source `feature/gen9-arena-arrival` at `8cb0348`. A transfer branch: never merged into source.
+Results of box job `d6-arrival` (G9-D6, owner dave), published by tools/boxq.py on team/gen9. Source `feature/gen9-arena-arrival` at `698679e`. A transfer branch: never merged into source.
 
-Last published 2026-11-12T17:53:48Z: 2315 of 6200 boards, state failed.
+Last published 2026-11-12T18:59:38Z: 2315 of 6200 boards, state running.

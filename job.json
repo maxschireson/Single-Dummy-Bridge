@@ -8,7 +8,7 @@
  "cores": 8,
  "source": {
   "branch": "feature/gen9-arena-arrival",
-  "commit": "8cb0348"
+  "commit": "698679e"
  },
  "argv": [
   "{python}",
@@ -41,5 +41,7 @@
   "control/*"
  ],
  "submitted": "2026-11-12T13:21:00Z",
- "by": "dave"
+ "by": "dave",
+ "retry": 1,
+ "state": "queued"
 }
