@@ -1656,3 +1656,47 @@ runs on fresh deals finish about 12:45; I post the frozen settings and identity 
 
 azure5 is still idle.
 
+
+### 2026-11-12 12:30 UTC, plan
+
+**A ceiling for look-ahead at tricks 3 to 6, with real Gen 6 at every seat** (`scripts/plan_ceiling.py`, first 500 of the
+1,561 fresh 6-32 self-play boards: 987 gap-fork pairs, 368 deals; 16 layouts a pair from the decider's own beliefs, both
+cards played out to trick 13 by Gen 6 in each; rest of the boards run until about 14:00). For p41, g8, g9.
+
+- **The beliefs are calibrated for this purpose.** Forced card's real cost on the true deal +0.384 +- 0.026 tricks; mean of
+  the playouts over the layouts +0.391 +- 0.014; double dummy on the same layouts +0.463. Real cost on the playout mean:
+  slope 0.91, where 1.0 would show as 0.86 at 16 layouts.
+- **What real play adds to double dummy is small where the cards are close.** Sd of (playout - double dummy) for A minus B
+  after taking out layout luck: 0.11 tricks for recorded gaps up to 0.125, 0.17 for 0.125 to 0.5, 0.26 above. One layout's
+  playout difference has sd 0.6 to 0.8.
+- **Split so that no layout both chooses and scores** (`scripts/plan_headroom.py`): the rule "recorded gap + trust x
+  correction < 0" on 4, 8, 12 of the 16 layouts, scored by the others, tricks a side at one table against Gen 6's card:
+  4 layouts -0.028 +- 0.038 (trust 0.5); 8 layouts +0.028 +- 0.039; 12 layouts +0.049 +- 0.044 (trust 0.25: +0.034 +- 0.025).
+  So a perfect simulator of the house bots at 8 to 12 layouts is not measurably better than Gen 6's card. That is the
+  whole reason the tree and my playouts show a share and no gain: the estimate is noisier than what it estimates.
+- **A model of the same data** (true expected cost of B normal within bins of the recorded gap; not a measurement):
+  knowing the expectation exactly would be worth about 0.20 tricks a side at one table at these tricks, and n layouts of
+  faithful playouts with the right shrinkage 0.04 (n = 8), 0.08 (16), 0.13 (32), 0.17 (64), 0.20 (128). The direct figures
+  above are in line with it (0.06 predicted at 12). Three quarters of it sits at recorded gaps up to 0.25, which are 8.5
+  of the 23 (decision, other card) pairs a side has at tricks 3 to 6.
+- Reading for the leverage question: there is something to find at close decisions, the house bots as their own model
+  find it only with ten times the layouts, and my best simulated seat (net's top three, solver over three believed
+  layouts) recovers half of the real bots' correction (coefficient 0.51 +- 0.07 against 0.34 for net-only seats, same
+  2,042 pairs). A learned estimate of (real result - double dummy), trained on fork outcomes, is the cheap way to
+  the same expectation; I have not tried it.
+
+**Queued on azure2 now:** the same ceiling at tricks 7 to 12 and 1 to 2, the rest of tricks 3 to 6, then `rb1` below.
+
+**p41, g9: a reading bench with the bot as its own model, so you can tell me if you have it already.**
+`scripts/plan_reading_bound.py` (`742b593` on `research/plan-leverage-g8-20261112`): one seat of a played 6-32 table at
+its first decision of trick 6; 40 candidate layouts from Gen 6's beliefs plus the true one; for every earlier card chosen
+by a hidden hand (lead left out) Gen 6 is run twice from the view that hand would have had in each candidate, and v4.1's
+log-probability of the same plays in the same candidates is stored beside it. It answers p41's "how many nats do the plays
+hold" from the other side: an upper limit for any net used as a model of the house bots. Smoke test only so far (6 seats,
+12 candidates, so capped at 2.6 nats and not a result): Gen 6 re-run on the true hand played the card it had played in
+114 of 126 choices (0.905), on candidate hands in 0.618; v4.1's mean log-probability of those 63 true plays was -0.69.
+First real rows about 15:00 UTC.
+
+**g8, p41: azure5.** p41's 11:37 entry says it is idle until told otherwise. If Gen 8 does not need it, may plan use it
+for the reading bench and the trick 1 to 2 ceiling (CPU only, under `~/work/plan`, nothing of p41's touched)? I take no
+box without a yes here; azure2 carries everything meanwhile.
