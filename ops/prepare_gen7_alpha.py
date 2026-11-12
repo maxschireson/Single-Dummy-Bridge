@@ -8,7 +8,13 @@ policy net, and the plan's `gen7` block written out in full, defaults included.
 Carried over from the source run unchanged: tie-audit and fork settings, bidding conditions, room
 seeding, the generation/variant labels the exporter keys on, and the facts about its corpus.
 
-  python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json]
+A plan may give the cohort's own `model_note` and `interpretation`; without them the alpha's are used.
+
+Several machines can share one source run without playing a deal twice: each prepares with its
+own `--shard K/N` (K from 0 to N-1) and gets every N-th unplayed deal starting at the K-th. The
+shard is written into the manifest, so each machine's cohort has its own identity.
+
+  python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json] [--shard K/N]
 """
 import argparse
 from copy import deepcopy
@@ -125,7 +131,18 @@ def commit():
         return None
 
 
-def prepare(root, source, plan_path=None):
+def parse_shard(text):
+    """'1/4' -> (1, 4): the second of four machines sharing a source run."""
+    try:
+        k, n = (int(x) for x in str(text).split('/'))
+    except ValueError:
+        raise ValueError('A shard is K/N, for example 1/4') from None
+    if not 0 <= k < n <= 64:
+        raise ValueError('A shard is K/N with 0 <= K < N <= 64')
+    return k, n
+
+
+def prepare(root, source, plan_path=None, shard=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -156,6 +173,11 @@ def prepare(root, source, plan_path=None):
         keep = [i for i in range(old['target']) if i not in done]
         if not keep:
             raise ValueError('No unplayed source deals remain')
+        if shard is not None:                   # this machine's share: every n-th unplayed deal, starting at the k-th
+            k, n = parse_shard('%s/%s' % tuple(shard))
+            keep = keep[k::n]
+            if not keep:
+                raise ValueError('No unplayed source deals fall in this shard')
         bots = make_bots(old, plan)
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
@@ -183,17 +205,19 @@ def prepare(root, source, plan_path=None):
             source_indices='source-indices.json', source_indices_sha256=sha(root / 'source-indices.json'),
             labels=labels, order=plan['roster'], plan_sha256=sha(plan_path), source_commit=commit(),
             gen7_alpha=dict(bots=sorted(plan['gen7_bots']), policy_release=entry['release'], policy_sha256=entry['sha256']),
-            model_note='Gen 7 alpha bots are their Gen 6 base bot (same bidder, lead net, hand-fit scorer, layouts and sample count) '
+            model_note=plan.get('model_note') or 'Gen 7 alpha bots are their Gen 6 base bot (same bidder, lead net, hand-fit scorer, layouts and sample count) '
                        'with the gen7 engine (bridge_harness/gen7.py): the policy net weights the listed layouts by the play so far, '
                        'breaks ties, and from the tricks named in each bot\'s `gen7.tree` a short tree search over the net\'s likeliest '
                        'cards re-values the cards the Gen 6 search rates near its best. Settings are in each bot\'s `gen7` block. '
                        'Every other bot is unchanged from the source run. docs/gen7_alpha_2026-11-11.md has the details.',
-            interpretation='Alpha cohort to validate the Gen 7 architecture and measure its speed; not a strength claim. '
+            interpretation=plan.get('interpretation') or 'Alpha cohort to validate the Gen 7 architecture and measure its speed; not a strength claim. '
                            'Common and native auctions are separate conditions; identical auctions reuse physical games. '
                            'Only unplayed source deals are allocated; completed source records are unchanged.')
         for key in CARRIED:
             if key in old:
                 m[key] = deepcopy(old[key])
+        if shard is not None:
+            m['shard'] = dict(index=k, of=n)
         m['identity'] = digest(m)
         atomic_json(root / 'manifest.json', m)
         atomic_json(root / 'state.json', dict(manifest_identity=m['identity'], completed=0, target=len(keep), by_pair={}, root_games=0, tables=0, epoch=time.time()))
@@ -207,7 +231,8 @@ if __name__ == '__main__':
     p.add_argument('--source', type=Path, required=True)
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--plan', type=Path)
+    p.add_argument('--shard', help='K/N: take every N-th unplayed deal starting at the K-th (K from 0), for machines sharing one source run')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan)
-    print(json.dumps(dict(identity=m['identity'], target=m['target'], allocation=m['pair_weights'], policy=m['gen7_alpha'],
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None)
+    print(json.dumps(dict(identity=m['identity'], target=m['target'], shard=m.get('shard'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))

@@ -1,18 +1,16 @@
 {
   "schema": "gen7-alpha-plan-v1",
-  "campaign": "gen7-candidate-20261111",
-  "title": "Gen 7 candidate · phase 2: volume (30% fast self-play, 30% standard self-play, 20% standard v Gen 6, 5% each of four anchors)",
+  "campaign": "gen7-phase2-20261112",
+  "title": "Gen 7 · phase 2: volume (30% fast self-play, 30% standard self-play, 20% standard v Gen 6, 5% each of four anchors)",
   "launch_enabled": false,
   "pending": [
-    "Acceptance of Gen 7 by Max. Not given yet. It turns mostly on policy v4 and on the tree's budgets (`max_solves`, `path_solves`, and the compute the standard bot may spend at tricks 3 to 6).",
-    "Final tree parameters of 7s-32: `root_margin`, `trust`, `path`, `tricks`, `breadth`, `mass`. The values below are the candidate of 11 November 23:30 UTC, from one bench set and a short smoke match (docs/gen7_candidate_2026-11-11.md).",
-    "Audits in the anchor pairs (7s-32 against ben64, ben, 5RZ32 and 1): Max wants them off. BEN boards already carry none (`ben_audit`). There is no per-pair switch for 5RZ32 and 1 in this runtime; it has to be added before those two pairs run, or they run with the cohort's audits.",
+    "Phase 1 first: this plan opens when every phase 1 pair has 2,000 completed boards.",
     "Self-play pairs (7f-32~7f-32, 7s-32~7s-32) need a runtime with the self-play regime. The collectors' branches have it; this branch, like `main` at b0909bb, validates common and native only. The engine files of this branch have to be carried onto that runtime, as a new source identity."
   ],
   "notes": [
-    "Candidate, not a launch. `launch_enabled` is false and `pending` is not empty, so ops/prepare_gen7_alpha.py refuses this file. The go-ahead will be a later commit that settles `pending`.",
-    "A Gen 7 bot is its Gen 6 base bot (same bidder, lead net, scorer, layouts and sample count) with the gen7 engine and policy v4. docs/gen7_alpha_2026-11-11.md explains every setting; docs/gen7_candidate_2026-11-11.md is the notice this file belongs to.",
-    "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here.",
+    "Not open yet: `launch_enabled` is false and `pending` is not empty, so ops/prepare_gen7_alpha.py refuses this file. Max accepted Gen 7 and set the standard bot's tree on 12 November 2026 (margin 0.25, trust 0.3, `path` 0.5, 3 tricks); what remains is in `pending`.",
+    "A Gen 7 bot is its Gen 6 base bot (same bidder, lead net, scorer, layouts and sample count) with the gen7 engine and policy v4. docs/gen7_alpha_2026-11-11.md explains every setting.",
+    "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here. BEN boards carry no audits (`ben_audit`). Gen 5 and Gen 1 boards carry the cohort's: there is no per-pair switch.",
     "Weights are twentieths of the boards: 6, 6, 4, 1, 1, 1, 1. A self-play board is one table; a two-bot board is two tables on one deal, so in tables the two-bot pairs weigh double.",
     "Self-play supplies training data and has no IMP comparison, as for Gen 6."
   ],
@@ -80,7 +78,7 @@
             "to_trick": 6,
             "root_margin": 0.25,
             "root_cards": 3,
-            "trust": 0.25,
+            "trust": 0.3,
             "max_solves": 12000,
             "tricks": 3,
             "breadth": 3,

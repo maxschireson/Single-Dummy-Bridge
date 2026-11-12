@@ -19,7 +19,7 @@ from bridge_harness.selfplay import atomic_json
 from bridge_harness.training import digest
 from ops import gen5_runtime, prepare_gen6
 from ops.prepare_gen6 import GEN6_FILES
-from ops.prepare_gen7_alpha import CARRIED, GEN7_POLICY, RUNTIME, load_plan, make_bots, prepare
+from ops.prepare_gen7_alpha import CARRIED, GEN7_POLICY, RUNTIME, load_plan, make_bots, parse_shard, prepare
 from ops.smoke_gen7 import check_decision
 from test_gen6 import FakeBelief, FakeState
 from test_gen6_launch import source_run
@@ -85,17 +85,24 @@ class Gen7LaunchTests(unittest.TestCase):
             for stage in block['tree']:
                 self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
 
-    def test_candidate_plans_are_closed_and_spell_out_every_setting(self):
+    def test_phase_1_plans_are_open_phase_2_is_closed_and_every_setting_is_spelled_out(self):
         mix = json.loads((ROOT / 'configs' / 'gen7-candidate-mix.json').read_text())
-        self.assertEqual(mix['status'], 'candidate_not_authorized')
-        for phase, total in (('phase1', 5), ('phase2', 20)):
+        self.assertEqual(mix['status'], 'phase1_authorized')
+        plans = {}
+        for phase, total, is_open in (('phase1', 5, True), ('phase1_nonben', 3, True), ('phase1_ben', 2, True), ('phase2', 20, False)):
             path = ROOT / mix['plans'][phase]
-            with self.assertRaises(ValueError):
-                load_plan(path)
-            plan = load_plan(path, require_ready=False)
-            self.assertFalse(plan['launch_enabled'])
-            self.assertTrue(plan['pending'])
-            self.assertEqual(plan['pair_weights'], mix[phase]['pair_weights'])
+            if is_open:
+                plan = load_plan(path)                           # ready: preparation accepts it
+                self.assertTrue(plan['launch_enabled'])
+                self.assertEqual(plan['pending'], [])
+                self.assertTrue(plan['model_note'] and plan['interpretation'])
+            else:
+                with self.assertRaises(ValueError):
+                    load_plan(path)
+                plan = load_plan(path, require_ready=False)
+                self.assertFalse(plan['launch_enabled'])
+                self.assertTrue(plan['pending'])
+            plans[phase] = plan
             self.assertEqual(sum(plan['pair_weights'].values()), total)
             self.assertEqual({m for pair in plan['pair_weights'] for m in pair.split('~')}, set(plan['roster']))
             entry = plan['artifacts']['gen7_policy']
@@ -109,8 +116,20 @@ class Gen7LaunchTests(unittest.TestCase):
                 self.assertEqual('tree' in block, key == '7s-32')   # fast has no tree; standard has one
                 for stage in block.get('tree', []):
                     self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
-                    self.assertGreater(stage['path'], 0)
-                    self.assertLessEqual(stage['trust'], .3)
+                    # what Max set on 12 November: margin 0.25, trust 0.3, the stake rule at 0.5 IMPs, 3 tricks
+                    self.assertEqual((stage['root_margin'], stage['trust'], stage['path'], stage['tricks']), (.25, .3, .5, 3))
+        self.assertEqual(plans['phase1']['pair_weights'], mix['phase1']['pair_weights'])
+        self.assertEqual(plans['phase2']['pair_weights'], mix['phase2']['pair_weights'])
+        # the two halves are the five pairs of phase 1, split by whether the machine needs a BEN server
+        halves = dict(plans['phase1_nonben']['pair_weights'], **plans['phase1_ben']['pair_weights'])
+        self.assertEqual(halves, plans['phase1']['pair_weights'])
+        self.assertFalse(set(plans['phase1_nonben']['pair_weights']) & set(plans['phase1_ben']['pair_weights']))
+        self.assertFalse(any('ben' in pair for pair in plans['phase1_nonben']['pair_weights']))
+        self.assertTrue(all('ben' in pair for pair in plans['phase1_ben']['pair_weights']))
+        for phase in ('phase1_nonben', 'phase1_ben'):
+            for key in ('campaign', 'gen7_bots', 'artifacts', 'common_bidder', 'audit_references', 'model_note', 'interpretation'):
+                self.assertEqual(plans[phase][key], plans['phase1'][key], (phase, key))
+        self.assertEqual(plans['phase2']['gen7_bots']['7s-32'], plans['phase1']['gen7_bots']['7s-32'])     # one standard bot in both phases
 
     def test_bad_plans_are_refused(self):
         for edit in (lambda p: p['gen7_bots']['7a-32']['gen7']['tree'][0].update(depth=3),
@@ -192,6 +211,31 @@ class Gen7LaunchTests(unittest.TestCase):
         self.assertEqual(m['labels']['7a-32'], 'Gen 7 alpha (32)')
         with self.assertRaises(ValueError):
             prepare(run, self.tmp / 'source', self.plan_path)                   # never overwrites
+
+    def test_machines_sharing_a_source_run_take_disjoint_deals(self):
+        self.plan.update(model_note='the cohort in its own words', interpretation='how to read it')
+        self.write()
+        whole = prepare(self.tmp / 'whole', self.tmp / 'source', self.plan_path)
+        self.assertNotIn('shard', whole)
+        self.assertEqual((whole['model_note'], whole['interpretation']), ('the cohort in its own words', 'how to read it'))
+        every = json.loads((self.tmp / 'whole' / 'source-indices.json').read_text())
+        parts = []
+        for k in range(2):
+            run = self.tmp / f'box{k}'
+            m = prepare(run, self.tmp / 'source', self.plan_path, shard=(k, 2))
+            verify_generation(run, m)
+            self.assertEqual(m['shard'], dict(index=k, of=2))
+            parts.append(json.loads((run / 'source-indices.json').read_text()))
+            self.assertEqual((parts[-1], m['target']), (every[k::2], len(every[k::2])))
+            self.assertNotEqual(m['identity'], whole['identity'])
+        self.assertFalse(set(parts[0]) & set(parts[1]))
+        self.assertEqual(sorted(parts[0] + parts[1]), every)
+        self.assertEqual(parse_shard('3/4'), (3, 4))
+        for bad in ('4/4', '-1/4', '0/0', '1', 'a/b', '1/65'):
+            with self.assertRaises(ValueError):
+                parse_shard(bad)
+        with self.assertRaises(ValueError):
+            prepare(self.tmp / 'empty', self.tmp / 'source', self.plan_path, shard=(60, 64))        # more machines than deals: nothing left for this one
 
     def test_prepare_refuses_a_live_source_a_bad_mix_or_the_wrong_scorer(self):
         source = self.tmp / 'source'
