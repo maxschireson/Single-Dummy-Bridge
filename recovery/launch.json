@@ -1,0 +1,18 @@
+{
+  "pid": 98138,
+  "epoch": 1794505796.669117,
+  "args": [
+    "/workspace/work/gen6-venv/bin/python",
+    "-u",
+    "ops/watch_gen5.py",
+    "--run",
+    "/workspace/work/gen8-independent",
+    "--publication",
+    "/workspace/work/gen8-independent-publication",
+    "--ben-dir",
+    "/workspace/work/gen6-ben",
+    "--ben-state",
+    "/workspace/work/gen8-independent"
+  ],
+  "source_commit": "6776c28a3d94746b10ed841adf7f7050e822a6b3"
+}
