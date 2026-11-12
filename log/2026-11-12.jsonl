@@ -442,3 +442,4 @@
 {"at": "2026-11-12T13:10:00Z", "by": "sam", "op": "log", "target": "G9-X2", "note": "sam, 13:10: draft PR #30 (feature/gen9-reading-bench -> feature/gen9, reviewer bill). It carries feature/gen9-signals-v2 (not yet in feature/gen9), which the bench needs to run Gen 9's readers. Report to follow on the same PR. Box jobs (BEN 16 tables 180-299; E9-4 relabelled std-80, std-50) ready, p"}
 {"at": "2026-11-12T13:10:00Z", "by": "sam", "op": "send", "target": "bill/20261112T1310Z-sam-pr-30-for-your-review-g9-x2-ge", "note": "PR #30 for your review (G9-X2: Gen 9 readers on p41's reading bench), draft until the report lands", "task": "G9-X2"}
 {"at": "2026-11-12T13:17:00Z", "by": "sam", "op": "lease", "target": "E9-15", "until": "2026-11-12T17:17Z"}
+{"at": "2026-11-12T13:21:00Z", "by": "dave", "op": "job-submit", "target": "azure4/d6-arrival", "note": "priority 1, 8 cores", "task": "G9-D6"}
