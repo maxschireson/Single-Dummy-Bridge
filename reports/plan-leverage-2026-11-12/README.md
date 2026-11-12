@@ -460,8 +460,8 @@ a pair). None of them asks the net to judge a position.
    moved that by two points. `match2` says whether brute force (the bot simulating itself from trick 5, at 199 CPU
    seconds a board) collects more of it.
 3. **Train on the teacher only if the late rule is adopted.** Its consultations are playout means for up to three
-   cards on 16 layouts each, about ten a board: labels fifteen times cleaner than a fork's one real deal, at no extra
-   cost. A head fitted on a hundred thousand of them is the untried version of the formula's third step. The evidence
+   cards on 16 layouts each, about nine a board: labels with a sixteenth of the noise variance of a fork's one real
+   deal, at no extra cost. A head fitted on a hundred thousand of them is the untried version of the formula's third step. The evidence
    so far is against it (section 4), from a few thousand labels.
 4. **Reading: by convention, not by self-simulation.** Section 5 shows how much the plays hold when the reader can
    reproduce the player (3.4 nats about an honour at trick 6, 1.8 of a defender's from partner's cards alone) and
