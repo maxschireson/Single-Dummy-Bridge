@@ -27,3 +27,7 @@ artifact links. Link the report here or from the relevant subsystem guide.
 Distinguish prediction validation, double-dummy proxy evaluations and actual
 paired cardplay. Preserve negative results and separate reused families from new
 independent evidence.
+
+- [Gen7.1 policy comparison checkpoint, 12 November13:53](gen71-gate-20261112T1353.md)
+
+- [Gen7.1 authoritative training-family audit](gen71-authoritative-training-audit-20261112.md)

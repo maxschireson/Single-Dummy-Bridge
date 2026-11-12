@@ -17,9 +17,18 @@ def gate(values):
                 method='Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction')
 
 
+def training_families(run, control):
+    known=set(json.loads((Path(run)/'artifacts/validation/all-training-families.json').read_text()))
+    if control.get('training_family_authority'):
+        path=Path(control['training_family_authority'])
+        assert hashlib.sha256(path.read_bytes()).hexdigest()==control['training_family_authority_sha256'], 'Training-family authority changed'
+        known.update(json.loads(path.read_text()))
+    return known
+
+
 def check(control,registry,heads):
     mine=json.loads((Path(control['target'])/'manifest.json').read_text());actor=mine['bots']['71s-32'];old=mine['bots']['7s-32']
-    trained=set(json.loads((Path(control['target'])/'artifacts/validation/all-training-families.json').read_text()))
+    trained=training_families(control['target'],control)
     pairs={p for p in mine['pair_weights'] if len(set(p.split('~')))>1}
     def get(url):
         with urllib.request.urlopen(url,timeout=45) as f:return f.read()
