@@ -1,0 +1,30 @@
+{
+  "revision": "5fe5e85816a0244a0a3d561f41d2c4c279b33583",
+  "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "board": 2,
+  "url": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/replays/board.html?cohort=cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235&board=2&revision=5fe5e85816a0244a0a3d561f41d2c4c279b33583",
+  "public_before": {
+    "title": "Play record unavailable",
+    "loading": "This run’s play records have not been published yet."
+  },
+  "patched_only_in_local_browser": true,
+  "shared_files_published": false,
+  "conditions": [
+    {
+      "condition": "common",
+      "rooms": 2,
+      "cards_at_end": 2,
+      "result": "0 IMPs for Gen 8 candidate, Precision rule bidder (32) · +430 − (+430) points",
+      "provenance": "Gen8 candidate · Codex main arena mix · Original board ID gen6-selfplay-edb203d5618d255f5b8268cb820b43f2841fa271fe336662b6ffc92661840de9 · Source index 2 · Record SHA256 702541e634edab9f3c4e051b6acec4a173513279818ab2adfb22429e94fa49ea"
+    },
+    {
+      "condition": "own",
+      "rooms": 2,
+      "cards_at_end": 2,
+      "result": "-1 IMPs for Gen 8 candidate, Precision rule bidder (32) · +430 − (+460) points",
+      "provenance": "Gen8 candidate · Codex main arena mix · Original board ID gen6-selfplay-edb203d5618d255f5b8268cb820b43f2841fa271fe336662b6ffc92661840de9 · Source index 2 · Record SHA256 702541e634edab9f3c4e051b6acec4a173513279818ab2adfb22429e94fa49ea"
+    }
+  ],
+  "page_errors": [],
+  "status": "own_gen8_replay_catalog_defect_reproduced_and_local_fix_verified"
+}
