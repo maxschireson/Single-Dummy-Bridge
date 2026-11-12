@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Score honest playouts on fork pairs: does playing the hand out say which card did better?
 
-  python scripts/plan_bench.py --episodes DIR_OR_LIST --nets v4=PATH,v41=PATH --sims "v41:top;v41:blend;v4:top" \
+  python scripts/plan_bench.py --episodes DIR_OR_LIST --nets v4=PATH,v41=PATH --sims "v41:top;v41:map;v4:top" \
         [--from-trick 3] [--to-trick 6] [--ties] [--pairs 2000] [--workers 2] [--out rows.json]
 
 In a fork pair A is the card Gen 6 played and B a card the collector forced at the same decision and
@@ -40,7 +40,7 @@ from bridge_harness.core import SEATS, Board, Game, card
 from bridge_harness.gen6 import View
 from bridge_harness.gen7 import player
 from bridge_harness.gen7_net import PolicyNet
-from bridge_harness.plan_rollout import NetPlayer, Public, card_values
+from bridge_harness.plan_rollout import Believer, NetPlayer, Public, card_values
 import gen7_check as check
 
 STATE = {}
@@ -53,6 +53,15 @@ def parse_sims(text):
         out.append(dict(name=part.replace(':', '_'), net=bits[0], mode=bits[1], repeats=int(bits[2]) if len(bits) > 2 else 1,
                         tricks=int(bits[3]) if len(bits) > 3 else 0))
     return out
+
+
+def seat_player(net, dds, mode, seed):
+    """top, draw, blend: the net's card. map, bdraw: the solver's card for the seat's believed layout (most likely,
+    or drawn); a number after either (map3) is how many believed layouts are solved."""
+    for name, belief in (('map', 'map'), ('bdraw', 'draw')):
+        if mode.startswith(name):
+            return Believer(net, dds, belief, layouts=int(mode[len(name):] or 1), seed=seed)
+    return NetPlayer(net, mode, seed=seed)
 
 
 def start(nets, sims, from_trick, to_trick, ties, seed):
@@ -112,6 +121,7 @@ def pairs_of(path):
             u = np.array([[x[a], x[b]] for x in (check.utilities(o, values) for values, _ in check.solve(six, o, worlds))])
             row['pimc'] = float(weights @ (u[:, 0] - u[:, 1]))
             row['layouts'] = len(worlds)
+            row['neff'] = float(1 / (weights ** 2).sum())
             row['seconds_pimc'] = time.perf_counter() - started
             truth = tuple(tuple(sorted(h)) for h in game.hands)
             (values, _), = check.solve(six, o, [truth])
@@ -123,11 +133,13 @@ def pairs_of(path):
                 net = STATE['nets'][sim['net']]
                 if sim['net'] not in publics:
                     publics[sim['net']] = Public(net, o)
-                who = NetPlayer(net, sim['mode'], seed=[STATE['seed'], ply, int(d['family'][8:16], 16)])
+                who = seat_player(net, six.dds, sim['mode'], [STATE['seed'], ply, int(d['family'][8:16], 16)])
                 started = time.perf_counter()
                 v = card_values(o, worlds, [a, b], who, publics[sim['net']], sim['repeats'], sim['tricks'], six.dds)
                 row[sim['name']] = float(weights @ (v[:, 0] - v[:, 1]))
-                row['sd_' + sim['name']] = float(np.sqrt(weights @ ((v[:, 0] - v[:, 1]) - (u[:, 0] - u[:, 1])) ** 2))
+                change = (v[:, 0] - v[:, 1]) - (u[:, 0] - u[:, 1])
+                row['sd_' + sim['name']] = float(np.sqrt(weights @ change ** 2))
+                row['var_' + sim['name']] = float(weights @ (change - weights @ change) ** 2)
                 tv = card_values(o, [truth], [a, b], who, publics[sim['net']], max(sim['repeats'], 1), sim['tricks'], six.dds)
                 row['true_' + sim['name']] = float(tv[0, 0] - tv[0, 1])
                 row['true_a_' + sim['name']] = float(tv[0, 0])
@@ -141,7 +153,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--episodes', type=Path, required=True, help='a folder of *.json.gz, or a text file listing them')
     p.add_argument('--nets', required=True, help='name=path,name=path')
-    p.add_argument('--sims', required=True, help='NET:MODE[:repeats];...  modes: top, blend, draw')
+    p.add_argument('--sims', required=True, help='NET:MODE[:repeats[:tricks]];...  modes: top, blend, draw (the net plays); map, bdraw, map3 (the solver plays the believed layout)')
     p.add_argument('--from-trick', type=int, default=3)
     p.add_argument('--to-trick', type=int, default=6)
     p.add_argument('--ties', action='store_true')
