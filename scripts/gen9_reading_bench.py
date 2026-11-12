@@ -545,9 +545,9 @@ def box(a):
         source_episodes = fetch_feeds(a.feeds_dir, names=[branch], commit=commit or None)[0]
         subprocess.run(me + ['relabel', '--source-episodes', source_episodes, '--cell', a.cell, '--tables', str(a.first + a.tables),
                              '--seed', str(a.relabel_seed), '--out', str(out)], check=True)
-        common = ['--episodes', str(out / 'episodes'), '--deciders', 'declarer', '--out', str(out)]
+        common = ['--episodes', str(out / 'episodes'), '--deciders', a.house_deciders, '--out', str(out)]
         chosen = every_table(out / 'episodes')[a.first:a.first + a.tables]
-        deciders, opponent = 'declarer', None
+        deciders, opponent = a.house_deciders, None
     else:
         feeds = fetch_feeds(a.feeds_dir, a.opponent)
         common = ['--feeds', *feeds, '--opponent', a.opponent, '--out', str(out)]
@@ -599,6 +599,7 @@ def main():
     ap.add_argument('--cell', default='std-80', help='relabel: scheme-honesty')
     ap.add_argument('--house-feed', help='box: BRANCH[@COMMIT], the feed whose tables are relabelled (E9-4 part 1: arena-gen7-phase1-azure1-feed@f9dad79...)')
     ap.add_argument('--relabel-seed', type=int, default=9, help="box: relabel's seed (E9-4 part 1's: 9)")
+    ap.add_argument('--house-deciders', default='declarer', choices=('declarer', 'all'), help='box with --house-feed: whose decisions are solved')
     ap.add_argument('--out', required=True)
     ap.add_argument('--first', type=int, default=0, help='the first table of the held-out list to take')
     ap.add_argument('--tables', type=int, default=300)
