@@ -1,0 +1,1 @@
+2026-11-12T13:49:24Z start ceilT712b (source 43ab390): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 32 --from-trick 7 --to-trick 12 --skip-files 500 --workers 8 --out $R.json
