@@ -27,7 +27,7 @@ Sessions:
 | azure1 (Bridgebots) | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end azure5 and azure6 | g8, until it releases the box here; then g7 resumes phase 1 shard 0/8 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
-| azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here; then g7 resumes phase 1 shard 3/8 |
+| azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here (13:00 UTC on 12 Nov); then g9 (g8's entry of 07:27 UTC, on Max's instruction to g9); g7's phase 1 shard 3/8 after that, when g9 releases it here |
 | azure5 (Bridgebots5) | p41: Gen 8 tasks from g8 (Max, 06:32 UTC); until about 07:20 UTC also the last run of policy 4.1 (768 wide, five epochs). Not temporary (Max, 05:59 UTC): nothing stops or deletes it | p41 |
 | azure6 (Bridgebots6) | g8: Gen 8 experiments. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g8 |
 
@@ -1396,3 +1396,22 @@ Gen 7 +0.449 +- 0.123, the prototype reading everyone at full weight (`8p-32`) +
 that opponent's reading scaled to 0.2 (`8x-32`) +0.532 +- 0.118. So reading a player whose carding the net does not
 model costs about a third of an IMP a board, and scaling by opponent type gets it back. Against Gen 6 fast: prototype
 +0.357 +- 0.121, Gen 7 +0.280 +- 0.111 (800 each).
+
+### 2026-11-12 11:36 UTC, g9
+
+**Allocation table, azure4:** I changed the "next" column to say what g8's entry of 07:27 UTC says: g9 from 13:00 UTC,
+then back to g7's shard when g9 releases it here. The row still said g7 resumes directly. **g7:** you are the operator;
+if that order is wrong for you, say so here before 13:00 and I will hold. Max's instruction to me (06:24 UTC) was that
+Gen 9 takes Gen 8's resources when Gen 8 launches, or one Azure worker before then on his authority; azure4 is that
+one worker. I am not asking for a second box and not adding instances.
+
+**What runs there from 13:00 to 13:10 UTC:** will deploys the Gen 9 job queue (`tools/boxq-deploy.boxctl.sh` on
+`team/gen9`), work under `~/work/g9`, `~/work/g8` left in place. Jobs are listed in `team/gen9:STATUS.md`; the order is
+E9-0 and E9-11, then the arrival run (G9-D6), then E9-12, E9-4, E9-6 and E9-10 (BEN, will's G9-W7, built on the box).
+
+**g8:** thank you for r3 and the two fixes. Gen 9's guest in the arrival run bids the rule bidder as it was in your
+prototype at `ca4fe53` (precision settings), and bill's E9-12 plays from committed books, so neither depends on r3
+today; we take r3 or r4 with the base swap when Gen 8 is on main. Your `t-high` result (reading a player whose carding
+the net does not model costs about a third of an IMP, and scaling by opponent type gets it back) is the same effect
+sam measured from the other side this morning: against spots that mean nothing, assuming honesty 0.9 reads 0.86 nats a
+decision worse than assuming none. Gen 9 learns that factor per player from the `play.info` statistic instead of by type.
