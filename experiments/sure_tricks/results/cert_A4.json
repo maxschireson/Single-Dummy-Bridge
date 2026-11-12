@@ -1,0 +1,124 @@
+{
+ "A4": {
+  "deals": {
+   "A4-QW": {
+    "dd": 10,
+    "sound": 10,
+    "play": [
+     "W:HQ N:H4 E:H2 S:HK",
+     "S:SA W:S5 N:S2 E:S3",
+     "S:S4 W:S6 N:SK E:H5",
+     "N:HA E:H6 S:H3 W:H9",
+     "N:C3 E:CT S:C4 W:C2",
+     "E:CQ S:C5 W:C9 N:C6",
+     "E:CK S:C8 W:CJ N:C7",
+     "E:H7 S:S9 W:HT N:S7",
+     "S:ST W:HJ N:S8 E:H8",
+     "S:SJ W:D3 N:SQ E:D2",
+     "N:D4 E:D6 S:DA W:D7",
+     "S:D5 W:DQ N:DK E:D8",
+     "N:DJ E:D9 S:DT W:CA"
+    ]
+   },
+   "A4-QE": {
+    "dd": 10,
+    "sound": 10,
+    "play": [
+     "W:HQ N:H4 E:H2 S:HK",
+     "S:SA W:S5 N:S2 E:S3",
+     "S:S4 W:S6 N:SK E:H5",
+     "N:HA E:H6 S:H3 W:H9",
+     "N:C3 E:CT S:C4 W:C2",
+     "E:CQ S:C5 W:C9 N:C6",
+     "E:CK S:C8 W:CJ N:C7",
+     "E:H7 S:S9 W:HT N:S7",
+     "S:ST W:HJ N:S8 E:H8",
+     "S:SJ W:CA N:SQ E:D2",
+     "N:D4 E:D6 S:DT W:D3",
+     "S:D5 W:D7 N:DK E:D8",
+     "N:DJ E:DQ S:DA W:D9"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "HQ",
+    "H4",
+    "H2",
+    "HK",
+    "SA",
+    "S5",
+    "S2",
+    "S3",
+    "S4",
+    "S6",
+    "SK",
+    "H5"
+   ],
+   "cards": {
+    "S7": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A4-QW",
+      "A4-QE"
+     ]
+    },
+    "SQ": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A4-QW",
+      "A4-QE"
+     ]
+    },
+    "HA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A4-QW",
+      "A4-QE"
+     ]
+    },
+    "D4": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "A4-QE"
+     ]
+    },
+    "DJ": {
+     "fused": 0.5714285714285714,
+     "true": 0.5714285714285714,
+     "wins": [
+      "A4-QE"
+     ]
+    },
+    "DK": {
+     "fused": 0.5714285714285714,
+     "true": 0.5714285714285714,
+     "wins": [
+      "A4-QE"
+     ]
+    },
+    "C3": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "A4-QE"
+     ]
+    },
+    "C6": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "A4-QE"
+     ]
+    }
+   },
+   "nodes": 1523995,
+   "solves": 3033696,
+   "seconds": 398
+  }
+ }
+}

@@ -1,0 +1,17 @@
+## ablations, contract-target, 4-card table (nodes are deterministic)
+A6_8   --front 4 --warm contract              5.93 ms  nodes    35816  probes   26251
+S6_8   --front 4 --warm contract              5.41 ms  nodes    35184  probes   16960
+B6_8   --front 4 --warm contract              0.86 ms  nodes     6253  probes    2660
+A6_9   --front 4 --warm contract             74.72 ms  nodes   412750  probes  241404
+A6_8   --front 4 --warm --nobounds contract     6.20 ms  nodes    36964  probes   29736
+S6_8   --front 4 --warm --nobounds contract     7.30 ms  nodes    51987  probes   26080
+B6_8   --front 4 --warm --nobounds contract     0.89 ms  nodes     6469  probes    2678
+A6_9   --front 4 --warm --nobounds contract    94.22 ms  nodes   431343  probes  274398
+A6_8   --front 4 --warm --noorder contract    11.10 ms  nodes    83286  probes   64203
+S6_8   --front 4 --warm --noorder contract    10.60 ms  nodes    63801  probes   38390
+B6_8   --front 4 --warm --noorder contract     1.52 ms  nodes    13402  probes    7075
+A6_9   --front 4 --warm --noorder contract   254.42 ms  nodes  1414263  probes  960460
+A6_8   --front 4 --warm --hist contract       8.24 ms  nodes    45523  probes   32859
+S6_8   --front 4 --warm --hist contract       6.45 ms  nodes    39659  probes   18825
+B6_8   --front 4 --warm --hist contract       1.09 ms  nodes     6515  probes    2868
+A6_9   --front 4 --warm --hist contract      79.49 ms  nodes   435581  probes  253134

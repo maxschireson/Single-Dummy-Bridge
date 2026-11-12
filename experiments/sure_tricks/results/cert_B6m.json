@@ -1,0 +1,117 @@
+{
+ "B6m": {
+  "deals": {
+   "B6m-QE": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:C5 N:C2 E:C4 S:CA",
+     "S:SA W:ST N:S2 E:S9",
+     "S:SK W:H5 N:S5 E:SJ",
+     "S:CK W:C6 N:C3 E:C9",
+     "S:HA W:H6 N:H2 E:H8",
+     "S:HK W:H7 N:H4 E:H9",
+     "S:H3 W:HJ N:HQ E:HT",
+     "N:C7 E:CJ S:S3 W:C8",
+     "S:S4 W:CT N:S7 E:SQ",
+     "E:CQ S:S6 W:D2 N:S8",
+     "N:D4 E:D3 S:DJ W:D6",
+     "S:D5 W:D8 N:DK E:D7",
+     "N:DT E:DQ S:DA W:D9"
+    ]
+   },
+   "B6m-QW": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:C5 N:C2 E:C4 S:CA",
+     "S:SA W:ST N:S2 E:S9",
+     "S:SK W:H5 N:S5 E:SJ",
+     "S:CK W:C6 N:C3 E:C9",
+     "S:HA W:H6 N:H2 E:H8",
+     "S:HK W:H7 N:H4 E:H9",
+     "S:H3 W:HJ N:HQ E:HT",
+     "N:C7 E:CJ S:S3 W:C8",
+     "S:S4 W:CT N:S7 E:SQ",
+     "E:CQ S:S6 W:D2 N:S8",
+     "N:D4 E:D3 S:DA W:D6",
+     "S:D5 W:D8 N:DT E:D7",
+     "N:DK E:D9 S:DJ W:DQ"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "C5",
+    "C2",
+    "C4",
+    "CA",
+    "SA",
+    "ST",
+    "S2",
+    "S9",
+    "SK",
+    "H5",
+    "S5",
+    "SJ"
+   ],
+   "cards": {
+    "S3": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "B6m-QW"
+     ]
+    },
+    "H3": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "B6m-QW"
+     ]
+    },
+    "HK": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6m-QE",
+      "B6m-QW"
+     ]
+    },
+    "D5": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "B6m-QW"
+     ]
+    },
+    "DJ": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "B6m-QW"
+     ]
+    },
+    "DA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6m-QE",
+      "B6m-QW"
+     ]
+    },
+    "CK": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6m-QE",
+      "B6m-QW"
+     ]
+    }
+   },
+   "nodes": 26754,
+   "solves": 53510,
+   "seconds": 8
+  }
+ }
+}

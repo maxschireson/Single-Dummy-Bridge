@@ -1,0 +1,743 @@
+{
+ "sets": [
+  {
+   "id": "A6",
+   "kind": "tie",
+   "title": "Two-way queen, strip and club exit, 6S",
+   "theme": "AJ5 opposite K104. Every card that does not commit the diamonds is double-dummy equal, including the low diamond lead and extra rounds of trumps that destroy the ending.",
+   "sound_line": "Win the heart, draw trumps in two rounds, cash the other top heart and the two top clubs, exit with the third club. Whoever wins must lead a diamond (three diamond tricks whatever he leads) or give a ruff and discard (ruff in one hand, throw a diamond from the other, ruff the third diamond).",
+   "script": "H4 HK SA S2 S4 SK HA H3 C3 CK C4 CA C7 C6",
+   "cert_tricks": 3,
+   "deals": [
+    "A6-QW",
+    "A6-QE"
+   ]
+  },
+  {
+   "id": "A6m",
+   "kind": "tie",
+   "title": "Two-way queen, strip and club exit, 6S (East-West hands exchanged)",
+   "theme": "Mirror of A6, so a declarer with a fixed habit in the diamond suit is caught on the other side as well.",
+   "sound_line": "Win the heart, draw trumps in two rounds, cash the other top heart and the two top clubs, exit with the third club. Whoever wins must lead a diamond (three diamond tricks whatever he leads) or give a ruff and discard (ruff in one hand, throw a diamond from the other, ruff the third diamond).",
+   "script": "H4 HK SA S2 S4 SK HA H3 C3 CK C4 CA C7 C6",
+   "cert_tricks": 3,
+   "deals": [
+    "A6m-QE",
+    "A6m-QW"
+   ]
+  },
+  {
+   "id": "A4",
+   "kind": "tie",
+   "title": "Two-way queen, strip and club exit, 4S",
+   "theme": "A105 opposite KJ4 with three club losers. Declarer gives up the clubs only after hearts are gone.",
+   "sound_line": "Win the heart, draw trumps, cash the other top heart, play a club. The defenders take their three clubs and the one on lead must open diamonds or give a ruff and discard.",
+   "script": "H4 HK SA S2 S4 SK HA H3 C3 C4",
+   "cert_tricks": 3,
+   "deals": [
+    "A4-QW",
+    "A4-QE"
+   ]
+  },
+  {
+   "id": "B6",
+   "kind": "tie",
+   "title": "Two-way queen, throw-in with the master trump, 6S",
+   "theme": "The only loser is the master trump, so it is also the exit card. Cashing the wrong top diamond first leaves the defender a safe diamond lead through the remaining honour.",
+   "sound_line": "Win the club, cash the two top trumps (one defender keeps the master trump), cash the other top club and three hearts ending in dummy, ruff dummy's last club, exit with a trump. The defender with the master trump must lead a diamond or give a ruff and discard.",
+   "script": "C2 CA SA S2 SK S5 CK C3 HA H2 HK H4 H3 HQ C7 S3 S4 S7",
+   "cert_tricks": 3,
+   "deals": [
+    "B6-QW",
+    "B6-QE"
+   ]
+  },
+  {
+   "id": "B6m",
+   "kind": "tie",
+   "title": "Two-way queen, throw-in with the master trump, 6S (East-West hands exchanged)",
+   "theme": "Mirror of B6: the master trump is with East.",
+   "sound_line": "Win the club, cash the two top trumps (one defender keeps the master trump), cash the other top club and three hearts ending in dummy, ruff dummy's last club, exit with a trump. The defender with the master trump must lead a diamond or give a ruff and discard.",
+   "script": "C2 CA SA S2 SK S5 CK C3 HA H2 HK H4 H3 HQ C7 S3 S4 S7",
+   "cert_tricks": 3,
+   "deals": [
+    "B6m-QE",
+    "B6m-QW"
+   ]
+  },
+  {
+   "id": "S6",
+   "kind": "strict",
+   "title": "Two-way queen where keeping the guess looks worth an overtrick, 6S",
+   "theme": "K1042 opposite AJ5, club lead taking out the ace. If the queen is picked up and the suit runs, the fourth diamond takes care of the club and thirteen tricks make, so every card that keeps the guess averages above 12 over the sampled layouts; the club exit concedes a trick and is exactly 12. On tricks or score the exit is strictly below the rest. A wrong view of the queen loses a diamond and a club.",
+   "sound_line": "Win the club, draw trumps, cash the top hearts and ruff the third, exit with the club. The defender on lead must open diamonds or give a ruff and discard.",
+   "script": "C6 CA SA S2 S4 SK HA H2 H4 HK H3 S7 C7 C5",
+   "cert_tricks": 3,
+   "deals": [
+    "S6-QW",
+    "S6-QE"
+   ]
+  },
+  {
+   "id": "G7",
+   "kind": "guess",
+   "title": "Two-way queen in a grand slam with a full count available, 7S (reference, not scored)",
+   "theme": "Nothing removes the guess. After trumps, hearts and clubs the count is complete: diamonds are 3-4, so the queen is 4:3 to be in the four-card hand. A declarer who guesses with that count makes G7-QE and fails G7-QW; one who guesses before the count is at even money on both.",
+   "sound_line": "None. The percentage line is to take the count and play the four-card hand for the queen.",
+   "script": "C3 CA SA S2 SK S7",
+   "cert_tricks": 2,
+   "deals": [
+    "G7-QW",
+    "G7-QE"
+   ]
+  },
+  {
+   "id": "C1",
+   "kind": "control",
+   "title": "Frozen suit (Q42 opposite J53), strip and club exit, 4S",
+   "theme": "Control. With the diamond honours split, leading the suit loses three tricks in it even double dummy, so the sampled layouts themselves show that the exit is needed. A search on double-dummy values should pass.",
+   "sound_line": "As A6: draw trumps, cash hearts and top clubs, exit with the third club; the defenders must open diamonds or give a ruff and discard.",
+   "script": "H4 HK SA S2 S4 SK HA H3 C3 CK C4 CA C7 C6",
+   "cert_tricks": 3,
+   "deals": [
+    "C1"
+   ]
+  },
+  {
+   "id": "L6",
+   "kind": "tie",
+   "title": "The A6 hands on a low diamond lead",
+   "theme": "The lead comes round to the tenace. Low or the ten from dummy gives three diamond tricks whatever East does. The king is double-dummy equal to both and leaves the same guess as before.",
+   "sound_line": "Play low (or the ten) from dummy and win as cheaply as possible in hand; then draw trumps and cash the other two top diamonds.",
+   "script": "D4",
+   "cert_tricks": 0,
+   "deals": [
+    "L6-QW",
+    "L6-QE"
+   ]
+  }
+ ],
+ "deals": [
+  {
+   "id": "A6-QW",
+   "set": "A6",
+   "hands": [
+    "KQ872.A4.KT4.A73",
+    "3.87652.9862.QT8",
+    "AJT94.K3.AJ5.K64",
+    "65.QJT9.Q73.J952"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "HQ",
+   "layout": "DQ West (3 diamonds, 2 trumps)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "A6-QE",
+   "set": "A6",
+   "hands": [
+    "KQ872.A4.KT4.A73",
+    "3.87652.Q862.QT8",
+    "AJT94.K3.AJ5.K64",
+    "65.QJT9.973.J952"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "HQ",
+   "layout": "DQ East (4 diamonds, 1 trump)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  },
+  {
+   "id": "A6m-QE",
+   "set": "A6m",
+   "hands": [
+    "KQ872.A4.KT4.A73",
+    "65.QJT9.Q73.J952",
+    "AJT94.K3.AJ5.K64",
+    "3.87652.9862.QT8"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "H8",
+   "layout": "DQ East (3 diamonds, 2 trumps)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "A6m-QW",
+   "set": "A6m",
+   "hands": [
+    "KQ872.A4.KT4.A73",
+    "65.QJT9.973.J952",
+    "AJT94.K3.AJ5.K64",
+    "3.87652.Q862.QT8"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "H8",
+   "layout": "DQ West (4 diamonds, 1 trump)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  },
+  {
+   "id": "A4-QW",
+   "set": "A4",
+   "hands": [
+    "KQ872.A4.KJ4.763",
+    "3.87652.9862.KQT",
+    "AJT94.K3.AT5.854",
+    "65.QJT9.Q73.AJ92"
+   ],
+   "contract": "4S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "4S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "HQ",
+   "layout": "DQ West (3 diamonds)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "A4-QE",
+   "set": "A4",
+   "hands": [
+    "KQ872.A4.KJ4.763",
+    "3.87652.Q862.KQT",
+    "AJT94.K3.AT5.854",
+    "65.QJT9.973.AJ92"
+   ],
+   "contract": "4S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "4S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "HQ",
+   "layout": "DQ East (4 diamonds)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  },
+  {
+   "id": "B6-QW",
+   "set": "B6",
+   "hands": [
+    "8752.Q42.KT4.732",
+    "T.J765.9862.T865",
+    "AK643.AK3.AJ5.AK",
+    "QJ9.T98.Q73.QJ94"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "2C",
+    "PASS",
+    "2D",
+    "PASS",
+    "2S",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "CQ",
+   "layout": "master trump West, DQ West (3 diamonds)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "B6-QE",
+   "set": "B6",
+   "hands": [
+    "8752.Q42.KT4.732",
+    "T.J765.Q862.T865",
+    "AK643.AK3.AJ5.AK",
+    "QJ9.T98.973.QJ94"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "2C",
+    "PASS",
+    "2D",
+    "PASS",
+    "2S",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "CQ",
+   "layout": "master trump West, DQ East (4 diamonds)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  },
+  {
+   "id": "B6m-QE",
+   "set": "B6m",
+   "hands": [
+    "8752.Q42.KT4.732",
+    "QJ9.T98.Q73.QJ94",
+    "AK643.AK3.AJ5.AK",
+    "T.J765.9862.T865"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "2C",
+    "PASS",
+    "2D",
+    "PASS",
+    "2S",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "C5",
+   "layout": "master trump East, DQ East (3 diamonds)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "B6m-QW",
+   "set": "B6m",
+   "hands": [
+    "8752.Q42.KT4.732",
+    "QJ9.T98.973.QJ94",
+    "AK643.AK3.AJ5.AK",
+    "T.J765.Q862.T865"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "2C",
+    "PASS",
+    "2D",
+    "PASS",
+    "2S",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "C5",
+   "layout": "master trump East, DQ West (4 diamonds)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  },
+  {
+   "id": "S6-QW",
+   "set": "S6",
+   "hands": [
+    "KQ872.A4.KT42.76",
+    "3.8765.986.T8432",
+    "AJT94.K32.AJ5.A5",
+    "65.QJT9.Q73.KQJ9"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "CK",
+   "layout": "DQ West, diamonds 3-3",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "S6-QE",
+   "set": "S6",
+   "hands": [
+    "KQ872.A4.KT42.76",
+    "3.8765.Q86.T8432",
+    "AJT94.K32.AJ5.A5",
+    "65.QJT9.973.KQJ9"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "CK",
+   "layout": "DQ East, diamonds 3-3",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 1
+  },
+  {
+   "id": "G7-QW",
+   "set": "G7",
+   "hands": [
+    "T872.Q42.KT4.K73",
+    "43.T8765.9862.52",
+    "AKQJ9.AK3.AJ5.A4",
+    "65.J9.Q73.QJT986"
+   ],
+   "contract": "7S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "2C",
+    "PASS",
+    "2D",
+    "PASS",
+    "2S",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "7S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "CQ",
+   "layout": "DQ in the three-card hand (West)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "G7-QE",
+   "set": "G7",
+   "hands": [
+    "T872.Q42.KT4.K73",
+    "43.T8765.Q862.52",
+    "AKQJ9.AK3.AJ5.A4",
+    "65.J9.973.QJT986"
+   ],
+   "contract": "7S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "2C",
+    "PASS",
+    "2D",
+    "PASS",
+    "2S",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5C",
+    "PASS",
+    "7S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "CQ",
+   "layout": "DQ in the four-card hand (East)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  },
+  {
+   "id": "C1",
+   "set": "C1",
+   "hands": [
+    "KQ872.A4.Q42.A73",
+    "3.87652.AT86.QT8",
+    "AJT94.K3.J53.K64",
+    "65.QJT9.K97.J952"
+   ],
+   "contract": "4S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "4S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "HQ",
+   "layout": "DK West, DA East",
+   "avoid": "D",
+   "critical": [],
+   "weight": 1
+  },
+  {
+   "id": "L6-QW",
+   "set": "L6",
+   "hands": [
+    "KQ872.A4.KT4.A73",
+    "3.87652.9862.QT8",
+    "AJT94.K3.AJ5.K64",
+    "65.QJT9.Q73.J952"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "D3",
+   "layout": "DQ West (led from the queen)",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 15
+  },
+  {
+   "id": "L6-QE",
+   "set": "L6",
+   "hands": [
+    "KQ872.A4.KT4.A73",
+    "3.87652.Q862.QT8",
+    "AJT94.K3.AJ5.K64",
+    "65.QJT9.973.J952"
+   ],
+   "contract": "6S",
+   "declarer": "S",
+   "dealer": "S",
+   "vulnerability": "None",
+   "auction": [
+    "1S",
+    "PASS",
+    "2N",
+    "PASS",
+    "3S",
+    "PASS",
+    "4N",
+    "PASS",
+    "5H",
+    "PASS",
+    "6S",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "opening_lead": "D3",
+   "layout": "DQ East",
+   "avoid": "D",
+   "critical": [
+    "DQ"
+   ],
+   "weight": 20
+  }
+ ]
+}

@@ -1,0 +1,118 @@
+{
+ "B6": {
+  "deals": {
+   "B6-QW": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:CQ N:C2 E:C5 S:CA",
+     "S:SA W:S9 N:S2 E:ST",
+     "S:SK W:SJ N:S5 E:H5",
+     "S:CK W:C4 N:C3 E:C6",
+     "S:HA W:H8 N:H2 E:H6",
+     "S:HK W:H9 N:H4 E:H7",
+     "S:H3 W:HT N:HQ E:HJ",
+     "N:C7 E:C8 S:S3 W:C9",
+     "S:S4 W:SQ N:S7 E:CT",
+     "W:CJ N:S8 E:D2 S:S6",
+     "N:D4 E:D6 S:DA W:D3",
+     "S:D5 W:D7 N:DT E:D8",
+     "N:DK E:D9 S:DJ W:DQ"
+    ]
+   },
+   "B6-QE": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:CQ N:C2 E:C5 S:CA",
+     "S:SA W:S9 N:S2 E:ST",
+     "S:SK W:SJ N:S5 E:H5",
+     "S:CK W:C4 N:C3 E:C6",
+     "S:HA W:H8 N:H2 E:H6",
+     "S:HK W:H9 N:H4 E:H7",
+     "S:H3 W:HT N:HQ E:HJ",
+     "N:C7 E:C8 S:S3 W:C9",
+     "S:S4 W:SQ N:S7 E:CT",
+     "W:CJ N:S8 E:D2 S:S6",
+     "N:D4 E:D6 S:DJ W:D3",
+     "S:D5 W:D7 N:DK E:D8",
+     "N:DT E:DQ S:DA W:D9"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "CQ",
+    "C2",
+    "C5",
+    "CA",
+    "SA",
+    "S9",
+    "S2",
+    "ST",
+    "SK",
+    "SJ",
+    "S5",
+    "H5"
+   ],
+   "cards": {
+    "S3": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "B6-QE"
+     ]
+    },
+    "H3": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6-QW",
+      "B6-QE"
+     ]
+    },
+    "HK": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6-QW",
+      "B6-QE"
+     ]
+    },
+    "D5": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6-QW",
+      "B6-QE"
+     ]
+    },
+    "DJ": {
+     "fused": 0.42857142857142855,
+     "true": 0.42857142857142855,
+     "wins": [
+      "B6-QW"
+     ]
+    },
+    "DA": {
+     "fused": 0.42857142857142855,
+     "true": 0.42857142857142855,
+     "wins": [
+      "B6-QW"
+     ]
+    },
+    "CK": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "B6-QW",
+      "B6-QE"
+     ]
+    }
+   },
+   "nodes": 25423,
+   "solves": 50846,
+   "seconds": 8
+  }
+ }
+}

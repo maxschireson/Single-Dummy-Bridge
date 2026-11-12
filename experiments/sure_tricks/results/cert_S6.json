@@ -1,0 +1,132 @@
+{
+ "S6": {
+  "deals": {
+   "S6-QW": {
+    "dd": 13,
+    "sound": 12,
+    "play": [
+     "W:CK N:C6 E:C2 S:CA",
+     "S:SA W:S5 N:S2 E:S3",
+     "S:S4 W:S6 N:SK E:C3",
+     "N:HA E:H5 S:H2 W:H9",
+     "N:H4 E:H6 S:HK W:HT",
+     "S:H3 W:HJ N:S7 E:H7",
+     "N:C7 E:C4 S:C5 W:C9",
+     "W:CJ N:S8 E:C8 S:S9",
+     "S:ST W:HQ N:SQ E:H8",
+     "N:D2 E:D6 S:DA W:D3",
+     "S:SJ W:D7 N:D4 E:CT",
+     "S:D5 W:DQ N:DK E:D8",
+     "N:DT E:D9 S:DJ W:CQ"
+    ]
+   },
+   "S6-QE": {
+    "dd": 13,
+    "sound": 12,
+    "play": [
+     "W:CK N:C6 E:C2 S:CA",
+     "S:SA W:S5 N:S2 E:S3",
+     "S:S4 W:S6 N:SK E:C3",
+     "N:HA E:H5 S:H2 W:H9",
+     "N:H4 E:H6 S:HK W:HT",
+     "S:H3 W:HJ N:S7 E:H7",
+     "N:C7 E:C4 S:C5 W:C9",
+     "W:CJ N:S8 E:C8 S:S9",
+     "S:ST W:HQ N:SQ E:H8",
+     "N:D2 E:D6 S:DJ W:D3",
+     "S:SJ W:CQ N:D4 E:D8",
+     "S:D5 W:D7 N:DK E:DQ",
+     "N:DT E:CT S:DA W:D9"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "CK",
+    "C6",
+    "C2",
+    "CA",
+    "SA",
+    "S5",
+    "S2",
+    "S3",
+    "S4",
+    "S6",
+    "SK",
+    "C3"
+   ],
+   "cards": {
+    "S7": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "S6-QW",
+      "S6-QE"
+     ]
+    },
+    "SQ": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "S6-QW",
+      "S6-QE"
+     ]
+    },
+    "H4": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "S6-QW",
+      "S6-QE"
+     ]
+    },
+    "HA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "S6-QW",
+      "S6-QE"
+     ]
+    },
+    "D2": {
+     "fused": 1.0,
+     "true": 0.5,
+     "wins": [
+      "S6-QW"
+     ]
+    },
+    "D4": {
+     "fused": 1.0,
+     "true": 0.5,
+     "wins": [
+      "S6-QW"
+     ]
+    },
+    "DT": {
+     "fused": 0.5,
+     "true": 0.5,
+     "wins": [
+      "S6-QE"
+     ]
+    },
+    "DK": {
+     "fused": 0.5,
+     "true": 0.5,
+     "wins": [
+      "S6-QE"
+     ]
+    },
+    "C7": {
+     "fused": 1.0,
+     "true": 0.5,
+     "wins": [
+      "S6-QW"
+     ]
+    }
+   },
+   "nodes": 782223,
+   "solves": 1564350,
+   "seconds": 176
+  }
+ }
+}

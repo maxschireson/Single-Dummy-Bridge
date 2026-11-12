@@ -29,6 +29,7 @@ commit. Fetch a branch only when you need it; data branches are large.
 | Representative sampling | [Gen5R](../bridge_harness/gen5r.py), [Gen 6 layout study](../reports/gen6-layout-selection-2026-11-11/README.md) | `experiment/representative-pool-tuning-20261110`, `research/layout-embedding-20261110` |
 | DDS and approximations | [binding](../bridge_harness/dds.py), [cache](../bridge_harness/dds_cache.py) | `research/dds-value-quick-20261109`, `research/ddsd-corrector-20261110`; the separate `Faster-DDS` repository |
 | Alpha-mu / strategy consistency | [archived result](archive/README.md) | `research/consistent-strategies-alpha-mu`; not adopted |
+| Single-dummy sure tricks, strategy-fusion tests | — | `research/sure-trick-table-20261112`: [`experiments/sure_tricks/`](../experiments/sure_tricks/README.md) (fusion test deals, sure-trick search, [ending-table build spec](../experiments/sure_tricks/TABLE_BUILD.md)); not adopted |
 | Collection and arena runtime | [operations](operations.md), [`ops/gen5_runtime.py`](../ops/gen5_runtime.py), [`ops/prepare_gen7_alpha.py`](../ops/prepare_gen7_alpha.py) | Collector lineage branches above; PR #13 |
 | Remote boxes | [boxctl](boxctl.md), [`ops/boxctl/`](../ops/boxctl) | `box/*`, `fleet/azure` |
 | Results by generation | [generations](generations/README.md), [`scripts/generation_results.py`](../scripts/generation_results.py) | Feeds via the dashboard registry |

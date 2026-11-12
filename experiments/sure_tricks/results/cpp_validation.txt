@@ -1,0 +1,7 @@
+3-card endings, 600 trials, args []: 0 mismatches (C++ 0.78 s, Python 2 s)
+4-card endings, 1500 trials, args []: 0 mismatches (C++ 1.89 s, Python 30 s)
+4-card endings, 1500 trials, args ['--nobounds', '--noorder']: 0 mismatches (C++ 1.72 s, Python 30 s)
+5-card endings, 250 trials, args []: 0 mismatches (C++ 0.37 s, Python 37 s)
+5-card endings, 250 trials, args ['--front', '4']: 0 mismatches (C++ 0.39 s, Python 36 s)
+6-card endings, 30 trials, args ['--front', '4']: 0 mismatches (C++ 0.11 s, Python 20 s)
+6-card endings, 30 trials, args ['--front', '5']: 0 mismatches (C++ 0.09 s, Python 21 s)

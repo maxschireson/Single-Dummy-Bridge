@@ -1,0 +1,20 @@
+## contract-target, 4-card table, 9-11 cards
+A6_9   --front 4 --warm --mem 2.5 contract    96.00 ms  nodes   412750  probes  241404
+S6_9   --front 4 --warm --mem 2.5 contract    34.39 ms  nodes   154649  probes   61824
+A4_9   --front 4 --warm --mem 2.5 contract    42.21 ms  nodes   239155  probes  117962
+B6_9   --front 4 --warm --mem 2.5 contract     4.01 ms  nodes    21757  probes    7764
+A6_10  --front 4 --warm --mem 2.5 contract   334.30 ms  nodes  1409035  probes  554730
+S6_10  --front 4 --warm --mem 2.5 contract   113.84 ms  nodes   557794  probes  155133
+A4_10  --front 4 --warm --mem 2.5 contract    88.44 ms  nodes   466042  probes  150562
+B6_10  --front 4 --warm --mem 2.5 contract    26.72 ms  nodes   177686  probes   44933
+A6_11  --front 4 --warm --mem 2.5 contract   156.82 ms  nodes   972666  probes  254631
+S6_11  --front 4 --warm --mem 2.5 contract   104.43 ms  nodes   498188  probes  136395
+A4_11  --front 4 --warm --mem 2.5 contract    72.37 ms  nodes   391331  probes  128716
+B6_11  --front 4 --warm --mem 2.5 contract    94.77 ms  nodes   650850  probes  126778
+## contract-target, no table, 9-10 cards
+A6_9    contract                            243.47 ms  nodes  1549853  probes       0
+S6_9    contract                            103.91 ms  nodes   687367  probes       0
+A4_9    contract                             84.42 ms  nodes   633796  probes       0
+B6_9    contract                              8.76 ms  nodes    87151  probes       0
+A6_10   contract                            545.16 ms  nodes  3719724  probes       0
+S6_10   contract                            221.95 ms  nodes  1649324  probes       0

@@ -1,0 +1,134 @@
+{
+ "A6m": {
+  "deals": {
+   "A6m-QE": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:H8 N:H4 E:H9 S:HK",
+     "S:SA W:S3 N:S2 E:S5",
+     "S:S4 W:H2 N:SK E:S6",
+     "N:HA E:HT S:H3 W:H5",
+     "N:C3 E:C2 S:CK W:C8",
+     "S:C4 W:CT N:CA E:C5",
+     "N:C7 E:C9 S:C6 W:CQ",
+     "W:H6 N:S7 E:HJ S:S9",
+     "S:ST W:H7 N:S8 E:CJ",
+     "S:SJ W:D2 N:SQ E:D3",
+     "N:D4 E:D7 S:DJ W:D6",
+     "S:D5 W:D8 N:DK E:DQ",
+     "N:DT E:HQ S:DA W:D9"
+    ]
+   },
+   "A6m-QW": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:H8 N:H4 E:H9 S:HK",
+     "S:SA W:S3 N:S2 E:S5",
+     "S:S4 W:H2 N:SK E:S6",
+     "N:HA E:HT S:H3 W:H5",
+     "N:C3 E:C2 S:CK W:C8",
+     "S:C4 W:CT N:CA E:C5",
+     "N:C7 E:C9 S:C6 W:CQ",
+     "W:H6 N:S7 E:HJ S:S9",
+     "S:ST W:H7 N:S8 E:CJ",
+     "S:SJ W:D2 N:SQ E:HQ",
+     "N:D4 E:D3 S:DA W:D6",
+     "S:D5 W:D8 N:DT E:D7",
+     "N:DK E:D9 S:DJ W:DQ"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "H8",
+    "H4",
+    "H9",
+    "HK",
+    "SA",
+    "S3",
+    "S2",
+    "S5",
+    "S4",
+    "H2",
+    "SK",
+    "S6"
+   ],
+   "cards": {
+    "S7": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A6m-QE",
+      "A6m-QW"
+     ]
+    },
+    "SQ": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A6m-QE",
+      "A6m-QW"
+     ]
+    },
+    "HA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A6m-QE",
+      "A6m-QW"
+     ]
+    },
+    "D4": {
+     "fused": 1.0,
+     "true": 0.5714285714285714,
+     "wins": [
+      "A6m-QW"
+     ]
+    },
+    "DT": {
+     "fused": 0.42857142857142855,
+     "true": 0.42857142857142855,
+     "wins": [
+      "A6m-QE"
+     ]
+    },
+    "DK": {
+     "fused": 0.42857142857142855,
+     "true": 0.42857142857142855,
+     "wins": [
+      "A6m-QE"
+     ]
+    },
+    "C3": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A6m-QE",
+      "A6m-QW"
+     ]
+    },
+    "C7": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A6m-QE",
+      "A6m-QW"
+     ]
+    },
+    "CA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "A6m-QE",
+      "A6m-QW"
+     ]
+    }
+   },
+   "nodes": 840658,
+   "solves": 1677500,
+   "seconds": 221
+  }
+ }
+}
