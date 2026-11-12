@@ -25,6 +25,7 @@ from dataclasses import asdict
 import fcntl
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -44,6 +45,18 @@ from ops.prepare_gen6 import verify_source
 
 PLAN = ROOT / 'configs/round7-alpha.json'
 GEN7_POLICY = 'artifacts/gen7/policy.npz'
+POLICY_KEY = 'gen7_policy'                     # a bot's policy artifact unless its plan entry names another
+POLICY_KEYS = re.compile(r'gen7_policy(_[a-z0-9]+)?')
+
+
+def policy_key(entry):
+    return entry.get('policy', POLICY_KEY)
+
+
+def policy_path(key):
+    """Where a policy release sits in a run. The first policy keeps the path it has always had, so a bot that
+    uses it keeps its identity; any other is named by its artifact key."""
+    return GEN7_POLICY if key == POLICY_KEY else f'artifacts/gen7/{key}.npz'
 RUNTIME = ('ops/gen5_runtime.py', 'ops/prepare_gen7_alpha.py')
 # What the plan does not own: how tables are audited and forked, how rooms are seeded, the labels the
 # exporter and report registration key on, and facts about the corpus the unplayed deals come from.
@@ -55,11 +68,14 @@ def load_plan(path=None, require_ready=True):
     plan = json.loads(Path(path or PLAN).read_text())
     if require_ready and (not plan['launch_enabled'] or plan['pending']):
         raise ValueError('Gen7 alpha plan is not ready: settle every `pending` item, empty the list and enable launch')
-    entry = plan['artifacts'].get('gen7_policy') if set(plan['artifacts']) == {'gen7_policy'} else None
-    if entry is None or not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
-        raise ValueError('Gen7 alpha plan needs exactly one artifact, gen7_policy, with release, file, restore and sha256')
     if not plan['gen7_bots']:
         raise ValueError('Gen7 alpha plan needs at least one Gen7 bot')
+    used = {policy_key(bot) for bot in plan['gen7_bots'].values()}
+    if not plan['artifacts'] or set(plan['artifacts']) != used or not all(isinstance(k, str) and POLICY_KEYS.fullmatch(k) for k in used):
+        raise ValueError('Gen7 alpha plan artifacts are exactly the policy releases its bots use: gen7_policy, and gen7_policy_<name> for a bot that names another')
+    for entry in plan['artifacts'].values():
+        if not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
+            raise ValueError('A Gen7 policy artifact needs release, file, restore and sha256')
     for bot in plan['gen7_bots'].values():
         resolved(bot.get('gen7'))
         Gen6Config(**bot.get('gen6', {}))
@@ -89,8 +105,8 @@ def make_bots(old, plan):
         spec.pop('identity')
         spec.update(id=key, engine=ENGINE, policy_role='gen7-alpha', samples=entry.get('samples', base['samples']),
                     gen6=asdict(Gen6Config(**dict(base['gen6'], **entry.get('gen6', {})))),
-                    gen7=resolved(entry.get('gen7')), gen7_policy=GEN7_POLICY)
-        spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts']['gen7_policy']['sha256'])
+                    gen7=resolved(entry.get('gen7')), gen7_policy=policy_path(policy_key(entry)))
+        spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts'][policy_key(entry)]['sha256'])
         spec['identity'] = digest(spec)
         if key in bots and bots[key] != spec:
             raise ValueError(f'The source run has a different bot called {key}: give the Gen7 bot a new id, or the settings of the bot it continues')
@@ -115,6 +131,19 @@ def check_mix(plan, bots, references):
     idle = sorted(set(plan['gen7_bots']) - scheduled)
     if idle:
         raise ValueError(f'Gen7 bots in no pair: {idle}')
+
+
+def gen7_block(plan):
+    """What the manifest says about the cohort's Gen7 bots and their policy releases. A plan with the one policy keeps
+    the two fields it has always had; a plan whose bots name other releases lists every bot's."""
+    block = dict(bots=sorted(plan['gen7_bots']))
+    first = plan['artifacts'].get(POLICY_KEY)
+    if first:
+        block.update(policy_release=first['release'], policy_sha256=first['sha256'])
+    if set(plan['artifacts']) != {POLICY_KEY}:
+        block['policies'] = {k: dict(artifact=policy_key(e), release=plan['artifacts'][policy_key(e)]['release'], sha256=plan['artifacts'][policy_key(e)]['sha256'])
+                             for k, e in sorted(plan['gen7_bots'].items())}
+    return block
 
 
 def release_file(entry, scorers):
@@ -204,8 +233,9 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
         bots = make_bots(actor_manifest, plan)
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
-        entry = plan['artifacts']['gen7_policy']
-        policy = release_file(entry, {bots[k]['artifact_sha256']['scorer'] for k in plan['gen7_bots']})
+        policies = {}                           # artifact key -> the release file, checked against the scorer of the bots that use it
+        for key in sorted(plan['artifacts']):
+            policies[key] = release_file(plan['artifacts'][key], {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if policy_key(e) == key})
         root.mkdir(parents=True)
         for folder in ('artifacts', 'assets'):
             if (source / folder).exists():
@@ -219,8 +249,9 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
                     if not dest.exists():
                         dest.parent.mkdir(parents=True, exist_ok=True)
                         shutil.copyfile(actor_source / spec[key], dest)
-        (root / GEN7_POLICY).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(policy, root / GEN7_POLICY)
+        for key, policy in policies.items():
+            (root / policy_path(key)).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(policy, root / policy_path(key))
         for folder in ('episodes', 'receipts', 'failures'):
             (root / folder).mkdir()
         save([boards[i] for i in keep], root / 'corpus.jsonl')
@@ -236,7 +267,7 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
             created_epoch=time.time(), source_generation=old['identity'], source_completed=len(done),
             source_indices='source-indices.json', source_indices_sha256=sha(root / 'source-indices.json'),
             labels=labels, order=plan['roster'], plan_sha256=sha(plan_path), source_commit=commit(),
-            gen7_alpha=dict(bots=sorted(plan['gen7_bots']), policy_release=entry['release'], policy_sha256=entry['sha256']),
+            gen7_alpha=gen7_block(plan),
             model_note=plan.get('model_note') or 'Gen 7 alpha bots are their Gen 6 base bot (same bidder, lead net, hand-fit scorer, layouts and sample count) '
                        'with the gen7 engine (bridge_harness/gen7.py): the policy net weights the listed layouts by the play so far, '
                        'breaks ties, and from the tricks named in each bot\'s `gen7.tree` a short tree search over the net\'s likeliest '
