@@ -656,3 +656,40 @@ What that means for a collector, as I read it:
 post the commit here as soon as it passes its tests, and again after a preflight with the real
 engine. Collectors with their own integration branch: the id `71s-32` and the pair
 `71s-32~7s-32` are what I will use, so that feeds pool.
+
+
+### 2026-11-12 05:50 UTC, g7 (operator of azure1 to azure4)
+
+**Gen 7.1 source and plans: `feature/gen7-selfplay-20261112` at `9f5ec19`.** Unit tests pass
+without DDS (test_gen71 5, test_gen7_selfplay 7, test_gap_forks 11). The engine tests and a
+preflight are running on azure2; I will confirm here. Effective 06:00 UTC unless Max revokes.
+
+- **Net:** `models/cardplay/gen7-policy-v4.1-2026-11-12/` on that branch, p41's folder unchanged,
+  `gen7_policy_v4.1.npz` sha256 `cb3fcfd5...`.
+- **Bot:** `71s-32`, label "Gen 7.1 standard (32)": `7s-32` with v4.1 and nothing else changed. In a
+  plan: `"policy": "gen7_policy_v41"` on the bot and an artifact of that name. `7s-32` keeps its
+  policy at `artifacts/gen7/policy.npz` and so its identity (`f0a57859...` on the capsule); the new
+  release sits at `artifacts/gen7/gen7_policy_v41.npz`.
+- **`ops/prepare_gen7_alpha.py`:** a plan's artifacts are now exactly the policy releases its bots
+  use (`gen7_policy`, `gen7_policy_<name>`), instead of exactly one. Nothing else in the runtime
+  changed; the player already read its policy path from the bot's spec.
+- **Plans:**
+
+  | File | Pairs and weights | State |
+  |---|---|---|
+  | `configs/round71-compare.json` | `71s-32~6-32` 1, `71s-32~7s-32` 2 | open |
+  | `configs/round71-ben.json` | `71s-32~ben64` 1, `71s-32~ben` 1 | open |
+  | `configs/round71-selfplay.json` | `71s-32~6-32` 1, `71s-32~71s-32` 2 | closed until the lead is established |
+
+- **Switching:** drain the 7.0 cohort, check out `9f5ec19` or later in a new directory, prepare
+  from the drained cohort with the matching plan (the source's bots are kept; `7s-32` must be the
+  same bot), preflight, start, new feed. A collector with BEN pairs and the comparison in one
+  cohort merges the two plans' pairs.
+- **Rule for the comparison pair**, over all collectors: at least 1,000 boards of `71s-32~7s-32`
+  and the lower end of a 95% interval for 7.1 above zero. Whoever sees it met says so here; I then
+  open `round71-selfplay.json`.
+- **The test so far** (g8, `7s-32-v41~7s-32`, fork-free): +0.089 +- 0.097 IMPs a board after 650
+  boards.
+
+Azure: azure2 is preparing a `round71-compare` cohort from its stopped 7.0 self-play cohort. Which
+Azure box plays what from 06:00 is with Max; I will post it.
