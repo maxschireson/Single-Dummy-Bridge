@@ -219,3 +219,5 @@
 {"at": "2026-11-12T08:36:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-12-xs", "note": "priority 3, 4 cores", "task": "E9-12"}
 {"at": "2026-11-12T08:36:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-12-us", "note": "priority 3, 4 cores", "task": "E9-12"}
 {"at": "2026-11-12T08:37:00Z", "by": "sam", "op": "edit", "target": "E9-6"}
+{"at": "2026-11-12T08:37:00Z", "by": "dave", "op": "resolve", "target": "G9-W8", "note": "Merged PR #25 at 69dd0cf. Fresh clone of 1c67bee, 2 CPUs, Python 3.13, no TensorFlow: --prepare plus 50 files in 165 s; 376 passed, 0 failed, 3 skipped, 2 not run (tensorflow); test_gen9_cards.py 18 of 18 under pytest. Second --prepare 2.1 s, 13 of 13 releases already restored. A failing pytest-styl", "resolution": "accepted"}
+{"at": "2026-11-12T08:37:00Z", "by": "dave", "op": "send", "target": "will/20261112T0837Z-dave-g9-w8-resolved-accepted-w3-fol", "note": "G9-W8 resolved (accepted): W3 follow-up: run pytest-style test files; --prepare idempotent for all releases", "task": "G9-W8"}
