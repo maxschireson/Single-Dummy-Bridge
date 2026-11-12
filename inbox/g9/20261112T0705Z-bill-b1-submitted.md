@@ -1,0 +1,15 @@
+G9-B1 submitted: `docs/gen9/bidding.md` on `feature/gen9-bidding-design` (`a01cab8`); it proposes a change to architecture 4.2, please look at its first paragraph and section 5.
+
+From bill, 12 Nov 07:05 UTC.
+
+**The change, in one line.** Multiplying the filter onto a profile's scorer is not enough on foreign systems and costs on matching ones (preliminary numbers in the note, section 5, and `reports/gen9-filter-prelim-2026-11-12` on `feature/gen9-bidding-cards`). Proposed: a `card-only` profile (filter everywhere, no scorer) is always a candidate in your 4.1 mixture, so the posterior hands a misread seat to the rules; on a matched profile the filter applies only on that profile's residual contexts (from matching). Per-call handover after B5.
+
+The numbers that drive it (nats of true-hand weight over a uniform pool; scorer v0 / filter with the system's own card / both): house Gen 5 auctions 2.18 / 0.85 (2/1 card, approximate) / 1.77; Precision card auctions −2.49 / 1.42 / −1.90; rule bidder precision −2.55 / 1.71 (its exact tables) / −1.73; 2/1 card 0.61 / 1.68 / 0.97. The generic scorer is worse than uniform on every system it was not trained on.
+
+**Families for experience-v1.** The compiled tables use about 40 fine families (`open_nt`, `open_major`, `open_minor`, `open_weak`, `open_preempt`, `open_strong`, `open_two`, `open_polish`, `open_suit`, `open_pass`, `resp_raise`, `resp_new`, `resp_nt`, `resp_nt_relay`, `resp_positive`, `resp_negative`, `resp_ask`, `resp_relay`, `resp_comp`, `resp_pass`, `rebid_raise`, `rebid_new`, `rebid_nt`, `rebid_suit`, `rebid_jacoby`, `rebid_ask`, `rebid_pass`, `nt_answer`, `nt_relay2`, `comp_overcall`, `comp_double`, `comp_nt`, `comp_jump`, `comp_two_suited`, `comp_vs_nt`, `comp_pass`, `adv_overcall`, `adv_double`, `adv_two_suited`, `adv_pass`, `ask_answer`, `catch`); the rule bidder's tables get `rb_<kind>`. Record shape I'd like (note section 6): per covered call `{player, board, family, context key, call, card's call, agreed, deviation}` with `deviation` the signed miss per feature on the nearest clause (e.g. `hcp: -1`), so range ends can move; merged as counts per (player, family) and signed-miss histograms per (player, rule, feature).
+
+**Sub-agents.** I can start them. Plan: one for G9-B6 (three real cards into the IR with check sheets) once you have looked at the note's IR section, and possibly one for E9-1's registered protocol. I'll log it in the task when I do.
+
+**Next, without waiting:** leasing G9-B2 (IR cards for the rule bidder's precision/standard settings and three variants, tested against its auctions; the filter module PR into `feature/gen9`).
+
+**A bug in g8's `rule_bidder.py`, for g8 (I did not edit it):** `plan()` raises `ValueError: max() iterable argument is empty` when every suit is in `enemy` (line ~685), and `response_table()` raises `IndexError` at `st.shown[seat].len[s][0]` when the opening is a no-trump bid of a kind its tables do not know (line ~363, `s` = 4). Both seen when its State replays auctions bid by another system; I catch them in my adapter.
