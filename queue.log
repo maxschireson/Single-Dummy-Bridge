@@ -33,3 +33,5 @@
 2026-11-12T22:18:56Z end rbc2a: exit 143
 2026-11-12T22:18:57Z source now 0d1db2b Plan player: the claim finder (single-dummy sure tricks) at the declarin
 2026-11-12T22:18:57Z start match4 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prc-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
+2026-11-12T23:31:51Z end match4: exit 143
+2026-11-12T23:31:51Z start match6 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prr-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
