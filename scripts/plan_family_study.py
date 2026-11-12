@@ -11,6 +11,7 @@ tell apart count once). For three kinds of outcome, one row per layout:
 
   dd        double-dummy tricks of each candidate, minus the layout's mean over candidates
             (so "this layout is just good or bad" is removed and what is left is which card is right)
+  dd2       the double-dummy gap between the two best candidates
   playout   the same from playing each layout out with the net at every seat (the first three candidates)
   change    playout minus double dummy, card by card: what honest play changes
 
@@ -102,7 +103,14 @@ def decisions_of(path):
             row['cards'] = [symbol(c) for c in cards]
             row['gaps'] = [float(value.max() - weights @ u[:, j]) for j in near]
             dd = u[:, near]
-            outcomes = dict(dd=dd - dd.mean(axis=1, keepdims=True))
+            outcomes = dict(dd=dd - dd.mean(axis=1, keepdims=True), dd2=dd[:, 0] - dd[:, 1])
+            # how many distinct rows the candidates' double-dummy tricks take, and how many of them hold 90% of the weight
+            patterns = {}
+            for t, wgt in zip(map(tuple, (dd - dd.min(axis=1, keepdims=True)).astype(int)), weights):
+                patterns[t] = patterns.get(t, 0.) + float(wgt)
+            mass = np.sort(np.array(list(patterns.values())))[::-1]
+            row['patterns'] = len(mass)
+            row['patterns90'] = int(np.searchsorted(np.cumsum(mass) / mass.sum(), .9 - 1e-12) + 1)
             top = cards[:3]
             started = time.perf_counter()
             roll = card_values(o, worlds, top, NetPlayer(net, 'top'), Public(net, o))
@@ -157,7 +165,10 @@ def main():
                                                    seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
     close = [r for r in rows if r['candidates'] >= 2]
     print(json.dumps(dict(decisions=len(rows), with_two_candidates=len(close))))
-    for name in ('dd', 'playout', 'change', 'change2'):
+    if close:
+        print(f"candidates {np.mean([r['candidates'] for r in close]):.1f} a decision; distinct double-dummy patterns over them {np.mean([r['patterns'] for r in close]):.1f}, "
+              f"of which {np.mean([r['patterns90'] for r in close]):.1f} hold 90% of the weight (median {np.median([r['patterns90'] for r in close]):.0f})")
+    for name in ('dd', 'dd2', 'playout', 'change', 'change2'):
         got = [r[name] for r in close if r[name]['held_out']]
         if not got:
             continue
