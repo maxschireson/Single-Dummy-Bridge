@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""Read rows written by scripts/plan_bench.py.
+
+  python scripts/plan_report.py rows.json [more.json ...] [--bands 0,1,2] [--tricks 3,4,5,6]
+
+For every simulated player, per sampled pair, with deals as the unit of the errors:
+
+  share      c in: realized cost of B = k + b x pimc + c x (sim - pimc). The correction is what the playout changes
+             in the gap between A and B on the same layouts; c is how much of it shows up in real results.
+  true       the same on the real deal alone: realized = k + b x true_dd + c x (true_sim - true_dd). It measures the
+             simulator with the layout known, apart from the belief.
+  gain       tricks a pair gained over Gen 6 by playing B when pimc + trust x correction < 0, for several trusts
+  fit        how close the playout of A on the real deal is to the tricks the table really took
+"""
+import argparse
+import json
+import math
+import sys
+
+import numpy as np
+
+
+def clustered_ols(y, X, groups):
+    """OLS coefficients and cluster-robust standard errors (clusters = groups)."""
+    X = np.column_stack([np.ones(len(y)), X])
+    beta, *_ = np.linalg.lstsq(X, y, rcond=None)
+    resid = y - X @ beta
+    bread = np.linalg.inv(X.T @ X)
+    meat = np.zeros((X.shape[1], X.shape[1]))
+    index = {}
+    for i, g in enumerate(groups):
+        index.setdefault(g, []).append(i)
+    for rows in index.values():
+        s = X[rows].T @ resid[rows]
+        meat += np.outer(s, s)
+    G = len(index)
+    cov = bread @ meat @ bread * G / max(1, G - 1)
+    return beta, np.sqrt(np.diag(cov))
+
+
+def clustered_mean(x, groups):
+    by = {}
+    for v, g in zip(x, groups):
+        by.setdefault(g, []).append(v)
+    totals, counts = np.array([sum(v) for v in by.values()]), np.array([len(v) for v in by.values()])
+    mean = totals.sum() / counts.sum()
+    se = math.sqrt(((totals - mean * counts) ** 2).sum() * len(by) / max(1, len(by) - 1)) / counts.sum()
+    return float(mean), float(se)
+
+
+def report(rows, sims, trusts=(0.25, 0.5, 0.75, 1.0), title=''):
+    f = np.array([r['final'] for r in rows], float)
+    fam = [r['family'] for r in rows]
+    pimc = np.array([r['pimc'] for r in rows])
+    tdd = np.array([r['true_dd'] for r in rows])
+    print(f"\n== {title}: {len(rows)} pairs on {len(set(fam))} deals. B really cost {f.mean():+.3f}; pimc said {pimc.mean():+.3f}; "
+          f"B better {np.mean(f < 0):.3f}, worse {np.mean(f > 0):.3f}")
+    b, se = clustered_ols(f, pimc[:, None], fam)
+    b2, se2 = clustered_ols(f, tdd[:, None], fam)
+    print(f"   realized on pimc alone: slope {b[1]:.2f} +- {se[1]:.2f}, residual sd {np.std(f - np.column_stack([np.ones(len(f)), pimc]) @ b):.3f}"
+          f" | on the real deal's double dummy alone: slope {b2[1]:.2f} +- {se2[1]:.2f}, residual sd {np.std(f - np.column_stack([np.ones(len(f)), tdd]) @ b2):.3f}")
+    print(f"   {'sim':16s} {'share':>14s} {'sd corr':>8s} {'true share':>14s} {'sd true':>8s} | gain a pair at trust " + '  '.join(f'{t:>13.2f}' for t in trusts) + ' | fit: mean abs miss, exact')
+    for s in sims:
+        v = np.array([r[s] for r in rows])
+        corr = v - pimc
+        b, se = clustered_ols(f, np.column_stack([pimc, corr]), fam)
+        tv = np.array([r['true_' + s] for r in rows])
+        tcorr = tv - tdd
+        bt, set_ = clustered_ols(f, np.column_stack([tdd, tcorr]), fam)
+        gains = []
+        for t in trusts:
+            prefers_b = pimc + t * corr < -1e-9
+            base = pimc < -1e-9
+            m, e = clustered_mean(np.where(prefers_b, -f, 0.) - np.where(base, -f, 0.), fam)
+            gains.append(f'{m:+.4f}+-{e:.4f}')
+        miss = np.array([r['true_a_' + s] - r['real_a'] for r in rows])
+        print(f"   {s:16s} {b[2]:+.3f} +- {se[2]:.3f} {corr.std():8.3f} {bt[2]:+.3f} +- {set_[2]:.3f} {tcorr.std():8.3f} | " + '  '.join(gains)
+              + f' | {np.abs(miss).mean():.3f}, {np.mean(np.abs(miss) < 1e-9):.3f} (bias {miss.mean():+.3f})')
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('files', nargs='+')
+    p.add_argument('--bands')
+    p.add_argument('--tricks')
+    p.add_argument('--split', action='store_true', help='also by band, by trick and by side')
+    a = p.parse_args()
+    rows, sims = [], None
+    for path in a.files:
+        d = json.load(open(path))
+        rows += d['rows']
+        names = [s['name'] for s in d['settings']['sims']]
+        sims = names if sims is None else [s for s in sims if s in names]
+    if a.bands:
+        keep = {int(x) for x in a.bands.split(',')}
+        rows = [r for r in rows if r['band'] in keep]
+    if a.tricks:
+        keep = {int(x) for x in a.tricks.split(',')}
+        rows = [r for r in rows if r['trick'] in keep]
+    report(rows, sims, title='all')
+    if a.split:
+        for band in sorted({r['band'] for r in rows}):
+            sub = [r for r in rows if r['band'] == band]
+            if len(sub) >= 100:
+                report(sub, sims, title=f'band {band}')
+        for name, test in (('declaring', lambda r: r['declaring']), ('defending', lambda r: not r['declaring'])):
+            sub = [r for r in rows if test(r)]
+            if len(sub) >= 100:
+                report(sub, sims, title=name)
+        for lo, hi in ((1, 2), (3, 4), (5, 6), (7, 9), (10, 13)):
+            sub = [r for r in rows if lo <= r['trick'] <= hi]
+            if len(sub) >= 100:
+                report(sub, sims, title=f'tricks {lo}-{hi}')
+
+
+if __name__ == '__main__':
+    main()
