@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 15:14 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 15:15 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -142,6 +142,7 @@ Generated 2026-11-12 15:14 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-6-vs-8p | E9-6 | sam | 6 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-6-vs-reader | E9-6 | sam | 6 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-16-r-v-p | E9-16 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
+| e9-16-r-v-x | E9-16 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 
