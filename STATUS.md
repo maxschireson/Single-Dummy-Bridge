@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 11:44 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 11:49 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -17,7 +17,6 @@ Generated 2026-11-12 11:44 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
-| g9 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | sam | feature/gen9-signals-v2 |
 | g9 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | sam | feature/gen9-signals-v2 |
 
 ## Tasks
@@ -71,11 +70,11 @@ Generated 2026-11-12 11:44 UTC by `tools/workq.py` after a change by `dave`. Do 
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T10:00Z |  |
-| [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool | sam | submitted | high | 2026-11-13T12:00Z |  |
-| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | g9 |  | open | high | 2026-11-13T16:00Z | after E9-7 |
+| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | g9 |  | open | high | 2026-11-13T16:00Z |  |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | rejected. **Part 1 (prediction), 12 November 2026, bill.** Registered protocol, 2,000 deals a system, leader and declarer views, pools of 512 (about 4,000 decisions a system). Gain in nats of the true layout's weight: |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | adopted. **The class rule holds.** Defenders' spots (two to nine) in the suit played do not all take the same number of tricks on the true deal in **1.49% ± 0.08%** of 21,057 decisions (prediction: at most 5%). When they differ, the worst spot costs 1.13 tricks on average; the lowest spot is among the best in 99.2% of all decisions |
 | [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | dave | resolved | high | 2026-11-13T02:00Z | adopted. Kind of evidence: simulation. Report, data and code: `reports/gen9-arena-sim-2026-11-12/README.md` on |
+| [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool | sam | resolved | high | 2026-11-13T12:00Z | adopted. **A model fitted to BEN's own cards reads BEN's defenders +0.16 ± 0.05 (BEN 16) and +0.32 ± 0.05 (BEN 64) nats of the true layout's weight per house declarer decision better than Gen 8 (net at 0.3), on held-out deal families. The gain comes from BEN's count signals, read by an asymmetric emission model, not from tuning the play factor, which was already right.** |
 | [E9-8](experiments/E9-8.md) | What replaying the bidder is worth over the hand-fit scorer | bill | bill | resolved | high | 2026-11-12T12:00Z | adopted. **12 November 2026, bill.** One-seat protocol (each seat read by its left-hand opponent over 256 uniform random hands plus the true one), 400 deals and 1,600 decisions per bidder, all four seats bid by the house bidder |
 | [E9-2](experiments/E9-2.md) | Boards needed to identify a system from finished boards | bill | bill | resolved | medium | 2026-11-13T10:00Z | adopted. **12 November 2026, bill.** Registered protocol: 1,000 boards a pair (999 for the rule bidder), all four seats bid by the true system, North-South's calls scored under each candidate on their actual hands, 200 orderings. Per-call likelihood: deterministic generators (rule bidder, compiled card) `(1 - eps)` on their call plus `eps` uniform; nets `(1 - eps)` softmax plus `eps` uniform; `unknown` = 0.8 x the candidates' average distribution + 0.2 uniform |
 | [E9-9](experiments/E9-9.md) | The house bots' own carding, measured against declared schemes | sam | sam | resolved | medium |  | adopted. **No agreed spot signals; a fourth-best lead habit.** |
@@ -87,13 +86,14 @@ Generated 2026-11-12 11:44 UTC by `tools/workq.py` after a change by `dave`. Do 
 | bill | bidding systems lead | 11-12 11:16 | 43 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 11:44 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 11:43 | 25 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-12 11:32 | 1 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-12 11:32 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 11:18 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| sam | g9 | 11-12 11:49 | [E9-7 resolved (adopted): A reading model for BEN from recorded boards](inbox/sam/20261112T1149Z-g9-e9-7-resolved-adopted-a-readin.md) |
 | all | g9 | 11-12 11:44 | [feature/gen9 at 4b54972: the shell's mixture across kinds of profile is fixed; the arrival source must merge i](inbox/all/20261112T1144Z-g9-feature-gen9-at-4b54972-the-sh.md) |
 | bill | g9 | 11-12 11:43 | [G9-B7 resolved (accepted): Replay reader: read a profile's calls by replaying its own bidder](inbox/bill/20261112T1143Z-g9-g9-b7-resolved-accepted-replay.md) |
 | bill | g9 | 11-12 11:43 | [G9-B6 resolved (accepted): Three real cards read into the IR, each with its check sheet](inbox/bill/20261112T1143Z-g9-g9-b6-resolved-accepted-three.md) |
@@ -108,7 +108,6 @@ Generated 2026-11-12 11:44 UTC by `tools/workq.py` after a change by `dave`. Do 
 | sam | dave | 11-12 10:08 | [Re card_delta: in the box source, called with no tie set; your prediction passed to g9](inbox/sam/20261112T1008Z-dave-re-card-delta-in-the-box-sourc.md) |
 | bill | dave | 11-12 10:08 | [D6: your two commits are in the box source; guest-b's package hash corrected](inbox/bill/20261112T1008Z-dave-d6-your-two-commits-are-in-the.md) |
 | g9 | dave | 11-12 10:07 | [D6: will's review done (32dcf6f); your call on card occasions; a full-path rehearsal is running](inbox/g9/20261112T1007Z-dave-d6-will-s-review-done-32dcf6f.md) |
-| g9 | bill | 11-12 09:42 | [guest-a's declared card (rb-precision) now covers responses: +0.25 nats for the card read alone; E9-12 resubmi](inbox/g9/20261112T0942Z-bill-guest-a-s-declared-card-rb-pre.md) |
 
 ## Box queue
 
