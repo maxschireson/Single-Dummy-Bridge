@@ -27,7 +27,8 @@ Pairs are gap forks (the forced card drawn by band of its gap), tie audits (the 
 exactly level) and, from Gen 7 runs, tree audits. They are sampled pairs, not every near-tied card of
 every decision, so every figure is per sampled pair, and the groups are not weighted as a bot would
 meet them. Deals in --drop sets are left out: a net is scored on deals it did not train on. The +-
-figures are standard errors with deals as the unit.
+figures are standard errors with the deal as the unit (a deal played at several tables, or present in
+several sets, is one unit).
 """
 import argparse
 import json
@@ -84,7 +85,7 @@ def main():
         name, path = spec.split('=', 1)
         with np.load(path) as f:
             params = {k: f[k] for k in f.files}
-        cols, offset = {}, 0
+        cols = {}
         for set_path, pairs_path in a.test:
             t = Pairs(params, Path(set_path), Path(pairs_path), drop=seen)
             data = np.load(set_path)
@@ -92,14 +93,14 @@ def main():
             logit = np.concatenate([np.asarray(forward(params, {k: data[k][rows[i:i + 4096]] for k in INPUTS})['policy'], np.float64)
                                     for i in range(0, len(rows), 4096)]) if len(rows) else np.zeros((0, 52))
             part = dict(y=t.y, search=t.search, source=t.p['source'], imps=t.p['imps'].astype(np.float64), ply=t.p['ply'], bot=t.p['bot'],
-                        fam=t.p['deal'].astype(np.int64) + offset, policy=logit[inv, t.p['b']] - logit[inv, t.p['a']], gap_head=-t.net_gap)
+                        fam=t.family[t.p['deal']], policy=logit[inv, t.p['b']] - logit[inv, t.p['a']], gap_head=-t.net_gap)
             for label, w in heads.get(name, []):
                 for m in HEAD_MODELS:
                     part[f'{label} {m}'] = -t.predict(w[m])          # the head predicts the cost of B; turned, it is B's gain
             for k, v in part.items():
                 cols.setdefault(k, []).append(v)
-            offset += len(t.family)
         c = {k: np.concatenate(v) for k, v in cols.items()}
+        c['fam'] = np.unique(c['fam'], return_inverse=True)[1]      # the deal by its family: one deal can have boards in several sets
         if a.bot >= 0:
             c = {k: v[c['bot'] == a.bot] for k, v in c.items()}
         turn = np.where(c['search'] < -1e-9, -1., 1.)                # -1 where the search rated the forced card higher: then T is the card played
