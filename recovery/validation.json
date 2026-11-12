@@ -22,5 +22,18 @@
     "over_budget": 0
   },
   "source_completed_preserved": 3710,
-  "unused_source_families": 21290
+  "unused_source_families": 21290,
+  "browser": {
+    "preview": "passed",
+    "live": "passed",
+    "score_to_record_to_replay": true,
+    "both_full_52_card_replays": true,
+    "errors": [],
+    "live_observations": 54,
+    "dashboard_commit": "07f344ef6f4e34a89d76ad4c1ed40f6814ffc008",
+    "sha256": {
+      "browser-preview.json": "d2e3085f7d361cfaf11e160f5c0badec3fb9f645ae0ac19e1f375ffe18cdf794",
+      "browser-live.json": "d0f9aa95bb7d134eb5f74ca2e265054c1800028eeb988ce6fa929bab7c018bac"
+    }
+  }
 }

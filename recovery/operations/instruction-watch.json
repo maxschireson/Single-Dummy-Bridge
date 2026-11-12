@@ -245,7 +245,7 @@
     "gen8_systems": "dba31ae: unadopted WIP, explicitly not a cutover input.",
     "boxctl": "d5bb39f: remote-box operations tooling for separate machines; not adopted for this stream."
   },
-  "notification": "Meaningful applied change; notify on completion of registration and recovery verification.",
+  "notification": "Meaningful applied change: authorized Gen7 phase1 non-BEN cohort running, Gen6 history preserved; final notification after recovery checkpoint verified.",
   "checked_epoch": 1794450546,
   "checked_at": "2026-11-12T02:29:06Z",
   "next_check": "hourly",
@@ -253,27 +253,27 @@
   "health": {
     "state.json": {
       "manifest_identity": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
-      "completed": 15,
+      "completed": 66,
       "target": 21290,
-      "contiguous": 14,
+      "contiguous": 66,
       "by_pair": {
-        "7s-32~1": 5,
-        "7s-32~6-32": 5,
-        "7s-32~5RZ32": 5
+        "7s-32~1": 22,
+        "7s-32~6-32": 22,
+        "7s-32~5RZ32": 22
       },
-      "root_games": 35,
-      "tables": 270,
+      "root_games": 143,
+      "tables": 1020,
       "failures": 0,
-      "epoch": 1794452101.86677,
+      "epoch": 1794452614.6837537,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794452111.8681319,
-      "completed": 15,
+      "epoch": 1794452634.698296,
+      "completed": 66,
       "in_flight": [
-        14,
-        16,
-        17
+        66,
+        67,
+        68
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -281,8 +281,8 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794452115.4186902,
-      "completed": 15,
+      "epoch": 1794452627.0555449,
+      "completed": 66,
       "target": 21290,
       "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
       "workers": 3,
@@ -290,27 +290,27 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794452065.3959694,
+      "last_fleet_check": 1794452627.055108,
       "collector_pid": 24379,
-      "publisher_pid": 24380
+      "publisher_pid": 26730
     },
     "publisher-status.json": {
       "status": "published",
-      "epoch": 1794452072.283148,
-      "completed": 12,
-      "commit": "acfbf482599d608cbb4fc8f203cf9521ae20fb7d",
+      "epoch": 1794452578.5613184,
+      "completed": 61,
+      "commit": "307041db8c9438efccd07353499dd8ea37cf14ab",
       "branch": "arena-gen7-phase1-codex-20261112-feed"
     },
     "phase1-global-progress.json": {
-      "epoch": 1794452065.3951738,
+      "epoch": 1794452627.0521278,
       "status": "checked",
       "actor_identity": "f0a57859867353d654ebb9cf03844631d49c948bebcffbb91c441294684ae62e",
       "counts": {
-        "7s-32~6-32": 13,
+        "7s-32~6-32": 129,
         "7s-32~ben64": 0,
         "7s-32~ben": 0,
-        "7s-32~5RZ32": 12,
-        "7s-32~1": 12
+        "7s-32~5RZ32": 130,
+        "7s-32~1": 127
       },
       "target_per_pair": 2000,
       "owned_complete": false,
@@ -319,22 +319,37 @@
       "snapshots": [
         {
           "branch": "arena-gen7-phase1-azure1-feed",
-          "revision": "21cd24a69d79f4e5ae4172bcc2120d2684202544",
+          "revision": "9de8616950e98fa0092fd5df6b6b687f22002318",
           "cohort": "002cbafd32e1f74b57021c15ba7db2841aaf63b002822246caac9bb443b50027"
         },
         {
+          "branch": "arena-gen7-phase1-azure2-feed",
+          "revision": "d81bbc3dfdf1f1f74f2b0c599f587f08902ef9e7",
+          "cohort": "10772c07d1a778eae7481ac843d9c0d351fc3689b3bd1e5c32eb8b647d167e0b"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-feed",
+          "revision": "708284a6efd6e5a2fad81ba084c9257cad93b3ae",
+          "cohort": "d75a644daf203c58189edcc0ec50c041bfc1ed373607625dbdad88b63fe4dac5"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure4-feed",
+          "revision": "b1295277e152d95691d65109fa3a6499743879d9",
+          "cohort": "869ada89eaf3c23a392f3fdcd100a1cc4a35e456bf499194cc7572e448379097"
+        },
+        {
           "branch": "arena-gen7-phase1-codex-20261112-feed",
-          "revision": "d306716aba5d6b428fb9b13d078dae70c65bef71",
+          "revision": "307041db8c9438efccd07353499dd8ea37cf14ab",
           "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
         }
       ],
       "errors": [],
       "method": "Published authorized phase1 feeds plus local committed receipts; canonical actor identity; deduplicated by pair and deal family, independent of outcomes. Only published peers are observable."
     },
+    "failure_files": 0,
     ".writer.lock": "owned",
     ".watchdog.lock": "owned",
     ".publisher.lock": "owned",
-    "failure_files": 0,
     "watchdog-process.json": {
       "pid": 24371,
       "epoch": 1794451879.81585,
@@ -348,8 +363,8 @@
       "cmdline": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen7-phase1-codex-20261112/run --workers 3 "
     },
     "publisher-process.json": {
-      "pid": 24380,
-      "epoch": 1794451882.345341,
+      "pid": 26730,
+      "epoch": 1794452575.7105384,
       "alive": true,
       "cmdline": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py "
     }
@@ -404,7 +419,7 @@
       "previous": "c10ecfb584436e7ea5e9f578529f54f738e1d870"
     }
   ],
-  "completed_at": "2026-11-12T03:01:19Z",
+  "completed_at": "2026-11-12T03:03:56Z",
   "next_comment_scan_since": "2026-11-12T02:29:06Z",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
@@ -484,7 +499,7 @@
   "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer.",
   "transition": {
     "authorization_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
-    "status": "running-registered-recovery-checkpoint-finalizing",
+    "status": "complete-running",
     "retired_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
     "retired_completed": 3710,
     "new_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
@@ -526,7 +541,12 @@
       "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
       "completed": 3710,
       "restart_authorized": false
-    }
+    },
+    "validation_logs": [
+      "/workspace/work/gen7-phase1-codex-20261112/tests.log",
+      "/workspace/work/gen7-phase1-codex-20261112/test-fixture-rerun.log",
+      "/workspace/work/gen7-phase1-codex-20261112/preflight.log"
+    ]
   },
   "gen7_authority": {
     "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
@@ -558,6 +578,14 @@
     "preserved_other_producers": true,
     "gen7_results_separate": true,
     "preview_browser_passed": true,
-    "live_deployment_verification": "in-progress"
+    "live_deployment_verification": "passed; score -> exact record list -> both full 52-card table replays",
+    "github_pages_build_commit": "07f344ef6f4e34a89d76ad4c1ed40f6814ffc008"
+  },
+  "recovery_validation": {
+    "runtime_source_sha256": "d51ff44214554971649e32be7def1e2f0ba6f81c44d0f890fb36fd21e1399f86",
+    "recovery_runtime_import_verified": true,
+    "manifest_models_verified": true,
+    "receipt_episode_hashes_verified": true,
+    "browser_evidence_archived_by_updated_publisher": true
   }
 }
