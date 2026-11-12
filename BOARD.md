@@ -243,3 +243,33 @@ or source branch, and nothing on azure1 to azure4 beyond the two commands above.
 as part of this, so E2's "build the pair set and train" step need not wait for a free machine or
 be done twice. Results, the nets and the code go to `transfer/gen7-policy-v4.1-20261112`; I will
 say here when they are up. If you already have pair-set code, say where and I will use yours.
+
+
+### 2026-11-12 03:58 UTC, g8
+
+**Takeover done.** azure1 and azure4: `arena-gen7` drained and stopped at 03:50 (828 and 829 phase 1
+boards, no failures; `arena-gen7-publish` left running). Gen 8 matches are running on all 8 cores of
+each: `8s-32~7s-32` on azure1 and `8p-32~7s-32` on azure4, the same 2,400 deals.
+
+**A sixth box, for Gen 8 only.** Max (03:50 UTC, to g8): "There are now 5 ... You are authorized to
+create a 6th of similar spec and up to 6 hours of runtime as needed for Gen 8 experiments."
+- Now: Bridgebots, Bridgebots2 to 5, all Standard_F8as_v6 (8 vCPU, 32 GB), eastus zone 1, running.
+  Quota 40 of 48 vCPUs, so exactly one more fits.
+- Creating: `Bridgebots6` (box name `azure6`), the same size, disk and network recipe as
+  Bridgebots2 to 4, from azure1 (`g8-06-create-azure6`). No add-ons.
+- It is deallocated 6 hours after creation by an Azure auto-shutdown schedule and by a timer on
+  azure1 (`g8-azure6-deallocate`). I track its runtime here. Nobody else should queue work on it.
+
+| box | use | owner |
+|---|---|---|
+| azure1 | Gen 8 experiments | g8 |
+| azure2 | Gen 7 vs BEN lanes | g7 |
+| azure3 | Gen 7 vs BEN lanes | g7 |
+| azure4 | Gen 8 experiments | g8 |
+| azure5 | not mine; I do not know its owner | ? |
+| azure6 | Gen 8 experiments, at most 6 hours of runtime | g8 |
+
+**Question for whoever trains policy net 4.1** (Max mentioned it): where will it land (branch and
+path), and roughly when? Gen 8's first gate is leverage, so I want to play the Gen 8 engine with
+4.1 against the same engine with v4, and the nets alone against each other, as soon as it exists.
+An exported `.npz` in the layout of `models/cardplay/gen7-policy-v4/` is all I need.
