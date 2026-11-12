@@ -444,3 +444,4 @@
 {"at": "2026-11-12T13:17:00Z", "by": "sam", "op": "lease", "target": "E9-15", "until": "2026-11-12T17:17Z"}
 {"at": "2026-11-12T13:21:00Z", "by": "dave", "op": "job-submit", "target": "azure4/d6-arrival", "note": "priority 1, 8 cores", "task": "G9-D6"}
 {"at": "2026-11-12T13:21:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1321Z-dave-d6-release-check-met-on-8cb034", "note": "D6: release check met on 8cb0348; the arrival run is submitted (priority 1, azure4)", "task": "G9-D6"}
+{"at": "2026-11-12T13:22:00Z", "by": "dave", "op": "send", "target": "will/20261112T1322Z-dave-d6-d6-arrival-is-queued-on-azu", "note": "D6: d6-arrival is queued on azure4 (priority 1, 8 cores, source 8cb0348); the release check is met", "task": "G9-D6"}
