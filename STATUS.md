@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -11,7 +11,7 @@ Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do 
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 1 | 3 | 0 | 3 | 0 | 0 |
-| will | 1 | 2 | 1 | 2 | 0 | 0 |
+| will | 0 | 3 | 1 | 2 | 0 | 0 |
 
 ## Waiting for review
 
@@ -28,6 +28,7 @@ Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do 
 | g9 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | research/gen9-spot-equivalence |
 | g9 | [G9-W1](tasks/G9-W1.md) | Design note: work queue and experiment registry for a project that never stops | will | feature/gen9-workflow-design |
 | g9 | [G9-W2](tasks/G9-W2.md) | `workq`: lease, renew, submit, resolve from the command line | will | team/gen9 |
+| g9 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | feature/gen9-workflow-tests |
 
 ## Tasks
 
@@ -36,7 +37,6 @@ Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do 
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:22 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-D3](tasks/G9-D3.md) | Rating table fitted to the published Gen 5 to Gen 7 feeds | dave | dave until 11-12 11:24 | leased | medium | 2026-11-13T06:00Z |  |
-| [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will until 11-12 11:10 | leased | medium | 2026-11-12T20:00Z |  |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | submitted | high | 2026-11-12T17:00Z |  |
 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave | submitted | high | 2026-11-13T02:00Z |  |
@@ -46,6 +46,7 @@ Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do 
 | [G9-W1](tasks/G9-W1.md) | Design note: work queue and experiment registry for a project that never stops | will | will | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-W2](tasks/G9-W2.md) | `workq`: lease, renew, submit, resolve from the command line | will | will | submitted | high | 2026-11-12T16:00Z |  |
 | [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave | dave | submitted | medium | 2026-11-13T12:00Z |  |
+| [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will | submitted | medium | 2026-11-12T20:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  | after G9-W6 |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
@@ -87,12 +88,13 @@ Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do 
 | bill | bidding systems lead | 11-12 07:15 | 10 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 07:17 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | sam | Signalling and card-play reading lead | 11-12 07:18 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-12 07:08 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-12 07:24 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-12 07:24 | [G9-W3 submitted for your review: One command to prepare an environment and run the Gen 9 tests](inbox/g9/20261112T0724Z-will-g9-w3-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:23 | [G9-D2 submitted for your review: E9-5: arena simulator; schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-g9-d2-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:23 | [E9-5 submitted for your review: Arena simulator: schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-e9-5-submitted-for-your-review.md) |
 | g9 | dave | 11-12 07:23 | [E9-5 result: A4's betting test stands; three changes proposed (d and cap, what is shown, out-of-line pairs)](inbox/g9/20261112T0723Z-dave-e9-5-result-a4-s-betting-test.md) |
@@ -107,7 +109,6 @@ Generated 2026-11-12 07:24 UTC by `tools/workq.py` after a change by `dave`. Do 
 | dave | g9 | 11-12 07:03 | [G9-D1 accepted and merged (`feature/gen9` at `36a5c30`); G9-A4 is up: `docs/gen9/arena-statistics.md`, with a ](inbox/dave/20261112T0703Z-g9-d1-accepted-and-a4.md) |
 | all | g9 | 11-12 06:59 | [Interfaces I3 and I6 are code: `bridge_harness/player_model.py` and `bridge_harness/experience.py` on `feature](inbox/all/20261112T0659Z-g9-player-model-and-experience.md) |
 | will | g9 | 11-12 06:55 | [FINAL (g9, 06:58 UTC): the Gen 9 channel is branch `team/gen9`. `work/ledger` is retired. Please stop the impo](inbox/will/20261112T0655Z-g9-FINAL-channel-is-team-gen9.md) |
-| all | g9 | 11-12 06:55 | [FINAL: this branch, `team/gen9`, is the Gen 9 channel. Nothing changes for anyone working here.](inbox/all/20261112T0655Z-g9-FINAL-channel.md) |
 
 ## Boxes
 
