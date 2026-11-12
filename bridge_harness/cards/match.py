@@ -225,3 +225,123 @@ def boards_to_identify(ll, truth, threshold=0.95, prior=None, orderings=200, see
         bad = np.flatnonzero(~ok)
         out.append(int(bad[-1]) + 2 if len(bad) else 1)
     return out
+
+
+def library(root='.', exclude=(), eps=0.05):
+    """The profiles we hold, as call models, for a broad `unknown` (UnknownMixture over them): the house nets
+    found restored under root, the rule bidder's two settings, and every compiled card's own bidder."""
+    from pathlib import Path
+    from .. import rule_bidder as rb
+    from .bidder import CardBidder
+    from .card import builtin_ids
+    out = []
+    for name, path in (('house-gen6', 'models/bidding/gen6-candidate-2026-11-11/bidder.keras'), ('house-gen5', 'models/bidding/gen5-2026-11-10/bidder.keras'),
+                       ('house-dds40k', 'models/bidding/dds-40000/bidder.keras')):
+        if name not in exclude and (Path(root) / path).exists():
+            try:
+                out.append(NetProfile(name, str(Path(root) / path), eps=eps))
+            except ImportError:
+                pass
+    for name, g in (('rb-standard', rb.STANDARD), ('rb-precision', rb.Settings())):
+        if name not in exclude:
+            out.append(DeterministicProfile(name, rb.RuleSystemBidder(g, 'standard'), eps=eps))
+    fallback = rb.RuleSystemBidder(rb.STANDARD, 'same')
+    for cid in builtin_ids():
+        if cid not in exclude and not cid.startswith('rb-'):
+            out.append(DeterministicProfile(cid, CardBidder(cid, fallback=fallback), eps=eps))
+    return out
+
+
+class FlatProfile:
+    """'flat': a model of the calls that does not look at the hand (the shell's reserved profile of that name).
+    Each call's probability is the library's distribution averaged over random hands for the seat, mixed with
+    uniform, so it carries what is typical at that point of the auction and nothing about this hand."""
+
+    def __init__(self, library_profiles, hands=16, mix=0.1, seed=0, name='flat'):
+        self.lib, self.k, self.mix, self.seed, self.name = list(library_profiles), int(hands), float(mix), int(seed), name
+
+    def call_probs(self, hands, dealer, vul, calls, seats):
+        rng = random.Random(self.seed)
+        per_seat = {}
+        for s in seats:
+            unseen = [c for c in range(52) if all(c not in hands[t] for t in range(4) if t != s)]
+            acc = None
+            for _ in range(self.k):
+                fake = [list(h) for h in hands]
+                fake[s] = sorted(rng.sample(unseen, 13))
+                rows = [p.call_probs(fake, dealer, vul, calls, [s]) for p in self.lib]
+                for r in rows:
+                    acc = [[dict(), c, n] for _, c, n in r] if acc is None else acc
+                    for k, (p, c, n) in enumerate(r):
+                        for tok, v in p.items():
+                            acc[k][0][tok] = acc[k][0].get(tok, 0.) + v / (self.k * len(self.lib))
+            per_seat[s] = acc or []
+        out, idx = [], {s: 0 for s in seats}
+        for t, c in enumerate(calls):
+            s = (dealer + t) % 4
+            if s in per_seat:
+                p, tok, n = per_seat[s][idx[s]]
+                idx[s] += 1
+                out.append(({x: (1 - self.mix) * v + self.mix / n for x, v in p.items()}, tok, n))
+        return out
+
+    def call_log_probs(self, hands, dealer, vul, calls, seats):
+        return [np.log(p.get(c, self.mix / n)) for p, c, n in self.call_probs(hands, dealer, vul, calls, seats)]
+
+
+class CardProfile:
+    """'card': the declared card's rules where they speak (the filter's noisy-rule likelihood per call), and the
+    flat model where the card says nothing, so 'card' and 'flat' differ only on the calls the card covers."""
+
+    def __init__(self, factor, flat, name='card'):
+        self.f, self.flat, self.name = factor, flat, name
+
+    def call_log_probs(self, hands, dealer, vul, calls, seats):
+        from .factor import call_log_prob
+        flat = self.flat.call_log_probs(hands, dealer, vul, calls, seats)
+        out, k = [], 0
+        for t, c in enumerate(calls):
+            s = (dealer + t) % 4
+            if s not in seats:
+                continue
+            ctx = Context.make(calls[:t], dealer, s, vul)
+            rules = self.f.system.rules(ctx)
+            lp = None
+            if rules is not None:
+                fam = next((r.family for r in rules if r.call == c), None)
+                if fam is not None:
+                    lp = call_log_prob(rules, c, features_of_hands([hands[s]]), self.f.dev.eps(fam), self.f.lam, self.f.exhaustive)
+                    lp = None if lp is None else float(lp[0])
+            out.append(flat[k] if lp is None else lp)
+            k += 1
+        return out
+
+
+def held_systems(root='.', eps=0.05):
+    """{system id: call model} for every Gen 8 system package whose bidder is a BEN-format net restored here."""
+    from pathlib import Path
+    from ..systems import SystemRegistry
+    out = {}
+    try:
+        reg = SystemRegistry.load()
+    except Exception:
+        return out
+    for sid in reg.ids():
+        try:
+            g = reg[sid].generator('ben-lstm-keras')
+        except ValueError:
+            continue
+        for base in (Path(root), Path(__file__).resolve().parents[2]):
+            path = base / g['path']
+            if not g.get('external') and path.exists():
+                out[sid] = NetProfile(sid, str(path), eps=eps)
+                break
+    return out
+
+
+def profile_evidence(hands, dealer, vul, calls, seats, systems, factor=None, flat=None):
+    """{candidate: summed log P of the calls of `seats`} for the experience statistic 'profile': every held system
+    by id, 'card' by the declared card's rules (with flat where it says nothing), and 'flat'."""
+    flat = flat or FlatProfile(list(systems.values()))
+    profiles = list(systems.values()) + [flat] + ([CardProfile(factor, flat)] if factor is not None else [])
+    return board_loglik(profiles, hands, dealer, vul, calls, seats)
