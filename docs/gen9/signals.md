@@ -26,8 +26,8 @@ in which that suit is led); later rounds carry no signal in v1.
 | --- | --- | --- | --- |
 | count | even, odd | parity of the original length in the suit | standard: even = high, odd = low; upside-down reversed |
 | attitude | like, dislike | holds the A, K or Q of the suit | standard: like = high; upside-down reversed |
-| suit preference | higher, lower | of the two suits left after removing trumps, the suit led and (for discards) the suit discarded, the higher-ranking holds more HCP (ties: lower); no signal if three suits are left | higher = high |
-| Lavinthal | higher, lower | as suit preference, between the two suits other than trumps and the one discarded | higher = high |
+| suit preference | higher, lower | of the two suits left after removing trumps and the suit led, the higher-ranking holds more HCP (ties: lower); no signal if three suits are left (no-trump) | higher = high |
+| Lavinthal | higher, lower | as suit preference, between the suits other than trumps and the one discarded; at no-trump the suit led is removed too | higher = high |
 | odd-even | like, dislike | attitude to the suit discarded | like = highest odd spot, dislike = lowest even spot |
 
 "High" is the highest spot of the class held, "low" the lowest. A message the holding cannot send
@@ -44,6 +44,11 @@ rule, not a message:
 
 The fact definitions are versioned (`signals-v1`). A real player whose "attitude" means something
 else simply measures as less honest under v1; a later definition is a new version.
+
+What the descriptor leaves out stays Gen 8's. A situation whose field is absent is read as Gen 8
+reads it (the net on the card, times `phi`); a field set to `none`, and the later rounds of a
+suit, mean "no signal", read as a uniform choice in the class. A descriptor that declares no
+situation and no lead convention (only `attitude: standard`, say) is inert.
 
 ## 2. The class rule
 
