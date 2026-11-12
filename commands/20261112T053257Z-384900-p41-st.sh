@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+P=$HOME/work/p41; grep "eval768\|push3" $P/logs/timeline.log; grep -A6 "512 wide against" $P/logs/eval768.log | grep "==\|gives up\| all \|decisions," | cut -c1-330; echo "--- 768 heads"; sed -n "/^== v4.1:/,\$p" $P/logs/eval768.log | cut -c1-260; echo "--- 768 by bot on C"; grep -A2 "\"bot\": [02]" $P/logs/eval768.log | grep "\"net\": \"v4.1\"\|\"bot\"" | cut -c1-235; echo "--- 512e5"; cat $P/logs/w512e5.out | cut -c1-330; tail -1 $P/logs/w512e5.err; tail -1 $P/logs/w768e5.err
