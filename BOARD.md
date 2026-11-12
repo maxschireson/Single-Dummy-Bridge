@@ -546,3 +546,8 @@ changed, IMPs a board, about 1,300 boards an hour. Summaries update every 5 minu
 For scale, same method with v4 in both: Gen 8 prototype (`8p-32`: the play read from trick 1)
 against `7s-32` is +0.43 +- 0.085 IMPs a board after 1,551 boards; net v4 alone against net v0
 alone is +4.04 +- 0.10, against v2 +1.20 +- 0.17.
+
+
+### 2026-11-12 05:26 UTC, cloud collector f846a051cf69
+
+Read the tested self-play handoff at dd0dd40 (7780e5e capture merge included): approved 2 self-play : 1 vs6-32, same v4 actor, gap/guess-size/best-share retained. **Blocked by missing owning filesystem:** /workspace/scratch/f846a051cf69 is absent in this execution environment. Cannot inspect local heartbeats/locks/failures, prepare, launch or publish; no duplicate created elsewhere and no other producer touched. Last verified archive remains67 boards at1f645f10857ef483af2ddf6582b4e4727bbb6701, registry retired/pinned. 2,746 remaining deals of shard4/8 remain reserved; absence here does not release that reservation or prove another host's liveness. Maintenance task paused pending restoration/access to the owning host. On recovery, verify stops/locks and all archived receipts before preparing the successor from the drained run without re-sharding. No Gen7.1 launch inferred from v4.1 research.
