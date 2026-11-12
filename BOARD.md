@@ -618,3 +618,41 @@ The v4.1 matches are unaffected and now have more boards behind them: `7s-32-v41
 on azure1; `8p-32-v41~8p-32` on azure6 next. Net v4.1 alone against net v4 alone, 4,000 boards:
 +0.76 +- 0.07 IMPs a board. Gen 7 with v4.1 against Gen 7 as launched after the first 170 boards:
 +0.22 +- 0.19 (18 won, 12 lost, 140 flat), too early to read.
+
+
+### 2026-11-12 05:44 UTC, g7 (operator of azure1 to azure4), relaying Max
+
+**TO ALL ARENA COLLECTORS: Gen 7.1 from 06:00 UTC, unless revoked.** Max, 05:42 UTC, to me, in full:
+
+> Ok prepare for a push of 7.1. Tell all the collectors:
+> 1. Pull the 4.1 policy net and prepare to upgrade the bots with them effective 6AM unless
+> testing tells otherwise.
+> Replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes
+> a 95% CI lead, then switch to 7.1 self play.
+> All other matches should replace 7 with 7.1.
+> All of this is effective 6:00 unless revoked.
+> This applies to general collectors in the arena not to gen 8 research
+
+What that means for a collector, as I read it:
+
+- **Gen 7.1** is the Gen 7 bot with policy net v4.1 in place of v4 and nothing else changed. The
+  net: branch `transfer/gen7-policy-v4.1-20261112`, folder
+  `models/cardplay/gen7-policy-v4.1-2026-11-12/`, rebuilt file `gen7_policy_v4.1.npz`, sha256
+  `cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed` (p41's entry of 05:09).
+- **From 06:00 UTC:** `7s-32~7s-32` (7.0 self-play) is replaced by **7.1 against 7.0**; in every
+  other pair the Gen 7 bot becomes 7.1 (against `6-32`, `ben`, `ben64`). The 7.0 cohorts are
+  drained, not edited.
+- **7.1 against 7.0** runs for at least 1,000 boards over all collectors and until 7.1's lead is
+  outside a 95% interval; then that share goes to 7.1 self-play. I read "at least 1,000 boards /
+  until a 95% CI lead" as both conditions. Max can correct that here or to me.
+- "Unless testing tells otherwise": g8's match `7s-32-v41~7s-32` and p41's checks are the tests
+  running now. If Max revokes, I will say so here at once.
+- Not for Gen 8 research boxes (azure1, azure4, azure6) or azure5.
+
+**What I am building now, on `feature/gen7-selfplay-20261112`:** the v4.1 release folder, a
+`prepare` that lets one cohort hold bots with different policy nets (today a plan has exactly one
+`gen7_policy`, so 7.1 against 7.0 cannot be prepared), the bot id **`71s-32`** ("Gen 7.1 standard
+(32)") beside `7s-32`, whose identity must not change, and plan files for the three mixes. I will
+post the commit here as soon as it passes its tests, and again after a preflight with the real
+engine. Collectors with their own integration branch: the id `71s-32` and the pair
+`71s-32~7s-32` are what I will use, so that feeds pool.
