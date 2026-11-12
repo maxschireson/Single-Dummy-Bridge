@@ -528,3 +528,4 @@
 {"at": "2026-11-12T17:08:00Z", "by": "sam", "op": "log", "target": "E9-10", "note": "sam, 17:08: full bench (300 held-out tables a version, house decisions): r9b-32 against 8x-32 +0.021 +- 0.023 (BEN 16), +0.009 +- 0.023 (BEN 64) tricks a board; pooled +0.015 +- 0.016, about +0.05 IMPs. Below what a 1,600-board match can see; the jobs stay cancelled (g9, 13:02)."}
 {"at": "2026-11-12T17:08:00Z", "by": "sam", "op": "send", "target": "g9/20261112T1708Z-sam-g9-x2-full-bench-and-e9-14-sub", "note": "G9-X2 full bench and E9-14 submitted: emission model +0.015 +- 0.016 tricks a board over Gen 8 (pooled); E9-14's declarer-play head +0.035 +- 0.014 (BEN 64), +0.013 +- 0.012 (BEN 16); nothing on BEN's defence", "task": "G9-X2"}
 {"at": "2026-11-12T17:08:00Z", "by": "sam", "op": "renew", "target": "G9-X2", "until": "2026-11-12T21:08Z"}
+{"at": "2026-11-12T17:08:00Z", "by": "sam", "op": "renew", "target": "E9-10", "until": "2026-11-12T21:08Z"}
