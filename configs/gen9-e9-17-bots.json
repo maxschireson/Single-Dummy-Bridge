@@ -359,65 +359,13 @@
      "kind": "synthetic",
      "carding": {
       "descriptor": {
-       "attitude": "standard",
-       "count": "standard",
-       "signal_on_partner_lead": "count",
-       "signal_on_declarer_lead": "count",
-       "first_discard": "count",
-       "trump_signal": "count"
-      },
-      "emission": {
-       "partner_lead.count": [
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ],
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ]
-       ],
-       "declarer_lead.count": [
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ],
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ]
-       ],
-       "first_discard.count": [
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ],
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ]
-       ],
-       "trump.count": [
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ],
-        [
-         0.3333333333333333,
-         0.3333333333333333,
-         0.3333333333333333
-        ]
-       ]
+       "signal_on_partner_lead": "none",
+       "signal_on_declarer_lead": "none",
+       "first_discard": "none",
+       "trump_signal": "none"
       },
       "phi": 0.25,
-      "notes": "t-random: the any card of its class, whatever the message"
+      "notes": "t-random: any card of its class, evenly"
      }
     }
    }

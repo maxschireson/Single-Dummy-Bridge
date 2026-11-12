@@ -6,8 +6,8 @@ stand-ins t-high, t-low and t-random as they are there, and
 
   r9t-32   8x-32 (the same Gen 7 settings and factors by opponent type) with Gen 9's signal reader. Each stand-in
            has a model whose carding block names the four spot situations with an emission table that fixes the
-           card's place in its class whatever the message: t-high the highest, t-low the lowest, t-random even
-           (exact for classes of two and three cards). phi, the factor on the class term, is 8x-32's for that type,
+           card's place in its class whatever the message: t-high the highest, t-low the lowest; t-random's
+           block declares no signal in any situation, so every spot is an even choice in its class. phi, the factor on the class term, is 8x-32's for that type,
            so r9t-32 differs from 8x-32 only in how a defender's spot is read within its class.
 
     python scripts/gen9_e9_17_bots.py            # writes the file
@@ -24,6 +24,7 @@ OUT = ROOT / 'configs' / 'gen9-e9-17-bots.json'
 SITUATIONS = ('partner_lead', 'declarer_lead', 'first_discard', 'trump')
 DESCRIPTOR = {'attitude': 'standard', 'count': 'standard', 'signal_on_partner_lead': 'count',
               'signal_on_declarer_lead': 'count', 'first_discard': 'count', 'trump_signal': 'count'}
+NO_SIGNAL = {'signal_on_partner_lead': 'none', 'signal_on_declarer_lead': 'none', 'first_discard': 'none', 'trump_signal': 'none'}
 PLACE = {'t-high': [0., 1., 0.], 't-low': [1., 0., 0.], 't-random': [1 / 3, 1 / 3, 1 / 3]}     # P(low), P(high), P(middle)
 
 
@@ -36,11 +37,15 @@ def build():
     factors = house['8x-32']['gen7']['opponent_play_weight']
     models = {}
     for t, place in PLACE.items():
+        if t == 't-random':                 # an even choice at every class size: no signal in any situation (sam, 17:22 UTC)
+            models[t] = dict(kind='synthetic', carding=dict(
+                descriptor=dict(NO_SIGNAL), phi=float(factors[t]), notes='t-random: any card of its class, evenly'))
+            continue
         models[t] = dict(kind='synthetic', carding=dict(
             descriptor=dict(DESCRIPTOR),
             emission={f'{s}.count': [list(place), list(place)] for s in SITUATIONS},
             phi=float(factors[t]),
-            notes=f'{t}: the {"highest" if t == "t-high" else "lowest" if t == "t-low" else "any"} card of its class, whatever the message'))
+            notes=f'{t}: the {"highest" if t == "t-high" else "lowest"} card of its class, whatever the message'))
     r = deepcopy(house['8x-32'])
     r.update(engine='gen9', policy_role='gen9-reader',
              label='8x-32 with the signal reader told each stand-in\'s fixed carding rule (E9-17)', gen9=dict(models=models))

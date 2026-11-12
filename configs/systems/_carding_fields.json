@@ -32,7 +32,8 @@
     "signal_on_partner_lead": [
       "attitude",
       "count",
-      "suit_preference"
+      "suit_preference",
+      "none"
     ],
     "signal_on_declarer_lead": [
       "count",
@@ -43,7 +44,8 @@
       "attitude",
       "lavinthal",
       "odd_even",
-      "count"
+      "count",
+      "none"
     ],
     "smith_echo": [
       "none",
