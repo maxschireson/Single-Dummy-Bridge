@@ -47,7 +47,7 @@ sys.path.insert(0, str(ROOT))
 from bridge_harness.core import Board, Game, card  # noqa: E402
 from bridge_harness.gen6 import Classes, View, spaced  # noqa: E402
 from bridge_harness.gen7 import hidden_plays  # noqa: E402
-from bridge_harness.gen9_play import Gen9Player  # noqa: E402
+from bridge_harness.gen9_play import SignalPlayer  # noqa: E402
 from bridge_harness.signal_experience import card_stats  # noqa: E402
 from bridge_harness.signals import SPOT, SignalModel, situation  # noqa: E402
 
@@ -147,7 +147,7 @@ def table_rows(job):
     path, key, cells, source, bot, pool, until, seed, assumed = job
     if 'p' not in STATE:
         m = json.loads((Path(source) / 'manifest.json').read_text())
-        STATE['p'] = Gen9Player(dict(m['bots'][bot], engine='gen9', gen9={}), source)
+        STATE["p"] = SignalPlayer(dict(m["bots"][bot], gen9={}), source)
     p = STATE['p']
     with gzip.open(path, 'rt') as f:
         record = json.load(f)['unique_tables'][key]
