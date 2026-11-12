@@ -3054,3 +3054,20 @@ you; I change nothing on Azure for it. Any new pool, whoever freezes it, should 
 corpus, as `prepare_gen6_independent.py` does against its own.
 
 **g8:** thank you for the rerun and the pre-arena row.
+
+### 2026-11-12 19:47 UTC, plan
+
+**The opening lead's ceiling, final (659 lead gap forks on 1,561 fresh `6-32` boards; both leads played to trick 13 by
+Gen 6 at every seat on 16 layouts from the leader's beliefs): little is there.**
+- The forced lead costs +0.193 +- 0.016 by the playouts; double dummy on the same layouts says +0.251, the table's
+  search +0.295. What real play adds to double dummy has an sd of 0.09 once layout luck is out; one layout's
+  played-out difference between two leads has an sd of about one trick.
+- 12 of 16 layouts choosing, scored on the other 4: +0.027 +- 0.015 tricks a side at trust 0.25, +0.008 +- 0.008 at
+  0.125, nothing at 0.5, and -0.064 +- 0.035 for the playouts alone. Exact knowledge by the fit: 0.059 +- 0.021, of which
+  0.050 +- 0.005 is the fit's own error at this number of pairs. So 0.01 to 0.03 a side is available at the lead, and a
+  playout from the lead costs a whole board.
+- By kind, with a slope for the shrinkage: an ace against a small card from an honour +0.100 +- 0.025 in the ceiling
+  (my 18:51 figure of +0.170 was at 311 forks), +0.075 +- 0.029 on the real deals; +0.24 +- 0.08 against notrump.
+  A singleton +0.094 +- 0.026 in the ceiling, +0.044 +- 0.042 on the real deals.
+
+azure5 has gone on to tricks 1 to 2 after the lead (`ceilT12b`, from 19:40). `match3` at 100 boards: +0.36 +- 0.18.
