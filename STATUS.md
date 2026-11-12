@@ -8,7 +8,7 @@ Generated 2026-11-12 07:41 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 3 | 0 | 0 | 1 | 0 | 2 |
 | dave | 1 | 0 | 0 | 1 | 0 | 4 |
-| g9 | 0 | 0 | 1 | 3 | 0 | 3 |
+| g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 2 | 1 | 0 | 1 | 0 | 3 |
 | will | 0 | 0 | 1 | 1 | 0 | 4 |
@@ -24,6 +24,7 @@ Generated 2026-11-12 07:41 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | dave until 11-12 11:33 | leased | high | 2026-11-13T14:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:22 | leased | high | 2026-11-13T04:00Z |  |
@@ -35,7 +36,6 @@ Generated 2026-11-12 07:41 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
-| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 |  | open | high | 2026-11-13T06:00Z | after G9-A3 |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
