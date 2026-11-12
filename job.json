@@ -1,0 +1,45 @@
+{
+ "id": "d6-arrival",
+ "box": "azure4",
+ "experiment": null,
+ "task": "G9-D6",
+ "owner": "dave",
+ "priority": 1,
+ "cores": 8,
+ "source": {
+  "branch": "feature/gen9-arena-arrival",
+  "commit": "8cb0348"
+ },
+ "argv": [
+  "{python}",
+  "scripts/arena9.py",
+  "arrival",
+  "--out",
+  "{out}",
+  "--players",
+  "configs/players",
+  "--rules",
+  "configs/arena9/rules-arrival.json",
+  "--capsule",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--events",
+  "configs/arena9/arrival-events.json",
+  "--epochs",
+  "5",
+  "--workers",
+  "8"
+ ],
+ "progress": {
+  "results": "results.jsonl",
+  "target": 6200
+ },
+ "preemptible": false,
+ "publish": [
+  "results.jsonl",
+  "report.md",
+  "replay.json",
+  "control/*"
+ ],
+ "submitted": "2026-11-12T13:21:00Z",
+ "by": "dave"
+}

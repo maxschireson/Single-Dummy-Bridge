@@ -1,0 +1,76 @@
+{
+ "admission": {
+  "max_boards": 2000,
+  "se": 0.15
+ },
+ "common_bidder": "6-32",
+ "condition": "native",
+ "epoch": {
+  "boards": 1600,
+  "sizes": [
+   600,
+   1200,
+   1200,
+   1600,
+   1600
+  ]
+ },
+ "experience": {
+  "occasions": {
+   "bid": "auction",
+   "card": "play"
+  }
+ },
+ "floors": [
+  {
+   "boards": 300,
+   "pairs": [
+    "9a-32~guest-a",
+    "8p-32~guest-a"
+   ],
+   "purpose": "comparison",
+   "same_deals": true
+  },
+  {
+   "boards": 300,
+   "pairs": [
+    "9a-32~guest-b",
+    "8p-32~guest-b"
+   ],
+   "purpose": "comparison",
+   "same_deals": true
+  }
+ ],
+ "gain_purposes": [
+  "admission",
+  "panel"
+ ],
+ "max_weight_ratio": 2,
+ "notes": [
+  "The arrival run (G9-D6) on a box, as g9 set it on 12 Nov 11:32 UTC before the run: five epochs of 600, 1,200, 1,200, 1,600 and 1,600 boards (6,200); guest-a submitted before epoch 2, guest-b before epoch 4; 7s-32 retired before epoch 4.",
+  "Floors on the same deals: 9a-32 and 8p-32 against guest-a, 300 boards a pair an epoch from epoch 2; against guest-b, 300 a pair in epochs 4 and 5.",
+  "Shares of the scheduled boards, for this run only (nothing trains on it; rules v0 stays as accepted): self-play 0.10, promotion 0.30, the rest (0.60, and any empty purpose's share) to admission and panel pairs by the gain rule of G9-A4 (bridge_harness/arena9.gain_units).",
+  "Occasions for experience: bid statistics by auction (identical evidence counts once), card statistics by play (an identical play once, a different play again). Known and accepted: two plays that agree for the first tricks and then part count the shared tricks twice.",
+  "Other settings are rules v0 (A4 with E9-5: d = 0.1, cap 10,000)."
+ ],
+ "promotion": {
+  "alpha": 0.05,
+  "beta": 0.1,
+  "cap": 10000,
+  "d": 0.1
+ },
+ "reference": "1",
+ "retirement": {
+  "gap": 1.0,
+  "min_epochs": 3
+ },
+ "schema": "arena-rules-v1",
+ "shares": {
+  "gain": 0.6,
+  "promotion": 0.3,
+  "training": 0.1
+ },
+ "training_pairs": "self-play",
+ "version": "arrival-v2",
+ "weight_units": 100
+}
