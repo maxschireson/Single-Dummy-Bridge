@@ -2,3 +2,5 @@
 2026-11-12T14:09:09Z end ceilT712b: exit 0
 2026-11-12T14:09:11Z source now b0230a0 Reading bench: single-card neighbours of the true layout (evidence about
 2026-11-12T14:09:11Z start rbs1 (source b0230a0): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --seeds 2 --files 120 --swaps --workers 8 --out $R.json
+2026-11-12T14:31:12Z end rbs1: exit 0
+2026-11-12T14:31:12Z start rbs2 (source b0230a0): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 4 --seeds 2 --files 80 --skip-files 120 --swaps --workers 8 --out $R.json
