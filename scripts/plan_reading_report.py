@@ -49,6 +49,63 @@ def boot(values, groups, rng, n=1000):
     return sums.sum(0) / counts.sum(), means.std(0)
 
 
+def swaps(rows, S, half, rated, fam, a, rng):
+    """Rows made with --swaps: the evidence the plays hold about one card's place, as the log-likelihood ratio of the true
+    layout to the same layout with that card in the other hidden hand."""
+    recs = []
+    for s, h, r, f in zip(S, half, rows, fam):
+        same, gap, net, opt = s['same'], s['gap'], s['net'], s['opt']
+        sim = same >= 0
+        choice = opt > 1
+        runs = sim.sum(2)
+        ln = np.where(choice, np.log((1 - a.floor) * np.exp(net) + a.floor / np.maximum(opt, 1)), 0.)
+        pr = np.where(sim, rated[h][bucket(same, gap)], 0.).sum(2) / np.maximum(runs, 1)
+        lr = np.where(choice & (runs > 0), np.log(np.maximum(pr, 1e-6)), 0.)
+        partner = s['partner']
+        for k, (kind, card, other) in enumerate(r['kinds']):
+            if k == 0:
+                continue
+            recs.append(dict(family=f, kind=kind, rank='23456789TJQKA'[card % 13], declaring=r['declaring'],
+                             net=float((ln[:, 0] - ln[:, k]).sum()), bot=float((lr[:, 0] - lr[:, k]).sum()),
+                             bot_partner=float((lr[partner, 0] - lr[partner, k]).sum()), net_partner=float((ln[partner, 0] - ln[partner, k]).sum()),
+                             plays_differ=int(((same[:, k, :] == 0).any(1) & choice[:, k]).sum())))
+    print(f'\n{len(rows)} seats on {len(set(fam))} deals, {len(recs)} single-card neighbours of the true layout. Evidence = log-likelihood of the plays under '
+          f'the true layout minus under the neighbour (nats). With even prior odds the true holder then gets log-probability -log(1 + exp(-evidence)).')
+    print(f"   {'':34s}{'n':>6s}{'bot: mean evidence':>22s}{'net: mean evidence':>22s}{'bot: log-prob':>18s}{'net: log-prob':>18s}{'bot says wrong':>16s}{'net says wrong':>16s}")
+    lp = lambda e: -np.log1p(np.exp(-np.clip(e, -30, 30)))
+
+    def line(label, sub):
+        if len(sub) < 10:
+            return
+        g = [x['family'] for x in sub]
+        cells = []
+        for key in ('bot', 'net'):
+            m, e = boot([x[key] for x in sub], g, rng)
+            cells.append(f'{m:+12.2f} +- {e:.2f}')
+        for key in ('bot', 'net'):
+            m, e = boot(lp(np.array([x[key] for x in sub])), g, rng)
+            cells.append(f'{m:+9.3f} +- {e:.3f}')
+        for key in ('bot', 'net'):
+            cells.append(f"{np.mean([x[key] < -1e-9 for x in sub]):16.3f}")
+        print(f'   {label:34s}{len(sub):6d}' + ''.join(cells))
+
+    for kind in ('honour', 'honour and length', 'small'):
+        line(kind, [x for x in recs if x['kind'] == kind])
+    hon = [x for x in recs if x['kind'].startswith('honour')]
+    for rank in 'AKQJT':
+        line(f'honours: {rank}', [x for x in hon if x['rank'] == rank])
+    line('honours, viewer declaring', [x for x in hon if x['declaring']])
+    line('honours, viewer defending', [x for x in hon if not x['declaring']])
+    m, e = boot([x['bot_partner'] for x in hon if not x['declaring']], [x['family'] for x in hon if not x['declaring']], rng)
+    m2, e2 = boot([x['net_partner'] for x in hon if not x['declaring']], [x['family'] for x in hon if not x['declaring']], rng)
+    print(f"   of the defenders' evidence about honours, from partner's plays alone: bot {m:+.2f} +- {e:.2f}, net {m2:+.2f} +- {e2:.2f}")
+    print(f"   honours on which no play of the bot would have differed in the neighbour: {np.mean([x['plays_differ'] == 0 for x in hon]):.3f}; "
+          f"bot's evidence above 3 nats: {np.mean([x['bot'] > 3 for x in hon]):.3f}; net's: {np.mean([x['net'] > 3 for x in hon]):.3f}")
+    d = np.array([x['bot'] - x['net'] for x in hon])
+    m, e = boot(d, [x['family'] for x in hon], rng)
+    print(f'   bot minus net, honours: {m:+.2f} +- {e:.2f} nats; correlation of the two {np.corrcoef([x["bot"] for x in hon], [x["net"] for x in hon])[0, 1]:.2f}')
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('files', nargs='+')
@@ -94,6 +151,8 @@ def main():
         if both[b].sum():
             print(f'   {names[b]:22s} {both[b, 1] / both[b].sum():.3f}  ({int(both[b].sum())} pairs of runs)')
 
+    if rows and rows[0].get('kinds'):
+        return swaps(rows, S, half, rated, fam, a, rng)
     out = []
     self_hits, cand_hits, net_true, rated_true = [], [], [], []
     lp = lambda pt: np.log((1 - a.smooth) * np.clip(pt, 0, 1) + a.smooth / 2)

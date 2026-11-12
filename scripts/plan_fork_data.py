@@ -69,7 +69,7 @@ def rows_of(path):
         d = json.load(f)
     meta, obs = [], []
     for e in d['unique_tables'].values():
-        if 'tables' not in e:
+        if 'tables' not in e or not e.get('gap_forks'):     # a passed-out board has no contract and no forks
             continue
         board = Board.from_dict(e['board'])
         declarer = board.contract.declarer
