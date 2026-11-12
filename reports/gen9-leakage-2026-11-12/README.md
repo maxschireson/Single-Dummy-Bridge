@@ -20,6 +20,24 @@ defenders' plays to declarer, plus the lead, and 0.06 from our declarer's plays 
 gains 0.04 from reading partner. Declarer has no partner who reads it, so everything declarer's plays tell is given
 away.
 
+## The defenders' plays: who gains more from them
+
+Max asked (15:03 UTC) for the net of both defenders reading each other against declarer reading the defenders
+(`leak_net.py`; the difference is paired by deal):
+
+| | Tricks a board |
+| --- | ---: |
+| The two defenders reading each other's plays, opening lead included | +0.029 +- 0.016 |
+| ... partner's plays after the lead alone | +0.038 +- 0.014 |
+| Declarer reading the defenders' plays, opening lead included | +0.101 +- 0.020 |
+| ... the plays after the lead alone | +0.061 +- 0.018 |
+| ... the opening lead alone | +0.026 +- 0.011 |
+| **Net to the defending side of its plays being readable** | **-0.072 +- 0.025** |
+
+The defenders' plays are worth three and a half times as much to declarer as to the defence, about a quarter of an
+IMP a board against a declarer who reads as well as our own net. These are house bots, which have no agreed signals:
+what partner reads is habit and inference, not a message meant for it.
+
 ## What choosing evenly among near-equal cards would cost
 
 The decider's own values are the weighted double-dummy solves of every stored layout. Choosing evenly among the cards
