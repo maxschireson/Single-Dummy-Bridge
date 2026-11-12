@@ -1,0 +1,54 @@
+{"index": 0, "pair": "7s-32~7s-32", "seconds": 18.364080905914307, "tables": 1, "imps": {"self": null}, "root_tables": 1, "decisions": 64, "unsearched": 0, "in_a_stage": 15, "consulted": 8, "moved": 0, "over_budget": 0, "tree_seconds": 2.369113100976392, "tree_forks": 0, "tree_fork_imps": 0}
+{"index": 1, "pair": "7s-32~6-32", "seconds": 16.32736301422119, "tables": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 142, "unsearched": 0, "in_a_stage": 17, "consulted": 11, "moved": 0, "over_budget": 0, "tree_seconds": 4.484914762979315, "tree_forks": 1, "tree_fork_imps": 0}
+{"index": 2, "pair": "7s-32~7s-32", "seconds": 13.405639410018921, "tables": 1, "imps": {"self": null}, "root_tables": 1, "decisions": 144, "unsearched": 0, "in_a_stage": 33, "consulted": 16, "moved": 2, "over_budget": 0, "tree_seconds": 0.8630837389937369, "tree_forks": 0, "tree_fork_imps": 0}
+{"index": 4, "pair": "7s-32~6-32", "seconds": 15.221171140670776, "tables": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 108, "unsearched": 0, "in_a_stage": 20, "consulted": 6, "moved": 0, "over_budget": 0, "tree_seconds": 0.5229439409959014, "tree_forks": 0, "tree_fork_imps": 0}
+{
+ "tree": {
+  "in_a_stage": 85,
+  "consulted": 41,
+  "moved": 2,
+  "over_budget": 0,
+  "tree_forks": 1,
+  "tree_fork_imps": 0,
+  "mean_seconds": 0.20097696448647184,
+  "p95_seconds": 0.6983740829964518,
+  "max_seconds": 0.7909494220002671,
+  "mean_solves": 96.7560975609756,
+  "p95_solves": 204,
+  "max_solves": 244
+ },
+ "phases": {
+  "lead_net": {
+   "decisions": 4,
+   "seconds": 10.2666141410009,
+   "layouts": 128,
+   "max_seconds": 3.5392372569986037,
+   "mean_seconds": 2.566653535250225,
+   "mean_layouts": 32.0
+  },
+  "scorer (trick 1)": {
+   "decisions": 12,
+   "seconds": 10.918758490013715,
+   "layouts": 384,
+   "max_seconds": 1.9448543719990994,
+   "mean_seconds": 0.9098965408344762,
+   "mean_layouts": 32.0
+  },
+  "scorer": {
+   "decisions": 102,
+   "seconds": 19.087569804985833,
+   "layouts": 3201,
+   "max_seconds": 2.256085497996537,
+   "mean_seconds": 0.18713303730378267,
+   "mean_layouts": 31.38235294117647
+  },
+  "deal_list": {
+   "decisions": 340,
+   "seconds": 13.916611478991399,
+   "layouts": 14303,
+   "max_seconds": 0.6341547339980025,
+   "mean_seconds": 0.040931210232327646,
+   "mean_layouts": 42.06764705882353
+  }
+ }
+}

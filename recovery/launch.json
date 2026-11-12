@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/workspace/work/arena-venv/bin/python",
+    "-u",
+    "ops/gen5_runtime.py",
+    "--run",
+    "/workspace/work/gen7-selfplay-codex-20261112/run",
+    "--workers",
+    "3"
+  ],
+  "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+  "publisher": "/workspace/work/gen6-fast-selfplay-stream/publish_stream.py",
+  "guard": "/workspace/work/gen6-fast-selfplay-stream/phase1_fleet.py",
+  "source_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+  "phase2_authorized": false,
+  "selfplay_authorized": true,
+  "comparison_target": 2000,
+  "comparison_target_pooled": true,
+  "next_action": "Drain at comparison target; prepare separate self-play-only identity from unused deals."
+}

@@ -1,0 +1,28 @@
+{
+  "epoch": 1794457835.7022932,
+  "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+  "tests": {
+    "gen7_tests_passed": 59,
+    "guard_tests_passed": 5
+  },
+  "setup_note": "An initial test invocation ran before the sparse checkout/native copy completed and failed missing DDS. Preserved tests-before-native-setup.log; all59 tests rerun after restoration passed.",
+  "preflight": {
+    "deals": 4,
+    "pairs": 2,
+    "each_pair": 2,
+    "selfplay_single_root_table": true,
+    "selfplay_imps_null": true,
+    "tree_consulted": 41,
+    "over_budget": 0
+  },
+  "source_completed_preserved": 564,
+  "ancestor_gen6_completed_preserved": 3710,
+  "remaining_families": 20726,
+  "actor_identity_unchanged": true,
+  "log_sha256": {
+    "tests.log": "64afaa7ff07c6850ac8a7808cf9148c5b1fcccbe4c0e4c1060ab5384ab5bb4c0",
+    "tests-before-native-setup.log": "e1af1e76e318c040ec2eec3151ba81c5be71f7fd21cfc7c9e647f71d439fb9b8",
+    "guard-tests.log": "1331eb27b2fa236183659a52b4a93ed9e2f99bebe81e963b5aad7d89ffb0cc01",
+    "preflight.log": "aa27764d6e5253891c0775b902ee44b2ad2731a7aaffef07b5601e9c7a351814"
+  }
+}

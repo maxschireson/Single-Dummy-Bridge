@@ -1,0 +1,1233 @@
+EEEEEEE..EEE..EEEEEEEE.EEE.E.....EEEEEEEEEE........EEE.....
+======================================================================
+ERROR: test_cache_gives_what_a_fresh_player_computes (test_gen7.Gen7Tests.test_cache_gives_what_a_fresh_player_computes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 170, in test_cache_gives_what_a_fresh_player_computes
+    a, b = self.make(), self.make()
+           ^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_early_tricks_from_the_net_carry_no_search_estimates (test_gen7.Gen7Tests.test_early_tricks_from_the_net_carry_no_search_estimates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 287, in test_early_tricks_from_the_net_carry_no_search_estimates
+    p = self.make(gen7=dict(search_from_trick=3, net_sample=sample), list_solve=16)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_factory (test_gen7.Gen7Tests.test_factory)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 340, in test_factory
+    a = player(dict(base, id='7', engine='gen7', gen7_policy='gen7.npz'), self.root)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 471, in player
+    return Gen7Player(spec, root, reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 65, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_full_tables_with_everything_on (test_gen7.Gen7Tests.test_full_tables_with_everything_on)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 268, in test_full_tables_with_everything_on
+    p = self.make(list_solve=16, list_from_trick=5)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_layout_rows_are_the_encoder_on_that_seats_view (test_gen7.Gen7Tests.test_layout_rows_are_the_encoder_on_that_seats_view)
+The batched inputs for a layout are exactly encode() of the Observation that seat would have had.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 125, in test_layout_rows_are_the_encoder_on_that_seats_view
+    p = self.make()
+        ^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_list_weights_are_scorer_weight_times_play_likelihood (test_gen7.Gen7Tests.test_list_weights_are_scorer_weight_times_play_likelihood)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 198, in test_list_weights_are_scorer_weight_times_play_likelihood
+    p = self.make(gen7=dict(play_weight=.7), list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_long_lists_are_cut_by_scorer_weight_before_the_net_scores_them (test_gen7.Gen7Tests.test_long_lists_are_cut_by_scorer_weight_before_the_net_scores_them)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 225, in test_long_lists_are_cut_by_scorer_weight_before_the_net_scores_them
+    p = self.make(gen7=dict(play_max_layouts=50), list_solve=16)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_switches_off_it_plays_gen6s_game_card_for_card (test_gen7.Gen7Tests.test_switches_off_it_plays_gen6s_game_card_for_card)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 249, in test_switches_off_it_plays_gen6s_game_card_for_card
+    six = self.make(Gen6Player, list_solve=16)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_ties_go_to_the_nets_most_probable_card (test_gen7.Gen7Tests.test_ties_go_to_the_nets_most_probable_card)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 310, in test_ties_go_to_the_nets_most_probable_card
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_true_layout_is_listed_and_scores_what_the_net_gave_each_play (test_gen7.Gen7Tests.test_true_layout_is_listed_and_scores_what_the_net_gave_each_play)
+For the real deal the likelihood is the sum, over the hidden seats' plays, of the net's (floored) log-probability
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 148, in test_true_layout_is_listed_and_scores_what_the_net_gave_each_play
+    p = self.make(gen7=dict(play_floor=.1))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_cards_that_do_the_same_job_are_one_card (test_gen7.TreeTests.test_cards_that_do_the_same_job_are_one_card)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 639, in test_cards_that_do_the_same_job_are_one_card
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_double_dummy_replies_with_honest_own_cards_never_beat_pimc (test_gen7.TreeTests.test_double_dummy_replies_with_honest_own_cards_never_beat_pimc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 490, in test_double_dummy_replies_with_honest_own_cards_never_beat_pimc
+    got = self.spot(seed, 26 + seed % 12, most=200)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_no_tricks_is_pimc (test_gen7.TreeTests.test_no_tricks_is_pimc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 379, in test_no_tricks_is_pimc
+    got = self.spot(seed, 30 + seed % 14)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_plain_spots_keeps_honours_and_lengths_and_deals_low_cards_in_turn (test_gen7.TreeTests.test_plain_spots_keeps_honours_and_lengths_and_deals_low_cards_in_turn)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 605, in test_plain_spots_keeps_honours_and_lengths_and_deals_low_cards_in_turn
+    got = self.spot(seed, 26 + seed % 12, most=200)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_plain_trees_carry_the_probability_whole_and_play_legal_lines (test_gen7.TreeTests.test_plain_trees_carry_the_probability_whole_and_play_legal_lines)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 676, in test_plain_trees_carry_the_probability_whole_and_play_legal_lines
+    got = self.spot(seed, 26 + seed % 12, most=200)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_probability_of_the_play_is_carried_whole (test_gen7.TreeTests.test_probability_of_the_play_is_carried_whole)
+With every card kept, the layouts' weights reach the leaves undiminished.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 444, in test_probability_of_the_play_is_carried_whole
+    got = self.spot(seed, 28 + seed % 12, most=60)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_reply_rows_are_the_encoder_on_that_seats_view_in_each_layout (test_gen7.TreeTests.test_reply_rows_are_the_encoder_on_that_seats_view_in_each_layout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 396, in test_reply_rows_are_the_encoder_on_that_seats_view_in_each_layout
+    got = self.spot(seed, 26 + seed % 16)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_search_replies_ask_from_that_seats_view_and_carry_the_probability_whole (test_gen7.TreeTests.test_search_replies_ask_from_that_seats_view_and_carry_the_probability_whole)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 554, in test_search_replies_ask_from_that_seats_view_and_carry_the_probability_whole
+    got = self.spot(seed, 28 + seed % 12, most=60)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_stake_rule_runs_from_the_uniform_tree_to_pimc (test_gen7.TreeTests.test_stake_rule_runs_from_the_uniform_tree_to_pimc)
+With no threshold to speak of the stake rule cuts nothing; with a huge one every root card is a leaf.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 703, in test_stake_rule_runs_from_the_uniform_tree_to_pimc
+    got = self.spot(seed, 26 + seed % 12, most=200)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_the_deciders_later_card_from_the_net_or_a_search_is_an_average_not_the_best (test_gen7.TreeTests.test_the_deciders_later_card_from_the_net_or_a_search_is_an_average_not_the_best)
+own='net' and own='search' treat the decider's later self like any other seat: a weighted mean over its cards.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 509, in test_the_deciders_later_card_from_the_net_or_a_search_is_an_average_not_the_best
+    got = self.spot(seed, 24 + seed % 20)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_the_deciders_later_card_is_one_choice_for_all_layouts (test_gen7.TreeTests.test_the_deciders_later_card_is_one_choice_for_all_layouts)
+At the decider's own later turn the value is the best single card's average, never each layout's own best.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 459, in test_the_deciders_later_card_is_one_choice_for_all_layouts
+    got = self.spot(seed, 24 + seed % 20)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_two_trick_trees_play_legal_lines_to_a_sane_value (test_gen7.TreeTests.test_two_trick_trees_play_legal_lines_to_a_sane_value)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 582, in test_two_trick_trees_play_legal_lines_to_a_sane_value
+    got = self.spot(seed, 26 + seed % 12, most=200)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 354, in spot
+    p = self.make(list_solve=0)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_a_tree_that_needs_a_replier_gets_one_from_the_player (test_gen7_alpha.TreeInThePlayerTests.test_a_tree_that_needs_a_replier_gets_one_from_the_player)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 318, in test_a_tree_that_needs_a_replier_gets_one_from_the_player
+    p = self.make(gen7=dict(tree=dict(reply='search', reply_layouts=2, reply_pool=4)))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_an_audited_bot_names_the_card_it_would_have_played_without_the_tree (test_gen7_alpha.TreeInThePlayerTests.test_an_audited_bot_names_the_card_it_would_have_played_without_the_tree)
+Through the collector: where the tree moved the card, a fork table plays the no-tree card from the same position.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 219, in test_an_audited_bot_names_the_card_it_would_have_played_without_the_tree
+    with_tree, plain = self.make(gen7=dict(tree=tree), list_solve=16), self.make(gen7={}, list_solve=16)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_cards_the_solves_cannot_tell_apart_are_one_candidate (test_gen7_alpha.TreeInThePlayerTests.test_cards_the_solves_cannot_tell_apart_are_one_candidate)
+Two layouts; S-cards level in both, a third card level on average only. Two candidates, not three.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 167, in test_cards_the_solves_cannot_tell_apart_are_one_candidate
+    p = self.make(gen7=dict(OFF, tree=dict(from_trick=1, root_margin=0., root_cards=13, tricks=1, layouts=2)))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_no_trust_or_no_horizon_plays_gen6s_game_card_for_card (test_gen7_alpha.TreeInThePlayerTests.test_no_trust_or_no_horizon_plays_gen6s_game_card_for_card)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 82, in test_no_trust_or_no_horizon_plays_gen6s_game_card_for_card
+    six = self.tables(self.make(Gen6Player, list_solve=16))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_only_decisions_with_two_candidates_are_searched (test_gen7_alpha.TreeInThePlayerTests.test_only_decisions_with_two_candidates_are_searched)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 187, in test_only_decisions_with_two_candidates_are_searched
+    p = self.make(gen7=dict(OFF, tree=dict(from_trick=1, root_margin=0., root_cards=2, tricks=1, layouts=4)), list_solve=16)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_over_budget_keeps_gen6s_card (test_gen7_alpha.TreeInThePlayerTests.test_over_budget_keeps_gen6s_card)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 198, in test_over_budget_keeps_gen6s_card
+    six = self.tables(self.make(Gen6Player, list_solve=16), seeds=(2,))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_the_cohort_report_counts_what_the_records_hold (test_gen7_alpha.TreeInThePlayerTests.test_the_cohort_report_counts_what_the_records_hold)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 267, in test_the_cohort_report_counts_what_the_records_hold
+    p = self.make(gen7=dict(tree=dict(from_trick=1, root_margin=.5, root_cards=3, tricks=1, layouts=4)), list_solve=16)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_the_opening_lead_and_tricks_outside_every_stage_are_gen6s (test_gen7_alpha.TreeInThePlayerTests.test_the_opening_lead_and_tricks_outside_every_stage_are_gen6s)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 96, in test_the_opening_lead_and_tricks_outside_every_stage_are_gen6s
+    p = self.make(gen7=dict(OFF, tree=[dict(from_trick=4, to_trick=5, root_margin=13., root_cards=13, tricks=1, layouts=2),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_value_is_the_estimate_plus_trust_times_what_the_tree_changed (test_gen7_alpha.TreeInThePlayerTests.test_value_is_the_estimate_plus_trust_times_what_the_tree_changed)
+A tree that adds a trick to its last candidate: that candidate is played, and the record adds up.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 119, in test_value_is_the_estimate_plus_trust_times_what_the_tree_changed
+    p = self.make(gen7=dict(OFF, tree=dict(from_trick=1, root_margin=.5, root_cards=3, trust=.75, tricks=1, layouts=4)), list_solve=16)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_whole_tables_with_the_tree_deciding (test_gen7_alpha.TreeInThePlayerTests.test_whole_tables_with_the_tree_deciding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_alpha.py", line 301, in test_whole_tables_with_the_tree_deciding
+    p = self.make(gen7=dict(tree=tree), list_solve=16, list_from_trick=5)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7.py", line 80, in make
+    p = cls(spec, self.root)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_a_stake_rule_stage_plays_whole_tables_and_its_records_pass_the_preflight (test_gen7_launch.RuntimeAndPreflightTests.test_a_stake_rule_stage_plays_whole_tables_and_its_records_pass_the_preflight)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_launch.py", line 320, in test_a_stake_rule_stage_plays_whole_tables_and_its_records_pass_the_preflight
+    p = gen5_runtime.player(self.spec(tree=stake), self.root)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/ops/gen5_runtime.py", line 44, in player
+    return Gen7Player(spec,root,reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_the_preflight_accepts_real_decisions_and_catches_a_broken_record (test_gen7_launch.RuntimeAndPreflightTests.test_the_preflight_accepts_real_decisions_and_catches_a_broken_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_launch.py", line 287, in test_the_preflight_accepts_real_decisions_and_catches_a_broken_record
+    p = gen5_runtime.player(self.spec(tree=self.TREE), self.root)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/ops/gen5_runtime.py", line 44, in player
+    return Gen7Player(spec,root,reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+======================================================================
+ERROR: test_the_runtime_builds_a_gen7_player_for_a_gen7_spec (test_gen7_launch.RuntimeAndPreflightTests.test_the_runtime_builds_a_gen7_player_for_a_gen7_spec)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/tests/test_gen7_launch.py", line 278, in test_the_runtime_builds_a_gen7_player_for_a_gen7_spec
+    seven = gen5_runtime.player(self.spec(tree=self.TREE), self.root)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/ops/gen5_runtime.py", line 44, in player
+    return Gen7Player(spec,root,reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen7.py", line 191, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/gen6.py", line 320, in __init__
+    super().__init__(spec, root, reference)
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/mixed_arena.py", line 61, in __init__
+    super().__init__(samples=spec['samples'], objective='tricks', batch=True, near_tie=spec['near_tie'],
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen7-selfplay-codex-20261112/runtime/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+
+----------------------------------------------------------------------
+Ran 59 tests in 2.108s
+
+FAILED (errors=35)
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpgn5bkoqo/out"}
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpgn5bkoqo/out"}
