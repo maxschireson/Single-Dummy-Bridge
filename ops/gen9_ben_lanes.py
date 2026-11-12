@@ -19,7 +19,10 @@ gen9_match.py skips the boards already in its results.jsonl. As a tools/boxq.py 
 whose manifests name different bots. A finished run leaves results.jsonl (one line per board, sorted by deal
 index), summary.json (as scripts/gen8_match.py writes it) and lanes.json (ranges, units, seconds) in --out, and
 each lane's own folder as lane-<k>/. Nothing here touches another session's units, namespaces or folders: all
-names start with g9 (units g9-ben-<k> and g9-lane-<k>, namespaces g9ben-<k>).
+names start with g9 (units g9-ben-<tag>-<k> and g9-lane-<tag>-<k>, namespaces g9ben-<tag>-<k>). The tag is the
+--out folder's name unless --tag says otherwise, so two runs on one box (two queue jobs) never share a lane.
+--ben-bot ben64 serves the capsule's BEN 64 instead (port 8089, assets/ben-64.conf); `install` checks only the BEN 16
+models of the provenance file, so a BEN 64 run's models are whatever that checkout holds.
 
 BEN is lorserker/ben at the commit in configs/ben-gen5-16.provenance.json (its models come with that checkout), with
 the packages of configs/ben-round5-runtime-requirements.txt; `install` checks every model file against the provenance
@@ -34,6 +37,7 @@ import argparse
 import getpass
 import json
 import os
+import re
 import shlex
 import subprocess
 import sys
@@ -57,8 +61,32 @@ def run(cmd: list[str], check: bool = True, capture: bool = False) -> subprocess
     return subprocess.run(cmd, check=check, text=True, capture_output=capture)
 
 
+BEN_BOTS = {  # the capsule's BEN bots: the port in the bot's URL (part of its identity) and its config in assets/
+    "ben": (8087, "ben-16.conf"),
+    "ben64": (8089, "ben-64.conf"),
+}
+TAG = ""     # set by --tag: goes into every unit and namespace name, so two runs on one box never share a lane
+
+
+def tag_for(out: str | None) -> str:
+    """A run's default tag: its --out folder's name, lower case letters and digits only, at most 20."""
+    return re.sub(r"[^a-z0-9]", "", Path(out).name.lower())[:20] if out else ""
+
+
+def _n(prefix: str, k: int) -> str:
+    return f"{prefix}-{TAG}-{k}" if TAG else f"{prefix}-{k}"
+
+
 def ns(k: int) -> str:
-    return f"g9ben-{k}"
+    return _n("g9ben", k)
+
+
+def ben_unit(k: int) -> str:
+    return _n("g9-ben", k)
+
+
+def lane_unit(k: int) -> str:
+    return _n("g9-lane", k)
 
 
 def split(first: int, deals: int, lanes: int) -> list[tuple[int, int]]:
@@ -120,40 +148,44 @@ def install(ben: Path, venv: Path) -> None:
 
 # ---------------------------------------------------------------- lanes
 
-def conf_for(source: str | None) -> Path:
+def conf_for(source: str | None, bot: str = "ben") -> Path:
+    """The BEN config a capsule bot was pinned with (assets/<conf> in the capsule); for `ben`, the repository's
+    configs/ben-gen5-16.conf when the capsule has none."""
     if source:
-        c = Path(source).expanduser() / "assets" / "ben-16.conf"
+        c = Path(source).expanduser() / "assets" / BEN_BOTS[bot][1]
         if c.exists() or DRY:
             return c
+    if bot != "ben":
+        raise SystemExit(f"no {BEN_BOTS[bot][1]} in {source}/assets for {bot}")
     return CONF
 
 
-def up(lanes: int, ben: Path, venv: Path, conf: Path, wait: float = 600) -> None:
+def up(lanes: int, ben: Path, venv: Path, conf: Path, wait: float = 600, port: int = PORT) -> None:
     env = dict(THREADS, HOME=str(Path.home()), PYTHONUNBUFFERED="1", XDG_CACHE_HOME=str(ben.parent / "ben-cache"))
     for k in range(1, lanes + 1):
-        if not DRY and Path(f"/run/netns/{ns(k)}").exists() and active(f"g9-ben-{k}"):
+        if not DRY and Path(f"/run/netns/{ns(k)}").exists() and active(ben_unit(k)):
             print(f"lane {k}: BEN already up")
             continue
         run(["sudo", "ip", "netns", "add", ns(k)], check=False)
         run(["sudo", "ip", "-n", ns(k), "link", "set", "lo", "up"])
         # as bridge_harness/loop_runtime.managed_ben starts it: from BEN's root, model paths relative to it
         argv = [str(venv / "bin" / "python"), "src/gameapi.py", "--config", str(conf), "--host", "127.0.0.1",
-                "--port", str(PORT), "--record", "false"]
-        run(unit_cmd(f"g9-ben-{k}", k, ben, argv, env, restart=True))
+                "--port", str(port), "--record", "false"]
+        run(unit_cmd(ben_unit(k), k, ben, argv, env, restart=True))
     deadline = time.time() + wait
     for k in range(1, lanes + 1):
         while not DRY:
             probe = subprocess.run(["sudo", "ip", "netns", "exec", ns(k), sys.executable, "-c",  # a TCP connect, as lane.sh waits
-                                    f"import socket;socket.create_connection(('127.0.0.1',{PORT}),timeout=2).close()"],
+                                    f"import socket;socket.create_connection(('127.0.0.1',{port}),timeout=2).close()"],
                                    capture_output=True)
             if probe.returncode == 0:
                 break
-            if not active(f"g9-ben-{k}"):
-                raise SystemExit(f"lane {k}: BEN exited; journalctl -u g9-ben-{k} -n 50")
+            if not active(ben_unit(k)):
+                raise SystemExit(f"lane {k}: BEN exited; journalctl -u {ben_unit(k)} -n 50")
             if time.time() > deadline:
                 raise SystemExit(f"lane {k}: BEN not ready after {wait:.0f} s")
             time.sleep(2)
-        print(f"lane {k}: " + ("(dry run) would wait for BEN" if DRY else "BEN ready") + f" in {ns(k)} at 127.0.0.1:{PORT}")
+        print(f"lane {k}: " + ("(dry run) would wait for BEN" if DRY else "BEN ready") + f" in {ns(k)} at 127.0.0.1:{port}")
 
 
 def play(a, lanes: int) -> list[dict]:
@@ -170,7 +202,7 @@ def play(a, lanes: int) -> list[dict]:
         if a.episodes:
             argv.append("--episodes")
         env = dict(THREADS, BRIDGE_DDS_CACHE=str(out / f"lane-{k}.dds.sqlite"), PYTHONUNBUFFERED="1")
-        unit = f"g9-lane-{k}"
+        unit = lane_unit(k)
         if not DRY:
             lane_out.mkdir(parents=True, exist_ok=True)
         run(unit_cmd(unit, k, ROOT, argv, env))
@@ -190,7 +222,7 @@ def play(a, lanes: int) -> list[dict]:
     for p in plan:
         p.setdefault("seconds", round(time.time() - p["started"]))
         p["peak_mb"] = peaks.get(p["unit"])
-        p["ben_peak_mb"] = peaks.get(f"g9-ben-{p['lane']}")
+        p["ben_peak_mb"] = peaks.get(ben_unit(p["lane"]))
         res = Path(p["out"]) / "results.jsonl"
         p["boards"] = sum(1 for l in res.read_text().splitlines() if l.strip()) if res.exists() else 0
         if not DRY and p["boards"] < p["deals"]:
@@ -247,7 +279,7 @@ def merge(out: Path) -> dict:
 def measure(lanes: int) -> list[dict]:
     rows = []
     for k in range(1, lanes + 1):
-        for unit in (f"g9-ben-{k}", f"g9-lane-{k}"):
+        for unit in (ben_unit(k), lane_unit(k)):
             r = subprocess.run(["systemctl", "show", unit, "--property=MemoryCurrent,MemoryPeak,ActiveState"], capture_output=True, text=True)
             props = dict(l.split("=", 1) for l in r.stdout.splitlines() if "=" in l)
             mb = lambda v: round(int(v) / 2**20) if v and v.isdigit() else None
@@ -257,7 +289,7 @@ def measure(lanes: int) -> list[dict]:
 
 def down(lanes: int) -> None:
     for k in range(1, lanes + 1):
-        for unit in (f"g9-lane-{k}", f"g9-ben-{k}"):
+        for unit in (lane_unit(k), ben_unit(k)):
             run(["sudo", "systemctl", "stop", unit], check=False)
         run(["sudo", "ip", "netns", "delete", ns(k)], check=False)
 
@@ -273,10 +305,15 @@ def main() -> int:
     for name in ("up", "run", "status", "measure", "down"):
         p = sub.add_parser(name)
         p.add_argument("--lanes", type=int, default=2)
+        p.add_argument("--tag", help="put into every unit and namespace name (run: default the --out folder's name; "
+                                     "others: none, the names g9-ben-<k>)")
         if name in ("up", "run"):
             p.add_argument("--ben", type=Path, default=Path("~/work/g9/ben").expanduser())
             p.add_argument("--venv", type=Path, default=Path("~/work/g9/ben-venv").expanduser())
-            p.add_argument("--conf", type=Path, help="BEN config (default: the capsule's assets/ben-16.conf, else configs/ben-gen5-16.conf)")
+            p.add_argument("--ben-bot", choices=sorted(BEN_BOTS), default="ben",
+                           help="which capsule BEN bot the servers are: its port and assets/ config (ben: 8087, ben-16.conf; ben64: 8089, ben-64.conf)")
+            p.add_argument("--port", type=int, help="override the port (default: the --ben-bot's)")
+            p.add_argument("--conf", type=Path, help="override the BEN config (default: the --ben-bot's in the capsule; for ben, else configs/ben-gen5-16.conf)")
         if name == "run":
             p.add_argument("--pair", required=True)
             p.add_argument("--deals", type=int, required=True)
@@ -292,10 +329,13 @@ def main() -> int:
     p.add_argument("--out", required=True)
     a = ap.parse_args()
     DRY = a.dry_run
+    global TAG
+    if a.cmd in ("up", "run", "status", "measure", "down"):
+        TAG = re.sub(r"[^a-z0-9]", "", (a.tag or (tag_for(a.out) if a.cmd == "run" else "")).lower())[:20]
     if a.cmd == "install":
         install(a.ben.expanduser(), a.venv.expanduser())
     elif a.cmd == "up":
-        up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or CONF)
+        up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or CONF, port=a.port or BEN_BOTS[a.ben_bot][0])
     elif a.cmd == "run":
         split(a.first, a.deals, a.lanes)  # fail early on a bad split
         import signal
@@ -305,7 +345,7 @@ def main() -> int:
             down(a.lanes)
             raise SystemExit(143)
         signal.signal(signal.SIGTERM, stopped)
-        up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or conf_for(a.source))
+        up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or conf_for(a.source, a.ben_bot), port=a.port or BEN_BOTS[a.ben_bot][0])
         play(a, a.lanes)
         if not DRY:
             print(json.dumps(merge(Path(a.out)), indent=1))
