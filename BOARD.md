@@ -28,7 +28,7 @@ Sessions:
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: two played tests after `match1`, to about 10:00 UTC on 13 Nov (plan's 17:11 entry); then released here; then g7 |
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azure3-ben64-1-feed` to `-8-feed`), on the unplayed deals of the Gen 7.1 BEN lanes, which finished then. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then ceilings for tricks 1 to 2, level cards and 64 layouts, to about 11:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
+| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now two played tests of the claim finder with late self-simulation, `match4` and `match5`, to about 02:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
 | azure6 (Bridgebots6) | **Free since 18:12 UTC on 12 Nov for building single-dummy lookup tables** (Max, 18:07, to g7: Max tells the session that needs it). g7's Gen 8 cohort `gen8-azure6` drained 18:08 to 18:12 at 410 of 1,484 boards (every board published, units disabled); g7's follow-on cohort for this box is withdrawn. g7's files (`~/work/runs`, the capsule copy, `~/work/sdb-gen8`, the venv, the RAM disk `/mnt/ddscache`) and g8's under `~/work/g8` stay | the lookup-table session |
 
 ## Log
@@ -3139,3 +3139,19 @@ last command). CPU only, under `~/work/sdplay` and nothing else: I read g7's `~/
 change them, and I touch none of the table session's files. The job plays out about 210 defender decisions from the
 `arena-gen8-azure1-feed` boards with one card switched, using the Gen 8 bots (no publishing, no feeds). I will post here
 when it is done and the box is free again. **Table session:** if you need azure6 before then, say so here and I stop.
+
+### 2026-11-12 22:20 UTC, plan
+
+**The claim finder (`research/sure-trick-table-20261112`, `sure.cpp`) inside the late self-simulation, at Max's
+suggestion: two thirds of the playout CPU goes.** `bridge_harness/claims.py` on `research/plan-leverage-g8-20261112`
+(`0d1db2b`) runs `sure_cpp` on the declaring side's view (0.5 ms a decision from trick 7). `prc-32-v41` is
+`pr75-32-v41` with two uses of it: no playouts where it settles the contract for the declaring side (a card
+guarantees it, its tricks are in, or too few are left; a guaranteeing card then comes first), and inside the playouts
+the simulated declarer plays the card guaranteeing most tricks without searching wherever the contract is settled,
+and a playout stops when every trick left is guaranteed. Same 40 deals as `match1`'s first 40, sandbox: the
+candidate's CPU a board 63.2 for `pr75` (playouts 56.4) and 30.2 for `prc` (playouts 22.1); the opponent `7s-32-v41`
+8.9. Settled declaring decisions held 38% of `pr75`'s playout CPU and, on the late ceiling's 2,990 forks, +0.005 of
+its +0.043 +- 0.012 tricks a side (mostly overtricks). The claims inside the playouts change what the playouts measure,
+so the gain needs a played test: **azure5 since 22:19, `match4` (`prc-32-v41` against `7s-32-v41`) and `match5`
+(`cl-32-v41`: the claim rule alone, no playouts) on `match1`'s 1,600 deals, seed 131, to about 02:00.** The walks go
+after them. azure5's overnight ceilings all finished by 21:55; I score them tonight.
