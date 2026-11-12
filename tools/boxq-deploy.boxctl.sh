@@ -47,14 +47,19 @@ echo "\$nrconf{restart} = 'l';" | sudo tee /etc/needrestart/conf.d/50-list-only.
 say "== what jobs will find (report only)"
 PY=$HOME/work/venv/bin/python; [ -x "$PY" ] || PY=$(command -v python3)
 say "{python} is $PY ($("$PY" -V 2>&1))"
+missing=""
 for m in numpy h5py tensorflow keras; do
-  "$PY" -c "import $m; print('$m', getattr($m, '__version__', '?'))" 2>/dev/null || say "missing in {python}: $m"
+  "$PY" -c "import $m; print('$m', getattr($m, '__version__', '?'))" 2>/dev/null || { say "missing in {python}: $m"; missing="$missing $m"; }
 done
 CAP=$HOME/work/capsule-gen7-capture/recovery
 [ -f "$CAP/manifest.json" ] && say "capsule: $CAP ($(python3 -c "import json; print(len(json.load(open('$CAP/manifest.json'))['bots']), 'bots')" 2>/dev/null))" || say "capsule MISSING at $CAP"
 say "disk free in ~/work: $(df -h "$HOME/work" | awk 'NR==2{print $4}'); CPUs $(nproc)"
 timeout 30 env -u GIT_SSH_COMMAND git ls-remote https://github.com/maxschireson/Single-Dummy-Bridge HEAD >/dev/null 2>&1 \
   && say "jobs can fetch the public repository over https" || say "jobs CANNOT fetch github.com over https"
+
+if [ -n "$missing" ] && [ "${ALLOW_MISSING:-0}" != 1 ]; then
+  say "not starting the queue: every Gen 9 job reads Keras nets, and {python} lacks$missing"; exit 4
+fi
 
 say "== the queue"
 sudo systemctl stop g9-boxq 2>/dev/null; sudo systemctl reset-failed g9-boxq 2>/dev/null || true
