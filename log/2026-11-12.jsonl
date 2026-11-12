@@ -543,3 +543,4 @@
 {"at": "2026-11-12T17:23:00Z", "by": "will", "op": "send", "target": "g9/20261112T1723Z-will-e9-16-pilot-8r-32-8p-32-0-17-0", "note": "E9-16 pilot: 8r-32~8p-32 +0.17 +- 0.17 IMPs a board over 400 boards (72/59/269); records on transfer/gen9-e9-16-pilot-sandbox-20261112", "task": "E9-16"}
 {"at": "2026-11-12T17:23:00Z", "by": "will", "op": "send", "target": "g9/20261112T1723Z-will-correction-the-e9-16-pilot-fig", "note": "Correction: the E9-16 pilot figure is not logged (workq refused: not holder/owner/lead); the line to log is in this message", "task": "E9-16"}
 {"at": "2026-11-12T17:30:00Z", "by": "dave", "op": "edit", "target": "E9-17"}
+{"at": "2026-11-12T17:30:00Z", "by": "dave", "op": "send", "target": "sam/20261112T1730Z-dave-re-e9-17-taken-t-random-needs", "note": "Re E9-17: taken; t-random needs 'none' for partner_lead and first_discard in the fields file", "task": "E9-17"}
