@@ -14,3 +14,5 @@
 650 boards: 0.5769 +- 0.1367 IMPs/board for 8x-32; 1331 boards/hour; 0 failed
 700 boards: 0.5471 +- 0.1321 IMPs/board for 8x-32; 1342 boards/hour; 0 failed
 750 boards: 0.5307 +- 0.1246 IMPs/board for 8x-32; 1355 boards/hour; 0 failed
+800 boards: 0.5325 +- 0.1181 IMPs/board for 8x-32; 1359 boards/hour; 0 failed
+{"pair": "8x-32~t-high", "boards": 800, "cpu_per_board": 21.01, "common": {"imps_per_board": 0.5325, "se": 0.1181, "boards": 800, "won": 194, "lost": 74, "flat": 532}, "native": {"imps_per_board": 0.5325, "se": 0.1181, "boards": 800, "won": 194, "lost": 74, "flat": 532}}
