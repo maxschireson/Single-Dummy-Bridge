@@ -313,3 +313,4 @@
 {"at": "2026-11-12T11:04:00Z", "by": "sam", "op": "renew", "target": "G9-S7", "until": "2026-11-12T15:04Z"}
 {"at": "2026-11-12T11:16:00Z", "by": "bill", "op": "log", "target": "E9-12", "note": "sandbox pilot done (not part of the result; 09:53-11:15 UTC, source ea550d3, separate precision book seed 9123): 9c-32 v 8p-32 +0.21 +- 0.13 IMPs/board over 400 boards (won 97, lost 68, flat 235); it was +0.56 +- 0.23 at 151 boards. Reading on the same boards (opening leader): scorer -9.34, card +3."}
 {"at": "2026-11-12T11:16:00Z", "by": "bill", "op": "send", "target": "g9/20261112T1116Z-bill-e9-12-sandbox-pilot-9c-32-v-8p", "note": "E9-12 sandbox pilot: 9c-32 v 8p-32 +0.21 \u00b1 0.13 IMPs/board over 400 boards; reading gap barely predicts IMPs", "task": "E9-12"}
+{"at": "2026-11-12T11:16:00Z", "by": "bill", "op": "renew", "target": "E9-11", "until": "2026-11-12T15:16Z"}
