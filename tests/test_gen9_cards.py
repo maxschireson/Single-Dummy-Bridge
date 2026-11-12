@@ -226,3 +226,33 @@ def test_real_cards_compile_and_own_bidder_never_breaks(cid):
         for s in range(4):
             length, hon = hand_types(membership([hands[s]]))
             assert f.type_log_score(length, hon, s, dealer, vul, calls)[0] >= len(f.seat_terms(calls, dealer, s, vul)) * np.log(0.95) - 1e-9
+
+
+# ---- shell hooks (g9: profile=, shell_reader, experience delta) ----------------------------------
+def test_profile_keyword_restricts_to_residual():
+    from bridge_harness.player_model import PlayerModel
+    from bridge_harness.cards.factor import shell_reader, bidding_delta
+    card = dict(json.loads((_Path(__file__).resolve().parents[1] / 'configs' / 'cards' / 'two-over-one.json').read_text()))
+    card['residual'] = {'house-gen6': ['open_nt']}
+    model = PlayerModel('pair', bidding=card)
+    reader = shell_reader(model)
+    hands = [h for d in deals(40, 21) for h in d[0]]
+    length, hon = hand_types(membership(hands))
+    auction = ['PASS', '1N', 'PASS', '2C', 'PASS', '2H']
+    full = reader.type_log_score(length, hon, 1, 0, 'None', auction)
+    res = reader.type_log_score(length, hon, 1, 0, 'None', auction, profile='house-gen6')
+    unk = reader.type_log_score(length, hon, 1, 0, 'None', auction, profile='never-measured')
+    only_nt = reader.log_score_features(hand_features(length, hon), 1, 0, 'None', auction, families={'open_nt'})
+    assert np.allclose(res, only_nt) and np.allclose(unk, full) and not np.allclose(res, full)
+    assert shell_reader(PlayerModel('plain')) is None
+    # an experience delta, then a reader built from a snapshot of it
+    from bridge_harness import experience as E
+    store = E.empty('pair')
+    b = CardBidder('two-over-one')
+    for i, (hh, dealer, vul) in enumerate(deals(30, 22)):
+        calls, _ = bid_table([b] * 4, hh, dealer, vul)
+        store = E.add(store, bidding_delta('pair', f't/{i}', reader, hh, dealer, vul, calls, (0, 2)))
+    assert any(k.startswith('bid.') for k in store['stats'])
+    snap = E.snapshot(store, 's1')
+    r2 = shell_reader(PlayerModel('pair', bidding=card, experience=snap))
+    assert r2.dev.counts and all(d == 0 for a, d in r2.dev.counts.values())      # its own bidder never deviates
