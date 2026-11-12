@@ -82,7 +82,7 @@ Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do n
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 07:15 | 10 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 07:17 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| sam | Signalling and card-play reading lead | 11-12 07:18 | 10 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-12 07:18 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 07:08 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
