@@ -1,0 +1,143 @@
+double-dummy tables for 4000 deals of seed 301: 123s
+Process ForkProcess-11:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 150, in worker
+    (_, ca), (_, cb) = auction(board, (seed, i), (cand, other)), auction(board, (seed, i), (other, cand))
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 109, in auction
+    token = b.call(key, board, seat, tuple(calls)) if isinstance(b, House) else b.call(board.hands[seat], seat, board.dealer, v, calls)
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 890, in call
+    st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 885, in state
+    st.push(token)
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 212, in push
+    m = explain(self, seat, token)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 839, in explain
+    entries = [m for t, m in table_for(st, me) if t == token]
+                             ^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 594, in table_for
+    return response_table(st, me, g)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 363, in response_table
+    real = st.shown[seat].len[s][0]
+           ~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+Process ForkProcess-14:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 150, in worker
+    (_, ca), (_, cb) = auction(board, (seed, i), (cand, other)), auction(board, (seed, i), (other, cand))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 109, in auction
+    token = b.call(key, board, seat, tuple(calls)) if isinstance(b, House) else b.call(board.hands[seat], seat, board.dealer, v, calls)
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 890, in call
+    st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 885, in state
+    st.push(token)
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 212, in push
+    m = explain(self, seat, token)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 839, in explain
+    entries = [m for t, m in table_for(st, me) if t == token]
+                             ^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 594, in table_for
+    return response_table(st, me, g)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 363, in response_table
+    real = st.shown[seat].len[s][0]
+           ~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+Process ForkProcess-12:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 150, in worker
+    (_, ca), (_, cb) = auction(board, (seed, i), (cand, other)), auction(board, (seed, i), (other, cand))
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 109, in auction
+    token = b.call(key, board, seat, tuple(calls)) if isinstance(b, House) else b.call(board.hands[seat], seat, board.dealer, v, calls)
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 890, in call
+    st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 885, in state
+    st.push(token)
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 212, in push
+    m = explain(self, seat, token)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 839, in explain
+    entries = [m for t, m in table_for(st, me) if t == token]
+                             ^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 594, in table_for
+    return response_table(st, me, g)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 363, in response_table
+    real = st.shown[seat].len[s][0]
+           ~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+Process ForkProcess-9:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 150, in worker
+    (_, ca), (_, cb) = auction(board, (seed, i), (cand, other)), auction(board, (seed, i), (other, cand))
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 109, in auction
+    token = b.call(key, board, seat, tuple(calls)) if isinstance(b, House) else b.call(board.hands[seat], seat, board.dealer, v, calls)
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 890, in call
+    st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 885, in state
+    st.push(token)
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 212, in push
+    m = explain(self, seat, token)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 839, in explain
+    entries = [m for t, m in table_for(st, me) if t == token]
+                             ^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 594, in table_for
+    return response_table(st, me, g)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/rule_bidder.py", line 363, in response_table
+    real = st.shown[seat].len[s][0]
+           ~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+Traceback (most recent call last):
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 257, in <module>
+    main()
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 215, in main
+    base = field.play(start, args.seed, args.deals, tables)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 175, in play
+    rows = sorted(r for pipe in self.pipes for r in pipe.recv())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 175, in <genexpr>
+    rows = sorted(r for pipe in self.pipes for r in pipe.recv())
+                                                    ^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+          ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 430, in _recv_bytes
+    buf = self._recv(4)
+          ^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/connection.py", line 399, in _recv
+    raise EOFError
+EOFError
+exit 1
