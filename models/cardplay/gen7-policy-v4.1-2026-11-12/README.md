@@ -50,6 +50,10 @@ for 2.2 times the training deals: lead 5% [-13, 22], tricks 1-2 16% [6, 26], tri
 As an exponent on training deals this step is -0.36 [-0.41, -0.30] and that one -0.38
 [-0.50, -0.26]: no sign of the curve flattening. On set B the step is 25.4% [22.3, 28.2].
 
+On the three fresh sets fetched after C as well (C, D and E together: 1,243 boards, 525,562
+decisions, none in the training set) v4.1 gives up 0.0247 against v4's 0.0334: 25.9% less
+[23.7%, 28.0%].
+
 By who decided, on set C (v4, then v4.1):
 
 | Decisions | Tricks given up | Exact card | Log-loss |
@@ -92,11 +96,16 @@ With another deal's auction in place of the real one (set B), v4.1 gives up 0.02
 and its agreement with the opening lead played falls from 55.3% to 45.3%. With the auction inputs
 blanked it gives up 0.0510.
 
+## At the table (added 12 November, 07:45 UTC)
+
+Measured by the Gen 8 session in fork-free matches on fresh deals (box/coordination, 06:48 UTC):
+played alone, v4.1 beats v4 by 0.762 +- 0.074 IMPs a board (4,000 boards); inside `7s-32` the same
+swap is worth -0.010 +- 0.047 (3,075 boards). The net is in the arena as Gen 7.1 (`71s-32`) since
+06:06 UTC. The training folder's README has the offline side: the tree bench, the layout weights,
+the choice among near-tied cards.
+
 ## Not done
 
-- No play: the net has not been at a table, alone or inside the Gen 7 engine.
-- The tree with this net: a bench on fresh fork pairs was started on 12 November; see the training
-  folder's README for its result.
 - Sets B and C are small next to the earlier validation sets (700,551 decisions for v4), and their
   boards are the arena's mix at the time: Gen 6 self-play and Gen 7 phase 1.
 
