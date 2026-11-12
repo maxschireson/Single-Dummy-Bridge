@@ -23,4 +23,8 @@ g2-8x-v-trandom 8x-32~t-random 0 600 72
 n1-8n-v-8p 8n-32~8p-32 0 2000 84
 @source 663854708d4b27c402a215cea4b63028a0780a3a
 a1-8a-v-8p-r4 8a-32-v41~8p-32-v41 0 1000 91 --book /home/bridgebots/work/g8/books/aw-r4-91-0.json.gz
+@source 663854708d4b27c402a215cea4b63028a0780a3a
+f1-8a-v-8p-house 8a-32-v41~8p-32-v41 0 100 96
+f2-8x-v-8p-v41 8x-32-v41~8p-32-v41 0 100 96
+g3-7s41-v-6 7s-32-v41~6-32 0 800 73
 c1-8c-v-7s 8c-32-v41~7s-32-v41 400 800 95
