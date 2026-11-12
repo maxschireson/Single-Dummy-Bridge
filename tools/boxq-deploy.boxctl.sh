@@ -35,6 +35,16 @@ say "tools at $(git -C "$W/channel" log -1 --format='%h %s' | cut -c1-70)"
 say "== unattended upgrades list restarts instead of making them (p41, board 06:31); this box only"
 echo "\$nrconf{restart} = 'l';" | sudo tee /etc/needrestart/conf.d/50-list-only.conf >/dev/null && say "needrestart: list only"
 
+say "== what jobs will find (report only)"
+PY=$HOME/work/venv/bin/python; [ -x "$PY" ] || PY=$(command -v python3)
+say "{python} is $PY ($("$PY" -V 2>&1))"
+for m in numpy h5py tensorflow keras; do
+  "$PY" -c "import $m; print('$m', getattr($m, '__version__', '?'))" 2>/dev/null || say "missing in {python}: $m"
+done
+CAP=$HOME/work/capsule-gen7-capture/recovery
+[ -f "$CAP/manifest.json" ] && say "capsule: $CAP ($(python3 -c "import json; print(len(json.load(open('$CAP/manifest.json'))['bots']), 'bots')" 2>/dev/null))" || say "capsule MISSING at $CAP"
+say "disk free in ~/work: $(df -h "$HOME/work" | awk 'NR==2{print $4}'); CPUs $(nproc)"
+
 say "== the queue"
 sudo systemctl stop g9-boxq 2>/dev/null; sudo systemctl reset-failed g9-boxq 2>/dev/null || true
 python3 "$W/channel/tools/boxq.py" install --box "$BOX" --cores "$(nproc)" || { say "FAILED to start g9-boxq"; exit 1; }
