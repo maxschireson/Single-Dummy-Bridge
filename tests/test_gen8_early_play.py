@@ -152,6 +152,12 @@ class OpponentTypeTests(Fixture):
             if seen >= 4:
                 break
         self.assertGreaterEqual(seen, 2)
+        told = self.make(gen7=dict(early_play_weight=1., opponent_play_weight={'x': .5, '*': .25}), list_from_trick=14)
+        self.assertEqual(told.opponent_factor, .25)                         # nobody named yet: any other opponent
+        told.meet('x')                                                      # what run_board does for every board
+        self.assertEqual(told.opponent_factor, .5)
+        told.meet('someone-else')
+        self.assertEqual(told.opponent_factor, .25)
         with self.assertRaises(ValueError):
             Gen7Config(opponent_play_weight={'x': -1})
         self.assertNotIn('opponent_play_weight', resolved(None))

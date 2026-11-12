@@ -207,13 +207,18 @@ class Gen7Player(Gen6Player):
         super().__init__(spec, root, reference)
         self.g7, self.stages = gen7_settings(spec.get('gen7'))
         self.net = PolicyNet(Path(root) / spec['gen7_policy'], self.scorer)
-        by_type = self.g7.opponent_play_weight
-        self.opponent_factor = float(by_type.get(spec.get('table_opponent'), by_type.get('*', 1.)))
+        self.meet(spec.get('table_opponent'))
         self.play_cache = (None, {})
         self.net_rows = 0
         self.solved_layouts = None      # the layouts of the decision in hand, for the tree
         self.before_tree = None         # the search's own decision, when the tree was consulted on it
         self.repliers = {}
+
+    def meet(self, opponent_id):
+        """Who sits against this bot at this table (a bot id, or None). gen5_arena.run_board says so for every board;
+        scripts/gen8_match.py also puts it in the spec as `table_opponent`. Settings keyed by opponent type follow."""
+        by_type = self.g7.opponent_play_weight
+        self.opponent_factor = float(by_type.get(opponent_id, by_type.get('*', 1.)))
 
     # ---- how likely was the play so far, layout by layout --------------------------------
     def held_then(self, o, view, assign, i, chooser):
