@@ -1,0 +1,2865 @@
+{
+ "docs": [
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": null,
+   "given_back": 0,
+   "id": "G9-A1",
+   "kind": "design",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": []
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-A2",
+   "kind": "module",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": []
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-A3",
+   "kind": "module",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "open",
+   "waits": [
+    {
+     "by": null,
+     "end": null,
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-A4",
+   "kind": "design",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": []
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-A5",
+   "kind": "ops",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "blocked",
+   "waits": []
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-A6",
+   "kind": "design",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "open",
+   "waits": [
+    {
+     "by": null,
+     "end": null,
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:54:00Z",
+   "given_back": 0,
+   "id": "G9-A7",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "g9",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T07:41:00Z",
+     "until": "2026-11-12T11:41:00Z"
+    }
+   ],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "g9",
+     "end": "2026-11-12T07:41:00Z",
+     "start": "2026-11-12T06:54:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-B1",
+   "kind": "design",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:05:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:00:00Z",
+     "until": "2026-11-12T11:00:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:27:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:05:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:00:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-B2",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:15:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:08:00Z",
+     "until": "2026-11-12T11:08:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:27:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:15:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:08:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-B3",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "bill",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T07:16:00Z",
+     "until": "2026-11-12T11:16:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:16:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-B4",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:49:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:30:00Z",
+     "until": "2026-11-12T11:30:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T09:04:00Z",
+     "outcome": "accepted",
+     "reviewer": "sam",
+     "start": "2026-11-12T07:49:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:30:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-B5",
+   "kind": "experiment",
+   "leases": [],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "open",
+   "waits": [
+    {
+     "by": null,
+     "end": null,
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-B6",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:49:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:30:00Z",
+     "until": "2026-11-12T11:30:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T09:05:00Z",
+     "outcome": "accepted",
+     "reviewer": "sam",
+     "start": "2026-11-12T07:49:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:30:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T07:52:00Z",
+   "given_back": 0,
+   "id": "G9-B7",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 180.0,
+     "end": "2026-11-12T08:06:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:55:00Z",
+     "until": "2026-11-12T10:55:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T09:04:00Z",
+     "outcome": "accepted",
+     "reviewer": "sam",
+     "start": "2026-11-12T08:06:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:55:00Z",
+     "start": "2026-11-12T07:52:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-D1",
+   "kind": "design",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T06:55:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T06:50:00Z",
+     "until": "2026-11-12T10:50:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:03:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T06:55:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T06:50:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-D2",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:23:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T06:57:00Z",
+     "until": "2026-11-12T10:57:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:27:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:23:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T06:57:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-D3",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:29:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:24:00Z",
+     "until": "2026-11-12T11:24:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:37:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:29:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:24:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-D4",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:50:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:33:00Z",
+     "until": "2026-11-12T11:33:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T08:24:00Z",
+     "outcome": "accepted",
+     "reviewer": "will",
+     "start": "2026-11-12T07:50:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:33:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-D5",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:19:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:17:00Z",
+     "until": "2026-11-12T11:17:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:27:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:19:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:17:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-D6",
+   "kind": "ops",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "dave",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T08:55:00Z",
+     "until": "2026-11-12T12:55:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T08:55:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T07:44:00Z",
+   "given_back": 0,
+   "id": "G9-D7",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T09:13:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T08:54:00Z",
+     "until": "2026-11-12T12:54:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T09:24:00Z",
+     "outcome": "accepted",
+     "reviewer": "will",
+     "start": "2026-11-12T09:13:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T08:54:00Z",
+     "start": "2026-11-12T07:44:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-S1",
+   "kind": "design",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:10:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T06:52:00Z",
+     "until": "2026-11-12T10:52:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:28:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:10:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T06:52:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-S2",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:22:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:12:00Z",
+     "until": "2026-11-12T11:12:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:35:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:22:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:12:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-S3",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:10:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:22:00Z",
+     "until": "2026-11-12T11:22:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:28:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:10:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:22:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-S4",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "sam",
+     "how": "held now",
+     "over": 0.0,
+     "renewals": 1,
+     "start": "2026-11-12T07:22:00Z",
+     "until": "2026-11-12T11:55:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:22:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-S5",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T08:07:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "renewals": 1,
+     "start": "2026-11-12T07:27:00Z",
+     "until": "2026-11-12T11:55:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T08:09:00Z",
+     "outcome": "accepted",
+     "reviewer": "bill",
+     "start": "2026-11-12T08:07:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:27:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-S6",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 60.0,
+     "end": "2026-11-12T07:37:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:37:00Z",
+     "until": "2026-11-12T08:37:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:42:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:37:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:37:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:54:00Z",
+   "given_back": 0,
+   "id": "G9-S7",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "sam",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T08:08:00Z",
+     "until": "2026-11-12T12:08:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T08:08:00Z",
+     "start": "2026-11-12T06:54:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-W1",
+   "kind": "design",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:10:00Z",
+     "holder": "will",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T06:52:00Z",
+     "until": "2026-11-12T10:52:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:28:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:10:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T06:52:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-W2",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:07:00Z",
+     "holder": "will",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:03:00Z",
+     "until": "2026-11-12T11:03:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:28:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:07:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:03:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-W3",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:24:00Z",
+     "holder": "will",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:10:00Z",
+     "until": "2026-11-12T11:10:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:32:00Z",
+     "outcome": "accepted",
+     "reviewer": "dave",
+     "start": "2026-11-12T07:24:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:10:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-W4",
+   "kind": "ops",
+   "leases": [],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "open",
+   "waits": [
+    {
+     "by": null,
+     "end": null,
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-W5",
+   "kind": "ops",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "will",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T08:27:00Z",
+     "until": "2026-11-12T12:27:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 1,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T08:27:00Z",
+     "start": "2026-11-12T08:27:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "G9-W6",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:33:00Z",
+     "holder": "will",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:25:00Z",
+     "until": "2026-11-12T11:25:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:37:00Z",
+     "outcome": "accepted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:33:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:25:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T07:44:00Z",
+   "given_back": 0,
+   "id": "G9-W7",
+   "kind": "ops",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "will",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T07:50:00Z",
+     "until": "2026-11-12T11:50:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:50:00Z",
+     "start": "2026-11-12T07:44:00Z"
+    }
+   ]
+  },
+  {
+   "area": "workflow",
+   "blocked": 0,
+   "created": "2026-11-12T07:49:00Z",
+   "given_back": 0,
+   "id": "G9-W8",
+   "kind": "module",
+   "leases": [
+    {
+     "box": 60.0,
+     "end": "2026-11-12T07:49:00Z",
+     "holder": "will",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:49:00Z",
+     "until": "2026-11-12T08:49:00Z"
+    }
+   ],
+   "owner": "will",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "will",
+     "end": "2026-11-12T08:37:00Z",
+     "outcome": "accepted",
+     "reviewer": "dave",
+     "start": "2026-11-12T07:49:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "will",
+     "end": "2026-11-12T07:49:00Z",
+     "start": "2026-11-12T07:49:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:54:00Z",
+   "given_back": 0,
+   "id": "G9-X1",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T09:01:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T08:19:00Z",
+     "until": "2026-11-12T12:19:00Z"
+    }
+   ],
+   "owner": "pool",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": null,
+     "outcome": "waiting",
+     "reviewer": null,
+     "start": "2026-11-12T09:01:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "submitted",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T08:19:00Z",
+     "start": "2026-11-12T06:54:00Z"
+    }
+   ]
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T06:54:00Z",
+   "given_back": 0,
+   "id": "E9-0",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "g9",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T07:41:00Z",
+     "until": "2026-11-12T11:41:00Z"
+    }
+   ],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "g9",
+     "end": "2026-11-12T07:41:00Z",
+     "start": "2026-11-12T06:54:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "E9-1",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:50:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:16:00Z",
+     "until": "2026-11-12T11:16:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:52:00Z",
+     "outcome": "rejected",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:50:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:16:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "architecture",
+   "blocked": 0,
+   "created": "2026-11-12T07:44:00Z",
+   "given_back": 0,
+   "id": "E9-10",
+   "kind": "experiment",
+   "leases": [],
+   "owner": "g9",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "open",
+   "waits": [
+    {
+     "by": null,
+     "end": null,
+     "start": "2026-11-12T07:44:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T07:55:00Z",
+   "given_back": 0,
+   "id": "E9-11",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "bill",
+     "how": "held now",
+     "over": 0.0,
+     "renewals": 1,
+     "start": "2026-11-12T08:06:00Z",
+     "until": "2026-11-12T13:27:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T08:06:00Z",
+     "start": "2026-11-12T07:55:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T07:55:00Z",
+   "given_back": 0,
+   "id": "E9-12",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "bill",
+     "how": "held now",
+     "over": 0.0,
+     "renewals": 1,
+     "start": "2026-11-12T08:06:00Z",
+     "until": "2026-11-12T13:27:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T08:06:00Z",
+     "start": "2026-11-12T07:55:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "E9-2",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:50:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:30:00Z",
+     "until": "2026-11-12T11:30:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:52:00Z",
+     "outcome": "adopted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:50:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:30:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "E9-3",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:28:00Z",
+     "holder": "sam",
+     "how": "resolved while leased",
+     "over": 0.0,
+     "start": "2026-11-12T07:22:00Z",
+     "until": "2026-11-12T11:22:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:22:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "E9-4",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "sam",
+     "how": "held now",
+     "over": 0.0,
+     "renewals": 1,
+     "start": "2026-11-12T07:27:00Z",
+     "until": "2026-11-12T11:54:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:27:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "arena",
+   "blocked": 0,
+   "created": "2026-11-12T06:47:00Z",
+   "given_back": 0,
+   "id": "E9-5",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T07:23:00Z",
+     "holder": "dave",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T06:57:00Z",
+     "until": "2026-11-12T10:57:00Z"
+    }
+   ],
+   "owner": "dave",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T07:27:00Z",
+     "outcome": "adopted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:23:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "dave",
+     "end": "2026-11-12T06:57:00Z",
+     "start": "2026-11-12T06:47:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:54:00Z",
+   "given_back": 0,
+   "id": "E9-6",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": null,
+     "holder": "sam",
+     "how": "held now",
+     "over": 0.0,
+     "start": "2026-11-12T08:08:00Z",
+     "until": "2026-11-12T12:08:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [],
+   "sent_back": 0,
+   "state": "leased",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T08:08:00Z",
+     "start": "2026-11-12T06:54:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T06:54:00Z",
+   "given_back": 0,
+   "id": "E9-7",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 240.0,
+     "end": "2026-11-12T09:01:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T08:19:00Z",
+     "until": "2026-11-12T12:19:00Z"
+    }
+   ],
+   "owner": "pool",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": null,
+     "outcome": "waiting",
+     "reviewer": null,
+     "start": "2026-11-12T09:01:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "submitted",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T08:19:00Z",
+     "start": "2026-11-12T06:54:00Z"
+    }
+   ]
+  },
+  {
+   "area": "bidding",
+   "blocked": 0,
+   "created": "2026-11-12T07:28:00Z",
+   "given_back": 0,
+   "id": "E9-8",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 180.0,
+     "end": "2026-11-12T07:51:00Z",
+     "holder": "bill",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:47:00Z",
+     "until": "2026-11-12T10:47:00Z"
+    }
+   ],
+   "owner": "bill",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:52:00Z",
+     "outcome": "adopted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:51:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "bill",
+     "end": "2026-11-12T07:47:00Z",
+     "start": "2026-11-12T07:28:00Z"
+    }
+   ]
+  },
+  {
+   "area": "signals",
+   "blocked": 0,
+   "created": "2026-11-12T07:38:00Z",
+   "given_back": 0,
+   "id": "E9-9",
+   "kind": "experiment",
+   "leases": [
+    {
+     "box": 60.0,
+     "end": "2026-11-12T07:38:00Z",
+     "holder": "sam",
+     "how": "submitted",
+     "over": 0.0,
+     "start": "2026-11-12T07:38:00Z",
+     "until": "2026-11-12T08:38:00Z"
+    }
+   ],
+   "owner": "sam",
+   "proposed": false,
+   "reviews": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:42:00Z",
+     "outcome": "adopted",
+     "reviewer": "g9",
+     "start": "2026-11-12T07:38:00Z"
+    }
+   ],
+   "sent_back": 0,
+   "state": "resolved",
+   "waits": [
+    {
+     "by": "sam",
+     "end": "2026-11-12T07:38:00Z",
+     "start": "2026-11-12T07:38:00Z"
+    }
+   ]
+  }
+ ],
+ "jobs": [
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-11-p7",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:35:00Z",
+   "target": 800
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-11-r7",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:35:00Z",
+   "target": 800
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-11-r8",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:35:00Z",
+   "target": 1600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-12-c",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:36:00Z",
+   "target": 1200
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-12-cs",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:36:00Z",
+   "target": 600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-12-u",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:36:00Z",
+   "target": 600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-12-us",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:36:00Z",
+   "target": 600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-12-x",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:36:00Z",
+   "target": 1200
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-12-xs",
+   "owner": "bill",
+   "state": "queued",
+   "submitted": "2026-11-12T08:36:00Z",
+   "target": 600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-4-8x",
+   "owner": "sam",
+   "state": "queued",
+   "submitted": "2026-11-12T08:44:00Z",
+   "target": 1600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-4-r9",
+   "owner": "sam",
+   "state": "queued",
+   "submitted": "2026-11-12T08:44:00Z",
+   "target": 1600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-6-att-vs-reader",
+   "owner": "sam",
+   "state": "queued",
+   "submitted": "2026-11-12T08:44:00Z",
+   "target": 1600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-6-vs-8p",
+   "owner": "sam",
+   "state": "queued",
+   "submitted": "2026-11-12T08:44:00Z",
+   "target": 1600
+  },
+  {
+   "box": "azure4",
+   "cores": 4,
+   "id": "e9-6-vs-reader",
+   "owner": "sam",
+   "state": "queued",
+   "submitted": "2026-11-12T08:44:00Z",
+   "target": 1600
+  }
+ ],
+ "messages": [
+  {
+   "at": "2026-11-12T06:39:00Z",
+   "id": "20261112T0639Z-g9-channel-open",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T06:47:00Z",
+   "id": "20261112T0647Z-g9-architecture-and-tasks",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T06:52:00Z",
+   "id": "20261112T0652Z-g9-moved-to-work-ledger",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T06:53:00Z",
+   "id": "20261112T0653Z-g9-correction-channel-stays-here",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T06:55:00Z",
+   "id": "20261112T0655Z-g9-FINAL-channel",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T06:59:00Z",
+   "id": "20261112T0659Z-g9-player-model-and-experience",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T07:08:00Z",
+   "id": "20261112T0708Z-will-workq-is-live-on-team-gen9-too",
+   "read": null,
+   "sender": "will",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T07:35:00Z",
+   "id": "20261112T0735Z-g9-the-gen-9-player-is-on-feature",
+   "read": null,
+   "sender": "g9",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T07:45:00Z",
+   "id": "20261112T0745Z-will-experiments-now-need-evidence",
+   "read": null,
+   "sender": "will",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T08:35:00Z",
+   "id": "20261112T0835Z-will-the-box-queue-is-ready-submit",
+   "read": null,
+   "sender": "will",
+   "to": "all"
+  },
+  {
+   "at": "2026-11-12T06:39:00Z",
+   "id": "20261112T0639Z-g9-welcome",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T06:47:00Z",
+   "id": "20261112T0647Z-g9-tasks-up",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T06:48:00Z",
+   "id": "20261112T0648Z-g9-answers",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-b1-and-b2-accepted-and-merged",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-g9-b1-resolved-accepted-design",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-g9-b2-resolved-accepted-rule-f",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-new-experiment-for-you-e9-8-wh",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:33:00Z",
+   "id": "20261112T0733Z-will-heads-up-gen-8-s-rule-bidder-r",
+   "read": null,
+   "sender": "will",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:46:00Z",
+   "id": "20261112T0746Z-g9-the-shell-has-a-hook-for-the-r",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:50:00Z",
+   "id": "20261112T0750Z-dave-fyi-scripts-run-tests-py-finds",
+   "read": null,
+   "sender": "dave",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:52:00Z",
+   "id": "20261112T0752Z-g9-e9-1-resolved-rejected-what-th",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:52:00Z",
+   "id": "20261112T0752Z-g9-e9-2-resolved-adopted-boards-n",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:52:00Z",
+   "id": "20261112T0752Z-g9-e9-8-and-e9-2-adopted-e9-1-par",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:52:00Z",
+   "id": "20261112T0752Z-g9-e9-8-resolved-adopted-what-rep",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:52:00Z",
+   "id": "20261112T0752Z-g9-new-task-for-you-g9-b7-replay",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:55:00Z",
+   "id": "20261112T0755Z-g9-new-experiment-for-you-e9-11-w",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:55:00Z",
+   "id": "20261112T0755Z-g9-new-experiment-for-you-e9-12-r",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T07:59:00Z",
+   "id": "20261112T0759Z-sam-reviews-of-g9-b4-and-g9-b6-bot",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T08:07:00Z",
+   "id": "20261112T0807Z-g9-the-arrival-run-g9-d6-needs-fo",
+   "read": null,
+   "sender": "g9",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T08:07:00Z",
+   "id": "20261112T0807Z-sam-g9-s5-submitted-for-your-revie",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T08:17:00Z",
+   "id": "20261112T0817Z-sam-review-of-g9-b7-accepted-one-n",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T08:18:00Z",
+   "id": "20261112T0818Z-sam-carding-situation-fields-sayc",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T09:04:00Z",
+   "id": "20261112T0904Z-sam-g9-b4-resolved-accepted-card-t",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T09:04:00Z",
+   "id": "20261112T0904Z-sam-g9-b7-resolved-accepted-replay",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T09:05:00Z",
+   "id": "20261112T0905Z-sam-g9-b6-resolved-accepted-three",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T09:05:00Z",
+   "id": "20261112T0905Z-sam-g9-b7-b4-and-b6-resolved-as-ac",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T09:10:00Z",
+   "id": "20261112T0910Z-sam-lead-fields-v1-1-for-your-card",
+   "read": null,
+   "sender": "sam",
+   "to": "bill"
+  },
+  {
+   "at": "2026-11-12T06:39:00Z",
+   "id": "20261112T0639Z-g9-welcome",
+   "read": "2026-11-12T07:17:08Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T06:47:00Z",
+   "id": "20261112T0647Z-g9-tasks-up",
+   "read": "2026-11-12T07:17:08Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T06:53:00Z",
+   "id": "20261112T0653Z-g9-reply",
+   "read": "2026-11-12T07:17:08Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:03:00Z",
+   "id": "20261112T0703Z-g9-d1-accepted-and-a4",
+   "read": "2026-11-12T07:17:08Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-e9-5-adopted-with-your-three-c",
+   "read": "2026-11-12T07:29:27Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-e9-5-resolved-adopted-arena-si",
+   "read": "2026-11-12T07:29:37Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-g9-d2-resolved-accepted-e9-5-a",
+   "read": "2026-11-12T07:29:37Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:27:00Z",
+   "id": "20261112T0727Z-g9-g9-d5-resolved-accepted-experi",
+   "read": "2026-11-12T07:29:37Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-please-review-g9-w3-pr-20-will",
+   "read": "2026-11-12T07:29:29Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:37:00Z",
+   "id": "20261112T0737Z-g9-g9-d3-resolved-accepted-rating",
+   "read": "2026-11-12T07:54:16Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:44:00Z",
+   "id": "20261112T0744Z-g9-new-task-for-you-g9-d7-experie",
+   "read": "2026-11-12T07:54:16Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:44:00Z",
+   "id": "20261112T0744Z-g9-new-task-g9-d7-the-experience",
+   "read": "2026-11-12T07:50:47Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T07:49:00Z",
+   "id": "20261112T0749Z-will-g9-w8-submitted-for-your-revie",
+   "read": "2026-11-12T07:50:49Z",
+   "sender": "will",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:07:00Z",
+   "id": "20261112T0807Z-bill-g9-d7-the-bidding-experience-d",
+   "read": "2026-11-12T08:37:16Z",
+   "sender": "bill",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:07:00Z",
+   "id": "20261112T0807Z-g9-g9-d6-is-now-the-arrival-run-t",
+   "read": "2026-11-12T08:37:13Z",
+   "sender": "g9",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:13:00Z",
+   "id": "20261112T0813Z-bill-g9-d6-bidding-pieces-for-the-a",
+   "read": "2026-11-12T08:37:19Z",
+   "sender": "bill",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:15:00Z",
+   "id": "20261112T0815Z-sam-for-g9-d6-d7-guest-carding-pac",
+   "read": "2026-11-12T08:37:23Z",
+   "sender": "sam",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:22:00Z",
+   "id": "20261112T0822Z-will-g9-w8-reviewer-dave-is-set-ple",
+   "read": "2026-11-12T08:55:12Z",
+   "sender": "will",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:24:00Z",
+   "id": "20261112T0824Z-will-g9-d4-resolved-accepted-regist",
+   "read": "2026-11-12T08:55:16Z",
+   "sender": "will",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T08:25:00Z",
+   "id": "20261112T0825Z-will-pr-28-a-test-file-with-no-test",
+   "read": "2026-11-12T08:55:19Z",
+   "sender": "will",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:01:00Z",
+   "id": "20261112T0901Z-sam-for-the-pipeline-g9-d7-also-wr",
+   "read": null,
+   "sender": "sam",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:02:00Z",
+   "id": "20261112T0902Z-sam-simpler-card-delta-now-writes",
+   "read": null,
+   "sender": "sam",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:03:00Z",
+   "id": "20261112T0903Z-bill-d6-box-source-needs-d4515bd-re",
+   "read": null,
+   "sender": "bill",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:20:00Z",
+   "id": "20261112T0920Z-sam-re-guest-a-s-honesty-keep-card",
+   "read": null,
+   "sender": "sam",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:23:00Z",
+   "id": "20261112T0923Z-bill-d6-also-needs-514e046-held-sys",
+   "read": null,
+   "sender": "bill",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:24:00Z",
+   "id": "20261112T0924Z-will-g9-d7-accepted-before-the-box",
+   "read": null,
+   "sender": "will",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T09:24:00Z",
+   "id": "20261112T0924Z-will-g9-d7-resolved-accepted-experi",
+   "read": null,
+   "sender": "will",
+   "to": "dave"
+  },
+  {
+   "at": "2026-11-12T06:50:00Z",
+   "id": "20261112T0650Z-bill-up",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:50:00Z",
+   "id": "20261112T0650Z-dave-up",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:52:00Z",
+   "id": "20261112T0652Z-sam-up",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:52:00Z",
+   "id": "20261112T0652Z-will-up",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:53:00Z",
+   "id": "20261112T0653Z-dave-noise-for-a4",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:54:00Z",
+   "id": "20261112T0654Z-will-correction",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:55:00Z",
+   "id": "20261112T0655Z-dave-d1-submitted",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:05:00Z",
+   "id": "20261112T0705Z-bill-b1-submitted",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:07:00Z",
+   "id": "20261112T0707Z-sam-s1-s3-submitted",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:07:00Z",
+   "id": "20261112T0707Z-will-g9-w2-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:10:00Z",
+   "id": "20261112T0710Z-will-g9-w1-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:15:00Z",
+   "id": "20261112T0715Z-bill-g9-b2-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:19:00Z",
+   "id": "20261112T0719Z-dave-g9-d5-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:22:00Z",
+   "id": "20261112T0722Z-sam-g9-s2-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:23:00Z",
+   "id": "20261112T0723Z-dave-e9-5-result-a4-s-betting-test",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:23:00Z",
+   "id": "20261112T0723Z-dave-e9-5-submitted-for-your-review",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:23:00Z",
+   "id": "20261112T0723Z-dave-g9-d2-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:24:00Z",
+   "id": "20261112T0724Z-will-g9-w3-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:29:00Z",
+   "id": "20261112T0729Z-dave-g9-d3-submitted-for-your-revie",
+   "read": "2026-11-12T07:29:14Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:30:00Z",
+   "id": "20261112T0730Z-sam-for-your-fold-of-g9-s2-one-mor",
+   "read": "2026-11-12T07:35:41Z",
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:33:00Z",
+   "id": "20261112T0733Z-will-g9-w6-submitted-for-your-revie",
+   "read": "2026-11-12T07:35:45Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:37:00Z",
+   "id": "20261112T0737Z-sam-g9-s6-submitted-for-your-revie",
+   "read": "2026-11-12T07:37:16Z",
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:38:00Z",
+   "id": "20261112T0738Z-sam-e9-9-submitted-for-your-review",
+   "read": "2026-11-12T07:41:58Z",
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:41:00Z",
+   "id": "20261112T0741Z-will-the-gen-9-queue-issue-is-up-22",
+   "read": "2026-11-12T07:42:01Z",
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:50:00Z",
+   "id": "20261112T0750Z-bill-e9-1-submitted-for-your-review",
+   "read": "2026-11-12T07:52:59Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:50:00Z",
+   "id": "20261112T0750Z-bill-e9-2-submitted-for-your-review",
+   "read": "2026-11-12T07:52:59Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:50:00Z",
+   "id": "20261112T0750Z-dave-g9-d4-submitted-for-your-revie",
+   "read": "2026-11-12T07:52:59Z",
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:51:00Z",
+   "id": "20261112T0751Z-bill-e9-8-submitted-for-your-review",
+   "read": "2026-11-12T07:52:59Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:51:00Z",
+   "id": "20261112T0751Z-bill-first-measurements-e9-1-p1-e9",
+   "read": "2026-11-12T07:52:59Z",
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:55:00Z",
+   "id": "20261112T0755Z-dave-dave-status-d1-d5-done-or-subm",
+   "read": null,
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T07:55:00Z",
+   "id": "20261112T0755Z-sam-e9-4-part-1-is-in-reading-a-de",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T08:00:00Z",
+   "id": "20261112T0800Z-sam-g9-b4-and-g9-b6-reviewed-accep",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T08:13:00Z",
+   "id": "20261112T0813Z-bill-g9-d6-pieces-ready-9a-32-guest",
+   "read": null,
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T08:15:00Z",
+   "id": "20261112T0815Z-sam-arrival-run-inputs-from-sam-ca",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T08:17:00Z",
+   "id": "20261112T0817Z-sam-g9-b7-reviewed-accept-notes-in",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T08:37:00Z",
+   "id": "20261112T0837Z-sam-e9-6-part-1-designed-signals-g",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:01:00Z",
+   "id": "20261112T0901Z-sam-e9-7-submitted-an-emission-mod",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:01:00Z",
+   "id": "20261112T0901Z-sam-e9-7-submitted-for-your-review",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:01:00Z",
+   "id": "20261112T0901Z-sam-g9-x1-submitted-for-your-revie",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:03:00Z",
+   "id": "20261112T0903Z-bill-box-jobs-for-e9-11-and-e9-12-q",
+   "read": null,
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:05:00Z",
+   "id": "20261112T0905Z-sam-grid-vs-point-honesty-the-grid",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:08:00Z",
+   "id": "20261112T0908Z-sam-for-the-review-package-g9-a6-o",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:10:00Z",
+   "id": "20261112T0910Z-will-azure4-s-row-in-the-allocation",
+   "read": null,
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:13:00Z",
+   "id": "20261112T0913Z-dave-g9-d6-rehearsal-done-records-o",
+   "read": null,
+   "sender": "dave",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:20:00Z",
+   "id": "20261112T0920Z-sam-for-d6-s-registered-prediction",
+   "read": null,
+   "sender": "sam",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:21:00Z",
+   "id": "20261112T0921Z-bill-measured-a-card-does-not-help",
+   "read": null,
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:24:00Z",
+   "id": "20261112T0924Z-will-d6-wiring-ec2694d-counts-a-flo",
+   "read": null,
+   "sender": "will",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T09:27:00Z",
+   "id": "20261112T0927Z-bill-d6-guest-b-is-mapped-to-gen-5",
+   "read": null,
+   "sender": "bill",
+   "to": "g9"
+  },
+  {
+   "at": "2026-11-12T06:39:00Z",
+   "id": "20261112T0639Z-g9-welcome",
+   "read": "2026-11-12T07:18:34Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T06:47:00Z",
+   "id": "20261112T0647Z-g9-tasks-up",
+   "read": "2026-11-12T07:18:34Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T06:53:00Z",
+   "id": "20261112T0653Z-g9-reply",
+   "read": "2026-11-12T07:18:34Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-e9-3-resolved-adopted-how-ofte",
+   "read": "2026-11-12T07:30:13Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-g9-s1-resolved-accepted-design",
+   "read": "2026-11-12T07:30:13Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-g9-s3-resolved-accepted-e9-3-h",
+   "read": "2026-11-12T07:30:13Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-s1-accepted-and-merged-e9-3-ad",
+   "read": "2026-11-12T07:29:48Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:35:00Z",
+   "id": "20261112T0735Z-g9-g9-s2-resolved-accepted-signal",
+   "read": "2026-11-12T07:42:44Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:35:00Z",
+   "id": "20261112T0735Z-g9-s2-accepted-and-merged-folded",
+   "read": "2026-11-12T07:42:36Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:37:00Z",
+   "id": "20261112T0737Z-g9-your-2a6a325-is-folded-in-too",
+   "read": "2026-11-12T07:42:39Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:42:00Z",
+   "id": "20261112T0742Z-g9-e9-9-resolved-adopted-the-hous",
+   "read": "2026-11-12T07:42:42Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:42:00Z",
+   "id": "20261112T0742Z-g9-g9-s6-resolved-accepted-the-ho",
+   "read": "2026-11-12T07:42:44Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:44:00Z",
+   "id": "20261112T0744Z-g9-e9-9-adopted-the-house-bots-do",
+   "read": "2026-11-12T07:55:34Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:49:00Z",
+   "id": "20261112T0749Z-bill-g9-b4-submitted-for-your-revie",
+   "read": "2026-11-12T07:55:38Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T07:49:00Z",
+   "id": "20261112T0749Z-bill-g9-b6-submitted-for-your-revie",
+   "read": "2026-11-12T07:55:41Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T08:06:00Z",
+   "id": "20261112T0806Z-bill-b4-notes-done-carding-situatio",
+   "read": "2026-11-12T08:09:45Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T08:06:00Z",
+   "id": "20261112T0806Z-bill-g9-b7-submitted-for-your-revie",
+   "read": "2026-11-12T08:09:52Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T08:07:00Z",
+   "id": "20261112T0807Z-g9-e9-4-part-1-read-honesty-prior",
+   "read": "2026-11-12T08:09:42Z",
+   "sender": "g9",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T08:09:00Z",
+   "id": "20261112T0809Z-bill-g9-s5-resolved-accepted-honest",
+   "read": "2026-11-12T08:19:28Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T08:28:00Z",
+   "id": "20261112T0828Z-bill-b7-notes-done-replay-floor-0-0",
+   "read": "2026-11-12T08:34:41Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T09:03:00Z",
+   "id": "20261112T0903Z-bill-g9-b7-still-submitted-in-workq",
+   "read": "2026-11-12T09:05:05Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T09:13:00Z",
+   "id": "20261112T0913Z-dave-g9-d6-rehearsal-guest-a-s-hone",
+   "read": "2026-11-12T09:20:19Z",
+   "sender": "dave",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T09:21:00Z",
+   "id": "20261112T0921Z-bill-lead-fields-v1-1-placed-in-acb",
+   "read": "2026-11-12T09:30:28Z",
+   "sender": "bill",
+   "to": "sam"
+  },
+  {
+   "at": "2026-11-12T06:39:00Z",
+   "id": "20261112T0639Z-g9-welcome",
+   "read": "2026-11-12T07:07:07Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T06:47:00Z",
+   "id": "20261112T0647Z-g9-tasks-up",
+   "read": "2026-11-12T07:07:07Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T06:53:00Z",
+   "id": "20261112T0653Z-g9-channel-and-your-three-points",
+   "read": "2026-11-12T07:07:07Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T06:55:00Z",
+   "id": "20261112T0655Z-g9-FINAL-channel-is-team-gen9",
+   "read": "2026-11-12T07:07:07Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-g9-w1-resolved-accepted-design",
+   "read": "2026-11-12T07:35:47Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-g9-w2-resolved-accepted-workq",
+   "read": "2026-11-12T07:35:50Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:28:00Z",
+   "id": "20261112T0728Z-g9-w1-and-w2-accepted-w3-to-dave",
+   "read": "2026-11-12T07:35:53Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:32:00Z",
+   "id": "20261112T0732Z-dave-g9-w3-resolved-accepted-one-co",
+   "read": "2026-11-12T07:35:55Z",
+   "sender": "dave",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:37:00Z",
+   "id": "20261112T0737Z-g9-g9-w6-resolved-accepted-script",
+   "read": "2026-11-12T07:49:46Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:44:00Z",
+   "id": "20261112T0744Z-g9-new-task-for-you-g9-w7-ben-lan",
+   "read": "2026-11-12T07:49:49Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:50:00Z",
+   "id": "20261112T0750Z-dave-please-review-g9-d4-pr-27-and",
+   "read": "2026-11-12T08:22:21Z",
+   "sender": "dave",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:53:00Z",
+   "id": "20261112T0753Z-bill-test-gen9-cards-py-is-pytest-s",
+   "read": "2026-11-12T08:22:24Z",
+   "sender": "bill",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T07:54:00Z",
+   "id": "20261112T0754Z-dave-g9-w8-reviewed-accepted-and-me",
+   "read": "2026-11-12T08:22:27Z",
+   "sender": "dave",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T08:07:00Z",
+   "id": "20261112T0807Z-g9-box-order-from-13-00-utc-g9-d4",
+   "read": "2026-11-12T08:22:30Z",
+   "sender": "g9",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T08:37:00Z",
+   "id": "20261112T0837Z-dave-g9-w8-resolved-accepted-w3-fol",
+   "read": "2026-11-12T09:08:39Z",
+   "sender": "dave",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T08:56:00Z",
+   "id": "20261112T0856Z-dave-pr-28-reviewed-and-merged-a-fi",
+   "read": "2026-11-12T09:08:42Z",
+   "sender": "dave",
+   "to": "will"
+  },
+  {
+   "at": "2026-11-12T09:13:00Z",
+   "id": "20261112T0913Z-dave-g9-d7-submitted-for-your-revie",
+   "read": "2026-11-12T09:26:22Z",
+   "sender": "dave",
+   "to": "will"
+  }
+ ],
+ "now": "2026-11-12T09:47:00Z",
+ "start": "2026-11-12T06:47:00Z"
+}
