@@ -286,3 +286,4 @@
 {"at": "2026-11-12T09:27:00Z", "by": "bill", "op": "send", "target": "g9/20261112T0927Z-bill-d6-guest-b-is-mapped-to-gen-5", "note": "D6: guest-b is mapped to Gen 5 within 10-20 boards after a fix to the profile statistic (temperature 0.25); Gen 5 and dds40k are one system", "task": "G9-D6"}
 {"at": "2026-11-12T09:27:00Z", "by": "bill", "op": "renew", "target": "E9-11", "until": "2026-11-12T13:27Z"}
 {"at": "2026-11-12T09:27:00Z", "by": "bill", "op": "renew", "target": "E9-12", "until": "2026-11-12T13:27Z"}
+{"at": "2026-11-12T09:42:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-12-c", "note": "priority 3, 4 cores", "task": "E9-12"}
