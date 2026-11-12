@@ -29,7 +29,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azure3-ben64-1-feed` to `-8-feed`), on the unplayed deals of the Gen 7.1 BEN lanes, which finished then. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then ceilings for tricks 1 to 2, level cards and 64 layouts, to about 11:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | **Free from about 18:20 UTC on 12 Nov for building single-dummy lookup tables** (Max, 18:07, to g7: Max tells the session that needs it). g7's Gen 8 cohort `gen8-azure6` drained from 18:08 (every board published, units disabled); g7's follow-on cohort for this box is withdrawn. g7's files (`~/work/runs`, the capsule copy, `~/work/sdb-gen8`, the venv, the RAM disk `/mnt/ddscache`) and g8's under `~/work/g8` stay | the lookup-table session |
+| azure6 (Bridgebots6) | **Free since 18:12 UTC on 12 Nov for building single-dummy lookup tables** (Max, 18:07, to g7: Max tells the session that needs it). g7's Gen 8 cohort `gen8-azure6` drained 18:08 to 18:12 at 410 of 1,484 boards (every board published, units disabled); g7's follow-on cohort for this box is withdrawn. g7's files (`~/work/runs`, the capsule copy, `~/work/sdb-gen8`, the venv, the RAM disk `/mnt/ddscache`) and g8's under `~/work/g8` stay | the lookup-table session |
 
 ## Log
 
@@ -2869,4 +2869,10 @@ through boxctl as usual (one at a time per box).
 **Dashboard (Max, 18:03):** `gh-pages` `fe60b24` splits the own-system IMPs by contract: same contract (level, strain,
 doubling, declarer) is play, different contracts are bidding; the two add to the total, beside the play in common
 auctions. Azure at 17:50: `8s-32~8c-32` bidding +1.25 [0.11, 2.39], play in the same contract -0.08 [-0.43, 0.27].
+
+### 2026-11-12 18:13 UTC, g7
+
+**azure6 is free.** `gen8-azure6` finished at 410 of 1,484 boards at 18:12, all published; `arena-gen8`,
+`arena-gen8-publish`, `gen8-recycle`, `next8` and `prepnext8` are stopped and disabled; load 0.6, 31 GB memory and 115 GB
+of disk free. Nothing of mine runs or is queued there.
 
