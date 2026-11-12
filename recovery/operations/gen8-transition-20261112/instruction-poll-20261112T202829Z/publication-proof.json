@@ -1,0 +1,29 @@
+{
+  "verified_at": "2026-11-12T20:34:30.132232Z",
+  "revision": "29a4712a8d737a949328059b79fdfcaaa617c849",
+  "published_completed": 396,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "poll_start": "2026-11-12T20:28:29Z",
+  "next_comment_scan_since": "2026-11-12T20:28:29Z",
+  "remote_ref_verified": true,
+  "all_paths_exact": true,
+  "watch_blob": "88d25fa83e8ac233f531b56155d9ed416004c9ae",
+  "paths": {
+    "recovery/operations/instruction-watch.json": "52d65164dba0c86a1f8a34f27b6c75cb5972a0e2b1555e76c516703b77a6885c",
+    "recovery/operations/stream.json": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+    "recovery/operations/supervise_gen8.py": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+    "recovery/manifest.json": "cc1fd53557009bede112bd361fc63e158d893b8fdf42b278b86222c36f17d8d0",
+    "recovery/artifacts/validation/evaluation-exclusions.json": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/github-scan.json": "61842f137313f59732efad0fdb67ef966426cc4e79b201586cf5e491c1360136",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/health-before.json": "832c4cefcbad5c9aa782103d3a83cb4b742c67ad1749c218cdf588d41e5c72d6",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/health-after.json": "899aad7a834422970de087f1348fea7651ee314677235801e5ed575920b6700a",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/commit-comments.json": "42c26023dc3db7027d98ade9cf90546793d5f72e9b7e323f883f12830f0dd085",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/automation-state.json": "2fc2568305c107108e6ff02a175c998a154dddf70e899d04a4df769edc0ccf82",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/cache-rotation-verification.json": "7bda2e2f6cb7664a719cecc6065fe00defcdeadc1f382bd682f70cfd563913d6",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/post-cache-record-inventory.json": "fbcedf2853865307a00595317a9795d47f28ed4ec1e5d71ae2a63f57dafca92a",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T202829Z/last-cache-rotation.json": "89b71c6af9e5e2559552398347597585d3ac2c92a2ef2868ac50a6c2495f73f4"
+  },
+  "no_collection_behavior_change": true,
+  "no_shared_ui_or_other_producer_write": true,
+  "cache_rotation_evidence_preserved": true
+}
