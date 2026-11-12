@@ -51,7 +51,8 @@
         "gap_cpu",
         "gap_fork_count",
         "decision_timing"
-      ]
+      ],
+      "actual_gap_forks": 17
     },
     {
       "index": 385,
@@ -81,7 +82,8 @@
         "gap_cpu",
         "gap_fork_count",
         "decision_timing"
-      ]
+      ],
+      "actual_gap_forks": 22
     },
     {
       "index": 386,
@@ -111,11 +113,13 @@
         "gap_cpu",
         "gap_fork_count",
         "decision_timing"
-      ]
+      ],
+      "actual_gap_forks": 12
     }
   ],
   "scientific_manifest_unchanged": true,
   "failures_cleared": false,
   "manual_restart_performed": false,
-  "current_STOP_exists": false
+  "current_STOP_exists": false,
+  "post_rotation_gap_and_guess_capture_verified": true
 }
