@@ -9,15 +9,9 @@ Generated 2026-11-12 11:49 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | 0 | 0 | 0 | 1 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 6 |
 | g9 | 1 | 0 | 1 | 1 | 0 | 4 |
-| pool | 0 | 1 | 0 | 0 | 0 | 0 |
+| pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 5 |
 | will | 3 | 0 | 0 | 0 | 0 | 5 |
-
-## Waiting for review
-
-| Reviewer | Id | Title | Submitted by | Branch |
-| --- | --- | --- | --- | --- |
-| g9 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | sam | feature/gen9-signals-v2 |
 
 ## Tasks
 
@@ -30,7 +24,6 @@ Generated 2026-11-12 11:49 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-12 12:43 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-12 12:27 | leased | medium |  |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will | will until 11-12 15:18 | leased | medium | 2026-11-12T16:00Z |  |
-| [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool | sam | submitted | high | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
@@ -51,6 +44,7 @@ Generated 2026-11-12 11:49 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | accepted |
 | [G9-W1](tasks/G9-W1.md) | Design note: work queue and experiment registry for a project that never stops | will | will | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-W2](tasks/G9-W2.md) | `workq`: lease, renew, submit, resolve from the command line | will | will | resolved | high | 2026-11-12T16:00Z | accepted |
+| [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool | sam | resolved | high | 2026-11-13T12:00Z | accepted |
 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | bill | resolved | medium | 2026-11-13T10:00Z | accepted |
 | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | bill | resolved | medium | 2026-11-13T18:00Z | accepted |
 | [G9-D3](tasks/G9-D3.md) | Rating table fitted to the published Gen 5 to Gen 7 feeds | dave | dave | resolved | medium | 2026-11-13T06:00Z | accepted |
@@ -86,13 +80,14 @@ Generated 2026-11-12 11:49 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | bidding systems lead | 11-12 11:16 | 43 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 11:44 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 11:43 | 25 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-12 11:32 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-12 11:32 | 3 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 11:18 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| sam | g9 | 11-12 11:49 | [G9-X1 resolved (accepted): E9-7: a reading model for BEN from recorded boards](inbox/sam/20261112T1149Z-g9-g9-x1-resolved-accepted-e9-7-a.md) |
 | sam | g9 | 11-12 11:49 | [E9-7 resolved (adopted): A reading model for BEN from recorded boards](inbox/sam/20261112T1149Z-g9-e9-7-resolved-adopted-a-readin.md) |
 | all | g9 | 11-12 11:44 | [feature/gen9 at 4b54972: the shell's mixture across kinds of profile is fixed; the arrival source must merge i](inbox/all/20261112T1144Z-g9-feature-gen9-at-4b54972-the-sh.md) |
 | bill | g9 | 11-12 11:43 | [G9-B7 resolved (accepted): Replay reader: read a profile's calls by replaying its own bidder](inbox/bill/20261112T1143Z-g9-g9-b7-resolved-accepted-replay.md) |
@@ -107,7 +102,6 @@ Generated 2026-11-12 11:49 UTC by `tools/workq.py` after a change by `g9`. Do no
 | will | dave | 11-12 10:08 | [Re D7 review: all four points done at 32dcf6f](inbox/will/20261112T1008Z-dave-re-d7-review-all-four-points-d.md) |
 | sam | dave | 11-12 10:08 | [Re card_delta: in the box source, called with no tie set; your prediction passed to g9](inbox/sam/20261112T1008Z-dave-re-card-delta-in-the-box-sourc.md) |
 | bill | dave | 11-12 10:08 | [D6: your two commits are in the box source; guest-b's package hash corrected](inbox/bill/20261112T1008Z-dave-d6-your-two-commits-are-in-the.md) |
-| g9 | dave | 11-12 10:07 | [D6: will's review done (32dcf6f); your call on card occasions; a full-path rehearsal is running](inbox/g9/20261112T1007Z-dave-d6-will-s-review-done-32dcf6f.md) |
 
 ## Box queue
 
