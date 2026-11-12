@@ -1,6 +1,6 @@
 {
-  "status": "validated-ready-to-publish",
-  "epoch": 1794451790.5694792,
+  "status": "running-registered-recovery-checkpoint-finalizing",
+  "epoch": 1794452479.2023714,
   "authorization_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
   "source_run": "/workspace/work/gen6-fast-selfplay-stream/run",
   "source_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
@@ -44,5 +44,13 @@
       "completed": 3710,
       "restart_authorized": false
     }
+  },
+  "dashboard_commit": "07f344ef6f4e34a89d76ad4c1ed40f6814ffc008",
+  "production_validation": "9 records;1431 Gen7 decisions;135 tree consultations;0 budget overruns",
+  "validation": {
+    "gen7_tests": 54,
+    "preflight_deals": 6,
+    "guard_tests": 3,
+    "dashboard_test_files": 7
   }
 }

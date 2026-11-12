@@ -236,12 +236,12 @@
     "publication_verified": true
   },
   "research_disposition": {
-    "gen7_alpha": "Plan closed; no authorized adoption or deployment change.",
-    "gen7_prototype": "c10ecfb: revised research notes and smoke-match comparisons only; no cutover authorization.",
+    "gen7_alpha": "Foundational engine release; accepted here only through fe382f9 authorized phase1 plans, frozen at that source. No unrelated research trained/promoted.",
+    "gen7_prototype": "fb617a6: supporting research and revised evidence; no independent authority to change engine/settings beyond fe382f9 phase1 go-ahead.",
     "pr13": "Draft host-specific supervision work; not a general new engine adoption.",
     "prs9_4": "Deferred prototypes/follow-up work, not collection launch instructions.",
     "hand_fit_scorer_v1a": "Research release at 8ff85d4; explicitly no arena bot uses it. No collection/model change authorized.",
-    "gen7_candidate": "1042db5: notice only; both phase plans launch_enabled=false, pending acceptance/parameters and runtime support.",
+    "gen7_candidate": "fe382f9: phase1 launch enabled with final trust0.3. Non-BEN plan applied to this owned stream; phase2 remains closed.",
     "gen8_systems": "dba31ae: unadopted WIP, explicitly not a cutover input.",
     "boxctl": "d5bb39f: remote-box operations tooling for separate machines; not adopted for this stream."
   },
@@ -404,31 +404,26 @@
       "previous": "c10ecfb584436e7ea5e9f578529f54f738e1d870"
     }
   ],
-  "completed_at": "2026-11-12T02:55:15Z",
+  "completed_at": "2026-11-12T03:01:19Z",
   "next_comment_scan_since": "2026-11-12T02:29:06Z",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
     "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
     "notice_path": "docs/gen7_candidate_2026-11-11.md",
-    "notice_blob_sha": "a92e93e2deced25c885b2c16824ec870ad4478b3",
+    "notice_blob_sha": "583cfb2a162a289300e223df4bfec81287913f43",
     "status": "phase1_authorized",
     "acknowledged": true,
     "operational_direction": "Phase1 may be prepared and run. Phase2 remains closed.",
     "mix_path": "configs/gen7-candidate-mix.json",
-    "mix_blob_sha": "d9177040e6eaa1192bace34a2f01efeda4f30780",
-    "authority": "Max, 2026-11-11 23:29 UTC: tell the workers that Gen 7 is coming and give them the match mix and a candidate build package, subject to final parameters and to his acceptance of Gen 7 (mostly policy v4 and the tree budgets). This file authorizes no cutover.",
+    "mix_blob_sha": "7baad1d22e9b9037c589478963ef0af7d3c1d29c",
+    "authority": "Max, 2026-11-12 02:09 and 02:16 UTC: launch Gen7 phase1 with standard tree margin0.25, trust0.3, path0.5, three tricks. Applied under user standing authority for generally addressed collector instructions.",
     "plans": {
       "phase1": {
         "path": "configs/round7-candidate-phase1.json",
-        "blob_sha": "823abeb6e784a96e95ca80d09be94337a4bd92d9",
-        "launch_enabled": false,
-        "pending": [
-          "Acceptance of Gen 7 by Max. Not given yet. It turns mostly on policy v4 and on the tree's budgets (`max_solves`, `path_solves`, and the compute the standard bot may spend at tricks 3 to 6).",
-          "Final tree parameters of 7s-32: `root_margin`, `trust`, `path`, `tricks`, `breadth`, `mass`. The values below are the candidate of 11 November 23:30 UTC, from one bench set and a short smoke match (docs/gen7_candidate_2026-11-11.md).",
-          "Audits in the anchor pairs (7s-32 against ben64, ben, 5RZ32 and 1): Max wants them off. BEN boards already carry none (`ben_audit`). There is no per-pair switch for 5RZ32 and 1 in this runtime; it has to be added before those two pairs run, or they run with the cohort's audits.",
-          "Stop rule: this phase ends when every pair has 2,000 completed boards (10,000 in all). The plan format has no per-pair target; the producer has to watch `by_pair` and cut over to phase 2 with a new cohort."
-        ],
+        "blob_sha": "d6827a7caeaf154706b1863e4c5ffa58b2c97a32",
+        "launch_enabled": true,
+        "pending": [],
         "pair_weights": {
           "7s-32~6-32": 1,
           "7s-32~ben64": 1,
@@ -437,14 +432,33 @@
           "7s-32~1": 1
         }
       },
+      "phase1_nonben": {
+        "path": "configs/round7-candidate-phase1-nonben.json",
+        "blob_sha": "457dddcd730d91a8d502068726011ade454dafaf",
+        "launch_enabled": true,
+        "pending": [],
+        "pair_weights": {
+          "7s-32~6-32": 1,
+          "7s-32~5RZ32": 1,
+          "7s-32~1": 1
+        }
+      },
+      "phase1_ben": {
+        "path": "configs/round7-candidate-phase1-ben.json",
+        "blob_sha": "763039c42bad604fa8b7d3ac637e3de440ccc002",
+        "launch_enabled": true,
+        "pending": [],
+        "pair_weights": {
+          "7s-32~ben64": 1,
+          "7s-32~ben": 1
+        }
+      },
       "phase2": {
         "path": "configs/round7-candidate-phase2.json",
-        "blob_sha": "3e91269111370b6f84ba9da1eb6b76efd60bc4c6",
+        "blob_sha": "e46dbbcf3999d77be30aac58cc28e2713eb4d7af",
         "launch_enabled": false,
         "pending": [
-          "Acceptance of Gen 7 by Max. Not given yet. It turns mostly on policy v4 and on the tree's budgets (`max_solves`, `path_solves`, and the compute the standard bot may spend at tricks 3 to 6).",
-          "Final tree parameters of 7s-32: `root_margin`, `trust`, `path`, `tricks`, `breadth`, `mass`. The values below are the candidate of 11 November 23:30 UTC, from one bench set and a short smoke match (docs/gen7_candidate_2026-11-11.md).",
-          "Audits in the anchor pairs (7s-32 against ben64, ben, 5RZ32 and 1): Max wants them off. BEN boards already carry none (`ben_audit`). There is no per-pair switch for 5RZ32 and 1 in this runtime; it has to be added before those two pairs run, or they run with the cohort's audits.",
+          "Phase 1 first: this plan opens when every phase 1 pair has 2,000 completed boards.",
           "Self-play pairs (7f-32~7f-32, 7s-32~7s-32) need a runtime with the self-play regime. The collectors' branches have it; this branch, like `main` at b0909bb, validates common and native only. The engine files of this branch have to be carried onto that runtime, as a new source identity."
         ],
         "pair_weights": {
@@ -458,15 +472,19 @@
         }
       }
     },
-    "rehearsal": "Optional isolated build rehearsal described in the notice; no production preparation or runtime change performed.",
+    "rehearsal": "Historical isolated rehearal gate superseded by fe382f9 phase1 authorization. Phase2 remains closed.",
     "phase1_launch_enabled": true,
     "phase1_pending": [],
-    "phase2_launch_enabled": false
+    "phase2_launch_enabled": false,
+    "replaced_notice": {
+      "commit": "1042db5036e0a8071e9cc90f511d941c3de92270",
+      "status": "closed candidate gate; historical only"
+    }
   },
   "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer.",
   "transition": {
     "authorization_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
-    "status": "running-dashboard-registration-in-progress",
+    "status": "running-registered-recovery-checkpoint-finalizing",
     "retired_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
     "retired_completed": 3710,
     "new_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
@@ -531,5 +549,15 @@
     "cadence_preserved": true,
     "control_path": "/workspace/work/gen6-fast-selfplay-stream",
     "current_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
+  },
+  "dashboard_registration": {
+    "commit": "07f344ef6f4e34a89d76ad4c1ed40f6814ffc008",
+    "registry": "arena/gen6-sources.json",
+    "new_key": "gen7codexphase1",
+    "retired_key": "gen6newselfplay",
+    "preserved_other_producers": true,
+    "gen7_results_separate": true,
+    "preview_browser_passed": true,
+    "live_deployment_verification": "in-progress"
   }
 }
