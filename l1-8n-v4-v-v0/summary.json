@@ -1,0 +1,23 @@
+{
+ "pair": "8n-32~8n-32-v0",
+ "boards": 100,
+ "cpu_per_board": 21.42,
+ "common": {
+  "imps_per_board": 0.29,
+  "se": 0.3511,
+  "boards": 100,
+  "won": 24,
+  "lost": 16,
+  "flat": 60
+ },
+ "native": {
+  "imps_per_board": 0.29,
+  "se": 0.3511,
+  "boards": 100,
+  "won": 24,
+  "lost": 16,
+  "flat": 60
+ },
+ "failures": 0,
+ "boards_per_hour": 1259
+}
