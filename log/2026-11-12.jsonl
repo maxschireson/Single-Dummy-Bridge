@@ -365,3 +365,4 @@
 {"at": "2026-11-12T11:53:00Z", "by": "sam", "op": "lease", "target": "E9-10", "until": "2026-11-12T15:53Z"}
 {"at": "2026-11-12T11:53:00Z", "by": "sam", "op": "log", "target": "E9-10", "note": "sam, 11:57 UTC, before any board. Sharpened as g9 asked at 11:50: the pair is r9b-32 (8x-32 reading BEN by the model fitted in E9-7, configs/carding/ben16.json and ben64.json: emission tables for its count signals, third-and-fifth leads, class factor 0.3) against 8x-32 (8p-32 reading unknown opponen"}
 {"at": "2026-11-12T11:53:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-12-x", "note": "3 -> 3: g9's order by value for Friday (11:49)", "task": "E9-12"}
+{"at": "2026-11-12T11:53:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-4-8x", "note": "4 -> 3: g9's order by value for Friday (11:49)", "task": "E9-4"}
