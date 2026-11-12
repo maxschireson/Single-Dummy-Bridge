@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794515291.871836,
+  "checked_epoch": 1794518700.831479,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "af583fb3b436f6d61151bb8f210a4f4d60b4ff02",
-  "coordination_blob": "6a0ce9f83c2827e7090b223e446bd7bacdff755b",
-  "registry_blob": "248fa413bcd29ffc1e204fa054e31b944b219dba",
+  "coordination_revision": "27adabead22dee90799a086851f405b9cbbda92e",
+  "coordination_blob": "e8333bd1239a69b4ce439bc5d336b6bd35855bb1",
+  "registry_blob": "7f9747ae389a4ca63c3f1dbfa55d689e49c523f3",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -102,29 +102,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 405,
+      "completed": 515,
       "target": 16036,
-      "contiguous": 405,
+      "contiguous": 515,
       "by_pair": {
-        "8s-32~71s-32": 136,
-        "8s-32~1": 67,
-        "8s-32~5RZ32": 67,
-        "8c-32~8s-32": 68,
-        "8c-32~71s-32": 67
+        "8s-32~71s-32": 171,
+        "8s-32~1": 86,
+        "8s-32~5RZ32": 86,
+        "8c-32~8s-32": 86,
+        "8c-32~71s-32": 86
       },
-      "root_games": 1348,
-      "tables": 16610,
+      "root_games": 1718,
+      "tables": 21023,
       "failures": 0,
-      "epoch": 1794515284.968266,
+      "epoch": 1794518695.18206,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794515284.6997097,
-      "completed": 404,
+      "epoch": 1794518694.8942015,
+      "completed": 514,
       "in_flight": [
-        404,
-        405,
-        406
+        513,
+        515,
+        516
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -132,15 +132,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794515236.4028313,
+      "epoch": 1794518656.6606812,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794515291.7548306,
+      "epoch": 1794518651.0520873,
       "status": "published",
-      "completed": 405
+      "completed": 512
     },
     "process.json": {
       "pid": 84350,
@@ -157,7 +157,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction. Main, Gen8 operational, historical Gen7.1 and cleanup revisions unchanged. Only new coordination notice is unadopted opening-lead research. Current Gen8 mix, released identities, corpus and union remain verified. Fresh collector, watchdog and single publisher healthy, no failures or stop markers. Existing automatic DDS-cache rotation accounted for collector PID change.",
+  "result": "No new applicable instruction. Current source, released identities, mix, fixed corpus and training union remain verified. Main, operational Gen8, historical Gen7.1 and cleanup revisions unchanged. Azure cohort handoffs and Gen9 research are outside this stream. Fresh collector, watchdog, publisher and ownership locks healthy; no failures or stop markers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -170,28 +170,37 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T19:32:49Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T20:28:11Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue; no current arena collector instruction",
+      "disposition": "Gen9 queue only",
       "new_comments": 0
     },
     {
       "number": 30,
-      "disposition": "Gen9 reading-bench research; no current collector instruction",
-      "new_comments": 0
+      "head": "e22c8348a7eeeff610eeb49852b94c6b3cd0a55d",
+      "base": "feature/gen9",
+      "merged": false,
+      "disposition": "Unadopted Gen9 reading-bench research",
+      "new_comments": 0,
+      "new_reviews": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "plan 2026-11-12 19:47 UTC",
-      "classification": "Opening-lead research result and Azure5 research progression",
-      "action": "Unadopted research; no changes to current collector, actor or plan"
+      "notice": "g7 2026-11-12 20:36 UTC",
+      "classification": "Azure1 next cohorts and Azure3 pool schedule",
+      "action": "Other producer's owned families, no transfer or takeover"
+    },
+    {
+      "notice": "p41 2026-11-12 20:42 UTC",
+      "classification": "Independent training-family qualification of Azure1 successor and unchanged corpora",
+      "action": "Current owned fixed corpus remains qualified. No runtime instruction and no liveness inference from dated report"
     }
   ],
-  "registry_disposition": "Current owned Gen8 source and both pinned retired sources verified unchanged. Foreign producer/retirement metadata changes do not alter this stream.",
-  "previous_checked_epoch": 1794511969.6056406,
+  "registry_disposition": "Active owned Gen8 source and both pinned retired sources unchanged and verified. Azure1 next-cohort registration is outside this stream.",
+  "previous_checked_epoch": 1794515291.871836,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -212,11 +221,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 7.172126293182373,
-  "publisher_age": 0.1170053482055664,
-  "free_bytes": 22981718016,
+  "heartbeat_age": 5.937277555465698,
+  "publisher_age": 49.77939176559448,
+  "free_bytes": 22265581568,
   "new_applicable_instructions": [],
-  "registry_revision": "517c3fd373f0d9a1775fb6b0928bc53afccd2d42",
+  "registry_revision": "17615f4c278065ce8d536ac4b8764c6f631557a7",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
