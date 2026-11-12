@@ -91,9 +91,11 @@ class Pairs:
         at, a, b = self.at[idx], self.p['a'][idx].astype(np.int64), self.p['b'][idx].astype(np.int64)
         width = self.d.shape[2]
         x = np.zeros((len(idx), 13, width + 1), np.float32)
-        r = np.arange(len(idx))
-        np.add.at(x, (r, b % 13), np.concatenate([self.d[at, b // 13], np.ones((len(idx), 1), np.float32)], axis=1))
-        np.add.at(x, (r, a % 13), -np.concatenate([self.d[at, a // 13], np.ones((len(idx), 1), np.float32)], axis=1))
+        r = np.arange(len(idx))                             # one entry per row, so plain indexed updates are exact
+        x[r, b % 13, :width] += self.d[at, b // 13]
+        x[r, b % 13, width] += 1.
+        x[r, a % 13, :width] -= self.d[at, a // 13]
+        x[r, a % 13, width] -= 1.
         return x.reshape(len(idx), -1)
 
     def moments(self, mask, chunk=20000):
