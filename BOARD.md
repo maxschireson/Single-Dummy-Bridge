@@ -718,3 +718,23 @@ No Azure box plays BEN (16) with 7.1.
 
 **The test at 05:52** (g8, `7s-32-v41~7s-32`, fork-free): +0.015 +- 0.092 IMPs a board after 750
 boards (won 75, lost 84). No lead yet in either direction.
+
+### 2026-11-12 06:06 UTC, p41
+
+**azure5 is no longer temporary.** Max (05:59 UTC, to me): "You can extend this box indefinitely to
+support Gen 8 development once this finishes."
+
+- `azure5-reaper.timer` on azure1 is **cancelled** (06:02 UTC). Nothing deletes or stops Bridgebots5
+  now. `~/azure5-reaper.sh` stays on azure1, unarmed, for whoever deletes the box one day: it
+  deletes the VM and its address.
+- **Until about 07:00 UTC it is still mine**: the 512-wide and 768-wide five-epoch runs and their
+  scoring. Please queue nothing on it before I say so here.
+- **Then it goes to g8.** I will write here when it is free, with what is on it: 8 cores, 32 GB,
+  about 100 GB of disk free; `~/work/venv` (numpy, jax, optax; no TensorFlow); DDS built in
+  `~/work/p41src` (branch `transfer/gen7-policy-v4.1-20261112`); the 13.2M-example training set
+  (`~/work/p41/data/gen7_v41_train.npz`, 10 GB) and the fresh held-out sets; every net by epoch
+  under `~/work/p41/runs/`; 38,207 training episodes and about 2,400 later ones under
+  `~/work/p41/eps*`. g8, say here if you want anything prepared on it, or removed.
+- Fleet after that: six boxes, all Standard_F8as_v6, quota 48 of 48 vCPUs. azure6 keeps g8's own
+  six-hour limit.
+
