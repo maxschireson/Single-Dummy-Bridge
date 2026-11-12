@@ -266,32 +266,164 @@ class Believer:
         heads = forward(self.net.params, {k: batch[k][free] for k in INPUTS})
         self.net_rows += len(free)
         logp, owner = heads['policy'], heads['owner']
-        actor, controller = rows.actor(), rows.controller()
-        on_table = rows.on_table
-        remaining = 13 - rows.played // 4
+        controller = rows.controller()
         for j, i in enumerate(free):
-            k = int(controller[i])
-            a, b = [s for s in range(4) if s != k and s != rows.dummy]      # the two seats this seat cannot see
-            held = (rows.holder[i] == a) | (rows.holder[i] == b)
-            lean = owner[j, :, (a - k) % 4 - 1] - owner[j, :, (b - k) % 4 - 1]
-            cap = int((rows.holder[i] == a).sum())
-            mine = [int(x) for x in np.flatnonzero(rows.holder[i] == k)]
-            dummy = [int(x) for x in np.flatnonzero(rows.holder[i] == rows.dummy)]
-            trick = [((int(rows.leader[i]) + t) % 4, int(rows.trick[i, t])) for t in range(on_table)]
-            total = {}
-            for n in range(self.layouts):
-                first = self.believed(lean, held, cap, rows.void[i, a], rows.void[i, b], draw=self.belief == 'draw' or n > 0)
-                hands = [None] * 4
-                hands[k], hands[rows.dummy] = mine, dummy
-                hands[a] = [int(x) for x in first]
-                hands[b] = [int(x) for x in np.flatnonzero(held) if x not in set(hands[a])]
-                values, _ = self.dds.solve(hands, rows.trump, int(rows.leader[i]), trick)
-                self.solves += 1
-                for x, v in values.items():
-                    total[x] = total.get(x, 0) + v
-            best = max(total.values())
-            out[i] = max((x for x, v in total.items() if v == best), key=lambda x: (logp[j, x], -x))
+            out[i] = self.row_card(rows, int(i), int(controller[i]), logp[j], owner[j])
         return out
+
+    def row_card(self, rows, i, k, logp, owner):
+        """The card for row i, whose chooser is seat k: the solver's best over the believed layout(s), the net's
+        log-probabilities `logp` breaking ties. `owner` is the owner head's output for the row."""
+        a, b = [s for s in range(4) if s != k and s != rows.dummy]          # the two seats this seat cannot see
+        held = (rows.holder[i] == a) | (rows.holder[i] == b)
+        lean = owner[:, (a - k) % 4 - 1] - owner[:, (b - k) % 4 - 1]
+        cap = int((rows.holder[i] == a).sum())
+        total = {}
+        for n in range(self.layouts):
+            first = self.believed(lean, held, cap, rows.void[i, a], rows.void[i, b], draw=self.belief == 'draw' or n > 0)
+            for x, v in self.solve(rows, i, k, a, b, first, held).items():
+                total[x] = total.get(x, 0) + v
+        best = max(total.values())
+        return max((x for x, v in total.items() if v == best), key=lambda x: (logp[x], -x))
+
+    def solve(self, rows, i, k, a, b, first, held):
+        """{card: tricks for the side to play} in the layout where seat a holds `first` of the unseen cards `held`."""
+        hands = [None] * 4
+        hands[k] = [int(x) for x in np.flatnonzero(rows.holder[i] == k)]
+        hands[rows.dummy] = [int(x) for x in np.flatnonzero(rows.holder[i] == rows.dummy)]
+        mine = set(int(x) for x in first)
+        hands[a] = sorted(mine)
+        hands[b] = [int(x) for x in np.flatnonzero(held) if int(x) not in mine]
+        trick = [((int(rows.leader[i]) + t) % 4, int(rows.trick[i, t])) for t in range(rows.on_table)]
+        values, _ = self.dds.solve(hands, rows.trump, int(rows.leader[i]), trick)
+        self.solves += 1
+        return values
+
+
+HONOUR = 8                      # rank index from which a card is named on its own in a plan: ten and up
+IS_LOW = RANK_OF < HONOUR
+BIT = np.uint64(1) << np.arange(52, dtype=np.uint64)
+
+
+class Planner(Believer):
+    """Playouts in which the decider's side follows a plan and every other seat is a Believer.
+
+    A plan is a layout family to play for. The caller says which family each of the decider's layouts belongs to
+    (`family`, for instance the joint values of the decision's key variables: plan_families). While any layout of
+    the family still fits the play, the decider's seat (and dummy, when the decider declares) plays the solver's
+    card for the likeliest of them that fits, by the weights the search gave the layouts (with `own_layouts` above
+    1, the card with the best weighted total over that many of them: a small search inside the plan). When none
+    fits, the plan is refuted, and the seat does the same over the layouts of any family that fit.
+
+    "Fits" is judged as a player would judge it, by named cards and counts and not by which low cards turned up:
+    no card ten or higher has appeared in the wrong hand, no hand has played more low cards of a suit than the
+    layout gives it, and no hand has shown out while the layout still gives it cards of the suit. The layout the
+    solver is given has the named cards where the fitting layout has them and the unplayed low cards dealt in turn
+    from the bottom, as many to each hand as that layout says.
+
+    So every plan is one consistent strategy: it never uses anything the decider could not know at that point,
+    and two rows that look the same to the decider are played alike. Plan -1 is "the likeliest layout that fits"
+    from the start: the default line.
+
+    Rows are (first card, plan, true layout); `plan[n]` is set by plan_values.
+    """
+
+    def __init__(self, net, dds, o, worlds, weights, family=None, belief='map', seed=0, own_layouts=1):
+        super().__init__(net, dds, belief, seed=seed)
+        self.own_layouts = own_layouts
+        self.me = o.controller
+        self.a, self.b = [s for s in range(4) if s != self.me and s != o.contract.dummy]
+        self.weights = np.asarray(weights, float)
+        n = len(worlds)
+        self.family = np.arange(n) if family is None else np.asarray(family, np.int64)
+        self.hon = np.zeros((2, n), np.uint64)              # [hidden seat, layout] its named cards at the root, as bits
+        self.hon_count = np.zeros((2, n, 4), np.int64)      # ... how many of them in each suit
+        self.low = np.zeros((2, n, 4), np.int64)            # ... and how many low cards in each suit
+        for t, w in enumerate(worlds):
+            for h, seat in enumerate((self.a, self.b)):
+                for c in w[seat]:
+                    if IS_LOW[c]:
+                        self.low[h, t, c // 13] += 1
+                    else:
+                        self.hon[h, t] |= BIT[c]
+                        self.hon_count[h, t, c // 13] += 1
+        self.start = len(o.history)
+        self.order = np.argsort(-self.weights, kind='stable')
+        self.plan = None
+        self.refuted = self.own_choices = 0
+
+    def shown(self, rows, i):
+        """What the two hidden seats have played in row i since the root: (named cards as bits, their count by suit,
+        low cards by suit), each [hidden seat, ...]."""
+        since = rows.order[i] > self.start
+        bits, named, low = np.zeros(2, np.uint64), np.zeros((2, 4), np.int64), np.zeros((2, 4), np.int64)
+        for h, seat in enumerate((self.a, self.b)):
+            cards = np.flatnonzero((rows.by[i] == seat) & since)
+            for c in cards:
+                if IS_LOW[c]:
+                    low[h, c // 13] += 1
+                else:
+                    bits[h] |= BIT[c]
+                    named[h, c // 13] += 1
+        return bits, named, low
+
+    def fits(self, rows, i, shown):
+        """[layouts] which of the decider's layouts' families still fit everything row i's play has shown."""
+        bits, named, low = shown
+        ok = np.ones(len(self.weights), bool)
+        for h, seat in enumerate((self.a, self.b)):
+            ok &= (bits[h] & ~self.hon[h]) == 0
+            ok &= (self.low[h] >= low[h]).all(axis=1)
+            left = self.hon_count[h] - named[h] + self.low[h] - low[h]         # [layout, suit] cards of the suit the family still gives the seat
+            for s in range(4):
+                if rows.void[i, seat, s]:
+                    ok &= left[:, s] == 0
+        return ok
+
+    def family_hand(self, rows, i, z, shown):
+        """The cards the first hidden seat holds now if the layout is of layout z's family: its named cards not yet
+        played, and its share of each suit's unplayed low cards, dealt in turn from the bottom."""
+        bits, named, low = shown
+        out = [int(c) for c in np.flatnonzero((BIT & (self.hon[0, z] & ~bits[0])) != 0)]
+        unseen = (rows.holder[i] == self.a) | (rows.holder[i] == self.b)
+        for s in range(4):
+            need = [int(self.low[0, z, s] - low[0, s]), int(self.low[1, z, s] - low[1, s])]
+            turn = 0
+            for c in range(13 * s, 13 * s + HONOUR):
+                if unseen[c]:
+                    if not need[turn]:
+                        turn = 1 - turn
+                    if turn == 0:
+                        out.append(c)
+                    need[turn] -= 1
+                    turn = 1 - turn
+        return np.array(sorted(out), np.int64)
+
+    def row_card(self, rows, i, k, logp, owner):
+        if k != self.me:
+            return super().row_card(rows, i, k, logp, owner)
+        shown = self.shown(rows, i)
+        ok = self.fits(rows, i, shown)
+        f = int(self.plan[i])
+        self.own_choices += 1
+        alive = self.order[ok[self.order]]                  # layouts that fit, likeliest first
+        if not len(alive):
+            raise RuntimeError('No layout fits the play: the true layout must be among the layouts')
+        mine = alive[self.family[alive] == f] if f >= 0 else alive
+        if not len(mine):
+            self.refuted += 1
+            mine = alive
+        held = (rows.holder[i] == self.a) | (rows.holder[i] == self.b)
+        total, solved = {}, {}
+        for z in mine[:self.own_layouts]:                   # the likeliest fitting layouts of the plan, weighted as the search weighted them
+            hand = self.family_hand(rows, i, int(z), shown)
+            key = hand.tobytes()
+            if key not in solved:                           # two layouts of one hand type are one solve
+                solved[key] = self.solve(rows, i, k, self.a, self.b, hand, held)
+            for x, v in solved[key].items():
+                total[x] = total.get(x, 0.) + float(self.weights[z]) * v
+        best = max(total.values())
+        return max((x for x, v in total.items() if best - v <= 1e-9 * max(1., abs(best))), key=lambda x: (logp[x], -x))
 
 
 def solve_rows(rows, dds):
@@ -338,3 +470,19 @@ def card_values(o, worlds, cards, player, public=None, repeats=1, tricks=0, dds=
             won = play_out(rows, player, public, tricks, dds)
             out[:, j] += won if declaring else -won
     return out / repeats
+
+
+def plan_values(o, worlds, weights, cards, plans, net, dds, family=None, public=None, belief='map', seed=0, own_layouts=1):
+    """[card, plan, layout] the decider's side's final tricks (negated for the defence) when the decider plays the
+    card, its side then follows the plan, and every other seat is a Believer. `plans` are family ids (`family[t]`
+    is layout t's; by default every layout is its own family), -1 the default line. Also returns the Planner (for
+    its counters)."""
+    public = public or Public(net, o)
+    who = Planner(net, dds, o, worlds, weights, family, belief, seed, own_layouts)
+    n_c, n_z, n_w = len(cards), len(plans), len(worlds)
+    base = Rows(o, worlds)
+    rows = base.take(np.tile(np.arange(n_w), n_c * n_z))
+    who.plan = np.tile(np.repeat(np.asarray(plans, np.int64), n_w), n_c)
+    rows.play(np.repeat(np.asarray(cards, np.int64), n_z * n_w))
+    won = play_out(rows, who, public).reshape(n_c, n_z, n_w).astype(float)
+    return (won if o.controller % 2 == o.contract.declarer % 2 else -won), who
