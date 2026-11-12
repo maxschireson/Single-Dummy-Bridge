@@ -240,8 +240,8 @@
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "no_applicable_collection_change",
-  "collection_action": "Continue frozen Gen7 phase1 non-BEN cohort unchanged; three workers; retain pooled phase1 stop guard. Main documentation/engine adoption is complete via merged PR14 and does not upgrade this run. No other producer or registry entry changed.",
+  "result": "authorized_anchor_stop_and_selfplay_transition_in_progress",
+  "collection_action": "STOP and WATCHDOG_STOP applied to old three-pair cohort; drained564 completed deals,188 per pair,zero failures. Validate new 2:1 standard selfplay/Gen6-comparison mix.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -536,7 +536,7 @@
       "sha": "159bd50e593e51afbceecf25b963db245609b6d4"
     }
   ],
-  "completed_at": "2026-11-12T03:27:11Z",
+  "completed_at": "2026-11-12T04:28:09Z",
   "next_comment_scan_since": "2026-11-12T03:24:49Z",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
@@ -728,5 +728,93 @@
     "remote_work": "Gen8 requests azure3/4 at03:50; g7/dash consider BEN on azure1/2. Out of this stream ownership scope. No local BEN server or action required.",
     "registry_revision": "8ad8e5f7e4fb86fc39896d270cfc0a77e42a3de9",
     "own_entry_unchanged": true
+  },
+  "selfplay_authority": {
+    "user": "Max",
+    "issued": "2026-11-12T04:09:00Z",
+    "relayed": "2026-11-12T04:19:00Z",
+    "branch": "box/coordination",
+    "commit": "6ecc02f045b783ceb91525acad816bada86b55ea",
+    "quote": "We can stop collecting on 5 and on 1; it's clear enough. Put those deals toward self play."
+  },
+  "selfplay_transition": {
+    "status": "drained-validating-selfplay-runtime",
+    "epoch": 1794457507.9332333,
+    "authority": {
+      "user": "Max",
+      "issued": "2026-11-12T04:09:00Z",
+      "relayed": "2026-11-12T04:19:00Z",
+      "branch": "box/coordination",
+      "commit": "6ecc02f045b783ceb91525acad816bada86b55ea",
+      "quote": "We can stop collecting on 5 and on 1; it's clear enough. Put those deals toward self play."
+    },
+    "source_config": {
+      "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+      "runtime": "/workspace/work/gen7-phase1-codex-20261112/runtime",
+      "publication": "/workspace/work/gen7-phase1-codex-20261112/publication",
+      "branch": "arena-gen7-phase1-codex-20261112-feed",
+      "key": "gen7codexphase1",
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "target": 21290,
+      "seed": 6586995816951042092,
+      "effective_generation": 7,
+      "phase": "gen7-phase1",
+      "preparation_script": "/workspace/work/gen7-phase1-codex-20261112/prepare_owned.py",
+      "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+      "retired_gen6": {
+        "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+        "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+        "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+        "branch": "arena-gen6-fast-selfplay-codex-20261111",
+        "key": "gen6newselfplay",
+        "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+        "target": 25000,
+        "seed": 6586995816951042092,
+        "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+        "completed": 3710,
+        "restart_authorized": false
+      },
+      "validation_logs": [
+        "/workspace/work/gen7-phase1-codex-20261112/tests.log",
+        "/workspace/work/gen7-phase1-codex-20261112/test-fixture-rerun.log",
+        "/workspace/work/gen7-phase1-codex-20261112/preflight.log"
+      ]
+    },
+    "source_state": {
+      "manifest_identity": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "completed": 561,
+      "target": 21290,
+      "contiguous": 561,
+      "by_pair": {
+        "7s-32~1": 187,
+        "7s-32~6-32": 187,
+        "7s-32~5RZ32": 187
+      },
+      "root_games": 1212,
+      "tables": 8762,
+      "failures": 0,
+      "epoch": 1794457500.7487597,
+      "complete": false
+    },
+    "scientific_changes": false,
+    "replacement": "Await verified Gen7 standard self-play runtime; broad phase2 mix and Gen8 remain unadopted.",
+    "stop_token": "Max 2026-11-12 04:09 UTC, relayed on box/coordination at04:19: stop Gen5 and Gen1 matches; drain for a new Gen7 self-play cohort.\n",
+    "final_source_state": {
+      "manifest_identity": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "completed": 564,
+      "target": 21290,
+      "contiguous": 564,
+      "by_pair": {
+        "7s-32~1": 188,
+        "7s-32~6-32": 188,
+        "7s-32~5RZ32": 188
+      },
+      "root_games": 1219,
+      "tables": 8807,
+      "failures": 0,
+      "epoch": 1794457531.7404568,
+      "complete": false
+    },
+    "candidate_runtime_commit": "05d2cd82a9078bdd47a0ee312122c957367758ec"
   }
 }
