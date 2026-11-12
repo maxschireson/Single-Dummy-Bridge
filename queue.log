@@ -22,3 +22,5 @@
 2026-11-12T19:39:38Z end ceilLead: exit 0
 2026-11-12T19:39:38Z source now 0f0f4f8 Headroom: a simulation check of the fit (--fit-check); report: the trick
 2026-11-12T19:39:38Z start ceilT12b (source 0f0f4f8): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --workers 8 --out $R.json --worlds 16 --from-trick 1 --to-trick 2 --skip-files 120 --files 400
+2026-11-12T20:36:12Z end ceilT12b: exit 0
+2026-11-12T20:36:12Z start ceilTies (source 0f0f4f8): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --workers 8 --out $R.json --worlds 16 --ties --bands=-1 --from-trick 3 --to-trick 6 --files 150
