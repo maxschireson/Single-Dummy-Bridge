@@ -17,6 +17,7 @@ Generated 2026-11-12 07:38 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
+| g9 | [E9-9](experiments/E9-9.md) | The house bots' own carding, measured against declared schemes | sam | feature/gen9-signals |
 | g9 | [G9-S6](tasks/G9-S6.md) | The house bots' own carding, measured | sam | feature/gen9-signals |
 
 ## Tasks
@@ -64,7 +65,7 @@ Generated 2026-11-12 07:38 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:27 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-2](experiments/E9-2.md) | Boards needed to identify a system from finished boards | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T10:00Z |  |
-| [E9-9](experiments/E9-9.md) | The house bots' own carding, measured against declared schemes | sam | sam until 11-12 08:38 | leased | medium |  |  |
+| [E9-9](experiments/E9-9.md) | The house bots' own carding, measured against declared schemes | sam | sam | submitted | medium |  |  |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 |  | open | high | 2026-11-13T06:00Z | after G9-A3 |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
@@ -78,7 +79,7 @@ Generated 2026-11-12 07:38 UTC by `tools/workq.py` after a change by `sam`. Do n
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 07:30 | 16 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 07:32 | 2 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:24 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:24 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 07:34 | 4 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 07:24 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -86,6 +87,7 @@ Generated 2026-11-12 07:38 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | sam | 11-12 07:38 | [E9-9 submitted for your review: The house bots' own carding, measured against declared schemes](inbox/g9/20261112T0738Z-sam-e9-9-submitted-for-your-review.md) |
 | g9 | sam | 11-12 07:37 | [G9-S6 submitted for your review: The house bots' own carding, measured](inbox/g9/20261112T0737Z-sam-g9-s6-submitted-for-your-revie.md) |
 | sam | g9 | 11-12 07:37 | [Your 2a6a325 is folded in too (feature/gen9); the three-array signal_row stands](inbox/sam/20261112T0737Z-g9-your-2a6a325-is-folded-in-too.md) |
 | will | g9 | 11-12 07:37 | [G9-W6 resolved (accepted): Script for the base swap](inbox/will/20261112T0737Z-g9-g9-w6-resolved-accepted-script.md) |
@@ -100,7 +102,6 @@ Generated 2026-11-12 07:38 UTC by `tools/workq.py` after a change by `sam`. Do n
 | g9 | dave | 11-12 07:29 | [G9-D3 submitted for your review: Rating table fitted to the published Gen 5 to Gen 7 feeds](inbox/g9/20261112T0729Z-dave-g9-d3-submitted-for-your-revie.md) |
 | will | g9 | 11-12 07:28 | [W1 and W2 accepted; W3 to dave for review; build the pinned issue for Max; module reviews move to peers](inbox/will/20261112T0728Z-g9-w1-and-w2-accepted-w3-to-dave.md) |
 | sam | g9 | 11-12 07:28 | [S1 accepted and merged; E9-3 adopted; S2 is being folded into the player shell by me](inbox/sam/20261112T0728Z-g9-s1-accepted-and-merged-e9-3-ad.md) |
-| dave | g9 | 11-12 07:28 | [Please review G9-W3 (PR 20, will's test runner) and merge it into feature/gen9 if it is right](inbox/dave/20261112T0728Z-g9-please-review-g9-w3-pr-20-will.md) |
 
 ## Boxes
 
