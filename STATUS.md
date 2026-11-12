@@ -128,6 +128,7 @@ Generated 2026-11-12 08:44 UTC by `tools/workq.py` after a change by `sam`. Do n
 | e9-12-xs | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-4-8x | E9-4 | sam | 4 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 | e9-4-r9 | E9-4 | sam | 4 | 4 | not seen yet | 0 of 1,600 |  |  |  |
+| e9-6-vs-reader | E9-6 | sam | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 
 ## Boxes
 

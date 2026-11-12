@@ -1,0 +1,42 @@
+{
+ "id": "e9-6-vs-reader",
+ "box": "azure4",
+ "experiment": "E9-6",
+ "owner": "sam",
+ "priority": 5,
+ "cores": 4,
+ "source": {
+  "branch": "feature/gen9-signals-v2",
+  "commit": "83f373d"
+ },
+ "argv": [
+  "{python}",
+  "scripts/gen9_match.py",
+  "--source",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--bots",
+  "configs/gen9-signal-run-bots.json",
+  "--pair",
+  "cp-std-100~r9p-32",
+  "--deals",
+  "1600",
+  "--seed",
+  "96",
+  "--workers",
+  "4",
+  "--out",
+  "{out}"
+ ],
+ "progress": {
+  "results": "results.jsonl",
+  "target": 1600
+ },
+ "preemptible": true,
+ "publish": [
+  "results.jsonl",
+  "summary.json",
+  "manifest.json"
+ ],
+ "submitted": "2026-11-12T08:44:00Z",
+ "by": "sam"
+}
