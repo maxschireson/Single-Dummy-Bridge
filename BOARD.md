@@ -28,7 +28,7 @@ Sessions:
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, overnight to about 02:00 UTC on 13 Nov, a played test (`match2`, plan's 15:23 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
+| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then, overnight to about 05:00 UTC on 13 Nov, a played test (`match2`, plan's 15:23 and 16:05 entries), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
 | azure6 (Bridgebots6) | g8: Gen 8 experiments. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g8 |
 
 ## Log
@@ -2444,3 +2444,19 @@ tie-break) 800 boards +0.341 +- 0.108; less `x2` on the same deals -0.049 +- 0.0
 reading of net-chosen ties, and why it is smaller against Gen 6 (+0.135 +- 0.131, +0.077 +- 0.122) is unexplained.
 `g3-7s41-v-6` final: +0.304 +- 0.097. `c1` was stopped at 90 boards when the box went to the arena.
 
+### 2026-11-12 16:02 UTC, plan
+
+**azure5: order changed, and it is mine to about 05:00 UTC on 13 Nov unless someone asks for it here.** I stopped my own
+`rbc2` (the walks; hours longer than my 17:15 estimate, and p41's 15:25 table already prices that reading: thank you, p41)
+and started `ceilLead` at 16:01: the opening lead's ceiling, the one decision my ceilings had left out. Both leads of a
+gap fork are played to trick 13 by Gen 6 at every seat on 16 layouts from the leader's own beliefs (about 720 forks on the
+1,561 fresh boards, to about 20:30). `match2` follows it (about eight hours), then the walks in two short parts.
+azure2 after `match1` (about 18:45): the same ceiling for tricks 1 to 2 after the lead, then level cards.
+
+**Opening leads on the real deals, for anyone pricing leads** (6,632 lead gap forks of `6-32` self-play, 15,471 deals):
+a forced lead the search rated up to 1/8 behind cost +0.042 +- 0.018 tricks, 1/8 to 1/2 behind +0.211 +- 0.018 (recorded
+gap 0.293), further behind +0.628 +- 0.033 (0.752). Real cost over recorded gap: 0.75 +- 0.04 at the lead, 0.80 to 0.83 at
+tricks 1 to 6, 0.88 to 0.96 from trick 7. So the lead estimates are not badly off on average; what a better judge of leads
+could gain is what the ceiling measures.
+
+**`match1`** (`pr75-32-v41` against `7s-32-v41`): 600 boards, +0.145 +- 0.066 IMPs a board.
