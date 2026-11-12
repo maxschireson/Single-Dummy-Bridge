@@ -33,6 +33,8 @@ report  For every net and setting, per decision and by trick: the log-weight the
         averaged over evenly spaced resampling offsets; deal list: `list_solve` layouts), and from every stored layout with
         its exact weight. The tree and the tie-break are left out: the cost is the mean over the cards the weighted solves
         rate equal best. Standard errors have the deal as the unit.
+        `--list-exponents 0.5 1.0 ...`: the deal list alone, which is all a bot without the early read (Gen 7) reads,
+        at these exponents, each against the first and each net against `--against`, on the same decisions.
 
 The settings are the prototype's (`8p-32`: play_weight 1.0, early_play_weight 1.0, early_pool 512, early_min_effective 8,
 play_floor 0.05, play_lead) on the live 6-32 search after the lead; `report` can vary them because the solves are stored.
@@ -596,7 +598,52 @@ def aimed(a):
         Path(a.json).write_text(json.dumps(result, indent=1))
 
 
+def list_only(a):
+    """The reading from the deal list alone, which is all a bot without the early read (the Gen 7 bot) reads: tricks saved a
+    table by exponent and net, then each exponent against the first one given and each net against --against, paired on the
+    same decisions."""
+    rows, names = read_all(a.out)
+    if a.house:
+        rows = [r for r in rows if r['hidden_house']]
+    tables_n = len({r['uid'] for r in rows})
+    rows = [r for r in rows if int(r['regime']) == 1]
+    fam = np.array([r['family'] for r in rows])
+    share = len(rows) / tables_n
+    powers = list(a.list_exponents)
+    base = np.array([score(r, r['fit'][names[0]], 0.)[1] for r in rows])
+    cost = {(n, p): np.array([score(r, r['fit'][n], p)[1] for r in rows]) for n in names for p in powers}
+    result = dict(decisions=len(rows), tables=tables_n, deals=len(set(fam.tolist())), nets=names, exponents=powers, rows=[])
+
+    def line(name, v):
+        m, se = mean_se(v, fam)
+        result['rows'].append(dict(name=name, tricks_a_table=[m * share, se * share]))
+        print(f"  {name:46s} {m * share:+.4f} +- {se * share:.4f}")
+    print(f"{len(rows)} decisions from the deal list on, on {tables_n} tables of {result['deals']} deals; tricks saved a table")
+    print('\n== against no reading')
+    for n in names:
+        for p in powers:
+            line(f'{n} at {p:g}', base - cost[(n, p)])
+    print(f'\n== each exponent against {powers[0]:g}, same net, same decisions')
+    for n in names:
+        for p in powers[1:]:
+            line(f'{n}: {p:g} minus {powers[0]:g}', cost[(n, powers[0])] - cost[(n, p)])
+    ref = a.against or names[0]
+    print(f'\n== each net against {ref}, same exponent, same decisions')
+    for n in names:
+        for p in powers if n != ref else ():
+            line(f'{n} minus {ref} at {p:g}', cost[(ref, p)] - cost[(n, p)])
+    print(f'\n== each net and exponent against {ref} at {powers[0]:g}, same decisions')
+    for n in names:
+        for p in powers:
+            if (n, p) != (ref, powers[0]):
+                line(f'{n} at {p:g} minus {ref} at {powers[0]:g}', cost[(ref, powers[0])] - cost[(n, p)])
+    if a.json:
+        Path(a.json).write_text(json.dumps(result, indent=1))
+
+
 def report(a):
+    if a.list_exponents:
+        return list_only(a)
     if a.mechanism:
         return mechanism(a)
     if a.aim or a.near:
@@ -720,6 +767,7 @@ def main():
     ap.add_argument('--against', help='report: the net the others are paired against (default: the first)')
     ap.add_argument('--pairs-only', action='store_true', help='report: only the paired comparison')
     ap.add_argument('--mechanism', action='store_true', help='report: where the information sits and what directed information is worth')
+    ap.add_argument('--list-exponents', type=float, nargs='+', default=[], help='report: the deal list alone at these exponents, by net; each against the first, and each net against --against')
     ap.add_argument('--verbose', action='store_true')
     ap.add_argument('--json')
     a = ap.parse_args()

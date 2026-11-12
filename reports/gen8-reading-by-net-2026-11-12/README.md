@@ -98,6 +98,28 @@ The owner head as layout weights (`owners`, `report --owner`, `t2-owner.txt`): t
 head's per-card probabilities over the pool, from the decider's view. Alone it saves at most
 +0.034 a board with any net; added to the reading it loses (v4.1, half weight: +0.173 against +0.198).
 
+### The deal list alone: what a bot without the early read gets (`report --list-exponents`, `t2-deal-list.txt`)
+
+The Gen 7 bots (`7s-32`, `71s-32`) read the play only from the deal list on (trick 7 on average), at
+exponent 0.5. The exponent sweep above is the prototype's, and its gain from 0.5 to 1.0 is all before
+the deal list (v4.1: +0.107 to +0.143 there). On the 10,734 decisions from the deal list on, tricks
+saved a board against no reading:
+
+| Exponent | 0.25 | 0.5 | 0.75 | 1.0 | 1.5 | 2.0 |
+| --- | --- | --- | --- | --- | --- | --- |
+| v0 | +0.017 | +0.031 | +0.035 | +0.037 | +0.042 | +0.043 |
+| v4 | +0.046 | +0.046 | +0.055 | +0.054 | +0.052 | +0.053 |
+| v4.1 | +0.041 | +0.051 | +0.054 | +0.055 | +0.044 | +0.038 |
+
+Each has a standard error of 0.011 to 0.022. Paired on the same decisions: exponent 1.0 minus 0.5 is
++0.008 +- 0.008 with v4 and +0.004 +- 0.006 with v4.1; v4.1 minus v4 is +0.004 +- 0.009 at 0.5 and
++0.001 +- 0.010 at 1.0; v4.1 at 1.0 minus v4 at 0.5 is +0.009 +- 0.011. So for a bot that reads from
+the deal list only, neither the exponent between 0.25 and 2 nor the step from v4 to v4.1 is worth
+more than about 0.01 tricks a board here (about 0.03 IMPs), and v4 over v0 is +0.016 +- 0.012 at 0.5.
+One match figure for the deal-list exponent exists on the Gen 8 result branches: `8p-32` (1.0) and
+the first `8s-32` (0.5), otherwise the same bot, against `7s-32` on the same 896 deals: +0.026 +-
+0.030 IMPs a board for 1.0 (`scripts/gen8_results_check.py --pair`).
+
 ### Where the information sits (`report --mechanism`, `t2-mechanism.txt`)
 
 Mean log-probability, under the weights, that an unseen card is where it truly is (cards either
@@ -186,6 +208,7 @@ python scripts/gen8_reading_bench.py pools  --episodes DIR [--episodes DIR ...] 
 python scripts/gen8_reading_bench.py owners --out OUT --episodes DIR --net ...
 python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR
 python scripts/gen8_reading_bench.py report --out OUT [--sweep | --owner 0.5 | --mechanism | --house | --against v4 --pairs-only]
+python scripts/gen8_reading_bench.py report --out OUT --list-exponents 0.5 0.25 0.75 1.0 1.5 2.0 --against v4
 ```
 
 About 50 seconds a table on one core with five nets. The stored pools and solves (530 tables) are
