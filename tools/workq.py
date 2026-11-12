@@ -81,6 +81,7 @@ PRIORITIES = ("high", "medium", "low")
 RESOLUTIONS = {"tasks": ("accepted", "dropped", "superseded"), "experiments": ("adopted", "rejected", "inconclusive", "retired")}
 LIFECYCLE = ("state", "holder", "lease_until", "resolution")  # changed only by the lifecycle commands
 MAX_LEASE_HOURS = 4
+STAND_IN = 60          # minutes an experiment waits for the lead's verdict before another lead may give it (g9, 12 Nov 11:53)
 PREREGISTERED = ("Hypothesis", "Primary metric and population", "Compute cap", "Stopping rule")  # filled before a lease
 GRACE = timedelta(minutes=30)
 RESULT_LINES = ("Evidence", "Sample", "Revisit if")  # an experiment's ## Result needs these before submit
@@ -909,6 +910,16 @@ class Ledger:
     def is_reviewer(self, st: State, d: Doc) -> bool:
         return st.agent in (st.lead, reviewer_of(d, st.lead)) or (st.agent == d.get("owner") and d.get("holder") not in ("", st.agent))
 
+    def can_stand_in(self, st: State, d: Doc) -> bool:
+        """g9's rule of 12 Nov 11:53: an experiment whose verdict is the lead's and has waited STAND_IN minutes since its
+        submission may be given its verdict by any registered lead other than its owner and holder; the lead may reopen it."""
+        if d.folder != "experiments" or d.get("state") != "submitted" or reviewer_of(d, st.lead) != st.lead:
+            return False
+        if st.agent in (st.lead, d.get("owner"), d.get("holder")) or st.load(f"agents/{st.agent}.json") is None:
+            return False
+        times = re.findall(r"^- (\d{4}-\d\d-\d\dT\d\d:\d\dZ) \S+: submitted\b", d.body, re.M)
+        return bool(times) and st.at - parse_time(times[-1]) >= timedelta(minutes=STAND_IN)
+
     # presence
     def hello(self, role, session, model, notes):
         def fn(st):
@@ -1027,7 +1038,8 @@ class Ledger:
             d = st.doc(did)
             ok = (("holder" in who and d.get("holder") == st.agent and d.get("state") in ("leased", "submitted", "blocked"))
                   or ("owner" in who and d.get("owner") == st.agent) or ("lead" in who and st.agent == st.lead)
-                  or ("reviewer" in who and self.is_reviewer(st, d)) or "anyone" in who)
+                  or ("reviewer" in who and self.is_reviewer(st, d)) or "anyone" in who
+                  or ("stand-in" in who and self.can_stand_in(st, d)))
             if not ok:
                 h = d.get("holder")
                 raise Conflict(f"{did} ({d.get('state')}{', holder ' + h if h else ''}): {label} is for its " + " or ".join(who))
@@ -1089,12 +1101,14 @@ class Ledger:
                 raise Conflict(f"resolution for {d.folder} is one of {', '.join(RESOLUTIONS[d.folder])}")
             holder = d.get("holder")
             d.set("state", "resolved"); d.set("resolution", resolution); d.set("lease_until", "")
-            d.add_log(st.at, st.agent, f"resolved: {resolution}" + (f". {note}" if note else ""))
+            standin = not self.is_reviewer(st, d)          # resolved under the 60-minute rule, not by its reviewer
+            d.add_log(st.at, st.agent, f"resolved: {resolution}" + (f" (stand-in for {st.lead}, {STAND_IN} minutes after submission; "
+                                                                      f"{st.lead} may reopen)" if standin else "") + (f". {note}" if note else ""))
             st.event("resolve", did, note, resolution=resolution)
             for who in {holder, d.get("owner")} - {st.agent, "", POOL}:
                 st.send(who, f"{did} resolved ({resolution}): {d.get('title')}", note or f"{st.agent} resolved it.", task=did)
             return d
-        return self._op(did, "resolve", apply, who=("reviewer",))
+        return self._op(did, "resolve", apply, who=("reviewer", "stand-in"))
 
     def reopen(self, did, note, same_holder=False):
         def apply(st, d):

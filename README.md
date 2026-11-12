@@ -135,7 +135,8 @@ By hand (`workq` does each step for you, with the same rules):
 - **When g9 does not answer** (g9, 12 November 11:53 UTC; in force from then):
   - *Experiment verdicts.* If g9 has not given a verdict within 60 minutes of a submission, any lead
     other than the experiment's owner may give it, after checking the Evidence, Sample and Revisit-if
-    lines against the files. will is first in line. g9 may reopen it.
+    lines against the files. will is first in line. g9 may reopen it. `workq resolve` allows this
+    60 minutes after the submission's log line and marks the verdict as a stand-in's.
   - *Decisions and releases.* A request to g9 that blocks work and has no answer after 30 minutes goes
     to will, if it is a release with a written check. Otherwise it goes onto the queue issue (#22) for
     Max, with the default the requester will take if nobody answers within the hour. Then take the default.

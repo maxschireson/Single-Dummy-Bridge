@@ -508,6 +508,25 @@ class LedgerTest(unittest.TestCase):
         self.lg("g9").resolve("E9-3", "adopted", "")
         self.assertIn("| [E9-3](experiments/E9-3.md) |", self.text("STATUS.md"))
 
+    def test_another_lead_gives_an_experiments_verdict_after_60_minutes(self):
+        self.boot({"experiments/E9-3.md": EXPERIMENT}, "sam", "will", "dave")
+        self.lg("sam").lease("E9-3", 2)
+        self.lg("sam").edit("E9-3", EXPERIMENT.replace("## Result\n\n_not yet_", "## Result\n\n97% equivalent.\n\nEvidence: proxy\n"
+                                                       "Sample: 5,000 decisions\nRevisit if: never"))
+        self.lg("sam").submit("E9-3", "97% equivalent", None, None)
+        self.clock[0] += timedelta(minutes=59)
+        with self.assertRaises(ledger.Conflict):
+            self.lg("will").resolve("E9-3", "adopted", "too early")
+        self.clock[0] += timedelta(minutes=2)
+        with self.assertRaises(ledger.Conflict):
+            self.lg("sam").resolve("E9-3", "adopted", "its owner and holder may not")
+        self.lg("will").resolve("E9-3", "inconclusive", "checked")
+        d = self.st().doc("E9-3")
+        self.assertEqual((d.get("state"), d.get("resolution")), ("resolved", "inconclusive"))
+        self.assertIn("will: resolved: inconclusive (stand-in for g9, 60 minutes after submission; g9 may reopen). checked", d.body)
+        self.lg("g9").reopen("E9-3", "not yet")                          # the lead may reopen it
+        self.assertEqual(self.st().doc("E9-3").get("state"), "open")
+
     def test_new_ids_and_notice(self):
         self.boot({"tasks/G9-B1.md": TASK, "experiments/E9-3.md": EXPERIMENT}, "bill")
         tid = self.lg("g9").new("Parser", "bidding", "module", "bill", "high", ["G9-B1"], "2026-11-12T18:00Z", "")
