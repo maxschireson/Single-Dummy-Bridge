@@ -1,13 +1,13 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:32 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:33 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 3 | 0 | 0 | 1 | 0 | 2 |
-| dave | 0 | 1 | 0 | 2 | 0 | 3 |
+| dave | 1 | 1 | 0 | 1 | 0 | 3 |
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 2 | 1 | 0 | 2 | 0 | 2 |
@@ -25,6 +25,7 @@ Generated 2026-11-12 07:32 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
+| [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | dave until 11-12 11:33 | leased | high | 2026-11-13T14:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:22 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T10:00Z |  |
 | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T18:00Z |  |
@@ -37,7 +38,6 @@ Generated 2026-11-12 07:32 UTC by `tools/workq.py` after a change by `dave`. Do 
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 |  | open | high | 2026-11-13T06:00Z | after G9-A3 |
-| [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave |  | open | high | 2026-11-13T14:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z | after G9-S2 |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [G9-S6](tasks/G9-S6.md) | The house bots' own carding, measured | sam |  | open | medium | 2026-11-13T16:00Z | after G9-S5 |
