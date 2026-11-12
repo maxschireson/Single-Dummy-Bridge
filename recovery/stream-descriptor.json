@@ -1,0 +1,50 @@
+{
+  "run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+  "source": "/workspace/work/bridge-gen71-source",
+  "publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+  "branch": "arena-gen71-19bbdce5-20261112-feed",
+  "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+  "seed": 5713345875519330500,
+  "target": 18225,
+  "initial_target": 25000,
+  "stream_id": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+  "registry_key": "gen6selfplay19bbdce5",
+  "generation": "7.1",
+  "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+  "history": [
+    {
+      "run": "/workspace/work/bridge-gen6-fast-selfplay-new",
+      "source": "/workspace/work/bridge-feed-snapshot/recovery/runtime",
+      "publication": "/workspace/work/bridge-gen6-new-publication",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "completed": 6775,
+      "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+      "status": "permanently_retired"
+    }
+  ],
+  "transition": {
+    "status": "complete",
+    "state": "/workspace/work/bridge-gen71-transition-state.json",
+    "epoch": 1794465948.5563416
+  },
+  "instruction_automation_id": "Automation_7f5620b00f8881918cc8cb2fd1b2ba59",
+  "evaluation_exclusions": {
+    "file": "artifacts/validation/all-training-families.json",
+    "sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+    "families": 32205,
+    "corpus_overlap": 0,
+    "audit": "evaluation-exclusions-audit.json",
+    "producer_qualification": {
+      "file": "artifacts/validation/v41-producer-training-families.txt.gz",
+      "sha256": "4f50529634bca3432331e2a65accdc7889651d7d355f6077bd37baf10b77bdc1",
+      "families": 34029,
+      "revision": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+      "audit": "producer-training-list-check.json",
+      "corpus_overlap": 0,
+      "union_file": "artifacts/validation/all-known-policy41-training-families.json",
+      "union_families": 34092,
+      "union_sha256": "17fa0fe1071abe896d9c7e7f611cda68802f9075b1ab1d6dea7ef094e3a62b5e"
+    }
+  }
+}
