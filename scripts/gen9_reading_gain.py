@@ -44,7 +44,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from bridge_harness.core import Board, Game, card, winner  # noqa: E402
+from bridge_harness.core import Board, Game, card  # noqa: E402
 from bridge_harness.gen6 import Classes, View, spaced  # noqa: E402
 from bridge_harness.gen7 import hidden_plays  # noqa: E402
 from bridge_harness.gen9_play import Gen9Player  # noqa: E402
@@ -71,9 +71,11 @@ def ties(a):
 
 
 def relabel(board, actions, model, rng, blocked):
-    """(plays [(seat, card)], swaps [(ply, x, y)], chances) with the defenders' spots drawn by `model`."""
+    """(plays [(seat, card)], swaps [(ply, x, y)], chances, bad) with the defenders' spots drawn by `model`. `bad` is
+    the first ply of the first trick whose winner differs from the record's (the replay stops there), or None."""
     c = board.contract
     game = Game(board)
+    recorded = Game(board)
     sigma = [dict() for _ in range(4)]          # recorded card -> the card played in its place
     plays, swaps, chances = [], [], 0
     for ply, a in enumerate(actions):
@@ -115,26 +117,22 @@ def relabel(board, actions, model, rng, blocked):
                             swaps.append((ply, x, y))
                             x = y
         game.play(x)
+        recorded.play(rec)
         plays.append((seat, x))
-    return plays, swaps, chances
+        if len(game.history) % 4 == 0 and game.leader != recorded.leader:
+            return plays, swaps, chances, len(game.history) - 4
+    return plays, swaps, chances, None
 
 
 def relabel_consistent(board, actions, model, rng_seed):
     """relabel() with swaps that change a trick's winner undone; None if that does not settle in 12 rounds."""
-    recorded = [(None, card(a['card'])) for a in actions]
-    c = board.contract
     blocked = set()
     for _ in range(12):
-        plays, swaps, chances = relabel(board, actions, model, random.Random(rng_seed), blocked)
-        bad = None
-        for t in range(0, len(plays) - len(plays) % 4, 4):
-            if winner(plays[t:t + 4], c.trump) != winner([(s, x) for (s, _), (_, x) in zip(plays[t:t + 4], recorded[t:t + 4])], c.trump):
-                bad = t
-                break
+        plays, swaps, chances, bad = relabel(board, actions, model, random.Random(rng_seed), blocked)
         if bad is None:
             return plays, swaps, chances, len(blocked)
-        trick = {x for _, x in plays[bad:bad + 4]} | {x for _, x in recorded[bad:bad + 4]}
-        culprit = [ply for ply, x, y in swaps if ply < bad + 4 and ({x, y} & trick)]
+        trick = {x for _, x in plays[bad:bad + 4]} | {card(a['card']) for a in actions[bad:bad + 4]}
+        culprit = [ply for ply, x, y in swaps if ply < bad + 4 and ({x, y} & trick) and ply not in blocked]
         if not culprit:
             return None
         blocked.add(max(culprit))
