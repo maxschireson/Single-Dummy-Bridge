@@ -198,17 +198,24 @@ def main():
     files = sorted(a.episodes.glob('*.json.gz')) if a.episodes.is_dir() else [Path(x) for x in a.episodes.read_text().split()]
     files = files[a.skip_files:a.skip_files + a.files]
     rows, started, done = [], time.time(), 0
+
+    def save():         # also every 50 files, so a stopped run keeps what it has (`files` says how many boards the rows cover)
+        part = a.out.with_suffix('.part')
+        part.write_text(json.dumps(dict(settings=dict(nets=nets, sims=sims, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, files=done,
+                                                      skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
+        part.replace(a.out)
+
     with Pool(a.workers, initializer=start, initargs=(nets, sims, a.from_trick, a.to_trick, a.ties, a.seed)) as pool:
         for got in pool.imap(pairs_of, files, chunksize=2):
             rows += got
             done += 1
             if done % 50 == 0:
                 print(f'{done} files, {len(rows)} pairs, {round(time.time() - started)} s', flush=True)
+                save()
             if len(rows) >= a.pairs or time.time() - started > a.seconds:
                 pool.terminate()
                 break
-    a.out.write_text(json.dumps(dict(settings=dict(nets=nets, sims=sims, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, files=done,
-                                                   seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
+    save()
     print(json.dumps(dict(pairs=len(rows), files=done, seconds=round(time.time() - started))))
 
 
