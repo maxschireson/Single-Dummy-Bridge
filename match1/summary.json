@@ -1,23 +1,23 @@
 {
  "pair": "pr75-32-v41~7s-32-v41",
- "boards": 1150,
- "cpu_per_board": 76.84,
+ "boards": 1200,
+ "cpu_per_board": 77.36,
  "common": {
-  "imps_per_board": 0.1922,
-  "se": 0.0461,
-  "boards": 1150,
-  "won": 72,
-  "lost": 17,
-  "flat": 1061
+  "imps_per_board": 0.1942,
+  "se": 0.0453,
+  "boards": 1200,
+  "won": 74,
+  "lost": 18,
+  "flat": 1108
  },
  "native": {
-  "imps_per_board": 0.1922,
-  "se": 0.0461,
-  "boards": 1150,
-  "won": 72,
-  "lost": 17,
-  "flat": 1061
+  "imps_per_board": 0.1942,
+  "se": 0.0453,
+  "boards": 1200,
+  "won": 74,
+  "lost": 18,
+  "flat": 1108
  },
  "failures": 0,
- "boards_per_hour": 373
+ "boards_per_hour": 370
 }
