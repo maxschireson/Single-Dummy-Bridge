@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const R=require('../reporting.js'),registry=require('../gen6-sources.json');
+R.applyRegistry(registry);
+assert.equal(R.latestScope,'gen7');
+const azure=R.pickSources('azure');
+assert.equal(azure.length,8);
+assert.ok(azure.every(s=>s.generation===7&&s.group==='gen7'&&/^arena-gen7-/.test(s.branch)));
+assert.equal(azure.filter(s=>s.retired&&/^[a-f0-9]{40}$/.test(s.revision)).length,4,'Pre-arena tests are pinned archives');
+assert.equal(R.names.azure,'Azure');
+assert.deepEqual(R.resolveSelection('?source=azure&older=1'),{selected:'azure',older:true});
+assert.ok(R.pickSources('latest').some(s=>s.key==='gen7azure1pre7'),'Pre-arena tests are in the Gen 7 rollup');
+assert.ok(R.pickSources('latest').every(s=>s.generation===7));
+console.log('PASS Azure Gen 7 phase 1 and pre-arena test sources join the Gen 7 rollup');

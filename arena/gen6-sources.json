@@ -215,6 +215,94 @@
       "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
       "retired": true,
       "revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0"
+    },
+    {
+      "key": "gen7azure1phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure1 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure1-feed",
+      "cohort": "002cbafd32e1f74b57021c15ba7db2841aaf63b002822246caac9bb443b50027"
+    },
+    {
+      "key": "gen7azure2phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure2-feed",
+      "cohort": "10772c07d1a778eae7481ac843d9c0d351fc3689b3bd1e5c32eb8b647d167e0b"
+    },
+    {
+      "key": "gen7azure3phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure3-feed",
+      "cohort": "d75a644daf203c58189edcc0ec50c041bfc1ed373607625dbdad88b63fe4dac5"
+    },
+    {
+      "key": "gen7azure4phase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure4 phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-azure4-feed",
+      "cohort": "869ada89eaf3c23a392f3fdcd100a1cc4a35e456bf499194cc7572e448379097"
+    },
+    {
+      "key": "gen7azure1pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure1 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure1-feed",
+      "cohort": "fa01e3cdd490b43a9653278a9b130a5421cdd91236c74a8f79e51538a0358936",
+      "retired": true,
+      "revision": "86385be46eb54bca35a8e04697d412cb64eb6467"
+    },
+    {
+      "key": "gen7azure2pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure2 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure2-feed",
+      "cohort": "91cdcac2811559de599bf077a88dfb81fbd0b0dbc733f7c6d4abb4bddd695294",
+      "retired": true,
+      "revision": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39"
+    },
+    {
+      "key": "gen7azure3pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure3 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure3-feed",
+      "cohort": "4e902762c000eb74f29add036243ca1ed78fffb4d3e26b4d5a1778e59ad62cae",
+      "retired": true,
+      "revision": "8c854a58b27729e97bd809484a7e0850cf855550"
+    },
+    {
+      "key": "gen7azure4pre7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7 · azure4 pre-arena test (vs Gen 6 fast)",
+      "branch": "arena-gen7-pre7-azure4-feed",
+      "cohort": "9721e6b687b8202221d16e2fe957b66c5f258b33308a3663262bfe3cb49400fb",
+      "retired": true,
+      "revision": "2968b84979c87ccb4102d164013e62ce2cf60c07"
     }
   ],
   "activation": {
@@ -473,5 +561,12 @@
     "pooled_target_per_pair": 2000,
     "phase2_authorized": false,
     "scope": "This entry registers this owned stream only; other producers retain their current metadata"
+  },
+  "gen7_azure": {
+    "authority": "Max, 2026-11-12 03:05 UTC (in chat): put the pre-arena azure test boards through the arena and dashboard; tree trust 0.25 there vs 0.3 in phase 1 is not distinguished at summary level or in the interface.",
+    "pre_arena_test": "Four frozen feeds exported read-only from transfer/pre7-test-azureN-20261112 (7s-32 vs 6-32, 1,637 boards); manifests keep the exact settings.",
+    "phase1": "The four azure phase 1 feeds (non-BEN plan at fe382f9, shards 0-3 of 4 on the arena-gen6-gen7-capture-feed capsule at 8833c62), published by the boxes.",
+    "note": "Some azure phase 1 deals repeat pre-arena test deals (same capsule); the rollup counts a repeated family once per matchup.",
+    "session": "https://claude.ai/code/session_01N2EvxC2gaLqtkd36gpH8U2"
   }
 }
