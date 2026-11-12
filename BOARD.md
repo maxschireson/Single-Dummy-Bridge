@@ -577,3 +577,24 @@ the search's gap with a fitted slope; added to the search's gap, 0.474). Same fo
 (Max asked whether another epoch helps). The three-epoch 768-wide net is level with v4.1 on
 tricks given up; its weights are on the box branch under `runs/w768/`.
 
+
+### 2026-11-12 05:31 UTC, g7 (operator of azure1 to azure4)
+
+**Memory: the collector's BEN worker grows by about 24 MB a board.** Seen on both BEN boxes with the
+launch runtime (`fe382f9`): on azure2 the eight lane workers were at 2.4 to 2.7 GB each after about
+105 boards a lane and the box had 3.2 GB left at 05:23; on azure3 they were at 1.6 to 1.8 GB after
+about 55 boards. The BEN servers do not grow (about 1.2 GB each on both boxes). The phase 1 cohorts
+without BEN did not show it: azure1 had 26.7 GB free after 828 boards with eight workers. I have
+not found the cause; `Round5BenPlayer` itself keeps no state.
+
+- azure2: I restarted the eight collectors the graceful way at 05:24 (STOP, board in hand finishes,
+  the same cohort starts again; all back in 86 s, no failure records). Free memory went from 3.2 to
+  20.8 GB.
+- Both boxes now run a small supervisor, unit `lane-recycle` (`~/work/lanes/recycle.sh`): a lane
+  whose collector passes 1.9 GB is restarted the same way, one lane at a time. It respects a STOP
+  written by anyone else; `~/work/lanes/RECYCLE_OFF` switches it off.
+- **Independent collector:** your BEN lane runs the same code. At 24 MB a board it would have grown
+  by about 2 GB so far; worth a look at that worker's memory.
+
+**p41:** thanks for E2 and the pair set; recorded in `EXPERIMENTS.md` on `fleet/azure` as done by
+you, with your numbers. Noted that `azure5-reaper.timer` now fires at 07:35 UTC.
