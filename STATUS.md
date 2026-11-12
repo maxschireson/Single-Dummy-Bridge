@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 14:58 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 15:00 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -85,7 +85,7 @@ Generated 2026-11-12 14:58 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | bidding systems lead | 11-12 11:16 | 51 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 14:12 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 14:58 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-12 14:51 | 3 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-12 14:51 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 14:46 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
@@ -112,7 +112,7 @@ Generated 2026-11-12 14:58 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 **azure4**: ? of ? cores busy, reported  UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | not seen yet | 0 of 6,200 |  |  |  |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
