@@ -1415,3 +1415,67 @@ today; we take r3 or r4 with the base swap when Gen 8 is on main. Your `t-high` 
 the net does not model costs about a third of an IMP, and scaling by opponent type gets it back) is the same effect
 sam measured from the other side this morning: against spots that mean nothing, assuming honesty 0.9 reads 0.86 nats a
 decision worse than assuming none. Gen 9 learns that factor per player from the `play.info` statistic instead of by type.
+
+### 2026-11-12 11:42 UTC, p41
+
+**Task 1, final, with a correction to my 08:08 interim: the reading does follow the net from v0 to v4, and stops
+there.** (My session was paused from 08:12 to 11:26 UTC; the bench finished unattended at 08:26.) 530 tables,
+21,417 decisions, 329 deals v4.1 did not train on. Prototype settings (exponent 1.0 from trick 1, pool 512, 32
+layouts solved, floor 0.05), tree off. Tricks are double dummy on the true deal, against no reading; "a board" is
+the four seats of one table, which is what one bot decides over a board's two tables; +- is a standard error with
+deals as the unit.
+
+| Net | True layout's log-weight gained, nats | Tricks saved a board | Against v0, same decisions | Against v4 |
+|---|---|---|---|---|
+| v0 | +0.353 | +0.117 +- 0.028 | | -0.069 +- 0.024 |
+| v2 | +0.504 | +0.172 +- 0.031 | +0.055 +- 0.024 | -0.013 +- 0.017 |
+| v4 | +0.649 | +0.185 +- 0.029 | +0.069 +- 0.024 | |
+| v4.1 | +0.688 | +0.198 +- 0.029 | +0.081 +- 0.024 | +0.012 +- 0.015 |
+| 512 wide, five epochs | +0.692 | +0.169 +- 0.030 | +0.053 +- 0.026 | -0.016 +- 0.022 |
+
+- **The correction.** At 128 tables v0 to v4.1 was +0.022 +- 0.036 and I wrote that the nats were not turning
+  into tricks. At 530 tables it is +0.081 +- 0.024. g8, your 07:27 estimate was right and my remark on it was
+  wrong: v0 to v4 is +0.069 +- 0.024 tricks a board, about +0.25 IMPs at the fork pairs' 3.6 IMPs a trick, which
+  is 6% of the 4.05 IMPs between those nets played alone.
+- **From v4 on it is flat.** v4.1 against v4: +0.039 +- 0.016 nats and +0.012 +- 0.015 tricks a board, about
+  +0.04 IMPs; your match has -0.036 +- 0.080. The five-epoch net gains no nats over v4.1 and is 0.028 +- 0.017
+  tricks behind it; it reads best at exponent 0.75, the others at 1.0.
+- Rate across the nets: 0.24 tricks a nat (0.081 over 0.335), about 0.9 IMPs a nat.
+
+The rest of the bench, v4.1 unless said (files on `transfer/gen8-p41-reading-20261112`, `t2*.txt`):
+- Where it is earned: tricks 1-2 +0.028, 3-4 +0.037, 5-6 +0.077, 7-9 +0.051, 10-13 +0.004; declarer's decisions
+  +0.101, defenders' +0.097. Whose plays: the opponents' alone +0.130, partner's alone +0.033, the opening lead
+  alone +0.020.
+- Exponent: 0.5 +0.158, 0.75 +0.184, 1.0 +0.198, 1.5 +0.174, 2 +0.138. The halving rule never fires. Pool of
+  128, 256, 512 before the deal list: +0.129, +0.140, +0.143.
+- Solving 128 resampled layouts in place of 32 before the deal list adds about 0.03 tricks a board with every net
+  (v4.1: +0.174 against +0.143 there). That is the search's sampling noise, not the net.
+- What is left: 0.73 tricks a board with no reading, 0.53 with v4.1's. The weights are uncertain, not wrong: they
+  expect 0.0133 tricks a decision and the real cost is 0.0123.
+- The owner head as layout weights: at most +0.03 alone, and added to the reading it loses (x0.5: +0.173 against
+  +0.198).
+
+**The tree by net and by layouts** (the two benches I announced at 08:08; the 1,761 fresh gap-fork pairs at
+6-32's decisions, 666 deals; regression of the forced card's realized cost on the search's gap and the tree's
+correction, `scripts/gen7_sweep.py`):
+
+| Tree | Coefficient of the correction | Sd of the correction | Trust it supports |
+|---|---|---|---|
+| v4, 8 layouts (as launched) | +0.251 +- 0.071 | 0.321 | 0.29 [0.14, 0.45] |
+| v4.1, 8 layouts (my 05:10 bench) | +0.263 +- 0.082 | 0.282 | 0.31 [0.12, 0.50] |
+| v0, 8 layouts | +0.151 +- 0.060 | 0.407 | 0.18 [0.04, 0.30] |
+| v4, 32 layouts | +0.263 +- 0.078 | 0.275 | 0.31 [0.15, 0.49] |
+
+- The same shape as the reading: v0's corrections are larger and worth less, v4.1's are no better than v4's. With
+  the bot's margin of 0.25, v4's tree minus v0's on the same pairs is +0.024 +- 0.064 tricks a side at trust
+  0.25, +0.099 +- 0.079 at 0.3125 and +0.284 +- 0.123 at trust 1.0.
+- Four times the layouts gives a quieter correction that deserves no more trust, so more layouts in this tree is
+  not a lever.
+
+**Task 2, where it stands: no lever found.** Reading, tree and level cards each gain something from v0 to v4 and
+nothing I can measure from v4 to v4.1; near-tied cards lose with every net. All three use the net as a model of
+how the house bots play, and on that scale v4 to v4.1 is a small step (exact card 72.9% to 74.9%, log-loss 0.667
+to 0.613 on fresh boards) although it is a large one in tricks given up as a player (26%). Still to come from the
+stored solves, today: where each net's information sits (honours or small cards) and what information aimed at
+the true deal is worth a nat. plan: (A) is the v0 row above.
+
