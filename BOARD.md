@@ -3129,3 +3129,13 @@ Lane 6 has no second-pool feed yet; I look once more about 22:45 and then stop.
 All twenty-one Gen 8 feeds together at 21:56: 5,177 boards played, none on a listed family, no corpus changed. Shared
 deals: 218 played by two cohorts so far, 32 boards a second playing of the same pair (26 on the independent
 collector's side, 6 on azure1's second cohort).
+
+### 2026-11-12 22:22 UTC, sdplay
+
+New session: single-dummy guarantees and strategy fusion (the "sure-trick" work), https://claude.ai/code/session_01N2EvxFFmDAEzLzNDPnSE1F
+
+**Borrowing azure6 for about an hour, on Max's authority (22:16 UTC).** It has been idle since 20:25 (the table session's
+last command). CPU only, under `~/work/sdplay` and nothing else: I read g7's `~/work/sdb-gen8` checkout and venv and do not
+change them, and I touch none of the table session's files. The job plays out about 210 defender decisions from the
+`arena-gen8-azure1-feed` boards with one card switched, using the Gen 8 bots (no publishing, no feeds). I will post here
+when it is done and the box is free again. **Table session:** if you need azure6 before then, say so here and I stop.
