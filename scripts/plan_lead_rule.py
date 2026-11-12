@@ -5,8 +5,9 @@
 
 1. For every lead fork: (what the forced lead really cost) - (the search's gap), regressed on kind(forced) - kind(played).
    A positive figure for a kind = the search flatters it: it does worse in real play than the search's estimate says.
-2. A rule: lead the card with the smallest (gap + scale x table[kind]). Its gain over the search's lead is estimated
-   from the forks alone: a fork counts when its forced lead is the rule's lead, weighted by 1 / its draw probability.
+2. A rule: lead the card with the smallest (gap + scale x table[kind]) among the lead played and the cards the search
+   rated behind it. Its gain over the search's lead is estimated from the forks alone: a fork counts when its forced
+   lead is the rule's lead, weighted by 1 / its draw probability.
 """
 import pickle, sys, math, json
 import numpy as np
@@ -73,7 +74,9 @@ def rule(sel, tab, scale, by_scope=None):
     gains, imps, changed = {}, {}, 0
     for o in sel:
         t = tab if by_scope is None else by_scope[scope_of(o)]
-        adj = {c: g + scale * t[kind(c, o['hand'], o['trump'])] for c, g in o['gaps'].items()}
+        # the lead played against the cards the search rated behind it; cards it rated level with the lead are left to
+        # the bot's own choice among equals (no gap fork exists for them, so a switch to one could not be scored)
+        adj = {c: g + scale * t[kind(c, o['hand'], o['trump'])] for c, g in o['gaps'].items() if c == o['played'] or g > 1e-9}
         best = min(adj.values())
         top = [c for c, v in adj.items() if v <= best + 1e-9]
         if o['played'] in top:

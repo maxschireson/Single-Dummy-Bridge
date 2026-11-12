@@ -66,20 +66,28 @@ for scope in ('all', 'NT', 'suit'):
     sel = [o for o in out if scope == 'all' or o[6] == scope]
     if len(sel) < 30:
         continue
-    X = np.zeros((len(sel), len(kinds))); y = np.array([o[2] for o in sel])
+    # a slope on the double-dummy gap comes first: real play shrinks every gap, and without the slope that shows up as
+    # a 'kind' effect for the kinds that are mostly played (or mostly forced)
+    X = np.zeros((len(sel), len(kinds) + 1)); y = np.array([o[2] for o in sel])
     for i, o in enumerate(sel):
-        X[i, kinds.index(o[1])] += 1; X[i, kinds.index(o[0])] -= 1
-    # ridge towards zero keeps the free constant at the mean
-    beta = np.linalg.solve(X.T @ X + 1e-6 * np.eye(len(kinds)), X.T @ y)
-    beta -= beta.mean()
+        X[i, kinds.index(o[1])] += 1; X[i, kinds.index(o[0])] -= 1; X[i, -1] = o[4]
+    R = 1e-6 * np.eye(len(kinds) + 1)
+    def solve(X, y):
+        b = np.linalg.solve(X.T @ X + R, X.T @ y)
+        return np.append(b[:-1] - b[:-1].mean(), b[-1])
+    full = solve(X, y); beta = full[:-1]
     fams = sorted({o[7] for o in sel}); idx = {f: [] for f in fams}
     for i, o in enumerate(sel):
         idx[o[7]].append(i)
     rng = np.random.default_rng(0); reps = []
     for _ in range(300):
         pick = np.concatenate([idx[fams[j]] for j in rng.integers(0, len(fams), len(fams))])
-        bb = np.linalg.solve(X[pick].T @ X[pick] + 1e-6 * np.eye(len(kinds)), X[pick].T @ y[pick]); reps.append(bb - bb.mean())
-    se = np.std(reps, axis=0)
+        reps.append(solve(X[pick], y[pick]))
+    reps = np.array(reps); se = reps.std(0)[:-1]
+    print(f'\n{scope}: played-out gap = ({1 + full[-1]:.3f} +- {reps.std(0)[-1]:.3f}) x double-dummy gap on the same layouts + kinds')
+    if 'ace' in kinds and 'small from an honour' in kinds:
+        ia, ih = kinds.index('ace'), kinds.index('small from an honour')
+        print(f'   ace minus small from an honour: {beta[ia] - beta[ih]:+.3f} +- {np.std(reps[:, ia] - reps[:, ih]):.3f}')
     print(f'\n{scope}: {len(sel)} pairs. How much double dummy flatters a lead of each kind against real play (tricks; + = worse in real play than double dummy says), and how often it was the lead played / the forced lead:')
     for k, bta, s_ in sorted(zip(kinds, beta, se), key=lambda t: -t[1]):
         na, nb = sum(o[0] == k for o in sel), sum(o[1] == k for o in sel)
