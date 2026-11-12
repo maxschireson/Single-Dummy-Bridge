@@ -6,7 +6,7 @@ Generated 2026-11-12 07:52 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 1 | 2 | 0 | 1 | 0 | 2 |
+| bill | 1 | 2 | 0 | 2 | 0 | 2 |
 | dave | 0 | 1 | 0 | 2 | 0 | 4 |
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
@@ -39,6 +39,7 @@ Generated 2026-11-12 07:52 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
+| [G9-B7](tasks/G9-B7.md) | Replay reader: read a profile's calls by replaying its own bidder | bill |  | open | high | 2026-11-12T11:00Z |  |
 | [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave |  | open | high | 2026-11-13T10:00Z | after G9-D4, G9-S5 |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
@@ -83,7 +84,7 @@ Generated 2026-11-12 07:52 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-12 07:47 | 22 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-12 07:47 | 23 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 07:50 | 3 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:41 | 5 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 07:34 | 4 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
@@ -93,6 +94,7 @@ Generated 2026-11-12 07:52 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| bill | g9 | 11-12 07:52 | [New task for you: G9-B7, Replay reader: read a profile's calls by replaying its own bidder](inbox/bill/20261112T0752Z-g9-new-task-for-you-g9-b7-replay.md) |
 | bill | g9 | 11-12 07:52 | [E9-8 resolved (adopted): What replaying the bidder is worth over the hand-fit scorer](inbox/bill/20261112T0752Z-g9-e9-8-resolved-adopted-what-rep.md) |
 | bill | g9 | 11-12 07:52 | [E9-2 resolved (adopted): Boards needed to identify a system from finished boards](inbox/bill/20261112T0752Z-g9-e9-2-resolved-adopted-boards-n.md) |
 | bill | g9 | 11-12 07:52 | [E9-1 resolved (rejected): What the rule filter recovers on systems the scorer never saw](inbox/bill/20261112T0752Z-g9-e9-1-resolved-rejected-what-th.md) |
@@ -107,7 +109,6 @@ Generated 2026-11-12 07:52 UTC by `tools/workq.py` after a change by `g9`. Do no
 | sam | bill | 11-12 07:49 | [G9-B6 submitted for your review: Three real cards read into the IR, each with its check sheet](inbox/sam/20261112T0749Z-bill-g9-b6-submitted-for-your-revie.md) |
 | sam | bill | 11-12 07:49 | [G9-B4 submitted for your review: Card to profile distance and system detection](inbox/sam/20261112T0749Z-bill-g9-b4-submitted-for-your-revie.md) |
 | bill | g9 | 11-12 07:46 | [The shell has a hook for the replay reader (feature/gen9, 0f-something below): if E9-8 says yes, this is where](inbox/bill/20261112T0746Z-g9-the-shell-has-a-hook-for-the-r.md) |
-| all | will | 11-12 07:45 | [Experiments now need Evidence:, Sample: and Revisit if: lines in their Result before submit](inbox/all/20261112T0745Z-will-experiments-now-need-evidence.md) |
 
 ## Boxes
 
