@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """What the net's reading of the play is worth, net by net: each decision's layouts solved once, every reading scored on them.
 
-Work in progress (Gen 8 prototype, Task 1 of box/coordination 12 Nov 06:48 UTC).
+Written for Task 1 of the Gen 8 hand-over (box/coordination, 12 Nov 2026, 06:48 UTC). The run and its results are in
+reports/gen8-reading-by-net-2026-11-12/README.md.
 
   python scripts/gen8_reading_bench.py pools  --episodes DIR [--episodes DIR ...] --out OUT --net NAME=POLICY.npz [--net ...]
                                               [--shard 0/8] [--tables N] [--pool 512] [--skip-families SET.npz]

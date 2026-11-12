@@ -123,7 +123,8 @@ it gives to its true holder. The true layout's gain in nats, then tricks saved a
 nat about small cards about 0.06. The nets sit at 0.24 to 0.34 tricks a nat (v4.1: 0.69 nats,
 +0.198, so 0.29), on the honours' line. Twice v4.1's nats, aimed as well, would be worth about
 +0.17 tricks a board more. The curve tops out near +0.54 because the pool holds 512 layouts and the search
-solves 32 of them; a bot told the deal gains the whole 0.73.
+solves 32 of them; a bot told the deal gains the whole 0.73 against no reading, and about 0.54
+against `8p-32`.
 
 ## The tree, by net and by layouts
 
