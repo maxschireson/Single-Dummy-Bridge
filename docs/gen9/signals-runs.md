@@ -4,13 +4,12 @@
 > here is an arena cohort.
 
 Both runs use `scripts/gen9_match.py` (duplicate, fork-free, fresh deals; deals are a function of
-seed and index, so two matches with the same seed play the same deals) with a bots file that
-merges the Gen 8 prototype entries and the signal bots:
+seed and index, so two matches with the same seed play the same deals) with `configs/gen9-signal-run-bots.json`, which
+merges the Gen 8 prototype entries and the signal bots (made by `scripts/gen9_signal_run_bots.py`; a test
+checks it against its sources):
 
 ```bash
-python3 -c "import json; a=json.load(open('configs/gen8-proto-bots.json')); b=json.load(open('configs/gen9-signal-bots.json')); \
-a.update({k: v for k, v in b.items() if not k.startswith('_')}); json.dump(a, open('/tmp/gen9-signal-run-bots.json', 'w'))"
-B="--source CAPSULE/recovery --bots /tmp/gen9-signal-run-bots.json --workers 8"
+B="--source CAPSULE/recovery --bots configs/gen9-signal-run-bots.json --workers 8"
 ```
 
 Measured in a sandbox: 129 boards an hour per worker for `cp-std-100~8p-32` (1 board, 2 tables).

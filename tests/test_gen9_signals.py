@@ -340,6 +340,17 @@ class BotEntriesTests(unittest.TestCase):
 
 
 
+class RunBotsTests(unittest.TestCase):
+    def test_the_run_file_matches_its_sources(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('run_bots', ROOT / 'scripts' / 'gen9_signal_run_bots.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        self.assertEqual(json.loads((ROOT / 'configs' / 'gen9-signal-run-bots.json').read_text()), module.merged())
+        for bot in ('8p-32', '8x-32', 'r9-32', 'c-std-80', 'cp-std-100', 'cp-att-100', 'r9p-32'):
+            self.assertIn(bot, module.merged())
+
+
 class CardingPackageTests(unittest.TestCase):
     def test_guest_packages(self):
         for gid, h in (('guest-a', .8), ('guest-b', 0.)):
