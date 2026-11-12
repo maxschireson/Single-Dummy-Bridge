@@ -127,6 +127,11 @@ def fetch_snapshot(item, actors):
     if plan.get('pair_weights') != manifest.get('pair_weights') or plan.get('common_bidder') != '6-32':
         raise ValueError('Plan/manifest mismatch: ' + branch)
     for pair in plan['pair_weights']:
+        # A ready, registered peer may have a separately authorized selfplay share
+        # (Azure1, Max11:36 Nov12). Only its comparison records enter this gate.
+        # This does not open a closed plan or schedule local selfplay.
+        if pair == '71s-32~71s-32':
+            continue
         parts = pair.split('~')
         if len(parts) != 2 or parts.count('71s-32') != 1 or next(p for p in parts if p != '71s-32') not in ALLOWED_OTHERS:
             return dict(branch=branch, revision=revision, excluded='not-authorized-comparison-plan')

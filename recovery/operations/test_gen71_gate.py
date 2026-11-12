@@ -95,13 +95,18 @@ class GateTests(TestCase):
             with self.assertRaisesRegex(ValueError,'checksum'):
                 g.exclusion_list(root,{})
 
-    def fixture(self, ready=True, corrupt=False, wrong_actor=False):
+    def fixture(self, ready=True, corrupt=False, wrong_actor=False, extra_pair=None):
         actors = {'71s-32': '71actor', '7s-32': '7actor'}
         manifest = dict(identity='cohort', campaign='independent-campaign',
             bots={k:dict(identity=v) for k,v in actors.items()}, pair_weights={g.PAIR:1})
         if wrong_actor:
             manifest['bots']['71s-32']['identity'] = 'research-net'
-        shard = json.dumps([self.row(), self.row(i=1, completed_epoch=999)]).encode()
+        if extra_pair:
+            manifest['pair_weights'][extra_pair] = 1
+        rows = [self.row(), self.row(i=1, completed_epoch=999)]
+        if extra_pair == '71s-32~71s-32':
+            rows.append(self.row(i=2, pair=extra_pair, imps=None))
+        shard = json.dumps(rows).encode()
         documents = {'arena/manifest.json':manifest,
             'recovery/plan.json':dict(launch_enabled=ready, pending=[], campaign=manifest['campaign'],
                                      pair_weights=manifest['pair_weights'], common_bidder='6-32'),
@@ -130,6 +135,25 @@ class GateTests(TestCase):
                 result = g.fetch_snapshot(('arena-gen71-independent-feed', 'rev'), actors)
             self.assertIn('excluded', result)
             self.assertNotIn('rows', result)
+
+    def test_mixed_peer_counts_comparison_and_leaves_selfplay_unscored(self):
+        for ready in (True, False):
+            actors, fetch = self.fixture(ready=ready, extra_pair='71s-32~71s-32')
+            with patch.object(g, 'fetch_bytes', side_effect=fetch):
+                result = g.fetch_snapshot(('arena-gen7-1-mix-authorized-feed', 'rev'), actors)
+            if ready:
+                self.assertEqual(len(result['rows']), 1)
+                self.assertEqual(result['rows'][0]['family'], 'family0')
+                self.assertEqual(result['rows'][0]['imps'], 1)
+            else:
+                self.assertEqual(result['excluded'], 'not-published-ready-plan')
+        self.assertIsNone(g.observation(self.row(pair='71s-32~71s-32', imps=None), 'self'))
+
+    def test_unknown_opponent_still_excludes_research_plan(self):
+        actors, fetch = self.fixture(extra_pair='71s-32~8p-32')
+        with patch.object(g, 'fetch_bytes', side_effect=fetch):
+            result = g.fetch_snapshot(('arena-gen71-unadopted-feed', 'rev'), actors)
+        self.assertEqual(result['excluded'], 'not-authorized-comparison-plan')
 
 
 if __name__ == '__main__':
