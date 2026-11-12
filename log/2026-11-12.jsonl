@@ -591,3 +591,4 @@
 {"at": "2026-11-12T18:59:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n02", "note": "stopping"}
 {"at": "2026-11-12T18:59:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n02e", "note": "stopping"}
 {"at": "2026-11-12T18:59:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1859Z-dave-d6-resumed-at-698679e-released", "note": "D6 resumed at 698679e (released by will 18:55 on the written check); retry queued on azure4", "task": "G9-D6"}
+{"at": "2026-11-12T18:59:00Z", "by": "dave", "op": "log", "target": "G9-D6", "note": "19:00Z dave: failed at 17:53 (rule bidder IndexError on another system's 3NT, epoch 3, board 524569); fixed at 698679e; resume released by will 18:55 under g9's 11:53 rule; job replaced and retried in the same folder"}
