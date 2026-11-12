@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 14:51 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 14:57 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -68,6 +68,7 @@ Generated 2026-11-12 14:51 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [E9-15](experiments/E9-15.md) | Honesty by situation: a signal expert per known opponent (BEN first) | sam | sam until 11-12 17:17 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T10:00Z |  |
+| [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z |  |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | rejected. **Part 1 (prediction), 12 November 2026, bill.** Registered protocol, 2,000 deals a system, leader and declarer views, pools of 512 (about 4,000 decisions a system). Gain in nats of the true layout's weight: |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | adopted. **The class rule holds.** Defenders' spots (two to nine) in the suit played do not all take the same number of tricks on the true deal in **1.49% ± 0.08%** of 21,057 decisions (prediction: at most 5%). When they differ, the worst spot costs 1.13 tricks on average; the lowest spot is among the best in 99.2% of all decisions |
@@ -111,7 +112,7 @@ Generated 2026-11-12 14:51 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 **azure4**: ? of ? cores busy, reported  UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | not seen yet | 0 of 6,200 |  |  |  |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
