@@ -989,5 +989,147 @@
     "roles": "defender"
    }
   }
+ },
+ "8r-32": {
+  "base": "6-32",
+  "label": "E9-16: 8p-32 that plays a random one of its exactly equal-best cards (exploration 1.0); everything else as 8p-32",
+  "engine": "gen7",
+  "policy_role": "gen8-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "exploration": 1.0
+ },
+ "8h-32": {
+  "base": "6-32",
+  "label": "E9-16: 8p-32 that half the time plays a random one of its exactly equal-best cards and otherwise the net's pick (exploration 0.5)",
+  "engine": "gen7",
+  "policy_role": "gen8-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "exploration": 0.5
+ },
+ "8xr-32": {
+  "base": "6-32",
+  "label": "E9-16: 8p-32 as a reader that has adapted: the plays of 8r-32 read at factor 0.25 and of 8h-32 at 0.5 (the Gen 8 session's calibration for a random card of equals is 0.25); other opponents in full",
+  "engine": "gen7",
+  "policy_role": "gen8-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0,
+   "opponent_play_weight": {
+    "8r-32": 0.25,
+    "8h-32": 0.5,
+    "*": 1.0
+   }
+  }
  }
 }
