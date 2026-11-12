@@ -58,3 +58,5 @@
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0728Z-g9-e9-3-resolved-adopted-how-ofte", "note": "E9-3 resolved (adopted): How often spot cards nine and below are not equivalent", "task": "E9-3"}
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "resolve", "target": "G9-S3", "resolution": "accepted"}
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0728Z-g9-g9-s3-resolved-accepted-e9-3-h", "note": "G9-S3 resolved (accepted): E9-3: how often spots nine and below are not equivalent", "task": "G9-S3"}
+{"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "resolve", "target": "G9-S1", "note": "Merged at 3b0280a; both interface additions accepted.", "resolution": "accepted"}
+{"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0728Z-g9-g9-s1-resolved-accepted-design", "note": "G9-S1 resolved (accepted): Design note: signals as executable rules, the class rule, carding bots, estimators", "task": "G9-S1"}

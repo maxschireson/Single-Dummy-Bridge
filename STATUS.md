@@ -10,7 +10,7 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | 1 | 0 | 0 | 2 | 0 | 3 |
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
-| sam | 2 | 2 | 0 | 2 | 0 | 1 |
+| sam | 2 | 1 | 0 | 2 | 0 | 2 |
 | will | 1 | 1 | 1 | 1 | 0 | 2 |
 
 ## Waiting for review
@@ -18,7 +18,6 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | dave | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | feature/gen9-workflow-tests |
-| g9 | [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | feature/gen9-signals-design |
 | g9 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | feature/gen9-signals |
 
 ## Tasks
@@ -30,7 +29,6 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-D3](tasks/G9-D3.md) | Rating table fitted to the published Gen 5 to Gen 7 feeds | dave | dave until 11-12 11:24 | leased | medium | 2026-11-13T06:00Z |  |
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam | sam until 11-12 11:27 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W6](tasks/G9-W6.md) | Script for the base swap | will | will until 11-12 11:25 | leased | medium | 2026-11-12T22:00Z |  |
-| [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | sam | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | sam | submitted | high | 2026-11-12T18:00Z |  |
 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will | submitted | medium | 2026-11-12T20:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  | after G9-W6 |
@@ -54,6 +52,7 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | resolved | high | 2026-11-12T17:00Z | accepted |
 | [G9-D1](tasks/G9-D1.md) | Design note: the arena as a population | dave |  | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave | resolved | high | 2026-11-13T02:00Z | accepted |
+| [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | sam | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | accepted |
 | [G9-W1](tasks/G9-W1.md) | Design note: work queue and experiment registry for a project that never stops | will | will | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-W2](tasks/G9-W2.md) | `workq`: lease, renew, submit, resolve from the command line | will | will | resolved | high | 2026-11-12T16:00Z | accepted |
@@ -80,7 +79,7 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | bidding systems lead | 11-12 07:15 | 14 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 07:17 | 5 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:24 | 19 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-12 07:18 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-12 07:18 | 3 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 07:24 | 3 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
@@ -92,6 +91,7 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | will | g9 | 11-12 07:28 | [G9-W2 resolved (accepted): `workq`: lease, renew, submit, resolve from the command line](inbox/will/20261112T0728Z-g9-g9-w2-resolved-accepted-workq.md) |
 | will | g9 | 11-12 07:28 | [G9-W1 resolved (accepted): Design note: work queue and experiment registry for a project that never stops](inbox/will/20261112T0728Z-g9-g9-w1-resolved-accepted-design.md) |
 | sam | g9 | 11-12 07:28 | [G9-S3 resolved (accepted): E9-3: how often spots nine and below are not equivalent](inbox/sam/20261112T0728Z-g9-g9-s3-resolved-accepted-e9-3-h.md) |
+| sam | g9 | 11-12 07:28 | [G9-S1 resolved (accepted): Design note: signals as executable rules, the class rule, carding bots, estimators](inbox/sam/20261112T0728Z-g9-g9-s1-resolved-accepted-design.md) |
 | sam | g9 | 11-12 07:28 | [E9-3 resolved (adopted): How often spot cards nine and below are not equivalent](inbox/sam/20261112T0728Z-g9-e9-3-resolved-adopted-how-ofte.md) |
 | bill | g9 | 11-12 07:27 | [New experiment for you: E9-8, What replaying the bidder is worth over the hand-fit scorer](inbox/bill/20261112T0727Z-g9-new-experiment-for-you-e9-8-wh.md) |
 | dave | g9 | 11-12 07:27 | [G9-D5 resolved (accepted): Experience store: per-board deltas, merge, epoch snapshot](inbox/dave/20261112T0727Z-g9-g9-d5-resolved-accepted-experi.md) |
@@ -101,7 +101,6 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | g9 | 11-12 07:27 | [E9-5 resolved (adopted): Arena simulator: schedule and promotion rule against fixed pairs](inbox/dave/20261112T0727Z-g9-e9-5-resolved-adopted-arena-si.md) |
 | dave | g9 | 11-12 07:27 | [E9-5 adopted with your three changes; PRs 17 and 19 merged; D2 and D5 accepted](inbox/dave/20261112T0727Z-g9-e9-5-adopted-with-your-three-c.md) |
 | bill | g9 | 11-12 07:27 | [B1 and B2 accepted and merged; card-only profile stands; please run E9-8 (read house auctions by replaying the](inbox/bill/20261112T0727Z-g9-b1-and-b2-accepted-and-merged.md) |
-| g9 | will | 11-12 07:24 | [G9-W3 submitted for your review: One command to prepare an environment and run the Gen 9 tests](inbox/g9/20261112T0724Z-will-g9-w3-submitted-for-your-revie.md) |
 
 ## Boxes
 
