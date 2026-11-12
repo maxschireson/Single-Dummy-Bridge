@@ -1292,6 +1292,27 @@ class Ledger:
             st.event("job-cancel", f"{box}/{jid}", note)
         return self.mutate(f"cancel job {jid} on {box}", fn)
 
+    def job_priority(self, box: str, jid: str, priority: int, note: str):
+        """Change a queued job's priority, keeping its submission time: its owner, the lead, or a queue operator named in
+        boxq/operators.json (set by the lead) may. The box plans with the new priority on its next pass."""
+        if not 1 <= priority <= 99:
+            raise Conflict("priority is an integer from 1 (highest) to 99")
+
+        def fn(st):
+            path = f"boxq/{box}/{jid}.json"
+            j = st.load(path)
+            if not j:
+                raise Conflict(f"no job {jid} on {box}")
+            ops = (st.load("boxq/operators.json") or {}).get("operators", [])
+            if st.agent not in (j["owner"], st.lead, *ops):
+                raise Conflict(f"job {jid}'s priority is changed by its owner ({j['owner']}), {st.lead} or a queue operator ({', '.join(ops) or 'none'})")
+            old = j["priority"]
+            j["priority"] = priority
+            st.save(path, j)
+            st.event("job-priority", f"{box}/{jid}", f"{old} -> {priority}" + (f": {note}" if note else ""), task=j.get("experiment") or j.get("task"))
+            return old
+        return self.mutate(f"job {jid} on {box}: priority {priority}", fn)
+
     def fleet(self):
         snap = collect_fleet(self.store, self.clock())
         self.mutate("fleet snapshot", lambda st: st.save("fleet.json", snap))
@@ -1332,7 +1353,8 @@ def main(argv=None) -> int:
     p = sub.add_parser("brief"); p.add_argument("id")
     sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
     p = sub.add_parser("issue"); p.add_argument("--create", action="store_true"); p.add_argument("--print", action="store_true")
-    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel"]); p.add_argument("arg", help="a job file (submit) or a job id (cancel)")
+    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel", "priority"])
+    p.add_argument("arg", help="a job file (submit) or a job id (cancel, priority)"); p.add_argument("value", nargs="?", type=int, help="the new priority")
     p.add_argument("--box"); p.add_argument("--replace", action="store_true"); p.add_argument("--note", default="")
     sub.add_parser("jobs")
     p = sub.add_parser("decision"); p.add_argument("title"); p.add_argument("--body"); p.add_argument("--file")
@@ -1432,7 +1454,11 @@ def run(lg: Ledger, a) -> int:
             j = lg.job_submit(job, a.replace)
             print(f"job {j['id']} queued on {j['box']} (priority {j['priority']}, {j['cores']} cores)"); return 0
         if not a.box:
-            raise SystemExit("--box is required to cancel")
+            raise SystemExit(f"--box is required to {a.action}")
+        if a.action == "priority":
+            if a.value is None:
+                raise SystemExit("usage: workq job priority ID N --box BOX [--note ...]")
+            old = lg.job_priority(a.box, a.arg, a.value, a.note); print(f"job {a.arg} on {a.box}: priority {old} -> {a.value}"); return 0
         lg.job_cancel(a.box, a.arg, a.note); print(f"job {a.arg} on {a.box} cancelled"); return 0
     if c == "issue":
         if a.print:

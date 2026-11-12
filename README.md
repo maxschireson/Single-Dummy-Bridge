@@ -193,6 +193,7 @@ A box pulls its work from this branch. To run something on a Gen 9 box, write a 
     $Q job submit e9-0.json            # owner or g9; the box sees it within a minute
     $Q jobs                            # every job: state, boards of target, boards an hour, expected finish
     $Q job cancel e9-0 --box azure4    # owner or g9
+    $Q job priority e9-0 2 --box azure4 --note why   # owner, g9 or a queue operator (boxq/operators.json); keeps the submission time
 
 ```json
 {"id": "e9-0", "box": "azure4", "experiment": "E9-0", "owner": "g9", "priority": 1, "cores": 4,

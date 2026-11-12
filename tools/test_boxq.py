@@ -167,6 +167,18 @@ class LoopTest(unittest.TestCase):
         with self.assertRaises(wq.Conflict):
             os.environ["WORKQ_CACHE"] = str(self.root / "cache-other")
             wq.Ledger(str(self.bare), "team/gen9", "sam", lead="g9").job_submit(job("not-mine", 1, 1, commit=self.commit))
+        # priority: the owner, the lead or a queue operator; a stranger is refused
+        self.g9.job_submit(job("prio", 9, 1, commit=self.commit, state="cancelled"))
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-other")
+        sam = wq.Ledger(str(self.bare), "team/gen9", "sam", lead="g9")
+        with self.assertRaises(wq.Conflict):
+            sam.job_priority("testbox", "prio", 3, "")
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-g9")
+        self.g9.mutate("operators", lambda st: st.save("boxq/operators.json", dict(operators=["sam"], set_by="g9")))
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-other")
+        self.assertEqual(sam.job_priority("testbox", "prio", 3, "by value"), 9)
+        j = sam.snapshot().load("boxq/testbox/prio.json")
+        self.assertEqual((j["priority"], j["submitted"]), (3, j["submitted"]))
         with self.assertRaises(wq.Conflict) as cm:              # the task a job serves must exist
             os.environ["WORKQ_CACHE"] = str(self.root / "cache-g9")
             self.g9.job_submit(job("no-such-task", 1, 1, commit=self.commit, task="G9-Z99"))
