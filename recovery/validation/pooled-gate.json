@@ -1,19 +1,19 @@
 {
   "counts": {
-    "71s-32~6-32": 855,
-    "71s-32~7s-32": 2365
+    "71s-32~7s-32": 2780,
+    "71s-32~6-32": 1072
   },
   "excluded_training_families": {
-    "71s-32~6-32": 0,
-    "71s-32~7s-32": 0
+    "71s-32~7s-32": 0,
+    "71s-32~6-32": 0
   },
   "gate": {
-    "n": 2365,
-    "mean": -0.03763213530655391,
-    "se": 0.05148487654073279,
+    "n": 2780,
+    "mean": -0.033453237410071945,
+    "se": 0.048204591176016734,
     "ci": [
-      -0.13859233010083372,
-      0.06332805948772591
+      -0.1279736670933837,
+      0.0610671922732398
     ],
     "minimum_boards": 1000,
     "eligible": false,
@@ -21,58 +21,58 @@
   },
   "sources": [
     {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+      "revision": "52562a8d88b103523b13b1bf780561b3f63273f2",
+      "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
+    },
+    {
       "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
-      "revision": "fe8bb90cb606530db3f2a7c8e94baf8a160cac42",
+      "revision": "0c0c57854729130e768a3b556ec757de8c89fdb3",
       "cohort": "cafb5c90115ef7b57fd45e83e3372bc2721bd2b56aa8cf6b7f0ed08bbd54759a"
     },
     {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+      "revision": "15e60ddb296f20578905ecaeb94aad9aad2e5081",
+      "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
+    },
+    {
       "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
-      "revision": "6efec4be84666d5bf32e8e438a45386828bd3f8b",
+      "revision": "cc1fdd359fd78b8e5fba6f7702e0ae0504b27227",
       "cohort": "b1668f080ab8f23e276a4a9bc16d59b7fd526de1969adfd6fc987662cf64406b"
     },
     {
       "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
-      "revision": "eaa5c3378f58065dcfcefb2a776fde6fc38b7d47",
+      "revision": "f872c7a64f1f51a306f4599d9ab52ef5b8ac5e93",
       "cohort": "5739d5b18d1246d7162d89aa20cb22d5cd3c4db50fe424023023fca9f2cbaaad"
     },
     {
-      "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
-      "revision": "07db692e8ee2a7740a61f545d0b32959bbe5ce8d",
-      "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
-    },
-    {
       "branch": "arena-gen7-1-compare-codex-20261112-feed",
-      "revision": "e484ba58d179e1cb75fd1da937548705db3ef1e4",
+      "revision": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
       "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
     },
     {
-      "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
-      "revision": "1029923321dd0a1458600e4296cb9582b8c83d03",
-      "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
-    },
-    {
       "branch": "arena-gen71-19bbdce5-20261112-feed",
-      "revision": "c22e60c61dd95126ba31aa53eaf42a6d4a4b4db1",
+      "revision": "7d2f57f4b88dbdea8c06c0893635dc5bbb6253e6",
       "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
     },
     {
-      "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
-      "revision": "b171eb2a7a354469d5513a005131b69d84244dda",
-      "cohort": "6e37908f191d657bc18101ad79ec9d85d3af39ae3cde64741e182ba600a1e1cd"
-    },
-    {
       "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
-      "revision": "0a10bddf87d9a0705ee36c57fb2fe7a40abc1e48",
+      "revision": "f077e1d6a212ebfadfcc9aa9a2927ec00ba7e11d",
       "cohort": "050b664fdf3d7abd3622eb51e517e7a083b9ab34b24cc984247b1c954c2a9c44"
     },
     {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+      "revision": "778330ab8e4711167df26c35abf4fe909885caea",
+      "cohort": "6e37908f191d657bc18101ad79ec9d85d3af39ae3cde64741e182ba600a1e1cd"
+    },
+    {
       "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
-      "revision": "5ab2ae01a16414b3f7d16ee79a588c08c111898b",
+      "revision": "85350683082a02343c84c004c557ff466220108c",
       "cohort": "dd96458b675cbc6a76841206baab2b614b7b913ff0063891fd2b6a471d6eb59b"
     },
     {
       "branch": "arena-gen71-independent-feed",
-      "revision": "fae49c60c3a9eacc47d531b00cac5dd3fb2ebb10",
+      "revision": "c1bc2d937ff5a75480d74a38118e1d10ecf7b588",
       "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
     },
     {
@@ -82,5 +82,5 @@
     }
   ],
   "errors": [],
-  "checked_epoch": 1794479146.4997108
+  "checked_epoch": 1794482691.962973
 }
