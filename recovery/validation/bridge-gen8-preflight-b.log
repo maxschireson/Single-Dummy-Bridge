@@ -1,0 +1,55 @@
+{"index": 6, "pair": "8s-32~71s-32", "seconds": 72.09361124038696, "tables": 2, "gap_forks": 12, "gap_enabled_roots": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 563, "unsearched": 0, "in_a_stage": 111, "consulted": 50, "moved": 9, "over_budget": 0, "tree_seconds": 5.9686861720256275, "tree_forks": 1, "tree_fork_imps": 2}
+{"index": 7, "pair": "8c-32~8s-32", "seconds": 106.9520914554596, "tables": 4, "gap_forks": 22, "gap_enabled_roots": 4, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 1003, "unsearched": 0, "in_a_stage": 205, "consulted": 97, "moved": 1, "over_budget": 0, "tree_seconds": 3.4819326740544057, "tree_forks": 0, "tree_fork_imps": 0}
+{"index": 8, "pair": "8c-32~71s-32", "seconds": 158.74027633666992, "tables": 4, "gap_forks": 23, "gap_enabled_roots": 4, "imps": {"common": 12, "native": 11}, "root_tables": 2, "decisions": 1227, "unsearched": 0, "in_a_stage": 309, "consulted": 99, "moved": 16, "over_budget": 0, "tree_seconds": 8.441073440058972, "tree_forks": 1, "tree_fork_imps": 0}
+{"index": 9, "pair": "8s-32~1", "seconds": 35.14983534812927, "tables": 4, "gap_forks": 15, "gap_enabled_roots": 4, "imps": {"common": 0, "native": 14}, "root_tables": 2, "decisions": 336, "unsearched": 0, "in_a_stage": 69, "consulted": 27, "moved": 1, "over_budget": 0, "tree_seconds": 3.482838410025579, "tree_forks": 0, "tree_fork_imps": 0}
+{"index": 11, "pair": "8s-32~5RZ32", "seconds": 59.857789754867554, "tables": 4, "gap_forks": 18, "gap_enabled_roots": 4, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 525, "unsearched": 0, "in_a_stage": 117, "consulted": 61, "moved": 4, "over_budget": 0, "tree_seconds": 3.8245331939979224, "tree_forks": 2, "tree_fork_imps": 0}
+{
+ "tree": {
+  "in_a_stage": 811,
+  "consulted": 334,
+  "moved": 31,
+  "over_budget": 0,
+  "tree_forks": 4,
+  "tree_fork_imps": 2,
+  "mean_seconds": 0.07544629907234283,
+  "p95_seconds": 0.2351262059964938,
+  "max_seconds": 0.8087790300050983,
+  "mean_solves": 63.80538922155689,
+  "p95_solves": 123,
+  "max_solves": 372
+ },
+ "phases": {
+  "lead_net": {
+   "decisions": 11,
+   "seconds": 8.077236199955223,
+   "layouts": 352,
+   "max_seconds": 2.3459657709900057,
+   "mean_seconds": 0.7342941999959294,
+   "mean_layouts": 32.0
+  },
+  "scorer (trick 1)": {
+   "decisions": 71,
+   "seconds": 72.4606329119415,
+   "layouts": 2270,
+   "max_seconds": 4.3327881489967695,
+   "mean_seconds": 1.0205722945343874,
+   "mean_layouts": 31.971830985915492
+  },
+  "scorer": {
+   "decisions": 935,
+   "seconds": 199.10146453914058,
+   "layouts": 27827,
+   "max_seconds": 2.278438950990676,
+   "mean_seconds": 0.21294274282261025,
+   "mean_layouts": 29.76149732620321
+  },
+  "deal_list": {
+   "decisions": 2637,
+   "seconds": 140.0434877089574,
+   "layouts": 128905,
+   "max_seconds": 0.9039092580060242,
+   "mean_seconds": 0.053107124652619415,
+   "mean_layouts": 48.883200606750094
+  }
+ }
+}

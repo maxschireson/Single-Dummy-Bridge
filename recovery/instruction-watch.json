@@ -1,0 +1,96 @@
+{
+  "schema": "collection-instruction-watch-v1",
+  "checked_epoch": 1794502682.359444,
+  "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+  "reviewed_file_blobs": {
+    "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
+    "README.md": "ec8859084463797ea7baa7303e6c5423f603d42f",
+    "docs/current-system.md": "b645c00d0a0c774fb76c9982dc21b1c863684f04",
+    "docs/operations.md": "9c9ea10a7e8fe3e6af27aa160c0f1b1b007cb321",
+    "configs/gen6-active-mix.json": "433066756b8764d7dfe4df2754058d7c3e985649",
+    "configs/round6-fast-selfplay.json": "8a0e0d2e95ce93764c38b9ee433073d3f550f59f",
+    "docs/repository-map.md": "a0a85c746244710dbbdd0f5c3bcffff2f30070c2",
+    "docs/backlog.md": "8e0f23f1515f9b8f159f9ead64e07a96e94c94f2",
+    "CONTRIBUTING.md": "91c0725075fce48d47479556f7cdcc362799e90a",
+    "docs/generations/README.md": "a8f4edc52d792a6a1e4cdc93bad048ab4658310e",
+    "docs/generations/gen7/README.md": "a842a4d4ec00e04ed023cdd49a3a72c2be6fd310",
+    "docs/gen7_candidate_2026-11-11.md": "583cfb2a162a289300e223df4bfec81287913f43",
+    "configs/round7-candidate-phase1.json": "d6827a7caeaf154706b1863e4c5ffa58b2c97a32",
+    "configs/round7-candidate-phase1-nonben.json": "457dddcd730d91a8d502068726011ade454dafaf",
+    "docs/generation-cleanup.md": "01ac1880b2eec7057dd015bab769a2f8b3edb253"
+  },
+  "historical_gen71_revision": "50990002b64833073b04e1bad025241109033ad3",
+  "operational_branch": "feature/gen8-prototype-20261112",
+  "operational_revision": "695078457205693f48a24c355681aef47ca21935",
+  "authority_path": "docs/gen8_candidate_2026-11-12.md",
+  "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
+  "coordination_revision": "45fa41bc94e8ff5cb1ee54f8a9968400b5d6e1cd",
+  "coordination_blob": "20c3235b39f3de8c0f90478e26a94b7f467b9903",
+  "registry_blob": "33f3708f9bdfc51d5a8eea0549d2cb5ac600a397",
+  "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+  "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
+  "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+  "registry_key": "gen6selfplay19bbdce5",
+  "stream_id": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+  "tests": {
+    "run": 335,
+    "passed": 333,
+    "skipped": 2,
+    "failed": 0
+  },
+  "preflight": {
+    "boards": 10,
+    "physical_root_tables": 36,
+    "gap_forks": 179,
+    "tree_consultations": 705,
+    "budget_overruns": 0
+  },
+  "family_accounting": {
+    "schema": "owned-stream-family-accounting-v1",
+    "checked_epoch": 1794502076.0413842,
+    "manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+    "initial_families": 25000,
+    "gen6_completed": 6775,
+    "gen71_completed": 2189,
+    "gen8_unplayed": 16036,
+    "total": 25000,
+    "source_indices_sha256": "156f00a509b09584c53fea17857046cda05b8788b181cf2c4ebc9aa940763094",
+    "corpus_sha256": "6f6768b7dd9c54cb74bf83c140c167f9fce493dd93e2c9e5fa048d4b7d8f63e3",
+    "source_mapping_exact": true,
+    "completed_overlap": 0,
+    "training_overlap": 0,
+    "exclusions": {
+      "path": "artifacts/validation/evaluation-exclusions.json",
+      "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+      "families": 34092,
+      "reason": "Exclude released-policy training families from fresh comparisons"
+    },
+    "status": "passed"
+  },
+  "action": "authorized_gen8_cutover_validated_collector_started",
+  "status": "publisher_and_registry_pending",
+  "notification": "pending_meaningful_transition_notification",
+  "source_and_artifacts_verified": true,
+  "gen71_gate": "Historical; superseded by explicit Gen8 arena cutover. No Gen7.1 self-play transition.",
+  "handled_instructions": [
+    {
+      "instruction": "All general arena collectors, explicitly19bbdce5, drain Gen7.1 and start Gen8 from their unplayed families.",
+      "authority": "Max16:11 and operator16:24 on box/coordination",
+      "action": "Gen7.1 drained and archived at2189; separate Gen8 prepared on16036 remaining families; released actors unchanged; preflights and full suite passed."
+    },
+    {
+      "instruction": "Never play a family a bot trained on in the arena; every Gen8 cohort uses34092-family union atfccbbd8.",
+      "action": "Pinned exact unionSHA256 0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2; complete corpus disjoint."
+    },
+    {
+      "instruction": "Historical actors5RZ32 and1 required in the new adopted mix.",
+      "action": "Missing source-catalog entries restored exactly from capsule8833c62, with artifact hashes checked. No catalog deal imported or retained actor replaced."
+    },
+    {
+      "instruction": "Keep792c4cb player/runtime behavior; later6950784 commits only correct documentation.",
+      "action": "Player code/models identical to792c4cb. Own sourcec8a138f adds validated preparation-only anchor restoration and generation metadata; no player settings changed."
+    }
+  ],
+  "historical_provenance": "recovery/history-index.json",
+  "transition_state": "/workspace/work/bridge-gen8-transition-state.json"
+}

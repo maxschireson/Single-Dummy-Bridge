@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/ops/prepare_gen7_alpha.py", line 466, in <module>
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families, a.restore_actors)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/ops/prepare_gen7_alpha.py", line 347, in prepare
+    bots = make_bots(actor_manifest, plan)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/ops/prepare_gen7_alpha.py", line 160, in make_bots
+    raise ValueError(f'The source run has a different bot called {key}: give the Gen7 bot a new id, or the settings of the bot it continues')
+ValueError: The source run has a different bot called 71s-32: give the Gen7 bot a new id, or the settings of the bot it continues

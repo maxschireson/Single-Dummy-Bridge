@@ -1,0 +1,9 @@
+{
+  "initial_prepare": "Missing5RZ32 and1; source cohort had intentionally pruned these actors.",
+  "resolution": "Imported exact canonical actors54591b0880b1 and5ba471c0a612 from capture8833c62, all shared actors and model hashes verified; no deals imported.",
+  "initial_test_failure": "Default DDS cache resolved outside the writable workspace; production run never started.",
+  "test_resolution": "Full suite rerun with XDG_CACHE_HOME under /workspace.",
+  "plan_copy_failure": "A JSON round trip changed numeric types and actor hashes; identity guard refused preparation.",
+  "plan_resolution": "Plan regenerated from authoritative bytes through Python, exact release identities verified before a run was created.",
+  "production_failures": 0
+}

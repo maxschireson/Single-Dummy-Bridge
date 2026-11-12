@@ -1,0 +1,21 @@
+# Backlog
+
+Open items only, reviewed at the Gen 6 → Gen 7 cleanup (12 November 2026). Dispositions of
+closed items move to the generation page of the cleanup that closed them; the 11 November
+PR ledger is in [Gen 6's cleanup ledger](generations/gen6/cleanup-ledger.md).
+
+| # | Priority | Item | Next action | Done when |
+| --- | --- | --- | --- | --- |
+| 1 | **Blocks Gen 7 phase 2** | Collector runtime lineage is off main. The self-play regime, decision capture, gap forks, BEN auto-expansion and feed-health supervision exist only on collector branches: [PR #13](https://github.com/maxschireson/Single-Dummy-Bridge/pull/13) (`fix/gen6-feed-health-20261111`, main-based port), `ops/gen7-fast-selfplay-cloud-20261111`, `codex/gen6-fast-selfplay-20261111`, `codex/gen6-gen7-capture-20261111`, `codex/gen6-v7-capture-20261111`. Phase 2 needs self-play and the gen7 engine in one runtime. **12 November:** `feature/gen7-selfplay-20261112` (main, the capture port of `codex/gen7-phase1-independent-20261112`, and the self-play record check) is such a runtime and collectors run it for `7s-32~7s-32` ([notice](gen7_selfplay_2026-11-12.md)); it is not merged, and it lacks feed-health supervision and BEN auto-expansion. | PR #13 and the cloud branch each merge cleanly onto post-cleanup main, but not together (conflicts in `ops/publish_gen5.py`, `ops/watch_gen5.py`, `ops/prepare_gen6_fast_selfplay.py`, `docs/operations.md`). Merge #13 first after running the Gen 6 and Gen 7 test files with DDS and TensorFlow; then port the cloud branch's additions on top; retire the codex branches as superseded. | One main-based runtime runs `7f-32~7f-32` and `7s-32~7s-32` in a preflight |
+| 2 | High | Azure Gen 7 feeds are not in the dashboard registry. Only `arena-gen7-phase1-codex-20261112-feed` is counted; `arena-gen7-phase1-azure1-feed` (and azure2–4 when they publish) are missing from the pooled phase 1 results. | Dashboard publisher adds them to `gh-pages:arena/gen6-sources.json` | `scripts/generation_results.py --generation 7` lists every phase 1 feed |
+| 3 | High | No phase 1 collector registered for the two BEN pairs (`7s-32~ben64`, `7s-32~ben`). The Azure boxes have no BEN server. | Assign a producer with both BEN servers to `round7-candidate-phase1-ben.json`, sharded away from Azure's 0–3/8 | BEN pairs publishing |
+| 4 | Medium | Two coordination channels for the Azure boxes: `box/coordination` (Gen 8 session's board, holds the allocation table) and `fleet/azure` (operator's queue and status). They overlap. | Max picks one; the other gets a pointer | One channel named in [operations](operations.md#remote-boxes) |
+| 5 | Medium | `feature/gen7-prepare-slice-20261112` (pre-7 test runs: `--first/--count` slicing, `ops/publish_test_run.py`) is a sibling of the deployed source and conflicts with it in `ops/prepare_gen7_alpha.py`. `--shard` replaced the slicing. | Keep the branch and `transfer/pre7-test-azure*` as the record of the pre-7 test data; port `publish_test_run.py` only if transfer publishing is still wanted | Ported or marked superseded here |
+| 6 | Medium | Gen 8 systems layer, WIP on `feature/gen8-systems-20261111` | Continue on the branch; merge at Gen 8's authorization cleanup | Gen 8 authorized |
+| 7 | Low | Hand-fit scorer v1a packaged on `research/hand-fit-scorer-v1a-20261111`; phase 1 uses v0 | Decide at the phase 2 build | Adopted in a plan or closed |
+| 8 | Low | Model release READMEs link reports that are not on main (gen5-belief, hand-fit-scorer-v0, joint-auction-belief-lead-v0, gen7-policy-v4 → v3.1) | Add the reports from their branches, or repoint links to pinned commits, as a new release revision (release folders are frozen) | Link check clean |
+| 9 | Deferred | [PR #4](https://github.com/maxschireson/Single-Dummy-Bridge/pull/4): bidding-to-belief exporter/trainer/prediction tools absent from main | Compare with current training paths; port only what is needed | Ported with family-split tests, or closed as redundant |
+| 10 | Deferred | [PR #9](https://github.com/maxschireson/Single-Dummy-Bridge/pull/9): nested 16/32/64 prefix scoring | Decide whether it fits weighted layouts | Ported and tested, or closed |
+
+Research branches are not backlog by existing. To adopt one, open a scoped item here with
+an owner and a completion criterion.

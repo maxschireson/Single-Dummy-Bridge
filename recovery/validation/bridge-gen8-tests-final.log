@@ -1,0 +1,31 @@
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=78861) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+.............2026-11-12 16:40:26.412945: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-11-12 16:40:26.675232: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+......................s.........s................................................................................................................................................................................../workspace/work/bridge-gen8-source/bridge_harness/rule_bidder.py:719: ResourceWarning: unclosed file <_io.BufferedReader name='/workspace/work/bridge-gen8-source/configs/rule-systems/precision-estimate-r4.json'>
+  raw = open(path, 'rb').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+............{"completed": 1, "tables": 2, "rate": {"pairs": 1, "per_hour": 12.0, "full_window": true}, "files": 7, "output": "/tmp/tmpm5u8n9b9/out"}
+{"completed": 1, "tables": 2, "rate": {"pairs": 1, "per_hour": 12.0, "full_window": true}, "files": 7, "output": "/tmp/tmpm5u8n9b9/out"}
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpt50n8luw/out"}
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpt50n8luw/out"}
+.{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 4, "completed": 8, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 8, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 8, "target": 8}
+........................{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 4}
+..............................................1: None
+2: None
+3: None
+............................
+----------------------------------------------------------------------
+Ran 335 tests in 267.080s
+
+OK (skipped=2)

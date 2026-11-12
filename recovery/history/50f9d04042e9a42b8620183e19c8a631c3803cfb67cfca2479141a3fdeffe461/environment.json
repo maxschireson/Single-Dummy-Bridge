@@ -1,0 +1,33 @@
+{
+  "source_branch": "ops/gen71-19bbdce5-20261112",
+  "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+  "source_base": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+  "source_sha256": "9c07a40726443c0a2f8997227ad6007ccc0836632c85ca0b816abb152d062be5",
+  "runtime_sha256": {
+    "ops/gen5_runtime.py": "7089da1a8b0dba52ebfcf7b21a0f8f0e3d4c3b011f58e92745a09a672718223b",
+    "ops/prepare_gen7_alpha.py": "3932dbb502f1f1aa0f294493177731f4f97a5a073b9aedf99c6af8a66eca9331"
+  },
+  "auxiliary_runtime_sha256": {
+    "ops/watch_gen5.py": "780b6d7cdaae4a29a27c08d2429a04d2dc6603ff1b5e86987c16dbb5191b66ce",
+    "ops/publish_gen5.py": "26f0aa3ad13edfb5bf46996183528ff748637d37f72fbbec29fea8eee9fe4f9c",
+    "ops/export_gen5.py": "c47d43525193ba6d0b957ef2c1fd58eb1754007e2d32a15b66cefcd5ed4ecda2"
+  },
+  "manifest_identity": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+  "python": "/workspace/work/bridge-venv/bin/python",
+  "source": "/workspace/work/bridge-gen71-source",
+  "run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+  "publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+  "publication_branch": "arena-gen71-19bbdce5-20261112-feed",
+  "predecessor": {
+    "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+    "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+    "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "completed": 6775
+  },
+  "initial_target": 25000,
+  "remaining_target": 18225,
+  "normal_workers": 3,
+  "ben_workers_active": 0,
+  "metadata_note": "Manifest common/native bidding_conditions are explicit for this successor; generation7 with internal exporter variant6. Player/model code and plan bot settings are the adopted branch. Legacy heartbeat includes an unused BEN slot.",
+  "epoch": 1794465561.497743
+}

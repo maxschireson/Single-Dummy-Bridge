@@ -1,0 +1,83 @@
+{
+  "schema": "system-package-v1",
+  "id": "rules-precision",
+  "display_name": "Precision-style strong club, the project's own rule bidder",
+  "status": "draft",
+  "family": "strong club",
+  "bidding": {
+    "card": null,
+    "descriptor": {
+      "style": "precision",
+      "club_min": 16,
+      "open_min": 11,
+      "open_light": 1,
+      "limited_max": 15,
+      "nt_lo": 14,
+      "nt_hi": 16,
+      "nt_five_major": false,
+      "two_clubs_len": 6,
+      "two_diamonds": true,
+      "weak_lo": 4,
+      "weak_hi": 10,
+      "weak_quality": 1,
+      "preempt_len": 6,
+      "neg_max": 7,
+      "resp_min": 6,
+      "two_over_one": 11,
+      "game": 25,
+      "game_minor": 27,
+      "slam": 32,
+      "grand": 37,
+      "invite_width": 2,
+      "overcall_min1": 7,
+      "overcall_min2": 11,
+      "overcall_max": 17,
+      "overcall_quality": 1,
+      "takeout_min": 12,
+      "nt_overcall_lo": 15,
+      "nt_overcall_hi": 18,
+      "jump_overcalls": true,
+      "balance": 3,
+      "compete": 0,
+      "penalty": 24,
+      "stayman": true,
+      "transfers": true,
+      "estimate": "configs/rule-systems/precision-estimate-r4.json",
+      "est_band": 2,
+      "est_weight": 5,
+      "est_nv": 3,
+      "est_v": 5,
+      "est_slam_band": 4,
+      "est_slam": 5,
+      "est_contest": 5,
+      "est_sigma": 12,
+      "est_reach": 2,
+      "est_double": 35,
+      "rules": "r3",
+      "judgement": "j1"
+    },
+    "notes": [
+      "Bid by bridge_harness/rule_bidder.py from configs/rule-systems/precision-r4.json. Every call the tables define has an exact meaning (bidder.describe).",
+      "Strong artificial 1C, limited five-card majors, 1D catch-all, 1NT range and the rest as in the settings, which are also the descriptor.",
+      "Where the tables stop, the general procedure counts points and is helped by a trick estimate fitted to double-dummy results (the file the settings name): it may bid on over the other side's contract with a known fit or a five-card suit, and doubles from the three level, on expected score. A game bid over the other side's bid promises no extra strength.",
+      "The earlier system without the estimate (rules r3, identity 7ee5d918af80) is configs/rule-systems/precision.json; it is unchanged and still built by the same code."
+    ]
+  },
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared."
+    ]
+  },
+  "generators": [
+    {
+      "kind": "python",
+      "factory": "bridge_harness.rule_bidder:from_package",
+      "options": {
+        "settings_file": "configs/rule-systems/precision-r4.json"
+      },
+      "sha256": "f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c"
+    }
+  ],
+  "lineage": {}
+}

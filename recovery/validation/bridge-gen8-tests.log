@@ -1,0 +1,103 @@
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=77735) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+.............2026-11-12 16:30:13.418303: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-11-12 16:30:13.532338: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+......................s.........s................................................................................................................................................................................../workspace/work/bridge-gen8-source/bridge_harness/rule_bidder.py:719: ResourceWarning: unclosed file <_io.BufferedReader name='/workspace/work/bridge-gen8-source/configs/rule-systems/precision-estimate-r4.json'>
+  raw = open(path, 'rb').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+............{"completed": 1, "tables": 2, "rate": {"pairs": 1, "per_hour": 12.0, "full_window": true}, "files": 7, "output": "/tmp/tmpg33ljntq/out"}
+{"completed": 1, "tables": 2, "rate": {"pairs": 1, "per_hour": 12.0, "full_window": true}, "files": 7, "output": "/tmp/tmpg33ljntq/out"}
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpn6j8111s/out"}
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpn6j8111s/out"}
+.{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 4, "completed": 8, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 8, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 8}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 8, "target": 8}
+..............E.........{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 4, "completed": 4, "target": 4}
+{"event": "arena", "generation": 1, "training_deals": 8, "completed": 4, "target": 4}
+...................................EE.F...1: None
+2: None
+3: None
+...............F............
+======================================================================
+ERROR: test_manifest_auction_weights_play_complete_dds_game (test_improvement.RegistryTests.test_manifest_auction_weights_play_complete_dds_game)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/tests/test_improvement.py", line 85, in test_manifest_auction_weights_play_complete_dds_game
+    record=run_pair(board,cfg);validate_record(record,board,cfg)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/improvement.py", line 86, in validate_record
+    if record['status'] != 'ok': raise RuntimeError('Failed game retained; inspect before --retry-failures')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Failed game retained; inspect before --retry-failures
+
+======================================================================
+ERROR: test_batch_and_serial_choose_same_moves (test_selfplay.BatchTests.test_batch_and_serial_choose_same_moves)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/tests/test_selfplay.py", line 66, in test_batch_and_serial_choose_same_moves
+    batch, serial = PIMCPlayer(8, "tricks", True, .125), PIMCPlayer(8, "tricks", False, .125)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/dds.py", line 52, in __init__
+    self.cache = PositionCache(cache_path,path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/dds_cache.py", line 49, in __init__
+    path.parent.mkdir(parents=True,exist_ok=True)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 30] Read-only file system: '/home/agent/.cache/single-dummy-bridge'
+
+======================================================================
+ERROR: test_no_extra_information_in_bot (test_selfplay.BatchTests.test_no_extra_information_in_bot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/tests/test_selfplay.py", line 88, in test_no_extra_information_in_bot
+    p = PIMCPlayer(4, "tricks", True, .125)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/players.py", line 49, in __init__
+    self.dds = DDS(cache_path=cache_path)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/dds.py", line 52, in __init__
+    self.cache = PositionCache(cache_path,path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/bridge_harness/dds_cache.py", line 49, in __init__
+    path.parent.mkdir(parents=True,exist_ok=True)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 30] Read-only file system: '/home/agent/.cache/single-dummy-bridge'
+
+======================================================================
+FAIL: test_complete_labels_masks_and_export (test_selfplay.TrainingTests.test_complete_labels_masks_and_export)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/tests/test_selfplay.py", line 104, in test_complete_labels_masks_and_export
+    self.assertEqual(record["status"], "ok", record)
+AssertionError: 'error' != 'ok'
+- error
++ ok
+ : {'schema_version': 1, 'harness_version': '0.1.0', 'dds_revision': '0f969b86a4841f438fd0cdff2924c4f2404abf6a', 'python': '3.12.14', 'board': {'id': '1', 'hands': ['653.J62.QT52.JT7', '2.QT43.AJ94.AK43', 'AT987.AK98.K.952', 'KQJ4.75.8763.Q86'], 'contract': '2N', 'declarer': 'N', 'dealer': 'N', 'vulnerability': 'None', 'auction': ['2N', 'PASS', 'PASS', 'PASS'], 'auction_source': 'synthetic', 'family': None, 'opening_lead': None}, 'config': {'mode': 'selfplay', 'candidate': 'pimc', 'baseline': 'pimc', 'common': 'pimc', 'samples': 4, 'objective': 'tricks', 'near_tie': 0.125}, 'tables': [], 'status': 'error', 'error': "OSError: [Errno 30] Read-only file system: '/home/agent/.cache/single-dummy-bridge'", 'traceback': 'Traceback (most recent call last):\n  File "/workspace/work/bridge-gen8-source/bridge_harness/runner.py", line 61, in run_pair\n    players[spec] = make_player(spec, **{k: config[k] for k in\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/players.py", line 177, in make_player\n    return PIMCPlayer(samples, objective, batch, near_tie)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/players.py", line 49, in __init__\n    self.dds = DDS(cache_path=cache_path)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/dds.py", line 52, in __init__\n    self.cache = PositionCache(cache_path,path)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/dds_cache.py", line 49, in __init__\n    path.parent.mkdir(parents=True,exist_ok=True)\n  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: \'/home/agent/.cache/single-dummy-bridge\'\n'}
+
+======================================================================
+FAIL: test_pimc_full_games (test_system.DDSTests.test_pimc_full_games)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/tests/test_system.py", line 198, in test_pimc_full_games
+    self.assertEqual(r['status'],'ok',r)
+AssertionError: 'error' != 'ok'
+- error
++ ok
+ : {'schema_version': 1, 'harness_version': '0.1.0', 'dds_revision': '0f969b86a4841f438fd0cdff2924c4f2404abf6a', 'python': '3.12.14', 'board': {'id': '1', 'hands': ['AKQ52.984.63.532', 'JT9.K652.K5.AK97', '8.QT3.QT974.T864', '7643.AJ7.AJ82.QJ'], 'contract': '2N', 'declarer': 'N', 'dealer': 'N', 'vulnerability': 'None', 'auction': ['2N', 'PASS', 'PASS', 'PASS'], 'auction_source': 'synthetic', 'family': None, 'opening_lead': None}, 'config': {'candidate': 'pimc', 'baseline': 'greedy', 'common': 'greedy', 'samples': 2, 'mode': 'partnership'}, 'tables': [], 'status': 'error', 'error': "OSError: [Errno 30] Read-only file system: '/home/agent/.cache/single-dummy-bridge'", 'traceback': 'Traceback (most recent call last):\n  File "/workspace/work/bridge-gen8-source/bridge_harness/runner.py", line 61, in run_pair\n    players[spec] = make_player(spec, **{k: config[k] for k in\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/players.py", line 177, in make_player\n    return PIMCPlayer(samples, objective, batch, near_tie)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/players.py", line 49, in __init__\n    self.dds = DDS(cache_path=cache_path)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/dds.py", line 52, in __init__\n    self.cache = PositionCache(cache_path,path)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/workspace/work/bridge-gen8-source/bridge_harness/dds_cache.py", line 49, in __init__\n    path.parent.mkdir(parents=True,exist_ok=True)\n  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: \'/home/agent/.cache/single-dummy-bridge\'\n'}
+
+----------------------------------------------------------------------
+Ran 331 tests in 261.102s
+
+FAILED (failures=2, errors=3, skipped=2)

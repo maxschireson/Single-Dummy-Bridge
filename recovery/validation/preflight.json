@@ -1,0 +1,245 @@
+{
+  "schema": "gen8-combined-preflight-v1",
+  "manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+  "status": "passed",
+  "boards": 10,
+  "per_pair": {
+    "8s-32~71s-32": 2,
+    "8s-32~1": 2,
+    "8s-32~5RZ32": 2,
+    "8c-32~8s-32": 2,
+    "8c-32~71s-32": 2
+  },
+  "parts": [
+    "preflight-a.json",
+    "preflight-b.json"
+  ],
+  "deals": [
+    {
+      "index": 0,
+      "pair": "8s-32~71s-32",
+      "seconds": 83.4219753742218,
+      "tables": 2,
+      "gap_forks": 12,
+      "gap_enabled_roots": 2,
+      "imps": {
+        "common": 0,
+        "native": 0
+      },
+      "root_tables": 2,
+      "decisions": 607,
+      "unsearched": 0,
+      "in_a_stage": 173,
+      "consulted": 68,
+      "moved": 11,
+      "over_budget": 0,
+      "tree_seconds": 9.197090090019628,
+      "tree_forks": 1,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 1,
+      "pair": "8s-32~1",
+      "seconds": 96.62575554847717,
+      "tables": 4,
+      "gap_forks": 21,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 14,
+        "native": 7
+      },
+      "root_tables": 2,
+      "decisions": 390,
+      "unsearched": 0,
+      "in_a_stage": 92,
+      "consulted": 45,
+      "moved": 2,
+      "over_budget": 0,
+      "tree_seconds": 7.4389951339690015,
+      "tree_forks": 4,
+      "tree_fork_imps": 14
+    },
+    {
+      "index": 2,
+      "pair": "8s-32~5RZ32",
+      "seconds": 102.44249224662781,
+      "tables": 4,
+      "gap_forks": 14,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 0,
+        "native": 0
+      },
+      "root_tables": 2,
+      "decisions": 563,
+      "unsearched": 0,
+      "in_a_stage": 159,
+      "consulted": 85,
+      "moved": 10,
+      "over_budget": 0,
+      "tree_seconds": 4.081517461047042,
+      "tree_forks": 4,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 3,
+      "pair": "8c-32~8s-32",
+      "seconds": 140.3731245994568,
+      "tables": 4,
+      "gap_forks": 18,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 0,
+        "native": -6
+      },
+      "root_tables": 2,
+      "decisions": 1422,
+      "unsearched": 0,
+      "in_a_stage": 272,
+      "consulted": 88,
+      "moved": 5,
+      "over_budget": 0,
+      "tree_seconds": 5.328698325960431,
+      "tree_forks": 1,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 4,
+      "pair": "8c-32~71s-32",
+      "seconds": 68.57704210281372,
+      "tables": 4,
+      "gap_forks": 24,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 0,
+        "native": -5
+      },
+      "root_tables": 2,
+      "decisions": 979,
+      "unsearched": 0,
+      "in_a_stage": 195,
+      "consulted": 85,
+      "moved": 3,
+      "over_budget": 0,
+      "tree_seconds": 5.067886590026319,
+      "tree_forks": 0,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 6,
+      "pair": "8s-32~71s-32",
+      "seconds": 72.09361124038696,
+      "tables": 2,
+      "gap_forks": 12,
+      "gap_enabled_roots": 2,
+      "imps": {
+        "common": 0,
+        "native": 0
+      },
+      "root_tables": 2,
+      "decisions": 563,
+      "unsearched": 0,
+      "in_a_stage": 111,
+      "consulted": 50,
+      "moved": 9,
+      "over_budget": 0,
+      "tree_seconds": 5.9686861720256275,
+      "tree_forks": 1,
+      "tree_fork_imps": 2
+    },
+    {
+      "index": 7,
+      "pair": "8c-32~8s-32",
+      "seconds": 106.9520914554596,
+      "tables": 4,
+      "gap_forks": 22,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 0,
+        "native": 0
+      },
+      "root_tables": 2,
+      "decisions": 1003,
+      "unsearched": 0,
+      "in_a_stage": 205,
+      "consulted": 97,
+      "moved": 1,
+      "over_budget": 0,
+      "tree_seconds": 3.4819326740544057,
+      "tree_forks": 0,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 8,
+      "pair": "8c-32~71s-32",
+      "seconds": 158.74027633666992,
+      "tables": 4,
+      "gap_forks": 23,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 12,
+        "native": 11
+      },
+      "root_tables": 2,
+      "decisions": 1227,
+      "unsearched": 0,
+      "in_a_stage": 309,
+      "consulted": 99,
+      "moved": 16,
+      "over_budget": 0,
+      "tree_seconds": 8.441073440058972,
+      "tree_forks": 1,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 9,
+      "pair": "8s-32~1",
+      "seconds": 35.14983534812927,
+      "tables": 4,
+      "gap_forks": 15,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 0,
+        "native": 14
+      },
+      "root_tables": 2,
+      "decisions": 336,
+      "unsearched": 0,
+      "in_a_stage": 69,
+      "consulted": 27,
+      "moved": 1,
+      "over_budget": 0,
+      "tree_seconds": 3.482838410025579,
+      "tree_forks": 0,
+      "tree_fork_imps": 0
+    },
+    {
+      "index": 11,
+      "pair": "8s-32~5RZ32",
+      "seconds": 59.857789754867554,
+      "tables": 4,
+      "gap_forks": 18,
+      "gap_enabled_roots": 4,
+      "imps": {
+        "common": 0,
+        "native": 0
+      },
+      "root_tables": 2,
+      "decisions": 525,
+      "unsearched": 0,
+      "in_a_stage": 117,
+      "consulted": 61,
+      "moved": 4,
+      "over_budget": 0,
+      "tree_seconds": 3.8245331939979224,
+      "tree_forks": 2,
+      "tree_fork_imps": 0
+    }
+  ],
+  "physical_root_tables": 36,
+  "gap_forks": 179,
+  "tree_consultations": 705,
+  "budget_overruns": 0,
+  "immutable_run_episodes_written": 0,
+  "checked_epoch": 1794502437.478694
+}

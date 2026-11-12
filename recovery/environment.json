@@ -1,0 +1,68 @@
+{
+  "source_branch": "ops/gen8-19bbdce5-20261112",
+  "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
+  "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+  "source_sha256": "e7059e6395bbb500f50d4f8335a12f2023f7df26c58fc24d3a28a3725e28839f",
+  "runtime_sha256": {
+    "ops/gen5_runtime.py": "6477827241ae33d5193116de53a3a511b97d44a2e8c7cde7d7e873e8f94fb625",
+    "ops/prepare_gen7_alpha.py": "fac19c24d6a3b399910418912aa6292280e677209004051691fc34314e65eb36"
+  },
+  "auxiliary_runtime_sha256": {
+    "ops/watch_gen5.py": "780b6d7cdaae4a29a27c08d2429a04d2dc6603ff1b5e86987c16dbb5191b66ce",
+    "ops/publish_gen5.py": "26f0aa3ad13edfb5bf46996183528ff748637d37f72fbbec29fea8eee9fe4f9c",
+    "ops/export_gen5.py": "c47d43525193ba6d0b957ef2c1fd58eb1754007e2d32a15b66cefcd5ed4ecda2",
+    "bridge_harness/libbridge_dds.so": "0421a9d679f43dd53b5414550daf002756068d554d99aa182f522c8cf1a6c2c4"
+  },
+  "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+  "python": "/workspace/work/bridge-venv/bin/python",
+  "source": "/workspace/work/bridge-gen8-source",
+  "run": "/workspace/work/bridge-gen8-19bbdce5-20261112",
+  "publication": "/workspace/work/bridge-gen8-19bbdce5-publication",
+  "publication_branch": "arena-gen8-19bbdce5-20261112-feed",
+  "history": [
+    {
+      "run": "/workspace/work/bridge-gen6-fast-selfplay-new",
+      "source": "/workspace/work/bridge-feed-snapshot/recovery/runtime",
+      "publication": "/workspace/work/bridge-gen6-new-publication",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "completed": 6775,
+      "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+      "status": "permanently_retired"
+    },
+    {
+      "run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+      "source": "/workspace/work/bridge-gen71-source",
+      "publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+      "branch": "arena-gen71-19bbdce5-20261112-feed",
+      "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+      "completed": 2189,
+      "revision": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+      "status": "permanently_retired"
+    }
+  ],
+  "initial_target": 25000,
+  "remaining_target": 16036,
+  "normal_workers": 3,
+  "ben_workers_active": 0,
+  "model_policy_sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed",
+  "system_scorer_sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d",
+  "metadata_note": "Explicit generation8 and common/native metadata; inherited internal exporter variant6. Released actors and weights match792c4cb exactly. Anchor restoration adds only requested missing catalog actors; no catalog deals imported. Legacy heartbeat has unused worker/BEN slots.",
+  "authority": "Max16:11 and g7 operator16:24 all collectors including19bbdce5 switch to Gen8; box/coordination ae9f949b88e4ff71ba153d922c4d796a2b7c227c",
+  "evaluation_exclusions": {
+    "path": "artifacts/validation/evaluation-exclusions.json",
+    "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "families": 34092,
+    "reason": "Exclude released-policy training families from fresh comparisons"
+  },
+  "restored_anchors": {
+    "path": "artifacts/validation/restored-actors-manifest.json",
+    "sha256": "2f8f6b792ac874f1d5d764e44c6e113e12818347446020766672ed9b3de9d606",
+    "source_manifest": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb",
+    "actors": {
+      "1": "5ba471c0a612f6e0bb56a60a04e14f0345687a6df94053b959cba9b976dbf4bf",
+      "5RZ32": "54591b0880b1a569ac121fa097ef4be0447b7e303d31ac5fdd9e07c50e648822"
+    }
+  },
+  "epoch": 1794502003.6579058
+}

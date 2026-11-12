@@ -1,0 +1,22 @@
+{
+  "schema": "owned-stream-family-accounting-v1",
+  "checked_epoch": 1794502076.0413842,
+  "manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+  "initial_families": 25000,
+  "gen6_completed": 6775,
+  "gen71_completed": 2189,
+  "gen8_unplayed": 16036,
+  "total": 25000,
+  "source_indices_sha256": "156f00a509b09584c53fea17857046cda05b8788b181cf2c4ebc9aa940763094",
+  "corpus_sha256": "6f6768b7dd9c54cb74bf83c140c167f9fce493dd93e2c9e5fa048d4b7d8f63e3",
+  "source_mapping_exact": true,
+  "completed_overlap": 0,
+  "training_overlap": 0,
+  "exclusions": {
+    "path": "artifacts/validation/evaluation-exclusions.json",
+    "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "families": 34092,
+    "reason": "Exclude released-policy training families from fresh comparisons"
+  },
+  "status": "passed"
+}

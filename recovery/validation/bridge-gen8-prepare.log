@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/work/bridge-gen8-source/ops/prepare_gen7_alpha.py", line 416, in <module>
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/bridge-gen8-source/ops/prepare_gen7_alpha.py", line 320, in prepare
+    check_mix(plan, bots, references)
+  File "/workspace/work/bridge-gen8-source/ops/prepare_gen7_alpha.py", line 168, in check_mix
+    raise ValueError(f'Unknown roster bot {name}')
+ValueError: Unknown roster bot 5RZ32

@@ -1,0 +1,39 @@
+{
+  "status": "gen8_running_publication_pending",
+  "stream_id": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+  "registry_key": "gen6selfplay19bbdce5",
+  "manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+  "run": "/workspace/work/bridge-gen8-19bbdce5-20261112",
+  "source": "/workspace/work/bridge-gen8-source",
+  "publication": "/workspace/work/bridge-gen8-19bbdce5-publication",
+  "branch": "arena-gen8-19bbdce5-20261112-feed",
+  "target": 16036,
+  "history": [
+    {
+      "run": "/workspace/work/bridge-gen6-fast-selfplay-new",
+      "source": "/workspace/work/bridge-feed-snapshot/recovery/runtime",
+      "publication": "/workspace/work/bridge-gen6-new-publication",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "completed": 6775,
+      "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+      "status": "permanently_retired"
+    },
+    {
+      "run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+      "source": "/workspace/work/bridge-gen71-source",
+      "publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+      "branch": "arena-gen71-19bbdce5-20261112-feed",
+      "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+      "completed": 2189,
+      "revision": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+      "status": "permanently_retired"
+    }
+  ],
+  "epoch": 1794502684.0632439,
+  "processes": {
+    "collector": 79917,
+    "publisher": 79982,
+    "watchdog": 79983
+  }
+}
