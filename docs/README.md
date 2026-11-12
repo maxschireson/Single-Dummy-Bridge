@@ -16,6 +16,7 @@
 - [Operations and recovery](operations.md)
 - [Gen6 recovery details](gen6-arena-recovery-20261111.md)
 - [Watchdog implementation/runbook](arena_watchdog.md)
+- [boxctl: run commands on a collector box through GitHub](boxctl.md)
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
