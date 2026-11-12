@@ -122,6 +122,7 @@ Generated 2026-11-12 08:36 UTC by `tools/workq.py` after a change by `bill`. Do 
 | e9-11-r7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-r8 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 | e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
+| e9-12-u | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-x | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
 
 ## Boxes
