@@ -3,11 +3,13 @@
 
   python scripts/train_gen7_policy.py --data data.npz --out run_dir [--kind suit|mlp] [--epochs 8]
                                       [--augment none|cards|all] [--patience 0]
-                                      [--fraction 1.0] [--seed 0]
+                                      [--fraction 1.0] [--seed 0] [--all-train --val-data fresh.npz]
 
 Targets: the card Gen 6 played (policy head), Gen 6's gap for every legal card (gap head),
 the holder of each unseen card and the final tricks. Deals are split by family in the data
-file; --fraction keeps that share of the training deals, for the learning curve.
+file; --fraction keeps that share of the training deals, for the learning curve. --all-train
+trains on every deal of the file whatever its split; the held-out rows then come from --val-data,
+a second set of the same format (boards that arrived after the training set was fetched).
 
 --augment relabels the four suits of a training position (card play is the same game under
 any relabelling as long as the trump suit moves with it). The auction is not: a 2C response
@@ -204,7 +206,11 @@ def main():
     p.add_argument('--weight-decay', type=float, default=1e-4)
     p.add_argument('--kinds', default='0,1,2', help='table kinds to train on: 0 root tables, 1 tie-fork tables, 2 gap-fork tables')
     p.add_argument('--save-epochs', action='store_true', help="also write each epoch's weights as policy_epoch<n>.npz")
+    p.add_argument('--all-train', action='store_true', help='train on every deal of --data, whatever its split (needs --val-data)')
+    p.add_argument('--val-data', type=Path, help='held-out rows come from this set (all of its rows) instead of split 1 of --data')
     a = p.parse_args()
+    if a.all_train and not a.val_data:
+        p.error('--all-train needs --val-data: with no deal held back there is nothing to score an epoch on')
     a.out.mkdir(parents=True, exist_ok=True)
     kind = KINDS[a.kind]
     z = stored_arrays(a.data)
@@ -214,12 +220,19 @@ def main():
     del z
     print(f"data in memory {sum(v.data.nbytes if isinstance(v, Packed) else v.nbytes for v in data.values()) / 2**30:.2f} GB, "
           f"{len(data['deal'])} examples", file=sys.stderr, flush=True)
-    train_deals = np.flatnonzero(split == 0)
+    train_deals = np.arange(len(split)) if a.all_train else np.flatnonzero(split == 0)
     keep = train_deals[:max(1, int(round(len(train_deals) * a.fraction)))]         # deal order is arbitrary but fixed
     kinds = [int(k) for k in a.kinds.split(',')]
     train = np.flatnonzero(np.isin(data['deal'], keep) & np.isin(data['meta'][:, 2], kinds))
-    val = np.flatnonzero(split[data['deal']] == 1)
-    test = np.flatnonzero(split[data['deal']] == 2)
+    if a.val_data:
+        with np.load(a.val_data) as zv:
+            vdata = {k: np.array(zv[k]) for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal')}
+        val = np.arange(len(vdata['deal']))
+    else:
+        vdata, val = data, np.flatnonzero(split[data['deal']] == 1)
+    test = np.zeros(0, np.int64) if a.all_train else np.flatnonzero(split[data['deal']] == 2)
+    print(f"{len(keep)} training deals, {len(train)} training examples, {len(val)} held-out examples"
+          + (f" from {a.val_data.name} ({len(np.unique(vdata['deal']))} deals)" if a.val_data else ''), file=sys.stderr, flush=True)
     rng = np.random.default_rng(a.seed)
     params = {k: jnp.asarray(v) for k, v in init(kind, rng, a.width).items()}
     steps = a.epochs * (len(train) // a.batch)
@@ -276,7 +289,7 @@ def main():
             count += 1
             if count % 2000 == 0:
                 print(f"epoch {epoch + 1} step {count} of {len(order) // a.batch}, {round(time.time() - started)} s", file=sys.stderr, flush=True)
-        v = evaluate(lambda b: predict(params, b), data, val)
+        v = evaluate(lambda b: predict(params, b), vdata, val)
         row = dict(epoch=epoch + 1, seconds=round(time.time() - started), train_ce=round(total[0] / count, 4),
                    train_gap=round(total[1] / count, 4), train_owner=round(total[2] / count, 4), val=v['all'])
         history.append(row)
@@ -292,13 +305,13 @@ def main():
     np.savez(a.out / 'policy.npz', **exported, **bank)
     # NumPy inference must agree with the trained graph.
     rows = val[:512]
-    b = {k: data[k][rows] for k in INPUTS}
+    b = {k: vdata[k][rows] for k in INPUTS}
     jax_out = np.asarray(forward(final, b, jnp, kind)['policy'])
     numpy_out = forward(exported, b)['policy']
     parity = float(np.abs(np.where(b['legal'], jax_out - numpy_out, 0.)).max())
     # Does the net use the auction? The same held-out positions with the auction inputs blanked, and with
     # another position's auction in their place. A net that reads the auction must score worse on both.
-    held = {k: data[k][val] for k in (*INPUTS, 'gap', 'meta')}
+    held = {k: vdata[k][val] for k in (*INPUTS, 'gap', 'meta')}
     everyone = np.arange(len(val))
     other = np.random.default_rng(0).permutation(len(val))
     def short(d):
@@ -314,8 +327,9 @@ def main():
     }
     metrics = dict(kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
                    selected_epoch=best[1], fraction=a.fraction, train_deals=int(len(keep)), train_examples=int(len(train)),
-                   validation=evaluate(lambda b: predict(final, b), data, val),
-                   test=evaluate(lambda b: predict(final, b), data, test) if a.fraction == 1. else None,
+                   all_train=a.all_train, val_data=a.val_data.name if a.val_data else None,
+                   validation=evaluate(lambda b: predict(final, b), vdata, val),
+                   test=evaluate(lambda b: predict(final, b), data, test) if a.fraction == 1. and len(test) else None,
                    auction_use=auction_use, numpy_parity_max_abs_logit=parity, seconds=round(time.time() - started), history=history)
     (a.out / 'metrics.json').write_text(json.dumps(metrics, indent=1))
     print(json.dumps(dict(done=str(a.out), selected_epoch=best[1], validation=metrics['validation']['all'], parity=parity,
