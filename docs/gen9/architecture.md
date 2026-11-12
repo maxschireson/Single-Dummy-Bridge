@@ -257,6 +257,21 @@ log P(card | view, x) = phi_P * log P_net(class of the card | view)       what t
   (BEN 64) nats a declarer decision better than Gen 8 on held-out deal families (E9-7,
   adopted). So the model of a player's signals is an emission table per kind of signal, learned
   from experience after 200 occasions, and honesty is the shape it starts from.
+- **An expert per known opponent** (Max, 12 November). How honestly a player signals depends on
+  the situation: a defender signals when partner needs to know and not when declarer gains
+  more. So for an opponent we hold many boards of, the model of its signals is fitted to that
+  opponent and conditioned on the situation, in three steps of rising need for data:
+  one honesty per kind of signal (any player, a few dozen boards); an emission table per kind
+  of signal, then per situation with partial pooling (additive counts in the experience store,
+  a few hundred occasions a cell); a small fitted expert on the public situation and the
+  signaller's hand (thousands of occasions: BEN today). "Situation" means at least: exact
+  length where the table has parity, the number of equivalent spots, an honour in the suit, who
+  led and from where, trump or side suit, a long suit in dummy with no entry, and the second
+  round of a suit, which the reader does not read yet. The expert's output is a likelihood
+  like any other term, and its by-situation honesty is published with the player's model so
+  that a person can check it. Experiment E9-15 fits and scores this for BEN; E9-14 is the same
+  idea for the opponent's choices (which card class), a head on the policy net. An expert is
+  an artifact made from the experience store at an epoch boundary and named in the snapshot.
 - **The house bots signal nothing** (E9-9): their spots carry no agreed meaning, their leads are
   fourth best about half the time. A designed scheme for the house pair is E9-6; offline it
   gives partner +0.13 nats a decision and gives a declarer who knows it +0.32.
