@@ -1,4 +1,4 @@
-# What the auction reading is worth in tricks (house auctions)
+# What reading is worth in tricks: the auction, suit lengths, honours (house tables)
 
 12 November 2026, g9. A double-dummy proxy on p41's published layouts and solves, not played boards.
 
@@ -44,6 +44,52 @@ By stage, the auction's worth given the play reading:
 3. Together with the Gen 8 session's result on carding (reading a player whose spots the net does not model at
    full weight costs 0.35 to 0.45 IMPs a board), being right about a stranger is worth up to about 0.8 IMPs a board
    over treating it as a house bot. Against house bots the player model has almost nothing to add.
+
+## What information is worth, by kind and by place
+
+The same pools, on top of the prototype's reading (`aimed_shape.py`, `aimed_subsets.py`). Each stored layout's weight
+is multiplied by `exp(-k x d)`, where `d` counts what the layout has wrong: the suits in which it gives a hidden hand
+the wrong length ("suit lengths"), or the honours (T to A) it gives to the wrong hand. `k` is set to give the stated
+gain in the true layout's log weight a helped decision; "known" is a large `k`, as far as the pool holds such layouts.
+
+Where the prototype gives up its 0.546 tricks a board, and what knowing would save there:
+
+| Decisions | A board | Given up | Suit lengths known | Honours known |
+| --- | ---: | ---: | ---: | ---: |
+| Declarer deciding, tricks 1 to 6 | 10.6 | 0.250 | +0.128 +- 0.023 | +0.091 +- 0.028 |
+| A defender deciding, tricks 1 to 6 | 9.5 | 0.187 | +0.085 +- 0.017 | +0.080 +- 0.019 |
+| Declarer deciding, tricks 7 to 13 | | 0.086 | +0.058 +- 0.013 | +0.067 +- 0.014 |
+| A defender deciding, tricks 7 to 13 | | 0.023 | +0.015 +- 0.005 | +0.011 +- 0.007 |
+| Every decision | 40.4 | 0.546 | +0.286 +- 0.032 | +0.249 +- 0.038 |
+
+What a partial gain is worth, tricks a board:
+
+| Helped decisions | Kind | +0.3 nats a decision | +0.7 nats a decision |
+| --- | --- | ---: | ---: |
+| Every decision | suit lengths | +0.078 +- 0.012 | +0.186 +- 0.021 |
+| Every decision | honours | +0.071 +- 0.010 | +0.153 +- 0.019 |
+| Every decision | small cards one by one | +0.013 +- 0.005 | +0.034 +- 0.008 |
+| Declarer, tricks 1 to 6 | suit lengths | +0.011 +- 0.005 | +0.034 +- 0.007 |
+| Declarer, tricks 1 to 6 | honours | +0.017 +- 0.005 | +0.052 +- 0.010 |
+| A defender, tricks 1 to 6 | suit lengths | +0.020 +- 0.005 | +0.043 +- 0.010 |
+| A defender, tricks 1 to 6 | honours | +0.012 +- 0.005 | +0.027 +- 0.007 |
+
+Reading these:
+
+- **Four fifths of what imperfect information costs is at tricks 1 to 6** (0.437 of 0.546 tricks a board), and more
+  of it with declarer than with the defenders.
+- **A nat about suit lengths is worth as much as a nat about honours.** A nat spread over the small cards one by
+  one is worth a fifth of that (p41's finding); what matters about small cards is how many each hand holds.
+- **Count read perfectly by declarer through trick 6 would be worth 0.13 tricks a board, about 0.46 IMPs.** That is
+  the ceiling for reading a defender's count signals. A reader that adds 0.3 nats there (the fitted model of BEN's
+  signals adds 0.16 to 0.32 over Gen 8) is worth about 0.01 tricks, 0.04 IMPs; one that adds 0.7 nats (a declared
+  scheme followed four times in five) about 0.03 to 0.05 tricks, 0.12 to 0.19 IMPs.
+- **A defender who knew partner's and declarer's lengths through trick 6** would save 0.085 tricks a board; 0.7 nats
+  toward it saves 0.04. That is the size of what our own signals could give our own defence, before what they give
+  away to a declarer who reads them.
+
+The proxy's limits apply with more force here: these are single decisions on recorded house play, scored double
+dummy, with the rest of the play as recorded.
 
 ## Method
 
