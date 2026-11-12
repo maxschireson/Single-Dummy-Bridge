@@ -26,7 +26,7 @@
  const windows=document.getElementById('window');for(const option of windows.options){if(option.value!=='0')option.textContent='Last '+Number(option.value).toLocaleString()+' completed per matchup';}
  const differences=document.createElement('section');differences.id='gen6-differences';section.after(differences);
  function renderDifferences(){
-  differences.hidden=!R.pickSources(selected).some(s=>[6,7].includes(s.generation));if(differences.hidden)return;
+  differences.hidden=!R.pickSources(selected).some(s=>[6,7,8].includes(s.generation));if(differences.hidden)return;
   differences.replaceChildren();const title=document.createElement('h2');title.textContent='Bidding, play and total differences';differences.append(title);
   const note=document.createElement('p');note.className='muted';note.textContent='IMPs per board, positive favors the first bot. Play: common Gen6 auctions. Total: native partnership auctions. Bidding: paired total minus play, including auction/play interaction. Each mean has its own paired 95% interval.';differences.append(note);
   const table=document.createElement('table'),head=document.createElement('tr');
