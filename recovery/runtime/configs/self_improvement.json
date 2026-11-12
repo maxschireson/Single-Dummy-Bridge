@@ -1,0 +1,91 @@
+{
+  "campaign_id": "v2-self-improvement-001",
+  "seed": 2026110819,
+  "initial": "v2",
+  "original": "v1",
+  "ben": "ben",
+  "training_stages": [
+    10000,
+    50000,
+    250000
+  ],
+  "evaluation_looks": [
+    250,
+    1000,
+    4000
+  ],
+  "shard_size": 250,
+  "workers": 8,
+  "board_timeout": 300,
+  "arena_board_timeout": 1800,
+  "command_timeout": 86400,
+  "family_alpha": 0.05,
+  "minimum_imp_gain": 0.0,
+  "exclusion_files": [],
+  "pinned_files": [],
+  "trainer_command": null,
+  "corpus_command": null,
+  "bots": {
+    "v1": {
+      "factory": "bridge_harness.players:PIMCPlayer",
+      "kwargs": {
+        "samples": 32,
+        "objective": "tricks",
+        "batch": true,
+        "near_tie": 0.125
+      },
+      "budget": {
+        "samples": 32,
+        "objective": "tricks",
+        "batch": true,
+        "near_tie": 0.125
+      },
+      "artifacts": {}
+    },
+    "v2": {
+      "factory": "bridge_harness.combined_player:CombinedPlayer",
+      "kwargs": {
+        "samples": 32,
+        "objective": "tricks",
+        "batch": true,
+        "near_tie": 0.125,
+        "belief": "$artifact:belief",
+        "policy": "$artifact:policy",
+        "exploration": 0.0
+      },
+      "budget": {
+        "samples": 32,
+        "objective": "tricks",
+        "batch": true,
+        "near_tie": 0.125
+      },
+      "artifacts": {
+        "belief": "/REPLACE_WITH_FINAL_V2/auction_weights.npz",
+        "policy": "/REPLACE_WITH_FINAL_V2/policy_weights.npz"
+      }
+    },
+    "ben": {
+      "factory": "bridge_harness.players:BenPlayer",
+      "kwargs": {
+        "url": "http://127.0.0.1:8085",
+        "timeout": 120
+      },
+      "budget": {
+        "mode": "full-search-portable-neural-dds"
+      },
+      "artifacts": {
+        "config": "/REPLACE_WITH_FROZEN_BEN/ben.conf",
+        "models_manifest": "/REPLACE_WITH_FROZEN_BEN/models-sha256.json"
+      },
+      "external": {
+        "mode": "full-search",
+        "revision": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+        "operator_verified": false
+      }
+    }
+  },
+  "screen_deals": 1000,
+  "screen_min_mean": 0.0,
+  "arena_workers": 1,
+  "selfplay_exploration": 0.2
+}

@@ -1,0 +1,24 @@
+{
+  "epoch": 1794451790.5691586,
+  "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+  "tests": {
+    "gen7_unique_tests_passed": 54,
+    "initial_run_passed": 53,
+    "initial_fixture_error": "Sparse checkout omitted historical v2 release manifest; fixture restored from pinned commit and the one affected test passed on rerun.",
+    "fleet_guard_tests_passed": 2
+  },
+  "test_logs": {
+    "tests.log": "70369f74f0cc5e8f3a45cb8059d1062ecc9a24aecf3b33fbade981fe4a200e81",
+    "test-fixture-rerun.log": "a626407facf1102b512cc38f00f6e7d889aa6280a5c03d1722ac6d1c4eb08dc5",
+    "preflight.log": "f1a9c4e62cca4721d8c9e13b144dc8e05b7f0266a70802518edbb5e2ff3e6a99"
+  },
+  "preflight": {
+    "deals": 6,
+    "pairs": 3,
+    "boards_each": 2,
+    "tree_consulted": 105,
+    "over_budget": 0
+  },
+  "source_completed_preserved": 3710,
+  "unused_source_families": 21290
+}

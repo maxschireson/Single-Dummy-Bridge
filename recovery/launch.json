@@ -1,0 +1,25 @@
+{
+  "runtime_command": [
+    "/workspace/work/arena-venv/bin/python",
+    "-u",
+    "ops/gen5_runtime.py",
+    "--run",
+    "/workspace/work/gen7-phase1-codex-20261112/run",
+    "--workers",
+    "3"
+  ],
+  "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+  "publisher": "/workspace/work/gen6-fast-selfplay-stream/publish_stream.py",
+  "ben_workers": 0,
+  "retry_failures": false,
+  "phase1_guard": "/workspace/work/gen6-fast-selfplay-stream/phase1_fleet.py",
+  "pooled_per_pair_target": 2000,
+  "phase2_authorized": false,
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "TF_NUM_INTRAOP_THREADS": "1",
+    "TF_NUM_INTEROP_THREADS": "1"
+  }
+}

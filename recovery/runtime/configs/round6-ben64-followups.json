@@ -1,0 +1,65 @@
+{
+  "schema": "gen6-ben-followups-plan-v1",
+  "authorized_by": "Max, 2026-11-11: Sorry go to Ben64 32 barely slows down. Replace medium/BEN32 only; retain fast/BEN16.",
+  "allocation": "split_two",
+  "seed": 202611116416,
+  "campaign": "gen6-ben64-followups-20261111",
+  "title": "Gen 6 · BEN64 and fast/BEN16 followups",
+  "pair_weights": {
+    "6-32~5RZ32": 16,
+    "6-32~6-256": 6,
+    "6-256~ben64": 3,
+    "6-32~ben": 3,
+    "6-32~3": 4,
+    "6-32~2": 4,
+    "6-32~1": 4
+  },
+  "roster": [
+    "6-32",
+    "6-256",
+    "5RZ32",
+    "3",
+    "2",
+    "1",
+    "ben",
+    "ben64"
+  ],
+  "common_bidder": "6-32",
+  "audit_references": {
+    "6-32": "3",
+    "6-256": "3"
+  },
+  "ben64": {
+    "id": "ben64",
+    "url": "http://127.0.0.1:8088",
+    "samples": 64,
+    "config": "configs/ben-gen6-64.conf"
+  },
+  "fallback_target": 25000,
+  "gate": {
+    "pair": "6-256~ben",
+    "metric": "own_imps",
+    "minimum_deals": 200,
+    "alpha": 0.05,
+    "required_branches": [
+      "arena-gen6-codex-feed",
+      "arena-gen6-medium-ben-feed",
+      "arena-gen6-chatgpt-feed"
+    ],
+    "medium_identity": "614435870f0a7f942d5659fe2b3404fb8c747d6f1fb57e7a021745f94b3b54b5",
+    "fast_identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def",
+    "ben16_identity": "ef98d53559f2d3b3f7f0e562e6da07fb6d0b797d54516b842edbce01162c7133",
+    "note": "Operational gate uses the existing dashboard exploratory paired Student-t 95% interval, not an always-valid confidence sequence.",
+    "metric_confirmation": "Max explicitly confirmed OVERALL native-bidding total, not common-auction play"
+  },
+  "notes": [
+    "The existing 15% BEN allocation is split evenly: 7.5% medium256/BEN64 and 7.5% fast32/BEN16. Other shares stay at 40/15/10/10/10.",
+    "BEN bidding remains neural-only; both opening lead and card play use the named sample budget.",
+    "Existing 13 accidental fast/BEN records remain archived; newly authorized fast/BEN records belong to a new immutable cohort.",
+    "The prior overall-significance gate has already passed; this BEN64 correction requires no further significance gate.",
+    "Preserve all existing BEN32 observations as BEN32. Drain existing work, use a fresh immutable BEN64 actor/cohort, verify server lead and play budgets, and publish distinct dashboard labels.",
+    "Preparation/launcher code must support ben64 rather than assuming the existing ben32 key. This plan is not evidence of a completed runtime switch."
+  ],
+  "allocation_confirmation": "Max explicitly selected splitting the current 15% evenly: medium/BEN64 and fast/BEN16",
+  "deployment_status": "authorized_pending_versioned_cutover_and_real_BEN64_preflight"
+}
