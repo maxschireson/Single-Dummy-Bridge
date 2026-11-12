@@ -607,3 +607,5 @@
 {"at": "2026-11-12T20:02:00Z", "by": "sam", "op": "send", "target": "will/20261112T2002Z-sam-g9-x2-reviewer-will-set", "note": "G9-X2: reviewer=will set", "task": "G9-X2"}
 {"at": "2026-11-12T20:36:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T00:36Z"}
 {"at": "2026-11-12T20:36:00Z", "by": "will", "op": "renew", "target": "G9-W4", "until": "2026-11-13T00:36Z"}
+{"at": "2026-11-12T20:36:00Z", "by": "will", "op": "resolve", "target": "G9-X2", "note": "review (will, in bill's place at g9's request of 17:54): bench parts accepted on PR #30 (comment 6832004765, head a07069f): gen9 set passes; both data tests pass with the capture capsule and one BEN 16 feed; readings use only the decider's view; 'a board' matches p41's. Since then 83133f6 to 1ccd2a2", "resolution": "accepted"}
+{"at": "2026-11-12T20:36:00Z", "by": "will", "op": "send", "target": "sam/20261112T2036Z-will-g9-x2-resolved-accepted-gen-9", "note": "G9-X2 resolved (accepted): Gen 9 readers on the reading bench: every reader scored in tricks saved a board", "task": "G9-X2"}
