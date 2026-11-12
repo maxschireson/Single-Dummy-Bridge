@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/work/launch_bridge_gen8.py", line 30, in <module>
+    heartbeat=json.loads((run/'heartbeat.json').read_text());assert time.time()-heartbeat['epoch']<30
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

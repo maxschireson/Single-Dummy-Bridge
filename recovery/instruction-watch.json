@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794502682.359444,
+  "checked_epoch": 1794503100.8192427,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -26,7 +26,7 @@
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
   "coordination_revision": "45fa41bc94e8ff5cb1ee54f8a9968400b5d6e1cd",
   "coordination_blob": "20c3235b39f3de8c0f90478e26a94b7f467b9903",
-  "registry_blob": "33f3708f9bdfc51d5a8eea0549d2cb5ac600a397",
+  "registry_blob": "41f305705dad9e5555276dbf81877a8b4f5be5f4",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -67,8 +67,8 @@
     },
     "status": "passed"
   },
-  "action": "authorized_gen8_cutover_validated_collector_started",
-  "status": "publisher_and_registry_pending",
+  "action": "applied_authorized_gen8_cutover",
+  "status": "live_registry_registered",
   "notification": "pending_meaningful_transition_notification",
   "source_and_artifacts_verified": true,
   "gen71_gate": "Historical; superseded by explicit Gen8 arena cutover. No Gen7.1 self-play transition.",
@@ -92,5 +92,65 @@
     }
   ],
   "historical_provenance": "recovery/history-index.json",
-  "transition_state": "/workspace/work/bridge-gen8-transition-state.json"
+  "transition_state": "/workspace/work/bridge-gen8-transition-state.json",
+  "registry_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c",
+  "health": {
+    "state.json": {
+      "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+      "completed": 14,
+      "target": 16036,
+      "contiguous": 14,
+      "by_pair": {
+        "8s-32~71s-32": 4,
+        "8s-32~1": 2,
+        "8s-32~5RZ32": 3,
+        "8c-32~71s-32": 3,
+        "8c-32~8s-32": 2
+      },
+      "root_games": 48,
+      "tables": 621,
+      "failures": 0,
+      "epoch": 1794503095.74025,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794503095.2006674,
+      "completed": 13,
+      "in_flight": [
+        13,
+        14,
+        15
+      ],
+      "workers": 4,
+      "ben_workers": 1,
+      "started_epoch": 1794502596.525406,
+      "stopping": false
+    },
+    "watchdog-status.json": {
+      "epoch": 1794503044.3027163,
+      "collector": "running",
+      "publisher": "running",
+      "ben": "ready"
+    },
+    "publisher-status.json": {
+      "epoch": 1794503065.7956183,
+      "status": "published",
+      "completed": 12
+    },
+    "process.json": {
+      "pid": 79917,
+      "epoch": 1794502595.459392
+    },
+    "publisher-process.json": {
+      "pid": 79982,
+      "epoch": 1794502684.0556977
+    },
+    "watchdog-process.json": {
+      "pid": 79983,
+      "epoch": 1794502684.0624979
+    }
+  },
+  "unresolved_failures": 0,
+  "writer_and_watchdog_locks": "held",
+  "result": "Validated immutable Gen8 successor running with three normal workers and one publisher; both predecessors permanently retired and all original25000 families accounted for."
 }

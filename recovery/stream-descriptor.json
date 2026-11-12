@@ -1,0 +1,57 @@
+{
+  "run": "/workspace/work/bridge-gen8-19bbdce5-20261112",
+  "source": "/workspace/work/bridge-gen8-source",
+  "publication": "/workspace/work/bridge-gen8-19bbdce5-publication",
+  "branch": "arena-gen8-19bbdce5-20261112-feed",
+  "manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
+  "seed": 5713345875519330500,
+  "target": 16036,
+  "initial_target": 25000,
+  "stream_id": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+  "registry_key": "gen6selfplay19bbdce5",
+  "generation": "8",
+  "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
+  "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+  "source_branch": "ops/gen8-19bbdce5-20261112",
+  "history": [
+    {
+      "run": "/workspace/work/bridge-gen6-fast-selfplay-new",
+      "source": "/workspace/work/bridge-feed-snapshot/recovery/runtime",
+      "publication": "/workspace/work/bridge-gen6-new-publication",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "completed": 6775,
+      "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+      "status": "permanently_retired"
+    },
+    {
+      "run": "/workspace/work/bridge-gen71-19bbdce5-20261112",
+      "source": "/workspace/work/bridge-gen71-source",
+      "publication": "/workspace/work/bridge-gen71-19bbdce5-publication",
+      "branch": "arena-gen71-19bbdce5-20261112-feed",
+      "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
+      "completed": 2189,
+      "revision": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+      "status": "permanently_retired"
+    }
+  ],
+  "transition": {
+    "status": "complete",
+    "state": "/workspace/work/bridge-gen8-transition-state.json",
+    "epoch": 1794503100.8192427
+  },
+  "instruction_automation_id": "Automation_7f5620b00f8881918cc8cb2fd1b2ba59",
+  "evaluation_exclusions": {
+    "file": "artifacts/validation/evaluation-exclusions.json",
+    "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "families": 34092,
+    "corpus_overlap": 0,
+    "audit": "family-accounting.json"
+  },
+  "retired_registry_keys": [
+    "gen6selfplay19bbdce5retired",
+    "gen71compare19bbdce5retired"
+  ],
+  "registry_cutover_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c",
+  "first_verified_feed_revision": "d053ecbb7f3d9e126ccd27d45a780d7e13e9f2c5"
+}

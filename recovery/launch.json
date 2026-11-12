@@ -1,5 +1,5 @@
 {
-  "status": "gen8_running_publication_pending",
+  "status": "running",
   "stream_id": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
   "registry_key": "gen6selfplay19bbdce5",
   "manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -30,10 +30,11 @@
       "status": "permanently_retired"
     }
   ],
-  "epoch": 1794502684.0635757,
+  "epoch": 1794503100.8192427,
   "processes": {
     "collector": 79917,
     "publisher": 79982,
     "watchdog": 79983
-  }
+  },
+  "registry_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c"
 }

@@ -5,5 +5,6 @@
   "test_resolution": "Full suite rerun with XDG_CACHE_HOME under /workspace.",
   "plan_copy_failure": "A JSON round trip changed numeric types and actor hashes; identity guard refused preparation.",
   "plan_resolution": "Plan regenerated from authoritative bytes through Python, exact release identities verified before a run was created.",
-  "production_failures": 0
+  "production_failures": 0,
+  "launcher_readiness": "Initial helper saw a stale prepared heartbeat immediately after spawning. Existing collector retained; fresh timestamp verified and publisher/watchdog started without restarting collection."
 }
