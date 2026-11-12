@@ -1,5 +1,5 @@
 {
-  "status": "resuming-after-validated-operational-reload",
+  "status": "running-verified",
   "epoch": 1794494008.0999682,
   "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "reason": "Trainer published1887 additional v4.1 training families absent from the prior exclusion list; strengthen eligibility without modifying frozen science. Full20257-family corpus and current pooled inventory have zero overlap with the supplemental list.",
@@ -12949,5 +12949,41 @@
     "WATCHDOG_STOP",
     "PUBLISH_STOP"
   ],
-  "marker_removal_authority": "Exact tokens from this intentional maintenance only; no failures cleared"
+  "marker_removal_authority": "Exact tokens from this intentional maintenance only; no failures cleared",
+  "resume_records": [
+    {
+      "index": 1603,
+      "pair": "71s-32~6-32",
+      "episode_sha256": "fa1e80351964ae48c7149fbb9a12cfd603477bb4c77554aaa9c958414be5a0ac",
+      "gap_forks": 9,
+      "guess_size": 920,
+      "best_share": 4695,
+      "replay_and_score_verified": true
+    },
+    {
+      "index": 1604,
+      "pair": "71s-32~7s-32",
+      "episode_sha256": "6588c4510b0f2a385636a68d647d7bb293220e905c6083a65e69d70b4eb155e1",
+      "gap_forks": 12,
+      "guess_size": 1075,
+      "best_share": 4981,
+      "replay_and_score_verified": true
+    },
+    {
+      "index": 1605,
+      "pair": "71s-32~6-32",
+      "episode_sha256": "0d61ccd790b8cd486abde136b3e5027d49345714cfb366c29abcbe8f2a0ad723",
+      "gap_forks": 12,
+      "guess_size": 761,
+      "best_share": 3523,
+      "replay_and_score_verified": true
+    }
+  ],
+  "completed_after_resume": 1606,
+  "locks_after_resume": {
+    ".writer.lock": true,
+    ".watchdog.lock": true,
+    ".publisher.lock": true
+  },
+  "all_drained_receipts_reverified_after_resume": true
 }
