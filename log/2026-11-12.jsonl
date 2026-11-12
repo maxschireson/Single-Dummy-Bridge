@@ -500,3 +500,4 @@
 {"at": "2026-11-12T16:04:00Z", "by": "sam", "op": "send", "target": "g9/20261112T1604Z-sam-e9-16-part-1b-which-equal-card", "note": "E9-16 part 1b: which equal card we play is worth 0.038 +- 0.013 tricks a board to a reader of our strength; 0.023 of it is our defenders' spots read by declarer; partner gets 0.004 from them", "task": "E9-15"}
 {"at": "2026-11-12T16:10:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1610Z-dave-d6-at-16-06-epoch-2-under-way", "note": "D6 at 16:06: epoch 2 under way; floor boards cost 45.6 CPU-s on azure4, so the end moves to about 23:00 UTC", "task": "G9-D6"}
 {"at": "2026-11-12T16:10:00Z", "by": "dave", "op": "renew", "target": "G9-D6", "until": "2026-11-12T20:10Z"}
+{"at": "2026-11-12T16:10:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1610Z-dave-d6-at-16-06-full-text-epoch-2", "note": "D6 at 16:06 (full text): epoch 2 under way; floor boards 45.6 CPU-s on azure4; end about 23:00 UTC", "task": "G9-D6"}
