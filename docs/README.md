@@ -16,7 +16,7 @@
 ## Generations
 
 - [Index: one page per generation, with results](generations/README.md)
-- [Gen 7 (current)](generations/gen7/README.md): [phase 1 notice](gen7_candidate_2026-11-11.md), [self-play notice of 12 November](gen7_selfplay_2026-11-12.md), [alpha guide](gen7_alpha_2026-11-11.md), [prototype notes](gen7_prototype_2026-11-11.md)
+- [Gen 7 (current)](generations/gen7/README.md): [phase 1 notice](gen7_candidate_2026-11-11.md), [self-play notice of 12 November](gen7_selfplay_2026-11-12.md), [Gen 7.1 notice](gen71_2026-11-12.md), [alpha guide](gen7_alpha_2026-11-11.md), [prototype notes](gen7_prototype_2026-11-11.md)
 - [Gen 6 (closed 12 November)](generations/gen6/README.md)
 - [Gen 5 / 5R / 5RZ](generations/gen5/README.md)
 - [Generation cleanup procedure](generation-cleanup.md)
