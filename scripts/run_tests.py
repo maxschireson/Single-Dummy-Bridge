@@ -30,7 +30,9 @@ import platform
 import re
 import subprocess
 import sys
+import tempfile
 import time
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -147,6 +149,8 @@ def prepare(with_heavy: list[str], force_build: bool) -> dict:
     if v < (3, 11):
         raise SystemExit(f"Python {v.major}.{v.minor}: the project needs 3.11 or later")
     need = [spec for mod, spec in BASE_PACKAGES.items() if missing_module(mod)]
+    if missing_module("pytest") and any(pytest_style(p.name) for p in (ROOT / "tests").glob("test_*.py")):
+        need.append("pytest")
     for mod in with_heavy:
         spec = OPTIONAL.get(mod, mod)
         if missing_module(mod) and spec not in need:
@@ -167,7 +171,54 @@ def prepare(with_heavy: list[str], force_build: bool) -> dict:
 
 # ---------------------------------------------------------------- run
 
+def pytest_style(name: str) -> bool:
+    """A file of plain test functions (or one that imports pytest) is invisible to unittest discovery."""
+    src = (ROOT / "tests" / name).read_text(errors="replace")
+    return bool(re.search(r"^import pytest|^from pytest", src, re.M)) or (
+        bool(re.search(r"^def test_", src, re.M)) and "unittest.TestCase" not in src and "(TestCase)" not in src)
+
+
+def run_pytest(name: str, timeout: int, env: dict) -> dict:
+    t = time.time()
+    if missing_module("pytest"):
+        return dict(file=name, tests=[], status="not run", needs="pytest", seconds=0.0)
+    with tempfile.TemporaryDirectory() as d:
+        xml = Path(d) / "junit.xml"
+        try:
+            r = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", f"--junitxml={xml}", f"tests/{name}"],
+                               cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)
+        except subprocess.TimeoutExpired:
+            return dict(file=name, tests=[], status="timeout", seconds=round(time.time() - t, 1), detail=f"no result after {timeout} s")
+        if not xml.exists():
+            return dict(file=name, tests=[], status="crashed", seconds=round(time.time() - t, 1),
+                        detail=f"pytest exit {r.returncode}", stderr=(r.stdout + r.stderr)[-2000:])
+        tests = []
+        for case in ET.parse(xml).getroot().iter("testcase"):
+            tid = f"{case.get('classname')}.{case.get('name')}"
+            fail = case.find("failure") if case.find("failure") is not None else case.find("error")
+            skip = case.find("skipped")
+            if fail is not None:
+                text = (fail.get("message") or "") + "\n" + (fail.text or "")
+                m = re.search(r"No module named '([A-Za-z0-9_]+)", text)
+                if m and m.group(1) in OPTIONAL:
+                    tests.append(dict(id=tid, outcome="not run", detail="needs " + m.group(1)))
+                else:
+                    tests.append(dict(id=tid, outcome="failed", detail=text.strip()[-3000:]))
+            elif skip is not None:
+                tests.append(dict(id=tid, outcome="skipped", detail=skip.get("message") or "skipped"))
+            else:
+                tests.append(dict(id=tid, outcome="passed", detail=""))
+    res = dict(file=name, tests=tests, import_error=None, runner="pytest", seconds=round(time.time() - t, 1))
+    if not tests and r.returncode not in (0, 5):
+        err = r.stdout + r.stderr
+        res["import_error"] = err[-3000:]
+    res["status"] = classify(res)
+    return res
+
+
 def run_file(name: str, timeout: int, env: dict) -> dict:
+    if pytest_style(name):
+        return run_pytest(name, timeout, env)
     t = time.time()
     try:
         r = subprocess.run([sys.executable, "-c", RUNNER, name, json.dumps(sorted(OPTIONAL))], cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)
@@ -238,6 +289,8 @@ def render(results: list[dict], meta: dict) -> str:
     for r in sorted(results, key=lambda r: (order.get(r["status"], 9), r["file"])):
         c = {k: sum(1 for t in r["tests"] if t["outcome"] == k) for k in ("passed", "failed", "error", "skipped", "not run")}
         note = ""
+        if r["status"] == "no tests":
+            note = "no test found: check how this file defines its tests"
         if r["status"] in ("not run", "partly not run"):
             note = f"needs `{r['needs']}`"
         elif r["status"] in ("import error", "crashed", "timeout"):
