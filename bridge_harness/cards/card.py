@@ -165,7 +165,7 @@ class Card:
     """A validated descriptor with defaults filled in."""
 
     def __init__(self, descriptor):
-        self.residual = {str(k): frozenset(v) for k, v in (descriptor.get('residual') or {}).items()}
+        self.residual = {str(k): (dict(v) if isinstance(v, dict) else list(v)) for k, v in (descriptor.get('residual') or {}).items()}
         descriptor = unflatten({k: v for k, v in descriptor.items() if k not in ('provenance', 'generator', 'residual')})
         if descriptor.get('schema', SCHEMA) != SCHEMA:
             raise ValueError(f'not a {SCHEMA} document: {descriptor.get("schema")!r}')

@@ -3,7 +3,8 @@
 Distance (architecture 3): bid deals with a profile's generator and count, over the calls a
 card covers, how often the card's first fitting rule is not the call made, by family. Families
 whose break rate passes a threshold are the card's *residual* against that profile: where the
-filter should speak even when the profile matches.
+filter should speak even when the profile matches. Families with too few calls to measure stay
+read (residual_block); calls where only the card's catch-all fits are counted apart (`silent`).
 
 Detection (architecture 5): once a board is over all hands are known, so the likelihood of a
 pair's calls under a profile is a likelihood of calls given hands:
@@ -38,7 +39,7 @@ def card_distance(card, bid_deal, deals=1000, seed=0, residual_at=0.10):
     system = card if isinstance(card, CardSystem) else CardSystem(card)
     rng = random.Random(seed)
     tally = defaultdict(Counter)
-    covered = total = 0
+    covered = total = skipped = silent = 0
     for i in range(deals):
         deck = list(range(52))
         rng.shuffle(deck)
@@ -47,6 +48,7 @@ def card_distance(card, bid_deal, deals=1000, seed=0, residual_at=0.10):
         try:
             calls = bid_deal(hands, dealer, vul)
         except (ValueError, IndexError):
+            skipped += 1
             continue
         for t, call in enumerate(calls):
             seat = (dealer + t) % 4
@@ -57,11 +59,23 @@ def card_distance(card, bid_deal, deals=1000, seed=0, residual_at=0.10):
             covered += 1
             f = features_of_hands([hands[seat]])
             first = next(r for r in rules if r.pred.dist(f)[0] == 0)
+            if first.family == 'catch':                   # the card is silent on this hand here: not a contradiction
+                silent += 1
+                covered -= 1
+                continue
             tally[first.family]['break' if first.call != call else 'ok'] += 1
     nb = sum(c['break'] for c in tally.values())
     by = {k: [c['break'], c['break'] + c['ok']] for k, c in sorted(tally.items())}
-    residual = sorted(k for k, (b, n) in by.items() if n >= 20 and b / n > residual_at)
-    return dict(rate=nb / max(covered, 1), covered=covered, calls=total, by_family=by, residual=residual)
+    measured = sorted(k for k, (b, n) in by.items() if n >= 20)
+    residual = sorted(k for k in measured if by[k][0] / by[k][1] > residual_at)
+    return dict(rate=nb / max(covered, 1), covered=covered, calls=total, by_family=by, measured=measured, residual=residual,
+                silent=silent, skipped_deals=skipped)
+
+
+def residual_block(distance):
+    """A card document's residual entry for one profile, from card_distance: families read under that profile are the
+    residual ones and every family not measured (believe the declaration where nothing says otherwise)."""
+    return {'residual': list(distance['residual']), 'measured': list(distance['measured'])}
 
 
 # ---- call likelihoods ----------------------------------------------------------------------------

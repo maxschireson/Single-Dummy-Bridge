@@ -93,7 +93,14 @@ class CardFactor:
         self.system = card if hasattr(card, 'rules') else CardSystem(card)
         self.exhaustive = getattr(self.system, 'exhaustive', True)
         own = getattr(getattr(self.system, 'card', None), 'residual', {}) or {}
-        self.residual = {str(k): frozenset(v) for k, v in (residual if residual is not None else own).items()}
+        # per profile: (families read, families measured) -- a list gives the families read only; a dict
+        # {'residual': [...], 'measured': [...]} reads the residual and every family not measured
+        self.residual = {}
+        for k, v in (residual if residual is not None else own).items():
+            if isinstance(v, dict) or (hasattr(v, 'get') and not isinstance(v, (set, frozenset))):
+                self.residual[str(k)] = (frozenset(v.get('residual', ())), frozenset(v.get('measured', ())))
+            else:
+                self.residual[str(k)] = (frozenset(v), None)
         self.dev = deviation or Deviation()
         self.lam = lam
         self.negative = True               # negative inference from the order of a table
@@ -111,14 +118,14 @@ class CardFactor:
                 out.append((t, ctx, rules))
         return out
 
-    def log_score_features(self, f, seat, dealer, vulnerability, auction, explain=False, families=None):
-        """families: if given, only calls whose meaning belongs to one of these families are read."""
+    def log_score_features(self, f, seat, dealer, vulnerability, auction, explain=False, families=None, skip=None):
+        """families: if given, only calls whose meaning belongs to one of these families are read; skip: families not read."""
         total = np.zeros(len(f['hcp']))
         parts = []
         calls = [Context.make(auction, dealer, seat).calls][0]
         for t, ctx, rules in self.seat_terms(calls, dealer, seat, vulnerability):
             fam = next((r.family for r in rules if r.call == calls[t]), None)
-            if fam is None or (families is not None and fam not in families):
+            if fam is None or (families is not None and fam not in families) or (skip is not None and fam in skip):
                 parts.append((t, calls[t], None))
                 continue
             lp = call_log_prob(rules, calls[t], f, self.dev.eps(fam), self.lam, self.exhaustive, self.negative)
@@ -130,8 +137,14 @@ class CardFactor:
         """FitScorer.type_log_score's signature. profile=None: the full term (the reserved profile 'card').
         profile=<system id>: only the card's residual contexts against that profile; a profile whose residual was
         never measured gets the full term (the declaration is believed where nothing says otherwise)."""
-        fams = self.residual.get(str(profile)) if profile is not None else None
-        return self.log_score_features(hand_features(length, hon), seat, dealer, vulnerability, auction, families=fams)
+        f = hand_features(length, hon)
+        entry = self.residual.get(str(profile)) if profile is not None else None
+        if entry is None:
+            return self.log_score_features(f, seat, dealer, vulnerability, auction)
+        read, measured = entry
+        if measured is None:
+            return self.log_score_features(f, seat, dealer, vulnerability, auction, families=read)
+        return self.log_score_features(f, seat, dealer, vulnerability, auction, skip=measured - read)
 
     def observe_board(self, hand_types, dealer, vulnerability, auction, seats=None):
         """After a board, with the hands known: count, per family, whether each covered call was the card's call."""
