@@ -236,13 +236,15 @@ class Believer:
     So a seat's line is a plan for one layout, revised as the play contradicts it. Guesses are resolved the way the
     seat's own beliefs lean, not the way the layout really is, and that is the difference from double dummy.
     `layouts` above 1 draws that many (the first by `belief`, the rest drawn) and plays the card with the best total.
+    With `top` above 0 the solver only chooses among the net's likeliest cards, and is not asked when there is one.
     """
 
-    def __init__(self, net, dds, belief='map', power=1., layouts=1, seed=0):
+    def __init__(self, net, dds, belief='map', power=1., layouts=1, seed=0, top=0, floor=.05):
         if belief not in ('map', 'draw'):
             raise ValueError('Unknown belief')
         self.net, self.dds, self.belief, self.power, self.layouts = net, dds, belief, power, layouts
-        self.rng = np.random.default_rng(seed)
+        self.top, self.floor = top, floor       # top above 0: the solver chooses only among the net's `top` likeliest cards
+        self.rng = np.random.default_rng(seed)  # (those with at least `floor` of the probability); one such card is played unsolved
         self.net_rows = self.solves = 0
 
     def believed(self, lean, held, cap, void_a, void_b, draw):
@@ -275,6 +277,14 @@ class Believer:
         """The card for row i, whose chooser is seat k: the solver's best over the believed layout(s), the net's
         log-probabilities `logp` breaking ties. `owner` is the owner head's output for the row."""
         a, b = [s for s in range(4) if s != k and s != rows.dummy]          # the two seats this seat cannot see
+        keep = None
+        if self.top:                                                        # the net proposes, the solver disposes
+            order = np.argsort(-logp, kind='stable')[:self.top]
+            share = np.exp(logp[order] - logp[order[0]])
+            total_p = np.exp(logp - logp[order[0]])[logp > -1e8].sum()
+            keep = {int(x) for x, q in zip(order, share) if q / total_p >= self.floor and logp[x] > -1e8} or {int(order[0])}
+            if len(keep) == 1:
+                return next(iter(keep))
         held = (rows.holder[i] == a) | (rows.holder[i] == b)
         lean = owner[:, (a - k) % 4 - 1] - owner[:, (b - k) % 4 - 1]
         cap = int((rows.holder[i] == a).sum())
@@ -282,7 +292,8 @@ class Believer:
         for n in range(self.layouts):
             first = self.believed(lean, held, cap, rows.void[i, a], rows.void[i, b], draw=self.belief == 'draw' or n > 0)
             for x, v in self.solve(rows, i, k, a, b, first, held).items():
-                total[x] = total.get(x, 0) + v
+                if keep is None or x in keep:
+                    total[x] = total.get(x, 0) + v
         best = max(total.values())
         return max((x for x, v in total.items() if v == best), key=lambda x: (logp[x], -x))
 

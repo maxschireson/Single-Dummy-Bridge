@@ -57,10 +57,11 @@ def parse_sims(text):
 
 def seat_player(net, dds, mode, seed):
     """top, draw, blend: the net's card. map, bdraw: the solver's card for the seat's believed layout (most likely,
-    or drawn); a number after either (map3) is how many believed layouts are solved."""
-    for name, belief in (('map', 'map'), ('bdraw', 'draw')):
+    or drawn); a number after either (map3) is how many believed layouts are solved. hyb, hyb3: as map, but the
+    solver only chooses among the net's three likeliest cards and is not asked when the net has one card in mind."""
+    for name, belief, top in (('map', 'map', 0), ('bdraw', 'draw', 0), ('hyb', 'map', 3)):
         if mode.startswith(name):
-            return Believer(net, dds, belief, layouts=int(mode[len(name):] or 1), seed=seed)
+            return Believer(net, dds, belief, layouts=int(mode[len(name):] or 1), seed=seed, top=top)
     return NetPlayer(net, mode, seed=seed)
 
 
