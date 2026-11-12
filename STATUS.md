@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 15:15 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 15:16 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -62,8 +62,8 @@ Generated 2026-11-12 15:15 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 15:53 | leased | high | 2026-11-13T16:00Z |  |
-| [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z |  |
-| [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z |  |
+| [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired |
+| [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired |
 | [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T12:00Z |  |
 | [E9-15](experiments/E9-15.md) | Honesty by situation: a signal expert per known opponent (BEN first) | sam | sam until 11-12 17:17 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T04:00Z |  |
@@ -83,7 +83,7 @@ Generated 2026-11-12 15:15 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 11:16 | 51 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-12 14:12 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-12 15:16 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 15:15 | 4 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 15:06 | 3 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 15:06 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
