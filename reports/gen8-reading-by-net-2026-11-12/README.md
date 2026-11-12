@@ -145,7 +145,7 @@ v4.1 and with `near` set from a target in nats):
 | near 0.2, declarer's decisions only | +1.10 | +0.97 | +0.105 +- 0.016 |
 | near 0.2, defenders' decisions only | +0.98 | +0.82 | +0.065 +- 0.010 |
 
-These were posted on `box/coordination` at 13:05 UTC, before the box runs of E9-0 started; its
+These were posted on `box/coordination` at 13:01 UTC, before the box runs of E9-0 started; its
 first played figure, from 91 sandbox boards at near 0.4, was +1.39 +- 0.39 IMPs a board, against
 about +1.04 from the proxy at 3.6 IMPs a trick.
 
