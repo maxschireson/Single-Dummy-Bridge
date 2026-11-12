@@ -10,7 +10,9 @@
       "environment": "codex",
       "name": "Gen 7.1 · Codex policy comparison and Gen6",
       "branch": "arena-gen7-1-compare-codex-20261112-feed",
-      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "retired": true,
+      "revision": "71a6dc2dbc8985175c476388115bc4f301e7452f"
     },
     {
       "key": "gen71independent",
@@ -851,6 +853,16 @@
       "name": "Gen 8 · azure1 (main mix)",
       "branch": "arena-gen8-azure1-feed",
       "cohort": "b9900c30105cc39650eb34352312502b93f1f70bf29398da240b70374c058c9e"
+    },
+    {
+      "key": "gen8codexcandidate",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "codex",
+      "name": "Gen8 · Codex main mix (standard and Precision)",
+      "branch": "arena-gen8-candidate-codex-20261112-feed",
+      "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
     }
   ],
   "activation": {
@@ -1188,7 +1200,7 @@
       "restart_authorized": false
     },
     "gen71codexcompare": {
-      "status": "Scientific cohort unchanged; expanded trainer-published v4.1 training exclusions applied to pooled eligibility",
+      "status": "Permanently retired after1974boards for authorized Gen8 transition; all receipts/episodes and frozen science preserved",
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
       "authority": "Max05:42 Nov12 effective06:00; all arena collectors, relayed05:44 and reaffirmed05:57 on box/coordination",
@@ -1243,7 +1255,75 @@
         "full_corpus_union_overlap": 0,
         "base_frozen_list_manifest_and_proof_preserved": true
       },
-      "guard_validation": "14 guard tests; official checker matched identical pinned refs with the union; all1603 pre-reload receipt/episode pairs and scientific files reverified; three resumed boards replayed with observed gap/guess capture"
+      "guard_validation": "14 guard tests; official checker matched identical pinned refs with the union; all1603 pre-reload receipt/episode pairs and scientific files reverified; three resumed boards replayed with observed gap/guess capture",
+      "completed": 1974,
+      "by_pair": {
+        "71s-32~7s-32": 1316,
+        "71s-32~6-32": 658
+      },
+      "final_commit": "71a6dc2dbc8985175c476388115bc4f301e7452f",
+      "retired": true,
+      "successor_key": "gen8codexcandidate",
+      "transition_authority": "Max16:11Nov12; all collectors switch to Gen8, relayed box/coordination633246b"
+    },
+    "gen8codexcandidate": {
+      "status": "Collecting authorized Gen8 main mix; preflight, exclusions and common/native export verified",
+      "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "source_commit": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
+      "source_branch": "feature/gen8-prototype-20261112",
+      "authority": "Max15:32/15:33, reaffirmed16:11Nov12; allcollectors notice box/coordination633246b",
+      "plan": "configs/round8-candidate.json",
+      "pair_weights": {
+        "8s-32~71s-32": 2,
+        "8c-32~71s-32": 1,
+        "8c-32~8s-32": 1,
+        "8s-32~5RZ32": 1,
+        "8s-32~1": 1
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "target": 18283,
+      "independent_source": true,
+      "shared_capsule_shard": false,
+      "actors": {
+        "8s-32": "269fdf1854f474f4ec19429bba453ce810d68681ed55c8118897b6d9f25b5a6a",
+        "8c-32": "f60c9782f5c838eca1e1c61fcc36a8bf08db9afb0873caeb75a8aa69bc825924",
+        "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f"
+      },
+      "policy_v41_sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed",
+      "system_scorer_sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d",
+      "rule_bidder_identity": "f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c",
+      "gen71_comparison_gate_enabled": false,
+      "selfplay_launch_enabled": false,
+      "preflight": {
+        "deals": 10,
+        "each_pair": 2,
+        "gap_forks": 185,
+        "guess_size": 10067,
+        "best_share": 45510,
+        "tree_consultations": 653,
+        "tree_budget_overruns": 0,
+        "tests_passed": 148,
+        "tests_skipped": 1,
+        "common_native_export_verified": true
+      },
+      "evaluation_exclusions": {
+        "source": "transfer/v41-training-families-union-20261112@fccbbd80504272151e298799878bdd37db632c47",
+        "families": 34092,
+        "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+        "path": "recovery/artifacts/validation/evaluation-exclusions.json",
+        "audit_path": "recovery/evaluation-exclusion-audit.json",
+        "corpus_families": 18283,
+        "corpus_training_overlap": 0,
+        "completed_ancestor_overlap": 0
+      },
+      "preserved_gen71_boards": 1974,
+      "preserved_completed_ancestor_boards": 6717,
+      "history_key": "gen71codexcompare",
+      "history_final_revision": "71a6dc2dbc8985175c476388115bc4f301e7452f",
+      "systems_declared": true,
+      "auction_source": "systems:NS|EW",
+      "conditions": "common and native are paired conditions, scored separately; rooms/forks are not independent boards"
     }
   },
   "requested_match_mix": {
