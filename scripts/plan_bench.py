@@ -75,11 +75,11 @@ def imp_gap(o, weights, a_tricks, b_tricks):
     return float(sum(w * imps(points(x) - points(y)) for w, x, y in zip(weights, a_tricks, b_tricks)))
 
 
-def start(nets, sims, from_trick, to_trick, ties, seed):
+def start(nets, sims, from_trick, to_trick, ties, seed, layouts=0, max_gap=99.):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     six = player(check.spec('gen6'), ROOT)
     STATE.update(six=six, nets={k: PolicyNet(Path(v).resolve(), six.scorer) for k, v in nets.items()}, sims=sims,
-                 from_trick=from_trick, to_trick=to_trick, ties=ties, seed=seed)
+                 from_trick=from_trick, to_trick=to_trick, ties=ties, seed=seed, layouts=layouts, max_gap=max_gap)
 
 
 def forks_of(e):
@@ -108,6 +108,8 @@ def pairs_of(path):
         declarer = board.contract.declarer
         publics = {}
         for table_a, table_b, ply, forced, band, estimated, propensity, cost_imps in forks:
+            if estimated > STATE.get('max_gap', 99.) + 1e-9:
+                continue
             root, fork = e['tables'][table_a], e['tables'][table_b]
             act = root['actions'][ply]
             if not act.get('gen6') or len(root['actions']) <= ply or root.get('status', 'ok') != 'ok' or fork.get('status', 'ok') != 'ok':
@@ -129,8 +131,18 @@ def pairs_of(path):
             started = time.perf_counter()
             worlds, weights, _ = six.layouts(o, view, six.source(o, view), rng)
             weights = np.asarray(weights, float)
+            first, draws = (len(worlds), weights), 1
+            if STATE.get('layouts', 0) > len(worlds) >= 8:          # more layouts than one draw of the bot's gives
+                worlds, pool_w = list(worlds), [weights]
+                while len(worlds) < STATE['layouts'] and draws < 64:
+                    more, w2, _ = six.layouts(o, view, six.source(o, view), np.random.default_rng([STATE['seed'], ply, int(d['family'][:8], 16), draws]))
+                    worlds += list(more)
+                    pool_w.append(np.asarray(w2, float))
+                    draws += 1
+                weights = np.concatenate(pool_w) / draws
             u = np.array([[x[a], x[b]] for x in (check.utilities(o, values) for values, _ in check.solve(six, o, worlds))])
             row['pimc'] = float(weights @ (u[:, 0] - u[:, 1]))
+            row['pimc32'] = float(first[1] @ (u[:first[0], 0] - u[:first[0], 1]))      # the first draw alone, as the bot searches
             row['imp_pimc'] = imp_gap(o, weights, u[:, 0], u[:, 1])
             row['layouts'] = len(worlds)
             row['neff'] = float(1 / (weights ** 2).sum())
@@ -191,6 +203,8 @@ def main():
     p.add_argument('--workers', type=int, default=2)
     p.add_argument('--seconds', type=float, default=1e9)
     p.add_argument('--seed', type=int, default=0)
+    p.add_argument('--max-gap', type=float, default=99., help='keep only pairs whose recorded gap is at most this')
+    p.add_argument('--layouts', type=int, default=0, help='layouts a pair, drawn as repeated draws of the bot\'s (0 = one draw, 32)')
     p.add_argument('--out', type=Path, required=True)
     a = p.parse_args()
     nets = dict(item.split('=') for item in a.nets.split(','))
@@ -201,11 +215,11 @@ def main():
 
     def save():         # also every 50 files, so a stopped run keeps what it has (`files` says how many boards the rows cover)
         part = a.out.with_suffix('.part')
-        part.write_text(json.dumps(dict(settings=dict(nets=nets, sims=sims, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, files=done,
+        part.write_text(json.dumps(dict(settings=dict(nets=nets, sims=sims, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, layouts=a.layouts, max_gap=a.max_gap, files=done,
                                                       skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
         part.replace(a.out)
 
-    with Pool(a.workers, initializer=start, initargs=(nets, sims, a.from_trick, a.to_trick, a.ties, a.seed)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(nets, sims, a.from_trick, a.to_trick, a.ties, a.seed, a.layouts, a.max_gap)) as pool:
         for got in pool.imap(pairs_of, files, chunksize=2):
             rows += got
             done += 1
