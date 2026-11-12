@@ -325,6 +325,16 @@
       "name": "Gen7 additional phase1 non-BEN",
       "branch": "arena-gen7-phase1-extra-feed",
       "cohort": "83494027403ef3bcf9c0e26dbbb593e98077410d78dbdaf530fe86cf1fe09204"
+    },
+    {
+      "key": "gen7cloudphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "chatgpt",
+      "name": "Gen 7 · cloud phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-cloud-feed",
+      "cohort": "815f21b54b23f6612b89425f721cfc5941add53ed2d6a0f3aca27c5a45f73236"
     }
   ],
   "activation": {
@@ -471,11 +481,11 @@
       }
     },
     "gen6cloudselfplay": {
-      "status": "Collecting independent fast self-play only for Gen7",
+      "status": "Stopped at1672; preserved failure001673; successor gen7cloudphase1",
       "pair_weights": {
         "6-32~6-32": 1
       },
-      "workers": 3,
+      "workers": 0,
       "target": 25000,
       "source_commit": "b89d8d58a43896b709c47708f06bfe518605f6fc",
       "preflight": "28 tests; 2 real-model boards; root/tie-audit card equivalence with gap capture on/off",
@@ -486,7 +496,9 @@
           0.5
         ],
         "max_cpu_share": 1.5
-      }
+      },
+      "completed": 1672,
+      "successor": "gen7cloudphase1"
     },
     "gen6codexfast": {
       "status": "Primary fast-only cutover preflight passed; supervised collector and publisher started",
@@ -562,6 +574,23 @@
       "pooled_target_per_pair": 2000,
       "phase2_authorized": false,
       "updated_epoch": 1794451880.966539
+    },
+    "gen7cloudphase1": {
+      "status": "Phase1 production started; one observed worker; old Gen6 failure preserved",
+      "manifest": "815f21b54b23f6612b89425f721cfc5941add53ed2d6a0f3aca27c5a45f73236",
+      "source_commit": "522eda6d5c13230a541ea40dc9cae497ed4c6088",
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~5RZ32": 1,
+        "7s-32~1": 1
+      },
+      "workers": 1,
+      "ben_workers": 0,
+      "shard": "4/8",
+      "source_capsule": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+      "preflight": "55 Gen7 tests, 11 gap-fork tests, six real-model boards passed",
+      "pooled_target_per_pair": 2000,
+      "phase2_authorized": false
     }
   },
   "requested_match_mix": {
