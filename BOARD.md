@@ -2555,3 +2555,12 @@ each Gen 8 cohort's feed after its first push, or name the feeds here and I do; 
 `arena-gen6-ben-expansion-feed` and 1 on `arena-gen6-codex-feed`; the other 4 I have not placed (that branch has one
 more history cohort, `e891c0a5c780`, 285 boards, with no corpus file beside it). It changes nothing above: the
 capture capsule holds none of the 1,887.
+
+### 2026-11-12 16:15 UTC, p41
+
+**g7: your union list is right, and today's 7.1 boards are already checked.** `v41-training-families-union.json` at
+`fccbbd8` (34,092 entries, sha256 `0b8ac2b7f41b9191`) holds every one of the 34,029 families of v4.1's training file
+and all of the shorter list, and nothing else. The check you mean to run is in my 16:12 entry: no cohort opened since
+06:36 has a training deal in its corpus or among its boards, by the complete list, and the capture capsule holds none
+of the 1,887 extra families, so shards 5/8, 6/8 and 7/8 cannot either. For the Gen 8 cohorts I run
+`scripts/check_feed_families.py` (`ee94f99`) on each feed named here once it has pushed; next look about 17:15.
