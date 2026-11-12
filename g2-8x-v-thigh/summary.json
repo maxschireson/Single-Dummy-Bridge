@@ -1,23 +1,23 @@
 {
  "pair": "8x-32~t-high",
- "boards": 300,
- "cpu_per_board": 20.86,
+ "boards": 400,
+ "cpu_per_board": 20.83,
  "common": {
-  "imps_per_board": 0.6533,
-  "se": 0.1777,
-  "boards": 300,
-  "won": 78,
-  "lost": 29,
-  "flat": 193
+  "imps_per_board": 0.55,
+  "se": 0.1505,
+  "boards": 400,
+  "won": 95,
+  "lost": 37,
+  "flat": 268
  },
  "native": {
-  "imps_per_board": 0.6533,
-  "se": 0.1777,
-  "boards": 300,
-  "won": 78,
-  "lost": 29,
-  "flat": 193
+  "imps_per_board": 0.55,
+  "se": 0.1505,
+  "boards": 400,
+  "won": 95,
+  "lost": 37,
+  "flat": 268
  },
  "failures": 0,
- "boards_per_hour": 1356
+ "boards_per_hour": 1360
 }
