@@ -30,7 +30,8 @@ readings  For every stored decision, the log weight a bot spec from --bots (buil
           an E9-14 head (scripts/gen9_play_head.py's heads.json, role ben.declarer) at FACTOR in place of the net at 0.3.
           --expert-reading NAME=MODELS.json:VERSION:SIZE:MODEL is --expert-base (r9b-32) with the opposing defenders' spots,
           wherever bridge_harness.signal_expert finds an occasion, read by an E9-15 model (m1, m2 or m3 of
-          scripts/gen9_signal_expert.py's models.json) in place of its emission table; its class term is unchanged.
+          scripts/gen9_signal_expert.py's models.json; MODEL-first reads first rounds only) in place of its emission table;
+          its class term is unchanged.
 report    The bench's report on OUT; `--against` pairs every reading with one.
 box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
           there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
@@ -217,8 +218,8 @@ class HeadReading:
 class ExpertReading:
     """A Gen 9 reader whose opposing defenders' spots are read by an E9-15 signal model at every occasion it defines."""
 
-    def __init__(self, base, model):
-        self.base, self.model = base, model
+    def __init__(self, base, model, first_round_only=False):
+        self.base, self.model, self.first_round_only = base, model, first_round_only
         self.g7 = base.g7
 
     def meet(self, opponent):
@@ -234,7 +235,7 @@ class ExpertReading:
             if chooser != c.declarer and chooser % 2 != o.controller % 2 and q.opponent_signals is not None:
                 original = view.original(assign, view.hidden.index(chooser)).astype(bool)
                 oc = occasion(o.history, i, c, o.original_hand(c.dummy), original)
-                if oc is not None:
+                if oc is not None and not (self.first_round_only and oc.key.endswith('.r2')):
                     _, lk, _ = q.signal_row(o, view, assign, *play, q.opponent_signals)
                     out += q.opponent_phi * lk + np.log(self.model.probability(oc)) / exponent
                     continue
@@ -265,9 +266,10 @@ def readings(a):
         from gen9_signal_expert import build
         name, rest = item.split('=', 1)
         path, version, size, which = rest.rsplit(':', 3)
+        first = which.endswith('-first')                  # e.g. m3-first: the second rounds left as today (uniform)
         spec = json.loads(Path(path).read_text())['models'][version][size]
         base = gen9.player(bot_spec(source, a.bots, a.expert_base), source)
-        readers[name], meets[name] = ExpertReading(base, build(spec)[which]), ''
+        readers[name], meets[name] = ExpertReading(base, build(spec)[which.replace('-first', '')], first), ''
     decisions = kept(bench.decisions, listed.get('deciders', 'house'))
     for part in sorted(out.glob('pools-*-*.npz')):
         todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
