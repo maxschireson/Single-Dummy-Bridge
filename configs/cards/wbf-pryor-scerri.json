@@ -31,7 +31,7 @@
   "slam.blackwood": "rkc1430"
  },
  "cover": ["open", "respond", "respond_nt", "rebid", "nt_answers", "overcall", "balance", "asks"],
- "carding": {"attitude": "upside_down", "count": "standard", "length_lead_vs_nt": "4th", "length_lead_vs_suit": "4th", "signal_on_partner_lead": "attitude", "signal_on_declarer_lead": "count", "first_discard": "attitude", "trump_signal": "count"},
+ "carding": {"attitude": "upside_down", "count": "standard", "length_lead_vs_nt": "4th", "length_lead_vs_suit": "4th", "signal_on_partner_lead": "attitude", "signal_on_declarer_lead": "count", "first_discard": "attitude", "trump_signal": "count", "four_small_lead": "second"},
  "provenance": {
   "source": "WBF system card of Malcolm Pryor and Ed Scerri, England, 2025 European Online Senior Teams: https://realbridge.online/assets/System%20Cards/2025%20European%20Online%20Senior%20Teams%20-%20System%20Cards/ENGLAND%20PRYOR/Pryor-Scerri.pdf",
   "format": "wbf-card (PDF from the WBF Word template; suit symbols are lost in its text layer)",
@@ -62,6 +62,6 @@
                  "defence to 1NT: penalty double, then majors / one major / major and minor / minors (symbols lost): 'vs_nt' left uncovered",
                  "defence to preempts and artificial strong openings, over a short club",
                  "queen ask after 5m, 5NT specific kings, 4D/4H slam tries",
-                 "leads: 4th best or 2nd from a bad suit; honour-lead table; count low = odd; trump echo"]
+                 "leads: the honour-lead table ('2nd from a bad suit' is placed as four_small_lead: second, sam's lead fields v1.1)"]
  }
 }

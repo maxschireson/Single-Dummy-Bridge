@@ -46,7 +46,7 @@
   "slam.blackwood": "plain",
   "slam.gerber": true
  },
- "carding": {"attitude": "standard", "count": "standard", "length_lead_vs_suit": "4th", "length_lead_vs_nt": "4th", "lead_from_ak": "ace", "honor_sequence_lead": "top", "signal_on_partner_lead": "attitude", "signal_on_declarer_lead": "count", "first_discard": "attitude"},
+ "carding": {"attitude": "standard", "count": "standard", "length_lead_vs_suit": "4th", "length_lead_vs_nt": "4th", "lead_from_ak": "ace", "honor_sequence_lead": "top", "signal_on_partner_lead": "attitude", "signal_on_declarer_lead": "count", "first_discard": "attitude", "three_small_lead_vs_suit": "low", "three_small_lead_vs_nt": "top", "four_small_lead": "second"},
  "provenance": {
   "source": "ACBL SAYC System Booklet (form SP3, revised January 2006), read through a public copy at https://zfelleg.useribm.hu/bridge/sayc_book.pdf; the card itself (https://bridgeclub.gtorg.gatech.edu/SAYJ/Info/SAYC/sayc_card.pdf) was also read but its text extraction loses the layout and most ranges",
   "format": "acbl-booklet (prose)",
@@ -65,7 +65,7 @@
   "carding_read": {
    "when": "12 November 2026 (bill and sam), for the situation fields of G9-D6",
    "printed": {"attitude": "high encourages, low discourages (when following suit or discarding)", "count": "High-low is an even number, low-high is odd when count is given"},
-   "high": ["first_discard attitude: the booklet applies attitude \"when following suit or discarding\""],
+   "high": ["first_discard attitude: the booklet applies attitude \"when following suit or discarding\"", "three_small_lead_vs_suit low, three_small_lead_vs_nt top (\"From three low cards against a suit contract lead low; against notrump contract lead high\"), four_small_lead second (from four or more without an honour, \"lead the second highest card\")"],
    "medium": ["signal_on_partner_lead attitude, signal_on_declarer_lead count: the booklet does not say where each signal applies; placed by the standard priority (sam, from the zaremba.ch SAYC summary and general references)"],
    "not_placed": ["trump signals and suit preference: not stated in the booklet (trump_signal left out, read as Gen 8 reads it)"]
   },
@@ -75,6 +75,6 @@
                  "takeout doubles are penalty over game-level openings (no field)",
                  "after interference over 1NT conventions are off, cue-bid is Stayman (no field)",
                  "Grand Slam Force, 5NT king ask (no field)",
-                 "lead from three low: low vs suit, high vs NT; second highest from four without an honour (carding fields do not cover it)"]
+                 "lead from three low and from four without an honour: placed since sam's lead fields v1.1 (96716fb), see carding_read"]
  }
 }
