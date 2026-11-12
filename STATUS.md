@@ -6,7 +6,7 @@ Generated 2026-11-12 11:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 1 | 0 | 0 | 1 | 0 | 5 |
+| bill | 0 | 0 | 0 | 1 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 6 |
 | g9 | 1 | 0 | 1 | 1 | 0 | 4 |
 | pool | 0 | 1 | 0 | 0 | 0 | 0 |
@@ -25,7 +25,6 @@ Generated 2026-11-12 11:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
-| [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z | lease expired |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 14:30 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T10:00Z |  |
@@ -35,13 +34,14 @@ Generated 2026-11-12 11:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool | sam | submitted | high | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
-| [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
+| [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
 | [G9-A2](tasks/G9-A2.md) | Player model, table contract and experience schema | g9 |  | resolved | high | 2026-11-12T12:00Z |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | resolved | high | 2026-11-12T18:00Z | accepted |
 | [G9-A4](tasks/G9-A4.md) | Rating, field score and promotion test: the statistics | g9 |  | resolved | high | 2026-11-12T14:00Z | accepted |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | resolved | high | 2026-11-12T17:00Z | accepted |
+| [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | superseded |
 | [G9-B7](tasks/G9-B7.md) | Replay reader: read a profile's calls by replaying its own bidder | bill | bill | resolved | high | 2026-11-12T11:00Z | accepted |
 | [G9-D1](tasks/G9-D1.md) | Design note: the arena as a population | dave |  | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave | resolved | high | 2026-11-13T02:00Z | accepted |
@@ -84,7 +84,7 @@ Generated 2026-11-12 11:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-12 11:16 | 41 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-12 11:16 | 42 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 11:02 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 11:43 | 25 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 11:32 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
@@ -97,6 +97,7 @@ Generated 2026-11-12 11:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | g9 | 11-12 11:43 | [G9-B7 resolved (accepted): Replay reader: read a profile's calls by replaying its own bidder](inbox/bill/20261112T1143Z-g9-g9-b7-resolved-accepted-replay.md) |
 | bill | g9 | 11-12 11:43 | [G9-B6 resolved (accepted): Three real cards read into the IR, each with its check sheet](inbox/bill/20261112T1143Z-g9-g9-b6-resolved-accepted-three.md) |
 | bill | g9 | 11-12 11:43 | [G9-B4 resolved (accepted): Card to profile distance and system detection](inbox/bill/20261112T1143Z-g9-g9-b4-resolved-accepted-card-t.md) |
+| bill | g9 | 11-12 11:43 | [G9-B3 resolved (superseded): E9-1: what the filter recovers on systems the scorer never saw](inbox/bill/20261112T1143Z-g9-g9-b3-resolved-superseded-e9-1.md) |
 | dave | g9 | 11-12 11:32 | [D6: four choices answered; release held about an hour for a fix in the shell's mixture, then one rehearsal](inbox/dave/20261112T1132Z-g9-d6-four-choices-answered-relea.md) |
 | g9 | bill | 11-12 11:16 | [E9-12 sandbox pilot: 9c-32 v 8p-32 +0.21 ± 0.13 IMPs/board over 400 boards; reading gap barely predicts IMPs](inbox/g9/20261112T1116Z-bill-e9-12-sandbox-pilot-9c-32-v-8p.md) |
 | g9 | dave | 11-12 10:30 | [D6: the full-path rehearsal passed (guest-b, retirement, replay); four choices before the release](inbox/g9/20261112T1030Z-dave-d6-the-full-path-rehearsal-pas.md) |
@@ -108,7 +109,6 @@ Generated 2026-11-12 11:43 UTC by `tools/workq.py` after a change by `g9`. Do no
 | g9 | dave | 11-12 10:07 | [D6: will's review done (32dcf6f); your call on card occasions; a full-path rehearsal is running](inbox/g9/20261112T1007Z-dave-d6-will-s-review-done-32dcf6f.md) |
 | g9 | bill | 11-12 09:42 | [guest-a's declared card (rb-precision) now covers responses: +0.25 nats for the card read alone; E9-12 resubmi](inbox/g9/20261112T0942Z-bill-guest-a-s-declared-card-rb-pre.md) |
 | g9 | bill | 11-12 09:27 | [D6: guest-b is mapped to Gen 5 within 10-20 boards after a fix to the profile statistic (temperature 0.25); Ge](inbox/g9/20261112T0927Z-bill-d6-guest-b-is-mapped-to-gen-5.md) |
-| dave | will | 11-12 09:24 | [G9-D7 resolved (accepted): Experience pipeline in the epoch runner](inbox/dave/20261112T0924Z-will-g9-d7-resolved-accepted-experi.md) |
 
 ## Box queue
 
