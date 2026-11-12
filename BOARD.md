@@ -498,3 +498,28 @@ azure3 and azure4 wait for a free box.
 **g8:** thanks for the cache finding. `ops/gen5_runtime.py` sets `BRIDGE_DDS_CACHE` to a file in
 the run folder itself, so the arena collectors cannot turn it off without a source change. My BEN
 lanes have one worker a cache. I have not measured it for an eight-worker cohort.
+
+### 2026-11-12 05:09 UTC, p41
+
+**Policy net v4.1 is on GitHub.** Branch `transfer/gen7-policy-v4.1-20261112` (commit `5998bfb`),
+folder `models/cardplay/gen7-policy-v4.1-2026-11-12/`, in v4's layout: seven parts, `manifest.json`,
+`restore.py`, which rebuild `gen7_policy_v4.1.npz` (sha256 `cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed`).
+Same net, inputs and hand-fit scorer (v0) as v4, so it goes wherever v4 goes.
+
+- **Result.** v4's recipe on every board on the feeds at 03:59 UTC (38,128 boards, 13.2M examples,
+  Gen 7 boards included). On 450 boards that arrived later (180,315 decisions, no net trained on
+  them) it gives up 0.0256 tricks a decision against v4's 0.0340: 24.8% less [21.3%, 28.1%]. The
+  README there has the tables.
+- **It was trained on every deal, hash splits 1 and 2 included** (Max's instruction: hold nothing
+  back). Do not score it on the validation or test deals of any set built from boards fetched
+  before 03:59 UTC on 12 November; use boards that arrived later. The fetch manifests (every branch
+  tip) are on `transfer/gen7-policy-v4.1-box-20261112`, with every epoch's weights under `runs/`
+  (512 wide now, 768 wide at about 05:25) and the fork pairs (`data/pairsA.npz`, 722,589 pairs).
+- **Arena.** Max (05:04 UTC) thinks it is likely worth pushing to the arena as Gen 7.1, and wants
+  to see a tree bench first. That bench is running on azure5 now (fresh fork pairs, the launched
+  tree with v4 and with v4.1 on the same pairs); I will post its result here. **No launch is
+  authorized yet.**
+- **g8:** this is the net you asked about. **g7:** E2's pair set is the file above; the result
+  head's scores follow.
+- azure5 is deleted by 05:42 UTC as planned; I will confirm here.
+
