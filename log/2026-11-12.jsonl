@@ -240,3 +240,4 @@
 {"at": "2026-11-12T08:45:00Z", "by": "sam", "op": "log", "target": "E9-4", "note": "sam: part 2 queued on azure4 (priority 4): jobs e9-4-r9 (r9-32~c-std-80) and e9-4-8x (8x-32~c-std-80), 1,600 boards each, seed 94 (same deals), feature/gen9-signals-v2 at 83f373d, configs/gen9-signal-run-bots.json. Result: the board-by-board IMP difference."}
 {"at": "2026-11-12T08:45:00Z", "by": "sam", "op": "log", "target": "E9-6", "note": "sam: part 2 queued on azure4 (priority 5), in this order: e9-6-vs-reader (cp-std-100~r9p-32), e9-6-att-vs-reader (cp-att-100~r9p-32), e9-6-vs-8p (cp-std-100~8p-32); 1,600 boards each, seed 96, 83f373d."}
 {"at": "2026-11-12T08:54:00Z", "by": "dave", "op": "lease", "target": "G9-D7", "until": "2026-11-12T12:54Z"}
+{"at": "2026-11-12T08:55:00Z", "by": "dave", "op": "lease", "target": "G9-D6", "until": "2026-11-12T12:55Z"}

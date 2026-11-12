@@ -1,13 +1,13 @@
 # Gen 9 status
 
-Generated 2026-11-12 08:54 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 08:55 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 1 | 3 | 0 | 1 | 0 | 2 |
-| dave | 1 | 0 | 0 | 1 | 0 | 5 |
+| dave | 2 | 0 | 0 | 0 | 0 | 5 |
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 1 | 0 | 0 | 0 | 0 | 0 |
 | sam | 2 | 0 | 0 | 0 | 0 | 5 |
@@ -27,6 +27,7 @@ Generated 2026-11-12 08:54 UTC by `tools/workq.py` after a change by `dave`. Do 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
+| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 12:55 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave | dave until 11-12 12:54 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 12:08 | leased | high | 2026-11-13T10:00Z |  |
@@ -39,7 +40,6 @@ Generated 2026-11-12 08:54 UTC by `tools/workq.py` after a change by `dave`. Do 
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
-| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave |  | open | high | 2026-11-13T12:00Z | after G9-D7, G9-B7 |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
