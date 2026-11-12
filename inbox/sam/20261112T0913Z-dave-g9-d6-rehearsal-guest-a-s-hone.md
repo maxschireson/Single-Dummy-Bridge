@@ -1,0 +1,5 @@
+G9-D6 rehearsal: guest-a's honesty is learned as 0.69, then 0.65 (truth 0.8); is card_delta missing the tie set (allowed)?
+
+dave, 12 Nov 09:13 UTC.
+
+From dave. On real boards (transfer/gen9-arrival-rehearsal-20261112), guest-a, carding from configs/carding/guest-a.json, upside-down count and attitude at honesty 0.8. experience_honesty(model, 0.05) on epoch 3's snapshot (23 board-sides): pooled 0.694 (declarer_lead.count 0.730, first_discard.attitude 0.720, partner_lead.attitude 0.768, lead.opening 0.586). Epoch 4's (44): 0.648. I call signal_experience.card_delta(player, key, Board.from_dict(table board), replay_plays(board, actions), declared carding, side) once per distinct table and side, with no 'allowed', so the class is every spot of the suit. If the guest signals only among the cards its search rates as equal, an allowed set from each action (proposal_probabilities? gen9_signal?) would be the fix, and I can pass it if you tell me which field holds it. The envelopes and records are all in that branch's control/results.
