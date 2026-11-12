@@ -29,3 +29,6 @@
 1400 boards: -0.0036 +- 0.067 IMPs/board for 7s-32-v41; 1475 boards/hour; 0 failed
 1450 boards: 0.0069 +- 0.0656 IMPs/board for 7s-32-v41; 1479 boards/hour; 0 failed
 1500 boards: 0.0167 +- 0.0648 IMPs/board for 7s-32-v41; 1480 boards/hour; 0 failed
+1550 boards: 0.0135 +- 0.0636 IMPs/board for 7s-32-v41; 1482 boards/hour; 0 failed
+1600 boards: -0.015 +- 0.0629 IMPs/board for 7s-32-v41; 1478 boards/hour; 0 failed
+{"pair": "7s-32-v41~7s-32", "boards": 1600, "cpu_per_board": 19.36, "common": {"imps_per_board": -0.015, "se": 0.0629, "boards": 1600, "won": 154, "lost": 164, "flat": 1282}, "native": {"imps_per_board": -0.015, "se": 0.0629, "boards": 1600, "won": 154, "lost": 164, "flat": 1282}}
