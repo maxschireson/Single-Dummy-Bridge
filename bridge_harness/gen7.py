@@ -547,4 +547,7 @@ def player(spec, root, reference=None):
     """player_factory for gen5_arena.run_board: Gen7 specs get this engine, every other spec is as before."""
     if spec.get('engine') == ENGINE:
         return Gen7Player(spec, root, reference)
+    if spec.get('engine') == 'gen9':            # Gen 9 hook: carding bots and the signal reader (bridge_harness/gen9_play.py)
+        from .gen9_play import Gen9Player
+        return Gen9Player(spec, root, reference)
     return gen6_player(spec, root, reference)
