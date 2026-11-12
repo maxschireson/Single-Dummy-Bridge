@@ -425,6 +425,11 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
             m['gen8'] = dict(rule_bidders=rule_bidders,
                              system_scorer=None if system_scorer is None else dict(release=plan['artifacts'][SYSTEM_SCORER_KEY]['release'],
                                                                                  sha256=plan['artifacts'][SYSTEM_SCORER_KEY]['sha256']))
+            for spec in bots.values():
+                options = (spec.get('bidder') or {}).get('options', {})
+                estimate = options.get('settings', {}).get('estimate')
+                if isinstance(estimate, str) and estimate:
+                    m['runtime_sha256'][estimate] = sha(ROOT / estimate)
         if ancestor:
             m['actor_source_generation'] = ancestor['identity']
             m['labels'].update(ancestor.get('labels', {}))

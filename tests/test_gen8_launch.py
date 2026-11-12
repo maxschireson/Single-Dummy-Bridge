@@ -183,6 +183,19 @@ class Gen8PlanTests(unittest.TestCase):
         for key, spec in self.old['bots'].items():
             self.assertEqual(m['bots'][key], spec)
 
+    def test_external_rule_estimate_is_pinned_and_tampering_prevents_resume(self):
+        estimate = self.tmp / 'estimate.json'
+        estimate.write_bytes((ROOT / 'configs/rule-systems/precision-estimate-r4.json').read_bytes())
+        self.plan['gen7_bots']['8c-32']['bidder'] = rule_entry(estimate=str(estimate))
+        self.write()
+        run = self.tmp / 'run'
+        m = prepare(run, self.tmp / 'source', self.plan_path)
+        self.assertEqual(m['runtime_sha256'][str(estimate)], sha(estimate))
+        verify_generation(run, m)
+        estimate.write_text(estimate.read_text() + '\n')
+        with self.assertRaisesRegex(ValueError, 'Pinned arena runtime changed'):
+            verify_generation(run, m)
+
     def test_a_plan_that_demands_it_is_prepared_only_with_the_training_families_left_out(self):
         from bridge_harness.bidding_env import deal_key
         from bridge_harness.corpus import load

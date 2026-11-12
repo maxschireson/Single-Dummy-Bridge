@@ -93,11 +93,11 @@ def export(root,out):
             tables=[]
             for table_id in source['tables']:
                 e=r['unique_tables'][table_id];b=e['board'];t0=e['tables'][0]
-                tables.append(dict(contract=b.get('contract'),declarer=b.get('declarer'),auction=b.get('auction',[]),
+                tables.append(dict(contract=b.get('contract'),declarer=b.get('declarer'),auction=b.get('auction',[]),auction_source=b.get('auction_source'),
                     assignments=[pair_members(pair)[0] if v=='candidate' else pair_members(pair)[1] for v in e['assignments']],
                     ns_score=t0['ns_score'],declarer_tricks=t0.get('declarer_tricks'),
                     plays=[a['seat']+a['card'] for a in t0['actions']]))
-            conditions[regime]=dict(tables=tables,imps=source['imps'],label='Self-play (training only)' if pair_members(pair)[0]==pair_members(pair)[1] else ('Common Gen6 bidder' if m.get('variant') in ('6','7') else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
+            conditions[regime]=dict(tables=tables,imps=source['imps'],label='Self-play (training only)' if pair_members(pair)[0]==pair_members(pair)[1] else ('Common Gen6 bidder' if m.get('variant') in ('6','7','8') else 'Common v5 bidder') if regime=='common' else 'Native partnership bidders')
         common=conditions['common']['tables'];own=conditions['own']['tables']
         different=any(a['auction']!=b['auction'] for a,b in zip(common,own))
         first=r['unique_tables'][next(iter(r['unique_tables']))]['board']
@@ -107,7 +107,7 @@ def export(root,out):
             scores=[t0['ns_score'] for t0 in common],contracts=[{k:t0[k] for k in ('contract','declarer')} for t0 in common],
             own_scores=[t0['ns_score'] for t0 in own],own_contracts=[{k:t0[k] for k in ('contract','declarer')} for t0 in own])
         records.append(row);shards[row['shard']][str(index)]={**row,'conditions':conditions,'board':first,'tables':common}
-    if m.get('variant') in ('6','7'):
+    if m.get('variant') in ('6','7','8'):
         for row in records:
             row['differences']=gen6_differences(row)
             shards[row['shard']][str(row['index'])]['differences']=row['differences']
@@ -147,11 +147,11 @@ def export(root,out):
         feed=dict(published_epoch=now,interval_seconds=60,next_update_epoch=now+60),
         model_note='Gen5: promoted dense belief, attention policy and bidder. Gen5/4b/3/2/1 comparisons use 32 vs 32. Gen5 uses 192 vs BEN (16) and Gen5 (32) only; the two Gen5 actors share all network weights.', source_cohort_overlap=False, allocation=m['pair_weights'], statistics_policy=policy,
         collection=dict(updated_epoch=status['epoch'],running=not policy.get('retired') and now-status['epoch']<30,workers=0 if policy.get('retired') else status['workers'],total_completed=len(episodes),training_only_completed=len(episodes)-len(records)))
-    if m.get('variant') in ('5R','5RZ','6','7'):
+    if m.get('variant') in ('5R','5RZ','6','7','8'):
         d['interpretation']=m['interpretation']
         d['model_note']='Gen5R uses the same bidder, belief and policy as Gen5; only large-position layout selection and weighting change. Nominal 32/192 are DDS ceilings, drawing pools of 128/768. Original Gen5 (32) is retained as the random-sampling control.'
         if m.get('model_note'):d['model_note']=m['model_note']
-    if m.get('variant') in ('6','7'):
+    if m.get('variant') in ('6','7','8'):
         d['difference_views']=difference_views(records)
         d['difference_definition']=dict(unit='IMPs per board, candidate minus opponent',
             play='Common Gen6-bidder auction result',total='Native partnership-bidder auction result',
