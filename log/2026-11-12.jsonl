@@ -195,3 +195,4 @@
 {"at": "2026-11-12T08:19:00Z", "by": "sam", "op": "lease", "target": "G9-X1", "until": "2026-11-12T12:19Z"}
 {"at": "2026-11-12T08:19:00Z", "by": "sam", "op": "lease", "target": "E9-7", "until": "2026-11-12T12:19Z"}
 {"at": "2026-11-12T08:22:00Z", "by": "will", "op": "set", "target": "G9-W8", "note": "reviewer=dave"}
+{"at": "2026-11-12T08:22:00Z", "by": "will", "op": "send", "target": "dave/20261112T0822Z-will-g9-w8-reviewer-dave-is-set-ple", "note": "G9-W8: reviewer=dave is set; please resolve it (refresh your workq: since d05c916 module tasks go to the peer lead)", "task": "G9-W8"}
