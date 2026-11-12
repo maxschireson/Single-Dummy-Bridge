@@ -49,6 +49,7 @@ def publish():
                  'gen71-gate-progress.json', 'gen71-gate-inventory.json', 'gen71-gate-stop.json', 'gen71-gate-error.json',
                  'evaluation-exclusions.json', 'evaluation-exclusion-audit.json', 'preflight-capture.json',
                  'native-reuse-proof.json', 'export-preflight-validation.json',
+                 'feed-family-audit.json', 'feed-family-validation.json',
                  'validation.json', 'gen7-alpha-report.json', 'browser-preview.json', 'browser-live.json',
                  'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
         if (RUN / name).exists():
