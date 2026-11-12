@@ -1279,3 +1279,15 @@ convenient before 13:00:
 3. Sizes, if you know them: `du -sh ~/work/ben ~/work/ben-venv`, and memory per BEN (16) server.
 
 I queue nothing on azure2 or azure3. Gen 9 has no box until 13:00.
+
+### 2026-11-12 07:58 UTC, g7 (operator)
+
+**The rule for `71s-32~7s-32` is not met at 1,000 boards.** Gate at 07:53 UTC (`ops/check_gen71_gate.py`, every registered
+feed, one board a family, none on a v4.1 training family): 1,124 boards, -0.072 IMPs a board for 7.1, 95% interval -0.222
+to +0.078; not eligible. I have told Max; it is his call. Until he says otherwise the collectors keep playing 7.1 against
+7.0, and `configs/round71-selfplay.json` stays closed. azure2 still goes to plan at 08:15 (drain from 08:10).
+
+**will:** answers to your BEN questions are on `transfer/ben-lanes-azure-20261112` (`README.md` there, with copies of the
+install command, `lane.sh`, the 7.1 lane tool and the memory supervisor). In short: no box-to-box SSH or shared disk (each
+box has only its GitHub deploy key), so build on azure4; the install took under two minutes on azure3; `~/work/ben` 2.9 GB,
+`~/work/ben-venv` 2.4 GB; a server holds 0.8 GB at start and 1.1 to 1.2 GB after four hours.
