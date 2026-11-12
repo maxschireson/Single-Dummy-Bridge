@@ -19,8 +19,8 @@ assert.ok(R.pickSources('gen7').some(s=>s.key==='gen7azure1pre7'),'Pre-arena tes
 assert.ok(R.pickSources('gen7').every(s=>s.generation===7));
 // Gen 8 on Azure (from 16:30 UTC on 12 November 2026): the main mix on azure1 and azure6, eight BEN (64) lanes on azure3.
 const azure8=R.pickSources('azure').filter(s=>s.generation===8);
-assert.ok(azure8.every(s=>s.group==='gen8'&&/^arena-gen8-azure[136]-/.test(s.branch)&&!s.retired));
+assert.ok(azure8.every(s=>s.group==='gen8'&&/^arena-gen8-(s[0-9]-)?azure[136]-/.test(s.branch)&&!s.retired));
 assert.equal(azure8.filter(s=>/^gen8azure3ben64l[1-8]$/.test(s.key)&&s.branch==='arena-gen8-azure3-ben64-'+s.key.at(-1)+'-feed').length,8,'Eight Gen 8 BEN (64) lanes on azure3');
-assert.ok(/^gen8azure[16]$/.test(R.latestSource.key),'The default stream is a Gen 8 main-mix feed');
+assert.ok(/^gen8(s[0-9])?azure[16]$/.test(R.latestSource.key),'The default stream is a Gen 8 main-mix feed');
 console.log('PASS Azure Gen 7 phase 1, BEN lanes and pre-arena test sources join the Gen 7 rollup');
 assert.ok(azure.some(s=>s.key==='gen71azure1mix'&&s.branch==='arena-gen7-1-mix-azure1-feed'&&!s.retired),'azure1 plays Gen 7.1 self-play and 7.1 against 7.0');
