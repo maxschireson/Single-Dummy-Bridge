@@ -761,6 +761,96 @@
       "cohort": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
       "retired": true,
       "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24"
+    },
+    {
+      "key": "gen8azure3ben64l1",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 1)",
+      "branch": "arena-gen8-azure3-ben64-1-feed",
+      "cohort": "9684f7da270627f7de0a7ddc2cbb95207e4cc59f0f403c003a3c243a8d83742b"
+    },
+    {
+      "key": "gen8azure3ben64l2",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 2)",
+      "branch": "arena-gen8-azure3-ben64-2-feed",
+      "cohort": "c6600762301c4f3905dfcfd2318559ae573a5d528110cfd6480ac7ed71096939"
+    },
+    {
+      "key": "gen8azure3ben64l3",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 3)",
+      "branch": "arena-gen8-azure3-ben64-3-feed",
+      "cohort": "9c3bdac6a406cd7722b3fccbbc0316410762d5f4bdbf4ad0c32473232abc9de0"
+    },
+    {
+      "key": "gen8azure3ben64l4",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 4)",
+      "branch": "arena-gen8-azure3-ben64-4-feed",
+      "cohort": "7f2a78097816677c0f2bb0519b791f5ac00d5b2324c1e6eef2e4194eaf67f3e5"
+    },
+    {
+      "key": "gen8azure3ben64l5",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 5)",
+      "branch": "arena-gen8-azure3-ben64-5-feed",
+      "cohort": "42b6dd2df38b68fcca75624b0a63f177dae88c45262a92bbdab582d8f113d51a"
+    },
+    {
+      "key": "gen8azure3ben64l6",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 6)",
+      "branch": "arena-gen8-azure3-ben64-6-feed",
+      "cohort": "a0b6f33778ba7839256eaca7beea4547ca01758de59317dc1745004cf12af514"
+    },
+    {
+      "key": "gen8azure3ben64l7",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 7)",
+      "branch": "arena-gen8-azure3-ben64-7-feed",
+      "cohort": "c5177491c16c65825431a459b3b28d16730e167646b8292a7684e5a6c89f30f4"
+    },
+    {
+      "key": "gen8azure3ben64l8",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 8)",
+      "branch": "arena-gen8-azure3-ben64-8-feed",
+      "cohort": "af47c1156de41b8aa860ab2a2bf3cd121cd08cdee4b67000fc331d6e92be5e90"
+    },
+    {
+      "key": "gen8azure1",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure1 (main mix)",
+      "branch": "arena-gen8-azure1-feed",
+      "cohort": "b9900c30105cc39650eb34352312502b93f1f70bf29398da240b70374c058c9e"
     }
   ],
   "activation": {
@@ -1225,5 +1315,11 @@
     },
     "azure1": "From 11:42 UTC (Max, 11:36 UTC: \"Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7\"): 71s-32~71s-32 and 71s-32~7s-32, one board in two each, on azure1's drained phase 1 cohort's unplayed deals without the v4.1 training families. The self-play boards are training data with no score. azure4, the other box named, is lent to the Gen 8 session (Max, 11:38 UTC).",
     "azure3_pool2": "From about 12:40 UTC each azure3 lane, when its first pool was played out, goes on with a cohort of the drained phase 1 cohort's unplayed deals without the v4.1 training families, one eighth each (--shard), feeds arena-gen7-1-fresh2-azure3-ben64-N-feed."
+  },
+  "gen8_azure": {
+    "authority": "Max, 2026-11-12 15:32 UTC: Go ahead (Gen 8); 15:33: machines on Gen 7 work switch to the Gen 8 arena; 15:50: never a board in a family the bot was trained on; 16:11, to the operator: switch the arena to Gen 8.",
+    "source": "feature/gen8-prototype-20261112 at 792c4cb; notice docs/gen8_candidate_2026-11-12.md there",
+    "feeds": "azure1 and azure6: configs/round8-candidate.json, eight workers each. azure3: configs/round8-candidate-ben.json reduced to 8s-32~ben64, eight lanes. Every cohort leaves out the families policy v4.1 was trained on (the union of the two lists, 34,092, sha256 0b8ac2b7...).",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
   }
 }

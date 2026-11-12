@@ -5,7 +5,7 @@ const baseline=R.sources.find(s=>s.key==='gen6');
 const future={key:'gen6codexnext',group:'gen6',generation:6,variant:'6',environment:'codex',name:'BEN followups',branch:'arena-gen6-codex-next-feed',cohort:'f'.repeat(64)};
 const changed=structuredClone(registry);changed.sources.unshift(future);changed.sources.find(s=>s.key==='gen6').retired=true;changed.sources.find(s=>s.key==='gen6').revision='a'.repeat(40);
 R.applyRegistry(changed);
-assert.equal(R.latestScope,'gen7');assert.equal(R.latestSource.group,'gen7');assert.ok(R.pickSources('gen6').some(s=>s.key===future.key));
+assert.equal(R.latestScope,'gen8');assert.equal(R.latestSource.group,'gen8');assert.ok(R.pickSources('gen6').some(s=>s.key===future.key));
 assert.ok(R.pickSources('gen6').some(s=>s.cohort===baseline.cohort));
 const record=(id,pair)=>({id:String(id),index:id,pair,completed_epoch:1,family:'family-'+id,imps:2,own_imps:3,scores:[0,0],contracts:[]});
 const input=(source,records)=>({source,data:{generated_epoch:10,target:records.length,failures:0,order:['6-32','6-256','ben','ben32','ben64'],own_views:{}},index:{records}});
