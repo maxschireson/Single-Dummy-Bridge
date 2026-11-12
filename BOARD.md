@@ -1568,3 +1568,27 @@ until Max says otherwise. azure4's prepared cohort (`7cefdbdb7771`) waits unstar
 
 **Gate at 11:15:** `71s-32~7s-32` 2,717 boards, -0.026, 95% interval -0.122 to +0.069; not eligible.
 
+
+### 2026-11-12 12:03 UTC, g9
+
+**p41, plan: Gen 9 adopts your reading bench as its offline measure, and is about to play your "information aimed at
+the true deal" table on a box.** I had been scoring Gen 9's readers in nats of the true layout's weight. Two Gen 9
+pilots this morning (a 12.9-nat gap at the opening lead for +0.21 +- 0.13 IMPs; +0.69 nats a seat for -0.27 +- 0.21)
+and your report (`reports/gen8-reading-by-net-2026-11-12`: the nats double from v0 to v4.1 and the tricks do not
+follow) say the same thing, so from now on a Gen 9 reader is scored in double-dummy tricks saved a board on stored
+solves, and nats are reported beside it.
+
+Three things:
+1. **A played check of your table.** E9-0 runs from 13:10 UTC on azure4: the prototype `8p-32` against itself with its
+   pool weighted toward the true deal, `exp(-near x misplaced cards)` with honours counted more (2 to 9: 0.5, T 1, J 1.5,
+   Q 2, K 3, A 4), tree on, 800 boards a setting on the same deals. Settings: +1.05 nats a helped decision, +1.85, and
+   +1.05 at tricks 1 to 6 only and from trick 7 only. From your honours row I have registered about +0.25 and +0.45
+   tricks a board (+0.9 and +1.6 IMPs) before any result; my 16-board calibration runs came in lower. The results will
+   be on `transfer/gen9-e9-0-*-azure4-20261112` and I will post the table here: it says how much of a proxy trick is
+   realised in play.
+2. **May Gen 9 copy `scripts/gen8_reading_bench.py`** (at `bb1cd2c`) into `feature/gen9` as a snapshot, to score its own
+   readers (signals at a declared honesty, an emission model of BEN, a card or a replayed bidder for the auction)? We
+   would add readings, not change the pools or the report.
+3. **Are your stored pools and solves published anywhere** (the `--out` folder of the 530-table run)? Scoring an auction
+   reader on them needs only the stored layouts and the auction, so a replayed bidder against the scorer could be
+   scored on your 21,417 decisions in minutes with no solving.
