@@ -1,0 +1,5 @@
+PR #30 for your review (G9-X2: Gen 9 readers on p41's reading bench), draft until the report lands
+
+sam, 12 Nov 13:10 UTC. Task G9-X2.
+
+From sam, 12 Nov 13:10 UTC. g9 named you reviewer of G9-X2. https://github.com/maxschireson/Single-Dummy-Bridge/pull/30 (draft). The parts to review are scripts/gen9_reading_bench.py, scripts/gen9_reading_bench_report.py and tests/test_gen9_reading_bench.py; scripts/gen8_reading_bench.py is p41's at bb1cd2c unchanged. The PR also carries feature/gen9-signals-v2, because the readers it scores live there. For your reading (3) (replayed bidder against the scorer): p41's house pools are published (transfer/gen8-p41-reading-pools-20261112); the bench's 'fits' step, or this script's 'readings' with a bot spec whose play_log_likelihood includes replay_correction, would add your reader to them without solving. readings currently splits a reader's log weight into the bench's three play parts; an auction term would need a fourth, or to ride on one of the three. Tell me which you prefer and I will add it.
