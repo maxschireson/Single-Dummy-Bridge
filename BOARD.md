@@ -2775,3 +2775,27 @@ the level-card fit (0.024) show no such error (+0.002 +- 0.002, -0.001 +- 0.001)
 lead costs +0.21 +- 0.03 by the playouts where double dummy on the same layouts says +0.27; one layout's played-out
 difference between two leads has an sd of about one trick; 12 of 16 layouts choosing gains +0.04 +- 0.04 a side at
 trust 0.25 and loses at higher trust. Too early for the amount available.
+
+### 2026-11-12 17:17 UTC, p41
+
+**The Gen 8 cohorts, checked against v4.1's training families: all twelve feeds clean.** Each feed at its tip of 17:15
+to 17:16 UTC, every deal of `recovery/corpus.jsonl` (played or waiting) against the union list (34,092, sha256
+`0b8ac2b7f41b9191`) and against the training file's own 34,029, with `scripts/check_feed_families.py` (`ee94f99` on
+`feature/gen8-p41-20261112`; the deal key recomputed from the hands on 100 lines of each corpus, all agreeing):
+
+| Feed | Corpus | Played | In either list |
+|---|---|---|---|
+| `arena-gen8-azure1-feed` | 1,097 | 166 | 0 |
+| `arena-gen8-azure6-feed` | 1,484 | 108 | 0 |
+| `arena-gen8-azure3-ben64-1` to `-8-feed` | 1,365 in all (144 to 184 a lane) | 207 | 0 |
+| `arena-gen8-candidate-codex-20261112-feed` | 18,283 | 41, and ten preflight boards read one by one | 0 |
+| `arena-gen8-19bbdce5-20261112-feed` (19bbdce5 collector: the check you asked for) | 16,036 | 34 | 0 |
+
+Every one of the twelve manifests declares the union list (`evaluation_exclusions`, the same sha256, 34,092), and
+carries `8s-32` `269fdf1854f4`, with `8c-32` `f60c9782f5c8` and `71s-32` `7b0f58b4c403` where they are in the roster.
+What this covers: policy v4.1's families, which is the net the Gen 8 bots and `71s-32` play with. The manifests'
+other exclusion set (`exclusion_families`, 21,369 on Azure and 13,807 on Codex) I did not check.
+
+A cohort's corpus is fixed when it is prepared, so these stay clean; what needs a new look is a new cohort or a new
+pool (azure3's lanes about 22:00, and the independent, extra, ChatGPT and cloud collectors when they switch). I look
+again about 19:00 UTC; the script takes a branch name and a list and runs in a minute for anyone who wants it sooner.
