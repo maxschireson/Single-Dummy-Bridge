@@ -323,6 +323,26 @@ class LedgerTest(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("G9-W8 lacks: Base", out.getvalue())
 
+    def test_module_reviews_go_to_the_peer_lead(self):
+        mod = TASK.replace("kind: design", "kind: module").replace("id: G9-B1", "id: G9-B2")
+        dav = task("G9-D7", owner="dave", area="arena")
+        self.boot({"tasks/G9-B1.md": TASK, "tasks/G9-B2.md": mod, "tasks/G9-D7.md": dav}, "bill", "sam", "dave", "will")
+        self.lg("bill").lease("G9-B2", 1)
+        self.lg("bill").submit("G9-B2", "filter", "feature/gen9-bidding-filter", None)
+        self.assertTrue(any(m["subject"].startswith("G9-B2 submitted") for m in self.st().unread("sam")))
+        self.assertFalse(any(m["subject"].startswith("G9-B2 submitted") for m in self.st().unread("g9")))
+        self.assertIn("| sam | [G9-B2]", self.text("STATUS.md"))
+        with self.assertRaises(ledger.Conflict):
+            self.lg("will").resolve("G9-B2", "accepted", "")
+        self.lg("sam").resolve("G9-B2", "accepted", "reviewed")
+        self.lg("bill").lease("G9-B1", 1)  # a design note still goes to g9
+        self.lg("bill").submit("G9-B1", "note", None, None)
+        self.assertTrue(any(m["subject"].startswith("G9-B1 submitted") for m in self.st().unread("g9")))
+        self.lg("dave").lease("G9-D7", 1)  # G9-D7 is a module owned by dave, so will reviews it
+        self.lg("dave").submit("G9-D7", "x", None, None)
+        self.assertTrue(any(m["subject"].startswith("G9-D7 submitted") for m in self.st().unread("will")))
+        self.assertEqual(ledger.reviewer_of(self.st().doc("G9-D7"), "g9"), "will")
+
     def test_owner_proposed_and_blocked_rules(self):
         self.boot({"tasks/G9-W8.md": task("G9-W8", owner="will"), "tasks/G9-W7.md": task("G9-W7", state="proposed"),
                    "tasks/G9-W6.md": task("G9-W6")}, "bill", "will")
@@ -424,7 +444,7 @@ class LedgerTest(unittest.TestCase):
         self.assertIn("| azure7 | none |", text)
 
     def test_cli(self):
-        self.boot({"tasks/G9-W1.md": task("G9-W1", owner="will")}, "will")
+        self.boot({"tasks/G9-W1.md": task("G9-W1", owner="will")}, "will", "dave")
         os.environ["WORK_CACHE"] = str(self.root / "cache-cli")
         base = ["--repo", str(self.bare), "--channel", "team/gen9"]
 
@@ -440,12 +460,12 @@ class LedgerTest(unittest.TestCase):
         self.assertEqual(code, 3)
         self.assertIn("refused:", err)
         self.assertEqual(run("--as", "will", "submit", "G9-W1", "--note", "done", "--branch", "feature/x")[0], 0)
-        code, out, _ = run("--as", "g9", "watch", "--no-heartbeat")
+        code, out, _ = run("--as", "dave", "watch", "--no-heartbeat")  # a module of will's: dave reviews it
         self.assertIn("G9-W1 waits for your review", out)
-        self.assertIn("unread for g9: 1", out)
-        code, out, _ = run("--as", "g9", "inbox")
+        self.assertIn("unread for dave: 1", out)
+        code, out, _ = run("--as", "dave", "inbox")
         self.assertIn("G9-W1 submitted for your review", out)
-        self.assertEqual(run("--as", "g9", "resolve", "G9-W1", "--resolution", "accepted")[0], 0)
+        self.assertEqual(run("--as", "dave", "resolve", "G9-W1", "--resolution", "accepted")[0], 0)
         code, out, _ = run("show", "G9-W1")
         self.assertIn("resolution: accepted", out)
         code, out, _ = run("export")

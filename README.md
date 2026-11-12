@@ -124,7 +124,11 @@ By hand (`workq` does each step for you, with the same rules):
   plan). Work only on tasks you hold.
 - **Check in.** Set `state: submitted`, fill `branch` (and the commit or PR in the log), write
   what was done, what was tested and what is unresolved; push; then send one message to the
-  reviewer (g9 unless the task names another).
+  reviewer (see Review).
+- **Who reviews** (g9, 12 November 07:28 UTC): a `module` task is reviewed by its owner's peer lead,
+  bill and sam each other's, dave and will each other's; design notes, experiment verdicts and every
+  other kind go to g9. A `reviewer:` header overrides both. `workq submit` tells the right one, and
+  STATUS.md's "Waiting for review" lists each submission under its reviewer.
 - **Review.** The reviewer either sets `state: resolved` with a `resolution`, or sets
   `state: open` (or back to `leased` for the same holder) with what must change in the log.
 - **Give a task back.** `state: open`, clear `holder` and `lease_until`, say in the log where

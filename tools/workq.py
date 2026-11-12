@@ -18,7 +18,9 @@ The tool keeps its own clone in ~/.cache/workq and never touches a checkout.
                [--goal TEXT --done-when TEXT --context TEXT | --body-file PATH] [--proposed] [--id ID]
   workq.py lease ID [--hours H<=4] [--force]       check out (leasing your own task again renews it)
   workq.py renew ID [--hours H]                    workq.py release ID --note TEXT   (give it back)
-  workq.py submit ID --note TEXT [--branch B] [--commit SHA]     check in; the reviewer is told
+  workq.py submit ID --note TEXT [--branch B] [--commit SHA]     check in; the reviewer is told: the `reviewer`
+                                                   header if set, else for a module task the owner's peer lead
+                                                   (bill-sam, dave-will), else g9
   workq.py resolve ID --resolution R [--note TEXT] reviewer: accepted|dropped|superseded,
                                                    experiments adopted|rejected|inconclusive|retired
   workq.py reopen ID --note TEXT [--same-holder]   workq.py block ID --note TEXT
@@ -71,6 +73,7 @@ LIFECYCLE = ("state", "holder", "lease_until", "resolution")  # changed only by 
 MAX_LEASE_HOURS = 4
 PREREGISTERED = ("Hypothesis", "Primary metric and population", "Compute cap", "Stopping rule")  # filled before a lease
 GRACE = timedelta(minutes=30)
+PEERS = {"bill": "sam", "sam": "bill", "dave": "will", "will": "dave"}  # module reviews (g9, 12 Nov 07:28 UTC)
 READY_SECTIONS = (("Base",), ("Interface",), ("Done when",), ("Time box",), ("Tests",), ("Results", "Where results go"))
 RULES = """- Hidden hands are labels for training, experience and scoring, never inputs to a player's decision.
 - Nothing made with the EPBot/BBA bidding engine or its card files.
@@ -435,6 +438,17 @@ class State:
             self.put(path, (self.get(path) or b"") + b"".join((json.dumps(e) + "\n").encode() for e in self.events))
 
 
+def reviewer_of(d: Doc, lead: str) -> str:
+    """Who reviews a submission: the `reviewer` header if set; a module task's peer lead; otherwise the lead."""
+    if d.get("reviewer"):
+        return d.get("reviewer")
+    if d.folder == "tasks" and d.get("kind") == "module":
+        peer = PEERS.get(d.get("owner"))
+        if peer and peer != d.get("holder"):
+            return peer
+    return lead
+
+
 def missing_ready(d: Doc) -> list[str]:
     """Sections an executor needs that are absent or empty (docs/gen9/workflow.md, section 3)."""
     out = []
@@ -468,7 +482,7 @@ def brief_text(st: State, d: Doc, branch: str) -> str:
               "    python3 scripts/run_tests.py --prepare --set gen9            # in your source checkout, before you submit",
               f"    $Q submit {did} --branch <branch> --commit <sha> --note \"what was done, what was tested, what is unresolved\"",
               f"    $Q release {did} --note \"<where the partial work is>\"        # if you must stop", "",
-              f"Reviewer: {d.get('reviewer') or st.lead}. Run `$Q watch` at natural breaks for messages about this task."]
+              f"Reviewer: {reviewer_of(d, st.lead)}. Run `$Q watch` at natural breaks for messages about this task."]
     return "\n".join(lines) + "\n"
 
 
@@ -541,8 +555,8 @@ def render_status(st: State) -> bytes:
     waiting = [d for d in tasks + exps if d.get("state") == "submitted"]
     if waiting:
         L += ["## Waiting for review", "", "| Reviewer | Id | Title | Submitted by | Branch |", "| --- | --- | --- | --- | --- |"]
-        for d in sorted(waiting, key=lambda d: (d.get("reviewer") or st.lead, d.get("id"))):
-            L.append(f"| {d.get('reviewer') or st.lead} | [{d.get('id')}]({d.path}) | {d.get('title')} | {d.get('holder')} | {d.get('branch')} |")
+        for d in sorted(waiting, key=lambda d: (reviewer_of(d, st.lead), d.get("id"))):
+            L.append(f"| {reviewer_of(d, st.lead)} | [{d.get('id')}]({d.path}) | {d.get('title')} | {d.get('holder')} | {d.get('branch')} |")
         L.append("")
     L += ["## Tasks", ""] + table(tasks) + ["## Experiments", ""] + table(exps)
 
@@ -685,7 +699,7 @@ class Ledger:
             st.save(f"agents/{st.agent}.json", a)
 
     def is_reviewer(self, st: State, d: Doc) -> bool:
-        return st.agent in (st.lead, d.get("reviewer")) or (st.agent == d.get("owner") and d.get("holder") not in ("", st.agent))
+        return st.agent in (st.lead, reviewer_of(d, st.lead)) or (st.agent == d.get("owner") and d.get("holder") not in ("", st.agent))
 
     # presence
     def hello(self, role, session, model, notes):
@@ -840,7 +854,7 @@ class Ledger:
             where = (d.get("branch") or "") + (f" at {commit}" if commit else "")
             d.add_log(st.at, st.agent, "submitted" + (f" ({where})" if where else "") + (f": {note}" if note else ""))
             st.event("submit", did, note, branch=d.get("branch"), commit=commit)
-            reviewer = d.get("reviewer") or st.lead
+            reviewer = reviewer_of(d, st.lead)
             if reviewer != st.agent:
                 st.send(reviewer, f"{did} submitted for your review: {d.get('title')}",
                         f"{note}\n\nBranch: {d.get('branch') or '(none named)'}" + (f", commit {commit}" if commit else "") +
@@ -1142,7 +1156,7 @@ def run(lg: Ledger, a) -> int:
         events = [json.loads(l) for p in st.paths("log/") for l in st.get(p).decode().splitlines() if l.strip()]
         new = [e for e in events if e["at"] > since and e["by"] != me]
         docs, errors = st.docs()
-        mine = {k for k, d in docs.items() if me in (d.get("owner"), d.get("holder"), d.get("reviewer"))}
+        mine = {k for k, d in docs.items() if me in (d.get("owner"), d.get("holder"), reviewer_of(d, lg.lead))}
         print(f"{lg.store.branch} at {st.at:%Y-%m-%d %H:%M} UTC; {len(new)} change(s) by others since {since or 'the start'}")
         for e in new[-50:]:
             star = "*" if e.get("target", "").startswith(f"{me}/") or e.get("target") in mine or e.get("task") in mine else " "
@@ -1162,7 +1176,7 @@ def run(lg: Ledger, a) -> int:
                 left = parse_time(d.get("lease_until")) - st.at
                 if left < timedelta(minutes=45):
                     print(f"   your lease on {d.get('id')} ends {d.get('lease_until')}: renew, submit or release it")
-            if d.get("state") == "submitted" and me in (lg.lead, d.get("reviewer") or lg.lead):
+            if d.get("state") == "submitted" and me == reviewer_of(d, lg.lead):
                 print(f"   {d.get('id')} waits for your review ({d.get('holder')}): {d.get('title')[:70]}")
         if errors:
             print("malformed: " + "; ".join(errors))
