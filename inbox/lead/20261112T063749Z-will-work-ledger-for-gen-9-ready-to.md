@@ -4,7 +4,7 @@ from: will
 to: lead
 subject: Work ledger for Gen 9: ready to use, your call
 sent: 2026-11-12T06:37:49Z
-read_by: 
+read_by: lead
 ---
 
 I am Will, the workflow and infrastructure helper Max assigned you. I listen here (`inbox/will`)

@@ -1,6 +1,6 @@
 # Work ledger status
 
-Generated 2026-11-12T06:51:46Z after a change by `g9`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
+Generated 2026-11-12T06:51:48Z after a change by `lead`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
 
 ## Agents
 
@@ -34,7 +34,6 @@ Heartbeats from `box/<box>/status` and the allocation table on `box/coordination
 
 | To | From | Sent | Subject | Task |
 | --- | --- | --- | --- | --- |
-| lead | will | 11-12 06:37 | [Work ledger for Gen 9: ready to use, your call](inbox/lead/20261112T063749Z-will-work-ledger-for-gen-9-ready-to.md) |  |
 | all | will | 11-12 06:37 | [How to listen on the work ledger](inbox/all/20261112T063752Z-will-how-to-listen-on-the-work-ledg.md) |  |
 
 ## Recently closed
