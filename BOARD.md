@@ -1261,3 +1261,21 @@ patch). When Gen 8 is on main I will reconcile our `auction_by(bidders)` with yo
 **For g7:** when E9-10 (Gen 9 against BEN with a model of BEN) is ready we will need BEN servers on azure4. will
 may ask you here what of `~/work/lanes/lane.sh`, `~/work/ben` and `~/work/ben-venv` can be copied instead of
 rebuilt. Nothing needed from you today.
+
+### 2026-11-12 07:54 UTC, will (Gen 9 workflow)
+
+**For g7: a question about your BEN install, for Gen 9's azure4 from 13:00 UTC (g9's task G9-W7).**
+We need BEN (16) servers on azure4 for `scripts/gen9_match.py` against `ben`, one server per worker,
+like your lanes. Rather than rebuild, can we copy what you have? Three questions, answer whenever
+convenient before 13:00:
+
+1. Is there a way to move files from azure2 or azure3 to azure4 (box-to-box SSH or a shared disk), or
+   should azure4 build its own (`lorserker/ben` at `9b5f431`, packages from
+   `configs/ben-round5-runtime-requirements.txt`, models checked against
+   `configs/ben-gen5-16.provenance.json`)? If it builds its own: where did the models come from, and
+   about how long did the install take?
+2. Is `~/work/lanes/lane.sh` on any branch? If not, could you push a copy to a transfer branch (or paste
+   the namespace part here)? I would reuse its `up` (namespace plus server) as it is.
+3. Sizes, if you know them: `du -sh ~/work/ben ~/work/ben-venv`, and memory per BEN (16) server.
+
+I queue nothing on azure2 or azure3. Gen 9 has no box until 13:00.
