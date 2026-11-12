@@ -21,10 +21,10 @@
   {key:'supplement',environment:'chatgpt',name:'ChatGPT main',branch:'arena-local-feed',cohort:'b1e339d361600d6ba1fb7ad8058ae9fead50b247a0dd7c12f806a2293f06370d'},
   {key:'components',environment:'chatgpt',name:'ChatGPT 4p / 4b',branch:'arena-components-feed',cohort:'749485be7d6882791e79bf2ce4fbbd8ca9a7a9403ca6784e29fdc53cce2043b9'}
  ];
- let latestSource=sources.find(s=>!s.retired);const latestScope=latestSource.group||latestSource.key;
+ let latestSource=sources.find(s=>!s.retired);let latestScope=latestSource.group||latestSource.key;
  function resolveSelection(search){const params=new URLSearchParams(search),requested=params.get('source'),scope=requested==='latest'?latestScope:requested,valid=['all','chatgpt','codex','azure','gen5rz',...sources.map(s=>s.group).filter(Boolean),...sources.map(s=>s.key)].includes(scope),older=params.get('older')==='1'&&valid;return {selected:older?scope:latestScope,older};}
  const labels={'8s-32':'Gen 8 candidate (32)','8c-32':'Gen 8 candidate, Precision rule bidder (32)','71s-32':'Gen 7.1 standard (32)','7s-32':'Gen 7 standard (32)','7f-32':'Gen 7 fast (32)','6-32':'Gen 6 fast (32)','6-256':'Gen 6 medium (256)','5RZ32':'Gen 5 (32, formerly 5RZ)','5RZ192':'Gen 5RZ (192)','5R32':'Gen 5R (32)','5R192':'Gen 5R (192)','5':'Gen 5 (192)','5-32':'Gen 5 (32)','ben':'BEN (16)','ben32':'BEN (32)','ben64':'BEN (64)','4':'Gen 4','4p':'Gen 4p','4b':'Gen 4b','3':'Gen 3','2':'Gen 2','1':'Gen 1'},order=['8s-32','8c-32','71s-32','7s-32','7f-32','6-32','6-256','5RZ32','5RZ192','5R32','5R192','5','5-32','4','4p','4b','3','2','1','ben','ben32','ben64'];
- const names={gen7:'Gen 7 · all collectors',gen6:'Gen 6 · all collectors',latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',azure:'Azure',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
+ const names={gen8:'Gen 8 · all collectors',gen7:'Gen 7 · all collectors',gen6:'Gen 6 · all collectors',latest:latestSource.name,all:'All streams (rollup)',chatgpt:'ChatGPT',codex:'Codex',azure:'Azure',...Object.fromEntries(sources.map(s=>[s.key,s.name]))};
  const canonical=k=>({P:'4p',Q:'4b'}[k]||k),members=p=>(p.includes('~')?p.split('~'):[...p]).map(canonical);
  const pairID=(a,b)=>a.length===1&&b.length===1?a+b:a+'~'+b;
  function normalizePair(p){const [a,b]=members(p),flip=order.indexOf(a)>order.indexOf(b);return {pair:flip?pairID(b,a):pairID(a,b),flip};}
@@ -33,7 +33,7 @@
  const hiddenDashboardActors=new Set(['ben32']); // Max: hide short BEN32 comparison; keep raw records.
  const archivedPair=(p,source)=>members(p).some(k=>hiddenDashboardActors.has(k))||normalizePair(p).pair==='6-32~ben'&&accidentalCohorts.has(source?.cohort);
  const byTime=(a,b)=>a.completed_epoch-b.completed_epoch||a._cohort.localeCompare(b._cohort)||a.index-b.index;
- const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(['gen6','gen7'].includes(resolved)&&s.group===resolved)||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
+ const pickSources=scope=>{const resolved=scope==='latest'?latestScope:scope;return sources.filter(s=>resolved==='all'||s.environment===resolved||s.key===resolved||(['gen6','gen7','gen8'].includes(resolved)&&s.group===resolved)||(resolved===latestScope&&latestSource.group&&s.group===latestSource.group)||(resolved==='gen5rz'&&s.group==='5r')||(resolved==='gen5'&&['gen5','gen5initial'].includes(s.key)));};
  function feedHealth(source,data=null,now=Date.now()/1000){
   const published=data?.feed?.published_epoch??data?.generated_epoch,heartbeat=data?.collection?.updated_epoch;
   const age=Number.isFinite(published)?Math.max(0,now-published):null,heartbeatAge=Number.isFinite(heartbeat)?Math.max(0,now-heartbeat):null;
@@ -128,7 +128,7 @@
  async function liveGen6Revision(source){
   const key='arena-gen67-heads-v1';if(!gen6Heads)try{gen6Heads=JSON.parse(localStorage.getItem(key));}catch{}
   if(!gen6Heads||Date.now()-gen6Heads.checked<0||Date.now()-gen6Heads.checked>=120000){
-   if(!gen6HeadsPending)gen6HeadsPending=(async()=>{const heads={};for(let page=1;page<=10;page++){const rows=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches?per_page=100&page='+page);if(!Array.isArray(rows))throw Error('Producer publication heads are unavailable');for(const row of rows)if(/^arena-gen[67][0-9]?-/.test(row.name)&&/^[a-f0-9]{40}$/.test(row.commit?.sha||''))heads[row.name]=row.commit.sha;if(rows.length<100)break;}const snapshot={checked:Date.now(),heads};gen6Heads=snapshot;try{localStorage.setItem(key,JSON.stringify(snapshot));}catch{}return snapshot;})().finally(()=>{gen6HeadsPending=null;});
+   if(!gen6HeadsPending)gen6HeadsPending=(async()=>{const heads={};for(let page=1;page<=10;page++){const rows=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches?per_page=100&page='+page);if(!Array.isArray(rows))throw Error('Producer publication heads are unavailable');for(const row of rows)if(/^arena-gen[678][0-9]?-/.test(row.name)&&/^[a-f0-9]{40}$/.test(row.commit?.sha||''))heads[row.name]=row.commit.sha;if(rows.length<100)break;}const snapshot={checked:Date.now(),heads};gen6Heads=snapshot;try{localStorage.setItem(key,JSON.stringify(snapshot));}catch{}return snapshot;})().finally(()=>{gen6HeadsPending=null;});
    await gen6HeadsPending;
   }
   const sha=gen6Heads.heads[source.branch];if(!sha)throw Error('This collector has not published a branch yet');return sha;
@@ -140,17 +140,18 @@
    if(!archivedCache.has(key))archivedCache.set(key,loadSource(source).catch(e=>{archivedCache.delete(key);throw e;}));
    return {...await archivedCache.get(key),source};
   }
-  if(options.revision||source.retired||![6,7].includes(source.generation)&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await ([6,7].includes(source.generation)?liveGen6Revision(source):liveRevision(source))});
+  if(options.revision||source.retired||![6,7,8].includes(source.generation)&&source.key!==latestScope)return loadSource(source,options);return loadSource(source,{...options,revision:await ([6,7,8].includes(source.generation)?liveGen6Revision(source):liveRevision(source))});
  }
  const registryURL=typeof document!=='undefined'&&document.currentScript?.src?new URL('gen6-sources.json',document.currentScript.src).href:'https://maxschireson.github.io/Single-Dummy-Bridge/arena/gen6-sources.json';
  let registry=null,registryChecked=0,registryPending=null;
  function applyRegistry(value){
   if(value.schema!=='arena-gen6-source-registry-v1'||!Array.isArray(value.sources))throw Error('Invalid collection source registry');
   const keys=new Set(),cohorts=new Set();for(const entry of value.sources){
-   if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||![6,7].includes(entry.generation)||entry.group!=='gen'+entry.generation||!new RegExp('^arena-gen'+entry.generation+'[0-9]?-[a-zA-Z0-9_-]+$').test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated collection registry source');keys.add(entry.key);cohorts.add(entry.cohort);
+   if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||![6,7,8].includes(entry.generation)||entry.group!=='gen'+entry.generation||!new RegExp('^arena-gen'+entry.generation+'[0-9]?-[a-zA-Z0-9_-]+$').test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated collection registry source');keys.add(entry.key);cohorts.add(entry.cohort);
   }
   for(const entry of value.sources){const i=sources.findIndex(s=>s.key===entry.key);if(i>=0)sources[i]={...sources[i],...entry};else sources.unshift({...entry});names[entry.key]=entry.name;}
-  if(['gen6','gen7'].includes(latestScope)){latestSource=sources.find(s=>s.group===latestScope&&!s.retired)||latestSource;api.latestSource=latestSource;names.latest=names[latestScope]='Gen '+latestSource.generation+' · all collectors';}
+  const newest=sources.filter(s=>!s.retired&&/^gen[678]$/.test(s.group||'')).reduce((g,s)=>Math.max(g,s.generation),0);if(['gen6','gen7','gen8'].includes(latestScope)&&newest>Number(latestScope.slice(3))){latestScope='gen'+newest;api.latestScope=latestScope;}
+  if(['gen6','gen7','gen8'].includes(latestScope)){latestSource=sources.find(s=>s.group===latestScope&&!s.retired)||latestSource;api.latestSource=latestSource;names.latest=names[latestScope]='Gen '+latestSource.generation+' · all collectors';}
   registry=value;api.registry=value;return value;
  }
  async function loadRegistry(){
