@@ -129,6 +129,8 @@ class SignalModelTests(unittest.TestCase):
                                          'K': 'K', '852': '8', '96': '9', '7532': '2'},
                  ('3rd_5th', 'king', 'rusinow'): {'KQ5': 'Q', 'AK63': 'K', 'KJ753': '3', 'K8642': '2', 'Q873': '7', 'QJ5': 'J'},
                  ('attitude', 'ace', 'top'): {'K8642': '2', '98642': '9', 'J752': '2'}}
+        cases[('4th', 'ace', 'top', 'low', 'second')] = {'852': '2', '7532': '5', '98642': '8', 'KJ753': '5', 'Q83': '3', 'KQ5': 'K'}
+        cases[('4th', 'ace', 'top', 'middle', '4th')] = {'852': '5', '7532': '2'}          # MUD from three small
         for args, expected in cases.items():
             for holding, want in expected.items():
                 self.assertEqual(lead(holding, *args), want, (args, holding))
@@ -307,6 +309,24 @@ class ReaderTests(Gen9Fixture):
         p.meet('z')
         self.assertEqual(p.opponent_signals.honesty('declarer_lead.count'), .9)                   # stated: believed as stated
 
+    def test_emission_tables_stated_or_learned(self):
+        from bridge_harness import experience as xp
+        table = [[.7, .22, .08], [.88, .05, .07]]
+        stated = dict(kind='outside', carding=dict(descriptor=STANDARD, emission={'declarer_lead.count': table}))
+        counts = {'m0/low': 140., 'm0/high': 44., 'm0/mid': 16., 'm1/low': 176., 'm1/high': 10., 'm1/mid': 14.}
+        store = xp.add(xp.empty('x'), xp.delta('x', 'b', {'card.declarer_lead.count.emit': xp.count(**counts)}))
+        learned = dict(kind='outside', carding=dict(descriptor=STANDARD), experience=xp.snapshot(store, 'e1'))
+        few = xp.add(xp.empty('y'), xp.delta('y', 'b', {'card.declarer_lead.count.emit': xp.count(**{k: v / 10 for k, v in counts.items()})}))
+        p = self.make_gen9(dict(models={'s': stated, 'l': learned, 'f': dict(kind='outside', carding=dict(descriptor=STANDARD),
+                                                                          experience=xp.snapshot(few, 'e1'))}))
+        p.meet('s')
+        self.assertTrue(np.allclose(p.opponent_signals.emission['declarer_lead.count'], table))
+        p.meet('l')
+        rows = p.opponent_signals.emission['declarer_lead.count']
+        self.assertGreater(rows[0][1] / rows[1][1], 2.)                     # a high spot says even, as the counts do
+        p.meet('f')
+        self.assertEqual(p.opponent_signals.emission, {})                   # 40 occasions: below emission_min, no table yet
+
     def test_meet_resolves_models_by_id(self):
         models = {'x': dict(kind='synthetic', carding=dict(descriptor=STANDARD, honesty={'*': .9, 'partner_lead.attitude': .6}, phi=.4))}
         p = self.make_gen9(dict(models=models))
@@ -340,6 +360,17 @@ class BotEntriesTests(unittest.TestCase):
 
 
 
+class RunBotsTests(unittest.TestCase):
+    def test_the_run_file_matches_its_sources(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('run_bots', ROOT / 'scripts' / 'gen9_signal_run_bots.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        self.assertEqual(json.loads((ROOT / 'configs' / 'gen9-signal-run-bots.json').read_text()), module.merged())
+        for bot in ('8p-32', '8x-32', 'r9-32', 'c-std-80', 'cp-std-100', 'cp-att-100', 'r9p-32'):
+            self.assertIn(bot, module.merged())
+
+
 class CardingPackageTests(unittest.TestCase):
     def test_guest_packages(self):
         for gid, h in (('guest-a', .8), ('guest-b', 0.)):
@@ -349,6 +380,13 @@ class CardingPackageTests(unittest.TestCase):
             self.assertTrue(SignalModel(descriptor))                           # an active declaration: spots and leads are read
             config = SignalConfig(**doc["play"]["gen9"])
             self.assertEqual(carding_parts(config.carding), (descriptor, h))   # the guest plays what it declares, at its honesty
+        for name in ('ben16', 'ben64'):                                        # fitted models of an outside player (E9-7)
+            doc = json.loads((ROOT / 'configs' / 'carding' / f'{name}.json').read_text())
+            block = doc['carding']
+            m = SignalModel(carding_parts(block)[0], block['honesty'], .05, emission=block['emission'])
+            self.assertEqual(set(m.emission), {'partner_lead.count', 'declarer_lead.count', 'first_discard.count', 'trump.count'})
+            even, odd = m.emission['declarer_lead.count']
+            self.assertGreater(even[1], 2 * odd[1])                            # BEN's high spot says even
 
 
 if __name__ == '__main__':

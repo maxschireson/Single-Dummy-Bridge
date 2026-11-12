@@ -23,7 +23,7 @@ import numpy as np
 
 from . import experience as xp
 from .core import Game
-from .signals import MESSAGES, SPOT, SPOT_MASK, SUIT_MASK, facts, lead_table, pick, situation, spot_rules
+from .signals import MESSAGES, SPOT, SPOT_MASK, SUIT_MASK, facts, lead_settings, lead_table, pick, situation, spot_rules
 
 FACTOR_GRID = (0., .1, .2, .3, .5, .75, 1., 1.25, 1.5)
 
@@ -62,9 +62,7 @@ def occasions(board, plays, model, side, allowed=None, detail=False):
                         orig[0, list(original[seat])] = True
                         led_suit = history[i - i % 4][1] // 13
                         if lead:
-                            d = model.descriptor
-                            table = lead_table(d.get('length_lead_vs_nt' if c.trump == 4 else 'length_lead_vs_suit', '4th'),
-                                               d.get('lead_from_ak', 'ace'), d.get('honor_sequence_lead', 'top'))
+                            table = lead_table(*lead_settings(model.descriptor, c.trump == 4))
                             bits = int(sum(1 << (y % 13) for y in held[seat] if y // 13 == suit))
                             prescribed, n = suit * 13 + int(table[bits]), s
                         else:
@@ -98,6 +96,7 @@ def honesty(stat, prior_mean=.8, prior_n=8., eps=.05, steps=400):
     reader's floor), else the aggregates with s = n. Prior Beta centred on `prior_mean`, worth `prior_n` occasions."""
     labels = (stat or {}).get('n', {})
     cells = {}
+    labels = {k: v for k, v in labels.items() if k.split('/')[0] in ('hit', 'all')}
     for label, v in labels.items():
         parts = label.split('/')
         if len(parts) == 3:
@@ -152,12 +151,15 @@ def replay_plays(board, actions):
 
 def card_delta(player, key, board, plays, carding, side):
     """The experience-v1 delta of one finished board for the partnership on `side` (0 = North-South), from its declared
-    carding (a carding block or descriptor): its card.<key> counts. Empty stats when nothing is declared."""
+    carding (a carding block or descriptor): its card.<key> counts (honesty) and card.<key>.emit counts (emission
+    tables). Empty stats when nothing is declared."""
     from .gen9_play import carding_parts
     from .signals import SignalModel
     descriptor, _ = carding_parts(carding)
     model = SignalModel(descriptor)
-    return xp.delta(player, key, card_stats(board, plays, model, side) if model else {})
+    if not model:
+        return xp.delta(player, key, {})
+    return xp.delta(player, key, dict(card_stats(board, plays, model, side), **emission_stats(board, plays, model, side)))
 
 
 def emission_stats(board, plays, model, side):

@@ -44,7 +44,8 @@ SITUATION_FIELD = {'partner_lead': 'signal_on_partner_lead', 'declarer_lead': 's
                    'first_discard': 'first_discard', 'trump': 'trump_signal'}
 SUPPORTED = {'partner_lead': ('attitude', 'count', 'suit_preference'), 'declarer_lead': ('count', 'suit_preference'),
              'first_discard': ('attitude', 'count', 'lavinthal', 'odd_even'), 'trump': ('count', 'suit_preference')}
-LEAD_FIELDS = ('length_lead_vs_suit', 'length_lead_vs_nt', 'lead_from_ak', 'honor_sequence_lead')
+LEAD_FIELDS = ('length_lead_vs_suit', 'length_lead_vs_nt', 'lead_from_ak', 'honor_sequence_lead',
+               'three_small_lead_vs_suit', 'three_small_lead_vs_nt', 'four_small_lead')
 MESSAGES = {'attitude': ('like', 'dislike'), 'count': ('even', 'odd'), 'suit_preference': ('higher', 'lower'),
             'lavinthal': ('higher', 'lower'), 'odd_even': ('like', 'dislike')}
 
@@ -143,8 +144,10 @@ def spot_rules(kind, descriptor):
 
 
 @lru_cache(maxsize=64)
-def lead_table(length_field, from_ak, sequence):
-    """[8192] rank index the lead convention prescribes for each 13-bit holding of the suit led (-1 if empty)."""
+def lead_table(length_field, from_ak, sequence, three_small='top', four_small='4th'):
+    """[8192] rank index the lead convention prescribes for each 13-bit holding of the suit led (-1 if empty).
+    three_small: top | low | middle from three cards below the jack; four_small: 4th | second from four or more
+    cards below the jack (both v1.1; the defaults are v1's rule)."""
     out = np.full(8192, -1, np.int64)
     for mask in range(1, 8192):
         ranks = [r for r in range(12, -1, -1) if mask >> r & 1]            # high to low
@@ -159,7 +162,12 @@ def lead_table(length_field, from_ak, sequence):
         elif n == 2:
             card = ranks[0]
         elif n == 3:
-            card = ranks[2] if ranks[0] >= 9 else ranks[0]                 # low from an honour (A K Q J), top of three small
+            if ranks[0] >= 9:
+                card = ranks[2]                                             # low from an honour (A K Q J)
+            else:
+                card = {'top': ranks[0], 'low': ranks[2], 'middle': ranks[1]}[three_small]
+        elif ranks[0] < 9 and four_small == 'second':
+            card = ranks[1]                                                 # second highest from four or more small
         elif length_field == '4th':
             card = ranks[3]
         elif length_field == '3rd_5th':
@@ -170,6 +178,14 @@ def lead_table(length_field, from_ak, sequence):
             raise ValueError(f'unknown length lead {length_field}')
         out[mask] = card
     return out
+
+
+def lead_settings(descriptor, strain_nt):
+    """lead_table's arguments for a descriptor and the strain of the contract."""
+    d = descriptor
+    return (d.get('length_lead_vs_nt' if strain_nt else 'length_lead_vs_suit', '4th'), d.get('lead_from_ak', 'ace'),
+            d.get('honor_sequence_lead', 'top'), d.get('three_small_lead_vs_nt' if strain_nt else 'three_small_lead_vs_suit', 'top'),
+            d.get('four_small_lead', '4th'))
 
 
 # ---- the model ------------------------------------------------------------------------------
@@ -195,9 +211,9 @@ class SignalModel:
         self.emission = {}
         for key, rows in (emission or {}).items():         # {full key: [[P(low), P(high), P(middle)] for each message]}
             rows = np.asarray(rows, float)
-            if rows.ndim != 2 or rows.shape[1] != 3 or (rows < 0).any() or not np.allclose(rows.sum(axis=1), 1.):
+            if rows.ndim != 2 or rows.shape[1] != 3 or (rows < 0).any() or not np.allclose(rows.sum(axis=1), 1., atol=1e-3):
                 raise ValueError(f'emission for {key}: one row of P(low), P(high), P(middle) per message, each summing to 1')
-            self.emission[key] = rows
+            self.emission[key] = rows / rows.sum(axis=1, keepdims=True)    # rounded tables are renormalised
 
     def __bool__(self):
         """Active only if the descriptor declares a signalling situation or a lead convention: one that names only
@@ -234,8 +250,7 @@ class SignalModel:
             held = K if holding is None else np.asarray(holding, bool)
             bits = (held[:, suit * 13:suit * 13 + 13] * (1 << np.arange(13))).sum(axis=1)
             d = self.descriptor
-            table = lead_table(d.get('length_lead_vs_nt' if strain_nt else 'length_lead_vs_suit', '4th'),
-                               d.get('lead_from_ak', 'ace'), d.get('honor_sequence_lead', 'top'))
+            table = lead_table(*lead_settings(d, strain_nt))
             prescribed = suit * 13 + table[bits]
             inside = K[np.arange(len(K)), np.clip(prescribed, 0, 51)] & (prescribed >= 0)
             r = np.where(inside, (prescribed == played).astype(float), uniform)

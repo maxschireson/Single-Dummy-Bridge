@@ -38,7 +38,7 @@ from .player_model import resolve
 from .players import Decision
 from .signals import SPOT, SPOT_MASK, SUIT_MASK, SignalModel, situation
 
-SIGNAL_KEYS = ('carding', 'signal_eps', 'signal_margin', 'models', 'read_partner', 'reader_eps')
+SIGNAL_KEYS = ('carding', 'signal_eps', 'signal_margin', 'models', 'read_partner', 'reader_eps', 'emission_min')
 DEFAULT_HONESTY = .5                # a declared card with no honesty and no experience is read at this: assuming too much
                                     # honesty costs far more than too little (E9-4 part 1), so start low and learn it
 _FIELDS = None
@@ -64,7 +64,7 @@ def carding_parts(block, default_honesty=DEFAULT_HONESTY):
     if not block:
         return {}, default_honesty
     block = dict(block)
-    descriptor = dict(block['descriptor']) if 'descriptor' in block else {k: v for k, v in block.items() if k not in ('honesty', 'phi', 'notes')}
+    descriptor = dict(block['descriptor']) if 'descriptor' in block else {k: v for k, v in block.items() if k not in ('honesty', 'phi', 'notes', 'emission')}
     check_descriptor(descriptor)
     return descriptor, block.get('honesty', default_honesty)
 
@@ -77,9 +77,10 @@ class SignalConfig:
     models: Mapping = field(default_factory=dict)   # {bot id or '*': player-model document}: what is known about an opponent
     read_partner: bool = False          # read partner's spots by this bot's own carding (both play it)
     reader_eps: float = .05             # the reader's floor on the signal term
+    emission_min: float = 200.          # occasions of a signal before experience gives it an emission table (signals.SignalModel)
 
     def __post_init__(self):
-        if not 0 <= self.signal_eps < 1 or not 0 <= self.reader_eps < 1 or not 0 <= self.signal_margin <= 13:
+        if not 0 <= self.signal_eps < 1 or not 0 <= self.reader_eps < 1 or not 0 <= self.signal_margin <= 13 or self.emission_min < 0:
             raise ValueError('Invalid Gen9 signal settings')
         if self.read_partner and not self.carding:
             raise ValueError('read_partner needs the bot\'s own carding')
@@ -100,7 +101,7 @@ def experience_honesty(model, eps, prior_mean=DEFAULT_HONESTY, prior_n=8.):
     from . import experience as xp
     from .signal_experience import honesty
     stats = {name[5:]: st for name, st in ((model.experience or {}).get('stats') or {}).items()
-             if name.startswith('card.') and st.get('kind') == 'count'}
+             if name.startswith('card.') and not name.endswith('.emit') and st.get('kind') == 'count'}
     if not stats:
         return None
     pooled = {'kind': 'count', 'n': {}}
@@ -108,6 +109,16 @@ def experience_honesty(model, eps, prior_mean=DEFAULT_HONESTY, prior_n=8.):
         pooled = xp.merge_stat(pooled, st)
     overall = honesty(pooled, prior_mean, prior_n, eps)[0]
     return dict({key: honesty(st, overall, prior_n, eps)[0] for key, st in stats.items()}, **{'*': overall})
+
+
+def experience_emission(model, least=200.):
+    """{key: emission table} from a PlayerModel's 'card.<key>.emit' statistics with at least `least` occasions, or None."""
+    from .signal_experience import emission
+    out = {}
+    for name, st in ((model.experience or {}).get('stats') or {}).items():
+        if name.startswith('card.') and name.endswith('.emit') and st.get('kind') == 'count' and sum(st.get('n', {}).values()) >= least:
+            out[name[5:-5]] = emission(st)
+    return out or None
 
 
 class SignalPlayer(Gen7Player):
@@ -126,10 +137,14 @@ class SignalPlayer(Gen7Player):
         super().meet(None if opponent is None else model.id)
         self.opponent_model = model
         descriptor, honesty = carding_parts(model.carding)
-        if descriptor and 'honesty' not in dict(model.carding or {}):       # not stated: learned from the model's experience
+        block = dict(model.carding or {})
+        if descriptor and 'honesty' not in block:                           # not stated: learned from the model's experience
             learned = experience_honesty(model, self.sg.reader_eps)
             honesty = learned if learned is not None else honesty
-        self.opponent_signals = SignalModel(descriptor, honesty, eps=self.sg.reader_eps) or None
+        emission = block.get('emission')                                    # stated tables (a fitted model of the player) are believed;
+        if descriptor and emission is None:                                 # else tables learned once a signal has enough occasions
+            emission = experience_emission(model, self.sg.emission_min)
+        self.opponent_signals = SignalModel(descriptor, honesty, eps=self.sg.reader_eps, emission=emission) or None
         phi = (model.carding or {}).get('phi') if model.carding else None
         self.opponent_phi = self.opponent_factor if phi is None else float(phi)
 

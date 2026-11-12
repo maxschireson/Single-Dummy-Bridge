@@ -104,7 +104,8 @@ class DeltaTests(unittest.TestCase):
         sim = SimulatedSignaller(model)
         plays = replay_plays(board, play_table(board, [0, 1, 0, 1], {0: sim, 1: sim}, seed=0)['actions'])
         d = card_delta('g', 'k', board, plays, dict(descriptor=STANDARD), side)
-        self.assertEqual(d['stats'], card_stats(board, plays, model, side))
+        from bridge_harness.signal_experience import emission_stats
+        self.assertEqual(d['stats'], dict(card_stats(board, plays, model, side), **emission_stats(board, plays, model, side)))
         self.assertEqual(card_delta('g', 'k', board, plays, None, side)['stats'], {})
 
 

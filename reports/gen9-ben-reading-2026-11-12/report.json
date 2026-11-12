@@ -1,0 +1,190 @@
+{
+ "ben|declarer": {
+  "decisions": 1582,
+  "tables": 149,
+  "reference": "net0.3",
+  "readers": {
+   "net0.3": {
+    "mean": 0.2632,
+    "se": 0.0299,
+    "minus_ref": {
+     "mean": 0.0,
+     "se": 0.0
+    }
+   },
+   "net1": {
+    "mean": 0.1438,
+    "se": 0.0927,
+    "minus_ref": {
+     "mean": -0.1195,
+     "se": 0.064
+    }
+   },
+   "class1": {
+    "mean": 0.167,
+    "se": 0.0623,
+    "minus_ref": {
+     "mean": -0.0962,
+     "se": 0.0523
+    }
+   },
+   "honesty1": {
+    "mean": 0.2806,
+    "se": 0.0897,
+    "minus_ref": {
+     "mean": 0.0173,
+     "se": 0.0765
+    }
+   },
+   "emission1": {
+    "mean": 0.4742,
+    "se": 0.0833,
+    "minus_ref": {
+     "mean": 0.2109,
+     "se": 0.0682
+    }
+   },
+   "emission0.3": {
+    "mean": 0.4255,
+    "se": 0.0586,
+    "minus_ref": {
+     "mean": 0.1623,
+     "se": 0.0497
+    }
+   }
+  }
+ },
+ "ben|defender": {
+  "decisions": 1381,
+  "tables": 149,
+  "reference": "decl0.3",
+  "readers": {
+   "decl0": {
+    "mean": 0.4744,
+    "se": 0.0384,
+    "minus_ref": {
+     "mean": -0.1276,
+     "se": 0.0197
+    }
+   },
+   "decl0.3": {
+    "mean": 0.602,
+    "se": 0.041,
+    "minus_ref": {
+     "mean": 0.0,
+     "se": 0.0
+    }
+   },
+   "decl0.5": {
+    "mean": 0.6195,
+    "se": 0.0467,
+    "minus_ref": {
+     "mean": 0.0175,
+     "se": 0.0122
+    }
+   },
+   "decl1": {
+    "mean": 0.4833,
+    "se": 0.0683,
+    "minus_ref": {
+     "mean": -0.1188,
+     "se": 0.0429
+    }
+   }
+  }
+ },
+ "ben64|declarer": {
+  "decisions": 1570,
+  "tables": 150,
+  "reference": "net0.3",
+  "readers": {
+   "net0.3": {
+    "mean": 0.1848,
+    "se": 0.029,
+    "minus_ref": {
+     "mean": 0.0,
+     "se": 0.0
+    }
+   },
+   "net1": {
+    "mean": -0.0236,
+    "se": 0.0867,
+    "minus_ref": {
+     "mean": -0.2083,
+     "se": 0.0593
+    }
+   },
+   "class1": {
+    "mean": 0.0009,
+    "se": 0.0623,
+    "minus_ref": {
+     "mean": -0.1838,
+     "se": 0.0524
+    }
+   },
+   "honesty1": {
+    "mean": 0.2814,
+    "se": 0.0851,
+    "minus_ref": {
+     "mean": 0.0967,
+     "se": 0.0727
+    }
+   },
+   "emission1": {
+    "mean": 0.443,
+    "se": 0.0791,
+    "minus_ref": {
+     "mean": 0.2582,
+     "se": 0.0643
+    }
+   },
+   "emission0.3": {
+    "mean": 0.5009,
+    "se": 0.0562,
+    "minus_ref": {
+     "mean": 0.3162,
+     "se": 0.0484
+    }
+   }
+  }
+ },
+ "ben64|defender": {
+  "decisions": 1400,
+  "tables": 150,
+  "reference": "decl0.3",
+  "readers": {
+   "decl0": {
+    "mean": 0.4406,
+    "se": 0.0371,
+    "minus_ref": {
+     "mean": -0.1101,
+     "se": 0.0207
+    }
+   },
+   "decl0.3": {
+    "mean": 0.5508,
+    "se": 0.037,
+    "minus_ref": {
+     "mean": 0.0,
+     "se": 0.0
+    }
+   },
+   "decl0.5": {
+    "mean": 0.5521,
+    "se": 0.0429,
+    "minus_ref": {
+     "mean": 0.0013,
+     "se": 0.0135
+    }
+   },
+   "decl1": {
+    "mean": 0.3602,
+    "se": 0.069,
+    "minus_ref": {
+     "mean": -0.1905,
+     "se": 0.0484
+    }
+   }
+  }
+ }
+}
