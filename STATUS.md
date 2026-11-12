@@ -1,6 +1,6 @@
 # Work ledger status
 
-Generated 2026-11-12T06:40:14Z after a change by `will`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
+Generated 2026-11-12T06:40:54Z after a change by `will`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
 
 ## Agents
 
@@ -20,7 +20,7 @@ None.
 
 Heartbeats from `box/<box>/status` and the allocation table on `box/coordination`, read at 11-12 06:40 by `ledger.py fleet`. Heartbeats are pushed at least every 5 minutes.
 
-| Box | Heartbeat | Load / CPUs | Free memory | Free disk | Queue | Board says | Ledger lease |
+| Box | Heartbeat | Load / CPUs | Free memory | Free disk | boxctl queue | Board says (allocation table) | Ledger lease |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | azure1 | 11-12 06:36 | 8.19 / 8 | 18.8 of 31.3 GB | 121.4 GB | idle | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end a... |  |
 | azure2 | 11-12 06:37 | 5.83 / 8 | 26.1 of 31.3 GB | 114.3 GB | idle | g7: Gen 7 phase 1, `7s-32` against BEN (16), eight lanes, since 03:45 UTC |  |
