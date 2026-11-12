@@ -28,9 +28,12 @@ from .signals import MESSAGES, SPOT, SPOT_MASK, SUIT_MASK, facts, lead_table, pi
 FACTOR_GRID = (0., .1, .2, .3, .5, .75, 1., 1.25, 1.5)
 
 
-def occasions(board, plays, model, side):
+def occasions(board, plays, model, side, allowed=None, detail=False):
     """[(full key, n, s, hit)] for the defenders of `side` (0 = North-South, 1 = East-West) on a finished board.
-    `plays` is the board's (seat, card) sequence; `model` a signals.SignalModel for that partnership."""
+    `plays` is the board's (seat, card) sequence; `model` a signals.SignalModel for that partnership. With
+    `allowed` ({ply: set of cards}), the class is cut to those cards (a bot's tie set: what it could choose among).
+    With `detail`, each tuple also has the message the true hand called for (-1 for a lead) and where the card
+    played stood in the class ('high', 'low' or 'mid')."""
     c = board.contract
     out = []
     if c is None or not model:
@@ -48,7 +51,8 @@ def occasions(board, plays, model, side):
                 lead = key == 'lead.opening'
                 if lead or x % 13 <= SPOT:
                     K = np.zeros((1, 52), bool)
-                    K[0, [y for y in held[seat] if y // 13 == suit and (lead or y % 13 <= SPOT)]] = True
+                    K[0, [y for y in held[seat] if y // 13 == suit and (lead or y % 13 <= SPOT)
+                          and (allowed is None or y in allowed.get(i, ()))]] = True
                     s = int(K.sum())
                     if s >= 2:
                         orig = np.zeros((1, 52), bool)
@@ -65,7 +69,12 @@ def occasions(board, plays, model, side):
                             prescribed = -1 if m is None else int(pick(K, spot_rules(kind, model.descriptor)[int(m[0])])[0])
                             n = len(MESSAGES[kind])
                         if prescribed >= 0:
-                            out.append((model.full_key(key, kind), n, s, x == prescribed))
+                            row = (model.full_key(key, kind), n, s, x == prescribed)
+                            if detail:
+                                members = np.flatnonzero(K[0])
+                                where = 'high' if x == members.max() else 'low' if x == members.min() else 'mid'
+                                row += (-1 if lead else int(m[0]), where)
+                            out.append(row)
         held[seat].discard(x)
     return out
 
