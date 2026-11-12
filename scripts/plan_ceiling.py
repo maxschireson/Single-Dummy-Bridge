@@ -170,7 +170,7 @@ def main():
     def save():
         a.out.write_text(json.dumps(dict(settings=dict(sims=[dict(name='gen6', net=None, mode='gen6', repeats=1, tricks=0)], worlds=a.worlds,
                                                        sim_samples=a.sim_samples, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, bands=a.bands, max_gap=a.max_gap, leads=a.leads, max_ply=a.max_ply,
-                                                       files=done, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
+                                                       files=done, skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
 
     with Pool(a.workers, initializer=start, initargs=(a.from_trick, a.to_trick, a.ties, a.seed, a.worlds, bands, a.sim_samples, a.max_gap, a.leads, a.max_ply)) as pool:
         for got in pool.imap(pairs_of, files, chunksize=1):
