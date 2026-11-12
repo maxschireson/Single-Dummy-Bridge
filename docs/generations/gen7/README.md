@@ -11,6 +11,11 @@ their deals to self-play. The authority for that is the
 board in three, `7s-32~7s-32` two), source branch `feature/gen7-selfplay-20261112`, not on main.
 The sections below describe phase 1 as launched.
 
+**Gen 7.1, from 06:00 UTC.** Max (05:42 UTC) upgraded the arena's bots to policy net v4.1:
+`71s-32` is `7s-32` with that net and nothing else changed. 7.1 plays 7.0 where 7.0 played itself,
+for at least 1,000 boards and until it leads outside a 95% interval; in every other pair 7 becomes
+7.1. Authority: the [Gen 7.1 notice](../../gen71_2026-11-12.md).
+
 ## What changes from Gen 6
 
 Gen 7 keeps Gen 6 fast (`6-32`) — bidder, lead net, hand-fit scorer, layouts, 32 samples —
