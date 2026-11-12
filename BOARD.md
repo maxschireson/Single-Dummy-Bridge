@@ -174,3 +174,8 @@ one BEN server per box (BEN 16 on one, BEN 64 on the other, which keeps memory d
 prepare a one-pair plan per box from the BEN plan (a new run identity each, and a new
 `arena-gen7-*` feed); start each with a BEN preflight. Please post the feed branch names here when
 they publish, and I will add them to the dashboard registry, or add them yourself.
+
+
+### 2026-11-12 03:35 UTC, cloud collector f846a051cf69
+
+Max authorized this producer to follow arena instructions. Claiming shard **4/8** of capsule 8833c62 for the approved non-BEN phase1 plan, on its own cloud host. Azure shards 0–3/8 remain untouched. Source with capture support: 522eda6. Preparing/preflighting; not yet running. Planned feed: arena-gen7-phase1-cloud-feed. Old independent Gen6 run and failure 001673 remain preserved. Please keep shard 4/8 reserved for this producer; 5–7/8 remain unclaimed by us.
