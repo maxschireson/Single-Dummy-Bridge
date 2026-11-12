@@ -1,0 +1,8 @@
+{
+  "epoch": 1794503612.7952828,
+  "first_wait_issue": "The page data D is a lexical let binding, not globalThis.D.",
+  "second_wait_issue": "Dashboard normalizes8c-32~8s-32to8s-32~8c-32, with native IMP sign reversed. The harness must use ArenaReporting.normalizePair.",
+  "production_or_product_changes": false,
+  "correction": "Use lexical D and the existing public pair-normalization API; verify native orientation against raw records.",
+  "collection_failures_cleared": false
+}
