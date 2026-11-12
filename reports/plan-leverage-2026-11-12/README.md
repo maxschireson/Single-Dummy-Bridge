@@ -155,11 +155,38 @@ Declaring +0.018 +- 0.007, defending +0.025 +- 0.010. Margin 0.125 gets +0.035 o
 (942 pairs, 8 of 16 layouts choosing) the figure is +0.014 +- 0.009; on the other 1,061 (2,048 pairs, 16 of 32) +0.056
 +- 0.017.
 
-**The opening lead.** On the real deals (6,632 lead gap forks of 6-32 self-play, 15,471 deals): a forced lead the
+**The opening lead.** On the real deals (6,632 lead gap forks of 6-32 self-play, 16,866 leads): a forced lead the
 search rated up to 1/8 behind cost +0.042 +- 0.018 tricks, 1/8 to 1/2 behind +0.211 +- 0.018 (recorded gap 0.293),
 further behind +0.628 +- 0.033 (0.752). Real cost over recorded gap is 0.75 +- 0.04 at the lead, 0.80 to 0.83 at tricks
-1 to 6 and 0.88 to 0.96 from trick 7. The lead's ceiling (both leads played out by Gen 6 on 16 layouts from the
-leader's beliefs, about 690 forks): *pending* (`ceilLead`, azure5, about 20:30 UTC).
+1 to 6 and 0.88 to 0.96 from trick 7.
+
+By kind of lead (`scripts/plan_lead_scan.py`, `scripts/plan_lead_rule.py`; what a forced lead really cost minus the
+search's gap, regressed on the kinds of the two leads; + means the search flatters the kind):
+
+| Kind | Real deals, 6,632 forks | Ceiling so far, 311 forks | The search leads it |
+|---|---|---|---|
+| Singleton | +0.076 +- 0.040 | +0.137 +- 0.037 | 7% |
+| An ace | +0.064 +- 0.022 | +0.115 +- 0.029 | 21% (24% against suit contracts) |
+| A trump | +0.020 +- 0.023 | -0.034 +- 0.031 | 7% |
+| Small from small cards | -0.011 +- 0.025 | -0.016 +- 0.032 | 16% |
+| Small from a doubleton | -0.017 +- 0.030 | -0.048 +- 0.043 | 10% |
+| Top of touching honours | -0.032 +- 0.031 | -0.013 +- 0.042 | 11% |
+| An honour, not touching | -0.038 +- 0.023 | -0.036 +- 0.026 | 10% |
+| Small from an honour | -0.061 +- 0.017 | -0.106 +- 0.022 | 19% |
+
+Two independent measures agree on the order: double dummy flatters an ace and a singleton (the defence that follows
+is never as good as double dummy's) and is hard on a small card from an honour (declarer does not always guess).
+Between an ace and a small card from an honour the search is off by 0.125 +- 0.028 tricks on the real deals. A rule
+that adds the table to the search's gaps (fitted on half the deals, scored on the other half through the forks)
+changes a third of the leads and gains +0.007 +- 0.003 tricks a side, +0.03 +- 0.015 IMPs a side, at three quarters of
+the table; at the full table +0.003 +- 0.005. So the bias is real and correcting it by kind is worth about a
+hundredth of a trick a board.
+
+The lead's ceiling (both leads played out by Gen 6 on 16 layouts from the leader's beliefs; 311 of about 690 forks so
+far): the forced lead costs +0.21 +- 0.03 by the playouts where double dummy on the same layouts says +0.27; one
+layout's played-out difference between two leads has an sd of about one trick, so 16 layouts say little about one
+pair; 12 of 16 layouts choosing gains +0.04 +- 0.04 a side at trust 0.25 and loses at higher trust. The amount
+available: *pending* (`ceilLead`, azure5, about 19:50 UTC).
 
 **Tricks 1 to 2 after the lead:** *pending* (`ceilT12`, azure2, overnight).
 
@@ -357,8 +384,11 @@ seat `gen7`). Against `7s-32-v41`, 1,600 fresh random deals, seed 131, duplicate
 
 After 675 boards: +0.145 +- 0.059 IMPs a board. 39 boards won (151 IMPs), 12 lost (53), 624 flat. Boards of 10 IMPs
 or more: 5 for, 2 against; every other board together +0.086 +- 0.032. The candidate changes 0.98 cards a board
-(its opponent's tree 0.60). The match costs 73 CPU seconds a board; the two bots' ordinary searches take about 9
-each, so the candidate's playouts cost about 50 and it runs at roughly six times its opponent's CPU. *Final figure
+(its opponent's tree 0.60). The match costs 73 CPU seconds a board. On six boards timed in the sandbox two
+tree-only bots cost 22 CPU seconds a board together and this pairing 83, so the candidate runs at roughly six times
+its opponent's CPU. Cheaper settings save little: a margin of 0.125 costs 72 on the same boards; tricks 7 to 9 only
+with two candidate cards and that margin, 65 (`pr75m-32-v41`, `pr75c-32-v41`; not played). Most consultations are at
+level or nearly level cards. *Final figure
 pending* (about 18:45 UTC).
 
 The bench figure it tests (+0.043 +- 0.012 tricks a side) is for Gen 6 among Gen 6 with Gen 6's beliefs. Gen 7
@@ -393,8 +423,10 @@ a pair). None of them asks the net to judge a position.
 
 - Everything in sections 1 to 5 is Gen 6 (6-32) self-play. Gen 7's reading and tree are not in the ceiling.
 - The ceiling measures one changed card followed by the bots' own play. A policy that also plays differently later
-  collects one such advantage at each of its own decisions, so the sum of these headrooms bounds what any cardplay
-  policy with Gen 6's beliefs can gain against Gen 6; a policy with better beliefs is not bounded by it.
+  collects one such advantage at each of its own decisions, so to first order the sum of these headrooms is what a
+  cardplay policy with Gen 6's beliefs can gain against Gen 6. Two things are outside it: a line that needs two cards
+  the bots would not play, each of which looks wrong without the other (not measured; a card that only gathers
+  information is inside, because the bots' later play uses what it shows), and better beliefs.
 - The "exact knowledge" figures are a fit, corrected at tricks 3 to 6 for an error found by simulating it. The direct
   figures are the split tables; hindsight on all layouts is the only model-free upper bound and it is loose at 16
   layouts.
