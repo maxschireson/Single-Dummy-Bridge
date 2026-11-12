@@ -39,7 +39,8 @@ from .players import Decision
 from .signals import SPOT, SPOT_MASK, SUIT_MASK, SignalModel, situation
 
 SIGNAL_KEYS = ('carding', 'signal_eps', 'signal_margin', 'models', 'read_partner', 'reader_eps')
-DEFAULT_HONESTY = .8                # a declared card with no honesty and no experience is read at this
+DEFAULT_HONESTY = .5                # a declared card with no honesty and no experience is read at this: assuming too much
+                                    # honesty costs far more than too little (E9-4 part 1), so start low and learn it
 _FIELDS = None
 
 
@@ -93,6 +94,22 @@ def signal_settings(block):
     return SignalConfig(**{k: block[k] for k in SIGNAL_KEYS if k in block})
 
 
+def experience_honesty(model, eps, prior_mean=DEFAULT_HONESTY, prior_n=8.):
+    """{key: honesty, '*': pooled} from a PlayerModel's 'card.<key>' statistics (signal_experience.honesty), or None
+    when it has none. The pooled estimate shrinks toward `prior_mean`; each key's toward the pooled estimate."""
+    from . import experience as xp
+    from .signal_experience import honesty
+    stats = {name[5:]: st for name, st in ((model.experience or {}).get('stats') or {}).items()
+             if name.startswith('card.') and st.get('kind') == 'count'}
+    if not stats:
+        return None
+    pooled = {'kind': 'count', 'n': {}}
+    for st in stats.values():
+        pooled = xp.merge_stat(pooled, st)
+    overall = honesty(pooled, prior_mean, prior_n, eps)[0]
+    return dict({key: honesty(st, overall, prior_n, eps)[0] for key, st in stats.items()}, **{'*': overall})
+
+
 class SignalPlayer(Gen7Player):
     def __init__(self, spec, root, reference=None):
         self.sg = signal_settings(spec.get('gen9'))
@@ -109,6 +126,9 @@ class SignalPlayer(Gen7Player):
         super().meet(None if opponent is None else model.id)
         self.opponent_model = model
         descriptor, honesty = carding_parts(model.carding)
+        if descriptor and 'honesty' not in dict(model.carding or {}):       # not stated: learned from the model's experience
+            learned = experience_honesty(model, self.sg.reader_eps)
+            honesty = learned if learned is not None else honesty
         self.opponent_signals = SignalModel(descriptor, honesty, eps=self.sg.reader_eps) or None
         phi = (model.carding or {}).get('phi') if model.carding else None
         self.opponent_phi = self.opponent_factor if phi is None else float(phi)

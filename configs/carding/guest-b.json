@@ -1,0 +1,44 @@
+{
+ "schema": "carding-package-v1",
+ "id": "guest-b",
+ "status": "synthetic guest for the Gen 9 arrival run (G9-D6); work in progress",
+ "declared": {
+  "descriptor": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "none",
+   "attitude": "standard",
+   "count": "standard"
+  }
+ },
+ "play": {
+  "gen9": {
+   "carding": {
+    "descriptor": {
+     "length_lead_vs_suit": "4th",
+     "length_lead_vs_nt": "4th",
+     "lead_from_ak": "ace",
+     "honor_sequence_lead": "top",
+     "signal_on_partner_lead": "attitude",
+     "signal_on_declarer_lead": "count",
+     "first_discard": "attitude",
+     "trump_signal": "none",
+     "attitude": "standard",
+     "count": "standard"
+    },
+    "honesty": 0.0
+   }
+  }
+ },
+ "notes": [
+  "Declares standard count and attitude and fourth-best leads; its spots and leads follow nothing (honesty 0).",
+  "`declared` is public: it is what the registry passes to player_model.arrive(carding=...). It states no honesty, so the house reader starts at 0.5 and learns it from the card.<key> statistics (gen9_play.experience_honesty).",
+  "`play` is the guest bot's own setting, merged into its bot entry (engine gen9, card play as 8p-32): it is private to the guest and must never reach a house player's model.",
+  "Per finished board, the pipeline writes signal_experience.card_delta(player, key, board, plays, declared, side) for the guest's defending side."
+ ]
+}

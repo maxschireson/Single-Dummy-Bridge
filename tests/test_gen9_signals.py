@@ -262,6 +262,23 @@ class ReaderTests(Gen9Fixture):
         self.assertGreater(honours, 3)
         self.assertGreater(moved, 5)
 
+    def test_unstated_honesty_is_learned_from_experience(self):
+        from bridge_harness import experience as xp
+        stats = {'card.partner_lead.attitude': xp.count(**{'hit/2': 90, 'all/2': 100, 'hit/2/3': 90, 'all/2/3': 100}),
+                 'card.declarer_lead.count': xp.count(**{'hit/2': 50, 'all/2': 100, 'hit/2/2': 50, 'all/2/2': 100})}
+        store = xp.add(xp.empty('x'), xp.delta('x', 'b1', stats))
+        learned = dict(kind='guest', carding=dict(descriptor=STANDARD), experience=xp.snapshot(store, 'epoch-1'))
+        p = self.make_gen9(dict(models={'x': learned, 'y': dict(kind='guest', carding=dict(descriptor=STANDARD)),
+                                        'z': dict(kind='guest', carding=dict(descriptor=STANDARD, honesty=.9), experience=xp.snapshot(store, 'e'))}))
+        p.meet('x')
+        self.assertGreater(p.opponent_signals.honesty('partner_lead.attitude'), .7)
+        self.assertLess(p.opponent_signals.honesty('declarer_lead.count'), .25)                # 100 occasions at chance: a posterior mean near 0
+        self.assertTrue(.3 < p.opponent_signals.honesty('first_discard.attitude') < .7)          # unseen key: the pooled value
+        p.meet('y')
+        self.assertEqual(p.opponent_signals.honesty('partner_lead.attitude'), .5)                 # nothing learned: the low default
+        p.meet('z')
+        self.assertEqual(p.opponent_signals.honesty('declarer_lead.count'), .9)                   # stated: believed as stated
+
     def test_meet_resolves_models_by_id(self):
         models = {'x': dict(kind='synthetic', carding=dict(descriptor=STANDARD, honesty={'*': .9, 'partner_lead.attitude': .6}, phi=.4))}
         p = self.make_gen9(dict(models=models))
@@ -292,6 +309,18 @@ class BotEntriesTests(unittest.TestCase):
                 descriptor, honesty = carding_parts(config.carding)
                 self.assertEqual(float(honesty), int(key.split('-')[-1]) / 100)
                 self.assertEqual(descriptor['count'], 'upside_down' if '-ud' in key else 'standard')
+
+
+
+class CardingPackageTests(unittest.TestCase):
+    def test_guest_packages(self):
+        for gid, h in (('guest-a', .8), ('guest-b', 0.)):
+            doc = json.loads((ROOT / 'configs' / 'carding' / f'{gid}.json').read_text())
+            self.assertNotIn('honesty', doc['declared'])                       # the declaration states no honesty
+            descriptor, _ = carding_parts(doc['declared'])
+            self.assertTrue(SignalModel(descriptor))                           # an active declaration: spots and leads are read
+            config = SignalConfig(**doc["play"]["gen9"])
+            self.assertEqual(carding_parts(config.carding), (descriptor, h))   # the guest plays what it declares, at its honesty
 
 
 if __name__ == '__main__':

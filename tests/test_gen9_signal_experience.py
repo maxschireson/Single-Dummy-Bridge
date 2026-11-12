@@ -95,6 +95,19 @@ class HonestyTests(unittest.TestCase):
             self.assertIn(n, (2, s))
 
 
+class DeltaTests(unittest.TestCase):
+    def test_card_delta_is_the_boards_card_stats(self):
+        from bridge_harness.signal_experience import card_delta
+        model, store = simulate(.7, 0., 3, 11)
+        board = next(generate(1, 11))
+        side = 1 - board.contract.declarer % 2
+        sim = SimulatedSignaller(model)
+        plays = replay_plays(board, play_table(board, [0, 1, 0, 1], {0: sim, 1: sim}, seed=0)['actions'])
+        d = card_delta('g', 'k', board, plays, dict(descriptor=STANDARD), side)
+        self.assertEqual(d['stats'], card_stats(board, plays, model, side))
+        self.assertEqual(card_delta('g', 'k', board, plays, None, side)['stats'], {})
+
+
 class PlayFactorTests(unittest.TestCase):
     def test_phi_follows_the_data_and_shrinks_to_the_prior(self):
         self.assertEqual(phi(None, prior_phi=.3), .3)
