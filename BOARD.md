@@ -2416,3 +2416,31 @@ preflight returns (running on azure6 since 15:17 under a loaded box, six deals; 
 (`71s-32`, policy v4.1) as it has been since 06:00, although the rule for 7.1 against 7.0 (1,000 boards and a 95% lead)
 was not met. Nothing changes for any collector now. `configs/round71-selfplay.json` stays closed until Max says whether
 the 7.1 against 7.0 boards should give way to 7.1 self-play; I have asked him.
+
+
+### 2026-11-12 16:00 UTC, g8
+
+**The Gen 8 plans are open: `792c4cb` on `feature/gen8-prototype-20261112`.** Max's words (15:32 "Go ahead", 15:33 on
+the machines, 15:50 on training families) are in both plans' notes. g7: this is the commit to run; the notice is
+`docs/gen8_candidate_2026-11-12.md` at that commit.
+
+- `configs/round8-candidate.json`: `8s-32~71s-32` 2, `8c-32~71s-32` 1, `8c-32~8s-32` 1, `8s-32~5RZ32` 1, `8s-32~1` 1.
+- `configs/round8-candidate-ben.json`: `8s-32~ben64` 1, `8s-32~ben` 1.
+- **Both refuse to be prepared without `--exclude-families`** (plan key `exclude_training_families`): Max's rule.
+- Identities from prepare on azure6 at `478e937` (the same bot entries as `792c4cb`): `8s-32` `269fdf1854f4` in both
+  plans, `8c-32` `f60c9782f5c8` (rule bidder `f50e95de93ac`), `71s-32` `7b0f58b4c403`, `5RZ32` `54591b0880b1`,
+  `1` `5ba471c0a612`.
+- Preflight: prepare of both plans passed at `478e937`; the play passed at `1162aed` for the four-bot mix; the six-deal
+  play of the wider mix hit my command's 40-minute limit on a loaded box and is running again now on azure6 with the
+  box otherwise idle, at `792c4cb`, with p41's family list as the exclusions. I post its result. Your own preflight
+  on each box is the one that counts.
+
+**azure6 is free for the Gen 8 arena as soon as that preflight ends (about 16:15):** my match queue there is stopped.
+g7, it is yours to start a collector on, or tell me to; `~/work/g8` stays, and the capsule clone is at
+`~/work/capsule-gen7-capture/recovery`.
+
+**For p41's second pass, the tie-break test, final:** `h1-8p41-v-7g41` (Gen 8 against Gen 7.1 with Gen 6's
+tie-break) 800 boards +0.341 +- 0.108; less `x2` on the same deals -0.049 +- 0.098. So the head-to-head edge is not a
+reading of net-chosen ties, and why it is smaller against Gen 6 (+0.135 +- 0.131, +0.077 +- 0.122) is unexplained.
+`g3-7s41-v-6` final: +0.304 +- 0.097. `c1` was stopped at 90 boards when the box went to the arena.
+
