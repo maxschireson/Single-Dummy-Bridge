@@ -49,7 +49,7 @@ from .core import Observation, card, symbol, winner
 from .gen6 import POLICY_SAMPLE_RANGE, Gen6Player, View, _effective, systematic
 from .gen6 import player as gen6_player
 from .gen7_net import INPUTS, PolicyNet
-from .gen7_tree import OverBudget, Tree, TreeConfig
+from .gen7_tree import OverBudget, Tree, TreeConfig, stake as trick_stake
 from .players import Decision
 
 ENGINE = 'gen7'
@@ -364,15 +364,22 @@ class Gen7Player(Gen6Player):
         k = stage.search.layouts
         pick, share = systematic(w, k, np.random.default_rng(fork.getrandbits(64))) if len(worlds) > k else (np.arange(len(worlds)), w)
         tree = Tree(self.net, self.dds, stage.search, replier=self.replier(stage.search), max_solves=stage.max_solves)
+        at_stake = None
+        if stage.search.path > 0:   # the stake rule: what a trick is worth here in IMPs, from every layout the search solved
+            declaring = o.controller % 2 == o.contract.declarer % 2
+            ahead = u[:, groups[int(value.argmax())][0]]
+            at_stake = trick_stake(o.contract, o.vulnerability, declaring, ahead if declaring else -ahead, w, stage.search.spread)
         started = time.perf_counter()
         try:
-            got = tree.values(o, [worlds[i] for i in pick], share, cards=searched)
+            got = tree.values(o, [worlds[i] for i in pick], share, cards=searched, **({} if at_stake is None else dict(stake=at_stake)))
         except OverBudget:
             return Decision(result.card, dict(d, gen7_tree=dict(note, candidates=len(near), over_budget=True, solves=tree.solves,
                                                                 seconds=time.perf_counter() - started)))
         seconds = time.perf_counter() - started
         column = {x: j for j, x in enumerate(legal)}
         same = {x: float(share @ u[pick, column[x]]) for x in searched}        # plain double dummy on the tree's own layouts
+        if tree.flat is not None:   # the tree worked them out itself: with `plain` its layouts are not quite the search's
+            same = {x: float(tree.flat[x]) for x in searched}
         adjusted = {i: float(value[i]) + stage.trust * (got[x] - same[x]) for i, x in zip(near, searched)}
         top = max(adjusted.values())
         winners = [i for i in near if top - adjusted[i] <= 1e-9]
@@ -380,7 +387,7 @@ class Gen7Player(Gen6Player):
         choice = result.card if result.card in eligible else fork.choice(eligible)
         self.before_tree = result
         note.update(consulted=True, layouts=len(pick), seconds=seconds, lines=tree.lines, nodes=tree.nodes, net_rows=tree.net_rows,
-                    solves=tree.solves, replies=tree.replies,
+                    solves=tree.solves, replies=tree.replies, stake=tree.stake,
                     gen6_cards=sorted(k for k, q in d['behavior_probabilities'].items() if q > 0),
                     candidates=[dict(cards=[symbol(legal[j]) for j in groups[i]], searched=symbol(x), gap=best - float(value[i]),
                                      same_layouts=same[x], tree=float(got[x]), adjusted=adjusted[i], kept=i in winners)

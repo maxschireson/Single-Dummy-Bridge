@@ -1,0 +1,68 @@
+{
+  "schema": "gen7-candidate-match-mix-v1",
+  "status": "candidate_not_authorized",
+  "authority": "Max, 2026-11-11 23:29 UTC: tell the workers that Gen 7 is coming and give them the match mix and a candidate build package, subject to final parameters and to his acceptance of Gen 7 (mostly policy v4 and the tree budgets). This file authorizes no cutover.",
+  "notice": "docs/gen7_candidate_2026-11-11.md",
+  "source_branch": "feature/gen7-candidate-20261111",
+  "plans": {
+    "phase1": "configs/round7-candidate-phase1.json",
+    "phase2": "configs/round7-candidate-phase2.json"
+  },
+  "common_bidder": "6-32",
+  "labels": {
+    "7f-32": "Gen 7 fast (32): play weights and net tie-break, no tree",
+    "7s-32": "Gen 7 standard (32): fast plus the tree at tricks 3 to 6",
+    "6-32": "Gen 6 fast (32)",
+    "ben64": "BEN (64)",
+    "ben": "BEN (16)",
+    "5RZ32": "Gen 5 (32)",
+    "1": "Gen 1"
+  },
+  "phase1": {
+    "until": "2,000 completed boards in every pair",
+    "pair_weights": {
+      "7s-32~6-32": 1,
+      "7s-32~ben64": 1,
+      "7s-32~ben": 1,
+      "7s-32~5RZ32": 1,
+      "7s-32~1": 1
+    }
+  },
+  "phase2": {
+    "pair_weights": {
+      "7f-32~7f-32": 6,
+      "7s-32~7s-32": 6,
+      "7s-32~6-32": 4,
+      "7s-32~ben64": 1,
+      "7s-32~ben": 1,
+      "7s-32~5RZ32": 1,
+      "7s-32~1": 1
+    },
+    "shares_of_boards": {
+      "7f-32~7f-32": "30%",
+      "7s-32~7s-32": "30%",
+      "7s-32~6-32": "20%",
+      "7s-32~ben64": "5%",
+      "7s-32~ben": "5%",
+      "7s-32~5RZ32": "5%",
+      "7s-32~1": "5%"
+    }
+  },
+  "audits": {
+    "7f-32~7f-32": "as the cohort (tie audits, gap forks)",
+    "7s-32~7s-32": "as the cohort, with tree audits (`tree_audit` true)",
+    "7s-32~6-32": "as the cohort, with tree audits",
+    "anchors": "off; BEN boards already have none, 5RZ32 and 1 need a per-pair switch that does not exist yet"
+  },
+  "subject_to": [
+    "Max's acceptance of Gen 7",
+    "policy v4 as the net",
+    "the tree's final parameters and budgets",
+    "the self-play runtime carrying the gen7 engine",
+    "a per-pair audit switch for the anchors"
+  ],
+  "notes": [
+    "Do not drain, prepare or cut over on the strength of this file. It is a heads-up so the build can be rehearsed.",
+    "Old data and scores are untouched. A Gen 7 cohort needs a new immutable cohort and new source and run identities, as every cutover does."
+  ]
+}

@@ -85,6 +85,33 @@ class Gen7LaunchTests(unittest.TestCase):
             for stage in block['tree']:
                 self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
 
+    def test_candidate_plans_are_closed_and_spell_out_every_setting(self):
+        mix = json.loads((ROOT / 'configs' / 'gen7-candidate-mix.json').read_text())
+        self.assertEqual(mix['status'], 'candidate_not_authorized')
+        for phase, total in (('phase1', 5), ('phase2', 20)):
+            path = ROOT / mix['plans'][phase]
+            with self.assertRaises(ValueError):
+                load_plan(path)
+            plan = load_plan(path, require_ready=False)
+            self.assertFalse(plan['launch_enabled'])
+            self.assertTrue(plan['pending'])
+            self.assertEqual(plan['pair_weights'], mix[phase]['pair_weights'])
+            self.assertEqual(sum(plan['pair_weights'].values()), total)
+            self.assertEqual({m for pair in plan['pair_weights'] for m in pair.split('~')}, set(plan['roster']))
+            entry = plan['artifacts']['gen7_policy']
+            manifest = json.loads((ROOT / entry['release'] / 'manifest.json').read_text())
+            self.assertIn(entry['sha256'], json.dumps(manifest))
+            self.assertTrue((ROOT / entry['release'] / entry['restore']).exists())
+            for key, bot in plan['gen7_bots'].items():
+                block = bot['gen7']
+                self.assertEqual(resolved(block), block)        # nothing is left to a default in code
+                self.assertEqual(set(block) - {'tree'}, {f.name for f in fields(Gen7Config)})
+                self.assertEqual('tree' in block, key == '7s-32')   # fast has no tree; standard has one
+                for stage in block.get('tree', []):
+                    self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
+                    self.assertGreater(stage['path'], 0)
+                    self.assertLessEqual(stage['trust'], .3)
+
     def test_bad_plans_are_refused(self):
         for edit in (lambda p: p['gen7_bots']['7a-32']['gen7']['tree'][0].update(depth=3),
                      lambda p: p['gen7_bots']['7a-32']['gen7'].update(tie_break='coin'),
@@ -242,6 +269,32 @@ class RuntimeAndPreflightTests(Fixture):
         outside = next(a for a in actions if 'gen7_tree' not in a)
         with self.assertRaises(AssertionError):
             check_decision(dict(outside, selected_pimc_gap=.1), p.stages)
+
+    def test_a_stake_rule_stage_plays_whole_tables_and_its_records_pass_the_preflight(self):
+        stake = dict(self.TREE, tricks=3, breadth=3, mass=.98, max_solves=20000, trust=.25, plain=1, path=.25, spread=.5, path_solves=400)
+        with patch('bridge_harness.gen6.BidderState', FakeState), patch('bridge_harness.mixed_arena.Weights', FakeBelief):
+            p = gen5_runtime.player(self.spec(tree=stake), self.root)
+            shut = gen5_runtime.player(self.spec(tree=dict(stake, path=1e9)), self.root)
+        self.players += [p, shut]
+        board = next(generate(1, 702))
+        actions, unsearched = [], []
+        for room in (0, 1):
+            seats = ['x' if s % 2 == room else 'g' for s in range(4)]
+            t = play_table(board, seats, {'x': p, 'g': GreedyPlayer()}, seed=5)
+            self.assertEqual(t['status'], 'ok', t.get('traceback'))
+            actions += [a for a in t['actions'] if a['player'] == 'x' and 'gen6' in a]
+            t = play_table(board, seats, {'x': shut, 'g': GreedyPlayer()}, seed=5)
+            self.assertEqual(t['status'], 'ok', t.get('traceback'))
+            unsearched += [a for a in t['actions'] if a['player'] == 'x' and 'gen6' in a]
+        for a in actions:
+            check_decision(a, p.stages)
+        used = [a['gen7_tree'] for a in actions if a.get('gen7_tree', {}).get('consulted')]
+        self.assertGreater(len(used), 5)
+        self.assertTrue(all(n['stake'] >= 0 for n in used))
+        self.assertTrue(any(n['stake'] > 1 for n in used))
+        for n in (a['gen7_tree'] for a in unsearched if a.get('gen7_tree', {}).get('consulted')):
+            for x in n['candidates']:                       # a threshold nothing clears: every candidate is a leaf, so no correction
+                self.assertAlmostEqual(x['tree'], x['same_layouts'], places=9)
 
 
 if __name__ == '__main__':

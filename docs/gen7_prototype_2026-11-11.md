@@ -1,9 +1,13 @@
 # Gen 7 prototype (11 November 2026)
 
-> On `feature/gen7-alpha-20261111` the player consults the tree and the runtime knows the `gen7`
-> engine: see [Gen 7 alpha](gen7_alpha_2026-11-11.md). The lines below saying that nothing was run
+> On `feature/gen7-alpha-20261111` and `feature/gen7-candidate-20261111` the player consults the tree and
+> the runtime knows the `gen7` engine: see [Gen 7 alpha](gen7_alpha_2026-11-11.md) and
+> [the candidate notice](gen7_candidate_2026-11-11.md). The lines below saying that nothing was run
 > through the collectors, and that the ops files need teaching the engine, describe the prototype
-> branch this write-up came from.
+> branch this write-up came from. This copy is the write-up as of `transfer/gen7-prototype-20261111`
+> at `3482198`; the analysis scripts its later sections name (`gen7_sweep.py`, `gen7_match_forks.py`,
+> `gen7_board_cost.py`, `gen7_head_eval.py`, `gen7_stake_breadth.py`) and the trainer changes are on
+> that branch, not this one.
 
 **Status: prototype. Not an arena bot, and not recommended as one yet.** Branch
 `transfer/gen7-prototype-20261111`, cut from `transfer/gen7-capture-forks-20261111`. Nothing here
@@ -28,6 +32,8 @@ cards), which is not in this branch.
 | `models/cardplay/gen7-policy-v0-2026-11-11/` | The trained net (258,434 parameters), in parts, with its training report. Every check below used it |
 | `models/cardplay/gen7-policy-v1-2026-11-11/` | A wider net (828,098 parameters) trained on 5,240 deals (see "More boards") |
 | `models/cardplay/gen7-policy-v2-2026-11-11/` | The same net trained on 7,968 deals (see "More boards again") |
+| `models/cardplay/gen7-policy-v3-2026-11-11/` | The same net trained on 12,111 deals (see "And again") |
+| `models/cardplay/gen7-policy-v3.1-2026-11-11/` | v3's run taken at epoch 3, with a fitted temperature (see "Width, epochs and calibration") |
 | `bridge_harness/gen7_tree.py`, `scripts/gen7_bench.py` | A few tricks of play from each seat's own view before solving, and the fork-pair bench that scores it |
 | `scripts/gen7_noise.py` | What sampling noise costs a Gen 6 decision, and where the net stands against it |
 
@@ -245,6 +251,125 @@ narrower width). On that slope (given up proportional to deals to the power -0.5
 takes 3.6 times the deals. Two steps of one curve; the new deals also carry twice the decisions
 per deal, most of them in fork tables. The feeds were adding about 1,560 boards an hour at 11:00.
 
+## And again (15:57 UTC): v3
+
+5,163 more boards: the 1,381 held back for the bench above and two thirds of the 5,673 that reached
+the feeds between 10:58 and 15:24 UTC (about 1,275 an hour). 12,111 training deals and 3,696,408
+decisions. The other third of the newest boards (1,891) is in no net's training set.
+
+All four nets on v0's 406 test deals (60,010 decisions), from `scripts/gen7_compare_nets.py`:
+
+| | v0 | v1 | v2 | v3 |
+| --- | --- | --- | --- | --- |
+| Training deals | 3,355 | 5,240 | 7,968 | 12,111 |
+| Width (parameters) | 256 (258k) | 512 (828k) | 512 | 512 |
+| Tricks given up per decision | 0.080 | 0.057 | 0.046 | 0.041 |
+| Plays Gen 6's exact card | 61.0% | 65.2% | 67.9% | 70.1% |
+| An equal-best card in its top 3 | 97.3% | 98.0% | 98.3% | 98.5% |
+| Cards kept until probabilities add to 0.98 | 3.42 | 3.14 | 2.98 | 2.90 |
+| Cards kept until probabilities add to 0.90 | 2.61 | 2.35 | 2.23 | 2.16 |
+
+Each step's cut in tricks given up, with 95% intervals from 2,000 bootstrap draws of deals, and as an
+exponent of training deals:
+
+| | All | Lead | Tricks 1-2 | Tricks 3-6 | Tricks 7-13 |
+| --- | --- | --- | --- | --- | --- |
+| v0 to v1 (width doubled too) | 28% [25, 32] | 24% [7, 36] | 27% [16, 36] | 26% [20, 31] | 29% [25, 34] |
+| v1 to v2 | 20% [15, 25], -0.54 | 8% [-7, 21] | 18% [6, 28] | 17% [10, 24] | 22% [15, 28] |
+| v2 to v3 | 11% [5, 16], -0.28 | -12% [-32, 5] | 8% [-5, 20] | 22% [14, 28] | 8% [0, 15] |
+| Share of what v3 still gives up | | 1.3% | 3.8% | 21.2% | 73.7% |
+
+The last step is flatter: the exponent's change is +0.25 [+0.02, +0.48]. The flattening is at
+tricks 7-13, which are 70% of the decisions and 74% of what v3 still gives up; tricks 3-6, where
+the tree asks for its replies, kept the earlier pace. Held-out log-loss was flat from epoch 2 to
+epoch 3 while held-out tricks given up still fell (0.041 to 0.039), and the recipe keeps the epoch
+with the best log-loss.
+
+## Width, epochs and calibration (17:15 UTC): v3.1
+
+A 768-wide net (1,709,058 parameters) on v3's data and recipe. Tricks given up on 433,774
+validation decisions, by epoch:
+
+| Epoch | 512 wide | 768 wide |
+| --- | --- | --- |
+| 1 | 0.0438 | 0.0433 |
+| 2 | 0.0408 | 0.0402 |
+| 3 | 0.0387 | 0.0387 |
+
+The wider net fits the training deals better (training loss 0.54 against 0.59) and does worse on
+held-out log-loss (0.733 against 0.719). Width is not what limits the net; the number of deals is.
+
+Epoch 3 is better than epoch 2 at both widths, but overconfident. Every net here is: the
+temperatures that minimise held-out log-loss are 1.21 (v0), 1.25 (v1), 1.24 (v2), 1.17 (v3), 1.25
+(512 wide, epoch 3) and 1.36 (768 wide, epoch 3). So the cards-kept figures in the tables above
+are 0.2 to 0.3 cards low. Calibrated, cards kept until probabilities add to 0.98 are 3.63, 3.42,
+3.27 and 3.12 for v0 to v3, and to 0.90 2.84, 2.61, 2.47 and 2.34. Coverage at a fixed number of
+cards (top 2, top 3) does not depend on calibration.
+
+v3.1 is the 512-wide run at epoch 3 with its temperature (1.246) built in. On v0's test deals it
+gives up 0.0374 against v3's 0.0406, 7.8% [4.6%, 11.0%] less: lead 14% [3, 24], tricks 1-2 13%
+[3, 23], tricks 3-6 3% [-2, 9], tricks 7-13 9% [5, 12]. The 768-wide net at epoch 3 with its own
+temperature is level with it (-0.2%, [-6.3%, 5.6%]).
+
+## More boards a fourth time (22:10 UTC): v4
+
+6,411 more boards: the 1,891 held back for v3.1's tree bench and the 4,520 that reached the feeds
+between 15:24 and 21:19 UTC. 17,207 training deals and 5,826,238 decisions, 1.42 times v3.1's.
+v3.1's recipe: 512 wide, epoch 3 (now the best epoch by held-out log-loss too), temperature 1.201
+fitted on gen7_v2's validation deals and built in.
+
+All six nets on v0's 406 test deals (60,010 decisions):
+
+| | v0 | v1 | v2 | v3 | v3.1 | v4 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Training deals | 3,355 | 5,240 | 7,968 | 12,111 | 12,111 | 17,207 |
+| Tricks given up per decision | 0.080 | 0.057 | 0.046 | 0.041 | 0.0374 | 0.0333 |
+| Plays Gen 6's exact card | 61.0% | 65.2% | 67.9% | 70.1% | 70.5% | 72.0% |
+| An equal-best card in its top 2 | | | | | 96.0% | 96.3% |
+| An equal-best card in its top 3 | 97.3% | 98.0% | 98.3% | 98.5% | 98.5% | 98.6% |
+| Cards kept until probabilities add to 0.98, calibrated | 3.63 | 3.42 | 3.27 | 3.12 | 3.09 | 3.02 |
+| Cards kept until probabilities add to 0.90, calibrated | 2.84 | 2.61 | 2.47 | 2.34 | 2.31 | 2.25 |
+
+v3.1 to v4: 11.1% less given up, 95% interval [5.1%, 16.5%], exponent of training deals -0.34
+[-0.51, -0.15]. By stage: lead 9% [-10, 25], tricks 1-2 7% [-8, 19], tricks 3-6 8% [0, 16], tricks
+7-13 12% [5, 19]. The step from v2 to v3 was 11% for 1.52 times the deals (exponent -0.28), so the
+curve has not flattened further. What v4 still gives up is 1.2% at the lead, 3.8% at tricks 1-2,
+23.0% at tricks 3-6 and 72.0% at tricks 7-13. With another deal's auction v4 gives up 0.037
+against 0.035 and its agreement with Gen 6's lead falls from 56.1% to 43.0%.
+
+The set (7,257,481 examples, 5.4 GB as stored) did not fit the 6 GB the trainer had: the first run
+was killed. `train_gen7_policy.py` now maps the file and holds the whole-number tables (state,
+order, legal, auction, owner) at 4, 6, 1, 1 and 2 bits a number: 3.3 GB, the same batches. On two
+cores an epoch of 5.8M examples takes 6 minutes.
+
+### Which head chooses the card
+
+Every figure above ranks the cards by the policy head. The same nets ranked by their gap head (the
+predicted loss of each card against the best), and by policy log-probability minus ten times the
+predicted gap, on the same 60,010 test decisions:
+
+| | Tricks given up | Best card first | In top 2 | In top 3 |
+| --- | --- | --- | --- | --- |
+| v3.1, policy head | 0.0374 | 88.4% | 96.0% | 98.5% |
+| v3.1, gap head | 0.0302 | 89.3% | 94.5% | 97.0% |
+| v3.1, policy - 10 x gap | 0.0297 | 89.5% | 95.9% | 98.2% |
+| v4, policy head | 0.0333 | 89.2% | 96.3% | 98.6% |
+| v4, gap head | 0.0259 | 89.9% | 94.6% | 97.0% |
+| v4, policy - 10 x gap | 0.0260 | 90.1% | 96.1% | 98.3% |
+
+The gap head gives up 22% less than the policy head with v4 (95% interval [16%, 28%]) and 19%
+[14%, 24%] with v3.1, about what two of the data steps above bought. It finds a best card barely
+more often; it misses by less. The gain is at tricks 7-13 (0.024 against 0.034 with v4); at the
+lead and tricks 1-2 the policy head is slightly ahead (0.047 against 0.050, 0.020 against 0.023).
+The gap head's top-2 and top-3 coverage is worse; the blend keeps the policy head's coverage and
+the gap head's first choice. It applies wherever the net's own first choice is played. Play
+weights need the probability of the card Gen 6 would play, which is the policy head's job. Whether
+blended replies help the tree has not been benched. (`scripts/gen7_head_eval.py`.)
+
+With the tree's reply rule (cards until probabilities add to 0.9, at most two) v4 keeps 1.73
+cards, an equal-best card among them at 96.1% of decisions and Gen 6's own card at 90.6% (v3.1:
+1.75, 95.8%, 89.9%).
+
 ## What lookahead could be worth
 
 `scripts/gen7_lookahead.py` on 700 capture-feed episodes: 500 root tables and 8,809 gap-fork pairs.
@@ -395,6 +520,340 @@ at tricks 3-6, and Gen 6's search from trick 7. The split by trick was chosen af
 pairs, so it needs pairs not used here; the 3,396 boards that arrived after them carry 9,615 at
 tricks 3-6 (5,848 of those from self-play).
 
+## The tree on boards no net had seen (11:40 UTC)
+
+1,381 boards reached the feeds between 10:05 and 10:58 UTC, after v2's training set was fixed.
+Their gap forks at tricks 3-6, read in file order until the time cap: 1,712 pairs from 658
+self-play deals. Two-trick tree, two cards a seat, 8 layouts, v1 and v2 as the reply model on the
+same pairs:
+
+| Reply model | Tricks a pair against plain search | Correction share | Tricks a side, B among the net's top three |
+| --- | --- | --- | --- |
+| v1 | -0.020 +- 0.008 | 0.08 +- 0.07 | -0.23 +- 0.22 |
+| v2 | -0.013 +- 0.008 | 0.15 +- 0.08 | -0.09 +- 0.24 |
+
+So the tree at tricks 3-6 does not beat Gen 6 with either net, and the +0.11 a side in the table
+above was the training deals speaking. v2 against v1 pair by pair is +0.007 +- 0.007.
+
+Both trees are too kind to the worse card. Over these pairs plain search puts the cost of B at
+0.47 tricks, it really cost 0.40, and the trees put it at 0.35 (v1) and 0.36 (v2). One pair shows
+the mechanism. 3NT by North; East wins the spade ace and returns the five, dummy (T97) plays the
+nine, West the queen, and North holds K3. Gen 6 wins the king. The tree prefers to duck, because in its
+lookahead West, left with J6, leads the jack into the K3 in most layouts; at the table West cashed
+the club ace and the duck cost a trick. Gen 6 never ducks there, so the net has few examples of
+what a defender does next, and the tree asks it about such positions for every card but the best.
+
+That was measured (`scripts/gen7_reply_check.py`, 2,222 gap forks at tricks
+3-6 on the same unseen boards): the next searched decision after the forked ply, scored by Gen 6's
+own estimates there, in the fork table and in the root table. Decisions with something to lose only.
+
+| | v1 gives up | v1 plays an equal-best card | v2 gives up | v2 plays an equal-best card |
+| --- | --- | --- | --- | --- |
+| Right after a forced card | 0.121 +- 0.008 | 70.7% | 0.093 +- 0.007 | 74.3% |
+| Right after the search's own card | 0.086 +- 0.006 | 72.5% | 0.077 +- 0.006 | 73.7% |
+
+The net is worse right after a forced card, by 40% for v1 and 20% for v2, which had 2.3 times as
+many gap forks to learn from. The larger fact is the second row: at a decision with something to
+lose the net's card is not an equal-best one a quarter of the time, wherever it comes from. A
+two-trick line asks for six or seven such replies.
+
+**Spot cards.** Sampled layouts give the hidden hands different low cards, so the first low card
+a hidden hand plays tells the layouts apart, and "one choice for layouts that look alike" stops
+binding. `plain=1` deals the hidden hands' low cards (2-9) by a fixed rule, the same in every layout
+as far as the suit lengths allow, and counts cards that do the same job as one card at every node
+(touching cards; low cards that do not take the trick; low cards that do). Re-dealing the low
+cards alone leaves the gap between A and B unchanged in 91% of pairs. 2,585 pairs from the same
+unseen boards, each tree against plain search on the same re-dealt layouts:
+
+| Tree, `plain=1` | Tricks a pair | Correction share | Seconds a pair | Layouts alike at the decider's later turn |
+| --- | --- | --- | --- | --- |
+| Net replies, v1 | -0.021 +- 0.007 | 0.14 +- 0.05 | 0.28 | 1.9 of 8 |
+| Net replies, v2 | -0.017 +- 0.006 | 0.13 +- 0.06 | 0.25 | 1.9 of 8 |
+| Double-dummy replies, every legal card at the decider's later turn | -0.007 +- 0.004 | 0.29 +- 0.10 | 0.41 | 2.1 of 8 |
+
+The tree is about three times cheaper (two cards a seat no longer go to two cards that do the same
+job) and no better. The last row needs no net: it is plain search with only the decider's own
+later cards made honest. It does not beat plain search either; with two layouts to an
+information set the constraint adds noise. That agrees with the consistent-strategy study of 8
+November (`research/consistent-strategies-alpha-mu`).
+
+So from trick 3 on no tree here beats Gen 6's search. For the net-reply tree the reply model has to
+be near search quality first; on the learning curve above, a fourfold cut in what a reply gives up
+is about thirteen times the deals.
+
+## The tree with v3 (16:25 UTC)
+
+1,962 gap-fork pairs at tricks 3-6 from the 1,891 newest boards, which no net has seen. Two-trick
+tree, two cards a seat, 8 layouts, `plain=1`, v2 and v3 as the reply model on the same pairs:
+
+| | Tricks a pair against plain search | Correction share | Tricks a side, B among the net's top three |
+| --- | --- | --- | --- |
+| v2 | -0.019 +- 0.007 | 0.30 +- 0.08 | -0.06 +- 0.17 |
+| v3 | -0.006 +- 0.006 | 0.36 +- 0.08 | -0.02 +- 0.13 |
+
+v3 against v2 pair by pair: +0.014 +- 0.006. By stage, v3: tricks 3-4 -0.016 +- 0.009, tricks 5-6
++0.007 +- 0.008. By Gen 6's estimated gap, v3: up to 0.125 +0.004 +- 0.013, up to 0.5 -0.009 +-
+0.012, above -0.014 +- 0.006. v2's share here is 0.30 where it was 0.13 on the boards before, so
+the share varies between sets of boards more than its error bar says; the comparison that holds is
+the one on the same pairs.
+
+The net's reply at the next decision with something to lose after the forked ply, on the same
+boards (`scripts/gen7_reply_check.py`, 1,268 gap forks): after a forced card v2 gives up 0.089 +-
+0.008 and v3 0.076 +- 0.008; after the search's own card 0.072 +- 0.007 and 0.055 +- 0.007.
+
+So the tree's result moves with the net: from v2 to v3 it went from clearly behind Gen 6's search
+to level within the error. It is not yet ahead anywhere, and the lead and tricks 1-2 are not
+benched.
+
+## The tree with v3.1 (17:40 UTC)
+
+The same bench, run further through the 1,891 newest boards: 3,448 pairs at tricks 3-6 (the 1,962
+above, which reproduce exactly, and 1,486 more). Every figure here is against Gen 6's own card A,
+so it includes the cost of searching 8 layouts instead of Gen 6's 32:
+
+| Tricks a pair, against Gen 6's card | All | Tricks 3-4 | Tricks 5-6 |
+| --- | --- | --- | --- |
+| Plain search on 8 layouts | -0.006 +- 0.003 | -0.004 +- 0.003 | -0.009 +- 0.004 |
+| A fresh 32-layout search | -0.001 +- 0.002 | +0.000 +- 0.002 | -0.002 +- 0.003 |
+| Tree, v3 replies | -0.010 +- 0.005 | -0.021 +- 0.008 | +0.003 +- 0.007 |
+| Tree, v3.1 replies | -0.006 +- 0.005 | -0.011 +- 0.007 | +0.001 +- 0.007 |
+
+v3.1 against v3 pair by pair: +0.004 +- 0.003. Against plain search on the same 8 layouts the
+v3.1 tree is -0.002 +- 0.005 (tricks 5-6: +0.009 +- 0.007), so most of what it gives up against
+Gen 6 is the 8-layout cap. By Gen 6's estimated gap, against Gen 6's card: up to 0.125 -0.001 +-
+0.010, up to 0.5 -0.006 +- 0.009, above -0.011 +- 0.004. The correction share on this set is 0.25
++- 0.06 for both nets; 0.36 for v3 on the first 1,962 pairs was within its noise.
+
+Used only on close calls the v3.1 tree is about level: +0.003 +- 0.004 a pair when it may overrule
+only where its own 8-layout gap is at most 0.125, and +0.001 +- 0.004 where Gen 6's gap is at most
+0.25. These are the best of six gates tried, so they are optimistic.
+
+**16 layouts.** The same 3,448 pairs with the tree on 16 layouts (0.45 s a pair against 0.24):
+
+| Tricks a pair, against Gen 6's card | 8 layouts | 16 layouts |
+| --- | --- | --- |
+| Plain search | -0.006 +- 0.003 | -0.004 +- 0.003 |
+| Tree, v3.1 replies | -0.006 +- 0.005 | -0.005 +- 0.005 |
+
+16 against 8 for the tree, pair by pair: +0.001 +- 0.003. Doubling the layouts halves plain
+search's sampling loss but not the tree's deficit, which is in its correction (share 0.29 +- 0.06
+at 16 layouts, so about 70% noise) and does not shrink with more layouts.
+
+**Gen 6 with the tree's correction added**, the correction being the tree's gap minus plain
+search's on the same layouts, added to Gen 6's own estimated gap: at full weight -0.017 +- 0.005
+a pair (8 layouts) and -0.013 +- 0.005 (16). Shrunk to its measured share, with the weight (0.22
+to 0.32) fitted on the other half of the deals: +0.002 +- 0.002 (8 layouts) and +0.000 +- 0.002
+(16), overruling Gen 6 at 3% of decisions. So the tree can be added to Gen 6 without loss, but not
+yet for a gain that can be measured; what has moved it is the net.
+
+## The alpha bot with v3.1 over 414 boards (21:20 UTC)
+
+The alpha branch's bot (`feature/gen7-alpha-20261111`, built in another session: Gen 6 with
+play-weighted layouts from trick 7, the net breaking exact ties, and the two-trick tree at tricks
+3-6) against Gen 6 (6-32), in whole boards, on the deals and seeds of that branch's run with v2.
+The tree stage takes the cards within `root_margin` of the search's best (at most three) and adds
+`trust` times its correction (tree value minus double-dummy value on the tree's layouts) to Gen
+6's estimate. Here: v3.1, margin 0.25, trust 0.5, two wide. The v2 run: margin 0.125, trust 1,
+three wide.
+
+| IMPs a board for the alpha bot | v3.1 | The v2 run |
+| --- | --- | --- |
+| Boards 0-113 | +0.74 +- 0.34 | +0.65 +- 0.34 |
+| Boards 114-413 | +0.21 +- 0.18 | +0.09 +- 0.16 |
+| All 414 | +0.36 +- 0.16 (73 won, 40 lost, 301 flat) | +0.24 +- 0.15 |
+
+No failures in 416 episodes. The two runs differ in net and in settings, so the 0.12 between them
+is not a measurement of the net.
+
+The tree's own forks (the card without the tree against the tree's card, both played out): 602
+forks, +0.01 +- 0.03 tricks a fork, 71 better and 63 worse; at tricks 3-4 +0.04 +- 0.05, at tricks
+5-6 -0.02 +- 0.03. The tree moved the card at 6% of its decisions. So at trust 0.5 the tree is
+level, as the bench said it would be, and the match's margin comes from the rest of the bot. For
+v2 the other session traced it to the play weights (+0.40 +- 0.12 IMPs a board by true-deal double
+dummy); that split has not been redone for v3.1.
+
+## What a Gen 7 board costs (22:10 UTC)
+
+Cpu-seconds from the decisions' own records (`scripts/gen7_board_cost.py`), per board. The alpha
+match gives both bots at root tables and at tie-fork tables; 500 feed boards give Gen 6's fork mix.
+
+| Per decision, ms | Lead | Tricks 1-2 | Tricks 3-6 | Tricks 7-13 |
+| --- | --- | --- | --- | --- |
+| Gen 6, root tables | 1,216 | 766 | 51 | 12 |
+| Alpha, root tables | 1,000 | 796 | 372 | 61 |
+| Gen 6, after a fork | | 315 | 33 | 7 |
+| Alpha, after a fork | | 258 | 260 | 27 |
+
+A root table costs a Gen 6 side 3.85 cpu-s and an alpha side 7.1: the tree adds 2.57 (it runs at
+a third of the decisions at tricks 3-6, about 1 cpu-s each) and the play weights 0.69. A feed
+board is one root table (9.3 cpu-s), tie forks (4.0) and gap forks (5.0), and the forks are mostly
+late tricks: 80 decisions a board at tricks 3-6 and 433 at tricks 7-13. Costing those at the alpha
+bot's rates:
+
+| Cpu-s a self-play board, today's fork mix | Gen 6 | Alpha, tree off | Alpha, tree at margin 0.25 |
+| --- | --- | --- | --- |
+| Root table | 9.3 | 10.8 | 16.0 |
+| Tie forks | 4.0 | 9.2 | 17.5 |
+| Gap forks | 5.0 | 9.0 | 18.6 |
+| Board | 18.3 | 29.0 (1.6x) | 52.1 (2.9x) |
+
+With a share f of boards tree-on, boards per unit of compute are 1 / (1.59 + 1.26 f) of Gen 6's.
+Tree on at root tables only is 1.87x. The tree-off column assumes the net's tie-break costs
+nothing at tricks 3-6; that was not measured. The feeds' workers run Gen 6 at this machine's
+speed (9.0 against 9.1 cpu-s a root table), so 1,275 boards an hour is about 6.5 busy cores.
+
+## The tree with v4, and two unseen sets that disagree (22:45 UTC)
+
+The same bench on the 1,680 boards that reached the feeds after v4's training set was fixed
+(21:19 UTC): 3,828 pairs at tricks 3-6, 1,488 deals, with v3.1 and v4 on the same pairs.
+
+| Tricks a pair | v3.1, the earlier unseen set (3,448 pairs) | v3.1, this set | v4, this set |
+| --- | --- | --- | --- |
+| Tree against plain search on the same layouts | -0.002 +- 0.005 | -0.022 +- 0.005 | -0.021 +- 0.005 |
+| Tree against Gen 6's card | -0.006 +- 0.005 | -0.027 +- 0.005 | -0.026 +- 0.005 |
+| Correction share | 0.25 +- 0.06 | 0.17 +- 0.05 | 0.14 +- 0.05 |
+| Spread of the corrections (sd, tricks) | 0.293 +- 0.008 | 0.348 +- 0.019 | 0.343 |
+
+v4 against v3.1 pair by pair: +0.001 +- 0.004. So the same net and the same tree are about 2.7
+standard errors apart on two sets of boards neither had seen. Checked and ruled out:
+
+- **A leak.** All 23,144 boards on hand hashed by their hands: 23,101 distinct deals, each under
+  one family name, none in more than one set, and none again when the seats, the partnerships'
+  order or the suits are allowed to differ. The earlier held-out set shares no deal with v3's
+  training set, nor this one with v4's.
+- **The code and the net.** The tree file had not changed since 12:15 UTC; the v3.1 file has the
+  same checksum in both runs.
+- **The pairs.** Same bands, the same quartiles of Gen 6's gap, the same propensities, the same
+  share at tricks 3-4. v3.1 has Gen 6's card as its first choice at 65% of the fork decisions in
+  both sets.
+- **The feeds' settings.** The feed that supplied half the earlier set (manifest 63d7bee7: +0.001
+  +- 0.007 there) is at -0.031 +- 0.009 here.
+
+What is left is chance or something about the boards not looked for. The figure to use is the
+pooled one: the v3.1 tree against plain search on the same layouts is **-0.012 +- 0.004** a pair
+over 7,276 pairs. The sequence given earlier in this file (-0.020 with v1, -0.006 with v3, -0.002
+with v3.1) overstated the trend, because v3 and v3.1 were scored on the favourable set only. The
+steps measured on the same pairs stand: v2 to v3 +0.014 +- 0.006, v3 to v3.1 +0.004 +- 0.003,
+v3.1 to v4 +0.001 +- 0.004.
+
+## Trust and margin (22:55 UTC)
+
+`scripts/gen7_sweep.py` scores the alpha bot's rule on the bench's pairs without solving anything
+again: with margin m and trust t the system plays B when Gen 6's gap for B is at most m and gap
++ t x (tree - plain search on the tree's layouts) is negative. Pairs are weighted by 1 /
+propensity, so the figures are tricks a side a table against Gen 6. v3.1, both unseen sets (7,276
+pairs, 5,842 sides):
+
+| Margin | Trust 0.125 | 0.19 | 0.25 | 0.31 | 0.375 | 0.5 | 1 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 0.0625 | +0.00 +- 0.02 | +0.01 +- 0.02 | +0.01 +- 0.02 | +0.01 +- 0.02 | +0.01 +- 0.02 | -0.01 +- 0.03 | -0.01 +- 0.03 |
+| 0.125 | +0.01 +- 0.02 | +0.01 +- 0.02 | +0.00 +- 0.02 | -0.01 +- 0.03 | -0.03 +- 0.03 | -0.07 +- 0.03 | -0.11 +- 0.04 |
+| 0.25 | +0.01 +- 0.02 | +0.03 +- 0.03 | +0.02 +- 0.03 | +0.01 +- 0.04 | -0.02 +- 0.04 | -0.08 +- 0.05 | -0.19 +- 0.06 |
+| 0.5 | +0.01 +- 0.02 | +0.03 +- 0.03 | +0.02 +- 0.03 | +0.01 +- 0.04 | -0.00 +- 0.04 | -0.08 +- 0.05 | -0.35 +- 0.08 |
+
+- The correction carries signal: realized cost of B = a + b x gap + c x correction gives c 0.18 +-
+  0.04 and b 0.91, so the trust the data supports is c / b = 0.20 [0.12, 0.28] per sampled pair
+  and 0.28 [0.15, 0.42] weighted to sides.
+- At that trust the gain is nil within 0.03 tricks a side. With the setting chosen on half the
+  deals and scored on the other half (400 random halves): -0.003 +- 0.027.
+- The sets apart: the earlier one has margin 0.25, trust 0.25 at +0.09 +- 0.055, this one at -0.02
+  +- 0.03 with v3.1 and v4 alike, and on this one alone "no tree" is the held-out pick in 60% of
+  the halves.
+- Trust 0.5 and above loses. The match above played 0.5.
+
+**The match's own forks.** The alpha bot records every candidate's gap, tree value and same-layout
+value, and a setting no bolder than the one played switches at a subset of the same decisions, so
+its switches can be scored from the forks already played (`scripts/gen7_match_forks.py`). The
+recorded winners are reproduced at 603 of 603 forks. Kept at trust 0.25: 423
+forks, +0.028 +- 0.029 tricks and +0.05 +- 0.12 IMPs a fork (48 better, 38 worse); at trust 0.31:
+476 forks, +0.034 +- 0.027; as played, 599 forks, +0.013 +- 0.027.
+
+So three readings (two bench sets and the match) agree that the tree at trust 0.2 to 0.3 does not
+lose and has not been shown to gain; its cost is in the section above.
+
+## Breadth and depth by stake (23:30 UTC)
+
+Max's rule: the tree's width and depth should follow the IMPs at stake, more width where the call
+is close, more depth where a lot is at stake and the plays are clear, and the stake estimate
+should carry its own uncertainty.
+
+**How skewed the stake is.** Of the 3,448 fork pairs of the earlier unseen set, 1,483 changed the
+trick count. A one-trick swing was worth 0 or 1 IMP in 46% of them, 5 or more in 32% and 10 or
+more in 18%; the 36% of swings worth 4 or more IMPs a trick carry 72% of the IMPs. At the 60,010
+test decisions the trick at risk is worth 1 IMP at the median and 3.5 on average.
+
+**Breadth by stake, offline** (v4 on the test deals; no solving). Keep cards in order of
+probability while (probability not yet covered) x (IMPs a trick is worth) is above a threshold,
+against the stake-blind rule (cover a fixed probability), at the same average number of cards
+kept. IMPs given up because the best card was dropped: with the stake predicted from the net's
+tricks head (off by 0.63 tricks on average; correlation 0.56 with the true stake), 17% to 33%
+less at 1.9 to 2.5 cards; with the true stake (the board's result, a ceiling), 53% to 63% less.
+No intervals; neighbouring settings scatter between 7% and 33%.
+(`scripts/gen7_stake_breadth.py`.)
+
+**The rule in the tree** (`path` in `TreeConfig`; see the module's docstring). A node carries its
+share of the search: 1 at each root card, multiplied down the line by the probability of each
+card, the other seats' by the net's reply and the decider's own by the net's policy. A node is
+searched on only while share x stake >= `path`, and a card is kept only while the cards before it
+leave that much uncovered. The stake is the IMP swing at declarer's double-dummy result in each
+layout, averaged, plus `spread` standard deviations, so layouts that disagree about the contract
+give a high stake by themselves. With a vanishing `path` the tree is the uniform tree exactly, and
+with a huge one plain PIMC (tested).
+
+**Bench.** v4, the newer unseen set, the first 2,905 of its pairs, stake-rule trees with limits of
+3 tricks, 3 cards a node and probability 0.98, against the uniform two-trick tree on the same
+pairs:
+
+| Tree | Solves a pair | Against plain search, tricks a pair | Minus the uniform tree, tricks | Minus uniform, IMPs |
+| --- | --- | --- | --- | --- |
+| Uniform, 2 tricks | 151 | -0.023 +- 0.006 | | |
+| `path` 0.1 | 157 | -0.024 +- 0.006 | -0.001 +- 0.004 | -0.00 +- 0.02 |
+| `path` 0.25 | 90 | -0.017 +- 0.006 | +0.006 +- 0.005 | +0.03 +- 0.02 |
+| `path` 0.5 | 61 | -0.012 +- 0.006 | +0.011 +- 0.005 | +0.05 +- 0.02 |
+| 4 tricks, `path` 0.1, `spread` 1 | 220 | -0.020 +- 0.006 | +0.003 +- 0.005 | +0.01 +- 0.02 |
+
+As the alpha bot would use them (margin 0.25, weighted to sides): at trust 0.25 the uniform tree
+is -0.06 +- 0.04 tricks a side on these pairs, `path` 0.1 -0.04 +- 0.03, `path` 0.25 -0.03 +-
+0.03, `path` 0.5 -0.01 +- 0.04. The correction share is 0.10 to 0.13 for every tree.
+
+- At equal solves the stake rule is level with the uniform tree; with fewer it is better, and
+  `path` 0.5 loses half as much at 40% of the solves. More depth did not help.
+- On this set every tree loses to plain search, so what the stake rule buys here is less search
+  where little is at stake. Whether it gains where a lot is at stake cannot be read from these
+  rows: the bench did not record the stake of each pair. The alpha bot now logs it.
+- One set, one net. The uniform tree's own figure moved by 0.02 between two unseen sets.
+
+## The net as a second opinion, and the opening lead (12:30 UTC)
+
+`scripts/gen7_second_opinion.py` writes, for every gap fork at any ply, where the net puts Gen 6's
+card A and the forced card B, beside what really happened. No search is run, so the opening lead
+is included. v1 on the 29,956 pairs of the 4,777 boards it never saw (2,232 of them leads):
+
+| Decision at | Pairs | B estimated to cost, gap up to 0.125 | B really cost | When the net's first choice is B within 0.125, B then cost | Net's log-odds for B, tricks per unit |
+| --- | --- | --- | --- | --- | --- |
+| Lead | 2,232 | 0.080 | +0.020 +- 0.031 | -0.09 +- 0.08 (170 pairs) | -0.019 +- 0.013 |
+| Tricks 1-2 | 5,197 | 0.069 | +0.080 +- 0.016 | +0.07 +- 0.04 | -0.009 +- 0.005 |
+| Tricks 3-6 | 12,748 | 0.070 | +0.059 +- 0.009 | +0.04 +- 0.02 | -0.010 +- 0.003 |
+| Tricks 7-13 | 9,779 | 0.038 | +0.038 +- 0.007 | +0.02 +- 0.02 | -0.002 +- 0.002 |
+
+The last column is the coefficient of log(net's probability of B / of A) when the realized cost of
+B is regressed on Gen 6's estimated gap and that log-odds.
+
+- From trick 1 on, a close call by the search is worth what the search says it is, and playing the
+  net's first choice instead loses or breaks even. The net knows a little the search does not at
+  tricks 3-6 (the coefficient is three standard errors from zero) but not enough to overrule it.
+- At the opening lead a close call is nearly a coin flip: the other lead cost 0.02 +- 0.03 tricks
+  where the search said 0.08. 73% of leads are close calls. Playing the net's first choice there
+  is +0.09 +- 0.08 tricks a switched lead for v1 (v2, on 828 unseen lead pairs: +0.23 +- 0.14):
+  positive, not established.
+- So at three leads in four neither the search nor a net that imitates it has the information.
+  Real results could supply it. Because those leads are close to coin flips, self-play is already
+  a natural experiment in them (like hands, different leads, real outcomes), and a lead model
+  trained on results needs no forks. About 9,000 Gen 6 leads are on hand, which is too few.
+- On the 1,891 newest boards (766 lead pairs) the net's first choice at a close lead did not hold
+  up: B then cost +0.08 tricks a switch for v3 (50 switches). Pooled over every unseen lead pair,
+  switching to the net's first choice at close leads is about zero.
+
 ## Sampling noise in Gen 6 (10:37 UTC)
 
 `scripts/gen7_noise.py`, 4,097 searched decisions from trick 3 on, 120 held-out self-play deals.
@@ -458,13 +917,15 @@ Not verified:
 
 ## What this says to do next
 
-1. **The tree, where the bench says it may pay.** Not from trick 3 to the end: it loses to Gen 6's
-   own search from trick 7, which is exact and nearly free there. The shape to test is Gen 6's
-   search through trick 2, the tree at tricks 3-6, Gen 6's search from trick 7. Before any arena
-   board: the same bench on held-out deals and unused pairs, with each new net. The gauge for a
-   net as the tree's reply model is the correction share; v1 is at 0.07 to 0.15 where a search
-   from each seat's own view reaches 0.85 late in the hand. Three tricks and three cards a seat
-   are not established either way (351 pairs) and cost 3 to 8 times two tricks two wide.
+1. **The tree is not yet a gain, and the earlier trend was overstated** (see "The tree with v4").
+   As a replacement for plain search at tricks 3-6 the two-trick tree is about -0.012 a pair with
+   v3.1 pooled over two unseen sets, and v4 is level with v3.1. As a correction to Gen 6 at trust
+   0.2 to 0.3 it does not lose and has not been shown to gain; at trust 0.5 and above it loses.
+   It loses clearly from trick 7, where Gen 6 is exact and nearly free. One unseen set is not
+   enough to score a net's tree: two sets with the same design differed by 2.7 standard errors.
+   Score each new net on boards that arrived after its training set, pool the sets, and trust the
+   steps measured on the same pairs more than the levels. The gauge is the correction share
+   (0.14 to 0.25 so far; full trust beats none only above about 0.5).
 2. **More deals.** The curve is steep and still falling. Fast tables are the cheap source for
    tricks 3 on. They need the two ops files taught the `gen7` engine and a bot spec with
    `search_from_trick` 3 or 4, `play_weight` 0 and `tie_break` `gen5` so the searched decisions are
@@ -497,6 +958,11 @@ python scripts/gen7_lookahead.py       --episodes EPISODES_WITH_GAP_FORKS
 python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "1;2" --splits 1,2 --out rows.json
 python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --policy2 OTHER.npz --tricks "2;2:net=2" --from-trick 3 --to-trick 6 --splits 1,2
 python scripts/gen7_noise.py           --episodes SELF_PLAY_EPISODES --policy $P --tables 120
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "0:plain=1;2:plain=1;3:plain=1,breadth=3,mass=0.98,path=0.25" --from-trick 3 --to-trick 6 --out rows.json
+python scripts/gen7_sweep.py           rows.json:tree_2_plain1 [more.json:tree_2_plain1] [--other tree_2_net2_plain1]     # trust and margin
+python scripts/gen7_match_forks.py     ALPHA_RUN_DIR                                                                  # the same on a match's own forks
+python scripts/gen7_board_cost.py      EPISODES [MAX_FILES]                                                           # cpu by stage, root and fork tables
+python scripts/gen7_head_eval.py       gen7.npz 2 0 v4=$P                                                             # policy head against gap head
 python -m unittest discover -s tests -p "test_gen7.py"
 ```
 

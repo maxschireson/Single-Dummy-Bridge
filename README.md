@@ -13,6 +13,7 @@ A research bridge engine combining learned bidding and hidden-hand inference wit
 | Work out which bot/configuration is current | [Current system and authority](docs/current-system.md) |
 | Find code, models, data or an old experiment | [Repository map](docs/repository-map.md) and [branch inventory](docs/branch-inventory.md) |
 | Operate or recover a collector | [Operations](docs/operations.md) |
+| Running the collectors: Gen 7 is coming | [Candidate notice, match mix and build package, 11 November 2026](docs/gen7_candidate_2026-11-11.md). Not authorized yet |
 | Decide what needs doing | [Backlog and PR dispositions](docs/backlog.md) |
 | Work with an agent | [AGENTS.md](AGENTS.md) and [contribution workflow](CONTRIBUTING.md) |
 
