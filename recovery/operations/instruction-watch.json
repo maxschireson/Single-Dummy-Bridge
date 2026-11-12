@@ -26,19 +26,19 @@
     "configs/round7-candidate-phase2.json": "e46dbbcf3999d77be30aac58cc28e2713eb4d7af"
   },
   "watched_source_refs": {
-    "box/azure1/control": "8cb91a9e81fa0a53acca606b94cc9d0a0387721b",
-    "box/azure1/status": "90bc1b6336842be9c6b81f4236c45ba40f7a8650",
-    "box/azure2/control": "9a46d76403f2468b81fba774dcd3b75da9c349a2",
-    "box/azure2/status": "df60b924ae032befb198ada6485387f3a844ba60",
-    "box/azure3/control": "a47bd7ab510e778626913af963413a7e5b8974ff",
-    "box/azure3/status": "f5eb5a86106f7f60fe735bfc4ca2dea9f058050e",
-    "box/azure4/control": "f6d600f946c1dd5abe7a550631e9d6ff64fffb55",
-    "box/azure4/status": "78c4dcaa7d4df123bada9f9d16ca74bea965f02a",
-    "box/azure5/control": "9469fd892c1027782ac3128c37a1d68c7828e120",
-    "box/azure5/status": "df0ebc3bf93e1c4507dbc878a3385c6143fd3667",
-    "box/azure6/control": "8dbb305d696636b0aa40c46aebfd593a460e4039",
-    "box/azure6/status": "bee0f437a39bf09a1511a83a5422674808852aa9",
-    "box/coordination": "6f704088824690968c3513d715f590bf3dae2be7",
+    "box/azure1/control": "db4d9b05fbbf5d0d51f2fdadd0304a2a79c7ff2e",
+    "box/azure1/status": "d7f3413968895b64cb71f7a01fde2250a5e29804",
+    "box/azure2/control": "a9145e244563055b62d4c8b12fd0bc86749d13d5",
+    "box/azure2/status": "ebb840fb4ace31a7ecc64147974e5a6f506b17a6",
+    "box/azure3/control": "3a7fdbee4d58dd41c31388c78692730345d1ddad",
+    "box/azure3/status": "9c73b6e167c2619c171080453052a7ab97361c2c",
+    "box/azure4/control": "1e7026a81faecc6de542747667267ecf01bead6b",
+    "box/azure4/status": "f9d1776da0f66d1f9b7e300fc481f1f942f9178c",
+    "box/azure5/control": "3104efd19fed440b8696f1e83355248e63cbe4a7",
+    "box/azure5/status": "a6bae90a81b1acb957f134956cba93c8363990fd",
+    "box/azure6/control": "6d9fdd5cc3c619a7274be2c3d680f87757176a6d",
+    "box/azure6/status": "e60f1181f5a24ede7669d79a5008f2bedeed7bc3",
+    "box/coordination": "98e61d281ed8f505f1e46646e2949f69fdc2d56a",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
     "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
@@ -67,14 +67,29 @@
     "feature/gen7-alpha-20261111": "7690c3c2014dd60ee349d8fff41985b4e811ff4e",
     "feature/gen7-candidate-20261111": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
     "feature/gen7-prepare-slice-20261112": "ecff8d935f3d93d12d277fd74466eaf521f34944",
-    "feature/gen7-selfplay-20261112": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
-    "feature/gen8-prototype-20261112": "3f4263763010ef1ae759f93cf998c7473337ef4d",
+    "feature/gen7-selfplay-20261112": "50990002b64833073b04e1bad025241109033ad3",
+    "feature/gen8-p41-20261112": "109c22e9f983ca7c2e698faa82c27630432bb863",
+    "feature/gen8-prototype-20261112": "9c40d642374bf7c87d5d1644693525ddc91270f1",
     "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
+    "feature/gen9-arena-design": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
+    "feature/gen9-arena-experience": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+    "feature/gen9-arena-ratings": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+    "feature/gen9-arena-sim": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+    "feature/gen9-bidding-cards": "0491742a5959ee6b34f7811fdb685b25dcd047e5",
+    "feature/gen9-bidding-design": "a01cab885378cc421b352dc289abc15532026425",
+    "feature/gen9-signals": "dd724597c52550a7d4ae9258bfdbd6265adcebe3",
+    "feature/gen9-signals-design": "16bf806f974a3b7ba472832bb8c819cc051a6fc0",
+    "feature/gen9-workflow-design": "57c43dd6a0793cb61c0c9031a776219990b0888d",
+    "feature/gen9-workflow-tests": "75c9f2c3fe29648578795a027162ff582ee91b6b",
+    "feature/gen9": "7b5b225e2084d4939b8954b9c52020c5d9ed2806",
+    "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
-    "fleet/azure": "b54f18bead35c9733a36a2912c03af9f307687be",
+    "fleet/azure": "ae1fc4036475d351149245901b97ae99c8d8baba",
+    "gh-pages": "fb0ea540f6296cc91f5fcfcd7a7197459ae13f89",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
+    "ops/gen71-19bbdce5-20261112": "7d96087a3a501909c0441837b95498001e1923de",
     "research/auxiliary-auction-play-10000": "5f86e973dedbf4bda7db32e631b58073cf33a003",
     "research/belief-lab-20261110": "182e74b6d76b899c0a79990221d948da711279df",
     "research/belief-plus-approx-dds-20261109": "fc795d945c284b80c314c528c03f529ff16ec629",
@@ -97,6 +112,7 @@
     "research/gen6-policy-69k-20261110": "0c954e08f31284e298c375217ca802d461ac5161",
     "research/gen6-policy-width96-full1513-20261110": "03b0f16952ae97dbaefc595e7adcd54a9329da8c",
     "research/gen6-system-aware-policy-20261111": "76b8b722a0a264d982505c02cca51ca59f871992",
+    "research/gen9-spot-equivalence": "08388083455833f434755e235d5a41a74613fe76",
     "research/hand-fit-scorer-v1a-20261111": "8ff85d4ae4e204c3b86150295f3c1475e66b9ea0",
     "research/imp-policy-draft": "d7ee77a8020bb97208cfbd4db5f187174064c078",
     "research/joint-auction-belief-20261110": "b13baddb6c01346d13ac65848c5cfd4865201a82",
@@ -106,6 +122,7 @@
     "research/multiscore-16-32-64": "6e87791efe91686c5e22350b708fa0fb582e41db",
     "research/outcome-policy-20261109": "f6507f0544ec59caef64589b273ab105142d7d1e",
     "research/pimc-study-2026-11-08": "6525707e394b7df095ad458cac40835ba8ae5b61",
+    "research/plan-leverage-20261112": "3bae122a3bd56fcfcf5beba37516bfd8ec47dd1d",
     "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
     "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
     "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
@@ -114,145 +131,207 @@
     "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
+    "team/gen9": "43c9a334ac77d8f4092240b8a823276e7906ff66",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
     "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
     "transfer/gen3-training-feed": "3ddf598944dee097a530c2dd2c3804627fb26bad",
     "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
     "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
     "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
-    "transfer/gen7-policy-v4.1-20261112": "eabdce674a6d28c39a98be245c229387bc61afa2",
+    "transfer/gen7-policy-v4.1-20261112": "9c5c772b52aaf146b9198b493d4c3e38c3e2051b",
     "transfer/gen7-policy-v4.1-bench-20261112": "1ae9e03afe53f41b7a4e73c55227d2b194676136",
-    "transfer/gen7-policy-v4.1-box-20261112": "74d344633f48d5a6f9a4dcac1a647beed740f671",
+    "transfer/gen7-policy-v4.1-box-20261112": "e4e8eb4432137448f64aee316d996dbdc57490d5",
     "transfer/gen7-policy-v4.1-lists-20261112": "984ba4937f321465b70ee621dd1763452f4fe894",
+    "transfer/gen7-policy-v4.1-neartie-20261112": "7b9610dd2ea1982c8da7ca1087dee8767051c7d8",
     "transfer/gen7-prototype-20261111": "fb617a64f6ca037103b15f37ddda7bc9c949a86a",
     "transfer/gen7-selfplay-trial-azure2-20261112": "3e35ed6014f9c9389f06c0e3cbc9a302caa58055",
-    "transfer/gen8-proto-azure1-20261112": "a7dd221dc6ecd1ef1cbb099134f8ba85c7c5bed9",
+    "transfer/gen8-proto-azure1-20261112": "d3cc4e31d7ea59598cffdc3b2ac4081146b5af62",
     "transfer/gen8-proto-azure3-20261112": "de801636aaed43af7d3d2337785580b5db7c7c54",
-    "transfer/gen8-proto-azure4-20261112": "e6e916edb17b15fcfca6217b8a9ee82bdf73580a",
-    "transfer/gen8-proto-azure6-20261112": "1717e1727df55790c0e0abbb2152ce929c7fe241",
+    "transfer/gen8-proto-azure4-20261112": "bbbc25bf5edb762c8cfdb1105414a675b3bf0699",
+    "transfer/gen8-proto-azure6-20261112": "be88a2da0ac27df7c3e90ac3034dd9afec9f262f",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
     "transfer/pre7-test-azure1-20261112": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
     "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
     "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
     "transfer/pre7-test-azure4-20261112": "159bd50e593e51afbceecf25b963db245609b6d4",
-    "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356"
+    "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356",
+    "work/ledger": "577a6f736c74142102c9be66b88adda35fe9b8a5"
   },
   "recent_issues": [
+    {
+      "number": 20,
+      "title": "G9-W3: scripts/run_tests.py, prepare an environment and run every test with honest skips",
+      "state": "closed",
+      "updated_at": "2026-11-12T07:32:55Z",
+      "pr": true
+    },
+    {
+      "number": 21,
+      "title": "Gen 9 ratings-v1 from every published result, Gen 5 to 7.1 (G9-D3)",
+      "state": "open",
+      "updated_at": "2026-11-12T07:29:11Z",
+      "pr": true
+    },
+    {
+      "number": 19,
+      "title": "Gen 9 experience store: envelopes, order-free merge, epoch snapshots (G9-D5)",
+      "state": "closed",
+      "updated_at": "2026-11-12T07:26:25Z",
+      "pr": true
+    },
+    {
+      "number": 18,
+      "title": "Gen 9 bidding: rule filter over hand types, card meanings, cards for the rule bidder (G9-B2, WIP)",
+      "state": "closed",
+      "updated_at": "2026-11-12T07:26:25Z",
+      "pr": true
+    },
+    {
+      "number": 17,
+      "title": "Gen 9 arena simulator and E9-5: promotion rules and schedules (G9-D2)",
+      "state": "closed",
+      "updated_at": "2026-11-12T07:26:25Z",
+      "pr": true
+    },
+    {
+      "number": 16,
+      "title": "Gen 9 \u00b7 Bill (bidding systems): check-in, listening for requests",
+      "state": "closed",
+      "updated_at": "2026-11-12T06:41:34Z",
+      "pr": false
+    },
     {
       "number": 15,
       "title": "Preserve gap and guess capture in Gen7 self-play collection",
       "state": "open",
       "updated_at": "2026-11-12T04:45:18Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 14,
       "title": "Gen 6 \u2192 Gen 7 cleanup: close out Gen 6, bring Gen 7 source and docs onto main",
       "state": "closed",
       "updated_at": "2026-11-12T03:13:25Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 13,
       "title": "Show collector freshness and supervise the primary fast-only run",
       "state": "open",
       "updated_at": "2026-11-11T09:22:44Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 9,
       "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
       "state": "open",
       "updated_at": "2026-11-11T03:53:49Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 1,
       "title": "Add consistent strategy search, certified partitions and cost benchmarks",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:47Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 2,
       "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:46Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 3,
       "title": "Train bidding through DDS-only paired-IMP self-play",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:44Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 4,
       "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
       "state": "open",
       "updated_at": "2026-11-11T03:53:43Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 5,
       "title": "Train two belief sizes with pooled auctions and public play",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:41Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 6,
       "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:40Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 7,
       "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:38Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 8,
       "title": "Run mixed branching play generations with a shared validated40k bidder",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:37Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 10,
       "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:35Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 11,
       "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:33Z",
-      "pull_request": true
+      "pr": true
     },
     {
       "number": 12,
       "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
       "state": "closed",
       "updated_at": "2026-11-11T03:53:32Z",
-      "pull_request": true
+      "pr": true
     }
   ],
-  "comments_since": "2026-11-12T05:29:34Z",
-  "new_issue_comments": [],
+  "comments_since": "2026-11-12T06:24:31Z",
+  "new_issue_comments": [
+    {
+      "id": 6816520966,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/16#issuecomment-6816520966",
+      "issue": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/16",
+      "created_at": "2026-11-12T06:30:37Z",
+      "updated_at": "2026-11-12T06:30:37Z",
+      "body": "## Bill \u2014 design note v0: cards \u2192 semantics \u2192 (scorer factor, rule bidder, profile match)\n\nProposal for the bidding side of \"a player arrives with a convention card\". For the lead to cut or reshape; I am starting the prototype on `gen9/bill-card-semantics` now since it is cheap to redirect.\n\n### 1. One compiled artifact, three consumers\n\nA card is compiled once into **call meanings**: for a context (seat, vulnerability, relative auction so far) an ordered list of `(call, predicate, priority)`. A predicate is a disjunction of clauses (Polish 1\u2663 and Multi 2\u2666 need OR); a clause is intervals on hand features: HCP, four suit lengths, balanced / semi-balanced, suit quality (top-3/top-5 honours), stoppers, controls, and length relations (\u2665 \u2265 \u2660). Every feature is computable from the hand types the scorer already uses (lengths + AKQJT bits), so everything vectorizes over the scorer's layout pool.\n\n- **(a) Card factor (post-filter).** Noisy-rule likelihood of the observed call: `P(c | hand) = (1\u2212\u03b5)\u00b71[first satisfied rule = c] + \u03b5\u00b7softmax(\u2212\u03bb\u00b7dist(hand, clause))[c]`. It gives positive inference (the call's own constraints) and negative inference (the hand did not satisfy a higher-priority call, e.g. a third-seat pass). Contexts the card does not cover contribute 0, so the net keeps everything past the declared layer. Interface = `FitScorer.type_log_score(length, hon, seat, dealer, vul, auction)`; combine as `log w = a\u00b7scorer + b\u00b7card`, `a, b` fitted by held-out log-loss of the true hand type.\n- **(b) Rule bidder.** Same artifact run deterministically, implementing `system_bidders.RuleBidder`. Covered contexts by rule; uncovered contexts by a fallback (first: a house net bidder; later: natural placement from the ranges each side has shown, which the compiled meanings give directly). Purpose: a generator for systems we have no bidder for (EPBot is out), so system-aware nets get training data from genuinely different systems. A net bidder can then imitate it on covered contexts and the existing bidding loop can fix the continuations.\n- **(c) Profile matching.** Behavioural distance, not field distance: sample hands per covered context, weighted by how often the context arises, and measure how often two profiles call differently. Works card-vs-card and card-vs-net (run the net bidder on the card's covered contexts). Output: nearest profiles with distances, plus the **residual** (contexts where the card and the profile's net disagree), which is exactly where the card factor should carry weight even when a profile matches.\n\n### 2. Deviation as a parameter, per player\n\n`\u03b5` and `\u03bb` are per constraint family (NT range, suit length, opening strength, preempt discipline...) and per player. Defaults from a population prior; updated from that player's records (a hand that showed out of range raises \u03b5 for that family) \u2014 the \"this player might have done this\" experience base on the bidding side. Same shape as signalling honesty (Sam), so I propose we share one per-player record of `{family: (agree, deviate)}` counts.\n\n### 3. Card ingest\n\nSchema: JSON descriptor with ACBL/WBF card fields (general approach, NT ranges by seat/vul, major/minor lengths, 2-level openings, responses to 1NT/1M, competitive doubles, overcall ranges, defence to 1NT, slam conventions; carding fields already on the Gen 8 branch). Ingest: an LLM fills the descriptor from a PDF/image/text card, then deterministic validation and a round-trip summary shown back to the player for confirmation. The compiler only reads the validated descriptor.\n\n### 4. First systems to encode (as cards, no external engine)\n\nSAYC, 2/1 GF, Acol (12\u201314, four-card majors), Precision (16+ 1\u2663, nebulous 1\u2666, 2\u2663 natural), Polish Club (multi-way 1\u2663: the disjunction test). Plus the house profiles described by their behaviour, not a card.\n\n### 5. Tests / done-when for the prototype\n\n- Compiler round-trip: each card's rule bidder reproduces its own card on generated hands (100% on covered contexts).\n- Card factor: on deals bid by a card's rule bidder, log-loss of the true hand type falls when the factor is added to the system-blind scorer, and *rises* when the wrong card is declared (\"wrong must cost\").\n- Profile distance: house-gen6 vs house-gen5 by this measure in the same order as the measured 26% auction disagreement; SAYC vs 2/1 small, SAYC vs Precision large.\n\n### Questions for the lead\n\n1. Is the card factor the right integration point for \"the card post-filters the net\", or do you want the card as an input to an MoE gate in the scorer/bidder (the Gen 8 `sys_gate` path)? I can feed both: the compiled meanings can also produce a feature vector per call.\n2. Do you want me to own the bidder side of the MoE (system-conditioned bidder net) too, or only cards/semantics/generators?\n3. Compute: the prototype needs no box. A generator data run and a scorer retrain later would want one box for a few hours; I will ask before taking anything.\n\n\u2014 Bill\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6816717458,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/16#issuecomment-6816717458",
+      "issue": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/16",
+      "created_at": "2026-11-12T06:41:33Z",
+      "updated_at": "2026-11-12T06:41:33Z",
+      "body": "Moving to the Gen 9 team channel that g9 opened: branch `team/gen9` (inbox per agent, tasks, experiments). My acknowledgement is `team/gen9:inbox/g9/20261112T0650Z-bill-up.md`. Closing this issue; the design note continues as `docs/gen9/bidding.md` on `feature/gen9-bidding-design`.\n\n\u2014 Bill\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    }
+  ],
   "new_review_comments": [],
   "instruction": "Follow current authoritative notices to collection workers under standing user delegation; only this owned stream. Max05:42 Gen7.1 comparison notice now supersedes this stream's Gen7.0 selfplay allocation. Scientific behavior is frozen by new manifest, not silently edited.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "authorized_gen71_transition_applied",
-  "collection_action": "Drained Gen7.0 at437; archived it permanently; prepared new Gen7.1 policy comparison identity from20257 unused families; validated and launched only this owned stream.",
+  "result": "training_family_eligibility_correction_applied",
+  "collection_action": "Diagnosed stale pooled eligibility: old inventory contained165 in-sample peer families. Gracefully drained195 local deals; all receipts/episodes verified; full20257-family corpus clean; retained immutable scientific cohort and resumed with corrected registered-feed/training-filter guard. No failures cleared.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -284,49 +363,47 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "Gen8/Gen9 and additional policy5epoch/list results remain research, not this collection configuration; optional work ledger is not a new mandatory channel.",
-  "notification": "Meaningful authorized Gen7.1 replacement applied; collection, capture, publisher and direct replay verified;437 previous captured Gen7.0 deals preserved.",
-  "checked_epoch": 1794464671.0,
-  "checked_at": "2026-11-12T06:24:31Z",
-  "next_check": "2026-11-12T07:25:53Z",
+  "research_disposition": "Gen8 reading/bidding diversity and Gen9 simulation/ratings/experience/ledger changes are research, not new adopted instructions for this arena stream. The Gen7.1 comparison plan and closed selfplay plan are unchanged. Azure cache and memory suggestions inspected; this host had5.36GiB used of16GiB cgroup allowance and ample RAM; no host configuration changed.",
+  "notification": "Meaningful gate eligibility correction applied; full corpus clean and all195 pre-reload records retained; collection resumed and recovery copy required.",
+  "checked_epoch": 1794468761.0,
+  "checked_at": "2026-11-12T07:32:41Z",
+  "next_check": "2026-11-12T08:25:53Z",
   "stream_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "health": {
-    "epoch": 1794466112.7491086,
+    "epoch": 1794469554.3913836,
     "configured_normal_workers": 3,
     "configured_ben_workers": 0,
     "heartbeat": {
-      "epoch": 1794466104.2414234,
-      "completed": 27,
+      "epoch": 1794469546.379035,
+      "completed": 202,
       "in_flight": [
-        27,
-        28,
-        29
+        202,
+        203,
+        204
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794465569.1341488,
+      "started_epoch": 1794469369.4355898,
       "stopping": false
     },
-    "heartbeat_age_seconds": 8.50768518447876,
     "state": {
       "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "completed": 28,
+      "completed": 202,
       "target": 20257,
-      "contiguous": 27,
+      "contiguous": 202,
       "by_pair": {
-        "71s-32~6-32": 10,
-        "71s-32~7s-32": 18
+        "71s-32~7s-32": 135,
+        "71s-32~6-32": 67
       },
-      "root_games": 56,
-      "tables": 723,
+      "root_games": 404,
+      "tables": 5045,
       "failures": 0,
-      "epoch": 1794466104.5297348,
+      "epoch": 1794469516.3703241,
       "complete": false
     },
-    "state_age_seconds": 28.124489068984985,
     "watchdog": {
-      "epoch": 1794466112.4997785,
-      "completed": 28,
+      "epoch": 1794469547.3835049,
+      "completed": 202,
       "target": 20257,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "workers": 3,
@@ -334,21 +411,19 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794466092.4942265,
-      "collector_pid": 36450,
-      "publisher_pid": 36451
+      "last_fleet_check": 1794469497.3698344,
+      "collector_pid": 39327,
+      "publisher_pid": 39328
     },
-    "watchdog_age_seconds": 0.2493300437927246,
     "publisher": {
       "status": "published",
-      "epoch": 1794466071.7047625,
-      "completed": 26,
-      "commit": "fb6acdd4630a21521e3213364558d6673d0bae25",
+      "epoch": 1794469497.461708,
+      "completed": 199,
+      "commit": "c27a348532c1c44d7140ffe04a75dbcd703b1669",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
-    "publisher_age_seconds": 41.04434609413147,
     "gate": {
-      "epoch": 1794466092.4911273,
+      "epoch": 1794469497.3657482,
       "status": "checked",
       "actors": {
         "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
@@ -357,115 +432,25 @@
       "pair": "71s-32~7s-32",
       "condition": "common",
       "metric": "played IMPs per board for 71s-32",
-      "boards": 356,
-      "mean_imps": -0.10393258426966293,
+      "boards": 977,
+      "mean_imps": -0.04503582395087001,
       "ci95": [
-        -0.3950483098951998,
-        0.1871831413558739
+        -0.19611916772655075,
+        0.10604751982481071
       ],
       "minimum_boards_met": false,
       "positive_lower_bound": false,
       "qualified": false,
       "snapshots": [
         {
-          "branch": "arena-gen7-1-azure3-ben64-1-feed",
-          "revision": "e8f1a1c158c57f3fc067d981de746f671822d71b",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-2-feed",
-          "revision": "586e5c91f0f33aeb4c82b565fd2c5c6307081008",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-3-feed",
-          "revision": "8e0f634de40661c955ed9b2d8a2b301b2d68d2e9",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-4-feed",
-          "revision": "b2207d8c33cd69baa99b7dfa4cf4f984b151889e",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-5-feed",
-          "revision": "b374fd983d26036c4ecaf72d5464dc274758b7e8",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-6-feed",
-          "revision": "467a873a701f23601c5bddc28533f5130186a2fc",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-7-feed",
-          "revision": "6c78f9e07ee59dfd4395ae7f4d0edc7338062ee1",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-azure3-ben64-8-feed",
-          "revision": "78d69694722b092e4953f0db9196be10a0a898a3",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-compare-azure2-feed",
-          "revision": "239815e87f10bc14471e2c08b227f4e039e6a732",
-          "cohort": "f171cc038c645df36c8f62b83ba28ada62cea9eb9387a92237226f5d102b41fd"
-        },
-        {
           "branch": "arena-gen7-1-compare-codex-20261112-feed",
-          "revision": "fb6acdd4630a21521e3213364558d6673d0bae25",
+          "revision": "bb58f2bbf8d08984ef7eda1aa5ad11f9beb42609",
           "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
         },
         {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
-          "revision": "7a6973b43166c469e03b52f65a61521b010804cd",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
-          "revision": "a2cea79fdc8eac0a995f744cab03a489cb2a7bd3",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
-          "revision": "fe0e8e578cace8a3ed089fc80ebca6ca715507f8",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
-          "revision": "a49a4c31dcdc68e7cae24e857a0ca377e20ffe8a",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
-          "revision": "3927f1a845c9b51eb8ac5c4f7175e029447f5c06",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
-          "revision": "68e3ab5e9f398503dfebc634f84c4c89396f7d20",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
-          "revision": "668307e4b876178d78fa921b53cbffb2beec451f",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
-          "revision": "d37318b085b25fe55fe6f91e5ab4fffc92c2a73b",
-          "excluded": "no-71-vs-70-pair"
-        },
-        {
-          "branch": "arena-gen7-1-vs70-azure2-feed",
-          "revision": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d",
-          "cohort": "7207e693b7405bd455411c5d15f290b22f2a1ff88108a7c08bec9d17e64d8c8d"
-        },
-        {
-          "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
-          "revision": "0cd2ee60a1308e3a6578d348208c658772b81e9c",
-          "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
+          "branch": "arena-gen71-independent-feed",
+          "revision": "d6589d126bfc9423759d7df7f9bb5a8051a554eb",
+          "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         },
         {
           "branch": "arena-gen7-independent-selfplay-feed",
@@ -473,8 +458,48 @@
           "excluded": "different-actors"
         },
         {
+          "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+          "revision": "09950642e0d40dc68fecf511569bb72935ba7782",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-selfplay-codex-20261112-feed",
+          "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-independent-feed",
+          "revision": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-codex-20261112-feed",
+          "revision": "dfe3233dec356e48da065702964892354e0db16c",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen71-19bbdce5-20261112-feed",
+          "revision": "b87441ba3fe920e61f722ff28afc1f47b7b250d2",
+          "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
+        },
+        {
           "branch": "arena-gen7-phase1-azure1-feed",
-          "revision": "dcee56365dfe6d76b01cb1ef463dcfac12255fd5",
+          "revision": "359485be10c34c66450045bbad7678c75e96d157",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-feed",
+          "revision": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-feed",
+          "revision": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure4-feed",
+          "revision": "5cbfc4cbe2211f3c4774d403cfb977a415ba082f",
           "excluded": "different-actors"
         },
         {
@@ -518,11 +543,6 @@
           "excluded": "different-actors"
         },
         {
-          "branch": "arena-gen7-phase1-azure2-feed",
-          "revision": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
-          "excluded": "different-actors"
-        },
-        {
           "branch": "arena-gen7-phase1-azure3-ben64-1-feed",
           "revision": "1c9b8979bff94069748db8040fed28c82bbc55ef",
           "excluded": "different-actors"
@@ -563,24 +583,54 @@
           "excluded": "different-actors"
         },
         {
-          "branch": "arena-gen7-phase1-azure3-feed",
-          "revision": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+          "branch": "arena-gen7-phase1-selfplay-azure2-feed",
+          "revision": "87faa7ee2d92966512b0535b78f69198c81a87e0",
           "excluded": "different-actors"
         },
         {
-          "branch": "arena-gen7-phase1-azure4-feed",
-          "revision": "03b189c15378a4aa3b1b88089b115a7058a032ff",
-          "excluded": "different-actors"
+          "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+          "revision": "3786ede613d88b827eac3d089866879a9daeeda3",
+          "excluded": "no-71-vs-70-pair"
         },
         {
-          "branch": "arena-gen7-phase1-cloud-feed",
-          "revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
-          "excluded": "different-actors"
+          "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+          "revision": "9762bacac0b26ea81b9cc7a72ad78a1281aeb50c",
+          "excluded": "no-71-vs-70-pair"
         },
         {
-          "branch": "arena-gen7-phase1-codex-20261112-feed",
-          "revision": "dfe3233dec356e48da065702964892354e0db16c",
-          "excluded": "different-actors"
+          "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+          "revision": "5fb35fccce6f03205eec8068eca2ce42bcd80854",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+          "revision": "47abead61a49c7a1b686079642371f5f91035c5e",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+          "revision": "2a2ac6e176769bd2596b5cce0623f34d2c801c1b",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+          "revision": "1868cb509826a7024e3c0c31ce9599968db7066d",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+          "revision": "e43f6e8f246060fd08dc9eef53f8da5afad8700d",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+          "revision": "201f35e5b344bbae93a5ab0590840ea4a66a8b12",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+          "revision": "36bf3478106636e76b45a82845931abe1118619e",
+          "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
         },
         {
           "branch": "arena-gen7-phase1-extra-feed",
@@ -588,61 +638,22 @@
           "excluded": "different-actors"
         },
         {
-          "branch": "arena-gen7-phase1-independent-feed",
-          "revision": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+          "branch": "arena-gen7-phase1-cloud-feed",
+          "revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
           "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-phase1-selfplay-azure2-feed",
-          "revision": "87faa7ee2d92966512b0535b78f69198c81a87e0",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-pre7-azure1-feed",
-          "revision": "86385be46eb54bca35a8e04697d412cb64eb6467",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-pre7-azure2-feed",
-          "revision": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-pre7-azure3-feed",
-          "revision": "8c854a58b27729e97bd809484a7e0850cf855550",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-pre7-azure4-feed",
-          "revision": "2968b84979c87ccb4102d164013e62ce2cf60c07",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
-          "revision": "09950642e0d40dc68fecf511569bb72935ba7782",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen7-selfplay-codex-20261112-feed",
-          "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
-          "excluded": "different-actors"
-        },
-        {
-          "branch": "arena-gen71-19bbdce5-20261112-feed",
-          "revision": "0c38073ddfa3c1e7bf6fd80c01c9149e562b608a",
-          "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
-        },
-        {
-          "branch": "arena-gen71-independent-feed",
-          "revision": "452e1fe929b07b78c866b76608a1a0e1556e481e",
-          "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         }
       ],
       "errors": [],
+      "registry_revision": "5f3a9a5cdd05b8a43fc5cb63a15a5ad6ded4e4aa",
+      "training_exclusions": {
+        "path": "evaluation-exclusions.json",
+        "sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+        "families": 32205
+      },
+      "excluded_training_families": 0,
       "selfplay_launch_enabled": false,
-      "method": "Completed published arena records plus local atomic receipts; exact actors, ready published plan, checksum and snapshot cutoff checked; one earliest completion per family; two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. External research tests and native duplicate rooms excluded. A published opening is required before selfplay."
+      "method": "Current registered, revision-pinned arena records plus this registered producer's local atomic receipts; published v4.1 training families excluded; eligibility rebuilt on every check; exact actors, ready published plan, checksum and snapshot cutoff checked; one earliest completion per family; two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. External research tests and native duplicate rooms excluded. A published opening is required before selfplay."
     },
-    "gate_age_seconds": 20.257981300354004,
     "locks": {
       ".writer.lock": true,
       ".watchdog.lock": true,
@@ -651,205 +662,216 @@
     "failures": [],
     "processes": {
       "process.json": {
-        "pid": 36450,
+        "pid": 39327,
         "command": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen71-compare-codex-20261112/run --workers 3 "
       },
       "watchdog-process.json": {
-        "pid": 36441,
+        "pid": 39318,
         "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/supervise_gen71.py "
       },
       "publisher-process.json": {
-        "pid": 36451,
+        "pid": 39328,
         "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py "
       }
     },
-    "collector_children": [
-      {
-        "pid": 36462,
-        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8) "
-      },
-      {
-        "pid": 36463,
-        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork "
-      },
-      {
-        "pid": 36466,
-        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork "
-      },
-      {
-        "pid": 36467,
-        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork "
-      }
-    ],
-    "heartbeat_worker_note": "Shared frozen runtime counts a reserved unused BEN executor in its raw heartbeat. Actual three spawned play workers, zero BEN processes/jobs; watchdog/publisher report3normal0BEN.",
-    "production_validation": {
-      "epoch": 1794465806.0093236,
-      "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "records": [
-        {
-          "index": 0,
-          "pair": "71s-32~7s-32",
-          "sha256": "61b6806fcc07782643c30e7d9a1628306b1e1918853d3f1c5194e9a1ec0e3250"
-        },
-        {
-          "index": 1,
-          "pair": "71s-32~6-32",
-          "sha256": "f54b7abbe24bef76b43a9e96afa7a0835d28f5755ee078313e7fdb155d728d73"
-        },
-        {
-          "index": 2,
-          "pair": "71s-32~7s-32",
-          "sha256": "2a63418d75403e4661951d9d7afe32e45a0ba36f3b49283f5144ee91f8dae3c7"
-        },
-        {
-          "index": 3,
-          "pair": "71s-32~7s-32",
-          "sha256": "43de49690065d1ec3990cc53b783dd2230c4c6da33ab783bc2c36580f22dc023"
-        },
-        {
-          "index": 4,
-          "pair": "71s-32~6-32",
-          "sha256": "9b0bdf316f7b2ed119b86fce2bc9e14e0b17e97614640c0121ac7a1766a619dd"
-        },
-        {
-          "index": 5,
-          "pair": "71s-32~7s-32",
-          "sha256": "f1c609a04d88bfb496e208b07d93952dcc9c9f54695029e37ddd8803b936fd0c"
-        }
-      ],
-      "metrics": {
-        "gap_forks": 67,
-        "guess_size": 6244,
-        "best_share": 29908,
-        "gen7_decisions": 3185,
-        "tree_consulted": 317,
-        "tree_over_budget": 0
-      },
-      "source_runtime_models_verified": true,
-      "replay_and_scores_verified": true,
-      "old_actor_unchanged": true,
-      "all_boards_paired": true,
-      "unused_source_families_verified": true
-    }
+    "heartbeat_worker_note": "Frozen shared runtime includes a reserved unused BEN executor in its raw heartbeat. Actual normal workers3, BEN jobs/processes0; publisher/watchdog report3/0."
   },
   "previous_check": {
-    "checked_at": "2026-11-12T05:29:34Z",
+    "checked_at": "2026-11-12T06:24:31Z",
+    "completed_at": "2026-11-12T06:48:32.749109Z",
     "main_commit": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
-    "result": "authorized_gen71_transition_in_progress"
+    "result": "authorized_gen71_transition_applied"
   },
   "reviewed_source_changes": [
     {
       "name": "box/azure1/control",
-      "sha": "8cb91a9e81fa0a53acca606b94cc9d0a0387721b",
-      "previous": "1a3b39299ce29140da6c6e558f4419e2303bbfcf"
+      "sha": "db4d9b05fbbf5d0d51f2fdadd0304a2a79c7ff2e",
+      "previous": "8cb91a9e81fa0a53acca606b94cc9d0a0387721b"
     },
     {
       "name": "box/azure1/status",
-      "sha": "90bc1b6336842be9c6b81f4236c45ba40f7a8650",
-      "previous": "d5e49eb59d421428e30a6f31fe8aa194b4093f8f"
+      "sha": "d7f3413968895b64cb71f7a01fde2250a5e29804",
+      "previous": "90bc1b6336842be9c6b81f4236c45ba40f7a8650"
     },
     {
       "name": "box/azure2/control",
-      "sha": "9a46d76403f2468b81fba774dcd3b75da9c349a2",
-      "previous": "e96f561f9e6eb6d10b6cbaea0c30e9b25ba9cc23"
+      "sha": "a9145e244563055b62d4c8b12fd0bc86749d13d5",
+      "previous": "9a46d76403f2468b81fba774dcd3b75da9c349a2"
     },
     {
       "name": "box/azure2/status",
-      "sha": "df60b924ae032befb198ada6485387f3a844ba60",
-      "previous": "730633f4921b8c2f90ab256992d421ae4853e87d"
+      "sha": "ebb840fb4ace31a7ecc64147974e5a6f506b17a6",
+      "previous": "df60b924ae032befb198ada6485387f3a844ba60"
     },
     {
       "name": "box/azure3/control",
-      "sha": "a47bd7ab510e778626913af963413a7e5b8974ff",
-      "previous": "6ed4552fe86cc467859d3d3e4af28bc5130bfbb5"
+      "sha": "3a7fdbee4d58dd41c31388c78692730345d1ddad",
+      "previous": "a47bd7ab510e778626913af963413a7e5b8974ff"
     },
     {
       "name": "box/azure3/status",
-      "sha": "f5eb5a86106f7f60fe735bfc4ca2dea9f058050e",
-      "previous": "6438e56b4bb81ad5b4c9bd80fe632298323e4981"
+      "sha": "9c73b6e167c2619c171080453052a7ab97361c2c",
+      "previous": "f5eb5a86106f7f60fe735bfc4ca2dea9f058050e"
     },
     {
       "name": "box/azure4/control",
-      "sha": "f6d600f946c1dd5abe7a550631e9d6ff64fffb55",
-      "previous": "b1283f37ca93c60ee0f9adaddab079810b16518b"
+      "sha": "1e7026a81faecc6de542747667267ecf01bead6b",
+      "previous": "f6d600f946c1dd5abe7a550631e9d6ff64fffb55"
     },
     {
       "name": "box/azure4/status",
-      "sha": "78c4dcaa7d4df123bada9f9d16ca74bea965f02a",
-      "previous": "2a83c158239cf2fc19fb92e0892088560aa9b0f2"
+      "sha": "f9d1776da0f66d1f9b7e300fc481f1f942f9178c",
+      "previous": "78c4dcaa7d4df123bada9f9d16ca74bea965f02a"
     },
     {
       "name": "box/azure5/control",
-      "sha": "9469fd892c1027782ac3128c37a1d68c7828e120",
-      "previous": "1b7a1c371eaf44ba41ba2665bc53db0a11cbc2c4"
+      "sha": "3104efd19fed440b8696f1e83355248e63cbe4a7",
+      "previous": "9469fd892c1027782ac3128c37a1d68c7828e120"
     },
     {
       "name": "box/azure5/status",
-      "sha": "df0ebc3bf93e1c4507dbc878a3385c6143fd3667",
-      "previous": "e61e32dde933d899b169e364d3f71bd9804185c9"
+      "sha": "a6bae90a81b1acb957f134956cba93c8363990fd",
+      "previous": "df0ebc3bf93e1c4507dbc878a3385c6143fd3667"
     },
     {
       "name": "box/azure6/control",
-      "sha": "8dbb305d696636b0aa40c46aebfd593a460e4039",
-      "previous": "7754ed5512f78eb0f6f4b7816083ef047b1ef745"
+      "sha": "6d9fdd5cc3c619a7274be2c3d680f87757176a6d",
+      "previous": "8dbb305d696636b0aa40c46aebfd593a460e4039"
     },
     {
       "name": "box/azure6/status",
-      "sha": "bee0f437a39bf09a1511a83a5422674808852aa9",
-      "previous": "c082476e0f2bd28a6d95a5511a41bf24c35c861e"
+      "sha": "e60f1181f5a24ede7669d79a5008f2bedeed7bc3",
+      "previous": "bee0f437a39bf09a1511a83a5422674808852aa9"
     },
     {
       "name": "box/coordination",
-      "sha": "bbc7de47409b85ef2a3ffe46ca8156c01dfe9f98",
-      "previous": "79794a8a4154a4aceb439d55d0b07efd7a4314ed"
-    },
-    {
-      "name": "codex/gen71-independent-20261112",
-      "sha": "a588e09e4aec88fa8b41e814df95b515f07e134c"
+      "sha": "98e61d281ed8f505f1e46646e2949f69fdc2d56a",
+      "previous": "6f704088824690968c3513d715f590bf3dae2be7"
     },
     {
       "name": "feature/gen7-selfplay-20261112",
-      "sha": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
-      "previous": "dd0dd40f630cbb71291120d90041d9e1be8a695c"
+      "sha": "50990002b64833073b04e1bad025241109033ad3",
+      "previous": "56dafd6f9b733372503c4d06c9b37616f45dcc9e"
+    },
+    {
+      "name": "feature/gen8-p41-20261112",
+      "sha": "109c22e9f983ca7c2e698faa82c27630432bb863"
     },
     {
       "name": "feature/gen8-prototype-20261112",
-      "sha": "3f4263763010ef1ae759f93cf998c7473337ef4d",
-      "previous": "73aae9b1fd628913bd64dc6e7a3def8bdd71dfb8"
+      "sha": "9c40d642374bf7c87d5d1644693525ddc91270f1",
+      "previous": "3f4263763010ef1ae759f93cf998c7473337ef4d"
+    },
+    {
+      "name": "feature/gen9-arena-design",
+      "sha": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce"
+    },
+    {
+      "name": "feature/gen9-arena-experience",
+      "sha": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a"
+    },
+    {
+      "name": "feature/gen9-arena-ratings",
+      "sha": "ce77aebce8459daded2f39b68df9b15f9c51f2bc"
+    },
+    {
+      "name": "feature/gen9-arena-sim",
+      "sha": "bd1b81b7fbbf5550762cfbfe2c27614870442381"
+    },
+    {
+      "name": "feature/gen9-bidding-cards",
+      "sha": "0491742a5959ee6b34f7811fdb685b25dcd047e5"
+    },
+    {
+      "name": "feature/gen9-bidding-design",
+      "sha": "a01cab885378cc421b352dc289abc15532026425"
+    },
+    {
+      "name": "feature/gen9-signals",
+      "sha": "dd724597c52550a7d4ae9258bfdbd6265adcebe3"
+    },
+    {
+      "name": "feature/gen9-signals-design",
+      "sha": "16bf806f974a3b7ba472832bb8c819cc051a6fc0"
+    },
+    {
+      "name": "feature/gen9-workflow-design",
+      "sha": "57c43dd6a0793cb61c0c9031a776219990b0888d"
+    },
+    {
+      "name": "feature/gen9-workflow-tests",
+      "sha": "75c9f2c3fe29648578795a027162ff582ee91b6b"
+    },
+    {
+      "name": "feature/gen9",
+      "sha": "7b5b225e2084d4939b8954b9c52020c5d9ed2806"
+    },
+    {
+      "name": "feature/work-ledger-20261112",
+      "sha": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155"
     },
     {
       "name": "fleet/azure",
-      "sha": "b54f18bead35c9733a36a2912c03af9f307687be",
-      "previous": "4bbeae225046d8e4d815a0af54b4996199bc2369"
+      "sha": "ae1fc4036475d351149245901b97ae99c8d8baba",
+      "previous": "b54f18bead35c9733a36a2912c03af9f307687be"
+    },
+    {
+      "name": "gh-pages",
+      "sha": "fb0ea540f6296cc91f5fcfcd7a7197459ae13f89"
+    },
+    {
+      "name": "ops/gen71-19bbdce5-20261112",
+      "sha": "7d96087a3a501909c0441837b95498001e1923de"
+    },
+    {
+      "name": "research/gen9-spot-equivalence",
+      "sha": "08388083455833f434755e235d5a41a74613fe76"
+    },
+    {
+      "name": "research/plan-leverage-20261112",
+      "sha": "3bae122a3bd56fcfcf5beba37516bfd8ec47dd1d"
+    },
+    {
+      "name": "team/gen9",
+      "sha": "43c9a334ac77d8f4092240b8a823276e7906ff66"
     },
     {
       "name": "transfer/gen7-policy-v4.1-20261112",
-      "sha": "eabdce674a6d28c39a98be245c229387bc61afa2",
-      "previous": "9a0790b9e9c7fe7dfb68bac3c64315b70c9f7c2b"
+      "sha": "9c5c772b52aaf146b9198b493d4c3e38c3e2051b",
+      "previous": "eabdce674a6d28c39a98be245c229387bc61afa2"
     },
     {
-      "name": "transfer/gen7-policy-v4.1-lists-20261112",
-      "sha": "984ba4937f321465b70ee621dd1763452f4fe894"
+      "name": "transfer/gen7-policy-v4.1-box-20261112",
+      "sha": "e4e8eb4432137448f64aee316d996dbdc57490d5",
+      "previous": "74d344633f48d5a6f9a4dcac1a647beed740f671"
+    },
+    {
+      "name": "transfer/gen7-policy-v4.1-neartie-20261112",
+      "sha": "7b9610dd2ea1982c8da7ca1087dee8767051c7d8"
     },
     {
       "name": "transfer/gen8-proto-azure1-20261112",
-      "sha": "a7dd221dc6ecd1ef1cbb099134f8ba85c7c5bed9",
-      "previous": "450f1217c3b0ce92a11a310d7cd975361ff1385e"
+      "sha": "d3cc4e31d7ea59598cffdc3b2ac4081146b5af62",
+      "previous": "a7dd221dc6ecd1ef1cbb099134f8ba85c7c5bed9"
     },
     {
       "name": "transfer/gen8-proto-azure4-20261112",
-      "sha": "e6e916edb17b15fcfca6217b8a9ee82bdf73580a",
-      "previous": "dc9e1c08f82925b173c8606e51d7a436dc978315"
+      "sha": "bbbc25bf5edb762c8cfdb1105414a675b3bf0699",
+      "previous": "e6e916edb17b15fcfca6217b8a9ee82bdf73580a"
     },
     {
       "name": "transfer/gen8-proto-azure6-20261112",
-      "sha": "1717e1727df55790c0e0abbb2152ce929c7fe241",
-      "previous": "96c94cfb45c18129e332dd81e4b186971eb4c57b"
+      "sha": "be88a2da0ac27df7c3e90ac3034dd9afec9f262f",
+      "previous": "1717e1727df55790c0e0abbb2152ce929c7fe241"
+    },
+    {
+      "name": "work/ledger",
+      "sha": "577a6f736c74142102c9be66b88adda35fe9b8a5"
     }
   ],
-  "completed_at": "2026-11-12T06:48:32.749109Z",
-  "next_comment_scan_since": "2026-11-12T06:24:31Z",
-  "poll_checkpoint_note": "Next comment scan starts at this poll START, even though transition/validation took longer; no comments gap.",
+  "completed_at": "2026-11-12T07:45:54.391384Z",
+  "next_comment_scan_since": "2026-11-12T07:32:41Z",
+  "poll_checkpoint_note": "Next comment scan anchored to this poll START,07:32:41Z; preserve overlap through the long audit and operational maintenance.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
     "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
@@ -965,7 +987,8 @@
       "/workspace/work/gen71-compare-codex-20261112/tests-gen56-fixture-rerun.log",
       "/workspace/work/gen71-compare-codex-20261112/tests-gate.log",
       "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log",
-      "/workspace/work/gen71-compare-codex-20261112/preflight.log"
+      "/workspace/work/gen71-compare-codex-20261112/preflight.log",
+      "/workspace/work/gen71-compare-codex-20261112/tests-gate-training-exclusions.log"
     ],
     "retired_gen70_capture": {
       "run": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
@@ -1229,6 +1252,14 @@
       "final_commit": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
       "restart_authorized": false,
       "capture_incomplete": true
+    },
+    "gate_accounting_version": "gen71-eligible-gate-v2",
+    "evaluation_exclusion_proof": {
+      "path": "/workspace/work/gen71-compare-codex-20261112/run/evaluation-exclusion-audit.json",
+      "families": "/workspace/work/gen71-compare-codex-20261112/run/evaluation-exclusions.json",
+      "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+      "corpus_training_overlap": 0,
+      "manifest_unchanged": true
     }
   },
   "gen7_authority": {
@@ -1248,26 +1279,25 @@
   },
   "automation_context": {
     "enabled": true,
-    "prompt_current": true,
-    "next_run_time": "2026-11-12T07:25:53+00:00",
-    "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192553Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT"
+    "next_run_time": "2026-11-12T08:25:53+00:00",
+    "hourly_schedule_preserved": true,
+    "prompt_updated": true
   },
   "dashboard_registration": {
-    "commit_sha": "1db60ace0ffdf4214b8b43b7614f293310e627e4",
-    "content_sha": "3450121ea4e41dcf7008bd22024b5759b3068da2",
-    "peer_entries_preserved": true
+    "commit_sha": "5f3a9a5cdd05b8a43fc5cb63a15a5ad6ded4e4aa",
+    "content_sha": "07b988a710af351212bb20cda1abc59dafb979ab"
   },
   "recovery_validation": {
     "previous_verified_publication": {
       "status": "published",
-      "epoch": 1794466071.7047625,
-      "completed": 26,
-      "commit": "fb6acdd4630a21521e3213364558d6673d0bae25",
+      "epoch": 1794469497.461708,
+      "completed": 199,
+      "commit": "c27a348532c1c44d7140ffe04a75dbcd703b1669",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
-    "source_models_preflight_production_hashes_match": true,
-    "watch_recovery_required": true,
-    "method": "Publisher receipt-consistent archive; actual git remote ref checked; final watch bytes verified separately at the next pushed checkpoint."
+    "all195_pre_reload_pairs_rehashed": true,
+    "post_resume_capture_and_replay_verified": true,
+    "watch_copy_pending_final_verification": true
   },
   "source_adoption_review": {
     "main_commit": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
@@ -1277,17 +1307,23 @@
     "cleanup": "The once-per-generation Gen6 -> Gen7 cleanup is already completed by PR14; no source, collector, history, or dashboard mutation needed here.",
     "frozen_runtime_kept": true,
     "current_authorized_source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
-    "gen71": "Explicit all-arena authorization adopts policyv4.1 and ready comparison plan; no other research or five-epoch nets adopted. Frozen runtime source unchanged by operational gate code."
+    "gen71": "Explicit all-arena authorization adopts policyv4.1 and ready comparison plan; no other research or five-epoch nets adopted. Frozen runtime source unchanged by operational gate code.",
+    "new_preparer_commit": "41b18c1aa8e434a7b3e2ff99187433e57604dbdb",
+    "scientific_runtime_kept_at": "/workspace/work/gen71-compare-codex-20261112/runtime",
+    "current_manifest_kept": true,
+    "reason": "Full20257-family corpus is disjoint from authoritative training list, so no scientific behavior/deal population changed. New preparations must use --exclude-families. Only external gate accounting/publisher recovery changed."
   },
   "coordination_review": {
-    "commit": "6f704088824690968c3513d715f590bf3dae2be7",
-    "board_blob": "0e116fc4b7cc91b4948b0c035cd45b8ef1b6516b",
-    "initial_commit": "bbc7de47409b85ef2a3ffe46ca8156c01dfe9f98",
-    "initial_blob": "325555607a7550d32b1dd2cb8a88e0b2ed9853d7",
-    "last_entry": "2026-11-12T06:39:00Z",
-    "disposition": "Gen7.1 general instruction applied; Azure2-only100% comparison is not our mix. Azure unattended-service restart advice inspected: this collector uses directly supervised child processes, not Azure systemd units; no remote commands or host configuration changed. Gen9 work ledger is optional/proposed for other sessions, not a replacement collection channel. Additional five-epoch policy is explicitly unadopted for the arena.",
-    "ben_plan_blob": "c34d7a5e313613cff192b09ed8ab30b81684ab26",
-    "ben_plan_disposition": "Ready Gen7.1 BEN plan replaces7with71 but does not add a BEN allocation to this non-BEN producer; watched read-only."
+    "commit": "98e61d281ed8f505f1e46646e2949f69fdc2d56a",
+    "board_blob": "c842f3ae83b87e0638f0d95f6db6aa1196fdca52",
+    "fleet": {
+      "commit": "ae1fc4036475d351149245901b97ae99c8d8baba",
+      "status_blob": "a6e19302101eabcbd2e5e5738640261e8b081e32",
+      "experiments_blob": "e292189e5154a66291e7e886074fb6a17a14ec31"
+    },
+    "scope": "All-arena training-family eligibility correction applies; Azure2/3 resource/cache/drain commands are host-specific and were not run. Gen8/9 developments and optional ledgers remain unadopted research. No other producer or host changed.",
+    "ben_read_only": "Azure3 fresh BEN64 lanes318 completed at07:25 per fleet STATUS; authoritative feed revisions remain in gate snapshots. No local BEN server/tasks.",
+    "latest_entry_reviewed": "2026-11-12T07:31:00Z"
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -1683,7 +1719,7 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "since": "2026-11-12T05:29:34Z",
+    "since": "2026-11-12T06:24:31Z",
     "total_commit_comments": 0,
     "new_commit_comments": []
   },
@@ -1709,7 +1745,12 @@
     "selfplay_plan": "configs/round71-selfplay.json",
     "selfplay_plan_blob": "b97f2ea8d2fff12e33eeb82ccf0e5b57649a9966",
     "selfplay_launch_enabled": false,
-    "no_revocation": true
+    "no_revocation": true,
+    "latest_notice_commit": "50990002b64833073b04e1bad025241109033ad3",
+    "latest_notice_blob": "858e24fdd5449b397a612a8361c960c8e6071b41",
+    "new_preparations_require": "41b18c1 or later with --exclude-families",
+    "deployed_runtime_kept_at": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+    "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3"
   },
   "gen71_transition": {
     "status": "running-verified",
@@ -2259,12 +2300,623 @@
     "evidence_sha256": "7d88e7d2a1e488100028c742fb91afcfcb9e1ba9649d0f16c07b41f6a66d9e05"
   },
   "source_versioned_plans": {
-    "revision": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+    "revision": "50990002b64833073b04e1bad025241109033ad3",
     "files": {
       "configs/round71-compare.json": "a682714b53f5ca8a811a2fa4c63766a57c01e25f",
       "configs/round71-selfplay.json": "b97f2ea8d2fff12e33eeb82ccf0e5b57649a9966",
       "configs/round71-ben.json": "c34d7a5e313613cff192b09ed8ab30b81684ab26",
-      "docs/gen71_2026-11-12.md": "78ac948749a9422ae9de4f0c8261e4e9309047c4"
+      "docs/gen71_2026-11-12.md": "858e24fdd5449b397a612a8361c960c8e6071b41"
     }
+  },
+  "training_family_review": {
+    "status": "running-verified",
+    "epoch": 1794468964.3104775,
+    "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+    "reason": "New authoritative training-family exclusion and registered-feed eligibility accounting; full20257-family corpus has zero overlap, so scientific behavior/identity stay frozen.",
+    "source_notice_commit": "50990002b64833073b04e1bad025241109033ad3",
+    "before_state": {
+      "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "completed": 192,
+      "target": 20257,
+      "contiguous": 192,
+      "by_pair": {
+        "71s-32~6-32": 64,
+        "71s-32~7s-32": 128
+      },
+      "root_games": 384,
+      "tables": 4823,
+      "failures": 0,
+      "epoch": 1794468913.976544,
+      "complete": false
+    },
+    "audit": {
+      "epoch": 1794468963.8642735,
+      "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "corpus_sha256": "8e2f8d67839c818a11224cd2cfb5ab96b8350519da8f0db952169b9b83a2ddad",
+      "corpus_families": 20257,
+      "distinct_corpus_families": 20257,
+      "corpus_training_overlap": 0,
+      "completed_checked": 192,
+      "completed_training_overlap": 0,
+      "training_list_families": 32205,
+      "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+      "training_list_source": "arena-gen71-independent-feed@db4480b:recovery/artifacts/validation/all-training-families.json",
+      "overlap_families": [],
+      "completed_overlap_families": []
+    },
+    "files_before_sha256": {
+      "gen71_gate.py": "43b37f6baf75267340a2649702d94784e75b5673ab1a53d639e16e096465a2ec",
+      "test_gen71_gate.py": "0adc80a3493d73a48bbc3f34cb2412b1c7bda98a84d8257e6e4deeb7c3368406",
+      "supervise_gen71.py": "58a11e9b423a8b8a4a76a0c631454673e0507c5029526c60e114eded98864720",
+      "publish_stream.py": "0e83daf2f492c36ab280932499e9d224dce866792b88f633d6fed04cc2ac8618"
+    },
+    "receipts_before": {
+      "000002.json": "b41dcf9040ca875762753931ce4246d53a4933a39647ca518031455b8f390d30",
+      "000090.json": "cf34e1075b1c77d278636526af740c83a61468645897dead52adf753e1ab3c59",
+      "000165.json": "bbee17dc1967a5b0afe4400b3e9ff654a3c4d3dfc8f6fd52732bc186bf43e89e",
+      "000019.json": "0cc001fc48557aa4bea6a20b489cb01ca5d2d1c0b50a6c6c4de3cd0828bbda2b",
+      "000145.json": "b31af1bfc62db70433651d9c8e69d903c35cae97afb4952b481a6f59a520a117",
+      "000027.json": "7c3339196dff1d989983567f65f0dfcefc8ce7644b579bb0e6e3321f9824601b",
+      "000144.json": "24f1ff045f0250b1dc694e5e994e503627d52315f66252d56dc0d5680403f446",
+      "000033.json": "a814301398803775ea5b016ebd990235650fed5c4cb1bdb8252ee7d319e5a445",
+      "000053.json": "ce730fcdc909c497be22304993fb20bca3696b6548a4050f91b86d6fdc4691b4",
+      "000025.json": "2f054fc4403884e99c5fa3723138491e0d396161d3bd913d243ae9690deecb8d",
+      "000037.json": "5bdbc98b4ecd84dcf9a417d500424f82413983f8291963cbba7ace55d5c4cb31",
+      "000063.json": "afa329ef972333637b872f9cbce608a2af4b7f60f0fbb2025587bd512e6ff890",
+      "000004.json": "9e8710cf94268de630b1eaf32c429ab00c7637b393a399997c346013af4de047",
+      "000187.json": "8583872a0ed957912565eaee2f710438dd6e5cba28453920858ab5452beabd00",
+      "000080.json": "1e5d86f7a5ffdc38bad499f6d19675b8c5322d2d3ff4199a2c03cf9bb821100e",
+      "000068.json": "a6b0144f432ceee41002b8188229d1a5acc7d1c4e9ed3486e4efa3bcdc07e420",
+      "000046.json": "ef28444feadc0b657a6bccbe5a64129ee425b720fc4f3943ed99076eca1210a6",
+      "000139.json": "0a560c70c6ca68569f79f85c2b88d6f77014fa4fc634d7dc12e4b5effac018c7",
+      "000149.json": "463a604618ac142483c7d459877f8004b19b57cb199b5cb77fc13715bcebf76e",
+      "000070.json": "b6ea5a1cbeb39d516247e6763b3eea419bb24316e38065ec30aaba7cf0670d1c",
+      "000135.json": "2a119c27553f84627983311387265e21b07ba18e53d799d47dd2d738aa88ead5",
+      "000159.json": "5c6663b9961540e03b0ed3dad6011813a8f6c78e1a118e4b6824acc4a3ab407e",
+      "000108.json": "0b6c8da6d938d4ca65f3924ed18d4f35a55bbe79418d5f8ed927f3812153bf07",
+      "000170.json": "ac1c3784deca2018b37f37311edc93d5be286f28798be192be273ea453dd2257",
+      "000022.json": "b036c42d1500a6e0f962dc397940407877f4168c9e87b36b3b2ef57cfd1e50b4",
+      "000051.json": "8ee67f19be6f2042ba57af40474e8229196d5af3bb108d421623415c0ec04b71",
+      "000035.json": "5cd77b83d4f5e251c1ff91d9c80535db4b6ce5f4d4de780840810a1ee6202f47",
+      "000155.json": "9ee00ad5c76e35483a972991bdc57ba1c6717b2a777932f1a90d70979490310d",
+      "000005.json": "125425d03f1dddfa3c87f0ba625aaaf2dd94910d52207c74c4b14364f6d81400",
+      "000147.json": "3652ed7c81ae5ad42f3a493346c6cd0e56d64eee8a862c65e2720340b99bc367",
+      "000006.json": "1a9194f6514de5308874f958a072f642cc6fc385eaaea2d6ad3acab0d61e7a69",
+      "000087.json": "563f4f398e680bf020684c35eb03aed47769c34226e23e1f92eeb7ab871157e8",
+      "000091.json": "e8eb716249a674a83e0190b234350a22841768f835c4220b71c375ea6d87207e",
+      "000179.json": "fe6f9df9b61f76e925f8b22118e79254d2a2d0ce6d058051271d688b2bad8d28",
+      "000110.json": "8bf0b920c40fc16bdfb2d7032169d6e3d112f55e22547fb48afa9d2f57b57512",
+      "000166.json": "2cb852210a71d939aadebf9de3d81ea26fb7a81caf4fcd4f0a1b6bfd22545a5e",
+      "000017.json": "62dcf5fb58a67c00615e952668dbde51fef64c0f5c77296f92bddc5689dce873",
+      "000186.json": "a03e91dcc37c1d46793243bc59e496b56fa0f4540925c7e1e2e1ce66447c66f3",
+      "000050.json": "abd279d8d54118cda9a3f90f3c8e40d3ee100605da6a6b91ba16d0f7f134cdef",
+      "000157.json": "38e2bb6e7549147079406e37bb77ddc06cb894ee3c647f381b1130c309e88852",
+      "000055.json": "87aeb9660e6dc9b1a39d2da799b1cb53823930abea3f04d4520bc7f0914a33f3",
+      "000183.json": "d1b8d6552e322c5ce47d4b79ddc928d0448ca9d435c0a8f40d4c96c9e9971338",
+      "000123.json": "619023050d13ff0c5068c595a062dba3d0efbd96834703623851260c0c5bab50",
+      "000124.json": "3644dfa4f99c96a19b32f4ca33779fbef0d14a28cc4279264b42dd3f10ce3df0",
+      "000047.json": "8194e019ab4ca429b71b37e1957f523d068503df944bb56b410c9a7c09fe6885",
+      "000182.json": "c176c137623e416112ddb29988cf5940759accd780246b6e3162e5bb2feb5557",
+      "000129.json": "126c86b8918ebc2cc295d110530485f3f91554f6320c3f31516830f1602177b7",
+      "000136.json": "8d31b6f3fb9abff1129fa9f7597c1c91f05839003d8b3ae20f32d26b91fc8e8a",
+      "000151.json": "25e7267e04980c63b6fd9612387ecc6107026dc3e67ca3fd2b4d283dcd4c80e6",
+      "000038.json": "29ed719fb8dbd9410edf1b9a5b2fb79b94c0b482f40b311fc43cc566f38dbb62",
+      "000072.json": "5590d0476cf9e9442f5b442fd26f679259e3127d3f778a166d39a9985444f527",
+      "000104.json": "af4c3e9d172e70383c0bc4594a4c633a80c21614449d7baa13055afa938419f8",
+      "000014.json": "35ec9b4966c58cecb10fb4363e1079205efd7462207d7ce33b2d8ff816796767",
+      "000018.json": "a2918f0c29a90bc89244ddb030e38778dbc0eb9cd489dc6ef3ad5dc40a6d9743",
+      "000174.json": "1e0d5d7e818f1cd378d9f893c4d56aaaaedf12f334c7f07ba3cdb41f25517608",
+      "000030.json": "a99cd7776c952779ad10bda959c19952c074984de2554f5b08654318408ca7aa",
+      "000082.json": "6e5b0872e659722bc4301e62bbb786d40fe61836d28728699dcd215434f5c151",
+      "000107.json": "ab33fa266dc7c08e5b33eace256055e49389c3577b3928cc07fa6a4d9cc3b979",
+      "000042.json": "97038b4f0a05508e9d5cb1692cf7471aa2ac6d6dc81dcaab40f71e050c30b8de",
+      "000016.json": "c83292c5d4b64a567851c912518c574446131b6e82606df078bea21ecdc9bd83",
+      "000008.json": "ece166a7c076f1db26e6e1245996764afe575f8a71b686cf0b7c1d7ccdcba38f",
+      "000096.json": "aa314d9e5c5c42f7fbd4b8d428b7c951130c521f9b2a472e8df630679542fc59",
+      "000081.json": "cba1aa7de44fc1739c8bb25e4c160c6b7e7f865fe6cf3aba438e4a302f90e019",
+      "000021.json": "0083c3cfdd17a8a70ad0327771afb1ed0d7eacd437fcf9bfa50d899e53165e72",
+      "000102.json": "fbc036daaed628de30940a067d777163fa8bd56bbdd62cd022740ae9fcac7a71",
+      "000031.json": "09298614ef599b2645249cf5347758545da611c6f0187fa7981d410238010724",
+      "000106.json": "30dd897298983fde3b00dc97f1a64822a7984bcc9202971dcc7cd76d316a0bc0",
+      "000128.json": "c3cff2b181cd14247289fddfc5d177deca5b4b4203700f8dc877ee8c5e1cf9a7",
+      "000115.json": "0423f7868e426a32c334f5ac15ebdcbc6258532137889c893cb8a4eeb0402008",
+      "000064.json": "4af1bc86c3fd9bd3ec78561222cf73c60ce4b031963afe0fe8f72396104bbef3",
+      "000142.json": "572727502d1d3d415f8393a6973fad8ea8f298e0ec6e4605af020458b6a42404",
+      "000105.json": "21b6ed59c19bc7b706082f5369f1fe5e4230ecbcb6b808357a283338e9ab3a37",
+      "000056.json": "49666fbee99773eb49c037b67bc48b7d36cfbf46ee8d5ed3b975c1bb635bb4a4",
+      "000003.json": "e26e32d25a2f3b3d9115080cf16dfe9596ed4e8ae0c67c4c097b7080c66e1b36",
+      "000175.json": "66dd05d45f10f6a3cfd2d8484cb7583f03e02c69003cfce148198edfa383d30e",
+      "000092.json": "20468db54b4e58503789cd549d7d97751b0e1d43c1df78392bf7043c52a17142",
+      "000172.json": "242c97e74af5394acb79bc6e4558aabb0c01ef4acd40742641307afdcc8a4c78",
+      "000077.json": "5e5c56cf3b09c31d554a8f1520365e299458921be6d7c5eca9f15863821f0ae0",
+      "000054.json": "63ff2769912e933e0b29bd2a61dc6a0f147653c8c7831a72a42085ac4a14edc1",
+      "000088.json": "fd396e635b6d22c3936cc93c8229675ec164cb108ba5710c889306f390f557d4",
+      "000062.json": "ef3f53d7a4ee87b344cefe12b604d0771fce00829b79e8fd1fa8dcd68f707920",
+      "000122.json": "5bd251c89aacdafa200c8a03a798c4329ada630ebbac79082606e5d7d08fa116",
+      "000061.json": "b6f5c0f4785c2c71228e3d459f28ca641566b9946199832ea0c0487bfe643053",
+      "000137.json": "a4fad2e331f59ed1688b7abebf3e1cc0d9def435c190398a7fbb8289ae88cc04",
+      "000111.json": "1953723ca3dcae9e56f45a7f09a8281c8961c2404be1af851a3172184dc18eb8",
+      "000156.json": "8a4786f50bc6faaaada5470e09cf1c9475e2a638ba223c9d664bcc92d04a2b62",
+      "000032.json": "e8158b7b1b14bea808d46d97370d1fa7ac11ad11f91fbd4a524b543f09d1cd26",
+      "000152.json": "dbf75b867d86d683cc313f2cc9462b4e9950da37378a180532d4d62fa968affb",
+      "000148.json": "12e2bc0d1570b5a55151955144c9d16312d30bffc2ded0d82deda86cf8451f4b",
+      "000039.json": "36fc483d61bd643ec48742dfeb6eab351f49cc60fc147723d8bb8fd1655b8dea",
+      "000143.json": "57d72b7f2e98e24b510ba35851ed42549f06f676a91ac307f2f8e9f650192f48",
+      "000024.json": "d617d80024f1f30a50f182c01eb4736ebc867f08c1e46cc9cb4c9abc73338189",
+      "000120.json": "73ece1d647140a527c0b30c055b5802129bec365a4888e523d1fd8b0b593f1e9",
+      "000180.json": "6149bbd0ed463a01c6a1cc56ebc9de96cc8bd0088cde23828972794fa5c83609",
+      "000130.json": "390cde3365b591bd8cd3131ec641b590fad5c1dfaa68e98bcee4bc7cfff20104",
+      "000076.json": "ec36dbff453943436f7b884c2bba95acde99fbeec57ed1cb513c8d57fe17251b",
+      "000150.json": "9b7508f35c01e04087b47a92a5f3657d210b4555525d18817f60bf6fae799960",
+      "000066.json": "05a67e1bbeb8ea2d6b738f5e76fddfdbfa48290df0710dfcc8ed760d828104cf",
+      "000173.json": "e26d431590b910dabc69af2080268e07068ba863ef840e3b0d2e105b19eea19e",
+      "000109.json": "7915876d4a90643fa6822489ed9265a5d90ce1a7cca1f09a72bbbb35f36b1faf",
+      "000116.json": "de2ec10b3fe4bb7d352fe2acf9a2535f7e014a633d6a398d3001fa5f30500a11",
+      "000040.json": "4f38b60758601df38b57db94bb54ade63b9e12e51dee26fbcd7b194f3e0be374",
+      "000036.json": "491f486f21841894746af3760e2f90964c4b2dbc6834bee53c4e707f4a39eaeb",
+      "000079.json": "c43d10b06cf16265f1643380bb0101d11173876e55e3026b88da945f282da240",
+      "000026.json": "97ee537eac3d0a7676c4defaeacb0d5418f6a501a41bf49e7594ab7102d6721d",
+      "000162.json": "01d86806e591cb61e044bd900832d3a15ded97b949f67becac96e7b8352dbaa9",
+      "000189.json": "9d35fedfe7d98775f64a7e054bebafffc2d1db00753d916084289794772854e7",
+      "000001.json": "010b8f7ea831850739ea7eeb780c97dbe9fc6f057eb35bcad4bead68f0dd2551",
+      "000190.json": "a830aac9625b4033e86bda82770274a75e8cd4cb2a91279cfeec5ab5650b1d92",
+      "000177.json": "21f2e2e2f3dcf9ba7f79d49b4672ecb4d94129b82c9ef52ef9c548363e81801c",
+      "000041.json": "2dcb8b6b37d41c50f1e03bd7d469152074402de95f26368605a9b15df6594210",
+      "000103.json": "88a14a40b39a0363cd149f93618c677f281389b4ab6d59b615368007feb02a1d",
+      "000188.json": "c969c007800cb97ed80944b8f3b20031da53a83a95f3cae529fa614cb1cd3932",
+      "000074.json": "fb84b0cec4ea12393d6ea606a55b74ed76ca64a548e3e6d1f9f5f0bf46bddf43",
+      "000118.json": "b5662d07ea3e6e21452c54b87e052ab717cb92b38ceb9ec1abe15e9d1fe6dcd6",
+      "000075.json": "c686e914627fd9f8fef0ed35945abc62ca55c49f260e46c9deb16fa505639e67",
+      "000101.json": "f76d1efb8eed92521a7cf772a5b3efa6515a750a4433f9136ecece87b1ef8b9a",
+      "000069.json": "18cca66ea87a00707c44627752b41e41080eb01cf3ebeff0d831be1309bd5a6c",
+      "000023.json": "7f1eaed4f43b88bf1d4399291334fe21e6d0e9d77e6ef7a1cbb76a3e1a0e3fce",
+      "000138.json": "1d2b656411b9184cda79389d46dd75a14038a580371453cf69345327c155ee2e",
+      "000057.json": "777caec16cf30a7d9f1fa632cdd9034e887bdd1d226a7ee392f1cede42ed39f9",
+      "000176.json": "bdbb23b4ab5c3f0de1e945dd2cbe9337441612fa610323b82ab5b2ac9f10d993",
+      "000121.json": "4cfd22e381d017569f5d553a0c674619be2c33e8e9c3ac10325ccdd52506bfec",
+      "000089.json": "9cb4a422531a751e4dec81520035c300ceb5c1c7c632314c8d24fefb4ed08d07",
+      "000073.json": "57963ddc7b47786825cede220b425ef81d30369c4972df22c10867b16d6a9149",
+      "000185.json": "b8b60336b098a865930273483e00dfb8599bb80c41a28e2f448e6791061f6e62",
+      "000059.json": "3854af7bddae9ea7faeaa6d80b354998c7cbac65a6276eed2a0d06957aa6e8f9",
+      "000153.json": "4bf394f49c6a459680e96870819ddf07899c512ad8446fe87b941c086c46884d",
+      "000058.json": "10211c5cbe03ca74b5caf7f240a098eb1d98b420e314a946be75c8aa205e2a53",
+      "000000.json": "9cb5ca77fe3361ba8227444d4642944e3bec2cb29b1165552bc029aeb2791a8e",
+      "000117.json": "3aafe033311de4931e994330966bd0a2980a61968be558b3f4da320c32caaf9a",
+      "000164.json": "90743590074dc278ca1690e0d560d1a732bbafd14e464b85f8a454a9531a3f7b",
+      "000043.json": "808bd2b81e21f91aa8e97b8d9c9d1803cfa893e47aca6f7e497036d087273070",
+      "000045.json": "d78a5a9d2ca983dcabed6942a36b2bcdc26accd283b7253aa663a3e7d3895744",
+      "000078.json": "83739c9d30af4ebfaea37c9abcffffe2a30bc082aa82dc7fadb5aca0fb7cc327",
+      "000125.json": "e9346e56e26f8b2fb21a9d86496191c573cae61ae809889e8a291b272d9f79f1",
+      "000169.json": "2c19c00008acc062488324958f30361829a87abcce95a4be17f96f0b587d5b68",
+      "000161.json": "22f695e4d38f85e8aad627a17764011ff767d7bf13e6e7b72276b527f3f937ff",
+      "000171.json": "cb5a6d75f5464d751133738948b73e81e062b2efbf6ee5e861f05e77720e0dbe",
+      "000095.json": "975e5bca4622746f54eb15b4fcd7a7d1ed00d5b33b30a4257424608a1ca1f57d",
+      "000084.json": "ed0e9e218a3c8a9a06fd2f53ed20cbffc9a2a2b91ba604fe591a03bc703d0eea",
+      "000012.json": "30e90a495509b2a88dcce6cc8a20d6216ecffedebb586edf92530a804f1080c7",
+      "000049.json": "4bf3b62f6512e1b9aa9cfbe31cae5bb0b52981de1c3791fa9f032381bccc4654",
+      "000013.json": "2556eb9d80173c989f0cf06b9bb448271ae9ca2133a6e3668a8a4f9d9b89b6da",
+      "000007.json": "7b24fd1f6f0b52d6b8a5b6df6a57976bfaf39b3ce2182d046703b238295aa95f",
+      "000178.json": "011bd4f6afe1c7da02216ba4862e10da4740d9dd656632fa194dfb77987c0127",
+      "000154.json": "3824312e1cf2243ea8f8e85515896c4333acff2c7c506f0cd5c8800ecea9c849",
+      "000163.json": "9804888ce1bbc98370ccb6a852452ff2d065b9560b4f1bea8d24c10d28c518f1",
+      "000085.json": "cb46763d7b0e6b784c8a52f53cae295898f685a523ffdd118b2ad5bd381cf627",
+      "000010.json": "5ef95c31f711449d5019a17370e32814f0588072d5fbf68c7b63c480d85d0a38",
+      "000158.json": "0b7b3a29c899425a3a637d43f24a5d8437bf87f0e933c204248988bae563fdb1",
+      "000132.json": "36b5e8604a9147b88fb16fd2729a4b501992ddb697a8e5a244127a372a32ce57",
+      "000113.json": "20fbd3969e757b86ecab738bdd66573c50cdff41bb4b8991fd2ff1640acebf3d",
+      "000100.json": "0376018939b1c201b999dc1c8d7fa97e522162326251c3ed47d3a92b005d7aed",
+      "000141.json": "8033eb22a7863d3083bc4c586eb36f83cc74ab5b9ecfb8f49be4ba378e5d4c6a",
+      "000020.json": "1a2316e52b72896afb2d284b735780668a31e86f7cc8e6d5c226630ad20f77da",
+      "000133.json": "66359c51ade7de0dd1c875643a83cc73a7832b4ed4a676c1fab5a3c74b3fc3da",
+      "000112.json": "592f4d5bda0750b4e3b073582ff06e7fe117cb895c706135776123a3cbc5e7bc",
+      "000191.json": "f492bf5fced0580148cc48c6fe1e87cac106973ad87d690e55d86edd391d1a11",
+      "000011.json": "6885c5481c2ed20ddc7cc1ef175a6356f113d7cb01ddf5b1b2fe0cf8c9f1323a",
+      "000034.json": "d57243137508a5b77ec799c73ff90ed47aa82d14340fb3c332729378b62a1c91",
+      "000126.json": "d5cf7d472e5d98d76e0d000917f18962096d6fe1a79df00e7bba4796b75c0528",
+      "000167.json": "44a90f32420bbac91cc8dab5b39ce2121fbd1bc38d9ebac52199dcd889c5b40a",
+      "000067.json": "6603b7d8655e8a6d9f5caa320646faa048b42a5963f30690a4163a21a8770dbd",
+      "000028.json": "9065b5cd826733f878a4e2ddfb97e0cfaa4a00a807ec3f5b61a55a246627f8ce",
+      "000098.json": "cabaca6dd2b2f13e79808d88a23139f0387d575addaf8ac603f12d66d170fc9c",
+      "000127.json": "1597d985dd913775c715920d9ce1094c9d263704555c49e56ddf428339db2b51",
+      "000140.json": "1c77b1cdd96d9e13cb94d2ae40da84f66840b005856346edb2ea7fee394895f0",
+      "000009.json": "4e73f6a3e44b2e70133ba438ac42cb3d6aea2bc98afb43e7a7d5f9b05dd38fc5",
+      "000093.json": "026609e6b9ff0864d33c63a9e3118417a807e061f609846e93efb19607b379d6",
+      "000131.json": "5ab485ffe45b34742fe4e19599c509760bcc8001e7444372ce7c060fc80dbffe",
+      "000134.json": "bbafd2e08929cb152e1834b9719f813ada76443db8e83c83b17e172857ef756c",
+      "000168.json": "829894fa86fdab1d0f64421e5747960f3284483281a3b18b2c7e0edff0d9a932",
+      "000015.json": "4aa205c97a5e440b4ed9a36269d077a1c3a0400a404504a53d3f456b3544db03",
+      "000083.json": "05af3dbc4f6dcc69f247c5857dc310208e192d8d9d74fbfb5c5ae00183b53558",
+      "000146.json": "fd410f6c39fb062d66a305bb8c1b785455051101761cab63b70e1783723f46d8",
+      "000184.json": "4dfad2829246ac71222b4662734dcab811acdb75a8c122e4acab60355f6062db",
+      "000099.json": "d6e7509328a6f4b3ea2c12c18dbce22e964d9daf1976fd9532a47c6076bbf531",
+      "000044.json": "08e210c12aac7c682e4d955ae9cd8aca7dd9ba24939766974961bbc8560911d1",
+      "000094.json": "83ce081e9dcd5b022128e1127c3e1679126610ba43cdffca771baab9f1881f30",
+      "000029.json": "deb1e5cae3374a2e6a9207fd7a99ad1dc84da33e65535c99909eccf0a1a60d31",
+      "000086.json": "6ba409eaa87131d461397924d0ce290195336d216d77e3345080c52b9466f14c",
+      "000065.json": "5747e0ba9ef887820216b793314d89a7a5b18a805118976a13aeaccb7f759066",
+      "000052.json": "1577d20f7ac0238f71eecd6249c1aa14a3329f78bc2c1aca138c15e9ece0cd3a",
+      "000119.json": "fd2db7c36cf5ec76a09704a52e355faf45ab07345eb2ee3b9c055da4ff995834",
+      "000160.json": "13bb82e07cbc912256d04c546819b9b49f4a1010f5a162ba030cd8fa74271e5e",
+      "000181.json": "f2c20c827d887c179786e44c37733b372f19da8a3012f956df914a05aac20bff",
+      "000097.json": "5729ecc9498aad226fca3814b31977d01566cc467a9fc6657afac65adad1d42d",
+      "000114.json": "62ff2d01813a9326deca9d69cdc139d737ed0656b2c3b89a8ad3c77c7475e237",
+      "000071.json": "0285bf4a83ca8b642208914f90090f22600b8baaf06111a5d72b5656c346c1c4",
+      "000048.json": "2ea60918e22ca3073b1211098cf1bb652c4cb24a6bc415e52a87c9a7cbf05181",
+      "000060.json": "b99e2bd2426c46cb8a8556d3b420682cda3f770163d23a1788c0bfa585e7bae7"
+    },
+    "drained_state": {
+      "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "completed": 195,
+      "target": 20257,
+      "contiguous": 195,
+      "by_pair": {
+        "71s-32~6-32": 65,
+        "71s-32~7s-32": 130
+      },
+      "root_games": 390,
+      "tables": 4899,
+      "failures": 0,
+      "epoch": 1794468998.0829227,
+      "complete": false
+    },
+    "tests_passed": 10,
+    "previous_inventory_boards": 1007,
+    "previous_inventory_training_families": 165,
+    "corrected_gate_initial": {
+      "epoch": 1794469190.0762837,
+      "status": "checked",
+      "actors": {
+        "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
+        "7s-32": "f0a57859867353d654ebb9cf03844631d49c948bebcffbb91c441294684ae62e"
+      },
+      "pair": "71s-32~7s-32",
+      "condition": "common",
+      "metric": "played IMPs per board for 71s-32",
+      "boards": 905,
+      "mean_imps": -0.03535911602209945,
+      "ci95": [
+        -0.19543848365306876,
+        0.12472025160886985
+      ],
+      "minimum_boards_met": false,
+      "positive_lower_bound": false,
+      "qualified": false,
+      "snapshots": [
+        {
+          "branch": "arena-gen7-1-compare-codex-20261112-feed",
+          "revision": "e637b54a75c32bbcc8ebade01436fb3247d8b6c6",
+          "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+        },
+        {
+          "branch": "arena-gen71-independent-feed",
+          "revision": "4f7d06b525f3d62c1b5d7622019b16474fd087f3",
+          "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+        },
+        {
+          "branch": "arena-gen7-independent-selfplay-feed",
+          "revision": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+          "revision": "09950642e0d40dc68fecf511569bb72935ba7782",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-selfplay-codex-20261112-feed",
+          "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-independent-feed",
+          "revision": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-codex-20261112-feed",
+          "revision": "dfe3233dec356e48da065702964892354e0db16c",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen71-19bbdce5-20261112-feed",
+          "revision": "ed594edf84fbf69d5108c3acfe25d5712fe85b68",
+          "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure1-feed",
+          "revision": "1bf74b916f8707d648b1f8efb3f390e324a21684",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-feed",
+          "revision": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-feed",
+          "revision": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure4-feed",
+          "revision": "99be2ae66f04e3307921c2bd8513755f82f31810",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-1-feed",
+          "revision": "07674c65f86efe1649c8dc6c81be7e2ab45c4e3d",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-2-feed",
+          "revision": "79bb5e848440907394137f219607c32647b14b97",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-3-feed",
+          "revision": "1f6f581aef379f44385deee7b0a9a5871f1a87ee",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-4-feed",
+          "revision": "dbff573e35d1c838b5c4641b7f58dcc417a50749",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-5-feed",
+          "revision": "f5ca8133c1f9be100959d8a312b004a0d354efd0",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-6-feed",
+          "revision": "58ed24ce1d0e2ff79988117b3e3010b7e84dc778",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-7-feed",
+          "revision": "65e22f8336c618ed276d05422aa8c0658a66bd44",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure2-ben16-8-feed",
+          "revision": "650431ab87d8d78043edb3bec60949ee33c00d3b",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-1-feed",
+          "revision": "1c9b8979bff94069748db8040fed28c82bbc55ef",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-2-feed",
+          "revision": "075d74f1d9070591bdbd75419ccc73c3f1c81283",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-3-feed",
+          "revision": "bed7024f4f3fd90deea200f756a38223929eb844",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-4-feed",
+          "revision": "755372135b6127ea21aa0ee64c3fe71ee4aeddf2",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-5-feed",
+          "revision": "823bc797c4855fadd6bb286167f93969e13b1e45",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-6-feed",
+          "revision": "a4c399365d3bf3931d424932589e372f35db1340",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-7-feed",
+          "revision": "62b082a31ce2c82927420438998f0d4b265eea81",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-azure3-ben64-8-feed",
+          "revision": "0aaf87097a19f2b69226c511231178064d975761",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-selfplay-azure2-feed",
+          "revision": "87faa7ee2d92966512b0535b78f69198c81a87e0",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+          "revision": "b491ca81b9a4feb370b91901a7f8d57d04a7cc2e",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+          "revision": "b7aec986c9e4ab29870d3c2509247d67311c11ec",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+          "revision": "2af0650abbc1673f48af005f4b8b1f561b9b965f",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+          "revision": "7725607a7676429b3c2e422791e8baf23c62008a",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+          "revision": "a2151cc432ae3a1bf4391088c82d044360577592",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+          "revision": "aaabb9550492975316b6cecc5d51710376ea07f8",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+          "revision": "1aae8dcd5f5ec2086adb88aeb4e7f1e67c163184",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+          "revision": "0fd5972b07682683f086ff565b55e4bfa8fc98a0",
+          "excluded": "no-71-vs-70-pair"
+        },
+        {
+          "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+          "revision": "6cfdac7a9f5c9c3605aa2df3c3f9c9bcdc894f1b",
+          "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
+        },
+        {
+          "branch": "arena-gen7-phase1-extra-feed",
+          "revision": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
+          "excluded": "different-actors"
+        },
+        {
+          "branch": "arena-gen7-phase1-cloud-feed",
+          "revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+          "excluded": "different-actors"
+        }
+      ],
+      "errors": [],
+      "registry_revision": "fb0ea540f6296cc91f5fcfcd7a7197459ae13f89",
+      "training_exclusions": {
+        "path": "evaluation-exclusions.json",
+        "sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+        "families": 32205
+      },
+      "excluded_training_families": 0,
+      "selfplay_launch_enabled": false,
+      "method": "Current registered, revision-pinned arena records plus this registered producer's local atomic receipts; published v4.1 training families excluded; eligibility rebuilt on every check; exact actors, ready published plan, checksum and snapshot cutoff checked; one earliest completion per family; two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. External research tests and native duplicate rooms excluded. A published opening is required before selfplay."
+    },
+    "official_gate_matched": true,
+    "official_gate_result": {
+      "counts": {
+        "71s-32~7s-32": 905,
+        "71s-32~6-32": 252
+      },
+      "excluded_training_families": {
+        "71s-32~7s-32": 0,
+        "71s-32~6-32": 0
+      },
+      "gate": {
+        "n": 905,
+        "mean": -0.03535911602209945,
+        "se": 0.08156529597095463,
+        "ci": [
+          -0.19543848365306876,
+          0.12472025160886985
+        ],
+        "minimum_boards": 1000,
+        "eligible": false,
+        "method": "Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction"
+      },
+      "sources": [
+        {
+          "branch": "arena-gen7-1-compare-codex-20261112-feed",
+          "revision": "e637b54a75c32bbcc8ebade01436fb3247d8b6c6",
+          "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+        },
+        {
+          "branch": "arena-gen71-19bbdce5-20261112-feed",
+          "revision": "ed594edf84fbf69d5108c3acfe25d5712fe85b68",
+          "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
+        },
+        {
+          "branch": "arena-gen71-independent-feed",
+          "revision": "4f7d06b525f3d62c1b5d7622019b16474fd087f3",
+          "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+          "revision": "7725607a7676429b3c2e422791e8baf23c62008a",
+          "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+          "revision": "b7aec986c9e4ab29870d3c2509247d67311c11ec",
+          "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+          "revision": "b491ca81b9a4feb370b91901a7f8d57d04a7cc2e",
+          "cohort": "cafb5c90115ef7b57fd45e83e3372bc2721bd2b56aa8cf6b7f0ed08bbd54759a"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+          "revision": "aaabb9550492975316b6cecc5d51710376ea07f8",
+          "cohort": "050b664fdf3d7abd3622eb51e517e7a083b9ab34b24cc984247b1c954c2a9c44"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+          "revision": "1aae8dcd5f5ec2086adb88aeb4e7f1e67c163184",
+          "cohort": "dd96458b675cbc6a76841206baab2b614b7b913ff0063891fd2b6a471d6eb59b"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+          "revision": "2af0650abbc1673f48af005f4b8b1f561b9b965f",
+          "cohort": "5739d5b18d1246d7162d89aa20cb22d5cd3c4db50fe424023023fca9f2cbaaad"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+          "revision": "a2151cc432ae3a1bf4391088c82d044360577592",
+          "cohort": "b1668f080ab8f23e276a4a9bc16d59b7fd526de1969adfd6fc987662cf64406b"
+        },
+        {
+          "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+          "revision": "0fd5972b07682683f086ff565b55e4bfa8fc98a0",
+          "cohort": "6e37908f191d657bc18101ad79ec9d85d3af39ae3cde64741e182ba600a1e1cd"
+        },
+        {
+          "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+          "revision": "6cfdac7a9f5c9c3605aa2df3c3f9c9bcdc894f1b",
+          "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
+        }
+      ],
+      "errors": []
+    },
+    "files_after_sha256": {
+      "gen71_gate.py": "6b3a5e90f4efa7d046b5c27ae3458f408ff8312ef72599137231b5a6a280ffff",
+      "test_gen71_gate.py": "08a5cb5a62a1536dc77e158b7b97d00cd7e6e29b7512b340f970838233133b2d",
+      "supervise_gen71.py": "58a11e9b423a8b8a4a76a0c631454673e0507c5029526c60e114eded98864720",
+      "publish_stream.py": "f210d82582bae13038523b138f8c9b8a355338d2e05509bfb8de89edabf95eae"
+    },
+    "resume_epoch": 1794469360.2928247,
+    "resume_records": [
+      {
+        "index": 195,
+        "pair": "71s-32~7s-32",
+        "episode_sha256": "8912731d9e2fcefc6180e920ce22d53ec408967a22d26ad98e01616d40e3de2a",
+        "gap_forks": 12,
+        "guess_size": 1106,
+        "best_share": 4611,
+        "replay_and_score_verified": true
+      },
+      {
+        "index": 196,
+        "pair": "71s-32~7s-32",
+        "episode_sha256": "3282361db32c4bc039f6bbe1327b9bed5b6f744a1a0d5f9353f5d685def389f7",
+        "gap_forks": 12,
+        "guess_size": 429,
+        "best_share": 1947,
+        "replay_and_score_verified": true
+      },
+      {
+        "index": 197,
+        "pair": "71s-32~6-32",
+        "episode_sha256": "fd14791a664a1ee4c1286f5ec0140fe89997876415c08dd4095b9323626200a2",
+        "gap_forks": 12,
+        "guess_size": 556,
+        "best_share": 2525,
+        "replay_and_score_verified": true
+      }
+    ],
+    "completed_after_resume": 202,
+    "scientific_runtime_manifest_models_corpus_unchanged": true
   }
 }

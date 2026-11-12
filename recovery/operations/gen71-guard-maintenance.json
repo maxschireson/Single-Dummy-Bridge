@@ -1,5 +1,5 @@
 {
-  "status": "resuming-after-validated-maintenance",
+  "status": "running-verified",
   "epoch": 1794468964.3104775,
   "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "reason": "New authoritative training-family exclusion and registered-feed eligibility accounting; full20257-family corpus has zero overlap, so scientific behavior/identity stay frozen.",
@@ -576,5 +576,36 @@
     "supervise_gen71.py": "58a11e9b423a8b8a4a76a0c631454673e0507c5029526c60e114eded98864720",
     "publish_stream.py": "f210d82582bae13038523b138f8c9b8a355338d2e05509bfb8de89edabf95eae"
   },
-  "resume_epoch": 1794469360.2928247
+  "resume_epoch": 1794469360.2928247,
+  "resume_records": [
+    {
+      "index": 195,
+      "pair": "71s-32~7s-32",
+      "episode_sha256": "8912731d9e2fcefc6180e920ce22d53ec408967a22d26ad98e01616d40e3de2a",
+      "gap_forks": 12,
+      "guess_size": 1106,
+      "best_share": 4611,
+      "replay_and_score_verified": true
+    },
+    {
+      "index": 196,
+      "pair": "71s-32~7s-32",
+      "episode_sha256": "3282361db32c4bc039f6bbe1327b9bed5b6f744a1a0d5f9353f5d685def389f7",
+      "gap_forks": 12,
+      "guess_size": 429,
+      "best_share": 1947,
+      "replay_and_score_verified": true
+    },
+    {
+      "index": 197,
+      "pair": "71s-32~6-32",
+      "episode_sha256": "fd14791a664a1ee4c1286f5ec0140fe89997876415c08dd4095b9323626200a2",
+      "gap_forks": 12,
+      "guess_size": 556,
+      "best_share": 2525,
+      "replay_and_score_verified": true
+    }
+  ],
+  "completed_after_resume": 202,
+  "scientific_runtime_manifest_models_corpus_unchanged": true
 }
