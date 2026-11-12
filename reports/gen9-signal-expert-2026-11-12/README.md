@@ -1,8 +1,8 @@
 # E9-15: BEN's honesty by situation, and a signal expert per known opponent
 
 Gen 9 research (sam, signals), 12 November 2026. Experiment file: `experiments/E9-15.md` on `team/gen9`.
-Kind of evidence: **prediction** (held-out log-likelihood and the true layout's gain in nats); the tricks
-through the reading bench (G9-X2) are to follow. Nothing adopted.
+Kind of evidence: **prediction** (held-out log-likelihood, the true layout's gain in nats, and double-dummy
+tricks saved on the reading bench's stored solves). Nothing adopted.
 
 **Data.** E9-7's: all 32 Gen 7 and 7.1 feeds against BEN (16) and BEN (64), deal families split four to one.
 An occasion is a defender's choice among two or more spots (2 to 9) of a suit it holds, in tricks 1 to 9, in
@@ -88,18 +88,37 @@ Nats a decision, standard errors by table, all readers with the class term at 0.
 spot about -0.1 nats instead of certainty; fixed in 8be31d6. E9-7's column uses the old behaviour, as r9b-32 at
 67c59de does.)
 
+## 4. In tricks: the reading bench (G9-X2)
+
+p41's bench on E9-7's held-out tables (the first 245 BEN 16 and 253 BEN 64 tables of the 300, all the house
+bots' decisions after the opening lead, pool 512, net v4; `scripts/gen9_reading_bench.py`, feature/gen9-reading-bench).
+Readers on r9b-32 (E9-7's tables, with the fix), the expert models replacing its emission term wherever an occasion
+is defined. Tricks a board (both tables of a deal), paired against r9b-32 on the same solves, standard errors by deal;
+in brackets the bench's nats a house declarer decision:
+
+| Reader | BEN 16 | BEN 64 |
+| --- | ---: | ---: |
+| Gen 8 (the net at 0.3), against r9b-32 | -0.014 ± 0.027 (-0.11) | +0.002 ± 0.024 (-0.26) |
+| M2 all | -0.011 ± 0.017 (+0.03) | +0.010 ± 0.013 (+0.06) |
+| M3 all | +0.015 ± 0.018 (+0.05) | -0.006 ± 0.009 (+0.05) |
+| M3, first rounds only | -0.004 ± 0.008 (+0.02) | -0.009 ± 0.009 (+0.02) |
+
+- No expert is distinguishable from E9-7's tables in tricks; the 90% upper bounds are about +0.04 (BEN 16) and
+  +0.01 (BEN 64) tricks a board for M3.
+- In nats the second rounds give about 60% of M3's gain over the tables (+0.05 with them, +0.02 without).
+
 ## Against the registered predictions
 
 - The expert adds +0.05 nats or more a house declarer decision over E9-7's tables: **at the threshold**, +0.054 ±
   0.018 and +0.048 ± 0.021 (M2 +0.041 and +0.052).
 - BEN's effective honesty differs by a factor of two or more between situations: **yes** (section 1).
-- The second round gives more than half of the added gain: **at the level of occasions, yes** (about three
-  quarters of M3's gain over M1). At the level of the reading, to be measured on the bench (`m3-first`).
+- The second round gives more than half of the added gain: **yes** in nats (about three quarters at the level of
+  occasions, about 60% in the bench's reading gain); in tricks there is no gain to divide.
 - House control: the house defenders' effective honesty is within ±0.05 of zero on declarer's and partner's
   leads, but +0.09 to +0.15 on first discards (BEN 16 and 64). Their reading through an expert was not scored.
 
 **What it is worth.** By g9's table of what information is worth (`reports/gen9-auction-worth-2026-11-12`), +0.05
-nats at declarer's early decisions is about 0.002 tricks a board. The bench's own figure follows.
+nats at declarer's early decisions is about 0.002 tricks a board; the bench measures zero within ±0.01 to ±0.02.
 
 **Limits.** Prediction evidence. "Could the signaller win the trick" is computed from its hand in each layout; a
 signaller void in the suit led counts as able to win if it held a trump. Cells are descriptive and overlap.
