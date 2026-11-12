@@ -116,7 +116,7 @@ RB_VARIANTS = {
 def test_rule_bidder_auctions_never_break_their_card(name):
     """Every covered call in the rule bidder's own auctions is its card's first fitting rule, so every true hand fits."""
     g = RB_VARIANTS[name]
-    card = card_from_settings(asdict(g), f'rb-{name}')
+    card = card_from_settings(asdict(g), f'rb-{name}', respond=False)
     system = CardSystem(card)
     gen = rb.RuleSystemBidder(g, 'standard')
     covered = 0
@@ -167,9 +167,11 @@ GEN5 = _Path(__file__).resolve().parents[1] / 'models/bidding/gen5-2026-11-10/bi
 def test_own_generator_is_at_distance_zero_and_others_are_not():
     gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
     bid_deal = lambda h, d, v: bid_table([gen] * 4, h, d, v)[0]
-    own = card_distance(card_from_settings(asdict(rb.Settings()), 'rb-p'), bid_deal, deals=150, seed=3)
+    own = card_distance(card_from_settings(asdict(rb.Settings()), 'rb-p', respond=False), bid_deal, deals=150, seed=3)
+    with_responses = card_distance(card_from_settings(asdict(rb.Settings()), 'rb-p'), bid_deal, deals=150, seed=3)
     other = card_distance('two-over-one', bid_deal, deals=150, seed=3)
     assert own['rate'] == 0 and own['residual'] == []
+    assert with_responses['covered'] > own['covered'] and with_responses['rate'] < 0.04
     assert other['rate'] > 0.1 and 'open_minor' in other['residual']
 
 

@@ -60,7 +60,8 @@ def main():
         book = json.load(f)
     scorer = FitScorer(a.scorer)
     replay = RuleReplay(rb.RuleSystemBidder(book['settings'], 'standard'), eps=0.02)
-    reads = e91.Readers(scorer, a.card, None, replay)
+    card = json.loads(Path(a.card).read_text()) if a.card.endswith('.json') else a.card     # an id in configs/cards, or a file
+    reads = e91.Readers(scorer, card, None, replay)
     rng = random.Random(a.seed)
     a.out.parent.mkdir(parents=True, exist_ok=True)
     rows = []

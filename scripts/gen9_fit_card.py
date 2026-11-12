@@ -72,6 +72,9 @@ SPACE = {
     'comp.strong_double_min': [18, 17, 16],
     'comp.weak_jump_hcp': [[5, 10], [4, 9], [6, 11]],
     'resp.major_jump_raise': ['limit', 'weak'],
+    'resp.strong_club': [{'negative': '1D', 'negative_max': 7}, {'negative': '1D', 'negative_max': 6}, {'negative': '1D', 'negative_max': 8}],
+    'resp.one_nt_range': [None, [6, 10], [6, 11], [8, 10]],
+    'resp.major_3nt': [None, [13, 15], [12, 15]],
     'resp.weak_game_raise': [True, False],
     'resp.minor_3nt': [[13, 15], [12, 15], [13, 16]],
     'rebid.one_nt': [None, [12, 14], [11, 14]],
@@ -91,7 +94,10 @@ def card_with(base, field, value):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--bidder', required=True)
+    ap.add_argument('--bidder', required=True, help='a BEN-format net (path), or rb:precision / rb:standard for the rule bidder')
+    ap.add_argument('--cover', default=None, help='comma-separated context classes the card covers (default: every context)')
+    ap.add_argument('--fields', default=None, help='comma-separated prefixes of the fields to search (default: all of SPACE)')
+    ap.add_argument('--family', default='natural')
     ap.add_argument('--id', required=True)
     ap.add_argument('--start', default='rb-standard', help='card to start from (its cover is dropped: the fitted card covers every context)')
     ap.add_argument('--deals', type=int, default=500)
@@ -102,12 +108,24 @@ def main():
     a = ap.parse_args()
     fit_deals = P.deal_list(a.deals, a.seed)
     test_deals = P.deal_list(a.test, a.seed + 1)
-    bid_fit = P.net_bid_deal(a.bidder, fit_deals)
-    bid_test = P.net_bid_deal(a.bidder, test_deals)
+    if a.bidder.startswith('rb:'):
+        from bridge_harness import rule_bidder as rb
+        from bridge_harness.cards.bidder import bid_table
+        gen = rb.RuleSystemBidder(rb.Settings() if a.bidder == 'rb:precision' else rb.STANDARD, 'standard')
+
+        def rule_bid(hands, dealer, vul):
+            return bid_table([gen] * 4, hands, dealer, vul)[0]
+        bid_fit = bid_test = rule_bid
+    else:
+        bid_fit = P.net_bid_deal(a.bidder, fit_deals)
+        bid_test = P.net_bid_deal(a.bidder, test_deals)
+    space = {f: v for f, v in SPACE.items() if not a.fields or f.startswith(tuple(a.fields.split(',')))}
     start_path = Path(a.start) if Path(a.start).suffix == '.json' else Path(__file__).resolve().parents[1] / 'configs' / 'cards' / f'{a.start}.json'
     start = json.loads(start_path.read_text())
-    card = {'schema': 'card-descriptor-v0', 'id': a.id, 'name': f'Card written for the bidder {Path(a.bidder).parent.name}', 'family': 'natural',
-            'descriptor': {}}
+    card = {'schema': 'card-descriptor-v0', 'id': a.id, 'name': f'Card written for the bidder {Path(a.bidder).parent.name if "/" in a.bidder else a.bidder}',
+            'family': a.family, 'descriptor': {}}
+    if a.cover:
+        card['cover'] = a.cover.split(',')
     nested = unflatten({k: v for k, v in start.items() if k not in ('provenance', 'generator', 'residual', 'cover', 'carding', 'id', 'name',
                                                                    'notes', 'schema', 'family')})
     for sec, fields in nested.items():                   # the start card's own choices, as flat fields
@@ -125,7 +143,7 @@ def main():
     print('start', round(best, 4), flush=True)
     for r in range(a.rounds):
         improved = False
-        for field, values in SPACE.items():
+        for field, values in space.items():
             for v in values:
                 c = card_with(card, field, v)
                 try:

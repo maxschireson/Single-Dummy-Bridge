@@ -31,3 +31,21 @@
   still 1.75 nats better than the scorer, the replay 3.2.
 - The rows carry the board index, so the played results can be joined by board: does a board's reading
   gap (F − S, R − S) predict its IMPs.
+
+## Supplement, 12 Nov 09:41 UTC: the rule bidder's cards now cover responses
+
+`card_from_settings` (and so `configs/cards/rb-precision.json`, `rb-standard.json`, and the cards inside
+9c-32, 9x-32, 9cs-32, 9xs-32) now covers responder's first call to a suit opening (`respond`), with three
+response fields chosen by a fit to the bidder's auctions (`resp.major_2nt: invite`, `resp.minor_2nt:
+[13, 15]`, `resp.weak_game_raise: false`) and, for precision, the 1C negative from the settings. The
+bidder breaks about 2% of the responses (it values raises by support points); `respond=False` gives the
+old, exact card. On the same pools (`reading-*-respond.jsonl`), the card read alone:
+
+| Book | F before | F with responses | paired difference |
+| --- | ---: | ---: | ---: |
+| precision, 2,400 decisions | 2.21 | 2.46 | +0.25 ± 0.02 |
+| standard, 1,200 decisions | 2.21 | 2.46 | +0.26 ± 0.03 |
+
+Almost all of it is the opening leader's (3.13 → 3.60, 3.16 → 3.63). Covering rebids as well did not help
+(2.40 on 300 boards against 2.45), nor did fitting the response fields further (2.44). The replay (3.6)
+is still 1.2 nats ahead of the card. The E9-12 box jobs were resubmitted with these cards.
