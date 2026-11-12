@@ -213,12 +213,8 @@ class HeadReading:
 def readings(a):
     out = Path(a.out)
     listed = json.loads((out / 'tables.json').read_text())
-    where = {}
-    for path, key in listed['tables']:
-        name = (os.path.basename(path), key)
-        if name in where and where[name] != path:
-            raise SystemExit(f'two episodes share the name {name[0]}')
-        where[name] = path
+    # the bench numbers its tables in the order `pools` took them (passed-out tables left out): the same order here
+    yielded = [(path, key) for path, key, *_ in table_source([tuple(x) for x in listed['tables']])(None, None)]
     source = str(Path(a.source).resolve())
     readers, meets = {}, {}
     for item in a.reading:
@@ -244,7 +240,9 @@ def readings(a):
             by_table.setdefault(int(r['table']), {})[int(r['ply'])] = r
         for t, wanted in by_table.items():
             info = tables_[t]
-            path = where[(info['path'], info['key'])]
+            path, key = yielded[info['index']]
+            if os.path.basename(path) != info['path'] or key != info['key']:
+                raise SystemExit(f"{part.name}: table {info['index']} is {info['path']}/{info['key']} in the store, {path}/{key} here")
             with gzip.open(path, 'rt') as f:
                 d = json.load(f)
             e = d['unique_tables'][info['key']]
@@ -408,8 +406,27 @@ def main():
     elif a.step == 'box':
         box(a)
     else:
-        bench.report(argparse.Namespace(out=a.out, mechanism=False, house=False, sweep=a.sweep, owner=[], against=a.against,
+        report(a)
+
+
+def report(a):
+    """The bench's report on the part files that every reading has reached (pools may still be adding parts)."""
+    import shutil
+    import tempfile
+    out = Path(a.out)
+    parts = sorted(out.glob('pools-*-*.npz'))
+    names = sorted({f.name[len('fit-'):].rsplit('-', 2)[0] for f in out.glob('fit-*-*-*.npz')})
+    done = [q for q in parts if all((out / q.name.replace('pools-', f'fit-{n}-')).exists() for n in names)]
+    view = Path(tempfile.mkdtemp(prefix='bench-view-'))
+    try:
+        for q in done:
+            for f in [q] + [out / q.name.replace('pools-', f'fit-{n}-') for n in names]:
+                (view / f.name).symlink_to(f.resolve())
+        print(f'{len(done)} of {len(parts)} part files have every reading ({", ".join(names)})')
+        bench.report(argparse.Namespace(out=str(view), mechanism=False, house=False, sweep=a.sweep, owner=[], against=a.against,
                                         pairs_only=False, verbose=a.verbose, json=a.json))
+    finally:
+        shutil.rmtree(view)
 
 
 if __name__ == '__main__':
