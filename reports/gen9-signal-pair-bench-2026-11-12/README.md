@@ -18,7 +18,7 @@ Tricks a board, paired against `base`; the bench's nats beside:
 | --- | ---: | ---: |
 | Defenders reading each other's signals (`pair`, defender decisions) | +0.018 ± 0.015 | +0.39 |
 | Declarer told the scheme (`decl`, declarer decisions) | +0.072 ± 0.031 | +1.06 |
-| Net, against a declarer who knows the scheme | about -0.054 | |
+| Net, against a declarer who knows the scheme | -0.054 ± about 0.034 (errors combined as if independent) | |
 
 - Signals at honesty 1 give the defending pair +0.018 ± 0.015 tricks a board and a declarer who knows the scheme
   +0.072 ± 0.031: they give away about four times what they inform, about -0.19 IMPs a board net.
