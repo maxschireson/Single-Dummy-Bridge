@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+P=$HOME/work/p41; cat $P/logs/timeline.log; echo "--- buildA"; tail -4 $P/logs/buildA.log 2>/dev/null | cut -c1-200; for f in w512 w768; do [ -e $P/logs/$f.err ] && { echo "--- $f"; tail -3 $P/logs/$f.err | cut -c1-200; cat $P/logs/$f.out 2>/dev/null | cut -c1-700; }; done; echo "--- load $(cut -d' ' -f1-3 /proc/loadavg), mem avail $(awk '/MemAvailable/{printf "%.1f GB", $2/1048576}' /proc/meminfo), disk $(df -h ~ | awk 'END{print $4}') free, $(date -u +%T) UTC"
