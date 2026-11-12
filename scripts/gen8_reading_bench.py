@@ -10,6 +10,7 @@ reports/gen8-reading-by-net-2026-11-12/README.md.
   python scripts/gen8_reading_bench.py owners --out OUT --episodes DIR --net NAME=POLICY.npz [--net ...]
   python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR [--net ANY=POLICY.npz] [--redo]
   python scripts/gen8_reading_bench.py report --out OUT --mechanism      (where the nets' information sits, and what directed information is worth)
+  python scripts/gen8_reading_bench.py report --out OUT --aim 1.05 --aim 1.85 [--against v4]   (a reading plus aimed information)
   python scripts/gen8_reading_bench.py report --out OUT [--json FILE]
 
 pools   For every decision of the recorded root tables after the opening lead where the decider has a choice: the layouts
@@ -527,9 +528,70 @@ def mechanism(a):
         Path(a.json).write_text(json.dumps(result, indent=1))
 
 
+def aimed(a):
+    """A net's reading plus information aimed at the true deal, as the Gen 9 session's E9-0 plays it (box/coordination, 12 Nov
+    2026, 12:03 UTC): each layout's weight times exp(-near x misplaced cards), a misplaced card counting 0.5 (2 to 9), 1 (T),
+    1.5 (J), 2 (Q), 3 (K), 4 (A). near is set so that the true layout gains a target number of nats a decision on top of the
+    net's reading, over all decisions. Printed: what the proxy expects each setting to add to the net's reading, paired."""
+    rows, names = read_all(a.out)
+    rows = [r for r in rows if 'cards' in r]
+    net = a.against or 'v4'
+    worth = np.array([.5] * 8 + [1., 1.5, 2., 3., 4.])
+    fam = np.array([r['family'] for r in rows])
+    trick = np.array([int(r['trick']) for r in rows])
+    tables_n = len({r['uid'] for r in rows})
+    share = len(rows) / tables_n
+    base, miss, prior = [], [], []
+    for r in rows:
+        w = worth[r['cards'].astype(np.int64) % 13]
+        m = ((r['assign'] != r['truth'][None, :]) * w[None, :]).sum(axis=1)
+        miss.append(np.concatenate([m, [0.]]))
+        base.append(r['fit'][net].sum(axis=0).astype(np.float64))
+        pw = np.exp(r['prior'].astype(np.float64) - r['prior'].max())
+        prior.append(pw / pw.sum())
+
+    def gain(i, x):
+        top = x[:-1].max()
+        return x[-1] - (math.log(float(prior[i] @ np.exp(x[:-1] - top))) + top)
+    plain = np.array([gain(i, base[i]) for i in range(len(rows))])
+
+    def extra(near, mask):
+        return float(np.mean([gain(i, base[i] - near * miss[i]) - plain[i] for i in np.flatnonzero(mask)]))
+    everywhere = np.ones(len(rows), bool)
+    nears = {}
+    for target in a.aim:
+        lo, hi = 0., 8.
+        for _ in range(30):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if extra(mid, everywhere) < target else (lo, mid)
+        nears[target] = (lo + hi) / 2
+    stack = lambda x: np.stack([x, np.zeros_like(x), np.zeros_like(x)]).astype(np.float32)
+    none = np.array([score(r, np.zeros((3, int(r['layouts']) + 1), np.float32), 0.)[1] for r in rows])
+    read = np.array([score(r, stack(base[i]), power=1., min_effective=1.)[1] for i, r in enumerate(rows)])
+    b = mean_se(none - read, fam)
+    print(f"{len(rows)} decisions on {tables_n} tables of {len(set(fam))} deals; the reading is {net}'s: +{b[0] * share:.3f} +- {b[1] * share:.3f} tricks a board against no reading;"
+          f" the true layout gains {plain.mean():+.2f} nats from it")
+    result = dict(net=net, decisions=len(rows), tables=tables_n, settings={})
+    first = a.aim[0]
+    settings = [(f'+{t:g} nats, every decision', nears[t], everywhere) for t in a.aim]
+    settings += [(f'near of +{first:g}, tricks 1 to 6 only', nears[first], trick <= 6), (f'near of +{first:g}, from trick 7 only', nears[first], trick >= 7)]
+    for label, near, mask in settings:
+        cost = read.copy()
+        for i in np.flatnonzero(mask):
+            cost[i] = score(rows[i], stack(base[i] - near * miss[i]), power=1., min_effective=1.)[1]
+        d = mean_se(read - cost, fam)
+        nats = extra(near, mask)
+        result['settings'][label] = dict(near=near, helped=int(mask.sum()), nats_a_helped_decision=nats, tricks_a_board_over_reading=[d[0] * share, d[1] * share])
+        print(f"  {label:38s} near {near:.3f} | {int(mask.sum()):6d} decisions helped, {nats:+.2f} nats each | over the reading {d[0] * share:+.3f} +- {d[1] * share:.3f} tricks a board")
+    if a.json:
+        Path(a.json).write_text(json.dumps(result, indent=1))
+
+
 def report(a):
     if a.mechanism:
         return mechanism(a)
+    if a.aim:
+        return aimed(a)
     rows, names = read_all(a.out)
     if a.house:
         rows = [r for r in rows if r['hidden_house']]
@@ -643,6 +705,7 @@ def main():
     ap.add_argument('--sweep', action='store_true', help='report: other settings on the same solves')
     ap.add_argument('--owner', type=float, action='append', default=[], help='report: add this many times the owner head\'s log-probability (repeatable)')
     ap.add_argument('--redo', action='store_true', help='cards: write the files again')
+    ap.add_argument('--aim', type=float, action='append', default=[], help='report: nats of information aimed at the true deal, on top of the --against net (default v4)')
     ap.add_argument('--against', help='report: the net the others are paired against (default: the first)')
     ap.add_argument('--pairs-only', action='store_true', help='report: only the paired comparison')
     ap.add_argument('--mechanism', action='store_true', help='report: where the information sits and what directed information is worth')
