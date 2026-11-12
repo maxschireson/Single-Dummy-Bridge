@@ -1,6 +1,6 @@
 # Fleet status
 
-**Last check:** 12 November 2026, 04:52 UTC. **Next check:** about 05:20 UTC. Who holds which box:
+**Last check:** 12 November 2026, 05:23 UTC. **Next check:** about 05:55 UTC. Who holds which box:
 the allocation table in `BOARD.md` on branch `box/coordination`.
 
 | Machine | Held by | Running | At the last check |
@@ -9,8 +9,18 @@ the allocation table in `BOARD.md` on branch `box/coordination`.
 | `azure2` | operator | E1b: `7s-32` against BEN (16), eight lanes, since 03:45. E1c: self-play cohort `c50412d34108`, a nine-board trial with two workers, then stopped until the lanes finish | BEN (16): 579 boards, 490 to 550 an hour, no failures. Self-play cohort: 6 of 2,202 boards. Phase 1 cohort `10772c07d1a7` finished at 608 boards |
 | `azure3` | operator | E1b: `7s-32` against BEN (64), eight lanes, since 03:50 | 290 boards, about 310 an hour, no failures. Phase 1 cohort `d75a644daf20` (shard 2/8) stopped for good at 720 boards; 2,094 unplayed deals wait |
 | `azure4` | Gen 8 session, since 03:50 | Gen 8 matches | Phase 1 cohort `869ada89eaf3` (shard 3/8) stopped for good at 829 boards; 1,985 unplayed deals wait. `~/work/feeds` holds 13 GB of Gen 6 feed episodes |
-| `azure5` (Bridgebots5) | policy 4.1 session | Training Gen 7 policy net 4.1 | Temporary; a timer on `azure1` deletes it at 05:42 |
+| `azure5` (Bridgebots5) | policy 4.1 session | Training Gen 7 policy net 4.1 | Temporary; extended by Max at 05:25; a timer on `azure1` deletes it at 07:35 |
 | `azure6` (Bridgebots6) | Gen 8 session | Gen 8 experiments | Temporary; a persistent timer on `azure1` stops it at 09:55 |
+
+**Memory on the BEN boxes, 05:23.** A lane's collector grows by about 24 MB a board in its BEN
+worker (cause not found; the BEN servers and the cohorts without BEN do not grow). `azure2` was
+down to 3.2 GB free; its eight collectors were restarted the graceful way at 05:24 with no failure.
+Both BEN boxes now run the unit `lane-recycle`, which restarts a lane's collector at 1.9 GB, one
+lane at a time. Before stopping lanes for good, write `~/work/lanes/RECYCLE_OFF`.
+
+**At 05:23, all collectors, raw:** `7s-32~ben` 894 boards, +0.04 +- 0.14 IMPs a board, about 580 an
+hour; `7s-32~ben64` 466, +0.13 +- 0.19, about 300 an hour; `7s-32~6-32` 1,387, +0.25 +- 0.09;
+self-play 135 boards. The numbers further down are from 04:52.
 
 **Max, 04:09:** the Gen 5 and Gen 1 pairs stop; their deals go to self-play. **Max, 04:13:** the
 operator registered the 16 BEN feeds on the dashboard (`gh-pages` `909b0b0`).
