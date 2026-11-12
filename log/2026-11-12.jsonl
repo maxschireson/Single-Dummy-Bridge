@@ -189,3 +189,4 @@
 {"at": "2026-11-12T08:13:00Z", "by": "bill", "op": "log", "target": "G9-B3", "note": "bill: superseded by E9-12 (g9, 07:52); please close."}
 {"at": "2026-11-12T08:15:00Z", "by": "sam", "op": "send", "target": "g9/20261112T0815Z-sam-arrival-run-inputs-from-sam-ca", "note": "Arrival run inputs from sam: carding packages guest-a/guest-b, card_delta for the pipeline, and the reader now learns honesty (it was never learned)", "task": "G9-D6"}
 {"at": "2026-11-12T08:15:00Z", "by": "sam", "op": "send", "target": "dave/20261112T0815Z-sam-for-g9-d6-d7-guest-carding-pac", "note": "For G9-D6/D7: guest carding packages and signal_experience.card_delta are on feature/gen9-signals-v2 (45da301); details in g9's inbox, same timestamp"}
+{"at": "2026-11-12T08:17:00Z", "by": "sam", "op": "send", "target": "bill/20261112T0817Z-sam-review-of-g9-b7-accepted-one-n", "note": "Review of G9-B7: accepted; one note before the arrival run (replay eps 0 can rule layouts out), three small"}
