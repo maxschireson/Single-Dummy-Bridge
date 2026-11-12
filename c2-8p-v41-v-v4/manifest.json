@@ -1,0 +1,289 @@
+{
+ "schema": "gen5-arena-manifest-v1",
+ "campaign": "gen8-proto",
+ "seed": 81,
+ "roster": [
+  "8p-32-v41",
+  "8p-32"
+ ],
+ "bots": {
+  "8p-32": {
+   "id": "8p-32",
+   "samples": 32,
+   "near_tie": 0.0,
+   "exploration": 0.0,
+   "belief_kind": "public",
+   "artifact_sha256": {
+    "belief": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+    "policy": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+    "bidding": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+    "lead_state_bidder": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+    "lead_belief": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+    "scorer": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73"
+   },
+   "belief": "artifacts/v5/belief.npz",
+   "policy": "artifacts/v5/policy.npz",
+   "bidding": "artifacts/gen6/bidder.keras",
+   "layout_reduction": {
+    "large_from": 10,
+    "medium_from": 7,
+    "medium_enabled": false,
+    "large_pool": 128,
+    "large_budget": 32,
+    "medium_pool": 64,
+    "medium_budget": 16,
+    "large_tolerance": 0.04214601748644102,
+    "medium_tolerance": 0.0,
+    "weighting": "belief",
+    "ridge": 0.001,
+    "representative": "medoid"
+   },
+   "policy_role": "gen8-proto",
+   "engine": "gen7",
+   "lead_state_bidder": "artifacts/v5/bidder.keras",
+   "gen6": {
+    "lead_source": "lead_net",
+    "early_source": "scorer",
+    "leader_early_source": "",
+    "early_pick": "spaced",
+    "cluster_pool": 256,
+    "mid_from_trick": 14,
+    "mid_samples": 32,
+    "lead_pool": 32768,
+    "list_from_trick": 7,
+    "list_max_layouts": 20000,
+    "list_solve": 256
+   },
+   "lead_belief": "artifacts/gen6/lead_belief.npz",
+   "scorer": "artifacts/gen6/scorer.npz",
+   "gen7_policy": "/home/bridgebots/work/g8/src/models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ],
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0
+   },
+   "table_opponent": "8p-32-v41",
+   "identity": "ce95068ee9d612e60fdb1772645634c1e4cb946071e7aed96fef8cbc68946fa8"
+  },
+  "8p-32-v41": {
+   "id": "8p-32-v41",
+   "samples": 32,
+   "near_tie": 0.0,
+   "exploration": 0.0,
+   "belief_kind": "public",
+   "artifact_sha256": {
+    "belief": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+    "policy": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+    "bidding": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+    "lead_state_bidder": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+    "lead_belief": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+    "scorer": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73"
+   },
+   "belief": "artifacts/v5/belief.npz",
+   "policy": "artifacts/v5/policy.npz",
+   "bidding": "artifacts/gen6/bidder.keras",
+   "layout_reduction": {
+    "large_from": 10,
+    "medium_from": 7,
+    "medium_enabled": false,
+    "large_pool": 128,
+    "large_budget": 32,
+    "medium_pool": 64,
+    "medium_budget": 16,
+    "large_tolerance": 0.04214601748644102,
+    "medium_tolerance": 0.0,
+    "weighting": "belief",
+    "ridge": 0.001,
+    "representative": "medoid"
+   },
+   "policy_role": "gen8-proto",
+   "engine": "gen7",
+   "lead_state_bidder": "artifacts/v5/bidder.keras",
+   "gen6": {
+    "lead_source": "lead_net",
+    "early_source": "scorer",
+    "leader_early_source": "",
+    "early_pick": "spaced",
+    "cluster_pool": 256,
+    "mid_from_trick": 14,
+    "mid_samples": 32,
+    "lead_pool": 32768,
+    "list_from_trick": 7,
+    "list_max_layouts": 20000,
+    "list_solve": 256
+   },
+   "lead_belief": "artifacts/gen6/lead_belief.npz",
+   "scorer": "artifacts/gen6/scorer.npz",
+   "gen7_policy": "/home/bridgebots/work/g8/src/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ],
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0
+   },
+   "table_opponent": "8p-32",
+   "identity": "f6a93246567d7878cb366ac8e60de3010f5db6d6cd31db2657e43fd8b6707815"
+  },
+  "6-32": {
+   "id": "6-32",
+   "samples": 32,
+   "near_tie": 0.0,
+   "exploration": 0.0,
+   "belief_kind": "public",
+   "artifact_sha256": {
+    "belief": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+    "policy": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+    "bidding": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+    "lead_state_bidder": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+    "lead_belief": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+    "scorer": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73"
+   },
+   "belief": "artifacts/v5/belief.npz",
+   "policy": "artifacts/v5/policy.npz",
+   "bidding": "artifacts/gen6/bidder.keras",
+   "layout_reduction": {
+    "large_from": 10,
+    "medium_from": 7,
+    "medium_enabled": false,
+    "large_pool": 128,
+    "large_budget": 32,
+    "medium_pool": 64,
+    "medium_budget": 16,
+    "large_tolerance": 0.04214601748644102,
+    "medium_tolerance": 0.0,
+    "weighting": "belief",
+    "ridge": 0.001,
+    "representative": "medoid"
+   },
+   "policy_role": "pimc-ties-only",
+   "engine": "gen6",
+   "lead_state_bidder": "artifacts/v5/bidder.keras",
+   "gen6": {
+    "lead_source": "lead_net",
+    "early_source": "scorer",
+    "leader_early_source": "",
+    "early_pick": "spaced",
+    "cluster_pool": 256,
+    "mid_from_trick": 14,
+    "mid_samples": 32,
+    "lead_pool": 32768,
+    "list_from_trick": 7,
+    "list_max_layouts": 20000,
+    "list_solve": 256
+   },
+   "lead_belief": "artifacts/gen6/lead_belief.npz",
+   "scorer": "artifacts/gen6/scorer.npz",
+   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
+  },
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+  }
+ },
+ "pair_schedule": [
+  "8p-32-v41~8p-32"
+ ],
+ "pair_weights": {
+  "8p-32-v41~8p-32": 1
+ },
+ "audit_references": {
+  "8p-32-v41": "3",
+  "8p-32": "3"
+ },
+ "common_bidder": "6-32",
+ "audit": {
+  "probability": 0.0,
+  "multiplier": 1.0,
+  "max_depth": 0,
+  "max_forks": 0
+ },
+ "ben_audit": {
+  "probability": 0.0,
+  "multiplier": 1.0,
+  "max_depth": 0,
+  "max_forks": 0
+ },
+ "target": 1073741824,
+ "identity": "d8115b5ad2deba866ad41e19f9cd2f16441e725fe67421dd7613ff8d99f39055",
+ "source": "/home/bridgebots/work/capsule-gen7-capture/recovery",
+ "first": 0,
+ "deals": 1600,
+ "source_commit": "3f4263763010ef1ae759f93cf998c7473337ef4d"
+}
