@@ -21,6 +21,7 @@ A launch snapshot's board count or running flag should never be presented as a
 current live reading.
 
 - [Gen 9 promotion test, first check on synthetic boards (simulation; design in progress)](gen9-promotion-test-check-2026-11-12/README.md)
+- [Gen 9 test run in a fresh session sandbox: 298 tests, all pass with TensorFlow and h5py installed](gen9-test-run-2026-11-12/README.md)
 
 ## Adding a report
 
