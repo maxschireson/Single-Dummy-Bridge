@@ -1,0 +1,411 @@
+{
+ "kind": "suit",
+ "width": 256,
+ "augment": "none",
+ "identity": 0.5,
+ "weight_decay": 0.0001,
+ "parameters": 258434,
+ "epochs": 3,
+ "selected_epoch": 2,
+ "fraction": 1.0,
+ "train_deals": 3355,
+ "train_examples": 519094,
+ "validation": {
+  "all": {
+   "n": 59882,
+   "nll": 0.911,
+   "uniform_nll": 1.278,
+   "tie_nll": 0.758,
+   "agree": 0.6141,
+   "in_best": 0.8282,
+   "regret": 0.0834,
+   "regret_gap_head": 0.0663,
+   "regret_random": 0.2141,
+   "regret_lowest": 0.2364
+  },
+  "root_tables": {
+   "n": 21170,
+   "nll": 0.9753,
+   "uniform_nll": 1.3999,
+   "tie_nll": 0.7497,
+   "agree": 0.5998,
+   "in_best": 0.7941,
+   "regret": 0.0838,
+   "regret_gap_head": 0.0721,
+   "regret_random": 0.2363,
+   "regret_lowest": 0.2599
+  },
+  "by_phase": {
+   "lead": {
+    "n": 520,
+    "nll": 1.542,
+    "uniform_nll": 2.5649,
+    "tie_nll": 0.7133,
+    "agree": 0.4596,
+    "in_best": 0.525,
+    "regret": 0.0755,
+    "regret_gap_head": 0.0944,
+    "regret_random": 0.2571,
+    "regret_lowest": 0.2663
+   },
+   "tricks 1-4": {
+    "n": 9300,
+    "nll": 0.9519,
+    "uniform_nll": 1.4788,
+    "tie_nll": 0.722,
+    "agree": 0.6267,
+    "in_best": 0.7862,
+    "regret": 0.0644,
+    "regret_gap_head": 0.0586,
+    "regret_random": 0.2418,
+    "regret_lowest": 0.2807
+   },
+   "tricks 5-8": {
+    "n": 18181,
+    "nll": 1.0953,
+    "uniform_nll": 1.5193,
+    "tie_nll": 0.8204,
+    "agree": 0.5533,
+    "in_best": 0.7653,
+    "regret": 0.0989,
+    "regret_gap_head": 0.0796,
+    "regret_random": 0.2666,
+    "regret_lowest": 0.2897
+   },
+   "tricks 9-13": {
+    "n": 31881,
+    "nll": 0.7837,
+    "uniform_nll": 1.0608,
+    "tie_nll": 0.7337,
+    "agree": 0.6476,
+    "in_best": 0.8812,
+    "regret": 0.0802,
+    "regret_gap_head": 0.0606,
+    "regret_random": 0.1754,
+    "regret_lowest": 0.1926
+   }
+  },
+  "declaring": {
+   "n": 31449,
+   "nll": 0.9661,
+   "uniform_nll": 1.316,
+   "tie_nll": 0.7343,
+   "agree": 0.5938,
+   "in_best": 0.8193,
+   "regret": 0.1083,
+   "regret_gap_head": 0.0803,
+   "regret_random": 0.2931,
+   "regret_lowest": 0.342
+  },
+  "defending": {
+   "n": 28433,
+   "nll": 0.85,
+   "uniform_nll": 1.2359,
+   "tie_nll": 0.7843,
+   "agree": 0.6365,
+   "in_best": 0.8379,
+   "regret": 0.0558,
+   "regret_gap_head": 0.0509,
+   "regret_random": 0.1268,
+   "regret_lowest": 0.1197
+  }
+ },
+ "test": {
+  "all": {
+   "n": 60010,
+   "nll": 0.9196,
+   "uniform_nll": 1.2702,
+   "tie_nll": 0.7581,
+   "agree": 0.6102,
+   "in_best": 0.8314,
+   "regret": 0.0799,
+   "regret_gap_head": 0.0656,
+   "regret_random": 0.2002,
+   "regret_lowest": 0.2185
+  },
+  "root_tables": {
+   "n": 21411,
+   "nll": 0.9813,
+   "uniform_nll": 1.3991,
+   "tie_nll": 0.7582,
+   "agree": 0.5969,
+   "in_best": 0.8028,
+   "regret": 0.0786,
+   "regret_gap_head": 0.07,
+   "regret_random": 0.2244,
+   "regret_lowest": 0.2521
+  },
+  "by_phase": {
+   "lead": {
+    "n": 513,
+    "nll": 1.5015,
+    "uniform_nll": 2.5649,
+    "tie_nll": 0.7201,
+    "agree": 0.4854,
+    "in_best": 0.5341,
+    "regret": 0.0756,
+    "regret_gap_head": 0.0889,
+    "regret_random": 0.2568,
+    "regret_lowest": 0.2968
+   },
+   "tricks 1-4": {
+    "n": 9441,
+    "nll": 0.9551,
+    "uniform_nll": 1.4804,
+    "tie_nll": 0.7264,
+    "agree": 0.6235,
+    "in_best": 0.792,
+    "regret": 0.0623,
+    "regret_gap_head": 0.0596,
+    "regret_random": 0.2356,
+    "regret_lowest": 0.2737
+   },
+   "tricks 5-8": {
+    "n": 18354,
+    "nll": 1.0904,
+    "uniform_nll": 1.4986,
+    "tie_nll": 0.8094,
+    "agree": 0.5594,
+    "in_best": 0.7727,
+    "regret": 0.0923,
+    "regret_gap_head": 0.0835,
+    "regret_random": 0.2482,
+    "regret_lowest": 0.269
+   },
+   "tricks 9-13": {
+    "n": 31702,
+    "nll": 0.8007,
+    "uniform_nll": 1.0545,
+    "tie_nll": 0.7384,
+    "agree": 0.6377,
+    "in_best": 0.8819,
+    "regret": 0.078,
+    "regret_gap_head": 0.0566,
+    "regret_random": 0.161,
+    "regret_lowest": 0.1715
+   }
+  },
+  "declaring": {
+   "n": 30569,
+   "nll": 0.9799,
+   "uniform_nll": 1.3091,
+   "tie_nll": 0.7319,
+   "agree": 0.5876,
+   "in_best": 0.8201,
+   "regret": 0.1059,
+   "regret_gap_head": 0.0833,
+   "regret_random": 0.276,
+   "regret_lowest": 0.3149
+  },
+  "defending": {
+   "n": 29441,
+   "nll": 0.857,
+   "uniform_nll": 1.2299,
+   "tie_nll": 0.7852,
+   "agree": 0.6337,
+   "in_best": 0.8431,
+   "regret": 0.0528,
+   "regret_gap_head": 0.0472,
+   "regret_random": 0.1215,
+   "regret_lowest": 0.1184
+  }
+ },
+ "auction_use": {
+  "real": {
+   "all": {
+    "nll": 0.911,
+    "agree": 0.6141,
+    "regret": 0.0834
+   },
+   "lead": {
+    "nll": 1.542,
+    "agree": 0.4596,
+    "regret": 0.0755
+   },
+   "tricks 1-4": {
+    "nll": 0.9519,
+    "agree": 0.6267,
+    "regret": 0.0644
+   },
+   "tricks 5-8": {
+    "nll": 1.0953,
+    "agree": 0.5533,
+    "regret": 0.0989
+   },
+   "tricks 9-13": {
+    "nll": 0.7837,
+    "agree": 0.6476,
+    "regret": 0.0802
+   }
+  },
+  "blank": {
+   "all": {
+    "nll": 0.9516,
+    "agree": 0.6033,
+    "regret": 0.0969
+   },
+   "lead": {
+    "nll": 1.7225,
+    "agree": 0.3923,
+    "regret": 0.1114
+   },
+   "tricks 1-4": {
+    "nll": 0.9806,
+    "agree": 0.6175,
+    "regret": 0.0734
+   },
+   "tricks 5-8": {
+    "nll": 1.1402,
+    "agree": 0.5412,
+    "regret": 0.1148
+   },
+   "tricks 9-13": {
+    "nll": 0.823,
+    "agree": 0.638,
+    "regret": 0.0932
+   }
+  },
+  "another_deals": {
+   "all": {
+    "nll": 0.9277,
+    "agree": 0.6064,
+    "regret": 0.0881
+   },
+   "lead": {
+    "nll": 1.7579,
+    "agree": 0.3731,
+    "regret": 0.1087
+   },
+   "tricks 1-4": {
+    "nll": 0.975,
+    "agree": 0.6134,
+    "regret": 0.0714
+   },
+   "tricks 5-8": {
+    "nll": 1.1167,
+    "agree": 0.5442,
+    "regret": 0.1072
+   },
+   "tricks 9-13": {
+    "nll": 0.7926,
+    "agree": 0.6436,
+    "regret": 0.0817
+   }
+  },
+  "blank_calls_only": {
+   "all": {
+    "nll": 0.9069,
+    "agree": 0.6162,
+    "regret": 0.0822
+   },
+   "lead": {
+    "nll": 1.5511,
+    "agree": 0.4577,
+    "regret": 0.0775
+   },
+   "tricks 1-4": {
+    "nll": 0.9484,
+    "agree": 0.629,
+    "regret": 0.0636
+   },
+   "tricks 5-8": {
+    "nll": 1.0908,
+    "agree": 0.5554,
+    "regret": 0.0979
+   },
+   "tricks 9-13": {
+    "nll": 0.7794,
+    "agree": 0.6498,
+    "regret": 0.0788
+   }
+  },
+  "blank_shown_only": {
+   "all": {
+    "nll": 0.9614,
+    "agree": 0.598,
+    "regret": 0.1015
+   },
+   "lead": {
+    "nll": 1.7164,
+    "agree": 0.3846,
+    "regret": 0.1115
+   },
+   "tricks 1-4": {
+    "nll": 0.9849,
+    "agree": 0.6138,
+    "regret": 0.0768
+   },
+   "tricks 5-8": {
+    "nll": 1.1509,
+    "agree": 0.5364,
+    "regret": 0.1214
+   },
+   "tricks 9-13": {
+    "nll": 0.8343,
+    "agree": 0.6319,
+    "regret": 0.0971
+   }
+  }
+ },
+ "numpy_parity_max_abs_logit": 1.9073486328125e-06,
+ "seconds": 64,
+ "history": [
+  {
+   "epoch": 1,
+   "seconds": 21,
+   "train_ce": 1.0251,
+   "train_gap": 0.0875,
+   "train_owner": 0.7111,
+   "val": {
+    "n": 59882,
+    "nll": 0.9445,
+    "uniform_nll": 1.278,
+    "tie_nll": 0.758,
+    "agree": 0.5948,
+    "in_best": 0.8147,
+    "regret": 0.0989,
+    "regret_gap_head": 0.083,
+    "regret_random": 0.2141,
+    "regret_lowest": 0.2364
+   }
+  },
+  {
+   "epoch": 2,
+   "seconds": 41,
+   "train_ce": 0.8463,
+   "train_gap": 0.0652,
+   "train_owner": 0.6179,
+   "val": {
+    "n": 59882,
+    "nll": 0.911,
+    "uniform_nll": 1.278,
+    "tie_nll": 0.758,
+    "agree": 0.6141,
+    "in_best": 0.8282,
+    "regret": 0.0834,
+    "regret_gap_head": 0.0663,
+    "regret_random": 0.2141,
+    "regret_lowest": 0.2364
+   }
+  },
+  {
+   "epoch": 3,
+   "seconds": 58,
+   "train_ce": 0.7591,
+   "train_gap": 0.0573,
+   "train_owner": 0.6074,
+   "val": {
+    "n": 59882,
+    "nll": 0.9121,
+    "uniform_nll": 1.278,
+    "tie_nll": 0.758,
+    "agree": 0.6161,
+    "in_best": 0.8327,
+    "regret": 0.0771,
+    "regret_gap_head": 0.0635,
+    "regret_random": 0.2141,
+    "regret_lowest": 0.2364
+   }
+  }
+ ]
+}

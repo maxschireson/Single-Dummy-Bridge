@@ -1,0 +1,31 @@
+{
+ "schema": "chunked-gen7-policy-v0-artifact-v1",
+ "status": "research prototype; not for the arena",
+ "description": "Gen 7 policy net: Gen 6's card from one seat's view (prototype v0); see README.md",
+ "parameters": 258434,
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "files": [
+  {
+   "output": "gen7_policy_v0.npz",
+   "size_bytes": 1087250,
+   "sha256": "2ccfd8d112983f262cff63f5151a2838eb314bb7649856a7af0e672acfbf4a37",
+   "parts": [
+    {
+     "file": "gen7_policy_v0.npz.part000",
+     "size_bytes": 524288,
+     "sha256": "5f2131805305636ce5be1b687086231cac5cde1db0f62012703448cbe9d8e86c"
+    },
+    {
+     "file": "gen7_policy_v0.npz.part001",
+     "size_bytes": 524288,
+     "sha256": "e7cf5c86cb0eb91b781407887e067da21d47e028c1012fd89ab076fb1c873e13"
+    },
+    {
+     "file": "gen7_policy_v0.npz.part002",
+     "size_bytes": 38674,
+     "sha256": "f4bae764dcbc4898fb615e974fa0604ba0c8343de80e1b406e64fd42f3d7f2f0"
+    }
+   ]
+  }
+ ]
+}

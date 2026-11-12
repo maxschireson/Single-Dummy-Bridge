@@ -1,0 +1,238 @@
+{
+ "schema": "gen6-bidder-candidate-v1",
+ "generation": 6,
+ "status": "candidate_named_by_user_not_promoted",
+ "variant": "graded_alternatives_lr3e5_2pass",
+ "designation": "Max, 2026-11-11: push the graded alternatives bidder to GitHub as the gen 6 candidate bidder.",
+ "model": {
+  "file": "bidder.keras",
+  "bytes": 6153107,
+  "sha256": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+  "chunks": [
+   {
+    "file": "bidder.keras.part-000",
+    "bytes": 262144,
+    "sha256": "0fc2c8ef9a6e12d1db72f04724f78beb29955da5a328a709d028e99b9f165254"
+   },
+   {
+    "file": "bidder.keras.part-001",
+    "bytes": 262144,
+    "sha256": "156c5e9f5dfe4fdbcc66144246fbf361d0bdd44ba19f358daf8b4cf36dbf1696"
+   },
+   {
+    "file": "bidder.keras.part-002",
+    "bytes": 262144,
+    "sha256": "0085b3f5c5234124c4469cbe47349a2a05d3fd9dee10fcb1815586fd7b7e6c8a"
+   },
+   {
+    "file": "bidder.keras.part-003",
+    "bytes": 262144,
+    "sha256": "979e722735f9b5f18a862dcd2b4c221238f72b761458de3f60dbc17f3ac9cc8c"
+   },
+   {
+    "file": "bidder.keras.part-004",
+    "bytes": 262144,
+    "sha256": "1c2583810189baec673af0f2daf3e56bccb2ceeecc7d2c2684d01582c52acb64"
+   },
+   {
+    "file": "bidder.keras.part-005",
+    "bytes": 262144,
+    "sha256": "3d96928a9f8a2256cb690d71c9ebadafb802592194bc07b7d551c980342476d3"
+   },
+   {
+    "file": "bidder.keras.part-006",
+    "bytes": 262144,
+    "sha256": "30b759de18a2b9b2c727cd1e5c7c4c60112cc1a0f20f83744a4df75eb65feb68"
+   },
+   {
+    "file": "bidder.keras.part-007",
+    "bytes": 262144,
+    "sha256": "6ec3578c9df7b67821b0151292b00b54d58f624e37ac6af0d225c5c6fbf768b2"
+   },
+   {
+    "file": "bidder.keras.part-008",
+    "bytes": 262144,
+    "sha256": "b5dbff887d0825a9eba709bbc9ca67cba330f4f22a21fd03b49e3d3aff620fe1"
+   },
+   {
+    "file": "bidder.keras.part-009",
+    "bytes": 262144,
+    "sha256": "03f0d9e00c318df96e07c55172683cfbf68181332abf4ae37d90fc0b661e651f"
+   },
+   {
+    "file": "bidder.keras.part-010",
+    "bytes": 262144,
+    "sha256": "7a717768f89d1a7d8b37035d0376ee12139db8748e405f939519ae4f70a524de"
+   },
+   {
+    "file": "bidder.keras.part-011",
+    "bytes": 262144,
+    "sha256": "76b96740ece7c58d260b6779da4e413621487401ece742c587a276bc1c05956b"
+   },
+   {
+    "file": "bidder.keras.part-012",
+    "bytes": 262144,
+    "sha256": "e1c5989057e52109e3000ff71d3d5fa50d6b874626ef0f9c481ec9a9b4617f59"
+   },
+   {
+    "file": "bidder.keras.part-013",
+    "bytes": 262144,
+    "sha256": "49a20504781411bdd76afbaa815308c203cce10f405aba2d6a08e7e71723c648"
+   },
+   {
+    "file": "bidder.keras.part-014",
+    "bytes": 262144,
+    "sha256": "7399770f41d73445ed0aaf97a821bb12a54bd0457d1307636fee7b97132e4cd5"
+   },
+   {
+    "file": "bidder.keras.part-015",
+    "bytes": 262144,
+    "sha256": "a6078acec3964920578761ddcf369b4f62d702155dc02ad8961356cfc793c990"
+   },
+   {
+    "file": "bidder.keras.part-016",
+    "bytes": 262144,
+    "sha256": "2ae79eababd845f024061fed55a73711823b89ec7978d29ada0f7ca077a61b67"
+   },
+   {
+    "file": "bidder.keras.part-017",
+    "bytes": 262144,
+    "sha256": "af38fe19296b7cd10cabd91f90f4420420d15750188d7f4a512ef5486d541859"
+   },
+   {
+    "file": "bidder.keras.part-018",
+    "bytes": 262144,
+    "sha256": "7e2b3eeb4cfd13fe870006e7f186a2488057ff9b8d40370d344cff082bfebd22"
+   },
+   {
+    "file": "bidder.keras.part-019",
+    "bytes": 262144,
+    "sha256": "e87a473514025dcbbb685e6f7893f34b3a58e8f2051b52deaa84293ed97f4a94"
+   },
+   {
+    "file": "bidder.keras.part-020",
+    "bytes": 262144,
+    "sha256": "abede23ef7a66d91af5939e1fb082f1e059676149606fe032143c3c3c5466923"
+   },
+   {
+    "file": "bidder.keras.part-021",
+    "bytes": 262144,
+    "sha256": "cb5f0fe8b7ab344947fcc68a89eeed3fc29044cf21c7c2dd8d4ec182cfcdc321"
+   },
+   {
+    "file": "bidder.keras.part-022",
+    "bytes": 262144,
+    "sha256": "29379e652b03b487b137bff92910ba07dbfecefcccae81b03e5d7649b716c12c"
+   },
+   {
+    "file": "bidder.keras.part-023",
+    "bytes": 123795,
+    "sha256": "d1d19b4cad6c5aa31d7dbb319c3ab58ce5f0217735ccfe00ac00cfd41cb85e60"
+   }
+  ]
+ },
+ "identical_to": {
+  "path": "training/graded-alternatives-20261110/models/graded_lr3e5_2pass.keras.part-*",
+  "rebuilt_by": "training/graded-alternatives-20261110/restore.py",
+  "sha256": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff"
+ },
+ "interface": {
+  "loader": "bridge_harness.bidding_ppo.Policy.load",
+  "inputs": "BEN v3, 193 features per own turn: own hand as A/K/Q/J/T plus a count of lower cards per suit, and the last four calls",
+  "outputs": 40,
+  "architecture": "three 256-unit LSTM layers each followed by BatchNormalization, Dense-40 softmax; the same network as the Gen 5 bidder",
+  "sees_spot_cards": false
+ },
+ "recipe": {
+  "method": "graded alternatives: at every learner decision each non-greedy call with probability >= 1% (at most 4) is played and the auction finished greedily; its label is the IMP difference against the greedy line from the deal's cached double-dummy table",
+  "base": {
+   "file": "GIB-BBO-8742_2026-10-23-E30.keras",
+   "sha256_prefix": "b0dff3df"
+  },
+  "training_deals": "first 35,000 of the 40,000 DDS training deals",
+  "passes": 2,
+  "learning_rate": 3e-05,
+  "anchor": "0.02 * KL(base || learner)",
+  "minibatch": 128,
+  "epochs_per_chunk": 2,
+  "chunk_deals": 2500
+ },
+ "provenance": {
+  "training_package": "training/graded-alternatives-20261110",
+  "training_commit": "e507c583c8092788361edb73220fc7d3b9f0e84c",
+  "training_branch": "transfer/graded-alternatives-20261110",
+  "gen5_bidder_sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc"
+ },
+ "evaluation": {
+  "scoring": "greedy duplicate, both rooms, double-dummy, IMPs per board, standard error across deals; deals not used in training",
+  "source": "training/graded-alternatives-20261110/README.md",
+  "vs_gen5": {
+   "review_5000": {
+    "mean": 0.213,
+    "se": 0.046,
+    "won": 507,
+    "lost": 367,
+    "tied": 4126
+   },
+   "new_2270": {
+    "mean": 0.331,
+    "se": 0.068,
+    "won": 223,
+    "lost": 141,
+    "tied": 1906
+   },
+   "pooled_7270": {
+    "mean": 0.25,
+    "se": 0.038
+   }
+  },
+  "vs_ppo_40k": {
+   "review_5000": {
+    "mean": 0.217,
+    "se": 0.046
+   },
+   "new_2270": {
+    "mean": 0.327,
+    "se": 0.069
+   },
+   "pooled_7270": {
+    "mean": 0.251,
+    "se": 0.038
+   }
+  },
+  "vs_ben_base": {
+   "review_5000": {
+    "mean": 0.293,
+    "se": 0.049
+   },
+   "new_2270": {
+    "mean": 0.398,
+    "se": 0.075
+   },
+   "pooled_7270": {
+    "mean": 0.326,
+    "se": 0.041
+   }
+  },
+  "reverified": {
+   "utc_date": "2026-11-11",
+   "script": "verify_candidate.py",
+   "method": "bridge_harness.bidding_ppo.Policy.load and bridge_harness.bidding_env.paired_auctions on the 2,270 new solved deals, against the Gen 5 bidder",
+   "tensorflow": "2.21.0",
+   "result": {
+    "deals": 2270,
+    "mean": 0.3313,
+    "se": 0.0681,
+    "won": 223,
+    "lost": 141,
+    "tied": 1906
+   }
+  }
+ },
+ "not_tested": [
+  "card play: every strength figure is double-dummy",
+  "any arena match with this bidder",
+  "opponents that adapt",
+  "more than two passes, and fresh deals for each pass"
+ ]
+}
