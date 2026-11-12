@@ -15,8 +15,9 @@ Settings live in spec['plan']['playout'], one stage or a list of them (no trick 
   root_cards             at most this many candidates
   trust                  weight on the playouts' correction
   layouts                layouts played out, drawn from the solved ones by weight; 0 = all of them
-  seat                   the simulated seat: 'top', 'blend', 'draw' (the policy net's card) or 'map', 'bdraw', 'map3'
-                         (the solver's card for the seat's believed layout; see plan_rollout.Believer)
+  seat                   the simulated seat: 'top', 'blend', 'draw' (the policy net's card), 'map', 'bdraw', 'map3'
+                         (the solver's card for the seat's believed layout; see plan_rollout.Believer) or 'hyb', 'hyb3'
+                         (the solver chooses among the net's three likeliest cards)
   repeats                playouts per layout and card (for seats that draw)
   tricks                 0 = to the end; above 0 the playout stops after that many tricks and is solved from there
 
@@ -63,9 +64,9 @@ class PlayoutUse:
 
 def seat_player(net, dds, kind, seed):
     """The simulated seat named by `kind` (see the module docstring)."""
-    for name, belief in (('map', 'map'), ('bdraw', 'draw')):
+    for name, belief, top in (('map', 'map', 0), ('bdraw', 'draw', 0), ('hyb', 'map', 3)):
         if kind.startswith(name) and (kind[len(name):] or '1').isdigit():
-            return Believer(net, dds, belief, layouts=int(kind[len(name):] or 1), seed=seed)
+            return Believer(net, dds, belief, layouts=int(kind[len(name):] or 1), seed=seed, top=top)
     if kind in ('top', 'blend', 'draw'):
         return NetPlayer(net, kind, seed=seed)
     raise ValueError(f'Unknown simulated seat {kind!r}')
