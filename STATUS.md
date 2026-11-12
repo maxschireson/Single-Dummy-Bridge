@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 14:46 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 14:51 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -111,7 +111,7 @@ Generated 2026-11-12 14:46 UTC by `tools/workq.py` after a change by `will`. Do 
 
 **azure4**: ? of ? cores busy, reported  UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | not seen yet | 0 of 6,200 |  |  |  |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
@@ -120,6 +120,7 @@ Generated 2026-11-12 14:46 UTC by `tools/workq.py` after a change by `will`. Do 
 | e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
 | e9-12-u | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-x | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
+| g9-x2-ben16 | G9-X2 | sam | 3 | 4 | not seen yet | 0 of 55 |  |  |  |
 | e9-0-n005 | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n01 | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n02d | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
