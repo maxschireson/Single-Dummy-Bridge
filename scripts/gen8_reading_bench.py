@@ -8,7 +8,7 @@ reports/gen8-reading-by-net-2026-11-12/README.md.
                                               [--shard 0/8] [--tables N] [--pool 512] [--skip-families SET.npz]
   python scripts/gen8_reading_bench.py fits   --out OUT --net NAME=POLICY.npz          (a net added later: no solving)
   python scripts/gen8_reading_bench.py owners --out OUT --episodes DIR --net NAME=POLICY.npz [--net ...]
-  python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR
+  python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR [--net ANY=POLICY.npz] [--redo]
   python scripts/gen8_reading_bench.py report --out OUT --mechanism      (where the nets' information sits, and what directed information is worth)
   python scripts/gen8_reading_bench.py report --out OUT [--json FILE]
 
@@ -23,7 +23,8 @@ fits    The same log-probabilities for one more net, from the stored layouts. No
 owners  For each --net, its owner head's log-probability of every stored layout and of the true one, from the decider's own
         view (one net row a decision): own-<part>.npz beside each part file. `report --owner B` then adds B times it to
         every layout's log-weight, to see what beliefs learned from the true hands add to the reading or replace of it.
-cards   Which card each stored column is (the unseen cards at each decision): uns-<part>.npz. `report --mechanism` needs it.
+cards   Which card each stored column is (the unseen cards at each decision), which seats a layout's 0 and 1 are, who decides:
+        uns-<part>.npz; and each table's board and cards played: tab-<part>.json.gz. `report --mechanism` needs the first.
 report  For every net and setting, per decision and by trick: the log-weight the true layout gains from the reading, and
         the double-dummy cost on the true deal of the card the search would choose, against no reading. Two ways of
         choosing: as the engine does (early: the `early_min_effective` halving, then 32 layouts resampled from the pool,
@@ -303,10 +304,15 @@ def owners(a):
 
 
 def cards(a):
+    """uns-<part>.npz: per decision the unseen cards (the columns of the stored layouts), the two hidden seats (a layout's 0 and 1),
+    the deciding seat and the seat whose card it is. tab-<part>.json.gz: each table's board and the cards played, so that the
+    stored decisions can be replayed without the episode files. With --net (any net): scw-<part>.npz, the hand-fit scorer's
+    auction log-weight of every stored layout and of the true one, which is what drew the pools."""
     out = Path(a.out)
+    p = Gen7Player(spec(a.net[0].split('=', 1)[1], 512), ROOT) if a.net else None      # any net: only its scorer is used
     for part in sorted(out.glob('pools-*-*.npz')):
         target = out / part.name.replace('pools-', 'uns-')
-        if target.exists():
+        if target.exists() and not a.redo:
             continue
         rows, tables_, _ = load(part)
         by_table = {}
@@ -316,10 +322,23 @@ def cards(a):
             info = tables_[t]
             with gzip.open(Path(a.episodes[0]).parent / info['directory'] / info['path'], 'rt') as f:
                 e = json.load(f)['unique_tables'][info['key']]
+            info['board'], info['played'] = e['board'], [act['card'] for act in e['tables'][0]['actions']]
             for k, o, game in decisions(e):
                 if k in wanted:
-                    wanted[k]['cards_new'] = View(o).unseen.astype(np.int8)
-        np.savez_compressed(target, cards=np.concatenate([r['cards_new'] for r in rows]) if rows else np.zeros(0, np.int8))
+                    view = View(o)
+                    wanted[k].update(cards_new=view.unseen.astype(np.int8), hidden_new=np.array(view.hidden, np.int8), who_new=(o.controller, o.actor))
+                    if p is not None:           # the hand-fit scorer's auction log-weight of every stored layout and of the true one
+                        both = np.concatenate([wanted[k]['assign'], wanted[k]['truth'][None]])
+                        wanted[k]['scorer_new'] = np.asarray(p.layout_log_weights(o, view, both), np.float32)
+        flat = lambda key: np.concatenate([r[key] for r in rows]) if rows else np.zeros(0, np.int8)
+        np.savez_compressed(target, cards=flat('cards_new'), hidden=flat('hidden_new'), controller=np.array([r['who_new'][0] for r in rows], np.int8),
+                            actor=np.array([r['who_new'][1] for r in rows], np.int8))
+        with gzip.open(out / part.name.replace('pools-', 'tab-').replace('.npz', '.json.gz'), 'wt') as f:
+            json.dump(tables_, f)
+        if p is not None:
+            np.savez_compressed(out / part.name.replace('pools-', 'scw-'), scorer=np.concatenate([r['scorer_new'] for r in rows]) if rows else np.zeros(0, np.float32))
+    if p is not None:
+        p.close()
 
 
 # ---- report -------------------------------------------------------------------------------------------------------------
@@ -623,6 +642,7 @@ def main():
     ap.add_argument('--house', action='store_true', help='report: only decisions whose hidden seats were played by house bots')
     ap.add_argument('--sweep', action='store_true', help='report: other settings on the same solves')
     ap.add_argument('--owner', type=float, action='append', default=[], help='report: add this many times the owner head\'s log-probability (repeatable)')
+    ap.add_argument('--redo', action='store_true', help='cards: write the files again')
     ap.add_argument('--against', help='report: the net the others are paired against (default: the first)')
     ap.add_argument('--pairs-only', action='store_true', help='report: only the paired comparison')
     ap.add_argument('--mechanism', action='store_true', help='report: where the information sits and what directed information is worth')
