@@ -41,18 +41,37 @@ class BenLanesTest(unittest.TestCase):
         with patch.object(sys, "argv", argv), redirect_stdout(out):
             lanes.main()
         text = out.getvalue()
-        self.assertIn("+ sudo ip netns add g9ben-1", text)
-        self.assertIn("+ sudo ip -n g9ben-2 link set lo up", text)
-        self.assertIn("--unit=g9-ben-1", text)
-        self.assertIn("--property=NetworkNamespacePath=/run/netns/g9ben-2", text)
+        self.assertIn("+ sudo ip netns add g9ben-w7-1", text)
+        self.assertIn("+ sudo ip -n g9ben-w7-2 link set lo up", text)
+        self.assertIn("--unit=g9-ben-w7-1", text)
+        self.assertIn("--property=NetworkNamespacePath=/run/netns/g9ben-w7-2", text)
         self.assertIn("src/gameapi.py --config /w/capsule/recovery/assets/ben-16.conf --host 127.0.0.1 --port 8087 --record false", text)
         self.assertIn("--property=Restart=on-failure", text)
         self.assertIn("scripts/gen9_match.py --source /w/capsule/recovery --pair '9p-32~ben' --deals 8 --first 0 --seed 91 --workers 1 --out /w/runs/w7/lane-1", text)
         self.assertIn("--deals 8 --first 8 --seed 91 --workers 1 --out /w/runs/w7/lane-2", text)
         self.assertIn("--setenv=BRIDGE_DDS_CACHE=/w/runs/w7/lane-1.dds.sqlite", text)
-        self.assertIn("lane 2: (dry run) would wait for BEN in g9ben-2", text)
-        self.assertIn("+ sudo systemctl stop g9-ben-2", text)
-        self.assertIn("+ sudo ip netns delete g9ben-2", text)
+        self.assertIn("lane 2: (dry run) would wait for BEN in g9ben-w7-2", text)
+        self.assertIn("+ sudo systemctl stop g9-ben-w7-2", text)
+        self.assertIn("+ sudo ip netns delete g9ben-w7-2", text)
+
+    def dry(self, *args):
+        out = io.StringIO()
+        with patch.object(sys, "argv", ["gen9_ben_lanes.py", "--dry-run", *args]), redirect_stdout(out):
+            lanes.main()
+        return out.getvalue()
+
+    def test_two_runs_on_one_box_use_different_names_and_ben64_its_own_server(self):
+        base = ["run", "--pair", "r9b-32~ben", "--deals", "8", "--lanes", "2", "--seed", "910", "--source", "/w/capsule/recovery"]
+        one = self.dry(*base, "--out", "/w/g9/runs/e9-10-r9b-ben16")
+        two = self.dry(*base, "--out", "/w/g9/runs/e9-10-8x-ben16")
+        self.assertIn("--unit=g9-ben-e910r9bben16-1", one)
+        self.assertIn("--unit=g9-lane-e9108xben16-2", two)
+        self.assertNotIn("g9ben-e910r9bben16", two)
+        b64 = self.dry("run", "--pair", "r9b-32~ben64", "--deals", "8", "--lanes", "2", "--seed", "910", "--source", "/w/capsule/recovery",
+                       "--out", "/w/g9/runs/b64", "--ben-bot", "ben64")
+        self.assertIn("src/gameapi.py --config /w/capsule/recovery/assets/ben-64.conf --host 127.0.0.1 --port 8089 --record false", b64)
+        self.assertIn("at 127.0.0.1:8089", b64)
+        self.assertIn("--unit=g9-ben-x-1", self.dry("down", "--lanes", "1", "--tag", "x") + self.dry("up", "--lanes", "1", "--tag", "x"))
 
     def test_merge(self):
         with tempfile.TemporaryDirectory() as d:
