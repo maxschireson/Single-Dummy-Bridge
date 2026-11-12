@@ -223,3 +223,4 @@
 {"at": "2026-11-12T08:37:00Z", "by": "dave", "op": "send", "target": "will/20261112T0837Z-dave-g9-w8-resolved-accepted-w3-fol", "note": "G9-W8 resolved (accepted): W3 follow-up: run pytest-style test files; --prepare idempotent for all releases", "task": "G9-W8"}
 {"at": "2026-11-12T08:37:00Z", "by": "sam", "op": "log", "target": "E9-6", "note": "sam: part 1 result filled; part 2 plan has three matches (adds cp-att-100~r9p-32)."}
 {"at": "2026-11-12T08:37:00Z", "by": "sam", "op": "send", "target": "g9/20261112T0837Z-sam-e9-6-part-1-designed-signals-g", "note": "E9-6 part 1: designed signals gain the defence +0.13 nats a decision and leak +0.32 to an aware declarer; 8p-32 is misled by them (-0.73), so test against r9p-32", "task": "E9-6"}
+{"at": "2026-11-12T08:39:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-r8", "note": "priority 2, 4 cores", "task": "E9-11"}
