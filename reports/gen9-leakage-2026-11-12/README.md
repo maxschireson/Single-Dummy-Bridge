@@ -88,3 +88,27 @@ same in every one of them.
 
 The engine already has the setting: `exploration` is the probability of a random one of the tied cards in place of
 the net's pick. Bots `8r-32` (1.0) and `8h-32` (0.5) and three box matches of 800 boards are queued (E9-16's log).
+
+## How much of the leak is the choice among touching cards (part 1b, sam)
+
+`reports/gen9-leakage-classes-2026-11-12` on `feature/gen9-reading-bench` (47de109). The same pools; the reader is
+given the net's probability of the class of the card, with the card inside the class chosen evenly, in place of the
+card's own. That is what a reader who has adapted would gain against a version of us that randomizes inside the class.
+The stage's reading of the actual cards reproduces p41's +0.185 +- 0.029. Tricks a board lost by the reader:
+
+| What is hidden | All readers | Declarer reading the defenders | Defenders reading declarer | Partner |
+| --- | ---: | ---: | ---: | ---: |
+| Which spot of the suit (nine and below) | 0.038 +- 0.013 | 0.023 +- 0.010 | 0.005 +- 0.005 | 0.004 +- 0.007 |
+| Which of touching cards, honours included | 0.036 +- 0.017 | 0.020 | 0.001 | 0.003 +- 0.006 |
+
+- **The choice among touching cards carries about a fifth of what the reader gains** (0.038 of 0.185; for the
+  opponents' reading 0.028 of 0.124). My expectation that most of the leak sits there was wrong for touching cards.
+- Nearly all of it is the defenders' spots read by declarer. Declarer's own equal cards tell the defenders almost
+  nothing, so hiding them as declarer alone buys little against a reader like ours.
+- Hiding the defenders' spots costs our own defence 0.004.
+
+Not yet measured offline: the larger group, 18 of the 29 equal-best cards a table, where the equal cards are
+*different* cards (which suit to discard from, which of two safe exits). The class reading still reads those in
+full. `equal_best.json.gz` in this folder lists, for every recorded decision, the cards the chooser's own solves rate
+exactly equal, so that the same reading can be run with those as the class (part 1c). The matches with `8r-32`
+randomize both groups.
