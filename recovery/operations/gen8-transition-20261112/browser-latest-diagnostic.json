@@ -1,0 +1,134 @@
+{
+  "source": {
+    "key": "gen8codexcandidate",
+    "group": "gen8",
+    "generation": 8,
+    "variant": "8",
+    "environment": "codex",
+    "name": "Gen8 · Codex main mix (standard and Precision)",
+    "branch": "arena-gen8-candidate-codex-20261112-feed",
+    "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
+  },
+  "completed": 63,
+  "dataEpoch": 1794504543.7294958,
+  "indexRecords": 63,
+  "firstRecord": {
+    "decision_timing": {
+      "schema": "arena-decision-timing-v1",
+      "by_bot": {
+        "1": {
+          "decisions": 104,
+          "total_seconds": 0.23799655698530842,
+          "forced_decisions": 12,
+          "opening_lead": {
+            "decisions": 2,
+            "total_seconds": 0.006643814995186403,
+            "mean_seconds": 0.0033219074975932017
+          },
+          "play": {
+            "decisions": 102,
+            "total_seconds": 0.231352741990122,
+            "mean_seconds": 0.002268164137158059
+          },
+          "mean_seconds": 0.0022884284325510426
+        },
+        "8s-32": {
+          "decisions": 104,
+          "total_seconds": 19.701544951982214,
+          "forced_decisions": 22,
+          "opening_lead": {
+            "decisions": 2,
+            "total_seconds": 0.027158451994182542,
+            "mean_seconds": 0.013579225997091271
+          },
+          "play": {
+            "decisions": 102,
+            "total_seconds": 19.67438649998803,
+            "mean_seconds": 0.1928861421567454
+          },
+          "mean_seconds": 0.1894379322305982
+        }
+      },
+      "missing_timing_decisions": 0
+    },
+    "id": "0",
+    "index": 0,
+    "pair": "8s-32~1",
+    "imps": -2,
+    "own_imps": -2,
+    "completed_epoch": 1794502434.200171,
+    "family": "d27751ba607e3cffc6d613ee697e64502e35a16fe5475e6f518821104e30c6c5",
+    "episode_sha256": "d478af4241bbd257e9969374c8f02687bb151cbf4adbb2b670666b002d426599",
+    "different_bidding": false,
+    "dd_bidding_imps": {},
+    "shard": "boards-00000.json",
+    "board_id": "gen6-selfplay-d27751ba607e3cffc6d613ee697e64502e35a16fe5475e6f518821104e30c6c5",
+    "scores": [
+      -100,
+      -50
+    ],
+    "contracts": [
+      {
+        "contract": "3D",
+        "declarer": "N"
+      },
+      {
+        "contract": "3D",
+        "declarer": "N"
+      }
+    ],
+    "own_scores": [
+      -100,
+      -50
+    ],
+    "own_contracts": [
+      {
+        "contract": "3D",
+        "declarer": "N"
+      },
+      {
+        "contract": "3D",
+        "declarer": "N"
+      }
+    ],
+    "differences": {
+      "play": -2,
+      "bidding": 0,
+      "total": -2
+    }
+  },
+  "allowed": [
+    "gen8codexcandidate"
+  ],
+  "rows": 63,
+  "groups": [
+    "8s-32~8c-32",
+    "8s-32~71s-32",
+    "8s-32~5RZ32",
+    "8s-32~1",
+    "8c-32~71s-32"
+  ],
+  "selected": [
+    "gen8codexcandidate"
+  ],
+  "lexicalD": {
+    "completed": 809,
+    "sources": [
+      "gen8azure3ben64l2",
+      "gen8azure3ben64l7",
+      "gen8azure3ben64l5",
+      "gen8azure3ben64l1",
+      "gen8azure6",
+      "gen8azure3ben64l3",
+      "gen6selfplay19bbdce5",
+      "gen8azure3ben64l8",
+      "gen8azure1",
+      "gen8azure3ben64l4",
+      "gen8azure3ben64l6",
+      "gen8codexcandidate"
+    ],
+    "scope": "gen8"
+  },
+  "selector": "gen7",
+  "consoleErrors": []
+}

@@ -1,0 +1,29 @@
+{
+  "revision": "adca1c1cb8023165451f388f2ee07cbe064ad03c",
+  "blob": "c7289b88049b88de19607c8c077c160f01c4372f",
+  "owned_entries": [
+    {
+      "key": "gen71codexcompare",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · Codex policy comparison and Gen6",
+      "branch": "arena-gen7-1-compare-codex-20261112-feed",
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "retired": true,
+      "revision": "71a6dc2dbc8985175c476388115bc4f301e7452f"
+    },
+    {
+      "key": "gen8codexcandidate",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "codex",
+      "name": "Gen8 · Codex main mix (standard and Precision)",
+      "branch": "arena-gen8-candidate-codex-20261112-feed",
+      "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
+    }
+  ],
+  "disposition": "Own Gen8 remains live; owned Gen7.1 remains permanently pinned retired. No registry writes in this poll."
+}
