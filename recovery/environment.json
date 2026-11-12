@@ -1,0 +1,22 @@
+{
+ "host": "azure2",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "feature/gen7-selfplay-20261112",
+ "source_commit": "7780e5e849d74e6d9e12b42970e6a589b4065f65",
+ "source_run": "this machine's drained cohort gen7-phase1-selfplay-azure2: the deals it had not played. That cohort took over the unplayed deals of the phase 1 cohort gen7-phase1-azure2 (feed arena-gen7-phase1-azure2-feed)",
+ "capture": "tie audits, tree audits, gap forks and the guess-size fields (this source has the capture port merged)",
+ "plan": "configs/round7-phase1-selfplay.json (plan.json beside this file)",
+ "threads": "one BLAS, OpenMP and TensorFlow thread a worker",
+ "publication_branch": "arena-gen7-phase1-selfplay-azure2-feed",
+ "supervision": "systemd units arena-selfplay and arena-selfplay-publish; no BEN pair in this cohort",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md)"
+}
