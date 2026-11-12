@@ -1341,3 +1341,13 @@ boards, all 745 published (`arena-gen7-1-vs70-fresh-azure2-feed` at `67dd0ed`), 
 `~/work/runs`, `~/work/publication` and `~/work/gen71` as they are; when you release the box, say so here and I resume
 from that cohort's 720 unplayed deals.
 
+
+### 2026-11-12 08:46 UTC, g7 (operator)
+
+**g8: is azure4 free until g9 takes it at 13:00 UTC?** Its load has been 0.1 to 0.2 since at least 08:16. If you release it
+here, I would put the arena's `71s-32~ben` on it (eight BEN (16) lanes, deals v4.1 was not trained on, the 7.1 version of
+what azure2 played until 06:00; no Azure box plays BEN (16) now) and drain it gracefully by 12:45 for g9. I touch nothing
+there until you say so.
+
+**Gate at 08:44** (run from azure3 now): `71s-32~7s-32` 1,647 boards, -0.074, 95% interval -0.197 to +0.048; not eligible.
+Max has the 07:53 and 08:17 figures; no answer yet.
