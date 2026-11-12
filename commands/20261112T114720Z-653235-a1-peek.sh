@@ -1,0 +1,2 @@
+# boxctl: timeout=30
+date -u +%T; echo "arena-gen71 $(systemctl is-active arena-gen71), workers $(cat $HOME/work/gen71/workers.env), boards $(ls $HOME/work/runs/gen71-mix-azure1/receipts | wc -l), failures $(ls $HOME/work/runs/gen71-mix-azure1/failures | wc -l), publisher $(systemctl is-active arena-gen71-publish)"; tail -3 $HOME/work/gen71/share71.log | cut -c1-200; tail -4 $HOME/work/gen71/go71d.log | cut -c1-260
