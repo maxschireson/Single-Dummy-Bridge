@@ -60,3 +60,31 @@ within eps tricks of the best, against choosing among the equal best, on the tru
 So randomizing has to start with exact equals, and anything beyond them has to be confined to kinds of decision
 where one play tells a lot. Which those are, and how much of the 0.12 sits in the choice among equals, is parts 1b
 to 1d of the experiment.
+
+## How many of our cards are one of several equal cards
+
+`equal_cards.py`. Of the 51 cards a table plays after the opening lead, 40.4 are choices. "Equal best" means rated
+exactly equal by the weighted solves of every stored layout, which with a few hundred layouts means the cards do the
+same in every one of them.
+
+| Whose card | Choices a table | Legal cards | Two or more equal best | ... all touching cards | ... different cards among them | Cards in the equal-best set |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Declarer's own hand | 10.8 | 5.16 | 68% | 28% | 40% | 2.36 |
+| Dummy | 10.4 | 4.63 | 71% | 25% | 46% | 2.39 |
+| A defender | 19.3 | 4.36 | 72% | 27% | 46% | 2.37 |
+| All | 40.4 | 4.64 | 71% | 26% | 45% | 2.37 |
+
+- 28.6 of the 51 cards (56%) are played with two or more cards equal best: 10.7 where the equal cards are all
+  touching, 18.0 where they include different cards (small cards of different suits, or cards separated by one that
+  does not matter).
+- Today the policy net picks among them (`tie_break: net`, `exploration: 0`), so the card is a fixed function of the
+  hand that a reader with the same net can follow.
+- **Double dummy, choosing among them at random costs nothing**: on the true deal the equal-best cards cost exactly
+  the same at every one of those decisions (27.1 a table where the card played was one of them).
+- What it costs in real play is not known. The Gen 8 session's matches say the rule matters: a bot that always plays
+  the highest of equal cards loses 0.45 +- 0.12 IMPs a board to Gen 7. Its calibration also found that against a bot
+  that plays a random card of equals the best weight for our reading falls from 1.0 to 0.25, which is the evidence
+  so far that most of what the net reads is the choice among equals.
+
+The engine already has the setting: `exploration` is the probability of a random one of the tied cards in place of
+the net's pick. Bots `8r-32` (1.0) and `8h-32` (0.5) and three box matches of 800 boards are queued (E9-16's log).
