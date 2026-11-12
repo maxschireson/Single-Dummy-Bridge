@@ -113,5 +113,34 @@
       "status": "published",
       "completed": 10
     }
-  }
+  },
+  "reviewed_file_blobs": {
+    "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
+    "README.md": "ec8859084463797ea7baa7303e6c5423f603d42f",
+    "docs/current-system.md": "b645c00d0a0c774fb76c9982dc21b1c863684f04",
+    "docs/operations.md": "9c9ea10a7e8fe3e6af27aa160c0f1b1b007cb321",
+    "configs/gen6-active-mix.json": "433066756b8764d7dfe4df2754058d7c3e985649",
+    "configs/round6-fast-selfplay.json": "8a0e0d2e95ce93764c38b9ee433073d3f550f59f",
+    "docs/repository-map.md": "a0a85c746244710dbbdd0f5c3bcffff2f30070c2",
+    "docs/backlog.md": "8e0f23f1515f9b8f159f9ead64e07a96e94c94f2",
+    "CONTRIBUTING.md": "91c0725075fce48d47479556f7cdcc362799e90a",
+    "docs/generations/README.md": "a8f4edc52d792a6a1e4cdc93bad048ab4658310e",
+    "docs/generations/gen7/README.md": "a842a4d4ec00e04ed023cdd49a3a72c2be6fd310",
+    "docs/gen7_candidate_2026-11-11.md": "583cfb2a162a289300e223df4bfec81287913f43",
+    "configs/round7-candidate-phase1.json": "d6827a7caeaf154706b1863e4c5ffa58b2c97a32",
+    "configs/round7-candidate-phase1-nonben.json": "457dddcd730d91a8d502068726011ade454dafaf",
+    "docs/generation-cleanup.md": "01ac1880b2eec7057dd015bab769a2f8b3edb253"
+  },
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T05:28:35Z",
+  "issue_and_pr_results": 0,
+  "operational_notices": [
+    {
+      "branch": "feature/gen7-selfplay-20261112",
+      "revision": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+      "path": "docs/gen71_2026-11-12.md",
+      "blob": "78ac948749a9422ae9de4f0c8261e4e9309047c4"
+    }
+  ],
+  "result": "Applied explicit all-general-arena-collectors Gen7.1 push; retired predecessor at6775 and started validated comparison successor on exactly18225 unused families. Hourly monitor now follows current descriptor; no other producer changed.",
+  "notification": "meaningful_applied_transition"
 }
