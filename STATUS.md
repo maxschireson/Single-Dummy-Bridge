@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 11:18 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 11:23 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -8,7 +8,7 @@ Generated 2026-11-12 11:18 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 1 | 0 | 0 | 1 | 0 | 5 |
 | dave | 1 | 0 | 0 | 0 | 0 | 6 |
-| g9 | 1 | 0 | 1 | 2 | 0 | 3 |
+| g9 | 1 | 0 | 1 | 1 | 0 | 4 |
 | pool | 0 | 1 | 0 | 0 | 0 | 0 |
 | sam | 2 | 0 | 0 | 0 | 0 | 5 |
 | will | 3 | 0 | 0 | 0 | 0 | 5 |
@@ -34,11 +34,11 @@ Generated 2026-11-12 11:18 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will | will until 11-12 15:18 | leased | medium | 2026-11-12T16:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool | sam | submitted | high | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
-| [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
 | [G9-A2](tasks/G9-A2.md) | Player model, table contract and experience schema | g9 |  | resolved | high | 2026-11-12T12:00Z |  |
+| [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | resolved | high | 2026-11-12T18:00Z | accepted |
 | [G9-A4](tasks/G9-A4.md) | Rating, field score and promotion test: the statistics | g9 |  | resolved | high | 2026-11-12T14:00Z | accepted |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | resolved | high | 2026-11-12T17:00Z | accepted |
@@ -86,7 +86,7 @@ Generated 2026-11-12 11:18 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 11:16 | 38 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-12 11:02 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:56 | 25 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 11:23 | 25 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 11:14 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 11:18 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -109,27 +109,6 @@ Generated 2026-11-12 11:18 UTC by `tools/workq.py` after a change by `will`. Do 
 | g9 | will | 11-12 09:24 | [D6 wiring: ec2694d counts a floor deal twice for a guest (occasions name the opponent), against your 07:27 uni](inbox/g9/20261112T0924Z-will-d6-wiring-ec2694d-counts-a-flo.md) |
 | dave | bill | 11-12 09:23 | [D6: also needs 514e046 (held_systems restores the house bidders in a fresh checkout)](inbox/dave/20261112T0923Z-bill-d6-also-needs-514e046-held-sys.md) |
 | g9 | bill | 11-12 09:21 | [Measured: a card does not help as a post-filter on a matching profile (−0.35 to −0.6 nats); the best card for ](inbox/g9/20261112T0921Z-bill-measured-a-card-does-not-help.md) |
-
-## Box queue
-
-**azure4**: ? of ? cores busy, reported  UTC.
-
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
-| --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-11-p7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
-| e9-11-r7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
-| e9-11-r8 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 1,600 |  |  |  |
-| e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
-| e9-12-cs | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-u | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-us | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-x | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
-| e9-12-xs | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-4-8x | E9-4 | sam | 4 | 4 | not seen yet | 0 of 1,600 |  |  |  |
-| e9-4-r9 | E9-4 | sam | 4 | 4 | not seen yet | 0 of 1,600 |  |  |  |
-| e9-6-att-vs-reader | E9-6 | sam | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
-| e9-6-vs-8p | E9-6 | sam | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
-| e9-6-vs-reader | E9-6 | sam | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 
 ## Boxes
 
