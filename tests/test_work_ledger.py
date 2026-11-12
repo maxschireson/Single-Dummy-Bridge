@@ -220,6 +220,10 @@ class LedgerTest(unittest.TestCase):
         self.assertIn("unread for will: 1", out)
         code, out, _ = run("--as", "lead", "watch", "--no-heartbeat")
         self.assertIn("unread for lead: 1", out)  # will closed the task lead wrote, so lead is told
+        code, out, _ = run("--as", "will", "inbox", "--all")
+        self.assertIn("New task T001", out)
+        code, out, _ = run("inbox", "--agent", "lead")
+        self.assertIn("T001 done", out)
         code, out, _ = run("show", "T001")
         self.assertIn("output branch: feature/x@abc", out)
         code, out, _ = run("export")

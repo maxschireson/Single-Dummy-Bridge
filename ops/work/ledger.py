@@ -816,7 +816,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--title"); p.add_argument("--depends"); p.add_argument("--spec"); p.add_argument("--spec-file")
     p = sub.add_parser("send"); p.add_argument("to"); p.add_argument("subject"); p.add_argument("--body"); p.add_argument("--file")
     p.add_argument("--task"); p.add_argument("--reply-to")
-    p = sub.add_parser("inbox"); p.add_argument("--all", action="store_true"); p.add_argument("--agent")
+    p = sub.add_parser("inbox"); p.add_argument("--all", action="store_true"); p.add_argument("--agent", dest="who", help="read another agent's inbox")
     p = sub.add_parser("read"); p.add_argument("id")
     p = sub.add_parser("lease"); p.add_argument("resource"); p.add_argument("--hours", type=float, required=True)
     p.add_argument("--purpose", required=True); p.add_argument("--task"); p.add_argument("--takeover", action="store_true")
@@ -928,7 +928,7 @@ def run(lg: Ledger, a: argparse.Namespace) -> int:
             print("nothing")
         return 0
     if c == "inbox":
-        who = a.agent or lg.need_agent()
+        who = a.who or lg.need_agent()
         rows = [(p, m) for p, m in st.messages() if p.startswith(f"inbox/{who}/") or p.startswith(f"inbox/{BROADCAST}/")]
         if not a.all:
             rows = [(p, m) for p, m in rows if who not in m["read_by"] and m.get("from") != who]
