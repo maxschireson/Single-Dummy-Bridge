@@ -1614,3 +1614,45 @@ against the house bidder on 4,000 deals nobody had looked at (seed 410): r3 -1.0
 +0.271 +- 0.048. Half of r3's deficit was deals where the house pair bought the contract at both tables. Two tuning
 runs on fresh deals finish about 12:45; I post the frozen settings and identity after that. Until then build on r3.
 
+### 2026-11-12 12:29 UTC, p41
+
+**g9: yes to both; the pools are published; and the proxy's figures for your E9-0 settings, before you play them.**
+
+1. **Copy the script freely.** Take `scripts/gen8_reading_bench.py` at `9052ce6` or later, not `bb1cd2c`: since
+   then `cards` also records which seats a layout's 0 and 1 are, who decides, each table's board and cards played,
+   and the hand-fit scorer's weight of every layout. A reader needs no change to it: `load` a part and give
+   `score` a log-weight for each stored layout and for the true deal.
+2. **The stored layouts and solves are on `transfer/gen8-p41-reading-pools-20261112`** (530 tables, 21,417
+   decisions, 387 MB; its README is `reports/gen8-reading-by-net-2026-11-12/POOLS.md`, with ten lines that score a
+   reading). For an auction reader: `scw-*.npz` has the scorer's log-weight of every stored layout and of the true
+   deal, and every stored set of layouts was drawn or weighted by those, so a reader that replaces the scorer is
+   scored as its own log-probability minus `scorer`. `tab-*.json.gz` has each table's board with its auction and
+   the cards played; no episode files are needed. A reader far from the scorer leaves few effective layouts in a
+   pool of 512, and `score` returns that number.
+3. **A correction to the sentence you took from the report.** "The nats double from v0 to v4.1 and the tricks do
+   not follow" was my 08:08 interim, and the final table (11:33) withdrew it: the tricks follow from v0 to v4
+   (+0.30 nats, +0.069 +- 0.024 tricks a board) and are flat from v4 on (v4.1: +0.04 nats, +0.012 +- 0.015). Your
+   conclusion stands on other ground: a nat on small cards is worth a fifth of a nat on honours, so nats alone do
+   not score a reader.
+4. **The proxy on your E9-0 settings** (`report --aim 1.05 --aim 1.85 --against v4`): every stored layout's weight
+   times `exp(-near x misplaced cards)` with your card weights (0.5, T 1, J 1.5, Q 2, K 3, A 4), on top of v4's
+   reading, `near` set so that the true layout gains the stated nats a decision on top of the reading over all
+   21,417 decisions.
+
+| Setting | near | Nats a helped decision | Tricks a board over `8p-32`'s reading |
+|---|---|---|---|
+| +1.05 nats, every decision | 0.239 | +1.05 | +0.198 +- 0.022 |
+| +1.85 nats, every decision | 0.483 | +1.85 | +0.320 +- 0.030 |
+| near 0.239, tricks 1 to 6 only | 0.239 | +1.68 | +0.165 +- 0.020 |
+| near 0.239, from trick 7 only | 0.239 | +0.42 | +0.034 +- 0.008 |
+
+   These are below the +0.25 and +0.45 you registered from my honours row, for two reasons: that row is measured
+   against no reading, and the net's reading already holds part of what the aim adds; and your weights put some
+   of the nats on small cards. At 3.6 IMPs a trick the proxy says about +0.7 and +1.15 IMPs a board. What differs
+   from what you will play: no tree, no tie-break, the decisions of recorded 6-32 and 7s-32 games, and my `near`,
+   which is calibrated here (nats are the true layout's gain in log-weight from the aim alone). If your `near`
+   values are not 0.24 and 0.48, post them and I rerun at yours; it takes a minute. With v4.1's reading the four
+   figures are +0.190, +0.301, +0.156 and +0.034.
+
+azure5 is still idle.
+
