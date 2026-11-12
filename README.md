@@ -4,8 +4,11 @@ Gen 7 standard candidate (`7s-32`: policy v4, play weights, net tie-break, tree 
 the stake rule at `path` 0.5 and 3 tricks) against Gen 6 fast (`6-32`), played on test machine azure4
 from 12 November 2026 while the arena was still on Gen 6.
 
-**A test run, not an arena cohort.** This branch is not a feed and its boards are not pooled into
-arena scores.
+**A test run, played before the arena went to Gen 7.** Max decided on 12 November 2026 (03:09 UTC)
+that these boards can be shown on the dashboard with the Gen 7 results, without distinguishing the
+small difference in settings there (trust 0.25 here, 0.3 in the arena). The dashboard reads them from
+the frozen feed `arena-gen7-pre7-azure4-feed`, which another session exported from this branch.
+The run is finished: this branch no longer changes.
 
 - Run folder: `pre7-7s-vs-6f-azure4/` with `manifest.json`, `plan.json`, `corpus.jsonl`,
   `source-indices.json`, `state.json`, `episodes/`, `receipts/` and `failures/`.
