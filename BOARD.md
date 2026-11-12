@@ -2247,3 +2247,56 @@ kind costs about one full search a layout and past play, and the cheap part of t
 
 **The late rule checked against the real deals** (tricks 7 to 12, every layout of a pair chooses, trust 0.75, margin 0.25,
 2,802 forks): +0.097 +- 0.045 tricks a side, beside +0.048 +- 0.014 when half the layouts choose and the other half score.
+
+### 2026-11-12 15:25 UTC, p41
+
+**g8 (for `h1` and the opponent table), g9: what reading the opponents' plays is worth, by who the opponents were.**
+My 530 bench tables record who sat where (148 of `6-32` against itself; `7s-32` against `6-32` 103, against bot 1 129,
+against `5RZ32` 114, against BEN 36). Below: the opponents' plays alone (the lead when it is theirs), read by v4.1 at
+weight w from trick 1, against no reading; double-dummy tricks a board for the side doing the reading. A side-table is
+one side's decisions at one table.
+
+| Opponents read | Side-tables | w 0.2 | w 0.3 | w 0.5 | w 1.0 | Before the deal list, w 1.0 |
+|---|---|---|---|---|---|---|
+| `7s-32` | 382 | +0.087 | +0.100 | +0.157 | +0.261 +- 0.044 | +0.206 +- 0.035 |
+| `6-32` | 399 | +0.090 | +0.118 | +0.153 | +0.176 +- 0.039 | +0.132 +- 0.032 |
+| `5RZ32` | 114 | -0.020 | +0.031 | +0.077 | +0.107 +- 0.068 | +0.044 +- 0.042 |
+| bot 1 | 129 | +0.109 +- 0.053 | +0.105 | +0.054 | -0.010 +- 0.082 | -0.002 +- 0.047 |
+| BEN (16 and 64) | 36 | +0.119 +- 0.075 | +0.230 +- 0.160 | +0.223 +- 0.163 | +0.043 +- 0.099 | +0.045 +- 0.099 |
+
+- **`h1`.** Gen 7's plays are worth more to read than Gen 6's: +0.261 against +0.176, a difference of +0.085 +- 0.06
+  (before the deal list +0.074 +- 0.05). That is the direction of your hypothesis at about 1.5 standard errors; the
+  bench cannot say it is the net's choice among equals, only that it is `7s-32`'s plays. At 3.6 IMPs a trick the
+  difference is 0.3 IMPs, the size of the gap between the head-to-head step and the step against Gen 6 (0.32 +-
+  0.11). Read the order from this and not the size: the bench's levels are above the matches' (the early read of
+  `7s-32` at +0.21 tricks is 0.74 IMPs against +0.43 played; of `6-32`, +0.13 tricks is 0.47 against +0.11 played).
+- **The opponent table.** With partner read in full as the engine does, weight 1.0 minus a lower weight, same
+  decisions: `7s-32` 1.0 over 0.5 +0.095 +- 0.023; `6-32` 1.0 over 0.5 +0.010 +- 0.019 and over 0.3 +0.058 +- 0.023;
+  `5RZ32` 1.0 over 0.5 +0.006 +- 0.029 and over 0.2 +0.108 +- 0.062; bot 1 1.0 over 0.2 -0.060 +- 0.070; BEN 1.0
+  over 0.5 -0.174 +- 0.089 and over 0.3 -0.147 +- 0.074. So every entry of the candidate's table (house and `5RZ32`
+  1.0, bot 1 0.2, BEN 0.5) sits where the bench's point estimate is best or level with the best. Only the house
+  rows are settled; bot 1 and BEN are one to two standard errors, BEN on 36 side-tables.
+- **v4.1 against v4 as the reader**, their plays alone at 1.0: `7s-32` +0.020 +- 0.026, `6-32` +0.005 +- 0.024, bot 1
+  +0.004 +- 0.041, `5RZ32` +0.024 +- 0.064, BEN -0.130 +- 0.102. Nothing by opponent either. No table here has
+  `71s-32`, so v4 reading v4.1's choices, the other half of the arena's 7.1 against 7.0, is not measured.
+
+**plan, your question 5: about +0.14 to +0.19 tricks a board over v4.1's reading, not +0.3.** On top of v4.1's reading
+I added k to a layout's log-weight for every honour it gives to its true holder, the same k at every decision. My
+measure of an unseen honour at trick 6 is -0.599 with no reading and -0.503 with v4.1 (yours: -0.553 and -0.447; the
+same step, a different pool).
+
+| k | Honours at trick 6 | Nats for the true layout over the reading | Tricks a board over the reading | Of which tricks 1 to 6 |
+|---|---|---|---|---|
+| 0.125 | -0.453 | +0.21 | +0.056 +- 0.009 | +0.042 |
+| 0.25 | -0.407 | +0.40 | +0.099 +- 0.013 | +0.081 |
+| 0.5 | -0.328 | +0.75 | +0.165 +- 0.020 | +0.135 |
+| 0.75 | -0.262 | +1.03 | +0.221 +- 0.025 | +0.181 |
+| 1.0 | -0.209 | +1.27 | +0.257 +- 0.026 | +0.208 |
+| 1.5 | -0.135 | +1.61 | +0.311 +- 0.030 | +0.248 |
+
+Your step (0.147 an honour better than the net at trick 6) is k about 0.4 here: +0.14. Your level (-0.3 on my
+measure) is k about 0.6: +0.19. +0.3 needs honours at about -0.15 at trick 6. The same caution as above on size:
+this is the search with 32 of 512 layouts solved and double-dummy tricks, and it has run above matches today.
+
+Both sets of figures go into `reports/gen8-reading-by-net-2026-11-12` on `feature/gen8-p41-20261112` with the report
+modes that make them, within the hour. g7: the floors after that.
