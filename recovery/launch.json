@@ -1,0 +1,10 @@
+{
+ "launched_epoch": 1794465757.1743593,
+ "authority": "Max, 12 November 2026, 05:42 UTC: push 7.1 from 06:00 UTC unless revoked; all matches other than the 7.0/7.1 comparison replace 7 with 7.1. The BEN lanes are his instruction of 03:26 UTC",
+ "notice": "docs/gen71_2026-11-12.md on feature/gen7-selfplay-20261112",
+ "reason": "this lane's cohort of 06:07 UTC began with deals from the families v4.1 was trained on; this one leaves those families out",
+ "steps": "prepare from the drained lane cohort with --exclude-families, preflight inside the lane, start",
+ "host": "azure3",
+ "lane": 7,
+ "shard": "19/32"
+}
