@@ -80,6 +80,15 @@ def _worker_play(index, seed):
                completed_epoch=time.time(), backend='match')
     for regime, v in r['regimes'].items():
         row[regime] = None if v['imps'] is None else sign * v['imps']
+    if WORKER.get('reading'):                    # item 6: the bot's reading of the guest's auction, scored on the true layout
+        who = WORKER['reading']
+        try:
+            if 'reader' not in WORKER:
+                from bridge_harness import gen9 as g9engine
+                WORKER['reader'] = g9engine.player(m['bots'][who['bot']], source)
+            row['reading'] = pl.reading_gain(WORKER['reader'], r, who['bot'], who['guest'])
+        except Exception as e:                  # a failed measurement must not stop the run; it is reported
+            row['reading_error'] = f'{type(e).__name__}: {e}'[:300]
     if WORKER.get('experience'):
         row['envelopes'] = pl.board_envelopes(r, f"{WORKER['epoch_id'][:16]}/{WORKER['pair']}/{index}", WORKER['models'], WORKER['declared'],
                                               WORKER['pair'], row['completed_epoch'], root=str(ROOT), occasions=WORKER.get('occasions'))
@@ -143,6 +152,17 @@ class MatchBackend:
         snap = xs.load_snapshot(self.control / 'snapshots' / f"{m['experience_snapshot']}.json.gz")
         return pl.table_models(m, snap)
 
+    def reading_pair(self, m, pair):
+        """For a floor pair of a house bot and a guest: {'bot', 'guest'}, whose reading item 6 scores; else None."""
+        if not any(pair in f['pairs'] for f in m['schedule'].get('floors', [])):
+            return None
+        a, b = pair.split('~')
+        kinds = {x: self.packages[x]['kind'] for x in (a, b)}
+        guests = [x for x in (a, b) if kinds[x] == 'guest']
+        if len(guests) != 1:
+            return None
+        return dict(bot=b if guests[0] == a else a, guest=guests[0])
+
     def bots_file(self, pair, models=None):
         bots = {}
         for pid in set(pair.split('~')):
@@ -185,7 +205,7 @@ class MatchBackend:
         man, models = self.manifest(m, pair, seed)
         rules = json.loads((self.control / 'rules.json').read_text()) if self.control and (self.control / 'rules.json').exists() else None
         ctx = dict(epoch_id=m['id'], pair=pair, models=models or {}, declared=pl.declared_map(self.packages, ROOT), experience=self.experience,
-                   occasions=pl.occasion_rule(rules))
+                   occasions=pl.occasion_rule(rules), reading=self.reading_pair(m, pair))
         with ProcessPoolExecutor(workers, initializer=_worker_start, initargs=(str(self.capsule), man, ctx)) as pool:
             for idx, row in zip(indices, pool.map(_worker_play, indices, [seed] * len(indices))):
                 yield idx, row
@@ -223,8 +243,47 @@ def paired(rows, a_pair, b_pair, condition):
     return dict(n=n, mean=round(m, 3), se=round(math.sqrt(sum((x - m) ** 2 for x in d) / (n - 1) / n), 3))
 
 
-def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_result=None):
-    """The arrival run's page (G9-D6 done-when), from a control directory."""
+def reading_table(rows, bot, control_bot, guests, epochs):
+    """Item 6: by guest and epoch, the mean reading gain (nats) of each bot over its floor tables, with standard errors by
+    board, and the paired difference over the deals both played. Returns (markdown lines, {guest: {epoch: diff}})."""
+    import math
+
+    def stats(xs):
+        n = len(xs)
+        if not n:
+            return None, None, 0
+        m = sum(xs) / n
+        return m, (math.sqrt(sum((x - m) ** 2 for x in xs) / (n - 1) / n) if n > 1 else None), n
+
+    def fmt(m, se):
+        return '—' if m is None else f'{m:+.3f}' + (f' ({se:.3f})' if se is not None else '')
+
+    L = ['| Guest | Epoch | `' + bot + '`: tables, mean (SE) | `' + control_bot + '`: tables, mean (SE) | Paired by deal: deals, difference (SE) | Not measured |',
+         '| --- | --- | --- | --- | --- | ---: |']
+    diffs = {}
+    for g in guests:
+        for ep in epochs + ['all']:
+            per = {}
+            missing = 0
+            for who in (bot, control_bot):
+                rs = [r for r in rows if r['pair'] == f'{who}~{g}' and r.get('floor') is not None and (ep == 'all' or r['epoch'] == ep)]
+                missing += sum(1 for r in rs if 'reading_error' in r)
+                per[who] = {(r['epoch'], r['index']): [x['gain'] for x in r.get('reading') or []] for r in rs}
+            if not any(per.values()):
+                continue
+            a = [x for v in per[bot].values() for x in v]
+            b = [x for v in per[control_bot].values() for x in v]
+            both = [k for k in per[bot] if k in per[control_bot] and per[bot][k] and per[control_bot][k]]
+            d = [sum(per[bot][k]) / len(per[bot][k]) - sum(per[control_bot][k]) / len(per[control_bot][k]) for k in both]
+            ma, sa, na = stats(a); mb, sb, nb = stats(b); md, sd, nd = stats(d)
+            diffs.setdefault(g, {})[ep] = dict(mean=md, se=sd, n=nd)
+            L.append(f'| {g} | {ep} | {na}, {fmt(ma, sa)} | {nb}, {fmt(mb, sb)} | {nd}, {fmt(md, sd)} | {missing} |')
+    return L, diffs
+
+
+def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_result=None, plan=None):
+    """The arrival run's page (G9-D6 done-when), from a control directory. `plan` (the events file) supplies the
+    predictions registered before the run."""
     from bridge_harness import arena_ratings as ar
     from bridge_harness import arena9_pipeline as pl
     control = Path(control)
@@ -233,8 +292,17 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
     epochs = sorted({r['epoch'] for r in rows})
     guests = [e['player'] for e in log if e['event'] == 'submit' and e.get('kind') == 'guest']
     spec = packages[bot]['bundle'].get('overrides') or {}
-    L = [f'# The arrival run: {control}', '', f'Epochs played: {epochs}. Boards: {len(rows)}. Guests: {guests}.', '']
-    L += ['## 1 and 3. The player model at the table', '',
+    predicted = (plan or {}).get('predictions') or {}
+    rules = json.loads((control / 'rules.json').read_text())
+
+    def prediction(item):
+        return [f'*Prediction registered before the run:* {predicted[item]}', ''] if item in predicted else []
+
+    L = [f'# The arrival run: {control}', '', f'Epochs played: {epochs}. Boards: {len(rows)}. Guests: {guests}. Rules `{rules["version"]}`.', '']
+    for note in rules.get('notes', []):
+        if note.startswith('Shares'):
+            L += [f'*{note}*', '']
+    L += ['## 1 and 3. The player model at the table', ''] + prediction('1') + prediction('3') + [
           f'`{bot}` against the guest minus `{control_bot}` against the same guest, on the same deals (the floor), IMPs a board from the bot\'s side.', '',
           '| Guest | Epoch | Deals | Native: mean (SE) | Common: mean (SE) |', '| --- | --- | ---: | --- | --- |']
     for g in guests:
@@ -245,7 +313,7 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
             if nat['n']:
                 f = lambda x: '—' if x['mean'] is None else (f"{x['mean']:+.3f}" + (f" ({x['se']:.3f})" if x['se'] is not None else ''))
                 L.append(f'| {g} | {ep} | {nat["n"]} | {f(nat)} | {f(com)} |')
-    L += ['', '## 2. What experience adds', '',
+    L += ['', '## 2. What experience adds', ''] + prediction('2') + [
           'What each epoch\'s bots were handed for each guest (the snapshot frozen when the previous epoch closed), read as the Gen 9 bot reads it.', '',
           '| Guest | Epoch | Boards in the snapshot | Deltas (board-sides) | P(card) as read | Other profiles as read | Honesty as read | Play factor | Snapshot = envelopes of earlier epochs |',
           '| --- | --- | ---: | ---: | ---: | --- | ---: | --- | --- |']
@@ -261,6 +329,28 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
             label = ep if ep in epochs else f'{ep} (after the run)'
             L.append(f"| {g} | {label} | {row.get('deals', '—')} | {row['boards']} | {'—' if pc is None else f'{pc:.3f}'} | {others} | {'— (prior)' if h is None else f'{h:.3f}'} | "
                      f"{row.get('play_factor', '—')} | {'yes' if row['snapshot_matches_envelopes'] else '**no**'} |")
+    L += ['', '## 6. The reading itself', ''] + prediction('6') + [
+          f'On the floor boards, at each native table, the first decision of the bot\'s side after the opening lead: the log weight the auction gives the '
+          'true layout, as that bot reads it, minus the log of its mean weight over every layout consistent with what it sees (nats; 0 = no information). '
+          'Computed after the board, from its record (bridge_harness/arena9_pipeline.reading_gain).', '']
+    lines, diffs = reading_table(rows, bot, control_bot, guests, epochs)
+    L += lines
+    check = []
+    for g in guests:
+        by = diffs.get(g, {})
+        first = min((e for e in by if e != 'all'), default=None)
+        later = [e for e in by if e not in ('all', first)]
+        if g == 'guest-b' and later:
+            ds = [by[e] for e in later if by[e]['mean'] is not None]
+            if ds:
+                n = sum(d['n'] for d in ds)
+                mean = sum(d['mean'] * d['n'] for d in ds) / n
+                check.append((g, f'after its first epoch (epochs {later}): {mean:+.3f} over {n} deals; needs ≥ -0.3', mean >= -0.3))
+        if g == 'guest-a' and by.get('all', {}).get('mean') is not None:
+            mean = by['all']['mean']
+            check.append((g, f'pooled: {mean:+.3f} over {by["all"]["n"]} deals; needs > 0', mean > 0))
+    if check:
+        L += ['', f'**Release check** (`{bot}` minus `{control_bot}`, paired by deal): ' + '; '.join(f'{g} {t} — {"met" if ok else "**not met**"}' for g, t, ok in check)]
     L += ['', '## 4. The arena', '', '**Registry events**', '']
     for e in log:
         if e['player'] in guests or e['event'] in ('activate', 'open-test', 'promote', 'demote', 'retire'):
@@ -347,7 +437,7 @@ def arrival(out, players, rules, capsule, events, epochs, workers, backend=None)
         rows = [json.loads(l) for l in (control / 'results' / f'e{ep:04d}' / 'slot0.jsonl').read_text().splitlines() if l.strip()]
         pick = sorted((r for r in rows if r['pair'] == plan['replay']['pair']), key=lambda r: r['k'])[0]
         rp.write_text(json.dumps(replay(control, pkgs, capsule, ep, pick['k']), indent=1))
-    (out / 'report.md').write_text(arrival_report(control, pkgs, bot=plan.get('bot', '9a-32'), control_bot=plan.get('control_bot', '8p-32'),
+    (out / 'report.md').write_text(arrival_report(control, pkgs, bot=plan.get('bot', '9a-32'), control_bot=plan.get('control_bot', '8p-32'), plan=plan,
                                                   replay_result=json.loads(rp.read_text()) if rp.exists() else None))
     held.close()
 
@@ -380,6 +470,7 @@ def main():
     p.add_argument('--epoch', type=int, required=True); p.add_argument('--reader', default='9a-32')
     p = sub.add_parser('report'); p.add_argument('--control', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
     p.add_argument('--replay', type=Path, help='a replay result (JSON) to include'); p.add_argument('--out', type=Path)
+    p.add_argument('--events', type=Path, help='the events file, for the predictions registered before the run')
     p = sub.add_parser('arrival'); p.add_argument('--out', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
     p.add_argument('--rules', type=Path, required=True); p.add_argument('--capsule', type=Path, required=True); p.add_argument('--events', type=Path, required=True)
     p.add_argument('--epochs', type=int, required=True); p.add_argument('--workers', type=int, default=os.cpu_count() or 1)
@@ -409,7 +500,8 @@ def main():
         spec = (pk[a.reader]['bundle'].get('overrides') or {}) if a.reader in pk else {}
         print(json.dumps(pl.epoch_experience(a.control, a.epoch, spec), indent=1))
     elif a.cmd == 'report':
-        text = arrival_report(a.control, a9.load_packages(a.players), replay_result=json.loads(a.replay.read_text()) if a.replay else None)
+        text = arrival_report(a.control, a9.load_packages(a.players), replay_result=json.loads(a.replay.read_text()) if a.replay else None,
+                              plan=json.loads(a.events.read_text()) if a.events else None)
         if a.out:
             a.out.write_text(text)
         print(text)

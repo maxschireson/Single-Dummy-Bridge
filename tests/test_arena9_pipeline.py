@@ -166,6 +166,22 @@ class ArrivalCommand(Base):
         self.assertIn('g9~ctl', m['schedule']['purposes']['promotion'])
 
 
+class ReadingPage(unittest.TestCase):
+    def test_item_6_pairs_by_deal_and_applies_the_release_check(self):
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        import arena9 as cli
+        rows = []
+        for ep in (4, 5):
+            for idx in range(3):
+                for who, g in (('9a-32', 0.5), ('8p-32', 0.1)):
+                    rows.append(dict(pair=f'{who}~guest-b', epoch=ep, index=idx, floor=1, reading=[dict(gain=g + idx), dict(gain=g - idx)]))
+        rows.append(dict(pair='9a-32~guest-b', epoch=5, index=9, floor=1, reading_error='boom'))
+        lines, diffs = cli.reading_table(rows, '9a-32', '8p-32', ['guest-b'], [4, 5])
+        self.assertAlmostEqual(diffs['guest-b'][5]['mean'], 0.4)
+        self.assertEqual(diffs['guest-b']['all']['n'], 6)
+        self.assertTrue(any(l.startswith('| guest-b | 5 |') and l.endswith('| 1 |') for l in lines))   # the failed measurement is counted
+
+
 class Arrival(unittest.TestCase):
     def test_a_guest_with_a_card_gets_arrive_and_a_house_bot_its_profiles(self):
         card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())

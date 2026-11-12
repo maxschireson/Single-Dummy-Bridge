@@ -47,5 +47,11 @@
  },
  "notes": [
   "G9-D6. Written before the run; the runner queues each event before the boundary at which it takes effect. Revised 12 Nov after g9's 11:32 UTC answers (the test of 9a-32 opened by plan)."
- ]
+ ],
+ "predictions": {
+  "1": "9a-32 against guest-a minus 8p-32 against guest-a, same deals: +0.2 IMPs a board or more pooled over epochs 2 to 5 (lowered from +0.4 on 12 Nov 11:45 UTC, before the run, on two sandbox pilots).",
+  "2": "P(card) for guest-a above 0.95 from epoch 3; guest-a's learned honesty 0.65 to 0.8 (the reader measures the effective value, sam); guest-b's below 0.25 from epoch 5; item 1's difference rises from epoch 2 to epochs 3 to 5 by less than its standard error at this size.",
+  "3": "9a-32 against guest-b minus 8p-32 against guest-b: between -0.2 and +0.2 IMPs a board in each epoch (epoch 4 on the arrival prior alone, epoch 5 on experience), and pooled within one standard error of zero.",
+  "6": "Release check (g9, 12 Nov): 9a-32's reading not below 8p-32's by more than 0.3 nats on guest-b after its first epoch, and above it on guest-a."
+ }
 }

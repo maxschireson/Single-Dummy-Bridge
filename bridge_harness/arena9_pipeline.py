@@ -34,6 +34,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import numpy as np
+
 from . import experience as xp
 from . import experience_store as xs
 from .player_model import KINDS, PlayerModel, arrive
@@ -232,6 +234,58 @@ def board_envelopes(record, key, models, decl, source, completed, root='.', occa
                 if delta['stats']:
                     seat_text = _occasion_seats(name, 'card', rule['card'], other.get(player, ''), actions)
                     out.append(xs.envelope(delta, source, completed, xs.occasion(family, seat_text, auction)))
+    return out
+
+
+def reading_gain(player, record, bot, guest):
+    """Item 6 of G9-D6, computed after the board is finished (the hidden hands are labels here, never inputs): at each
+    native table, the first decision of the bot's side after the opening lead, where it cannot see two hands; there
+
+        G = log w(true layout) - log(mean of w over every layout consistent with what it sees)      (nats; 0 = no information)
+
+    with w the auction's weight as `player` reads it (its type_log_weights on hand-type classes, the scorer path), so
+    the mean is exact, not a pool. `player` is a fresh instance of the bot from the pair's manifest, told who it faces
+    (meet) and that each side bid for itself (auction_by(None)), as at a native table."""
+    from .core import Board, Game, card
+    from .gen6 import Classes, View
+    from .gen6_nets import hand_types
+    role = 'candidate' if record['candidate'] == bot else 'opponent'
+    if hasattr(player, 'meet'):
+        player.meet(guest)
+    out = []
+    for tkey in sorted({b['table'] for k, b in record['bidding'].items() if k.startswith('native')}):
+        e = record['unique_tables'][tkey]
+        actions = e['tables'][0]['actions']
+        if not actions or e.get('schema_version') == 'v4-passed-out-v1':
+            continue
+        board = Board.from_dict(e['board'])
+        game = Game(board)
+        mine = {s for s in range(4) if e['assignments'][s] == role}
+        for a in actions:
+            o = game.observation()
+            if o.history and o.controller in mine:
+                view = View(o)
+                if len(view.hidden) != 2:
+                    break
+                if hasattr(player, 'auction_by'):
+                    player.auction_by(None)
+                classes = Classes(view)
+                if hasattr(player, 'class_rows'):
+                    player.class_rows = True        # the shell reads each kind relative to its mean over these classes
+                logw = np.asarray(player.type_log_weights(o, view, classes.length, classes.hon, 'scorer'), float).reshape(-1)
+                member = np.zeros(52, np.int8)
+                member[list(board.hands[view.hidden[0]])] = 1
+                ln, hn = hand_types(member)
+                at = np.flatnonzero((classes.length[0] == ln).all(1) & (classes.hon[0] == hn).all(1))
+                if len(at) != 1:
+                    raise RuntimeError(f'{tkey}: the true layout is in {len(at)} classes')
+                lm = np.asarray(classes.logmult, float)
+                g = float(logw[at[0]] - (np.logaddexp.reduce(lm + logw) - np.logaddexp.reduce(lm)))
+                out.append(dict(table=tkey, bot=bot, guest=guest, seat=int(o.controller),
+                                declaring=bool(o.controller % 2 == o.contract.declarer % 2), trick=len(o.history) // 4 + 1,
+                                source=str(player.source(o, view)), classes=len(classes), gain=round(g, 4)))
+                break
+            game.play(card(a['card']))
     return out
 
 
