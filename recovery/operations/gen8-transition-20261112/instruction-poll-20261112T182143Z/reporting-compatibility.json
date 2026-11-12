@@ -1,0 +1,18 @@
+{
+  "revision": "edd5e1ef4d09d9e8dabee0fb9ff5bd6427889f1b",
+  "completed": 161,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "own_contracts_complete": true,
+  "missing_contract_records": [],
+  "common_and_native_scores_finite": true,
+  "five_pair_counts": {
+    "8s-32~1": 27,
+    "8c-32~71s-32": 27,
+    "8c-32~8s-32": 27,
+    "8s-32~71s-32": 53,
+    "8s-32~5RZ32": 27
+  },
+  "precision_vs_standard_common_numeric_zero": 27,
+  "new_shared_contract_split_supported_without_feed_changes": true,
+  "shared_replay_catalog_blocker_unchanged_no_repeat_notification": true
+}
