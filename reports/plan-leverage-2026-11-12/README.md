@@ -160,27 +160,31 @@ search rated up to 1/8 behind cost +0.042 +- 0.018 tricks, 1/8 to 1/2 behind +0.
 further behind +0.628 +- 0.033 (0.752). Real cost over recorded gap is 0.75 +- 0.04 at the lead, 0.80 to 0.83 at tricks
 1 to 6 and 0.88 to 0.96 from trick 7.
 
-By kind of lead (`scripts/plan_lead_scan.py`, `scripts/plan_lead_rule.py`; what a forced lead really cost minus the
-search's gap, regressed on the kinds of the two leads; + means the search flatters the kind):
+By kind of lead (`scripts/plan_lead_scan.py`, `scripts/plan_lead_rule.py`, `scripts/plan_lead_kinds.py`). Real play
+shrinks every gap the search sees (at the lead, real cost = 0.84 +- 0.05 of the recorded gap), and without a term for
+that the shrinkage shows up as an effect of whatever kinds are mostly played or mostly forced. With the term in, what
+is left by kind (+ means the search flatters the kind; the two columns are different deals and different measures:
+the real deal's result against the recorded gap, and the playouts against double dummy on the same 16 layouts):
 
 | Kind | Real deals, 6,632 forks | Ceiling so far, 311 forks | The search leads it |
 |---|---|---|---|
-| Singleton | +0.076 +- 0.040 | +0.137 +- 0.037 | 7% |
-| An ace | +0.064 +- 0.022 | +0.115 +- 0.029 | 21% (24% against suit contracts) |
-| A trump | +0.020 +- 0.023 | -0.034 +- 0.031 | 7% |
-| Small from small cards | -0.011 +- 0.025 | -0.016 +- 0.032 | 16% |
-| Small from a doubleton | -0.017 +- 0.030 | -0.048 +- 0.043 | 10% |
-| Top of touching honours | -0.032 +- 0.031 | -0.013 +- 0.042 | 11% |
-| An honour, not touching | -0.038 +- 0.023 | -0.036 +- 0.026 | 10% |
-| Small from an honour | -0.061 +- 0.017 | -0.106 +- 0.022 | 19% |
+| Singleton | +0.044 +- 0.042 | +0.106 +- 0.034 | 7% |
+| An ace | +0.035 +- 0.024 | +0.086 +- 0.031 | 21% (24% against suit contracts) |
+| A trump | +0.055 +- 0.023 | -0.001 +- 0.031 | 7% |
+| Small from small cards | -0.010 +- 0.025 | -0.016 +- 0.030 | 16% |
+| An honour, not touching | -0.012 +- 0.025 | -0.006 +- 0.025 | 10% |
+| Small from a doubleton | -0.022 +- 0.031 | -0.050 +- 0.041 | 10% |
+| Top of touching honours | -0.050 +- 0.031 | -0.033 +- 0.041 | 11% |
+| Small from an honour | -0.040 +- 0.018 | -0.085 +- 0.022 | 19% |
 
-Two independent measures agree on the order: double dummy flatters an ace and a singleton (the defence that follows
-is never as good as double dummy's) and is hard on a small card from an honour (declarer does not always guess).
-Between an ace and a small card from an honour the search is off by 0.125 +- 0.028 tricks on the real deals. A rule
-that adds the table to the search's gaps (fitted on half the deals, scored on the other half through the forks)
-changes a third of the leads and gains +0.007 +- 0.003 tricks a side, +0.03 +- 0.015 IMPs a side, at three quarters of
-the table; at the full table +0.003 +- 0.005. So the bias is real and correcting it by kind is worth about a
-hundredth of a trick a board.
+An ace against a small card from an honour: the search is off by +0.075 +- 0.029 on the real deals and +0.170 +- 0.038
+in the ceiling. Both say double dummy flatters the ace (the defence that follows is never as good as double dummy's)
+and is hard on the small card from an honour (declarer does not always guess); they disagree on the size. A rule that
+adds the table to the search's gaps (fitted on half the deals, scored on the other half through the forks, switching
+only to a card the search rated behind) changes 8% to 15% of the leads and gains +0.005 +- 0.003 to +0.005 +- 0.004
+tricks a side: not distinguishable from nothing. The same table for every play after the lead (85,535 forks, 28
+kinds of play a side such as "second hand takes the trick" or "lead low from an honour"; `scripts/plan_play_scan.py`,
+`scripts/plan_play_rule.py`) gives a rule worth -0.004 +- 0.004 a side. So tables of play kinds are not a lever either.
 
 The lead's ceiling (both leads played out by Gen 6 on 16 layouts from the leader's beliefs; 311 of about 690 forks so
 far): the forced lead costs +0.21 +- 0.03 by the playouts where double dummy on the same layouts says +0.27; one
