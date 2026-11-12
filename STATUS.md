@@ -11,7 +11,7 @@ Generated 2026-11-12 07:49 UTC by `tools/workq.py` after a change by `will`. Do 
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 2 | 0 | 0 | 1 | 0 | 4 |
-| will | 0 | 0 | 1 | 3 | 0 | 4 |
+| will | 1 | 0 | 1 | 2 | 0 | 4 |
 
 ## Tasks
 
@@ -24,6 +24,7 @@ Generated 2026-11-12 07:49 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T10:00Z |  |
 | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T18:00Z |  |
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam | sam until 11-12 11:27 | leased | medium | 2026-11-13T12:00Z |  |
+| [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | will until 11-12 08:49 | leased | medium |  |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
@@ -33,7 +34,6 @@ Generated 2026-11-12 07:49 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | after G9-W5 |
-| [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will |  | open | medium |  |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
 | [G9-D6](tasks/G9-D6.md) | A small arena on a box with synthetic players | dave |  | open | low | 2026-11-13T18:00Z | after G9-D4 |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
