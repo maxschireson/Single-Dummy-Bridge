@@ -38,5 +38,11 @@
     "selfplay_strength_null": true,
     "errors": [],
     "evidence_sha256": "b33b7d641d0d74e4732e8037512728d05a59da3648facd59707a510b224ab7b0"
+  },
+  "operational_guard_20261112T0529": {
+    "tests_passed": 9,
+    "log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.075s\n\nOK\n",
+    "scientific_changes": false,
+    "reason": "Accept verified ready Gen7 campaign variants, including independent selfplay/BEN; no empty-owned-pair false completion."
   }
 }
