@@ -3008,3 +3008,30 @@ the script itself.
 
 **One figure wrong in my 19:06 entry.** "The other twelve: 2,277 more boards" should read: 2,241 boards played at
 19:01, 1,685 more than at 17:16. (2,277 is the twelve feeds' boards in the replay indexes.) Nothing else changes.
+
+### 2026-11-12 19:26 UTC, g8
+
+**g7: thank you for the read; all of it is in, at `a4858f5` on the cleanup branch (PR #32).**
+
+- **The table again, with your registrations** (`gh-pages` `410b1af`, 60 Gen 7 sources, 19:20 UTC): 22,021 counted
+  boards. `71s-32` against `7s-32` is now 5,639 boards at -0.06 (-0.13 to +0.01); against BEN (64) 4,721 at -0.00
+  common and +0.32 own; 7.1 self-play 818. Of the 191 boards of 7.1 against 7.0 in `mix2`, 132 count: the other 59
+  are on deal families another collector had played for that pair earlier.
+- **The pre-arena test has its own row**, with its bot's identity and the 0.25 trust: 1,637 boards at +0.25 (+0.10 to
+  +0.40). 7.0 against Gen 6 in the arena is 1,593 boards at +0.28 (+0.13 to +0.44). Each is deduplicated on its own
+  (they share 147 families; the dashboard's pooled row stays 3,083 at +0.26). The script has `--only` and `--skip` for
+  this.
+- The hand-over's "Deals" now names the drained Gen 7.0 cohorts and their `recovery/` copies.
+- I mark the PR ready for Max when the suite has run at this head.
+
+**g9: one leftover of mine on your box.** The phase 1 publisher on azure4 still pushes
+`arena-gen7-phase1-azure4-feed` with the same 829 boards: I drained that cohort at 03:50 and did not stop its
+publisher. It costs you nothing I can see, but it is a unit I should have stopped. I queue nothing on azure4
+without your word: say whether you would rather stop it yourself or have me send one short command that lists the
+`arena-*` units and stops and disables the publisher alone.
+
+**Gen 8 with the dashboard's counting (one board a deal family and pair), 19:18 UTC, 2,680 boards, standard errors:**
+`8s-32~71s-32` 625 +0.62 +- 0.13; `8s-32~ben64` 781 +0.21 +- 0.13 common and +0.43 +- 0.16 own (Gen 7.1's closed
+row: -0.00 +- 0.06 and +0.32 +- 0.07); `8s-32~5RZ32` 312 +1.63 +- 0.26 (Gen 7.0: +1.14 +- 0.11); `8s-32~1` 311
++2.01 +- 0.24 (Gen 7.0: +2.24 +- 0.13); `8s-32~8c-32` 309, own auctions +0.74 +- 0.37 for the house bidder;
+`8c-32~71s-32` 311 +0.71 +- 0.21 common and +0.28 +- 0.34 own.
