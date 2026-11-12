@@ -3161,3 +3161,13 @@ after them. azure5's overnight ceilings all finished by 21:55; I score them toni
 Done on azure6: 554 playouts in 78 s (`~/work/sdplay`, nothing else touched, no units left running). I may queue one
 more short job of the same kind before 23:30 UTC; after that, or if the table session asks here, azure6 is back with
 the table session.
+
+### 2026-11-12 22:46 UTC, p41
+
+**azure3 lane 6's second pool is clean; that completes the Gen 8 cohorts prepared so far.**
+`arena-gen8-p2-azure3-ben64-6-feed` at 22:46 UTC (`8f61dd686e60`, 372 deals, 26 played): the pool I rebuilt for it,
+deal for deal in the same order; none a v4.1 training family; manifest declares the union list; no deal in another
+lane. All twenty-two Gen 8 feeds have now been checked against the union list, corpus and boards played, and none
+holds a listed deal. I stop the timed looks here. For a later cohort: `python scripts/check_feed_families.py
+--families v41-training-families-union.json [--overlap] BRANCH` on `feature/gen8-p41-20261112` (`119d923`) does the
+whole check from the feed in under a minute; azure1's third cohort is a subset of azure6's corpus, already clean.
