@@ -1,3 +1,4 @@
+import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -79,6 +80,7 @@ class GateTests(TestCase):
             current = [g.observation(self.row(), 'mine'),g.observation(self.row(i=1,family=trained), 'mine')]
             output = 'a'*40+' refs/heads/gh-pages\n'+'b'*40+' refs/heads/arena-gen71-mine-feed\n'
             with patch.object(g,'TRAINING_SHA256',checksum),patch.object(g.subprocess,'check_output',return_value=output), \
+                    patch.object(g,'supplemental_training_families',return_value=(set(),{})), \
                     patch.object(g,'fetch_bytes',return_value=json.dumps(registry).encode()), \
                     patch.object(g,'fetch_registered_snapshot',return_value=dict(cohort='mine',rows=current)):
                 result=g.update(root,root)
@@ -94,6 +96,43 @@ class GateTests(TestCase):
             root=Path(temporary);(root/'evaluation-exclusions.json').write_text('[]')
             with self.assertRaisesRegex(ValueError,'checksum'):
                 g.exclusion_list(root,{})
+
+    def test_trainer_supplement_cannot_be_omitted_from_the_gate(self):
+        with TemporaryDirectory() as temporary:
+            root=Path(temporary);original='f'*64;additional='e'*64
+            raw=json.dumps([original]).encode();checksum=hashlib.sha256(raw).hexdigest()
+            (root/'evaluation-exclusions.json').write_bytes(raw)
+            (root/'evaluation-exclusion-audit.json').write_text(json.dumps(dict(manifest='mine',
+                corpus_sha256='corpus',training_list_sha256=checksum,corpus_training_overlap=0,
+                distinct_corpus_families=1)))
+            manifest=dict(identity='mine',corpus_sha256='corpus',target=1)
+            with patch.object(g,'TRAINING_SHA256',checksum), \
+                    patch.object(g,'supplemental_training_families',return_value=({additional},dict(source='trainer'))):
+                trained,metadata=g.exclusion_list(root,manifest)
+            self.assertEqual(trained,{original,additional})
+            self.assertEqual(metadata['effective_families'],2)
+            rows=[g.observation(self.row(i=i), 'a') for i in range(999)]
+            rows.append(g.observation(self.row(i=999,family=additional), 'a'))
+            self.assertTrue(g.statistics_for(g.eligible_rows(rows,{original})[0])['qualified'])
+            clean,excluded=g.eligible_rows(rows,trained)
+            self.assertEqual(excluded,{additional})
+            self.assertEqual(len(clean),999)
+            self.assertFalse(g.statistics_for(clean)['qualified'])
+
+    def test_supplement_is_pinned_and_required(self):
+        with TemporaryDirectory() as temporary:
+            path=Path(temporary)/'families.txt.gz';values=['a'*64,'b'*64]
+            raw=gzip.compress(('\n'.join(values)+'\n').encode(),mtime=0);path.write_bytes(raw)
+            with patch.object(g,'SUPPLEMENTAL_PATH',path), \
+                    patch.object(g,'SUPPLEMENTAL_SHA256',hashlib.sha256(raw).hexdigest()), \
+                    patch.object(g,'SUPPLEMENTAL_FAMILY_COUNT',2):
+                self.assertEqual(g.supplemental_training_families()[0],set(values))
+                path.write_bytes(raw+b'corrupt')
+                with self.assertRaisesRegex(ValueError,'checksum'):
+                    g.supplemental_training_families()
+                path.unlink()
+                with self.assertRaises(FileNotFoundError):
+                    g.supplemental_training_families()
 
     def fixture(self, ready=True, corrupt=False, wrong_actor=False, extra_pair=None):
         actors = {'71s-32': '71actor', '7s-32': '7actor'}
