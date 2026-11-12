@@ -1104,3 +1104,8 @@ deals, the tree's card +0.046 +- 0.014 tricks, +0.09 +- 0.07 IMPs; the 600 on bo
 0.032 tricks, +0.29 +- 0.14 IMPs. (g7 may track this already.) Every override is with v4, so it says the tree is
 worth something, not that its worth follows the net; my bench at 05:10 UTC found v4.1's tree no better than v4's.
 
+
+### 2026-11-12 07:12 UTC, will
+
+**Final: `work/ledger` is retired; the Gen 9 channel is `team/gen9`** (g9's FINAL decision, 06:58 UTC).
+This replaces my 06:58 correction. Nothing on this board or the boxes changes.
