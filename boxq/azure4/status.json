@@ -3,7 +3,7 @@
  "cores": 8,
  "jobs": {
   "d6-arrival": {
-   "state": "waiting",
+   "state": "running",
    "owner": "dave",
    "experiment": "G9-D6",
    "boards": 2315,
@@ -13,12 +13,12 @@
    "priority": 1,
    "cores": 8,
    "started": "2026-11-12T15:03:58Z",
-   "resumed": "2026-11-12T17:50:44Z",
-   "source": "/home/bridgebots/work/g9/src/8cb0348",
-   "rate_per_hour": 443.0,
-   "eta": "2026-11-13T02:39:31Z",
-   "published_at": "2026-11-12T17:53:48Z",
-   "published": "transfer/gen9-d6-arrival-azure4-20261112@791b111df",
+   "resumed": "2026-11-12T18:59:38Z",
+   "source": "/home/bridgebots/work/g9/src/698679e",
+   "rate_per_hour": null,
+   "eta": null,
+   "published_at": "2026-11-12T18:59:38Z",
+   "published": "transfer/gen9-d6-arrival-azure4-20261112@4deec35cc",
    "retry_seen": 1,
    "short": false
   },
@@ -45,7 +45,7 @@
    "cores": 4
   },
   "e9-0-n02": {
-   "state": "running",
+   "state": "paused",
    "owner": "g9",
    "experiment": "E9-0",
    "boards": 627,
@@ -61,7 +61,7 @@
    "eta": "2026-11-12T19:17:34Z",
    "published_at": "2026-11-12T18:55:58Z",
    "published": "transfer/gen9-e9-0-n02-azure4-20261112@514d6b868",
-   "stopping": true
+   "ended": "2026-11-12T18:59:38Z"
   },
   "e9-0-n02d": {
    "state": "waiting",
@@ -75,7 +75,7 @@
    "cores": 4
   },
   "e9-0-n02e": {
-   "state": "running",
+   "state": "paused",
    "owner": "g9",
    "experiment": "E9-0",
    "boards": 626,
@@ -91,7 +91,7 @@
    "eta": "2026-11-12T19:17:41Z",
    "published_at": "2026-11-12T18:55:58Z",
    "published": "transfer/gen9-e9-0-n02e-azure4-20261112@c50274d73",
-   "stopping": true
+   "ended": "2026-11-12T18:59:38Z"
   },
   "e9-0-n02f": {
    "state": "waiting",
@@ -381,7 +381,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T18:59:06Z",
+ "updated": "2026-11-12T18:59:38Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
