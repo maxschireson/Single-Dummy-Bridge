@@ -71,3 +71,5 @@ is still editing them on its branch; they move into this folder at Gen 7's close
 Gen 8 (multiple bidding systems and carding agreements as data; MoE-style scorer/belief/
 bidder) is work in progress on `feature/gen8-systems-20261111` — [its guide](https://github.com/maxschireson/Single-Dummy-Bridge/blob/feature/gen8-systems-20261111/docs/gen8_systems.md).
 Not on main.
+
+- [Independent collector phase 1](independent-phase1-20261112.md)

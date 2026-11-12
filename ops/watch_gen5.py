@@ -10,6 +10,7 @@ import sqlite3
 import subprocess
 import sys
 import time
+from urllib.parse import urlparse
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 DEFAULT_PYTHON=Path('/workspace/work/ben-venv/bin/python')
 from bridge_harness.mixed_arena import verify_generation
@@ -32,10 +33,21 @@ def launch(root,name,args,log,cwd=ROOT):
             stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
     atomic_json(root/name,dict(pid=child.pid,epoch=time.time()));return child.pid
 
-def ben_ready():
+def ben_ready(port=8087):
     try:
-        with socket.create_connection(('127.0.0.1',8087),timeout=1):return True
+        with socket.create_connection(('127.0.0.1',port),timeout=1):return True
     except OSError:return False
+
+def ben_services(m,run):
+    services={}
+    for spec in m['bots'].values():
+        if spec.get('engine')!='ben':continue
+        url=urlparse(spec['url'])
+        if url.hostname!='127.0.0.1' or not url.port:raise ValueError('BEN watchdog expects a local service with an explicit port')
+        config=run/spec['config']
+        if url.port in services and services[url.port]!=config:raise ValueError('Conflicting BEN configs on one port')
+        services[url.port]=config
+    return services
 
 def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('/workspace/work/round5')):
     ben_state.mkdir(parents=True,exist_ok=True)
@@ -46,9 +58,12 @@ def main(run,pub,ben_dir=Path('/workspace/work/ben-next-round'),ben_state=Path('
             status=dict(epoch=time.time(),collector='running',publisher='running');stop=run/'STOP'
             try:
                 m=json.loads((run/'manifest.json').read_text());s=json.loads((run/'state.json').read_text());complete=s['completed']>=m['target']
-                if not alive(ben_state/'ben-process.json','gameapi.py'):
-                    status['ben_pid']=launch(ben_state,'ben-process.json',['src/gameapi.py','--config',str(run/'assets/ben-16.conf'),'--port','8087','--host','127.0.0.1','--record','false'],'ben-gen5-server.log',cwd=ben_dir)
-                ready=ben_ready();status['ben']='ready' if ready else 'warming'
+                services=ben_services(m,run)
+                for port,config in services.items():
+                    marker='ben-process.json' if port==8087 else f'ben-{port}-process.json'
+                    if not alive(ben_state/marker,'gameapi.py'):
+                        status[f'ben_{port}_pid']=launch(ben_state,marker,['src/gameapi.py','--config',str(config),'--port',str(port),'--host','127.0.0.1','--record','false'],f'ben-{port}-server.log',cwd=ben_dir)
+                ready=all(ben_ready(port) for port in services);status['ben']='ready' if ready else 'warming'
                 cache=run/'dds-cache.sqlite';size=cache.stat().st_size if cache.exists() else 0
                 if size>2*1024**3 and not stop.exists():stop.write_text(token);status['collector']='draining-for-cache-rotation'
                 if stop.exists() and stop.read_text()==token and not alive(run/'process.json','gen5_runtime.py') and free(run/'.writer.lock'):
