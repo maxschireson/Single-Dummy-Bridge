@@ -51,8 +51,16 @@ FAST = dict(lead_source='scorer', mid_from_trick=14, mid_samples=32, list_from_t
 PROTO = dict(play_weight=1.0, play_floor=.05, play_max_layouts=1024, play_lead=True, tie_break='net',
              early_play_weight=1.0, early_pool=512, early_min_effective=8.)                                   # 8p-32 without its tree
 PARTS = ('lead', 'partner', 'opp')
-BANDS = (('tricks 1-2', 1, 2), ('tricks 3-4', 3, 4), ('tricks 5-6', 5, 6), ('tricks 7-9', 7, 9), ('tricks 10-13', 10, 13),
-         ('before the deal list', -1, -1), ('deal list', -2, -2), ('all', 1, 13))
+BANDS = ('tricks 1-2', 'tricks 3-4', 'tricks 5-6', 'tricks 7-9', 'tricks 10-13', 'before the deal list', 'deal list',
+         'declarer deciding', 'defender deciding', 'all')
+
+
+def band_mask(band, trick, regime, declaring):
+    if band.startswith('tricks'):
+        lo, hi = (int(x) for x in band.split()[1].split('-'))
+        return (trick >= lo) & (trick <= hi)
+    return {'before the deal list': regime == 0, 'deal list': regime == 1, 'declarer deciding': declaring, 'defender deciding': ~declaring,
+            'all': np.ones(len(trick), bool)}[band]
 
 
 def spec(policy, pool):
@@ -332,13 +340,15 @@ def report(a):
     fam = np.array([r['family'] for r in rows])
     trick = np.array([int(r['trick']) for r in rows])
     regime = np.array([int(r['regime']) for r in rows])
+    declaring = np.array([bool(r['declaring']) for r in rows])
     tables_n = len({r['uid'] for r in rows})
     print(f"{len(rows)} decisions on {tables_n} tables of {len(set(fam))} deals; nets {names}; mean layouts {np.mean([r['layouts'] for r in rows]):.0f};"
           f" before the deal list {int((regime == 0).sum())}, deal list {int((regime == 1).sum())}")
     zero = np.zeros((3, 1), np.float32)
     settings = [('as built', dict(power=1.))]
     if a.sweep:
-        settings += [('exponent 0.5', dict(power=.5)), ('exponent 1.5', dict(power=1.5)), ('exponent 2', dict(power=2.)),
+        settings += [('exponent 0.25', dict(power=.25)), ('exponent 0.5', dict(power=.5)), ('exponent 0.75', dict(power=.75)),
+                     ('exponent 1.5', dict(power=1.5)), ('exponent 2', dict(power=2.)), ('exponent 3', dict(power=3.)),
                      ('no halving', dict(power=1., min_effective=1.)), ('halving below 32', dict(power=1., min_effective=32.)),
                      ('128 solved', dict(power=1., solved=128)), ('pool 128', dict(power=1., stride=4)), ('pool 256', dict(power=1., stride=2)),
                      ('no lead', dict(power=1., parts=(0., 1., 1.))), ('lead only', dict(power=1., parts=(1., 0., 0.))),
@@ -350,8 +360,8 @@ def report(a):
         for n in names:
             s = np.array([score(r, r['fit'][n], **kw) for r in rows])
             entry = {}
-            for band, lo, hi in BANDS:
-                m = regime == 0 if lo == -1 else regime == 1 if lo == -2 else (trick >= lo) & (trick <= hi)
+            for band in BANDS:
+                m = band_mask(band, trick, regime, declaring)
                 if m.sum() < 30:
                     continue
                 g = mean_se(s[m, 0], fam[m])
@@ -374,8 +384,8 @@ def report(a):
         first = np.array([score(r, r['fit'][names[0]], power=1.) for r in rows])
         for n in names[1:]:
             s = np.array([score(r, r['fit'][n], power=1.) for r in rows])
-            for band, lo, hi in BANDS:
-                m = regime == 0 if lo == -1 else regime == 1 if lo == -2 else (trick >= lo) & (trick <= hi)
+            for band in BANDS:
+                m = band_mask(band, trick, regime, declaring)
                 if m.sum() < 30:
                     continue
                 d, g = mean_se(first[m, 1] - s[m, 1], fam[m]), mean_se(s[m, 0] - first[m, 0], fam[m])
