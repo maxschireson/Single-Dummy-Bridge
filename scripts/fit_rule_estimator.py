@@ -18,6 +18,7 @@ after the bidder's judgement changes (it starts using an estimate, or a new one)
 with it and the estimate refitted: `--estimate` on dump names the one the bidder uses while it bids.
 """
 import argparse
+import base64
 import importlib.util
 import json
 from dataclasses import asdict
@@ -96,6 +97,9 @@ def targets(meta, cache):
 def fit(args):
     data = [np.load(f, allow_pickle=False) for f in args.states]
     x, meta = np.concatenate([d['x'] for d in data]), np.concatenate([d['meta'] for d in data])
+    if args.only:
+        keep = np.isin(meta[:, 0], args.only)
+        x, meta = x[keep], meta[keep]
     y = targets(meta, args.cache)
     rng = np.random.default_rng(args.seed)
     deals = np.unique(meta[:, :2], axis=0)
@@ -149,7 +153,8 @@ def fit(args):
     out = dict(note='Trick estimate for bridge_harness/rule_bidder.py, fitted by scripts/fit_rule_estimator.py. Outputs: our tricks as '
                     'declarer in clubs, diamonds, hearts, spades, no trump, then theirs. sigma: held-out error of each.',
                report=report, sigma=report['sigma'],
-               layers=[[np.round(w, 5).tolist(), np.round(b, 5).tolist()] for w, b in layers])
+               layers=[dict(shape=list(w.shape), w=base64.b64encode(w.astype('<f2').tobytes()).decode(), b=base64.b64encode(b.astype('<f2').tobytes()).decode())
+                       for w, b in layers])
     Path(args.out).write_text(json.dumps(out) + '\n')
     print(json.dumps({k: v for k, v in report.items() if k != 'settings'}))
     print(f'wrote {args.out}')
@@ -169,6 +174,7 @@ def main():
     f = sub.add_parser('fit')
     f.add_argument('--states', nargs='+', required=True)
     f.add_argument('--cache', required=True, help='folder of dd-<seed>.npz tables')
+    f.add_argument('--only', type=lambda s: [int(v) for v in s.split(',')], help='use the records of these seeds only')
     f.add_argument('--width', type=int, default=128)
     f.add_argument('--depth', type=int, default=2)
     f.add_argument('--epochs', type=float, default=12)

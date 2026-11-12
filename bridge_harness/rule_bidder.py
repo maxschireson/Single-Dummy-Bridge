@@ -88,6 +88,12 @@ class Settings:
     est_weight: int = 6             # ... by this many tenths of the way from the count to what the estimate implies
     est_nv: int = 3                 # ... a game is worth bidding from this many tenths of a trick short of it on average, not vulnerable
     est_v: int = 5                  # ... and vulnerable
+    est_slam_band: int = 0          # ... a small slam may be bid on the estimate from this many points under the count's slam threshold (0: never)
+    est_slam: int = 5               # ... when it expects within this many tenths of a trick of twelve
+    est_contest: int = 0            # ... over their contract, bid a suit we hold when that gains this many tenths of an IMP on average (0: never)
+    est_sigma: int = 12             # ... taking the estimate's error as this many tenths of a trick
+    est_reach: int = 0              # ... 0: only a known eight-card fit or a six-card suit; 1: also a five-card suit to the three level; 2: also no trump
+    est_double: int = 0             # ... double their contract from the three level when that gains this many tenths of an IMP on average (0: never)
 
     def __post_init__(self):
         if self.style not in ('precision', 'standard'):
@@ -683,7 +689,20 @@ class Estimate:
         raw = open(path, 'rb').read()
         self.sha256 = hashlib.sha256(raw).hexdigest()
         d = json.loads(raw)
-        self.layers = [(np.asarray(w, np.float32), np.asarray(b, np.float32)) for w, b in d['layers']]
+
+        def numbers(v, shape):                           # a list, or float16 values as base64 text
+            if isinstance(v, str):
+                import base64
+                v = np.frombuffer(base64.b64decode(v), '<f2')
+            return np.asarray(v, np.float32).reshape(shape)
+
+        self.layers = []
+        for layer in d['layers']:
+            if isinstance(layer, dict):
+                rows, cols = layer['shape']
+                self.layers.append((numbers(layer['w'], (rows, cols)), numbers(layer['b'], (cols,))))
+            else:
+                self.layers.append((np.asarray(layer[0], np.float32), np.asarray(layer[1], np.float32)))
         self.sigma = np.asarray(d['sigma'], np.float32)
 
     def tricks(self, x):
@@ -724,6 +743,34 @@ def contract_score(level, strain, tricks, vul, doubled=0):
 
 def imps_of(difference):
     return (1 if difference >= 0 else -1) * sum(abs(difference) >= x for x in IMP_STEPS)
+
+
+FIFTHS = (-1.28, -0.52, 0., 0.52, 1.28)                  # five equally likely points of a normal error
+
+
+def double_gain(seen, sigma, theirs, vul_them):
+    """Mean IMPs gained by doubling their contract, by the estimate."""
+    y, level = strain_of(theirs), level_of(theirs)
+    total = 0
+    for z in FIFTHS:
+        tricks = min(13, max(0, int(round(float(seen[5 + y]) + sigma * z))))
+        total += imps_of(contract_score(level, y, tricks, vul_them) - contract_score(level, y, tricks, vul_them, 1))
+    return total / 5.
+
+
+def contest_gain(seen, sigma, ours, theirs, vul_us, vul_them):
+    """Mean IMPs by which playing our contract `ours` beats defending their contract `theirs`, by the estimate.
+    Our contract is taken as doubled when it fails by two, or at all from the four level up."""
+    x, level = strain_of(ours), level_of(ours)
+    y, their_level = strain_of(theirs), level_of(theirs)
+    defend = [-contract_score(their_level, y, min(13, max(0, int(round(float(seen[5 + y]) + sigma * z)))), vul_them) for z in FIFTHS]
+    total = 0
+    for z in FIFTHS:
+        tricks = min(13, max(0, int(round(float(seen[x]) + sigma * z))))
+        down = level + 6 - tricks
+        play = contract_score(level, x, tricks, vul_us, 1 if down >= 2 or (down >= 1 and level >= 4) else 0)
+        total += sum(imps_of(play - d) for d in defend)
+    return total / 25.
 
 
 ESTIMATES = {}
@@ -803,8 +850,14 @@ def plan(h, st, me):
             return bid(5, fit) if cmin >= g.game_minor - 1 else bid(3, N) if stoppers else bid(4, fit)
         return bid(3, N) if stoppers else None
 
+    est = estimate_of(g)
+    seen = est.tricks(features(h, st, me)) if est is not None else None
     # ---- slam ----
     slam_strain = fit if fit is not None else N
+    if seen is not None and g.est_slam_band > 0 and level < 6 and st.doubled == 0 and not slam_invited \
+            and cmin >= g.slam - g.est_slam_band and cmin < g.slam and h.aces >= 1 and (fit is not None or h.balanced) \
+            and float(seen[slam_strain]) >= 12 - g.est_slam / 10. and bid(6, slam_strain) > over:
+        return bid(6, slam_strain), 'signoff'            # short of the count, but the estimate expects twelve tricks
     if slam_invited:
         if 2 * points + mid2 >= 2 * g.slam and bid(6, slam_strain) > over:
             return bid(6, slam_strain), 'signoff'
@@ -823,13 +876,12 @@ def plan(h, st, me):
         cmin, cmax = points + plo, points + phi
     need = g.game_minor if target is not None and level_of(target) == 5 else g.game
     counted = cmin                                       # by point count alone (a penalty double goes by this)
-    est = estimate_of(g)
-    if est is not None and target is not None and g.est_band > 0:
+    if seen is not None and target is not None and g.est_band > 0:
         # judgement: the estimate's tricks in the game's strain, as the points that would expect them. The count
         # moves part of the way there, and never more than a few points. (At the count's own game threshold the
         # tricks average a little under the game: that is where a game starts to pay.)
         x = strain_of(target)
-        tricks = float(est.tricks(features(h, st, me))[x])
+        tricks = float(seen[x])
         short = (g.est_v if st.vulnerable(me) else g.est_nv) / 10.
         worth = need - mid2 / 2. + (2.6 if x == N else 3.) * (tricks - level_of(target) - 6 + short)
         move = max(-g.est_band, min(g.est_band, int(round(g.est_weight / 10. * (worth - points)))))
@@ -932,6 +984,30 @@ def plan(h, st, me):
     if not ours:
         if pact[0] == DOUBLE and pact[1] == 'penalty' and st.doubled == 1 and rho_passed:
             return PASS, ''                              # partner doubled for penalty
+        if seen is not None and g.est_contest > 0 and st.doubled == 0:
+            # their likely contract: the bid itself when it is natural, else the cheapest bid in a suit they have shown
+            natural = strain == N or strain in enemy
+            resting = over if natural else min((c for c in (cheapest(y) for y in enemy) if c is not None), default=None)
+            weak_alone = any(k == 'preempt' for _, k in st.acts[me]) and not st.acts[partner]      # a preempt has said it all
+            best, most = None, g.est_contest / 10.
+            for x in (SUITS + (N,) if g.est_reach >= 2 else SUITS) if resting is not None and not weak_alone else ():
+                c = cheapest(x)
+                if c is None or level_of(c) > 5:
+                    continue
+                if x == N:
+                    if not (stoppers and enemy and h.shape[3] >= 2 and c <= bid(3, N)):
+                        continue
+                elif x in enemy or not (trumps(x) >= 8 or h.len[x] >= 6 or (g.est_reach >= 1 and h.len[x] >= 5 and level_of(c) <= 3)):
+                    continue
+                gain = contest_gain(seen, g.est_sigma / 10., c, resting, st.vulnerable(me), st.vulnerable(me + 1))
+                if gain >= most:
+                    best, most = c, gain
+            if g.est_double > 0 and natural and level >= 3 and st.legal(DOUBLE) and not weak_alone:
+                gain = double_gain(seen, g.est_sigma / 10., over, st.vulnerable(me + 1))
+                if gain >= max(most, g.est_double / 10.):
+                    return DOUBLE, 'penalty'
+            if best is not None:
+                return best, 'signoff' if below_game_is_enough(best) else ''
         if fit is not None and cmin >= need - 1 and strain != N and h.len[strain] <= 1 and level >= 3 and st.doubled == 0:
             c = cheapest(fit)                            # game values, a fit and shortness in their suit: bid on, do not double
             if c is not None and (level_of(c) <= 4 or (level_of(c) == 5 and cmin >= g.game_minor - 2)):
@@ -1042,7 +1118,10 @@ def general_meaning(st, me, token):
         low = min(my.hcp[1], max(my.hcp[0], g.slam - 2 - ps.hcp[0] - 2))
         return M((low, max(low, min(my.hcp[1], low + 4))), kind='slam-invite')
     if below_game_is_enough(token):
-        return M((max(my.hcp[0], game - 4), 40), kind='signoff', **({'CDHS'[strain]: (max(2, 8 - ps.len[strain][0]), 13)} if strain != N else {}))
+        low = game - 4
+        if g.estimate and g.est_contest > 0 and st.last is not None and st.last[0] % 2 != me % 2 and strain != N:
+            low = 0                                      # over their bid it may be bid to make or to save: no extra strength is promised
+        return M((max(my.hcp[0], low), 40), kind='signoff', **({'CDHS'[strain]: (max(2, 8 - ps.len[strain][0]), 13)} if strain != N else {}))
     forced = st.forced(me)
     asks = level == 3 and strain != N and not forced and not st.game_force[me % 2] and is_invitation(st, me, token)
     floor = invite_floor(g, ps)
@@ -1132,7 +1211,7 @@ class RuleSystemBidder(RuleBidder):
         if self.settings.estimate:
             described['estimate_sha256'] = estimate_of(self.settings).sha256
         else:                                           # a system without an estimate keeps the identity it had before estimates existed
-            for key in ('estimate', 'est_band', 'est_weight', 'est_nv', 'est_v'):
+            for key in ('estimate', 'est_band', 'est_weight', 'est_nv', 'est_v', 'est_slam_band', 'est_slam', 'est_contest', 'est_sigma', 'est_reach', 'est_double'):
                 described.pop(key)
         self.sha256 = options_sha256(self.kind, described)
         self.tap = None                                 # tap(hand, state, seat) is called before every call: for collecting states
