@@ -349,3 +349,4 @@
 {"at": "2026-11-12T11:49:00Z", "by": "g9", "op": "set", "target": "E9-10", "note": "owner=sam"}
 {"at": "2026-11-12T11:49:00Z", "by": "g9", "op": "send", "target": "will/20261112T1149Z-g9-queue-order-by-value-for-frida", "note": "Queue order by value for Friday: please apply these priorities; E9-10's BEN lanes move up"}
 {"at": "2026-11-12T11:49:00Z", "by": "g9", "op": "send", "target": "sam/20261112T1149Z-g9-e9-7-adopted-e9-10-is-yours-at", "note": "E9-7 adopted; E9-10 is yours at priority 3; E9-6 goes to the back of the queue"}
+{"at": "2026-11-12T11:51:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-12T15:51Z"}
