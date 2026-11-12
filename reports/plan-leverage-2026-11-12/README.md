@@ -305,6 +305,14 @@ The prediction is real (coefficient near one on deals it never saw) and small (s
 there without the activations (0.032 from the scalars alone at 28,868 forks). Rules built on it lose. Not tried: a
 head trained through the net, or an order of magnitude more forks.
 
+**Cleaner labels, fewer of them** (`scripts/plan_clean_fit.py`): the ceiling's playout mean in place of one real deal,
+five folds by deal. At tricks 7 to 12 (2,990 pairs; the real correction has an sd of 0.12) the scalars explain 0.04
++- 0.01 of it and the activations add nothing (0.03 +- 0.02 with them). At tricks 3 to 6 (1,298 pairs; sd 0.20) the
+scalars explain 0.19 +- 0.05, which is mostly that real play shrinks the gap and cannot change a card, and the
+activations again add nothing. A few thousand labels cannot say what a head would learn from a hundred thousand; a
+bot that runs the late rule produces that many as a by-product (each consultation is a playout mean for up to three
+cards), which is the one untried way I see to train a student on this teacher.
+
 ## 5. Reading: the bot as its own model
 
 `scripts/plan_reading_bound.py`, `scripts/plan_reading_report.py`. One seat of a played 6-32 table at its first
