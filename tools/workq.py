@@ -1317,6 +1317,26 @@ class Ledger:
             return old
         return self.mutate(f"job {jid} on {box}: priority {priority}", fn)
 
+    def job_retry(self, box: str, jid: str, note: str):
+        """Run a failed (or finished) job again in the same folder, so a resumable job carries on from its results: its
+        owner, the lead or a queue operator. With `job submit --replace` first, it runs again on a new source commit."""
+        def fn(st):
+            path = f"boxq/{box}/{jid}.json"
+            j = st.load(path)
+            if not j:
+                raise Conflict(f"no job {jid} on {box}")
+            ops = (st.load("boxq/operators.json") or {}).get("operators", [])
+            if st.agent not in (j["owner"], st.lead, *ops):
+                raise Conflict(f"job {jid} is retried by its owner ({j['owner']}), {st.lead} or a queue operator ({', '.join(ops) or 'none'})")
+            seen = ((st.load(f"boxq/{box}/status.json") or {}).get("jobs") or {}).get(jid, {}).get("state")
+            if seen not in ("failed", "done", "cancelled"):
+                raise Conflict(f"{box} reports {jid} {seen or 'not started'}: only a failed, done or cancelled job is retried")
+            j = dict(j, retry=int(j.get("retry", 0)) + 1, state="queued")
+            st.save(path, j)
+            st.event("job-retry", f"{box}/{jid}", f"retry {j['retry']}" + (f": {note}" if note else ""), task=j.get("experiment") or j.get("task"))
+            return j["retry"]
+        return self.mutate(f"retry job {jid} on {box}", fn)
+
     def job_move(self, jid: str, src: str, dest: str, note: str):
         """Move a queued job to another box, keeping its spec and submission time: its owner, the lead or a queue
         operator. Refused while the source box reports it running, paused, done or failed (it would run twice)."""
@@ -1378,7 +1398,7 @@ def main(argv=None) -> int:
     p = sub.add_parser("brief"); p.add_argument("id")
     sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
     p = sub.add_parser("issue"); p.add_argument("--create", action="store_true"); p.add_argument("--print", action="store_true")
-    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel", "priority", "move"])
+    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel", "priority", "move", "retry"])
     p.add_argument("arg", help="a job file (submit) or a job id (cancel, priority)"); p.add_argument("value", nargs="?", type=int, help="the new priority")
     p.add_argument("--box"); p.add_argument("--to", help="move: the box it goes to"); p.add_argument("--replace", action="store_true")
     p.add_argument("--note", default="")
@@ -1481,6 +1501,10 @@ def run(lg: Ledger, a) -> int:
             print(f"job {j['id']} queued on {j['box']} (priority {j['priority']}, {j['cores']} cores)"); return 0
         if not a.box:
             raise SystemExit(f"--box is required to {a.action}")
+        if a.action == "retry":
+            if not a.box:
+                raise SystemExit("--box is required to retry")
+            n = lg.job_retry(a.box, a.arg, a.note); print(f"job {a.arg} on {a.box}: retry {n} (same folder; the box starts it on its next pass)"); return 0
         if a.action == "move":
             if not a.to:
                 raise SystemExit("usage: workq job move ID --box FROM --to TO [--note ...]")

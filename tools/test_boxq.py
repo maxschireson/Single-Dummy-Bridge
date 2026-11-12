@@ -164,6 +164,24 @@ class LoopTest(unittest.TestCase):
         self.assertIn("idle 2.5 core-hours since 11-12 13:00 UTC, 0.5 of them while jobs waited", text)
         self.assertIn("(120)", text)
 
+    def test_a_failed_job_is_retried_in_its_folder(self):
+        flag = self.root / "work" / "fail"
+        flag.parent.mkdir(parents=True, exist_ok=True)
+        flag.write_text("x")
+        self.submit(job("flaky", 1, 2, target=4, commit=self.commit,
+                        argv=["/bin/bash", "-c", "test -f {work}/fail && exit 1; {python} worker.py {out} 4 0.05"]))
+        self.run_until(lambda J: J["flaky"]["state"] == "failed")
+        self.assertEqual(self.box.status["jobs"]["flaky"]["restarts"], 2)
+        flag.unlink()
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-g9")
+        with self.assertRaises(wq.Conflict):
+            wq.Ledger(str(self.bare), "team/gen9", "sam", lead="g9").job_retry("testbox", "flaky", "")   # not owner, lead or operator
+        self.box.write_status([])                                  # the channel must see "failed" before a retry is accepted
+        self.assertEqual(self.g9.job_retry("testbox", "flaky", "fixed"), 1)
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-box")
+        s = self.run_until(lambda J: J["flaky"]["state"] == "done")
+        self.assertEqual((s["jobs"]["flaky"]["boards"], s["jobs"]["flaky"]["restarts"]), (4, 0))
+
     def test_preemption_pauses_and_resumes_without_losing_boards(self):
         self.submit(job("slow", 5, 2, target=40, delay=0.1, commit=self.commit))
         self.run_until(lambda J: J["slow"]["state"] == "running" and J["slow"]["boards"] >= 3)

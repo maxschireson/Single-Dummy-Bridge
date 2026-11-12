@@ -295,6 +295,13 @@ class Box:
                 s["sandbox_rate"] = j["sandbox_rate"]
             if j.get("state") == "cancelled" and s["state"] in ("waiting", "paused"):
                 s["state"] = "cancelled"; changed.append((jid, "cancelled"))
+            if int(j.get("retry", 0)) > int(s.get("retry_seen", 0)):      # `workq job retry`: run it again in the same folder
+                s["retry_seen"] = int(j["retry"])
+                if s["state"] in ("failed", "done", "cancelled") and j.get("state") != "cancelled":
+                    s.update(state="waiting", restarts=0, short=False, samples=[])
+                    s.pop("last_exit", None); s.pop("ended", None)
+                    (self.out_dir(j) / ".exit").unlink(missing_ok=True)
+                    changed.append((jid, "retry"))
         # what finished since the last pass
         for jid, s in S.items():
             if s["state"] == "running" and not self.exec.active(jid):

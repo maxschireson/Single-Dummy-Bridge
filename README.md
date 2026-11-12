@@ -202,6 +202,7 @@ A box pulls its work from this branch. To run something on a Gen 9 box, write a 
     $Q job cancel e9-0 --box azure4    # owner or g9
     $Q job priority e9-0 2 --box azure4 --note why   # owner, g9 or a queue operator (boxq/operators.json); keeps the submission time
     $Q job move e9-0 --box azure4 --to azure5         # same people; a job the old box has not started; keeps the submission time
+    $Q job retry e9-0 --box azure4 --note why         # same people; a failed/done/cancelled job runs again in its folder (resumes); after submit --replace, on the new source
 
 ```json
 {"id": "e9-0", "box": "azure4", "experiment": "E9-0", "owner": "g9", "priority": 1, "cores": 4,
