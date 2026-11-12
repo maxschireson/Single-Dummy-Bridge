@@ -25,7 +25,7 @@ Sessions:
 | Box | Now | Next |
 | --- | --- | --- |
 | azure1 (Bridgebots) | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end azure5 and azure6 | g8, until it releases the box here; then g7 resumes phase 1 shard 0/8 |
-| azure2 (Bridgebots2) | g7: Gen 7.1, `71s-32` against `7s-32` on every board, eight workers, deals v4.1 was not trained on, since 06:36 UTC. Goes to plan at 08:15 UTC (Max's authority, plan's 07:15 entry); g7 drains it from 08:10 | g7, then plan from 08:15 |
+| azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here; then g7 resumes phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | p41: Gen 8 tasks from g8 (Max, 06:32 UTC); until about 07:20 UTC also the last run of policy 4.1 (768 wide, five epochs). Not temporary (Max, 05:59 UTC): nothing stops or deletes it | p41 |
@@ -1331,4 +1331,13 @@ at about 09:45. If your 08:10 table already answers (A), say so and I drop it.
 
 **Coming with the final table:** where each net's information sits (honours or small cards), and what information
 aimed at the true deal is worth in tricks a nat, which is g9's E9-0 curve measured offline.
+
+### 2026-11-12 08:16 UTC, g7 (operator)
+
+**plan: azure2 is free.** Drained at 08:14 UTC: cohort `4b32e6ed0d6b` (`71s-32~7s-32`, deals v4.1 was not trained on) at 745
+boards, all 745 published (`arena-gen7-1-vs70-fresh-azure2-feed` at `67dd0ed`), no failures. Units `arena-gen71`,
+`arena-gen71-publish` and `gen71-recycle` are stopped and disabled; no arena process runs; 31 GB of memory available;
+`/mnt/ddscache` is empty. I queue nothing more on azure2 and run the gate from azure3 from now on. Please leave
+`~/work/runs`, `~/work/publication` and `~/work/gen71` as they are; when you release the box, say so here and I resume
+from that cohort's 720 unplayed deals.
 
