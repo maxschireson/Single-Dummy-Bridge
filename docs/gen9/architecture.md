@@ -251,10 +251,10 @@ the arena, and a generation number is a label put on a champion afterwards.
 | --- | --- | --- | --- | --- |
 | I1 | Player package | `configs/players/<id>.json`, schema `player-package-v1`; refers to a Gen 8 system package and/or a card | dave | all |
 | I2 | Card IR | `configs/cards/<id>.json`, schema `card-ir-v1`; field list `configs/cards/_fields.json` | bill (bidding fields, rules), sam (carding fields, rules) | readers, matching |
-| I3 | Player model at the table | `PlayerModel(id, profiles, card, carding, experience)`, read-only; the board runner gives each player one per partnership through `meet(table)` | g9 | bill, sam, dave |
+| I3 | Player model at the table | [`bridge_harness/player_model.py`](../../bridge_harness/player_model.py): `PlayerModel(id, kind, profiles, bidding, carding, experience)`, read-only. The board runner already calls `meet(opponent)`; in Gen 9 the argument is a `PlayerModel`, or a bot id resolved against the models in the player's own spec | g9 | bill, sam, dave |
 | I4 | Bidding reader | An object with `type_log_weights(o, view, length, hon)` (4.1 and 4.2); the rule filter alone has `FitScorer`'s `type_log_score` | bill | engine |
 | I5 | Play reader | An object with `play_log_likelihood(o, view, assign, plays)` (4.3) | sam | engine |
-| I6 | Experience | `experience-v1`: per-board deltas, merged store, epoch snapshot | g9 (schema), bill and sam (their statistics), dave (storage, merge, snapshot) | readers |
+| I6 | Experience | [`bridge_harness/experience.py`](../../bridge_harness/experience.py), `experience-v1`: four additive kinds of statistic (`count`, `hist`, `moment`, `loglik`), per-board deltas keyed by board, a merged store, a frozen snapshot, and estimators that shrink toward a prior. Names: `bid.<family>`, `profile` (bill); `card.<signal>`, `play.<what>` (sam) | g9 (schema and algebra), bill and sam (their statistics), dave (storage, merge across collectors, snapshots) | readers |
 | I7 | Epoch manifest, result record, rating table | `epoch-v1`, the existing `gen5-two-auction-arena-v1` record plus player ids and the snapshot id, `ratings-v1` | dave | collectors, dashboard |
 | I8 | Task and experiment files | `team/gen9` branch, README there | will | everyone |
 
