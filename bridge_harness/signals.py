@@ -270,7 +270,7 @@ class SignalModel:
     def emitted(table, message, played, K):
         """[layouts] P(card | class, message) under an emission table: the card's position in the class (lowest, highest,
         or one of the |K| - 2 middle cards) has probability table[message][position], shared evenly among the middle
-        cards; with two cards there is no middle, and the low and high entries are renormalised."""
+        cards; with two cards there is no middle, and the low and high entries are renormalised; a class of one card is certain."""
         n = K.sum(axis=1)
         rows = table[message]                                               # [layouts, 3]
         low, high = pick(K, 'low'), pick(K, 'high')
@@ -278,7 +278,8 @@ class SignalModel:
         weight = rows[np.arange(len(K)), position]
         total = np.where(n >= 3, 1., rows[:, 0] + rows[:, 1])
         size = np.where(position == 2, np.maximum(n - 2, 1), 1)
-        return np.where(total > 0, weight / np.maximum(total, 1e-300) / size, 1. / n)
+        p = np.where(total > 0, weight / np.maximum(total, 1e-300) / size, 1. / np.maximum(n, 1))
+        return np.where(n < 2, 1., p)                                       # a class of one card: nothing was chosen
 
     def distribution(self, key, kind, choices, hand, suit, trump, led_suit, strain_nt=False, holding=None):
         """{card: probability} over `choices` (the cards a bot may play) for a bot holding `hand` (its original
