@@ -29,7 +29,7 @@ for folder in ('bridge_harness','ops','scripts','configs','native'):
     for p in (ROOT/folder).rglob('*'):
         if p.is_file() and '__pycache__' not in p.parts:
             dst=rec/'runtime'/p.relative_to(ROOT);dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dst)
-for name in ('launch_selfplay.py','snapshot_feed.py','publish_feed.js','source-provenance.json','RECOVERY.md','runtime-requirements.txt'):
+for name in ('libbridge_dds.so','launch_selfplay.py','snapshot_feed.py','publish_feed.js','source-provenance.json','RECOVERY.md','runtime-requirements.txt'):
     if (ROOT/name).exists():shutil.copy2(ROOT/name,rec/'runtime'/name)
 inventory=[]
 for p in out.rglob('*'):

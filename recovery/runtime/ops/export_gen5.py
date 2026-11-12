@@ -60,7 +60,7 @@ def view(rows,own=False,window=0):
 
 def export(root,out):
     global LABELS, PAIRS
-    m=json.loads((root/'manifest.json').read_text());LABELS=m['labels'];status=json.loads((root/'heartbeat.json').read_text())
+    m=json.loads((root/'manifest.json').read_text());LABELS={k:m.get('labels',{}).get(k,k) for k in m['bots']};status=json.loads((root/'heartbeat.json').read_text())
     policy_path=root/'statistics-policy.json'
     policy=json.loads(policy_path.read_text()) if policy_path.exists() else {}
     eligible=set(policy.get('eligible_pairs',m['pair_weights']))
