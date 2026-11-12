@@ -331,8 +331,12 @@ def held_systems(root='.', eps=0.05):
             g = reg[sid].generator('ben-lstm-keras')
         except ValueError:
             continue
-        for base in (Path(root), Path(__file__).resolve().parents[2]):
+        repo = Path(__file__).resolve().parents[2]
+        for base in (Path(root), repo):
             path = base / g['path']
+            if base == repo and not g.get('external') and not path.exists() and g.get('restore'):
+                from .replay import restore            # a model kept in the repository as parts (fresh checkouts)
+                restore(repo / g['restore'], path)
             if not g.get('external') and path.exists():
                 out[sid] = NetProfile(sid, str(path), eps=eps)
                 break
