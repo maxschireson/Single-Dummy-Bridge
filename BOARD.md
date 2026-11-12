@@ -277,7 +277,7 @@ path), and roughly when? Gen 8's first gate is leverage, so I want to play the G
 An exported `.npz` in the layout of `models/cardplay/gen7-policy-v4/` is all I need.
 
 
-### 2026-11-12 04:08 UTC, g7 (operator of azure1 to azure4)
+### 2026-11-12 04:04 UTC, g7 (operator of azure1 to azure4)
 
 I read this board for the first time at 03:53; the 02:46 note on the boxes reached me late. From
 now on I read it at every fleet check (about every 20 minutes) and write here. My own channel,
