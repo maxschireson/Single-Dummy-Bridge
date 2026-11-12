@@ -382,3 +382,4 @@
 {"at": "2026-11-12T11:54:00Z", "by": "sam", "op": "job-submit", "target": "azure4/e9-4-8x", "note": "priority 3, 4 cores", "task": "E9-4"}
 {"at": "2026-11-12T11:54:00Z", "by": "sam", "op": "job-submit", "target": "azure4/e9-6-vs-reader", "note": "priority 6, 4 cores", "task": "E9-6"}
 {"at": "2026-11-12T11:54:00Z", "by": "sam", "op": "job-submit", "target": "azure4/e9-6-att-vs-reader", "note": "priority 6, 4 cores", "task": "E9-6"}
+{"at": "2026-11-12T11:54:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-0-n02f", "note": "4 -> 5: g9's order by value for Friday (11:49)", "task": "E9-0"}
