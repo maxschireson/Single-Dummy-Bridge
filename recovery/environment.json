@@ -1,0 +1,21 @@
+{
+ "host": "azure2",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "feature/gen7-selfplay-20261112",
+ "source_commit": "81707b2738f192c3c43dbbacadbcbe803f00765c",
+ "source_run": "this machine's drained phase 1 cohort gen7-phase1-azure2 (feed arena-gen7-phase1-azure2-feed): the deals it had not played",
+ "plan": "configs/round7-phase1-selfplay.json (plan.json beside this file)",
+ "threads": "one BLAS, OpenMP and TensorFlow thread a worker",
+ "publication_branch": "arena-gen7-phase1-selfplay-azure2-feed",
+ "supervision": "systemd units arena-selfplay and arena-selfplay-publish; no BEN pair in this cohort",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md)"
+}

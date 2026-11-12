@@ -1,0 +1,7 @@
+{
+ "launched_epoch": 1794458149.371243,
+ "authority": "Max, 12 November 2026, 04:09 UTC: \"We can stop collecting on 5 and on 1; it's clear enough. Put those deals toward self play.\"",
+ "notice": "docs/gen7_selfplay_2026-11-12.md on feature/gen7-selfplay-20261112",
+ "host": "azure2",
+ "steps": "prepare from the drained phase 1 cohort, preflight with ops/smoke_gen7.py, a short trial with two workers, then the collector under systemd"
+}
