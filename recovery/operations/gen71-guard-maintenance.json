@@ -1,5 +1,5 @@
 {
-  "status": "resuming-after-validated-maintenance",
+  "status": "running-verified",
   "epoch": 1794486370.8615212,
   "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "reason": "Newly authorized registered Azure1 peer mixes71selfplay with canonical71~7 comparison. Accept its scored comparison records while keeping selfplay unscored; this stream scientific behavior/settings unchanged.",
@@ -1574,5 +1574,36 @@
   "guard_after_sha256": "ac6b0b85f8b27a8326a480775847120bd763d2beefc3b48e5866ac959ae1cd09",
   "all_drained_receipt_episode_pairs_verified": 1174,
   "scientific_files_unchanged": true,
-  "resume_epoch": 1794486627.5026834
+  "resume_epoch": 1794486627.5026834,
+  "resume_records": [
+    {
+      "index": 1174,
+      "pair": "71s-32~6-32",
+      "episode_sha256": "645c1fc3c6f76ecdf5b03f0ff5eb0398cbd7f68033b3517f9d3591b7006e1638",
+      "gap_forks": 11,
+      "guess_size": 827,
+      "best_share": 3751,
+      "replay_and_score_verified": true
+    },
+    {
+      "index": 1175,
+      "pair": "71s-32~7s-32",
+      "episode_sha256": "f7553ed4ca3e3d155c82629da538ae2df00a1f6dbf8f9597dc449fb1a6e997f3",
+      "gap_forks": 12,
+      "guess_size": 692,
+      "best_share": 3136,
+      "replay_and_score_verified": true
+    },
+    {
+      "index": 1176,
+      "pair": "71s-32~6-32",
+      "episode_sha256": "8137a0a528a33a45f0830d2fbdb53745de948a99d8b0e19053a2f19aaa102784",
+      "gap_forks": 12,
+      "guess_size": 873,
+      "best_share": 4007,
+      "replay_and_score_verified": true
+    }
+  ],
+  "completed_after_resume": 1187,
+  "scientific_runtime_manifest_models_corpus_unchanged": true
 }

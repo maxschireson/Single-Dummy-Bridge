@@ -26,19 +26,19 @@
     "configs/round7-candidate-phase2.json": "e46dbbcf3999d77be30aac58cc28e2713eb4d7af"
   },
   "watched_source_refs": {
-    "box/azure1/control": "8163ff9cfbe3796e1cdea396e88c0fc58b77d3c2",
-    "box/azure1/status": "429657ae8d34b097d2cbcf2b0c56a5a32647287e",
-    "box/azure2/control": "44034581fc96a8a30c614e1432b47d61ed11d1d1",
-    "box/azure2/status": "ea1188257d73278c89ac497b48853b6db4ab7d3f",
-    "box/azure3/control": "9ddbd569faab61f37c0e85f91b67adc33bd51e26",
-    "box/azure3/status": "0c3e25eac00532549f9418b67b939a92c010b539",
-    "box/azure4/control": "e5d7918edf1c9bd5f5dcb6df542daa806e584157",
-    "box/azure4/status": "9f1e6b0c90a8481f9ddf53b091ba78ffa8df6f5a",
-    "box/azure5/control": "eaa65c25a7e7e7b343a4b1ea56a3d49ddfa86c06",
-    "box/azure5/status": "d9c9fcef552687ad400a10e6d7f169c56ec98edd",
-    "box/azure6/control": "6d9fdd5cc3c619a7274be2c3d680f87757176a6d",
-    "box/azure6/status": "05fc83d1a3109504befb4b5a73da579106ed60d8",
-    "box/coordination": "8c58d0971b2c63137fb7cfa5e765bb58e04f6f3d",
+    "box/azure1/control": "5a0e80a334c9e6024bae371f41db2e51b7679912",
+    "box/azure1/status": "102377aa17788da450db39823fdf74e098332e64",
+    "box/azure2/control": "dd70f169ce4c4698ae3947e5b60b986a86bd5da4",
+    "box/azure2/status": "19a951527971ffeb9233a37eea6a2684c313953d",
+    "box/azure3/control": "71e980bb9461f9992d2fdf6c48894b5193598d48",
+    "box/azure3/status": "bb35418d8add1e8d6321da3c7f048d5bbdd43cc6",
+    "box/azure4/control": "273571ae92ae5f19c18a1a56d6b272cd18bec210",
+    "box/azure4/status": "2d3873a1f8c0ba53a7b3eba8c3d4fba7b85ad252",
+    "box/azure5/control": "ebf26456b403fa9da42a3b15e905e7a1687e84af",
+    "box/azure5/status": "19fb9a216250cb3c08cd55665eb369e7e73078dd",
+    "box/azure6/control": "fb2b22fa93c21bf023dfde85353afba4fb89f3ce",
+    "box/azure6/status": "6ec75ff4628287b9cf9637e664daca9fb3593f82",
+    "box/coordination": "c4297eee76b23b3553dd71a8fbb37d87f73048e0",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
     "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
@@ -68,10 +68,10 @@
     "feature/gen7-candidate-20261111": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
     "feature/gen7-prepare-slice-20261112": "ecff8d935f3d93d12d277fd74466eaf521f34944",
     "feature/gen7-selfplay-20261112": "50990002b64833073b04e1bad025241109033ad3",
-    "feature/gen8-p41-20261112": "49647795d80209863958da43588b2bc26bd5d0c8",
-    "feature/gen8-prototype-20261112": "79ad0902ab305fc2f664bf5cc127776ac95dfdff",
+    "feature/gen8-p41-20261112": "bb1cd2c37603bb220234c5b94339e966c4e33c96",
+    "feature/gen8-prototype-20261112": "15dbb0ec75843093c7938fb2eca3faa79d723809",
     "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
-    "feature/gen9-arena-arrival": "65d77ec2b7535fd22d6618443fbdd21c279c9534",
+    "feature/gen9-arena-arrival": "d50e10a330e65d2cc833a73de7d568e220aaa34f",
     "feature/gen9-arena-design": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
     "feature/gen9-arena-epochs": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
     "feature/gen9-arena-experience": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
@@ -79,20 +79,21 @@
     "feature/gen9-arena-sim": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
     "feature/gen9-bidding-cards": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
     "feature/gen9-bidding-design": "a01cab885378cc421b352dc289abc15532026425",
+    "feature/gen9-reading-bench": "d913180078301ec4fabc20217f99101c504067cc",
     "feature/gen9-signals": "d2092edf7cf6c34303768cc45f2b2bf280532263",
     "feature/gen9-signals-design": "16bf806f974a3b7ba472832bb8c819cc051a6fc0",
-    "feature/gen9-signals-v2": "96716fbba5214afb9ab225c5f2395db187247e3a",
+    "feature/gen9-signals-v2": "7c7cf302cf6a25018dd2466a88c1bae25899c286",
     "feature/gen9-workflow-ben-lanes": "8a0287fbc53cb2a46e568412b15f1d579f010865",
     "feature/gen9-workflow-design": "57c43dd6a0793cb61c0c9031a776219990b0888d",
     "feature/gen9-workflow-tests": "6f9d3cba1e35c3077194106b900dfc9306f63d73",
     "feature/gen9-workflow-tests-2": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
     "feature/gen9-workflow-tests-3": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
-    "feature/gen9": "de51cc48754c2bb5884fc2697d227ddaefc8fe2f",
+    "feature/gen9": "768920b08fcccea1358fada6372fe8ea3002df75",
     "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
-    "fleet/azure": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf",
-    "gh-pages": "3cd2a21e7705a4cd60f28d3dee8e4fc3cdfaca25",
+    "fleet/azure": "5aea67f79354b6f2282fe27dcf8320e99a90d2bf",
+    "gh-pages": "6280ade8cc656cf81bb493b4cd8c30ccae137cc8",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
     "ops/gen71-19bbdce5-20261112": "7d96087a3a501909c0441837b95498001e1923de",
@@ -128,8 +129,8 @@
     "research/multiscore-16-32-64": "6e87791efe91686c5e22350b708fa0fb582e41db",
     "research/outcome-policy-20261109": "f6507f0544ec59caef64589b273ab105142d7d1e",
     "research/pimc-study-2026-11-08": "6525707e394b7df095ad458cac40835ba8ae5b61",
-    "research/plan-leverage-20261112": "301647d33c0435069cf6f8ca66cf9df0acf7ace2",
-    "research/plan-leverage-g8-20261112": "29fb68b221bba67ce80067c72c2a9665c6a6751b",
+    "research/plan-leverage-20261112": "15280daa8386f924175eb1d16466171e3b6274e5",
+    "research/plan-leverage-g8-20261112": "562271ce58a5234c99a848c104c4e0985eb24ec0",
     "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
     "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
     "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
@@ -138,7 +139,7 @@
     "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
-    "team/gen9": "7659af670c5b179258d5c9cbca7180fd4967155f",
+    "team/gen9": "759793d385dfe463e4b9cadb1b81a026e78a18e3",
     "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
     "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
@@ -153,16 +154,16 @@
     "transfer/gen7-policy-v4.1-neartie-20261112": "7b9610dd2ea1982c8da7ca1087dee8767051c7d8",
     "transfer/gen7-prototype-20261111": "fb617a64f6ca037103b15f37ddda7bc9c949a86a",
     "transfer/gen7-selfplay-trial-azure2-20261112": "3e35ed6014f9c9389f06c0e3cbc9a302caa58055",
-    "transfer/gen8-p41-reading-20261112": "c5d0b18a451923144da7ab4181bcc515b38a6ea6",
-    "transfer/gen8-proto-azure1-20261112": "127d766fbac368bfdaeeaf484498c9b9ce1651d9",
+    "transfer/gen8-p41-reading-20261112": "574bfeb25e059108914f1320f61024b0decbcac6",
+    "transfer/gen8-proto-azure1-20261112": "8d34facd932f76226cc5c6b6ad0890d3d38d079c",
     "transfer/gen8-proto-azure3-20261112": "de801636aaed43af7d3d2337785580b5db7c7c54",
-    "transfer/gen8-proto-azure4-20261112": "83d7dd2a2a84223df07f1278bba687fb63f77295",
-    "transfer/gen8-proto-azure6-20261112": "1a8ffb68125cc485e7e3ae83b8b627f3d1e623be",
+    "transfer/gen8-proto-azure4-20261112": "d584b1b17c443834be66f46ffdb597531e02a60b",
+    "transfer/gen8-proto-azure6-20261112": "a0e1c59ecb8443c6f795517bb57786b5b02777f2",
     "transfer/gen9-arrival-rehearsal-20261112": "4366d9b37d59f99e34d4d2a8817607f26131bbff",
     "transfer/gen9-arrival-rehearsal-full-20261112": "8d9aa04bf04866e12e0296e203103bb7682760ac",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
-    "transfer/plan-leverage-azure2-20261112": "3f12f4a97e303c72454af1fa9a9e399666e7a5ce",
+    "transfer/plan-leverage-azure2-20261112": "ee8ea214d775f3717bb2550a58bf14e6a4c42b4e",
     "transfer/pre7-test-azure1-20261112": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
     "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
     "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
@@ -172,18 +173,18 @@
   },
   "recent_issues": [
     {
-      "number": 22,
-      "title": "Gen 9 queue",
-      "state": "open",
-      "updated_at": "2026-11-12T11:18:42Z",
-      "pull_request": false
-    },
-    {
       "number": 29,
       "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
       "state": "open",
-      "updated_at": "2026-11-12T10:30:09Z",
+      "updated_at": "2026-11-12T12:22:19Z",
       "pull_request": true
+    },
+    {
+      "number": 22,
+      "title": "Gen 9 queue",
+      "state": "open",
+      "updated_at": "2026-11-12T12:15:54Z",
+      "pull_request": false
     },
     {
       "number": 26,
@@ -375,14 +376,14 @@
       "pull_request": true
     }
   ],
-  "comments_since": "2026-11-12T10:21:32Z",
+  "comments_since": "2026-11-12T11:21:09Z",
   "new_issue_comments": [],
   "new_review_comments": [],
   "instruction": "Follow current authoritative notices to collection workers under standing user delegation; only this owned stream. Max05:42 Gen7.1 comparison notice now supersedes this stream's Gen7.0 selfplay allocation. Scientific behavior is frozen by new manifest, not silently edited.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "no_applicable_instruction_change",
-  "collection_action": "No change: healthy owned stream continues authorized2:1comparison mix. Main, current notice/plans and coordination board unchanged; no cohort, runtime, model, process, marker, failure, registry or supervisor setting changed by this poll.",
+  "result": "authorized_mixed_peer_gate_accounting_applied",
+  "collection_action": "Gracefully drained1174 current records to fix missing authorized mixed-peer comparisons in pooled gate; all receipt/episode and scientific-file hashes verified unchanged.12 guard tests and official counter agreed; resumed unchanged scientific cohort. Selfplay rows never scored, general selfplay plan still closed. No failures cleared.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -414,47 +415,47 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "Gen9 arrival rehearsal/full transfer, queue and source updates remain research, not an adopted arena launch. Current Gen7.1 files and owned registry entry unchanged. Other-host fleet reports/allocations remain read-only and dated; no takeover inferred. Gate still requires1000plus positive95%lower bound and published selfplay opening.",
-  "notification": "quiet: no applicable collection change, completion, or blocker.",
-  "checked_epoch": 1794482469.0,
-  "checked_at": "2026-11-12T11:21:09Z",
-  "next_check": "2026-11-12T12:25:53Z",
+  "research_disposition": "New Gen8/9 reading/rollout/rule-bidder reports are unadopted for this stream. Max authorized71selfplay only on Azure1/4; generic round71-selfplay remains closed. No new local models, bidders, samples, schedules or research adopted.",
+  "notification": "Meaningful gate accounting fix applied; own scientific mix unchanged, all1174 records preserved, collection resumed. Final notification after recovery verification.",
+  "checked_epoch": 1794486131.0,
+  "checked_at": "2026-11-12T12:22:11Z",
+  "next_check": "2026-11-12T13:25:53Z",
   "stream_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "health": {
-    "epoch": 1794482642.9216087,
+    "epoch": 1794486903.7985818,
     "configured_normal_workers": 3,
     "configured_ben_workers": 0,
     "heartbeat": {
-      "epoch": 1794482642.515895,
-      "completed": 961,
+      "epoch": 1794486901.033603,
+      "completed": 1187,
       "in_flight": [
-        961,
-        962,
-        963
+        1187,
+        1188,
+        1189
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794481904.5705101,
+      "started_epoch": 1794486637.4954839,
       "stopping": false
     },
     "state": {
       "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "completed": 962,
+      "completed": 1187,
       "target": 20257,
-      "contiguous": 962,
+      "contiguous": 1187,
       "by_pair": {
-        "71s-32~7s-32": 642,
-        "71s-32~6-32": 320
+        "71s-32~7s-32": 792,
+        "71s-32~6-32": 395
       },
-      "root_games": 1924,
-      "tables": 24184,
+      "root_games": 2374,
+      "tables": 29838,
       "failures": 0,
-      "epoch": 1794482642.5943372,
+      "epoch": 1794486891.0325801,
       "complete": false
     },
     "watchdog": {
-      "epoch": 1794482639.1522872,
-      "completed": 959,
+      "epoch": 1794486901.6608226,
+      "completed": 1187,
       "target": 20257,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "workers": 3,
@@ -462,19 +463,19 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794482619.1492887,
-      "collector_pid": 48425,
-      "publisher_pid": 39328
+      "last_fleet_check": 1794486901.6601737,
+      "collector_pid": 52665,
+      "publisher_pid": 52666
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794482606.224289,
-      "completed": 957,
-      "commit": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
+      "epoch": 1794486900.8845162,
+      "completed": 1187,
+      "commit": "2a7dbf5d23d7623a2725fcc322de1286031ceac9",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
     "gate": {
-      "epoch": 1794482619.1404994,
+      "epoch": 1794486901.6497772,
       "status": "checked",
       "actors": {
         "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
@@ -483,11 +484,11 @@
       "pair": "71s-32~7s-32",
       "condition": "common",
       "metric": "played IMPs per board for 71s-32",
-      "boards": 2778,
-      "mean_imps": -0.029157667386609073,
+      "boards": 3347,
+      "mean_imps": -0.05198685389901404,
       "ci95": [
-        -0.12336803854707003,
-        0.06505270377385187
+        -0.13861695411002545,
+        0.03464324631199735
       ],
       "minimum_boards_met": true,
       "positive_lower_bound": false,
@@ -495,12 +496,12 @@
       "snapshots": [
         {
           "branch": "arena-gen7-1-compare-codex-20261112-feed",
-          "revision": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
+          "revision": "5687f6b8210cf4c93c4d87a96904ce5ed3ff2124",
           "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
         },
         {
           "branch": "arena-gen71-independent-feed",
-          "revision": "c1bc2d937ff5a75480d74a38118e1d10ecf7b588",
+          "revision": "8c54c0f70d7538737eb9903b55949d4143d13189",
           "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         },
         {
@@ -530,12 +531,12 @@
         },
         {
           "branch": "arena-gen71-19bbdce5-20261112-feed",
-          "revision": "6a5fbb4202d34641e420e5bff31f00076da066d0",
+          "revision": "7cae9adfc3486aef4244fab7eb3c9dea74a8e7c9",
           "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
         },
         {
           "branch": "arena-gen7-phase1-azure1-feed",
-          "revision": "f36d4d5de8708685ae646819e89ffe32c0fe8fad",
+          "revision": "419d7e1009bb559b816adfc69a67b39d7ed55ebb",
           "excluded": "different-actors"
         },
         {
@@ -550,7 +551,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure4-feed",
-          "revision": "c76b995f3fcaef65dec5b08d0537d8f5a787c856",
+          "revision": "a0860a53e85d771a09362a9ab9d7a52a3ba95d69",
           "excluded": "different-actors"
         },
         {
@@ -639,43 +640,48 @@
           "excluded": "different-actors"
         },
         {
+          "branch": "arena-gen7-1-mix-azure1-feed",
+          "revision": "60ca1b0ecd8df3a41352c694a1dbbbe006a273b0",
+          "cohort": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82"
+        },
+        {
           "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
-          "revision": "adb2b3a28351c5d540c4f2d530ba4bc4b0ecb1b4",
+          "revision": "36c7d04d1256c855d04fcb54bd2fc66267c98241",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
-          "revision": "cfa3baae7bb2ebf66e6ef42db58b8a7b7abfb366",
+          "revision": "0947c2d1cec5bd2e24b6361340ad4569f458c3c5",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
-          "revision": "2017e34224b2405ad98b14e355240e1b3cd67291",
+          "revision": "f532b515d835647104121803581a75ec0d379ca3",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
-          "revision": "5db75dd63c1d9d85d6385f6c310de8ace35e3081",
+          "revision": "9573293f339de36492cf61dfe936a4b48cb46e87",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
-          "revision": "e6bfbf55b18a6f96b1c4193adf526da80e0c96c6",
+          "revision": "7de2de3c2d4ca71a4f6dd4320666b68987e1c41e",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
-          "revision": "81d7ba4cf439dc03b82c22b6c96e756b5b0eb6b3",
+          "revision": "6a1db7dfc40e8f2c47050324ca956180394f8835",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
-          "revision": "85350683082a02343c84c004c557ff466220108c",
+          "revision": "cb75ff3a1184013a7d0b7e34a673804fa3540800",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
-          "revision": "778330ab8e4711167df26c35abf4fe909885caea",
+          "revision": "697000518123d8797d00f917fccaebd6d10d389d",
           "excluded": "no-71-vs-70-pair"
         },
         {
@@ -695,7 +701,7 @@
         }
       ],
       "errors": [],
-      "registry_revision": "3cd2a21e7705a4cd60f28d3dee8e4fc3cdfaca25",
+      "registry_revision": "3eacf2e5853122fc1e165e0dcf68721279c3dbd4",
       "training_exclusions": {
         "path": "evaluation-exclusions.json",
         "sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
@@ -712,122 +718,208 @@
     },
     "processes": {
       "process.json": {
-        "pid": 48425,
+        "pid": 52665,
         "command": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen71-compare-codex-20261112/run --workers 3 "
       },
       "watchdog-process.json": {
-        "pid": 39318,
+        "pid": 52648,
         "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/supervise_gen71.py "
       },
       "publisher-process.json": {
-        "pid": 39328,
+        "pid": 52666,
         "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py "
       }
     },
     "failures": [],
     "stop_markers": [],
-    "memory_cgroup_bytes": 5314076672,
+    "memory_cgroup_bytes": 4887154688,
     "memory_limit_bytes": 17179869184,
-    "heartbeat_worker_note": "Frozen runtime heartbeat includes reserved unused BEN executor; actual3normal workers,0BEN jobs/server. Watchdog/publisher report3/0.",
-    "expected_cache_rotation": {
-      "epoch": 1794481902.4752135,
-      "completed": 920,
-      "previous_bytes": 2147119104,
-      "diagnosis": "New collector PID matches existing documented disposable-DDS-cache rotation: graceful drain at920completed, cache rotation, same immutable cohort resumed. No failures or scientific settings cleared/changed.",
-      "observed_current_collector_started_epoch": 1794481904.5705101
-    },
-    "fresh_capture_sample": {
-      "indices": [
-        959,
-        960,
-        961
-      ],
-      "gap_forks": 30,
-      "guess_fields": 1780,
-      "best_share_fields": 7948,
-      "receipt_episode_hashes_match": true
-    }
+    "fresh_capture_sample": [
+      {
+        "index": 1174,
+        "pair": "71s-32~6-32",
+        "episode_sha256": "645c1fc3c6f76ecdf5b03f0ff5eb0398cbd7f68033b3517f9d3591b7006e1638",
+        "gap_forks": 11,
+        "guess_size": 827,
+        "best_share": 3751,
+        "replay_and_score_verified": true
+      },
+      {
+        "index": 1175,
+        "pair": "71s-32~7s-32",
+        "episode_sha256": "f7553ed4ca3e3d155c82629da538ae2df00a1f6dbf8f9597dc449fb1a6e997f3",
+        "gap_forks": 12,
+        "guess_size": 692,
+        "best_share": 3136,
+        "replay_and_score_verified": true
+      },
+      {
+        "index": 1176,
+        "pair": "71s-32~6-32",
+        "episode_sha256": "8137a0a528a33a45f0830d2fbdb53745de948a99d8b0e19053a2f19aaa102784",
+        "gap_forks": 12,
+        "guess_size": 873,
+        "best_share": 4007,
+        "replay_and_score_verified": true
+      }
+    ],
+    "heartbeat_worker_note": "Frozen runtime counts an unused BEN executor; actual3normal workers,0BEN jobs/server. Watchdog/publisher report3/0. Final drained heartbeat may retain a last in-flight item; ownership locks and committed receipts establish drain."
   },
   "previous_check": {
-    "checked_at": "2026-11-12T10:21:32Z",
-    "completed_at": "2026-11-12T10:24:17.262800Z",
+    "checked_at": "2026-11-12T11:21:09Z",
+    "completed_at": "2026-11-12T11:24:02.921609Z",
     "main_commit": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "result": "no_applicable_instruction_change"
   },
   "reviewed_source_changes": [
     {
       "name": "box/azure1/control",
-      "sha": "8163ff9cfbe3796e1cdea396e88c0fc58b77d3c2",
-      "previous": "6f23d856cf1b63f1d27f48309f388934b5652f6a"
+      "sha": "5a0e80a334c9e6024bae371f41db2e51b7679912",
+      "previous": "8163ff9cfbe3796e1cdea396e88c0fc58b77d3c2"
     },
     {
       "name": "box/azure1/status",
-      "sha": "429657ae8d34b097d2cbcf2b0c56a5a32647287e",
-      "previous": "305a7ad87a4b8a633e23544768495cd6965dc43f"
+      "sha": "102377aa17788da450db39823fdf74e098332e64",
+      "previous": "429657ae8d34b097d2cbcf2b0c56a5a32647287e"
+    },
+    {
+      "name": "box/azure2/control",
+      "sha": "dd70f169ce4c4698ae3947e5b60b986a86bd5da4",
+      "previous": "44034581fc96a8a30c614e1432b47d61ed11d1d1"
     },
     {
       "name": "box/azure2/status",
-      "sha": "ea1188257d73278c89ac497b48853b6db4ab7d3f",
-      "previous": "a43b2ab8fcbd7c0f09775f502e3cb4dc9835adf0"
+      "sha": "19a951527971ffeb9233a37eea6a2684c313953d",
+      "previous": "ea1188257d73278c89ac497b48853b6db4ab7d3f"
     },
     {
       "name": "box/azure3/control",
-      "sha": "9ddbd569faab61f37c0e85f91b67adc33bd51e26",
-      "previous": "0d309138f54ddf87ac01140fbb20e1b75f0fae11"
+      "sha": "71e980bb9461f9992d2fdf6c48894b5193598d48",
+      "previous": "9ddbd569faab61f37c0e85f91b67adc33bd51e26"
     },
     {
       "name": "box/azure3/status",
-      "sha": "0c3e25eac00532549f9418b67b939a92c010b539",
-      "previous": "02e1d7f556bd3a37a72fe4f50c1efaefde6835e1"
+      "sha": "bb35418d8add1e8d6321da3c7f048d5bbdd43cc6",
+      "previous": "0c3e25eac00532549f9418b67b939a92c010b539"
     },
     {
       "name": "box/azure4/control",
-      "sha": "e5d7918edf1c9bd5f5dcb6df542daa806e584157",
-      "previous": "9e02b7de400067b2028df2dd10ddbe818d10c893"
+      "sha": "273571ae92ae5f19c18a1a56d6b272cd18bec210",
+      "previous": "e5d7918edf1c9bd5f5dcb6df542daa806e584157"
     },
     {
       "name": "box/azure4/status",
-      "sha": "9f1e6b0c90a8481f9ddf53b091ba78ffa8df6f5a",
-      "previous": "d7443237d60dd69e2a8398ebfbeafa3b29dc7334"
+      "sha": "2d3873a1f8c0ba53a7b3eba8c3d4fba7b85ad252",
+      "previous": "9f1e6b0c90a8481f9ddf53b091ba78ffa8df6f5a"
+    },
+    {
+      "name": "box/azure5/control",
+      "sha": "ebf26456b403fa9da42a3b15e905e7a1687e84af",
+      "previous": "eaa65c25a7e7e7b343a4b1ea56a3d49ddfa86c06"
     },
     {
       "name": "box/azure5/status",
-      "sha": "d9c9fcef552687ad400a10e6d7f169c56ec98edd",
-      "previous": "236f6d715051a0ea737d47a017c045db830ce1e3"
+      "sha": "19fb9a216250cb3c08cd55665eb369e7e73078dd",
+      "previous": "d9c9fcef552687ad400a10e6d7f169c56ec98edd"
+    },
+    {
+      "name": "box/azure6/control",
+      "sha": "fb2b22fa93c21bf023dfde85353afba4fb89f3ce",
+      "previous": "6d9fdd5cc3c619a7274be2c3d680f87757176a6d"
     },
     {
       "name": "box/azure6/status",
-      "sha": "05fc83d1a3109504befb4b5a73da579106ed60d8",
-      "previous": "b300566a38201b483b840c050d94e201f8eae32b"
+      "sha": "6ec75ff4628287b9cf9637e664daca9fb3593f82",
+      "previous": "05fc83d1a3109504befb4b5a73da579106ed60d8"
+    },
+    {
+      "name": "box/coordination",
+      "sha": "c4297eee76b23b3553dd71a8fbb37d87f73048e0",
+      "previous": "8c58d0971b2c63137fb7cfa5e765bb58e04f6f3d"
+    },
+    {
+      "name": "feature/gen8-p41-20261112",
+      "sha": "bb1cd2c37603bb220234c5b94339e966c4e33c96",
+      "previous": "49647795d80209863958da43588b2bc26bd5d0c8"
+    },
+    {
+      "name": "feature/gen8-prototype-20261112",
+      "sha": "15dbb0ec75843093c7938fb2eca3faa79d723809",
+      "previous": "79ad0902ab305fc2f664bf5cc127776ac95dfdff"
     },
     {
       "name": "feature/gen9-arena-arrival",
-      "sha": "65d77ec2b7535fd22d6618443fbdd21c279c9534",
-      "previous": "32dcf6fbf71e018ac47da5521c5f4a4ae5c5e2c2"
+      "sha": "d50e10a330e65d2cc833a73de7d568e220aaa34f",
+      "previous": "65d77ec2b7535fd22d6618443fbdd21c279c9534"
+    },
+    {
+      "name": "feature/gen9-reading-bench",
+      "sha": "d913180078301ec4fabc20217f99101c504067cc"
+    },
+    {
+      "name": "feature/gen9-signals-v2",
+      "sha": "7c7cf302cf6a25018dd2466a88c1bae25899c286",
+      "previous": "96716fbba5214afb9ab225c5f2395db187247e3a"
+    },
+    {
+      "name": "feature/gen9",
+      "sha": "768920b08fcccea1358fada6372fe8ea3002df75",
+      "previous": "de51cc48754c2bb5884fc2697d227ddaefc8fe2f"
     },
     {
       "name": "fleet/azure",
-      "sha": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf",
-      "previous": "f20d0c4ade5b8b9b45efadd6070348e46ceb9f22"
+      "sha": "5aea67f79354b6f2282fe27dcf8320e99a90d2bf",
+      "previous": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf"
+    },
+    {
+      "name": "gh-pages",
+      "sha": "6280ade8cc656cf81bb493b4cd8c30ccae137cc8",
+      "previous": "3cd2a21e7705a4cd60f28d3dee8e4fc3cdfaca25"
+    },
+    {
+      "name": "research/plan-leverage-20261112",
+      "sha": "15280daa8386f924175eb1d16466171e3b6274e5",
+      "previous": "301647d33c0435069cf6f8ca66cf9df0acf7ace2"
+    },
+    {
+      "name": "research/plan-leverage-g8-20261112",
+      "sha": "562271ce58a5234c99a848c104c4e0985eb24ec0",
+      "previous": "29fb68b221bba67ce80067c72c2a9665c6a6751b"
     },
     {
       "name": "team/gen9",
-      "sha": "7659af670c5b179258d5c9cbca7180fd4967155f",
-      "previous": "17b1315c67b4a5d9506d0132bc540a837d0fc07e"
+      "sha": "759793d385dfe463e4b9cadb1b81a026e78a18e3",
+      "previous": "7659af670c5b179258d5c9cbca7180fd4967155f"
+    },
+    {
+      "name": "transfer/gen8-p41-reading-20261112",
+      "sha": "574bfeb25e059108914f1320f61024b0decbcac6",
+      "previous": "c5d0b18a451923144da7ab4181bcc515b38a6ea6"
+    },
+    {
+      "name": "transfer/gen8-proto-azure1-20261112",
+      "sha": "8d34facd932f76226cc5c6b6ad0890d3d38d079c",
+      "previous": "127d766fbac368bfdaeeaf484498c9b9ce1651d9"
+    },
+    {
+      "name": "transfer/gen8-proto-azure4-20261112",
+      "sha": "d584b1b17c443834be66f46ffdb597531e02a60b",
+      "previous": "83d7dd2a2a84223df07f1278bba687fb63f77295"
     },
     {
       "name": "transfer/gen8-proto-azure6-20261112",
-      "sha": "1a8ffb68125cc485e7e3ae83b8b627f3d1e623be",
-      "previous": "836bbe3b3499f7c6e35e8a80f7aa997a28c18617"
+      "sha": "a0e1c59ecb8443c6f795517bb57786b5b02777f2",
+      "previous": "1a8ffb68125cc485e7e3ae83b8b627f3d1e623be"
     },
     {
-      "name": "transfer/gen9-arrival-rehearsal-full-20261112",
-      "sha": "8d9aa04bf04866e12e0296e203103bb7682760ac"
+      "name": "transfer/plan-leverage-azure2-20261112",
+      "sha": "ee8ea214d775f3717bb2550a58bf14e6a4c42b4e",
+      "previous": "3f12f4a97e303c72454af1fa9a9e399666e7a5ce"
     }
   ],
-  "completed_at": "2026-11-12T11:24:02.921609Z",
-  "next_comment_scan_since": "2026-11-12T11:21:09Z",
-  "poll_checkpoint_note": "Next comments scan anchored to this poll START11:21:09Z; no gap during check/publication.",
+  "completed_at": "2026-11-12T12:35:03.798582Z",
+  "next_comment_scan_since": "2026-11-12T12:22:11Z",
+  "poll_checkpoint_note": "Next comment scan anchored to poll START12:22:11Z, despite long operational maintenance; no comment scan gap.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
     "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
@@ -944,7 +1036,8 @@
       "/workspace/work/gen71-compare-codex-20261112/tests-gate.log",
       "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log",
       "/workspace/work/gen71-compare-codex-20261112/preflight.log",
-      "/workspace/work/gen71-compare-codex-20261112/tests-gate-training-exclusions.log"
+      "/workspace/work/gen71-compare-codex-20261112/tests-gate-training-exclusions.log",
+      "/workspace/work/gen71-compare-codex-20261112/tests-gate-authorized-mixed-peer.log"
     ],
     "retired_gen70_capture": {
       "run": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
@@ -1216,7 +1309,8 @@
       "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
       "corpus_training_overlap": 0,
       "manifest_unchanged": true
-    }
+    },
+    "authorized_mixed_peer_comparisons_supported": true
   },
   "gen7_authority": {
     "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
@@ -1235,23 +1329,24 @@
   },
   "automation_context": {
     "enabled": true,
-    "next_run_time": "2026-11-12T08:25:53+00:00",
-    "hourly_schedule_preserved": true,
+    "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192553Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT",
+    "next_run_time": "2026-11-12T13:25:53+00:00",
     "prompt_updated": true
   },
   "dashboard_registration": {
-    "commit_sha": "5f3a9a5cdd05b8a43fc5cb63a15a5ad6ded4e4aa",
-    "content_sha": "07b988a710af351212bb20cda1abc59dafb979ab"
+    "commit_sha": "3eacf2e5853122fc1e165e0dcf68721279c3dbd4",
+    "content_sha": "7f9da459c014c1ca4a7262ada3f6241b5883f0c3"
   },
   "recovery_validation": {
     "previous_verified_publication": {
       "status": "published",
-      "epoch": 1794482606.224289,
-      "completed": 957,
-      "commit": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
+      "epoch": 1794486900.8845162,
+      "completed": 1187,
+      "commit": "2a7dbf5d23d7623a2725fcc322de1286031ceac9",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
-    "fresh_capture_and_receipt_hashes_verified": true,
+    "all1174_pre_reload_pairs_rehashed": true,
+    "post_resume_capture_replay_verified": true,
     "final_watch_copy_to_verify_separately": true
   },
   "source_adoption_review": {
@@ -1269,18 +1364,19 @@
     "reason": "Full20257-family corpus is disjoint from authoritative training list, so no scientific behavior/deal population changed. New preparations must use --exclude-families. Only external gate accounting/publisher recovery changed."
   },
   "coordination_review": {
-    "commit": "8c58d0971b2c63137fb7cfa5e765bb58e04f6f3d",
-    "board_blob": "57aac16ad4091548911a794d6e23ffa251c6944b",
-    "unchanged_since_previous_poll": true,
-    "latest_relevant_entry": "2026-11-12T08:46:00Z",
-    "disposition": "Board and current Gen7.1 authority unchanged. Other-host allocations/idleness and Gen9 research do not authorize local changes.",
+    "commit": "c4297eee76b23b3553dd71a8fbb37d87f73048e0",
+    "board_blob": "c4326f078ed1ed8e227dba3cc60ad7040170119a",
+    "latest_relevant_entry": "2026-11-12T11:47:00Z",
+    "host_authority": "Max11:36/11:38: Azure1 onlyselfplay+comparison; other collectors keep current mix. General selfplay plan stays closed.",
+    "peer_plan_blob": "3e006a5192d5363b944e3d3dbb5da82e1ab532f7",
+    "peer_manifest": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82",
     "fleet": {
-      "commit": "f7149f68b91fb83863bebc55c8b31bc903a4f0cf",
-      "status_blob": "a88bb2a5ebca80179a0ec69c6d8e1ed9e8435eb7",
-      "experiments_blob": "e292189e5154a66291e7e886074fb6a17a14ec31",
-      "ben_read_only": "Dated fleet status10:41: Azure3 BEN64 fresh lanes1819 completed at10:40, no failures,14.9GB available; observed read-only, not evidence of current process health there."
+      "commit": "5aea67f79354b6f2282fe27dcf8320e99a90d2bf",
+      "status_blob": "6e54f8614e6a492e364eed8963018d644547b7cd",
+      "experiments_blob": "e292189e5154a66291e7e886074fb6a17a14ec31"
     },
-    "registry_blob": "9d5e60145146674548b78acb81c6150c47fd77da"
+    "scope": "Azure1-only allocation honored as host-specific. This stream retains2:1comparison/Gen6,3workers,0BEN. Only its gate now includes scored comparison records from the registered ready mixed peer; peer selfplay is unscored. No commands or writes to another producer/host.",
+    "ben_read_only": "Azure3 fresh BEN64 lanes2413 completed at12:00 per dated fleet status; next-pool lane switching is remote-owner work, not ours."
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -1676,7 +1772,7 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "since": "2026-11-12T10:21:32Z",
+    "since": "2026-11-12T11:21:09Z",
     "total_commit_comments": 0,
     "new_commit_comments": []
   },
@@ -1712,6 +1808,14 @@
       "commit": "c672a5f252541d3bc47cc7b82e9e4b34935d94e4",
       "entry": "2026-11-12T07:58:00Z",
       "instruction": "Keep comparison running after1000 absent a positive95%CIlead; no selfplay opening."
+    },
+    "host_specific_exception_review": {
+      "commit": "c4297eee76b23b3553dd71a8fbb37d87f73048e0",
+      "issued": "2026-11-12T11:36:00Z",
+      "relayed": "2026-11-12T11:47:00Z",
+      "peer": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82",
+      "own_mix_changed": false,
+      "general_selfplay_plan_open": false
     }
   },
   "gen71_transition": {
@@ -2880,5 +2984,45 @@
     ],
     "completed_after_resume": 202,
     "scientific_runtime_manifest_models_corpus_unchanged": true
+  },
+  "authorized_mixed_peer_review": {
+    "status": "running-verified",
+    "journal": "recovery/operations/gen71-guard-maintenance.json",
+    "journal_sha256": "bc7ed8f27b2d5317e8a2b178c6afbb688bc2e5af06afa7d1a4d9b8148d3fbfb8",
+    "before_directory": "recovery/operations/training-family-review-20261112/authorized-peer-mix-1222",
+    "preserved_current_records": 1174,
+    "scientific_changes": false,
+    "tests_passed": 12,
+    "official_gate_matched": true,
+    "local_mix_changed": false,
+    "resume_records": [
+      {
+        "index": 1174,
+        "pair": "71s-32~6-32",
+        "episode_sha256": "645c1fc3c6f76ecdf5b03f0ff5eb0398cbd7f68033b3517f9d3591b7006e1638",
+        "gap_forks": 11,
+        "guess_size": 827,
+        "best_share": 3751,
+        "replay_and_score_verified": true
+      },
+      {
+        "index": 1175,
+        "pair": "71s-32~7s-32",
+        "episode_sha256": "f7553ed4ca3e3d155c82629da538ae2df00a1f6dbf8f9597dc449fb1a6e997f3",
+        "gap_forks": 12,
+        "guess_size": 692,
+        "best_share": 3136,
+        "replay_and_score_verified": true
+      },
+      {
+        "index": 1176,
+        "pair": "71s-32~6-32",
+        "episode_sha256": "8137a0a528a33a45f0830d2fbdb53745de948a99d8b0e19053a2f19aaa102784",
+        "gap_forks": 12,
+        "guess_size": 873,
+        "best_share": 4007,
+        "replay_and_score_verified": true
+      }
+    ]
   }
 }
