@@ -143,6 +143,30 @@ def gains(fit):
     return float(fit[-1] - (np.logaddexp.reduce(fit[:-1]) - np.log(len(fit) - 1)))
 
 
+def pool_layouts(p, o, view, truth, pool, rng):
+    """(source, assign): `pool` layouts drawn as the player would weight them at this decision, and the true layout last."""
+    src = p.source(o, view)
+    if src in ('scorer', 'lead_net'):
+        classes = Classes(view)
+        logw = classes.logmult + p.type_log_weights(o, view, classes.length, classes.hon, src)
+        worlds = classes.worlds(spaced(logw, pool, rng.random()), rng)
+        owner = np.zeros(52, np.int8)
+        assign = np.empty((len(worlds) + 1, len(view.unseen)), np.int8)
+        for k, world in enumerate(worlds + [truth]):
+            owner[list(world[view.hidden[1]])] = 1
+            owner[list(world[view.hidden[0]])] = 0
+            assign[k] = owner[view.unseen]
+        return src, assign
+    every = view.every()
+    lw = p.layout_log_weights(o, view, every)
+    w = np.exp(lw - lw.max())
+    pick = rng.choice(len(every), pool, p=w / w.sum())
+    owner = np.zeros(52, np.int8)
+    owner[list(truth[view.hidden[1]])] = 1
+    owner[list(truth[view.hidden[0]])] = 0
+    return src, np.concatenate([every[pick], owner[view.unseen][None].astype(every.dtype)])
+
+
 def table_rows(job):
     path, key, cells, source, bot, pool, until, seed, assumed = job
     if 'p' not in STATE:
@@ -178,26 +202,7 @@ def table_rows(job):
                 view = View(o)
                 hidden = hidden_plays(o, True)
                 if len(view.hidden) == 2 and hidden:
-                    src = p.source(o, view)
-                    if src in ('scorer', 'lead_net'):
-                        classes = Classes(view)
-                        logw = classes.logmult + p.type_log_weights(o, view, classes.length, classes.hon, src)
-                        worlds = classes.worlds(spaced(logw, pool, rng.random()), rng)
-                        owner = np.zeros(52, np.int8)
-                        assign = np.empty((len(worlds) + 1, len(view.unseen)), np.int8)
-                        for k, world in enumerate(worlds + [truth]):
-                            owner[list(world[view.hidden[1]])] = 1
-                            owner[list(world[view.hidden[0]])] = 0
-                            assign[k] = owner[view.unseen]
-                    else:
-                        every = view.every()
-                        lw = p.layout_log_weights(o, view, every)
-                        w = np.exp(lw - lw.max())
-                        pick = rng.choice(len(every), pool, p=w / w.sum())
-                        owner = np.zeros(52, np.int8)
-                        owner[list(truth[view.hidden[1]])] = 1
-                        owner[list(truth[view.hidden[0]])] = 0
-                        assign = np.concatenate([every[pick], owner[view.unseen][None].astype(every.dtype)])
+                    src, assign = pool_layouts(p, o, view, truth, pool, rng)
                     card_part, class_part = np.zeros(len(assign)), np.zeros(len(assign))
                     signal_part = {h: np.zeros(len(assign)) for h in assumed}
                     read = 0
