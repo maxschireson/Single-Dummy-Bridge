@@ -17,9 +17,11 @@ Settings live in spec['plan']['playout'], one stage or a list of them (no trick 
   layouts                layouts played out, drawn from the solved ones by weight; 0 = all of them
   seat                   the simulated seat: 'top', 'blend', 'draw' (the policy net's card), 'map', 'bdraw', 'map3'
                          (the solver's card for the seat's believed layout; see plan_rollout.Believer) or 'hyb', 'hyb3'
-                         (the solver chooses among the net's three likeliest cards), or 'gen6': the search itself with
-                         this spec's Gen 6 settings and no net plays every later card from each seat's own view. That is
-                         the bot as its own simulator: far slower, so use it with few `layouts` and late tricks
+                         (the solver chooses among the net's three likeliest cards), or 'gen6' / 'gen7': the search
+                         itself plays every later card from each seat's own view, with this spec's settings, as Gen 6
+                         (no net) or as Gen 7 (the net's reading and tie-breaks, and the tree if the spec has one, but
+                         no playouts). That is the bot as its own simulator: far slower, so use it with few `layouts`
+                         and late tricks
   repeats                playouts per layout and card (for seats that draw)
   tricks                 0 = to the end; above 0 the playout stops after that many tricks and is solved from there
   wide                   0 = play out the layouts the search solved and correct its estimate, as above. Above 0: play out
@@ -70,7 +72,7 @@ class PlayoutUse:
                 and 0 <= self.trust <= 4 and 0 <= self.layouts <= 4096 and 1 <= self.repeats <= 64 and 0 <= self.tricks <= 13
                 and 0 <= self.wide <= 8192):
             raise ValueError('Invalid plan playout settings')
-        if self.seat != 'gen6':
+        if self.seat not in ('gen6', 'gen7'):
             seat_player(None, None, self.seat, 0)
 
 
@@ -136,12 +138,12 @@ class PlanPlayer(Gen7Player):
                 break
         return worlds, np.concatenate(weights) / draws
 
-    def real_values(self, o, worlds, cards, seed):
-        """[layout, card] the decider's tricks when it plays the card and Gen 6 (this spec's search, no net, no playouts)
-        plays every later card of all four seats, each from its own view."""
-        if self.inner is None:          # this player's own search and files, with Gen 6's methods: no net, tree or playouts
-            self.inner = copy.copy(self)
-            self.inner.__class__ = Gen6Player
+    def real_values(self, o, worlds, cards, seed, kind=Gen6Player):
+        """[layout, card] the decider's tricks when it plays the card and the search itself (as `kind`: Gen6Player or
+        Gen7Player, never with playouts) plays every later card of all four seats, each from its own view."""
+        if self.inner is None or type(self.inner) is not kind:      # this player's own search and files with the plainer
+            self.inner = copy.copy(self)                            # class's methods: no playouts, and for Gen 6 no net
+            self.inner.__class__ = kind
         c = o.contract
         sign = 1 if o.controller % 2 == c.declarer % 2 else -1
         prefix = [dict(card=symbol(x)) for _, x in o.history]
@@ -185,9 +187,9 @@ class PlanPlayer(Gen7Player):
         seed = fork.getrandbits(64)
         k = stage.layouts
         pick, share = systematic(w, k, np.random.default_rng(seed)) if k and len(worlds) > k else (np.arange(len(worlds)), w)
-        real = stage.seat == 'gen6'
+        real = {'gen6': Gen6Player, 'gen7': Gen7Player}.get(stage.seat)
         who = None if real else seat_player(self.net, self.dds, stage.seat, seed)
-        values_of = (lambda layouts: self.real_values(o, layouts, searched, seed)) if real else \
+        values_of = (lambda layouts: self.real_values(o, layouts, searched, seed, real)) if real else \
             (lambda layouts: card_values(o, layouts, searched, who, Public(self.net, o), stage.repeats, stage.tricks, self.dds))
         started = time.perf_counter()
         column = {x: j for j, x in enumerate(legal)}
