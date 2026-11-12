@@ -229,10 +229,29 @@ class Box:
             if r.returncode != 0:  # a commit older than 50 back on its branch
                 subprocess.run(["git", "-C", str(dest), "fetch", "-q", "--depth", "1", "origin", commit], check=True)
                 subprocess.run(["git", "-C", str(dest), "checkout", "-q", commit], check=True)
-            lib = dest / "bridge_harness" / "libbridge_dds.so"
-            if (dest / "scripts" / "build_dds.py").exists() and not lib.exists():
-                subprocess.run([self.python, "scripts/build_dds.py"], cwd=dest, check=True, capture_output=True)
+        self.prepare(dest)
         return dest
+
+    def prepare(self, dest: Path) -> None:
+        """Once per checkout: build DDS, and rebuild the nets git keeps as parts (bill, 09:03: a fresh checkout has
+        models/bidding/*/bidder.keras only as parts). Uses scripts/run_tests.py's idempotent restore when the
+        checkout has it, else runs every restore script."""
+        marker = dest / ".boxq-prepared"
+        if marker.exists():
+            return
+        lib = dest / "bridge_harness" / "libbridge_dds.so"
+        if (dest / "scripts" / "build_dds.py").exists() and not lib.exists():
+            subprocess.run([self.python, "scripts/build_dds.py"], cwd=dest, check=True, capture_output=True)
+        rt = dest / "scripts" / "run_tests.py"
+        if rt.exists() and "def restore_models" in rt.read_text(errors="replace"):
+            code = ("import importlib.util, json; s = importlib.util.spec_from_file_location('rt', 'scripts/run_tests.py'); "
+                    "m = importlib.util.module_from_spec(s); s.loader.exec_module(m); r = m.restore_models(); "
+                    "bad = [x['script'] for x in r if not x['ok']]; print(json.dumps(bad)); raise SystemExit(1 if bad else 0)")
+            subprocess.run([self.python, "-c", code], cwd=dest, check=True, capture_output=True)
+        else:
+            for script in sorted(dest.glob("models/**/restore*.py")):
+                subprocess.run([self.python, "-I", script.name], cwd=script.parent, check=True, capture_output=True)
+        marker.write_text(stamp(self.clock()) + "\n")
 
     def out_dir(self, job: dict) -> Path:
         return self.work / "runs" / job["id"]
