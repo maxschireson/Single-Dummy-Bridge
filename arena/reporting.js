@@ -81,13 +81,17 @@
   for(const row of Object.values(totals.by_bot))for(const part of [row,row.opening_lead,row.play])part.mean_seconds=part.decisions?part.total_seconds/part.decisions:null;
   return totals;
  }
+ // Max, 12 November 2026, 18:03 UTC: in the same contract the play can be compared (play shaped by the bidding); in different
+ // contracts it cannot, and the difference is the bidding's. Same contract: same level, strain, doubling and declarer at the two
+ // own-system tables. null when a record does not carry the own tables' contracts.
+ function sameContract(r){const c=r.own_contracts;if(!Array.isArray(c)||c.length!==2||!c[0]||!c[1])return null;return c[0].contract===c[1].contract&&c[0].declarer===c[1].declarer;}
  function build(inputs,scope='all',snapshots=null,now=Date.now()/1000){const chosen=inputs.filter(x=>pickSources(scope).some(s=>s.key===x.source.key)).map(x=>({...x,source:sources.find(s=>s.key===x.source.key&&s.cohort===x.source.cohort)||x.source}));
   const common=rowsFor(chosen,scope,'common',snapshots),own=rowsFor(chosen,scope,'own',snapshots),views={},own_views={},curves={},own_curves={};
   for(const n of [0,100,500,1000]){views[n]=view(common.rows,n);own_views[n]=view(own.rows,n);}
   for(const [rowsSource,targetCurves] of [[common.rows,curves],[own.rows,own_curves]])for(const p of Object.keys(view(rowsSource).groups)){if(members(p)[0]===members(p)[1])continue;const rows=rowsSource.filter(r=>r.pair===p);targetCurves[p]=[];for(let n=10;n<rows.length;n+=Math.max(10,Math.floor(rows.length/50)))targetCurves[p].push({index:n,...stats(rows.slice(0,n).map(r=>r.imps))});targetCurves[p].push({index:rows.length,...stats(rows.map(r=>r.imps))});}
   const difference_views={};
   const paired=common.rows.filter(r=>Number.isFinite(r.native_imps));
-  for(const n of [0,100,500,1000]){const groups={};for(const pair of new Set(paired.map(r=>r.pair))){let rows=paired.filter(r=>r.pair===pair);if(n)rows=rows.slice(-n);groups[pair]={play:stats(rows.map(r=>r.common_imps)),total:stats(rows.map(r=>r.native_imps)),bidding:stats(rows.map(r=>r.native_imps-r.common_imps)),different_bidding:rows.filter(r=>r.different_bidding).length};}difference_views[n]={groups};}
+  for(const n of [0,100,500,1000]){const groups={};for(const pair of new Set(paired.map(r=>r.pair))){let rows=paired.filter(r=>r.pair===pair);if(n)rows=rows.slice(-n);const known=rows.filter(r=>sameContract(r)!==null);groups[pair]={play:stats(rows.map(r=>r.common_imps)),total:stats(rows.map(r=>r.native_imps)),bidding:stats(rows.map(r=>r.native_imps-r.common_imps)),different_bidding:rows.filter(r=>r.different_bidding).length,contracts_known:known.length,same_contract:known.filter(r=>sameContract(r)).length,contract_play:stats(known.map(r=>sameContract(r)?r.native_imps:0)),contract_bidding:stats(known.map(r=>sameContract(r)?0:r.native_imps)),contract_total:stats(known.map(r=>r.native_imps))};}difference_views[n]={groups};}
   const generated_epoch=chosen.length?Math.max(...chosen.map(x=>x.data.generated_epoch)):now,rates={};
   const observations=chosen.flatMap(x=>x.index.records.filter(r=>!archivedPair(r.pair,x.source)&&r.completed_epoch<=x.data.generated_epoch&&(!x.source.allowed_pairs||x.source.allowed_pairs.includes(r.pair))));
   for(const m of [5,15,30,60]){const pairs=observations.filter(r=>r.completed_epoch>=now-m*60&&r.completed_epoch<=now).length;rates[m]={pairs,per_hour:pairs*60/m,full_window:true};}

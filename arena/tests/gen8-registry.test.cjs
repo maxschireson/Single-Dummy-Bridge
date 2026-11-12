@@ -18,5 +18,15 @@ const built8=R.build([input8(R.latestSource,[row8(0,'8s-32~5RZ32','m',2,5),row8(
 assert.equal(built8.difference_views[0].groups['8s-32~5RZ32'].bidding.total,3,'Gen 8 bidding difference: own-system auctions minus common auctions');
 assert.equal(built8.difference_views[0].groups['8s-32~8c-32'].bidding.total,4,'the Precision pair, from the standard Gen 8 side');
 assert.match(require('node:fs').readFileSync(__dirname+'/../supplemental.js','utf8'),/\[6,7,8\]\.includes\(s\.generation\)/,'the differences section is shown for Gen 8');
-console.log('PASS Gen 8 sources: default view, rollups, and bidding/play/total differences');
+// Max, 18:03 UTC: compare play only in the same contract; different contracts are the bidding's. Same contract = same level,
+// strain, doubling and declarer at the two own-system tables; the two parts are averaged over all boards and add to the total.
+const c=(x,d)=>({contract:x,declarer:d});
+const rowc=(index,pair,common,own,contracts)=>({...row8(index,pair,'c'+index,common,own),own_contracts:contracts});
+const split=R.build([input8(R.latestSource,[rowc(20,'8c-32~8s-32',0,-3,[c('4S','N'),c('4S','N')]),rowc(21,'8c-32~8s-32',0,-6,[c('3NT','S'),c('4S','N')]),rowc(22,'8c-32~8s-32',0,2,[c('4S','N'),c('4S','S')])])],'latest').difference_views[0].groups['8s-32~8c-32'];
+assert.equal(split.contracts_known,3);assert.equal(split.same_contract,1,'4S by N at both tables; 4S by N against 4S by S is not the same contract');
+assert.equal(split.contract_play.total,3,'same contract: play, from the standard Gen 8 side');assert.equal(split.contract_bidding.total,4,'different contracts: bidding (6 - 2)');
+assert.equal(split.contract_play.total+split.contract_bidding.total,split.contract_total.total);assert.equal(split.contract_play.n,3,'each part is averaged over all boards');
+const none=R.build([input8(R.latestSource,[row8(30,'8s-32~1','z',1,2)])],'latest').difference_views[0].groups['8s-32~1'];
+assert.equal(none.contracts_known,0,'a record without the own tables\' contracts is not classified');
+console.log('PASS Gen 8 sources: default view, rollups, and bidding/play/total differences, split by contract');
 
