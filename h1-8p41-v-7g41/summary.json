@@ -1,0 +1,23 @@
+{
+ "pair": "8p-32-v41~7g-32-v41",
+ "boards": 50,
+ "cpu_per_board": 22.75,
+ "common": {
+  "imps_per_board": 0.34,
+  "se": 0.4186,
+  "boards": 50,
+  "won": 8,
+  "lost": 6,
+  "flat": 36
+ },
+ "native": {
+  "imps_per_board": 0.34,
+  "se": 0.4186,
+  "boards": 50,
+  "won": 8,
+  "lost": 6,
+  "flat": 36
+ },
+ "failures": 0,
+ "boards_per_hour": 1189
+}
