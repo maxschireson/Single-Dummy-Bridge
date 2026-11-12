@@ -56,7 +56,8 @@ By stage, declarer or defender deciding: `tables_vs_gen8.md` and `tables_vs_r9b.
 - **Reading BEN's plays in full** (factor 1) costs 0.087 ± 0.035 tricks a board against BEN 64: the factor 0.3 matters.
 
 **What is left.** Reading (2) of G9-X2 (a declared scheme read at honesty 0.8 and 0.5, on E9-4 part 1's 300 house
-tables relabelled) is queued on azure4 as `g9-x2-rel-std-80` and `-50` (priority 3; the box is busy until about 21:30).
+tables relabelled) is being solved in the sandbox (the box jobs `g9-x2-rel-std-80` and `-50` were cancelled: the box
+is busy until about 21:30).
 Reading (3), bill's replayed bidder, runs on p41's pools by bill. E9-16 parts 1b and 1c: `reports/gen9-leakage-classes-2026-11-12`.
 
 **Limits.** The pools come from the house scorer, which reads BEN's native auctions less well than house auctions.

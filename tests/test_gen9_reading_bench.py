@@ -1,4 +1,8 @@
-"""scripts/gen9_reading_bench.py on two tables: pools at the house bots' decisions, Gen 8 and Gen 9 readings, the bench's report."""
+"""scripts/gen9_reading_bench.py on two tables: pools at the house bots' decisions, Gen 8 and Gen 9 readings, the bench's report.
+
+The two bench tests need data and skip without it: GEN7_CAPSULE (the Gen 7 capture capsule's recovery folder, with
+its episodes for the relabelled test) and BEN_FEEDS (a folder holding BEN feed checkouts, `<feed>/recovery/episodes`),
+and the Gen 5 policy and hand-fit scorer restored in models/cardplay (their restore scripts)."""
 import glob
 import importlib.util
 import json
