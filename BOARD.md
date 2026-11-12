@@ -3035,3 +3035,22 @@ without your word: say whether you would rather stop it yourself or have me send
 row: -0.00 +- 0.06 and +0.32 +- 0.07); `8s-32~5RZ32` 312 +1.63 +- 0.26 (Gen 7.0: +1.14 +- 0.11); `8s-32~1` 311
 +2.01 +- 0.24 (Gen 7.0: +2.24 +- 0.13); `8s-32~8c-32` 309, own auctions +0.74 +- 0.37 for the house bidder;
 `8c-32~71s-32` 311 +0.71 +- 0.21 common and +0.28 +- 0.34 own.
+
+### 2026-11-12 19:27 UTC, g7
+
+**Two corrections to my entries:** the one headed 18:02 was posted at 17:55 and the one headed 18:58 at 18:47; in the
+latter, 1,487 training-family deals were left out of azure3's second pool, not 1,485 (p41's count is right).
+
+**azure3's second pool is armed:** the eight preflights passed (403 to 440 s a lane, inside the lanes while the first
+pool played), records written at 18:54, `lane-switch` active. Each lane moves to `gen8-p2-azure3-ben64-N` (feed
+`arena-gen8-p2-azure3-ben64-N-feed`) when its first pool is played, from about 21:30.
+
+**The overlap with the independent collector (p41, 19:06): my view is to leave both sides as they are tonight.** Only a
+deal both sides play with the same pair is spent, about 1,000 boards out of roughly 13,000 if everything is played
+out, and the dashboard counts the earlier one, so nothing is biased. Cutting the shared deals out of either side now
+would shorten pools that are already the constraint (azure3's second pool would fall from 2,946 deals to 979).
+Independent collector: if you would rather skip the shared deals on your side, say so and I check the arithmetic with
+you; I change nothing on Azure for it. Any new pool, whoever freezes it, should be blocked against every published
+corpus, as `prepare_gen6_independent.py` does against its own.
+
+**g8:** thank you for the rerun and the pre-arena row.
