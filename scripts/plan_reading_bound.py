@@ -43,7 +43,7 @@ PRUNE = 9.          # a candidate this many nats behind the best (by the crude c
 MISS, HIT = np.log(.05), np.log(.9)
 
 
-def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False, inner=0, inner_list=0):
+def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False, inner=0, inner_list=0, chain=0, chains=2):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     six = player(check.spec('gen6'), ROOT)
     sim = six
@@ -52,7 +52,7 @@ def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False
         spec = dict(spec, samples=inner, id=f'6-{inner}', gen6=dict(spec['gen6'], list_solve=inner_list or spec['gen6']['list_solve']))
         sim = player(spec, ROOT)
     STATE.update(six=six, sim=sim, seven=player(check.spec('gen7', policy=net), ROOT), trick=trick,
-                 candidates=candidates, seeds=seeds, seed=seed, pool=pool, floor=floor, swaps=swaps)
+                 candidates=candidates, seeds=seeds, seed=seed, pool=pool, floor=floor, swaps=swaps, chain=chain, chains=chains)
 
 
 def assignment(view, world):
@@ -97,12 +97,102 @@ def sample_of(path):
             if o.controller not in done and len(o.legal) > 1:
                 done.add(o.controller)
                 started = time.time()
-                row = one(d['family'], key, board, o)
+                row = (chain if STATE.get('chain') else one)(d['family'], key, board, o)
                 if row:
                     row['seconds'] = round(time.time() - started, 1)
                     out.append(row)
             game.play(card(x['card']))
     return out
+
+
+TABLE = (.965, .103, .34, .2, .111, .031, .004, .001, .001)     # chance that the bot plays a card, by how one run of it rated the card
+EDGES = (1e-9, .03125, .0625, .125, .25, .5, 1.)                # (played it; level but another played; behind by up to ...): rb1's pairs of runs
+
+
+def chain(family, key, board, o):
+    """A random walk over layouts whose resting distribution is the reading with the simulated bot as the model: Gen 6's
+    own weight of the layout times, for every past play of a hidden hand, the chance (TABLE) that the bot plays that card
+    given how one run of it from that hand rated it. Steps exchange two cards between the hidden hands."""
+    six, seven, sim = STATE['six'], STATE['seven'], STATE['sim']
+    view = View(o)
+    if len(view.hidden) != 2:
+        return None
+    rng = np.random.default_rng([STATE['seed'], o.controller, int(family[:8], 16), 7])
+    plays = hidden_plays(o, False)
+    unseen = [int(c) for c in view.unseen]
+    source = six.source(o, view)
+    classes = Classes(view)
+    logw = classes.logmult + six.type_log_weights(o, view, classes.length, classes.hon, 'scorer' if source == 'list' else source)
+    p = np.exp(logw - logw.max())
+    worlds = classes.worlds(rng.choice(len(p), STATE['pool'], p=p / p.sum()), rng)
+    truth = assignment(view, [tuple(c for c in board.hands[s] if c in set(view.unseen)) if s in view.hidden else () for s in range(4)])
+    pool = np.unique(np.array([assignment(view, w) for w in worlds]), axis=0)
+    pool = pool[~(pool == truth[None, :]).all(1)]
+    logp, opts = seven.play_log_probabilities(o, view, pool, plays)
+    read = floored(logp, opts, STATE['floor']).sum(axis=0)
+    w = np.exp(read - read.max())
+    agree = pool == truth[None, :]
+    info = dict(n=len(pool), effective=float(w.sum() ** 2 / (w ** 2).sum()), prior_agree=np.round(agree.mean(0), 4).tolist(),
+                net_agree=np.round((w / w.sum()) @ agree, 4).tolist())
+    later = {(i, chooser): frozenset(int(x) for s, x in o.history[i:] if s == chooser) for i, _, chooser in plays}
+    table = np.log(np.array(TABLE))
+    cache, calls = {}, [0]
+
+    def play_loglik(a, row):
+        i, seat, chooser = plays[row]
+        j = view.hidden.index(chooser)
+        hand = frozenset(c for c, h in zip(unseen, a) if h == j) | later[(i, chooser)]
+        k = (i, hand)
+        if k not in cache:
+            then = past_view(o, i, hand)
+            if len(then.legal) <= 1:
+                cache[k] = 0.
+            else:
+                played = o.history[i][1]
+                dec = sim.choose(then, random.Random(f"{STATE['seed']}/{family}/{o.controller}/{i}/{calls[0]}"))
+                calls[0] += 1
+                est = dec.details.get('estimates') or {}
+                gap = est[symbol(played)]['gap_to_best'] if symbol(played) in est else 9.
+                cache[k] = float(table[0 if dec.card == played else 1 + int(np.searchsorted(EDGES, gap, side='left'))])
+        return cache[k]
+
+    prior = lambda a: float(six.layout_log_weights(o, view, a[None, :])[0])
+    out = []
+    for c in range(STATE['chains']):
+        a = pool[rng.choice(len(pool), p=w / w.sum())].copy()
+        la = [play_loglik(a, row) for row in range(len(plays))]
+        pa = prior(a)
+        counts, kept, accepted, proposed = np.zeros(len(unseen)), 0, 0, 0
+        steps = STATE['chain']
+        for t in range(steps):
+            x, y = rng.integers(len(unseen), size=2)
+            if a[x] != a[y]:
+                b = a.copy()
+                b[x], b[y] = a[y], a[x]
+                if consistent(o, view, b):
+                    proposed += 1
+                    bar = np.log(rng.random()) - (prior(b) - pa)            # the plays' log-likelihood must rise by more than this
+                    lb, delta, room = [], 0., sum(table[0] - v for v in la)
+                    for row in range(len(plays)):                           # stop as soon as the rest cannot make up the deficit
+                        v = play_loglik(b, row)
+                        lb.append(v)
+                        delta += v - la[row]
+                        room -= table[0] - la[row]
+                        if delta + room < bar:
+                            break
+                    else:
+                        if delta > bar:
+                            a, la, pa = b, lb, prior(b)
+                            accepted += 1
+            if t >= steps // 3:
+                counts += a == 0
+                kept += 1
+        out.append(dict(marginal=np.round(counts / max(1, kept), 4).tolist(), accepted=accepted, proposed=proposed,
+                        end_loglik=float(sum(la)), end_agree=float((a == truth).mean())))
+    lt = float(sum(play_loglik(truth, row) for row in range(len(plays))))
+    c = o.contract
+    return dict(family=family, table=key, viewer=SEATS[o.controller], declaring=o.controller % 2 == c.declarer % 2, trick=STATE['trick'],
+                unseen=[symbol(x) for x in view.unseen], truth=truth.tolist(), pool=info, chains=out, true_loglik=lt, plays=len(plays), calls=calls[0])
 
 
 def one(family, key, board, o):
@@ -216,6 +306,8 @@ def main():
     p.add_argument('--floor', type=float, default=.05)
     p.add_argument('--inner-samples', type=int, default=0, help='run the bot on this many layouts instead of its 32 (a cheaper model of it)')
     p.add_argument('--inner-list', type=int, default=0, help='and solve at most this many layouts of its deal list')
+    p.add_argument('--chain', type=int, default=0, help='instead: walk over layouts for this many steps a chain (the reading with the bot as the model)')
+    p.add_argument('--chains', type=int, default=2)
     p.add_argument('--swaps', action='store_true', help='candidates are the true layout with one honour (or two small cards) exchanged between the hidden hands')
     p.add_argument('--seeds', type=int, default=2)
     p.add_argument('--files', type=int, default=200)
@@ -231,11 +323,11 @@ def main():
 
     def save():
         part = a.out.with_suffix('.part')
-        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, swaps=a.swaps, inner_samples=a.inner_samples, inner_list=a.inner_list, seeds=a.seeds, files=done,
+        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, swaps=a.swaps, inner_samples=a.inner_samples, inner_list=a.inner_list, chain=a.chain, chains=a.chains, seeds=a.seeds, files=done,
                                                       skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
         part.replace(a.out)
 
-    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor, a.swaps, a.inner_samples, a.inner_list)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor, a.swaps, a.inner_samples, a.inner_list, a.chain, a.chains)) as pool:
         for part in pool.imap_unordered(sample_of, files):
             rows += part
             done += 1
