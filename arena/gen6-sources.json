@@ -499,6 +499,16 @@
       "cohort": "c50412d34108b09cb5bc2cc3db45ce6764fae7901a878e7bca13117c21d6900a"
     },
     {
+      "key": "gen71azure1mix",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure1 (self-play and against Gen 7.0)",
+      "branch": "arena-gen7-1-mix-azure1-feed",
+      "cohort": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82"
+    },
+    {
       "key": "gen71azure3ben64f1",
       "group": "gen7",
       "generation": 7,
@@ -1118,6 +1128,7 @@
         "arena-gen7-1-compare-azure2-feed": "239815e87f10bc14471e2c08b227f4e039e6a732",
         "arena-gen7-1-vs70-azure2-feed": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d"
       }
-    }
+    },
+    "azure1": "From 11:42 UTC (Max, 11:36 UTC: \"Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7\"): 71s-32~71s-32 and 71s-32~7s-32, one board in two each, on azure1's drained phase 1 cohort's unplayed deals without the v4.1 training families. The self-play boards are training data with no score. azure4, the other box named, is lent to the Gen 8 session (Max, 11:38 UTC)."
   }
 }

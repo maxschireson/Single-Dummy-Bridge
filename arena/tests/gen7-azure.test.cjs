@@ -3,7 +3,7 @@ const R=require('../reporting.js'),registry=require('../gen6-sources.json');
 R.applyRegistry(registry);
 assert.equal(R.latestScope,'gen7');
 const azure=R.pickSources('azure');
-assert.equal(azure.length,34);
+assert.equal(azure.length,35);
 assert.equal(azure.filter(s=>/^gen71azure/.test(s.key)&&/^arena-gen7-1-(vs70-)?fresh-/.test(s.branch)&&!s.retired).length,9,'Gen 7.1 on Azure, deals v4.1 was not trained on: azure2 against Gen 7.0 and eight BEN (64) lanes on azure3');
 assert.ok(!azure.some(s=>/^arena-gen7-1-(azure3-ben64-[1-8]|compare-azure2|vs70-azure2)-feed$/.test(s.branch)),'The Azure Gen 7.1 cohorts of 06:06 UTC played deals from v4.1 training families and are not registered');
 assert.equal(azure.filter(s=>/^gen7azure[1-4]selfplay$/.test(s.key)&&/^arena-gen7-phase1-selfplay-azure[1-4]-feed$/.test(s.branch)).length,1,'One Azure self-play cohort so far');
@@ -18,3 +18,4 @@ assert.deepEqual(R.resolveSelection('?source=azure&older=1'),{selected:'azure',o
 assert.ok(R.pickSources('latest').some(s=>s.key==='gen7azure1pre7'),'Pre-arena tests are in the Gen 7 rollup');
 assert.ok(R.pickSources('latest').every(s=>s.generation===7));
 console.log('PASS Azure Gen 7 phase 1, BEN lanes and pre-arena test sources join the Gen 7 rollup');
+assert.ok(azure.some(s=>s.key==='gen71azure1mix'&&s.branch==='arena-gen7-1-mix-azure1-feed'&&!s.retired),'azure1 plays Gen 7.1 self-play and 7.1 against 7.0');
