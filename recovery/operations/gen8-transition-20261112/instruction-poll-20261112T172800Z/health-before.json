@@ -1,0 +1,83 @@
+{
+  "poll_start": "2026-11-12T17:28:00Z",
+  "comments_since": "2026-11-12T16:24:42Z",
+  "control": "/workspace/work/gen6-fast-selfplay-stream",
+  "run": "/workspace/work/gen8-candidate-codex-20261112/run",
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "case": "/workspace/work/gen6-fast-selfplay-stream/instruction-poll-20261112T172800Z",
+  "heartbeat": {
+    "epoch": 1794504471.239895,
+    "completed": 61,
+    "in_flight": [
+      61,
+      62,
+      63
+    ],
+    "workers": 4,
+    "ben_workers": 1,
+    "started_epoch": 1794502378.4600148,
+    "stopping": false
+  },
+  "state": {
+    "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "completed": 62,
+    "target": 18283,
+    "contiguous": 62,
+    "by_pair": {
+      "8s-32~1": 10,
+      "8s-32~71s-32": 21,
+      "8c-32~8s-32": 10,
+      "8c-32~71s-32": 10,
+      "8s-32~5RZ32": 11
+    },
+    "root_games": 206,
+    "tables": 2481,
+    "failures": 0,
+    "epoch": 1794504471.9288285,
+    "complete": false
+  },
+  "watchdog-status": {
+    "epoch": 1794504479.5334976,
+    "completed": 62,
+    "target": 18283,
+    "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "workers": 3,
+    "ben_workers": 0,
+    "failures": 0,
+    "collector": "running",
+    "publisher": "running",
+    "gen71_comparison_gate_enabled": false,
+    "collector_pid": 68687,
+    "publisher_pid": 68688
+  },
+  "publisher-status": {
+    "status": "published",
+    "epoch": 1794504420.280232,
+    "completed": 60,
+    "commit": "053a11d911cda1678cd608fc731ad58e470c5590",
+    "branch": "arena-gen8-candidate-codex-20261112-feed"
+  },
+  "process": {
+    "pid": 68687,
+    "epoch": 1794502377.3520012
+  },
+  "watchdog-process": {
+    "pid": 68686,
+    "epoch": 1794502377.1660328
+  },
+  "publisher-process": {
+    "pid": 68688,
+    "epoch": 1794502378.2648044
+  },
+  "locks": {
+    ".writer.lock": true,
+    ".watchdog.lock": true,
+    ".publisher.lock": true
+  },
+  "failure_files": [],
+  "resolved_failures": [],
+  "disk_free": 18999111680,
+  "memory_current": 4958629888,
+  "memory_max": "17179869184",
+  "processes": "  68686       1       35:03 /workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/supervise_gen8.py\n  68687   68686       35:02 /workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen8-candidate-codex-20261112/run --workers 3\n  68688   68686       35:02 /workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py\n  72215     578       00:00 /home/agent/.codex/tmp/arg0-linux/codex-arg0otUW3F/codex-linux-sandbox --inherit-pid-namespace --sandbox-policy-cwd /workspace --command-cwd /workspace --permission-profile {\"type\":\"managed\",\"file_system\":{\"type\":\"restricted\",\"entries\":[{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"root\"}},\"access\":\"read\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace\"},\"access\":\"write\"},{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"slash_tmp\"}},\"access\":\"write\"},{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"tmpdir\"}},\"access\":\"write\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.git\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.agents\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.codex\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.aws\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"}]},\"network\":\"enabled\"} -- /bin/bash -lc python - <<'PY' import pathlib,json,time,datetime,subprocess,fcntl,shutil c=pathlib.Path('/workspace/work/gen6-fast-selfplay-stream');s=json.loads((c/'stream.json').read_text());r=pathlib.Path(s['run']);w=json.loads((c/'instruction-watch.json').read_text());start=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ');case=c/('instruction-poll-'+start.replace('-','').replace(':',''));case.mkdir(exist_ok=True);(case/'stream-before.json').write_bytes((c/'stream.json').read_bytes());(case/'instruction-watch-before.json').write_bytes((c/'instruction-watch.json').read_bytes()) h={'poll_start':start,'comments_since':w['next_comment_scan_since'],'control':str(c),'run':str(r),'manifest':s['manifest'],'case':str(case)} for n in ['heartbeat','state','watchdog-status','publisher-status','process','watchdog-process','publisher-process']:h[n]=json.loads((r/(n+'.json')).read_text()) locks={} for n in ['.writer.lock','.watchdog.lock','.publisher.lock']:  with (r/n).open('r') as f:   try:fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB);held=False;fcntl.flock(f,fcntl.LOCK_UN)   except BlockingIOError:held=True  locks[n]=held h['locks']=locks;h['failure_files']=[str(p) for p in (r/'failures').glob('*')];h['resolved_failures']=[str(p) for p in (r/'resolved-failures').glob('*')];h['disk_free']=shutil.disk_usage(r).free;h['memory_current']=int(pathlib.Path('/sys/fs/cgroup/memory.current').read_text());h['memory_max']=pathlib.Path('/sys/fs/cgroup/memory.max').read_text().strip();h['processes']='\\n'.join(x for x in subprocess.check_output(['ps','-eo','pid,ppid,etime,args'],text=True).splitlines() if str(r) in x or 'supervise_gen8.py' in x or 'publish_stream.py' in x) (case/'health-before.json').write_text(json.dumps(h,indent=2)+'\\n');(c/'active-instruction-poll.json').write_text(json.dumps({'start':start,'since':w['next_comment_scan_since'],'case':str(case)},indent=2)+'\\n') print(json.dumps({k:h[k] for k in ['poll_start','comments_since','case','manifest','state','watchdog-status','publisher-status','locks','failure_files','memory_current','memory_max','disk_free']},indent=2)) PY\n  72217   72215       00:00 bwrap --new-session --die-with-parent --ro-bind / / --dev /dev --perms 000 --tmpfs /tmp/codex-daemon-1000 --remount-ro /tmp/codex-daemon-1000 --bind /workspace /workspace --perms 555 --tmpfs /workspace/.git --remount-ro /workspace/.git --perms 555 --tmpfs /workspace/.agents --remount-ro /workspace/.agents --perms 555 --tmpfs /workspace/.codex --remount-ro /workspace/.codex --perms 555 --tmpfs /workspace/.aws --remount-ro /workspace/.aws --bind /tmp /tmp --perms 000 --tmpfs /tmp/codex-daemon-1000 --remount-ro /tmp/codex-daemon-1000 --perms 555 --tmpfs /tmp/.git --remount-ro /tmp/.git --perms 555 --tmpfs /tmp/.agents --remount-ro /tmp/.agents --perms 555 --tmpfs /tmp/.codex --remount-ro /tmp/.codex --perms 555 --tmpfs /tmp/.aws --remount-ro /tmp/.aws --ro-bind /tmp/codex-bwrap-synthetic-mount-targets-1000 /tmp/codex-bwrap-synthetic-mount-targets-1000 --unshare-user --unshare-ipc --cap-drop ALL --argv0 codex-linux-sandbox -- /opt/codex/bin/codex --sandbox-policy-cwd /workspace --command-cwd /workspace --permission-profile {\"type\":\"managed\",\"file_system\":{\"type\":\"restricted\",\"entries\":[{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"root\"}},\"access\":\"read\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace\"},\"access\":\"write\"},{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"slash_tmp\"}},\"access\":\"write\"},{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"tmpdir\"}},\"access\":\"write\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.git\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.agents\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.codex\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.aws\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"}]},\"network\":\"enabled\"} --apply-seccomp-then-exec -- /bin/bash -lc python - <<'PY' import pathlib,json,time,datetime,subprocess,fcntl,shutil c=pathlib.Path('/workspace/work/gen6-fast-selfplay-stream');s=json.loads((c/'stream.json').read_text());r=pathlib.Path(s['run']);w=json.loads((c/'instruction-watch.json').read_text());start=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ');case=c/('instruction-poll-'+start.replace('-','').replace(':',''));case.mkdir(exist_ok=True);(case/'stream-before.json').write_bytes((c/'stream.json').read_bytes());(case/'instruction-watch-before.json').write_bytes((c/'instruction-watch.json').read_bytes()) h={'poll_start':start,'comments_since':w['next_comment_scan_since'],'control':str(c),'run':str(r),'manifest':s['manifest'],'case':str(case)} for n in ['heartbeat','state','watchdog-status','publisher-status','process','watchdog-process','publisher-process']:h[n]=json.loads((r/(n+'.json')).read_text()) locks={} for n in ['.writer.lock','.watchdog.lock','.publisher.lock']:  with (r/n).open('r') as f:   try:fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB);held=False;fcntl.flock(f,fcntl.LOCK_UN)   except BlockingIOError:held=True  locks[n]=held h['locks']=locks;h['failure_files']=[str(p) for p in (r/'failures').glob('*')];h['resolved_failures']=[str(p) for p in (r/'resolved-failures').glob('*')];h['disk_free']=shutil.disk_usage(r).free;h['memory_current']=int(pathlib.Path('/sys/fs/cgroup/memory.current').read_text());h['memory_max']=pathlib.Path('/sys/fs/cgroup/memory.max').read_text().strip();h['processes']='\\n'.join(x for x in subprocess.check_output(['ps','-eo','pid,ppid,etime,args'],text=True).splitlines() if str(r) in x or 'supervise_gen8.py' in x or 'publish_stream.py' in x) (case/'health-before.json').write_text(json.dumps(h,indent=2)+'\\n');(c/'active-instruction-poll.json').write_text(json.dumps({'start':start,'since':w['next_comment_scan_since'],'case':str(case)},indent=2)+'\\n') print(json.dumps({k:h[k] for k in ['poll_start','comments_since','case','manifest','state','watchdog-status','publisher-status','locks','failure_files','memory_current','memory_max','disk_free']},indent=2)) PY\n  72218   72217       00:00 codex-linux-sandbox --sandbox-policy-cwd /workspace --command-cwd /workspace --permission-profile {\"type\":\"managed\",\"file_system\":{\"type\":\"restricted\",\"entries\":[{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"root\"}},\"access\":\"read\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace\"},\"access\":\"write\"},{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"slash_tmp\"}},\"access\":\"write\"},{\"path\":{\"type\":\"special\",\"value\":{\"kind\":\"tmpdir\"}},\"access\":\"write\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.git\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.agents\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.codex\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"},{\"path\":{\"type\":\"path\",\"path\":\"/workspace/.aws\"},\"access\":\"read\",\"missing_path_behavior\":\"skip\"}]},\"network\":\"enabled\"} --apply-seccomp-then-exec -- /bin/bash -lc python - <<'PY' import pathlib,json,time,datetime,subprocess,fcntl,shutil c=pathlib.Path('/workspace/work/gen6-fast-selfplay-stream');s=json.loads((c/'stream.json').read_text());r=pathlib.Path(s['run']);w=json.loads((c/'instruction-watch.json').read_text());start=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ');case=c/('instruction-poll-'+start.replace('-','').replace(':',''));case.mkdir(exist_ok=True);(case/'stream-before.json').write_bytes((c/'stream.json').read_bytes());(case/'instruction-watch-before.json').write_bytes((c/'instruction-watch.json').read_bytes()) h={'poll_start':start,'comments_since':w['next_comment_scan_since'],'control':str(c),'run':str(r),'manifest':s['manifest'],'case':str(case)} for n in ['heartbeat','state','watchdog-status','publisher-status','process','watchdog-process','publisher-process']:h[n]=json.loads((r/(n+'.json')).read_text()) locks={} for n in ['.writer.lock','.watchdog.lock','.publisher.lock']:  with (r/n).open('r') as f:   try:fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB);held=False;fcntl.flock(f,fcntl.LOCK_UN)   except BlockingIOError:held=True  locks[n]=held h['locks']=locks;h['failure_files']=[str(p) for p in (r/'failures').glob('*')];h['resolved_failures']=[str(p) for p in (r/'resolved-failures').glob('*')];h['disk_free']=shutil.disk_usage(r).free;h['memory_current']=int(pathlib.Path('/sys/fs/cgroup/memory.current').read_text());h['memory_max']=pathlib.Path('/sys/fs/cgroup/memory.max').read_text().strip();h['processes']='\\n'.join(x for x in subprocess.check_output(['ps','-eo','pid,ppid,etime,args'],text=True).splitlines() if str(r) in x or 'supervise_gen8.py' in x or 'publish_stream.py' in x) (case/'health-before.json').write_text(json.dumps(h,indent=2)+'\\n');(c/'active-instruction-poll.json').write_text(json.dumps({'start':start,'since':w['next_comment_scan_since'],'case':str(case)},indent=2)+'\\n') print(json.dumps({k:h[k] for k in ['poll_start','comments_since','case','manifest','state','watchdog-status','publisher-status','locks','failure_files','memory_current','memory_max','disk_free']},indent=2)) PY\n  72219   72218       00:00 /bin/bash -lc python - <<'PY' import pathlib,json,time,datetime,subprocess,fcntl,shutil c=pathlib.Path('/workspace/work/gen6-fast-selfplay-stream');s=json.loads((c/'stream.json').read_text());r=pathlib.Path(s['run']);w=json.loads((c/'instruction-watch.json').read_text());start=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ');case=c/('instruction-poll-'+start.replace('-','').replace(':',''));case.mkdir(exist_ok=True);(case/'stream-before.json').write_bytes((c/'stream.json').read_bytes());(case/'instruction-watch-before.json').write_bytes((c/'instruction-watch.json').read_bytes()) h={'poll_start':start,'comments_since':w['next_comment_scan_since'],'control':str(c),'run':str(r),'manifest':s['manifest'],'case':str(case)} for n in ['heartbeat','state','watchdog-status','publisher-status','process','watchdog-process','publisher-process']:h[n]=json.loads((r/(n+'.json')).read_text()) locks={} for n in ['.writer.lock','.watchdog.lock','.publisher.lock']:  with (r/n).open('r') as f:   try:fcntl.flock(f,fcntl.LOCK_EX|fcntl.LOCK_NB);held=False;fcntl.flock(f,fcntl.LOCK_UN)   except BlockingIOError:held=True  locks[n]=held h['locks']=locks;h['failure_files']=[str(p) for p in (r/'failures').glob('*')];h['resolved_failures']=[str(p) for p in (r/'resolved-failures').glob('*')];h['disk_free']=shutil.disk_usage(r).free;h['memory_current']=int(pathlib.Path('/sys/fs/cgroup/memory.current').read_text());h['memory_max']=pathlib.Path('/sys/fs/cgroup/memory.max').read_text().strip();h['processes']='\\n'.join(x for x in subprocess.check_output(['ps','-eo','pid,ppid,etime,args'],text=True).splitlines() if str(r) in x or 'supervise_gen8.py' in x or 'publish_stream.py' in x) (case/'health-before.json').write_text(json.dumps(h,indent=2)+'\\n');(c/'active-instruction-poll.json').write_text(json.dumps({'start':start,'since':w['next_comment_scan_since'],'case':str(case)},indent=2)+'\\n') print(json.dumps({k:h[k] for k in ['poll_start','comments_since','case','manifest','state','watchdog-status','publisher-status','locks','failure_files','memory_current','memory_max','disk_free']},indent=2)) PY"
+}
