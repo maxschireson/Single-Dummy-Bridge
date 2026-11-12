@@ -1018,7 +1018,7 @@
       "restart_authorized": false
     },
     "gen71codexcompare": {
-      "status": "Full corpus excludes v4.1 training families; pooled gate eligibility corrected; scientific cohort unchanged",
+      "status": "Scientific cohort unchanged; pooled gate includes scored comparisons from authorized mixed peers",
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
       "authority": "Max05:42 Nov12 effective06:00; all arena collectors, relayed05:44 and reaffirmed05:57 on box/coordination",
@@ -1046,7 +1046,9 @@
         "registered_feeds_only": true,
         "training_families_excluded": true,
         "eligibility_rebuilt_each_check": true,
-        "guard_version": "gen71-eligible-gate-v2"
+        "guard_version": "gen71-eligible-gate-v2",
+        "authorized_mixed_peer_comparisons_supported": true,
+        "selfplay_rows_excluded": true
       },
       "gen8_authorized": false,
       "evaluation_exclusions": {
@@ -1059,7 +1061,7 @@
         "existing_immutable_manifest_kept": true,
         "new_cohorts_require": "41b18c1 or later, --exclude-families"
       },
-      "guard_validation": "10 tests; matched official check_gen71_gate.py on the same pinned registry/feed revisions; all195 preserved receipt/episode hashes reverified"
+      "guard_validation": "12 guard tests; official check_gen71_gate.py matched on identical pinned snapshots; all1174 pre-reload receipt/episode pairs and scientific files reverified"
     }
   },
   "requested_match_mix": {
