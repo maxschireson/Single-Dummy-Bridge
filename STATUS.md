@@ -1,12 +1,12 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:55 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:55 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 1 | 2 | 0 | 2 | 0 | 2 |
+| bill | 2 | 2 | 0 | 1 | 0 | 2 |
 | dave | 0 | 1 | 0 | 2 | 0 | 4 |
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
@@ -17,10 +17,10 @@ Generated 2026-11-12 07:55 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
-| g9 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | feature/gen9-bidding-cards |
-| g9 | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | feature/gen9-bidding-cards |
-| g9 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | feature/gen9-arena-epochs |
-| g9 | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | feature/gen9-workflow-tests-2 |
+| dave | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | feature/gen9-workflow-tests-2 |
+| sam | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | feature/gen9-bidding-cards |
+| sam | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | feature/gen9-bidding-cards |
+| will | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | feature/gen9-arena-epochs |
 
 ## Tasks
 
@@ -28,6 +28,7 @@ Generated 2026-11-12 07:55 UTC by `tools/workq.py` after a change by `sam`. Do n
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
+| [G9-B7](tasks/G9-B7.md) | Replay reader: read a profile's calls by replaying its own bidder | bill | bill until 11-12 10:55 | leased | high | 2026-11-12T11:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:55 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam | sam until 11-12 11:55 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will | will until 11-12 11:50 | leased | medium | 2026-11-12T16:00Z |  |
@@ -39,7 +40,6 @@ Generated 2026-11-12 07:55 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
-| [G9-B7](tasks/G9-B7.md) | Replay reader: read a profile's calls by replaying its own bidder | bill |  | open | high | 2026-11-12T11:00Z |  |
 | [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave |  | open | high | 2026-11-13T10:00Z | after G9-D4, G9-S5 |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
