@@ -1,23 +1,23 @@
 {
  "pair": "7s-32-v41~7s-32",
- "boards": 750,
- "cpu_per_board": 19.55,
+ "boards": 900,
+ "cpu_per_board": 19.34,
  "common": {
-  "imps_per_board": 0.0147,
-  "se": 0.092,
-  "boards": 750,
-  "won": 75,
-  "lost": 84,
-  "flat": 591
+  "imps_per_board": 0.0111,
+  "se": 0.0841,
+  "boards": 900,
+  "won": 92,
+  "lost": 101,
+  "flat": 707
  },
  "native": {
-  "imps_per_board": 0.0147,
-  "se": 0.092,
-  "boards": 750,
-  "won": 75,
-  "lost": 84,
-  "flat": 591
+  "imps_per_board": 0.0111,
+  "se": 0.0841,
+  "boards": 900,
+  "won": 92,
+  "lost": 101,
+  "flat": 707
  },
  "failures": 0,
- "boards_per_hour": 1456
+ "boards_per_hour": 1480
 }
