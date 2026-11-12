@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 17:10 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 17:10 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -117,11 +117,11 @@ Generated 2026-11-12 17:10 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 17:09 UTC.
+**azure4**: 8 of 8 cores busy, reported 11-12 17:10 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| d6-arrival |  | dave | 1 | 8 | running | 1,815 of 6,200 | 646.8 | 11-12 23:55 | `transfer/gen9-d6-arrival-azure4-20261112@9137b9a50` |
+| d6-arrival |  | dave | 1 | 8 | running | 1,847 of 6,200 | 694.2 | 11-12 23:26 | `transfer/gen9-d6-arrival-azure4-20261112@9137b9a50` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
@@ -131,8 +131,6 @@ Generated 2026-11-12 17:10 UTC by `tools/workq.py` after a change by `sam`. Do n
 | e9-12-u | E9-12 | bill | 3 | 4 | waiting | 0 of 600 |  |  |  |
 | e9-12-x | E9-12 | bill | 3 | 4 | waiting | 0 of 1,200 |  |  |  |
 | e9-16-h-v-p | E9-16 | g9 | 3 | 4 | waiting | 0 of 800 |  |  |  |
-| g9-x2-rel-std-50 | G9-X2 | sam | 3 | 4 | waiting | 0 of 300 |  |  |  |
-| g9-x2-rel-std-80 | G9-X2 | sam | 3 | 4 | waiting | 0 of 300 |  |  |  |
 | e9-0-n005 | E9-0 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-0-n01 | E9-0 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-0-n02d | E9-0 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
@@ -153,6 +151,8 @@ Generated 2026-11-12 17:10 UTC by `tools/workq.py` after a change by `sam`. Do n
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 55 |  |  |  |
 | g9-x2-ben64 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 47 |  |  |  |
+| g9-x2-rel-std-50 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 300 |  |  |  |
+| g9-x2-rel-std-80 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 300 |  |  |  |
 
 ## Boxes
 

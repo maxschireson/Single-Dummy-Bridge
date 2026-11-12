@@ -531,3 +531,5 @@
 {"at": "2026-11-12T17:08:00Z", "by": "sam", "op": "renew", "target": "E9-10", "until": "2026-11-12T21:08Z"}
 {"at": "2026-11-12T17:09:00Z", "by": "sam", "op": "job-cancel", "target": "azure4/g9-x2-rel-std-80"}
 {"at": "2026-11-12T17:10:00Z", "by": "sam", "op": "job-cancel", "target": "azure4/g9-x2-rel-std-50"}
+{"at": "2026-11-12T17:10:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-x2-rel-std-50", "note": "cancelled"}
+{"at": "2026-11-12T17:10:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-x2-rel-std-80", "note": "cancelled"}
