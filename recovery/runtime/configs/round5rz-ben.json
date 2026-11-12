@@ -1,0 +1,87 @@
+{
+  "schema": "arena-round-plan-v1",
+  "round": "v5rz",
+  "status": "launch-authorized",
+  "launch_enabled": true,
+  "roster": [
+    "5RZ32",
+    "5RZ192",
+    "5R32",
+    "5R192",
+    "5-32",
+    "4b",
+    "3",
+    "2",
+    "1",
+    "ben"
+  ],
+  "retired": [
+    "4",
+    "4p"
+  ],
+  "pair_weights": {
+    "5RZ32~5R32": 111,
+    "5R32~5-32": 74,
+    "5R32~4b": 80,
+    "5R32~3": 40,
+    "5R32~2": 30,
+    "5R32~1": 10,
+    "5RZ192~ben": 10,
+    "5R32~5R192": 15
+  },
+  "ben_match_fraction": 0.02702702702702703,
+  "ben_only_opponent": "5RZ192",
+  "ben": {
+    "source": "https://github.com/lorserker/ben",
+    "commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+    "config": "configs/ben-gen5-16.conf",
+    "bidding": "neural-only",
+    "opening_lead_samples": 16,
+    "play_samples": 16,
+    "dds_threads": 1,
+    "max_concurrent_matches": 1,
+    "http_timeout_seconds": 600
+  },
+  "timing": {
+    "measure": "elapsed wall seconds per actual root-game card decision",
+    "include_forced_decisions": true,
+    "exclude": [
+      "training forks",
+      "replayed prefixes",
+      "counterfactual forced actions",
+      "fixed opening leads"
+    ],
+    "breakdown": [
+      "opening lead",
+      "later play"
+    ],
+    "report_counts": true
+  },
+  "pending": [],
+  "historical_results": "preserve all completed games and their frozen manifests",
+  "target": "remaining-unplayed-initial-gen5rz-deals",
+  "seed": 202611101734,
+  "v5_samples": 192,
+  "bidding_conditions": [
+    "common-v5",
+    "native-partnership-bidders"
+  ],
+  "historical_v5_samples": 32,
+  "common_bidder": "5R32",
+  "large_from": 10,
+  "large_pool_multiplier": 4,
+  "large_tolerance": 0.04214601748644102,
+  "weighting": "belief",
+  "ridge": 0.001,
+  "medium_enabled": false,
+  "policy_ties_only": {
+    "actor": "5RZ32",
+    "near_tie": 0.0,
+    "samples": 32
+  },
+  "ben_policy_ties_only": {
+    "actor": "5RZ192",
+    "near_tie": 0.0,
+    "samples": 192
+  }
+}
