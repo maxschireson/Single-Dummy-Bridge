@@ -21,7 +21,8 @@ relabel   E9-4 part 1's tables (scripts/gen9_reading_gain.py: the first --tables
           that script's seeds, so the plays are the ones E9-4 part 1 scored. Written as one-table episodes under OUT/episodes.
           `pools --episodes OUT/episodes` then takes every table there, and `--deciders declarer` only declarer's decisions
           (where a reader of the defenders' cards decides).
-readings  For every stored decision, the log weight a bot spec from --bots (built on the --source capsule's bots, as
+readings  (On an --out folder without tables.json, such as p41's published house pools, the boards and cards are read from
+          its tab-<part>.json.gz files and every decision is kept.) For every stored decision, the log weight a bot spec from --bots (built on the --source capsule's bots, as
           scripts/gen9_match.py builds it) gives each stored layout and the true one, after meet(the table's opponent), from
           the decider's view. Stored as the bench stores a net (fit-NAME-<part>.npz, split into the opening lead, partner's
           other plays and the opponents'), with the bot's own factors and signal terms already in it, so the bench's report
@@ -62,6 +63,7 @@ from bridge_harness import gen9  # noqa: E402
 from bridge_harness.core import symbol  # noqa: E402
 from bridge_harness.gen6 import View  # noqa: E402
 from bridge_harness.gen7 import hidden_plays  # noqa: E402
+from bridge_harness.signals import SPOT, SPOT_MASK  # noqa: E402
 from gen9_ben_reading import ben_tables  # noqa: E402
 
 _spec = importlib.util.spec_from_file_location('gen8_reading_bench', ROOT / 'scripts' / 'gen8_reading_bench.py')
@@ -81,7 +83,7 @@ def kept(decisions, deciders):
     """The bench's decisions, kept where `deciders` decide: 'house' (the episode's candidate side: against BEN, the house
     bots), 'declarer', or 'all'."""
     def wrapped(e):
-        roles = e['assignments']
+        roles = e.get('assignments')
         for k, o, game in decisions(e):
             if deciders == 'all' or (deciders == 'house' and roles[o.controller] != 'opponent') \
                     or (deciders == 'declarer' and o.controller == o.contract.declarer):
@@ -240,6 +242,90 @@ class HeadReading:
         return out
 
 
+class ClassReading:
+    """E9-16 part 1b: each hidden seat's play read by the net's probability of its class of equal cards, the card inside
+    the class chosen evenly; `who` ('all', 'opponents' or 'partner') says whose plays are read so (the others by the
+    card). Classes: 'spots' (E9-3's: the spots nine and below of the suit held, or the card itself if higher),
+    'touching' (the cards of the suit held that touch the card played, honours included, two cards touching when only
+    cards already played lie between them), or 'card' (the net on the card: the prototype's reading). Readings on one
+    base share its net rows."""
+
+    def __init__(self, base, kind='spots', who='all'):
+        self.base, self.kind, self.who = base, kind, who
+        self.g7 = base.g7
+
+    def meet(self, opponent):
+        self.base.meet(opponent)
+
+    def probabilities(self, o, i, seat, chooser, held):
+        """([n, 52] the net's probabilities, [n] legal cards) for the chooser's view at play i in each layout, cached on
+        the base player for every ClassReading built on it."""
+        q = self.base
+        ident = (o.auction, o.dealer, o.contract)
+        cache = getattr(q, '_class_reading_cache', (None, {}))
+        if cache[0] != ident:
+            cache = (ident, {})
+            q._class_reading_cache = cache
+        cache = cache[1]
+        bit = np.uint64(1) << np.arange(52, dtype=np.uint64)
+        keys = (held.astype(np.uint64) @ bit).tolist()
+        todo = [r for r, k in enumerate(keys) if (i, k) not in cache]
+        if todo:
+            batch = q.play_arrays(o, i, seat, chooser, held[todo])
+            legal = np.asarray(batch['legal'])
+            p = np.exp(q.net.log_policy_arrays(batch).astype(np.float64)) * legal
+            for j, r in enumerate(todo):
+                cache[(i, keys[r])] = (p[j], int(legal[j].sum()))
+        got = [cache[(i, k)] for k in keys]
+        return np.stack([g[0] for g in got]), np.array([g[1] for g in got])
+
+    def klass(self, o, i, held):
+        played = o.history[i][1]
+        suit, rank = played // 13, played % 13
+        K = np.zeros_like(held)
+        if self.kind == 'spots':
+            if rank <= SPOT:
+                K = held & SPOT_MASK[suit][None, :]
+            else:
+                K[:, played] = True
+            return K
+        gone = np.zeros(13, bool)                                   # this suit's cards played before this one
+        gone[[x % 13 for _, x in o.history[:i] if x // 13 == suit]] = True
+        mine = held[:, suit * 13:suit * 13 + 13]
+        ok = mine | gone[None, :]
+        out = np.zeros_like(mine)
+        out[:, rank] = True
+        if rank < 12:                                               # upward: every rank between is held or gone
+            run = np.cumprod(ok[:, rank + 1:], axis=1).astype(bool)
+            out[:, rank + 1:] = run & mine[:, rank + 1:]
+        if rank > 0:
+            run = np.cumprod(ok[:, :rank][:, ::-1], axis=1).astype(bool)[:, ::-1]
+            out[:, :rank] = run & mine[:, :rank]
+        K[:, suit * 13:suit * 13 + 13] = out
+        return K
+
+    def play_log_likelihood(self, o, view, assign, plays):
+        q, f = self.base, self.g7.play_floor
+        out = np.zeros(len(assign))
+        for play in plays:
+            i, seat, chooser = play
+            partner = chooser % 2 == o.controller % 2
+            held = q.held_then(o, view, assign, i, chooser)
+            p, count = self.probabilities(o, i, seat, chooser, held)
+            played = o.history[i][1]
+            if self.kind == 'card' or (self.who == 'opponents' and partner) or (self.who == 'partner' and not partner):
+                v = np.log((1 - f) * p[:, played] + f / np.maximum(count, 1))
+                if q.opponent_factor != 1. and not partner:
+                    v = v * q.opponent_factor
+            else:
+                K = self.klass(o, i, held) & (p > 0)
+                K[:, played] = True
+                size = K.sum(axis=1)
+                v = np.log((1 - f) * (p * K).sum(axis=1) + f * size / np.maximum(count, 1)) - np.log(size)
+            out += np.where(count > 1, v, 0.)
+        return out
+
+
 class ExpertReading:
     """A Gen 9 reader whose opposing defenders' spots are read by an E9-15 signal model at every occasion it defines."""
 
@@ -271,9 +357,13 @@ class ExpertReading:
 
 def readings(a):
     out = Path(a.out)
-    listed = json.loads((out / 'tables.json').read_text())
-    # the bench numbers its tables in the order `pools` took them (passed-out tables left out): the same order here
-    yielded = [(path, key) for path, key, *_ in table_source([tuple(x) for x in listed['tables']])(None, None)]
+    from_tab = not (out / 'tables.json').exists()             # p41's published pools: boards and cards in tab-<part>.json.gz
+    if from_tab:
+        listed = dict(deciders='all')
+    else:
+        listed = json.loads((out / 'tables.json').read_text())
+        # the bench numbers its tables in the order `pools` took them (passed-out tables left out): the same order here
+        yielded = [(path, key) for path, key, *_ in table_source([tuple(x) for x in listed['tables']])(None, None)]
     source = str(Path(a.source).resolve())
     readers, meets, built = {}, {}, {}
 
@@ -299,6 +389,10 @@ def readings(a):
         dfd = PlayHead.from_json(heads['ben.defender'][head_name]) if which in ('defender', 'both') else None
         base = player_of(a.head_base if dfd is None else a.expert_base)
         readers[name], meets[name] = HeadReading(base, decl, float(factor), dfd), ''
+    for item in a.class_reading:
+        name, rest = item.split('=', 1)
+        kind, _, who = rest.partition(':')
+        readers[name], meets[name] = ClassReading(player_of(a.class_base), kind, who or 'all'), ''
     for item in a.expert_reading:
         from gen9_signal_expert import build
         name, rest = item.split('=', 1)
@@ -317,16 +411,25 @@ def readings(a):
         by_table = {}
         for r in rows:
             by_table.setdefault(int(r['table']), {})[int(r['ply'])] = r
+        if from_tab:
+            with gzip.open(out / part.name.replace('pools-', 'tab-').replace('.npz', '.json.gz'), 'rt') as f:
+                tabs = json.load(f)
         for t, wanted in by_table.items():
             info = tables_[t]
-            path, key = yielded[info['index']]
-            if os.path.basename(path) != info['path'] or key != info['key']:
-                raise SystemExit(f"{part.name}: table {info['index']} is {info['path']}/{info['key']} in the store, {path}/{key} here")
-            with gzip.open(path, 'rt') as f:
-                d = json.load(f)
-            e = d['unique_tables'][info['key']]
+            if from_tab:
+                tab = tabs[t]
+                e = dict(board=tab['board'], tables=[dict(actions=[dict(card=c) for c in tab['played']])])
+                opponent = None
+            else:
+                path, key = yielded[info['index']]
+                if os.path.basename(path) != info['path'] or key != info['key']:
+                    raise SystemExit(f"{part.name}: table {info['index']} is {info['path']}/{info['key']} in the store, {path}/{key} here")
+                with gzip.open(path, 'rt') as f:
+                    d = json.load(f)
+                e = d['unique_tables'][info['key']]
+                opponent = d['opponent']
             for n in todo:
-                readers[n].meet(meets[n] or d['opponent'])
+                readers[n].meet(meets[n] or opponent)
             for k, o, game in decisions(e):
                 if k in wanted:
                     r = wanted[k]
@@ -489,6 +592,8 @@ def main():
     ap.add_argument('--head-base', default='8x-32')
     ap.add_argument('--expert-reading', action='append', default=[], help='NAME=MODELS.json:VERSION:SIZE:MODEL (E9-15)')
     ap.add_argument('--expert-base', default='r9b-32')
+    ap.add_argument('--class-reading', action='append', default=[], help='NAME=KIND[:WHO], KIND spots|touching|card, WHO all|opponents|partner (E9-16)')
+    ap.add_argument('--class-base', default='8p-32')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
     ap.add_argument('--verbose', action='store_true')
