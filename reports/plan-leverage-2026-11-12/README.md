@@ -121,7 +121,10 @@ Declaring +0.021 +- 0.007, defending +0.029 +- 0.012. Margin 0.125 gets +0.041 o
 Examples of what the ceiling finds (`scripts/plan_examples.py`: real playouts say the other card is better by more
 than two standard errors): dummy cashing a side king at trick 5 in 3S where a trump first is 0.75 +-
 0.21 better; a defender with KQ63 of trumps ducking where the king is 0.56 +- 0.16 better; declarer in 4H taking a
-club finesse where drawing the last trump is 0.50 +- 0.20 better. Double dummy rates each pair level.
+club finesse where drawing the last trump is 0.50 +- 0.20 better. Late in the hand: a defender in 3NT at trick 7
+discarding from Q6 where a club from AJ6 is 0.91 +- 0.21 better; a defender in 5H at trick 7 playing the queen from
+QT954 on the jack where the ten is 0.71 +- 0.14 better; declarer in 1NT at trick 9 leading a club where cashing the
+spade king first is 0.47 +- 0.11 better. Double dummy rates each pair level or nearly so.
 
 ## 2. Simulated seats: what the playouts are worth by net and by seat
 
