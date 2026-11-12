@@ -16,6 +16,15 @@ the level the combined trump length supports.
 Every range and threshold is a field of `Settings`, so a system is a small dictionary and can be
 tuned (scripts/tune_rule_bidder.py tunes it for double-dummy IMPs).
 
+Judgement (optional, `Settings.estimate`). The general procedure counts points. A system may also
+name a trick estimate: a small network fitted to double-dummy results, from the bidder's own hand,
+the other seats' shown ranges and the auction, to the tricks each side takes in each strain
+(scripts/fit_rule_estimator.py). With one, the general procedure moves its count for a game by at
+most a few points toward what the estimate implies, bids a slam the count is a little short of
+when the estimate expects twelve tricks, bids on over the opponents' contract when the estimate
+makes that worth it on average, and doubles them from the three level on the same reckoning.
+Without one nothing of this runs and the system is what it was before.
+
 Card ids are 13 * suit + rank with suits spades, hearts, diamonds, clubs and rank 0 = the two.
 Calls are bidding_env tokens: 2 pass, 3 double, 4 redouble, 5 + 5 * (level - 1) + strain with
 strains clubs, diamonds, hearts, spades, no trump = 0..4.
@@ -29,6 +38,7 @@ from .system_bidders import RuleBidder, options_sha256
 PASS, DOUBLE, REDOUBLE = 2, 3, 4
 STRICT = False                      # tests and the tuner set this: a failing rule raises instead of passing
 RULES = 'r3'                        # raised whenever a rule changes what the bidder calls: part of a system's identity
+JUDGEMENT = 'j1'                    # the same for what the bidder does with a trick estimate: part of the identity of a system that names one
 C, D, H, S, N = range(5)
 MAJORS, MINORS, SUITS = (H, S), (C, D), (C, D, H, S)
 BALANCED = ((4, 3, 3, 3), (4, 4, 3, 2), (5, 3, 3, 2))
@@ -660,8 +670,8 @@ def table_for(st, me):
 
 # ---- the trick estimate ------------------------------------------------------------------
 # Optional (Settings.estimate). A small network fitted to double-dummy results (scripts/fit_rule_estimator.py):
-# from this hand and what the other three seats have shown, the tricks each side would take as declarer in each
-# strain. With it the general procedure places games and slams by expected score in place of point count.
+# from this hand, what the other three seats have shown and the auction, the tricks each side would take as
+# declarer in each strain. The general procedure uses it as judgement beside its point count (see the module text).
 
 def features(h, st, me):
     """What the estimate sees: this hand card by card for the honours, and the three other seats' shown ranges."""
@@ -794,7 +804,6 @@ def contest_gain(seen, sigma, ours, theirs, vul_us, vul_them):
 
 
 ESTIMATES = {}
-JUDGED = None                                            # a list to collect each judgement in (for studies)
 
 
 def estimate_of(g):
@@ -905,8 +914,6 @@ def plan(h, st, me):
         short = (g.est_v if st.vulnerable(me) else g.est_nv) / 10.
         worth = need - mid2 / 2. + (2.6 if x == N else 3.) * (tricks - level_of(target) - 6 + short)
         move = max(-g.est_band, min(g.est_band, int(round(g.est_weight / 10. * (worth - points)))))
-        if JUDGED is not None:
-            JUDGED.append((me, len(st.calls), x, level_of(target), points, mid2, need, tricks, worth, move, int(ours), len(enemy)))
         points, cmin, cmax = points + move, cmin + move, cmax + move
     in_game = ours and below_game_is_enough(over)
     if pact[0] == bid(3, N) and ours and rho_passed and any(k == 'transfer' for _, k in st.acts[partner]):
@@ -1230,6 +1237,7 @@ class RuleSystemBidder(RuleBidder):
         described = dict(asdict(self.settings), rules=RULES)
         if self.settings.estimate:
             described['estimate_sha256'] = estimate_of(self.settings).sha256
+            described['judgement'] = JUDGEMENT
         else:                                           # a system without an estimate keeps the identity it had before estimates existed
             for key in ('estimate', 'est_band', 'est_weight', 'est_nv', 'est_v', 'est_slam_band', 'est_slam', 'est_contest', 'est_sigma', 'est_reach', 'est_double'):
                 described.pop(key)

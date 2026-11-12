@@ -141,7 +141,7 @@ def worker(conn, shard, of, source, reference):
             return
         seed, n, tables, settings, opponents = msg
         if settings not in bidders:
-            if len(bidders) > 400:
+            if len(bidders) > 6:                       # each keeps its own memory of auction states
                 bidders.clear()
             bidders[settings] = RuleSystemBidder(Settings(**json.loads(settings)), opponents=opponents)
         cand = bidders[settings]
