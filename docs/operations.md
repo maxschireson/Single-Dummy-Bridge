@@ -1,7 +1,13 @@
 # Operations
 
+When an authorized mix restores anchors absent from a drained producer, preparation can use
+`--restore-actors PATH/manifest.json`: an immutable published manifest and its hashed artifacts.
+Only missing actors requested by the plan are imported. Shared actor specifications must agree,
+every imported model is hash checked, and the catalog is archived with its hash in the successor.
+Deals and completed records still come exclusively from `--source`; a retained actor is never replaced.
+
 Start with the runbook for the generation you operate: Gen 7 phase 1 uses the
-[phase 1 notice](gen7_candidate_2026-11-11.md) (launch steps, sharding, preflight);
+[phase 1 notice](generations/gen7/gen7_candidate_2026-11-11.md) (launch steps, sharding, preflight);
 Gen 6 collectors use the [Gen 6 recovery runbook](generations/gen6/gen6-arena-recovery-20261111.md),
 which records host-specific paths, manifests, hashes, BEN configuration, lock
 discipline and restoration details. Paths under `/workspace/work/` describe

@@ -323,19 +323,37 @@ class Gen6Player(ArenaPlayer):
         if 'gen5' in (c.lead_source, c.early_source) and not spec.get('belief'):
             raise ValueError("A 'gen5' layout source needs the spec's belief net")
         self.scorer = FitScorer(root / spec['scorer'])
+        # Gen 8 prototype (inert unless the spec names these): the systems NS and EW have declared at this table
+        # (spec['table_systems']), a scorer that reads each side's calls by its system (spec['system_scorer']), and
+        # the systems whose auctions the lead net was trained on (spec['lead_systems']; elsewhere the scorer leads).
+        self.system_scorer = None
+        if spec.get('system_scorer'):
+            from .system_nets import SystemFitScorer
+            self.system_scorer = SystemFitScorer(root / spec['system_scorer'])
+        self.seat_table(spec.get('table_systems'))
         self.lead_net = None
         if 'lead_net' in (c.lead_source, c.leader_early_source):
             self.lead_net = LeadNet(root / spec['lead_belief'], BidderState(root / spec['lead_state_bidder']))
         self.lead_context = (None, None)
 
+    def seat_table(self, systems):
+        """Gen 8: the systems North-South and East-West declare at the table about to be played (None: nothing is
+        declared). The runner calls this before every table (gen5_arena.run_board), because the two rooms of a
+        board can differ."""
+        self.table_systems = systems = tuple(systems or (None, None))
+        if self.system_scorer is not None:
+            from .systems import TableSystems
+            self.scorer = self.system_scorer.bind(TableSystems(*systems))
+        self.lead_fits = 'lead_systems' not in self.spec or all(x in self.spec['lead_systems'] for x in systems)
+
     # ---- which layouts -------------------------------------------------------------------
     def source(self, o, view):
         c = self.config
         if not o.history:
-            return 'scorer' if c.lead_source == 'lead_net' and not LeadNet.fits(o.auction) else c.lead_source
+            return 'scorer' if c.lead_source == 'lead_net' and not (self.lead_fits and LeadNet.fits(o.auction)) else c.lead_source
         if len(o.history) // 4 + 1 >= c.list_from_trick and view.count() <= c.list_max_layouts:
             return 'list'
-        if c.leader_early_source == 'lead_net' and o.controller == (o.contract.declarer + 1) % 4 and LeadNet.fits(o.auction):
+        if c.leader_early_source == 'lead_net' and o.controller == (o.contract.declarer + 1) % 4 and self.lead_fits and LeadNet.fits(o.auction):
             return 'lead_net'
         return c.early_source
 
@@ -429,27 +447,43 @@ class Gen6Player(ArenaPlayer):
         remaining = 13 - len(o.history) // 4
         means = {c: 0. for c in o.legal}
         tricks = dict(means)
+        # Logging only (no effect on the choice): how much the best card depends on the layout.
+        share = dict(means)
+        layout_best = weight_sum = 0.
         nodes = 0
         for (values, count), w in zip(solved, weights):
             if set(values) != set(o.legal):
                 raise RuntimeError('DDS legal-card expansion mismatch')
             nodes += count
+            utilities = {}
             for c, t in values.items():
                 total = o.declarer_tricks + (t if declaring else remaining - t)
+                utilities[c] = total if declaring else -total
                 means[c] += float(w) * (total if declaring else -total)
                 tricks[c] += float(w) * total
+            top = max(utilities.values())
+            layout_best += float(w) * top
+            weight_sum += float(w)
+            for c, u in utilities.items():
+                if u >= top - 1e-9:
+                    share[c] += float(w)
         best = max(means.values())
         eligible = sorted(c for c, v in means.items() if best - v <= self.near_tie + 1e-9)
         choice = rng.choice(eligible)
         n = len(solved)
+        scale = weight_sum if weight_sum > 0 else 1.
         return Decision(choice, dict(samples=n, dds_calls=n, dds_nodes=nodes, objective='tricks', batch=True,
             dds_native_solves=after['native_solves'] - before['native_solves'], dds_cache_hits=after['hits'] - before['hits'],
             dds_duplicate_worlds=after['duplicate_worlds'] - before['duplicate_worlds'], unique_worlds=n,
             near_tie=self.near_tie, behavior_probabilities={symbol(c): 1 / len(eligible) if c in eligible else 0. for c in means},
             selected_probability=1 / len(eligible), selected_pimc_gap=best - means[choice], gen6=info,
             uncertainty_note='Weighted layouts; no IID standard error.',
+            # guess_size: tricks gained by seeing the layout before this one card (weighted mean of each
+            # layout's own best card, minus the best single card for all layouts). 0 when one card is
+            # best in every layout. best_share: weight of the layouts in which that card is a best card.
+            layout_best_utility=layout_best / scale, guess_size=max(0., (layout_best - best) / scale),
             estimates={symbol(c): dict(utility=v, utility_stderr=None, gap_to_best=best - v, gap_stderr=None,
-                                       declarer_tricks=tricks[c]) for c, v in means.items()}))
+                                       declarer_tricks=tricks[c], best_share=share[c] / scale) for c, v in means.items()}))
 
     def break_ties(self, o, rng, result):
         """ArenaPlayer.choose's policy step, unchanged except that the policy net is told a

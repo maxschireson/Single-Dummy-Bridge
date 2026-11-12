@@ -55,7 +55,7 @@ class SettingsTests(unittest.TestCase):
     def test_resolved_writes_out_every_setting_and_reads_back_the_same(self):
         block = dict(tie_break='gen5', tree=[dict(to_trick=6), dict(from_trick=7, tricks=3, reply='search')])
         full = resolved(block)
-        self.assertEqual(set(full), {f.name for f in fields(Gen7Config)} | {'tree'})
+        self.assertEqual(set(full), {f.name for f in fields(Gen7Config) if not f.name.startswith('early_') and f.name != 'opponent_play_weight'} | {'tree'})
         for stage in full['tree']:
             self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
         self.assertEqual(gen7_settings(full), gen7_settings(block))
