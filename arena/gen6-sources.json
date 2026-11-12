@@ -3,6 +3,16 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen7independentphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · independent phase 1 (all five pairs)",
+      "branch": "arena-gen7-phase1-independent-feed",
+      "cohort": "819d904b4f1c3b98fe2835c74188834b3f6165aff7c8914c412e26c1f1180518"
+    },
+    {
       "key": "gen7codexphase1",
       "group": "gen7",
       "generation": 7,
@@ -74,9 +84,11 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen6 independent · fast self-play and BEN16",
+      "name": "Gen6 independent · completed fast self-play and BEN16",
       "branch": "arena-gen6-fast-selfplay-independent-feed",
-      "cohort": "63d7bee704eae61f070af1dca0476e2171b66b4fb084a1b78c11df18d76ed5e7"
+      "cohort": "63d7bee704eae61f070af1dca0476e2171b66b4fb084a1b78c11df18d76ed5e7",
+      "retired": true,
+      "revision": "937792a17084d0bbaa6a044e9b6e0f3aaeb80483"
     },
     {
       "key": "gen6ben16completed",
