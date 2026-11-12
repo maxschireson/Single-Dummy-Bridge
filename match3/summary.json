@@ -1,23 +1,23 @@
 {
  "pair": "pr75-8p-32-v41~8p-32-v41",
- "boards": 200,
- "cpu_per_board": 79.9,
+ "boards": 250,
+ "cpu_per_board": 77.73,
  "common": {
-  "imps_per_board": 0.255,
-  "se": 0.1047,
-  "boards": 200,
-  "won": 13,
-  "lost": 5,
-  "flat": 182
+  "imps_per_board": 0.24,
+  "se": 0.0983,
+  "boards": 250,
+  "won": 16,
+  "lost": 6,
+  "flat": 228
  },
  "native": {
-  "imps_per_board": 0.255,
-  "se": 0.1047,
-  "boards": 200,
-  "won": 13,
-  "lost": 5,
-  "flat": 182
+  "imps_per_board": 0.24,
+  "se": 0.0983,
+  "boards": 250,
+  "won": 16,
+  "lost": 6,
+  "flat": 228
  },
  "failures": 0,
- "boards_per_hour": 357
+ "boards_per_hour": 364
 }
