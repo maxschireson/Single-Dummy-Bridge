@@ -80,7 +80,8 @@ class Gen8PlanTests(unittest.TestCase):
         self.assertEqual(entry['sha256'], package['generators'][0]['sha256'])
         self.assertEqual(make_bidder(entry, ROOT).sha256, entry['sha256'])
         self.assertEqual(make_bidder(package['generators'][0], ROOT).sha256, entry['sha256'])
-        self.assertEqual(shipped['systems'], {'8s-32': HOUSE, '8c-32': RULES, '71s-32': HOUSE, '6-32': HOUSE})
+        self.assertEqual(shipped['systems'], {'8s-32': HOUSE, '8c-32': RULES, '71s-32': HOUSE, '6-32': HOUSE, '5RZ32': 'house-gen5', '1': 'house-dds40k'})
+        self.assertEqual(set(shipped['systems']), set(shipped['roster']) | {shipped['common_bidder']})
         # the scorer release: built on the bots' hand-fit scorer, with its table trained for that identity of the rule system
         art = shipped['artifacts'][SYSTEM_SCORER_KEY]
         manifest = json.loads((ROOT / art['release'] / 'manifest.json').read_text())
@@ -92,6 +93,29 @@ class Gen8PlanTests(unittest.TestCase):
             self.assertEqual(resolved(bot['gen7']), bot['gen7'])        # nothing is left to a default in code
             self.assertTrue(bot['system_scorer'])
         self.assertNotIn('bidder', shipped['gen7_bots']['8s-32'])
+        # the lead net serves every system the bots meet except the rule system: there the scorer leads
+        for key in ('8s-32', '8c-32'):
+            self.assertEqual(set(shipped['gen7_bots'][key]['lead_systems']), set(shipped['systems'].values()) - {RULES} | {'ben-gib-bbo-8742'})
+        # every opponent in the roster has a reading factor of its own
+        table = shipped['gen7_bots']['8s-32']['gen7']['opponent_play_weight']
+        self.assertTrue(set(shipped['roster']) <= set(table) and '*' in table)
+
+    def test_the_shipped_ben_lane_is_closed_and_plays_the_same_candidate(self):
+        main = load_plan(ROOT / 'configs/round8-candidate.json', require_ready=False)
+        path = ROOT / 'configs/round8-candidate-ben.json'
+        with self.assertRaises(ValueError):
+            load_plan(path)
+        lane = load_plan(path, require_ready=False)
+        self.assertFalse(lane['launch_enabled'])
+        self.assertTrue(lane['pending'])
+        self.assertEqual(lane['gen7_bots'], {'8s-32': main['gen7_bots']['8s-32']})        # the same entry, so the same identity
+        self.assertEqual(lane['artifacts'], main['artifacts'])
+        self.assertEqual(lane['roster'], ['8s-32', 'ben64', 'ben'])
+        self.assertEqual(lane['systems'], {'8s-32': HOUSE, 'ben64': 'ben-gib-bbo-8742', 'ben': 'ben-gib-bbo-8742', '6-32': HOUSE})
+        bot = lane['gen7_bots']['8s-32']
+        self.assertIn('ben-gib-bbo-8742', bot['lead_systems'])                              # at a BEN table the lead net is used, as in Gen 7.1
+        self.assertEqual({bot['gen7']['opponent_play_weight'][k] for k in ('ben', 'ben64')}, {0.5})
+        self.assertTrue((ROOT / 'configs/systems/ben-gib-bbo-8742.json').exists())
 
     def test_a_plan_without_systems_builds_the_bots_it_always_built(self):
         seven_only = deepcopy(self.plan)

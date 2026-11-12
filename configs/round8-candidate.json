@@ -5,29 +5,33 @@
  "launch_enabled": false,
  "pending": [
   "Not authorized. Max has said he will want to push Gen 8 when it has bidding diversity (12 November 2026, 06:54 UTC) and that nothing launches without him. Whoever opens this plan records his authorization here and in the notice.",
-  "Match mix: `pair_weights` is a proposal (Gen 8 against Gen 7.1 two boards in four; the Precision bot against Gen 7.1 and against Gen 8 one each). Max and g7 set the arena's mix, the BEN lanes and the self-play cohorts.",
-  "BEN: the candidate reads BEN's plays at half weight (`opponent_play_weight` 0.5, Gen 7's exponent) from trick 1. No Gen 8 board has been played against BEN; the first BEN lane is that measurement."
+  "Match mix: `pair_weights` is a proposal (per six boards: Gen 8 against Gen 7.1 two; the Precision bot against Gen 7.1 and against Gen 8 one each; Gen 8 against Gen 5 (5RZ32) and against Gen 1 one each). Max, 12 November 2026, 15:14 UTC: \"We should also have some 5 and some 1 for diversity\"; 15:15: \"Maybe 2 also.\" Bot 2 is not in: Gen 8 has no calibrated reading factor for it (it would be read at the default 0.3), and Max has not settled it. Max and g7 set the arena's mix, the BEN lanes and the self-play cohorts.",
+  "BEN: the candidate reads BEN's plays at half weight (`opponent_play_weight` 0.5, Gen 7's exponent) from trick 1; that figure is carried over, not measured. No Gen 8 board has been played against BEN. Max, 12 November 2026, 15:12 UTC: \"We should have some Ben boards, but those can come in the arena.\" The lane for them is configs/round8-candidate-ben.json."
  ],
  "notes": [
   "docs/gen8_candidate_2026-11-12.md is the notice this file belongs to: what was measured, on how many boards, and what was not.",
-  "Gen 8 candidate (8s-32) is Gen 7.1 standard (71s-32: Gen 6 fast with the gen7 engine and policy net v4.1) with three changes. (1) The play so far is read at every trick, from trick 1, at exponent 1.0 (Gen 7.1: from trick 7 at 0.5): before the deal list, a pool of 512 layouts drawn by the hand-fit scorer is weighted by the policy net's probability of the hidden seats' plays and resampled for the solver. (2) The reading of the opponents' plays is scaled by who they are (`opponent_play_weight`, by bot id; partner is always read in full): 1.0 for the house family, 0.2 for bot 1, 0.5 for BEN, 0.3 for anyone else. (3) Each side's calls are read by the system that side declares (`system_scorer`), and the lead net is used only at tables where both sides bid the house system (`lead_systems`).",
+  "Gen 8 candidate (8s-32) is Gen 7.1 standard (71s-32: Gen 6 fast with the gen7 engine and policy net v4.1) with three changes. (1) The play so far is read at every trick, from trick 1, at exponent 1.0 (Gen 7.1: from trick 7 at 0.5): before the deal list, a pool of 512 layouts drawn by the hand-fit scorer is weighted by the policy net's probability of the hidden seats' plays and resampled for the solver. (2) The reading of the opponents' plays is scaled by who they are (`opponent_play_weight`, by bot id; partner is always read in full): 1.0 for the house family, 0.2 for bot 1, 0.5 for BEN, 0.3 for anyone else. (3) Each side's calls are read by the system that side declares (`system_scorer`), and the lead net is used at tables where each side bids one of the systems Gen 7.1 already meets (`lead_systems`: the Gen 6, Gen 5 and DDS-trained house bidders and BEN's, so against those bots the lead net and the scorer are used exactly as Gen 7.1 uses them); at a table with the rule system the scorer leads.",
   "8c-32 is 8s-32 that bids by the project's own rule bidder (bridge_harness/rule_bidder.py, a Precision-style strong club; rules r3 with judgement from a trick estimate; settings and identity in configs/rule-systems/precision-r4.json) in place of the house net. Its bidding net stays in its spec because the lead net takes that net's features as an input.",
   "`systems` says which system each bot declares. The runner labels every table with the two sides' systems and tells both players before the table is played; in a pair's common-auction rooms every seat is bid by the common bidder (6-32, the house net), in its own-auction rooms each bot bids its own system, so 8c-32 against a house-bidding bot is a table with two systems.",
-  "71s-32 here is the arena's 71s-32: same settings, same policy file at the same path, so the same identity; 6-32 is unchanged from the source run.",
+  "71s-32 here is the arena's 71s-32: same settings, same policy file at the same path, so the same identity; 6-32, 5RZ32 (Gen 5 with representative layouts and the policy on exact ties) and 1 (Gen 1) are unchanged from the source run. They declare the house bidders they bid with (`house-gen5`, `house-dds40k`); the scorer holds no table for those and reads their calls with the base file, as Gen 7.1 does. Gen 8 reads 5RZ32's plays at 1.0 and bot 1's at 0.2, from 96-board calibration matches.",
   "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here. Prepare at the commit named in the notice or later: earlier sources do not know `systems`, a bot's `bidder`, or the `system_scorer` artifact."
  ],
- "model_note": "Gen 8 candidate (8s-32) is Gen 7.1 standard with the play read from trick 1 at exponent 1.0 (opponents' plays scaled by opponent type), and with each side's calls read by the bidding system that side declares (system-aware hand-fit scorer v1; the lead net serves house auctions only). 8c-32 is the same bot bidding the project's rule system (Precision style, rules r3) instead of the house net. Gen 7.1 standard (71s-32) and Gen 6 fast (6-32) are unchanged. Settings are in each bot's `gen7` block. docs/gen8_candidate_2026-11-12.md has the details.",
+ "model_note": "Gen 8 candidate (8s-32) is Gen 7.1 standard with the play read from trick 1 at exponent 1.0 (opponents' plays scaled by opponent type), and with each side's calls read by the bidding system that side declares (system-aware hand-fit scorer v1; the lead net serves the auctions Gen 7.1 already meets, and not the rule system's). 8c-32 is the same bot bidding the project's rule system (Precision style, r4: rules r3 with judgement j1) instead of the house net. Gen 7.1 standard (71s-32) and Gen 6 fast (6-32) are unchanged. Settings are in each bot's `gen7` block. docs/gen8_candidate_2026-11-12.md has the details.",
  "interpretation": "Gen 8 against Gen 7.1 in common auctions is card play alone. A pair with 8c-32 has two readings: in common auctions (bid by the house net) it is card play between the two bots, which for 8c-32 against 8s-32 is the same engine twice; in own auctions 8c-32 bids the rule system and its opponent the house system, so the difference includes the bidding. Report the two conditions separately. Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
  "roster": [
   "8s-32",
   "8c-32",
   "71s-32",
-  "6-32"
+  "6-32",
+  "5RZ32",
+  "1"
  ],
  "pair_weights": {
   "8s-32~71s-32": 2,
   "8c-32~71s-32": 1,
-  "8c-32~8s-32": 1
+  "8c-32~8s-32": 1,
+  "8s-32~5RZ32": 1,
+  "8s-32~1": 1
  },
  "common_bidder": "6-32",
  "audit_references": {
@@ -38,7 +42,9 @@
   "8s-32": "house-gen6",
   "8c-32": "rules-precision",
   "71s-32": "house-gen6",
-  "6-32": "house-gen6"
+  "6-32": "house-gen6",
+  "5RZ32": "house-gen5",
+  "1": "house-dds40k"
  },
  "artifacts": {
   "gen7_policy_v41": {
@@ -112,7 +118,10 @@
    },
    "system_scorer": true,
    "lead_systems": [
-    "house-gen6"
+    "house-gen6",
+    "house-gen5",
+    "house-dds40k",
+    "ben-gib-bbo-8742"
    ]
   },
   "8c-32": {
@@ -172,7 +181,10 @@
    },
    "system_scorer": true,
    "lead_systems": [
-    "house-gen6"
+    "house-gen6",
+    "house-gen5",
+    "house-dds40k",
+    "ben-gib-bbo-8742"
    ],
    "bidder": {
     "kind": "python",
