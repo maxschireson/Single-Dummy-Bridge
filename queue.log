@@ -11,3 +11,6 @@
 2026-11-12T12:40:57Z end ceil16b: exit 143
 2026-11-12T12:40:59Z source now ed3c311 Ceiling: more layouts a pair than one draw of the bot's gives, and a fil
 2026-11-12T12:40:59Z start ceil64 (source ed3c311): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 64 --max-gap 0.25 --skip-files 500 --files 500 --workers 8 --out $R.json
+2026-11-12T12:55:22Z end ceil64: exit 1
+2026-11-12T12:55:24Z source now 7a24cf7 Playout bench: wide layouts (repeated draws of the bot's) and a filter o
+2026-11-12T12:55:24Z start wide1 (source 7a24cf7): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v4:top;v0:top;v41:blend" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json

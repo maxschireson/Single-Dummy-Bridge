@@ -2,3 +2,25 @@
 40 files, 49 pairs, 401 s
 60 files, 71 pairs, 547 s
 80 files, 94 pairs, 729 s
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/plan/src/scripts/plan_ceiling.py", line 70, in pairs_of
+    declarer = board.contract.declarer
+               ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'declarer'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/bridgebots/work/plan/src/scripts/plan_ceiling.py", line 175, in <module>
+    main()
+  File "/home/bridgebots/work/plan/src/scripts/plan_ceiling.py", line 161, in main
+    for got in pool.imap(pairs_of, files, chunksize=1):
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 873, in next
+    raise value
+AttributeError: 'NoneType' object has no attribute 'declarer'
