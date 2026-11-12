@@ -153,12 +153,15 @@ def replay_plays(board, actions):
 
 def card_delta(player, key, board, plays, carding, side):
     """The experience-v1 delta of one finished board for the partnership on `side` (0 = North-South), from its declared
-    carding (a carding block or descriptor): its card.<key> counts. Empty stats when nothing is declared."""
+    carding (a carding block or descriptor): its card.<key> counts (honesty) and card.<key>.emit counts (emission
+    tables). Empty stats when nothing is declared."""
     from .gen9_play import carding_parts
     from .signals import SignalModel
     descriptor, _ = carding_parts(carding)
     model = SignalModel(descriptor)
-    return xp.delta(player, key, card_stats(board, plays, model, side) if model else {})
+    if not model:
+        return xp.delta(player, key, {})
+    return xp.delta(player, key, dict(card_stats(board, plays, model, side), **emission_stats(board, plays, model, side)))
 
 
 def emission_stats(board, plays, model, side):
