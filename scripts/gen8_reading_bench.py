@@ -22,6 +22,8 @@ pools   For every decision of the recorded root tables after the opening lead wh
         log-probability of the hidden seats' plays so far in each layout and in the true layout (the floored sum
         Gen7Player.play_log_likelihood makes), split into the opening lead, partner's other plays and the opponents'.
 fits    The same log-probabilities for one more net, from the stored layouts. Nothing is solved again.
+floors  One net's log-probabilities again at other floors (--floor, repeatable), from the stored pools alone: each table is
+        replayed from tab-<part>.json.gz, so the episodes are not needed. `report` then has a net NAME@FLOOR for each.
 owners  For each --net, its owner head's log-probability of every stored layout and of the true one, from the decider's own
         view (one net row a decision): own-<part>.npz beside each part file. `report --owner B` then adds B times it to
         every layout's log-weight, to see what beliefs learned from the true hands add to the reading or replace of it.
@@ -33,6 +35,9 @@ report  For every net and setting, per decision and by trick: the log-weight the
         averaged over evenly spaced resampling offsets; deal list: `list_solve` layouts), and from every stored layout with
         its exact weight. The tree and the tie-break are left out: the cost is the mean over the cards the weighted solves
         rate equal best. Standard errors have the deal as the unit.
+        `--opponent-weights 0.2 0.5 1.0 --against v4.1 --net v4`: the opponents' plays alone and on top of partner's at
+        these weights, by which bot the opponents were. `--honours 0.25 0.5 ... --against v4.1`: information aimed at
+        the honours on top of a net's reading.
         `--list-exponents 0.5 1.0 ...`: the deal list alone, which is all a bot without the early read (Gen 7) reads,
         at these exponents, each against the first and each net against `--against`, on the same decisions.
 
@@ -188,6 +193,7 @@ def load(path):
         r['fit'] = {n: d[f'fit:{n}'][at['fit']:at['fit'] + 3 * (L + 1)].reshape(3, L + 1) for n in names}
         at['fit'] += 3 * (L + 1)
         r['family'] = tables_[int(r['table'])]['family']
+        r['bots'] = tables_[int(r['table'])].get('bots')
         rows.append(r)
     return rows, tables_, names
 
@@ -278,6 +284,49 @@ def fits(a):
         for r in rows:
             result.append(r['new'].ravel())
         np.savez_compressed(target, fit=np.concatenate(result) if result else np.zeros(0, np.float32))
+    q.close()
+
+
+def floors(a):
+    """A net's fits again at other floors, from the stored pools alone (each table replayed from tab-<part>.json.gz, so the
+    episodes are not needed): fit-NAME@FLOOR-<part>.npz beside each part file, which `report` reads as one more net named
+    NAME@FLOOR. The floor is the share of a uniform choice among the legal cards mixed into the net's probability."""
+    name, path = a.net[0].split('=', 1)
+    q = Gen7Player(spec(path, 512), ROOT)
+    out = Path(a.out)
+    shard, of = (int(x) for x in a.shard.split('/'))
+    for number, part in enumerate(sorted(out.glob('pools-*-*.npz'))):
+        targets = {f: out / part.name.replace('pools-', f'fit-{name}@{f:g}-') for f in a.floor}
+        if number % of != shard or all(t.exists() for t in targets.values()):
+            continue
+        rows, tables_, _ = load(part)
+        with gzip.open(out / part.name.replace('pools-', 'tab-').replace('.npz', '.json.gz'), 'rt') as f:
+            tabs = json.load(f)
+        by_table = {}
+        for r in rows:
+            by_table.setdefault(int(r['table']), {})[int(r['ply'])] = r
+        for t, wanted in by_table.items():
+            if (tabs[t]['path'], tabs[t]['key']) != (tables_[t]['path'], tables_[t]['key']):
+                raise SystemExit(f'{part.name}: the tab file lists other tables')
+            e = dict(board=tabs[t]['board'], tables=[dict(actions=[dict(card=c) for c in tabs[t]['played']])])
+            for k, o, game in decisions(e):
+                if k in wanted:
+                    r = wanted[k]
+                    assign = np.concatenate([r['assign'], r['truth'][None]])
+                    plays = hidden_plays(o, True)
+                    logp, options = q.play_log_probabilities(o, View(o), assign, plays)
+                    r['new'] = {}
+                    for f in a.floor:
+                        fit, parts = floored(logp, options, f), np.zeros((3, assign.shape[0]), np.float32)
+                        for row, (i, _, chooser) in enumerate(plays):
+                            parts[0 if i == 0 else 1 if chooser % 2 == o.controller % 2 else 2] += fit[row]
+                        r['new'][f] = parts
+        for f, target in targets.items():
+            tmp = Path(str(target) + '.tmp.npz')
+            np.savez_compressed(tmp, fit=np.concatenate([r['new'][f].ravel() for r in rows]) if rows else np.zeros(0, np.float32))
+            tmp.replace(target)
+        if a.verbose:
+            print(part.name, len(rows), 'decisions', flush=True)
     q.close()
 
 
@@ -438,10 +487,11 @@ def read_all(out):
         uns = Path(out) / part.name.replace('pools-', 'uns-')
         if uns.exists():
             with np.load(uns) as z:
-                flat = z['cards']
+                flat, who = z['cards'], z['controller']
             at = 0
-            for r in got:
+            for r, c in zip(got, who):
                 r['cards'] = flat[at:at + int(r['unseen'])]
+                r['controller'] = int(c)
                 at += int(r['unseen'])
         for r in got:
             r['uid'] = (part.name, int(r['table']))
@@ -641,7 +691,123 @@ def list_only(a):
         Path(a.json).write_text(json.dumps(result, indent=1))
 
 
+def by_opponent(a):
+    """What reading the opponents' plays is worth by who the opponents were (the bot recorded at the seats against the
+    decider's): their plays alone at each weight against no reading; the same on top of partner read in full, which is how
+    the engine scales a reading by opponent; the last weight given against each lower one; and with --net NAME, the
+    --against net against that one as the reader. Tricks for the side doing the reading, a board being that side's
+    decisions at two tables; a stage's figure counts its own decisions only, so the stages add up."""
+    rows, names = read_all(a.out)
+    rows = [r for r in rows if 'controller' in r and r.get('bots')]
+    net = a.against or names[0]
+    others = [n for n in a.net if n in names and n != net]
+    W = list(a.opponent_weights)
+    kind = lambda x: 'BEN' if str(x).startswith('ben') else str(x)
+    fam = np.array([r['family'] for r in rows])
+    own = np.array([kind(r['bots'][r['controller']]) for r in rows])
+    opp = np.array([kind(r['bots'][(r['controller'] + 1) % 4]) for r in rows])
+    unit = np.array([f"{r['uid'][0]}:{r['uid'][1]}:{r['controller'] % 2}" for r in rows])
+    regime = np.array([int(r['regime']) for r in rows])
+    cost = {k: np.zeros(len(rows)) for k in ['none', 'partner'] + [(x, w) for x in ('alone', 'with') for w in W] + [('alone', n) for n in others]}
+    for j, r in enumerate(rows):
+        d, f = bool(r['declaring']), r['fit'][net]
+        cost['none'][j] = score(r, f, 0.)[1]
+        cost['partner'][j] = score(r, f, 1., parts=(0. if d else 1., 1., 0.))[1]
+        for w in W:                                 # the lead is the opponents' when the decider is on declarer's side
+            cost[('alone', w)][j] = score(r, f, 1., parts=(w if d else 0., 0., w))[1]
+            cost[('with', w)][j] = score(r, f, 1., parts=(w if d else 1., 1., w))[1]
+        for n in others:
+            cost[('alone', n)][j] = score(r, r['fit'][n], 1., parts=(W[-1] if d else 0., 0., W[-1]))[1]
+    groups = [(t, opp == t) for t, _ in sorted(((t, -int((opp == t).sum())) for t in set(opp.tolist())), key=lambda x: x[1])]
+    groups += [(f'{t} facing {o}', (opp == t) & (own == o)) for t, _ in list(groups) for o in sorted(set(own[opp == t].tolist())) if len(set(own[opp == t].tolist())) > 1]
+    groups.append(('everyone', np.ones(len(rows), bool)))
+    result = dict(net=net, weights=W, decisions=len(rows), groups={})
+    show = lambda v: f"{v[0]:+.3f} +- {v[1]:.3f}"
+    print(f"{len(rows)} decisions; the reader is {net}; tricks a board for the side reading (its decisions at two tables)")
+    for stage, m0 in (('every decision', np.ones(len(rows), bool)), ('before the deal list', regime == 0), ('from the deal list', regime == 1)):
+        print(f"\n=== {stage}")
+        for name, g in groups:
+            if g.sum() < 200:
+                continue
+            units = len(set(unit[g].tolist()))
+            scale = g.sum() / units * 2
+
+            def saved(x, y):
+                mean, se = mean_se(np.where(m0, cost[x] - cost[y], 0.)[g], fam[g])
+                return mean * scale, se * scale
+            entry = dict(side_tables=units, decisions=int((g & m0).sum()),
+                         alone={w: saved('none', ('alone', w)) for w in W}, on_partner={w: saved('partner', ('with', w)) for w in W},
+                         last_over={w: saved(('with', w), ('with', W[-1])) for w in W[:-1]},
+                         reader_over={n: saved(('alone', n), ('alone', W[-1])) for n in others})
+            result['groups'][f'{stage} | {name}'] = entry
+            print(f"{name:24s} {units:4d} side-tables, {entry['decisions']:6d} decisions")
+            print('    their plays alone against no reading:  ' + ' | '.join(f"w {w:g}: {show(entry['alone'][w])}" for w in W))
+            print('    on top of partner read in full:        ' + ' | '.join(f"w {w:g}: {show(entry['on_partner'][w])}" for w in W))
+            print(f"    weight {W[-1]:g} over a lower one, the same:   " + ' | '.join(f"over {w:g}: {show(entry['last_over'][w])}" for w in W[:-1]))
+            for n in others:
+                print(f"    {net} over {n} as the reader, their plays alone at {W[-1]:g}: {show(entry['reader_over'][n])}")
+    if a.json:
+        Path(a.json).write_text(json.dumps(result, indent=1, default=lambda o: {str(k): v for k, v in o.items()} if isinstance(o, dict) else str(o)))
+
+
+def honours_on_top(a):
+    """Information aimed at the honours on top of a net's reading: k added to a layout's log-weight for every honour (T to
+    A) it gives to its true holder, the same k at every decision. Per k: the mechanism table's measure of an unseen
+    honour (mean log-probability of its true holder) by stage, the true layout's gain in nats over the reading, and tricks
+    saved a table over the reading, in all and by where it is applied."""
+    rows, names = read_all(a.out)
+    rows = [r for r in rows if 'cards' in r and (r['hidden_house'] or not a.house)]
+    net = a.against or 'v4'
+    K = [0.] + [k for k in a.honours if k]
+    fam = np.array([r['family'] for r in rows])
+    trick = np.array([int(r['trick']) for r in rows])
+    regime = np.array([int(r['regime']) for r in rows])
+    tables_n = len({r['uid'] for r in rows})
+    cost, gain = np.zeros((len(K), len(rows))), np.zeros((len(K), len(rows)))
+    hon, bare = np.full((len(K), len(rows)), np.nan), np.full(len(rows), np.nan)
+    for j, r in enumerate(rows):
+        sel = np.array([int(c) % 13 >= 8 for c in r['cards']])
+        right = (r['assign'] == r['truth'][None, :])
+        match = np.concatenate([right[:, sel].sum(axis=1), [sel.sum()]]).astype(np.float32)
+        f = r['fit'][net]
+        prior_p = weights_of(r, f)[1] @ right
+        free = (prior_p > 1e-6) & (prior_p < 1 - 1e-6) & sel
+        if free.any():
+            bare[j] = float(np.log(np.clip(prior_p, 1e-6, 1.))[free].mean())
+        for i, k in enumerate(K):
+            gain[i, j], cost[i, j] = score(r, f, 1., own=match, beta=k)[:2]
+            if free.any():
+                g = np.zeros((3, int(r['layouts']) + 1), np.float32)
+                g[0] = f[0] + f[1] + f[2] + k * match
+                hon[i, j] = float(np.log(np.clip(weights_of(r, g)[0] @ right, 1e-6, 1.))[free].mean())
+    stages = (('trick 6', trick == 6), ('tricks 5-6', (trick >= 5) & (trick <= 6)), ('before the deal list', regime == 0), ('deal list', regime == 1),
+              ('all', np.ones(len(rows), bool)))
+
+    def level(v, m):
+        ok = m & ~np.isnan(v)
+        return mean_se(v[ok], fam[ok])
+    share = len(rows) / tables_n
+    result = dict(net=net, decisions=len(rows), tables=tables_n, no_reading={n: level(bare, m) for n, m in stages}, rows=[])
+    print(f"{len(rows)} decisions on {tables_n} tables; {net}'s reading plus k for every honour a layout gives to its true holder")
+    print('an unseen honour with no reading: ' + '; '.join(f"{n} {level(bare, m)[0]:+.3f}" for n, m in stages))
+    for i, k in enumerate(K):
+        row = dict(k=k, honours={n: level(hon[i], m) for n, m in stages}, nats_over_reading=mean_se(gain[i] - gain[0], fam), tricks={})
+        text = [f"k {k:5.3f} | an unseen honour: " + '; '.join(f"{n} {row['honours'][n][0]:+.3f}" for n, _ in stages) + f" | nats over the reading {row['nats_over_reading'][0]:+.2f}"]
+        for n, m in (('at every decision', np.ones(len(rows), bool)), ('tricks 1-6 only', trick <= 6), ('from trick 7 only', trick >= 7)):
+            v = mean_se(np.where(m, cost[0] - cost[i], 0.), fam)
+            row['tricks'][n] = [v[0] * share, v[1] * share]
+            text.append(f"{n} {v[0] * share:+.3f} +- {v[1] * share:.3f}")
+        result['rows'].append(row)
+        print(' | '.join(text))
+    if a.json:
+        Path(a.json).write_text(json.dumps(result, indent=1))
+
+
 def report(a):
+    if a.opponent_weights:
+        return by_opponent(a)
+    if a.honours:
+        return honours_on_top(a)
     if a.list_exponents:
         return list_only(a)
     if a.mechanism:
@@ -744,7 +910,7 @@ def report(a):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('step', choices=('pools', 'fits', 'owners', 'cards', 'report'))
+    ap.add_argument('step', choices=('pools', 'fits', 'floors', 'owners', 'cards', 'report'))
     ap.add_argument('--episodes', action='append', default=[])
     ap.add_argument('--out', required=True)
     ap.add_argument('--net', action='append', default=[])
@@ -767,11 +933,14 @@ def main():
     ap.add_argument('--against', help='report: the net the others are paired against (default: the first)')
     ap.add_argument('--pairs-only', action='store_true', help='report: only the paired comparison')
     ap.add_argument('--mechanism', action='store_true', help='report: where the information sits and what directed information is worth')
+    ap.add_argument('--opponent-weights', type=float, nargs='+', default=[], help="report: the opponents' plays at these weights, by who the opponents were; reader --against, compared with --net NAME")
+    ap.add_argument('--honours', type=float, nargs='+', default=[], help='report: information aimed at the honours at these strengths, on top of the --against net (default v4)')
     ap.add_argument('--list-exponents', type=float, nargs='+', default=[], help='report: the deal list alone at these exponents, by net; each against the first, and each net against --against')
+    ap.add_argument('--floor', type=float, action='append', default=[], help='floors: a floor to compute the fits at (repeatable)')
     ap.add_argument('--verbose', action='store_true')
     ap.add_argument('--json')
     a = ap.parse_args()
-    {'pools': pools, 'fits': fits, 'owners': owners, 'cards': cards, 'report': report}[a.step](a)
+    {'pools': pools, 'fits': fits, 'floors': floors, 'owners': owners, 'cards': cards, 'report': report}[a.step](a)
 
 
 if __name__ == '__main__':

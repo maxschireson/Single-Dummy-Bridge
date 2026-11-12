@@ -120,6 +120,39 @@ One match figure for the deal-list exponent exists on the Gen 8 result branches:
 the first `8s-32` (0.5), otherwise the same bot, against `7s-32` on the same 896 deals: +0.026 +-
 0.030 IMPs a board for 1.0 (`scripts/gen8_results_check.py --pair`).
 
+### By whose plays are read (`report --opponent-weights`, `t2-by-opponent.txt`)
+
+The stored tables record who sat where: `6-32` against itself (148 tables), `7s-32` against `6-32`
+(103), against bot 1 (129), against `5RZ32` (114) and against BEN 16 and 64 (36). Below, the
+opponents' plays alone (the lead when it is theirs), read by v4.1 at weight w from trick 1, against
+no reading: tricks a board for the side doing the reading, a side-table being one side's decisions
+at one table and a board two of them.
+
+| Opponents read | Side-tables | w 0.2 | w 0.3 | w 0.5 | w 1.0 | Before the deal list, w 1.0 |
+| --- | --- | --- | --- | --- | --- | --- |
+| `7s-32` | 382 | +0.087 | +0.100 | +0.157 | +0.261 +- 0.044 | +0.206 +- 0.035 |
+| `6-32` | 399 | +0.090 | +0.118 | +0.153 | +0.176 +- 0.039 | +0.132 +- 0.032 |
+| `5RZ32` | 114 | -0.020 | +0.031 | +0.077 | +0.107 +- 0.068 | +0.044 +- 0.042 |
+| bot 1 | 129 | +0.109 +- 0.053 | +0.105 | +0.054 | -0.010 +- 0.082 | -0.002 +- 0.047 |
+| BEN (16 and 64) | 36 | +0.119 +- 0.075 | +0.230 +- 0.160 | +0.223 +- 0.163 | +0.043 +- 0.099 | +0.045 +- 0.099 |
+
+- Gen 7's plays are worth more to read than Gen 6's by +0.085 +- 0.06 (the two groups share some
+  tables, so the error is approximate). `7s-32` breaks ties among equal cards with the policy net
+  and `6-32` with the Gen 5 policy; the bench shows whose plays, not why.
+- With partner read in full, as the engine scales a reading by opponent, weight 1.0 minus a lower
+  weight on the same decisions: `7s-32` over 0.5 +0.095 +- 0.023; `6-32` over 0.5 +0.010 +- 0.019
+  and over 0.3 +0.058 +- 0.023; `5RZ32` over 0.5 +0.006 +- 0.029 and over 0.2 +0.108 +- 0.062; bot 1
+  over 0.2 -0.060 +- 0.070; BEN over 0.5 -0.174 +- 0.089. The Gen 8 candidate's table (house bots
+  and `5RZ32` 1.0, bot 1 0.2, BEN 0.5) sits at or level with the best point estimate in every row;
+  only the house rows are settled.
+- v4.1 against v4 as the reader, their plays alone at 1.0: `7s-32` +0.020 +- 0.026, `6-32` +0.005
+  +- 0.024, bot 1 +0.004 +- 0.041, `5RZ32` +0.024 +- 0.064, BEN -0.130 +- 0.102. No table here has
+  `71s-32`, so v4 reading a bot that chooses with v4.1 is not measured.
+- Size against matches: the early read of `7s-32`'s plays, +0.21 tricks, is 0.74 IMPs at 3.6 IMPs a
+  trick where the prototype against Gen 7 played +0.43; of `6-32`'s, +0.13 tricks is 0.47 where the
+  prototype's gain over Gen 7 against Gen 6 played +0.11 +- 0.09. The order agrees and the sizes do
+  not, so read orders from this bench.
+
 ### Where the information sits (`report --mechanism`, `t2-mechanism.txt`)
 
 Mean log-probability, under the weights, that an unseen card is where it truly is (cards either
@@ -171,6 +204,24 @@ These were posted on `box/coordination` at 13:01 UTC, before the box runs of E9-
 first played figure, from 91 sandbox boards at near 0.4, was +1.39 +- 0.39 IMPs a board, against
 about +1.04 from the proxy at 3.6 IMPs a trick.
 
+Honours alone on top of v4.1's reading (`report --honours`, `t2-honours-v41.txt`): k added to a
+layout's log-weight for every honour it gives to its true holder, the same k at every decision. The
+measure of an unseen honour (the first table of this section) at trick 6 is -0.599 with no reading
+and -0.503 with v4.1.
+
+| k | An unseen honour at trick 6 | Nats for the true layout over the reading | Tricks a board over the reading | Of which tricks 1 to 6 |
+| --- | --- | --- | --- | --- |
+| 0.125 | -0.453 | +0.21 | +0.056 +- 0.009 | +0.042 |
+| 0.25 | -0.407 | +0.40 | +0.099 +- 0.013 | +0.081 |
+| 0.5 | -0.328 | +0.75 | +0.165 +- 0.020 | +0.135 |
+| 0.75 | -0.262 | +1.03 | +0.221 +- 0.025 | +0.181 |
+| 1.0 | -0.209 | +1.27 | +0.257 +- 0.026 | +0.208 |
+| 1.5 | -0.135 | +1.61 | +0.311 +- 0.030 | +0.248 |
+
+The leverage session's reader built on the bot as its own model (its 14:43 UTC entry on
+`box/coordination`) was asked about at honours 0.147 better than the net at trick 6: that step is k
+about 0.4 here, +0.14 tricks a board; the level -0.3 is k about 0.6, +0.19.
+
 ## The tree, by net and by layouts
 
 Not part of the reading, measured the same morning because it is the other place the net enters
@@ -209,6 +260,8 @@ python scripts/gen8_reading_bench.py owners --out OUT --episodes DIR --net ...
 python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR
 python scripts/gen8_reading_bench.py report --out OUT [--sweep | --owner 0.5 | --mechanism | --house | --against v4 --pairs-only]
 python scripts/gen8_reading_bench.py report --out OUT --list-exponents 0.5 0.25 0.75 1.0 1.5 2.0 --against v4
+python scripts/gen8_reading_bench.py report --out OUT --opponent-weights 0.2 0.3 0.5 1.0 --against v4.1 --net v4
+python scripts/gen8_reading_bench.py report --out OUT --honours 0.125 0.25 0.5 0.75 1 1.5 2 3 --against v4.1
 ```
 
 About 50 seconds a table on one core with five nets. The stored pools and solves (530 tables) are
