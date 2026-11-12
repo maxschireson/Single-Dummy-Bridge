@@ -1,12 +1,12 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:15 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:16 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 0 | 2 | 0 | 4 | 0 | 0 |
+| bill | 1 | 2 | 0 | 3 | 0 | 0 |
 | dave | 1 | 0 | 0 | 4 | 0 | 1 |
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
@@ -29,6 +29,7 @@ Generated 2026-11-12 07:15 UTC by `tools/workq.py` after a change by `bill`. Do 
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave until 11-12 10:55 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | sam until 11-12 11:10 | leased | high | 2026-11-12T18:00Z |  |
 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will until 11-12 11:10 | leased | medium | 2026-11-12T20:00Z |  |
@@ -43,7 +44,6 @@ Generated 2026-11-12 07:15 UTC by `tools/workq.py` after a change by `bill`. Do 
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 |  | open | high | 2026-11-13T06:00Z | after G9-A3 |
-| [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill |  | open | high | 2026-11-13T02:00Z | after G9-B2 |
 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave |  | open | high | 2026-11-13T14:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam |  | open | high | 2026-11-13T04:00Z | after G9-S2 |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z | after G9-S2 |
