@@ -1,20 +1,30 @@
 # Fleet status
 
-**Last check:** 12 November 2026, 15:35 UTC. **Next check:** about 16:10 UTC. Who holds which box:
-the allocation table in `BOARD.md` on branch `box/coordination`.
+**Last check:** 12 November 2026, 16:47 UTC. Who holds which box: the allocation table in `BOARD.md` on branch
+`box/coordination`. Fleet check: `/home/claude/watch/pool8.py` (per-box `box8.sh`).
 
-**Gen 7.1** (Max, 05:42: push 7.1, policy net v4.1, from 06:00 unless revoked; 7.1 plays 7.0 where
-7.0 played itself, for at least 1,000 boards and until a 95% lead, then 7.1 self-play; in every other
-match 7 becomes 7.1. 05:54: azure2 plays 7.1 against 7.0 on every board).
+**Gen 8 arena** (Max, 15:32 "Go ahead", 15:33, 15:50: never a board in a family the bot was trained on; 16:11 to the
+operator: switch the arena to Gen 8, 7.1 stays as the representative of the 7 family). Source
+`feature/gen8-prototype-20261112` at `792c4cb`; notice `docs/gen8_candidate_2026-11-12.md` there. Every cohort is
+prepared with `--exclude-families` and the union of the two lists of v4.1 training families (34,092 families,
+sha256 `0b8ac2b7f41b9191...`, branch `transfer/v41-training-families-union-20261112`).
 
 | Machine | Held by | Running | At the last check |
 | --- | --- | --- | --- |
-| `azure1` | operator (Max, 11:36 and 11:38) | `71s-32~71s-32` and `71s-32~7s-32`, one board in two each, cohort `31a8dd6ce638` (`gen71-mix2-azure1`, capsule shard 5/8 without the training families, 1,478 deals) since 15:48, eight workers, feed `arena-gen7-1-mix2-azure1-feed` (to register) | The settings matches (13:52 to 15:47) ended at Max's word: 1,081 boards each, `m1` +0.137 +- 0.079, `m3` +0.111 +- 0.078, 7.0 at exponent 1.0 over 0.5 +0.026 +- 0.038 (1,040 of 1,081 boards identical): the exponent barely changes Gen 7's play. Rows on `transfer/gen71-settings-azure1-20261112`. The first mix cohort `f37d8d826522` stays paused at 1,256 of 1,471 |
-| `azure2` | plan session from 08:15 (Max's authority) | Plan-level search experiments | Drained at 08:14: cohort `4b32e6ed0d6b` at 745 of 1,465 boards, all published (`67dd0ed`); units disabled, `/mnt/ddscache` empty. Nothing of the operator's is queued there; resume from its 720 unplayed deals when the box comes back |
-| `azure3` | operator | `71s-32~ben64`, eight lanes on deals v4.1 was not trained on | Second pool (`gen71fresh2-*`) ends between 15:40 and 16:45; **third pool armed at 15:31**: capsule shard 6/8 (claimed on the board 15:24) through the never-played `gen71-claim6-azure3`, an eighth a lane (`gen71fresh3-azure3-ben64-N`, 1,470 deals, preflights passed), feeds `arena-gen7-1-fresh3-azure3-ben64-N-feed` (register with `/tmp/dashcheck/register_pool3.py`). About 470 an hour, no failures; `lane-recycle` has restarted lanes 61 times. The gate runs here |
-| `azure4` | Gen 9 (from 14:58; g8 released it) | Gen 9 job queue | Nothing of the operator's runs or is queued there; its prepared cohort `7cefdbdb7771` (1,468 deals) waits unstarted |
-| `azure5` (Bridgebots5) | policy 4.1 session, then Gen 8 (about 07:40) | Training | Kept (Max, 05:59) |
-| `azure6` (Bridgebots6) | Gen 8 session | Gen 8 experiments | Kept (Max, 06:03) |
+| `azure1` | operator | `configs/round8-candidate.json` (`8s-32~71s-32` 2, `8c-32~71s-32`, `8c-32~8s-32`, `8s-32~5RZ32`, `8s-32~1`), eight workers, cohort `b9900c30105c` (`gen8-azure1`, 1,097 deals: the unplayed deals of `gen71-mix2-azure1`), feed `arena-gen8-azure1-feed`, since 16:42 | 26 boards at 16:47; preflight passed (16:22 to 16:41); `gen8-recycle` active |
+| `azure2` | plan session from 08:15 (Max's authority) | Plan-level search experiments | Nothing of the operator's runs there |
+| `azure3` | operator | `8s-32~ben64`, eight lanes (`gen8-azure3-ben64-1` to `-8`) on the unplayed deals of the 7.1 BEN lanes, since 16:30 | 73 boards at 16:47 (1,365 deals in all, about 250 boards an hour: they run out near 22:00) |
+| `azure4` | Gen 9 (from 14:58) | Gen 9 job queue | Nothing of the operator's runs or is queued there |
+| `azure5` | plan session (from 13:20) | | |
+| `azure6` | operator from 16:39 (g8 released it) | `configs/round8-candidate.json`, eight workers, cohort `08b8e638202a` (`gen8-azure6`, capsule shard 7/8 without the training families, 1,484 deals), feed `arena-gen8-azure6-feed` | Preflight play running since 16:41 |
+
+**Finished at the switch (all published, nothing deleted).** azure1 `gen71-mix2-azure1` (`71s-32~71s-32` and
+`71s-32~7s-32`) at 381 boards (16:22). azure3's 7.1 BEN (64) lanes at 16:30: third pool lanes 1 to 5 and 7 at 9, 11,
+40, 37, 7 and 1 boards; lanes 6 and 8 (second pool) at 172 and 167.
+
+**BEN (16):** no Azure box runs its servers; `8s-32~ben` was asked of the independent collector (board, 16:24).
+
+## Gen 7.1 (to 16:30 UTC)
 
 **Deals v4.1 was trained on.** The Azure pools are shards of capsule `a76a39f13d9d`, the independent
 collector's Gen 6 self-play cohort, copied at 725 boards; it went on to about 9,884 boards before
