@@ -2,7 +2,7 @@
 """Which card should a bot play among those its search rates close together? Scored on fork pairs.
 
   python scripts/gen7_near_tie.py --net NAME=POLICY.npz [--net ...] [--head NAME=LABEL=WEIGHTS.npz ...] \
-         --test FRESH_raw.npz PAIRS.npz [--test ...] [--drop TRAIN.npz] [--bot N] [--out FILE.json]
+         --test FRESH_raw.npz PAIRS.npz [--test ...] [--drop TRAIN.npz] [--bot N] [--source N] [--out FILE.json]
 
 The Gen 7 engine can make every card within `near_tie` tricks of the search's best eligible and let
 the net pick among them (`Gen7Player.break_ties`). A fork pair says what that would have done at one
@@ -67,6 +67,7 @@ def main():
     p.add_argument('--test', nargs=2, action='append', required=True, metavar=('SET', 'PAIRS'))
     p.add_argument('--drop', action='append', default=[], help='a built set whose deals are left out')
     p.add_argument('--bot', type=int, default=-1, help="only pairs decided by this bot (the pairs' bot column: 0 = 6-32, 1 = 6-256, 2 = any other)")
+    p.add_argument('--source', type=int, default=-1, help='only pairs of this source: 1 = gap forks, 0 = audits (tie audits and the tree\'s)')
     p.add_argument('--min-pairs', type=int, default=300)
     p.add_argument('--out', type=Path)
     a = p.parse_args()
@@ -103,6 +104,8 @@ def main():
         c['fam'] = np.unique(c['fam'], return_inverse=True)[1]      # the deal by its family: one deal can have boards in several sets
         if a.bot >= 0:
             c = {k: v[c['bot'] == a.bot] for k, v in c.items()}
+        if a.source >= 0:
+            c = {k: v[c['source'] == a.source] for k, v in c.items()}
         turn = np.where(c['search'] < -1e-9, -1., 1.)                # -1 where the search rated the forced card higher: then T is the card played
         fam, gap, cost, imps = c['fam'], np.abs(c['search']), turn * c['y'], turn * c['imps']
         score = {k: turn * v for k, v in c.items() if k not in ('y', 'search', 'source', 'imps', 'ply', 'bot', 'fam')}
