@@ -45,7 +45,7 @@ from bridge_harness.gen7_net import INPUTS, forward
 from gen7_result_head import Pairs
 
 BANDS = ((-1., 0., 'level'), (0., .1, 'gap up to 0.1'), (.1, .2, 'gap 0.1 to 0.2'), (0., .2, 'gap up to 0.2'), (.2, .5, 'gap 0.2 to 0.5'), (.5, 99., 'gap over 0.5'))
-STAGES = (('all tricks', 0, 52), ('tricks 1-4', 0, 16), ('tricks 5-8', 16, 32), ('tricks 9-13', 32, 52))
+STAGES = (('all tricks', 0, 52), ('opening lead', 0, 1), ('rest of trick 1', 1, 4), ('tricks 2-4', 4, 16), ('tricks 1-4', 0, 16), ('tricks 5-8', 16, 32), ('tricks 9-13', 32, 52))
 HEAD_MODELS = ('result', 'search_plus_res')
 
 
