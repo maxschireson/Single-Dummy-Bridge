@@ -40,11 +40,13 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from bridge_harness.bidding_env import deal_key  # noqa: E402
-from bridge_harness.core import Board  # noqa: E402
+from dataclasses import replace  # noqa: E402
+from bridge_harness import gen5_arena  # noqa: E402
+from bridge_harness.bidding_env import CALL_ID, CALLS, BidObservation, deal_key, encode, legal_mask, normalize_bid, pack_inputs  # noqa: E402
+from bridge_harness.core import Board, auction_contract  # noqa: E402
 from bridge_harness.gen5_arena import run_board  # noqa: E402
 from bridge_harness.gen7 import player  # noqa: E402
-from bridge_harness.system_bidders import NumpyPolicy  # noqa: E402
+from bridge_harness.system_bidders import NumpyPolicy, make_bidder  # noqa: E402
 from bridge_harness.training import digest  # noqa: E402
 
 VUL = ('None', 'NS', 'EW', 'Both')
@@ -95,14 +97,46 @@ def build_manifest(source, bots_file, pair, seed):
     return m
 
 
+def auction_any(board, bidders):
+    """gen5_arena.auction for either kind of bidder: a BEN-format net (predict) or a system_bidders bidder (call).
+    The board's auction_source names the system each side bid, so tables that differ only in that are told apart."""
+    calls, decisions = [], []
+    for _ in range(320):
+        seat = (board.dealer + len(calls)) % 4
+        mask = legal_mask(board.dealer, calls)
+        b = bidders[seat]
+        if hasattr(b, 'predict'):
+            xs, lengths = pack_inputs([encode(BidObservation(board.hands[seat], seat, board.dealer, board.vulnerability, tuple(calls)))])
+            action = int(np.argmax(np.where(mask, b.predict(xs, lengths)[0][0], -np.inf)))
+        else:
+            action = int(b.call(board.hands[seat], seat, board.dealer, VUL.index(board.vulnerability), [CALL_ID[normalize_bid(c)] for c in calls]))
+            if not mask[action]:
+                action = CALL_ID['PASS']
+        decisions.append(dict(seat=seat, ply=len(calls), call=CALLS[action], behavior='greedy', behavior_probability=1.))
+        calls.append(CALLS[action])
+        try:
+            contract = auction_contract(board.dealer, calls)
+        except ValueError as e:
+            if str(e) != 'Incomplete auction':
+                raise
+            continue
+        systems = STATE.get('system_of', {})
+        source = 'g8:' + '|'.join(systems.get(id(bidders[s]), '?') for s in (0, 1))
+        return replace(board, contract=contract, auction=tuple(calls), opening_lead=None, auction_source=source), decisions
+    raise ValueError('Auction exceeded legal length bound')
+
+
 def start(source, manifest):
-    STATE.update(source=source, m=manifest, bidders={})
+    STATE.update(source=source, m=manifest, bidders={}, system_of={})
     loaded = {}
     for key, spec in manifest['bots'].items():
-        path = str((Path(source) / spec['bidding']).resolve())
-        if path not in loaded:
-            loaded[path] = NumpyPolicy(path)
-        STATE['bidders'][key] = loaded[path]
+        entry = spec.get('bidder')
+        name = json.dumps(entry, sort_keys=True) if entry else str((Path(source) / spec['bidding']).resolve())
+        if name not in loaded:
+            loaded[name] = make_bidder(entry, ROOT) if entry else NumpyPolicy(name)
+        STATE['bidders'][key] = loaded[name]
+        STATE['system_of'].setdefault(id(loaded[name]), spec.get('system', 'house'))
+    gen5_arena.auction = auction_any
 
 
 def summarise_actions(record, roles):

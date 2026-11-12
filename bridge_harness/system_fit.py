@@ -33,6 +33,7 @@ MODEL_SCHEMA = 'system-fit-scorer-v1'
 D_HAND = 56 + 20 + 4 + 38 + 2
 K_RAND, K_NEAR = 3, 5
 OWN_COLS = OWN_ROWS.astype(np.float32)
+STATS = dict(unrepeated=[0., 0.], deals=[0, 0])      # per side of the last generate() calls: true hands whose replay differed
 LAYERS = ('Wh', 'b0', 'W1', 'b1', 'W2', 'b2', 'Wo', 'bo')
 
 
@@ -130,8 +131,13 @@ def generate(rng, bidders, n_deals, chunk=768):
         sim = simulate(bidders, hands, dealer, vul)
         keep = np.flatnonzero(sim['contract'] & (sim['length'] + 3 <= MAX_SLOTS))[:n_deals - n]
         alt = alternatives(rng, hands)
-        if not label(bidders, hands[:, :, None, :], sim, dealer, vul)[keep].all():
-            raise RuntimeError('a true hand did not reproduce its own calls: the bidder is not a function of hand and auction')
+        again = label(bidders, hands[:, :, None, :], sim, dealer, vul)[keep][:, :, 0]
+        for side in (0, 1):                     # a bidder must repeat itself, unless it says it may not (then the rate is recorded)
+            missed = float(1 - again[:, side::2].mean())
+            if missed and getattr(bidders[side], 'repeatable', True):
+                raise RuntimeError('a true hand did not reproduce its own calls: the bidder is not a function of hand and auction')
+            STATS['unrepeated'][side] += missed * len(keep)
+            STATS['deals'][side] += len(keep)
         labels = np.concatenate([np.ones((len(keep), 4, 1), bool), label(bidders, alt, sim, dealer, vul)[keep]], axis=2)
         member = np.zeros((len(keep), 4, 1 + K, 52), np.int8)
         np.put_along_axis(member, np.concatenate([hands[:, :, None, :], alt], axis=2)[keep], 1, axis=3)

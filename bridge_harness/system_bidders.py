@@ -20,6 +20,7 @@ import hashlib
 import importlib
 import io
 import json
+import os
 from pathlib import Path
 import zipfile
 
@@ -166,6 +167,11 @@ class RuleBidder:
     def choose(self, hands, seat, dealer, vul, calls, turn, legal):
         raise NotImplementedError
 
+    def call(self, hand, seat, dealer, vul, calls):
+        """One hand's next call (a token) after `calls` (tokens): for bidding a table call by call."""
+        row = np.array([list(calls) + [-1]], np.int64)
+        return int(self.choose(np.array([hand]), np.array([seat]), np.array([dealer]), np.array([vul]), row, np.array([len(calls)]), None)[0])
+
 
 class _RuleSession:
     def __init__(self, b, hands, seat, dealer, vul):
@@ -256,6 +262,7 @@ def make_bidder(generator, root='.', external_root=None):
         bidder = ToyBidder(**options)
     elif kind == 'python':
         module, _, name = generator['factory'].partition(':')
+        options = {k: os.path.expanduser(os.path.expandvars(v)) if isinstance(v, str) else v for k, v in options.items()}
         bidder = getattr(importlib.import_module(module), name)(**options)
     else:
         raise ValueError(f'no bidder adapter for generator kind {kind!r}')
