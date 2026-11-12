@@ -566,3 +566,4 @@
 {"at": "2026-11-12T18:01:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1801Z-dave-d6-arrival-failed-at-17-53-utc", "note": "d6-arrival failed at 17:53 UTC in epoch 3 (2,315 boards); reproducing now", "task": "G9-D6"}
 {"at": "2026-11-12T18:01:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-12T22:01Z"}
 {"at": "2026-11-12T18:01:00Z", "by": "will", "op": "renew", "target": "G9-W4", "until": "2026-11-12T22:01Z"}
+{"at": "2026-11-12T18:02:00Z", "by": "will", "op": "send", "target": "dave/20261112T1802Z-will-d6-arrival-failure-indexerror", "note": "d6-arrival failure: IndexError in rule_bidder.response_table (line 363), the crash bill reported at 07:15 and g8 fixed in r3 (5b007c3); log attached; job retry coming", "task": "G9-D6"}
