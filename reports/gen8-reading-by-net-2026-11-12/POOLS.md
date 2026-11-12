@@ -1,7 +1,9 @@
 # The stored layouts and solves of the reading bench
 
-Branch `transfer/gen8-p41-reading-pools-20261112` holds the `--out` folder of the run in
-[README.md](README.md): 530 tables, 21,417 decisions, every layout solved once. A new reading
+Branch `transfer/gen8-p41-reading-pools-20261112` holds the `--out` folder of the run reported in
+`reports/gen8-reading-by-net-2026-11-12/README.md` (branch `feature/gen8-p41-20261112`): 530
+tables, 21,417 decisions, every layout solved once. The script is `scripts/gen8_reading_bench.py`
+on that branch. A new reading
 (another net, a signal model, an auction reader) can be scored on these decisions with no solving:
 it only has to say how much log-weight it gives each stored layout and the true one.
 
