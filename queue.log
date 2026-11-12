@@ -8,3 +8,6 @@
 2026-11-12T12:32:22Z start ceilT712 (source 94418bd): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 7 --to-trick 12 --files 500 --workers 8 --out $R.json
 2026-11-12T12:37:30Z end ceilT712: exit 0
 2026-11-12T12:37:30Z start ceil16b (source 94418bd): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --skip-files 500 --workers 8 --out $R.json
+2026-11-12T12:40:57Z end ceil16b: exit 143
+2026-11-12T12:40:59Z source now ed3c311 Ceiling: more layouts a pair than one draw of the bot's gives, and a fil
+2026-11-12T12:40:59Z start ceil64 (source ed3c311): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 64 --max-gap 0.25 --skip-files 500 --files 500 --workers 8 --out $R.json

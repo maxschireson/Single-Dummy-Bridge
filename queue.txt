@@ -4,10 +4,12 @@ bel1a $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sim
 ceil16a $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --files 500 --workers 8 --out $R.json
 ceilT712 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 7 --to-trick 12 --files 500 --workers 8 --out $R.json
 ceil16b $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --skip-files 500 --workers 8 --out $R.json
-ceilT12 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 1 --to-trick 2 --files 300 --workers 8 --out $R.json
-@source 088925326a576eccb4e6f32ac7bd289b1e6bd729
+@source ed3c31130ed06c5b4312f2ea9eb1c7c0d623044e
+ceil64 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 64 --max-gap 0.25 --skip-files 500 --files 500 --workers 8 --out $R.json
 rb1 $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --pool 2000 --candidates 64 --seeds 2 --files 34 --workers 8 --out $R.json
+ceilT12 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 1 --to-trick 2 --files 300 --workers 8 --out $R.json
 bel2a $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v41:hyb3;v4:hyb3;v0:hyb3" --from-trick 3 --to-trick 6 --files 800 --seed 1 --workers 8 --out $R.json
 matrix1 $PY scripts/plan_matrix_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --decisions 800 --own-layouts 4 --workers 8 --out $R.json
+ceil16c $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --skip-files 1000 --workers 8 --out $R.json
 fam1 $PY scripts/plan_family_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --layouts 128 --decisions 2000 --workers 8 --out $R.json
 matrix2 $PY scripts/plan_matrix_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --decisions 800 --own-layouts 4 --families patterns --workers 8 --out $R.json
