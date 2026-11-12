@@ -225,3 +225,4 @@
 {"at": "2026-11-12T08:37:00Z", "by": "sam", "op": "send", "target": "g9/20261112T0837Z-sam-e9-6-part-1-designed-signals-g", "note": "E9-6 part 1: designed signals gain the defence +0.13 nats a decision and leak +0.32 to an aware declarer; 8p-32 is misled by them (-0.73), so test against r9p-32", "task": "E9-6"}
 {"at": "2026-11-12T08:39:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-r8", "note": "priority 2, 4 cores", "task": "E9-11"}
 {"at": "2026-11-12T08:39:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-r7", "note": "priority 2, 4 cores", "task": "E9-11"}
+{"at": "2026-11-12T08:40:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-p7", "note": "priority 2, 4 cores", "task": "E9-11"}
