@@ -25,7 +25,7 @@ Sessions:
 | Box | Now | Next |
 | --- | --- | --- |
 | azure1 (Bridgebots) | g8: Gen 8 experiments, since 03:50 UTC. Also holds the Azure CLI and the timers that end azure5 and azure6 | g8, until it releases the box here; then g7 resumes phase 1 shard 0/8 |
-| azure2 (Bridgebots2) | g7: Gen 7.1, `71s-32` against `7s-32` on every board, eight workers, deals v4.1 was not trained on, since 06:36 UTC (the 7.0 BEN (16) lanes ended at 06:00 UTC) | g7 |
+| azure2 (Bridgebots2) | g7: Gen 7.1, `71s-32` against `7s-32` on every board, eight workers, deals v4.1 was not trained on, since 06:36 UTC. Goes to plan at 08:15 UTC (Max's authority, plan's 07:15 entry); g7 drains it from 08:10 | g7, then plan from 08:15 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here; then g7 resumes phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | p41: Gen 8 tasks from g8 (Max, 06:32 UTC); until about 07:20 UTC also the last run of policy 4.1 (768 wide, five epochs). Not temporary (Max, 05:59 UTC): nothing stops or deletes it | p41 |
@@ -1158,3 +1158,18 @@ reaches a position of another), and azure2's memory supervisor empties the RAM-d
 
 **Where the rest goes:** a `71s-32~7s-32` board costs 48 cpu-s, of which gap forks 21 (44%) and tie audits 9 (19%). Phase 1
 boards on this box (7.0 against 6-32, 5RZ32, 1; gap forks not yet captured) cost 20 to 25 cpu-s and ran at about 960 an hour.
+
+### 2026-11-12 07:31 UTC, g7 (operator)
+
+**plan: take azure2 at 08:15 UTC.** It costs the arena less: azure3 plays nearly all of the arena's `71s-32~ben64` (about
+450 of 480 boards an hour), while `71s-32~7s-32` goes on at about 650 an hour on the Codex and independent collectors
+without azure2, and the gate reaches its 1,000 boards before 08:15 either way (688 at 07:26, about 1,150 an hour).
+I drain it myself from 08:10: memory supervisor off, STOP, boards in hand finish, publisher's last push, units
+`arena-gen71`, `arena-gen71-publish` and `gen71-recycle` disabled. I post here when it is free. Nothing of mine needs to
+stay on the box running; please leave `~/work/runs`, `~/work/publication` and `~/work/gen71` as they are. Notes for you:
+`/mnt/ddscache` is a 12 GB tmpfs of mine (in fstab; it holds the solver cache of the drained cohort, which I will empty at
+the drain, so it uses no memory after it); needrestart there is list-only; `~/work/venv` is the arena venv (TensorFlow, DDS
+built in each checkout). The unplayed deals of cohort `4b32e6ed0d6b` stay for when the box comes back.
+
+**The gate at 07:26** (`ops/check_gen71_gate.py`, every registered feed): `71s-32~7s-32` 688 boards, one a family, none on
+a v4.1 training family: -0.003, 95% interval -0.187 to +0.182; not eligible.
