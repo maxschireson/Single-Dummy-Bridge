@@ -1,0 +1,121 @@
+{
+  "status": "authorized_disposable_cache_rotation_diagnosed",
+  "journal": {
+    "epoch": 1794515233.9106472,
+    "completed": 384,
+    "previous_bytes": 2156019712
+  },
+  "journal_source": "/workspace/work/gen8-candidate-codex-20261112/run/last-cache-rotation.json",
+  "exact_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "supervisor_sha256": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+  "new_collector_pid": 78717,
+  "previous_collector_pid": 68687,
+  "previous_collector_exited": true,
+  "ownership_pid_checks": {
+    ".writer.lock": 78717,
+    ".watchdog.lock": 68686,
+    ".publisher.lock": 68688
+  },
+  "pre_rotation_publication": "154561d7f1105f63b02dd77d181c9bb0b22a4959",
+  "pre_rotation_published_completed": 383,
+  "all_pre_rotation_episode_receipt_blobs_unchanged": true,
+  "pre_rotation_files_compared": 766,
+  "all_current_episode_receipt_pairs_verified": 390,
+  "all384_drain_receipts_present": true,
+  "post_rotation_capture_samples": [
+    {
+      "index": 384,
+      "fields": {
+        "guess_size": 621,
+        "best_share": 2448
+      },
+      "record_kinds": {},
+      "episode_keys": [
+        "board",
+        "schema",
+        "index",
+        "family",
+        "split",
+        "candidate",
+        "pair",
+        "opponent",
+        "versions",
+        "manifest_identity",
+        "regimes",
+        "unique_tables",
+        "bidding",
+        "base_cpu",
+        "branch_cpu",
+        "completed_epoch",
+        "interpretation",
+        "gap_cpu",
+        "gap_fork_count",
+        "decision_timing"
+      ]
+    },
+    {
+      "index": 385,
+      "fields": {
+        "guess_size": 456,
+        "best_share": 1802
+      },
+      "record_kinds": {},
+      "episode_keys": [
+        "board",
+        "schema",
+        "index",
+        "family",
+        "split",
+        "candidate",
+        "pair",
+        "opponent",
+        "versions",
+        "manifest_identity",
+        "regimes",
+        "unique_tables",
+        "bidding",
+        "base_cpu",
+        "branch_cpu",
+        "completed_epoch",
+        "interpretation",
+        "gap_cpu",
+        "gap_fork_count",
+        "decision_timing"
+      ]
+    },
+    {
+      "index": 386,
+      "fields": {
+        "guess_size": 763,
+        "best_share": 3502
+      },
+      "record_kinds": {},
+      "episode_keys": [
+        "board",
+        "schema",
+        "index",
+        "family",
+        "split",
+        "candidate",
+        "pair",
+        "opponent",
+        "versions",
+        "manifest_identity",
+        "regimes",
+        "unique_tables",
+        "bidding",
+        "base_cpu",
+        "branch_cpu",
+        "completed_epoch",
+        "interpretation",
+        "gap_cpu",
+        "gap_fork_count",
+        "decision_timing"
+      ]
+    }
+  ],
+  "scientific_manifest_unchanged": true,
+  "failures_cleared": false,
+  "manual_restart_performed": false,
+  "current_STOP_exists": false
+}
