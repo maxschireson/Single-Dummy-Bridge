@@ -1,7 +1,7 @@
 # Gen 8 candidate: the play read from trick 1, and two bidding systems at the table (12 November 2026)
 
-**Status: authorized. Max said go on 12 November 2026 at 15:32 UTC. Both plans are open; the collectors are
-started by g7, the arena's operator.** Branch `feature/gen8-prototype-20261112`, which contains the Gen 7.1 launch
+**Status: authorized. Max said go on 12 November 2026 at 15:32 UTC. Both plans are open; g7, the arena's operator,
+began switching the collectors to them at 16:24 UTC.** Branch `feature/gen8-prototype-20261112`, which contains the Gen 7.1 launch
 line (`codex/gen71-independent-20261112` at `a588e09`, merged at `9c40d64`) and main. This page is what was built,
 what was measured and on how many boards, and what was not. It was written as the candidate's notice and its
 findings stand as they were when Max decided, the caveat on gate 3 among them.
@@ -17,6 +17,8 @@ And: nothing launches without him.
 15:30 UTC: "Leaning towards pushing sooner rather than later. When might we go?" 15:32, to "if you say go now, I open
 the plans as soon as the preflight returns clean and post the box question to g7 on the board": **"Go ahead"**.
 15:33: "All machines not working on 9 and other future projects can switch from 7 work to 8 arena."
+15:50 and 16:11: no arena board in a family a bot was trained on, and, to g7, the arena switches to Gen 8 (both
+quoted under "Launch steps").
 
 ## The three gates
 
@@ -110,7 +112,7 @@ and both are told the systems. 800 boards: **-0.594 +- 0.225** for the r4 bidder
 common-auction rooms the two are one engine and all 800 boards are flat, so this is the bidding, played out; at
 double dummy the gap was -0.75. From the other side: the house-bidding Gen 8 scores +0.59 against the new type.
 
-*The Precision bot against Gen 7.1* (`c1-8c-v-7s`, 800 boards): stopped at 90 boards when azure6 went to the arena (common auctions +0.31 +- 0.38, own auctions +0.26 +- 0.64: no result). The arena's `8c-32~71s-32` pair is this match at scale.
+*The Precision bot against Gen 7.1* (`c1-8c-v-7s`, 800 boards): stopped at 157 boards when azure6 went to the arena (common auctions +0.58 +- 0.30, own auctions +0.41 +- 0.50: no result). The arena's `8c-32~71s-32` pair is this match at scale.
 
 *Not measured:* any Gen 8 board against BEN. The plan reads BEN's plays at Gen 7's exponent (factor 0.5), now from
 trick 1; the first BEN lane is that measurement.
@@ -150,8 +152,12 @@ below; the settings are spelled out in `configs/round8-candidate.json`.
 2. **The opponents' plays are read by who they are** (`opponent_play_weight`, a factor on the exponent
    by opponent bot id; partner's plays are always read in full). The runner tells each player whom it
    faces. 1.0 for the house family (Gen 5RZ, 6, 7, 7.1, 8), 0.2 for bot `1`, 0.5 for BEN, 0.3 for anyone
-   else. The factors for the house family and bot `1` come from calibration matches (below); BEN's is
-   Gen 7's exponent and is not measured.
+   else. The factors for the house family and bot `1` were not played: they come from the records of
+   96-board matches (`k-*`) in which the early test bot read every opponent in full, read again at
+   five exponents from 0.25 to 1.5 and scored in nats for the true layout (`6-32` and `5RZ32` peak at
+   1.0, `7s-32` is level from 1.0 to 1.5; bot `1` is +0.03 at 0.25 and below zero from 0.5). p41's
+   bench in double-dummy tricks agrees for bot `1` (+0.109 +- 0.053 a board at 0.2, -0.010 +- 0.082 at
+   1.0). BEN's is Gen 7's exponent and is not measured.
 3. **Each side's calls are read by the system that side declares** (`system_scorer`): the hand-fit scorer
    with one more table of call readings, for the rule system
    ([release](../models/cardplay/gen8-system-scorer-v1-2026-11-12/README.md)). The cohort's `systems`
@@ -285,10 +291,11 @@ and g7's to set. A self-play cohort of the Precision bot needs `common_bidder` `
 
 Max said go at 15:32 UTC on 12 November (his words are in the plans' notes), and at 15:33 that every machine on
 Gen 7 work, other than those on Gen 9 and other future projects, switches to the Gen 8 arena. The plans are open at
-the commit that adds this page. g7 operates the collectors; this is what a collector needs.
+`792c4cb`. g7 operates the collectors and began switching them at 16:24 UTC, on Max's message to it of 16:11 ("I want
+to switch the arena to gen 8. Keeping 7.1 meant as the representative of the 7 family, but the 8 chat has a board mix
+in mind for the arena."); which machines run what is on the coordination board. This is what a collector needs.
 
-1. **Source.** A collector runs this branch at the commit named at the foot of this page or later (it contains the
-   Gen 7.1 launch line). Earlier sources do not know `systems`, `bidder` or `system_scorer` and refuse the plan.
+1. **Source.** A collector runs this branch at `792c4cb` (it contains the Gen 7.1 launch line). Earlier sources do not know `systems`, `bidder` or `system_scorer` and refuse the plan.
 2. **Restore the two artifacts** in the checkout: `python models/cardplay/gen7-policy-v4.1-2026-11-12/restore.py`
    and `python models/cardplay/gen8-system-scorer-v1-2026-11-12/restore_model.py`. The trick estimate of the rule
    bidder is a plain file in the tree (`configs/rule-systems/precision-estimate-r4.json`) and needs nothing.
@@ -297,18 +304,25 @@ the commit that adds this page. g7 operates the collectors; this is what a colle
    **The list is not optional.** Max, 15:50 UTC: "In general I would never want a bot to play a board in a family it
    has been trained on, other than as a specific experiment to measure that particular effect. Never in the arena."
    The Gen 8 bots play with policy net v4.1, so the list is the families v4.1 was trained on, as for the Gen 7.1
-   cohorts; both plans carry `exclude_training_families` and prepare refuses them without a list.
+   cohorts; both plans carry `exclude_training_families` and prepare refuses them without a list. The list in use
+   is `v41-training-families-union.json` on `transfer/v41-training-families-union-20261112` (`fccbbd8`): 34,092
+   families, the union of the two published lists of v4.1's training set (p41's complete one of 34,029 and the
+   independent collector's of 32,205).
    It refuses a closed plan, a bidder that is not the pinned one, and a system scorer not built on the bots'
    hand-fit scorer. The manifest then carries `systems` (what each bot declares) and a `gen8` block (the rule
    bidder's identity, the scorer's hash).
-4. **Preflight**: `python ops/smoke_gen7.py --run <run> --out <report> --deals 2`, as for Gen 7. Done on azure6 with copies of the plans opened under
-   `~/work/g8`, the repository's plans closed at the time (prepare refused them as it should). First at `1162aed`
-   (13:41 UTC), the four-bot mix: prepared, two deals played (`8c-32~8s-32` at four tables, `8s-32~71s-32` at two),
-   records accepted. Then at `478e937` with the wider mix and the BEN lane: both prepared (main cohort `7d8e8ad2af39`,
-   `8s-32` `269fdf1854f4` in both plans, `8c-32` `f60c9782f5c8` with rule bidder `f50e95de93ac`, `71s-32`
-   `7b0f58b4c403`, `5RZ32` `54591b0880b1`, `1` `5ba471c0a612`); its six-deal play ran into the command's 40-minute
-   limit on a box loaded with a match and did not finish. A third run, the play alone on the box with nothing else running, follows the commit that adds this page; its result is on the coordination board. No collector, feed or publisher was started by
-   any of this. A BEN board needs BEN's server, so the BEN lane's first preflight is on the machine that has it.
+4. **Preflight**: `python ops/smoke_gen7.py --run <run> --out <report> --deals 2`, as for Gen 7. `--deals` is for
+   each pair of the plan: ten deals for the main mix, about 15 minutes in one process. Done on azure6. Before the plans were
+   opened, with copies opened under `~/work/g8`: at `1162aed` (13:41 UTC) the four-bot mix prepared and two deals
+   played, records accepted; at `478e937` the wider mix and the BEN lane both prepared. Then at `792c4cb`, the
+   commit that opened the plans, with the families of policy v4.1's training set left out: both plans are refused
+   without a list and prepare with it (`8s-32` `269fdf1854f4` in both plans, `8c-32` `f60c9782f5c8` with rule
+   bidder `f50e95de93ac`, `71s-32` `7b0f58b4c403`, `5RZ32` `54591b0880b1`, `1` `5ba471c0a612`, `ben64`
+   `5ef56f915ce8`, `ben` `ef98d53559f2`). The smoke then played and checked 19 deals of the main plan, all five
+   pairs among them (6, 4, 3, 3, 3), with no assertion and no error; it had been asked for six deals a pair, which
+   is 30, and the command's time limit ended it before its report (88 s a deal in one process on an idle box; an
+   earlier run at 15:17 ended the same way on a loaded box). No feed or publisher was started by any of this. A
+   BEN board needs BEN's server, so the BEN lane's first preflight is on the machine that has it.
 5. **Mix and lanes.** The plan's `pair_weights` is a proposal (above). The BEN lane is
    `configs/round8-candidate-ben.json`, opened and prepared the same way on a machine with BEN's servers; its
    prepare was checked, and its first boards are its preflight, since a BEN board needs the server.
@@ -367,17 +381,24 @@ Tested: the full suite at the commit below (328 passed, 1 skipped). The pieces s
 (13 tests: no rule fails against an erratic opponent with or without the estimate, legal and finite auctions, the
 opening structure and the meanings of calls, r3's identity held, the estimate in the identity, the reckoning of
 bidding on and doubling, behaviour with a stand-in estimate), `tests/test_gen8_tables.py` (mixed bidders at one
-table, players told each table's systems, the auction book), `tests/test_gen8_launch.py` (the shipped plan closed
-and naming the frozen pieces, plans that declare systems, the bots' identities, prepare freezing systems, scorer and
-rule bidder, the wrong pin and the wrong base scorer refused, a board whose two rooms seat different systems, a
-cohort that declares nothing run as before), `tests/test_gen8_early_play.py` (the engine settings) and
+table, players told each table's systems, the auction book), `tests/test_gen8_launch.py` (the shipped plans open
+on Max's word and naming the frozen pieces, the BEN lane playing the same candidate, plans that declare systems, the
+bots' identities, prepare freezing systems, scorer and rule bidder, a plan of released nets prepared only with the
+training families left out, the wrong pin and the wrong base scorer refused, a board whose two rooms seat different
+systems, a cohort that declares nothing run as before), `tests/test_gen8_early_play.py` (the engine settings) and
 `tests/test_bidding_systems.py` (the system layer). A plan that uses none of the Gen 8 keys prepares what it always did, and with nothing
 declared every call and record is as before: the Gen 7 and Gen 7.1 launch tests pass unchanged.
 
-Not tested: a collector, a feed or a publisher with these records (the preflight plays and validates boards; it
-starts none of them); the dashboard and the exporters on `systems:` tables; a BEN table; the stop and resume of a
-cohort that declares systems; more than two systems in one cohort; a self-play cohort of the Precision bot.
+Run once, dry, on azure6 at the commit that opened the plans (16:29 UTC on 12 November): the collector itself
+(`ops/gen5_runtime.py`, eight workers) on a cohort prepared from the main plan, 26 boards in 510 s with no failure and
+a clean stop, and the exporter on those records. The cohort declares four systems; its 88 tables carry `systems:`
+labels as described under "Records", and every pair but `8s-32~71s-32` has its two own-system tables.
 
-**Source.** The launch files (plan, scorer release, rule system r4) are at `48982f7` on
-`feature/gen8-prototype-20261112`; the matches ran at `6638547` (the commit that froze r4) and earlier commits named in
-their logs. Prepare at the commit that adds this page or later.
+Not tested by this page: a publisher's push and a feed with these records, and the dashboard on `systems:` tables
+(the arena's launch is their first run); a BEN table; the resume of a stopped cohort that declares systems; the
+memory of the workers over hours; a self-play cohort of the Precision bot.
+
+**Source.** The collectors run `792c4cb` on `feature/gen8-prototype-20261112`, the commit that opened the
+plans; later commits on the branch change this page only. The launch files (plan, scorer release, rule system r4)
+were complete at `48982f7`; the matches ran at `6638547` (the commit that froze r4) and earlier commits named in their
+logs.
