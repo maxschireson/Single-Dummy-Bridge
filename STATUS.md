@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:50 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:50 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -17,12 +17,12 @@ Generated 2026-11-12 07:50 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
-| dave | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | feature/gen9-workflow-tests-2 |
 | g9 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | feature/gen9-bidding-cards |
 | g9 | [E9-2](experiments/E9-2.md) | Boards needed to identify a system from finished boards | bill | feature/gen9-bidding-cards |
-| sam | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | feature/gen9-bidding-cards |
-| sam | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | feature/gen9-bidding-cards |
-| will | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | feature/gen9-arena-epochs |
+| g9 | [G9-B4](tasks/G9-B4.md) | Card to profile distance and system detection | bill | feature/gen9-bidding-cards |
+| g9 | [G9-B6](tasks/G9-B6.md) | Three real cards read into the IR, each with its check sheet | bill | feature/gen9-bidding-cards |
+| g9 | [G9-D4](tasks/G9-D4.md) | Registry, epoch manifest and a one-machine epoch runner | dave | feature/gen9-arena-epochs |
+| g9 | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | feature/gen9-workflow-tests-2 |
 
 ## Tasks
 
@@ -86,7 +86,7 @@ Generated 2026-11-12 07:50 UTC by `tools/workq.py` after a change by `will`. Do 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 07:47 | 19 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-12 07:50 | 6 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-12 07:50 | 5 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:41 | 3 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 07:34 | 4 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 07:41 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
