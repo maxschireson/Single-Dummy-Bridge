@@ -30,6 +30,11 @@ The tool keeps its own clone in ~/.cache/workq and never touches a checkout.
   workq.py inbox [--all] [--agent N]               workq.py read MSG        workq.py ack   (all read)
 
   workq.py fleet                                   box heartbeats and the board's allocation table, into STATUS.md
+  workq.py issue [--create] [--print]              rewrite the "Gen 9 queue" GitHub issue (Max's phone view): decisions
+                                                   for Max, reviews waiting, blocked, in progress, next checkpoint. Also
+                                                   done after any change, at most every 10 minutes, where gh exists
+  workq.py decision TITLE --body TEXT | --close N --note TEXT   g9 only: a decision for Max as its own issue, assigned
+                                                   to him; his replies there are copied into inbox/g9
   workq.py check [--ready ID]                      validate every header (exit 1 if one is malformed); with --ready,
                                                    name the executor sections ID lacks (Base, Interface, Done when,
                                                    Time box, Tests, Results)
@@ -422,13 +427,15 @@ class State:
         e.update({k: v for k, v in extra.items() if v not in (None, "", [])})
         self.events.append(e)
 
-    def send(self, to: str, subject: str, body: str, task: str | None = None, reply_to: str | None = None) -> str:
-        base = f"{self.at:%Y%m%dT%H%MZ}-{self.agent}-{slugify(subject)}"
+    def send(self, to: str, subject: str, body: str, task: str | None = None, reply_to: str | None = None,
+             sender: str | None = None) -> str:
+        sender = sender or self.agent  # `max` for his replies copied from GitHub
+        base = f"{self.at:%Y%m%dT%H%MZ}-{sender}-{slugify(subject)}"
         mid, n = base, 1
         while self.get(f"inbox/{to}/{mid}.md") is not None:
             n += 1
             mid = f"{base}-{n}"
-        self.put(f"inbox/{to}/{mid}.md", format_message(self.agent, self.at, subject, body, task, reply_to))
+        self.put(f"inbox/{to}/{mid}.md", format_message(sender, self.at, subject, body, task, reply_to))
         self.event("send", f"{to}/{mid}", subject, task=task)
         return mid
 
@@ -653,6 +660,92 @@ def render_fleet(f: dict | None, res: dict) -> list[str]:
     return L + [""]
 
 
+# ---------------------------------------------------------------- phone view (GitHub issues)
+
+GH_REPO = os.environ.get("WORKQ_GH_REPO", "maxschireson/Single-Dummy-Bridge")
+MARK = "<!-- workq -->"  # in every body and comment workq writes, so its own text is never taken for Max's
+ISSUE_EVERY = timedelta(minutes=10)
+
+
+def gh(method: str, path: str, fields: dict | None = None) -> object:
+    """One GitHub REST call through the gh CLI; returns the parsed JSON (None for an empty body)."""
+    import shutil
+    if not shutil.which("gh"):
+        raise SystemExit("this needs the gh CLI (GitHub REST), which this session does not have")
+    args = ["gh", "api", "-X", method, f"repos/{GH_REPO}/{path}"]
+    data = None
+    if fields is not None:
+        args += ["--input", "-"]
+        data = json.dumps(fields)
+    r = subprocess.run(args, input=data, capture_output=True, text=True, timeout=60)
+    if r.returncode != 0:
+        raise SystemExit(f"gh api {method} {path} failed: {(r.stderr or r.stdout).strip()[:400]}")
+    return json.loads(r.stdout) if r.stdout.strip() else None
+
+
+def next_checkpoint(st: State) -> str:
+    """The next row of ROSTER.md's checkpoint table, e.g. 'Thu 12 Nov, about 12:00: Checkpoint 1: ...'."""
+    text = (st.get("ROSTER.md") or b"").decode(errors="replace")
+    for line in text.splitlines():
+        m = re.match(r"\|\s*\w{3} (\d{1,2}) (\w{3}), about (\d{1,2}):(\d{2})\s*\|\s*(.+?)\s*\|\s*$", line)
+        if not m:
+            continue
+        try:
+            when = datetime.strptime(f"{st.at.year} {m.group(2)} {m.group(1)} {m.group(3)}:{m.group(4)}", "%Y %b %d %H:%M").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if when > st.at:
+            return f"{when:%a %d %b %H:%M} UTC: {m.group(5)}"
+    return "none listed"
+
+
+def ago(st: State, stamp: str) -> str:
+    try:
+        minutes = int((st.at - parse_time(stamp)).total_seconds() // 60)
+    except ValueError:
+        return ""
+    return f"{minutes} min" if minutes < 120 else f"{minutes // 60} h"
+
+
+def queue_summary(st: State, decisions: list[dict]) -> str:
+    """One phone screen: decisions waiting for Max first, then reviews, blocked, in progress, the next checkpoint."""
+    docs, errors = st.docs()
+    url = f"https://github.com/{GH_REPO}/blob/{os.environ.get('WORKQ_BRANCH', DEFAULT_BRANCH)}/STATUS.md"
+
+    def when_submitted(d: Doc) -> str:
+        stamps = re.findall(r"^- (\S+) \S+: submitted", d.section("Log"), re.M)
+        return ago(st, stamps[-1]) if stamps else ""
+    L = [MARK, f"**Gen 9 queue**, {st.at:%a %d %b %H:%M} UTC. Rewritten by `workq` (at most every 10 minutes); "
+         f"everything else: [STATUS.md]({url}).", ""]
+    L.append(f"**Decisions for Max ({len(decisions)})**" + ("" if decisions else ": none open."))
+    for i in decisions:
+        L.append(f"- [#{i['number']} {i['title']}]({i['html_url']}), raised {ago(st, i['created_at'][:16] + 'Z')} ago")
+    waiting = sorted([d for d in docs.values() if d.get("state") == "submitted"], key=lambda d: (reviewer_of(d, st.lead), d.get("id")))
+    L += ["", f"**Reviews waiting ({len(waiting)})**" + ("" if waiting else ": none.")]
+    by = {}
+    for d in waiting:
+        by.setdefault(reviewer_of(d, st.lead), []).append(f"{d.get('id')} ({d.get('holder')}, {when_submitted(d)})")
+    L += [f"- {r}: " + "; ".join(v) for r, v in sorted(by.items())]
+    blocked = [d for d in docs.values() if d.get("state") == "blocked"]
+    L += ["", f"**Blocked ({len(blocked)})**" + ("" if blocked else ": none.")]
+    for d in sorted(blocked, key=lambda d: d.get("id")):
+        why = re.findall(r"blocked: (.+)$", d.section("Log"), re.M)
+        L.append(f"- {d.get('id')} {d.get('title')[:60]}" + (f": {why[-1][:90]}" if why else ""))
+    leased = [d for d in docs.values() if d.get("state") == "leased"]
+    holders = {}
+    for d in sorted(leased, key=lambda d: d.get("id")):
+        holders.setdefault(d.get("holder"), []).append(d.get("id"))
+    L += ["", f"**In progress ({len(leased)})**: " + (" · ".join(f"{h}: {', '.join(v)}" for h, v in sorted(holders.items())) or "none")]
+    today = [d for d in docs.values() if d.get("state") == "resolved"
+             and re.search(rf"^- {st.at:%Y-%m-%d}\S* \S+: resolved", d.section("Log"), re.M)]
+    open_ = sum(1 for d in docs.values() if d.get("state") in ("open", "proposed"))
+    L += [f"**Resolved today**: {len(today)}. **Open, not started**: {open_}.",
+          f"**Next checkpoint**: {next_checkpoint(st)}"]
+    if errors:
+        L.append(f"**Malformed files**: {len(errors)} (see STATUS.md)")
+    return "\n".join(L) + "\n"
+
+
 # ---------------------------------------------------------------- the queue
 
 class Ledger:
@@ -688,9 +781,21 @@ class Ledger:
             if self.store.push(self.store.commit(tip, st.changes, msg, f"{agent} (workq)")):
                 for n in st.notes:
                     print(n, file=sys.stderr)
+                self.maybe_refresh_issue(st, summary)
                 return result
             time.sleep(min(0.5 * (attempt + 1), 4))
         raise SystemExit("the branch kept moving under this change; try again")
+
+    def maybe_refresh_issue(self, st: State, summary: str) -> None:
+        import shutil
+        if os.environ.get("WORKQ_ISSUE", "1") == "0" or summary.startswith("queue issue") or not shutil.which("gh"):
+            return
+        if not (st.load("issues.json") or {}).get("queue"):
+            return
+        try:
+            self.issue_refresh(force=False)
+        except (SystemExit, Exception) as e:  # the phone view never blocks a change
+            print(f"note: the queue issue was not refreshed ({str(e)[:160]})", file=sys.stderr)
 
     def touch(self, st: State, gap_minutes: int = 15) -> None:
         a = st.load(f"agents/{st.agent}.json")
@@ -974,6 +1079,74 @@ class Ledger:
             st.event("refresh", "STATUS.md")
         return self.mutate("regenerate STATUS.md", fn)
 
+    def issue_refresh(self, create: bool = False, force: bool = True):
+        """Rewrite the queue issue's body; copy new comments on open decision issues into the lead's inbox."""
+        st = self.snapshot()
+        meta = st.load("issues.json") or {}
+        stamp = self.store.cache / f"{self.store.git_dir.stem}.issue-stamp"
+        if not force and stamp.exists() and datetime.now(timezone.utc).timestamp() - stamp.stat().st_mtime < ISSUE_EVERY.total_seconds():
+            return None
+        decisions = [i for i in gh("GET", "issues?labels=decision&state=open&per_page=50") if "pull_request" not in i]
+        body = queue_summary(st, decisions)
+        number = meta.get("queue")
+        if not number:
+            if not create:
+                raise SystemExit("there is no queue issue yet; `workq issue --create` makes it")
+            number = gh("POST", "issues", dict(title="Gen 9 queue", body=body))["number"]
+            meta["queue"] = number
+        else:
+            gh("PATCH", f"issues/{number}", dict(body=body))
+        stamp.parent.mkdir(parents=True, exist_ok=True)
+        stamp.touch()
+        replies = []
+        for i in decisions:
+            last = meta.get("synced", {}).get(str(i["number"]), 0)
+            for c in gh("GET", f"issues/{i['number']}/comments?per_page=100"):
+                if c["id"] > last and MARK not in (c.get("body") or ""):
+                    replies.append((i, c))
+        if replies or not st.load("issues.json") or meta.get("queue") != (st.load("issues.json") or {}).get("queue"):
+            def fn(s2):
+                m2 = s2.load("issues.json") or {}
+                m2["queue"] = number
+                for i, c in replies:
+                    m2.setdefault("synced", {})[str(i["number"])] = max(c["id"], m2.get("synced", {}).get(str(i["number"]), 0))
+                    s2.send(s2.lead, f"Max on #{i['number']}: {i['title'][:80]}",
+                            f"{(c.get('body') or '').strip()}\n\n(Copied by {s2.agent} from {c['html_url']}, {c['created_at']}.)",
+                            sender="max")
+                s2.save("issues.json", m2)
+            self.mutate("queue issue: record it and copy replies", fn)
+        return dict(number=number, url=f"https://github.com/{GH_REPO}/issues/{number}", replies=len(replies))
+
+    def decision(self, title: str, body: str):
+        """The lead raises a decision for Max as its own issue, labelled `decision` and assigned to him."""
+        if self.need_agent() != self.lead:
+            raise Conflict(f"decision issues are raised by {self.lead} only")
+        labels = [l["name"] for l in gh("GET", "labels?per_page=100")]
+        if "decision" not in labels:
+            gh("POST", "labels", dict(name="decision", color="d93f0b", description="Waiting for Max's decision (raised by the Gen 9 lead)"))
+        owner = GH_REPO.split("/")[0]
+        i = gh("POST", "issues", dict(title=title if title.startswith("DECISION") else f"DECISION: {title}",
+                                     body=f"{MARK}\n{body.strip()}\n\nRaised by {self.lead}. Reply here; the reply is copied to the team's channel.",
+                                     labels=["decision"], assignees=[owner]))
+
+        def fn(st):
+            m = st.load("issues.json") or {}
+            m.setdefault("decisions", []).append(dict(number=i["number"], title=i["title"], raised=hm(st.at)))
+            st.save("issues.json", m)
+            st.event("decision", f"#{i['number']}", i["title"])
+        self.mutate(f"decision raised: #{i['number']}", fn)
+        self.issue_refresh(force=True) if (self.snapshot().load("issues.json") or {}).get("queue") else None
+        return i
+
+    def decision_close(self, number: int, note: str):
+        if self.need_agent() != self.lead:
+            raise Conflict(f"decision issues are closed by {self.lead} only")
+        gh("POST", f"issues/{number}/comments", dict(body=f"{MARK}\nClosed by {self.lead}: {note}"))
+        gh("PATCH", f"issues/{number}", dict(state="closed"))
+        self.mutate(f"decision closed: #{number}", lambda st: st.event("decision-close", f"#{number}", note))
+        if (self.snapshot().load("issues.json") or {}).get("queue"):
+            self.issue_refresh(force=True)
+
     def fleet(self):
         snap = collect_fleet(self.store, self.clock())
         self.mutate("fleet snapshot", lambda st: st.save("fleet.json", snap))
@@ -1004,6 +1177,9 @@ def main(argv=None) -> int:
     p = sub.add_parser("check"); p.add_argument("--ready", metavar="ID", help="say which executor sections ID lacks")
     p = sub.add_parser("brief"); p.add_argument("id")
     sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
+    p = sub.add_parser("issue"); p.add_argument("--create", action="store_true"); p.add_argument("--print", action="store_true")
+    p = sub.add_parser("decision"); p.add_argument("title"); p.add_argument("--body"); p.add_argument("--file")
+    p.add_argument("--close", type=int, metavar="NUMBER"); p.add_argument("--note", default="")
     p = sub.add_parser("tasks"); p.add_argument("--owner"); p.add_argument("--state"); p.add_argument("--mine", action="store_true")
     p = sub.add_parser("show"); p.add_argument("id")
     p = sub.add_parser("new"); p.add_argument("title")
@@ -1089,6 +1265,18 @@ def run(lg: Ledger, a) -> int:
         print(f"To {m['to']}, from {m['from']}, {m['stamp']}\n\n{m['body']}"); return 0
     if c == "ack":
         lg.mark_read(all_=True); print("all read"); return 0
+    if c == "issue":
+        if a.print:
+            st = lg.snapshot(); sys.stdout.write(queue_summary(st, [])); return 0
+        r = lg.issue_refresh(create=a.create)
+        print(f"queue issue {r['url']} rewritten; {r['replies']} new repl{'y' if r['replies'] == 1 else 'ies'} copied to {lg.lead}"); return 0
+    if c == "decision":
+        if a.close:
+            lg.decision_close(a.close, a.note or a.title); print(f"closed #{a.close}"); return 0
+        body = text_of(a.file, a.body)
+        if not body.strip():
+            raise SystemExit("--body or --file is required")
+        i = lg.decision(a.title, body); print(f"#{i['number']} {i['html_url']}"); return 0
     if c == "fleet":
         snap = lg.fleet(); print("\n".join(render_fleet(snap, {}))); return 0
 

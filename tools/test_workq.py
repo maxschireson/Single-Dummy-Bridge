@@ -343,6 +343,70 @@ class LedgerTest(unittest.TestCase):
         self.assertTrue(any(m["subject"].startswith("G9-D7 submitted") for m in self.st().unread("will")))
         self.assertEqual(ledger.reviewer_of(self.st().doc("G9-D7"), "g9"), "will")
 
+    def test_queue_issue_and_decisions(self):
+        roster = ("# Roster\n\n## Review checkpoints (UTC)\n\n| When | What |\n| --- | --- |\n"
+                  "| Thu 12 Nov, about 06:00 | Checkpoint 0 |\n| Thu 12 Nov, about 12:00 | Checkpoint 1: notes due |\n")
+        self.boot({"tasks/G9-B1.md": TASK, "ROSTER.md": roster}, "bill")
+        calls, issues, comments = [], {}, {}
+
+        def fake_gh(method, path, fields=None):
+            calls.append((method, path, fields))
+            if method == "GET" and path.startswith("issues?labels=decision"):
+                return [i for i in issues.values() if "decision" in i.get("labels", []) and i["state"] == "open"]
+            if method == "GET" and path.startswith("labels"):
+                return [{"name": "bug"}]
+            if method == "POST" and path == "labels":
+                return fields
+            if method == "POST" and path == "issues":
+                n = 21 + len(issues)
+                issues[n] = dict(number=n, title=fields["title"], body=fields["body"], labels=fields.get("labels", []), state="open",
+                                 html_url=f"https://github.com/x/y/issues/{n}", created_at="2026-11-12T06:50:00Z")
+                return issues[n]
+            if method == "PATCH":
+                n = int(path.split("/")[1])
+                issues[n].update(fields)
+                return issues[n]
+            if method == "GET" and path.endswith("/comments?per_page=100"):
+                return comments.get(int(path.split("/")[1]), [])
+            if method == "POST" and path.endswith("/comments"):
+                return {}
+            raise AssertionError((method, path))
+        real = ledger.gh
+        ledger.gh = fake_gh
+        try:
+            self.lg("bill").lease("G9-B1", 1)
+            self.lg("bill").submit("G9-B1", "note", "feature/gen9-bidding-design", None)
+            text = ledger.queue_summary(self.st(), [])
+            self.assertIn("**Decisions for Max (0)**: none open.", text)
+            self.assertIn("- g9: G9-B1 (bill, 0 min)", text)
+            self.assertIn("**Next checkpoint**: Thu 12 Nov 12:00 UTC: Checkpoint 1: notes due", text)
+            self.assertLess(len(text.splitlines()), 30)  # one phone screen
+            with self.assertRaises(SystemExit):
+                self.lg("g9").issue_refresh()  # no issue yet, and --create not given
+            r = self.lg("g9").issue_refresh(create=True)
+            self.assertEqual(r["number"], 21)
+            self.assertEqual(self.st().load("issues.json")["queue"], 21)
+            with self.assertRaises(ledger.Conflict):
+                self.lg("bill").decision("Sub-agents for executors?", "Allow them?")
+            i = self.lg("g9").decision("Sub-agents for executors?", "Allow them?")
+            self.assertEqual(i["title"], "DECISION: Sub-agents for executors?")
+            self.assertEqual(issues[22]["labels"], ["decision"])
+            self.assertTrue(any(c[:2] == ("POST", "labels") for c in calls))
+            self.assertIn("**Decisions for Max (1)**", issues[21]["body"])
+            comments[22] = [dict(id=5, body=ledger.MARK + " our own note", html_url="u5", created_at="2026-11-12T07:01:00Z"),
+                            dict(id=7, body="Yes, up to two per lead.", html_url="u7", created_at="2026-11-12T07:02:00Z")]
+            self.lg("g9").issue_refresh()
+            replies = [m for m in self.st().unread("g9") if m["subject"].startswith("Max on #22")]
+            self.assertEqual(len(replies), 1)
+            self.assertIn("Yes, up to two per lead.", replies[0]["body"])
+            self.lg("g9").issue_refresh()
+            self.assertEqual(len([m for m in self.st().unread("g9") if m["subject"].startswith("Max on #22")]), 1)  # not copied twice
+            self.lg("g9").decision_close(22, "allowed, two per lead")
+            self.assertEqual(issues[22]["state"], "closed")
+            self.assertIn("**Decisions for Max (0)**", issues[21]["body"])
+        finally:
+            ledger.gh = real
+
     def test_owner_proposed_and_blocked_rules(self):
         self.boot({"tasks/G9-W8.md": task("G9-W8", owner="will"), "tasks/G9-W7.md": task("G9-W7", state="proposed"),
                    "tasks/G9-W6.md": task("G9-W6")}, "bill", "will")
