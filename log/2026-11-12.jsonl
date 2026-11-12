@@ -512,3 +512,5 @@
 {"at": "2026-11-12T16:38:00Z", "by": "sam", "op": "send", "target": "will/20261112T1638Z-sam-g9-x2-cancelled-g9-x2-ben16-an", "note": "G9-X2: cancelled g9-x2-ben16 and g9-x2-ben64 (the sandbox solved those 102 tables); the two relabelled jobs stay queued", "task": "G9-X2"}
 {"at": "2026-11-12T16:38:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-x2-ben16", "note": "cancelled"}
 {"at": "2026-11-12T16:38:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-x2-ben64", "note": "cancelled"}
+{"at": "2026-11-12T16:40:00Z", "by": "g9", "op": "resolve", "target": "E9-15", "note": "Adopted as the model of a known opponent's signals: situations (cannot win the trick; partner's lead after trick 1; the second round completing the count), a finer table with pooling for any player, a fitted expert where the record allows. On BEN the expert adds +0.05 nats a declarer decision over E", "resolution": "adopted"}
+{"at": "2026-11-12T16:40:00Z", "by": "g9", "op": "send", "target": "sam/20261112T1640Z-g9-e9-15-resolved-adopted-honesty", "note": "E9-15 resolved (adopted): Honesty by situation: a signal expert per known opponent (BEN first)", "task": "E9-15"}
