@@ -34,7 +34,8 @@ readings  For every stored decision, the log weight a bot spec from --bots (buil
 report    The bench's report on OUT; `--against` pairs every reading with one.
 box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
           there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
-          `readings`. progress.jsonl gets a line a finished table.
+          `readings`. progress.jsonl gets a line a table saved. Restarted (a preemptible job), each shard carries on after
+          the tables its part files hold.
 
 Hidden hands are labels: the true deal is solved and scored, never read.
 """
@@ -385,13 +386,28 @@ def box(a):
         deciders, opponent = 'house', a.opponent
     (out / 'tables.json').write_text(json.dumps(dict(opponent=opponent, deciders=deciders, first=a.first,
                                                      tables=[[str(p), k] for p, k in chosen]), indent=0))
+    def resume(k):
+        """(tables a shard has saved, its next part number): a restarted job carries on where its part files end."""
+        saved, last = 0, None
+        for q in sorted(out.glob(f'pools-{k:02d}-*.npz')):
+            with np.load(q) as z:
+                saved += len(z['tables'])
+            last = int(q.stem.rsplit('-', 1)[1])
+        return saved, (a.part_offset if last is None else last + 1)
+    starts = [resume(k) for k in range(a.workers)]
     procs = [subprocess.Popen(me + ['pools', *common, '--first', str(a.first), '--tables', str(a.tables), '--pool', str(a.pool), '--part', str(a.part),
-                                    '--seconds', str(a.seconds), '--shard', f'{k}/{a.workers}', '--part-offset', str(a.part_offset)] + [f'--net={n}' for n in a.net]) for k in range(a.workers)]
+                                    '--seconds', str(a.seconds), '--shard', f'{k}/{a.workers}', '--part-offset', str(starts[k][1]),
+                                    '--skip-tables', str(starts[k][0])] + [f'--net={n}' for n in a.net]) for k in range(a.workers)]
     def progress():
-        done = []
-        for log in sorted(out.glob('pools-*.log')):
-            done += [line for line in log.read_text().splitlines() if line.startswith('{"table"')]
-        (out / 'progress.jsonl').write_text(''.join(line + '\n' for line in done))
+        """One line a table saved in a part file (a table logged but not yet saved is redone after a restart)."""
+        lines = []
+        for q in sorted(out.glob('pools-*-*.npz')):
+            try:
+                with np.load(q) as z:
+                    lines += [json.dumps(dict(part=q.name, **json.loads(t))) for t in z['tables'].tolist()]
+            except (OSError, ValueError, KeyError):
+                pass
+        (out / 'progress.jsonl').write_text(''.join(line + '\n' for line in lines))
     while any(p.poll() is None for p in procs):
         time.sleep(30)
         progress()
