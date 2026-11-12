@@ -1,0 +1,90 @@
+{
+  "counts": {
+    "71s-32~6-32": 1298,
+    "71s-32~7s-32": 3293
+  },
+  "excluded_training_families": {
+    "71s-32~6-32": 0,
+    "71s-32~7s-32": 0
+  },
+  "gate": {
+    "n": 3293,
+    "mean": -0.04828423929547525,
+    "se": 0.044830765577879156,
+    "ci": [
+      -0.13618324271928653,
+      0.03961476412833603
+    ],
+    "minimum_boards": 1000,
+    "eligible": false,
+    "method": "Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction"
+  },
+  "sources": [
+    {
+      "branch": "arena-gen7-1-mix-azure1-feed",
+      "revision": "df065b7377004d2c136b24cdfeb73ac2dbc98e8d",
+      "cohort": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82"
+    },
+    {
+      "branch": "arena-gen7-1-compare-codex-20261112-feed",
+      "revision": "dcd7edcc88ce058a8b81e6ff37856e4e44710e45",
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+    },
+    {
+      "branch": "arena-gen71-19bbdce5-20261112-feed",
+      "revision": "696710c5b6f13723e1514096d5354f5125b9fb49",
+      "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+      "revision": "d607c963535d55f0e065f0e7703a6c7dcb540930",
+      "cohort": "cafb5c90115ef7b57fd45e83e3372bc2721bd2b56aa8cf6b7f0ed08bbd54759a"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+      "revision": "99a88d96245d631186682b53d69cb66b14fe585c",
+      "cohort": "5739d5b18d1246d7162d89aa20cb22d5cd3c4db50fe424023023fca9f2cbaaad"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+      "revision": "b55a71ce29a00b950619989a32750efadcfde04a",
+      "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+      "revision": "fc84e507c821dea206f4870f6ea6a59395ced39b",
+      "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
+    },
+    {
+      "branch": "arena-gen71-independent-feed",
+      "revision": "b6f0d0dc4372e1241a76bdee2b8e0d479a7d0a46",
+      "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+      "revision": "1cec4c63065457175c8b76ce45279be6d6aa3931",
+      "cohort": "b1668f080ab8f23e276a4a9bc16d59b7fd526de1969adfd6fc987662cf64406b"
+    },
+    {
+      "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+      "revision": "67dd0edee1f790ff954ee2bb1565b51d80b2ba5b",
+      "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+      "revision": "63e9aa5ff63549d2438e8a0a7f890129add5e970",
+      "cohort": "050b664fdf3d7abd3622eb51e517e7a083b9ab34b24cc984247b1c954c2a9c44"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+      "revision": "e4fad99a5f5fec6be727fc2c71a723c2b203d435",
+      "cohort": "dd96458b675cbc6a76841206baab2b614b7b913ff0063891fd2b6a471d6eb59b"
+    },
+    {
+      "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+      "revision": "96cb1fc7100131cb68580943ff8dee1330d36276",
+      "cohort": "6e37908f191d657bc18101ad79ec9d85d3af39ae3cde64741e182ba600a1e1cd"
+    }
+  ],
+  "errors": []
+}

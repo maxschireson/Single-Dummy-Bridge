@@ -1,0 +1,87 @@
+{
+  "checked_epoch": 1794333616.6868067,
+  "manifest_identity": "c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba",
+  "source_completed": {
+    "gen5r": 2552,
+    "initial_gen5rz": 151
+  },
+  "remaining_target": 15690,
+  "state_at_check": {
+    "manifest_identity": "c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba",
+    "completed": 247,
+    "target": 15690,
+    "contiguous": 232,
+    "by_pair": {
+      "5R32~4b": 57,
+      "5R32~3": 22,
+      "5RZ32~5R32": 64,
+      "5RZ192~ben": 19,
+      "5R32~5-32": 50,
+      "5R32~2": 20,
+      "5R32~5R192": 12,
+      "5R32~1": 3
+    },
+    "root_games": 498,
+    "tables": 3262,
+    "failures": 0,
+    "epoch": 1794333613.4114118,
+    "complete": false
+  },
+  "pair_weights": {
+    "5RZ32~5R32": 111,
+    "5R32~5-32": 74,
+    "5R32~4b": 80,
+    "5R32~3": 40,
+    "5R32~2": 30,
+    "5R32~1": 10,
+    "5RZ192~ben": 10,
+    "5R32~5R192": 15
+  },
+  "actor_identities": {
+    "4b": "d51ef3c79173b07ae638a5bc8b30d290b5f8c757f4f335b9e6aabacc0f207e18",
+    "3": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a",
+    "2": "c7ce7a7f861915d8ea363b66b18c6891b518908a2e09ca4390fd1832aed4ab90",
+    "1": "5ba471c0a612f6e0bb56a60a04e14f0345687a6df94053b959cba9b976dbf4bf",
+    "ben": "ef98d53559f2d3b3f7f0e562e6da07fb6d0b797d54516b842edbce01162c7133",
+    "5-32": "c3e1cb15b2513b899f0b0439f6ab654d6fe703b1c24a91ed446b001544d50869",
+    "5R32": "752cd72283813364b18f132500623e044979cae48758d7c7a10a8603fd6a71fe",
+    "5R192": "5c82b377e0b5f76aa40dfa7ece58e99d11991d944f29e73874258d3a0719cb7c",
+    "5RZ32": "54591b0880b1a569ac121fa097ef4be0447b7e303d31ac5fdd9e07c50e648822",
+    "5RZ192": "1010d27c9ab79ec1084b5a5fee76caa452aa668ca69b7150268f424916d82612"
+  },
+  "actual_tie_only_decisions": {
+    "5RZ192": {
+      "decisions": 845,
+      "policy_ties": 599,
+      "max_gap": 0.0
+    },
+    "5RZ32": {
+      "decisions": 2642,
+      "policy_ties": 1910,
+      "max_gap": 0.0
+    }
+  },
+  "compatible_prior_actor_identities_unchanged": true,
+  "source_indices_disjoint": true,
+  "native_preflight": {
+    "games": 4,
+    "legal_actions": 208,
+    "policy_tie_breaks": 52,
+    "max_z_gap": 0
+  },
+  "validation": [
+    "8 Python tests for policy ties, budgets, all eight matchups, proportions, source preservation and interpreter selection",
+    "14 report checks, 6 refresh checks and weighted timing check",
+    "browser: 3 retained/current phases, both Z budgets, exact BEN hand-count link, native replay, separate R192 baseline and automatic refresh",
+    "public dashboard advanced automatically from 2851 to 2888 combined compatible deals"
+  ],
+  "runtime_python": "/workspace/work/ben-venv/bin/python",
+  "tensorflow": "2.21.0",
+  "system_python_launcher_probe": "passed",
+  "archives": [
+    "gen5r-before-rz-20261110",
+    "gen5rz-initial-20261110"
+  ],
+  "pages_commit": "ef62a147fd9b098fb214f90d94a50714c8822d04",
+  "publication_branch": "arena-gen5rz-ben-feed"
+}

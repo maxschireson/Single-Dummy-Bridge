@@ -1,0 +1,5 @@
+This is the owned Codex Gen8 main-mix cohort. Read recovery/operations/stream.json and instruction-watch.json before resuming.
+Verify the manifest, actor/model/runtime hashes, training exclusions and completed receipts.
+Never resume retired Gen7.1or earlier cohorts. No Gen7.1 comparison CI predicate applies to this Gen8 cohort.
+Only this producer is controlled;3normal workers,0BEN. DDS cache rotation is disposable and explicitly tokened.
+Preserve all failures, manifests, runtime, models, episodes and receipts; changed scientific behavior requires a new cohort.

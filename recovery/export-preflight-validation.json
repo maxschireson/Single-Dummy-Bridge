@@ -1,0 +1,17 @@
+{
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "source_preflight_records": 4,
+  "exported_distinct_records": 4,
+  "common_condition_count": 4,
+  "native_condition_count": 4,
+  "common_pairs": [
+    "8s-32~71s-32",
+    "8c-32~71s-32",
+    "8c-32~8s-32",
+    "8s-32~1"
+  ],
+  "common_and_native_separate": true,
+  "finite_comparison_scores": true,
+  "replay_cohort_matches": true,
+  "not_published_as_production": true
+}

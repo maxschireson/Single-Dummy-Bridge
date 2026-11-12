@@ -1,0 +1,65 @@
+{
+  "old_eligible": 45,
+  "old_training_only": 102,
+  "old_archived": 147,
+  "manifest_identity": "c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59",
+  "actual_sample_counts": {
+    "5-32~4b": {
+      "opponent": [
+        32
+      ],
+      "candidate": [
+        32
+      ]
+    },
+    "5-32~3": {
+      "candidate": [
+        32
+      ],
+      "opponent": [
+        32
+      ]
+    },
+    "5-32~1": {
+      "opponent": [
+        32
+      ],
+      "candidate": [
+        32
+      ]
+    },
+    "5-32~2": {
+      "opponent": [
+        32
+      ],
+      "candidate": [
+        32
+      ]
+    },
+    "5~ben": {
+      "candidate": [
+        192
+      ]
+    },
+    "5~5-32": {
+      "opponent": [
+        32
+      ],
+      "candidate": [
+        192
+      ]
+    }
+  },
+  "checked_epoch": 1794284577.7252567,
+  "source_run": "/workspace/work/gen5-codex-32",
+  "publication_branch": "arena-gen5-codex-32-feed",
+  "pages_commit": "e0d3654",
+  "checks": [
+    "six Python allocation, actual actor-budget selection, auction/reuse, score and timing checks passed",
+    "12 report checks plus weighted timing check passed",
+    "all 147 old training records match their published SHA256",
+    "45 compatible old records in statistics; 102 historical 192-sample comparisons excluded",
+    "actual new historical root decisions use 32 for both actors; BEN/control candidate uses 192",
+    "browser default current-only totals; Older expansion and return; exact hand count and native replay passed"
+  ]
+}

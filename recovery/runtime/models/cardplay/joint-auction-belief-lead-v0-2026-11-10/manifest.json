@@ -1,0 +1,70 @@
+{
+  "schema": "chunked-joint-auction-belief-lead-v0-artifact-v1",
+  "description": "Joint auction belief net for the opening leader (prototype v0); see README.md",
+  "parameters": 1311616,
+  "bidder_sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+  "files": [
+    {
+      "output": "joint_lead_v0.npz",
+      "size_bytes": 5251226,
+      "sha256": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+      "parts": [
+        {
+          "file": "joint_lead_v0.npz.part000",
+          "size_bytes": 524288,
+          "sha256": "caa6ed112cd98f847c0977f5bf92f78add2b848a0051dd14ab3b93d6b25a83bf"
+        },
+        {
+          "file": "joint_lead_v0.npz.part001",
+          "size_bytes": 524288,
+          "sha256": "cf5382265b7c6d2fffb175e0b5789696118021c84877ae3e879b254f5041778c"
+        },
+        {
+          "file": "joint_lead_v0.npz.part002",
+          "size_bytes": 524288,
+          "sha256": "8de7f23ce489fa98e028677087529d6dfc35b209d6cf9382a5796651f304c2f9"
+        },
+        {
+          "file": "joint_lead_v0.npz.part003",
+          "size_bytes": 524288,
+          "sha256": "af07c827e74c1376aa1b814fdb11d5c9bd7c38b1b38e833656f708d07067b75b"
+        },
+        {
+          "file": "joint_lead_v0.npz.part004",
+          "size_bytes": 524288,
+          "sha256": "13cac67e73e98901ba0900bb4400bf96c4d22d236505e0c841ca6691c93d9f32"
+        },
+        {
+          "file": "joint_lead_v0.npz.part005",
+          "size_bytes": 524288,
+          "sha256": "b40c7b6b8b4453bd95e0c3cb35e11c50ea7fc3e6baa59594530de4b1bba77c4c"
+        },
+        {
+          "file": "joint_lead_v0.npz.part006",
+          "size_bytes": 524288,
+          "sha256": "85be93b7c88a5cdaf07d97fed9281e8e7f4b8c5a75d464f78bd2bf34dd741156"
+        },
+        {
+          "file": "joint_lead_v0.npz.part007",
+          "size_bytes": 524288,
+          "sha256": "d4abd1e33b645dcbf471a3662870cd8be4ad5d3117206576c510d82d36b62f8d"
+        },
+        {
+          "file": "joint_lead_v0.npz.part008",
+          "size_bytes": 524288,
+          "sha256": "259be9cb989e8876928b745e89c95c7c57c0d16603c766c0d59aa1229315acb7"
+        },
+        {
+          "file": "joint_lead_v0.npz.part009",
+          "size_bytes": 524288,
+          "sha256": "3ccc92fa736f4622e3f4f9958323ce99cade4f300d4d8db3f82803f7dc46b3c1"
+        },
+        {
+          "file": "joint_lead_v0.npz.part010",
+          "size_bytes": 8346,
+          "sha256": "15e364ef73c37de8126df3e8e52a61698f14cde8ac94ce88f6fd16c00a57b3ac"
+        }
+      ]
+    }
+  ]
+}

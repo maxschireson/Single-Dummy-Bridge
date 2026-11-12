@@ -1,0 +1,176 @@
+{
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "deals": [
+    {
+      "index": 0,
+      "pair": "8s-32~1",
+      "gap_forks": 21,
+      "episode_sha256": "5cee2127bd3eb0386d4090f026a1fac52de9c5ae75a5962adc2d2fd78a2d6abc",
+      "auction_sources": [
+        "systems:house-dds40k|house-gen6",
+        "systems:house-gen6|house-dds40k",
+        "systems:house-gen6|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 440,
+      "best_share": 1780
+    },
+    {
+      "index": 1,
+      "pair": "8c-32~71s-32",
+      "gap_forks": 24,
+      "episode_sha256": "0806d2a66293d3ed00c69b54c483189c69cfcbbb2f2a84539552a44f3ab23ddd",
+      "auction_sources": [
+        "systems:house-gen6|house-gen6",
+        "systems:house-gen6|rules-precision",
+        "systems:rules-precision|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 1933,
+      "best_share": 8825
+    },
+    {
+      "index": 2,
+      "pair": "8c-32~8s-32",
+      "gap_forks": 22,
+      "episode_sha256": "9c8c12043b636e87557f72cf1a4fe3024dba7bfeeff11bc0c62f37ddeaf260d0",
+      "auction_sources": [
+        "systems:house-gen6|house-gen6",
+        "systems:house-gen6|rules-precision",
+        "systems:rules-precision|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 1307,
+      "best_share": 5812
+    },
+    {
+      "index": 3,
+      "pair": "8s-32~71s-32",
+      "gap_forks": 12,
+      "episode_sha256": "f7cc782c20d8961f883cc9ad1d2ea0ea666a285678c6221df31fec06601c00f4",
+      "auction_sources": [
+        "systems:house-gen6|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 527,
+      "best_share": 2221
+    },
+    {
+      "index": 4,
+      "pair": "8s-32~71s-32",
+      "gap_forks": 12,
+      "episode_sha256": "9bb611522288c01f9875f16067c2a7ff346440afc7b9da1f9a9ce5541ec78cee",
+      "auction_sources": [
+        "systems:house-gen6|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 997,
+      "best_share": 4517
+    },
+    {
+      "index": 5,
+      "pair": "8s-32~5RZ32",
+      "gap_forks": 24,
+      "episode_sha256": "eb6f0f8d2355ff9e8a49e9780798417f5854a957a6b306ef7ad7a5d064a13433",
+      "auction_sources": [
+        "systems:house-gen5|house-gen6",
+        "systems:house-gen6|house-gen5",
+        "systems:house-gen6|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 430,
+      "best_share": 1845
+    },
+    {
+      "index": 6,
+      "pair": "8s-32~5RZ32",
+      "gap_forks": 18,
+      "episode_sha256": "9bf77e768799e8319563e1497c243ac9786b3060fd5ade3d7e1838fa6f413d6c",
+      "auction_sources": [
+        "systems:house-gen5|house-gen6",
+        "systems:house-gen6|house-gen5",
+        "systems:house-gen6|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 933,
+      "best_share": 4471
+    },
+    {
+      "index": 7,
+      "pair": "8s-32~1",
+      "gap_forks": 11,
+      "episode_sha256": "ede134c3159ac17e0e5dfc57a6e09d40cea96c98d9d0c5436e31d9b3d28d2d9f",
+      "auction_sources": [
+        "systems:house-dds40k|house-gen6",
+        "systems:house-gen6|house-dds40k",
+        "systems:house-gen6|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 358,
+      "best_share": 1562
+    },
+    {
+      "index": 8,
+      "pair": "8c-32~71s-32",
+      "gap_forks": 22,
+      "episode_sha256": "206d0add51bdeb79fed6a5452b1c09b360135ada13c6f12cdb1f33069696877e",
+      "auction_sources": [
+        "systems:house-gen6|house-gen6",
+        "systems:house-gen6|rules-precision",
+        "systems:rules-precision|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 957,
+      "best_share": 4091
+    },
+    {
+      "index": 11,
+      "pair": "8c-32~8s-32",
+      "gap_forks": 19,
+      "episode_sha256": "25cb2154b052139a12060796eb52bd40379f4108e665661a105b3fb123a95b17",
+      "auction_sources": [
+        "systems:house-gen6|house-gen6",
+        "systems:house-gen6|rules-precision",
+        "systems:rules-precision|house-gen6"
+      ],
+      "root_tables": {
+        "common": 2,
+        "native": 2
+      },
+      "guess_size": 2185,
+      "best_share": 10386
+    }
+  ],
+  "gap_forks": 185,
+  "guess_size": 10067,
+  "best_share": 45510,
+  "scientific_runtime_used": true,
+  "replay_score_and_systems_verified": true
+}

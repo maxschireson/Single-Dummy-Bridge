@@ -1,0 +1,10 @@
+test_every_pair_needs_two_preflight_deals (test_gen8_supervisor.LaunchTests.test_every_pair_needs_two_preflight_deals) ... ok
+test_gen8_launch_accepts_complete_real_capture_proof (test_gen8_supervisor.LaunchTests.test_gen8_launch_accepts_complete_real_capture_proof) ... ok
+test_proof_must_belong_to_current_identity (test_gen8_supervisor.LaunchTests.test_proof_must_belong_to_current_identity) ... ok
+test_retired_gate_cannot_stop_or_start_this_cohort (test_gen8_supervisor.LaunchTests.test_retired_gate_cannot_stop_or_start_this_cohort) ... ok
+test_settings_without_observed_capture_never_launch (test_gen8_supervisor.LaunchTests.test_settings_without_observed_capture_never_launch) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK

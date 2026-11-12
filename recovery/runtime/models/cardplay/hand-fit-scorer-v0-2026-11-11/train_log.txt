@@ -1,0 +1,24 @@
+train examples 8280360 from 230010 deals; positive share 0.360
+  0.0 min step 1 examples 1024 (0.00 passes) lr 0.00001: val loss 0.6937; accuracy true hands 0.547, random 0.467, near 0.475; mean score of true hands 0.501; 1024/s
+  1.0 min step 736 examples 753664 (0.09 passes) lr 0.00199: val loss 0.2779; accuracy true hands 0.701, random 0.926, near 0.864; mean score of true hands 0.651; 12520/s
+  2.0 min step 1429 examples 1463296 (0.18 passes) lr 0.00196: val loss 0.2310; accuracy true hands 0.732, random 0.943, near 0.891; mean score of true hands 0.680; 12167/s
+  3.0 min step 2158 examples 2209792 (0.27 passes) lr 0.00191: val loss 0.2024; accuracy true hands 0.833, random 0.945, near 0.900; mean score of true hands 0.752; 12256/s
+  4.0 min step 2909 examples 2978816 (0.36 passes) lr 0.00185: val loss 0.1841; accuracy true hands 0.873, random 0.950, near 0.905; mean score of true hands 0.789; 12394/s
+  5.0 min step 3655 examples 3742720 (0.45 passes) lr 0.00177: val loss 0.1692; accuracy true hands 0.873, random 0.956, near 0.916; mean score of true hands 0.791; 12459/s
+  6.0 min step 4396 examples 4501504 (0.54 passes) lr 0.00167: val loss 0.1603; accuracy true hands 0.901, random 0.957, near 0.916; mean score of true hands 0.818; 12490/s
+  7.0 min step 5098 examples 5220352 (0.63 passes) lr 0.00156: val loss 0.1561; accuracy true hands 0.911, random 0.959, near 0.917; mean score of true hands 0.834; 12416/s
+  8.0 min step 5825 examples 5964800 (0.72 passes) lr 0.00144: val loss 0.1468; accuracy true hands 0.894, random 0.961, near 0.926; mean score of true hands 0.828; 12414/s
+  9.0 min step 6560 examples 6717440 (0.81 passes) lr 0.00132: val loss 0.1393; accuracy true hands 0.895, random 0.966, near 0.931; mean score of true hands 0.821; 12427/s
+ 10.0 min step 6979 examples 7146496 (0.86 passes) lr 0.00118: val loss 0.1362; accuracy true hands 0.911, random 0.966, near 0.929; mean score of true hands 0.840; 11900/s
+ 11.0 min step 7229 examples 7402496 (0.89 passes) lr 0.00105: val loss 0.1336; accuracy true hands 0.906, random 0.966, near 0.934; mean score of true hands 0.838; 11203/s
+ 12.0 min step 7842 examples 8030208 (0.97 passes) lr 0.00091: val loss 0.1319; accuracy true hands 0.896, random 0.968, near 0.936; mean score of true hands 0.829; 11140/s
+ 13.0 min step 8525 examples 8729600 (1.05 passes) lr 0.00078: val loss 0.1242; accuracy true hands 0.906, random 0.969, near 0.939; mean score of true hands 0.850; 11179/s
+ 14.0 min step 9219 examples 9440256 (1.14 passes) lr 0.00065: val loss 0.1224; accuracy true hands 0.919, random 0.969, near 0.940; mean score of true hands 0.855; 11227/s
+ 15.0 min step 9931 examples 10169344 (1.23 passes) lr 0.00053: val loss 0.1207; accuracy true hands 0.901, random 0.970, near 0.943; mean score of true hands 0.843; 11288/s
+ 16.0 min step 10644 examples 10899456 (1.32 passes) lr 0.00043: val loss 0.1158; accuracy true hands 0.918, random 0.973, near 0.944; mean score of true hands 0.858; 11342/s
+ 17.0 min step 11365 examples 11637760 (1.41 passes) lr 0.00033: val loss 0.1129; accuracy true hands 0.919, random 0.972, near 0.947; mean score of true hands 0.864; 11398/s
+ 18.0 min step 12080 examples 12369920 (1.49 passes) lr 0.00025: val loss 0.1127; accuracy true hands 0.926, random 0.972, near 0.944; mean score of true hands 0.871; 11443/s
+ 19.0 min step 12806 examples 13113344 (1.58 passes) lr 0.00018: val loss 0.1114; accuracy true hands 0.919, random 0.973, near 0.947; mean score of true hands 0.866; 11492/s
+ 20.0 min step 13508 examples 13832192 (1.67 passes) lr 0.00014: val loss 0.1104; accuracy true hands 0.923, random 0.973, near 0.946; mean score of true hands 0.865; 11516/s
+ 21.0 min step 14219 examples 14560256 (1.76 passes) lr 0.00011: val loss 0.1089; accuracy true hands 0.926, random 0.973, near 0.947; mean score of true hands 0.869; 11545/s
+final after 14907 steps, 15264768 examples (1.84 passes): val loss 0.1115; accuracy true hands 0.922, random 0.972, near 0.945; mean score of true hands 0.867

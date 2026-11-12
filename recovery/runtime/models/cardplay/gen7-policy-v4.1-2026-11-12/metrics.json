@@ -1,0 +1,319 @@
+{
+ "kind": "suit",
+ "width": 512,
+ "kinds": [
+  0,
+  1,
+  2
+ ],
+ "augment": "none",
+ "identity": 0.5,
+ "weight_decay": 0.0001,
+ "parameters": 828098,
+ "epochs": 3,
+ "selected_epoch": 3,
+ "fraction": 1.0,
+ "train_deals": 38128,
+ "train_examples": 13239367,
+ "all_train": true,
+ "val_data": "freshB.npz",
+ "validation": {
+  "all": {
+   "n": 218537,
+   "nll": 0.6062,
+   "uniform_nll": 1.2533,
+   "tie_nll": 0.7779,
+   "agree": 0.7545,
+   "in_best": 0.9117,
+   "regret": 0.0245,
+   "regret_gap_head": 0.0203,
+   "regret_random": 0.1976,
+   "regret_lowest": 0.2213
+  },
+  "root_tables": {
+   "n": 31633,
+   "nll": 0.67,
+   "uniform_nll": 1.401,
+   "tie_nll": 0.7671,
+   "agree": 0.7388,
+   "in_best": 0.8773,
+   "regret": 0.0276,
+   "regret_gap_head": 0.0251,
+   "regret_random": 0.2251,
+   "regret_lowest": 0.2536
+  },
+  "by_phase": {
+   "lead": {
+    "n": 769,
+    "nll": 1.2104,
+    "uniform_nll": 2.5649,
+    "tie_nll": 0.7278,
+    "agree": 0.5527,
+    "in_best": 0.6034,
+    "regret": 0.0484,
+    "regret_gap_head": 0.058,
+    "regret_random": 0.2597,
+    "regret_lowest": 0.2645
+   },
+   "tricks 1-4": {
+    "n": 27408,
+    "nll": 0.7004,
+    "uniform_nll": 1.485,
+    "tie_nll": 0.7614,
+    "agree": 0.7281,
+    "in_best": 0.8638,
+    "regret": 0.0257,
+    "regret_gap_head": 0.0246,
+    "regret_random": 0.235,
+    "regret_lowest": 0.2804
+   },
+   "tricks 5-8": {
+    "n": 67775,
+    "nll": 0.765,
+    "uniform_nll": 1.5093,
+    "tie_nll": 0.8267,
+    "agree": 0.7004,
+    "in_best": 0.8661,
+    "regret": 0.0326,
+    "regret_gap_head": 0.0302,
+    "regret_random": 0.256,
+    "regret_lowest": 0.2802
+   },
+   "tricks 9-13": {
+    "n": 122585,
+    "nll": 0.4935,
+    "uniform_nll": 1.0517,
+    "tie_nll": 0.755,
+    "agree": 0.7916,
+    "in_best": 0.9496,
+    "regret": 0.0196,
+    "regret_gap_head": 0.0137,
+    "regret_random": 0.1566,
+    "regret_lowest": 0.1752
+   }
+  },
+  "declaring": {
+   "n": 111173,
+   "nll": 0.6076,
+   "uniform_nll": 1.2908,
+   "tie_nll": 0.7515,
+   "agree": 0.755,
+   "in_best": 0.9133,
+   "regret": 0.0282,
+   "regret_gap_head": 0.0235,
+   "regret_random": 0.275,
+   "regret_lowest": 0.3281
+  },
+  "defending": {
+   "n": 107364,
+   "nll": 0.6048,
+   "uniform_nll": 1.2145,
+   "tie_nll": 0.8053,
+   "agree": 0.7541,
+   "in_best": 0.91,
+   "regret": 0.0207,
+   "regret_gap_head": 0.0171,
+   "regret_random": 0.1176,
+   "regret_lowest": 0.1107
+  }
+ },
+ "test": null,
+ "auction_use": {
+  "real": {
+   "all": {
+    "nll": 0.6062,
+    "agree": 0.7545,
+    "regret": 0.0245
+   },
+   "lead": {
+    "nll": 1.2104,
+    "agree": 0.5527,
+    "regret": 0.0484
+   },
+   "tricks 1-4": {
+    "nll": 0.7004,
+    "agree": 0.7281,
+    "regret": 0.0257
+   },
+   "tricks 5-8": {
+    "nll": 0.765,
+    "agree": 0.7004,
+    "regret": 0.0326
+   },
+   "tricks 9-13": {
+    "nll": 0.4935,
+    "agree": 0.7916,
+    "regret": 0.0196
+   }
+  },
+  "blank": {
+   "all": {
+    "nll": 0.7784,
+    "agree": 0.7008,
+    "regret": 0.051
+   },
+   "lead": {
+    "nll": 1.6303,
+    "agree": 0.4629,
+    "regret": 0.0888
+   },
+   "tricks 1-4": {
+    "nll": 0.8646,
+    "agree": 0.6797,
+    "regret": 0.0527
+   },
+   "tricks 5-8": {
+    "nll": 0.9602,
+    "agree": 0.6421,
+    "regret": 0.0647
+   },
+   "tricks 9-13": {
+    "nll": 0.6532,
+    "agree": 0.7395,
+    "regret": 0.0428
+   }
+  },
+  "another_deals": {
+   "all": {
+    "nll": 0.6301,
+    "agree": 0.7452,
+    "regret": 0.0288
+   },
+   "lead": {
+    "nll": 1.6997,
+    "agree": 0.4525,
+    "regret": 0.0896
+   },
+   "tricks 1-4": {
+    "nll": 0.7356,
+    "agree": 0.7176,
+    "regret": 0.0322
+   },
+   "tricks 5-8": {
+    "nll": 0.7939,
+    "agree": 0.6878,
+    "regret": 0.0382
+   },
+   "tricks 9-13": {
+    "nll": 0.5093,
+    "agree": 0.7849,
+    "regret": 0.0225
+   }
+  },
+  "blank_calls_only": {
+   "all": {
+    "nll": 0.6075,
+    "agree": 0.7542,
+    "regret": 0.0254
+   },
+   "lead": {
+    "nll": 1.2219,
+    "agree": 0.5462,
+    "regret": 0.05
+   },
+   "tricks 1-4": {
+    "nll": 0.7007,
+    "agree": 0.7292,
+    "regret": 0.0259
+   },
+   "tricks 5-8": {
+    "nll": 0.7665,
+    "agree": 0.7009,
+    "regret": 0.0333
+   },
+   "tricks 9-13": {
+    "nll": 0.4948,
+    "agree": 0.7906,
+    "regret": 0.0207
+   }
+  },
+  "blank_shown_only": {
+   "all": {
+    "nll": 0.7697,
+    "agree": 0.7025,
+    "regret": 0.049
+   },
+   "lead": {
+    "nll": 1.6214,
+    "agree": 0.4655,
+    "regret": 0.0891
+   },
+   "tricks 1-4": {
+    "nll": 0.8551,
+    "agree": 0.6805,
+    "regret": 0.0497
+   },
+   "tricks 5-8": {
+    "nll": 0.9498,
+    "agree": 0.6444,
+    "regret": 0.0628
+   },
+   "tricks 9-13": {
+    "nll": 0.6456,
+    "agree": 0.741,
+    "regret": 0.0411
+   }
+  }
+ },
+ "numpy_parity_max_abs_logit": 4.76837158203125e-06,
+ "seconds": 1793,
+ "history": [
+  {
+   "epoch": 1,
+   "seconds": 570,
+   "train_ce": 0.7187,
+   "train_gap": 0.0482,
+   "train_owner": 0.579,
+   "val": {
+    "n": 218537,
+    "nll": 0.66,
+    "uniform_nll": 1.2533,
+    "tie_nll": 0.7779,
+    "agree": 0.7305,
+    "in_best": 0.9023,
+    "regret": 0.0303,
+    "regret_gap_head": 0.0263,
+    "regret_random": 0.1976,
+    "regret_lowest": 0.2213
+   }
+  },
+  {
+   "epoch": 2,
+   "seconds": 1170,
+   "train_ce": 0.6178,
+   "train_gap": 0.0374,
+   "train_owner": 0.5574,
+   "val": {
+    "n": 218537,
+    "nll": 0.6195,
+    "uniform_nll": 1.2533,
+    "tie_nll": 0.7779,
+    "agree": 0.7477,
+    "in_best": 0.9073,
+    "regret": 0.0272,
+    "regret_gap_head": 0.0223,
+    "regret_random": 0.1976,
+    "regret_lowest": 0.2213
+   }
+  },
+  {
+   "epoch": 3,
+   "seconds": 1773,
+   "train_ce": 0.5718,
+   "train_gap": 0.0336,
+   "train_owner": 0.5495,
+   "val": {
+    "n": 218537,
+    "nll": 0.6062,
+    "uniform_nll": 1.2533,
+    "tie_nll": 0.7779,
+    "agree": 0.7545,
+    "in_best": 0.9117,
+    "regret": 0.0245,
+    "regret_gap_head": 0.0203,
+    "regret_random": 0.1976,
+    "regret_lowest": 0.2213
+   }
+  }
+ ]
+}

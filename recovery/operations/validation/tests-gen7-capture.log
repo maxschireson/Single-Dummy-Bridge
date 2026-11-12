@@ -1,0 +1,97 @@
+test_cache_gives_what_a_fresh_player_computes (test_gen7.Gen7Tests.test_cache_gives_what_a_fresh_player_computes) ... ok
+test_early_tricks_from_the_net_carry_no_search_estimates (test_gen7.Gen7Tests.test_early_tricks_from_the_net_carry_no_search_estimates) ... ok
+test_factory (test_gen7.Gen7Tests.test_factory) ... ok
+test_full_tables_with_everything_on (test_gen7.Gen7Tests.test_full_tables_with_everything_on) ... ok
+test_layout_rows_are_the_encoder_on_that_seats_view (test_gen7.Gen7Tests.test_layout_rows_are_the_encoder_on_that_seats_view)
+The batched inputs for a layout are exactly encode() of the Observation that seat would have had. ... ok
+test_list_weights_are_scorer_weight_times_play_likelihood (test_gen7.Gen7Tests.test_list_weights_are_scorer_weight_times_play_likelihood) ... ok
+test_long_lists_are_cut_by_scorer_weight_before_the_net_scores_them (test_gen7.Gen7Tests.test_long_lists_are_cut_by_scorer_weight_before_the_net_scores_them) ... ok
+test_own_plays_are_not_scored_and_the_lead_switch_works (test_gen7.Gen7Tests.test_own_plays_are_not_scored_and_the_lead_switch_works) ... ok
+test_past_view_is_the_observation_that_seat_had (test_gen7.Gen7Tests.test_past_view_is_the_observation_that_seat_had)
+Built from the decider's Observation and the seat's cards alone, it equals what the game gave that seat. ... ok
+test_switches_off_it_plays_gen6s_game_card_for_card (test_gen7.Gen7Tests.test_switches_off_it_plays_gen6s_game_card_for_card) ... ok
+test_ties_go_to_the_nets_most_probable_card (test_gen7.Gen7Tests.test_ties_go_to_the_nets_most_probable_card) ... ok
+test_true_layout_is_listed_and_scores_what_the_net_gave_each_play (test_gen7.Gen7Tests.test_true_layout_is_listed_and_scores_what_the_net_gave_each_play)
+For the real deal the likelihood is the sum, over the hidden seats' plays, of the net's (floored) log-probability ... ok
+test_bank_reweighted_is_plain_dealing (test_gen7.ShownTests.test_bank_reweighted_is_plain_dealing) ... ok
+test_view_is_in_the_controllers_seat_order_and_needs_only_the_observation (test_gen7.ShownTests.test_view_is_in_the_controllers_seat_order_and_needs_only_the_observation) ... ok
+test_cards_that_do_the_same_job_are_one_card (test_gen7.TreeTests.test_cards_that_do_the_same_job_are_one_card) ... ok
+test_double_dummy_replies_with_honest_own_cards_never_beat_pimc (test_gen7.TreeTests.test_double_dummy_replies_with_honest_own_cards_never_beat_pimc) ... ok
+test_no_tricks_is_pimc (test_gen7.TreeTests.test_no_tricks_is_pimc) ... ok
+test_plain_spots_keeps_honours_and_lengths_and_deals_low_cards_in_turn (test_gen7.TreeTests.test_plain_spots_keeps_honours_and_lengths_and_deals_low_cards_in_turn) ... ok
+test_plain_trees_carry_the_probability_whole_and_play_legal_lines (test_gen7.TreeTests.test_plain_trees_carry_the_probability_whole_and_play_legal_lines) ... ok
+test_probability_of_the_play_is_carried_whole (test_gen7.TreeTests.test_probability_of_the_play_is_carried_whole)
+With every card kept, the layouts' weights reach the leaves undiminished. ... ok
+test_reply_rows_are_the_encoder_on_that_seats_view_in_each_layout (test_gen7.TreeTests.test_reply_rows_are_the_encoder_on_that_seats_view_in_each_layout) ... ok
+test_search_replies_ask_from_that_seats_view_and_carry_the_probability_whole (test_gen7.TreeTests.test_search_replies_ask_from_that_seats_view_and_carry_the_probability_whole) ... ok
+test_seat_view_is_the_observation_that_seat_had (test_gen7.TreeTests.test_seat_view_is_the_observation_that_seat_had) ... ok
+test_stake_rule_runs_from_the_uniform_tree_to_pimc (test_gen7.TreeTests.test_stake_rule_runs_from_the_uniform_tree_to_pimc)
+With no threshold to speak of the stake rule cuts nothing; with a huge one every root card is a leaf. ... ok
+test_the_deciders_later_card_from_the_net_or_a_search_is_an_average_not_the_best (test_gen7.TreeTests.test_the_deciders_later_card_from_the_net_or_a_search_is_an_average_not_the_best)
+own='net' and own='search' treat the decider's later self like any other seat: a weighted mean over its cards. ... ok
+test_the_deciders_later_card_is_one_choice_for_all_layouts (test_gen7.TreeTests.test_the_deciders_later_card_is_one_choice_for_all_layouts)
+At the decider's own later turn the value is the best single card's average, never each layout's own best. ... ok
+test_the_stake_is_the_imps_of_the_trick_at_risk (test_gen7.TreeTests.test_the_stake_is_the_imps_of_the_trick_at_risk) ... ok
+test_two_trick_trees_play_legal_lines_to_a_sane_value (test_gen7.TreeTests.test_two_trick_trees_play_legal_lines_to_a_sane_value) ... ok
+test_bad_settings_are_refused (test_gen7_alpha.SettingsTests.test_bad_settings_are_refused) ... ok
+test_no_tree_means_no_stages (test_gen7_alpha.SettingsTests.test_no_tree_means_no_stages) ... ok
+test_one_stage_splits_into_use_and_search_settings (test_gen7_alpha.SettingsTests.test_one_stage_splits_into_use_and_search_settings) ... ok
+test_resolved_writes_out_every_setting_and_reads_back_the_same (test_gen7_alpha.SettingsTests.test_resolved_writes_out_every_setting_and_reads_back_the_same) ... ok
+test_stages_in_a_list_must_not_share_a_trick (test_gen7_alpha.SettingsTests.test_stages_in_a_list_must_not_share_a_trick) ... ok
+test_a_tree_that_needs_a_replier_gets_one_from_the_player (test_gen7_alpha.TreeInThePlayerTests.test_a_tree_that_needs_a_replier_gets_one_from_the_player) ... ok
+test_an_audited_bot_names_the_card_it_would_have_played_without_the_tree (test_gen7_alpha.TreeInThePlayerTests.test_an_audited_bot_names_the_card_it_would_have_played_without_the_tree)
+Through the collector: where the tree moved the card, a fork table plays the no-tree card from the same position. ... ok
+test_cards_the_solves_cannot_tell_apart_are_one_candidate (test_gen7_alpha.TreeInThePlayerTests.test_cards_the_solves_cannot_tell_apart_are_one_candidate)
+Two layouts; S-cards level in both, a third card level on average only. Two candidates, not three. ... ok
+test_no_trust_or_no_horizon_plays_gen6s_game_card_for_card (test_gen7_alpha.TreeInThePlayerTests.test_no_trust_or_no_horizon_plays_gen6s_game_card_for_card) ... ok
+test_only_decisions_with_two_candidates_are_searched (test_gen7_alpha.TreeInThePlayerTests.test_only_decisions_with_two_candidates_are_searched) ... ok
+test_over_budget_keeps_gen6s_card (test_gen7_alpha.TreeInThePlayerTests.test_over_budget_keeps_gen6s_card) ... ok
+test_the_cohort_report_counts_what_the_records_hold (test_gen7_alpha.TreeInThePlayerTests.test_the_cohort_report_counts_what_the_records_hold) ... ok
+test_the_opening_lead_and_tricks_outside_every_stage_are_gen6s (test_gen7_alpha.TreeInThePlayerTests.test_the_opening_lead_and_tricks_outside_every_stage_are_gen6s) ... ok
+test_value_is_the_estimate_plus_trust_times_what_the_tree_changed (test_gen7_alpha.TreeInThePlayerTests.test_value_is_the_estimate_plus_trust_times_what_the_tree_changed)
+A tree that adds a trick to its last candidate: that candidate is played, and the record adds up. ... ok
+test_whole_tables_with_the_tree_deciding (test_gen7_alpha.TreeInThePlayerTests.test_whole_tables_with_the_tree_deciding) ... ok
+test_bad_plans_are_refused (test_gen7_launch.Gen7LaunchTests.test_bad_plans_are_refused) ... ok
+test_every_setting_is_part_of_the_bots_identity (test_gen7_launch.Gen7LaunchTests.test_every_setting_is_part_of_the_bots_identity) ... ok
+test_gen7_bot_is_its_gen6_base_plus_engine_policy_and_settings (test_gen7_launch.Gen7LaunchTests.test_gen7_bot_is_its_gen6_base_plus_engine_policy_and_settings) ... ok
+test_machines_sharing_a_source_run_take_disjoint_deals (test_gen7_launch.Gen7LaunchTests.test_machines_sharing_a_source_run_take_disjoint_deals) ... ok
+test_phase_1_plans_are_open_phase_2_is_closed_and_every_setting_is_spelled_out (test_gen7_launch.Gen7LaunchTests.test_phase_1_plans_are_open_phase_2_is_closed_and_every_setting_is_spelled_out) ... ok
+test_prepare_freezes_unplayed_deals_bots_policy_and_carried_settings (test_gen7_launch.Gen7LaunchTests.test_prepare_freezes_unplayed_deals_bots_policy_and_carried_settings) ... ok
+test_prepare_refuses_a_live_source_a_bad_mix_or_the_wrong_scorer (test_gen7_launch.Gen7LaunchTests.test_prepare_refuses_a_live_source_a_bad_mix_or_the_wrong_scorer) ... ok
+test_pruned_actor_restoration_requires_exact_direct_ancestor (test_gen7_launch.Gen7LaunchTests.test_pruned_actor_restoration_requires_exact_direct_ancestor) ... ok
+test_shipped_plan_is_closed_and_spells_out_every_setting (test_gen7_launch.Gen7LaunchTests.test_shipped_plan_is_closed_and_spells_out_every_setting) ... ok
+test_a_stake_rule_stage_plays_whole_tables_and_its_records_pass_the_preflight (test_gen7_launch.RuntimeAndPreflightTests.test_a_stake_rule_stage_plays_whole_tables_and_its_records_pass_the_preflight) ... ok
+test_the_preflight_accepts_real_decisions_and_catches_a_broken_record (test_gen7_launch.RuntimeAndPreflightTests.test_the_preflight_accepts_real_decisions_and_catches_a_broken_record) ... ok
+test_the_runtime_builds_a_gen7_player_for_a_gen7_spec (test_gen7_launch.RuntimeAndPreflightTests.test_the_runtime_builds_a_gen7_player_for_a_gen7_spec) ... ok
+test_a_selfplay_record_with_a_score_or_the_wrong_tables_is_refused (test_gen7_selfplay.Gen7SelfplayTests.test_a_selfplay_record_with_a_score_or_the_wrong_tables_is_refused) ... ok
+test_a_selfplay_table_carries_the_cohorts_gap_forks (test_gen7_selfplay.Gen7SelfplayTests.test_a_selfplay_table_carries_the_cohorts_gap_forks)
+Self-play is collected for training, so the source run's capture settings apply to it as to any table. ... ok
+test_one_cohort_mixes_selfplay_with_the_gen6_comparison (test_gen7_selfplay.Gen7SelfplayTests.test_one_cohort_mixes_selfplay_with_the_gen6_comparison) ... ok
+test_prepare_freezes_a_cohort_whose_bot_is_the_phase_1_bot (test_gen7_selfplay.Gen7SelfplayTests.test_prepare_freezes_a_cohort_whose_bot_is_the_phase_1_bot) ... ok
+test_selfplay_is_one_replayable_training_table_with_null_comparison (test_gen7_selfplay.Gen7SelfplayTests.test_selfplay_is_one_replayable_training_table_with_null_comparison) ... ok
+test_the_plan_takes_over_the_unplayed_deals_of_a_drained_phase_1_cohort (test_gen7_selfplay.Gen7SelfplayTests.test_the_plan_takes_over_the_unplayed_deals_of_a_drained_phase_1_cohort) ... ok
+test_the_shipped_plan_is_phase_1_without_the_two_anchors (test_gen7_selfplay.Gen7SelfplayTests.test_the_shipped_plan_is_phase_1_without_the_two_anchors) ... ok
+test_a_board_of_71_against_70_is_two_tables_scored_for_71 (test_gen71.Gen71Tests.test_a_board_of_71_against_70_is_two_tables_scored_for_71) ... ok
+test_a_drained_gen7_cohort_hands_its_unplayed_deals_to_the_gen71_plan (test_gen71.Gen71Tests.test_a_drained_gen7_cohort_hands_its_unplayed_deals_to_the_gen71_plan) ... ok
+test_a_plan_names_exactly_the_policy_releases_its_bots_use (test_gen71.Gen71Tests.test_a_plan_names_exactly_the_policy_releases_its_bots_use) ... ok
+test_one_cohort_holds_both_nets_and_7s_32_keeps_its_phase_1_identity (test_gen71.Gen71Tests.test_one_cohort_holds_both_nets_and_7s_32_keeps_its_phase_1_identity) ... ok
+test_the_shipped_plans_are_gen7_with_the_net_changed (test_gen71.Gen71Tests.test_the_shipped_plans_are_gen7_with_the_net_changed) ... ok
+test_training_family_exclusion_is_frozen_and_applied (test_gen71.Gen71Tests.test_training_family_exclusion_is_frozen_and_applied) ... ok
+test_bands_and_settings (test_gap_forks.GapForkTests.test_bands_and_settings) ... ok
+test_budget_stop_is_recorded_not_silent (test_gap_forks.GapForkTests.test_budget_stop_is_recorded_not_silent) ... ok
+test_draw_is_reproducible_and_uses_only_its_own_stream (test_gap_forks.GapForkTests.test_draw_is_reproducible_and_uses_only_its_own_stream) ... ok
+test_each_gap_fork_is_one_forced_inferior_card_then_the_same_players (test_gap_forks.GapForkTests.test_each_gap_fork_is_one_forced_inferior_card_then_the_same_players) ... ok
+test_ineligible_actions (test_gap_forks.GapForkTests.test_ineligible_actions) ... ok
+test_plan_block (test_gap_forks.GapForkTests.test_plan_block) ... ok
+test_root_and_audits_are_identical_with_and_without_gap_forks (test_gap_forks.GapForkTests.test_root_and_audits_are_identical_with_and_without_gap_forks) ... ok
+test_run_board_reads_the_manifest_and_skips_ben (test_gap_forks.GapForkTests.test_run_board_reads_the_manifest_and_skips_ben) ... ok
+test_logging_changes_neither_the_choice_nor_the_existing_estimates (test_gap_forks.GuessSizeTests.test_logging_changes_neither_the_choice_nor_the_existing_estimates) ... ok
+test_no_guess_when_one_card_is_best_everywhere (test_gap_forks.GuessSizeTests.test_no_guess_when_one_card_is_best_everywhere) ... ok
+test_two_way_guess (test_gap_forks.GuessSizeTests.test_two_way_guess) ... ok
+
+----------------------------------------------------------------------
+Ran 79 tests in 135.327s
+
+OK
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpe6spv9xg/out"}
+{"completed": 1, "tables": 1, "rate": {"pairs": 1, "per_hour": 3600.0, "full_window": false}, "files": 7, "output": "/tmp/tmpe6spv9xg/out"}

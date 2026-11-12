@@ -1,0 +1,42 @@
+{
+  "epoch": 1794501528.8364093,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "corpus_sha256": "3ae88e62545c2805b2412b07a64836f6373f540f3e5d973f91f4d08df18e3b59",
+  "corpus_families": 18283,
+  "distinct_corpus_families": 18283,
+  "training_list_families": 34092,
+  "training_list_sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+  "training_list_source": "transfer/v41-training-families-union-20261112@fccbbd80504272151e298799878bdd37db632c47:v41-training-families-union.json",
+  "corpus_training_overlap": 0,
+  "overlap_with_any_completed_ancestor": 0,
+  "completed_ancestor_records_checked": 6717,
+  "ancestors": [
+    {
+      "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+      "completed": 3710,
+      "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9"
+    },
+    {
+      "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+      "completed": 564,
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
+    },
+    {
+      "run": "/workspace/work/gen7-selfplay-codex-20261112/run",
+      "completed": 32,
+      "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8"
+    },
+    {
+      "run": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
+      "completed": 437,
+      "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e"
+    },
+    {
+      "run": "/workspace/work/gen71-compare-codex-20261112/run",
+      "completed": 1974,
+      "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+    }
+  ],
+  "parent_completed": 1974,
+  "parent_indices_validated": true
+}

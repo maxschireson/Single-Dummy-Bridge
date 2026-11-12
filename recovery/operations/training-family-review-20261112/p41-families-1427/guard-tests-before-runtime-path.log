@@ -1,0 +1,32 @@
+Test invocation omitted frozen runtime from PYTHONPATH; collector was intentionally drained, no production failure.
+test_both_gate_conditions_are_required (test_gen71_gate.GateTests.test_both_gate_conditions_are_required) ... ok
+test_changed_registry_rebuilds_prior_inventory_and_filters_training (test_gen71_gate.GateTests.test_changed_registry_rebuilds_prior_inventory_and_filters_training) ... ERROR
+test_closed_plan_and_different_policy_excluded (test_gen71_gate.GateTests.test_closed_plan_and_different_policy_excluded) ... ok
+test_exclusion_list_integrity_required (test_gen71_gate.GateTests.test_exclusion_list_integrity_required) ... ok
+test_mixed_peer_counts_comparison_and_leaves_selfplay_unscored (test_gen71_gate.GateTests.test_mixed_peer_counts_comparison_and_leaves_selfplay_unscored) ... ok
+test_null_nonfinite_scores_rejected (test_gen71_gate.GateTests.test_null_nonfinite_scores_rejected) ... ok
+test_ready_independent_campaign_snapshot_cutoff_and_checksum (test_gen71_gate.GateTests.test_ready_independent_campaign_snapshot_cutoff_and_checksum) ... ok
+test_registry_controls_membership_and_retired_revision (test_gen71_gate.GateTests.test_registry_controls_membership_and_retired_revision) ... ok
+test_reverse_orientation_and_outcome_blind_family_choice (test_gen71_gate.GateTests.test_reverse_orientation_and_outcome_blind_family_choice) ... ok
+test_same_receipt_conflict_is_an_error (test_gen71_gate.GateTests.test_same_receipt_conflict_is_an_error) ... ok
+test_supplement_is_pinned_and_required (test_gen71_gate.GateTests.test_supplement_is_pinned_and_required) ... ok
+test_trainer_supplement_cannot_be_omitted_from_the_gate (test_gen71_gate.GateTests.test_trainer_supplement_cannot_be_omitted_from_the_gate) ... ok
+test_training_families_do_not_satisfy_minimum_board_gate (test_gen71_gate.GateTests.test_training_families_do_not_satisfy_minimum_board_gate) ... ok
+test_unknown_opponent_still_excludes_research_plan (test_gen71_gate.GateTests.test_unknown_opponent_still_excludes_research_plan) ... ok
+
+======================================================================
+ERROR: test_changed_registry_rebuilds_prior_inventory_and_filters_training (test_gen71_gate.GateTests.test_changed_registry_rebuilds_prior_inventory_and_filters_training)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen6-fast-selfplay-stream/test_gen71_gate.py", line 86, in test_changed_registry_rebuilds_prior_inventory_and_filters_training
+    result=g.update(root,root)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/gen6-fast-selfplay-stream/gen71_gate.py", line 237, in update
+    from bridge_harness.selfplay import atomic_json
+ModuleNotFoundError: No module named 'bridge_harness'
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.080s
+
+FAILED (errors=1)
+

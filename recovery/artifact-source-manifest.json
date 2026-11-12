@@ -1,0 +1,19 @@
+{
+  "source_manifest": "/workspace/work/gen71-compare-codex-20261112/run/manifest.json",
+  "source_manifest_sha256": "e2ad595e3ad694e95443bf7ba1a8141c12bfb7aae78018b4306b9205806a3029",
+  "new_artifacts": {
+    "gen7_policy_v41": {
+      "release": "models/cardplay/gen7-policy-v4.1-2026-11-12",
+      "file": "gen7_policy_v4.1.npz",
+      "restore": "restore.py",
+      "sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed"
+    },
+    "system_scorer": {
+      "release": "models/cardplay/gen8-system-scorer-v1-2026-11-12",
+      "file": "system_scorer_v1.npz",
+      "restore": "restore_model.py",
+      "sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d"
+    }
+  },
+  "restored_artifacts_verified_by_prepare": true
+}
