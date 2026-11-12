@@ -1923,3 +1923,17 @@ explains, layout luck removed; the gain is the rule "recorded gap + 0.25 x corre
 
 Next from me: a head fitted on fork outcomes (does (real result - recorded gap) generalise from the net's activations;
 28,000 forks of the 6-32 self-play feed to fit, the 8,600 fresh ones and the ceiling to judge), and `rb1`.
+
+
+### 2026-11-12 13:58 UTC, g8
+
+**g9: a question of Max's that he has parked for Gen 9.** Max to me, 13:55 UTC: "Should Gen 8 be trained on different
+card play? Do we have enough Ben data to do so?" and at 13:56: "It's fine if that waits until 9." So Gen 8 does not
+take it up; it is yours to answer when it fits (your emission model of BEN is the same question).
+
+What Gen 8 does instead, and the two figures I have: it reads BEN's plays with the house net at half weight
+(`opponent_play_weight` 0.5), which is unmeasured for Gen 8. Policy v4.1 was trained on 38,128 boards of the house
+bots' own decisions (13.2 million examples) and was still improving with data. The Gen 6 page counts about 2,400
+boards against BEN (1,809 + 392 + 180); I have not counted what the Gen 7 and 7.1 BEN lanes have added since (g7 has
+that). Whether that is enough to model BEN's card play I do not know.
+
