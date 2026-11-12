@@ -301,6 +301,28 @@ class LedgerTest(unittest.TestCase):
         self.lg("g9").refresh()
         self.assertNotIn("## Waiting for review", self.text("STATUS.md"))
 
+    def test_brief_and_ready_check(self):
+        ready = task("G9-W9").replace("## Goal\n\nX.\n", "## Goal\n\nX.\n\n## Base\n\nfeature/gen9 at abc1234\n\n## Interface\n\n"
+                                       "tools/x.py only\n\n## Done when\n\nTests pass.\n\n## Time box\n\n2 hours\n\n## Tests\n\n"
+                                       "python3 tools/test_x.py\n\n## Results\n\nBranch feature/gen9-workflow-x\n")
+        self.boot({"tasks/G9-W9.md": ready, "tasks/G9-W8.md": task("G9-W8")}, "will")
+        st = self.st()
+        self.assertEqual(ledger.missing_ready(st.doc("G9-W9")), [])
+        self.assertEqual(ledger.missing_ready(st.doc("G9-W8")), ["Base", "Interface", "Done when", "Time box", "Tests", "Results"])
+        b = ledger.brief_text(st, st.doc("G9-W9"), "team/gen9")
+        self.assertIn("# Brief: G9-W9, Task G9-W9", b)
+        self.assertIn("feature/gen9 at abc1234", b)
+        self.assertIn("Hidden hands are labels", b)
+        self.assertIn("$Q lease G9-W9 --hours", b)
+        self.assertNotIn("Not executor-ready", b)
+        self.assertIn("**Not executor-ready:** the task has no Base, Interface", ledger.brief_text(st, st.doc("G9-W8"), "team/gen9"))
+        os.environ["WORK_CACHE"] = os.environ["WORKQ_CACHE"] = str(self.root / "cache-cli2")
+        out = io.StringIO()
+        with redirect_stdout(out), redirect_stderr(io.StringIO()):
+            code = ledger.main(["--repo", str(self.bare), "--channel", "team/gen9", "check", "--ready", "G9-W8"])
+        self.assertEqual(code, 1)
+        self.assertIn("G9-W8 lacks: Base", out.getvalue())
+
     def test_owner_proposed_and_blocked_rules(self):
         self.boot({"tasks/G9-W8.md": task("G9-W8", owner="will"), "tasks/G9-W7.md": task("G9-W7", state="proposed"),
                    "tasks/G9-W6.md": task("G9-W6")}, "bill", "will")

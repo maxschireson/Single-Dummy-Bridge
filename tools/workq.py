@@ -28,7 +28,10 @@ The tool keeps its own clone in ~/.cache/workq and never touches a checkout.
   workq.py inbox [--all] [--agent N]               workq.py read MSG        workq.py ack   (all read)
 
   workq.py fleet                                   box heartbeats and the board's allocation table, into STATUS.md
-  workq.py check                                   validate every header; exit 1 if one is malformed
+  workq.py check [--ready ID]                      validate every header (exit 1 if one is malformed); with --ready,
+                                                   name the executor sections ID lacks (Base, Interface, Done when,
+                                                   Time box, Tests, Results)
+  workq.py brief ID                                everything a fresh session needs to do ID: the file, the rules, the commands
   workq.py export                                  everything as JSON
 
 Environment: WORKQ_REPO, WORKQ_BRANCH (default team/gen9), WORKQ_LEAD (default g9), WORKQ_TRAILERS
@@ -68,6 +71,17 @@ LIFECYCLE = ("state", "holder", "lease_until", "resolution")  # changed only by 
 MAX_LEASE_HOURS = 4
 PREREGISTERED = ("Hypothesis", "Primary metric and population", "Compute cap", "Stopping rule")  # filled before a lease
 GRACE = timedelta(minutes=30)
+READY_SECTIONS = (("Base",), ("Interface",), ("Done when",), ("Time box",), ("Tests",), ("Results", "Where results go"))
+RULES = """- Hidden hands are labels for training, experience and scoring, never inputs to a player's decision.
+- Nothing made with the EPBot/BBA bidding engine or its card files.
+- Frozen runs, manifests, feeds, completed episodes and receipts are never edited; changed behaviour gets a new identity.
+- Never force-push. Feed, transfer, box and team branches are never merged into source.
+- Work on a branch cut from the task's base (`feature/gen9-<area>-<slug>` unless the task says otherwise); open a PR into
+  `feature/gen9` when the done-when is met, and name it in the submit note.
+- State what was tested and what was not; keep negative and inconclusive results.
+- End your commits with your own session trailer.
+- Queue nothing on an Azure box unless the task gives you one; the allocation table on `box/coordination` says who holds each.
+- Work only on this task. If it cannot be done as written, `log` why and `release` or `block` it rather than widen it."""
 EXPERIMENT_SECTIONS = ("Hypothesis", "Mechanism", "Primary metric and population", "Regression slices",
                        "Compute cap", "Stopping rule", "Result")
 
@@ -419,6 +433,43 @@ class State:
         if self.events:
             path = f"log/{self.at:%Y-%m-%d}.jsonl"
             self.put(path, (self.get(path) or b"") + b"".join((json.dumps(e) + "\n").encode() for e in self.events))
+
+
+def missing_ready(d: Doc) -> list[str]:
+    """Sections an executor needs that are absent or empty (docs/gen9/workflow.md, section 3)."""
+    out = []
+    for names in READY_SECTIONS:
+        if not any(d.section(n).strip() not in ("", "_not yet_", "TBD") for n in names):
+            out.append(names[0])
+    return out
+
+
+def brief_text(st: State, d: Doc, branch: str) -> str:
+    did = d.get("id")
+    pend = deps_unresolved(st, d)
+    miss = missing_ready(d)
+    lines = [f"# Brief: {did}, {d.get('title')}", "",
+             f"This brief is all the context you are given. The task lives in `{d.path}` on branch `{branch}` of "
+             f"maxschireson/Single-Dummy-Bridge; the repository's own rules are in AGENTS.md and CONTRIBUTING.md on main.", ""]
+    if miss:
+        lines += [f"**Not executor-ready:** the task has no {', '.join(miss)} section. Ask its owner ({d.get('owner')}) "
+                  f"before you start: `workq.py send {d.get('owner')} \"{did}: ...\" --task {did} --body ...`.", ""]
+    if pend:
+        lines += [f"**Depends on {', '.join(pend)}**, not resolved yet.", ""]
+    lines += ["## The task", "", "```markdown", d.render().decode().rstrip(), "```", "",
+              "## Rules that always hold", "", RULES, "",
+              "## How to work it", "",
+              "    git fetch origin team/gen9 && git show FETCH_HEAD:tools/workq.py > /tmp/workq.py",
+              "    Q=\"python3 /tmp/workq.py --as <your name>\"",
+              f"    $Q hello --role \"executor for {did}\" --session <your session link>",
+              f"    $Q lease {did} --hours <the time box, at most 4>",
+              f"    $Q log {did} \"<a result, a blocker or a change of plan>\"      # whenever another session would want to know",
+              f"    $Q renew {did}                                               # before the lease ends",
+              "    python3 scripts/run_tests.py --prepare --set gen9            # in your source checkout, before you submit",
+              f"    $Q submit {did} --branch <branch> --commit <sha> --note \"what was done, what was tested, what is unresolved\"",
+              f"    $Q release {did} --note \"<where the partial work is>\"        # if you must stop", "",
+              f"Reviewer: {d.get('reviewer') or st.lead}. Run `$Q watch` at natural breaks for messages about this task."]
+    return "\n".join(lines) + "\n"
 
 
 def deps_unresolved(st: State, d: Doc) -> list[str]:
@@ -935,7 +986,10 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("hello"); [p.add_argument(f"--{k}") for k in ("role", "session", "model", "notes")]
     p = sub.add_parser("watch"); p.add_argument("--no-heartbeat", action="store_true")
-    sub.add_parser("status"); sub.add_parser("refresh"); sub.add_parser("check"); sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
+    sub.add_parser("status"); sub.add_parser("refresh")
+    p = sub.add_parser("check"); p.add_argument("--ready", metavar="ID", help="say which executor sections ID lacks")
+    p = sub.add_parser("brief"); p.add_argument("id")
+    sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
     p = sub.add_parser("tasks"); p.add_argument("--owner"); p.add_argument("--state"); p.add_argument("--mine", action="store_true")
     p = sub.add_parser("show"); p.add_argument("id")
     p = sub.add_parser("new"); p.add_argument("title")
@@ -1031,6 +1085,11 @@ def run(lg: Ledger, a) -> int:
         sys.stdout.write(render_status(st).decode()); return 0
     if c == "refresh":
         lg.refresh(); print("STATUS.md regenerated"); return 0
+    if c == "brief":
+        sys.stdout.write(brief_text(st, st.doc(a.id), lg.store.branch)); return 0
+    if c == "check" and a.ready:
+        miss = missing_ready(st.doc(a.ready))
+        print(f"{a.ready} is executor-ready" if not miss else f"{a.ready} lacks: {', '.join(miss)}"); return 1 if miss else 0
     if c == "check":
         _, errors = st.docs()
         print("\n".join(errors) if errors else "every header is well formed"); return 1 if errors else 0

@@ -51,6 +51,8 @@ works from any directory. Get it from this branch:
     $Q set G9-B2 priority=low reviewer=bill
     $Q fleet          # refresh the Boxes table in STATUS.md (box heartbeats, what the board says)
     $Q refresh        # regenerate STATUS.md after hand edits
+    $Q check --ready G9-B7   # which executor sections a task lacks (Base, Interface, Done when, Time box, Tests, Results)
+    $Q brief G9-B7    # all a fresh session needs to do the task: the file, the rules, the commands (docs/gen9/workflow.md §3)
 
 It checks every header it writes and refuses a malformed one (`check` lists any on the branch),
 applies the lease rules below (owner, `pool` or g9 may lease; `proposed` needs g9; an expired lease
