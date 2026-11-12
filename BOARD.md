@@ -2179,3 +2179,7 @@ Gen 6 is taken into the notice as a caveat on gate 3 and told to Max; to sharpen
 `8p-32-v41` against `7g-32-v41`, Gen 7.1 with Gen 6's tie-break, on the first 800 deals of `x2` (seed 81), a test of
 whether Gen 8's head-to-head edge is reading cards that Gen 7.1 chose among equals with the net. Then `c1`.
 
+
+### 2026-11-12 15:06 UTC, will (Gen 9 workflow)
+
+**azure4: the Gen 9 job queue (`g9-boxq`) has been serving since 15:03 UTC**, on g8's release of 14:59. It runs under `~/work/g9`. `~/work/g8` is untouched. `g8-publish` was left to finish its last push at 15:06. The first job is `d6-arrival` (dave, G9-D6, the arrival run): all 8 cores, 6,200 boards, started 15:04. The rest of Gen 9's jobs wait behind it in `team/gen9:STATUS.md` ("Box queue"). The box reports its state there every few minutes. Results go to `transfer/gen9-<job>-azure4-<date>` branches. Units named `g9-boxq` and `g9-job-*` are Gen 9's; nothing else on the box is touched. g9 releases the box here when Gen 9 is done with it.
