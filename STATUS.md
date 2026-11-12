@@ -1,6 +1,6 @@
 # Fleet status
 
-**Last check:** 12 November 2026, 16:47 UTC. Who holds which box: the allocation table in `BOARD.md` on branch
+**Last check:** 12 November 2026, 21:47 UTC. Who holds which box: the allocation table in `BOARD.md` on branch
 `box/coordination`. Fleet check: `/home/claude/watch/pool8.py` (per-box `box8.sh`).
 
 **Gen 8 arena** (Max, 15:32 "Go ahead", 15:33, 15:50: never a board in a family the bot was trained on; 16:11 to the
@@ -11,12 +11,12 @@ sha256 `0b8ac2b7f41b9191...`, branch `transfer/v41-training-families-union-20261
 
 | Machine | Held by | Running | At the last check |
 | --- | --- | --- | --- |
-| `azure1` | operator | `configs/round8-candidate.json` (`8s-32~71s-32` 2, `8c-32~71s-32`, `8c-32~8s-32`, `8s-32~5RZ32`, `8s-32~1`), eight workers, cohort `b9900c30105c` (`gen8-azure1`, 1,097 deals: the unplayed deals of `gen71-mix2-azure1`), feed `arena-gen8-azure1-feed`, since 16:42 | 26 boards at 16:47; preflight passed (16:22 to 16:41); `gen8-recycle` active |
-| `azure2` | plan session from 08:15 (Max's authority) | Plan-level search experiments | Nothing of the operator's runs there |
-| `azure3` | operator | `8s-32~ben64`, eight lanes (`gen8-azure3-ben64-1` to `-8`) on the unplayed deals of the 7.1 BEN lanes, since 16:30 | 73 boards at 16:47 (1,365 deals in all, about 250 boards an hour: they run out near 22:00) |
-| `azure4` | Gen 9 (from 14:58) | Gen 9 job queue | Nothing of the operator's runs or is queued there |
-| `azure5` | plan session (from 13:20) | | |
-| `azure6` | operator from 16:39 (g8 released it) | `configs/round8-candidate.json`, eight workers, cohort `08b8e638202a` (`gen8-azure6`, capsule shard 7/8 without the training families, 1,484 deals), feed `arena-gen8-azure6-feed` | Preflight play running since 16:41 |
+| `azure1` | operator | `configs/round8-candidate.json`, eight workers. `gen8-azure1` (`b9900c30105c`) finished at 1,097 of 1,097 at 20:26; since then `gen8-s3-azure1` (`05729bda9553`, 1,468 deals: azure4's phase 1 cohort's remaining deals), feed `arena-gen8-s3-azure1-feed`. Armed next (`next8`): `gen8-s7-azure1` (`22b58cd811cc`, 1,074 deals: azure6's drained Gen 8 cohort's remaining deals, preflight passed 20:56), feed `arena-gen8-s7-azure1-feed` | 400 of 1,468 at 21:47, about 300 boards an hour: `s7` from about 01:20, to about 05:00. Still to prepare after it: azure2's `4b32e6ed0d6b` (720) and `gen71-mix-azure1` (215), to about 08:10 |
+| `azure2` | plan session (Max's authority) | Plan-level search experiments | Nothing of the operator's runs there |
+| `azure3` | operator | `8s-32~ben64`, eight lanes. Second pool (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`; `lane-switch` moved lanes 3, 4, 5, 2, 7 and 1 between 20:55 and 21:46 | Lanes 6 and 8 at 178 and 180 of their first pools (184, 183); second pools about 34 boards an hour a lane, to about 08:30 |
+| `azure4` | Gen 9 | Gen 9 job queue | The phase 1 publisher of `arena-gen7-phase1-azure4-feed` still pushes there (g8's, to g9) |
+| `azure5` | plan session | | |
+| `azure6` | the single-dummy lookup-table session (Max, 18:07) | | Freed by the operator at 18:12: `gen8-azure6` drained at 410 of 1,484, all published; its remaining deals go to azure1 as `s7` |
 
 **Finished at the switch (all published, nothing deleted).** azure1 `gen71-mix2-azure1` (`71s-32~71s-32` and
 `71s-32~7s-32`) at 381 boards (16:22). azure3's 7.1 BEN (64) lanes at 16:30: third pool lanes 1 to 5 and 7 at 9, 11,
