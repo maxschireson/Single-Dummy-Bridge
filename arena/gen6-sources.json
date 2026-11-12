@@ -513,6 +513,18 @@
       "cohort": "c50412d34108b09cb5bc2cc3db45ce6764fae7901a878e7bca13117c21d6900a"
     },
     {
+      "key": "gen71azure1mix2",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure1 (self-play and against Gen 7.0, second pool)",
+      "branch": "arena-gen7-1-mix2-azure1-feed",
+      "cohort": "31a8dd6ce6389aa75ee9816ac56961e8678977879589c0f5da25ec12d61aac53",
+      "retired": true,
+      "revision": "b417f16dfbbca25e0a759ed5402afa6579ac7acb"
+    },
+    {
       "key": "gen71azure1mix",
       "group": "gen7",
       "generation": 7,
@@ -601,6 +613,78 @@
       "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 8, pool 2)",
       "branch": "arena-gen7-1-fresh2-azure3-ben64-8-feed",
       "cohort": "8512e1610ffe1c7acdc49def953af3ccb36c6c767e9ba03775958fc576ee6ffd"
+    },
+    {
+      "key": "gen71azure3ben64h1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 1, pool 3)",
+      "branch": "arena-gen7-1-fresh3-azure3-ben64-1-feed",
+      "cohort": "eeeef464c66dbf6b413e4870d22f7271c66d1c82d2d6e3630ad03aa9125eee75",
+      "retired": true,
+      "revision": "c14b37cdb0276a7e71212d135241f0300fdb835a"
+    },
+    {
+      "key": "gen71azure3ben64h2",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 2, pool 3)",
+      "branch": "arena-gen7-1-fresh3-azure3-ben64-2-feed",
+      "cohort": "1702c946ffbaf13fff093210e3bd8929e8d5dbe38e45d02836d55e4a89205068",
+      "retired": true,
+      "revision": "06c45434db5b47388cb918c786d4b9386ec439ff"
+    },
+    {
+      "key": "gen71azure3ben64h3",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 3, pool 3)",
+      "branch": "arena-gen7-1-fresh3-azure3-ben64-3-feed",
+      "cohort": "205c18fdb0dfcc1e9bdb4ef55c6cea96a969e3710f198160f754bb1bbccdfa1b",
+      "retired": true,
+      "revision": "106ce99d11e10ba1c056cbf68260398df24c0ccb"
+    },
+    {
+      "key": "gen71azure3ben64h4",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 4, pool 3)",
+      "branch": "arena-gen7-1-fresh3-azure3-ben64-4-feed",
+      "cohort": "733a990625ed3ad2785524f02a2684fc092279bf0d5a066089e7eb5535ab2256",
+      "retired": true,
+      "revision": "5a41f09fe901b54198b8602d92c40cdc0424063d"
+    },
+    {
+      "key": "gen71azure3ben64h5",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 5, pool 3)",
+      "branch": "arena-gen7-1-fresh3-azure3-ben64-5-feed",
+      "cohort": "1e5af5653f41b9aea926a017a9d6b22dc18fba2bca2004ad746559ae430e9397",
+      "retired": true,
+      "revision": "0c4ab5f5459d3d131cb2a9f1828c4de4c34882d2"
+    },
+    {
+      "key": "gen71azure3ben64h7",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 7, pool 3)",
+      "branch": "arena-gen7-1-fresh3-azure3-ben64-7-feed",
+      "cohort": "452c615de6ea2a50a1b6a3c9c911810c5417acf671f5e8fd176d50b92d1d5fc4",
+      "retired": true,
+      "revision": "80681d7804dd57bd66582c311c3cad0d9168fc0d"
     },
     {
       "key": "gen71azure3ben64f1",
@@ -1475,7 +1559,8 @@
       }
     },
     "azure1": "From 11:42 UTC (Max, 11:36 UTC: \"Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7\"): 71s-32~71s-32 and 71s-32~7s-32, one board in two each, on azure1's drained phase 1 cohort's unplayed deals without the v4.1 training families. The self-play boards are training data with no score. azure4, the other box named, is lent to the Gen 8 session (Max, 11:38 UTC).",
-    "azure3_pool2": "From about 12:40 UTC each azure3 lane, when its first pool was played out, goes on with a cohort of the drained phase 1 cohort's unplayed deals without the v4.1 training families, one eighth each (--shard), feeds arena-gen7-1-fresh2-azure3-ben64-N-feed."
+    "azure3_pool2": "From about 12:40 UTC each azure3 lane, when its first pool was played out, goes on with a cohort of the drained phase 1 cohort's unplayed deals without the v4.1 training families, one eighth each (--shard), feeds arena-gen7-1-fresh2-azure3-ben64-N-feed.",
+    "final": "Retired and pinned at their last commits: azure1's second Gen 7.1 pool (arena-gen7-1-mix2-azure1-feed, finished at 16:22 UTC on 12 November with 381 boards) and azure3's third-pool BEN (64) lanes (finished at 16:30 UTC; lanes 6 and 8 played no board and have no feed), when the Azure boxes went to Gen 8."
   },
   "gen8_azure": {
     "authority": "Max, 2026-11-12 15:32 UTC: Go ahead (Gen 8); 15:33: machines on Gen 7 work switch to the Gen 8 arena; 15:50: never a board in a family the bot was trained on; 16:11, to the operator: switch the arena to Gen 8.",
