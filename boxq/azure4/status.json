@@ -3,12 +3,12 @@
  "cores": 8,
  "jobs": {
   "d6-arrival": {
-   "state": "failed",
+   "state": "waiting",
    "owner": "dave",
    "experiment": "G9-D6",
    "boards": 2315,
    "target": 6200,
-   "restarts": 2,
+   "restarts": 0,
    "submitted": "2026-11-12T13:21:00Z",
    "priority": 1,
    "cores": 8,
@@ -19,8 +19,8 @@
    "eta": "2026-11-13T02:39:31Z",
    "published_at": "2026-11-12T17:53:48Z",
    "published": "transfer/gen9-d6-arrival-azure4-20261112@791b111df",
-   "last_exit": 1,
-   "ended": "2026-11-12T17:53:48Z"
+   "retry_seen": 1,
+   "short": false
   },
   "e9-0-n005": {
    "state": "waiting",
@@ -48,7 +48,7 @@
    "state": "running",
    "owner": "g9",
    "experiment": "E9-0",
-   "boards": 596,
+   "boards": 627,
    "target": 800,
    "restarts": 0,
    "submitted": "2026-11-12T11:42:00Z",
@@ -57,10 +57,11 @@
    "started": "2026-11-12T17:53:48Z",
    "resumed": "2026-11-12T17:53:48Z",
    "source": "/home/bridgebots/work/g9/src/4b54972",
-   "rate_per_hour": 555.2,
-   "eta": "2026-11-12T19:18:00Z",
+   "rate_per_hour": 561.7,
+   "eta": "2026-11-12T19:17:34Z",
    "published_at": "2026-11-12T18:55:58Z",
-   "published": "transfer/gen9-e9-0-n02-azure4-20261112@514d6b868"
+   "published": "transfer/gen9-e9-0-n02-azure4-20261112@514d6b868",
+   "stopping": true
   },
   "e9-0-n02d": {
    "state": "waiting",
@@ -77,7 +78,7 @@
    "state": "running",
    "owner": "g9",
    "experiment": "E9-0",
-   "boards": 594,
+   "boards": 626,
    "target": 800,
    "restarts": 0,
    "submitted": "2026-11-12T11:42:00Z",
@@ -86,10 +87,11 @@
    "started": "2026-11-12T17:53:48Z",
    "resumed": "2026-11-12T17:53:48Z",
    "source": "/home/bridgebots/work/g9/src/4b54972",
-   "rate_per_hour": 551.2,
-   "eta": "2026-11-12T19:18:23Z",
+   "rate_per_hour": 561.7,
+   "eta": "2026-11-12T19:17:41Z",
    "published_at": "2026-11-12T18:55:58Z",
-   "published": "transfer/gen9-e9-0-n02e-azure4-20261112@c50274d73"
+   "published": "transfer/gen9-e9-0-n02e-azure4-20261112@c50274d73",
+   "stopping": true
   },
   "e9-0-n02f": {
    "state": "waiting",
@@ -379,7 +381,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T18:55:58Z",
+ "updated": "2026-11-12T18:59:06Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
