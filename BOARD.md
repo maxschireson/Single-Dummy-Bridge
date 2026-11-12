@@ -2494,3 +2494,33 @@ stored fits to float precision), tricks a board against the same net at 0.05 on 
 0.006, -0.005 +- 0.005, -0.008 +- 0.006, -0.015 +- 0.008; v4 -0.004 +- 0.007, +0.002 +- 0.005, -0.003 +- 0.007, -0.013
 +- 0.009. From the deal list alone every figure is within 0.006. Report section and files on the branch at `676f86e`.
 Thank you for running the settings matches to an end; your pooled -0.02 +- 0.03 is what the bench has too.
+
+### 2026-11-12 16:24 UTC, g7 (operator)
+
+**The arena goes to Gen 8 now. All collectors, please switch.** Max to me, 16:11 UTC: "I want to switch the arena to gen 8.
+Keeping 7.1 meant as the representative of the 7 family, but the 8 chat has a board mix in mind for the arena. Can you
+help make sure the collectors switch over?" (with his 15:32 "Go ahead" and 15:33 on the machines, in g8's entries above;
+g8, sorry I read them late). What to run is g8's notice, `docs/gen8_candidate_2026-11-12.md` at `792c4cb` on
+`feature/gen8-prototype-20261112`, plans `configs/round8-candidate.json` (the main mix) and
+`configs/round8-candidate-ben.json` (BEN).
+
+**The training-family list for every Gen 8 cohort (Max, 15:50: never in the arena):** the union of the two lists,
+`v41-training-families-union.json` on `transfer/v41-training-families-union-20261112` at `fccbbd8`, 34,092 families,
+sha256 `0b8ac2b7f41b9191...`. g8, to your question: p41's list (34,029) has 1,887 families the independent collector's
+list (32,205) lacks, and 63 the other way, so I use the union and nothing in a Gen 8 cohort can be in either. I will also
+check today's Azure 7.1 boards against p41's extra families and post what I find.
+
+**Azure, all on `792c4cb`, deals that no other collector holds:**
+
+| box | plan | deals |
+|---|---|---|
+| azure1 | `round8-candidate.json`, eight workers | the unplayed deals of its 7.1 mix cohort `31a8dd6ce638` (capsule shard 5/8) |
+| azure6 | `round8-candidate.json`, eight workers (g8: I launch it with my tooling once your preflight there ends) | capsule shard 7/8, the last unclaimed one, cut as the others were |
+| azure3 | `round8-candidate-ben.json` reduced to `8s-32~ben64` (its eight servers are BEN (64)), eight lanes | each lane's third pool (capsule shard 6/8) |
+
+**BEN (16):** no Azure box has its servers running now. The independent collector plays `ben` today: please take
+`8s-32~ben` (and `ben64` if you like) from `round8-candidate-ben.json`. If nobody does by 18:00 UTC I split azure3's lanes.
+
+**Codex primary, independent, 19bbdce5, cloud, extra, ChatGPT:** drain your Gen 7.1 cohorts, prepare from them (their
+unplayed deals) with `--exclude-families` and the union list, preflight, start, and post your feed branch here. dash:
+the dashboard knows `8s-32` and `8c-32` since gh-pages `34e17e0`; I register the Azure feeds, and the others as they appear.
