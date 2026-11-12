@@ -11,6 +11,12 @@
 > not tempered), section 6 and 7 (who bid is told apart from who plays; promotion test), section 8 (what
 > perfect reading is worth). Area notes: [bidding](bidding.md), [signals](signals.md), [arena](arena.md),
 > [arena statistics](arena-statistics.md), [workflow](workflow.md).
+>
+> **Revised 12 November, 11:55 UTC**, after the first experiments: section 3 (the first model of a
+> newcomer and how boards move it), 4.1 (four kinds of profile row; kinds are each read relative to
+> their own mean, which gives a bound), 4.2 (what reads a profile best, as measured; a card on a
+> matching profile makes the reading worse), 4.3 (honesty starts at 0.5; a real player needs an
+> emission table), section 8 (readers are judged in tricks saved; corrected at 12:50 after p41's reply).
 
 ## 1. What Gen 9 is for
 
@@ -92,11 +98,28 @@ card would open and respond on a fixed set of hands, and those are shown beside 
 the profile's own bidder breaks the card's rules: bid a fixed set of deals with the profile's
 generator, and count the calls that the card's meaning for that call does not allow, among the
 calls the card covers. It is executable for neural and rule bidders alike, it weights each
-agreement by how often it comes up, and it needs no hand-set field weights. The profile
-probability starts from those distances and is then updated from the player's own finished
-boards by the likelihood of their calls under each profile's scorer (system detection, deferred
-from Gen 8). A card far from every profile leaves most of the weight on `unknown`, and the rule
-filter does the work.
+agreement by how often it comes up, and it needs no hand-set field weights.
+
+Measured distances (bill, 12 November): a rule bidder to its own card 0; the nearest other
+card 1.4%; precision to standard 15 to 16%; the house nets to any card 13 to 31%. A house net
+is about 15% from the best card that can be written for it in the card language, so 15% is
+what "this player bids a profile we hold" looks like from the card's side, and distances are
+counted from there. Distances taken over different sets of covered calls are not comparable
+(a card that covers less looks nearer); that is not corrected yet.
+
+**The first model** (`player_model.arrive`), before any board: weight 1 for the reserved
+profile `card` (the declared card's rules alone), `exp(-max(d - 0.15, 0) / 0.05)` for each
+system we hold, with a floor of 0.001 so that none is ruled out, and 0.25 for the reserved
+profile `flat` (the calls say nothing). Normalised, the precision guest of the arrival run
+starts at card 0.65, the three house nets 0.19 between them, flat 0.16; a guest who bids the
+house Gen 5 net and declares the nearest standard card starts at card 0.24, the nets 0.70,
+flat 0.06. The constants are first settings, not fitted.
+
+**After boards** (`player_model.believed`): the probabilities move by the summed
+log-likelihood of the pair's calls on their own hands under each candidate (the `profile`
+statistic of section 5). Measured (E9-2, adopted): 3 to 8 boards tell precision from standard
+at 0.95; the two house bidders take 20 to 50; house Gen 5 and its parent net cannot be told
+apart and do not need to be. A candidate the statistic has not scored keeps its share.
 
 ## 4. At the table: reading calls and cards
 
@@ -118,64 +141,79 @@ model `M` of the partnership that acted.
 For a partnership `P` with profile probabilities `pi_P(k)`:
 
 ```
-auction weight of x for P  =  sum over k of  pi_P(k) * product over P's seats s of exp(S_k(hand(s)))
+auction weight of x for P  =  sum over k of  pi_P(k) * product over P's seats s of exp(R_k(hand(s)))
 ```
 
 - The sum over profiles is outside the product over seats and calls: a pair plays one system
-  for the whole board (prospectus section 7; the Gen 8 guide also asks for mixing scores and
-  not tables). In code this is a log-sum-exp over profiles of the summed seat scores, in a
-  `type_log_weights` that Gen 9's player overrides.
-- `P`'s visible hands count too. When dummy belongs to `P`, dummy's fit under each profile
-  multiplies `pi_P(k)` before the hidden hand is weighted: seeing dummy tells us which system
-  they are playing.
-- In normal play only one side's system is uncertain (we know our own), so this costs one
-  scorer pass per candidate profile. With at most four candidates kept, that is small next to
-  the solver.
+  for the whole board. In code this is a log-sum-exp over profiles of the summed seat scores
+  (`Gen9Player.read_calls`).
+- `R_k` is how profile `k` is read. There are four kinds:
 
-### 4.2 The card: a profile of its own, and a correction to the others
+  | Kind | What the row is | Its scale |
+  | --- | --- | --- |
+  | scorer | the hand-fit scorer trained on that system | log of a probability that the hand fits: near 0 for a hand that fits |
+  | replay | the system's own bidder run on the candidate hand: the log-likelihood of the calls | several nats below 0 even for a hand that fits |
+  | `card` | the declared card's rules alone (4.2) | near 0 for a hand that fits, on the calls the card covers |
+  | `flat` | nothing: the calls say nothing about the hands | 0 |
+
+- **Rows of one kind are mixed as they are**, and `P`'s visible hands count: when dummy
+  belongs to `P`, dummy's fit under each profile multiplies `pi_P(k)` before the hidden hand is
+  weighted.
+- **Rows of different kinds are not on one scale**, so with more than one kind among the
+  candidates each kind's mixture is divided by its mean over the layouts and carries the
+  probability of its profiles and no more. (Mixed raw, `flat` and `card` outweighed a held net
+  within a board whatever the experience said; found on 12 November before the arrival run.)
+  Two consequences. The board's own calls no longer move weight between kinds; boards already
+  played do (section 3). And there is a bound: **with probability p on the kind that is right,
+  the true layout is read at most -log p nats below that kind alone.** That bound is what makes
+  `flat` a safety net: a pair we misjudge costs at most the log of the share we left on it.
+- Putting `card` and `flat` on the likelihood scale (a model of the calls that does not look at
+  the hand, which bill's `FlatProfile` already is) would let all kinds mix exactly, visible
+  hand included. Not done yet.
+
+### 4.2 What reads a profile best, as measured
 
 The card compiles into rules: in each situation the card covers, an ordered list of calls with
-the hands that make them ([bidding note](bidding.md); 81 fields, five systems compile today:
-2/1, SAYC, Acol, Precision, Polish Club). From the rules, the likelihood of a call for any hand:
+the hands that make them ([bidding note](bidding.md); 81 fields; five systems and three real
+cards compile today). From the rules, the likelihood of a call for any hand:
 
 ```
 P(call | hand) = (1 - eps) * [the first rule the hand satisfies is this call] + eps * (a soft share by how far the hand is from each rule)
-F(hand | calls of s) = sum over the seat's calls that the card covers of log P(call | hand)
 ```
 
-`eps` is the player's measured rate of off-card calls, per family of calls (section 5). The
-ordered rules give negative inference (a pass denies an opening); a hand one point outside a
-range costs less than a hand five points outside.
+`eps` is the player's measured rate of off-card calls, per family of calls (section 5).
 
-**First measurement (bill, 12 November; one seat's true hand over a uniform pool, nats):**
+Gain in the true layout's log weight over not reading the auction, nats a decision, offline
+(bill, 12 November; standard errors about 0.1):
 
-| Auctions bid by | Hand-fit scorer `S` | Card `F` | `S + F` |
-| --- | ---: | ---: | ---: |
-| House Gen 5 bidder (read with an approximate 2/1 card) | 2.18 | 0.85 | 1.77 |
-| 2/1 card / SAYC card | 0.61 / 0.75 | 1.68 / 1.67 | 0.97 / 1.08 |
-| Acol card / Polish Club card | -1.34 / -1.16 | 1.65 / 1.43 | -0.55 / -0.72 |
-| Precision card | -2.49 | 1.42 | -1.90 |
+| Auctions bid by | Wrong net's scorer | The card | The system's own scorer | Replay of its own bidder |
+| --- | ---: | ---: | ---: | ---: |
+| Precision (rule bidder) | -5.6 | +2.5 | none trained | +3.6 |
+| House Gen 5 or Gen 6 | | +1.8 to +2.0 | +3.6 to +3.7 | +4.0 to +4.1 |
 
-Two things follow, and they change the first version of this section:
+What follows:
 
-- **On a system it was not trained on, the house scorer is worse than not reading the auction
-  at all** (negative gains), and multiplying the card onto it does not rescue it. So the card
-  is not a factor on every profile. It is **a profile of its own** in the mixture of 4.1,
-  reserved id `card`: its row is `F` alone, with no scorer. A foreign system declared with a
-  card is read by its rules; the house scorer keeps only the weight that matching (section 3)
-  and the player's own boards give it.
-- **On the house system an approximate card costs weight** (2.18 falls to 1.77). So on a net
-  profile `k` the card's term is applied only on that profile's **residual**: the situations
-  where profile `k`'s own bidder breaks the card more often than a threshold, which is where
-  this player's card really departs from the profile (a 14 to 16 no-trump under a 15 to 17
-  profile). That is "even when they match a profile their card filters the net", without
-  paying for the card's approximations elsewhere.
-
-Still to come: handing single calls to the rules (a scorer trained with calls dropped), and
-experiment E9-8, which asks whether replaying a known bidder on each candidate hand reads the
-house auctions better than the scorer does. If it does, every profile whose bidder we hold
-(house nets, BEN's own bidder, rule bidders, compiled cards) is read by replay on the pool, the
-scorer only draws the pool, and the mixture compares like with like.
+1. **A system we hold no reader for must not be read by the house scorer**: it is 5.6 nats
+   worse than not reading at all (E9-1). It is read by its card, and `flat` bounds the damage
+   while the mapping is uncertain.
+2. **A system whose bidder we hold is best read by replaying that bidder** (E9-8, adopted:
+   +0.69 nats a hidden seat over the scorer on Gen 6 auctions, +1.4 for a seat that bid twice
+   or more, 0.03 s a seat for a pool). The scorer draws the pool, the replay corrects its
+   weights. It also means a retrained bidder needs no retrained reader. In the shell, replay
+   applies when every candidate of the pair is a held net.
+3. **A card multiplied onto a matching profile makes the reading worse** (-0.35 to -0.6 nats,
+   even for the card fitted to that very bidder). So for a player mapped to a profile the
+   card's work is the mapping and the `card` candidate, not a filter. What is still open is the
+   case the idea was meant for: a player who bids a held profile with one declared difference
+   (a 14 to 16 no-trump under a 15 to 17 profile), read with the card's term on that difference
+   alone. The shell supports it as a setting that is off by default (`card_on_nets`), since a
+   check for the arrival run found the residual term costing 0.43 nats on a guest who simply
+   bids a held net and declares the nearest card; E9-13 measures the case it is meant for.
+4. **At the table these gains have bought little so far.** Sandbox pilots, IMPs a board: replay
+   against the scorer on house auctions -0.27 +- 0.21 (200 boards); the card against the house
+   scorer on precision auctions +0.21 +- 0.13 (400 boards), with a 12.9-nat gap at the opening
+   lead and a correlation of 0.06 between a board's gap and its IMPs. The box runs (E9-11,
+   E9-12) decide these; E9-0 measures where in the play a nat pays (section 8).
 
 ### 4.3 Cards: the net for the choice that matters, the carding rules for the spot
 
@@ -202,9 +240,42 @@ log P(card | view, x) = phi_P * log P_net(class of the card | view)       what t
   fact about the hidden hand (parity of the suit for count, an honour in the suit for attitude,
   where the side strength is for suit preference, length for a fourth-best or third-and-fifth
   lead), so this is a likelihood over layouts like any other term.
-- **Honesty is per player and per kind of signal**, learned from finished boards (section 5),
-  starting from the profile's value. `h = 0` makes the spot say nothing; nothing is ever ruled
-  out.
+- **Honesty is per player and per kind of signal**, learned from finished boards (section 5).
+  `h = 0` makes the spot say nothing; nothing is ever ruled out. Measured offline on 296
+  recorded tables with the defenders' spots re-chosen by a carding rule (E9-4 part 1): reading
+  the declared scheme gains +0.49, +0.72 and +0.90 nats a declarer decision at honesty 0.5, 0.8
+  and 1 over Gen 8's reading. Assuming more honesty than there is costs far more than assuming
+  less (against honesty 0, assuming 0.9 reads 0.86 nats worse than the right reading; against
+  honesty 1, assuming 0.5 reads 0.12 worse), so **the prior sits at 0.5** and experience moves
+  it. What the reader learns is the effective honesty (a signaller only signals among cards its
+  search ties). Carrying the uncertainty about `h` through the board instead of a point value
+  helps only before any experience (+0.01 to +0.05 nats) and is not built.
+- **One number does not describe a real player.** BEN signals count from a low-card default: on
+  declarer's lead it plays its highest spot 21% of the time from an even holding and 5% from an
+  odd one, so a high card says a lot and a low card little. A symmetric honesty reads that at
+  +0.02 to +0.10 nats (noise); an emission table (the probability of the lowest, highest or a
+  middle spot given what the signal would say) reads BEN's defenders +0.16 (BEN 16) and +0.32
+  (BEN 64) nats a declarer decision better than Gen 8 on held-out deal families (E9-7,
+  adopted). So the model of a player's signals is an emission table per kind of signal, learned
+  from experience after 200 occasions, and honesty is the shape it starts from.
+- **An expert per known opponent** (Max, 12 November). How honestly a player signals depends on
+  the situation: a defender signals when partner needs to know and not when declarer gains
+  more. So for an opponent we hold many boards of, the model of its signals is fitted to that
+  opponent and conditioned on the situation, in three steps of rising need for data:
+  one honesty per kind of signal (any player, a few dozen boards); an emission table per kind
+  of signal, then per situation with partial pooling (additive counts in the experience store,
+  a few hundred occasions a cell); a small fitted expert on the public situation and the
+  signaller's hand (thousands of occasions: BEN today). "Situation" means at least: exact
+  length where the table has parity, the number of equivalent spots, an honour in the suit, who
+  led and from where, trump or side suit, a long suit in dummy with no entry, and the second
+  round of a suit, which the reader does not read yet. The expert's output is a likelihood
+  like any other term, and its by-situation honesty is published with the player's model so
+  that a person can check it. Experiment E9-15 fits and scores this for BEN; E9-14 is the same
+  idea for the opponent's choices (which card class), a head on the policy net. An expert is
+  an artifact made from the experience store at an epoch boundary and named in the snapshot.
+- **The house bots signal nothing** (E9-9): their spots carry no agreed meaning, their leads are
+  fourth best about half the time. A designed scheme for the house pair is E9-6; offline it
+  gives partner +0.13 nats a decision and gives a declarer who knows it +0.32.
 - **`phi_P`** is Gen 8's opponent factor, learned per player instead of set by hand. Gen 8's
   calibration found the best factor to be 1.0 for the house bots, 0.2 to 0.5 for Gen 1 and the
   fixed-carding types, and used 0.3 for an unknown opponent (`configs/gen8-proto-bots.json`,
@@ -231,19 +302,29 @@ every statistic is exact.
 | --- | --- | --- |
 | Profile probability | Likelihood of the pair's calls on their actual hands under each profile | 4.1 |
 | Off-card rate `eps`, and where the ends of each declared range really are | Each covered call: did the hand fit the card's meaning, and by how much not | 4.2 |
-| Honesty `h` per kind of signal | Each signalling chance with two or more spots: was the prescribed spot played | 4.3 |
+| Honesty `h` per kind of signal, then an emission table | Each signalling chance with two or more spots: was the prescribed spot played; and which of lowest, highest or a middle spot, given what the signal would say | 4.3 |
 | Play factor `phi`, floor | Gain in the true layout's weight at a grid of factors (Gen 8's play-information measure, per player) | 4.3 |
 | Error profile | Tricks given up against the solver by role and trick | Opponent replies in the tree (later) |
 
-Updates are sums keyed by board, so collectors on different machines add theirs in any order
-and a board counted twice is detected. A snapshot of the store is frozen at each epoch boundary
-and named in every record played under it. Schema `experience-v1`; the shrinkage toward the
-profile's values is part of the schema, so a player with ten boards is read almost as their
-profile and one with a thousand as themselves.
+Updates are sums keyed by occasion, so collectors on different machines add theirs in any order
+and an occasion counted twice is detected. What counts as one occasion matters when the same
+deal is played at several tables: a pair's calls count once for each deal, seats and auction
+(the same auction against two opponents is the same evidence), and its card play once for each
+distinct play of the deal (the same deal played differently against two opponents is two
+observations). Two plays that agree for some tricks and then part still count the shared tricks
+twice; a unit per decision would fix that and is not built. A snapshot of the store is frozen at
+each epoch boundary and named in every record played under it. Schema `experience-v1`; the
+shrinkage toward the profile's values is part of the schema, so a player with ten boards is read
+almost as their profile and one with a thousand as themselves.
 
-A learned per-player vector fed to the policy net (fitted from the same boards) is the step
-after these statistics. It is not in v1; the statistics come first because each is one or two
-numbers that a few dozen boards can estimate.
+A newcomer is read from its arrival model alone until the first boundary after it joins. With
+long epochs that is a long time to be read badly; an arena with arrivals needs either short
+epochs or a short first epoch for a newcomer. The arrival run (G9-D6) shows the cost.
+
+Fitting the play inference itself to a player (a small head on the policy net fitted on that
+player's own cards) is the next step after these statistics: experiment E9-14, on BEN's record,
+as a curve over boards of experience.
+
 
 ## 6. The arena as a population
 
@@ -273,7 +354,7 @@ the arena, and a generation number is a label put on a champion afterwards.
 | I3 | Player model at the table | [`bridge_harness/player_model.py`](../../bridge_harness/player_model.py): `PlayerModel(id, kind, profiles, bidding, carding, experience)`, read-only. Two facts reach a player. Who plays the cards against it: the runner's existing `meet(opponent)`, once a board, with a `PlayerModel` or a bot id resolved against the models in the player's own spec. Who made the calls at this table: `auction_by(bidders)`, before each table, four models or ids in seat order; without it each side is taken to have bid for itself. In a common auction the bidding layer read for both sides is the common bidder's, while carding and play experience stay the card player's | g9 | bill, sam, dave |
 | I4 | Bidding reader | An object with `type_log_weights(o, view, length, hon)` (4.1 and 4.2); the rule filter alone has `FitScorer`'s `type_log_score` | bill | engine |
 | I5 | Play reader | An object with `play_log_likelihood(o, view, assign, plays)` (4.3) | sam | engine |
-| I6 | Experience | [`bridge_harness/experience.py`](../../bridge_harness/experience.py), `experience-v1`: four additive kinds of statistic (`count`, `hist`, `moment`, `loglik`), per-board deltas keyed by board, a merged store, a frozen snapshot, and estimators that shrink toward a prior. Names: `bid.<family>`, `profile` (bill); `card.<signal>`, `play.<what>` (sam) | g9 (schema and algebra), bill and sam (their statistics), dave (storage, merge across collectors, snapshots) | readers |
+| I6 | Experience | [`bridge_harness/experience.py`](../../bridge_harness/experience.py), `experience-v1`: four additive kinds of statistic (`count`, `hist`, `moment`, `loglik`), per-board deltas keyed by board, a merged store, a frozen snapshot, and estimators that shrink toward a prior. Names: `bid.<family>`, `profile` (keys: system ids, `card`, `flat`) (bill); `card.<signal>`, `card.<signal>.emit`, `play.<what>` (sam). `player_model.arrive` makes a newcomer's first model from its card; `player_model.believed` moves the profile probabilities by the `profile` statistic, and the shell calls it in `meet` and `auction_by` | g9 (schema and algebra), bill and sam (their statistics), dave (storage, merge across collectors, snapshots) | readers |
 | I7 | Epoch manifest, result record, rating table | `epoch-v1` on a control branch; in the first phase the epoch, player and snapshot ids ride in each cohort's run manifest, so records and the collector runtime are unchanged; `ratings-v1`, one table per bidding condition ([statistics](arena-statistics.md)) | dave | collectors, dashboard |
 | I8 | Task and experiment files | `team/gen9` branch, README there | will | everyone |
 
@@ -306,6 +387,35 @@ won, none lost). That is the whole prize for reading hidden cards better within 
 Gen 8's reading of the play from trick 1 took about 0.4 of it. Experiment E9-0 measures the
 curve in between (IMPs against nats of the true layout's weight), which turns every reader's
 offline gain into an expected gain at the table.
+
+**Readers are judged in tricks saved, with nats beside them.** Until midday on 12 November
+this note scored a reader by the true layout's gain in log weight alone. That is not enough:
+
+- **What a nat buys depends on what it is about.** In p41's reading bench
+  (`reports/gen8-reading-by-net-2026-11-12`, 21,417 recorded decisions with every layout
+  solved), information aimed at the true holders of honours saves four to five times as many
+  tricks for each nat as information about small cards, and nothing more is saved beyond about
+  0.54 tricks a board. Across policy nets the tricks do follow the nats from v0 to v4 (+0.30
+  nats a decision, +0.069 +- 0.024 tricks a board) and both are flat from v4 on.
+- **It depends on when.** The reading's value sits at tricks 3 to 9; at tricks 10 to 13 it is
+  nil. A gain measured at the opening lead (where Gen 9's auction readers were measured) is not
+  a gain held through the play: as cards appear the hidden hands narrow and the auction says
+  less about what is left.
+- **Two Gen 9 pilots at the table** (section 4.2): a 12.9-nat gap at the opening lead for
+  +0.21 +- 0.13 IMPs a board, and +0.69 nats a seat at the lead for -0.27 +- 0.21.
+- **Information held through the whole play does pay.** The prototype against itself with its
+  pool weighted toward the true deal by +1.85 nats at every decision (honours weighted more):
+  +1.39 +- 0.39 IMPs a board over 91 sandbox boards; the bench's proxy for nearly the same
+  setting says +0.32 +- 0.03 tricks, about +1.15 IMPs.
+
+So from 12 November every Gen 9 reader is scored on p41's published layouts and solves in
+double-dummy tricks saved a board over the prototype's reading, per table and not per occasion
+the reader acts on, with nats beside it (task G9-X2), and a reader goes to a box only when
+that number says a match could see it. Experiment E9-0 is the played check of the bench, on a
+box: the same help at +1.05 and +1.85 nats a decision, and +1.05 at tricks 1 to 6 only, from
+trick 7 only, as declarer only and as a defender only, on the same 800 deals. The proxy says
++0.20 and +0.32 tricks a board for the first two, +0.17 for tricks 1 to 6 alone and +0.03 from
+trick 7 alone.
 
 The comparison used throughout is the prospectus's: generic reading, fixed mixture, inferred
 model, and an oracle told the true type. The oracle gap says what a perfect player model would
