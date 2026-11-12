@@ -1,0 +1,52 @@
+epoch 1 played and closed in 117s; decisions: [{"kind": "queued", "player": "guest-a", "event": "submit"}]
+epoch 2 (38216892c543), champion 8p-32, 16 boards, snapshot 4bffc7d5e73e
+  1            anchor    protected
+  5RZ32        anchor    protected
+  7s-32        candidate
+  8p-32        champion 
+  9a-32        candidate
+  guest-a      candidate
+  pairs: 7s-32~1 x1, 7s-32~5RZ32 x1, 7s-32~8p-32 x1, 8p-32~1 x8, 8p-32~5RZ32 x8, 8p-32~8p-32 x75, 9a-32~1 x1, 9a-32~5RZ32 x1, 9a-32~8p-32 x1, guest-a~1 x1, guest-a~5RZ32 x1, guest-a~8p-32 x1
+epoch 2 played and closed in 220s; decisions: []
+epoch 3 (362969448263), champion 8p-32, 16 boards, snapshot 2f7248b7db3b
+  1            anchor    protected
+  5RZ32        anchor    protected
+  7s-32        candidate
+  8p-32        champion 
+  9a-32        candidate
+  guest-a      candidate
+  pairs: 7s-32~1 x1, 7s-32~5RZ32 x1, 7s-32~8p-32 x1, 8p-32~1 x8, 8p-32~5RZ32 x8, 8p-32~8p-32 x75, 9a-32~1 x1, 9a-32~5RZ32 x1, 9a-32~8p-32 x1, guest-a~1 x1, guest-a~5RZ32 x1, guest-a~8p-32 x1
+epoch 3 played and closed in 249s; decisions: [{"kind": "queued", "player": "7s-32", "event": "retire"}, {"kind": "queued", "player": "guest-b", "event": "submit"}]
+epoch 4 (f5a9fde3b9ee), champion 8p-32, 16 boards, snapshot 67fa22eab308
+  1            anchor    protected
+  5RZ32        anchor    protected
+  7s-32        retired  
+  8p-32        champion 
+  9a-32        candidate
+  guest-a      candidate
+  guest-b      candidate
+  pairs: 8p-32~1 x8, 8p-32~5RZ32 x8, 8p-32~8p-32 x75, 9a-32~1 x1, 9a-32~5RZ32 x1, 9a-32~8p-32 x1, guest-a~1 x1, guest-a~5RZ32 x1, guest-a~8p-32 x1, guest-b~1 x1, guest-b~5RZ32 x1, guest-b~8p-32 x1
+epoch 4 played and closed in 245s; decisions: []
+epoch 5 (09b8f42ceb1f), champion 8p-32, 16 boards, snapshot 029cec6ce8ec
+  1            anchor    protected
+  5RZ32        anchor    protected
+  7s-32        retired  
+  8p-32        champion 
+  9a-32        candidate
+  guest-a      candidate
+  guest-b      candidate
+  pairs: 8p-32~1 x8, 8p-32~5RZ32 x8, 8p-32~8p-32 x75, 9a-32~1 x1, 9a-32~5RZ32 x1, 9a-32~8p-32 x1, guest-a~1 x1, guest-a~5RZ32 x1, guest-a~8p-32 x1, guest-b~1 x1, guest-b~5RZ32 x1, guest-b~8p-32 x1
+epoch 5 played and closed in 280s; decisions: []
+epoch 6 (ff5f950f07a3), champion 8p-32, 16 boards, snapshot 3a67ef95de80
+  1            anchor    protected
+  5RZ32        anchor    protected
+  7s-32        retired  
+  8p-32        champion 
+  9a-32        candidate
+  guest-a      candidate
+  guest-b      candidate
+  pairs: 8p-32~1 x8, 8p-32~5RZ32 x8, 8p-32~8p-32 x75, 9a-32~1 x1, 9a-32~5RZ32 x1, 9a-32~8p-32 x1, guest-a~1 x1, guest-a~5RZ32 x1, guest-a~8p-32 x1, guest-b~1 x1, guest-b~5RZ32 x1, guest-b~8p-32 x1
+
+real	18m56.468s
+user	31m20.080s
+sys	0m13.708s

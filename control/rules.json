@@ -1,0 +1,62 @@
+{
+ "admission": {
+  "max_boards": 2000,
+  "se": 0.15
+ },
+ "common_bidder": "6-32",
+ "condition": "native",
+ "epoch": {
+  "boards": 16,
+  "first": 16
+ },
+ "experience": {
+  "occasions": {
+   "bid": "auction",
+   "card": "auction"
+  }
+ },
+ "floors": [
+  {
+   "boards": 4,
+   "pairs": [
+    "9a-32~guest-a",
+    "8p-32~guest-a"
+   ],
+   "purpose": "comparison",
+   "same_deals": true
+  },
+  {
+   "boards": 3,
+   "pairs": [
+    "9a-32~guest-b",
+    "8p-32~guest-b"
+   ],
+   "purpose": "comparison",
+   "same_deals": true
+  }
+ ],
+ "max_weight_ratio": 2,
+ "notes": [
+  "Full-path rehearsal (not committed): the box run events on 16-board epochs; floors 4 and 3."
+ ],
+ "promotion": {
+  "alpha": 0.05,
+  "beta": 0.1,
+  "cap": 10000,
+  "d": 0.1
+ },
+ "reference": "1",
+ "retirement": {
+  "gap": 1.0,
+  "min_epochs": 3
+ },
+ "schema": "arena-rules-v1",
+ "shares": {
+  "admission": 0.1,
+  "panel": 0.15,
+  "promotion": 0.2,
+  "training": 0.55
+ },
+ "version": "arrival-v1-fullpath-rehearsal",
+ "weight_units": 100
+}

@@ -1,0 +1,663 @@
+{
+ "champion": "8p-32",
+ "conditions": {
+  "common_bidder": "6-32",
+  "regimes": [
+   "common",
+   "native"
+  ]
+ },
+ "deals": {
+  "exclude_training_family_lists": [],
+  "generator": "gen8_match.deal(seed, slot * 2**20 + k)",
+  "seed": 1885016567
+ },
+ "end": {
+  "boards": 16
+ },
+ "epoch": 5,
+ "events_applied": [],
+ "experience_snapshot": "029cec6ce8ecfe68609f509475479d3a3ac1ac82db13e1d2377215f12b7d5479",
+ "id": "09b8f42ceb1f2c8ffbbda4b3825af5147e287662e7a977ab82a7794db65b405c",
+ "opened_utc": "2026-11-12T10:19:26Z",
+ "players": {
+  "1": {
+   "identity": "38b9d00cf11f4fa06904d8e6034afb7b77d23d474733c1bd5320d020bf21ec71",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "1",
+    "kind": "anchor",
+    "profiles": [
+     [
+      "house-dds40k",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "e6805f0ee8174f2cdcb8cfd915d481570f335f4c68371bad8253d6d2dec5bc69",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "5RZ32": {
+   "identity": "49f4aeb51f52fb976e89ed847947ac50f8941c0e7eb75143a91c890c658a92b6",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "5RZ32",
+    "kind": "anchor",
+    "profiles": [
+     [
+      "house-gen5",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "9b7a5a3ef3bc4af2fee1b10f7fbb71ae44f81a3f3ac443490554ea6ecb0a97ef",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "8p-32": {
+   "identity": "3cf2f5d52375b6e356eb9ffb90a224ca422c091a762b9d72dcf8cb802fbcd966",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "8p-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "855c671d880dc8d148b5c1642cb167e6adf82080d5d0d75206594bf348c62c56",
+   "protected": false,
+   "status": "champion",
+   "test": null
+  },
+  "9a-32": {
+   "identity": "43fbef5a73f4fa86631ec688f955f8075340eafa64a17e6632bdbccff99417b8",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "9a-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "5bcce0228504f53d23dc90ef2f7a9e580c487df6507fdf775c89e994976b1b97",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  },
+  "guest-a": {
+   "identity": "45ac96295f0019facd24950e01239cf60a980ad164b9c5876b05d8d75c997bfc",
+   "model": {
+    "arrival": {
+     "distances": {
+      "card": "rb-precision",
+      "deals": 500,
+      "rates": {
+       "house-dds40k": 0.28315854410857494,
+       "house-gen5": 0.2628,
+       "house-gen6": 0.2719
+      },
+      "seed": 5150,
+      "source": {
+       "house-dds40k": "computed",
+       "house-gen5": "reports/gen9-profile-distance-2026-11-12/result.json",
+       "house-gen6": "reports/gen9-profile-distance-2026-11-12/result.json"
+      }
+     },
+     "source": "player_model.arrive"
+    },
+    "bidding": {
+     "cover": [
+      "open",
+      "overcall",
+      "balance",
+      "vs_nt",
+      "respond_nt",
+      "nt_answers",
+      "respond"
+     ],
+     "descriptor": {
+      "comp.balance": 3,
+      "comp.balancing_jumps": false,
+      "comp.balancing_nt": [
+       12,
+       15
+      ],
+      "comp.jump_first": true,
+      "comp.jump_overcall": "weak",
+      "comp.jump_overcall_len3": 7,
+      "comp.michaels": false,
+      "comp.nt_overcall": [
+       15,
+       18
+      ],
+      "comp.overcall_1": [
+       8,
+       17
+      ],
+      "comp.overcall_2": [
+       11,
+       17
+      ],
+      "comp.overcall_3_min": 13,
+      "comp.overcall_quality": {
+       "1": {
+        "top5": 2
+       },
+       "2": {
+        "top5": 2
+       },
+       "3": {
+        "top5": 2
+       }
+      },
+      "comp.strong_double_min": 18,
+      "comp.takeout_double_min": 12,
+      "comp.takeout_shape": "all",
+      "comp.unusual_2nt": false,
+      "comp.vs_nt_2nt_minors": false,
+      "comp.vs_nt_double_min": 17,
+      "comp.vs_nt_natural": {
+       "hcp": [
+        9,
+        15
+       ],
+       "len_major": 6,
+       "len_minor": 6,
+       "top3": 0,
+       "top5": 2
+      },
+      "comp.weak_jump_hcp": [
+       5,
+       10
+      ],
+      "open.four_level": null,
+      "open.fourth_seat_rule_of_15": false,
+      "open.light": {
+       "hcp": 10
+      },
+      "open.min_hcp": 11,
+      "open.nebulous_1d": {
+       "min_len": 1
+      },
+      "open.nt": [
+       {
+        "hcp": [
+         14,
+         16
+        ],
+        "seats": [
+         1,
+         2,
+         3,
+         4
+        ],
+        "vul": "any"
+       }
+      ],
+      "open.nt_five_major": false,
+      "open.one_level_max": 15,
+      "open.precision_2c": {
+       "five_four": false,
+       "hcp": [
+        11,
+        15
+       ],
+       "len": 6
+      },
+      "open.preempt_seats": [
+       1,
+       2,
+       3
+      ],
+      "open.rule_of_20": false,
+      "open.strong_2c": null,
+      "open.strong_club": {
+       "hcp": 16
+      },
+      "open.third_seat_min": 11,
+      "open.three_level": {
+       "hcp_max": 10,
+       "hcp_min": 4,
+       "len": 7,
+       "len_max": 13
+      },
+      "open.three_nt": null,
+      "open.two": {
+       "2D": {
+        "clubs": [
+         4,
+         5
+        ],
+        "hcp": [
+         11,
+         15
+        ],
+        "type": "precision"
+       },
+       "2H": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       },
+       "2S": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       }
+      },
+      "open.two_nt": null,
+      "open.weak_other_major_max": null,
+      "open.weak_quality": 2,
+      "resp.major_2nt": "invite",
+      "resp.minor_2nt": [
+       13,
+       15
+      ],
+      "resp.nt": {
+       "answers": "relays",
+       "game": 25,
+       "quantitative": false,
+       "slam_first": true,
+       "stayman": true,
+       "stayman_five_four": false,
+       "stayman_min_2nt": "game",
+       "super_accept": false,
+       "texas": false,
+       "transfers": "jacoby",
+       "transfers_first": true,
+       "two_spade": null
+      },
+      "resp.strong_club": {
+       "negative": "1D",
+       "negative_max": 7
+      },
+      "resp.weak_game_raise": false
+     },
+     "family": "strong_club",
+     "id": "rb-precision",
+     "name": "The rule bidder's precision settings, as a card",
+     "notes": [
+      "Generated by bridge_harness.cards.rb_cards.card_from_settings from rule_bidder Settings(); covers openings, overcalls and doubles, the defence to 1NT, responses to 1NT/2NT and the relay answers. Checked against the rule bidder's own auctions in tests/test_gen9_cards.py."
+     ],
+     "schema": "card-descriptor-v0"
+    },
+    "carding": {
+     "descriptor": {
+      "attitude": "upside_down",
+      "count": "upside_down",
+      "first_discard": "attitude",
+      "honor_sequence_lead": "top",
+      "lead_from_ak": "ace",
+      "length_lead_vs_nt": "4th",
+      "length_lead_vs_suit": "4th",
+      "signal_on_declarer_lead": "count",
+      "signal_on_partner_lead": "attitude",
+      "trump_signal": "none"
+     }
+    },
+    "id": "guest-a",
+    "kind": "guest",
+    "profiles": [
+     [
+      "card",
+      0.7917432013787882
+     ],
+     [
+      "flat",
+      0.19793580034469704
+     ],
+     [
+      "house-dds40k",
+      0.002748529980976391
+     ],
+     [
+      "house-gen5",
+      0.0041298335295836455
+     ],
+     [
+      "house-gen6",
+      0.0034426347659547757
+     ]
+    ]
+   },
+   "package_sha256": "d555bcab0308ac63c169e43f2f63d0957a41968b1dd766af8c33743cdcd8b9ee",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  },
+  "guest-b": {
+   "identity": "67f49de4339a507d50672ef160ac3096a5825d24b4199a3fa112fbaa025c96e9",
+   "model": {
+    "arrival": {
+     "distances": {
+      "card": "rb-standard",
+      "deals": 500,
+      "rates": {
+       "house-dds40k": 0.15421979356405585,
+       "house-gen5": 0.1275,
+       "house-gen6": 0.1322
+      },
+      "seed": 5150,
+      "source": {
+       "house-dds40k": "computed",
+       "house-gen5": "reports/gen9-profile-distance-2026-11-12/result.json",
+       "house-gen6": "reports/gen9-profile-distance-2026-11-12/result.json"
+      }
+     },
+     "source": "player_model.arrive"
+    },
+    "bidding": {
+     "cover": [
+      "open",
+      "overcall",
+      "balance",
+      "vs_nt",
+      "respond_nt",
+      "nt_answers",
+      "respond"
+     ],
+     "descriptor": {
+      "comp.balance": 3,
+      "comp.balancing_jumps": false,
+      "comp.balancing_nt": [
+       12,
+       15
+      ],
+      "comp.jump_first": true,
+      "comp.jump_overcall": "weak",
+      "comp.jump_overcall_len3": 7,
+      "comp.michaels": false,
+      "comp.nt_overcall": [
+       15,
+       18
+      ],
+      "comp.overcall_1": [
+       8,
+       17
+      ],
+      "comp.overcall_2": [
+       11,
+       17
+      ],
+      "comp.overcall_3_min": 13,
+      "comp.overcall_quality": {
+       "1": {
+        "top5": 2
+       },
+       "2": {
+        "top5": 2
+       },
+       "3": {
+        "top5": 2
+       }
+      },
+      "comp.strong_double_min": 18,
+      "comp.takeout_double_min": 12,
+      "comp.takeout_shape": "all",
+      "comp.unusual_2nt": false,
+      "comp.vs_nt_2nt_minors": false,
+      "comp.vs_nt_double_min": 17,
+      "comp.vs_nt_natural": {
+       "hcp": [
+        9,
+        15
+       ],
+       "len_major": 6,
+       "len_minor": 6,
+       "top3": 0,
+       "top5": 2
+      },
+      "comp.weak_jump_hcp": [
+       5,
+       10
+      ],
+      "open.four_level": null,
+      "open.fourth_seat_rule_of_15": false,
+      "open.light": {
+       "hcp": 10
+      },
+      "open.min_hcp": 11,
+      "open.nt": [
+       {
+        "hcp": [
+         15,
+         17
+        ],
+        "seats": [
+         1,
+         2,
+         3,
+         4
+        ],
+        "vul": "any"
+       }
+      ],
+      "open.nt_five_major": false,
+      "open.one_level_max": 21,
+      "open.preempt_seats": [
+       1,
+       2,
+       3
+      ],
+      "open.rule_of_20": false,
+      "open.strong_2c": {
+       "hcp": 22,
+       "ltc": null
+      },
+      "open.third_seat_min": 11,
+      "open.three_level": {
+       "hcp_max": 10,
+       "hcp_min": 4,
+       "len": 7,
+       "len_max": 13
+      },
+      "open.three_nt": null,
+      "open.two": {
+       "2D": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       },
+       "2H": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       },
+       "2S": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       }
+      },
+      "open.two_nt": [
+       20,
+       21
+      ],
+      "open.two_nt_five_major": true,
+      "open.weak_other_major_max": null,
+      "open.weak_quality": 2,
+      "resp.major_2nt": "invite",
+      "resp.minor_2nt": [
+       13,
+       15
+      ],
+      "resp.nt": {
+       "answers": "relays",
+       "game": 25,
+       "quantitative": false,
+       "slam_first": true,
+       "stayman": true,
+       "stayman_five_four": false,
+       "stayman_min_2nt": "game",
+       "super_accept": false,
+       "texas": false,
+       "transfers": "jacoby",
+       "transfers_first": true,
+       "two_spade": null
+      },
+      "resp.weak_game_raise": false
+     },
+     "family": "natural",
+     "id": "rb-standard",
+     "name": "The rule bidder's standard settings, as a card",
+     "notes": [
+      "Generated by bridge_harness.cards.rb_cards.card_from_settings from rule_bidder STANDARD; covers openings, overcalls and doubles, the defence to 1NT, responses to 1NT/2NT and the relay answers. Checked against the rule bidder's own auctions in tests/test_gen9_cards.py."
+     ],
+     "schema": "card-descriptor-v0"
+    },
+    "carding": {
+     "descriptor": {
+      "attitude": "standard",
+      "count": "standard",
+      "first_discard": "attitude",
+      "honor_sequence_lead": "top",
+      "lead_from_ak": "ace",
+      "length_lead_vs_nt": "4th",
+      "length_lead_vs_suit": "4th",
+      "signal_on_declarer_lead": "count",
+      "signal_on_partner_lead": "attitude",
+      "trump_signal": "none"
+     }
+    },
+    "id": "guest-b",
+    "kind": "guest",
+    "profiles": [
+     [
+      "card",
+      0.6920818837092434
+     ],
+     [
+      "flat",
+      0.17302047092731085
+     ],
+     [
+      "house-dds40k",
+      0.031668053806721254
+     ],
+     [
+      "house-gen5",
+      0.05403890648923407
+     ],
+     [
+      "house-gen6",
+      0.04919068506749047
+     ]
+    ]
+   },
+   "package_sha256": "1a1b265d11f8a2f0bfac630c98d75ef5f964a8ae788eaaf0a8f3adcac5f9c764",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  }
+ },
+ "previous": "f5a9fde3b9ee6576c481d7391a7d30cc805fbfd5bad555671f958b9dde88abdd",
+ "rules": {
+  "sha256": "4e5f2f0fe42eb96e635f95cd461cce916a5e7ad437c07b82610519fb5fc4ba04",
+  "version": "arrival-v1-fullpath-rehearsal"
+ },
+ "schedule": {
+  "floors": [
+   {
+    "boards": 4,
+    "pairs": [
+     "9a-32~guest-a",
+     "8p-32~guest-a"
+    ],
+    "purpose": "comparison",
+    "same_deals": true
+   },
+   {
+    "boards": 3,
+    "pairs": [
+     "9a-32~guest-b",
+     "8p-32~guest-b"
+    ],
+    "purpose": "comparison",
+    "same_deals": true
+   }
+  ],
+  "pair_weights": {
+   "8p-32~1": 8,
+   "8p-32~5RZ32": 8,
+   "8p-32~8p-32": 75,
+   "9a-32~1": 1,
+   "9a-32~5RZ32": 1,
+   "9a-32~8p-32": 1,
+   "guest-a~1": 1,
+   "guest-a~5RZ32": 1,
+   "guest-a~8p-32": 1,
+   "guest-b~1": 1,
+   "guest-b~5RZ32": 1,
+   "guest-b~8p-32": 1
+  },
+  "purposes": {
+   "admission": [
+    "9a-32~8p-32",
+    "9a-32~1",
+    "9a-32~5RZ32",
+    "guest-a~8p-32",
+    "guest-a~1",
+    "guest-a~5RZ32",
+    "guest-b~8p-32",
+    "guest-b~1",
+    "guest-b~5RZ32"
+   ],
+   "panel": [
+    "8p-32~1",
+    "8p-32~5RZ32"
+   ],
+   "training": [
+    "8p-32~8p-32"
+   ]
+  }
+ },
+ "schema": "epoch-v1",
+ "source_commit": "4354b643967506b81eb492aca4a2f932be446470"
+}

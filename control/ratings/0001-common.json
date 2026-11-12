@@ -1,0 +1,24 @@
+{
+ "condition": "common",
+ "epoch": 1,
+ "pairs": [
+  {
+   "boards": 1,
+   "mean": 0.0,
+   "pair": "7s-32~1"
+  }
+ ],
+ "players": {
+  "1": {
+   "se": 0.0,
+   "strength": 0.0
+  },
+  "7s-32": {
+   "se": 2.3546482966002786,
+   "strength": 0.0
+  }
+ },
+ "reference": "1",
+ "schema": "ratings-v1",
+ "t2": 0.0
+}

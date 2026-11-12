@@ -1,0 +1,56 @@
+{
+ "condition": "native",
+ "epoch": 2,
+ "pairs": [
+  {
+   "boards": 1,
+   "mean": -13.0,
+   "pair": "7s-32~1"
+  },
+  {
+   "boards": 1,
+   "mean": 3.0,
+   "pair": "guest-a~1"
+  },
+  {
+   "boards": 2,
+   "mean": 4.0,
+   "pair": "8p-32~1"
+  },
+  {
+   "boards": 4,
+   "mean": 4.0,
+   "pair": "9a-32~guest-a"
+  },
+  {
+   "boards": 4,
+   "mean": 5.25,
+   "pair": "8p-32~guest-a"
+  }
+ ],
+ "players": {
+  "1": {
+   "se": 0.0,
+   "strength": 0.0
+  },
+  "7s-32": {
+   "se": 2.3546482966002786,
+   "strength": -4.991467576791808
+  },
+  "8p-32": {
+   "se": 1.6236696229599026,
+   "strength": 3.119328137985622
+  },
+  "9a-32": {
+   "se": 1.9854642438776746,
+   "strength": 1.9161229949628011
+  },
+  "guest-a": {
+   "se": 1.6075910388367065,
+   "strength": -1.2802355705929243
+  }
+ },
+ "reference": "1",
+ "schema": "ratings-v1",
+ "t2": 0.0
+}
