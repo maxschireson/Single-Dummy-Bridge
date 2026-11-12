@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794511969.6056406,
+  "checked_epoch": 1794515291.871836,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "895d340802c39faa05c30321eeb2b200d901196a",
-  "coordination_blob": "ae38e645fb5dd0b4cc2c5c4d201361e93478a028",
-  "registry_blob": "7f487cf844e1ee5bfa63b180e5ae767bf3232390",
+  "coordination_revision": "af583fb3b436f6d61151bb8f210a4f4d60b4ff02",
+  "coordination_blob": "6a0ce9f83c2827e7090b223e446bd7bacdff755b",
+  "registry_blob": "248fa413bcd29ffc1e204fa054e31b944b219dba",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -102,49 +102,49 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 302,
+      "completed": 405,
       "target": 16036,
-      "contiguous": 302,
+      "contiguous": 405,
       "by_pair": {
-        "8s-32~71s-32": 101,
-        "8s-32~1": 50,
-        "8s-32~5RZ32": 51,
-        "8c-32~71s-32": 50,
-        "8c-32~8s-32": 50
+        "8s-32~71s-32": 136,
+        "8s-32~1": 67,
+        "8s-32~5RZ32": 67,
+        "8c-32~8s-32": 68,
+        "8c-32~71s-32": 67
       },
-      "root_games": 1006,
-      "tables": 12315,
+      "root_games": 1348,
+      "tables": 16610,
       "failures": 0,
-      "epoch": 1794511967.9337003,
+      "epoch": 1794515284.968266,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794511967.6298475,
-      "completed": 301,
+      "epoch": 1794515284.6997097,
+      "completed": 404,
       "in_flight": [
-        298,
-        302,
-        303
+        404,
+        405,
+        406
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794502596.525406,
+      "started_epoch": 1794514877.4455912,
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794511924.8938615,
+      "epoch": 1794515236.4028313,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794511937.6900022,
+      "epoch": 1794515291.7548306,
       "status": "published",
-      "completed": 300
+      "completed": 405
     },
     "process.json": {
-      "pid": 79917,
-      "epoch": 1794502595.459392
+      "pid": 84350,
+      "epoch": 1794514876.370728
     },
     "watchdog-process.json": {
       "pid": 79983,
@@ -157,7 +157,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction requires a current runtime change. Current Gen8 mix, released identities and corpus stay valid; independent19:06 audit confirms training exclusions and no cross-collector overlap for this stream. Future new-pool blocking instruction recorded. Main/Gen8/Gen7.1 instruction snapshots unchanged; PR32 ready but unmerged. Fresh collector, watchdog and single publisher healthy with no failures or stop markers.",
+  "result": "No new applicable instruction. Main, Gen8 operational, historical Gen7.1 and cleanup revisions unchanged. Only new coordination notice is unadopted opening-lead research. Current Gen8 mix, released identities, corpus and union remain verified. Fresh collector, watchdog and single publisher healthy, no failures or stop markers. Existing automatic DDS-cache rotation accounted for collector PID change.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -170,64 +170,33 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T18:25:37Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T19:32:49Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue, no current collector instruction",
+      "disposition": "Gen9 queue; no current arena collector instruction",
       "new_comments": 0
     },
     {
-      "number": 31,
-      "disposition": "Merged into feature/gen9 only; test runner display fixes do not change the frozen current collector",
+      "number": 30,
+      "disposition": "Gen9 reading-bench research; no current collector instruction",
       "new_comments": 0
-    },
-    {
-      "number": 32,
-      "state": "open",
-      "draft": false,
-      "merged": false,
-      "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
-      "disposition": "Ready for Max to merge following operator review; no running collector upgrade. Optional objection to including our source remains unnecessary.",
-      "new_comments": 0,
-      "new_reviews": 0,
-      "new_inline_comments": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "g7 18:58 UTC (posted18:47)",
-      "classification": "Gen7 closeout review and Azure pool preparation",
-      "action": "Historical results and other producer pools; no runtime change"
-    },
-    {
-      "notice": "plan 18:51 UTC",
-      "classification": "Late-play research results and Azure-specific experiments",
-      "action": "Not adopted; do not train or promote"
-    },
-    {
-      "notice": "p41 19:06 UTC and count correction",
-      "classification": "Independent fixed-corpus and cross-collector qualification",
-      "action": "All13 feeds remain training-clean. Only independent collector overlaps Azure; owned19bbdce5 corpus unchanged and clean. Do not use report as live health evidence"
-    },
-    {
-      "notice": "g8 19:26 UTC",
-      "classification": "CleanupPR32 review corrections, Gen8 rollup and Azure4 publisher handoff",
-      "action": "No upgrade to immutable current run; Azure4 outside ownership"
-    },
-    {
-      "notice": "g7 19:27 UTC",
-      "classification": "Keep independent/Azure overlap unchanged tonight; new pool blocking requirement",
-      "action": "Owned fixed cohort continues. Any future new pool must exclude every published corpus as well as training families"
+      "notice": "plan 2026-11-12 19:47 UTC",
+      "classification": "Opening-lead research result and Azure5 research progression",
+      "action": "Unadopted research; no changes to current collector, actor or plan"
     }
   ],
-  "registry_disposition": "Owned Gen8 active source and both immutable retired pins verified. Gen7.1 retired display label now explicitly says comparisons; identities and revisions unchanged. Other producer registrations are outside this stream.",
-  "previous_checked_epoch": 1794507937.022073,
+  "registry_disposition": "Current owned Gen8 source and both pinned retired sources verified unchanged. Foreign producer/retirement metadata changes do not alter this stream.",
+  "previous_checked_epoch": 1794511969.6056406,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
     "process.json": {
-      "pid": 79917,
+      "pid": 84350,
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 "
     },
     "watchdog-process.json": {
@@ -243,22 +212,26 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 1.9757931232452393,
-  "publisher_age": 31.91563844680786,
-  "free_bytes": 21478637568,
-  "new_applicable_instructions": [
-    {
-      "instruction": "Any new pool, whoever freezes it, should be blocked against every published corpus.",
-      "authority": "g7 2026-11-12 19:27 UTC on box/coordination",
-      "disposition": "Recorded for a future cohort; current immutable corpus unchanged, no pool prepared or transferred."
-    }
-  ],
-  "registry_revision": "4f4f696481b0eb4b35b62a4e68e21d00b649ae0c",
+  "heartbeat_age": 7.172126293182373,
+  "publisher_age": 0.1170053482055664,
+  "free_bytes": 22981718016,
+  "new_applicable_instructions": [],
+  "registry_revision": "517c3fd373f0d9a1775fb6b0928bc53afccd2d42",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
     "Exclude released-policy training-family union or later authorized exclusions.",
     "Block new seeded pools against every published corpus; do not take over or reassign another producer's families.",
     "Drain and preserve immutable completed run before changed source/models/settings, then validate separate successor."
-  ]
+  ],
+  "normal_workers_active": 3,
+  "ben_workers_active": 0,
+  "cache_rotation_review": {
+    "epoch": 1794514876.1842995,
+    "previous_bytes": 2163675136,
+    "completed": 391,
+    "previous_collector_pid": 79917,
+    "current_collector_pid": 84350,
+    "disposition": "Existing immutable watchdog drained the collector, cleared derived SQLite positions only after process exit and writer lock release, verified generation and resumed. Rotation record at391; fresh post-rotation process and held locks confirmed. No failure or operator restart."
+  }
 }
