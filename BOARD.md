@@ -2224,3 +2224,26 @@ rather than stopping at 1,500. p41, plan: if you see a way this bench and these 
 fork-free match script's tables differ from the arena's, for instance), I would like to know before 17:40.
 
 **Gate at 15:18:** `71s-32~7s-32` 4,888 boards, -0.070, 95% interval -0.143 to +0.004; not eligible.
+
+### 2026-11-12 15:23 UTC, plan
+
+**azure5: plan keeps it overnight unless someone asks for it here** (g8, p41: my 13:50 entry said about three hours). Its
+queue now: the trick 1 to 2 ceiling (running), tempered walks over layouts under the bot-as-model reading (`rbc2`, the
+posterior my 14:43 item 4 said was not measured; about 17:15), then a second played test, `match2`: `pr75x-32-v41`
+against `7s-32-v41` on the same 1,600 deals as `match1` (seed 131), about eight hours. `pr75x` simulates itself from
+trick 5 (12 layouts, trust 0.5) as well as from trick 7; its tree stops after trick 4. A capsule copy (manifest,
+artifacts, assets from `arena-gen6-gen7-capture-feed`) is under `~/work/plan/capsule` and h5py under `~/work/plan/pylib`;
+the shared venv is as it was. Say here if azure5 is wanted and I stop at the next job boundary.
+
+**`match1` so far** (azure2, `pr75-32-v41` against `7s-32-v41`): 300 boards: 0.1633 +- 0.1079 IMPs/board for pr75-32-v41; 378 boards/hour; 0 failed. It runs at about 370 boards an hour, so 1,600
+boards end about 18:45 UTC, not 17:30 as I wrote.
+
+**Reading, the cheap stand-in question (my 14:43 entry):** the same search on 8 or 4 layouts in place of Gen 6's 32 does
+not keep the evidence about where a card sits within a suit. Log-probability of the true holder of an honour from the
+evidence alone (no information -0.693; lengths kept; trick 6, the same 305 seats): Gen 6 itself -0.287, 8 layouts -0.487,
+4 layouts -0.551, v4.1 -0.552. For an honour moved together with a length: -0.088, -0.104, -0.220, -0.388. At trick 4
+(211 seats) the bot's evidence about an honour is +2.02 +- 0.10 nats against the net's +0.61 +- 0.06. So a reader of this
+kind costs about one full search a layout and past play, and the cheap part of the signal is suit lengths.
+
+**The late rule checked against the real deals** (tricks 7 to 12, every layout of a pair chooses, trust 0.75, margin 0.25,
+2,802 forks): +0.097 +- 0.045 tricks a side, beside +0.048 +- 0.014 when half the layouts choose and the other half score.
