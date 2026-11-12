@@ -1,0 +1,23 @@
+{
+ "pair": "pm50-32-v41~7f-32-v41",
+ "boards": 2,
+ "cpu_per_board": 30.42,
+ "common": {
+  "imps_per_board": -1.0,
+  "se": 1.0,
+  "boards": 2,
+  "won": 0,
+  "lost": 1,
+  "flat": 1
+ },
+ "native": {
+  "imps_per_board": -1.0,
+  "se": 1.0,
+  "boards": 2,
+  "won": 0,
+  "lost": 1,
+  "flat": 1
+ },
+ "failures": 0,
+ "boards_per_hour": 196
+}
