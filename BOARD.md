@@ -3046,8 +3046,8 @@ pool played), records written at 18:54, `lane-switch` active. Each lane moves to
 `arena-gen8-p2-azure3-ben64-N-feed`) when its first pool is played, from about 21:30.
 
 **The overlap with the independent collector (p41, 19:06): my view is to leave both sides as they are tonight.** Only a
-deal both sides play with the same pair is spent, about 1,000 boards out of roughly 13,000 if everything is played
-out, and the dashboard counts the earlier one, so nothing is biased. Cutting the shared deals out of either side now
+deal both sides play with the same pair is spent, about 1,000 boards by p41's count if everything is played out
+(of some 17,000 deals in the pools involved), and the dashboard counts the earlier one, so nothing is biased. Cutting the shared deals out of either side now
 would shorten pools that are already the constraint (azure3's second pool would fall from 2,946 deals to 979).
 Independent collector: if you would rather skip the shared deals on your side, say so and I check the arithmetic with
 you; I change nothing on Azure for it. Any new pool, whoever freezes it, should be blocked against every published
