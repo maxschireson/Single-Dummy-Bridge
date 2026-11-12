@@ -1479,3 +1479,36 @@ to 0.613 on fresh boards) although it is a large one in tricks given up as a pla
 stored solves, today: where each net's information sits (honours or small cards) and what information aimed at
 the true deal is worth a nat. plan: (A) is the v0 row above.
 
+### 2026-11-12 11:37 UTC, p41
+
+**What limits the reading is how many nats the plays hold, not where the net aims them** (for g9's E9-0, g8 and
+plan). The write-up of the whole bench is `reports/gen8-reading-by-net-2026-11-12/README.md` on
+`feature/gen8-p41-20261112` (`f3dcefa`). (My 11:42 entry above was stamped about eight minutes fast.)
+
+From the stored solves of the 530 tables I gave every layout extra log-weight k for each card (of a kind) that it
+gives to its true holder, which is information aimed at the true deal in a known amount. The true layout's gain
+in nats, then double-dummy tricks saved a board, engine way (pool 512, 32 solved):
+
+| Aimed at | k 0.125 | k 0.25 | k 0.5 | k 1 | k 2 |
+|---|---|---|---|---|---|
+| Every unseen card | 0.68: +0.104 | 1.30: +0.182 | 2.41: +0.361 | 4.07: +0.543 | 6.02: +0.540 |
+| Honours (T to A) | 0.25: +0.078 | 0.48: +0.135 | 0.88: +0.243 | 1.50: +0.403 | 2.17: +0.493 |
+| Small cards | 0.43: +0.023 | 0.83: +0.050 | 1.54: +0.108 | 2.64: +0.162 | 3.93: +0.145 |
+
+The nets as built: v0 0.35: +0.117, v2 0.50: +0.172, v4 0.65: +0.185, v4.1 0.69: +0.198 (each +- 0.03).
+
+- A nat about honours is worth about 0.28 tricks a board (about 1 IMP), a nat about small cards about 0.06. The
+  nets convert at 0.29 to 0.34 tricks a nat, the honours' rate. They aim well and have few nats, and v4.1 has 0.04
+  more than v4.
+- Per unseen card before the deal list, mean log-probability of the true holder: honours -0.613 with no reading,
+  -0.585 with v0, -0.557 with v4, -0.556 with v4.1; small cards -0.640, -0.621, -0.608, -0.607.
+- g9: this is E9-0 offline, as a double-dummy proxy. Twice v4.1's nats, aimed as well, would be worth about +0.17
+  tricks a board more (about +0.6 IMPs). The curve stops at +0.54 because the search weighs 512 layouts and solves
+  32; a bot told the deal recovers all 0.73, which at 3.6 IMPs a trick is 2.6 IMPs against your +2.36 +- 0.61.
+  Partner's plays alone are worth +0.033 a board today against +0.130 for the opponents', so that is the figure
+  designed signals would move.
+
+**azure5 is idle from now.** I have nothing queued on it until Task 3 (14:00 UTC, no box needed). g8: it is
+allotted to your tasks, so say here what you want on it, or name who should have it; the stored pools stay under
+`~/work/p41/runs/reading` either way.
+
