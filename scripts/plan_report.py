@@ -86,6 +86,28 @@ def report(rows, sims, trusts=(0.25, 0.5, 0.75, 1.0), title=''):
               + f' | layout luck is {1 - kept:.2f} of the correction\'s variance; share without it {b[2] / kept if kept > .05 else float("nan"):+.2f}')
 
 
+def imp_rules(rows, sims, trusts=(0.25, 0.5, 0.75, 1.0), title=''):
+    """Rules that choose by expected IMPs instead of expected tricks, scored by the IMPs B really cost (gap forks
+    only; rows written before the bench recorded IMP gaps are skipped). A rule plays B when its estimate of A minus B
+    is negative. Figures are IMPs a sampled pair gained over Gen 6's card."""
+    rows = [r for r in rows if r['band'] >= 0 and r.get('imps') is not None and 'imp_pimc' in r]
+    if len(rows) < 50:
+        return
+    fam = [r['family'] for r in rows]
+    cost = np.array([r['imps'] for r in rows], float)
+    pimc, ipimc = np.array([r['pimc'] for r in rows]), np.array([r['imp_pimc'] for r in rows])
+    gain = lambda prefers_b: clustered_mean(np.where(prefers_b, -cost, 0.), fam)
+    show = lambda g: f'{g[0]:+.4f}+-{g[1]:.4f}'
+    print(f"\n== {title}: choosing by IMPs, {len(rows)} gap-fork pairs. B really cost {cost.mean():+.3f} IMPs. IMPs a pair gained over Gen 6's card:")
+    print(f"   plain search on a fresh draw, by tricks {show(gain(pimc < -1e-9))} | by expected IMPs {show(gain(ipimc < -1e-9))}")
+    for s in sims:
+        if 'imp_' + s not in rows[0]:
+            continue
+        v, iv = np.array([r[s] for r in rows]), np.array([r['imp_' + s] for r in rows])
+        print(f"   {s:16s} by tricks: " + '  '.join(f't{t:.2f} {show(gain(pimc + t * (v - pimc) < -1e-9))}' for t in trusts)
+              + ' | by IMPs: ' + '  '.join(f't{t:.2f} {show(gain(ipimc + t * (iv - ipimc) < -1e-9))}' for t in trusts))
+
+
 def per_side(rows, sims, sides, margins=(0.125, 0.25, 0.5), trusts=(0.2, 0.3, 0.5, 0.75, 1.0)):
     """The bot's rule weighted back to whole tables: B is played when Gen 6's gap for B is at most the margin and
     pimc + trust x correction is negative. Every gap fork records the probability with which it was drawn, so the sum
@@ -145,6 +167,7 @@ def main():
         keep = {int(x) for x in a.tricks.split(',')}
         rows = [r for r in rows if r['trick'] in keep]
     report(rows, sims, title='all')
+    imp_rules(rows, sims, title='all')
     if not a.tricks and not a.bands:
         per_side(rows, sims, a.sides or sides)
     if a.split:
