@@ -1,0 +1,35 @@
+{
+  "counts": {
+    "71s-32~6-32": 4,
+    "71s-32~ben": 2,
+    "71s-32~7s-32": 9,
+    "71s-32~ben64": 2
+  },
+  "excluded_training_families": {
+    "71s-32~6-32": 0,
+    "71s-32~ben": 0,
+    "71s-32~7s-32": 0,
+    "71s-32~ben64": 0
+  },
+  "gate": {
+    "n": 9,
+    "mean": 0.4444444444444444,
+    "se": 0.2421610524189263,
+    "ci": [
+      -0.11397994381899235,
+      1.0028688327078812
+    ],
+    "minimum_boards": 1000,
+    "eligible": false,
+    "method": "Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction"
+  },
+  "sources": [
+    {
+      "branch": "arena-gen71-independent-feed",
+      "revision": "f0bc4ad41e13d348d7911dbad3459e2c69b520dd",
+      "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+    }
+  ],
+  "errors": [],
+  "checked_epoch": 1794463789.164646
+}
