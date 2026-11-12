@@ -28,6 +28,9 @@ readings  For every stored decision, the log weight a bot spec from --bots (buil
           scores it at exponent 1 like a net. Nothing is solved again. NAME=BOT@ID meets ID in place of the table's opponent.
           --head-reading NAME=HEADS.json:VERSION:HEAD:FACTOR is --head-base (8x-32) with the opposing declarer's plays read by
           an E9-14 head (scripts/gen9_play_head.py's heads.json, role ben.declarer) at FACTOR in place of the net at 0.3.
+          --expert-reading NAME=MODELS.json:VERSION:SIZE:MODEL is --expert-base (r9b-32) with the opposing defenders' spots,
+          wherever bridge_harness.signal_expert finds an occasion, read by an E9-15 model (m1, m2 or m3 of
+          scripts/gen9_signal_expert.py's models.json) in place of its emission table; its class term is unchanged.
 report    The bench's report on OUT; `--against` pairs every reading with one.
 box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
           there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
@@ -210,6 +213,35 @@ class HeadReading:
         return out
 
 
+class ExpertReading:
+    """A Gen 9 reader whose opposing defenders' spots are read by an E9-15 signal model at every occasion it defines."""
+
+    def __init__(self, base, model):
+        self.base, self.model = base, model
+        self.g7 = base.g7
+
+    def meet(self, opponent):
+        self.base.meet(opponent)
+
+    def play_log_likelihood(self, o, view, assign, plays):
+        from bridge_harness.signal_expert import occasion
+        q, c = self.base, o.contract
+        out = np.zeros(len(assign))
+        exponent = max(q.reading_exponent(o, view), 1e-6)
+        for play in plays:
+            i, seat, chooser = play
+            if chooser != c.declarer and chooser % 2 != o.controller % 2 and q.opponent_signals is not None:
+                original = view.original(assign, view.hidden.index(chooser)).astype(bool)
+                oc = occasion(o.history, i, c, o.original_hand(c.dummy), original)
+                if oc is not None:
+                    _, lk, _ = q.signal_row(o, view, assign, *play, q.opponent_signals)
+                    out += q.opponent_phi * lk + np.log(self.model.probability(oc)) / exponent
+                    continue
+            net, signal = q.play_log_terms(o, view, assign, [play])
+            out += net + signal / exponent
+        return out
+
+
 def readings(a):
     out = Path(a.out)
     listed = json.loads((out / 'tables.json').read_text())
@@ -228,6 +260,13 @@ def readings(a):
         heads = json.loads(Path(path).read_text())['heads']
         base = gen9.player(bot_spec(source, a.bots, a.head_base), source)
         readers[name], meets[name] = HeadReading(base, PlayHead.from_json(heads[version]['ben.declarer'][head_name]), float(factor)), ''
+    for item in a.expert_reading:
+        from gen9_signal_expert import build
+        name, rest = item.split('=', 1)
+        path, version, size, which = rest.rsplit(':', 3)
+        spec = json.loads(Path(path).read_text())['models'][version][size]
+        base = gen9.player(bot_spec(source, a.bots, a.expert_base), source)
+        readers[name], meets[name] = ExpertReading(base, build(spec)[which]), ''
     decisions = kept(bench.decisions, listed.get('deciders', 'house'))
     for part in sorted(out.glob('pools-*-*.npz')):
         todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
@@ -392,6 +431,8 @@ def main():
     ap.add_argument('--reading', action='append', default=[], help='NAME=BOT[@ID]: a reading by a bot of --bots')
     ap.add_argument('--head-reading', action='append', default=[], help='NAME=HEADS.json:VERSION:HEAD:FACTOR (E9-14)')
     ap.add_argument('--head-base', default='8x-32')
+    ap.add_argument('--expert-reading', action='append', default=[], help='NAME=MODELS.json:VERSION:SIZE:MODEL (E9-15)')
+    ap.add_argument('--expert-base', default='r9b-32')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
     ap.add_argument('--verbose', action='store_true')
