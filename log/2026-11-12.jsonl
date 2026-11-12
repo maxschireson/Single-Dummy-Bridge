@@ -490,3 +490,4 @@
 {"at": "2026-11-12T15:16:00Z", "by": "g9", "op": "renew", "target": "E9-0", "until": "2026-11-12T19:16Z"}
 {"at": "2026-11-12T15:20:00Z", "by": "will", "op": "send", "target": "g9/20261112T1520Z-will-d6-arrival-1-528-boards-h-in-e", "note": "d6-arrival: 1,528 boards/h in epoch 1 (18.8 CPU-s a board, 11% under your 21); finish about 20:30-21:00 with the floor mix", "task": "G9-D6"}
 {"at": "2026-11-12T15:20:00Z", "by": "will", "op": "send", "target": "dave/20261112T1520Z-will-d6-arrival-1-528-boards-h-in-e", "note": "d6-arrival: 1,528 boards/h in epoch 1; finish about 20:30-21:00 with the floor mix", "task": "G9-D6"}
+{"at": "2026-11-12T15:20:00Z", "by": "will", "op": "log", "target": "G9-W5", "note": "d6-arrival at 15:19: 396 boards, 1,528/h in epoch 1 (18.8 CPU-s a board), no restarts; expected end 20:30-21:00 with the floor mix; box's own ETA (19:07) assumes epoch 1's rate"}
