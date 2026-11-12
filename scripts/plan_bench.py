@@ -36,7 +36,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'scripts'))
-from bridge_harness.core import SEATS, Board, Game, card
+from bridge_harness.core import SEATS, Board, Game, card, imps, score, vulnerable
 from bridge_harness.gen6 import View
 from bridge_harness.gen7 import player
 from bridge_harness.gen7_net import PolicyNet
@@ -62,6 +62,16 @@ def seat_player(net, dds, mode, seed):
         if mode.startswith(name):
             return Believer(net, dds, belief, layouts=int(mode[len(name):] or 1), seed=seed)
     return NetPlayer(net, mode, seed=seed)
+
+
+def imp_gap(o, weights, a_tricks, b_tricks):
+    """Expected IMPs by which card A beats card B for the decider's side, layout by layout: `a_tricks` and `b_tricks`
+    are the decider's tricks in each layout (negated for the defence, as the search counts them)."""
+    c = o.contract
+    vul = vulnerable(o.vulnerability, c.declarer)
+    sign = 1 if o.controller % 2 == c.declarer % 2 else -1
+    points = lambda t: sign * score(c, int(round(sign * t)), vul)
+    return float(sum(w * imps(points(x) - points(y)) for w, x, y in zip(weights, a_tricks, b_tricks)))
 
 
 def start(nets, sims, from_trick, to_trick, ties, seed):
@@ -120,6 +130,7 @@ def pairs_of(path):
             weights = np.asarray(weights, float)
             u = np.array([[x[a], x[b]] for x in (check.utilities(o, values) for values, _ in check.solve(six, o, worlds))])
             row['pimc'] = float(weights @ (u[:, 0] - u[:, 1]))
+            row['imp_pimc'] = imp_gap(o, weights, u[:, 0], u[:, 1])
             row['layouts'] = len(worlds)
             row['neff'] = float(1 / (weights ** 2).sum())
             row['seconds_pimc'] = time.perf_counter() - started
@@ -141,6 +152,7 @@ def pairs_of(path):
                     v = m[:, 0, :len(worlds)].T
                     at = more.index(truth)
                     row[sim['name']] = float(weights @ (v[:, 0] - v[:, 1]))
+                    row['imp_' + sim['name']] = imp_gap(o, weights, v[:, 0], v[:, 1])
                     change = (v[:, 0] - v[:, 1]) - (u[:, 0] - u[:, 1])
                     row['sd_' + sim['name']] = float(np.sqrt(weights @ change ** 2))
                     row['var_' + sim['name']] = float(weights @ (change - weights @ change) ** 2)
@@ -150,6 +162,7 @@ def pairs_of(path):
                 who = seat_player(net, six.dds, sim['mode'], [STATE['seed'], ply, int(d['family'][8:16], 16)])
                 v = card_values(o, worlds, [a, b], who, publics[sim['net']], sim['repeats'], sim['tricks'], six.dds)
                 row[sim['name']] = float(weights @ (v[:, 0] - v[:, 1]))
+                row['imp_' + sim['name']] = imp_gap(o, weights, v[:, 0], v[:, 1])
                 change = (v[:, 0] - v[:, 1]) - (u[:, 0] - u[:, 1])
                 row['sd_' + sim['name']] = float(np.sqrt(weights @ change ** 2))
                 row['var_' + sim['name']] = float(weights @ (change - weights @ change) ** 2)
