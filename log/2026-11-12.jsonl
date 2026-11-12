@@ -505,3 +505,5 @@
 {"at": "2026-11-12T16:13:00Z", "by": "will", "op": "send", "target": "dave/20261112T1613Z-will-d6-arrival-slower-floor-boards", "note": "d6-arrival slower: floor boards 46.6 CPU-s (est. 33); end about 22:30-23:40 UTC", "task": "G9-D6"}
 {"at": "2026-11-12T16:13:00Z", "by": "will", "op": "log", "target": "G9-W5", "note": "d6-arrival at 16:12: 1,188 boards; floor 8p-32~guest-a 46.6 CPU-s a board (g9 est. 33); new end 22:30-23:40 UTC"}
 {"at": "2026-11-12T16:19:00Z", "by": "sam", "op": "edit", "target": "E9-15"}
+{"at": "2026-11-12T16:19:00Z", "by": "sam", "op": "submit", "target": "E9-15", "note": "Honesty by situation varies 2-4x; best situations carry 0.07-0.12 bits a signal; expert M3 +0.05 nats over E9-7's tables, no measurable tricks (bench +0.015 \u00b1 0.018 / -0.006 \u00b1 0.009). Adopt as the model; not worth a match.", "branch": "feature/gen9-signals-v2", "commit": "0ad4971"}
+{"at": "2026-11-12T16:19:00Z", "by": "sam", "op": "send", "target": "g9/20261112T1619Z-sam-e9-15-submitted-for-your-revie", "note": "E9-15 submitted for your review: Honesty by situation: a signal expert per known opponent (BEN first)", "task": "E9-15"}
