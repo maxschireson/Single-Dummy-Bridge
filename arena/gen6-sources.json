@@ -1008,7 +1008,7 @@
       "restart_authorized": false
     },
     "gen71codexcompare": {
-      "status": "Validated Gen7.1 comparison mix; supervised launch",
+      "status": "Full corpus excludes v4.1 training families; pooled gate eligibility corrected; scientific cohort unchanged",
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
       "authority": "Max05:42 Nov12 effective06:00; all arena collectors, relayed05:44 and reaffirmed05:57 on box/coordination",
@@ -1032,9 +1032,24 @@
         "condition": "common",
         "selfplay_launch_enabled": false,
         "published_opening_required": true,
-        "external_research_excluded": true
+        "external_research_excluded": true,
+        "registered_feeds_only": true,
+        "training_families_excluded": true,
+        "eligibility_rebuilt_each_check": true,
+        "guard_version": "gen71-eligible-gate-v2"
       },
-      "gen8_authorized": false
+      "gen8_authorized": false,
+      "evaluation_exclusions": {
+        "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
+        "training_families": 32205,
+        "full_corpus_families": 20257,
+        "full_corpus_overlap": 0,
+        "audit_path": "recovery/evaluation-exclusion-audit.json",
+        "list_path": "recovery/evaluation-exclusions.json",
+        "existing_immutable_manifest_kept": true,
+        "new_cohorts_require": "41b18c1 or later, --exclude-families"
+      },
+      "guard_validation": "10 tests; matched official check_gen71_gate.py on the same pinned registry/feed revisions; all195 preserved receipt/episode hashes reverified"
     }
   },
   "requested_match_mix": {
