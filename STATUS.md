@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 23:24 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 23:26 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -85,7 +85,7 @@ Generated 2026-11-12 23:24 UTC by `tools/workq.py` after a change by `sam`. Do n
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 11:16 | 53 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-12 22:04 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-12 22:04 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 23:16 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 22:16 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 22:58 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -112,9 +112,9 @@ Generated 2026-11-12 23:24 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 23:21 UTC.
+**azure4**: 8 of 8 cores busy, reported 11-12 23:21 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | running | 5,226 of 6,200 | 613.5 | 11-13 00:56 | `transfer/gen9-d6-arrival-azure4-20261112@df8f9c05a` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | paused | 627 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02-azure4-20261112@514d6b868` |
