@@ -122,18 +122,42 @@ def build_dds(force: bool) -> dict:
     return out
 
 
+def expected_outputs(manifest: object) -> list[str]:
+    """Model files a release's restore script writes, read from its manifest whatever its schema: every `output` or
+    `file` value, or `artifacts` key, naming a model file that is not a part (top-level `output`, `files[*].output`,
+    `models[*].output`, `model.file` and `artifacts.<name>` all occur in models/)."""
+    names = []
+    model_file = re.compile(r"\.(npz|keras|h5|pt|bin|tar\.gz)$")
+
+    def walk(x, key=None):
+        if isinstance(x, dict):
+            for k, v in x.items():
+                if key == "artifacts" and model_file.search(k):
+                    names.append(k)
+                walk(v, k)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v, key)
+        elif isinstance(x, str) and key in ("output", "file") and ".part" not in x and model_file.search(x):
+            names.append(x)
+    walk(manifest)
+    return sorted(set(names))
+
+
 def restore_models() -> list[dict]:
     rows = []
     for script in sorted(ROOT.glob("models/**/restore*.py")):
         rel = script.relative_to(ROOT)
         manifest = script.parent / "manifest.json"
-        target = None
+        names = []
         if manifest.exists():
             try:
-                target = script.parent / json.loads(manifest.read_text()).get("output", "")
+                names = expected_outputs(json.loads(manifest.read_text()))
             except (ValueError, OSError):
-                target = None
-        if target is not None and target.is_file():
+                names = []
+        with_parts = [n for n in names if any(script.parent.glob(f"{n}.part*"))]  # names with no parts here are references
+        names = with_parts or names
+        if names and all((script.parent / n).is_file() or (script.parent / "restored" / n).is_file() for n in names):
             rows.append(dict(script=str(rel), ok=True, note="already restored"))
             continue
         t = time.time()
@@ -165,7 +189,8 @@ def prepare(with_heavy: list[str], force_build: bool) -> dict:
     log("prepare: restoring nets")
     report["models"] = restore_models()
     bad = [m for m in report["models"] if not m["ok"]]
-    log(f"prepare: {len(report['models']) - len(bad)} of {len(report['models'])} restore scripts ok")
+    log(f"prepare: {len(report['models']) - len(bad)} of {len(report['models'])} restore scripts ok, "
+        f"{sum(m['note'] == 'already restored' for m in report['models'])} already restored")
     return report
 
 
@@ -282,7 +307,9 @@ def render(results: list[dict], meta: dict) -> str:
               f"- pip: {'nothing needed' if not p['pip'].get('installed') else ('installed ' + ', '.join(p['pip']['installed']) if p['pip']['ok'] else 'FAILED: ' + first_line(p['pip'].get('error', '')))}",
               f"- DDS: {'built in ' + str(d.get('seconds')) + ' s' if d.get('built') else d.get('reason', 'FAILED: ' + first_line(d.get('error', '')))}"
               + (f", sha256 `{d['sha256'][:16]}`" if d.get("sha256") else ""),
-              f"- Nets: " + "; ".join(f"`{Path(m['script']).parent.name}` {'ok' if m['ok'] else 'FAILED: ' + first_line(m['note'])}" for m in p["models"]), ""]
+              f"- Nets: {sum(m['ok'] for m in p['models'])} of {len(p['models'])} ok, "
+              f"{sum(m['note'] == 'already restored' for m in p['models'])} of them already restored"
+              + "".join(f"; `{Path(m['script']).parent.name}` FAILED: {first_line(m['note'])}" for m in p["models"] if not m["ok"]), ""]
     L += ["## By file", "", "| File | Status | Passed | Failed/errors | Skipped | Not run | Seconds | Note |",
           "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |"]
     order = {"failed": 0, "import error": 1, "crashed": 2, "timeout": 3, "not run": 4, "partly not run": 5, "skipped": 6, "no tests": 7, "passed": 8}
