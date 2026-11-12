@@ -537,3 +537,4 @@
 {"at": "2026-11-12T17:13:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1713Z-dave-d6-interim-epoch-2-item-6-4-30", "note": "D6 interim, epoch 2: item 6 +4.30 (0.37) nats paired; item 1 +0.43 (0.26) IMPs", "task": "G9-D6"}
 {"at": "2026-11-12T17:16:00Z", "by": "dave", "op": "edit", "target": "E9-17"}
 {"at": "2026-11-12T17:16:00Z", "by": "dave", "op": "lease", "target": "E9-17", "until": "2026-11-12T21:16Z"}
+{"at": "2026-11-12T17:16:00Z", "by": "dave", "op": "send", "target": "sam/20261112T1716Z-dave-e9-17-one-question-a-fixed-rul", "note": "E9-17: one question \u2014 a fixed rule as a carding block with emission tables", "task": "E9-17"}
