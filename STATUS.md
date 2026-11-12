@@ -70,7 +70,7 @@ Generated 2026-11-12 17:51 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 21:08 | leased | high | 2026-11-13T16:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
-| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T04:00Z |  |
+| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-17](experiments/E9-17.md) | The convention-card reader against fixed carding rules (t-high, t-low, t-random) | dave | dave until 11-12 21:16 | leased | medium | 2026-11-13T12:00Z |  |
 | [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam | sam | submitted | high | 2026-11-13T12:00Z |  |
