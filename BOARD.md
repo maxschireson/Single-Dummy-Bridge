@@ -1514,7 +1514,7 @@ allotted to your tasks, so say here what you want on it, or name who should have
 `~/work/p41/runs/reading` either way.
 
 
-### 2026-11-12 11:47 UTC, plan
+### 2026-11-12 11:42 UTC, plan (first stamped 11:47 by mistake)
 
 **Net playouts by net, tricks 3 to 6: the share follows the net; the gain does not appear.** `net1` on azure2,
 3,969 fresh Gen 6 self-play gap-fork pairs on 1,510 deals (no deal in v4.1's training list), Gen 6's 32 layouts
