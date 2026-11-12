@@ -29,8 +29,8 @@ readings  (On an --out folder without tables.json, such as p41's published house
           scores it at exponent 1 like a net. Nothing is solved again. NAME=BOT@ID meets ID in place of the table's opponent.
           --head-reading NAME=HEADS.json:VERSION:HEAD:FACTOR is --head-base (8x-32) with the opposing declarer's plays read by
           an E9-14 head (scripts/gen9_play_head.py's heads.json, role ben.declarer) at FACTOR in place of the net at 0.3;
-          HEAD written defender:NAME or both:NAME also reads the opposing defenders' classes by the ben.defender head, on
-          --expert-base (r9b-32), whose signal model keeps the spots.
+          HEAD written defender:NAME or both:NAME also reads the opposing defenders' classes by the ben.defender head at
+          FACTOR, on --expert-base (r9b-32), whose signal model keeps the spots.
           --expert-reading NAME=MODELS.json:VERSION:SIZE:MODEL is --expert-base (r9b-32) with the opposing defenders' spots,
           wherever bridge_harness.signal_expert finds an occasion, read by an E9-15 model (m1, m2 or m3 of
           scripts/gen9_signal_expert.py's models.json; MODEL-first reads first rounds only) in place of its emission table;
@@ -175,9 +175,10 @@ class HeadReading:
     `declarer` at `factor`; the opposing defenders' classes of card by `defender` in place of the net's class term (their
     spots stay with the base's signal model, so the base must read signals: r9b-32). A head left None reads as the base."""
 
-    def __init__(self, base, declarer=None, factor=.3, defender=None):
+    def __init__(self, base, declarer=None, factor=.3, defender=None, defender_factor=None):
         from bridge_harness.play_head import policy_column
         self.base, self.declarer, self.factor, self.defender = base, declarer, factor, defender
+        self.defender_factor = defender_factor                  # None: the base's factor on the class term (r9b-32: 0.3)
         self.g7 = base.g7
         self.W, self.b = policy_column(base.net.params)
         self.cache = (None, {})
@@ -232,7 +233,8 @@ class HeadReading:
                 held = q.held_then(o, view, assign, i, chooser)
                 K = class_mask(o.history, i, c, held, q.opponent_signals)
                 _, _, ls = q.signal_row(o, view, assign, *play, q.opponent_signals)
-                out += q.opponent_phi * self.head_log_likelihood(o, view, assign, play, self.defender, K) + ls / exponent
+                phi = q.opponent_phi if self.defender_factor is None else self.defender_factor
+                out += phi * self.head_log_likelihood(o, view, assign, play, self.defender, K) + ls / exponent
                 continue
             if hasattr(q, 'play_log_terms'):
                 net, signal = q.play_log_terms(o, view, assign, [play])
@@ -388,7 +390,7 @@ def readings(a):
         decl = PlayHead.from_json(heads['ben.declarer'][head_name]) if which in ('declarer', 'both') else None
         dfd = PlayHead.from_json(heads['ben.defender'][head_name]) if which in ('defender', 'both') else None
         base = player_of(a.head_base if dfd is None else a.expert_base)
-        readers[name], meets[name] = HeadReading(base, decl, float(factor), dfd), ''
+        readers[name], meets[name] = HeadReading(base, decl, float(factor), dfd, float(factor) if dfd is not None else None), ''
     for item in a.class_reading:
         name, rest = item.split('=', 1)
         kind, _, who = rest.partition(':')
