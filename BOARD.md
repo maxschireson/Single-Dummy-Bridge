@@ -1291,3 +1291,44 @@ to +0.078; not eligible. I have told Max; it is his call. Until he says otherwis
 install command, `lane.sh`, the 7.1 lane tool and the memory supervisor). In short: no box-to-box SSH or shared disk (each
 box has only its GitHub deploy key), so build on azure4; the install took under two minutes on azure3; `~/work/ben` 2.9 GB,
 `~/work/ben-venv` 2.4 GB; a server holds 0.8 GB at start and 1.1 to 1.2 GB after four hours.
+
+### 2026-11-12 08:08 UTC, p41
+
+**Task 1, interim: the reading's nats double from v0 to v4.1 and its tricks do not follow.** The bench
+(`scripts/gen8_reading_bench.py` on `feature/gen8-p41-20261112`; my 06:58 entry says how it works) at 128 tables,
+5,165 decisions, 86 deals v4.1 did not train on; it ends at about 08:26 UTC with about 490 tables and I post the
+final table at about 08:40. Prototype settings (exponent 1.0 at every trick, pool 512, 32 layouts solved, floor
+0.05), tree off, cost on the true deal by double dummy, standard errors with deals as the unit:
+
+| Net | True layout's log-weight gained, nats | Tricks saved against no reading, a board | Against v0, same decisions |
+|---|---|---|---|
+| v0 | +0.35 | +0.143 +- 0.043 | |
+| v2 | +0.48 | +0.178 +- 0.050 | +0.035 +- 0.032 |
+| v4 | +0.69 | +0.153 +- 0.050 | +0.010 +- 0.036 |
+| v4.1 | +0.73 | +0.165 +- 0.050 | +0.022 +- 0.036 |
+| 512 wide, five epochs | +0.76 | +0.168 +- 0.054 | +0.026 +- 0.037 |
+
+"A board" is the four seats of one table, which is what one bot decides over the two tables of a board. At about
+3.6 IMPs a trick (the fork pairs' rate) v0 to v4.1 is +0.08 +- 0.13 IMPs a board. g8: your 07:27 estimate of +0.2
+from the half nat assumes nats convert at a constant rate; so far they do not. The final errors will be about half.
+
+Also in it so far (all on the same solves):
+- Before the deal list the exponent has a flat top from 0.75 to 1.5 for every net; the halving rule never fires
+  (mean exponent 1.00, median effective layouts 250 to 330, the same as the `power` and `effective` fields of your
+  match files); a pool of 128 or 256 does as well as 512. Solving 128 resampled layouts in place of 32 adds about
+  0.03 tricks a board with every net. The opening lead alone is worth nothing; the opponents' plays carry about
+  two thirds of the value and partner's a third.
+- The weights are not wrong, they are uncertain: with v4.1 the cost the weights themselves expect is 0.0134 tricks
+  a decision and the real cost 0.0122. What is left after the reading, 0.50 tricks a board for one bot, is in line
+  with g9's bot that is told the deal (+2.36 +- 0.61 IMPs).
+- The owner head as layout weights (the product of its per-card probabilities over the pool): 0.04 to 0.13 nats
+  alone and no tricks; added to the reading it loses tricks. Same picture as plan's 07:44 figures.
+
+**plan: I am not building playouts; that is yours.** Two tree benches are queued on azure5 for 08:26, both on the
+1,761 fresh gap-fork pairs of my 05:04 bench: (A) the engine's own tree at the launched settings with v4 and with
+v0, for its correction coefficient by net, at about 09:00; (B) the same tree with v4 on 32 layouts in place of 8,
+at about 09:45. If your 08:10 table already answers (A), say so and I drop it.
+
+**Coming with the final table:** where each net's information sits (honours or small cards), and what information
+aimed at the true deal is worth in tricks a nat, which is g9's E9-0 curve measured offline.
+
