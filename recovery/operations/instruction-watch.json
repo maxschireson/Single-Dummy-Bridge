@@ -214,8 +214,8 @@
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
-  "result": "authorized_gen7_phase1_transition_in_progress",
-  "collection_action": "Standing user instruction to follow general collection-worker directions applies to authorized Gen7 phase 1 at fe382f9. Drained old Gen6 run, preserved all observations, prepared a new non-BEN cohort; real-model preflight pending.",
+  "result": "applied_authorized_gen7_phase1_nonben_transition",
+  "collection_action": "Retired Gen6 cleanly at 3710; new frozen cohort on unused source families; phase1 three non-BEN pairs, three workers, shared pair-count guard; phase2 closed.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -257,31 +257,113 @@
     "gen8_systems": "dba31ae: unadopted WIP, explicitly not a cutover input.",
     "boxctl": "d5bb39f: remote-box operations tooling for separate machines; not adopted for this stream."
   },
-  "notification": "none",
+  "notification": "Meaningful applied change; notify on completion of registration and recovery verification.",
   "checked_epoch": 1794446848.0,
   "checked_at": "2026-11-12T01:27:28+00:00",
   "next_check": "2026-11-12T02:25:53+00:00",
-  "stream_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+  "stream_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
   "health": {
-    "completed": 3205,
-    "target": 25000,
-    "pair_weights": {
-      "6-32~6-32": 1
+    "state.json": {
+      "manifest_identity": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "completed": 15,
+      "target": 21290,
+      "contiguous": 14,
+      "by_pair": {
+        "7s-32~1": 5,
+        "7s-32~6-32": 5,
+        "7s-32~5RZ32": 5
+      },
+      "root_games": 35,
+      "tables": 270,
+      "failures": 0,
+      "epoch": 1794452101.86677,
+      "complete": false
     },
-    "heartbeat_age_seconds": 4.21,
-    "failures": 0,
-    "published": 3199,
-    "published_commit": "47471c4b4cc9c50d51336b5b1d123dc26c247380",
-    "publisher_status": "running",
-    "collector_status": "running",
-    "collector_pid": 13960,
-    "publisher_pid": 10757,
-    "source_runtime_and_artifacts": "verified",
-    "ownership": "All three singleton locks held; live command identities verified; no restart or takeover",
-    "last_cache_rotation": {
-      "epoch": 1794443060.7584658,
-      "completed": 2630,
-      "previous_bytes": 2151784448
+    "heartbeat.json": {
+      "epoch": 1794452111.8681319,
+      "completed": 15,
+      "in_flight": [
+        14,
+        16,
+        17
+      ],
+      "workers": 4,
+      "ben_workers": 1,
+      "started_epoch": 1794451882.7986236,
+      "stopping": false
+    },
+    "watchdog-status.json": {
+      "epoch": 1794452115.4186902,
+      "completed": 15,
+      "target": 21290,
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "workers": 3,
+      "ben_workers": 0,
+      "failures": 0,
+      "collector": "running",
+      "publisher": "running",
+      "last_fleet_check": 1794452065.3959694,
+      "collector_pid": 24379,
+      "publisher_pid": 24380
+    },
+    "publisher-status.json": {
+      "status": "published",
+      "epoch": 1794452072.283148,
+      "completed": 12,
+      "commit": "acfbf482599d608cbb4fc8f203cf9521ae20fb7d",
+      "branch": "arena-gen7-phase1-codex-20261112-feed"
+    },
+    "phase1-global-progress.json": {
+      "epoch": 1794452065.3951738,
+      "status": "checked",
+      "actor_identity": "f0a57859867353d654ebb9cf03844631d49c948bebcffbb91c441294684ae62e",
+      "counts": {
+        "7s-32~6-32": 13,
+        "7s-32~ben64": 0,
+        "7s-32~ben": 0,
+        "7s-32~5RZ32": 12,
+        "7s-32~1": 12
+      },
+      "target_per_pair": 2000,
+      "owned_complete": false,
+      "all_five_complete": false,
+      "phase2_authorized": false,
+      "snapshots": [
+        {
+          "branch": "arena-gen7-phase1-azure1-feed",
+          "revision": "21cd24a69d79f4e5ae4172bcc2120d2684202544",
+          "cohort": "002cbafd32e1f74b57021c15ba7db2841aaf63b002822246caac9bb443b50027"
+        },
+        {
+          "branch": "arena-gen7-phase1-codex-20261112-feed",
+          "revision": "d306716aba5d6b428fb9b13d078dae70c65bef71",
+          "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
+        }
+      ],
+      "errors": [],
+      "method": "Published authorized phase1 feeds plus local committed receipts; canonical actor identity; deduplicated by pair and deal family, independent of outcomes. Only published peers are observable."
+    },
+    ".writer.lock": "owned",
+    ".watchdog.lock": "owned",
+    ".publisher.lock": "owned",
+    "failure_files": 0,
+    "watchdog-process.json": {
+      "pid": 24371,
+      "epoch": 1794451879.81585,
+      "alive": true,
+      "cmdline": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py "
+    },
+    "process.json": {
+      "pid": 24379,
+      "epoch": 1794451880.8457859,
+      "alive": true,
+      "cmdline": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen7-phase1-codex-20261112/run --workers 3 "
+    },
+    "publisher-process.json": {
+      "pid": 24380,
+      "epoch": 1794451882.345341,
+      "alive": true,
+      "cmdline": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py "
     }
   },
   "previous_check": {
@@ -315,7 +397,7 @@
       "reason": "Research notes revise stake analysis and smoke-match evidence only; no current collection directive or model adoption."
     }
   ],
-  "completed_at": "2026-11-12T02:42:52Z",
+  "completed_at": "2026-11-12T02:55:15Z",
   "next_comment_scan_since": "2026-11-12T01:27:28+00:00",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
@@ -377,7 +459,7 @@
   "operational_channel_scope": "box/azure1/* controls and status belong to a separate Azure host; never execute its queued scripts here or take over that host. A changing host heartbeat is not a collection directive for this producer.",
   "transition": {
     "authorization_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
-    "status": "drained-and-new-cohort-prepared",
+    "status": "running-dashboard-registration-in-progress",
     "retired_manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
     "retired_completed": 3710,
     "new_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
@@ -390,6 +472,57 @@
       "7s-32~5RZ32": 1,
       "7s-32~1": 1
     },
-    "phase2_authorized": false
+    "phase2_authorized": false,
+    "source_completed_preserved": 3710,
+    "final_gen6_publication": "6c7e9f612cd6f634ab6789f45def351edb4acba0"
+  },
+  "current_stream": {
+    "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+    "runtime": "/workspace/work/gen7-phase1-codex-20261112/runtime",
+    "publication": "/workspace/work/gen7-phase1-codex-20261112/publication",
+    "branch": "arena-gen7-phase1-codex-20261112-feed",
+    "key": "gen7codexphase1",
+    "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+    "target": 21290,
+    "seed": 6586995816951042092,
+    "effective_generation": 7,
+    "phase": "gen7-phase1",
+    "preparation_script": "/workspace/work/gen7-phase1-codex-20261112/prepare_owned.py",
+    "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+    "retired_gen6": {
+      "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+      "runtime": "/workspace/work/gen6-fast-selfplay-stream/runtime",
+      "publication": "/workspace/work/gen6-fast-selfplay-stream/publication",
+      "branch": "arena-gen6-fast-selfplay-codex-20261111",
+      "key": "gen6newselfplay",
+      "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "target": 25000,
+      "seed": 6586995816951042092,
+      "final_commit": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+      "completed": 3710,
+      "restart_authorized": false
+    }
+  },
+  "gen7_authority": {
+    "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+    "branch": "feature/gen7-candidate-20261111",
+    "notice": "docs/gen7_candidate_2026-11-11.md",
+    "plan": "configs/round7-candidate-phase1-nonben.json",
+    "launch_enabled": true,
+    "trust": 0.3,
+    "root_margin": 0.25,
+    "path": 0.5,
+    "tricks": 3,
+    "policy_sha256": "d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13",
+    "phase2_authorized": false,
+    "applicability": "Explicit standing user delegation to current general collection-worker instructions; new phase1 authority supersedes this stream initial Gen6-only recipe; no control of other hosts/producers."
+  },
+  "automation_context": {
+    "updated": true,
+    "enabled": true,
+    "next_run_time": "2026-11-12T03:25:53+00:00",
+    "cadence_preserved": true,
+    "control_path": "/workspace/work/gen6-fast-selfplay-stream",
+    "current_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
   }
 }
