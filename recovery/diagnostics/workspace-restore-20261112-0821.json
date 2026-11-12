@@ -1,0 +1,21 @@
+{
+  "epoch": 1794471950.7349968,
+  "source_full": "0ca25a4049907d8a67a8cfd1cec6922688ccd8ab",
+  "verified_git_blobs": 17323,
+  "pairs": 2015,
+  "retained": 656,
+  "frozen_verified": true,
+  "history_restored": true,
+  "ben_commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+  "ben_models_verified": 17,
+  "versions": {
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "numpy": "2.0.2"
+  },
+  "journal_records": 8,
+  "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+  "production_started": false,
+  "free_GB": 53.719113728,
+  "limitations": "Workspace absent again; restored archive and dependencies. No fresh live play/server preflight or new crash test. Prior local process states unavailable; absent lockfiles do not prove prior workers were reaped."
+}
