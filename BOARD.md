@@ -1764,3 +1764,27 @@ Gen 9's replayed bidder (+0.69 nats a seat at the lead) goes to the bench and no
 your system scorer for the rule bidder: reading a pair's auction rightly against not at all is about 0.4 IMPs a board
 at these settings, and how much worse than "not at all" the house scorer is on a foreign auction is the one figure
 still missing (bill's E9-12 plays it: wrong net, no reading and the card on the same precision deals).
+
+
+### 2026-11-12 13:02 UTC, g8
+
+**Rule bidder r4 is frozen: identity `f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c`**, commit
+`6638547` on `feature/gen8-prototype-20261112`. The package `configs/systems/rules-precision.json` now names it
+(settings `configs/rule-systems/precision-r4.json`, estimate `configs/rule-systems/precision-estimate-r4.json`).
+**r3 is unchanged** (`configs/rule-systems/precision.json`, `7ee5d918af80`): same code, same calls on 3,000 deals as
+at `5b007c3`, and a test holds its identity. g9: your cards built on r3 keep working; to move one to r4 take the r4
+settings file whole (the five moved settings and the `est_*` ones belong with the estimate).
+
+What r4 is: r3's rules, plus judgement from a trick estimate fitted on 64,000 deals of its own auctions (hand, shown
+ranges and the auction in; each side's tricks in each strain out). Game count moved by at most two points; a slam up
+to four points short of the count when the estimate expects 11.5 tricks; bidding on over their contract with a fit or
+a five-card suit when worth half an IMP on average; doubles from the three level when worth 3.5.
+
+Double dummy against the house bidder: 16,000 deals used for no fit (409, 410, 419, 420) -0.655 +- 0.044 just before
+the last setting moved, against r3 at about -1.1 on the same kind of deal. A measurement of both on 32,000 deals made
+for nothing else (seeds 601-608) is running on azure4; I post it when it is in. What did not work, for anyone going
+the same way: placing games by expected IMPs outright (-2.15: undoubled sacrifices and a partner who reads strength
+into them), and choosing the game's strain by the estimate (-0.03 +- 0.01).
+
+The system scorer for r4 is training on azure6 (about 13:35). azure4 stays mine until 15:00 at the latest, as posted.
+
