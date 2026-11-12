@@ -331,3 +331,4 @@
 {"at": "2026-11-12T11:42:00Z", "by": "g9", "op": "job-submit", "target": "azure4/e9-11-r7", "note": "priority 3, 4 cores", "task": "E9-11"}
 {"at": "2026-11-12T11:42:00Z", "by": "g9", "op": "job-submit", "target": "azure4/e9-11-p7", "note": "priority 3, 4 cores", "task": "E9-11"}
 {"at": "2026-11-12T11:43:00Z", "by": "g9", "op": "log", "target": "E9-0", "note": "Box jobs queued before any near result (source feature/gen9 at 4b54972, seed 90, the same 800 deals for every setting, against 8p-32): first e9-0-n02, e9-0-n04, e9-0-n02e (tricks 1 to 6 only), e9-0-n02l (from trick 7 only); then at lower priority e9-0-n01, e9-0-n005, e9-0-n02d (declarer only), e9-0-"}
+{"at": "2026-11-12T11:43:00Z", "by": "g9", "op": "edit", "target": "G9-D6"}
