@@ -126,6 +126,33 @@ class _LstmSession:
         return np.argmax(np.where(legal, inp @ b.wd + b.bd, -np.inf), axis=1)
 
 
+class NumpyPolicy:
+    """A BEN-format bidder with bidding_ppo.Policy's predict(), without TensorFlow: for gen5_arena.auction.
+
+    x is (batch, turns, 193) as bidding_env.encode writes it; the answer is the logits after each row's last turn."""
+
+    def __init__(self, path):
+        self.b = BenLstmBidder(path)
+        self.sha256 = self.b.sha256
+
+    def predict(self, x, lengths):
+        b, u = self.b, self.b.units
+        x = np.asarray(x, np.float32)
+        n = len(x)
+        h, c = np.zeros((n, 3, u), np.float32), np.zeros((n, 3, u), np.float32)
+        out = np.zeros((n, b.wd.shape[1]), np.float32)
+        for t in range(x.shape[1]):
+            inp = x[:, t]
+            for layer, ((w, rec, bias), (scale, shift)) in enumerate(zip(b.lstm, b.bn)):
+                z = inp @ w + bias + h[:, layer] @ rec
+                c[:, layer] = _sigmoid(z[:, u:2 * u]) * c[:, layer] + _sigmoid(z[:, :u]) * np.tanh(z[:, 2 * u:3 * u])
+                h[:, layer] = _sigmoid(z[:, 3 * u:]) * np.tanh(c[:, layer])
+                inp = h[:, layer] * scale + shift
+            last = np.asarray(lengths) == t + 1
+            out[last] = inp[last] @ b.wd + b.bd
+        return out, np.zeros(n, np.float32)
+
+
 class RuleBidder:
     """A stateless bidder: the call is a function of the hand, the position and the auction
     so far. Subclasses implement choose(); an engine without batch calls loops over rows there.
