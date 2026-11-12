@@ -43,9 +43,15 @@ PRUNE = 9.          # a candidate this many nats behind the best (by the crude c
 MISS, HIT = np.log(.05), np.log(.9)
 
 
-def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False):
+def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False, inner=0, inner_list=0):
     os.environ['BRIDGE_DDS_CACHE'] = ''
-    STATE.update(six=player(check.spec('gen6'), ROOT), seven=player(check.spec('gen7', policy=net), ROOT), trick=trick,
+    six = player(check.spec('gen6'), ROOT)
+    sim = six
+    if inner:           # a cheaper stand-in for the bot: the same search on fewer layouts
+        spec = check.spec('gen6')
+        spec = dict(spec, samples=inner, id=f'6-{inner}', gen6=dict(spec['gen6'], list_solve=inner_list or spec['gen6']['list_solve']))
+        sim = player(spec, ROOT)
+    STATE.update(six=six, sim=sim, seven=player(check.spec('gen7', policy=net), ROOT), trick=trick,
                  candidates=candidates, seeds=seeds, seed=seed, pool=pool, floor=floor, swaps=swaps)
 
 
@@ -163,6 +169,7 @@ def one(family, key, board, o):
     eligible = np.zeros((len(plays), n, m), np.int8)
     crude = np.zeros(n)
     calls = 0
+    rated = []                  # on the true hand: how each run rated every legal card, and which one was really played
     for row, (i, seat, chooser) in enumerate(plays):
         played = o.history[i][1]
         j = view.hidden.index(chooser)
@@ -178,9 +185,13 @@ def one(family, key, board, o):
             then = past_view(o, i, hand)
             for s in range(m):
                 r = random.Random(f"{STATE['seed']}/{family}/{o.controller}/{i}/{k}/{s}")
-                dec = six.choose(then, r)
+                dec = STATE['sim'].choose(then, r)
                 calls += 1
                 est = dec.details.get('estimates') or {}
+                if k == 0 and est:
+                    cards_ = sorted(est)
+                    rated.append(dict(play=row, gaps=[round(est[c]['gap_to_best'], 4) for c in cards_], chosen=cards_.index(symbol(dec.card)),
+                                      played=cards_.index(symbol(played))))
                 same[row, k, s] = dec.card == played
                 gap[row, k, s] = est[symbol(played)]['gap_to_best'] if symbol(played) in est else np.nan
                 eligible[row, k, s] = sum(v > 0 for v in (dec.details.get('proposal_probabilities') or dec.details.get('behavior_probabilities') or {}).values())
@@ -190,7 +201,7 @@ def one(family, key, board, o):
                 plays=[dict(i=i, trick=i // 4 + 1, seat=SEATS[seat], chooser=SEATS[chooser], card=symbol(o.history[i][1]),
                             partner=chooser % 2 == o.controller % 2) for i, seat, chooser in plays],
                 unseen=[symbol(x) for x in view.unseen], hidden=[SEATS[s] for s in view.hidden],
-                pool=pool_info, share=np.round(share, 5).tolist(), kinds=kinds,
+                pool=pool_info, share=np.round(share, 5).tolist(), kinds=kinds, rated=rated,
                 assign=assign.tolist(), net_logp=np.round(net_logp, 4).tolist(), options=options.tolist(),
                 same=same.tolist(), gap=np.where(np.isnan(gap), -1., np.round(gap, 4)).tolist(), eligible=eligible.tolist(), calls=calls)
 
@@ -203,6 +214,8 @@ def main():
     p.add_argument('--candidates', type=int, default=96)
     p.add_argument('--pool', type=int, default=2000)
     p.add_argument('--floor', type=float, default=.05)
+    p.add_argument('--inner-samples', type=int, default=0, help='run the bot on this many layouts instead of its 32 (a cheaper model of it)')
+    p.add_argument('--inner-list', type=int, default=0, help='and solve at most this many layouts of its deal list')
     p.add_argument('--swaps', action='store_true', help='candidates are the true layout with one honour (or two small cards) exchanged between the hidden hands')
     p.add_argument('--seeds', type=int, default=2)
     p.add_argument('--files', type=int, default=200)
@@ -218,11 +231,11 @@ def main():
 
     def save():
         part = a.out.with_suffix('.part')
-        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, swaps=a.swaps, seeds=a.seeds, files=done,
+        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, swaps=a.swaps, inner_samples=a.inner_samples, inner_list=a.inner_list, seeds=a.seeds, files=done,
                                                       skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
         part.replace(a.out)
 
-    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor, a.swaps)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor, a.swaps, a.inner_samples, a.inner_list)) as pool:
         for part in pool.imap_unordered(sample_of, files):
             rows += part
             done += 1

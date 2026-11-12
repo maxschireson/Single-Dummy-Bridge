@@ -49,6 +49,10 @@ def boot(values, groups, rng, n=1000):
     return sums.sum(0) / counts.sum(), means.std(0)
 
 
+def names_of(b):
+    return (['played it', 'level, other played'] + [f'behind <= {e}' for e in EDGES[1:]] + ['behind > 1'])[b]
+
+
 def swaps(rows, S, half, rated, fam, a, rng):
     """Rows made with --swaps: the evidence the plays hold about one card's place, as the log-likelihood ratio of the true
     layout to the same layout with that card in the other hidden hand."""
@@ -144,6 +148,24 @@ def main():
     for h in range(2):
         t = table[1 - h]                                # fitted on the other half
         rated[h] = (t[:, 1] + 1) / (t.sum(1) + 2)
+    if rows and rows[0].get('rated'):
+        # better: the chance that the card REALLY played is a card the run put in a bucket, from the true hands (works for a
+        # cheaper stand-in for the bot too, where two of its own runs agreeing says nothing about the real bot)
+        real = np.zeros((2, nb, 2))
+        for r, h in zip(rows, half):
+            for x in r['rated']:
+                g = np.array(x['gaps'], float)
+                hit = (np.arange(len(g)) == x['chosen']).astype(int)
+                b = bucket(hit, g)
+                np.add.at(real[h], (b, (np.arange(len(g)) == x['played']).astype(int)), 1)
+        for h in range(2):
+            t = real[1 - h]
+            rated[h] = (t[:, 1] + .5) / (t.sum(1) + 1)
+        both = real.sum(0)
+        print('\nThe card really played, by how a run of the simulated bot from the true hand rated it (chance that a card so rated is the one played):')
+        for b in range(nb):
+            if both[b].sum():
+                print(f'   {names_of(b):22s} {both[b, 1] / both[b].sum():.3f}  ({int(both[b].sum())} cards)')
     both = table.sum(0)
     names = ['played it', 'level, other played'] + [f'behind <= {e}' for e in EDGES[1:]] + ['behind > 1']
     print('\nA second run of Gen 6 from the same hand plays a card with this chance, by what the first run did with it:')
