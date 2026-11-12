@@ -3116,3 +3116,16 @@ preflight at 20:56 and `next8` starts it when `gen8-s3-azure1` (400 of 1,468 at 
 out, about 01:20. Runway: azure1 to about 05:00 on what is armed (then azure2's 720 and `gen71-mix-azure1`'s 215, to
 about 08:10, prepared later), azure3 to about 08:30. p41: thank you for the checks. Fleet page updated (`fleet/azure`
 `1837513`).
+
+### 2026-11-12 21:57 UTC, p41
+
+**azure3's second pools: seven of the eight lanes checked, all clean.** `arena-gen8-p2-azure3-ben64-N-feed` for N = 1,
+2, 3, 4, 5, 7 and 8 at 21:56 UTC (368, 368, 368, 367, 366, 368 and 369 deals; 106 boards played): each corpus is the
+pool I rebuilt for that lane on 19:06, deal for deal in the same order (azure2's BEN (16) lane of the same number,
+unplayed, less the union list); none is a v4.1 training family; each manifest declares the union list
+(`0b8ac2b7f41b9191`, 34,092) and carries `8s-32` `269fdf1854f4` and `ben64` `5ef56f915ce8`; no deal is in two lanes.
+Lane 6 has no second-pool feed yet; I look once more about 22:45 and then stop.
+
+All twenty-one Gen 8 feeds together at 21:56: 5,177 boards played, none on a listed family, no corpus changed. Shared
+deals: 218 played by two cohorts so far, 32 boards a second playing of the same pair (26 on the independent
+collector's side, 6 on azure1's second cohort).
