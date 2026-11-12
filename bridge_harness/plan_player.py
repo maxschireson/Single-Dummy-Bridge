@@ -13,6 +13,8 @@ Settings live in spec['plan']['playout'], one stage or a list of them (no trick 
   from_trick, to_trick   tricks at which the stage applies (dummy must be down)
   root_margin            candidates: cards the search rates within this many tricks of its best
   root_cards             at most this many candidates
+  level                  false: no playouts when every card near the best is rated exactly level with it (most
+                         consultations are of that kind and little is there)
   trust                  weight on the playouts' correction
   layouts                layouts played out, drawn from the solved ones by weight; 0 = all of them
   seat                   the simulated seat: 'top', 'blend', 'draw' (the policy net's card), 'map', 'bdraw', 'map3'
@@ -63,6 +65,7 @@ class PlayoutUse:
     repeats: int = 1
     tricks: int = 0
     wide: int = 0
+    level: bool = True      # consult also when every card near the best is rated exactly level with it
 
     def __post_init__(self):
         for name in ('from_trick', 'to_trick', 'root_cards', 'layouts', 'repeats', 'tricks', 'wide'):
@@ -173,7 +176,7 @@ class PlanPlayer(Gen7Player):
         value = np.array([float(w @ u[:, g[0]]) for g in groups])
         best = float(value.max())
         near = [i for i in range(len(groups)) if best - value[i] <= stage.root_margin + 1e-9]
-        if len(near) < 2:
+        if len(near) < 2 or (not stage.level and all(best - value[i] <= 1e-9 for i in near)):
             return Decision(result.card, dict(d, gen7_tree=dict(note, candidates=len(near))))
         logp = self.net.log_policy([o])[0].astype(np.float64)
         mass = {i: float(np.exp(logp[[legal[j] for j in groups[i]]]).sum()) for i in near}
