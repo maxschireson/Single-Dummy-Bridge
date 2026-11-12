@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 08:35 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 08:36 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -121,6 +121,7 @@ Generated 2026-11-12 08:35 UTC by `tools/workq.py` after a change by `bill`. Do 
 | e9-11-p7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-r7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-r8 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 1,600 |  |  |  |
+| e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
 
 ## Boxes
 
