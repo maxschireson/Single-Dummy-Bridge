@@ -1,0 +1,589 @@
+{
+ "8p-32": {
+  "base": "6-32",
+  "label": "Gen 8 prototype (32): 7s-32 + the play read at exponent 1.0 at every trick (early 1.0, deal list 1.0)",
+  "engine": "gen7",
+  "policy_role": "gen8-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  }
+ },
+ "7s-32": {
+  "base": "6-32",
+  "label": "Gen 7 standard (32), as launched 12 Nov",
+  "engine": "gen7",
+  "policy_role": "gen7",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 0.5,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ]
+  }
+ },
+ "9p-32": {
+  "base": "6-32",
+  "label": "Gen 9 shell with nothing declared and nothing learned: must play as 8p-32 (a check of the shell and of scripts/gen9_match.py)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {}
+ },
+ "9t05-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (experiment E9-0): 8p-32 with the true layout's weight raised by 0.5 nats at every decision",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 0.5
+   }
+  }
+ },
+ "9t1-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (experiment E9-0): 8p-32 with the true layout's weight raised by 1 nats at every decision",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 1.0
+   }
+  }
+ },
+ "9t2-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (experiment E9-0): 8p-32 with the true layout's weight raised by 2 nats at every decision",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 2.0
+   }
+  }
+ },
+ "9t4-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (experiment E9-0): 8p-32 with the true layout's weight raised by 4 nats at every decision",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 4.0
+   }
+  }
+ },
+ "9tinf-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (experiment E9-0): 8p-32 playing double dummy on the true layout (the bound)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": "inf"
+   }
+  }
+ },
+ "9t1d-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (E9-0): tilt 1 nat as declarer only",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 1.0,
+    "roles": "declarer"
+   }
+  }
+ },
+ "9t1f-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (E9-0): tilt 1 nat as a defender only",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 1.0,
+    "roles": "defender"
+   }
+  }
+ },
+ "9t1e-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (E9-0): tilt 1 nat at tricks 1 to 6 only",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 1.0,
+    "to_trick": 6
+   }
+  }
+ },
+ "9t1l-32": {
+  "base": "6-32",
+  "label": "TEST ONLY, sees the deal (E9-0): tilt 1 nat from trick 7 only",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "oracle": {
+    "tilt": 1.0,
+    "from_trick": 7
+   }
+  }
+ }
+}

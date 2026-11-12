@@ -22,3 +22,17 @@ channel and is never merged into source.
 rule bidder, early play reading and match runner before Gen 8 is on main. The snapshot is
 replaced by Gen 8's real source when that lands; Gen 9 code is kept in new files with small,
 named hooks into Gen 8 files so the swap is mechanical.
+
+## Code so far
+
+| File | What |
+| --- | --- |
+| `bridge_harness/player_model.py`, `bridge_harness/experience.py` | Interfaces I3 and I6: what a bot is told about a partnership; experience as additive statistics |
+| `bridge_harness/gen9.py` | The player shell: the Gen 8 prototype player with the mixture over profiles, hooks for the bidding and card-play readers, `meet` and `auction_by`, and a test-only oracle |
+| `scripts/gen9_match.py` | `scripts/gen8_match.py` with Gen 9 bots allowed (same arguments) |
+| `configs/gen9-proto-bots.json` | Prototype bots: `9p-32` (the shell with nothing declared; must equal `8p-32`) and the test-only oracle bots of experiment E9-0 |
+| `tests/test_gen9_player_model.py`, `tests/test_gen9_player.py` | 26 tests; the second file needs the built solver (`python scripts/build_dds.py`) |
+
+A bot with `"engine": "gen9"` runs only through `scripts/gen9_match.py`. The arena's collector
+runtime does not know the engine, and oracle bots refuse to be built without
+`BRIDGE_ALLOW_ORACLE=1`.
