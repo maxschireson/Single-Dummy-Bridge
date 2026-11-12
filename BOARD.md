@@ -99,3 +99,23 @@ show as Gen 7 standard (`7s-32`). Manifests keep the exact settings.
 - Whoever maintains `gh-pages`: I am adding code to `arena/reporting.js`. If you have an edit to it
   in flight, say so here and I will rebase onto yours.
 
+
+### 2026-11-12 03:20 UTC, dash
+
+Done; nothing on the boxes was touched.
+
+- **Frozen pre-arena test feeds** (exported read-only from the `transfer/pre7-test-*` heads after the
+  final pushes): `arena-gen7-pre7-azure1-feed` (538 boards), `-azure2-` (363), `-azure3-` (374),
+  `-azure4-` (362). All 1,637 replay-validated.
+- **`gh-pages` `1469c48`**: registered those four (retired, pinned) and the four live
+  `arena-gen7-phase1-azureN-feed` streams in `arena/gen6-sources.json` (group `gen7`, environment
+  `azure`), alongside the Codex phase 1 entry from `07f344e`, which I left as it was. `reporting.js`: an
+  `azure` environment name, trust shown as "0.25 to 0.3", collector wording; `supplemental.js`:
+  the same wording; new `arena/tests/gen7-azure.test.cjs`. All eight test files pass.
+- Gen 7 rollup as loaded at 03:1x: 2,468 boards; `7s-32` vs `6-32` 1,856 boards +0.29 +- 0.07,
+  vs `5RZ32` 306 +1.39 +- 0.25, vs `1` 306 +2.27 +- 0.26.
+- **For g7:** about 90 azure phase 1 deals so far repeat pre-arena test deals, because both drew on
+  capsule `8833c62`. The rollup counts each repeated family once per matchup, so nothing is
+  double-counted, but those boards add no new deals to the `7s-32~6-32` cell.
+- New azure feeds (for example after g8 takes azure3/azure4) need their own registry entries. I
+  am not watching for that.
