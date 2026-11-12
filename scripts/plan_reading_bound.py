@@ -43,7 +43,7 @@ PRUNE = 9.          # a candidate this many nats behind the best (by the crude c
 MISS, HIT = np.log(.05), np.log(.9)
 
 
-def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False, inner=0, inner_list=0, chain=0, chains=2, betas=(1.,), table=None):
+def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False, inner=0, inner_list=0, chain=0, chains=2, betas=(1.,), table=None, net_only=False, pair=None):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     six = player(check.spec('gen6'), ROOT)
     sim = six
@@ -52,7 +52,7 @@ def start(net, trick, candidates, seeds, seed, pool=2000, floor=.05, swaps=False
         spec = dict(spec, samples=inner, id=f'6-{inner}', gen6=dict(spec['gen6'], list_solve=inner_list or spec['gen6']['list_solve']))
         sim = player(spec, ROOT)
     STATE.update(six=six, sim=sim, seven=player(check.spec('gen7', policy=net), ROOT), trick=trick,
-                 candidates=candidates, seeds=seeds, seed=seed, pool=pool, floor=floor, swaps=swaps, chain=chain, chains=chains, betas=tuple(betas), table=table)
+                 candidates=candidates, seeds=seeds, seed=seed, pool=pool, floor=floor, swaps=swaps, chain=chain, chains=chains, betas=tuple(betas), table=table, net_only=net_only, pair=pair)
 
 
 def assignment(view, world):
@@ -80,6 +80,8 @@ def sample_of(path):
     with gzip.open(path, 'rt') as f:
         d = json.load(f)
     out = []
+    if STATE.get('pair') and d.get('pair') != STATE['pair']:
+        return out
     for key, e in d['unique_tables'].items():
         if 'tables' not in e or not e['tables'][0].get('actions') or e['tables'][0].get('status', 'ok') != 'ok':
             continue
@@ -281,6 +283,8 @@ def one(family, key, board, o):
         later = {x for s, x in o.history[i:] if s == chooser}
         alive = crude >= crude.max() - (1e9 if STATE['swaps'] else PRUNE)
         alive[0] = True
+        if STATE.get('net_only'):
+            alive[:] = False
         for k in np.flatnonzero(alive):
             if options[row, k] <= 1:
                 same[row, k] = 1
@@ -323,6 +327,8 @@ def main():
     p.add_argument('--inner-list', type=int, default=0, help='and solve at most this many layouts of its deal list')
     p.add_argument('--chain', type=int, default=0, help='instead: walk over layouts for this many steps a chain (the reading with the bot as the model)')
     p.add_argument('--chains', type=int, default=2)
+    p.add_argument('--net-only', action='store_true', help='do not run the bot: the net\'s reading alone (fast)')
+    p.add_argument('--pair', help='only episodes of this pair, e.g. 7s-32~7s-32')
     p.add_argument('--table', help='nine chances for the walk in place of TABLE (the full bot\'s): a card the run played; rated level; behind by up to 1/32, 1/16, 1/8, 1/4, 1/2, 1; more')
     p.add_argument('--betas', default='0.3,0.6,1', help='exponents on the plays\' likelihood of the parallel walks; the last must be 1')
     p.add_argument('--swaps', action='store_true', help='candidates are the true layout with one honour (or two small cards) exchanged between the hidden hands')
@@ -340,11 +346,11 @@ def main():
 
     def save():
         part = a.out.with_suffix('.part')
-        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, swaps=a.swaps, inner_samples=a.inner_samples, inner_list=a.inner_list, chain=a.chain, chains=a.chains, betas=a.betas, table=a.table, seeds=a.seeds, files=done,
+        part.write_text(json.dumps(dict(settings=dict(net=a.net, trick=a.trick, candidates=a.candidates, pool=a.pool, floor=a.floor, swaps=a.swaps, inner_samples=a.inner_samples, inner_list=a.inner_list, chain=a.chain, chains=a.chains, betas=a.betas, table=a.table, net_only=a.net_only, pair=a.pair, seeds=a.seeds, files=done,
                                                       skip_files=a.skip_files, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
         part.replace(a.out)
 
-    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor, a.swaps, a.inner_samples, a.inner_list, a.chain, a.chains, [float(x) for x in a.betas.split(',')], [float(x) for x in a.table.split(',')] if a.table else None)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(str(Path(a.net).resolve()), a.trick, a.candidates, a.seeds, a.seed, a.pool, a.floor, a.swaps, a.inner_samples, a.inner_list, a.chain, a.chains, [float(x) for x in a.betas.split(',')], [float(x) for x in a.table.split(',')] if a.table else None, a.net_only, a.pair)) as pool:
         for part in pool.imap_unordered(sample_of, files):
             rows += part
             done += 1
