@@ -44,5 +44,5 @@ Against no reading, `proto` saves +0.185 ± 0.029 a board and `cls` +0.148 ± 0.
 
 **Limits.** The reader is the house net reading house bots, so this is the leak to a reader as good as ours, not
 to BEN. Classes are by equality of rank, not by equality on the true deal; E9-3 found spots equal in 98.5% of
-defender decisions. The house bots break exact ties by the net (`tie_break: net`), so these are the habits of that
-rule.
+defender decisions. These are the habits of the bots in p41's tables (6-32 and 7s-32) and whatever rules they use to
+choose among exact ties.
