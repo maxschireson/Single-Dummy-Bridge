@@ -142,7 +142,7 @@ class Readers:
         Fni = self.f05ni.log_score_features(f, seat, dealer, vul, calls)
         Fc = self.ceil.log_score_features(f, seat, dealer, vul, calls)
         Fx = self.exact.log_score_features(f, seat, dealer, vul, calls) if self.exact and exact else np.full(len(S), np.nan)
-        out = {'S': S, 'S+F': S + F, 'S+F-ni': S + Fni, 'ceil': Fc, 'exact': Fx, 'hS+F': 0.5 * S + F}
+        out = {'S': S, 'F': F, 'S+F': S + F, 'S+F-ni': S + Fni, 'ceil': Fc, 'exact': Fx, 'hS+F': 0.5 * S + F}
         if self.replay is not None:
             R = self.replay.type_log_score(length, hon, seat, dealer, vul, calls)
             out.update({'R': R, 'S+R': S + R, 'R+F': R + F})
