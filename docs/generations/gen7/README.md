@@ -4,6 +4,13 @@
 Phase 2 (volume with self-play) is not authorized. The operational authority is the
 [phase 1 notice](../../gen7_candidate_2026-11-11.md); this page is the index.
 
+**Change of 04:09 UTC.** Max stopped the Gen 5 and Gen 1 pairs ("it's clear enough") and sent
+their deals to self-play. The authority for that is the
+[self-play notice](../../gen7_selfplay_2026-11-12.md): plan
+[`round7-phase1-selfplay.json`](../../../configs/round7-phase1-selfplay.json) (`7s-32~6-32` one
+board in three, `7s-32~7s-32` two), source branch `feature/gen7-selfplay-20261112`, not on main.
+The sections below describe phase 1 as launched.
+
 ## What changes from Gen 6
 
 Gen 7 keeps Gen 6 fast (`6-32`) — bidder, lead net, hand-fit scorer, layouts, 32 samples —
@@ -59,6 +66,7 @@ have no BEN server. Azure box control: [boxctl](../../boxctl.md); fleet coordina
 ## Documents
 
 - [Phase 1 notice: mix, plans, launch steps](../../gen7_candidate_2026-11-11.md)
+- [Self-play notice of 12 November: the Gen 5 and Gen 1 pairs stop, the plan, the code, what each source records](../../gen7_selfplay_2026-11-12.md)
 - [Alpha guide: every setting, the stake rule, what was checked](../../gen7_alpha_2026-11-11.md)
 - [Prototype notes: policy net, play weights, measurements](../../gen7_prototype_2026-11-11.md)
 - Build session save points: `transfer/gen7-prototype-20261111` (22 commits not on main)

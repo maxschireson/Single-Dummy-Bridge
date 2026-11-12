@@ -7,7 +7,7 @@ what is authorized, not whether a process is alive; check fresh heartbeats and f
 
 | Question | Authority |
 | --- | --- |
-| What is authorized? | Gen 7 phase 1 only ([notice](gen7_candidate_2026-11-11.md)); phase 2 is not |
+| What is authorized? | Gen 7 phase 1 ([notice](gen7_candidate_2026-11-11.md)); since 12 November 04:09 UTC without its Gen 5 and Gen 1 pairs, whose deals go to `7s-32` self-play ([notice](gen7_selfplay_2026-11-12.md), source on `feature/gen7-selfplay-20261112`). Phase 2 is not |
 | Which source do collectors run? | `fe382f9b` (from `feature/gen7-candidate-20261111`, merged into main at this cleanup) |
 | Which plan? | [`round7-candidate-phase1.json`](../configs/round7-candidate-phase1.json), or its `-nonben` / `-ben` halves on machines without / with BEN servers |
 | What did one run actually execute? | Its immutable manifest, actor/model hashes and frozen runtime |
@@ -44,8 +44,9 @@ instruction to that producer. Gen 6's scored results are closed:
 
 ## Not authorized or not on main
 
-- Gen 7 phase 2 (self-play volume). Needs the self-play regime and the gen7 engine in one
-  runtime; [backlog item 1](backlog.md).
+- Gen 7 phase 2 (self-play volume with the fast bot). The self-play regime, the gen7 engine and
+  the capture port are in one runtime on `feature/gen7-selfplay-20261112`, which is not on main;
+  [backlog item 1](backlog.md).
 - Gen 8 systems layer: WIP on `feature/gen8-systems-20261111`.
 - Hand-fit scorer v1a: packaged on `research/hand-fit-scorer-v1a-20261111`; phase 1 uses v0.
 
