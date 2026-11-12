@@ -265,7 +265,33 @@ def inherited_actors(source, old, actor_source):
     return ancestor
 
 
-def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude_families=None):
+def restore_missing_actors(old, plan, manifest_path):
+    """Restore only missing, requested actors from a separately pinned artifact catalog; import no deals."""
+    path = Path(manifest_path).resolve()
+    catalog = json.loads(path.read_text())
+    if digest({k: v for k, v in catalog.items() if k != 'identity'}) != catalog['identity']:
+        raise ValueError('Actor catalog manifest changed')
+    for key in set(old['bots']) & set(catalog['bots']):
+        if old['bots'][key] != catalog['bots'][key]:
+            raise ValueError('Actor catalog conflicts with retained actor: ' + key)
+    required = set(plan['roster']) | {plan['common_bidder']} | set(plan['audit_references'].values())
+    missing = required - set(old['bots']) - set(plan['gen7_bots'])
+    bots = deepcopy(old['bots'])
+    for key in sorted(missing):
+        if key not in catalog['bots']:
+            raise ValueError('Actor catalog lacks requested actor: ' + key)
+        spec = catalog['bots'][key]
+        if digest({k: v for k, v in spec.items() if k != 'identity'}) != spec['identity']:
+            raise ValueError('Actor catalog bot changed: ' + key)
+        for field, expected in spec['artifact_sha256'].items():
+            artifact = (path.parent / spec[field]).resolve()
+            if not artifact.is_relative_to(path.parent) or sha(artifact) != expected:
+                raise ValueError('Actor catalog artifact changed: ' + key + '/' + field)
+        bots[key] = deepcopy(spec)
+    return dict(old, bots=bots), {key: bots[key] for key in sorted(missing)}
+
+
+def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude_families=None, restore_actors=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -315,6 +341,9 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
         actor_source = Path(actor_source).resolve() if actor_source else None
         ancestor = inherited_actors(source, old, actor_source) if actor_source else None
         actor_manifest = dict(old, bots=ancestor['bots']) if ancestor else old
+        restored = {}
+        if restore_actors:
+            actor_manifest, restored = restore_missing_actors(actor_manifest, plan, restore_actors)
         bots = make_bots(actor_manifest, plan)
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
@@ -339,6 +368,18 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
                     if not dest.exists():
                         dest.parent.mkdir(parents=True, exist_ok=True)
                         shutil.copyfile(actor_source / spec[key], dest)
+        if restore_actors:
+            for spec in restored.values():
+                for key, expected in spec['artifact_sha256'].items():
+                    dest = root / spec[key]
+                    if dest.exists() and sha(dest) != expected:
+                        raise ValueError('Restored actor artifact collision: ' + spec[key])
+                    if not dest.exists():
+                        dest.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copyfile(Path(restore_actors).resolve().parent / spec[key], dest)
+            catalog_path = root / 'artifacts/validation/restored-actors-manifest.json'
+            catalog_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(restore_actors, catalog_path)
         for key, policy in policies.items():
             (root / policy_path(key)).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(policy, root / policy_path(key))
@@ -354,6 +395,9 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
         save([boards[i] for i in keep], root / 'corpus.jsonl')
         atomic_json(root / 'source-indices.json', keep)
         labels = dict(old.get('labels', {}), **plan.get('labels', {}))
+        if restore_actors:
+            catalog_labels = json.loads(Path(restore_actors).read_text()).get('labels', {})
+            labels.update({key: catalog_labels.get(key, key) for key in restored if key not in labels})
         labels.update({key: bot.get('label', key) for key, bot in plan['gen7_bots'].items()})
         m = dict(schema=old['schema'], campaign=plan['campaign'], title=plan['title'],
             target=len(keep), seed=plan.get('seed', old['seed']), roster=plan['roster'], bots=bots,
@@ -385,6 +429,11 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
             m['actor_source_generation'] = ancestor['identity']
             m['labels'].update(ancestor.get('labels', {}))
             m['bidding_conditions'] = ['common', 'native']
+        if restore_actors:
+            m['restored_actors'] = dict(path='artifacts/validation/restored-actors-manifest.json',
+                                       sha256=sha(catalog_path),
+                                       source_manifest=json.loads(catalog_path.read_text())['identity'],
+                                       actors={key: spec['identity'] for key, spec in restored.items()})
         for key in ('generation', 'variant'):
             if key in plan:
                 m[key] = plan[key]
@@ -412,7 +461,8 @@ if __name__ == '__main__':
     p.add_argument('--shard', help='K/N: take every N-th unplayed deal starting at the K-th (K from 0), for machines sharing one source run')
     p.add_argument('--actor-source', type=Path, help='Verified direct predecessor supplying actors pruned by self-play; deals come only from --source')
     p.add_argument('--exclude-families', type=Path, help='JSON family hashes to exclude from evaluation, preserved with their hash')
+    p.add_argument('--restore-actors', type=Path, help='Pinned manifest plus artifacts for missing requested actors only; imports no deals and never overrides a retained actor')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families)
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families, a.restore_actors)
     print(json.dumps(dict(identity=m['identity'], target=m['target'], shard=m.get('shard'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))
