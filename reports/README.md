@@ -19,6 +19,8 @@ For current published observations use the [arena](https://maxschireson.github.i
 A launch snapshot's board count or running flag should never be presented as a
 current live reading.
 
+- [Gen 9 promotion test, first check on synthetic boards (simulation; design in progress)](gen9-promotion-test-check-2026-11-12/README.md)
+
 ## Adding a report
 
 Use a dated filename or dated experiment folder. Include the question, exact

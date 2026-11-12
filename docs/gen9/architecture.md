@@ -235,7 +235,7 @@ numbers that a few dozen boards can estimate.
 | **Schedule** | Shares per purpose (training self-play, pending promotion tests, evaluation panel, admissions), then within a purpose the pairs whose results can still change a decision |
 | **Rating** | A Gaussian model of paired-board IMP differences, `d = s_i - s_j + noise`, with anchors fixing the scale; a pair's own mean replaces the model's where there are enough boards. A player's headline number is its **field score**: expected IMPs a board against a declared mix of opponents, with the worst cell shown beside it |
 | **Admission** | A new player gets a small share against the champion and the anchors until its rating is known to a set width |
-| **Promotion** | A candidate replaces the champion when an always-valid sequential test of the direct match shows a lead and no panel cell has fallen by more than a set tolerance. This is the rule Max set by hand for 7.1 against 7.0 (at least 1,000 boards and a 95% lead), made safe against repeated looks |
+| **Promotion** | A candidate replaces the champion when a sequential test of the direct match that is valid at every look shows a lead, and no panel cell shows a regression beyond a set tolerance ([statistics](arena-statistics.md), section 3). This is the rule Max set by hand for 7.1 against 7.0 (at least 1,000 boards and a 95% lead), made safe against repeated looks |
 | **Retirement** | A player leaves the active roster when it no longer informs a decision or adds to training variety; its package, records and rating stay |
 
 Synthetic players (the rule bidder with sampled settings, carding rules with set honesty, older
@@ -249,13 +249,13 @@ the arena, and a generation number is a label put on a champion afterwards.
 
 | # | Interface | Form | Owner | Used by |
 | --- | --- | --- | --- | --- |
-| I1 | Player package | `configs/players/<id>.json`, schema `player-package-v1`; refers to a Gen 8 system package and/or a card | dave | all |
+| I1 | Player package | `configs/players/<id>.json`, schema `player-package-v1`: bundle, declaration, lineage (what each net trained on), needs. Immutable; a player's status is the fold of events in an append-only registry log ([arena design](arena.md)) | dave | all |
 | I2 | Card IR | `configs/cards/<id>.json`, schema `card-ir-v1`; field list `configs/cards/_fields.json` | bill (bidding fields, rules), sam (carding fields, rules) | readers, matching |
-| I3 | Player model at the table | `PlayerModel(id, profiles, card, carding, experience)`, read-only; the board runner gives each player one per partnership through `meet(table)` | g9 | bill, sam, dave |
+| I3 | Player model at the table | [`bridge_harness/player_model.py`](../../bridge_harness/player_model.py): `PlayerModel(id, kind, profiles, bidding, carding, experience)`, read-only. Two facts reach a player. Who plays the cards against it: the runner's existing `meet(opponent)`, once a board, with a `PlayerModel` or a bot id resolved against the models in the player's own spec. Who made the calls at this table: `auction_by(bidders)`, before each table, four models or ids in seat order; without it each side is taken to have bid for itself. In a common auction the bidding layer read for both sides is the common bidder's, while carding and play experience stay the card player's | g9 | bill, sam, dave |
 | I4 | Bidding reader | An object with `type_log_weights(o, view, length, hon)` (4.1 and 4.2); the rule filter alone has `FitScorer`'s `type_log_score` | bill | engine |
 | I5 | Play reader | An object with `play_log_likelihood(o, view, assign, plays)` (4.3) | sam | engine |
-| I6 | Experience | `experience-v1`: per-board deltas, merged store, epoch snapshot | g9 (schema), bill and sam (their statistics), dave (storage, merge, snapshot) | readers |
-| I7 | Epoch manifest, result record, rating table | `epoch-v1`, the existing `gen5-two-auction-arena-v1` record plus player ids and the snapshot id, `ratings-v1` | dave | collectors, dashboard |
+| I6 | Experience | [`bridge_harness/experience.py`](../../bridge_harness/experience.py), `experience-v1`: four additive kinds of statistic (`count`, `hist`, `moment`, `loglik`), per-board deltas keyed by board, a merged store, a frozen snapshot, and estimators that shrink toward a prior. Names: `bid.<family>`, `profile` (bill); `card.<signal>`, `play.<what>` (sam) | g9 (schema and algebra), bill and sam (their statistics), dave (storage, merge across collectors, snapshots) | readers |
+| I7 | Epoch manifest, result record, rating table | `epoch-v1` on a control branch; in the first phase the epoch, player and snapshot ids ride in each cohort's run manifest, so records and the collector runtime are unchanged; `ratings-v1`, one table per bidding condition ([statistics](arena-statistics.md)) | dave | collectors, dashboard |
 | I8 | Task and experiment files | `team/gen9` branch, README there | will | everyone |
 
 Rules that hold across all of them:
