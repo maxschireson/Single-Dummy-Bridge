@@ -1,4 +1,4 @@
-# E9-16 part 1b: what our equal-card habits give away, on p41's house pools
+# E9-16 parts 1b and 1c: what our equal-card habits give away, on p41's house pools
 
 Gen 9 research (sam, signals) for g9's E9-16, 12 November 2026. Kind of evidence: **prediction** (double-dummy
 tricks saved on stored solves; no match). Nothing adopted.
@@ -14,7 +14,13 @@ unit: the four seats of one table. Standard errors by deal.
   the spots nine and below of the suit held (E9-3), or the card itself if higher.
 - `tch`: the same with the class widened to the cards of the suit held that touch the card played, honours
   included (touching through cards already played).
-- `clsopp`, `tchopp`: the opponents' plays read by class, partner's by the card; `clspar`, `tchpar`: the reverse.
+- `eq` (part 1c): the class is the play's own equal-best set, the legal cards the chooser's weighted solves of the
+  stored layouts rated exactly equal best at that play (g9's `reports/gen9-leakage-2026-11-12/equal_best.json.gz`, v4
+  reading), restricted in each layout to the cards that layout gives the chooser; the card inside chosen evenly. This
+  is approximate: in another layout the chooser would hold other cards and other ties. The opening lead has no listed
+  set (p41's pools store no decision at the lead) and is read by the card.
+- `clsopp`, `tchopp`, `eqopp`: the opponents' plays read by class, partner's by the card; `clspar`, `tchpar`,
+  `eqpar`: the reverse.
 
 On recorded tables a class reading is what a calibrated reader would gain against a version of us that chose
 evenly inside the class, because it does not look at which equal card was played.
@@ -32,7 +38,11 @@ Tricks a board, paired against `proto` (the reading of the actual cards); the be
 | Partner's plays, spots | -0.004 ± 0.007 | 0 | -0.004 ± 0.007 |
 | Partner's plays, touching | -0.003 ± 0.006 | 0 | -0.003 ± 0.006 |
 
-Against no reading, `proto` saves +0.185 ± 0.029 a board and `cls` +0.148 ± 0.028.
+| Every hidden seat, equal-best sets (1c) | -0.009 ± 0.017 (-0.36 nats) | -0.010 ± 0.013 | +0.001 ± 0.011 |
+| The opponents' plays, equal-best sets | -0.014 ± 0.017 | -0.010 ± 0.013 | -0.003 ± 0.010 |
+| Partner's plays, equal-best sets | +0.008 ± 0.007 | 0 | +0.008 ± 0.007 |
+
+Against no reading, `proto` saves +0.185 ± 0.029 a board, `cls` +0.148 ± 0.028 and `eq` +0.176 ± 0.029.
 
 - Which of several equal spots the house bots play is worth 0.038 ± 0.013 tricks a board to a reader of our own
   strength, about a fifth of the whole reading.
@@ -41,6 +51,10 @@ Against no reading, `proto` saves +0.185 ± 0.029 a board and `cls` +0.148 ± 0.
 - Our partner reads our defenders' spots for 0.004 ± 0.007. So choosing evenly among equal spots would take
   about 0.02 to 0.03 tricks a board from the opponents' reading and about 0.004 from our own.
 - Widening the class to touching honours adds nothing measurable to the leak (-0.036 against -0.038).
+- Part 1c: reading every play by its equal-best set takes the most nats from the reading (-0.36 a decision) but
+  hardly any tricks (-0.009 ± 0.017). Choosing at random among exactly equal-best cards, as `8r-32` does, would on
+  this measure give a reader of our strength no detectable loss; the spot classes, which do not depend on the
+  approximation, put the leak at 0.02 to 0.04 tricks a board.
 
 **Limits.** The reader is the house net reading house bots, so this is the leak to a reader as good as ours, not
 to BEN. Classes are by equality of rank, not by equality on the true deal; E9-3 found spots equal in 98.5% of
