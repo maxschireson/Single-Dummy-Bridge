@@ -3,12 +3,22 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen7codexphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 \u00b7 Codex phase 1 (non-BEN)",
+      "branch": "arena-gen7-phase1-codex-20261112-feed",
+      "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26"
+    },
+    {
       "key": "gen6codexfast",
       "group": "gen6",
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen6 primary · fast self-play and BEN16",
+      "name": "Gen6 primary \u00b7 fast self-play and BEN16",
       "branch": "arena-gen6-fast-selfplay-primary-feed",
       "cohort": "4e60d9cd921b2ea25d800be0d91cc9678f8ab86aca86636549d41ff9c1158b6e"
     },
@@ -18,7 +28,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen6 primary · completed mixed capture cohort",
+      "name": "Gen6 primary \u00b7 completed mixed capture cohort",
       "branch": "arena-gen6-codex-v7-capture-feed",
       "cohort": "203cf3de796e9d26bda754864c88a130d76cf6edb91cc72a37c1031d20b13c3a",
       "retired": true,
@@ -30,7 +40,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen 6 · completed BEN followup cohort",
+      "name": "Gen 6 \u00b7 completed BEN followup cohort",
       "branch": "arena-gen6-codex-ben-followups-feed",
       "cohort": "73519613aa89547be33a71f460abe090d4bd73b467e44b9395f46774090cdc60",
       "retired": true,
@@ -42,7 +52,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen 6 · primary Codex collector",
+      "name": "Gen 6 \u00b7 primary Codex collector",
       "branch": "arena-gen6-codex-feed",
       "cohort": "168ad0fbbb39c4f54d86a1efc396da50244abc13ad9fd56eef9a14a414cd8dea",
       "retired": true,
@@ -54,7 +64,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · ChatGPT fast self-play and BEN16",
+      "name": "Gen 6 \u00b7 ChatGPT fast self-play and BEN16",
       "branch": "arena-gen6-chatgpt-feed",
       "cohort": "65a7fd0a5b5090678b8892f1958bb451eeadf58d7df6af0044d3ad8f13ec41f5"
     },
@@ -64,7 +74,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen6 independent · fast self-play and BEN16",
+      "name": "Gen6 independent \u00b7 fast self-play and BEN16",
       "branch": "arena-gen6-fast-selfplay-independent-feed",
       "cohort": "63d7bee704eae61f070af1dca0476e2171b66b4fb084a1b78c11df18d76ed5e7"
     },
@@ -76,7 +86,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen 6 · completed medium vs BEN16 cohort",
+      "name": "Gen 6 \u00b7 completed medium vs BEN16 cohort",
       "branch": "arena-gen6-medium-ben-feed",
       "cohort": "9a40e2f842f65b9d443bf071f951eec750d43918326bbdca7e167d2298260284"
     },
@@ -88,7 +98,7 @@
       "retired": true,
       "revision": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
       "environment": "codex",
-      "name": "Gen 6 · retained early compatible games",
+      "name": "Gen 6 \u00b7 retained early compatible games",
       "branch": "arena-gen6-independent-feed",
       "cohort": "497d7f2c2e90d37c271ee7d700371c94f93d0f6717f530082742e80d24b2eb63"
     },
@@ -100,7 +110,7 @@
       "retired": true,
       "revision": "f7834f2a1f5326acbb7125c06bca7f5b9f8a3040",
       "environment": "chatgpt",
-      "name": "Gen 6 · retained early ChatGPT games",
+      "name": "Gen 6 \u00b7 retained early ChatGPT games",
       "branch": "arena-gen6-chatgpt-feed",
       "cohort": "e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177"
     },
@@ -110,7 +120,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · ChatGPT completed medium/BEN16 cohort",
+      "name": "Gen 6 \u00b7 ChatGPT completed medium/BEN16 cohort",
       "branch": "arena-gen6-chatgpt-feed",
       "cohort": "ca3a5c1c265927b1789b8df4af74c39419a6a85777417f32673970835d1ef035",
       "retired": true,
@@ -122,7 +132,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen 6 · compatible results before capture",
+      "name": "Gen 6 \u00b7 compatible results before capture",
       "branch": "arena-gen6-ben-expansion-feed",
       "cohort": "77fb8605c9d03a12334899ba9cc236d5689e6d60a4a5671a4a5c88c369cc4de6",
       "retired": true,
@@ -134,7 +144,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · ChatGPT compatible results before capture",
+      "name": "Gen 6 \u00b7 ChatGPT compatible results before capture",
       "branch": "arena-gen6-chatgpt-feed",
       "cohort": "ff3eb3270b9b3e21e7e5f99963293c3044239d3245dca25bfc04b3ca0e29a0cb",
       "retired": true,
@@ -146,7 +156,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · ChatGPT completed mixed capture cohort",
+      "name": "Gen 6 \u00b7 ChatGPT completed mixed capture cohort",
       "branch": "arena-gen6-chatgpt-feed",
       "cohort": "8977f60a5f8901562b38767ad1c6a440e5ec169872c1f7ad55b282964364293b",
       "retired": true,
@@ -158,7 +168,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen6 independent · completed mixed capture cohort",
+      "name": "Gen6 independent \u00b7 completed mixed capture cohort",
       "branch": "arena-gen6-gen7-capture-feed",
       "cohort": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb",
       "retired": true,
@@ -170,7 +180,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · cloud fast self-play only",
+      "name": "Gen 6 \u00b7 cloud fast self-play only",
       "branch": "arena-gen6-fast-selfplay-cloud-feed",
       "cohort": "7ce4bf4a07ee08d6bd89fb25a927fc119ef79cd77217b0960f980b01a7dec0c9"
     },
@@ -180,7 +190,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · additional fast self-play only",
+      "name": "Gen 6 \u00b7 additional fast self-play only",
       "branch": "arena-gen6-extra-selfplay-feed",
       "cohort": "55f11f996cfb2846436a68246e17819f5fff5fadd7030335bd2f1df5df82255c"
     },
@@ -190,7 +200,7 @@
       "generation": 6,
       "variant": "6",
       "environment": "chatgpt",
-      "name": "Gen 6 · new fast self-play stream",
+      "name": "Gen 6 \u00b7 new fast self-play stream",
       "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
       "cohort": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936"
     },
@@ -200,9 +210,11 @@
       "generation": 6,
       "variant": "6",
       "environment": "codex",
-      "name": "Gen 6 · new Codex fast self-play",
+      "name": "Gen 6 \u00b7 completed Codex fast self-play",
       "branch": "arena-gen6-fast-selfplay-codex-20261111",
-      "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9"
+      "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "retired": true,
+      "revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0"
     }
   ],
   "activation": {
@@ -391,12 +403,12 @@
       "excluded_families": 90737
     },
     "gen6newselfplay": {
-      "status": "Gen6 fast self-play; first 2000-root-table capture report published",
+      "status": "Retired cleanly for authorized Gen7 phase1; all 3710 completed deals retained",
       "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
       "pair_weights": {
         "6-32~6-32": 1
       },
-      "workers": 3,
+      "workers": 0,
       "ben_workers": 0,
       "target": 25000,
       "source_feed_revision": "13e0fc7b884ecfa546f693a9bac0d92b520f1247",
@@ -419,7 +431,27 @@
         "residual_within_table_icc": 0.02088426833597948,
         "before_rate_comparison_available": false,
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/aca896ccce9cd9c717964eab5741f85d03897466/recovery/gen7-capture-report.json"
-      }
+      },
+      "completed": 3710,
+      "final_revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+      "successor": "gen7codexphase1"
+    },
+    "gen7codexphase1": {
+      "status": "Validated Gen7 phase1 non-BEN cohort started",
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "pair_weights": {
+        "7s-32~6-32": 1,
+        "7s-32~5RZ32": 1,
+        "7s-32~1": 1
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "source_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+      "source_completed_preserved": 3710,
+      "preflight": "54 Gen7 tests passed; 2 full-game boards of each of 3 pairs; 3 fleet guard tests; first 9 production records replay-validated",
+      "pooled_target_per_pair": 2000,
+      "phase2_authorized": false,
+      "updated_epoch": 1794451880.966539
     }
   },
   "requested_match_mix": {
@@ -432,5 +464,14 @@
     "instruction": "All producer owners: stop allocating old-bot and ALL medium matches now; drain, preserve historical results, prepare new fast-only cohort. Retain Gen7 capture. Do not resume previous schedules.",
     "status": "Primary and independent collectors applied the fast-only plan; inspect current feed health for other producers"
   },
-  "historic_gate_branch": "arena-gen6-codex-ben-gate"
+  "historic_gate_branch": "arena-gen6-codex-ben-gate",
+  "gen7_phase1": {
+    "authority": "Max, 2026-11-12 02:09 and 02:16 UTC; applies here under standing delegation to collection-worker instructions",
+    "commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+    "plan": "configs/round7-candidate-phase1-nonben.json",
+    "notice": "docs/gen7_candidate_2026-11-11.md",
+    "pooled_target_per_pair": 2000,
+    "phase2_authorized": false,
+    "scope": "This entry registers this owned stream only; other producers retain their current metadata"
+  }
 }

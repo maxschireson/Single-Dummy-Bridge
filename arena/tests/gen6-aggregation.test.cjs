@@ -13,8 +13,8 @@ const inputs=[
  input('gen5rz',[row(5,'5RZ32~5R32','old-generation',1,999,999,999)])
 ];
 inputs[2].source={...inputs[2].source,cohort:'e891c0a5c780c509a81df08c15397b6c7c6a24a8a266da499c6223d73bd24177'};
-const d=R.build(inputs,'latest',null,100);
-assert.equal(R.latestScope,'gen6');assert.equal(d.completed,4);assert.equal(d.report.observations,5);assert.equal(d.report.duplicates,1);
+const d=R.build(inputs,'gen6',null,100);
+assert.equal(R.latestScope,'gen7');assert.equal(d.completed,4);assert.equal(d.report.observations,5);assert.equal(d.report.duplicates,1);
 assert.deepEqual(d.report.sources,['gen6','gen6independent','gen6chatgpt','gen6initial']);
 assert.equal(d.views[0].groups['6-32~ben'],undefined);
 assert.equal(d.views[0].groups['6-256~ben'].total,4);
@@ -26,7 +26,7 @@ assert.equal(inputs[2].index.records.length,2,'Archive data must remain untouche
 console.log('PASS compatible Gen6 streams combine; duplicates and accidental fast/BEN scores and timing are excluded');
 
 (async()=>{
- const Q=fresh(),sources=Q.pickSources('latest').filter(s=>!s.retired),files={};
+ const Q=fresh(),sources=Q.pickSources('gen6').filter(s=>!s.retired),files={};
  const heads=Object.fromEntries(sources.map((s,i)=>[s.branch,String(i+1).repeat(40)]));
  for(const [i,source]of sources.entries()){
   const records=[row(i,'6-32~5RZ32','network-'+i,10,i,i,1)],ref=heads[source.branch];
@@ -43,3 +43,4 @@ console.log('PASS compatible Gen6 streams combine; duplicates and accidental fas
  }finally{global.fetch=realFetch;}
  console.log('PASS all three active producers share a single branch-head refresh and preserve immutable replay revisions');
 })().catch(error=>{console.error(error);process.exitCode=1;});
+

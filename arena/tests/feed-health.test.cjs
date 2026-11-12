@@ -25,8 +25,9 @@ console.log('PASS heartbeat, publication delay, deliberate stop and archived sna
   assert.equal(x.source.name,'Retired after transition','Registry metadata stays current when cached bytes are reused');
  }finally{global.fetch=originalFetch;}
  R.applyRegistry({schema:'arena-gen6-source-registry-v1',sources:[archived]});
- const result=R.build([{source,data:{...data,target:1,failures:0,order:[]},index:{records:[]}}],'latest',null,now+10000);
+ const result=R.build([{source,data:{...data,target:1,failures:0,order:[]},index:{records:[]}}],'gen6',null,now+10000);
  assert.equal(result.report.health[source.key].state,'archived');
  assert.equal(result.report.stale.length,0,'A cached source object cannot keep an intentionally retired feed in the stale list');
  console.log('PASS immutable archives are cached and source retirement immediately updates health');
 })().catch(e=>{console.error(e);process.exitCode=1;});
+

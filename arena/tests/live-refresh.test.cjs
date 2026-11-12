@@ -41,7 +41,7 @@ function transport(current,counts){return async url=>{const path=new URL(url).pa
 
  R=fresh();const a='a'.repeat(40),b='b'.repeat(40),versions={[a]:fixture(R,[row(1)],20),[b]:fixture(R,[row(1),row(2,30)],40)};let head=a,apiCalls=0,clock=100000;Date.now=()=>clock;
  try{
-  global.fetch=async url=>{const u=new URL(url);if(u.hostname==='api.github.com'){apiCalls++;return Response.json(R.sources.filter(s=>s.generation===6&&!s.retired).map(s=>({name:s.branch,commit:{sha:head}})));}const parts=u.pathname.split('/'),ref=parts[3];assert.ok(versions[ref],'Every score and replay request must use an immutable revision');return new Response(versions[ref].files[parts.slice(4).join('/')]);};
+  global.fetch=async url=>{const u=new URL(url);if(u.hostname==='api.github.com'){apiCalls++;return Response.json(R.sources.filter(s=>[6,7].includes(s.generation)&&!s.retired).map(s=>({name:s.branch,commit:{sha:head}})));}const parts=u.pathname.split('/'),ref=parts[3];assert.ok(versions[ref],'Every score and replay request must use an immutable revision');return new Response(versions[ref].files[parts.slice(4).join('/')]);};
   const source=R.sources[0],first=await R.loadLiveSource(source);assert.equal(first.revision,a);head=b;
   assert.equal((await R.loadLiveSource(source)).data.completed,1);assert.equal(apiCalls,1);
   clock+=121000;const latest=await R.loadLiveSource(source);assert.equal(latest.revision,b);assert.equal(latest.data.completed,2);assert.equal(apiCalls,2);
@@ -56,3 +56,4 @@ function transport(current,counts){return async url=>{const path=new URL(url).pa
  await R.loadSource(R.sources[0],{revision:c});await R.loadSource(R.sources[0],{revision:a});assert.equal(firstPageFetches,3);
  console.log('PASS verified pages are reused across publications and obsolete versions are evicted');
 })().catch(error=>{console.error(error);process.exitCode=1;});
+

@@ -73,11 +73,11 @@ test('current generation excludes prior rounds and keeps only compatible initial
  assert.ok(R.build([...inputs,current,initial],'all').completed>d.completed);
 });
 test('fresh visits and old bookmarks default to latest; Older preserves explicit history',()=>{
- assert.equal(R.latestScope,'gen6');
- for(const search of ['','?source=latest','?source=gen5','?source=gen5r','?source=all','?source=unknown'])assert.deepEqual(R.resolveSelection(search),{selected:'gen6',older:false});
+ assert.equal(R.latestScope,'gen7');
+ for(const search of ['','?source=latest','?source=gen5','?source=gen5r','?source=all','?source=unknown'])assert.deepEqual(R.resolveSelection(search),{selected:'gen7',older:false});
  assert.deepEqual(R.resolveSelection('?source=gen5&older=1'),{selected:'gen5',older:true});
  assert.deepEqual(R.resolveSelection('?source=all&older=1'),{selected:'all',older:true});
- assert.deepEqual(R.pickSources('latest'),R.pickSources('gen6'));
+ assert.deepEqual(R.pickSources('latest'),R.pickSources('gen7'));
 });
 test('older RZ mix retains compatible R observations and keeps original Gen5 separate',()=>{
  const row=(id,pair,imps)=>({id,index:Number(id),family:'rz-family-'+id,pair,imps,own_imps:imps,scores:[0,0],contracts:[],completed_epoch:10});
@@ -91,4 +91,5 @@ test('older RZ mix retains compatible R observations and keeps original Gen5 sep
  assert.deepEqual(R.pickSources('gen5rz').map(s=>s.key),['gen5rz','gen5rzinitial','gen5r']);
 });
 console.log(JSON.stringify({checks,summary:['all','chatgpt','codex'].map(s=>{const d=R.build(inputs,s);return {scope:s,completed:d.completed,observations:d.report.observations,duplicates:d.report.duplicates,matchups:Object.keys(d.views[0].groups).length};})}));
+
 
