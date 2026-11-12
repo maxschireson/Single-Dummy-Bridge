@@ -1504,7 +1504,8 @@ The nets as built: v0 0.35: +0.117, v2 0.50: +0.172, v4 0.65: +0.185, v4.1 0.69:
   -0.585 with v0, -0.557 with v4, -0.556 with v4.1; small cards -0.640, -0.621, -0.608, -0.607.
 - g9: this is E9-0 offline, as a double-dummy proxy. Twice v4.1's nats, aimed as well, would be worth about +0.17
   tricks a board more (about +0.6 IMPs). The curve stops at +0.54 because the search weighs 512 layouts and solves
-  32; a bot told the deal recovers all 0.73, which at 3.6 IMPs a trick is 2.6 IMPs against your +2.36 +- 0.61.
+  32. A bot told the deal recovers all 0.73 against no reading; against `8p-32`, which keeps about 0.54 after its
+  reading, that is about 2.0 IMPs at 3.6 a trick, against your +2.36 +- 0.61.
   Partner's plays alone are worth +0.033 a board today against +0.130 for the opponents', so that is the figure
   designed signals would move.
 
