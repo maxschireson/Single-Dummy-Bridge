@@ -1,0 +1,47 @@
+training/policy-v4.1-20261112/layout-weights/v4_s0.json.gz: 9736 rows, training/policy-v4.1-20261112/layout-weights/v4.1_s0.json.gz: 9736 rows, paired 9736 on 481 deals
+
+== all decisions: 9736 decisions on 481 deals, 334 layouts listed on average
+  log-probability of the true layout: uniform -3.580, scorer -2.608
+  gain over the scorer's weights, nats: v4 +0.5548 +- 0.0154 | v4.1 +0.6130 +- 0.0164 | v4.1 minus v4 +0.0582 +- 0.0090
+  true layout made more likely: v4 0.780 | v4.1 0.794
+  double-dummy cost of the card picked: scorer weights +0.0072 +- 0.0010 | with v4 +0.0049 +- 0.0008 | with v4.1 +0.0041 +- 0.0007
+  cost saved against the scorer's weights: v4 +0.0023 +- 0.0006 | v4.1 +0.0031 +- 0.0007 | v4.1 minus v4 +0.0009 +- 0.0004
+  picks a different card set than the scorer's weights: v4 0.0250 | v4.1 0.0274 | the two nets pick different card sets: 0.0132
+
+== hidden seats played by Gen 6: 8487 decisions on 419 deals, 333 layouts listed on average
+  log-probability of the true layout: uniform -3.569, scorer -2.599
+  gain over the scorer's weights, nats: v4 +0.5451 +- 0.0168 | v4.1 +0.6112 +- 0.0180 | v4.1 minus v4 +0.0661 +- 0.0096
+  true layout made more likely: v4 0.773 | v4.1 0.792
+  double-dummy cost of the card picked: scorer weights +0.0071 +- 0.0010 | with v4 +0.0048 +- 0.0008 | with v4.1 +0.0041 +- 0.0007
+  cost saved against the scorer's weights: v4 +0.0022 +- 0.0007 | v4.1 +0.0030 +- 0.0007 | v4.1 minus v4 +0.0008 +- 0.0004
+  picks a different card set than the scorer's weights: v4 0.0232 | v4.1 0.0257 | the two nets pick different card sets: 0.0132
+
+== a hidden seat played by another bot: 1249 decisions on 62 deals, 344 layouts listed on average
+  log-probability of the true layout: uniform -3.654, scorer -2.664
+  gain over the scorer's weights, nats: v4 +0.6202 +- 0.0356 | v4.1 +0.6251 +- 0.0366 | v4.1 minus v4 +0.0049 +- 0.0252
+  true layout made more likely: v4 0.825 | v4.1 0.808
+  double-dummy cost of the card picked: scorer weights +0.0080 +- 0.0031 | with v4 +0.0056 +- 0.0028 | with v4.1 +0.0040 +- 0.0017
+  cost saved against the scorer's weights: v4 +0.0024 +- 0.0018 | v4.1 +0.0040 +- 0.0021 | v4.1 minus v4 +0.0016 +- 0.0020
+  picks a different card set than the scorer's weights: v4 0.0368 | v4.1 0.0392 | the two nets pick different card sets: 0.0136
+
+== declarer deciding: 5057 decisions on 481 deals, 388 layouts listed on average
+  log-probability of the true layout: uniform -3.814, scorer -2.959
+  gain over the scorer's weights, nats: v4 +0.5591 +- 0.0212 | v4.1 +0.6191 +- 0.0227 | v4.1 minus v4 +0.0600 +- 0.0127
+  true layout made more likely: v4 0.796 | v4.1 0.813
+  double-dummy cost of the card picked: scorer weights +0.0091 +- 0.0014 | with v4 +0.0069 +- 0.0013 | with v4.1 +0.0060 +- 0.0011
+  cost saved against the scorer's weights: v4 +0.0022 +- 0.0009 | v4.1 +0.0031 +- 0.0010 | v4.1 minus v4 +0.0009 +- 0.0006
+  picks a different card set than the scorer's weights: v4 0.0196 | v4.1 0.0200 | the two nets pick different card sets: 0.0101
+
+== defender deciding: 4679 decisions on 481 deals, 275 layouts listed on average
+  log-probability of the true layout: uniform -3.328, scorer -2.228
+  gain over the scorer's weights, nats: v4 +0.5501 +- 0.0182 | v4.1 +0.6064 +- 0.0199 | v4.1 minus v4 +0.0563 +- 0.0111
+  true layout made more likely: v4 0.763 | v4.1 0.775
+  double-dummy cost of the card picked: scorer weights +0.0051 +- 0.0012 | with v4 +0.0028 +- 0.0008 | with v4.1 +0.0019 +- 0.0006
+  cost saved against the scorer's weights: v4 +0.0024 +- 0.0009 | v4.1 +0.0032 +- 0.0010 | v4.1 minus v4 +0.0009 +- 0.0005
+  picks a different card set than the scorer's weights: v4 0.0308 | v4.1 0.0355 | the two nets pick different card sets: 0.0167
+trick  7:  1645 decisions | gain v4 +0.8151 +- 0.0244 | v4.1 +0.9044 +- 0.0262 | v4.1 minus v4 +0.0893 +- 0.0144
+trick  8:  1613 decisions | gain v4 +0.7522 +- 0.0230 | v4.1 +0.8286 +- 0.0249 | v4.1 minus v4 +0.0765 +- 0.0136
+trick  9:  1610 decisions | gain v4 +0.6543 +- 0.0217 | v4.1 +0.7221 +- 0.0234 | v4.1 minus v4 +0.0677 +- 0.0128
+trick 10:  1638 decisions | gain v4 +0.5205 +- 0.0201 | v4.1 +0.5699 +- 0.0217 | v4.1 minus v4 +0.0494 +- 0.0117
+trick 11:  1624 decisions | gain v4 +0.3752 +- 0.0169 | v4.1 +0.4149 +- 0.0183 | v4.1 minus v4 +0.0397 +- 0.0093
+trick 12:  1606 decisions | gain v4 +0.2066 +- 0.0116 | v4.1 +0.2329 +- 0.0121 | v4.1 minus v4 +0.0262 +- 0.0062
