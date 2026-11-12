@@ -1,6 +1,6 @@
 # Fleet status
 
-**Last check:** 12 November 2026, 07:26 UTC. **Next check:** about 07:50 UTC. Who holds which box:
+**Last check:** 12 November 2026, 08:17 UTC. **Next check:** about 08:40 UTC. Who holds which box:
 the allocation table in `BOARD.md` on branch `box/coordination`.
 
 **Gen 7.1** (Max, 05:42: push 7.1, policy net v4.1, from 06:00 unless revoked; 7.1 plays 7.0 where
@@ -10,8 +10,8 @@ match 7 becomes 7.1. 05:54: azure2 plays 7.1 against 7.0 on every board).
 | Machine | Held by | Running | At the last check |
 | --- | --- | --- | --- |
 | `azure1` | Gen 8 session | Gen 8 matches | The operator's phase 1 cohort is stopped for good at 828 boards; 1,986 unplayed deals wait |
-| `azure2` | operator, then the plan session from 08:15 (Max's authority) | `71s-32~7s-32` on every board, eight workers, cohort `4b32e6ed0d6b`, 1,465 deals v4.1 was not trained on, feed `arena-gen7-1-vs70-fresh-azure2-feed`, since 06:36 | 299 boards at 07:25, no failures. Solver cache on a RAM disk since 07:20 (workers 537% to 791% of 800%). Drained from 08:10 (`~/work/gen71/drain2.sh`); the unplayed deals stay |
-| `azure3` | operator | `71s-32~ben64`, eight lanes, 2,933 deals v4.1 was not trained on, feeds `arena-gen7-1-fresh-azure3-ben64-1-feed` to `-8-feed`, since 06:42 | 318 boards at 07:25 (about 450 an hour), no failures; `lane-recycle` active; CPU 93% busy, six cores of it the BEN (64) servers. Tooling `~/work/lanes/lane71f.sh` |
+| `azure2` | plan session from 08:15 (Max's authority) | Plan-level search experiments | Drained at 08:14: cohort `4b32e6ed0d6b` at 745 of 1,465 boards, all published (`67dd0ed`); units disabled, `/mnt/ddscache` empty. Nothing of the operator's is queued there; resume from its 720 unplayed deals when the box comes back |
+| `azure3` | operator | `71s-32~ben64`, eight lanes, 2,933 deals v4.1 was not trained on, feeds `arena-gen7-1-fresh-azure3-ben64-1-feed` to `-8-feed`, since 06:42 | 696 boards at 08:16 (about 444 an hour), no failures; `lane-recycle` has restarted lanes 9 times. The gate runs here now (`/home/claude/watch/gate3.sh`) |
 | `azure4` | Gen 8 session | Gen 8 matches | Phase 1 cohort stopped for good at 829 boards; 1,985 unplayed deals wait |
 | `azure5` (Bridgebots5) | policy 4.1 session, then Gen 8 (about 07:40) | Training | Kept (Max, 05:59) |
 | `azure6` (Bridgebots6) | Gen 8 session | Gen 8 experiments | Kept (Max, 06:03) |
@@ -30,8 +30,8 @@ checkout `~/work/sdb-gen71x`). The unplayed pools on azure1 and azure4 have the 
 
 **The rule for `71s-32~7s-32`.** The independent collector's gate script (`ops/check_gen71_gate.py`,
 run from `/home/claude/watch/gate.sh` on azure2 at every check) counts one board a family over
-every registered feed, none on a training family: at 07:26, 688 boards, mean -0.003, 95% interval
--0.187 to +0.182, not eligible. `pool4.py` prints the raw counts. When it is met,
+every registered feed, none on a training family: at 08:16, 1,461 boards, mean -0.123, 95% interval
+-0.253 to +0.006, not eligible. Not met at 1,000 boards (07:53: 1,124, -0.072, -0.222 to +0.078); Max told, his call. `pool4.py` prints the raw counts. When it is met,
 `configs/round71-selfplay.json` is opened. The Gen 8 session's own fork-free match of the two bots
 stood at -0.010 +- 0.047 after 3,075 boards (plan session's 07:15 entry).
 
