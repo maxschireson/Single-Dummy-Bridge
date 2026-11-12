@@ -910,6 +910,26 @@ correction on 8, and its spread is 0.32 against 0.37. Under the bot's rule at tr
 32-layout trees are +0.02 +- 0.11, -0.06 +- 0.11 and -0.08 +- 0.14 IMPs a side a table (32 minus
 8: +0.16 +- 0.11, +0.06 +- 0.11, +0.60 +- 0.46).
 
+**Gen 6's own search at the reply nodes.** A measurement, not a design. With a PIMC search at
+every reply node the net does no work there, so a better net would change nothing, and the other
+seats become PIMC players with PIMC's strategy fusion built into what the decider expects of them
+(Max's two objections). But on this data the seats are Gen 6, so its search is what they really
+play: a fresh 32-layout search plays the 128-layout search's card 97.5% of the time, where the
+net's best-rated card is an equal-best card about 90% of the time. The standard tree's shape with
+`reply=search` and `--replier gen6`, on the first 600 pairs (237 deals), tricks a pair against
+plain search on the same layouts:
+
+| Replies | Seconds a pair | Tricks | Correction share |
+| --- | --- | --- | --- |
+| Gen 6's search | 3.2 | +0.002 +- 0.015 | 0.05 +- 0.17 |
+| Net, within 0.1 of the gap head's best | 0.09 | -0.002 +- 0.014 | 0.10 +- 0.15 |
+| Net, averaging | 0.09 | -0.008 +- 0.014 | -0.01 +- 0.14 |
+
+The correction with Gen 6's replies correlates 0.53 and 0.62 with the two net corrections, is
+zero in 41% of pairs (24% and 20%), and has a spread of 0.28 (0.36 and 0.33). Under the bot's rule
+at trust 0.25 it is -0.28 +- 0.44 IMPs a side a table (the net trees on these pairs: +0.12 +- 0.17
+and +0.32 +- 0.20). Stopped at 600 pairs at Max's word.
+
 What this says:
 
 - The form of the net's reply is not what holds the tree back. Sharp replies score the same as
@@ -923,7 +943,12 @@ What this says:
   tree is +0.12 +- 0.15 at trust 0.19, +0.05 +- 0.17 at 0.25, -0.24 +- 0.25 at 0.31 and -0.76 +-
   0.44 at 0.5; with `path` 0.1 it is -0.05 +- 0.16 at 0.25 and -0.50 +- 0.39 at 0.31. `path` 0.5
   was chosen on these rows; trust 0.25 was not.
-- Nothing here changes the candidate's standard tree.
+- Replies that are exactly the seats' own search do not lift the share either: 0.05 +- 0.17 on 600
+  pairs, so a share near 1 is ruled out at that size. The reply model is not what limits this tree
+  at tricks 3 to 6. Not tested with exact replies: the decider's own later cards (`own`), and how
+  close to the root the stake rule puts the double-dummy leaves.
+- Nothing here changed the candidate's standard tree. At the go-ahead (12 Nov, 02:16 UTC) Max set
+  its trust to 0.3; the notice and plans are on `feature/gen7-candidate-20261111` at `fe382f9`.
 
 ## The net as a second opinion, and the opening lead (12:30 UTC)
 
@@ -1061,6 +1086,9 @@ python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --poli
 python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --policy2 OTHER.npz --tricks "2;2:net=2" --from-trick 3 --to-trick 6 --splits 1,2
 python scripts/gen7_noise.py           --episodes SELF_PLAY_EPISODES --policy $P --tables 120
 python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "0:plain=1;2:plain=1;3:plain=1,breadth=3,mass=0.98,path=0.25" --from-trick 3 --to-trick 6 --out rows.json
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --tricks "0:plain=1;2:plain=1,reply_gap=0.0;3:plain=1,breadth=3,mass=0.98,path=0.5,reply_gap=0.1" --from-trick 3 --to-trick 6 --out rows.json   # sharp replies
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --layouts 32 --tricks "0:plain=1;3:plain=1,breadth=3,mass=0.98,path=0.5" --from-trick 3 --to-trick 6 --out rows32.json                             # the tree on all 32 layouts
+python scripts/gen7_bench.py           --episodes EPISODES_WITH_GAP_FORKS --policy $P --replier gen6 --tricks "0:plain=1;3:plain=1,breadth=3,mass=0.98,path=0.5,reply=search" --from-trick 3 --to-trick 6 --out rows_g6.json           # Gen 6's search as the reply
 python scripts/gen7_sweep.py           rows.json:tree_2_plain1 [more.json:tree_2_plain1] [--other tree_2_net2_plain1]     # trust and margin
 python scripts/gen7_match_forks.py     ALPHA_RUN_DIR                                                                  # the same on a match's own forks
 python scripts/gen7_board_cost.py      EPISODES [MAX_FILES]                                                           # cpu by stage, root and fork tables
