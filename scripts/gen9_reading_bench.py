@@ -26,6 +26,8 @@ readings  For every stored decision, the log weight a bot spec from --bots (buil
           the decider's view. Stored as the bench stores a net (fit-NAME-<part>.npz, split into the opening lead, partner's
           other plays and the opponents'), with the bot's own factors and signal terms already in it, so the bench's report
           scores it at exponent 1 like a net. Nothing is solved again. NAME=BOT@ID meets ID in place of the table's opponent.
+          --head-reading NAME=HEADS.json:VERSION:HEAD:FACTOR is --head-base (8x-32) with the opposing declarer's plays read by
+          an E9-14 head (scripts/gen9_play_head.py's heads.json, role ben.declarer) at FACTOR in place of the net at 0.3.
 report    The bench's report on OUT; `--against` pairs every reading with one.
 box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
           there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
@@ -159,6 +161,55 @@ def reading_parts(q, o, view, both):
     return out
 
 
+class HeadReading:
+    """A bot's reading with the opposing declarer's plays read by a per-player head (E9-14) at a factor."""
+
+    def __init__(self, base, head, factor):
+        from bridge_harness.play_head import policy_column
+        self.base, self.head, self.factor = base, head, factor
+        self.g7 = base.g7
+        self.W, self.b = policy_column(base.net.params)
+        self.cache = (None, {})
+
+    def meet(self, opponent):
+        self.base.meet(opponent)
+
+    def head_log_likelihood(self, o, view, assign, play):
+        from bridge_harness.play_head import decoder_state
+        i, seat, chooser = play
+        ident = (o.auction, o.dealer, o.contract, tuple(o.history[:i + 1]))
+        if self.cache[0] != ident[:3]:
+            self.cache = (ident[:3], {})
+        cache = self.cache[1]
+        q, f, played = self.base, self.g7.play_floor, o.history[i][1]
+        held = q.held_then(o, view, assign, i, chooser)
+        keys = (held.astype(np.uint64) @ (np.uint64(1) << np.arange(52, dtype=np.uint64))).tolist()
+        todo = [r for r, k in enumerate(keys) if (i, k) not in cache]
+        if todo:
+            batch = q.play_arrays(o, i, seat, chooser, held[todo])
+            legal = np.asarray(batch['legal'])
+            count = legal.sum(axis=1)
+            vals = np.zeros(len(todo))
+            choice = np.flatnonzero(count > 1)
+            if len(choice):
+                d, _ = decoder_state(q.net.params, {k: batch[k][choice] for k in batch})
+                pr = np.exp(self.head.log_policy(d, legal[choice], self.W, self.b))[:, played]
+                vals[choice] = np.log((1 - f) * pr + f / count[choice])
+            for j, r in enumerate(todo):
+                cache[(i, keys[r])] = vals[j]
+        return np.array([cache[(i, k)] for k in keys])
+
+    def play_log_likelihood(self, o, view, assign, plays):
+        out = np.zeros(len(assign))
+        for play in plays:
+            chooser = play[2]
+            if chooser == o.contract.declarer and chooser % 2 != o.controller % 2:
+                out += self.factor * self.head_log_likelihood(o, view, assign, play)
+            else:
+                out += self.base.play_log_likelihood(o, view, assign, [play])
+        return out
+
+
 def readings(a):
     out = Path(a.out)
     listed = json.loads((out / 'tables.json').read_text())
@@ -174,6 +225,13 @@ def readings(a):
         name, bot = item.split('=', 1)
         bot, _, meets[name] = bot.partition('@')
         readers[name] = gen9.player(bot_spec(source, a.bots, bot), source)
+    for item in a.head_reading:
+        from bridge_harness.play_head import PlayHead
+        name, rest = item.split('=', 1)
+        path, version, head_name, factor = rest.rsplit(':', 3)
+        heads = json.loads(Path(path).read_text())['heads']
+        base = gen9.player(bot_spec(source, a.bots, a.head_base), source)
+        readers[name], meets[name] = HeadReading(base, PlayHead.from_json(heads[version]['ben.declarer'][head_name]), float(factor)), ''
     decisions = kept(bench.decisions, listed.get('deciders', 'house'))
     for part in sorted(out.glob('pools-*-*.npz')):
         todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
@@ -333,7 +391,9 @@ def main():
     ap.add_argument('--net', action='append', default=[])
     ap.add_argument('--source')
     ap.add_argument('--bots', default=str(ROOT / 'configs' / 'gen9-signal-run-bots.json'))
-    ap.add_argument('--reading', action='append', default=[], help='NAME=BOT: a reading by a bot of --bots')
+    ap.add_argument('--reading', action='append', default=[], help='NAME=BOT[@ID]: a reading by a bot of --bots')
+    ap.add_argument('--head-reading', action='append', default=[], help='NAME=HEADS.json:VERSION:HEAD:FACTOR (E9-14)')
+    ap.add_argument('--head-base', default='8x-32')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
     ap.add_argument('--verbose', action='store_true')
