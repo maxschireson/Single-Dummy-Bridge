@@ -1,6 +1,6 @@
 {
   "epoch": 1794458568.6145,
-  "status": "repaired-validated",
+  "status": "repaired-and-production-verified",
   "cause": "Gen7 sourcefe382and the05d2selfplay port carried gap_fork manifest settings without the engine instrumentation.",
   "affected_cohorts": [
     {
@@ -19,5 +19,12 @@
   "prevention": "Supervisor refuses a configured gap-capture run unless real-model preflight observed gap forks. Production must also verify guess_size/best_share fields before declaring launch complete.",
   "validated_manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
   "preflight_gap_forks": 35,
-  "source_commit": "317cea385dad6bdceda266ec0b750dc48c98340f"
+  "source_commit": "317cea385dad6bdceda266ec0b750dc48c98340f",
+  "metrics": {
+    "gap_forks": 46,
+    "guess_fields": 5129,
+    "best_share_fields": 23962,
+    "gen7_decisions": 2293,
+    "tree_consulted": 209
+  }
 }

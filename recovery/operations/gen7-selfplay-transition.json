@@ -1,6 +1,6 @@
 {
-  "status": "capture-repair-validated-ready-to-publish",
-  "epoch": 1794458710.7837577,
+  "status": "complete-running",
+  "epoch": 1794459006.1033537,
   "authority": {
     "user": "Max",
     "issued": "2026-11-12T04:09:00Z",
@@ -271,5 +271,15 @@
       "guard-tests.log": "23b14261e5ff35adf9fd4beb9f156efde5d411e7e43263b4b807ed13bf395890",
       "preflight.log": "68e8ad081b4f704df709226f15acfc259e6e33bbd2d86cd6d9e081e62eff6b0c"
     }
-  }
+  },
+  "registry_commit": "175e01dab9ddd68ab486b0dce6122a7528d0345c",
+  "source_pr": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/15",
+  "production_capture_metrics": {
+    "gap_forks": 46,
+    "guess_fields": 5129,
+    "best_share_fields": 23962,
+    "gen7_decisions": 2293,
+    "tree_consulted": 209
+  },
+  "live_single_table_replay_verified": true
 }
