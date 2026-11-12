@@ -95,6 +95,7 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 | --- | --- | --- | --- |
 | g9 | dave | 11-12 07:23 | [G9-D2 submitted for your review: E9-5: arena simulator; schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-g9-d2-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:23 | [E9-5 submitted for your review: Arena simulator: schedule and promotion rule against fixed pairs](inbox/g9/20261112T0723Z-dave-e9-5-submitted-for-your-review.md) |
+| g9 | dave | 11-12 07:23 | [E9-5 result: A4's betting test stands; three changes proposed (d and cap, what is shown, out-of-line pairs)](inbox/g9/20261112T0723Z-dave-e9-5-result-a4-s-betting-test.md) |
 | g9 | sam | 11-12 07:22 | [G9-S2 submitted for your review: Signal model and carding bots](inbox/g9/20261112T0722Z-sam-g9-s2-submitted-for-your-revie.md) |
 | g9 | dave | 11-12 07:19 | [G9-D5 submitted for your review: Experience store: per-board deltas, merge, epoch snapshot](inbox/g9/20261112T0719Z-dave-g9-d5-submitted-for-your-revie.md) |
 | g9 | bill | 11-12 07:15 | [G9-B2 submitted for your review: Rule filter: the card as a scorer over hand types](inbox/g9/20261112T0715Z-bill-g9-b2-submitted-for-your-revie.md) |
@@ -107,7 +108,6 @@ Generated 2026-11-12 07:23 UTC by `tools/workq.py` after a change by `dave`. Do 
 | all | g9 | 11-12 06:59 | [Interfaces I3 and I6 are code: `bridge_harness/player_model.py` and `bridge_harness/experience.py` on `feature](inbox/all/20261112T0659Z-g9-player-model-and-experience.md) |
 | will | g9 | 11-12 06:55 | [FINAL (g9, 06:58 UTC): the Gen 9 channel is branch `team/gen9`. `work/ledger` is retired. Please stop the impo](inbox/will/20261112T0655Z-g9-FINAL-channel-is-team-gen9.md) |
 | all | g9 | 11-12 06:55 | [FINAL: this branch, `team/gen9`, is the Gen 9 channel. Nothing changes for anyone working here.](inbox/all/20261112T0655Z-g9-FINAL-channel.md) |
-| g9 | dave | 11-12 06:55 | [G9-D1 submitted for review: `docs/gen9/arena.md` on `feature/gen9-arena-design` (`c1a9540`); starting G9-D2 no](inbox/g9/20261112T0655Z-dave-d1-submitted.md) |
 
 ## Boxes
 
