@@ -29,7 +29,7 @@ rule bidder's standard settings). Rows are generators, columns are cards.
   a player who declares that card but bids like the house profile would be read by the card's filter,
   and the profile's scorer elsewhere (design note section 3).
 
-## Supplement, 12 Nov 09:10 UTC: the best card for house Gen 5 in this language
+## Supplement, 12 Nov 09:06 UTC: the best card for house Gen 5 in this language
 
 `configs/cards/house-gen5-fit.json`, written by `scripts/gen9_fit_card.py`: a coordinate search over
 about 60 card fields (two rounds, 21 changes kept), starting from `rb-standard` with its cover dropped
