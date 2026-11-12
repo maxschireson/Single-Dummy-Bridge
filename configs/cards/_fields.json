@@ -1,0 +1,552 @@
+{
+ "schema": "card-fields-v0",
+ "status": "provisional",
+ "note": "Bidding fields of the card IR (Gen 9 WIP). executable: meanings = compiled into call meanings by bridge_harness/cards/system.py; no = recorded and reported as residual, not compiled. settings: the rule_bidder.Settings field a card in its family maps to, if any. Carding fields are configs/systems/_carding_fields.json (sam).",
+ "fields": {
+  "open.min_hcp": {
+   "default": 12,
+   "executable": "meanings",
+   "settings": "open_min"
+  },
+  "open.rule_of_20": {
+   "default": true,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.third_seat_min": {
+   "default": 10,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.fourth_seat_rule_of_15": {
+   "default": true,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.one_level_max": {
+   "default": 21,
+   "executable": "meanings",
+   "settings": "limited_max"
+  },
+  "open.major_len": {
+   "default": 5,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.minor": {
+   "default": {
+    "1C_min": 3,
+    "1D_min": 3,
+    "with_33": "1C",
+    "with_44": "1D"
+   },
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.nt": {
+   "default": [
+    {
+     "hcp": [
+      15,
+      17
+     ],
+     "seats": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "vul": "any"
+    }
+   ],
+   "executable": "meanings",
+   "settings": "nt_lo, nt_hi (one range only)"
+  },
+  "open.nt_five_major": {
+   "default": true,
+   "executable": "meanings",
+   "settings": "nt_five_major"
+  },
+  "open.nt_six_minor": {
+   "default": false,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.two_nt": {
+   "default": [
+    20,
+    21
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.strong_2c": {
+   "default": {
+    "hcp": 22,
+    "ltc": 3,
+    "ltc_hcp": 17
+   },
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.strong_club": {
+   "default": null,
+   "executable": "meanings",
+   "settings": "style=precision, club_min"
+  },
+  "open.nebulous_1d": {
+   "default": null,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.polish_club": {
+   "default": null,
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.two": {
+   "default": {
+    "2D": {
+     "type": "weak",
+     "hcp": [
+      5,
+      10
+     ],
+     "len": [
+      6,
+      6
+     ]
+    },
+    "2H": {
+     "type": "weak",
+     "hcp": [
+      5,
+      10
+     ],
+     "len": [
+      6,
+      6
+     ]
+    },
+    "2S": {
+     "type": "weak",
+     "hcp": [
+      5,
+      10
+     ],
+     "len": [
+      6,
+      6
+     ]
+    }
+   },
+   "executable": "meanings",
+   "settings": "2D precision -> two_diamonds; weak hcp -> weak_lo, weak_hi"
+  },
+  "open.precision_2c": {
+   "default": null,
+   "executable": "meanings",
+   "settings": "two_clubs_len"
+  },
+  "open.three_level": {
+   "default": {
+    "len": 7,
+    "hcp_max": 10
+   },
+   "executable": "meanings",
+   "settings": "preempt_len"
+  },
+  "open.four_level": {
+   "default": {
+    "len": 8,
+    "hcp_max": 12
+   },
+   "executable": "meanings",
+   "settings": null
+  },
+  "open.three_nt": {
+   "default": {
+    "type": "gambling"
+   },
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.two_over_one": {
+   "default": "gf",
+   "executable": "meanings",
+   "settings": "two_over_one (points)"
+  },
+  "resp.one_nt_to_major": {
+   "default": "forcing",
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.single_raise": {
+   "default": [
+    6,
+    10
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.limit_raise": {
+   "default": [
+    10,
+    12
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.major_2nt": {
+   "default": "jacoby",
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.splinters": {
+   "default": true,
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.weak_game_raise": {
+   "default": true,
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.inverted_minors": {
+   "default": false,
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.minor_2nt": {
+   "default": [
+    11,
+    12
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.minor_3nt": {
+   "default": [
+    13,
+    15
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.nt": {
+   "default": {
+    "stayman": true,
+    "transfers": "jacoby",
+    "texas": true,
+    "two_spade": "clubs",
+    "super_accept": true
+   },
+   "executable": "meanings",
+   "settings": "stayman, transfers"
+  },
+  "resp.strong_2c": {
+   "default": {
+    "waiting": "2D",
+    "positive_min": 8
+   },
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.weak_two_2nt": {
+   "default": "feature",
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.strong_club": {
+   "default": {
+    "negative": "1D",
+    "negative_max": 7
+   },
+   "executable": "meanings",
+   "settings": "neg_max"
+  },
+  "rebid.one_nt": {
+   "default": null,
+   "executable": "meanings",
+   "settings": null
+  },
+  "rebid.two_nt": {
+   "default": [
+    18,
+    19
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "rebid.reverse_min": {
+   "default": 17,
+   "executable": "meanings",
+   "settings": null
+  },
+  "rebid.jump_shift_min": {
+   "default": 19,
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.overcall_1": {
+   "default": [
+    8,
+    16
+   ],
+   "executable": "meanings",
+   "settings": "overcall_min1, overcall_max"
+  },
+  "comp.overcall_2": {
+   "default": [
+    11,
+    16
+   ],
+   "executable": "meanings",
+   "settings": "overcall_min2"
+  },
+  "comp.overcall_len": {
+   "default": 5,
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.jump_overcall": {
+   "default": "weak",
+   "executable": "meanings",
+   "settings": "jump_overcalls (weak only)"
+  },
+  "comp.nt_overcall": {
+   "default": [
+    15,
+    18
+   ],
+   "executable": "meanings",
+   "settings": "nt_overcall_lo, nt_overcall_hi"
+  },
+  "comp.balancing_nt": {
+   "default": [
+    11,
+    14
+   ],
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.takeout_double_min": {
+   "default": 12,
+   "executable": "meanings",
+   "settings": "takeout_min"
+  },
+  "comp.michaels": {
+   "default": true,
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.unusual_2nt": {
+   "default": true,
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.negative_double_thru": {
+   "default": "2S",
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.vs_nt": {
+   "default": "natural",
+   "executable": "meanings",
+   "settings": null
+  },
+  "comp.vs_nt_double": {
+   "default": "penalty",
+   "executable": "meanings",
+   "settings": null
+  },
+  "slam": {
+   "default": {
+    "blackwood": "rkc1430",
+    "gerber": true
+   },
+   "executable": "meanings",
+   "settings": null
+  },
+  "resp.nt.smolen": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Smolen after Stayman"
+  },
+  "resp.nt.puppet_stayman": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Puppet Stayman"
+  },
+  "resp.nt.three_level": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "meanings of 3-level responses to 1NT"
+  },
+  "resp.nt.system_on_over_x": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "system on after 1NT doubled"
+  },
+  "comp.lebensohl": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Lebensohl after 1NT is overcalled; over weak twos"
+  },
+  "resp.major.drury": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Drury by a passed hand"
+  },
+  "resp.major.bergen": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Bergen raises"
+  },
+  "resp.major.3nt_raise": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "conventional 3NT raise"
+  },
+  "rebid.new_minor_forcing": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "new minor forcing / XYZ / two-way checkback"
+  },
+  "rebid.fourth_suit_forcing": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "fourth suit forcing"
+  },
+  "resp.minor.criss_cross": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "criss-cross raises"
+  },
+  "resp.minor.walsh": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Walsh (bypass diamonds)"
+  },
+  "resp.minor.weak_jump_shifts": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "weak jump shifts"
+  },
+  "open.two.mini_roman": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Mini-Roman / Roman 2D"
+  },
+  "open.two.muiderberg": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Muiderberg 2M (5M + 4/5m)"
+  },
+  "open.two.ekren": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Ekren / both-majors 2D"
+  },
+  "comp.responsive_double_thru": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "responsive doubles"
+  },
+  "comp.maximal_double": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "maximal doubles"
+  },
+  "comp.support_double_thru": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "support doubles and redoubles"
+  },
+  "comp.vs_preempts": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "defence to preempts (takeout double thru, Leaping Michaels, 2NT Lebensohl)"
+  },
+  "comp.vs_strong_club": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "defence to a strong club"
+  },
+  "comp.vs_two_suiters": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "defence to two-suited overcalls (unusual over unusual)"
+  },
+  "comp.snapback": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "snapback / other weak-two defences"
+  },
+  "slam.vs_interference": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "DOPI / DEPO / ROPI"
+  },
+  "slam.exclusion": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "exclusion key-card"
+  },
+  "slam.kickback": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "Kickback"
+  },
+  "slam.cuebid_style": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "control-bidding style"
+  },
+  "general.psychs": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "psychic policy (WBF card)"
+  },
+  "general.forcing_pass": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "forcing-pass systems"
+  },
+  "general.brown_sticker": {
+   "default": null,
+   "executable": "no",
+   "settings": null,
+   "note": "methods flagged as highly unusual (USBF / WBF)"
+  }
+ }
+}
