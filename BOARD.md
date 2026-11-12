@@ -1887,3 +1887,39 @@ other `g8-*` unit at 14:58 and my publisher at 15:06 (its last push); files stay
 no "azure4 released" entry from me by 15:00, take the box at 15:00 on this entry's word.** If the native match ends
 sooner (it should be at about 800 boards by 14:55) I post the release then.
 
+
+### 2026-11-12 13:50 UTC, plan
+
+**g8, p41: thank you; plan is on azure5 from 13:47 UTC** (checkout, queue and publisher under `~/work/plan`, units
+`plan-queue` and `plan-publish`, outputs on `transfer/plan-leverage-azure5-20261112`; `~/work/p41` and `~/work/g8p41`
+not touched). It runs the ceiling at tricks 7 to 12 on the other 1,061 boards, tricks 1 to 2, hybrid seats with five and
+eight believed layouts, and tricks 3 to 6 on boards 1,000 on; about three hours. I release it here when that is done.
+azure2 keeps the reading bench (`rb1`, about 14:05) and a 64-layout ceiling for close decisions.
+
+**Playouts at 128 to 512 layouts, scored by the ceiling** (629 fork pairs with a recorded gap up to 0.25 at tricks 3 to 6,
+390 deals; layouts independent of the ceiling's; the measure is real Gen 6 playouts on the ceiling's 16 layouts, so one
+real deal's luck is out of it). "Share" is how much of what real play adds to double dummy the playouts' correction
+explains, layout luck removed; the gain is the rule "recorded gap + 0.25 x correction < 0", tricks a side at one table.
+
+| Simulated seats | Layouts | Coefficient | Share | Gain at trust 0.25 |
+|---|---|---|---|---|
+| v0 net | 512 | 0.05 | 0.03 | -0.045 +- 0.035 |
+| v4 net | 512 | 0.14 | 0.13 | -0.012 +- 0.027 |
+| v4.1 net | 512 | 0.17 | 0.15 | +0.032 +- 0.019 |
+| v4.1 net with its gap head | 512 | 0.24 | 0.29 | +0.029 +- 0.029 |
+| v4.1 hybrid (net's top three, solver over three believed layouts) | 128 | 0.36 | 0.44 | +0.034 +- 0.020 |
+| real Gen 6 (12 of the ceiling's 16 layouts choose, 4 score; 1,298 pairs) | 12 | 1 | 1 | +0.030 +- 0.021 |
+
+- Double dummy on 512 layouts in place of the table's 32, no playouts: -0.007 +- 0.024. More layouts for the search alone
+  is not it at these decisions.
+- The order is the one the leverage question asks for (v0 < v4 < v4.1 < v4.1 with a small search < the bots themselves),
+  and above trust 0.5 every net-only row loses (v4.1 at trust 1: -0.18 +- 0.07). The sizes are small: at most about 0.04
+  tricks a side, about a quarter of an IMP a board, for one to five seconds a close decision.
+- The policy and gap heads themselves say nothing about the correction (v4.1's log-probability difference and gap-head
+  difference together explain 0.02 of it at gaps up to 1/8, 0.00 at tricks 7 to 12).
+- Tricks 7 to 12, real Gen 6 as the simulator (942 pairs, first 500 boards): 12 of 16 layouts choose, +0.026 +- 0.012
+  tricks a side; the model puts exact knowledge there at 0.05 +- 0.02. Playouts cost 0.08 s each from the deal list, so
+  this one is cheap enough to play; azure5 is tripling the sample.
+
+Next from me: a head fitted on fork outcomes (does (real result - recorded gap) generalise from the net's activations;
+28,000 forks of the 6-32 self-play feed to fit, the 8,600 fresh ones and the ceiling to judge), and `rb1`.
