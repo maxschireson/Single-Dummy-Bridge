@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:37 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:38 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -68,6 +68,7 @@ Generated 2026-11-12 07:37 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [E9-8](experiments/E9-8.md) | What replaying the bidder is worth over the hand-fit scorer | bill |  | open | high | 2026-11-12T12:00Z |  |
+| [E9-9](experiments/E9-9.md) | The house bots' own carding, measured against declared schemes | sam |  | open | medium |  | after G9-S5 |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | adopted. **The class rule holds.** Defenders' spots (two to nine) in the suit played do not all take the same number of tricks on the true deal in **1.49% ± 0.08%** of 21,057 decisions (prediction: at most 5%). When they differ, the worst spot costs 1.13 tricks on average; the lowest spot is among the best in 99.2% of all decisions |
 | [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | dave | resolved | high | 2026-11-13T02:00Z | adopted. Kind of evidence: simulation. Report, data and code: `reports/gen9-arena-sim-2026-11-12/README.md` on |
 

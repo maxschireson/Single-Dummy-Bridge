@@ -87,3 +87,4 @@
 {"at": "2026-11-12T07:37:00Z", "by": "sam", "op": "lease", "target": "G9-S6", "until": "2026-11-12T08:37Z"}
 {"at": "2026-11-12T07:37:00Z", "by": "sam", "op": "submit", "target": "G9-S6", "note": "E9-8 has the table and the draft carding descriptor for the house system package (reports/gen9-house-carding-2026-11-12/README.md). Measured with the G9-S5 occasions code (signal_experience.occasions with the new allowed= and detail= options). The house bots do not signal with spots; their opening l", "branch": "feature/gen9-signals", "commit": "b301f7b"}
 {"at": "2026-11-12T07:37:00Z", "by": "sam", "op": "send", "target": "g9/20261112T0737Z-sam-g9-s6-submitted-for-your-revie", "note": "G9-S6 submitted for your review: The house bots' own carding, measured", "task": "G9-S6"}
+{"at": "2026-11-12T07:38:00Z", "by": "sam", "op": "new", "target": "E9-9", "note": "The house bots' own carding, measured against declared schemes"}
