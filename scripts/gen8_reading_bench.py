@@ -338,13 +338,20 @@ def score(r, fit, power, min_effective=8., solved=32, list_solve=256, offsets=8,
     pw = np.exp(prior[keep] - prior[keep].max())
     gain = used * true - (math.log((pw * np.exp(used * pool[keep] - (used * pool[keep]).max())).sum() / pw.sum()) + (used * pool[keep]).max())
     uu = u[keep]
-    every = choice_cost(w / w.sum(), uu, cost)
+    wn = w / w.sum()
+    every = choice_cost(wn, uu, cost)
     grid = (np.arange(offsets) + .5) / offsets
     if r['regime'] == 0:
         engine = resampled_cost(w, uu, cost, solved, grid)
     else:
         engine = resampled_cost(w, uu, cost, list_solve, grid) if len(w) > list_solve else every
-    return gain, engine, every, used, _effective(logw)
+    # what the weights themselves expect the best single card to cost (equal to the real cost on average if they are the true odds)
+    expected = float(wn @ uu.max(axis=1) - (wn @ uu).max())
+    # the part of the reading that bears on this decision: the weight on layouts in which a card that is best in the true deal is best
+    right = (uu[:, cost <= 1e-9].max(axis=1) >= uu.max(axis=1) - 1e-9)
+    before, after = float((pw / pw.sum()) @ right), float(wn @ right)
+    relevant = math.log(after / before) if before > 0 and after > 0 else float('nan')
+    return gain, engine, every, used, _effective(logw), expected, relevant
 
 
 def mean_se(values, families):
@@ -415,9 +422,11 @@ def report(a):
         settings = [('as built', dict(power=1.))]
         for beta in a.owner:
             settings += [(f'owner x{beta:g} alone', dict(power=1., parts=(0., 0., 0.), beta=beta)), (f'reading + owner x{beta:g}', dict(power=1., beta=beta))]
-    base = np.array([score(r, np.zeros((3, int(r['layouts']) + 1), np.float32), 0.)[1:3] for r in rows])       # no reading: engine way, every layout
-    b32, ball = mean_se(base[:, 0], fam), mean_se(base[:, 1], fam)
-    print(f"no reading: cost {b32[0]:.4f} +- {b32[1]:.4f} a decision with 32 layouts solved (deal list: up to 256), {ball[0]:.4f} +- {ball[1]:.4f} with every stored layout")
+    base_all = np.array([score(r, np.zeros((3, int(r['layouts']) + 1), np.float32), 0.) for r in rows])
+    base = base_all[:, 1:3]                                                                                     # no reading: engine way, every layout
+    b32, ball, bexp = mean_se(base[:, 0], fam), mean_se(base[:, 1], fam), mean_se(base_all[:, 5], fam)
+    print(f"no reading: cost {b32[0]:.4f} +- {b32[1]:.4f} a decision with 32 layouts solved (deal list: up to 256), {ball[0]:.4f} +- {ball[1]:.4f} with every stored layout;"
+          f" the weights themselves expect {bexp[0]:.4f} +- {bexp[1]:.4f}")
     result = dict(decisions=len(rows), tables=tables_n, deals=len(set(fam)), nets=names, groups={})
     per_table = len(rows) / tables_n
     for label, kw in settings:
@@ -431,9 +440,12 @@ def report(a):
                 g = mean_se(s[m, 0], fam[m])
                 saved_e, saved_a = mean_se(base[m, 0] - s[m, 1], fam[m]), mean_se(base[m, 1] - s[m, 2], fam[m])
                 share = m.sum() / tables_n          # decisions of this band in a table, all four seats
+                ok = m & np.isfinite(s[:, 6])
                 entry[band] = dict(decisions=int(m.sum()), log_weight_gain=g, cost_no_reading=mean_se(base[m, 0], fam[m]), cost=mean_se(s[m, 1], fam[m]),
                                    saved=saved_e, saved_every_layout=saved_a, saved_a_table=[saved_e[0] * share, saved_e[1] * share],
-                                   exponent=float(s[m, 3].mean()), effective=float(np.median(s[m, 4])))
+                                   exponent=float(s[m, 3].mean()), effective=float(np.median(s[m, 4])),
+                                   cost_every_layout=mean_se(s[m, 2], fam[m]), cost_expected_by_weights=mean_se(s[m, 5], fam[m]),
+                                   relevant_log_weight_gain=mean_se(s[ok, 6], fam[ok]) if ok.sum() > 1 else None)
             result['groups'][f'{label} | {n}'] = entry
             if label == 'as built' or a.verbose or a.owner:
                 print(f"\n== {label}, {n}")
@@ -441,7 +453,9 @@ def report(a):
                     print(f"  {band:21s} {e['decisions']:6d} decisions | true layout's log-weight {e['log_weight_gain'][0]:+.3f} +- {e['log_weight_gain'][1]:.3f}"
                           f" | cost without {e['cost_no_reading'][0]:.4f}, with {e['cost'][0]:.4f} | saved {e['saved'][0]:+.4f} +- {e['saved'][1]:.4f} a decision,"
                           f" {e['saved_a_table'][0]:+.3f} +- {e['saved_a_table'][1]:.3f} a table | every layout {e['saved_every_layout'][0]:+.4f} +- {e['saved_every_layout'][1]:.4f}"
-                          f" | exponent {e['exponent']:.2f}, effective {e['effective']:.0f}")
+                          f" | exponent {e['exponent']:.2f}, effective {e['effective']:.0f}"
+                          f" | every layout costs {e['cost_every_layout'][0]:.4f}, its weights expect {e['cost_expected_by_weights'][0]:.4f} +- {e['cost_expected_by_weights'][1]:.4f}"
+                          + (f" | weight on layouts where the true best card is best: log gain {e['relevant_log_weight_gain'][0]:+.3f} +- {e['relevant_log_weight_gain'][1]:.3f}" if e['relevant_log_weight_gain'] else ''))
     # nets against the first, paired
     if len(names) > 1:
         print(f"\n== each net against {names[0]}, as built, paired on the same decisions (tricks saved a decision; positive = better than {names[0]})")
