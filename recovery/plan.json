@@ -1,0 +1,117 @@
+{
+ "schema": "gen7-alpha-plan-v1",
+ "campaign": "gen8-candidate-ben-20261112",
+ "title": "Gen 8 \u00b7 BEN (64) pair on azure3: the candidate against BEN (64), deals v4.1 was not trained on",
+ "launch_enabled": true,
+ "pending": [],
+ "exclude_training_families": true,
+ "notes": [
+  "Authorized by Max, 12 November 2026. 15:30 UTC: \"Leaning towards pushing sooner rather than later. When might we go?\" 15:32 UTC, in answer to \"if you say go now, I open the plans as soon as the preflight returns clean and post the box question to g7 on the board\": \"Go ahead\". 15:33 UTC: \"All machines not working on 9 and other future projects can switch from 7 work to 8 arena.\" The collectors are started by g7, the arena's operator. On BEN, 15:12 UTC: \"We should have some Ben boards, but those can come in the arena.\"",
+  "docs/gen8_candidate_2026-11-12.md is the notice this file belongs to.",
+  "Deals. Max, 12 November 2026, 15:50 UTC: \"In general I would never want a bot to play a board in a family it has been trained on, other than as a specific experiment to measure that particular effect. Never in the arena.\" The Gen 8 bots play with policy net v4.1, so a cohort is prepared with --exclude-families and the list of the families v4.1 was trained on, as the Gen 7.1 cohorts are; `exclude_training_families` makes ops/prepare_gen7_alpha.py refuse this plan without a list. The rule bidder's trick estimate and the system scorer's table were fitted on deals drawn by seed outside the arena's corpus.",
+  "This lane is the first measurement of Gen 8 against BEN. The candidate reads BEN's plays at half weight (`opponent_play_weight` 0.5) from trick 1: Gen 7's exponent carried over, tuned on nothing. Gen 7.1 reads BEN from about trick 7 at the same exponent, so the early reading of a player the net was not trained on is what is new here. If the lane shows a loss against Gen 7.1's result on BEN, lower the factor before anything else.",
+  "Not preflighted by Gen 8: the preflight plays boards and a BEN board needs BEN's server. Prepare was checked on azure6 from the capture capsule. The preflight on the machine with BEN is the check of the rest.",
+  "This is configs/round71-ben.json with 71s-32 replaced by 8s-32, the Gen 8 candidate of configs/round8-candidate.json: the same entry, so the same identity in both cohorts. BEN boards carry no audits (`ben_audit`) and no gap forks. A machine that plays one BEN level keeps one of the two pairs, as the Azure lanes do.",
+  "Systems: BEN declares `ben-gib-bbo-8742` (configs/systems; BEN's own two-over-one, as far as that package knows it). The system scorer holds no table for it, so BEN's calls are read by the base hand-fit scorer exactly as Gen 7.1 reads them, and the candidate's `lead_systems` names it, so the lead net is used at BEN tables as in Gen 7.1. What differs from Gen 7.1 at a BEN table is the play reading alone. Records are labelled `systems:house-gen6|ben-gib-bbo-8742` (or the reverse) in the own-auction rooms.",
+  "The collector plays BEN boards with one worker and stops on the first failed board, so each BEN pair needs its server up at the URL in the bot's spec.",
+  "Source run, as for Gen 7.1: a machine prepares from the drained cohort it is replacing or from the capture capsule with its own --shard K/N.",
+  "This copy of configs/round8-candidate-ben.json keeps one of its two pairs, 8s-32~ben64: this machine's BEN servers run the BEN (64) profile. Only the roster, the pair weights, the title and this note differ from that file."
+ ],
+ "model_note": "Gen 8 candidate (8s-32) is Gen 7.1 standard with the play read from trick 1 at exponent 1.0 (BEN's plays at 0.5), and with each side's calls read by the bidding system that side declares; BEN's calls and leads are read as Gen 7.1 reads them. BEN (64) and BEN (16) are the source run's. docs/gen8_candidate_2026-11-12.md has the details.",
+ "interpretation": "Gen 8 against the BEN anchors, BEN (64) and BEN (16). Common and native auctions are separate conditions; identical auctions reuse physical games. Compare with Gen 7.1 against the same anchors (campaign gen71-ben-20261112). Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
+ "roster": [
+  "8s-32",
+  "ben64"
+ ],
+ "pair_weights": {
+  "8s-32~ben64": 1
+ },
+ "common_bidder": "6-32",
+ "audit_references": {
+  "8s-32": "3"
+ },
+ "systems": {
+  "8s-32": "house-gen6",
+  "ben64": "ben-gib-bbo-8742",
+  "6-32": "house-gen6"
+ },
+ "artifacts": {
+  "gen7_policy_v41": {
+   "release": "models/cardplay/gen7-policy-v4.1-2026-11-12",
+   "file": "gen7_policy_v4.1.npz",
+   "restore": "restore.py",
+   "sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed"
+  },
+  "system_scorer": {
+   "release": "models/cardplay/gen8-system-scorer-v1-2026-11-12",
+   "file": "system_scorer_v1.npz",
+   "restore": "restore_model.py",
+   "sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d"
+  }
+ },
+ "gen7_bots": {
+  "8s-32": {
+   "base": "6-32",
+   "label": "Gen 8 candidate (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0,
+    "opponent_play_weight": {
+     "8s-32": 1.0,
+     "8c-32": 1.0,
+     "71s-32": 1.0,
+     "7s-32": 1.0,
+     "7f-32": 1.0,
+     "6-32": 1.0,
+     "5RZ32": 1.0,
+     "1": 0.2,
+     "ben": 0.5,
+     "ben64": 0.5,
+     "*": 0.3
+    },
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "reply": "net",
+      "own_breadth": 0,
+      "own": "best",
+      "plain": 1,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   },
+   "system_scorer": true,
+   "lead_systems": [
+    "house-gen6",
+    "house-gen5",
+    "house-dds40k",
+    "ben-gib-bbo-8742"
+   ]
+  }
+ }
+}
