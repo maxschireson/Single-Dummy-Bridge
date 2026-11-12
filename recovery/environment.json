@@ -1,0 +1,24 @@
+{
+ "host": "azure2",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "codex/gen71-independent-20261112 (feature/gen7-selfplay-20261112 at 9f5ec19 plus the option --exclude-families; engine, runtime and publisher unchanged)",
+ "source_commit": "a588e09e4aec88fa8b41e814df95b515f07e134c",
+ "generation": "Gen 7.1: 71s-32 is 7s-32 with policy net v4.1",
+ "source_run": "this machine's drained cohort gen71-vs70-azure2: the deals it had not played, without the families the policy net v4.1 was trained on (artifacts/validation/evaluation-exclusions.json)",
+ "capture": "tie audits, tree audits, gap forks and the guess-size fields (this source has the capture port merged)",
+ "plan": "configs/round71-compare.json reduced to the pair 71s-32~7s-32 (plan.json beside this file)",
+ "memory": "unit gen71-recycle restarts the collector after the boards in hand when the box has under 5 GB of memory available",
+ "threads": "one BLAS, OpenMP and TensorFlow thread a worker",
+ "publication_branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+ "supervision": "systemd units arena-gen71 and arena-gen71-publish; no BEN pair in this cohort",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md)"
+}
