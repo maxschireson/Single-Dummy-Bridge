@@ -27,7 +27,7 @@ Sessions:
 | azure2 (Bridgebots2) | g7: Gen 7.1, `71s-32` against `7s-32` on every board, eight workers, deals v4.1 was not trained on, since 06:36 UTC (the 7.0 BEN (16) lanes ended at 06:00 UTC) | g7 |
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here; then g7 resumes phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | p41: training policy net 4.1. Temporary: a timer on azure1 deletes it at 05:42 UTC | gone |
+| azure5 (Bridgebots5) | p41: Gen 8 tasks from g8 (Max, 06:32 UTC); until about 07:20 UTC also the last run of policy 4.1 (768 wide, five epochs). Not temporary (Max, 05:59 UTC): nothing stops or deletes it | p41 |
 | azure6 (Bridgebots6) | g8: Gen 8 experiments. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g8 |
 
 ## Log
@@ -1059,3 +1059,48 @@ collectors or the dashboard; a prototype arena publishes to its own branches.
 | Box | Gen 9 use |
 |---|---|
 | none yet | one box asked for from about 13:00 UTC (above) |
+
+### 2026-11-12 06:58 UTC, p41
+
+**g8: taken, and Task 1 is started. azure5 stays with me (allocation row edited); the 768-wide run and its scoring
+end at about 07:20 UTC and the box is on Gen 8 work from then.** My branch is `feature/gen8-p41-20261112`, cut from
+`3d9e1f7`.
+
+**Task 1, how I will measure it.** One bench that solves each decision's layouts once and then scores every reading
+on those same solves: before the deal list the 512-layout pool `early_layouts` draws (the same draw for every net),
+from the deal list on the listed layouts. For each net (v0, v2, v4, v4.1, 512 wide five epochs): the log-weight the
+true layout gains, and the double-dummy cost on the true deal of the card chosen, two ways: from the whole weighted
+pool, and as the engine does it (the `early_min_effective` halving, then 32 resampled layouts, averaged over
+resampling offsets). By trick band, per decision and summed to a board, against no reading. The tree is off, so it
+is the reading alone. The same solves also give, at no extra cost, other exponents, the floor, pool size and the
+number of layouts solved, which is where I will look for Task 2. Tables: boards fetched after 03:59 UTC, none of
+whose deals v4.1 trained on. First figures at about 08:30 UTC; I post as they come.
+
+**The near-tie study, for the record** (`scripts/gen7_near_tie.py` on `transfer/gen7-policy-v4.1-20261112`, reports
+on `transfer/gen7-policy-v4.1-neartie-20261112`; 40,161 fork pairs on 1,817 deals v4.1 did not train on; S is the
+card the search rated higher, T the other; gain is tricks a sampled pair over always playing S; +- is a standard
+error with deals as the unit). Gap forks only, where T was drawn by the collector and not chosen by any selector:
+
+| Deciding bot | Search's gap, S over T | Pairs | Always T costs | v4.1 prefers T | T then costs | Gain, tricks | Gain, IMPs |
+|---|---|---|---|---|---|---|---|
+| 6-32 | up to 0.1 | 2,419 | +0.061 +- 0.011 | 20.8% | +0.052 +- 0.026 | -0.011 +- 0.005 | -0.065 +- 0.022 |
+| 6-32 | 0.1 to 0.2 | 1,201 | +0.162 +- 0.020 | 16.7% | +0.130 +- 0.053 | -0.022 +- 0.009 | -0.055 +- 0.033 |
+| 7s-32 | up to 0.1 | 545 | +0.039 +- 0.032 | 20.4% | 0.000 +- 0.067 | 0.000 +- 0.014 | -0.062 +- 0.076 |
+| 7s-32 | 0.1 to 0.2 | 303 | +0.106 +- 0.041 | 14.2% | +0.070 +- 0.113 | -0.010 +- 0.016 | -0.033 +- 0.041 |
+
+- The search's small gaps are real (a card rated 0.05 lower costs about 0.05), and the cards the policy prefers
+  cost about what the other cards of the band cost. Asking for a 2x or 4x preference shrinks the loss toward zero
+  (6-32, within 0.2: -0.014 +- 0.005 plain, -0.007 +- 0.004 at 2x, -0.003 +- 0.003 at 4x). The gap head and the
+  result head of E2 behave like the policy. The result head added to the search's gap with its fitted slope:
+  inside 0.1, 0.000 +- 0.004 on 6-32's gap forks, +0.004 +- 0.010 on 7s-32's.
+- Level pairs: results differ in 2.6% of 29,108. The policy's pick over the card played: +0.0013 +- 0.0007 tricks
+  a pair. v4.1's pick against v4's on the same pairs: they differ on 16.7%, -0.0001 +- 0.0005.
+- These are per sampled pair, not per board: how often a decision has a card inside a window is not in the pairs.
+
+**One thing in those files that does gain inside the window: the tree.** In 7s-32's boards the audits whose two
+cards are not level are the tree's overrides (`audit_reference: without-tree`, tricks 3 to 6), the card played
+against the search's card, both played out. Over every board I have fetched: 3,045 audited overrides on 1,909
+deals, the tree's card +0.046 +- 0.014 tricks, +0.09 +- 0.07 IMPs; the 600 on boards after 03:59 UTC: +0.092 +-
+0.032 tricks, +0.29 +- 0.14 IMPs. (g7 may track this already.) Every override is with v4, so it says the tree is
+worth something, not that its worth follows the net; my bench at 05:10 UTC found v4.1's tree no better than v4's.
+
