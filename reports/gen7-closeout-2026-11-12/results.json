@@ -1,42 +1,42 @@
 {
  "generation": 7,
- "computed_utc": "2026-11-12 18:04",
+ "computed_utc": "2026-11-12 19:20",
  "rules": "dashboard counting rules; see module docstring",
- "observations": 22214,
- "counted_boards": 21601,
+ "observations": 22700,
+ "counted_boards": 22021,
  "pairs": {
   "71s-32~71s-32": {
-   "boards": 628,
+   "boards": 818,
    "self_play": true
   },
   "71s-32~7s-32": {
-   "boards": 5507,
+   "boards": 5639,
    "common": {
-    "n": 5507,
-    "mean": -0.07118213183221354,
-    "se": 0.03576534310123564,
+    "n": 5639,
+    "mean": -0.059762369214399716,
+    "se": 0.035289447135746756,
     "ci95": [
-     -0.1412822043106354,
-     -0.0010820593537916867
+     -0.12892968560046336,
+     0.00940494717166393
     ],
-    "wins": 552,
-    "ties": 4424,
-    "losses": 531
+    "wins": 566,
+    "ties": 4535,
+    "losses": 538
    },
    "native": {
-    "n": 5507,
-    "mean": -0.07118213183221354,
-    "se": 0.03576534310123564,
+    "n": 5639,
+    "mean": -0.059762369214399716,
+    "se": 0.035289447135746756,
     "ci95": [
-     -0.1412822043106354,
-     -0.0010820593537916867
+     -0.12892968560046336,
+     0.00940494717166393
     ],
-    "wins": 552,
-    "ties": 4424,
-    "losses": 531
+    "wins": 566,
+    "ties": 4535,
+    "losses": 538
    },
    "bidding": {
-    "n": 5507,
+    "n": 5639,
     "mean": 0.0,
     "se": 0.0,
     "ci95": [
@@ -44,7 +44,7 @@
      0.0
     ],
     "wins": 0,
-    "ties": 5507,
+    "ties": 5639,
     "losses": 0
    }
   },
@@ -127,42 +127,42 @@
    }
   },
   "71s-32~ben64": {
-   "boards": 4623,
+   "boards": 4721,
    "common": {
-    "n": 4623,
-    "mean": 0.008436080467229072,
-    "se": 0.05612528902358099,
+    "n": 4721,
+    "mean": -0.002753653886888371,
+    "se": 0.05564833412411263,
     "ci95": [
-     -0.10156948601898967,
-     0.11844164695344782
+     -0.11182438877014914,
+     0.10631708099637238
     ],
-    "wins": 1169,
-    "ties": 2625,
-    "losses": 829
+    "wins": 1186,
+    "ties": 2687,
+    "losses": 848
    },
    "native": {
-    "n": 4623,
-    "mean": 0.3242483235993943,
-    "se": 0.07090282475384674,
+    "n": 4721,
+    "mean": 0.3202711289980936,
+    "se": 0.07041690399582705,
     "ci95": [
-     0.18527878708185472,
-     0.4632178601169339
+     0.1822539971662726,
+     0.45828826082991464
     ],
-    "wins": 1486,
-    "ties": 2075,
-    "losses": 1062
+    "wins": 1516,
+    "ties": 2115,
+    "losses": 1090
    },
    "bidding": {
-    "n": 4623,
-    "mean": 0.31581224313216527,
-    "se": 0.055927419309493,
+    "n": 4721,
+    "mean": 0.323024782884982,
+    "se": 0.055432363008944344,
     "ci95": [
-     0.206194501285559,
-     0.42542998497877155
+     0.21437735138745107,
+     0.4316722143825129
     ],
-    "wins": 623,
-    "ties": 3518,
-    "losses": 482
+    "wins": 641,
+    "ties": 3586,
+    "losses": 494
    }
   },
   "7s-32~7s-32": {
@@ -460,10 +460,10 @@
    "key": "gen7azure4phase1",
    "name": "Gen 7 \u00b7 azure4 phase 1 (non-BEN)",
    "branch": "arena-gen7-phase1-azure4-feed",
-   "revision": "75100f77e468fd9696ec3ccf44e0cb7bad62ba63",
+   "revision": "60da78264c2f1dd7ec442ee17a37cd2432cfc929",
    "retired": false,
    "records": 829,
-   "snapshot_utc": "2026-11-12 18:02"
+   "snapshot_utc": "2026-11-12 19:18"
   },
   {
    "key": "gen7azure2ben16l1",
@@ -619,6 +619,15 @@
    "snapshot_utc": "2026-11-12 06:08"
   },
   {
+   "key": "gen71azure1mix2",
+   "name": "Gen 7.1 \u00b7 azure1 (self-play and against Gen 7.0, second pool)",
+   "branch": "arena-gen7-1-mix2-azure1-feed",
+   "revision": "b417f16dfbbca25e0a759ed5402afa6579ac7acb",
+   "retired": true,
+   "records": 381,
+   "snapshot_utc": "2026-11-12 16:21"
+  },
+  {
    "key": "gen71azure1mix",
    "name": "Gen 7.1 \u00b7 azure1 (self-play and against Gen 7.0)",
    "branch": "arena-gen7-1-mix-azure1-feed",
@@ -697,6 +706,60 @@
    "revision": "b1ce784998959a34d85d228783a1269bfad4af17",
    "retired": false,
    "records": 167,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h1",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 1, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-1-feed",
+   "revision": "c14b37cdb0276a7e71212d135241f0300fdb835a",
+   "retired": true,
+   "records": 9,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h2",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 2, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-2-feed",
+   "revision": "06c45434db5b47388cb918c786d4b9386ec439ff",
+   "retired": true,
+   "records": 11,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h3",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 3, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-3-feed",
+   "revision": "106ce99d11e10ba1c056cbf68260398df24c0ccb",
+   "retired": true,
+   "records": 40,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h4",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 4, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-4-feed",
+   "revision": "5a41f09fe901b54198b8602d92c40cdc0424063d",
+   "retired": true,
+   "records": 37,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h5",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 5, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-5-feed",
+   "revision": "0c4ab5f5459d3d131cb2a9f1828c4de4c34882d2",
+   "retired": true,
+   "records": 7,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h7",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 7, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-7-feed",
+   "revision": "80681d7804dd57bd66582c311c3cad0d9168fc0d",
+   "retired": true,
+   "records": 1,
    "snapshot_utc": "2026-11-12 16:25"
   },
   {

@@ -20,6 +20,8 @@ normal-approximation 95% and unadjusted for repeated looks, as on the dashboard.
 Usage:
   python scripts/generation_results.py --generation 6 --out results.json [--markdown table.md]
   python scripts/generation_results.py --generation 6 --fetch gh   # use the gh CLI instead of HTTPS
+  python scripts/generation_results.py --generation 7 --skip KEY,KEY ... # or --only: a subset of the sources,
+                                                                        # deduplicated within itself
 """
 from __future__ import annotations
 
@@ -91,15 +93,24 @@ def main():
     ap.add_argument('--generation', type=int, required=True)
     ap.add_argument('--registry', help='Local registry JSON (default: gh-pages arena/gen6-sources.json)')
     ap.add_argument('--fetch', choices=['http', 'gh'], default='http')
+    ap.add_argument('--only', help='Comma-separated registry keys: pool these sources alone')
+    ap.add_argument('--skip', help='Comma-separated registry keys to leave out')
     ap.add_argument('--out', required=True)
     ap.add_argument('--markdown')
     args = ap.parse_args()
 
     registry = (json.load(open(args.registry)) if args.registry
                 else fetch(REGISTRY[1], REGISTRY[0], args.fetch))
+    only = set(args.only.split(',')) if args.only else None
+    skip = set(args.skip.split(',')) if args.skip else set()
+    known = {s['key'] for s in registry['sources'] if s.get('generation') == args.generation}
+    if (only or set()) - known or skip - known:
+        raise SystemExit(f'Not a generation {args.generation} source: {sorted(((only or set()) | skip) - known)}')
     rows, sources = [], []
     for s in registry['sources']:
         if s.get('generation') != args.generation:
+            continue
+        if (only is not None and s['key'] not in only) or s['key'] in skip:
             continue
         ref = s.get('revision') or head(s['branch'], args.fetch)
         data = fetch('arena/data.json', ref, args.fetch)

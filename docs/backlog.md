@@ -2,7 +2,7 @@
 
 Open items only, reviewed at the Gen 7 → Gen 8 cleanup (12 November 2026). Items keep their
 numbers, so a gap is an item that was closed: its disposition is on the generation page of the
-cleanup that closed it (items 2, 3 and 6: [Gen 7](generations/gen7/README.md#backlog-dispositions-at-closeout)).
+cleanup that closed it (items 2, 3, 6 and 12: [Gen 7](generations/gen7/README.md#backlog-dispositions-at-closeout)).
 The 11 November PR ledger is in [Gen 6's cleanup ledger](generations/gen6/cleanup-ledger.md).
 
 | # | Priority | Item | Next action | Done when |
@@ -15,7 +15,6 @@ The 11 November PR ledger is in [Gen 6's cleanup ledger](generations/gen6/cleanu
 | 9 | Deferred | [PR #4](https://github.com/maxschireson/Single-Dummy-Bridge/pull/4): bidding-to-belief exporter/trainer/prediction tools absent from main | Compare with current training paths; port only what is needed | Ported with family-split tests, or closed as redundant |
 | 10 | Deferred | [PR #9](https://github.com/maxschireson/Single-Dummy-Bridge/pull/9): nested 16/32/64 prefix scoring | Decide whether it fits weighted layouts | Ported and tested, or closed |
 | 11 | **Before the next net is trained on arena records** | Gen 8 tables are not all house against house. A pipeline that reads auctions with the hand-fit scorer (policy, lead net, scorer retraining) and treats every call as a house call misreads the rule system's auctions (loss 0.7 to 1.3 against 0.12, [Gen 8 notice](gen8_candidate_2026-11-12.md)) | Bind each table's systems from `systems:NS|EW` in `auction_source`, or leave out tables that are not house against house, in every training reader; say which in the release notes | The next release trained on Gen 8 records states how it read them |
-| 12 | Medium | Two drained Gen 7.1 sets are not in the dashboard registry and so not in Gen 7's closed table: `arena-gen7-1-mix2-azure1-feed` (381 boards) and `arena-gen7-1-fresh3-azure3-ben64-*-feed` (105 boards) | Dashboard publisher registers them as retired Gen 7 sources, or records here that they stay out | `scripts/generation_results.py --generation 7` counts them, or this item says why not |
 | 13 | Low | `scripts/generation_results.py` keeps its own copy of the dashboard's actor order, which names and signs every pair; it had fallen behind (`71s-32` missing) and was brought level at this cleanup | Read the order from one place, or test the two against each other | A new actor cannot be added to one and not the other |
 | 14 | Low | A Gen 8 decision record carries the whole `opponent_play_weight` table but not the factor that was applied at that table; it follows from the pair and from `gen5_arena.run_board` telling each player whom it faces | Record the applied factor in the decision note, as a new source revision | An audit can read the factor from the record alone |
 

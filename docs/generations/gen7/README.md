@@ -61,40 +61,43 @@ The Codex phase 1, cloud and extra feeds record no source commit.
 
 ## Results
 
-The 53 Gen 7 feeds in the dashboard registry, pooled with the dashboard's counting rules (one observation per deal
-family and matchup, earliest wins). IMPs per board from the first-named actor's side, with normal-approximation 95%
-intervals, unadjusted for repeated monitoring. Computed 12 November 2026 at 18:04 UTC by
+The 60 Gen 7 feeds in the dashboard registry (`gh-pages` at `410b1af`), pooled with the dashboard's counting rules
+(one observation per deal family and matchup, earliest wins). IMPs per board from the first-named actor's side, with
+normal-approximation 95% intervals, unadjusted for repeated monitoring. Computed 12 November 2026 at 19:20 UTC by
 [`scripts/generation_results.py`](../../../scripts/generation_results.py); per-feed revisions in
 [results.json](../../../reports/gen7-closeout-2026-11-12/results.json).
 
 | Pair | Boards | Common auction (play) | Native auction (total) | Bidding (native − common) |
 | --- | ---: | --- | --- | --- |
-| `71s-32` vs `7s-32` (7.1 against 7.0) | 5,507 | −0.07 (−0.14 to −0.00) | same bidder | — |
+| `71s-32` vs `7s-32` (7.1 against 7.0) | 5,639 | −0.06 (−0.13 to +0.01) | same bidder | — |
 | `71s-32` vs `6-32` | 2,234 | +0.30 (+0.18 to +0.43) | same bidder | — |
-| `71s-32` vs BEN (64) | 4,623 | +0.01 (−0.10 to +0.12) | +0.32 (+0.19 to +0.46) | +0.32 (+0.21 to +0.43) |
+| `71s-32` vs BEN (64) | 4,721 | −0.00 (−0.11 to +0.11) | +0.32 (+0.18 to +0.46) | +0.32 (+0.21 to +0.43) |
 | `71s-32` vs BEN (16) | 378 | −0.16 (−0.58 to +0.26) | +0.72 (+0.16 to +1.29) | +0.88 (+0.41 to +1.35) |
-| `7s-32` vs `6-32` | 3,083 | +0.26 (+0.15 to +0.38) | same bidder | — |
+| `7s-32` vs `6-32`, in the arena | 1,593 | +0.28 (+0.13 to +0.44) | same bidder | — |
+| `7s-32` with tree trust 0.25 vs `6-32`, the pre-arena test | 1,637 | +0.25 (+0.10 to +0.40) | same bidder | — |
 | `7s-32` vs `5RZ32` (Gen 5) | 1,319 | +1.14 (+0.92 to +1.36) | +1.41 (+1.15 to +1.67) | +0.27 (+0.08 to +0.46) |
 | `7s-32` vs Gen 1 | 1,319 | +2.24 (+1.99 to +2.48) | +2.23 (+1.95 to +2.51) | −0.01 (−0.19 to +0.18) |
 | `7s-32` vs BEN (16) | 1,274 | +0.09 (−0.14 to +0.33) | +0.48 (+0.20 to +0.77) | +0.39 (+0.17 to +0.60) |
 | `7s-32` vs BEN (64) | 684 | +0.07 (−0.23 to +0.37) | +0.55 (+0.17 to +0.93) | +0.48 (+0.19 to +0.77) |
-| `71s-32` self-play | 628 | no strength estimate | | |
+| `71s-32` self-play | 818 | no strength estimate | | |
 | `7s-32` self-play | 552 | no strength estimate | | |
 
-21,601 counted boards from 22,214 observations. Reading the table:
+22,021 counted boards from 22,700 observations over all 60 feeds. Reading the table:
 
 - **7.1 against 7.0.** The rule Max set for moving to 7.1 self-play, at least 1,000 boards and a 95% lead for 7.1,
-  was not met: after 5,507 boards 7.1 stands at −0.07 with the interval's upper end at zero, a figure read
-  repeatedly during the day (about 15 looks by 14:29 UTC) with no sequential correction. Matches outside the arena,
+  was not met: after 5,639 boards 7.1 stands at −0.06 with zero inside the interval, a figure read repeatedly
+  during the day (about 15 looks by 14:29 UTC) with no sequential correction. Matches outside the arena,
   on random deals without forks, with standard errors: the operator's two settings matches, 7.1 with the deal-list
   exponent at 1.0 against 7.0, +0.14 ± 0.08 and +0.11 ± 0.08 (1,081 boards each, on the same deals), and the Gen 8
   session's match of v4.1 against v4 in the Gen 7 bot, −0.01 ± 0.05 (3,075 boards). The operator pooled all of it to
   about −0.02 ± 0.03 at 15:50 UTC. So the net trained on one more round of games did not make the bot measurably
   stronger.
-- **Against Gen 6 fast**, 7.0 is ahead by 0.26 and 7.1 by 0.30, on different deals at different times: not a paired
-  comparison of the two. Of the 3,083 boards in the 7.0 row, 1,637 are the pre-arena test (four retired Azure
-  feeds published at 03:09 UTC, registered as Gen 7); whether its bot had the launched tree settings this page did
-  not check.
+- **Against Gen 6 fast**, 7.0 is ahead by 0.28 in the arena and 7.1 by 0.30, on different deals at different
+  times: not a paired comparison of the two. The pre-arena test (four retired Azure feeds published at 03:09 UTC,
+  registered as Gen 7) has its own row because its bot was not the launched one: `7s-32` `0264e01a9ec4`, which
+  differs from the launched `f0a578598673` only in the tree's `trust`, 0.25 against 0.3 (the operator's
+  field-by-field comparison). Each of the two rows is deduplicated on its own; 147 deal families are in both, so
+  the dashboard, which pools them under one pair, counts 3,083 boards at +0.26 (+0.15 to +0.38).
 - **Against BEN** both versions are level in common auctions and ahead by 0.3 to 0.7 when each side bids its own
   system; the gain is the bidding column. 7.1 against BEN (16) has 378 boards, all from the independent collector.
 - **Against Gen 5 and Gen 1** only 7.0 played, until 04:09 UTC. Twelve boards in each of those rows come from a
@@ -103,12 +106,12 @@ intervals, unadjusted for repeated monitoring. Computed 12 November 2026 at 18:0
 - Common-auction pairs use the Gen 6 bidder at all four seats; every Gen 7 bot bids with it too, so pairs inside
   the Gen 6 and Gen 7 family have no bidding column.
 
-**Not counted, because not in the registry at 18:04 UTC:** `arena-gen7-1-mix2-azure1-feed` (381 boards of 7.1
-self-play and 7.1 against 7.0, drained at 16:22) and `arena-gen7-1-fresh3-azure3-ben64-*-feed` (105 boards against
-BEN (64), drained at 16:30). **Not counted by design:** the three sets closed at 06:32 to 06:39 because v4.1 was
-trained on their deals (`arena-gen7-1-azure3-ben64-*-feed` 225 boards, `arena-gen7-1-vs70-azure2-feed` 160,
+**Not counted, by design:** the three sets closed at 06:32 to 06:39 because v4.1 was trained on their deals
+(`arena-gen7-1-azure3-ben64-*-feed` 225 boards, `arena-gen7-1-vs70-azure2-feed` 160,
 `arena-gen7-1-compare-azure2-feed` 8). The policy 4.1 session checked every other 7.1 cohort against the net's
-training file and found no training deal, played or waiting (coordination board, 16:12 UTC).
+training file and found no training deal, played or waiting (coordination board, 16:12 UTC). The two sets drained
+at the switch to Gen 8, `arena-gen7-1-mix2-azure1-feed` (381 boards) and six `arena-gen7-1-fresh3-azure3-ben64-*-feed`
+lanes (105), were registered by the operator during this cleanup and are counted.
 
 ## What Gen 7 handed to Gen 8
 
@@ -119,9 +122,9 @@ training file and found no training deal, played or waiting (coordination board,
   experiment to measure that particular effect. Never in the arena." The list in use is the union of the two
   published lists of v4.1's training families (34,092, `transfer/v41-training-families-union-20261112`).
 - **The comparison bot.** `71s-32` unchanged.
-- **Deals.** The Gen 8 cohorts are prepared from the unplayed deals of the drained Gen 7.1 cohorts and from unused
-  shards of the capture capsule.
-- **Data.** 1,180 self-play boards and every cross-match board, with decision capture and gap forks, on the Gen 7
+- **Deals.** The Gen 8 cohorts are prepared from the unplayed deals of drained Gen 7.0 and 7.1 cohorts, taken from
+  the `recovery/` copies on their feeds, and from unused shards of the capture capsule.
+- **Data.** 1,370 self-play boards and every cross-match board, with decision capture and gap forks, on the Gen 7
   feeds.
 - **An open problem.** A better policy net barely moves the bot (the 7.1 against 7.0 row). Gen 8's
   [notice](../../gen8_candidate_2026-11-12.md) calls the share of a net's gain that the bot keeps leverage, measures
@@ -148,9 +151,10 @@ Items of the [backlog](../../backlog.md) closed at the Gen 7 → Gen 8 cleanup:
 
 | # | Item | Disposition |
 | --- | --- | --- |
-| 2 | Azure Gen 7 feeds not in the dashboard registry | Done during the day: the registry lists the Azure phase 1 feeds, the BEN lanes and the Gen 7.1 feeds, and the table above counts them. Two late Gen 7.1 sets are still out (backlog item 12) |
+| 2 | Azure Gen 7 feeds not in the dashboard registry | Done during the day: the registry lists the Azure phase 1 feeds, the BEN lanes and the Gen 7.1 feeds, and the table above counts them |
 | 3 | No phase 1 collector for the two BEN pairs | Done: azure2's eight BEN (16) lanes and azure3's eight BEN (64) lanes, and the independent collector, played them (1,274 and 684 boards for 7.0) |
 | 6 | Gen 8 systems layer, work in progress on `feature/gen8-systems-20261111` | Done: the finished layer came onto main with Gen 8's source. The branch's one commit is the earlier draft of the same files and is superseded |
+| 12 | Two drained Gen 7.1 sets not in the registry (opened during this cleanup) | Done: the operator registered `arena-gen7-1-mix2-azure1-feed` and the six `fresh3` lanes as retired sources (`gh-pages` `410b1af`); the table was run again with them |
 
 Item 1 (collector runtime off main) stays open in a smaller form: the self-play regime it asked for is on main,
 the capture and supervision changes are not.
@@ -180,10 +184,10 @@ Plans: `configs/round7-candidate-phase1.json` with its `-nonben` and `-ben` halv
 
 ## Feeds
 
-Registered in the dashboard (`gh-pages:arena/gen6-sources.json`) as generation 7: 53 sources, 14 retired at a pinned
+Registered in the dashboard (`gh-pages:arena/gen6-sources.json`) as generation 7: 60 sources, 21 retired at a pinned
 revision and 39 read at their branch heads. The 39 had all published their last snapshot by 16:25 UTC except
-`arena-gen7-phase1-azure4-feed`, which still publishes (829 boards at 17:51 and at 17:57 UTC). Revisions and snapshot
-times are in results.json.
+`arena-gen7-phase1-azure4-feed`: its publisher was left running when the cohort was drained at 03:50 UTC and still
+pushes the same 829 boards. Revisions and snapshot times are in results.json.
 
 | Group | Feeds | Boards published |
 | --- | ---: | ---: |
@@ -194,8 +198,8 @@ times are in results.json.
 | 7.0 against BEN (64), azure3 lanes (`arena-gen7-phase1-azure3-ben64-{1..8}-feed`) | 8 | 606 |
 | 7.0 self-play mix (`arena-gen7-selfplay-codex-20261112-feed`, `-selfplay-capture-codex-`, `arena-gen7-phase1-selfplay-azure2-feed`, `arena-gen7-independent-selfplay-feed`) | 4 | 900 |
 | 7.1 against 7.0 and Gen 6 (`arena-gen7-1-compare-codex-20261112-feed`, `arena-gen71-19bbdce5-20261112-feed`, `arena-gen7-1-vs70-fresh-azure2-feed`) | 3 | 4,908 |
-| 7.1 self-play and against 7.0 (`arena-gen7-1-mix-azure1-feed`) | 1 | 1,256 |
-| 7.1 against BEN (64), azure3 lanes (`arena-gen7-1-fresh-` and `-fresh2-azure3-ben64-{1..8}-feed`) | 16 | 4,379 |
+| 7.1 self-play and against 7.0 (`arena-gen7-1-mix-azure1-feed`, `-mix2-`) | 2 | 1,637 |
+| 7.1 against BEN (64), azure3 lanes (`arena-gen7-1-fresh-` and `-fresh2-azure3-ben64-{1..8}-feed`, six `-fresh3-` lanes) | 22 | 4,484 |
 | 7.1, the independent collector's five pairs (`arena-gen71-independent-feed`) | 1 | 3,293 |
 
 A board published is not always a board counted: a deal family counts once per matchup across all feeds.

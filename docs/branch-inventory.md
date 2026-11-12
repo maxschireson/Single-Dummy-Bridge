@@ -1,30 +1,31 @@
 # Branch inventory
 
-Snapshot of 12 November 2026 ~18:15 UTC, regenerated at the Gen 7 → Gen 8 cleanup:
-270 branches (122 at the Gen 6 → Gen 7 cleanup fifteen hours earlier). Last-commit times are UTC. This is not process
+Snapshot of 12 November 2026 ~19:25 UTC, regenerated at the Gen 7 → Gen 8 cleanup:
+271 branches (122 at the Gen 6 → Gen 7 cleanup sixteen hours earlier). Last-commit times are UTC. This is not process
 monitoring: a recent commit is not proof a worker is healthy, and an old one is not proof it
 is abandoned. Nothing is deleted or renamed in a cleanup; feeds, transfers, archives and
 control channels are never merged into source. Feed commit messages from `ops/publish_gen5.py`
 say "Gen5:" for every generation; read the branch name and manifest instead.
 
-## Source and deployment (13)
+## Source and deployment (14)
 
 Development and adopted source. Start from `main`.
 
 | Branch | Last commit | Note |
 | --- | --- | --- |
 | [`docs/generation-cleanup-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/docs/generation-cleanup-20261112) | 11-12 03:13 | The Gen 6 → Gen 7 cleanup; merged (PR #14) |
+| [`docs/generation-cleanup-20261112-gen8`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/docs/generation-cleanup-20261112-gen8) | 11-12 18:23 | This cleanup, Gen 7 → Gen 8 (PR #32) |
 | [`feature/boxctl-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/boxctl-20261112) | 11-12 01:16 | Box control agent; on main since the Gen 6 → Gen 7 cleanup |
 | [`feature/gen7-alpha-20261111`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen7-alpha-20261111) | 11-11 12:01 | Ancestor of the Gen 7 candidate; contained in main |
 | [`feature/gen7-candidate-20261111`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen7-candidate-20261111) | 11-12 02:23 | Deployed Gen 7.0 phase 1 source (`fe382f9b`); on main since the Gen 6 → Gen 7 cleanup |
 | [`feature/gen7-prepare-slice-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen7-prepare-slice-20261112) | 11-12 03:13 | Pre-7 test tooling; conflicts with main in twelve files (backlog 5) |
 | [`feature/gen7-selfplay-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen7-selfplay-20261112) | 11-12 06:51 | Gen 7 self-play regime, the Gen 7.1 notice; merged into main at this cleanup (`5099000`) |
-| [`feature/gen8-p41-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen8-p41-20261112) | 11-12 16:14 | Policy 4.1 session: the reading bench and `scripts/check_feed_families.py`; not on main |
+| [`feature/gen8-p41-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen8-p41-20261112) | 11-12 19:05 | Policy 4.1 session: the reading bench and `scripts/check_feed_families.py`; not on main |
 | [`feature/gen8-prototype-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen8-prototype-20261112) | 11-12 16:47 | Deployed Gen 8 source (`792c4cb`, the commit that opened the plans) and its later page commits; merged into main at this cleanup. The Gen 8 session may keep committing here |
 | [`feature/gen8-systems-20261111`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen8-systems-20261111) | 11-11 23:57 | First draft of the Gen 8 systems layer (one commit); superseded by the layer that came onto main with Gen 8 |
 | [`fix/gen6-feed-health-20261111`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/fix/gen6-feed-health-20261111) | 11-11 09:22 | PR #13: feed-health supervision; conflicts with main (backlog 1) |
 | [`fix/gen7-selfplay-capture-codex-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/fix/gen7-selfplay-capture-codex-20261112) | 11-12 04:44 | PR #15: gap and guess capture kept in self-play; Codex's Gen 7.0 self-play cohort ran it; conflicts with main in `bridge_harness/gen5_arena.py` (backlog 1) |
-| [`gh-pages`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/gh-pages) | 11-12 18:05 | Live dashboard and its feed registry (84 sources: 18 Gen 6, 53 Gen 7, 13 Gen 8); own publisher |
+| [`gh-pages`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/gh-pages) | 11-12 18:46 | Live dashboard and its feed registry (91 sources: 18 Gen 6, 60 Gen 7, 13 Gen 8); own publisher |
 | [`main`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/main) | 11-12 03:13 | Shared source; Gen 6, Gen 7 and Gen 8 after this cleanup |
 
 ## Collector runtime lineage (15)
@@ -70,19 +71,19 @@ Producer publications for the current generation. Never merge. Board counts are 
 
 | Branch | Last commit | Note |
 | --- | --- | --- |
-| [`arena-gen8-19bbdce5-20261112-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-19bbdce5-20261112-feed) | 11-12 18:15 | Gen 8 · stream19bbdce5 main mix; 143 boards; read at its head |
-| [`arena-gen8-azure1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure1-feed) | 11-12 18:15 | Gen 8 · azure1 (main mix); 433 boards; read at its head |
-| [`arena-gen8-azure3-ben64-1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-1-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 1); 54 boards; read at its head |
-| [`arena-gen8-azure3-ben64-2-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-2-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 2); 55 boards; read at its head |
-| [`arena-gen8-azure3-ben64-3-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-3-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 3); 57 boards; read at its head |
-| [`arena-gen8-azure3-ben64-4-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-4-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 4); 54 boards; read at its head |
-| [`arena-gen8-azure3-ben64-5-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-5-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 5); 60 boards; read at its head |
-| [`arena-gen8-azure3-ben64-6-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-6-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 6); 57 boards; read at its head |
-| [`arena-gen8-azure3-ben64-7-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-7-feed) | 11-12 18:15 | Gen 8 · azure3 (BEN 64, lane 7); 58 boards; read at its head |
-| [`arena-gen8-azure3-ben64-8-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-8-feed) | 11-12 18:16 | Gen 8 · azure3 (BEN 64, lane 8); 56 boards; read at its head |
+| [`arena-gen8-19bbdce5-20261112-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-19bbdce5-20261112-feed) | 11-12 19:22 | Gen 8 · stream19bbdce5 main mix; 143 boards; read at its head |
+| [`arena-gen8-azure1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure1-feed) | 11-12 19:23 | Gen 8 · azure1 (main mix); 433 boards; read at its head |
+| [`arena-gen8-azure3-ben64-1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-1-feed) | 11-12 19:23 | Gen 8 · azure3 (BEN 64, lane 1); 54 boards; read at its head |
+| [`arena-gen8-azure3-ben64-2-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-2-feed) | 11-12 19:23 | Gen 8 · azure3 (BEN 64, lane 2); 55 boards; read at its head |
+| [`arena-gen8-azure3-ben64-3-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-3-feed) | 11-12 19:23 | Gen 8 · azure3 (BEN 64, lane 3); 57 boards; read at its head |
+| [`arena-gen8-azure3-ben64-4-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-4-feed) | 11-12 19:23 | Gen 8 · azure3 (BEN 64, lane 4); 54 boards; read at its head |
+| [`arena-gen8-azure3-ben64-5-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-5-feed) | 11-12 19:23 | Gen 8 · azure3 (BEN 64, lane 5); 60 boards; read at its head |
+| [`arena-gen8-azure3-ben64-6-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-6-feed) | 11-12 19:22 | Gen 8 · azure3 (BEN 64, lane 6); 57 boards; read at its head |
+| [`arena-gen8-azure3-ben64-7-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-7-feed) | 11-12 19:22 | Gen 8 · azure3 (BEN 64, lane 7); 58 boards; read at its head |
+| [`arena-gen8-azure3-ben64-8-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure3-ben64-8-feed) | 11-12 19:22 | Gen 8 · azure3 (BEN 64, lane 8); 56 boards; read at its head |
 | [`arena-gen8-azure6-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-azure6-feed) | 11-12 18:11 | Gen 8 · azure6 (main mix); 408 boards; read at its head |
-| [`arena-gen8-candidate-codex-20261112-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-candidate-codex-20261112-feed) | 11-12 18:15 | Gen8 · Codex main mix (standard and Precision); 131 boards; read at its head |
-| [`arena-gen8-independent-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-independent-feed) | 11-12 18:15 | Gen8 independent · standard, Precision and BEN anchors; 48 boards; read at its head |
+| [`arena-gen8-candidate-codex-20261112-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-candidate-codex-20261112-feed) | 11-12 19:23 | Gen8 · Codex main mix (standard and Precision); 131 boards; read at its head |
+| [`arena-gen8-independent-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen8-independent-feed) | 11-12 19:22 | Gen8 independent · standard, Precision and BEN anchors; 48 boards; read at its head |
 
 ## Gen 7 feeds (70)
 
@@ -116,14 +117,14 @@ Gen 7.0 and 7.1 publications, closed. Never merge. A feed not in the registry is
 | [`arena-gen7-1-fresh2-azure3-ben64-6-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh2-azure3-ben64-6-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 6, pool 2); 172 boards; read at its head |
 | [`arena-gen7-1-fresh2-azure3-ben64-7-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh2-azure3-ben64-7-feed) | 11-12 16:22 | Gen 7.1 · azure3 (BEN 64, lane 7, pool 2); 184 boards; read at its head |
 | [`arena-gen7-1-fresh2-azure3-ben64-8-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh2-azure3-ben64-8-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 8, pool 2); 167 boards; read at its head |
-| [`arena-gen7-1-fresh3-azure3-ben64-1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-1-feed) | 11-12 16:25 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 9 boards |
-| [`arena-gen7-1-fresh3-azure3-ben64-2-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-2-feed) | 11-12 16:25 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 11 boards |
-| [`arena-gen7-1-fresh3-azure3-ben64-3-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-3-feed) | 11-12 16:25 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 40 boards |
-| [`arena-gen7-1-fresh3-azure3-ben64-4-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-4-feed) | 11-12 16:25 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 37 boards |
-| [`arena-gen7-1-fresh3-azure3-ben64-5-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-5-feed) | 11-12 16:25 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 7 boards |
-| [`arena-gen7-1-fresh3-azure3-ben64-7-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-7-feed) | 11-12 16:25 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 1 boards |
+| [`arena-gen7-1-fresh3-azure3-ben64-1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-1-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 1, pool 3); 9 boards; retired |
+| [`arena-gen7-1-fresh3-azure3-ben64-2-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-2-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 2, pool 3); 11 boards; retired |
+| [`arena-gen7-1-fresh3-azure3-ben64-3-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-3-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 3, pool 3); 40 boards; retired |
+| [`arena-gen7-1-fresh3-azure3-ben64-4-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-4-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 4, pool 3); 37 boards; retired |
+| [`arena-gen7-1-fresh3-azure3-ben64-5-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-5-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 5, pool 3); 7 boards; retired |
+| [`arena-gen7-1-fresh3-azure3-ben64-7-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-fresh3-azure3-ben64-7-feed) | 11-12 16:25 | Gen 7.1 · azure3 (BEN 64, lane 7, pool 3); 1 boards; retired |
 | [`arena-gen7-1-mix-azure1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-mix-azure1-feed) | 11-12 14:02 | Gen 7.1 · azure1 (self-play and against Gen 7.0); 1,256 boards; read at its head |
-| [`arena-gen7-1-mix2-azure1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-mix2-azure1-feed) | 11-12 16:21 | Not in the registry (backlog 12): Gen 7.1, drained at the switch to Gen 8; 381 boards |
+| [`arena-gen7-1-mix2-azure1-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-mix2-azure1-feed) | 11-12 16:21 | Gen 7.1 · azure1 (self-play and against Gen 7.0, second pool); 381 boards; retired |
 | [`arena-gen7-1-vs70-azure2-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-vs70-azure2-feed) | 11-12 06:33 | Not in the registry, by design: closed on 12 November at 06:32 to 06:39 UTC because policy net v4.1 was trained on its deals; 160 boards |
 | [`arena-gen7-1-vs70-fresh-azure2-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-1-vs70-fresh-azure2-feed) | 11-12 08:13 | Gen 7.1 · azure2 against Gen 7.0, every board; 745 boards; read at its head |
 | [`arena-gen7-independent-selfplay-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-independent-selfplay-feed) | 11-12 06:03 | Gen7 independent · completed v4 self-play and anchors; 420 boards; retired |
@@ -146,7 +147,7 @@ Gen 7.0 and 7.1 publications, closed. Never merge. A feed not in the registry is
 | [`arena-gen7-phase1-azure3-ben64-7-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-azure3-ben64-7-feed) | 11-12 06:02 | Gen 7 · azure3 phase 1 (BEN 64, lane 7); 71 boards; read at its head |
 | [`arena-gen7-phase1-azure3-ben64-8-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-azure3-ben64-8-feed) | 11-12 06:02 | Gen 7 · azure3 phase 1 (BEN 64, lane 8); 74 boards; read at its head |
 | [`arena-gen7-phase1-azure3-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-azure3-feed) | 11-12 03:51 | Gen 7 · azure3 phase 1 (non-BEN); 720 boards; read at its head |
-| [`arena-gen7-phase1-azure4-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-azure4-feed) | 11-12 18:15 | Gen 7 · azure4 phase 1 (non-BEN); 829 boards; read at its head |
+| [`arena-gen7-phase1-azure4-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-azure4-feed) | 11-12 19:22 | Gen 7 · azure4 phase 1 (non-BEN); 829 boards; read at its head |
 | [`arena-gen7-phase1-cloud-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-cloud-feed) | 11-12 04:25 | Gen 7 · cloud phase 1 (non-BEN); 67 boards; retired |
 | [`arena-gen7-phase1-codex-20261112-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-codex-20261112-feed) | 11-12 04:28 | Gen 7 · Codex completed phase 1 anchors; 564 boards; retired |
 | [`arena-gen7-phase1-extra-feed`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/arena-gen7-phase1-extra-feed) | 11-12 04:30 | Gen7 additional phase1 non-BEN; 37 boards; retired |
@@ -208,21 +209,21 @@ Box control, coordination and team channels. Never merge.
 
 | Branch | Last commit | Note |
 | --- | --- | --- |
-| [`box/azure1/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure1/control) | 11-12 17:56 | boxctl command queue for azure1 |
-| [`box/azure1/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure1/status) | 11-12 18:13 | boxctl heartbeat and results of azure1 |
+| [`box/azure1/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure1/control) | 11-12 18:36 | boxctl command queue for azure1 |
+| [`box/azure1/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure1/status) | 11-12 19:22 | boxctl heartbeat and results of azure1 |
 | [`box/azure2/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure2/control) | 11-12 17:09 | boxctl command queue for azure2 |
-| [`box/azure2/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure2/status) | 11-12 18:16 | boxctl heartbeat and results of azure2 |
-| [`box/azure3/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure3/control) | 11-12 17:50 | boxctl command queue for azure3 |
-| [`box/azure3/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure3/status) | 11-12 18:11 | boxctl heartbeat and results of azure3 |
+| [`box/azure2/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure2/status) | 11-12 19:22 | boxctl heartbeat and results of azure2 |
+| [`box/azure3/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure3/control) | 11-12 18:51 | boxctl command queue for azure3 |
+| [`box/azure3/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure3/status) | 11-12 19:21 | boxctl heartbeat and results of azure3 |
 | [`box/azure4/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure4/control) | 11-12 18:04 | boxctl command queue for azure4 |
-| [`box/azure4/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure4/status) | 11-12 18:15 | boxctl heartbeat and results of azure4 |
+| [`box/azure4/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure4/status) | 11-12 19:21 | boxctl heartbeat and results of azure4 |
 | [`box/azure5/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure5/control) | 11-12 17:09 | boxctl command queue for azure5 |
-| [`box/azure5/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure5/status) | 11-12 18:11 | boxctl heartbeat and results of azure5 |
-| [`box/azure6/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure6/control) | 11-12 18:12 | boxctl command queue for azure6 |
-| [`box/azure6/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure6/status) | 11-12 18:12 | boxctl heartbeat and results of azure6 |
-| [`box/coordination`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/coordination) | 11-12 18:13 | Coordination board of the sessions and the Azure allocation table; append-only |
+| [`box/azure5/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure5/status) | 11-12 19:22 | boxctl heartbeat and results of azure5 |
+| [`box/azure6/control`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure6/control) | 11-12 19:17 | boxctl command queue for azure6 |
+| [`box/azure6/status`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/azure6/status) | 11-12 19:22 | boxctl heartbeat and results of azure6 |
+| [`box/coordination`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/box/coordination) | 11-12 19:06 | Coordination board of the sessions and the Azure allocation table; append-only |
 | [`fleet/azure`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/fleet/azure) | 11-12 16:48 | The operator's Azure fleet status (`STATUS.md`) |
-| [`team/gen9`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/team/gen9) | 11-12 18:15 | The Gen 9 team's channel |
+| [`team/gen9`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/team/gen9) | 11-12 19:20 | The Gen 9 team's channel |
 | [`work/ledger`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/work/ledger) | 11-12 07:03 | Work ledger; retired 12 November 06:58 UTC in favour of `team/gen9` |
 
 ## Transfers (39)
@@ -256,14 +257,14 @@ Dataset, model and result handoffs with restore instructions.
 | [`transfer/gen9-arrival-rehearsal-2-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-rehearsal-2-20261112) | 11-12 13:21 | Release check rerun on 8cb0348 (card_on_nets off): met for both guests |
 | [`transfer/gen9-arrival-rehearsal-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-rehearsal-20261112) | 11-12 09:09 | Arrival-run rehearsal records (G9-D6): three epochs of 24 boards, guest-a arriving before epoch 2 |
 | [`transfer/gen9-arrival-rehearsal-full-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-rehearsal-full-20261112) | 11-12 10:29 | Arrival-run full-path rehearsal records (G9-D6): the box run's events on five 16-board epochs, fresh worktree |
-| [`transfer/gen9-d6-arrival-azure4-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112) | 11-12 17:53 | azure4: d6-arrival results, 2315 boards |
-| [`transfer/gen9-e9-0-n02-azure4-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-e9-0-n02-azure4-20261112) | 11-12 18:14 | azure4: e9-0-n02 results, 208 boards |
-| [`transfer/gen9-e9-0-n02e-azure4-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-e9-0-n02e-azure4-20261112) | 11-12 18:14 | azure4: e9-0-n02e results, 208 boards |
+| [`transfer/gen9-d6-arrival-azure4-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112) | 11-12 19:20 | azure4: d6-arrival results, 2315 boards |
+| [`transfer/gen9-e9-0-n02-azure4-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-e9-0-n02-azure4-20261112) | 11-12 18:55 | azure4: e9-0-n02 results, 208 boards |
+| [`transfer/gen9-e9-0-n02e-azure4-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-e9-0-n02e-azure4-20261112) | 11-12 18:56 | azure4: e9-0-n02e results, 208 boards |
 | [`transfer/gen9-e9-16-pilot-sandbox-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-e9-16-pilot-sandbox-20261112) | 11-12 17:23 | E9-16 sandbox pilot (not part of the result): 8r-32~8p-32, 400 boards, seed 917, source 491c7f7 |
 | [`transfer/graded-alternatives-20261110`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/graded-alternatives-20261110) | 11-10 22:10 | Add graded-alternatives bidder experiment (candidate Gen 6 bidder) |
 | [`transfer/non-v4-policy-play-20261109`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/non-v4-policy-play-20261109) | 11-09 23:43 | Add verified pre-Gen4 model training tensors and 9000 raw PIMC games |
-| [`transfer/plan-leverage-azure2-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/plan-leverage-azure2-20261112) | 11-12 18:15 | Plan-leverage research outputs from azure2, 2026-11-12T18:15:22Z |
-| [`transfer/plan-leverage-azure5-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/plan-leverage-azure5-20261112) | 11-12 18:14 | Plan-leverage research outputs from azure5, 2026-11-12T18:14:38Z |
+| [`transfer/plan-leverage-azure2-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/plan-leverage-azure2-20261112) | 11-12 19:20 | Plan-leverage research outputs from azure2, 2026-11-12T18:15:22Z |
+| [`transfer/plan-leverage-azure5-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/plan-leverage-azure5-20261112) | 11-12 19:19 | Plan-leverage research outputs from azure5, 2026-11-12T18:14:38Z |
 | [`transfer/pre7-test-azure1-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/pre7-test-azure1-20261112) | 11-12 03:12 | pre7-test: g7s-vs-g6f-01, 538 episodes |
 | [`transfer/pre7-test-azure2-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/pre7-test-azure2-20261112) | 11-12 03:12 | pre7-test: pre7-7s-vs-6f-azure2, 363 episodes |
 | [`transfer/pre7-test-azure3-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/pre7-test-azure3-20261112) | 11-12 03:12 | pre7-test: pre7-7s-vs-6f-azure3, 374 episodes |
@@ -285,7 +286,7 @@ Work in progress for the next generation; not on main, not in the arena. Notes a
 
 | Branch | Last commit | Note |
 | --- | --- | --- |
-| [`feature/gen9`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9) | 11-12 17:54 | Leakage report: part 1c (equal-best sets: 0.009 +- 0.017 tricks) and the first played figure (+0.17 +- 0.17 IMPs over 400 boards) |
+| [`feature/gen9`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9) | 11-12 18:47 | Leakage report: part 1c (equal-best sets: 0.009 +- 0.017 tricks) and the first played figure (+0.17 +- 0.17 IMPs over 400 boards) |
 | [`feature/gen9-arena-arrival`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-arena-arrival) | 11-12 18:14 | Rule bidder: no response table for an opening its tables never make (another system's 3NT); arena runner records a board that raises |
 | [`feature/gen9-arena-design`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-arena-design) | 11-12 06:56 | Gen 9 arena note: training-only boards for bundles that saw the family; refuse oracle bots at admission |
 | [`feature/gen9-arena-epochs`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-arena-epochs) | 11-12 07:46 | Merge remote-tracking branch 'origin/feature/gen9' into feature/gen9-arena-epochs |
@@ -294,7 +295,7 @@ Work in progress for the next generation; not on main, not in the arena. Notes a
 | [`feature/gen9-arena-sim`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-arena-sim) | 11-12 07:22 | Gen 9 arena statistics in code (G9-A4) and E9-5 on them: betting test, rating coverage, gain rule |
 | [`feature/gen9-bidding-cards`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-bidding-cards) | 11-12 10:01 | docs/gen9/bidding.md: status at 12 Nov 10:00 UTC, with what each step is worth where measured |
 | [`feature/gen9-bidding-design`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-bidding-design) | 11-12 07:04 | Gen 9: bidding design note (G9-B1): card IR, compile, the rule filter, profiles |
-| [`feature/gen9-e9-17`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-e9-17) | 11-12 17:18 | E9-17: r9t-32, the signal reader told t-high's, t-low's and t-random's fixed carding rule |
+| [`feature/gen9-e9-17`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-e9-17) | 11-12 18:22 | E9-17: r9t-32, the signal reader told t-high's, t-low's and t-random's fixed carding rule |
 | [`feature/gen9-reading-bench`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-reading-bench) | 11-12 18:15 | G9-X2: will's review notes (reading (2) is in the sandbox; the bench tests' data named in the test file) |
 | [`feature/gen9-signals`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-signals) | 11-12 07:38 | House carding report: the experiment file is E9-9 |
 | [`feature/gen9-signals-design`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9-signals-design) | 11-12 07:19 | Signals note: suit-preference and Lavinthal suit pairs; undeclared fields stay Gen 8's; direction-only descriptors are inert |
@@ -349,14 +350,14 @@ Snapshots; adoption is established only by a release, a plan or main.
 | [`research/multiscore-16-32-64`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/multiscore-16-32-64) | 11-09 05:31 | PR #9 (backlog 10) |
 | [`research/outcome-policy-20261109`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/outcome-policy-20261109) | 11-09 21:26 | Publish outcome-trained scalar and distribution models with held-out results |
 | [`research/pimc-study-2026-11-08`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/pimc-study-2026-11-08) | 11-08 13:46 | Archive PIMC and alpha-mu experiments with larger cost study |
-| [`research/plan-leverage-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/plan-leverage-20261112) | 11-12 18:11 | Leverage through plan-level search: reports and scripts; not on main |
-| [`research/plan-leverage-g8-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/plan-leverage-g8-20261112) | 11-12 18:11 | The same research on top of the Gen 8 prototype (plan bots); not on main |
+| [`research/plan-leverage-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/plan-leverage-20261112) | 11-12 18:53 | Leverage through plan-level search: reports and scripts; not on main |
+| [`research/plan-leverage-g8-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/plan-leverage-g8-20261112) | 11-12 18:53 | The same research on top of the Gen 8 prototype (plan bots); not on main |
 | [`research/policy-branch-ranking-20261109`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/policy-branch-ranking-20261109) | 11-09 19:30 | Evaluate Gen4 branch choices and train family-held-out IMP-weighted ranking policy |
 | [`research/primary-component-diagnosis`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/primary-component-diagnosis) | 11-09 19:16 | Stop primary v4 self-play and freeze component diagnostic allocation |
 | [`research/reauction-existing-10000`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/reauction-existing-10000) | 11-08 17:16 | Retrofit BEN auctions to 10000 deals and report matched-subset belief experiment |
 | [`research/self-improvement-loop`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/self-improvement-loop) | 11-08 22:32 | Verify process handoff preserves saved collection records |
 | [`research/selfplay-training-2026-11-08`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/selfplay-training-2026-11-08) | 11-08 22:00 | Report completed 1000-deal policy increment over belief-informed PIMC |
 | [`research/shared-beliefs-dds-cache`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/shared-beliefs-dds-cache) | 11-08 23:54 | PR #4 (backlog 9) |
-| [`research/sure-trick-table-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/sure-trick-table-20261112) | 11-12 18:08 | Sure-trick search, strategy-fusion test deals and ending-table build spec |
+| [`research/sure-trick-table-20261112`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/sure-trick-table-20261112) | 11-12 19:12 | Sure-trick search, strategy-fusion test deals and ending-table build spec |
 | [`research/three-engine-play-200`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/three-engine-play-200) | 11-08 18:06 | Compare baseline, bidding-informed PIMC and BEN on the same 200 deals |
 | [`research/v4-belief-and-arena`](https://github.com/maxschireson/Single-Dummy-Bridge/tree/research/v4-belief-and-arena) | 11-09 11:00 | Train additive v4 belief and preserve resumable model and paired uncertainty results |

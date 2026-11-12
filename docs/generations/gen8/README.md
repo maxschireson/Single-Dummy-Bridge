@@ -82,7 +82,7 @@ this snapshot from the cloud, extra or ChatGPT producers.
 
 None are stated here while the generation is collecting; the [arena](https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest)'s
 default view is Gen 8 over all collectors. What its rows can be read against is [Gen 7's closed table](../gen7/README.md#results):
-Gen 7.1 against BEN (64) at +0.01 in common auctions and +0.32 in own, and Gen 7.0 against Gen 5 at +1.14 and
+Gen 7.1 against BEN (64) at 0.00 in common auctions and +0.32 in own, and Gen 7.0 against Gen 5 at +1.14 and
 against Gen 1 at +2.24, on other deals at other times.
 
 ## Open at launch
