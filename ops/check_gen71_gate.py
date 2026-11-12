@@ -12,8 +12,8 @@ from scipy.stats import t
 def gate(values):
     n=len(values);mean=statistics.mean(values) if n else None
     se=statistics.stdev(values)/math.sqrt(n) if n>1 else None
-    ci=[mean-t.ppf(.975,n-1)*se,mean+t.ppf(.975,n-1)*se] if se is not None else None
-    return dict(n=n,mean=mean,se=se,ci=ci,minimum_boards=1000,eligible=n>=1000 and ci is not None and ci[0]>0,
+    ci=[mean-float(t.ppf(.975,n-1))*se,mean+float(t.ppf(.975,n-1))*se] if se is not None else None
+    return dict(n=n,mean=mean,se=se,ci=ci,minimum_boards=1000,eligible=bool(n>=1000 and ci is not None and ci[0]>0),
                 method='Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction')
 
 
