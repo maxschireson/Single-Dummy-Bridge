@@ -1,7 +1,7 @@
 {
   "schema": "gen7-alpha-plan-v1",
   "campaign": "gen8-candidate-20261112",
-  "title": "Gen 8 · owned stream 19bbdce5",
+  "title": "Gen 8 \u00b7 owned stream 19bbdce5",
   "launch_enabled": true,
   "pending": [],
   "exclude_training_families": true,
@@ -16,7 +16,7 @@
     "`systems` says which system each bot declares. The runner labels every table with the two sides' systems and tells both players before the table is played; in a pair's common-auction rooms every seat is bid by the common bidder (6-32, the house net), in its own-auction rooms each bot bids its own system, so 8c-32 against a house-bidding bot is a table with two systems.",
     "71s-32 here is the arena's 71s-32: same settings, same policy file at the same path, so the same identity; 6-32, 5RZ32 (Gen 5 with representative layouts and the policy on exact ties) and 1 (Gen 1) are unchanged from the source run. They declare the house bidders they bid with (`house-gen5`, `house-dds40k`); the scorer holds no table for those and reads their calls with the base file, as Gen 7.1 does. Gen 8 reads 5RZ32's plays at 1.0 and bot 1's at 0.2, from 96-board calibration matches.",
     "Audit and capture settings (tie audits, gap forks, room seeds) are carried over from the source run, not set here. Prepare at the commit named in the notice or later: earlier sources do not know `systems`, a bot's `bidder`, or the `system_scorer` artifact.",
-    "Owned stream19bbdce5: identical released actors and pair weights to792c4cb; generation8 is explicit, with inherited exporter variant retained. Missing historical anchors restored by hash from capture capsule8833c62. No deals are imported from that catalog."
+    "Owned stream19bbdce5: identical released actors and pair weights to792c4cb; generation8 explicit with inherited exporter variant. Missing historical anchors restored by hash from capture capsule8833c62; no deals imported from that catalog."
   ],
   "model_note": "Gen 8 candidate (8s-32) is Gen 7.1 standard with the play read from trick 1 at exponent 1.0 (opponents' plays scaled by opponent type), and with each side's calls read by the bidding system that side declares (system-aware hand-fit scorer v1; the lead net serves the auctions Gen 7.1 already meets, and not the rule system's). 8c-32 is the same bot bidding the project's rule system (Precision style, r4: rules r3 with judgement j1) instead of the house net. Gen 7.1 standard (71s-32) and Gen 6 fast (6-32) are unchanged. Settings are in each bot's `gen7` block. docs/gen8_candidate_2026-11-12.md has the details.",
   "interpretation": "Gen 8 against Gen 7.1 in common auctions is card play alone. A pair with 8c-32 has two readings: in common auctions (bid by the house net) it is card play between the two bots, which for 8c-32 against 8s-32 is the same engine twice; in own auctions 8c-32 bids the rule system and its opponent the house system, so the difference includes the bidding. Report the two conditions separately. Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
@@ -41,12 +41,12 @@
     "8c-32": "3"
   },
   "systems": {
-    "1": "house-dds40k",
     "8s-32": "house-gen6",
     "8c-32": "rules-precision",
     "71s-32": "house-gen6",
     "6-32": "house-gen6",
-    "5RZ32": "house-gen5"
+    "5RZ32": "house-gen5",
+    "1": "house-dds40k"
   },
   "artifacts": {
     "gen7_policy_v41": {
@@ -68,7 +68,7 @@
       "label": "Gen 8 candidate (32)",
       "policy": "gen7_policy_v41",
       "gen7": {
-        "play_weight": 1,
+        "play_weight": 1.0,
         "play_floor": 0.05,
         "play_max_layouts": 1024,
         "play_lead": true,
@@ -76,18 +76,18 @@
         "search_from_trick": 1,
         "net_sample": false,
         "tree_audit": true,
-        "early_play_weight": 1,
+        "early_play_weight": 1.0,
         "early_pool": 512,
-        "early_min_effective": 8,
+        "early_min_effective": 8.0,
         "opponent_play_weight": {
+          "8s-32": 1.0,
+          "8c-32": 1.0,
+          "71s-32": 1.0,
+          "7s-32": 1.0,
+          "7f-32": 1.0,
+          "6-32": 1.0,
+          "5RZ32": 1.0,
           "1": 0.2,
-          "8s-32": 1,
-          "8c-32": 1,
-          "71s-32": 1,
-          "7s-32": 1,
-          "7f-32": 1,
-          "6-32": 1,
-          "5RZ32": 1,
           "ben": 0.5,
           "ben64": 0.5,
           "*": 0.3
@@ -104,8 +104,8 @@
             "breadth": 3,
             "mass": 0.98,
             "layouts": 8,
-            "reply_power": 1,
-            "reply_gap": 99,
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
             "reply": "net",
             "own_breadth": 0,
             "own": "best",
@@ -113,7 +113,7 @@
             "reply_layouts": 8,
             "reply_pool": 64,
             "path": 0.5,
-            "spread": 0,
+            "spread": 0.0,
             "path_solves": 3000
           }
         ]
@@ -131,7 +131,7 @@
       "label": "Gen 8 candidate, Precision rule bidder (32)",
       "policy": "gen7_policy_v41",
       "gen7": {
-        "play_weight": 1,
+        "play_weight": 1.0,
         "play_floor": 0.05,
         "play_max_layouts": 1024,
         "play_lead": true,
@@ -139,18 +139,18 @@
         "search_from_trick": 1,
         "net_sample": false,
         "tree_audit": true,
-        "early_play_weight": 1,
+        "early_play_weight": 1.0,
         "early_pool": 512,
-        "early_min_effective": 8,
+        "early_min_effective": 8.0,
         "opponent_play_weight": {
+          "8s-32": 1.0,
+          "8c-32": 1.0,
+          "71s-32": 1.0,
+          "7s-32": 1.0,
+          "7f-32": 1.0,
+          "6-32": 1.0,
+          "5RZ32": 1.0,
           "1": 0.2,
-          "8s-32": 1,
-          "8c-32": 1,
-          "71s-32": 1,
-          "7s-32": 1,
-          "7f-32": 1,
-          "6-32": 1,
-          "5RZ32": 1,
           "ben": 0.5,
           "ben64": 0.5,
           "*": 0.3
@@ -167,8 +167,8 @@
             "breadth": 3,
             "mass": 0.98,
             "layouts": 8,
-            "reply_power": 1,
-            "reply_gap": 99,
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
             "reply": "net",
             "own_breadth": 0,
             "own": "best",
@@ -176,7 +176,7 @@
             "reply_layouts": 8,
             "reply_pool": 64,
             "path": 0.5,
-            "spread": 0,
+            "spread": 0.0,
             "path_solves": 3000
           }
         ]
@@ -270,15 +270,15 @@
             "mass": 0.98,
             "layouts": 8,
             "reply": "net",
-            "reply_power": 1,
-            "reply_gap": 99,
+            "reply_power": 1.0,
+            "reply_gap": 99.0,
             "own": "best",
             "own_breadth": 0,
             "reply_layouts": 8,
             "reply_pool": 64,
             "plain": 1,
             "path": 0.5,
-            "spread": 0,
+            "spread": 0.0,
             "path_solves": 3000
           }
         ]
