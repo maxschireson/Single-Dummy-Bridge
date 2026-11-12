@@ -31,7 +31,7 @@
   "slam.blackwood": "rkc1430"
  },
  "cover": ["open", "respond", "respond_nt", "rebid", "nt_answers", "overcall", "balance", "asks"],
- "carding": {"attitude": "upside_down", "count": "standard", "length_lead_vs_nt": "4th", "length_lead_vs_suit": "4th"},
+ "carding": {"attitude": "upside_down", "count": "standard", "length_lead_vs_nt": "4th", "length_lead_vs_suit": "4th", "signal_on_partner_lead": "attitude", "signal_on_declarer_lead": "count", "first_discard": "attitude", "trump_signal": "count"},
  "provenance": {
   "source": "WBF system card of Malcolm Pryor and Ed Scerri, England, 2025 European Online Senior Teams: https://realbridge.online/assets/System%20Cards/2025%20European%20Online%20Senior%20Teams%20-%20System%20Cards/ENGLAND%20PRYOR/Pryor-Scerri.pdf",
   "format": "wbf-card (PDF from the WBF Word template; suit symbols are lost in its text layer)",
@@ -43,6 +43,13 @@
               "open.three_level (three-level preempts on six cards)", "resp.major_jump_raise (double raise weak)", "resp.splinters", "resp.major_2nt",
               "comp.balancing_nt (11-15; 12-16 over a major: the card's two ranges are not separable here)", "carding.attitude (low encourages in a suit; Smith in NT)"],
    "low": ["resp.one_nt_range (5-10; forcing status not stated, read as not forcing)", "open.nt_six_minor (6m322 listed)"]
+  },
+  "carding_read": {
+   "when": "12 November 2026 (bill), for the situation fields of G9-D6",
+   "printed": {"partner_lead": ["Low = Enc (on King lead = Odd)", "Low = Odd", "Low = S/P"], "declarer_lead": ["High = Even (suit) / High = Smith (NT)", "High = Even (NT)", "High = S/P"], "discard": ["Low = Enc", "Low = Odd", "Low = S/P"], "note": "standard Smith (Hi = Like); echo in trumps suggests ruffing else suit preference"},
+   "medium": ["signal_on_partner_lead, signal_on_declarer_lead, first_discard: the grid's 1st priorities; the text layer keeps the cells in the order above and the columns are inferred from it"],
+   "low": ["trump_signal: count, from \"echo in trumps suggests ruffing\" (a trump echo is mapped to count)"],
+   "not_placed": ["count on partner's king lead", "Smith peter on declarer's lead in no-trump", "second and third priorities (count, then suit preference)", "trump plays that are not an echo are suit preference"]
   },
   "defaulted": ["comp.overcall_1", "comp.overcall_2 ('wide range, generally sound at two level')", "comp.takeout_double_min", "comp.negative_double_thru (not stated)"],
   "not_placed": ["2D opening: weak with both minors (5-5 or 5-4), under 11 HCP: no field for a two-suited weak two; 2D is left undefined",

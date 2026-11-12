@@ -108,10 +108,7 @@
   "comp.vs_nt": "multi_landy",
   "slam.blackwood": "rkc1430"
  },
- "carding": {
-  "length_lead_vs_suit": "3rd_5th",
-  "length_lead_vs_nt": "3rd_5th"
- },
+ "carding": {"length_lead_vs_suit": "3rd_5th", "length_lead_vs_nt": "3rd_5th", "signal_on_partner_lead": "attitude", "attitude": "upside_down", "count": "upside_down", "first_discard": "odd_even"},
  "provenance": {
   "source": "WBF standard card of Annu Laukkanen and Maria Nordgren, Finland, 2025 European Online Women's Teams: https://realbridge.online/assets/System%20Cards/European%20Online%20Women%27s%20Teams%202025%20-%20System%20Cards/FINLAND%20KIPA/AnnuLaukkanenMariaNordgren.pdf",
   "format": "wbf-card (WBF Standard Card template; suit symbols partly lost in its text layer)",
@@ -140,8 +137,14 @@
    "low": [
     "open.minor (3+ cards; which minor with 3-3 and 4-4 not stated: defaults)",
     "open.four_level (4C and 4D are Namyats-style; only the major preempt default kept)",
-    "carding (1st, 3rd or 5th leads; signal priorities not readable)"
+    "carding (1st, 3rd or 5th leads; signals: see carding_read)"
    ]
+  },
+  "carding_read": {
+   "when": "12 November 2026 (bill), for the situation fields of G9-D6",
+   "printed": {"header": "Partner\u2019s Lead Declarer\u2019s Lead Discarding", "rows": ["1 Lo/Hi = E Same o/e", "2 Lo/Hi =even", "3 S/P"], "nt": "Length, only on A attitude"},
+   "low": ["signal_on_partner_lead attitude, attitude upside_down, count upside_down: row 1 read as attitude with low encouraging, row 2 as count with low-high even, row 3 suit preference, all in the partner's-lead column", "first_discard odd_even: \"o/e\" read as the discarding cell of row 1, \"Same\" as the declarer's-lead cell; it could also be one cell, \"same odd/even\", on declarer's lead"],
+   "not_placed": ["declarer's lead \"Same\" (as on partner's lead, attitude first: not a value of signal_on_declarer_lead, so left out)", "no-trump: count first except attitude on an ace lead", "trump signals not stated"]
   },
   "defaulted": [
    "resp.two_over_one ('2 over 1 response promises rebid': not game force; the default gf was kept, to be confirmed)",

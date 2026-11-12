@@ -8,6 +8,8 @@ log w(true) - log mean_pool w (nats; 0 = no information). Readers:
     R-ind-.02  replay: each of s's calls is the bidder's argmax for the candidate hand, eps 0.02
     R-ind-.1   the same, eps 0.1
     R-soft     replay with the bidder's own softmax as the likelihood of each call
+    R-soft-.02 the same with a floor: (1 - eps) p + eps / (legal calls), eps 0.02 (ProfileReplay's default from 12 Nov)
+    R-soft-.05 the same, eps 0.05
     S+R-soft   both (a check: replay should make the scorer redundant)
 
 Also: whether the true hand ever fails its own replay (it must not), the cost (bidder steps and seconds per
@@ -34,6 +36,7 @@ from bridge_harness.cards.match import lstm_step_logits                # noqa: E
 from bridge_harness.gen6_nets import FitScorer, hand_types              # noqa: E402
 
 VULS = ('None', 'NS', 'EW', 'Both')
+FLOORS = (0.02, 0.05)
 BIDDERS = {'gen5': 'models/bidding/gen5-2026-11-10/bidder.keras', 'gen6': 'models/bidding/gen6-candidate-2026-11-11/bidder.keras'}
 
 
@@ -65,6 +68,7 @@ class Replay:
         toks = np.full((n, 64), -1, np.int64)
         toks[:, :len(calls)] = [CALL_ID[c] for c in calls]
         soft, hits, k = np.zeros(n), np.zeros(n, np.int64), 0
+        self.floored = {e: np.zeros(n) for e in FLOORS}
         rows = np.arange(n)
         for t, c in enumerate(calls):
             if (dealer + t) % 4 != seat:
@@ -77,6 +81,8 @@ class Replay:
             logp = z - np.log(np.exp(z).sum(1, keepdims=True))
             j = legal.index(CALL_ID[c])
             soft += logp[:, j]
+            for e in FLOORS:
+                self.floored[e] += np.log((1 - e) * np.exp(logp[:, j]) + e / len(legal))
             hits += (logp.argmax(1) == j)
             self.steps += n
         return soft, hits, k
@@ -105,6 +111,7 @@ def summarize(rows, keys):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--bidder', default='gen6', choices=sorted(BIDDERS))
+    ap.add_argument('--replay', default=None, choices=sorted(BIDDERS), help='bidder replayed (default: the one that bid; another one = a mis-mapped profile)')
     ap.add_argument('--deals', type=int, default=400)
     ap.add_argument('--pool', type=int, default=256)
     ap.add_argument('--proposal', type=int, default=60, help='deals on which the scorer-as-proposal check runs')
@@ -113,11 +120,11 @@ def main():
     ap.add_argument('--out', default=None)
     a = ap.parse_args()
     scorer = FitScorer(a.scorer)
-    rep = Replay(BIDDERS[a.bidder])
+    rep = Replay(BIDDERS[a.replay or a.bidder])
     rng = random.Random(a.seed)
     boards = auctions(BIDDERS[a.bidder], a.deals, a.seed)
     rows, fails, t_replay, t_scorer, proposal = [], 0, 0., 0., []
-    keys = ('S', 'R-ind-.02', 'R-ind-.1', 'R-soft', 'S+R-soft')
+    keys = ('S', 'R-ind-.02', 'R-ind-.1', 'R-soft', 'R-soft-.02', 'R-soft-.05', 'S+R-soft')
     for i, (hands, dealer, vul, calls) in enumerate(boards):
         for s in range(4):
             o = (s + 1) % 4
@@ -135,7 +142,7 @@ def main():
             if miss[0]:
                 fails += 1
             r = {'S': gain(S), 'R-ind-.02': gain(miss * np.log(0.02) + hits * np.log(0.98)), 'R-ind-.1': gain(miss * np.log(0.1) + hits * np.log(0.9)),
-                 'R-soft': gain(soft), 'S+R-soft': gain(S + soft), 'bids': sum(1 for t, c in enumerate(calls) if (dealer + t) % 4 == s and c != 'PASS'),
+                 'R-soft': gain(soft), 'R-soft-.02': gain(rep.floored[0.02]), 'R-soft-.05': gain(rep.floored[0.05]), 'S+R-soft': gain(S + soft), 'bids': sum(1 for t, c in enumerate(calls) if (dealer + t) % 4 == s and c != 'PASS'),
                  'long': len(calls) > 4}
             rows.append(r)
             if i < a.proposal and s == (dealer + 1) % 4:
@@ -143,13 +150,14 @@ def main():
                 bl, bh = hand_types(membership(big))
                 Sb = scorer.type_log_score(bl, bh, s, dealer, vul, calls)
                 Rb, _, _ = rep.logliks(big, s, dealer, vul, calls)
+                rep.floored = {}
                 p = np.exp(Sb - Sb.max())
                 p /= p.sum()
                 pick = np.unique(np.random.default_rng(i).choice(len(big), 512, p=p))
                 post = np.exp(Rb - Rb.max())
                 post /= post.sum()
                 proposal.append(float(post[pick].sum()))
-    report = {'bidder': a.bidder, 'deals': a.deals, 'pool': a.pool, 'seed': a.seed, 'all': summarize(rows, keys),
+    report = {'bidder': a.bidder, 'replay': a.replay or a.bidder, 'deals': a.deals, 'pool': a.pool, 'seed': a.seed, 'all': summarize(rows, keys),
               'true_hand_fails_own_replay': fails,
               'by_calls': {f'{lo}': summarize([r for r in rows if r['bids'] == lo], keys) for lo in (0, 1)} | {'2+': summarize([r for r in rows if r['bids'] >= 2], keys)},
               'by_length': {'4 or fewer calls': summarize([r for r in rows if not r['long']], keys), 'longer': summarize([r for r in rows if r['long']], keys)},

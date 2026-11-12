@@ -272,7 +272,7 @@ def test_replay_reader_types_equal_hands_and_true_hand_is_likely():
     from bridge_harness.system_bidders import BenLstmBidder
     from bridge_harness.system_fit import simulate
     from bridge_harness.bidding_env import CALLS
-    b, prof, rr = BenLstmBidder(str(GEN5)), NetProfile('gen5', str(GEN5), eps=0.0), ReplayReader(str(GEN5))
+    b, prof, rr = BenLstmBidder(str(GEN5)), NetProfile('gen5', str(GEN5), eps=0.0), ReplayReader(str(GEN5), eps=0.0)
     ds = list(deals(12, 31))
     hands = np.array([d[0] for d in ds])
     sim = simulate([b, b], hands, np.array([d[1] for d in ds]), np.array([VULS.index(d[2]) for d in ds]))
@@ -290,7 +290,7 @@ def test_rule_replay_true_hand_never_fails_and_others_do():
     from bridge_harness.player_model import PlayerModel
     card = card_from_settings(asdict(rb.Settings()), 'rb-precision')
     card['generator'] = {'kind': 'rule_bidder', 'settings': asdict(rb.Settings())}
-    pr = ProfileReplay('.', model=PlayerModel('p', profiles={'rb-precision': 1.}, bidding=card))
+    pr = ProfileReplay('.', model=PlayerModel('p', kind='synthetic', profiles={'rb-precision': 1.}, bidding=card))
     gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
     worse = 0
     for hands, dealer, vul in deals(25, 41):
@@ -306,3 +306,26 @@ def test_rule_replay_true_hand_never_fails_and_others_do():
             worse += int((v[1:] < v[0]).sum())
     assert worse > 0
     assert pr.type_log_score(length, hon, 0, 0, 'None', ['PASS'], profile='house-gen9-none') is None
+
+
+def test_guest_generator_block_is_not_replayed():
+    """A guest's card that names its own bidder does not hand that bidder to the house (G9-D6); the refusal is recorded."""
+    from bridge_harness.cards.replay import ProfileReplay
+    from bridge_harness.player_model import PlayerModel
+    card = card_from_settings(asdict(rb.Settings()), 'rb-precision')
+    card['generator'] = {'kind': 'rule_bidder', 'settings': asdict(rb.Settings())}
+    pr = ProfileReplay('.', model=PlayerModel('g', kind='guest', profiles={'rb-precision': 1.}, bidding=card))
+    length, hon = hand_types(membership([list(range(13))]))
+    assert pr.type_log_score(length, hon, 0, 0, 'None', ['1C'], profile='rb-precision') is None
+    assert 'rb-precision' in pr.refused
+
+
+def test_replay_floor():
+    """No call costs a layout more than log(eps / legal calls) per call (REPLAY_EPS, 0.02 by default)."""
+    from bridge_harness.cards.replay import REPLAY_EPS, RuleReplay
+    gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
+    rr = RuleReplay(gen, eps=REPLAY_EPS)
+    hands = [sorted(random.Random(i).sample(range(52), 13)) for i in range(30)]
+    length, hon = hand_types(membership(hands))
+    v = rr.type_log_score(length, hon, 0, 0, 'None', ['7NT'])
+    assert np.all(v >= np.log(REPLAY_EPS / 36) - 1e-9)

@@ -8,8 +8,13 @@ FitScorer's interface, so the Gen 9 player can use it as a profile's row in plac
 The house LSTM bidders' inputs depend only on the hand type (points, lengths, the A K Q J T of each suit and
 the number of lower cards), so a type is replayed through any hand with that type, and results are cached
 per seat and auction.
+
+Every call's likelihood has a floor: (1 - eps) p + eps / (legal calls), eps 0.02 by default (REPLAY_EPS), so a
+call the bidder all but never makes (a psych, a player straying from the profile) costs a layout about
+log(eps / legal) rather than ruling it out.
 """
 import os
+import sys
 
 import numpy as np
 
@@ -20,11 +25,13 @@ from .match import lstm_step_logits
 from .rb_meanings import type_hand
 
 VULS = ('None', 'NS', 'EW', 'Both')
+REPLAY_EPS = 0.02
+GENERATOR_KINDS = ('house', 'anchor', 'synthetic')     # models whose card's 'generator' block is honoured
 REPO = __import__('pathlib').Path(__file__).resolve().parents[2]
 
 
 class ReplayReader:
-    def __init__(self, bidder, eps=0.0, temperature=1.0, cache_auctions=16):
+    def __init__(self, bidder, eps=REPLAY_EPS, temperature=1.0, cache_auctions=16):
         if isinstance(bidder, str):
             from ..system_bidders import BenLstmBidder
             bidder = BenLstmBidder(bidder)
@@ -120,13 +127,16 @@ class ProfileReplay:
     log-likelihood of the seat's calls under that profile's own bidder, or None for a profile whose bidder is not held.
     Bidders come from the Gen 8 system packages (configs/systems/<id>.json, kind ben-lstm-keras)."""
 
-    def __init__(self, root='.', eps=0.0, model=None):
+    def __init__(self, root='.', eps=REPLAY_EPS, model=None):
         from ..systems import SystemRegistry
         from pathlib import Path
-        self.root, self.eps, self.readers = Path(root), eps, {}
+        self.root, self.eps, self.readers, self.refused = Path(root), eps, {}, {}
         card = getattr(model, 'bidding', None) or {}
         gen = card.get('generator') or {}
-        if gen.get('kind') == 'rule_bidder':               # a card written for the rule bidder: its own tables
+        if gen and getattr(model, 'kind', 'unknown') not in GENERATOR_KINDS:
+            # a guest's card naming its own bidder must not hand that bidder to the house (G9-D6)
+            self._refuse(str(gen.get('profile') or card.get('id')), f'generator block on a {getattr(model, "kind", "unknown")} model')
+        elif gen.get('kind') == 'rule_bidder':             # a card written for the rule bidder: its own tables
             from .. import rule_bidder as rb
             self.readers[str(gen.get('profile') or card.get('id'))] = RuleReplay(
                 rb.RuleSystemBidder(gen.get('settings') or {}, gen.get('opponents', 'standard')), eps=gen.get('eps', 0.02))
@@ -149,10 +159,17 @@ class ProfileReplay:
                         if g.get('sha256') and r.sha256 != g['sha256']:
                             raise ValueError(f'{path}: bidder identity differs from the system package')
                         break
-            except (ValueError, KeyError, OSError):
+            except (ValueError, KeyError, OSError) as e:
                 r = None
+                self._refuse(profile, f'{type(e).__name__}: {e}')
         self.readers[profile] = r
         return r
+
+    def _refuse(self, profile, reason):
+        """A profile we will not replay although it was offered: recorded, and said once on stderr."""
+        if profile not in self.refused:
+            self.refused[profile] = reason
+            print(f'replay: no replay for profile {profile}: {reason}', file=sys.stderr)
 
     def type_log_score(self, length, hon, seat, dealer, vulnerability, auction, profile=None):
         r = self.reader(profile) if profile is not None else None
@@ -170,4 +187,4 @@ def replay_factory(model, other=None, root='.'):
     """Factory for gen9.py's 'replay_reader': one ProfileReplay per partnership (bidders loaded on first use):
     house nets through the system registry, and a rule bidder named by the partnership's card ('generator' block,
     kind 'rule_bidder', under the profile id given there or the card's id)."""
-    return ProfileReplay(root, model=model)
+    return ProfileReplay(root, eps=REPLAY_EPS, model=model)

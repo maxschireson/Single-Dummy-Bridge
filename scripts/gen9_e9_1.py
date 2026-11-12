@@ -127,8 +127,8 @@ def gain(lw):
 
 
 class Readers:
-    def __init__(self, scorer, card, exact):
-        self.scorer = scorer
+    def __init__(self, scorer, card, exact, replay=None):
+        self.scorer, self.replay = scorer, replay
         self.f05 = CardFactor(card, FixedEps(0.05))
         self.f05ni = CardFactor(card, FixedEps(0.05))
         self.f05ni.negative = False
@@ -143,18 +143,30 @@ class Readers:
         Fc = self.ceil.log_score_features(f, seat, dealer, vul, calls)
         Fx = self.exact.log_score_features(f, seat, dealer, vul, calls) if self.exact and exact else np.full(len(S), np.nan)
         out = {'S': S, 'S+F': S + F, 'S+F-ni': S + Fni, 'ceil': Fc, 'exact': Fx, 'hS+F': 0.5 * S + F}
+        if self.replay is not None:
+            R = self.replay.type_log_score(length, hon, seat, dealer, vul, calls)
+            out.update({'R': R, 'S+R': S + R, 'R+F': R + F})
         for w in WEIGHTS:
             out[f'{w:g}S+F'] = w * S + F
         return out
 
 
+HOUSES = {'house-gen6': 'models/bidding/gen6-candidate-2026-11-11/bidder.keras', 'house-gen5': 'models/bidding/gen5-2026-11-10/bidder.keras'}
+
+
 def run(name, deals, pool, seed, scorer, exact_deals=500):
     rng = random.Random(seed)
     mixed = name == 'mixed-house-precision'
-    g = SYSTEMS['precision' if mixed else name]
-    gen = rb.RuleSystemBidder(g, 'standard')
-    card = card_from_settings(asdict(g), f'rb-{name}')
-    reads = Readers(scorer, card, RuleBidderMeanings(g, 'standard', name))
+    if name in HOUSES:                                          # all four seats the house bidder; card: the approximate 2/1 card
+        from bridge_harness.cards.replay import ReplayReader
+        house_all = HouseBidder(HOUSES[name])
+        gen, card = house_all, 'two-over-one'
+        reads = Readers(scorer, card, None, ReplayReader(house_all.b))
+    else:
+        g = SYSTEMS['precision' if mixed else name]
+        gen = rb.RuleSystemBidder(g, 'standard')
+        card = card_from_settings(asdict(g), f'rb-{name}')
+        reads = Readers(scorer, card, RuleBidderMeanings(g, 'standard', name))
     house_reads = Readers(scorer, card, None) if mixed else None
     house = HouseBidder(HOUSE) if mixed else None
     rows, skipped = [], 0
@@ -196,7 +208,7 @@ def run(name, deals, pool, seed, scorer, exact_deals=500):
     return rows, skipped
 
 
-def summarize(rows, keys=('S', 'S+F', 'S+F-ni', 'ceil', 'exact', 'hS+F', 'S_on_exact_deals', 'ceil_on_exact_deals')):
+def summarize(rows, keys=('S', 'S+F', 'S+F-ni', 'ceil', 'exact', 'hS+F', 'S_on_exact_deals', 'ceil_on_exact_deals', 'R', 'S+R', 'R+F')):
     keys = tuple(keys) + tuple(f'{w:g}S+F' for w in WEIGHTS)
     out = {'n': len(rows)}
     for k in keys:

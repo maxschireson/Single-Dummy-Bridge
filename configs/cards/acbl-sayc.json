@@ -46,8 +46,7 @@
   "slam.blackwood": "plain",
   "slam.gerber": true
  },
- "carding": {"attitude": "standard", "count": "standard", "length_lead_vs_suit": "4th", "length_lead_vs_nt": "4th",
-             "lead_from_ak": "ace", "honor_sequence_lead": "top"},
+ "carding": {"attitude": "standard", "count": "standard", "length_lead_vs_suit": "4th", "length_lead_vs_nt": "4th", "lead_from_ak": "ace", "honor_sequence_lead": "top", "signal_on_partner_lead": "attitude", "signal_on_declarer_lead": "count", "first_discard": "attitude"},
  "provenance": {
   "source": "ACBL SAYC System Booklet (form SP3, revised January 2006), read through a public copy at https://zfelleg.useribm.hu/bridge/sayc_book.pdf; the card itself (https://bridgeclub.gtorg.gatech.edu/SAYJ/Info/SAYC/sayc_card.pdf) was also read but its text extraction loses the layout and most ranges",
   "format": "acbl-booklet (prose)",
@@ -62,6 +61,13 @@
    "low": ["open.minor: suit symbols are missing in the source text; set to the usual SAYC rule (1D with 4-4, 1C with 3-3), not confirmed by the text read",
            "rebid.one_nt: the booklet gives minimum hands as 13-15 points including distribution; HCP range not stated, set to 12-14",
            "rebid.two_nt: the booklet's maximum is 19-21/22 points for all maximum rebids; set to 18-19 HCP, the gap left by the 15-17 1NT and 20-21 2NT openings"]
+  },
+  "carding_read": {
+   "when": "12 November 2026 (bill and sam), for the situation fields of G9-D6",
+   "printed": {"attitude": "high encourages, low discourages (when following suit or discarding)", "count": "High-low is an even number, low-high is odd when count is given"},
+   "high": ["first_discard attitude: the booklet applies attitude \"when following suit or discarding\""],
+   "medium": ["signal_on_partner_lead attitude, signal_on_declarer_lead count: the booklet does not say where each signal applies; placed by the standard priority (sam, from the zaremba.ch SAYC summary and general references)"],
+   "not_placed": ["trump signals and suit preference: not stated in the booklet (trump_signal left out, read as Gen 8 reads it)"]
   },
   "defaulted": ["comp.overcall_2 (two-level overcall range not stated)", "comp.takeout_double_min", "comp.vs_nt_double_min"],
   "not_placed": ["preempts: sound at equal or unfavourable vulnerability, rule of 2-3-4 by vulnerability (no field)",

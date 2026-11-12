@@ -26,3 +26,27 @@ S 2.49, replay 2.98; two or more bids (538) S 3.16, replay **4.62**.
   to exp(S) keeps on average 40% (Gen 6) and 46% (Gen 5) of the replay posterior's mass (60 leader
   views each). The scorer is a weak proposal for the exact reading; a pool drawn by it then reweighted
   by replay loses more than half of the posterior.
+
+## Supplement, 12 Nov 08:25 UTC: a floor on the replay's likelihood
+
+sam's review of G9-B7 (08:17): with no floor, a call the bidder gives almost no probability can rule a
+layout out at high weight on one profile. `ProfileReplay` and `ReplayReader` now default to eps 0.02:
+P(call) = 0.98 p + 0.02 / (legal calls). What the floor costs on the bidder's own auctions, and on
+auctions of the other house net (a near mis-mapping), 200 deals (800 seat readings), pool 256, seed 8801
+(`gen6-floor.json`, `gen5-by-gen6-floor.json`; `scripts/gen9_e9_8.py --replay`):
+
+| Auctions bid by / replayed by | S | R-soft (eps 0) | R-soft eps 0.02 | R-soft eps 0.05 | seats bidding 2+: eps 0 / 0.02 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Gen 6 / Gen 6 | 2.18 ± 0.07 | 2.84 ± 0.10 | 2.69 ± 0.07 | 2.65 ± 0.07 | 4.80 / 4.39 |
+| Gen 5 / Gen 6 | 2.20 ± 0.07 | 2.76 ± 0.10 | 2.60 ± 0.08 | 2.56 ± 0.07 | 4.81 / 4.38 |
+
+- The floor at 0.02 costs 0.15-0.16 nats a seat reading (0.4 on seats that bid twice or more), about a
+  fifth of the replay's gain over the scorer; 0.05 costs a little more (0.19-0.20). Differences are paired
+  on the same pools; the ± are the per-reader standard errors, not of the difference.
+- Replaying Gen 6 on Gen 5's auctions loses only 0.08 nats against Gen 6 on its own: the two house nets
+  bid nearly the same system, so a mis-mapping between them costs little.
+- No catastrophic tail appeared at eps 0 in these 1,600 readings (the mean at eps 0 is above the floored
+  means), including Gen 5's auctions read by Gen 6 (G9-D6's guest-b if it were mapped to house-gen6).
+  The case the floor guards against, a player who psychs or strays from a held profile while weighted
+  near 1 on it, is not in this sample.
+- Not measured: floors below 0.02, where most of the cost may be recovered.
