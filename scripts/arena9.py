@@ -281,7 +281,7 @@ def reading_table(rows, bot, control_bot, guests, epochs):
     return L, diffs
 
 
-def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_result=None, plan=None):
+def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_result=None, plan=None, notes=None):
     """The arrival run's page (G9-D6 done-when), from a control directory. `plan` (the events file) supplies the
     predictions registered before the run."""
     from bridge_harness import arena_ratings as ar
@@ -302,6 +302,8 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
     for note in rules.get('notes', []):
         if note.startswith('Shares'):
             L += [f'*{note}*', '']
+    if notes:
+        L += ['**Known and accepted before the run:**', ''] + [f'- {n}' for n in notes] + ['']
     L += ['## 1 and 3. The player model at the table', ''] + prediction('1') + prediction('3') + [
           f'`{bot}` against the guest minus `{control_bot}` against the same guest, on the same deals (the floor), IMPs a board from the bot\'s side.', '',
           '| Guest | Epoch | Deals | Native: mean (SE) | Common: mean (SE) |', '| --- | --- | ---: | --- | --- |']
@@ -471,6 +473,7 @@ def main():
     p = sub.add_parser('report'); p.add_argument('--control', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
     p.add_argument('--replay', type=Path, help='a replay result (JSON) to include'); p.add_argument('--out', type=Path)
     p.add_argument('--events', type=Path, help='the events file, for the predictions registered before the run')
+    p.add_argument('--note', action='append', default=[], help='a line for the page\'s "known and accepted" list (repeatable)')
     p = sub.add_parser('arrival'); p.add_argument('--out', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
     p.add_argument('--rules', type=Path, required=True); p.add_argument('--capsule', type=Path, required=True); p.add_argument('--events', type=Path, required=True)
     p.add_argument('--epochs', type=int, required=True); p.add_argument('--workers', type=int, default=os.cpu_count() or 1)
@@ -501,7 +504,7 @@ def main():
         print(json.dumps(pl.epoch_experience(a.control, a.epoch, spec), indent=1))
     elif a.cmd == 'report':
         text = arrival_report(a.control, a9.load_packages(a.players), replay_result=json.loads(a.replay.read_text()) if a.replay else None,
-                              plan=json.loads(a.events.read_text()) if a.events else None)
+                              plan=json.loads(a.events.read_text()) if a.events else None, notes=a.note)
         if a.out:
             a.out.write_text(text)
         print(text)
