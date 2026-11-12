@@ -268,13 +268,13 @@
     },
     {
       "key": "gen6selfplay19bbdce5",
-      "group": "gen6",
-      "generation": 6,
-      "variant": "6",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
       "environment": "chatgpt",
-      "name": "Gen 6 · new fast self-play stream",
-      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
-      "cohort": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936"
+      "name": "Gen 7.1 · stream 19bbdce5 comparisons",
+      "branch": "arena-gen71-19bbdce5-20261112-feed",
+      "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
     },
     {
       "key": "gen6newselfplay",
@@ -671,6 +671,18 @@
       "cohort": "815f21b54b23f6612b89425f721cfc5941add53ed2d6a0f3aca27c5a45f73236",
       "retired": true,
       "revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701"
+    },
+    {
+      "key": "gen6selfplay19bbdce5retired",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "chatgpt",
+      "name": "Gen6 · completed self-play stream 19bbdce5",
+      "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+      "cohort": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "retired": true,
+      "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24"
     }
   ],
   "activation": {
@@ -849,16 +861,28 @@
       "retired_mixed_revision": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98"
     },
     "gen6selfplay19bbdce5": {
-      "status": "New independent Gen6 fast self-play stream started",
-      "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+      "status": "Gen7.1 general-collector push applied; validated successor collecting",
+      "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
       "pair_weights": {
-        "6-32~6-32": 1
+        "71s-32~6-32": 1,
+        "71s-32~7s-32": 2
       },
       "workers": 3,
-      "target": 25000,
-      "source_feed_revision": "13e0fc7b884ecfa546f693a9bac0d92b520f1247",
-      "preflight": "Two real-model boards: legal replay, fast phases, tie audits and gap forks passed",
-      "excluded_families": 90737
+      "ben_workers": 0,
+      "target": 18225,
+      "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
+      "source_base": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+      "authority": "Max's docs/gen71_2026-11-12.md notice explicitly addresses all general arena collectors, effective06:00UTC; applied under this user's standing delegation.",
+      "predecessor": {
+        "manifest": "19bbdce5dc29e40817e313ecf11ebb5e057364dc28ad5fc1a8d3ae0bfdff8936",
+        "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+        "revision": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+        "completed": 6775,
+        "retired": true
+      },
+      "initial_target": 25000,
+      "preflight": "67 Gen7 tests +11 gap-fork tests; four real-model boards,8 roots,38 gap forks,148 tree consultations,no budget overruns",
+      "instructions": "Follow current general collector notices. Remain in the comparison plan until pooled71s-32~7s-32 has>=1000 boards and a positive95% lower bound, and the authorized self-play plan is opened."
     },
     "gen6newselfplay": {
       "status": "Retired cleanly for authorized Gen7 phase1; all 3710 completed deals retained",
