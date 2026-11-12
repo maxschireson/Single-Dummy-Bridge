@@ -23,11 +23,11 @@
   "operational_revision": "50990002b64833073b04e1bad025241109033ad3",
   "authority_path": "docs/gen71_2026-11-12.md",
   "authority_blob": "858e24fdd5449b397a612a8361c960c8e6071b41",
-  "registry_blob": "9d5e60145146674548b78acb81c6150c47fd77da",
+  "registry_blob": "f4a3ce14b39a5817de96cc708bc5abcc00d2b7d0",
   "current_manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
   "source_commit": "7d96087a3a501909c0441837b95498001e1923de",
   "registry_key": "gen6selfplay19bbdce5",
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T10:26:31Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T11:25:37Z",
   "issue_and_pr_results": 2,
   "reviewed_prs": [
     {
@@ -56,14 +56,21 @@
       "instruction": "Gen7.1 evaluation cohorts must contain no policy4.1 training families; use the hashed32205-family exclusion list",
       "action": "Full current corpus and completed receipts audited: zero overlap. Checksummed exclusion list and corpus-bound qualification report retained without changing the frozen manifest, player code or schedule.",
       "qualification": "Existing immutable corpus already satisfies the exclusion requirement; --exclude-families is required for a future prepared successor."
+    },
+    {
+      "instruction": "Other collectors keep their current Gen7.1 mix; the Azure1 self-play exception is box-specific.",
+      "authority": "box/coordination:BOARD.md 2026-11-12 11:47 UTC",
+      "authority_revision": "f1cd98393f4a321e60093133622664b113264203",
+      "action": "Continued this owned frozen comparison cohort; included the compatible newly registered Azure1 comparison records in the pooled gate, without adopting its host-specific self-play mix.",
+      "classification": "Reaffirmation; no runtime or schedule change"
     }
   ],
-  "result": "No new applicable collector instruction. Frozen source/models/corpus verified; full corpus training exclusion qualification remains valid. Fresh-family pooled comparison has a nonpositive95% lower bound and the authorized self-play plan remains closed. Continue the current comparison cohort.",
+  "result": "No change to this stream is instructed. The new self-play assignment is Azure1-specific and the notice explicitly retains the current mixes elsewhere. Pooled comparison across13 compatible feed snapshots remains below the positive95% lower-bound requirement; general self-play plan remains closed. Frozen runtime, artifacts and full-corpus exclusion qualification verified.",
   "action": "continued_current_comparison_plan",
   "status": "checked_no_runtime_change",
   "notification": "suppressed_no_material_change",
-  "previous_checked_epoch": 1794479191.859578,
-  "checked_epoch": 1794482737.636026,
+  "previous_checked_epoch": 1794482737.636026,
+  "checked_epoch": 1794486464.7001603,
   "evaluation_exclusions": {
     "schema": "gen71-evaluation-exclusion-audit-v1",
     "manifest": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
@@ -81,20 +88,20 @@
   },
   "pooled_gate": {
     "counts": {
-      "71s-32~7s-32": 2780,
-      "71s-32~6-32": 1072
+      "71s-32~7s-32": 3284,
+      "71s-32~6-32": 1294
     },
     "excluded_training_families": {
       "71s-32~7s-32": 0,
       "71s-32~6-32": 0
     },
     "gate": {
-      "n": 2780,
-      "mean": -0.033453237410071945,
-      "se": 0.048204591176016734,
+      "n": 3284,
+      "mean": -0.04780755176613886,
+      "se": 0.04494350492635656,
       "ci": [
-        -0.1279736670933837,
-        0.0610671922732398
+        -0.13592769037387373,
+        0.04031258684159602
       ],
       "minimum_boards": 1000,
       "eligible": false,
@@ -102,92 +109,97 @@
     },
     "sources": [
       {
-        "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
-        "revision": "52562a8d88b103523b13b1bf780561b3f63273f2",
-        "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
+        "branch": "arena-gen7-1-mix-azure1-feed",
+        "revision": "537e11d749cb6ca42441f2ef9eadb3cae84aacb5",
+        "cohort": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82"
       },
       {
         "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
-        "revision": "0c0c57854729130e768a3b556ec757de8c89fdb3",
+        "revision": "8f6d8a128fc33f3ac4532de9849b9bc8b5249d29",
         "cohort": "cafb5c90115ef7b57fd45e83e3372bc2721bd2b56aa8cf6b7f0ed08bbd54759a"
       },
       {
-        "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
-        "revision": "15e60ddb296f20578905ecaeb94aad9aad2e5081",
-        "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
-      },
-      {
-        "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
-        "revision": "cc1fdd359fd78b8e5fba6f7702e0ae0504b27227",
-        "cohort": "b1668f080ab8f23e276a4a9bc16d59b7fd526de1969adfd6fc987662cf64406b"
-      },
-      {
         "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
-        "revision": "f872c7a64f1f51a306f4599d9ab52ef5b8ac5e93",
+        "revision": "710d2a05552a3b1d40799bbeb95f08e825b01d9e",
         "cohort": "5739d5b18d1246d7162d89aa20cb22d5cd3c4db50fe424023023fca9f2cbaaad"
       },
       {
+        "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+        "revision": "e0b0cc7c127f1394451253e2c2e6ff7805b5736f",
+        "cohort": "ee1d84ad0138d770b53477900bf25c4f7d1da080be9d40f8c399a177e947f690"
+      },
+      {
+        "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+        "revision": "a14c49d8b68839f9ff802110be37ebf31d4d8781",
+        "cohort": "a290b70852a9cbe2d41bd23441bd6940cc584e5b120ad03fc8bbb5eea2644a82"
+      },
+      {
         "branch": "arena-gen7-1-compare-codex-20261112-feed",
-        "revision": "d952c796e36da3ea7d4ed0ff18bf70f85db86b04",
+        "revision": "7f1c97aa0fe03f13a57fb25811a363286579f194",
         "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
       },
       {
-        "branch": "arena-gen71-19bbdce5-20261112-feed",
-        "revision": "7d2f57f4b88dbdea8c06c0893635dc5bbb6253e6",
-        "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
+        "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+        "revision": "8ee282ca6aecf16cd4e322adb2f7d06ac613b73b",
+        "cohort": "b1668f080ab8f23e276a4a9bc16d59b7fd526de1969adfd6fc987662cf64406b"
+      },
+      {
+        "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+        "revision": "036214acad3f2df0ddc2e790db0a4391042ebc8b",
+        "cohort": "dd96458b675cbc6a76841206baab2b614b7b913ff0063891fd2b6a471d6eb59b"
       },
       {
         "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
-        "revision": "f077e1d6a212ebfadfcc9aa9a2927ec00ba7e11d",
+        "revision": "6983d53a90a2c6561bbb9a388bc3e9e7b0511b44",
         "cohort": "050b664fdf3d7abd3622eb51e517e7a083b9ab34b24cc984247b1c954c2a9c44"
       },
       {
         "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
-        "revision": "778330ab8e4711167df26c35abf4fe909885caea",
+        "revision": "7bf7f7aef75f699f8014b0354957febbaebe5675",
         "cohort": "6e37908f191d657bc18101ad79ec9d85d3af39ae3cde64741e182ba600a1e1cd"
       },
       {
-        "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
-        "revision": "85350683082a02343c84c004c557ff466220108c",
-        "cohort": "dd96458b675cbc6a76841206baab2b614b7b913ff0063891fd2b6a471d6eb59b"
-      },
-      {
-        "branch": "arena-gen71-independent-feed",
-        "revision": "c1bc2d937ff5a75480d74a38118e1d10ecf7b588",
-        "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
+        "branch": "arena-gen71-19bbdce5-20261112-feed",
+        "revision": "6f1303e33047cc1c533ab625875afbc0378c805b",
+        "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
       },
       {
         "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
         "revision": "67dd0edee1f790ff954ee2bb1565b51d80b2ba5b",
         "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
+      },
+      {
+        "branch": "arena-gen71-independent-feed",
+        "revision": "383578368f24cb5a2b436fff1219daea422ec569",
+        "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
       }
     ],
     "errors": [],
-    "checked_epoch": 1794482691.962973
+    "checked_epoch": 1794486417.0832133
   },
   "health": {
     "state.json": {
       "manifest_identity": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461",
-      "completed": 1082,
+      "completed": 1310,
       "target": 18225,
-      "contiguous": 1080,
+      "contiguous": 1309,
       "by_pair": {
-        "71s-32~7s-32": 720,
-        "71s-32~6-32": 362
+        "71s-32~7s-32": 873,
+        "71s-32~6-32": 437
       },
-      "root_games": 2164,
-      "tables": 27316,
+      "root_games": 2620,
+      "tables": 33044,
       "failures": 0,
-      "epoch": 1794482737.0308695,
+      "epoch": 1794486447.2609625,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794482736.8044467,
-      "completed": 1081,
+      "epoch": 1794486457.2618575,
+      "completed": 1310,
       "in_flight": [
-        1080,
-        1082,
-        1083
+        1309,
+        1310,
+        1312
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -195,15 +207,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794482723.1687608,
+      "epoch": 1794486443.430259,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794482705.663001,
+      "epoch": 1794486406.446332,
       "status": "published",
-      "completed": 1080
+      "completed": 1306
     },
     "process.json": {
       "pid": 59739,
@@ -221,8 +233,8 @@
   "source_and_artifacts_verified": true,
   "writer_and_watchdog_locks": "held",
   "unresolved_failures": 0,
-  "coordination_revision": "8c58d0971b2c63137fb7cfa5e765bb58e04f6f3d",
-  "coordination_blob": "57aac16ad4091548911a794d6e23ffa251c6944b",
+  "coordination_revision": "f1cd98393f4a321e60093133622664b113264203",
+  "coordination_blob": "670d7060cbd3464f3e1d68527d0fd910d5777268",
   "selfplay_plan_blob": "b97f2ea8d2fff12e33eeb82ccf0e5b57649a9966",
   "selfplay_plan_launch_enabled": false,
   "reviewed_discussions": [
@@ -232,10 +244,10 @@
     },
     {
       "number": 29,
-      "disposition": "Unadopted Gen9 WIP prototype; explicitly no changes to current collectors, feeds, registry or dashboard"
+      "disposition": "Unadopted Gen9 WIP prototype; no changes to current collectors, feeds, registry or dashboard"
     }
   ],
-  "operational_notice": "Main, operational and coordination revisions unchanged, independently confirmed by fresh remote heads. Previously reviewed worker notices remain current; no successor or self-play opening.",
+  "operational_notice": "11:47 coordination entry scopes the new Gen7.1 self-play mix to Azure1 on Max's specific box assignment; explicitly keeps round71-selfplay.json closed and other collectors on their current Gen7.1 mix. Later notices through12:25 concern Gen8/Gen9 research and host allocations.",
   "operational_snapshot_unchanged": true,
   "processes": {
     "process.json": {
@@ -255,12 +267,12 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 0.8315792083740234,
-  "publisher_age": 31.97302484512329,
+  "heartbeat_age": 7.438302755355835,
+  "publisher_age": 58.253828287124634,
   "stop_files": [],
-  "free_bytes": 25263493120,
+  "free_bytes": 24108412928,
   "new_applicable_instructions": [],
-  "operational_notice_disposition": "Authority revisions unchanged; Gen9 research and other-producer assignments do not change this stream.",
+  "operational_notice_disposition": "Applied the general reaffirmation to keep current mix; Azure host exceptions and Gen8/Gen9 research are outside this stream.",
   "registry_input_semantically_verified": true,
   "last_cache_rotation": {
     "epoch": 1794480022.9105885,
@@ -268,5 +280,5 @@
     "completed": 915
   },
   "collector_pid_change_disposition": "Current process start matches the recorded drained DDS cache rotation at915 completed families. Only disposable memoized solves were rotated; frozen runtime and completed records retained, no failure cleared.",
-  "registry_changes_disposition": "Registry unchanged; own source and retired predecessor remain correctly registered."
+  "registry_changes_disposition": "Added the compatible Azure1 mixed feed to pooled monitoring; other changes are another producer's recovery status. Own registry entries unchanged."
 }
