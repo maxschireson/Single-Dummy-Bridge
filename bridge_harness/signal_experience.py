@@ -98,6 +98,7 @@ def honesty(stat, prior_mean=.8, prior_n=8., eps=.05, steps=400):
     reader's floor), else the aggregates with s = n. Prior Beta centred on `prior_mean`, worth `prior_n` occasions."""
     labels = (stat or {}).get('n', {})
     cells = {}
+    labels = {k: v for k, v in labels.items() if k.split('/')[0] in ('hit', 'all')}
     for label, v in labels.items():
         parts = label.split('/')
         if len(parts) == 3:

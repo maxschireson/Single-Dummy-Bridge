@@ -195,9 +195,9 @@ class SignalModel:
         self.emission = {}
         for key, rows in (emission or {}).items():         # {full key: [[P(low), P(high), P(middle)] for each message]}
             rows = np.asarray(rows, float)
-            if rows.ndim != 2 or rows.shape[1] != 3 or (rows < 0).any() or not np.allclose(rows.sum(axis=1), 1.):
+            if rows.ndim != 2 or rows.shape[1] != 3 or (rows < 0).any() or not np.allclose(rows.sum(axis=1), 1., atol=1e-3):
                 raise ValueError(f'emission for {key}: one row of P(low), P(high), P(middle) per message, each summing to 1')
-            self.emission[key] = rows
+            self.emission[key] = rows / rows.sum(axis=1, keepdims=True)    # rounded tables are renormalised
 
     def __bool__(self):
         """Active only if the descriptor declares a signalling situation or a lead convention: one that names only
