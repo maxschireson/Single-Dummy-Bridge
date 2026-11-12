@@ -1,0 +1,21 @@
+{
+  "epoch": 1794469603.4407866,
+  "commit": "94c9ab0bf84dc4c8faf790fd32d52b38a56b6b83",
+  "branch": "arena-gen7-1-compare-codex-20261112-feed",
+  "completed": 202,
+  "actual_remote_verified": true,
+  "blobs": {
+    "recovery/operations/instruction-watch.json": "ce008c512b9b9dd54af891e51c41df36d9036a2b",
+    "recovery/operations/gen71_gate.py": "3cb4b34c73b21cf709a4b100f653dc0b16d43b38",
+    "recovery/operations/gen71-guard-maintenance.json": "7acd4bf3145a49cebf4317938314e4b319535d9c",
+    "recovery/evaluation-exclusion-audit.json": "e0d53cb87847fdd20b90383efebd02cc13cb286d",
+    "recovery/evaluation-exclusions.json": "c8750f33701e388865a55b6a07000500d4d2a013"
+  },
+  "sha256": {
+    "recovery/operations/instruction-watch.json": "cef143821b04503473d262d3278c10e0283a51985e7caa82fb86a1202fbffb47",
+    "recovery/operations/gen71_gate.py": "6b3a5e90f4efa7d046b5c27ae3458f408ff8312ef72599137231b5a6a280ffff",
+    "recovery/operations/gen71-guard-maintenance.json": "7d669e3143e31606bb4755b373f2e5dcdf4ff365145b48ecf98aa64b42d625af",
+    "recovery/evaluation-exclusion-audit.json": "6cabb55c312c895660cfa510815e1d5a5aedd5048fd12d638b18bfb1946dc71f",
+    "recovery/evaluation-exclusions.json": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3"
+  }
+}
