@@ -212,6 +212,22 @@ class Gen7LaunchTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             prepare(run, self.tmp / 'source', self.plan_path)                   # never overwrites
 
+    def test_pruned_actor_restoration_requires_exact_direct_ancestor(self):
+        from ops.prepare_gen7_alpha import inherited_actors
+        ancestor = self.tmp / 'source'
+        retained = deepcopy(self.old)
+        retained['bots'] = {k: v for k, v in retained['bots'].items() if k != '5RZ32'}
+        retained['source_generation'] = self.old['identity']
+        restored = inherited_actors(ancestor, retained, ancestor)
+        self.assertEqual(restored['bots']['5RZ32'], self.old['bots']['5RZ32'])
+        retained['source_generation'] = 'unrelated'
+        with self.assertRaisesRegex(ValueError, 'direct frozen predecessor'):
+            inherited_actors(ancestor, retained, ancestor)
+        retained['source_generation'] = self.old['identity']
+        retained['bots']['6-32']['samples'] += 1
+        with self.assertRaisesRegex(ValueError, 'Retained actor differs'):
+            inherited_actors(ancestor, retained, ancestor)
+
     def test_machines_sharing_a_source_run_take_disjoint_deals(self):
         self.plan.update(model_note='the cohort in its own words', interpretation='how to read it')
         self.write()

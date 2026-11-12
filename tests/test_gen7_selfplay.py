@@ -16,6 +16,7 @@ from bridge_harness.selfplay import atomic_json
 from ops.export_gen5 import export
 from ops.gen5_runtime import receipt, validate
 from ops.prepare_gen7_alpha import load_plan, prepare
+from test_gap_forks import GapToy
 from test_gen5 import Toy
 from test_gen7_launch import gen6_run
 
@@ -52,10 +53,10 @@ def stand_in(tmp, name, source, **changes):
     return tmp / f'{name}.json'
 
 
-def played(m, index=0):
+def played(m, index=0, player=Toy):
     board = next(generate(1, 341 + index))
     with patch('bridge_harness.gen5_arena.auction', lambda b, actors: (b, [])):
-        return run_board('.', m, board.to_dict(), index, {k: object() for k in m['bots']}, player_factory=Toy)
+        return run_board('.', m, board.to_dict(), index, {k: object() for k in m['bots']}, player_factory=player)
 
 
 class Gen7SelfplayTests(unittest.TestCase):
@@ -109,6 +110,20 @@ class Gen7SelfplayTests(unittest.TestCase):
         validate(r, two, 0)
         with self.assertRaises(ValueError):
             validate(r, m, 0)
+
+    def test_a_selfplay_table_carries_the_cohorts_gap_forks(self):
+        """Self-play is collected for training, so the source run's capture settings apply to it as to any table."""
+        capture = dict(audit=dict(probability=.5, multiplier=1000, max_depth=1, max_forks=8), gap_fork=dict(per_band=2, bands=[.125, .5], max_cpu_share=1e9))
+        m = manifest(**capture)
+        r = played(m, player=GapToy)
+        validate(r, m, 0)
+        table = r['unique_tables']['table-0']
+        self.assertEqual((set(r['regimes']), r['regimes']['self']['imps'], len(r['unique_tables'])), ({'self'}, None, 1))
+        self.assertTrue(table['gap_forks'])
+        self.assertEqual(r['gap_fork_count'], len(table['gap_forks']))
+        plain = played(manifest(audit=capture['audit']), player=GapToy)             # without the manifest key the record is as before
+        self.assertNotIn('gap_forks', plain['unique_tables']['table-0'])
+        self.assertNotIn('gap_fork_count', plain)
 
     def test_one_cohort_mixes_selfplay_with_the_gen6_comparison(self):
         m = manifest(pair_schedule=[CROSS, SELF, SELF])

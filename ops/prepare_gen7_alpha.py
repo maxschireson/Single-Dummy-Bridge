@@ -150,7 +150,19 @@ def parse_shard(text):
     return k, n
 
 
-def prepare(root, source, plan_path=None, shard=None):
+def inherited_actors(source, old, actor_source):
+    """Restore unchanged actors pruned by a direct predecessor's self-play cutover."""
+    ancestor = json.loads((actor_source / 'manifest.json').read_text())
+    verify_source(actor_source, ancestor)
+    if old.get('source_generation') != ancestor['identity']:
+        raise ValueError('Actor source must be the direct frozen predecessor')
+    for key, spec in old['bots'].items():
+        if ancestor['bots'].get(key) != spec:
+            raise ValueError('Retained actor differs from predecessor: ' + key)
+    return ancestor
+
+
+def prepare(root, source, plan_path=None, shard=None, actor_source=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -186,7 +198,10 @@ def prepare(root, source, plan_path=None, shard=None):
             keep = keep[k::n]
             if not keep:
                 raise ValueError('No unplayed source deals fall in this shard')
-        bots = make_bots(old, plan)
+        actor_source = Path(actor_source).resolve() if actor_source else None
+        ancestor = inherited_actors(source, old, actor_source) if actor_source else None
+        actor_manifest = dict(old, bots=ancestor['bots']) if ancestor else old
+        bots = make_bots(actor_manifest, plan)
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
         entry = plan['artifacts']['gen7_policy']
@@ -195,6 +210,15 @@ def prepare(root, source, plan_path=None, shard=None):
         for folder in ('artifacts', 'assets'):
             if (source / folder).exists():
                 shutil.copytree(source / folder, root / folder)
+        if ancestor:
+            for spec in ancestor['bots'].values():
+                for key, expected in spec['artifact_sha256'].items():
+                    dest = root / spec[key]
+                    if dest.exists() and sha(dest) != expected:
+                        raise ValueError('Actor artifact collision: ' + spec[key])
+                    if not dest.exists():
+                        dest.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copyfile(actor_source / spec[key], dest)
         (root / GEN7_POLICY).parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(policy, root / GEN7_POLICY)
         for folder in ('episodes', 'receipts', 'failures'):
@@ -224,6 +248,13 @@ def prepare(root, source, plan_path=None, shard=None):
         for key in CARRIED:
             if key in old:
                 m[key] = deepcopy(old[key])
+        if ancestor:
+            m['actor_source_generation'] = ancestor['identity']
+            m['labels'].update(ancestor.get('labels', {}))
+            m['bidding_conditions'] = ['common', 'native']
+        for key in ('generation', 'variant'):
+            if key in plan:
+                m[key] = plan[key]
         if shard is not None:
             m['shard'] = dict(index=k, of=n)
         m['identity'] = digest(m)
@@ -240,7 +271,8 @@ if __name__ == '__main__':
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--plan', type=Path)
     p.add_argument('--shard', help='K/N: take every N-th unplayed deal starting at the K-th (K from 0), for machines sharing one source run')
+    p.add_argument('--actor-source', type=Path, help='Verified direct predecessor supplying actors pruned by self-play; deals come only from --source')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None)
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source)
     print(json.dumps(dict(identity=m['identity'], target=m['target'], shard=m.get('shard'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))
