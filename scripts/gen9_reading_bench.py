@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+"""G9-X2: Gen 9 readers on p41's reading bench, scored in double-dummy tricks saved on the true deal, with nats beside.
+
+Gen 9 work in progress (sam, signals). scripts/gen8_reading_bench.py (a snapshot of p41's bench) does the solving and the
+scoring; this script chooses the tables and decisions and adds Gen 9 readings to the stored pools.
+
+  python scripts/gen9_reading_bench.py pools    --feeds DIR... --opponent ben --tables 300 --out OUT [--seconds 7200] [--pool 512]
+  python scripts/gen9_reading_bench.py readings --feeds DIR... --out OUT --source CAPSULE/recovery --bots BOTS.json --reading NAME=BOT [...]
+  python scripts/gen9_reading_bench.py report   --out OUT [--against NAME] [--json FILE]       (the bench's report)
+
+pools     The bench's `pools` on E9-7's held-out tables against one BEN version (scripts/gen9_ben_reading.py: deal families
+          with crc32 % 5 == 0, the first --tables of them in that script's order), at the decisions of the house bots only:
+          BEN's own decisions say nothing about how a house bot reads. --net (default: Gen 8's net v4) is stored as the bench
+          stores a net, unfactored.
+readings  For every stored decision, the log weight a bot spec from --bots (built on the --source capsule's bots, as
+          scripts/gen9_match.py builds it) gives each stored layout and the true one, after meet(the table's opponent), from
+          the decider's view. Stored as the bench stores a net (fit-NAME-<part>.npz, split into the opening lead, partner's
+          other plays and the opponents'), with the bot's own factors and signal terms already in it, so the bench's report
+          scores it at exponent 1 like a net. Nothing is solved again.
+report    The bench's report on OUT; `--against` pairs every reading with one.
+
+Hidden hands are labels: the true deal is solved and scored, never read.
+"""
+import os
+for _name in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
+    os.environ.setdefault(_name, '1')
+import argparse
+from copy import deepcopy
+import gzip
+import importlib.util
+import json
+from pathlib import Path
+import sys
+
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / 'scripts'))
+from bridge_harness import gen9  # noqa: E402
+from bridge_harness.gen6 import View  # noqa: E402
+from bridge_harness.gen7 import hidden_plays  # noqa: E402
+from gen9_ben_reading import ben_tables  # noqa: E402
+
+_spec = importlib.util.spec_from_file_location('gen8_reading_bench', ROOT / 'scripts' / 'gen8_reading_bench.py')
+bench = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(bench)
+
+GEN8_NET = 'v4=models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz'
+PATH_KEYS = ('gen7_policy', 'scorer', 'bidding', 'lead_belief', 'system_scorer')
+
+
+def held_out(feeds, opponent, n):
+    """E9-7's first n held-out tables against `opponent`, as (episode path, table key)."""
+    return [(p, k) for p, k, ben, held in ben_tables(feeds) if ben == opponent and held][:n]
+
+
+def house_only(decisions):
+    """The bench's decisions, kept only where a house bot decides (the episode's 'candidate' side)."""
+    def wrapped(e):
+        roles = e['assignments']
+        for k, o, game in decisions(e):
+            if roles[o.controller] != 'opponent':
+                yield k, o, game
+    return wrapped
+
+
+def table_source(chosen):
+    """A replacement for the bench's `tables`: exactly the chosen tables, in order."""
+    def tables(directories, skip):
+        for path, key in chosen:
+            with gzip.open(path, 'rt') as f:
+                d = json.load(f)
+            who = {'candidate': d['candidate'], 'opponent': d['opponent']}
+            e = d['unique_tables'][key]
+            if e.get('schema_version') != 'v4-passed-out-v1' and e['tables'][0].get('actions'):
+                yield str(path), key, d['family'], [who[x] for x in e['assignments']], e
+    return tables
+
+
+def pools(a):
+    chosen = held_out(a.feeds, a.opponent, a.tables)
+    bench.tables = table_source(chosen)
+    bench.decisions = house_only(bench.decisions)
+    out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / 'tables.json').write_text(json.dumps(dict(opponent=a.opponent, tables=[[str(p), k] for p, k in chosen]), indent=0))
+    args = argparse.Namespace(episodes=[], out=a.out, net=a.net or [GEN8_NET], shard='0/1', tables=a.tables, seconds=a.seconds,
+                              part=a.part, skip_tables=a.skip_tables, part_offset=a.part_offset, pool=a.pool, seed=a.seed, skip_families=[])
+    bench.pools(args)
+
+
+def bot_spec(source, bots_file, bot):
+    """A bot of --bots on the capsule's base bot, as scripts/gen8_match.build_manifest makes it (no table opponent)."""
+    old = json.loads((Path(source) / 'manifest.json').read_text())
+    defined = json.loads(Path(bots_file).read_text())
+    if bot not in defined:
+        return deepcopy(old['bots'][bot])
+    entry = dict(defined[bot])
+    spec = deepcopy(old['bots'][entry.pop('base')])
+    for key in PATH_KEYS:
+        if key in entry:
+            entry[key] = str((ROOT / entry[key]).resolve())
+    entry.pop('label', None)
+    if 'gen6' in entry:
+        entry['gen6'] = dict(spec.get('gen6', {}), **entry['gen6'])
+    spec.update(entry, id=bot)
+    spec.pop('identity', None)
+    return spec
+
+
+def reading_parts(q, o, view, both):
+    """[3, layouts] the reader's log weight of the hidden seats' plays, play by play: the opening lead, partner's other plays,
+    the opponents'. A Gen 9 reader's signal part is added as its play_log_likelihood adds it (untempered: / the exponent)."""
+    out = np.zeros((3, len(both)), np.float32)
+    exponent = max(q.reading_exponent(o, view), 1e-6) if hasattr(q, 'reading_exponent') else 1.
+    for play in hidden_plays(o, q.g7.play_lead):
+        i, _, chooser = play
+        if hasattr(q, 'play_log_terms'):
+            net, signal = q.play_log_terms(o, view, both, [play])
+            value = net + signal / exponent
+        else:
+            value = q.play_log_likelihood(o, view, both, [play])
+        out[0 if i == 0 else 1 if chooser % 2 == o.controller % 2 else 2] += value
+    return out
+
+
+def readings(a):
+    out = Path(a.out)
+    listed = json.loads((out / 'tables.json').read_text())
+    where = {}
+    for path, key in listed['tables']:
+        name = (os.path.basename(path), key)
+        if name in where and where[name] != path:
+            raise SystemExit(f'two episodes share the name {name[0]}')
+        where[name] = path
+    source = str(Path(a.source).resolve())
+    readers = {}
+    for item in a.reading:
+        name, bot = item.split('=', 1)
+        readers[name] = gen9.player(bot_spec(source, a.bots, bot), source)
+    decisions = house_only(bench.decisions)
+    for part in sorted(out.glob('pools-*-*.npz')):
+        todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
+        todo = {n: t for n, t in todo.items() if not t.exists()}
+        if not todo:
+            continue
+        rows, tables_, _ = bench.load(part)
+        by_table = {}
+        for r in rows:
+            by_table.setdefault(int(r['table']), {})[int(r['ply'])] = r
+        for t, wanted in by_table.items():
+            info = tables_[t]
+            path = where[(info['path'], info['key'])]
+            with gzip.open(path, 'rt') as f:
+                d = json.load(f)
+            e = d['unique_tables'][info['key']]
+            for n in todo:
+                readers[n].meet(d['opponent'])
+            for k, o, game in decisions(e):
+                if k in wanted:
+                    r = wanted[k]
+                    both = np.concatenate([r['assign'], r['truth'][None]])
+                    view = View(o)
+                    r.setdefault('new', {}).update({n: reading_parts(readers[n], o, view, both) for n in todo})
+        for n, target in todo.items():
+            missing = [i for i, r in enumerate(rows) if n not in r.get('new', {})]
+            if missing:
+                raise SystemExit(f'{part.name}: {len(missing)} stored decisions were not found again')
+            np.savez_compressed(target, fit=np.concatenate([r['new'][n].ravel() for r in rows]) if rows else np.zeros(0, np.float32))
+        print(f'{part.name}: {len(rows)} decisions, readings {sorted(todo)}', flush=True)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('step', choices=('pools', 'readings', 'report'))
+    ap.add_argument('--feeds', nargs='+', default=[], help='episode directories of the BEN feeds')
+    ap.add_argument('--opponent', default='ben', choices=('ben', 'ben64'))
+    ap.add_argument('--out', required=True)
+    ap.add_argument('--tables', type=int, default=300)
+    ap.add_argument('--seconds', type=float, default=1e9)
+    ap.add_argument('--part', type=int, default=4)
+    ap.add_argument('--skip-tables', type=int, default=0)
+    ap.add_argument('--part-offset', type=int, default=0)
+    ap.add_argument('--pool', type=int, default=512)
+    ap.add_argument('--seed', type=int, default=0)
+    ap.add_argument('--net', action='append', default=[])
+    ap.add_argument('--source')
+    ap.add_argument('--bots', default=str(ROOT / 'configs' / 'gen9-signal-run-bots.json'))
+    ap.add_argument('--reading', action='append', default=[], help='NAME=BOT: a reading by a bot of --bots')
+    ap.add_argument('--against')
+    ap.add_argument('--sweep', action='store_true')
+    ap.add_argument('--verbose', action='store_true')
+    ap.add_argument('--json')
+    a = ap.parse_args()
+    if a.step == 'pools':
+        pools(a)
+    elif a.step == 'readings':
+        readings(a)
+    else:
+        bench.report(argparse.Namespace(out=a.out, mechanism=False, house=False, sweep=a.sweep, owner=[], against=a.against,
+                                        pairs_only=False, verbose=a.verbose, json=a.json))
+
+
+if __name__ == '__main__':
+    main()
