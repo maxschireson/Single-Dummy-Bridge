@@ -1,0 +1,4 @@
+8s-32 v 1: 96 boards to play (0 done), 8 workers
+50 boards: 2.18 +- 0.631 IMPs/board for 8s-32; 1336 boards/hour; 0 failed
+96 boards: 2.3646 +- 0.4341 IMPs/board for 8s-32; 1340 boards/hour; 0 failed
+{"pair": "8s-32~1", "boards": 96, "cpu_per_board": 17.67, "common": {"imps_per_board": 2.3646, "se": 0.4341, "boards": 96, "won": 51, "lost": 5, "flat": 40}, "native": {"imps_per_board": 1.875, "se": 0.4822, "boards": 96, "won": 55, "lost": 13, "flat": 28}}

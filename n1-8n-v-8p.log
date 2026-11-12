@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/bridgebots/work/g8/src/scripts/gen8_match.py", line 250, in <module>
+    main()
+  File "/home/bridgebots/work/g8/src/scripts/gen8_match.py", line 210, in main
+    m = build_manifest(source, args.bots, args.pair, args.seed)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src/scripts/gen8_match.py", line 88, in build_manifest
+    bots[key] = deepcopy(old['bots'][key])
+                         ~~~~~~~~~~~^^^^^
+KeyError: '8n-32'

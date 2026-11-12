@@ -1,0 +1,23 @@
+{
+ "pair": "8s-32~5RZ32",
+ "boards": 96,
+ "cpu_per_board": 15.52,
+ "common": {
+  "imps_per_board": 1.2604,
+  "se": 0.4831,
+  "boards": 96,
+  "won": 34,
+  "lost": 10,
+  "flat": 52
+ },
+ "native": {
+  "imps_per_board": 0.7812,
+  "se": 0.5213,
+  "boards": 96,
+  "won": 38,
+  "lost": 18,
+  "flat": 40
+ },
+ "failures": 0,
+ "boards_per_hour": 1509
+}

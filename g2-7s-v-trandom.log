@@ -1,0 +1,15 @@
+7s-32 v t-random: 600 boards to play (0 done), 8 workers
+7s-32 v t-random: 564 boards to play (36 done), 8 workers
+86 boards: 0.3488 +- 0.3067 IMPs/board for 7s-32; 1445 boards/hour; 0 failed
+136 boards: 0.25 +- 0.2673 IMPs/board for 7s-32; 1522 boards/hour; 0 failed
+186 boards: 0.2688 +- 0.246 IMPs/board for 7s-32; 1597 boards/hour; 0 failed
+236 boards: 0.2754 +- 0.2108 IMPs/board for 7s-32; 1667 boards/hour; 0 failed
+286 boards: 0.2587 +- 0.1869 IMPs/board for 7s-32; 1635 boards/hour; 0 failed
+336 boards: 0.2351 +- 0.1669 IMPs/board for 7s-32; 1656 boards/hour; 0 failed
+386 boards: 0.2073 +- 0.1561 IMPs/board for 7s-32; 1680 boards/hour; 0 failed
+436 boards: 0.2317 +- 0.1505 IMPs/board for 7s-32; 1638 boards/hour; 0 failed
+486 boards: 0.2737 +- 0.1481 IMPs/board for 7s-32; 1613 boards/hour; 0 failed
+536 boards: 0.2668 +- 0.1401 IMPs/board for 7s-32; 1594 boards/hour; 0 failed
+586 boards: 0.2645 +- 0.1353 IMPs/board for 7s-32; 1597 boards/hour; 0 failed
+600 boards: 0.2967 +- 0.134 IMPs/board for 7s-32; 1602 boards/hour; 0 failed
+{"pair": "7s-32~t-random", "boards": 600, "cpu_per_board": 17.55, "common": {"imps_per_board": 0.2967, "se": 0.134, "boards": 600, "won": 109, "lost": 75, "flat": 416}, "native": {"imps_per_board": 0.2967, "se": 0.134, "boards": 600, "won": 109, "lost": 75, "flat": 416}}

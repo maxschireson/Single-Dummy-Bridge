@@ -1,0 +1,4 @@
+8s-32 v 5RZ32: 96 boards to play (0 done), 8 workers
+50 boards: 1.16 +- 0.5724 IMPs/board for 8s-32; 1531 boards/hour; 0 failed
+96 boards: 1.2604 +- 0.4831 IMPs/board for 8s-32; 1509 boards/hour; 0 failed
+{"pair": "8s-32~5RZ32", "boards": 96, "cpu_per_board": 15.52, "common": {"imps_per_board": 1.2604, "se": 0.4831, "boards": 96, "won": 34, "lost": 10, "flat": 52}, "native": {"imps_per_board": 0.7812, "se": 0.5213, "boards": 96, "won": 38, "lost": 18, "flat": 40}}
