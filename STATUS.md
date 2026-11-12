@@ -65,11 +65,11 @@ Generated 2026-11-12 07:30 UTC by `tools/workq.py` after a change by `bill`. Do 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:27 | leased | high | 2026-11-13T04:00Z |  |
+| [E9-2](experiments/E9-2.md) | Boards needed to identify a system from finished boards | bill | bill until 11-12 11:30 | leased | medium | 2026-11-13T10:00Z |  |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 |  | open | high | 2026-11-13T06:00Z | after G9-A3 |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z | after G9-S2 |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [E9-8](experiments/E9-8.md) | What replaying the bidder is worth over the hand-fit scorer | bill |  | open | high | 2026-11-12T12:00Z |  |
-| [E9-2](experiments/E9-2.md) | Boards needed to identify a system from finished boards | bill |  | open | medium | 2026-11-13T10:00Z | after G9-B4 |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | adopted. **The class rule holds.** Defenders' spots (two to nine) in the suit played do not all take the same number of tricks on the true deal in **1.49% ± 0.08%** of 21,057 decisions (prediction: at most 5%). When they differ, the worst spot costs 1.13 tricks on average; the lowest spot is among the best in 99.2% of all decisions |
 | [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | dave | resolved | high | 2026-11-13T02:00Z | adopted. Kind of evidence: simulation. Report, data and code: `reports/gen9-arena-sim-2026-11-12/README.md` on |
 
