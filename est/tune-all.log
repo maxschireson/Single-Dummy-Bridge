@@ -1,0 +1,48 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/dds.py", line 27, in __init__
+    self.lib = C.CDLL(str(path))
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /home/bridgebots/work/g8/src-tune/bridge_harness/libbridge_dds.so: cannot open shared object file: No such file or directory
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+           ^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 63, in _tables
+    solver = TableSolver()
+             ^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/bidding_env.py", line 192, in __init__
+    self.dds = DDS(library)
+               ^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/bridge_harness/dds.py", line 29, in __init__
+    raise RuntimeError("DDS is not built. Run: python3 scripts/build_dds.py") from e
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 266, in <module>
+    main()
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 218, in main
+    tables = dd_tables(args.seed, args.deals, args.cache, args.workers)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/bridgebots/work/g8/src-tune/scripts/tune_rule_bidder.py", line 76, in dd_tables
+    parts = pool.map(_tables, [(seed, c) for c in chunks])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/pool.py", line 774, in get
+    raise self._value
+RuntimeError: DDS is not built. Run: python3 scripts/build_dds.py
