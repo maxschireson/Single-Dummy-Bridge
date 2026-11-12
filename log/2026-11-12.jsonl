@@ -292,3 +292,4 @@
 {"at": "2026-11-12T09:42:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-12-cs", "note": "priority 3, 4 cores", "task": "E9-12"}
 {"at": "2026-11-12T09:42:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-12-xs", "note": "priority 3, 4 cores", "task": "E9-12"}
 {"at": "2026-11-12T09:42:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-12-us", "note": "priority 3, 4 cores", "task": "E9-12"}
+{"at": "2026-11-12T09:42:00Z", "by": "bill", "op": "log", "target": "E9-12", "note": "jobs e9-12-* resubmitted at ea550d3: the rule bidder's cards (rb-precision, rb-standard, and the cards in 9c-32/9x-32/9cs-32/9xs-32) now cover responder's first call; on the books the card filter alone gains +0.25 +- 0.02 / +0.26 +- 0.03 nats a decision (paired; leader 3.13 -> 3.60). The reading rec"}
