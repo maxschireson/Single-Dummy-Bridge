@@ -68,6 +68,29 @@ def main():
                 plays = hidden_plays(o, True) if view is not None else []
                 if view is not None and len(view.hidden) == 2 and plays and len(o.legal) > 1:
                     source = p.source(o, view)
+                    if source == 'list' and args.until > 7:                   # the deal list: every card-fit layout, scorer-weighted
+                        every = view.every()
+                        logw = p.layout_log_weights(o, view, every)
+                        if len(every) > args.pool:
+                            pick = rng.choice(len(every), args.pool, p=np.exp(logw - logw.max()) / np.exp(logw - logw.max()).sum())
+                            every = every[pick]
+                        else:                                                 # the whole list: weight it instead of drawing from it
+                            keep = rng.choice(len(every), args.pool, p=np.exp(logw - logw.max()) / np.exp(logw - logw.max()).sum())
+                            every = every[keep]
+                        owner = np.zeros(52, np.int8)
+                        truth = tuple(tuple(sorted(h)) for h in game.hands)
+                        owner[list(truth[view.hidden[1]])] = 1
+                        owner[list(truth[view.hidden[0]])] = 0
+                        assign = np.concatenate([every, owner[view.unseen][None].astype(every.dtype)])
+                        logp, options = p.play_log_probabilities(o, view, assign, plays)
+                        each = floored(logp, options, p.g7.play_floor)
+                        theirs = np.array([chooser % 2 != o.controller % 2 for _, _, chooser in plays])
+
+                        def gain(rows_used):
+                            fit = each[rows_used].sum(axis=0)
+                            return [float(q * fit[-1] - (np.logaddexp.reduce(q * fit[:-1]) - np.log(len(fit) - 1))) for q in POWERS]
+                        rows.append(dict(table=tables, trick=trick, plays=len(plays), declaring=bool(o.controller % 2 == o.contract.declarer % 2),
+                                         gains=gain(np.ones(len(plays), bool)), theirs=gain(theirs), partner=gain(~theirs), mover=a['player']))
                     if source in ('scorer', 'lead_net'):
                         classes = Classes(view)
                         logw = classes.logmult + p.type_log_weights(o, view, classes.length, classes.hon, source)
