@@ -101,6 +101,9 @@ def main():
     ap.add_argument('--control-bot', default='8p-32')
     ap.add_argument('--snapshot-epoch', type=int, help='default: the last epoch manifest')
     ap.add_argument('--guests', nargs='*')
+    ap.add_argument('--diagnose', action='store_true',
+                    help='also the snapshot model without its card (nocard), and as its best-read held profile alone without '
+                         'the card (one-profile): where a gap comes from; labelled diagnostics, not the check')
     ap.add_argument('--rows', type=Path, help='per-deal rows (jsonl), appended')
     ap.add_argument('--summarise', nargs='*', type=Path, help='only summarise these rows files')
     ap.add_argument('--out', type=Path)
@@ -132,6 +135,22 @@ def main():
             m = json.loads(a9.epoch_path(a.control, n).read_text())
             man, _ = mb.manifest(m, f'{a.bot}~{guest}', a.seed)
             readers[c] = engine.player(man['bots'][a.bot], str(mb.capsule))
+            if c == 'snapshot' and a.diagnose:
+                from copy import deepcopy
+                base = man['bots'][a.bot]
+                nocard = deepcopy(base)
+                gm = nocard['gen9']['models'][guest]
+                gm.pop('bidding', None)
+                readers['snapshot-nocard'] = engine.player(nocard, str(mb.capsule))
+                one = deepcopy(nocard)
+                om = one['gen9']['models'][guest]
+                held = [sp for sp in readers[c].learned(engine.PlayerModel.from_dict(dict(base['gen9']['models'][guest], id=guest))).profiles
+                        if sp[0] not in ('card', 'flat')]
+                top = max(held, key=lambda sp: sp[1])[0]
+                om['profiles'] = [[top, 1.0]]
+                om.pop('experience', None)
+                readers['snapshot-one-profile'] = engine.player(one, str(mb.capsule))
+                print(f'{guest}: one-profile diagnostic reads it as {top}', file=sys.stderr)
             if c == 'arrival':
                 G.start(str(mb.capsule), man)              # the bidders: the bot's net and the guest's package
                 bidders = dict(G.g8.STATE['bidders'])
@@ -143,9 +162,9 @@ def main():
             tables = tables_for(G.deal(a.seed, k), a.bot, guest, bidders, gen5_arena.auction, rng)
             if not tables:
                 continue
-            for c, who, reader in [('any', a.control_bot, control_reader)] + [(c, a.bot, readers[c]) for c in conds]:
+            for c, who, reader in [('any', a.control_bot, control_reader)] + [(c, a.bot, readers[c]) for c in readers]:
                 rec = dict(candidate=who, opponent=guest, unique_tables=tables, bidding={f'native/{t[-1]}': dict(table=t) for t in tables})
-                row = dict(guest=guest, deal=k, condition=c, who=who, epoch=conds.get(c), gains=[])
+                row = dict(guest=guest, deal=k, condition=c, who=who, epoch=conds.get(c.split('-')[0]), gains=[])
                 try:
                     row['gains'] = [x['gain'] for x in pl.reading_gain(reader, rec, who, guest)]
                 except Exception as e:                          # counted and reported, never hidden
