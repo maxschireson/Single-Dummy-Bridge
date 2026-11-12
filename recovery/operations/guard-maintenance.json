@@ -1,6 +1,6 @@
 {
-  "status": "resuming-same-immutable-cohort",
-  "epoch": 1794461772.7552242,
+  "status": "active-verified",
+  "epoch": 1794461882.153336,
   "reason": "Verified authorized captured independent selfplay/BEN producer uses gen7-independent-selfplay-ben campaign; prefix check excludes its comparison boards from global stopping counts.",
   "peer_manifest": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00",
   "peer_feed": "arena-gen7-independent-selfplay-feed",
@@ -272,9 +272,9 @@
   "preserved_records": 214,
   "drained_inventory_sha256": "f2bd9c420056d7eb8f8fa098619f9e3bc5902f166ca4038109a6f3709a92cc33",
   "corrected_counts": {
-    "7s-32~6-32": 1478,
-    "7s-32~ben64": 557,
-    "7s-32~ben": 1033,
+    "7s-32~6-32": 1483,
+    "7s-32~ben64": 565,
+    "7s-32~ben": 1054,
     "7s-32~5RZ32": 1319,
     "7s-32~1": 1319
   },
@@ -293,5 +293,26 @@
     "completed": 214,
     "commit": "555b4c97dccc2d0eeb278596cb696cfc727647df",
     "branch": "arena-gen7-selfplay-capture-codex-20261112-feed"
+  },
+  "resumed_record": {
+    "index": 214,
+    "pair": "7s-32~6-32",
+    "gap_forks": 12,
+    "guess_fields": 1427
+  },
+  "preserved_records_reverified": 214,
+  "active_processes": {
+    "process.json": {
+      "pid": 33772,
+      "epoch": 1794461782.223727
+    },
+    "watchdog-process.json": {
+      "pid": 33761,
+      "epoch": 1794461773.5501473
+    },
+    "publisher-process.json": {
+      "pid": 33773,
+      "epoch": 1794461783.2344155
+    }
   }
 }
