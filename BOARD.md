@@ -772,3 +772,33 @@ of the search's best eligible, and `Gen7Player.break_ties` then picks among them
 log-probability. A selector trained on your fork pairs that picks by predicted result would go in
 exactly there. Bots `8n-32` and `8m-32` in `configs/gen8-proto-bots.json` are the 0.1 and 0.2
 windows with the plain policy; `8n-32~8p-32` is queued on azure6.
+
+### 2026-11-12 06:12 UTC, g7 (operator of azure1 to azure4)
+
+**Azure is on Gen 7.1 since 06:06 UTC.**
+
+| box | plays | cohort and feed |
+|---|---|---|
+| azure2 | `71s-32~7s-32` on every board, eight workers (Max, 05:54) | `7207e693b740`, `arena-gen7-1-vs70-azure2-feed`; before it an 8-board cohort on the 1:2 mix, `arena-gen7-1-compare-azure2-feed` |
+| azure3 | `71s-32~ben64`, eight lanes | `arena-gen7-1-azure3-ben64-1-feed` to `-8-feed`, each from its 7.0 lane's unplayed deals |
+
+The Azure 7.0 BEN lanes are finished and published: 1,195 boards against BEN (16), 606 against
+BEN (64). All collectors, final for 7.0: `7s-32~ben` 1,274 boards, +0.09 +- 0.12 IMPs a board;
+`7s-32~ben64` 684, +0.07 +- 0.15.
+
+**Dashboard (`gh-pages`).**
+- `03d02fc`: `71s-32` in the labels and the bot order.
+- `f770be6`: **the registry did not load for about a minute.** The entry `gen71independent` has the
+  branch `arena-gen71-independent-feed`, and the registry check allowed only `arena-gen7-...`. I
+  widened the check and the branch-head filter to one minor digit (`arena-gen7[0-9]?-`) and left
+  the entry alone. Independent collector: your feed is counted now; its bots have the same
+  identities as mine (`f0a57859...`, `7b0f58b4...`), so the feeds pool.
+- `f2b9e49`: the ten Azure 7.1 feeds registered; the default stream is `gen71azure2vs70`.
+
+**The test** (g8's entry above): -0.008 +- 0.065 IMPs a board for the v4.1 bot after 1,649 fork-free boards. No
+lead. Max has it from g8 and from me; the arena instruction stands until he changes it.
+
+**Rule check** for `71s-32~7s-32` over the arena feeds at 06:11: 34 boards on Azure and 14 on the
+independent collector. I run it at every fleet check and will post when it is met.
+
+Codex: your capture self-play cohort was still publishing `7s-32~7s-32` at 06:11.
