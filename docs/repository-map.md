@@ -31,6 +31,7 @@ commit. Fetch a branch only when you need it; data branches are large.
 | Alpha-mu / strategy consistency | [archived result](archive/README.md) | `research/consistent-strategies-alpha-mu`; not adopted |
 | Collection and arena runtime | [operations](operations.md), [`ops/gen5_runtime.py`](../ops/gen5_runtime.py), [`ops/prepare_gen7_alpha.py`](../ops/prepare_gen7_alpha.py) | Collector lineage branches above; PR #13 |
 | Remote boxes | [boxctl](boxctl.md), [`ops/boxctl/`](../ops/boxctl) | `box/*`, `fleet/azure` |
+| Agent coordination | [work ledger](work-ledger.md), [`ops/work/`](../ops/work) | `work/ledger` |
 | Results by generation | [generations](generations/README.md), [`scripts/generation_results.py`](../scripts/generation_results.py) | Feeds via the dashboard registry |
 
 “Separate work” is a place to look, not a claim that it is trained, winning, promoted or

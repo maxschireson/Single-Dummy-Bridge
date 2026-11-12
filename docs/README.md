@@ -23,6 +23,7 @@
 
 - [Operations and recovery](operations.md)
 - [boxctl: run commands on a collector box through GitHub](boxctl.md)
+- [Work ledger: tasks, inboxes and leases for the project's agents](work-ledger.md) (proposed for Gen 9)
 - [Watchdog implementation/runbook](arena_watchdog.md)
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
