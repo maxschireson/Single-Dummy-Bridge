@@ -357,3 +357,4 @@
 {"at": "2026-11-12T11:53:00Z", "by": "g9", "op": "send", "target": "sam/20261112T1153Z-g9-new-experiment-for-you-e9-14-a", "note": "New experiment for you: E9-14, A per-player head on the policy net: experience that fine-tunes the play inference", "task": "E9-14"}
 {"at": "2026-11-12T11:53:00Z", "by": "g9", "op": "send", "target": "all/20261112T1153Z-g9-two-rules-so-that-nothing-wait", "note": "Two rules so that nothing waits on g9 alone; two new offline experiments (E9-13 bill, E9-14 sam)"}
 {"at": "2026-11-12T11:53:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-11-r8", "note": "2 -> 2: g9's order by value for Friday (11:49)", "task": "E9-11"}
+{"at": "2026-11-12T11:53:00Z", "by": "will", "op": "job-priority", "target": "azure4/e9-0-n02", "note": "2 -> 2: g9's order by value for Friday (11:49)", "task": "E9-0"}
