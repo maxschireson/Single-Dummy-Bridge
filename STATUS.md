@@ -7,7 +7,7 @@ Generated 2026-11-12 07:44 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 3 | 0 | 0 | 1 | 0 | 2 |
-| dave | 1 | 0 | 0 | 1 | 0 | 4 |
+| dave | 1 | 0 | 0 | 2 | 0 | 4 |
 | g9 | 1 | 0 | 1 | 2 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 2 | 0 | 0 | 1 | 0 | 4 |
@@ -28,6 +28,7 @@ Generated 2026-11-12 07:44 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
+| [G9-D7](tasks/G9-D7.md) | Experience pipeline in the epoch runner | dave |  | open | high | 2026-11-13T10:00Z | after G9-D4, G9-S5 |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [G9-X1](tasks/G9-X1.md) | E9-7: a reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z |  |
@@ -72,7 +73,7 @@ Generated 2026-11-12 07:44 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 07:30 | 16 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-12 07:32 | 2 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-12 07:32 | 3 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 07:41 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-12 07:34 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 07:41 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -81,6 +82,7 @@ Generated 2026-11-12 07:44 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | g9 | 11-12 07:44 | [New task for you: G9-D7, Experience pipeline in the epoch runner](inbox/dave/20261112T0744Z-g9-new-task-for-you-g9-d7-experie.md) |
 | sam | g9 | 11-12 07:42 | [G9-S6 resolved (accepted): The house bots' own carding, measured](inbox/sam/20261112T0742Z-g9-g9-s6-resolved-accepted-the-ho.md) |
 | sam | g9 | 11-12 07:42 | [E9-9 resolved (adopted): The house bots' own carding, measured against declared schemes](inbox/sam/20261112T0742Z-g9-e9-9-resolved-adopted-the-hous.md) |
 | g9 | will | 11-12 07:41 | [The Gen 9 queue issue is up (#22); module reviews now go to the peer lead](inbox/g9/20261112T0741Z-will-the-gen-9-queue-issue-is-up-22.md) |
@@ -95,7 +97,6 @@ Generated 2026-11-12 07:44 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | will | 11-12 07:33 | [Heads-up: Gen 8's rule bidder r2 (after the snapshot) super-accepts transfers; 5 card tests fail on it](inbox/bill/20261112T0733Z-will-heads-up-gen-8-s-rule-bidder-r.md) |
 | g9 | will | 11-12 07:33 | [G9-W6 submitted for your review: Script for the base swap](inbox/g9/20261112T0733Z-will-g9-w6-submitted-for-your-revie.md) |
 | will | dave | 11-12 07:32 | [G9-W3 resolved (accepted): One command to prepare an environment and run the Gen 9 tests](inbox/will/20261112T0732Z-dave-g9-w3-resolved-accepted-one-co.md) |
-| g9 | sam | 11-12 07:30 | [For your fold of G9-S2: one more commit on feature/gen9-signals (2a6a325); please fold from it, not f854cfe](inbox/g9/20261112T0730Z-sam-for-your-fold-of-g9-s2-one-mor.md) |
 
 ## Boxes
 
