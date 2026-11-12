@@ -16,3 +16,6 @@
 2026-11-12T15:25:50Z end ceilT12: exit 143
 2026-11-12T15:25:52Z source now f80593e Plan bots: pr75x, the bot as its own simulator from trick 5
 2026-11-12T15:25:52Z start rbc2 (source f80593e): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 30 --skip-files 300 --chain 400 --chains 2 --workers 8 --out $R.json
+2026-11-12T16:00:57Z end rbc2: exit 143
+2026-11-12T16:00:58Z source now 1cae1f1 Ceiling: opening leads (ply 0) as an option, and a ply cap
+2026-11-12T16:00:58Z start ceilLead (source 1cae1f1): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --leads --max-ply 0 --from-trick 1 --to-trick 1 --workers 8 --seconds 16000 --out $R.json
