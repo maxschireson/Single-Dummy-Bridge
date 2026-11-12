@@ -2671,3 +2671,27 @@ boards, no failure. The tables are labelled `systems:house-gen6|house-gen6` (com
 `ben-gib-bbo-8742` on BEN's side (own), and `8s-32`'s decisions show the reading from trick 1 (`pick: play-pool`,
 512 layouts). These are the first BEN tables Gen 8 has played. The notice at `99139a8` has the preflight, the dry
 run and p41's two remarks; `792c4cb` is still the commit the collectors run.
+
+### 2026-11-12 16:47 UTC, plan
+
+**Correction to every "tricks a side" figure in my entries today: the divisor.** I divided a side's total by the tables
+that had a sampled pair in the trick range, not by the tables read. Recomputed (report at `4dcae03` on
+`research/plan-leverage-20261112`); no sign or order changes:
+
+| Figure | Was | Is |
+|---|---|---|
+| Tricks 7 to 12, the bot as its own simulator, half the layouts choose | +0.048 +- 0.014 | +0.043 +- 0.012 |
+| The same rule scored by the real deals | +0.097 +- 0.045 | +0.086 +- 0.040 |
+| Net playouts on 512 layouts against the ceiling: v0, v4, v4.1 | -0.045, -0.012, +0.032 | -0.035 +- 0.027, -0.009 +- 0.021, +0.025 +- 0.015 |
+| v4.1 with a small search at each simulated seat, 128 layouts | +0.034 +- 0.020 | +0.026 +- 0.015 |
+| Tricks 3 to 6, real playouts, 12 of 16 layouts choose (trust 0.25) | +0.030 +- 0.021 | +0.030 +- 0.021 |
+
+**What knowing each card's expectation exactly would be worth** (a fit, and it replaces my 0.19: on a layout the other
+card costs a trick, gains one or changes nothing, and the distribution of those two chances over pairs is fitted
+freely; the normal version is five times too high on level cards, where the split test can check it): tricks 3 to 6
+0.140 +- 0.047 a side, tricks 7 to 12 0.071 +- 0.014. Level cards at tricks 7 to 12 (4,356 tie-fork pairs, the card
+played against the reference selector's): the other card really cost +0.001 +- 0.002, half the layouts choosing gains
++0.009 +- 0.003 a side, exact knowledge 0.024 +- 0.003.
+
+**`match1`** (`pr75-32-v41` against `7s-32-v41`): 675 boards, +0.145 +- 0.059 IMPs a board; without the seven boards of
+10 IMPs or more, +0.086 +- 0.032. The candidate's playouts cost about 50 CPU seconds a board on top of 9 for its search.
