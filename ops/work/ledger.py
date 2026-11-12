@@ -1,44 +1,41 @@
 #!/usr/bin/env python3
-"""work ledger: tasks, inboxes and leases for the agents of this project, kept on a git branch.
+"""work ledger: the Gen 9 team's tasks, experiments and messages, kept on a git branch.
 
-Every agent (a Claude session, a person, a script) names itself with --as NAME or $WORK_AGENT.
-State lives on branch $WORK_BRANCH (default work/ledger) of $WORK_REPO (default the project's
-GitHub repository). Each change is one commit made on the current tip and pushed without force;
-if someone else pushed first, the change is re-read and re-applied, so two agents can never both
-check out the same task or hold the same lease. Protocol: docs/work-ledger.md.
+Files use the team's format (README.md on the ledger branch): `tasks/<ID>.md` and
+`experiments/<ID>.md` with a `key: value` header between `---` lines and markdown sections, and
+messages `inbox/<name>/<stamp>-<from>-<slug>.md` that are never edited. Every change is one
+commit made on the branch's current tip and pushed without force; if someone else pushed first,
+the change is re-read and re-applied with its checks, so two agents can never both lease one
+task. STATUS.md is regenerated inside the same commit. Name yourself with --as NAME or $WORK_AGENT.
 
-  ledger.py init                                    create the branch (once)
-  ledger.py hello --role TEXT [--session URL]       register yourself, or refresh last_seen
-  ledger.py status                                  summary; the branch's STATUS.md is the same view
-  ledger.py watch [--all]                           what changed since you last looked, and your unread mail
+  ledger.py hello --role TEXT [--session URL]      register, or refresh your last-seen time
+  ledger.py watch                                  changes since you last looked, unread mail, your leases
+  ledger.py status                                 the STATUS.md view
 
-  ledger.py add TITLE --kind K [--for AGENT] [--priority p1] [--depends T001,T002]
-                [--spec TEXT | --spec-file PATH] [--effort HOURS] [--boxes N --box-hours H]
-  ledger.py tasks [--state S] [--for AGENT] [--mine]
-  ledger.py next [--for AGENT]                      open tasks you could check out now, best first
-  ledger.py show ID [--json]
-  ledger.py claim ID [--hours 4] [--force] [--takeover]     check out
-  ledger.py renew ID [--hours 4]
-  ledger.py release ID [--note TEXT]                check back in, unfinished
-  ledger.py review ID [--note TEXT] [--output ...]  check in for review; the task's author is told
-  ledger.py done ID --result TEXT [--output KIND=REF ...]
-  ledger.py fail ID --result TEXT [--output ...]
-  ledger.py block ID --note TEXT                    ledger.py reopen ID | cancel ID [--note]
-  ledger.py note ID TEXT                            ledger.py edit ID [--priority/--for/--title/--depends/--spec]
+  ledger.py tasks [--owner N] [--state S] [--mine] ledger.py next      ledger.py show ID
+  ledger.py new TITLE --area A --kind K --owner N --priority P [--due T] [--depends IDS]
+                [--goal TEXT --done-when TEXT --context TEXT | --body-file PATH] [--proposed] [--id ID]
+  ledger.py lease ID [--hours H<=4] [--force]      check out (also renews your own lease)
+  ledger.py renew ID [--hours H]                   ledger.py release ID --note TEXT   (give it back)
+  ledger.py submit ID --note TEXT [--branch B] [--commit SHA]    check in for review
+  ledger.py resolve ID --resolution R [--note TEXT]              reviewer: accepted|dropped|superseded,
+                                                   experiments adopted|rejected|inconclusive|retired
+  ledger.py reopen ID --note TEXT [--same-holder]  ledger.py block ID --note TEXT
+  ledger.py log ID TEXT                            ledger.py set ID KEY=VALUE ...   ledger.py edit ID --file PATH
 
-  ledger.py send TO SUBJECT (--body TEXT | --file PATH) [--task ID] [--reply-to MSGID]   TO may be "all"
-  ledger.py inbox [--all] [--agent NAME]            ledger.py read MSGID   (prints it and marks it read)
+  ledger.py send TO SUBJECT (--body TEXT | --file PATH) [--task ID] [--reply-to MSG]   TO may be "all"
+  ledger.py inbox [--all] [--agent N]              ledger.py read MSG        ledger.py ack   (all read)
 
-  ledger.py lease RESOURCE --hours H --purpose TEXT [--task ID] [--takeover]
-  ledger.py unlease RESOURCE                        ledger.py leases
-  ledger.py dispatch ID BOX (--cmd TEXT | --file PATH) [--slug S] [--timeout SEC]
-                                                    queue a boxctl command for a task, if you hold box:BOX
+  ledger.py reserve RESOURCE --hours H --purpose TEXT [--task ID]    ledger.py unreserve RESOURCE
+  ledger.py fleet                                  box heartbeats and the board's allocation, into STATUS.md
+  ledger.py dispatch ID BOX (--cmd TEXT | --file PATH) [--timeout S] queue a boxctl command for a task you hold
+  ledger.py put PATH --file SRC                    write an unmanaged file (README.md, ROSTER.md, notes)
+  ledger.py import-team DIR                        one-off: copy a team/gen9 checkout's files in
+  ledger.py check                                  validate every header; exit 1 if one is malformed
+  ledger.py export                                 everything as JSON
 
-  ledger.py fleet                                   read every box's heartbeat and the board's allocation table into
-                                                    fleet.json, shown in STATUS.md (read-only for the boxes and the board)
-  ledger.py export                                  the whole ledger as JSON, for other tools
-
-$WORK_TRAILERS, if set, is appended to each commit message (for session attribution).
+Environment: WORK_REPO, WORK_BRANCH (default work/ledger), WORK_LEAD (default g9), WORK_TRAILERS
+(appended to commit messages), WORK_CACHE. Exit status 3 means the ledger refused the change.
 """
 from __future__ import annotations
 
@@ -55,82 +52,86 @@ from pathlib import Path
 
 DEFAULT_REPO = "https://github.com/maxschireson/single-dummy-bridge"
 DEFAULT_BRANCH = "work/ledger"
-NAME_RE = re.compile(r"^[a-z][a-z0-9-]{0,31}$")
-TASK_RE = re.compile(r"^T[0-9]{3,6}$")
+NAME_RE = re.compile(r"^[a-z][a-z0-9]{0,31}$")
+ID_RE = re.compile(r"^[A-Z][A-Z0-9]*-[A-Z]?[0-9]{1,4}$")
 RESOURCE_RE = re.compile(r"^[a-z][a-z0-9-]{0,31}(:[A-Za-z0-9._-]{1,64})?$")
-STATES = ("open", "claimed", "review", "blocked", "done", "failed", "cancelled")
-FINAL = ("done", "failed", "cancelled")
-KINDS = ("design", "code", "experiment", "research", "review", "ops", "docs")
-PRIORITIES = ("p0", "p1", "p2", "p3")
+MSG_RE = re.compile(r"^(\d{8}T\d{4,6}Z)-([a-z][a-z0-9]*)-(.+)\.md$")
 BROADCAST = "all"
+POOL = "pool"
 
-README = """# Work ledger
-
-Tasks, inboxes and resource leases for the agents working on this project. Written only by
-`ops/work/ledger.py` (on the source branch that carries it); read `STATUS.md` for the current view.
-Protocol: `docs/work-ledger.md`. This is a channel branch, like `box/*` and the feed branches:
-never merge it into source, never force-push it.
-
-| Path | What |
-| --- | --- |
-| `STATUS.md` | Generated after every change: agents, unread mail, tasks by state, leases |
-| `agents/<name>.json` | Who is working here: role, session, last seen |
-| `tasks/<id>.json` | One task: spec, state, claim (who has it checked out, until when), events, outputs |
-| `inbox/<name>/<id>.md` | Messages to one agent; `inbox/all/` is for everyone |
-| `leases/<resource>.json` | Who holds a resource (for example `box:azure2`) and until when |
-| `log/<date>.jsonl` | One line per change |
-| `fleet.json` | Last `ledger.py fleet` reading: each box's heartbeat and the board's allocation table |
-"""
+STATES = ("leased", "submitted", "blocked", "open", "proposed", "resolved")  # display order, as tools/status.py
+REQUIRED = ("id", "title", "area", "kind", "owner", "state", "priority")
+HEADER_ORDER = ("id", "title", "area", "kind", "owner", "state", "holder", "lease_until", "priority",
+                "depends", "due", "branch", "resolution")
+AREAS = {"architecture": "A", "bidding": "B", "signals": "S", "arena": "D", "workflow": "W", "cross": "X"}
+KINDS = ("design", "module", "experiment", "review", "ops")
+PRIORITIES = ("high", "medium", "low")
+RESOLUTIONS = {"tasks": ("accepted", "dropped", "superseded"), "experiments": ("adopted", "rejected", "inconclusive", "retired")}
+LIFECYCLE = ("state", "holder", "lease_until", "resolution")  # changed only by the lifecycle commands
+MAX_LEASE_HOURS = 4
+GRACE = timedelta(minutes=30)
+EXPERIMENT_SECTIONS = ("Hypothesis", "Mechanism", "Primary metric and population", "Regression slices",
+                       "Compute cap", "Stopping rule", "Result")
 
 
 class Conflict(Exception):
-    """A precondition failed on the current tip: reported to the caller, never retried."""
+    """A check failed on the current tip: reported, never retried."""
+
+
+class Malformed(Conflict):
+    pass
 
 
 def now() -> datetime:
-    return datetime.now(timezone.utc).replace(microsecond=0)
+    return datetime.now(timezone.utc).replace(second=0, microsecond=0)
 
 
-def iso(t: datetime) -> str:
-    return t.strftime("%Y-%m-%dT%H:%M:%SZ")
+def hm(t: datetime) -> str:
+    return t.strftime("%Y-%m-%dT%H:%MZ")
 
 
 def parse_time(s: str) -> datetime:
-    return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    for f in ("%Y-%m-%dT%H:%MZ", "%Y-%m-%dT%H:%M:%SZ"):
+        try:
+            return datetime.strptime(s, f).replace(tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    raise ValueError(f"not a UTC time: {s!r} (want 2026-11-12T10:30Z)")
 
 
-def short(t: str | None) -> str:
-    return "" if not t else t[5:16].replace("T", " ")
+def short(s: str | None) -> str:
+    return "" if not s else s[5:16].replace("T", " ")
 
 
-def slugify(text: str, n: int = 40) -> str:
+def slugify(text: str, n: int = 30) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:n].strip("-") or "msg"
+
+
+def split_ids(s: str | None) -> list[str]:
+    return [x for x in re.split(r"[ ,]+", s or "") if x]
 
 
 # ---------------------------------------------------------------- git storage
 
 class Store:
-    """One branch of one remote, kept in a private bare cache so no checkout is touched."""
+    """One branch of one remote, in a private bare cache, so no checkout is touched."""
 
     def __init__(self, url: str, branch: str):
         self.url, self.branch = url, branch
-        self.ref = f"refs/heads/{branch}"
-        self.local = f"refs/remotes/origin/{branch}"
-        cache = Path(os.environ.get("WORK_CACHE", "~/.cache/workledger")).expanduser()
-        self.cache = cache
-        self.git_dir = cache / (hashlib.sha256(url.encode()).hexdigest()[:16] + ".git")
+        self.ref, self.local = f"refs/heads/{branch}", f"refs/remotes/origin/{branch}"
+        self.cache = Path(os.environ.get("WORK_CACHE", "~/.cache/workledger")).expanduser()
+        self.git_dir = self.cache / (hashlib.sha256(url.encode()).hexdigest()[:16] + ".git")
         if not (self.git_dir / "HEAD").exists():
-            cache.mkdir(parents=True, exist_ok=True)
+            self.cache.mkdir(parents=True, exist_ok=True)
             subprocess.run(["git", "init", "--bare", "-q", str(self.git_dir)], check=True)
         self.git("config", "remote.origin.url", url)
-        self.before_push = None  # test hook: called with the new commit before it is pushed
+        self.before_push = None  # test hook, called with the new commit before it is pushed
 
     def git(self, *args: str, input: bytes | None = None, check: bool = True, env: dict | None = None,
             timeout: float = 300) -> subprocess.CompletedProcess:
         e = dict(os.environ, GIT_TERMINAL_PROMPT="0")
         e.update(env or {})
-        r = subprocess.run(["git", "--git-dir", str(self.git_dir), *args], input=input,
-                           capture_output=True, timeout=timeout, env=e)
+        r = subprocess.run(["git", "--git-dir", str(self.git_dir), *args], input=input, capture_output=True, timeout=timeout, env=e)
         if check and r.returncode != 0:
             raise SystemExit(f"git {args[0]} failed: {r.stderr.decode(errors='replace').strip()}")
         return r
@@ -151,17 +152,20 @@ class Store:
     def read(self, tip: str | None) -> dict[str, bytes]:
         if not tip:
             return {}
-        listing = self.git("ls-tree", "-r", "-z", tip).stdout.decode().split("\0")
-        entries = [(line.split("\t", 1)[1], line.split()[2]) for line in listing if line]
+        entries = []
+        for line in self.git("ls-tree", "-r", "-z", tip).stdout.decode().split("\0"):
+            if line:
+                meta, path = line.split("\t", 1)
+                entries.append((path, meta.split()[2]))
         if not entries:
             return {}
-        batch = self.git("cat-file", "--batch", input=("\n".join(sha for _, sha in entries) + "\n").encode()).stdout
+        batch = self.git("cat-file", "--batch", input=("\n".join(s for _, s in entries) + "\n").encode()).stdout
         files, pos = {}, 0
-        for path, sha in entries:
+        for path, _ in entries:
             nl = batch.index(b"\n", pos)
             size = int(batch[pos:nl].split()[2])
             files[path] = batch[nl + 1:nl + 1 + size]
-            pos = nl + 1 + size + 1
+            pos = nl + 2 + size
         return files
 
     def commit(self, tip: str | None, changes: dict[str, bytes | None], message: str, author: str) -> str:
@@ -169,24 +173,19 @@ class Store:
         env = {"GIT_INDEX_FILE": str(index), "GIT_AUTHOR_NAME": author, "GIT_AUTHOR_EMAIL": "work-ledger@invalid",
                "GIT_COMMITTER_NAME": author, "GIT_COMMITTER_EMAIL": "work-ledger@invalid"}
         try:
-            if tip:
-                self.git("read-tree", tip, env=env)
-            else:
-                self.git("read-tree", "--empty", env=env)
+            self.git("read-tree", *([tip] if tip else ["--empty"]), env=env)
             lines = []
             for path, data in changes.items():
                 if data is None:
-                    lines.append(f"0 {'0' * 40}\t{path}")  # mode 0 removes the entry; works without a work tree
+                    lines.append(f"0 {'0' * 40}\t{path}")  # mode 0 removes the entry
                 else:
-                    sha = self.out("hash-object", "-w", "--stdin", input=data)
-                    lines.append(f"100644 {sha}\t{path}")
+                    lines.append(f"100644 {self.out('hash-object', '-w', '--stdin', input=data)}\t{path}")
             if lines:
                 self.git("update-index", "--add", "--index-info", input=("\n".join(lines) + "\n").encode(), env=env)
             tree = self.out("write-tree", env=env)
         finally:
             index.unlink(missing_ok=True)
-        parents = ["-p", tip] if tip else []
-        return self.out("commit-tree", tree, *parents, "-F", "-", input=message.encode(), env=env)
+        return self.out("commit-tree", tree, *(["-p", tip] if tip else []), "-F", "-", input=message.encode(), env=env)
 
     def push(self, sha: str) -> bool:
         if self.before_push:
@@ -201,36 +200,150 @@ class Store:
         raise SystemExit(f"git push to {self.branch} failed: {err.strip()}")
 
 
+# ---------------------------------------------------------------- task and experiment files
+
+class Doc:
+    """A task or experiment file. Header lines that are not changed are written back byte for byte."""
+
+    def __init__(self, path: str, text: str):
+        self.path, self.folder = path, path.split("/", 1)[0]
+        lines = text.split("\n")
+        if not lines or lines[0].strip() != "---":
+            raise Malformed(f"{path}: no header")
+        self.head: list[list] = []  # [key, value, original line or None]
+        for i, line in enumerate(lines[1:], 1):
+            if line.strip() == "---":
+                self.body = "\n".join(lines[i + 1:])
+                break
+            if ":" not in line:
+                raise Malformed(f"{path}: bad header line {line!r}")
+            k, _, v = line.partition(":")
+            self.head.append([k.strip(), v.split(" #")[0].strip(), line])
+        else:
+            raise Malformed(f"{path}: header is not closed")
+
+    def get(self, k: str) -> str:
+        for row in self.head:
+            if row[0] == k:
+                return row[1]
+        return ""
+
+    def set(self, k: str, v: str) -> None:
+        for row in self.head:
+            if row[0] == k:
+                if row[1] != v:
+                    row[1], row[2] = v, None
+                return
+        pos = len(self.head)
+        if k in HEADER_ORDER:
+            later = HEADER_ORDER[HEADER_ORDER.index(k) + 1:]
+            pos = next((i for i, row in enumerate(self.head) if row[0] in later), pos)
+        self.head.insert(pos, [k, v, None])
+
+    def validate(self) -> "Doc":
+        for k in REQUIRED:
+            if not self.get(k):
+                raise Malformed(f"{self.path}: header has no {k}")
+        stem = self.path.rsplit("/", 1)[-1][:-3]
+        if self.get("id") != stem:
+            raise Malformed(f"{self.path}: id {self.get('id')!r} differs from the file name")
+        if not ID_RE.match(self.get("id")):
+            raise Malformed(f"{self.path}: id {self.get('id')!r} is not like G9-B1 or E9-3")
+        if self.get("state") not in STATES:
+            raise Malformed(f"{self.path}: unknown state {self.get('state')!r}")
+        for k, allowed in (("kind", KINDS), ("priority", PRIORITIES)):
+            if self.get(k) not in allowed:
+                raise Malformed(f"{self.path}: {k} {self.get(k)!r} is not one of {', '.join(allowed)}")
+        if self.get("area") not in AREAS:
+            raise Malformed(f"{self.path}: area {self.get('area')!r} is not one of {', '.join(AREAS)}")
+        for k in ("owner", "holder"):
+            v = self.get(k)
+            if v and not NAME_RE.match(v):
+                raise Malformed(f"{self.path}: {k} {v!r} is not a roster name")
+        for k in ("lease_until", "due"):
+            if self.get(k):
+                try:
+                    parse_time(self.get(k))
+                except ValueError as e:
+                    raise Malformed(f"{self.path}: {k}: {e}")
+        res = self.get("resolution")
+        if res and res not in RESOLUTIONS.get(self.folder, ()):
+            raise Malformed(f"{self.path}: resolution {res!r} is not one of {', '.join(RESOLUTIONS.get(self.folder, ()))}")
+        if self.get("state") == "leased" and not (self.get("holder") and self.get("lease_until")):
+            raise Malformed(f"{self.path}: a leased task needs holder and lease_until")
+        for d in split_ids(self.get("depends")):
+            if not ID_RE.match(d):
+                raise Malformed(f"{self.path}: depends names {d!r}")
+        return self
+
+    def add_log(self, at: datetime, who: str, text: str) -> None:
+        line = f"- {hm(at)} {who}: {text}"
+        lines = self.body.split("\n")
+        start = next((i for i, l in enumerate(lines) if l.strip().lower() == "## log"), None)
+        if start is None:
+            self.body = self.body.rstrip("\n") + f"\n\n## Log\n\n{line}\n"
+            return
+        end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("## ")), len(lines))
+        last = max([i for i in range(start + 1, end) if lines[i].strip()] or [start])
+        lines.insert(last + 1, line if last > start else "\n" + line)
+        self.body = "\n".join(lines)
+        if not self.body.endswith("\n"):
+            self.body += "\n"
+
+    def section(self, name: str) -> str:
+        m = re.search(rf"^## {re.escape(name)}\s*\n(.*?)(?=^## |\Z)", self.body, re.S | re.M | re.I)
+        return m.group(1).strip() if m else ""
+
+    def render(self) -> bytes:
+        head = "".join((row[2] if row[2] is not None else f"{row[0]}: {row[1]}") + "\n" for row in self.head)
+        return f"---\n{head}---\n{self.body}".encode()
+
+    def lease_lapsed(self, at: datetime) -> bool:
+        return self.get("state") == "leased" and bool(self.get("lease_until")) and parse_time(self.get("lease_until")) <= at
+
+
+# ---------------------------------------------------------------- messages
+
+def parse_message(path: str, data: bytes) -> dict:
+    name = path.rsplit("/", 1)[-1]
+    to = path.split("/")[1]
+    m = MSG_RE.match(name)
+    text = data.decode(errors="replace")
+    msg = dict(id=name[:-3], path=path, to=to, stamp=m.group(1) if m else "", **{"from": m.group(2) if m else ""})
+    if text.startswith("---\n") and "\n---\n" in text[4:]:  # the early ledger format, with front matter
+        end = text.index("\n---\n", 4)
+        for line in text[4:end].splitlines():
+            k, _, v = line.partition(":")
+            if k.strip() in ("from", "subject", "task", "reply_to"):
+                msg[k.strip()] = v.strip()
+        text = text[end + 5:]
+    lines = [l for l in text.strip("\n").split("\n")]
+    msg.setdefault("subject", next((l.strip() for l in lines if l.strip()), ""))
+    msg["body"] = text.strip("\n")
+    if "task" not in msg:
+        t = re.search(r"\bTask ([A-Z][A-Z0-9]*-[A-Z]?\d+)\.", text[:600])
+        if t:
+            msg["task"] = t.group(1)
+    return msg
+
+
+def format_message(sender: str, at: datetime, subject: str, body: str, task: str | None, reply_to: str | None) -> bytes:
+    sig = f"{sender}, {at.day} {at:%b %H:%M} UTC."
+    if task:
+        sig += f" Task {task}."
+    if reply_to:
+        sig += f" Reply to {reply_to}."
+    return f"{subject.strip()}\n\n{sig}\n\n{body.strip()}\n".encode()
+
+
 # ---------------------------------------------------------------- ledger state
 
-def parse_message(data: bytes) -> dict:
-    text = data.decode()
-    head, body = {}, text
-    if text.startswith("---\n"):
-        end = text.find("\n---\n", 4)
-        if end > 0:
-            for line in text[4:end].splitlines():
-                if ": " in line or line.endswith(":"):
-                    k, _, v = line.partition(":")
-                    head[k.strip()] = v.strip()
-            body = text[end + 5:]
-    head["read_by"] = [x for x in re.split(r"[ ,]+", head.get("read_by", "")) if x]
-    head["body"] = body.strip("\n")
-    return head
-
-
-def format_message(m: dict) -> bytes:
-    keys = ("id", "from", "to", "subject", "task", "reply_to", "sent")
-    head = "".join(f"{k}: {m[k]}\n" for k in keys if m.get(k))
-    head += f"read_by: {', '.join(m.get('read_by', []))}\n"
-    return f"---\n{head}---\n\n{m['body'].rstrip()}\n".encode()
-
-
 class State:
-    def __init__(self, files: dict[str, bytes], agent: str, at: datetime):
-        self.files, self.agent, self.at = files, agent, at
+    def __init__(self, files: dict[str, bytes], agent: str, at: datetime, lead: str):
+        self.files, self.agent, self.at, self.lead = files, agent, at, lead
         self.changes: dict[str, bytes | None] = {}
         self.events: list[dict] = []
+        self.notes: list[str] = []  # printed to the caller after a successful change
 
     def get(self, path: str) -> bytes | None:
         return self.changes[path] if path in self.changes else self.files.get(path)
@@ -247,507 +360,170 @@ class State:
         return json.loads(d) if d is not None else None
 
     def save(self, path: str, obj: dict) -> None:
-        self.changes[path] = (json.dumps(obj, indent=1, sort_keys=False) + "\n").encode()
+        self.changes[path] = (json.dumps(obj, indent=1) + "\n").encode()
 
     def put(self, path: str, data: bytes | None) -> None:
         self.changes[path] = data
 
-    # collections
+    def docs(self, folder: str | None = None) -> tuple[dict[str, Doc], list[str]]:
+        out, errors = {}, []
+        for f in ([folder] if folder else ["tasks", "experiments"]):
+            for p in self.paths(f + "/"):
+                if p.endswith(".md"):
+                    try:
+                        d = Doc(p, self.get(p).decode()).validate()
+                        out[d.get("id")] = d
+                    except Malformed as e:
+                        errors.append(str(e))
+        return out, errors
+
+    def doc(self, did: str) -> Doc:
+        for f in ("tasks", "experiments"):
+            data = self.get(f"{f}/{did}.md")
+            if data is not None:
+                return Doc(f"{f}/{did}.md", data.decode()).validate()
+        raise Conflict(f"no task or experiment {did}")
+
+    def save_doc(self, d: Doc) -> None:
+        d.validate()
+        self.put(d.path, d.render())
+
     def agents(self) -> dict[str, dict]:
         return {p[7:-5]: self.load(p) for p in self.paths("agents/") if p.endswith(".json")}
 
-    def tasks(self) -> dict[str, dict]:
-        return {p[6:-5]: self.load(p) for p in self.paths("tasks/") if p.endswith(".json")}
+    def reservations(self) -> dict[str, dict]:
+        return {v["resource"]: v for v in (self.load(p) for p in self.paths("reservations/") if p.endswith(".json"))}
 
-    def leases(self) -> dict[str, dict]:
-        return {v["resource"]: v for v in (self.load(p) for p in self.paths("leases/") if p.endswith(".json"))}
+    def messages(self) -> list[dict]:
+        return [parse_message(p, self.get(p)) for p in self.paths("inbox/") if p.endswith(".md")]
 
-    def messages(self, box: str | None = None) -> list[tuple[str, dict]]:
-        prefix = f"inbox/{box}/" if box else "inbox/"
-        return [(p, parse_message(self.get(p))) for p in self.paths(prefix) if p.endswith(".md")]
+    def unread(self, who: str) -> list[dict]:
+        a = self.load(f"agents/{who}.json") or {}
+        until, seen = a.get("read_until", ""), set(a.get("read_ids", []))
+        return sorted([m for m in self.messages() if m["to"] in (who, BROADCAST) and m["from"] != who
+                       and m["stamp"] > until and m["id"] not in seen], key=lambda m: m["id"])
 
-    def task(self, tid: str) -> dict:
-        t = self.load(f"tasks/{tid}.json")
-        if not t:
-            raise Conflict(f"no task {tid}")
-        return t
-
-    def save_task(self, t: dict) -> None:
-        self.save(f"tasks/{t['id']}.json", t)
-
-    def event(self, op: str, target: str, note: str = "", **extra) -> dict:
-        e = dict(at=iso(self.at), by=self.agent, op=op, target=target)
+    def event(self, op: str, target: str, note: str = "", **extra) -> None:
+        e = dict(at=self.at.strftime("%Y-%m-%dT%H:%M:%SZ"), by=self.agent, op=op, target=target)
         if note:
-            e["note"] = note
+            e["note"] = note[:300]
         e.update({k: v for k, v in extra.items() if v not in (None, "", [])})
         self.events.append(e)
-        return e
-
-    def task_event(self, t: dict, op: str, note: str = "", **extra) -> None:
-        e = self.event(op, t["id"], note, **extra)
-        t.setdefault("events", []).append({k: v for k, v in e.items() if k != "target"})
 
     def send(self, to: str, subject: str, body: str, task: str | None = None, reply_to: str | None = None) -> str:
-        mid = f"{self.at:%Y%m%dT%H%M%SZ}-{self.agent}-{slugify(subject, 30)}"
-        n, base = 1, mid
+        base = f"{self.at:%Y%m%dT%H%MZ}-{self.agent}-{slugify(subject)}"
+        mid, n = base, 1
         while self.get(f"inbox/{to}/{mid}.md") is not None:
             n += 1
             mid = f"{base}-{n}"
-        m = dict(id=mid, **{"from": self.agent}, to=to, subject=subject, task=task, reply_to=reply_to,
-                 sent=iso(self.at), read_by=[], body=body)
-        self.put(f"inbox/{to}/{mid}.md", format_message(m))
+        self.put(f"inbox/{to}/{mid}.md", format_message(self.agent, self.at, subject, body, task, reply_to))
         self.event("send", f"{to}/{mid}", subject, task=task)
         return mid
 
     def flush_log(self) -> None:
-        if not self.events:
-            return
-        path = f"log/{self.at:%Y-%m-%d}.jsonl"
-        old = self.get(path) or b""
-        self.put(path, old + b"".join((json.dumps(e) + "\n").encode() for e in self.events))
+        if self.events:
+            path = f"log/{self.at:%Y-%m-%d}.jsonl"
+            self.put(path, (self.get(path) or b"") + b"".join((json.dumps(e) + "\n").encode() for e in self.events))
 
 
-def claim_live(t: dict, at: datetime) -> bool:
-    c = t.get("claim")
-    return bool(c) and parse_time(c["expires"]) > at
-
-
-def lease_live(l: dict, at: datetime) -> bool:
-    return parse_time(l["expires"]) > at
-
-
-def display_state(t: dict, at: datetime) -> str:
-    s = t["state"]
-    if s in ("claimed", "review") and t.get("claim") and not claim_live(t, at):
-        return s + " (lapsed)"
-    return s
-
-
-def deps_pending(st: State, t: dict) -> list[str]:
+def deps_unresolved(st: State, d: Doc) -> list[str]:
     out = []
-    for d in t.get("depends_on", []):
-        dt = st.load(f"tasks/{d}.json")
-        if not dt or dt["state"] != "done":
-            out.append(d)
+    for dep in split_ids(d.get("depends")):
+        try:
+            dd = st.doc(dep)
+            if dd.get("state") != "resolved" or dd.get("resolution") in ("dropped",):
+                out.append(dep)
+        except Conflict:
+            out.append(dep)
     return out
+
+
+def note_for(st: State, d: Doc, at: datetime) -> str:
+    s = d.get("state")
+    if s == "resolved":
+        res = d.get("resolution")
+        if d.folder == "experiments":
+            line = next((l.strip() for l in d.section("Result").splitlines() if l.strip()), "")
+            if line and line != "_not yet_":
+                res = f"{res}. {line}".strip(". ")
+        return res
+    if s == "leased" and d.get("lease_until"):
+        lu = parse_time(d.get("lease_until"))
+        if lu <= at:
+            return "lease expired" + (", may be taken over" if at - lu >= GRACE else "")
+    if s not in ("submitted",) and d.get("due") and parse_time(d.get("due")) < at:
+        return "past due"
+    if s in ("open", "proposed", "blocked"):
+        pend = deps_unresolved(st, d)
+        if pend:
+            return "after " + ", ".join(pend)
+    return ""
 
 
 # ---------------------------------------------------------------- rendering
 
 def render_status(st: State) -> bytes:
     at = st.at
-    agents, tasks, leases = st.agents(), st.tasks(), st.leases()
-    msgs = st.messages()
-    L = [f"# Work ledger status", "",
-         f"Generated {iso(at)} after a change by `{st.agent}`. Times are UTC. "
-         f"Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.", ""]
+    docs, errors = st.docs()
+    order = {s: i for i, s in enumerate(STATES)}
+    rank = {p: i for i, p in enumerate(PRIORITIES)}
+    key = lambda d: (order[d.get("state")], rank.get(d.get("priority"), 9), d.get("id"))
+    tasks = sorted([d for d in docs.values() if d.folder == "tasks"], key=key)
+    exps = sorted([d for d in docs.values() if d.folder == "experiments"], key=key)
+    L = ["# Gen 9 status", "",
+         f"Generated {at:%Y-%m-%d %H:%M} UTC by `ops/work/ledger.py` after a change by `{st.agent}`. "
+         f"Do not edit by hand. How to work here: [README.md](README.md).", ""]
 
+    counts: dict[str, dict[str, int]] = {}
+    for d in tasks:
+        counts.setdefault(d.get("owner"), {}).setdefault(d.get("state"), 0)
+        counts[d.get("owner")][d.get("state")] += 1
+    L += ["## Tasks by owner", "", "| Owner | " + " | ".join(STATES) + " |", "| --- |" + " ---: |" * len(STATES)]
+    for o in sorted(counts):
+        L.append(f"| {o} | " + " | ".join(str(counts[o].get(s, 0)) for s in STATES) + " |")
+    L.append("")
+
+    def table(rows):
+        if not rows:
+            return ["_none_", ""]
+        out = ["| Id | Title | Owner | Holder | State | Priority | Due | Note |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]
+        for d in rows:
+            lu = f" until {short(d.get('lease_until'))}" if d.get("state") == "leased" else ""
+            out.append(f"| [{d.get('id')}]({d.path}) | {d.get('title')} | {d.get('owner')} | {d.get('holder')}{lu} | "
+                       f"{d.get('state')} | {d.get('priority')} | {d.get('due')} | {note_for(st, d, at).replace('|', '/')} |")
+        return out + [""]
+    L += ["## Tasks", ""] + table(tasks) + ["## Experiments", ""] + table(exps)
+
+    agents = st.agents()
     L += ["## Agents", "", "| Agent | Role | Last seen | Unread | Session |", "| --- | --- | --- | ---: | --- |"]
     for name, a in sorted(agents.items()):
-        unread = sum(1 for p, m in msgs if (p.startswith(f"inbox/{name}/") or p.startswith(f"inbox/{BROADCAST}/"))
-                     and name not in m["read_by"] and m.get("from") != name)
         sess = a.get("session") or ""
-        sess = f"[link]({sess})" if sess.startswith("http") else sess
-        L.append(f"| {name} | {a.get('role', '')} | {short(a.get('last_seen'))} | {unread} | {sess} |")
+        L.append(f"| {name} | {a.get('role', '')} | {short(a.get('last_seen'))} | {len(st.unread(name))} | "
+                 f"{'[link](' + sess + ')' if sess.startswith('http') else sess} |")
     L.append("")
 
-    order = {"claimed": 0, "review": 1, "blocked": 2, "open": 3}
-    active = [t for t in tasks.values() if t["state"] not in FINAL]
-    active.sort(key=lambda t: (order.get(t["state"], 9), t.get("priority", "p2"), t["id"]))
-    L += ["## Tasks in progress and open", ""]
-    if active:
-        L += ["| Id | Pri | State | For | Held by, until | Needs | Title |", "| --- | --- | --- | --- | --- | --- | --- |"]
-        for t in active:
-            c = t.get("claim") or {}
-            held = f"{c['by']}, {short(c['expires'])}" if c else ""
-            needs = []
-            pend = deps_pending(st, t)
-            if pend:
-                needs.append("after " + ", ".join(pend))
-            if (t.get("needs") or {}).get("boxes"):
-                needs.append(f"{t['needs']['boxes']} box" + (f" x {t['needs'].get('box_hours')} h" if t['needs'].get('box_hours') else ""))
-            L.append(f"| {t['id']} | {t.get('priority', '')} | {display_state(t, at)} | {t.get('for') or 'any'} | {held} | "
-                     f"{'; '.join(needs)} | {t['title']} |")
+    recent = sorted(st.messages(), key=lambda m: m["id"])[-15:]
+    L += ["## Latest messages", ""]
+    if recent:
+        L += ["| To | From | Sent | First line |", "| --- | --- | --- | --- |"]
+        for m in reversed(recent):
+            L.append(f"| {m['to']} | {m['from']} | {short(m['stamp'][:4] + '-' + m['stamp'][4:6] + '-' + m['stamp'][6:11] + ':' + m['stamp'][11:13])} | "
+                     f"[{m['subject'][:110].replace('|', '/')}]({m['path']}) |")
     else:
-        L.append("None.")
+        L.append("_none_")
     L.append("")
 
-    L += ["## Leases", ""]
-    if leases:
-        L += ["| Resource | Holder | Until | Task | Purpose |", "| --- | --- | --- | --- | --- |"]
-        for r, l in sorted(leases.items()):
-            until = short(l["expires"]) + ("" if lease_live(l, at) else " (lapsed)")
-            L.append(f"| {r} | {l['holder']} | {until} | {l.get('task') or ''} | {l.get('purpose', '')} |")
-    else:
-        L.append("None.")
-    L.append("")
-
-    def pending(p: str, m: dict) -> bool:
-        if p.startswith(f"inbox/{BROADCAST}/"):  # shown for a day; each agent's own count is in the table above
-            return at - parse_time(m["sent"]) < timedelta(days=1)
-        return m.get("to") not in m["read_by"]
-    L += render_fleet(st.load("fleet.json"), leases, at)
-    unread_all = [(p, m) for p, m in msgs if pending(p, m)]
-    L += ["## Unread messages", ""]
-    if unread_all:
-        L += ["| To | From | Sent | Subject | Task |", "| --- | --- | --- | --- | --- |"]
-        for p, m in sorted(unread_all, key=lambda x: x[1].get("sent", ""))[-30:]:
-            L.append(f"| {m.get('to')} | {m.get('from')} | {short(m.get('sent'))} | [{m.get('subject', '')}]({p}) | {m.get('task') or ''} |")
-    else:
-        L.append("None.")
-    L.append("")
-
-    done = [t for t in tasks.values() if t["state"] in FINAL]
-    done.sort(key=lambda t: t.get("closed", ""), reverse=True)
-    L += ["## Recently closed", ""]
-    if done:
-        L += ["| Id | State | By | Closed | Title | Result |", "| --- | --- | --- | --- | --- | --- |"]
-        for t in done[:20]:
-            res = (t.get("result") or "").replace("\n", " ").replace("|", "/")
-            L.append(f"| {t['id']} | {t['state']} | {t.get('closed_by', '')} | {short(t.get('closed'))} | {t['title']} | {res[:160]} |")
-    else:
-        L.append("None.")
-    L.append("")
+    res = st.reservations()
+    if res:
+        L += ["## Reservations", "", "| Resource | Holder | Until | Task | Purpose |", "| --- | --- | --- | --- | --- |"]
+        for r, v in sorted(res.items()):
+            L.append(f"| {r} | {v['holder']} | {short(v['expires'])}{'' if parse_time(v['expires']) > at else ' (lapsed)'} | "
+                     f"{v.get('task') or ''} | {v.get('purpose', '')} |")
+        L.append("")
+    L += render_fleet(st.load("fleet.json"), res)
+    if errors:
+        L += ["## Files with a malformed header", ""] + [f"- {e}" for e in errors] + [""]
     return "\n".join(L).encode()
-
-
-# ---------------------------------------------------------------- the ledger
-
-class Ledger:
-    def __init__(self, url: str | None = None, branch: str | None = None, agent: str | None = None):
-        self.store = Store(url or os.environ.get("WORK_REPO", DEFAULT_REPO), branch or os.environ.get("WORK_BRANCH", DEFAULT_BRANCH))
-        self.agent = agent or os.environ.get("WORK_AGENT")
-        self.clock = now  # tests replace this
-
-    def need_agent(self) -> str:
-        if not self.agent or not NAME_RE.match(self.agent) or self.agent == BROADCAST:
-            raise SystemExit("say who you are: --as NAME or WORK_AGENT=NAME (lower case, letters, digits, dashes; not 'all')")
-        return self.agent
-
-    def snapshot(self) -> State:
-        tip = self.store.fetch()
-        return State(self.store.read(tip), self.agent or "-", self.clock())
-
-    def mutate(self, summary: str, fn, allow_create: bool = False):
-        agent = self.need_agent()
-        for attempt in range(10):
-            tip = self.store.fetch()
-            if tip is None and not allow_create:
-                raise SystemExit(f"branch {self.store.branch} does not exist yet; run `ledger.py init` once")
-            st = State(self.store.read(tip), agent, self.clock())
-            result = fn(st)
-            if not st.changes and not st.events:
-                return result
-            st.flush_log()
-            st.put("STATUS.md", render_status(st))
-            msg = f"{agent}: {summary}\n"
-            if os.environ.get("WORK_TRAILERS"):
-                msg += "\n" + os.environ["WORK_TRAILERS"].strip() + "\n"
-            sha = self.store.commit(tip, st.changes, msg, f"{agent} (work ledger)")
-            if self.store.push(sha):
-                return result
-            time.sleep(min(0.5 * (attempt + 1), 4))
-        raise SystemExit("the ledger branch kept moving under this change; try again")
-
-    # setup and presence
-    def init(self):
-        def fn(st: State):
-            if st.files:
-                raise Conflict(f"{self.store.branch} already exists")
-            st.put("README.md", README.encode())
-            st.event("init", self.store.branch)
-        return self.mutate("open the work ledger", fn, allow_create=True)
-
-    def hello(self, role: str | None, session: str | None, model: str | None, notes: str | None):
-        def fn(st: State):
-            path = f"agents/{st.agent}.json"
-            a = st.load(path)
-            new = a is None
-            a = a or dict(name=st.agent, registered=iso(st.at))
-            for k, v in (("role", role), ("session", session), ("model", model), ("notes", notes)):
-                if v is not None:
-                    a[k] = v
-            a["last_seen"] = iso(st.at)
-            st.save(path, a)
-            if new:
-                st.event("hello", st.agent, a.get("role", ""))
-            return a
-        return self.mutate(f"hello from {self.agent}", fn)
-
-    def touch(self, st: State, min_gap_minutes: int = 15) -> None:
-        a = st.load(f"agents/{st.agent}.json")
-        if a and (not a.get("last_seen") or st.at - parse_time(a["last_seen"]) >= timedelta(minutes=min_gap_minutes)):
-            a["last_seen"] = iso(st.at)
-            st.save(f"agents/{st.agent}.json", a)
-
-    # tasks
-    def add(self, title: str, kind: str, for_: str | None, priority: str, depends: list[str], spec: str,
-            effort: float | None, boxes: int | None, box_hours: float | None, parent: str | None = None):
-        if kind not in KINDS:
-            raise SystemExit(f"--kind must be one of {', '.join(KINDS)}")
-        if priority not in PRIORITIES:
-            raise SystemExit(f"--priority must be one of {', '.join(PRIORITIES)}")
-        if for_ and for_ != "any" and not NAME_RE.match(for_):
-            raise SystemExit(f"invalid --for {for_!r}")
-
-        def fn(st: State):
-            tasks = st.tasks()
-            for d in depends + ([parent] if parent else []):
-                if d not in tasks:
-                    raise Conflict(f"no task {d}")
-            n = max([int(k[1:]) for k in tasks] + [0]) + 1
-            tid = f"T{n:03d}"
-            t = dict(id=tid, title=title, kind=kind, priority=priority, state="open",
-                     **{"for": None if for_ in (None, "any") else for_},
-                     depends_on=depends, parent=parent, spec=spec, effort_hours=effort,
-                     needs={k: v for k, v in (("boxes", boxes), ("box_hours", box_hours)) if v},
-                     created=iso(st.at), created_by=st.agent, claim=None, outputs=[], result=None, events=[])
-            st.task_event(t, "add", title)
-            st.save_task(t)
-            if t["for"] and t["for"] != st.agent:
-                st.send(t["for"], f"New task {tid}: {title}", f"{st.agent} added task {tid} for you "
-                        f"({kind}, {priority}).\n\n{spec}".rstrip(), task=tid)
-            return tid
-        return self.mutate(f"add task: {title}", fn)
-
-    def claim(self, tid: str, hours: float, force: bool = False, takeover: bool = False):
-        def fn(st: State):
-            t = st.task(tid)
-            c = t.get("claim")
-            if t["state"] in FINAL:
-                raise Conflict(f"{tid} is {t['state']}")
-            if c and c["by"] == st.agent and t["state"] in ("claimed", "review"):
-                c["expires"] = iso(st.at + timedelta(hours=hours))
-                st.task_event(t, "renew", until=c["expires"])
-                st.save_task(t)
-                return t
-            if t["state"] in ("claimed", "review") and c:
-                if claim_live(t, st.at):
-                    raise Conflict(f"{tid} is checked out by {c['by']} until {c['expires']}")
-                if not takeover:
-                    raise Conflict(f"{tid}'s claim by {c['by']} lapsed at {c['expires']}; ask them, or claim with --takeover")
-                st.send(c["by"], f"{st.agent} took over {tid}", f"Your claim on {tid} ({t['title']}) lapsed at "
-                        f"{c['expires']}; {st.agent} has checked it out. Say so in {st.agent}'s inbox if that is wrong.", task=tid)
-            if t["state"] == "blocked" and not force:
-                raise Conflict(f"{tid} is blocked; reopen it first or claim with --force")
-            if t.get("for") and t["for"] != st.agent and not force:
-                raise Conflict(f"{tid} is for {t['for']}; claim with --force if they agreed")
-            pend = deps_pending(st, t)
-            if pend and not force:
-                raise Conflict(f"{tid} waits for {', '.join(pend)}; claim with --force to start anyway")
-            sess = (st.load(f"agents/{st.agent}.json") or {}).get("session")
-            t["claim"] = dict(by=st.agent, session=sess, at=iso(st.at), expires=iso(st.at + timedelta(hours=hours)))
-            t["state"] = "claimed"
-            st.task_event(t, "claim", until=t["claim"]["expires"], takeover=c["by"] if (takeover and c) else None)
-            st.save_task(t)
-            self.touch(st)
-            return t
-        return self.mutate(f"check out {tid}", fn)
-
-    def _holder_op(self, tid: str, op: str, apply, allow_author: bool = False, allow_any: bool = False):
-        def fn(st: State):
-            t = st.task(tid)
-            c = t.get("claim") or {}
-            mine = c.get("by") == st.agent
-            author = t.get("created_by") == st.agent
-            if not (mine or allow_any or (allow_author and author)):
-                who = f"checked out by {c['by']}" if c else "not checked out"
-                raise Conflict(f"{tid} is {who}; only its holder" + (" or its author" if allow_author else "") + f" can {op} it")
-            out = apply(st, t)
-            st.save_task(t)
-            self.touch(st)
-            return out
-        return self.mutate(f"{op} {tid}", fn)
-
-    def renew(self, tid: str, hours: float):
-        def apply(st, t):
-            if t["state"] not in ("claimed", "review"):
-                raise Conflict(f"{tid} is {t['state']}")
-            t["claim"]["expires"] = iso(st.at + timedelta(hours=hours))
-            st.task_event(t, "renew", until=t["claim"]["expires"])
-            return t
-        return self._holder_op(tid, "renew", apply)
-
-    def release(self, tid: str, note: str):
-        def apply(st, t):
-            t["state"], t["claim"] = "open", None
-            st.task_event(t, "release", note)
-            return t
-        return self._holder_op(tid, "release", apply)
-
-    def review(self, tid: str, note: str, outputs: list[dict]):
-        def apply(st, t):
-            if t["state"] != "claimed":
-                raise Conflict(f"{tid} is {t['state']}")
-            t["state"] = "review"
-            t["outputs"] += outputs
-            st.task_event(t, "review", note, outputs=outputs)
-            if t["created_by"] != st.agent:
-                lines = [f"{st.agent} checked {tid} ({t['title']}) in for your review."]
-                if note:
-                    lines += ["", note]
-                if outputs:
-                    lines += [""] + [f"- {o['kind']}: {o['ref']}" for o in outputs]
-                lines += ["", f"Accept: `ledger.py done {tid} --result ...`; send it back: `ledger.py reopen {tid} --note ...`"]
-                st.send(t["created_by"], f"Review {tid}: {t['title']}", "\n".join(lines), task=tid)
-            return t
-        return self._holder_op(tid, "check in for review", apply)
-
-    def close(self, tid: str, state: str, result: str, outputs: list[dict]):
-        def apply(st, t):
-            if t["state"] in FINAL:
-                raise Conflict(f"{tid} is already {t['state']}")
-            t["state"], t["result"] = state, result
-            t["outputs"] += outputs
-            t["closed"], t["closed_by"] = iso(st.at), st.agent
-            holder = (t.get("claim") or {}).get("by")
-            t["claim"] = None
-            st.task_event(t, state, result, outputs=outputs)
-            for who in {t["created_by"], holder} - {st.agent, None}:
-                st.send(who, f"{tid} {state}: {t['title']}", f"{st.agent} closed {tid} as {state}.\n\n{result}", task=tid)
-            return t
-        return self._holder_op(tid, state, apply, allow_author=True)
-
-    def block(self, tid: str, note: str):
-        def apply(st, t):
-            if t["state"] in FINAL:
-                raise Conflict(f"{tid} is {t['state']}")
-            t["state"], t["claim"] = "blocked", None
-            st.task_event(t, "block", note)
-            if t["created_by"] != st.agent:
-                st.send(t["created_by"], f"{tid} blocked: {t['title']}", f"{st.agent}: {note}", task=tid)
-            return t
-        return self._holder_op(tid, "block", apply, allow_author=True)
-
-    def reopen(self, tid: str, note: str):
-        def apply(st, t):
-            holder = (t.get("claim") or {}).get("by")
-            t["state"], t["claim"] = "open", None
-            t.pop("closed", None); t.pop("closed_by", None)
-            st.task_event(t, "reopen", note)
-            if holder and holder != st.agent:
-                st.send(holder, f"{tid} reopened: {t['title']}", f"{st.agent}: {note}", task=tid)
-            return t
-        return self._holder_op(tid, "reopen", apply, allow_any=True)
-
-    def cancel(self, tid: str, note: str):
-        return self.close(tid, "cancelled", note or "cancelled", [])
-
-    def note(self, tid: str, text: str):
-        def apply(st, t):
-            st.task_event(t, "note", text)
-            return t
-        return self._holder_op(tid, "note", apply, allow_any=True)
-
-    def edit(self, tid: str, **fields):
-        def apply(st, t):
-            changed = {}
-            for k, v in fields.items():
-                if v is None:
-                    continue
-                if k == "depends_on":
-                    for d in v:
-                        if not st.load(f"tasks/{d}.json"):
-                            raise Conflict(f"no task {d}")
-                if k == "for":
-                    v = None if v == "any" else v
-                t[k] = v
-                changed[k] = v
-            st.task_event(t, "edit", ", ".join(f"{k}={v}" for k, v in changed.items()))
-            return t
-        return self._holder_op(tid, "edit", apply, allow_any=True)
-
-    # messages
-    def send(self, to: str, subject: str, body: str, task: str | None, reply_to: str | None):
-        if to != BROADCAST and not NAME_RE.match(to):
-            raise SystemExit(f"invalid recipient {to!r}")
-
-        def fn(st: State):
-            if task:
-                st.task(task)
-            self.touch(st)
-            return st.send(to, subject, body, task, reply_to)
-        return self.mutate(f"message to {to}: {subject}", fn)
-
-    def mark_read(self, mid: str):
-        def fn(st: State):
-            hits = [p for p in st.paths("inbox/") if p.endswith(f"/{mid}.md")]
-            if not hits:
-                raise Conflict(f"no message {mid}")
-            m = parse_message(st.get(hits[0]))
-            if st.agent not in m["read_by"]:
-                m["read_by"].append(st.agent)
-                st.put(hits[0], format_message(m))
-                self.touch(st)
-            return m
-        return self.mutate(f"read {mid}", fn)
-
-    # leases
-    def lease(self, resource: str, hours: float, purpose: str, task: str | None, takeover: bool):
-        if not RESOURCE_RE.match(resource):
-            raise SystemExit(f"invalid resource {resource!r} (for example box:azure2)")
-
-        def fn(st: State):
-            path = f"leases/{resource.replace(':', '--')}.json"
-            l = st.load(path)
-            if l and l["holder"] != st.agent:
-                if lease_live(l, st.at):
-                    raise Conflict(f"{resource} is held by {l['holder']} until {l['expires']} ({l.get('purpose', '')})")
-                if not takeover:
-                    raise Conflict(f"{resource}'s lease by {l['holder']} lapsed at {l['expires']}; ask them, or lease with --takeover")
-                st.send(l["holder"], f"{st.agent} took over {resource}", f"Your lease on {resource} lapsed at "
-                        f"{l['expires']}; {st.agent} now holds it for: {purpose}")
-            if task:
-                st.task(task)
-            new = dict(resource=resource, holder=st.agent, purpose=purpose, task=task,
-                       since=(l["since"] if l and l["holder"] == st.agent else iso(st.at)),
-                       expires=iso(st.at + timedelta(hours=hours)))
-            st.save(path, new)
-            st.event("lease", resource, purpose, until=new["expires"], task=task)
-            self.touch(st)
-            return new
-        return self.mutate(f"lease {resource}", fn)
-
-    def unlease(self, resource: str):
-        def fn(st: State):
-            path = f"leases/{resource.replace(':', '--')}.json"
-            l = st.load(path)
-            if not l:
-                raise Conflict(f"nobody holds {resource}")
-            if l["holder"] != st.agent:
-                raise Conflict(f"{resource} is held by {l['holder']}")
-            st.put(path, None)
-            st.event("unlease", resource)
-            return l
-        return self.mutate(f"release {resource}", fn)
-
-    def fleet(self):
-        snap = collect_fleet(self.clock())
-
-        def fn(st: State):
-            st.save("fleet.json", snap)
-        self.mutate("fleet snapshot", fn)
-        return snap
-
-    def dispatch(self, tid: str, box: str, script: bytes, slug: str | None, timeout: int | None, check_lease: bool = True):
-        st = self.snapshot()
-        t = st.task(tid)
-        if (t.get("claim") or {}).get("by") != self.need_agent():
-            raise Conflict(f"{tid} is not checked out by {self.agent}")
-        l = st.leases().get(f"box:{box}")
-        if check_lease and not (l and l["holder"] == self.agent and lease_live(l, st.at)):
-            raise Conflict(f"{self.agent} does not hold box:{box}; lease it first, or pass --no-lease-check")
-        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "boxctl"))
-        import client as boxctl  # ops/boxctl/client.py
-        cid = boxctl.send(boxctl.Remote(os.environ.get("BOXCTL_REPO", boxctl.DEFAULT_REPO)), box, script, slug or tid.lower(), timeout)
-
-        def fn(st2: State):
-            t2 = st2.task(tid)
-            t2["outputs"].append(dict(kind="boxctl", ref=f"{box}/{cid}"))
-            st2.task_event(t2, "dispatch", f"{box}/{cid}")
-            st2.save_task(t2)
-        self.mutate(f"dispatch {tid} to {box}", fn)
-        return cid
 
 
 # ---------------------------------------------------------------- fleet view
@@ -770,151 +546,489 @@ def board_allocation(text: str) -> dict[str, str]:
 
 
 def collect_fleet(at: datetime) -> dict:
-    """Read every box's heartbeat from box/<box>/status, and the board's allocation table. Read-only."""
+    """Read every box's heartbeat (box/<box>/status) and the board's allocation table. Read-only."""
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "boxctl"))
     import client as boxctl  # ops/boxctl/client.py
     remote = boxctl.Remote(os.environ.get("BOXCTL_REPO", boxctl.DEFAULT_REPO))
     heads = remote.out("ls-remote", "--heads", "origin")
     boxes = sorted({m.group(1) for m in re.finditer(r"refs/heads/box/([a-z0-9-]+)/status$", heads, re.M)})
     alloc = {}
-    if re.search(r"refs/heads/box/coordination$", heads, re.M):
-        local = "refs/remotes/origin/box/coordination"
-        if remote.fetch("refs/heads/box/coordination", local):
-            alloc = board_allocation((remote.blob(f"{local}:BOARD.md") or b"").decode(errors="replace"))
+    if remote.fetch("refs/heads/box/coordination", "refs/remotes/origin/box/coordination"):
+        alloc = board_allocation((remote.blob("refs/remotes/origin/box/coordination:BOARD.md") or b"").decode(errors="replace"))
     rows = []
     for box in boxes:
         row = dict(box=box, board_now=alloc.get(box))
         local = boxctl.fetch_status(remote, box)
         hb = json.loads(remote.blob(f"{local}:heartbeat.json") or b"{}") if local else {}
         if hb:
-            mem = hb.get("memory_mb") or {}
-            disk = (hb.get("disk") or {}).get("home") or {}
-            row.update(host=hb.get("hostname"), heartbeat=hb.get("time"), cpus=hb.get("cpus"),
-                       load=(hb.get("load") or [None])[0], mem_free_gb=round(mem.get("MemAvailable", 0) / 1024, 1),
-                       mem_total_gb=round(mem.get("MemTotal", 0) / 1024, 1), disk_free_gb=disk.get("free_gb"),
-                       running=hb.get("running"), pending=len(hb.get("pending") or []),
-                       fetch=(hb.get("last_fetch") or {}).get("outcome"), uptime_h=round(hb.get("uptime_s", 0) / 3600, 1))
+            mem, disk = hb.get("memory_mb") or {}, (hb.get("disk") or {}).get("home") or {}
+            row.update(heartbeat=hb.get("time"), cpus=hb.get("cpus"), load=(hb.get("load") or [None])[0],
+                       mem_free_gb=round(mem.get("MemAvailable", 0) / 1024, 1), mem_total_gb=round(mem.get("MemTotal", 0) / 1024, 1),
+                       disk_free_gb=disk.get("free_gb"), running=hb.get("running"), pending=len(hb.get("pending") or []))
         rows.append(row)
-    return dict(at=iso(at), boxes=rows)
+    return dict(at=at.strftime("%Y-%m-%dT%H:%M:%SZ"), boxes=rows)
 
 
-def render_fleet(f: dict | None, leases: dict, at: datetime) -> list[str]:
+def render_fleet(f: dict | None, res: dict) -> list[str]:
     if not f:
         return []
-    L = ["## Boxes", "",
-         f"Heartbeats from `box/<box>/status` and the allocation table on `box/coordination`, read at "
-         f"{short(f['at'])} by `ledger.py fleet`. Heartbeats are pushed at least every 5 minutes.", "",
-         "| Box | Heartbeat | Load / CPUs | Free memory | Free disk | boxctl queue | Board says (allocation table) | Ledger lease |",
-         "| --- | --- | --- | --- | --- | --- | --- | --- |"]
     snap = parse_time(f["at"])
+    L = ["## Boxes", "", f"Heartbeats from `box/<box>/status` and the allocation table on `box/coordination` (which "
+         f"decides who holds a box), read at {short(f['at'])} UTC by `ledger.py fleet`.", "",
+         "| Box | Heartbeat | Load / CPUs | Free memory | Free disk | boxctl queue | Board says | Reserved here |",
+         "| --- | --- | --- | --- | --- | --- | --- | --- |"]
     for r in f["boxes"]:
-        l = leases.get(f"box:{r['box']}")
-        lease = f"{l['holder']} until {short(l['expires'])}" if l else ""
+        v = res.get(f"box:{r['box']}")
+        rv = f"{v['holder']} until {short(v['expires'])}" if v else ""
         board = (r.get("board_now") or "").replace("|", "/")
         board = board[:90] + ("..." if len(board) > 90 else "")
         if not r.get("heartbeat"):
-            L.append(f"| {r['box']} | none | | | | | {board} | {lease} |")
+            L.append(f"| {r['box']} | none | | | | | {board} | {rv} |")
             continue
         age = int((snap - parse_time(r["heartbeat"])).total_seconds() // 60)
-        hb = f"{short(r['heartbeat'])}" + (f" (**{age} min old**)" if age > 12 else "")
-        queue = ("running " + r["running"].split("-", 2)[-1] if r.get("running") else "idle") + (f", {r['pending']} waiting" if r.get("pending") else "")
+        hb = short(r["heartbeat"]) + (f" (**{age} min old**)" if age > 12 else "")
+        q = ("running " + r["running"].split("-", 2)[-1] if r.get("running") else "idle") + (f", {r['pending']} waiting" if r.get("pending") else "")
         L.append(f"| {r['box']} | {hb} | {r.get('load')} / {r.get('cpus')} | {r.get('mem_free_gb')} of {r.get('mem_total_gb')} GB | "
-                 f"{r.get('disk_free_gb')} GB | {queue} | {board} | {lease} |")
-    L.append("")
-    return L
+                 f"{r.get('disk_free_gb')} GB | {q} | {board} | {rv} |")
+    return L + [""]
+
+
+# ---------------------------------------------------------------- the ledger
+
+class Ledger:
+    def __init__(self, url: str | None = None, branch: str | None = None, agent: str | None = None, lead: str | None = None):
+        self.store = Store(url or os.environ.get("WORK_REPO", DEFAULT_REPO), branch or os.environ.get("WORK_BRANCH", DEFAULT_BRANCH))
+        self.agent = agent or os.environ.get("WORK_AGENT")
+        self.lead = lead or os.environ.get("WORK_LEAD", "g9")
+        self.clock = now  # tests replace this
+
+    def need_agent(self) -> str:
+        if not self.agent or not NAME_RE.match(self.agent) or self.agent in (BROADCAST, POOL):
+            raise SystemExit("say who you are: --as NAME or WORK_AGENT=NAME (a roster name: lower case letters and digits)")
+        return self.agent
+
+    def snapshot(self) -> State:
+        return State(self.store.read(self.store.fetch()), self.agent or "-", self.clock(), self.lead)
+
+    def mutate(self, summary: str, fn, allow_create: bool = False):
+        agent = self.need_agent()
+        for attempt in range(10):
+            tip = self.store.fetch()
+            if tip is None and not allow_create:
+                raise SystemExit(f"branch {self.store.branch} does not exist")
+            st = State(self.store.read(tip), agent, self.clock(), self.lead)
+            result = fn(st)
+            if not st.changes and not st.events:
+                return result
+            st.flush_log()
+            st.put("STATUS.md", render_status(st))
+            msg = f"{agent}: {summary}\n"
+            if os.environ.get("WORK_TRAILERS"):
+                msg += "\n" + os.environ["WORK_TRAILERS"].strip() + "\n"
+            if self.store.push(self.store.commit(tip, st.changes, msg, f"{agent} (work ledger)")):
+                for n in st.notes:
+                    print(n, file=sys.stderr)
+                return result
+            time.sleep(min(0.5 * (attempt + 1), 4))
+        raise SystemExit("the ledger branch kept moving under this change; try again")
+
+    def touch(self, st: State, gap_minutes: int = 15) -> None:
+        a = st.load(f"agents/{st.agent}.json")
+        if a and (not a.get("last_seen") or st.at - parse_time(a["last_seen"]) >= timedelta(minutes=gap_minutes)):
+            a["last_seen"] = st.at.strftime("%Y-%m-%dT%H:%M:%SZ")
+            st.save(f"agents/{st.agent}.json", a)
+
+    def is_reviewer(self, st: State, d: Doc) -> bool:
+        return st.agent in (st.lead, d.get("reviewer")) or (st.agent == d.get("owner") and d.get("holder") not in ("", st.agent))
+
+    # presence
+    def hello(self, role, session, model, notes):
+        def fn(st):
+            path = f"agents/{st.agent}.json"
+            a = st.load(path)
+            new = a is None
+            a = a or dict(name=st.agent, registered=st.at.strftime("%Y-%m-%dT%H:%M:%SZ"))
+            for k, v in (("role", role), ("session", session), ("model", model), ("notes", notes)):
+                if v is not None:
+                    a[k] = v
+            a["last_seen"] = st.at.strftime("%Y-%m-%dT%H:%M:%SZ")
+            st.save(path, a)
+            if new:
+                st.event("hello", st.agent, a.get("role", ""))
+            return a
+        return self.mutate(f"hello from {self.agent}", fn)
+
+    # tasks and experiments
+    def new(self, title, area, kind, owner, priority, depends, due, body, proposed=False, did=None):
+        if area not in AREAS:
+            raise SystemExit(f"--area must be one of {', '.join(AREAS)}")
+
+        def fn(st):
+            docs, _ = st.docs()
+            exp = kind == "experiment" and (did or "E").startswith("E")
+            folder = "experiments" if exp else "tasks"
+            ident = did
+            if not ident:
+                if exp:
+                    ident = "E9-" + str(1 + max([int(k.split("-")[1]) for k in docs if k.startswith("E9-")] + [0]))
+                else:
+                    p = f"G9-{AREAS[area]}"
+                    ident = p + str(1 + max([int(k[len(p):]) for k in docs if k.startswith(p) and k[len(p):].isdigit()] + [0]))
+            if ident in docs or st.get(f"tasks/{ident}.md") or st.get(f"experiments/{ident}.md"):
+                raise Conflict(f"{ident} exists")
+            for dep in depends:
+                if dep not in docs:
+                    raise Conflict(f"no task or experiment {dep}")
+            text = body.strip() if body.strip() else (
+                "\n\n".join(f"## {s}\n\n_not yet_" if s == "Result" else f"## {s}\n\n" for s in EXPERIMENT_SECTIONS) if exp
+                else "## Goal\n\n\n\n## Done when\n\n\n\n## Context\n\n")
+            head = dict(id=ident, title=title, area=area, kind=kind, owner=owner, state="proposed" if proposed else "open",
+                        holder="", lease_until="", priority=priority, depends=", ".join(depends), due=due or "", branch="", resolution="")
+            d = Doc(f"{folder}/{ident}.md", "---\n" + "".join(f"{k}: {v}\n" for k, v in head.items()) + "---\n" + text + "\n")
+            d.add_log(st.at, st.agent, "created" + (" as proposed" if proposed else ""))
+            st.save_doc(d)
+            st.event("new", ident, title)
+            if owner not in (st.agent, POOL):
+                st.send(owner, f"New {'experiment' if exp else 'task'} for you: {ident}, {title}",
+                        f"{st.agent} created it ({kind}, {priority}{', due ' + due if due else ''}). Read {folder}/{ident}.md.", task=ident)
+            return ident
+        return self.mutate(f"new {title}", fn)
+
+    def lease(self, did, hours, force=False):
+        if not 0 < hours <= MAX_LEASE_HOURS:
+            raise SystemExit(f"--hours must be more than 0 and at most {MAX_LEASE_HOURS}")
+
+        def fn(st):
+            d = st.doc(did)
+            s, holder, me = d.get("state"), d.get("holder"), st.agent
+            until = hm(st.at + timedelta(hours=hours))
+            if s == "leased" and holder == me:
+                d.set("lease_until", until)
+                d.add_log(st.at, me, f"lease renewed until {until}")
+                st.save_doc(d); st.event("renew", did, until=until); self.touch(st)
+                return d
+            if s == "resolved":
+                raise Conflict(f"{did} is resolved ({d.get('resolution')})")
+            if s == "submitted":
+                raise Conflict(f"{did} is submitted and with its reviewer; the reviewer reopens it")
+            if s == "proposed" and me != st.lead:
+                raise Conflict(f"{did} is proposed and needs {st.lead}'s agreement first ({st.lead} sets it open)")
+            if s == "blocked" and not force:
+                raise Conflict(f"{did} is blocked; reopen it, or lease with --force")
+            taken = None
+            if s == "leased":
+                lu = parse_time(d.get("lease_until"))
+                if lu > st.at:
+                    raise Conflict(f"{did} is leased by {holder} until {d.get('lease_until')}")
+                if st.at - lu < GRACE:
+                    raise Conflict(f"{did}'s lease by {holder} lapsed at {d.get('lease_until')}; it may be taken over from "
+                                   f"{hm(lu + GRACE)}, by its owner or {st.lead} only")
+                if me not in (d.get("owner"), st.lead):
+                    raise Conflict(f"{did}'s lease by {holder} lapsed; only its owner ({d.get('owner')}) or {st.lead} may take it over. Ask {holder}")
+                taken = holder
+            elif d.get("owner") not in (me, POOL) and me != st.lead and not force:
+                raise Conflict(f"{did} is owned by {d.get('owner')}; lease with --force only if they agreed")
+            d.set("state", "leased"); d.set("holder", me); d.set("lease_until", until)
+            pend = deps_unresolved(st, d)
+            text = f"leased until {until}" + (f", taking over from {taken} (lease lapsed)" if taken else "")
+            if pend:
+                text += f"; {', '.join(pend)} not resolved yet"
+                st.notes.append(f"note: {did} depends on {', '.join(pend)}, not resolved yet")
+            d.add_log(st.at, me, text)
+            st.save_doc(d)
+            st.event("lease", did, until=until, takeover=taken)
+            if taken and taken != me:
+                st.send(taken, f"{me} took over {did}: your lease lapsed at {hm(lu)}",
+                        f"{did} ({d.get('title')}) is now leased by {me}. If that is wrong, say so in {me}'s inbox.", task=did)
+            self.touch(st)
+            return d
+        return self.mutate(f"task({did}): lease", fn)
+
+    def _op(self, did, label, apply, who=("holder",)):
+        def fn(st):
+            d = st.doc(did)
+            ok = (("holder" in who and d.get("holder") == st.agent and d.get("state") in ("leased", "submitted", "blocked"))
+                  or ("owner" in who and d.get("owner") == st.agent) or ("lead" in who and st.agent == st.lead)
+                  or ("reviewer" in who and self.is_reviewer(st, d)) or "anyone" in who)
+            if not ok:
+                h = d.get("holder")
+                raise Conflict(f"{did} ({d.get('state')}{', holder ' + h if h else ''}): {label} is for its " + " or ".join(who))
+            out = apply(st, d)
+            st.save_doc(d)
+            self.touch(st)
+            return out
+        return self.mutate(f"task({did}): {label}", fn)
+
+    def renew(self, did, hours):
+        if not 0 < hours <= MAX_LEASE_HOURS:
+            raise SystemExit(f"--hours must be more than 0 and at most {MAX_LEASE_HOURS}")
+
+        def apply(st, d):
+            if d.get("state") != "leased":
+                raise Conflict(f"{did} is {d.get('state')}")
+            until = hm(st.at + timedelta(hours=hours))
+            d.set("lease_until", until); d.add_log(st.at, st.agent, f"lease renewed until {until}")
+            st.event("renew", did, until=until)
+            return d
+        return self._op(did, "renew", apply)
+
+    def release(self, did, note):
+        def apply(st, d):
+            d.set("state", "open"); d.set("holder", ""); d.set("lease_until", "")
+            d.add_log(st.at, st.agent, "given back" + (f": {note}" if note else ""))
+            st.event("release", did, note)
+            return d
+        return self._op(did, "release", apply)
+
+    def submit(self, did, note, branch, commit):
+        def apply(st, d):
+            if d.get("state") != "leased":
+                raise Conflict(f"{did} is {d.get('state')}, not leased")
+            if branch:
+                d.set("branch", branch)
+            d.set("state", "submitted"); d.set("lease_until", "")
+            where = (d.get("branch") or "") + (f" at {commit}" if commit else "")
+            d.add_log(st.at, st.agent, "submitted" + (f" ({where})" if where else "") + (f": {note}" if note else ""))
+            st.event("submit", did, note, branch=d.get("branch"), commit=commit)
+            reviewer = d.get("reviewer") or st.lead
+            if reviewer != st.agent:
+                st.send(reviewer, f"{did} submitted for your review: {d.get('title')}",
+                        f"{note}\n\nBranch: {d.get('branch') or '(none named)'}" + (f", commit {commit}" if commit else "") +
+                        f".\n\nAccept: `ledger.py resolve {did} --resolution accepted`. Send back: `ledger.py reopen {did} --note ...` "
+                        f"(add `--same-holder` to return it to {st.agent}).", task=did)
+            return d
+        return self._op(did, "submit", apply)
+
+    def resolve(self, did, resolution, note):
+        def apply(st, d):
+            if resolution not in RESOLUTIONS[d.folder]:
+                raise Conflict(f"resolution for {d.folder} is one of {', '.join(RESOLUTIONS[d.folder])}")
+            holder = d.get("holder")
+            d.set("state", "resolved"); d.set("resolution", resolution); d.set("lease_until", "")
+            d.add_log(st.at, st.agent, f"resolved: {resolution}" + (f". {note}" if note else ""))
+            st.event("resolve", did, note, resolution=resolution)
+            for who in {holder, d.get("owner")} - {st.agent, "", POOL}:
+                st.send(who, f"{did} resolved ({resolution}): {d.get('title')}", note or f"{st.agent} resolved it.", task=did)
+            return d
+        return self._op(did, "resolve", apply, who=("reviewer",))
+
+    def reopen(self, did, note, same_holder=False):
+        def apply(st, d):
+            holder = d.get("holder")
+            if same_holder and holder:
+                d.set("state", "leased"); d.set("lease_until", hm(st.at + timedelta(hours=MAX_LEASE_HOURS)))
+            else:
+                d.set("state", "open"); d.set("holder", ""); d.set("lease_until", "")
+            d.set("resolution", "")
+            d.add_log(st.at, st.agent, ("sent back to " + holder if same_holder and holder else "reopened") + (f": {note}" if note else ""))
+            st.event("reopen", did, note)
+            if holder and holder != st.agent:
+                st.send(holder, f"{did} {'sent back to you' if same_holder else 'reopened'}: {d.get('title')}", note or "(no note)", task=did)
+            return d
+        return self._op(did, "reopen", apply, who=("reviewer", "owner", "holder"))
+
+    def block(self, did, note):
+        def apply(st, d):
+            if d.get("state") == "resolved":
+                raise Conflict(f"{did} is resolved")
+            d.set("state", "blocked"); d.set("lease_until", "")
+            d.add_log(st.at, st.agent, f"blocked: {note}")
+            st.event("block", did, note)
+            for who in {st.lead, d.get("owner")} - {st.agent, POOL}:
+                st.send(who, f"{did} blocked: {d.get('title')}", note, task=did)
+            return d
+        return self._op(did, "block", apply, who=("holder", "owner", "lead"))
+
+    def log(self, did, text):
+        def apply(st, d):
+            d.add_log(st.at, st.agent, text); st.event("log", did, text)
+            return d
+        return self._op(did, "log", apply, who=("holder", "owner", "lead", "reviewer"))
+
+    def set_fields(self, did, pairs):
+        def apply(st, d):
+            changed = []
+            for k, v in pairs:
+                if k in LIFECYCLE or k == "id":
+                    raise Conflict(f"{k} changes only through lease, submit, resolve, reopen, release or block")
+                if k == "depends":
+                    for dep in split_ids(v):
+                        st.doc(dep)
+                d.set(k, v); changed.append(f"{k}={v}")
+            d.add_log(st.at, st.agent, "set " + ", ".join(changed)); st.event("set", did, ", ".join(changed))
+            return d
+        return self._op(did, "set", apply, who=("owner", "lead", "holder"))
+
+    def edit(self, did, text):
+        """Replace a file's sections (not its lifecycle fields or its log), e.g. to sharpen an experiment."""
+        def apply(st, d):
+            new = Doc(d.path, text)
+            for row in new.head:
+                if row[0] not in LIFECYCLE and row[0] != "id" and new.get(row[0]) != d.get(row[0]):
+                    d.set(row[0], row[1])
+            old_log = d.section("Log")
+            body = re.sub(r"^## Log\s*\n.*?(?=^## |\Z)", "", new.body, flags=re.S | re.M | re.I).rstrip("\n")
+            d.body = body + "\n\n## Log\n\n" + old_log + "\n"
+            d.add_log(st.at, st.agent, "sections edited")
+            st.event("edit", did)
+            return d
+        return self._op(did, "edit", apply, who=("holder", "owner", "lead"))
+
+    # messages
+    def send(self, to, subject, body, task, reply_to):
+        if to != BROADCAST and not NAME_RE.match(to):
+            raise SystemExit(f"invalid recipient {to!r}")
+
+        def fn(st):
+            if task:
+                st.doc(task)
+            self.touch(st)
+            return st.send(to, subject, body, task, reply_to)
+        return self.mutate(f"message to {to}: {subject[:60]}", fn)
+
+    def mark_read(self, mid=None, all_=False):
+        def fn(st):
+            path = f"agents/{st.agent}.json"
+            a = st.load(path) or dict(name=st.agent)
+            if all_:
+                mine = [m for m in st.messages() if m["to"] in (st.agent, BROADCAST)]
+                a["read_until"] = max([m["stamp"] for m in mine] + [a.get("read_until", "")])
+                a["read_ids"] = []
+                st.save(path, a)
+                return None
+            hits = [m for m in st.messages() if m["id"] == mid]
+            if not hits:
+                raise Conflict(f"no message {mid}")
+            if hits[0]["id"] not in a.get("read_ids", []) and hits[0]["stamp"] > a.get("read_until", ""):
+                a.setdefault("read_ids", []).append(hits[0]["id"])
+                st.save(path, a)
+            return hits[0]
+        return self.mutate("read " + ("all" if all_ else mid), fn)
+
+    # reservations, files, import
+    def reserve(self, resource, hours, purpose, task):
+        if not RESOURCE_RE.match(resource):
+            raise SystemExit(f"invalid resource {resource!r} (for example box:azure2)")
+
+        def fn(st):
+            path = f"reservations/{resource.replace(':', '--')}.json"
+            v = st.load(path)
+            if v and v["holder"] != st.agent and parse_time(v["expires"]) > st.at:
+                raise Conflict(f"{resource} is reserved by {v['holder']} until {v['expires']} ({v.get('purpose', '')})")
+            if v and v["holder"] != st.agent:
+                st.send(v["holder"], f"{st.agent} reserved {resource} after your reservation lapsed", f"For: {purpose}")
+            if task:
+                st.doc(task)
+            new = dict(resource=resource, holder=st.agent, purpose=purpose, task=task,
+                       since=v["since"] if v and v["holder"] == st.agent else hm(st.at), expires=hm(st.at + timedelta(hours=hours)))
+            st.save(path, new); st.event("reserve", resource, purpose, until=new["expires"], task=task)
+            return new
+        return self.mutate(f"reserve {resource}", fn)
+
+    def unreserve(self, resource):
+        def fn(st):
+            path = f"reservations/{resource.replace(':', '--')}.json"
+            v = st.load(path)
+            if not v or v["holder"] != st.agent:
+                raise Conflict(f"{st.agent} does not hold {resource}")
+            st.put(path, None); st.event("unreserve", resource)
+        return self.mutate(f"unreserve {resource}", fn)
+
+    MANAGED = ("tasks/", "experiments/", "inbox/", "agents/", "reservations/", "log/", "STATUS.md", "fleet.json")
+
+    def put_file(self, path, data):
+        if path.startswith(self.MANAGED) or ".." in path or path.startswith("/"):
+            raise SystemExit(f"{path} is written by the ledger's own commands")
+
+        def fn(st):
+            st.put(path, data); st.event("put", path)
+        return self.mutate(f"update {path}", fn)
+
+    def import_team(self, root: Path):
+        files = {}
+        for folder in ("tasks", "experiments"):
+            for p in sorted((root / folder).glob("*.md")):
+                Doc(f"{folder}/{p.name}", p.read_text()).validate()
+                files[f"{folder}/{p.name}"] = p.read_bytes()
+        for p in sorted((root / "inbox").glob("*/*.md")):
+            files[f"inbox/{p.parent.name}/{p.name}"] = p.read_bytes()
+        if (root / "ROSTER.md").exists():
+            files["ROSTER.md"] = (root / "ROSTER.md").read_bytes()
+
+        def fn(st):
+            clash = [p for p, b in files.items() if st.get(p) is not None and st.get(p) != b and p != "ROSTER.md"]
+            if clash:
+                raise Conflict("already in the ledger with other content: " + ", ".join(clash[:5]))
+            n = 0
+            for p, b in files.items():
+                if st.get(p) != b:
+                    st.put(p, b); n += 1
+            st.event("import", str(root), f"{n} files")
+            return n
+        return self.mutate("import the team/gen9 files", fn)
+
+    def fleet(self):
+        snap = collect_fleet(self.clock())
+        self.mutate("fleet snapshot", lambda st: st.save("fleet.json", snap))
+        return snap
+
+    def dispatch(self, did, box, script, slug, timeout):
+        st = self.snapshot()
+        d = st.doc(did)
+        if d.get("holder") != self.need_agent() or d.get("state") != "leased":
+            raise Conflict(f"{did} is not leased by {self.agent}")
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "boxctl"))
+        import client as boxctl
+        cid = boxctl.send(boxctl.Remote(os.environ.get("BOXCTL_REPO", boxctl.DEFAULT_REPO)), box, script, slug or did.lower(), timeout)
+        self.log(did, f"queued boxctl command {cid} on {box}")
+        return cid
 
 
 # ---------------------------------------------------------------- command line
 
-def seen_path(store: Store, agent: str) -> Path:
-    return store.cache / f"{store.git_dir.stem}.{store.branch.replace('/', '_')}.{agent}.seen"
+def seen_file(lg: Ledger, who: str) -> Path:
+    return lg.store.cache / f"{lg.store.git_dir.stem}.{lg.store.branch.replace('/', '_')}.{who}.seen"
 
 
-def print_task(t: dict, at: datetime, st: State) -> None:
-    c = t.get("claim") or {}
-    print(f"{t['id']}  {t['title']}")
-    print(f"  {t['kind']}, {t.get('priority')}, {display_state(t, at)}, for {t.get('for') or 'any'}; "
-          f"added {short(t['created'])} by {t['created_by']}")
-    if c:
-        print(f"  checked out by {c['by']} since {short(c['at'])}, until {short(c['expires'])}")
-    if t.get("depends_on"):
-        pend = deps_pending(st, t)
-        print(f"  depends on {', '.join(t['depends_on'])}" + (f" (waiting for {', '.join(pend)})" if pend else " (all done)"))
-    if t.get("needs"):
-        print(f"  needs {json.dumps(t['needs'])}")
-    if t.get("spec"):
-        print("  spec:\n    " + t["spec"].replace("\n", "\n    "))
-    for o in t.get("outputs", []):
-        print(f"  output {o['kind']}: {o['ref']}")
-    if t.get("result"):
-        print(f"  result: {t['result']}")
-    print("  events:")
-    for e in t.get("events", []):
-        rest = " ".join(f"{k}={v}" for k, v in e.items() if k not in ("at", "by", "op", "note"))
-        print(f"    {short(e['at'])} {e['by']} {e['op']}" + (f": {e['note']}" if e.get("note") else "") + (f" [{rest}]" if rest else ""))
-
-
-def parse_outputs(items: list[str] | None) -> list[dict]:
-    out = []
-    for it in items or []:
-        kind, sep, ref = it.partition("=")
-        if not sep or not kind or not ref:
-            raise SystemExit(f"--output takes KIND=REF, for example branch=feature/x@abc1234 or report=reports/x.md; got {it!r}")
-        out.append(dict(kind=kind, ref=ref))
-    return out
-
-
-def text_arg(text: str | None, path: str | None) -> str:
-    if path:
-        return (sys.stdin.read() if path == "-" else Path(path).read_text()).rstrip()
-    return (text or "").rstrip()
-
-
-def main(argv: list[str] | None = None) -> int:
+def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--as", dest="agent")
-    ap.add_argument("--repo")
-    ap.add_argument("--branch")
+    ap.add_argument("--as", dest="agent"); ap.add_argument("--repo"); ap.add_argument("--ledger-branch", dest="ledger_branch")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("init")
-    p = sub.add_parser("hello"); p.add_argument("--role"); p.add_argument("--session"); p.add_argument("--model"); p.add_argument("--notes")
-    sub.add_parser("status")
-    p = sub.add_parser("watch"); p.add_argument("--all", action="store_true"); p.add_argument("--no-heartbeat", action="store_true")
-    p = sub.add_parser("add"); p.add_argument("title"); p.add_argument("--kind", required=True); p.add_argument("--for", dest="for_")
-    p.add_argument("--priority", default="p2"); p.add_argument("--depends", default=""); p.add_argument("--parent")
-    p.add_argument("--spec"); p.add_argument("--spec-file"); p.add_argument("--effort", type=float)
-    p.add_argument("--boxes", type=int); p.add_argument("--box-hours", type=float)
-    p = sub.add_parser("tasks"); p.add_argument("--state"); p.add_argument("--for", dest="for_"); p.add_argument("--mine", action="store_true")
-    p = sub.add_parser("next"); p.add_argument("--for", dest="for_"); p.add_argument("-n", type=int, default=8)
-    p = sub.add_parser("show"); p.add_argument("id"); p.add_argument("--json", action="store_true")
-    p = sub.add_parser("claim"); p.add_argument("id"); p.add_argument("--hours", type=float, default=4)
-    p.add_argument("--force", action="store_true"); p.add_argument("--takeover", action="store_true")
-    p = sub.add_parser("renew"); p.add_argument("id"); p.add_argument("--hours", type=float, default=4)
-    p = sub.add_parser("release"); p.add_argument("id"); p.add_argument("--note", default="")
-    p = sub.add_parser("review"); p.add_argument("id"); p.add_argument("--note", default=""); p.add_argument("--output", action="append")
-    for name in ("done", "fail"):
-        p = sub.add_parser(name); p.add_argument("id"); p.add_argument("--result"); p.add_argument("--result-file"); p.add_argument("--output", action="append")
+    p = sub.add_parser("hello"); [p.add_argument(f"--{k}") for k in ("role", "session", "model", "notes")]
+    p = sub.add_parser("watch"); p.add_argument("--no-heartbeat", action="store_true")
+    sub.add_parser("status"); sub.add_parser("check"); sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
+    p = sub.add_parser("tasks"); p.add_argument("--owner"); p.add_argument("--state"); p.add_argument("--mine", action="store_true")
+    p = sub.add_parser("show"); p.add_argument("id")
+    p = sub.add_parser("new"); p.add_argument("title")
+    for k in ("area", "kind", "owner", "priority"):
+        p.add_argument(f"--{k}", required=True)
+    for k in ("due", "depends", "goal", "done-when", "context", "body-file", "id"):
+        p.add_argument(f"--{k}")
+    p.add_argument("--proposed", action="store_true")
+    p = sub.add_parser("lease"); p.add_argument("id"); p.add_argument("--hours", type=float, default=MAX_LEASE_HOURS); p.add_argument("--force", action="store_true")
+    p = sub.add_parser("renew"); p.add_argument("id"); p.add_argument("--hours", type=float, default=MAX_LEASE_HOURS)
+    p = sub.add_parser("release"); p.add_argument("id"); p.add_argument("--note", required=True)
+    p = sub.add_parser("submit"); p.add_argument("id"); p.add_argument("--note", required=True); p.add_argument("--branch"); p.add_argument("--commit")
+    p = sub.add_parser("resolve"); p.add_argument("id"); p.add_argument("--resolution", required=True); p.add_argument("--note", default="")
+    p = sub.add_parser("reopen"); p.add_argument("id"); p.add_argument("--note", required=True); p.add_argument("--same-holder", action="store_true")
     p = sub.add_parser("block"); p.add_argument("id"); p.add_argument("--note", required=True)
-    for name in ("reopen", "cancel"):
-        p = sub.add_parser(name); p.add_argument("id"); p.add_argument("--note", default="")
-    p = sub.add_parser("note"); p.add_argument("id"); p.add_argument("text")
-    p = sub.add_parser("edit"); p.add_argument("id"); p.add_argument("--priority"); p.add_argument("--for", dest="for_")
-    p.add_argument("--title"); p.add_argument("--depends"); p.add_argument("--spec"); p.add_argument("--spec-file")
+    p = sub.add_parser("log"); p.add_argument("id"); p.add_argument("text")
+    p = sub.add_parser("set"); p.add_argument("id"); p.add_argument("pairs", nargs="+")
+    p = sub.add_parser("edit"); p.add_argument("id"); p.add_argument("--file", required=True)
     p = sub.add_parser("send"); p.add_argument("to"); p.add_argument("subject"); p.add_argument("--body"); p.add_argument("--file")
     p.add_argument("--task"); p.add_argument("--reply-to")
-    p = sub.add_parser("inbox"); p.add_argument("--all", action="store_true"); p.add_argument("--agent", dest="who", help="read another agent's inbox")
+    p = sub.add_parser("inbox"); p.add_argument("--all", action="store_true"); p.add_argument("--agent", dest="who")
     p = sub.add_parser("read"); p.add_argument("id")
-    p = sub.add_parser("lease"); p.add_argument("resource"); p.add_argument("--hours", type=float, required=True)
-    p.add_argument("--purpose", required=True); p.add_argument("--task"); p.add_argument("--takeover", action="store_true")
-    p = sub.add_parser("unlease"); p.add_argument("resource")
-    sub.add_parser("leases")
+    sub.add_parser("ack")
+    p = sub.add_parser("reserve"); p.add_argument("resource"); p.add_argument("--hours", type=float, required=True)
+    p.add_argument("--purpose", required=True); p.add_argument("--task")
+    p = sub.add_parser("unreserve"); p.add_argument("resource")
     p = sub.add_parser("dispatch"); p.add_argument("id"); p.add_argument("box"); p.add_argument("--cmd"); p.add_argument("--file")
-    p.add_argument("--slug"); p.add_argument("--timeout", type=int); p.add_argument("--no-lease-check", action="store_true")
-    sub.add_parser("fleet")
-    sub.add_parser("export")
+    p.add_argument("--slug"); p.add_argument("--timeout", type=int)
+    p = sub.add_parser("put"); p.add_argument("path"); p.add_argument("--file", required=True)
+    p = sub.add_parser("import-team"); p.add_argument("dir")
     a = ap.parse_args(argv)
-    lg = Ledger(a.repo, a.branch, a.agent)
-
+    lg = Ledger(a.repo, a.ledger_branch, a.agent)
     try:
         return run(lg, a)
     except Conflict as e:
@@ -922,139 +1036,153 @@ def main(argv: list[str] | None = None) -> int:
         return 3
 
 
-def run(lg: Ledger, a: argparse.Namespace) -> int:
+def text_of(path: str | None, text: str | None = None) -> str:
+    if path:
+        return sys.stdin.read() if path == "-" else Path(path).read_text()
+    return text or ""
+
+
+def run(lg: Ledger, a) -> int:
     c = a.cmd
-    if c == "init":
-        lg.init(); print(f"opened {lg.store.branch}"); return 0
     if c == "hello":
-        r = lg.hello(a.role, a.session, a.model, a.notes); print(json.dumps(r, indent=1)); return 0
-    if c == "add":
-        deps = [d for d in re.split(r"[ ,]+", a.depends) if d]
-        tid = lg.add(a.title, a.kind, a.for_, a.priority, deps, text_arg(a.spec, a.spec_file), a.effort, a.boxes, a.box_hours, a.parent)
-        print(tid); return 0
-    if c == "claim":
-        t = lg.claim(a.id, a.hours, a.force, a.takeover); print(f"{t['id']} checked out by {t['claim']['by']} until {t['claim']['expires']}"); return 0
+        print(json.dumps(lg.hello(a.role, a.session, a.model, a.notes), indent=1)); return 0
+    if c == "new":
+        body = text_of(a.body_file) if a.body_file else ""
+        if not body and (a.goal or a.done_when or a.context):
+            body = f"## Goal\n\n{a.goal or ''}\n\n## Done when\n\n{a.done_when or ''}\n\n## Context\n\n{a.context or ''}\n"
+        if a.kind not in KINDS or a.priority not in PRIORITIES:
+            raise SystemExit(f"--kind is one of {', '.join(KINDS)}; --priority one of {', '.join(PRIORITIES)}")
+        print(lg.new(a.title, a.area, a.kind, a.owner, a.priority, split_ids(a.depends), a.due, body, a.proposed, a.id)); return 0
+    if c == "lease":
+        d = lg.lease(a.id, a.hours, a.force); print(f"{a.id} leased by {d.get('holder')} until {d.get('lease_until')}"); return 0
     if c == "renew":
-        t = lg.renew(a.id, a.hours); print(f"{t['id']} renewed until {t['claim']['expires']}"); return 0
+        d = lg.renew(a.id, a.hours); print(f"{a.id} renewed until {d.get('lease_until')}"); return 0
     if c == "release":
-        lg.release(a.id, a.note); print(f"{a.id} checked back in, open"); return 0
-    if c == "review":
-        lg.review(a.id, a.note, parse_outputs(a.output)); print(f"{a.id} in review"); return 0
-    if c in ("done", "fail"):
-        res = text_arg(a.result, a.result_file)
-        if not res:
-            raise SystemExit("--result or --result-file is required")
-        lg.close(a.id, "done" if c == "done" else "failed", res, parse_outputs(a.output)); print(f"{a.id} {c}"); return 0
+        lg.release(a.id, a.note); print(f"{a.id} given back, open"); return 0
+    if c == "submit":
+        lg.submit(a.id, a.note, a.branch, a.commit); print(f"{a.id} submitted"); return 0
+    if c == "resolve":
+        lg.resolve(a.id, a.resolution, a.note); print(f"{a.id} resolved: {a.resolution}"); return 0
+    if c == "reopen":
+        d = lg.reopen(a.id, a.note, a.same_holder); print(f"{a.id} {d.get('state')}"); return 0
     if c == "block":
         lg.block(a.id, a.note); print(f"{a.id} blocked"); return 0
-    if c == "reopen":
-        lg.reopen(a.id, a.note); print(f"{a.id} open"); return 0
-    if c == "cancel":
-        lg.cancel(a.id, a.note); print(f"{a.id} cancelled"); return 0
-    if c == "note":
-        lg.note(a.id, a.text); print("noted"); return 0
+    if c == "log":
+        lg.log(a.id, a.text); print("logged"); return 0
+    if c == "set":
+        pairs = []
+        for kv in a.pairs:
+            k, sep, v = kv.partition("=")
+            if not sep:
+                raise SystemExit(f"set takes KEY=VALUE, got {kv!r}")
+            pairs.append((k.strip(), v.strip()))
+        lg.set_fields(a.id, pairs); print("set"); return 0
     if c == "edit":
-        spec = text_arg(a.spec, a.spec_file) if (a.spec or a.spec_file) else None
-        deps = [d for d in re.split(r"[ ,]+", a.depends) if d] if a.depends is not None else None
-        lg.edit(a.id, priority=a.priority, title=a.title, spec=spec, depends_on=deps, **{"for": a.for_}); print("edited"); return 0
+        lg.edit(a.id, Path(a.file).read_text()); print("edited"); return 0
     if c == "send":
-        body = text_arg(a.body, a.file)
-        if not body:
+        body = text_of(a.file, a.body)
+        if not body.strip():
             raise SystemExit("--body or --file is required")
         print(lg.send(a.to, a.subject, body, a.task, a.reply_to)); return 0
     if c == "read":
         m = lg.mark_read(a.id)
-        print(f"From {m.get('from')} to {m.get('to')}, {m.get('sent')}" + (f", task {m['task']}" if m.get("task") else "")
-              + (f", reply to {m['reply_to']}" if m.get("reply_to") else ""))
-        print(f"Subject: {m.get('subject')}\n\n{m['body']}"); return 0
-    if c == "lease":
-        l = lg.lease(a.resource, a.hours, a.purpose, a.task, a.takeover); print(f"{l['resource']} held by {l['holder']} until {l['expires']}"); return 0
-    if c == "unlease":
-        lg.unlease(a.resource); print(f"released {a.resource}"); return 0
+        print(f"To {m['to']}, from {m['from']}, {m['stamp']}\n\n{m['body']}"); return 0
+    if c == "ack":
+        lg.mark_read(all_=True); print("all read"); return 0
+    if c == "reserve":
+        v = lg.reserve(a.resource, a.hours, a.purpose, a.task); print(f"{a.resource} reserved by {v['holder']} until {v['expires']}"); return 0
+    if c == "unreserve":
+        lg.unreserve(a.resource); print(f"released {a.resource}"); return 0
     if c == "fleet":
-        snap = lg.fleet()
-        print("\n".join(render_fleet(snap, lg.snapshot().leases(), now())))
-        return 0
+        snap = lg.fleet(); print("\n".join(render_fleet(snap, lg.snapshot().reservations()))); return 0
     if c == "dispatch":
         script = Path(a.file).read_bytes() if a.file else (a.cmd or "").encode()
         if not script:
             raise SystemExit("--cmd or --file is required")
-        print(lg.dispatch(a.id, a.box, script, a.slug, a.timeout, not a.no_lease_check)); return 0
+        print(lg.dispatch(a.id, a.box, script, a.slug, a.timeout)); return 0
+    if c == "put":
+        lg.put_file(a.path, Path(a.file).read_bytes()); print(f"wrote {a.path}"); return 0
+    if c == "import-team":
+        print(f"imported {lg.import_team(Path(a.dir))} files"); return 0
 
     st = lg.snapshot()
     if not st.files:
-        raise SystemExit(f"branch {lg.store.branch} does not exist yet; run `ledger.py init` once")
+        raise SystemExit(f"branch {lg.store.branch} does not exist")
     if c == "status":
         sys.stdout.write(render_status(st).decode()); return 0
+    if c == "check":
+        _, errors = st.docs()
+        print("\n".join(errors) if errors else "every header is well formed"); return 1 if errors else 0
     if c == "export":
-        print(json.dumps(dict(agents=st.agents(), tasks=st.tasks(), leases=st.leases(),
-                              messages=[m for _, m in st.messages()]), indent=1)); return 0
-    if c == "leases":
-        for r, l in sorted(st.leases().items()):
-            print(f"{r:24} {l['holder']:10} until {l['expires']}{'' if lease_live(l, st.at) else ' (lapsed)'}  {l.get('purpose', '')}")
-        return 0
+        docs, _ = st.docs()
+        print(json.dumps(dict(agents=st.agents(), docs={k: dict((r[0], r[1]) for r in d.head) for k, d in docs.items()},
+                              reservations=st.reservations(), messages=st.messages()), indent=1)); return 0
     if c == "show":
-        t = st.task(a.id)
-        print(json.dumps(t, indent=1)) if a.json else print_task(t, st.at, st); return 0
+        d = st.doc(a.id); sys.stdout.write(d.render().decode())
+        pend = deps_unresolved(st, d)
+        if pend:
+            print(f"\n(depends on {', '.join(pend)}, not resolved)")
+        return 0
     if c in ("tasks", "next"):
+        docs, _ = st.docs()
         me = lg.agent
-        ts = list(st.tasks().values())
+        ds = list(docs.values())
         if c == "next":
-            who = a.for_ or me
-            ts = [t for t in ts if t["state"] == "open" and not deps_pending(st, t) and t.get("for") in (None, who)]
+            ds = [d for d in ds if d.get("state") == "open" and (d.get("owner") in (me, POOL) or me == lg.lead)]
         else:
             if a.state:
-                ts = [t for t in ts if t["state"] == a.state]
+                ds = [d for d in ds if d.get("state") == a.state]
             elif not a.mine:
-                ts = [t for t in ts if t["state"] not in FINAL]
-            if a.for_:
-                ts = [t for t in ts if t.get("for") == a.for_]
+                ds = [d for d in ds if d.get("state") != "resolved"]
+            if a.owner:
+                ds = [d for d in ds if d.get("owner") == a.owner]
             if a.mine:
-                ts = [t for t in ts if (t.get("claim") or {}).get("by") == me or t.get("for") == me]
-        ts.sort(key=lambda t: (t.get("priority", "p2"), t["id"]))
-        for t in ts[: (a.n if c == "next" else None)]:
-            holder = (t.get("claim") or {}).get("by", "")
-            print(f"{t['id']:6} {t.get('priority', ''):3} {display_state(t, st.at):18} {t.get('for') or 'any':6} {holder:8} {t['title']}")
-        if not ts:
+                ds = [d for d in ds if me in (d.get("owner"), d.get("holder"))]
+        rank = {p: i for i, p in enumerate(PRIORITIES)}
+        ds.sort(key=lambda d: (rank.get(d.get("priority"), 9), d.get("due") or "9", d.get("id")))
+        for d in ds:
+            n = note_for(st, d, st.at)
+            print(f"{d.get('id'):7} {d.get('priority'):6} {d.get('state'):9} {d.get('owner'):5} {d.get('holder'):5} "
+                  f"{short(d.get('due')):11} {d.get('title')[:70]}" + (f"  [{n}]" if n else ""))
+        if not ds:
             print("nothing")
         return 0
     if c == "inbox":
         who = a.who or lg.need_agent()
-        rows = [(p, m) for p, m in st.messages() if p.startswith(f"inbox/{who}/") or p.startswith(f"inbox/{BROADCAST}/")]
-        if not a.all:
-            rows = [(p, m) for p, m in rows if who not in m["read_by"] and m.get("from") != who]
-        for p, m in sorted(rows, key=lambda x: x[1].get("sent", "")):
-            print(f"{m['id']}\n    from {m.get('from')}, {short(m.get('sent'))}: {m.get('subject')}" + (f" [{m['task']}]" if m.get("task") else ""))
+        rows = [m for m in st.messages() if m["to"] in (who, BROADCAST)] if a.all else st.unread(who)
+        for m in sorted(rows, key=lambda m: m["id"]):
+            print(f"{m['id']}\n    to {m['to']}, from {m['from']}: {m['subject'][:140]}")
         if not rows:
             print("no unread messages" if not a.all else "no messages")
         return 0
     if c == "watch":
         me = lg.need_agent()
-        sp = seen_path(lg.store, me)
-        since = sp.read_text().strip() if sp.exists() else ""
-        events = []
-        for p in st.paths("log/"):
-            for line in st.get(p).decode().splitlines():
-                if line.strip():
-                    events.append(json.loads(line))
-        new = [e for e in events if e["at"] > since and (a.all or e["by"] != me)]
-        mytasks = {t["id"] for t in st.tasks().values() if t.get("for") == me or (t.get("claim") or {}).get("by") == me or t.get("created_by") == me}
-        print(f"ledger {lg.store.branch} at {iso(st.at)}; since {since or 'the beginning'}: {len(new)} change(s) by others")
-        for e in new[-60:]:
-            mark = "*" if (e.get("target", "").startswith(f"{me}/") or e.get("target") in mytasks or e.get("task") in mytasks) else " "
-            print(f" {mark} {short(e['at'])} {e['by']:8} {e['op']:8} {e.get('target', '')}" + (f": {e['note'][:100]}" if e.get("note") else ""))
-        unread = [m for p, m in st.messages() if (p.startswith(f"inbox/{me}/") or p.startswith(f"inbox/{BROADCAST}/"))
-                  and me not in m["read_by"] and m.get("from") != me]
+        sf = seen_file(lg, me)
+        since = sf.read_text().strip() if sf.exists() else ""
+        events = [json.loads(l) for p in st.paths("log/") for l in st.get(p).decode().splitlines() if l.strip()]
+        new = [e for e in events if e["at"] > since and e["by"] != me]
+        docs, errors = st.docs()
+        mine = {k for k, d in docs.items() if me in (d.get("owner"), d.get("holder"), d.get("reviewer"))}
+        print(f"{lg.store.branch} at {st.at:%Y-%m-%d %H:%M} UTC; {len(new)} change(s) by others since {since or 'the start'}")
+        for e in new[-50:]:
+            star = "*" if e.get("target", "").startswith(f"{me}/") or e.get("target") in mine or e.get("task") in mine else " "
+            print(f" {star} {short(e['at'])} {e['by']:5} {e['op']:8} {e.get('target', '')}" + (f": {e['note'][:90]}" if e.get("note") else ""))
+        unread = st.unread(me)
         print(f"unread for {me}: {len(unread)}")
-        for m in sorted(unread, key=lambda m: m.get("sent", "")):
-            print(f"   {m['id']}: {m.get('subject')}")
-        lapsing = [t for t in st.tasks().values() if (t.get("claim") or {}).get("by") == me
-                   and parse_time(t["claim"]["expires"]) - st.at < timedelta(minutes=45)]
-        for t in lapsing:
-            print(f"   your claim on {t['id']} ends {t['claim']['expires']}: renew, review, release or close it")
-        sp.parent.mkdir(parents=True, exist_ok=True)
-        sp.write_text(iso(st.at))
-        if not a.no_heartbeat and (st.agents().get(me)):
+        for m in unread:
+            print(f"   {m['id']}  ({m['from']}) {m['subject'][:110]}")
+        for d in docs.values():
+            if d.get("holder") == me and d.get("state") == "leased":
+                left = parse_time(d.get("lease_until")) - st.at
+                if left < timedelta(minutes=45):
+                    print(f"   your lease on {d.get('id')} ends {d.get('lease_until')}: renew, submit or release it")
+            if d.get("state") == "submitted" and me in (lg.lead, d.get("reviewer") or lg.lead):
+                print(f"   {d.get('id')} waits for your review ({d.get('holder')}): {d.get('title')[:70]}")
+        if errors:
+            print("malformed: " + "; ".join(errors))
+        sf.parent.mkdir(parents=True, exist_ok=True)
+        sf.write_text(st.at.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        if not a.no_heartbeat and me in st.agents():
             lg.mutate(f"heartbeat {me}", lambda s: lg.touch(s))
         return 0
     raise SystemExit(f"unknown command {c}")
