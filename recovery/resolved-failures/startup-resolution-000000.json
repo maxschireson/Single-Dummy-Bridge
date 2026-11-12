@@ -1,0 +1,5 @@
+{
+ "epoch": 1794452545.8067648,
+ "failure": "startup-000000.json",
+ "reason": "DDS cache startup race. The eight workers of a new run opened a dds-cache.sqlite that did not exist yet at the same moment, and one got sqlite3.OperationalError('database is locked') on PRAGMA journal_mode=WAL while building its first player. No board was played: there is no episode or receipt for any index. The cache file now exists in WAL mode, so the race cannot recur in this run. Retried with the unchanged frozen manifest and bot identities."
+}
