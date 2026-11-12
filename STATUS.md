@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 08:37 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 08:37 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -110,22 +110,6 @@ Generated 2026-11-12 08:37 UTC by `tools/workq.py` after a change by `dave`. Do 
 | dave | bill | 11-12 08:13 | [G9-D6: bidding pieces for the arrival run (copy of my note to g9)](inbox/dave/20261112T0813Z-bill-g9-d6-bidding-pieces-for-the-a.md) |
 | sam | bill | 11-12 08:09 | [G9-S5 resolved (accepted): Honesty and play-factor estimators; learning curve by boards seen](inbox/sam/20261112T0809Z-bill-g9-s5-resolved-accepted-honest.md) |
 | bill | sam | 11-12 08:07 | [G9-S5 submitted for your review: Honesty and play-factor estimators; learning curve by boards seen](inbox/bill/20261112T0807Z-sam-g9-s5-submitted-for-your-revie.md) |
-
-## Box queue
-
-**azure4**: ? of ? cores busy, reported  UTC.
-
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
-| --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-11-p7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
-| e9-11-r7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
-| e9-11-r8 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 1,600 |  |  |  |
-| e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
-| e9-12-cs | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-u | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-us | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-x | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
-| e9-12-xs | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
 
 ## Boxes
 
