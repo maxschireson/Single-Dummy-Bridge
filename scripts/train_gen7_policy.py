@@ -4,12 +4,17 @@
   python scripts/train_gen7_policy.py --data data.npz --out run_dir [--kind suit|mlp] [--epochs 8]
                                       [--augment none|cards|all] [--patience 0]
                                       [--fraction 1.0] [--seed 0] [--all-train --val-data fresh.npz]
+                                      [--init policy.npz --lr 5e-4]
 
 Targets: the card Gen 6 played (policy head), Gen 6's gap for every legal card (gap head),
 the holder of each unseen card and the final tricks. Deals are split by family in the data
 file; --fraction keeps that share of the training deals, for the learning curve. --all-train
 trains on every deal of the file whatever its split; the held-out rows then come from --val-data,
 a second set of the same format (boards that arrived after the training set was fetched).
+--init starts from the weights of a saved net of the same kind and width instead of random ones:
+more epochs for a finished net. The rate still warms up and follows one cosine from --lr to
+--lr / 50, so give a lower --lr than a run from scratch (a finished run ends at its own floor).
+The optimizer's moments are not saved with a net and start from zero.
 
 --augment relabels the four suits of a training position (card play is the same game under
 any relabelling as long as the trump suit moves with it). The auction is not: a 2C response
@@ -208,6 +213,7 @@ def main():
     p.add_argument('--save-epochs', action='store_true', help="also write each epoch's weights as policy_epoch<n>.npz")
     p.add_argument('--all-train', action='store_true', help='train on every deal of --data, whatever its split (needs --val-data)')
     p.add_argument('--val-data', type=Path, help='held-out rows come from this set (all of its rows) instead of split 1 of --data')
+    p.add_argument('--init', type=Path, help='start from the weights of this net (a policy.npz or policy_epoch<n>.npz of the same kind and width)')
     a = p.parse_args()
     if a.all_train and not a.val_data:
         p.error('--all-train needs --val-data: with no deal held back there is nothing to score an epoch on')
@@ -234,7 +240,13 @@ def main():
     print(f"{len(keep)} training deals, {len(train)} training examples, {len(val)} held-out examples"
           + (f" from {a.val_data.name} ({len(np.unique(vdata['deal']))} deals)" if a.val_data else ''), file=sys.stderr, flush=True)
     rng = np.random.default_rng(a.seed)
-    params = {k: jnp.asarray(v) for k, v in init(kind, rng, a.width).items()}
+    start = init(kind, rng, a.width)
+    if a.init:
+        with np.load(a.init) as f:
+            if int(f['kind']) != kind or any(k not in f.files or f[k].shape != v.shape for k, v in start.items()):
+                raise SystemExit(f'{a.init} is not a net of kind {a.kind} and width {a.width}')
+            start = {k: f[k].astype(np.float32) for k in start}
+    params = {k: jnp.asarray(v) for k, v in start.items()}
     steps = a.epochs * (len(train) // a.batch)
     schedule = optax.warmup_cosine_decay_schedule(0., a.lr, min(500, steps // 10), steps, a.lr / 50)
     opt = optax.chain(optax.clip_by_global_norm(1.), optax.adamw(schedule, weight_decay=a.weight_decay))
@@ -328,6 +340,7 @@ def main():
     metrics = dict(kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
                    selected_epoch=best[1], fraction=a.fraction, train_deals=int(len(keep)), train_examples=int(len(train)),
                    all_train=a.all_train, val_data=a.val_data.name if a.val_data else None,
+                   init=str(a.init) if a.init else None, lr=a.lr, batch=a.batch,
                    validation=evaluate(lambda b: predict(final, b), vdata, val),
                    test=evaluate(lambda b: predict(final, b), data, test) if a.fraction == 1. and len(test) else None,
                    auction_use=auction_use, numpy_parity_max_abs_logit=parity, seconds=round(time.time() - started), history=history)
