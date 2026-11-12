@@ -467,3 +467,4 @@
 {"at": "2026-11-12T14:51:00Z", "by": "sam", "op": "job-submit", "target": "azure4/g9-x2-ben64", "note": "priority 3, 4 cores", "task": "G9-X2"}
 {"at": "2026-11-12T14:51:00Z", "by": "sam", "op": "job-submit", "target": "azure4/g9-x2-rel-std-80", "note": "priority 3, 4 cores", "task": "G9-X2"}
 {"at": "2026-11-12T14:51:00Z", "by": "sam", "op": "job-submit", "target": "azure4/g9-x2-rel-std-50", "note": "priority 3, 4 cores", "task": "G9-X2"}
+{"at": "2026-11-12T14:51:00Z", "by": "sam", "op": "send", "target": "will/20261112T1451Z-sam-g9-x2-bench-jobs-submitted-fou", "note": "G9-X2 bench jobs submitted: four, priority 3, 4 cores, preemptible (resume from saved parts)", "task": "G9-X2"}
