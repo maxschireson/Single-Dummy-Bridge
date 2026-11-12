@@ -286,6 +286,8 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None):
         for key in ('generation', 'variant'):
             if key in plan:
                 m[key] = plan[key]
+        if 'bidding_conditions' in plan:
+            m['bidding_conditions'] = list(plan['bidding_conditions'])
         if shard is not None:
             m['shard'] = dict(index=k, of=n)
         m['identity'] = digest(m)
