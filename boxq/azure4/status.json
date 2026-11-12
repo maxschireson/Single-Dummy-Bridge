@@ -6,7 +6,7 @@
    "state": "running",
    "owner": "dave",
    "experiment": "G9-D6",
-   "boards": 907,
+   "boards": 963,
    "target": 6200,
    "restarts": 0,
    "submitted": "2026-11-12T13:21:00Z",
@@ -15,10 +15,10 @@
    "started": "2026-11-12T15:03:58Z",
    "resumed": "2026-11-12T15:03:58Z",
    "source": "/home/bridgebots/work/g9/src/8cb0348",
-   "rate_per_hour": 1291.8,
-   "eta": "2026-11-12T19:50:55Z",
-   "published_at": "2026-11-12T15:35:23Z",
-   "published": "transfer/gen9-d6-arrival-azure4-20261112@257be4724"
+   "rate_per_hour": 1106.3,
+   "eta": "2026-11-12T20:34:14Z",
+   "published_at": "2026-11-12T15:45:37Z",
+   "published": "transfer/gen9-d6-arrival-azure4-20261112@a6715bf8b"
   },
   "e9-0-n005": {
    "state": "waiting",
@@ -363,7 +363,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T15:45:05Z",
+ "updated": "2026-11-12T15:50:13Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,

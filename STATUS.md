@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 15:45 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 15:50 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -62,8 +62,8 @@ Generated 2026-11-12 15:45 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z |  |
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 15:53 | leased | high | 2026-11-13T16:00Z |  |
-| [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired |
-| [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired |
+| [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
+| [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T12:00Z |  |
 | [E9-15](experiments/E9-15.md) | Honesty by situation: a signal expert per known opponent (BEN first) | sam | sam until 11-12 17:17 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T04:00Z |  |
@@ -110,11 +110,11 @@ Generated 2026-11-12 15:45 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 15:45 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-12 15:50 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| d6-arrival |  | dave | 1 | 8 | running | 907 of 6,200 | 1291.8 | 11-12 19:50 | `transfer/gen9-d6-arrival-azure4-20261112@257be4724` |
+| d6-arrival |  | dave | 1 | 8 | running | 963 of 6,200 | 1106.3 | 11-12 20:34 | `transfer/gen9-d6-arrival-azure4-20261112@a6715bf8b` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
