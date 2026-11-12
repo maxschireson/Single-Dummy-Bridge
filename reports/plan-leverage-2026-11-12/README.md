@@ -24,13 +24,13 @@ side at tricks 3 to 6 and 0.07 at tricks 7 to 12 if every card's real expectatio
 cards late. The bot simulating itself from trick 7 collects 0.043 of the late part, and in a played test it is worth
 +0.175 +- 0.035 IMPs a board at about six times the CPU. Nothing I tried gives the net more leverage: it reaches the
 table as a predictor of the bots' cards, and that predictor improves slowly with data. Plans as layout families, a
-head fitted on outcomes and tables of play kinds add nothing measurable. The opening lead and tricks 1 to 2 are being
-measured.
+head fitted on outcomes and tables of play kinds add nothing measurable. The opening lead holds 0.01 to 0.03. Tricks
+1 to 2 after the lead are being measured.
 
 1. **Why the tree shows no gain from a better net.** At tricks 3 to 6, knowing exactly what every other card would
    bring with the bots playing on is worth about 0.10 tricks a side at one table (a fit gives 0.140 +- 0.047 and a
    simulation of the fit says it errs high by 0.03 to 0.04 at this sample size; section 1).
-   That is everything a better judge of cards could add there with Gen 6's beliefs. A simulator collects the part
+   To first order (see Limits) that is everything a better judge of cards could add there with Gen 6's beliefs. A simulator collects the part
    its picture of the other seats explains and its layouts resolve. One layout's played-out result differs by 0.6 to
    0.8 tricks, and what real play adds to double dummy has an sd of 0.11 to 0.17 at close decisions, so on the
    tree's 8 layouts the estimate is noisier than the thing estimated. The real bots themselves as the simulator,
@@ -58,7 +58,10 @@ measured.
    suit lengths and loses where a card sits. (Section 5.)
 7. **A better net reaches the table only as a model of the bots' cards, and that improves slowly.** From v4 to
    v4.1, 2.3 times the data bought 0.04 of log-loss, 0.04 nats of reading and 0.02 of simulator share. (Section 7.)
-8. **Not yet measured:** the opening lead and tricks 1 to 2 (ceilings running tonight), level cards at tricks 3 to 6.
+8. **The opening lead is not where the tricks are.** 0.01 to 0.03 a side is available there. The search does
+   flatter an ace against a small card from an honour, by about 0.09 tricks in two independent measures, and the
+   bot leads an ace on 21% of deals; correcting leads by kind is worth +0.005 +- 0.004 a side. (Section 1.)
+9. **Not yet measured:** tricks 1 to 2 after the lead (running tonight), level cards at tricks 3 to 6.
 
 What this says about the formula: the student has leverage where it is used as a model of the other seats' cards,
 and none where it is asked to out-evaluate the search at close decisions. v4 to v4.1 improved it as a player (26%
@@ -71,7 +74,8 @@ In one unit (tricks a side at one table, Gen 6 among Gen 6; a board is two sides
 | A different card at tricks 3 to 6, same beliefs | about 0.10 (fit 0.14 +- 0.05, less its error of 0.03 to 0.04) | Gen 7's tree 0.01 to 0.03 (p41: +0.046 +- 0.014 tricks an override, about 0.3 overrides a side); net playouts on 512 layouts 0.025; real playouts on 12 layouts 0.03 to 0.06 |
 | A different card at tricks 7 to 12 | 0.07 +- 0.01 (fit) | 0.043 +- 0.012 with the bot as its own simulator |
 | Level cards, tricks 7 to 12 | 0.02 | 0.01 |
-| Opening lead, tricks 1 to 2, level cards at tricks 3 to 6 | not measured yet | |
+| The opening lead | 0.01 to 0.03 | a table by kind of lead +0.005 +- 0.004; real playouts on 12 layouts +0.027 +- 0.015 |
+| Tricks 1 to 2 after the lead, level cards at tricks 3 to 6 | not measured yet | |
 | Reading the play (p41's bench, double-dummy tricks) | 0.37 if told the deal | 0.10 with v4.1; 0.07 to 0.10 more with the bot as the model |
 
 ## Units and method
@@ -83,7 +87,8 @@ In one unit (tricks a side at one table, Gen 6 among Gen 6; a board is two sides
   (decision, other card) of one side at one table.
 - **Tricks a side at one table.** What a rule gains over the bot's card, summed over one side's decisions at one
   table. A bot plays one side at each of a board's two tables, so two of these make a board; at the fork pairs' 3.6
-  IMPs a trick, 0.1 tricks a side is about 0.7 IMPs a board. The IMP figure is rough.
+  IMPs a trick, 0.1 tricks a side is about 0.7 IMPs a board. The IMP figure is rough: the one played test came in
+  at 0.175 IMPs a board for a bench figure of 0.043 tricks a side, about 2 IMPs a trick.
 - **The ceiling.** For a fork pair, both cards are played out to trick 13 on layouts drawn from the decider's own
   beliefs, with the real bot (Gen 6, 32 layouts) at all four seats. The mean over layouts is what B costs in
   expectation when everyone plays on as the bots do. It replaces the one real deal (sd about 0.8 tricks a pair) as
@@ -175,31 +180,43 @@ that the shrinkage shows up as an effect of whatever kinds are mostly played or 
 is left by kind (+ means the search flatters the kind; the two columns are different deals and different measures:
 the real deal's result against the recorded gap, and the playouts against double dummy on the same 16 layouts):
 
-| Kind | Real deals, 6,632 forks | Ceiling so far, 311 forks | The search leads it |
+| Kind | Real deals, 6,632 forks | Ceiling, 659 forks | The search leads it |
 |---|---|---|---|
-| Singleton | +0.044 +- 0.042 | +0.106 +- 0.034 | 7% |
-| An ace | +0.035 +- 0.024 | +0.086 +- 0.031 | 21% (24% against suit contracts) |
-| A trump | +0.055 +- 0.023 | -0.001 +- 0.031 | 7% |
-| Small from small cards | -0.010 +- 0.025 | -0.016 +- 0.030 | 16% |
-| An honour, not touching | -0.012 +- 0.025 | -0.006 +- 0.025 | 10% |
-| Small from a doubleton | -0.022 +- 0.031 | -0.050 +- 0.041 | 10% |
-| Top of touching honours | -0.050 +- 0.031 | -0.033 +- 0.041 | 11% |
-| Small from an honour | -0.040 +- 0.018 | -0.085 +- 0.022 | 19% |
+| Singleton | +0.044 +- 0.042 | +0.094 +- 0.026 | 7% |
+| An ace | +0.035 +- 0.024 | +0.040 +- 0.019 | 21% (24% against suit contracts) |
+| A trump | +0.055 +- 0.023 | +0.010 +- 0.020 | 7% |
+| An honour, not touching | -0.012 +- 0.025 | +0.005 +- 0.015 | 10% |
+| Small from small cards | -0.010 +- 0.025 | -0.015 +- 0.020 | 16% |
+| Top of touching honours | -0.050 +- 0.031 | -0.026 +- 0.028 | 11% |
+| Small from a doubleton | -0.022 +- 0.031 | -0.047 +- 0.021 | 10% |
+| Small from an honour | -0.040 +- 0.018 | -0.060 +- 0.014 | 19% |
 
-An ace against a small card from an honour: the search is off by +0.075 +- 0.029 on the real deals and +0.170 +- 0.038
-in the ceiling. Both say double dummy flatters the ace (the defence that follows is never as good as double dummy's)
-and is hard on the small card from an honour (declarer does not always guess); they disagree on the size. A rule that
+An ace against a small card from an honour: the search is off by +0.075 +- 0.029 on the real deals and +0.100 +- 0.025
+in the ceiling (+0.24 +- 0.08 against notrump, +0.07 +- 0.03 against suits). Both say double dummy flatters the ace
+(the defence that follows is never as good as double dummy's) and is hard on the small card from an honour (declarer
+does not always guess). A rule that
 adds the table to the search's gaps (fitted on half the deals, scored on the other half through the forks, switching
 only to a card the search rated behind) changes 8% to 15% of the leads and gains +0.005 +- 0.003 to +0.005 +- 0.004
 tricks a side: not distinguishable from nothing. The same table for every play after the lead (85,535 forks, 28
 kinds of play a side such as "second hand takes the trick" or "lead low from an honour"; `scripts/plan_play_scan.py`,
 `scripts/plan_play_rule.py`) gives a rule worth -0.004 +- 0.004 a side. So tables of play kinds are not a lever either.
 
-The lead's ceiling (both leads played out by Gen 6 on 16 layouts from the leader's beliefs; 311 of about 690 forks so
-far): the forced lead costs +0.21 +- 0.03 by the playouts where double dummy on the same layouts says +0.27; one
-layout's played-out difference between two leads has an sd of about one trick, so 16 layouts say little about one
-pair; 12 of 16 layouts choosing gains +0.04 +- 0.04 a side at trust 0.25 and loses at higher trust. The amount
-available: *pending* (`ceilLead`, azure5, about 19:50 UTC).
+The lead's ceiling (both leads played out by Gen 6 on 16 layouts from the leader's beliefs; 659 forks on the 1,561
+boards). The forced lead costs +0.193 +- 0.016 by the playouts where double dummy on the same layouts says +0.251 and
+the table's search +0.295. One layout's played-out difference between two leads has an sd of about one trick, and
+what real play adds to double dummy has an sd of 0.09 once layout luck is out, so 16 layouts say little about one
+pair:
+
+| Layouts that choose | Trust 0.125 | Trust 0.25 | Trust 0.5 | Playouts alone |
+|---|---|---|---|---|
+| 4 of 16 | +0.008 +- 0.007 | +0.003 +- 0.013 | -0.053 +- 0.021 | -0.126 +- 0.024 |
+| 8 of 16 | +0.009 +- 0.006 | +0.013 +- 0.012 | -0.016 +- 0.020 | -0.095 +- 0.027 |
+| 12 of 16 | +0.008 +- 0.008 | +0.027 +- 0.015 | -0.002 +- 0.024 | -0.064 +- 0.035 |
+
+(Tricks a side; only one side leads, so a lead is worth twice these.) The fit of exact knowledge gives 0.059 +- 0.021
+and the simulation says it errs high by 0.050 +- 0.005 at this number of pairs, so what is available at the lead is
+between about 0.01 and 0.03 a side, and a playout from the lead costs a whole board of the bot's search. The lead is
+not where the tricks are.
 
 **Tricks 1 to 2 after the lead:** *pending* (`ceilT12`, azure2, overnight).
 
@@ -481,9 +498,9 @@ a pair). None of them asks the net to judge a position.
 - The "exact knowledge" figures are a fit, corrected at tricks 3 to 6 for an error found by simulating it. The direct
   figures are the split tables; hindsight on all layouts is the only model-free upper bound and it is loose at 16
   layouts.
-- The ceiling covers the gap forks (a second card the search rated behind) from trick 3 and, for level cards, one
-  other selector's card at tricks 7 to 12. The opening lead, tricks 1 to 2 and level cards at tricks 3 to 6 are
-  pending.
+- The ceiling covers the gap forks (a second card the search rated behind) at the opening lead and from trick 3,
+  and, for level cards, one other selector's card at tricks 7 to 12. Tricks 1 to 2 after the lead and level cards at
+  tricks 3 to 6 are pending.
 - The reading figures are for a bot read by an exact copy of itself. Against BEN, or a bot that plays its level
   cards at random, the evidence in section 5 is not there.
 - One result here has been played (`match1`); two more matches are running.
