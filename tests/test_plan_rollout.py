@@ -9,6 +9,7 @@ from bridge_harness.gen6 import Classes, View, Gen6Player
 from bridge_harness.gen7 import utilities
 from bridge_harness.gen7_net import INPUTS
 from bridge_harness.plan_families import Features, held_out, key_variables
+from bridge_harness.gen7 import Gen7Player
 from bridge_harness.plan_player import PlanPlayer, PlayoutUse, playout_stages
 from bridge_harness.plan_rollout import Believer, NetPlayer, Public, Rows, card_values, inputs, plan_values, play_out, solve_rows
 from test_gen7 import Fixture, played
@@ -336,6 +337,12 @@ class PlanPlayerTests(Fixture):
                 self.assertTrue(-13 <= x['tree'] <= 13)
                 self.assertEqual(x['tree'], round(x['tree'] * note['layouts']) / note['layouts'])       # whole tricks in each layout
             self.assertIs(type(plan.inner), Gen6Player)
+        seven = self.plan(trust=1., seat='gen7', layouts=2, from_trick=8)
+        game, o, world = spot(3, 35)
+        if len(o.legal) > 1:
+            seven.choose(o, random.Random(3))
+            if seven.inner is not None:
+                self.assertIs(type(seven.inner), Gen7Player)
         self.assertGreater(found, 0)
 
     def test_the_note_holds_the_search_and_the_playouts(self):
