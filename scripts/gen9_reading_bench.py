@@ -402,7 +402,10 @@ def readings(a):
         base = player_of(a.expert_base)
         readers[name], meets[name] = ExpertReading(base, build(spec)[which.replace('-first', '')], first), ''
     decisions = kept(bench.decisions, listed.get('deciders', 'house'))
-    for part in sorted(out.glob('pools-*-*.npz')):
+    k_of, n_of = (int(x) for x in a.part_shard.split('/'))
+    for index, part in enumerate(sorted(out.glob('pools-*-*.npz'))):
+        if index % n_of != k_of:
+            continue
         todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
         todo = {n: t for n, t in todo.items() if not t.exists()}
         if not todo:
@@ -594,6 +597,7 @@ def main():
     ap.add_argument('--expert-base', default='r9b-32')
     ap.add_argument('--class-reading', action='append', default=[], help='NAME=KIND[:WHO], KIND spots|touching|card, WHO all|opponents|partner (E9-16)')
     ap.add_argument('--class-base', default='8p-32')
+    ap.add_argument('--part-shard', default='0/1', help='readings: this process takes part files k, k + n, ... (k/n)')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
     ap.add_argument('--verbose', action='store_true')
