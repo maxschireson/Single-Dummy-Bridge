@@ -35,7 +35,7 @@ fi
 eval "$(python3 - <<'PY'
 import json, os, shlex
 c = json.load(open(os.path.expanduser('~/.boxctl/config.json')))
-print('export WORKQ_REPO=' + shlex.quote(c['repo_url']))
+print('export WORKQ_REPO=' + shlex.quote(c.get('repo_url') or c['repo']))   # the boxctl agent's key is 'repo'
 print('export GIT_SSH_COMMAND=' + shlex.quote(f"ssh -i {os.path.expanduser(c['ssh_key'])} -o IdentitiesOnly=yes -o BatchMode=yes"))
 PY
 )"

@@ -421,7 +421,7 @@ def box_git_env() -> None:
     cfg = Path.home() / ".boxctl" / "config.json"
     if cfg.exists():
         c = json.loads(cfg.read_text())
-        os.environ.setdefault("WORKQ_REPO", c.get("repo_url", wq.DEFAULT_REPO))
+        os.environ.setdefault("WORKQ_REPO", c.get("repo_url") or c.get("repo") or wq.DEFAULT_REPO)   # the agent's key is 'repo'
         if c.get("ssh_key"):
             key = os.path.expanduser(c["ssh_key"])
             os.environ.setdefault("GIT_SSH_COMMAND", f"ssh -i {key} -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new")
