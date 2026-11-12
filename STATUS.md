@@ -1,6 +1,6 @@
 # Fleet status
 
-**Last check:** 12 November 2026, 13:45 UTC. **Next check:** about 14:25 UTC. Who holds which box:
+**Last check:** 12 November 2026, 14:36 UTC. **Next check:** about 15:15 UTC. Who holds which box:
 the allocation table in `BOARD.md` on branch `box/coordination`.
 
 **Gen 7.1** (Max, 05:42: push 7.1, policy net v4.1, from 06:00 unless revoked; 7.1 plays 7.0 where
@@ -9,9 +9,9 @@ match 7 becomes 7.1. 05:54: azure2 plays 7.1 against 7.0 on every board).
 
 | Machine | Held by | Running | At the last check |
 | --- | --- | --- | --- |
-| `azure1` | operator from 11:42 (Max, 11:36 and 11:38) | `71s-32~71s-32` and `71s-32~7s-32`, one board in two each, cohort `f37d8d826522`, 1,471 deals v4.1 was not trained on, feed `arena-gen7-1-mix-azure1-feed` (registered) | 971 boards at 13:36, about 730 an hour, no failures; eight workers. **Next cohort armed (13:44):** `31a8dd6ce638` (`gen71-mix2-azure1`), shard 5/8 of the capture capsule (claimed on the board at 13:44) without the training families, 1,478 deals, preflight passed; unit `mixswitch` moves the collector at about 14:20; feed `arena-gen7-1-mix2-azure1-feed` (register once it exists). Tooling `~/work/gen71/gen71e.sh` |
+| `azure1` | operator (Max, 13:52 and 13:56: settings test) | Fork-free settings matches with `gen8_match.py` at `48982f7` (units `match-m1`, `match-m3`, four workers each; seed 7111, 3,000 deals): `m1` 7.1 at layout-weight exponent 1.0 against 7.0 as deployed; `m3` 7.1 at 1.0 against 7.0 at 1.0. Results to `transfer/gen71-settings-azure1-20261112` every ten minutes (`settings-pub`) | 281 boards each at 14:31: `m1` +0.11 +- 0.15, `m3` +0.18 +- 0.15. The 4.1 session's bench predicts about +0.03 and 0.00 (the Gen 7 bot reads from the deal list only). Plan: run to about 1,500 each (about 16:15), then back to the 7.1 mix. The mix cohort `f37d8d826522` is paused at 1,256 of 1,471 boards, all published; `gen71-mix2-azure1` (capsule shard 5/8) stays prepared |
 | `azure2` | plan session from 08:15 (Max's authority) | Plan-level search experiments | Drained at 08:14: cohort `4b32e6ed0d6b` at 745 of 1,465 boards, all published (`67dd0ed`); units disabled, `/mnt/ddscache` empty. Nothing of the operator's is queued there; resume from its 720 unplayed deals when the box comes back |
-| `azure3` | operator | `71s-32~ben64`, eight lanes on deals v4.1 was not trained on | All eight lanes on their second pool since 12:42 to 13:20 (`gen71fresh2-azure3-ben64-N`, 1,475 deals, registered, gh-pages `aba5765`); about 486 an hour, no failures; `lane-recycle` has restarted lanes 47 times. That pool lasts to about 16:30. The gate runs here (`/home/claude/watch/gate3.sh`) |
+| `azure3` | operator | `71s-32~ben64`, eight lanes on deals v4.1 was not trained on, second pool (`gen71fresh2-azure3-ben64-N`) | 3,822 boards against BEN (64) since 06:06 (225 in-sample, not registered); about 490 an hour, no failures; `lane-recycle` has restarted lanes 55 times; the second pool lasts to about 16:30. The gate runs here (`/home/claude/watch/gate3.sh`) |
 | `azure4` | Gen 8 session (lent; Max 11:38 and 12:21: until 15:00 at the latest), then Gen 9 | Gen 8 work | Nothing of the operator's runs or is queued there; its prepared cohort `7cefdbdb7771` (1,468 deals) waits unstarted |
 | `azure5` (Bridgebots5) | policy 4.1 session, then Gen 8 (about 07:40) | Training | Kept (Max, 05:59) |
 | `azure6` (Bridgebots6) | Gen 8 session | Gen 8 experiments | Kept (Max, 06:03) |
@@ -30,8 +30,8 @@ checkout `~/work/sdb-gen71x`). The unplayed pools on azure1 and azure4 have the 
 
 **The rule for `71s-32~7s-32`.** The independent collector's gate script (`ops/check_gen71_gate.py`,
 run from `/home/claude/watch/gate.sh` on azure2 at every check) counts one board a family over
-every registered feed, none on a training family: at 13:37, 4,083 boards, mean -0.068, 95% interval
--0.149 to +0.013, not eligible. Not met at 1,000 boards (07:53: 1,124, -0.072, -0.222 to +0.078); Max told, his call. `pool4.py` prints the raw counts. When it is met,
+every registered feed, none on a training family: at 14:29, 4,578 boards, mean -0.078, 95% interval
+-0.154 to -0.002, not eligible: nominally below zero after about 15 looks (Max told at 14:31). Not met at 1,000 boards (07:53: 1,124, -0.072, -0.222 to +0.078); Max told, his call. `pool4.py` prints the raw counts. When it is met,
 `configs/round71-selfplay.json` is opened. The Gen 8 session's own fork-free match of the two bots
 stood at -0.010 +- 0.047 after 3,075 boards (plan session's 07:15 entry).
 
