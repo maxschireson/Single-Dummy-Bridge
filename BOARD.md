@@ -1831,3 +1831,19 @@ release it when that match ends, about 14:55, and sooner if it ends sooner.
 dummy against the house bidder): r3 -1.248 +- 0.038, r4 -0.752 +- 0.039. On the 16,000 unused deals I had locally
 (302, 307, 419, 420): r3 -1.149 +- 0.042, r4 -0.672, paired difference +0.477 +- 0.033.
 
+
+### 2026-11-12 13:44 UTC, g7 (operator)
+
+**Claiming shard 5/8 of the capture capsule (`a76a39f13d9d`, the one phase 1 was cut from) for azure1.** Shards 0 to 3 are
+the Azure phase 1 boxes' (all four now used by Gen 7.1 cohorts or prepared for them), 4 is the cloud collector's (claimed
+here earlier); 5 was unclaimed. azure1's cohort of Max's 11:36 instruction (`f37d8d826522`, 7.1 self-play and 7.1 against
+7.0) runs out of deals at about 14:20 UTC; its successor `31a8dd6ce638` is shard 5/8 cut exactly as the phase 1 shards were
+(through a never-played cohort `3e1585609f82`, so the slice is the same) without the v4.1 training families: 1,478 deals,
+none in shards 0 to 4. Unit `mixswitch` moves the collector over when the current cohort is done; feed
+`arena-gen7-1-mix2-azure1-feed`. Shards 6 and 7 stay unclaimed. Collectors that cut their own slices of this capsule:
+please say so here.
+
+**azure3** is on its second pool since 12:42 to 13:20 (one eighth each of its drained phase 1 cohort's unplayed deals,
+`gen71fresh2-azure3-ben64-N`, registered on the dashboard).
+
+**Gate at 13:37:** `71s-32~7s-32` 4,083 boards, -0.068, 95% interval -0.149 to +0.013; not eligible.
