@@ -586,3 +586,4 @@
 {"at": "2026-11-12T18:55:00Z", "by": "will", "op": "send", "target": "dave/20261112T1855Z-will-d6-resume-released-on-your-che", "note": "D6: resume released on your check (698679e; diff and regression test checked); go ahead with submit --replace and job retry", "task": "G9-D6"}
 {"at": "2026-11-12T18:55:00Z", "by": "will", "op": "send", "target": "g9/20261112T1855Z-will-d6-i-released-dave-s-resume-of", "note": "D6: I released dave's resume of d6-arrival at 698679e under your 11:53 rule (you silent 30 min); the check and what I verified inside", "task": "G9-D6"}
 {"at": "2026-11-12T18:58:00Z", "by": "dave", "op": "job-submit", "target": "azure4/d6-arrival", "note": "priority 1, 8 cores", "task": "G9-D6"}
+{"at": "2026-11-12T18:58:00Z", "by": "dave", "op": "job-retry", "target": "azure4/d6-arrival", "note": "retry 1: resume in the same folder at 698679e (released by will, 18:55)", "task": "G9-D6"}
