@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+P=$HOME/work/p41; tail -4 $P/logs/timeline.log; echo "--- eval768"; grep -v "^$" $P/logs/eval768.log | sed -n "/== compare on fresh C/,/^v3.1 to v4 lead/p;/512 wide against/,/^$/p" | grep -v "decisions (\|^v3.1 to\|^v4 to\|exponent" | cut -c1-330 | head -40; grep -A12 "512 wide against" $P/logs/eval768.log | grep "gives up\|against\| all " | cut -c1-330; tail -1 $P/logs/w512e5.err
