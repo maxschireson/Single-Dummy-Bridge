@@ -30,7 +30,9 @@ import platform
 import re
 import subprocess
 import sys
+import tempfile
 import time
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -120,18 +122,42 @@ def build_dds(force: bool) -> dict:
     return out
 
 
+def expected_outputs(manifest: object) -> list[str]:
+    """Model files a release's restore script writes, read from its manifest whatever its schema: every `output` or
+    `file` value, or `artifacts` key, naming a model file that is not a part (top-level `output`, `files[*].output`,
+    `models[*].output`, `model.file` and `artifacts.<name>` all occur in models/)."""
+    names = []
+    model_file = re.compile(r"\.(npz|keras|h5|pt|bin|tar\.gz)$")
+
+    def walk(x, key=None):
+        if isinstance(x, dict):
+            for k, v in x.items():
+                if key == "artifacts" and model_file.search(k):
+                    names.append(k)
+                walk(v, k)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v, key)
+        elif isinstance(x, str) and key in ("output", "file") and ".part" not in x and model_file.search(x):
+            names.append(x)
+    walk(manifest)
+    return sorted(set(names))
+
+
 def restore_models() -> list[dict]:
     rows = []
     for script in sorted(ROOT.glob("models/**/restore*.py")):
         rel = script.relative_to(ROOT)
         manifest = script.parent / "manifest.json"
-        target = None
+        names = []
         if manifest.exists():
             try:
-                target = script.parent / json.loads(manifest.read_text()).get("output", "")
+                names = expected_outputs(json.loads(manifest.read_text()))
             except (ValueError, OSError):
-                target = None
-        if target is not None and target.is_file():
+                names = []
+        with_parts = [n for n in names if any(script.parent.glob(f"{n}.part*"))]  # names with no parts here are references
+        names = with_parts or names
+        if names and all((script.parent / n).is_file() or (script.parent / "restored" / n).is_file() for n in names):
             rows.append(dict(script=str(rel), ok=True, note="already restored"))
             continue
         t = time.time()
@@ -147,6 +173,8 @@ def prepare(with_heavy: list[str], force_build: bool) -> dict:
     if v < (3, 11):
         raise SystemExit(f"Python {v.major}.{v.minor}: the project needs 3.11 or later")
     need = [spec for mod, spec in BASE_PACKAGES.items() if missing_module(mod)]
+    if missing_module("pytest") and any(pytest_style(p.name) for p in (ROOT / "tests").glob("test_*.py")):
+        need.append("pytest")
     for mod in with_heavy:
         spec = OPTIONAL.get(mod, mod)
         if missing_module(mod) and spec not in need:
@@ -161,13 +189,61 @@ def prepare(with_heavy: list[str], force_build: bool) -> dict:
     log("prepare: restoring nets")
     report["models"] = restore_models()
     bad = [m for m in report["models"] if not m["ok"]]
-    log(f"prepare: {len(report['models']) - len(bad)} of {len(report['models'])} restore scripts ok")
+    log(f"prepare: {len(report['models']) - len(bad)} of {len(report['models'])} restore scripts ok, "
+        f"{sum(m['note'] == 'already restored' for m in report['models'])} already restored")
     return report
 
 
 # ---------------------------------------------------------------- run
 
+def pytest_style(name: str) -> bool:
+    """A file of plain test functions (or one that imports pytest) is invisible to unittest discovery."""
+    src = (ROOT / "tests" / name).read_text(errors="replace")
+    return bool(re.search(r"^import pytest|^from pytest", src, re.M)) or (
+        bool(re.search(r"^def test_", src, re.M)) and "unittest.TestCase" not in src and "(TestCase)" not in src)
+
+
+def run_pytest(name: str, timeout: int, env: dict) -> dict:
+    t = time.time()
+    if missing_module("pytest"):
+        return dict(file=name, tests=[], status="not run", needs="pytest", seconds=0.0)
+    with tempfile.TemporaryDirectory() as d:
+        xml = Path(d) / "junit.xml"
+        try:
+            r = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", f"--junitxml={xml}", f"tests/{name}"],
+                               cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)
+        except subprocess.TimeoutExpired:
+            return dict(file=name, tests=[], status="timeout", seconds=round(time.time() - t, 1), detail=f"no result after {timeout} s")
+        if not xml.exists():
+            return dict(file=name, tests=[], status="crashed", seconds=round(time.time() - t, 1),
+                        detail=f"pytest exit {r.returncode}", stderr=(r.stdout + r.stderr)[-2000:])
+        tests = []
+        for case in ET.parse(xml).getroot().iter("testcase"):
+            tid = f"{case.get('classname')}.{case.get('name')}"
+            fail = case.find("failure") if case.find("failure") is not None else case.find("error")
+            skip = case.find("skipped")
+            if fail is not None:
+                text = (fail.get("message") or "") + "\n" + (fail.text or "")
+                m = re.search(r"No module named '([A-Za-z0-9_]+)", text)
+                if m and m.group(1) in OPTIONAL:
+                    tests.append(dict(id=tid, outcome="not run", detail="needs " + m.group(1)))
+                else:
+                    tests.append(dict(id=tid, outcome="failed", detail=text.strip()[-3000:]))
+            elif skip is not None:
+                tests.append(dict(id=tid, outcome="skipped", detail=skip.get("message") or "skipped"))
+            else:
+                tests.append(dict(id=tid, outcome="passed", detail=""))
+    res = dict(file=name, tests=tests, import_error=None, runner="pytest", seconds=round(time.time() - t, 1))
+    if not tests and r.returncode not in (0, 5):
+        err = r.stdout + r.stderr
+        res["import_error"] = err[-3000:]
+    res["status"] = classify(res)
+    return res
+
+
 def run_file(name: str, timeout: int, env: dict) -> dict:
+    if pytest_style(name):
+        return run_pytest(name, timeout, env)
     t = time.time()
     try:
         r = subprocess.run([sys.executable, "-c", RUNNER, name, json.dumps(sorted(OPTIONAL))], cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)
@@ -231,13 +307,17 @@ def render(results: list[dict], meta: dict) -> str:
               f"- pip: {'nothing needed' if not p['pip'].get('installed') else ('installed ' + ', '.join(p['pip']['installed']) if p['pip']['ok'] else 'FAILED: ' + first_line(p['pip'].get('error', '')))}",
               f"- DDS: {'built in ' + str(d.get('seconds')) + ' s' if d.get('built') else d.get('reason', 'FAILED: ' + first_line(d.get('error', '')))}"
               + (f", sha256 `{d['sha256'][:16]}`" if d.get("sha256") else ""),
-              f"- Nets: " + "; ".join(f"`{Path(m['script']).parent.name}` {'ok' if m['ok'] else 'FAILED: ' + first_line(m['note'])}" for m in p["models"]), ""]
+              f"- Nets: {sum(m['ok'] for m in p['models'])} of {len(p['models'])} ok, "
+              f"{sum(m['note'] == 'already restored' for m in p['models'])} of them already restored"
+              + "".join(f"; `{Path(m['script']).parent.name}` FAILED: {first_line(m['note'])}" for m in p["models"] if not m["ok"]), ""]
     L += ["## By file", "", "| File | Status | Passed | Failed/errors | Skipped | Not run | Seconds | Note |",
           "| --- | --- | ---: | ---: | ---: | ---: | ---: | --- |"]
     order = {"failed": 0, "import error": 1, "crashed": 2, "timeout": 3, "not run": 4, "partly not run": 5, "skipped": 6, "no tests": 7, "passed": 8}
     for r in sorted(results, key=lambda r: (order.get(r["status"], 9), r["file"])):
         c = {k: sum(1 for t in r["tests"] if t["outcome"] == k) for k in ("passed", "failed", "error", "skipped", "not run")}
         note = ""
+        if r["status"] == "no tests":
+            note = "no test found: check how this file defines its tests"
         if r["status"] in ("not run", "partly not run"):
             note = f"needs `{r['needs']}`"
         elif r["status"] in ("import error", "crashed", "timeout"):
