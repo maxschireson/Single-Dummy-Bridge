@@ -1,0 +1,94 @@
+== temperatures fitted on B
+rows 218537 | log-loss at T=1 0.6600 | best T 1.042 log-loss 0.6595
+written /home/bridgebots/work/p41/runs/w512/policy_epoch1_T.npz | largest logit difference on 8,192 rows 4.76837158203125e-06
+rows 218537 | log-loss at T=1 0.6195 | best T 1.035 log-loss 0.6192
+written /home/bridgebots/work/p41/runs/w512/policy_epoch2_T.npz | largest logit difference on 8,192 rows 6.67572021484375e-06
+rows 218537 | log-loss at T=1 0.6062 | best T 1.074 log-loss 0.6051
+written /home/bridgebots/work/p41/runs/w512/policy_epoch3_T.npz | largest logit difference on 8,192 rows 4.76837158203125e-06
+== compare on fresh C
+180315 decisions, 450 deals
+v3.1         gives up 0.0388 | exact 0.716 | top 3 0.987 | kept 0.98 3.01 0.90 2.27 | log-loss 0.6898
+v4           gives up 0.0340 | exact 0.747 | top 3 0.989 | kept 0.98 2.95 0.90 2.21 | log-loss 0.6503 || from v3.1: -0.0048 [-0.0064, -0.0033], cut 12.4% [8.7%, 16.0%]
+v4.1         gives up 0.0256 | exact 0.750 | top 3 0.990 | kept 0.98 2.74 0.90 2.04 | log-loss 0.6084 || from v4: -0.0084 [-0.0097, -0.0071], cut 24.8% [21.3%, 28.1%]
+
+lead            499 decisions (0.3%) | v3.1 0.0502 | v4 0.0465 | v4.1 0.0440 | share of v-last total 0.5%
+tricks 1-2     6690 decisions (3.7%) | v3.1 0.0283 | v4 0.0262 | v4.1 0.0219 | share of v-last total 3.2%
+tricks 3-6    37966 decisions (21.1%) | v3.1 0.0411 | v4 0.0381 | v4.1 0.0313 | share of v-last total 25.8%
+tricks 7-13  135160 decisions (75.0%) | v3.1 0.0386 | v4 0.0332 | v4.1 0.0241 | share of v-last total 70.6%
+
+v3.1 to v4 lead         cut   7.5% [ -7.1%,  20.5%] | exponent -0.22 [-0.65, +0.20]
+v3.1 to v4 tricks 1-2   cut   7.6% [ -5.1%,  19.1%] | exponent -0.23 [-0.60, +0.14]
+v3.1 to v4 tricks 3-6   cut   7.3% [  1.7%,  13.0%] | exponent -0.22 [-0.40, -0.05]
+v3.1 to v4 tricks 7-13  cut  14.1% [  9.8%,  18.2%] | exponent -0.43 [-0.57, -0.29]
+v3.1 to v4 all          cut  12.4% [  8.7%,  16.0%] | exponent -0.38 [-0.50, -0.26]
+v4 to v4.1 lead         cut   5.4% [-12.5%,  21.6%] | exponent -0.07 [-0.31, +0.15]
+v4 to v4.1 tricks 1-2   cut  16.3% [  5.9%,  26.3%] | exponent -0.22 [-0.38, -0.08]
+v4 to v4.1 tricks 3-6   cut  17.9% [ 13.1%,  22.7%] | exponent -0.25 [-0.32, -0.18]
+v4 to v4.1 tricks 7-13  cut  27.5% [ 23.1%,  31.6%] | exponent -0.40 [-0.48, -0.33]
+v4 to v4.1 all          cut  24.8% [ 21.3%,  28.1%] | exponent -0.36 [-0.41, -0.30]
+
+exponent v4 to v4.1 minus v3.1 to v4: +0.02 [-0.12, +0.16]; share of draws with a flatter second step 0.597
+== epochs on fresh C
+180315 decisions, 450 deals
+v4           gives up 0.0340 | exact 0.747 | top 3 0.989 | kept 0.98 2.95 0.90 2.21 | log-loss 0.6503
+e1           gives up 0.0310 | exact 0.729 | top 3 0.988 | kept 0.98 2.88 0.90 2.15 | log-loss 0.6640 || from v4: -0.0030 [-0.0043, -0.0016], cut 8.8% [4.9%, 12.4%]
+e2           gives up 0.0281 | exact 0.745 | top 3 0.990 | kept 0.98 2.78 0.90 2.07 | log-loss 0.6220 || from e1: -0.0029 [-0.0040, -0.0018], cut 9.4% [6.0%, 12.6%]
+e3           gives up 0.0256 | exact 0.750 | top 3 0.990 | kept 0.98 2.74 0.90 2.04 | log-loss 0.6084 || from e2: -0.0025 [-0.0032, -0.0018], cut 9.0% [6.6%, 11.4%]
+
+== compare on fresh B
+218537 decisions, 631 deals
+v3.1         gives up 0.0369 | exact 0.719 | top 3 0.987 | kept 0.98 3.03 0.90 2.28 | log-loss 0.6885
+v4           gives up 0.0328 | exact 0.765 | top 3 0.988 | kept 0.98 2.97 0.90 2.23 | log-loss 0.6346 || from v3.1: -0.0040 [-0.0053, -0.0028], cut 10.9% [7.8%, 14.2%]
+v4.1         gives up 0.0245 | exact 0.755 | top 3 0.990 | kept 0.98 2.75 0.90 2.06 | log-loss 0.6051 || from v4: -0.0083 [-0.0095, -0.0072], cut 25.4% [22.3%, 28.2%]
+
+lead            769 decisions (0.4%) | v3.1 0.0515 | v4 0.0553 | v4.1 0.0484 | share of v-last total 0.7%
+tricks 1-2     8944 decisions (4.1%) | v3.1 0.0251 | v4 0.0234 | v4.1 0.0205 | share of v-last total 3.4%
+tricks 3-6    46477 decisions (21.3%) | v3.1 0.0424 | v4 0.0394 | v4.1 0.0301 | share of v-last total 26.2%
+tricks 7-13  162347 decisions (74.3%) | v3.1 0.0358 | v4 0.0314 | v4.1 0.0230 | share of v-last total 69.7%
+
+v3.1 to v4 lead         cut  -7.5% [-19.5%,   3.7%] | exponent +0.21 [-0.11, +0.51]
+v3.1 to v4 tricks 1-2   cut   6.9% [ -1.9%,  15.0%] | exponent -0.20 [-0.46, +0.05]
+v3.1 to v4 tricks 3-6   cut   7.1% [  2.5%,  11.7%] | exponent -0.21 [-0.35, -0.07]
+v3.1 to v4 tricks 7-13  cut  12.5% [  8.5%,  16.5%] | exponent -0.38 [-0.51, -0.25]
+v3.1 to v4 all          cut  10.9% [  7.8%,  14.2%] | exponent -0.33 [-0.44, -0.23]
+v4 to v4.1 lead         cut  12.5% [  1.6%,  23.1%] | exponent -0.17 [-0.33, -0.02]
+v4 to v4.1 tricks 1-2   cut  12.5% [  3.7%,  20.9%] | exponent -0.17 [-0.29, -0.05]
+v4 to v4.1 tricks 3-6   cut  23.4% [ 18.3%,  28.2%] | exponent -0.34 [-0.42, -0.25]
+v4 to v4.1 tricks 7-13  cut  26.8% [ 22.8%,  30.2%] | exponent -0.39 [-0.45, -0.33]
+v4 to v4.1 all          cut  25.4% [ 22.3%,  28.2%] | exponent -0.37 [-0.42, -0.32]
+
+exponent v4 to v4.1 minus v3.1 to v4: -0.04 [-0.16, +0.09]; share of draws with a flatter second step 0.289
+== epochs on fresh B
+218537 decisions, 631 deals
+v4           gives up 0.0328 | exact 0.765 | top 3 0.988 | kept 0.98 2.97 0.90 2.23 | log-loss 0.6346
+e1           gives up 0.0303 | exact 0.730 | top 3 0.988 | kept 0.98 2.90 0.90 2.16 | log-loss 0.6595 || from v4: -0.0025 [-0.0038, -0.0013], cut 7.6% [3.9%, 11.2%]
+e2           gives up 0.0272 | exact 0.748 | top 3 0.990 | kept 0.98 2.79 0.90 2.08 | log-loss 0.6192 || from e1: -0.0031 [-0.0041, -0.0021], cut 10.3% [7.0%, 13.4%]
+e3           gives up 0.0245 | exact 0.755 | top 3 0.990 | kept 0.98 2.75 0.90 2.06 | log-loss 0.6051 || from e2: -0.0027 [-0.0034, -0.0020], cut 9.9% [7.6%, 12.2%]
+
+== trainer figures on fresh C, all rows and by deciding bot (0 = 6-32, 2 = 7s-32)
+{"set": "freshC.npz", "bot": null, "rows": 180315, "deals": 450}
+{"net": "v3.1", "all": {"n": 180315, "nll": 0.6898, "uniform_nll": 1.2495, "tie_nll": 0.7676, "agree": 0.7158, "in_best": 0.8912, "regret": 0.0388, "regret_gap_head": 0.0311, "regret_random": 0.1979, "regret_lowest": 0.2157}, "by_phase": {"lead": {"n": 499, "nll": 1.275, "uniform_nll": 2.5649, "tie_nll": 0.7489, "agree": 0.5792, "in_best": 0.6092, "regret": 0.0502, "regret_gap_head": 0.051, "regret_random": 0.2598, "regret_lowest": 0.277}, "tricks 1-4": {"n": 21407, "nll": 0.7658, "uniform_nll": 1.4866, "tie_nll": 0.7268, "agree": 0.707, "in_best": 0.8487, "regret": 0.0324, "regret_gap_head": 0.0315, "regret_random": 0.244, "regret_lowest": 0.2781}, "tricks 5-8": {"n": 56167, "nll": 0.8487, "uniform_nll": 1.4998, "tie_nll": 0.8022, "agree": 0.6639, "in_best": 0.8373, "regret": 0.0518, "regret_gap_head": 0.0452, "regret_random": 0.2571, "regret_lowest": 0.2799}, "tricks 9-13": {"n": 102242, "nll": 0.5837, "uniform_nll": 1.056, "tie_nll": 0.7572, "agree": 0.7468, "in_best": 0.9311, "regret": 0.0329, "regret_gap_head": 0.0231, "regret_random": 0.1554, "regret_lowest": 0.1671}}, "root_tables": {"n": 20688, "nll": 0.7488, "uniform_nll": 1.3987, "tie_nll": 0.7506, "agree": 0.7056, "in_best": 0.8582, "regret": 0.0414, "regret_gap_head": 0.0348, "regret_random": 0.2271, "regret_lowest": 0.2503}}
+{"net": "v4", "all": {"n": 180315, "nll": 0.6503, "uniform_nll": 1.2495, "tie_nll": 0.7676, "agree": 0.7468, "in_best": 0.8977, "regret": 0.034, "regret_gap_head": 0.0265, "regret_random": 0.1979, "regret_lowest": 0.2157}, "by_phase": {"lead": {"n": 499, "nll": 1.2367, "uniform_nll": 2.5649, "tie_nll": 0.7489, "agree": 0.5932, "in_best": 0.6253, "regret": 0.0465, "regret_gap_head": 0.0416, "regret_random": 0.2598, "regret_lowest": 0.277}, "tricks 1-4": {"n": 21407, "nll": 0.7257, "uniform_nll": 1.4866, "tie_nll": 0.7268, "agree": 0.7303, "in_best": 0.8549, "regret": 0.0297, "regret_gap_head": 0.0284, "regret_random": 0.244, "regret_lowest": 0.2781}, "tricks 5-8": {"n": 56167, "nll": 0.8097, "uniform_nll": 1.4998, "tie_nll": 0.8022, "agree": 0.6912, "in_best": 0.843, "regret": 0.0468, "regret_gap_head": 0.0406, "regret_random": 0.2571, "regret_lowest": 0.2799}, "tricks 9-13": {"n": 102242, "nll": 0.544, "uniform_nll": 1.056, "tie_nll": 0.7572, "agree": 0.7816, "in_best": 0.9381, "regret": 0.0278, "regret_gap_head": 0.0183, "regret_random": 0.1554, "regret_lowest": 0.1671}}, "root_tables": {"n": 20688, "nll": 0.7016, "uniform_nll": 1.3987, "tie_nll": 0.7506, "agree": 0.7441, "in_best": 0.8658, "regret": 0.036, "regret_gap_head": 0.0307, "regret_random": 0.2271, "regret_lowest": 0.2503}}
+{"net": "v4.1", "all": {"n": 180315, "nll": 0.6084, "uniform_nll": 1.2495, "tie_nll": 0.7676, "agree": 0.7503, "in_best": 0.9113, "regret": 0.0256, "regret_gap_head": 0.0216, "regret_random": 0.1979, "regret_lowest": 0.2157}, "by_phase": {"lead": {"n": 499, "nll": 1.1785, "uniform_nll": 2.5649, "tie_nll": 0.7489, "agree": 0.6273, "in_best": 0.6573, "regret": 0.044, "regret_gap_head": 0.0535, "regret_random": 0.2598, "regret_lowest": 0.277}, "tricks 1-4": {"n": 21407, "nll": 0.6872, "uniform_nll": 1.4866, "tie_nll": 0.7268, "agree": 0.7325, "in_best": 0.8677, "regret": 0.0247, "regret_gap_head": 0.025, "regret_random": 0.244, "regret_lowest": 0.2781}, "tricks 5-8": {"n": 56167, "nll": 0.7683, "uniform_nll": 1.4998, "tie_nll": 0.8022, "agree": 0.6937, "in_best": 0.86, "regret": 0.0361, "regret_gap_head": 0.0332, "regret_random": 0.2571, "regret_lowest": 0.2799}, "tricks 9-13": {"n": 102242, "nll": 0.5013, "uniform_nll": 1.056, "tie_nll": 0.7572, "agree": 0.7858, "in_best": 0.9499, "regret": 0.0199, "regret_gap_head": 0.0143, "regret_random": 0.1554, "regret_lowest": 0.1671}}, "root_tables": {"n": 20688, "nll": 0.667, "uniform_nll": 1.3987, "tie_nll": 0.7506, "agree": 0.7378, "in_best": 0.8813, "regret": 0.0282, "regret_gap_head": 0.0267, "regret_random": 0.2271, "regret_lowest": 0.2503}}
+{"set": "freshC.npz", "bot": 0, "rows": 151309, "deals": 355}
+{"net": "v4", "all": {"n": 151309, "nll": 0.6754, "uniform_nll": 1.2476, "tie_nll": 0.7703, "agree": 0.7211, "in_best": 0.8983, "regret": 0.0344, "regret_gap_head": 0.0265, "regret_random": 0.199, "regret_lowest": 0.2177}, "by_phase": {"lead": {"n": 355, "nll": 1.2472, "uniform_nll": 2.5649, "tie_nll": 0.7454, "agree": 0.5831, "in_best": 0.6282, "regret": 0.0458, "regret_gap_head": 0.0432, "regret_random": 0.259, "regret_lowest": 0.2717}, "tricks 1-4": {"n": 17077, "nll": 0.7487, "uniform_nll": 1.4924, "tie_nll": 0.7321, "agree": 0.7045, "in_best": 0.8538, "regret": 0.0298, "regret_gap_head": 0.0279, "regret_random": 0.2459, "regret_lowest": 0.2797}, "tricks 5-8": {"n": 46801, "nll": 0.8351, "uniform_nll": 1.5027, "tie_nll": 0.8059, "agree": 0.6656, "in_best": 0.8423, "regret": 0.0473, "regret_gap_head": 0.0412, "regret_random": 0.26, "regret_lowest": 0.2852}, "tricks 9-13": {"n": 87076, "nll": 0.5728, "uniform_nll": 1.0571, "tie_nll": 0.7587, "agree": 0.7548, "in_best": 0.9382, "regret": 0.0282, "regret_gap_head": 0.0183, "regret_random": 0.1568, "regret_lowest": 0.1691}}, "root_tables": {"n": 14736, "nll": 0.7428, "uniform_nll": 1.3977, "tie_nll": 0.7521, "agree": 0.7003, "in_best": 0.8637, "regret": 0.0367, "regret_gap_head": 0.0301, "regret_random": 0.2256, "regret_lowest": 0.2505}}
+{"net": "v4.1", "all": {"n": 151309, "nll": 0.6198, "uniform_nll": 1.2476, "tie_nll": 0.7703, "agree": 0.7437, "in_best": 0.9122, "regret": 0.0256, "regret_gap_head": 0.0217, "regret_random": 0.199, "regret_lowest": 0.2177}, "by_phase": {"lead": {"n": 355, "nll": 1.1622, "uniform_nll": 2.5649, "tie_nll": 0.7454, "agree": 0.6338, "in_best": 0.6732, "regret": 0.0401, "regret_gap_head": 0.0516, "regret_random": 0.259, "regret_lowest": 0.2717}, "tricks 1-4": {"n": 17077, "nll": 0.7032, "uniform_nll": 1.4924, "tie_nll": 0.7321, "agree": 0.7228, "in_best": 0.8682, "regret": 0.0246, "regret_gap_head": 0.0244, "regret_random": 0.2459, "regret_lowest": 0.2797}, "tricks 5-8": {"n": 46801, "nll": 0.7826, "uniform_nll": 1.5027, "tie_nll": 0.8059, "agree": 0.6878, "in_best": 0.8597, "regret": 0.0365, "regret_gap_head": 0.0343, "regret_random": 0.26, "regret_lowest": 0.2852}, "tricks 9-13": {"n": 87076, "nll": 0.5138, "uniform_nll": 1.0571, "tie_nll": 0.7587, "agree": 0.7782, "in_best": 0.95, "regret": 0.0199, "regret_gap_head": 0.0143, "regret_random": 0.1568, "regret_lowest": 0.1691}}, "root_tables": {"n": 14736, "nll": 0.69, "uniform_nll": 1.3977, "tie_nll": 0.7521, "agree": 0.7254, "in_best": 0.8829, "regret": 0.0276, "regret_gap_head": 0.0266, "regret_random": 0.2256, "regret_lowest": 0.2505}}
+{"set": "freshC.npz", "bot": 2, "rows": 29006, "deals": 132}
+{"net": "v4", "all": {"n": 29006, "nll": 0.5193, "uniform_nll": 1.2597, "tie_nll": 0.7535, "agree": 0.8808, "in_best": 0.8946, "regret": 0.032, "regret_gap_head": 0.0264, "regret_random": 0.192, "regret_lowest": 0.2051}, "by_phase": {"lead": {"n": 144, "nll": 1.2107, "uniform_nll": 2.5649, "tie_nll": 0.7573, "agree": 0.6181, "in_best": 0.6181, "regret": 0.0482, "regret_gap_head": 0.0378, "regret_random": 0.2616, "regret_lowest": 0.2901}, "tricks 1-4": {"n": 4330, "nll": 0.6348, "uniform_nll": 1.4637, "tie_nll": 0.706, "agree": 0.8323, "in_best": 0.8591, "regret": 0.0291, "regret_gap_head": 0.0303, "regret_random": 0.2365, "regret_lowest": 0.2718}, "tricks 5-8": {"n": 9366, "nll": 0.6829, "uniform_nll": 1.4849, "tie_nll": 0.7837, "agree": 0.819, "in_best": 0.8461, "regret": 0.044, "regret_gap_head": 0.0376, "regret_random": 0.2425, "regret_lowest": 0.2537}, "tricks 9-13": {"n": 15166, "nll": 0.3788, "uniform_nll": 1.0499, "tie_nll": 0.7483, "agree": 0.9352, "in_best": 0.9373, "regret": 0.0254, "regret_gap_head": 0.0182, "regret_random": 0.1475, "regret_lowest": 0.1552}}, "root_tables": {"n": 5952, "nll": 0.5995, "uniform_nll": 1.4011, "tie_nll": 0.7466, "agree": 0.8525, "in_best": 0.871, "regret": 0.0344, "regret_gap_head": 0.0322, "regret_random": 0.2309, "regret_lowest": 0.2498}}
+{"net": "v4.1", "all": {"n": 29006, "nll": 0.5487, "uniform_nll": 1.2597, "tie_nll": 0.7535, "agree": 0.7851, "in_best": 0.9069, "regret": 0.0254, "regret_gap_head": 0.021, "regret_random": 0.192, "regret_lowest": 0.2051}, "by_phase": {"lead": {"n": 144, "nll": 1.2187, "uniform_nll": 2.5649, "tie_nll": 0.7573, "agree": 0.6111, "in_best": 0.6181, "regret": 0.0536, "regret_gap_head": 0.0584, "regret_random": 0.2616, "regret_lowest": 0.2901}, "tricks 1-4": {"n": 4330, "nll": 0.6243, "uniform_nll": 1.4637, "tie_nll": 0.706, "agree": 0.7704, "in_best": 0.8658, "regret": 0.0251, "regret_gap_head": 0.0274, "regret_random": 0.2365, "regret_lowest": 0.2718}, "tricks 5-8": {"n": 9366, "nll": 0.6969, "uniform_nll": 1.4849, "tie_nll": 0.7837, "agree": 0.7235, "in_best": 0.8615, "regret": 0.0341, "regret_gap_head": 0.028, "regret_random": 0.2425, "regret_lowest": 0.2537}, "tricks 9-13": {"n": 15166, "nll": 0.4294, "uniform_nll": 1.0499, "tie_nll": 0.7483, "agree": 0.829, "in_best": 0.9494, "regret": 0.0198, "regret_gap_head": 0.0145, "regret_random": 0.1475, "regret_lowest": 0.1552}}, "root_tables": {"n": 5952, "nll": 0.6102, "uniform_nll": 1.4011, "tie_nll": 0.7466, "agree": 0.7685, "in_best": 0.8775, "regret": 0.0297, "regret_gap_head": 0.0268, "regret_random": 0.2309, "regret_lowest": 0.2498}}
+== heads on fresh C
+== v4: 180315 decisions, 450 deals
+  policy head        gives up 0.0340 | best card first 0.898, in top 2 0.968, top 3 0.989 | lead 0.046, t1-2 0.026, t3-6 0.038, t7-13 0.033
+  gap head           gives up 0.0265 | best card first 0.908, in top 2 0.953, top 3 0.975 | lead 0.042, t1-2 0.024, t3-6 0.035, t7-13 0.024 | cut vs policy head 22.0% [18.1, 25.6]
+  policy - 1 x gap   gives up 0.0320 | best card first 0.901, in top 2 0.968, top 3 0.989 | lead 0.044, t1-2 0.025, t3-6 0.037, t7-13 0.031 | cut vs policy head 6.0% [4.9, 7.2]
+  policy - 3 x gap   gives up 0.0299 | best card first 0.904, in top 2 0.968, top 3 0.988 | lead 0.042, t1-2 0.024, t3-6 0.035, t7-13 0.029 | cut vs policy head 11.9% [10.1, 13.8]
+  policy - 10 x gap  gives up 0.0270 | best card first 0.909, in top 2 0.965, top 3 0.986 | lead 0.043, t1-2 0.023, t3-6 0.034, t7-13 0.025 | cut vs policy head 20.7% [18.0, 23.5]
+  mass 0.9, at most 2 cards: kept 1.73, an equal-best card kept 0.9641, Gen 6's card kept 0.9154
+== v4.1: 180315 decisions, 450 deals
+  policy head        gives up 0.0256 | best card first 0.911, in top 2 0.973, top 3 0.990 | lead 0.044, t1-2 0.022, t3-6 0.031, t7-13 0.024
+  gap head           gives up 0.0216 | best card first 0.918, in top 2 0.958, top 3 0.978 | lead 0.054, t1-2 0.022, t3-6 0.030, t7-13 0.019 | cut vs policy head 15.5% [11.4, 19.9]
+  policy - 1 x gap   gives up 0.0242 | best card first 0.914, in top 2 0.973, top 3 0.990 | lead 0.045, t1-2 0.021, t3-6 0.030, t7-13 0.023 | cut vs policy head 5.1% [3.8, 6.7]
+  policy - 3 x gap   gives up 0.0227 | best card first 0.917, in top 2 0.973, top 3 0.990 | lead 0.046, t1-2 0.020, t3-6 0.029, t7-13 0.021 | cut vs policy head 11.3% [8.9, 13.7]
+  policy - 10 x gap  gives up 0.0213 | best card first 0.919, in top 2 0.971, top 3 0.988 | lead 0.043, t1-2 0.021, t3-6 0.028, t7-13 0.019 | cut vs policy head 16.6% [13.4, 19.8]
+  mass 0.9, at most 2 cards: kept 1.66, an equal-best card kept 0.9694, Gen 6's card kept 0.9196
+== eval done 05:05:37

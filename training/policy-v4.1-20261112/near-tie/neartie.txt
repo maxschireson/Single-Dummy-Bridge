@@ -1,0 +1,320 @@
+
+######## v4.1: 40161 pairs on 1817 deals: 10874 gap forks, 29287 audits; by bot [32707, 0, 7454]; the search rated the forced card higher in 200
+
+== v4.1, all tricks, level: 29108 pairs (20 gap forks) on 1812 deals | T better 1.4%, S better 1.2% | always T costs -0.0018 +- 0.0013 tricks, -0.007 +- 0.005 IMPs | search's gap 0.0000
+  policy                     plays T  25.7% | T then costs -0.0052 +- 0.0027 | gain +0.00134 +- 0.00070 tricks, +0.0037 +- 0.0031 IMPs
+  policy 2x                  plays T  14.2% | T then costs -0.0066 +- 0.0039 | gain +0.00093 +- 0.00055 tricks, +0.0046 +- 0.0026 IMPs | over policy -0.00041 +- 0.00040
+  policy 4x                  plays T   7.1% | T then costs -0.0034 +- 0.0052 | gain +0.00024 +- 0.00037 tricks, +0.0025 +- 0.0018 IMPs | over policy -0.00110 +- 0.00058
+  gap head                   plays T  47.8% | T then costs -0.0019 +- 0.0019 | gain +0.00089 +- 0.00089 tricks, +0.0033 +- 0.0037 IMPs | over policy -0.00045 +- 0.00072
+  all result                 plays T  45.0% | T then costs -0.0028 +- 0.0020 | gain +0.00127 +- 0.00089 tricks, +0.0048 +- 0.0037 IMPs | over policy -0.00007 +- 0.00070
+  all search_plus_res        plays T  50.1% | T then costs -0.0025 +- 0.0020 | gain +0.00127 +- 0.00100 tricks, +0.0065 +- 0.0038 IMPs | over policy -0.00007 +- 0.00100
+
+== v4.1, all tricks, gap up to 0.1: 3143 pairs (2964 gap forks) on 1620 deals | T better 8.4%, S better 12.8% | always T costs +0.0461 +- 0.0105 tricks, +0.205 +- 0.049 IMPs | search's gap 0.0483
+  policy                     plays T  21.5% | T then costs +0.0222 +- 0.0232 | gain -0.00477 +- 0.00500 tricks, -0.0525 +- 0.0219 IMPs
+  policy 2x                  plays T  13.1% | T then costs -0.0048 +- 0.0310 | gain +0.00064 +- 0.00408 tricks, -0.0283 +- 0.0180 IMPs | over policy +0.00541 +- 0.00290
+  policy 4x                  plays T   7.1% | T then costs -0.0314 +- 0.0408 | gain +0.00223 +- 0.00290 tricks, -0.0048 +- 0.0125 IMPs | over policy +0.00700 +- 0.00405
+  gap head                   plays T  26.9% | T then costs +0.0142 +- 0.0229 | gain -0.00382 +- 0.00616 tricks, -0.0270 +- 0.0240 IMPs | over policy +0.00095 +- 0.00520
+  all result                 plays T  25.9% | T then costs +0.0185 +- 0.0224 | gain -0.00477 +- 0.00579 tricks, -0.0455 +- 0.0251 IMPs | over policy +0.00000 +- 0.00455
+  all search_plus_res        plays T  15.3% | T then costs -0.0373 +- 0.0249 | gain +0.00573 +- 0.00382 tricks, +0.0108 +- 0.0184 IMPs | over policy +0.01050 +- 0.00555
+
+== v4.1, all tricks, gap 0.1 to 0.2: 1522 pairs (1504 gap forks) on 1012 deals | T better 8.7%, S better 21.1% | always T costs +0.1478 +- 0.0179 tricks, +0.460 +- 0.076 IMPs | search's gap 0.1484
+  policy                     plays T  16.4% | T then costs +0.1040 +- 0.0479 | gain -0.01708 +- 0.00787 tricks, -0.0453 +- 0.0272 IMPs
+  policy 2x                  plays T   9.3% | T then costs +0.0780 +- 0.0634 | gain -0.00723 +- 0.00585 tricks, -0.0125 +- 0.0198 IMPs | over policy +0.00986 +- 0.00520
+  policy 4x                  plays T   4.7% | T then costs +0.1250 +- 0.0903 | gain -0.00591 +- 0.00421 tricks, -0.0020 +- 0.0152 IMPs | over policy +0.01117 +- 0.00659
+  gap head                   plays T  21.6% | T then costs +0.1098 +- 0.0394 | gain -0.02365 +- 0.00854 tricks, -0.0631 +- 0.0329 IMPs | over policy -0.00657 +- 0.00670
+  all result                 plays T  21.3% | T then costs +0.0895 +- 0.0394 | gain -0.01905 +- 0.00838 tricks, -0.0480 +- 0.0295 IMPs | over policy -0.00197 +- 0.00686
+  all search_plus_res        plays T   1.1% | T then costs +0.5294 +- 0.1740 | gain -0.00591 +- 0.00236 tricks, -0.0210 +- 0.0107 IMPs | over policy +0.01117 +- 0.00818
+
+== v4.1, all tricks, gap up to 0.2: 4665 pairs (4468 gap forks) on 1680 deals | T better 8.5%, S better 15.5% | always T costs +0.0793 +- 0.0094 tricks, +0.288 +- 0.043 IMPs | search's gap 0.0810
+  policy                     plays T  19.8% | T then costs +0.0443 +- 0.0211 | gain -0.00879 +- 0.00420 tricks, -0.0502 +- 0.0174 IMPs
+  policy 2x                  plays T  11.9% | T then costs +0.0162 +- 0.0276 | gain -0.00193 +- 0.00327 tricks, -0.0232 +- 0.0137 IMPs | over policy +0.00686 +- 0.00260
+  policy 4x                  plays T   6.3% | T then costs +0.0068 +- 0.0375 | gain -0.00043 +- 0.00237 tricks, -0.0039 +- 0.0097 IMPs | over policy +0.00836 +- 0.00347
+  gap head                   plays T  25.2% | T then costs +0.0409 +- 0.0200 | gain -0.01029 +- 0.00503 tricks, -0.0388 +- 0.0194 IMPs | over policy -0.00150 +- 0.00413
+  all result                 plays T  24.4% | T then costs +0.0387 +- 0.0195 | gain -0.00943 +- 0.00475 tricks, -0.0463 +- 0.0193 IMPs | over policy -0.00064 +- 0.00384
+  all search_plus_res        plays T  10.7% | T then costs -0.0180 +- 0.0248 | gain +0.00193 +- 0.00265 tricks, +0.0004 +- 0.0128 IMPs | over policy +0.01072 +- 0.00465
+
+== v4.1, all tricks, gap 0.2 to 0.5: 2762 pairs (2760 gap forks) on 1531 deals | T better 8.9%, S better 31.9% | always T costs +0.2719 +- 0.0152 tricks, +0.889 +- 0.072 IMPs | search's gap 0.3419
+  policy                     plays T  10.2% | T then costs +0.3156 +- 0.0505 | gain -0.03222 +- 0.00542 tricks, -0.1224 +- 0.0245 IMPs
+  policy 2x                  plays T   5.6% | T then costs +0.3806 +- 0.0658 | gain -0.02136 +- 0.00403 tricks, -0.0974 +- 0.0202 IMPs | over policy +0.01086 +- 0.00365
+  policy 4x                  plays T   3.0% | T then costs +0.5060 +- 0.0910 | gain -0.01521 +- 0.00312 tricks, -0.0652 +- 0.0158 IMPs | over policy +0.01702 +- 0.00446
+  gap head                   plays T  11.5% | T then costs +0.2744 +- 0.0477 | gain -0.03150 +- 0.00571 tricks, -0.1155 +- 0.0255 IMPs | over policy +0.00072 +- 0.00497
+  all result                 plays T  12.9% | T then costs +0.2303 +- 0.0463 | gain -0.02969 +- 0.00615 tricks, -0.1296 +- 0.0277 IMPs | over policy +0.00253 +- 0.00498
+  all search_plus_res        plays T   0.0% | T then costs +0.0000 +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.03222 +- 0.00542
+
+== v4.1, all tricks, gap over 0.5: 3626 pairs (3626 gap forks) on 1610 deals | T better 3.9%, S better 72.7% | always T costs +0.8996 +- 0.0157 tricks, +3.238 +- 0.092 IMPs | search's gap 1.0495
+  policy                     plays T   3.4% | T then costs +0.7131 +- 0.0641 | gain -0.02399 +- 0.00306 tricks, -0.1012 +- 0.0163 IMPs
+  policy 2x                  plays T   1.7% | T then costs +0.7000 +- 0.0933 | gain -0.01158 +- 0.00215 tricks, -0.0541 +- 0.0124 IMPs | over policy +0.01241 +- 0.00223
+  policy 4x                  plays T   0.8% | T then costs +0.6667 +- 0.1614 | gain -0.00552 +- 0.00165 tricks, -0.0345 +- 0.0108 IMPs | over policy +0.01848 +- 0.00258
+  gap head                   plays T   3.1% | T then costs +0.6316 +- 0.0709 | gain -0.01986 +- 0.00287 tricks, -0.0665 +- 0.0140 IMPs | over policy +0.00414 +- 0.00296
+  all result                 plays T   3.3% | T then costs +0.6949 +- 0.0752 | gain -0.02261 +- 0.00321 tricks, -0.0894 +- 0.0170 IMPs | over policy +0.00138 +- 0.00306
+  all search_plus_res        plays T   0.0% | T then costs +nan +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.02399 +- 0.00306
+
+== v4.1, tricks 1-4, level: 4663 pairs (7 gap forks) on 1477 deals | T better 3.9%, S better 4.0% | always T costs -0.0002 +- 0.0054 tricks, +0.008 +- 0.024 IMPs | search's gap 0.0000
+  policy                     plays T  26.3% | T then costs -0.0033 +- 0.0109 | gain +0.00086 +- 0.00286 tricks, -0.0004 +- 0.0154 IMPs
+  policy 2x                  plays T  15.3% | T then costs -0.0154 +- 0.0160 | gain +0.00236 +- 0.00246 tricks, +0.0105 +- 0.0124 IMPs | over policy +0.00150 +- 0.00147
+  policy 4x                  plays T   7.0% | T then costs -0.0183 +- 0.0236 | gain +0.00129 +- 0.00166 tricks, +0.0107 +- 0.0084 IMPs | over policy +0.00043 +- 0.00223
+  gap head                   plays T  47.4% | T then costs -0.0014 +- 0.0071 | gain +0.00064 +- 0.00339 tricks, -0.0004 +- 0.0159 IMPs | over policy -0.00021 +- 0.00296
+  all result                 plays T  45.5% | T then costs -0.0090 +- 0.0083 | gain +0.00407 +- 0.00379 tricks, +0.0129 +- 0.0176 IMPs | over policy +0.00322 +- 0.00319
+  all search_plus_res        plays T  53.4% | T then costs -0.0012 +- 0.0078 | gain +0.00064 +- 0.00415 tricks, +0.0077 +- 0.0173 IMPs | over policy -0.00021 +- 0.00423
+
+== v4.1, tricks 1-4, gap up to 0.1: 1510 pairs (1431 gap forks) on 1098 deals | T better 12.1%, S better 17.0% | always T costs +0.0530 +- 0.0182 tricks, +0.281 +- 0.085 IMPs | search's gap 0.0572
+  policy                     plays T  21.4% | T then costs +0.0217 +- 0.0408 | gain -0.00464 +- 0.00872 tricks, -0.0523 +- 0.0381 IMPs
+  policy 2x                  plays T  13.3% | T then costs -0.0448 +- 0.0574 | gain +0.00596 +- 0.00764 tricks, -0.0113 +- 0.0330 IMPs | over policy +0.01060 +- 0.00418
+  policy 4x                  plays T   7.1% | T then costs -0.0748 +- 0.0740 | gain +0.00530 +- 0.00530 tricks, +0.0126 +- 0.0206 IMPs | over policy +0.00993 +- 0.00685
+  gap head                   plays T  28.8% | T then costs +0.0138 +- 0.0374 | gain -0.00397 +- 0.01077 tricks, -0.0358 +- 0.0426 IMPs | over policy +0.00066 +- 0.00881
+  all result                 plays T  27.0% | T then costs +0.0074 +- 0.0371 | gain -0.00199 +- 0.00998 tricks, -0.0583 +- 0.0429 IMPs | over policy +0.00265 +- 0.00744
+  all search_plus_res        plays T  11.9% | T then costs -0.0222 +- 0.0562 | gain +0.00265 +- 0.00669 tricks, -0.0013 +- 0.0329 IMPs | over policy +0.00728 +- 0.00953
+
+== v4.1, tricks 1-4, gap 0.1 to 0.2: 881 pairs (874 gap forks) on 679 deals | T better 10.9%, S better 23.3% | always T costs +0.1578 +- 0.0257 tricks, +0.449 +- 0.102 IMPs | search's gap 0.1504
+  policy                     plays T  15.6% | T then costs +0.0949 +- 0.0713 | gain -0.01476 +- 0.01107 tricks, -0.0329 +- 0.0395 IMPs
+  policy 2x                  plays T   8.7% | T then costs +0.0390 +- 0.0953 | gain -0.00341 +- 0.00828 tricks, +0.0000 +- 0.0299 IMPs | over policy +0.01135 +- 0.00717
+  policy 4x                  plays T   4.2% | T then costs +0.0541 +- 0.1286 | gain -0.00227 +- 0.00533 tricks, +0.0102 +- 0.0226 IMPs | over policy +0.01249 +- 0.00956
+  gap head                   plays T  20.8% | T then costs +0.0984 +- 0.0586 | gain -0.02043 +- 0.01221 tricks, -0.0477 +- 0.0494 IMPs | over policy -0.00568 +- 0.00996
+  all result                 plays T  20.2% | T then costs +0.0618 +- 0.0598 | gain -0.01249 +- 0.01207 tricks, -0.0386 +- 0.0418 IMPs | over policy +0.00227 +- 0.01016
+  all search_plus_res        plays T   1.2% | T then costs +0.6364 +- 0.2439 | gain -0.00795 +- 0.00375 tricks, -0.0238 +- 0.0147 IMPs | over policy +0.00681 +- 0.01159
+
+== v4.1, tricks 1-4, gap up to 0.2: 2391 pairs (2305 gap forks) on 1350 deals | T better 11.7%, S better 19.3% | always T costs +0.0916 +- 0.0150 tricks, +0.343 +- 0.068 IMPs | search's gap 0.0915
+  policy                     plays T  19.2% | T then costs +0.0435 +- 0.0345 | gain -0.00836 +- 0.00664 tricks, -0.0452 +- 0.0278 IMPs
+  policy 2x                  plays T  11.6% | T then costs -0.0216 +- 0.0475 | gain +0.00251 +- 0.00552 tricks, -0.0071 +- 0.0234 IMPs | over policy +0.01087 +- 0.00373
+  policy 4x                  plays T   6.0% | T then costs -0.0417 +- 0.0642 | gain +0.00251 +- 0.00388 tricks, +0.0117 +- 0.0154 IMPs | over policy +0.01087 +- 0.00554
+  gap head                   plays T  25.8% | T then costs +0.0388 +- 0.0308 | gain -0.01004 +- 0.00796 tricks, -0.0402 +- 0.0319 IMPs | over policy -0.00167 +- 0.00662
+  all result                 plays T  24.5% | T then costs +0.0239 +- 0.0310 | gain -0.00586 +- 0.00758 tricks, -0.0510 +- 0.0305 IMPs | over policy +0.00251 +- 0.00606
+  all search_plus_res        plays T   8.0% | T then costs +0.0157 +- 0.0548 | gain -0.00125 +- 0.00437 tricks, -0.0096 +- 0.0211 IMPs | over policy +0.00711 +- 0.00740
+
+== v4.1, tricks 1-4, gap 0.2 to 0.5: 1508 pairs (1508 gap forks) on 1083 deals | T better 12.8%, S better 32.4% | always T costs +0.2414 +- 0.0232 tricks, +0.725 +- 0.107 IMPs | search's gap 0.3435
+  policy                     plays T   8.0% | T then costs +0.2231 +- 0.0828 | gain -0.01790 +- 0.00676 tricks, -0.0710 +- 0.0293 IMPs
+  policy 2x                  plays T   4.1% | T then costs +0.3387 +- 0.1091 | gain -0.01393 +- 0.00479 tricks, -0.0531 +- 0.0211 IMPs | over policy +0.00398 +- 0.00478
+  policy 4x                  plays T   2.0% | T then costs +0.4000 +- 0.1486 | gain -0.00796 +- 0.00323 tricks, -0.0298 +- 0.0159 IMPs | over policy +0.00995 +- 0.00589
+  gap head                   plays T  10.2% | T then costs +0.2078 +- 0.0770 | gain -0.02122 +- 0.00798 tricks, -0.0836 +- 0.0360 IMPs | over policy -0.00332 +- 0.00718
+  all result                 plays T  10.7% | T then costs +0.1304 +- 0.0757 | gain -0.01393 +- 0.00814 tricks, -0.0889 +- 0.0360 IMPs | over policy +0.00398 +- 0.00750
+  all search_plus_res        plays T   0.0% | T then costs +nan +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.01790 +- 0.00676
+
+== v4.1, tricks 1-4, gap over 0.5: 1402 pairs (1402 gap forks) on 1042 deals | T better 6.3%, S better 63.0% | always T costs +0.7718 +- 0.0260 tricks, +2.760 +- 0.138 IMPs | search's gap 0.9767
+  policy                     plays T   1.6% | T then costs +0.6364 +- 0.1807 | gain -0.00999 +- 0.00348 tricks, -0.0549 +- 0.0227 IMPs
+  policy 2x                  plays T   0.8% | T then costs +0.7273 +- 0.2371 | gain -0.00571 +- 0.00247 tricks, -0.0207 +- 0.0127 IMPs | over policy +0.00428 +- 0.00246
+  policy 4x                  plays T   0.5% | T then costs +0.8571 +- 0.3401 | gain -0.00428 +- 0.00225 tricks, -0.0193 +- 0.0127 IMPs | over policy +0.00571 +- 0.00266
+  gap head                   plays T   2.2% | T then costs +0.4839 +- 0.1648 | gain -0.01070 +- 0.00409 tricks, -0.0342 +- 0.0209 IMPs | over policy -0.00071 +- 0.00327
+  all result                 plays T   2.3% | T then costs +0.8125 +- 0.1813 | gain -0.01854 +- 0.00521 tricks, -0.0792 +- 0.0274 IMPs | over policy -0.00856 +- 0.00439
+  all search_plus_res        plays T   0.0% | T then costs +nan +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.00999 +- 0.00348
+
+== v4.1, tricks 5-8, level: 9547 pairs (13 gap forks) on 1695 deals | T better 1.9%, S better 1.4% | always T costs -0.0054 +- 0.0025 tricks, -0.030 +- 0.011 IMPs | search's gap 0.0000
+  policy                     plays T  27.4% | T then costs -0.0126 +- 0.0055 | gain +0.00346 +- 0.00151 tricks, +0.0135 +- 0.0064 IMPs
+  policy 2x                  plays T  14.9% | T then costs -0.0098 +- 0.0079 | gain +0.00147 +- 0.00118 tricks, +0.0090 +- 0.0058 IMPs | over policy -0.00199 +- 0.00089
+  policy 4x                  plays T   7.5% | T then costs -0.0014 +- 0.0107 | gain +0.00010 +- 0.00080 tricks, +0.0028 +- 0.0043 IMPs | over policy -0.00335 +- 0.00125
+  gap head                   plays T  45.5% | T then costs -0.0053 +- 0.0041 | gain +0.00241 +- 0.00187 tricks, +0.0129 +- 0.0081 IMPs | over policy -0.00105 +- 0.00157
+  all result                 plays T  44.5% | T then costs -0.0035 +- 0.0043 | gain +0.00157 +- 0.00193 tricks, +0.0096 +- 0.0073 IMPs | over policy -0.00189 +- 0.00152
+  all search_plus_res        plays T  50.0% | T then costs -0.0050 +- 0.0041 | gain +0.00251 +- 0.00204 tricks, +0.0140 +- 0.0080 IMPs | over policy -0.00094 +- 0.00201
+
+== v4.1, tricks 5-8, gap up to 0.1: 1219 pairs (1119 gap forks) on 957 deals | T better 6.2%, S better 10.2% | always T costs +0.0418 +- 0.0140 tricks, +0.144 +- 0.065 IMPs | search's gap 0.0466
+  policy                     plays T  21.0% | T then costs +0.0234 +- 0.0322 | gain -0.00492 +- 0.00677 tricks, -0.0664 +- 0.0345 IMPs
+  policy 2x                  plays T  13.4% | T then costs +0.0307 +- 0.0342 | gain -0.00410 +- 0.00457 tricks, -0.0533 +- 0.0262 IMPs | over policy +0.00082 +- 0.00499
+  policy 4x                  plays T   7.1% | T then costs +0.0000 +- 0.0496 | gain +0.00000 +- 0.00348 tricks, -0.0254 +- 0.0194 IMPs | over policy +0.00492 +- 0.00580
+  gap head                   plays T  26.3% | T then costs +0.0000 +- 0.0290 | gain +0.00000 +- 0.00761 tricks, -0.0131 +- 0.0346 IMPs | over policy +0.00492 +- 0.00666
+  all result                 plays T  25.1% | T then costs +0.0196 +- 0.0292 | gain -0.00492 +- 0.00734 tricks, -0.0328 +- 0.0383 IMPs | over policy +0.00000 +- 0.00614
+  all search_plus_res        plays T  15.6% | T then costs -0.0789 +- 0.0326 | gain +0.01231 +- 0.00511 tricks, +0.0328 +- 0.0240 IMPs | over policy +0.01723 +- 0.00790
+
+== v4.1, tricks 5-8, gap 0.1 to 0.2: 515 pairs (504 gap forks) on 434 deals | T better 5.6%, S better 18.8% | always T costs +0.1456 +- 0.0254 tricks, +0.528 +- 0.136 IMPs | search's gap 0.1460
+  policy                     plays T  18.1% | T then costs +0.1505 +- 0.0665 | gain -0.02718 +- 0.01222 tricks, -0.0699 +- 0.0394 IMPs
+  policy 2x                  plays T  10.3% | T then costs +0.1321 +- 0.0819 | gain -0.01359 +- 0.00847 tricks, -0.0252 +- 0.0215 IMPs | over policy +0.01359 +- 0.00887
+  policy 4x                  plays T   5.6% | T then costs +0.2414 +- 0.1225 | gain -0.01359 +- 0.00699 tricks, -0.0175 +- 0.0152 IMPs | over policy +0.01359 +- 0.01007
+  gap head                   plays T  21.7% | T then costs +0.1071 +- 0.0561 | gain -0.02330 +- 0.01227 tricks, -0.0777 +- 0.0395 IMPs | over policy +0.00388 +- 0.00824
+  all result                 plays T  22.9% | T then costs +0.1102 +- 0.0536 | gain -0.02524 +- 0.01240 tricks, -0.0524 +- 0.0458 IMPs | over policy +0.00194 +- 0.00891
+  all search_plus_res        plays T   1.0% | T then costs +0.2000 +- 0.2000 | gain -0.00194 +- 0.00194 tricks, -0.0194 +- 0.0194 IMPs | over policy +0.02524 +- 0.01238
+
+== v4.1, tricks 5-8, gap up to 0.2: 1734 pairs (1623 gap forks) on 1156 deals | T better 6.0%, S better 12.7% | always T costs +0.0727 +- 0.0125 tricks, +0.258 +- 0.062 IMPs | search's gap 0.0761
+  policy                     plays T  20.1% | T then costs +0.0573 +- 0.0294 | gain -0.01153 +- 0.00593 tricks, -0.0675 +- 0.0268 IMPs
+  policy 2x                  plays T  12.5% | T then costs +0.0556 +- 0.0320 | gain -0.00692 +- 0.00400 tricks, -0.0450 +- 0.0193 IMPs | over policy +0.00461 +- 0.00439
+  policy 4x                  plays T   6.6% | T then costs +0.0609 +- 0.0466 | gain -0.00404 +- 0.00311 tricks, -0.0231 +- 0.0142 IMPs | over policy +0.00750 +- 0.00506
+  gap head                   plays T  24.9% | T then costs +0.0278 +- 0.0262 | gain -0.00692 +- 0.00653 tricks, -0.0323 +- 0.0269 IMPs | over policy +0.00461 +- 0.00522
+  all result                 plays T  24.5% | T then costs +0.0448 +- 0.0256 | gain -0.01096 +- 0.00629 tricks, -0.0386 +- 0.0301 IMPs | over policy +0.00058 +- 0.00500
+  all search_plus_res        plays T  11.2% | T then costs -0.0718 +- 0.0323 | gain +0.00807 +- 0.00365 tricks, +0.0173 +- 0.0179 IMPs | over policy +0.01961 +- 0.00666
+
+== v4.1, tricks 5-8, gap 0.2 to 0.5: 989 pairs (987 gap forks) on 809 deals | T better 4.7%, S better 32.5% | always T costs +0.3225 +- 0.0210 tricks, +1.169 +- 0.107 IMPs | search's gap 0.3386
+  policy                     plays T  12.1% | T then costs +0.4333 +- 0.0775 | gain -0.05258 +- 0.01032 tricks, -0.1891 +- 0.0469 IMPs
+  policy 2x                  plays T   7.0% | T then costs +0.4493 +- 0.1006 | gain -0.03134 +- 0.00780 tricks, -0.1496 +- 0.0404 IMPs | over policy +0.02123 +- 0.00690
+  policy 4x                  plays T   3.7% | T then costs +0.7027 +- 0.1494 | gain -0.02629 +- 0.00692 tricks, -0.1082 +- 0.0321 IMPs | over policy +0.02629 +- 0.00792
+  gap head                   plays T  12.2% | T then costs +0.3719 +- 0.0699 | gain -0.04550 +- 0.00936 tricks, -0.1547 +- 0.0396 IMPs | over policy +0.00708 +- 0.00777
+  all result                 plays T  14.5% | T then costs +0.3636 +- 0.0695 | gain -0.05258 +- 0.01086 tricks, -0.1941 +- 0.0498 IMPs | over policy +0.00000 +- 0.00701
+  all search_plus_res        plays T   0.1% | T then costs +0.0000 +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.05258 +- 0.01032
+
+== v4.1, tricks 5-8, gap over 0.5: 1377 pairs (1377 gap forks) on 1047 deals | T better 3.3%, S better 73.6% | always T costs +0.9201 +- 0.0247 tricks, +3.233 +- 0.129 IMPs | search's gap 1.0780
+  policy                     plays T   3.9% | T then costs +0.6111 +- 0.1125 | gain -0.02397 +- 0.00553 tricks, -0.0770 +- 0.0214 IMPs
+  policy 2x                  plays T   2.1% | T then costs +0.5862 +- 0.1624 | gain -0.01235 +- 0.00416 tricks, -0.0530 +- 0.0198 IMPs | over policy +0.01162 +- 0.00368
+  policy 4x                  plays T   1.2% | T then costs +0.4375 +- 0.2577 | gain -0.00508 +- 0.00317 tricks, -0.0290 +- 0.0162 IMPs | over policy +0.01888 +- 0.00443
+  gap head                   plays T   4.0% | T then costs +0.6364 +- 0.1067 | gain -0.02542 +- 0.00541 tricks, -0.0959 +- 0.0270 IMPs | over policy -0.00145 +- 0.00544
+  all result                 plays T   4.1% | T then costs +0.5536 +- 0.1123 | gain -0.02251 +- 0.00542 tricks, -0.0966 +- 0.0280 IMPs | over policy +0.00145 +- 0.00503
+  all search_plus_res        plays T   0.0% | T then costs +nan +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.02397 +- 0.00553
+
+== v4.1, tricks 9-13, level: 14898 pairs (0 gap forks) on 1774 deals | T better 0.2%, S better 0.2% | always T costs +0.0001 +- 0.0007 tricks, +0.002 +- 0.002 IMPs | search's gap 0.0000
+  policy                     plays T  24.3% | T then costs -0.0006 +- 0.0020 | gain +0.00013 +- 0.00047 tricks, -0.0012 +- 0.0016 IMPs
+  policy 2x                  plays T  13.3% | T then costs -0.0010 +- 0.0025 | gain +0.00013 +- 0.00033 tricks, -0.0001 +- 0.0005 IMPs | over policy +0.00000 +- 0.00028
+  policy 4x                  plays T   6.8% | T then costs +0.0000 +- 0.0020 | gain +0.00000 +- 0.00013 tricks, -0.0003 +- 0.0004 IMPs | over policy -0.00013 +- 0.00044
+  gap head                   plays T  49.3% | T then costs +0.0000 +- 0.0010 | gain +0.00000 +- 0.00050 tricks, -0.0017 +- 0.0015 IMPs | over policy -0.00013 +- 0.00025
+  all result                 plays T  45.2% | T then costs -0.0004 +- 0.0011 | gain +0.00020 +- 0.00052 tricks, -0.0007 +- 0.0013 IMPs | over policy +0.00007 +- 0.00031
+  all search_plus_res        plays T  49.1% | T then costs -0.0014 +- 0.0008 | gain +0.00067 +- 0.00041 tricks, +0.0013 +- 0.0011 IMPs | over policy +0.00054 +- 0.00040
+
+== v4.1, tricks 9-13, gap up to 0.1: 414 pairs (414 gap forks) on 367 deals | T better 1.7%, S better 5.1% | always T costs +0.0338 +- 0.0131 tricks, +0.104 +- 0.040 IMPs | search's gap 0.0215
+  policy                     plays T  23.4% | T then costs +0.0206 +- 0.0328 | gain -0.00483 +- 0.00765 tricks, -0.0121 +- 0.0155 IMPs
+  policy 2x                  plays T  11.8% | T then costs +0.0408 +- 0.0408 | gain -0.00483 +- 0.00484 tricks, -0.0169 +- 0.0126 IMPs | over policy +0.00000 +- 0.00592
+  policy 4x                  plays T   7.2% | T then costs +0.0333 +- 0.0333 | gain -0.00242 +- 0.00242 tricks, -0.0072 +- 0.0072 IMPs | over policy +0.00242 +- 0.00726
+  gap head                   plays T  22.2% | T then costs +0.0652 +- 0.0484 | gain -0.01449 +- 0.01076 tricks, -0.0362 +- 0.0196 IMPs | over policy -0.00966 +- 0.01130
+  all result                 plays T  24.2% | T then costs +0.0600 +- 0.0446 | gain -0.01449 +- 0.01076 tricks, -0.0362 +- 0.0196 IMPs | over policy -0.00966 +- 0.01130
+  all search_plus_res        plays T  27.1% | T then costs +0.0089 +- 0.0269 | gain -0.00242 +- 0.00725 tricks, -0.0097 +- 0.0160 IMPs | over policy +0.00242 +- 0.00998
+
+== v4.1, tricks 9-13, gap up to 0.2: 540 pairs (540 gap forks) on 456 deals | T better 2.8%, S better 7.4% | always T costs +0.0463 +- 0.0145 tricks, +0.139 +- 0.053 IMPs | search's gap 0.0500
+  policy                     plays T  21.7% | T then costs +0.0085 +- 0.0354 | gain -0.00185 +- 0.00764 tricks, -0.0167 +- 0.0169 IMPs
+  policy 2x                  plays T  11.1% | T then costs +0.0500 +- 0.0500 | gain -0.00556 +- 0.00556 tricks, -0.0241 +- 0.0151 IMPs | over policy -0.00370 +- 0.00524
+  policy 4x                  plays T   6.7% | T then costs +0.0278 +- 0.0628 | gain -0.00185 +- 0.00414 tricks, -0.0111 +- 0.0117 IMPs | over policy +0.00000 +- 0.00642
+  gap head                   plays T  23.1% | T then costs +0.0960 +- 0.0430 | gain -0.02222 +- 0.01006 tricks, -0.0537 +- 0.0203 IMPs | over policy -0.02037 +- 0.00990
+  all result                 plays T  23.7% | T then costs +0.0859 +- 0.0400 | gain -0.02037 +- 0.00956 tricks, -0.0500 +- 0.0198 IMPs | over policy -0.01852 +- 0.01010
+  all search_plus_res        plays T  20.9% | T then costs +0.0177 +- 0.0281 | gain -0.00370 +- 0.00586 tricks, -0.0093 +- 0.0124 IMPs | over policy -0.00185 +- 0.00927
+
+== v4.1, tricks 9-13, gap over 0.5: 847 pairs (847 gap forks) on 703 deals | T better 0.7%, S better 87.1% | always T costs +1.0779 +- 0.0248 tricks, +4.039 +- 0.174 IMPs | search's gap 1.1238
+  policy                     plays T   5.4% | T then costs +0.8696 +- 0.0592 | gain -0.04723 +- 0.00758 tricks, -0.2172 +- 0.0474 IMPs
+  policy 2x                  plays T   2.4% | T then costs +0.8500 +- 0.0819 | gain -0.02007 +- 0.00479 tricks, -0.1110 +- 0.0365 IMPs | over policy +0.02715 +- 0.00604
+  policy 4x                  plays T   0.8% | T then costs +1.0000 +- 0.0000 | gain -0.00826 +- 0.00311 tricks, -0.0685 +- 0.0319 IMPs | over policy +0.03896 +- 0.00699
+  gap head                   plays T   3.3% | T then costs +0.7857 +- 0.0790 | gain -0.02597 +- 0.00546 tricks, -0.0720 +- 0.0225 IMPs | over policy +0.02125 +- 0.00721
+  all result                 plays T   3.5% | T then costs +0.8333 +- 0.0692 | gain -0.02952 +- 0.00580 tricks, -0.0945 +- 0.0272 IMPs | over policy +0.01771 +- 0.00694
+  all search_plus_res        plays T   0.0% | T then costs +nan +- nan | gain +0.00000 +- 0.00000 tricks, +0.0000 +- 0.0000 IMPs | over policy +0.04723 +- 0.00758
+
+######## v4: 40161 pairs on 1817 deals: 10874 gap forks, 29287 audits; by bot [32707, 0, 7454]; the search rated the forced card higher in 200
+
+== v4, all tricks, level: 29108 pairs (20 gap forks) on 1812 deals | T better 1.4%, S better 1.2% | always T costs -0.0018 +- 0.0013 tricks, -0.007 +- 0.005 IMPs | search's gap 0.0000
+  policy                     plays T  23.9% | T then costs -0.0052 +- 0.0028 | gain +0.00124 +- 0.00066 tricks, +0.0028 +- 0.0031 IMPs
+  policy 2x                  plays T  13.0% | T then costs -0.0066 +- 0.0039 | gain +0.00086 +- 0.00051 tricks, +0.0050 +- 0.0023 IMPs | over policy -0.00038 +- 0.00043
+  policy 4x                  plays T   6.3% | T then costs -0.0027 +- 0.0049 | gain +0.00017 +- 0.00031 tricks, +0.0023 +- 0.0013 IMPs | over policy -0.00106 +- 0.00056
+  gap head                   plays T  44.8% | T then costs -0.0024 +- 0.0017 | gain +0.00106 +- 0.00076 tricks, +0.0049 +- 0.0034 IMPs | over policy -0.00017 +- 0.00071
+
+== v4, all tricks, gap up to 0.1: 3143 pairs (2964 gap forks) on 1620 deals | T better 8.4%, S better 12.8% | always T costs +0.0461 +- 0.0105 tricks, +0.205 +- 0.049 IMPs | search's gap 0.0483
+  policy                     plays T  23.0% | T then costs +0.0111 +- 0.0250 | gain -0.00255 +- 0.00573 tricks, -0.0344 +- 0.0223 IMPs
+  policy 2x                  plays T  12.7% | T then costs -0.0075 +- 0.0302 | gain +0.00095 +- 0.00383 tricks, -0.0076 +- 0.0148 IMPs | over policy +0.00350 +- 0.00416
+  policy 4x                  plays T   6.4% | T then costs -0.0149 +- 0.0406 | gain +0.00095 +- 0.00261 tricks, -0.0089 +- 0.0102 IMPs | over policy +0.00350 +- 0.00505
+  gap head                   plays T  28.3% | T then costs +0.0247 +- 0.0213 | gain -0.00700 +- 0.00604 tricks, -0.0426 +- 0.0238 IMPs | over policy -0.00445 +- 0.00509
+
+== v4, all tricks, gap 0.1 to 0.2: 1522 pairs (1504 gap forks) on 1012 deals | T better 8.7%, S better 21.1% | always T costs +0.1478 +- 0.0179 tricks, +0.460 +- 0.076 IMPs | search's gap 0.1484
+  policy                     plays T  18.9% | T then costs +0.0938 +- 0.0443 | gain -0.01774 +- 0.00833 tricks, -0.0742 +- 0.0328 IMPs
+  policy 2x                  plays T  10.6% | T then costs +0.1553 +- 0.0590 | gain -0.01643 +- 0.00627 tricks, -0.0585 +- 0.0250 IMPs | over policy +0.00131 +- 0.00534
+  policy 4x                  plays T   4.9% | T then costs +0.1892 +- 0.0826 | gain -0.00920 +- 0.00405 tricks, -0.0177 +- 0.0098 IMPs | over policy +0.00854 +- 0.00704
+  gap head                   plays T  25.1% | T then costs +0.0681 +- 0.0343 | gain -0.01708 +- 0.00861 tricks, -0.0493 +- 0.0343 IMPs | over policy +0.00066 +- 0.00705
+
+== v4, all tricks, gap up to 0.2: 4665 pairs (4468 gap forks) on 1680 deals | T better 8.5%, S better 15.5% | always T costs +0.0793 +- 0.0094 tricks, +0.288 +- 0.043 IMPs | search's gap 0.0810
+  policy                     plays T  21.7% | T then costs +0.0347 +- 0.0217 | gain -0.00750 +- 0.00470 tricks, -0.0474 +- 0.0184 IMPs
+  policy 2x                  plays T  12.0% | T then costs +0.0393 +- 0.0277 | gain -0.00472 +- 0.00332 tricks, -0.0242 +- 0.0128 IMPs | over policy +0.00279 +- 0.00326
+  policy 4x                  plays T   5.9% | T then costs +0.0399 +- 0.0368 | gain -0.00236 +- 0.00218 tricks, -0.0118 +- 0.0075 IMPs | over policy +0.00514 +- 0.00409
+  gap head                   plays T  27.3% | T then costs +0.0377 +- 0.0188 | gain -0.01029 +- 0.00514 tricks, -0.0448 +- 0.0193 IMPs | over policy -0.00279 +- 0.00415
+
+== v4, all tricks, gap 0.2 to 0.5: 2762 pairs (2760 gap forks) on 1531 deals | T better 8.9%, S better 31.9% | always T costs +0.2719 +- 0.0152 tricks, +0.889 +- 0.072 IMPs | search's gap 0.3419
+  policy                     plays T  11.4% | T then costs +0.2357 +- 0.0449 | gain -0.02679 +- 0.00527 tricks, -0.1112 +- 0.0247 IMPs
+  policy 2x                  plays T   5.9% | T then costs +0.2515 +- 0.0595 | gain -0.01484 +- 0.00367 tricks, -0.0684 +- 0.0189 IMPs | over policy +0.01195 +- 0.00373
+  policy 4x                  plays T   3.6% | T then costs +0.2525 +- 0.0752 | gain -0.00905 +- 0.00281 tricks, -0.0369 +- 0.0144 IMPs | over policy +0.01774 +- 0.00439
+  gap head                   plays T  13.1% | T then costs +0.2576 +- 0.0416 | gain -0.03367 +- 0.00567 tricks, -0.1249 +- 0.0255 IMPs | over policy -0.00688 +- 0.00533
+
+== v4, all tricks, gap over 0.5: 3626 pairs (3626 gap forks) on 1610 deals | T better 3.9%, S better 72.7% | always T costs +0.8996 +- 0.0157 tricks, +3.238 +- 0.092 IMPs | search's gap 1.0495
+  policy                     plays T   4.4% | T then costs +0.7547 +- 0.0681 | gain -0.03309 +- 0.00394 tricks, -0.1282 +- 0.0181 IMPs
+  policy 2x                  plays T   2.5% | T then costs +0.7889 +- 0.0798 | gain -0.01958 +- 0.00281 tricks, -0.0899 +- 0.0152 IMPs | over policy +0.01351 +- 0.00275
+  policy 4x                  plays T   1.2% | T then costs +0.7674 +- 0.1282 | gain -0.00910 +- 0.00204 tricks, -0.0516 +- 0.0124 IMPs | over policy +0.02399 +- 0.00341
+  gap head                   plays T   4.5% | T then costs +0.6173 +- 0.0684 | gain -0.02758 +- 0.00376 tricks, -0.1004 +- 0.0176 IMPs | over policy +0.00552 +- 0.00394
+
+== v4, tricks 1-4, level: 4663 pairs (7 gap forks) on 1477 deals | T better 3.9%, S better 4.0% | always T costs -0.0002 +- 0.0054 tricks, +0.008 +- 0.024 IMPs | search's gap 0.0000
+  policy                     plays T  25.3% | T then costs -0.0034 +- 0.0110 | gain +0.00086 +- 0.00278 tricks, -0.0073 +- 0.0151 IMPs
+  policy 2x                  plays T  13.4% | T then costs -0.0160 +- 0.0153 | gain +0.00214 +- 0.00206 tricks, +0.0088 +- 0.0101 IMPs | over policy +0.00129 +- 0.00182
+  policy 4x                  plays T   6.0% | T then costs -0.0178 +- 0.0210 | gain +0.00107 +- 0.00127 tricks, +0.0112 +- 0.0061 IMPs | over policy +0.00021 +- 0.00244
+  gap head                   plays T  46.0% | T then costs -0.0042 +- 0.0074 | gain +0.00193 +- 0.00341 tricks, +0.0094 +- 0.0166 IMPs | over policy +0.00107 +- 0.00306
+
+== v4, tricks 1-4, gap up to 0.1: 1510 pairs (1431 gap forks) on 1098 deals | T better 12.1%, S better 17.0% | always T costs +0.0530 +- 0.0182 tricks, +0.281 +- 0.085 IMPs | search's gap 0.0572
+  policy                     plays T  22.5% | T then costs -0.0059 +- 0.0450 | gain +0.00132 +- 0.01009 tricks, -0.0470 +- 0.0389 IMPs
+  policy 2x                  plays T  11.7% | T then costs -0.0339 +- 0.0577 | gain +0.00397 +- 0.00675 tricks, +0.0020 +- 0.0255 IMPs | over policy +0.00265 +- 0.00726
+  policy 4x                  plays T   5.8% | T then costs +0.0227 +- 0.0775 | gain -0.00132 +- 0.00449 tricks, -0.0132 +- 0.0157 IMPs | over policy -0.00265 +- 0.00884
+  gap head                   plays T  29.1% | T then costs +0.0159 +- 0.0338 | gain -0.00464 +- 0.00985 tricks, -0.0583 +- 0.0411 IMPs | over policy -0.00596 +- 0.00845
+
+== v4, tricks 1-4, gap 0.1 to 0.2: 881 pairs (874 gap forks) on 679 deals | T better 10.9%, S better 23.3% | always T costs +0.1578 +- 0.0257 tricks, +0.449 +- 0.102 IMPs | search's gap 0.1504
+  policy                     plays T  17.3% | T then costs +0.0329 +- 0.0685 | gain -0.00568 +- 0.01176 tricks, -0.0318 +- 0.0403 IMPs
+  policy 2x                  plays T   9.0% | T then costs +0.1139 +- 0.1014 | gain -0.01022 +- 0.00902 tricks, -0.0375 +- 0.0338 IMPs | over policy -0.00454 +- 0.00718
+  policy 4x                  plays T   4.0% | T then costs +0.0571 +- 0.1231 | gain -0.00227 +- 0.00482 tricks, -0.0034 +- 0.0127 IMPs | over policy +0.00341 +- 0.01035
+  gap head                   plays T  24.9% | T then costs +0.0274 +- 0.0480 | gain -0.00681 +- 0.01191 tricks, -0.0318 +- 0.0460 IMPs | over policy -0.00114 +- 0.00970
+
+== v4, tricks 1-4, gap up to 0.2: 2391 pairs (2305 gap forks) on 1350 deals | T better 11.7%, S better 19.3% | always T costs +0.0916 +- 0.0150 tricks, +0.343 +- 0.068 IMPs | search's gap 0.0915
+  policy                     plays T  20.5% | T then costs +0.0061 +- 0.0362 | gain -0.00125 +- 0.00743 tricks, -0.0414 +- 0.0279 IMPs
+  policy 2x                  plays T  10.7% | T then costs +0.0117 +- 0.0500 | gain -0.00125 +- 0.00534 tricks, -0.0125 +- 0.0203 IMPs | over policy +0.00000 +- 0.00519
+  policy 4x                  plays T   5.1% | T then costs +0.0325 +- 0.0653 | gain -0.00167 +- 0.00335 tricks, -0.0096 +- 0.0110 IMPs | over policy -0.00042 +- 0.00663
+  gap head                   plays T  27.6% | T then costs +0.0197 +- 0.0277 | gain -0.00544 +- 0.00764 tricks, -0.0485 +- 0.0306 IMPs | over policy -0.00418 +- 0.00634
+
+== v4, tricks 1-4, gap 0.2 to 0.5: 1508 pairs (1508 gap forks) on 1083 deals | T better 12.8%, S better 32.4% | always T costs +0.2414 +- 0.0232 tricks, +0.725 +- 0.107 IMPs | search's gap 0.3435
+  policy                     plays T   9.5% | T then costs +0.1469 +- 0.0723 | gain -0.01393 +- 0.00690 tricks, -0.0670 +- 0.0313 IMPs
+  policy 2x                  plays T   4.5% | T then costs +0.2206 +- 0.1041 | gain -0.00995 +- 0.00480 tricks, -0.0405 +- 0.0201 IMPs | over policy +0.00398 +- 0.00497
+  policy 4x                  plays T   2.8% | T then costs +0.1667 +- 0.1265 | gain -0.00464 +- 0.00356 tricks, -0.0212 +- 0.0162 IMPs | over policy +0.00928 +- 0.00593
+  gap head                   plays T  11.2% | T then costs +0.1124 +- 0.0642 | gain -0.01260 +- 0.00722 tricks, -0.0537 +- 0.0324 IMPs | over policy +0.00133 +- 0.00663
+
+== v4, tricks 1-4, gap over 0.5: 1402 pairs (1402 gap forks) on 1042 deals | T better 6.3%, S better 63.0% | always T costs +0.7718 +- 0.0260 tricks, +2.760 +- 0.138 IMPs | search's gap 0.9767
+  policy                     plays T   2.3% | T then costs +0.6250 +- 0.1826 | gain -0.01427 +- 0.00483 tricks, -0.0670 +- 0.0234 IMPs
+  policy 2x                  plays T   1.0% | T then costs +1.0000 +- 0.2568 | gain -0.00999 +- 0.00363 tricks, -0.0464 +- 0.0190 IMPs | over policy +0.00428 +- 0.00319
+  policy 4x                  plays T   0.4% | T then costs +0.8333 +- 0.3073 | gain -0.00357 +- 0.00189 tricks, -0.0193 +- 0.0127 IMPs | over policy +0.01070 +- 0.00445
+  gap head                   plays T   2.9% | T then costs +0.3000 +- 0.1641 | gain -0.00856 +- 0.00483 tricks, -0.0314 +- 0.0254 IMPs | over policy +0.00571 +- 0.00440
+
+== v4, tricks 5-8, level: 9547 pairs (13 gap forks) on 1695 deals | T better 1.9%, S better 1.4% | always T costs -0.0054 +- 0.0025 tricks, -0.030 +- 0.011 IMPs | search's gap 0.0000
+  policy                     plays T  25.4% | T then costs -0.0107 +- 0.0056 | gain +0.00272 +- 0.00144 tricks, +0.0126 +- 0.0066 IMPs
+  policy 2x                  plays T  13.8% | T then costs -0.0084 +- 0.0079 | gain +0.00115 +- 0.00109 tricks, +0.0115 +- 0.0048 IMPs | over policy -0.00157 +- 0.00093
+  policy 4x                  plays T   6.2% | T then costs +0.0050 +- 0.0102 | gain -0.00031 +- 0.00064 tricks, +0.0022 +- 0.0021 IMPs | over policy -0.00304 +- 0.00125
+  gap head                   plays T  45.2% | T then costs -0.0044 +- 0.0037 | gain +0.00199 +- 0.00167 tricks, +0.0110 +- 0.0065 IMPs | over policy -0.00073 +- 0.00165
+
+== v4, tricks 5-8, gap up to 0.1: 1219 pairs (1119 gap forks) on 957 deals | T better 6.2%, S better 10.2% | always T costs +0.0418 +- 0.0140 tricks, +0.144 +- 0.065 IMPs | search's gap 0.0466
+  policy                     plays T  23.5% | T then costs +0.0348 +- 0.0319 | gain -0.00820 +- 0.00752 tricks, -0.0279 +- 0.0341 IMPs
+  policy 2x                  plays T  13.4% | T then costs +0.0000 +- 0.0399 | gain +0.00000 +- 0.00532 tricks, -0.0156 +- 0.0261 IMPs | over policy +0.00820 +- 0.00531
+  policy 4x                  plays T   7.2% | T then costs -0.0682 +- 0.0508 | gain +0.00492 +- 0.00366 tricks, -0.0057 +- 0.0177 IMPs | over policy +0.01313 +- 0.00655
+  gap head                   plays T  28.4% | T then costs +0.0231 +- 0.0293 | gain -0.00656 +- 0.00829 tricks, -0.0279 +- 0.0351 IMPs | over policy +0.00164 +- 0.00677
+
+== v4, tricks 5-8, gap 0.1 to 0.2: 515 pairs (504 gap forks) on 434 deals | T better 5.6%, S better 18.8% | always T costs +0.1456 +- 0.0254 tricks, +0.528 +- 0.136 IMPs | search's gap 0.1460
+  policy                     plays T  22.3% | T then costs +0.1739 +- 0.0544 | gain -0.03883 +- 0.01246 tricks, -0.1184 +- 0.0558 IMPs
+  policy 2x                  plays T  13.4% | T then costs +0.1884 +- 0.0633 | gain -0.02524 +- 0.00887 tricks, -0.0680 +- 0.0312 IMPs | over policy +0.01359 +- 0.00886
+  policy 4x                  plays T   6.2% | T then costs +0.3750 +- 0.1104 | gain -0.02330 +- 0.00772 tricks, -0.0466 +- 0.0182 IMPs | over policy +0.01553 +- 0.00987
+  gap head                   plays T  25.6% | T then costs +0.1061 +- 0.0509 | gain -0.02718 +- 0.01314 tricks, -0.0563 +- 0.0584 IMPs | over policy +0.01165 +- 0.01062
+
+== v4, tricks 5-8, gap up to 0.2: 1734 pairs (1623 gap forks) on 1156 deals | T better 6.0%, S better 12.7% | always T costs +0.0727 +- 0.0125 tricks, +0.258 +- 0.062 IMPs | search's gap 0.0761
+  policy                     plays T  23.2% | T then costs +0.0746 +- 0.0279 | gain -0.01730 +- 0.00652 tricks, -0.0548 +- 0.0291 IMPs
+  policy 2x                  plays T  13.4% | T then costs +0.0560 +- 0.0341 | gain -0.00750 +- 0.00458 tricks, -0.0311 +- 0.0205 IMPs | over policy +0.00980 +- 0.00457
+  policy 4x                  plays T   6.9% | T then costs +0.0500 +- 0.0485 | gain -0.00346 +- 0.00336 tricks, -0.0179 +- 0.0134 IMPs | over policy +0.01384 +- 0.00546
+  gap head                   plays T  27.6% | T then costs +0.0460 +- 0.0253 | gain -0.01269 +- 0.00697 tricks, -0.0363 +- 0.0285 IMPs | over policy +0.00461 +- 0.00577
+
+== v4, tricks 5-8, gap 0.2 to 0.5: 989 pairs (987 gap forks) on 809 deals | T better 4.7%, S better 32.5% | always T costs +0.3225 +- 0.0210 tricks, +1.169 +- 0.107 IMPs | search's gap 0.3386
+  policy                     plays T  13.0% | T then costs +0.3333 +- 0.0673 | gain -0.04348 +- 0.00945 tricks, -0.1709 +- 0.0456 IMPs
+  policy 2x                  plays T   6.7% | T then costs +0.2879 +- 0.0910 | gain -0.01921 +- 0.00641 tricks, -0.0950 +- 0.0379 IMPs | over policy +0.02427 +- 0.00678
+  policy 4x                  plays T   4.1% | T then costs +0.3415 +- 0.1190 | gain -0.01416 +- 0.00531 tricks, -0.0536 +- 0.0286 IMPs | over policy +0.02932 +- 0.00766
+  gap head                   plays T  15.4% | T then costs +0.4079 +- 0.0613 | gain -0.06269 +- 0.01049 tricks, -0.2063 +- 0.0441 IMPs | over policy -0.01921 +- 0.01015
+
+== v4, tricks 5-8, gap over 0.5: 1377 pairs (1377 gap forks) on 1047 deals | T better 3.3%, S better 73.6% | always T costs +0.9201 +- 0.0247 tricks, +3.233 +- 0.129 IMPs | search's gap 1.0780
+  policy                     plays T   4.8% | T then costs +0.7273 +- 0.1166 | gain -0.03486 +- 0.00696 tricks, -0.1155 +- 0.0263 IMPs
+  policy 2x                  plays T   2.7% | T then costs +0.6486 +- 0.1512 | gain -0.01743 +- 0.00490 tricks, -0.0719 +- 0.0221 IMPs | over policy +0.01743 +- 0.00500
+  policy 4x                  plays T   1.3% | T then costs +0.6111 +- 0.2698 | gain -0.00799 +- 0.00391 tricks, -0.0465 +- 0.0194 IMPs | over policy +0.02687 +- 0.00578
+  gap head                   plays T   6.0% | T then costs +0.5610 +- 0.1051 | gain -0.03341 +- 0.00718 tricks, -0.1206 +- 0.0288 IMPs | over policy +0.00145 +- 0.00704
+
+== v4, tricks 9-13, level: 14898 pairs (0 gap forks) on 1774 deals | T better 0.2%, S better 0.2% | always T costs +0.0001 +- 0.0007 tricks, +0.002 +- 0.002 IMPs | search's gap 0.0000
+  policy                     plays T  22.4% | T then costs -0.0018 +- 0.0011 | gain +0.00040 +- 0.00025 tricks, -0.0003 +- 0.0008 IMPs
+  policy 2x                  plays T  12.4% | T then costs -0.0022 +- 0.0017 | gain +0.00027 +- 0.00021 tricks, -0.0004 +- 0.0008 IMPs | over policy -0.00013 +- 0.00013
+  policy 4x                  plays T   6.4% | T then costs -0.0032 +- 0.0028 | gain +0.00020 +- 0.00018 tricks, -0.0005 +- 0.0008 IMPs | over policy -0.00020 +- 0.00015
+  gap head                   plays T  44.1% | T then costs -0.0005 +- 0.0008 | gain +0.00020 +- 0.00034 tricks, -0.0004 +- 0.0007 IMPs | over policy -0.00020 +- 0.00034
+
+== v4, tricks 9-13, gap up to 0.1: 414 pairs (414 gap forks) on 367 deals | T better 1.7%, S better 5.1% | always T costs +0.0338 +- 0.0131 tricks, +0.104 +- 0.040 IMPs | search's gap 0.0215
+  policy                     plays T  23.2% | T then costs +0.0000 +- 0.0331 | gain +0.00000 +- 0.00765 tricks, -0.0072 +- 0.0155 IMPs
+  policy 2x                  plays T  14.3% | T then costs +0.0508 +- 0.0289 | gain -0.00725 +- 0.00418 tricks, -0.0193 +- 0.0123 IMPs | over policy -0.00725 +- 0.00638
+  policy 4x                  plays T   6.3% | T then costs +0.0385 +- 0.0385 | gain -0.00242 +- 0.00242 tricks, -0.0024 +- 0.0024 IMPs | over policy -0.00242 +- 0.00725
+  gap head                   plays T  25.4% | T then costs +0.0667 +- 0.0365 | gain -0.01691 +- 0.00932 tricks, -0.0290 +- 0.0177 IMPs | over policy -0.01691 +- 0.00716
+
+== v4, tricks 9-13, gap up to 0.2: 540 pairs (540 gap forks) on 456 deals | T better 2.8%, S better 7.4% | always T costs +0.0463 +- 0.0145 tricks, +0.139 +- 0.053 IMPs | search's gap 0.0500
+  policy                     plays T  21.7% | T then costs +0.0171 +- 0.0384 | gain -0.00370 +- 0.00829 tricks, -0.0500 +- 0.0359 IMPs
+  policy 2x                  plays T  13.3% | T then costs +0.0833 +- 0.0431 | gain -0.01111 +- 0.00584 tricks, -0.0537 +- 0.0339 IMPs | over policy -0.00741 +- 0.00585
+  policy 4x                  plays T   6.1% | T then costs +0.0303 +- 0.0686 | gain -0.00185 +- 0.00414 tricks, -0.0019 +- 0.0061 IMPs | over policy +0.00185 +- 0.00718
+  gap head                   plays T  25.2% | T then costs +0.0956 +- 0.0371 | gain -0.02407 +- 0.00954 tricks, -0.0556 +- 0.0214 IMPs | over policy -0.02037 +- 0.00841
+
+== v4, tricks 9-13, gap over 0.5: 847 pairs (847 gap forks) on 703 deals | T better 0.7%, S better 87.1% | always T costs +1.0779 +- 0.0248 tricks, +4.039 +- 0.174 IMPs | search's gap 1.1238
+  policy                     plays T   7.2% | T then costs +0.8525 +- 0.0804 | gain -0.06139 +- 0.00938 tricks, -0.2503 +- 0.0519 IMPs
+  policy 2x                  plays T   4.6% | T then costs +0.8462 +- 0.0691 | gain -0.03896 +- 0.00681 tricks, -0.1913 +- 0.0442 IMPs | over policy +0.02243 +- 0.00670
+  policy 4x                  plays T   2.2% | T then costs +0.8947 +- 0.1053 | gain -0.02007 +- 0.00508 tricks, -0.1133 +- 0.0372 IMPs | over policy +0.04132 +- 0.00808
+  gap head                   plays T   4.7% | T then costs +1.0500 +- 0.0789 | gain -0.04959 +- 0.00895 tricks, -0.1818 +- 0.0426 IMPs | over policy +0.01181 +- 0.01028
+
+######## the policy selector of each net against that of v4.1, on the same pairs (gain a pair, tricks)
+  level            v4: picks differ on  16.7% of 29108 pairs | v4 minus v4.1 -0.00010 +- 0.00049
+  gap up to 0.1    v4: picks differ on  13.1% of 3143 pairs | v4 minus v4.1 +0.00223 +- 0.00404
+  gap 0.1 to 0.2   v4: picks differ on  13.0% of 1522 pairs | v4 minus v4.1 -0.00066 +- 0.00680
+  gap up to 0.2    v4: picks differ on  13.1% of 4665 pairs | v4 minus v4.1 +0.00129 +- 0.00361
+  gap 0.2 to 0.5   v4: picks differ on   8.0% of 2762 pairs | v4 minus v4.1 +0.00543 +- 0.00436
+  gap over 0.5     v4: picks differ on   3.6% of 3626 pairs | v4 minus v4.1 -0.00910 +- 0.00338

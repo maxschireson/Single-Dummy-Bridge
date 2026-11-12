@@ -100,7 +100,7 @@ the fitted slope on its gap is 0.87.
 
 Limits: one linear layer on a frozen net; a head trained with the net, or with more capacity, was
 not tried. The test pairs come from 1,206 deals. Files: `result-head/result_head.json` and
-`.log`; the pair sets are `data/pairs*.npz` on `transfer/gen7-policy-v4.1-box-20261112`.
+`.txt`; the pair sets are `data/pairs*.npz` on `transfer/gen7-policy-v4.1-box-20261112`.
 
 ## 768 wide, three epochs
 
@@ -129,7 +129,7 @@ Set D is 182 more boards (80,123 decisions) fetched at 05:18 UTC. On C and D tog
 [-6, 22], tricks 1-2 21% [12, 30], tricks 3-6 18% [14, 22], tricks 7-13 26% [22, 31]. Exponent on
 training deals -0.35 [-0.40, -0.30], against -0.36 [-0.46, -0.25] for v3.1 to v4 on the same boards.
 
-Logs: `eval512.log`, `eval768.log`, `final_eval.log`. Fetch manifests: `fetch1.json` (the training
+Logs: `eval512.txt`, `eval768.txt`, `final_eval.txt`. Fetch manifests: `fetch1.json` (the training
 set) and `fetchB.json`, `fetchC.json`, `fetchD.json`.
 
 ## Five epochs, 512 and 768 wide
@@ -179,7 +179,7 @@ gives up less than the policy head's (768 wide, five epochs: 0.0184 against 0.02
 
 Neither five-epoch net was packaged or launched. Their weights by epoch, plain and with the
 temperature built in, are on the box branch under `runs/w512e5/` and `runs/w768e5/`. Logs:
-`eval_w512e5.log`, `eval_w768e5.log`, `eval_direct.log`.
+`eval_w512e5.txt`, `eval_w768e5.txt`, `eval_direct.txt`.
 
 The first 768-wide five-epoch run died in its fourth epoch at 06:23:48 UTC: Ubuntu's daily
 unattended upgrade ran `needrestart`, which restarts services whose libraries changed, and the

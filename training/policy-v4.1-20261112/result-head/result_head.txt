@@ -1,0 +1,97 @@
+training pairs 722589 (169601 gap forks), ridge {'result': 0.001, 'search+res': 0.1}, slopes {'search*': 0.8662806176767718, 'gap head': 0.8223626798294799, 'search+res': 0.8504471982290192}
+
+== freshB_raw.npz: all pairs: 12416 pairs, 597 deals, result differs in 14.8%, mean realized cost of B +0.1047 [+0.0929, +0.1155], mean search gap 0.1249
+  zero        squared error 0.2629 | minus search* +0.09279 [+0.07746, +0.10810] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.1734 | minus search* +0.00329 [+0.00172, +0.00512] | corr +0.570 | says B better:    140 pairs, realized +0.157
+  search*     squared error 0.1701 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.570 | says B better:    140 pairs, realized +0.157
+  gap head    squared error 0.1981 | minus search* +0.02800 [+0.02245, +0.03375] | corr +0.465 | says B better:   4777 pairs, realized +0.016
+  result      squared error 0.1956 | minus search* +0.02551 [+0.01985, +0.03123] | corr +0.475 | says B better:   4516 pairs, realized +0.012
+  search+res  squared error 0.1695 | minus search* -0.00056 [-0.00134, +0.00026] | corr +0.572 | says B better:   4689 pairs, realized -0.000
+
+== freshB_raw.npz: gap forks: 3330 pairs, 597 deals, result differs in 45.2%, mean realized cost of B +0.3925 [+0.3610, +0.4260], mean search gap 0.4682
+  zero        squared error 0.8279 | minus search* +0.34698 [+0.29361, +0.40227] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.4930 | minus search* +0.01210 [+0.00627, +0.01890] | corr +0.536 | says B better:      1 pairs, realized +0.000
+  search*     squared error 0.4809 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.536 | says B better:      1 pairs, realized +0.000
+  gap head    squared error 0.5580 | minus search* +0.07702 [+0.05608, +0.09848] | corr +0.432 | says B better:    487 pairs, realized +0.140
+  result      squared error 0.5507 | minus search* +0.06973 [+0.04879, +0.09095] | corr +0.444 | says B better:    489 pairs, realized +0.121
+  search+res  squared error 0.4780 | minus search* -0.00298 [-0.00570, -0.00014] | corr +0.540 | says B better:    142 pairs, realized +0.042
+
+== freshB_raw.npz: audits: 9086 pairs, 597 deals, result differs in 3.6%, mean realized cost of B -0.0008 [-0.0060, +0.0046], mean search gap -0.0008
+  zero        squared error 0.0558 | minus search* -0.00037 [-0.00066, -0.00013] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.0562 | minus search* +0.00007 [+0.00003, +0.00012] | corr -0.095 | says B better:    139 pairs, realized +0.158
+  search*     squared error 0.0562 | minus search* +0.00000 [+0.00000, +0.00000] | corr -0.095 | says B better:    139 pairs, realized +0.158
+  gap head    squared error 0.0662 | minus search* +0.01004 [+0.00808, +0.01225] | corr -0.007 | says B better:   4290 pairs, realized +0.002
+  result      squared error 0.0655 | minus search* +0.00930 [+0.00749, +0.01130] | corr -0.002 | says B better:   4027 pairs, realized -0.001
+  search+res  squared error 0.0565 | minus search* +0.00032 [-0.00002, +0.00069] | corr -0.009 | says B better:   4547 pairs, realized -0.002
+
+== freshC_raw.npz: all pairs: 9896 pairs, 427 deals, result differs in 15.1%, mean realized cost of B +0.1188 [+0.1067, +0.1317], mean search gap 0.1339
+  zero        squared error 0.2650 | minus search* +0.10810 [+0.09336, +0.12337] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.1585 | minus search* +0.00165 [+0.00015, +0.00328] | corr +0.612 | says B better:     60 pairs, realized +0.050
+  search*     squared error 0.1569 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.612 | says B better:     60 pairs, realized +0.050
+  gap head    squared error 0.1957 | minus search* +0.03885 [+0.03157, +0.04657] | corr +0.474 | says B better:   3831 pairs, realized +0.011
+  result      squared error 0.1942 | minus search* +0.03731 [+0.02973, +0.04505] | corr +0.480 | says B better:   3586 pairs, realized +0.021
+  search+res  squared error 0.1556 | minus search* -0.00124 [-0.00196, -0.00049] | corr +0.616 | says B better:   3703 pairs, realized -0.002
+
+== freshC_raw.npz: gap forks: 2831 pairs, 427 deals, result differs in 45.8%, mean realized cost of B +0.4133 [+0.3794, +0.4469], mean search gap 0.4694
+  zero        squared error 0.8301 | minus search* +0.37769 [+0.32689, +0.42883] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.4582 | minus search* +0.00580 [+0.00058, +0.01129] | corr +0.561 | says B better:      0 pairs
+  search*     squared error 0.4524 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.561 | says B better:      0 pairs
+  gap head    squared error 0.5613 | minus search* +0.10891 [+0.08531, +0.13519] | corr +0.411 | says B better:    401 pairs, realized +0.105
+  result      squared error 0.5580 | minus search* +0.10558 [+0.08031, +0.13222] | corr +0.418 | says B better:    406 pairs, realized +0.155
+  search+res  squared error 0.4473 | minus search* -0.00512 [-0.00764, -0.00248] | corr +0.568 | says B better:    143 pairs, realized -0.077
+
+== freshC_raw.npz: audits: 7065 pairs, 427 deals, result differs in 2.7%, mean realized cost of B +0.0008 [-0.0038, +0.0058], mean search gap -0.0005
+  zero        squared error 0.0385 | minus search* +0.00008 [-0.00025, +0.00047] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.0384 | minus search* -0.00001 [-0.00006, +0.00004] | corr +0.050 | says B better:     60 pairs, realized +0.050
+  search*     squared error 0.0384 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.050 | says B better:     60 pairs, realized +0.050
+  gap head    squared error 0.0492 | minus search* +0.01078 [+0.00805, +0.01422] | corr +0.008 | says B better:   3430 pairs, realized +0.001
+  result      squared error 0.0484 | minus search* +0.00995 [+0.00736, +0.01323] | corr +0.010 | says B better:   3180 pairs, realized +0.004
+  search+res  squared error 0.0387 | minus search* +0.00032 [+0.00003, +0.00061] | corr +0.030 | says B better:   3560 pairs, realized +0.001
+
+== freshD_raw.npz: all pairs: 4137 pairs, 182 deals, result differs in 14.2%, mean realized cost of B +0.1044 [+0.0907, +0.1195], mean search gap 0.1264
+  zero        squared error 0.2673 | minus search* +0.10565 [+0.07940, +0.13436] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.1638 | minus search* +0.00211 [-0.00050, +0.00490] | corr +0.608 | says B better:      0 pairs
+  search*     squared error 0.1617 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.608 | says B better:      0 pairs
+  gap head    squared error 0.1944 | minus search* +0.03270 [+0.02193, +0.04440] | corr +0.494 | says B better:   1670 pairs, realized +0.009
+  result      squared error 0.1928 | minus search* +0.03110 [+0.02065, +0.04203] | corr +0.500 | says B better:   1553 pairs, realized +0.003
+  search+res  squared error 0.1613 | minus search* -0.00040 [-0.00158, +0.00080] | corr +0.609 | says B better:   1625 pairs, realized -0.004
+
+== freshD_raw.npz: gap forks: 1086 pairs, 182 deals, result differs in 47.4%, mean realized cost of B +0.4052 [+0.3589, +0.4549], mean search gap 0.4814
+  zero        squared error 0.9337 | minus search* +0.40246 [+0.30549, +0.50681] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.5393 | minus search* +0.00804 [-0.00193, +0.01839] | corr +0.557 | says B better:      0 pairs
+  search*     squared error 0.5312 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.557 | says B better:      0 pairs
+  gap head    squared error 0.6338 | minus search* +0.10255 [+0.06420, +0.14432] | corr +0.432 | says B better:    164 pairs, realized +0.110
+  result      squared error 0.6311 | minus search* +0.09986 [+0.06142, +0.14074] | corr +0.437 | says B better:    161 pairs, realized +0.087
+  search+res  squared error 0.5288 | minus search* -0.00246 [-0.00679, +0.00213] | corr +0.560 | says B better:     52 pairs, realized +0.019
+
+== freshD_raw.npz: audits: 3051 pairs, 182 deals, result differs in 2.4%, mean realized cost of B -0.0026 [-0.0077, +0.0020], mean search gap 0.0000
+  zero        squared error 0.0302 | minus search* -0.00000 [-0.00000, -0.00000] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.0302 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.000 | says B better:      0 pairs
+  search*     squared error 0.0302 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.000 | says B better:      0 pairs
+  gap head    squared error 0.0380 | minus search* +0.00783 [+0.00478, +0.01131] | corr +0.010 | says B better:   1506 pairs, realized -0.002
+  result      squared error 0.0368 | minus search* +0.00662 [+0.00408, +0.00941] | corr +0.017 | says B better:   1392 pairs, realized -0.007
+  search+res  squared error 0.0305 | minus search* +0.00034 [+0.00007, +0.00062] | corr +0.017 | says B better:   1573 pairs, realized -0.005
+
+== all test sets together: all pairs: 26449 pairs, 1206 deals, result differs in 14.8%, mean realized cost of B +0.1099 [+0.1027, +0.1172], mean search gap 0.1285
+  zero        squared error 0.2644 | minus search* +0.10053 [+0.09171, +0.11138] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.1663 | minus search* +0.00250 [+0.00139, +0.00359] | corr +0.592 | says B better:    200 pairs, realized +0.125
+  search*     squared error 0.1638 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.592 | says B better:    200 pairs, realized +0.125
+  gap head    squared error 0.1966 | minus search* +0.03280 [+0.02828, +0.03739] | corr +0.473 | says B better:  10278 pairs, realized +0.013
+  result      squared error 0.1946 | minus search* +0.03080 [+0.02660, +0.03541] | corr +0.481 | says B better:   9655 pairs, realized +0.014
+  search+res  squared error 0.1630 | minus search* -0.00079 [-0.00132, -0.00026] | corr +0.595 | says B better:  10017 pairs, realized -0.002
+
+== all test sets together: gap forks: 7247 pairs, 1206 deals, result differs in 45.8%, mean realized cost of B +0.4025 [+0.3827, +0.4230], mean search gap 0.4706
+  zero        squared error 0.8446 | minus search* +0.36729 [+0.33504, +0.40448] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.4864 | minus search* +0.00903 [+0.00497, +0.01290] | corr +0.548 | says B better:      1 pairs, realized +0.000
+  search*     squared error 0.4773 | minus search* +0.00000 [+0.00000, +0.00000] | corr +0.548 | says B better:      1 pairs, realized +0.000
+  gap head    squared error 0.5706 | minus search* +0.09330 [+0.07789, +0.10977] | corr +0.424 | says B better:   1052 pairs, realized +0.122
+  result      squared error 0.5656 | minus search* +0.08825 [+0.07288, +0.10450] | corr +0.433 | says B better:   1056 pairs, realized +0.129
+  search+res  squared error 0.4736 | minus search* -0.00374 [-0.00558, -0.00187] | corr +0.553 | says B better:    337 pairs, realized -0.012
+
+== all test sets together: audits: 19202 pairs, 1206 deals, result differs in 3.1%, mean realized cost of B -0.0005 [-0.0037, +0.0026], mean search gap -0.0006
+  zero        squared error 0.0454 | minus search* -0.00015 [-0.00034, +0.00004] | corr    n/a | says B better:      0 pairs
+  search      squared error 0.0455 | minus search* +0.00003 [+0.00000, +0.00006] | corr -0.045 | says B better:    199 pairs, realized +0.126
+  search*     squared error 0.0455 | minus search* +0.00000 [+0.00000, +0.00000] | corr -0.045 | says B better:    199 pairs, realized +0.126
+  gap head    squared error 0.0555 | minus search* +0.00996 [+0.00848, +0.01168] | corr +0.000 | says B better:   9226 pairs, realized +0.001
+  result      squared error 0.0546 | minus search* +0.00911 [+0.00769, +0.01068] | corr +0.004 | says B better:   8599 pairs, realized -0.000
+  search+res  squared error 0.0458 | minus search* +0.00032 [+0.00011, +0.00053] | corr +0.007 | says B better:   9680 pairs, realized -0.001

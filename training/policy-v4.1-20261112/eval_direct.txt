@@ -1,0 +1,9 @@
+== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B
+591450 decisions, 1387 deals
+w512         gives up 0.0249 | exact 0.749 | top 3 0.991 | kept 0.98 2.72 0.90 2.04 | log-loss 0.6126
+w768e5       gives up 0.0237 | exact 0.758 | top 3 0.992 | kept 0.98 2.71 0.90 2.02 | log-loss 0.5927 || from w512: -0.0012 [-0.0020, -0.0006], cut 5.0% [2.3%, 7.8%]
+
+== the same on B
+218537 decisions, 631 deals
+w512         gives up 0.0245 | exact 0.755 | top 3 0.990 | kept 0.98 2.75 0.90 2.06 | log-loss 0.6051
+w768e5       gives up 0.0234 | exact 0.759 | top 3 0.991 | kept 0.98 2.74 0.90 2.04 | log-loss 0.5939 || from w512: -0.0010 [-0.0020, -0.0000], cut 4.3% [0.1%, 8.1%]
