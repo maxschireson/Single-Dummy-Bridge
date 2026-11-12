@@ -406,6 +406,8 @@ seat `gen7`). Against `7s-32-v41`, 1,600 fresh random deals, seed 131, duplicate
 Result, 1,600 boards: **+0.175 +- 0.035 IMPs a board** for the candidate. 98 boards won (366 IMPs), 24 lost (86),
 1,478 flat. Boards of 10 IMPs or more: 13 for, 3 against; every other board together +0.100 +- 0.019. First half
 +0.152 +- 0.055, second half +0.198 +- 0.045. The candidate changes 1.00 cards a board (its opponent's tree 0.61).
+By contract: suit part scores +0.152 +- 0.042 (574 boards), suit games +0.195 +- 0.073 (528), notrump games +0.220 +-
+0.073 (273), notrump part scores +0.195 +- 0.125 (123), slams +0.06 +- 0.24 (94).
 
 Cost: the match ran at 78 CPU seconds a board. On six boards timed in the sandbox two tree-only bots cost 22 CPU
 seconds a board together and this pairing 83, so the candidate runs at roughly six times its opponent's CPU. Cheaper
@@ -446,6 +448,27 @@ at the present rate data alone closes little of that.
 Every channel through which a better net reaches the table is the net as a model of the bots' cards: the reading
 (p41: v4.1 over v4, +0.012 +- 0.012 tricks a board), simulated seats (above), and ties (p41: -0.0001 +- 0.0005 tricks
 a pair). None of them asks the net to judge a position.
+
+## What I would do next
+
+1. **If `match3` holds on Gen 8's card play: put the late rule forward as a candidate change**, with its cost stated
+   (five to six times the card-play CPU). It is the one thing here that has gained in play. Before that, a 1,600-board
+   match of `pr75n-32-v41` (no playouts between level cards; a quarter cheaper) against `pr75-32-v41` on the same
+   deals would say whether the cheaper form keeps the gain.
+2. **Stop expecting the tree at tricks 3 to 6 to carry a better net.** About 0.10 tricks a side is there in all; the
+   tree collects 0.01 to 0.03; what limits it is how well the net reproduces the bots, and the last 2.3-fold of data
+   moved that by two points. `match2` says whether brute force (the bot simulating itself from trick 5, at 199 CPU
+   seconds a board) collects more of it.
+3. **Train on the teacher only if the late rule is adopted.** Its consultations are playout means for up to three
+   cards on 16 layouts each, about ten a board: labels fifteen times cleaner than a fork's one real deal, at no extra
+   cost. A head fitted on a hundred thousand of them is the untried version of the formula's third step. The evidence
+   so far is against it (section 4), from a few thousand labels.
+4. **Reading: by convention, not by self-simulation.** Section 5 shows how much the plays hold when the reader can
+   reproduce the player (3.4 nats about an honour at trick 6, 1.8 of a defender's from partner's cards alone) and
+   what it costs to get it by running the bot (a full search for every layout and past play). A carding convention
+   makes the same mapping from hand to card explicit and free to invert. That is Gen 9's work (sam); these figures
+   are its upper end among bots that do not signal by design.
+5. **Nothing more on:** plans as layout families, tables of play kinds, a head on fork outcomes, lead tables.
 
 ## Limits
 
