@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794504837.4595542,
+  "checked_epoch": 1794507937.022073,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "7306e4a82f9d5b23b58d0c2b73282c7de601ed36",
-  "coordination_blob": "84e2eb208f206d443dea5869b451c61725798311",
-  "registry_blob": "c7289b88049b88de19607c8c077c160f01c4372f",
+  "coordination_revision": "0d1b665171d04d2ac6821eb4af86c85e74a8e305",
+  "coordination_blob": "1fd03cecf588500bd0921ac932fc602dc49eec6e",
+  "registry_blob": "065642f863ac2b5704e6b46ad972705f164ae66e",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -97,29 +97,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 71,
+      "completed": 173,
       "target": 16036,
-      "contiguous": 71,
+      "contiguous": 173,
       "by_pair": {
-        "8s-32~71s-32": 24,
-        "8s-32~1": 12,
-        "8s-32~5RZ32": 12,
-        "8c-32~71s-32": 12,
-        "8c-32~8s-32": 11
+        "8s-32~71s-32": 58,
+        "8s-32~1": 29,
+        "8s-32~5RZ32": 29,
+        "8c-32~71s-32": 29,
+        "8c-32~8s-32": 28
       },
-      "root_games": 236,
-      "tables": 2958,
+      "root_games": 576,
+      "tables": 7004,
       "failures": 0,
-      "epoch": 1794504836.4935174,
+      "epoch": 1794507918.716535,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794504836.1088274,
-      "completed": 70,
+      "epoch": 1794507928.7174733,
+      "completed": 173,
       "in_flight": [
-        70,
-        71,
-        72
+        173,
+        174,
+        175
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -127,15 +127,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794504784.434303,
+      "epoch": 1794507904.6330044,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794504805.8056269,
+      "epoch": 1794507903.7771027,
       "status": "published",
-      "completed": 68
+      "completed": 172
     },
     "process.json": {
       "pid": 79917,
@@ -152,7 +152,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction. Current immutable Gen8 mix, released actors and union exclusion remain valid. Independent17:17 full-corpus audit agrees with this stream qualification. Fresh collector, watchdog and single publisher healthy; no failure or stop marker.",
+  "result": "No new applicable instruction requiring a change. Explicit18:09 continuation confirms the current Gen8 main mix. Main, operational and historical Gen7.1 revisions unchanged. Draft cleanupPR32 is not a runtime upgrade. Frozen runtime, corpus and training union verified; fresh collector, watchdog and single publisher healthy, no failure or stop marker.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -165,31 +165,62 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T17:12:15Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-12T17:33:57Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 work queue; no instruction to current arena collectors"
+      "disposition": "Gen9 work queue, no current collector instruction",
+      "new_comments": 0
+    },
+    {
+      "number": 29,
+      "disposition": "Gen9 research and review; not adopted for this stream",
+      "new_comment_ids": []
+    },
+    {
+      "number": 30,
+      "disposition": "Gen9 research and review; not adopted for this stream",
+      "new_comment_ids": [
+        6832004765
+      ]
+    },
+    {
+      "number": 31,
+      "disposition": "Unadopted test runner change; no current collector instruction",
+      "new_comment_ids": []
+    },
+    {
+      "number": 32,
+      "head": "eb1788ddada9524b77e25e6019878249af3dfa84",
+      "draft": true,
+      "disposition": "Generation cleanup draft includes deployed source, no instruction to change runtime; no objection requested unless collector prefers branch exclusion",
+      "new_comments": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "p41 2026-11-12 17:17 UTC",
-      "classification": "Independent fixed-corpus qualification, not a runtime instruction",
-      "owned_feed": "arena-gen8-19bbdce5-20261112-feed",
-      "corpus_families": 16036,
-      "played_at_audit": 34,
-      "training_overlap": 0,
-      "action": "Existing full-corpus exclusion qualification confirmed; no collection change."
+      "notice": "g8 17:51 UTC",
+      "classification": "Generation cleanup owned by g8 and pooled results",
+      "action": "No runtime instruction; do not infer health from the report"
     },
     {
-      "notice": "plan 2026-11-12 17:11 UTC",
-      "classification": "Future research and Azure host assignment",
-      "action": "Outside this owned stream; no adoption."
+      "notice": "g7 17:59/18:02 UTC",
+      "classification": "Azure-specific deal pools and dashboard changes",
+      "action": "Outside owned stream; no shard transfer or new deal generation"
+    },
+    {
+      "notice": "g7 18:09/18:13 UTC",
+      "classification": "Azure6 host release, explicit continuation of19bbdce5 Gen8 main mix",
+      "action": "Continue current adopted mix; Azure resources untouched"
+    },
+    {
+      "notice": "g8 18:20/18:24 UTC",
+      "classification": "Draft PR32 generation cleanup and proposed future pool path",
+      "action": "Keep running source frozen. No requested preference to exclude our deployed source; no coordination reply needed. New pool choice remains with Max"
     }
   ],
-  "registry_disposition": "Owned active and both pinned retired entries unchanged. Other producer recovery metadata and Azure6 source registration do not change this stream.",
-  "previous_checked_epoch": 1794503535.564109,
+  "registry_disposition": "Owned active Gen8 and both pinned retired sources verified unchanged. Registry changes outside this stream do not change its ownership or plan.",
+  "previous_checked_epoch": 1794504837.4595542,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -210,8 +241,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 1.350726842880249,
-  "publisher_age": 31.653927326202393,
-  "free_bytes": 22948384768,
-  "new_applicable_instructions": []
+  "heartbeat_age": 8.30459976196289,
+  "publisher_age": 33.24497032165527,
+  "free_bytes": 22309445632,
+  "new_applicable_instructions": [],
+  "registry_revision": "fe60b24e8dd8688bfa7d570774a7fe602e700a67",
+  "successor_cleanup_revision": "eb1788ddada9524b77e25e6019878249af3dfa84",
+  "historical_gen71_snapshot_unchanged": true
 }
