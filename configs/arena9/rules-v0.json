@@ -1,0 +1,36 @@
+{
+ "schema": "arena-rules-v1",
+ "condition": "native",
+ "common_bidder": "6-32",
+ "promotion": {
+  "alpha": 0.05,
+  "beta": 0.1,
+  "d": 0.1,
+  "cap": 10000
+ },
+ "admission": {
+  "se": 0.15,
+  "max_boards": 2000
+ },
+ "retirement": {
+  "min_epochs": 3,
+  "gap": 1.0
+ },
+ "shares": {
+  "training": 0.55,
+  "promotion": 0.2,
+  "panel": 0.15,
+  "admission": 0.1
+ },
+ "weight_units": 100,
+ "max_weight_ratio": 2,
+ "version": "v0",
+ "reference": "ben",
+ "epoch": {
+  "boards": 2000
+ },
+ "notes": [
+  "Proposal, not adopted. G9-A4 defaults as revised by E9-5 (d = 0.1, cap 10,000; g9, 12 Nov 07:27 UTC).",
+  "Shares by purpose from docs/gen9/arena.md section 4. The field and the rules version are decisions for Max."
+ ]
+}

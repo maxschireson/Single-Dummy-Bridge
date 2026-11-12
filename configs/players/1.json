@@ -1,0 +1,29 @@
+{
+ "schema": "player-package-v1",
+ "id": "1",
+ "label": "Gen 1",
+ "kind": "anchor",
+ "bundle": {
+  "source": "capsule",
+  "bot": "1",
+  "artifact_sha256": {
+   "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+  }
+ },
+ "declaration": {
+  "system": "house-gen1-4",
+  "card": null,
+  "carding": null
+ },
+ "lineage": {
+  "parents": [],
+  "training_families": {},
+  "note": "Training-family lists were not recorded for these nets; epochs deal fresh seeded deals, so an overlap would be chance."
+ },
+ "needs": {
+  "ben_server": false,
+  "tensorflow": false
+ },
+ "licence": "redistributable",
+ "notes": "A bot of the Gen 7 capture capsule (arena-gen6-gen7-capture-feed at 8833c62f), unchanged."
+}

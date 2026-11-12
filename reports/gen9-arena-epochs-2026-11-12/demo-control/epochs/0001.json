@@ -1,0 +1,90 @@
+{
+ "champion": "6-32",
+ "conditions": {
+  "common_bidder": "6-32",
+  "regimes": [
+   "common",
+   "native"
+  ]
+ },
+ "deals": {
+  "exclude_training_family_lists": [],
+  "generator": "gen8_match.deal(seed, slot * 2**20 + k)",
+  "seed": 2961002025
+ },
+ "end": {
+  "boards": 12
+ },
+ "epoch": 1,
+ "events_applied": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "experience_snapshot": "9c0cca34352fa9126b467dfb02ffe1d8f0f9f54a3b387436ce2d9142daf4abfe",
+ "id": "edf1171e7d6ebbf20d633aed0ea4d9d8f7b9ab2f53cee3e9e3fb110074fe0f93",
+ "opened_utc": "2026-11-12T07:39:39Z",
+ "players": {
+  "1": {
+   "identity": "c43e7eb583c46a7330f6685d30a0b5985748a19b1363c3e7c7eba602ee22e99c",
+   "package_sha256": "7160d97475c447318049e1322049334f913e32b79249bdbb83e40e5a1de89f10",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "3": {
+   "identity": "422e1dd1ceaa81fb532e9890eb0fa0e3c269cb869f2ca81fb9f713994708218e",
+   "package_sha256": "ab55e8a0adff3250b9385c0217cb5a4405f145b9d65d2a7fd1dd8fa5ed7803f5",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  },
+  "5RZ32": {
+   "identity": "57b83ebbbb77ef921ade4e3235906113df57fcd48dd27cf7a9b88c4e165e24f5",
+   "package_sha256": "fee789381e60f0b21c70a5b95dac136b829323f586061901d4e15832d3ad284f",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "6-32": {
+   "identity": "bb69972ae225fb72b2c7f6baa1661140087a93a1b4e2b54c3d21a6f2ec24cbae",
+   "package_sha256": "796b25cba1a7e9c15dc545aa2429292ea5849cfed8ea708327db2c597067dd84",
+   "protected": false,
+   "status": "champion",
+   "test": null
+  }
+ },
+ "previous": null,
+ "rules": {
+  "sha256": "634653a699fdbe33e09c488728674e7850c734e350c443a65fecf0497a9c38fb",
+  "version": "demo"
+ },
+ "schedule": {
+  "pair_weights": {
+   "3~1": 3,
+   "3~5RZ32": 3,
+   "3~6-32": 3,
+   "6-32~1": 8,
+   "6-32~5RZ32": 8,
+   "6-32~6-32": 75
+  },
+  "purposes": {
+   "admission": [
+    "3~6-32",
+    "3~1",
+    "3~5RZ32"
+   ],
+   "panel": [
+    "6-32~1",
+    "6-32~5RZ32"
+   ],
+   "training": [
+    "6-32~6-32"
+   ]
+  }
+ },
+ "schema": "epoch-v1",
+ "source_commit": null
+}
