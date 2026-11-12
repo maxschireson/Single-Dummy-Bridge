@@ -1317,6 +1317,27 @@ class Ledger:
             return old
         return self.mutate(f"job {jid} on {box}: priority {priority}", fn)
 
+    def job_move(self, jid: str, src: str, dest: str, note: str):
+        """Move a queued job to another box, keeping its spec and submission time: its owner, the lead or a queue
+        operator. Refused while the source box reports it running, paused, done or failed (it would run twice)."""
+        def fn(st):
+            path, to = f"boxq/{src}/{jid}.json", f"boxq/{dest}/{jid}.json"
+            j = st.load(path)
+            if not j or j.get("state") == "cancelled":
+                raise Conflict(f"no queued job {jid} on {src}")
+            ops = (st.load("boxq/operators.json") or {}).get("operators", [])
+            if st.agent not in (j["owner"], st.lead, *ops):
+                raise Conflict(f"job {jid} is moved by its owner ({j['owner']}), {st.lead} or a queue operator ({', '.join(ops) or 'none'})")
+            seen = ((st.load(f"boxq/{src}/status.json") or {}).get("jobs") or {}).get(jid, {}).get("state")
+            if seen not in (None, "waiting", "cancelled"):
+                raise Conflict(f"{src} reports {jid} {seen}: cancel it there first, or submit a new job")
+            if st.load(to):
+                raise Conflict(f"job {jid} already exists on {dest}")
+            st.save(to, dict(j, box=dest))
+            st.save(path, dict(j, state="cancelled", moved_to=dest))
+            st.event("job-move", f"{src}/{jid}", f"to {dest}" + (f": {note}" if note else ""), task=j.get("experiment") or j.get("task"))
+        return self.mutate(f"move job {jid} from {src} to {dest}", fn)
+
     def fleet(self):
         snap = collect_fleet(self.store, self.clock())
         self.mutate("fleet snapshot", lambda st: st.save("fleet.json", snap))
@@ -1357,9 +1378,10 @@ def main(argv=None) -> int:
     p = sub.add_parser("brief"); p.add_argument("id")
     sub.add_parser("export"); sub.add_parser("fleet"); sub.add_parser("next")
     p = sub.add_parser("issue"); p.add_argument("--create", action="store_true"); p.add_argument("--print", action="store_true")
-    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel", "priority"])
+    p = sub.add_parser("job"); p.add_argument("action", choices=["submit", "cancel", "priority", "move"])
     p.add_argument("arg", help="a job file (submit) or a job id (cancel, priority)"); p.add_argument("value", nargs="?", type=int, help="the new priority")
-    p.add_argument("--box"); p.add_argument("--replace", action="store_true"); p.add_argument("--note", default="")
+    p.add_argument("--box"); p.add_argument("--to", help="move: the box it goes to"); p.add_argument("--replace", action="store_true")
+    p.add_argument("--note", default="")
     sub.add_parser("jobs")
     p = sub.add_parser("decision"); p.add_argument("title"); p.add_argument("--body"); p.add_argument("--file")
     p.add_argument("--close", type=int, metavar="NUMBER"); p.add_argument("--note", default="")
@@ -1459,6 +1481,10 @@ def run(lg: Ledger, a) -> int:
             print(f"job {j['id']} queued on {j['box']} (priority {j['priority']}, {j['cores']} cores)"); return 0
         if not a.box:
             raise SystemExit(f"--box is required to {a.action}")
+        if a.action == "move":
+            if not a.to:
+                raise SystemExit("usage: workq job move ID --box FROM --to TO [--note ...]")
+            lg.job_move(a.arg, a.box, a.to, a.note); print(f"job {a.arg} moved from {a.box} to {a.to}"); return 0
         if a.action == "priority":
             if a.value is None:
                 raise SystemExit("usage: workq job priority ID N --box BOX [--note ...]")

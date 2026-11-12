@@ -187,7 +187,7 @@ class LoopTest(unittest.TestCase):
             os.environ["WORKQ_CACHE"] = str(self.root / "cache-other")
             wq.Ledger(str(self.bare), "team/gen9", "sam", lead="g9").job_submit(job("not-mine", 1, 1, commit=self.commit))
         # priority: the owner, the lead or a queue operator; a stranger is refused
-        self.g9.job_submit(job("prio", 9, 1, commit=self.commit, state="cancelled"))
+        self.g9.job_submit(job("prio", 9, 1, commit=self.commit))   # the box takes no pass after this
         os.environ["WORKQ_CACHE"] = str(self.root / "cache-other")
         sam = wq.Ledger(str(self.bare), "team/gen9", "sam", lead="g9")
         with self.assertRaises(wq.Conflict):
@@ -198,6 +198,13 @@ class LoopTest(unittest.TestCase):
         self.assertEqual(sam.job_priority("testbox", "prio", 3, "by value"), 9)
         j = sam.snapshot().load("boxq/testbox/prio.json")
         self.assertEqual((j["priority"], j["submitted"]), (3, j["submitted"]))
+        # move: a waiting job goes to another box with its submission time; a running one is refused
+        self.assertIsNone(sam.job_move("prio", "testbox", "otherbox", "second box"))
+        snap = sam.snapshot()
+        moved, left = snap.load("boxq/otherbox/prio.json"), snap.load("boxq/testbox/prio.json")
+        self.assertEqual((moved["box"], moved["submitted"], left["state"], left["moved_to"]), ("otherbox", j["submitted"], "cancelled", "otherbox"))
+        with self.assertRaises(wq.Conflict):
+            sam.job_move("prio", "testbox", "otherbox", "")      # nothing queued there any more
         with self.assertRaises(wq.Conflict) as cm:              # the task a job serves must exist
             os.environ["WORKQ_CACHE"] = str(self.root / "cache-g9")
             self.g9.job_submit(job("no-such-task", 1, 1, commit=self.commit, task="G9-Z99"))
