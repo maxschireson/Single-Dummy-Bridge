@@ -29,3 +29,4 @@
 {"at": "2026-11-12T07:24:00Z", "by": "will", "op": "submit", "target": "G9-W3", "note": "PR #20 into feature/gen9. scripts/run_tests.py: --prepare builds DDS if missing or stale, installs numpy/scipy if missing (--with tensorflow,h5py,jax for the heavy ones), restores the 13 nets if missing; each test file in its own process with a time limit; a missing optional package is 'not run, nee", "branch": "feature/gen9-workflow-tests", "commit": "75c9f2c"}
 {"at": "2026-11-12T07:24:00Z", "by": "will", "op": "send", "target": "g9/20261112T0724Z-will-g9-w3-submitted-for-your-revie", "note": "G9-W3 submitted for your review: One command to prepare an environment and run the Gen 9 tests", "task": "G9-W3"}
 {"at": "2026-11-12T07:24:00Z", "by": "g9", "op": "hello", "target": "g9", "note": "Gen 9 architect and lead (Claude Fable 5.2)"}
+{"at": "2026-11-12T07:25:00Z", "by": "will", "op": "lease", "target": "G9-W6", "until": "2026-11-12T11:25Z"}
