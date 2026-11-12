@@ -46,7 +46,7 @@ import time
 import numpy as np
 
 from .core import Observation, card, symbol, winner
-from .gen6 import POLICY_SAMPLE_RANGE, Gen6Player, View, _effective, systematic
+from .gen6 import POLICY_SAMPLE_RANGE, Classes, Gen6Player, View, _effective, _merge, spaced, systematic
 from .gen6 import player as gen6_player
 from .gen7_net import INPUTS, PolicyNet
 from .gen7_tree import OverBudget, Tree, TreeConfig, stake as trick_stake
@@ -67,10 +67,16 @@ class Gen7Config:
     search_from_trick: int = 1      # earlier tricks are played from the net without search; 1 = always search
     net_sample: bool = False        # unsearched cards: draw from the net's policy instead of taking its top card
     tree_audit: bool = True         # where the tree was consulted, the audit's reference card is the card played without it
+    # Gen 8 prototype: the play is read before the deal list too. All three are inert at early_play_weight 0.
+    early_play_weight: float = 0.   # after the opening lead and before the deal list: exponent on the net's probability of each
+                                    # observed hidden play; 0 = Gen6's layouts there, as in Gen 7
+    early_pool: int = 512           # layouts drawn by the hand-fit scorer's class weights, scored by the net, and resampled for the solver
+    early_min_effective: float = 8. # the exponent is halved until the scored pool amounts to at least this many layouts
 
     def __post_init__(self):
         if self.tie_break not in ('net', 'gen5') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
-                or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000:
+                or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000 \
+                or not 0 <= self.early_play_weight <= 4 or not 16 <= self.early_pool <= 65536 or not 1 <= self.early_min_effective <= 4096:
             raise ValueError('Invalid Gen7 settings')
 
 
@@ -130,6 +136,8 @@ def resolved(block):
     """spec['gen7'] with every setting written out, defaults included: what a manifest should pin."""
     config, stages = gen7_settings(block)
     out = asdict(config)
+    if not config.early_play_weight:        # inert, so a Gen 7 bot's settings read as they did before these existed
+        out = {k: v for k, v in out.items() if not k.startswith('early_')}
     if stages:
         out['tree'] = [dict({k: getattr(s, k) for k in USE_KEYS}, **asdict(s.search)) for s in stages]
     return out
@@ -268,8 +276,43 @@ class Gen7Player(Gen6Player):
         self.solved_layouts = worlds
         return worlds, weights, info
 
+    def early_layouts(self, o, view, source, rng):
+        """Before the deal list: Gen6's weighted hand-type classes, read again in the light of the play so far.
+
+        Gen6 picks its layouts from the classes by auction weight alone, so the opening lead and every card since say
+        nothing about who holds what. Here `early_pool` layouts are drawn by that weight (one per pick, low cards dealt
+        at random), each is weighted by the net's probability of the hidden seats' plays so far raised to
+        `early_play_weight`, and the layouts to solve are resampled from the pool. If the plays fit so few of the pool
+        that it amounts to fewer than `early_min_effective` layouts, the exponent is halved until it does not."""
+        c, g, n = self.config, self.g7, self.samples
+        if len(o.history) // 4 + 1 >= c.mid_from_trick:
+            n = c.mid_samples
+        plays = hidden_plays(o, g.play_lead)
+        classes = Classes(view)
+        logw = classes.logmult + self.type_log_weights(o, view, classes.length, classes.hon, source)
+        worlds = classes.worlds(spaced(logw, g.early_pool, rng.random()), rng)
+        owner = np.zeros(52, np.int8)
+        assign = np.empty((len(worlds), len(view.unseen)), np.int8)
+        for k, world in enumerate(worlds):
+            owner[list(world[view.hidden[1]])] = 1
+            owner[list(world[view.hidden[0]])] = 0
+            assign[k] = owner[view.unseen]
+        rows = self.net_rows
+        fit = self.play_log_likelihood(o, view, assign, plays)
+        power = g.early_play_weight
+        while _effective(power * fit) < g.early_min_effective and power > 1e-3:
+            power /= 2
+        logp = power * fit
+        index, share = systematic(np.exp(logp - logp.max()), n, rng)
+        info = dict(classes=len(classes), effective=_effective(logw), draws=n, pick='play-pool', pool=len(worlds),
+                    play_decisions=len(plays), play_net_rows=self.net_rows - rows, play_power=power, effective_with_play=_effective(logp))
+        return (*_merge([worlds[i] for i in index], share), info)
+
     def weighted_layouts(self, o, view, source, rng):
         g = self.g7
+        if source in ('scorer', 'lead_net') and o.history and g.early_play_weight > 0 and len(view.hidden) == 2 \
+                and hidden_plays(o, g.play_lead):
+            return self.early_layouts(o, view, source, rng)
         if source != 'list' or g.play_weight <= 0:
             return super().layouts(o, view, source, rng)
         c = self.config
