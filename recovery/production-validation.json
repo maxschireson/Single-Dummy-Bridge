@@ -1,0 +1,117 @@
+{
+  "epoch": 1794502776.5016239,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "verified_production_records": [
+    {
+      "index": 0,
+      "pair": "8s-32~1",
+      "family": "d27751ba607e3cffc6d613ee697e64502e35a16fe5475e6f518821104e30c6c5",
+      "episode_sha256": "d478af4241bbd257e9969374c8f02687bb151cbf4adbb2b670666b002d426599",
+      "common_imps": -2,
+      "native_imps": -2,
+      "gap_forks": 21,
+      "auction_sources": [
+        "systems:house-dds40k|house-gen6",
+        "systems:house-gen6|house-dds40k",
+        "systems:house-gen6|house-gen6"
+      ],
+      "replay_and_score_verified": true,
+      "guess_size": 440,
+      "best_share": 1780,
+      "play_pool": 155
+    },
+    {
+      "index": 1,
+      "pair": "8c-32~71s-32",
+      "family": "c5cb7734fa739b782774f3bf70a938ae91338230faeae85c56d1fc17fd3efc0e",
+      "episode_sha256": "5027fba767161fe5c9397512b8c7a21b345e08f8f4420ac29d125bb6d4d09fd0",
+      "common_imps": 0,
+      "native_imps": 0,
+      "gap_forks": 24,
+      "auction_sources": [
+        "systems:house-gen6|house-gen6",
+        "systems:house-gen6|rules-precision",
+        "systems:rules-precision|house-gen6"
+      ],
+      "replay_and_score_verified": true,
+      "guess_size": 1933,
+      "best_share": 8825,
+      "play_pool": 429
+    },
+    {
+      "index": 2,
+      "pair": "8c-32~8s-32",
+      "family": "edb203d5618d255f5b8268cb820b43f2841fa271fe336662b6ffc92661840de9",
+      "episode_sha256": "702541e634edab9f3c4e051b6acec4a173513279818ab2adfb22429e94fa49ea",
+      "common_imps": 0,
+      "native_imps": -1,
+      "gap_forks": 20,
+      "auction_sources": [
+        "systems:house-gen6|house-gen6",
+        "systems:house-gen6|rules-precision",
+        "systems:rules-precision|house-gen6"
+      ],
+      "replay_and_score_verified": true,
+      "guess_size": 1260,
+      "best_share": 5626,
+      "play_pool": 533
+    },
+    {
+      "index": 3,
+      "pair": "8s-32~71s-32",
+      "family": "51f15d25c1248e1c3f912c84aa63ea9c1aae22580b888f0686cd77d24f80ffb7",
+      "episode_sha256": "a434a37673b6a6e7f648b4dd3e61926c29bd5a50e6169b756528d82d90dddd9d",
+      "common_imps": 0,
+      "native_imps": 0,
+      "gap_forks": 12,
+      "auction_sources": [
+        "systems:house-gen6|house-gen6"
+      ],
+      "replay_and_score_verified": true,
+      "guess_size": 527,
+      "best_share": 2221,
+      "play_pool": 98
+    },
+    {
+      "index": 4,
+      "pair": "8s-32~71s-32",
+      "family": "7ad0939199dfd86d0ed50e2e6cb23b09d0ededb80bc65c3d08191c4ce400af37",
+      "episode_sha256": "23f7f716c2dd10fe799b9e30af958fd9f7179944f5fb0ab08706086f6b55de0a",
+      "common_imps": 0,
+      "native_imps": 0,
+      "gap_forks": 12,
+      "auction_sources": [
+        "systems:house-gen6|house-gen6"
+      ],
+      "replay_and_score_verified": true,
+      "guess_size": 997,
+      "best_share": 4517,
+      "play_pool": 182
+    },
+    {
+      "index": 5,
+      "pair": "8s-32~5RZ32",
+      "family": "fd85958f903f4be6c76aed862525db31a235add154b012370b690dc0320c4a72",
+      "episode_sha256": "e395155535bf30aff9b1f954b83064bea442ab897b53fa909fd15c1d6fb76917",
+      "common_imps": 2,
+      "native_imps": 1,
+      "gap_forks": 24,
+      "auction_sources": [
+        "systems:house-gen5|house-gen6",
+        "systems:house-gen6|house-gen5",
+        "systems:house-gen6|house-gen6"
+      ],
+      "replay_and_score_verified": true,
+      "guess_size": 430,
+      "best_share": 1845,
+      "play_pool": 152
+    }
+  ],
+  "all_five_pairs_observed": true,
+  "normal_workers": 3,
+  "ben_workers": 0,
+  "retired_parent_receipts_reverified": 1974,
+  "retired_parent_scientific_files_unchanged": true,
+  "actual_capture_observed": true,
+  "systems_preserved": true
+}
