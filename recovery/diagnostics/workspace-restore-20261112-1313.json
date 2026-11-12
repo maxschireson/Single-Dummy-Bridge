@@ -1,0 +1,21 @@
+{
+  "epoch": 1794489348.6729305,
+  "source_full": "3a172cfc77da82ad19c77421960f460a0e549a5c",
+  "verified_git_blobs": 17332,
+  "pairs": 2015,
+  "retained": 656,
+  "frozen_verified": true,
+  "history_restored": true,
+  "ben_commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+  "ben_models_verified": 17,
+  "versions": {
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "numpy": "2.0.2"
+  },
+  "journal_records": 8,
+  "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+  "production_started": false,
+  "free_GB": 54.689132544,
+  "limitations": "Owned workspace absent again. Restored current65a runtime/run/models/complete nestedhistory/arena and exact preflight report. No production launch, new games, server preflight, crash, cleanup, scaling or scanner integration tests this pass. Prior process states unavailable; absent locks imply neither prior liveness nor reaping. self1934 fingerprint mismatch and all existing production gates preserved."
+}
