@@ -4,3 +4,5 @@
 2026-11-12T11:38:48Z start bel1a (source 94418bd): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v41:map;v41:hyb;v41:hyb3;v41:own4" --from-trick 3 --to-trick 6 --files 800 --workers 8 --out $R.json
 2026-11-12T11:55:11Z end bel1a: exit 0
 2026-11-12T11:55:11Z start ceil16a (source 94418bd): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --files 500 --workers 8 --out $R.json
+2026-11-12T12:32:22Z end ceil16a: exit 0
+2026-11-12T12:32:22Z start ceilT712 (source 94418bd): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 7 --to-trick 12 --files 500 --workers 8 --out $R.json

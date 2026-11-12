@@ -2,10 +2,12 @@
 net1 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v41:blend;v41:draw:4;v41:top:1:2;v41:top:1:3;v4:top;v4:blend;v4:top:1:3;v2:top;v0:top" --from-trick 3 --to-trick 6 --workers 8 --out $R.json
 bel1a $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v41:map;v41:hyb;v41:hyb3;v41:own4" --from-trick 3 --to-trick 6 --files 800 --workers 8 --out $R.json
 ceil16a $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --files 500 --workers 8 --out $R.json
-bel1c $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb5;v41:hyb8;v41:map3" --from-trick 3 --to-trick 6 --files 800 --workers 8 --out $R.json
-matrix1 $PY scripts/plan_matrix_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --decisions 800 --own-layouts 4 --workers 8 --out $R.json
-bel1b $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v0:hyb3;v2:hyb3;v4:hyb3;v0:map;v4:map" --from-trick 3 --to-trick 6 --files 800 --workers 8 --out $R.json
+ceilT712 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 7 --to-trick 12 --files 500 --workers 8 --out $R.json
 ceil16b $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --skip-files 500 --workers 8 --out $R.json
+ceilT12 $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --from-trick 1 --to-trick 2 --files 300 --workers 8 --out $R.json
+@source 742b5930d57c2c9f3664f2bbea7d1234268b36d1
+rb1 $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --candidates 40 --seeds 2 --files 40 --workers 8 --out $R.json
+bel2a $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v41:hyb3;v4:hyb3;v0:hyb3" --from-trick 3 --to-trick 6 --files 800 --seed 1 --workers 8 --out $R.json
+matrix1 $PY scripts/plan_matrix_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --decisions 800 --own-layouts 4 --workers 8 --out $R.json
 fam1 $PY scripts/plan_family_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --layouts 128 --decisions 2000 --workers 8 --out $R.json
-@source 562271ce58a5234c99a848c104c4e0985eb24ec0
 matrix2 $PY scripts/plan_matrix_study.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --decisions 800 --own-layouts 4 --families patterns --workers 8 --out $R.json
