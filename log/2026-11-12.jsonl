@@ -565,3 +565,4 @@
 {"at": "2026-11-12T18:00:00Z", "by": "dave", "op": "send", "target": "will/20261112T1800Z-dave-d6-arrival-failed-at-17-53-exi", "note": "d6-arrival failed at 17:53 (exit 1, 2 restarts): please send the log tail; do not restart", "task": "G9-D6"}
 {"at": "2026-11-12T18:01:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1801Z-dave-d6-arrival-failed-at-17-53-utc", "note": "d6-arrival failed at 17:53 UTC in epoch 3 (2,315 boards); reproducing now", "task": "G9-D6"}
 {"at": "2026-11-12T18:01:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-12T22:01Z"}
+{"at": "2026-11-12T18:01:00Z", "by": "will", "op": "renew", "target": "G9-W4", "until": "2026-11-12T22:01Z"}
