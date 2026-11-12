@@ -1,0 +1,23 @@
+{
+ "pair": "7s-32~6-32",
+ "boards": 50,
+ "cpu_per_board": 17.05,
+ "common": {
+  "imps_per_board": 0.08,
+  "se": 0.3281,
+  "boards": 50,
+  "won": 8,
+  "lost": 5,
+  "flat": 37
+ },
+ "native": {
+  "imps_per_board": 0.08,
+  "se": 0.3281,
+  "boards": 50,
+  "won": 8,
+  "lost": 5,
+  "flat": 37
+ },
+ "failures": 0,
+ "boards_per_hour": 1528
+}
