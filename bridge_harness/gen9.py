@@ -68,6 +68,7 @@ ENGINE = 'gen9'
 CONFIG_KEYS = ('max_profiles', 'card_weight', 'factor_min_plays', 'factor_prior_plays')
 BLOCK_KEYS = CONFIG_KEYS + SIGNAL_KEYS + ('own', 'bidding_reader', 'oracle')
 CARD_PROFILE = 'card'                 # the reserved profile: the declared card's rules alone, no scorer
+RANK_WEIGHT = np.array([0.5] * 8 + [1.0, 1.5, 2.0, 3.0, 4.0])      # by rank, 2 to ace: how much a misplaced card counts (gen6.CARD_WEIGHT)
 
 
 @dataclass(frozen=True)
@@ -85,15 +86,24 @@ class Gen9Config:
 
 @dataclass(frozen=True)
 class Oracle:
-    """Test only. `tilt` nats are added to the true layout's log weight ('inf': it gets all the weight)."""
+    """Test only: two ways of telling the bot more about the true deal than its readers do.
+
+    tilt      the true layout itself is put among the layouts the search solves, at exp(tilt) times their mean
+              weight ('inf': it gets all the weight, so the bot plays double dummy).
+    near      every layout of the pool the readers weigh (after the opening lead) is multiplied by
+              exp(-near * distance), distance = the cards it places in the wrong hidden hand, counted by rank
+              (2-9: 0.5, T: 1, J: 1.5, Q: 2, K: 3, A: 4). This is where a real reader acts: belief moves toward
+              layouts like the true one, and the true one is never handed over. The realised gain in the true
+              layout's log weight is recorded with each decision."""
     tilt: float = 0.
-    roles: str = 'both'             # 'both' | 'declarer' | 'defender': whose decisions are tilted
+    near: float = 0.
+    roles: str = 'both'             # 'both' | 'declarer' | 'defender': whose decisions are helped
     from_trick: int = 1
     to_trick: int = 13
 
     def __post_init__(self):
         if self.roles not in ('both', 'declarer', 'defender') or not 1 <= self.from_trick <= self.to_trick <= 13 \
-                or not (self.tilt == math.inf or 0 <= self.tilt <= 50):
+                or not (self.tilt == math.inf or 0 <= self.tilt <= 50) or not 0 <= self.near <= 10:
             raise ValueError('Invalid oracle settings')
 
 
@@ -133,6 +143,7 @@ class Gen9Player(SignalPlayer):
         self.readers = {}
         self.deal = None
         self.oracle = None
+        self.near_note = None
         if block.get('oracle'):
             if os.environ.get('BRIDGE_ALLOW_ORACLE') != '1':
                 raise ValueError('An oracle bot is given the deal. It is for experiments only: set BRIDGE_ALLOW_ORACLE=1 to build one.')
@@ -281,18 +292,23 @@ class Gen9Player(SignalPlayer):
 
     def play_log_likelihood(self, o, view, assign, plays=None):
         net, signal = self.play_log_terms(o, view, assign, plays)
-        if not signal.any():
-            return net
-        return net + signal / max(self.reading_exponent(o, view), 1e-6)     # the signal part is a likelihood, not a net score: not tempered
+        out = net
+        if signal.any():                # the signal part is a likelihood, not a net score: not tempered
+            out = out + signal / max(self.reading_exponent(o, view), 1e-6)
+        if self.oracle is not None and self.oracle.near > 0 and self.helped(o):
+            out = out + self.nearness(o, view, assign) / max(self.reading_exponent(o, view), 1e-6)
+        return out
 
     # ---- the test-only oracle --------------------------------------------------------------------
-    def tilted(self, o, worlds, weights):
-        """(worlds, weights, note) with the true layout's weight multiplied by exp(tilt); it is added if absent."""
-        c, k = o.contract, self.oracle
-        declaring = o.controller % 2 == c.declarer % 2
+    def helped(self, o):
+        """Does the oracle apply to this decision (its roles and tricks)?"""
+        k = self.oracle
+        declaring = o.controller % 2 == o.contract.declarer % 2
         trick = len(o.history) // 4 + 1
-        if (k.roles == 'declarer' and not declaring) or (k.roles == 'defender' and declaring) or not k.from_trick <= trick <= k.to_trick:
-            return worlds, weights, None
+        return not ((k.roles == 'declarer' and not declaring) or (k.roles == 'defender' and declaring)) and k.from_trick <= trick <= k.to_trick
+
+    def truth(self, o):
+        """The four hands as they are now, from the deal the oracle was shown."""
         if self.deal is None:
             raise RuntimeError('An oracle bot was not shown the deal (peek)')
         gone = {x for _, x in o.history}
@@ -300,6 +316,30 @@ class Gen9Player(SignalPlayer):
         for s, hand in enumerate(o.known_hands):
             if hand is not None and tuple(hand) != truth[s]:
                 raise RuntimeError('The deal shown to the oracle is not the deal being played')
+        return truth
+
+    def nearness(self, o, view, assign):
+        """[layouts] -near * (rank-weighted count of unseen cards a layout puts in the wrong hidden hand)."""
+        truth = self.truth(o)
+        owner = np.full(52, -1, np.int8)
+        for j, seat in enumerate(view.hidden):
+            owner[list(truth[seat])] = j
+        right = owner[view.unseen]
+        if (right < 0).any():
+            raise RuntimeError('The deal shown to the oracle does not account for every unseen card')
+        distance = (assign != right[None, :]) @ RANK_WEIGHT[view.unseen % 13]
+        term = -self.oracle.near * distance
+        # what this does for the true layout among these rows, taken at equal weight: log(1 / mean exp(term))
+        self.near_note = dict(near=self.oracle.near, rows=len(assign), mean_distance=float(distance.mean()),
+                              gain=float(-np.log(np.mean(np.exp(term)))))
+        return term
+
+    def tilted(self, o, worlds, weights):
+        """(worlds, weights, note) with the true layout's weight multiplied by exp(tilt); it is added if absent."""
+        k = self.oracle
+        if not self.helped(o) or (k.tilt == 0 and k.near > 0):
+            return worlds, weights, None
+        truth = self.truth(o)
         worlds = [tuple(tuple(int(x) for x in h) for h in w) for w in worlds]
         w = np.asarray(weights, np.float64)
         w = w / w.sum()
@@ -320,12 +360,15 @@ class Gen9Player(SignalPlayer):
                                log_weight_after=float(np.log(w[i])), layouts=len(worlds))
 
     def layouts(self, o, view, source, rng):
+        self.near_note = None
         worlds, weights, info = super().layouts(o, view, source, rng)
         if self.oracle is not None:
             worlds, weights, note = self.tilted(o, worlds, weights)
             if note is not None:
                 self.solved_layouts = worlds
                 info = dict(info, oracle=note)
+            if self.near_note is not None:
+                info = dict(info, oracle_near=self.near_note)
         return worlds, weights, info
 
     def choose(self, o, rng):

@@ -390,6 +390,35 @@ class OracleTests(Shell):
             tilted.peek(other.hands)
             tilted.layouts(game.observation(), View(game.observation()), 'list', np.random.default_rng(0))
 
+    def test_near_moves_the_pool_toward_the_true_layout_without_handing_it_over(self):
+        with patch.dict(os.environ, {'BRIDGE_ALLOW_ORACLE': '1'}):
+            near = self.make9(gen7=EARLY, gen9=dict(oracle=dict(near=.5)), list_solve=0, list_from_trick=1)
+        plain = self.make9(gen7=EARLY, gen9={}, list_solve=0, list_from_trick=1)
+        checked = 0
+        for seed in range(30):
+            board, game, before = played(seed, 30)
+            o = game.observation()
+            view = View(o)
+            if len(view.hidden) != 2 or len(o.legal) < 2 or view.count() > 3000:
+                continue
+            near.peek(board.hands)
+            assign = view.every()
+            term = near.play_log_likelihood(o, view, assign) - plain.play_log_likelihood(o, view, assign)
+            truth = tuple(tuple(sorted(h)) for h in game.hands)
+            rows = [view.world(r) for r in assign]
+            i = rows.index(truth)
+            self.assertAlmostEqual(float(term[i]), 0., places=9)               # the true layout is at distance 0
+            self.assertLess(float(np.delete(term, i).max()), -1e-9)            # every other layout is further
+            self.assertGreater(near.near_note['gain'], 0.)
+            worlds, w, info = near.layouts(o, view, 'list', np.random.default_rng(seed))
+            base_worlds, base_w, _ = plain.layouts(o, view, 'list', np.random.default_rng(seed))
+            self.assertEqual(list(worlds), list(base_worlds))                   # same layouts: nothing was added
+            self.assertGreater(float(w[worlds.index(truth)]), float(base_w[base_worlds.index(truth)]))
+            self.assertIn('oracle_near', info)
+            self.assertNotIn('oracle', info)
+            checked += 1
+        self.assertGreater(checked, 5)
+
     def test_an_oracle_bot_plays_whole_tables(self):
         with patch.dict(os.environ, {'BRIDGE_ALLOW_ORACLE': '1'}):
             p = self.make9(gen7=EARLY, gen9=dict(oracle=dict(tilt=1.5)), list_solve=16)
