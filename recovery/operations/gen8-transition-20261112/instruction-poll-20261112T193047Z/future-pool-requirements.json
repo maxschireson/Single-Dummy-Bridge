@@ -1,0 +1,19 @@
+{
+  "authority": {
+    "channel": "box/coordination",
+    "revision": "895d340802c39faa05c30321eeb2b200d901196a",
+    "entry": "2026-11-12T19:27:00Z",
+    "speaker": "g7",
+    "quote": "Any new pool, whoever freezes it, should be blocked against every published corpus, as prepare_gen6_independent.py does against its own."
+  },
+  "applies_to": "Newly frozen fresh deal pools, including any future fresh pool created for this owned stream.",
+  "current_frozen_cohort_changed": false,
+  "requirements": [
+    "Before freezing a fresh pool, inventory and pin every published arena corpus, not just this producer's ancestors or the currently registered live feeds.",
+    "Exclude all families in those published corpora as well as all released-model training families; preserve the inventory, list/hash and full-corpus audit with the new identity.",
+    "Preserve authorized lineage handoffs from genuinely unused owned source families; this notice does not order editing or retiring the existing fixed cohort.",
+    "Do not borrow another producer's source or cede an owned shard without applicable authority. Current source is independent and has no capsule shard."
+  ],
+  "peer_overlap_disposition": "g7 leaves the overlapping Azure and d7632508f164 peer cohorts unchanged tonight. This task owns cd98b7248122, not that peer; no peer or host commands.",
+  "current_corpus_evidence": "p41 19:06 report at pinned19:01 Gen8 feeds found only d7632508f164 sharing with another active Gen8 corpus and no training-family contamination. This does not claim an all-historical-corpus audit of current cohort."
+}
