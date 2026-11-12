@@ -176,14 +176,23 @@ def main():
     np.savez(a.out / 'result_head.npz', **{n.replace(' ', '_').replace('*', '_slope').replace('+', '_plus_'): w for n, w in weights.items()})
     seen = np.unique(train.family)
     print(f"training pairs {train.n} ({report['train_gap_forks']} gap forks), ridge {report['ridge']}, slopes {report['slopes']}")
+    loaded, offset = [], 0
     for set_path, pairs_path in a.test:
         t = Pairs(params, Path(set_path), Path(pairs_path), drop=seen)
-        pred = {n: t.predict(w) for n, w in weights.items()}
-        deals, inv = np.unique(t.p['deal'], return_inverse=True)
+        loaded.append(dict(name=Path(set_path).name, y=t.y, search=t.search, source=t.p['source'], deal=t.p['deal'].astype(np.int64) + offset,
+                           pred={n: t.predict(w) for n, w in weights.items()}, dropped=t.dropped))
+        offset += len(t.family)
+    if len(loaded) > 1:                                     # every unseen pair together
+        loaded.append(dict(name='all test sets together', y=np.concatenate([x['y'] for x in loaded]), search=np.concatenate([x['search'] for x in loaded]),
+                           source=np.concatenate([x['source'] for x in loaded]), deal=np.concatenate([x['deal'] for x in loaded]),
+                           pred={n: np.concatenate([x['pred'][n] for x in loaded]) for n in weights}, dropped=sum(x['dropped'] for x in loaded)))
+    for t in loaded:
+        pred, y, n_pairs = t['pred'], t['y'], len(t['y'])
+        deals, inv = np.unique(t['deal'], return_inverse=True)
         rng = np.random.default_rng(0)
         draws = rng.integers(0, len(deals), (1000, len(deals)))
-        entry = dict(set=Path(set_path).name, pairs=t.n, dropped_as_seen=t.dropped, deals=len(deals), groups={})
-        for label, mask in (('all pairs', np.ones(t.n, bool)), ('gap forks', t.p['source'] == 1), ('audits', t.p['source'] == 0)):
+        entry = dict(set=t['name'], pairs=n_pairs, dropped_as_seen=t['dropped'], deals=len(deals), groups={})
+        for label, mask in (('all pairs', np.ones(n_pairs, bool)), ('gap forks', t['source'] == 1), ('audits', t['source'] == 0)):
             if mask.sum() < 20:
                 continue
             cnt = np.bincount(inv, mask.astype(float), len(deals))
@@ -191,8 +200,7 @@ def main():
                 s = np.bincount(inv, np.where(mask, v, 0.), len(deals))
                 b = s[draws].sum(1) / np.maximum(cnt[draws].sum(1), 1)
                 return [float(s.sum() / cnt.sum()), float(np.percentile(b, 2.5)), float(np.percentile(b, 97.5))]
-            y = t.y
-            g = dict(pairs=int(mask.sum()), result_differs=float((y[mask] != 0).mean()), mean_realized_cost=mean_ci(y), mean_search_gap=float(t.search[mask].mean()), models={})
+            g = dict(pairs=int(mask.sum()), result_differs=float((y[mask] != 0).mean()), mean_realized_cost=mean_ci(y), mean_search_gap=float(t['search'][mask].mean()), models={})
             base = (pred['search*'] - y) ** 2
             for n, q in pred.items():
                 err = (q - y) ** 2

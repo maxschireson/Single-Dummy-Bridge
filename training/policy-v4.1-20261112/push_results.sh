@@ -22,7 +22,7 @@ done
 cp $P/logs/*.log $P/logs/*.out $P/logs/*.err logs/ 2>/dev/null
 cp $P/data/fetch*.json data/ 2>/dev/null
 cp $P/data/pairs*.npz data/ 2>/dev/null
-[ -d $P/runs/result_head ] && cp -r $P/runs/result_head runs/
+for d in $P/runs/result_head*; do [ -d $d ] && cp -r $d runs/; done
 git -C $S log -1 --format='scripts at %H' > SOURCE.txt; date -u +"pushed %Y-%m-%dT%H:%M:%SZ" >> SOURCE.txt
 git add -A && git commit -q -m "Policy 4.1 training box output (azure5): nets, logs, manifests, fork pairs" && \
   git push -q -f git@github.com:maxschireson/Single-Dummy-Bridge.git HEAD:refs/heads/transfer/gen7-policy-v4.1-box-20261112 2>&1 | grep -v "^remote:" | tail -2
