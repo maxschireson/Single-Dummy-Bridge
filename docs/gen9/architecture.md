@@ -362,15 +362,28 @@ Gen 8's reading of the play from trick 1 took about 0.4 of it. Experiment E9-0 m
 curve in between (IMPs against nats of the true layout's weight), which turns every reader's
 offline gain into an expected gain at the table.
 
-**Nats are not yet IMPs.** By midday on 12 November three results said that a large offline
-gain can buy little at the table: the two bidding pilots of section 4.2 (a 12.9-nat gap at the
-opening lead for +0.21 +- 0.13 IMPs), and Gen 8's own gate (a better policy net, no change in
-strength). One result said the opposite: against a player whose spots the net misreads, scaling
-the play reading by opponent is worth 0.3 to 0.45 IMPs a board (g8, 800 boards a pair). So E9-0
-is run by slices: the same help (about +1 nat a decision) at tricks 1 to 6 only, from trick 7
-only, as declarer only and as a defender only, each against the same unhelped bot on the same
-800 deals. Its answer orders the rest of Gen 9: if early nats pay little, auction reading is a
-way of not being wrong about strangers and the work goes into the play reading.
+**Readers are judged in tricks saved, not in nats.** Until midday on 12 November this note
+scored a reader by the true layout's gain in log weight. That is the wrong currency:
+
+- p41's reading bench (`reports/gen8-reading-by-net-2026-11-12`, 21,417 recorded decisions
+  with every layout solved): from policy net v0 to v4.1 the true layout's gain doubles, +0.35 to
+  +0.69 nats a decision, and the double-dummy tricks saved go from +0.117 to +0.198 a board.
+- Two Gen 9 pilots at the table (section 4.2): a 12.9-nat gap at the opening lead for +0.21 +-
+  0.13 IMPs a board, and +0.69 nats a seat for -0.27 +- 0.21.
+- What a nat buys depends on what it is about. In the bench, information aimed at the true
+  holders of honours saves about 0.27 tricks a board for each nat a decision, aimed at small
+  cards about 0.06, and nothing beyond about 0.54 tricks a board in all. The reading's value
+  sits at tricks 3 to 9; at tricks 10 to 13 it is nil.
+
+So from 12 November every Gen 9 reader is scored on stored solves in double-dummy tricks saved
+a board against no reading, with nats beside it (task G9-X2), and a reader goes to a box only
+when that number says it could matter. Experiment E9-0 is the played check of the bench: the
+prototype against itself with its pool weighted toward the true deal by about +1 and +1.9 nats
+a decision, and by +1 nat at tricks 1 to 6 only, from trick 7 only, as declarer only and as a
+defender only, on the same 800 deals. The bench predicts about +0.9 and +1.6 IMPs a board for
+the first two; sixteen-board sandbox runs came in lower. Its answer says how much of a proxy
+trick is realised in play, and orders the rest of Gen 9: reading that places honours during
+tricks 3 to 9 is where the tricks are.
 
 The comparison used throughout is the prospectus's: generic reading, fixed mixture, inferred
 model, and an oracle told the true type. The oracle gap says what a perfect player model would
