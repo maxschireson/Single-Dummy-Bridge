@@ -64,6 +64,20 @@ def _worker_start(source, manifest, ctx):
 
 
 def _worker_play(index, seed):
+    """One board, or, if playing it raises, a row that says so: no score, no experience, the error and where it was
+    raised. One board that a player cannot handle must not stop the run (G9-D6, 12 Nov: the rule bidder raised on another
+    system's 3NT opening and the run stopped after 2,315 boards)."""
+    try:
+        return _play_one(index, seed)
+    except Exception as e:
+        import traceback
+        m = WORKER['m']
+        return dict(index=index, family=None, candidate=m['roster'][0], opponent=m['roster'][1], cpu=None, tables=0, contract=None,
+                    trace=None, manifest_identity=m['identity'], completed_epoch=time.time(), backend='match', common=None, native=None,
+                    failed=f'{type(e).__name__}: {e}'[:300], failed_at=traceback.format_exc(limit=-4)[-1500:])
+
+
+def _play_one(index, seed):
     """One board through the collectors' run_board, then what the pipeline needs from the finished record."""
     from bridge_harness import arena9_pipeline as pl
     from bridge_harness.gen5_arena import run_board
@@ -299,6 +313,10 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
         return [f'*Prediction registered before the run:* {predicted[item]}', ''] if item in predicted else []
 
     L = [f'# The arrival run: {control}', '', f'Epochs played: {epochs}. Boards: {len(rows)}. Guests: {guests}. Rules `{rules["version"]}`.', '']
+    failed = [r for r in rows if r.get('failed')]
+    if failed:
+        L += [f'**Boards that raised and were recorded without a score:** {len(failed)}. ' +
+              '; '.join(f"epoch {r['epoch']} `{r['pair']}` index {r['index']}: {r['failed']}" for r in failed[:10]) + ('; ...' if len(failed) > 10 else ''), '']
     for note in rules.get('notes', []):
         if note.startswith('Shares'):
             L += [f'*{note}*', '']

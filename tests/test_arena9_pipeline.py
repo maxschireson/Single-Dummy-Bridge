@@ -182,6 +182,26 @@ class ReadingPage(unittest.TestCase):
         self.assertTrue(any(l.startswith('| guest-b | 5 |') and l.endswith('| 1 |') for l in lines))   # the failed measurement is counted
 
 
+class FailedBoard(unittest.TestCase):
+    def test_a_board_that_raises_is_recorded_without_a_score(self):
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        import arena9 as cli
+        saved_play, saved = cli._play_one, dict(cli.WORKER)
+        try:
+            cli.WORKER.update(m=dict(roster=['a', 'b'], identity='x' * 64))
+            def boom(index, seed):
+                raise IndexError('list index out of range')
+            cli._play_one = boom
+            row = cli._worker_play(7, 1)
+        finally:
+            cli._play_one = saved_play
+            cli.WORKER.clear(); cli.WORKER.update(saved)
+        self.assertEqual((row['index'], row['native'], row['common']), (7, None, None))
+        self.assertIn('IndexError', row['failed'])
+        self.assertNotIn('envelopes', row)
+        self.assertEqual(a9.pooled([dict(row, epoch=1, slot=0, k=0, pair='a~b')], 'native'), [])
+
+
 class Arrival(unittest.TestCase):
     def test_a_guest_with_a_card_gets_arrive_and_a_house_bot_its_profiles(self):
         card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
