@@ -676,6 +676,26 @@ def features(h, st, me):
         for suit in SUITS:
             x.append(sh.len[suit][0] / 4.)
             x.append(min(sh.len[suit][1], 8) / 4.)
+    # the auction itself (an estimate fitted before these existed reads only the 55 numbers above)
+    for seat in (me, (me + 2) % 4, (me + 1) % 4, (me + 3) % 4):
+        acts = st.acts[seat]
+        bids = [t for t, _ in acts if t >= 5]
+        last = bids[-1] if bids else None
+        x.append(min(len(acts), 4) / 4.)
+        x.append(min(st.turns[seat], 4) / 4.)
+        x.append(level_of(last) / 7. if last is not None else 0.)
+        x.extend(1. if last is not None and strain_of(last) == k else 0. for k in range(5))
+        x.append(1. if any(t == DOUBLE for t, _ in acts) else 0.)
+    if st.last is not None:
+        x.append(level_of(st.last[1]) / 7.)
+        x.extend(1. if strain_of(st.last[1]) == k else 0. for k in range(5))
+        x.append(1. if st.last[0] % 2 == me % 2 else 0.)
+        x.append(st.doubled / 2.)
+    else:
+        x.extend([0.] * 8)
+    opener = st.opening[0] if st.opening is not None else None
+    x.extend(1. if opener is not None and (opener - me) % 4 == k else 0. for k in range(4))
+    x.append(1. if st.game_force[me % 2] else 0.)
     return x
 
 
@@ -706,7 +726,7 @@ class Estimate:
         self.sigma = np.asarray(d['sigma'], np.float32)
 
     def tricks(self, x):
-        a = np.asarray(x, np.float32)
+        a = np.asarray(x, np.float32)[:self.layers[0][0].shape[0]]
         for k, (w, b) in enumerate(self.layers):
             a = a @ w + b
             if k < len(self.layers) - 1:
