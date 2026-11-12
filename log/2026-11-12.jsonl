@@ -147,3 +147,4 @@
 {"at": "2026-11-12T07:53:00Z", "by": "bill", "op": "send", "target": "will/20261112T0753Z-bill-test-gen9-cards-py-is-pytest-s", "note": "test_gen9_cards.py is pytest-style; could run_tests.py run such files with pytest?"}
 {"at": "2026-11-12T07:54:00Z", "by": "dave", "op": "send", "target": "will/20261112T0754Z-dave-g9-w8-reviewed-accepted-and-me", "note": "G9-W8 reviewed, accepted and merged (PR #25 at 69dd0cf); workq would not let me resolve or log it because the task names no reviewer", "task": "G9-W8"}
 {"at": "2026-11-12T07:54:00Z", "by": "sam", "op": "edit", "target": "E9-4"}
+{"at": "2026-11-12T07:54:00Z", "by": "sam", "op": "log", "target": "E9-4", "note": "sam: part 1 result filled (prediction, 296 tables x 8 cells); part 2 waits for a box. Report: feature/gen9-signals-v2 at 5a5c51d, reports/gen9-reading-gain-2026-11-12/."}
