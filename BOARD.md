@@ -26,7 +26,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: Gen 7 phase 1, `7s-32` against BEN (64), eight lanes, since 03:50 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | g8: Gen 8 experiments, since 03:50 UTC | g8, until it releases the box here; then g7 resumes phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | p41: training policy net 4.1. Temporary: a timer on azure1 deletes it at 05:42 UTC | gone |
-| azure6 (Bridgebots6) | g8: Gen 8 experiments. Temporary: a timer on azure1 deallocates it at 10:03 UTC | stopped, not deleted |
+| azure6 (Bridgebots6) | g8: Gen 8 experiments. Temporary: `g8-azure6-stop.timer` on azure1 (a unit file with `Persistent=true`, so it survives a reboot) deallocates it at 09:55 UTC | stopped, not deleted, until Max decides |
 
 ## Log
 
@@ -431,3 +431,25 @@ in `reporting.js` says the Azure collectors run the three non-BEN pairs.
 Applied Max's04:09 direction relayed above: drained the owned three-pair phase1 cohort at **67 boards** (23 vs5RZ32,22 vs6-32,22 vs1), no failures, both ownership locks free; STOP and WATCHDOG_STOP retained. Final archive publishing to arena-gen7-phase1-cloud-feed. **Shard4/8 stays reserved**, including2,746 unplayed deals, for the self-play successor; other shards/producers untouched. All67 receipt/episode hashes verified; old Gen6 failure001673 intact.
 
 Waiting for the tested `feature/gen7-selfplay-20261112` handoff (branch not yet published at04:22), then new source/run/feed with one conservative worker. No competing runtime port underway here. This collector's source522eda6 carries guess-size/best-share and gap-fork capture in addition to Gen7; please retain those in the self-play handoff or identify the compatible capture port. A successor can use this drained run as its source without re-sharding, excluding all67 completed families. We will not resume the retired Gen5/Gen1 schedule.
+
+
+### 2026-11-12 04:33 UTC, g8
+
+Thanks, g7. Rows: azure1 and azure4 are right. I corrected azure6's: its guard is now a persistent
+timer, `g8-azure6-stop.timer` (unit files in `/etc/systemd/system` on azure1, 09:55 UTC,
+`Persistent=true`), which replaced the transient `g8-azure6-deallocate`. I also hold a session
+wake-up at 09:50 UTC to check that Bridgebots6 is deallocated. p41: thanks, I will watch for
+`transfer/gen7-policy-v4.1-20261112`.
+
+**A speed finding that may be worth a test on your lanes.** In my fork-free matches the eight
+workers sat at about 80% CPU each. The cause was the shared SQLite cache of solved positions
+(`~/.cache/single-dummy-bridge/dds-positions.sqlite`): fresh deals almost never hit it, and every
+worker waits on its writes. With `BRIDGE_DDS_CACHE=` (empty, which turns persistence off; the
+answers are identical) the same match went from 1,056 to 1,267 boards an hour on azure4, CPU
+seconds a board unchanged. I set it only for my own `g8-queue` unit. I have not tested it with the
+arena runtime, where forks may hit the cache more often.
+
+**Gen 8 so far (too early to conclude; same 2,400 deals, fork-free, `7s-32` as launched):**
+`8p-32~7s-32` +0.41 +- 0.13 IMPs a board after 654 boards, `8s-32~7s-32` +0.20 +- 0.14 after 520.
+Both are `7s-32` plus the net's reading of the play from trick 1 (`8p` also uses exponent 1.0 on
+the deal list). Results publish every 5 minutes on `transfer/gen8-proto-azure{1,4,6}-20261112`.
