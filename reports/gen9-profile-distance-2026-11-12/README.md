@@ -28,3 +28,37 @@ rule bidder's standard settings). Rows are generators, columns are cards.
   calls): Gen 5 ['comp_jump', 'comp_overcall', 'comp_pass', 'nt_answer', 'open_minor', 'open_weak', 'resp_nt_relay']; Gen 6 ['comp_jump', 'comp_overcall', 'comp_pass', 'nt_answer', 'open_minor', 'resp_nt_relay']. These are the contexts where
   a player who declares that card but bids like the house profile would be read by the card's filter,
   and the profile's scorer elsewhere (design note section 3).
+
+## Supplement, 12 Nov 09:10 UTC: the best card for house Gen 5 in this language
+
+`configs/cards/house-gen5-fit.json`, written by `scripts/gen9_fit_card.py`: a coordinate search over
+about 60 card fields (two rounds, 21 changes kept), starting from `rb-standard` with its cover dropped
+(the fitted card covers every context), minimising the rate at which Gen 5 breaks the card on covered
+calls. Fitted on 600 deals (seed 6161), tested on 600 fresh deals (seed 6162):
+
+| Card (cover) | Gen 5 breaks, fit deals | Gen 5 breaks, test deals | covered calls (test) |
+| --- | ---: | ---: | ---: |
+| rb-standard (its own: openings, overcalls, defence to 1NT, NT relays) | | 10.8% | 1,699 |
+| rb-standard (every context) | 17.7% | 17.4% | 2,429 |
+| house-gen5-fit (every context) | 12.9% | 14.4% | 2,430 |
+
+The largest single change was `slam.blackwood: rkc3014` (12.9 from 13.7): Gen 5 answers key-card asks
+as 3014. Families still broken on more than 10% of their calls on the test deals: adv_overcall,
+ask_answer, comp_jump, comp_overcall, nt_relay2, open_weak, rebid_*, resp_comp, resp_new, resp_nt,
+resp_nt_relay, resp_pass, resp_raise.
+
+Its column on this report's 500 deals (seed 5150; `house-gen5-fit-column.json`):
+
+| Generator | house-gen5-fit | rb-standard (own cover) |
+| --- | ---: | ---: |
+| rb-standard | 16.0 | 0.0 |
+| rb-precision | 30.0 | 16.1 |
+| house-gen5 | 16.6 | 12.8 |
+| house-gen6 | 17.0 | 13.2 |
+
+- The best card this language can write for the house system is still broken on about 15% of the calls
+  it covers (14-17% by deal set; calls within a deal are correlated, so a deal set of 500-600 moves the
+  rate by about 1.5 points). Every house player is that far from its own best card.
+- At full cover the fitted card does not separate Gen 5 from the rule bidder's standard settings
+  (16.6 against 16.0); it does separate both from precision (30). Distances measured at different covers
+  are not comparable: a card that covers less looks nearer.

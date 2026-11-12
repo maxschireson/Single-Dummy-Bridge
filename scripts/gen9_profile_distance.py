@@ -64,19 +64,24 @@ def main():
     ap.add_argument('--deals', type=int, default=500)
     ap.add_argument('--seed', type=int, default=5150)
     ap.add_argument('--out', default=None)
+    ap.add_argument('--cards', default=None, help='comma-separated card ids for the columns (default: the seven of G9-B4)')
+    ap.add_argument('--generators', default=None, help='comma-separated generator names (default: all)')
     a = ap.parse_args()
+    cards = a.cards.split(',') if a.cards else CARDS
     ds = deal_list(a.deals, a.seed)
     gens = generators(ds)
     report = {'deals': a.deals, 'seed': a.seed, 'matrix': {}}
     for g, bid_deal in gens.items():
+        if a.generators and g not in a.generators.split(','):
+            continue
         row = {}
-        for c in CARDS:
+        for c in cards:
             # card_distance draws its own deals from the seed: the same deals as ds
             r = card_distance(c, bid_deal, deals=a.deals, seed=a.seed)
             row[c] = {'rate': round(r['rate'], 4), 'covered': r['covered'], 'residual': r['residual'],
                       'by_family': {k: v for k, v in r['by_family'].items() if v[0]}}
         report['matrix'][g] = row
-        print(g, {c: row[c]['rate'] for c in CARDS}, flush=True)
+        print(g, {c: row[c]['rate'] for c in cards}, flush=True)
     if a.out:
         Path(a.out).parent.mkdir(parents=True, exist_ok=True)
         Path(a.out).write_text(json.dumps(report, indent=1))
