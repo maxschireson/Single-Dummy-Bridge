@@ -313,8 +313,9 @@ def queue_planned(control, events, epoch):
         stem = f"plan-e{epoch:04d}-{i}-{e['event']}-{e['player']}"
         if any((q / (stem + ext)).exists() for ext in ('.json', '.applied', '.refused')):
             continue
+        extra = {k: v for k, v in e.items() if k not in ('event', 'player', 'author', 'authority', 'epoch')}   # e.g. open-test's champion
         (q / (stem + '.json')).write_text(json.dumps(a9.event(e['event'], e['player'], e.get('author', 'plan'),
-                                                               e.get('authority', 'arrival run plan, written before the run'), epoch=epoch), indent=1))
+                                                               e.get('authority', 'arrival run plan, written before the run'), epoch=epoch, **extra), indent=1))
 
 
 def arrival(out, players, rules, capsule, events, epochs, workers, backend=None):
