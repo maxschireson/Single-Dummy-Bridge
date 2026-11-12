@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-11-12T19:35:26.911627Z",
+  "revision": "b09460ea6b5781f7365e551ed62a9f7445b0e924",
+  "published_completed": 284,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "poll_start": "2026-11-12T19:30:47Z",
+  "next_comment_scan_since": "2026-11-12T19:30:47Z",
+  "remote_ref_verified": true,
+  "all_paths_exact": true,
+  "watch_blob": "ce66bb7e0d8c2fb7de10e217ac7a9b6f2820d519",
+  "paths": {
+    "recovery/operations/instruction-watch.json": "0bb630d811fe1336212ff71db2d9cc3755a8730538c5eca6921b973122f9fac1",
+    "recovery/operations/stream.json": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+    "recovery/operations/supervise_gen8.py": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+    "recovery/manifest.json": "cc1fd53557009bede112bd361fc63e158d893b8fdf42b278b86222c36f17d8d0",
+    "recovery/artifacts/validation/evaluation-exclusions.json": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T193047Z/github-scan.json": "eb56e22e6cb8ddab1f75f357d4585ce3dde554d557b4bacd977dfcde7a67f20e",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T193047Z/health-before.json": "896e190c704efa9da26057817fb34c37f89214a97ff9e0e4927475f8a26bd69a",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T193047Z/health-after.json": "df8e395a5cdc1831f5d89207640812ed9730ad6621403326b7fec6a4cd3aaa2b",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T193047Z/commit-comments.json": "ed55636c0adf557093502dafa5df85238d1daa898b9c704404e1bd47db23af36",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T193047Z/future-pool-requirements.json": "7af60c437457fde48903cd4241af775a22c31e1c758f8a5e2c2013af998c6368",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261112T193047Z/automation-state.json": "c2e82375813edf09492ebe5e56b4c6297b6c94956841721a71c047cf673974ba"
+  },
+  "no_collection_behavior_change": true,
+  "no_shared_ui_or_other_producer_write": true,
+  "new_fresh_pool_exclusion_rule_recorded": true
+}
