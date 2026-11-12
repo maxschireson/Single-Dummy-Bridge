@@ -71,7 +71,7 @@ def build_manifest(source, bots_file, pair, seed):
         if key in defined:
             entry = dict(defined[key])
             spec = deepcopy(old['bots'][entry.pop('base')])
-            for path_key in ('gen7_policy', 'scorer', 'bidding', 'lead_belief'):
+            for path_key in ('gen7_policy', 'scorer', 'bidding', 'lead_belief', 'system_scorer'):
                 if path_key in entry:
                     entry[path_key] = str((ROOT / entry[path_key]).resolve())
             entry.pop('label', None)
@@ -101,6 +101,12 @@ def auction_any(board, bidders):
     """gen5_arena.auction for either kind of bidder: a BEN-format net (predict) or a system_bidders bidder (call).
     The board's auction_source names the system each side bid, so tables that differ only in that are told apart."""
     calls, decisions = [], []
+    booked = STATE.get('booked')
+    if booked is not None:              # the table's auction was bid beforehand (scripts/gen8_auction_book.py)
+        systems, calls = booked
+        decisions = [dict(seat=(board.dealer + k) % 4, ply=k, call=c, behavior='book', behavior_probability=1.) for k, c in enumerate(calls)]
+        return replace(board, contract=auction_contract(board.dealer, list(calls)), auction=tuple(calls), opening_lead=None,
+                       auction_source='g8:' + '|'.join(systems)), decisions
     for _ in range(320):
         seat = (board.dealer + len(calls)) % 4
         mask = legal_mask(board.dealer, calls)
@@ -126,8 +132,16 @@ def auction_any(board, bidders):
     raise ValueError('Auction exceeded legal length bound')
 
 
-def start(source, manifest):
-    STATE.update(source=source, m=manifest, bidders={}, system_of={})
+def load_book(path):
+    """index -> (deal key, (NS system, EW system), calls) from a file made by scripts/gen8_auction_book.py."""
+    with gzip.open(path, 'rt') as f:
+        book = json.load(f)
+    return book['seed'], {book['first'] + k: (key, tuple(book['tables'][t]), tuple(calls))
+                          for k, (key, t, calls) in enumerate(zip(book['keys'], book['table_of'], book['auctions']))}
+
+
+def start(source, manifest, book=None):
+    STATE.update(source=source, m=manifest, bidders={}, system_of={}, book=load_book(book)[1] if book else None, booked=None)
     loaded = {}
     for key, spec in manifest['bots'].items():
         entry = spec.get('bidder')
@@ -166,7 +180,15 @@ def summarise_actions(record, roles):
 def play(index, seed, episodes):
     m, source = STATE['m'], STATE['source']
     started = time.process_time()
-    r = run_board(source, m, deal(seed, index).to_dict(), index, STATE['bidders'], player_factory=player)
+    board, systems = deal(seed, index), None
+    if STATE['book'] is not None:       # this board's table: who declared what, and the auction they bid
+        key, systems, calls = STATE['book'][index]
+        if key != board.id:
+            raise ValueError(f'the auction book was made for other deals (board {index})')
+        STATE['booked'] = (systems, calls)
+        for spec in m['bots'].values():
+            spec['table_systems'] = list(systems)
+    r = run_board(source, m, board.to_dict(), index, STATE['bidders'], player_factory=player)
     cpu = time.process_time() - started
     if episodes:
         with gzip.open(Path(episodes) / f'{index:06d}.json.gz', 'wt') as f:
@@ -175,6 +197,8 @@ def play(index, seed, episodes):
     sign = 1 if r['candidate'] == a else -1
     row = dict(index=index, family=r['family'], candidate=r['candidate'], opponent=r['opponent'], cpu=round(cpu, 2), tables=len(r['unique_tables']),
                contract=r['board'].get('contract'), auction_len=len(r['board'].get('auction') or ()))
+    if systems:
+        row['systems'] = '~'.join(systems)
     for regime, v in r['regimes'].items():
         row[regime] = None if v['imps'] is None else sign * v['imps']
         row[regime + '_score'] = None if v['score_difference'] is None else sign * v['score_difference']
@@ -189,6 +213,13 @@ def summary(rows, a, b, started=None):
         if len(x) > 1:
             out[regime] = dict(imps_per_board=round(float(x.mean()), 4), se=round(float(x.std(ddof=1) / math.sqrt(len(x))), 4), boards=len(x),
                                won=int((x > 0).sum()), lost=int((x < 0).sum()), flat=int((x == 0).sum()))
+    kinds = sorted({r['systems'] for r in rows if r.get('systems')})
+    if kinds:                           # by what the two sides declared (NS~EW), common regime
+        out['by_systems'] = {}
+        for kind in kinds:
+            x = np.array([r['common'] for r in rows if r.get('systems') == kind and r.get('common') is not None], float)
+            if len(x) > 1:
+                out['by_systems'][kind] = dict(imps_per_board=round(float(x.mean()), 4), se=round(float(x.std(ddof=1) / math.sqrt(len(x))), 4), boards=len(x))
     if started:
         out['boards_per_hour'] = round(len(rows) / max(time.time() - started, 1e-9) * 3600)
     return out
@@ -205,7 +236,11 @@ def main():
     ap.add_argument('--workers', type=int, default=os.cpu_count())
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--episodes', action='store_true', help='keep full records (collector format) under episodes/')
+    ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (scripts/gen8_auction_book.py); '
+                                   'both rooms of a board then play the same auction')
     args = ap.parse_args()
+    if args.book and load_book(args.book)[0] != args.seed:
+        raise SystemExit('the auction book was made with another seed')
     source = args.source.resolve()
     m = build_manifest(source, args.bots, args.pair, args.seed)
     a, b = m['roster']
@@ -221,26 +256,32 @@ def main():
     done = {r['index'] for r in rows}
     todo = [i for i in range(args.first, args.first + args.deals) if i not in done]
     print(f'{a} v {b}: {len(todo)} boards to play ({len(done)} done), {args.workers} workers', flush=True)
-    started, fresh, failures = time.time(), [], 0
-    with ProcessPoolExecutor(args.workers, initializer=start, initargs=(str(source), m)) as pool, results.open('a') as f:
-        jobs = {pool.submit(play, i, args.seed, str(episodes) if episodes else None): i for i in todo}
-        for n, job in enumerate(as_completed(jobs), 1):
-            try:
-                row = job.result()
-            except Exception as e:                      # one bad board must not end the match; it is reported and counted
-                failures += 1
-                print(f'board {jobs[job]} failed: {type(e).__name__}: {e}'[:300], flush=True)
-                continue
-            rows.append(row)
-            fresh.append(row)
-            f.write(json.dumps(row) + '\n')
-            f.flush()
-            if n % 50 == 0 or n == len(todo):
-                s = summary(rows, a, b)
-                c = s.get('common', {})
-                print(f'{len(rows)} boards: {c.get("imps_per_board")} +- {c.get("se")} IMPs/board for {a}; '
-                      f'{len(fresh) / (time.time() - started) * 3600:.0f} boards/hour; {failures} failed', flush=True)
-                (args.out / 'summary.json').write_text(json.dumps(dict(s, failures=failures, boards_per_hour=round(len(fresh) / (time.time() - started) * 3600)), indent=1))
+    started, fresh, failed, pending = time.time(), [], [], todo
+    with ProcessPoolExecutor(args.workers, initializer=start, initargs=(str(source), m, args.book)) as pool, results.open('a') as f:
+        for attempt in (1, 2):                          # a board that failed is played once more
+            jobs = {pool.submit(play, i, args.seed, str(episodes) if episodes else None): i for i in pending}
+            failed = []
+            for n, job in enumerate(as_completed(jobs), 1):
+                try:
+                    row = job.result()
+                except Exception as e:                  # one bad board must not end the match; it is reported and counted
+                    failed.append(jobs[job])
+                    print(f'board {jobs[job]} failed (attempt {attempt}): {type(e).__name__}: {e}'[:300], flush=True)
+                    continue
+                rows.append(row)
+                fresh.append(row)
+                f.write(json.dumps(row) + '\n')
+                f.flush()
+                if n % 50 == 0 or n == len(jobs):
+                    s = summary(rows, a, b)
+                    c = s.get('common', {})
+                    print(f'{len(rows)} boards: {c.get("imps_per_board")} +- {c.get("se")} IMPs/board for {a}; '
+                          f'{len(fresh) / (time.time() - started) * 3600:.0f} boards/hour; {len(failed)} failed', flush=True)
+                    (args.out / 'summary.json').write_text(json.dumps(dict(s, failures=len(failed), boards_per_hour=round(len(fresh) / (time.time() - started) * 3600)), indent=1))
+            if not failed:
+                break
+            pending = failed
+    failures = len(failed)
     s = summary(rows, a, b)
     (args.out / 'summary.json').write_text(json.dumps(dict(s, failures=failures, boards_per_hour=round(len(fresh) / max(time.time() - started, 1e-9) * 3600)), indent=1))
     print(json.dumps(s))
