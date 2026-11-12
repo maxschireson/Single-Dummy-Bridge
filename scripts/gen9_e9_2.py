@@ -28,7 +28,7 @@ from bridge_harness import rule_bidder as rb                                  # 
 from bridge_harness.bidding_env import CALLS                                  # noqa: E402
 from bridge_harness.cards.bidder import CardBidder, bid_table                 # noqa: E402
 from bridge_harness.cards.match import (DeterministicProfile, NetProfile, UnknownMixture,  # noqa: E402
-                                        board_loglik, boards_to_identify)
+                                        board_loglik, boards_to_identify, library)
 
 VULS = ('None', 'NS', 'EW', 'Both')
 GEN5 = 'models/bidding/gen5-2026-11-10/bidder.keras'
@@ -103,11 +103,13 @@ def main():
     ap.add_argument('--orderings', type=int, default=200)
     ap.add_argument('--seed', type=int, default=7301)
     ap.add_argument('--eps', type=float, default=0.05)
+    ap.add_argument('--unknown', default='candidates', choices=('candidates', 'library'))
     ap.add_argument('--out', default=None)
     a = ap.parse_args()
     ref = NetProfile('ref-gen5', GEN5)
     report = dict(protocol='E9-2', boards=a.boards, orderings=a.orderings, seed=a.seed,
-                  unknown='per call: 0.8 x the average of the candidates\' distributions + 0.2 uniform over legal calls',
+                  unknown=('per call: 0.8 x the average of the candidates\' distributions + 0.2 uniform over legal calls' if a.unknown == 'candidates'
+                           else 'per call: 0.8 x the average over every profile held except the truth (house nets, rule bidder settings, compiled cards) + 0.2 uniform'),
                   eps=a.eps, pairs={})
     for k, name in enumerate(a.pairs.split(',')):
         t0 = time.time()
@@ -115,9 +117,15 @@ def main():
         for c in cands:
             c.eps = a.eps
         truth = 0
-        profiles = cands + [UnknownMixture(cands, 0.2)]
+        if a.unknown == 'library':                  # 'some other system': a mixture over every profile we hold
+            lib = library('.', exclude={cands[truth].name}, eps=a.eps)
+            lib_names = {p.name for p in lib}
+            profiles = cands + [UnknownMixture(lib + [c for c in cands if c.name not in lib_names], 0.2)]
+            extra = UnknownMixture(lib, 0.2, name='unknown-without-truth')
+        else:
+            profiles = cands + [UnknownMixture(cands, 0.2)]
+            extra = UnknownMixture([c for i, c in enumerate(cands) if i != truth], 0.2, name='unknown-without-truth')
         names = [p.name for p in profiles]
-        extra = UnknownMixture([c for i, c in enumerate(cands) if i != truth], 0.2, name='unknown-without-truth')
         boards = make(a.boards, a.seed + 100 * k)
         full = [board_loglik(profiles + [extra], h, d, v, calls, (0, 2)) for h, d, v, calls in boards]
         ll = np.array([[b[n] for n in names] for b in full])

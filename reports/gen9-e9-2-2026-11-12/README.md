@@ -30,3 +30,19 @@ hundred boards were in (the remaining candidate explains most calls better than 
 of itself), and it is degenerate in the house pair at eps 0.2 (it equals the Gen 5 profile). A broad
 model of "some other system" is still to be built; until then a pair whose system is not among the
 profiles is read as its nearest profile.
+
+## Supplement: a broad `unknown` (`result-library-unknown.json`)
+
+`unknown` as a mixture over every profile held except the truth (the three house nets, the rule
+bidder's two settings, the compiled cards' bidders; `match.library`), 0.8 / 0.2 with uniform; 400
+boards a pair, eps 0.05.
+
+| Pair (truth first) | Boards to 0.95, median / p90 | Share on `unknown` with the truth absent, after 10 / 50 / 200 / 400 boards |
+| --- | ---: | --- |
+| rule bidder precision vs standard | 2 / 8 | 0.55 / 0.75 / 0.95 / 1.00 |
+| house Gen 6 vs Gen 5 | 21 / 37 | 0 / 0 / 0 / 0 |
+| 2/1 card, 1NT 15-17 vs 14-16 | 9.5 / 29 | 0.09 / 0 / 0 / 0 |
+
+With a library, a system unlike any candidate goes to `unknown` (precision read against the
+standard card alone); a system close to a candidate (Gen 6 against Gen 5, two cards one point
+apart) goes to that candidate, which is the right reading of it. Identification speed is unchanged.
