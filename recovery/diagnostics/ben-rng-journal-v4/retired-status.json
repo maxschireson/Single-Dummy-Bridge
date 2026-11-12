@@ -1,0 +1,55 @@
+[
+  {
+    "run": "/workspace/scratch/c7932514d17d/gen6-arena/runs/gen6-chatgpt-20261111",
+    "STOP": true,
+    "WATCHDOG_STOP": true,
+    "locks": {
+      ".supervisor.lock": "free",
+      ".writer.lock": "free"
+    }
+  },
+  {
+    "run": "/workspace/scratch/c7932514d17d/gen6-ben-followups/runs/gen6-chatgpt-ben-followups-20261111",
+    "STOP": true,
+    "WATCHDOG_STOP": true,
+    "locks": {
+      ".supervisor.lock": "free",
+      ".writer.lock": "free"
+    }
+  },
+  {
+    "run": "/workspace/scratch/c7932514d17d/gen6-ben-followups/runs/gen6-chatgpt-ben-followups-20261111-failed-preflight",
+    "STOP": true,
+    "WATCHDOG_STOP": false,
+    "locks": {
+      ".supervisor.lock": "free",
+      ".writer.lock": "free"
+    }
+  },
+  {
+    "run": "/workspace/scratch/c7932514d17d/gen6-ben64-capture/runs/gen6-chatgpt-ben64-capture-20261111",
+    "STOP": true,
+    "WATCHDOG_STOP": true,
+    "locks": {
+      ".supervisor.lock": "free",
+      ".writer.lock": "free",
+      ".capture-report.lock": "free"
+    }
+  },
+  {
+    "run": "/workspace/scratch/c7932514d17d/gen6-fast-selfplay/runs/gen6-chatgpt-fast-selfplay-20261111",
+    "STOP": true,
+    "WATCHDOG_STOP": true,
+    "locks": {
+      ".supervisor.lock": "free",
+      ".writer.lock": "free",
+      ".capture-report.lock": "free"
+    }
+  },
+  {
+    "run": "/workspace/scratch/c7932514d17d/gen6-ben-server-recycled/runs/gen6-chatgpt-ben-server-recycled-20261111",
+    "STOP": true,
+    "WATCHDOG_STOP": false,
+    "locks": {}
+  }
+]

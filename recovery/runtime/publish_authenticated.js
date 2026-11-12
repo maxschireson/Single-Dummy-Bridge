@@ -10,7 +10,7 @@ for(let offset=0;;offset+=100){
 }
 const ref=JSON.parse((await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/ref/heads/arena-gen6-chatgpt-feed"})).structuredContent.content);
 const head=ref.object.sha;
-const remote=JSON.parse((await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/trees/"+head+"?recursive=1"})).structuredContent.content);
+const remote=await boundedTree(head);
 const cached=(await tools.exec_command({cmd:"cat uploaded-blobs.txt 2>/dev/null || true",workdir:base,max_output_tokens:20000})).output.trim().split(/\s+/).filter(s=>/^[a-f0-9]{40}$/.test(s));
 const known=new Set([...remote.tree.map(f=>f.sha),...cached]);
 const inline=new Map();
@@ -33,9 +33,11 @@ content+=r.output.trim();
 const r=await tools.mcp__codex_apps__github_create_blob({repository_full_name:repo,encoding:"base64",content});
 const d=unwrap(r);if(d.sha!==f.sha)throw Error("blob mismatch "+f.path+" "+JSON.stringify(d));known.add(f.sha);await tools.exec_command({cmd:"printf '%s\\n' "+f.sha+" >> uploaded-blobs.txt",workdir:base,max_output_tokens:50});uploaded++;if(uploaded%100===0)text({uploaded,remaining:pending.length});
 }}));
-let t={};
-for(let offset=0;offset<inv.length;offset+=60){
- const entries=inv.slice(offset,offset+60).map(f=>({path:f.path,mode:"100644",type:"blob",...(inline.has(f.path)?{content:inline.get(f.path)}:{sha:f.sha})}));
+const remotePaths=new Map(remote.tree.map(f=>[f.path,f.sha]));
+const changed=inv.filter(f=>remotePaths.get(f.path)!==f.sha);
+let t={sha:head};
+for(let offset=0;offset<changed.length;offset+=60){
+ const entries=changed.slice(offset,offset+60).map(f=>({path:f.path,mode:"100644",type:"blob",...(inline.has(f.path)?{content:inline.get(f.path)}:{sha:f.sha})}));
  const result=await tools.mcp__codex_apps__github_create_tree({repository_full_name:repo,...(t.sha?{base_tree_sha:t.sha}:{}),tree_elements:entries});
  t=unwrap(result);if(!t.sha)throw Error(JSON.stringify(result));
 }
@@ -50,10 +52,17 @@ for(let attempt=0;attempt<8;attempt++){
  if(attempt<7)await new Promise(resolve=>setTimeout(resolve,1500));
 }
 if(liveRef.object.sha!==c.sha)throw Error("Feed ref did not advance to verified commit: expected "+c.sha+", observed "+liveRef.object.sha);
-const check=JSON.parse((await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/trees/"+c.sha+"?recursive=1"})).structuredContent.content);
+const check=await boundedTree(c.sha);
 const actual=new Map(check.tree.map(f=>[f.path,f.sha]));
 for(const f of inv)if(actual.get(f.path)!==f.sha)throw Error("published mismatch "+f.path);
 await tools.exec_command({cmd:"python -c "+quote("import json,time;open('runs/gen6-chatgpt-ben-recycled-20261111/publisher-status.json','w').write(json.dumps(dict(epoch=time.time(),commit="+JSON.stringify(c.sha)+",files="+inv.length+")))"),workdir:base,max_output_tokens:100});
 text({published:c.sha,verified_files:inv.length});
 function quote(s){return "'"+s.replaceAll("'","'\\''")+"'";}
 
+
+async function boundedTree(sha) {
+ async function get(s,recursive=false){ const r=await tools.mcp__codex_apps__github_fetch({url:"https://api.github.com/repos/"+repo+"/git/trees/"+s+(recursive?"?recursive=1":"")});if(r.isError)throw Error(JSON.stringify(r));const d=JSON.parse(r.structuredContent.content);if(d.truncated)throw Error("truncated "+s);return d;}
+ const root=await get(sha),entries=[];
+ for(const a of root.tree){if(a.type!=="tree"){entries.push(a);continue;}const top=await get(a.sha);for(const b of top.tree){if(b.type!=="tree"){entries.push({...b,path:a.path+"/"+b.path});continue;}const child=await get(b.sha,true);for(const c of child.tree)entries.push({...c,path:a.path+"/"+b.path+"/"+c.path});}}
+ return {tree:entries};
+}

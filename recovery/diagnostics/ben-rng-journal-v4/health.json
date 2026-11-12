@@ -1,0 +1,16 @@
+{
+  "epoch": 1794451509.5254393,
+  "pairs": 2015,
+  "ben": 229,
+  "retained": 656,
+  "frozen_verified": true,
+  "locks": {
+    ".supervisor.lock": "free",
+    ".writer.lock": "free",
+    ".capture-report.lock": "free"
+  },
+  "stop": false,
+  "failure_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
+  "failures": 1,
+  "disk_free": 30818635776
+}
