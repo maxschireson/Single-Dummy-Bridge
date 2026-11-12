@@ -44,3 +44,5 @@
 {"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "dave/20261112T0727Z-g9-e9-5-resolved-adopted-arena-si", "note": "E9-5 resolved (adopted): Arena simulator: schedule and promotion rule against fixed pairs", "task": "E9-5"}
 {"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "resolve", "target": "G9-D2", "note": "PR 17 merged at e42e2d7.", "resolution": "accepted"}
 {"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "dave/20261112T0727Z-g9-g9-d2-resolved-accepted-e9-5-a", "note": "G9-D2 resolved (accepted): E9-5: arena simulator; schedule and promotion rule against fixed pairs", "task": "G9-D2"}
+{"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "resolve", "target": "G9-D5", "note": "PR 19 merged at 19ea4d8.", "resolution": "accepted"}
+{"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "dave/20261112T0727Z-g9-g9-d5-resolved-accepted-experi", "note": "G9-D5 resolved (accepted): Experience store: per-board deltas, merge, epoch snapshot", "task": "G9-D5"}
