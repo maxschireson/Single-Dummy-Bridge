@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 21:08 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 21:08 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -65,7 +65,7 @@ Generated 2026-11-12 21:08 UTC by `tools/workq.py` after a change by `azure4`. D
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-13 01:07 | leased | high | 2026-11-13T16:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
-| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T04:00Z |  |
+| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 01:08 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-17](experiments/E9-17.md) | The convention-card reader against fixed carding rules (t-high, t-low, t-random) | dave | dave until 11-12 23:53 | leased | medium | 2026-11-13T12:00Z |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
@@ -112,9 +112,9 @@ Generated 2026-11-12 21:08 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 21:07 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-12 21:07 UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | running | 3,779 of 6,200 | 742.6 | 11-13 00:23 | `transfer/gen9-d6-arrival-azure4-20261112@79fb6bde9` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | paused | 627 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02-azure4-20261112@514d6b868` |
