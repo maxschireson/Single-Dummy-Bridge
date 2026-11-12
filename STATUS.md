@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 17:53 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 17:54 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -111,13 +111,12 @@ Generated 2026-11-12 17:53 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 17:50 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-12 17:53 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| d6-arrival |  | dave | 1 | 8 | running | 2,315 of 6,200 | 511.7 | 11-13 01:26 | `transfer/gen9-d6-arrival-azure4-20261112@6a9dd5a94` |
-| e9-0-n02 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
-| e9-0-n02e | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
+| e9-0-n02 | E9-0 | g9 | 2 | 4 | running | 0 of 800 |  |  |  |
+| e9-0-n02e | E9-0 | g9 | 2 | 4 | running | 0 of 800 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-16-r-v-p | E9-16 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-16-r-v-x | E9-16 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
@@ -141,6 +140,7 @@ Generated 2026-11-12 17:53 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-6-att-vs-reader | E9-6 | sam | 6 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-6-vs-8p | E9-6 | sam | 6 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-6-vs-reader | E9-6 | sam | 6 | 4 | waiting | 0 of 1,600 |  |  |  |
+| d6-arrival |  | dave | 1 | 8 | failed | 2,315 of 6,200 | 443.0 | 11-13 02:39 | `transfer/gen9-d6-arrival-azure4-20261112@791b111df` |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 55 |  |  |  |
