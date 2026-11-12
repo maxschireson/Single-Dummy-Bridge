@@ -165,6 +165,7 @@ class Gen7SelfplayTests(unittest.TestCase):
             self.assertNotEqual(m['identity'], phase1['identity'])
             self.assertFalse(m.get('two_self_rooms'))                               # carried from the source run: one table a deal
             self.assertEqual(m['audit'], old['audit'])
+            self.assertEqual(m['bidding_conditions'], ['self', 'common', 'native'])
 
     def test_the_plan_takes_over_the_unplayed_deals_of_a_drained_phase_1_cohort(self):
         with tempfile.TemporaryDirectory() as tmp:
