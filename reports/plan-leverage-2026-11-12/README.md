@@ -106,6 +106,10 @@ pair's layouts choose, half score, margin 0.25:
 | 0.75 | +0.048 +- 0.014 |
 | 1.5 | +0.041 +- 0.015 |
 
+Scored by the real deals instead (every layout of a pair chooses; the noisier, independent measure): +0.097 +- 0.045
+at trust 0.75 and margin 0.25, +0.068 +- 0.037 at margin 0.125. At tricks 3 to 6 the same check gives +0.056 +- 0.055
+(trust 0.25, 16 layouts), at tricks 5 to 6 alone +0.060 +- 0.045.
+
 By trick at trust 0.75: trick 7 +0.031 +- 0.012, trick 8 +0.010 +- 0.006, trick 9 +0.009 +- 0.004, later nothing.
 Declaring +0.021 +- 0.007, defending +0.029 +- 0.012. Margin 0.125 gets +0.041 of it. On the first 500 boards alone
 (942 pairs, 16 layouts) the figure was +0.026 +- 0.012; on the other 1,061 (2,048 pairs, 32 layouts) +0.060 +- 0.019.
