@@ -70,7 +70,7 @@ Generated 2026-11-12 11:04 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 13:27 | leased | high | 2026-11-12T20:00Z |  |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 13:27 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
-| [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 12:08 | leased | high | 2026-11-13T10:00Z |  |
+| [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool | sam | submitted | high | 2026-11-13T12:00Z |  |
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | g9 |  | open | high | 2026-11-13T16:00Z | after E9-7 |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | rejected. **Part 1 (prediction), 12 November 2026, bill.** Registered protocol, 2,000 deals a system, leader and declarer views, pools of 512 (about 4,000 decisions a system). Gain in nats of the true layout's weight: |
