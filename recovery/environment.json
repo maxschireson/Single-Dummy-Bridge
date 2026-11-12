@@ -1,0 +1,24 @@
+{
+ "host": "azure6",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "feature/gen8-prototype-20261112",
+ "source_commit": "792c4cb",
+ "generation": "Gen 8 candidate: 8s-32 and 8c-32 (the Precision rule bidder), with Gen 7.1, Gen 5 and Gen 1",
+ "source_run": "this machine's drained cohort gen71-claim7-azure6: the deals it had not played, without the families the policy net v4.1 was trained on (the union of the two lists; artifacts/validation/evaluation-exclusions.json)",
+ "capture": "tie audits, tree audits, gap forks and the guess-size fields (this source has the capture port merged)",
+ "plan": "configs/round8-candidate.json as it is (plan.json beside this file)",
+ "memory": "unit gen8-recycle restarts the collector after the boards in hand when the box has under 5 GB of memory available",
+ "threads": "one BLAS, OpenMP and TensorFlow thread a worker",
+ "publication_branch": "arena-gen8-azure6-feed",
+ "supervision": "systemd units arena-gen8 and arena-gen8-publish; no BEN pair in this cohort",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md)"
+}

@@ -1,0 +1,8 @@
+{
+ "launched_epoch": 1794502648.452122,
+ "authority": "Max, 12 November 2026, 15:32 UTC: Go ahead (Gen 8); 15:33: machines on Gen 7 work switch to the Gen 8 arena; 15:50: never a board in a family the bot was trained on; 16:11, to the operator: switch the arena to Gen 8. (Earlier: 05:42 UTC: push 7.1 from 06:00 UTC unless revoked; replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes a 95% CI lead. 05:54 UTC: 'We can switch azure 2 to 100% 7.1 vs 7.0; 7 is clearly a big step vs 6.'",
+ "notice": "docs/gen8_candidate_2026-11-12.md on feature/gen8-prototype-20261112",
+ "host": "azure6",
+ "reason": "the arena goes to Gen 8",
+ "steps": "prepare from the drained cohort with --exclude-families, preflight with ops/smoke_gen7.py, then the collector under systemd"
+}
