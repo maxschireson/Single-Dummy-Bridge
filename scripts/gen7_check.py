@@ -77,7 +77,7 @@ def records(directory, split, seed=0):
     for path in files:
         with gzip.open(path, 'rt') as f:
             d = json.load(f)
-        if split_of(d['family']) != split:
+        if split >= 0 and split_of(d['family']) != split:      # --split -1: every deal (for boards fetched after a net's training set)
             continue
         who = {'candidate': d['candidate'], 'opponent': d['opponent']}
         for e in d['unique_tables'].values():
