@@ -26,6 +26,7 @@ DEFAULTS = {
         'min_hcp': 12,                 # sound one-level opening
         'rule_of_20': True,            # 10-11 HCP opens when HCP + two longest suits >= 20
         'third_seat_min': 10,          # lighter one-level openings in third seat (5+ suit)
+        'light': None,                 # {'hcp': 10}: one-level openings this light with a six-card suit or two five-card suits
         'fourth_seat_rule_of_15': True,
         'one_level_max': 21,
         'major_len': 5,                # 4 = four-card majors
@@ -34,6 +35,7 @@ DEFAULTS = {
         'nt_five_major': True,
         'nt_six_minor': False,
         'two_nt': [20, 21],
+        'two_nt_five_major': True,     # a 2NT opening may hold a five-card major
         'strong_2c': {'hcp': 22, 'ltc': 3, 'ltc_hcp': 17},   # 22+, or 17+ with at most 3 losers; null when 2C is not strong
         'strong_club': None,           # {'hcp': 16}: 1C artificial and forcing
         'nebulous_1d': None,           # {'min_len': 2} (Precision 1D)
@@ -43,8 +45,11 @@ DEFAULTS = {
             '2H': {'type': 'weak', 'hcp': [5, 10], 'len': [6, 6]},
             '2S': {'type': 'weak', 'hcp': [5, 10], 'len': [6, 6]},
         },                              # types: weak | multi | flannery | precision | natural | none
+        'weak_quality': 2,             # weak twos and preempts: honours among the suit's top five
+        'weak_other_major_max': 3,     # a weak two in a major denies this many or more in the other major (null: no limit)
+        'preempt_seats': [1, 2, 3, 4], # seats in which weak twos and preempts are opened
         'precision_2c': None,          # {'hcp': [11, 15]}: 6+ clubs, or 5 clubs and a 4-card major
-        'three_level': {'len': 7, 'hcp_max': 10},
+        'three_level': {'len': 7, 'len_max': 7, 'hcp_min': 0, 'hcp_max': 10},
         'four_level': {'len': 8, 'hcp_max': 12},
         'three_nt': {'type': 'gambling'},            # gambling | natural ({'hcp': [25, 27]}) | null
     },
@@ -59,7 +64,14 @@ DEFAULTS = {
         'inverted_minors': False,
         'minor_2nt': [11, 12],
         'minor_3nt': [13, 15],
-        'nt': {'stayman': True, 'transfers': 'jacoby', 'texas': True, 'two_spade': 'clubs', 'super_accept': True},
+        'nt': {'stayman': True, 'transfers': 'jacoby', 'texas': True, 'two_spade': 'clubs', 'super_accept': True,
+               'transfers_first': False,     # a five-card major and a four-card major: transfer (true) or Stayman
+               'stayman_five_four': True,    # Stayman may hold a five-card major beside the four
+               'stayman_min_2nt': 'invite',  # over 2NT: Stayman from invitational values, or 'game'
+               'slam_first': False,          # 6NT (balanced, slam values) before everything else
+               'quantitative': True,         # 4NT quantitative
+               'answers': 'all',             # all | relays (only Stayman and transfer answers are defined)
+               'game': 25},                  # combined points for game, for the response ranges
         'strong_2c': {'waiting': '2D', 'positive_min': 8},
         'weak_two_2nt': 'feature',     # feature | ogust
         'strong_club': {'negative': '1D', 'negative_max': 7},
@@ -74,7 +86,7 @@ DEFAULTS = {
         'overcall_1': [8, 16],
         'overcall_2': [11, 16],
         'overcall_len': 5,
-        'jump_overcall': 'weak',       # weak | intermediate | strong
+        'jump_overcall': 'weak',       # weak | intermediate | strong | none
         'nt_overcall': [15, 18],
         'balancing_nt': [11, 14],
         'takeout_double_min': 12,
@@ -83,10 +95,27 @@ DEFAULTS = {
         'negative_double_thru': '2S',  # highest overcall over which a double is negative; null = none
         'vs_nt': 'natural',            # natural | cappelletti | dont | landy
         'vs_nt_double': 'penalty',
+        'vs_nt_double_min': 15,
+        'vs_nt_natural': {'len_major': 5, 'len_minor': 6, 'hcp': [8, 15], 'top3': 2, 'top5': 0},
+        'vs_nt_2nt_minors': True,
+        'strong_double_min': 18,
+        'overcall_3_min': None,        # three-level simple overcalls from this many HCP (null: none defined)
+        'overcall_quality': {'1': {'top5': 2}, '2': {'top3': 2}, '3': {'top3': 2}},
+        'takeout_shape': 'majors',     # majors: 3+ in each unbid major | all: 3+ in every unbid suit
+        'jump_overcall_len3': 6,
+        'weak_jump_hcp': [5, 10],
+        'jump_first': False,           # a suit's jump overcall is tried before its simple overcall
+        'balancing_jumps': True,
+        'balance': 3,                  # points borrowed in the pass-out seat
     },
     'slam': {'blackwood': 'rkc1430', 'gerber': True},
+    'cover': ['open', 'respond', 'respond_nt', 'rebid', 'nt_answers', 'nt_relays', 'overcall', 'balance', 'vs_nt', 'resp_comp', 'advance', 'asks'],
     'carding': {},                     # fields of configs/systems/_carding_fields.json (Gen 8)
 }
+
+# dict-valued fields a card replaces whole rather than merging key by key
+LEAF = {'overcall_quality', 'vs_nt_natural', 'light', 'strong_2c', 'strong_club', 'nebulous_1d', 'polish_club',
+        'precision_2c', 'three_level', 'four_level', 'three_nt'}
 
 TYPES_TWO = ('weak', 'multi', 'flannery', 'precision', 'natural', 'none')
 
@@ -98,7 +127,7 @@ def _merge(base, over, path, unknown):
         if k not in base:
             unknown.append(p)
             out[k] = v
-        elif isinstance(base[k], dict) and isinstance(v, dict) and k not in ('two', 'carding'):
+        elif isinstance(base[k], dict) and isinstance(v, dict) and k not in ('two', 'carding') and k not in LEAF:
             out[k] = _merge(base[k], v, p, unknown)
         elif k == 'two' and isinstance(v, dict):
             merged = copy.deepcopy(base[k])

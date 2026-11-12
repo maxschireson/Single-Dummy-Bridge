@@ -142,3 +142,9 @@ class CardFactor:
                 self.dev.observe(fam, agreed)
                 out.append((seat, t, calls[t], first.call, fam, agreed))
         return out
+
+
+def covered(card_or_filter, auction, dealer, seat, vulnerability):
+    """Turn indices of `seat`'s calls in `auction` that the card covers."""
+    f = card_or_filter if hasattr(card_or_filter, 'seat_terms') else make_filter(card_or_filter)
+    return [t for t, _, _ in f.seat_terms(auction, dealer, seat, vulnerability)]

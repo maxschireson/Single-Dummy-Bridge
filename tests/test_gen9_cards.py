@@ -94,3 +94,61 @@ def test_legal_calls():
     assert 'X' in legal_calls(['1C'])
     assert 'XX' in legal_calls(['1C', 'X'])
     assert 'X' not in legal_calls(['1C', 'PASS'])
+
+
+# ---- G9-B2: cards for the rule bidder's settings -------------------------------------------------
+from dataclasses import asdict, replace                                       # noqa: E402
+
+from bridge_harness import rule_bidder as rb                                  # noqa: E402
+from bridge_harness.cards.rb_cards import card_from_settings, settings_from_card   # noqa: E402
+
+RB_VARIANTS = {
+    'standard': rb.STANDARD,
+    'precision': rb.Settings(),
+    'standard-12-14': replace(rb.STANDARD, nt_lo=12, nt_hi=14),
+    'standard-light': replace(rb.STANDARD, open_min=10, open_light=1, weak_lo=4, weak_hi=9),
+    'precision-plain': replace(rb.Settings(), stayman=False, transfers=False, jump_overcalls=False, two_diamonds=False),
+}
+
+
+@pytest.mark.parametrize('name', sorted(RB_VARIANTS))
+def test_rule_bidder_auctions_never_break_their_card(name):
+    """Every covered call in the rule bidder's own auctions is its card's first fitting rule, so every true hand fits."""
+    g = RB_VARIANTS[name]
+    card = card_from_settings(asdict(g), f'rb-{name}')
+    system = CardSystem(card)
+    gen = rb.RuleSystemBidder(g, 'standard')
+    covered = 0
+    for hands, dealer, vul in deals(400, 11):
+        try:
+            calls, _ = bid_table([gen] * 4, hands, dealer, vul)
+        except (ValueError, IndexError):          # rule_bidder.py edge cases, reported to g9
+            continue
+        for t, call in enumerate(calls):
+            seat = (dealer + t) % 4
+            rules = system.rules(Context.make(calls[:t], dealer, seat, vul))
+            if rules is None:
+                continue
+            covered += 1
+            f = features_of_hands([hands[seat]])
+            first = next(r for r in rules if r.pred.dist(f)[0] == 0)
+            assert first.call == call, (name, calls[:t], call, first.call, first.label)
+    assert covered > 1000
+
+
+@pytest.mark.parametrize('name', sorted(RB_VARIANTS))
+def test_settings_round_trip(name):
+    g = RB_VARIANTS[name]
+    back, missing = settings_from_card(card_from_settings(asdict(g)))
+    assert missing == []
+    assert {k: v for k, v in back.items() if getattr(g, k) != v} == {}
+
+
+def test_written_cards_match_generated():
+    import json
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / 'configs' / 'cards'
+    for name, g in (('rb-standard', rb.STANDARD), ('rb-precision', rb.Settings())):
+        written = json.loads((root / f'{name}.json').read_text())
+        gen = card_from_settings(asdict(g), name)
+        assert written['descriptor'] == gen['descriptor'] and written['cover'] == gen['cover']

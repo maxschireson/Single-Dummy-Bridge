@@ -81,27 +81,36 @@ class CardSystem:
         return self._cache[key]
 
     def _dispatch(self, ctx):
+        cover = set(self.d['cover'])
         if ctx.opening_index is None:
-            return self.opening(ctx)
+            return self.opening(ctx) if 'open' in cover else None
         seq = parse_seq(ctx.after_open)
         opener, opening = ctx.opener, ctx.opening
         mine = ctx.bids_of(ME)
-        ask = self._ask_answer(ctx, seq)
-        if ask is not None:
-            return ask
+        if 'asks' in cover:
+            ask = self._ask_answer(ctx, seq)
+            if ask is not None:
+                return ask
         if opener == PARTNER and len(seq) == 2:
             passed = any(c == 'PASS' for r, c in ctx.roles[:ctx.opening_index] if r == ME)
-            return self.responder(ctx, opening, seq[1][1], passed)
+            if seq[1][1] == 'PASS':
+                key = 'respond_nt' if opening in ('1N', '2N') else 'respond'
+                return self.responder(ctx, opening, seq[1][1], passed) if key in cover else None
+            return self.responder(ctx, opening, seq[1][1], passed) if 'resp_comp' in cover else None
         if opener == RHO and len(seq) == 1:
-            return self.direct(ctx, opening, balancing=False)
+            if opening == '1N':
+                return self.direct(ctx, opening, balancing=False) if 'vs_nt' in cover else None
+            return self.direct(ctx, opening, balancing=False) if 'overcall' in cover else None
         if opener == LHO and len(seq) == 3 and seq[1][1] == 'PASS' and seq[2][1] == 'PASS':
-            return self.direct(ctx, opening, balancing=True)
+            return self.direct(ctx, opening, balancing=True) if 'balance' in cover else None
         if opener == LHO and len(seq) == 3 and seq[1][1] != 'PASS':
-            return self.advancer(ctx, opening, seq[1][1], seq[2][1])
+            return self.advancer(ctx, opening, seq[1][1], seq[2][1]) if 'advance' in cover else None
         if opener == ME and len(seq) == 4 and seq[1][1] == 'PASS' and seq[3][1] == 'PASS':
-            return self.opener_rebid(ctx, opening, seq[2][1])
-        if opener == PARTNER and len(seq) == 6 and not mine == [] and seq[1][1] == 'PASS' and seq[3][1] == 'PASS' and seq[5][1] == 'PASS':
-            return self.responder_rebid(ctx, opening, seq[2][1], seq[4][1])
+            if opening in ('1N', '2N'):
+                return self.opener_rebid(ctx, opening, seq[2][1]) if 'nt_answers' in cover else None
+            return self.opener_rebid(ctx, opening, seq[2][1]) if 'rebid' in cover else None
+        if opener == PARTNER and len(seq) == 6 and mine and seq[1][1] == 'PASS' and seq[3][1] == 'PASS' and seq[5][1] == 'PASS':
+            return self.responder_rebid(ctx, opening, seq[2][1], seq[4][1]) if 'nt_relays' in cover else None
         return None
 
     # ------------------------------------------------------------------ shapes and ranges
@@ -130,6 +139,9 @@ class CardSystem:
         if o['strong_club']:
             mx = min(mx, o['strong_club']['hcp'] - 1)
         cl = [C(hcp=(mn, mx))]
+        if o['light'] and o['light']['hcp'] < mn:
+            lh = (o['light']['hcp'], mn - 1)
+            cl += [C(hcp=lh, longest=(6, None)), C(hcp=lh, second=(5, None))]
         if ctx.position == 4 and o['fourth_seat_rule_of_15']:
             return C(hcp=(10, mx), r15=(15, None)) | C(hcp=(14, mx))
         if o['rule_of_20'] and mn > 10:
@@ -147,14 +159,18 @@ class CardSystem:
             out.append(Rule('1C', C(hcp=(sc['hcp'], None)), 'open_strong', 'strong club 1C', forcing=1, artificial=True))
         elif o['strong_2c']:
             s2 = o['strong_2c']
-            out.append(Rule('2C', C(hcp=(s2['hcp'], None)) | C(ltc=(None, s2['ltc']), hcp=(s2.get('ltc_hcp', 17), None)), 'open_strong',
+            p2c = C(hcp=(s2['hcp'], None))
+            if s2.get('ltc') is not None:
+                p2c = p2c | C(ltc=(None, s2['ltc']), hcp=(s2.get('ltc_hcp', 17), None))
+            out.append(Rule('2C', p2c, 'open_strong',
                             'strong 2C', forcing=2, artificial=True))
         pc = o['polish_club']
         if pc:
             out.append(Rule('1C', C(bal=1, hcp=tuple(pc['bal'])) | C(hcp=(pc['strong'], None))
                             | C(C=(5, None), hcp=tuple(pc['clubs'])), 'open_polish', 'Polish 1C', forcing=1, artificial=True))
         if o['two_nt']:
-            out.append(Rule('2N', self.nt_shape() & C(hcp=tuple(o['two_nt'])), 'open_nt', '2NT'))
+            shape = C(bal=1) if o['two_nt_five_major'] else C(bal=1, S=(None, 4), H=(None, 4))
+            out.append(Rule('2N', shape & C(hcp=tuple(o['two_nt'])), 'open_nt', '2NT'))
         nt = self.nt_range(ctx.position, ctx.we_vul)
         if nt:
             out.append(Rule('1N', self.nt_shape() & C(hcp=nt), 'open_nt', f'1NT {nt[0]}-{nt[1]}'))
@@ -165,10 +181,6 @@ class CardSystem:
         if (two.get('2D') or {}).get('type') == 'flannery':
             sp = two['2D']
             out.append(Rule('2D', C(S=4, H=5, hcp=tuple(sp.get('hcp', [11, 15]))), 'open_two', 'Flannery 2D', artificial=True))
-        if (two.get('2D') or {}).get('type') == 'precision':
-            sp = two['2D']
-            out.append(Rule('2D', C(D=(None, 1), S=(3, 4), H=(3, 4), C=(3, 5), longest=(None, 5), hcp=tuple(sp.get('hcp', [11, 15]))),
-                            'open_two', 'Precision 2D', artificial=True))
         out.extend(self._one_level(ctx))
         out.extend(self._twos(ctx))
         out.extend(self._preempts(ctx))
@@ -183,9 +195,16 @@ class CardSystem:
             out.append(Rule('1S', strong('S') & C(S=(5, None), rel=[('S', 'H', 0)]), 'open_major', '1S five-card'))
             out.append(Rule('1H', strong('H') & C(H=(5, None)), 'open_major', '1H five-card'))
             if o['precision_2c']:
-                h = tuple(o['precision_2c'].get('hcp', [11, 15]))
-                out.append(Rule('2C', C(C=(6, None), hcp=h) | C(C=5, S=(4, None), hcp=h) | C(C=5, H=(4, None), hcp=h),
-                                'open_two', 'Precision 2C'))
+                p2 = o['precision_2c']
+                h = tuple(p2.get('hcp', [11, 15]))
+                pred = C(C=(p2.get('len', 6), None), hcp=h)
+                if p2.get('five_four', True):
+                    pred = pred | C(C=5, S=(4, None), hcp=h) | C(C=5, H=(4, None), hcp=h)
+                out.append(Rule('2C', pred, 'open_two', 'Precision 2C'))
+            sp = o['two'].get('2D') or {}
+            if sp.get('type') == 'precision':
+                out.append(Rule('2D', C(D=(None, 1), S=(3, 4), H=(3, 4), C=tuple(sp.get('clubs', [3, 5])), longest=(None, 5),
+                                        hcp=tuple(sp.get('hcp', [11, 15]))), 'open_two', 'Precision 2D', artificial=True))
             if o['polish_club']:
                 out.append(Rule('1D', strong('D') & C(D=(4, None)), 'open_minor', '1D four-plus'))
                 out.append(Rule('1C', strong('C'), 'open_minor', '1C (rest)'))        # never reached: Polish 1C above
@@ -216,15 +235,18 @@ class CardSystem:
 
     def _twos(self, ctx):
         out = []
-        for call in ('2D', '2H', '2S'):
+        if ctx.position not in self.o['preempt_seats']:
+            return out
+        for call in ('2S', '2H', '2D'):
             sp = self.o['two'].get(call) or {}
             t = sp.get('type')
             s = call[1]
             if t == 'weak':
                 lo, hi = sp.get('len', [6, 6])
-                cl = kw(L(s, lo, hi), hcp=tuple(sp.get('hcp', [5, 10])), **{'top5' + s: (2, None)})
-                if s in MAJORS:
-                    cl.update(L('H' if s == 'S' else 'S', None, 3))
+                cl = kw(L(s, lo, hi), hcp=tuple(sp.get('hcp', [5, 10])), **{'top5' + s: (self.o['weak_quality'], None)})
+                om = self.o['weak_other_major_max']
+                if s in MAJORS and om is not None:
+                    cl.update(L('H' if s == 'S' else 'S', None, om))
                 out.append(Rule(call, C(**cl), 'open_weak', f'weak {call}'))
             elif t == 'multi':
                 h = tuple(sp.get('hcp', [5, 10]))
@@ -236,13 +258,16 @@ class CardSystem:
 
     def _preempts(self, ctx):
         out = []
+        if ctx.position not in self.o['preempt_seats']:
+            return out
         t4, t3 = self.o['four_level'], self.o['three_level']
         if t4:
             for s in 'SH':
                 out.append(Rule(f'4{s}', C(**kw(L(s, t4['len']), hcp=(None, t4['hcp_max']))), 'open_preempt', f'4{s} preempt'))
         if t3:
             for s in 'SHDC':
-                out.append(Rule(f'3{s}', C(**kw(L(s, t3['len'], t3['len']), hcp=(None, t3['hcp_max']), **{'top5' + s: (2, None)})),
+                out.append(Rule(f'3{s}', C(**kw(L(s, t3['len'], t3.get('len_max', t3['len'])), hcp=(t3.get('hcp_min', 0), t3['hcp_max']),
+                                                **{'top5' + s: (self.o['weak_quality'], None)})),
                                 'open_preempt', f'3{s} preempt'))
         t3n = self.o['three_nt']
         if t3n and t3n.get('type') == 'gambling':
@@ -380,26 +405,40 @@ class CardSystem:
     def resp_nt(self, ctx, nt, step):
         lo, hi = nt
         rn = self.r['nt']
-        game, inv = 25 - lo, (23 - lo, 24 - lo)
+        G = rn.get('game', 25)
+        game, inv = G - lo, (G - hi, G - lo - 1)
         quant = (31 - lo, 32 - lo)
+        top = quant[0] - 1 if rn['quantitative'] else None
         out = []
         b = lambda lv, s: f'{lv + step - 1}{s}'
+        if rn['slam_first']:
+            out.append(Rule('6N', C(bal=1, hcp=(33 - lo, None)), 'resp_nt', 'slam'))
         if rn['texas']:
             out.append(Rule('4D', C(H=(6, None), hcp=(game, quant[0] - 1)), 'resp_nt_relay', 'Texas to 4H', artificial=True))
             out.append(Rule('4H', C(S=(6, None), hcp=(game, quant[0] - 1)), 'resp_nt_relay', 'Texas to 4S', artificial=True))
+        smin = inv[0] if step == 1 or rn['stayman_min_2nt'] == 'invite' else game
         if rn['stayman']:
-            out.append(Rule(b(2, 'C'), C(H=4, hcp=(inv[0], None)) | C(S=4, hcp=(inv[0], None)), 'resp_nt_relay', 'Stayman',
-                            forcing=1, artificial=True))
+            if rn['stayman_five_four']:
+                spred = C(H=4, hcp=(smin, None)) | C(S=4, hcp=(smin, None))
+            else:
+                spred = C(H=4, S=(None, 4), hcp=(smin, None)) | C(S=4, H=(None, 4), hcp=(smin, None))
+            stayman = [Rule(b(2, 'C'), spred, 'resp_nt_relay', 'Stayman', forcing=1, artificial=True)]
+        else:
+            stayman = []
+        transfers = []
         if rn['transfers']:
-            out.append(Rule(b(2, 'H'), C(S=(5, None), rel=[('S', 'H', 0)]), 'resp_nt_relay', 'transfer to spades', forcing=1, artificial=True))
-            out.append(Rule(b(2, 'D'), C(H=(5, None)), 'resp_nt_relay', 'transfer to hearts', forcing=1, artificial=True))
+            transfers.append(Rule(b(2, 'H'), C(S=(5, None), rel=[('S', 'H', 0)]), 'resp_nt_relay', 'transfer to spades', forcing=1, artificial=True))
+            transfers.append(Rule(b(2, 'D'), C(H=(5, None)), 'resp_nt_relay', 'transfer to hearts', forcing=1, artificial=True))
             if step == 1 and rn['two_spade'] == 'clubs':
-                out.append(Rule('2S', C(C=(6, None), hcp=(None, inv[0] - 1)), 'resp_nt_relay', 'transfer to clubs', forcing=1, artificial=True))
+                transfers.append(Rule('2S', C(C=(6, None), hcp=(None, inv[0] - 1)), 'resp_nt_relay', 'transfer to clubs', forcing=1, artificial=True))
             elif step == 1 and rn['two_spade'] == 'minors':
-                out.append(Rule('2S', C(C=(5, None), D=(5, None)), 'resp_nt_relay', 'both minors', forcing=1, artificial=True))
-        out.append(Rule('6N', C(hcp=(33 - lo, 36 - lo)), 'resp_nt', 'slam'))
-        out.append(Rule('4N', C(hcp=quant), 'resp_nt', 'quantitative', forcing=0))
-        out.append(Rule('3N', C(hcp=(game, quant[0] - 1)), 'resp_nt', 'game'))
+                transfers.append(Rule('2S', C(C=(5, None), D=(5, None)), 'resp_nt_relay', 'both minors', forcing=1, artificial=True))
+        out += (transfers + stayman) if rn['transfers_first'] else (stayman + transfers)
+        if not rn['slam_first']:
+            out.append(Rule('6N', C(hcp=(33 - lo, 36 - lo)), 'resp_nt', 'slam'))
+        if rn['quantitative']:
+            out.append(Rule('4N', C(hcp=quant), 'resp_nt', 'quantitative', forcing=0))
+        out.append(Rule('3N', C(hcp=(game, top)), 'resp_nt', 'game'))
         if step == 1:
             out.append(Rule('2N', C(hcp=inv), 'resp_nt', 'invitational'))
         out.append(Rule('PASS', ANY, 'resp_pass', 'pass'))
@@ -615,6 +654,8 @@ class CardSystem:
             return [Rule('3C', ANY, 'nt_answer', 'complete the transfer')]
         if rn['texas'] and resp in ('4D', '4H'):
             return [Rule('4H' if resp == '4D' else '4S', ANY, 'nt_answer', 'complete Texas')]
+        if rn['answers'] != 'all':
+            return None
         if resp == '2N' and step == 1:
             return [Rule('3N', C(hcp=(lo + 1, None)), 'nt_answer', 'accept'), Rule('PASS', ANY, 'nt_answer', 'decline')]
         if resp == '4N':
@@ -664,7 +705,7 @@ class CardSystem:
             return None
         x = opening[1]
         out = []
-        adj = -3 if balancing else 0
+        adj = -cp['balance'] if balancing else 0
         unbid = [s for s in 'SHDC' if s != x]
         if cp['michaels'] and not balancing:
             if x in 'CD':
@@ -678,30 +719,40 @@ class CardSystem:
             out.append(Rule('2N', C(**{low[0]: (5, None), low[1]: (5, None)}, hcp=(8, None)), 'comp_two_suited', 'unusual 2NT', artificial=True))
         ntr = cp['balancing_nt'] if balancing else cp['nt_overcall']
         out.append(Rule('1N', C(bal=1, hcp=tuple(ntr), **{'stop' + x: 1}), 'comp_nt', f'1NT overcall {ntr[0]}-{ntr[1]}'))
-        out.append(Rule('X', C(hcp=(18 + adj, None)), 'comp_double', 'strong double'))
-        o1, o2 = cp['overcall_1'], cp['overcall_2']
-        for s in 'SHDC':
-            if s == x:
-                continue
-            b = cheapest(s, opening)
-            rng = o1 if level(b) == 1 else o2
-            q = {'top5' + s: (2, None)} if level(b) == 1 else {'top3' + s: (2, None)}
-            out.append(Rule(b, C(**kw(L(s, cp['overcall_len'] if level(b) == 1 else 5), q, hcp=(rng[0] + adj, rng[1]))), 'comp_overcall', f'{b} overcall'))
-        shape = C(**kw({x: (None, 2)}, {s: (3, None) for s in unbid if s in 'SH'}, hcp=(cp['takeout_double_min'] + adj, None)))
-        out.append(Rule('X', shape, 'comp_double', 'takeout double'))
+        out.append(Rule('X', C(hcp=(cp['strong_double_min'] + adj, None)), 'comp_double', 'strong double'))
         jt = cp['jump_overcall']
+        o1, o2, o3 = cp['overcall_1'], cp['overcall_2'], cp['overcall_3_min']
+        late_jumps = []
         for s in 'SHDC':
             if s == x:
                 continue
+            simple = []
+            b = cheapest(s, opening)
+            lv = level(b)
+            if lv <= 2 or o3 is not None:
+                rng = o1 if lv == 1 else o2 if lv == 2 else (o3, o2[1])
+                q = {k + s: (v, None) for k, v in cp['overcall_quality'][str(min(lv, 3))].items()}
+                simple.append(Rule(b, C(**kw(L(s, cp['overcall_len'] if lv == 1 else 5), q, hcp=(rng[0] + adj, rng[1]))), 'comp_overcall', f'{b} overcall'))
+            jumps = []
             j = jump(s, opening)
-            if not j or level(j) > 3:
-                continue
-            if jt == 'weak' and not balancing:
-                out.append(Rule(j, C(**kw(L(s, 6), hcp=(5, 10), **{'top5' + s: (2, None)})), 'comp_jump', f'weak jump {j}'))
-            elif jt == 'intermediate' or balancing:
-                out.append(Rule(j, C(**kw(L(s, 6), hcp=(12, 16))), 'comp_jump', f'intermediate jump {j}'))
+            if j and level(j) <= 3 and jt != 'none' and (cp['balancing_jumps'] or not balancing):
+                jl = 6 if level(j) == 2 else cp['jump_overcall_len3']
+                if jt == 'weak' and not balancing:
+                    jumps.append(Rule(j, C(**kw(L(s, jl), hcp=tuple(cp['weak_jump_hcp']), **{'top5' + s: (cp['overcall_quality']['1'].get('top5', 2), None)})),
+                                      'comp_jump', f'weak jump {j}'))
+                elif jt == 'intermediate' or balancing:
+                    jumps.append(Rule(j, C(**kw(L(s, jl), hcp=(12, 16))), 'comp_jump', f'intermediate jump {j}'))
+                else:
+                    jumps.append(Rule(j, C(**kw(L(s, jl), hcp=(17, None))), 'comp_jump', f'strong jump {j}'))
+            if cp['jump_first']:
+                out += jumps + simple
             else:
-                out.append(Rule(j, C(**kw(L(s, 6), hcp=(17, None))), 'comp_jump', f'strong jump {j}'))
+                out += simple
+                late_jumps += jumps
+        takeout_suits = [s for s in unbid if s in 'SH'] if cp['takeout_shape'] == 'majors' else unbid
+        shape = C(**kw({x: (None, 2)}, {s: (3, None) for s in takeout_suits}, hcp=(cp['takeout_double_min'] + adj, None)))
+        out.append(Rule('X', shape, 'comp_double', 'takeout double'))
+        out.extend(late_jumps)
         out.append(Rule('PASS', ANY, 'comp_pass', 'pass'))
         return out
 
@@ -709,7 +760,7 @@ class CardSystem:
         conv = self.cp['vs_nt']
         out = []
         if self.cp['vs_nt_double'] == 'penalty' and conv != 'dont':
-            out.append(Rule('X', C(hcp=(15, None)), 'comp_vs_nt', 'penalty double'))
+            out.append(Rule('X', C(hcp=(self.cp['vs_nt_double_min'], None)), 'comp_vs_nt', 'penalty double'))
         if conv == 'cappelletti':
             out += [Rule('2D', C(H=(5, None), S=(4, None), hcp=(9, None)) | C(H=(4, None), S=(5, None), hcp=(9, None)), 'comp_vs_nt', 'both majors', artificial=True),
                     Rule('2H', C(H=(5, None), hcp=(9, None)) & (C(C=(4, None)) | C(D=(4, None))), 'comp_vs_nt', 'hearts and a minor'),
@@ -723,11 +774,15 @@ class CardSystem:
                     Rule('X', C(longest=(6, None), n4=1, hcp=(8, None)), 'comp_vs_nt', 'one long suit', artificial=True)]
         elif conv == 'landy':
             out.append(Rule('2C', C(H=(4, None), S=(4, None), n5=(1, None), hcp=(9, None)), 'comp_vs_nt', 'Landy, both majors', artificial=True))
-        out.append(Rule('2N', C(C=(5, None), D=(5, None), hcp=(8, None)), 'comp_vs_nt', 'both minors', artificial=True))
+        if self.cp['vs_nt_2nt_minors']:
+            out.append(Rule('2N', C(C=(5, None), D=(5, None), hcp=(8, None)), 'comp_vs_nt', 'both minors', artificial=True))
+        nat = self.cp['vs_nt_natural']
         for s in 'SHDC':
             if conv == 'landy' and s == 'C':
                 continue
-            out.append(Rule(f'2{s}', C(**kw(L(s, 6 if s in 'CD' else 5), hcp=(8, 15), **{'top3' + s: (2, None)})), 'comp_vs_nt', f'natural 2{s}'))
+            q = {k + s: (nat[k], None) for k in ('top3', 'top5') if nat.get(k)}
+            ln = nat['len_minor'] if s in 'CD' else nat['len_major']
+            out.append(Rule(f'2{s}', C(**kw(L(s, ln), q, hcp=tuple(nat['hcp']))), 'comp_vs_nt', f'natural 2{s}'))
         out.append(Rule('PASS', ANY, 'comp_pass', 'pass'))
         return out
 
