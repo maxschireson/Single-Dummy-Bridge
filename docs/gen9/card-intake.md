@@ -7,7 +7,9 @@
    PDF text layers of ACBL, WBF and ABF form cards lose the layout and the suit symbols (♣♦♥♠ are in a
    symbol font), so "1♣ 3+" and "1♦ 3+" read alike. Read symbol-bearing fields from the image.
 2. **Fill `descriptor`** with flat keys from `configs/cards/_fields.json`, stating only what departs
-   from the defaults. Every number comes from the source. When the source gives points with
+   from the defaults, and `carding` with the fields of `configs/systems/_carding_fields.json`,
+   including the signalling situations (`signal_on_partner_lead`, `signal_on_declarer_lead`,
+   `first_discard`, `trump_signal`): without them the signal reader reads only the opening lead. Every number comes from the source. When the source gives points with
    distribution where a field is HCP, or leaves a range open, write the reading you used.
 3. **Fill `provenance`**: source URL or file, format, reader and date; `confidence` per field (high:
    printed plainly; medium: needs a reading; low: a guess or a derivation, with the reason);
