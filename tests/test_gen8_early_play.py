@@ -101,3 +101,27 @@ class EarlyPlayTests(Fixture):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class CardingRuleTests(Fixture):
+    def test_fixed_carding_rules_choose_among_the_tied_cards_only(self):
+        from bridge_harness.core import card
+        boards = [next(generate(1, 950 + s)) for s in range(2)]
+        for rule in ('low', 'high', 'random'):
+            p = self.make(gen7=dict(tie_break=rule, play_weight=0.))
+            chosen = 0
+            for board in boards:
+                result = play_table(board, ['7', 'g', '7', 'g'], {'7': p, 'g': GreedyPlayer()}, seed=5)
+                self.assertEqual(result['status'], 'ok', result.get('traceback'))
+                for a in result['actions']:
+                    if str(a.get('selector', '')).startswith('rule-' + rule):
+                        tied = sorted(card(k) for k, q in a['proposal_probabilities'].items() if q > 0)
+                        self.assertGreater(len(tied), 1)
+                        self.assertIn(card(a['card']), tied)
+                        self.assertLessEqual(a['selected_pimc_gap'], 1e-9)
+                        if rule == 'low':
+                            self.assertEqual(card(a['card']) % 13, min(x % 13 for x in tied))
+                        if rule == 'high':
+                            self.assertEqual(card(a['card']) % 13, max(x % 13 for x in tied))
+                        chosen += 1
+            self.assertGreater(chosen, 10)

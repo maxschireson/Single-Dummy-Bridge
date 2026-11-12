@@ -64,6 +64,7 @@ class Gen7Config:
     play_max_layouts: int = 1024    # a longer deal list is resampled by scorer weight to this many before the net scores it
     play_lead: bool = True          # the opening lead counts as a play
     tie_break: str = 'net'          # among exactly tied cards: 'net' | 'gen5' (the spec's policy net, as Gen6)
+                                    # | 'low' | 'high' | 'random': fixed carding rules, for opponents of a known other type
     search_from_trick: int = 1      # earlier tricks are played from the net without search; 1 = always search
     net_sample: bool = False        # unsearched cards: draw from the net's policy instead of taking its top card
     tree_audit: bool = True         # where the tree was consulted, the audit's reference card is the card played without it
@@ -74,7 +75,7 @@ class Gen7Config:
     early_min_effective: float = 8. # the exponent is halved until the scored pool amounts to at least this many layouts
 
     def __post_init__(self):
-        if self.tie_break not in ('net', 'gen5') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
+        if self.tie_break not in ('net', 'gen5', 'low', 'high', 'random') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
                 or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000 \
                 or not 0 <= self.early_play_weight <= 4 or not 16 <= self.early_pool <= 65536 or not 1 <= self.early_min_effective <= 4096:
             raise ValueError('Invalid Gen7 settings')
@@ -476,8 +477,24 @@ class Gen7Player(Gen6Player):
             selected_probability=behaviour[symbol(chosen)], net_probabilities={symbol(x): float(q) for x, q in zip(o.legal, p)},
             gen7=dict(asdict(self.g7), source='net', trick=len(o.history) // 4 + 1)))
 
+    def rule_ties(self, o, rng, result):
+        """Among exactly tied cards: the lowest, the highest (by rank, then suit), or one at random. No net is read."""
+        d = result.details
+        eligible = sorted(card(k) for k, p in d['behavior_probabilities'].items() if p > 0)
+        if len(eligible) < 2:
+            return result
+        rule = self.g7.tie_break
+        chosen = rng.choice(eligible) if rule == 'random' else min(eligible, key=lambda x: (x % 13, x)) if rule == 'low' \
+            else max(eligible, key=lambda x: (x % 13, -x))
+        probs = {x: 1 / len(eligible) if rule == 'random' else float(x == chosen) for x in eligible}
+        return Decision(chosen, dict(d, selector='rule-' + rule + '-' + self.spec['id'], proposal_probabilities=d['behavior_probabilities'],
+                                     behavior_probabilities={symbol(x): p for x, p in probs.items()}, selected_probability=probs[chosen],
+                                     selected_pimc_gap=d['estimates'][symbol(chosen)]['gap_to_best']))
+
     def break_ties(self, o, rng, result):
         """Gen6Player.break_ties with the Gen7 net's log-probability in place of the Gen5 net's prediction."""
+        if self.g7.tie_break in ('low', 'high', 'random'):
+            return self.rule_ties(o, rng, result)
         if self.g7.tie_break != 'net':
             return super().break_ties(o, rng, result)
         d = result.details
