@@ -247,7 +247,8 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
                 L.append(f'| {g} | {ep} | {nat["n"]} | {f(nat)} | {f(com)} |')
     L += ['', '## 2. What experience adds', '',
           'What each epoch\'s bots were handed for each guest (the snapshot frozen when the previous epoch closed), read as the Gen 9 bot reads it.', '',
-          '| Guest | Epoch | Boards in the snapshot | Deltas (board-sides) | P(card) as read | Honesty as read | Play factor | Snapshot = envelopes of earlier epochs |', '| --- | --- | ---: | ---: | ---: | ---: | --- | --- |']
+          '| Guest | Epoch | Boards in the snapshot | Deltas (board-sides) | P(card) as read | Other profiles as read | Honesty as read | Play factor | Snapshot = envelopes of earlier epochs |',
+          '| --- | --- | ---: | ---: | ---: | --- | ---: | --- | --- |']
     for ep in sorted(int(p.stem) for p in (control / 'epochs').glob('*.json')):
         rep = pl.epoch_experience(control, ep, spec)
         for g in guests:
@@ -256,7 +257,9 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
                 continue
             pc = dict(map(tuple, row['profiles_read'])).get('card')
             h = (row.get('honesty_read') or {}).get('*')
-            L.append(f"| {g} | {ep} | {row.get('deals', '—')} | {row['boards']} | {'—' if pc is None else f'{pc:.3f}'} | {'— (prior)' if h is None else f'{h:.3f}'} | "
+            others = ', '.join(f'{s_} {p_:.2f}' for s_, p_ in sorted(row['profiles_read'], key=lambda x: -x[1]) if s_ != 'card' and p_ >= 0.05) or '—'
+            label = ep if ep in epochs else f'{ep} (after the run)'
+            L.append(f"| {g} | {label} | {row.get('deals', '—')} | {row['boards']} | {'—' if pc is None else f'{pc:.3f}'} | {others} | {'— (prior)' if h is None else f'{h:.3f}'} | "
                      f"{row.get('play_factor', '—')} | {'yes' if row['snapshot_matches_envelopes'] else '**no**'} |")
     L += ['', '## 4. The arena', '', '**Registry events**', '']
     for e in log:
@@ -274,7 +277,9 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
     L += ['', '**Ratings (native) at the close of each epoch, IMPs a board against the reference, 95% half-width**', '']
     for path in sorted((control / 'ratings').glob('*-native.json')):
         t = json.loads(path.read_text())
-        L.append(f"- epoch {t['epoch']}: " + ', '.join(f"{p} {v['strength']:+.2f} ± {1.96 * v['se']:.2f}" for p, v in sorted(t['players'].items(), key=lambda kv: -kv[1]['strength'])))
+        gone = {e['player'] for e in log if e['event'] == 'retire' and e.get('epoch') is not None and e['epoch'] <= t['epoch']}
+        L.append(f"- epoch {t['epoch']}: " + ', '.join(f"{p}{' (retired)' if p in gone else ''} {v['strength']:+.2f} ± {1.96 * v['se']:.2f}"
+                                                     for p, v in sorted(t['players'].items(), key=lambda kv: -kv[1]['strength'])))
     rules = json.loads((control / 'rules.json').read_text())
     test_pair = f'{bot}~{control_bot}'
     t = ar.BettingTest(alpha=rules['promotion']['alpha'], beta=rules['promotion']['beta'], d=rules['promotion']['d'], cap=rules['promotion']['cap'])
@@ -309,7 +314,7 @@ def queue_planned(control, events, epoch):
         if any((q / (stem + ext)).exists() for ext in ('.json', '.applied', '.refused')):
             continue
         (q / (stem + '.json')).write_text(json.dumps(a9.event(e['event'], e['player'], e.get('author', 'plan'),
-                                                               e.get('authority', 'arrival run plan, written before the run')), indent=1))
+                                                               e.get('authority', 'arrival run plan, written before the run'), epoch=epoch), indent=1))
 
 
 def arrival(out, players, rules, capsule, events, epochs, workers, backend=None):
