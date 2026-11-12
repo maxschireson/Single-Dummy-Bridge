@@ -48,3 +48,5 @@ KeyError: '8n-32'
 1850 boards: -0.0168 +- 0.0712 IMPs/board for 8n-32; 1174 boards/hour; 0 failed
 1900 boards: 0.0074 +- 0.0703 IMPs/board for 8n-32; 1175 boards/hour; 0 failed
 1950 boards: -0.0144 +- 0.0696 IMPs/board for 8n-32; 1176 boards/hour; 0 failed
+2000 boards: -0.0245 +- 0.0685 IMPs/board for 8n-32; 1177 boards/hour; 0 failed
+{"pair": "8n-32~8p-32", "boards": 2000, "cpu_per_board": 24.39, "common": {"imps_per_board": -0.0245, "se": 0.0685, "boards": 2000, "won": 230, "lost": 257, "flat": 1513}, "native": {"imps_per_board": -0.0245, "se": 0.0685, "boards": 2000, "won": 230, "lost": 257, "flat": 1513}}
