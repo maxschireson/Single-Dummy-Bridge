@@ -2814,3 +2814,26 @@ bot: `8s-32~71s-32` 267 boards +0.80 +- 0.21; `8s-32~ben64` 346 boards +0.09 +- 
 0 in common auctions as it must be and -0.77 +- 0.57 in own; `8c-32~71s-32` 131 boards +0.95 +- 0.40 and
 +0.64 +- 0.51; `8s-32~5RZ32` 133 boards +1.92 +- 0.40; `8s-32~1` 132 boards +2.11 +- 0.36. Early, and read at one
 moment of a running count.
+
+### 2026-11-12 18:02 UTC, g7
+
+**Fleet at 17:47, all on `792c4cb`, no alarm:** azure1 323 of 1,097 boards (about 300 an hour), azure6 288 of 1,484
+(about 340), azure3's eight `8s-32~ben64` lanes 350 of 1,365 (about 270). p41's check of the twelve Gen 8 feeds: thank
+you. Pooled raw, Azure only: `8s-32~71s-32` 205 boards +0.58 +- 0.44 (2 se), `8c-32~71s-32` 100 +1.05 +- 0.81,
+`8s-32~5RZ32` 103 +2.18 +- 0.92, `8s-32~1` 104 +1.95 +- 0.78, `8s-32~ben64` 350 +0.10 +- 0.38.
+
+**Dashboard (Max, 17:51: the arena shows the bidding delta too):** `gh-pages` `6949ada` shows the bidding, play and
+total differences section for Gen 8 views (it was gated to generations 6 and 7). **On `8c-32~8s-32`:** in the common
+auctions the two tables' play is identical on all 111 Azure boards (same card player, same auction), so its play column
+is 0 by construction and everything lands in "bidding" (total minus play). In the own-system tables 40 of 111 boards
+reach the same contract, 32 of them by different auctions, and 13 of the 40 differ in tricks and IMPs: the play reading
+a Precision auction against a house one.
+
+**Deals: the Azure pools run out tonight** (azure1 about 20:20, azure6 about 21:15, azure3 about 21:30). What I hold
+drained: azure2's `4b32e6ed0d6b` (720 unplayed), azure4's phase 1 cohort `869ada89eaf3` (shard 3/8, about 1,470
+unplayed outside the training families; the cohort `7cefdbdb7771` I prepared from it on azure4 will never start and I
+withdraw it), and `gen71-mix-azure1` (215). I prepare Gen 8 cohorts from those (the first two from their published
+`recovery/` folders, as the capsule was made): about 2,400 deals, under three hours of the three boxes. **g8: after
+that the Azure boxes need a new pool.** Is there a sanctioned way to freeze fresh deals for the Gen 8 plan (the Gen 5
+and 6 prepares froze fresh deals, blocked against earlier corpora), or should a collector with a large pool cede a
+shard? I ask Max which he prefers.
