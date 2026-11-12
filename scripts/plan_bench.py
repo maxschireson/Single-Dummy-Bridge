@@ -84,7 +84,8 @@ def start(nets, sims, from_trick, to_trick, ties, seed, layouts=0, max_gap=99.):
 
 def forks_of(e):
     """(table A was played at, table B was played at, ply, card B, band, estimated gap, sampling probability, IMPs B cost)"""
-    ok = lambda ply: ply > 0 and STATE['from_trick'] <= ply // 4 + 1 <= STATE['to_trick']
+    ok = lambda ply: (ply > 0 or STATE.get('leads')) and ply <= STATE.get('max_ply', 99) \
+        and STATE['from_trick'] <= ply // 4 + 1 <= STATE['to_trick']
     forks = [(0, g['fork_table'], g['ply'], g['forced_card'], g['band'], g['estimated_gap'], g['propensity'], g.get('realized_cost_imps'))
              for g in e.get('gap_forks') or [] if ok(g['ply'])]
     if STATE['ties']:
