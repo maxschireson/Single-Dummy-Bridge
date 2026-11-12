@@ -447,27 +447,43 @@ class Gen6Player(ArenaPlayer):
         remaining = 13 - len(o.history) // 4
         means = {c: 0. for c in o.legal}
         tricks = dict(means)
+        # Logging only (no effect on the choice): how much the best card depends on the layout.
+        share = dict(means)
+        layout_best = weight_sum = 0.
         nodes = 0
         for (values, count), w in zip(solved, weights):
             if set(values) != set(o.legal):
                 raise RuntimeError('DDS legal-card expansion mismatch')
             nodes += count
+            utilities = {}
             for c, t in values.items():
                 total = o.declarer_tricks + (t if declaring else remaining - t)
+                utilities[c] = total if declaring else -total
                 means[c] += float(w) * (total if declaring else -total)
                 tricks[c] += float(w) * total
+            top = max(utilities.values())
+            layout_best += float(w) * top
+            weight_sum += float(w)
+            for c, u in utilities.items():
+                if u >= top - 1e-9:
+                    share[c] += float(w)
         best = max(means.values())
         eligible = sorted(c for c, v in means.items() if best - v <= self.near_tie + 1e-9)
         choice = rng.choice(eligible)
         n = len(solved)
+        scale = weight_sum if weight_sum > 0 else 1.
         return Decision(choice, dict(samples=n, dds_calls=n, dds_nodes=nodes, objective='tricks', batch=True,
             dds_native_solves=after['native_solves'] - before['native_solves'], dds_cache_hits=after['hits'] - before['hits'],
             dds_duplicate_worlds=after['duplicate_worlds'] - before['duplicate_worlds'], unique_worlds=n,
             near_tie=self.near_tie, behavior_probabilities={symbol(c): 1 / len(eligible) if c in eligible else 0. for c in means},
             selected_probability=1 / len(eligible), selected_pimc_gap=best - means[choice], gen6=info,
             uncertainty_note='Weighted layouts; no IID standard error.',
+            # guess_size: tricks gained by seeing the layout before this one card (weighted mean of each
+            # layout's own best card, minus the best single card for all layouts). 0 when one card is
+            # best in every layout. best_share: weight of the layouts in which that card is a best card.
+            layout_best_utility=layout_best / scale, guess_size=max(0., (layout_best - best) / scale),
             estimates={symbol(c): dict(utility=v, utility_stderr=None, gap_to_best=best - v, gap_stderr=None,
-                                       declarer_tricks=tricks[c]) for c, v in means.items()}))
+                                       declarer_tricks=tricks[c], best_share=share[c] / scale) for c, v in means.items()}))
 
     def break_ties(self, o, rng, result):
         """ArenaPlayer.choose's policy step, unchanged except that the policy net is told a

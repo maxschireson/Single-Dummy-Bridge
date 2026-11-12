@@ -61,10 +61,20 @@ def validate(r,m,index):
     from bridge_harness.arena_pairs import pair_members
     candidate,opponent=pair_members(r['pair'])
     if r['candidate']!=candidate or r['opponent']!=opponent:raise ValueError('Changed candidate/opponent')
-    if set(r['regimes'])!={'common','native'}:raise ValueError('Missing bidding condition')
+    self_play=candidate==opponent
+    if set(r['regimes'])!=({'self'} if self_play else {'common','native'}):raise ValueError('Missing bidding condition')
     if r['versions']!={k:v['identity'] for k,v in m['bots'].items()}:raise ValueError('Wrong versions')
     for key,e in r['unique_tables'].items():
         if e.get('schema_version')!='v4-passed-out-v1':replay(e)
+    if self_play:
+        condition=r['regimes']['self']
+        if condition['imps'] is not None or condition['score_difference'] is not None:raise ValueError('Self-play has no strength comparison')
+        if len(condition['tables'])!=(2 if m.get('two_self_rooms') else 1):raise ValueError('Wrong self-play table count')
+        for room,key in enumerate(condition['tables']):
+            e=r['unique_tables'][key];bids=r['bidding'][f'self/{room}']
+            if e['assignments']!=['candidate']*4:raise ValueError('Wrong self-play assignments')
+            if bids['bidders']!=[m.get('common_bidder',candidate)]*4 or bids['calls']!=list(e['board']['auction']):raise ValueError('Wrong self-play auction')
+        return
     for regime,condition in r['regimes'].items():
         if len(condition['tables'])!=2:raise ValueError('Missing swapped room')
         scores=[]
@@ -91,9 +101,11 @@ def state(rows,m):
         tables=sum(r['tables'] for r in rows),failures=0,epoch=time.time(),complete=len(rows)==m['target'])
 
 def receipt(r,path):
+    common=r['regimes'].get('common',r['regimes'].get('self'))
+    native=r['regimes'].get('native',r['regimes'].get('self'))
     return dict(index=r['index'],family=r['family'],split=r['split'],pair=r['pair'],
         manifest_identity=r['manifest_identity'],episode_sha256=sha(path),completed_epoch=r['completed_epoch'],
-        imps=r['regimes']['common']['imps'],own_imps=r['regimes']['native']['imps'],
+        imps=common['imps'],own_imps=native['imps'],
         root_games=len(r['unique_tables']),tables=sum(len(e['tables']) for e in r['unique_tables'].values()),decision_timing=r['decision_timing'])
 
 def run(root,workers):

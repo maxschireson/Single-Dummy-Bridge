@@ -46,6 +46,6 @@ and bidder conditions. Deduplicate by canonical deal family and matchup,
 independently of outcome. Training splits must keep related families together.
 Audited branches and repeated snapshots are not new independent boards.
 
-The [original architecture detail](gen6_architecture_2026-11-11.md) describes
+The [original architecture detail](generations/gen6/gen6_architecture_2026-11-11.md) describes
 algorithms, switches and offline tests. Use [current system](current-system.md)
 for active switch values.

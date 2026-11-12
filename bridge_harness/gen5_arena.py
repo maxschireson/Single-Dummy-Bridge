@@ -8,7 +8,7 @@ import time
 import numpy as np
 from .bidding_env import BidObservation, CALLS, CALL_ID, encode, legal_mask, pack_inputs, deal_key
 from .core import Board, auction_contract, imps, normalize_bid
-from .fork_audit import collect_board, ForkBudget, stream
+from .fork_audit import collect_board, ForkBudget, GapForks, stream
 from .mixed_arena import ArenaPlayer, split
 from .runner import replay
 from .training import digest
@@ -84,6 +84,12 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
         reference=manifest['audit_references'][current]
     board=Board.from_dict(board_dict);specs=manifest['bots']
     versions={k:v['identity'] for k,v in specs.items()}
+    # Gap forks: only when the manifest asks, only with the standard collector, never on a BEN board
+    # (the BEN lane is single and slow). Without the manifest key every record is as before.
+    with_ben=any(k=='ben' or specs[k].get('engine')=='ben' for k in (current,opponent))
+    gap=GapForks(**manifest['gap_fork']) if manifest.get('gap_fork') and collector is collect_board and not with_ben else None
+    if gap is not None and gap.per_band==0:gap=None
+    extra={} if gap is None else {'gap':gap}
     players={'candidate':player_factory(specs[current],root,specs[reference])}
     if opponent!=current:players['opponent']=player_factory(specs[opponent],root)
     for role,other in (('candidate',opponent),('opponent',current)):
@@ -99,7 +105,7 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
     # with nothing declared the auction is called exactly as before Gen 8
     bid=lambda ids:auction(board,[bidders[v] for v in ids],table(ids)) if declared or fixed else auction(board,[bidders[v] for v in ids])
     common_ids=[manifest.get('common_bidder',current)]*4
-    budget=ForkBudget(**(manifest['ben_audit'] if opponent=='ben' else manifest['audit'])); max_forks=budget.max_forks
+    budget=ForkBudget(**(manifest['ben_audit'] if with_ben else manifest['audit'])); max_forks=budget.max_forks
     try:
         common,common_bids=bid(common_ids)
         for regime in (('self',) if opponent==current else ('common','native')):
@@ -119,7 +125,7 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
                         budget.max_forks=max(0,max_forks-budget.forks)
                         for p in players.values():      # a player that reads auctions by system is told this table's systems
                             if hasattr(p,'seat_table'):p.seat_table(table(bidder_ids))
-                        record=collector(b,players,assignments,room_seed,budget,versions)
+                        record=collector(b,players,assignments,room_seed,budget,versions,**extra)
                         if collector is collect_board:replay(record)
                     cache[key]=f'table-{len(records)}';records[cache[key]]=record
                 room_ids.append(cache[key])
@@ -130,9 +136,11 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
                                               records[room_ids[1]]['tables'][0]['ns_score'])
             regimes[regime]=dict(tables=room_ids,score_difference=delta,imps=None if delta is None else imps(delta))
         family=deal_key(board.hands,True)
-        return dict(board=common.to_dict(),schema='gen5-two-auction-arena-v1',index=index,family=family,split=split(family),
+        result=dict(board=common.to_dict(),schema='gen5-two-auction-arena-v1',index=index,family=family,split=split(family),
             candidate=current,pair=pair_id(current,opponent),opponent=opponent,versions=versions,manifest_identity=manifest['identity'],regimes=regimes,
             unique_tables=records,bidding=bidding_records,base_cpu=budget.base_cpu,branch_cpu=budget.branch_cpu,
             completed_epoch=time.time(),interpretation='Report common and native separately; self-play supplies training only.')
+        if gap is not None:result.update(gap_cpu=gap.gap_cpu,gap_fork_count=gap.forks)
+        return result
     finally:
         for player in players.values():player.close()

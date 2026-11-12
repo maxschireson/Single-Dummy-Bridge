@@ -5,6 +5,8 @@ actor/configuration, dataset, sample count and uncertainty behind a claim.
 
 ## Start here
 
+- [Gen6 closeout: pooled results across all Gen 6 feeds](gen6-closeout-2026-11-12/README.md)
+- [Results by generation](../docs/generations/README.md)
 - [Gen6 primary launch snapshot](gen6-primary-launch-20261111.json)
 - [Gen6 dashboard verification snapshot](gen6-primary-dashboard-verification-20261111.json)
 - [Gen6 layout-selection study](gen6-layout-selection-2026-11-11/README.md)

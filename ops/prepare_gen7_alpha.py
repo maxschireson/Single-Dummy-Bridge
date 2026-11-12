@@ -14,6 +14,9 @@ Several machines can share one source run without playing a deal twice: each pre
 own `--shard K/N` (K from 0 to N-1) and gets every N-th unplayed deal starting at the K-th. The
 shard is written into the manifest, so each machine's cohort has its own identity.
 
+The source may also be a drained Gen7 cohort: a new plan then takes over the deals that cohort had
+not played, with the same Gen7 bots (same settings, same identity) and a different match mix.
+
   python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json] [--shard K/N]
 """
 import argparse
@@ -22,6 +25,7 @@ from dataclasses import asdict
 import fcntl
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -41,6 +45,18 @@ from ops.prepare_gen6 import verify_source
 
 PLAN = ROOT / 'configs/round7-alpha.json'
 GEN7_POLICY = 'artifacts/gen7/policy.npz'
+POLICY_KEY = 'gen7_policy'                     # a bot's policy artifact unless its plan entry names another
+POLICY_KEYS = re.compile(r'gen7_policy(_[a-z0-9]+)?')
+
+
+def policy_key(entry):
+    return entry.get('policy', POLICY_KEY)
+
+
+def policy_path(key):
+    """Where a policy release sits in a run. The first policy keeps the path it has always had, so a bot that
+    uses it keeps its identity; any other is named by its artifact key."""
+    return GEN7_POLICY if key == POLICY_KEY else f'artifacts/gen7/{key}.npz'
 RUNTIME = ('ops/gen5_runtime.py', 'ops/prepare_gen7_alpha.py')
 # What the plan does not own: how tables are audited and forked, how rooms are seeded, the labels the
 # exporter and report registration key on, and facts about the corpus the unplayed deals come from.
@@ -52,11 +68,14 @@ def load_plan(path=None, require_ready=True):
     plan = json.loads(Path(path or PLAN).read_text())
     if require_ready and (not plan['launch_enabled'] or plan['pending']):
         raise ValueError('Gen7 alpha plan is not ready: settle every `pending` item, empty the list and enable launch')
-    entry = plan['artifacts'].get('gen7_policy') if set(plan['artifacts']) == {'gen7_policy'} else None
-    if entry is None or not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
-        raise ValueError('Gen7 alpha plan needs exactly one artifact, gen7_policy, with release, file, restore and sha256')
     if not plan['gen7_bots']:
         raise ValueError('Gen7 alpha plan needs at least one Gen7 bot')
+    used = {policy_key(bot) for bot in plan['gen7_bots'].values()}
+    if not plan['artifacts'] or set(plan['artifacts']) != used or not all(isinstance(k, str) and POLICY_KEYS.fullmatch(k) for k in used):
+        raise ValueError('Gen7 alpha plan artifacts are exactly the policy releases its bots use: gen7_policy, and gen7_policy_<name> for a bot that names another')
+    for entry in plan['artifacts'].values():
+        if not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
+            raise ValueError('A Gen7 policy artifact needs release, file, restore and sha256')
     for bot in plan['gen7_bots'].values():
         resolved(bot.get('gen7'))
         Gen6Config(**bot.get('gen6', {}))
@@ -73,19 +92,24 @@ def load_plan(path=None, require_ready=True):
 
 
 def make_bots(old, plan):
-    """Source bots unchanged, plus each Gen7 bot built from its Gen6 base bot's spec."""
+    """Source bots unchanged, plus each Gen7 bot built from its Gen6 base bot's spec.
+
+    The source run may itself be a drained Gen7 cohort, whose unplayed deals a new plan takes over. It already
+    has the plan's Gen7 bots; each must then be exactly the bot this plan builds, and is kept as it is."""
     bots = deepcopy(old['bots'])
     for key, entry in plan['gen7_bots'].items():
         base = old['bots'].get(entry['base'])
-        if key in bots or base is None or base.get('engine') != 'gen6':
-            raise ValueError(f'Gen7 bot {key} needs a new id and a Gen6 base bot')
+        if base is None or base.get('engine') != 'gen6':
+            raise ValueError(f'Gen7 bot {key} needs a Gen6 base bot')
         spec = deepcopy(base)
         spec.pop('identity')
         spec.update(id=key, engine=ENGINE, policy_role='gen7-alpha', samples=entry.get('samples', base['samples']),
                     gen6=asdict(Gen6Config(**dict(base['gen6'], **entry.get('gen6', {})))),
-                    gen7=resolved(entry.get('gen7')), gen7_policy=GEN7_POLICY)
-        spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts']['gen7_policy']['sha256'])
+                    gen7=resolved(entry.get('gen7')), gen7_policy=policy_path(policy_key(entry)))
+        spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts'][policy_key(entry)]['sha256'])
         spec['identity'] = digest(spec)
+        if key in bots and bots[key] != spec:
+            raise ValueError(f'The source run has a different bot called {key}: give the Gen7 bot a new id, or the settings of the bot it continues')
         bots[key] = spec
     return bots
 
@@ -107,6 +131,19 @@ def check_mix(plan, bots, references):
     idle = sorted(set(plan['gen7_bots']) - scheduled)
     if idle:
         raise ValueError(f'Gen7 bots in no pair: {idle}')
+
+
+def gen7_block(plan):
+    """What the manifest says about the cohort's Gen7 bots and their policy releases. A plan with the one policy keeps
+    the two fields it has always had; a plan whose bots name other releases lists every bot's."""
+    block = dict(bots=sorted(plan['gen7_bots']))
+    first = plan['artifacts'].get(POLICY_KEY)
+    if first:
+        block.update(policy_release=first['release'], policy_sha256=first['sha256'])
+    if set(plan['artifacts']) != {POLICY_KEY}:
+        block['policies'] = {k: dict(artifact=policy_key(e), release=plan['artifacts'][policy_key(e)]['release'], sha256=plan['artifacts'][policy_key(e)]['sha256'])
+                             for k, e in sorted(plan['gen7_bots'].items())}
+    return block
 
 
 def release_file(entry, scorers):
@@ -142,7 +179,19 @@ def parse_shard(text):
     return k, n
 
 
-def prepare(root, source, plan_path=None, shard=None):
+def inherited_actors(source, old, actor_source):
+    """Restore unchanged actors pruned by a direct predecessor's self-play cutover."""
+    ancestor = json.loads((actor_source / 'manifest.json').read_text())
+    verify_source(actor_source, ancestor)
+    if old.get('source_generation') != ancestor['identity']:
+        raise ValueError('Actor source must be the direct frozen predecessor')
+    for key, spec in old['bots'].items():
+        if ancestor['bots'].get(key) != spec:
+            raise ValueError('Retained actor differs from predecessor: ' + key)
+    return ancestor
+
+
+def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude_families=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -171,6 +220,13 @@ def prepare(root, source, plan_path=None, shard=None):
                 raise ValueError('Source receipt/episode mismatch')
             done.add(i)
         keep = [i for i in range(old['target']) if i not in done]
+        excluded = set()
+        if exclude_families is not None:
+            values = json.loads(Path(exclude_families).read_text())
+            if not isinstance(values, list) or any(not isinstance(v, str) or not re.fullmatch(r'[0-9a-f]{64}', v) for v in values):
+                raise ValueError('Evaluation exclusions must be a JSON list of canonical family hashes')
+            excluded = set(values)
+            keep = [i for i in keep if deal_key(boards[i].hands, True) not in excluded]
         if not keep:
             raise ValueError('No unplayed source deals remain')
         if shard is not None:                   # this machine's share: every n-th unplayed deal, starting at the k-th
@@ -178,17 +234,35 @@ def prepare(root, source, plan_path=None, shard=None):
             keep = keep[k::n]
             if not keep:
                 raise ValueError('No unplayed source deals fall in this shard')
-        bots = make_bots(old, plan)
+        actor_source = Path(actor_source).resolve() if actor_source else None
+        ancestor = inherited_actors(source, old, actor_source) if actor_source else None
+        actor_manifest = dict(old, bots=ancestor['bots']) if ancestor else old
+        bots = make_bots(actor_manifest, plan)
         references = dict(old.get('audit_references', {}), **plan['audit_references'])
         check_mix(plan, bots, references)
-        entry = plan['artifacts']['gen7_policy']
-        policy = release_file(entry, {bots[k]['artifact_sha256']['scorer'] for k in plan['gen7_bots']})
+        policies = {}                           # artifact key -> the release file, checked against the scorer of the bots that use it
+        for key in sorted(plan['artifacts']):
+            policies[key] = release_file(plan['artifacts'][key], {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if policy_key(e) == key})
         root.mkdir(parents=True)
         for folder in ('artifacts', 'assets'):
             if (source / folder).exists():
                 shutil.copytree(source / folder, root / folder)
-        (root / GEN7_POLICY).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(policy, root / GEN7_POLICY)
+        if ancestor:
+            for spec in ancestor['bots'].values():
+                for key, expected in spec['artifact_sha256'].items():
+                    dest = root / spec[key]
+                    if dest.exists() and sha(dest) != expected:
+                        raise ValueError('Actor artifact collision: ' + spec[key])
+                    if not dest.exists():
+                        dest.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copyfile(actor_source / spec[key], dest)
+        for key, policy in policies.items():
+            (root / policy_path(key)).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(policy, root / policy_path(key))
+        if exclude_families is not None:
+            exclusion_path = root / 'artifacts/validation/evaluation-exclusions.json'
+            exclusion_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(exclude_families, exclusion_path)
         for folder in ('episodes', 'receipts', 'failures'):
             (root / folder).mkdir()
         save([boards[i] for i in keep], root / 'corpus.jsonl')
@@ -204,7 +278,7 @@ def prepare(root, source, plan_path=None, shard=None):
             created_epoch=time.time(), source_generation=old['identity'], source_completed=len(done),
             source_indices='source-indices.json', source_indices_sha256=sha(root / 'source-indices.json'),
             labels=labels, order=plan['roster'], plan_sha256=sha(plan_path), source_commit=commit(),
-            gen7_alpha=dict(bots=sorted(plan['gen7_bots']), policy_release=entry['release'], policy_sha256=entry['sha256']),
+            gen7_alpha=gen7_block(plan),
             model_note=plan.get('model_note') or 'Gen 7 alpha bots are their Gen 6 base bot (same bidder, lead net, hand-fit scorer, layouts and sample count) '
                        'with the gen7 engine (bridge_harness/gen7.py): the policy net weights the listed layouts by the play so far, '
                        'breaks ties, and from the tricks named in each bot\'s `gen7.tree` a short tree search over the net\'s likeliest '
@@ -216,6 +290,19 @@ def prepare(root, source, plan_path=None, shard=None):
         for key in CARRIED:
             if key in old:
                 m[key] = deepcopy(old[key])
+        if ancestor:
+            m['actor_source_generation'] = ancestor['identity']
+            m['labels'].update(ancestor.get('labels', {}))
+            m['bidding_conditions'] = ['common', 'native']
+        for key in ('generation', 'variant'):
+            if key in plan:
+                m[key] = plan[key]
+        pairs = [pair_members(p) for p in plan['pair_weights']]
+        m['bidding_conditions'] = (['self'] if any(a == b for a, b in pairs) else []) + (
+            ['common', 'native'] if any(a != b for a, b in pairs) else [])
+        if exclude_families is not None:
+            m['evaluation_exclusions'] = dict(path='artifacts/validation/evaluation-exclusions.json',
+                sha256=sha(exclusion_path), families=len(excluded), reason='Exclude released-policy training families from fresh comparisons')
         if shard is not None:
             m['shard'] = dict(index=k, of=n)
         m['identity'] = digest(m)
@@ -232,7 +319,9 @@ if __name__ == '__main__':
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--plan', type=Path)
     p.add_argument('--shard', help='K/N: take every N-th unplayed deal starting at the K-th (K from 0), for machines sharing one source run')
+    p.add_argument('--actor-source', type=Path, help='Verified direct predecessor supplying actors pruned by self-play; deals come only from --source')
+    p.add_argument('--exclude-families', type=Path, help='JSON family hashes to exclude from evaluation, preserved with their hash')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None)
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families)
     print(json.dumps(dict(identity=m['identity'], target=m['target'], shard=m.get('shard'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))

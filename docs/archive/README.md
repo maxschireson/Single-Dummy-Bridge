@@ -10,10 +10,7 @@ These documents preserve experiments and old operating instructions. Use
 | DDS bidding | [40k confirmation](https://github.com/maxschireson/Single-Dummy-Bridge/blob/16834962ede44e72f366ff741a0bb8b4dbf58609/reports/dds_bidding_40000_confirmation_2026-11-09.md) | Completed evaluation evidence, not current deployment instructions |
 | Belief continuation | [8,315-deal completion](https://github.com/maxschireson/Single-Dummy-Bridge/blob/78e135856ac90d92e0277379db0f5313ff4aea45/reports/large_belief_8315_2026-11-09.md) | Completed historical training/promotion |
 | Gen4 components | [Takeover report](../../reports/gen4_component_takeover_2026-11-09.md) | Historical policy/belief ablation and recovery |
-| Gen5 | [Launch](../gen5_launch_2026-11-10.md) | Rebuilt model generation |
-| Gen5R | [Launch](../gen5r-launch-20261110.md) | Representative layout selection |
-| Gen5RZ | [Launch](../gen5rz_launch_2026-11-10.md) | Policy ties-only ablation |
-| Gen6 initial design | [Architecture](../gen6_architecture_2026-11-11.md) | Algorithm reference; initial launch state/defaults superseded |
+| Gen5, 5R, 5RZ and later | [Generations index](../generations/README.md) | One page per generation from Gen 5 on |
 
 The old `SELFPLAY.md`, `SELF_IMPROVEMENT.md`, `TRAINING_PLAN.md` and design
 PDF/DOCX files remain at their established paths. Their proposed work and numeric

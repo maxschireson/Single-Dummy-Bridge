@@ -31,12 +31,14 @@ def snapshot_runtime(run,backup):
         if name=='watch_gen5.py' and dest.exists():shutil.copy2(source,dest)
         else:copy_once(source,dest)
     for name in ('prepare_gen5r.py','register_gen5r_report.py','prepare_gen5rz.py','prepare_gen5rz_ben.py',
-                 'prepare_gen6.py','prepare_gen6_independent.py','register_gen6_report.py','smoke_gen6.py'):
+                 'prepare_gen6.py','prepare_gen6_independent.py','register_gen6_report.py','smoke_gen6.py',
+                 'prepare_gen7_alpha.py','smoke_gen7.py'):
         if (ROOT/'ops'/name).exists():copy_once(ROOT/'ops'/name,backup/'runtime/ops'/name)
     copy_once(ROOT/'configs/round5r.json',backup/'runtime/configs/round5r.json')
     if (ROOT/'configs/round5rz.json').exists():copy_once(ROOT/'configs/round5rz.json',backup/'runtime/configs/round5rz.json')
     if (ROOT/'configs/round5rz-ben.json').exists():copy_once(ROOT/'configs/round5rz-ben.json',backup/'runtime/configs/round5rz-ben.json')
-    for name in ('round6.json','round6-cutover.json','round6-independent.json','round6-codex.json'):
+    for name in ('round6.json','round6-cutover.json','round6-independent.json','round6-codex.json',
+                 'round7-candidate-phase1.json','gen7-candidate-mix.json'):
         if (ROOT/'configs'/name).exists():copy_once(ROOT/'configs'/name,backup/'runtime/configs'/name)
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     return True

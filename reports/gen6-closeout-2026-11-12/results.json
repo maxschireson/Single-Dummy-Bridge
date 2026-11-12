@@ -1,0 +1,489 @@
+{
+ "generation": 6,
+ "computed_utc": "2026-11-12 03:07",
+ "rules": "dashboard counting rules; see module docstring",
+ "observations": 31954,
+ "counted_boards": 31935,
+ "pairs": {
+  "6-32~6-32": {
+   "boards": 23127,
+   "self_play": true
+  },
+  "6-32~6-256": {
+   "boards": 1133,
+   "common": {
+    "n": 1133,
+    "mean": -0.13415710503089143,
+    "se": 0.10438718564490089,
+    "ci95": [
+     -0.33875598889489716,
+     0.07044177883311431
+    ],
+    "wins": 153,
+    "ties": 784,
+    "losses": 196
+   },
+   "native": {
+    "n": 1133,
+    "mean": -0.13415710503089143,
+    "se": 0.10438718564490089,
+    "ci95": [
+     -0.33875598889489716,
+     0.07044177883311431
+    ],
+    "wins": 153,
+    "ties": 784,
+    "losses": 196
+   },
+   "bidding": {
+    "n": 1133,
+    "mean": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "ties": 1133,
+    "losses": 0
+   }
+  },
+  "6-32~5RZ32": {
+   "boards": 3025,
+   "common": {
+    "n": 3025,
+    "mean": 0.7302479338842975,
+    "se": 0.07638977363258734,
+    "ci95": [
+     0.5805239775644264,
+     0.8799718902041687
+    ],
+    "wins": 917,
+    "ties": 1634,
+    "losses": 474
+   },
+   "native": {
+    "n": 3025,
+    "mean": 0.8208264462809918,
+    "se": 0.0877436438666193,
+    "ci95": [
+     0.6488489043024179,
+     0.9928039882595656
+    ],
+    "wins": 1031,
+    "ties": 1396,
+    "losses": 598
+   },
+   "bidding": {
+    "n": 3025,
+    "mean": 0.09057851239669422,
+    "se": 0.062444326935771434,
+    "ci95": [
+     -0.03181236839741779,
+     0.2129693931908062
+    ],
+    "wins": 302,
+    "ties": 2433,
+    "losses": 290
+   }
+  },
+  "6-32~3": {
+   "boards": 755,
+   "common": {
+    "n": 755,
+    "mean": 0.6980132450331126,
+    "se": 0.14701070427253093,
+    "ci95": [
+     0.40987226465895193,
+     0.9861542254072733
+    ],
+    "wins": 235,
+    "ties": 396,
+    "losses": 124
+   },
+   "native": {
+    "n": 755,
+    "mean": 1.1324503311258278,
+    "se": 0.18681180595889094,
+    "ci95": [
+     0.7662991914464016,
+     1.4986014708052542
+    ],
+    "wins": 298,
+    "ties": 317,
+    "losses": 140
+   },
+   "bidding": {
+    "n": 755,
+    "mean": 0.43443708609271525,
+    "se": 0.13746641987322553,
+    "ci95": [
+     0.1650029031411932,
+     0.7038712690442372
+    ],
+    "wins": 97,
+    "ties": 607,
+    "losses": 51
+   }
+  },
+  "6-32~2": {
+   "boards": 758,
+   "common": {
+    "n": 758,
+    "mean": 0.712401055408971,
+    "se": 0.14963164421801384,
+    "ci95": [
+     0.4191230327416639,
+     1.005679078076278
+    ],
+    "wins": 255,
+    "ties": 402,
+    "losses": 101
+   },
+   "native": {
+    "n": 758,
+    "mean": 0.8588390501319261,
+    "se": 0.16896608317161516,
+    "ci95": [
+     0.5276655271155604,
+     1.1900125731482918
+    ],
+    "wins": 286,
+    "ties": 347,
+    "losses": 125
+   },
+   "bidding": {
+    "n": 758,
+    "mean": 0.14643799472295516,
+    "se": 0.12125647215170886,
+    "ci95": [
+     -0.0912246906943942,
+     0.3841006801403045
+    ],
+    "wins": 80,
+    "ties": 616,
+    "losses": 62
+   }
+  },
+  "6-32~1": {
+   "boards": 756,
+   "common": {
+    "n": 756,
+    "mean": 1.6706349206349207,
+    "se": 0.16456143380210167,
+    "ci95": [
+     1.3480945103828015,
+     1.99317533088704
+    ],
+    "wins": 351,
+    "ties": 328,
+    "losses": 77
+   },
+   "native": {
+    "n": 756,
+    "mean": 1.8148148148148149,
+    "se": 0.18513787545232815,
+    "ci95": [
+     1.4519445789282517,
+     2.177685050701378
+    ],
+    "wins": 383,
+    "ties": 269,
+    "losses": 104
+   },
+   "bidding": {
+    "n": 756,
+    "mean": 0.14417989417989419,
+    "se": 0.1271872954953398,
+    "ci95": [
+     -0.10510720499097181,
+     0.3934669933507602
+    ],
+    "wins": 84,
+    "ties": 600,
+    "losses": 72
+   }
+  },
+  "6-32~ben": {
+   "boards": 1809,
+   "common": {
+    "n": 1809,
+    "mean": -0.10724156992813709,
+    "se": 0.10321740921728471,
+    "ci95": [
+     -0.3095476919940151,
+     0.09506455213774094
+    ],
+    "wins": 450,
+    "ties": 979,
+    "losses": 380
+   },
+   "native": {
+    "n": 1809,
+    "mean": 0.05140961857379768,
+    "se": 0.12446068280510258,
+    "ci95": [
+     -0.1925333197242034,
+     0.29535255687179873
+    ],
+    "wins": 560,
+    "ties": 775,
+    "losses": 474
+   },
+   "bidding": {
+    "n": 1809,
+    "mean": 0.15865118850193477,
+    "se": 0.096699641150373,
+    "ci95": [
+     -0.030880108152796293,
+     0.34818248515666583
+    ],
+    "wins": 232,
+    "ties": 1371,
+    "losses": 206
+   }
+  },
+  "6-256~ben": {
+   "boards": 392,
+   "common": {
+    "n": 392,
+    "mean": 0.4260204081632653,
+    "se": 0.2031553156034204,
+    "ci95": [
+     0.027835989580561327,
+     0.8242048267459693
+    ],
+    "wins": 100,
+    "ties": 233,
+    "losses": 59
+   },
+   "native": {
+    "n": 392,
+    "mean": 0.5,
+    "se": 0.2509182468361633,
+    "ci95": [
+     0.008200236201119926,
+     0.99179976379888
+    ],
+    "wins": 129,
+    "ties": 179,
+    "losses": 84
+   },
+   "bidding": {
+    "n": 392,
+    "mean": 0.07397959183673469,
+    "se": 0.19700863619126407,
+    "ci95": [
+     -0.31215733509814286,
+     0.46011651877161225
+    ],
+    "wins": 53,
+    "ties": 294,
+    "losses": 45
+   }
+  },
+  "6-256~ben64": {
+   "boards": 180,
+   "common": {
+    "n": 180,
+    "mean": 0.044444444444444446,
+    "se": 0.3079559794880344,
+    "ci95": [
+     -0.559149275352103,
+     0.6480381642409918
+    ],
+    "wins": 31,
+    "ties": 120,
+    "losses": 29
+   },
+   "native": {
+    "n": 180,
+    "mean": 0.29444444444444445,
+    "se": 0.3436663986458036,
+    "ci95": [
+     -0.37914169690133065,
+     0.9680305857902196
+    ],
+    "wins": 42,
+    "ties": 100,
+    "losses": 38
+   },
+   "bidding": {
+    "n": 180,
+    "mean": 0.25,
+    "se": 0.2525936225937752,
+    "ci95": [
+     -0.24508350028379938,
+     0.7450835002837994
+    ],
+    "wins": 20,
+    "ties": 139,
+    "losses": 21
+   }
+  }
+ },
+ "sources": [
+  {
+   "key": "gen6codexfast",
+   "name": "Gen6 primary \u00b7 fast self-play and BEN16",
+   "branch": "arena-gen6-fast-selfplay-primary-feed",
+   "revision": "d5a1f25688ca1e9c2b2c25c351f967e134adb10f",
+   "retired": false,
+   "records": 2020,
+   "snapshot_utc": "2026-11-11 12:05"
+  },
+  {
+   "key": "gen6codexv7capture",
+   "name": "Gen6 primary \u00b7 completed mixed capture cohort",
+   "branch": "arena-gen6-codex-v7-capture-feed",
+   "revision": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98",
+   "retired": true,
+   "records": 1134,
+   "snapshot_utc": "2026-11-11 09:16"
+  },
+  {
+   "key": "gen6codexbenfollowups",
+   "name": "Gen 6 \u00b7 completed BEN followup cohort",
+   "branch": "arena-gen6-codex-ben-followups-feed",
+   "revision": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
+   "retired": true,
+   "records": 217,
+   "snapshot_utc": "2026-11-11 05:52"
+  },
+  {
+   "key": "gen6",
+   "name": "Gen 6 \u00b7 primary Codex collector",
+   "branch": "arena-gen6-codex-feed",
+   "revision": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
+   "retired": true,
+   "records": 1543,
+   "snapshot_utc": "2026-11-11 05:16"
+  },
+  {
+   "key": "gen6chatgpt",
+   "name": "Gen 6 \u00b7 ChatGPT fast self-play and BEN16",
+   "branch": "arena-gen6-chatgpt-feed",
+   "revision": "0b895b6079ae52f18968a35551ad133f5564b267",
+   "retired": false,
+   "records": 2015,
+   "snapshot_utc": "2026-11-12 02:55"
+  },
+  {
+   "key": "gen6independent",
+   "name": "Gen6 independent \u00b7 fast self-play and BEN16",
+   "branch": "arena-gen6-fast-selfplay-independent-feed",
+   "revision": "6894e651215434a5d7c3fcd5928f51b723a19555",
+   "retired": false,
+   "records": 9642,
+   "snapshot_utc": "2026-11-12 03:05"
+  },
+  {
+   "key": "gen6ben16completed",
+   "name": "Gen 6 \u00b7 completed medium vs BEN16 cohort",
+   "branch": "arena-gen6-medium-ben-feed",
+   "revision": "ca95def619269e2eefaba8263134ff8154ff1171",
+   "retired": true,
+   "records": 1424,
+   "snapshot_utc": "2026-11-11 05:10"
+  },
+  {
+   "key": "gen6initial",
+   "name": "Gen 6 \u00b7 retained early compatible games",
+   "branch": "arena-gen6-independent-feed",
+   "revision": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+   "retired": true,
+   "records": 81,
+   "snapshot_utc": "2026-11-11 02:15"
+  },
+  {
+   "key": "gen6chatgptearly",
+   "name": "Gen 6 \u00b7 retained early ChatGPT games",
+   "branch": "arena-gen6-chatgpt-feed",
+   "revision": "f7834f2a1f5326acbb7125c06bca7f5b9f8a3040",
+   "retired": true,
+   "records": 21,
+   "snapshot_utc": "2026-11-11 02:13"
+  },
+  {
+   "key": "gen6chatgptcompleted",
+   "name": "Gen 6 \u00b7 ChatGPT completed medium/BEN16 cohort",
+   "branch": "arena-gen6-chatgpt-feed",
+   "revision": "382fbceed0984d0c941f4ee737d5a9d451dfdf09",
+   "retired": true,
+   "records": 1134,
+   "snapshot_utc": "2026-11-11 05:30"
+  },
+  {
+   "key": "gen6beforecapture",
+   "name": "Gen 6 \u00b7 compatible results before capture",
+   "branch": "arena-gen6-ben-expansion-feed",
+   "revision": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
+   "retired": true,
+   "records": 248,
+   "snapshot_utc": "2026-11-11 05:46"
+  },
+  {
+   "key": "gen6chatgptben32completed",
+   "name": "Gen 6 \u00b7 ChatGPT compatible results before capture",
+   "branch": "arena-gen6-chatgpt-feed",
+   "revision": "b23d56bb826868703e7cc35a065cf81545728a3b",
+   "retired": true,
+   "records": 188,
+   "snapshot_utc": "2026-11-11 05:55"
+  },
+  {
+   "key": "gen6chatgptcapturecompleted",
+   "name": "Gen 6 \u00b7 ChatGPT completed mixed capture cohort",
+   "branch": "arena-gen6-chatgpt-feed",
+   "revision": "8019191d1172f7a94b3428b738423ab650aa7dc9",
+   "retired": true,
+   "records": 550,
+   "snapshot_utc": "2026-11-11 07:42"
+  },
+  {
+   "key": "gen6capturemixedcompleted",
+   "name": "Gen6 independent \u00b7 completed mixed capture cohort",
+   "branch": "arena-gen6-gen7-capture-feed",
+   "revision": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+   "retired": true,
+   "records": 725,
+   "snapshot_utc": "2026-11-11 07:54"
+  },
+  {
+   "key": "gen6cloudselfplay",
+   "name": "Gen 6 \u00b7 cloud fast self-play only",
+   "branch": "arena-gen6-fast-selfplay-cloud-feed",
+   "revision": "37bb31e1489621e1c4ba3ce06aa9b98e92311098",
+   "retired": false,
+   "records": 1672,
+   "snapshot_utc": "2026-11-12 02:24"
+  },
+  {
+   "key": "gen6extraselfplay",
+   "name": "Gen 6 \u00b7 additional fast self-play only",
+   "branch": "arena-gen6-extra-selfplay-feed",
+   "revision": "bca66fe7dfebc31ed847766356989a1936b85220",
+   "retired": false,
+   "records": 978,
+   "snapshot_utc": "2026-11-12 02:24"
+  },
+  {
+   "key": "gen6selfplay19bbdce5",
+   "name": "Gen 6 \u00b7 new fast self-play stream",
+   "branch": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed",
+   "revision": "dcc3ba4115dbb203082b2a2abf908a50dddff7ec",
+   "retired": false,
+   "records": 4687,
+   "snapshot_utc": "2026-11-12 03:06"
+  },
+  {
+   "key": "gen6newselfplay",
+   "name": "Gen 6 \u00b7 completed Codex fast self-play",
+   "branch": "arena-gen6-fast-selfplay-codex-20261111",
+   "revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+   "retired": true,
+   "records": 3710,
+   "snapshot_utc": "2026-11-12 02:43"
+  }
+ ]
+}

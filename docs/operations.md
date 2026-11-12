@@ -1,7 +1,9 @@
 # Operations
 
-Start with the [Gen6 recovery runbook](gen6-arena-recovery-20261111.md).
-It records host-specific paths, manifests, hashes, BEN configuration, lock
+Start with the runbook for the generation you operate: Gen 7 phase 1 uses the
+[phase 1 notice](gen7_candidate_2026-11-11.md) (launch steps, sharding, preflight);
+Gen 6 collectors use the [Gen 6 recovery runbook](generations/gen6/gen6-arena-recovery-20261111.md),
+which records host-specific paths, manifests, hashes, BEN configuration, lock
 discipline and restoration details. Paths under `/workspace/work/` describe
 the original deployment host; they are not guaranteed to exist on your machine.
 
@@ -42,6 +44,19 @@ JSON is not a complete run restoration.
 The live site is on `gh-pages`; source assets also exist under `web/`.
 Do not overwrite the deployed site from an older source copy. Pin feed revisions
 and snapshot cutoffs for drill-down links.
+
+## Remote boxes
+
+Machines that only Claude sessions or other remote tools operate run the
+[boxctl agent](boxctl.md): commands go in on a `box/<box>/control` branch and
+results come back on `box/<box>/status`. The rules on this page apply to those
+hosts unchanged.
+
+Two channels currently coordinate Claude sessions on the Azure boxes:
+`box/coordination` (`BOARD.md`, with the box allocation table) and `fleet/azure`
+(`STATUS.md`, `EXPERIMENTS.md`, `messages/`). Read both before queuing a command;
+consolidating them is [backlog item 4](backlog.md). Every new feed must also be added to
+the dashboard registry (`gh-pages:arena/gen6-sources.json`) or its boards are not counted.
 
 ## New cohorts
 

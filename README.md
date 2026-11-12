@@ -2,7 +2,7 @@
 
 A research bridge engine combining learned bidding and hidden-hand inference with double-dummy search and a learned card selector. The project measures changes through paired play, preserves reproducible model/run identities, and publishes an arena dashboard.
 
-**Start here:** [contributor guide](docs/onboarding.md) · [current system](docs/current-system.md) · [backlog](docs/backlog.md) · [arena](https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest)
+**Start here:** [contributor guide](docs/onboarding.md) · [current system](docs/current-system.md) · [generations](docs/generations/README.md) · [backlog](docs/backlog.md) · [arena](https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest)
 
 ## Where to begin
 
@@ -13,21 +13,23 @@ A research bridge engine combining learned bidding and hidden-hand inference wit
 | Work out which bot/configuration is current | [Current system and authority](docs/current-system.md) |
 | Find code, models, data or an old experiment | [Repository map](docs/repository-map.md) and [branch inventory](docs/branch-inventory.md) |
 | Operate or recover a collector | [Operations](docs/operations.md) |
-| Running the collectors: Gen 7 phase 1 | [Notice, match mix, plans and launch steps](docs/gen7_candidate_2026-11-11.md). Phase 1 authorized 12 November 2026; phase 2 is not |
-| Decide what needs doing | [Backlog and PR dispositions](docs/backlog.md) |
+| Run a Gen 7 collector | [Phase 1 notice: mix, plans and launch steps](docs/gen7_candidate_2026-11-11.md) |
+| See what each generation was and how it scored | [Generations](docs/generations/README.md) |
+| Decide what needs doing | [Backlog](docs/backlog.md) |
 | Work with an agent | [AGENTS.md](AGENTS.md) and [contribution workflow](CONTRIBUTING.md) |
 
 ## Current baseline
 
-As of 11 November 2026, `main` includes the Gen6 source previously maintained on
-`codex/launch-gen6-20261111`. Gen6 uses the graded-alternative bidder, a lead-belief
-network, a hand-fit scorer, DDS, and the retained Gen5 policy for PIMC ties.
-Fast and medium are different compute profiles; **medium plays BEN16**.
+As of 12 November 2026 the arena runs **Gen 7 phase 1**: Gen 6 fast with a new policy net
+(v4) and a shallow tree search at tricks 3–6, cross-matched against Gen 6 fast, BEN and
+older bots. Phase 2 (self-play volume) is not authorized. `main` contains the deployed
+Gen 7 source (`fe382f9b`) and the Gen 6 source. Gen 6 is closed:
+[results](docs/generations/gen6/README.md#results).
 
-The exact [active mix](configs/gen6-active-mix.json), [primary configuration](configs/round6-codex.json),
-and each run's frozen manifest take precedence over old launch prose.
-The general `configs/round6.json` is an earlier staging recipe, not the active primary plan.
-See [current system](docs/current-system.md) for the profiles and evidence limits.
+[Current system](docs/current-system.md) lists the authorities; each run's frozen manifest
+takes precedence over prose. Each generation change ends with a
+[cleanup](docs/generation-cleanup.md) that closes out the old generation and brings the new
+one onto main.
 
 ## Repository structure
 
@@ -40,12 +42,12 @@ See [current system](docs/current-system.md) for the profiles and evidence limit
 | `scripts/` | Build, training and offline analysis commands |
 | `ops/` | Collector preparation, supervision, export and recovery |
 | `tests/` | Automated checks |
-| `docs/` | Contributor guides, architecture, operations and historical designs |
+| `docs/` | Contributor guides, architecture, operations; `docs/generations/` holds one page per generation |
 | `reports/` | Dated experimental evidence and validation snapshots |
 | `web/` | Dashboard source assets; deployed site is on `gh-pages` |
 
-Result feeds, recovery capsules and transfer datasets live on separately named
-branches. They are not development branches or independent sources of extra boards.
+Result feeds, recovery capsules, transfer datasets and box-control channels live on
+separately named branches. They are not development branches and are never merged into main.
 [Data and branch guide](docs/repository-map.md).
 
 ## Project status

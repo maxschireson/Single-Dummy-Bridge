@@ -28,6 +28,7 @@ needs a new manifest. Do not relabel old observations as a new bot.
 | New material | Destination |
 | --- | --- |
 | User/contributor explanation | `docs/`, linked from `docs/README.md` |
+| Generation launch notes, closeouts | `docs/generations/genN/`, linked from its page |
 | Experimental result | Dated path in `reports/`, linked from `reports/README.md` |
 | Reusable engine logic | `bridge_harness/` with relevant tests |
 | Offline build/train/analyze command | `scripts/` |
@@ -38,6 +39,9 @@ needs a new manifest. Do not relabel old observations as a new bot.
 
 Update [current system](docs/current-system.md) when the adopted system changes.
 Update [backlog](docs/backlog.md) when a listed disposition changes.
+Generation-specific documents go under `docs/generations/genN/` (the current generation's
+may stay at `docs/` root until its closeout); a generation change triggers the
+[generation cleanup](docs/generation-cleanup.md).
 Avoid new root-level status dumps and append-only README narratives.
 Historical documents retain dates; add a supersession link when they could be
 mistaken for current operational instructions.
