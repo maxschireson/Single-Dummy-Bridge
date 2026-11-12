@@ -1,5 +1,5 @@
 {
- "_note": "Gen 9 signal bots (G9-S2), work in progress; not arena cohorts. c-*: Gen 6 fast search (as t-low/t-high/t-random) that signals by a declared carding scheme among its exactly tied cards, with the honesty in its id (percent). r9-32: 8x-32 whose reader is told each c-* bot's scheme and true honesty. cp-std-100: 8x-32 whose defenders signal by the standard scheme and read each other by it (E9-6). Descriptor fields: configs/systems/_carding_fields.json.",
+ "_note": "Gen 9 signal bots (G9-S2), work in progress; not arena cohorts. c-*: Gen 6 fast search (as t-low/t-high/t-random) that signals by a declared carding scheme among its exactly tied cards, with the honesty in its id (percent). r9-32: 8x-32 whose reader is told each c-* bot's scheme and true honesty. cp-std-100: 8p-32 whose defenders signal by the standard scheme and read each other by it (E9-6); r9p-32: 8p-32 told cp-std-100's scheme (E9-6, second comparison). Descriptor fields: configs/systems/_carding_fields.json.",
  "c-std-100": {
   "base": "6-32",
   "engine": "gen9",
@@ -526,28 +526,9 @@
    ],
    "early_play_weight": 1.0,
    "early_pool": 512,
-   "early_min_effective": 8.0,
-   "opponent_play_weight": {
-    "7s-32": 1.0,
-    "7f-32": 1.0,
-    "8s-32": 1.0,
-    "8p-32": 1.0,
-    "8x-32": 1.0,
-    "8n-32": 1.0,
-    "6-32": 1.0,
-    "5RZ32": 1.0,
-    "1": 0.2,
-    "t-high": 0.2,
-    "t-low": 0.5,
-    "t-random": 0.25,
-    "*": 0.3,
-    "7s-32-v41": 1.0,
-    "8p-32-v41": 1.0,
-    "8x-32-v41": 1.0,
-    "8n-32-v41": 1.0
-   }
+   "early_min_effective": 8.0
   },
-  "label": "8x-32 whose defenders signal by the standard scheme at honesty 1 and read each other by it (E9-6)",
+  "label": "8p-32 whose defenders signal by the standard scheme at honesty 1 and read each other by it (E9-6)",
   "gen9": {
    "carding": {
     "descriptor": {
@@ -565,6 +546,74 @@
     "honesty": 1.0
    },
    "read_partner": true,
+   "reader_eps": 0.05
+  }
+ },
+ "r9p-32": {
+  "base": "6-32",
+  "engine": "gen9",
+  "policy_role": "gen9-reader",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "label": "8p-32 told cp-std-100's scheme and honesty: its declarer reads the signalling pair's spots (E9-6, comparison 2)",
+  "gen9": {
+   "models": {
+    "cp-std-100": {
+     "kind": "synthetic",
+     "carding": {
+      "descriptor": {
+       "length_lead_vs_suit": "4th",
+       "length_lead_vs_nt": "4th",
+       "lead_from_ak": "ace",
+       "honor_sequence_lead": "top",
+       "attitude": "standard",
+       "count": "standard",
+       "signal_on_partner_lead": "attitude",
+       "signal_on_declarer_lead": "count",
+       "first_discard": "attitude",
+       "trump_signal": "none"
+      },
+      "honesty": 1.0
+     }
+    }
+   },
    "reader_eps": 0.05
   }
  }
