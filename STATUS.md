@@ -117,6 +117,7 @@ Generated 2026-11-12 11:42 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
+| e9-0-n02e | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-p7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-r7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
