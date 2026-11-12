@@ -223,10 +223,25 @@ Mean log-likelihood ratio in nats; share of cards on which it points the wrong w
 | Trick 6: two small cards of a suit (297) | +1.08 +- 0.12 | +0.20 +- 0.05 | 0.22 | 0.45 |
 | Trick 6: a defender's view, honours | +5.69 +- 0.20 | +1.53 +- 0.11 | 0.07 | 0.27 |
 | Trick 6: declarer's view, honours | +2.27 +- 0.14 | +0.76 +- 0.07 | 0.14 | 0.31 |
-| Trick 4: honour, lengths kept | *pending final* +1.9 | +0.6 | | |
+| Trick 4: honour, lengths kept (1,210) | +2.02 +- 0.10 | +0.61 +- 0.06 | 0.12 | 0.37 |
+| Trick 4: honour and a length (310) | +4.21 +- 0.28 | +1.59 +- 0.16 | 0.08 | 0.21 |
 
-(305 seats, 120 deals at trick 6.) By rank at trick 6, bot / net: A 6.3 / 1.7, K 5.3 / 1.5, Q 4.7 / 1.3, J 3.4 / 1.1,
-T 3.0 / 0.9. Of a defender's evidence, partner's plays alone give 1.8 / 0.6.
+(305 seats, 120 deals at trick 6; 211 seats, 80 deals at trick 4.) By rank at trick 6, bot / net: A 6.3 / 1.7, K 5.3 /
+1.5, Q 4.7 / 1.3, J 3.4 / 1.1, T 3.0 / 0.9. Of a defender's evidence, partner's plays alone give 1.8 / 0.6.
+
+**A cheaper stand-in for the bot** (the same search on fewer layouts, run twice, read through how a card so rated
+turned out to be the one really played; the same 305 seats). The mean evidence stays large but it is wrong more
+often; the last column is the log-probability the true holder gets from that evidence at even prior odds (no
+information: -0.693), which is the figure to compare.
+
+| Model of the bot | Honour, lengths kept: evidence | Wrong | Log-probability | Honour and a length: log-probability |
+|---|---|---|---|---|
+| Gen 6 itself, 32 layouts | +3.43 | 0.12 | -0.287 | -0.088 |
+| The search on 8 layouts | +4.31 | 0.18 | -0.487 | -0.104 |
+| The search on 4 layouts | +3.26 | 0.20 | -0.551 | -0.220 |
+| v4.1 net | +0.92 | 0.32 | -0.552 | -0.388 |
+
+So where a card sits within a suit is only read by something close to the bot itself; lengths survive a cheap model.
 
 **The whole layout** (82 seats, 34 deals; a pool of about 690 distinct layouts from Gen 6's beliefs; the bot is run
 on 50 drawn by the net's reading and its reading of the pool follows by importance weights).
@@ -246,7 +261,7 @@ exchanges, 150 steps, three seats) reached the true layout in some chains and st
 seat two layouts unlike the true one explained the plays 2 nats better. The one-card figures are evidence at the
 true layout.
 
-Cheaper stand-ins for the bot (the same search on 8 and on 4 layouts) and trick 9: *pending*.
+Trick 9, and the posterior by tempered walks over layouts (`--chain`): *pending* (azure5).
 
 ## 6. Played test
 
