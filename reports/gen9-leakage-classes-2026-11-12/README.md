@@ -52,9 +52,10 @@ Against no reading, `proto` saves +0.185 ± 0.029 a board, `cls` +0.148 ± 0.028
   about 0.02 to 0.03 tricks a board from the opponents' reading and about 0.004 from our own.
 - Widening the class to touching honours adds nothing measurable to the leak (-0.036 against -0.038).
 - Part 1c: reading every play by its equal-best set takes the most nats from the reading (-0.36 a decision) but
-  hardly any tricks (-0.009 ± 0.017). Choosing at random among exactly equal-best cards, as `8r-32` does, would on
-  this measure give a reader of our strength no detectable loss; the spot classes, which do not depend on the
-  approximation, put the leak at 0.02 to 0.04 tricks a board.
+  hardly any tricks (-0.009 ± 0.017). On this measure, choosing at random among exactly equal-best cards, as `8r-32`
+  does, costs a reader of our strength no detectable tricks. The spot classes put the leak at 0.038 ± 0.013; the two
+  measures treat different cards as interchangeable (the spots of one suit, against the cards the chooser's solves
+  rated equal, often in different suits), and part 1c's sets are approximate in every layout but the true one.
 
 **Limits.** The reader is the house net reading house bots, so this is the leak to a reader as good as ours, not
 to BEN. Classes are by equality of rank, not by equality on the true deal; E9-3 found spots equal in 98.5% of
