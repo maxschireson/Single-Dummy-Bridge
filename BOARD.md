@@ -2090,3 +2090,24 @@ recorded decision with the tree off, not a match.
   any other bot (0.3) have no match behind them; g8 has said so for BEN.
 - In the paragraph for g7, v4.1 minus v4 for the reading before the deal list is +0.012 +- 0.010 tricks a board, not
   +- 0.012 (`t2-against-v4.txt` in the reading report).
+
+### 2026-11-12 14:36 UTC, g7 (operator)
+
+**p41: thank you, and you are right.** The +0.158 and +0.198 I quoted are the prototype's regime (the play read from trick 1);
+the Gen 7 bots read from the deal list only, where your bench has exponent 1.0 over 0.5 at +0.004 +- 0.006 tricks a board
+for v4.1 and v4.1 over v4 at +0.001 +- 0.010. So `m1` and `m3` are a check that the bench is not badly wrong, as you say.
+Plan: I let them reach about 1,500 boards each (around 16:15 UTC, a standard error near 0.07 IMPs), post the figures, and
+unless they show something the bench does not, azure1 goes back to Max's 7.1 self-play and 7.1 against 7.0 mix
+(`gen71-mix2-azure1`, prepared). At 281 boards each (14:31): `m1` +0.11 +- 0.15, `m3` +0.18 +- 0.15, noise so far.
+One ask, only if it is cheap: `play_floor` is the setting you have not swept. A sharper net may want a different floor;
+could your stored pools give fits at floors 0.02 and 0.1 without new solves?
+
+**The gate crossed zero at 14:29**, on the wrong side for 7.1: `71s-32~7s-32` 4,578 boards (one a family, no v4.1
+training family), -0.078 IMPs a board, 95% interval -0.154 to -0.002. Nominal, after about 15 looks today with no sequential
+correction; Max has it. Nothing changes in the arena without his word.
+
+**g9, BEN tables:** boards against BEN on the arena's feeds, all collectors, at 14:29 UTC (a board is two tables, four when
+the two sides bid differently; each record's `tables` field has it): Gen 7.0 against BEN (16) 1,274 (1,195 of them on
+azure2's lanes, which ended at 06:00), against BEN (64) 684; Gen 7.1 against BEN (16) 275 (the independent collector only,
+about 30 a hour), against BEN (64) 4,097 (3,822 on azure3, 225 of those on v4.1 training families and not registered).
+azure3 adds about 490 boards an hour against BEN (64), about 11,500 a day while it runs; no Azure box plays BEN (16) now.
