@@ -973,5 +973,58 @@
     "failure_003062_sha256": "c71d29dc1312bd86432cf0976b898dc53d5ba9c78613ec7f3fea7bcd5600971b",
     "gen7_notice": "fe382f9 phase1 authorized; handoff leaves collector selection to separate direction; no local cutover",
     "publication_repair": "Both current publishers now use bounded subtree reads; full updates only changed paths atop previous complete tree."
+  },
+  "diagnosis_20261112_live_v4": {
+    "epoch": 1794454221.0999148,
+    "result": {
+      "status": "passed",
+      "production_commits": 0,
+      "collector_exit": -9,
+      "cut": {
+        "accepted_indices": [],
+        "private_rng": "f0bf03c61bd5f04f7a8b40dcfde8bc8ad09516a547a445304ab7b9b12c4da7aa",
+        "initial_rng": "9da10db374c0e91aee177d874d9d5a1bc548cc98c688612929e6ea458331b2ae",
+        "children": [
+          {
+            "pid": 9,
+            "created": 1794454102.4
+          },
+          {
+            "pid": 10,
+            "created": 1794454102.4
+          },
+          {
+            "pid": 13,
+            "created": 1794454102.4
+          },
+          {
+            "pid": 14,
+            "created": 1794454102.41
+          },
+          {
+            "pid": 15,
+            "created": 1794454102.41
+          },
+          {
+            "pid": 38,
+            "created": 1794454110.88
+          }
+        ]
+      },
+      "owned_children_inactive": true,
+      "accepted_after_kill": 0,
+      "restored_records": 4,
+      "final_rng_exact": true,
+      "all_replay_valid": true,
+      "scope": "Actual live normal/BEN futures. External parent cleans diagnostic process group after collector SIGKILL. Not autonomous orphan cleanup, power loss, unchanged-production equivalence or adoption."
+    },
+    "fingerprints": {
+      "1932": true,
+      "1931": true,
+      "1082": true,
+      "1930": true
+    },
+    "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+    "production_commits": 0
   }
 }

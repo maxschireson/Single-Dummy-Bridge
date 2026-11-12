@@ -1,5 +1,5 @@
 const repo="maxschireson/Single-Dummy-Bridge",base="/workspace/scratch/c7932514d17d/gen6-ben-recycled";
-const unwrap=r=>r.structuredContent;
+const unwrap=r=>{if(r.isError||!r.structuredContent?.sha)throw Error(JSON.stringify(r));return r.structuredContent;};
 let snapshot=await tools.exec_command({cmd:".venv/bin/python snapshot_feed.py",workdir:base,max_output_tokens:1000});
 while(snapshot.session_id) snapshot=await tools.write_stdin({session_id:snapshot.session_id,chars:"",yield_time_ms:1000,max_output_tokens:1000});
 if(snapshot.exit_code!==0) throw Error("Snapshot failed: "+snapshot.output);

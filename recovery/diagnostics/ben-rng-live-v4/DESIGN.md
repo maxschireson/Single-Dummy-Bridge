@@ -1,0 +1,9 @@
+# V4 live interruption diagnostic
+
+Actual three normal futures and one BEN worker/server use the existing V4 journal. An external parent starts a dedicated process group, waits for claim RNG to advance while BEN is unaccepted, SIGKILLs the collector, then SIGKILLs only that diagnostic process group. All six observed child identities were inactive afterward (zombies count as inactive, not reaped). The empty accepted journal retained its initial RNG. A captured snapshot was restored and a fresh process completed BEN1082 and self1930/1931/1932. All four full replays and historical captured fingerprints passed; final RNG matched prior V3.1. No production records were committed.
+
+This is one observed in-flight interruption before any acceptance, not an interruption after a nonempty accepted prefix. The supervisor remained alive and performed cleanup; autonomous orphan cleanup when the supervisor also dies remains untested. Power loss and production integration remain untested. The previous self1934 audit-volume mismatch is not resolved. Original dead-server RNG remains unavailable; isolated claim protocol is not unchanged-production equivalence.
+
+The immutable V4 protocol is unchanged. binding.json additionally hashes this driver and journal and is checked by each child. Existing V3.1 executor/server/claim wrapper are already pinned by the V4 protocol. Production65a, candidate1bd and all retired cohorts remain unchanged/stopped.
+
+Main advanced to62bd8a via merged PR14 (generation cleanup). Current-system.md still reserves each producer cutover to Max's instruction to that producer. No local cutover inferred. Dashboard publication first failed before ref update, then resumed the same snapshot successfully; publisher unwrap now fails immediately on tool errors instead of propagating undefined SHA values.
