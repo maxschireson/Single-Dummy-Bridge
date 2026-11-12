@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/work/arena-venv/bin/python",
+    "-u",
+    "ops/gen5_runtime.py",
+    "--run",
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
+    "--workers",
+    "3"
+  ],
+  "supervisor": "/workspace/work/gen6-fast-selfplay-stream/supervise_gen7.py",
+  "publisher": "/workspace/work/gen6-fast-selfplay-stream/publish_stream.py",
+  "guard": "/workspace/work/gen6-fast-selfplay-stream/phase1_fleet.py",
+  "normal_workers": 3,
+  "ben_workers": 0,
+  "selfplay_authorized": true,
+  "broad_phase2_authorized": false,
+  "comparison_pooled_target": 2000
+}

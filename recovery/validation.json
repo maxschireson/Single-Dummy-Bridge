@@ -1,0 +1,35 @@
+{
+  "epoch": 1794458710.783265,
+  "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+  "tests": {
+    "gen7": 59,
+    "gap_capture": 11,
+    "operational_guard": 5
+  },
+  "preflight": {
+    "deals": 4,
+    "each_pair": 2,
+    "gap_forks": 35,
+    "gap_enabled_roots": 6,
+    "tree_consulted": 137,
+    "tree_over_budget": 0,
+    "selfplay_single_table": true,
+    "selfplay_imps_null": true
+  },
+  "frozen_source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842",
+  "actor_identity": "f0a57859867353d654ebb9cf03844631d49c948bebcffbb91c441294684ae62e",
+  "policy_sha256": "d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13",
+  "remaining_families": 20694,
+  "preserved": {
+    "gen6": 3710,
+    "gen7_phase1": 564,
+    "gen7_selfplay_before_capture": 32
+  },
+  "earlier_gen7_capture_incomplete": true,
+  "logs": {
+    "tests.log": "79eecf74b3f2270052b902e55232313eb3d539fba103d895be319ac1dca5a580",
+    "gap-tests.log": "deabc40d80d34f6ccfb0933ec9ed4558b7c4cff8fc4a9b8a1f8ebc2c3d4b818d",
+    "guard-tests.log": "23b14261e5ff35adf9fd4beb9f156efde5d411e7e43263b4b807ed13bf395890",
+    "preflight.log": "68e8ad081b4f704df709226f15acfc259e6e33bbd2d86cd6d9e081e62eff6b0c"
+  }
+}
