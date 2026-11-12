@@ -1,4 +1,5 @@
 """Gen 9 card meanings and the rule filter (WIP): bridge_harness/cards/."""
+import json
 import random
 
 import numpy as np
@@ -152,3 +153,179 @@ def test_written_cards_match_generated():
         written = json.loads((root / f'{name}.json').read_text())
         gen = card_from_settings(asdict(g), name)
         assert written['descriptor'] == gen['descriptor'] and written['cover'] == gen['cover']
+
+
+# ---- G9-B4: distance and detection ---------------------------------------------------------------
+from pathlib import Path as _Path                                                     # noqa: E402
+
+from bridge_harness.cards.match import (DeterministicProfile, UnknownMixture, board_loglik,   # noqa: E402
+                                        boards_to_identify, card_distance, experience_delta)
+
+GEN5 = _Path(__file__).resolve().parents[1] / 'models/bidding/gen5-2026-11-10/bidder.keras'
+
+
+def test_own_generator_is_at_distance_zero_and_others_are_not():
+    gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
+    bid_deal = lambda h, d, v: bid_table([gen] * 4, h, d, v)[0]
+    own = card_distance(card_from_settings(asdict(rb.Settings()), 'rb-p'), bid_deal, deals=150, seed=3)
+    other = card_distance('two-over-one', bid_deal, deals=150, seed=3)
+    assert own['rate'] == 0 and own['residual'] == []
+    assert other['rate'] > 0.1 and 'open_minor' in other['residual']
+
+
+def test_detection_prefers_the_generator():
+    gens = {'p': rb.RuleSystemBidder(rb.Settings(), 'standard'), 's': rb.RuleSystemBidder(rb.STANDARD, 'standard')}
+    cands = [DeterministicProfile('p', gens['p']), DeterministicProfile('s', gens['s'])]
+    profiles = cands + [UnknownMixture(cands)]
+    ll = []
+    for hands, dealer, vul in deals(40, 5):
+        try:
+            calls, _ = bid_table([gens['p']] * 4, hands, dealer, vul)
+        except (ValueError, IndexError):
+            continue
+        b = board_loglik(profiles, hands, dealer, vul, calls, (0, 2))
+        ll.append([b['p'], b['s'], b['unknown']])
+    ll = np.array(ll)
+    assert ll[:, 0].sum() > ll[:, 1].sum() and ll[:, 0].sum() > ll[:, 2].sum()
+    reached = boards_to_identify(ll, 0, orderings=20)
+    assert all(r is not None and r <= 20 for r in reached)
+    d = experience_delta('pair-x', 'test/0', dict(zip(['p', 's', 'unknown'], ll[0])))
+    from bridge_harness import experience as E
+    store = E.add(E.empty('pair-x'), d)
+    post = E.posterior(store['stats']['profile'], {'p': 1 / 3, 's': 1 / 3, 'unknown': 1 / 3})
+    assert abs(sum(post.values()) - 1) < 1e-9
+
+
+@pytest.mark.skipif(not GEN5.exists(), reason='restore models/bidding/gen5-2026-11-10 first (needs h5py)')
+def test_net_profile_logits_reproduce_its_calls():
+    pytest.importorskip('h5py')
+    from bridge_harness.cards.match import NetProfile
+    from bridge_harness.system_bidders import BenLstmBidder
+    from bridge_harness.system_fit import simulate
+    from bridge_harness.bidding_env import CALLS
+    b, prof = BenLstmBidder(str(GEN5)), NetProfile('gen5', str(GEN5))
+    ds = list(deals(30, 6))
+    hands = np.array([d[0] for d in ds])
+    sim = simulate([b, b], hands, np.array([d[1] for d in ds]), np.array([VULS.index(d[2]) for d in ds]))
+    for i, (h, d, v) in enumerate(ds):
+        calls = [CALLS[int(t)] for t in sim['calls'][i] if t >= 0]
+        for p, c, n in prof.call_probs(h, d, v, calls, [0, 1, 2, 3]):
+            assert max(p, key=p.get) == c
+
+
+# ---- G9-B6: real cards -----------------------------------------------------------------------------
+@pytest.mark.parametrize('cid', ['acbl-sayc', 'wbf-pryor-scerri', 'wbf-laukkanen-nordgren'])
+def test_real_cards_compile_and_own_bidder_never_breaks(cid):
+    card = load_card(cid)
+    assert card.unsupported() == []
+    prov = json.loads((_Path(__file__).resolve().parents[1] / 'configs' / 'cards' / f'{cid}.json').read_text())['provenance']
+    assert prov['source'] and prov['confidence'] and 'not_placed' in prov
+    b, f = CardBidder(cid), CardFactor(cid)
+    for hands, dealer, vul in deals(60, 13):
+        calls, _ = bid_table([b] * 4, hands, dealer, vul)
+        for s in range(4):
+            length, hon = hand_types(membership([hands[s]]))
+            assert f.type_log_score(length, hon, s, dealer, vul, calls)[0] >= len(f.seat_terms(calls, dealer, s, vul)) * np.log(0.95) - 1e-9
+
+
+# ---- shell hooks (g9: profile=, shell_reader, experience delta) ----------------------------------
+def test_profile_keyword_restricts_to_residual():
+    from bridge_harness.player_model import PlayerModel
+    from bridge_harness.cards.factor import shell_reader, bidding_delta
+    card = dict(json.loads((_Path(__file__).resolve().parents[1] / 'configs' / 'cards' / 'two-over-one.json').read_text()))
+    card['residual'] = {'house-gen6': ['open_nt']}
+    model = PlayerModel('pair', bidding=card)
+    reader = shell_reader(model)
+    hands = [h for d in deals(40, 21) for h in d[0]]
+    length, hon = hand_types(membership(hands))
+    auction = ['PASS', '1N', 'PASS', '2C', 'PASS', '2H']
+    full = reader.type_log_score(length, hon, 1, 0, 'None', auction)
+    res = reader.type_log_score(length, hon, 1, 0, 'None', auction, profile='house-gen6')
+    unk = reader.type_log_score(length, hon, 1, 0, 'None', auction, profile='never-measured')
+    only_nt = reader.log_score_features(hand_features(length, hon), 1, 0, 'None', auction, families={'open_nt'})
+    assert np.allclose(res, only_nt) and np.allclose(unk, full) and not np.allclose(res, full)
+    # with what was measured: residual families and unmeasured ones are read, measured agreeing ones are not
+    card['residual'] = {'house-gen6': {'residual': ['open_nt'], 'measured': ['open_nt', 'resp_nt_relay']}}
+    r3 = shell_reader(PlayerModel('pair', bidding=card))
+    got = r3.type_log_score(length, hon, 1, 0, 'None', auction, profile='house-gen6')
+    want = reader.log_score_features(hand_features(length, hon), 1, 0, 'None', auction, skip={'resp_nt_relay'})
+    assert np.allclose(got, want)
+    assert shell_reader(PlayerModel('plain')) is None
+    # an experience delta, then a reader built from a snapshot of it
+    from bridge_harness import experience as E
+    store = E.empty('pair')
+    b = CardBidder('two-over-one')
+    for i, (hh, dealer, vul) in enumerate(deals(30, 22)):
+        calls, _ = bid_table([b] * 4, hh, dealer, vul)
+        store = E.add(store, bidding_delta('pair', f't/{i}', reader, hh, dealer, vul, calls, (0, 2)))
+    assert any(k.startswith('bid.') for k in store['stats'])
+    snap = E.snapshot(store, 's1')
+    r2 = shell_reader(PlayerModel('pair', bidding=card, experience=snap))
+    assert r2.dev.counts and all(d == 0 for a, d in r2.dev.counts.values())      # its own bidder never deviates
+
+
+@pytest.mark.skipif(not GEN5.exists(), reason='restore models/bidding/gen5-2026-11-10 first (needs h5py)')
+def test_replay_reader_types_equal_hands_and_true_hand_is_likely():
+    pytest.importorskip('h5py')
+    from bridge_harness.cards.match import NetProfile
+    from bridge_harness.cards.replay import ReplayReader
+    from bridge_harness.system_bidders import BenLstmBidder
+    from bridge_harness.system_fit import simulate
+    from bridge_harness.bidding_env import CALLS
+    b, prof, rr = BenLstmBidder(str(GEN5)), NetProfile('gen5', str(GEN5), eps=0.0), ReplayReader(str(GEN5), eps=0.0)
+    ds = list(deals(12, 31))
+    hands = np.array([d[0] for d in ds])
+    sim = simulate([b, b], hands, np.array([d[1] for d in ds]), np.array([VULS.index(d[2]) for d in ds]))
+    for i, (h, d, v) in enumerate(ds):
+        calls = [CALLS[int(t)] for t in sim['calls'][i] if t >= 0]
+        for s in range(4):
+            want = float(np.sum(prof.call_log_probs(h, d, v, calls, [s])))
+            length, hon = hand_types(membership([h[s]]))
+            got = rr.type_log_score(length, hon, s, d, v, calls)[0]
+            assert got == pytest.approx(want, abs=1e-6)
+
+
+def test_rule_replay_true_hand_never_fails_and_others_do():
+    from bridge_harness.cards.replay import ProfileReplay
+    from bridge_harness.player_model import PlayerModel
+    card = card_from_settings(asdict(rb.Settings()), 'rb-precision')
+    card['generator'] = {'kind': 'rule_bidder', 'settings': asdict(rb.Settings())}
+    pr = ProfileReplay('.', model=PlayerModel('p', kind='synthetic', profiles={'rb-precision': 1.}, bidding=card))
+    gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
+    worse = 0
+    for hands, dealer, vul in deals(25, 41):
+        try:
+            calls, _ = bid_table([gen] * 4, hands, dealer, vul)
+        except (ValueError, IndexError):
+            continue
+        for s in range(4):
+            length, hon = hand_types(membership([hands[s]] + [sorted(random.Random(s).sample(range(52), 13)) for _ in range(20)]))
+            v = pr.type_log_score(length, hon, s, dealer, vul, calls, profile='rb-precision')
+            k = sum(1 for t in range(len(calls)) if (dealer + t) % 4 == s)
+            assert v[0] >= k * np.log(0.98) - 1e-9
+            worse += int((v[1:] < v[0]).sum())
+    assert worse > 0
+    assert pr.type_log_score(length, hon, 0, 0, 'None', ['PASS'], profile='house-gen9-none') is None
+
+
+def test_guest_generator_block_is_not_replayed():
+    """A guest's card that names its own bidder does not hand that bidder to the house (G9-D6); the refusal is recorded."""
+    from bridge_harness.cards.replay import ProfileReplay
+    from bridge_harness.player_model import PlayerModel
+    card = card_from_settings(asdict(rb.Settings()), 'rb-precision')
+    card['generator'] = {'kind': 'rule_bidder', 'settings': asdict(rb.Settings())}
+    pr = ProfileReplay('.', model=PlayerModel('g', kind='guest', profiles={'rb-precision': 1.}, bidding=card))
+    length, hon = hand_types(membership([list(range(13))]))
+    assert pr.type_log_score(length, hon, 0, 0, 'None', ['1C'], profile='rb-precision') is None
+    assert 'rb-precision' in pr.refused
+
+
+def test_replay_floor():
+    """No call costs a layout more than log(eps / legal calls) per call (REPLAY_EPS, 0.02 by default)."""
+    from bridge_harness.cards.replay import REPLAY_EPS, RuleReplay
+    gen = rb.RuleSystemBidder(rb.Settings(), 'standard')
+    rr = RuleReplay(gen, eps=REPLAY_EPS)
+    hands = [sorted(random.Random(i).sample(range(52), 13)) for i in range(30)]
+    length, hon = hand_types(membership(hands))
+    v = rr.type_log_score(length, hon, 0, 0, 'None', ['7NT'])
+    assert np.all(v >= np.log(REPLAY_EPS / 36) - 1e-9)

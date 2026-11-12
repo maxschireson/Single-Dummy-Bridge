@@ -1,0 +1,2952 @@
+{
+ "7s-32": {
+  "base": "6-32",
+  "label": "Gen 7 standard (32), as launched 12 Nov",
+  "engine": "gen7",
+  "policy_role": "gen7",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 0.5,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ]
+  }
+ },
+ "8p-32": {
+  "base": "6-32",
+  "label": "Gen 8 prototype (32): 7s-32 + the play read at exponent 1.0 at every trick (early 1.0, deal list 1.0)",
+  "engine": "gen7",
+  "policy_role": "gen8-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  }
+ },
+ "9r-32": {
+  "base": "6-32",
+  "label": "Gen 9 (E9-11): 8p-32 plus the replay reader: the house bidder (Gen 6) replayed on the pool after the opening lead, for the common bidder and each side's own",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "replay_reader": "bridge_harness.cards.replay:replay_factory",
+   "models": {
+    "6-32": {
+     "kind": "house",
+     "profiles": {
+      "house-gen6": 1.0
+     }
+    },
+    "8p-32": {
+     "kind": "house",
+     "profiles": {
+      "house-gen6": 1.0
+     }
+    },
+    "9r-32": {
+     "kind": "house",
+     "profiles": {
+      "house-gen6": 1.0
+     }
+    }
+   }
+  }
+ },
+ "9c-32": {
+  "base": "6-32",
+  "label": "Gen 9 (E9-12): 8p-32 reading the auction through the declared card rb-precision (the 'card' profile), for auctions bid by the rule bidder's precision settings (--book)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "bidding_reader": "bridge_harness.cards.factor:shell_reader",
+   "models": {
+    "6-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-precision",
+      "family": "strong_club",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 15,
+       "open.nt": [
+        {
+         "hcp": [
+          14,
+          16
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_club": {
+        "hcp": 16
+       },
+       "open.strong_2c": null,
+       "open.two_nt": null,
+       "open.nebulous_1d": {
+        "min_len": 1
+       },
+       "open.precision_2c": {
+        "hcp": [
+         11,
+         15
+        ],
+        "len": 6,
+        "five_four": false
+       },
+       "open.two": {
+        "2D": {
+         "type": "precision",
+         "hcp": [
+          11,
+          15
+         ],
+         "clubs": [
+          4,
+          5
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ]
+     }
+    },
+    "8p-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-precision",
+      "family": "strong_club",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 15,
+       "open.nt": [
+        {
+         "hcp": [
+          14,
+          16
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_club": {
+        "hcp": 16
+       },
+       "open.strong_2c": null,
+       "open.two_nt": null,
+       "open.nebulous_1d": {
+        "min_len": 1
+       },
+       "open.precision_2c": {
+        "hcp": [
+         11,
+         15
+        ],
+        "len": 6,
+        "five_four": false
+       },
+       "open.two": {
+        "2D": {
+         "type": "precision",
+         "hcp": [
+          11,
+          15
+         ],
+         "clubs": [
+          4,
+          5
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ]
+     }
+    },
+    "9c-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-precision",
+      "family": "strong_club",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 15,
+       "open.nt": [
+        {
+         "hcp": [
+          14,
+          16
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_club": {
+        "hcp": 16
+       },
+       "open.strong_2c": null,
+       "open.two_nt": null,
+       "open.nebulous_1d": {
+        "min_len": 1
+       },
+       "open.precision_2c": {
+        "hcp": [
+         11,
+         15
+        ],
+        "len": 6,
+        "five_four": false
+       },
+       "open.two": {
+        "2D": {
+         "type": "precision",
+         "hcp": [
+          11,
+          15
+         ],
+         "clubs": [
+          4,
+          5
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "9x-32": {
+  "base": "6-32",
+  "label": "Gen 9 (E9-12): 8p-32 reading the auction by replaying the rule bidder (precision settings) on the pool after the opening lead, the scorer drawing the pool",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "replay_reader": "bridge_harness.cards.replay:replay_factory",
+   "models": {
+    "6-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "rb-precision": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-precision",
+      "family": "strong_club",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 15,
+       "open.nt": [
+        {
+         "hcp": [
+          14,
+          16
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_club": {
+        "hcp": 16
+       },
+       "open.strong_2c": null,
+       "open.two_nt": null,
+       "open.nebulous_1d": {
+        "min_len": 1
+       },
+       "open.precision_2c": {
+        "hcp": [
+         11,
+         15
+        ],
+        "len": 6,
+        "five_four": false
+       },
+       "open.two": {
+        "2D": {
+         "type": "precision",
+         "hcp": [
+          11,
+          15
+         ],
+         "clubs": [
+          4,
+          5
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ],
+      "generator": {
+       "kind": "rule_bidder",
+       "settings": {
+        "style": "precision",
+        "club_min": 16,
+        "open_min": 11,
+        "open_light": 1,
+        "limited_max": 15,
+        "nt_lo": 14,
+        "nt_hi": 16,
+        "nt_five_major": false,
+        "two_clubs_len": 6,
+        "two_diamonds": true,
+        "weak_lo": 5,
+        "weak_hi": 10,
+        "weak_quality": 2,
+        "preempt_len": 7,
+        "neg_max": 7,
+        "resp_min": 6,
+        "two_over_one": 11,
+        "game": 25,
+        "game_minor": 28,
+        "slam": 33,
+        "grand": 37,
+        "invite_width": 2,
+        "overcall_min1": 8,
+        "overcall_min2": 11,
+        "overcall_max": 17,
+        "overcall_quality": 2,
+        "takeout_min": 12,
+        "nt_overcall_lo": 15,
+        "nt_overcall_hi": 18,
+        "jump_overcalls": true,
+        "balance": 3,
+        "compete": 0,
+        "penalty": 25,
+        "stayman": true,
+        "transfers": true
+       },
+       "profile": "rb-precision",
+       "eps": 0.02
+      }
+     }
+    },
+    "8p-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "rb-precision": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-precision",
+      "family": "strong_club",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 15,
+       "open.nt": [
+        {
+         "hcp": [
+          14,
+          16
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_club": {
+        "hcp": 16
+       },
+       "open.strong_2c": null,
+       "open.two_nt": null,
+       "open.nebulous_1d": {
+        "min_len": 1
+       },
+       "open.precision_2c": {
+        "hcp": [
+         11,
+         15
+        ],
+        "len": 6,
+        "five_four": false
+       },
+       "open.two": {
+        "2D": {
+         "type": "precision",
+         "hcp": [
+          11,
+          15
+         ],
+         "clubs": [
+          4,
+          5
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ],
+      "generator": {
+       "kind": "rule_bidder",
+       "settings": {
+        "style": "precision",
+        "club_min": 16,
+        "open_min": 11,
+        "open_light": 1,
+        "limited_max": 15,
+        "nt_lo": 14,
+        "nt_hi": 16,
+        "nt_five_major": false,
+        "two_clubs_len": 6,
+        "two_diamonds": true,
+        "weak_lo": 5,
+        "weak_hi": 10,
+        "weak_quality": 2,
+        "preempt_len": 7,
+        "neg_max": 7,
+        "resp_min": 6,
+        "two_over_one": 11,
+        "game": 25,
+        "game_minor": 28,
+        "slam": 33,
+        "grand": 37,
+        "invite_width": 2,
+        "overcall_min1": 8,
+        "overcall_min2": 11,
+        "overcall_max": 17,
+        "overcall_quality": 2,
+        "takeout_min": 12,
+        "nt_overcall_lo": 15,
+        "nt_overcall_hi": 18,
+        "jump_overcalls": true,
+        "balance": 3,
+        "compete": 0,
+        "penalty": 25,
+        "stayman": true,
+        "transfers": true
+       },
+       "profile": "rb-precision",
+       "eps": 0.02
+      }
+     }
+    },
+    "9x-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "rb-precision": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-precision",
+      "family": "strong_club",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 15,
+       "open.nt": [
+        {
+         "hcp": [
+          14,
+          16
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_club": {
+        "hcp": 16
+       },
+       "open.strong_2c": null,
+       "open.two_nt": null,
+       "open.nebulous_1d": {
+        "min_len": 1
+       },
+       "open.precision_2c": {
+        "hcp": [
+         11,
+         15
+        ],
+        "len": 6,
+        "five_four": false
+       },
+       "open.two": {
+        "2D": {
+         "type": "precision",
+         "hcp": [
+          11,
+          15
+         ],
+         "clubs": [
+          4,
+          5
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ],
+      "generator": {
+       "kind": "rule_bidder",
+       "settings": {
+        "style": "precision",
+        "club_min": 16,
+        "open_min": 11,
+        "open_light": 1,
+        "limited_max": 15,
+        "nt_lo": 14,
+        "nt_hi": 16,
+        "nt_five_major": false,
+        "two_clubs_len": 6,
+        "two_diamonds": true,
+        "weak_lo": 5,
+        "weak_hi": 10,
+        "weak_quality": 2,
+        "preempt_len": 7,
+        "neg_max": 7,
+        "resp_min": 6,
+        "two_over_one": 11,
+        "game": 25,
+        "game_minor": 28,
+        "slam": 33,
+        "grand": 37,
+        "invite_width": 2,
+        "overcall_min1": 8,
+        "overcall_min2": 11,
+        "overcall_max": 17,
+        "overcall_quality": 2,
+        "takeout_min": 12,
+        "nt_overcall_lo": 15,
+        "nt_overcall_hi": 18,
+        "jump_overcalls": true,
+        "balance": 3,
+        "compete": 0,
+        "penalty": 25,
+        "stayman": true,
+        "transfers": true
+       },
+       "profile": "rb-precision",
+       "eps": 0.02
+      }
+     }
+    }
+   }
+  }
+ },
+ "9u-32": {
+  "base": "6-32",
+  "label": "Gen 9 (E9-12 slice): 8p-32 not reading the auction at all (the 'card' profile with no card: uniform over the hidden hands' types)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "models": {
+    "6-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     }
+    },
+    "8p-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     }
+    },
+    "9u-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     }
+    }
+   }
+  }
+ },
+ "guest-a": {
+  "base": "6-32",
+  "label": "guest-a (G9-D6): bids the rule bidder's precision settings; plays as 8p-32 with its own carding (configs/carding/guest-a.json play block, sam, 45da301)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "bidder": {
+   "kind": "python",
+   "factory": "bridge_harness.rule_bidder:RuleSystemBidder",
+   "options": {
+    "settings": {
+     "style": "precision",
+     "club_min": 16,
+     "open_min": 11,
+     "open_light": 1,
+     "limited_max": 15,
+     "nt_lo": 14,
+     "nt_hi": 16,
+     "nt_five_major": false,
+     "two_clubs_len": 6,
+     "two_diamonds": true,
+     "weak_lo": 5,
+     "weak_hi": 10,
+     "weak_quality": 2,
+     "preempt_len": 7,
+     "neg_max": 7,
+     "resp_min": 6,
+     "two_over_one": 11,
+     "game": 25,
+     "game_minor": 28,
+     "slam": 33,
+     "grand": 37,
+     "invite_width": 2,
+     "overcall_min1": 8,
+     "overcall_min2": 11,
+     "overcall_max": 17,
+     "overcall_quality": 2,
+     "takeout_min": 12,
+     "nt_overcall_lo": 15,
+     "nt_overcall_hi": 18,
+     "jump_overcalls": true,
+     "balance": 3,
+     "compete": 0,
+     "penalty": 25,
+     "stayman": true,
+     "transfers": true
+    }
+   }
+  },
+  "system": "rb-precision",
+  "gen9": {
+   "carding": {
+    "descriptor": {
+     "length_lead_vs_suit": "4th",
+     "length_lead_vs_nt": "4th",
+     "lead_from_ak": "ace",
+     "honor_sequence_lead": "top",
+     "signal_on_partner_lead": "attitude",
+     "signal_on_declarer_lead": "count",
+     "first_discard": "attitude",
+     "trump_signal": "none",
+     "attitude": "upside_down",
+     "count": "upside_down"
+    },
+    "honesty": 0.8
+   }
+  }
+ },
+ "guest-b": {
+  "base": "6-32",
+  "label": "guest-b (G9-D6): bids the house Gen 5 bidder; plays as 8p-32 with its own carding (configs/carding/guest-b.json play block, sam, 45da301)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "bidding": "models/bidding/gen5-2026-11-10/bidder.keras",
+  "system": "house-gen5",
+  "gen9": {
+   "carding": {
+    "descriptor": {
+     "length_lead_vs_suit": "4th",
+     "length_lead_vs_nt": "4th",
+     "lead_from_ak": "ace",
+     "honor_sequence_lead": "top",
+     "signal_on_partner_lead": "attitude",
+     "signal_on_declarer_lead": "count",
+     "first_discard": "attitude",
+     "trump_signal": "none",
+     "attitude": "standard",
+     "count": "standard"
+    },
+    "honesty": 0.0
+   }
+  }
+ },
+ "9cs-32": {
+  "base": "6-32",
+  "label": "Gen 9 (E9-12 slice): 8p-32 reading the auction through the declared card rb-standard (the 'card' profile), for auctions bid by the rule bidder's standard settings (--book)",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "bidding_reader": "bridge_harness.cards.factor:shell_reader",
+   "models": {
+    "6-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-standard",
+      "family": "natural",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 21,
+       "open.nt": [
+        {
+         "hcp": [
+          15,
+          17
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_2c": {
+        "hcp": 22,
+        "ltc": null
+       },
+       "open.two_nt": [
+        20,
+        21
+       ],
+       "open.two_nt_five_major": true,
+       "open.two": {
+        "2D": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ]
+     }
+    },
+    "8p-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-standard",
+      "family": "natural",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 21,
+       "open.nt": [
+        {
+         "hcp": [
+          15,
+          17
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_2c": {
+        "hcp": 22,
+        "ltc": null
+       },
+       "open.two_nt": [
+        20,
+        21
+       ],
+       "open.two_nt_five_major": true,
+       "open.two": {
+        "2D": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ]
+     }
+    },
+    "9cs-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "card": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-standard",
+      "family": "natural",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 21,
+       "open.nt": [
+        {
+         "hcp": [
+          15,
+          17
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_2c": {
+        "hcp": 22,
+        "ltc": null
+       },
+       "open.two_nt": [
+        20,
+        21
+       ],
+       "open.two_nt_five_major": true,
+       "open.two": {
+        "2D": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ]
+     }
+    }
+   }
+  }
+ },
+ "9xs-32": {
+  "base": "6-32",
+  "label": "Gen 9 (E9-12 slice): 8p-32 reading the auction by replaying the rule bidder (standard settings) on the pool after the opening lead, the scorer drawing the pool",
+  "engine": "gen9",
+  "policy_role": "gen9-proto",
+  "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+  "gen7": {
+   "play_weight": 1.0,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 1,
+   "net_sample": false,
+   "tree_audit": true,
+   "tree": [
+    {
+     "from_trick": 3,
+     "to_trick": 6,
+     "root_margin": 0.25,
+     "root_cards": 3,
+     "trust": 0.3,
+     "max_solves": 12000,
+     "tricks": 3,
+     "breadth": 3,
+     "mass": 0.98,
+     "layouts": 8,
+     "reply": "net",
+     "reply_power": 1.0,
+     "reply_gap": 99.0,
+     "own": "best",
+     "own_breadth": 0,
+     "reply_layouts": 8,
+     "reply_pool": 64,
+     "plain": 1,
+     "path": 0.5,
+     "spread": 0.0,
+     "path_solves": 3000
+    }
+   ],
+   "early_play_weight": 1.0,
+   "early_pool": 512,
+   "early_min_effective": 8.0
+  },
+  "gen9": {
+   "replay_reader": "bridge_harness.cards.replay:replay_factory",
+   "models": {
+    "6-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "rb-standard": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-standard",
+      "family": "natural",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 21,
+       "open.nt": [
+        {
+         "hcp": [
+          15,
+          17
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_2c": {
+        "hcp": 22,
+        "ltc": null
+       },
+       "open.two_nt": [
+        20,
+        21
+       ],
+       "open.two_nt_five_major": true,
+       "open.two": {
+        "2D": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ],
+      "generator": {
+       "kind": "rule_bidder",
+       "profile": "rb-standard",
+       "eps": 0.02,
+       "settings": {
+        "style": "standard",
+        "club_min": 16,
+        "open_min": 11,
+        "open_light": 1,
+        "limited_max": 15,
+        "nt_lo": 15,
+        "nt_hi": 17,
+        "nt_five_major": false,
+        "two_clubs_len": 6,
+        "two_diamonds": false,
+        "weak_lo": 5,
+        "weak_hi": 10,
+        "weak_quality": 2,
+        "preempt_len": 7,
+        "neg_max": 7,
+        "resp_min": 6,
+        "two_over_one": 11,
+        "game": 25,
+        "game_minor": 28,
+        "slam": 33,
+        "grand": 37,
+        "invite_width": 2,
+        "overcall_min1": 8,
+        "overcall_min2": 11,
+        "overcall_max": 17,
+        "overcall_quality": 2,
+        "takeout_min": 12,
+        "nt_overcall_lo": 15,
+        "nt_overcall_hi": 18,
+        "jump_overcalls": true,
+        "balance": 3,
+        "compete": 0,
+        "penalty": 25,
+        "stayman": true,
+        "transfers": true
+       }
+      }
+     }
+    },
+    "8p-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "rb-standard": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-standard",
+      "family": "natural",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 21,
+       "open.nt": [
+        {
+         "hcp": [
+          15,
+          17
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_2c": {
+        "hcp": 22,
+        "ltc": null
+       },
+       "open.two_nt": [
+        20,
+        21
+       ],
+       "open.two_nt_five_major": true,
+       "open.two": {
+        "2D": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ],
+      "generator": {
+       "kind": "rule_bidder",
+       "profile": "rb-standard",
+       "eps": 0.02,
+       "settings": {
+        "style": "standard",
+        "club_min": 16,
+        "open_min": 11,
+        "open_light": 1,
+        "limited_max": 15,
+        "nt_lo": 15,
+        "nt_hi": 17,
+        "nt_five_major": false,
+        "two_clubs_len": 6,
+        "two_diamonds": false,
+        "weak_lo": 5,
+        "weak_hi": 10,
+        "weak_quality": 2,
+        "preempt_len": 7,
+        "neg_max": 7,
+        "resp_min": 6,
+        "two_over_one": 11,
+        "game": 25,
+        "game_minor": 28,
+        "slam": 33,
+        "grand": 37,
+        "invite_width": 2,
+        "overcall_min1": 8,
+        "overcall_min2": 11,
+        "overcall_max": 17,
+        "overcall_quality": 2,
+        "takeout_min": 12,
+        "nt_overcall_lo": 15,
+        "nt_overcall_hi": 18,
+        "jump_overcalls": true,
+        "balance": 3,
+        "compete": 0,
+        "penalty": 25,
+        "stayman": true,
+        "transfers": true
+       }
+      }
+     }
+    },
+    "9xs-32": {
+     "kind": "synthetic",
+     "profiles": {
+      "rb-standard": 1.0
+     },
+     "bidding": {
+      "schema": "card-descriptor-v0",
+      "id": "rb-standard",
+      "family": "natural",
+      "descriptor": {
+       "open.min_hcp": 11,
+       "open.rule_of_20": false,
+       "open.third_seat_min": 11,
+       "open.fourth_seat_rule_of_15": false,
+       "open.light": {
+        "hcp": 10
+       },
+       "open.one_level_max": 21,
+       "open.nt": [
+        {
+         "hcp": [
+          15,
+          17
+         ],
+         "seats": [
+          1,
+          2,
+          3,
+          4
+         ],
+         "vul": "any"
+        }
+       ],
+       "open.nt_five_major": false,
+       "open.weak_quality": 2,
+       "open.weak_other_major_max": null,
+       "open.preempt_seats": [
+        1,
+        2,
+        3
+       ],
+       "open.three_level": {
+        "len": 7,
+        "len_max": 13,
+        "hcp_min": 4,
+        "hcp_max": 10
+       },
+       "open.four_level": null,
+       "open.three_nt": null,
+       "comp.michaels": false,
+       "comp.unusual_2nt": false,
+       "comp.overcall_1": [
+        8,
+        17
+       ],
+       "comp.overcall_2": [
+        11,
+        17
+       ],
+       "comp.overcall_3_min": 13,
+       "comp.overcall_quality": {
+        "1": {
+         "top5": 2
+        },
+        "2": {
+         "top5": 2
+        },
+        "3": {
+         "top5": 2
+        }
+       },
+       "comp.takeout_shape": "all",
+       "comp.takeout_double_min": 12,
+       "comp.strong_double_min": 18,
+       "comp.jump_overcall": "weak",
+       "comp.jump_overcall_len3": 7,
+       "comp.weak_jump_hcp": [
+        5,
+        10
+       ],
+       "comp.jump_first": true,
+       "comp.balancing_jumps": false,
+       "comp.balance": 3,
+       "comp.nt_overcall": [
+        15,
+        18
+       ],
+       "comp.balancing_nt": [
+        12,
+        15
+       ],
+       "comp.vs_nt_double_min": 17,
+       "comp.vs_nt_natural": {
+        "len_major": 6,
+        "len_minor": 6,
+        "hcp": [
+         9,
+         15
+        ],
+        "top3": 0,
+        "top5": 2
+       },
+       "comp.vs_nt_2nt_minors": false,
+       "resp.nt": {
+        "stayman": true,
+        "transfers": "jacoby",
+        "texas": false,
+        "two_spade": null,
+        "super_accept": false,
+        "transfers_first": true,
+        "stayman_five_four": false,
+        "stayman_min_2nt": "game",
+        "slam_first": true,
+        "quantitative": false,
+        "answers": "relays",
+        "game": 25
+       },
+       "open.strong_2c": {
+        "hcp": 22,
+        "ltc": null
+       },
+       "open.two_nt": [
+        20,
+        21
+       ],
+       "open.two_nt_five_major": true,
+       "open.two": {
+        "2D": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2H": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        },
+        "2S": {
+         "type": "weak",
+         "hcp": [
+          5,
+          10
+         ],
+         "len": [
+          6,
+          6
+         ]
+        }
+       }
+      },
+      "cover": [
+       "open",
+       "overcall",
+       "balance",
+       "vs_nt",
+       "respond_nt",
+       "nt_answers"
+      ],
+      "generator": {
+       "kind": "rule_bidder",
+       "profile": "rb-standard",
+       "eps": 0.02,
+       "settings": {
+        "style": "standard",
+        "club_min": 16,
+        "open_min": 11,
+        "open_light": 1,
+        "limited_max": 15,
+        "nt_lo": 15,
+        "nt_hi": 17,
+        "nt_five_major": false,
+        "two_clubs_len": 6,
+        "two_diamonds": false,
+        "weak_lo": 5,
+        "weak_hi": 10,
+        "weak_quality": 2,
+        "preempt_len": 7,
+        "neg_max": 7,
+        "resp_min": 6,
+        "two_over_one": 11,
+        "game": 25,
+        "game_minor": 28,
+        "slam": 33,
+        "grand": 37,
+        "invite_width": 2,
+        "overcall_min1": 8,
+        "overcall_min2": 11,
+        "overcall_max": 17,
+        "overcall_quality": 2,
+        "takeout_min": 12,
+        "nt_overcall_lo": 15,
+        "nt_overcall_hi": 18,
+        "jump_overcalls": true,
+        "balance": 3,
+        "compete": 0,
+        "penalty": 25,
+        "stayman": true,
+        "transfers": true
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

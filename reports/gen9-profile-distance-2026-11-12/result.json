@@ -1,0 +1,5856 @@
+{
+ "deals": 500,
+ "seed": 5150,
+ "matrix": {
+  "rb-standard": {
+   "two-over-one": {
+    "rate": 0.1706,
+    "covered": 2122,
+    "residual": [
+     "adv_overcall",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_overcall": [
+      21,
+      41
+     ],
+     "adv_pass": [
+      7,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      5,
+      25
+     ],
+     "comp_jump": [
+      11,
+      20
+     ],
+     "comp_overcall": [
+      15,
+      80
+     ],
+     "comp_pass": [
+      12,
+      300
+     ],
+     "comp_two_suited": [
+      18,
+      18
+     ],
+     "comp_vs_nt": [
+      8,
+      9
+     ],
+     "nt_answer": [
+      1,
+      47
+     ],
+     "nt_relay2": [
+      12,
+      37
+     ],
+     "open_major": [
+      1,
+      136
+     ],
+     "open_minor": [
+      1,
+      209
+     ],
+     "open_nt": [
+      4,
+      74
+     ],
+     "open_pass": [
+      35,
+      401
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      3,
+      7
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "rebid_new": [
+      29,
+      53
+     ],
+     "rebid_nt": [
+      20,
+      35
+     ],
+     "rebid_pass": [
+      8,
+      19
+     ],
+     "rebid_raise": [
+      17,
+      37
+     ],
+     "rebid_suit": [
+      25,
+      36
+     ],
+     "resp_ask": [
+      7,
+      7
+     ],
+     "resp_comp": [
+      34,
+      61
+     ],
+     "resp_new": [
+      15,
+      153
+     ],
+     "resp_nt": [
+      7,
+      41
+     ],
+     "resp_nt_relay": [
+      7,
+      38
+     ],
+     "resp_pass": [
+      11,
+      104
+     ],
+     "resp_raise": [
+      22,
+      49
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.1664,
+    "covered": 2122,
+    "residual": [
+     "adv_overcall",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_pass",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_overcall": [
+      21,
+      41
+     ],
+     "adv_pass": [
+      7,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      5,
+      25
+     ],
+     "comp_jump": [
+      11,
+      20
+     ],
+     "comp_overcall": [
+      15,
+      80
+     ],
+     "comp_pass": [
+      12,
+      300
+     ],
+     "comp_two_suited": [
+      18,
+      18
+     ],
+     "comp_vs_nt": [
+      8,
+      9
+     ],
+     "nt_answer": [
+      1,
+      47
+     ],
+     "nt_relay2": [
+      12,
+      37
+     ],
+     "open_major": [
+      1,
+      136
+     ],
+     "open_minor": [
+      1,
+      209
+     ],
+     "open_nt": [
+      4,
+      74
+     ],
+     "open_pass": [
+      35,
+      401
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      3,
+      7
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "rebid_new": [
+      25,
+      49
+     ],
+     "rebid_nt": [
+      20,
+      35
+     ],
+     "rebid_pass": [
+      8,
+      24
+     ],
+     "rebid_raise": [
+      17,
+      37
+     ],
+     "rebid_suit": [
+      24,
+      35
+     ],
+     "resp_ask": [
+      7,
+      7
+     ],
+     "resp_comp": [
+      34,
+      61
+     ],
+     "resp_new": [
+      20,
+      163
+     ],
+     "resp_nt": [
+      1,
+      33
+     ],
+     "resp_nt_relay": [
+      7,
+      38
+     ],
+     "resp_pass": [
+      17,
+      110
+     ],
+     "resp_raise": [
+      13,
+      41
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.2559,
+    "covered": 2122,
+    "residual": [
+     "adv_overcall",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_suit",
+     "rebid_new",
+     "rebid_pass",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_overcall": [
+      21,
+      41
+     ],
+     "adv_pass": [
+      7,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      5,
+      25
+     ],
+     "comp_jump": [
+      11,
+      20
+     ],
+     "comp_overcall": [
+      15,
+      80
+     ],
+     "comp_pass": [
+      11,
+      298
+     ],
+     "comp_two_suited": [
+      18,
+      18
+     ],
+     "comp_vs_nt": [
+      10,
+      11
+     ],
+     "nt_answer": [
+      8,
+      47
+     ],
+     "nt_relay2": [
+      16,
+      37
+     ],
+     "open_nt": [
+      93,
+      103
+     ],
+     "open_pass": [
+      36,
+      402
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      3,
+      5
+     ],
+     "open_suit": [
+      73,
+      317
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "rebid_new": [
+      29,
+      53
+     ],
+     "rebid_nt": [
+      11,
+      12
+     ],
+     "rebid_pass": [
+      8,
+      24
+     ],
+     "rebid_raise": [
+      17,
+      37
+     ],
+     "rebid_suit": [
+      40,
+      54
+     ],
+     "resp_ask": [
+      7,
+      7
+     ],
+     "resp_comp": [
+      34,
+      61
+     ],
+     "resp_new": [
+      20,
+      163
+     ],
+     "resp_nt": [
+      4,
+      31
+     ],
+     "resp_nt_relay": [
+      2,
+      32
+     ],
+     "resp_pass": [
+      25,
+      118
+     ],
+     "resp_raise": [
+      13,
+      41
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.2677,
+    "covered": 1916,
+    "residual": [
+     "adv_overcall",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "rebid_new",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_negative",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_positive",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_overcall": [
+      21,
+      41
+     ],
+     "adv_pass": [
+      7,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      5,
+      25
+     ],
+     "comp_jump": [
+      11,
+      20
+     ],
+     "comp_overcall": [
+      15,
+      80
+     ],
+     "comp_pass": [
+      12,
+      300
+     ],
+     "comp_two_suited": [
+      18,
+      18
+     ],
+     "comp_vs_nt": [
+      8,
+      9
+     ],
+     "nt_answer": [
+      7,
+      39
+     ],
+     "nt_relay2": [
+      13,
+      32
+     ],
+     "open_major": [
+      1,
+      109
+     ],
+     "open_minor": [
+      48,
+      126
+     ],
+     "open_nt": [
+      25,
+      51
+     ],
+     "open_pass": [
+      16,
+      382
+     ],
+     "open_preempt": [
+      5,
+      17
+     ],
+     "open_strong": [
+      107,
+      139
+     ],
+     "open_two": [
+      27,
+      27
+     ],
+     "open_weak": [
+      2,
+      17
+     ],
+     "rebid_new": [
+      20,
+      34
+     ],
+     "rebid_nt": [
+      3,
+      15
+     ],
+     "rebid_pass": [
+      8,
+      19
+     ],
+     "rebid_raise": [
+      10,
+      27
+     ],
+     "rebid_suit": [
+      27,
+      31
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_negative": [
+      18,
+      24
+     ],
+     "resp_new": [
+      10,
+      93
+     ],
+     "resp_nt": [
+      5,
+      36
+     ],
+     "resp_nt_relay": [
+      5,
+      32
+     ],
+     "resp_pass": [
+      6,
+      36
+     ],
+     "resp_positive": [
+      30,
+      48
+     ],
+     "resp_raise": [
+      16,
+      43
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.2333,
+    "covered": 2015,
+    "residual": [
+     "adv_overcall",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "open_pass",
+     "open_polish",
+     "open_two",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise",
+     "resp_relay"
+    ],
+    "by_family": {
+     "adv_overcall": [
+      21,
+      41
+     ],
+     "adv_pass": [
+      7,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      5,
+      25
+     ],
+     "comp_jump": [
+      11,
+      20
+     ],
+     "comp_overcall": [
+      15,
+      80
+     ],
+     "comp_pass": [
+      12,
+      300
+     ],
+     "comp_two_suited": [
+      18,
+      18
+     ],
+     "comp_vs_nt": [
+      8,
+      9
+     ],
+     "nt_answer": [
+      1,
+      47
+     ],
+     "nt_relay2": [
+      12,
+      37
+     ],
+     "open_major": [
+      1,
+      109
+     ],
+     "open_minor": [
+      5,
+      53
+     ],
+     "open_nt": [
+      4,
+      59
+     ],
+     "open_pass": [
+      46,
+      407
+     ],
+     "open_polish": [
+      104,
+      182
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_two": [
+      23,
+      23
+     ],
+     "open_weak": [
+      6,
+      19
+     ],
+     "rebid_new": [
+      23,
+      37
+     ],
+     "rebid_nt": [
+      11,
+      21
+     ],
+     "rebid_pass": [
+      8,
+      19
+     ],
+     "rebid_raise": [
+      10,
+      27
+     ],
+     "rebid_suit": [
+      16,
+      22
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_comp": [
+      19,
+      37
+     ],
+     "resp_new": [
+      10,
+      136
+     ],
+     "resp_nt": [
+      12,
+      46
+     ],
+     "resp_nt_relay": [
+      7,
+      38
+     ],
+     "resp_pass": [
+      9,
+      74
+     ],
+     "resp_raise": [
+      19,
+      45
+     ],
+     "resp_relay": [
+      16,
+      22
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.0,
+    "covered": 1438,
+    "residual": [],
+    "by_family": {}
+   },
+   "rb-precision": {
+    "rate": 0.1546,
+    "covered": 1423,
+    "residual": [
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two"
+    ],
+    "by_family": {
+     "open_minor": [
+      57,
+      137
+     ],
+     "open_nt": [
+      25,
+      51
+     ],
+     "open_pass": [
+      9,
+      378
+     ],
+     "open_strong": [
+      107,
+      139
+     ],
+     "open_two": [
+      20,
+      20
+     ],
+     "resp_pass": [
+      2,
+      18
+     ]
+    }
+   }
+  },
+  "rb-precision": {
+   "two-over-one": {
+    "rate": 0.3116,
+    "covered": 2105,
+    "residual": [
+     "adv_overcall",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_pass",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      3,
+      7
+     ],
+     "adv_overcall": [
+      17,
+      35
+     ],
+     "adv_pass": [
+      6,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      4,
+      19
+     ],
+     "comp_jump": [
+      10,
+      24
+     ],
+     "comp_overcall": [
+      15,
+      78
+     ],
+     "comp_pass": [
+      6,
+      295
+     ],
+     "comp_two_suited": [
+      13,
+      13
+     ],
+     "comp_vs_nt": [
+      7,
+      7
+     ],
+     "nt_relay2": [
+      4,
+      24
+     ],
+     "open_major": [
+      33,
+      138
+     ],
+     "open_minor": [
+      116,
+      214
+     ],
+     "open_nt": [
+      49,
+      75
+     ],
+     "open_pass": [
+      35,
+      406
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      8,
+      8
+     ],
+     "open_weak": [
+      10,
+      25
+     ],
+     "rebid_new": [
+      51,
+      78
+     ],
+     "rebid_nt": [
+      16,
+      31
+     ],
+     "rebid_pass": [
+      15,
+      26
+     ],
+     "rebid_raise": [
+      12,
+      25
+     ],
+     "rebid_suit": [
+      24,
+      35
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_comp": [
+      38,
+      56
+     ],
+     "resp_negative": [
+      6,
+      6
+     ],
+     "resp_new": [
+      57,
+      169
+     ],
+     "resp_nt": [
+      9,
+      41
+     ],
+     "resp_nt_relay": [
+      8,
+      26
+     ],
+     "resp_pass": [
+      42,
+      104
+     ],
+     "resp_positive": [
+      8,
+      8
+     ],
+     "resp_raise": [
+      23,
+      40
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.3102,
+    "covered": 2105,
+    "residual": [
+     "adv_overcall",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_pass",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      3,
+      7
+     ],
+     "adv_overcall": [
+      17,
+      35
+     ],
+     "adv_pass": [
+      6,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      4,
+      19
+     ],
+     "comp_jump": [
+      10,
+      24
+     ],
+     "comp_overcall": [
+      15,
+      78
+     ],
+     "comp_pass": [
+      6,
+      295
+     ],
+     "comp_two_suited": [
+      13,
+      13
+     ],
+     "comp_vs_nt": [
+      7,
+      7
+     ],
+     "nt_relay2": [
+      4,
+      24
+     ],
+     "open_major": [
+      33,
+      138
+     ],
+     "open_minor": [
+      116,
+      214
+     ],
+     "open_nt": [
+      49,
+      75
+     ],
+     "open_pass": [
+      35,
+      406
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      8,
+      8
+     ],
+     "open_weak": [
+      10,
+      25
+     ],
+     "rebid_new": [
+      47,
+      74
+     ],
+     "rebid_nt": [
+      16,
+      31
+     ],
+     "rebid_pass": [
+      15,
+      31
+     ],
+     "rebid_raise": [
+      12,
+      25
+     ],
+     "rebid_suit": [
+      23,
+      34
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_comp": [
+      38,
+      56
+     ],
+     "resp_negative": [
+      6,
+      6
+     ],
+     "resp_new": [
+      66,
+      180
+     ],
+     "resp_nt": [
+      3,
+      32
+     ],
+     "resp_nt_relay": [
+      8,
+      26
+     ],
+     "resp_pass": [
+      50,
+      112
+     ],
+     "resp_positive": [
+      8,
+      8
+     ],
+     "resp_raise": [
+      14,
+      30
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.3392,
+    "covered": 2105,
+    "residual": [
+     "adv_overcall",
+     "comp_jump",
+     "comp_overcall",
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_suit",
+     "open_weak",
+     "rebid_new",
+     "rebid_pass",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      3,
+      7
+     ],
+     "adv_overcall": [
+      17,
+      35
+     ],
+     "adv_pass": [
+      6,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      4,
+      19
+     ],
+     "comp_jump": [
+      10,
+      24
+     ],
+     "comp_overcall": [
+      15,
+      78
+     ],
+     "comp_pass": [
+      6,
+      294
+     ],
+     "comp_two_suited": [
+      13,
+      13
+     ],
+     "comp_vs_nt": [
+      8,
+      8
+     ],
+     "nt_answer": [
+      6,
+      37
+     ],
+     "nt_relay2": [
+      14,
+      24
+     ],
+     "open_nt": [
+      79,
+      105
+     ],
+     "open_pass": [
+      36,
+      407
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      6,
+      6
+     ],
+     "open_suit": [
+      151,
+      323
+     ],
+     "open_weak": [
+      10,
+      25
+     ],
+     "rebid_new": [
+      54,
+      85
+     ],
+     "rebid_nt": [
+      16,
+      19
+     ],
+     "rebid_pass": [
+      15,
+      31
+     ],
+     "rebid_raise": [
+      12,
+      25
+     ],
+     "rebid_suit": [
+      24,
+      35
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_comp": [
+      38,
+      56
+     ],
+     "resp_negative": [
+      6,
+      6
+     ],
+     "resp_new": [
+      66,
+      180
+     ],
+     "resp_nt": [
+      4,
+      29
+     ],
+     "resp_nt_relay": [
+      6,
+      22
+     ],
+     "resp_pass": [
+      56,
+      119
+     ],
+     "resp_positive": [
+      8,
+      8
+     ],
+     "resp_raise": [
+      14,
+      30
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.1139,
+    "covered": 1888,
+    "residual": [
+     "adv_overcall",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "open_two",
+     "rebid_new",
+     "rebid_nt",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      3,
+      7
+     ],
+     "adv_overcall": [
+      17,
+      35
+     ],
+     "adv_pass": [
+      6,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      4,
+      19
+     ],
+     "comp_jump": [
+      10,
+      24
+     ],
+     "comp_overcall": [
+      15,
+      78
+     ],
+     "comp_pass": [
+      6,
+      295
+     ],
+     "comp_two_suited": [
+      13,
+      13
+     ],
+     "comp_vs_nt": [
+      7,
+      7
+     ],
+     "nt_answer": [
+      2,
+      37
+     ],
+     "nt_relay2": [
+      8,
+      24
+     ],
+     "open_major": [
+      1,
+      110
+     ],
+     "open_minor": [
+      1,
+      127
+     ],
+     "open_pass": [
+      7,
+      387
+     ],
+     "open_preempt": [
+      5,
+      17
+     ],
+     "open_two": [
+      9,
+      30
+     ],
+     "open_weak": [
+      2,
+      17
+     ],
+     "rebid_new": [
+      21,
+      43
+     ],
+     "rebid_nt": [
+      7,
+      25
+     ],
+     "rebid_pass": [
+      8,
+      19
+     ],
+     "rebid_raise": [
+      9,
+      19
+     ],
+     "rebid_suit": [
+      5,
+      9
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_new": [
+      12,
+      95
+     ],
+     "resp_nt": [
+      6,
+      43
+     ],
+     "resp_nt_relay": [
+      7,
+      26
+     ],
+     "resp_pass": [
+      2,
+      20
+     ],
+     "resp_raise": [
+      15,
+      32
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.2485,
+    "covered": 1968,
+    "residual": [
+     "adv_overcall",
+     "comp_jump",
+     "comp_overcall",
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_polish",
+     "open_two",
+     "rebid_new",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise",
+     "resp_relay"
+    ],
+    "by_family": {
+     "adv_double": [
+      3,
+      7
+     ],
+     "adv_overcall": [
+      17,
+      35
+     ],
+     "adv_pass": [
+      6,
+      17
+     ],
+     "ask_answer": [
+      1,
+      1
+     ],
+     "comp_double": [
+      4,
+      19
+     ],
+     "comp_jump": [
+      10,
+      24
+     ],
+     "comp_overcall": [
+      15,
+      78
+     ],
+     "comp_pass": [
+      6,
+      295
+     ],
+     "comp_two_suited": [
+      13,
+      13
+     ],
+     "comp_vs_nt": [
+      7,
+      7
+     ],
+     "nt_relay2": [
+      4,
+      24
+     ],
+     "open_major": [
+      18,
+      111
+     ],
+     "open_minor": [
+      8,
+      53
+     ],
+     "open_nt": [
+      36,
+      60
+     ],
+     "open_pass": [
+      37,
+      412
+     ],
+     "open_polish": [
+      100,
+      185
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_two": [
+      7,
+      26
+     ],
+     "open_weak": [
+      6,
+      19
+     ],
+     "rebid_new": [
+      24,
+      46
+     ],
+     "rebid_nt": [
+      5,
+      19
+     ],
+     "rebid_pass": [
+      8,
+      19
+     ],
+     "rebid_raise": [
+      9,
+      19
+     ],
+     "rebid_suit": [
+      6,
+      12
+     ],
+     "resp_ask": [
+      6,
+      6
+     ],
+     "resp_comp": [
+      27,
+      41
+     ],
+     "resp_new": [
+      51,
+      157
+     ],
+     "resp_nt": [
+      13,
+      47
+     ],
+     "resp_nt_relay": [
+      8,
+      26
+     ],
+     "resp_pass": [
+      7,
+      57
+     ],
+     "resp_raise": [
+      19,
+      36
+     ],
+     "resp_relay": [
+      4,
+      29
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.1606,
+    "covered": 1407,
+    "residual": [
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak"
+    ],
+    "by_family": {
+     "open_major": [
+      34,
+      148
+     ],
+     "open_minor": [
+      132,
+      245
+     ],
+     "open_nt": [
+      45,
+      71
+     ],
+     "open_strong": [
+      5,
+      5
+     ],
+     "open_weak": [
+      9,
+      25
+     ],
+     "resp_nt": [
+      1,
+      14
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.0,
+    "covered": 1407,
+    "residual": [],
+    "by_family": {}
+   }
+  },
+  "house-gen5": {
+   "two-over-one": {
+    "rate": 0.1872,
+    "covered": 2046,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      2,
+      8
+     ],
+     "adv_overcall": [
+      29,
+      40
+     ],
+     "adv_pass": [
+      5,
+      18
+     ],
+     "adv_two_suited": [
+      1,
+      3
+     ],
+     "ask_answer": [
+      16,
+      25
+     ],
+     "comp_double": [
+      5,
+      23
+     ],
+     "comp_jump": [
+      13,
+      21
+     ],
+     "comp_nt": [
+      7,
+      16
+     ],
+     "comp_overcall": [
+      19,
+      67
+     ],
+     "comp_pass": [
+      39,
+      287
+     ],
+     "comp_two_suited": [
+      3,
+      14
+     ],
+     "comp_vs_nt": [
+      6,
+      11
+     ],
+     "nt_answer": [
+      8,
+      47
+     ],
+     "nt_relay2": [
+      13,
+      28
+     ],
+     "open_major": [
+      9,
+      141
+     ],
+     "open_minor": [
+      12,
+      210
+     ],
+     "open_pass": [
+      32,
+      405
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      2,
+      7
+     ],
+     "open_weak": [
+      4,
+      26
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_jacoby": [
+      2,
+      6
+     ],
+     "rebid_new": [
+      11,
+      47
+     ],
+     "rebid_nt": [
+      3,
+      25
+     ],
+     "rebid_raise": [
+      7,
+      18
+     ],
+     "rebid_suit": [
+      13,
+      23
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_comp": [
+      30,
+      68
+     ],
+     "resp_negative": [
+      1,
+      8
+     ],
+     "resp_new": [
+      20,
+      121
+     ],
+     "resp_nt": [
+      17,
+      46
+     ],
+     "resp_nt_relay": [
+      5,
+      41
+     ],
+     "resp_pass": [
+      25,
+      98
+     ],
+     "resp_raise": [
+      18,
+      39
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.1971,
+    "covered": 2040,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      2,
+      8
+     ],
+     "adv_overcall": [
+      29,
+      40
+     ],
+     "adv_pass": [
+      5,
+      18
+     ],
+     "adv_two_suited": [
+      1,
+      3
+     ],
+     "ask_answer": [
+      17,
+      25
+     ],
+     "comp_double": [
+      5,
+      23
+     ],
+     "comp_jump": [
+      13,
+      21
+     ],
+     "comp_nt": [
+      7,
+      16
+     ],
+     "comp_overcall": [
+      19,
+      67
+     ],
+     "comp_pass": [
+      39,
+      287
+     ],
+     "comp_two_suited": [
+      3,
+      14
+     ],
+     "comp_vs_nt": [
+      6,
+      11
+     ],
+     "nt_answer": [
+      8,
+      47
+     ],
+     "nt_relay2": [
+      13,
+      28
+     ],
+     "open_major": [
+      9,
+      141
+     ],
+     "open_minor": [
+      12,
+      210
+     ],
+     "open_pass": [
+      32,
+      405
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      2,
+      7
+     ],
+     "open_weak": [
+      4,
+      26
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_new": [
+      10,
+      40
+     ],
+     "rebid_nt": [
+      3,
+      25
+     ],
+     "rebid_pass": [
+      7,
+      14
+     ],
+     "rebid_raise": [
+      7,
+      18
+     ],
+     "rebid_suit": [
+      11,
+      21
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_comp": [
+      30,
+      68
+     ],
+     "resp_negative": [
+      1,
+      8
+     ],
+     "resp_new": [
+      29,
+      129
+     ],
+     "resp_nt": [
+      16,
+      39
+     ],
+     "resp_nt_relay": [
+      5,
+      41
+     ],
+     "resp_pass": [
+      30,
+      103
+     ],
+     "resp_raise": [
+      21,
+      33
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.2941,
+    "covered": 2040,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_suit",
+     "open_weak",
+     "rebid_new",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      2,
+      8
+     ],
+     "adv_overcall": [
+      29,
+      40
+     ],
+     "adv_pass": [
+      5,
+      18
+     ],
+     "adv_two_suited": [
+      1,
+      3
+     ],
+     "ask_answer": [
+      17,
+      25
+     ],
+     "comp_double": [
+      5,
+      23
+     ],
+     "comp_jump": [
+      13,
+      21
+     ],
+     "comp_nt": [
+      7,
+      16
+     ],
+     "comp_overcall": [
+      19,
+      67
+     ],
+     "comp_pass": [
+      37,
+      285
+     ],
+     "comp_two_suited": [
+      3,
+      14
+     ],
+     "comp_vs_nt": [
+      8,
+      13
+     ],
+     "nt_answer": [
+      8,
+      47
+     ],
+     "nt_relay2": [
+      21,
+      28
+     ],
+     "open_nt": [
+      98,
+      108
+     ],
+     "open_pass": [
+      33,
+      406
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_strong": [
+      2,
+      5
+     ],
+     "open_suit": [
+      94,
+      318
+     ],
+     "open_weak": [
+      4,
+      26
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_new": [
+      13,
+      44
+     ],
+     "rebid_pass": [
+      7,
+      14
+     ],
+     "rebid_raise": [
+      7,
+      18
+     ],
+     "rebid_suit": [
+      21,
+      31
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_comp": [
+      30,
+      68
+     ],
+     "resp_negative": [
+      1,
+      8
+     ],
+     "resp_new": [
+      29,
+      131
+     ],
+     "resp_nt": [
+      12,
+      34
+     ],
+     "resp_nt_relay": [
+      6,
+      32
+     ],
+     "resp_pass": [
+      42,
+      116
+     ],
+     "resp_raise": [
+      20,
+      32
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.3018,
+    "covered": 1839,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "rebid_new",
+     "rebid_suit",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_positive",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      2,
+      8
+     ],
+     "adv_overcall": [
+      29,
+      40
+     ],
+     "adv_pass": [
+      5,
+      18
+     ],
+     "adv_two_suited": [
+      1,
+      3
+     ],
+     "ask_answer": [
+      16,
+      25
+     ],
+     "comp_double": [
+      5,
+      23
+     ],
+     "comp_jump": [
+      13,
+      21
+     ],
+     "comp_nt": [
+      7,
+      16
+     ],
+     "comp_overcall": [
+      19,
+      67
+     ],
+     "comp_pass": [
+      39,
+      287
+     ],
+     "comp_two_suited": [
+      3,
+      14
+     ],
+     "comp_vs_nt": [
+      6,
+      11
+     ],
+     "nt_answer": [
+      8,
+      39
+     ],
+     "nt_relay2": [
+      20,
+      23
+     ],
+     "open_major": [
+      7,
+      117
+     ],
+     "open_minor": [
+      61,
+      128
+     ],
+     "open_nt": [
+      25,
+      52
+     ],
+     "open_pass": [
+      26,
+      384
+     ],
+     "open_preempt": [
+      4,
+      17
+     ],
+     "open_strong": [
+      108,
+      136
+     ],
+     "open_two": [
+      28,
+      28
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_jacoby": [
+      2,
+      6
+     ],
+     "rebid_new": [
+      3,
+      29
+     ],
+     "rebid_nt": [
+      1,
+      7
+     ],
+     "rebid_raise": [
+      5,
+      12
+     ],
+     "rebid_suit": [
+      15,
+      21
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_negative": [
+      12,
+      17
+     ],
+     "resp_new": [
+      11,
+      73
+     ],
+     "resp_nt": [
+      15,
+      41
+     ],
+     "resp_nt_relay": [
+      4,
+      35
+     ],
+     "resp_pass": [
+      11,
+      32
+     ],
+     "resp_positive": [
+      24,
+      38
+     ],
+     "resp_raise": [
+      18,
+      35
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.2535,
+    "covered": 1949,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_polish",
+     "open_two",
+     "rebid_new",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      2,
+      8
+     ],
+     "adv_overcall": [
+      29,
+      40
+     ],
+     "adv_pass": [
+      5,
+      18
+     ],
+     "adv_two_suited": [
+      1,
+      3
+     ],
+     "ask_answer": [
+      16,
+      25
+     ],
+     "comp_double": [
+      5,
+      23
+     ],
+     "comp_jump": [
+      13,
+      21
+     ],
+     "comp_nt": [
+      7,
+      16
+     ],
+     "comp_overcall": [
+      19,
+      67
+     ],
+     "comp_pass": [
+      39,
+      287
+     ],
+     "comp_two_suited": [
+      3,
+      14
+     ],
+     "comp_vs_nt": [
+      6,
+      11
+     ],
+     "nt_answer": [
+      8,
+      47
+     ],
+     "nt_relay2": [
+      13,
+      28
+     ],
+     "open_major": [
+      7,
+      112
+     ],
+     "open_minor": [
+      9,
+      51
+     ],
+     "open_pass": [
+      38,
+      412
+     ],
+     "open_polish": [
+      112,
+      185
+     ],
+     "open_preempt": [
+      4,
+      16
+     ],
+     "open_two": [
+      24,
+      24
+     ],
+     "open_weak": [
+      5,
+      19
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_jacoby": [
+      2,
+      6
+     ],
+     "rebid_new": [
+      4,
+      30
+     ],
+     "rebid_nt": [
+      2,
+      14
+     ],
+     "rebid_raise": [
+      5,
+      12
+     ],
+     "rebid_suit": [
+      7,
+      13
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_comp": [
+      20,
+      44
+     ],
+     "resp_new": [
+      16,
+      107
+     ],
+     "resp_nt": [
+      22,
+      51
+     ],
+     "resp_nt_relay": [
+      5,
+      41
+     ],
+     "resp_pass": [
+      17,
+      73
+     ],
+     "resp_raise": [
+      18,
+      37
+     ],
+     "resp_relay": [
+      9,
+      15
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.1275,
+    "covered": 1420,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "open_minor",
+     "open_weak",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_double": [
+      3,
+      17
+     ],
+     "comp_jump": [
+      4,
+      21
+     ],
+     "comp_nt": [
+      6,
+      15
+     ],
+     "comp_overcall": [
+      22,
+      78
+     ],
+     "comp_pass": [
+      42,
+      301
+     ],
+     "comp_vs_nt": [
+      7,
+      7
+     ],
+     "nt_answer": [
+      4,
+      33
+     ],
+     "open_major": [
+      13,
+      152
+     ],
+     "open_minor": [
+      34,
+      243
+     ],
+     "open_pass": [
+      17,
+      370
+     ],
+     "open_preempt": [
+      5,
+      14
+     ],
+     "open_weak": [
+      4,
+      26
+     ],
+     "resp_nt": [
+      9,
+      13
+     ],
+     "resp_nt_relay": [
+      6,
+      40
+     ],
+     "resp_pass": [
+      5,
+      16
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.2628,
+    "covered": 1404,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_double": [
+      3,
+      17
+     ],
+     "comp_jump": [
+      4,
+      21
+     ],
+     "comp_nt": [
+      6,
+      15
+     ],
+     "comp_overcall": [
+      22,
+      78
+     ],
+     "comp_pass": [
+      42,
+      301
+     ],
+     "comp_vs_nt": [
+      7,
+      7
+     ],
+     "nt_answer": [
+      4,
+      28
+     ],
+     "open_major": [
+      9,
+      121
+     ],
+     "open_minor": [
+      72,
+      140
+     ],
+     "open_nt": [
+      25,
+      52
+     ],
+     "open_pass": [
+      24,
+      380
+     ],
+     "open_preempt": [
+      5,
+      14
+     ],
+     "open_strong": [
+      108,
+      136
+     ],
+     "open_two": [
+      20,
+      20
+     ],
+     "resp_nt": [
+      7,
+      8
+     ],
+     "resp_nt_relay": [
+      5,
+      34
+     ],
+     "resp_pass": [
+      6,
+      16
+     ]
+    }
+   }
+  },
+  "house-gen6": {
+   "two-over-one": {
+    "rate": 0.1933,
+    "covered": 2012,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_pass",
+     "rebid_new",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      1,
+      7
+     ],
+     "adv_overcall": [
+      30,
+      41
+     ],
+     "adv_pass": [
+      5,
+      17
+     ],
+     "adv_two_suited": [
+      1,
+      2
+     ],
+     "ask_answer": [
+      13,
+      22
+     ],
+     "comp_double": [
+      6,
+      24
+     ],
+     "comp_jump": [
+      13,
+      20
+     ],
+     "comp_nt": [
+      7,
+      17
+     ],
+     "comp_overcall": [
+      18,
+      67
+     ],
+     "comp_pass": [
+      44,
+      281
+     ],
+     "comp_two_suited": [
+      4,
+      15
+     ],
+     "comp_vs_nt": [
+      7,
+      12
+     ],
+     "nt_answer": [
+      8,
+      48
+     ],
+     "nt_relay2": [
+      14,
+      28
+     ],
+     "open_major": [
+      8,
+      134
+     ],
+     "open_minor": [
+      12,
+      207
+     ],
+     "open_pass": [
+      42,
+      400
+     ],
+     "open_preempt": [
+      2,
+      16
+     ],
+     "open_strong": [
+      2,
+      6
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "rebid_ask": [
+      2,
+      8
+     ],
+     "rebid_jacoby": [
+      3,
+      4
+     ],
+     "rebid_new": [
+      11,
+      44
+     ],
+     "rebid_nt": [
+      1,
+      21
+     ],
+     "rebid_pass": [
+      1,
+      7
+     ],
+     "rebid_raise": [
+      7,
+      19
+     ],
+     "rebid_suit": [
+      13,
+      23
+     ],
+     "resp_ask": [
+      1,
+      8
+     ],
+     "resp_comp": [
+      32,
+      71
+     ],
+     "resp_negative": [
+      1,
+      7
+     ],
+     "resp_new": [
+      17,
+      115
+     ],
+     "resp_nt": [
+      16,
+      45
+     ],
+     "resp_nt_relay": [
+      5,
+      41
+     ],
+     "resp_pass": [
+      27,
+      101
+     ],
+     "resp_raise": [
+      14,
+      36
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.2022,
+    "covered": 2008,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_pass",
+     "rebid_new",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      1,
+      7
+     ],
+     "adv_overcall": [
+      30,
+      41
+     ],
+     "adv_pass": [
+      5,
+      17
+     ],
+     "adv_two_suited": [
+      1,
+      2
+     ],
+     "ask_answer": [
+      16,
+      22
+     ],
+     "comp_double": [
+      6,
+      24
+     ],
+     "comp_jump": [
+      13,
+      20
+     ],
+     "comp_nt": [
+      7,
+      17
+     ],
+     "comp_overcall": [
+      18,
+      67
+     ],
+     "comp_pass": [
+      44,
+      281
+     ],
+     "comp_two_suited": [
+      4,
+      15
+     ],
+     "comp_vs_nt": [
+      7,
+      12
+     ],
+     "nt_answer": [
+      8,
+      48
+     ],
+     "nt_relay2": [
+      14,
+      28
+     ],
+     "open_major": [
+      8,
+      134
+     ],
+     "open_minor": [
+      12,
+      207
+     ],
+     "open_pass": [
+      42,
+      400
+     ],
+     "open_preempt": [
+      2,
+      16
+     ],
+     "open_strong": [
+      2,
+      6
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "rebid_ask": [
+      2,
+      8
+     ],
+     "rebid_new": [
+      10,
+      38
+     ],
+     "rebid_nt": [
+      1,
+      21
+     ],
+     "rebid_pass": [
+      7,
+      15
+     ],
+     "rebid_raise": [
+      7,
+      19
+     ],
+     "rebid_suit": [
+      11,
+      21
+     ],
+     "resp_ask": [
+      1,
+      8
+     ],
+     "resp_comp": [
+      32,
+      71
+     ],
+     "resp_negative": [
+      1,
+      7
+     ],
+     "resp_new": [
+      26,
+      123
+     ],
+     "resp_nt": [
+      15,
+      38
+     ],
+     "resp_nt_relay": [
+      5,
+      41
+     ],
+     "resp_pass": [
+      31,
+      105
+     ],
+     "resp_raise": [
+      16,
+      31
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.2983,
+    "covered": 2008,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_pass",
+     "open_suit",
+     "rebid_new",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      1,
+      7
+     ],
+     "adv_overcall": [
+      30,
+      41
+     ],
+     "adv_pass": [
+      5,
+      17
+     ],
+     "adv_two_suited": [
+      1,
+      2
+     ],
+     "ask_answer": [
+      16,
+      22
+     ],
+     "comp_double": [
+      6,
+      24
+     ],
+     "comp_jump": [
+      13,
+      20
+     ],
+     "comp_nt": [
+      7,
+      17
+     ],
+     "comp_overcall": [
+      18,
+      67
+     ],
+     "comp_pass": [
+      42,
+      280
+     ],
+     "comp_two_suited": [
+      4,
+      15
+     ],
+     "comp_vs_nt": [
+      8,
+      13
+     ],
+     "nt_answer": [
+      8,
+      48
+     ],
+     "nt_relay2": [
+      22,
+      28
+     ],
+     "open_nt": [
+      93,
+      103
+     ],
+     "open_pass": [
+      43,
+      401
+     ],
+     "open_preempt": [
+      2,
+      16
+     ],
+     "open_strong": [
+      2,
+      5
+     ],
+     "open_suit": [
+      92,
+      311
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "rebid_ask": [
+      2,
+      8
+     ],
+     "rebid_new": [
+      12,
+      40
+     ],
+     "rebid_pass": [
+      7,
+      15
+     ],
+     "rebid_raise": [
+      7,
+      19
+     ],
+     "rebid_suit": [
+      20,
+      30
+     ],
+     "resp_ask": [
+      1,
+      8
+     ],
+     "resp_comp": [
+      32,
+      71
+     ],
+     "resp_negative": [
+      1,
+      7
+     ],
+     "resp_new": [
+      27,
+      125
+     ],
+     "resp_nt": [
+      11,
+      33
+     ],
+     "resp_nt_relay": [
+      6,
+      32
+     ],
+     "resp_pass": [
+      43,
+      118
+     ],
+     "resp_raise": [
+      16,
+      30
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.3074,
+    "covered": 1799,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "rebid_new",
+     "rebid_suit",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_positive",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      1,
+      7
+     ],
+     "adv_overcall": [
+      30,
+      41
+     ],
+     "adv_pass": [
+      5,
+      17
+     ],
+     "adv_two_suited": [
+      1,
+      2
+     ],
+     "ask_answer": [
+      13,
+      22
+     ],
+     "comp_double": [
+      6,
+      24
+     ],
+     "comp_jump": [
+      13,
+      20
+     ],
+     "comp_nt": [
+      7,
+      17
+     ],
+     "comp_overcall": [
+      18,
+      67
+     ],
+     "comp_pass": [
+      44,
+      281
+     ],
+     "comp_two_suited": [
+      4,
+      15
+     ],
+     "comp_vs_nt": [
+      7,
+      12
+     ],
+     "nt_answer": [
+      8,
+      39
+     ],
+     "nt_relay2": [
+      20,
+      23
+     ],
+     "open_major": [
+      6,
+      110
+     ],
+     "open_minor": [
+      60,
+      127
+     ],
+     "open_nt": [
+      24,
+      50
+     ],
+     "open_pass": [
+      35,
+      378
+     ],
+     "open_preempt": [
+      2,
+      17
+     ],
+     "open_strong": [
+      106,
+      134
+     ],
+     "open_two": [
+      28,
+      28
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_jacoby": [
+      3,
+      4
+     ],
+     "rebid_new": [
+      3,
+      26
+     ],
+     "rebid_pass": [
+      1,
+      7
+     ],
+     "rebid_raise": [
+      5,
+      13
+     ],
+     "rebid_suit": [
+      15,
+      21
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_negative": [
+      11,
+      16
+     ],
+     "resp_new": [
+      10,
+      68
+     ],
+     "resp_nt": [
+      15,
+      40
+     ],
+     "resp_nt_relay": [
+      4,
+      35
+     ],
+     "resp_pass": [
+      11,
+      33
+     ],
+     "resp_positive": [
+      22,
+      38
+     ],
+     "resp_raise": [
+      13,
+      31
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.2595,
+    "covered": 1911,
+    "residual": [
+     "adv_overcall",
+     "ask_answer",
+     "comp_double",
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_pass",
+     "open_polish",
+     "open_two",
+     "rebid_new",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "adv_double": [
+      1,
+      7
+     ],
+     "adv_overcall": [
+      30,
+      41
+     ],
+     "adv_pass": [
+      5,
+      17
+     ],
+     "adv_two_suited": [
+      1,
+      2
+     ],
+     "ask_answer": [
+      13,
+      22
+     ],
+     "comp_double": [
+      6,
+      24
+     ],
+     "comp_jump": [
+      13,
+      20
+     ],
+     "comp_nt": [
+      7,
+      17
+     ],
+     "comp_overcall": [
+      18,
+      67
+     ],
+     "comp_pass": [
+      44,
+      281
+     ],
+     "comp_two_suited": [
+      4,
+      15
+     ],
+     "comp_vs_nt": [
+      7,
+      12
+     ],
+     "nt_answer": [
+      8,
+      48
+     ],
+     "nt_relay2": [
+      14,
+      28
+     ],
+     "open_major": [
+      6,
+      107
+     ],
+     "open_minor": [
+      10,
+      51
+     ],
+     "open_pass": [
+      48,
+      406
+     ],
+     "open_polish": [
+      106,
+      179
+     ],
+     "open_preempt": [
+      2,
+      16
+     ],
+     "open_two": [
+      24,
+      24
+     ],
+     "open_weak": [
+      5,
+      19
+     ],
+     "rebid_ask": [
+      1,
+      7
+     ],
+     "rebid_jacoby": [
+      3,
+      4
+     ],
+     "rebid_new": [
+      4,
+      28
+     ],
+     "rebid_pass": [
+      1,
+      7
+     ],
+     "rebid_raise": [
+      5,
+      13
+     ],
+     "rebid_suit": [
+      7,
+      13
+     ],
+     "resp_ask": [
+      1,
+      7
+     ],
+     "resp_comp": [
+      21,
+      46
+     ],
+     "resp_new": [
+      15,
+      103
+     ],
+     "resp_nt": [
+      20,
+      49
+     ],
+     "resp_nt_relay": [
+      5,
+      41
+     ],
+     "resp_pass": [
+      19,
+      73
+     ],
+     "resp_raise": [
+      13,
+      33
+     ],
+     "resp_relay": [
+      9,
+      14
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.1322,
+    "covered": 1399,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "open_minor",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_double": [
+      3,
+      18
+     ],
+     "comp_jump": [
+      4,
+      20
+     ],
+     "comp_nt": [
+      6,
+      16
+     ],
+     "comp_overcall": [
+      20,
+      79
+     ],
+     "comp_pass": [
+      47,
+      295
+     ],
+     "comp_vs_nt": [
+      8,
+      8
+     ],
+     "nt_answer": [
+      4,
+      33
+     ],
+     "open_major": [
+      12,
+      144
+     ],
+     "open_minor": [
+      32,
+      240
+     ],
+     "open_pass": [
+      26,
+      366
+     ],
+     "open_preempt": [
+      3,
+      14
+     ],
+     "open_weak": [
+      1,
+      25
+     ],
+     "resp_nt": [
+      8,
+      13
+     ],
+     "resp_nt_relay": [
+      6,
+      40
+     ],
+     "resp_pass": [
+      5,
+      16
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.2719,
+    "covered": 1383,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "comp_pass",
+     "nt_answer",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_double": [
+      3,
+      18
+     ],
+     "comp_jump": [
+      4,
+      20
+     ],
+     "comp_nt": [
+      6,
+      16
+     ],
+     "comp_overcall": [
+      20,
+      79
+     ],
+     "comp_pass": [
+      47,
+      295
+     ],
+     "comp_vs_nt": [
+      8,
+      8
+     ],
+     "nt_answer": [
+      4,
+      28
+     ],
+     "open_major": [
+      8,
+      113
+     ],
+     "open_minor": [
+      71,
+      139
+     ],
+     "open_nt": [
+      24,
+      50
+     ],
+     "open_pass": [
+      34,
+      375
+     ],
+     "open_preempt": [
+      3,
+      14
+     ],
+     "open_strong": [
+      106,
+      134
+     ],
+     "open_two": [
+      20,
+      20
+     ],
+     "resp_nt": [
+      7,
+      8
+     ],
+     "resp_nt_relay": [
+      5,
+      34
+     ],
+     "resp_pass": [
+      6,
+      16
+     ]
+    }
+   }
+  },
+  "card:two-over-one": {
+   "two-over-one": {
+    "rate": 0.0,
+    "covered": 2138,
+    "residual": [],
+    "by_family": {}
+   },
+   "sayc": {
+    "rate": 0.0141,
+    "covered": 2133,
+    "residual": [
+     "rebid_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "rebid_pass": [
+      5,
+      20
+     ],
+     "resp_new": [
+      9,
+      149
+     ],
+     "resp_nt": [
+      3,
+      35
+     ],
+     "resp_pass": [
+      5,
+      105
+     ],
+     "resp_raise": [
+      6,
+      34
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.1308,
+    "covered": 2133,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_suit",
+     "rebid_pass",
+     "rebid_suit",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "comp_vs_nt": [
+      2,
+      12
+     ],
+     "nt_answer": [
+      7,
+      49
+     ],
+     "nt_relay2": [
+      18,
+      35
+     ],
+     "open_nt": [
+      102,
+      112
+     ],
+     "open_pass": [
+      1,
+      427
+     ],
+     "open_suit": [
+      79,
+      332
+     ],
+     "rebid_new": [
+      4,
+      52
+     ],
+     "rebid_pass": [
+      5,
+      20
+     ],
+     "rebid_suit": [
+      20,
+      52
+     ],
+     "resp_new": [
+      9,
+      150
+     ],
+     "resp_nt": [
+      2,
+      30
+     ],
+     "resp_nt_relay": [
+      7,
+      33
+     ],
+     "resp_pass": [
+      15,
+      115
+     ],
+     "resp_raise": [
+      6,
+      34
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.1795,
+    "covered": 1928,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "rebid_suit",
+     "resp_negative",
+     "resp_positive"
+    ],
+    "by_family": {
+     "nt_answer": [
+      5,
+      41
+     ],
+     "nt_relay2": [
+      12,
+      30
+     ],
+     "open_major": [
+      8,
+      116
+     ],
+     "open_minor": [
+      68,
+      138
+     ],
+     "open_nt": [
+      26,
+      53
+     ],
+     "open_pass": [
+      14,
+      402
+     ],
+     "open_preempt": [
+      1,
+      17
+     ],
+     "open_strong": [
+      114,
+      145
+     ],
+     "open_two": [
+      30,
+      30
+     ],
+     "open_weak": [
+      1,
+      17
+     ],
+     "rebid_new": [
+      1,
+      36
+     ],
+     "rebid_suit": [
+      12,
+      28
+     ],
+     "resp_negative": [
+      17,
+      23
+     ],
+     "resp_nt": [
+      1,
+      34
+     ],
+     "resp_nt_relay": [
+      3,
+      33
+     ],
+     "resp_pass": [
+      4,
+      40
+     ],
+     "resp_positive": [
+      27,
+      44
+     ],
+     "resp_raise": [
+      2,
+      36
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.0862,
+    "covered": 2030,
+    "residual": [
+     "open_polish",
+     "open_two",
+     "resp_nt"
+    ],
+    "by_family": {
+     "open_minor": [
+      4,
+      55
+     ],
+     "open_pass": [
+      12,
+      433
+     ],
+     "open_polish": [
+      112,
+      192
+     ],
+     "open_two": [
+      26,
+      26
+     ],
+     "open_weak": [
+      5,
+      19
+     ],
+     "resp_nt": [
+      6,
+      45
+     ],
+     "resp_relay": [
+      10,
+      18
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.0926,
+    "covered": 1479,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_minor",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      13,
+      23
+     ],
+     "comp_overcall": [
+      25,
+      84
+     ],
+     "comp_pass": [
+      27,
+      313
+     ],
+     "comp_vs_nt": [
+      5,
+      6
+     ],
+     "open_major": [
+      13,
+      155
+     ],
+     "open_minor": [
+      40,
+      261
+     ],
+     "open_pass": [
+      3,
+      384
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_weak": [
+      1,
+      26
+     ],
+     "resp_nt_relay": [
+      7,
+      38
+     ],
+     "resp_pass": [
+      1,
+      20
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.2391,
+    "covered": 1464,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "resp_nt_relay",
+     "resp_pass"
+    ],
+    "by_family": {
+     "comp_jump": [
+      13,
+      23
+     ],
+     "comp_overcall": [
+      25,
+      84
+     ],
+     "comp_pass": [
+      27,
+      313
+     ],
+     "comp_vs_nt": [
+      5,
+      6
+     ],
+     "open_major": [
+      11,
+      122
+     ],
+     "open_minor": [
+      81,
+      152
+     ],
+     "open_nt": [
+      26,
+      53
+     ],
+     "open_pass": [
+      13,
+      394
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_strong": [
+      114,
+      145
+     ],
+     "open_two": [
+      22,
+      22
+     ],
+     "open_weak": [
+      1,
+      16
+     ],
+     "resp_nt_relay": [
+      6,
+      32
+     ],
+     "resp_pass": [
+      4,
+      21
+     ]
+    }
+   }
+  },
+  "card:sayc": {
+   "two-over-one": {
+    "rate": 0.0141,
+    "covered": 2131,
+    "residual": [
+     "resp_nt",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "rebid_jacoby": [
+      1,
+      1
+     ],
+     "rebid_new": [
+      4,
+      46
+     ],
+     "resp_new": [
+      1,
+      141
+     ],
+     "resp_nt": [
+      7,
+      39
+     ],
+     "resp_pass": [
+      1,
+      101
+     ],
+     "resp_raise": [
+      14,
+      42
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.0,
+    "covered": 2130,
+    "residual": [],
+    "by_family": {}
+   },
+   "acol": {
+    "rate": 0.1197,
+    "covered": 2130,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_suit",
+     "rebid_suit",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_vs_nt": [
+      2,
+      12
+     ],
+     "nt_answer": [
+      7,
+      49
+     ],
+     "nt_relay2": [
+      18,
+      35
+     ],
+     "open_nt": [
+      102,
+      112
+     ],
+     "open_pass": [
+      1,
+      427
+     ],
+     "open_suit": [
+      79,
+      332
+     ],
+     "rebid_new": [
+      4,
+      46
+     ],
+     "rebid_suit": [
+      20,
+      52
+     ],
+     "resp_new": [
+      1,
+      150
+     ],
+     "resp_nt": [
+      3,
+      30
+     ],
+     "resp_nt_relay": [
+      7,
+      33
+     ],
+     "resp_pass": [
+      11,
+      115
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.191,
+    "covered": 1921,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "rebid_new",
+     "rebid_suit",
+     "resp_negative",
+     "resp_nt",
+     "resp_positive",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "nt_answer": [
+      5,
+      41
+     ],
+     "nt_relay2": [
+      12,
+      30
+     ],
+     "open_major": [
+      8,
+      116
+     ],
+     "open_minor": [
+      68,
+      138
+     ],
+     "open_nt": [
+      26,
+      53
+     ],
+     "open_pass": [
+      14,
+      402
+     ],
+     "open_preempt": [
+      1,
+      17
+     ],
+     "open_strong": [
+      114,
+      145
+     ],
+     "open_two": [
+      30,
+      30
+     ],
+     "open_weak": [
+      1,
+      17
+     ],
+     "rebid_jacoby": [
+      1,
+      1
+     ],
+     "rebid_new": [
+      5,
+      29
+     ],
+     "rebid_suit": [
+      12,
+      28
+     ],
+     "resp_negative": [
+      17,
+      23
+     ],
+     "resp_new": [
+      1,
+      83
+     ],
+     "resp_nt": [
+      7,
+      34
+     ],
+     "resp_nt_relay": [
+      3,
+      33
+     ],
+     "resp_pass": [
+      4,
+      40
+     ],
+     "resp_positive": [
+      29,
+      44
+     ],
+     "resp_raise": [
+      7,
+      36
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.0999,
+    "covered": 2023,
+    "residual": [
+     "open_polish",
+     "open_two",
+     "rebid_new",
+     "resp_nt",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "open_minor": [
+      4,
+      55
+     ],
+     "open_pass": [
+      12,
+      433
+     ],
+     "open_polish": [
+      112,
+      192
+     ],
+     "open_two": [
+      26,
+      26
+     ],
+     "open_weak": [
+      5,
+      19
+     ],
+     "rebid_jacoby": [
+      1,
+      1
+     ],
+     "rebid_new": [
+      4,
+      29
+     ],
+     "resp_new": [
+      1,
+      125
+     ],
+     "resp_nt": [
+      13,
+      45
+     ],
+     "resp_pass": [
+      1,
+      76
+     ],
+     "resp_raise": [
+      11,
+      38
+     ],
+     "resp_relay": [
+      10,
+      18
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.0924,
+    "covered": 1483,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_minor",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      13,
+      23
+     ],
+     "comp_overcall": [
+      25,
+      86
+     ],
+     "comp_pass": [
+      27,
+      315
+     ],
+     "comp_vs_nt": [
+      5,
+      6
+     ],
+     "open_major": [
+      13,
+      155
+     ],
+     "open_minor": [
+      40,
+      261
+     ],
+     "open_pass": [
+      3,
+      384
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_weak": [
+      1,
+      26
+     ],
+     "resp_nt_relay": [
+      7,
+      38
+     ],
+     "resp_pass": [
+      1,
+      20
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.2384,
+    "covered": 1468,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "resp_nt_relay",
+     "resp_pass"
+    ],
+    "by_family": {
+     "comp_jump": [
+      13,
+      23
+     ],
+     "comp_overcall": [
+      25,
+      86
+     ],
+     "comp_pass": [
+      27,
+      315
+     ],
+     "comp_vs_nt": [
+      5,
+      6
+     ],
+     "open_major": [
+      11,
+      122
+     ],
+     "open_minor": [
+      81,
+      152
+     ],
+     "open_nt": [
+      26,
+      53
+     ],
+     "open_pass": [
+      13,
+      394
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_strong": [
+      114,
+      145
+     ],
+     "open_two": [
+      22,
+      22
+     ],
+     "open_weak": [
+      1,
+      16
+     ],
+     "resp_nt_relay": [
+      6,
+      32
+     ],
+     "resp_pass": [
+      4,
+      21
+     ]
+    }
+   }
+  },
+  "card:acol": {
+   "two-over-one": {
+    "rate": 0.13,
+    "covered": 2131,
+    "residual": [
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "rebid_suit",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "comp_vs_nt": [
+      2,
+      19
+     ],
+     "nt_answer": [
+      6,
+      66
+     ],
+     "nt_relay2": [
+      25,
+      43
+     ],
+     "open_major": [
+      15,
+      143
+     ],
+     "open_minor": [
+      97,
+      222
+     ],
+     "open_nt": [
+      68,
+      78
+     ],
+     "open_strong": [
+      2,
+      7
+     ],
+     "rebid_new": [
+      3,
+      39
+     ],
+     "rebid_raise": [
+      1,
+      29
+     ],
+     "rebid_suit": [
+      14,
+      46
+     ],
+     "resp_nt": [
+      16,
+      45
+     ],
+     "resp_nt_relay": [
+      13,
+      56
+     ],
+     "resp_raise": [
+      13,
+      44
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.1201,
+    "covered": 2131,
+    "residual": [
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "rebid_suit",
+     "resp_nt",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_vs_nt": [
+      2,
+      19
+     ],
+     "nt_answer": [
+      6,
+      66
+     ],
+     "nt_relay2": [
+      25,
+      43
+     ],
+     "open_major": [
+      15,
+      143
+     ],
+     "open_minor": [
+      97,
+      222
+     ],
+     "open_nt": [
+      68,
+      78
+     ],
+     "open_strong": [
+      2,
+      7
+     ],
+     "rebid_raise": [
+      1,
+      29
+     ],
+     "rebid_suit": [
+      14,
+      46
+     ],
+     "resp_nt": [
+      12,
+      41
+     ],
+     "resp_nt_relay": [
+      13,
+      56
+     ],
+     "resp_raise": [
+      1,
+      37
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.0,
+    "covered": 2131,
+    "residual": [],
+    "by_family": {}
+   },
+   "precision": {
+    "rate": 0.2146,
+    "covered": 1943,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "rebid_new",
+     "rebid_suit",
+     "resp_negative",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_positive",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "comp_vs_nt": [
+      2,
+      19
+     ],
+     "nt_answer": [
+      6,
+      57
+     ],
+     "nt_relay2": [
+      22,
+      38
+     ],
+     "open_major": [
+      21,
+      116
+     ],
+     "open_minor": [
+      99,
+      138
+     ],
+     "open_nt": [
+      27,
+      53
+     ],
+     "open_pass": [
+      14,
+      402
+     ],
+     "open_preempt": [
+      1,
+      17
+     ],
+     "open_strong": [
+      105,
+      145
+     ],
+     "open_two": [
+      30,
+      30
+     ],
+     "open_weak": [
+      1,
+      17
+     ],
+     "rebid_new": [
+      3,
+      26
+     ],
+     "rebid_suit": [
+      14,
+      30
+     ],
+     "resp_negative": [
+      20,
+      26
+     ],
+     "resp_nt": [
+      15,
+      43
+     ],
+     "resp_nt_relay": [
+      8,
+      48
+     ],
+     "resp_positive": [
+      19,
+      31
+     ],
+     "resp_raise": [
+      8,
+      40
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.1835,
+    "covered": 2044,
+    "residual": [
+     "nt_relay2",
+     "open_minor",
+     "open_nt",
+     "open_polish",
+     "open_two",
+     "rebid_new",
+     "rebid_suit",
+     "resp_nt",
+     "resp_nt_relay",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      2
+     ],
+     "comp_vs_nt": [
+      2,
+      19
+     ],
+     "nt_answer": [
+      6,
+      66
+     ],
+     "nt_relay2": [
+      25,
+      43
+     ],
+     "open_major": [
+      1,
+      113
+     ],
+     "open_minor": [
+      7,
+      55
+     ],
+     "open_nt": [
+      64,
+      64
+     ],
+     "open_pass": [
+      12,
+      433
+     ],
+     "open_polish": [
+      159,
+      192
+     ],
+     "open_two": [
+      26,
+      26
+     ],
+     "open_weak": [
+      5,
+      19
+     ],
+     "rebid_new": [
+      3,
+      27
+     ],
+     "rebid_suit": [
+      6,
+      22
+     ],
+     "resp_nt": [
+      20,
+      49
+     ],
+     "resp_nt_relay": [
+      13,
+      56
+     ],
+     "resp_raise": [
+      13,
+      43
+     ],
+     "resp_relay": [
+      11,
+      17
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.2178,
+    "covered": 1524,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "resp_nt",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      13,
+      25
+     ],
+     "comp_overcall": [
+      24,
+      81
+     ],
+     "comp_pass": [
+      32,
+      327
+     ],
+     "comp_vs_nt": [
+      4,
+      8
+     ],
+     "nt_answer": [
+      2,
+      45
+     ],
+     "open_major": [
+      24,
+      155
+     ],
+     "open_minor": [
+      137,
+      261
+     ],
+     "open_nt": [
+      64,
+      74
+     ],
+     "open_pass": [
+      3,
+      384
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_strong": [
+      2,
+      4
+     ],
+     "open_weak": [
+      1,
+      26
+     ],
+     "resp_nt": [
+      9,
+      20
+     ],
+     "resp_nt_relay": [
+      13,
+      54
+     ],
+     "resp_pass": [
+      2,
+      20
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.2653,
+    "covered": 1508,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      13,
+      25
+     ],
+     "comp_overcall": [
+      24,
+      81
+     ],
+     "comp_pass": [
+      32,
+      327
+     ],
+     "comp_vs_nt": [
+      4,
+      8
+     ],
+     "nt_answer": [
+      2,
+      40
+     ],
+     "open_major": [
+      24,
+      122
+     ],
+     "open_minor": [
+      112,
+      152
+     ],
+     "open_nt": [
+      27,
+      53
+     ],
+     "open_pass": [
+      13,
+      394
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_strong": [
+      105,
+      145
+     ],
+     "open_two": [
+      22,
+      22
+     ],
+     "open_weak": [
+      1,
+      16
+     ],
+     "resp_nt": [
+      8,
+      16
+     ],
+     "resp_nt_relay": [
+      9,
+      46
+     ],
+     "resp_pass": [
+      2,
+      21
+     ]
+    }
+   }
+  },
+  "card:precision": {
+   "two-over-one": {
+    "rate": 0.2137,
+    "covered": 2092,
+    "residual": [
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_pass",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "nt_answer": [
+      2,
+      35
+     ],
+     "nt_relay2": [
+      6,
+      19
+     ],
+     "open_major": [
+      36,
+      137
+     ],
+     "open_minor": [
+      118,
+      217
+     ],
+     "open_nt": [
+      48,
+      75
+     ],
+     "open_pass": [
+      33,
+      409
+     ],
+     "open_strong": [
+      8,
+      8
+     ],
+     "open_weak": [
+      10,
+      26
+     ],
+     "rebid_new": [
+      22,
+      73
+     ],
+     "rebid_nt": [
+      8,
+      31
+     ],
+     "rebid_pass": [
+      6,
+      22
+     ],
+     "rebid_raise": [
+      3,
+      17
+     ],
+     "rebid_suit": [
+      23,
+      44
+     ],
+     "resp_comp": [
+      30,
+      59
+     ],
+     "resp_new": [
+      45,
+      157
+     ],
+     "resp_nt": [
+      3,
+      39
+     ],
+     "resp_nt_relay": [
+      1,
+      23
+     ],
+     "resp_pass": [
+      28,
+      96
+     ],
+     "resp_positive": [
+      9,
+      10
+     ],
+     "resp_raise": [
+      8,
+      37
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.2253,
+    "covered": 2086,
+    "residual": [
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_pass",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      3
+     ],
+     "nt_answer": [
+      2,
+      35
+     ],
+     "nt_relay2": [
+      6,
+      19
+     ],
+     "open_major": [
+      36,
+      137
+     ],
+     "open_minor": [
+      118,
+      217
+     ],
+     "open_nt": [
+      48,
+      75
+     ],
+     "open_pass": [
+      33,
+      409
+     ],
+     "open_strong": [
+      8,
+      8
+     ],
+     "open_weak": [
+      10,
+      26
+     ],
+     "rebid_new": [
+      22,
+      67
+     ],
+     "rebid_nt": [
+      8,
+      31
+     ],
+     "rebid_pass": [
+      12,
+      28
+     ],
+     "rebid_raise": [
+      3,
+      17
+     ],
+     "rebid_suit": [
+      23,
+      44
+     ],
+     "resp_comp": [
+      30,
+      59
+     ],
+     "resp_new": [
+      55,
+      167
+     ],
+     "resp_nt": [
+      4,
+      31
+     ],
+     "resp_nt_relay": [
+      1,
+      23
+     ],
+     "resp_pass": [
+      34,
+      103
+     ],
+     "resp_positive": [
+      9,
+      10
+     ],
+     "resp_raise": [
+      6,
+      28
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.2574,
+    "covered": 2086,
+    "residual": [
+     "nt_answer",
+     "open_nt",
+     "open_suit",
+     "open_weak",
+     "rebid_new",
+     "rebid_pass",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      2,
+      3
+     ],
+     "comp_vs_nt": [
+      1,
+      8
+     ],
+     "nt_answer": [
+      4,
+      35
+     ],
+     "nt_relay2": [
+      11,
+      19
+     ],
+     "open_nt": [
+      79,
+      105
+     ],
+     "open_pass": [
+      34,
+      410
+     ],
+     "open_strong": [
+      6,
+      6
+     ],
+     "open_suit": [
+      157,
+      325
+     ],
+     "open_weak": [
+      10,
+      26
+     ],
+     "rebid_new": [
+      33,
+      78
+     ],
+     "rebid_nt": [
+      13,
+      18
+     ],
+     "rebid_pass": [
+      12,
+      28
+     ],
+     "rebid_raise": [
+      3,
+      17
+     ],
+     "rebid_suit": [
+      25,
+      46
+     ],
+     "resp_comp": [
+      30,
+      59
+     ],
+     "resp_new": [
+      55,
+      167
+     ],
+     "resp_nt": [
+      3,
+      27
+     ],
+     "resp_nt_relay": [
+      4,
+      19
+     ],
+     "resp_pass": [
+      40,
+      111
+     ],
+     "resp_positive": [
+      9,
+      10
+     ],
+     "resp_raise": [
+      6,
+      28
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.0,
+    "covered": 1864,
+    "residual": [],
+    "by_family": {}
+   },
+   "polish-club": {
+    "rate": 0.1576,
+    "covered": 1942,
+    "residual": [
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_polish",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_pass",
+     "resp_raise",
+     "resp_relay"
+    ],
+    "by_family": {
+     "nt_answer": [
+      2,
+      35
+     ],
+     "nt_relay2": [
+      6,
+      19
+     ],
+     "open_major": [
+      21,
+      110
+     ],
+     "open_minor": [
+      9,
+      55
+     ],
+     "open_nt": [
+      36,
+      61
+     ],
+     "open_pass": [
+      35,
+      416
+     ],
+     "open_polish": [
+      100,
+      184
+     ],
+     "open_weak": [
+      5,
+      19
+     ],
+     "rebid_new": [
+      3,
+      41
+     ],
+     "rebid_suit": [
+      4,
+      12
+     ],
+     "resp_comp": [
+      22,
+      41
+     ],
+     "resp_new": [
+      39,
+      145
+     ],
+     "resp_nt": [
+      7,
+      45
+     ],
+     "resp_nt_relay": [
+      1,
+      23
+     ],
+     "resp_pass": [
+      7,
+      54
+     ],
+     "resp_raise": [
+      5,
+      33
+     ],
+     "resp_relay": [
+      4,
+      29
+     ]
+    }
+   },
+   "rb-standard": {
+    "rate": 0.2188,
+    "covered": 1394,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      15,
+      27
+     ],
+     "comp_overcall": [
+      20,
+      81
+     ],
+     "comp_pass": [
+      19,
+      300
+     ],
+     "comp_vs_nt": [
+      2,
+      2
+     ],
+     "open_major": [
+      39,
+      147
+     ],
+     "open_minor": [
+      135,
+      249
+     ],
+     "open_nt": [
+      44,
+      71
+     ],
+     "open_pass": [
+      3,
+      376
+     ],
+     "open_preempt": [
+      3,
+      15
+     ],
+     "open_strong": [
+      5,
+      5
+     ],
+     "open_weak": [
+      11,
+      26
+     ],
+     "resp_nt": [
+      2,
+      14
+     ],
+     "resp_nt_relay": [
+      5,
+      21
+     ],
+     "resp_pass": [
+      2,
+      11
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.0638,
+    "covered": 1394,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      15,
+      27
+     ],
+     "comp_overcall": [
+      20,
+      81
+     ],
+     "comp_pass": [
+      19,
+      300
+     ],
+     "comp_vs_nt": [
+      2,
+      2
+     ],
+     "open_major": [
+      5,
+      113
+     ],
+     "open_minor": [
+      12,
+      141
+     ],
+     "open_pass": [
+      3,
+      386
+     ],
+     "open_preempt": [
+      3,
+      15
+     ],
+     "open_two": [
+      2,
+      24
+     ],
+     "open_weak": [
+      1,
+      16
+     ],
+     "resp_nt_relay": [
+      5,
+      21
+     ],
+     "resp_pass": [
+      2,
+      13
+     ]
+    }
+   }
+  },
+  "card:polish-club": {
+   "two-over-one": {
+    "rate": 0.1427,
+    "covered": 2138,
+    "residual": [
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "open_major": [
+      30,
+      145
+     ],
+     "open_minor": [
+      95,
+      224
+     ],
+     "open_nt": [
+      15,
+      80
+     ],
+     "open_pass": [
+      5,
+      427
+     ],
+     "open_strong": [
+      8,
+      8
+     ],
+     "open_weak": [
+      12,
+      26
+     ],
+     "rebid_new": [
+      24,
+      73
+     ],
+     "rebid_nt": [
+      29,
+      42
+     ],
+     "rebid_pass": [
+      2,
+      14
+     ],
+     "rebid_raise": [
+      11,
+      27
+     ],
+     "rebid_suit": [
+      12,
+      38
+     ],
+     "resp_ask": [
+      1,
+      6
+     ],
+     "resp_comp": [
+      13,
+      55
+     ],
+     "resp_new": [
+      9,
+      152
+     ],
+     "resp_pass": [
+      21,
+      99
+     ],
+     "resp_positive": [
+      9,
+      10
+     ],
+     "resp_raise": [
+      9,
+      40
+     ]
+    }
+   },
+   "sayc": {
+    "rate": 0.1534,
+    "covered": 2132,
+    "residual": [
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "rebid_new",
+     "rebid_nt",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      1,
+      3
+     ],
+     "open_major": [
+      30,
+      145
+     ],
+     "open_minor": [
+      95,
+      224
+     ],
+     "open_nt": [
+      15,
+      80
+     ],
+     "open_pass": [
+      5,
+      427
+     ],
+     "open_strong": [
+      8,
+      8
+     ],
+     "open_weak": [
+      12,
+      26
+     ],
+     "rebid_new": [
+      24,
+      70
+     ],
+     "rebid_nt": [
+      29,
+      42
+     ],
+     "rebid_pass": [
+      5,
+      17
+     ],
+     "rebid_raise": [
+      11,
+      27
+     ],
+     "rebid_suit": [
+      12,
+      38
+     ],
+     "resp_ask": [
+      1,
+      6
+     ],
+     "resp_comp": [
+      13,
+      55
+     ],
+     "resp_new": [
+      18,
+      160
+     ],
+     "resp_nt": [
+      4,
+      27
+     ],
+     "resp_pass": [
+      26,
+      104
+     ],
+     "resp_positive": [
+      9,
+      10
+     ],
+     "resp_raise": [
+      9,
+      30
+     ]
+    }
+   },
+   "acol": {
+    "rate": 0.2289,
+    "covered": 2132,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_nt",
+     "open_suit",
+     "open_weak",
+     "rebid_new",
+     "rebid_raise",
+     "rebid_suit",
+     "resp_comp",
+     "resp_new",
+     "resp_nt_relay",
+     "resp_pass",
+     "resp_raise"
+    ],
+    "by_family": {
+     "ask_answer": [
+      1,
+      3
+     ],
+     "comp_vs_nt": [
+      1,
+      11
+     ],
+     "nt_answer": [
+      6,
+      39
+     ],
+     "nt_relay2": [
+      18,
+      30
+     ],
+     "open_nt": [
+      113,
+      113
+     ],
+     "open_pass": [
+      6,
+      428
+     ],
+     "open_strong": [
+      6,
+      6
+     ],
+     "open_suit": [
+      143,
+      337
+     ],
+     "open_weak": [
+      12,
+      26
+     ],
+     "rebid_new": [
+      24,
+      70
+     ],
+     "rebid_nt": [
+      11,
+      13
+     ],
+     "rebid_pass": [
+      5,
+      17
+     ],
+     "rebid_raise": [
+      15,
+      31
+     ],
+     "rebid_suit": [
+      33,
+      63
+     ],
+     "resp_ask": [
+      1,
+      6
+     ],
+     "resp_comp": [
+      13,
+      55
+     ],
+     "resp_new": [
+      18,
+      161
+     ],
+     "resp_nt": [
+      2,
+      22
+     ],
+     "resp_nt_relay": [
+      6,
+      27
+     ],
+     "resp_pass": [
+      36,
+      114
+     ],
+     "resp_positive": [
+      9,
+      10
+     ],
+     "resp_raise": [
+      9,
+      30
+     ]
+    }
+   },
+   "precision": {
+    "rate": 0.1704,
+    "covered": 1866,
+    "residual": [
+     "nt_answer",
+     "nt_relay2",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "resp_negative",
+     "resp_positive"
+    ],
+    "by_family": {
+     "nt_answer": [
+      4,
+      39
+     ],
+     "nt_relay2": [
+      12,
+      30
+     ],
+     "open_major": [
+      23,
+      118
+     ],
+     "open_minor": [
+      93,
+      139
+     ],
+     "open_nt": [
+      28,
+      53
+     ],
+     "open_pass": [
+      8,
+      402
+     ],
+     "open_preempt": [
+      1,
+      17
+     ],
+     "open_strong": [
+      62,
+      149
+     ],
+     "open_two": [
+      3,
+      31
+     ],
+     "open_weak": [
+      3,
+      17
+     ],
+     "resp_negative": [
+      27,
+      53
+     ],
+     "resp_nt": [
+      1,
+      28
+     ],
+     "resp_nt_relay": [
+      3,
+      32
+     ],
+     "resp_pass": [
+      2,
+      26
+     ],
+     "resp_positive": [
+      47,
+      80
+     ],
+     "resp_raise": [
+      1,
+      26
+     ]
+    }
+   },
+   "polish-club": {
+    "rate": 0.0,
+    "covered": 1925,
+    "residual": [],
+    "by_family": {}
+   },
+   "rb-standard": {
+    "rate": 0.1983,
+    "covered": 1447,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_weak",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      14,
+      24
+     ],
+     "comp_overcall": [
+      20,
+      78
+     ],
+     "comp_pass": [
+      22,
+      301
+     ],
+     "comp_vs_nt": [
+      6,
+      7
+     ],
+     "open_major": [
+      43,
+      157
+     ],
+     "open_minor": [
+      133,
+      263
+     ],
+     "open_nt": [
+      15,
+      76
+     ],
+     "open_pass": [
+      8,
+      385
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_strong": [
+      5,
+      5
+     ],
+     "open_weak": [
+      13,
+      26
+     ],
+     "resp_nt_relay": [
+      5,
+      32
+     ],
+     "resp_pass": [
+      1,
+      17
+     ]
+    }
+   },
+   "rb-precision": {
+    "rate": 0.2129,
+    "covered": 1447,
+    "residual": [
+     "comp_jump",
+     "comp_overcall",
+     "open_major",
+     "open_minor",
+     "open_nt",
+     "open_strong",
+     "open_two",
+     "resp_nt_relay"
+    ],
+    "by_family": {
+     "comp_jump": [
+      14,
+      24
+     ],
+     "comp_overcall": [
+      20,
+      78
+     ],
+     "comp_pass": [
+      22,
+      301
+     ],
+     "comp_vs_nt": [
+      6,
+      7
+     ],
+     "open_major": [
+      26,
+      123
+     ],
+     "open_minor": [
+      106,
+      153
+     ],
+     "open_nt": [
+      28,
+      53
+     ],
+     "open_pass": [
+      8,
+      395
+     ],
+     "open_preempt": [
+      2,
+      14
+     ],
+     "open_strong": [
+      62,
+      149
+     ],
+     "open_two": [
+      3,
+      23
+     ],
+     "open_weak": [
+      3,
+      16
+     ],
+     "resp_nt_relay": [
+      5,
+      31
+     ],
+     "resp_pass": [
+      3,
+      19
+     ]
+    }
+   }
+  }
+ }
+}
