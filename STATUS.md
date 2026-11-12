@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 15:16 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 15:16 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -17,7 +17,7 @@ Generated 2026-11-12 15:16 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
+| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 18:13 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 18:02 | leased | high | 2026-11-13T10:00Z |  |
@@ -110,9 +110,9 @@ Generated 2026-11-12 15:16 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 15:14 UTC.
+**azure4**: 8 of 8 cores busy, reported 11-12 15:14 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | running | 238 of 6,200 | 1368.7 | 11-12 19:35 | `transfer/gen9-d6-arrival-azure4-20261112@6ad33edbd` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
