@@ -142,28 +142,57 @@ def gather(pool, tables, source, bot):
     return {key: {n: np.concatenate(v) for n, v in a.items()} for key, a in acc.items()}
 
 
-def fit_heads(data, W, b, seed):
-    """{ben: {role: {name: PlayHead}}} and a log of the cross-validation."""
-    heads, log = {}, []
+LAMS_SMALL = (10., 30., 100., 300., 1000., 3000.)
+LAMS_LARGE = (3., 10., 30., 100.)         # from 1,000 tables on (the first run's cross-validation never chose above 100 there)
+
+
+def load_decisions(cache):
+    z = np.load(cache)
+    data = {}
+    for name in z.files:
+        ben, held, role, field = name.split('|')
+        data.setdefault((ben, held == '1', role), {})[field] = z[name]
+    return data
+
+
+def fit_one(job):
+    """One head: (ben, role, name, PlayHead, log entry). The worker reads the decisions file once."""
+    ben, role, name, rows, seed, W, b, cache = job
+    if STATE.get('data_from') != cache:
+        STATE['data'], STATE['data_from'] = load_decisions(cache), cache
+    arr = STATE['data'][(ben, False, role)]
+    d, legal, K, table = arr['d'][rows], arr['legal'][rows], arr['K'][rows], arr['table'][rows]
+    t0 = time.time()
+    lams = LAMS_LARGE if len(np.unique(table)) >= 1000 else LAMS_SMALL
+    head, cv = fit_cv(d, legal, K, table, W, b, lams=lams, seed=seed)
+    entry = dict(ben=ben, role=role, head=name, tables=int(len(np.unique(table))), decisions=int(len(d)), lam=head.lam, tau=head.tau,
+                 cv={str(k): round(v, 5) for k, v in cv.items()}, seconds=round(time.time() - t0, 1))
+    return ben, role, name, head, entry
+
+
+def fit_heads(data, seed, pool, cache):
+    """{ben: {role: {name: PlayHead}}} and a log of the cross-validation; the fits run in the worker processes."""
     rng = np.random.default_rng(seed)
+    jobs = []
     for ben in ('ben', 'ben64'):
         for role in ROLES:
             arr = data.get((ben, False, role))
             if arr is None:
                 continue
             tables = np.unique(arr['table'])
-            plan = [(f'all', tables)]
+            plan = [('all', tables)]
             if role != 'house.defender':
                 plan = [(f'n{n}.{s}', rng.choice(tables, n, replace=False)) for n in SIZES if n < len(tables)
                         for s in range(SUBSETS)] + plan
             for name, pick in plan:
-                t0 = time.time()
                 rows = np.isin(arr['table'], pick)
-                head, cv = fit_cv(arr['d'][rows], arr['legal'][rows], arr['K'][rows], arr['table'][rows], W, b, seed=seed)
-                heads.setdefault(ben, {}).setdefault(role, {})[name] = head
-                log.append(dict(ben=ben, role=role, head=name, tables=int(len(pick)), decisions=int(rows.sum()), lam=head.lam,
-                                tau=head.tau, cv={str(k): round(v, 5) for k, v in cv.items()}, seconds=round(time.time() - t0, 1)))
-                print(json.dumps(log[-1]), flush=True)
+                jobs.append((ben, role, name, np.flatnonzero(rows), seed, STATE['W'], STATE['b'], str(cache)))
+    jobs.sort(key=lambda j: -len(j[3]))                # the biggest fits first, so the two workers end together
+    heads, log = {}, []
+    for ben, role, name, head, entry in pool.map(fit_one, jobs, chunksize=1):
+        heads.setdefault(ben, {}).setdefault(role, {})[name] = head
+        log.append(entry)
+        print(json.dumps(entry), flush=True)
     return heads, log
 
 
@@ -311,11 +340,7 @@ def main():
     cache = out / 'decisions.npz'
     with ProcessPoolExecutor(args.workers) as pool:
         if cache.exists():
-            z = np.load(cache)
-            data = {}
-            for name in z.files:
-                ben, held, role, field = name.split('|')
-                data.setdefault((ben, held == '1', role), {})[field] = z[name]
+            data = load_decisions(cache)
         else:
             t0 = time.time()
             data = gather(pool, chosen, source, args.bot)
@@ -328,7 +353,7 @@ def main():
             j = json.loads(hfile.read_text())
             heads = {ben: {role: {n: PlayHead.from_json(h) for n, h in hs.items()} for role, hs in r.items()} for ben, r in j['heads'].items()}
         else:
-            heads, log = fit_heads(data, W, b, args.seed)
+            heads, log = fit_heads(data, args.seed, pool, cache)
             hfile.write_text(json.dumps(dict(log=log, heads={ben: {role: {n: h.to_json() for n, h in hs.items()} for role, hs in r.items()}
                                                              for ben, r in heads.items()})))
         with open(out / 'choices.jsonl', 'w') as f:
