@@ -39,13 +39,13 @@ import plan_bench
 STATE = plan_bench.STATE
 
 
-def start(from_trick, to_trick, ties, seed, worlds, bands, sim_samples, max_gap=99.):
+def start(from_trick, to_trick, ties, seed, worlds, bands, sim_samples, max_gap=99., leads=False, max_ply=99):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     spec = check.spec('gen6')
     if sim_samples:
         spec = dict(spec, samples=sim_samples, id=f'6-{sim_samples}')
     STATE.update(six=player(check.spec('gen6'), ROOT), sim=player(spec, ROOT), sim_id=spec['id'], from_trick=from_trick, to_trick=to_trick,
-                 ties=ties, seed=seed, worlds=worlds, bands=bands, max_gap=max_gap)
+                 ties=ties, seed=seed, worlds=worlds, bands=bands, max_gap=max_gap, leads=leads, max_ply=max_ply)
 
 
 def played_out(o, board, world, x, tag):
@@ -152,6 +152,8 @@ def main():
     p.add_argument('--bands', help='keep only these bands, e.g. 0,1')
     p.add_argument('--max-gap', type=float, default=99., help='keep only pairs whose recorded gap is at most this')
     p.add_argument('--ties', action='store_true')
+    p.add_argument('--leads', action='store_true', help='opening leads too (ply 0; the leader sees no dummy)')
+    p.add_argument('--max-ply', type=int, default=99, help='keep only decisions at this ply or earlier (0 = opening leads alone)')
     p.add_argument('--pairs', type=int, default=10 ** 9)
     p.add_argument('--files', type=int, default=10 ** 9)
     p.add_argument('--skip-files', type=int, default=0)
@@ -167,10 +169,10 @@ def main():
 
     def save():
         a.out.write_text(json.dumps(dict(settings=dict(sims=[dict(name='gen6', net=None, mode='gen6', repeats=1, tricks=0)], worlds=a.worlds,
-                                                       sim_samples=a.sim_samples, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, bands=a.bands, max_gap=a.max_gap,
+                                                       sim_samples=a.sim_samples, from_trick=a.from_trick, to_trick=a.to_trick, ties=a.ties, bands=a.bands, max_gap=a.max_gap, leads=a.leads, max_ply=a.max_ply,
                                                        files=done, seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
 
-    with Pool(a.workers, initializer=start, initargs=(a.from_trick, a.to_trick, a.ties, a.seed, a.worlds, bands, a.sim_samples, a.max_gap)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(a.from_trick, a.to_trick, a.ties, a.seed, a.worlds, bands, a.sim_samples, a.max_gap, a.leads, a.max_ply)) as pool:
         for got in pool.imap(pairs_of, files, chunksize=1):
             rows += got
             done += 1
