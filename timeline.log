@@ -1,0 +1,20 @@
+fetch1 start 03:58:08
+fetch1 exit 0 03:59:06
+buildA start 04:02:34
+buildA done: {"parts": 16, "deals": 38128, "unique_families": 34029, "examples": 13239367, "deals_by_hash_split": [30607, 3661, 3860]} 04:28:29
+freshB done: {"deals_in": 1112, "deals_kept": 631, "dropped_as_seen": 481, "examples": 218537} 04:29:25
+w512 start 04:29:25
+scoreB_old done 04:29:54
+w768 start (beside 512) 04:31:51
+pairsA exit 0 04:34:31
+pairsB exit 0 04:34:41
+w512 done 05:00:12
+freshC done: {"deals_in": 878, "deals_kept": 450, "dropped_as_seen": 428, "examples": 180315} 05:01:23
+chain end 05:01:23
+bench start 05:04:43
+eval512 done 05:05:37
+push1 done 05:05:44
+pairsC exit 0 05:05:52
+result_head exit 0 05:07:08
+push2 done 05:07:16
+bench exit 0 05:09:49
