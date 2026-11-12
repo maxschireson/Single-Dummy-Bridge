@@ -48,7 +48,7 @@
    "state": "running",
    "owner": "g9",
    "experiment": "E9-0",
-   "boards": 450,
+   "boards": 500,
    "target": 800,
    "restarts": 0,
    "submitted": "2026-11-12T11:42:00Z",
@@ -57,10 +57,10 @@
    "started": "2026-11-12T17:53:48Z",
    "resumed": "2026-11-12T17:53:48Z",
    "source": "/home/bridgebots/work/g9/src/4b54972",
-   "rate_per_hour": 568.1,
-   "eta": "2026-11-12T19:17:32Z",
-   "published_at": "2026-11-12T18:35:26Z",
-   "published": "transfer/gen9-e9-0-n02-azure4-20261112@183209a8c"
+   "rate_per_hour": 571.1,
+   "eta": "2026-11-12T19:17:13Z",
+   "published_at": "2026-11-12T18:45:42Z",
+   "published": "transfer/gen9-e9-0-n02-azure4-20261112@83a3f47ac"
   },
   "e9-0-n02d": {
    "state": "waiting",
@@ -77,7 +77,7 @@
    "state": "running",
    "owner": "g9",
    "experiment": "E9-0",
-   "boards": 449,
+   "boards": 500,
    "target": 800,
    "restarts": 0,
    "submitted": "2026-11-12T11:42:00Z",
@@ -86,10 +86,10 @@
    "started": "2026-11-12T17:53:48Z",
    "resumed": "2026-11-12T17:53:48Z",
    "source": "/home/bridgebots/work/g9/src/4b54972",
-   "rate_per_hour": 564.1,
-   "eta": "2026-11-12T19:17:55Z",
-   "published_at": "2026-11-12T18:35:26Z",
-   "published": "transfer/gen9-e9-0-n02e-azure4-20261112@3da1bff41"
+   "rate_per_hour": 567.0,
+   "eta": "2026-11-12T19:17:26Z",
+   "published_at": "2026-11-12T18:45:42Z",
+   "published": "transfer/gen9-e9-0-n02e-azure4-20261112@76c4372c5"
   },
   "e9-0-n02f": {
    "state": "waiting",
@@ -379,7 +379,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T18:40:35Z",
+ "updated": "2026-11-12T18:45:42Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
