@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 08:06 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 08:06 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -69,9 +69,9 @@ Generated 2026-11-12 08:06 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 11:41 | leased | high | 2026-11-13T06:00Z |  |
+| [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 12:06 | leased | high | 2026-11-12T20:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 11:54 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | g9 |  | open | high | 2026-11-13T16:00Z | after E9-7 |
-| [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill |  | open | high | 2026-11-12T20:00Z | after G9-B7 |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill |  | open | high | 2026-11-13T04:00Z | after G9-B7 |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam |  | open | high | 2026-11-13T10:00Z |  |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool |  | open | high | 2026-11-13T12:00Z |  |
