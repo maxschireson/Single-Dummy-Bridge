@@ -509,6 +509,26 @@
       "cohort": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82"
     },
     {
+      "key": "gen71azure3ben64g3",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 3, pool 2)",
+      "branch": "arena-gen7-1-fresh2-azure3-ben64-3-feed",
+      "cohort": "c4d51ea62765f0898717469d5871f29b4ed32c3d1c093728dd591f70067b68f0"
+    },
+    {
+      "key": "gen71azure3ben64g4",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "azure",
+      "name": "Gen 7.1 · azure3 (BEN 64, lane 4, pool 2)",
+      "branch": "arena-gen7-1-fresh2-azure3-ben64-4-feed",
+      "cohort": "f3af1a4d922d0c6ee88826d4fcf122cdccbd3a730e70782636786268841dac0d"
+    },
+    {
       "key": "gen71azure3ben64f1",
       "group": "gen7",
       "generation": 7,
@@ -1131,6 +1151,7 @@
         "arena-gen7-1-vs70-azure2-feed": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d"
       }
     },
-    "azure1": "From 11:42 UTC (Max, 11:36 UTC: \"Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7\"): 71s-32~71s-32 and 71s-32~7s-32, one board in two each, on azure1's drained phase 1 cohort's unplayed deals without the v4.1 training families. The self-play boards are training data with no score. azure4, the other box named, is lent to the Gen 8 session (Max, 11:38 UTC)."
+    "azure1": "From 11:42 UTC (Max, 11:36 UTC: \"Yes yes those two boxes for gen 7.1 self play and 7.1 vs 7\"): 71s-32~71s-32 and 71s-32~7s-32, one board in two each, on azure1's drained phase 1 cohort's unplayed deals without the v4.1 training families. The self-play boards are training data with no score. azure4, the other box named, is lent to the Gen 8 session (Max, 11:38 UTC).",
+    "azure3_pool2": "From about 12:40 UTC each azure3 lane, when its first pool was played out, goes on with a cohort of the drained phase 1 cohort's unplayed deals without the v4.1 training families, one eighth each (--shard), feeds arena-gen7-1-fresh2-azure3-ben64-N-feed."
   }
 }
