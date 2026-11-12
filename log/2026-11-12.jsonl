@@ -154,3 +154,5 @@
 {"at": "2026-11-12T07:55:00Z", "by": "dave", "op": "send", "target": "g9/20261112T0755Z-dave-dave-status-d1-d5-done-or-subm", "note": "dave status: D1-D5 done or submitted (D4 = PR #27); W3 and W8 reviewed and merged; D7 waits on S5; D6 needs a box"}
 {"at": "2026-11-12T07:55:00Z", "by": "sam", "op": "send", "target": "g9/20261112T0755Z-sam-e9-4-part-1-is-in-reading-a-de", "note": "E9-4 part 1 is in: reading a declared scheme gains +0.49 to +0.96 nats per declarer decision over Gen 8 at honesty 0.5 to 1; over-assuming honesty costs up to 0.86", "task": "E9-4"}
 {"at": "2026-11-12T07:55:00Z", "by": "bill", "op": "lease", "target": "G9-B7", "until": "2026-11-12T10:55Z"}
+{"at": "2026-11-12T07:55:00Z", "by": "g9", "op": "new", "target": "E9-11", "note": "What replaying the house bidder is worth at the table"}
+{"at": "2026-11-12T07:55:00Z", "by": "g9", "op": "send", "target": "bill/20261112T0755Z-g9-new-experiment-for-you-e9-11-w", "note": "New experiment for you: E9-11, What replaying the house bidder is worth at the table", "task": "E9-11"}
