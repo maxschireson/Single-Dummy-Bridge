@@ -171,8 +171,8 @@ def replay(control, packages, capsule, epoch, k, slot=0):
 def paired(rows, a_pair, b_pair, condition):
     """Per deal both pairs played: x(a) - x(b), with the mean and its standard error."""
     import math
-    A = {r['index']: r for r in rows if r['pair'] == a_pair and r.get(condition) is not None}
-    B = {r['index']: r for r in rows if r['pair'] == b_pair and r.get(condition) is not None}
+    A = {(r['epoch'], r['index']): r for r in rows if r['pair'] == a_pair and r.get(condition) is not None}   # a floor's deal index
+    B = {(r['epoch'], r['index']): r for r in rows if r['pair'] == b_pair and r.get(condition) is not None}   # repeats each epoch
     d = [A[i][condition] - B[i][condition] for i in sorted(set(A) & set(B))]
     n = len(d)
     if n < 2:
