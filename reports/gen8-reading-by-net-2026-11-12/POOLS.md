@@ -40,7 +40,8 @@ from the decider's view.
 
 `scw-SS-PPPP.npz`: `scorer` (L+1 a decision), the hand-fit scorer's auction log-weight of each
 stored layout and of the true deal, up to a constant per decision. These are the weights that drew
-the pools and that the deal list's `prior` is made of.
+the pools. A complete deal list has them as its `prior`; a list of more than 1,024 layouts is
+itself a draw by them, with the draw's shares as `prior`.
 
 `tab-SS-PPPP.json.gz`: the part's tables again with `board` (hands, dealer, vulnerability,
 auction, contract, declarer) and `played` (the root table's cards in order), so that a decision
@@ -71,8 +72,7 @@ To put a reading on top of a net's, add `r['fit'][NET]` to `fit`. `report` does 
 decisions with deals as the unit of the standard errors; `mean_se(values, families)` is its
 estimator, and a decision's deal is `r['family']`.
 
-The layouts before the deal list were drawn by the hand-fit scorer's auction weights, and the
-deal list's prior is those weights. So an auction reader that replaces the scorer is scored as a
-correction to it: `x = its own log-probability of each layout - scorer`, with `scorer` from the
+Every stored set of layouts is either drawn by the hand-fit scorer's auction weights or weighted
+by them. So an auction reader that replaces the scorer is scored as a correction to it: `x = its own log-probability of each layout - scorer`, with `scorer` from the
 `scw` file. A reader whose weights differ a lot from the scorer's leaves few effective layouts in a
 pool of 512; `score` returns that number.
