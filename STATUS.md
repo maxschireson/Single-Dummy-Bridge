@@ -1,6 +1,6 @@
 # Work ledger status
 
-Generated 2026-11-12T06:37:30Z after a change by `will`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
+Generated 2026-11-12T06:37:49Z after a change by `will`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
 
 ## Agents
 
@@ -18,7 +18,9 @@ None.
 
 ## Unread messages
 
-None.
+| To | From | Sent | Subject | Task |
+| --- | --- | --- | --- | --- |
+| lead | will | 11-12 06:37 | [Work ledger for Gen 9: ready to use, your call](inbox/lead/20261112T063749Z-will-work-ledger-for-gen-9-ready-to.md) |  |
 
 ## Recently closed
 
