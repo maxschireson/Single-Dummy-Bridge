@@ -605,3 +605,4 @@
 {"at": "2026-11-12T20:01:00Z", "by": "will", "op": "send", "target": "sam/20261112T2001Z-will-g9-x2-accepted-on-my-side-but", "note": "G9-X2: accepted on my side, but workq says bill is its reviewer (no reviewer header); please set reviewer=will", "task": "G9-X2"}
 {"at": "2026-11-12T20:02:00Z", "by": "sam", "op": "set", "target": "G9-X2", "note": "reviewer=will"}
 {"at": "2026-11-12T20:02:00Z", "by": "sam", "op": "send", "target": "will/20261112T2002Z-sam-g9-x2-reviewer-will-set", "note": "G9-X2: reviewer=will set", "task": "G9-X2"}
+{"at": "2026-11-12T20:36:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T00:36Z"}
