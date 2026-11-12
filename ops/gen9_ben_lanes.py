@@ -18,9 +18,12 @@ index), summary.json (as scripts/gen8_match.py writes it) and lanes.json (ranges
 each lane's own folder as lane-<k>/. Nothing here touches another session's units, namespaces or folders: all
 names start with g9 (units g9-ben-<k> and g9-lane-<k>, namespaces g9ben-<k>).
 
-BEN is lorserker/ben at the commit in configs/ben-gen5-16.provenance.json, configured by configs/ben-gen5-16.conf
-(neural bidding only: use_bba and consult_bba are False, so the BBA engine is never called), with the packages of
-configs/ben-round5-runtime-requirements.txt. `install` checks every model file against the provenance hashes.
+BEN is lorserker/ben at the commit in configs/ben-gen5-16.provenance.json (its models come with that checkout), with
+the packages of configs/ben-round5-runtime-requirements.txt; `install` checks every model file against the provenance
+hashes. Each server runs exactly as g7's arena lanes run it (lane.sh on transfer/ben-lanes-azure-20261112): from BEN's
+root, `src/gameapi.py --config CONF --host 127.0.0.1 --port 8087 --record false`, restarted if it fails. CONF is the
+capsule's own `assets/ben-16.conf` when --source has one (the config the capsule's `ben` bot was pinned with), else
+configs/ben-gen5-16.conf; both bid neural only (use_bba and consult_bba are False, so the BBA engine is never called).
 """
 from __future__ import annotations
 
@@ -68,9 +71,11 @@ def split(first: int, deals: int, lanes: int) -> list[tuple[int, int]]:
     return out
 
 
-def unit_cmd(unit: str, k: int, workdir: Path, argv: list[str], env: dict) -> list[str]:
+def unit_cmd(unit: str, k: int, workdir: Path, argv: list[str], env: dict, restart: bool = False) -> list[str]:
     cmd = ["sudo", "systemd-run", f"--unit={unit}", f"--uid={getpass.getuser()}", f"--working-directory={workdir}",
            f"--property=NetworkNamespacePath=/run/netns/{ns(k)}", "--property=KillMode=mixed", "--collect"]
+    if restart:
+        cmd += ["--property=Restart=on-failure", "--property=RestartSec=10"]
     for key, value in sorted(env.items()):
         cmd.append(f"--setenv={key}={value}")
     return cmd + ["--"] + argv
@@ -87,11 +92,13 @@ def active(unit: str) -> bool:
 def install(ben: Path, venv: Path) -> None:
     prov = json.loads(PROVENANCE.read_text())
     commit = prov["source_commit"]
-    if not (ben / ".git").exists():
-        run(["git", "clone", "--quiet", "https://github.com/lorserker/ben", str(ben)])
-    run(["git", "-C", str(ben), "fetch", "--quiet", "origin", commit])
-    run(["git", "-C", str(ben), "checkout", "--quiet", commit])
-    run(["git", "-C", str(ben), "lfs", "pull"], check=False)  # models may be LFS objects; harmless if not
+    if not (ben / ".git").exists():  # only the pinned commit, as g7's ben-install does (2.9 GB with its models)
+        run(["git", "init", "-q", str(ben)])
+        run(["git", "-C", str(ben), "remote", "add", "origin", "https://github.com/lorserker/ben"])
+    head = subprocess.run(["git", "-C", str(ben), "rev-parse", "-q", "--verify", "HEAD"], capture_output=True, text=True).stdout.strip()
+    if head != commit:
+        run(["git", "-C", str(ben), "fetch", "-q", "--depth", "1", "origin", commit])
+        run(["git", "-C", str(ben), "checkout", "-q", "FETCH_HEAD"])
     if not (venv / "bin" / "python").exists():
         run([sys.executable, "-m", "venv", str(venv)])
     run([str(venv / "bin" / "python"), "-m", "pip", "install", "--quiet", "-r", str(REQUIREMENTS)])
@@ -110,7 +117,16 @@ def install(ben: Path, venv: Path) -> None:
 
 # ---------------------------------------------------------------- lanes
 
-def up(lanes: int, ben: Path, venv: Path, wait: float = 300) -> None:
+def conf_for(source: str | None) -> Path:
+    if source:
+        c = Path(source).expanduser() / "assets" / "ben-16.conf"
+        if c.exists() or DRY:
+            return c
+    return CONF
+
+
+def up(lanes: int, ben: Path, venv: Path, conf: Path, wait: float = 600) -> None:
+    env = dict(THREADS, HOME=str(Path.home()), PYTHONUNBUFFERED="1", XDG_CACHE_HOME=str(ben.parent / "ben-cache"))
     for k in range(1, lanes + 1):
         if not DRY and Path(f"/run/netns/{ns(k)}").exists() and active(f"g9-ben-{k}"):
             print(f"lane {k}: BEN already up")
@@ -118,14 +134,14 @@ def up(lanes: int, ben: Path, venv: Path, wait: float = 300) -> None:
         run(["sudo", "ip", "netns", "add", ns(k)], check=False)
         run(["sudo", "ip", "-n", ns(k), "link", "set", "lo", "up"])
         # as bridge_harness/loop_runtime.managed_ben starts it: from BEN's root, model paths relative to it
-        argv = [str(venv / "bin" / "python"), "-u", "src/gameapi.py", "--config", str(CONF), "--host", "127.0.0.1",
-                "--port", str(PORT), "--nolimit", "true", "--record", "false"]
-        run(unit_cmd(f"g9-ben-{k}", k, ben, argv, THREADS))
+        argv = [str(venv / "bin" / "python"), "src/gameapi.py", "--config", str(conf), "--host", "127.0.0.1",
+                "--port", str(PORT), "--record", "false"]
+        run(unit_cmd(f"g9-ben-{k}", k, ben, argv, env, restart=True))
     deadline = time.time() + wait
     for k in range(1, lanes + 1):
         while not DRY:
-            probe = subprocess.run(["sudo", "ip", "netns", "exec", ns(k), sys.executable, "-c",
-                                    f"import urllib.request;urllib.request.urlopen('http://127.0.0.1:{PORT}',timeout=2).read()"],
+            probe = subprocess.run(["sudo", "ip", "netns", "exec", ns(k), sys.executable, "-c",  # a TCP connect, as lane.sh waits
+                                    f"import socket;socket.create_connection(('127.0.0.1',{PORT}),timeout=2).close()"],
                                    capture_output=True)
             if probe.returncode == 0:
                 break
@@ -257,6 +273,7 @@ def main() -> int:
         if name in ("up", "run"):
             p.add_argument("--ben", type=Path, default=Path("~/work/g9/ben").expanduser())
             p.add_argument("--venv", type=Path, default=Path("~/work/g9/ben-venv").expanduser())
+            p.add_argument("--conf", type=Path, help="BEN config (default: the capsule's assets/ben-16.conf, else configs/ben-gen5-16.conf)")
         if name == "run":
             p.add_argument("--pair", required=True)
             p.add_argument("--deals", type=int, required=True)
@@ -275,10 +292,10 @@ def main() -> int:
     if a.cmd == "install":
         install(a.ben.expanduser(), a.venv.expanduser())
     elif a.cmd == "up":
-        up(a.lanes, a.ben.expanduser(), a.venv.expanduser())
+        up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or CONF)
     elif a.cmd == "run":
         split(a.first, a.deals, a.lanes)  # fail early on a bad split
-        up(a.lanes, a.ben.expanduser(), a.venv.expanduser())
+        up(a.lanes, a.ben.expanduser(), a.venv.expanduser(), a.conf or conf_for(a.source))
         play(a, a.lanes)
         if not DRY:
             print(json.dumps(merge(Path(a.out)), indent=1))
