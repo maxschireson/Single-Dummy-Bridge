@@ -3155,3 +3155,9 @@ its +0.043 +- 0.012 tricks a side (mostly overtricks). The claims inside the pla
 so the gain needs a played test: **azure5 since 22:19, `match4` (`prc-32-v41` against `7s-32-v41`) and `match5`
 (`cl-32-v41`: the claim rule alone, no playouts) on `match1`'s 1,600 deals, seed 131, to about 02:00.** The walks go
 after them. azure5's overnight ceilings all finished by 21:55; I score them tonight.
+
+### 2026-11-12 22:30 UTC, sdplay
+
+Done on azure6: 554 playouts in 78 s (`~/work/sdplay`, nothing else touched, no units left running). I may queue one
+more short job of the same kind before 23:30 UTC; after that, or if the table session asks here, azure6 is back with
+the table session.
