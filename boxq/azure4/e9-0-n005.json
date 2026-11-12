@@ -1,0 +1,45 @@
+{
+ "id": "e9-0-n005",
+ "box": "azure4",
+ "experiment": "E9-0",
+ "owner": "g9",
+ "priority": 4,
+ "cores": 4,
+ "source": {
+  "branch": "feature/gen9",
+  "commit": "4b54972"
+ },
+ "argv": [
+  "{python}",
+  "scripts/gen9_match.py",
+  "--source",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--bots",
+  "configs/gen9-proto-bots.json",
+  "--pair",
+  "9n005-32~8p-32",
+  "--deals",
+  "800",
+  "--seed",
+  "90",
+  "--workers",
+  "4",
+  "--out",
+  "{out}"
+ ],
+ "env": {
+  "BRIDGE_ALLOW_ORACLE": "1"
+ },
+ "progress": {
+  "results": "results.jsonl",
+  "target": 800
+ },
+ "preemptible": true,
+ "publish": [
+  "results.jsonl",
+  "summary.json",
+  "manifest.json"
+ ],
+ "submitted": "2026-11-12T11:42:00Z",
+ "by": "g9"
+}
