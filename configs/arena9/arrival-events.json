@@ -1,0 +1,40 @@
+{
+ "start": {
+  "champion": "8p-32",
+  "players": [
+   "8p-32",
+   "9a-32",
+   "7s-32",
+   "5RZ32",
+   "1"
+  ]
+ },
+ "before_epoch": {
+  "2": [
+   {
+    "event": "submit",
+    "player": "guest-a",
+    "authority": "arrival run plan: guest-a arrives before epoch 2"
+   }
+  ],
+  "4": [
+   {
+    "event": "retire",
+    "player": "7s-32",
+    "authority": "arrival run plan: a house bot retired by a queued command before epoch 4"
+   },
+   {
+    "event": "submit",
+    "player": "guest-b",
+    "authority": "arrival run plan: guest-b arrives before epoch 4"
+   }
+  ]
+ },
+ "replay": {
+  "epoch": 3,
+  "pair": "9a-32~guest-a"
+ },
+ "notes": [
+  "G9-D6. Written before the run; the runner queues each event before the boundary at which it takes effect."
+ ]
+}

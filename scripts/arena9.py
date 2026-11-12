@@ -168,6 +168,142 @@ def replay(control, packages, capsule, epoch, k, slot=0):
                 common=(row.get('common'), again.get('common')), native=(row.get('native'), again.get('native')), same=same)
 
 
+def paired(rows, a_pair, b_pair, condition):
+    """Per deal both pairs played: x(a) - x(b), with the mean and its standard error."""
+    import math
+    A = {r['index']: r for r in rows if r['pair'] == a_pair and r.get(condition) is not None}
+    B = {r['index']: r for r in rows if r['pair'] == b_pair and r.get(condition) is not None}
+    d = [A[i][condition] - B[i][condition] for i in sorted(set(A) & set(B))]
+    n = len(d)
+    if n < 2:
+        return dict(n=n, mean=d[0] if d else None, se=None)
+    m = sum(d) / n
+    return dict(n=n, mean=round(m, 3), se=round(math.sqrt(sum((x - m) ** 2 for x in d) / (n - 1) / n), 3))
+
+
+def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_result=None):
+    """The arrival run's page (G9-D6 done-when), from a control directory."""
+    from bridge_harness import arena_ratings as ar
+    from bridge_harness import arena9_pipeline as pl
+    control = Path(control)
+    log = a9.read_log(control)
+    rows = a9.read_results(control)
+    epochs = sorted({r['epoch'] for r in rows})
+    guests = [e['player'] for e in log if e['event'] == 'submit' and e.get('kind') == 'guest']
+    spec = packages[bot]['bundle'].get('overrides') or {}
+    L = [f'# The arrival run: {control}', '', f'Epochs played: {epochs}. Boards: {len(rows)}. Guests: {guests}.', '']
+    L += ['## 1 and 3. The player model at the table', '',
+          f'`{bot}` against the guest minus `{control_bot}` against the same guest, on the same deals (the floor), IMPs a board from the bot\'s side.', '',
+          '| Guest | Epoch | Deals | Native: mean (SE) | Common: mean (SE) |', '| --- | --- | ---: | --- | --- |']
+    for g in guests:
+        a_pair, b_pair = f'{bot}~{g}', f'{control_bot}~{g}'
+        for ep in epochs + ['all']:
+            rs = [r for r in rows if r.get('floor') is not None and (ep == 'all' or r['epoch'] == ep)]
+            nat, com = paired(rs, a_pair, b_pair, 'native'), paired(rs, a_pair, b_pair, 'common')
+            if nat['n']:
+                f = lambda x: '—' if x['mean'] is None else (f"{x['mean']:+.3f}" + (f" ({x['se']:.3f})" if x['se'] is not None else ''))
+                L.append(f'| {g} | {ep} | {nat["n"]} | {f(nat)} | {f(com)} |')
+    L += ['', '## 2. What experience adds', '',
+          'What each epoch\'s bots were handed for each guest (the snapshot frozen when the previous epoch closed), read as the Gen 9 bot reads it.', '',
+          '| Guest | Epoch | Boards in the snapshot | P(card) as read | Honesty as read | Play factor | Snapshot = envelopes of earlier epochs |', '| --- | --- | ---: | ---: | ---: | --- | --- |']
+    for ep in sorted(int(p.stem) for p in (control / 'epochs').glob('*.json')):
+        rep = pl.epoch_experience(control, ep, spec)
+        for g in guests:
+            row = rep['players'].get(g)
+            if row is None:
+                continue
+            pc = dict(map(tuple, row['profiles_read'])).get('card')
+            h = (row.get('honesty_read') or {}).get('*')
+            L.append(f"| {g} | {ep} | {row['boards']} | {'—' if pc is None else f'{pc:.3f}'} | {'— (prior)' if h is None else f'{h:.3f}'} | "
+                     f"{row.get('play_factor', '—')} | {'yes' if row['snapshot_matches_envelopes'] else '**no**'} |")
+    L += ['', '## 4. The arena', '', '**Registry events**', '']
+    for e in log:
+        if e['player'] in guests or e['event'] in ('activate', 'open-test', 'promote', 'demote', 'retire'):
+            extra = ''
+            if e['event'] == 'submit' and e.get('model'):
+                extra = ' first model ' + ', '.join(f'{s}: {p:.3f}' for s, p in e['model']['profiles'])
+            if e.get('evidence'):
+                extra += ' evidence ' + json.dumps(e['evidence'], sort_keys=True)[:200]
+            L.append(f"- seq {e['seq']} `{e['event']}` {e['player']} (epoch {e.get('epoch')}): {e['authority']}{extra}")
+    L += ['', '**Share of boards by epoch**', '', '| Epoch | ' + ' | '.join(guests) + ' |', '| --- |' + ' ---: |' * len(guests)]
+    for ep in epochs:
+        rs = [r for r in rows if r['epoch'] == ep]
+        L.append(f'| {ep} | ' + ' | '.join(f"{sum(g in r['pair'].split('~') for r in rs) / len(rs):.0%}" for g in guests) + ' |')
+    L += ['', '**Ratings (native) at the close of each epoch, IMPs a board against the reference, 95% half-width**', '']
+    for path in sorted((control / 'ratings').glob('*-native.json')):
+        t = json.loads(path.read_text())
+        L.append(f"- epoch {t['epoch']}: " + ', '.join(f"{p} {v['strength']:+.2f} ± {1.96 * v['se']:.2f}" for p, v in sorted(t['players'].items(), key=lambda kv: -kv[1]['strength'])))
+    rules = json.loads((control / 'rules.json').read_text())
+    test_pair = f'{bot}~{control_bot}'
+    t = ar.BettingTest(alpha=rules['promotion']['alpha'], beta=rules['promotion']['beta'], d=rules['promotion']['d'], cap=rules['promotion']['cap'])
+    direct = sorted((r for r in rows if r['pair'] == test_pair and r.get(rules['condition']) is not None), key=lambda r: (r['epoch'], r['slot'], r['k']))
+    for r in direct:
+        if t.update(float(r[rules['condition']])):
+            break
+    L += ['', f'**Betting test `{test_pair}`** on every direct board so far ({rules["condition"]}): {t.t} boards, K = {t.K:.3f} (promote at {1 / t.alpha:g}), '
+          f'L = {t.L:.3f} (futility at {1 / t.beta:g}), decision {t.decision}. The controller opens the test only once `{bot}` is admitted and rated above the champion.', '']
+    L += ['## 5. Replay', '']
+    L.append('```\n' + json.dumps(replay_result, indent=1) + '\n```' if replay_result else 'Not run.')
+    return '\n'.join(L) + '\n'
+
+
+def restore_nets():
+    """Rebuild any net kept in the repository as parts and not restored yet (will's idempotent restore in run_tests.py):
+    a box job gets DDS built in its checkout, not the nets."""
+    spec = importlib.util.spec_from_file_location('run_tests', ROOT / 'scripts' / 'run_tests.py')
+    rt = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rt)
+    bad = [m for m in rt.restore_models() if not m['ok']]
+    if bad:
+        raise SystemExit(f'restoring nets failed: {bad}')
+
+
+def queue_planned(control, events, epoch):
+    """Queue the events the plan gives for `epoch` (taking effect when it opens), once: a planned event that is already
+    queued, applied or refused is not queued again."""
+    q = Path(control) / 'queue'
+    for i, e in enumerate(events.get('before_epoch', {}).get(str(epoch), [])):
+        stem = f"plan-e{epoch:04d}-{i}-{e['event']}-{e['player']}"
+        if any((q / (stem + ext)).exists() for ext in ('.json', '.applied', '.refused')):
+            continue
+        (q / (stem + '.json')).write_text(json.dumps(a9.event(e['event'], e['player'], e.get('author', 'plan'),
+                                                               e.get('authority', 'arrival run plan, written before the run')), indent=1))
+
+
+def arrival(out, players, rules, capsule, events, epochs, workers, backend=None):
+    """The arrival run (G9-D6) as one resumable process: initialise once, play and close each epoch with the plan's events
+    queued before their epoch, replay one floor board of the plan's replay epoch, write the page."""
+    out = Path(out); out.mkdir(parents=True, exist_ok=True)
+    control = out / 'control'
+    restore_nets()
+    pkgs = a9.load_packages(players)
+    plan = json.loads(Path(events).read_text())
+    hook = arrival_hook(control)
+    if not (control / 'CURRENT').exists():
+        start = plan['start']
+        a9.init(control, {k: pkgs[k] for k in start['players']}, json.loads(Path(rules).read_text()), start['champion'],
+                start.get('author', 'plan'), start.get('authority', 'arrival run plan, written before the run'), arrival=hook)
+    held = a9.lock(control)
+    backend = backend(pkgs) if backend else MatchBackend(pkgs, capsule, control)
+    while a9.current(control)['epoch'] <= epochs:
+        m = a9.current(control)
+        t = time.time()
+        a9.play_epoch(control, backend, workers=workers, mirror=out / 'results.jsonl')
+        queue_planned(control, plan, m['epoch'] + 1)
+        nxt, decisions = a9.close_epoch(control, pkgs, source_commit=commit(), arrival=hook)
+        print(f"epoch {m['epoch']} played and closed in {time.time() - t:.0f}s; decisions: {json.dumps(decisions, default=str)[:800]}", flush=True)
+        print(status(control), flush=True)
+    rp = out / 'replay.json'
+    if plan.get('replay') and not rp.exists():
+        ep = plan['replay']['epoch']
+        rows = [json.loads(l) for l in (control / 'results' / f'e{ep:04d}' / 'slot0.jsonl').read_text().splitlines() if l.strip()]
+        pick = sorted((r for r in rows if r['pair'] == plan['replay']['pair']), key=lambda r: r['k'])[0]
+        rp.write_text(json.dumps(replay(control, pkgs, capsule, ep, pick['k']), indent=1))
+    (out / 'report.md').write_text(arrival_report(control, pkgs, bot=plan.get('bot', '9a-32'), control_bot=plan.get('control_bot', '8p-32'),
+                                                  replay_result=json.loads(rp.read_text()) if rp.exists() else None))
+    held.close()
+
+
 # ---- commands ------------------------------------------------------------------------------------
 
 def status(control):
@@ -194,6 +330,11 @@ def main():
     p = sub.add_parser('status'); p.add_argument('--control', type=Path, required=True)
     p = sub.add_parser('experience'); p.add_argument('--control', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
     p.add_argument('--epoch', type=int, required=True); p.add_argument('--reader', default='9a-32')
+    p = sub.add_parser('report'); p.add_argument('--control', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
+    p.add_argument('--replay', type=Path, help='a replay result (JSON) to include'); p.add_argument('--out', type=Path)
+    p = sub.add_parser('arrival'); p.add_argument('--out', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
+    p.add_argument('--rules', type=Path, required=True); p.add_argument('--capsule', type=Path, required=True); p.add_argument('--events', type=Path, required=True)
+    p.add_argument('--epochs', type=int, required=True); p.add_argument('--workers', type=int, default=os.cpu_count() or 1)
     p = sub.add_parser('replay'); p.add_argument('--control', type=Path, required=True); p.add_argument('--players', type=Path, required=True)
     p.add_argument('--capsule', type=Path, required=True); p.add_argument('--epoch', type=int, required=True); p.add_argument('--k', type=int, required=True)
     p.add_argument('--slot', type=int, default=0)
@@ -219,12 +360,20 @@ def main():
         pk = a9.load_packages(a.players)
         spec = (pk[a.reader]['bundle'].get('overrides') or {}) if a.reader in pk else {}
         print(json.dumps(pl.epoch_experience(a.control, a.epoch, spec), indent=1))
+    elif a.cmd == 'report':
+        text = arrival_report(a.control, a9.load_packages(a.players), replay_result=json.loads(a.replay.read_text()) if a.replay else None)
+        if a.out:
+            a.out.write_text(text)
+        print(text)
+    elif a.cmd == 'arrival':
+        arrival(a.out, a.players, a.rules, a.capsule, a.events, a.epochs, a.workers)
     elif a.cmd == 'replay':
         print(json.dumps(replay(a.control, a9.load_packages(a.players), a.capsule, a.epoch, a.k, a.slot), indent=1))
     else:
         pkgs = a9.load_packages(a.players)
         backend = a9.SimBackend(pkgs) if a.backend == 'sim' else MatchBackend(pkgs, a.capsule, a.control)
         hook = None if a.backend == 'sim' else arrival_hook(a.control)
+        held = a9.lock(a.control)
         for _ in range(a.epochs):
             m = a9.current(a.control)
             t = time.time()

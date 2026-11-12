@@ -137,6 +137,21 @@ class Epochs(Base):
         self.assertGreater(a9.schedule(st, RULES, previous=moved)['pair_weights']['h~a'], 2)   # new purpose: not capped
 
 
+class Locking(Base):
+    def test_a_second_runner_is_refused_and_a_board_written_twice_counts_once(self):
+        c = self.control()
+        held = a9.lock(c)
+        with self.assertRaises(SystemExit):
+            a9.lock(c)
+        held.close()
+        a9.lock(c).close()
+        a9.play_epoch(c, self.backend)
+        path = c / 'results' / 'e0001' / 'slot0.jsonl'
+        first = path.read_text().splitlines()[0]
+        path.write_text(path.read_text() + first + '\n')
+        self.assertEqual(len(a9.read_results(c)), RULES['epoch']['boards'])
+
+
 class Rules(Base):
     def test_a_far_weaker_player_is_retired_by_rule_and_anchors_are_not(self):
         c = self.control(rules=dict(RULES, epoch=dict(boards=1500)))

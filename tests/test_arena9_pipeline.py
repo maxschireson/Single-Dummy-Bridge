@@ -123,6 +123,31 @@ class Experience(Base):
         self.assertEqual(dict(PlayerModel.from_dict(models['g9']).profiles), {'house-gen6': 1.0})
 
 
+class ArrivalCommand(Base):
+    def test_the_planned_run_with_synthetic_players(self):
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        import arena9 as cli
+        players = self.dir / 'players'; players.mkdir()
+        for pid, p in self.pkgs.items():
+            (players / f'{pid}.json').write_text(json.dumps(p))
+        rules = self.dir / 'rules.json'; rules.write_text(json.dumps(RULES))
+        plan = dict(start=dict(champion='ctl', players=['ctl', 'g9', 'anchor']), bot='g9', control_bot='ctl',
+                    before_epoch={'2': [dict(event='submit', player='guest')]})
+        events = self.dir / 'events.json'; events.write_text(json.dumps(plan))
+        out = self.dir / 'run'
+        cli.arrival(out, players, rules, None, events, 3, 1, backend=Signaller)
+        cli.arrival(out, players, rules, None, events, 3, 1, backend=Signaller)      # resuming a finished run changes nothing
+        log = a9.read_log(out / 'control')
+        subs = [e for e in log if e['event'] == 'submit' and e['player'] == 'guest']
+        self.assertEqual([e['epoch'] for e in subs], [2])
+        self.assertEqual(a9.current(out / 'control')['epoch'], 4)
+        self.assertEqual(sum(1 for _ in (out / 'results.jsonl').open()), 3 * RULES['epoch']['boards'])
+        text = (out / 'report.md').read_text()
+        self.assertIn('| guest | all |', text)
+        self.assertIn('Snapshot = envelopes of earlier epochs', text)
+        self.assertNotIn('**no**', text)
+
+
 class Arrival(unittest.TestCase):
     def test_a_guest_with_a_card_gets_arrive_and_a_house_bot_its_profiles(self):
         card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
@@ -168,6 +193,21 @@ class BoardDeltas(unittest.TestCase):
         self.assertEqual(len({e['delta']['key'] for e in envs}), len(envs))
         stores, report = xs.merge(envs)
         self.assertEqual(stores['guest-a']['boards'] + len(report['occasion_repeats']), len(envs))
+
+    def test_the_same_deal_against_another_opponent_is_another_occasion(self):
+        card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())
+        decl = {'guest-a': dict(card=card, carding=CARDING, kind='guest', profiles=None)}
+        one = pl.board_envelopes(self.record, 'k1', {}, decl, 'test', 1.0, root=str(ROOT))
+        rec = json.loads(json.dumps(self.record))
+        rec['candidate'] = '8p-32'                                      # the floor's control on the same deal
+        for b in rec['bidding'].values():
+            b['bidders'] = ['8p-32' if x == '9a-32' else x for x in b['bidders']]
+        two = pl.board_envelopes(rec, 'k2', {}, decl, 'test', 2.0, root=str(ROOT))
+        stores, report = xs.merge(one + two)
+        alone, _ = xs.merge(one)
+        self.assertEqual(stores['guest-a']['boards'], 2 * alone['guest-a']['boards'])
+        again, rep2 = xs.merge(one + pl.board_envelopes(self.record, 'k3', {}, decl, 'test', 3.0, root=str(ROOT)))
+        self.assertEqual(again['guest-a']['boards'], alone['guest-a']['boards'])   # the same deal against the same opponent: a replay
 
     def test_the_trace_changes_with_any_card(self):
         t = pl.trace(self.record)

@@ -320,10 +320,30 @@ def init(control, packages, rules, champion, author, authority, arrival=None):
 # ---- results ---------------------------------------------------------------------------------
 
 def read_results(control):
-    rows = []
+    """Every board row, the first written for each (epoch, slot, k): a board written twice (two runners on one control
+    directory, which `lock` prevents) counts once."""
+    rows, seen = [], set()
     for path in sorted((Path(control) / 'results').glob('e*/slot*.jsonl')):       # board rows; experience-*.jsonl are envelopes
-        rows += [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
+        for l in path.read_text().splitlines():
+            if l.strip():
+                r = json.loads(l)
+                key = (r['epoch'], r['slot'], r['k'])
+                if key not in seen:
+                    seen.add(key)
+                    rows.append(r)
     return rows
+
+
+def lock(control):
+    """An exclusive lock on a control directory for the life of the returned file: a second runner stops at once."""
+    import fcntl
+    f = (Path(control) / '.runner.lock').open('a+')
+    try:
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        f.close()
+        raise SystemExit(f'another runner holds {control}/.runner.lock')
+    return f
 
 
 def pooled(rows, condition):
@@ -467,7 +487,7 @@ def _applied_so_far(control):
 
 # ---- playing an epoch ------------------------------------------------------------------------
 
-def play_epoch(control, backend, slot=0, workers=1, limit=None):
+def play_epoch(control, backend, slot=0, workers=1, limit=None, mirror=None):
     """Play the current epoch's boards for one slot with a backend; rows go to results/e<n>/slot<s>.jsonl."""
     m = current(control)
     n, seed, weights = m['epoch'], m['deals']['seed'], m['schedule']['pair_weights']
@@ -489,6 +509,7 @@ def play_epoch(control, backend, slot=0, workers=1, limit=None):
     if limit is not None:
         jobs = {p: v[:limit] for p, v in jobs.items()}
     xp_out = out.parent / f'experience-slot{slot}.jsonl'
+    mirror = Path(mirror).open('a') if mirror else None
     with out.open('a') as f, xp_out.open('a') as fx:
         for pair, items in sorted(jobs.items()):
             items = [x for x in items if x[0] not in done]
@@ -501,9 +522,15 @@ def play_epoch(control, backend, slot=0, workers=1, limit=None):
                 for e in envelopes:
                     fx.write(canonical(dict(e, epoch=n)) + '\n')
                 fx.flush()
-                f.write(canonical(dict(row, epoch=n, epoch_id=m['id'], slot=slot, k=k, pair=pair, floor=g,
-                                       experience_snapshot=m['experience_snapshot'])) + '\n')
+                line = canonical(dict(row, epoch=n, epoch_id=m['id'], slot=slot, k=k, pair=pair, floor=g,
+                                      experience_snapshot=m['experience_snapshot'])) + '\n'
+                f.write(line)
                 f.flush()
+                if mirror:                      # a flat copy of every row, for a box queue's progress count
+                    mirror.write(line)
+                    mirror.flush()
+    if mirror:
+        mirror.close()
     return out
 
 
@@ -516,6 +543,9 @@ class SimBackend:
 
     def play(self, m, pair, indices, seed, workers=1):
         a, b = pair.split('~')
+        missing = [x for x in (a, b) if 'sim' not in self.packages[x]['bundle']]
+        if missing:
+            raise ValueError(f'{missing} have no bundle.sim (no synthetic strength): play them with --backend match')
         sa, sb = (self.packages[x]['bundle']['sim'] for x in (a, b))
         for idx in indices:
             rng = np.random.default_rng([seed, idx])

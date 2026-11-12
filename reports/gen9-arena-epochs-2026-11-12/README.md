@@ -72,7 +72,7 @@ player 2.5 worse):
 
 ## Demonstration with real bots
 
-Two-core sandbox, fork-free, 32 samples, fresh seeded deals (`demo-control/`, `demo-run.log`).
+Two-core sandbox, fork-free, 32 samples, fresh seeded deals (`demo-control/`, `demo-run.txt`).
 
 - `init`: champion `6-32`, anchors `5RZ32` and `1`, candidate `3`. Epoch 1's schedule:
   - admission: `3` against `6-32`, `5RZ32` and `1`;

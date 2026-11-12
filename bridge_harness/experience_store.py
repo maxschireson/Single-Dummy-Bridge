@@ -189,8 +189,8 @@ def write_snapshot(folder, doc):
         return path
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix('.tmp')
-    with gzip.open(tmp, 'wt') as f:
-        f.write(canonical(doc))
+    with open(tmp, 'wb') as raw, gzip.GzipFile(fileobj=raw, mode='wb', mtime=0) as f:   # no time in the header: same content, same bytes
+        f.write(canonical(doc).encode())
     tmp.replace(path)
     return path
 

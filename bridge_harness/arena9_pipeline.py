@@ -13,7 +13,8 @@ The loop the architecture is built around (docs/gen9/architecture.md sections 3 
             gets its deltas: bidding statistics (bill's cards.factor.bidding_delta, with the
             'profile' evidence of cards.match.profile_evidence) to whoever made the calls at each
             table, card statistics (sam's signal_experience.card_delta) to whoever played the cards.
-            Envelopes name the occasion (deal family, seats, auction) so a replayed deal counts once.
+            Envelopes name the occasion (deal family, seats, auction, the opponents) so a replayed deal counts
+            once, while the same deal against two opponents (a floor's bot and its control) counts twice.
   boundary  arena9.close_epoch merges every envelope of the epochs that have closed into stores and
             freezes a snapshot (experience_store); the next epoch's manifest names it.
   the table each Gen 9 bot is handed, in its spec, every rostered player's model with that
@@ -160,6 +161,7 @@ def board_envelopes(record, key, models, decl, source, completed, root='.'):
     from .core import Board
     from .signal_experience import card_delta, replay_plays
     ids = dict(candidate=record['candidate'], opponent=record['opponent'])
+    other = {record['candidate']: record['opponent'], record['opponent']: record['candidate']}
     bidders_of = {}
     for b in record['bidding'].values():
         bidders_of.setdefault(b['table'], b['bidders'])
@@ -181,14 +183,14 @@ def board_envelopes(record, key, models, decl, source, completed, root='.'):
                 delta = (bidding_delta(bidder, k, factor, hands, board.dealer, board.vulnerability, auction, seats, profile_loglik=evidence)
                          if factor is not None else xp.delta(bidder, k, {'profile': xp.loglik(**evidence)} if evidence else {}))
                 if delta['stats']:
-                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, name + '/bid', auction)))
+                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, f'{name}/bid/{other.get(bidder, "")}', auction)))
             player = ids[e['assignments'][seats[0]]]
             d = decl.get(player)
             if d and d.get('carding') is not None and e.get('schema_version') != 'v4-passed-out-v1':
                 plays = replay_plays(board, e['tables'][0]['actions'])
                 delta = card_delta(player, f'{key}/{tkey}/{name}/card', board, plays, d['carding'], side)
                 if delta['stats']:
-                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, name + '/card', auction)))
+                    out.append(xs.envelope(delta, source, completed, xs.occasion(family, f'{name}/card/{other.get(player, "")}', auction)))
     return out
 
 
