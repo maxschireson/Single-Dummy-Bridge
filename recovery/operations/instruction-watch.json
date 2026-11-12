@@ -10,34 +10,22 @@
     "configs/round6-fast-selfplay.json"
   ],
   "file_revisions": {
-    "AGENTS.md": {
-      "commit": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-      "blob_sha": "0b79f4c67b58c8decbedb709e82c6b6f2bd3ade1"
-    },
-    "README.md": {
-      "commit": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-      "blob_sha": "ccf71e4ddba4a7ddfa0be2529d85bda39973ce11"
-    },
-    "docs/current-system.md": {
-      "commit": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-      "blob_sha": "b6a26a098a54e9b530421f1f391e06076314532d"
-    },
-    "docs/operations.md": {
-      "commit": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-      "blob_sha": "6e588011222932976931076a784d2df574803b1e"
-    },
-    "configs/gen6-active-mix.json": {
-      "commit": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-      "blob_sha": "433066756b8764d7dfe4df2754058d7c3e985649"
-    },
-    "configs/round6-fast-selfplay.json": {
-      "commit": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
-      "blob_sha": "8a0e0d2e95ce93764c38b9ee433073d3f550f59f"
-    }
+    "AGENTS.md": "0b79f4c67b58c8decbedb709e82c6b6f2bd3ade1",
+    "README.md": "ccf71e4ddba4a7ddfa0be2529d85bda39973ce11",
+    "docs/current-system.md": "b6a26a098a54e9b530421f1f391e06076314532d",
+    "docs/operations.md": "6e588011222932976931076a784d2df574803b1e",
+    "configs/gen6-active-mix.json": "433066756b8764d7dfe4df2754058d7c3e985649",
+    "configs/round6-fast-selfplay.json": "8a0e0d2e95ce93764c38b9ee433073d3f550f59f"
   },
   "watched_source_refs": {
-    "box/azure1/control": "a7ddc5c9f46223fbf49b07c68044b117bf51f5d2",
-    "box/azure1/status": "329fd10e73eaf193488860cb7fd070216ddbb0a9",
+    "box/azure1/control": "8481232043b3d593691e0fd37e3882d5ac5e561b",
+    "box/azure1/status": "768774bf6869c70e325224c625efaec056fe7a27",
+    "box/azure2/control": "5b5ce47c70ba8d844637adf30d211a6c99597c67",
+    "box/azure2/status": "2b16113db31e79fa9b6ae55f75a9409003a6947e",
+    "box/azure3/control": "4aa3856a75d26d5ec82cdbcfccd882d87d96d7bc",
+    "box/azure3/status": "f2e0a40e854c32e2a760b9e2c1b0e339cd5ccd7c",
+    "box/azure4/control": "63f495a0aa7bf9dacb8506138b71cfa8fa4a8a11",
+    "box/azure4/status": "12276fc3d1982c14a3d5662fa2d5c24b44d35555",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
     "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
@@ -60,7 +48,7 @@
     "experiment/representative-pool-tuning-20261110": "feaefe40ecce72425441cc46021b703174812212",
     "feature/boxctl-20261112": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
     "feature/gen7-alpha-20261111": "7690c3c2014dd60ee349d8fff41985b4e811ff4e",
-    "feature/gen7-candidate-20261111": "1042db5036e0a8071e9cc90f511d941c3de92270",
+    "feature/gen7-candidate-20261111": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
     "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "main": "b0909bb90a2dc60b79cdb69b7481e34c35b405dd",
@@ -110,7 +98,7 @@
     "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
     "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
     "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
-    "transfer/gen7-prototype-20261111": "c10ecfb584436e7ea5e9f578529f54f738e1d870",
+    "transfer/gen7-prototype-20261111": "fb617a64f6ca037103b15f37ddda7bc9c949a86a",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
     "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356"
@@ -118,99 +106,99 @@
   "recent_issues": [
     {
       "number": 13,
-      "state": "open",
+      "title": "Show collector freshness and supervise the primary fast-only run",
       "updated_at": "2026-11-11T09:22:44Z",
-      "comments": 0,
+      "state": "open",
       "pull_request": true
     },
     {
       "number": 9,
-      "state": "open",
+      "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
       "updated_at": "2026-11-11T03:53:49Z",
-      "comments": 0,
+      "state": "open",
       "pull_request": true
     },
     {
       "number": 1,
-      "state": "closed",
+      "title": "Add consistent strategy search, certified partitions and cost benchmarks",
       "updated_at": "2026-11-11T03:53:47Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 2,
-      "state": "closed",
+      "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
       "updated_at": "2026-11-11T03:53:46Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 3,
-      "state": "closed",
+      "title": "Train bidding through DDS-only paired-IMP self-play",
       "updated_at": "2026-11-11T03:53:44Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 4,
-      "state": "open",
+      "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
       "updated_at": "2026-11-11T03:53:43Z",
-      "comments": 0,
+      "state": "open",
       "pull_request": true
     },
     {
       "number": 5,
-      "state": "closed",
+      "title": "Train two belief sizes with pooled auctions and public play",
       "updated_at": "2026-11-11T03:53:41Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 6,
-      "state": "closed",
+      "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
       "updated_at": "2026-11-11T03:53:40Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 7,
-      "state": "closed",
+      "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
       "updated_at": "2026-11-11T03:53:38Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 8,
-      "state": "closed",
+      "title": "Run mixed branching play generations with a shared validated40k bidder",
       "updated_at": "2026-11-11T03:53:37Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 10,
-      "state": "closed",
+      "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
       "updated_at": "2026-11-11T03:53:35Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 11,
-      "state": "closed",
+      "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
       "updated_at": "2026-11-11T03:53:33Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     },
     {
       "number": 12,
-      "state": "closed",
+      "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
       "updated_at": "2026-11-11T03:53:32Z",
-      "comments": 0,
+      "state": "closed",
       "pull_request": true
     }
   ],
   "comments_since": "2026-11-12T00:22:01+00:00",
-  "new_issue_comments": 0,
-  "new_review_comments": 0,
+  "new_issue_comments": [],
+  "new_review_comments": [],
   "instruction": "Default to obeying current instructions addressed to collection workers in general.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
@@ -258,9 +246,9 @@
     "boxctl": "d5bb39f: remote-box operations tooling for separate machines; not adopted for this stream."
   },
   "notification": "Meaningful applied change; notify on completion of registration and recovery verification.",
-  "checked_epoch": 1794446848.0,
-  "checked_at": "2026-11-12T01:27:28+00:00",
-  "next_check": "2026-11-12T02:25:53+00:00",
+  "checked_epoch": 1794450546,
+  "checked_at": "2026-11-12T02:29:06Z",
+  "next_check": "hourly",
   "stream_manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
   "health": {
     "state.json": {
@@ -373,32 +361,51 @@
   "reviewed_source_changes": [
     {
       "name": "box/azure1/control",
-      "sha": "a7ddc5c9f46223fbf49b07c68044b117bf51f5d2",
-      "collection_change_authorized": false,
-      "reason": "Command queue explicitly addressed to box azure1, a different host. Read as evidence only; no commands executed and no ownership assumed."
+      "sha": "8481232043b3d593691e0fd37e3882d5ac5e561b",
+      "previous": "a7ddc5c9f46223fbf49b07c68044b117bf51f5d2"
     },
     {
       "name": "box/azure1/status",
-      "sha": "329fd10e73eaf193488860cb7fd070216ddbb0a9",
-      "collection_change_authorized": false,
-      "reason": "Another host's status channel; no ownership or liveness action for this stream."
+      "sha": "768774bf6869c70e325224c625efaec056fe7a27",
+      "previous": "329fd10e73eaf193488860cb7fd070216ddbb0a9"
     },
     {
-      "name": "feature/boxctl-20261112",
-      "sha": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
-      "collection_change_authorized": false,
-      "reason": "Remote-box operations tooling, unmerged and not a direction to install or move this owned cloud collector. Existing ownership/frozen-run rules preserved."
+      "name": "box/azure2/control",
+      "sha": "5b5ce47c70ba8d844637adf30d211a6c99597c67"
+    },
+    {
+      "name": "box/azure2/status",
+      "sha": "2b16113db31e79fa9b6ae55f75a9409003a6947e"
+    },
+    {
+      "name": "box/azure3/control",
+      "sha": "4aa3856a75d26d5ec82cdbcfccd882d87d96d7bc"
+    },
+    {
+      "name": "box/azure3/status",
+      "sha": "f2e0a40e854c32e2a760b9e2c1b0e339cd5ccd7c"
+    },
+    {
+      "name": "box/azure4/control",
+      "sha": "63f495a0aa7bf9dacb8506138b71cfa8fa4a8a11"
+    },
+    {
+      "name": "box/azure4/status",
+      "sha": "12276fc3d1982c14a3d5662fa2d5c24b44d35555"
+    },
+    {
+      "name": "feature/gen7-candidate-20261111",
+      "sha": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+      "previous": "1042db5036e0a8071e9cc90f511d941c3de92270"
     },
     {
       "name": "transfer/gen7-prototype-20261111",
-      "sha": "c10ecfb584436e7ea5e9f578529f54f738e1d870",
-      "previous": "3482198757c1ccda7104d3539a7ffe31ce75c3f1",
-      "collection_change_authorized": false,
-      "reason": "Research notes revise stake analysis and smoke-match evidence only; no current collection directive or model adoption."
+      "sha": "fb617a64f6ca037103b15f37ddda7bc9c949a86a",
+      "previous": "c10ecfb584436e7ea5e9f578529f54f738e1d870"
     }
   ],
   "completed_at": "2026-11-12T02:55:15Z",
-  "next_comment_scan_since": "2026-11-12T01:27:28+00:00",
+  "next_comment_scan_since": "2026-11-12T02:29:06Z",
   "poll_checkpoint_note": "Use next_comment_scan_since for subsequent comment polling; analysis completion is later than the GitHub poll.",
   "candidate_notice": {
     "branch": "feature/gen7-candidate-20261111",
