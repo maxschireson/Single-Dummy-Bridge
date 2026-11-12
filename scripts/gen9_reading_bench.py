@@ -242,14 +242,16 @@ FEED_URL = 'https://github.com/maxschireson/Single-Dummy-Bridge'
 FEED_PATTERN = r'^arena-gen7.*ben(16|64)-[0-9]-feed$'
 
 
-def fetch_feeds(directory, opponent):
-    """The episode folders of the BEN feeds of one version, sparse-cloned into `directory` if they are not there."""
+def fetch_feeds(directory, opponent=None, names=None):
+    """Episode folders of feed branches, sparse-cloned into `directory` if they are not there: the BEN feeds of one version,
+    or the branches named."""
     import re
     import subprocess
-    want = 'ben64' if opponent == 'ben64' else 'ben16'
-    heads = subprocess.run(['git', 'ls-remote', '--heads', FEED_URL], check=True, capture_output=True, text=True).stdout.split()
-    names = sorted(h[len('refs/heads/'):] for h in heads if h.startswith('refs/heads/'))
-    names = [n for n in names if re.match(FEED_PATTERN, n) and want in n]
+    if names is None:
+        want = 'ben64' if opponent == 'ben64' else 'ben16'
+        heads = subprocess.run(['git', 'ls-remote', '--heads', FEED_URL], check=True, capture_output=True, text=True).stdout.split()
+        names = sorted(h[len('refs/heads/'):] for h in heads if h.startswith('refs/heads/'))
+        names = [n for n in names if re.match(FEED_PATTERN, n) and want in n]
     Path(directory).mkdir(parents=True, exist_ok=True)
     out = []
     for name in names:
@@ -263,15 +265,27 @@ def fetch_feeds(directory, opponent):
 
 
 def box(a):
+    """The BEN held-out tables (default), or with --house-feed BRANCH and --cell, E9-4 part 1's tables of that feed relabelled
+    by the cell's scheme and scored at declarer's decisions."""
     import subprocess
     import time
-    feeds = fetch_feeds(a.feeds_dir, a.opponent)
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     me = [sys.executable, str(Path(__file__).resolve())]
-    common = ['--feeds', *feeds, '--opponent', a.opponent, '--out', str(out)]
-    chosen = held_out(feeds, a.opponent, a.first + a.tables)[a.first:]
-    (out / 'tables.json').write_text(json.dumps(dict(opponent=a.opponent, first=a.first, tables=[[str(p), k] for p, k in chosen]), indent=0))
+    if a.house_feed:
+        source_episodes = fetch_feeds(a.feeds_dir, names=[a.house_feed])[0]
+        subprocess.run(me + ['relabel', '--source-episodes', source_episodes, '--cell', a.cell, '--tables', str(a.first + a.tables),
+                             '--seed', str(a.relabel_seed), '--out', str(out)], check=True)
+        common = ['--episodes', str(out / 'episodes'), '--deciders', 'declarer', '--out', str(out)]
+        chosen = every_table(out / 'episodes')[a.first:a.first + a.tables]
+        deciders, opponent = 'declarer', None
+    else:
+        feeds = fetch_feeds(a.feeds_dir, a.opponent)
+        common = ['--feeds', *feeds, '--opponent', a.opponent, '--out', str(out)]
+        chosen = held_out(feeds, a.opponent, a.first + a.tables)[a.first:]
+        deciders, opponent = 'house', a.opponent
+    (out / 'tables.json').write_text(json.dumps(dict(opponent=opponent, deciders=deciders, first=a.first,
+                                                     tables=[[str(p), k] for p, k in chosen]), indent=0))
     procs = [subprocess.Popen(me + ['pools', *common, '--first', str(a.first), '--tables', str(a.tables), '--pool', str(a.pool), '--part', str(a.part),
                                     '--seconds', str(a.seconds), '--shard', f'{k}/{a.workers}', '--part-offset', str(a.part_offset)] + [f'--net={n}' for n in a.net]) for k in range(a.workers)]
     def progress():
@@ -298,6 +312,8 @@ def main():
     ap.add_argument('--deciders', default='house', choices=('house', 'declarer', 'all'))
     ap.add_argument('--source-episodes', help='relabel: the house feed E9-4 part 1 used')
     ap.add_argument('--cell', default='std-80', help='relabel: scheme-honesty')
+    ap.add_argument('--house-feed', help='box: the feed branch whose tables are relabelled (E9-4 part 1: arena-gen7-phase1-azure1-feed)')
+    ap.add_argument('--relabel-seed', type=int, default=9, help="box: relabel's seed (E9-4 part 1's: 9)")
     ap.add_argument('--out', required=True)
     ap.add_argument('--first', type=int, default=0, help='the first table of the held-out list to take')
     ap.add_argument('--tables', type=int, default=300)
