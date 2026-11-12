@@ -981,6 +981,16 @@
       "name": "Gen 8 · azure6 (main mix)",
       "branch": "arena-gen8-azure6-feed",
       "cohort": "08b8e638202ab8d71226b2c1c024c42f57f47e2a47e935f8fb80eee2b9c0514f"
+    },
+    {
+      "key": "gen8s3azure1",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure1 (main mix, second pool: capsule shard 3/8)",
+      "branch": "arena-gen8-s3-azure1-feed",
+      "cohort": "05729bda955367b0dc45169f241c2d7bf936a6dac3bc4f7ae559893c7c404c61"
     }
   ],
   "activation": {
