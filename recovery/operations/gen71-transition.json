@@ -1,5 +1,5 @@
 {
-  "status": "running-production-validated",
+  "status": "running-verified",
   "epoch": 1794464857.9462485,
   "authority": {
     "issued": "2026-11-12T05:42:00Z",
@@ -510,6 +510,24 @@
       "/workspace/work/gen71-compare-codex-20261112/tests-gate.log": "72432f74190a393d2ee7d63ad023e30858fc1803d68b8909971a01c02859f35f",
       "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log": "41c43108a5253dbe327328c20800e5e1d1189d9f1bf6562d5b5ed0e672344548",
       "/workspace/work/gen71-compare-codex-20261112/preflight.log": "bbe8abfef7a8f32a319a3b0004f7d2caf5ccbfbdf871e189aaec5d6f07300e8d"
+    },
+    "production_validation": {
+      "verified_records": 6,
+      "gap_forks": 67,
+      "guess_size": 6244,
+      "best_share": 29908,
+      "gen7_decisions": 3185,
+      "tree_consulted": 317,
+      "tree_over_budget": 0,
+      "sha256": "7c4d993e7a6a79f739a5048000f1cd60a1bf22ed403263a77d67e975e136ca08"
+    },
+    "browser": {
+      "live_passed": true,
+      "own_source_snapshot_verified": true,
+      "full_two_table_52_card_replay": true,
+      "errors": [],
+      "evidence_sha256": "7d88e7d2a1e488100028c742fb91afcfcb9e1ba9649d0f16c07b41f6a66d9e05",
+      "scope": "Direct owned source; global aggregate replay URL exceeds serving-layer URL length; use source=gen71codexcompare&older=1."
     }
   },
   "final_source_publication": {
@@ -578,5 +596,13 @@
     "prompt_current": true,
     "next_run_time": "2026-11-12T07:25:53+00:00",
     "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192553Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT"
+  },
+  "completed_at": "2026-11-12T06:48:32.749109Z",
+  "browser_scope": {
+    "status": "passed",
+    "own_source_url": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=gen71codexcompare&older=1",
+    "scope_note": "Direct current source selection requires older=1 under the site selector convention. Its pinned list matches the dashboard snapshot and both replay tables reach52cards;0 page errors.",
+    "global_latest_list_link": "Aggregate latest report displays our source, but the all-source replay URL exceeds the serving-layer length limit. No global site code changed; direct owned source link works.",
+    "evidence_sha256": "7d88e7d2a1e488100028c742fb91afcfcb9e1ba9649d0f16c07b41f6a66d9e05"
   }
 }

@@ -248,7 +248,7 @@
   "comments_since": "2026-11-12T05:29:34Z",
   "new_issue_comments": [],
   "new_review_comments": [],
-  "instruction": "Default to obeying current instructions addressed to collection workers in general.",
+  "instruction": "Follow current authoritative notices to collection workers under standing user delegation; only this owned stream. Max05:42 Gen7.1 comparison notice now supersedes this stream's Gen7.0 selfplay allocation. Scientific behavior is frozen by new manifest, not silently edited.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "authorized_gen71_transition_applied",
@@ -285,48 +285,48 @@
     "publication_verified": true
   },
   "research_disposition": "Gen8/Gen9 and additional policy5epoch/list results remain research, not this collection configuration; optional work ledger is not a new mandatory channel.",
-  "notification": "Meaningful applied Gen7.1 change; final notification after production/recovery verification.",
+  "notification": "Meaningful authorized Gen7.1 replacement applied; collection, capture, publisher and direct replay verified;437 previous captured Gen7.0 deals preserved.",
   "checked_epoch": 1794464671.0,
   "checked_at": "2026-11-12T06:24:31Z",
   "next_check": "2026-11-12T07:25:53Z",
   "stream_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "health": {
-    "epoch": 1794465884.7113385,
+    "epoch": 1794466112.7491086,
     "configured_normal_workers": 3,
     "configured_ben_workers": 0,
     "heartbeat": {
-      "epoch": 1794465876.5953448,
-      "completed": 15,
+      "epoch": 1794466104.2414234,
+      "completed": 27,
       "in_flight": [
-        13,
-        16,
-        17
+        27,
+        28,
+        29
       ],
       "workers": 4,
       "ben_workers": 1,
       "started_epoch": 1794465569.1341488,
       "stopping": false
     },
-    "heartbeat_age_seconds": 8.115993738174438,
+    "heartbeat_age_seconds": 8.50768518447876,
     "state": {
       "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "completed": 15,
+      "completed": 28,
       "target": 20257,
-      "contiguous": 13,
+      "contiguous": 27,
       "by_pair": {
-        "71s-32~6-32": 6,
-        "71s-32~7s-32": 9
+        "71s-32~6-32": 10,
+        "71s-32~7s-32": 18
       },
-      "root_games": 30,
-      "tables": 382,
+      "root_games": 56,
+      "tables": 723,
       "failures": 0,
-      "epoch": 1794465856.5868495,
+      "epoch": 1794466104.5297348,
       "complete": false
     },
     "state_age_seconds": 28.124489068984985,
     "watchdog": {
-      "epoch": 1794465873.5040588,
-      "completed": 15,
+      "epoch": 1794466112.4997785,
+      "completed": 28,
       "target": 20257,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "workers": 3,
@@ -334,21 +334,21 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794465823.4845655,
+      "last_fleet_check": 1794466092.4942265,
       "collector_pid": 36450,
       "publisher_pid": 36451
     },
-    "watchdog_age_seconds": 11.207279682159424,
+    "watchdog_age_seconds": 0.2493300437927246,
     "publisher": {
       "status": "published",
-      "epoch": 1794465883.7568846,
-      "completed": 15,
-      "commit": "ada65609d553e6dde1f7038a5ac517f08517fcfc",
+      "epoch": 1794466071.7047625,
+      "completed": 26,
+      "commit": "fb6acdd4630a21521e3213364558d6673d0bae25",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
-    "publisher_age_seconds": 0.9544539451599121,
+    "publisher_age_seconds": 41.04434609413147,
     "gate": {
-      "epoch": 1794465823.4783945,
+      "epoch": 1794466092.4911273,
       "status": "checked",
       "actors": {
         "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
@@ -357,11 +357,11 @@
       "pair": "71s-32~7s-32",
       "condition": "common",
       "metric": "played IMPs per board for 71s-32",
-      "boards": 307,
-      "mean_imps": -0.04234527687296417,
+      "boards": 356,
+      "mean_imps": -0.10393258426966293,
       "ci95": [
-        -0.35439267659727897,
-        0.2697021228513506
+        -0.3950483098951998,
+        0.1871831413558739
       ],
       "minimum_boards_met": false,
       "positive_lower_bound": false,
@@ -414,47 +414,47 @@
         },
         {
           "branch": "arena-gen7-1-compare-codex-20261112-feed",
-          "revision": "7d4790cdaa27286a6b21ab591a9919352758f7d3",
+          "revision": "fb6acdd4630a21521e3213364558d6673d0bae25",
           "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
-          "revision": "a52a1fdb0bc6ce1ae8952a8e45fd2b62771c8f32",
+          "revision": "7a6973b43166c469e03b52f65a61521b010804cd",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
-          "revision": "cd94523f1d503c9fda86e98da3be791074fb0309",
+          "revision": "a2cea79fdc8eac0a995f744cab03a489cb2a7bd3",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
-          "revision": "f89b3494fb516c478485bdcdb213ce78d8a95b8b",
+          "revision": "fe0e8e578cace8a3ed089fc80ebca6ca715507f8",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
-          "revision": "178a80748aa9233cc9b123361eda2f90ecbeb5f4",
+          "revision": "a49a4c31dcdc68e7cae24e857a0ca377e20ffe8a",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
-          "revision": "bc59e64bc43f838c90d6022a713fc652bd5905f5",
+          "revision": "3927f1a845c9b51eb8ac5c4f7175e029447f5c06",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
-          "revision": "4f8fa84c5e52d25a31d8a5bac4dfc5f6313efbf1",
+          "revision": "68e3ab5e9f398503dfebc634f84c4c89396f7d20",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
-          "revision": "7fc84153a763cbe941a9ba7ab6a235756212ccdd",
+          "revision": "668307e4b876178d78fa921b53cbffb2beec451f",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
-          "revision": "15380cc879398eb159d228ae0c0fb822113f24fa",
+          "revision": "d37318b085b25fe55fe6f91e5ab4fffc92c2a73b",
           "excluded": "no-71-vs-70-pair"
         },
         {
@@ -464,7 +464,7 @@
         },
         {
           "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
-          "revision": "99962cff1c2cbae815a3af758aa34291dbf10b8e",
+          "revision": "0cd2ee60a1308e3a6578d348208c658772b81e9c",
           "cohort": "4b32e6ed0d6bba4856e295caf67f00ac40fdc1c1fcf4d0a765a43979b86901f6"
         },
         {
@@ -474,7 +474,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure1-feed",
-          "revision": "5403b4fa6ad90798a54a1323e05149bde234f85b",
+          "revision": "dcee56365dfe6d76b01cb1ef463dcfac12255fd5",
           "excluded": "different-actors"
         },
         {
@@ -569,7 +569,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure4-feed",
-          "revision": "5afcea1e817ea222fae5063b0fe787214268c00e",
+          "revision": "03b189c15378a4aa3b1b88089b115a7058a032ff",
           "excluded": "different-actors"
         },
         {
@@ -629,12 +629,12 @@
         },
         {
           "branch": "arena-gen71-19bbdce5-20261112-feed",
-          "revision": "cf3a4cbc7a76a7a58268e458c9fbce94b43a982e",
+          "revision": "0c38073ddfa3c1e7bf6fd80c01c9149e562b608a",
           "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
         },
         {
           "branch": "arena-gen71-independent-feed",
-          "revision": "e58947a5aeaa6ea3cac5158cfab4041265f5fb05",
+          "revision": "452e1fe929b07b78c866b76608a1a0e1556e481e",
           "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         }
       ],
@@ -642,7 +642,7 @@
       "selfplay_launch_enabled": false,
       "method": "Completed published arena records plus local atomic receipts; exact actors, ready published plan, checksum and snapshot cutoff checked; one earliest completion per family; two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. External research tests and native duplicate rooms excluded. A published opening is required before selfplay."
     },
-    "gate_age_seconds": 61.23294401168823,
+    "gate_age_seconds": 20.257981300354004,
     "locks": {
       ".writer.lock": true,
       ".watchdog.lock": true,
@@ -681,7 +681,7 @@
         "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork "
       }
     ],
-    "heartbeat_worker_note": "Shared stock runtime counts an unused BEN executor in heartbeat; actual three normal workers, zero BEN jobs/server. Publisher and watchdog report configured3/0.",
+    "heartbeat_worker_note": "Shared frozen runtime counts a reserved unused BEN executor in its raw heartbeat. Actual three spawned play workers, zero BEN processes/jobs; watchdog/publisher report3normal0BEN.",
     "production_validation": {
       "epoch": 1794465806.0093236,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
@@ -847,7 +847,7 @@
       "previous": "96c94cfb45c18129e332dd81e4b186971eb4c57b"
     }
   ],
-  "completed_at": "2026-11-12T06:28:35Z",
+  "completed_at": "2026-11-12T06:48:32.749109Z",
   "next_comment_scan_since": "2026-11-12T06:24:31Z",
   "poll_checkpoint_note": "Next comment scan starts at this poll START, even though transition/validation took longer; no comments gap.",
   "candidate_notice": {
@@ -1258,17 +1258,16 @@
     "peer_entries_preserved": true
   },
   "recovery_validation": {
-    "source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842",
-    "runtime_models_verified": true,
-    "receipt_episode_hashes_verified": true,
-    "live_single_table_replay_verified": true,
-    "production_capture_metrics": {
-      "gap_forks": 46,
-      "guess_fields": 5129,
-      "best_share_fields": 23962,
-      "gen7_decisions": 2293,
-      "tree_consulted": 209
-    }
+    "previous_verified_publication": {
+      "status": "published",
+      "epoch": 1794466071.7047625,
+      "completed": 26,
+      "commit": "fb6acdd4630a21521e3213364558d6673d0bae25",
+      "branch": "arena-gen7-1-compare-codex-20261112-feed"
+    },
+    "source_models_preflight_production_hashes_match": true,
+    "watch_recovery_required": true,
+    "method": "Publisher receipt-consistent archive; actual git remote ref checked; final watch bytes verified separately at the next pushed checkpoint."
   },
   "source_adoption_review": {
     "main_commit": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
@@ -1713,7 +1712,7 @@
     "no_revocation": true
   },
   "gen71_transition": {
-    "status": "production-validated",
+    "status": "running-verified",
     "epoch": 1794464857.9462485,
     "authority": {
       "issued": "2026-11-12T05:42:00Z",
@@ -2224,6 +2223,24 @@
         "/workspace/work/gen71-compare-codex-20261112/tests-gate.log": "72432f74190a393d2ee7d63ad023e30858fc1803d68b8909971a01c02859f35f",
         "/workspace/work/gen71-compare-codex-20261112/preflight-before-cache-setup.log": "41c43108a5253dbe327328c20800e5e1d1189d9f1bf6562d5b5ed0e672344548",
         "/workspace/work/gen71-compare-codex-20261112/preflight.log": "bbe8abfef7a8f32a319a3b0004f7d2caf5ccbfbdf871e189aaec5d6f07300e8d"
+      },
+      "production_validation": {
+        "verified_records": 6,
+        "gap_forks": 67,
+        "guess_size": 6244,
+        "best_share": 29908,
+        "gen7_decisions": 3185,
+        "tree_consulted": 317,
+        "tree_over_budget": 0,
+        "sha256": "7c4d993e7a6a79f739a5048000f1cd60a1bf22ed403263a77d67e975e136ca08"
+      },
+      "browser": {
+        "live_passed": true,
+        "own_source_snapshot_verified": true,
+        "full_two_table_52_card_replay": true,
+        "errors": [],
+        "evidence_sha256": "7d88e7d2a1e488100028c742fb91afcfcb9e1ba9649d0f16c07b41f6a66d9e05",
+        "scope": "Direct owned source; global aggregate replay URL exceeds serving-layer URL length; use source=gen71codexcompare&older=1."
       }
     },
     "final_source_publication": {
@@ -2235,8 +2252,11 @@
     }
   },
   "browser_scope": {
-    "status": "own-source replay verification pending",
-    "global_latest_list_link": "Latest aggregate report renders the new source, but its replay list URL gets URI Too Long from the serving layer. Not a collection failure; no global site source changed. Retesting this owned source with its shorter snapshot link."
+    "status": "passed",
+    "own_source_url": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=gen71codexcompare&older=1",
+    "scope_note": "Direct current source selection requires older=1 under the site selector convention. Its pinned list matches the dashboard snapshot and both replay tables reach52cards;0 page errors.",
+    "global_latest_list_link": "Aggregate latest report displays our source, but the all-source replay URL exceeds the serving-layer length limit. No global site code changed; direct owned source link works.",
+    "evidence_sha256": "7d88e7d2a1e488100028c742fb91afcfcb9e1ba9649d0f16c07b41f6a66d9e05"
   },
   "source_versioned_plans": {
     "revision": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
