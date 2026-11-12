@@ -1,0 +1,145 @@
+25224 declarer decisions; 0 table-cells dropped (a swap could not be undone)
+
+std-0: 3153 decisions, 296 tables; per table 3.9 signalling chances, 5.1 cards changed, 0.04 swaps undone
+        class0.3 +0.194 ± 0.014   vs net0.3: +0.012 ± 0.018
+          class1 +0.305 ± 0.042   vs net0.3: +0.123 ± 0.035
+          net0.3 +0.182 ± 0.021
+            net1 -0.077 ± 0.071   vs net0.3: -0.259 ± 0.051
+     sig0.3-h0.0 +0.347 ± 0.032   vs net0.3: +0.165 ± 0.031
+     sig0.3-h0.5 +0.175 ± 0.051   vs net0.3: -0.007 ± 0.048   vs sig0.3-h0.0: -0.172 ± 0.038
+     sig0.3-h0.8 -0.246 ± 0.081   vs net0.3: -0.428 ± 0.078   vs sig0.3-h0.0: -0.593 ± 0.074
+     sig0.3-h0.9 -0.565 ± 0.101   vs net0.3: -0.747 ± 0.099   vs sig0.3-h0.0: -0.912 ± 0.095
+    sig0.3-htrue +0.347 ± 0.032   vs net0.3: +0.165 ± 0.031   vs sig0.3-h0.0: +0.000 ± 0.000
+       sig1-h0.0 +0.508 ± 0.049   vs net0.3: +0.326 ± 0.041
+       sig1-h0.5 +0.344 ± 0.061   vs net0.3: +0.162 ± 0.054   vs sig1-h0.0: -0.164 ± 0.037
+       sig1-h0.8 -0.048 ± 0.086   vs net0.3: -0.230 ± 0.080   vs sig1-h0.0: -0.556 ± 0.071
+       sig1-h0.9 -0.348 ± 0.103   vs net0.3: -0.530 ± 0.099   vs sig1-h0.0: -0.857 ± 0.093
+      sig1-htrue +0.508 ± 0.049   vs net0.3: +0.326 ± 0.041   vs sig1-h0.0: +0.000 ± 0.000
+  tricks 1-4 (2109): net0.3 +0.163, class1 +0.259, sig1-htrue +0.432; sig1-htrue minus net0.3 +0.269 ± 0.039
+  tricks 5-6 (1044): net0.3 +0.220, class1 +0.397, sig1-htrue +0.662; sig1-htrue minus net0.3 +0.442 ± 0.057
+
+std-100: 3153 decisions, 296 tables; per table 4.0 signalling chances, 5.0 cards changed, 0.06 swaps undone
+        class0.3 +0.199 ± 0.013   vs net0.3: +0.003 ± 0.016
+          class1 +0.320 ± 0.040   vs net0.3: +0.125 ± 0.034
+          net0.3 +0.195 ± 0.019
+            net1 -0.019 ± 0.062   vs net0.3: -0.214 ± 0.044
+     sig0.3-h0.0 +0.360 ± 0.032   vs net0.3: +0.165 ± 0.031
+     sig0.3-h0.5 +0.847 ± 0.049   vs net0.3: +0.652 ± 0.049   vs sig0.3-h0.0: +0.487 ± 0.029
+     sig0.3-h0.8 +0.985 ± 0.062   vs net0.3: +0.790 ± 0.062   vs sig0.3-h0.0: +0.625 ± 0.044
+     sig0.3-h0.9 +1.003 ± 0.068   vs net0.3: +0.808 ± 0.068   vs sig0.3-h0.0: +0.643 ± 0.051
+    sig0.3-htrue +0.969 ± 0.081   vs net0.3: +0.774 ± 0.081   vs sig0.3-h0.0: +0.609 ± 0.065
+       sig1-h0.0 +0.529 ± 0.048   vs net0.3: +0.334 ± 0.041
+       sig1-h0.5 +0.977 ± 0.060   vs net0.3: +0.782 ± 0.055   vs sig1-h0.0: +0.448 ± 0.028
+       sig1-h0.8 +1.110 ± 0.070   vs net0.3: +0.915 ± 0.066   vs sig1-h0.0: +0.581 ± 0.042
+       sig1-h0.9 +1.130 ± 0.075   vs net0.3: +0.934 ± 0.072   vs sig1-h0.0: +0.601 ± 0.049
+      sig1-htrue +1.100 ± 0.086   vs net0.3: +0.905 ± 0.083   vs sig1-h0.0: +0.571 ± 0.063
+  tricks 1-4 (2109): net0.3 +0.175, class1 +0.268, sig1-htrue +0.931; sig1-htrue minus net0.3 +0.757 ± 0.078
+  tricks 5-6 (1044): net0.3 +0.236, class1 +0.425, sig1-htrue +1.441; sig1-htrue minus net0.3 +1.205 ± 0.108
+
+std-50: 3153 decisions, 296 tables; per table 3.9 signalling chances, 5.1 cards changed, 0.07 swaps undone
+        class0.3 +0.194 ± 0.014   vs net0.3: +0.006 ± 0.016
+          class1 +0.304 ± 0.041   vs net0.3: +0.116 ± 0.035
+          net0.3 +0.188 ± 0.019
+            net1 -0.043 ± 0.063   vs net0.3: -0.231 ± 0.045
+     sig0.3-h0.0 +0.355 ± 0.032   vs net0.3: +0.167 ± 0.032
+     sig0.3-h0.5 +0.534 ± 0.049   vs net0.3: +0.346 ± 0.049   vs sig0.3-h0.0: +0.179 ± 0.030
+     sig0.3-h0.8 +0.428 ± 0.065   vs net0.3: +0.241 ± 0.065   vs sig0.3-h0.0: +0.073 ± 0.051
+     sig0.3-h0.9 +0.300 ± 0.076   vs net0.3: +0.113 ± 0.076   vs sig0.3-h0.0: -0.055 ± 0.063
+    sig0.3-htrue +0.534 ± 0.049   vs net0.3: +0.346 ± 0.049   vs sig0.3-h0.0: +0.179 ± 0.030
+       sig1-h0.0 +0.516 ± 0.048   vs net0.3: +0.328 ± 0.042
+       sig1-h0.5 +0.675 ± 0.058   vs net0.3: +0.487 ± 0.053   vs sig1-h0.0: +0.159 ± 0.029
+       sig1-h0.8 +0.578 ± 0.071   vs net0.3: +0.390 ± 0.067   vs sig1-h0.0: +0.062 ± 0.049
+       sig1-h0.9 +0.459 ± 0.079   vs net0.3: +0.271 ± 0.076   vs sig1-h0.0: -0.057 ± 0.061
+      sig1-htrue +0.675 ± 0.058   vs net0.3: +0.487 ± 0.053   vs sig1-h0.0: +0.159 ± 0.029
+  tricks 1-4 (2109): net0.3 +0.166, class1 +0.255, sig1-htrue +0.601; sig1-htrue minus net0.3 +0.436 ± 0.049
+  tricks 5-6 (1044): net0.3 +0.233, class1 +0.404, sig1-htrue +0.823; sig1-htrue minus net0.3 +0.590 ± 0.074
+
+std-80: 3153 decisions, 296 tables; per table 4.0 signalling chances, 5.0 cards changed, 0.05 swaps undone
+        class0.3 +0.196 ± 0.013   vs net0.3: +0.012 ± 0.017
+          class1 +0.309 ± 0.041   vs net0.3: +0.125 ± 0.035
+          net0.3 +0.184 ± 0.019
+            net1 -0.053 ± 0.064   vs net0.3: -0.237 ± 0.046
+     sig0.3-h0.0 +0.364 ± 0.029   vs net0.3: +0.180 ± 0.028
+     sig0.3-h0.5 +0.735 ± 0.046   vs net0.3: +0.550 ± 0.046   vs sig0.3-h0.0: +0.370 ± 0.031
+     sig0.3-h0.8 +0.781 ± 0.061   vs net0.3: +0.597 ± 0.061   vs sig0.3-h0.0: +0.417 ± 0.049
+     sig0.3-h0.9 +0.745 ± 0.070   vs net0.3: +0.561 ± 0.069   vs sig0.3-h0.0: +0.381 ± 0.058
+    sig0.3-htrue +0.781 ± 0.061   vs net0.3: +0.597 ± 0.061   vs sig0.3-h0.0: +0.417 ± 0.049
+       sig1-h0.0 +0.526 ± 0.046   vs net0.3: +0.342 ± 0.039
+       sig1-h0.5 +0.858 ± 0.059   vs net0.3: +0.674 ± 0.054   vs sig1-h0.0: +0.331 ± 0.029
+       sig1-h0.8 +0.901 ± 0.071   vs net0.3: +0.717 ± 0.067   vs sig1-h0.0: +0.374 ± 0.047
+       sig1-h0.9 +0.867 ± 0.079   vs net0.3: +0.683 ± 0.075   vs sig1-h0.0: +0.341 ± 0.056
+      sig1-htrue +0.901 ± 0.071   vs net0.3: +0.717 ± 0.067   vs sig1-h0.0: +0.374 ± 0.047
+  tricks 1-4 (2109): net0.3 +0.165, class1 +0.261, sig1-htrue +0.781; sig1-htrue minus net0.3 +0.616 ± 0.063
+  tricks 5-6 (1044): net0.3 +0.222, class1 +0.406, sig1-htrue +1.143; sig1-htrue minus net0.3 +0.921 ± 0.089
+
+std35-80: 3153 decisions, 296 tables; per table 3.9 signalling chances, 5.0 cards changed, 0.05 swaps undone
+        class0.3 +0.196 ± 0.013   vs net0.3: +0.001 ± 0.017
+          class1 +0.315 ± 0.040   vs net0.3: +0.120 ± 0.034
+          net0.3 +0.195 ± 0.020
+            net1 -0.027 ± 0.065   vs net0.3: -0.222 ± 0.046
+     sig0.3-h0.0 +0.365 ± 0.031   vs net0.3: +0.170 ± 0.030
+     sig0.3-h0.5 +0.722 ± 0.046   vs net0.3: +0.526 ± 0.046   vs sig0.3-h0.0: +0.356 ± 0.030
+     sig0.3-h0.8 +0.755 ± 0.061   vs net0.3: +0.560 ± 0.061   vs sig0.3-h0.0: +0.390 ± 0.048
+     sig0.3-h0.9 +0.710 ± 0.070   vs net0.3: +0.515 ± 0.070   vs sig0.3-h0.0: +0.345 ± 0.058
+    sig0.3-htrue +0.755 ± 0.061   vs net0.3: +0.560 ± 0.061   vs sig0.3-h0.0: +0.390 ± 0.048
+       sig1-h0.0 +0.531 ± 0.047   vs net0.3: +0.336 ± 0.040
+       sig1-h0.5 +0.861 ± 0.058   vs net0.3: +0.665 ± 0.052   vs sig1-h0.0: +0.329 ± 0.029
+       sig1-h0.8 +0.898 ± 0.069   vs net0.3: +0.703 ± 0.065   vs sig1-h0.0: +0.367 ± 0.046
+       sig1-h0.9 +0.858 ± 0.076   vs net0.3: +0.663 ± 0.073   vs sig1-h0.0: +0.327 ± 0.056
+      sig1-htrue +0.898 ± 0.069   vs net0.3: +0.703 ± 0.065   vs sig1-h0.0: +0.367 ± 0.046
+  tricks 1-4 (2109): net0.3 +0.180, class1 +0.268, sig1-htrue +0.763; sig1-htrue minus net0.3 +0.583 ± 0.061
+  tricks 5-6 (1044): net0.3 +0.227, class1 +0.411, sig1-htrue +1.171; sig1-htrue minus net0.3 +0.944 ± 0.089
+
+ud-100: 3153 decisions, 296 tables; per table 4.0 signalling chances, 4.9 cards changed, 0.05 swaps undone
+        class0.3 +0.200 ± 0.013   vs net0.3: +0.028 ± 0.019
+          class1 +0.327 ± 0.040   vs net0.3: +0.155 ± 0.035
+          net0.3 +0.172 ± 0.022
+            net1 -0.111 ± 0.073   vs net0.3: -0.283 ± 0.052
+     sig0.3-h0.0 +0.333 ± 0.033   vs net0.3: +0.161 ± 0.033
+     sig0.3-h0.5 +0.841 ± 0.043   vs net0.3: +0.669 ± 0.043   vs sig0.3-h0.0: +0.508 ± 0.029
+     sig0.3-h0.8 +0.991 ± 0.052   vs net0.3: +0.818 ± 0.054   vs sig0.3-h0.0: +0.657 ± 0.043
+     sig0.3-h0.9 +1.016 ± 0.058   vs net0.3: +0.844 ± 0.059   vs sig0.3-h0.0: +0.683 ± 0.049
+    sig0.3-htrue +0.998 ± 0.068   vs net0.3: +0.826 ± 0.069   vs sig0.3-h0.0: +0.665 ± 0.062
+       sig1-h0.0 +0.507 ± 0.048   vs net0.3: +0.334 ± 0.042
+       sig1-h0.5 +0.971 ± 0.054   vs net0.3: +0.799 ± 0.050   vs sig1-h0.0: +0.464 ± 0.028
+       sig1-h0.8 +1.118 ± 0.062   vs net0.3: +0.946 ± 0.059   vs sig1-h0.0: +0.611 ± 0.042
+       sig1-h0.9 +1.146 ± 0.066   vs net0.3: +0.974 ± 0.064   vs sig1-h0.0: +0.639 ± 0.049
+      sig1-htrue +1.136 ± 0.075   vs net0.3: +0.964 ± 0.073   vs sig1-h0.0: +0.630 ± 0.061
+  tricks 1-4 (2109): net0.3 +0.149, class1 +0.283, sig1-htrue +0.953; sig1-htrue minus net0.3 +0.804 ± 0.073
+  tricks 5-6 (1044): net0.3 +0.219, class1 +0.415, sig1-htrue +1.507; sig1-htrue minus net0.3 +1.288 ± 0.091
+
+ud-50: 3153 decisions, 296 tables; per table 3.9 signalling chances, 5.1 cards changed, 0.06 swaps undone
+        class0.3 +0.202 ± 0.013   vs net0.3: +0.022 ± 0.018
+          class1 +0.325 ± 0.040   vs net0.3: +0.146 ± 0.035
+          net0.3 +0.179 ± 0.021
+            net1 -0.086 ± 0.069   vs net0.3: -0.265 ± 0.050
+     sig0.3-h0.0 +0.330 ± 0.032   vs net0.3: +0.150 ± 0.031
+     sig0.3-h0.5 +0.546 ± 0.042   vs net0.3: +0.366 ± 0.042   vs sig0.3-h0.0: +0.216 ± 0.028
+     sig0.3-h0.8 +0.463 ± 0.056   vs net0.3: +0.284 ± 0.056   vs sig0.3-h0.0: +0.133 ± 0.047
+     sig0.3-h0.9 +0.346 ± 0.066   vs net0.3: +0.167 ± 0.066   vs sig0.3-h0.0: +0.017 ± 0.059
+    sig0.3-htrue +0.546 ± 0.042   vs net0.3: +0.366 ± 0.042   vs sig0.3-h0.0: +0.216 ± 0.028
+       sig1-h0.0 +0.499 ± 0.048   vs net0.3: +0.320 ± 0.041
+       sig1-h0.5 +0.687 ± 0.054   vs net0.3: +0.508 ± 0.049   vs sig1-h0.0: +0.188 ± 0.027
+       sig1-h0.8 +0.613 ± 0.065   vs net0.3: +0.433 ± 0.061   vs sig1-h0.0: +0.113 ± 0.046
+       sig1-h0.9 +0.506 ± 0.072   vs net0.3: +0.327 ± 0.069   vs sig1-h0.0: +0.007 ± 0.057
+      sig1-htrue +0.687 ± 0.054   vs net0.3: +0.508 ± 0.049   vs sig1-h0.0: +0.188 ± 0.027
+  tricks 1-4 (2109): net0.3 +0.154, class1 +0.277, sig1-htrue +0.598; sig1-htrue minus net0.3 +0.443 ± 0.047
+  tricks 5-6 (1044): net0.3 +0.230, class1 +0.422, sig1-htrue +0.868; sig1-htrue minus net0.3 +0.638 ± 0.067
+
+ud-80: 3153 decisions, 296 tables; per table 4.0 signalling chances, 5.0 cards changed, 0.06 swaps undone
+        class0.3 +0.200 ± 0.013   vs net0.3: +0.015 ± 0.018
+          class1 +0.321 ± 0.041   vs net0.3: +0.137 ± 0.035
+          net0.3 +0.184 ± 0.020
+            net1 -0.085 ± 0.068   vs net0.3: -0.269 ± 0.049
+     sig0.3-h0.0 +0.340 ± 0.033   vs net0.3: +0.155 ± 0.032
+     sig0.3-h0.5 +0.761 ± 0.043   vs net0.3: +0.577 ± 0.043   vs sig0.3-h0.0: +0.421 ± 0.029
+     sig0.3-h0.8 +0.839 ± 0.055   vs net0.3: +0.655 ± 0.055   vs sig0.3-h0.0: +0.500 ± 0.045
+     sig0.3-h0.9 +0.820 ± 0.062   vs net0.3: +0.636 ± 0.063   vs sig0.3-h0.0: +0.481 ± 0.054
+    sig0.3-htrue +0.839 ± 0.055   vs net0.3: +0.655 ± 0.055   vs sig0.3-h0.0: +0.500 ± 0.045
+       sig1-h0.0 +0.508 ± 0.048   vs net0.3: +0.324 ± 0.042
+       sig1-h0.5 +0.891 ± 0.056   vs net0.3: +0.707 ± 0.051   vs sig1-h0.0: +0.383 ± 0.028
+       sig1-h0.8 +0.969 ± 0.065   vs net0.3: +0.784 ± 0.062   vs sig1-h0.0: +0.461 ± 0.044
+       sig1-h0.9 +0.955 ± 0.071   vs net0.3: +0.770 ± 0.068   vs sig1-h0.0: +0.447 ± 0.053
+      sig1-htrue +0.969 ± 0.065   vs net0.3: +0.784 ± 0.062   vs sig1-h0.0: +0.461 ± 0.044
+  tricks 1-4 (2109): net0.3 +0.159, class1 +0.275, sig1-htrue +0.823; sig1-htrue minus net0.3 +0.664 ± 0.061
+  tricks 5-6 (1044): net0.3 +0.235, class1 +0.415, sig1-htrue +1.262; sig1-htrue minus net0.3 +1.027 ± 0.079
