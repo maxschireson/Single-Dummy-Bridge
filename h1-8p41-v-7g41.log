@@ -13,3 +13,6 @@
 600 boards: 0.32 +- 0.1205 IMPs/board for 8p-32-v41; 1163 boards/hour; 0 failed
 650 boards: 0.3138 +- 0.1171 IMPs/board for 8p-32-v41; 1165 boards/hour; 0 failed
 700 boards: 0.2957 +- 0.1137 IMPs/board for 8p-32-v41; 1159 boards/hour; 0 failed
+750 boards: 0.3093 +- 0.1101 IMPs/board for 8p-32-v41; 1154 boards/hour; 0 failed
+800 boards: 0.3412 +- 0.1078 IMPs/board for 8p-32-v41; 1160 boards/hour; 0 failed
+{"pair": "8p-32-v41~7g-32-v41", "boards": 800, "cpu_per_board": 22.2, "common": {"imps_per_board": 0.3412, "se": 0.1078, "boards": 800, "won": 154, "lost": 88, "flat": 558}, "native": {"imps_per_board": 0.3412, "se": 0.1078, "boards": 800, "won": 154, "lost": 88, "flat": 558}}
