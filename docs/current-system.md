@@ -47,8 +47,12 @@ instruction to that producer. Gen 6's scored results are closed:
 - Gen 7 phase 2 (self-play volume with the fast bot). The self-play regime, the gen7 engine and
   the capture port are in one runtime on `feature/gen7-selfplay-20261112`, which is not on main;
   [backlog item 1](backlog.md).
-- Gen 8: a candidate on `feature/gen8-prototype-20261112` ([notice](gen8_candidate_2026-11-12.md)); not authorized,
-  its plan `configs/round8-candidate.json` is closed. The systems layer it rests on: [gen8_systems.md](gen8_systems.md).
+- Gen 8 is **authorized and not on main**. Max said go on 12 November 2026 at 15:32 UTC and the arena switched to it
+  from 16:30 UTC (g7 operates the collectors). They run `feature/gen8-prototype-20261112` at `792c4cb`
+  ([notice](gen8_candidate_2026-11-12.md)) with the plans `configs/round8-candidate.json` (the main mix) and
+  `configs/round8-candidate-ben.json` (BEN), both open. The rest of this page still describes Gen 7: the
+  [generation cleanup](generation-cleanup.md) for Gen 7 to Gen 8 rewrites it and brings that source onto main, and
+  has not been run. The systems layer Gen 8 rests on: [gen8_systems.md](gen8_systems.md).
 - Hand-fit scorer v1a: packaged on `research/hand-fit-scorer-v1a-20261111`; phase 1 uses v0.
 
 ## Evidence rules

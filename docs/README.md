@@ -8,8 +8,8 @@
 - [Repository map: code, models, data and research](repository-map.md)
 - [Backlog: open work](backlog.md)
 - [Branch inventory](branch-inventory.md)
-- [Gen 8 candidate: the play read from trick 1, and two bidding systems at the table (not authorized, not launched)](gen8_candidate_2026-11-12.md)
-- [Gen 8 system layer: systems as data and a system-aware scorer (the layer the candidate rests on; not deployed)](gen8_systems.md)
+- [Gen 8: the play read from trick 1, and two bidding systems at the table (authorized by Max on 12 November 2026 at 15:32 UTC; in the arena from 16:30 UTC)](gen8_candidate_2026-11-12.md)
+- [Gen 8 system layer: systems as data and a system-aware scorer (the layer Gen 8 rests on)](gen8_systems.md)
 - [Contribution workflow](../CONTRIBUTING.md)
 - [Agent entry point](../AGENTS.md)
 
