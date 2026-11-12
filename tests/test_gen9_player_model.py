@@ -184,18 +184,20 @@ class Models(unittest.TestCase):
 class Arrival(unittest.TestCase):
     def test_a_declared_card_ranks_the_systems_by_how_often_their_bidder_breaks_it(self):
         m = arrive('guest-1', bidding=dict(card='x'), carding=dict(count='upside-down'),
-                   distances={'near': 0., 'close': .05, 'far': .4})
+                   distances={'near': .13, 'close': .20, 'far': .6})
         p = dict(m.profiles)
         self.assertEqual((m.kind, m.bidding, m.carding, m.boards), ('guest', dict(card='x'), dict(count='upside-down'), 0))
         self.assertAlmostEqual(sum(p.values()), 1.)
-        self.assertAlmostEqual(p['near'], p[CARD_PROFILE])                  # a bidder that never breaks the card weighs as much as the card
-        self.assertAlmostEqual(p['close'] / p['near'], math.exp(-1.))       # tau = 0.05
+        self.assertAlmostEqual(p['near'], p[CARD_PROFILE])                  # within the slack: as likely as the card itself
+        self.assertAlmostEqual(p['close'] / p['near'], math.exp(-1.))       # 0.05 past the slack, tau = 0.05
         self.assertAlmostEqual(p[FLAT_PROFILE] / p[CARD_PROFILE], .25)
         self.assertAlmostEqual(p['far'] / p['near'], 1e-3)                  # never ruled out before a board is seen
         self.assertFalse(m.plain)
+        strict = dict(arrive('g', bidding=dict(card='x'), distances={'near': .05}, slack=0.).profiles)
+        self.assertAlmostEqual(strict['near'] / strict[CARD_PROFILE], math.exp(-1.))
 
     def test_nothing_near_leaves_the_card_and_flat(self):
-        p = dict(arrive('g', bidding=dict(card='x'), distances={'a': .5, 'b': .7}).profiles)
+        p = dict(arrive('g', bidding=dict(card='x'), distances={'a': .6, 'b': .8}).profiles)
         self.assertAlmostEqual(p[CARD_PROFILE] + p[FLAT_PROFILE], 1.25 / 1.252)
 
     def test_without_a_card_the_systems_share_and_nothing_at_all_is_plain(self):
@@ -209,7 +211,7 @@ class Arrival(unittest.TestCase):
             arrive('g', distances={'a': 1.5})
 
     def test_boards_move_the_profiles_and_can_overturn_the_mapping(self):
-        m = arrive('g', bidding=dict(card='x'), distances={'near': 0., 'far': .4})
+        m = arrive('g', bidding=dict(card='x'), distances={'near': 0., 'far': .6})
         self.assertIs(believed(m), m)                                        # nothing seen yet
         ll = {'near': -80., 'far': -20., CARD_PROFILE: -40., FLAT_PROFILE: -60.}
         seen = PlayerModel.from_dict(dict(m.to_dict(), experience=xp.snapshot(

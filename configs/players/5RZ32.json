@@ -1,0 +1,31 @@
+{
+ "schema": "player-package-v1",
+ "id": "5RZ32",
+ "label": "Gen 5 (32)",
+ "kind": "anchor",
+ "bundle": {
+  "source": "capsule",
+  "bot": "5RZ32",
+  "artifact_sha256": {
+   "belief": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+   "policy": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+   "bidding": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc"
+  }
+ },
+ "declaration": {
+  "system": "house-gen5",
+  "card": null,
+  "carding": null
+ },
+ "lineage": {
+  "parents": [],
+  "training_families": {},
+  "note": "Training-family lists were not recorded for these nets; epochs deal fresh seeded deals, so an overlap would be chance."
+ },
+ "needs": {
+  "ben_server": false,
+  "tensorflow": false
+ },
+ "licence": "redistributable",
+ "notes": "A bot of the Gen 7 capture capsule (arena-gen6-gen7-capture-feed at 8833c62f), unchanged."
+}
