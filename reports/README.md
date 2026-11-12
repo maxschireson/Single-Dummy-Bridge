@@ -10,6 +10,7 @@ actor/configuration, dataset, sample count and uncertainty behind a claim.
 - [Gen6 primary launch snapshot](gen6-primary-launch-20261111.json)
 - [Gen6 dashboard verification snapshot](gen6-primary-dashboard-verification-20261111.json)
 - [Gen6 layout-selection study](gen6-layout-selection-2026-11-11/README.md)
+- [System-aware hand-fit scorer: first run on the house bidders (pipeline check)](gen8-system-scorer-smoke-2026-11-11/README.md)
 - [Excluded fast-vs-BEN archive receipt](gen6-accidental-fast-ben-archive-20261111.json)
 - [Historical generation and research reading guide](../docs/archive/README.md)
 - [Full branch inventory](../docs/branch-inventory.md)

@@ -46,7 +46,7 @@ import time
 import numpy as np
 
 from .core import Observation, card, symbol, winner
-from .gen6 import POLICY_SAMPLE_RANGE, Gen6Player, View, _effective, systematic
+from .gen6 import POLICY_SAMPLE_RANGE, Classes, Gen6Player, View, _effective, _merge, spaced, systematic
 from .gen6 import player as gen6_player
 from .gen7_net import INPUTS, PolicyNet
 from .gen7_tree import OverBudget, Tree, TreeConfig, stake as trick_stake
@@ -64,13 +64,25 @@ class Gen7Config:
     play_max_layouts: int = 1024    # a longer deal list is resampled by scorer weight to this many before the net scores it
     play_lead: bool = True          # the opening lead counts as a play
     tie_break: str = 'net'          # among exactly tied cards: 'net' | 'gen5' (the spec's policy net, as Gen6)
+                                    # | 'low' | 'high' | 'random': fixed carding rules, for opponents of a known other type
     search_from_trick: int = 1      # earlier tricks are played from the net without search; 1 = always search
     net_sample: bool = False        # unsearched cards: draw from the net's policy instead of taking its top card
     tree_audit: bool = True         # where the tree was consulted, the audit's reference card is the card played without it
+    # Gen 8 prototype: the play is read before the deal list too. All three are inert at early_play_weight 0.
+    early_play_weight: float = 0.   # after the opening lead and before the deal list: exponent on the net's probability of each
+                                    # observed hidden play; 0 = Gen6's layouts there, as in Gen 7
+    early_pool: int = 512           # layouts drawn by the hand-fit scorer's class weights, scored by the net, and resampled for the solver
+    early_min_effective: float = 8. # the exponent is halved until the scored pool amounts to at least this many layouts
+    opponent_play_weight: dict = field(default_factory=dict)    # by opponent bot id ('*' = any other): a factor on the reading of
+                                    # the opponents' plays, at every trick. 1 = read them as the house bots' (the default), 0 = ignore
+                                    # them. Partner's plays always count in full. The opponent is the spec's `table_opponent`.
 
     def __post_init__(self):
-        if self.tie_break not in ('net', 'gen5') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
-                or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000:
+        if self.tie_break not in ('net', 'gen5', 'low', 'high', 'random') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
+                or not 1 <= self.search_from_trick <= 14 or not 1 <= self.play_max_layouts <= 100000 \
+                or not 0 <= self.early_play_weight <= 4 or not 16 <= self.early_pool <= 65536 or not 1 <= self.early_min_effective <= 4096 \
+                or not isinstance(self.opponent_play_weight, dict) \
+                or not all(isinstance(v, (int, float)) and not isinstance(v, bool) and 0 <= v <= 4 for v in self.opponent_play_weight.values()):
             raise ValueError('Invalid Gen7 settings')
 
 
@@ -130,6 +142,10 @@ def resolved(block):
     """spec['gen7'] with every setting written out, defaults included: what a manifest should pin."""
     config, stages = gen7_settings(block)
     out = asdict(config)
+    if not config.early_play_weight:        # inert, so a Gen 7 bot's settings read as they did before these existed
+        out = {k: v for k, v in out.items() if not k.startswith('early_')}
+    if not config.opponent_play_weight:
+        out.pop('opponent_play_weight')
     if stages:
         out['tree'] = [dict({k: getattr(s, k) for k in USE_KEYS}, **asdict(s.search)) for s in stages]
     return out
@@ -191,11 +207,18 @@ class Gen7Player(Gen6Player):
         super().__init__(spec, root, reference)
         self.g7, self.stages = gen7_settings(spec.get('gen7'))
         self.net = PolicyNet(Path(root) / spec['gen7_policy'], self.scorer)
+        self.meet(spec.get('table_opponent'))
         self.play_cache = (None, {})
         self.net_rows = 0
         self.solved_layouts = None      # the layouts of the decision in hand, for the tree
         self.before_tree = None         # the search's own decision, when the tree was consulted on it
         self.repliers = {}
+
+    def meet(self, opponent_id):
+        """Who sits against this bot at this table (a bot id, or None). gen5_arena.run_board says so for every board;
+        scripts/gen8_match.py also puts it in the spec as `table_opponent`. Settings keyed by opponent type follow."""
+        by_type = self.g7.opponent_play_weight
+        self.opponent_factor = float(by_type.get(opponent_id, by_type.get('*', 1.)))
 
     # ---- how likely was the play so far, layout by layout --------------------------------
     def held_then(self, o, view, assign, i, chooser):
@@ -260,16 +283,55 @@ class Gen7Player(Gen6Player):
 
     def play_log_likelihood(self, o, view, assign, plays=None):
         """[layouts] sum over the hidden choosers' past plays of the floored log-probability of the card played."""
+        plays = hidden_plays(o, self.g7.play_lead) if plays is None else plays
         logp, options = self.play_log_probabilities(o, view, assign, plays)
-        return floored(logp, options, self.g7.play_floor).sum(axis=0)
+        fit = floored(logp, options, self.g7.play_floor)
+        if self.opponent_factor != 1. and plays:       # the opponents are a known other type: their plays count for less, or not at all
+            fit = fit * np.array([1. if chooser % 2 == o.controller % 2 else self.opponent_factor for _, _, chooser in plays])[:, None]
+        return fit.sum(axis=0)
 
     def layouts(self, o, view, source, rng):
         worlds, weights, info = self.weighted_layouts(o, view, source, rng)
         self.solved_layouts = worlds
         return worlds, weights, info
 
+    def early_layouts(self, o, view, source, rng):
+        """Before the deal list: Gen6's weighted hand-type classes, read again in the light of the play so far.
+
+        Gen6 picks its layouts from the classes by auction weight alone, so the opening lead and every card since say
+        nothing about who holds what. Here `early_pool` layouts are drawn by that weight (one per pick, low cards dealt
+        at random), each is weighted by the net's probability of the hidden seats' plays so far raised to
+        `early_play_weight`, and the layouts to solve are resampled from the pool. If the plays fit so few of the pool
+        that it amounts to fewer than `early_min_effective` layouts, the exponent is halved until it does not."""
+        c, g, n = self.config, self.g7, self.samples
+        if len(o.history) // 4 + 1 >= c.mid_from_trick:
+            n = c.mid_samples
+        plays = hidden_plays(o, g.play_lead)
+        classes = Classes(view)
+        logw = classes.logmult + self.type_log_weights(o, view, classes.length, classes.hon, source)
+        worlds = classes.worlds(spaced(logw, g.early_pool, rng.random()), rng)
+        owner = np.zeros(52, np.int8)
+        assign = np.empty((len(worlds), len(view.unseen)), np.int8)
+        for k, world in enumerate(worlds):
+            owner[list(world[view.hidden[1]])] = 1
+            owner[list(world[view.hidden[0]])] = 0
+            assign[k] = owner[view.unseen]
+        rows = self.net_rows
+        fit = self.play_log_likelihood(o, view, assign, plays)
+        power = g.early_play_weight
+        while _effective(power * fit) < g.early_min_effective and power > 1e-3:
+            power /= 2
+        logp = power * fit
+        index, share = systematic(np.exp(logp - logp.max()), n, rng)
+        info = dict(classes=len(classes), effective=_effective(logw), draws=n, pick='play-pool', pool=len(worlds),
+                    play_decisions=len(plays), play_net_rows=self.net_rows - rows, play_power=power, effective_with_play=_effective(logp))
+        return (*_merge([worlds[i] for i in index], share), info)
+
     def weighted_layouts(self, o, view, source, rng):
         g = self.g7
+        if source in ('scorer', 'lead_net') and o.history and g.early_play_weight > 0 and len(view.hidden) == 2 \
+                and hidden_plays(o, g.play_lead):
+            return self.early_layouts(o, view, source, rng)
         if source != 'list' or g.play_weight <= 0:
             return super().layouts(o, view, source, rng)
         c = self.config
@@ -433,8 +495,24 @@ class Gen7Player(Gen6Player):
             selected_probability=behaviour[symbol(chosen)], net_probabilities={symbol(x): float(q) for x, q in zip(o.legal, p)},
             gen7=dict(asdict(self.g7), source='net', trick=len(o.history) // 4 + 1)))
 
+    def rule_ties(self, o, rng, result):
+        """Among exactly tied cards: the lowest, the highest (by rank, then suit), or one at random. No net is read."""
+        d = result.details
+        eligible = sorted(card(k) for k, p in d['behavior_probabilities'].items() if p > 0)
+        if len(eligible) < 2:
+            return result
+        rule = self.g7.tie_break
+        chosen = rng.choice(eligible) if rule == 'random' else min(eligible, key=lambda x: (x % 13, x)) if rule == 'low' \
+            else max(eligible, key=lambda x: (x % 13, -x))
+        probs = {x: 1 / len(eligible) if rule == 'random' else float(x == chosen) for x in eligible}
+        return Decision(chosen, dict(d, selector='rule-' + rule + '-' + self.spec['id'], proposal_probabilities=d['behavior_probabilities'],
+                                     behavior_probabilities={symbol(x): p for x, p in probs.items()}, selected_probability=probs[chosen],
+                                     selected_pimc_gap=d['estimates'][symbol(chosen)]['gap_to_best']))
+
     def break_ties(self, o, rng, result):
         """Gen6Player.break_ties with the Gen7 net's log-probability in place of the Gen5 net's prediction."""
+        if self.g7.tie_break in ('low', 'high', 'random'):
+            return self.rule_ties(o, rng, result)
         if self.g7.tie_break != 'net':
             return super().break_ties(o, rng, result)
         d = result.details

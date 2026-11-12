@@ -1,0 +1,32 @@
+{
+  "schema": "system-package-v1",
+  "id": "house-gen6",
+  "display_name": "House system, Gen 6 bidder (graded alternatives)",
+  "status": "active",
+  "family": "2/1 lineage (BEN GIB-BBO-8742 base), changed by training",
+  "bidding": {
+    "card": null,
+    "descriptor": {},
+    "notes": [
+      "No convention card. What a call means is whatever this bidder does with it. See models/bidding/gen6-candidate-2026-11-11/README.md."
+    ]
+  },
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared. Equal cards are chosen by the policy net."
+    ]
+  },
+  "generators": [
+    {
+      "kind": "ben-lstm-keras",
+      "path": "models/bidding/gen6-candidate-2026-11-11/bidder.keras",
+      "restore": "models/bidding/gen6-candidate-2026-11-11/restore_model.py",
+      "sha256": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff"
+    }
+  ],
+  "lineage": {
+    "parent": "ben-gib-bbo-8742",
+    "source": "manifest recipe.base; KL anchor to the same file"
+  }
+}

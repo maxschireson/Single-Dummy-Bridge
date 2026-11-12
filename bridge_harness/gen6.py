@@ -323,6 +323,15 @@ class Gen6Player(ArenaPlayer):
         if 'gen5' in (c.lead_source, c.early_source) and not spec.get('belief'):
             raise ValueError("A 'gen5' layout source needs the spec's belief net")
         self.scorer = FitScorer(root / spec['scorer'])
+        # Gen 8 prototype (inert unless the spec names these): the systems NS and EW have declared at this table
+        # (spec['table_systems']), a scorer that reads each side's calls by its system (spec['system_scorer']), and
+        # the systems whose auctions the lead net was trained on (spec['lead_systems']; elsewhere the scorer leads).
+        systems = tuple(spec.get('table_systems') or (None, None))
+        if spec.get('system_scorer'):
+            from .system_nets import SystemFitScorer
+            from .systems import TableSystems
+            self.scorer = SystemFitScorer(root / spec['system_scorer']).bind(TableSystems(*systems))
+        self.lead_fits = 'lead_systems' not in spec or all(x in spec['lead_systems'] for x in systems)
         self.lead_net = None
         if 'lead_net' in (c.lead_source, c.leader_early_source):
             self.lead_net = LeadNet(root / spec['lead_belief'], BidderState(root / spec['lead_state_bidder']))
@@ -332,10 +341,10 @@ class Gen6Player(ArenaPlayer):
     def source(self, o, view):
         c = self.config
         if not o.history:
-            return 'scorer' if c.lead_source == 'lead_net' and not LeadNet.fits(o.auction) else c.lead_source
+            return 'scorer' if c.lead_source == 'lead_net' and not (self.lead_fits and LeadNet.fits(o.auction)) else c.lead_source
         if len(o.history) // 4 + 1 >= c.list_from_trick and view.count() <= c.list_max_layouts:
             return 'list'
-        if c.leader_early_source == 'lead_net' and o.controller == (o.contract.declarer + 1) % 4 and LeadNet.fits(o.auction):
+        if c.leader_early_source == 'lead_net' and o.controller == (o.contract.declarer + 1) % 4 and self.lead_fits and LeadNet.fits(o.auction):
             return 'lead_net'
         return c.early_source
 

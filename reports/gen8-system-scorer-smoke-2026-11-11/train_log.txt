@@ -1,0 +1,47 @@
+648000 examples from 18000 deals; model systems ['house-gen6', 'house-gen5', 'house-dds40k']
+  0.0 min step 0 (0.00 passes) lr 0.00000: declared val loss 0.1211; accuracy true 0.917, random 0.971, near 0.941
+  0.1 min step 20 (0.03 passes) lr 0.00002: declared val loss 0.1208; accuracy true 0.918, random 0.971, near 0.942
+  0.2 min step 40 (0.06 passes) lr 0.00004: declared val loss 0.1204; accuracy true 0.919, random 0.971, near 0.942
+  0.3 min step 60 (0.09 passes) lr 0.00006: declared val loss 0.1201; accuracy true 0.921, random 0.971, near 0.941
+  0.3 min step 80 (0.13 passes) lr 0.00008: declared val loss 0.1196; accuracy true 0.922, random 0.971, near 0.942
+  0.4 min step 100 (0.16 passes) lr 0.00009: declared val loss 0.1191; accuracy true 0.922, random 0.971, near 0.942
+  0.5 min step 120 (0.19 passes) lr 0.00011: declared val loss 0.1189; accuracy true 0.922, random 0.971, near 0.941
+  0.5 min step 140 (0.22 passes) lr 0.00012: declared val loss 0.1190; accuracy true 0.921, random 0.971, near 0.941
+  0.6 min step 160 (0.25 passes) lr 0.00014: declared val loss 0.1187; accuracy true 0.919, random 0.972, near 0.941
+  0.7 min step 180 (0.28 passes) lr 0.00015: declared val loss 0.1185; accuracy true 0.919, random 0.972, near 0.941
+  0.7 min step 200 (0.32 passes) lr 0.00016: declared val loss 0.1185; accuracy true 0.924, random 0.971, near 0.941
+  0.8 min step 220 (0.35 passes) lr 0.00015: declared val loss 0.1184; accuracy true 0.921, random 0.972, near 0.941
+  0.9 min step 240 (0.38 passes) lr 0.00014: declared val loss 0.1182; accuracy true 0.923, random 0.972, near 0.941
+  1.0 min step 260 (0.41 passes) lr 0.00013: declared val loss 0.1181; accuracy true 0.923, random 0.972, near 0.941
+  1.0 min step 280 (0.44 passes) lr 0.00012: declared val loss 0.1178; accuracy true 0.922, random 0.972, near 0.942
+  1.1 min step 300 (0.47 passes) lr 0.00011: declared val loss 0.1180; accuracy true 0.918, random 0.972, near 0.942
+  1.2 min step 320 (0.51 passes) lr 0.00010: declared val loss 0.1180; accuracy true 0.920, random 0.972, near 0.942
+  1.3 min step 340 (0.54 passes) lr 0.00009: declared val loss 0.1181; accuracy true 0.925, random 0.971, near 0.942
+  1.3 min step 360 (0.57 passes) lr 0.00008: declared val loss 0.1181; accuracy true 0.923, random 0.972, near 0.941
+  1.4 min step 380 (0.60 passes) lr 0.00007: declared val loss 0.1182; accuracy true 0.923, random 0.972, near 0.941
+  1.5 min step 400 (0.63 passes) lr 0.00007: declared val loss 0.1180; accuracy true 0.924, random 0.972, near 0.941
+  1.6 min step 420 (0.66 passes) lr 0.00006: declared val loss 0.1179; accuracy true 0.923, random 0.972, near 0.942
+  1.6 min step 440 (0.70 passes) lr 0.00005: declared val loss 0.1180; accuracy true 0.919, random 0.972, near 0.942
+  1.7 min step 460 (0.73 passes) lr 0.00004: declared val loss 0.1179; accuracy true 0.921, random 0.972, near 0.942
+  1.8 min step 480 (0.76 passes) lr 0.00004: declared val loss 0.1178; accuracy true 0.921, random 0.972, near 0.942
+  1.8 min step 500 (0.79 passes) lr 0.00003: declared val loss 0.1177; accuracy true 0.923, random 0.972, near 0.942
+  1.9 min step 520 (0.82 passes) lr 0.00003: declared val loss 0.1177; accuracy true 0.924, random 0.972, near 0.942
+  2.0 min step 540 (0.85 passes) lr 0.00002: declared val loss 0.1177; accuracy true 0.923, random 0.972, near 0.942
+  2.1 min step 560 (0.88 passes) lr 0.00002: declared val loss 0.1176; accuracy true 0.922, random 0.972, near 0.941
+  2.1 min step 580 (0.92 passes) lr 0.00002: declared val loss 0.1175; accuracy true 0.924, random 0.972, near 0.942
+  2.2 min step 600 (0.95 passes) lr 0.00002: declared val loss 0.1175; accuracy true 0.924, random 0.972, near 0.942
+/home/claude/g8/house3b.npz: sha256 4b0ff5d5228a595df78409c1543b977346422e5a91b49b8369a1716fbe39c816; kept the state at step 600 of 600
+validation loss by table (lower is better); "wrong" declares another system on purpose:
+                house-gen6 vs house-gen6               declared 0.1240  unknown 0.1265  wrong 0.1295
+                house-gen6 vs house-gen5               declared 0.1092  unknown 0.1107  wrong 0.1116
+                house-gen6 vs house-dds40k             declared 0.1111  unknown 0.1126  wrong 0.1162
+                house-gen5 vs house-gen6               declared 0.1292  unknown 0.1315  wrong 0.1338
+                house-gen5 vs house-gen5               declared 0.1059  unknown 0.1067  wrong 0.1052
+                house-gen5 vs house-dds40k             declared 0.1153  unknown 0.1161  wrong 0.1167
+              house-dds40k vs house-gen6               declared 0.1174  unknown 0.1198  wrong 0.1241
+              house-dds40k vs house-gen5               declared 0.1122  unknown 0.1126  wrong 0.1142
+              house-dds40k vs house-dds40k             declared 0.1132  unknown 0.1136  wrong 0.1165
+
+real	2m25.253s
+user	2m24.262s
+sys	0m0.500s

@@ -1,0 +1,18 @@
+{
+  "schema": "carding-fields-v1",
+  "status": "provisional",
+  "note": "Fields and values a package's carding descriptor may use. Extend by editing this file; a net stores the vocabulary it was trained with, so growth here does not change existing nets.",
+  "fields": {
+    "length_lead_vs_suit": ["4th", "3rd_5th", "attitude"],
+    "length_lead_vs_nt": ["4th", "3rd_5th", "attitude"],
+    "lead_from_ak": ["ace", "king"],
+    "honor_sequence_lead": ["top", "rusinow"],
+    "attitude": ["standard", "upside_down"],
+    "count": ["standard", "upside_down"],
+    "signal_on_partner_lead": ["attitude", "count", "suit_preference"],
+    "signal_on_declarer_lead": ["count", "suit_preference", "none"],
+    "first_discard": ["attitude", "lavinthal", "odd_even", "count"],
+    "smith_echo": ["none", "standard", "reverse"],
+    "trump_signal": ["none", "suit_preference", "count"]
+  }
+}

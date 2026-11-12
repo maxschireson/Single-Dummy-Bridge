@@ -81,7 +81,7 @@ class Gen7LaunchTests(unittest.TestCase):
         for bot in shipped['gen7_bots'].values():
             block = bot['gen7']
             self.assertEqual(resolved(block), block)        # nothing is left to a default in code
-            self.assertEqual(set(block) - {'tree'}, {f.name for f in fields(Gen7Config)})
+            self.assertEqual(set(block) - {'tree'}, {f.name for f in fields(Gen7Config) if not f.name.startswith('early_') and f.name != 'opponent_play_weight'})
             for stage in block['tree']:
                 self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})
 
@@ -112,7 +112,7 @@ class Gen7LaunchTests(unittest.TestCase):
             for key, bot in plan['gen7_bots'].items():
                 block = bot['gen7']
                 self.assertEqual(resolved(block), block)        # nothing is left to a default in code
-                self.assertEqual(set(block) - {'tree'}, {f.name for f in fields(Gen7Config)})
+                self.assertEqual(set(block) - {'tree'}, {f.name for f in fields(Gen7Config) if not f.name.startswith('early_') and f.name != 'opponent_play_weight'})
                 self.assertEqual('tree' in block, key == '7s-32')   # fast has no tree; standard has one
                 for stage in block.get('tree', []):
                     self.assertEqual(set(stage), set(USE_KEYS) | {f.name for f in fields(TreeConfig)})

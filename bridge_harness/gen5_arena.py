@@ -64,6 +64,9 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
     versions={k:v['identity'] for k,v in specs.items()}
     players={'candidate':player_factory(specs[current],root,specs[reference])}
     if opponent!=current:players['opponent']=player_factory(specs[opponent],root)
+    for role,other in (('candidate',opponent),('opponent',current)):
+        # A player that keeps settings by opponent type is told who it faces (Gen 8 prototype); others have no `meet`.
+        if role in players and hasattr(players[role],'meet'):players[role].meet(other)
     seed=int(digest([manifest['seed'],index,'gen5-play'])[:12],16)
     records={};regimes={};bidding_records={};cache={}
     budget=ForkBudget(**(manifest['ben_audit'] if opponent=='ben' else manifest['audit'])); max_forks=budget.max_forks
