@@ -6,6 +6,7 @@ Work in progress (Gen 8 prototype, Task 1 of box/coordination 12 Nov 06:48 UTC).
   python scripts/gen8_reading_bench.py pools  --episodes DIR [--episodes DIR ...] --out OUT --net NAME=POLICY.npz [--net ...]
                                               [--shard 0/8] [--tables N] [--pool 512] [--skip-families SET.npz]
   python scripts/gen8_reading_bench.py fits   --out OUT --net NAME=POLICY.npz          (a net added later: no solving)
+  python scripts/gen8_reading_bench.py owners --out OUT --episodes DIR --net NAME=POLICY.npz [--net ...]
   python scripts/gen8_reading_bench.py report --out OUT [--json FILE]
 
 pools   For every decision of the recorded root tables after the opening lead where the decider has a choice: the layouts
@@ -16,6 +17,9 @@ pools   For every decision of the recorded root tables after the opening lead wh
         log-probability of the hidden seats' plays so far in each layout and in the true layout (the floored sum
         Gen7Player.play_log_likelihood makes), split into the opening lead, partner's other plays and the opponents'.
 fits    The same log-probabilities for one more net, from the stored layouts. Nothing is solved again.
+owners  For each --net, its owner head's log-probability of every stored layout and of the true one, from the decider's own
+        view (one net row a decision): own-<part>.npz beside each part file. `report --owner B` then adds B times it to
+        every layout's log-weight, to see what beliefs learned from the true hands add to the reading or replace of it.
 report  For every net and setting, per decision and by trick: the log-weight the true layout gains from the reading, and
         the double-dummy cost on the true deal of the card the search would choose, against no reading. Two ways of
         choosing: as the engine does (early: the `early_min_effective` halving, then 32 layouts resampled from the pool,
@@ -126,6 +130,16 @@ def fit_parts(p, o, view, assign):
     for row, (i, _, chooser) in enumerate(plays):
         out[0 if i == 0 else 1 if chooser % 2 == o.controller % 2 else 2] += fit[row]
     return out
+
+
+def owner_fit(p, o, view, assign):
+    """[layouts] the owner head's log-probability of a layout from the decider's own view: the sum over the unseen cards of
+    log P(the seat the layout gives the card), the head's three seats cut to the two hidden ones."""
+    out = np.asarray(p.net.heads([o])['owner'][0], np.float64)
+    cols = [(s - o.controller) % 4 - 1 for s in view.hidden]
+    logits = out[view.unseen][:, cols]
+    logp = logits - np.logaddexp(logits[:, 0], logits[:, 1])[:, None]
+    return logp[np.arange(len(view.unseen))[None, :], assign.astype(np.int64)].sum(axis=1).astype(np.float32)
 
 
 class Store:
@@ -255,6 +269,32 @@ def fits(a):
     q.close()
 
 
+def owners(a):
+    nets = dict(x.split('=', 1) for x in a.net)
+    players = {n: Gen7Player(spec(path, 512), ROOT) for n, path in nets.items()}
+    out = Path(a.out)
+    for part in sorted(out.glob('pools-*-*.npz')):
+        target = out / part.name.replace('pools-', 'own-')
+        if target.exists():
+            continue
+        rows, tables_, _ = load(part)
+        by_table = {}
+        for r in rows:
+            by_table.setdefault(int(r['table']), {})[int(r['ply'])] = r
+        for t, wanted in by_table.items():
+            info = tables_[t]
+            with gzip.open(Path(a.episodes[0]).parent / info['directory'] / info['path'], 'rt') as f:
+                e = json.load(f)['unique_tables'][info['key']]
+            for k, o, game in decisions(e):
+                if k in wanted:
+                    r = wanted[k]
+                    both = np.concatenate([r['assign'], r['truth'][None]])
+                    r['own_new'] = {n: owner_fit(q, o, View(o), both) for n, q in players.items()}
+        np.savez_compressed(target, **{f'own:{n}': np.concatenate([r['own_new'][n] for r in rows]) if rows else np.zeros(0, np.float32) for n in nets})
+    for q in players.values():
+        q.close()
+
+
 # ---- report -------------------------------------------------------------------------------------------------------------
 
 def choice_cost(weights, u, cost):
@@ -275,11 +315,14 @@ def resampled_cost(w, u, cost, n, offsets):
     return total / len(offsets)
 
 
-def score(r, fit, power, min_effective=8., solved=32, list_solve=256, offsets=8, parts=(1., 1., 1.), stride=1):
-    """One decision under one reading: (log-weight gained by the true layout, engine-way cost, every-layout cost, exponent used, effective layouts)."""
+def score(r, fit, power, min_effective=8., solved=32, list_solve=256, offsets=8, parts=(1., 1., 1.), stride=1, own=None, beta=0.):
+    """One decision under one reading: (log-weight gained by the true layout, engine-way cost, every-layout cost, exponent used, effective layouts).
+    With `own` (the owner head's log-probability of each layout) and beta, beta times it is added to the reading's sum."""
     L = int(r['layouts'])
     u, cost = r['u'].astype(np.float64), (r['u_true'].max() - r['u_true']).astype(np.float64)
     f = parts[0] * fit[0] + parts[1] * fit[1] + parts[2] * fit[2]
+    if beta:
+        f = f + beta * own
     pool, true = f[:L].astype(np.float64), float(f[L])
     prior = r['prior'].astype(np.float64)
     keep = slice(None, None, stride)
@@ -326,6 +369,15 @@ def read_all(out):
                 r['fit'][name] = flat[at:at + size].reshape(3, -1)
                 at += size
             n = n + [name]
+        own = Path(out) / part.name.replace('pools-', 'own-')
+        if own.exists():
+            with np.load(own) as z:
+                flat = {k[4:]: z[k] for k in z.files}
+            at = 0
+            for r in got:
+                size = int(r['layouts']) + 1
+                r['own'] = {k: v[at:at + size] for k, v in flat.items()}
+                at += size
         for r in got:
             r['uid'] = (part.name, int(r['table']))
         rows += got
@@ -353,12 +405,24 @@ def report(a):
                      ('128 solved', dict(power=1., solved=128)), ('pool 128', dict(power=1., stride=4)), ('pool 256', dict(power=1., stride=2)),
                      ('no lead', dict(power=1., parts=(0., 1., 1.))), ('lead only', dict(power=1., parts=(1., 0., 0.))),
                      ('partner only', dict(power=1., parts=(0., 1., 0.))), ('opponents only', dict(power=1., parts=(0., 0., 1.)))]
+    if a.owner:
+        rows = [r for r in rows if 'own' in r]
+        fam, trick = np.array([r['family'] for r in rows]), np.array([int(r['trick']) for r in rows])
+        regime, declaring = np.array([int(r['regime']) for r in rows]), np.array([bool(r['declaring']) for r in rows])
+        tables_n = len({r['uid'] for r in rows})
+        names = [n for n in names if all(n in r['own'] for r in rows)]
+        print(f"with the owner head: {len(rows)} decisions on {tables_n} tables; nets {names}")
+        settings = [('as built', dict(power=1.))]
+        for beta in a.owner:
+            settings += [(f'owner x{beta:g} alone', dict(power=1., parts=(0., 0., 0.), beta=beta)), (f'reading + owner x{beta:g}', dict(power=1., beta=beta))]
     base = np.array([score(r, np.zeros((3, int(r['layouts']) + 1), np.float32), 0.)[1:3] for r in rows])       # no reading: engine way, every layout
+    b32, ball = mean_se(base[:, 0], fam), mean_se(base[:, 1], fam)
+    print(f"no reading: cost {b32[0]:.4f} +- {b32[1]:.4f} a decision with 32 layouts solved (deal list: up to 256), {ball[0]:.4f} +- {ball[1]:.4f} with every stored layout")
     result = dict(decisions=len(rows), tables=tables_n, deals=len(set(fam)), nets=names, groups={})
     per_table = len(rows) / tables_n
     for label, kw in settings:
         for n in names:
-            s = np.array([score(r, r['fit'][n], **kw) for r in rows])
+            s = np.array([score(r, r['fit'][n], **dict(kw, own=r['own'][n] if kw.get('beta') else None)) for r in rows])
             entry = {}
             for band in BANDS:
                 m = band_mask(band, trick, regime, declaring)
@@ -371,7 +435,7 @@ def report(a):
                                    saved=saved_e, saved_every_layout=saved_a, saved_a_table=[saved_e[0] * share, saved_e[1] * share],
                                    exponent=float(s[m, 3].mean()), effective=float(np.median(s[m, 4])))
             result['groups'][f'{label} | {n}'] = entry
-            if label == 'as built' or a.verbose:
+            if label == 'as built' or a.verbose or a.owner:
                 print(f"\n== {label}, {n}")
                 for band, e in entry.items():
                     print(f"  {band:21s} {e['decisions']:6d} decisions | true layout's log-weight {e['log_weight_gain'][0]:+.3f} +- {e['log_weight_gain'][1]:.3f}"
@@ -394,7 +458,7 @@ def report(a):
                 result['groups'].setdefault(f'paired | {n}', {})[band] = dict(saved_more=d, log_weight_more=g, saved_more_every_layout=dall, a_table=[d[0] * share, d[1] * share])
                 print(f"  {n:8s} {band:21s} log-weight {g[0]:+.3f} +- {g[1]:.3f} | saved {d[0]:+.5f} +- {d[1]:.5f} a decision, {d[0] * share:+.4f} +- {d[1] * share:.4f} a table"
                       f" | every layout {dall[0]:+.5f} +- {dall[1]:.5f}")
-    if a.sweep:
+    if a.sweep or a.owner:
         print('\n== settings, all tricks: tricks saved a table (engine way) by net')
         for label, _ in settings:
             line = []
@@ -409,7 +473,7 @@ def report(a):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('step', choices=('pools', 'fits', 'report'))
+    ap.add_argument('step', choices=('pools', 'fits', 'owners', 'report'))
     ap.add_argument('--episodes', action='append', default=[])
     ap.add_argument('--out', required=True)
     ap.add_argument('--net', action='append', default=[])
@@ -422,10 +486,11 @@ def main():
     ap.add_argument('--skip-families', action='append', default=[], help='a built set whose deals are left out')
     ap.add_argument('--house', action='store_true', help='report: only decisions whose hidden seats were played by house bots')
     ap.add_argument('--sweep', action='store_true', help='report: other settings on the same solves')
+    ap.add_argument('--owner', type=float, action='append', default=[], help='report: add this many times the owner head\'s log-probability (repeatable)')
     ap.add_argument('--verbose', action='store_true')
     ap.add_argument('--json')
     a = ap.parse_args()
-    {'pools': pools, 'fits': fits, 'report': report}[a.step](a)
+    {'pools': pools, 'fits': fits, 'owners': owners, 'report': report}[a.step](a)
 
 
 if __name__ == '__main__':
