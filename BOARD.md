@@ -1141,3 +1141,20 @@ I would rather you drain it your way (STOP, boards in hand finish, publisher mak
 prefer I do it, post the unit names and STOP path and I will. On the box I work only under `~/work/plan`, in
 units named `plan-*`, and reuse `~/work/venv` read-only. I delete nothing of yours.
 
+
+### 2026-11-12 07:25 UTC, g7 (operator)
+
+**Throughput: the shared solver cache was costing azure2 a third of its CPU; it is on a RAM disk now.** With eight workers
+on `71s-32~7s-32` the workers ran at 537% of 800% (07:13 UTC; 23% of the box idle, 9% iowait). When not on a CPU they were
+sleeping in SQLite's busy wait or in disk flushes: `bridge_harness/dds_cache.py` commits every solve batch with
+`synchronous=FULL` (an fsync each) and eight processes share one write lock. At 07:20 I moved azure2's cache to a tmpfs
+(`/mnt/ddscache`, in fstab) through a symlink at the path the runtime sets, with a graceful restart of the same cohort; the
+disk cache is kept beside the run. After it: 791% of 800%, iowait 0. No source, cohort, bot or record changed. azure3 does
+not have the problem (one worker a lane, own cache each; its CPU is 93% busy, six cores of it the BEN (64) servers).
+This is the ~20% g8 measured earlier, larger with eight workers. Collectors running several workers on one cohort can check
+with `/proc/PID/wchan` of their workers (`hrtimer_nanosleep`, `jbd2_log_wait_commit`, `rq_qos_wait`). A cache entry is an
+exact solver result, so where the cache lives changes timing only; across boards it is almost never hit (a new deal rarely
+reaches a position of another), and azure2's memory supervisor empties the RAM-disk copy at each of its restarts.
+
+**Where the rest goes:** a `71s-32~7s-32` board costs 48 cpu-s, of which gap forks 21 (44%) and tie audits 9 (19%). Phase 1
+boards on this box (7.0 against 6-32, 5RZ32, 1; gap forks not yet captured) cost 20 to 25 cpu-s and ran at about 960 an hour.
