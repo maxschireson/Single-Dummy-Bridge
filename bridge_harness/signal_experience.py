@@ -23,7 +23,7 @@ import numpy as np
 
 from . import experience as xp
 from .core import Game
-from .signals import MESSAGES, SPOT, SPOT_MASK, SUIT_MASK, facts, lead_table, pick, situation, spot_rules
+from .signals import MESSAGES, SPOT, SPOT_MASK, SUIT_MASK, facts, lead_settings, lead_table, pick, situation, spot_rules
 
 FACTOR_GRID = (0., .1, .2, .3, .5, .75, 1., 1.25, 1.5)
 
@@ -62,9 +62,7 @@ def occasions(board, plays, model, side, allowed=None, detail=False):
                         orig[0, list(original[seat])] = True
                         led_suit = history[i - i % 4][1] // 13
                         if lead:
-                            d = model.descriptor
-                            table = lead_table(d.get('length_lead_vs_nt' if c.trump == 4 else 'length_lead_vs_suit', '4th'),
-                                               d.get('lead_from_ak', 'ace'), d.get('honor_sequence_lead', 'top'))
+                            table = lead_table(*lead_settings(model.descriptor, c.trump == 4))
                             bits = int(sum(1 << (y % 13) for y in held[seat] if y // 13 == suit))
                             prescribed, n = suit * 13 + int(table[bits]), s
                         else:

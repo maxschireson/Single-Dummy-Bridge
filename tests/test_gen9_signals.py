@@ -129,6 +129,8 @@ class SignalModelTests(unittest.TestCase):
                                          'K': 'K', '852': '8', '96': '9', '7532': '2'},
                  ('3rd_5th', 'king', 'rusinow'): {'KQ5': 'Q', 'AK63': 'K', 'KJ753': '3', 'K8642': '2', 'Q873': '7', 'QJ5': 'J'},
                  ('attitude', 'ace', 'top'): {'K8642': '2', '98642': '9', 'J752': '2'}}
+        cases[('4th', 'ace', 'top', 'low', 'second')] = {'852': '2', '7532': '5', '98642': '8', 'KJ753': '5', 'Q83': '3', 'KQ5': 'K'}
+        cases[('4th', 'ace', 'top', 'middle', '4th')] = {'852': '5', '7532': '2'}          # MUD from three small
         for args, expected in cases.items():
             for holding, want in expected.items():
                 self.assertEqual(lead(holding, *args), want, (args, holding))
