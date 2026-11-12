@@ -30,3 +30,5 @@ pr75-8p-32-v41 v 8p-32-v41: 1600 boards to play (0 done), 8 workers
 1450 boards: 0.2103 +- 0.0337 IMPs/board for pr75-8p-32-v41; 363 boards/hour; 0 failed
 1500 boards: 0.1993 +- 0.033 IMPs/board for pr75-8p-32-v41; 363 boards/hour; 0 failed
 1550 boards: 0.209 +- 0.0329 IMPs/board for pr75-8p-32-v41; 363 boards/hour; 0 failed
+1600 boards: 0.1975 +- 0.0326 IMPs/board for pr75-8p-32-v41; 363 boards/hour; 0 failed
+{"pair": "pr75-8p-32-v41~8p-32-v41", "boards": 1600, "cpu_per_board": 79.06, "common": {"imps_per_board": 0.1975, "se": 0.0326, "boards": 1600, "won": 95, "lost": 15, "flat": 1490}, "native": {"imps_per_board": 0.1975, "se": 0.0326, "boards": 1600, "won": 95, "lost": 15, "flat": 1490}}

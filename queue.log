@@ -24,3 +24,5 @@
 2026-11-12T18:48:34Z end match1: exit 0
 2026-11-12T18:48:34Z source now 0f0f4f8 Headroom: a simulation check of the fit (--fit-check); report: the trick
 2026-11-12T18:48:34Z start match3 (source 0f0f4f8): $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75-8p-32-v41~8p-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
+2026-11-12T23:13:12Z end match3: exit 0
+2026-11-12T23:13:12Z start match2 (source 0f0f4f8): $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75x-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
