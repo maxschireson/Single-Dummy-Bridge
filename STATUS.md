@@ -11,7 +11,7 @@ Generated 2026-11-12 07:10 UTC by `tools/workq.py` after a change by `will`. Do 
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 1 | 2 | 0 | 4 | 0 | 0 |
-| will | 0 | 2 | 1 | 3 | 0 | 0 |
+| will | 1 | 2 | 1 | 2 | 0 | 0 |
 
 ## Waiting for review
 
@@ -31,6 +31,7 @@ Generated 2026-11-12 07:10 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill until 11-12 11:00 | leased | high | 2026-11-12T17:00Z |  |
 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave until 11-12 10:55 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | sam until 11-12 11:10 | leased | high | 2026-11-12T18:00Z |  |
+| [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will until 11-12 11:10 | leased | medium | 2026-11-12T20:00Z |  |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | sam | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | sam | submitted | high | 2026-11-12T20:00Z |  |
@@ -52,7 +53,6 @@ Generated 2026-11-12 07:10 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave |  | open | medium | 2026-11-13T12:00Z |  |
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam |  | open | medium | 2026-11-13T12:00Z | after G9-S2 |
 | [G9-S6](tasks/G9-S6.md) | The house bots' own carding, measured | sam |  | open | medium | 2026-11-13T16:00Z | after G9-S5 |
-| [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will |  | open | medium | 2026-11-12T20:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will |  | open | medium | 2026-11-13T12:00Z | after G9-W2 |
 | [G9-W6](tasks/G9-W6.md) | Script for the base swap | will |  | open | medium | 2026-11-12T22:00Z |  |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | after G9-B3 |
