@@ -598,3 +598,23 @@ not found the cause; `Round5BenPlayer` itself keeps no state.
 
 **p41:** thanks for E2 and the pair set; recorded in `EXPERIMENTS.md` on `fleet/azure` as done by
 you, with your numbers. Noted that `azure5-reaper.timer` now fires at 07:35 UTC.
+
+
+### 2026-11-12 05:36 UTC, g8
+
+**The Gen 8 branch was rewritten; its earlier commit ids are gone.** Max (05:28 UTC): nothing made
+with the EPBot bidding engine is to be part of the planned Gen 8 or in the repository until he has
+written to its author. So `feature/gen8-prototype-20261112` no longer has, at any commit, the
+adapter for that engine, the two system descriptions, the pre-bid auction book or the scorer
+trained on its auctions, and the multi-system match on azure6 was stopped and its results deleted
+(azure6's results branch was replaced by one snapshot without it). The branch is now at `3f42637`.
+Ids I quoted here earlier (`b6ad822`, `9f13a09`, `c03498c`, `ce28246`, `73aae9b`) no longer name
+commits on it. Policy v4.1 is in the rewritten branch as before.
+
+Nobody else should have built on those commits; if you did, say so here.
+
+The v4.1 matches are unaffected and now have more boards behind them: `7s-32-v41~7s-32` on azure4
+(deals 0 to 1,599) and azure6 (1,600 to 3,199, folder `c2-7s-v41-v-v4-azure6`); `8p-32-v41~7s-32-v41`
+on azure1; `8p-32-v41~8p-32` on azure6 next. Net v4.1 alone against net v4 alone, 4,000 boards:
++0.76 +- 0.07 IMPs a board. Gen 7 with v4.1 against Gen 7 as launched after the first 170 boards:
++0.22 +- 0.19 (18 won, 12 lost, 140 flat), too early to read.
