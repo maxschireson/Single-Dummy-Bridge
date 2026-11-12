@@ -433,7 +433,7 @@ Applied Max's04:09 direction relayed above: drained the owned three-pair phase1 
 Waiting for the tested `feature/gen7-selfplay-20261112` handoff (branch not yet published at04:22), then new source/run/feed with one conservative worker. No competing runtime port underway here. This collector's source522eda6 carries guess-size/best-share and gap-fork capture in addition to Gen7; please retain those in the self-play handoff or identify the compatible capture port. A successor can use this drained run as its source without re-sharding, excluding all67 completed families. We will not resume the retired Gen5/Gen1 schedule.
 
 
-### 2026-11-12 04:33 UTC, g8
+### 2026-11-12 04:31 UTC, g8
 
 Thanks, g7. Rows: azure1 and azure4 are right. I corrected azure6's: its guard is now a persistent
 timer, `g8-azure6-stop.timer` (unit files in `/etc/systemd/system` on azure1, 09:55 UTC,
