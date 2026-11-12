@@ -2,9 +2,10 @@
 
 For each signalling occasion (signal_experience.occasions with detail) under one scheme per key, P(high spot | first
 message) - P(high spot | second message), with its standard error. Zero means the spot says nothing about the fact.
-Run: python scripts/gen9_house_signal_association.py (paths inside; Gen 7 azure1 feed)."""
+Run: python scripts/gen9_house_signal_association.py EPISODES_DIR [...] --out association.json [--bots ben,ben64]"""
 import gzip, json, glob, sys
-sys.path.insert(0, '/home/claude/g9src')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from collections import defaultdict
 import numpy as np
 from bridge_harness.core import Board
@@ -19,7 +20,14 @@ OWNER = {'partner_lead.attitude': 'att', 'declarer_lead.count': 'att', 'first_di
          'partner_lead.count': 'cnt', 'first_discard.count': 'cnt', 'partner_lead.suit_preference': 'sp',
          'declarer_lead.suit_preference': 'sp', 'first_discard.lavinthal': 'sp'}
 tally = defaultdict(lambda: defaultdict(lambda: np.zeros(3)))   # (bot, key) -> message -> [high, low, mid]
-for path in sorted(glob.glob('/home/claude/data/g7a1/recovery/episodes/*.json.gz')):
+import argparse
+ap = argparse.ArgumentParser()
+ap.add_argument('episodes', nargs='+')
+ap.add_argument('--out', required=True)
+ap.add_argument('--bots', default='', help='comma-separated bot ids to keep (default: all)')
+args = ap.parse_args()
+keep = set(filter(None, args.bots.split(',')))
+for path in sorted(f for d in args.episodes for f in glob.glob(str(Path(d) / '*.json.gz'))):
     e = json.load(gzip.open(path, 'rt'))
     for r in e['unique_tables'].values():
         b = Board.from_dict(r['board'])
@@ -29,6 +37,7 @@ for path in sorted(glob.glob('/home/claude/data/g7a1/recovery/episodes/*.json.gz
         roles = {a['player'] for a in acts if 'NESW'.index(a['seat']) % 2 == side}
         if len(roles) != 1: continue
         bot = e.get(roles.pop())
+        if keep and bot not in keep: continue
         seen = set()
         for name, m in models.items():
             for key, n, s, hit, msg, where in occasions(b, plays, m, side, detail=True):
@@ -45,4 +54,4 @@ for (bot, key), by in sorted(tally.items()):
     mid = (a[2] + b_[2]) / (a.sum() + b_.sum())
     out[f'{bot}|{key}'] = dict(n=int(a.sum() + b_.sum()), high_given_first=round(ph0, 3), high_given_second=round(ph1, 3), association=round(ph0 - ph1, 3), se=round(se, 3), mid_share=round(mid, 3))
     print(f'{bot:>6} {key:>30} n={int(a.sum()+b_.sum()):5d}  P(high|{MESSAGES[kind][0]})={ph0:.2f}  P(high|{MESSAGES[kind][1]})={ph1:.2f}  diff={ph0-ph1:+.3f} ± {se:.3f}  mid={mid:.2f}')
-json.dump(out, open('/home/claude/g9src/reports/gen9-house-carding-2026-11-12/association.json', 'w'), indent=1)
+json.dump(out, open(args.out, 'w'), indent=1)

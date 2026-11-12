@@ -33,7 +33,10 @@ def occasions(board, plays, model, side, allowed=None, detail=False):
     `plays` is the board's (seat, card) sequence; `model` a signals.SignalModel for that partnership. With
     `allowed` ({ply: set of cards}), the class is cut to those cards (a bot's tie set: what it could choose among).
     With `detail`, each tuple also has the message the true hand called for (-1 for a lead) and where the card
-    played stood in the class ('high', 'low' or 'mid')."""
+    played stood in the class ('high', 'low' or 'mid').
+
+    The class is the spots two to nine of the suit played, except for an opening lead, where it is every card held in
+    the suit led, honours included (the lead convention chooses among them; signals.lead_table)."""
     c = board.contract
     out = []
     if c is None or not model:
@@ -155,3 +158,27 @@ def card_delta(player, key, board, plays, carding, side):
     descriptor, _ = carding_parts(carding)
     model = SignalModel(descriptor)
     return xp.delta(player, key, card_stats(board, plays, model, side) if model else {})
+
+
+def emission_stats(board, plays, model, side):
+    """{'card.<key>.emit': count} for one finished board: occasions by the message the true hand called for and where the
+    card played stood in the class (labels 'm<message>/low', '/high', '/mid'). Spot signals only (no leads, no odd-even)."""
+    tallies = {}
+    for key, n, s, hit, message, where in occasions(board, plays, model, side, detail=True):
+        if message < 0 or key.endswith('odd_even'):
+            continue
+        t = tallies.setdefault(f'card.{key}.emit', {})
+        t[f'm{message}/{where}'] = t.get(f'm{message}/{where}', 0.) + 1.
+    return {name: xp.count(**t) for name, t in tallies.items()}
+
+
+def emission(stat, messages=2, alpha=10.):
+    """[[P(low), P(high), P(middle)] per message] from a card.<key>.emit count: each message's counts shrunk toward the
+    pooled positions (no signal) with weight `alpha`. Middle counts come only from classes of three or more cards, so this
+    slightly understates the middle where classes of two are common; the reader renormalises low and high for those."""
+    n = (stat or {}).get('n', {})
+    counts = np.array([[n.get(f'm{m}/{w}', 0.) for w in ('low', 'high', 'mid')] for m in range(messages)])
+    pooled = counts.sum(axis=0)
+    prior = (pooled + 1.) / (pooled.sum() + 3.)
+    rows = (counts + alpha * prior) / (counts.sum(axis=1, keepdims=True) + alpha)
+    return rows.tolist()

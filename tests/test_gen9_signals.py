@@ -94,6 +94,34 @@ class SignalModelTests(unittest.TestCase):
                          {card('H2'): .25, card('H4'): 0., card('H7'): .75})
         self.assertEqual(m.distribution('lead.opening', 'lead', H('K', 'J', '7', '5', '3'), H('K', 'J', '7', '5', '3'), 1, 0, 1)[card('H5')], 1.)
 
+    def test_emission_tables(self):
+        rng = np.random.default_rng(5)
+        h = .7
+        symmetric = [[(1 - h) / 2, h + (1 - h) / 2, 0.], [h + (1 - h) / 2, (1 - h) / 2, 0.]]       # count: even -> high
+        ben_like = [[.70, .22, .08], [.88, .05, .07]]
+        flat = [[.6, .3, .1], [.6, .3, .1]]
+        honest = SignalModel(STANDARD, h, .05)
+        for table, check in ((symmetric, 'honesty'), (ben_like, 'sum'), (flat, 'flat')):
+            m = SignalModel(STANDARD, h, .05, emission={'declarer_lead.count': table})
+            for _ in range(60):
+                suit, K, orig = random_class(rng)
+                cs = np.flatnonzero(K[0])
+                p = np.array([m.probabilities('declarer_lead', 'count', c, K, orig, suit, 1, suit)[0] for c in cs])
+                self.assertAlmostEqual(p.sum(), 1., places=12)
+                if check == 'honesty':
+                    q = np.array([honest.probabilities('declarer_lead', 'count', c, K, orig, suit, 1, suit)[0] for c in cs])
+                    self.assertTrue(np.allclose(p, q))
+                if check == 'flat':                                          # equal rows: the card says nothing about the fact
+                    other = orig.copy()
+                    extra = [c for c in range(52) if c // 13 != suit and not other[0, c]][0]
+                    other[0, extra] = True                                   # one more card elsewhere: the suit's parity is unchanged
+                    flip = orig.copy()
+                    flip[0, [c for c in range(suit * 13 + 8, suit * 13 + 13) if not K[0, c]][:1]] ^= True   # an honour in or out: parity flips
+                    q = np.array([m.probabilities('declarer_lead', 'count', c, K, flip, suit, 1, suit)[0] for c in cs])
+                    self.assertTrue(np.allclose(p, q))
+        with self.assertRaises(ValueError):
+            SignalModel(STANDARD, emission={'declarer_lead.count': [[.5, .5]]})
+
     def test_lead_conventions(self):
         def lead(holding, *args):
             return '23456789TJQKA'[lead_table(*args)[sum(1 << '23456789TJQKA'.index(r) for r in holding)]]

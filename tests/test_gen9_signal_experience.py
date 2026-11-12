@@ -108,6 +108,26 @@ class DeltaTests(unittest.TestCase):
         self.assertEqual(card_delta('g', 'k', board, plays, None, side)['stats'], {})
 
 
+class EmissionTests(unittest.TestCase):
+    def test_an_asymmetric_emitter_is_recovered(self):
+        from bridge_harness.signal_experience import emission, emission_stats
+        truth = [[.70, .22, .08], [.88, .05, .07]]                     # BEN-like count on declarer's lead: low by default
+        model = SignalModel(STANDARD, 1., 0., emission={'declarer_lead.count': truth})
+        sim = SimulatedSignaller(model)
+        store = xp.empty('e')
+        for k, board in enumerate(generate(400, 91)):
+            side = 1 - board.contract.declarer % 2
+            plays = replay_plays(board, play_table(board, [0, 1, 0, 1], {0: sim, 1: sim}, seed=k)['actions'])
+            store = xp.add(store, xp.delta('e', f'b{k}', emission_stats(board, plays, SignalModel(STANDARD), side)))
+        stat = store['stats']['card.declarer_lead.count.emit']
+        rows = np.array(emission(stat, alpha=1.))
+        total = sum(stat['n'].values())
+        self.assertGreater(total, 300)
+        self.assertLess(abs(rows[0, 1] - .22), .07)                     # P(high | even)
+        self.assertLess(abs(rows[1, 1] - .05), .04)                     # P(high | odd)
+        self.assertGreater(rows[0, 1] / rows[1, 1], 2.)
+
+
 class PlayFactorTests(unittest.TestCase):
     def test_phi_follows_the_data_and_shrinks_to_the_prior(self):
         self.assertEqual(phi(None, prior_phi=.3), .3)
