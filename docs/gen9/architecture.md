@@ -206,8 +206,9 @@ What follows:
    card's work is the mapping and the `card` candidate, not a filter. What is still open is the
    case the idea was meant for: a player who bids a held profile with one declared difference
    (a 14 to 16 no-trump under a 15 to 17 profile), read with the card's term on that difference
-   alone. The shell supports it (a reader that can restrict itself to a profile's residual);
-   E9-13 measures it.
+   alone. The shell supports it as a setting that is off by default (`card_on_nets`), since a
+   check for the arrival run found the residual term costing 0.43 nats on a guest who simply
+   bids a held net and declares the nearest card; E9-13 measures the case it is meant for.
 4. **At the table these gains have bought little so far.** Sandbox pilots, IMPs a board: replay
    against the scorer on house auctions -0.27 +- 0.21 (200 boards); the card against the house
    scorer on precision auctions +0.21 +- 0.13 (400 boards), with a 12.9-nat gap at the opening
