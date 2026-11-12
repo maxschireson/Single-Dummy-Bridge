@@ -1,6 +1,6 @@
 {
-  "status": "diagnosed-validating-fix",
-  "epoch": 1794461538.4239388,
+  "status": "validated-ready-to-resume",
+  "epoch": 1794461735.7298234,
   "reason": "Verified authorized captured independent selfplay/BEN producer uses gen7-independent-selfplay-ben campaign; prefix check excludes its comparison boards from global stopping counts.",
   "peer_manifest": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00",
   "peer_feed": "arena-gen7-independent-selfplay-feed",
@@ -249,5 +249,41 @@
     "guard-maintenance.json": "9178785f34206433b55e03991f3b61f8dd485765c4fccbe690ae97b311ec4b89",
     "phase1-seen-families.json": "4f62ac316a6df92838c0090f4be4c4809f73f7fa0222bf329db906a2ba69ff1c",
     "phase1_fleet.py": "f651ccbb6faa0683a5009fbedc0290378e06c6608314ba165cfa38cd85c3a503"
-  }
+  },
+  "stop_token": "Owned maintenance: pooled guard omitted verified independent selfplay/BEN peer because of campaign name. Drain for tested accounting correction; no scientific configuration change.\n",
+  "tests_passed": 9,
+  "new_guard_sha256": "57b99212cab0e5dc484c801be1e0c9d7b047e3f6bb4b21bcb60eade9f1c8b890",
+  "source_configuration_changed": false,
+  "drained_state": {
+    "manifest_identity": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+    "completed": 214,
+    "target": 20694,
+    "contiguous": 214,
+    "by_pair": {
+      "7s-32~6-32": 71,
+      "7s-32~7s-32": 143
+    },
+    "root_games": 285,
+    "tables": 5388,
+    "failures": 0,
+    "epoch": 1794461694.8983247,
+    "complete": false
+  },
+  "preserved_records": 214,
+  "drained_inventory_sha256": "f2bd9c420056d7eb8f8fa098619f9e3bc5902f166ca4038109a6f3709a92cc33",
+  "corrected_counts": {
+    "7s-32~6-32": 1478,
+    "7s-32~ben64": 557,
+    "7s-32~ben": 1033,
+    "7s-32~5RZ32": 1319,
+    "7s-32~1": 1319
+  },
+  "included_peer": {
+    "branch": "arena-gen7-independent-selfplay-feed",
+    "revision": "8910c63a25f016466c8b6ede2d478f1248dd7cc9",
+    "cohort": "8a573099832616c52fb4fa69fb6dee980391266779a58e20da7480df46065c00",
+    "campaign": "gen7-independent-selfplay-ben-20261112"
+  },
+  "scientific_manifest_unchanged": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+  "runtime_source_sha256": "bc5d4de8bdc66b95c204b40010afd4b3b119787540343b673d9c8fd135d0c842"
 }
