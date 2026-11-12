@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 11:53 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 11:53 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -60,11 +60,11 @@ Generated 2026-11-12 11:53 UTC by `tools/workq.py` after a change by `will`. Do 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 15:23 | leased | high | 2026-11-13T06:00Z |  |
+| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 15:53 | leased | high | 2026-11-13T16:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z |  |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-12 15:04 | leased | high | 2026-11-13T10:00Z |  |
-| [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam |  | open | high | 2026-11-13T16:00Z |  |
 | [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam |  | open | high | 2026-11-13T12:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z |  |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | rejected. **Part 1 (prediction), 12 November 2026, bill.** Registered protocol, 2,000 deals a system, leader and declarer views, pools of 512 (about 4,000 decisions a system). Gain in nats of the true layout's weight: |
