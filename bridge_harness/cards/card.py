@@ -110,10 +110,27 @@ def _merge(base, over, path, unknown):
     return out
 
 
+def unflatten(descriptor):
+    """Flat dotted keys ('open.nt_five_major': true), as configs/cards/_fields.json lists them, to the
+    nested form; nested input passes through. A document may also keep them under 'descriptor'."""
+    d = dict(descriptor)
+    flat = d.pop('descriptor', None) or {}
+    for k in [k for k in d if '.' in k]:
+        flat[k] = d.pop(k)
+    for k, v in flat.items():
+        node = d
+        parts = k.split('.')
+        for p in parts[:-1]:
+            node = node.setdefault(p, {})
+        node[parts[-1]] = v
+    return d
+
+
 class Card:
     """A validated descriptor with defaults filled in."""
 
     def __init__(self, descriptor):
+        descriptor = unflatten({k: v for k, v in descriptor.items() if k not in ('provenance', 'generator')})
         if descriptor.get('schema', SCHEMA) != SCHEMA:
             raise ValueError(f'not a {SCHEMA} document: {descriptor.get("schema")!r}')
         self.unknown = []
