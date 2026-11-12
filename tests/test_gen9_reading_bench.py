@@ -43,3 +43,24 @@ def test_two_tables(tmp_path):
                             check=True, cwd=ROOT, capture_output=True, text=True)
     result = json.loads((tmp_path / 'r.json').read_text())
     assert 'paired | g9' in result['groups'] and 'as built | g9' in result['groups'], report.stdout
+
+
+@pytest.mark.skipif(not (CAPSULE / 'episodes').is_dir() or not all(p.exists() for p in NEEDS), reason='needs the Gen 7 capsule with its episodes')
+def test_relabelled_table(tmp_path):
+    run = [sys.executable, str(ROOT / 'scripts' / 'gen9_reading_bench.py')]
+    out = tmp_path / 'rel'
+    subprocess.run(run + ['relabel', '--source-episodes', str(CAPSULE / 'episodes'), '--cell', 'std-80', '--tables', '1', '--seed', '9', '--out', str(out)],
+                   check=True, cwd=ROOT)
+    subprocess.run(run + ['pools', '--episodes', str(out / 'episodes'), '--deciders', 'declarer', '--tables', '1', '--pool', '32', '--out', str(out)],
+                   check=True, cwd=ROOT)
+    subprocess.run(run + ['readings', '--out', str(out), '--source', str(CAPSULE), '--reading', 'g8=8x-32@c-std-80', '--reading', 'full=8x-32@7s-32',
+                          '--reading', 'g9=r9-32@c-std-80'], check=True, cwd=ROOT)
+    spec = importlib.util.spec_from_file_location('bench', ROOT / 'scripts' / 'gen8_reading_bench.py')
+    bench = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(bench)
+    rows, names = bench.read_all(out)
+    assert rows and all(bool(r['declaring']) for r in rows)
+    for r in rows:
+        v4, g8, full = r['fit']['v4'], r['fit']['g8'], r['fit']['full']
+        assert np.allclose(full, v4, atol=1e-4)                  # house bots met as themselves: the net in full
+        assert np.allclose(g8[2], .3 * v4[2], atol=1e-4)         # an outside player Gen 8 does not know: 0.3

@@ -6,6 +6,8 @@ scoring; this script chooses the tables and decisions and adds Gen 9 readings to
 
   python scripts/gen9_reading_bench.py pools    --feeds DIR... --opponent ben --tables 300 --out OUT [--seconds 7200] [--pool 512]
   python scripts/gen9_reading_bench.py readings --feeds DIR... --out OUT --source CAPSULE/recovery --bots BOTS.json --reading NAME=BOT [...]
+  python scripts/gen9_reading_bench.py relabel  --episodes DIR --cell std-80 --tables 300 --out OUT    (E9-4 part 1's tables)
+  python scripts/gen9_reading_bench.py pools    --episodes OUT/episodes --deciders declarer --out OUT ...
   python scripts/gen9_reading_bench.py report   --out OUT [--against NAME] [--json FILE]       (the bench's report)
   python scripts/gen9_reading_bench.py box      --opponent ben --first 60 --tables 240 --workers 8 --feeds-dir DIR --out OUT
                                                 --source CAPSULE/recovery --reading NAME=BOT [...]     (a box job: all of it)
@@ -14,11 +16,16 @@ pools     The bench's `pools` on E9-7's held-out tables against one BEN version 
           with crc32 % 5 == 0, the first --tables of them in that script's order), at the decisions of the house bots only:
           BEN's own decisions say nothing about how a house bot reads. --net (default: Gen 8's net v4) is stored as the bench
           stores a net, unfactored.
+relabel   E9-4 part 1's tables (scripts/gen9_reading_gain.py: the first --tables main tables of --episodes, in its order),
+          the defenders' spots and opening leads drawn again by a declared scheme at an honesty (--cell, e.g. std-80) with
+          that script's seeds, so the plays are the ones E9-4 part 1 scored. Written as one-table episodes under OUT/episodes.
+          `pools --episodes OUT/episodes` then takes every table there, and `--deciders declarer` only declarer's decisions
+          (where a reader of the defenders' cards decides).
 readings  For every stored decision, the log weight a bot spec from --bots (built on the --source capsule's bots, as
           scripts/gen9_match.py builds it) gives each stored layout and the true one, after meet(the table's opponent), from
           the decider's view. Stored as the bench stores a net (fit-NAME-<part>.npz, split into the opening lead, partner's
           other plays and the opponents'), with the bot's own factors and signal terms already in it, so the bench's report
-          scores it at exponent 1 like a net. Nothing is solved again.
+          scores it at exponent 1 like a net. Nothing is solved again. NAME=BOT@ID meets ID in place of the table's opponent.
 report    The bench's report on OUT; `--against` pairs every reading with one.
 box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
           there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
@@ -43,6 +50,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'scripts'))
 from bridge_harness import gen9  # noqa: E402
+from bridge_harness.core import symbol  # noqa: E402
 from bridge_harness.gen6 import View  # noqa: E402
 from bridge_harness.gen7 import hidden_plays  # noqa: E402
 from gen9_ben_reading import ben_tables  # noqa: E402
@@ -60,14 +68,30 @@ def held_out(feeds, opponent, n):
     return [(p, k) for p, k, ben, held in ben_tables(feeds) if ben == opponent and held][:n]
 
 
-def house_only(decisions):
-    """The bench's decisions, kept only where a house bot decides (the episode's 'candidate' side)."""
+def kept(decisions, deciders):
+    """The bench's decisions, kept where `deciders` decide: 'house' (the episode's candidate side: against BEN, the house
+    bots), 'declarer', or 'all'."""
     def wrapped(e):
         roles = e['assignments']
         for k, o, game in decisions(e):
-            if roles[o.controller] != 'opponent':
+            if deciders == 'all' or (deciders == 'house' and roles[o.controller] != 'opponent') \
+                    or (deciders == 'declarer' and o.controller == o.contract.declarer):
                 yield k, o, game
     return wrapped
+
+
+def every_table(directory):
+    out = []
+    for path in sorted(Path(directory).glob('*.json.gz')):
+        with gzip.open(path, 'rt') as f:
+            out += [(str(path), k) for k in sorted(json.load(f)['unique_tables'])]
+    return out
+
+
+def chosen_tables(a):
+    if a.episodes:
+        return every_table(a.episodes)[a.first:a.first + a.tables]
+    return held_out(a.feeds, a.opponent, a.first + a.tables)[a.first:]
 
 
 def table_source(chosen):
@@ -84,15 +108,16 @@ def table_source(chosen):
 
 
 def pools(a):
-    chosen = held_out(a.feeds, a.opponent, a.first + a.tables)[a.first:]
+    chosen = chosen_tables(a)
     bench.tables = table_source(chosen)
-    bench.decisions = house_only(bench.decisions)
+    bench.decisions = kept(bench.decisions, a.deciders)
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     listing = out / 'tables.json'
     if a.shard == '0/1' or not listing.exists():
         tmp = out / f'tables.json.{os.getpid()}'
-        tmp.write_text(json.dumps(dict(opponent=a.opponent, first=a.first, tables=[[str(p), k] for p, k in chosen]), indent=0))
+        tmp.write_text(json.dumps(dict(opponent=None if a.episodes else a.opponent, deciders=a.deciders, first=a.first,
+                                       tables=[[str(p), k] for p, k in chosen]), indent=0))
         tmp.replace(listing)
     args = argparse.Namespace(episodes=[], out=a.out, net=a.net or [GEN8_NET], shard=a.shard, tables=a.tables, seconds=a.seconds,
                               part=a.part, skip_tables=a.skip_tables, part_offset=a.part_offset, pool=a.pool, seed=a.seed, skip_families=[])
@@ -144,11 +169,12 @@ def readings(a):
             raise SystemExit(f'two episodes share the name {name[0]}')
         where[name] = path
     source = str(Path(a.source).resolve())
-    readers = {}
+    readers, meets = {}, {}
     for item in a.reading:
         name, bot = item.split('=', 1)
+        bot, _, meets[name] = bot.partition('@')
         readers[name] = gen9.player(bot_spec(source, a.bots, bot), source)
-    decisions = house_only(bench.decisions)
+    decisions = kept(bench.decisions, listed.get('deciders', 'house'))
     for part in sorted(out.glob('pools-*-*.npz')):
         todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
         todo = {n: t for n, t in todo.items() if not t.exists()}
@@ -165,7 +191,7 @@ def readings(a):
                 d = json.load(f)
             e = d['unique_tables'][info['key']]
             for n in todo:
-                readers[n].meet(d['opponent'])
+                readers[n].meet(meets[n] or d['opponent'])
             for k, o, game in decisions(e):
                 if k in wanted:
                     r = wanted[k]
@@ -178,6 +204,38 @@ def readings(a):
                 raise SystemExit(f'{part.name}: {len(missing)} stored decisions were not found again')
             np.savez_compressed(target, fit=np.concatenate([r['new'][n].ravel() for r in rows]) if rows else np.zeros(0, np.float32))
         print(f'{part.name}: {len(rows)} decisions, readings {sorted(todo)}', flush=True)
+
+
+def relabel(a):
+    """E9-4 part 1's relabelled tables as one-table episodes."""
+    from bridge_harness.core import Board
+    from gen9_reading_gain import cell_model, relabel_consistent
+    import zlib
+    out = Path(a.out) / 'episodes'
+    out.mkdir(parents=True, exist_ok=True)
+    model = cell_model(a.cell)
+    kept_, dropped = 0, 0
+    for path, key in every_table(a.source_episodes)[:a.tables]:
+        with gzip.open(path, 'rt') as f:
+            d = json.load(f)
+        record = d['unique_tables'][key]
+        board = Board.from_dict(record['board'])
+        main = [t for t in record['tables'] if t.get('depth', 0) == 0]
+        if board.contract is None or not main or len(main[0]['actions']) < 8:
+            continue
+        got = relabel_consistent(board, main[0]['actions'], model, zlib.crc32(f'{Path(path).name}/{key}/{a.cell}/{a.seed}'.encode()))
+        if got is None:
+            dropped += 1
+            continue
+        plays = got[0]
+        table = dict(main[0], actions=[dict(x, card=symbol(c)) for x, (_, c) in zip(main[0]['actions'], plays)], relabelled=a.cell)
+        e = dict(record, tables=[table])
+        name = Path(path).name.replace('.json.gz', '') + f'__{key}.json.gz'
+        with gzip.open(out / name, 'wt') as f:
+            json.dump(dict(family=d['family'], candidate=d['candidate'], opponent=d['opponent'], unique_tables={key: e},
+                           relabelled=dict(cell=a.cell, seed=a.seed, swaps=len(got[1]), undone=got[3], source=str(path))), f)
+        kept_ += 1
+    print(json.dumps(dict(cell=a.cell, tables=kept_, dropped=dropped)))
 
 
 FEED_URL = 'https://github.com/maxschireson/Single-Dummy-Bridge'
@@ -233,9 +291,13 @@ def box(a):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('step', choices=('pools', 'readings', 'report', 'box'))
+    ap.add_argument('step', choices=('relabel', 'pools', 'readings', 'report', 'box'))
     ap.add_argument('--feeds', nargs='+', default=[], help='episode directories of the BEN feeds')
     ap.add_argument('--opponent', default='ben', choices=('ben', 'ben64'))
+    ap.add_argument('--episodes', help='pools: every table of this folder, in place of the BEN held-out list')
+    ap.add_argument('--deciders', default='house', choices=('house', 'declarer', 'all'))
+    ap.add_argument('--source-episodes', help='relabel: the house feed E9-4 part 1 used')
+    ap.add_argument('--cell', default='std-80', help='relabel: scheme-honesty')
     ap.add_argument('--out', required=True)
     ap.add_argument('--first', type=int, default=0, help='the first table of the held-out list to take')
     ap.add_argument('--tables', type=int, default=300)
@@ -261,6 +323,8 @@ def main():
         pools(a)
     elif a.step == 'readings':
         readings(a)
+    elif a.step == 'relabel':
+        relabel(a)
     elif a.step == 'box':
         box(a)
     else:
