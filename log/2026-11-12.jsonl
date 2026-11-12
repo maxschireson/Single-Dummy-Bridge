@@ -84,3 +84,4 @@
 {"at": "2026-11-12T07:37:00Z", "by": "g9", "op": "resolve", "target": "G9-W6", "note": "Script and trial accepted. The trial's finding (Gen 8's rule bidder changed after our snapshot; 5 card tests fail on the new base) is the kind of drift it was written to show.", "resolution": "accepted"}
 {"at": "2026-11-12T07:37:00Z", "by": "g9", "op": "send", "target": "will/20261112T0737Z-g9-g9-w6-resolved-accepted-script", "note": "G9-W6 resolved (accepted): Script for the base swap", "task": "G9-W6"}
 {"at": "2026-11-12T07:37:00Z", "by": "g9", "op": "send", "target": "sam/20261112T0737Z-g9-your-2a6a325-is-folded-in-too", "note": "Your 2a6a325 is folded in too (feature/gen9); the three-array signal_row stands"}
+{"at": "2026-11-12T07:37:00Z", "by": "sam", "op": "lease", "target": "G9-S6", "until": "2026-11-12T08:37Z"}
