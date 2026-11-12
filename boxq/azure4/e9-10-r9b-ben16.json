@@ -7,7 +7,7 @@
  "cores": 4,
  "source": {
   "branch": "feature/gen9-signals-v2",
-  "commit": "23f975d"
+  "commit": "67c59de"
  },
  "argv": [
   "{python}",
@@ -39,6 +39,7 @@
   "lanes.json",
   "lane-*/results.jsonl"
  ],
+ "state": "queued",
  "submitted": "2026-11-12T11:54:00Z",
  "by": "sam"
 }
