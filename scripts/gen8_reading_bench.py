@@ -546,7 +546,7 @@ def report(a):
           f" the weights themselves expect {bexp[0]:.4f} +- {bexp[1]:.4f}")
     result = dict(decisions=len(rows), tables=tables_n, deals=len(set(fam)), nets=names, groups={})
     per_table = len(rows) / tables_n
-    for label, kw in settings:
+    for label, kw in ([] if a.pairs_only else settings):
         for n in names:
             s = np.array([score(r, r['fit'][n], **dict(kw, own=r['own'][n] if kw.get('beta') else None)) for r in rows])
             entry = {}
@@ -574,6 +574,8 @@ def report(a):
                           f" | every layout costs {e['cost_every_layout'][0]:.4f}, its weights expect {e['cost_expected_by_weights'][0]:.4f} +- {e['cost_expected_by_weights'][1]:.4f}"
                           + (f" | weight on layouts where the true best card is best: log gain {e['relevant_log_weight_gain'][0]:+.3f} +- {e['relevant_log_weight_gain'][1]:.3f}" if e['relevant_log_weight_gain'] else ''))
     # nets against the first, paired
+    if a.against and a.against in names:
+        names = [a.against] + [n for n in names if n != a.against]
     if len(names) > 1:
         print(f"\n== each net against {names[0]}, as built, paired on the same decisions (tricks saved a decision; positive = better than {names[0]})")
         first = np.array([score(r, r['fit'][names[0]], power=1.) for r in rows])
@@ -620,6 +622,8 @@ def main():
     ap.add_argument('--house', action='store_true', help='report: only decisions whose hidden seats were played by house bots')
     ap.add_argument('--sweep', action='store_true', help='report: other settings on the same solves')
     ap.add_argument('--owner', type=float, action='append', default=[], help='report: add this many times the owner head\'s log-probability (repeatable)')
+    ap.add_argument('--against', help='report: the net the others are paired against (default: the first)')
+    ap.add_argument('--pairs-only', action='store_true', help='report: only the paired comparison')
     ap.add_argument('--mechanism', action='store_true', help='report: where the information sits and what directed information is worth')
     ap.add_argument('--verbose', action='store_true')
     ap.add_argument('--json')
