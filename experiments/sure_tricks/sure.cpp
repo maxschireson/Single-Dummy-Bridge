@@ -5,6 +5,8 @@
 //
 // Search: target-based (can declarer guarantee `need` more tricks?), transposition table at trick
 // boundaries keyed on rank-relative cards + show-out state + leader, storing lower/upper bounds.
+// Borrowed from DDS and adapted to the pooled game: a remembered best lead per depth, keys built from
+// relative ranks, quick tricks for the side on lead using both hands, later tricks for top trumps.
 // With --front K the search stops at K-card trick-boundary positions and asks a table. The table is
 // simulated: a memory-resident map filled on first use by an unbounded search whose time and nodes are
 // accounted separately, so that "search time above the table" and "table probes" are both reported.
@@ -18,7 +20,7 @@
 //        --warm        fill the table in an untimed first pass, then time a second pass from an empty transposition table
 //        --mem GB      one read of a real array of this size per table read (hashed address, caches flushed before timing)
 //        --keep        keep the table and the transposition table from one input line to the next
-//        --ttbits N    transposition table of 2^N entries (default 20)
+//        --ttbits N    transposition table of 2^N entries (default 18)
 //        --stats       nodes by depth and huge-page use, to stderr
 //        --value       one number per position (what a table entry holds) instead of one per card
 //        --cells GB    with --warm: read table values from a real array of this size (cache lines flushed first; --noflush keeps them)
@@ -27,7 +29,9 @@
 //        --dupkey N --dupbound N   compute the table key / the frontier bound N extra times (rough pricing)
 //        --table FILE  (built with -DENDTABLE) read values from a built ending table through endtable/endtable.h
 // A line may start with N<k> to set --need for that line.
-//        --nobounds --noorder --hist   switch off the sure-winner bounds / move ordering, switch on the history heuristic
+//        --nobounds --noorder --nokiller --norun --norunfront --notrumpbounds --hist
+//                      switch off: sure-winner bounds, move ordering, lead memory, two-hand quick tricks (everywhere /
+//                      before table reads only), trump later-tricks bounds; switch on: the history heuristic
 // Output, one JSON line per position: cards {card: value}, seconds, search_seconds (seconds minus table fill),
 // nodes_above, nodes_below (table fill), probes, table_new, tt_hits.
 #include <algorithm>
@@ -61,7 +65,14 @@ static bool USE_ORDER = true;
 static u64 nodesAbove = 0, nodesBelow = 0, probes = 0, ttHits = 0;
 static double oracleSeconds = 0;
 static bool USE_HIST = false;
+// Lead memory (DDS keeps a best move per depth): the two leads that last settled a node for this seat with this many
+// cards left are tried first, after the transposition table's move. Tried and dropped because they searched more
+// nodes: the same memory for the second to fourth seats, a reply-to-the-last-card table, a global history count.
+static bool USE_KILLER = true;
+static int8_t killer[14][4][2];    // [cards left][seat][most recent, the one before]
 static uint32_t hist[2][52];
+static u64 subNoRead[14], subRead[14];        // boundary nodes searched, by cards left: no table read below / some
+static u64 cutAt[2][2][6], allNodes[2][2];   // [side][boundary?][index of the move that settled it], and nodes where every move was tried
 static u64 levelNodes[14][4];   // nodes above the table by cards left and cards already in the trick (--stats)
 
 struct Pos {
@@ -85,7 +96,20 @@ struct KeyHash {
     }
 };
 
-// 2 bits per live card of a suit in rank order: 1 = North, 2 = South, 3 = unseen. 26 bits.
+// Who holds each live card of a suit, in rank order, in 26 bits.
+// With BMI2: 2 bits per card, 0 = unseen, 1 = North, 2 = South, and a 3 after the last card (none for 13 cards).
+// Without: the same information built by a loop, 1 = North, 2 = South, 3 = unseen.
+#if defined(__BMI2__)
+static inline u64 suitCode(const Pos& p, int s, bool mirror) {
+    u64 n = (p.hN >> (13 * s)) & S13, so = (p.hS >> (13 * s)) & S13, x = (p.pool >> (13 * s)) & S13;
+    if (mirror) std::swap(n, so);
+    u64 live = n | so | x;
+    u64 code = _pdep_u64(_pext_u64(n, live), 0x1555555ULL) | _pdep_u64(_pext_u64(so, live), 0x2AAAAAAULL);
+    int L = pc(live);
+    if (L < 13) code |= 3ULL << (2 * L);
+    return code;
+}
+#else
 static inline u64 suitCode(const Pos& p, int s, bool mirror) {
     u64 n = (p.hN >> (13 * s)) & S13, so = (p.hS >> (13 * s)) & S13, x = (p.pool >> (13 * s)) & S13;
     if (mirror) std::swap(n, so);
@@ -98,6 +122,7 @@ static inline u64 suitCode(const Pos& p, int s, bool mirror) {
     }
     return code;
 }
+#endif
 
 // Transposition key inside one search: suits in place.
 static inline Key ttKey(const Pos& p) {
@@ -239,6 +264,11 @@ static inline bool advance(const Pos& p, int seat, int c, int nv, int need) {
 }
 
 struct Move { int8_t card; uint8_t nv; int16_t score; };
+static inline void pickBest(Move* mv, int k, int n) {      // bring the highest-scored of mv[k..n) to mv[k]
+    int b = k;
+    for (int j = k + 1; j < n; j++) if (mv[j].score > mv[b].score) b = j;
+    if (b != k) std::swap(mv[k], mv[b]);
+}
 
 // Declaring side: one card per run of touching cards (no live card of another hand in between).
 static inline int genDecl(const Pos& p, int seat, u64 live, Move* out) {
@@ -275,15 +305,25 @@ static inline int genDef(const Pos& p, int i, u64 live, Move* out) {
     for (int k = 0; k < p.nt; k++) if (((p.leader + k) & 3) == partnerSeat) partnerPlayed = true;
     int n = 0;
     int cE = p.cnt[0] - (i == 0), cW = p.cnt[1] - (i == 1);
+    int ns[4];
+    for (int s = 0; s < 4; s++) ns[s] = pc(p.pool & sm(s));
     for (int s = 0; s < 4; s++) {
         u64 cards = (p.pool >> (13 * s)) & S13;
         if (!cards || (p.vd[i] >> s & 1)) continue;
         int nv = p.vd[i];
         if (led >= 0 && s != led) nv |= 1 << led;
-        // feasibility depends on the suit only
-        u64 anyc = bit(13 * s + __builtin_ctzll(cards));
+        // feasibility depends on the suit only: the state after he plays one card of suit s
         int vE = i == 0 ? nv : p.vd[0], vW = i == 1 ? nv : p.vd[1];
-        if (!feasible(p.pool ^ anyc, cE, cW, vE, vW)) continue;
+        int mustE = 0, mustW = 0;
+        bool ok = true;
+        for (int t = 0; t < 4; t++) {
+            int m = ns[t] - (t == s);
+            if (!m) continue;
+            bool ev = vE >> t & 1, wv = vW >> t & 1;
+            if (ev && wv) { ok = false; break; }
+            if (ev) mustW += m; else if (wv) mustE += m;
+        }
+        if (!ok || mustE > cE || mustW > cW) continue;
         // a plain discard cannot take the trick, so its rank against partner's card does not matter
         bool both = !partnerPlayed && !(p.vd[1 - i] >> s & 1) && (led < 0 || s == led || s == TRUMP);
         u64 block = ((live & ~p.pool) >> (13 * s)) & S13;
@@ -392,6 +432,98 @@ static inline int defCash(const Pos& p) {
     return std::min(t, (int)p.cnt[i]);
 }
 
+// Quick tricks with both declaring hands (after DDS's QuickTricks, simplified): a line of play in which every
+// trick is certain, counted until the certainty runs out. With North or South on lead and in suits the defenders
+// cannot ruff: cash a master (a card above every unseen card of its suit); or lead low to a master in partner's
+// hand. Any such line is a lower bound, whatever the defenders hold or play. Masters are judged against the
+// unseen cards as they are now, which only gets easier as unseen cards are played.
+static bool USE_RUN = true, RUN_FRONT = true;
+static inline int declRun(const Pos& p) {
+    u64 h[2] = {p.hN, p.hS};
+    int me = p.leader == 0 ? 0 : 1;
+    bool ruff = TRUMP < 4 && (p.pool & sm(TRUMP));
+    u64 mast[2] = {0, 0};                       // masters by hand
+    for (int s = 0; s < 4; s++) {
+        if (ruff && s != TRUMP) continue;
+        u64 x = (p.pool >> (13 * s)) & S13;
+        int top = x ? 63 - __builtin_clzll(x) : -1;
+        u64 above = (~((1ULL << (top + 1)) - 1) & S13) << (13 * s);
+        mast[0] |= p.hN & above; mast[1] |= p.hS & above;
+    }
+    int t = 0;
+    while (true) {
+        int pd = 1 - me;
+        u64 m = mast[me] & h[me];
+        if (m) {
+            // cash a master; prefer a suit where partner can follow with a card below it or has none
+            int c = -1;
+            for (u64 r = m; r; r &= r - 1) {
+                int k = __builtin_ctzll(r), s = k / 13;
+                u64 ps = h[pd] & sm(s);
+                if (!ps || __builtin_ctzll(ps) < k) { c = k; break; }
+                if (c < 0) c = k;
+            }
+            int s = c / 13;
+            u64 ps = h[pd] & sm(s);
+            h[me] ^= bit(c);
+            t++;
+            if (ps) {
+                int low = __builtin_ctzll(ps);
+                h[pd] ^= bit(low);
+                if (low > c) me = pd;                           // partner had to overtake
+            } else if (h[pd]) {
+                u64 spare = h[pd] & ~mast[pd];                  // throw a card that is not a master if he has one
+                h[pd] ^= bit(__builtin_ctzll(spare ? spare : h[pd]));
+            }
+            continue;
+        }
+        // no master here: lead low to a master in partner's hand
+        u64 pm = mast[pd] & h[pd];
+        int c = -1, pc_ = -1;
+        for (u64 r = pm; r; r &= r - 1) {
+            int k = __builtin_ctzll(r), s = k / 13;
+            u64 mine = h[me] & sm(s);
+            if (mine) { c = __builtin_ctzll(mine); pc_ = k; break; }
+        }
+        if (c < 0) break;
+        h[me] ^= bit(c); h[pd] ^= bit(pc_);
+        t++;
+        me = pd;
+    }
+    return t;
+}
+
+// Bounds that hold whoever is on lead (after DDS's later-tricks checks, for trumps only).
+// A trump above every trump of the other side wins the trick it is played on for its side, and the trumps of one
+// hand go on different tricks. So North-South win at least as many tricks as the larger of their two holdings of
+// such trumps, and the defenders at least as many as one defender can be given of theirs.
+static bool USE_TRUMP_BOUNDS = true;
+static inline int declTrumpSure(const Pos& p) {
+    if (TRUMP >= 4) return 0;
+    u64 x = (p.pool >> (13 * TRUMP)) & S13;
+    int top = x ? 63 - __builtin_clzll(x) : -1;
+    u64 above = ~((1ULL << (top + 1)) - 1) & S13;
+    return std::max(pc((p.hN >> (13 * TRUMP)) & above), pc((p.hS >> (13 * TRUMP)) & above));
+}
+static inline int defTrumpSure(const Pos& p) {
+    if (TRUMP >= 4) return 0;
+    u64 x = (p.pool >> (13 * TRUMP)) & S13;
+    if (!x) return 0;
+    u64 ns = ((p.hN | p.hS) >> (13 * TRUMP)) & S13;
+    int top = ns ? 63 - __builtin_clzll(ns) : -1;
+    int t = pc(x & ~((1ULL << (top + 1)) - 1));
+    if (!t) return 0;
+    int best = 0;
+    for (int i = 0; i < 2; i++) {
+        if (p.vd[i] >> TRUMP & 1) continue;                               // he has no trumps
+        if (p.vd[1 - i] >> TRUMP & 1) { best = std::max(best, t); continue; }   // he has all of them
+        int must = 0;
+        for (int s = 0; s < 4; s++) if (p.vd[1 - i] >> s & 1) must += pc(p.pool & sm(s));
+        best = std::max(best, std::min(t, (int)p.cnt[i] - must));
+    }
+    return best;
+}
+
 // ---------------------------------------------------------------- search
 static int tableValue(const Pos& p);
 
@@ -401,17 +533,23 @@ static bool can(const Pos& p, int need) {
     int left = seat == 0 ? pc(p.hN) : seat == 2 ? pc(p.hS) : p.cnt[seat >> 1];
     if (left < need) return false;
     Entry* e = nullptr;
-    int ttBest = -1;
+    Key tk{0, 0};
+    int ttBest = -1, cutCard = -1;
     if (p.nt == 0) {
         if (FRONT && left == FRONT && !IN_ORACLE) {
             for (int i = 0; i < DUPBOUND; i++) { Pos q = p; q.vd[0] ^= VZERO; dupSink = dupSink + ((seat & 1) == 0 ? declCash(q) : defCash(q)); }
             if (USE_BOUNDS) {                       // cheap bounds first: many frontier positions never need the probe
-                if ((seat & 1) == 0) { if (declCash(p) >= need) return true; }
+                if ((seat & 1) == 0) { if (declCash(p) >= need) return true; if (RUN_FRONT && declRun(p) >= need) return true; }
                 else { if (left - defCash(p) < need) return false; }
+                if (USE_TRUMP_BOUNDS && TRUMP < 4) {
+                    if (declTrumpSure(p) >= need) return true;
+                    if (left - defTrumpSure(p) < need) return false;
+                }
             }
             return tableValue(p) >= need;
         }
-        e = ttFind(ttKey(p), true);
+        tk = ttKey(p);
+        e = ttFind(tk, true);
         if (need <= e->lo) { ttHits++; return true; }
         if (need > e->hi) { ttHits++; return false; }
         ttBest = e->best;
@@ -420,24 +558,47 @@ static bool can(const Pos& p, int need) {
                 int t = declCash(p);
                 if (t > e->lo) e->lo = (int8_t)std::min(t, left);
                 if (need <= e->lo) return true;
+                if (USE_RUN) {
+                    t = declRun(p);
+                    if (t > e->lo) e->lo = (int8_t)std::min(t, left);
+                    if (need <= e->lo) return true;
+                }
             } else {
                 int t = defCash(p);
                 if (left - t < e->hi) e->hi = (int8_t)(left - t);
                 if (need > e->hi) return false;
             }
+            if (USE_TRUMP_BOUNDS && TRUMP < 4) {
+                int a = declTrumpSure(p), d = defTrumpSure(p);
+                if (a > e->lo) e->lo = (int8_t)std::min(a, left);
+                if (left - d < e->hi) e->hi = (int8_t)(left - d);
+                if (need <= e->lo) return true;
+                if (need > e->hi) return false;
+            }
         }
     }
     if (IN_ORACLE) nodesBelow++; else { nodesAbove++; levelNodes[left][p.nt]++; }
+    u64 probes0 = probes;
     u64 live = p.hN | p.hS | p.pool;
     for (int k = 0; k < p.nt; k++) live |= bit(p.tc[k]);
     Move mv[40];
     bool result;
+    int holder = 0, bestc = 0, bs = 0;         // the trick so far: seat winning it, its card, that card's suit
+    if (p.nt) {
+        int b = 0;
+        for (int k = 1; k < p.nt; k++) {
+            int sb = p.tc[b] / 13, sk = p.tc[k] / 13;
+            if (sk == sb) { if (p.tc[k] > p.tc[b]) b = k; }
+            else if (sk == TRUMP) b = k;
+        }
+        holder = (p.leader + b) & 3; bestc = p.tc[b]; bs = bestc / 13;
+    }
     if ((seat & 1) == 0) {
         int n = genDecl(p, seat, live, mv);
         if (USE_ORDER) {
             u64 h = seat == 0 ? p.hN : p.hS;
             for (int k = 0; k < n; k++) {
-                int c = mv[k].card, s = c / 13, r = c % 13, sc = 0;
+                int c = mv[k].card, s = c / 13, r = c % 13, sc = 0, cs = s;
                 u64 x = (p.pool >> (13 * s)) & S13;
                 bool master = !(x >> (r + 1));               // no unseen card above it
                 if (c == ttBest) sc += 1000;
@@ -446,49 +607,55 @@ static bool can(const Pos& p, int need) {
                     else sc += 20 - r;                         // low cards before middling ones
                     sc += pc((h >> (13 * s)) & S13);          // longer suits first
                 } else {
-                    bool win = beatsTrick(p, c);
-                    int holder = trickHolder(p);
+                    bool win = cs == bs ? c > bestc : cs == TRUMP;
                     if ((holder & 1) == 0) sc += 30 - r;      // partner is winning: play low
                     else if (win) sc += 50 - r;               // win as cheaply as possible
                     else sc += 20 - r;
                 }
+                if (USE_KILLER && p.nt == 0) { if (c == killer[left][seat][0]) sc += 200; else if (c == killer[left][seat][1]) sc += 150; }
                 if (USE_HIST) sc += (int)std::min<uint32_t>(hist[0][c] >> 6, 45);
                 mv[k].score = (int16_t)sc;
             }
-            std::sort(mv, mv + n, [](const Move& a, const Move& b) { return a.score > b.score; });
         }
         result = false;
-        for (int k = 0; k < n; k++)
-            if (advance(p, seat, mv[k].card, 0, need)) { result = true; hist[0][mv[k].card] += left * left; if (e) { e = ttFind(ttKey(p), true); e->best = mv[k].card; } break; }
+        for (int k = 0; k < n; k++) {
+            if (USE_ORDER) pickBest(mv, k, n);
+            if (advance(p, seat, mv[k].card, 0, need)) { result = true; cutCard = mv[k].card; if (!IN_ORACLE) cutAt[0][p.nt == 0][std::min(k, 5)]++; if (USE_HIST) hist[0][mv[k].card] += left * left; break; }
+        }
     } else {
         int i = seat >> 1;
         int n = genDef(p, i, live, mv);
         if (USE_ORDER) {
             for (int k = 0; k < n; k++) {
-                int c = mv[k].card, s = c / 13, r = c % 13, sc = 0;
+                int c = mv[k].card, s = c / 13, r = c % 13, sc = 0, cs = s;
                 if (c == ttBest) sc += 1000;
                 if (p.nt == 0) {
                     u64 ns = ((p.hN | p.hS) >> (13 * s)) & S13;
                     bool master = !(ns >> (r + 1));
                     sc += master ? 60 : 10 + r;
                 } else {
-                    bool win = beatsTrick(p, c);
-                    int holder = trickHolder(p);
+                    bool win = cs == bs ? c > bestc : cs == TRUMP;
                     if (holder & 1) sc += 25 - r + (win ? 10 : 0);   // partner is winning: usually low, sometimes overtake
                     else if (win) sc += 50 - r;
                     else sc += 20 - r;
                 }
+                if (USE_KILLER && p.nt == 0) { if (c == killer[left][seat][0]) sc += 200; else if (c == killer[left][seat][1]) sc += 150; }
                 if (USE_HIST) sc += (int)std::min<uint32_t>(hist[1][c] >> 6, 45);
                 mv[k].score = (int16_t)sc;
             }
-            std::sort(mv, mv + n, [](const Move& a, const Move& b) { return a.score > b.score; });
         }
         result = true;
-        for (int k = 0; k < n; k++)
-            if (!advance(p, seat, mv[k].card, mv[k].nv, need)) { result = false; hist[1][mv[k].card] += left * left; if (e) { e = ttFind(ttKey(p), true); e->best = mv[k].card; } break; }
+        for (int k = 0; k < n; k++) {
+            if (USE_ORDER) pickBest(mv, k, n);
+            if (!advance(p, seat, mv[k].card, mv[k].nv, need)) { result = false; cutCard = mv[k].card; if (!IN_ORACLE) cutAt[1][p.nt == 0][std::min(k, 5)]++; if (USE_HIST) hist[1][mv[k].card] += left * left; break; }
+        }
     }
+    if (cutCard < 0 && !IN_ORACLE) allNodes[seat & 1][p.nt == 0]++;
+    if (p.nt == 0 && !IN_ORACLE) { if (probes == probes0) subNoRead[left]++; else subRead[left]++; }
+    if (cutCard >= 0 && p.nt == 0 && killer[left][seat][0] != cutCard) { killer[left][seat][1] = killer[left][seat][0]; killer[left][seat][0] = (int8_t)cutCard; }
     if (p.nt == 0) {
-        e = ttFind(ttKey(p), true);
+        if (!(e->used && e->k == tk)) e = ttFind(tk, true);   // still ours unless it was replaced meanwhile
+        if (cutCard >= 0) e->best = (int8_t)cutCard;
         if (result) { if (need > e->lo) e->lo = (int8_t)need; }
         else { if (need - 1 < e->hi) e->hi = (int8_t)(need - 1); }
     }
@@ -555,7 +722,7 @@ static int tableValue(const Pos& p) {
 }
 
 int main(int argc, char** argv) {
-    int ttBits = 20, needArg = -1;
+    int ttBits = 18, needArg = -1;
     double memGB = 0, cellsGB = 0;
     bool warm = false, stats = false, valueMode = false, noFlush = false, huge = false, hugeTT = false, replay = false;
     bool keep = false;
@@ -564,7 +731,11 @@ int main(int argc, char** argv) {
         if (a == "--front") FRONT = atoi(argv[++i]);
         else if (a == "--ttbits") ttBits = atoi(argv[++i]);
         else if (a == "--nobounds") USE_BOUNDS = false;
+        else if (a == "--notrumpbounds") USE_TRUMP_BOUNDS = false;
+        else if (a == "--norun") USE_RUN = false;
+        else if (a == "--norunfront") RUN_FRONT = false;
         else if (a == "--noorder") USE_ORDER = false;
+        else if (a == "--nokiller") USE_KILLER = false;
         else if (a == "--hist") USE_HIST = true;        // history heuristic: measured no gain, off by default
         else if (a == "--mem") memGB = atof(argv[++i]);
         else if (a == "--cells") cellsGB = atof(argv[++i]);
@@ -624,13 +795,17 @@ int main(int argc, char** argv) {
         }
         size_t table0 = TABLE.size();
         const int firstPass = warm ? (replay ? -1 : 0) : 1;
+        int redo = 0;
+        bool firstRun = true;
         for (int pass = firstPass; pass < 2; pass++) {
         bool show = pass == 1;
-        if (warm && replay && pass == 0) ttClear();
+        size_t tsize0 = TABLE.size();
+        if (warm && pass < 1 && !firstRun) ttClear();        // every untimed pass after the first starts from a clean table too
         CELLS_READ = warm && pass == 1 && NCELLS;
         SEQ_RECORD = replay && warm && pass == 0; SEQ_READ = replay && warm && pass == 1; seqPos = 0;
         if (SEQ_RECORD) SEQ.clear();
-        if (pass == firstPass) cellTouched.clear();
+        if (firstRun) cellTouched.clear();
+        firstRun = false;
         if (warm && pass == 1) {
             ttClear();
             // push the first pass's table lines out of the CPU caches so the timed probes are cold
@@ -645,8 +820,9 @@ int main(int argc, char** argv) {
             table0 = TABLE.size();
         }
         nodesAbove = nodesBelow = probes = ttHits = cellMisses = 0;
-        memset(levelNodes, 0, sizeof levelNodes);
+        memset(levelNodes, 0, sizeof levelNodes); memset(cutAt, 0, sizeof cutAt); memset(allNodes, 0, sizeof allNodes); memset(subNoRead, 0, sizeof subNoRead); memset(subRead, 0, sizeof subRead);
         if (!keep) memset(hist, 0, sizeof hist);
+        memset(killer, -1, sizeof killer);
         oracleSeconds = 0;
         auto t0 = std::chrono::steady_clock::now();
         int seat = (p.leader + p.nt) & 3;
@@ -680,6 +856,16 @@ int main(int argc, char** argv) {
                total, total - oracleSeconds, (unsigned long long)nodesAbove, (unsigned long long)nodesBelow,
                (unsigned long long)probes, TABLE.size() - table0, (unsigned long long)ttHits, (unsigned long long)cellMisses, SEQ_READ ? (long long)SEQ.size() - (long long)seqPos : 0LL);
         fflush(stdout);
+        if (show && stats)
+            for (int l = 13; l >= 1; l--) if (subNoRead[l] | subRead[l])
+                fprintf(stderr, "  lead nodes searched with %d cards left: %llu with no table read below, %llu with some\n", l, (unsigned long long)subNoRead[l], (unsigned long long)subRead[l]);
+        if (show && stats)
+            for (int a = 0; a < 2; a++) for (int b = 1; b >= 0; b--)
+                fprintf(stderr, "  %s %s: settled by move 1: %llu, 2: %llu, 3: %llu, 4: %llu, 5: %llu, later: %llu; every move tried: %llu\n", a ? "defender" : "declarer", b ? "on lead " : "following",
+                        (unsigned long long)cutAt[a][b][0], (unsigned long long)cutAt[a][b][1], (unsigned long long)cutAt[a][b][2], (unsigned long long)cutAt[a][b][3], (unsigned long long)cutAt[a][b][4], (unsigned long long)cutAt[a][b][5], (unsigned long long)allNodes[a][b]);
+        // An untimed pass that still had to compute table values searched differently from the timed pass
+        // (those computations disturb the transposition table). Repeat it until it needs none.
+        if (warm && pass < 1 && TABLE.size() != tsize0 && ++redo < 10) { pass--; continue; }
         if (show && stats)
             for (int l = 13; l >= 1; l--)
                 if (levelNodes[l][0] | levelNodes[l][1] | levelNodes[l][2] | levelNodes[l][3])

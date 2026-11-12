@@ -11,12 +11,18 @@ T = {(k, n): [] for k in keys for n, _ in cfgs}
 meta = {}
 for r in range(reps):
     for n, fl in cfgs:
-        out = subprocess.run(['./sure_cpp', '--front', '4', '--warm', *fl.split()], input=inp, capture_output=True, text=True, check=True).stdout
+        fl2 = fl.split()
+        binary = './sure_cpp'
+        if fl2 and fl2[0].startswith('@'):          # name=@binary flags: run another build
+            binary, fl2 = fl2[0][1:], fl2[1:]
+        out = subprocess.run([binary, '--front', '4', '--warm', *fl2], input=inp, capture_output=True, text=True, check=True).stdout
         for k, l in zip(keys, out.splitlines()):
             j = json.loads(l)
             T[(k, n)].append(1000 * j['search_seconds'])
             m = (j['nodes_above'], j['probes'], json.dumps(j['cards'], sort_keys=True))
-            assert meta.setdefault(k, m) == m, (k, n, 'search differs between configurations')
+            meta.setdefault((k, n), m)
+            assert meta[(k, n)] == m, (k, n, 'search differs between runs of one configuration')
+            assert json.loads(m[2]) == json.loads(meta.setdefault((k, 'cards'), m)[2]), (k, n, 'card values differ between builds')
             assert j['cell_misses'] == 0 and j['replay_left'] == 0, (k, n, j)
 for k in keys:
-    print(json.dumps(dict(pos=k, nodes=meta[k][0], probes=meta[k][1], **{n: dict(min=round(min(T[(k, n)]), 3), med=round(statistics.median(T[(k, n)]), 3)) for n, _ in cfgs})), flush=True)
+    print(json.dumps(dict(pos=k, nodes={n: meta[(k, n)][0] for n, _ in cfgs}, probes={n: meta[(k, n)][1] for n, _ in cfgs}, **{n: dict(min=round(min(T[(k, n)]), 3), med=round(statistics.median(T[(k, n)]), 3)) for n, _ in cfgs})), flush=True)

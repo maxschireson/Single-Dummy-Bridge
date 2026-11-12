@@ -1,8 +1,8 @@
 """Bridge between the Python reference solver (sure.Sure) and the C++ one (sure.cpp)."""
-import json, subprocess
+import json, os, subprocess
 from sure import Sure, cards_of
 
-BIN = './sure_cpp'
+BIN = os.environ.get('SURE_BIN', './sure_cpp')
 
 
 def line(s):

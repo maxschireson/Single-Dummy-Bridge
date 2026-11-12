@@ -1,5 +1,0 @@
-4-card endings, 1500 trials, args []: 0 mismatches (C++ 1.76 s, Python 31 s)
-5-card endings, 250 trials, args ['--front', '4']: 0 mismatches (C++ 0.66 s, Python 38 s)
-5-card endings, 250 trials, args ['--front', '4', '--warm', '--cells', '0.01']: 0 mismatches (C++ 3.50 s, Python 39 s)
-5-card endings, 250 trials, args ['--front', '4', '--warm', '--replay']: 0 mismatches (C++ 4.43 s, Python 39 s)
-6-card endings, 30 trials, args ['--front', '4', '--warm', '--cells', '0.01', '--huge']: 0 mismatches (C++ 0.44 s, Python 22 s)

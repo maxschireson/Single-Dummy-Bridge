@@ -1,39 +1,39 @@
 ## contract-target, 4-card table (warm, real 2.5 GB array behind probes)
-A6_6   --front 4 --warm --mem 2.5 contract     0.17 ms  nodes      216  probes     258
-A6_7   --front 4 --warm --mem 2.5 contract     1.22 ms  nodes     4407  probes    3447
-A6_8   --front 4 --warm --mem 2.5 contract     7.97 ms  nodes    35816  probes   26251
-S6_7   --front 4 --warm --mem 2.5 contract     2.52 ms  nodes    11095  probes    6748
-S6_8   --front 4 --warm --mem 2.5 contract     7.64 ms  nodes    35184  probes   16960
-B6_7   --front 4 --warm --mem 2.5 contract     0.36 ms  nodes     1192  probes     681
-B6_8   --front 4 --warm --mem 2.5 contract     1.56 ms  nodes     6253  probes    2660
+A6_6   --front 4 --warm --cells 2.5 contract     0.04 ms  nodes       60  probes      20
+A6_7   --front 4 --warm --cells 2.5 contract     0.40 ms  nodes     1954  probes     813
+A6_8   --front 4 --warm --cells 2.5 contract     2.14 ms  nodes    15778  probes    3930
+S6_7   --front 4 --warm --cells 2.5 contract     0.70 ms  nodes     5751  probes    1188
+S6_8   --front 4 --warm --cells 2.5 contract     2.42 ms  nodes    16650  probes    3332
+B6_7   --front 4 --warm --cells 2.5 contract     0.20 ms  nodes      979  probes     397
+B6_8   --front 4 --warm --cells 2.5 contract     0.70 ms  nodes     4149  probes    1144
 ## all card values, 4-card table
-A6_6   --front 4 --warm --mem 2.5             0.13 ms  nodes      216  probes     258
-A6_7   --front 4 --warm --mem 2.5             1.50 ms  nodes     6837  probes    4234
-A6_8   --front 4 --warm --mem 2.5            11.43 ms  nodes    56445  probes   31081
-S6_7   --front 4 --warm --mem 2.5             3.96 ms  nodes    17490  probes   10774
-S6_8   --front 4 --warm --mem 2.5            11.92 ms  nodes    61249  probes   31287
-B6_7   --front 4 --warm --mem 2.5             1.21 ms  nodes     5465  probes    3318
-B6_8   --front 4 --warm --mem 2.5             5.68 ms  nodes    28135  probes   14297
+A6_6   --front 4 --warm --cells 2.5           0.06 ms  nodes       60  probes      20
+A6_7   --front 4 --warm --cells 2.5           0.57 ms  nodes     3552  probes     922
+A6_8   --front 4 --warm --cells 2.5           2.33 ms  nodes    20731  probes    4631
+S6_7   --front 4 --warm --cells 2.5           1.03 ms  nodes     7916  probes    1326
+S6_8   --front 4 --warm --cells 2.5           3.22 ms  nodes    23483  probes    4136
+B6_7   --front 4 --warm --cells 2.5           0.66 ms  nodes     4405  probes    1611
+B6_8   --front 4 --warm --cells 2.5           1.93 ms  nodes    16195  probes    4358
 ## all card values, no table
-A6_6                                          0.53 ms  nodes     4606  probes       0
-A6_7                                          8.03 ms  nodes    70336  probes       0
-A6_8                                         31.31 ms  nodes   252287  probes       0
-S6_7                                         11.40 ms  nodes    97001  probes       0
-S6_8                                         35.50 ms  nodes   300982  probes       0
-B6_7                                          3.86 ms  nodes    30469  probes       0
-B6_8                                         13.15 ms  nodes   120337  probes       0
+A6_6                                          0.08 ms  nodes      548  probes       0
+A6_7                                          1.92 ms  nodes    21515  probes       0
+A6_8                                          6.45 ms  nodes    70038  probes       0
+S6_7                                          2.78 ms  nodes    31264  probes       0
+S6_8                                          7.91 ms  nodes    91710  probes       0
+B6_7                                          1.72 ms  nodes    22823  probes       0
+B6_8                                          4.45 ms  nodes    56538  probes       0
 ## contract-target, no table
-A6_6    contract                              0.51 ms  nodes     4606  probes       0
-A6_7    contract                              7.09 ms  nodes    62146  probes       0
-A6_8    contract                             26.83 ms  nodes   217582  probes       0
-S6_7    contract                              8.57 ms  nodes    74785  probes       0
-S6_8    contract                             24.80 ms  nodes   218200  probes       0
-B6_7    contract                              1.31 ms  nodes    12017  probes       0
-B6_8    contract                              4.62 ms  nodes    41567  probes       0
+A6_6    contract                              0.07 ms  nodes      548  probes       0
+A6_7    contract                              1.45 ms  nodes    17683  probes       0
+A6_8    contract                              4.81 ms  nodes    56292  probes       0
+S6_7    contract                              2.31 ms  nodes    25790  probes       0
+S6_8    contract                              6.55 ms  nodes    75669  probes       0
+B6_7    contract                              0.64 ms  nodes     8080  probes       0
+B6_8    contract                              1.96 ms  nodes    24600  probes       0
 ## contract-target, 5-card table (simulated)
-A6_7   --front 5 --warm --mem 2.5 contract     0.33 ms  nodes      888  probes     885
-A6_8   --front 5 --warm --mem 2.5 contract     2.43 ms  nodes     7019  probes    7799
-S6_7   --front 5 --warm --mem 2.5 contract     0.64 ms  nodes     1649  probes    1484
-S6_8   --front 5 --warm --mem 2.5 contract     2.58 ms  nodes     8271  probes    6148
-B6_7   --front 5 --warm --mem 2.5 contract     0.18 ms  nodes      280  probes     200
-B6_8   --front 5 --warm --mem 2.5 contract     0.64 ms  nodes     1714  probes     927
+A6_7   --front 5 --warm --cells 2.5 contract     0.13 ms  nodes      776  probes     325
+A6_8   --front 5 --warm --cells 2.5 contract     0.76 ms  nodes     3617  probes    2178
+S6_7   --front 5 --warm --cells 2.5 contract     0.19 ms  nodes      982  probes     579
+S6_8   --front 5 --warm --cells 2.5 contract     0.83 ms  nodes     4146  probes    2199
+B6_7   --front 5 --warm --cells 2.5 contract     0.09 ms  nodes      240  probes     167
+B6_8   --front 5 --warm --cells 2.5 contract     0.30 ms  nodes     1404  probes     557

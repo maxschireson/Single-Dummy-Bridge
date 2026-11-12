@@ -1,7 +1,0 @@
-## cost of a real memory read behind each probe (best of 5)
-A6_8   --front 4 --warm contract              6.14 ms  nodes    35816  probes   26251
-S6_8   --front 4 --warm contract              5.56 ms  nodes    35184  probes   16960
-A6_9   --front 4 --warm contract             68.89 ms  nodes   412750  probes  241404
-A6_8   --front 4 --warm --mem 2.5 contract     7.98 ms  nodes    35816  probes   26251
-S6_8   --front 4 --warm --mem 2.5 contract     7.55 ms  nodes    35184  probes   16960
-A6_9   --front 4 --warm --mem 2.5 contract    93.39 ms  nodes   412750  probes  241404

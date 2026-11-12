@@ -15,7 +15,7 @@ table supports (section 3.2). The sure-trick search (`sure.cpp`) stops at 4-card
 | Entries, 4-card table | 7,457,413,672 (exact, section 4.6) |
 | Size at 3 bits an entry | 2.80 GB |
 | Smaller tables needed on the way | 1, 2 and 3 cards: 426, 168,458 and 41,915,724 entries |
-| Build compute, 4-card | about 23 core-hours estimated (section 6.4), not measured |
+| Build compute, 4-card | about 17 core-hours estimated (section 6.4), not measured |
 
 Deliverables:
 
@@ -237,9 +237,10 @@ against it. Equivalences are an optimization to add afterwards and to verify aga
 ### 6.4 Compute
 
 Measured with the current search on 200,000 random 4-card entries with show-out knowledge, hash map standing in
-for the 3-card table: 11.2 µs an entry (33 nodes, 11 lookups); solving each from scratch: 31.7 µs. An earlier
-run gave 10.3 and 29.3. At 11.2 µs, 7.46e9 entries are about 23 core-hours. Unmeasured: the cost with a
-real index, with shape knowledge, and without card equivalences. Report the measured figure.
+for the 3-card table: 8.4 µs an entry (27 nodes, 8 lookups); solving each from scratch: 20.2 µs. (The search as
+first pushed took 10.3 to 11.2 and 29.3 to 31.7 µs; its bounds and move ordering have since improved.) At
+8.4 µs, 7.46e9 entries are about 17 core-hours. Unmeasured: the cost with a real index, with shape knowledge,
+and without card equivalences, bounds or move ordering, which the plain evaluator of 6.2 does not have. Report the measured figure.
 
 Memory: the output (2.8 GB, can be written chunk by chunk), the 3-card table and the class table.
 
@@ -295,7 +296,7 @@ time, and `python split.py` style timings of the search with the real table next
 1. Index in C++: T1, T2, T3.
 2. Evaluator and the 1, 2 and 3-card tables: T4 to T6 for k <= 3, T8. These run in minutes on any machine.
 3. Stop and report if anything in 1 or 2 disagrees with the references.
-4. The 4-card build, when Max assigns a machine: about 23 core-hours and 4 GB of memory by the estimate above. Do not start it on the Azure boxes or any shared worker without that assignment.
+4. The 4-card build, when Max assigns a machine: about 17 core-hours and 4 GB of memory by the estimate above. Do not start it on the Azure boxes or any shared worker without that assignment.
 5. T4 to T7 at k = 4, read-time measurements, `REPORT.md`.
 
 For Max: which machine runs step 4, and where the 2.8 GB file is kept.

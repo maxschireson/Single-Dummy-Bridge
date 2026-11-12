@@ -3,3 +3,8 @@ sure_prof
 gmon.out
 __pycache__/
 *.et
+# The repository ignores *.jsonl, *.pbn and *.log as bulk records. The ones here are small results,
+# the test deals and the test vectors, and are meant to be versioned.
+!*.jsonl
+!*.pbn
+!results/make_vectors.log
