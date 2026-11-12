@@ -1,8 +1,10 @@
-"""Gen 9 card play (prototype): carding bots and the signal reader, on the Gen 7 player.
+"""Gen 9 card play: carding bots and the signal reader, as a layer on the Gen 7 player.
 
 Gen 9 work in progress (G9-S2; design: docs/gen9/signals.md). Used by no arena bot.
 
-A spec with `engine: gen9` is a Gen 7 spec plus a `gen9` block (Gen9Config). Two independent parts:
+`SignalPlayer` is a Gen7Player with two independent parts, both inert without settings. The Gen 9
+player (bridge_harness/gen9.py) is built on it; a bot is made through `gen9.player`, never from
+here. Settings are these keys of the spec's `gen9` block (SignalConfig); the shell owns the rest.
 
   Carding bot.  With `carding`, the bot signals by that descriptor among the cards its search rates
                 as exactly equal: the class is chosen as the house bot chooses (the net's likeliest
@@ -19,9 +21,9 @@ A spec with `engine: gen9` is a Gen 7 spec plus a `gen9` block (Gen9Config). Two
                 instead of Gen 8's phi * log P_net(card). Declarer's and dummy's cards, plain models
                 and models without carding are read exactly as Gen 8 reads them.
 
-With an empty `gen9` block the player is the Gen 7 player it is built on, card for card (tested).
-`play_log_terms` returns the net part and the signal part apart (proposed addition to interface I5),
-so a caller can temper the net alone; `play_log_likelihood` returns their sum, as Gen 7's does.
+With none of its keys set the player is the Gen 7 player it is built on, card for card (tested).
+`play_log_terms` returns the net part and the signal part apart (interface I5), so the shell can
+leave the signal part untempered; `play_log_likelihood` here returns their sum, as Gen 7's does.
 """
 from dataclasses import dataclass, field
 import json
@@ -36,7 +38,7 @@ from .player_model import resolve
 from .players import Decision
 from .signals import SPOT, SPOT_MASK, SUIT_MASK, SignalModel, situation
 
-ENGINE = 'gen9'
+SIGNAL_KEYS = ('carding', 'signal_eps', 'signal_margin', 'models', 'read_partner', 'reader_eps')
 DEFAULT_HONESTY = .8                # a declared card with no honesty and no experience is read at this
 _FIELDS = None
 
@@ -67,7 +69,7 @@ def carding_parts(block, default_honesty=DEFAULT_HONESTY):
 
 
 @dataclass(frozen=True)
-class Gen9Config:
+class SignalConfig:
     carding: Mapping | None = None      # this bot's own carding block: it signals by it
     signal_eps: float = 0.              # the bot's floor: share of its signalling choices made uniformly in the class
     signal_margin: float = 0.           # class cards within this many tricks of the best count as equal for signalling; 0 = exact ties
@@ -77,7 +79,7 @@ class Gen9Config:
 
     def __post_init__(self):
         if not 0 <= self.signal_eps < 1 or not 0 <= self.reader_eps < 1 or not 0 <= self.signal_margin <= 13:
-            raise ValueError('Invalid Gen9 settings')
+            raise ValueError('Invalid Gen9 signal settings')
         if self.read_partner and not self.carding:
             raise ValueError('read_partner needs the bot\'s own carding')
         carding_parts(self.carding)
@@ -85,23 +87,29 @@ class Gen9Config:
             carding_parts(dict(m).get('carding'))
 
 
-class Gen9Player(Gen7Player):
+def signal_settings(block):
+    """spec['gen9'] -> SignalConfig, from this layer's keys alone; the shell checks the block as a whole."""
+    block = block or {}
+    return SignalConfig(**{k: block[k] for k in SIGNAL_KEYS if k in block})
+
+
+class SignalPlayer(Gen7Player):
     def __init__(self, spec, root, reference=None):
-        self.g9 = Gen9Config(**(spec.get('gen9') or {}))
-        descriptor, honesty = carding_parts(self.g9.carding, 1.)
-        self.own_signals = SignalModel(descriptor, honesty, eps=self.g9.signal_eps) or None
-        self.partner_signals = (SignalModel(descriptor, honesty, eps=self.g9.reader_eps) or None) if self.g9.read_partner else None
+        self.sg = signal_settings(spec.get('gen9'))
+        descriptor, honesty = carding_parts(self.sg.carding, 1.)
+        self.own_signals = SignalModel(descriptor, honesty, eps=self.sg.signal_eps) or None
+        self.partner_signals = (SignalModel(descriptor, honesty, eps=self.sg.reader_eps) or None) if self.sg.read_partner else None
         self.opponent_model, self.opponent_signals, self.opponent_phi = None, None, None
         self.class_cache = (None, {})
         super().__init__(spec, root, reference)
 
     # ---- who sits against us ---------------------------------------------------------------
     def meet(self, opponent):
-        model = resolve(opponent, self.g9.models)
+        model = resolve(opponent, self.sg.models)
         super().meet(None if opponent is None else model.id)
         self.opponent_model = model
         descriptor, honesty = carding_parts(model.carding)
-        self.opponent_signals = SignalModel(descriptor, honesty, eps=self.g9.reader_eps) or None
+        self.opponent_signals = SignalModel(descriptor, honesty, eps=self.sg.reader_eps) or None
         phi = (model.carding or {}).get('phi') if model.carding else None
         self.opponent_phi = self.opponent_factor if phi is None else float(phi)
 
@@ -230,7 +238,7 @@ class Gen9Player(Gen7Player):
         else:
             return super().break_ties(o, rng, result)
         estimates = d.get('estimates') or {}
-        margin = self.g9.signal_margin
+        margin = self.sg.signal_margin
         choices = [x for x in members if x in tied or (margin > 0 and estimates.get(symbol(x), {}).get('gap_to_best', 99.) <= margin + 1e-9)]
         if len(choices) < 2:
             return super().break_ties(o, rng, result)
@@ -254,12 +262,9 @@ class Gen9Player(Gen7Player):
 
     def choose(self, o, rng):
         result = super().choose(o, rng)
-        if 'gen6' in result.details or 'gen7' in result.details:
+        active = self.own_signals is not None or self.partner_signals is not None or self.opponent_signals is not None
+        if active and ('gen6' in result.details or 'gen7' in result.details):
             note = dict(version='gen9-play-v0', signals=self.own_signals is not None, read_partner=self.partner_signals is not None,
                         read_opponents=self.opponent_signals is not None)
-            return Decision(result.card, dict(result.details, gen9=note))
+            return Decision(result.card, dict(result.details, gen9_play=note))
         return result
-
-
-def player(spec, root, reference=None):
-    return Gen9Player(spec, root, reference)

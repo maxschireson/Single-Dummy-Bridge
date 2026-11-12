@@ -10,7 +10,8 @@ from bridge_harness.core import Contract, card
 from bridge_harness.corpus import generate
 from bridge_harness.gen6 import View
 from bridge_harness.gen7 import Gen7Player, hidden_plays
-from bridge_harness.gen9_play import Gen9Config, Gen9Player, carding_parts
+from bridge_harness.gen9 import Gen9Player
+from bridge_harness.gen9_play import SignalConfig, carding_parts
 from bridge_harness.players import GreedyPlayer
 from bridge_harness.runner import play_table
 from bridge_harness.signals import SPOT_MASK, SUIT_MASK, SignalModel, lead_table, situation
@@ -269,9 +270,9 @@ class ReaderTests(Gen9Fixture):
         p.meet('y')
         self.assertIsNone(p.opponent_signals)
         with self.assertRaises(ValueError):
-            Gen9Config(models={'x': dict(carding=dict(descriptor=dict(attitude='sideways')))})
+            SignalConfig(models={'x': dict(carding=dict(descriptor=dict(attitude='sideways')))})
         with self.assertRaises(ValueError):
-            Gen9Config(read_partner=True)
+            SignalConfig(read_partner=True)
 
 
 class BotEntriesTests(unittest.TestCase):
@@ -284,7 +285,7 @@ class BotEntriesTests(unittest.TestCase):
             if key.startswith('_'):
                 continue
             self.assertEqual(entry['engine'], 'gen9', key)
-            config = Gen9Config(**entry['gen9'])
+            config = SignalConfig(**entry['gen9'])
             if key.startswith('c-'):
                 descriptor, honesty = carding_parts(config.carding)
                 self.assertEqual(float(honesty), int(key.split('-')[-1]) / 100)
