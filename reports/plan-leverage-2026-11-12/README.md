@@ -20,7 +20,8 @@ key variables instead of 32 layouts, nets that work out what is going on.
 ## Answers
 
 1. **Why the tree shows no gain from a better net.** At tricks 3 to 6, knowing exactly what every other card would
-   bring with the bots playing on is worth about 0.14 tricks a side at one table (0.140 +- 0.047, a fit; section 1).
+   bring with the bots playing on is worth about 0.10 tricks a side at one table (a fit gives 0.140 +- 0.047 and a
+   simulation of the fit says it errs high by 0.03 to 0.04 at this sample size; section 1).
    That is everything a better judge of cards could add there with Gen 6's beliefs. A simulator collects the part
    its picture of the other seats explains and its layouts resolve. One layout's played-out result differs by 0.6 to
    0.8 tricks, and what real play adds to double dummy has an sd of 0.11 to 0.17 at close decisions, so on the
@@ -58,7 +59,7 @@ In one unit (tricks a side at one table, Gen 6 among Gen 6; a board is two sides
 
 | Lever | Available | Collected so far |
 |---|---|---|
-| A different card at tricks 3 to 6, same beliefs | 0.14 +- 0.05 (fit) | Gen 7's tree 0.01 to 0.03 (p41: +0.046 +- 0.014 tricks an override, about 0.3 overrides a side); net playouts on 512 layouts 0.025; real playouts on 12 layouts 0.03 to 0.06 |
+| A different card at tricks 3 to 6, same beliefs | about 0.10 (fit 0.14 +- 0.05, less its error of 0.03 to 0.04) | Gen 7's tree 0.01 to 0.03 (p41: +0.046 +- 0.014 tricks an override, about 0.3 overrides a side); net playouts on 512 layouts 0.025; real playouts on 12 layouts 0.03 to 0.06 |
 | A different card at tricks 7 to 12 | 0.07 +- 0.01 (fit) | 0.043 +- 0.012 with the bot as its own simulator |
 | Level cards, tricks 7 to 12 | 0.02 | 0.01 |
 | Opening lead, tricks 1 to 2, level cards at tricks 3 to 6 | not measured yet | |
@@ -118,14 +119,19 @@ from resampling deals). The columns are the best possible use of n layouts of re
 |---|---|---|---|---|---|
 | 0.140 +- 0.047 | 0.041 +- 0.023 | 0.082 +- 0.032 | 0.116 +- 0.040 | 0.133 +- 0.045 | 0.138 +- 0.047 |
 
-This is a fit, not a measurement. One check is possible: playing the other card whenever 8 layouts' playouts favour
-it is worth -0.127 by the fit and -0.168 +- 0.057 in the split. An earlier version took the true cost as normal in
+This is a fit, not a measurement, and at this sample size it errs high: pairs drawn from the fitted distribution
+with the real layout counts and fitted again come out 0.03 to 0.04 above what was put in, in every column (`--fit-check`:
+exact +0.031 +- 0.009 in one run of 24, +0.041 +- 0.007 in another). So read the row as about 0.10 for exact knowledge,
+0.05 on 16 layouts and 0.09 on 32. The late-trick and level-card fits below show no such error (+0.002 +- 0.002 and
+-0.001 +- 0.001): they have more pairs. One check against a measurement is possible: playing the other card whenever
+8 layouts' playouts favour it is worth -0.127 by the fit and -0.168 +- 0.057 in the split. An earlier version took the true cost as normal in
 each bin: 0.182 +- 0.050 exact and 0.085 at 32 layouts. On the level cards below, where almost every pair is exactly
 level in truth, the normal version is five times too high and the count fit agrees with the split, so the count fit
 is the one reported. Choosing with hindsight on all 16 layouts gives 0.44 +- 0.06, an upper bound that is mostly
-noise. Seven eighths of the 0.140 sits at recorded gaps up to 0.25 (8.1 of the 22 pairs a side has at these tricks).
-By trick the split gives nothing at tricks 3 and 4 (-0.017 +- 0.033), +0.044 +- 0.022 at trick 5 and +0.014 +- 0.011 at
-trick 6 (12 of 16 choose, trust 0.5).
+noise. Seven eighths of the fitted 0.140 sits at recorded gaps up to 0.25 (8.1 of the 22 pairs a side has at these
+tricks). By trick the split gives nothing at tricks 3 and 4 (-0.017 +- 0.033), +0.044 +- 0.022 at trick 5 and +0.014 +-
+0.011 at trick 6 (12 of 16 choose, trust 0.5). Fitted trick by trick (fewer pairs each, so each errs higher still):
+0.062, 0.052, 0.091, 0.020 at tricks 3, 4, 5, 6.
 
 **Tricks 7 to 12** (all 1,561 boards: 2,990 pairs, 1,378 boards with one, up to 32 layouts from the deal list). Half
 of a pair's layouts choose, half score, margin 0.25:
@@ -159,8 +165,8 @@ leader's beliefs, about 690 forks): *pending* (`ceilLead`, azure5, about 20:30 U
 
 **A 64-layout ceiling for close decisions at tricks 3 to 6** (recorded gap up to 0.25), to check the fit on other
 boards and more layouts: 94 pairs on 80 boards so far. 48 of 64 layouts choosing gains +0.04 +- 0.04 to +0.07 +- 0.06
-by rule; the fit on these pairs gives 0.134 +- 0.051 for exact knowledge, where the 16-layout data gave 0.122 at the
-same gaps; hindsight on all 64 layouts, the upper bound, 0.20 +- 0.06. 300 more boards *pending* (`ceil64b`, azure2).
+by rule; hindsight on all 64 layouts, the upper bound, 0.20 +- 0.06. (The fit on 94 pairs, 0.134 +- 0.051, is too few
+pairs to trust.) 300 more boards *pending* (`ceil64b`).
 
 **Cards the search rates exactly level.** The gap forks above contain none (the smallest recorded gap is above zero),
 so none of the figures above covers the choice among level cards, which the bots make with a net. The collector's
@@ -226,8 +232,8 @@ Above trust 0.5 every net-only row loses (v4.1 top at trust 1: -0.14 +- 0.05). D
 of the table's 32, with no playouts: -0.006 +- 0.019. The net's own heads say nothing about the correction: v4.1's
 log-probability difference and gap-head difference together explain 0.02 of it at gaps up to 1/8.
 
-For scale: the fit of section 1 puts exact knowledge at these pairs at about 0.12 tricks a side and the best use of
-16 layouts of the real bots at about 0.07.
+For scale: section 1 puts exact knowledge at these pairs at about 0.09 tricks a side and the best use of 16
+layouts of the real bots at about 0.05 (the fit less its error).
 
 `v41:hyb5`, `v41:hyb8` at 128 layouts: *pending* (`wide3` on azure5).
 
@@ -389,8 +395,9 @@ a pair). None of them asks the net to judge a position.
 - The ceiling measures one changed card followed by the bots' own play. A policy that also plays differently later
   collects one such advantage at each of its own decisions, so the sum of these headrooms bounds what any cardplay
   policy with Gen 6's beliefs can gain against Gen 6; a policy with better beliefs is not bounded by it.
-- The "exact knowledge" figures are a fit. The direct figures are the split tables; hindsight on all layouts is the
-  only model-free upper bound and it is loose at 16 layouts.
+- The "exact knowledge" figures are a fit, corrected at tricks 3 to 6 for an error found by simulating it. The direct
+  figures are the split tables; hindsight on all layouts is the only model-free upper bound and it is loose at 16
+  layouts.
 - The ceiling covers the gap forks (a second card the search rated behind) from trick 3 and, for level cards, one
   other selector's card at tricks 7 to 12. The opening lead, tricks 1 to 2 and level cards at tricks 3 to 6 are
   pending.

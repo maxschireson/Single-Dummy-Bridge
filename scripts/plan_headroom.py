@@ -77,6 +77,7 @@ def main():
     p.add_argument('--tricks', help='keep only the pairs at these tricks, e.g. 5,6; a side\'s divisor stays every table read')
     p.add_argument('--side', choices=('declaring', 'defending'), help='keep only that side\'s decisions')
     p.add_argument('--skip-model', action='store_true', help='leave out sections 2b and 2c')
+    p.add_argument('--fit-check', type=int, default=0, help='simulate this many data sets from the fit of section 2c and refit them (is the fit biased?)')
     a = p.parse_args()
     read = []
     rows = [r for r in load(a.files, read) if (r['band'] >= 0 or a.ties) and r.get('worlds')]
@@ -234,8 +235,11 @@ def main():
             """count x log p with 0 x log 0 = 0."""
             return np.where(count[:, None] > 1e-12, count[:, None] * np.where(np.isfinite(logp), logp, -1e9)[None, :], 0.)
 
-        def free(index, sides_, text=False, steps=500):
+        def free(index, sides_, text=False, steps=500, counts=None, parts=None):
+            """`counts`: (share of layouts where B gains, where B costs) in place of the measured ones (the simulation
+            check); `parts`: a list that collects each bin's (rows, fitted weights, costs)."""
             totals, low, plain8 = {n: 0. for n in ns2}, {n: 0. for n in ns2}, 0.
+            qm_, qp_ = (q_minus, q_plus) if counts is None else counts
             e_, w_, n_ = est[index], w[index], neff[index]
             for lo, hi in zip(edges[:-1], edges[1:]):
                 m_ = (e_ > lo) & (e_ <= hi)
@@ -246,7 +250,7 @@ def main():
                 m_minus = float((wt * size_minus[i_]).sum() / max(1e-12, (wt * q_minus[i_]).sum()))
                 m_plus = float((wt * size_plus[i_]).sum() / max(1e-12, (wt * q_plus[i_]).sum()))
                 cost = atoms[:, 1] * m_plus - atoms[:, 0] * m_minus                 # the true cost of B at each atom
-                logl = term(cnt * q_minus[i_], la) + term(cnt * q_plus[i_], lb) + term(cnt * (1 - q_minus[i_] - q_plus[i_]), l0)
+                logl = term(cnt * qm_[i_], la) + term(cnt * qp_[i_], lb) + term(cnt * (1 - qm_[i_] - qp_[i_]), l0)
                 L = np.exp(logl - logl.max(1, keepdims=True))
                 g = np.full(len(atoms), 1 / len(atoms))
                 for _ in range(steps):
@@ -254,6 +258,8 @@ def main():
                     post /= post.sum(1, keepdims=True)
                     g = (wt[:, None] * post).sum(0) / wt.sum()
                 pairs = float(wt.sum() / sides_)
+                if parts is not None:
+                    parts.append((i_, g, cost))
                 better = float(g[cost < -1e-9].sum())
                 line = (f'     gap ({max(lo, 0):.4f}, {hi:.4f}]: {m_.sum():4d} pairs; B never gains for {float(g[atoms[:, 0] == 0].sum()):.2f} of them, is better in truth for '
                         f'{better:.3f}, by {float((g * np.maximum(0, -cost)).sum() / max(1e-12, better)):.2f} when it is;')
@@ -287,6 +293,29 @@ def main():
         print('     total a side:                      ' + ', '.join(f'{n}: {v:.3f}' for n, v in totals.items()))
         print('     without recorded gaps above 1:     ' + ', '.join(f'{n}: {low[n]:.3f} +- {np.std([r[n] for r in reps]):.3f}' for n in ns2) + '   (+- from resampling deals)')
         print(f'     check against section 2: playing B whenever 8 layouts\' playouts say so is worth {plain8:+.4f} a side by this fit')
+        if a.fit_check:
+            # does the fit err high at this sample size? Pairs are drawn from the fitted distribution with the real layout
+            # counts, refitted, and compared with what was put in
+            parts = []
+            free(np.arange(len(rows)), sides, parts=parts)
+            srng, sims = np.random.default_rng(a.seed + 2), []
+            for _ in range(a.fit_check):
+                q1, q2, put = q_minus.copy(), q_plus.copy(), 0.
+                for i_, g, cost in parts:
+                    pick = srng.choice(len(atoms), size=len(i_), p=g / g.sum())
+                    put += float((w[i_] * np.maximum(0, -cost[pick]))[est[i_] <= 1.].sum() / sides)
+                    for j, i in enumerate(i_):
+                        n = max(1, int(round(neff[i])))
+                        pr = np.array([atoms[pick[j], 0], atoms[pick[j], 1], max(0., 1 - atoms[pick[j]].sum())])
+                        c = srng.multinomial(n, pr / pr.sum())
+                        q1[i], q2[i] = c[0] / n, c[1] / n
+                again = free(np.arange(len(rows)), sides, steps=300, counts=(q1, q2))[1]
+                sims.append([put] + [again[n] for n in ns2])
+            sims = np.array(sims)
+            se = lambda x: float(np.std(x) / math.sqrt(len(x)))
+            print(f'     simulation check ({a.fit_check} sets of pairs drawn from the fit above, real layout counts, refitted): the refit minus what was put in, exact '
+                  f'{float(np.mean(sims[:, 1] - sims[:, 0])):+.4f} +- {se(sims[:, 1] - sims[:, 0]):.4f}; '
+                  + ', '.join(f'{n}: {float(sims[:, k + 1].mean() - low[n]):+.4f} +- {se(sims[:, k + 1]):.4f}' for k, n in enumerate(ns2) if n != 'exact'))
 
     # 3. rules from other benches
     for path in a.sims:
