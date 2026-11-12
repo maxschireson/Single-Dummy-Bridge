@@ -11,6 +11,7 @@ reports/gen8-reading-by-net-2026-11-12/README.md.
   python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR [--net ANY=POLICY.npz] [--redo]
   python scripts/gen8_reading_bench.py report --out OUT --mechanism      (where the nets' information sits, and what directed information is worth)
   python scripts/gen8_reading_bench.py report --out OUT --aim 1.05 --aim 1.85 [--against v4]   (a reading plus aimed information)
+  python scripts/gen8_reading_bench.py report --out OUT --near 0.2 --near 0.4 --near-split 0.2   (the same at given strengths)
   python scripts/gen8_reading_bench.py report --out OUT [--json FILE]
 
 pools   For every decision of the recorded root tables after the opening lead where the decider has a choice: the layouts
@@ -557,7 +558,12 @@ def aimed(a):
 
     def extra(near, mask):
         return float(np.mean([gain(i, base[i] - near * miss[i]) - plain[i] for i in np.flatnonzero(mask)]))
+
+    def alone(near, mask):
+        """The true layout's gain from the aim with no play reading (the Gen 9 session's measure of a setting's nats)."""
+        return float(np.mean([gain(i, -near * miss[i]) for i in np.flatnonzero(mask)]))
     everywhere = np.ones(len(rows), bool)
+    declaring = np.array([bool(r['declaring']) for r in rows])
     nears = {}
     for target in a.aim:
         lo, hi = 0., 8.
@@ -572,17 +578,20 @@ def aimed(a):
     print(f"{len(rows)} decisions on {tables_n} tables of {len(set(fam))} deals; the reading is {net}'s: +{b[0] * share:.3f} +- {b[1] * share:.3f} tricks a board against no reading;"
           f" the true layout gains {plain.mean():+.2f} nats from it")
     result = dict(net=net, decisions=len(rows), tables=tables_n, settings={})
-    first = a.aim[0]
-    settings = [(f'+{t:g} nats, every decision', nears[t], everywhere) for t in a.aim]
-    settings += [(f'near of +{first:g}, tricks 1 to 6 only', nears[first], trick <= 6), (f'near of +{first:g}, from trick 7 only', nears[first], trick >= 7)]
+    settings = [(f'+{t:g} nats, every decision', nears[t], everywhere) for t in a.aim] + [(f'near {x:g}, every decision', x, everywhere) for x in a.near]
+    split = a.near_split if a.near_split is not None else (nears[a.aim[0]] if a.aim else a.near[0])
+    settings += [(f'near {split:.3g}, tricks 1 to 6 only', split, trick <= 6), (f'near {split:.3g}, from trick 7 only', split, trick >= 7),
+                 (f'near {split:.3g}, declarer only', split, declaring), (f'near {split:.3g}, defenders only', split, ~declaring)]
     for label, near, mask in settings:
         cost = read.copy()
         for i in np.flatnonzero(mask):
             cost[i] = score(rows[i], stack(base[i] - near * miss[i]), power=1., min_effective=1.)[1]
         d = mean_se(read - cost, fam)
-        nats = extra(near, mask)
-        result['settings'][label] = dict(near=near, helped=int(mask.sum()), nats_a_helped_decision=nats, tricks_a_board_over_reading=[d[0] * share, d[1] * share])
-        print(f"  {label:38s} near {near:.3f} | {int(mask.sum()):6d} decisions helped, {nats:+.2f} nats each | over the reading {d[0] * share:+.3f} +- {d[1] * share:.3f} tricks a board")
+        nats, before = extra(near, mask), alone(near, mask)
+        result['settings'][label] = dict(near=near, helped=int(mask.sum()), nats_a_helped_decision=nats, nats_without_the_reading=before,
+                                         tricks_a_board_over_reading=[d[0] * share, d[1] * share])
+        print(f"  {label:34s} near {near:.3f} | {int(mask.sum()):6d} decisions helped, {nats:+.2f} nats each on top of the reading ({before:+.2f} without it)"
+              f" | over the reading {d[0] * share:+.3f} +- {d[1] * share:.3f} tricks a board")
     if a.json:
         Path(a.json).write_text(json.dumps(result, indent=1))
 
@@ -590,7 +599,7 @@ def aimed(a):
 def report(a):
     if a.mechanism:
         return mechanism(a)
-    if a.aim:
+    if a.aim or a.near:
         return aimed(a)
     rows, names = read_all(a.out)
     if a.house:
@@ -705,6 +714,8 @@ def main():
     ap.add_argument('--sweep', action='store_true', help='report: other settings on the same solves')
     ap.add_argument('--owner', type=float, action='append', default=[], help='report: add this many times the owner head\'s log-probability (repeatable)')
     ap.add_argument('--redo', action='store_true', help='cards: write the files again')
+    ap.add_argument('--near', type=float, action='append', default=[], help='report: the same with near given (repeatable)')
+    ap.add_argument('--near-split', type=float, help='report: the near used for the tricks 1-6, trick 7 on, declarer and defender settings')
     ap.add_argument('--aim', type=float, action='append', default=[], help='report: nats of information aimed at the true deal, on top of the --against net (default v4)')
     ap.add_argument('--against', help='report: the net the others are paired against (default: the first)')
     ap.add_argument('--pairs-only', action='store_true', help='report: only the paired comparison')
