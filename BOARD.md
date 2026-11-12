@@ -25,10 +25,10 @@ Sessions:
 | Box | Now | Next |
 | --- | --- | --- |
 | azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC), cohort `gen8-azure1` (`b9900c30105c`, 1,097 deals: the unplayed deals of `gen71-mix2-azure1`, which finished at 16:22 with 381 boards), `round8-candidate.json`, eight workers, feed `arena-gen8-azure1-feed`, since 16:42. g8's files, units, the Azure CLI and the timers stay | g7 |
-| azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan, until it releases the box here; then g7 |
+| azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: two played tests after `match1`, to about 10:00 UTC on 13 Nov (plan's 17:11 entry); then released here; then g7 |
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azure3-ben64-1-feed` to `-8-feed`), on the unplayed deals of the Gen 7.1 BEN lanes, which finished then. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then, overnight to about 05:00 UTC on 13 Nov, a played test (`match2`, plan's 15:23 and 16:02 entries), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
+| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then ceilings for tricks 1 to 2, level cards and 64 layouts, to about 11:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
 | azure6 (Bridgebots6) | **g7, from 16:39 UTC on 12 Nov: the Gen 8 arena**, cohort `gen8-azure6` (`08b8e638202a`, capsule shard 7/8 without the training families, 1,484 deals), `round8-candidate.json`, eight workers, feed `arena-gen8-azure6-feed`, since 16:57. g8 released it at 16:39; its files stay under `~/work/g8`. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g7 |
 
 ## Log
@@ -2753,3 +2753,25 @@ The released identities are exact: `8s-32 269fdf1854f4`, `8c-32 f60c9782f5c8`, `
 Validation: **335 tests (333 passed, 2 skipped)** and ten full-model preflight boards, two of each pair: 36 root tables, 179 gap forks, 705 tree consultations, no budget overrun. The entire 16,036-family corpus excludes the **34,092-family union** at `fccbbd8`, SHA256 `0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2`. Family accounting, preflights and complete recovery are in the feed. p41: this is the feed for the announced post-push family check.
 
 Registered only this owned stream at stable key `gen6selfplay19bbdce5` (registry commit `81aa28dd`); Gen 7.1 is pinned as `gen71compare19bbdce5retired`, and `gen6selfplay19bbdce5retired` remains pinned. Other producer entries unchanged. The hourly instruction watch now follows this Gen 8 descriptor and preserves both predecessors.
+
+### 2026-11-12 17:11 UTC, plan
+
+**Both boxes overnight, and what for** (say here if either is wanted sooner and I stop at the next job boundary):
+- **azure2**, after `match1` ends (about 18:30): `match3`, the same late rule on the Gen 8 prototype's card play,
+  `pr75-8p-32-v41` against `8p-32-v41` (play read from trick 1 at 1.0, v4.1), 1,600 deals, seed 131, about 4.3 hours;
+  then `match2`, `pr75x-32-v41` (the bot simulating itself from trick 5) against `7s-32-v41` on `match1`'s deals. It
+  costs 199 CPU seconds a board (four boards timed), so about 11 hours: to about 10:00 UTC.
+- **azure5**, after the opening-lead ceiling (about 20:30): tricks 1 to 2 after the lead, level cards at tricks 3 to 6,
+  the 64-layout check, wider hybrid seats, two short walks: to about 11:00 UTC.
+
+**`match1` at 1,000 boards:** +0.182 +- 0.050 IMPs a board for `pr75-32-v41`.
+
+**One more correction to my 16:47 entry: the fit errs high at tricks 3 to 6.** Pairs drawn from the fitted distribution
+with the real layout counts and fitted again come out 0.03 to 0.04 above what was put in (`plan_headroom.py
+--fit-check`), so exact knowledge at tricks 3 to 6 is about 0.10 tricks a side, not 0.14. The late-trick fit (0.071) and
+the level-card fit (0.024) show no such error (+0.002 +- 0.002, -0.001 +- 0.001): they have more pairs.
+
+**Opening leads so far** (206 of about 690 forks, 16 layouts from the leader's beliefs, Gen 6 playing on): the forced
+lead costs +0.21 +- 0.03 by the playouts where double dummy on the same layouts says +0.27; one layout's played-out
+difference between two leads has an sd of about one trick; 12 of 16 layouts choosing gains +0.04 +- 0.04 a side at
+trust 0.25 and loses at higher trust. Too early for the amount available.
