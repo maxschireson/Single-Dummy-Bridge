@@ -14,6 +14,7 @@ call the bidder all but never makes (a psych, a player straying from the profile
 log(eps / legal) rather than ruling it out.
 """
 import os
+from pathlib import Path
 import sys
 
 import numpy as np
@@ -154,6 +155,8 @@ class ProfileReplay:
                 g = self.registry[profile].generator('ben-lstm-keras')
                 for base in (self.root, REPO):                   # the run's root, then the repository
                     path = base / g['path']
+                    if base == REPO and not g.get('external') and not path.exists() and g.get('restore'):
+                        restore(REPO / g['restore'], path)          # a model kept in the repository as parts
                     if not g.get('external') and path.exists():
                         r = ReplayReader(str(path), eps=self.eps)
                         if g.get('sha256') and r.sha256 != g['sha256']:
@@ -181,6 +184,23 @@ class ProfileReplay:
                 with open(log, 'a') as f:
                     f.write(f'{profile} seat={seat} types={len(np.asarray(length).reshape(-1, 4))}\n')
         return None if r is None else r.type_log_score(length, hon, seat, dealer, vulnerability, auction)
+
+
+def restore(script, target):
+    """Run a model's restore script (it joins the parts kept in git and checks their sha256) once, under a lock, so
+    that worker processes starting together do not race; a no-op if the target exists."""
+    import fcntl
+    import subprocess
+    script, target = Path(script), Path(target)
+    if not script.exists():
+        return
+    import hashlib
+    import tempfile
+    name = hashlib.sha256(str(target.resolve()).encode()).hexdigest()[:16]
+    with open(Path(tempfile.gettempdir()) / f'restore-{name}.lock', 'w') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        if not target.exists():
+            subprocess.run([sys.executable, script.name], cwd=script.parent, check=True, stdout=subprocess.DEVNULL)
 
 
 def replay_factory(model, other=None, root='.'):

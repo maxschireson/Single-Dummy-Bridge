@@ -55,3 +55,27 @@ Same protocol, 500 deals a system (about 1,000 decisions), readers `w * S + F` f
 
 On every generator the best weight is about 0.1: the scorer still adds 0.1 to 0.45 nats at that weight
 over the card alone, and costs more and more above it.
+
+## Supplement, 12 Nov 09:21 UTC: when the player matches a profile, does the card post-filter help?
+
+Max's question in the Gen 9 brief: "Even when they match a profile their card post-filters the net?"
+Same protocol as part 1 (opening leader before the lead and declarer at trick 1, pool 512, gain of the
+true layout in nats), on auctions bid at all four seats by a house net, read with a card the net's
+profile is near. 400 deals a row (seeds 9931, 10931, 11931; readers paired within a row);
+`house-postfilter.json`, `scripts/gen9_e9_1.py --systems house-gen5:<card>,...`.
+
+| Auctions / card | S | F alone | S+F | R (replay) | R+F |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Gen 5 / house-gen5-fit (the best card for Gen 5) | 3.72 ± 0.08 | 1.98 ± 0.09 | 3.30 ± 0.09 | 4.08 ± 0.08 | 3.73 ± 0.09 |
+| Gen 5 / two-over-one | 3.64 ± 0.08 | 1.75 ± 0.10 | 3.05 ± 0.10 | 3.95 ± 0.08 | 3.52 ± 0.10 |
+| Gen 6 / house-gen5-fit | 3.64 ± 0.08 | 1.89 ± 0.09 | 3.06 ± 0.10 | 4.07 ± 0.08 | 3.61 ± 0.10 |
+
+- No. Multiplying the card's filter (eps 0.05) onto a matching profile's reading costs 0.35-0.6 nats,
+  whether the profile is read by the scorer (S → S+F) or by replay (R → R+F), even with the card fitted
+  to that very bidder. The card is broken on about 15% of the calls it covers (profile-distance report),
+  and each break costs a true layout log 0.05.
+- Without negative inference the cost is smaller (S+F-ni 3.47, 3.25, 3.24) but still a cost.
+- The card alone reads about half of what the profile's own reader does (1.8-2.0 against 3.6-4.1).
+- So for a player mapped to a held profile, the card's job is the mapping (the arrival prior, and the
+  `card` profile in the mixture that takes over if the player stops bidding like the profile), not a
+  filter on the profile's reading. This is what the shell does now.

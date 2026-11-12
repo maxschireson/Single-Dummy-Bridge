@@ -157,10 +157,11 @@ HOUSES = {'house-gen6': 'models/bidding/gen6-candidate-2026-11-11/bidder.keras',
 def run(name, deals, pool, seed, scorer, exact_deals=500):
     rng = random.Random(seed)
     mixed = name == 'mixed-house-precision'
+    name, _, house_card = name.partition(':')                   # house-gen5:<card id> reads the house auctions with that card
     if name in HOUSES:                                          # all four seats the house bidder; card: the approximate 2/1 card
         from bridge_harness.cards.replay import ReplayReader
         house_all = HouseBidder(HOUSES[name])
-        gen, card = house_all, 'two-over-one'
+        gen, card = house_all, house_card or 'two-over-one'
         reads = Readers(scorer, card, None, ReplayReader(house_all.b))
     else:
         g = SYSTEMS['precision' if mixed else name]
@@ -208,7 +209,7 @@ def run(name, deals, pool, seed, scorer, exact_deals=500):
     return rows, skipped
 
 
-def summarize(rows, keys=('S', 'S+F', 'S+F-ni', 'ceil', 'exact', 'hS+F', 'S_on_exact_deals', 'ceil_on_exact_deals', 'R', 'S+R', 'R+F')):
+def summarize(rows, keys=('S', 'F', 'S+F', 'S+F-ni', 'ceil', 'exact', 'hS+F', 'S_on_exact_deals', 'ceil_on_exact_deals', 'R', 'S+R', 'R+F')):
     keys = tuple(keys) + tuple(f'{w:g}S+F' for w in WEIGHTS)
     out = {'n': len(rows)}
     for k in keys:

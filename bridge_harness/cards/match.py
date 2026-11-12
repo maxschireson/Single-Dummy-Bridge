@@ -317,8 +317,11 @@ class CardProfile:
         return out
 
 
-def held_systems(root='.', eps=0.05):
-    """{system id: call model} for every Gen 8 system package whose bidder is a BEN-format net restored here."""
+def held_systems(root='.', eps=0.02, temperature=0.25):
+    """{system id: call model} for every Gen 8 system package whose bidder is a BEN-format net restored here.
+    `temperature` below 1 sharpens each net's softmax toward its greedy call (the house nets bid greedily). The
+    defaults (eps 0.02, temperature 0.25, since 12 Nov) tell Gen 5 from Gen 6 by 0.46 nats a board on a guest's
+    calls, against 0.09 at temperature 1 (reports/gen9-arrival-curve-2026-11-12)."""
     from pathlib import Path
     from ..systems import SystemRegistry
     out = {}
@@ -331,10 +334,14 @@ def held_systems(root='.', eps=0.05):
             g = reg[sid].generator('ben-lstm-keras')
         except ValueError:
             continue
-        for base in (Path(root), Path(__file__).resolve().parents[2]):
+        repo = Path(__file__).resolve().parents[2]
+        for base in (Path(root), repo):
             path = base / g['path']
+            if base == repo and not g.get('external') and not path.exists() and g.get('restore'):
+                from .replay import restore            # a model kept in the repository as parts (fresh checkouts)
+                restore(repo / g['restore'], path)
             if not g.get('external') and path.exists():
-                out[sid] = NetProfile(sid, str(path), eps=eps)
+                out[sid] = NetProfile(sid, str(path), eps=eps, temperature=temperature)
                 break
     return out
 
