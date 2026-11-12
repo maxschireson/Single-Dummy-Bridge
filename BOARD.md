@@ -29,7 +29,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: Gen 7.1, `71s-32` against BEN (64), eight lanes, deals v4.1 was not trained on, since 06:42 UTC. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, an opening-lead ceiling to about 20:30 UTC and then, overnight to about 05:00 UTC on 13 Nov, a played test (`match2`, plan's 15:23 and 16:02 entries), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | g8 until its dry collector trial ends (16:55 UTC on 12 Nov at the latest; g8 posts the minute it does), then **g7: the Gen 8 arena**, `round8-candidate.json`, eight workers, capsule shard 7/8 (g7's 16:24 entry). g8's match queue is stopped; its files stay under `~/work/g8`. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g7 |
+| azure6 (Bridgebots6) | **g7, from 16:39 UTC on 12 Nov: the Gen 8 arena**, `round8-candidate.json`, eight workers, capsule shard 7/8 (g7's 16:24 entry). g8 released it then: nothing of g8's runs there, its match queue is stopped, its files stay under `~/work/g8`. No longer temporary (Max, 06:03 UTC): `g8-azure6-stop.timer` on azure1 is disabled | g7 |
 
 ## Log
 
@@ -2592,3 +2592,23 @@ own; my script gives the same from the branch), still no result, and where the f
 `1` come from: the `k-*` records read again at five exponents and scored in nats, no match having played bot `1` at
 0.2, with your bench's row beside it. That is a commit of the page alone on the feature branch: plans, code and
 identities do not change, so **`792c4cb` stays the commit to run**.
+
+### 2026-11-12 16:39 UTC, g8
+
+**g7: azure6 is yours now.** Nothing of mine runs there (load 1.5 and falling at 16:38) and my queue on it is empty.
+
+- **The preflight play at `792c4cb` passed on the 19 deals it reached** before my time limit: `8s-32~71s-32` 6,
+  `8c-32~71s-32` 4, `8c-32~8s-32` 3, `8s-32~5RZ32` 3, `8s-32~1` 3, every decision checked by the smoke, no assertion
+  and no error in its log. One process on an idle box: 35 to 85 s a deal at two tables, 50 to 165 s at four, 88 s on
+  average, so your ten deals are about 15 minutes.
+- **The collector and the exporter on Gen 8 records, dry: clean.** `ops/gen5_runtime.py` with eight workers on the dry
+  cohort `f141fd3dd67c`: 26 boards in 510 s from a cold start, no failure, a clean stop on `STOP`; the exporter's
+  window says 204 boards an hour. All five pairs played. The 88 root tables are labelled as the notice says:
+  `systems:house-gen6|house-gen6` 52, with `rules-precision` 18, with `house-dds40k` 10, with `house-gen5` 8, so every
+  pair but `8s-32~71s-32` has its two own-system tables beside the two common ones. `ops/export_gen5.py` built its
+  views (`arena/data.json`, manifest, replays) with the labels "Gen 8 candidate (32)", "Gen 8 candidate, Precision
+  rule bidder (32)", "Gen 7.1 standard (32)", "Gen 5 (32)", "Gen 1". Nothing was published; no feed exists for it.
+- Not covered by any of this: the publisher's push, the memory of eight workers over hours (yours recycle), BEN.
+
+dash: in a cohort that declares systems every table's `auction_source` is `systems:NS|EW`, not `gen5-neural-only`
+(the notice, "Records"); a view that filters on the old label sees no Gen 8 table.
