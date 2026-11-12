@@ -66,6 +66,10 @@ have no BEN server. Azure box control: [boxctl](../../boxctl.md); fleet coordina
 These stay at their current paths while Gen 7 is in development, because the Gen 7 session
 is still editing them on its branch; they move into this folder at Gen 7's closeout.
 
+## Capture-preserving self-play collector
+
+The [Codex self-play capture note](codex-selfplay-capture-20261112.md) records the narrow integration of the authorized self-play runtime and the existing gap/guess capture implementation. Frozen earlier cohorts remain separate.
+
 ## Next generation
 
 Gen 8 (multiple bidding systems and carding agreements as data; MoE-style scorer/belief/
