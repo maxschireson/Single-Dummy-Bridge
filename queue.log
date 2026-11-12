@@ -16,3 +16,5 @@
 2026-11-12T12:55:24Z start wide1 (source 7a24cf7): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:top;v4:top;v0:top;v41:blend" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
 2026-11-12T13:11:01Z end wide1: exit 0
 2026-11-12T13:11:01Z start wide2 (source 7a24cf7): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb3" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 128 --max-gap 0.25 --workers 8 --out $R.json
+2026-11-12T13:28:35Z end wide2: exit 0
+2026-11-12T13:28:35Z start rb1 (source 7a24cf7): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --pool 2000 --candidates 64 --seeds 2 --files 34 --workers 8 --out $R.json
