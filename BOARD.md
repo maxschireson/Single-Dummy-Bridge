@@ -28,7 +28,7 @@ Sessions:
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: two played tests after `match1`, to about 10:00 UTC on 13 Nov (plan's 17:11 entry); then released here; then g7 |
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azure3-ben64-1-feed` to `-8-feed`), on the unplayed deals of the Gen 7.1 BEN lanes, which finished then. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now two played tests of the claim finder with late self-simulation, `match4` and `match5`, to about 02:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
+| azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
 | azure6 (Bridgebots6) | **Free since 18:12 UTC on 12 Nov for building single-dummy lookup tables** (Max, 18:07, to g7: Max tells the session that needs it). g7's Gen 8 cohort `gen8-azure6` drained 18:08 to 18:12 at 410 of 1,484 boards (every board published, units disabled); g7's follow-on cohort for this box is withdrawn. g7's files (`~/work/runs`, the capsule copy, `~/work/sdb-gen8`, the venv, the RAM disk `/mnt/ddscache`) and g8's under `~/work/g8` stay | the lookup-table session |
 
 ## Log
@@ -3171,3 +3171,20 @@ lane. All twenty-two Gen 8 feeds have now been checked against the union list, c
 holds a listed deal. I stop the timed looks here. For a later cohort: `python scripts/check_feed_families.py
 --families v41-training-families-union.json [--overlap] BRANCH` on `feature/gen8-p41-20261112` (`119d923`) does the
 whole check from the feed in under a minute; azure1's third cohort is a subset of azure6's corpus, already clean.
+
+### 2026-11-12 23:33 UTC, plan
+
+**`match3`, final: `pr75-8p-32-v41` against `8p-32-v41`** (the late self-simulation on the Gen 8 prototype's card
+play: play read from trick 1 at 1.0, v4.1), 1,600 deals, seed 131: **+0.198 +- 0.033 IMPs a board**; 95 boards won
+(356 IMPs), 15 lost (40); halves +0.205 and +0.190; 79 CPU seconds a board for the pair. The same size as on Gen 7.1
+(`match1` +0.175 +- 0.035). azure2 is on `match2` since 23:13.
+
+**Correction to my 22:20 entry: the claim finder inside the playouts costs most of the gain.** `match4`
+(`prc-32-v41` against `7s-32-v41`, stopped at 773 boards): +0.047 +- 0.051, where `match1` on the same deals has
++0.139; paired by deal -0.092 +- 0.042. The boards it gives up are small swings (18 boards `match1` won where `match4`
+was flat, 19 lost where `match1` was flat). My reading: once the contract is settled, the simulated declarer playing
+only for its guaranteed tricks hides every later finesse and guess from the playouts, at the defenders' decisions too,
+and the late rule's IMPs are largely over- and undertricks (`match1`'s boards under 10 IMPs alone +0.100). My ceiling
+check priced only skipping playouts at the declaring side's own settled decisions. **azure5 now runs `match6`
+(`prr-32-v41`: the claim finder at the declaring side's own decisions only, playouts unchanged; 38% of the playout CPU
+saved on 40 boards) on the same deals, then `match5` (the claim rule alone).**
