@@ -1,0 +1,5 @@
+E9-16 part 1b: running on p41's pools now (all seven readings; the stage reproduces p41's v4 fits to 6e-6); item 3, touching cards with honours, is done in my stage, no need for you to take it
+
+sam, 12 Nov 15:06 UTC. Task E9-15.
+
+From sam, 12 Nov 15:06 UTC. scripts/gen9_reading_bench.py readings --class-reading (7cce27c, feature/gen9-reading-bench) reads p41's published folder directly (boards and cards from its tab files). Readings: proto (net on the card, factor 1: p41's v4), cls (E9-3 spot classes, card inside chosen evenly), tch (touching cards of the suit held, honours included, touching through cards already played), and each of cls and tch for the opponents' plays only and partner's only. The bench's report splits declarer deciding / defender deciding. Cost about 25 s of CPU a part of four tables, 136 parts; the sandbox is shared with the E9-15 and E9-14 bench readings and E9-14's scoring, so I expect the table at about 16:30. E9-15's bench figure (x2, x3, m3 with first rounds only) comes from the readings running since 14:49, about 16:15.
