@@ -1,0 +1,23 @@
+{
+ "host": "azure3",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "feature/gen7-candidate-20261111",
+ "source_commit": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+ "source_run": "arena-gen6-gen7-capture-feed recovery capsule at 8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+ "plan": "configs/round7-candidate-phase1-nonben.json",
+ "shard": "2/8",
+ "workers": 8,
+ "threads": "one BLAS, OpenMP and TensorFlow thread a worker",
+ "publication_branch": "arena-gen7-phase1-azure3-feed",
+ "supervision": "systemd units arena-gen7 and arena-gen7-publish; no BEN server on this machine",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md on feature/boxctl-20261112)"
+}
