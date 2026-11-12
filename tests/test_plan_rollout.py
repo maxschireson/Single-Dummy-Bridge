@@ -10,7 +10,7 @@ from bridge_harness.gen7 import utilities
 from bridge_harness.gen7_net import INPUTS
 from bridge_harness.plan_families import Features, held_out, key_variables
 from bridge_harness.plan_player import PlanPlayer, PlayoutUse, playout_stages
-from bridge_harness.plan_rollout import Believer, NetPlayer, Public, Rows, card_values, inputs, play_out, solve_rows
+from bridge_harness.plan_rollout import Believer, NetPlayer, Public, Rows, card_values, inputs, plan_values, play_out, solve_rows
 from test_gen7 import Fixture, played
 
 
@@ -165,6 +165,73 @@ class RolloutTests(Fixture):
             np.testing.assert_array_equal(v[0], v[1])
             seen.add(declaring)
         self.assertEqual(seen, {True, False})
+
+
+class PlannerTests(Fixture):
+    def layouts(self, p, seed, plies, n=6):
+        """A decision with two hidden hands and n of its layouts, the real one first."""
+        game, o, world = spot(seed, plies)
+        view = View(o)
+        if len(view.hidden) != 2 or len(o.legal) < 2:
+            return None
+        assign = view.uniform(n - 1, np.random.default_rng(seed))
+        return o, [world] + [view.world(row) for row in assign]
+
+    def test_a_plan_for_one_family_of_everything_is_the_default_line(self):
+        p = self.make()
+        done = 0
+        for seed in range(6):
+            got = self.layouts(p, seed, 9 + 4 * seed)
+            if got is None:
+                continue
+            o, worlds = got
+            w = np.full(len(worlds), 1 / len(worlds))
+            for k in (1, 3):
+                m, who = plan_values(o, worlds, w, list(o.legal)[:2], [-1, 0], p.net, p.dds, family=np.zeros(len(worlds), int), own_layouts=k)
+                self.assertEqual(m.shape, (2, 2, len(worlds)))
+                np.testing.assert_array_equal(m[:, 0], m[:, 1])
+                self.assertEqual(who.refuted, 0)
+                self.assertTrue((np.abs(m) <= 13).all())
+            done += 1
+        self.assertGreater(done, 2)
+
+    def test_the_plan_for_the_real_layouts_family_is_never_refuted_there(self):
+        """With every layout its own family, the plan for layout t meets no contradiction when t is the real layout,
+        and is refuted sooner or later in layouts that differ from it in a named card or a count."""
+        p = self.make()
+        for seed in range(4):
+            got = self.layouts(p, seed, 10 + 4 * seed, n=4)
+            if got is None:
+                continue
+            o, worlds = got
+            w = np.full(len(worlds), 1 / len(worlds))
+            m, who = plan_values(o, [worlds[0]], [1.], list(o.legal)[:1], [0], p.net, p.dds)
+            self.assertEqual(who.refuted, 0)
+            self.assertGreater(who.own_choices, 0)
+
+    def test_what_the_decider_is_given_never_holds_a_card_it_could_not_place(self):
+        """The layout handed to the solver for a plan has the hidden hands' real sizes and only unseen cards."""
+        p = self.make()
+        from bridge_harness.plan_rollout import Planner
+        for seed in range(5):
+            got = self.layouts(p, seed, 12 + 3 * seed, n=5)
+            if got is None:
+                continue
+            o, worlds = got
+            who = Planner(p.net, p.dds, o, worlds, np.full(len(worlds), .2))
+            rows = Rows(o, [worlds[0]])
+            shown = who.shown(rows, 0)
+            ok = who.fits(rows, 0, shown)
+            self.assertTrue(ok.all())               # at the root every layout fits
+            for z in range(len(worlds)):
+                hand = who.family_hand(rows, 0, z, shown)
+                self.assertEqual(len(hand), len(worlds[0][who.a]))
+                unseen = set(worlds[0][who.a]) | set(worlds[0][who.b])
+                self.assertTrue(set(int(c) for c in hand) <= unseen)
+                named = lambda cards: sorted(c for c in cards if c % 13 >= 8)
+                self.assertEqual(named(int(c) for c in hand), named(worlds[z][who.a]))
+                for s in range(4):
+                    self.assertEqual(sum(1 for c in hand if c // 13 == s), sum(1 for c in worlds[z][who.a] if c // 13 == s))
 
 
 class FamilyTests(Fixture):
