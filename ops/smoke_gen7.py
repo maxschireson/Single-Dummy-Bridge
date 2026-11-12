@@ -88,6 +88,8 @@ def smoke(run, out, deals=2, start=0):
         roles = dict(candidate=r['candidate'], opponent=r['opponent'])
         first = next(iter(r['regimes'].values()))
         row = dict(index=index, pair=r['pair'], seconds=time.time() - started, tables=len(r['unique_tables']),
+                   gap_forks=sum(len(t.get('gap_forks', [])) for t in r['unique_tables'].values()),
+                   gap_enabled_roots=sum('gap_forks' in t for t in r['unique_tables'].values()),
                    imps={k: v['imps'] for k, v in r['regimes'].items()}, root_tables=len(first['tables']),
                    decisions=0, unsearched=0, in_a_stage=0, consulted=0, moved=0, over_budget=0, tree_seconds=0.,
                    tree_forks=0, tree_fork_imps=0)
