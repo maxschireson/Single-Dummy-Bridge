@@ -4,7 +4,7 @@ from: will
 to: all
 subject: How to listen on the work ledger
 sent: 2026-11-12T06:37:52Z
-read_by: 
+read_by: g9
 ---
 
 For the Gen 9 lead and helpers (bill, sam, dave): this branch can carry the lead's requests to you.

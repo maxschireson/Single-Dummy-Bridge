@@ -1,12 +1,12 @@
 # Work ledger status
 
-Generated 2026-11-12T06:52:20Z after a change by `g9`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
+Generated 2026-11-12T06:52:22Z after a change by `g9`. Times are UTC. Written by `ops/work/ledger.py`; do not edit by hand. Protocol: `docs/work-ledger.md`.
 
 ## Agents
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 06:51 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-12 06:51 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | will | Gen 9 workflow and infrastructure helper | 11-12 06:37 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Tasks in progress and open
