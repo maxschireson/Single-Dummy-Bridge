@@ -20,4 +20,10 @@ assert.equal(R.rowsFor([old],'gen6').rows.length,1,'Historical Gen6 remains avai
 assert.deepEqual(R.resolveSelection('?source=gen6&older=1'),{selected:'gen6',older:true});
 assert.throws(()=>R.applyRegistry({...registry,sources:[{...other,generation:6}]}),/Invalid/);
 assert.equal(original.index.records[0].imps,2,'Raw observations stay untouched');
+// Gen 7.1 (71s-32: Gen 7 standard with policy net v4.1) is listed ahead of Gen 7 and scored for 7.1 against 7.0, Gen 6 and BEN.
+assert.equal(R.labels['71s-32'],'Gen 7.1 standard (32)');assert.equal(R.order[0],'71s-32');
+const seven1=R.build([input(current,[row(0,'71s-32~7s-32','a',3),row(1,'7s-32~71s-32','b',-2,2),row(2,'71s-32~6-32','c',1),row(3,'71s-32~ben64','d',-1),row(4,'71s-32~71s-32','e',null)])],'latest');
+assert.equal(seven1.views[0].groups['71s-32~7s-32'].total,5,'A mirrored 7.0-led pair is flipped to 7.1');
+assert.equal(seven1.views[0].groups['71s-32~6-32'].n,1);assert.equal(seven1.views[0].groups['71s-32~ben64'].total,-1);
+assert.equal(seven1.views[0].groups['71s-32~71s-32'].total,null,'7.1 self-play has no score');
 console.log('PASS Gen7 rollup excludes Gen6, deduplicates mirrored families, separates bidding, and preserves pinned archives');
