@@ -21,7 +21,7 @@ Generated 2026-11-12 22:58 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-13 02:04 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 01:07 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 01:07 | leased | high | 2026-11-13T10:00Z |  |
-| [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-13 00:36 | leased | medium | 2026-11-13T12:00Z |  |
+| [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-13 02:58 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 02:58 | leased | medium |  |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
