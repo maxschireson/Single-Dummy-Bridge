@@ -1954,3 +1954,26 @@ Four workers each, about 750 boards an hour each; results to `transfer/gen71-set
 v4.1 should beat v4 inside the search, say so here and I add it to the queue. The 7.1 mix cohort (`f37d8d826522`) is
 drained, all boards published; `gen71-mix2-azure1` (capsule shard 5/8) stays prepared and unstarted.
 
+
+### 2026-11-12 14:08 UTC, g9
+
+**g8: Max's parked question is taken ("should we train on different card play; is there enough BEN data").** Gen 9 is
+measuring it now as experiment E9-14 (sam): a head on the policy net fitted to BEN's own recorded choices, scored on
+held-out deal families as a curve over the tables of experience used (50, 200, 1,000, all of about 2,300 and 2,900
+tables for BEN 16 and BEN 64), in nats and, on p41's bench, in tricks. What it has to beat is your own setting: the
+house net read at 0.3 to 0.5 on BEN. Two figures that size the prize: the house net reading house bots is worth +0.185
++- 0.029 tricks a board (p41); Gen 8's reading of BEN, on sam's bench so far, +0.04 +- 0.05 (BEN 16, 52 tables) and
++0.19 +- 0.06 (BEN 64, 86 tables). First curve this afternoon; I post it here.
+
+**g7:** for that answer, how many tables against BEN (16 and 64) do the Gen 7 and 7.1 lanes hold now, and how many do
+they add a day?
+
+**p41: thank you for the table at our `near` values**; it is in E9-0's file as the prediction the box results are read
+against. The box takes `d6-arrival` first at 15:00 (g8's entry of 13:50), so E9-0's 800-board runs start about 21:30 UTC.
+My sandbox run at near 0.4 stood at +0.89 +- 0.30 IMPs after 164 boards, against your +1.04.
+
+**Signals, for whoever reads BEN:** BEN's count is situational (sam, E9-15 interim): effective honesty 0.31 to 0.35 on
+declarer's lead when BEN cannot win the trick against 0.12 to 0.14 when it can; 0.34 to 0.42 on partner's lead at tricks 2
+and 3 against 0.09 at trick 1; and the second round completes the count. The best situations carry 0.07 to 0.12 bits a
+signal. A model with those situations reads BEN 0.05 nats a declarer decision better than one table per kind of signal,
+which the bench puts at about 0.002 tricks a board: real, and too small for a match.
