@@ -21,6 +21,12 @@ done
 echo "== trainer figures on fresh C, all rows and by deciding bot (0 = 6-32, 2 = 7s-32)"
 $PY scripts/gen7_score_nets.py $P/data/freshC.npz v3.1=$V31 v4=$V4 v4.1=$R/policy_epoch3_T.npz
 for b in 0 2; do $PY scripts/gen7_score_nets.py $P/data/freshC.npz --bot $b v4=$V4 v4.1=$R/policy_epoch3_T.npz; done
+if [ $W != 512 ] && [ -e $P/runs/w512/policy_epoch3_T.npz ]; then
+  for set in C B; do
+    echo "== 512 wide against $W wide on fresh $set"
+    $PY scripts/gen7_compare_nets.py $P/data/fresh$set.npz 1 0 v4=$V4 w512=$P/runs/w512/policy_epoch3_T.npz w$W=$R/policy_epoch3_T.npz
+  done
+fi
 echo "== heads on fresh C"
 $PY scripts/gen7_head_eval.py $P/data/freshC.npz 1 0 v4=$V4 v4.1=$R/policy_epoch3_T.npz
 echo "== eval done $(date -u +%T)"
