@@ -121,8 +121,8 @@ Generated 2026-11-12 11:42 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-0-n02l | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-p7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
-| e9-11-r7 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-r8 | E9-11 | bill | 2 | 4 | not seen yet | 0 of 1,600 |  |  |  |
+| e9-11-r7 | E9-11 | bill | 3 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
 | e9-12-cs | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-u | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
