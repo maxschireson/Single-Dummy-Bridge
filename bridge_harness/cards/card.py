@@ -36,7 +36,7 @@ DEFAULTS = {
         'nt_six_minor': False,
         'two_nt': [20, 21],
         'two_nt_five_major': True,     # a 2NT opening may hold a five-card major
-        'strong_2c': {'hcp': 22, 'ltc': 3, 'ltc_hcp': 17},   # 22+, or 17+ with at most 3 losers; null when 2C is not strong
+        'strong_2c': {'hcp': 22, 'ltc': 3, 'ltc_hcp': 17, 'call': '2C'},   # 22+, or 17+ with at most 3 losers; 'call' may be 2D; null: none
         'strong_club': None,           # {'hcp': 16}: 1C artificial and forcing
         'nebulous_1d': None,           # {'min_len': 2} (Precision 1D)
         'polish_club': None,           # {'bal': [12, 14], 'strong': 18, 'clubs': [15, 17]}
@@ -58,6 +58,11 @@ DEFAULTS = {
         'one_nt_to_major': 'forcing',  # forcing | semi | nf
         'single_raise': [6, 10],
         'limit_raise': [10, 12],
+        'limit_raise_len': 4,          # support for a limit raise of a major
+        'major_jump_raise': 'limit',   # limit | weak (4+ support, at most 9)
+        'one_nt_range': None,          # [lo, hi] of 1NT over a major; default from one_nt_to_major
+        'major_3nt': None,             # [lo, hi]: 3NT over a major, balanced with two-card support
+        'jacoby_min': 13,
         'major_2nt': 'jacoby',         # jacoby | natural (13-15 balanced) | invite (11-12)
         'splinters': True,
         'weak_game_raise': True,
@@ -72,7 +77,7 @@ DEFAULTS = {
                'quantitative': True,         # 4NT quantitative
                'answers': 'all',             # all | relays (only Stayman and transfer answers are defined)
                'game': 25},                  # combined points for game, for the response ranges
-        'strong_2c': {'waiting': '2D', 'positive_min': 8},
+        'strong_2c': {'waiting': None, 'positive_min': 8},   # waiting: the next step unless set
         'weak_two_2nt': 'feature',     # feature | ogust
         'strong_club': {'negative': '1D', 'negative_max': 7},
     },
@@ -91,9 +96,10 @@ DEFAULTS = {
         'balancing_nt': [11, 14],
         'takeout_double_min': 12,
         'michaels': True,
+        'michaels_major_min': 8,       # Michaels over a major: HCP from (over a minor: 8)
         'unusual_2nt': True,
         'negative_double_thru': '2S',  # highest overcall over which a double is negative; null = none
-        'vs_nt': 'natural',            # natural | cappelletti | dont | landy
+        'vs_nt': 'natural',            # natural | cappelletti | dont | landy | multi_landy
         'vs_nt_double': 'penalty',
         'vs_nt_double_min': 15,
         'vs_nt_natural': {'len_major': 5, 'len_minor': 6, 'hcp': [8, 15], 'top3': 2, 'top5': 0},
@@ -193,8 +199,8 @@ class Card:
                 raise ValueError(f'open.two.{call}: type must be one of {TYPES_TWO}')
         if self.d['resp']['two_over_one'] not in ('gf', 'standard'):
             raise ValueError('resp.two_over_one must be gf or standard')
-        if self.d['comp']['vs_nt'] not in ('natural', 'cappelletti', 'dont', 'landy'):
-            raise ValueError('comp.vs_nt must be natural | cappelletti | dont | landy')
+        if self.d['comp']['vs_nt'] not in ('natural', 'cappelletti', 'dont', 'landy', 'multi_landy'):
+            raise ValueError('comp.vs_nt must be natural | cappelletti | dont | landy | multi_landy')
 
     def unsupported(self):
         """Descriptor paths the compiler does not read (kept, reported, not compiled)."""

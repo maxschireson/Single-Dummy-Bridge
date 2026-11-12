@@ -1,4 +1,5 @@
 """Gen 9 card meanings and the rule filter (WIP): bridge_harness/cards/."""
+import json
 import random
 
 import numpy as np
@@ -210,3 +211,18 @@ def test_net_profile_logits_reproduce_its_calls():
         calls = [CALLS[int(t)] for t in sim['calls'][i] if t >= 0]
         for p, c, n in prof.call_probs(h, d, v, calls, [0, 1, 2, 3]):
             assert max(p, key=p.get) == c
+
+
+# ---- G9-B6: real cards -----------------------------------------------------------------------------
+@pytest.mark.parametrize('cid', ['acbl-sayc', 'wbf-pryor-scerri', 'wbf-laukkanen-nordgren'])
+def test_real_cards_compile_and_own_bidder_never_breaks(cid):
+    card = load_card(cid)
+    assert card.unsupported() == []
+    prov = json.loads((_Path(__file__).resolve().parents[1] / 'configs' / 'cards' / f'{cid}.json').read_text())['provenance']
+    assert prov['source'] and prov['confidence'] and 'not_placed' in prov
+    b, f = CardBidder(cid), CardFactor(cid)
+    for hands, dealer, vul in deals(60, 13):
+        calls, _ = bid_table([b] * 4, hands, dealer, vul)
+        for s in range(4):
+            length, hon = hand_types(membership([hands[s]]))
+            assert f.type_log_score(length, hon, s, dealer, vul, calls)[0] >= len(f.seat_terms(calls, dealer, s, vul)) * np.log(0.95) - 1e-9

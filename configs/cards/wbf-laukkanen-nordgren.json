@@ -1,0 +1,168 @@
+{
+ "schema": "card-descriptor-v0",
+ "id": "wbf-laukkanen-nordgren",
+ "name": "Laukkanen-Nordgren (Finland), WBF standard card, 2025 European Online Women's Teams",
+ "family": "natural",
+ "descriptor": {
+  "open.major_len": 5,
+  "open.min_hcp": 11,
+  "open.one_level_max": 21,
+  "open.minor": {
+   "1C_min": 3,
+   "1D_min": 3,
+   "with_33": "1C",
+   "with_44": "1D"
+  },
+  "open.nt": [
+   {
+    "hcp": [
+     15,
+     17
+    ],
+    "seats": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "vul": "any"
+   }
+  ],
+  "open.two_nt": [
+   20,
+   21
+  ],
+  "open.strong_2c": {
+   "hcp": 22,
+   "ltc": 3,
+   "ltc_hcp": 18,
+   "call": "2D"
+  },
+  "open.two": {
+   "2C": {
+    "type": "weak",
+    "hcp": [
+     6,
+     10
+    ],
+    "len": [
+     6,
+     6
+    ]
+   },
+   "2D": {
+    "type": "none"
+   },
+   "2H": {
+    "type": "weak",
+    "hcp": [
+     6,
+     10
+    ],
+    "len": [
+     6,
+     6
+    ]
+   },
+   "2S": {
+    "type": "weak",
+    "hcp": [
+     6,
+     10
+    ],
+    "len": [
+     6,
+     6
+    ]
+   }
+  },
+  "open.three_level": {
+   "len": 6,
+   "len_max": 6,
+   "hcp_min": 0,
+   "hcp_max": 10
+  },
+  "open.three_nt": {
+   "type": "gambling"
+  },
+  "open.four_level": {
+   "len": 8,
+   "hcp_max": 12,
+   "minors": false
+  },
+  "resp.one_nt_to_major": "semi",
+  "resp.major_2nt": "jacoby",
+  "resp.jacoby_min": 10,
+  "resp.weak_two_2nt": "ogust",
+  "comp.nt_overcall": [
+   15,
+   18
+  ],
+  "comp.balancing_nt": [
+   10,
+   14
+  ],
+  "comp.michaels": true,
+  "comp.unusual_2nt": true,
+  "comp.negative_double_thru": "3S",
+  "comp.vs_nt": "multi_landy",
+  "slam.blackwood": "rkc1430"
+ },
+ "carding": {
+  "length_lead_vs_suit": "3rd_5th",
+  "length_lead_vs_nt": "3rd_5th"
+ },
+ "provenance": {
+  "source": "WBF standard card of Annu Laukkanen and Maria Nordgren, Finland, 2025 European Online Women's Teams: https://realbridge.online/assets/System%20Cards/European%20Online%20Women%27s%20Teams%202025%20-%20System%20Cards/FINLAND%20KIPA/AnnuLaukkanenMariaNordgren.pdf",
+  "format": "wbf-card (WBF Standard Card template; suit symbols partly lost in its text layer)",
+  "reader": "bill (Gen 9), 12 November 2026, by the intake procedure in docs/gen9/card-intake.md",
+  "confidence": {
+   "high": [
+    "open.major_len",
+    "open.min_hcp (11-21 for all one-level openings)",
+    "open.nt",
+    "open.two_nt",
+    "open.two (2C weak six clubs 6-10, 2H/2S weak 6-10)",
+    "open.strong_2c (2D strong artificial)",
+    "resp.one_nt_to_major (semi-forcing)",
+    "resp.weak_two_2nt (Ogust)",
+    "comp.nt_overcall",
+    "comp.balancing_nt",
+    "comp.negative_double_thru",
+    "slam.blackwood (5C 1 or 4, 5D 0 or 3)"
+   ],
+   "medium": [
+    "open.three_level (six cards; the card lists 3C to 3S as six-card preempts)",
+    "open.three_nt (7, sometimes 6, cards, gambling)",
+    "resp.jacoby_min (2NT 10+ with four trumps)",
+    "comp.vs_nt (Multi-Landy: 2D both majors 4-4+, 2H/2S five and a four-card minor, 2C one major, read as a six-card major)"
+   ],
+   "low": [
+    "open.minor (3+ cards; which minor with 3-3 and 4-4 not stated: defaults)",
+    "open.four_level (4C and 4D are Namyats-style; only the major preempt default kept)",
+    "carding (1st, 3rd or 5th leads; signal priorities not readable)"
+   ]
+  },
+  "defaulted": [
+   "resp.two_over_one ('2 over 1 response promises rebid': not game force; the default gf was kept, to be confirmed)",
+   "comp.overcall_1",
+   "comp.overcall_2",
+   "comp.takeout_double_min"
+  ],
+  "not_placed": [
+   "1M responses: 3C = 10-11 with three-card support, 3D = 8-9 with four (Bergen-style raises), not compiled",
+   "Jacoby 2NT continuations (3D minimum, 3C 15+, singletons)",
+   "Drury in third and fourth seat",
+   "2D strong: 2H neutral (the card's '2C neutral' is read as the next step); positives need a good suit",
+   "2NT: Puppet Stayman (3S = five spades and four hearts)",
+   "Namyats 4C/4D",
+   "4NT opening Blackwood",
+   "responsive doubles through 4H after a takeout double, through 4S after an overcall",
+   "Lebensohl after a two-level overcall of 1NT and over weak twos",
+   "1NT-2D-2C relay (symbols lost)",
+   "RKCB void showing (5NT odd + void, 6x even + void)",
+   "minor-suit invitations, weak jump shifts",
+   "honour-lead table, NT signals"
+  ]
+ }
+}

@@ -50,6 +50,7 @@ SYSTEMS = {
     'precision-plain': replace(rb.Settings(), stayman=False, transfers=False, jump_overcalls=False, two_diamonds=False),
 }
 HOUSE = 'models/bidding/gen5-2026-11-10/bidder.keras'
+WEIGHTS = ()                     # scorer weights for a grid of w*S + F readers (--weights)
 
 
 class FixedEps(Deviation):
@@ -141,7 +142,10 @@ class Readers:
         Fni = self.f05ni.log_score_features(f, seat, dealer, vul, calls)
         Fc = self.ceil.log_score_features(f, seat, dealer, vul, calls)
         Fx = self.exact.log_score_features(f, seat, dealer, vul, calls) if self.exact and exact else np.full(len(S), np.nan)
-        return {'S': S, 'S+F': S + F, 'S+F-ni': S + Fni, 'ceil': Fc, 'exact': Fx, 'hS+F': 0.5 * S + F}
+        out = {'S': S, 'S+F': S + F, 'S+F-ni': S + Fni, 'ceil': Fc, 'exact': Fx, 'hS+F': 0.5 * S + F}
+        for w in WEIGHTS:
+            out[f'{w:g}S+F'] = w * S + F
+        return out
 
 
 def run(name, deals, pool, seed, scorer, exact_deals=500):
@@ -193,6 +197,7 @@ def run(name, deals, pool, seed, scorer, exact_deals=500):
 
 
 def summarize(rows, keys=('S', 'S+F', 'S+F-ni', 'ceil', 'exact', 'hS+F', 'S_on_exact_deals', 'ceil_on_exact_deals')):
+    keys = tuple(keys) + tuple(f'{w:g}S+F' for w in WEIGHTS)
     out = {'n': len(rows)}
     for k in keys:
         v = np.array([r[k] for r in rows if k in r])
@@ -214,7 +219,10 @@ def main():
     ap.add_argument('--scorer', default='models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz')
     ap.add_argument('--exact-deals', type=int, default=500, help='deals on which the slow exact reader also runs')
     ap.add_argument('--out', default=None)
+    ap.add_argument('--weights', default='', help='comma-separated scorer weights w for extra readers w*S + F')
     a = ap.parse_args()
+    global WEIGHTS
+    WEIGHTS = tuple(float(x) for x in a.weights.split(',') if x)
     scorer = FitScorer(a.scorer)
     report = dict(protocol='E9-1 part 1', deals=a.deals, pool=a.pool, seed=a.seed, scorer=a.scorer, exact_deals=a.exact_deals, systems={})
     for k, name in enumerate(a.systems.split(',')):
