@@ -10,7 +10,9 @@ At recorded Gen 6 decisions with at least two cards within --margin of the searc
   cards     the near-best cards, at most three (cards the solves cannot tell apart count once)
   plans     the default line (play for the likeliest layout that still fits) and one plan per layout family:
             "play for the likeliest layout of this family that still fits, until none does" (plan_rollout.Planner).
-            Families are the joint values of the decision's key variables (plan_families), the heaviest --plans.
+            Families are the joint values of the decision's key variables (plan_families), the heaviest --plans;
+            or with --families patterns, the layouts in which the candidates' double-dummy tricks differ alike
+            ("the layouts where this is the card"), which is a plan named by what it needs to succeed.
 
 and the matrix M[card, plan, layout] of final tricks is filled by playouts in which the decider's side follows
 the plan and every other seat plays the solver's card for its own most likely layout (plan_rollout.Believer).
@@ -50,11 +52,11 @@ import gen7_check as check
 STATE = {}
 
 
-def start(net, margin, plans, from_trick, to_trick, seed, own_layouts):
+def start(net, margin, plans, from_trick, to_trick, seed, own_layouts, families):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     six = player(check.spec('gen6'), ROOT)
     STATE.update(six=six, net=PolicyNet(Path(net).resolve(), six.scorer), margin=margin, plans=plans, from_trick=from_trick, to_trick=to_trick, seed=seed,
-                 own_layouts=own_layouts)
+                 own_layouts=own_layouts, families=families)
 
 
 def split_gain(value, weights, base):
@@ -111,7 +113,11 @@ def decisions_of(path):
             feats = Features(view)
             x = feats.of(worlds)
             key = key_variables(x, dd - dd.mean(axis=1, keepdims=True), weights)
-            fam = key.families(x)
+            if STATE['families'] == 'variables':
+                fam = key.families(x)
+            else:       # 'patterns': layouts are one family when the candidates' double-dummy tricks differ in the same way,
+                ids = {}    # so a family is "the layouts in which this is the card, by this much"
+                fam = np.array([ids.setdefault(tuple((row - row.min()).astype(int)), len(ids)) for row in dd])
             heavy = sorted(set(int(f) for f in fam), key=lambda f: -weights[fam == f].sum())[:STATE['plans']]
             plans = [-1, *heavy] if len(heavy) > 1 else [-1]
             started = time.perf_counter()
@@ -146,6 +152,8 @@ def main():
     p.add_argument('--margin', type=float, default=.25)
     p.add_argument('--plans', type=int, default=6)
     p.add_argument('--own-layouts', type=int, default=1, help="layouts of the plan the decider's later cards are searched over")
+    p.add_argument('--families', choices=('variables', 'patterns'), default='variables',
+                   help='a family is a joint value of the key variables, or a pattern of the candidates\' double-dummy tricks')
     p.add_argument('--from-trick', type=int, default=3)
     p.add_argument('--to-trick', type=int, default=6)
     p.add_argument('--decisions', type=int, default=10 ** 9)
@@ -158,10 +166,10 @@ def main():
     rows, started = [], time.time()
 
     def save():
-        a.out.write_text(json.dumps(dict(settings=dict(net=str(a.net), margin=a.margin, plans=a.plans, own_layouts=a.own_layouts, from_trick=a.from_trick, to_trick=a.to_trick,
+        a.out.write_text(json.dumps(dict(settings=dict(net=str(a.net), margin=a.margin, plans=a.plans, own_layouts=a.own_layouts, families=a.families, from_trick=a.from_trick, to_trick=a.to_trick,
                                                        seed=a.seed, seconds=round(time.time() - started)), rows=rows)))
 
-    with Pool(a.workers, initializer=start, initargs=(a.net, a.margin, a.plans, a.from_trick, a.to_trick, a.seed, a.own_layouts)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(a.net, a.margin, a.plans, a.from_trick, a.to_trick, a.seed, a.own_layouts, a.families)) as pool:
         for n, got in enumerate(pool.imap(decisions_of, files[:a.files], chunksize=1), 1):
             rows += got
             if n % 20 == 0:
