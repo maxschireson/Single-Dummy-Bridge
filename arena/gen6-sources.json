@@ -3,6 +3,16 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen71codexcompare",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · Codex policy comparison and Gen6",
+      "branch": "arena-gen7-1-compare-codex-20261112-feed",
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
+    },
+    {
       "key": "gen71independent",
       "group": "gen7",
       "generation": 7,
@@ -30,9 +40,11 @@
       "generation": 7,
       "variant": "7",
       "environment": "codex",
-      "name": "Gen 7 · Codex standard self-play with gap capture",
+      "name": "Gen 7.0 · Codex completed self-play with gap capture",
       "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
-      "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e"
+      "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "retired": true,
+      "revision": "09950642e0d40dc68fecf511569bb72935ba7782"
     },
     {
       "key": "gen7codexselfplay",
@@ -957,7 +969,7 @@
       "successor": "gen7codexselfplaycapture"
     },
     "gen7codexselfplaycapture": {
-      "status": "Authorized self-play mix with verified gap and guess capture",
+      "status": "Retired cleanly for authorized Gen7.1; all 437 completed deals preserved",
       "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
       "source_commit": "317cea385dad6bdceda266ec0b750dc48c98340f",
       "source_pr": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/15",
@@ -965,7 +977,7 @@
         "7s-32~6-32": 1,
         "7s-32~7s-32": 2
       },
-      "workers": 3,
+      "workers": 0,
       "ben_workers": 0,
       "preflight": "59 Gen7 tests,11 gap capture tests,5 guard tests;4 real-model boards,35 gap forks,137 tree consultations,no budget overruns",
       "single_table_selfplay_null_imps": true,
@@ -973,7 +985,44 @@
       "preserved_earlier_phase1_deals": 564,
       "preserved_gen6_deals": 3710,
       "comparison_pooled_target": 2000,
-      "broad_phase2_authorized": false
+      "broad_phase2_authorized": false,
+      "completed": 437,
+      "by_pair": {
+        "7s-32~7s-32": 292,
+        "7s-32~6-32": 145
+      },
+      "final_revision": "09950642e0d40dc68fecf511569bb72935ba7782",
+      "successor": "gen71codexcompare",
+      "restart_authorized": false
+    },
+    "gen71codexcompare": {
+      "status": "Validated Gen7.1 comparison mix; supervised launch",
+      "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "source_commit": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
+      "authority": "Max05:42 Nov12 effective06:00; all arena collectors, relayed05:44 and reaffirmed05:57 on box/coordination",
+      "plan": "configs/round71-compare.json",
+      "pair_weights": {
+        "71s-32~6-32": 1,
+        "71s-32~7s-32": 2
+      },
+      "workers": 3,
+      "ben_workers": 0,
+      "target": 20257,
+      "policy_v41_sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed",
+      "preflight": "67 Gen7 tests;11 gap tests;41 Gen5/6 tests;6 pooled-gate tests;4 real-model boards,45 gap forks,186 tree consultations,zero budget overruns",
+      "preserved_gen70_capture_deals": 437,
+      "preserved_earlier_gen7_deals": 596,
+      "preserved_gen6_deals": 3710,
+      "gate": {
+        "pair": "71s-32~7s-32",
+        "pooled_minimum_distinct_boards": 1000,
+        "require_ci95_lower_above_zero": true,
+        "condition": "common",
+        "selfplay_launch_enabled": false,
+        "published_opening_required": true,
+        "external_research_excluded": true
+      },
+      "gen8_authorized": false
     }
   },
   "requested_match_mix": {
