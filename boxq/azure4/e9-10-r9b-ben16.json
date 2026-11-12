@@ -1,0 +1,44 @@
+{
+ "id": "e9-10-r9b-ben16",
+ "box": "azure4",
+ "experiment": "E9-10",
+ "owner": "sam",
+ "priority": 3,
+ "cores": 4,
+ "source": {
+  "branch": "feature/gen9-signals-v2",
+  "commit": "23f975d"
+ },
+ "argv": [
+  "{python}",
+  "ops/gen9_ben_lanes.py",
+  "run",
+  "--pair",
+  "r9b-32~ben",
+  "--deals",
+  "1600",
+  "--lanes",
+  "4",
+  "--seed",
+  "910",
+  "--source",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--bots",
+  "configs/gen9-signal-run-bots.json",
+  "--out",
+  "{out}"
+ ],
+ "progress": {
+  "results": "lane-*/results.jsonl",
+  "target": 1600
+ },
+ "preemptible": true,
+ "publish": [
+  "results.jsonl",
+  "summary.json",
+  "lanes.json",
+  "lane-*/results.jsonl"
+ ],
+ "submitted": "2026-11-12T11:54:00Z",
+ "by": "sam"
+}
