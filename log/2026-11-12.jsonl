@@ -533,3 +533,4 @@
 {"at": "2026-11-12T17:10:00Z", "by": "sam", "op": "job-cancel", "target": "azure4/g9-x2-rel-std-50"}
 {"at": "2026-11-12T17:10:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-x2-rel-std-50", "note": "cancelled"}
 {"at": "2026-11-12T17:10:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-x2-rel-std-80", "note": "cancelled"}
+{"at": "2026-11-12T17:10:00Z", "by": "sam", "op": "send", "target": "will/20261112T1710Z-sam-g9-x2-the-two-relabelled-jobs", "note": "G9-X2: the two relabelled jobs are cancelled too; the sandbox does them before the box would reach them. No G9-X2 jobs left on azure4", "task": "G9-X2"}
