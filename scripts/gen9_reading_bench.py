@@ -242,7 +242,7 @@ FEED_URL = 'https://github.com/maxschireson/Single-Dummy-Bridge'
 FEED_PATTERN = r'^arena-gen7.*ben(16|64)-[0-9]-feed$'
 
 
-def fetch_feeds(directory, opponent=None, names=None):
+def fetch_feeds(directory, opponent=None, names=None, commit=None):
     """Episode folders of feed branches, sparse-cloned into `directory` if they are not there: the BEN feeds of one version,
     or the branches named."""
     import re
@@ -260,6 +260,9 @@ def fetch_feeds(directory, opponent=None, names=None):
             subprocess.run(['git', 'clone', '-q', '--depth', '1', '--filter=blob:none', '--sparse', '--single-branch', '-b', name, FEED_URL,
                             str(target)], check=True)
             subprocess.run(['git', 'sparse-checkout', 'set', '--no-cone', '/recovery/episodes/', '/recovery/manifest.json'], cwd=target, check=True)
+            if commit:                                  # the feed as it was when it was measured
+                subprocess.run(['git', 'fetch', '-q', '--depth', '1', '--filter=blob:none', 'origin', commit], cwd=target, check=True)
+                subprocess.run(['git', 'checkout', '-q', commit], cwd=target, check=True)
         out.append(str(target / 'recovery' / 'episodes'))
     return out
 
@@ -273,7 +276,8 @@ def box(a):
     out.mkdir(parents=True, exist_ok=True)
     me = [sys.executable, str(Path(__file__).resolve())]
     if a.house_feed:
-        source_episodes = fetch_feeds(a.feeds_dir, names=[a.house_feed])[0]
+        branch, _, commit = a.house_feed.partition('@')
+        source_episodes = fetch_feeds(a.feeds_dir, names=[branch], commit=commit or None)[0]
         subprocess.run(me + ['relabel', '--source-episodes', source_episodes, '--cell', a.cell, '--tables', str(a.first + a.tables),
                              '--seed', str(a.relabel_seed), '--out', str(out)], check=True)
         common = ['--episodes', str(out / 'episodes'), '--deciders', 'declarer', '--out', str(out)]
@@ -312,7 +316,7 @@ def main():
     ap.add_argument('--deciders', default='house', choices=('house', 'declarer', 'all'))
     ap.add_argument('--source-episodes', help='relabel: the house feed E9-4 part 1 used')
     ap.add_argument('--cell', default='std-80', help='relabel: scheme-honesty')
-    ap.add_argument('--house-feed', help='box: the feed branch whose tables are relabelled (E9-4 part 1: arena-gen7-phase1-azure1-feed)')
+    ap.add_argument('--house-feed', help='box: BRANCH[@COMMIT], the feed whose tables are relabelled (E9-4 part 1: arena-gen7-phase1-azure1-feed@f9dad79...)')
     ap.add_argument('--relabel-seed', type=int, default=9, help="box: relabel's seed (E9-4 part 1's: 9)")
     ap.add_argument('--out', required=True)
     ap.add_argument('--first', type=int, default=0, help='the first table of the held-out list to take')
