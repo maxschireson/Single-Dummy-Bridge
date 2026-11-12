@@ -482,3 +482,4 @@
 {"at": "2026-11-12T15:06:00Z", "by": "sam", "op": "send", "target": "g9/20261112T1506Z-sam-e9-16-part-1b-running-on-p41-s", "note": "E9-16 part 1b: running on p41's pools now (all seven readings; the stage reproduces p41's v4 fits to 6e-6); item 3, touching cards with honours, is done in my stage, no need for you to take it", "task": "E9-15"}
 {"at": "2026-11-12T15:14:00Z", "by": "g9", "op": "job-submit", "target": "azure4/e9-16-r-v-p", "note": "priority 2, 4 cores", "task": "E9-16"}
 {"at": "2026-11-12T15:15:00Z", "by": "g9", "op": "job-submit", "target": "azure4/e9-16-r-v-x", "note": "priority 2, 4 cores", "task": "E9-16"}
+{"at": "2026-11-12T15:15:00Z", "by": "g9", "op": "job-submit", "target": "azure4/e9-16-h-v-p", "note": "priority 3, 4 cores", "task": "E9-16"}
