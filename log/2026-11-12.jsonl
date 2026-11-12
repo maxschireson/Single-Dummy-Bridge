@@ -68,3 +68,4 @@
 {"at": "2026-11-12T07:30:00Z", "by": "bill", "op": "lease", "target": "G9-B4", "until": "2026-11-12T11:30Z"}
 {"at": "2026-11-12T07:30:00Z", "by": "bill", "op": "lease", "target": "E9-2", "until": "2026-11-12T11:30Z"}
 {"at": "2026-11-12T07:30:00Z", "by": "bill", "op": "lease", "target": "G9-B6", "until": "2026-11-12T11:30Z"}
+{"at": "2026-11-12T07:30:00Z", "by": "bill", "op": "log", "target": "G9-B6", "note": "bill: doing it inline (no sub-agent). Sources: the ACBL SAYC booklet (prose), the WBF Standard Card, and one USBC pair's published ACBL 2/1 card or USBF System Summary Form from usbf.org. Tooling first: scripts/gen9_check_sheet.py (40 fixed hands: opening, responses to 1H and 1NT, overcall over 1D, "}
