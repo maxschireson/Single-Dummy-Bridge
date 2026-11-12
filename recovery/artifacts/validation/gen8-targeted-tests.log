@@ -1,0 +1,11 @@
+.../workspace/Single-Dummy-Bridge-gen8-independent/bridge_harness/rule_bidder.py:719: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp4a8p4h82/estimate.json'>
+  raw = open(path, 'rb').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+...../workspace/Single-Dummy-Bridge-gen8-independent/bridge_harness/rule_bidder.py:719: ResourceWarning: unclosed file <_io.BufferedReader name='/workspace/Single-Dummy-Bridge-gen8-independent/configs/rule-systems/precision-estimate-r4.json'>
+  raw = open(path, 'rb').read()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+....................s.....................................
+----------------------------------------------------------------------
+Ran 66 tests in 137.848s
+
+OK (skipped=1)

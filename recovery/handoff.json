@@ -1,0 +1,20 @@
+{
+  "source_commit": "6776c28a3d94746b10ed841adf7f7050e822a6b3",
+  "checkout": "/workspace/Single-Dummy-Bridge-gen8-independent",
+  "python": "/workspace/work/gen6-venv/bin/python",
+  "manifest_identity": "d7632508f164f642df727e677ef2976efe25697559205b8078114e606abc3f07",
+  "publication": "/workspace/work/gen8-independent-publication",
+  "feed": "arena-gen8-independent-feed",
+  "branch": "codex/gen8-independent-20261112",
+  "predecessor": "/workspace/work/gen71-independent-compare",
+  "predecessor_completed": 3293,
+  "phase": "gen8-diverse-systems-ben",
+  "authority": "695078457205693f48a24c355681aef47ca21935",
+  "training_family_authority": "/workspace/work/gen8-independent/artifacts/validation/authoritative-training-families-1132bcf.json",
+  "training_family_authority_sha256": "e5a29f0d9ff3e43f90149fc85ed727edd633b2f5cb4e48781e52cc0f1ab564d4",
+  "training_family_authority_commit": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+  "training_exclusions": "/workspace/work/gen8-independent/artifacts/validation/conservative-training-union-34092.json",
+  "training_exclusions_sha256": "17fa0fe1071abe896d9c7e7f611cda68802f9075b1ab1d6dea7ef094e3a62b5e",
+  "gen71_gate_superseded": true,
+  "other_collectors_modified": false
+}

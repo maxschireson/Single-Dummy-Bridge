@@ -1,0 +1,32 @@
+{
+  "schema": "system-package-v1",
+  "id": "house-gen5",
+  "display_name": "House system, Gen 5 bidder (play50_anchor002)",
+  "status": "active",
+  "family": "2/1 lineage (BEN GIB-BBO-8742 base), changed by training",
+  "bidding": {
+    "card": null,
+    "descriptor": {},
+    "notes": [
+      "No convention card. See models/bidding/gen5-2026-11-10/README.md."
+    ]
+  },
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared. Equal cards are chosen by the policy net."
+    ]
+  },
+  "generators": [
+    {
+      "kind": "ben-lstm-keras",
+      "path": "models/bidding/gen5-2026-11-10/bidder.keras",
+      "restore": "models/bidding/gen5-2026-11-10/restore_model.py",
+      "sha256": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc"
+    }
+  ],
+  "lineage": {
+    "parent": "house-dds40k",
+    "source": "manifest provenance.parent_sha256; KL anchor to ben-gib-bbo-8742"
+  }
+}

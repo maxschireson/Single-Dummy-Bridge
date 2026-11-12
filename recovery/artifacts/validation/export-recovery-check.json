@@ -1,0 +1,12 @@
+{
+  "manifest": "d7632508f164f642df727e677ef2976efe25697559205b8078114e606abc3f07",
+  "validated": true,
+  "tables": 4,
+  "preserved_auction_sources": true,
+  "exact_differences": true,
+  "recovery_runtime_hashes": {
+    "ops/gen5_runtime.py": "6477827241ae33d5193116de53a3a511b97d44a2e8c7cde7d7e873e8f94fb625",
+    "ops/prepare_gen7_alpha.py": "1df6184293aab208d14cb7e23440abe8f6d10b3a7f4393719055c85ef5e4b252",
+    "configs/rule-systems/precision-estimate-r4.json": "50e1dbee15bfaa2a7e7489d0bf6ea9faf02210f9e268aae8ecf3155b5366c031"
+  }
+}

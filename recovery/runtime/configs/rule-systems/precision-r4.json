@@ -1,0 +1,164 @@
+{
+ "note": "Precision-style strong club, rules r3 with judgement j1: the frozen r3 system (configs/rule-systems/precision.json) plus a trick estimate fitted to double-dummy results, which the general procedure uses for game and slam decisions, for bidding on over the opponents' contract and for doubling them. Five of the r3 settings were moved by the tuner with the estimate in place (weak_lo 5 to 4, weak_quality 2 to 1, preempt_len 7 to 6, game_minor 28 to 27, penalty 25 to 24). Frozen 12 November 2026 as the Gen 8 candidate's second system. `measured` is on deals used for no fit, no tuning and no reading of hands.",
+ "rules": "r3",
+ "judgement": "j1",
+ "sha256": "f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c",
+ "estimate": {
+  "file": "configs/rule-systems/precision-estimate-r4.json",
+  "sha256": "50e1dbee15bfaa2a7e7489d0bf6ea9faf02210f9e268aae8ecf3155b5366c031",
+  "fitted_on": "64000 deals, 1225741 decisions of this system's own auctions (scripts/fit_rule_estimator.py; seeds 401-408 and 411-418)",
+  "held_out_error_tricks": 1.7614
+ },
+ "settings": {
+  "style": "precision",
+  "club_min": 16,
+  "open_min": 11,
+  "open_light": 1,
+  "limited_max": 15,
+  "nt_lo": 14,
+  "nt_hi": 16,
+  "nt_five_major": false,
+  "two_clubs_len": 6,
+  "two_diamonds": true,
+  "weak_lo": 4,
+  "weak_hi": 10,
+  "weak_quality": 1,
+  "preempt_len": 6,
+  "neg_max": 7,
+  "resp_min": 6,
+  "two_over_one": 11,
+  "game": 25,
+  "game_minor": 27,
+  "slam": 32,
+  "grand": 37,
+  "invite_width": 2,
+  "overcall_min1": 7,
+  "overcall_min2": 11,
+  "overcall_max": 17,
+  "overcall_quality": 1,
+  "takeout_min": 12,
+  "nt_overcall_lo": 15,
+  "nt_overcall_hi": 18,
+  "jump_overcalls": true,
+  "balance": 3,
+  "compete": 0,
+  "penalty": 24,
+  "stayman": true,
+  "transfers": true,
+  "estimate": "configs/rule-systems/precision-estimate-r4.json",
+  "est_band": 2,
+  "est_weight": 5,
+  "est_nv": 3,
+  "est_v": 5,
+  "est_slam_band": 4,
+  "est_slam": 5,
+  "est_contest": 5,
+  "est_sigma": 12,
+  "est_reach": 2,
+  "est_double": 35
+ },
+ "measured": {
+  "reference": "house bidder (capsule 6-32), double dummy, no card play: scripts/tune_rule_bidder.py measure",
+  "note": "Deals used for no fit, no tuning and no reading of hands. r3 is configs/rule-systems/precision.json on the same deals.",
+  "fresh_32000": {
+   "seeds": [
+    601,
+    602,
+    603,
+    604,
+    605,
+    606,
+    607,
+    608
+   ],
+   "deals": 32000,
+   "r4": {
+    "imps_per_board": -0.75,
+    "se": 0.031,
+    "declared_per_board": 0.957,
+    "three_down_share": 0.0534,
+    "slams_bid": 1581,
+    "slams_made": 1052,
+    "rule_failures": 0
+   },
+   "r3": {
+    "imps_per_board": -1.233,
+    "se": 0.03,
+    "declared_per_board": 0.883,
+    "three_down_share": 0.0471,
+    "slams_bid": 682,
+    "slams_made": 511,
+    "rule_failures": 0
+   },
+   "r4_minus_r3": {
+    "imps_per_board": 0.483,
+    "se": 0.028,
+    "se_from": "the spread of the eight seeds"
+   },
+   "by_seed": {
+    "601": {
+     "r4": -0.863,
+     "r3": -1.208
+    },
+    "602": {
+     "r4": -0.529,
+     "r3": -1.022
+    },
+    "603": {
+     "r4": -0.804,
+     "r3": -1.32
+    },
+    "604": {
+     "r4": -0.688,
+     "r3": -1.254
+    },
+    "605": {
+     "r4": -0.878,
+     "r3": -1.434
+    },
+    "606": {
+     "r4": -0.817,
+     "r3": -1.302
+    },
+    "607": {
+     "r4": -0.69,
+     "r3": -1.216
+    },
+    "608": {
+     "r4": -0.732,
+     "r3": -1.111
+    }
+   }
+  },
+  "unused_16000": {
+   "seeds": [
+    302,
+    307,
+    419,
+    420
+   ],
+   "deals": 16000,
+   "r4": {
+    "imps_per_board": -0.672,
+    "declared_per_board": 0.955,
+    "three_down_share": 0.0496,
+    "slams_bid": 806,
+    "slams_made": 534,
+    "rule_failures": 0
+   },
+   "r3": {
+    "imps_per_board": -1.149,
+    "se": 0.042,
+    "declared_per_board": 0.887,
+    "three_down_share": 0.0441,
+    "slams_bid": 332,
+    "slams_made": 246
+   },
+   "r4_minus_r3": {
+    "imps_per_board": 0.477,
+    "se": 0.033,
+    "se_from": "paired by deal"
+   }
+  }
+ }
+}
