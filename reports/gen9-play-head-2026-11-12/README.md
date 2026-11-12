@@ -97,8 +97,8 @@ Paired, on the decisions where the head changes the reading:
 - On BEN's defence the head's larger gain in nats (+0.14 to +0.16 at factor 1) is not seen in tricks (+0.002 ± 0.024,
   -0.029 ± 0.027): the bench does not confirm that the class term can be trusted at 1.
 - The room: Gen 8 reads BEN 16 for +0.05 tricks a board and BEN 64 for +0.17, against +0.185 for the house reading
-  itself; most of the BEN 16 shortfall is at the house defenders' decisions (+0.009 ± 0.019), where the head adds
-  +0.013.
+  itself. Against BEN 16 the shortfall is at both: +0.042 against the house's +0.101 at declarer's decisions, +0.009
+  against +0.084 at the defenders'. The head recovers +0.013 of the defenders' part.
 
 ## Against the registered predictions
 
