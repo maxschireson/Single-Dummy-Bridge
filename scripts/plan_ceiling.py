@@ -59,6 +59,16 @@ def played_out(o, board, world, x, tag):
     return t['declarer_tricks']
 
 
+def equivalent(o, a, b):
+    """Two cards of one suit in the hand to play with nothing between them still out: every card ranked between them is
+    in that hand or has been played. Nothing can ever differ between such cards."""
+    if a // 13 != b // 13:
+        return False
+    lo, hi = sorted((a % 13, b % 13))
+    gone = set(o.known_hands[o.actor] or ()) | {c for _, c in o.history}
+    return all((a // 13) * 13 + r in gone for r in range(lo + 1, hi))
+
+
 def pairs_of(path):
     six, rows = STATE['six'], []
     with gzip.open(path, 'rt') as f:
@@ -83,7 +93,7 @@ def pairs_of(path):
                 game.play(card(x['card']))
             o = game.observation()
             a, b = card(act['card']), card(forced)
-            if a == b or b not in o.legal:
+            if a == b or b not in o.legal or equivalent(o, a, b):
                 continue
             seat = SEATS.index(act['seat'])
             sign = 1 if seat % 2 == declarer % 2 else -1

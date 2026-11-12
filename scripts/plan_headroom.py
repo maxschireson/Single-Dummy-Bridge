@@ -65,12 +65,13 @@ def main():
     p.add_argument('files', nargs='+')
     p.add_argument('--sims', nargs='*', default=[])
     p.add_argument('--sides', type=int, default=0)
+    p.add_argument('--ties', action='store_true', help='keep the forks between cards the search rated exactly level (band -1)')
     p.add_argument('--splits', type=int, default=40)
     p.add_argument('--margins', default='0.125,0.25,0.5,9')
     p.add_argument('--trusts', default='0.25,0.5,0.75,1')
     p.add_argument('--seed', type=int, default=0)
     a = p.parse_args()
-    rows = [r for r in load(a.files) if r['band'] >= 0 and r.get('worlds')]
+    rows = [r for r in load(a.files) if (r['band'] >= 0 or a.ties) and r.get('worlds')]
     seen, kept = set(), []
     for r in rows:
         if key(r) not in seen:
