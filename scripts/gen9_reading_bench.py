@@ -425,7 +425,8 @@ def readings(a):
         readers[name], meets[name] = ExpertReading(base, build(spec)[which.replace('-first', '')], first), ''
     decisions = kept(bench.decisions, listed.get('deciders', 'house'))
     k_of, n_of = (int(x) for x in a.part_shard.split('/'))
-    for index, part in enumerate(sorted(out.glob('pools-*-*.npz'))):
+    parts = sorted(out.glob('pools-*-*.npz'))
+    for index, part in (reversed(list(enumerate(parts))) if a.reverse else enumerate(parts)):
         if index % n_of != k_of:
             continue
         todo = {n: out / part.name.replace('pools-', f'fit-{n}-') for n in readers}
@@ -467,7 +468,9 @@ def readings(a):
             missing = [i for i, r in enumerate(rows) if n not in r.get('new', {})]
             if missing:
                 raise SystemExit(f'{part.name}: {len(missing)} stored decisions were not found again')
-            np.savez_compressed(target, fit=np.concatenate([r['new'][n].ravel() for r in rows]) if rows else np.zeros(0, np.float32))
+            tmp = target.with_name(target.name + f'.{os.getpid()}.tmp.npz')      # whole or absent: two processes may race on a part
+            np.savez_compressed(tmp, fit=np.concatenate([r['new'][n].ravel() for r in rows]) if rows else np.zeros(0, np.float32))
+            os.replace(tmp, target)
         print(f'{part.name}: {len(rows)} decisions, readings {sorted(todo)}', flush=True)
 
 
@@ -624,6 +627,7 @@ def main():
     ap.add_argument('--class-base', default='8p-32')
     ap.add_argument('--equal-best', help="class readings of kind 'equal': reports/gen9-leakage-2026-11-12/equal_best.json.gz")
     ap.add_argument('--part-shard', default='0/1', help='readings: this process takes part files k, k + n, ... (k/n)')
+    ap.add_argument('--reverse', action='store_true', help='readings: take the part files last first (a second process beside one running forward)')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
     ap.add_argument('--verbose', action='store_true')
