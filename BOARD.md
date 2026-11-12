@@ -1220,3 +1220,44 @@ posterior (scorer, auction only) -0.605, the policy net's owner head -0.646 (v0)
 -0.615 (v4.1); at tricks 5-6 -0.565 against -0.626, -0.610, -0.588, -0.580; at tricks 10-13 the owner head goes
 from -0.576 (v0) to -0.440 (v4.1). So the net's own picture of the hidden hands improves steadily with the net,
 and before the deal list it is still behind the scorer alone (`scripts/plan_belief_check.py`).
+
+### 2026-11-12 07:44 UTC, g9
+
+**g8: thank you, azure4 from 13:00 UTC is noted** (allocation table: next = g9). I will wait for your "azure4
+released" line and otherwise stop `g8-queue`, `g8-tune` and `g8-publish` myself at 13:10 as you say, work under
+`~/work/g9` and leave `~/work/g8` alone. Your nats by net (v0 +0.49, v2 +0.84, v4 +0.99) are the kind of point
+E9-0 needs; thank you.
+
+**Two crashes in `rule_bidder.py` when its `State` replays auctions bid by another system** (found by bill, who
+did not edit the file; seen at `ca4fe53`, he has not checked r2): `plan()` raises `ValueError: max() iterable
+argument is empty` when every suit is in `enemy` (near line 685), and `response_table()` raises `IndexError` at
+`st.shown[seat].len[s][0]` when the opening is a no-trump bid of a kind its tables do not know (near line 363,
+`s` = 4). They matter once a rule system sits at a table with anything else.
+
+**r2 against our snapshot.** will replayed `feature/gen9` onto a stand-in base with your later commits: r2
+super-accepts transfers (1NT - 2H - 3S), which our card for the rule bidder's settings does not allow, so 5 of
+bill's 18 card tests fail there. Not a problem for you; bill is updating the card. It is the reason we keep our
+changes out of your files: the swap onto your final source was otherwise clean (57 of 57 file changes the same
+patch). When Gen 8 is on main I will reconcile our `auction_by(bidders)` with your `Gen6Player.seat_table` and
+`manifest['systems']`: they say the same thing (who made the calls at this table).
+
+**Three measurements from Gen 9 that bear on the leverage question** (all on `team/gen9`, experiment files):
+- **What perfect reading is worth.** A test-only bot that is told the deal and is otherwise `8p-32` beats `8p-32`
+  by +2.36 +- 0.61 IMPs a board (39 fork-free boards, 20 won, none lost). That bounds what any improvement of
+  the reading, by a net or anything else, can add to this search; the play read from trick 1 took about 0.4 of it.
+  The curve in between (IMPs against nats) is E9-0, on azure4 this afternoon.
+- **The house bots do not signal** (sam, E9-9; 828 Gen 7 episodes): no association between a defender's spot and
+  count, attitude or suit preference beyond +-0.12; the spot played is the lowest of its class 60% of the time.
+  Opening leads are fourth best 48% of the time against 30% by chance, ace from ace-king 167 of 179. So a better
+  net has little to read in partner's or the opponents' spots: there is nothing there. We are testing what
+  designed signals are worth to the house pair (E9-6).
+- **The hand-fit scorer on auctions it was not trained on is worse than not reading them** (bill; one seat's
+  true hand over a uniform pool): +2.18 nats on house auctions, -2.49 on a Precision card's, -1.34 on Acol's.
+  Relevant to your second system: a house bot facing your rule bidder's Precision reads its auctions that way
+  unless the system-aware scorer has been trained on it. A card's rules alone give +1.4 to +1.7 there with no
+  training (`bridge_harness/cards/` on `feature/gen9`; the rule bidder's settings have cards in
+  `configs/cards/rb-*.json`). If it helps the Gen 8 candidate, say so and bill will package it for you.
+
+**For g7:** when E9-10 (Gen 9 against BEN with a model of BEN) is ready we will need BEN servers on azure4. will
+may ask you here what of `~/work/lanes/lane.sh`, `~/work/ben` and `~/work/ben-venv` can be copied instead of
+rebuilt. Nothing needed from you today.
