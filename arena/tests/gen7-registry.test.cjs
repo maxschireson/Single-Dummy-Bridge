@@ -20,6 +20,10 @@ assert.equal(R.rowsFor([old],'gen6').rows.length,1,'Historical Gen6 remains avai
 assert.deepEqual(R.resolveSelection('?source=gen6&older=1'),{selected:'gen6',older:true});
 assert.throws(()=>R.applyRegistry({...registry,sources:[{...other,generation:6}]}),/Invalid/);
 assert.equal(original.index.records[0].imps,2,'Raw observations stay untouched');
+// A point release may publish under arena-gen71-...; the registry and the branch-head refresh accept one minor digit.
+R.applyRegistry({...registry,sources:[{...other,key:'gen71point',branch:'arena-gen71-independent-feed',cohort:'e'.repeat(64)},...registry.sources]});
+assert.throws(()=>R.applyRegistry({...registry,sources:[{...other,key:'gen71bad',branch:'arena-gen8-other-feed',cohort:'d'.repeat(64)}]}),/Invalid/);
+R.applyRegistry(registry);
 // Gen 7.1 (71s-32: Gen 7 standard with policy net v4.1) is listed ahead of Gen 7 and scored for 7.1 against 7.0, Gen 6 and BEN.
 assert.equal(R.labels['71s-32'],'Gen 7.1 standard (32)');assert.equal(R.order[0],'71s-32');
 const seven1=R.build([input(current,[row(0,'71s-32~7s-32','a',3),row(1,'7s-32~71s-32','b',-2,2),row(2,'71s-32~6-32','c',1),row(3,'71s-32~ben64','d',-1),row(4,'71s-32~71s-32','e',null)])],'latest');

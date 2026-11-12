@@ -128,7 +128,7 @@
  async function liveGen6Revision(source){
   const key='arena-gen67-heads-v1';if(!gen6Heads)try{gen6Heads=JSON.parse(localStorage.getItem(key));}catch{}
   if(!gen6Heads||Date.now()-gen6Heads.checked<0||Date.now()-gen6Heads.checked>=120000){
-   if(!gen6HeadsPending)gen6HeadsPending=(async()=>{const heads={};for(let page=1;page<=10;page++){const rows=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches?per_page=100&page='+page);if(!Array.isArray(rows))throw Error('Producer publication heads are unavailable');for(const row of rows)if(/^arena-gen[67]-/.test(row.name)&&/^[a-f0-9]{40}$/.test(row.commit?.sha||''))heads[row.name]=row.commit.sha;if(rows.length<100)break;}const snapshot={checked:Date.now(),heads};gen6Heads=snapshot;try{localStorage.setItem(key,JSON.stringify(snapshot));}catch{}return snapshot;})().finally(()=>{gen6HeadsPending=null;});
+   if(!gen6HeadsPending)gen6HeadsPending=(async()=>{const heads={};for(let page=1;page<=10;page++){const rows=await get('https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches?per_page=100&page='+page);if(!Array.isArray(rows))throw Error('Producer publication heads are unavailable');for(const row of rows)if(/^arena-gen[67][0-9]?-/.test(row.name)&&/^[a-f0-9]{40}$/.test(row.commit?.sha||''))heads[row.name]=row.commit.sha;if(rows.length<100)break;}const snapshot={checked:Date.now(),heads};gen6Heads=snapshot;try{localStorage.setItem(key,JSON.stringify(snapshot));}catch{}return snapshot;})().finally(()=>{gen6HeadsPending=null;});
    await gen6HeadsPending;
   }
   const sha=gen6Heads.heads[source.branch];if(!sha)throw Error('This collector has not published a branch yet');return sha;
@@ -147,7 +147,7 @@
  function applyRegistry(value){
   if(value.schema!=='arena-gen6-source-registry-v1'||!Array.isArray(value.sources))throw Error('Invalid collection source registry');
   const keys=new Set(),cohorts=new Set();for(const entry of value.sources){
-   if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||![6,7].includes(entry.generation)||entry.group!=='gen'+entry.generation||!new RegExp('^arena-gen'+entry.generation+'-[a-zA-Z0-9_-]+$').test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated collection registry source');keys.add(entry.key);cohorts.add(entry.cohort);
+   if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||![6,7].includes(entry.generation)||entry.group!=='gen'+entry.generation||!new RegExp('^arena-gen'+entry.generation+'[0-9]?-[a-zA-Z0-9_-]+$').test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated collection registry source');keys.add(entry.key);cohorts.add(entry.cohort);
   }
   for(const entry of value.sources){const i=sources.findIndex(s=>s.key===entry.key);if(i>=0)sources[i]={...sources[i],...entry};else sources.unshift({...entry});names[entry.key]=entry.name;}
   if(['gen6','gen7'].includes(latestScope)){latestSource=sources.find(s=>s.group===latestScope&&!s.retired)||latestSource;api.latestSource=latestSource;names.latest=names[latestScope]='Gen '+latestSource.generation+' · all collectors';}
