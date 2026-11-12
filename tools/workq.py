@@ -916,6 +916,15 @@ class Ledger:
 
 # ---------------------------------------------------------------- command line
 
+def commits_since(store: Store, since: str) -> list[tuple[str, str, str]]:
+    """Commits on the branch after `since`, oldest first: (time, author, subject). Fetches enough history to cover it."""
+    r = store.git("fetch", "--quiet", "--no-tags", f"--shallow-since={since}", "origin", f"+{store.ref}:{store.local}", check=False)
+    if r.returncode != 0:
+        store.git("fetch", "--quiet", "--no-tags", "--depth=200", "origin", f"+{store.ref}:{store.local}", check=False)
+    out = store.out("log", f"--since={since}", "--reverse", "--format=%cI%x09%an%x09%s", store.local)
+    return [tuple(l.split("\t", 2)) for l in out.splitlines() if l.count("\t") >= 2]
+
+
 def seen_file(lg: Ledger, who: str) -> Path:
     return lg.store.cache / f"{lg.store.git_dir.stem}.{lg.store.branch.replace('/', '_')}.{who}.seen"
 
@@ -1079,6 +1088,12 @@ def run(lg: Ledger, a) -> int:
         for e in new[-50:]:
             star = "*" if e.get("target", "").startswith(f"{me}/") or e.get("target") in mine or e.get("task") in mine else " "
             print(f" {star} {short(e['at'])} {e['by']:5} {e['op']:8} {e.get('target', '')}" + (f": {e['note'][:90]}" if e.get("note") else ""))
+        hand = commits_since(lg.store, since) if since else []
+        hand = [c for c in hand if not c[1].endswith("(workq)")]  # changes made with workq are listed above
+        if hand:
+            print(f"{len(hand)} commit(s) made by hand since then:")
+            for when, _, subject in hand[-40:]:
+                print(f"   {short(when.replace('+00:00', 'Z'))} {subject[:110]}")
         unread = st.unread(me)
         print(f"unread for {me}: {len(unread)}")
         for m in unread:
