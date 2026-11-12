@@ -493,3 +493,4 @@
 {"at": "2026-11-12T15:20:00Z", "by": "will", "op": "log", "target": "G9-W5", "note": "d6-arrival at 15:19: 396 boards, 1,528/h in epoch 1 (18.8 CPU-s a board), no restarts; expected end 20:30-21:00 with the floor mix; box's own ETA (19:07) assumes epoch 1's rate"}
 {"at": "2026-11-12T15:23:00Z", "by": "sam", "op": "job-submit", "target": "azure4/g9-x2-ben16", "note": "priority 3, 4 cores", "task": "G9-X2"}
 {"at": "2026-11-12T15:24:00Z", "by": "sam", "op": "job-submit", "target": "azure4/g9-x2-ben64", "note": "priority 3, 4 cores", "task": "G9-X2"}
+{"at": "2026-11-12T15:24:00Z", "by": "sam", "op": "job-submit", "target": "azure4/g9-x2-rel-std-80", "note": "priority 3, 4 cores", "task": "G9-X2"}
