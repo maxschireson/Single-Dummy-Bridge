@@ -134,7 +134,7 @@ class SignalPlayer(Gen7Player):
         for play, reader in zip(plays, readers):
             if reader is not None:
                 model, phi = reader
-                part, sig = self.signal_row(o, view, assign, *play, model)
+                _, part, sig = self.signal_row(o, view, assign, *play, model)
                 net = net + phi * part
                 signal = signal + sig
         return net, signal
@@ -144,7 +144,8 @@ class SignalPlayer(Gen7Player):
         return net + signal
 
     def signal_row(self, o, view, assign, i, seat, chooser, model):
-        """([layouts] log P_net(class), [layouts] log P_signal(card | class)) for one play by a chooser read by `model`."""
+        """[layouts] x 3 for one play by a chooser read by `model`: log P_net(card) floored as Gen 8 floors it, log P_net(class),
+        log P_signal(card | class). For an honour, or a situation the descriptor does not cover, the class is the card."""
         c = o.contract
         played = o.history[i][1]
         suit = played // 13
@@ -157,17 +158,17 @@ class SignalPlayer(Gen7Player):
             K[:, played] = True
         else:
             K = held & (SUIT_MASK[suit] if key == 'lead.opening' else SPOT_MASK[suit])[None, :]
-        log_class = self.class_log_probabilities(o, view, assign, i, seat, chooser, held, K, played)
+        log_card, log_class = self.class_log_probabilities(o, view, assign, i, seat, chooser, held, K, played)
         if kind is None or K.sum(axis=1).max() < 2:
-            return log_class, np.zeros(len(assign))
+            return log_card, log_class, np.zeros(len(assign))
         original = view.original(assign, view.hidden.index(chooser)).astype(bool)
         start = i - i % 4
         led_suit = o.history[start][1] // 13
         p = model.probabilities(key, kind, played, K, original, suit, c.trump, led_suit, c.trump == 4)
-        return log_class, np.log(p)
+        return log_card, log_class, np.log(p)
 
     def class_log_probabilities(self, o, view, assign, i, seat, chooser, held, K, played):
-        """[layouts] log of the floored net probability of the play's class (Gen 8's floor, card by card); 0 if forced."""
+        """([layouts] log of the floored net probability of the card, of its class (Gen 8's floor, card by card)); 0 if forced."""
         c = o.contract
         ident = (o.auction, o.dealer, o.vulnerability, c, o.original_hand(c.dummy))
         if self.class_cache[0] != ident:
@@ -181,21 +182,21 @@ class SignalPlayer(Gen7Player):
             entry = (prefix, {})
             cache[i] = entry
         known = entry[1]
-        out = np.zeros(len(assign))
+        out = np.zeros((2, len(assign)))
         todo = []
         for row, (h, k) in enumerate(zip(keys.tolist(), kmask.tolist())):
             v = known.get((h, k))
             if v is None:
                 todo.append(row)
             else:
-                out[row] = v
+                out[:, row] = v
         if todo:
             batch = self.play_arrays(o, i, seat, chooser, held[todo])
             legal = np.asarray(batch['legal'])
             if not legal[:, played].all():
                 raise RuntimeError('A listed layout makes an observed play illegal')
             count = legal.sum(axis=1)
-            fresh = np.zeros(len(todo))
+            fresh = np.zeros((2, len(todo)))
             choice = count > 1
             if choice.any():
                 rows = np.flatnonzero(choice)
@@ -204,12 +205,12 @@ class SignalPlayer(Gen7Player):
                 p = np.exp(logp.astype(np.float64)) * legal[rows]
                 f = self.g7.play_floor
                 members = K[np.array(todo)[rows]]
-                mass = (1 - f) * (p * members).sum(axis=1) + f * members.sum(axis=1) / count[rows]
-                fresh[rows] = np.log(mass)
+                fresh[0, rows] = np.log((1 - f) * p[:, played] + f / count[rows])
+                fresh[1, rows] = np.log((1 - f) * (p * members).sum(axis=1) + f * members.sum(axis=1) / count[rows])
             for j, row in enumerate(todo):
-                out[row] = fresh[j]
-                known[(int(keys[row]), int(kmask[row]))] = fresh[j]
-        return out
+                out[:, row] = fresh[:, j]
+                known[(int(keys[row]), int(kmask[row]))] = fresh[:, j].copy()
+        return out[0], out[1]
 
     # ---- signalling ------------------------------------------------------------------------
     def break_ties(self, o, rng, result):

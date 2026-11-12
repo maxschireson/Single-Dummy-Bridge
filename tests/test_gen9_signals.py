@@ -246,6 +246,8 @@ class ReaderTests(Gen9Fixture):
                 g8 = base.play_log_likelihood(o, v, assign, [play])
                 net, signal = reader.play_log_terms(o, v, assign, [play])
                 self.assertTrue(np.array_equal(silent.play_log_likelihood(o, v, assign, [play]), g8))
+                card_term, _, _ = reader.signal_row(o, v, assign, *play, reader.opponent_signals)
+                self.assertTrue(np.allclose(reader.opponent_phi * card_term, g8))     # the card term is Gen 8's, for spots too
                 lead = sit is not None and sit[0] == 'lead.opening'
                 if x % 13 > 7 and not lead:
                     self.assertTrue(np.allclose(net, g8))                   # an honour is its own class: Gen 8's term
