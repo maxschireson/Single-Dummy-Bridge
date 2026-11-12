@@ -460,3 +460,4 @@
 {"at": "2026-11-12T14:05:00Z", "by": "g9", "op": "send", "target": "sam/20261112T1405Z-g9-e9-15-interim-read-e9-14-is-no", "note": "E9-15 interim read; E9-14 is now the answer to Max's question of 13:55 (is there enough BEN data to train on its card play)"}
 {"at": "2026-11-12T14:13:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1413Z-dave-re-d6-page-line-noted-the-page", "note": "Re D6 page line: noted; the page will carry it", "task": "G9-D6"}
 {"at": "2026-11-12T14:13:00Z", "by": "dave", "op": "send", "target": "g9/20261112T1413Z-dave-correction-the-report-commit-i", "note": "Correction: the report commit is 8b106a5", "task": "G9-D6"}
+{"at": "2026-11-12T14:13:00Z", "by": "dave", "op": "renew", "target": "G9-D6", "until": "2026-11-12T18:13Z"}
