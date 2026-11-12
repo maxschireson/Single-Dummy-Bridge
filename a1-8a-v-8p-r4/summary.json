@@ -1,0 +1,40 @@
+{
+ "pair": "8a-32-v41~8p-32-v41",
+ "boards": 100,
+ "cpu_per_board": 27.53,
+ "common": {
+  "imps_per_board": 0.23,
+  "se": 0.2774,
+  "boards": 100,
+  "won": 29,
+  "lost": 15,
+  "flat": 56
+ },
+ "native": {
+  "imps_per_board": 0.23,
+  "se": 0.2774,
+  "boards": 100,
+  "won": 29,
+  "lost": 15,
+  "flat": 56
+ },
+ "by_systems": {
+  "house-gen6~rules-precision": {
+   "imps_per_board": -0.1562,
+   "se": 0.6616,
+   "boards": 32
+  },
+  "rules-precision~house-gen6": {
+   "imps_per_board": 0.4857,
+   "se": 0.446,
+   "boards": 35
+  },
+  "rules-precision~rules-precision": {
+   "imps_per_board": 0.3333,
+   "se": 0.2809,
+   "boards": 33
+  }
+ },
+ "failures": 0,
+ "boards_per_hour": 954
+}
