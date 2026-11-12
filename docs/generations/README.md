@@ -15,3 +15,5 @@ what it handed on. A generation's page is finished at its closeout
 Results are pooled from the dashboard registry with
 [`scripts/generation_results.py`](../../scripts/generation_results.py). The live view is the
 [arena](https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest).
+
+Independent producer deployment and recovery: [Gen 8 collector](gen8/independent-collector.md).

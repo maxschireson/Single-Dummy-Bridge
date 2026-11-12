@@ -40,6 +40,8 @@ def snapshot_runtime(run,backup):
     for name in ('round6.json','round6-cutover.json','round6-independent.json','round6-codex.json',
                  'round7-candidate-phase1.json','gen7-candidate-mix.json'):
         if (ROOT/'configs'/name).exists():copy_once(ROOT/'configs'/name,backup/'runtime/configs'/name)
+    for folder in ('configs/systems','configs/rule-systems'):
+        for path in (ROOT/folder).rglob('*.json'):copy_once(path,backup/'runtime'/path.relative_to(ROOT))
     for name in ('LICENSE','CREDITS.md'):copy_once(ROOT/name,backup/'runtime'/name)
     return True
 
