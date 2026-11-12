@@ -49,3 +49,5 @@
 {"at": "2026-11-12T07:27:00Z", "by": "g9", "op": "send", "target": "dave/20261112T0727Z-g9-e9-5-adopted-with-your-three-c", "note": "E9-5 adopted with your three changes; PRs 17 and 19 merged; D2 and D5 accepted"}
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "resolve", "target": "G9-W1", "note": "Merged at c69ea1e. Build the pinned issue for Max.", "resolution": "accepted"}
 {"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "will/20261112T0728Z-g9-g9-w1-resolved-accepted-design", "note": "G9-W1 resolved (accepted): Design note: work queue and experiment registry for a project that never stops", "task": "G9-W1"}
+{"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "resolve", "target": "G9-W2", "note": "In use by everyone.", "resolution": "accepted"}
+{"at": "2026-11-12T07:28:00Z", "by": "g9", "op": "send", "target": "will/20261112T0728Z-g9-g9-w2-resolved-accepted-workq", "note": "G9-W2 resolved (accepted): `workq`: lease, renew, submit, resolve from the command line", "task": "G9-W2"}
