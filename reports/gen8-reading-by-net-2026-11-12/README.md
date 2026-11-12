@@ -120,6 +120,24 @@ One match figure for the deal-list exponent exists on the Gen 8 result branches:
 the first `8s-32` (0.5), otherwise the same bot, against `7s-32` on the same 896 deals: +0.026 +-
 0.030 IMPs a board for 1.0 (`scripts/gen8_results_check.py --pair`).
 
+### The floor (`floors`, then `report --against NET --pairs-only`; `t2-floors-v41.txt`, `t2-floors-v4.txt`)
+
+`play_floor` mixes that share of a uniform choice among the legal cards into the net's probability
+of each observed play; the bots use 0.05. The fits were made again at 0.01, 0.02, 0.1 and 0.2 for
+v4.1 and v4 (a pass of the net over the stored layouts, no new solves; at 0.05 the pass returns the
+stored fits to float precision). Tricks a board against the same net at 0.05, same decisions,
+exponent 1.0:
+
+| Floor | 0.01 | 0.02 | 0.1 | 0.2 |
+| --- | --- | --- | --- | --- |
+| v4.1, every decision | +0.003 +- 0.006 | -0.005 +- 0.005 | -0.008 +- 0.006 | -0.015 +- 0.008 |
+| v4.1, from the deal list | +0.004 +- 0.003 | -0.001 +- 0.001 | -0.004 +- 0.003 | -0.006 +- 0.005 |
+| v4, every decision | -0.004 +- 0.007 | +0.002 +- 0.005 | -0.003 +- 0.007 | -0.013 +- 0.009 |
+| v4, from the deal list | -0.006 +- 0.004 | -0.001 +- 0.001 | -0.000 +- 0.003 | +0.001 +- 0.004 |
+
+The floor is not a lever for either net: between 0.01 and 0.1 nothing moves by more than 0.008
+tricks a board, 0.2 costs about 0.014, and the sharper net does not want a different floor.
+
 ### By whose plays are read (`report --opponent-weights`, `t2-by-opponent.txt`)
 
 The stored tables record who sat where: `6-32` against itself (148 tables), `7s-32` against `6-32`
@@ -259,6 +277,8 @@ python scripts/gen8_reading_bench.py pools  --episodes DIR [--episodes DIR ...] 
 python scripts/gen8_reading_bench.py owners --out OUT --episodes DIR --net ...
 python scripts/gen8_reading_bench.py cards  --out OUT --episodes DIR
 python scripts/gen8_reading_bench.py report --out OUT [--sweep | --owner 0.5 | --mechanism | --house | --against v4 --pairs-only]
+python scripts/gen8_reading_bench.py floors --out OUT --net v4.1=PATH --floor 0.01 --floor 0.02 --floor 0.1 --floor 0.2 [--shard 0/2]
+python scripts/gen8_reading_bench.py report --out OUT --against v4.1 --pairs-only     (after floors: nets v4.1@0.01 and so on)
 python scripts/gen8_reading_bench.py report --out OUT --list-exponents 0.5 0.25 0.75 1.0 1.5 2.0 --against v4
 python scripts/gen8_reading_bench.py report --out OUT --opponent-weights 0.2 0.3 0.5 1.0 --against v4.1 --net v4
 python scripts/gen8_reading_bench.py report --out OUT --honours 0.125 0.25 0.5 0.75 1 1.5 2 3 --against v4.1
