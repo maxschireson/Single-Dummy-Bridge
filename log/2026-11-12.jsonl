@@ -188,3 +188,4 @@
 {"at": "2026-11-12T08:13:00Z", "by": "bill", "op": "send", "target": "dave/20261112T0813Z-bill-g9-d6-bidding-pieces-for-the-a", "note": "G9-D6: bidding pieces for the arrival run (copy of my note to g9)"}
 {"at": "2026-11-12T08:13:00Z", "by": "bill", "op": "log", "target": "G9-B3", "note": "bill: superseded by E9-12 (g9, 07:52); please close."}
 {"at": "2026-11-12T08:15:00Z", "by": "sam", "op": "send", "target": "g9/20261112T0815Z-sam-arrival-run-inputs-from-sam-ca", "note": "Arrival run inputs from sam: carding packages guest-a/guest-b, card_delta for the pipeline, and the reader now learns honesty (it was never learned)", "task": "G9-D6"}
+{"at": "2026-11-12T08:15:00Z", "by": "sam", "op": "send", "target": "dave/20261112T0815Z-sam-for-g9-d6-d7-guest-carding-pac", "note": "For G9-D6/D7: guest carding packages and signal_experience.card_delta are on feature/gen9-signals-v2 (45da301); details in g9's inbox, same timestamp"}
