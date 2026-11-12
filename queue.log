@@ -4,3 +4,6 @@
 2026-11-12T14:09:11Z start rbs1 (source b0230a0): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --seeds 2 --files 120 --swaps --workers 8 --out $R.json
 2026-11-12T14:31:12Z end rbs1: exit 0
 2026-11-12T14:31:12Z start rbs2 (source b0230a0): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 4 --seeds 2 --files 80 --skip-files 120 --swaps --workers 8 --out $R.json
+2026-11-12T14:49:03Z end rbs2: exit 0
+2026-11-12T14:49:05Z source now 2f00276 Reading bench: a cheaper stand-in for the bot (fewer layouts), calibrate
+2026-11-12T14:49:05Z start rbs4 (source 2f00276): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --seeds 2 --files 120 --swaps --inner-samples 8 --inner-list 32 --workers 8 --out $R.json
