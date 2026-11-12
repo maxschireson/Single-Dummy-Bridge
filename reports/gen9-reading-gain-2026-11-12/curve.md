@@ -20,7 +20,7 @@ decisions in every row so differences between rows are far more precise).
 | 50 | 216 | 0.72 ± 0.05 -> +0.660 | 0.77 ± 0.04 -> +0.826 | 0.42 ± 0.06 -> +0.388 |
 | 100 | 424 | 0.71 ± 0.04 -> +0.660 | 0.79 ± 0.03 -> +0.826 | 0.45 ± 0.04 -> +0.388 |
 | 200 | 858 | 0.75 ± 0.02 -> +0.660 | 0.79 ± 0.02 -> +0.826 | 0.47 ± 0.03 -> +0.380 |
-| true h | | 0.8 or 0.5 -> +0.668 ± 0.114 | 0.8 or 0.5 -> +0.826 ± 0.115 | 0.8 or 0.5 -> +0.380 ± 0.091 |
+| The bots' true honesty | | 0.8 -> +0.668 ± 0.114 | 0.8 -> +0.826 ± 0.115 | 0.5 -> +0.380 ± 0.091 |
 
 - About four signalling occasions per board. After 25 to 50 boards the estimate is within 0.05 of
   where it settles and the held-out gain is within 0.01 to 0.03 nats of the true-h reader (E9-4's
