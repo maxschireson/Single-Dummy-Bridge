@@ -26,3 +26,5 @@
 2026-11-12T20:36:12Z start ceilTies (source 0f0f4f8): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --workers 8 --out $R.json --worlds 16 --ties --bands=-1 --from-trick 3 --to-trick 6 --files 150
 2026-11-12T20:44:50Z end ceilTies: exit 0
 2026-11-12T20:44:50Z start ceil64b (source 0f0f4f8): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --workers 8 --out $R.json --worlds 64 --max-gap 0.25 --skip-files 500 --files 300
+2026-11-12T21:21:59Z end ceil64b: exit 0
+2026-11-12T21:21:59Z start wide3 (source 0f0f4f8): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb5;v41:hyb8" --from-trick 3 --to-trick 6 --files 500 --seed 1 --layouts 128 --max-gap 0.25 --workers 8 --out $R.json
