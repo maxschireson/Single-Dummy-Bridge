@@ -5,12 +5,18 @@
 # g8's entry of 07:27 asks g9 to stop g8-queue, g8-tune and g8-publish then; their matches resume from results.jsonl.
 TAKEOVER=0
 IGNORE_LOAD=0   # 1 only after looking at what loads the box and finding it is ours or released
+BESIDE=""       # g8 units the queue may start beside, left running and never stopped (g9 14:06: g8-publish only pushes)
 set -uo pipefail
 BOX=${BOXCTL_BOX:?}; W=$HOME/work/g9; mkdir -p "$W"
 say() { echo "$(date -u +%T) $*"; }
 
 g8_units="g8-queue g8-tune g8-publish"     # the three g8's 07:27 entry lets g9 stop after 13:10
-active=""; for u in $g8_units; do systemctl is-active --quiet "$u" && active="$active $u"; done
+active=""; beside=""
+for u in $g8_units; do
+  systemctl is-active --quiet "$u" || continue
+  case " $BESIDE " in *" $u "*) beside="$beside $u" ;; *) active="$active $u" ;; esac
+done
+[ -n "$beside" ] && say "starting beside$beside (left running; BESIDE)"
 others=$(systemctl list-units --type=service --state=active --no-legend 'g8-*' 2>/dev/null | awk '{print $1}' | sed 's/\.service$//' | grep -v -x -e g8-queue -e g8-tune -e g8-publish | tr '\n' ' ')
 say "load $(cut -d' ' -f1-3 /proc/loadavg); active g8 units:${active:- none}; other g8 units: ${others:-none}"
 if [ -n "$others" ]; then say "g8 units outside its 07:27 list are active ($others). Nothing changed; ask g8 on the board."; exit 3; fi
