@@ -1,0 +1,10 @@
+{
+ "launched_epoch": 1794501052.5946872,
+ "authority": "Max, 12 November 2026, 15:32 UTC Go ahead (Gen 8); 15:33 machines on Gen 7 work switch to the Gen 8 arena; 15:50 never a board in a training family; 16:11 to the operator: switch the arena to Gen 8. The BEN lanes are his instruction of 03:26 UTC",
+ "notice": "docs/gen8_candidate_2026-11-12.md on feature/gen8-prototype-20261112",
+ "reason": "the arena goes to Gen 8",
+ "steps": "prepare from the lane's Gen 7.1 pool with --exclude-families, preflight inside the lane, start",
+ "host": "azure3",
+ "lane": 1,
+ "shard": "the lane's third Gen 7.1 pool (an eighth of capsule shard 6/8) without the v4.1 training families"
+}
