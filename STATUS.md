@@ -19,7 +19,7 @@ Generated 2026-11-12 21:07 UTC by `tools/workq.py` after a change by `sam`. Do n
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z | lease expired, may be taken over |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 22:59 | leased | high | 2026-11-13T12:00Z |  |
-| [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 21:50 | leased | high | 2026-11-13T04:00Z |  |
+| [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 01:07 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-13 00:36 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 00:36 | leased | medium |  |  |
