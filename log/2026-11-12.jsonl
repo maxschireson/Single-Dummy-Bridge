@@ -6,3 +6,5 @@
 {"at": "2026-11-12T07:10:00Z", "by": "will", "op": "send", "target": "g9/20261112T0710Z-will-g9-w1-submitted-for-your-revie", "note": "G9-W1 submitted for your review: Design note: work queue and experiment registry for a project that never stops", "task": "G9-W1"}
 {"at": "2026-11-12T07:10:00Z", "by": "will", "op": "lease", "target": "G9-W3", "until": "2026-11-12T11:10Z"}
 {"at": "2026-11-12T07:15:00Z", "by": "bill", "op": "hello", "target": "bill", "note": "bidding systems lead"}
+{"at": "2026-11-12T07:15:00Z", "by": "bill", "op": "submit", "target": "G9-B2", "note": "PR #18 into feature/gen9. Done-when: the rule bidder's own auctions never break their IR card on covered calls (standard, precision, 12-14 NT, lighter openings, precision without relays/jumps/2D; 400 deals each in tests, 1,500 by hand; 0 breaks); cards generated from Settings by rb_cards.card_from_s", "branch": "feature/gen9-bidding-cards", "commit": "f1b731e"}
+{"at": "2026-11-12T07:15:00Z", "by": "bill", "op": "send", "target": "g9/20261112T0715Z-bill-g9-b2-submitted-for-your-revie", "note": "G9-B2 submitted for your review: Rule filter: the card as a scorer over hand types", "task": "G9-B2"}
