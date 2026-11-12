@@ -112,3 +112,30 @@ Not yet measured offline: the larger group, 18 of the 29 equal-best cards a tabl
 full. `equal_best.json.gz` in this folder lists, for every recorded decision, the cards the chooser's own solves rate
 exactly equal, so that the same reading can be run with those as the class (part 1c). The matches with `8r-32`
 randomize both groups.
+
+## The larger group: any of the exactly equal-best cards (part 1c, sam) and the first played figure
+
+Same folder of sam's as part 1b (9e58f0c). The reader takes each play as an even choice among the cards the chooser's
+own solves rate exactly equal best (`equal_best.json.gz`; approximate, because in another layout the chooser would
+hold other cards and other ties; the opening lead is still read by the card):
+
+| What is hidden | Tricks a board lost by the reader | Nats |
+| --- | ---: | ---: |
+| Which of the equal-best cards, every hidden seat | 0.009 +- 0.017 | 0.36 |
+| ... the opponents' plays only | 0.014 +- 0.017 | |
+| ... partner's plays only | -0.008 +- 0.007 | |
+
+Played, will's sandbox pilot (400 boards, seed 917, not the box's deals): `8r-32`, which plays a random one of its
+exactly equal-best cards, against `8p-32`, which reads it with today's net at full weight: **+0.17 +- 0.17 IMPs a
+board** for the randomizer (72 won, 59 lost, 269 flat).
+
+What the three parts say together, at the capture rate of our own net:
+
+- Randomizing among equal cards is free double dummy and showed no cost in 400 played boards.
+- It denies a reader little: 0.01 to 0.04 tricks a board (0.04 to 0.14 IMPs), depending on which cards are treated
+  as interchangeable.
+- So most of the 0.124 tricks a reader takes from our plays comes from choices that are not equal: the suit we
+  switch to, whether we win or duck, what we keep. Part 1a says randomizing those costs about what it would deny:
+  0.020 tricks a board within 0.02 tricks of the best, 0.065 within 0.05.
+- The 800-board matches on the box (`e9-16-r-v-p`, `-r-v-x`, `-h-v-p`) will put a tighter error on the played figure.
+  Whether any kind of close decision is worth randomizing is part 1d, not yet done.
