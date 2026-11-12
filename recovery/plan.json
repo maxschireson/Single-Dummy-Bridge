@@ -1,0 +1,79 @@
+{
+ "schema": "gen7-alpha-plan-v1",
+ "campaign": "gen71-ben-20261112",
+ "title": "Gen 7.1 \u00b7 BEN (64) pair on azure3: standard with policy v4.1 against BEN (64), deals v4.1 was not trained on",
+ "launch_enabled": true,
+ "pending": [],
+ "notes": [
+  "Authorized by Max, 12 November 2026, 05:42 UTC: \"Pull the 4.1 policy net and prepare to upgrade the bots with them effective 6AM unless testing tells otherwise. Replace the 7.0 self play with 7.0/7.1 matches for at least 1000 boards / until 7.1 establishes a 95% CI lead, then switch to 7.1 self play. All other matches should replace 7 with 7.1. All of this is effective 6:00 unless revoked.\" It applies to the arena's collectors, not to Gen 8 research. docs/gen71_2026-11-12.md is the notice this file belongs to.",
+  "Gen 7.1 standard (71s-32) is Gen 7 standard (7s-32) with policy net v4.1 in place of v4 and nothing else changed: the same Gen 6 base bot (6-32), the same gen7 settings, the same tree. v4.1 has v4's shape, inputs and hand-fit scorer and was trained on every board on the feeds at 03:59 UTC on 12 November.",
+  "This is configs/round7-candidate-phase1-ben.json with 7s-32 replaced by 71s-32. BEN boards carry no audits (`ben_audit`) and no gap forks. A machine that plays one BEN level keeps one of the two pairs, as the Azure lanes do.",
+  "The collector plays BEN boards with one worker and stops on the first failed board, so each BEN pair needs its server up at the URL in the bot's spec.",
+  "Source run. A machine prepares from the drained cohort it is replacing (STOP and WATCHDOG_STOP in place, its feed complete), so the deals that cohort had not played are the ones used; the cohort it replaces is then finished for good. A machine starting fresh prepares from the capture capsule with its own --shard K/N.",
+  "This copy of configs/round71-ben.json keeps one of its two pairs, 71s-32~ben64: one Azure machine plays each BEN level (Max, 12 November 2026, 03:26 UTC). Only the roster, the pair weights, the title and these notes differ from that file.",
+  "The cohort is prepared with --exclude-families: no deal from the 32,205 families the policy net v4.1 was trained on (the independent collector's all-training-families.json, sha256 4818856d731bee23...). This lane's cohort of 06:07 UTC began with such deals; it was closed for that reason."
+ ],
+ "model_note": "Gen 7.1 standard (71s-32) is Gen 7 standard with policy net v4.1 in place of v4; nothing else differs. Gen 7 standard (7s-32) is Gen 6 fast (6-32: same bidder, lead net, hand-fit scorer, layouts and 32 samples) with the gen7 engine (bridge_harness/gen7.py) and policy net v4: layouts weighted by the play so far from trick 7, exact ties broken by the net, and at tricks 3 to 6 a tree search over the net's likeliest cards that re-values the cards the search rates within 0.25 tricks of its best (trust 0.3, stake rule at 0.5 IMPs, at most 3 tricks, 8 layouts). Settings are in the bot's `gen7` block. Every other bot is unchanged from the source run. docs/gen7_alpha_2026-11-11.md has the details.",
+ "interpretation": "Gen 7.1 against the BEN anchors, BEN (64) and BEN (16). Common and native auctions are separate conditions; identical auctions reuse physical games. Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
+ "roster": [
+  "71s-32",
+  "ben64"
+ ],
+ "pair_weights": {
+  "71s-32~ben64": 1
+ },
+ "common_bidder": "6-32",
+ "audit_references": {
+  "71s-32": "3"
+ },
+ "artifacts": {
+  "gen7_policy_v41": {
+   "release": "models/cardplay/gen7-policy-v4.1-2026-11-12",
+   "file": "gen7_policy_v4.1.npz",
+   "restore": "restore.py",
+   "sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed"
+  }
+ },
+ "gen7_bots": {
+  "71s-32": {
+   "base": "6-32",
+   "label": "Gen 7.1 standard (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 0.5,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   }
+  }
+ }
+}
