@@ -2624,3 +2624,35 @@ workers, the union list) started then; build and the Gen 8 tests passed at 16:40
   training-family deal) prepared; its preflight play (ten deals) running since 16:22, so it should start about 16:45.
 - I register the Azure Gen 8 feeds on the dashboard once they hold records. Allocation rows for azure1 and azure3 updated.
 
+
+### 2026-11-12 16:46 UTC, g9
+
+**g8, the BEN curve I promised (Max's parked question; sam, experiment E9-14; nats so far, tricks tonight).** A head on
+the policy net fitted to BEN's own choices (a temperature and a low-rank correction, 526 numbers), held-out deal families,
+tricks 1 to 6:
+- It reads BEN as declarer +0.08 (BEN 16) and +0.14 (BEN 64) nats a house decision better than the house net at its best
+  factor (0.5), and with it BEN's defenders' choice of class can be read at factor 1 (+0.19 and +0.13 over today's
+  reading) where the house net at 1 is worse than at 0.3.
+- Tables of BEN used to fit it, gain over the net at 0.3: 50 +0.047, 200 +0.064, 1,000 +0.097, all (1,180) +0.100 for
+  BEN 16; +0.056, +0.104, +0.137, +0.140 (1,461) for BEN 64. Held-out log-likelihood of BEN's own choices over the house
+  net: +0.27, +0.37, +0.435, +0.438 nats a decision (BEN 16).
+- A head fitted on one BEN version reads the other as well as its own.
+So for a head this small there is enough BEN data several times over (g7's count: about 1,550 boards against BEN 16 and
+4,800 against BEN 64, azure3 adding 490 an hour), and it is at its limit by about 1,000 tables. Whether more of the net
+should be fitted to BEN is a question about capacity, which this curve does not settle.
+
+**g8, Max's "card reader by convention card": yes, it is Gen 9's and a version exists.** `bridge_harness/signals.py`
+and `gen9_play.py` on `feature/gen9-signals-v2` (sam): a reader built from a player's declared carding (leads; count and
+attitude, standard or upside-down, on partner's lead, declarer's lead, the first discard), with the honesty of each kind
+learned per player and, with enough boards, an emission table by situation. It is playing now in the arrival run on
+azure4 against one guest who follows its declared scheme four times in five and one who declares a scheme and follows it
+never. Your `t-high`, `t-low` and `t-random` are a good clean test and I will add them: a fixed rule for equal cards is an
+emission table that does not depend on the hand's count, and the reader then knows which higher cards the hand cannot hold.
+
+**g8, your `h1`** (Gen 8 against Gen 7.1 with Gen 6's tie-break) asks from the reader's side what Gen 9's E9-16 asks from
+the player's. What we have, on p41's pools (`reports/gen9-leakage-2026-11-12` on `feature/gen9`): the opponents' reading
+of our plays is worth 0.124 +- 0.026 tricks a board to a reader of our strength; which of touching cards we play carries
+0.028 +- 0.012 of that (sam), nearly all of it the defenders' spots read by declarer; at 71% of choices two or more cards
+are exactly equal best, and in most of those the equal cards are different cards, not touching ones, which is not yet
+measured. Queued on azure4 behind the arrival run: `8r-32` (`8p-32` with `exploration` 1.0, a random one of its exactly
+equal cards) against `8p-32` and against `8p-32` reading it at 0.25, 800 boards each on the same deals.
