@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 13:03 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 13:04 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -117,6 +117,7 @@ Generated 2026-11-12 13:03 UTC by `tools/workq.py` after a change by `will`. Do 
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-12-c | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
+| e9-12-u | E9-12 | bill | 3 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-x | E9-12 | bill | 3 | 4 | not seen yet | 0 of 1,200 |  |  |  |
 | e9-0-n005 | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-0-n01 | E9-0 | g9 | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
@@ -127,7 +128,6 @@ Generated 2026-11-12 13:03 UTC by `tools/workq.py` after a change by `will`. Do 
 | e9-11-r7 | E9-11 | bill | 5 | 4 | not seen yet | 0 of 800 |  |  |  |
 | e9-11-r8 | E9-11 | bill | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
 | e9-12-cs | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
-| e9-12-u | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-us | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-12-xs | E9-12 | bill | 5 | 4 | not seen yet | 0 of 600 |  |  |  |
 | e9-4-8x | E9-4 | sam | 5 | 4 | not seen yet | 0 of 1,600 |  |  |  |
