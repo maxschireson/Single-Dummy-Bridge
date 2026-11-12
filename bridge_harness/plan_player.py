@@ -17,7 +17,9 @@ Settings live in spec['plan']['playout'], one stage or a list of them (no trick 
   layouts                layouts played out, drawn from the solved ones by weight; 0 = all of them
   seat                   the simulated seat: 'top', 'blend', 'draw' (the policy net's card), 'map', 'bdraw', 'map3'
                          (the solver's card for the seat's believed layout; see plan_rollout.Believer) or 'hyb', 'hyb3'
-                         (the solver chooses among the net's three likeliest cards)
+                         (the solver chooses among the net's three likeliest cards), or 'gen6': the search itself with
+                         this spec's Gen 6 settings and no net plays every later card from each seat's own view. That is
+                         the bot as its own simulator: far slower, so use it with few `layouts` and late tricks
   repeats                playouts per layout and card (for seats that draw)
   tricks                 0 = to the end; above 0 the playout stops after that many tricks and is solved from there
   wide                   0 = play out the layouts the search solved and correct its estimate, as above. Above 0: play out
@@ -29,18 +31,20 @@ Settings live in spec['plan']['playout'], one stage or a list of them (no trick 
 A spec with engine 'plan' and no playout stage is a Gen 7 player. The spec's own `gen7.tree` should be
 absent: the two corrections are alternatives, and if both are present the playouts correct the tree's card.
 """
+import copy
 from dataclasses import dataclass, fields
 import random
 import time
 
 import numpy as np
 
-from .core import symbol
+from .core import Board, symbol
 from .gen6 import Gen6Player, View, systematic
 from .gen7 import Gen7Player, utilities
 from .gen7 import player as gen7_player
 from .plan_rollout import Believer, NetPlayer, Public, card_values
 from .players import Decision
+from .runner import play_table
 
 ENGINE = 'plan'
 
@@ -66,7 +70,8 @@ class PlayoutUse:
                 and 0 <= self.trust <= 4 and 0 <= self.layouts <= 4096 and 1 <= self.repeats <= 64 and 0 <= self.tricks <= 13
                 and 0 <= self.wide <= 8192):
             raise ValueError('Invalid plan playout settings')
-        seat_player(None, None, self.seat, 0)
+        if self.seat != 'gen6':
+            seat_player(None, None, self.seat, 0)
 
 
 def seat_player(net, dds, kind, seed):
@@ -100,6 +105,7 @@ class PlanPlayer(Gen7Player):
     def __init__(self, spec, root, reference=None):
         super().__init__(spec, root, reference)
         self.playouts = playout_stages((spec.get('plan') or {}).get('playout'))
+        self.root, self.inner = root, None
 
     def playout_stage(self, o):
         if not o.history or o.known_hands[o.contract.dummy] is None:
@@ -130,6 +136,26 @@ class PlanPlayer(Gen7Player):
                 break
         return worlds, np.concatenate(weights) / draws
 
+    def real_values(self, o, worlds, cards, seed):
+        """[layout, card] the decider's tricks when it plays the card and Gen 6 (this spec's search, no net, no playouts)
+        plays every later card of all four seats, each from its own view."""
+        if self.inner is None:          # this player's own search and files, with Gen 6's methods: no net, tree or playouts
+            self.inner = copy.copy(self)
+            self.inner.__class__ = Gen6Player
+        c = o.contract
+        sign = 1 if o.controller % 2 == c.declarer % 2 else -1
+        prefix = [dict(card=symbol(x)) for _, x in o.history]
+        out = np.zeros((len(worlds), len(cards)))
+        for n, world in enumerate(worlds):
+            hands = tuple(tuple(sorted(set(world[s]) | {x for seat, x in o.history if seat == s})) for s in range(4))
+            board = Board(f'playout/{seed}/{n}', hands, c, o.dealer, o.vulnerability, o.auction)
+            for j, x in enumerate(cards):
+                t = play_table(board, ['inner'] * 4, {'inner': self.inner}, seed=seed % (1 << 31), prefix=prefix + [dict(card=symbol(x))])
+                if t['status'] != 'ok':
+                    raise RuntimeError(t.get('error'))
+                out[n, j] = sign * t['declarer_tricks']
+        return out
+
     def playout_decision(self, o, rng, result, solved, weights, stage):
         """The search's decision with its near-best cards valued again by playouts. Candidates are chosen as the tree
         chooses them (Gen7Player.tree_decision), and the Decision has the same shape, its note under `gen7_tree`."""
@@ -159,18 +185,21 @@ class PlanPlayer(Gen7Player):
         seed = fork.getrandbits(64)
         k = stage.layouts
         pick, share = systematic(w, k, np.random.default_rng(seed)) if k and len(worlds) > k else (np.arange(len(worlds)), w)
-        who = seat_player(self.net, self.dds, stage.seat, seed)
+        real = stage.seat == 'gen6'
+        who = None if real else seat_player(self.net, self.dds, stage.seat, seed)
+        values_of = (lambda layouts: self.real_values(o, layouts, searched, seed)) if real else \
+            (lambda layouts: card_values(o, layouts, searched, who, Public(self.net, o), stage.repeats, stage.tricks, self.dds))
         started = time.perf_counter()
         column = {x: j for j, x in enumerate(legal)}
         same = {x: float(share @ u[pick, column[x]]) for x in searched}        # plain double dummy on the solved layouts
         if stage.wide:
             fresh, fresh_w = self.fresh_layouts(o, stage.wide, seed)
-            got = card_values(o, fresh, searched, who, Public(self.net, o), stage.repeats, stage.tricks, self.dds)
+            got = values_of(fresh)
             played = {x: float(fresh_w @ got[:, j]) for j, x in enumerate(searched)}
             adjusted = {i: (1 - stage.trust) * float(value[i]) + stage.trust * played[x] for i, x in zip(near, searched)}
             pick = np.arange(len(fresh))
         else:
-            got = card_values(o, [worlds[i] for i in pick], searched, who, Public(self.net, o), stage.repeats, stage.tricks, self.dds)
+            got = values_of([worlds[i] for i in pick])
             played = {x: float(share @ got[:, j]) for j, x in enumerate(searched)}
             adjusted = {i: float(value[i]) + stage.trust * (played[x] - same[x]) for i, x in zip(near, searched)}
         seconds = time.perf_counter() - started
@@ -179,7 +208,7 @@ class PlanPlayer(Gen7Player):
         eligible = sorted(legal[j] for i in winners for j in groups[i])
         choice = result.card if result.card in eligible else fork.choice(eligible)
         self.before_tree = result
-        note.update(consulted=True, layouts=len(pick), wide=stage.wide, seconds=seconds, net_rows=who.net_rows, solves=getattr(who, 'solves', 0), seat=stage.seat,
+        note.update(consulted=True, layouts=len(pick), wide=stage.wide, seconds=seconds, net_rows=getattr(who, 'net_rows', 0), solves=getattr(who, 'solves', 0), seat=stage.seat,
                     gen6_cards=sorted(k for k, q in d['behavior_probabilities'].items() if q > 0),
                     candidates=[dict(cards=[symbol(legal[j]) for j in groups[i]], searched=symbol(x), gap=best - float(value[i]),
                                      same_layouts=same[x], tree=played[x], adjusted=adjusted[i], kept=i in winners)
