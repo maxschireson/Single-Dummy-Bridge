@@ -46,7 +46,8 @@ def publish():
                  'source-indices.json', 'source-completed-inventory.json', 'source-manifest.json',
                  'actor-source-manifest.json', 'phase1-global-progress.json', 'phase1-seen-families.json',
                  'phase1-stop.json', 'phase1-guard-error.json', 'supervisor-failure.json',
-                 'validation.json', 'gen7-alpha-report.json', 'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
+                 'validation.json', 'gen7-alpha-report.json', 'browser-preview.json', 'browser-live.json',
+                 'RECOVERY.txt', 'STOP', 'WATCHDOG_STOP'):
         if (RUN / name).exists():
             copy_file(RUN / name, recovery / name)
     for folder in ('artifacts', 'assets'):
@@ -91,6 +92,8 @@ def publish():
             copy_file(BASE / name, recovery / 'operations' / name)
     if CONFIG.get('preparation_script'):
         copy_file(Path(CONFIG['preparation_script']), recovery / 'operations' / 'prepare_owned.py')
+    for path in CONFIG.get('validation_logs', []):
+        copy_file(Path(path), recovery / 'operations' / 'validation' / Path(path).name)
     export(recovery, OUT)
     data_path = OUT / 'arena/data.json'
     data = json.loads(data_path.read_text())

@@ -1,0 +1,56 @@
+{"index": 0, "pair": "7s-32~5RZ32", "seconds": 25.57607126235962, "tables": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 192, "unsearched": 0, "in_a_stage": 41, "consulted": 14, "moved": 0, "over_budget": 0, "tree_seconds": 0.9256482010023319, "tree_forks": 0, "tree_fork_imps": 0}
+{"index": 1, "pair": "7s-32~6-32", "seconds": 24.0759334564209, "tables": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 182, "unsearched": 0, "in_a_stage": 44, "consulted": 25, "moved": 4, "over_budget": 0, "tree_seconds": 1.997919327001, "tree_forks": 1, "tree_fork_imps": 0}
+{"index": 2, "pair": "7s-32~1", "seconds": 15.42776870727539, "tables": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 212, "unsearched": 0, "in_a_stage": 33, "consulted": 13, "moved": 0, "over_budget": 0, "tree_seconds": 0.6139565789999324, "tree_forks": 2, "tree_fork_imps": 0}
+{"index": 3, "pair": "7s-32~1", "seconds": 48.52871489524841, "tables": 2, "imps": {"common": 7, "native": 7}, "root_tables": 2, "decisions": 103, "unsearched": 0, "in_a_stage": 19, "consulted": 7, "moved": 1, "over_budget": 0, "tree_seconds": 2.504817719993298, "tree_forks": 2, "tree_fork_imps": 0}
+{"index": 4, "pair": "7s-32~6-32", "seconds": 28.091599464416504, "tables": 2, "imps": {"common": 0, "native": 0}, "root_tables": 2, "decisions": 247, "unsearched": 0, "in_a_stage": 59, "consulted": 30, "moved": 0, "over_budget": 0, "tree_seconds": 3.106003109001904, "tree_forks": 3, "tree_fork_imps": 0}
+{"index": 5, "pair": "7s-32~5RZ32", "seconds": 26.65703845024109, "tables": 3, "imps": {"common": 0, "native": 6}, "root_tables": 2, "decisions": 130, "unsearched": 0, "in_a_stage": 30, "consulted": 16, "moved": 0, "over_budget": 0, "tree_seconds": 2.0054425909947895, "tree_forks": 0, "tree_fork_imps": 0}
+{
+ "tree": {
+  "in_a_stage": 226,
+  "consulted": 105,
+  "moved": 5,
+  "over_budget": 0,
+  "tree_forks": 8,
+  "tree_fork_imps": 0,
+  "mean_seconds": 0.10622654787612625,
+  "p95_seconds": 0.2785470089984301,
+  "max_seconds": 0.6700004890008131,
+  "mean_solves": 61.23809523809524,
+  "p95_solves": 127,
+  "max_solves": 227
+ },
+ "phases": {
+  "lead_net": {
+   "decisions": 7,
+   "seconds": 18.217736196998885,
+   "layouts": 224,
+   "max_seconds": 7.949830189998465,
+   "mean_seconds": 2.6025337424284123,
+   "mean_layouts": 32.0
+  },
+  "scorer (trick 1)": {
+   "decisions": 19,
+   "seconds": 22.529486384009942,
+   "layouts": 608,
+   "max_seconds": 3.782322873001249,
+   "mean_seconds": 1.1857624412636811,
+   "mean_layouts": 32.0
+  },
+  "scorer": {
+   "decisions": 258,
+   "seconds": 37.85023862098751,
+   "layouts": 7913,
+   "max_seconds": 2.616797440001392,
+   "mean_seconds": 0.14670635124413764,
+   "mean_layouts": 30.670542635658915
+  },
+  "deal_list": {
+   "decisions": 782,
+   "seconds": 26.237827141943853,
+   "layouts": 26603,
+   "max_seconds": 0.7537345759992604,
+   "mean_seconds": 0.033552208621411575,
+   "mean_layouts": 34.01918158567775
+  }
+ }
+}

@@ -1,0 +1,20 @@
+..................................................E...
+======================================================================
+ERROR: test_shipped_plan_is_closed_and_spells_out_every_setting (test_gen7_launch.Gen7LaunchTests.test_shipped_plan_is_closed_and_spells_out_every_setting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/work/gen7-phase1-codex-20261112/runtime/tests/test_gen7_launch.py", line 78, in test_shipped_plan_is_closed_and_spells_out_every_setting
+    manifest = json.loads((ROOT / entry['release'] / 'manifest.json').read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/work/gen7-phase1-codex-20261112/runtime/models/cardplay/gen7-policy-v2-2026-11-11/manifest.json'
+
+----------------------------------------------------------------------
+Ran 54 tests in 157.400s
+
+FAILED (errors=1)
