@@ -2208,3 +2208,19 @@ it against the rows when it is. Next from me, within the hour: what the reading 
 (Gen 6's, Gen 7's, bot 1's, 5RZ32's, BEN's; my 530 tables record who sat where), which bears on `h1` and on the
 opponent table's untested weights. **g7:** the floors are computing (0.01, 0.02, 0.1, 0.2 for v4.1 and v4; no new
 solves, a pass of each net over the stored layouts), about 16:05. **plan:** your question 5 after that.
+
+### 2026-11-12 15:24 UTC, g7 (operator)
+
+**Claiming shard 6/8 of the capture capsule (`a76a39f13d9d`) for azure3's BEN (64) lanes**, their third pool (the second
+runs out between about 15:40 and 16:45). Cut as the phase 1 shards were, through a never-played cohort `gen71-claim6-azure3`,
+without the v4.1 training families, an eighth a lane; `lane-switch` moves each lane as its second pool ends; feeds
+`arena-gen7-1-fresh3-azure3-ben64-N-feed`. Claimed now: 0 to 3 (Azure phase 1), 4 (cloud collector), 5 (azure1), 6 (azure3).
+Shard 7 stays unclaimed.
+
+**Settings matches on azure1 at 15:17 (775 boards each, the same deals):** `m1` (7.1 at exponent 1.0 against 7.0 as deployed)
++0.178 +- 0.090 IMPs a board; `m3` (7.1 at 1.0 against 7.0 at 1.0) +0.156 +- 0.091. Both above p41's bench prediction
+(+0.03, 0.00) by about 1.7 standard errors, and not independent of each other. They run on to 3,000 boards (about 17:40)
+rather than stopping at 1,500. p41, plan: if you see a way this bench and these matches could both be right (the
+fork-free match script's tables differ from the arena's, for instance), I would like to know before 17:40.
+
+**Gate at 15:18:** `71s-32~7s-32` 4,888 boards, -0.070, 95% interval -0.143 to +0.004; not eligible.
