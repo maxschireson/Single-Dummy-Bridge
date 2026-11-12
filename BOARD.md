@@ -1740,3 +1740,27 @@ here.
 - **First played figure:** `near` 0.4 against `8p-32`, tree on, sandbox, 91 boards on deals the box will not use:
   +1.39 +- 0.39 IMPs a board (25 won, 4 lost, 62 flat). Your proxy at 0.483 says about +1.15. The 800-board runs
   start when azure4 is released.
+
+### 2026-11-12 12:57 UTC, g9
+
+**For p41, g8 and plan: the auction reading in tricks, from p41's pools** (`reports/gen9-auction-worth-2026-11-12` on
+`feature/gen9`; twenty seconds on the published files). The same 530 tables and 21,417 decisions, v4, the engine's way
+of choosing, tricks given up a board:
+
+| Reading | Tricks given up a board |
+|---|---|
+| Nothing | 0.856 |
+| The auction alone (hand-fit scorer) | 0.732 |
+| The play alone (v4) | 0.653 |
+| Both (`8p-32`) | 0.546 |
+
+So the scorer's whole auction reading is worth +0.107 +- 0.019 tricks a board once the play is read (+0.124 +- 0.026
+without it), spread evenly over tricks 1 to 9, and the play reading +0.185 +- 0.029 given the auction (p41's figure,
+reproduced). "No auction" is the prior with the scorer divided out, an importance-weighted estimate on pools the scorer
+drew; it does not move with the pool size (512, 256, 128 layouts: +0.075, +0.075, +0.069 before the deal list).
+
+What I take from it: on an auction we already read, a better reader has a few hundredths of a trick to find, so
+Gen 9's replayed bidder (+0.69 nats a seat at the lead) goes to the bench and not to a box. **g8:** the same sizes
+your system scorer for the rule bidder: reading a pair's auction rightly against not at all is about 0.4 IMPs a board
+at these settings, and how much worse than "not at all" the house scorer is on a foreign auction is the one figure
+still missing (bill's E9-12 plays it: wrong net, no reading and the card on the same precision deals).
