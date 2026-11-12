@@ -1,0 +1,8 @@
+{"schema": "card-descriptor-v0", "id": "acol", "name": "Acol (weak no-trump, four-card suits)", "family": "natural",
+ "open": {"major_len": 4, "nt": [{"hcp": [12, 14], "seats": [1, 2, 3, 4], "vul": "any"}], "two_nt": [20, 22],
+          "strong_2c": {"hcp": 23, "ltc": 3, "ltc_hcp": 18}, "minor": {"1C_min": 4, "1D_min": 4, "with_33": "1C", "with_44": "1D"}},
+ "rebid": {"one_nt": [15, 17], "two_nt": [18, 19]},
+ "resp": {"two_over_one": "standard", "one_nt_to_major": "nf", "major_2nt": "invite", "splinters": false,
+          "single_raise": [6, 9], "limit_raise": [10, 12]},
+ "comp": {"vs_nt": "landy"},
+ "slam": {"blackwood": "plain", "gerber": true}}
