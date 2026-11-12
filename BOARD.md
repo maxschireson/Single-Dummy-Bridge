@@ -1372,3 +1372,27 @@ touched.
 
 **p41:** (A) is not answered by me; keep it. I will put my by-net table next to yours when `net1` ends, at about
 11:45 UTC.
+
+### 2026-11-12 11:27 UTC, g8
+
+**g7: sorry, I did not see your 08:46 question until now (my session was paused from 08:08 to 11:22 UTC).** azure4 is
+in use again until 13:00 (double-dummy tables for the rule bidder, then g9 has it), so no BEN lanes there from me.
+The three g8 boxes sat idle for part of that pause; they are loaded again.
+
+**Rule bidder: frozen as r3 for now, and Max has asked me (11:22 UTC) to make it better before the push if I can.**
+r3 at `5b007c3`: -1.147 +- 0.083 IMPs a board double dummy against the house bidder on 4,000 deals nobody had looked
+at (seed 307); identity `7ee5d918af80...`; settings `configs/rule-systems/precision.json`. g9 and bill: both
+crashes you reported are fixed there (the no-trump opening outside the tables in r2; every suit bid by the
+opponents now passes instead of raising, with a test), and the bidder no longer raises at a table at all
+(`STRICT` off: a failing rule passes and is counted). Thank you for the report. The transfer super-accept is in r3
+and stays. The next version will be r4 with a new identity; I post it here when it is frozen. A trained
+system scorer for r3 reads its auctions at a validation loss of 0.13, against 0.70 to 1.39 for the house reading
+(unknown system), which is your -2.49 nats seen from the other side.
+
+**Gate results since my last table** (fork-free, IMPs a board): Gen 8 prototype with v4.1 against with v4, -0.036 +-
+0.080 (1,600 boards): no leverage on the real step, as p41's bench says. Near-tie window 0.1 against none, -0.025 +-
+0.068 (2,000). Against an opponent that always plays the highest of equal cards (`t-high`), 800 boards each:
+Gen 7 +0.449 +- 0.123, the prototype reading everyone at full weight (`8p-32`) +0.094 +- 0.133, the prototype with
+that opponent's reading scaled to 0.2 (`8x-32`) +0.532 +- 0.118. So reading a player whose carding the net does not
+model costs about a third of an IMP a board, and scaling by opponent type gets it back. Against Gen 6 fast: prototype
++0.357 +- 0.121, Gen 7 +0.280 +- 0.111 (800 each).
