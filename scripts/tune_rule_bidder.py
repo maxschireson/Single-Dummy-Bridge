@@ -10,8 +10,8 @@ run capsule (--source) or the same rules in their plain natural form (--referenc
   python scripts/tune_rule_bidder.py tune    --source CAPSULE/recovery --deals 4000 --seed 301 --cache DIR \
       --test-deals 4000 --test-seed 302 --out configs/rule-systems/precision-tuned.json
 
-`measure` prints IMPs a board for the rule pair, how often it declares, and how often its contract goes
-three or more down. `tune` walks the numeric settings one at a time, keeps a change when the paired gain
+`measure` prints IMPs a board for the rule pair, how often it declares, how often its contract goes
+three or more down, and `rule_failures`: calls where a rule raised and the bidder passed instead (0 is expected). `tune` walks the numeric settings one at a time, keeps a change when the paired gain
 on the tuning deals is at least --keep standard errors, and reports the result on deals it never saw.
 The deals are a function of seed and index. Double-dummy tables are computed once and kept in --cache.
 """
@@ -147,11 +147,12 @@ def worker(conn, shard, of, source, reference):
             if (seed, i) not in data:
                 data[(seed, i)] = deal(seed, i)
             board = data[(seed, i)]
+            failed = cand.errors
             (_, ca), (_, cb) = auction(board, (seed, i), (cand, other)), auction(board, (seed, i), (other, cand))
             (sa, da), (sb, db) = table_score(board, ca, tables[i]), table_score(board, cb, tables[i])
             ours = [(c, d) for c, d, side in ((ca, da, 0), (cb, db, 1)) if c is not None and c.declarer % 2 == side]
             rows.append((i, imps(sa - sb), len(ours), sum(d >= 3 for _, d in ours), sum(c.level >= 6 for c, _ in ours),
-                         sum(c.level >= 6 and d == 0 for c, d in ours)))
+                         sum(c.level >= 6 and d == 0 for c, d in ours), cand.errors - failed))
         conn.send(rows)
 
 
@@ -187,7 +188,7 @@ def report(rows):
                 won=int((x > 0).sum()), lost=int((x < 0).sum()), flat=int((x == 0).sum()),
                 lost_10_or_more=round(float((x <= -10).mean()), 4), declared_per_board=round(float(declared / len(x)), 3),
                 three_down_share=round(float(rows[:, 3].sum() / max(declared, 1)), 4),
-                slams_bid=int(rows[:, 4].sum()), slams_made=int(rows[:, 5].sum()))
+                slams_bid=int(rows[:, 4].sum()), slams_made=int(rows[:, 5].sum()), rule_failures=int(rows[:, 6].sum()))
 
 
 def main():

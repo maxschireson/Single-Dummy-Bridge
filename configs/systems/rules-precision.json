@@ -1,0 +1,69 @@
+{
+  "schema": "system-package-v1",
+  "id": "rules-precision",
+  "display_name": "Precision-style strong club, the project's own rule bidder",
+  "status": "draft",
+  "family": "strong club",
+  "bidding": {
+    "card": null,
+    "descriptor": {
+      "style": "precision",
+      "club_min": 16,
+      "open_min": 11,
+      "open_light": 1,
+      "limited_max": 15,
+      "nt_lo": 14,
+      "nt_hi": 16,
+      "nt_five_major": false,
+      "two_clubs_len": 6,
+      "two_diamonds": true,
+      "weak_lo": 5,
+      "weak_hi": 10,
+      "weak_quality": 2,
+      "preempt_len": 7,
+      "neg_max": 7,
+      "resp_min": 6,
+      "two_over_one": 11,
+      "game": 25,
+      "game_minor": 28,
+      "slam": 33,
+      "grand": 37,
+      "invite_width": 2,
+      "overcall_min1": 8,
+      "overcall_min2": 11,
+      "overcall_max": 17,
+      "overcall_quality": 2,
+      "takeout_min": 12,
+      "nt_overcall_lo": 15,
+      "nt_overcall_hi": 18,
+      "jump_overcalls": true,
+      "balance": 3,
+      "compete": 0,
+      "penalty": 25,
+      "stayman": true,
+      "transfers": true,
+      "rules": "r2"
+    },
+    "notes": [
+      "Bid by bridge_harness/rule_bidder.py from configs/rule-systems/precision.json. Every call the tables define has an exact meaning (bidder.describe).",
+      "Strong artificial 1C, limited five-card majors, 1D catch-all, 1NT range and the rest as in the settings, which are also the descriptor."
+    ]
+  },
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared."
+    ]
+  },
+  "generators": [
+    {
+      "kind": "python",
+      "factory": "bridge_harness.rule_bidder:from_package",
+      "options": {
+        "settings_file": "configs/rule-systems/precision.json"
+      },
+      "sha256": "12a68e5e2887c06a00a69f41980d8864d83f96fec335b0c159369aee9f9aca13"
+    }
+  ],
+  "lineage": {}
+}

@@ -69,7 +69,8 @@ def main():
         if not n:
             continue
         t0 = time.time()
-        q = F.generate(np.random.default_rng([args.seed, i]), (bidders[ns], bidders[ew]), int(n))
+        pair = tuple(b.facing(ns == ew) if hasattr(b, 'facing') else b for b in (bidders[ns], bidders[ew]))    # a rule system is told whether it meets itself
+        q = F.generate(np.random.default_rng([args.seed, i]), pair, int(n))
         ids = [ns] if ns == ew else [ns, ew]
         q.update(systems=np.array(ids), generators=np.array([bidders[s].sha256 for s in ids]),
                  d_sys=np.tile(np.array([0, len(ids) - 1]), (len(q['d_dealer']), 1)))

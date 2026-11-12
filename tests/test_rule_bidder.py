@@ -30,7 +30,50 @@ def auction(hands, dealer, vul, sides):
     raise AssertionError('the auction did not end')
 
 
+class Erratic:
+    """Bids the rules most of the time and any legal call the rest: auctions the tables never define."""
+
+    def __init__(self, seed, share=0.2):
+        self.rules, self.rng, self.share = R.RuleSystemBidder(R.STANDARD, opponents=R.Settings()), np.random.default_rng(seed), share
+
+    def call(self, hand, seat, dealer, vul, calls):
+        if self.rng.random() < self.share:
+            legal = np.flatnonzero(legal_mask(dealer, [CALLS[c] for c in calls]))
+            low = [t for t in legal if t < 5 + 5 * 5] or list(legal)         # mostly below the six level, so auctions go on
+            return int(self.rng.choice(low))
+        return self.rules.call(hand, seat, dealer, vul, calls)
+
+
 class RuleBidderTests(unittest.TestCase):
+    def setUp(self):
+        R.STRICT = True                                 # a failing rule raises here instead of passing
+
+    def tearDown(self):
+        R.STRICT = False
+
+    def test_no_rule_fails_whatever_the_other_side_bids(self):
+        ours = R.RuleSystemBidder()
+        for i in range(1500):
+            hands, dealer, vul = deal(13, i)
+            other = Erratic(i)
+            for sides in ((ours, other), (other, ours)):
+                auction(hands, dealer, vul, sides)
+        self.assertEqual(ours.errors, 0)
+
+    def test_an_opening_outside_the_tables_is_read_as_a_long_suit(self):
+        st = R.State(0, 0, (R.Settings(), R.STANDARD))
+        st.push(R.PASS)
+        st.push(R.bid(4, R.H))                          # East opens four hearts: the natural table has no such opening
+        seat, token, m = st.opening
+        self.assertEqual((seat, m.kind, m.len[R.H][0]), (1, 'preempt', 8))
+        st.push(R.PASS)
+        self.assertEqual(R.table_for(st, 3)[-1][0], R.PASS)       # West answers from the pre-empt table, without error
+        st2 = R.State(0, 0, (R.Settings(), R.STANDARD))
+        st2.push(R.PASS)
+        st2.push(R.bid(3, R.N))
+        st2.push(R.PASS)
+        self.assertEqual(R.table_for(st2, 3), [])       # three no-trump as an opening: the general procedure only
+
     def test_every_call_is_legal_and_every_auction_ends(self):
         precision, standard = R.RuleSystemBidder(), R.RuleSystemBidder(R.STANDARD, opponents=R.Settings())
         both = R.RuleSystemBidder(opponents='same')

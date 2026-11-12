@@ -27,6 +27,8 @@ import numpy as np
 from .system_bidders import RuleBidder, options_sha256
 
 PASS, DOUBLE, REDOUBLE = 2, 3, 4
+STRICT = False                      # tests and the tuner set this: a failing rule raises instead of passing
+RULES = 'r2'                        # raised whenever a rule changes what the bidder calls: part of a system's identity
 C, D, H, S, N = range(5)
 MAJORS, MINORS, SUITS = (H, S), (C, D), (C, D, H, S)
 BALANCED = ((4, 3, 3, 3), (4, 4, 3, 2), (5, 3, 3, 2))
@@ -146,6 +148,7 @@ class M:
 
 
 NOTHING = M()
+BAL = dict(C=(2, 5), D=(2, 5), H=(2, 5), S=(2, 5))     # the lengths a balanced no-trump bid shows
 
 
 class Shown:
@@ -201,7 +204,7 @@ class State:
         if len(self.calls) < 2:
             return False
         (ps, pt, pm), (rs, rt, _) = self.calls[-2], self.calls[-1]
-        if ps != (me + 2) % 4 or rt not in (PASS, DOUBLE):
+        if ps != (me + 2) % 4 or rt >= 5:                # a double or redouble on the right does not lift the force
             return False
         if pm.force == 1:
             return True
@@ -253,7 +256,8 @@ def opening_table(st, me, g):
         t.append((bid(2, C), M((lo, hi), kind='clubs', C=(g.two_clubs_len, 13), H=(0, 4), S=(0, 4))))
         if g.two_diamonds:
             t.append((bid(2, D), M((lo, hi), kind='three-suiter', D=(0, 1), C=(4, 5), H=(3, 4), S=(3, 4))))
-        t.append((bid(1, D), M((lo - light, hi), test=opens, D=(1, 13), H=(0, 4), S=(0, 4))))
+        t.append((bid(1, D), M((lo - light, hi), test=lambda h: opens(h) and not (h.len[C] >= g.two_clubs_len and h.len[C] > h.len[D]),
+                               D=(1, 13), H=(0, 4), S=(0, 4))))
     else:
         t.append((bid(2, C), M((22, 40), force=2, kind='strong')))
         t.append((bid(2, N), M((20, 21), kind='nt', test=lambda h: h.balanced, C=(2, 5), D=(2, 5), H=(2, 5), S=(2, 5))))
@@ -268,6 +272,8 @@ def opening_table(st, me, g):
         twos = (S, H) if g.style == 'precision' else (S, H, D)
         for s in twos:
             t.append((bid(2, s), M(weak, kind='preempt', test=lambda h, s=s: h.top5[s] >= g.weak_quality, **{'CDHS'[s]: (6, 6)})))
+        for s in (S, H):
+            t.append((bid(4, s), M((g.weak_lo, 12), kind='preempt', test=lambda h, s=s: h.top5[s] >= g.weak_quality, **{'CDHS'[s]: (8, 13)})))
         for s in (S, H, D, C):
             t.append((bid(3, s), M((max(0, g.weak_lo - 1), g.weak_hi), kind='preempt', test=lambda h, s=s: h.top5[s] >= g.weak_quality,
                                    **{'CDHS'[s]: (g.preempt_len, 13)})))
@@ -278,6 +284,8 @@ def opening_table(st, me, g):
 def nt_responses(st, me, g, base, lo, hi):
     """Responses to a no-trump bid at level `base` showing lo..hi balanced."""
     game, invite = g.game - lo, g.game - hi             # points for game opposite a minimum, and to invite
+    if base >= 2:
+        game = g.game - (lo + hi) // 2                   # no room to ask: go by the middle of the range
     t = [(bid(6, N), M((g.slam - lo, 40), test=lambda h: h.balanced))]
     if g.transfers:
         t.append((bid(base + 1, H), M((0, 40), force=1, kind='transfer', S=(5, 13), test=lambda h: h.len[S] >= h.len[H])))
@@ -326,6 +334,7 @@ def response_table(st, me, g):
         t.append((bid(4, S), M((game, 40), kind='signoff', S=(4, 13), test=lambda h: h.len[S] >= h.len[H])))
         t.append((bid(4, H), M((game, 40), kind='signoff', H=(4, 13))))
         t.append((bid(3, N), M((game + 1, 40), kind='signoff', test=lambda h: h.stop[D])))
+        t.append((bid(2, N), M((game - 2, game), kind='invite', test=lambda h: h.stop[D] and max(h.len[H], h.len[S]) < 4)))
         t.append((bid(3, S), M((game - 3, game - 1), kind='invite', S=(4, 13), test=lambda h: h.len[S] >= h.len[H])))
         t.append((bid(3, H), M((game - 3, game - 1), kind='invite', H=(4, 13))))
         t.append((PASS, M((0, game - 1), D=(6, 13))))
@@ -341,19 +350,22 @@ def response_table(st, me, g):
         t.append((bid(3, C), M((6, game - 4), kind='preempt', C=(3, 13))))
         t.append((PASS, M((0, game - 4))))
         return t
+    if lvl != 1 or s == N:                              # an opening the tables do not define: the general procedure
+        return []
     # a one-level suit opening, limited (precision) or wide (standard)
     if s in MAJORS:
         fit = lambda h: h.len[s] >= 3
         t.append((bid(4, s), M((0, 9), kind='preempt', test=lambda h: h.len[s] >= 5 and h.shape[3] <= 1, **{'CDHS'[s]: (3, 13)})))
         t.append((bid(4, s), M((0, 40), kind='signoff', test=lambda h: fit(h) and h.support(s) >= game and h.support(s) < g.slam - phi, **{'CDHS'[s]: (3, 13)})))
-        t.append((bid(3, s), M((game - 5, game - 1), kind='invite', test=lambda h: game - 3 <= h.support(s) < game, **{'CDHS'[s]: (4, 13)})))
+        t.append((bid(3, s), M((game - 8, game - 1), kind='invite', test=lambda h: game - 3 <= h.support(s) < game, **{'CDHS'[s]: (4, 13)})))
         if s == H:
             t.append((bid(1, S), M((g.resp_min, 40), force=1, S=(4, 13), test=lambda h: not (fit(h) and h.support(s) < game - 3) or h.len[S] >= 5)))
         t.append((bid(2, s), M((g.resp_min - 1, game - 4), test=lambda h: g.resp_min <= h.support(s) < game - 3 or (g.resp_min <= h.support(s) < game and h.len[s] == 3), **{'CDHS'[s]: (3, 13)})))
-        for x in (D, C) if s == S else (D, C):
-            t.append((bid(2, x), M((g.two_over_one, 40), force=1, **{'CDHS'[x]: (4, 13)}, test=lambda h, x=x: h.len[x] >= 5 or h.len[x] == h.shape[0])))
+        gf = 2 if g.two_over_one >= 12 else 1           # a two-over-one on twelve or more is forcing to game
+        for x in (D, C):
+            t.append((bid(2, x), M((g.two_over_one, 40), force=gf, **{'CDHS'[x]: (4, 13)}, test=lambda h, x=x: h.len[x] >= 5 or h.len[x] == h.shape[0])))
         if s == S:
-            t.append((bid(2, H), M((g.two_over_one, 40), force=1, H=(5, 13))))
+            t.append((bid(2, H), M((g.two_over_one, 40), force=gf, H=(5, 13))))
         t.append((bid(3, N), M((game, game + 3), kind='signoff', test=lambda h: h.balanced and not fit(h))))
         t.append((bid(2, N), M((game - 3, game - 1), kind='invite', test=lambda h: h.balanced and not fit(h))))
         t.append((bid(1, N), M((g.resp_min, g.two_over_one), kind='nt-response')))
@@ -403,23 +415,26 @@ def competitive_response_table(st, me, g):
             t.append((bid(4, s), M((0, 40), kind='signoff', test=lambda h: h.len[s] + st.shown[seat].len[s][0] >= 10, **{'CDHS'[s]: (3, 13)})))
             t.append((bid(4, s), M((0, 40), kind='signoff', test=lambda h: h.support(s) >= game, **{'CDHS'[s]: (3, 13)})))
         if bid(3, s) > over:
-            t.append((bid(3, s), M((game - 6, game - 1), kind='invite', test=lambda h: h.support(s) >= game - 4, **{'CDHS'[s]: (4, 13)})))
+            t.append((bid(3, s), M((game - 8, game - 1), kind='invite', test=lambda h: h.support(s) >= game - 4, **{'CDHS'[s]: (4, 13)})))
         if bid(2, s) > over:
             t.append((bid(2, s), M((g.resp_min - 2, game - 2), test=lambda h: h.support(s) >= g.resp_min, **{'CDHS'[s]: (3, 13)})))
     if theirs != N:
         for level, rng in ((3, (game, game + 4)), (2, (game - 3, game - 1)), (1, (g.resp_min + 1, game - 4))):
             if bid(level, N) > over and level_of(over) <= level:
-                t.append((bid(level, N), M(rng, kind='signoff' if level == 3 else 'invite' if level == 2 else 'nt-response', test=lambda h: h.stop[theirs])))
-    if om.kind in ('', 'clubs') and level_of(over) <= 2 and theirs != N:
-        unbid = [x for x in MAJORS if x not in (s, theirs)]
-        if unbid:
-            t.append((DOUBLE, M((g.resp_min + 1, 40), force=1, kind='takeout', test=lambda h: all(h.len[x] >= 4 for x in unbid))))
-    for x in (S, H, D, C):
+                t.append((bid(level, N), M(rng, kind='signoff' if level == 3 else 'invite' if level == 2 else 'nt-response',
+                                           test=lambda h: h.stop[theirs] and h.shape[3] >= 2 and h.shape[0] <= 6)))
+    for x in (S, H, D, C):                              # a suit of one's own with values comes before the double
         c = cheapest(x)
         if x not in (s, theirs) and c and level_of(c) <= 2:
             t.append((c, M((g.resp_min + 2 if level_of(c) == 1 else g.two_over_one - 1, 40), force=1, **{'CDHS'[x]: (5, 13)})))
+    if om.kind in ('', 'clubs') and level_of(over) <= 2 and theirs != N:
+        unbid = [x for x in MAJORS if x not in (s, theirs)]
+        if unbid:
+            t.append((DOUBLE, M((g.resp_min + 1, 40), force=1, kind='takeout', **{'CDHS'[x]: (4, 13) for x in unbid})))
     if natural and s in MINORS and cheapest(s) and level_of(cheapest(s)) <= 3:
         t.append((cheapest(s), M((g.resp_min, game - 2), **{'CDHS'[s]: (max(4, 8 - st.shown[seat].len[s][0]), 13)})))
+    if not natural and s in MINORS and om.kind == '' and cheapest(s) and level_of(cheapest(s)) <= 3:      # a short minor opening: real length raises it
+        t.append((cheapest(s), M((g.resp_min - 1, game - 2), **{'CDHS'[s]: (5 if level_of(cheapest(s)) <= 2 else 6, 13)})))
     for x in (S, H, D, C):                              # a long suit of one's own, to play
         c = cheapest(x)
         if x not in (s, theirs) and c and level_of(c) <= 3:
@@ -439,9 +454,9 @@ def rebid_table(st, me, g):
     t = []
     if pkind == 'negative' and st.acts[me][0][1] == 'strong' and base == 1:        # 1C - 1D
         top = g.club_min + 5
-        t.append((bid(3, N), M((25, 40), kind='signoff', test=lambda h: h.balanced)))
-        t.append((bid(2, N), M((22, 24), kind='nt', test=lambda h: h.balanced)))
-        t.append((bid(1, N), M((g.club_min, 21), kind='nt', test=lambda h: h.balanced)))
+        t.append((bid(3, N), M((g.club_min + 7, 40), kind='signoff', test=lambda h: h.balanced, **BAL)))
+        t.append((bid(2, N), M((g.club_min + 4, g.club_min + 6), kind='nt', test=lambda h: h.balanced, **BAL)))
+        t.append((bid(1, N), M((g.club_min, g.club_min + 3), kind='nt', test=lambda h: h.balanced, **BAL)))
         for x in (S, H):
             t.append((bid(2, x), M((top + 1, 40), force=1, **{'CDHS'[x]: (5, 13)}, test=lambda h, x=x: h.len[x] == h.shape[0])))
         t.append((bid(1, S), M((g.club_min, top), S=(5, 13), test=lambda h: h.len[S] >= h.len[H])))
@@ -452,7 +467,7 @@ def rebid_table(st, me, g):
         t.append((bid(2, C), M((g.club_min, top), C=(5, 13))))
         t.append((bid(1, S), M((g.club_min, top), S=(4, 13))))
         t.append((bid(1, H), M((g.club_min, top), H=(4, 13))))
-        t.append((bid(1, N), M((g.club_min, 21), kind='nt')))
+        t.append((bid(1, N), M((g.club_min, g.club_min + 3), kind='nt')))
         return t
     if pkind == 'ask' and st.acts[me][0][1] == 'clubs':                              # precision 2C - 2D
         mid = (g.open_min + g.top) // 2
@@ -474,6 +489,7 @@ def defensive_table(st, me, g):
     late = sum(1 for s2, tok, _ in st.calls if tok >= 5) >= 2 and not balancing
     b = g.balance if balancing else (-2 if late else 0)
     cheapest = lambda x: next((bid(l, x) for l in range(1, 8) if bid(l, x) > over), None)
+    short = lambda h: all(h.len[x] <= 2 for x in suits) and all(h.len[x] >= 3 for x in SUITS if x not in suits) if suits else h.balanced
     t = []
     if om.kind == 'nt' and level_of(token) == 1:
         t.append((DOUBLE, M((max(16, st.shown[seat].hcp[1]) - b, 40), kind='penalty')))
@@ -485,12 +501,18 @@ def defensive_table(st, me, g):
         stops = lambda h: all(h.stop[x] for x in suits) if suits else True
         c = cheapest(N)
         if c and level_of(c) == 1:
-            t.append((c, M((g.nt_overcall_lo - b, g.nt_overcall_hi - b), kind='nt', test=lambda h: h.balanced and stops(h))))
-    short = lambda h: all(h.len[x] <= 2 for x in suits) and all(h.len[x] >= 3 for x in SUITS if x not in suits) if suits else h.balanced
+            t.append((c, M((g.nt_overcall_lo - b, g.nt_overcall_hi - b), kind='nt', test=lambda h: h.balanced and stops(h), **BAL)))
+    if lvl == 2 and om.kind == 'preempt' and over == token and their != N:      # over a weak two: a strong no-trump
+        t.append((bid(2, N), M((g.nt_overcall_lo - b, g.nt_overcall_hi + 1 - b), kind='nt',
+                               test=lambda h: h.shape[0] <= 5 and h.shape[3] >= 2 and h.stop[their] and not short(h), **BAL)))
     if lvl <= 3 and om.kind != 'nt':
         need = g.takeout_min - b + 2 * max(0, lvl - 2)
-        t.append((DOUBLE, M((need + 6, 40), force=1, kind='takeout')))
-    for x in (S, H, D, C):
+        t.append((DOUBLE, M((max(g.overcall_max + 1, g.takeout_min + 6) - (1 if balancing else 0), 40), force=1, kind='takeout')))
+    for x in (S, H, None, D, C):
+        if x is None:                                    # the shape double comes before an overcall in a minor
+            if lvl <= 3 and om.kind != 'nt':
+                t.append((DOUBLE, M((g.takeout_min - b + 2 * max(0, lvl - 2), 40), force=1, kind='takeout', test=short)))
+            continue
         if x in suits:
             continue
         c = cheapest(x)
@@ -498,13 +520,14 @@ def defensive_table(st, me, g):
             continue
         need = (g.overcall_min1 if level_of(c) == 1 else g.overcall_min2 if level_of(c) == 2 else g.overcall_min2 + 2) - b
         quality = lambda h, x=x: h.top5[x] >= g.overcall_quality
+        sound = lambda h, x=x, lv=level_of(c), need=need: h.top5[x] >= g.overcall_quality and (
+            lv < 3 or h.len[x] >= 6 or (h.top3[x] >= 2 and h.hcp >= need + 2))       # at the three level: six cards, or a good five and extras
+        if g.jump_overcalls and not balancing and lvl <= 1 and level_of(c) == 1:
+            t.append((bid(3, x), M((g.weak_lo, g.weak_hi), kind='preempt', test=quality, **{'CDHS'[x]: (g.preempt_len, 13)})))
         if g.jump_overcalls and not balancing and bid(level_of(c) + 1, x) > over and level_of(c) + 1 <= 3 and lvl <= 1:
             t.append((bid(level_of(c) + 1, x), M((g.weak_lo, g.weak_hi), kind='preempt', test=quality,
                                                  **{'CDHS'[x]: (6 if level_of(c) + 1 == 2 else g.preempt_len, 13)})))
-        t.append((c, M((need, g.overcall_max), kind='overcall', test=quality, **{'CDHS'[x]: (5, 13)})))
-    if lvl <= 3 and om.kind != 'nt':
-        need = g.takeout_min - b + 2 * max(0, lvl - 2)
-        t.append((DOUBLE, M((need, 40), force=1, kind='takeout', test=short)))
+        t.append((c, M((need, g.overcall_max), kind='overcall', test=sound, **{'CDHS'[x]: (5, 13)})))
     t.append((PASS, M((0, g.takeout_min + 5))))
     return t
 
@@ -527,6 +550,9 @@ def advance_table(st, me, g):
         best = lambda h: max((x for x in SUITS if x not in theirs), key=lambda x: (h.len[x] + (x in MAJORS) * 0.5, x))
         pts = lambda h: h.hcp + max(0, h.len[best(h)] - 4) + sum(1 for x in theirs if h.len[x] <= 1)
         shift = max(0, g.takeout_min - plo)             # a double in the pass-out seat is lighter
+        if rho_passed and st.doubled == 1 and strain_of(over) != N:
+            ts, lv = strain_of(over), level_of(over)
+            t.append((PASS, M(kind='penalty-pass', test=lambda h: h.top5[ts] >= 3 and (lv >= 2 or h.len[ts] >= 6), **{'CDHS'[ts]: (5, 13)})))
         for x in MAJORS:
             if x not in theirs and bid(4, x) > over:
                 t.append((bid(4, x), M((10 + shift, 40), kind='signoff', test=lambda h, x=x: best(h) == x and pts(h) >= 12 + shift, **{'CDHS'[x]: (4, 13)})))
@@ -565,12 +591,14 @@ def advance_table(st, me, g):
         c = cheapest(s)
         if c and level_of(c) <= 3:
             if bid(level_of(c) + 1, s) > over and level_of(c) + 1 <= 3 and pkind == 'overcall':
-                t.append((bid(level_of(c) + 1, s), M((0, game - 1), kind='preempt', test=lambda h: h.support(s) >= 7, **{'CDHS'[s]: (need + 1, 13)})))
-            t.append((c, M((0, game - 1), test=lambda h: h.support(s) >= 6, **{'CDHS'[s]: (need, 13)})))
+                t.append((bid(level_of(c) + 1, s), M((game - 7, game - 1), kind='invite', test=lambda h: h.support(s) >= game - 5, **{'CDHS'[s]: (need, 13)})))
+                t.append((bid(level_of(c) + 1, s), M((3, game - 6), kind='preempt', test=lambda h: h.support(s) >= 7, **{'CDHS'[s]: (need + 1, 13)})))
+            t.append((c, M((4, game - 4), test=lambda h: 6 <= h.support(s) < game - 5, **{'CDHS'[s]: (need, 13)})))
+            t.append((c, M((4, game - 1), test=lambda h: h.support(s) >= 6, **{'CDHS'[s]: (need, 13)})))
         if pkind == 'overcall':
             cn = cheapest(N)
             if cn and level_of(cn) <= 2 and theirs:
-                t.append((cn, M((game - 5, game - 1), kind='nt-response', test=stops)))
+                t.append((cn, M((game - 5, game - 1), kind='nt-response', test=lambda h: stops(h) and h.shape[3] >= 2 and h.shape[0] <= 6)))
             for x in (S, H, D, C):
                 c2 = cheapest(x)
                 if x != s and x not in theirs and c2 and level_of(c2) <= 2:
@@ -599,8 +627,13 @@ def table_for(st, me):
             and st.calls[-2][0] == partner and strain_of(mine[-1][0]) == N:
         ptoken, pkind = st.acts[partner][-1]
         if pkind == 'transfer':
-            return [(bid(level_of(ptoken), H if strain_of(ptoken) == D else S), NOTHING)]
+            m, lv, top = (H if strain_of(ptoken) == D else S), level_of(ptoken), st.shown[me].hcp[1]
+            return [(bid(lv + 1, m), M(test=lambda h: h.len[m] >= 4 and h.hcp >= top - 1, **{'CDHS'[m]: (4, 5)})), (bid(lv, m), NOTHING)]
         return [(bid(level_of(ptoken), H), M(H=(4, 5))), (bid(level_of(ptoken), S), M(S=(4, 5), H=(2, 3))), (bid(level_of(ptoken), D), M(H=(2, 3), S=(2, 3)))]
+    if st.acts[partner] and st.acts[partner][-1][1] == 'nt' and st.calls[-1][1] == PASS and st.last == (partner, st.acts[partner][-1][0]) \
+            and level_of(st.last[1]) <= 2 and all(k == 'negative' for _, k in mine):
+        lo, hi = st.shown[partner].hcp
+        return nt_responses(st, me, g, level_of(st.last[1]), lo, min(hi, lo + 5))
     if opener == me and len(mine) == 1 and st.calls[-1][1] == PASS:
         return rebid_table(st, me, g)
     if opener % 2 != me % 2 and not mine and not st.acts[partner]:
@@ -612,13 +645,25 @@ def table_for(st, me):
 
 # ---- the general procedure ---------------------------------------------------------------
 
+def middle2(ps):
+    """Twice the points partner is taken to hold: the middle of what it has shown. A wide-open hand is taken two
+    above its minimum: with much more it acts itself, so the hands that leave the decision here are the lower ones."""
+    lo, hi = ps.hcp
+    return 2 * lo + (4 if hi - lo > 10 else min(hi - lo, 6))
+
+
+def invite_floor(g, ps):
+    """The fewest points on which the general procedure invites game opposite `ps`."""
+    return (2 * g.game - 2 - g.invite_width - middle2(ps) + 1) // 2
+
+
 def plan(h, st, me):
     """What the general procedure wants: (token, kind)."""
     g = st.systems[me % 2]
     partner = (me + 2) % 4
     ps, my = st.shown[partner], st.shown[me]
     plo, phi = ps.hcp[0], min(ps.hcp[1], ps.hcp[0] + 10)      # an unlimited hand is taken as within ten of its minimum
-    mid2 = 2 * plo + min(phi - plo, 6)                          # twice the middle of what partner has shown
+    mid2 = middle2(ps)
     over = st.last[1]
     ours = st.last[0] % 2 == me % 2
     level, strain = level_of(over), strain_of(over)
@@ -627,7 +672,9 @@ def plan(h, st, me):
     cheapest = lambda x: next((bid(l, x) for l in range(1, 8) if bid(l, x) > over), None)
     trumps = lambda x: h.len[x] + ps.len[x][0]
     # the best trump fit known from this hand and partner's shown lengths; a long suit of one's own counts
-    fits = [x for x in SUITS if x not in enemy and (trumps(x) >= 8 or h.len[x] >= 7 or (h.len[x] >= 6 and x in MAJORS and ps.len[x][1] >= 1))]
+    theirs_long = [x for x in MAJORS if ps.len[x][0] >= 6 and h.len[x] >= 1 and x not in enemy]      # partner's six-card major: one card is support
+    fits = [x for x in SUITS if x not in enemy and (trumps(x) >= 8 or x in theirs_long or (not theirs_long and (
+        h.len[x] >= 7 or (h.len[x] >= 6 and x in MAJORS and ps.len[x][1] >= 1))))]
     fit = max(fits, key=lambda x: (x in MAJORS, trumps(x), x)) if fits else None
     if fit is None:
         points = h.hcp + max(0, h.shape[0] - 5)
@@ -639,12 +686,15 @@ def plan(h, st, me):
         points += max(0, min(trumps(fit), h.len[fit] + 4) - 8)
     cmin, cmax = points + plo, points + phi
     pact = st.acts[partner][-1] if st.acts[partner] else (None, '')
-    partner_nt = pact[0] is not None and pact[0] >= 5 and strain_of(pact[0]) == N
-    stoppers = partner_nt or all(h.stop[x] or ps.len[x][0] >= 4 for x in enemy)
+    partner_nt = (pact[0] is not None and pact[0] >= 5 and strain_of(pact[0]) == N) or any(k == 'nt' for _, k in st.acts[partner])
+    stoppers = partner_nt or (h.shape[3] >= 2 and all(h.stop[x] or ps.len[x][0] >= 4 for x in enemy))
     forced = st.forced(me)
     rho_passed = st.calls[-1][1] == PASS
     invited = pact[1] == 'invite' and rho_passed
     slam_invited = pact[1] == 'slam-invite' and rho_passed
+    if invited and fit is None and any(ps.len[x][0] >= 6 and h.len[x] <= 1 for x in SUITS):
+        points -= 2                                      # asked, and short in partner's long suit
+        cmin, cmax = cmin - 2, cmax - 2
 
     def game_token():
         if fit in MAJORS:
@@ -670,19 +720,39 @@ def plan(h, st, me):
             and not slam_invited and pact[1] != 'signoff':
         return bid(4, N), 'slam-invite'
     target = game_token()
+    if target == bid(3, N) and fit is not None:          # no trump with a minor fit: shortness is not worth points there
+        points = h.hcp + max(0, h.shape[0] - 5)
+        cmin, cmax = points + plo, points + phi
     need = g.game_minor if target is not None and level_of(target) == 5 else g.game
     in_game = ours and below_game_is_enough(over)
+    if pact[0] == bid(3, N) and ours and rho_passed and any(k == 'transfer' for _, k in st.acts[partner]):
+        for m in MAJORS:                                 # partner transferred and offered three no-trump: three cards make the major better
+            if ps.len[m][0] >= 5 and h.len[m] >= 3 and bid(4, m) > over:
+                return bid(4, m), 'signoff'
     if pact[1] == 'signoff' and ours and rho_passed and not forced and cmin < g.slam - 2:
         return PASS, ''                                  # partner placed the contract
+    if pact[1] == 'choice' and rho_passed and ours:      # partner showed five of a major over our no-trump: choose the game
+        m = strain_of(pact[0])
+        go = bid(4, m) if h.len[m] >= 3 else bid(3, N)
+        if go > over:
+            return go, 'signoff'
+    narrow = my.hcp[1] - my.hcp[0] <= 6 and 2 * h.hcp > my.hcp[0] + my.hcp[1]             # the top half of what this hand has shown
+    accept = cmin >= need or (invited and (narrow or 2 * points + mid2 >= 2 * need))
+    over_2nt = partner_nt and ours and strain == N and level == 2 and st.last[0] == partner and rho_passed
+    if over_2nt and accept and pact[1] != 'signoff' and fit not in MAJORS:
+        for m in (S, H):
+            if h.len[m] >= 5 and my.len[m][0] < 5 and ps.len[m][1] >= 3 and bid(3, m) > over:
+                return bid(3, m), 'choice'
     # ---- partner asked, or doubled for takeout ----
     if invited:
-        narrow = my.hcp[1] - my.hcp[0] <= 6 and 2 * h.hcp > my.hcp[0] + my.hcp[1]         # the top half of what this hand has shown
         if (narrow or 2 * points + mid2 >= 2 * need) and target is not None and target > over:
             return target, 'signoff'
         if ours:
             return PASS, ''
-    if pact[1] == 'takeout' and pact[0] == DOUBLE and st.doubled == 1 and rho_passed and not ours:
+    if pact[1] == 'takeout' and pact[0] == DOUBLE and not ours and ((st.doubled == 1 and rho_passed) or (st.doubled == 2 and st.calls[-1][1] == REDOUBLE)):
         suit = max((x for x in SUITS if x not in enemy), key=lambda x: (h.len[x] + (x in MAJORS) * 0.5, x))
+        if fit in MAJORS and h.len[fit] >= 4:
+            suit = fit                                   # partner has shown four of this major
         if strain != N and h.len[strain] >= 5 and h.top5[strain] >= 3:
             return PASS, ''                              # their suit is ours: leave the double in
         if cmin >= need and suit in MAJORS and h.len[suit] >= 4 and bid(4, suit) > over:
@@ -704,6 +774,10 @@ def plan(h, st, me):
         for x in MAJORS:
             if bid(1, x) > over and x not in enemy and h.len[x] >= 4 and my.len[x][0] < 4 and ps.len[x][1] >= 4:
                 return bid(1, x), ''
+    if rho_passed and ours and level <= 2 and not in_game and cmin >= need - 4 and fit not in MAJORS and not invited:
+        for x in MAJORS:
+            if h.len[x] >= 5 and 4 <= my.len[x][0] < 5 and ps.len[x][1] >= 3 and bid(2, x) > over and x not in enemy:
+                return bid(2, x), ''
     # ---- game, or an invitation ----
     width = phi - plo
     if cmin >= need or (side_gf and not in_game and rho_passed):
@@ -715,7 +789,11 @@ def plan(h, st, me):
             return PASS, ''
     elif cmax >= need and 2 * points + mid2 >= 2 * need - 2 - g.invite_width and not in_game and not invited:
         inv = bid(3, fit) if fit in MAJORS else bid(2, N) if stoppers and fit is None else bid(3, fit) if fit is not None else None
-        if inv is not None and inv > over and not (ours and strain == strain_of(inv) and level >= level_of(inv)) and cmin < need - 2:
+        if over_2nt and inv is not None and strain_of(inv) in MAJORS:
+            inv = None                                   # three of a major over two no-trump is the forcing choice of games
+        if inv is not None and level_of(inv) == 3 and not is_invitation(st, me, inv):
+            inv = None                                   # it would be read as a preference or as competing, not as an invitation
+        if inv is not None and inv > over and not (ours and strain == strain_of(inv) and level >= level_of(inv)) and cmin < need - 1:
             return inv, 'invite'
         if (2 * points + mid2 >= 2 * need and (inv is None or inv <= over)) or cmin >= need - 1:      # no room to ask, or nearly enough alone
             go = target
@@ -726,13 +804,22 @@ def plan(h, st, me):
                 return go, 'signoff'
     # ---- they hold the contract ----
     if not ours:
+        if pact[0] == DOUBLE and pact[1] == 'penalty' and st.doubled == 1 and rho_passed:
+            return PASS, ''                              # partner doubled for penalty
+        if fit is not None and cmin >= need - 1 and strain != N and h.len[strain] <= 1 and level >= 3 and st.doubled == 0:
+            c = cheapest(fit)                            # game values, a fit and shortness in their suit: bid on, do not double
+            if c is not None and (level_of(c) <= 4 or (level_of(c) == 5 and cmin >= g.game_minor - 2)):
+                return c, 'signoff'
         if fit is not None:
             c = cheapest(fit)
             if c is not None and level_of(c) <= trumps(fit) - 6 + g.compete + (1 if cmin >= 23 else 0) and cmin >= 16:
                 return c, ''
         passed_out = len(st.calls) >= 2 and rho_passed and st.calls[-2][1] == PASS
         if passed_out and level <= 2 and st.doubled == 0 and strain != N and my.hcp[0] >= 10:
-            if h.len[strain] <= 2 and (h.hcp >= my.hcp[0] + 3 or h.hcp >= 15) and st.legal(DOUBLE):
+            shape = all(h.len[x] >= 3 for x in MAJORS if x not in enemy and x != strain) and h.shape[0] <= 6
+            bid_nt = any(t >= 5 and strain_of(t) == N for t, _ in st.acts[me])
+            if h.len[strain] <= 2 and shape and not bid_nt and h.hcp + ps.hcp[1] >= 22 \
+                    and (h.hcp >= my.hcp[0] + 3 or h.hcp >= 15) and st.legal(DOUBLE):
                 return DOUBLE, 'takeout'                 # extra values and short in their suit: ask partner to choose
             for x in (S, H, D, C):
                 c = cheapest(x)
@@ -768,7 +855,8 @@ def plan(h, st, me):
             if level_of(best) <= (5 if forced else 3):
                 return best, ''
         if forced:
-            c = cheapest(h.longest) or cheapest(N)
+            own = max((x for x in SUITS if x not in enemy), key=lambda x: (h.len[x], x), default=None)
+            c = (cheapest(own) if own is not None else None) or cheapest(N)
             if c is not None and level_of(c) <= 5:
                 return c, ''
     return PASS, ''
@@ -791,6 +879,17 @@ def escape(h, st, me):
     return None
 
 
+def is_invitation(st, me, token):
+    """Is a three-level suit bid over our own side's bid an invitation? A raise of the suit we just bid at the two
+    level, or a jump; the cheapest bid in a new strain is only a preference."""
+    if st.last is None or level_of(token) != 3:
+        return False
+    strain = strain_of(token)
+    if bid(2, strain) > st.last[1]:
+        return True                                      # a jump
+    return st.last[0] % 2 == me % 2 and strain == strain_of(st.last[1])
+
+
 def general_meaning(st, me, token):
     """A rough public reading of a call the tables do not define."""
     g = st.systems[me % 2]
@@ -802,7 +901,10 @@ def general_meaning(st, me, token):
             return M((0, max(my.hcp[0], (my.hcp[0] + my.hcp[1] + 1) // 2 - 1)))
         if st.forced(me) or st.last is None:
             return NOTHING
-        return M((0, max(my.hcp[0], min(my.hcp[1], game + 1))))          # an unforced pass: no game opposite partner's minimum
+        top = min(my.hcp[1], game + 1)                  # an unforced pass: no game opposite partner's minimum
+        if my.hcp[1] - my.hcp[0] > 6:                   # and from a wide-open hand, not much more than it has promised
+            top = min(top, my.hcp[0] + (3 if level_of(st.last[1]) <= 2 else 6))
+        return M((0, max(my.hcp[0], top)))
     if token in (DOUBLE, REDOUBLE):
         low = st.last is not None and level_of(st.last[1]) <= 2 and strain_of(st.last[1]) != N
         if low and len(st.calls) >= 2 and st.calls[-1][1] == PASS and st.calls[-2][1] == PASS and my.hcp[0] >= 10:
@@ -810,18 +912,30 @@ def general_meaning(st, me, token):
         return M((max(my.hcp[0], g.penalty - ps.hcp[1]), 40), kind='penalty')
     level, strain = level_of(token), strain_of(token)
     if token == bid(4, N) and not (st.last is not None and st.last[1] == bid(3, N) and st.last[0] % 2 != me % 2):
-        return M((max(my.hcp[0], g.slam - 2 - ps.hcp[0] - 2), 40), kind='slam-invite')
+        low = min(my.hcp[1], max(my.hcp[0], g.slam - 2 - ps.hcp[0] - 2))
+        return M((low, max(low, min(my.hcp[1], low + 4))), kind='slam-invite')
     if below_game_is_enough(token):
         return M((max(my.hcp[0], game - 4), 40), kind='signoff', **({'CDHS'[strain]: (max(2, 8 - ps.len[strain][0]), 13)} if strain != N else {}))
-    asks = level == 3 and not st.forced(me) and not st.game_force[me % 2] and st.last is not None and st.last[0] % 2 == me % 2
-    upper = (min(my.hcp[1], (my.hcp[0] + min(my.hcp[1], my.hcp[0] + 10) + 1) // 2), my.hcp[1]) if asks else (0, 40)
+    forced = st.forced(me)
+    asks = level == 3 and strain != N and not forced and not st.game_force[me % 2] and is_invitation(st, me, token)
+    floor = invite_floor(g, ps)
     if strain == N:
-        return M((max(my.hcp[0], game - 4), max(my.hcp[0], game - 1)), kind='invite') if level == 2 else M()
-    if ps.len[strain][0] >= 4 or strain in st.natural[me % 2] and my.len[strain][0] < 4:
+        if level == 2 and (not forced or st.last is None or bid(1, N) > st.last[1]):       # unforced, or a jump: an invitation
+            return M((max(my.hcp[0], min(my.hcp[1], floor - 1)), max(my.hcp[0], floor - 1, g.game - 2 - ps.hcp[0])), kind='invite')
+        return M()
+    upper = (max(my.hcp[0], min(my.hcp[1], floor)), my.hcp[1]) if asks else (0, 40)       # points: shape counts in a suit
+    if ps.len[strain][0] >= 3:                           # partner's suit: a raise
         return M(upper, kind='invite' if asks else '', **{'CDHS'[strain]: (max(2, 8 - ps.len[strain][0]), 13)})
-    if my.len[strain][0] >= 4:
-        return M(upper, kind='invite' if asks else '', **{'CDHS'[strain]: (6, 13)})
-    return M(**{'CDHS'[strain]: (4, 13)})
+    pact = st.acts[partner][-1] if st.acts[partner] else (None, '')
+    if level == 3 and strain in MAJORS and my.len[strain][0] < 5 and st.last is not None and st.last == (partner, bid(2, N)) \
+            and pact[0] == bid(2, N) and pact[1] != 'signoff':
+        return M((my.hcp[0], 40), force=1, kind='choice', **{'CDHS'[strain]: (5, 13)})
+    if my.len[strain][0] >= 3:                           # one's own suit again: longer than shown
+        longer = max(my.len[strain][0] + 1, 5)
+        return M(upper, kind='invite' if asks else '', **{'CDHS'[strain]: (longer, 13)})
+    constructive = st.last is not None and st.last[0] % 2 == me % 2 and st.doubled == 0 and pact[1] != 'signoff'
+    wide = my.hcp[1] - my.hcp[0] > 6                     # a new suit from a hand that may still be strong is forcing for a round
+    return M(force=1 if constructive and wide and not below_game_is_enough(token) else 0, **{'CDHS'[strain]: (4, 13)})
 
 
 def merged(entries):
@@ -835,11 +949,21 @@ def merged(entries):
     return out
 
 
+def odd_opening(token):
+    """An opening the table does not list (as a rule the other side's): a long suit and a limited hand."""
+    if token < 5:
+        return NOTHING
+    level, strain = level_of(token), strain_of(token)
+    if strain == N:
+        return M(kind='signoff')
+    return M((0, 15), kind='preempt', **{'CDHS'[strain]: (min(8, 4 + level), 13)})
+
+
 def explain(st, me, token):
     entries = [m for t, m in table_for(st, me) if t == token]
     if entries:
         return merged(entries)
-    return general_meaning(st, me, token) if st.opening is not None else NOTHING
+    return general_meaning(st, me, token) if st.opening is not None else odd_opening(token)
 
 
 def choose(h, st, me):
@@ -849,7 +973,7 @@ def choose(h, st, me):
     if run is not None and st.legal(run):
         return run
     for token, m in table_for(st, me):
-        if st.legal(token) and not (forced and token == PASS) and m.fits(h):
+        if st.legal(token) and not (forced and token == PASS and m.kind != 'penalty-pass') and m.fits(h):
             return token
     if st.opening is None:
         return PASS
@@ -870,8 +994,17 @@ class RuleSystemBidder(RuleBidder):
             self.opponents = STANDARD
         else:
             self.opponents = opponents if isinstance(opponents, Settings) else Settings(**opponents)
-        self.sha256 = options_sha256(self.kind, dict(settings=asdict(self.settings), opponents=asdict(self.opponents)))
+        # the system it bids: the rules' version and the settings (how it reads the other side is not part of it)
+        self.sha256 = options_sha256(self.kind, dict(asdict(self.settings), rules=RULES))
         self.cache = {}
+        self._facing = {}
+        self.errors = 0                                  # calls where a rule failed and the bidder passed instead
+
+    def facing(self, same):
+        """This system against a side that plays the same system (True) or something natural (False)."""
+        if same not in self._facing:
+            self._facing[same] = RuleSystemBidder(self.settings, opponents='same' if same else 'standard')
+        return self._facing[same]
 
     def state(self, side, dealer, vul, calls):
         key = (side, dealer, vul, calls)
@@ -887,8 +1020,14 @@ class RuleSystemBidder(RuleBidder):
         return st
 
     def call(self, hand, seat, dealer, vul, calls):
-        st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
-        return choose(Hand(hand), st, int(seat))
+        try:
+            st = self.state(int(seat) % 2, int(dealer), int(vul), tuple(int(c) for c in calls))
+            return choose(Hand(hand), st, int(seat))
+        except Exception:                                # a bidder at a table must always produce a legal call
+            if STRICT:
+                raise
+            self.errors += 1
+            return PASS
 
     def choose(self, hands, seat, dealer, vul, calls, turn, legal):
         out = np.empty(len(hands), np.int64)
@@ -904,3 +1043,15 @@ class RuleSystemBidder(RuleBidder):
 
 def settings_fields():
     return [f.name for f in fields(Settings)]
+
+
+def from_package(settings_file=None, settings=None, root=None):
+    """Factory for a system package's generator entry: the settings are in a JSON file ({"settings": {...}}, a path
+    relative to the repository unless `root` says otherwise) or given."""
+    if settings_file:
+        import json
+        from pathlib import Path
+        path = Path(settings_file)
+        base = Path(root) if root else Path(__file__).resolve().parents[1]
+        settings = json.loads((path if path.is_absolute() else base / path).read_text())['settings']
+    return RuleSystemBidder(settings)
