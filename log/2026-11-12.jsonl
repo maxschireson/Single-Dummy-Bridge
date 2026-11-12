@@ -211,3 +211,4 @@
 {"at": "2026-11-12T08:35:00Z", "by": "will", "op": "log", "target": "G9-W5", "note": "tools/boxq.py and workq job submit/cancel/jobs on team/gen9 (a333fe7, ae0b1c7), 9 tests; README section 'Box jobs'; leads told to submit now with g9's priorities. Next: deploy on azure4 at 13:10 (boxctl: clone team/gen9 tools into ~/work/g9, start g9-boxq)."}
 {"at": "2026-11-12T08:35:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-r8", "note": "priority 2, 4 cores", "task": "E9-11"}
 {"at": "2026-11-12T08:35:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-r7", "note": "priority 2, 4 cores", "task": "E9-11"}
+{"at": "2026-11-12T08:35:00Z", "by": "bill", "op": "job-submit", "target": "azure4/e9-11-p7", "note": "priority 2, 4 cores", "task": "E9-11"}
