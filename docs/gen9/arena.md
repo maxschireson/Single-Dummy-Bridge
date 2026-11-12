@@ -73,7 +73,10 @@ the 7.1 preflight took 251 s, and draining takes up to one board's time on each 
 seed, the collector's slot and a counter. A collector takes the first free slot once per epoch
 by pushing its registration (the push is the lock, as for task leases), so no two collectors
 play the same deal and nobody needs to know how many collectors there will be. This replaces
-`--shard K/N`. A deal whose family is in `exclude_families` is skipped and the skip recorded.
+`--shard K/N`. A fresh seed per epoch makes deals fresh for every bundle by construction (a net
+can only have trained on boards already played); `exclude_families` is the check. A board whose
+family a rostered bundle trained on is still played but marked training-only for that bundle,
+so its result is not counted in that bundle's ratings or tests.
 
 ## 3. What a collector does
 
@@ -128,7 +131,8 @@ declared field mix with its worst cell. Inputs are the pooled rows with today's 
 
 **Admission.** A `submit` event with a package. Checks by rule: identity reproduces from the
 package, every net's sha256 matches its release, training-family lists present, needs met by at
-least one registered host, licence redistributable, two-board preflight passes on a host.
+least one registered host, licence redistributable, no `oracle` key anywhere in the spec
+(test-only bots that are given the deal, E9-0), two-board preflight passes on a host.
 Passing gives `candidate` at the next boundary and the admission share until the rating width
 is met (*width: G9-A4*), then `active`.
 
