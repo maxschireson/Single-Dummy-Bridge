@@ -814,6 +814,42 @@ is -0.06 +- 0.04 tricks a side on these pairs, `path` 0.1 -0.04 +- 0.03, `path` 
   rows: the bench did not record the stake of each pair. The alpha bot now logs it.
 - One set, one net. The uniform tree's own figure moved by 0.02 between two unseen sets.
 
+**By stake, in IMPs.** The pairs split by what a trick was worth on their deal (the larger of the
+IMP swings one trick below and one trick above the root table's result), IMPs a pair against plain
+search:
+
+| A trick was worth | New set, uniform tree (v4) | New set, `path` 0.1 (solves) | Earlier set, uniform tree (v3.1) |
+| --- | --- | --- | --- |
+| 1 IMP or less | -0.09 +- 0.03 | -0.07 +- 0.03 (107) | -0.01 +- 0.02 |
+| 2 to 4 | +0.06 +- 0.07 | +0.00 +- 0.08 (146) | +0.12 +- 0.06 |
+| 5 or more | -0.13 +- 0.05 | -0.14 +- 0.04 (206) | -0.05 +- 0.03 |
+| 10 or more | -0.20 +- 0.07 | -0.19 +- 0.07 (230) | 0.00 +- 0.05 |
+
+The uniform tree uses about 150 solves in every row. At `path` 0.1 the stake rule spends half as
+much again on the 10-IMP deals as the uniform tree and the difference there is +0.01 +- 0.05 IMPs
+a pair: more search where the stake is high neither helped nor hurt. A first version of this
+table labelled a deal by the trick the decider stood to lose from the actual result. That puts
+"made exactly" in the high bucket and "one down" in the middle one, which tilts the high bucket
+against any tree that switches cards (it showed -0.26 and -0.20 there); it was withdrawn.
+
+**In the alpha bot** (v4, margin 0.25, trust 0.25, spot-card mode, against Gen 6 fast on the first
+72 deals and the seeds of the 414-board match; two smoke matches, not strength measurements):
+
+| | 3 tricks, `path` 0.5 | 4 tricks, `path` 0.1 |
+| --- | --- | --- |
+| IMPs a board against Gen 6 | +0.50 +- 0.32 | +0.54 +- 0.34 |
+| Failures; decisions failing the preflight's check | 0; 0 of 9,001 | 0; 0 of 9,964 |
+| Tree consulted; moved the card | 881; 52 | 908; 69 |
+| Solves a tree decision: mean, 95th percentile, most | 88, 207, 413 | 261, 668, 1,323 |
+| Seconds a tree decision: mean, most | 0.16, 1.34 | 0.54, 2.63 |
+| Tree audit forks, IMPs a fork | 0.00 +- 0.25 (64) | -0.32 +- 0.20 (91) |
+| Cpu-s a side a root table, of which the tree | 4.82, 0.48 | 6.01, 1.50 |
+
+Board by board on the same deals, the deeper tree minus the shallower: +0.06 +- 0.24 IMPs (10
+boards differ). The stake from the search's 32 layouts averages 4.1 IMPs a trick (median 3.0), and
+solves follow it (correlation 0.86 in both runs). With the uniform tree of the 414-board match the
+tree cost 2.57 cpu-s a side a root table.
+
 ## The net as a second opinion, and the opening lead (12:30 UTC)
 
 `scripts/gen7_second_opinion.py` writes, for every gap fork at any ply, where the net puts Gen 6's
