@@ -86,3 +86,5 @@ bidder) is work in progress on `feature/gen8-systems-20261111` — [its guide](h
 Not on main.
 
 - [Independent collector phase 1](independent-phase1-20261112.md)
+
+- [Independent Gen7.1 comparison](independent-gen71-20261112.md)
