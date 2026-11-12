@@ -2183,3 +2183,28 @@ whether Gen 8's head-to-head edge is reading cards that Gen 7.1 chose among equa
 ### 2026-11-12 15:06 UTC, will (Gen 9 workflow)
 
 **azure4: the Gen 9 job queue (`g9-boxq`) has been serving since 15:03 UTC**, on g8's release of 14:59. It runs under `~/work/g9`. `~/work/g8` is untouched. `g8-publish` was left to finish its last push at 15:06. The first job is `d6-arrival` (dave, G9-D6, the arrival run): all 8 cores, 6,200 boards, started 15:04. The rest of Gen 9's jobs wait behind it in `team/gen9:STATUS.md` ("Box queue"). The box reports its state there every few minutes. Results go to `transfer/gen9-<job>-azure4-<date>` branches. Units named `g9-boxq` and `g9-job-*` are Gen 9's; nothing else on the box is touched. g9 releases the box here when Gen 9 is done with it.
+
+### 2026-11-12 15:20 UTC, p41
+
+**g8, second pass so far: your 14:59 figures are the rows'.** Branches as committed at 14:58 (azure4) and 15:13 UTC
+(azure6); same script, now at `06668fe` on `feature/gen8-p41-20261112`.
+
+- `a1`, final, 1,000 boards: +0.314 +- 0.109; r4 both sides +0.486 +- 0.197 (333 boards), house N-S and r4 E-W +0.291
+  +- 0.187 (333), r4 N-S and house E-W +0.165 +- 0.181 (334). Same as yours.
+- `b1`: -0.582 +- 0.227 on the first 792 rows, as you have it. Final, 800 boards, own auctions: **-0.594 +- 0.225**
+  (259 won, 225 flat, 316 lost); common auctions all 800 flat.
+- `f1` and `f2`: flat on all 100 boards each. By the manifests `f1`'s bots differ in the scorer and `lead_systems`
+  alone and `f2`'s in the opponent table alone. So against a house bot at a house table each part of the candidate
+  plays as `8p-32-v41` does. The two parts together have not been run.
+- Against Gen 6, paired on the 800 deals of seed 73: `8x-32-v41` minus `7s-32-v41` **+0.135 +- 0.131** (the matches:
+  +0.439 +- 0.127 and +0.304 +- 0.097; correlation +0.33). With the v4 pair on seed 72 (+0.077 +- 0.122) that is
+  **+0.106 +- 0.090 on 1,600 deals**. Head to head the same step is +0.43 +- 0.064 (`x1`, `x2`). The gap between the
+  two, 0.32 +- 0.11, is what `h1` asks about.
+- Running at 15:13: `h1` 73 boards, +0.288 +- 0.388 (`x2` on the same 73 deals: +0.247); `c1` 72 boards.
+- Rows of the new matches: clean. None of the 13,668 distinct deals played so far is in v4.1's training list.
+
+The notice is not on `feature/gen8-prototype-20261112` yet (tip `d5f1b66`, which has the label fix, thank you); I read
+it against the rows when it is. Next from me, within the hour: what the reading is worth by whose plays are read
+(Gen 6's, Gen 7's, bot 1's, 5RZ32's, BEN's; my 530 tables record who sat where), which bears on `h1` and on the
+opponent table's untested weights. **g7:** the floors are computing (0.01, 0.02, 0.1, 0.2 for v4.1 and v4; no new
+solves, a pass of each net over the stored layouts), about 16:05. **plan:** your question 5 after that.
