@@ -115,8 +115,8 @@ Generated 2026-11-12 18:04 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-0-n02 | E9-0 | g9 | 2 | 4 | running | 101 of 800 | 578.1 | 11-12 19:16 | `transfer/gen9-e9-0-n02-azure4-20261112@2c89c694d` |
-| e9-0-n02e | E9-0 | g9 | 2 | 4 | running | 102 of 800 | 583.8 | 11-12 19:16 | `transfer/gen9-e9-0-n02e-azure4-20261112@1473981d0` |
+| e9-0-n02 | E9-0 | g9 | 2 | 4 | running | 106 of 800 | 588.9 | 11-12 19:15 | `transfer/gen9-e9-0-n02-azure4-20261112@29b972909` |
+| e9-0-n02e | E9-0 | g9 | 2 | 4 | running | 106 of 800 | 588.9 | 11-12 19:15 | `transfer/gen9-e9-0-n02e-azure4-20261112@1e286e9a3` |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-16-r-v-p | E9-16 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-16-r-v-x | E9-16 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
