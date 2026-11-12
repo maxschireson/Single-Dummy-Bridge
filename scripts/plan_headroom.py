@@ -128,6 +128,7 @@ def main():
         n = np.maximum(1, np.round(share_ * count)).astype(int)
         gains = {('corrected', t, m): np.zeros(len(rows)) for t in trusts for m in margins}
         gains.update({('plain', 1., m): np.zeros(len(rows)) for m in margins})
+        gains.update({('behind', th, m): np.zeros(len(rows)) for th in (.125, .25, .375, .5) for m in (0.25, 9.)})   # needs the estimate to be this far below zero
         plays = {k: np.zeros(len(rows)) for k in gains}
         for _ in range(a.splits):
             rank = np.argsort(np.argsort(np.where(valid, rng.random(sh.shape), 9.), axis=1), axis=1)
@@ -136,14 +137,14 @@ def main():
             rest = np.where(rest.any(1, keepdims=True), rest, first)                 # a single layout scores itself
             c1, d1, score = mean(c, first), mean(d, first), -mean(d, rest)
             for (kind, t, m) in gains:
-                b = ((est + t * c1 < -1e-9) if kind == 'corrected' else (d1 < -1e-9)) & (est <= m + 1e-9)
+                b = ((est + t * c1 < -1e-9) if kind == 'corrected' else (est + c1 < -t) if kind == 'behind' else (d1 < -1e-9)) & (est <= m + 1e-9)
                 gains[(kind, t, m)] += np.where(b, score, 0.) / a.splits
                 plays[(kind, t, m)] += b / a.splits
         print(f'   {share_:.2f} of the layouts choose ({int(round(share_ * K))} of {K}):')
         for (kind, t, m), g in gains.items():
             if m not in (0.25, 9) and not (kind == 'corrected' and t == 0.5):
                 continue
-            print(f'     {kind:9s} trust {t:.2f} margin {m:5.3f}: plays B in {plays[(kind, t, m)].mean():.3f} of pairs; '
+            print(f'     {kind:9s} {"by" if kind == "behind" else "trust"} {t:.3f} margin {m:5.3f}: plays B in {plays[(kind, t, m)].mean():.3f} of pairs; '
                   f'{show(clustered_mean(g, fam))} | overrules a side {float((plays[(kind, t, m)] * w).sum() / sides):.2f}, '
                   f'tricks a side {show(clustered_mean(g, fam, w, sides))}')
     # upper bound with hindsight on the same layouts (biased up: the layouts that choose also score)
@@ -212,19 +213,40 @@ def main():
         fin2 = final[index]
         sides2 = a.sides or 2 * len(set(f2))
         names = [s['name'] for s in d2['settings']['sims']]
-        print(f'\n3. Rules from {path} ({len(index)} pairs shared, {len(set(f2))} deals): tricks gained, scored by the ceiling\'s playouts '
-              f'[and by the real deal]. A pair | a side at one table, margin 0.25.')
+        wide = np.array([r['pimc'] for r in sub])
+        layouts = np.mean([r['layouts'] for r in sub])
+        noise2 = luck_d[index].mean()
+        print(f'\n3. Rules from {path} ({len(index)} pairs shared, {len(set(f2))} deals, {layouts:.0f} layouts a pair there, recorded gap up to '
+              f'{e2.max():.3f}): tricks gained over Gen 6\'s card, scored by the ceiling\'s playouts [and by the real deal]. A pair | a side at one table.')
+        print(f'   the ceiling\'s playout mean has variance {t2.var():.4f} here, of which layout luck {noise2:.4f}')
+
+        def line(name, b):
+            return (f'     {name:34s} plays B in {b.mean():.3f}; a pair {show(clustered_mean(np.where(b, -t2, 0.), f2))} '
+                    f'[{show(clustered_mean(np.where(b, -fin2, 0.), f2))}] | a side: overrules {float((b * w2).sum() / sides2):.2f}, '
+                    f'tricks {show(clustered_mean(np.where(b, -t2, 0.), f2, w2, sides2))} [{show(clustered_mean(np.where(b, -fin2, 0.), f2, w2, sides2))}]')
+
+        X = np.column_stack([np.ones(len(sub)), e2, wide - e2])
+        beta = np.linalg.lstsq(X, t2, rcond=None)[0]
+        print(f'   double dummy on the bench\'s own layouts: ceiling = {beta[0]:+.3f} {beta[1]:+.2f} x recorded gap {beta[2]:+.2f} x (wide - recorded); '
+              f'residual variance {np.var(t2 - X @ beta):.4f}')
+        for u in (0.5, 0.75, 1.0):
+            print(line(f'double dummy, {u:.2f} wide + {1 - u:.2f} recorded', (1 - u) * e2 + u * wide < -1e-9))
         for s in names:
             corr = np.array([r[s] - r['pimc'] for r in sub])
-            X = np.column_stack([np.ones(len(sub)), e2, corr])
+            X = np.column_stack([np.ones(len(sub)), e2, wide - e2, corr])
             beta = np.linalg.lstsq(X, t2, rcond=None)[0]
-            print(f'   {s}: ceiling\'s playout mean = {beta[0]:+.3f} {beta[1]:+.2f} x recorded gap {beta[2]:+.3f} x correction')
+            res = np.var(t2 - X @ beta)
+            print(f'   {s}: ceiling = {beta[0]:+.3f} {beta[1]:+.2f} x recorded gap {beta[2]:+.2f} x (wide - recorded) {beta[3]:+.3f} x correction; '
+                  f'residual variance {res:.4f} (luck alone would leave {noise2:.4f}); sd of the correction {corr.std():.3f}')
             for t in trusts:
-                b = e2 + t * corr < -1e-9
-                bm = b & (e2 <= 0.25 + 1e-9)
-                print(f'     trust {t:.2f}: plays B in {b.mean():.3f}; a pair {show(clustered_mean(np.where(b, -t2, 0.), f2))} '
-                      f'[{show(clustered_mean(np.where(b, -fin2, 0.), f2))}] | a side: overrules {float((bm * w2).sum() / sides2):.2f}, '
-                      f'tricks {show(clustered_mean(np.where(bm, -t2, 0.), f2, w2, sides2))} [{show(clustered_mean(np.where(bm, -fin2, 0.), f2, w2, sides2))}]')
+                print(line(f'recorded + {t:.2f} x correction', e2 + t * corr < -1e-9))
+            for t in trusts:
+                print(line(f'half wide dd + {t:.2f} x correction', .5 * e2 + .5 * wide + t * corr < -1e-9))
+            for t in trusts:
+                print(line(f'wide dd + {t:.2f} x correction', wide + t * corr < -1e-9))
+            plain = np.array([r[s] for r in sub])                       # the playouts' own mean, no double dummy on the bench's layouts needed
+            for t in trusts:
+                print(line(f'{1 - t:.2f} recorded + {t:.2f} playout mean', (1 - t) * e2 + t * plain < -1e-9))
 
 
 if __name__ == '__main__':
