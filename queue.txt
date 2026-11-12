@@ -17,4 +17,8 @@ ceilTies $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --workers 8 -
 ceil64b $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --workers 8 --out $R.json --worlds 64 --max-gap 0.25 --skip-files 500 --files 300
 wide3 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb5;v41:hyb8" --from-trick 3 --to-trick 6 --files 500 --seed 1 --layouts 128 --max-gap 0.25 --workers 8 --out $R.json
 rbc2a $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 300 --chain 400 --chains 2 --workers 8 --out $R.json
+@source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44
+match4 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prc-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
+match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair cl-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
+rbc2a $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 300 --chain 400 --chains 2 --workers 8 --out $R.json
 rbc2b $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 308 --chain 400 --chains 2 --workers 8 --out $R.json

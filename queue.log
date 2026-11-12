@@ -30,3 +30,6 @@
 2026-11-12T21:21:59Z start wide3 (source 0f0f4f8): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims "v41:hyb5;v41:hyb8" --from-trick 3 --to-trick 6 --files 500 --seed 1 --layouts 128 --max-gap 0.25 --workers 8 --out $R.json
 2026-11-12T21:55:33Z end wide3: exit 0
 2026-11-12T21:55:33Z start rbc2a (source 0f0f4f8): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 300 --chain 400 --chains 2 --workers 8 --out $R.json
+2026-11-12T22:18:56Z end rbc2a: exit 143
+2026-11-12T22:18:57Z source now 0d1db2b Plan player: the claim finder (single-dummy sure tricks) at the declarin
+2026-11-12T22:18:57Z start match4 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prc-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
