@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-12 19:45 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 19:51 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -23,7 +23,7 @@ Generated 2026-11-12 19:45 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z | lease expired |
+| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z | lease expired, may be taken over |
 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-12 22:59 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-12 21:50 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-12 21:51 | leased | high | 2026-11-13T10:00Z |  |
@@ -67,7 +67,7 @@ Generated 2026-11-12 19:45 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z | lease expired |
+| [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-12 19:16 | leased | high | 2026-11-13T06:00Z | lease expired, may be taken over |
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam until 11-12 21:08 | leased | high | 2026-11-13T16:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
@@ -118,11 +118,11 @@ Generated 2026-11-12 19:45 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-12 19:45 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-12 19:51 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| d6-arrival |  | dave | 1 | 8 | running | 2,809 of 6,200 | 541.7 | 11-13 02:01 | `transfer/gen9-d6-arrival-azure4-20261112@52e71851a` |
+| d6-arrival |  | dave | 1 | 8 | running | 2,876 of 6,200 | 588.5 | 11-13 01:29 | `transfer/gen9-d6-arrival-azure4-20261112@1ca8db9d4` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | paused | 627 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02-azure4-20261112@514d6b868` |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | paused | 626 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02e-azure4-20261112@c50274d73` |
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
