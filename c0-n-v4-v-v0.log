@@ -68,3 +68,17 @@ n-v4 v n-v0: 3000 boards to play (1000 done), 8 workers
 3250 boards: 4.0108 +- 0.0967 IMPs/board for n-v4; 44307 boards/hour; 0 failed
 3300 boards: 4.0282 +- 0.096 IMPs/board for n-v4; 44306 boards/hour; 0 failed
 3350 boards: 4.0313 +- 0.0954 IMPs/board for n-v4; 44341 boards/hour; 0 failed
+3400 boards: 4.0374 +- 0.0948 IMPs/board for n-v4; 44346 boards/hour; 0 failed
+3450 boards: 4.0449 +- 0.0941 IMPs/board for n-v4; 44371 boards/hour; 0 failed
+3500 boards: 4.0409 +- 0.0933 IMPs/board for n-v4; 44334 boards/hour; 0 failed
+3550 boards: 4.0276 +- 0.0928 IMPs/board for n-v4; 44365 boards/hour; 0 failed
+3600 boards: 4.0258 +- 0.0925 IMPs/board for n-v4; 44405 boards/hour; 0 failed
+3650 boards: 4.0227 +- 0.0918 IMPs/board for n-v4; 44456 boards/hour; 0 failed
+3700 boards: 4.02 +- 0.0913 IMPs/board for n-v4; 44493 boards/hour; 0 failed
+3750 boards: 4.0288 +- 0.0907 IMPs/board for n-v4; 44519 boards/hour; 0 failed
+3800 boards: 4.0253 +- 0.0902 IMPs/board for n-v4; 44540 boards/hour; 0 failed
+3850 boards: 4.0444 +- 0.0897 IMPs/board for n-v4; 44570 boards/hour; 0 failed
+3900 boards: 4.0469 +- 0.0891 IMPs/board for n-v4; 44569 boards/hour; 0 failed
+3950 boards: 4.042 +- 0.0886 IMPs/board for n-v4; 44576 boards/hour; 0 failed
+4000 boards: 4.0485 +- 0.0879 IMPs/board for n-v4; 44617 boards/hour; 0 failed
+{"pair": "n-v4~n-v0", "boards": 4000, "cpu_per_board": 0.63, "common": {"imps_per_board": 4.0485, "se": 0.0879, "boards": 4000, "won": 2748, "lost": 329, "flat": 923}, "native": {"imps_per_board": 4.0485, "se": 0.0879, "boards": 4000, "won": 2748, "lost": 329, "flat": 923}}
