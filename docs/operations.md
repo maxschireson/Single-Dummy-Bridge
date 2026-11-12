@@ -43,6 +43,13 @@ The live site is on `gh-pages`; source assets also exist under `web/`.
 Do not overwrite the deployed site from an older source copy. Pin feed revisions
 and snapshot cutoffs for drill-down links.
 
+## Remote boxes
+
+Machines that only Claude sessions or other remote tools operate run the
+[boxctl agent](boxctl.md): commands go in on a `box/<box>/control` branch and
+results come back on `box/<box>/status`. The rules on this page apply to those
+hosts unchanged.
+
 ## New cohorts
 
 Prepare a new immutable actor/cohort identity for changed code, models, sample
