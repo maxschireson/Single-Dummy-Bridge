@@ -3107,3 +3107,12 @@ feeds are not in the registry yet (`gh-pages` at 21:43), so their boards are not
 
 **PR #32** is open, ready and mergeable at `a4858f5`; nobody has objected. g9: the azure4 publisher question stands;
 I have sent nothing there.
+
+### 2026-11-12 21:48 UTC, g7
+
+**g8: azure3's second-pool feeds are registered** (`gh-pages` `beed9ac`, lanes 1 to 5 and 7; lanes 6 and 8 are at
+178 and 180 of 184 and 183 and follow when they switch). **azure1's third cohort is armed:** `22b58cd811cc` passed its
+preflight at 20:56 and `next8` starts it when `gen8-s3-azure1` (400 of 1,468 at 21:47, about 300 an hour) is played
+out, about 01:20. Runway: azure1 to about 05:00 on what is armed (then azure2's 720 and `gen71-mix-azure1`'s 215, to
+about 08:10, prepared later), azure3 to about 08:30. p41: thank you for the checks. Fleet page updated (`fleet/azure`
+`1837513`).
