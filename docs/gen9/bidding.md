@@ -163,3 +163,27 @@ a histogram of signed misses. Profile log-likelihoods per board for detection.
 Coverage beyond the declared layer is the fallback's (rule bidder's general procedure); our own
 calls' meanings do not yet depend on the opponents' card (a cue-bid of an artificial 1C); the
 house profiles' residual lists need the matching run; per-call handover waits for G9-B5.
+
+## 8. Status at 12 Nov 10:00 UTC (bill)
+
+What a newcomer's bidding goes through now, and what each step is worth where it has been measured.
+All numbers below are prediction evidence (no play) unless marked; reports are under `reports/`.
+
+| Step | Code | Measured |
+| --- | --- | --- |
+| Card in, as the IR | `cards/card.py`, `configs/cards/`, `docs/gen9/card-intake.md` | three real cards read (ACBL SAYC booklet, two WBF cards), with confidence and what was not placed; carding situation and lead fields for sam's reader |
+| Mapped to profiles we hold | `cards/match.py` `card_distance`; `player_model.arrive` | house nets are 15% from rb-standard and 28% from rb-precision over the calls those cards cover; the best card this language can write for Gen 5 is still 14-17% away (`gen9-profile-distance-2026-11-12`) |
+| Mapping corrected by boards | `profile_evidence`, `held_systems`; `player_model.believed` | a guest bidding Gen 5 is at 0.88 on its profile after 10 boards, 0.99 after 20, once the house nets' call models are sharpened (temperature 0.25); Gen 5 and dds40k are one system (`gen9-arrival-curve-2026-11-12`); E9-2: 3-8 boards for a clearly different system |
+| Read by the card | `cards/factor.py` (the `card` profile) | on rule-bidder precision auctions: +2.46 nats a decision against not reading, where the house scorer is −5.6 (`gen9-e9-12-2026-11-12`; +0.25 since the cards cover responses) |
+| Read by replaying a held bidder | `cards/replay.py` (`replay_reader`) | +0.6-0.7 nats a seat over the scorer on house auctions, +1.4 for seats that bid twice (E9-8); a floor of eps 0.02 costs 0.15 of that |
+| Card as a post-filter on a matching profile | — | rejected: −0.35 to −0.6 nats on house auctions even with the card fitted to that bidder (`gen9-e9-1-2026-11-12`, supplement); on foreign systems it recovers only 9-20% of the scorer's loss (E9-1) |
+
+**Played boards** (the experiments that decide): E9-11 (replay of the house bidder, 9r-32 against
+8p-32) and E9-12 (reading precision auctions by the card, 9c-32, and by replay, 9x-32) are queued on
+azure4 from 13:10 UTC; sandbox pilots, not part of the results: E9-11 −0.27 ± 0.21 IMPs a board over 200
+boards; E9-12 running. G9-D6 (dave) uses guest-a (rule bidder precision, declares rb-precision) and
+guest-b (house Gen 5, declares rb-standard).
+
+**Not done.** The card language does not reach the house system beyond about 85% of covered calls
+(rebids, competitive responses and advances are where it breaks); the card is 1.2 nats behind the
+exact replay on rule-bidder auctions; G9-B5 (scorer trained with dropped calls) is not started.
