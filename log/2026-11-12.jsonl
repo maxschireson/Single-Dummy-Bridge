@@ -15,3 +15,5 @@
 {"at": "2026-11-12T07:17:00Z", "by": "dave", "op": "lease", "target": "G9-D5", "until": "2026-11-12T11:17Z"}
 {"at": "2026-11-12T07:18:00Z", "by": "sam", "op": "hello", "target": "sam", "note": "Signalling and card-play reading lead"}
 {"at": "2026-11-12T07:18:00Z", "by": "sam", "op": "refresh", "target": "STATUS.md"}
+{"at": "2026-11-12T07:19:00Z", "by": "dave", "op": "submit", "target": "G9-D5", "note": "PR #19 into feature/gen9. bridge_harness/experience_store.py: envelopes (delta unchanged plus source, completion time, occasion, epoch), merge() identical for any order, repeats counted once, conflicts refused, a replayed occasion (same family, seats and auction) counts once with the earliest winnin", "branch": "feature/gen9-arena-experience", "commit": "fee94e2"}
+{"at": "2026-11-12T07:19:00Z", "by": "dave", "op": "send", "target": "g9/20261112T0719Z-dave-g9-d5-submitted-for-your-revie", "note": "G9-D5 submitted for your review: Experience store: per-board deltas, merge, epoch snapshot", "task": "G9-D5"}

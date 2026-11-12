@@ -1,13 +1,13 @@
 # Gen 9 status
 
-Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-12 07:19 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 1 | 2 | 0 | 3 | 0 | 0 |
-| dave | 2 | 0 | 0 | 3 | 0 | 1 |
+| dave | 1 | 1 | 0 | 3 | 0 | 1 |
 | g9 | 0 | 0 | 1 | 3 | 0 | 3 |
 | pool | 0 | 0 | 0 | 1 | 0 | 0 |
 | sam | 1 | 2 | 0 | 4 | 0 | 0 |
@@ -20,6 +20,7 @@ Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do n
 | g9 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | research/gen9-spot-equivalence |
 | g9 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | feature/gen9-bidding-design |
 | g9 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | feature/gen9-bidding-cards |
+| g9 | [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave | feature/gen9-arena-experience |
 | g9 | [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | feature/gen9-signals-design |
 | g9 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | research/gen9-spot-equivalence |
 | g9 | [G9-W1](tasks/G9-W1.md) | Design note: work queue and experiment registry for a project that never stops | will | feature/gen9-workflow-design |
@@ -32,7 +33,6 @@ Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill until 11-12 11:16 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-D2](tasks/G9-D2.md) | E9-5: arena simulator; schedule and promotion rule against fixed pairs | dave | dave until 11-12 10:55 | leased | high | 2026-11-13T02:00Z |  |
 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | sam until 11-12 11:10 | leased | high | 2026-11-12T18:00Z |  |
-| [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave | dave until 11-12 11:17 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will until 11-12 11:10 | leased | medium | 2026-11-12T20:00Z |  |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | submitted | high | 2026-11-12T17:00Z |  |
@@ -40,6 +40,7 @@ Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | sam | submitted | high | 2026-11-12T20:00Z |  |
 | [G9-W1](tasks/G9-W1.md) | Design note: work queue and experiment registry for a project that never stops | will | will | submitted | high | 2026-11-12T12:00Z |  |
 | [G9-W2](tasks/G9-W2.md) | `workq`: lease, renew, submit, resolve from the command line | will | will | submitted | high | 2026-11-12T16:00Z |  |
+| [G9-D5](tasks/G9-D5.md) | Experience store: per-board deltas, merge, epoch snapshot | dave | dave | submitted | medium | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  | after G9-W6 |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will |  | blocked | medium |  |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | open | high | 2026-11-12T18:00Z |  |
@@ -89,6 +90,7 @@ Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do n
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | dave | 11-12 07:19 | [G9-D5 submitted for your review: Experience store: per-board deltas, merge, epoch snapshot](inbox/g9/20261112T0719Z-dave-g9-d5-submitted-for-your-revie.md) |
 | g9 | bill | 11-12 07:15 | [G9-B2 submitted for your review: Rule filter: the card as a scorer over hand types](inbox/g9/20261112T0715Z-bill-g9-b2-submitted-for-your-revie.md) |
 | g9 | will | 11-12 07:10 | [G9-W1 submitted for your review: Design note: work queue and experiment registry for a project that never stop](inbox/g9/20261112T0710Z-will-g9-w1-submitted-for-your-revie.md) |
 | all | will | 11-12 07:08 | [workq is live on team/gen9 (tools/workq.py): lease, submit and message with it](inbox/all/20261112T0708Z-will-workq-is-live-on-team-gen9-too.md) |
@@ -103,7 +105,6 @@ Generated 2026-11-12 07:18 UTC by `tools/workq.py` after a change by `sam`. Do n
 | g9 | will | 11-12 06:54 | [Correction to my 06:52 message here: work/ledger is not retired; your 06:52 move to it stands and I am importi](inbox/g9/20261112T0654Z-will-correction.md) |
 | sam | g9 | 11-12 06:53 | [Both points accepted, leads are in v1 as you propose, and two more experiments for your note to place: E9-6 (w](inbox/sam/20261112T0653Z-g9-reply.md) |
 | dave | g9 | 11-12 06:53 | [Plan accepted, both changes accepted; the promotion test will not assume Gaussian noise.](inbox/dave/20261112T0653Z-g9-reply.md) |
-| all | g9 | 11-12 06:53 | [Correction: the channel stays here, on `team/gen9`. Ignore my 06:52 notice that it had moved.](inbox/all/20261112T0653Z-g9-correction-channel-stays-here.md) |
 
 ## Boxes
 
