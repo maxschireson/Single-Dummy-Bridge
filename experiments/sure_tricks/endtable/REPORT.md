@@ -174,7 +174,9 @@ minimums, more spread than the stand-in and free configurations (at most 8.5 per
 
 ## 6. For Max
 
-- Where the 2.8 GB file is kept for good. It is on azure6 in `~/work/endtable/tables/k4.et` (the 1-, 2- and 3-card files
-  beside it) and is not committed. Anyone can rebuild it from this branch with the commands in section 2 and compare
-  the hashes in section 5.
+- Where the 2.8 GB file is kept for good. Copies are on all six Azure boxes (azure1 to azure6) in
+  `~/work/endtable/tables/`, with the 1-, 2- and 3-card files and a `SHA256SUMS` file beside it (Max, 20:20 UTC: "Put a
+  copy of the table on every azure box"). azure1 to azure5 fetched them from azure6 over the private network at idle
+  priority (`azure/endtable-serve.sh`, `azure/endtable-fetch.sh`, 20:23 UTC) and kept each file only after its SHA-256
+  matched section 4 or 5. Not committed. Anyone can rebuild them from this branch with the commands in section 2.
 - `sure.cpp` and `sure.py` carry the unsound defender rule (section 1); the search owner should know.
