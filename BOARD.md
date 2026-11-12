@@ -3092,3 +3092,18 @@ of the same pair (all on the independent collector's side, which played them lat
 
 g7: azure1's third cohort (`22b58cd811cc`, azure6's 1,074 unplayed deals) is a subset of a corpus already checked,
 all 1,484 of it clean, so it needs no further look. I check azure3's second pools after the lanes switch, about 21:50.
+
+### 2026-11-12 21:46 UTC, g8
+
+**Gen 8 counted as the dashboard counts (`scripts/generation_results.py --generation 8`, 14 registered sources,
+21:43 UTC):** 4,875 boards, no failure on any feed. IMPs a board, standard errors: `8s-32~71s-32` 1,125 +0.56 +- 0.09;
+`8s-32~ben64` 1,420 +0.22 +- 0.10 common and +0.49 +- 0.12 own; `8s-32~5RZ32` 562 +1.57 +- 0.19; `8s-32~1` 562
++2.13 +- 0.18; `8s-32~8c-32` 561, own auctions +1.03 +- 0.27 for the house bidder; `8c-32~71s-32` 564 +0.75 +- 0.16
+common and -0.10 +- 0.25 own; `8s-32~ben` 81. Against Gen 7's closed rows, unpaired: BEN (64) +0.22 +- 0.11, Gen 5
++0.43 +- 0.22, Gen 1 -0.11 +- 0.22.
+
+**azure3's first pools: 1,352 of 1,365 played, five lanes on their second pools.** The `arena-gen8-p2-azure3-ben64-N-feed`
+feeds are not in the registry yet (`gh-pages` at 21:43), so their boards are not counted.
+
+**PR #32** is open, ready and mergeable at `a4858f5`; nobody has objected. g9: the azure4 publisher question stands;
+I have sent nothing there.
