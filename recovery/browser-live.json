@@ -1,0 +1,61 @@
+{
+  "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+  "completed": 22,
+  "workers": 3,
+  "groups": [
+    "71s-32~7s-32",
+    "71s-32~6-32"
+  ],
+  "comparison": {
+    "n": 15,
+    "total": -8,
+    "mean": -0.5333333333333333,
+    "variance": 7.123809523809524,
+    "sd": 2.6690465570704314,
+    "se": 0.6891448577190683,
+    "ci": [
+      -2.011402050272845,
+      0.9447353836061784
+    ],
+    "wins": 1,
+    "ties": 13,
+    "losses": 1
+  },
+  "gen6": {
+    "n": 7,
+    "total": 1,
+    "mean": 0.14285714285714285,
+    "variance": 0.1428571428571429,
+    "sd": 0.3779644730092273,
+    "se": 0.14285714285714288,
+    "ci": [
+      -0.20670169300000002,
+      0.4924159787142857
+    ],
+    "wins": 1,
+    "ties": 6,
+    "losses": 0
+  },
+  "predecessor": {
+    "key": "gen7codexselfplaycapture",
+    "group": "gen7",
+    "generation": 7,
+    "variant": "7",
+    "environment": "codex",
+    "name": "Gen 7.0 · Codex completed self-play with gap capture",
+    "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+    "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+    "retired": true,
+    "revision": "09950642e0d40dc68fecf511569bb72935ba7782"
+  },
+  "link": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/replays/index.html?v=gen6-ben-followups-1&pair=71s-32%7E7s-32&condition=common&window=0&cutoff=1794466006.5702093&n=15&sort=newest&zeros=show&total=-8&report=gen71codexcompare&snapshots=%7B%22cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2%22%3A1794466006.5702093%7D&revisions=%7B%22cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2%22%3A%22bb03fb8a342ac47641356dd267118d8ce0b80102%22%7D",
+  "publication": "bb03fb8a342ac47641356dd267118d8ce0b80102",
+  "replay_list": "pture; BEN32 archived (248)\nGen6 completed medium/BEN16 evidence (1424)\nGen 6 · independent Codex collector (81)\nGen 5R / 5RZ · current mix (8372)\nGen 5RZ · initial allocation, retained compatible games (151)\nGen 5R · initial mix, retained compatible games (2552)\nGen 5 · before representative sampling (6607)\nGen 5 · retained BEN/control games (45)\nPrimary component diagnosis (no v4 self-play) (1872)\nHistorical direct matches · 465 boards (465)\nGen 3 final cold run · 1,913 hand sets (1913)\ng0004 (2228)\nCodex recovered six-bot mix (4856)\nChatGPT Gen 4 supplement (3454)\nGen 4 component arena (2803)\nMatchup\nAll matchups\n71s-32 vs Gen 7 standard (32)\n71s-32 vs Gen 6 fast (32)\nBidding condition\nCommon bidder for each cohort\nNative partnership bidders\nSort by\nLargest IMP swing\nNewest first\nOldest first\nBiggest gains\nBiggest losses\nBoards\nNonzero swings\nInclude ties\nRefresh records\n\n15 published hand sets · common auction condition · -8 IMPs for 71s-32 vs Gen 7 standard (32) · Matches the linked dashboard snapshot. · 1 contributing runs; repeated family/matchup observations counted once. Snapshot at 11/12/2026, 6:46:46 AM.\n\n15 hands (including self-play and ties) shown\n\nBoard\tMatchup\tCompleted\tContract\tTable 1 NS\tTable 2 NS\tIMPs\tReplay\n#22\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:46:27 AM\t3N by E\t-600\t-660\t+2\tView play →\n#20\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:45:47 AM\t5DX by E\t+100\t+100\t0\tView play →\n#19\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:45:43 AM\t6D by S\t+1370\t+1370\t0\tView play →\n#18\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:45:27 AM\t3N by S\t-100\t-100\t0\tView play →\n#14\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:45:06 AM\t3N by W\t-430\t+50\t-10\tView play →\n#17\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:44:55 AM\t1N by W\t-180\t-180\t0\tView play →\n#13\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:43:39 AM\t2S by N\t+110\t+110\t0\tView play →\n#11\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:43:16 AM\t2S by W\t-110\t-110\t0\tView play →\n#12\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:42:56 AM\t3C by N\t+110\t+110\t0\tView play →\n#9\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:42:33 AM\t3N by S\t+430\t+430\t0\tView play →\n#7\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:41:58 AM\t3N by W\t-400\t-400\t0\tView play →\n#6\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:41:38 AM\t4H by E\t-650\t-650\t0\tView play →\n#4\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:41:37 AM\t6SX by N\t+1210\t+1210\t0\tView play →\n#1\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:41:05 AM\t4S by W\t+50\t+50\t0\tView play →\n#3\nGen 7.1 · Codex policy comparison and Gen6\n\t71s-32 vs Gen 7 standard (32)\t11/12/2026, 6:40:31 AM\t4H by N\t+680\t+680\t0\tView play →\n← Previous 50\nPage 1 of 1\nNext 50 →\nPositive IMPs favor the first model named in the matchup. Each entry is one deal played at two tables with the model partnerships swapped. Counterfactual training branches are excluded. Dates use your device’s local time.",
+  "replay": {
+    "url": "https://maxschireson.github.io/Single-Dummy-Bridge/arena/replays/board.html?v=gen6-ben-followups-1&cohort=cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2&board=21&pair=71s-32%7E7s-32&condition=common&revision=bb03fb8a342ac47641356dd267118d8ce0b80102&revisions=%7B%22cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2%22%3A%22bb03fb8a342ac47641356dd267118d8ce0b80102%22%7D&flip=0&report=gen71codexcompare&snapshots=%7B%22cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2%22%3A1794466006.5702093%7D&ply1=0&ply2=0",
+    "result": "+2 IMPs for Gen 7.1 standard (32) · -600 − (-660) points",
+    "provenance": "Gen 7.1 · Codex comparison with Gen7.0 and Gen6 · Original board ID gen6-selfplay-20a38a2faf8025868d993a44ea5018c3b222066f75c61f3dcc3f22faec75a815 · Source index 21 · Record SHA256 9f100b2d7fe7a1d62c4429fab94e8c413fb2687a3de872ec8e6089a80717fcee"
+  },
+  "errors": [],
+  "full_game_replay": true
+}
