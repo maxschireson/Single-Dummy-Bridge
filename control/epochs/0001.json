@@ -1,0 +1,170 @@
+{
+ "champion": "8p-32",
+ "conditions": {
+  "common_bidder": "6-32",
+  "regimes": [
+   "common",
+   "native"
+  ]
+ },
+ "deals": {
+  "exclude_training_family_lists": [],
+  "generator": "gen8_match.deal(seed, slot * 2**20 + k)",
+  "seed": 3775173154
+ },
+ "end": {
+  "boards": 24
+ },
+ "epoch": 1,
+ "events_applied": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "experience_snapshot": "9c0cca34352fa9126b467dfb02ffe1d8f0f9f54a3b387436ce2d9142daf4abfe",
+ "id": "2ce7872ba6040e1314ef04d6cfad37827c4356846b2455beeb82a1d0b40bc92b",
+ "opened_utc": "2026-11-12T08:46:12Z",
+ "players": {
+  "1": {
+   "identity": "38b9d00cf11f4fa06904d8e6034afb7b77d23d474733c1bd5320d020bf21ec71",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "1",
+    "kind": "anchor",
+    "profiles": [
+     [
+      "house-dds40k",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "e6805f0ee8174f2cdcb8cfd915d481570f335f4c68371bad8253d6d2dec5bc69",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "5RZ32": {
+   "identity": "49f4aeb51f52fb976e89ed847947ac50f8941c0e7eb75143a91c890c658a92b6",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "5RZ32",
+    "kind": "anchor",
+    "profiles": [
+     [
+      "house-gen5",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "9b7a5a3ef3bc4af2fee1b10f7fbb71ae44f81a3f3ac443490554ea6ecb0a97ef",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "7s-32": {
+   "identity": "e2834fa17dee81abab996085cd4265967ffc92fa6b81cb4eb004f542cb926ef8",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "7s-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "ea537fc9f041156a84ef165831216cceba7b103634fe89ee7de926dcceab3523",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  },
+  "8p-32": {
+   "identity": "3cf2f5d52375b6e356eb9ffb90a224ca422c091a762b9d72dcf8cb802fbcd966",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "8p-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "855c671d880dc8d148b5c1642cb167e6adf82080d5d0d75206594bf348c62c56",
+   "protected": false,
+   "status": "champion",
+   "test": null
+  },
+  "9a-32": {
+   "identity": "43fbef5a73f4fa86631ec688f955f8075340eafa64a17e6632bdbccff99417b8",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "9a-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "5bcce0228504f53d23dc90ef2f7a9e580c487df6507fdf775c89e994976b1b97",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  }
+ },
+ "previous": null,
+ "rules": {
+  "sha256": "26754edce1df695b19cccfe52787ff6fa8dfd3e49c46dd7351663a4151ad2330",
+  "version": "arrival-rehearsal"
+ },
+ "schedule": {
+  "floors": [],
+  "pair_weights": {
+   "7s-32~1": 2,
+   "7s-32~5RZ32": 2,
+   "7s-32~8p-32": 2,
+   "8p-32~1": 8,
+   "8p-32~5RZ32": 8,
+   "8p-32~8p-32": 75,
+   "9a-32~1": 2,
+   "9a-32~5RZ32": 2,
+   "9a-32~8p-32": 2
+  },
+  "purposes": {
+   "admission": [
+    "7s-32~8p-32",
+    "7s-32~1",
+    "7s-32~5RZ32",
+    "9a-32~8p-32",
+    "9a-32~1",
+    "9a-32~5RZ32"
+   ],
+   "panel": [
+    "8p-32~1",
+    "8p-32~5RZ32"
+   ],
+   "training": [
+    "8p-32~8p-32"
+   ]
+  }
+ },
+ "schema": "epoch-v1",
+ "source_commit": null
+}

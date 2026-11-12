@@ -1,0 +1,15 @@
+{
+ "card": "rb-precision",
+ "deals": 500,
+ "rates": {
+  "house-dds40k": 0.26462196861626247,
+  "house-gen5": 0.2628,
+  "house-gen6": 0.2719
+ },
+ "seed": 5150,
+ "source": {
+  "house-dds40k": "computed",
+  "house-gen5": "reports/gen9-profile-distance-2026-11-12/result.json",
+  "house-gen6": "reports/gen9-profile-distance-2026-11-12/result.json"
+ }
+}

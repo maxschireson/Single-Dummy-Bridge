@@ -1,0 +1,25 @@
+epoch 1 played in 196s; decisions: [{"kind": "queued", "player": "guest-a", "event": "submit"}]
+epoch 2 (908648c19a36), champion 8p-32, 24 boards, snapshot bda8b19e9aa8
+  1            anchor    protected
+  5RZ32        anchor    protected
+  7s-32        candidate
+  8p-32        champion 
+  9a-32        candidate
+  guest-a      candidate
+  pairs: 7s-32~1 x1, 7s-32~5RZ32 x1, 7s-32~8p-32 x1, 8p-32~1 x8, 8p-32~5RZ32 x8, 8p-32~8p-32 x75, 9a-32~1 x1, 9a-32~5RZ32 x1, 9a-32~8p-32 x1, guest-a~1 x1, guest-a~5RZ32 x1, guest-a~8p-32 x1
+Traceback (most recent call last):
+  File "/home/claude/g9arr/scripts/arena9.py", line 231, in <module>
+    L.append(f'| {ep} | ' + ' | '.join(f"{sum(g in r['pair'].split('~') for r in rs) / len(rs):.0%}" for g in guests) + ' |')
+    ^^
+  File "/home/claude/g9arr/scripts/arena9.py", line 225, in main
+    if e.get('evidence'):
+                     ^^^^
+  File "/home/claude/g9arr/bridge_harness/arena9.py", line 361, in close_epoch
+    res = pooled(rows, c)
+  File "/home/claude/g9arr/bridge_harness/arena9.py", line 332, in pooled
+    for r in sorted(rows, key=lambda r: (r['epoch'], r['slot'], r['k'])):
+             ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/g9arr/bridge_harness/arena9.py", line 332, in <lambda>
+    for r in sorted(rows, key=lambda r: (r['epoch'], r['slot'], r['k'])):
+                                                     ~^^^^^^^^
+KeyError: 'slot'

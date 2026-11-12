@@ -1,0 +1,421 @@
+{
+ "champion": "8p-32",
+ "conditions": {
+  "common_bidder": "6-32",
+  "regimes": [
+   "common",
+   "native"
+  ]
+ },
+ "deals": {
+  "exclude_training_family_lists": [],
+  "generator": "gen8_match.deal(seed, slot * 2**20 + k)",
+  "seed": 2993265344
+ },
+ "end": {
+  "boards": 24
+ },
+ "epoch": 4,
+ "events_applied": [],
+ "experience_snapshot": "052d71d3748d0ca4ac39537c3fd07a7f5d9a446d7e79f2fc15acf508846de4dc",
+ "id": "5ff7f3f1d65436684054d59b540617495d25c717c0e070a0e8b2c97f9e05f92e",
+ "opened_utc": "2026-11-12T09:07:43Z",
+ "players": {
+  "1": {
+   "identity": "38b9d00cf11f4fa06904d8e6034afb7b77d23d474733c1bd5320d020bf21ec71",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "1",
+    "kind": "anchor",
+    "profiles": [
+     [
+      "house-dds40k",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "e6805f0ee8174f2cdcb8cfd915d481570f335f4c68371bad8253d6d2dec5bc69",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "5RZ32": {
+   "identity": "49f4aeb51f52fb976e89ed847947ac50f8941c0e7eb75143a91c890c658a92b6",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "5RZ32",
+    "kind": "anchor",
+    "profiles": [
+     [
+      "house-gen5",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "9b7a5a3ef3bc4af2fee1b10f7fbb71ae44f81a3f3ac443490554ea6ecb0a97ef",
+   "protected": true,
+   "status": "anchor",
+   "test": null
+  },
+  "7s-32": {
+   "identity": "e2834fa17dee81abab996085cd4265967ffc92fa6b81cb4eb004f542cb926ef8",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "7s-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "ea537fc9f041156a84ef165831216cceba7b103634fe89ee7de926dcceab3523",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  },
+  "8p-32": {
+   "identity": "3cf2f5d52375b6e356eb9ffb90a224ca422c091a762b9d72dcf8cb802fbcd966",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "8p-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "855c671d880dc8d148b5c1642cb167e6adf82080d5d0d75206594bf348c62c56",
+   "protected": false,
+   "status": "champion",
+   "test": null
+  },
+  "9a-32": {
+   "identity": "43fbef5a73f4fa86631ec688f955f8075340eafa64a17e6632bdbccff99417b8",
+   "model": {
+    "arrival": {
+     "source": "declared profiles"
+    },
+    "id": "9a-32",
+    "kind": "house",
+    "profiles": [
+     [
+      "house-gen6",
+      1.0
+     ]
+    ]
+   },
+   "package_sha256": "5bcce0228504f53d23dc90ef2f7a9e580c487df6507fdf775c89e994976b1b97",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  },
+  "guest-a": {
+   "identity": "45ac96295f0019facd24950e01239cf60a980ad164b9c5876b05d8d75c997bfc",
+   "model": {
+    "arrival": {
+     "distances": {
+      "card": "rb-precision",
+      "deals": 500,
+      "rates": {
+       "house-dds40k": 0.26462196861626247,
+       "house-gen5": 0.2628,
+       "house-gen6": 0.2719
+      },
+      "seed": 5150,
+      "source": {
+       "house-dds40k": "computed",
+       "house-gen5": "reports/gen9-profile-distance-2026-11-12/result.json",
+       "house-gen6": "reports/gen9-profile-distance-2026-11-12/result.json"
+      }
+     },
+     "source": "player_model.arrive"
+    },
+    "bidding": {
+     "cover": [
+      "open",
+      "overcall",
+      "balance",
+      "vs_nt",
+      "respond_nt",
+      "nt_answers"
+     ],
+     "descriptor": {
+      "comp.balance": 3,
+      "comp.balancing_jumps": false,
+      "comp.balancing_nt": [
+       12,
+       15
+      ],
+      "comp.jump_first": true,
+      "comp.jump_overcall": "weak",
+      "comp.jump_overcall_len3": 7,
+      "comp.michaels": false,
+      "comp.nt_overcall": [
+       15,
+       18
+      ],
+      "comp.overcall_1": [
+       8,
+       17
+      ],
+      "comp.overcall_2": [
+       11,
+       17
+      ],
+      "comp.overcall_3_min": 13,
+      "comp.overcall_quality": {
+       "1": {
+        "top5": 2
+       },
+       "2": {
+        "top5": 2
+       },
+       "3": {
+        "top5": 2
+       }
+      },
+      "comp.strong_double_min": 18,
+      "comp.takeout_double_min": 12,
+      "comp.takeout_shape": "all",
+      "comp.unusual_2nt": false,
+      "comp.vs_nt_2nt_minors": false,
+      "comp.vs_nt_double_min": 17,
+      "comp.vs_nt_natural": {
+       "hcp": [
+        9,
+        15
+       ],
+       "len_major": 6,
+       "len_minor": 6,
+       "top3": 0,
+       "top5": 2
+      },
+      "comp.weak_jump_hcp": [
+       5,
+       10
+      ],
+      "open.four_level": null,
+      "open.fourth_seat_rule_of_15": false,
+      "open.light": {
+       "hcp": 10
+      },
+      "open.min_hcp": 11,
+      "open.nebulous_1d": {
+       "min_len": 1
+      },
+      "open.nt": [
+       {
+        "hcp": [
+         14,
+         16
+        ],
+        "seats": [
+         1,
+         2,
+         3,
+         4
+        ],
+        "vul": "any"
+       }
+      ],
+      "open.nt_five_major": false,
+      "open.one_level_max": 15,
+      "open.precision_2c": {
+       "five_four": false,
+       "hcp": [
+        11,
+        15
+       ],
+       "len": 6
+      },
+      "open.preempt_seats": [
+       1,
+       2,
+       3
+      ],
+      "open.rule_of_20": false,
+      "open.strong_2c": null,
+      "open.strong_club": {
+       "hcp": 16
+      },
+      "open.third_seat_min": 11,
+      "open.three_level": {
+       "hcp_max": 10,
+       "hcp_min": 4,
+       "len": 7,
+       "len_max": 13
+      },
+      "open.three_nt": null,
+      "open.two": {
+       "2D": {
+        "clubs": [
+         4,
+         5
+        ],
+        "hcp": [
+         11,
+         15
+        ],
+        "type": "precision"
+       },
+       "2H": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       },
+       "2S": {
+        "hcp": [
+         5,
+         10
+        ],
+        "len": [
+         6,
+         6
+        ],
+        "type": "weak"
+       }
+      },
+      "open.two_nt": null,
+      "open.weak_other_major_max": null,
+      "open.weak_quality": 2,
+      "resp.nt": {
+       "answers": "relays",
+       "game": 25,
+       "quantitative": false,
+       "slam_first": true,
+       "stayman": true,
+       "stayman_five_four": false,
+       "stayman_min_2nt": "game",
+       "super_accept": false,
+       "texas": false,
+       "transfers": "jacoby",
+       "transfers_first": true,
+       "two_spade": null
+      }
+     },
+     "family": "strong_club",
+     "id": "rb-precision",
+     "name": "The rule bidder's precision settings, as a card",
+     "notes": [
+      "Generated by bridge_harness.cards.rb_cards.card_from_settings from rule_bidder Settings(); covers openings, overcalls and doubles, the defence to 1NT, responses to 1NT/2NT and the relay answers. Checked against the rule bidder's own auctions in tests/test_gen9_cards.py."
+     ],
+     "schema": "card-descriptor-v0"
+    },
+    "carding": {
+     "descriptor": {
+      "attitude": "upside_down",
+      "count": "upside_down",
+      "first_discard": "attitude",
+      "honor_sequence_lead": "top",
+      "lead_from_ak": "ace",
+      "length_lead_vs_nt": "4th",
+      "length_lead_vs_suit": "4th",
+      "signal_on_declarer_lead": "count",
+      "signal_on_partner_lead": "attitude",
+      "trump_signal": "none"
+     }
+    },
+    "id": "guest-a",
+    "kind": "guest",
+    "profiles": [
+     [
+      "card",
+      0.7907677704674921
+     ],
+     [
+      "flat",
+      0.19769194261687303
+     ],
+     [
+      "house-dds40k",
+      0.00397714793247626
+     ],
+     [
+      "house-gen5",
+      0.004124745557528758
+     ],
+     [
+      "house-gen6",
+      0.0034383934256298236
+     ]
+    ]
+   },
+   "package_sha256": "d555bcab0308ac63c169e43f2f63d0957a41968b1dd766af8c33743cdcd8b9ee",
+   "protected": false,
+   "status": "candidate",
+   "test": null
+  }
+ },
+ "previous": "baf5b5e383d0c5663f07f9927c918c3f65b9f958738f03ea67ac42687a8fb644",
+ "rules": {
+  "sha256": "26754edce1df695b19cccfe52787ff6fa8dfd3e49c46dd7351663a4151ad2330",
+  "version": "arrival-rehearsal"
+ },
+ "schedule": {
+  "floors": [
+   {
+    "boards": 6,
+    "pairs": [
+     "9a-32~guest-a",
+     "8p-32~guest-a"
+    ],
+    "purpose": "comparison",
+    "same_deals": true
+   }
+  ],
+  "pair_weights": {
+   "7s-32~1": 1,
+   "7s-32~5RZ32": 1,
+   "7s-32~8p-32": 1,
+   "8p-32~1": 8,
+   "8p-32~5RZ32": 8,
+   "8p-32~8p-32": 75,
+   "9a-32~1": 1,
+   "9a-32~5RZ32": 1,
+   "9a-32~8p-32": 1,
+   "guest-a~1": 1,
+   "guest-a~5RZ32": 1,
+   "guest-a~8p-32": 1
+  },
+  "purposes": {
+   "admission": [
+    "7s-32~8p-32",
+    "7s-32~1",
+    "7s-32~5RZ32",
+    "9a-32~8p-32",
+    "9a-32~1",
+    "9a-32~5RZ32",
+    "guest-a~8p-32",
+    "guest-a~1",
+    "guest-a~5RZ32"
+   ],
+   "panel": [
+    "8p-32~1",
+    "8p-32~5RZ32"
+   ],
+   "training": [
+    "8p-32~8p-32"
+   ]
+  }
+ },
+ "schema": "epoch-v1",
+ "source_commit": "ec2694d277437f6e48cd6585b3164d410fad0515"
+}
