@@ -1266,15 +1266,16 @@ class Ledger:
             owner = job["owner"]
             if st.agent not in (owner, st.lead):
                 raise Conflict(f"a job is submitted by its owner ({owner}) or {st.lead}")
-            if job.get("experiment"):
-                st.doc(job["experiment"])
+            for key in ("experiment", "task"):      # the experiment or task the job serves must exist
+                if job.get(key):
+                    st.doc(job[key])
             path = f"boxq/{job['box']}/{job['id']}.json"
             old = st.load(path)
             if old and not replace:
                 raise Conflict(f"job {job['id']} exists on {job['box']}; use --replace (the box uses the new spec the next time it starts the job)")
             j = dict(job, submitted=(old or {}).get("submitted") or st.at.strftime("%Y-%m-%dT%H:%M:%SZ"), by=st.agent)
             st.save(path, j)
-            st.event("job-submit", f"{job['box']}/{job['id']}", f"priority {job['priority']}, {job['cores']} cores", task=job.get("experiment"))
+            st.event("job-submit", f"{job['box']}/{job['id']}", f"priority {job['priority']}, {job['cores']} cores", task=job.get("experiment") or job.get("task"))
             return j
         return self.mutate(f"job {job['id']} on {job['box']}", fn)
 

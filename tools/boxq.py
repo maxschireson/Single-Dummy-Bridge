@@ -100,8 +100,9 @@ def validate(job: dict, box: str | None = None, cores: int | None = None) -> dic
     need(isinstance(job.get("preemptible", True), bool), "preemptible is true or false")
     need(isinstance(job.get("env", {}), dict), "env is an object")
     need(isinstance(job.get("publish", []), list), "publish is a list of file patterns")
-    if job.get("experiment"):
-        need(wq.ID_RE.match(job["experiment"]), "experiment is an id like E9-0")
+    for key in ("experiment", "task"):
+        if job.get(key):
+            need(isinstance(job[key], str) and wq.ID_RE.match(job[key]), f"{key} is an id like E9-0 or G9-D6")
     return job
 
 
@@ -285,7 +286,7 @@ class Box:
         S = self.status.setdefault("jobs", {})
         changed = []
         for jid, j in jobs.items():
-            s = S.setdefault(jid, dict(state="waiting", owner=j["owner"], experiment=j.get("experiment"), boards=0,
+            s = S.setdefault(jid, dict(state="waiting", owner=j["owner"], experiment=j.get("experiment") or j.get("task"), boards=0,
                                        target=j["progress"]["target"], restarts=0, samples=[], submitted=j.get("submitted")))
             s["target"], s["priority"], s["cores"] = j["progress"]["target"], j["priority"], j["cores"]
             if j.get("state") == "cancelled" and s["state"] in ("waiting", "paused"):
@@ -374,7 +375,7 @@ class Box:
         day = (s.get("started") or stamp(now))[:10].replace("-", "")
         branch = f"transfer/gen9-{job['id']}-{self.box}-{day}"
         store = wq.Store(self.url, branch)
-        readme = (f"# {job['id']} on {self.box}\n\nResults of box job `{job['id']}` ({job.get('experiment') or 'no experiment'}, owner "
+        readme = (f"# {job['id']} on {self.box}\n\nResults of box job `{job['id']}` ({job.get('experiment') or job.get('task') or 'no experiment'}, owner "
                   f"{job['owner']}), published by tools/boxq.py on team/gen9. Source `{job['source']['branch']}` at "
                   f"`{job['source']['commit']}`. A transfer branch: never merged into source.\n\n"
                   f"Last published {stamp(now)}: {s.get('boards')} of {s.get('target')} boards, state {s.get('state')}.\n")

@@ -203,6 +203,7 @@ A box pulls its work from this branch. To run something on a Gen 9 box, write a 
  "preemptible": true, "publish": ["results.jsonl", "summary.json", "manifest.json"]}
 ```
 
+- A job names the experiment (`experiment`) or the task (`task`, such as `G9-D6`) it serves; either must exist.
 - Priority 1 is highest; the box runs the highest-priority jobs that fit its cores, and fills leftover cores with
   smaller jobs. `cores` should equal the job's `--workers`.
 - A `preemptible` job (resumable: `gen8_match.py` and `gen9_match.py` skip boards already in `results.jsonl`) is

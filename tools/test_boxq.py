@@ -65,9 +65,11 @@ class PlanTest(unittest.TestCase):
 
     def test_validation(self):
         bq.validate(job("ok", 1, 2), "testbox", 8)
+        bq.validate(job("for-a-task", 1, 2, task="G9-D6"), "testbox", 8)
         for bad, why in ((dict(job("x", 1, 2), cores=9), "cores"), (dict(job("x", 1, 2), priority=0), "priority"),
                          (dict(job("X y", 1, 2)), "id"), (dict(job("x", 1, 2), source=dict(branch="b", commit="zz")), "source"),
-                         (dict(job("x", 1, 2), progress=dict(results="r.jsonl")), "progress"), (dict(job("x", 1, 2), box="other"), "box")):
+                         (dict(job("x", 1, 2), progress=dict(results="r.jsonl")), "progress"), (dict(job("x", 1, 2), box="other"), "box"),
+                         (dict(job("x", 1, 2), task="D6 run"), "task")):
             with self.assertRaises(ValueError) as cm:
                 bq.validate(bad, "testbox", 8)
             self.assertIn(why, str(cm.exception))
@@ -165,6 +167,10 @@ class LoopTest(unittest.TestCase):
         with self.assertRaises(wq.Conflict):
             os.environ["WORKQ_CACHE"] = str(self.root / "cache-other")
             wq.Ledger(str(self.bare), "team/gen9", "sam", lead="g9").job_submit(job("not-mine", 1, 1, commit=self.commit))
+        with self.assertRaises(wq.Conflict) as cm:              # the task a job serves must exist
+            os.environ["WORKQ_CACHE"] = str(self.root / "cache-g9")
+            self.g9.job_submit(job("no-such-task", 1, 1, commit=self.commit, task="G9-Z99"))
+        self.assertIn("G9-Z99", str(cm.exception))
 
 
 if __name__ == "__main__":
