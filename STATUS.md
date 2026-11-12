@@ -17,11 +17,11 @@ Generated 2026-11-12 07:28 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
+| dave | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | feature/gen9-workflow-tests |
 | g9 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | research/gen9-spot-equivalence |
 | g9 | [G9-S1](tasks/G9-S1.md) | Design note: signals as executable rules, the class rule, carding bots, estimators | sam | feature/gen9-signals-design |
 | g9 | [G9-S2](tasks/G9-S2.md) | Signal model and carding bots | sam | feature/gen9-signals |
 | g9 | [G9-S3](tasks/G9-S3.md) | E9-3: how often spots nine and below are not equivalent | sam | research/gen9-spot-equivalence |
-| g9 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | feature/gen9-workflow-tests |
 
 ## Tasks
 
