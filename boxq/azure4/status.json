@@ -6,7 +6,7 @@
    "state": "running",
    "owner": "dave",
    "experiment": "G9-D6",
-   "boards": 133,
+   "boards": 238,
    "target": 6200,
    "restarts": 0,
    "submitted": "2026-11-12T13:21:00Z",
@@ -15,8 +15,8 @@
    "started": "2026-11-12T15:03:58Z",
    "resumed": "2026-11-12T15:03:58Z",
    "source": "/home/bridgebots/work/g9/src/8cb0348",
-   "rate_per_hour": 1496.2,
-   "eta": "2026-11-12T19:12:35Z",
+   "rate_per_hour": 1368.7,
+   "eta": "2026-11-12T19:35:45Z",
    "published_at": "2026-11-12T15:04:42Z",
    "published": "transfer/gen9-d6-arrival-azure4-20261112@6ad33edbd"
   },
@@ -330,7 +330,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-12T15:09:18Z",
+ "updated": "2026-11-12T15:14:24Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
