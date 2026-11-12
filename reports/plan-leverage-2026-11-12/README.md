@@ -218,7 +218,7 @@ and the simulation says it errs high by 0.050 +- 0.005 at this number of pairs, 
 between about 0.01 and 0.03 a side, and a playout from the lead costs a whole board of the bot's search. The lead is
 not where the tricks are.
 
-**Tricks 1 to 2 after the lead:** *pending* (`ceilT12`, azure2, overnight).
+**Tricks 1 to 2 after the lead:** *pending* (`ceilT12b`, azure5, from 19:40 UTC, about three hours).
 
 **A 64-layout ceiling for close decisions at tricks 3 to 6** (recorded gap up to 0.25), to check the fit on other
 boards and more layouts: 94 pairs on 80 boards so far. 48 of 64 layouts choosing gains +0.04 +- 0.04 to +0.07 +- 0.06
@@ -232,7 +232,7 @@ search, equivalent cards left out. At tricks 7 to 12 (4,356 pairs on 566 boards,
 cost +0.001 +- 0.002; the playouts say +0.0025 +- 0.0010; half the layouts choosing gains +0.009 +- 0.003 tricks a side;
 the fit gives 0.024 +- 0.003 for exact knowledge and hindsight on all layouts 0.020 +- 0.004. So late level cards hold
 about a fiftieth of a trick a side between these two selectors. Level cards neither selector chose are not in the
-data. Tricks 3 to 6: *pending* (`ceilTies`, azure2). The played test does re-value level cards.
+data. Tricks 3 to 6: *pending* (`ceilTies`, azure5, overnight). The played test does re-value level cards.
 
 Examples of what the ceiling finds (`scripts/plan_examples.py`: real playouts say the other card is better by more
 than two standard errors): dummy cashing a side king at trick 5 in 3S where a trump first is 0.75 +-
@@ -292,7 +292,12 @@ log-probability difference and gap-head difference together explain 0.02 of it a
 For scale: section 1 puts exact knowledge at these pairs at about 0.09 tricks a side and the best use of 16
 layouts of the real bots at about 0.05 (the fit less its error).
 
-`v41:hyb5`, `v41:hyb8` at 128 layouts: *pending* (`wide3` on azure5).
+Seats that search more of what they believe (the solver's choice among the net's likeliest cards over 8 or 16
+believed layouts; 327 pairs on the first 250 boards, 32 layouts a pair, sandbox): coefficient 0.39 and 0.41, and they
+account for about three quarters of what real play adds to double dummy (0.75, 0.79; noisy at this size), against
+0.44 for three layouts and 0.15 to 0.29 for the net alone. At 32 layouts the rule still gains little (+0.017 +- 0.014,
++0.012 +- 0.031): the layouts limit it, not the seats. `v41:hyb5`, `v41:hyb8` at 128 layouts: *pending* (`wide3`,
+azure5, overnight).
 
 ## 3. Plans, layout families and key variables
 
