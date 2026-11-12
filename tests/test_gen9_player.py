@@ -11,7 +11,7 @@ from bridge_harness import experience as xp
 from bridge_harness.corpus import generate
 from bridge_harness.gen6 import View
 from bridge_harness.gen6_nets import FitScorer, HON_HCP, hand_types
-from bridge_harness.gen7 import Gen7Player, hidden_plays
+from bridge_harness.gen7 import Gen7Player
 from bridge_harness.gen9 import Gen9Config, Gen9Player, gen9_settings, player
 from bridge_harness.player_model import PlayerModel
 from bridge_harness.players import GreedyPlayer
@@ -35,20 +35,19 @@ def toy_card(model, other, root):
     return ToyCard() if model.bidding.get('toy') else None
 
 
-class ToyPlayReader:
-    """A stand-in for the card-play reader: layouts that give the first unseen card to hidden hand 0 are e^2 less likely."""
-    def __init__(self, owner):
-        self.owner, self.asked = owner, 0
+class ResidualCard:
+    """A stand-in for a filter that knows each profile's residual: in full it asks for 12 points (-3 below); on the
+    residual of profile 'alpha' it only asks for 8 (-1 below)."""
+    asked = []
 
-    def play_log_likelihood(self, player_, o, view, assign, plays):
-        self.asked += 1
-        fit, options = player_.play_fit(o, view, assign, plays)
-        assert fit.shape == (len(plays), len(assign)) == options.shape
-        return -2. * (assign[:, 0] == 0)
+    def type_log_score(self, length, hon, seat, dealer, vulnerability, auction, profile=None):
+        ResidualCard.asked.append(profile)
+        points = HON_HCP[hon].sum(axis=1)
+        return np.where(points >= 12, 0., -3.) if profile is None else np.where(points >= 8, 0., -1.)
 
 
-def toy_play_reader(owner):
-    return ToyPlayReader(owner)
+def residual_card(model, other, root):
+    return ResidualCard()
 
 
 class Shell(Fixture):
@@ -90,7 +89,7 @@ class InertTests(Shell):
 
     def test_plain_models_play_the_gen8_game_card_for_card(self):
         eight = self.make9(Gen7Player, gen7=EARLY, engine='gen7', list_solve=16)
-        nine = self.make9(gen7=EARLY, gen9=dict(players={'ben': dict(kind='outside'), '*': dict(kind='unknown')}), list_solve=16)
+        nine = self.make9(gen7=EARLY, gen9=dict(models={'ben': dict(kind='outside'), '*': dict(kind='unknown')}), list_solve=16)
         nine.meet('ben')
         nine.auction_by(['6-32'] * 4)
         compared = 0
@@ -192,7 +191,7 @@ class CallsTests(Shell):
     def test_who_bid_is_not_who_plays(self):
         scorers = self.scorers()
         common = dict(kind='house', profiles={'beta': 1.})
-        p = self.make9(gen9=dict(players={'6-32': common}))
+        p = self.make9(gen9=dict(models={'6-32': common}))
         p.profile_scorer = lambda side, system: scorers[system]
         p.meet(PlayerModel('them', profiles={'alpha': 1.}))
         o, game = next(self.two_hidden(range(40), (5,), declarer=True))
@@ -215,9 +214,9 @@ class CallsTests(Shell):
 
     def test_the_card_adds_its_term_and_can_be_switched_off(self):
         declared = dict(kind='synthetic', bidding=dict(toy=True))
-        on = self.make9(gen9=dict(players={'them': declared}, bidding_reader='test_gen9_player:toy_card'))
-        off = self.make9(gen9=dict(players={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_weight=0.))
-        half = self.make9(gen9=dict(players={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_weight=.5))
+        on = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card'))
+        off = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_weight=0.))
+        half = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_weight=.5))
         plain = self.make9(gen9={})
         for p in (on, off, half, plain):
             p.meet('them')
@@ -236,9 +235,79 @@ class CallsTests(Shell):
         np.testing.assert_allclose(half.type_log_weights(o, view, length, hon, 'scorer'), base + .5 * term, atol=1e-9)
         self.assertEqual(ToyCard.calls, 4)
         # a partnership that declared no bidding card gets no reader, and one whose factory declines is read without it
-        nothing = self.make9(gen9=dict(players={'them': dict(bidding=dict(toy=False))}, bidding_reader='test_gen9_player:toy_card'))
+        nothing = self.make9(gen9=dict(models={'them': dict(bidding=dict(toy=False))}, bidding_reader='test_gen9_player:toy_card'))
         nothing.meet('them')
         np.testing.assert_allclose(nothing.type_log_weights(o, view, length, hon, 'scorer'), base, atol=1e-9)
+
+
+class CardProfileTests(Shell):
+    def setUp(self):
+        super().setUp()
+        self.o, game = next(self.two_hidden(range(40), (5,), declarer=True))
+        self.view = View(self.o)
+        assign = self.view.uniform(64, np.random.default_rng(4))
+        types = [hand_types(self.view.original(assign, j)) for j in range(2)]
+        self.length, self.hon = [t[0] for t in types], [t[1] for t in types]
+
+    def weights(self, p):
+        return p.type_log_weights(self.o, self.view, self.length, self.hon, 'scorer')
+
+    def term(self, low, cost):
+        return sum(np.where(HON_HCP[self.hon[j]].sum(axis=1) >= low, 0., cost) for j in range(2))
+
+    def test_the_card_profile_is_the_rules_alone(self):
+        p = self.make9(gen9=dict(models={'them': dict(profiles={'card': 1.}, bidding=dict(toy=True))}, bidding_reader='test_gen9_player:toy_card'))
+        p.meet('them')
+        np.testing.assert_allclose(self.weights(p), self.term(12, -3.), atol=1e-9)          # no scorer in it at all
+        silent = self.make9(gen9=dict(models={'them': dict(profiles={'card': 1.})}))         # the profile without a card or a reader: flat
+        silent.meet('them')
+        self.assertLess(float(np.ptp(self.weights(silent))), 1e-12)
+
+    def test_net_profiles_get_the_residual_and_the_mixture_weighs_both(self):
+        scorer_weights(self.root / 'alpha.npz', seed=31)
+        alpha = FitScorer(self.root / 'alpha.npz')
+        model = dict(profiles={'alpha': .7, 'card': .3}, bidding=dict(toy=True))
+        p = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:residual_card'))
+        p.profile_scorer = lambda side, system: alpha
+        p.meet('them')
+        ResidualCard.asked = []
+        got = self.weights(p)
+        self.assertEqual(sorted(set(map(str, ResidualCard.asked))), ['None', 'alpha'])
+        o = self.o
+        net = sum(alpha.type_log_score(self.length[j], self.hon[j], s, o.dealer, o.vulnerability, o.auction) for j, s in enumerate(self.view.hidden))
+        want = np.logaddexp(math.log(.7) + net + self.term(8, -1.), math.log(.3) + self.term(12, -3.))
+        np.testing.assert_allclose(got, want, atol=1e-9)
+        # a reader that cannot give a residual is left off the net profile when the card profile is a candidate
+        q = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:toy_card'))
+        q.profile_scorer = lambda side, system: alpha
+        q.meet('them')
+        np.testing.assert_allclose(self.weights(q), np.logaddexp(math.log(.7) + net, math.log(.3) + self.term(12, -3.)), atol=1e-9)
+
+
+class CardsTests(Shell):
+    STANDARD = dict(length_lead_vs_suit='4th', length_lead_vs_nt='4th', lead_from_ak='ace', honor_sequence_lead='top', attitude='standard',
+                    count='standard', signal_on_partner_lead='attitude', signal_on_declarer_lead='count', first_discard='attitude', trump_signal='none')
+
+    def test_the_signal_part_is_not_tempered(self):
+        models = {'x': dict(kind='synthetic', carding=dict(descriptor=self.STANDARD, honesty=.8))}
+        p = self.make9(gen7=dict(play_weight=.5, early_play_weight=.25, early_pool=64), gen9=dict(models=models), list_from_trick=7)
+        p.meet('x')
+        seen = set()
+        for o, game in self.two_hidden(range(60), (9, 14, 30, 34), declarer=True):
+            view = View(o)
+            source = p.source(o, view)
+            if source == 'list' and view.count() > 2000:
+                continue
+            assign = view.every() if source == 'list' else view.uniform(48, np.random.default_rng(1))
+            net, signal = p.play_log_terms(o, view, assign)
+            if not signal.any():
+                continue
+            exponent = .5 if source == 'list' else .25
+            self.assertEqual(p.reading_exponent(o, view), exponent)
+            got = p.play_log_likelihood(o, view, assign)
+            np.testing.assert_allclose(exponent * got, exponent * net + signal, atol=1e-9)      # what the caller ends up with
+            seen.add(source)
+        self.assertEqual(len(seen), 2)
 
 
 class _Blind:
@@ -259,7 +328,7 @@ class TableTests(Shell):
         little = xp.snapshot(dict(xp.empty('ben'), boards=3, stats={'play.info': dict(kind='moment', grid=grid, n=20., sum=[0., 2., 30.], sumsq=[0., 1., 60.])}), 'e1')
         plenty = xp.snapshot(dict(xp.empty('ben'), boards=90, stats={'play.info': dict(kind='moment', grid=grid, n=900., sum=[0., 300., 100.], sumsq=[0., 400., 900.])}), 'e2')
         p = self.make9(gen7=dict(opponent_play_weight={'ben': .5, '*': .25}),
-                       gen9=dict(players={'ben': dict(kind='outside', carding=dict(count='standard'))}))
+                       gen9=dict(models={'ben': dict(kind='outside', carding=dict(count='standard'))}))
         p.meet('ben')
         self.assertEqual((p.opponent.id, p.opponent.kind, p.opponent_factor), ('ben', 'outside', .5))
         p.meet('stranger')
@@ -270,21 +339,6 @@ class TableTests(Shell):
         p.meet(PlayerModel('ben', 'outside', experience=plenty))            # enough: the factor with the best mean gain
         self.assertEqual(p.opponent_factor, .3)
         self.assertEqual(p.opponent.snapshot, 'e2')
-
-    def test_play_reader_is_asked_and_used(self):
-        p = self.make9(gen7=EARLY, gen9=dict(play_reader='test_gen9_player:toy_play_reader'), list_from_trick=14, mid_from_trick=1)
-        reader = p.play_reader
-        self.assertIs(reader.owner, p)
-        checked = 0
-        for o, game in self.two_hidden(range(12), (5, 9, 14)):
-            view = View(o)
-            if not hidden_plays(o):
-                continue
-            worlds, weights, info = p.weighted_layouts(o, view, p.source(o, view), np.random.default_rng(checked))
-            self.assertEqual(info['pick'], 'play-pool')
-            checked += 1
-        self.assertGreater(checked, 5)
-        self.assertGreaterEqual(reader.asked, checked)
 
 
 class OracleTests(Shell):
