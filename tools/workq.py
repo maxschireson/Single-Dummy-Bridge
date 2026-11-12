@@ -16,6 +16,9 @@ The tool keeps its own clone in ~/.cache/workq and never touches a checkout.
   workq.py tasks [--owner N] [--state S] [--mine]  workq.py next       workq.py show ID
   workq.py new TITLE --area A --kind K --owner N --priority P [--due T] [--depends IDS]
                [--goal TEXT --done-when TEXT --context TEXT | --body-file PATH] [--proposed] [--id ID]
+               [--value "0.05 IMPs/board"] [--effort HOURS] [--probability P] [--budget BOX_HOURS] [--parent ID]
+               [--explore yes] [--sweep yes]      (next orders by value x probability / effort within a priority;
+                                                   at most two open sweeps per area)
   workq.py lease ID [--hours H<=4] [--force]       check out (leasing your own task again renews it)
   workq.py renew ID [--hours H]                    workq.py release ID --note TEXT   (give it back)
   workq.py submit ID --note TEXT [--branch B] [--commit SHA]     check in; the reviewer is told: the `reviewer`
@@ -78,6 +81,8 @@ LIFECYCLE = ("state", "holder", "lease_until", "resolution")  # changed only by 
 MAX_LEASE_HOURS = 4
 PREREGISTERED = ("Hypothesis", "Primary metric and population", "Compute cap", "Stopping rule")  # filled before a lease
 GRACE = timedelta(minutes=30)
+RESULT_LINES = ("Evidence", "Sample", "Revisit if")  # an experiment's ## Result needs these before submit
+SWEEP_CAP = 2  # open parameter-sweep experiments per area
 PEERS = {"bill": "sam", "sam": "bill", "dave": "will", "will": "dave"}  # module reviews (g9, 12 Nov 07:28 UTC)
 READY_SECTIONS = (("Base",), ("Interface",), ("Done when",), ("Time box",), ("Tests",), ("Results", "Where results go"))
 RULES = """- Hidden hands are labels for training, experience and scoring, never inputs to a player's decision.
@@ -286,6 +291,20 @@ class Doc:
                     parse_time(self.get(k))
                 except ValueError as e:
                     raise Malformed(f"{self.path}: {k}: {e}")
+        for k in ("effort", "budget", "probability"):
+            v = self.get(k)
+            if v:
+                try:
+                    x = float(v.split()[0])
+                except ValueError:
+                    raise Malformed(f"{self.path}: {k} {v!r} is not a number")
+                if k == "probability" and not 0 <= x <= 1:
+                    raise Malformed(f"{self.path}: probability {v!r} is not between 0 and 1")
+        if self.get("value") and not re.match(r"^[+-]?\d+(\.\d+)?", self.get("value")):
+            raise Malformed(f"{self.path}: value {self.get('value')!r} does not start with a number (e.g. '0.05 IMPs/board')")
+        for k in ("explore", "sweep"):
+            if self.get(k) and self.get(k) not in ("yes", "no"):
+                raise Malformed(f"{self.path}: {k} is yes or no, not {self.get(k)!r}")
         res = self.get("resolution")
         if res and res not in RESOLUTIONS.get(self.folder, ()):
             raise Malformed(f"{self.path}: resolution {res!r} is not one of {', '.join(RESOLUTIONS.get(self.folder, ()))}")
@@ -443,6 +462,24 @@ class State:
         if self.events:
             path = f"log/{self.at:%Y-%m-%d}.jsonl"
             self.put(path, (self.get(path) or b"") + b"".join((json.dumps(e) + "\n").encode() for e in self.events))
+
+
+def score(d: Doc) -> float | None:
+    """Expected value for effort: value x probability / effort, when value and effort are given."""
+    try:
+        v = float(re.match(r"^[+-]?\d+(\.\d+)?", d.get("value")).group(0))
+        e = float(d.get("effort").split()[0])
+        pr = float(d.get("probability").split()[0]) if d.get("probability") else 1.0
+    except (AttributeError, ValueError, IndexError):
+        return None
+    return v * pr / e if e > 0 else None
+
+
+def missing_result(d: Doc) -> list[str]:
+    res = d.section("Result")
+    if not res or res.strip() == "_not yet_":
+        return list(RESULT_LINES)
+    return [n for n in RESULT_LINES if not re.search(rf"^\W*{re.escape(n)}\W*:", res, re.M | re.I)]
 
 
 def reviewer_of(d: Doc, lead: str) -> str:
@@ -824,7 +861,7 @@ class Ledger:
         return self.mutate(f"hello from {self.agent}", fn)
 
     # tasks and experiments
-    def new(self, title, area, kind, owner, priority, depends, due, body, proposed=False, did=None):
+    def new(self, title, area, kind, owner, priority, depends, due, body, proposed=False, did=None, extra=None):
         if area not in AREAS:
             raise SystemExit(f"--area must be one of {', '.join(AREAS)}")
 
@@ -849,6 +886,12 @@ class Ledger:
                 else "## Goal\n\n\n\n## Done when\n\n\n\n## Context\n\n")
             head = dict(id=ident, title=title, area=area, kind=kind, owner=owner, state="proposed" if proposed else "open",
                         holder="", lease_until="", priority=priority, depends=", ".join(depends), due=due or "", created=hm(st.at), branch="", resolution="")
+            head.update({k: v for k, v in (extra or {}).items() if v not in (None, "")})
+            if exp and head.get("sweep") == "yes":
+                sweeps = [k for k, x in docs.items() if x.folder == "experiments" and x.get("sweep") == "yes"
+                          and x.get("area") == area and x.get("state") not in ("resolved",)]
+                if len(sweeps) >= SWEEP_CAP:
+                    raise Conflict(f"{area} already has {len(sweeps)} open sweeps ({', '.join(sorted(sweeps))}); the cap is {SWEEP_CAP}")
             d = Doc(f"{folder}/{ident}.md", "---\n" + "".join(f"{k}: {v}\n" for k, v in head.items()) + "---\n" + text + "\n")
             d.add_log(st.at, st.agent, "created" + (" as proposed" if proposed else ""))
             st.save_doc(d)
@@ -953,6 +996,12 @@ class Ledger:
         def apply(st, d):
             if d.get("state") != "leased":
                 raise Conflict(f"{did} is {d.get('state')}, not leased")
+            if d.folder == "experiments":
+                miss = missing_result(d)
+                if miss:
+                    raise Conflict(f"{did}'s ## Result needs lines starting {', '.join(repr(m + ':') for m in miss)} before it is submitted "
+                                   f"(Evidence: prediction, double-dummy proxy or played boards; Sample: count and interval; "
+                                   f"Revisit if: the conditions under which it is worth trying again). `workq.py edit {did} --file ...`")
             if branch:
                 d.set("branch", branch)
             d.set("state", "submitted"); d.set("lease_until", "")
@@ -1185,7 +1234,8 @@ def main(argv=None) -> int:
     p = sub.add_parser("new"); p.add_argument("title")
     for k in ("area", "kind", "owner", "priority"):
         p.add_argument(f"--{k}", required=True)
-    for k in ("due", "depends", "goal", "done-when", "context", "body-file", "id"):
+    for k in ("due", "depends", "goal", "done-when", "context", "body-file", "id",
+              "value", "effort", "probability", "budget", "parent", "explore", "sweep"):
         p.add_argument(f"--{k}")
     p.add_argument("--proposed", action="store_true")
     p = sub.add_parser("lease"); p.add_argument("id"); p.add_argument("--hours", type=float, default=MAX_LEASE_HOURS); p.add_argument("--force", action="store_true")
@@ -1228,7 +1278,8 @@ def run(lg: Ledger, a) -> int:
             body = f"## Goal\n\n{a.goal or ''}\n\n## Done when\n\n{a.done_when or ''}\n\n## Context\n\n{a.context or ''}\n"
         if a.kind not in KINDS or a.priority not in PRIORITIES:
             raise SystemExit(f"--kind is one of {', '.join(KINDS)}; --priority one of {', '.join(PRIORITIES)}")
-        print(lg.new(a.title, a.area, a.kind, a.owner, a.priority, split_ids(a.depends), a.due, body, a.proposed, a.id)); return 0
+        extra = {k: getattr(a, k) for k in ("value", "effort", "probability", "budget", "parent", "explore", "sweep")}
+        print(lg.new(a.title, a.area, a.kind, a.owner, a.priority, split_ids(a.depends), a.due, body, a.proposed, a.id, extra)); return 0
     if c == "lease":
         d = lg.lease(a.id, a.hours, a.force); print(f"{a.id} leased by {d.get('holder')} until {d.get('lease_until')}"); return 0
     if c == "renew":
@@ -1321,7 +1372,8 @@ def run(lg: Ledger, a) -> int:
             if a.mine:
                 ds = [d for d in ds if me in (d.get("owner"), d.get("holder"))]
         rank = {p: i for i, p in enumerate(PRIORITIES)}
-        ds.sort(key=lambda d: (rank.get(d.get("priority"), 9), d.get("due") or "9", d.get("id")))
+        # within a priority class: value for effort when both are given (best first), then due date
+        ds.sort(key=lambda d: (rank.get(d.get("priority"), 9), -(score(d) if score(d) is not None else -1e18), d.get("due") or "9", d.get("id")))
         for d in ds:
             n = note_for(st, d, st.at)
             print(f"{d.get('id'):7} {d.get('priority'):6} {d.get('state'):9} {d.get('owner'):5} {d.get('holder'):5} "

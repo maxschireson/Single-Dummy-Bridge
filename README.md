@@ -151,6 +151,16 @@ population it is measured on; regression slices; compute cap; stopping rule. Aft
 result with its uncertainty and sample count, kind of evidence (prediction, double-dummy
 proxy, or played boards), where the data and code are, and one of
 `adopted | rejected | inconclusive | retired`. Negative and inconclusive results are kept.
+`workq submit` refuses an experiment until its `## Result` has three lines (bulleted or bold is
+fine): `Evidence:` (prediction, double-dummy proxy, or played boards), `Sample:` (count and
+interval), and `Revisit if:` (the conditions under which the idea is worth trying again, so a later
+agent can tell a dead end from an idea tested too narrowly).
+
+Optional header fields, all checked when written: `value` (expected gain, a number then its unit,
+e.g. `0.05 IMPs/board`), `effort` (agent-hours), `probability` (0 to 1), `budget` (box-hours),
+`parent` (the task, experiment or bot this builds on), `explore: yes` (counts against the
+exploration share of box-hours once boxes are queued), `sweep: yes` (at most two open sweeps per
+area). Within a priority, `workq next` orders by value x probability / effort.
 An experiment that stops being worth its compute is `retired` with a line saying why, not
 left running.
 

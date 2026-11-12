@@ -407,6 +407,43 @@ class LedgerTest(unittest.TestCase):
         finally:
             ledger.gh = real
 
+    def test_result_check_scores_and_sweep_cap(self):
+        self.boot({"experiments/E9-3.md": EXPERIMENT}, "sam")
+        self.lg("sam").lease("E9-3", 2)
+        with self.assertRaises(ledger.Conflict) as cm:
+            self.lg("sam").submit("E9-3", "done", None, None)
+        self.assertIn("'Evidence:', 'Sample:', 'Revisit if:'", str(cm.exception))
+        half = EXPERIMENT.replace("## Result\n\n_not yet_", "## Result\n\n96.4% equivalent.\n\n- **Evidence:** double-dummy proxy")
+        self.lg("sam").edit("E9-3", half)
+        with self.assertRaises(ledger.Conflict) as cm:
+            self.lg("sam").submit("E9-3", "done", None, None)
+        self.assertIn("'Sample:', 'Revisit if:'", str(cm.exception))
+        full = half.replace("double-dummy proxy", "double-dummy proxy\n- Sample: 5,120 decisions, 95% interval 95.8 to 96.9\n"
+                                                  "- Revisit if: the class rule changes")
+        self.lg("sam").edit("E9-3", full)
+        self.lg("sam").submit("E9-3", "done", None, None)
+        lg = self.lg("g9")
+        a = lg.new("Cheap", "bidding", "module", "pool", "high", [], None, "", extra=dict(value="0.01 IMPs/board", effort="1"))
+        b = lg.new("Rich", "bidding", "module", "pool", "high", [], None, "", extra=dict(value="0.2 IMPs/board", effort="4", probability="0.5"))
+        c = lg.new("Unscored", "bidding", "module", "pool", "high", [], None, "")
+        st = self.st()
+        self.assertAlmostEqual(ledger.score(st.doc(b)), 0.025)
+        self.assertIsNone(ledger.score(st.doc(c)))
+        out = io.StringIO()
+        os.environ["WORKQ_CACHE"] = str(self.root / "cache-cli3")
+        with redirect_stdout(out):
+            ledger.main(["--repo", str(self.bare), "--channel", "team/gen9", "--as", "bill", "next"])
+        ids = [l.split()[0] for l in out.getvalue().splitlines()]
+        self.assertEqual(ids[:3], [b, a, c])
+        with self.assertRaises(ledger.Malformed):
+            lg.new("Bad", "bidding", "module", "pool", "high", [], None, "", extra=dict(probability="1.5"))
+        for n in (1, 2):
+            lg.new(f"Sweep {n}", "bidding", "experiment", "bill", "low", [], None, "", extra=dict(sweep="yes"))
+        with self.assertRaises(ledger.Conflict) as cm:
+            lg.new("Sweep 3", "bidding", "experiment", "bill", "low", [], None, "", extra=dict(sweep="yes"))
+        self.assertIn("the cap is 2", str(cm.exception))
+        lg.new("Sweep elsewhere", "signals", "experiment", "sam", "low", [], None, "", extra=dict(sweep="yes"))
+
     def test_owner_proposed_and_blocked_rules(self):
         self.boot({"tasks/G9-W8.md": task("G9-W8", owner="will"), "tasks/G9-W7.md": task("G9-W7", state="proposed"),
                    "tasks/G9-W6.md": task("G9-W6")}, "bill", "will")
@@ -453,6 +490,8 @@ class LedgerTest(unittest.TestCase):
         self.lg("g9").resolve("G9-B1", "accepted", "good")
         self.assertTrue(any(m["subject"].startswith("G9-B1 resolved (accepted)") for m in self.st().unread("bill")))
         self.lg("sam").lease("E9-3", 2)
+        self.lg("sam").edit("E9-3", EXPERIMENT.replace("## Result\n\n_not yet_", "## Result\n\n97% equivalent.\n\nEvidence: double-dummy proxy\n"
+                                                       "Sample: 5,000 decisions\nRevisit if: never"))
         self.lg("sam").submit("E9-3", "97% equivalent", "research/gen9-spots", None)
         self.lg("g9").resolve("E9-3", "adopted", "")
         self.assertIn("| [E9-3](experiments/E9-3.md) |", self.text("STATUS.md"))
