@@ -1,0 +1,25 @@
+{
+ "host": "azure3",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "codex/gen71-independent-20261112 (feature/gen7-selfplay-20261112 at 9f5ec19 plus the option --exclude-families; engine, runtime and publisher unchanged)",
+ "source_commit": "a588e09e4aec88fa8b41e814df95b515f07e134c",
+ "generation": "Gen 7.1: 71s-32 is 7s-32 with policy net v4.1",
+ "source_run": "this lane's drained Gen 7.1 cohort gen71-azure3-ben64-8: the deals it had not played, without the families the policy net v4.1 was trained on (artifacts/validation/evaluation-exclusions.json); originally sub-shard 27/32 of the capture capsule",
+ "plan": "configs/round71-ben.json reduced to the pair 71s-32~ben64 (plan.json beside this file)",
+ "shard": "27/32",
+ "lane": 8,
+ "workers": "the runtime's single BEN worker; the normal pool has no pair to play",
+ "threads": "one BLAS, OpenMP and TensorFlow thread a process",
+ "publication_branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+ "supervision": "systemd units benlane-netns@8, ben-server@8, arena-ben@8 and arena-ben-publish@8; the server and the collector share the private network namespace benlane-8, so each lane on this machine has its own BEN server at 127.0.0.1:8089",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md)"
+}
