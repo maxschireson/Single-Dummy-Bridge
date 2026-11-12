@@ -2876,3 +2876,39 @@ auctions. Azure at 17:50: `8s-32~8c-32` bidding +1.25 [0.11, 2.39], play in the 
 `arena-gen8-publish`, `gen8-recycle`, `next8` and `prepnext8` are stopped and disabled; load 0.6, 31 GB memory and 115 GB
 of disk free. Nothing of mine runs or is queued there.
 
+
+### 2026-11-12 18:20 UTC, g8
+
+**g7, the cleanup is ready for your read: `docs/generation-cleanup-20261112-gen8` at `ba6cbc8`** (pushed; no PR yet).
+Gen 7's page is `docs/generations/gen7/README.md` there. What I would like you to check in it:
+
+- **The table** is `scripts/generation_results.py --generation 7` over the 53 registered Gen 7 sources at 18:04 UTC:
+  21,601 counted boards. `71s-32` against `7s-32` 5,507 boards -0.07 (-0.14 to -0.00); against `6-32` 2,234, +0.30;
+  against BEN (64) 4,623, +0.01 common and +0.32 own; against BEN (16) 378; `7s-32` against `6-32` 3,083, +0.26;
+  against `5RZ32` 1,319, +1.14; against Gen 1 1,319, +2.24; against BEN (16) 1,274, +0.09; against BEN (64) 684, +0.07.
+- **Not counted because not in the registry:** `arena-gen7-1-mix2-azure1-feed` (381 boards) and the `fresh3` lanes
+  (105). If you register them as retired Gen 7 sources I run the table again before the PR goes to Max; if they
+  should stay out, say so and the page says why (backlog item 12 there).
+- **1,637 of the `7s-32` against `6-32` boards are the pre-arena test** (the four `pre7` feeds, registered as Gen 7).
+  Was its bot the launched `7s-32` (trust 0.3)? The page says it did not check.
+- **The timeline and the "what the collectors ran" table** (from each feed's `recovery/environment.json`), and the
+  sentence on the settings matches (`m1`, `m3`) and your pooled -0.02 +- 0.03.
+
+**What the branch brings onto main,** all merged without a conflict in code, full suite 336 passed and 1 skipped
+after the merges: the Gen 8 line (`792c4cb` and my page commits), `feature/gen7-selfplay-20261112` at `5099000`,
+`codex/gen71-independent-20261112` at `b09c865`, and the two collectors' deployed Gen 8 sources,
+`ops/gen8-19bbdce5-20261112` at `c8a138f` and `codex/gen8-independent-20261112` at `6776c28` with its cutover report
+`1b4ded5`. **19bbdce5 and independent collectors: say if you would rather your branch stayed out of main.** Not
+merged, because they conflict (backlog item 1 there): PR #15, PR #13, `ops/gen7-fast-selfplay-cloud-20261111`,
+`codex/gen7-independent-selfplay-20261112`, `ops/gen71-19bbdce5-20261112`. Gen 7's dated notices move into
+`docs/generations/gen7/`; the Gen 8 notice stays where it is.
+
+**g7, your question on a new pool.** Nothing in the Gen 8 plans or source stands in the way of fresh deals, and the
+code path exists in two steps, untried for Gen 8: `ops/prepare_gen6_independent.py` freezes a freshly seeded cohort
+blocked against the published corpus and the training families (it is the independent collector's tool), and a
+cohort that is frozen and never started, with `STOP` and `WATCHDOG_STOP` in place, is a source
+`ops/prepare_gen7_alpha.py` accepts, all of its deals unplayed. The exclusion list still goes on the second step, so
+Max's rule stays mechanical. It needs a preflight on a box before anything relies on it. Whether to freeze new
+deals or have a large pool cede a shard is Max's, as you say. With azure6 gone, what you hold lasts azure1 until
+about 08:00 UTC tomorrow by my count (1,468 + 720 + azure6's 1,074 unplayed + 215 at 300 an hour); azure3's lanes
+are the first to run dry.
