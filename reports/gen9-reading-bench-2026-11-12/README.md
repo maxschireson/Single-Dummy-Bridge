@@ -55,10 +55,29 @@ By stage, declarer or defender deciding: `tables_vs_gen8.md` and `tables_vs_r9b.
   ± 0.012 (BEN 16).
 - **Reading BEN's plays in full** (factor 1) costs 0.087 ± 0.035 tricks a board against BEN 64: the factor 0.3 matters.
 
-**What is left.** Reading (2) of G9-X2 (a declared scheme read at honesty 0.8 and 0.5, on E9-4 part 1's 300 house
-tables relabelled) is being solved in the sandbox (the box jobs `g9-x2-rel-std-80` and `-50` were cancelled: the box
-is busy until about 21:30).
-Reading (3), bill's replayed bidder, runs on p41's pools by bill. E9-16 parts 1b and 1c: `reports/gen9-leakage-classes-2026-11-12`.
+## Reading (2): a declared scheme, on E9-4 part 1's tables relabelled
+
+E9-4 part 1's 296 usable house tables (`arena-gen7-phase1-azure1-feed` at f9dad79), the defenders' spots and opening
+leads drawn again by the standard scheme at honesty 0.8 or 0.5 with E9-4's seeds (`relabel`; the swap counts match
+E9-4's rows), solved again at declarer's decisions (6,278 a cell, 135 deals). Readers: `g8` = 8x-32 meeting the
+signallers as an unknown outside player (the net at 0.3); `full` = the net in full (8x-32 meeting them as the house
+bots they are); `g9` = r9-32 told the scheme and its honesty (class term at 8x-32's 0.3, as in E9-4 part 2's match).
+"A board" here is one table's declarer decisions. Tricks a board, paired against `g8`:
+
+| Reader | Honesty 0.8 | Honesty 0.5 |
+| --- | ---: | ---: |
+| Gen 8 against no reading | +0.036 ± 0.018 | +0.022 ± 0.015 |
+| Net in full, against Gen 8 | +0.017 ± 0.019 (-0.26 nats) | +0.031 ± 0.016 (-0.27 nats) |
+| Told the scheme (`r9-32`), against Gen 8 | **+0.062 ± 0.029** (+0.53 nats) | **+0.063 ± 0.022** (+0.30 nats) |
+
+- Reading a declared scheme is worth about +0.06 tricks a board to declarer, +0.22 IMPs at 3.6 a trick, at honesty 0.8
+  and at 0.5 alike (the two cells' difference is within their errors). This is E9-4 part 2's prediction.
+- It is the largest reading gain measured on the bench today, and the first to be clear of zero by two standard errors.
+- E9-4 part 1's +0.72 nats (std-80, tricks 1 to 6, pool 256) is +0.53 nats here over every trick; g9's rate
+  (0.14 tricks a nat at every decision, scaled to declarer's) predicted 0.03 to 0.05 tricks.
+
+**What is left.** Reading (3), bill's replayed bidder, runs on p41's pools by bill. E9-16 parts 1b and 1c:
+`reports/gen9-leakage-classes-2026-11-12`.
 
 **Limits.** The pools come from the house scorer, which reads BEN's native auctions less well than house auctions.
 The bench leaves out the tree and the tie-break. Positions are those the Gen 7 bots and BEN reached. E9-14's heads
