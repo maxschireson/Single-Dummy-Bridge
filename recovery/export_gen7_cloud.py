@@ -9,7 +9,7 @@ out=ROOT/'gen7-publication'
 export(run,out)
 backup=out/'recovery'
 backup.mkdir(exist_ok=True)
-for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl','source-indices.json','preflight.json','launch.json','runtime-requirements.txt','STOP','WATCHDOG_STOP'):
+for name in ('manifest.json','state.json','heartbeat.json','corpus.jsonl','source-indices.json','preflight.json','launch.json','cutover-preparation.json','runtime-requirements.txt','STOP','WATCHDOG_STOP'):
     if (run/name).exists(): shutil.copy2(run/name,backup/name)
 for name in ('episodes','receipts','artifacts','assets','failures','diagnostics','failure-history'):
     if (run/name).exists(): shutil.copytree(run/name,backup/name,dirs_exist_ok=True)
