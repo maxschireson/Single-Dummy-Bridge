@@ -60,6 +60,18 @@ class RuleBidderTests(unittest.TestCase):
                 auction(hands, dealer, vul, sides)
         self.assertEqual(ours.errors, 0)
 
+    def test_it_passes_when_the_other_side_has_bid_every_suit(self):
+        """Found by the Gen 9 team replaying another system's auctions: with every suit bid naturally by the
+        opponents there is nothing to take partner's double out to. The general procedure passes; it used to raise."""
+        for seed in range(40):
+            hands, dealer, vul = deal(14, seed)
+            st = R.State(1, vul, (R.Settings(), R.STANDARD))
+            for token in (R.bid(1, R.S), R.DOUBLE, R.PASS):         # East opens, South doubles for takeout, West passes
+                st.push(token)
+            self.assertEqual(st.acts[2][-1], (R.DOUBLE, 'takeout'))
+            st.natural[1] = {R.C, R.D, R.H, R.S}                    # as if East-West had bid them all
+            self.assertEqual(R.plan(R.Hand(hands[0]), st, 0), (R.PASS, ''))
+
     def test_an_opening_outside_the_tables_is_read_as_a_long_suit(self):
         st = R.State(0, 0, (R.Settings(), R.STANDARD))
         st.push(R.PASS)

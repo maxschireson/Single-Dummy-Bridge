@@ -753,6 +753,8 @@ def plan(h, st, me):
         if ours:
             return PASS, ''
     if pact[1] == 'takeout' and pact[0] == DOUBLE and not ours and ((st.doubled == 1 and rho_passed) or (st.doubled == 2 and st.calls[-1][1] == REDOUBLE)):
+        if len(enemy) == 4:
+            return PASS, ''                              # they have bid every suit: nothing to take out to
         suit = max((x for x in SUITS if x not in enemy), key=lambda x: (h.len[x] + (x in MAJORS) * 0.5, x))
         if fit in MAJORS and h.len[fit] >= 4:
             suit = fit                                   # partner has shown four of this major
@@ -795,6 +797,8 @@ def plan(h, st, me):
             cue = min((c for c in (cheapest(x) for x in enemy) if c is not None), default=None)
             if cue is not None and cue < bid(3, N):
                 return cue, 'stopper-ask'
+        if target is None and len(enemy) == 4:
+            return PASS, ''
         if target is None and (asked or not enemy):      # no stopper anywhere: the best trump suit there is
             best = max((x for x in SUITS if x not in enemy), key=lambda x: (trumps(x), x in MAJORS, x))
             go = bid(4, best) if best in MAJORS or cmin < g.game_minor - 2 else bid(5, best)
