@@ -93,7 +93,7 @@
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
     "fleet/azure": "5960c24dac760b0dd0939757d8a8e0e97d60e8e4",
-    "gh-pages": "aba5765f7efcf9ecfa23ad011e4b45c468c0b515",
+    "gh-pages": "465012d5bc1ac12b5ad7902fa46aaccd43164d5b",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
     "ops/gen71-19bbdce5-20261112": "7d96087a3a501909c0441837b95498001e1923de",
@@ -429,22 +429,22 @@
     "publication_verified": true
   },
   "research_disposition": "New Gen8 plan remains explicitly launch-disabled; no notice published at the named path. Optional research results and Azure-specific allocation/shard/settings instructions do not change this producer. Gen9 work is unrelated. Retain frozen2:1Gen7.1 comparison mix,3normal workers,0BEN.",
-  "notification": "Meaningful expanded training exclusions applied; final notification after recovery publication verification.",
+  "notification": "Meaningful expanded exclusions applied; immutable cohort retained,1603pre-reload records preserved,14guard tests and official parity passed. Collection resumed and recovery publication verified before final notification.",
   "checked_epoch": 1794497361.0,
   "checked_at": "2026-11-12T15:29:21Z",
   "next_check": "2026-11-12T16:25:53Z",
   "stream_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
   "health": {
-    "epoch": 1794497578.8945136,
+    "epoch": 1794497687.2731156,
     "configured_normal_workers": 3,
     "configured_ben_workers": 0,
     "heartbeat": {
-      "epoch": 1794497574.2940876,
-      "completed": 1789,
+      "epoch": 1794497682.541326,
+      "completed": 1795,
       "in_flight": [
-        1789,
-        1790,
-        1791
+        1795,
+        1796,
+        1797
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -453,22 +453,22 @@
     },
     "state": {
       "manifest_identity": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-      "completed": 1789,
+      "completed": 1796,
       "target": 20257,
-      "contiguous": 1789,
+      "contiguous": 1795,
       "by_pair": {
-        "71s-32~7s-32": 1192,
-        "71s-32~6-32": 597
+        "71s-32~7s-32": 1197,
+        "71s-32~6-32": 599
       },
-      "root_games": 3578,
-      "tables": 44680,
+      "root_games": 3592,
+      "tables": 44864,
       "failures": 0,
-      "epoch": 1794497564.2922251,
+      "epoch": 1794497682.8498023,
       "complete": false
     },
     "watchdog": {
-      "epoch": 1794497573.2783813,
-      "completed": 1789,
+      "epoch": 1794497683.64584,
+      "completed": 1796,
       "target": 20257,
       "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
       "workers": 3,
@@ -476,19 +476,19 @@
       "failures": 0,
       "collector": "running",
       "publisher": "running",
-      "last_fleet_check": 1794497573.2778356,
+      "last_fleet_check": 1794497643.6250832,
       "collector_pid": 60518,
       "publisher_pid": 60519
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794497517.6351314,
-      "completed": 1785,
-      "commit": "4dd1558f4ec4f323f9eecfb6775b0e4a2ff6ec9a",
+      "epoch": 1794497651.4946294,
+      "completed": 1793,
+      "commit": "6553c55851a2306c538d240ea9d05967eb584fcf",
       "branch": "arena-gen7-1-compare-codex-20261112-feed"
     },
     "gate": {
-      "epoch": 1794497573.2670581,
+      "epoch": 1794497643.6113927,
       "status": "checked",
       "actors": {
         "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
@@ -497,11 +497,11 @@
       "pair": "71s-32~7s-32",
       "condition": "common",
       "metric": "played IMPs per board for 71s-32",
-      "boards": 4990,
-      "mean_imps": -0.07274549098196392,
+      "boards": 4996,
+      "mean_imps": -0.07405924739791833,
       "ci95": [
-        -0.14602413447564533,
-        0.000533152511717469
+        -0.1472772107984251,
+        -0.0008412839974115682
       ],
       "minimum_boards_met": true,
       "positive_lower_bound": false,
@@ -509,12 +509,12 @@
       "snapshots": [
         {
           "branch": "arena-gen7-1-compare-codex-20261112-feed",
-          "revision": "4dd1558f4ec4f323f9eecfb6775b0e4a2ff6ec9a",
+          "revision": "caf639a54ffeaed65a921b226be6b178975cc625",
           "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2"
         },
         {
           "branch": "arena-gen71-independent-feed",
-          "revision": "df03d28d230f07ca57cd87c17da2a035a2d5d72a",
+          "revision": "6a2920e9fb2e2064a7d073f7a22f8bd37de1e6d4",
           "cohort": "8bcab55ffc5b53e08c7e10ca06758963f5deb740a660f557abc39a107350a1be"
         },
         {
@@ -544,7 +544,7 @@
         },
         {
           "branch": "arena-gen71-19bbdce5-20261112-feed",
-          "revision": "a932bfcb08f80c90f65df50f19b0a4d4292be731",
+          "revision": "c74cf42e3060d92fc97eaaafd0f9be2a5b648dc1",
           "cohort": "50f9d04042e9a42b8620183e19c8a631c3803cfb67cfca2479141a3fdeffe461"
         },
         {
@@ -564,7 +564,7 @@
         },
         {
           "branch": "arena-gen7-phase1-azure4-feed",
-          "revision": "31de2a8a8f98ceef9c5b184bf75f87b37a31b5ff",
+          "revision": "a5e4e49c5675283fafe804f8ebedf12884033294",
           "excluded": "different-actors"
         },
         {
@@ -659,42 +659,42 @@
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-3-feed",
-          "revision": "75dce922c162b2a6cdf8677bbe2ba582d666d321",
+          "revision": "50513323ed962ce3333ee93ba8d33c40cba27455",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-4-feed",
-          "revision": "091ab3050146b6fedc2f3abf73c7875ef23c5625",
+          "revision": "dfa69edf1a6f89aa0b6980d9df8c6f2fc2ce8f56",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-1-feed",
-          "revision": "4936dc75760e71b5a194a9e6efeb93ab3d9c3d80",
+          "revision": "9c24501fbabce95027c0bbc2b7dc63a1c677b81f",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-2-feed",
-          "revision": "e660ecf4955015e58a6f8edcd72f689c81370cdf",
+          "revision": "203ef236ef6c754effd16cb65e76753cb37811b7",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-5-feed",
-          "revision": "bff8bda7f41beb757042e3b5d0ab0a96fe1d310c",
+          "revision": "906fd998266c261fdbd064a33c1237ef12ce0aaa",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-6-feed",
-          "revision": "edffd004b9ca912f43a20fafbdefb96abb6c940f",
+          "revision": "6938ea03be52e6feb653383edf7ed7e53fc89389",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-7-feed",
-          "revision": "a594fbea5fc131f7b9a7cfd8a72c7e3689d31bac",
+          "revision": "1f7e3dd65f404975286fe29cdda3507099a59821",
           "excluded": "no-71-vs-70-pair"
         },
         {
           "branch": "arena-gen7-1-fresh2-azure3-ben64-8-feed",
-          "revision": "5444c74bbe5b35b396fe3e70bf7a23613c31b7b6",
+          "revision": "79b05da3ac96d84fc501f2e4cc69b91cd2d6b2d4",
           "excluded": "no-71-vs-70-pair"
         },
         {
@@ -754,7 +754,7 @@
         }
       ],
       "errors": [],
-      "registry_revision": "aba5765f7efcf9ecfa23ad011e4b45c468c0b515",
+      "registry_revision": "465012d5bc1ac12b5ad7902fa46aaccd43164d5b",
       "training_exclusions": {
         "path": "evaluation-exclusions.json",
         "sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
@@ -811,7 +811,7 @@
     },
     "failures": [],
     "stop_markers": [],
-    "memory_cgroup_bytes": 6571704320,
+    "memory_cgroup_bytes": 6600650752,
     "memory_limit_bytes": 17179869184,
     "disk_free_bytes": 18806927360,
     "last_cache_rotation": {
@@ -859,198 +859,246 @@
   "reviewed_source_changes": [
     {
       "name": "box/azure1/control",
-      "sha": "cc9c7068bcd225055b9516bf84535dc19c4b389e",
-      "previous": "5a0e80a334c9e6024bae371f41db2e51b7679912",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "44d849f09ccdff69aeb6fabb82202d1a8574d80f",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure1/status",
-      "sha": "6b99f5bc1c4c3a225b5458f59316f7f60b13109c",
-      "previous": "102377aa17788da450db39823fdf74e098332e64",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "fb4f5b15e57e5c7cad6ae0ba7ba72463ec2be427",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure2/control",
-      "sha": "f0eebd4fec793c4550a499436dbbf053c96c3063",
-      "previous": "dd70f169ce4c4698ae3947e5b60b986a86bd5da4",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "307fca4d65bbd6b2d8ba1a9d5582ec580f1b7088",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure2/status",
-      "sha": "808ddd504174440edafc077cff758bbe323afbba",
-      "previous": "19a951527971ffeb9233a37eea6a2684c313953d",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "cd17c85e272a63d2098eaa7e68f6ed154e3c03b6",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure3/control",
-      "sha": "5cb91d35c1016c3fea474cf0d3abf4cdeb45ec5f",
-      "previous": "71e980bb9461f9992d2fdf6c48894b5193598d48",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "a83e378871f6948e90cf09275e708c4f341b7c04",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure3/status",
-      "sha": "5d13d4d6abe8cfe03530e4afed2b986950f53d93",
-      "previous": "bb35418d8add1e8d6321da3c7f048d5bbdd43cc6",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "263d56efaa59ee250fdeb606589c39f47ce2fc0e",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure4/control",
-      "sha": "753462f774e0b3a469df4474a180c0d7ba80a3c9",
-      "previous": "273571ae92ae5f19c18a1a56d6b272cd18bec210",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "71fecc571b0fe768655ffc2e1e793fb866dcb500",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure4/status",
-      "sha": "9c2d26fefa554178b9f042d78c0ccfde84e5d3e8",
-      "previous": "2d3873a1f8c0ba53a7b3eba8c3d4fba7b85ad252",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "c93a9e1121dcc6bd24d1558c752c6d016fe321d5",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure5/control",
-      "sha": "e016220286c0ec6237a56d5459e6bae60601a260",
-      "previous": "ebf26456b403fa9da42a3b15e905e7a1687e84af",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "66d5d5d87bc5dfc26a012557d8a9b70d39c3da7b",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure5/status",
-      "sha": "56189929926a237ef5fe66d48a5600fe04bc110a",
-      "previous": "19fb9a216250cb3c08cd55665eb369e7e73078dd",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "c26079a874f697f56fe1fd735ce480f66b1a6b91",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure6/control",
-      "sha": "9249f27d7736222aa20f8d508ffec1c60c7a75fd",
-      "previous": "fb2b22fa93c21bf023dfde85353afba4fb89f3ce",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "882708ed6d79eb19e72ebf9e51d1116374783bb5",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/azure6/status",
-      "sha": "33c879e6e69445f1aed6a6dcd734618a9547b06d",
-      "previous": "6ec75ff4628287b9cf9637e664daca9fb3593f82",
-      "disposition": "Remote host control/status; no execution authorized here."
+      "sha": "8f3f647edc542eb2082527bb26758832281d0ea8",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "box/coordination",
-      "sha": "15af3c78aafa7462a91e23b822a043b83f616d59",
-      "previous": "c4297eee76b23b3553dd71a8fbb37d87f73048e0",
-      "disposition": "Reviewed all changed board entries; host allocations and unadopted research only."
+      "sha": "942f86ee7e1a703bae3371283998673cc14a13c1",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "codex/gen71-independent-20261112",
+      "sha": "b09c86536d79310599d708d05a16aab7752b2dbe",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/boxctl-20261112",
+      "sha": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen7-alpha-20261111",
+      "sha": "7690c3c2014dd60ee349d8fff41985b4e811ff4e",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen7-candidate-20261111",
+      "sha": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen7-prepare-slice-20261112",
+      "sha": "ecff8d935f3d93d12d277fd74466eaf521f34944",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen7-selfplay-20261112",
+      "sha": "50990002b64833073b04e1bad025241109033ad3",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen8-p41-20261112",
-      "sha": "6831931d455d781cce945fb5d87a868d88423cfe",
-      "previous": "bb1cd2c37603bb220234c5b94339e966c4e33c96",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "sha": "06668febc269f03c41a6adcfce928d8e1a09b00b",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen8-prototype-20261112",
-      "sha": "663854708d4b27c402a215cea4b63028a0780a3a",
-      "previous": "15dbb0ec75843093c7938fb2eca3faa79d723809",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "sha": "eac981ce07eb55630b10ce55420e5fae9c0b60ab",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen8-systems-20261111",
+      "sha": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen9-arena-arrival",
-      "sha": "8cb03484f498ffd77af95301d5244db5c27bcd63",
-      "previous": "d50e10a330e65d2cc833a73de7d568e220aaa34f",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "sha": "8b106a58a4d701fced82c138d2131e6d6cba0639",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-arena-design",
+      "sha": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-arena-epochs",
+      "sha": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-arena-experience",
+      "sha": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-arena-ratings",
+      "sha": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-arena-sim",
+      "sha": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-bidding-cards",
+      "sha": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-bidding-design",
+      "sha": "a01cab885378cc421b352dc289abc15532026425",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen9-reading-bench",
-      "sha": "9d2e5647ca54ba4d7cb69aee23dcafb18e310a08",
-      "previous": "d913180078301ec4fabc20217f99101c504067cc",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "sha": "a20ce886b98df1130a4eeae9d97461695479dcad",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-signals",
+      "sha": "d2092edf7cf6c34303768cc45f2b2bf280532263",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-signals-design",
+      "sha": "16bf806f974a3b7ba472832bb8c819cc051a6fc0",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen9-signals-v2",
-      "sha": "a14c37d8f6b62a2824bf1b7e089dcbd94c45c147",
-      "previous": "7c7cf302cf6a25018dd2466a88c1bae25899c286",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "sha": "1adb844db00550f4d2a882924e5dc0c283f18db6",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen9-workflow-ben-lanes",
       "sha": "3cb55a01b61bd3ad5cd31bcef4f6677ebd16389f",
-      "previous": "8a0287fbc53cb2a46e568412b15f1d579f010865",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-workflow-design",
+      "sha": "57c43dd6a0793cb61c0c9031a776219990b0888d",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-workflow-tests",
+      "sha": "6f9d3cba1e35c3077194106b900dfc9306f63d73",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-workflow-tests-2",
+      "sha": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/gen9-workflow-tests-3",
+      "sha": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "feature/gen9",
-      "sha": "cc51feed8846e3b0a6652d1af54aba79d76c82b6",
-      "previous": "768920b08fcccea1358fada6372fe8ea3002df75",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "sha": "e3ab67b185869199ccaae65152846da01ad76b54",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
+    },
+    {
+      "name": "feature/work-ledger-20261112",
+      "sha": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
       "name": "fleet/azure",
-      "sha": "b5a68c5ad29c63795000b382d333de99bd7a98ae",
-      "previous": "5aea67f79354b6f2282fe27dcf8320e99a90d2bf",
-      "disposition": "Reviewed status diff and experiments; remote progress read-only."
+      "sha": "5960c24dac760b0dd0939757d8a8e0e97d60e8e4",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
-      "name": "gh-pages",
-      "sha": "029abf06cc5f91c07da876ba212d8664ed9ba0ed",
-      "previous": "6280ade8cc656cf81bb493b4cd8c30ccae137cc8",
-      "disposition": "Registry metadata and BEN pool feeds; no local instruction change."
+      "name": "transfer/gen7-policy-v4.1-20261112",
+      "sha": "7d1ce5e836262c1cac70ea38d3a3255f9dd8c0b0",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
-      "name": "research/plan-leverage-20261112",
-      "sha": "585d6eda2da686460efd43410d286260d986c6b3",
-      "previous": "15280daa8386f924175eb1d16466171e3b6274e5",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "name": "transfer/gen7-policy-v4.1-bench-20261112",
+      "sha": "1ae9e03afe53f41b7a4e73c55227d2b194676136",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
-      "name": "research/plan-leverage-g8-20261112",
-      "sha": "a9509ae785c804cff97681b17cdd5d50b1c5c670",
-      "previous": "562271ce58a5234c99a848c104c4e0985eb24ec0",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "name": "transfer/gen7-policy-v4.1-box-20261112",
+      "sha": "6c7cc095f893bb63eb89aeef8a8c65775fe40534",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
-      "name": "team/gen9",
-      "sha": "0a0899288a6fadb38c6c4df1fe468a3bfdf64aae",
-      "previous": "759793d385dfe463e4b9cadb1b81a026e78a18e3",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "name": "transfer/gen7-policy-v4.1-families-20261112",
+      "sha": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
-      "name": "transfer/gen8-p41-reading-20261112",
-      "sha": "cf730ee7b76d64145fc7a926210117ce51886330",
-      "previous": "574bfeb25e059108914f1320f61024b0decbcac6",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "name": "transfer/gen7-policy-v4.1-lists-20261112",
+      "sha": "984ba4937f321465b70ee621dd1763452f4fe894",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     },
     {
-      "name": "transfer/gen8-p41-reading-pools-20261112",
-      "sha": "4bb0d1567988e878df7634ccaf422a9880afb5f7",
-      "previous": null,
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
-    },
-    {
-      "name": "transfer/gen8-proto-azure1-20261112",
-      "sha": "39039afa14cf50ddf6dabc3f90463b91f2ae6785",
-      "previous": "8d34facd932f76226cc5c6b6ad0890d3d38d079c",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
-    },
-    {
-      "name": "transfer/gen8-proto-azure4-20261112",
-      "sha": "e3165f7792032c112d56ce47b3b52c1f06f53d56",
-      "previous": "d584b1b17c443834be66f46ffdb597531e02a60b",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
-    },
-    {
-      "name": "transfer/gen8-proto-azure6-20261112",
-      "sha": "92cb90b12e15cf24fac670ea822a1105e249676f",
-      "previous": "a0e1c59ecb8443c6f795517bb57786b5b02777f2",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
-    },
-    {
-      "name": "transfer/gen9-arrival-rehearsal-2-20261112",
-      "sha": "39f63e5bad34c1a260b61f108d80c3af3132ebf2",
-      "previous": null,
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
-    },
-    {
-      "name": "transfer/plan-leverage-azure2-20261112",
-      "sha": "da3c1afb86609f836098bacc2da096375f67f76f",
-      "previous": "ee8ea214d775f3717bb2550a58bf14e6a4c42b4e",
-      "disposition": "Unadopted research/prototype progress; no authority to change this collector."
+      "name": "transfer/gen7-policy-v4.1-neartie-20261112",
+      "sha": "7b9610dd2ea1982c8da7ca1087dee8767051c7d8",
+      "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": null,
+  "completed_at": "2026-11-12T15:34:47.275213Z",
   "next_comment_scan_since": "2026-11-12T15:29:21Z",
   "poll_checkpoint_note": "Comments scan starts at last completed13:27poll; next scan anchored to START15:29:21Z, including edits during this interrupted check. No scan gap.",
   "candidate_notice": {
@@ -1477,10 +1525,11 @@
     "superseded_scope": "Original5pairphase1 recipe superseded for this ownedstream byMax04:09 anchorstop/selfplay instruction; current selfplay_authority andstream.json take precedence."
   },
   "automation_context": {
-    "enabled": true,
-    "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192553Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT",
-    "next_run_time": "2026-11-12T13:25:53+00:00",
-    "prompt_updated": true
+    "updated": true,
+    "schedule_preserved": true,
+    "next_run": "2026-11-12T16:25:53Z",
+    "current_guard": "gen71-eligible-gate-v3",
+    "expanded_training_exclusion_context_preserved": true
   },
   "dashboard_registration": {
     "commit_sha": "3eacf2e5853122fc1e165e0dcf68721279c3dbd4",
@@ -1953,7 +2002,7 @@
     "no_revocation": true,
     "latest_notice_commit": "50990002b64833073b04e1bad025241109033ad3",
     "latest_notice_blob": "858e24fdd5449b397a612a8361c960c8e6071b41",
-    "new_preparations_require": "41b18c1 or later with --exclude-families",
+    "new_preparations_require": "41b18c1or later with --exclude-families, using pinned34092-family union",
     "deployed_runtime_kept_at": "56dafd6f9b733372503c4d06c9b37616f45dcc9e",
     "training_list_sha256": "4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3",
     "continuation_confirmed_by": {
@@ -1968,7 +2017,8 @@
       "peer": "f37d8d82652213de30ab6b2535da22787dac3104943f013b8a966a5766a75e82",
       "own_mix_changed": false,
       "general_selfplay_plan_open": false
-    }
+    },
+    "supplemental_training_exclusion_authority": "transfer/gen7-policy-v4.1-families-20261112@1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e"
   },
   "gen71_transition": {
     "status": "running-verified",
@@ -3414,11 +3464,12 @@
     }
   ],
   "registry_review": {
-    "revision": "029abf06cc5f91c07da876ba212d8664ed9ba0ed",
-    "blob": "ca2811f8c9d1ab7e560a564f2f9edb8775bf9852",
+    "commit": "465012d5bc1ac12b5ad7902fa46aaccd43164d5b",
+    "blob": "9812e30263957cfb107fd46a0aa1cf2c09aeef06",
     "owned_key": "gen71codexcompare",
-    "owned_manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
-    "no_local_registry_change_needed": true
+    "only_owned_entry_changed": true,
+    "read_back_verified": true,
+    "scientific_cohort_unchanged": true
   },
   "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/instruction-poll-20261112T132740.json",
   "interrupted_check": {
@@ -3428,7 +3479,7 @@
     "drained_completed": 1603,
     "receipt_and_episode_prefix_preserved": true
   },
-  "completion_status": "completing-registry-automation-and-recovery-verification",
+  "completion_status": "completed",
   "supplemental_training_review": {
     "authority": {
       "source_revision": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
@@ -3541,5 +3592,5 @@
     "notice_missing_at_named_path": true,
     "disposition": "Explicitly not authorized; no Gen8 launch or reuse of retired anchors."
   },
-  "registry_metadata_update_pending": true
+  "registry_metadata_update_pending": false
 }
