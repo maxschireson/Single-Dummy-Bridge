@@ -42,13 +42,14 @@ import time
 
 import numpy as np
 
-from .core import Board, symbol
+from . import claims
+from .core import Board, Game, card, symbol
 from .gen6 import Gen6Player, View, systematic
 from .gen7 import Gen7Player, utilities
 from .gen7 import player as gen7_player
 from .plan_rollout import Believer, NetPlayer, Public, card_values
 from .players import Decision
-from .runner import play_table
+from .runner import decision_rng, play_table
 
 ENGINE = 'plan'
 
@@ -66,6 +67,7 @@ class PlayoutUse:
     tricks: int = 0
     wide: int = 0
     level: bool = True      # consult also when every card near the best is rated exactly level with it
+    claim: str = ''         # 'root': the claim finder at the declaring side's decisions; 'all': in the playouts too
 
     def __post_init__(self):
         for name in ('from_trick', 'to_trick', 'root_cards', 'layouts', 'repeats', 'tricks', 'wide'):
@@ -77,6 +79,8 @@ class PlayoutUse:
             raise ValueError('Invalid plan playout settings')
         if self.seat not in ('gen6', 'gen7'):
             seat_player(None, None, self.seat, 0)
+        if self.claim not in ('', 'root', 'all'):
+            raise ValueError(f'Unknown plan claim setting {self.claim!r}')
 
 
 def seat_player(net, dds, kind, seed):
@@ -124,7 +128,36 @@ class PlanPlayer(Gen7Player):
     def search_decision(self, o, rng, solved, weights, before, after, info):
         result = super().search_decision(o, rng, solved, weights, before, after, info)
         stage = self.playout_stage(o)
-        return result if stage is None else self.playout_decision(o, rng, result, solved, weights, stage)
+        if stage is None:
+            return result
+        if stage.claim and o.controller % 2 == o.contract.declarer % 2:
+            settled = self.claim_decision(o, result)
+            if settled is not None:
+                return settled
+        self.claim_stage = stage
+        return self.playout_decision(o, rng, result, solved, weights, stage)
+
+    def claim_decision(self, o, result):
+        """The declaring side's decision when the claim finder settles the contract from its view: some card
+        guarantees it (the search's card if it is one, else the search's best-rated card that is), its tricks are
+        already in, or too few are left. No playouts then. None when the contract is open."""
+        started = time.perf_counter()
+        state, value = claims.shared().verdict(o)
+        if state == 'open':
+            return None
+        d = result.details
+        choice = result.card
+        if state == 'guaranteed':
+            need = o.contract.level + 6 - o.declarer_tricks
+            sure = [x for x in o.legal if value[x] >= need]
+            if choice not in sure:
+                choice = min(sure, key=lambda x: (d['estimates'][symbol(x)]['gap_to_best'], x))
+        note = dict(kind='claim', consulted=False, claim=state, moved=choice != result.card, seconds=time.perf_counter() - started,
+                    guaranteed={symbol(x): v for x, v in value.items()})
+        if choice == result.card:
+            return Decision(choice, dict(d, gen7_tree=note))
+        return Decision(choice, dict(d, behavior_probabilities={symbol(x): float(x == choice) for x in o.legal}, selected_probability=1.,
+                                     selected_pimc_gap=d['estimates'][symbol(choice)]['gap_to_best'], gen7_tree=note))
 
     def fresh_layouts(self, o, count, seed):
         """About `count` layouts for the playouts, as repeated draws of the search's own (Gen6Player.layouts, so without
@@ -150,16 +183,57 @@ class PlanPlayer(Gen7Player):
         c = o.contract
         sign = 1 if o.controller % 2 == c.declarer % 2 else -1
         prefix = [dict(card=symbol(x)) for _, x in o.history]
+        inner_claims = getattr(getattr(self, 'claim_stage', None), 'claim', '') == 'all'
         out = np.zeros((len(worlds), len(cards)))
         for n, world in enumerate(worlds):
             hands = tuple(tuple(sorted(set(world[s]) | {x for seat, x in o.history if seat == s})) for s in range(4))
             board = Board(f'playout/{seed}/{n}', hands, c, o.dealer, o.vulnerability, o.auction)
             for j, x in enumerate(cards):
+                if inner_claims:
+                    out[n, j] = sign * self.claimed_playout(board, [y for _, y in o.history] + [x], seed % (1 << 31))
+                    continue
                 t = play_table(board, ['inner'] * 4, {'inner': self.inner}, seed=seed % (1 << 31), prefix=prefix + [dict(card=symbol(x))])
                 if t['status'] != 'ok':
                     raise RuntimeError(t.get('error'))
                 out[n, j] = sign * t['declarer_tricks']
         return out
+
+    def claimed_playout(self, board, prefix, seed):
+        """Declarer's tricks when the search plays on, except that wherever the claim finder settles the contract
+        from the declaring side's view that side plays the card guaranteeing most tricks (ties by the net) without
+        searching, and the playout stops when it guarantees every trick left. Otherwise card for card as play_table
+        with the same random streams."""
+        game = Game(board)
+        for x in prefix:
+            game.play(x)
+        finder = claims.shared()
+        stats = self.inner_stats          # what the playouts spent: searches by side and state, claims, stops
+        settled = False
+        while not game.done:
+            o = game.observation()
+            declaring = o.controller % 2 == o.contract.declarer % 2
+            if len(o.legal) > 1 and declaring and o.known_hands[o.contract.dummy] is not None:
+                state, value = finder.verdict(o)
+                settled = settled or state != 'open'
+                top = max(value.values())
+                if top == len(o.known_hands[o.actor]):
+                    stats['stops'] += 1
+                    stats['stopped_left'] += top
+                    return game.declarer_tricks + top
+                if state != 'open':
+                    stats['claimed'] += 1
+                    best = [x for x in o.legal if value[x] == top]
+                    if len(best) > 1:
+                        logp = self.inner.net.log_policy([o])[0] if getattr(self.inner, 'net', None) is not None else None
+                        best.sort(key=lambda x: (-(logp[x] if logp is not None else 0.), x))
+                    game.play(best[0])
+                    continue
+            started = time.perf_counter()
+            game.play(self.inner.choose(o, decision_rng(seed, board.id, 'inner', o)).card)
+            key = ('declaring' if declaring else 'defending') + ('_after_settled' if settled else '')
+            stats[key] = stats.get(key, 0.) + time.perf_counter() - started
+            stats[key + '_n'] = stats.get(key + '_n', 0) + 1
+        return game.declarer_tricks
 
     def playout_decision(self, o, rng, result, solved, weights, stage):
         """The search's decision with its near-best cards valued again by playouts. Candidates are chosen as the tree
@@ -195,6 +269,7 @@ class PlanPlayer(Gen7Player):
         values_of = (lambda layouts: self.real_values(o, layouts, searched, seed, real)) if real else \
             (lambda layouts: card_values(o, layouts, searched, who, Public(self.net, o), stage.repeats, stage.tricks, self.dds))
         started = time.perf_counter()
+        self.inner_stats = dict(stops=0, stopped_left=0, claimed=0)
         column = {x: j for j, x in enumerate(legal)}
         same = {x: float(share @ u[pick, column[x]]) for x in searched}        # plain double dummy on the solved layouts
         if stage.wide:
@@ -213,7 +288,7 @@ class PlanPlayer(Gen7Player):
         eligible = sorted(legal[j] for i in winners for j in groups[i])
         choice = result.card if result.card in eligible else fork.choice(eligible)
         self.before_tree = result
-        note.update(consulted=True, layouts=len(pick), wide=stage.wide, seconds=seconds, net_rows=getattr(who, 'net_rows', 0), solves=getattr(who, 'solves', 0), seat=stage.seat,
+        note.update(consulted=True, layouts=len(pick), wide=stage.wide, seconds=seconds, inner=dict(self.inner_stats), net_rows=getattr(who, 'net_rows', 0), solves=getattr(who, 'solves', 0), seat=stage.seat,
                     gen6_cards=sorted(k for k, q in d['behavior_probabilities'].items() if q > 0),
                     candidates=[dict(cards=[symbol(legal[j]) for j in groups[i]], searched=symbol(x), gap=best - float(value[i]),
                                      same_layouts=same[x], tree=played[x], adjusted=adjusted[i], kept=i in winners)
