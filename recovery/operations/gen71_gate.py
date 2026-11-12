@@ -3,6 +3,7 @@
 Only this producer is stopped. No peer, model, or closed selfplay plan is modified.
 """
 from concurrent.futures import ThreadPoolExecutor
+import gzip
 import hashlib
 import json
 import math
@@ -17,6 +18,10 @@ from phase1_fleet import fetch_bytes
 PAIR = '71s-32~7s-32'
 ALLOWED_OTHERS = {'7s-32', '6-32', 'ben64', 'ben'}
 TRAINING_SHA256 = '4818856d731bee23ea38cf16b478a73106ad06a2116dca046fae8a9098b103e3'
+UNION_TRAINING_SHA256 = '7b0c6ced74b99c999184b8a6259157e49ef12ebf546e57bab810be2a149d9250'
+SUPPLEMENTAL_PATH = Path(__file__).resolve().parent / 'training-family-review-20261112/p41-families-1427/v41_training_families.txt.gz'
+SUPPLEMENTAL_SHA256 = '4f50529634bca3432331e2a65accdc7889651d7d355f6077bd37baf10b77bdc1'
+SUPPLEMENTAL_FAMILY_COUNT = 34029
 
 
 def orientation(pair):
@@ -89,12 +94,31 @@ def registered_heads(registry, heads):
     return selected
 
 
+def supplemental_training_families():
+    """Trainer's actual v4.1 training set, published 14:02 UTC Nov12.
+
+    Keep the earlier exclusion list too: neither a later list nor a peer's
+    declared exclusions can make an already excluded family eligible again.
+    Missing/corrupt supplemental evidence blocks the gate rather than falling back.
+    """
+    raw = SUPPLEMENTAL_PATH.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != SUPPLEMENTAL_SHA256:
+        raise ValueError('Supplemental training-family exclusion checksum mismatch')
+    values = gzip.decompress(raw).decode().splitlines()
+    if (len(values) != SUPPLEMENTAL_FAMILY_COUNT or values != sorted(set(values))
+            or any(not re.fullmatch('[0-9a-f]{64}', v) for v in values)):
+        raise ValueError('Invalid supplemental training-family exclusion list')
+    return set(values), dict(path=str(SUPPLEMENTAL_PATH), sha256=SUPPLEMENTAL_SHA256,
+        families=len(values), source_revision='1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e',
+        source_blob='7343d35d79a5c8ca2263918e20680d473c15ae90')
+
+
 def exclusion_list(run, manifest):
     declared = manifest.get('evaluation_exclusions')
     path = run / (declared['path'] if declared else 'evaluation-exclusions.json')
     raw = path.read_bytes()
     checksum = hashlib.sha256(raw).hexdigest()
-    if checksum != TRAINING_SHA256 or declared and declared['sha256'] != checksum:
+    if checksum not in {TRAINING_SHA256, UNION_TRAINING_SHA256} or declared and declared['sha256'] != checksum:
         raise ValueError('Training-family exclusion checksum mismatch')
     values = json.loads(raw)
     if not isinstance(values, list) or any(not isinstance(v, str) or not re.fullmatch('[0-9a-f]{64}', v) for v in values):
@@ -107,7 +131,12 @@ def exclusion_list(run, manifest):
                 or audit['training_list_sha256'] != checksum or audit['corpus_training_overlap'] != 0
                 or audit['distinct_corpus_families'] != manifest['target']):
             raise ValueError('Existing cohort lacks a matching full-corpus exclusion proof')
-    return set(values), dict(path=str(path.relative_to(run)), sha256=checksum, families=len(set(values)))
+    supplemental, source = supplemental_training_families()
+    trained = set(values) | supplemental
+    effective_raw = (json.dumps(sorted(trained), indent=2) + '\n').encode()
+    return trained, dict(path=str(path.relative_to(run)), sha256=checksum, families=len(set(values)),
+        supplemental_sources=[source], effective_families=len(trained),
+        effective_sha256=hashlib.sha256(effective_raw).hexdigest())
 
 
 def eligible_rows(rows, trained):
@@ -206,16 +235,17 @@ def update(run, runtime):
             rows.append(row)
     unique, excluded_training = eligible_rows(rows, trained)
     from bridge_harness.selfplay import atomic_json
-    atomic_json(inventory_path, dict(schema='gen71-eligible-gate-v2', actors=actors, rows=unique,
+    atomic_json(inventory_path, dict(schema='gen71-eligible-gate-v3', actors=actors, rows=unique,
                                     registry_revision=registry_revision, training_exclusions=exclusion))
     result = dict(epoch=time.time(), status='partial' if errors else 'checked', actors=actors,
         pair=PAIR, condition='common', metric='played IMPs per board for 71s-32',
         **statistics_for(unique), snapshots=snapshots, errors=errors,
         registry_revision=registry_revision, training_exclusions=exclusion,
         excluded_training_families=len(excluded_training),
-        selfplay_launch_enabled=False,
+        selfplay_launch_enabled=False, gate_accounting_version='gen71-eligible-gate-v3',
         method='Current registered, revision-pinned arena records plus this registered producer\'s local atomic receipts; '
-               'published v4.1 training families excluded; eligibility rebuilt on every check; '
+               'union of the original exclusions and trainer-published v4.1 training families excluded; '
+               'eligibility rebuilt on every check; '
                'exact actors, ready published plan, '
                'checksum and snapshot cutoff checked; one earliest completion per family; '
                'two-sided Student-t 95% CI. Descriptive interval, unadjusted for repeated monitoring. '
