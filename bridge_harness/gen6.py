@@ -326,16 +326,25 @@ class Gen6Player(ArenaPlayer):
         # Gen 8 prototype (inert unless the spec names these): the systems NS and EW have declared at this table
         # (spec['table_systems']), a scorer that reads each side's calls by its system (spec['system_scorer']), and
         # the systems whose auctions the lead net was trained on (spec['lead_systems']; elsewhere the scorer leads).
-        systems = tuple(spec.get('table_systems') or (None, None))
+        self.system_scorer = None
         if spec.get('system_scorer'):
             from .system_nets import SystemFitScorer
-            from .systems import TableSystems
-            self.scorer = SystemFitScorer(root / spec['system_scorer']).bind(TableSystems(*systems))
-        self.lead_fits = 'lead_systems' not in spec or all(x in spec['lead_systems'] for x in systems)
+            self.system_scorer = SystemFitScorer(root / spec['system_scorer'])
+        self.seat_table(spec.get('table_systems'))
         self.lead_net = None
         if 'lead_net' in (c.lead_source, c.leader_early_source):
             self.lead_net = LeadNet(root / spec['lead_belief'], BidderState(root / spec['lead_state_bidder']))
         self.lead_context = (None, None)
+
+    def seat_table(self, systems):
+        """Gen 8: the systems North-South and East-West declare at the table about to be played (None: nothing is
+        declared). The runner calls this before every table (gen5_arena.run_board), because the two rooms of a
+        board can differ."""
+        self.table_systems = systems = tuple(systems or (None, None))
+        if self.system_scorer is not None:
+            from .systems import TableSystems
+            self.scorer = self.system_scorer.bind(TableSystems(*systems))
+        self.lead_fits = 'lead_systems' not in self.spec or all(x in self.spec['lead_systems'] for x in systems)
 
     # ---- which layouts -------------------------------------------------------------------
     def source(self, o, view):

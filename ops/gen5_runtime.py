@@ -30,6 +30,14 @@ def initialize_worker(root):
     from bridge_harness.bidding_ppo import Policy
     root=Path(root);m=json.loads((root/'manifest.json').read_text());actors={}
     for key,spec in m['bots'].items():
+        entry=spec.get('bidder')
+        if entry:
+            # Gen 8: this bot bids by a system bidder (a rule system) built from the generator entry in its spec and
+            # checked against the entry's pinned identity; its bidding net stays in use for the lead net's inputs only.
+            from bridge_harness.system_bidders import make_bidder
+            name=json.dumps(entry,sort_keys=True)
+            if name not in actors:actors[name]=make_bidder(entry,ROOT)
+            BIDDERS[key]=actors[name];continue
         checksum=spec['artifact_sha256']['bidding']
         if checksum not in actors:actors[checksum]=Policy.load(root/spec['bidding'])
         BIDDERS[key]=actors[checksum]

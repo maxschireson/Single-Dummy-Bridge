@@ -214,6 +214,15 @@ class Gen7Player(Gen6Player):
         self.before_tree = None         # the search's own decision, when the tree was consulted on it
         self.repliers = {}
 
+    def seat_table(self, systems):
+        """Gen6Player.seat_table, and the policy net's reading of the auction follows the table's systems."""
+        super().seat_table(systems)
+        net = getattr(self, 'net', None)                # not built yet when Gen6Player's constructor calls this
+        if net is not None and net.shown.scorer is not self.scorer:
+            net.shown.scorer = self.scorer
+            net.shown.cache.clear()
+            self.play_cache = (None, {})
+
     def meet(self, opponent_id):
         """Who sits against this bot at this table (a bot id, or None). gen5_arena.run_board says so for every board;
         scripts/gen8_match.py also puts it in the spec as `table_opponent`. Settings keyed by opponent type follow."""
