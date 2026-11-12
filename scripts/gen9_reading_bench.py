@@ -7,6 +7,8 @@ scoring; this script chooses the tables and decisions and adds Gen 9 readings to
   python scripts/gen9_reading_bench.py pools    --feeds DIR... --opponent ben --tables 300 --out OUT [--seconds 7200] [--pool 512]
   python scripts/gen9_reading_bench.py readings --feeds DIR... --out OUT --source CAPSULE/recovery --bots BOTS.json --reading NAME=BOT [...]
   python scripts/gen9_reading_bench.py report   --out OUT [--against NAME] [--json FILE]       (the bench's report)
+  python scripts/gen9_reading_bench.py box      --opponent ben --first 60 --tables 240 --workers 8 --feeds-dir DIR --out OUT
+                                                --source CAPSULE/recovery --reading NAME=BOT [...]     (a box job: all of it)
 
 pools     The bench's `pools` on E9-7's held-out tables against one BEN version (scripts/gen9_ben_reading.py: deal families
           with crc32 % 5 == 0, the first --tables of them in that script's order), at the decisions of the house bots only:
@@ -18,6 +20,9 @@ readings  For every stored decision, the log weight a bot spec from --bots (buil
           other plays and the opponents'), with the bot's own factors and signal terms already in it, so the bench's report
           scores it at exponent 1 like a net. Nothing is solved again.
 report    The bench's report on OUT; `--against` pairs every reading with one.
+box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
+          there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
+          `readings`. progress.jsonl gets a line a finished table.
 
 Hidden hands are labels: the true deal is solved and scored, never read.
 """
@@ -79,13 +84,17 @@ def table_source(chosen):
 
 
 def pools(a):
-    chosen = held_out(a.feeds, a.opponent, a.tables)
+    chosen = held_out(a.feeds, a.opponent, a.first + a.tables)[a.first:]
     bench.tables = table_source(chosen)
     bench.decisions = house_only(bench.decisions)
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    (out / 'tables.json').write_text(json.dumps(dict(opponent=a.opponent, tables=[[str(p), k] for p, k in chosen]), indent=0))
-    args = argparse.Namespace(episodes=[], out=a.out, net=a.net or [GEN8_NET], shard='0/1', tables=a.tables, seconds=a.seconds,
+    listing = out / 'tables.json'
+    if a.shard == '0/1' or not listing.exists():
+        tmp = out / f'tables.json.{os.getpid()}'
+        tmp.write_text(json.dumps(dict(opponent=a.opponent, first=a.first, tables=[[str(p), k] for p, k in chosen]), indent=0))
+        tmp.replace(listing)
+    args = argparse.Namespace(episodes=[], out=a.out, net=a.net or [GEN8_NET], shard=a.shard, tables=a.tables, seconds=a.seconds,
                               part=a.part, skip_tables=a.skip_tables, part_offset=a.part_offset, pool=a.pool, seed=a.seed, skip_families=[])
     bench.pools(args)
 
@@ -171,13 +180,68 @@ def readings(a):
         print(f'{part.name}: {len(rows)} decisions, readings {sorted(todo)}', flush=True)
 
 
+FEED_URL = 'https://github.com/maxschireson/Single-Dummy-Bridge'
+FEED_PATTERN = r'^arena-gen7.*ben(16|64)-[0-9]-feed$'
+
+
+def fetch_feeds(directory, opponent):
+    """The episode folders of the BEN feeds of one version, sparse-cloned into `directory` if they are not there."""
+    import re
+    import subprocess
+    want = 'ben64' if opponent == 'ben64' else 'ben16'
+    heads = subprocess.run(['git', 'ls-remote', '--heads', FEED_URL], check=True, capture_output=True, text=True).stdout.split()
+    names = sorted(h[len('refs/heads/'):] for h in heads if h.startswith('refs/heads/'))
+    names = [n for n in names if re.match(FEED_PATTERN, n) and want in n]
+    Path(directory).mkdir(parents=True, exist_ok=True)
+    out = []
+    for name in names:
+        target = Path(directory) / name
+        if not (target / 'recovery' / 'episodes').is_dir():
+            subprocess.run(['git', 'clone', '-q', '--depth', '1', '--filter=blob:none', '--sparse', '--single-branch', '-b', name, FEED_URL,
+                            str(target)], check=True)
+            subprocess.run(['git', 'sparse-checkout', 'set', '--no-cone', '/recovery/episodes/', '/recovery/manifest.json'], cwd=target, check=True)
+        out.append(str(target / 'recovery' / 'episodes'))
+    return out
+
+
+def box(a):
+    import subprocess
+    import time
+    feeds = fetch_feeds(a.feeds_dir, a.opponent)
+    out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
+    me = [sys.executable, str(Path(__file__).resolve())]
+    common = ['--feeds', *feeds, '--opponent', a.opponent, '--out', str(out)]
+    chosen = held_out(feeds, a.opponent, a.first + a.tables)[a.first:]
+    (out / 'tables.json').write_text(json.dumps(dict(opponent=a.opponent, first=a.first, tables=[[str(p), k] for p, k in chosen]), indent=0))
+    procs = [subprocess.Popen(me + ['pools', *common, '--first', str(a.first), '--tables', str(a.tables), '--pool', str(a.pool), '--part', str(a.part),
+                                    '--seconds', str(a.seconds), '--shard', f'{k}/{a.workers}', '--part-offset', str(a.part_offset)] + [f'--net={n}' for n in a.net]) for k in range(a.workers)]
+    def progress():
+        done = []
+        for log in sorted(out.glob('pools-*.log')):
+            done += [line for line in log.read_text().splitlines() if line.startswith('{"table"')]
+        (out / 'progress.jsonl').write_text(''.join(line + '\n' for line in done))
+    while any(p.poll() is None for p in procs):
+        time.sleep(30)
+        progress()
+    progress()
+    if any(p.returncode for p in procs):
+        raise SystemExit(f'pools: exit codes {[p.returncode for p in procs]}')
+    if a.reading:
+        subprocess.run(me + ['readings', *common, '--source', a.source, '--bots', a.bots] + [f'--reading={r}' for r in a.reading], check=True)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('step', choices=('pools', 'readings', 'report'))
+    ap.add_argument('step', choices=('pools', 'readings', 'report', 'box'))
     ap.add_argument('--feeds', nargs='+', default=[], help='episode directories of the BEN feeds')
     ap.add_argument('--opponent', default='ben', choices=('ben', 'ben64'))
     ap.add_argument('--out', required=True)
+    ap.add_argument('--first', type=int, default=0, help='the first table of the held-out list to take')
     ap.add_argument('--tables', type=int, default=300)
+    ap.add_argument('--shard', default='0/1', help='pools: this process takes the tables k, k + n, ... of its list (k/n)')
+    ap.add_argument('--workers', type=int, default=1, help='box: shards run at once')
+    ap.add_argument('--feeds-dir', help='box: where the BEN feeds are, or are fetched to')
     ap.add_argument('--seconds', type=float, default=1e9)
     ap.add_argument('--part', type=int, default=4)
     ap.add_argument('--skip-tables', type=int, default=0)
@@ -197,6 +261,8 @@ def main():
         pools(a)
     elif a.step == 'readings':
         readings(a)
+    elif a.step == 'box':
+        box(a)
     else:
         bench.report(argparse.Namespace(out=a.out, mechanism=False, house=False, sweep=a.sweep, owner=[], against=a.against,
                                         pairs_only=False, verbose=a.verbose, json=a.json))
