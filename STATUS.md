@@ -135,7 +135,6 @@ Generated 2026-11-13 01:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 574.9 | 11-13 01:12 | `transfer/gen9-e9-0-n02e-azure4-20261112@7f3f8e088` |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
-| e9-16-h-v-p | E9-16 | g9 | 3 | 4 | cancelled | 0 of 800 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 55 |  |  |  |
 | g9-x2-ben64 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 47 |  |  |  |
 | g9-x2-rel-std-50 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 300 |  |  |  |
@@ -152,6 +151,7 @@ Generated 2026-11-13 01:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-12-cs | E9-12 | bill | 5 | 4 | cancelled | 0 of 600 |  |  |  |
 | e9-12-us | E9-12 | bill | 5 | 4 | cancelled | 0 of 600 |  |  |  |
 | e9-12-xs | E9-12 | bill | 5 | 4 | cancelled | 0 of 600 |  |  |  |
+| e9-16-h-v-p | E9-16 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-6-att-vs-reader | E9-6 | sam | 6 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-6-vs-8p | E9-6 | sam | 6 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-6-vs-reader | E9-6 | sam | 6 | 4 | cancelled | 0 of 1,600 |  |  |  |
