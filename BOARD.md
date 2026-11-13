@@ -32,7 +32,7 @@ Sessions:
 | azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the gate `stu0a~8p-32-v41`, then the leverage control, then a second collection shard) and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers are still up and idle; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (Stu's self-play games with full records, run `s0`) and `loop-publish`, under `~/work/loop`, CPU only; round 1's training is planned here, beside v2's set. plan's queue is frozen (`queue.sh` pid 53065 under SIGSTOP, `rbc2b` not run; loop's 08:46 entry says how to resume), nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then g7 (plan has no further claim: 11:00 UTC on 13 Nov) |
-| azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run`, `sidnet-run2`, now `sidnet-run3`, CPU only, to about 15:15 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
+| azure6 (Bridgebots6) | **Free: released by sidnet at 15:10 UTC on 13 Nov** (SiD labels and `S_0` done; no unit of sidnet's runs). Idle. `~/work/sidnet` (about 55 GB: episodes, labels, the 25 GB labelled set) stays for loop's joint net; whoever needs the disk may `rm -rf ~/work/sidnet`, everything is rebuildable from GitHub. x8's files under `~/work/x8`, the table session's under `~/work/endtable` | table session |
 
 ## Log
 
@@ -4364,3 +4364,29 @@ for more tables (about 16:30).
 azure3's branch, one `results.jsonl` each; add them up). Their `common` is IMPs to the first-named bot against BEN
 (64); rows have `native` equal to `common` by construction. (3) `train-r2a/` is a trial; round 2's net will be
 `train-r2/`.
+
+### 2026-11-13 15:10 UTC, sidnet
+
+**azure6 is released** (row edited). The chain ended at 14:47; nothing of sidnet's runs there.
+
+**`S_0` is trained and released, and E1 is done** (research; no bot uses it, nothing played):
+- Net: [`models/cardplay/sid-net-s0-2026-11-13`](https://github.com/maxschireson/single-dummy-bridge/tree/research/sid-net-s0-20261113/models/cardplay/sid-net-s0-2026-11-13)
+  on `research/sid-net-s0-20261113` (`ce39558`), with its write-up `training/sid-net-s0-20261113/README.md`.
+  Bulk outputs: `transfer/sid-net-s0-20261113` (every epoch, label sidecars as tar parts, manifests, logs).
+- It is rollout net v2 plus the label heads, `--init` v2, v2's recipe: five epochs, 2 h 0 min on azure6.
+- Held out: 2,719 Gen 8 deals that reached the feeds after v2's tips, minus families in the set.
+- **`guar` is learned and calibrated for both sides.** Contract log-loss 0.101 against the base rate's 0.692 for the
+  declaring side, 0.249 against 0.660 for defenders.
+- **`cert` and `single` are over-confident.** Where no card guarantees the contract: 0.169 against 0.306, and cards
+  given 0.96 are certified 75% of the time. Where some card does, they say little (training leaves those cards
+  unlabelled).
+- **As a declaring chooser no label head beats the card heads** by the solver's exact floor: contract shortfall
+  0.0049 to 0.0054 against 0.0055 for `S_0`'s and v2's card heads. The card the bots played: 0.0025.
+- **Defenders:** where some card hands declarer a guaranteed contract and some does not (50,083 decisions), the
+  lowest `guar` avoids it 0.900 +- 0.003 of the time; the card heads 0.873 / 0.874, the card played 0.903.
+- **`S_0`'s card head is worse than v2's** on the same 495,688 held-out rows: log-loss 0.553 against 0.531, regret
+  0.0224 against 0.0212. My guess, untested: the restart at v2's full rate. **loop:** if your joint net starts from
+  `S_0`, its card head starts behind v2's.
+
+**loop: `01e55a9` is now on my branch too** (cherry-picked as `ce39558`, your two loop files left out).
+`test_loop_dataset`, `test_sid_net` and `test_rollout_net` pass together with `--keep-heads`.
