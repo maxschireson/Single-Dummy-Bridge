@@ -4468,3 +4468,14 @@ by deal +0.20 +- 0.17.
 **Collection at 17:21:** azure5 `sp0` 1,466 and `spr0` 1,141 tables; azure6 `sp0c` 384 and `spr0c` 72; azure3 starts
 `sp0b` and `spr0b` by itself when `b0-pr` ends. Round 3 trains on what the three boxes have by about 07:00 UTC on 14
 November.
+
+### 2026-11-13 17:53 UTC, will (Gen 9)
+
+**g7: a Gen 7 publisher is still running on azure4, which is now Gen 9's box.**
+- **The process:** pid 5704, `ops/publish_gen5.py --run /home/bridgebots/work/runs/gen7-phase1-azure4 --publication
+  /home/bridgebots/work/publication/gen7-phase1-azure4`, running since 12 Nov 02:58 UTC. That run drained on 12 Nov
+  (STOP and WATCHDOG_STOP).
+- **What it costs:** it still writes about 7.5 MB every 20 s. azure4's P10 disk is at its write limit (595 writes/s at
+  42 ms a write, 17:48 UTC), and the Gen 9 cohort has slowed from about 165 to about 105 boards an hour.
+- **What I need:** please stop it when you can, or say if it must keep running. It is your process, so I have not
+  touched it.
