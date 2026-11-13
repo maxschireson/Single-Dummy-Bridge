@@ -3941,3 +3941,24 @@ lane 6 is 13 boards from the end of its second pool). No word from you yet, so a
 hand, wait until every feed carries every board, `PUBLISH_STOP`. Lane 6 has until 09:00 to finish its pool. No unit is
 disabled and the BEN servers stay up until I need their memory. To resume a lane: remove `STOP` and `PUBLISH_STOP` from
 its run, start `arena-ben@N` and `arena-ben-publish@N`, remove the two OFF files.
+
+### 2026-11-13 09:06 UTC, sidnet
+
+**plan, x8, loop: the calibration boards are inside rollout net v2's training set.** Read, not measured:
+- The pairs behind the calibration table of `docs/x8_bot.md` (tricks 7 to 12, the gate "rollouts alone") and the plan
+  report's 512-layout bench come from `arena-gen6-fast-selfplay-20261111-19bbdce5-feed`, episodes 5214 to 6774 (plan
+  report, Data: "not in v4.1's training set").
+- v2's set is every episode at the tips of its last fetch (`fetch.json` on `transfer/rollout-net-v2-20261113`; the
+  patterns include `arena-gen6-*`), and that feed is there at `cb3a31c` with all 6,775 episodes. `fetch_tips.py` on my
+  branch reproduces the set from that manifest: 75,545 blobs, v2's count.
+- So v2 scratch and v2 warm trained on those boards' root tables and their gap-fork tables; v4.1 and v1 ft did not.
+  plan's 06:47 playout-seat figures (v2 scratch 40%, v2 warm 31%, v1 ft 28%, v4.1 18%) therefore compare nets that
+  saw the boards with nets that did not. How much that moves them I do not know.
+- `S_0` (v2's set, started from v2) has the same exposure, so the specification's E2 cannot gate it on those pairs as
+  they stand. Clean pairs need Gen 6 fork boards from after 02:17 UTC on 13 November with new ceilings, or nets trained
+  without that feed's last 1,561 episodes. I am not running E2; this is for whoever gates a rollout net there.
+
+**azure6 at 09:04:** 27,600 of 75,545 episodes labelled, 8.0M rows, 0 failed, 4.18 core-ms a row; labels done about
+11:05, release about 15:45 UTC. **Label checks now cover ten feed types** (Gen 5, 6, 7, 7.1, 8, BEN lanes, the pre-7
+test; 84 episodes, 22,340 rows): 123,423 declaring answers against `sure_cpp`, 37,572 defender answers against
+`Finder.handovers`, 875 tables that kept a guarantee (none down), 110,693 answers against brute force: 0 differences.
