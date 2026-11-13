@@ -689,7 +689,7 @@ class ClaimTests(Fixture8):
             def choose(self, o, details, rng):
                 return o.legal[0], {}
         x8 = dict(stages=[dict(from_trick=3, to_trick=13, mode='blend', trust=1., layouts=12, cards=3, margin=2.)],
-                  claims=dict(cards=8, defender=8, contracts='all', guard=True, leaf=4), capture=dict(level=0))
+                  claims=dict(cards=8, defender=8, contracts='all', guard=True, leaf=4), capture=dict(level=0, claim_reference='search'))
         p = self.make8(x8, gen7=self.GEN8, list_solve=16)
         p.reference = Reference()
         plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
@@ -719,12 +719,14 @@ class ClaimTests(Fixture8):
             def choose(self, o, details, rng):
                 return o.legal[0], {}
         x8 = dict(stages=[dict(from_trick=5, to_trick=13, mode='rollout', layouts=12, first=4, seat='draw')],
-                  claims=dict(cards=8, full=True, defender=0, leaf=4, contracts='all'), capture=dict(level=0, audit_search=True))
+                  claims=dict(cards=8, full=True, defender=6, leaf=4, contracts='all'), capture=dict(level=0, audit_search=True))
         p = self.make8(x8, gen7=self.GEN8, list_solve=16)
         p.reference = Reference()
         plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
+        off = dict(x8, claims=dict(x8['claims'], declarer=False, full=False, defender=0, guard=False))
+        unclaimed = self.make8(off, gen7=self.GEN8, list_solve=16)      # the same bot with the decision-level claim logic off
         check = x8_claims.Finder(BIN)
-        claims = named = 0
+        claims = named = against_bot = 0
         try:
             for seed in range(5):
                 board = next(generate(1, 970 + seed))
@@ -739,7 +741,13 @@ class ClaimTests(Fixture8):
                             self.assertTrue(sure[card(a['card'])])
                             claims += 1
                         if 'reference_card' in a:
-                            want = plain.choose(o, decision_rng(5, board.id, 'x', o)).card
+                            if a['prediction_units'] == 'x8-against-no-claims':     # claims are measured against the bot without them
+                                self.assertTrue(set(a['x8_features']) & {'claim', 'guarantee', 'odds', 'guard'})
+                                want = unclaimed.choose(o, decision_rng(5, board.id, 'x', o)).card
+                                against_bot += 1
+                            else:                                                     # rollouts against plain Gen 8's search
+                                self.assertEqual(a['prediction_units'], 'x8-against-plain')
+                                want = plain.choose(o, decision_rng(5, board.id, 'x', o)).card
                             self.assertEqual(card(a['reference_card']), want)
                             self.assertNotEqual(card(a['reference_card']), card(a['card']))
                             named += 1
@@ -747,6 +755,7 @@ class ClaimTests(Fixture8):
             check.close()
         self.assertGreater(claims, 5)
         self.assertGreater(named, 5)
+        self.assertGreater(against_bot, 2)
 
     GEN8 = PlayerTests.GEN8
 

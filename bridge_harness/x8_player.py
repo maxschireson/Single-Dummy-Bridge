@@ -61,7 +61,7 @@ With every stage 'search', no claims and no mix the player is Gen7Player with th
 (tested).
 """
 import copy
-from dataclasses import asdict, dataclass, field, fields
+from dataclasses import asdict, dataclass, field, fields, replace
 import math
 from pathlib import Path
 import random
@@ -160,11 +160,14 @@ class CaptureUse:
                                 # too to measure mixing: its changes are mostly between touching cards)
     audit_search: bool = False  # rollout decisions: also run the plain Gen 8 search, so the forks' reference is Gen 8's card (else the
                                 # net's likeliest card). Costs one search a rollout decision, for audited bots only
+    claim_reference: str = 'bot'    # where the winning-line logic changed the card (claim, guarantee, odds, guard): the reference is
+                                # 'bot', the card this same bot plays with that logic off (rollouts, the blend, its own search), or
+                                # 'search', plain Gen 8's card. Max, 13 Nov 03:01: measure claims against the net, not the search
 
     def __post_init__(self):
         object.__setattr__(self, 'audit_features', tuple(self.audit_features))
         if self.level not in (0, 1, 2) or not (0 <= self.forks <= 512 and 1 <= self.layouts <= 4096 and 0 <= self.fork_power <= 4) \
-                or self.audit not in ('features', 'gen7') \
+                or self.audit not in ('features', 'gen7') or self.claim_reference not in ('bot', 'search') \
                 or not set(self.audit_features) <= {'rollout', 'blend', 'guarantee', 'odds', 'guard', 'mix', 'claim'}:
             raise ValueError('Invalid 8X capture settings')
 
@@ -699,7 +702,8 @@ class X8Player(Gen7Player):
         got, odds = None, None
         if len(reps) > 1:
             before = time.perf_counter()
-            hand, odds, cover = self.hand_overs(o, worlds, w, reps, nrng)
+            hrng = np.random.default_rng(nrng.integers(1 << 62))     # drawn whether or not the test runs: the rollouts' draws stay put
+            hand, odds, cover = self.hand_overs(o, worlds, w, reps, hrng)
             claim_seconds = time.perf_counter() - before
             floor0 = self.first_floor(o, worlds, reps, hand)
             got = self.roll(o, worlds, w, reps, stage, nrng, floor0, race=True)
@@ -812,7 +816,8 @@ class X8Player(Gen7Player):
             w = wd
         layout_seconds = time.perf_counter() - started
         before = time.perf_counter()
-        hand, odds, cover = self.hand_overs(o, worlds, w, reps, nrng)
+        hrng = np.random.default_rng(nrng.integers(1 << 62))
+        hand, odds, cover = self.hand_overs(o, worlds, w, reps, hrng)
         claim_seconds = time.perf_counter() - before
         floor0 = self.first_floor(o, worlds, reps, hand)
         got = self.roll(o, worlds, w, reps, stage, nrng, floor0, race=False)
@@ -924,6 +929,20 @@ class X8Player(Gen7Player):
         stream.setstate(self.tie_state)
         return Gen7Player.break_ties(self, o, stream, self.raw).card
 
+    def unclaimed_card(self, o):
+        """The card this bot plays here with the decision-level winning-line logic off (the declarer's guarantee, full
+        claims, the defender's hand-over odds and rule; the claim floors inside rollouts stay), from the same random
+        stream: rollouts at a rollout trick, the blend at a blend trick, the search elsewhere."""
+        if getattr(self, 'unclaimed_player', None) is None:
+            shadow = copy.copy(self)
+            claims = replace(self.x8.claims, declarer=False, full=False, defender=0, guard=False)
+            shadow.x8 = replace(self.x8, claims=claims)
+            shadow.reference = None                         # no audit inside the shadow
+            self.unclaimed_player = shadow
+        stream = random.Random()
+        stream.setstate(self.start_state)
+        return X8Player.choose(self.unclaimed_player, o, stream).card
+
     def gen8_card(self, o):
         """The card this spec's search would play as a plain Gen7Player (no 8X feature), from the same random stream."""
         if getattr(self, 'plain_player', None) is None:
@@ -959,6 +978,13 @@ class X8Player(Gen7Player):
         for key in ('reference_card', 'expected_gain_imps', 'prediction_units'):
             d.pop(key, None)
         note = d.get('x8')
+        fired = self.features(o, result)
+        claimed = set(fired) & {'claim', 'guarantee', 'odds', 'guard'}
+        if claimed and self.x8.capture.claim_reference == 'bot':
+            plain = self.unclaimed_card(o)
+            if plain != result.card and claimed & set(self.x8.capture.audit_features):
+                d.update(reference_card=symbol(plain), expected_gain_imps=None, prediction_units='x8-against-no-claims', x8_features=fired)
+            return Decision(result.card, d)
         if note and note.get('mode') in ('rollout', 'claim'):   # no search ran
             if self.x8.capture.audit_search or note['mode'] == 'claim':
                 plain = self.gen8_card(o)                   # what plain Gen 8 would play here, searched now for the audit
@@ -966,7 +992,6 @@ class X8Player(Gen7Player):
                 plain = card(note['reference']) if note.get('reference') else None
         else:
             plain = self.plain_card(o)
-        fired = self.features(o, result)
         if plain is not None and plain != result.card and set(fired) & set(self.x8.capture.audit_features):
             d.update(reference_card=symbol(plain), expected_gain_imps=None, prediction_units='x8-against-plain', x8_features=fired)
         return Decision(result.card, d)
