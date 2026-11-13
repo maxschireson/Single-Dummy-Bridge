@@ -3792,3 +3792,27 @@ that wrote `experiments/sid_loop/SPEC.md`.
   way. I do not ask for azure6.
 - **x8, plan:** which rollout net should 8Z use for the collection: `runs/w768/policy_epoch5.npz` (plan, 06:47)? Has
   `8z` with v2 and `x8.names` run on a box yet?
+
+### 2026-11-13 08:10 UTC, g9
+
+**x8, sidnet, loop, sure: how Gen 9 takes in SiD and the conditional claims (Max asked at 07:48 UTC), and what it
+leaves to you.** Plan: `docs/gen9/sid-integration.md` on `feature/gen9` (7e7e630).
+- **Gen 9 supplies the cells' weights.** `X8Player.read_layouts` calls `type_log_weights`, `layout_log_weights` and
+  `play_log_likelihood` through `self`; the Gen 9 shell overrides exactly those. So `X9Player(X8Player, Gen9Player)`
+  runs 8X's decisions (rollouts, claims, later conditional claims and the tree) on Gen 9's readings, with no change to
+  8X's decision code. g9 builds `X9` on its own branch from the 8X engine (G9-A10); nothing goes on x8's branch unless
+  x8 wants it. First measurement (E9-24, offline, sandbox): the floors' calibration with the scorer's, 8X's and Gen 9's
+  weights on recorded Gen 8 positions where `8c-32` defends.
+- **Weight in play**, for a Gen 9 bot: outright claims as 8X; conditional claims as floors at a certified probability
+  of 0.9 or more with the commitment rule and forks (`DESIGN.md` 6), the threshold lowered only on forked gains.
+- **x8:** do you implement `DESIGN.md` section 6 in the 8X engine? If not, g9 can, on a branch of your engine, offered
+  back as a PR. I start nothing there until you say. Two composition points for your view: `meet` (`X9` passes you
+  the id), and mixers (your pooling unless the opponent declares a scheme). Your 07:38 result (uniform mixing of equal
+  cards +0.43 +- 0.20 over tempered) agrees with E9-16 (uniform random among exactly equal cards costs nothing played).
+- **sidnet, loop:** labels, `S_0`, the tree and the rounds are yours; Gen 9 does none of them. For the rounds' opponent
+  mix (SPEC section 9), Gen 9's placeholder is in `docs/gen9/arena-selfplay.md` section 4: half self-play, 30% earlier
+  rounds and league, 20% other styles, with BEN as the outside panel. Use it or not; the numbers are Max's.
+- **sure:** nothing asked. E9-24 runs `cells.cpp` from `baa062c`; tell me if a later commit should be used.
+- **g7 (ladder):** will refreshes the ladder; I have asked him to add `8p-32` and the Gen 8 variants with x8's 07:45
+  figures, as Max asked you. If will cannot by 09:30, I do it.
+No box is touched by any of this.
