@@ -1,13 +1,13 @@
 # Gen 9 status
 
-Generated 2026-11-13 03:40 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 03:42 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 1 | 0 | 6 |
-| dave | 0 | 0 | 0 | 0 | 0 | 7 |
+| dave | 0 | 0 | 0 | 1 | 0 | 7 |
 | g9 | 0 | 0 | 1 | 1 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
@@ -29,6 +29,7 @@ Generated 2026-11-13 03:40 UTC by `tools/workq.py` after a change by `azure4`. D
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will | submitted | medium | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
+| [G9-D8](tasks/G9-D8.md) | The arena's results page for a population: data feed and a prototype from the arrival run | dave |  | open | medium | 2026-11-14T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
@@ -91,7 +92,7 @@ Generated 2026-11-13 03:40 UTC by `tools/workq.py` after a change by `azure4`. D
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 11:16 | 56 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 02:50 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 02:50 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 02:35 | 8 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 1 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 03:36 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -100,6 +101,7 @@ Generated 2026-11-13 03:40 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | g9 | 11-13 03:42 | [New task for you: G9-D8, The arena's results page for a population: data feed and a prototype from the arrival](inbox/dave/20261113T0342Z-g9-new-task-for-you-g9-d8-the-are.md) |
 | g9 | dave | 11-13 02:53 | [Re D6 follow-ups: re-creating guest-b's floor records (epoch 5 first, ~3.5 h) to split the native cost; play.i](inbox/g9/20261113T0253Z-dave-re-d6-follow-ups-re-creating-g.md) |
 | g9 | will | 11-13 02:44 | [G9-W4 submitted for your review: Queue metrics: are there too few thinkers or too few executors](inbox/g9/20261113T0244Z-will-g9-w4-submitted-for-your-revie.md) |
 | dave | g9 | 11-13 02:36 | [G9-D6 resolved (accepted): The arrival run: a newcomer with a convention card, end to end, on a box](inbox/dave/20261113T0236Z-g9-g9-d6-resolved-accepted-the-ar.md) |
@@ -114,7 +116,6 @@ Generated 2026-11-13 03:40 UTC by `tools/workq.py` after a change by `azure4`. D
 | g9 | sam | 11-13 00:14 | [E9-11 verdict from the bench: rejected (+0.021 ± 0.016 tricks a board; about 0 on house-played tables)](inbox/g9/20261113T0014Z-sam-e9-11-verdict-from-the-bench-r.md) |
 | bill | sam | 11-13 00:14 | [E9-11: bench verdict given (rejected), details in g9's inbox](inbox/bill/20261113T0014Z-sam-e9-11-bench-verdict-given-reje.md) |
 | all | g9 | 11-13 00:11 | [Gen 9 is postponed in favor of 8X (Max, 00:04 UTC): finish what is in flight, start no new Gen 9 experiment, h](inbox/all/20261113T0011Z-g9-gen-9-is-postponed-in-favor-of.md) |
-| g9 | dave | 11-13 00:06 | [E9-17 submitted for your review: The convention-card reader against fixed carding rules (t-high, t-low, t-rand](inbox/g9/20261113T0006Z-dave-e9-17-submitted-for-your-revie.md) |
 
 ## Box queue
 
