@@ -1,8 +1,9 @@
-# Rollout loop, round 0 (13 November 2026)
+# Stu: the rollout loop, round 0 (13 November 2026)
 
 **Work in progress. Research, not an arena cohort.** Max asked for a self-play loop on the rollout bot and assigned
 `azure3` and `azure5` to it (08:23 UTC, 13 November: "Take azure 3 and 5"; 07:46: "Starting this loop matters more
-than incremental progress"). Design notes: `experiments/sid_loop/SPEC.md`. This folder holds what round 0 runs.
+than incremental progress"). He named the loop's bot **Stu** (09:05 UTC). Design notes: `experiments/sid_loop/SPEC.md`.
+This folder holds what round 0 runs.
 Source: this branch, built on `research/sid-net-s0-20261113` at `24c8091` (the 8X engine at `1a779a9`, the plan
 session's `gen7_net.py`, the sidnet session's label heads and trainer).
 
@@ -14,8 +15,18 @@ session's `gen7_net.py`, the sidnet session's label heads and trainer).
 3. **Gate.** The bot with the new net inside is measured against opponents the net was not trained on.
 4. Repeat with the new net.
 
-Round 0's player is x8's 8Z with rollout net v2 inside (`z0a-v2`, `z0b-v2` in `configs/loop-bots.json`, written by
-`make_bots.py`).
+Round 0's Stu is x8's 8Z with rollout net v2 inside (`stu0a`, `stu0b` in `configs/loop-bots.json`, written by
+`make_bots.py`; two ids for one bot, because a pair needs distinct ids). The first 250 or so boards of the collection
+(run `r0` on azure5, deals under 1,000) were played under the ids `z0a-v2` and `z0b-v2` with capture level 1: the same
+bot, card for card.
+
+**What a record keeps.** For every rollout or blend decision: the candidate cards, each one's mean tricks, layouts
+played and standard error, and (capture level 2, up to 128 layouts) every layout's result for every candidate with
+the layout's weight. Measured on six deals played both ways on azure3: 27.2 KB a board at level 1, 43.1 KB at level 2
+with 128 layouts (38.3 KB with 64); the same 416 decisions with the same cards; all 444 candidate means rebuilt from
+the per-layout results exactly; CPU a board 51.9 against 53.7 s on a loaded box, a difference six boards cannot
+resolve. So a target other than mean tricks (IMPs against the best card, the chance of making) can be built from the
+same games.
 
 ## Files
 
@@ -25,10 +36,12 @@ Round 0's player is x8's 8Z with rollout net v2 inside (`z0a-v2`, `z0b-v2` in `c
 | `run.sh` | One match or collection as a unit; resumes |
 | `chain.sh` | A job file's matches one after another |
 | `pub.sh` | Pushes rows, summaries and logs to `transfer/rollout-loop-<box>-20261113` |
+| `jobs-azure3.txt`, `jobs-azure5.txt` | What each box runs, in order |
 
 On a box everything is under `~/work/loop` (own venv, checkout, `sure_cpp` built from
 `research/sure-trick-table-20261112` at `2e6ed6d`, a copy of the Gen 7 capture capsule). Deals are a function of
-(seed, index). Seed 131 is the gate's and the control's; collections use seeds of their own (round 0: 9001).
+(seed, index). Seed 131 is the gate's and the control's; collections use seeds of their own (round 0: 9001, deals
+1,000 to 19,999 on azure5 as run `s0`, 20,000 to 39,999 on azure3 as run `s0b`).
 
 ## Measured before round 0 (a 2-core sandbox, seed 131, 300 deals a match, IMPs a board)
 

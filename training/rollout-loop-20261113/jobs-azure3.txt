@@ -1,0 +1,12 @@
+# azure3, Stu round 0. NAME PAIR SEED FIRST DEALS WORKERS [options]; each job resumes.
+# The gate's baseline: round 0's Stu against Gen 8 card play on the gate's deals.
+g0-stu0 stu0a~8p-32-v41 131 0 2000 8
+# The leverage control at ten times the sandbox's deals.
+c-n41-n4 n-v41~n-v4 131 0 3000 8
+c-r7-n41 r7-v41~n-v41 131 0 3000 8
+c-r7x4-n41 r7x-v4~n-v41 131 0 3000 8
+c-r7-n4 r7-v41~n-v4 131 0 3000 8
+c-r7x4-n4 r7x-v4~n-v4 131 0 3000 8
+c-r7-r7f4 r7-v41~r7f-v4 131 0 3000 8
+# Round 0's collection, second shard of the deals.
+s0b stu0a~stu0b 9001 20000 20000 8 --episodes

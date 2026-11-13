@@ -1,7 +1,7 @@
 {
- "z0a-v2": {
+ "stu0a": {
   "base": "6-32",
-  "label": "Loop round 0: 8Z with rollout net v2 (every simulated seat read as 8s-32) as the rollout net; records kept, no audit search",
+  "label": "Stu, round 0: 8Z with rollout net v2 as the rollout net (every simulated seat read as 8s-32); every layout's result kept for every candidate; no audit search",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
@@ -48,10 +48,8 @@
     "8xr7-ft1": 1.0,
     "8z-ft1": 1.0,
     "8z-v41": 1.0,
-    "z0a-v2": 1.0,
-    "z0b-v2": 1.0,
-    "z0a-ft1": 1.0,
-    "z0b-ft1": 1.0
+    "stu0a": 1.0,
+    "stu0b": 1.0
    }
   },
   "x8": {
@@ -101,16 +99,15 @@
      "8xs0-v41",
      "8z-ft1",
      "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
+     "stu0a",
+     "stu0b"
     ],
     "guard": true,
     "full": true
    },
    "capture": {
-    "level": 1,
+    "level": 2,
+    "layouts": 128,
     "forks": 8,
     "audit": "features",
     "audit_search": false
@@ -127,10 +124,8 @@
      "8xr7-v41",
      "8z-ft1",
      "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
+     "stu0a",
+     "stu0b"
     ]
    },
    "names": {
@@ -139,9 +134,9 @@
    }
   }
  },
- "z0b-v2": {
+ "stu0b": {
   "base": "6-32",
-  "label": "Loop round 0: 8Z with rollout net v2 (every simulated seat read as 8s-32) as the rollout net; records kept, no audit search",
+  "label": "Stu, round 0: 8Z with rollout net v2 as the rollout net (every simulated seat read as 8s-32); every layout's result kept for every candidate; no audit search",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
@@ -188,10 +183,8 @@
     "8xr7-ft1": 1.0,
     "8z-ft1": 1.0,
     "8z-v41": 1.0,
-    "z0a-v2": 1.0,
-    "z0b-v2": 1.0,
-    "z0a-ft1": 1.0,
-    "z0b-ft1": 1.0
+    "stu0a": 1.0,
+    "stu0b": 1.0
    }
   },
   "x8": {
@@ -241,16 +234,15 @@
      "8xs0-v41",
      "8z-ft1",
      "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
+     "stu0a",
+     "stu0b"
     ],
     "guard": true,
     "full": true
    },
    "capture": {
-    "level": 1,
+    "level": 2,
+    "layouts": 128,
     "forks": 8,
     "audit": "features",
     "audit_search": false
@@ -267,10 +259,8 @@
      "8xr7-v41",
      "8z-ft1",
      "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
+     "stu0a",
+     "stu0b"
     ]
    },
    "names": {
@@ -279,9 +269,9 @@
    }
   }
  },
- "z0a-ft1": {
+ "8z-ft1": {
   "base": "6-32",
-  "label": "Loop round 0 comparison: 8Z with rollout net v1 (ft), x8's 8z-ft1 under the loop's ids",
+  "label": "8Z (Max, 13 Nov 02:39): rollouts alone from trick 7 on rollout net v1 (ft), sampled seats, up to 4 candidates from the net's prior raced on up to 128 layouts; unless it has a claim (02:40): a card that guarantees every trick left is played in any contract with no rollouts. Tricks 1 to 2 the Gen 8 search, 3 to 6 the search blended with rollouts at trust 0.25. Declarer keeps a guaranteed contract (games, slams, doubled), defender hand-over odds, declarer mixes; forks against plain Gen 8's card on every change (the search is run for the audit)",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
@@ -327,11 +317,7 @@
     "8xr0-ft1": 1.0,
     "8xr7-ft1": 1.0,
     "8z-ft1": 1.0,
-    "8z-v41": 1.0,
-    "z0a-v2": 1.0,
-    "z0b-v2": 1.0,
-    "z0a-ft1": 1.0,
-    "z0b-ft1": 1.0
+    "8z-v41": 1.0
    }
   },
   "x8": {
@@ -369,22 +355,18 @@
     "leaf_ms": 300,
     "own": true,
     "opponents": [
-     "8xc0-v41",
-     "8xg0-v41",
-     "8xl0-v41",
-     "8xm0-v41",
-     "8xr0-ft1",
      "8xr0-v41",
+     "8xr0-ft1",
      "8xr0n-v41",
-     "8xr7-ft1",
      "8xr7-v41",
-     "8xs0-v41",
+     "8xr7-ft1",
      "8z-ft1",
      "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
+     "8xl0-v41",
+     "8xc0-v41",
+     "8xg0-v41",
+     "8xm0-v41",
+     "8xs0-v41"
     ],
     "guard": true,
     "full": true
@@ -393,160 +375,20 @@
     "level": 1,
     "forks": 8,
     "audit": "features",
-    "audit_search": false
+    "audit_search": true
    },
    "mix": {
     "declarer": true,
     "read_declarer": [
-     "8xl0-v41",
-     "8xm0-v41",
-     "8xr0-ft1",
      "8xr0-v41",
+     "8xr0-ft1",
      "8xr0n-v41",
-     "8xr7-ft1",
      "8xr7-v41",
+     "8xr7-ft1",
      "8z-ft1",
      "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
-    ]
-   }
-  }
- },
- "z0b-ft1": {
-  "base": "6-32",
-  "label": "Loop round 0 comparison: 8Z with rollout net v1 (ft), x8's 8z-ft1 under the loop's ids",
-  "engine": "gen8x",
-  "policy_role": "gen8x",
-  "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
-  "rollout_policy": "models/cardplay/rollout-net-v1-20261113/policy_ft.npz",
-  "gen7": {
-   "play_weight": 1.0,
-   "play_floor": 0.05,
-   "play_max_layouts": 1024,
-   "play_lead": true,
-   "tie_break": "net",
-   "search_from_trick": 1,
-   "net_sample": false,
-   "tree_audit": true,
-   "early_play_weight": 1.0,
-   "early_pool": 512,
-   "early_min_effective": 8.0,
-   "opponent_play_weight": {
-    "7s-32": 1.0,
-    "7f-32": 1.0,
-    "8s-32": 1.0,
-    "8p-32": 1.0,
-    "8x-32": 1.0,
-    "8n-32": 1.0,
-    "6-32": 1.0,
-    "5RZ32": 1.0,
-    "1": 0.2,
-    "t-high": 0.2,
-    "t-low": 0.5,
-    "t-random": 0.25,
-    "*": 0.3,
-    "7s-32-v41": 1.0,
-    "8p-32-v41": 1.0,
-    "8x-32-v41": 1.0,
-    "8n-32-v41": 1.0,
-    "8xr0-v41": 1.0,
-    "8xr0n-v41": 1.0,
-    "8xc0-v41": 1.0,
-    "8xm0-v41": 1.0,
-    "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0,
-    "8xr7-v41": 1.0,
-    "8xg0-v41": 1.0,
-    "8xr0-ft1": 1.0,
-    "8xr7-ft1": 1.0,
-    "8z-ft1": 1.0,
-    "8z-v41": 1.0,
-    "z0a-v2": 1.0,
-    "z0b-v2": 1.0,
-    "z0a-ft1": 1.0,
-    "z0b-ft1": 1.0
-   }
-  },
-  "x8": {
-   "stages": [
-    {
-     "from_trick": 3,
-     "to_trick": 6,
-     "mode": "blend",
-     "trust": 0.25,
-     "layouts": 256,
-     "cards": 3,
-     "margin": 0.25,
-     "seat": "draw"
-    },
-    {
-     "from_trick": 7,
-     "to_trick": 13,
-     "mode": "rollout",
-     "layouts": 128,
-     "first": 32,
-     "cards": 4,
-     "prior": 0.02,
-     "race": 2.5,
-     "slack": 0.05,
-     "seat": "draw"
-    }
-   ],
-   "claims": {
-    "cards": 10,
-    "declarer": true,
-    "defender": 16,
-    "defender_ms": 400,
-    "odds_margin": 0.125,
-    "leaf": 6,
-    "leaf_ms": 300,
-    "own": true,
-    "opponents": [
-     "8xc0-v41",
-     "8xg0-v41",
      "8xl0-v41",
-     "8xm0-v41",
-     "8xr0-ft1",
-     "8xr0-v41",
-     "8xr0n-v41",
-     "8xr7-ft1",
-     "8xr7-v41",
-     "8xs0-v41",
-     "8z-ft1",
-     "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
-    ],
-    "guard": true,
-    "full": true
-   },
-   "capture": {
-    "level": 1,
-    "forks": 8,
-    "audit": "features",
-    "audit_search": false
-   },
-   "mix": {
-    "declarer": true,
-    "read_declarer": [
-     "8xl0-v41",
-     "8xm0-v41",
-     "8xr0-ft1",
-     "8xr0-v41",
-     "8xr0n-v41",
-     "8xr7-ft1",
-     "8xr7-v41",
-     "8z-ft1",
-     "8z-v41",
-     "z0a-ft1",
-     "z0a-v2",
-     "z0b-ft1",
-     "z0b-v2"
+     "8xm0-v41"
     ]
    }
   }

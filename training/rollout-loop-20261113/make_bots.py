@@ -3,14 +3,16 @@
 
   python training/rollout-loop-20261113/make_bots.py
 
-Round 0's player (two ids for one bot: a pair needs distinct ids, so self-play is z0a-v2~z0b-v2):
-  z0a-v2, z0b-v2    x8's 8Z (8z-ft1: Gen 8 search at tricks 1 to 2, the search blended with rollouts at tricks 3 to 6,
+Stu (Max's name for the loop's bot, 13 November 09:05 UTC), round 0. Two ids for one bot, because a pair needs distinct
+ids: self-play is stu0a~stu0b.
+  stu0a, stu0b      x8's 8Z (8z-ft1: Gen 8 search at tricks 1 to 2, the search blended with rollouts at tricks 3 to 6,
                     rollouts alone from trick 7, claims, declarer mixing) with rollout net v2 (plan: 768 wide, a
                     vector for each side's bot) as the rollout net. Every simulated seat is told both sides are
-                    8s-32, the nearest bot v2 was trained on.
-  z0a-ft1, z0b-ft1  the same with rollout net v1 (ft): 8z-ft1 itself under the loop's ids.
-The gate's outside opponent:
-  8p-32-v41         Gen 8 card play, copied unchanged from configs/x8-bots.json.
+                    8s-32, the nearest bot v2 was trained on. Records keep every layout's result for every candidate
+                    (capture level 2, up to 128 layouts), so a target other than mean tricks can be rebuilt later.
+Copied unchanged from configs/x8-bots.json:
+  8z-ft1            x8's 8Z with rollout net v1 (ft), for comparisons with Stu
+  8p-32-v41         Gen 8 card play, the gate's outside opponent
 The leverage control (no search, no claims, no mixing; top-card seats; the sandbox matches of 13 November):
   n-v41, n-v4       policy v4.1 / v4 alone at every trick, opening lead included
   r7-v41            v4.1's card through trick 6, rollouts alone on v4.1 from trick 7
@@ -27,7 +29,7 @@ V41 = 'models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz'
 V4 = 'models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz'
 V0 = 'models/cardplay/gen7-policy-v0-2026-11-11/gen7_policy_v0.npz'
 V2 = 'models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz'       # transfer/rollout-net-v2-20261113 runs/w768/policy_epoch5.npz
-Z = ['z0a-v2', 'z0b-v2', 'z0a-ft1', 'z0b-ft1']
+STU = ['stu0a', 'stu0b']
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
 
@@ -35,25 +37,19 @@ def main():
     x8 = json.loads((ROOT / 'configs/x8-bots.json').read_text())
     bots = {}
 
-    def z(label, rollout=None, names=None):
+    for name in STU:
         b = copy.deepcopy(x8['8z-ft1'])
-        b['label'] = label
-        if rollout:
-            b['rollout_policy'] = rollout
-        if names:
-            b['x8']['names'] = names
-        b['x8']['capture'] = {'level': 1, 'forks': 8, 'audit': 'features', 'audit_search': False}
-        b['x8']['claims']['opponents'] = sorted(set(b['x8']['claims']['opponents']) | set(Z))
-        b['x8']['mix']['read_declarer'] = sorted(set(b['x8']['mix']['read_declarer']) | set(Z))
-        for name in Z:
-            b['gen7']['opponent_play_weight'][name] = 1.0
-        return b
-
-    for name in Z[:2]:
-        bots[name] = z('Loop round 0: 8Z with rollout net v2 (every simulated seat read as 8s-32) as the rollout net; records kept, '
-                       'no audit search', V2, {'self': '8s-32', '*': '8s-32'})
-    for name in Z[2:]:
-        bots[name] = z('Loop round 0 comparison: 8Z with rollout net v1 (ft), x8\'s 8z-ft1 under the loop\'s ids')
+        b['label'] = ('Stu, round 0: 8Z with rollout net v2 as the rollout net (every simulated seat read as 8s-32); every '
+                      "layout's result kept for every candidate; no audit search")
+        b['rollout_policy'] = V2
+        b['x8']['names'] = {'self': '8s-32', '*': '8s-32'}
+        b['x8']['capture'] = {'level': 2, 'layouts': 128, 'forks': 8, 'audit': 'features', 'audit_search': False}
+        b['x8']['claims']['opponents'] = sorted(set(b['x8']['claims']['opponents']) | set(STU))
+        b['x8']['mix']['read_declarer'] = sorted(set(b['x8']['mix']['read_declarer']) | set(STU))
+        for other in STU:
+            b['gen7']['opponent_play_weight'][other] = 1.0
+        bots[name] = b
+    bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 
     net = copy.deepcopy(x8['n-v41'])
