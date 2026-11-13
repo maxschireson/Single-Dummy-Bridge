@@ -1,0 +1,7 @@
+{"schema": "card-descriptor-v0", "id": "polish-club", "name": "Polish Club (multi-way 1C)", "family": "polish_club",
+ "open": {"polish_club": {"bal": [12, 14], "strong": 18, "clubs": [15, 17]}, "strong_2c": null, "one_level_max": 17,
+          "precision_2c": {"hcp": [11, 15]},
+          "two": {"2D": {"type": "multi", "hcp": [6, 10]}, "2H": {"type": "weak", "hcp": [6, 10], "len": [6, 6]},
+                  "2S": {"type": "weak", "hcp": [6, 10], "len": [6, 6]}}},
+ "rebid": {"two_nt": [18, 19]},
+ "resp": {"inverted_minors": true}}

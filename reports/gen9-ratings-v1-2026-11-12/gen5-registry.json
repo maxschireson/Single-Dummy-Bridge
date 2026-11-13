@@ -1,0 +1,45 @@
+{
+ "schema": "local-gen5-registry",
+ "sources": [
+  {
+   "key": "arena-gen5-codex-32-feed",
+   "group": "gen5",
+   "generation": 5,
+   "branch": "arena-gen5-codex-32-feed",
+   "cohort": "c31501047e52a6caa99473dc39262578977def53742387afa9f0d1237e30dc59",
+   "name": "Gen 5 \u00b7 before representative sampling"
+  },
+  {
+   "key": "arena-gen5-codex-feed",
+   "group": "gen5",
+   "generation": 5,
+   "branch": "arena-gen5-codex-feed",
+   "cohort": "bdf0a63bd89b013cb918c966663f02dab5c049652da3df9f6198e52f84e3e14f",
+   "name": "Gen 5 \u00b7 retained BEN/control games"
+  },
+  {
+   "key": "arena-gen5r-feed",
+   "group": "gen5",
+   "generation": 5,
+   "branch": "arena-gen5r-feed",
+   "cohort": "cdd9bbb2359f172f69cb19708e8ec8efd2ce4dbb784113a5c3a7b58a347d49a3",
+   "name": "Gen 5R \u00b7 initial mix, retained compatible games"
+  },
+  {
+   "key": "arena-gen5rz-ben-feed",
+   "group": "gen5",
+   "generation": 5,
+   "branch": "arena-gen5rz-ben-feed",
+   "cohort": "c4ced8a957bdca474c377e1bacb3206e3d1d45968806ffb3bbf85b5060342fba",
+   "name": "Gen 5R / 5RZ \u00b7 current mix"
+  },
+  {
+   "key": "arena-gen5rz-feed",
+   "group": "gen5",
+   "generation": 5,
+   "branch": "arena-gen5rz-feed",
+   "cohort": "1f7081be958488897404148a96c3caffc2327d194a5b9acbcaa164802f17bbf6",
+   "name": "Gen 5RZ \u00b7 initial allocation, retained compatible games"
+  }
+ ]
+}

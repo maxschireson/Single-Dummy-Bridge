@@ -1,0 +1,75 @@
+{
+ "schema": "player-package-v1",
+ "id": "7s-32",
+ "label": "Gen 7 standard (32), as launched 12 Nov",
+ "kind": "house",
+ "bundle": {
+  "source": "capsule",
+  "bot": "6-32",
+  "overrides": {
+   "engine": "gen7",
+   "policy_role": "gen7",
+   "gen7_policy": "models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz",
+   "gen7": {
+    "play_weight": 0.5,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   }
+  },
+  "artifact_sha256": {
+   "belief": "99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a",
+   "policy": "03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18",
+   "bidding": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff",
+   "lead_state_bidder": "9ee52f3baa79c837001e0cb515c61a9a179cb1bf66cd5503e46331245c014dcc",
+   "lead_belief": "72fc7c3ef1e6e8299c63a7d6b7b1b7e165bacca54ba5efac04b8a86a7e9e6291",
+   "scorer": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+   "gen7_policy": "d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13"
+  }
+ },
+ "declaration": {
+  "system": "house-gen6",
+  "card": null,
+  "carding": null
+ },
+ "lineage": {
+  "parents": [],
+  "training_families": {},
+  "note": "Training-family lists were not recorded for these nets; epochs deal fresh seeded deals, so an overlap would be chance."
+ },
+ "needs": {
+  "ben_server": false,
+  "tensorflow": false
+ },
+ "licence": "redistributable",
+ "notes": "Gen 7 standard as launched on 12 November: Gen 6 fast with the gen7 engine and policy net v4 (configs/gen9-proto-bots.json, 7s-32)."
+}

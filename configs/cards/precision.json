@@ -1,0 +1,7 @@
+{"schema": "card-descriptor-v0", "id": "precision", "name": "Precision (16+ strong club)", "family": "strong_club",
+ "open": {"strong_club": {"hcp": 16}, "strong_2c": null, "min_hcp": 11, "one_level_max": 15, "rule_of_20": false,
+          "nt": [{"hcp": [14, 16], "seats": [1, 2, 3, 4], "vul": "any"}], "nt_five_major": false, "two_nt": null,
+          "nebulous_1d": {"min_len": 2}, "precision_2c": {"hcp": [11, 15]},
+          "two": {"2D": {"type": "precision", "hcp": [11, 15]}}},
+ "rebid": {"one_nt": [11, 13], "two_nt": null, "reverse_min": 99, "jump_shift_min": 99},
+ "resp": {"strong_club": {"negative": "1D", "negative_max": 7}}}

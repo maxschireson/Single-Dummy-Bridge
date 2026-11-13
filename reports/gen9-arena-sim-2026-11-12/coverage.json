@@ -1,0 +1,136 @@
+{
+ "experiment": "E9-5 rating-table coverage (G9-A4 section 1)",
+ "pools": "/home/claude/g9data/sim/noise_pools.json.gz",
+ "results": [
+  {
+   "design": "equal",
+   "slice": "base",
+   "runs": 1000,
+   "players": 12,
+   "boards_per_played_pair": 150,
+   "coverage": {
+    "strength": 0.9555,
+    "cell_played": 0.9652,
+    "cell_unplayed": null,
+    "cell_target": 0.969
+   },
+   "count": {
+    "strength": 11000,
+    "cell_played": 66000,
+    "cell_unplayed": 0,
+    "cell_target": 1000
+   },
+   "mean_t2": 0.00927,
+   "share_t2_positive": 0.536
+  },
+  {
+   "design": "equal",
+   "slice": "pair-effect-0.3",
+   "runs": 1000,
+   "players": 12,
+   "boards_per_played_pair": 150,
+   "coverage": {
+    "strength": 0.9537,
+    "cell_played": 0.9583,
+    "cell_unplayed": null,
+    "cell_target": 0.673
+   },
+   "count": {
+    "strength": 11000,
+    "cell_played": 66000,
+    "cell_unplayed": 0,
+    "cell_target": 1000
+   },
+   "mean_t2": 0.01013,
+   "share_t2_positive": 0.567
+  },
+  {
+   "design": "equal",
+   "slice": "pair-noise-x2",
+   "runs": 1000,
+   "players": 12,
+   "boards_per_played_pair": 150,
+   "coverage": {
+    "strength": 0.9569,
+    "cell_played": 0.9641,
+    "cell_unplayed": null,
+    "cell_target": 0.959
+   },
+   "count": {
+    "strength": 11000,
+    "cell_played": 66000,
+    "cell_unplayed": 0,
+    "cell_target": 1000
+   },
+   "mean_t2": 0.00936,
+   "share_t2_positive": 0.543
+  },
+  {
+   "design": "sparse",
+   "slice": "base",
+   "runs": 1000,
+   "players": 12,
+   "boards_per_played_pair": 150,
+   "coverage": {
+    "strength": 0.9579,
+    "cell_played": 0.9576,
+    "cell_unplayed": 0.9656,
+    "cell_target": 0.953
+   },
+   "count": {
+    "strength": 11000,
+    "cell_played": 38000,
+    "cell_unplayed": 28000,
+    "cell_target": 1000
+   },
+   "mean_t2": 0.01221,
+   "share_t2_positive": 0.516
+  },
+  {
+   "design": "sparse",
+   "slice": "pair-effect-0.3",
+   "runs": 1000,
+   "players": 12,
+   "boards_per_played_pair": 150,
+   "coverage": {
+    "strength": 0.9566,
+    "cell_played": 0.9558,
+    "cell_unplayed": 0.9632,
+    "cell_target": 0.848
+   },
+   "count": {
+    "strength": 11000,
+    "cell_played": 37972,
+    "cell_unplayed": 28028,
+    "cell_target": 1000
+   },
+   "mean_t2": 0.01291,
+   "share_t2_positive": 0.481
+  },
+  {
+   "design": "sparse",
+   "slice": "pair-noise-x2",
+   "runs": 1000,
+   "players": 12,
+   "boards_per_played_pair": 150,
+   "coverage": {
+    "strength": 0.9594,
+    "cell_played": 0.9577,
+    "cell_unplayed": 0.9633,
+    "cell_target": 0.954
+   },
+   "count": {
+    "strength": 11000,
+    "cell_played": 38101,
+    "cell_unplayed": 27899,
+    "cell_target": 1000
+   },
+   "mean_t2": 0.013,
+   "share_t2_positive": 0.499
+  }
+ ],
+ "computed_utc": "2026-11-12 07:16",
+ "cpu_seconds": 33.5,
+ "wall_seconds": 33.7,
+ "seed": 9
+}

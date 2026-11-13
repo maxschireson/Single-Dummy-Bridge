@@ -8,6 +8,7 @@
 - [Repository map: code, models, data and research](repository-map.md)
 - [Backlog: open work](backlog.md)
 - [Branch inventory](branch-inventory.md)
+- [Gen 9 design (work in progress, not adopted)](gen9/README.md)
 - [Contribution workflow](../CONTRIBUTING.md)
 - [Agent entry point](../AGENTS.md)
 

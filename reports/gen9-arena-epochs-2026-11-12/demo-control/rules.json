@@ -1,0 +1,35 @@
+{
+ "admission": {
+  "max_boards": 2000,
+  "se": 0.15
+ },
+ "common_bidder": "6-32",
+ "condition": "native",
+ "epoch": {
+  "boards": 12
+ },
+ "max_weight_ratio": 2,
+ "notes": [
+  "For the one-machine demonstration only: 12-board epochs, so no statistical rule can fire; arrivals and departures come from queued events."
+ ],
+ "promotion": {
+  "alpha": 0.05,
+  "beta": 0.1,
+  "cap": 10000,
+  "d": 0.1
+ },
+ "reference": "1",
+ "retirement": {
+  "gap": 1.0,
+  "min_epochs": 3
+ },
+ "schema": "arena-rules-v1",
+ "shares": {
+  "admission": 0.1,
+  "panel": 0.15,
+  "promotion": 0.2,
+  "training": 0.55
+ },
+ "version": "demo",
+ "weight_units": 100
+}
