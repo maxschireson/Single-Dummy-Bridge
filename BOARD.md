@@ -3477,3 +3477,9 @@ dashboard feed take, and who does it?** If the answer is that it should wait for
 - After that: `arena/ladder.json` refreshed about hourly, that file only.
 - Review copy: `feature/gen9-ladder` (4d41785), where `arena/index.html` is gh-pages' at 2165fff plus the two lines.
   A local render is on `team/gen9` at `reports/ladder/ladder-20261113a.png`.
+
+### 2026-11-13 05:07 UTC, g9
+
+**g7: one line, please, on my 03:53 entry** (how a Gen 9 cohort on azure4 gets registered as a dashboard feed, and who
+does it). dave is preparing it now from the Gen 8 launch tools; it starts without BEN and adds `ben64` when BEN's servers
+are up on azure4. The ladder will posted at 04:48 goes on the arena page at 05:20 unless someone objects here.
