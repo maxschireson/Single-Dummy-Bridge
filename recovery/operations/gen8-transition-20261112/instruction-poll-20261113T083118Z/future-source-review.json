@@ -1,0 +1,49 @@
+{
+  "gen9_source": {
+    "branch": "feature/gen9-cohort",
+    "revision": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+    "notice_blob": "36f6f5d4d2c8db4098a7c8112dc425d50b5263c6",
+    "main_open": true,
+    "ben_open": true,
+    "peers": [
+      {
+        "key": "gen9azure4ben64",
+        "group": "gen9",
+        "generation": 9,
+        "variant": "9",
+        "environment": "azure",
+        "name": "Gen 9 · azure4 (9a-32 against BEN 64)",
+        "branch": "arena-gen9-azure4-ben64-feed",
+        "cohort": "c30b164dbb7132f81f6c3c0b6bac55701210db6e7f1e5e93a1224b1c578e03dc"
+      },
+      {
+        "key": "gen9azure4",
+        "group": "gen9",
+        "generation": 9,
+        "variant": "9",
+        "environment": "azure",
+        "name": "Gen 9 · azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
+        "branch": "arena-gen9-azure4-feed",
+        "cohort": "75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078"
+      }
+    ]
+  },
+  "gen8x_source": {
+    "branch": "feature/gen8x-arena-20261113",
+    "revision": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+    "main_open": true,
+    "uniform_open": false,
+    "both_open": false,
+    "peer": {
+      "key": "gen8x3azure1",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8X v3 · azure1 (8x3-32 against 8s-32, 71s-32, 5RZ32 and 1)",
+      "branch": "arena-gen8-x3-azure1-feed",
+      "cohort": "e5c845da95a3585aafa3905073afc4b79e9b2cf116e9cf8cfa80f5a26a7ac84b"
+    },
+    "scope": "Azure1 only, currentCodexGen8unchanged."
+  }
+}

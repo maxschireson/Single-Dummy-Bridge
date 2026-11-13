@@ -1,0 +1,9 @@
+{
+  "authority": "Max07:48 leaves choice to g9; g9 decision in issue24 comment6847322760 at07:51:59.",
+  "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/24#issuecomment-6847322760",
+  "smallest_lead_imps_per_board": 0.1,
+  "direct_board_cap": 10000,
+  "smaller_gain_route": "Bench at least2SE, then arena non-inferiority after at least2000directboards with always-valid95%lower bound >-0.10; panel unchanged.",
+  "scope": "Gen9 population promotion. This currentGen8 producer only collects its immutable approvedpairs, no promotion process or rollout-gate role.",
+  "current_effect": "Do not introduce a new stop/promotion predicate or reinterpret this run's18283sourcebudget as a10000cap. OldGen7/7.1gates stay disabled; no model promotion performed."
+}
