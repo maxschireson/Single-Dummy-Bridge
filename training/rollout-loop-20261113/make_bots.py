@@ -18,8 +18,11 @@ deals, which are never trained on.
   stu0-r3           rollouts alone from trick 3 (the search at tricks 1 to 2 only)
   stu0-p            pure: the net's own opening lead, rollouts alone from the second card on; no double dummy anywhere.
                     The claims stay (the exact single-dummy solver).
+The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
+names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
+  stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
 Copied unchanged from configs/x8-bots.json:
-  8z-ft1            x8's 8Z with rollout net v1 (ft), for comparisons with Stu
+  8z-ft1            x8's 8Z with rollout net v1 (ft)
   8p-32-v41         Gen 8 card play, the gate's outside opponent
 The leverage control (no search, no claims, no mixing; top-card seats; the sandbox matches of 13 November):
   n-v41, n-v4       policy v4.1 / v4 alone at every trick, opening lead included
@@ -38,7 +41,9 @@ V4 = 'models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz'
 V0 = 'models/cardplay/gen7-policy-v0-2026-11-11/gen7_policy_v0.npz'
 V2 = 'models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz'       # transfer/rollout-net-v2-20261113 runs/w768/policy_epoch5.npz
 STU = ['stu0a', 'stu0b']
-FAMILY = STU + ['stu0-b50', 'stu0-r6', 'stu0-r3', 'stu0-p']      # every bot that claims and mixes as Stu does
+RUNGS = ['-b50', '-r6', '-r3', '-p']
+FAMILY = STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]     # every bot that claims and mixes as Stu does
+V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
 
@@ -75,6 +80,18 @@ def main():
     bots['stu0-r3'] = rung('rollouts alone from trick 3', [dict(rollout, from_trick=3)])
     bots['stu0-p'] = rung("pure: the net's opening lead, rollouts alone from the second card on, no double dummy", [dict(rollout, from_trick=1)],
                           search_from=14)
+    for name in ['stu0' + r for r in RUNGS]:                    # the same rungs with rollout net v1 (ft), which takes no names
+        b = copy.deepcopy(bots[name])
+        b['label'] = b['label'].replace('Stu round 0 ladder: ', 'Stu round 0 ladder, rollout net v1 (ft) inside: ')
+        b['rollout_policy'] = V1
+        del b['x8']['names']
+        bots[name.replace('stu0', 'stu0v1')] = b
+    b = copy.deepcopy(bots['stu0a'])
+    b['label'] = "Stu round 0 ladder, rollout net v1 (ft) inside: Stu's own stages (x8's 8z-ft1 with the loop's records and lists)"
+    b['rollout_policy'] = V1
+    del b['x8']['names']
+    bots['stu0v1'] = b
+    assert x8['8z-ft1']['rollout_policy'] == V1
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

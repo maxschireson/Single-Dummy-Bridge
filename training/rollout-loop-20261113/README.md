@@ -92,6 +92,9 @@ that differ from it only in where rollouts take over, and each plays Gen 8 card 
 | `stu0-r3` | search | rollouts alone from trick 3 | |
 | `stu0-p` | the net's lead; rollouts alone from the second card on | | no double dummy anywhere; the claims stay |
 
+- The same five bots are also measured with rollout net v1 (ft) inside (`stu0v1`, `stu0v1-b50`, `stu0v1-r6`,
+  `stu0v1-r3`, `stu0v1-p`; Max, 09:27 UTC: "We should measure v1 rungs too"). `stu0v1` is x8's `8z-ft1` with the
+  loop's records and lists. v1 does not change from round to round, so its rungs are measured once.
 - A rollout bot is not used as the opponent: the net inside Stu models such a bot better than any other, and in the
   control above that match alone was worth +1.12 +- 0.16 IMPs a board.
 - **Seed 131 is never trained on**, so the ladder's records are for reading only. Rollout-made decisions at early
