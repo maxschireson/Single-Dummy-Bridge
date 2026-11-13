@@ -191,3 +191,5 @@
 {"at": "2026-11-13T05:47:00Z", "by": "dave", "op": "job-retry", "target": "azure4/g9-cohort-preflight", "note": "retry 1: retry at 007ff06d (lists over HTTPS, TensorFlow checked first)", "task": "G9-D9"}
 {"at": "2026-11-13T05:47:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-preflight", "note": "retry"}
 {"at": "2026-11-13T05:47:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "stopping"}
+{"at": "2026-11-13T05:48:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "paused"}
+{"at": "2026-11-13T05:48:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-preflight", "note": "running"}
