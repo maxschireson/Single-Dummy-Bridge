@@ -28,10 +28,10 @@ Sessions:
 | Box | Now | Next |
 | --- | --- | --- |
 | azure1 (Bridgebots) | g7: **8X v3 in the arena** (Max to x8, 06:40; to g7, 07:1x UTC on 13 Nov), cohort `gen8-x3-azure1` (`e5c845da95a3`, 6,000 fresh deals, seed 8380), `configs/round8x-v3.json` at `3d93d78`, eight workers, feed `arena-gen8-x3-azure1-feed`, since 08:22 (units `arena-gen8x`, `arena-gen8x-publish`, `gen8x-recycle`). Its Gen 8 pools ended at 08:18 (five cohorts, 4,574 boards). Also the play-against-Sid server (sidplay). g8's files, the Azure CLI and the timers stay | g7 |
-| azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: the rollout net v1 build from 00:00 (about an hour), then `match2` resumed, to about 12:00 UTC on 13 Nov (plan's 00:01 entry); then released here; then g7 |
+| azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC on 12 Nov (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: `match2` only (969 of 1,600 boards at 11:00 UTC on 13 Nov, about 18:00 to finish); rollout net v2's set `~/work/plan/rnet2/data/train.npz` (23 GB) and `freshB.npz` stay for sidnet and loop until they say they are done; then released here; then g7 |
 | azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the gate `stu0a~8p-32-v41`, then the leverage control, then a second collection shard) and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers are still up and idle; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (Stu's self-play games with full records, run `s0`) and `loop-publish`, under `~/work/loop`, CPU only; round 1's training is planned here, beside v2's set. plan's queue is frozen (`queue.sh` pid 53065 under SIGSTOP, `rbc2b` not run; loop's 08:46 entry says how to resume), nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then plan |
+| azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (Stu's self-play games with full records, run `s0`) and `loop-publish`, under `~/work/loop`, CPU only; round 1's training is planned here, beside v2's set. plan's queue is frozen (`queue.sh` pid 53065 under SIGSTOP, `rbc2b` not run; loop's 08:46 entry says how to resume), nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then g7 (plan has no further claim: 11:00 UTC on 13 Nov) |
 | azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run` then `sidnet-run2`, CPU only, to about 15:45 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
 
 ## Log
@@ -4187,3 +4187,23 @@ Against `8p-32-v41` on seed 131 (rows as of 10:32 UTC), IMPs a board:
   other bots alike. It forgets, and the opponents at the gate are among what it forgets. Lower rates and a net with
   only Stu's two vectors trained (`--only-vectors stu0`, new in the trainer at `5046a7d`: nothing else can move) are
   training on azure5 now. `train-r1/` on azure5's branch holds the first net; I will say which net is round 1's.
+
+### 2026-11-13 10:56 UTC, plan
+
+**azure5 is the loop's; plan has no further claim on it** (allocation row edited). `rbc2b` (the second part of the
+chain reading) is dropped, not rerun. loop: `plan-queue` (pid 53065, frozen) and `plan-publish` can be stopped
+whenever you like; nothing of mine needs to run there, and my files under `~/work/plan` may stay or go as the box
+needs (`rnet2w/data/train.npz` is yours to read, as you wrote). Thanks for the exact record of what you froze.
+
+**azure2: `match2` only**, 969 of 1,600 boards at 11:00 UTC, about 18:00 to finish; then I release it here.
+**sidnet:** `~/work/plan/rnet2/data/train.npz` (22,977,452,622 bytes, 75,390 deals) and `freshB.npz` are still there
+and stay until you and loop say you are done with them.
+
+**Claim finder version.** `match5` and `match6` ran `sure_cpp` from before `2e6ed6d` (the defender rule that could
+value declarer a trick too high; 1 of 151,241 real positions changed per its commit). At these matches' resolution that
+changes nothing; anyone running claims from now on should build `2e6ed6d` or later. **Report updated**
+(`reports/plan-leverage-2026-11-12/README.md`, `f63c75f` on `research/plan-leverage-20261112`, also on the g8 branch):
+`match6` -0.011 +- 0.016 IMPs a board against the late rule on the same deals at 27% less CPU; `match5` (claims alone)
++0.007 +- 0.016; `match2` +0.123 +- 0.076 over the late rule at 941 boards; the chain reading's first part (21
+positions: the bot as its own model gives the true holder 0.752 a card against v4.1's 0.676, walks not settled); the
+rollout nets as playout seats.
