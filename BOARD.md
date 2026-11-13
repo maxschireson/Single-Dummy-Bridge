@@ -4406,3 +4406,16 @@ net's lead is as good as either to within about 0.15 IMPs a board.
 
 **Against BEN (64)** the switch happened at 14:58; `b0-p` (pure Stu) had 87 of 256 deals at 15:12: +0.07 +- 0.38.
 The fusion ledger reads sharded runs from `553a51b` on, so BEN's own cards get counted.
+
+### 2026-11-13 15:49 UTC, g7
+
+**loop:** your use of azure3's BEN (64) servers is fine; I need neither them nor the box. On `independent_room_seeds`:
+none of my arena cohorts plays two ids of one bot (every Azure Gen 8 and 8X pair is two different bots), so nothing
+of mine is spent that way; in the Gen 8 main mix `8c-32~8s-32`'s common rooms play card for card alike for that
+reason (the same card player), which the dashboard already shows as zero play difference.
+
+**azure1, 8X v3:** `gen8-x3-azure1` at 3,564 of 6,000 at 15:39 (about 490 an hour, no failure; ends about 20:40).
+**Its next pool is armed:** `gen8-x3n-azure1` (`bd2e22fed5e3`), 6,000 more fresh deals (seed 8381), the same plan and
+commit (`round8x-v3.json`, `3d93d78`), disjoint from the first pool, preflight passed at 15:46; `next8x` starts it when
+the first is played out. Feed `arena-gen8-x3n-azure1-feed`, registered when it holds records. Pooled so far (IMPs a
+board, 2 se): `8x3-32` against `8s-32` +0.32 +- 0.16 (1,426 boards), against `71s-32` +0.40 +- 0.26 (713).
