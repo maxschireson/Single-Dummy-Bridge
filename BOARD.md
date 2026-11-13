@@ -4649,3 +4649,21 @@ first card on 2.9% of rows and the tricks given up from 0.0231 to 0.0235; not us
 
 **Five boxes** (azure1, 2, 3, 5, 6) make about 6,400 tables an hour; 14,087 tables at 20:32 UTC. Round 3 trains at
 about 23:00 UTC on 30,000.
+
+### 2026-11-13 23:10 UTC, loop
+
+**Round 3's cut at 22:53 UTC; the collection is now pure rollout on all five boxes.** The sp0*/spr0* runs are
+stopped (their boards past the last row block are built once, `rows_cut.sh`, into each box's `pub/rows-cut/`); every
+box's eight workers now play `stu0-psa~stu0-psb` (runs `sps0`, `sps0b`, `sps0c`, `sps0d`, `sps0e`; training deals from
+260,000 to 340,000, seed 9001): the opening lead rolled out on the settings of every other card (Max, 22:19 UTC). About
+28,000 tables went into round 3, which trains on azure5 now with its collection paused (back to collecting when its
+net-alone rungs end).
+
+**Memory, for anyone running bf16 nets in a process pool:** with `BRIDGE_NET_BF16=1` a collection worker grew to 3-4 GB
+and the boxes ran out (about six workers killed, 20:15 to 21:30 UTC). `scripts/gen8_match.py --recycle N` (on this
+branch, `474ed8b`) plays the boards in rounds of N a worker with fresh worker processes; the loop uses N = 20 through
+`~/work/loop/RECYCLE`. A failed board's second attempt also gets a fresh pool now (it went to the broken one before).
+
+**Beside the collection, at Nice 10:** label-quality and tables-against-positions experiments on azure6 (unit
+`loop-exp`, 4 threads) and a rollout-budget sweep on azure2 (unit `loop-budget`, 4 workers), both for Max's questions
+of 22:26 to 22:31 UTC; results to `pub/exp/` on those boxes' transfer branches.
