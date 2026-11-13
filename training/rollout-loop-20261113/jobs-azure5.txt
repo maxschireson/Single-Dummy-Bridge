@@ -8,7 +8,7 @@ l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 # The collection from here on: pure Stu against itself (Max, 11:25 UTC), full records, training deals from 60,000.
 # It starts when the comparison above ends; the loop session stops it if that comparison shows the pure bot more than
 # about half an IMP behind (PLAN.md).
-sp0 stu0-pa~stu0-pb 9001 60000 20000 8 --episodes
-# Stu-as-is against itself (976 boards so far; run r0, deals under 1,000, was the same bot under the ids z0a-v2~z0b-v2).
-# Reached only if the pure collection is stopped.
-s0 stu0a~stu0b 9001 1000 19000 8 --episodes
+# One table a board (--one-room): the two rooms of a board between two ids of one bot get the same random seed by ply
+# and seat, so they were the same play card for card (113 of 119 boards of s0, 111 of 119 of r0, read at 11:57 UTC).
+# A board now costs half the CPU and no table is played twice. No IMPs come of these rows.
+sp0 stu0-pa~stu0-pb 9001 60000 20000 8 --episodes --one-room

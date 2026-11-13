@@ -242,6 +242,8 @@ def main():
     ap.add_argument('--workers', type=int, default=os.cpu_count())
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--episodes', action='store_true', help='keep full records (collector format) under episodes/')
+    ap.add_argument('--one-room', action='store_true', help='play one table a board, sides alternating by board, and score no IMPs: for '
+                                                            'collecting records from two ids of one bot, whose two rooms are the same play')
     ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (see load_book for the format); '
                                    'both rooms of a board then play the same auction')
     args = ap.parse_args()
@@ -249,6 +251,10 @@ def main():
         raise SystemExit('the auction book was made with another seed')
     source = args.source.resolve()
     m = build_manifest(source, args.bots, args.pair, args.seed)
+    if args.one_room:
+        m.pop('identity', None)
+        m['one_room'] = True
+        m['identity'] = digest(m)
     a, b = m['roster']
     args.out.mkdir(parents=True, exist_ok=True)
     episodes = None

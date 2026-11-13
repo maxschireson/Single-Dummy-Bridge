@@ -74,7 +74,11 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
         common,common_bids=auction(board,[bidders[manifest.get('common_bidder',current)]]*4)
         for regime in (('self',) if opponent==current else ('common','native')):
             room_ids=[]
-            for swapped in ((0,1) if manifest.get('two_self_rooms') or opponent!=current else (0,)):
+            rooms=(0,1) if manifest.get('two_self_rooms') or opponent!=current else (0,)
+            # One table a board, sides alternating by board: for collection between two ids of one bot, whose two rooms
+            # (same seed by ply and seat) are the same play card for card. No IMPs come of it.
+            if manifest.get('one_room'):rooms=(index%2,)
+            for swapped in rooms:
                 room_seed=int(digest([seed,'room',swapped])[:12],16) if manifest.get('independent_room_seeds') else seed
                 assignments=['candidate' if opponent==current or s%2==swapped else 'opponent' for s in range(4)]
                 native=[current if role=='candidate' else opponent for role in assignments]
@@ -94,7 +98,7 @@ def run_board(root,manifest,board_dict,index,bidders,player_factory=ArenaPlayer,
                 bidding_records[f'{regime}/{swapped}']=dict(bidders=bidder_ids,decisions=decisions,
                     calls=list(b.auction),table=cache[key],reward_source='actual-root-table-score',
                     ns_score=records[cache[key]]['tables'][0]['ns_score'])
-            delta=None if regime=='self' else (records[room_ids[0]]['tables'][0]['ns_score']-
+            delta=None if regime=='self' or len(room_ids)<2 else (records[room_ids[0]]['tables'][0]['ns_score']-
                                               records[room_ids[1]]['tables'][0]['ns_score'])
             regimes[regime]=dict(tables=room_ids,score_difference=delta,imps=None if delta is None else imps(delta))
         family=deal_key(board.hands,True)

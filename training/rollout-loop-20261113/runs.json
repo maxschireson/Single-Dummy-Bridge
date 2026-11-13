@@ -17,12 +17,13 @@
   "r3": "rollouts alone from trick 3",
   "pure": "the net's opening lead, rollouts alone from the second card on; no double dummy",
   "pure-sl": "pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on",
+  "pure-rl": "pure with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on",
   "net": "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"
  },
  "rounds": {
   "0": {
    "collection_cut_boards": null,
-   "note": "No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November (1,009 boards of Stu-as-is). From about 12:35 UTC the collection is pure Stu playing itself (run sp0; a collection run's first_bot.rung says which bot plays it)."
+   "note": "No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November (1,009 boards of Stu-as-is). From about 12:30 UTC the collection is pure Stu playing itself, one table a board (run sp0; a collection run's first_bot.rung says which bot plays it, and tables_a_board 1 that its rows carry no IMPs)."
   }
  },
  "runs": [
@@ -49,6 +50,31 @@
     "rung": "stu"
    },
    "note": "Stopped by hand at 248 boards (09:08 UTC, 13 Nov) when the bot was renamed: the same bot as stu0a~stu0b, records without per-layout results.",
+   "queue_order": null
+  },
+  {
+   "name": "s0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "stu0a~stu0b",
+   "seed": 9001,
+   "first": 1000,
+   "deals": 19000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
+   },
+   "note": "Stu-as-is against itself. Paused at 976 boards (11:31 UTC, 13 Nov) when the collection moved to pure Stu; it and r0 are round 1's training set. Both rooms of a board are the same play card for card in 95% of boards (same seed by ply and seat), so a board holds one distinct table.",
    "queue_order": null
   },
   {
@@ -159,31 +185,8 @@
     "net": "v2",
     "rung": "pure"
    },
+   "tables_a_board": 1,
    "queue_order": 3
-  },
-  {
-   "name": "s0",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "collection",
-   "pair": "stu0a~stu0b",
-   "seed": 9001,
-   "first": 1000,
-   "deals": 19000,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "stu"
-   },
-   "second_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "stu"
-   },
-   "queue_order": 4
   },
   {
    "name": "l0-stu0",
@@ -336,67 +339,29 @@
    "queue_order": 6
   },
   {
-   "name": "l1-stu1",
+   "name": "l0-pr",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
    "role": "ladder",
-   "pair": "stu1a~8p-32-v41",
+   "pair": "stu0-pr~8p-32-v41",
    "seed": 131,
    "first": 0,
    "deals": 500,
    "records": true,
    "first_bot": {
     "family": "stu",
-    "round": 1,
-    "net": "stu1",
-    "rung": "stu"
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rl"
    },
    "second_bot": {
     "family": "other"
    },
+   "passes": [
+    200,
+    500
+   ],
    "queue_order": 7
-  },
-  {
-   "name": "l1-p",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "ladder",
-   "pair": "stu1-p~8p-32-v41",
-   "seed": 131,
-   "first": 0,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 1,
-    "net": "stu1",
-    "rung": "pure"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 8
-  },
-  {
-   "name": "l1-n",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "ladder",
-   "pair": "stu1-n~8p-32-v41",
-   "seed": 131,
-   "first": 0,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 1,
-    "net": "stu1",
-    "rung": "net"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 9
   },
   {
    "name": "l0-pl",
@@ -417,7 +382,74 @@
    "second_bot": {
     "family": "other"
    },
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 8
+  },
+  {
+   "name": "l1-stu1",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu1a~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 1,
+    "net": "stu1",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 9
+  },
+  {
+   "name": "l1-p",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu1-p~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 1,
+    "net": "stu1",
+    "rung": "pure"
+   },
+   "second_bot": {
+    "family": "other"
+   },
    "queue_order": 10
+  },
+  {
+   "name": "l1-n",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu1-n~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 1,
+    "net": "stu1",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 11
   },
   {
    "name": "l0-r3",
@@ -442,7 +474,7 @@
     200,
     500
    ],
-   "queue_order": 11
+   "queue_order": 12
   },
   {
    "name": "l0-v1-r3",
@@ -467,7 +499,7 @@
     200,
     500
    ],
-   "queue_order": 12
+   "queue_order": 13
   },
   {
    "name": "l0-r6",
@@ -492,7 +524,7 @@
     200,
     500
    ],
-   "queue_order": 13
+   "queue_order": 14
   },
   {
    "name": "l0-v1-r6",
@@ -517,7 +549,7 @@
     200,
     500
    ],
-   "queue_order": 14
+   "queue_order": 15
   },
   {
    "name": "l0-b50",
@@ -542,7 +574,7 @@
     200,
     500
    ],
-   "queue_order": 15
+   "queue_order": 16
   },
   {
    "name": "l0-v1-b50",
@@ -567,7 +599,7 @@
     200,
     500
    ],
-   "queue_order": 16
+   "queue_order": 17
   },
   {
    "name": "g0b-stu0",
@@ -588,7 +620,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 17
+   "queue_order": 18
   },
   {
    "name": "sp0b",
@@ -612,7 +644,8 @@
     "net": "v2",
     "rung": "pure"
    },
-   "queue_order": 18
+   "tables_a_board": 1,
+   "queue_order": 19
   },
   {
    "name": "d0-p",
@@ -636,7 +669,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 19
+   "queue_order": 20
   },
   {
    "name": "d0-r3",
@@ -660,7 +693,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 20
+   "queue_order": 21
   },
   {
    "name": "c-n41-n4",
@@ -678,7 +711,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 21
+   "queue_order": 22
   },
   {
    "name": "c-r7-n41",
@@ -696,7 +729,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 22
+   "queue_order": 23
   },
   {
    "name": "c-r7x4-n41",
@@ -714,7 +747,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 23
+   "queue_order": 24
   },
   {
    "name": "c-r7-n4",
@@ -732,7 +765,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 24
+   "queue_order": 25
   },
   {
    "name": "c-r7x4-n4",
@@ -750,7 +783,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 25
+   "queue_order": 26
   },
   {
    "name": "c-r7-r7f4",
@@ -768,7 +801,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 26
+   "queue_order": 27
   }
  ]
 }

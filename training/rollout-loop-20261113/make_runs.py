@@ -28,12 +28,17 @@ RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, ble
              'net': "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"}
 # Round 0's collection is not waited on any more (PLAN.md): round 1 is cut when its training chain is ready.
 ROUNDS = {'0': dict(collection_cut_boards=None, note="No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November "
-                                                       '(1,009 boards of Stu-as-is). From about 12:35 UTC the collection is pure Stu playing '
-                                                       "itself (run sp0; a collection run's first_bot.rung says which bot plays it).")}
+                                                       '(1,009 boards of Stu-as-is). From about 12:30 UTC the collection is pure Stu playing '
+                                                       "itself, one table a board (run sp0; a collection run's first_bot.rung says which bot "
+                                                       'plays it, and tables_a_board 1 that its rows carry no IMPs).')}
 # runs that are not in a job file any more
 STATIC = [
     dict(name='r0', box='azure5', pair='z0a-v2~z0b-v2', seed=9001, first=0, deals=20000, records=True,
          note='Stopped by hand at 248 boards (09:08 UTC, 13 Nov) when the bot was renamed: the same bot as stu0a~stu0b, records without per-layout results.'),
+    dict(name='s0', box='azure5', pair='stu0a~stu0b', seed=9001, first=1000, deals=19000, records=True,
+         note=('Stu-as-is against itself. Paused at 976 boards (11:31 UTC, 13 Nov) when the collection moved to pure Stu; it and r0 are '
+               "round 1's training set. Both rooms of a board are the same play card for card in 95% of boards (same seed by ply and "
+               'seat), so a board holds one distinct table.')),
     dict(name='g0-v2', box='azure3', pair='z0a-v2~8p-32-v41', seed=131, first=0, deals=2000, records=False,
          note='Stopped by hand at 163 boards when the bot was renamed. Superseded by l0-stu0 and g0b-stu0.'),
     dict(name='g0-stu0', box='azure3', pair='stu0a~8p-32-v41', seed=131, first=0, deals=2000, records=False,
@@ -81,6 +86,8 @@ def main():
                 again['deals'] = max(again['deals'], int(deals))
                 continue
             runs.append(run(name, box, pair, seed, first, deals, '--episodes' in options))
+            if '--one-room' in options:             # one table a board, no IMPs (a collection run between two ids of one bot)
+                runs[-1]['tables_a_board'] = 1
         for r in runs:
             r.setdefault('queue_order', None)
     order = {}
