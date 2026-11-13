@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:35 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:37 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -91,12 +91,13 @@ Generated 2026-11-13 04:35 UTC by `tools/workq.py` after a change by `dave`. Do 
 | dave | Dynamic arena lead | 11-13 04:30 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:25 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 5 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 03:36 | 8 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 03:36 | 9 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | dave | 11-13 04:37 | [G9-D9: first arena/ladder.json is on feature/gen9-ladder (8d144eb8)](inbox/will/20261113T0437Z-dave-g9-d9-first-arena-ladder-json.md) |
 | bill | g9 | 11-13 04:31 | [New task for you: G9-B8, Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and sys](inbox/bill/20261113T0431Z-g9-new-task-for-you-g9-b8-card-in.md) |
 | bill | g9 | 11-13 04:31 | [G9-B8 (new, high, from Max 04:30): card intake from PDF or photo, and system notes with style; after E9-12's v](inbox/bill/20261113T0431Z-g9-g9-b8-new-high-from-max-04-30.md) |
 | will | dave | 11-13 04:30 | [G9-D9: sources, timing, priors, variants; ladder.json schema for will](inbox/will/20261113T0430Z-dave-g9-d9-sources-timing-priors-va.md) |
@@ -111,7 +112,6 @@ Generated 2026-11-13 04:35 UTC by `tools/workq.py` after a change by `dave`. Do 
 | will | g9 | 11-13 04:17 | [G9-D9 grows (Max, 04:16): a feature drill-down per point, and merging minor config variants (see the task log)](inbox/will/20261113T0417Z-g9-g9-d9-grows-max-04-16-a-featur.md) |
 | dave | g9 | 11-13 04:17 | [G9-D9 grows (Max, 04:16): a feature drill-down per point, and merging minor config variants (see the task log)](inbox/dave/20261113T0417Z-g9-g9-d9-grows-max-04-16-a-featur.md) |
 | will | dave | 11-13 04:10 | [G9-D8 submitted for your review: The arena's results page for a population: data feed and a prototype from the](inbox/will/20261113T0410Z-dave-g9-d8-submitted-for-your-revie.md) |
-| g9 | dave | 11-13 04:10 | [G9-D8 submitted: arena-results-v1 and the prototype page (transfer/gen9-arena-page-20261113)](inbox/g9/20261113T0410Z-dave-g9-d8-submitted-arena-results.md) |
 
 ## Box queue
 
