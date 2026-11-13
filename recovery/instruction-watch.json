@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794537101.8994086,
+  "checked_epoch": 1794540788.4230611,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "d50c8eda9471b9c6ab44051ef56921027e78c127",
-  "coordination_blob": "a87c1ac06795bc31e73c12f6df0b4a53c23660ba",
+  "coordination_revision": "e391410019b77729f2b85f688ed9d4faaa29bfa2",
+  "coordination_blob": "c307e5f0081632fae3e4bc75984ac266e476968c",
   "registry_blob": "9c888158ebef62ca33f8443e7a79c123caff72a1",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -102,49 +102,49 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 1117,
+      "completed": 1238,
       "target": 16036,
-      "contiguous": 1116,
+      "contiguous": 1237,
       "by_pair": {
-        "8s-32~71s-32": 373,
-        "8s-32~1": 186,
-        "8s-32~5RZ32": 186,
-        "8c-32~8s-32": 186,
-        "8c-32~71s-32": 186
+        "8s-32~71s-32": 413,
+        "8s-32~1": 207,
+        "8s-32~5RZ32": 206,
+        "8c-32~8s-32": 206,
+        "8c-32~71s-32": 206
       },
-      "root_games": 3722,
-      "tables": 45951,
+      "root_games": 4126,
+      "tables": 50901,
       "failures": 0,
-      "epoch": 1794537094.621154,
+      "epoch": 1794540769.5442603,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794537094.411099,
-      "completed": 1116,
+      "epoch": 1794540779.5449507,
+      "completed": 1238,
       "in_flight": [
-        1116,
-        1117,
-        1118
+        1237,
+        1239,
+        1240
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794526647.3116314,
+      "started_epoch": 1794538178.8290482,
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794537086.7666645,
+      "epoch": 1794540757.3449721,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794537095.2888093,
+      "epoch": 1794540735.4922519,
       "status": "published",
-      "completed": 1116
+      "completed": 1237
     },
     "process.json": {
-      "pid": 90708,
-      "epoch": 1794526646.0573785
+      "pid": 98589,
+      "epoch": 1794538177.151187
     },
     "watchdog-process.json": {
       "pid": 79983,
@@ -157,7 +157,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction requiring a current collection change. New8X/plan/sdplay notices are research and host assignments; x8 explicitly uses idleAzure6 rather than draining an arena box. Historical#14 merge into coordination is not a new deployment. Main/Gen8/Gen7.1/cleanup refs unchanged. Current source, released identities, mix, corpus and training union verified. Fresh collector, watchdog, publisher and ownership locks healthy; no failures or stop markers.",
+  "result": "No new applicable instruction requiring a current collection change.8X's exact-tie randomization condition was reported met, still explicitly for8X data collection rather than released Gen8. Main/operationalGen8/historicalGen7.1/cleanup refs and registry unchanged. Current source, identities, mix, corpus and union verified. Planned cache rotation at1151 accounts for PID change; fresh collector, watchdog, publisher and held locks healthy with no failures or stop markers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -170,48 +170,37 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T01:29:27Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T02:31:41Z",
   "reviewed_discussions": [
     {
       "number": 22,
       "disposition": "Gen9 queue only",
       "new_comments": 0
+    },
+    {
+      "number": 29,
+      "head": "0f8a40fd143a7f9cf6a11009f9631dca6eeee85b",
+      "base": "feature/gen9",
+      "merged": false,
+      "disposition": "Gen9 pipeline research, no collector/feed change",
+      "new_comments": 0,
+      "new_reviews": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "g7 2026-11-13 01:29 UTC",
-      "classification": "Azure1 third/fourth cohorts and Azure3 second pools",
-      "action": "Other producer's host-specific cohorts; no change here"
-    },
-    {
-      "notice": "coordination merge ae35a321",
-      "classification": "Historical Gen6-to-Gen7 cleanup#14 merged into coordination ancestry",
-      "action": "Main, operational Gen8 and running source refs unchanged; historical source additions do not deploy old recipes"
-    },
-    {
-      "notice": "sdplay 2026-11-13 01:35 UTC",
-      "classification": "Hand-over-rule research results and Azure6 release",
-      "action": "Not an adopted general arena actor change"
-    },
-    {
-      "notice": "plan 2026-11-13 01:35/01:53 UTC",
-      "classification": "Azure5 rollout-net warm-start and8X claim-fork test specification",
-      "action": "Other host's research; current v4.1 models, claims/settings and capture unchanged"
-    },
-    {
-      "notice": "x8 2026-11-13 02:23 UTC",
-      "classification": "Max-authorized8X tests on idleAzure6, explicitly rather than draining arena",
-      "action": "Host-specific research. Notice says g7 nothing changes; no Gen8 arena cutover or stream stop"
+      "notice": "g9 2026-11-13 02:45 UTC",
+      "classification": "8X randomization condition met;8X reading advice and optional research interfaces; Gen9 results",
+      "action": "The explicit authorization applies to8X first data collection. Current released Gen8 mix and actors are separate; no general arena upgrade, no exploration change and no research promotion."
     }
   ],
-  "registry_disposition": "Entire registry unchanged from preceding check, owned Gen8 active and both retired immutable pins verified.",
-  "previous_checked_epoch": 1794533367.9572916,
+  "registry_disposition": "Entire registry unchanged; owned active Gen8 and both pinned retired sources verified.",
+  "previous_checked_epoch": 1794537101.8994086,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
     "process.json": {
-      "pid": 90708,
+      "pid": 98589,
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 "
     },
     "watchdog-process.json": {
@@ -227,9 +216,9 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 7.488309621810913,
-  "publisher_age": 6.6105992794036865,
-  "free_bytes": 20537131008,
+  "heartbeat_age": 8.878110408782959,
+  "publisher_age": 52.93080925941467,
+  "free_bytes": 21943664640,
   "new_applicable_instructions": [],
   "registry_revision": "aa6a3a63421c5704dc1bc1104c9793c39cffe5e6",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
@@ -242,12 +231,12 @@
   "normal_workers_active": 3,
   "ben_workers_active": 0,
   "cache_rotation_review": {
-    "epoch": 1794526645.9156277,
-    "previous_bytes": 2160386048,
-    "completed": 768,
-    "previous_collector_pid": 84350,
-    "current_collector_pid": 90708,
-    "disposition": "Existing frozen watchdog's planned DDS-cache rotation after graceful writer drain, completed768. Frozen generation and artifacts verified; fresh resumed collector with held writer lock, three active normal workers, no failure. No operator restart."
+    "epoch": 1794538176.9217649,
+    "previous_bytes": 2170200064,
+    "completed": 1151,
+    "previous_collector_pid": 90708,
+    "current_collector_pid": 98589,
+    "disposition": "Existing immutable watchdog's planned DDS-cache rotation at1151 after graceful writer drain. Generation/artifacts verified; resumed collector, held locks and fresh progress healthy. No failures or operator restart."
   },
   "cache_rotation_history": [
     {
@@ -265,6 +254,14 @@
       "previous_collector_pid": 84350,
       "current_collector_pid": 90708,
       "disposition": "Existing frozen watchdog's planned DDS-cache rotation after graceful writer drain, completed768. Frozen generation and artifacts verified; fresh resumed collector with held writer lock, three active normal workers, no failure. No operator restart."
+    },
+    {
+      "epoch": 1794538176.9217649,
+      "previous_bytes": 2170200064,
+      "completed": 1151,
+      "previous_collector_pid": 90708,
+      "current_collector_pid": 98589,
+      "disposition": "Existing immutable watchdog's planned DDS-cache rotation at1151 after graceful writer drain. Generation/artifacts verified; resumed collector, held locks and fresh progress healthy. No failures or operator restart."
     }
   ]
 }
