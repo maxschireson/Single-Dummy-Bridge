@@ -70,3 +70,4 @@
 {"at": "2026-11-13T01:12:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-16-r-v-x", "note": "running"}
 {"at": "2026-11-13T01:15:00Z", "by": "g9", "op": "job-retry", "target": "azure4/e9-12-c", "note": "retry 1: g9 01:15 UTC: Gen 9 continues in parallel with 8X (Max, 01:13: 8X is a separate, more limited release); restored", "task": "E9-12"}
 {"at": "2026-11-13T01:15:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-12-c", "note": "retry"}
+{"at": "2026-11-13T01:15:00Z", "by": "g9", "op": "job-priority", "target": "azure4/e9-12-c", "note": "3 -> 3: g9 01:15 UTC: Gen 9 continues in parallel with 8X (Max, 01:13: 8X is a separate, more limited release); restored", "task": "E9-12"}
