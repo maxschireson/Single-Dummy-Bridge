@@ -57,3 +57,6 @@
 2026-11-13T06:09:41Z end seat2: exit 0
 2026-11-13T06:09:41Z source now b54d6ca Rollout nets: the array entry points and the rollout seats' own forward 
 2026-11-13T06:09:41Z start seat3 (source b54d6ca): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,v2s=$P/nets/v2/policy_epoch5.npz@6-32:6-32,v2w=$P/nets/v2w/policy_epoch3.npz@6-32:6-32" --sims "v2s:top;v2w:top" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
+2026-11-13T06:30:16Z end seat3: exit 0
+2026-11-13T06:30:16Z source now 0d1db2b Plan player: the claim finder (single-dummy sure tricks) at the declarin
+2026-11-13T06:30:16Z start match5 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair cl-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
