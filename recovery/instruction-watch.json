@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794559133.1545844,
+  "checked_epoch": 1794562071.1489537,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "ff860c9aa808ef3d947eee8db88bf69cf9a56e59",
-  "coordination_blob": "f90764ddd4395dbefc76e3cb80d15fccb8629ef3",
-  "registry_blob": "c79f2265fd8c8941d65249be795bd7d234412a98",
+  "coordination_revision": "5aa01e91206baa1c9d358e699411de97c13ad211",
+  "coordination_blob": "c2a66414c498d535ea0521d3de817357538c22ec",
+  "registry_blob": "3bd16b201da285d965519f90bfb2847bdf96facd",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -107,49 +107,49 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 1847,
+      "completed": 1940,
       "target": 16036,
-      "contiguous": 1847,
+      "contiguous": 1940,
       "by_pair": {
-        "8s-32~71s-32": 615,
-        "8s-32~1": 308,
-        "8s-32~5RZ32": 308,
-        "8c-32~8s-32": 308,
-        "8c-32~71s-32": 308
+        "8s-32~71s-32": 647,
+        "8s-32~1": 324,
+        "8s-32~5RZ32": 323,
+        "8c-32~8s-32": 323,
+        "8c-32~71s-32": 323
       },
-      "root_games": 6158,
-      "tables": 75869,
+      "root_games": 6466,
+      "tables": 79948,
       "failures": 0,
-      "epoch": 1794559104.102992,
+      "epoch": 1794562037.0632312,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794559124.1045792,
-      "completed": 1847,
+      "epoch": 1794562067.0688317,
+      "completed": 1940,
       "in_flight": [
-        1847,
-        1848,
-        1849
+        1940,
+        1941,
+        1942
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794550007.0776243,
+      "started_epoch": 1794561659.004023,
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794559126.142127,
+      "epoch": 1794562016.8631964,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794559075.8888514,
+      "epoch": 1794562011.890538,
       "status": "published",
-      "completed": 1845
+      "completed": 1938
     },
     "process.json": {
-      "pid": 108374,
-      "epoch": 1794550005.483633
+      "pid": 119770,
+      "epoch": 1794561656.830724
     },
     "watchdog-process.json": {
       "pid": 79983,
@@ -162,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "Promotion policy from issue #24 recorded for future authorized decisions; no live gate or promotion action applies here. New Azure host assignments and successor launches do not direct a transition for this owned stream. Main, Gen8, historical Gen7.1 and cleanup refs unchanged. Frozen source, released actors, mix, corpus and v4.1 union verified. Fresh collector, watchdog, publisher and held locks healthy, no failures or stop markers.",
+  "result": "No new applicable instruction requiring a current collection change. Research calibration warning concerns rollout net v2/S_0 on this stream's retired Gen6 data; current actors still use pinned v4.1 and pass unchanged corpus/union checks. Host handoffs and X9 pilot do not assign this stream. Main, Gen8, historical Gen7.1, cleanup and reviewed successor source refs unchanged. Planned cache rotation at 1927 explains PID change; fresh collector/watchdog/publisher/locks healthy with no failures or stop markers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -175,62 +175,43 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T07:28:21Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T08:38:53Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue",
+      "disposition": "Gen9 queue only",
       "new_comments": 0
-    },
-    {
-      "number": 23,
-      "comment_ids": [
-        6847322214
-      ],
-      "disposition": "Max decided no sub-agents for Gen9 leads; no delegation performed"
-    },
-    {
-      "number": 24,
-      "comment_ids": [
-        6847322760
-      ],
-      "disposition": "Explicit promotion parameters recorded for future authorized decisions; no current gate or runtime change"
     }
   ],
   "observed_notices": [
     {
-      "notice": "x8/g7 2026-11-13 07:45/08:24 UTC",
-      "classification": "8X v3 prepare hold then launch specifically on Azure1",
-      "action": "Host-specific successor; current fixed Gen8 stream remains unchanged"
+      "notice": "loop 2026-11-13 08:46/09:12/09:22 UTC",
+      "classification": "Stu collection/training and Azure3/Azure5 handoffs",
+      "action": "Named hosts and research branches; no instruction to change this collector or take other producers"
     },
     {
-      "notice": "dave 2026-11-13 07:52 UTC",
-      "classification": "Gen9 BEN feed on Azure4",
-      "action": "Other producer's feed; no BEN service or registry takeover here"
+      "notice": "sidnet 2026-11-13 09:06 UTC",
+      "classification": "Rollout-net v2 calibration exposure to retired Gen6 episodes 5214\u20136774 of this stream",
+      "action": "Research measurement limitation applies to v2 scratch/warm and S_0, not current released v4.1. Active policy SHA verified and current corpus/union binding unchanged. Preserve retired feed and do not train, gate or promote v2 here"
     },
     {
-      "notice": "sidnet 2026-11-13 07:48/08:13/08:28 UTC",
-      "classification": "Azure6 labels and student-net research",
-      "action": "No model or label training in this stream"
+      "notice": "g9 2026-11-13 09:18 UTC",
+      "classification": "Conditional claims assigned to Gen9 X9, off by default with sandbox pilot",
+      "action": "No general arena deployment or frozen Gen8 change; no new solver installed"
     },
     {
-      "notice": "loop/g9 2026-11-13 07:56/07:57/08:22 UTC",
-      "classification": "Rollout research, SiD integration and gating recommendation",
-      "action": "No deployment instruction to this collector; do not adopt research or train"
-    },
-    {
-      "notice": "loop 2026-11-13 08:32 UTC",
-      "classification": "Max assigns Azure3 and Azure5 to the loop",
-      "action": "Specific named hosts; do not drain or transfer this cloud stream, touch other producers, or interfere with the assigned owners"
+      "notice": "g7 2026-11-13 09:20 UTC",
+      "classification": "Acknowledges Azure3 reassignment; Azure1 8X and Azure4 Gen9 status",
+      "action": "Other owners' resources and dated reports; no local liveness inference or stream transition"
     }
   ],
-  "registry_disposition": "Owned active Gen8 and both pinned retired entries remain unchanged and verified; aggregate and foreign-producer changes do not alter ownership.",
-  "previous_checked_epoch": 1794554901.3589942,
+  "registry_disposition": "Owned active Gen8 and both pinned retired sources unchanged and verified; foreign producer and aggregate changes remain outside ownership.",
+  "previous_checked_epoch": 1794559133.1545844,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
     "process.json": {
-      "pid": 108374,
+      "pid": 119770,
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 "
     },
     "watchdog-process.json": {
@@ -246,18 +227,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 9.050005197525024,
-  "publisher_age": 57.26573300361633,
-  "free_bytes": 20302204928,
-  "new_applicable_instructions": [
-    {
-      "instruction": "Arena promotion decision: smallest lead 0.10 IMPs per board, cap 10,000 direct boards. Smaller gains require bench evidence at least 2 SE and arena non-inferiority after at least 2,000 direct boards with the always-valid 95% lower bound above -0.10; retain the panel check.",
-      "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
-      "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix.",
-      "disposition": "Future promotion policy only; no active promotion or collection change"
-    }
-  ],
-  "registry_revision": "b1d2f2934a138e69a347fc4e03b25f0766d0f47a",
+  "heartbeat_age": 4.080121994018555,
+  "publisher_age": 59.25841569900513,
+  "free_bytes": 21822144512,
+  "new_applicable_instructions": [],
+  "registry_revision": "b2bc50a7514d85752fa24bc6de961f1d92d0e432",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -268,12 +242,12 @@
   "normal_workers_active": 3,
   "ben_workers_active": 0,
   "cache_rotation_review": {
-    "epoch": 1794550005.3347714,
-    "previous_bytes": 2165534720,
-    "completed": 1547,
-    "previous_collector_pid": 98589,
-    "current_collector_pid": 108374,
-    "disposition": "Existing frozen watchdog's planned DDS-cache rotation at1547 after graceful writer drain. Generation and artifact checks pass; fresh resumed collector, watchdog, publisher and held locks healthy. No failure or operator restart."
+    "epoch": 1794561656.6505501,
+    "previous_bytes": 2165755904,
+    "completed": 1927,
+    "previous_collector_pid": 108374,
+    "current_collector_pid": 119770,
+    "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 1927 after graceful drain. Frozen generation/artifacts verified; resumed collector, held writer lock and fresh progress healthy. No failures or operator restart."
   },
   "cache_rotation_history": [
     {
@@ -307,6 +281,14 @@
       "previous_collector_pid": 98589,
       "current_collector_pid": 108374,
       "disposition": "Existing frozen watchdog's planned DDS-cache rotation at1547 after graceful writer drain. Generation and artifact checks pass; fresh resumed collector, watchdog, publisher and held locks healthy. No failure or operator restart."
+    },
+    {
+      "epoch": 1794561656.6505501,
+      "previous_bytes": 2165755904,
+      "completed": 1927,
+      "previous_collector_pid": 108374,
+      "current_collector_pid": 119770,
+      "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 1927 after graceful drain. Frozen generation/artifacts verified; resumed collector, held writer lock and fresh progress healthy. No failures or operator restart."
     }
   ],
   "successor_notice_review": {
