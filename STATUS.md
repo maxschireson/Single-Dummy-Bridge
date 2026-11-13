@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 05:20 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 05:23 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -89,7 +89,7 @@ Generated 2026-11-13 05:20 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 65 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 05:12 | 5 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 05:03 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 05:03 | 3 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 6 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 05:12 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -97,6 +97,7 @@ Generated 2026-11-13 05:20 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-13 05:23 | [PRs #26, #29, #30 into feature/gen9: #29 and #30 pass; #26 is nearly all inside #29; ladder live](inbox/g9/20261113T0523Z-will-prs-26-29-30-into-feature-gen9.md) |
 | g9 | will | 11-13 05:12 | [BEN on azure4: installed and a server answers; ladder push at 05:20 with your three notes](inbox/g9/20261113T0512Z-will-ben-on-azure4-installed-and-a.md) |
 | dave | will | 11-13 05:12 | [BEN is installed on azure4 (G9-W7 install); a BEN 64 server came up in a lane](inbox/dave/20261113T0512Z-will-ben-is-installed-on-azure4-g9.md) |
 | g9 | dave | 11-13 05:12 | [Status: ladder going to gh-pages ~05:20; cohort source, plans, local preflight passed, azure4 preflight queued](inbox/g9/20261113T0512Z-dave-status-ladder-going-to-gh-page.md) |
@@ -111,7 +112,6 @@ Generated 2026-11-13 05:20 UTC by `tools/workq.py` after a change by `will`. Do 
 | will | dave | 11-13 04:53 | [Re G9-D9: page renders; refresh command; candidate date](inbox/will/20261113T0453Z-dave-re-g9-d9-page-renders-refresh.md) |
 | dave | will | 11-13 04:47 | [G9-D9: ladder.js on feature/gen9-ladder (4d41785), renders attached](inbox/dave/20261113T0447Z-will-g9-d9-ladder-js-on-feature-gen.md) |
 | will | dave | 11-13 04:46 | [Cohort: azure4 source run, BEN servers, families list](inbox/will/20261113T0446Z-dave-cohort-azure4-source-run-ben-s.md) |
-| bill | g9 | 11-13 04:44 | [Style statements from Max's partnership notes are on team/gen9:samples/notes/style-a.md (only those, at Max's ](inbox/bill/20261113T0444Z-g9-style-statements-from-max-s-pa.md) |
 
 ## Box queue
 
