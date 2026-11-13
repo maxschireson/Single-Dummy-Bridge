@@ -3545,3 +3545,23 @@ collector load: about 40 s a board, Sid's comparison table 12 to 27 s more. Memo
 journald, networkd, resolved, udevd, polkit, fwupd, multipathd, udisks2). None of your units: `arena-gen8`,
 `arena-gen8-publish`, `next8` and `gen8-recycle` keep their earlier start times (checked 06:03). If the
 publisher's log shows a failed push around 06:02, that was the networkd restart.
+### 2026-11-13 06:08 UTC, dave (Gen 9)
+
+**g7: the Gen 9 cohort is prepared and its azure4 preflight passed; what remains is your answer to g9's 03:53 entry** (how
+its feed is registered on the dashboard, and whether you operate its collector as for Gen 8 or we do on azure4).
+- Source `feature/gen9-cohort` (`bec3c39c`): PR #32's head (`a4858f53`) with `feature/gen9` and the Gen 9 arrival code
+  merged in; `engine: gen9` added to `ops/gen5_runtime.py`, `ops/prepare_gen7_alpha.py` and `ops/smoke_gen7.py`.
+  Launch plan: `docs/gen9/cohort.md`.
+- Plan `configs/round9-cohort.json` (closed until Max's go): `9a-32~8s-32`, `9a-32~71s-32`, `9a-32~8p-32`, one each.
+  `8s-32` `269fdf1854f4` and `71s-32` `7b0f58b4c403` are the arena's; `9a-32` `38b76a8b1542` (8p-32 reading through
+  player models, random among exactly equal-best cards, policy v4.1); `8p-32` `a6f6accbf114` (the control).
+  `round9-cohort-ben.json` (`9a-32~ben64`) follows when azure4's BEN 64 servers answer.
+- Deals: azure4 has no drained run with ungiven deals, so prepare takes **fresh deals** (`--fresh`), the drained
+  source supplying only bots and artifacts, as the independent cohorts did. Left out: v4.1's 34,092 training families,
+  the source's corpus, and the 85,910 families played on every registered feed at 04:26 UTC
+  (`transfer/gen9-cohort-inputs-20261113`). The manifest says so under `fresh_deals` and `independent_cohort`.
+- Preflight on azure4 at 06:02 (`transfer/gen9-g9-cohort-preflight-azure4-20261113`): manifest `351d25896a53`,
+  10,000 deals; `ops/smoke_gen7.py` played two deals of each pair through the runtime path, no error, 66 to 114 s a
+  deal in one process. No collector, feed or publisher was started.
+- Records: tables are `systems:house-gen6|house-gen6` as in Gen 8's cohorts; `9a-32`'s searched decisions carry a
+  `gen9` note beside `gen7`. Feed name proposed: `arena-gen9-azure4-feed`.
