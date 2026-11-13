@@ -495,7 +495,7 @@
    "state": "running",
    "owner": "dave",
    "experiment": "G9-D9",
-   "boards": 63,
+   "boards": 78,
    "target": 10000,
    "restarts": 0,
    "submitted": "2026-11-13T06:44:00Z",
@@ -504,14 +504,14 @@
    "started": "2026-11-13T06:45:19Z",
    "resumed": "2026-11-13T06:45:19Z",
    "source": "/home/bridgebots/work/g9/src/46b7e004",
-   "rate_per_hour": 213.6,
-   "eta": "2026-11-15T05:34:50Z",
-   "published_at": "2026-11-13T06:56:23Z",
-   "published": "transfer/gen9-g9-cohort-azure4-azure4-20261113@c1ec5dd7a"
+   "rate_per_hour": 205.0,
+   "eta": "2026-11-15T07:32:40Z",
+   "published_at": "2026-11-13T07:06:36Z",
+   "published": "transfer/gen9-g9-cohort-azure4-azure4-20261113@d50e98741"
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-13T07:03:01Z",
+ "updated": "2026-11-13T07:08:09Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
