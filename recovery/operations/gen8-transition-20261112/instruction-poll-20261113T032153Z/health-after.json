@@ -1,0 +1,188 @@
+{
+  "epoch": 1794540778.569433,
+  "poll_start": "2026-11-13T03:21:53Z",
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "heartbeat": {
+    "epoch": 1794540774.2075305,
+    "completed": 1181,
+    "in_flight": [
+      1177,
+      1182,
+      1183
+    ],
+    "workers": 4,
+    "ben_workers": 1,
+    "started_epoch": 1794540257.156815,
+    "stopping": false
+  },
+  "heartbeat_age_seconds": 4.361904621124268,
+  "state": {
+    "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "completed": 1182,
+    "target": 18283,
+    "contiguous": 1182,
+    "by_pair": {
+      "8s-32~1": 197,
+      "8c-32~71s-32": 197,
+      "8c-32~8s-32": 197,
+      "8s-32~71s-32": 394,
+      "8s-32~5RZ32": 197
+    },
+    "root_games": 3940,
+    "tables": 48659,
+    "failures": 0,
+    "epoch": 1794540774.6411798,
+    "complete": false
+  },
+  "supervisor": {
+    "epoch": 1794540774.6446486,
+    "completed": 1182,
+    "target": 18283,
+    "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "workers": 3,
+    "ben_workers": 0,
+    "failures": 0,
+    "collector": "running",
+    "publisher": "running",
+    "gen71_comparison_gate_enabled": false,
+    "collector_pid": 98067,
+    "publisher_pid": 68688
+  },
+  "publisher": {
+    "status": "published",
+    "epoch": 1794540732.8232887,
+    "completed": 1180,
+    "commit": "3a4f03dbcff91a870bc01e6de7c11db5c51e43b2",
+    "branch": "arena-gen8-candidate-codex-20261112-feed"
+  },
+  "publisher_age_seconds": 45.7461473941803,
+  "all_lineage_locks": {
+    "/workspace/work/gen6-fast-selfplay-stream/run/.writer.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen6-fast-selfplay-stream/run/.watchdog.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen6-fast-selfplay-stream/run/.publisher.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "current": false,
+      "owner_pid": null
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.writer.lock": {
+      "held": true,
+      "current": true,
+      "owner_pid": 98067
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.watchdog.lock": {
+      "held": true,
+      "current": true,
+      "owner_pid": 68686
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.publisher.lock": {
+      "held": true,
+      "current": true,
+      "owner_pid": 68688
+    }
+  },
+  "pids": {
+    "collector": 98067,
+    "supervisor": 68686,
+    "publisher": 68688
+  },
+  "pid_alive": {
+    "collector": true,
+    "supervisor": true,
+    "publisher": true
+  },
+  "collector_children": [
+    "98068   98067  0.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8)",
+    "  98069   98067 97.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork",
+    "  98072   98067 96.7 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork",
+    "  98073   98067 97.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork"
+  ],
+  "actual_normal_worker_children": 3,
+  "ben_jobs": 0,
+  "raw_heartbeat_idle_ben_executor_is_not_a_job": true,
+  "failure_files": [],
+  "resolved_failure_files": [],
+  "supervisor_failure_exists": false,
+  "memory_current": 4773388288,
+  "memory_limit": "17179869184",
+  "disk_free_bytes": 17932963840,
+  "dds_cache_bytes": 103130776,
+  "scientific_hashes_verified": true,
+  "cache_rotation": {
+    "epoch": 1794540254.1593394,
+    "completed": 1166,
+    "previous_bytes": 2153926656
+  },
+  "cache_rotation_diagnosed_this_poll": true,
+  "cache_rotation_evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/cache-rotation-verification.json",
+  "STOP_exists": false,
+  "manual_restart_performed": false,
+  "failures_cleared": false
+}

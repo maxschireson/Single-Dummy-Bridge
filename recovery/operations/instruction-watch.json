@@ -14,7 +14,8 @@
     "configs/round7-candidate-phase2.json",
     "configs/round8-candidate.json",
     "configs/round8-candidate-ben.json",
-    "docs/gen8_candidate_2026-11-12.md"
+    "docs/gen8_candidate_2026-11-12.md",
+    "BOARD.md"
   ],
   "file_revisions": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -113,7 +114,7 @@
     "arena-gen7-phase1-azure3-ben64-7-feed": "62b082a31ce2c82927420438998f0d4b265eea81",
     "arena-gen7-phase1-azure3-ben64-8-feed": "0aaf87097a19f2b69226c511231178064d975761",
     "arena-gen7-phase1-azure3-feed": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
-    "arena-gen7-phase1-azure4-feed": "0b84d7346294c39302aa00b77c79d2a569598b13",
+    "arena-gen7-phase1-azure4-feed": "bbb2508843e287cc3ace1041b0ddb5f1534e4fe1",
     "arena-gen7-phase1-cloud-feed": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
     "arena-gen7-phase1-codex-20261112-feed": "dfe3233dec356e48da065702964892354e0db16c",
     "arena-gen7-phase1-extra-feed": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
@@ -125,7 +126,7 @@
     "arena-gen7-pre7-azure4-feed": "2968b84979c87ccb4102d164013e62ce2cf60c07",
     "arena-gen7-selfplay-capture-codex-20261112-feed": "09950642e0d40dc68fecf511569bb72935ba7782",
     "arena-gen7-selfplay-codex-20261112-feed": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
-    "arena-gen8-19bbdce5-20261112-feed": "ad5c5617205902c42bff0ca9d9fc1cab054360bf",
+    "arena-gen8-19bbdce5-20261112-feed": "482b80fa8ba1afc7b46ba6b71f7ec00778b0483c",
     "arena-gen8-azure1-feed": "210f7b205ad822b88a82cc482af3f6952f1b41b5",
     "arena-gen8-azure3-ben64-1-feed": "de640549c40531b5f235b5480a2213c135b690ca",
     "arena-gen8-azure3-ben64-2-feed": "fdee44ee8b5e3dbcf317a3ba2f30fc88a3e718b1",
@@ -136,36 +137,36 @@
     "arena-gen8-azure3-ben64-7-feed": "0e72cf1b5888920eb69d5741cdb885902c3f0b92",
     "arena-gen8-azure3-ben64-8-feed": "846404c8a0de86a8d279748d2b7c7999e7846d95",
     "arena-gen8-azure6-feed": "3b68c77537a88932817f352b23bc032966a33800",
-    "arena-gen8-candidate-codex-20261112-feed": "0373249602bb06feb617fe25ddb5e9dae20013f7",
-    "arena-gen8-independent-feed": "af98a6134d253005c0215bc746dbcc5b719b9b8a",
-    "arena-gen8-p2-azure3-ben64-1-feed": "519f942a43e63c777156f040180f3a63a0ea6ddc",
-    "arena-gen8-p2-azure3-ben64-2-feed": "309f6305ea866d5b03fe4e5147d0600316a909e5",
-    "arena-gen8-p2-azure3-ben64-3-feed": "daa07a7931132d78542fbc09c798f428f1795ce1",
-    "arena-gen8-p2-azure3-ben64-4-feed": "77824eac3883224ce0de7fcd368535bb57773a44",
-    "arena-gen8-p2-azure3-ben64-5-feed": "d1bf0b08cdc16447a40b0864a482deffa4c5c7c6",
-    "arena-gen8-p2-azure3-ben64-6-feed": "0908b16f46a2cc2cf43204f477b7942386ac6aab",
-    "arena-gen8-p2-azure3-ben64-7-feed": "3164a48993053f3fddf68cd3c555ab4e004c9216",
-    "arena-gen8-p2-azure3-ben64-8-feed": "e8f9282b81365c9e0b37d564900c9294b1282fc0",
+    "arena-gen8-candidate-codex-20261112-feed": "9886994fafc8f60800ef3bf394f83651dcd2690b",
+    "arena-gen8-independent-feed": "ede06cc83abd7b24c559a572613b6637a0ac435b",
+    "arena-gen8-p2-azure3-ben64-1-feed": "4913b506f9d2e6a0ccd293a8669ae10ef2fdafc8",
+    "arena-gen8-p2-azure3-ben64-2-feed": "cbbef9517825d1cc441d10f422ed7dd89fa353c7",
+    "arena-gen8-p2-azure3-ben64-3-feed": "ef94b0f57b843935f48b25968cf8443be1f4cf2e",
+    "arena-gen8-p2-azure3-ben64-4-feed": "f3feb3439e4d2cb40b57be9b9e35b77a95e854a2",
+    "arena-gen8-p2-azure3-ben64-5-feed": "92d5d9390bc87eef01c6e3f0d5402ca5ba4c470b",
+    "arena-gen8-p2-azure3-ben64-6-feed": "b1480fa47b595603ec858945e32c3ace6204d472",
+    "arena-gen8-p2-azure3-ben64-7-feed": "5cf2d6098ed2ab903f7b9d3a56151fcbbd7e40a6",
+    "arena-gen8-p2-azure3-ben64-8-feed": "1a9b723677371e3590406486ed76fdaaa860f336",
     "arena-gen8-s3-azure1-feed": "934d62ee9d89a48dc388c9e94b8bcbd13bccd00d",
-    "arena-gen8-s7-azure1-feed": "5b5f2a969a77809616f627d670e3f7dfc40c4b1a",
+    "arena-gen8-s7-azure1-feed": "894ca72c30ca5a7f2bece4177c1706cc4e84473a",
     "arena-gen71-19bbdce5-20261112-feed": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
     "arena-gen71-independent-feed": "cbddecbc290efc8e3ab6e088135675df1cec14e5",
     "arena-local-feed": "7201f5a2e5b8f4ca6e03bc6769633b48ca39590e",
     "arena-primary-components-feed": "f11ab55e16787069dfd5c25cf539592c85b7c699",
     "arena-recovery-feed": "599abfc69b17d1e6e4c4c5e5c505d241d2120bbf",
     "box/azure1/control": "9d8e060719c516446df4c01b973280a36e9edafa",
-    "box/azure1/status": "de535e5d64320d4cc8a3edcc342f005ba16b0735",
-    "box/azure2/control": "16614a1b6a75ab17795f0445e401af868de4d7ca",
-    "box/azure2/status": "625a60c0c18faa1778c8b493914f6f4737a69fbb",
+    "box/azure1/status": "0ddeff68bc0053cbb4d0069707d6677fd3bd45bb",
+    "box/azure2/control": "5da9c5770b96d65d03a6afeca33ff0139097b08c",
+    "box/azure2/status": "49d13ee7936e1505520d1ecb8181dadba9d2edf3",
     "box/azure3/control": "a9f4ec5b9ce51895be453c9b9bf479a08468deca",
-    "box/azure3/status": "f3c748015c370ac2d322beae19578188f0bc1070",
+    "box/azure3/status": "5db3b797fcc02812af401a9c5d18ace6fecdbe8a",
     "box/azure4/control": "5afc62c8e62e0f244579f555164267b0801b8782",
-    "box/azure4/status": "e86aa7455af1ee56c9b5b71fb1af762bbc7e721e",
-    "box/azure5/control": "5ebf4ad9e16af252731b3f36de352e71348eddcd",
-    "box/azure5/status": "a718c7aedb52c1ea69b3fba5efc6396db07048ad",
-    "box/azure6/control": "aa121a50ed33adb2eaa85eedd885ed297eb44e35",
-    "box/azure6/status": "80408b1525cd22e21540b7249458371af92eec26",
-    "box/coordination": "d50c8eda9471b9c6ab44051ef56921027e78c127",
+    "box/azure4/status": "68bdcd64c7363b1904d21419c8bdae5608dbd76f",
+    "box/azure5/control": "627382d64fe1e99f0f4a12f1fc0175aeceaa78d5",
+    "box/azure5/status": "829c912dbd196cd242fea3957ddb5b0cfcabed2b",
+    "box/azure6/control": "d53b3e033248866f393bb4c57bc86e92d2cab7fb",
+    "box/azure6/status": "3dbf28e413872863c10188680980f22b2c26f1e9",
+    "box/coordination": "e391410019b77729f2b85f688ed9d4faaa29bfa2",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
     "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
@@ -200,8 +201,8 @@
     "feature/gen8-p41-20261112": "119d923645bb6634c3e76680a604b202720bc228",
     "feature/gen8-prototype-20261112": "695078457205693f48a24c355681aef47ca21935",
     "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
-    "feature/gen8x-rollout-bot-20261113": "bb8506640cc5b3dc0dcc802ef224d5d74aaa7158",
-    "feature/gen9-arena-arrival": "698679eeca002ca90aef1bbbd13b3387b0f0d1a8",
+    "feature/gen8x-rollout-bot-20261113": "5c77d79be7fef2299e00790c0ce9026d923cabb6",
+    "feature/gen9-arena-arrival": "0f8a40fd143a7f9cf6a11009f9631dca6eeee85b",
     "feature/gen9-arena-design": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
     "feature/gen9-arena-epochs": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
     "feature/gen9-arena-experience": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
@@ -220,7 +221,7 @@
     "feature/gen9-workflow-tests-2": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
     "feature/gen9-workflow-tests-3": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
     "feature/gen9-workflow-tests-4": "b59bcb3e473614d5174750fb0847923360d07f5c",
-    "feature/gen9": "fef4238e873d19d6bd4a97b7b82028af2d6e2686",
+    "feature/gen9": "14a7d69428427251bde3f456047e27277cef5631",
     "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
     "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
@@ -273,7 +274,7 @@
     "research/sure-trick-table-20261112": "6032cd5b30991bb3fc7790d1a7d6d9b7e41c9fd4",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
-    "team/gen9": "ef34d0fad06e7d58bc5f376532c7c6f6bda355c3",
+    "team/gen9": "43b894e57e71137b165346f84e67b2c3b30b9833",
     "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
     "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
@@ -302,14 +303,16 @@
     "transfer/gen9-d6-arrival-azure4-20261112": "e26a68b83ad697791d358d8d08bf13d23ec43bb8",
     "transfer/gen9-e9-0-n02-azure4-20261112": "c4fbddb3f0df02ea4c4f538baf62f22f3145fbd3",
     "transfer/gen9-e9-0-n02e-azure4-20261112": "7f3f8e08821d968e2471493549fb3ea5c1e5d043",
+    "transfer/gen9-e9-12-c-azure4-20261113": "83795acc679b4823d181f8d5c71d7c1e4f6350e4",
+    "transfer/gen9-e9-12-u-azure4-20261113": "da1160f06f3eaa296d0bc6b821a4b9d300769567",
     "transfer/gen9-e9-16-pilot-sandbox-20261112": "fa29bc4a8c76fa94d2cab17ea6c87e7ca46c9848",
-    "transfer/gen9-e9-16-r-v-p-azure4-20261113": "01e216475cf8cfb6d56bebbdb71665f8965c5f99",
-    "transfer/gen9-e9-16-r-v-x-azure4-20261113": "012c8cca97f72336519b892b265e99c8d220dd58",
+    "transfer/gen9-e9-16-r-v-p-azure4-20261113": "2f6912665206413a3b3fc8ba23450cf3e689e6ff",
+    "transfer/gen9-e9-16-r-v-x-azure4-20261113": "a1f1e9235675e1fb43aa816298775f25eaf604b2",
     "transfer/gen71-settings-azure1-20261112": "f119ca8a01ee5711c86f1f3c7d59f44171199b3c",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
-    "transfer/plan-leverage-azure2-20261112": "f96629ee49f5e78913d92d2801d85369f25982cf",
-    "transfer/plan-leverage-azure5-20261112": "028143d6350d5256d283c54a73cc30d6932f8538",
+    "transfer/plan-leverage-azure2-20261112": "eebfc69cb09fd09c1dcd7299034f16b28837138d",
+    "transfer/plan-leverage-azure5-20261112": "90ea9dec8f5dc8ac9757c9bc5e319cd3e23eb60a",
     "transfer/pre7-test-azure1-20261112": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
     "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
     "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
@@ -317,10 +320,152 @@
     "transfer/rollout-net-v1-20261113": "3bd74d0470e6bcb385b31977ac8d77a026895fdf",
     "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356",
     "transfer/v41-training-families-union-20261112": "fccbbd80504272151e298799878bdd37db632c47",
-    "transfer/x8-azure6-20261113": "2569756340eea02d83137deaf4bc83b134c265f3",
+    "transfer/x8-azure6-20261113": "8ede0843accd4d2e116e2f6a2750f1f9e18d0f70",
     "work/ledger": "577a6f736c74142102c9be66b88adda35fe9b8a5"
   },
   "recent_issues": [
+    {
+      "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29",
+      "repository_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+      "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/labels{/name}",
+      "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/comments",
+      "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/events",
+      "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29",
+      "id": 6346585573,
+      "node_id": "PR_kwDOVnCzR88AAAABOmUj_A",
+      "number": 29,
+      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
+      "user": {
+        "login": "maxschireson",
+        "id": 354054191,
+        "node_id": "U_kgDOFRpwLw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/maxschireson",
+        "html_url": "https://github.com/maxschireson",
+        "followers_url": "https://api.github.com/users/maxschireson/followers",
+        "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+        "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+        "repos_url": "https://api.github.com/users/maxschireson/repos",
+        "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-11-12T09:12:22Z",
+      "updated_at": "2026-11-13T02:55:50Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "OWNER",
+      "issue_field_values": [],
+      "type": null,
+      "active_lock_reason": null,
+      "draft": false,
+      "pull_request": {
+        "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29",
+        "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29",
+        "diff_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29.diff",
+        "patch_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29.patch",
+        "merged_at": null
+      },
+      "body": "Gen 9 work in progress (dave, tasks G9-D7 and G9-D6). No collector, feed, `gh-pages` registry or dashboard is touched.\n\n**This branch contains two unmerged branches:** `feature/gen9-bidding-cards` (bill, PR #26, open) and `feature/gen9-signals-v2` (sam, no PR yet). It uses bill's `bidding_delta`, `profile_evidence` and the guests' bidding, and sam's `card_delta`, carding packages and `experience_honesty`. Merge those first, or with this. The commits that are mine are listed below.\n\n**G9-D7: the experience pipeline** (`bridge_harness/arena9_pipeline.py`, `scripts/arena9.py`)\n- **Arrival.** A package that declares a card gets `player_model.arrive` with the card's distance to every held system: the G9-B4 matrix where it has the number, otherwise bill's `card_distance` (computed for `house-dds40k`). The model is stored in the registry log and carried in every epoch manifest.\n- **After each board,** with all hands known: bidding statistics go to whoever made the calls at each distinct table (bill's `bidding_delta` with the `profile` evidence), and card statistics to whoever played the cards (sam's `card_delta`). This is only for partnerships with something declared. An occasion is the deal family, seats, auction and opponents, so a replayed deal counts once, while the same deal against a floor's bot and against its control counts twice.\n- **At each boundary** the snapshot freezes. A Gen 9 bot whose package asks for it (`epoch_models`) is handed every rostered player's model with that snapshot. Rows and manifests name the snapshot, and `replay` plays a board again from its manifest and snapshot and compares traces.\n\n**G9-D6 pieces**\n- **Floors.** Comparison pairs play the same deals, written in the rules file.\n- **Packages.** `9a-32`, `8p-32`, `guest-a` and `guest-b`; house packages now declare their profile.\n- **Rules.** `rules-arrival.json` and `rules-arrival-rehearsal.json`, plus the events plans.\n- **Commands.** `arrival` runs the whole run as one resumable process and restores missing nets; `report` writes the page.\n\n**Also**\n- **Runner lock.** One runner per control directory, and a board written twice counts once.\n- **will's G9-D4 follow-ups:** a clear error for packages without `bundle.sim`; the demo log kept as `demo-run.txt`; snapshots gzipped with mtime 0.\n\n**Rehearsal** (3 epochs of 24 boards, `guest-a` arriving before epoch 2; records on `transfer/gen9-arrival-rehearsal-20261112`)\n- Epoch 3's snapshot equals the merge of exactly the envelopes of epochs 1 and 2.\n- `guest-a`'s P(card) went from the arrival prior of 0.791 to 0.984 (the ceiling set by `profile_floor` 0.02).\n- Its learned honesty is 0.694 (truth 0.8).\n- One epoch-3 floor board replays card for card, with the same trace and the same manifest identity.\n\n**Tested:** `scripts/run_tests.py` on this branch merged with `feature/gen9`: 428 passed, 0 failed. The new tests are in `tests/test_arena9_pipeline.py` (11) and `tests/test_arena9.py` (11).\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n)_",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/timeline",
+      "performed_via_github_app": {
+        "id": 1236702,
+        "client_id": "Iv23liqTIFEtdIu6Vn1r",
+        "slug": "claude",
+        "node_id": "A_kwHOBIuudM4AEt7e",
+        "owner": {
+          "login": "anthropics",
+          "id": 76263028,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjc2MjYzMDI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/76263028?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/anthropics",
+          "html_url": "https://github.com/anthropics",
+          "followers_url": "https://api.github.com/users/anthropics/followers",
+          "following_url": "https://api.github.com/users/anthropics/following{/other_user}",
+          "gists_url": "https://api.github.com/users/anthropics/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/anthropics/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/anthropics/subscriptions",
+          "organizations_url": "https://api.github.com/users/anthropics/orgs",
+          "repos_url": "https://api.github.com/users/anthropics/repos",
+          "events_url": "https://api.github.com/users/anthropics/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/anthropics/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "Claude",
+        "description": "Run Claude Code from your GitHub Pull Requests and Issues to respond to reviewer feedback, fix CI errors, or modify code, turning it into a virtual teammate that works alongside your development pipelines.\r\n\r\nThis is built on the publicly available Claude Code SDK.",
+        "external_url": "https://anthropic.com/claude-code",
+        "html_url": "https://github.com/apps/claude",
+        "created_at": "2025-04-30T17:54:24Z",
+        "updated_at": "2026-11-12T22:28:30Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "checks": "write",
+          "contents": "write",
+          "discussions": "write",
+          "issues": "write",
+          "members": "read",
+          "merge_queues": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "repository_creation": "write",
+          "repository_hooks": "write",
+          "statuses": "read",
+          "vulnerability_alerts": "read",
+          "workflows": "write"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "commit_comment",
+          "discussion",
+          "discussion_comment",
+          "issues",
+          "issue_comment",
+          "merge_group",
+          "merge_queue_entry",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "push",
+          "release",
+          "repository_ruleset",
+          "status",
+          "sub_issues"
+        ]
+      },
+      "state_reason": null
+    },
     {
       "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22",
       "repository_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
@@ -360,7 +505,7 @@
       "milestone": null,
       "comments": 0,
       "created_at": "2026-11-12T07:41:01Z",
-      "updated_at": "2026-11-13T01:55:32Z",
+      "updated_at": "2026-11-13T02:51:02Z",
       "closed_at": null,
       "assignee": null,
       "author_association": "OWNER",
@@ -378,7 +523,7 @@
         "blocking": 0,
         "total_blocking": 0
       },
-      "body": "<!-- workq -->\n**Gen 9 queue**, Fri 13 Nov 01:55 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (2)**\n- [#24 DECISION: Smallest lead the arena promotes on: 0.10 IMPs a board, or smaller?](https://github.com/maxschireson/Single-Dummy-Bridge/issues/24), raised 18 h ago\n- [#23 DECISION: May the Gen 9 leads start sub-agents for self-contained tasks?](https://github.com/maxschireson/Single-Dummy-Bridge/issues/23), raised 18 h ago\n\n**Reviews waiting (2)**\n- g9: E9-17 (dave, 109 min); G9-D6 (dave, 58 min)\n\n**Blocked (1)**\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (10)**: bill: E9-11, E9-12 \u00b7 g9: E9-0, G9-A7 \u00b7 sam: E9-4, E9-6, G9-S4, G9-S7 \u00b7 will: G9-W4, G9-W5\n**Box azure4**: e9-16-r-v-p running 384/800, 576/h, ETA 02:35 \u00b7 e9-16-r-v-x running 385/800, 578/h, ETA 02:35 \u00b7 e9-12-c waiting 0/1,200 \u00b7 e9-12-u waiting 0/600 \u00b7 e9-12-x waiting 0/1,200 \u00b7 e9-4-8x waiting 0/1,600 \u00b7 e9-4-r9 waiting 0/1,600 \u00b7 e9-0-n04 waiting 0/800 \u00b7 e9-16-h-v-p waiting 0/800\n**Resolved today**: 0. **Open, not started**: 5.\n**Next checkpoint**: Fri 13 Nov 02:00 UTC: Checkpoint 2: first measurements from each area's prototype; plans adjusted\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "body": "<!-- workq -->\n**Gen 9 queue**, Fri 13 Nov 02:51 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (2)**\n- [#24 DECISION: Smallest lead the arena promotes on: 0.10 IMPs a board, or smaller?](https://github.com/maxschireson/Single-Dummy-Bridge/issues/24), raised 19 h ago\n- [#23 DECISION: May the Gen 9 leads start sub-agents for self-contained tasks?](https://github.com/maxschireson/Single-Dummy-Bridge/issues/23), raised 19 h ago\n\n**Reviews waiting (1)**\n- g9: G9-W4 (will, 7 min)\n\n**Blocked (1)**\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11, E9-12 \u00b7 sam: E9-4, E9-6, G9-S4, G9-S7 \u00b7 will: G9-W5\n**Box azure4**: e9-12-c running 164/1,200, 628/h, ETA 04:28 \u00b7 e9-12-u running 160/600, 613/h, ETA 03:32 \u00b7 e9-12-x waiting 0/1,200 \u00b7 e9-4-8x waiting 0/1,600 \u00b7 e9-4-r9 waiting 0/1,600 \u00b7 e9-0-n04 waiting 0/800 \u00b7 e9-16-h-v-p waiting 0/800\n**Resolved today**: 4. **Open, not started**: 5.\n**Next checkpoint**: Fri 13 Nov 18:00 UTC: Checkpoint 3: results frozen for the review package\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
       "closed_by": null,
       "reactions": {
         "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/22/reactions",
@@ -468,14 +613,14 @@
       "pinned_comment": null
     }
   ],
-  "comments_since": "2026-11-13T01:28:48Z",
+  "comments_since": "2026-11-13T02:28:57Z",
   "new_issue_comments": [],
   "new_review_comments": [],
   "instruction": "Continue authoritative Gen8 main mix from frozen792c4cb, five approved pairs2/1/1/1/1,3normal workers0BEN, canonical actors and mandatory34092-family exclusion union. Old Gen7.1 CI and Gen7.0 pair-target stop predicates are disabled; no selfplay scheduled. Preserve all history and science. Own producer only.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "no_current_collection_instruction_change",
-  "collection_action": "Continue identical three-worker zero-BEN Gen8 cohort. No restart, source/model/settings/manifest/guard change, failure clearing, remote-host command or other-producer mutation.",
+  "collection_action": "Continue identical three-worker zero-BEN Gen8 cohort. Existing supervisor completed authorized2GiB disposable-cache rotation after1166boards; all prior published records and committed pairs verified, science unchanged, capture observed. No manual restart, settings/model/source/manifest/guard change, failure clearing or peer mutation.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -507,50 +652,51 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "8X x1/x2 tests on idle Azure6, rollout-net v2/v2w training on Azure2/5, claim-fork rules and Gen9 remain development/research. Max02:20 priority applies to the idle Azure6 allocation; no arena box drain or this-producer change was requested. No model/source promotion or research execution here.",
-  "notification": "No current collection instruction changed or new blocker. Conditional8X work and historical source merge do not change this stream. Known shared replay issue already notified; remain quiet.",
-  "checked_epoch": 1794536937.0,
-  "checked_at": "2026-11-13T02:28:57Z",
-  "next_check": "2026-11-13T03:25:53+00:00",
+  "research_disposition": "8X equal-card randomization prerequisite is now reported met and class-based reading is directed for8X; 8X remains WIP/not deployed, Gen9 remains parallel research. No current Gen8 cohort behavior changes.",
+  "notification": "No current collection instruction changed, source budget not complete, no new blocker requiring attention. Routine authorized cache rotation verified. Known shared replay issue already notified; remain quiet.",
+  "checked_epoch": 1794540113.0,
+  "checked_at": "2026-11-13T03:21:53Z",
+  "next_check": "2026-11-13T04:25:53+00:00",
   "stream_manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
   "health": {
-    "epoch": 1794537247.0752442,
-    "poll_start": "2026-11-13T02:28:57Z",
+    "epoch": 1794540778.569433,
+    "poll_start": "2026-11-13T03:21:53Z",
     "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
     "heartbeat": {
-      "epoch": 1794537237.5439024,
-      "completed": 1068,
+      "epoch": 1794540774.2075305,
+      "completed": 1181,
       "in_flight": [
-        1068,
-        1069,
-        1070
+        1177,
+        1182,
+        1183
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794527591.766953,
+      "started_epoch": 1794540257.156815,
       "stopping": false
     },
+    "heartbeat_age_seconds": 4.361904621124268,
     "state": {
       "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-      "completed": 1068,
+      "completed": 1182,
       "target": 18283,
-      "contiguous": 1068,
+      "contiguous": 1182,
       "by_pair": {
-        "8s-32~1": 178,
-        "8c-32~71s-32": 178,
-        "8c-32~8s-32": 178,
-        "8s-32~71s-32": 356,
-        "8s-32~5RZ32": 178
+        "8s-32~1": 197,
+        "8c-32~71s-32": 197,
+        "8c-32~8s-32": 197,
+        "8s-32~71s-32": 394,
+        "8s-32~5RZ32": 197
       },
-      "root_games": 3560,
-      "tables": 43968,
+      "root_games": 3940,
+      "tables": 48659,
       "failures": 0,
-      "epoch": 1794537227.5396893,
+      "epoch": 1794540774.6411798,
       "complete": false
     },
     "supervisor": {
-      "epoch": 1794537242.797608,
-      "completed": 1068,
+      "epoch": 1794540774.6446486,
+      "completed": 1182,
       "target": 18283,
       "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
       "workers": 3,
@@ -559,92 +705,111 @@
       "collector": "running",
       "publisher": "running",
       "gen71_comparison_gate_enabled": false,
-      "collector_pid": 87451,
+      "collector_pid": 98067,
       "publisher_pid": 68688
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794537213.644462,
-      "completed": 1066,
-      "commit": "562ffc479f80554f785e81409dc8e45ebfd0ad59",
+      "epoch": 1794540732.8232887,
+      "completed": 1180,
+      "commit": "3a4f03dbcff91a870bc01e6de7c11db5c51e43b2",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
+    "publisher_age_seconds": 45.7461473941803,
     "all_lineage_locks": {
       "/workspace/work/gen6-fast-selfplay-stream/run/.writer.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen6-fast-selfplay-stream/run/.watchdog.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen6-fast-selfplay-stream/run/.publisher.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-phase1-codex-20261112/run/.writer.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-phase1-codex-20261112/run/.watchdog.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-phase1-codex-20261112/run/.publisher.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.writer.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.watchdog.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.publisher.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-selfplay-codex-20261112/run/.writer.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-selfplay-codex-20261112/run/.watchdog.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen7-selfplay-codex-20261112/run/.publisher.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen71-compare-codex-20261112/run/.writer.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen71-compare-codex-20261112/run/.watchdog.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen71-compare-codex-20261112/run/.publisher.lock": {
         "held": false,
-        "current": false
+        "current": false,
+        "owner_pid": null
       },
       "/workspace/work/gen8-candidate-codex-20261112/run/.writer.lock": {
         "held": true,
-        "current": true
+        "current": true,
+        "owner_pid": 98067
       },
       "/workspace/work/gen8-candidate-codex-20261112/run/.watchdog.lock": {
         "held": true,
-        "current": true
+        "current": true,
+        "owner_pid": 68686
       },
       "/workspace/work/gen8-candidate-codex-20261112/run/.publisher.lock": {
         "held": true,
-        "current": true
+        "current": true,
+        "owner_pid": 68688
       }
     },
     "pids": {
-      "collector": 87451,
+      "collector": 98067,
       "supervisor": 68686,
       "publisher": 68688
     },
@@ -654,32 +819,34 @@
       "publisher": true
     },
     "collector_children": [
-      "87452   87451 /workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8)",
-      "87453   87451 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork",
-      "87456   87451 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork",
-      "87457   87451 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork"
+      "98068   98067  0.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8)",
+      "  98069   98067 97.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork",
+      "  98072   98067 96.7 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork",
+      "  98073   98067 97.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork"
     ],
+    "actual_normal_worker_children": 3,
+    "ben_jobs": 0,
+    "raw_heartbeat_idle_ben_executor_is_not_a_job": true,
     "failure_files": [],
     "resolved_failure_files": [],
-    "memory_current": 6030061568,
+    "supervisor_failure_exists": false,
+    "memory_current": 4773388288,
     "memory_limit": "17179869184",
-    "disk_free_bytes": 16628760576,
-    "dds_cache_bytes": 1554567168,
+    "disk_free_bytes": 17932963840,
+    "dds_cache_bytes": 103130776,
     "scientific_hashes_verified": true,
     "cache_rotation": {
-      "epoch": 1794527588.8953915,
-      "completed": 774,
-      "previous_bytes": 2153717760
+      "epoch": 1794540254.1593394,
+      "completed": 1166,
+      "previous_bytes": 2153926656
     },
-    "cache_rotation_already_diagnosed": true,
-    "same_pids_as_previous_poll": true
+    "cache_rotation_diagnosed_this_poll": true,
+    "cache_rotation_evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/cache-rotation-verification.json",
+    "STOP_exists": false,
+    "manual_restart_performed": false,
+    "failures_cleared": false
   },
-  "previous_check": {
-    "checked_at": "2026-11-13T01:28:48Z",
-    "result": "no_current_collection_instruction_change",
-    "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-    "checkpoint_copy": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T022857Z/instruction-watch-before.json"
-  },
+  "previous_check": "2026-11-13T02:28:57Z",
   "reviewed_source_changes": [
     {
       "name": "box/azure1/control",
@@ -922,9 +1089,9 @@
       "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": "2026-11-13T02:34:07.081870Z",
-  "next_comment_scan_since": "2026-11-13T02:28:57Z",
-  "poll_checkpoint_note": "Next comments scan starts at poll START2026-11-13T02:28:57Z, not completion; changes during this check remain covered.",
+  "completed_at": "2026-11-13T03:32:58.570769Z",
+  "next_comment_scan_since": "2026-11-13T03:21:53Z",
+  "poll_checkpoint_note": "Next comments scan is anchored to this poll START03:21:53Z, not finish. Existing publisher will copy exact final watch and evidence; pinned verification saved separately in this poll case.",
   "candidate_notice": {
     "path": "docs/gen8_candidate_2026-11-12.md",
     "deployed_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
@@ -1339,13 +1506,26 @@
   },
   "automation_context": {
     "id": "Automation_9145205e9ee481919c6395359b8d748c",
-    "is_enabled": true,
-    "next_run_time": "2026-11-13T03:25:53+00:00",
-    "last_run_time": "2026-11-13T02:28:50.019515+00:00",
+    "title": "Check bridge collection instructions",
     "schedule": "BEGIN:VEVENT\nDTSTART:20261111T192553Z\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT",
+    "timing_mode": "exact_schedule",
+    "display_schedule": null,
+    "is_enabled": true,
+    "is_self_owned_automation": true,
+    "default_timezone": "Europe/Lisbon",
+    "next_run_time": "2026-11-13T04:25:53+00:00",
+    "last_run_time": "2026-11-13T03:21:46.151819+00:00",
+    "updated_at": "2026-11-13T03:22:07.600370+00:00",
+    "environment_selection": "inherited",
+    "environments": [
+      {
+        "environmentId": "ccarenv_b64_Y2NhcmVudl9hMDBiMjIxNzMwNzA4MTkxYjdmMzAwMGViOTg1NDI3Nw",
+        "cwd": "/workspace"
+      }
+    ],
     "changed_this_poll": false,
     "schedule_preserved": true,
-    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T022857Z/automation-state.json"
+    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/automation-state.json"
   },
   "dashboard_registration": {
     "commit": "d9eddb68dc79395a7f56504b8055b92b0822447b",
@@ -1369,18 +1549,18 @@
     "watch_blob": "884da11acf07b67ed90cb7ee619194849eb236f1",
     "verification": "Exact local bytes matched committed recovery for watch, current stream, operational journal, supervisor, manifest, exclusion list, capture/preflight/production validation and source-family audit; GitHub contents readback matched watch blob; remote ref independently verified.",
     "checkpoint_note": "This final watch refers to the independently verified preceding checkpoint; final bytes are checked separately after publisher next pass.",
-    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T022857Z",
+    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z",
     "final_watch_copy_to_verify_separately": true
   },
   "source_adoption_review": {
     "frozen_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
     "latest_reviewed": "695078457205693f48a24c355681aef47ca21935",
-    "disposition": "Current source, main, core instructions and plans unchanged; keep frozen792c4cb and manifestcd98. Old source merge on coordination is historical, not a new launch."
+    "disposition": "Keep frozen792c4cb and manifestcd98. Main, source, core instructions, Gen8 candidate and BEN plans remain unchanged; 8X docs explicitly say work in progress, not deployed."
   },
   "coordination_review": {
-    "revision": "d50c8eda9471b9c6ab44051ef56921027e78c127",
-    "blob": "a87c1ac06795bc31e73c12f6df0b4a53c23660ba",
-    "disposition": "Azure peer pool updates and host-specific8X research; no current collection change. Historical ae35a321 source cleanup merged into the coordination branch is not new deployment authority. Main, source and current plans independently checked unchanged."
+    "revision": "e391410019b77729f2b85f688ed9d4faaa29bfa2",
+    "blob": "c307e5f0081632fae3e4bc75984ac266e476968c",
+    "disposition": "Equal-card randomization condition is reported met for future8X; exact-equal class reading required in8X. Current canonical Gen8 arena plan/source/actors unchanged. Separate8X development and Gen9 research are not a current all-collector deployment opening."
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -1778,13 +1958,14 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "poll_start": "2026-11-13T02:28:57Z",
-    "comments_since": "2026-11-13T01:28:48Z",
-    "next_comment_scan_since": "2026-11-13T02:28:57Z",
+    "poll_start": "2026-11-13T03:21:53Z",
+    "comments_since": "2026-11-13T02:28:57Z",
+    "next_comment_scan_since": "2026-11-13T03:21:53Z",
     "new_issue_comments": [],
     "new_review_comments": [],
     "new_review_submissions": [],
-    "new_commit_comments": []
+    "new_commit_comments": [],
+    "complete": true
   },
   "selfplay_handoff_review": {
     "branch": "feature/gen7-selfplay-20261112",
@@ -3039,7 +3220,359 @@
       }
     ]
   },
-  "recent_prs": [],
+  "recent_prs": [
+    {
+      "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29",
+      "id": 5274674172,
+      "node_id": "PR_kwDOVnCzR88AAAABOmUj_A",
+      "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29",
+      "diff_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29.diff",
+      "patch_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29.patch",
+      "issue_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29",
+      "number": 29,
+      "state": "open",
+      "locked": false,
+      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
+      "user": {
+        "login": "maxschireson",
+        "id": 354054191,
+        "node_id": "U_kgDOFRpwLw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/maxschireson",
+        "html_url": "https://github.com/maxschireson",
+        "followers_url": "https://api.github.com/users/maxschireson/followers",
+        "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+        "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+        "repos_url": "https://api.github.com/users/maxschireson/repos",
+        "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Gen 9 work in progress (dave, tasks G9-D7 and G9-D6). No collector, feed, `gh-pages` registry or dashboard is touched.\n\n**This branch contains two unmerged branches:** `feature/gen9-bidding-cards` (bill, PR #26, open) and `feature/gen9-signals-v2` (sam, no PR yet). It uses bill's `bidding_delta`, `profile_evidence` and the guests' bidding, and sam's `card_delta`, carding packages and `experience_honesty`. Merge those first, or with this. The commits that are mine are listed below.\n\n**G9-D7: the experience pipeline** (`bridge_harness/arena9_pipeline.py`, `scripts/arena9.py`)\n- **Arrival.** A package that declares a card gets `player_model.arrive` with the card's distance to every held system: the G9-B4 matrix where it has the number, otherwise bill's `card_distance` (computed for `house-dds40k`). The model is stored in the registry log and carried in every epoch manifest.\n- **After each board,** with all hands known: bidding statistics go to whoever made the calls at each distinct table (bill's `bidding_delta` with the `profile` evidence), and card statistics to whoever played the cards (sam's `card_delta`). This is only for partnerships with something declared. An occasion is the deal family, seats, auction and opponents, so a replayed deal counts once, while the same deal against a floor's bot and against its control counts twice.\n- **At each boundary** the snapshot freezes. A Gen 9 bot whose package asks for it (`epoch_models`) is handed every rostered player's model with that snapshot. Rows and manifests name the snapshot, and `replay` plays a board again from its manifest and snapshot and compares traces.\n\n**G9-D6 pieces**\n- **Floors.** Comparison pairs play the same deals, written in the rules file.\n- **Packages.** `9a-32`, `8p-32`, `guest-a` and `guest-b`; house packages now declare their profile.\n- **Rules.** `rules-arrival.json` and `rules-arrival-rehearsal.json`, plus the events plans.\n- **Commands.** `arrival` runs the whole run as one resumable process and restores missing nets; `report` writes the page.\n\n**Also**\n- **Runner lock.** One runner per control directory, and a board written twice counts once.\n- **will's G9-D4 follow-ups:** a clear error for packages without `bundle.sim`; the demo log kept as `demo-run.txt`; snapshots gzipped with mtime 0.\n\n**Rehearsal** (3 epochs of 24 boards, `guest-a` arriving before epoch 2; records on `transfer/gen9-arrival-rehearsal-20261112`)\n- Epoch 3's snapshot equals the merge of exactly the envelopes of epochs 1 and 2.\n- `guest-a`'s P(card) went from the arrival prior of 0.791 to 0.984 (the ceiling set by `profile_floor` 0.02).\n- Its learned honesty is 0.694 (truth 0.8).\n- One epoch-3 floor board replays card for card, with the same trace and the same manifest identity.\n\n**Tested:** `scripts/run_tests.py` on this branch merged with `feature/gen9`: 428 passed, 0 failed. The new tests are in `tests/test_arena9_pipeline.py` (11) and `tests/test_arena9.py` (11).\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n)_",
+      "created_at": "2026-11-12T09:12:22Z",
+      "updated_at": "2026-11-13T02:55:50Z",
+      "closed_at": null,
+      "merged_at": null,
+      "merge_commit_sha": "964f76d8209bd46ecd07845ef22c04650d4a006c",
+      "assignees": [],
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "labels": [],
+      "milestone": null,
+      "draft": false,
+      "commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29/commits",
+      "review_comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29/comments",
+      "review_comment_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/comments{/number}",
+      "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/comments",
+      "statuses_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/0f8a40fd143a7f9cf6a11009f9631dca6eeee85b",
+      "head": {
+        "label": "maxschireson:feature/gen9-arena-arrival",
+        "ref": "feature/gen9-arena-arrival",
+        "sha": "0f8a40fd143a7f9cf6a11009f9631dca6eeee85b",
+        "user": {
+          "login": "maxschireson",
+          "id": 354054191,
+          "node_id": "U_kgDOFRpwLw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/maxschireson",
+          "html_url": "https://github.com/maxschireson",
+          "followers_url": "https://api.github.com/users/maxschireson/followers",
+          "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+          "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+          "repos_url": "https://api.github.com/users/maxschireson/repos",
+          "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "repo": {
+          "id": 1450226503,
+          "node_id": "R_kgDOVnCzRw",
+          "name": "Single-Dummy-Bridge",
+          "full_name": "maxschireson/Single-Dummy-Bridge",
+          "private": false,
+          "owner": {
+            "login": "maxschireson",
+            "id": 354054191,
+            "node_id": "U_kgDOFRpwLw",
+            "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/maxschireson",
+            "html_url": "https://github.com/maxschireson",
+            "followers_url": "https://api.github.com/users/maxschireson/followers",
+            "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+            "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+            "repos_url": "https://api.github.com/users/maxschireson/repos",
+            "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "description": null,
+          "fork": false,
+          "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+          "forks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/forks",
+          "keys_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/teams",
+          "hooks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/hooks",
+          "issue_events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/events",
+          "assignees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/tags",
+          "blobs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/languages",
+          "stargazers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/stargazers",
+          "contributors_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contributors",
+          "subscribers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscribers",
+          "subscription_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscription",
+          "commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/merges",
+          "archive_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/downloads",
+          "issues_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/labels{/name}",
+          "releases_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/deployments",
+          "created_at": "2026-11-08T11:39:44Z",
+          "updated_at": "2026-11-12T04:13:31Z",
+          "pushed_at": "2026-11-13T03:22:42Z",
+          "git_url": "git://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "ssh_url": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
+          "clone_url": "https://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "svn_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "homepage": null,
+          "size": 16807336,
+          "stargazers_count": 0,
+          "watchers_count": 0,
+          "language": "Python",
+          "has_issues": true,
+          "has_projects": true,
+          "has_downloads": false,
+          "has_wiki": true,
+          "has_pages": true,
+          "has_discussions": false,
+          "forks_count": 0,
+          "mirror_url": null,
+          "archived": false,
+          "disabled": false,
+          "open_issues_count": 12,
+          "license": {
+            "key": "apache-2.0",
+            "name": "Apache License 2.0",
+            "spdx_id": "Apache-2.0",
+            "url": "https://api.github.com/licenses/apache-2.0",
+            "node_id": "MDc6TGljZW5zZTI="
+          },
+          "allow_forking": true,
+          "is_template": false,
+          "web_commit_signoff_required": false,
+          "has_pull_requests": true,
+          "pull_request_creation_policy": "all",
+          "topics": [],
+          "visibility": "public",
+          "forks": 0,
+          "open_issues": 12,
+          "watchers": 0,
+          "default_branch": "main"
+        }
+      },
+      "base": {
+        "label": "maxschireson:feature/gen9",
+        "ref": "feature/gen9",
+        "sha": "cc51feed8846e3b0a6652d1af54aba79d76c82b6",
+        "user": {
+          "login": "maxschireson",
+          "id": 354054191,
+          "node_id": "U_kgDOFRpwLw",
+          "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/maxschireson",
+          "html_url": "https://github.com/maxschireson",
+          "followers_url": "https://api.github.com/users/maxschireson/followers",
+          "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+          "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+          "repos_url": "https://api.github.com/users/maxschireson/repos",
+          "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "repo": {
+          "id": 1450226503,
+          "node_id": "R_kgDOVnCzRw",
+          "name": "Single-Dummy-Bridge",
+          "full_name": "maxschireson/Single-Dummy-Bridge",
+          "private": false,
+          "owner": {
+            "login": "maxschireson",
+            "id": 354054191,
+            "node_id": "U_kgDOFRpwLw",
+            "avatar_url": "https://avatars.githubusercontent.com/u/354054191?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/maxschireson",
+            "html_url": "https://github.com/maxschireson",
+            "followers_url": "https://api.github.com/users/maxschireson/followers",
+            "following_url": "https://api.github.com/users/maxschireson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/maxschireson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/maxschireson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/maxschireson/subscriptions",
+            "organizations_url": "https://api.github.com/users/maxschireson/orgs",
+            "repos_url": "https://api.github.com/users/maxschireson/repos",
+            "events_url": "https://api.github.com/users/maxschireson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/maxschireson/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "description": null,
+          "fork": false,
+          "url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge",
+          "forks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/forks",
+          "keys_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/teams",
+          "hooks_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/hooks",
+          "issue_events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/events",
+          "assignees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/tags",
+          "blobs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/languages",
+          "stargazers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/stargazers",
+          "contributors_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contributors",
+          "subscribers_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscribers",
+          "subscription_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/subscription",
+          "commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/merges",
+          "archive_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/downloads",
+          "issues_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/labels{/name}",
+          "releases_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/deployments",
+          "created_at": "2026-11-08T11:39:44Z",
+          "updated_at": "2026-11-12T04:13:31Z",
+          "pushed_at": "2026-11-13T03:22:42Z",
+          "git_url": "git://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "ssh_url": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
+          "clone_url": "https://github.com/maxschireson/Single-Dummy-Bridge.git",
+          "svn_url": "https://github.com/maxschireson/Single-Dummy-Bridge",
+          "homepage": null,
+          "size": 16807336,
+          "stargazers_count": 0,
+          "watchers_count": 0,
+          "language": "Python",
+          "has_issues": true,
+          "has_projects": true,
+          "has_downloads": false,
+          "has_wiki": true,
+          "has_pages": true,
+          "has_discussions": false,
+          "forks_count": 0,
+          "mirror_url": null,
+          "archived": false,
+          "disabled": false,
+          "open_issues_count": 12,
+          "license": {
+            "key": "apache-2.0",
+            "name": "Apache License 2.0",
+            "spdx_id": "Apache-2.0",
+            "url": "https://api.github.com/licenses/apache-2.0",
+            "node_id": "MDc6TGljZW5zZTI="
+          },
+          "allow_forking": true,
+          "is_template": false,
+          "web_commit_signoff_required": false,
+          "has_pull_requests": true,
+          "pull_request_creation_policy": "all",
+          "topics": [],
+          "visibility": "public",
+          "forks": 0,
+          "open_issues": 12,
+          "watchers": 0,
+          "default_branch": "main"
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29"
+        },
+        "html": {
+          "href": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/29"
+        },
+        "issue": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29"
+        },
+        "comments": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/issues/29/comments"
+        },
+        "review_comments": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29/comments"
+        },
+        "review_comment": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/comments{/number}"
+        },
+        "commits": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/pulls/29/commits"
+        },
+        "statuses": {
+          "href": "https://api.github.com/repos/maxschireson/Single-Dummy-Bridge/statuses/0f8a40fd143a7f9cf6a11009f9631dca6eeee85b"
+        }
+      },
+      "author_association": "OWNER",
+      "auto_merge": null,
+      "assignee": null,
+      "active_lock_reason": null
+    }
+  ],
   "registry_review": {
     "revision": "aa6a3a63421c5704dc1bc1104c9793c39cffe5e6",
     "blob": "9c888158ebef62ca33f8443e7a79c123caff72a1",
@@ -3070,7 +3603,7 @@
     "owned_entries_correct": true,
     "writes_this_poll": false
   },
-  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T022857Z/github-scan.json",
+  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/github-scan.json",
   "interrupted_check": {
     "poll_start": "2026-11-12T14:27:45Z",
     "actions_completed": "Validated operational reload and resumed capture before interruption; registry/automation/watch finalization resumed in15:29poll. No collection failure or unexpected process restart.",
@@ -3078,7 +3611,15 @@
     "drained_completed": 1603,
     "receipt_and_episode_prefix_preserved": true
   },
-  "completion_status": "completed",
+  "completion_status": {
+    "complete": false,
+    "completed": 1182,
+    "target": 18283,
+    "gen71_comparison_gate_enabled": false,
+    "old_gen7_pair_target_predicate_enabled": false,
+    "empty_owned_pair_completion_disabled": true,
+    "selfplay_launch_enabled": false
+  },
   "supplemental_training_review": {
     "authority": {
       "source_revision": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
@@ -3317,19 +3858,28 @@
     "draft": false,
     "merged": false,
     "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
-    "disposition": "Gen7-to-Gen8 PR32 remains unmerged; old Gen6-to-Gen7 merge on coordination is historical."
+    "disposition": "Gen7-to-Gen8 PR32 remains unmerged; old Gen6-to-Gen7 merge on coordination is historical.",
+    "revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
+    "status": "PR32 open and unmerged; documentation/source cleanup touches no running collector or frozen science."
   },
   "last_diagnosed_cache_rotation": {
-    "epoch": 1794527588.8953915,
-    "completed": 774,
-    "previous_bytes": 2153717760,
-    "new_collector_pid": 87451,
-    "previous_collector_pid": 78717,
+    "epoch": 1794540254.1593394,
+    "completed": 1166,
+    "previous_bytes": 2153926656,
+    "new_collector_pid": 98067,
+    "previous_collector_pid": 87451,
     "diagnosed": true,
-    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T003004Z/cache-rotation-verification.json",
+    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/cache-rotation-verification.json",
     "requires_attention": false
   },
-  "observed_operational_events": [],
+  "observed_operational_events": [
+    {
+      "type": "authorized_disposable_DDS_cache_rotation",
+      "action": "Observed existing supervisor drain, preserve and relaunch unchanged cohort; audited all records and actual post-resume capture. No manual restart or failure clearing.",
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/cache-rotation-verification.json",
+      "requires_attention": false
+    }
+  ],
   "future_feed_audit_guidance": {
     "source_branch": "feature/gen8-p41-20261112",
     "source_revision": "119d923645bb6634c3e76680a604b202720bc228",
@@ -3339,20 +3889,24 @@
   },
   "future_8x_review": {
     "authority_channel": "box/coordination",
-    "revision": "d50c8eda9471b9c6ab44051ef56921027e78c127",
+    "revision": "e391410019b77729f2b85f688ed9d4faaa29bfa2",
     "direction": "8X remains a development candidate with separate host-specific matches; Gen9 continues in parallel.",
     "engine": {
       "branch": "feature/gen8x-rollout-bot-20261113",
-      "revision": "bb8506640cc5b3dc0dcc802ef224d5d74aaa7158",
-      "status": "Experimental v0 tests x1/x2 on Azure6; no current arena deployment opening."
+      "revision": "5c77d79be7fef2299e00790c0ce9026d923cabb6",
+      "documentation_blob": "209f812370c905391d3a4277e2092dc54f0529af",
+      "status": "Documentation explicitly says work in progress, not deployed, not launched, merged or adopted. Config inventory contains x8-bots.json and no opened round8X arena collection plan."
     },
-    "condition": "Exact-tie randomization still depends on two Azure4 matches showing no played cost; no figures or opening published in the checked notices.",
-    "new_notices": "Max02:20 gives x8 idle Azure6 for x1/x2 and prioritizes that work there. The notice explicitly avoids draining an arena box and says g7's work is unchanged; this is not an all-collector stop or reallocation.",
-    "claim_work": "Claim-fork test spec and defender hand-over measurements are research evidence; do not change current Gen8 claim/card rules.",
-    "models": "Rollout-net v2/v2w builds are on Azure2/5. Current v4.1 actor models are unchanged; future adopted nets need complete training-family provenance/exclusions.",
-    "existing_gen8_effect": "Keep canonical8s/8c, source792c4cb, current manifest, mix, three normal workers and zeroBEN. No exploration1.0, 8X engine adoption or model swap in this cohort.",
-    "future_requirements": "Adopt only under a ready published arena plan and exact actors/models/source, with drain/new identity, all training-family exclusions and observed-capture preflight.",
-    "host_scope": "No host/queue/peer producer command or training performed by this task."
+    "condition_met": true,
+    "condition": {
+      "authority": "Max00:28 conditional agreement, g9 report in BOARD02:45 at e391410",
+      "finding": "800 boards each, seed916: 8r versus 8p +0.014 +/-0.126 IMP/board, reported no detectable played cost; condition for equal-card randomization in future8X met.",
+      "reading": "For any reader in8X, including rollout seats, sum net probability over exact-equal card classes rather than scaling down the whole play term. Factor0.25 cost reader0.29 +/-0.15 IMP/board."
+    },
+    "models": "Rollout-net v2/v2w development remains on assigned Azure hosts. Current v4.1 actor models are unchanged. Future adopted models require complete training-family provenance and exclusions.",
+    "existing_gen8_effect": "Continue canonical8s/8c, frozen792c4cb, unchangedmanifestcd98, plan2:1:1:1:1, three normal workers and zeroBEN. Conditional8X finding does not open currentGen8 exploration1.0, model or engine edits.",
+    "future_requirements": "Follow a current published arena launch plan with exact actors/models/source; drain, new identity, exclude all released-model training families, fresh-pool published-corpus overlap proof where applicable, and observed gap/guess preflight.",
+    "host_scope": "No commands on peer hosts/queues/producers; no research training or model promotion performed."
   },
   "cache_rotation_history": [
     {
@@ -3373,6 +3927,16 @@
       "previous_collector_pid": 78717,
       "diagnosed": true,
       "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T003004Z/cache-rotation-verification.json",
+      "requires_attention": false
+    },
+    {
+      "epoch": 1794540254.1593394,
+      "completed": 1166,
+      "previous_bytes": 2153926656,
+      "new_collector_pid": 98067,
+      "previous_collector_pid": 87451,
+      "diagnosed": true,
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T032153Z/cache-rotation-verification.json",
       "requires_attention": false
     }
   ]
