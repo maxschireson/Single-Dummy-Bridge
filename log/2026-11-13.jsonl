@@ -384,3 +384,4 @@
 {"at": "2026-11-13T12:41:00Z", "by": "g9", "op": "set", "target": "E9-19", "note": "reviewer=will"}
 {"at": "2026-11-13T12:41:00Z", "by": "g9", "op": "send", "target": "will/20261113T1241Z-g9-two-for-your-review-g9-a11-and", "note": "Two for your review: G9-A11 and E9-19"}
 {"at": "2026-11-13T13:10:00Z", "by": "g9", "op": "log", "target": "E9-22", "note": "13:10, exploratory (not the registered test; reports/gen9-newcomer-rows-2026-11-13, feature/gen9 0a04ef8): v2 epoch 5 on the cohort's 970 boards. Newcomer 8p-32: the 8s-32 row beats the generic row by 0.038 +- 0.002 nats a decision (the registered bar of 0.02 would be met on this population); known "}
+{"at": "2026-11-13T13:34:00Z", "by": "will", "op": "send", "target": "g9/20261113T1334Z-will-e9-25-valid-but-it-waits-for-a", "note": "e9-25: valid, but it waits for a core (the cohort holds all 8, not preemptible); its git fetch would have failed, now fixed in the queue"}
