@@ -302,6 +302,29 @@ it is -0.36 +- 0.31 behind Gen 8's result.
 - A yardstick that rewards modelling good play, not Gen 8's habits: the single-dummy count is one; a second outside
   opponent or strong people on the play server would be another.
 
+## Speed of a table (13 November, evening UTC)
+
+CPU seconds per table on the collection (pure Stu, `sp0`; with the pooled lead, `spr0`), all five boxes from 57eb87c:
+
+| Change | sp0 | spr0 |
+| --- | --- | --- |
+| before | 32.5 | 55.9 |
+| forward pass as 2-D products, decoder trunk term once a row (ecb813a) | 23.6 | 36.1 |
+| card-play nets in bf16 (3b37f15, `~/work/loop/BF16`) | 20.3 | 28.0 |
+| hand-fit scorer shared in a process, bf16 hidden layers (57eb87c) | 18.8 | 26.1 |
+
+bf16 against fp32 on held-out rows: same first card 99.7%, total variation 0.0023, trick head error 0.0232 against 0.0231.
+Not adopted:
+- int8 (dynamic, one scale a column): 3.0x on one core, but same first card 97.1%, total variation 0.024. It would need
+  training that knows about the quantization.
+- a uniform proposal in place of scoring every class: median efficiency 7%, tenth percentile 1% (`bench/proposal.py`).
+- a layout pool kept through the hand (`bench/pool_survival.py`, 490 decisions of sp0): 49% of the pool is still
+  possible at the same player's next decision, so it would save at most 37% of the play-reading rows. Play reading is
+  about 14% of a table's CPU, so the saving is at most about 5%, below the 2-3 s a table I had estimated.
+
+Where the CPU goes now (py-spy, one pure Stu worker): the net's forward pass about two thirds, the hand-fit scorer 17%,
+play reading 14% (both inclusive of their share of the forward pass).
+
 ## Where things are
 
 | What | Where |
