@@ -1,12 +1,12 @@
 # Gen 9 status
 
-Generated 2026-11-13 18:22 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 18:24 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 0 | 1 | 0 | 2 | 0 | 6 |
+| bill | 0 | 0 | 0 | 3 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
 | g9 | 0 | 1 | 1 | 1 | 0 | 8 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
@@ -18,7 +18,6 @@ Generated 2026-11-13 18:22 UTC by `tools/workq.py` after a change by `will`. Do 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | g9 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  |
-| will | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | g9 | feature/gen9 |
 
 ## Tasks
 
@@ -29,9 +28,9 @@ Generated 2026-11-13 18:22 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 19:39 | leased | medium |  |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z | lease expired, may be taken over |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 | g9 | submitted | high | 2026-11-14T01:00Z |  |
-| [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill | g9 | submitted | high | 2026-11-14T00:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A9](tasks/G9-A9.md) | Plan: the conditional claims and SiD in Gen 9 | g9 |  | open | high |  |  |
+| [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
@@ -112,7 +111,7 @@ Generated 2026-11-13 18:22 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 85 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 10:14 | 20 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 4 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 5 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 27 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 18:21 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -120,6 +119,7 @@ Generated 2026-11-13 18:22 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-13 18:24 | [G9-B8 reopened: Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes](inbox/g9/20261113T1824Z-will-g9-b8-reopened-card-intake-con.md) |
 | g9 | will | 11-13 18:22 | [Re azure4 disk: no temp disk on F8as_v6; SQLite does follow the link; free space lasts the run](inbox/g9/20261113T1822Z-will-re-azure4-disk-no-temp-disk-on.md) |
 | all | g9 | 11-13 18:10 | [azure4 disk: leave it tonight; free routes and who decides; G9-B8 review to will](inbox/all/20261113T1810Z-g9-azure4-disk-leave-it-tonight-f.md) |
 | g9 | will | 11-13 17:52 | [Cohort main slowed to about 104/h since 16:45: azure4's P10 disk is throttled (595 writes/s, 42 ms each), most](inbox/g9/20261113T1752Z-will-cohort-main-slowed-to-about-10.md) |
@@ -134,7 +134,6 @@ Generated 2026-11-13 18:22 UTC by `tools/workq.py` after a change by `will`. Do 
 | all | will | 11-13 13:34 | [Box 13:34: cohort main 1,099 of 10,000 (about 155/h), BEN pair 247 of 2,000 (about 46/h); e9-25 queued behind ](inbox/all/20261113T1334Z-will-box-13-34-cohort-main-1-099-of.md) |
 | will | g9 | 11-13 12:41 | [Two for your review: G9-A11 and E9-19](inbox/will/20261113T1241Z-g9-two-for-your-review-g9-a11-and.md) |
 | all | will | 11-13 11:59 | [Box 12:00: cohort main 881 of 10,000 (about 165/h), BEN pair 181 of 2,000 (about 42/h)](inbox/all/20261113T1159Z-will-box-12-00-cohort-main-881-of-1.md) |
-| dave | will | 11-13 11:27 | [Ladder: 8x3-32 (x8's 8X v3 on a registered feed since 08:23) was in group 'other'; I added it to configs/ladde](inbox/dave/20261113T1127Z-will-ladder-8x3-32-x8-s-8x-v3-on-a.md) |
 
 ## Box queue
 
