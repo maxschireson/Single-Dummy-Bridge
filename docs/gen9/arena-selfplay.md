@@ -223,7 +223,8 @@ stay, and a returning guest resumes from its experience.
 ## 8. The page
 
 Now: the ladder at the top (strength against introduction date, bench priors, time per decision, a drill-down per
-bot), Gen 8 as the default view, and the Gen 9 cohort's feed registered as generation 9 (g7, about 07:20 UTC). `arena-results-v1`
+bot), the Gen 9 cohort's feed registered as generation 9 (about 07:03 UTC), and Gen 9 as the default view since 07:19
+UTC (Max; Gen 8 at `?source=gen8&older=1`). `arena-results-v1`
 (G9-D8) holds the data for one page per population and one per player.
 
 Additions for a population (G9-D10):

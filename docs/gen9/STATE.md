@@ -22,10 +22,10 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
     on `feature/gen9-cohort` (46b7e004): `9a-32` against `8s-32`, `71s-32` and `8p-32` (the control) on 10,000 fresh
     deals (seed 9013), cohort identity 75b73937750652a5. About 200 boards an hour (180 at 07:38), so about 3,500 by the
     review and all 10,000 on 15 Nov. Feed `arena-gen9-azure4-feed`, registered on the page by g7 as generation 9
-    (`gen9azure4`); the page's default view stays Gen 8 until Max says otherwise. `9a-32` takes 0.354 s per card
+    (`gen9azure4`); the page's default view is Gen 9 since 07:19 UTC (Max). `9a-32` takes 0.354 s per card
     decision with a choice against `8p-32`'s 0.376 on the same box.
-  - `9a-32~ben64`: not started; it needs cores from the cohort (dave's plan: 5 workers plus a BEN job, through will's
-    `gen9_ben_lanes serve`).
+  - `9a-32~ben64`: job `g9-cohort-ben64-azure4` since about 07:50 UTC, 2,000 fresh deals (seed 9014), feed
+    `arena-gen9-azure4-ben64-feed`, BEN 64 through will's `gen9_ben_lanes serve`.
   - Paused until the cohort ends: `e9-0-n04` (281 of 800), `e9-16-h-v-p` (269 of 800), both g9's.
 - **The ladder** (G9-D9, dave and will, accepted 07:24): `arena/ladder.json` and `ladder.js` at the top of the arena page,
   refreshed hourly; the cohort's points appear as its boards come in.
@@ -98,6 +98,11 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 - Rules for the team (12 Nov): any lead other than the owner may give an experiment verdict 60 minutes after
   submission (workq applies it since 22:15); will releases a blocked request on a written check after 30 minutes of
   g9's silence. Module reviews between leads (bill with sam, dave with will).
+
+- **Max, 07:48 UTC:** no sub-agents (issue #23 closed); the promotion lead is g9's call: 0.10 IMPs a board, smaller
+  gains through the bench and arena non-inferiority (issue #24 closed). SiD and the conditional claims into Gen 9: plan
+  `docs/gen9/sid-integration.md` (G9-A9; tasks E9-24, G9-A10, G9-S9); question to x8 on the board about who builds
+  conditional claims in the 8X engine.
 
 ## Waiting
 
