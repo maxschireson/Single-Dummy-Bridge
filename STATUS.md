@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 11:53 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 11:55 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -8,7 +8,7 @@ Generated 2026-11-13 11:53 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 1 | 0 | 2 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
-| g9 | 2 | 0 | 1 | 1 | 0 | 7 |
+| g9 | 1 | 1 | 1 | 1 | 0 | 7 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 1 | 0 | 7 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
@@ -17,18 +17,19 @@ Generated 2026-11-13 11:53 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
+| g9 | [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | feature/gen9-x9 |
 | sam | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | g9 | feature/gen9 |
 
 ## Tasks
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | g9 until 11-13 13:16 | leased | high | 2026-11-13T18:00Z |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 | g9 until 11-13 14:51 | leased | high | 2026-11-14T01:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 12:59 | leased | medium |  |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z |  |
+| [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | g9 | submitted | high | 2026-11-13T18:00Z |  |
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill | g9 | submitted | high | 2026-11-14T00:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A9](tasks/G9-A9.md) | Plan: the conditional claims and SiD in Gen 9 | g9 |  | open | high |  |  |
@@ -111,7 +112,7 @@ Generated 2026-11-13 11:53 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 79 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 10:14 | 12 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 10:51 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 11:55 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 21 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 11:25 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
