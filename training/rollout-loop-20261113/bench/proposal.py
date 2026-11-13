@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / 'scripts'))
 from bridge_harness.core import Board, Game, card  # noqa: E402
 from bridge_harness.gen6 import Classes, View  # noqa: E402
 from bridge_harness.x8_player import player  # noqa: E402
-import gen8_match  # noqa: E402
+import x8_match  # noqa: E402
 
 
 def lse(x):
@@ -32,7 +32,7 @@ def main():
     p.add_argument('--boards', type=int, default=30)
     p.add_argument('--source', type=Path, default=Path.home() / 'work/loop/capsule/recovery')
     a = p.parse_args()
-    m = gen8_match.build_manifest(a.source, ROOT / 'configs/loop-bots.json', 'stu0-pa~stu0-pb', 9001)
+    m = x8_match.build_manifest(a.source, ROOT / 'configs/loop-bots.json', 'stu0-pa~stu0-pb', 9001)
     bot = player(m['bots']['stu0-pa'], a.source)
     files = sorted(a.episodes.glob('*.json.gz'))[:a.boards]
     rows = []
