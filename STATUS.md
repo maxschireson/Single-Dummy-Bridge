@@ -85,7 +85,7 @@ Generated 2026-11-13 14:52 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z | past due |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z | past due |
 | [E9-22](experiments/E9-22.md) | A newcomer's who for the nets from the arrival mixture, and the learning curve | g9 |  | open | medium | 2026-11-13T18:00Z |  |
-| [E9-25](experiments/E9-25.md) | The 0.9 threshold against BEN defenders: scorer weights against Gen 9's (registered from E9-24) | g9 |  | open | medium | 2026-11-14T18:00Z |  |
+| [E9-25](experiments/E9-25.md) | The 0.9 threshold against BEN defenders: scorer weights against Gen 9's (registered from E9-24) | g9 |  | open | medium | 2026-11-15T18:00Z |  |
 | [E9-23](experiments/E9-23.md) | Exploitability report for 8s-32 and 8x3-32: the informed reader on the bench | g9 |  | open | low |  |  |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 | resolved | high | 2026-11-13T06:00Z | adopted |
 | [E9-1](experiments/E9-1.md) | What the rule filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | rejected. **Part 1 (prediction), 12 November 2026, bill.** Registered protocol, 2,000 deals a system, leader and declarer views, pools of 512 (about 4,000 decisions a system). Gain in nats of the true layout's weight: |
