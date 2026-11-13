@@ -108,3 +108,5 @@
 2026-11-13T22:53:59Z round 3's cut: sp0 and spr0 stopped; the collection is paused for round 3's training, then sps0 (pure rollout)
 2026-11-13T23:29:15Z the collection is paused for jobs-azure5-r3.txt
 2026-11-13T23:29:15Z start l3-n stu3-n~8p-32-v41 seed 131 first 0 deals 1000 workers 8 --episodes (source 1a40de0, nets fp32)
+2026-11-13T23:55:04Z end l3-n: exit 0
+2026-11-13T23:55:04Z start l0c-n stu0-n~8p-32-v41 seed 131 first 200 deals 300 workers 8 --episodes (source 1a40de0, nets fp32)
