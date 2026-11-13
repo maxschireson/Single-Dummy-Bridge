@@ -591,13 +591,13 @@ def fit_command(args):
     # Optional candidates, not in the arena: parent's posterior plus an outside estimate.
     candidates = []
     for cid, c in (cfg.get('candidates') or {}).items():
-        if c.get('estimate_source') == 'arrival':
+        if c.get('estimate_source') == 'arrival':        # recompute from an arena9 control directory
             if not args.arrival:
                 continue
-            est = arrival_estimate(args.arrival, cid, '8p-32')
-            vs = '8p-32'
-        else:
-            est = dict(boards=c.get('boards'), mean=c['estimate'], se=c['se']); vs = c.get('vs')
+            est = arrival_estimate(args.arrival, cid, c.get('vs', '8p-32'))
+        else:                                           # the estimate as written in the config
+            est = dict(boards=c.get('boards'), mean=c['estimate'], se=c['se'])
+        vs = c.get('vs')
         par = c['parent']
         k = players.index(par)
         m = float(F['s'][k]) + est['mean']

@@ -1,6 +1,6 @@
 {
  "schema": "arena-ladder-v1",
- "computed_utc": "2026-11-13T04:36Z",
+ "computed_utc": "2026-11-13T04:53Z",
  "anchor": "ben64",
  "condition": "native",
  "unit": "IMPs a board",
@@ -2099,12 +2099,12 @@
    "label": "9a-32 (Gen 9 arrival run)",
    "group": "Gen 9 candidate",
    "parent": "8s-32",
-   "introduced_utc": null,
+   "introduced_utc": "2026-11-12T15:30Z",
    "boards": 669,
    "strength": 0.8472,
    "se": 0.1494,
    "ci95": [
-    0.5545,
+    0.5544,
     1.14
    ],
    "prior": null,
@@ -2118,9 +2118,9 @@
     "mean": 0.1868,
     "se": 0.127,
     "boards": 669,
-    "source": "Gen 9 arrival run (transfer/gen9-d6-arrival-azure4-20261112): 9a-32 against 8p-32, direct boards",
+    "source": "Gen 9 arrival run (transfer/gen9-d6-arrival-azure4-20261112): 9a-32 against 8p-32, direct native boards, a deal family once (scripts/arena_ladder.py arrival_estimate on its control directory)",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112",
-    "note": "Measured against 8p-32, placed on 8s-32 (the candidate plays as 8p-32-v41 against house bots; the arrival's 8p-32 is a Gen 9 shell package). Not a registered feed."
+    "note": "Measured against 8p-32 in the arrival run, both on policy v4, and placed on 8s-32 (v4.1): 8s-32 plays as 8p-32-v41 against house bots, and the v4 to v4.1 swap inside 8p-32 measured -0.036 +- 0.080 (box/coordination BOARD.md). Not a registered feed."
    },
    "features": [],
    "variants": [],
