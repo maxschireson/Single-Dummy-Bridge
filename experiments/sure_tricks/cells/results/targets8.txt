@@ -1,0 +1,17 @@
+600 positions at 8 cards
+contract guaranteed outright: 271
+   of these, an overtrick is also guaranteed outright: 105; otherwise its best certified probability (shape): mean 0.377, 0.5 or more in 70, none in 65
+   overtrick impossible by count (needs more tricks than cards left): 23
+no outright claim: 329
+   one down guaranteed outright: 151 (45.9%)
+   nothing certified at the contract: 107 positions; one down: outright in 19, certified probability mean 0.446, 0.9 or more in 35, 0.5 or more in 52, none in 37
+   something certified at the contract: 222 positions; one down: outright in 132, certified probability mean 0.921, 0.9 or more in 178, 0.5 or more in 212, none in 0
+   mean certified probability: contract 0.378, one down 0.766, overtrick 0.083
+   best card for the contract and best card for one down are the same in 72 of 97 positions where both have one
+   went down: 168; by how many: {1: 110, 2: 35, 3: 19, 4: 3, 5: 1}
+   down two or more: 58; of these one down was guaranteed outright in 2, and the actual layout was inside the best one-down set without that in 1
+   contract outright, overtrick guaranteed outright: 105; the bot made an overtrick in 103, the contract exactly in 2, went down in 0
+   contract outright, actual layout inside the best overtrick set: 58; the bot made an overtrick in 56, the contract exactly in 1, went down in 1
+   contract outright, actual layout outside it: 85; the bot made an overtrick in 24, the contract exactly in 60, went down in 1
+   no outright claim, one down guaranteed outright: 151; the bot made in 104, went one down in 45, two or more down in 2
+nodes, mean: contract target 445300; the two other targets together 717082

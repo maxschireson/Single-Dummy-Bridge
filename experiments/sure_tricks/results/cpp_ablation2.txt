@@ -1,0 +1,6 @@
+(default)                    bench nodes  1169268 lookups   200810 | 7-card nodes   753126 lookups   243474 | 8-card nodes   1899563 lookups   482850 | results same
+--nokiller                   bench nodes  2636668 lookups   636058 | 7-card nodes   796631 lookups   266881 | 8-card nodes   2031099 lookups   553634 | results same
+--norun --norunfront         bench nodes  1850590 lookups   622687 | 7-card nodes   785914 lookups   274501 | 8-card nodes   2075773 lookups   579282 | results same
+--notrumpbounds              bench nodes  1170303 lookups   200906 | 7-card nodes   857643 lookups   290524 | 8-card nodes   2142598 lookups   575035 | results same
+--nobounds                   bench nodes  2009790 lookups   837518 | 7-card nodes  1087595 lookups   498908 | 8-card nodes   3062045 lookups  1221935 | results same
+--noorder                    bench nodes  5333306 lookups  1684041 | 7-card nodes  1700851 lookups   729270 | 8-card nodes   6651614 lookups  2393582 | results same

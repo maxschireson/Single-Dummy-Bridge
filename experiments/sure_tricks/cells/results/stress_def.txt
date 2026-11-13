@@ -1,0 +1,16 @@
+3-card endings, seed 21: 900000 values compared with --def all in 180 s
+  --def ends differs in 0 
+  --def mid  differs in 0 
+  --def two  differs in 2 [(4, 3, '0x1101000000', '0x20080400', '0x3042010800000', '0x0', 0, 0, 1, {'all': 0, 'ends': 0, 'mid': 0, 'two': 1}), (4, 3, '0xc00000080000', '0x4004010000', '0x1040000040190', '0x0', 0, 8, 1, {'all': 0, 'ends': 0, 'mid': 0, 'two': 1})]
+4-card endings, seed 22: 900000 values compared with --def all in 314 s
+  --def ends differs in 0 
+  --def mid  differs in 0 
+  --def two  differs in 10 [(4, 1, '0x10260000', '0x240000000480', '0x80104a0008042', '0x0', 0, 0, 1, {'all': 1, 'ends': 1, 'mid': 1, 'two': 2}), (4, 3, '0xc00000280000', '0x201c0', '0x2041208408004', '0x0', 0, 8, 1, {'all': 0, 'ends': 0, 'mid': 0, 'two': 1})]
+5-card endings, seed 23: 360000 values compared with --def all in 320 s
+  --def ends differs in 0 
+  --def mid  differs in 0 
+  --def two  differs in 5 [(4, 0, '0x2008000a00080', '0x400000c000801', '0x8011242104204', '0x0', 8, 0, 1, {'all': 1, 'ends': 1, 'mid': 1, 'two': 2}), (4, 1, '0x50128000000', '0x2000080802008', '0x404401054412', '0x4000000000', 0, 8, 1, {'all': 0, 'ends': 0, 'mid': 0, 'two': 1})]
+6-card endings, seed 24: 90000 values compared with --def all in 607 s
+  --def ends differs in 0 
+  --def mid  differs in 0 
+  --def two  differs in 1 [(4, 0, '0x900018000880', '0x840c02010', '0xd0044201a0026', '0x0', 0, 0, 1, {'all': 3, 'ends': 3, 'mid': 3, 'two': 4})]

@@ -1,0 +1,76 @@
+1450 positions, 803 without an outright claim
+certified on the actual layout but not double-dummy making there (must be 0): 0
+
+the card the bot played, by what the actual layout was for it (shape level):
+   inside its certified set                249 positions, made  96.0% +- 1.2
+   double-dummy making, not certified      173 positions, made  82.1% +- 2.9
+   not double-dummy making                 381 positions, made   4.7% +- 1.1
+
+the card the bot played, by what the actual layout was for it (two named cards):
+   inside its certified set                311 positions, made  94.9% +- 1.3
+   double-dummy making, not certified      111 positions, made  77.5% +- 4.0
+   not double-dummy making                 381 positions, made   4.7% +- 1.1
+   overall made: 49.7%
+
+the bot's card by its double-dummy value D (share of 256 sampled layouts in which it makes):
+   D 1.00-1.00:  132 positions, mean D 1.000, made 0.947 | mean certified (shape) 0.811, (two named) 0.881
+   D 0.90-1.00:  140 positions, mean D 0.958, made 0.807 | mean certified (shape) 0.714, (two named) 0.809
+   D 0.75-0.90:  103 positions, mean D 0.822, made 0.748 | mean certified (shape) 0.379, (two named) 0.529
+   D 0.50-0.75:   97 positions, mean D 0.632, made 0.505 | mean certified (shape) 0.220, (two named) 0.378
+   D 0.25-0.50:   81 positions, mean D 0.372, made 0.284 | mean certified (shape) 0.055, (two named) 0.220
+   D 0.00-0.25:  250 positions, mean D 0.028, made 0.048 | mean certified (shape) 0.004, (two named) 0.010
+the bot's card with D of 0.999 or more, by its certified probability (shape level):
+   certified 0.90-1.00:   78 positions, made 1.000
+   certified 0.50-0.90:   38 positions, made 0.868
+   certified 0.00-0.50:   12 positions, made 0.833
+   certified 0.00-0.00:    4 positions, made 1.000
+the same with two named cards:
+   certified 0.90-1.00:   87 positions, made 1.000
+   certified 0.50-0.90:   38 positions, made 0.842
+   certified 0.00-0.50:    7 positions, made 0.857
+
+what the card each rule picks was on the actual layout (shape-level sets); n = 803
+   rule                                                 certified   DD only   DD-lost | makes expected: line kept / as these bots convert
+   the bot (as played)                                      249.0     173.0     381.0 |  409.0 /  399.0
+   DD value; ties at random                                 251.7     174.8     376.5 |  413.0 /  402.9
+   DD value; ties by certified (shape)                      256.0     170.0     377.0 |  413.3 /  403.1
+   certified only (shape); ties by DD                       256.0     159.0     388.0 |  404.8 /  394.6
+   certified + 0.25 x (DD - certified) (shape)              257.0     167.0     379.0 |  412.0 /  401.7
+   certified + 0.50 x (DD - certified) (shape)              258.0     168.0     377.0 |  413.7 /  403.3
+   certified + 0.75 x (DD - certified) (shape)              257.0     169.0     377.0 |  413.5 /  403.2
+
+what the card each rule picks was on the actual layout (two-named sets); n = 803
+   rule                                                 certified   DD only   DD-lost | makes expected: line kept / as these bots convert
+   the bot (as played)                                      311.0     111.0     381.0 |  415.0 /  399.0
+   DD value; ties at random                                 314.9     111.6     376.5 |  419.2 /  403.0
+   DD value; ties by certified (2 named)                    318.0     108.0     377.0 |  419.5 /  403.1
+   certified only (2 named); ties by DD                     321.0      95.0     387.0 |  412.9 /  396.4
+   certified + 0.25 x (DD - certified) (2 named)            320.0     104.0     379.0 |  418.5 /  402.0
+   certified + 0.50 x (DD - certified) (2 named)            323.0     104.0     376.0 |  421.3 /  404.7
+   certified + 0.75 x (DD - certified) (2 named)            320.0     107.0     376.0 |  420.7 /  404.2
+
+(the bot actually made 399 of these 803)
+
+certified-first and DD-first pick different cards in 78 positions (shape). Their cards on the actual layout (certified-first / DD-first):
+   cert  / cert     23.0
+   dd    / dd       15.0
+   lost  / lost     15.0
+   lost  / dd       10.0
+   cert  / dd        7.0
+   dd    / cert      5.0
+   lost  / cert      2.0
+   dd    / lost      1.0
+
+certified-first and DD-first pick different cards in 117 positions (two named). Their cards on the actual layout (certified-first / DD-first):
+   cert  / cert     38.0
+   lost  / lost     31.0
+   dd    / dd       15.0
+   lost  / dd       12.0
+   cert  / dd        9.0
+   dd    / cert      6.0
+   lost  / cert      2.0
+   cert  / lost      2.0
+   dd    / lost      2.0
+
+DD value ties at the top between two or more cards: 474 of 803; of these the tied cards differ by more than 0.05 in certified probability (shape): 39
+some card has D of 0.999 or more: 143; the best certified probability there: mean 0.830 (shape), 0.900 (two named); made 92.3%

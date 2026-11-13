@@ -1,0 +1,70 @@
+
+==== 7 cards left: 816 positions (0 more dropped: a question hit the node cap)
+outright claim (some card guarantees the contract): 471 of 816 (57.7%)
+no outright claim: 345
+  shapes per position: median 19, 90th pct 52, max 60
+  -- scorer weights, shape level
+     heaviest set one line wins (floor): mean 0.280 +- 0.020, median 0.004
+     floor > 0: 201 of 345 (58.3%) | >= 0.25: 133 of 345 (38.6%) | >= 0.5: 99 of 345 (28.7%) | >= 0.75: 62 of 345 (18.0%) | >= 0.9: 41 of 345 (11.9%)
+     ceiling (cells one at a time): mean 0.302; ceiling minus floor: mean 0.022; > 0.01: 63 of 345 (18.3%); > 0.10: 25 of 345 (7.2%)
+     joint step settled by its first question: all cards asked 149 of 364 (40.9%); best card 114 of 209 (54.5%)
+     cells holding 50% / 90% / 95% / 99% of the weight, median: 2 / 6 / 7 / 8
+     actual layout inside the best card's set: 39.7% +- 3.4; mean floor on the same positions 46.2% (n = 209)
+        floor 0.00-0.25: n   76, mean floor 0.035, actual layout inside 0.066
+        floor 0.25-0.50: n   34, mean floor 0.405, actual layout inside 0.412
+        floor 0.50-0.75: n   37, mean floor 0.611, actual layout inside 0.351
+        floor 0.75-0.90: n   21, mean floor 0.832, actual layout inside 0.667
+        floor 0.90-1.00: n   41, mean floor 0.976, actual layout inside 0.902
+     went down from here: 215; best card's line was sure on the actual layout in 6
+     made from here: 130; actual layout outside the best card's set in 53
+     bot played the best-floor card in 134 of 345 (38.8%); its own card had the actual layout in its set in 85, of which 5 went down later
+  -- uniform weights, shape level
+     heaviest set one line wins (floor): mean 0.282 +- 0.019, median 0.024
+     floor > 0: 210 of 345 (60.9%) | >= 0.25: 136 of 345 (39.4%) | >= 0.5: 110 of 345 (31.9%) | >= 0.75: 62 of 345 (18.0%) | >= 0.9: 31 of 345 (9.0%)
+     ceiling (cells one at a time): mean 0.304; ceiling minus floor: mean 0.022; > 0.01: 82 of 345 (23.8%); > 0.10: 25 of 345 (7.2%)
+     joint step settled by its first question: all cards asked 155 of 382 (40.6%); best card 117 of 210 (55.7%)
+     cells holding 50% / 90% / 95% / 99% of the weight, median: 4 / 10 / 12 / 16
+     actual layout inside the best card's set: 38.6% +- 3.4; mean floor on the same positions 46.4% (n = 210)
+        floor 0.00-0.25: n   74, mean floor 0.041, actual layout inside 0.068
+        floor 0.25-0.50: n   26, mean floor 0.396, actual layout inside 0.269
+        floor 0.50-0.75: n   48, mean floor 0.600, actual layout inside 0.438
+        floor 0.75-0.90: n   31, mean floor 0.827, actual layout inside 0.677
+        floor 0.90-1.00: n   31, mean floor 0.955, actual layout inside 0.871
+     went down from here: 215; best card's line was sure on the actual layout in 6
+     made from here: 130; actual layout outside the best card's set in 55
+     bot played the best-floor card in 129 of 345 (37.4%); its own card had the actual layout in its set in 82, of which 5 went down later
+  cost in nodes, all 816 positions:           median       mean       90th       99th         max
+     outright question                        4766      13648      35459     130505      375617
+     one search per shape, all shapes        25665      77219     209653     585789     1543035
+       per shape                              1478       2977       7863      16658       44329
+     joint step (scorer weights)                24      10052      11874     248382      454834
+  cost in nodes, the 345 without an outright claim:
+     outright question                        3085       7969      18043      84114      170027
+     one search per shape, all shapes        40940     116141     323378    1232586     1543035
+     joint step (scorer weights)               120      21796      71616     338718      454834
+     shape level total                       43509     137938     384761    1335225     1687420
+       searches for 99% of scorer weight*      14621      59654     159095     637527     1186950
+       searches for 95% of scorer weight*      11864      45378     119075     473592      860538
+     * estimate: all-shape nodes scaled by the share of shapes needed, as if every shape cost the same
+     this solver, shape level: mean 17 ms, median 5, 90th 49, 99th 168; 119 ns a node in the per-shape searches, 132 in the outright question
+     joint questions per position: median 1, mean 13, 90th 49
+  -- named honours, scorer weights (345 positions with a candidate)
+     shape only 0.280 | first candidate 0.336 (+0.056) | best of up to 3 single honours 0.350 (+0.070; +0.05 or more in 27.2%)
+     h2 (345 positions): floor 0.357 against shape-only 0.280 (+0.077 +- 0.008; +0.05 or more in 28.4%; +0.20 or more in 15.1%); ceiling 0.408; cells median 54; dropped weight max 0.000
+        actual layout inside the best set: 45.0%; mean floor 51.7% (n = 238)
+        went down from here: 215; best line sure on the actual layout in 9 (shape level, same positions: 6)
+     h3 (345 positions): floor 0.361 against shape-only 0.280 (+0.081 +- 0.008; +0.05 or more in 30.1%; +0.20 or more in 16.2%); ceiling 0.416; cells median 84; dropped weight max 0.000
+        actual layout inside the best set: 45.2%; mean floor 52.1% (n = 239)
+        went down from here: 215; best line sure on the actual layout in 9 (shape level, same positions: 6)
+  -- named honours, uniform weights (345 positions with a candidate)
+     shape only 0.282 | first candidate 0.336 (+0.054) | best of up to 3 single honours 0.348 (+0.066; +0.05 or more in 30.7%)
+     h2 (345 positions): floor 0.355 against shape-only 0.282 (+0.073 +- 0.007; +0.05 or more in 32.2%; +0.20 or more in 13.6%); ceiling 0.408; cells median 54; dropped weight max 0.000
+        actual layout inside the best set: 44.5%; mean floor 51.4% (n = 238)
+        went down from here: 215; best line sure on the actual layout in 10 (shape level, same positions: 6)
+     h3 (345 positions): floor 0.360 against shape-only 0.282 (+0.078 +- 0.007; +0.05 or more in 33.9%; +0.20 or more in 15.1%); ceiling 0.416; cells median 84; dropped weight max 0.000
+        actual layout inside the best set: 44.4%; mean floor 52.0% (n = 239)
+        went down from here: 215; best line sure on the actual layout in 10 (shape level, same positions: 6)
+  cost in nodes with named honours (mean over the 345): shape level 137938 | one honour, each candidate 121280 | h2 136559 | h3 209045
+     refined sets that failed their check: 0; questions capped at the honour levels: 0
+  with an outright claim: bot played a guaranteeing card in 454 of 471 (96.4%); went down after having a claim: 2
+  wall time per position in this study: mean 0.1 s, max 2 s

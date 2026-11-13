@@ -263,6 +263,7 @@ class PolicyNet:
     def log_policy_arrays(self, batch, chunk=4096):
         """[n, 52] log-probability of each card from stacked inputs; illegal cards are about -1e9."""
         n = len(batch['state'])
+        batch = batch if 'bot_own' in batch else self.tag(batch, n)
         out = np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
             out[i:i + chunk] = log_softmax(forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})['policy'])
@@ -271,6 +272,7 @@ class PolicyNet:
     def policy_and_gap_arrays(self, batch, chunk=4096):
         """([n, 52] log-probability of each card, [n, 52] predicted tricks given up by each card) from stacked inputs."""
         n = len(batch['state'])
+        batch = batch if 'bot_own' in batch else self.tag(batch, n)
         logp, gap = np.empty((n, 52), np.float32), np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
             out = forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})

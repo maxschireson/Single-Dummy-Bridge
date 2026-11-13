@@ -1,0 +1,77 @@
+{
+ "L6": {
+  "deals": {
+   "L6-QW": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:D3 N:D4 E:D2 S:D5",
+     "S:S4 W:S5 N:S7 E:S3",
+     "N:S2 E:H2 S:S9 W:S6",
+     "S:ST W:C2 N:S8 E:H5",
+     "S:SJ W:H9 N:SQ E:H6",
+     "N:SK E:D6 S:SA W:HT",
+     "S:H3 W:HJ N:HA E:H7",
+     "N:H4 E:H8 S:HK W:HQ",
+     "S:DJ W:D7 N:DT E:D8",
+     "S:DA W:DQ N:DK E:D9",
+     "S:C4 W:C5 N:C3 E:C8",
+     "E:CT S:C6 W:C9 N:CA",
+     "N:C7 E:CQ S:CK W:CJ"
+    ]
+   },
+   "L6-QE": {
+    "dd": 12,
+    "sound": 12,
+    "play": [
+     "W:D3 N:D4 E:D2 S:D5",
+     "S:S4 W:S5 N:S7 E:S3",
+     "N:S2 E:H2 S:S9 W:S6",
+     "S:ST W:C2 N:S8 E:H5",
+     "S:SJ W:H9 N:SQ E:H6",
+     "N:SK E:D6 S:SA W:HT",
+     "S:H3 W:HJ N:HA E:H7",
+     "N:H4 E:H8 S:HK W:HQ",
+     "S:DJ W:D7 N:DK E:D8",
+     "N:DT E:DQ S:DA W:D9",
+     "S:C4 W:C5 N:C3 E:C8",
+     "E:CT S:C6 W:C9 N:CA",
+     "N:C7 E:CQ S:CK W:CJ"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "D3"
+   ],
+   "cards": {
+    "D4": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "L6-QW",
+      "L6-QE"
+     ]
+    },
+    "DT": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "L6-QW",
+      "L6-QE"
+     ]
+    },
+    "DK": {
+     "fused": 0.5714285714285714,
+     "true": 0.5714285714285714,
+     "wins": [
+      "L6-QE"
+     ]
+    }
+   },
+   "nodes": 1283705,
+   "solves": 2566931,
+   "seconds": 372
+  }
+ }
+}

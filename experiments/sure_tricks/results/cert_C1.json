@@ -1,0 +1,103 @@
+{
+ "C1": {
+  "deals": {
+   "C1": {
+    "dd": 10,
+    "sound": 10,
+    "play": [
+     "W:HQ N:H4 E:H2 S:HK",
+     "S:SA W:S5 N:S2 E:S3",
+     "S:S4 W:S6 N:SK E:H5",
+     "N:HA E:H6 S:H3 W:H9",
+     "N:C3 E:C8 S:CK W:C2",
+     "S:C4 W:C5 N:CA E:CT",
+     "N:C7 E:CQ S:C6 W:C9",
+     "E:H7 S:S9 W:HT N:D2",
+     "S:ST W:HJ N:S7 E:H8",
+     "S:SJ W:CJ N:S8 E:D6",
+     "S:D3 W:D7 N:D4 E:D8",
+     "E:DT S:D5 W:DK N:DQ",
+     "W:D9 N:SQ E:DA S:DJ"
+    ]
+   }
+  },
+  "exact": {
+   "prefix": [
+    "HQ",
+    "H4",
+    "H2",
+    "HK",
+    "SA",
+    "S5",
+    "S2",
+    "S3",
+    "S4",
+    "S6",
+    "SK",
+    "H5"
+   ],
+   "cards": {
+    "S7": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "C1"
+     ]
+    },
+    "SQ": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "C1"
+     ]
+    },
+    "HA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "C1"
+     ]
+    },
+    "D2": {
+     "fused": 0.0,
+     "true": 0.0,
+     "wins": []
+    },
+    "D4": {
+     "fused": 0.0,
+     "true": 0.0,
+     "wins": []
+    },
+    "DQ": {
+     "fused": 0.0,
+     "true": 0.0,
+     "wins": []
+    },
+    "C3": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "C1"
+     ]
+    },
+    "C7": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "C1"
+     ]
+    },
+    "CA": {
+     "fused": 1.0,
+     "true": 1.0,
+     "wins": [
+      "C1"
+     ]
+    }
+   },
+   "nodes": 6,
+   "solves": 7,
+   "seconds": 0
+  }
+ }
+}

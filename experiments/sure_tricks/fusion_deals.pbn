@@ -1,0 +1,282 @@
+[Event "Strategy fusion test set: A6-QW"]
+[Board "1"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT4.A73 3.87652.9862.QT8 AJT94.K3.AJ5.K64 65.QJT9.Q73.J952"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+HQ - - -
+*
+{A6-QW | set A6 (tie): Two-way queen, strip and club exit, 6S | layout: DQ West (3 diamonds, 2 trumps)}
+
+[Event "Strategy fusion test set: A6-QE"]
+[Board "2"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT4.A73 3.87652.Q862.QT8 AJT94.K3.AJ5.K64 65.QJT9.973.J952"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+HQ - - -
+*
+{A6-QE | set A6 (tie): Two-way queen, strip and club exit, 6S | layout: DQ East (4 diamonds, 1 trump)}
+
+[Event "Strategy fusion test set: A6m-QE"]
+[Board "3"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT4.A73 65.QJT9.Q73.J952 AJT94.K3.AJ5.K64 3.87652.9862.QT8"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+H8 - - -
+*
+{A6m-QE | set A6m (tie): Two-way queen, strip and club exit, 6S (East-West hands exchanged) | layout: DQ East (3 diamonds, 2 trumps)}
+
+[Event "Strategy fusion test set: A6m-QW"]
+[Board "4"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT4.A73 65.QJT9.973.J952 AJT94.K3.AJ5.K64 3.87652.Q862.QT8"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+H8 - - -
+*
+{A6m-QW | set A6m (tie): Two-way queen, strip and club exit, 6S (East-West hands exchanged) | layout: DQ West (4 diamonds, 1 trump)}
+
+[Event "Strategy fusion test set: A4-QW"]
+[Board "5"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KJ4.763 3.87652.9862.KQT AJT94.K3.AT5.854 65.QJT9.Q73.AJ92"]
+[Declarer "S"]
+[Contract "4S"]
+[Auction "S"]
+1S Pass 2NT Pass
+4S Pass Pass Pass
+[Play "W"]
+HQ - - -
+*
+{A4-QW | set A4 (tie): Two-way queen, strip and club exit, 4S | layout: DQ West (3 diamonds)}
+
+[Event "Strategy fusion test set: A4-QE"]
+[Board "6"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KJ4.763 3.87652.Q862.KQT AJT94.K3.AT5.854 65.QJT9.973.AJ92"]
+[Declarer "S"]
+[Contract "4S"]
+[Auction "S"]
+1S Pass 2NT Pass
+4S Pass Pass Pass
+[Play "W"]
+HQ - - -
+*
+{A4-QE | set A4 (tie): Two-way queen, strip and club exit, 4S | layout: DQ East (4 diamonds)}
+
+[Event "Strategy fusion test set: B6-QW"]
+[Board "7"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:8752.Q42.KT4.732 T.J765.9862.T865 AK643.AK3.AJ5.AK QJ9.T98.Q73.QJ94"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+2C Pass 2D Pass
+2S Pass 3S Pass
+4NT Pass 5C Pass
+6S Pass Pass Pass
+[Play "W"]
+CQ - - -
+*
+{B6-QW | set B6 (tie): Two-way queen, throw-in with the master trump, 6S | layout: master trump West, DQ West (3 diamonds)}
+
+[Event "Strategy fusion test set: B6-QE"]
+[Board "8"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:8752.Q42.KT4.732 T.J765.Q862.T865 AK643.AK3.AJ5.AK QJ9.T98.973.QJ94"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+2C Pass 2D Pass
+2S Pass 3S Pass
+4NT Pass 5C Pass
+6S Pass Pass Pass
+[Play "W"]
+CQ - - -
+*
+{B6-QE | set B6 (tie): Two-way queen, throw-in with the master trump, 6S | layout: master trump West, DQ East (4 diamonds)}
+
+[Event "Strategy fusion test set: B6m-QE"]
+[Board "9"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:8752.Q42.KT4.732 QJ9.T98.Q73.QJ94 AK643.AK3.AJ5.AK T.J765.9862.T865"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+2C Pass 2D Pass
+2S Pass 3S Pass
+4NT Pass 5C Pass
+6S Pass Pass Pass
+[Play "W"]
+C5 - - -
+*
+{B6m-QE | set B6m (tie): Two-way queen, throw-in with the master trump, 6S (East-West hands exchanged) | layout: master trump East, DQ East (3 diamonds)}
+
+[Event "Strategy fusion test set: B6m-QW"]
+[Board "10"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:8752.Q42.KT4.732 QJ9.T98.973.QJ94 AK643.AK3.AJ5.AK T.J765.Q862.T865"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+2C Pass 2D Pass
+2S Pass 3S Pass
+4NT Pass 5C Pass
+6S Pass Pass Pass
+[Play "W"]
+C5 - - -
+*
+{B6m-QW | set B6m (tie): Two-way queen, throw-in with the master trump, 6S (East-West hands exchanged) | layout: master trump East, DQ West (4 diamonds)}
+
+[Event "Strategy fusion test set: S6-QW"]
+[Board "11"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT42.76 3.8765.986.T8432 AJT94.K32.AJ5.A5 65.QJT9.Q73.KQJ9"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+CK - - -
+*
+{S6-QW | set S6 (strict): Two-way queen where keeping the guess looks worth an overtrick, 6S | layout: DQ West, diamonds 3-3}
+
+[Event "Strategy fusion test set: S6-QE"]
+[Board "12"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT42.76 3.8765.Q86.T8432 AJT94.K32.AJ5.A5 65.QJT9.973.KQJ9"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+CK - - -
+*
+{S6-QE | set S6 (strict): Two-way queen where keeping the guess looks worth an overtrick, 6S | layout: DQ East, diamonds 3-3}
+
+[Event "Strategy fusion test set: G7-QW"]
+[Board "13"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:T872.Q42.KT4.K73 43.T8765.9862.52 AKQJ9.AK3.AJ5.A4 65.J9.Q73.QJT986"]
+[Declarer "S"]
+[Contract "7S"]
+[Auction "S"]
+2C Pass 2D Pass
+2S Pass 3S Pass
+4NT Pass 5C Pass
+7S Pass Pass Pass
+[Play "W"]
+CQ - - -
+*
+{G7-QW | set G7 (guess): Two-way queen in a grand slam with a full count available, 7S (reference, not scored) | layout: DQ in the three-card hand (West)}
+
+[Event "Strategy fusion test set: G7-QE"]
+[Board "14"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:T872.Q42.KT4.K73 43.T8765.Q862.52 AKQJ9.AK3.AJ5.A4 65.J9.973.QJT986"]
+[Declarer "S"]
+[Contract "7S"]
+[Auction "S"]
+2C Pass 2D Pass
+2S Pass 3S Pass
+4NT Pass 5C Pass
+7S Pass Pass Pass
+[Play "W"]
+CQ - - -
+*
+{G7-QE | set G7 (guess): Two-way queen in a grand slam with a full count available, 7S (reference, not scored) | layout: DQ in the four-card hand (East)}
+
+[Event "Strategy fusion test set: C1"]
+[Board "15"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.Q42.A73 3.87652.AT86.QT8 AJT94.K3.J53.K64 65.QJT9.K97.J952"]
+[Declarer "S"]
+[Contract "4S"]
+[Auction "S"]
+1S Pass 2NT Pass
+4S Pass Pass Pass
+[Play "W"]
+HQ - - -
+*
+{C1 | set C1 (control): Frozen suit (Q42 opposite J53), strip and club exit, 4S | layout: DK West, DA East}
+
+[Event "Strategy fusion test set: L6-QW"]
+[Board "16"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT4.A73 3.87652.9862.QT8 AJT94.K3.AJ5.K64 65.QJT9.Q73.J952"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+D3 - - -
+*
+{L6-QW | set L6 (tie): The A6 hands on a low diamond lead | layout: DQ West (led from the queen)}
+
+[Event "Strategy fusion test set: L6-QE"]
+[Board "17"]
+[Dealer "S"]
+[Vulnerable "None"]
+[Deal "N:KQ872.A4.KT4.A73 3.87652.Q862.QT8 AJT94.K3.AJ5.K64 65.QJT9.973.J952"]
+[Declarer "S"]
+[Contract "6S"]
+[Auction "S"]
+1S Pass 2NT Pass
+3S Pass 4NT Pass
+5H Pass 6S Pass
+Pass Pass
+[Play "W"]
+D3 - - -
+*
+{L6-QE | set L6 (tie): The A6 hands on a low diamond lead | layout: DQ East}

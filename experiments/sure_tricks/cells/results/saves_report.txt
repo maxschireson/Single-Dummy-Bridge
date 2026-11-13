@@ -1,0 +1,56 @@
+
+== 8 cards: 1450 positions, 803 without an outright claim
+   outright claim then went down: 5 (games/slams/doubled: 3)
+   -- level shape (803 positions; no card has a set in 223)
+      bot played another card than the best-floor card: 274
+         went down, best line sure on the actual layout (would have made): 10 (games etc: 7)
+         made, actual layout outside the best set (result after switching unknown): 66 (games etc: 34)
+         made, actual layout inside the best set (no change): 118
+         went down, actual layout outside the best set (unknown, probably down): 80
+      bot played the best-floor card: 306; of these went down although its line was sure on the actual layout (later deviation): 3 (games etc: 2)
+      bot played another card whose own set held the actual layout, then went down: 7
+         best floor >= 0.50: other card played 151; would have made 8; made with layout outside the set 15
+         best floor >= 0.75: other card played 110; would have made 6; made with layout outside the set 6
+         best floor >= 0.90: other card played 72; would have made 4; made with layout outside the set 1
+   -- level h2 (803 positions; no card has a set in 160)
+      bot played another card than the best-floor card: 314
+         went down, best line sure on the actual layout (would have made): 15 (games etc: 12)
+         made, actual layout outside the best set (result after switching unknown): 46 (games etc: 28)
+         made, actual layout inside the best set (no change): 152
+         went down, actual layout outside the best set (unknown, probably down): 101
+      bot played the best-floor card: 329; of these went down although its line was sure on the actual layout (later deviation): 6 (games etc: 4)
+      bot played another card whose own set held the actual layout, then went down: 10
+         best floor >= 0.50: other card played 189; would have made 14; made with layout outside the set 16
+         best floor >= 0.75: other card played 130; would have made 6; made with layout outside the set 9
+         best floor >= 0.90: other card played 87; would have made 4; made with layout outside the set 2
+
+== 7 cards: 1405 positions, 660 without an outright claim
+   outright claim then went down: 5 (games/slams/doubled: 2)
+   -- level shape (660 positions; no card has a set in 233)
+      bot played another card than the best-floor card: 146
+         went down, best line sure on the actual layout (would have made): 3 (games etc: 3)
+         made, actual layout outside the best set (result after switching unknown): 37 (games etc: 18)
+         made, actual layout inside the best set (no change): 55
+         went down, actual layout outside the best set (unknown, probably down): 51
+      bot played the best-floor card: 281; of these went down although its line was sure on the actual layout (later deviation): 4 (games etc: 3)
+      bot played another card whose own set held the actual layout, then went down: 2
+         best floor >= 0.50: other card played 73; would have made 2; made with layout outside the set 8
+         best floor >= 0.75: other card played 52; would have made 1; made with layout outside the set 4
+         best floor >= 0.90: other card played 38; would have made 0; made with layout outside the set 2
+   -- level h2 (660 positions; no card has a set in 177)
+      bot played another card than the best-floor card: 184
+         went down, best line sure on the actual layout (would have made): 8 (games etc: 6)
+         made, actual layout outside the best set (result after switching unknown): 28 (games etc: 15)
+         made, actual layout inside the best set (no change): 84
+         went down, actual layout outside the best set (unknown, probably down): 64
+      bot played the best-floor card: 299; of these went down although its line was sure on the actual layout (later deviation): 5 (games etc: 3)
+      bot played another card whose own set held the actual layout, then went down: 5
+         best floor >= 0.50: other card played 111; would have made 5; made with layout outside the set 9
+         best floor >= 0.75: other card played 69; would have made 1; made with layout outside the set 4
+         best floor >= 0.90: other card played 47; would have made 1; made with layout outside the set 2
+
+tables with a sure make that went down, by where it shows:
+  any outright claim lost (8 or 7 cards): 6
+  shape-level line (8 or 7 cards), not counting tables already in the line above: 13
+  two-honour line only: 13
+  all: 32
