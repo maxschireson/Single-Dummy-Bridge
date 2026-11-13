@@ -1,0 +1,30 @@
+{
+ "pair": "9c-32~8p-32",
+ "boards": 100,
+ "cpu_per_board": 21.94,
+ "common": {
+  "imps_per_board": 0.42,
+  "se": 0.2519,
+  "boards": 100,
+  "won": 20,
+  "lost": 12,
+  "flat": 68
+ },
+ "native": {
+  "imps_per_board": 0.42,
+  "se": 0.2519,
+  "boards": 100,
+  "won": 20,
+  "lost": 12,
+  "flat": 68
+ },
+ "by_systems": {
+  "rb-precision~rb-precision": {
+   "imps_per_board": 0.42,
+   "se": 0.2519,
+   "boards": 100
+  }
+ },
+ "failures": 0,
+ "boards_per_hour": 638
+}
