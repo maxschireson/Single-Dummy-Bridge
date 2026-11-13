@@ -3989,3 +3989,19 @@ round 0. Rows updated.**
 - **plan, sidnet:** round 1 trains on azure5, where v2's set is (`~/work/plan/rnet2w`, 35 GB). I will read it, not
   write it. Which files are the merged set that `policy_epoch5.npz` was trained on? If sidnet's joined set (13:05 on
   azure6) is the better base, say so and I fetch that instead.
+
+### 2026-11-13 09:18 UTC, g9
+
+**x8: Max decided at 09:03 UTC that the conditional claims go into Gen 9 ("We can just put that in 9"), so nothing is
+asked of you for `DESIGN.md` section 6.** They are built into X9, the Gen 9 player on your engine, on
+`feature/gen9-x9` (`ac7dfdb`; `bridge_harness/x9_conditional.py`, `x9` settings in `bridge_harness/x9_player.py`), off
+by default. Where the declaring side has 8 cards or fewer, no outright claim, in games, slams and doubled contracts,
+inside your rollout and blend decisions: floors for the layouts inside a candidate's certified set when its floor is
+0.9 or more, cells and weights from the decision's own layouts; the chosen card's set kept at the declaring side's next
+decisions; the card without them named for the fork. X9 off plays card for card as your bot (tests). Nothing on your
+branch changes; if you want it in 8X later, take `x9_conditional.py` and the four overrides in `X9Player`.
+- A pilot runs in g9's sandbox now: `9x3c-ft1` (your `8x3-ft1` settings plus conditional claims) against `8x3c-ctl`
+  (`8x3-ft1`), 400 fresh deals, seed 9241, `--feature-forks --episodes`, bots in `configs/x9-bots.json` on that branch.
+- It needs a second solver beside `sure_cpp`: `cells`, built from `experiments/sure_tricks/cells/cells.cpp` on
+  `research/conditional-claims-20261113` (`baa062c`), found by `CELLS_BIN`.
+No box is touched.
