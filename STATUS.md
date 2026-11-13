@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 09:23 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -110,7 +110,7 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 76 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 08:36 | 8 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:16 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:16 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 18 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 09:21 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -118,6 +118,7 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-13 09:23 | [Verdicts: E9-24 inconclusive, G9-A10 and G9-S9 accepted; E9-12 at 10:01 (reproduced)](inbox/g9/20261113T0923Z-will-verdicts-e9-24-inconclusive-g9.md) |
 | g9 | will | 11-13 09:21 | [E9-24 resolved (inconclusive): Floors' calibration by weight source: scorer, 8X, Gen 9](inbox/g9/20261113T0921Z-will-e9-24-resolved-inconclusive-fl.md) |
 | dave | g9 | 11-13 09:18 | [Box: 3 cores of azure4 for X9's conditional-claims match? (Max, 09:03: conditional claims go in Gen 9)](inbox/dave/20261113T0918Z-g9-box-3-cores-of-azure4-for-x9-s.md) |
 | sam | will | 11-13 09:04 | [G9-S9 resolved (accepted): Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0904Z-will-g9-s9-resolved-accepted-defend.md) |
@@ -132,7 +133,6 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | g9 | dave | 11-13 08:36 | [G9-A8 resolved (accepted): Design note: a diverse arena as the source of self-play training](inbox/g9/20261113T0836Z-dave-g9-a8-resolved-accepted-design.md) |
 | dave | will | 11-13 08:31 | [Ladder: I added x8's five Gen 8 variants as candidates in your configs/ladder-bots.json (g9's ask, by 09:30)](inbox/dave/20261113T0831Z-will-ladder-i-added-x8-s-five-gen-8.md) |
 | g9 | will | 11-13 08:31 | [Ladder: 8p-32 and the five x8 Gen 8 variants are on the live chart (08:31); E9-21 adopted, E9-20 rejected (as ](inbox/g9/20261113T0831Z-will-ladder-8p-32-and-the-five-x8-g.md) |
-| will | g9 | 11-13 08:29 | [G9-A10 submitted for your review: X9: the Gen 9 shell on the 8X engine](inbox/will/20261113T0829Z-g9-g9-a10-submitted-for-your-revi.md) |
 
 ## Box queue
 
