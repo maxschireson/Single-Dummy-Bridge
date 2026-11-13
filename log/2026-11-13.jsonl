@@ -18,3 +18,4 @@
 {"at": "2026-11-13T00:09:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-11-p7", "note": "cancelled"}
 {"at": "2026-11-13T00:09:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-11-r7", "note": "cancelled"}
 {"at": "2026-11-13T00:09:00Z", "by": "g9", "op": "job-cancel", "target": "azure4/e9-11-r8", "note": "g9 00:12 UTC 13 Nov: Gen 9 is postponed in favor of 8X (Max, 00:04). Cancelled to free azure4; job files remain and 'workq job retry' restarts any of them."}
+{"at": "2026-11-13T00:09:00Z", "by": "g9", "op": "job-cancel", "target": "azure4/e9-12-c", "note": "g9 00:12 UTC 13 Nov: Gen 9 is postponed in favor of 8X (Max, 00:04). Cancelled to free azure4; job files remain and 'workq job retry' restarts any of them."}
