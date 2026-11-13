@@ -17,8 +17,8 @@ Generated 2026-11-13 12:41 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
-| g9 | [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 | feature/gen9 |
 | sam | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | g9 | feature/gen9 |
+| will | [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 | feature/gen9 |
 | will | [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | feature/gen9-x9 |
 
 ## Tasks
