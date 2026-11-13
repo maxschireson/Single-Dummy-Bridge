@@ -179,3 +179,4 @@
 {"at": "2026-11-13T05:14:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "running"}
 {"at": "2026-11-13T05:23:00Z", "by": "will", "op": "send", "target": "g9/20261113T0523Z-will-prs-26-29-30-into-feature-gen9", "note": "PRs #26, #29, #30 into feature/gen9: #29 and #30 pass; #26 is nearly all inside #29; ladder live"}
 {"at": "2026-11-13T05:23:00Z", "by": "will", "op": "send", "target": "dave/20261113T0523Z-will-re-preflight-job-file-valid-st", "note": "Re preflight: job file valid; starts about 05:36; .writer.lock is fine"}
+{"at": "2026-11-13T05:25:00Z", "by": "will", "op": "send", "target": "dave/20261113T0525Z-will-ladder-refresh-running-gh-page", "note": "Ladder refresh running: gh-pages f2a96291 (05:25Z); 1#330e78 now merges", "task": "G9-D9"}
