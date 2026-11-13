@@ -1,0 +1,103 @@
+{
+ "manifest": "351d25896a532d87ea09c9efedd53ee207a5a18195071450c37c2f964af8f06d",
+ "target": 10000,
+ "fresh_deals": {
+  "seed": 9013,
+  "count": 10000,
+  "rule": "fresh deals from bridge_harness.corpus.generate; the source supplies bots and artifacts only",
+  "excluded": {
+   "training_families": 34092,
+   "source_corpus": 23233,
+   "played": 85910
+  },
+  "played_list": {
+   "file": "played-families-20261113.json.gz",
+   "sha256": "ac5243e11112bf68fbc6a8c8700cf6b36ab829a2348f5925c5fcf721c567333c"
+  }
+ },
+ "bots": {
+  "9a-32": "38b76a8b15429622a5903798203ec5ff9dd913dd8f4b67263b05fb530153cc96",
+  "8p-32": "a6f6accbf1140718679d385b6653082e93ae864dc912101bbde25d56ac602cef",
+  "8s-32": "269fdf1854f474f4ec19429bba453ce810d68681ed55c8118897b6d9f25b5a6a",
+  "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f"
+ },
+ "source_generation": "a76a39f13d9d7046b6591c8f109beb7d8001d3a714c57485a663ef99829912bb",
+ "source_commit": "007ff06dfb8fe674d9dac781de95be10f40358e4",
+ "deals": [
+  {
+   "index": 0,
+   "pair": "9a-32~71s-32",
+   "seconds": 72.6158812046051,
+   "imps": {
+    "common": 0,
+    "native": 0
+   },
+   "decisions": 677,
+   "consulted": 89,
+   "over_budget": 0
+  },
+  {
+   "index": 1,
+   "pair": "9a-32~8s-32",
+   "seconds": 82.72014451026917,
+   "imps": {
+    "common": 0,
+    "native": 0
+   },
+   "decisions": 737,
+   "consulted": 68,
+   "over_budget": 0
+  },
+  {
+   "index": 2,
+   "pair": "9a-32~8p-32",
+   "seconds": 73.755211353302,
+   "imps": {
+    "common": -3,
+    "native": -3
+   },
+   "decisions": 643,
+   "consulted": 63,
+   "over_budget": 0
+  },
+  {
+   "index": 3,
+   "pair": "9a-32~8s-32",
+   "seconds": 113.65676951408386,
+   "imps": {
+    "common": 0,
+    "native": 0
+   },
+   "decisions": 994,
+   "consulted": 68,
+   "over_budget": 0
+  },
+  {
+   "index": 4,
+   "pair": "9a-32~8p-32",
+   "seconds": 98.88862919807434,
+   "imps": {
+    "common": 2,
+    "native": 2
+   },
+   "decisions": 654,
+   "consulted": 84,
+   "over_budget": 0
+  },
+  {
+   "index": 5,
+   "pair": "9a-32~71s-32",
+   "seconds": 65.72100901603699,
+   "imps": {
+    "common": -1,
+    "native": -1
+   },
+   "decisions": 581,
+   "consulted": 45,
+   "over_budget": 0
+  }
+ ],
+ "prepare_seconds": 4.1,
+ "smoke_seconds": 508.8,
+ "ok": true
+}
