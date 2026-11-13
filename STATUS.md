@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 00:09 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 00:09 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -122,18 +122,12 @@ Generated 2026-11-13 00:09 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| d6-arrival |  | dave | 1 | 8 | running | 5,728 of 6,200 | 530.9 | 11-13 01:02 | `transfer/gen9-d6-arrival-azure4-20261112@bbbf5801b` |
+| d6-arrival |  | dave | 1 | 8 | running | 5,729 of 6,200 | 528.3 | 11-13 01:03 | `transfer/gen9-d6-arrival-azure4-20261112@bbbf5801b` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | paused | 627 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02-azure4-20261112@514d6b868` |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | paused | 626 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02e-azure4-20261112@c50274d73` |
 | e9-16-r-v-p | E9-16 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-16-r-v-x | E9-16 | g9 | 2 | 4 | waiting | 0 of 800 |  |  |  |
-| e9-12-c | E9-12 | bill | 3 | 4 | waiting | 0 of 1,200 |  |  |  |
-| e9-12-u | E9-12 | bill | 3 | 4 | waiting | 0 of 600 |  |  |  |
-| e9-12-x | E9-12 | bill | 3 | 4 | waiting | 0 of 1,200 |  |  |  |
 | e9-16-h-v-p | E9-16 | g9 | 3 | 4 | waiting | 0 of 800 |  |  |  |
-| e9-11-r8 | E9-11 | bill | 5 | 4 | waiting | 0 of 1,600 |  |  |  |
-| e9-12-cs | E9-12 | bill | 5 | 4 | waiting | 0 of 600 |  |  |  |
-| e9-12-us | E9-12 | bill | 5 | 4 | waiting | 0 of 600 |  |  |  |
 | e9-12-xs | E9-12 | bill | 5 | 4 | waiting | 0 of 600 |  |  |  |
 | e9-4-8x | E9-4 | sam | 5 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-4-r9 | E9-4 | sam | 5 | 4 | waiting | 0 of 1,600 |  |  |  |
@@ -143,6 +137,9 @@ Generated 2026-11-13 00:09 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-0-n04 | E9-0 | g9 | 2 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
+| e9-12-c | E9-12 | bill | 3 | 4 | cancelled | 0 of 1,200 |  |  |  |
+| e9-12-u | E9-12 | bill | 3 | 4 | cancelled | 0 of 600 |  |  |  |
+| e9-12-x | E9-12 | bill | 3 | 4 | cancelled | 0 of 1,200 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 55 |  |  |  |
 | g9-x2-ben64 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 47 |  |  |  |
 | g9-x2-rel-std-50 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 300 |  |  |  |
@@ -154,6 +151,9 @@ Generated 2026-11-13 00:09 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-0-n02l | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-11-p7 | E9-11 | bill | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-11-r7 | E9-11 | bill | 5 | 4 | cancelled | 0 of 800 |  |  |  |
+| e9-11-r8 | E9-11 | bill | 5 | 4 | cancelled | 0 of 1,600 |  |  |  |
+| e9-12-cs | E9-12 | bill | 5 | 4 | cancelled | 0 of 600 |  |  |  |
+| e9-12-us | E9-12 | bill | 5 | 4 | cancelled | 0 of 600 |  |  |  |
 
 ## Boxes
 
