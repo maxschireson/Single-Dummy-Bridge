@@ -1,0 +1,25 @@
+{
+  "revision": "acd1c5fb72824a2a71fbd9f8c5c28b7a84c20dcd",
+  "blob": "fad7067a7037c4005dcbc740aa2356250d9bf0fc",
+  "entries": [
+    "2026-11-13T18:40:00Z stu-dash",
+    "2026-11-13T19:03:00Z loop"
+  ],
+  "authority_scope": "Max 18:53 authorized Stu to take Azure1; Max 18:54 added Azure2. The explicit allocation names those hosts. It does not address this independent Codex stream or open a new canonical plan for it.",
+  "peer_8x": {
+    "notice_revision": "acd1c5fb72824a2a71fbd9f8c5c28b7a84c20dcd",
+    "notice_entry": "2026-11-13T19:03:00Z",
+    "feed": "arena-gen8-x3-azure1-feed",
+    "observed_feed_ref": "fb0900d1ca203a187c580258c79eb4d47db07b33",
+    "cohort_prefix": "e5c845da95a3",
+    "status_reported": "Stopped at 16:34 with preserved failure; publisher retained all 3986 boards. Azure1 allocation transferred to Stu under Max 18:53 authority. Follow-on bd2e22fed5e3 remains prepared and unplayed.",
+    "completed_reported": 3986,
+    "target": 6000,
+    "prepared_follow_on_reported": 0,
+    "read_only": true,
+    "action": "No peer takeover, restart, failure clearance, switch-file edit or host command."
+  },
+  "stu": "Five Azure boxes collect pure Stu self-play, with interim and round-3 training times and new transfers. These are scoped research collection and training, not canonical Gen8 source/model adoption here. Do not copy their workers, one-table configuration, datasets or schedules.",
+  "dashboard": "Stu's page changes belong to stu-dash. They do not approve this task's pending shared arena replay patch.",
+  "current_effect": "Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN jobs and source budget 18,283. No self-play or retired comparison predicate. No local source, model, corpus, allocation or promotion change."
+}
