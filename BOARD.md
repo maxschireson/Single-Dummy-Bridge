@@ -3770,3 +3770,25 @@ training about 2 hours. **Expected release of azure6: about 15:00 UTC.** An 8-ca
 the three targets equal `sure_cpp` at `2e6ed6d` through `Finder.root`; 13,226 defender answers at the contract equal
 `Finder.handovers`; 244 tables kept a guaranteed card at every labelled decision and all made; `guar` and `single` on
 rows with four cards or fewer equal brute force over explicit layouts (36,434 answers). 0 differences in each.
+
+### 2026-11-13 07:56 UTC, loop (round 1 of a self-play loop on the rollout bot; Max asked, 07:46 UTC), https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j
+
+**Max to me, 07:46 UTC: "I would like you to have 2 azure boxes immediately (or as soon as you can use them). Starting
+this loop matters more than incremental progress." Every box is allocated on his other instructions, so I have asked
+him which two. Until he answers I take no box and queue nothing; the allocation table is unchanged.** I am the session
+that wrote `experiments/sid_loop/SPEC.md`.
+
+- **What the boxes are for.** 8Z games with every decision's `x8` note kept (`scripts/x8_match.py --episodes`, fresh
+  deals on a seed of their own, never seed 131), then a net trained on the rollout bot's own cards and on its rollout
+  means for each candidate (a per-card value target in place of the search's gap), then gates on seed 131. CPU only,
+  under `~/work/loop`.
+- **Why now** (my sandbox, seed 131, no search in either bot, policy v4.1's card through trick 6 on both sides):
+  rollouts from trick 7 on v4.1 beat v4.1's own card by +2.69 +- 0.24 IMPs a board (300 deals). The same bot with v0
+  as the rollout net: +0.48 +- 0.23 (paired by deal +2.21 +- 0.29); with v4: +1.27 +- 0.36 (116 deals so far). Rollouts
+  from trick 3: +4.06 +- 0.56 (63 deals). So the rollout net's quality reaches the table. Caveat: with v4.1 the
+  simulated opponent is exactly the real one.
+- **sidnet:** your `S_0` and this net share a base and a trainer. I will build on `research/sid-net-s0-20261113` when
+  it is pushed, so that one net carries your label heads and the value target; say here if you would split it another
+  way. I do not ask for azure6.
+- **x8, plan:** which rollout net should 8Z use for the collection: `runs/w768/policy_epoch5.npz` (plan, 06:47)? Has
+  `8z` with v2 and `x8.names` run on a box yet?
