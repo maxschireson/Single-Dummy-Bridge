@@ -81,7 +81,7 @@ def history(did: str, head: dict, lines: list, now: datetime) -> dict:
     def end_lease(t, how):
         nonlocal lease
         if lease:
-            lease.update(end=t, how=how, over=max(timedelta(0), t - lease["until"]))
+            lease.update(end=t, how=how, over=max(timedelta(0), t - lease["until"]), box=lease["until"] - lease["start"])
             d["leases"].append(lease)
             lease = None
 
@@ -133,7 +133,7 @@ def history(did: str, head: dict, lines: list, now: datetime) -> dict:
             d["blocked"] += 1
             open_since = None
     if lease:
-        lease.update(end=None, how="held now", over=max(timedelta(0), now - lease["until"]))
+        lease.update(end=None, how="held now", over=max(timedelta(0), now - lease["until"]), box=lease["until"] - lease["start"])
         d["leases"].append(lease)
     if open_since is not None and d["state"] in ("open", ""):
         d["waits"].append(dict(start=open_since, end=None, by=None))
@@ -252,7 +252,7 @@ def render(c: dict, notes: str | None = None) -> str:
 
     # 2. leases
     leases = [(d, l) for d in docs for l in d["leases"]]
-    L += ["## 2. Leases", "", "Length of each lease that has ended (start to submit, give-back or block), against its time box.", "",
+    L += ["## 2. Leases", "", "Length of each lease that has ended (start to submit, give-back or block), against its time box (renewals included).", "",
           "| Holder | Leases | Ended | Median length | Longest | Ran past its end | Given back | Renewals |", "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
     for h in sorted({l["holder"] for _, l in leases}):
         mine = [l for _, l in leases if l["holder"] == h]
@@ -267,7 +267,7 @@ def render(c: dict, notes: str | None = None) -> str:
     share = [((l["end"] - l["start"]) / l["box"]) for l in ended_all if l["box"].total_seconds() > 0]
     L += ["", f"Of {len(ended_all)} ended leases, {sum(1 for x in share if x <= 0.25)} used a quarter of their time box or less and "
           f"{sum(1 for x in share if x > 1)} ran past it. Leases held now: " +
-          (", ".join(f"{d['id']} {l['holder']} ({mins(now - l['start']):.0f} of {mins(l['box']):.0f}{', past its end' if l['over'] > timedelta(0) else ''})"
+          (", ".join(f"{d['id']} {l['holder']} ({mins(now - l['start']):.0f} min, {l.get('renewals', 0)} renewals{', past its end by ' + format(mins(l['over']), '.0f') if l['over'] > timedelta(0) else ''})"
                      for d, l in leases if l["end"] is None) or "none") + ".", ""]
     past = [(d, l) for d, l in leases if l["over"] > timedelta(0)]
     if past:
@@ -292,8 +292,8 @@ def render(c: dict, notes: str | None = None) -> str:
     by_hour = defaultdict(Counter)
     for d, r in revs:
         if r["end"]:
-            by_hour[r["reviewer"]][r["end"].strftime("%H:00")] += 1
-    hours = sorted({h for c in by_hour.values() for h in c})
+            by_hour[r["reviewer"]][r["end"].strftime("%d %H:00")] += 1
+    hours = sorted({h for c in by_hour.values() for h in c})          # "DD HH:00" sorts in time order within a month
     if hours:
         L += ["Verdicts by hour (UTC):", "", "| Reviewer | " + " | ".join(hours) + " |", "| --- |" + " ---: |" * len(hours)]
         for rv in sorted(by_hour):
@@ -330,8 +330,13 @@ def render(c: dict, notes: str | None = None) -> str:
     else:
         for box, s in sorted(c["box_status"].items()):
             J = s.get("jobs", {})
-            L.append(f"- {box}: {sum(1 for v in J.values() if v.get('state') == 'running')} running, "
-                     f"{sum(1 for v in J.values() if v.get('state') == 'waiting')} waiting, cores {s.get('cores')}, updated {str(s.get('at', ''))[11:16]}.")
+            done = [k for k, v in J.items() if v.get('state') == 'done']
+            L.append(f"- {box}: serving since {str(s.get('serving_since', ''))[11:16]} UTC, {s.get('cores')} cores; "
+                     f"{sum(1 for v in J.values() if v.get('state') == 'running')} running, "
+                     f"{sum(1 for v in J.values() if v.get('state') in ('waiting', 'paused'))} waiting, {len(done)} done "
+                     f"({sum(int(J[k].get('boards') or 0) for k in done):,} boards), "
+                     f"{sum(1 for v in J.values() if v.get('state') == 'failed')} failed now; idle {float(s.get('idle_core_hours') or 0):.1f} core-hours, "
+                     f"{float(s.get('idle_core_hours_while_waiting') or 0):.1f} of them while jobs waited; updated {str(s.get('updated', ''))[11:16]} UTC.")
         L.append("")
     return "\n".join(L) + "\n"
 
