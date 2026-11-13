@@ -18,8 +18,8 @@ Generated 2026-11-13 07:39 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | dave | [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | feature/gen9 |
-| g9 | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | feature/gen9 |
 | will | [E9-20](experiments/E9-20.md) | Diversity and redundancy of the current population | g9 | feature/gen9 |
+| will | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | feature/gen9 |
 
 ## Tasks
 
