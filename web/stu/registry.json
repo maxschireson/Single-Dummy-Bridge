@@ -1,7 +1,7 @@
 {
   "schema": "stu-registry-v2",
   "title": "Stu: the rollout loop, generation by generation",
-  "updated": "2026-11-13T18:45Z",
+  "updated": "2026-11-13T19:25Z",
   "runs_list": {
     "branch": "research/rollout-loop-20261113",
     "path": "training/rollout-loop-20261113/runs.json"
@@ -11,6 +11,16 @@
     "path": "training/rollout-loop-20261113/DASHBOARD.md"
   },
   "boxes": [
+    {
+      "box": "azure1",
+      "branch": "transfer/rollout-loop-azure1-20261113",
+      "status": "box/azure1/status"
+    },
+    {
+      "box": "azure2",
+      "branch": "transfer/rollout-loop-azure2-20261113",
+      "status": "box/azure2/status"
+    },
     {
       "box": "azure3",
       "branch": "transfer/rollout-loop-azure3-20261113",
