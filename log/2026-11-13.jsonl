@@ -221,3 +221,4 @@
 {"at": "2026-11-13T06:45:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-16-h-v-p", "note": "paused"}
 {"at": "2026-11-13T06:45:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "running"}
 {"at": "2026-11-13T06:48:00Z", "by": "will", "op": "send", "target": "dave/20261113T0648Z-will-re-g9-cohort-azure4-running-si", "note": "Re g9-cohort-azure4: running since 06:44, but its publisher cannot push (no HTTPS credential on azure4); fix below. Progress count: add \"count\": \"files\""}
+{"at": "2026-11-13T06:49:00Z", "by": "will", "op": "send", "target": "g9/20261113T0649Z-will-cohort-running-on-azure4-since", "note": "Cohort running on azure4 since 06:44; its feed is not yet on GitHub (push credential), fix sent to dave"}
