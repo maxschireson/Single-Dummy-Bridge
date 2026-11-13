@@ -57,18 +57,34 @@ def parse_seq(after_open):
 
 
 class CardSystem:
-    def __init__(self, card):
+    def __init__(self, card, scoring='imps'):
         self.card = load_card(card)
         self.d = self.card.d
         self.o, self.r, self.rb, self.cp = self.d['open'], self.d['resp'], self.d['rebid'], self.d['comp']
+        self.scoring = scoring
         self._cache = {}
+        self._variants = {}
 
     @property
     def id(self):
         return self.card.id
 
+    def for_context(self, ctx: Context):
+        """The system of the card's variant for the caller's seat and vulnerability (self when none applies)."""
+        if not self.card.variants:
+            return self
+        c = self.card.at(ctx.position, ctx.we_vul, ctx.they_vul, self.scoring)
+        if c is self.card:
+            return self
+        if c.variant not in self._variants:
+            self._variants[c.variant] = CardSystem(c, self.scoring)
+        return self._variants[c.variant]
+
     # ------------------------------------------------------------------ dispatch
     def rules(self, ctx: Context):
+        sub = self.for_context(ctx)
+        if sub is not self:
+            return sub.rules(ctx)
         key = (ctx.key, ctx.opening_index, ctx.position)
         if key not in self._cache:
             out = self._dispatch(ctx)
@@ -243,7 +259,7 @@ class CardSystem:
             s = call[1]
             if t == 'weak':
                 lo, hi = sp.get('len', [6, 6])
-                cl = kw(L(s, lo, hi), hcp=tuple(sp.get('hcp', [5, 10])), **{'top5' + s: (self.o['weak_quality'], None)})
+                cl = kw(L(s, lo, hi), hcp=tuple(sp.get('hcp', [5, 10])), **{'top5' + s: (self.o['weak_quality'], None)}, **self._top3(s))
                 om = self.o['weak_other_major_max']
                 if s in MAJORS and om is not None:
                     cl.update(L('H' if s == 'S' else 'S', None, om))
@@ -256,6 +272,10 @@ class CardSystem:
                 out.append(Rule(call, C(**kw(L(s, lo, hi), hcp=tuple(sp.get('hcp', [16, 22])), ltc=(None, 5))), 'open_strong', f'strong {call}'))
         return out
 
+    def _top3(self, s):
+        t = self.o['weak_top3']
+        return {} if t is None else {'top3' + s: (t, None)}
+
     def _preempts(self, ctx):
         out = []
         if ctx.position not in self.o['preempt_seats']:
@@ -267,7 +287,7 @@ class CardSystem:
         if t3:
             for s in 'SHDC':
                 out.append(Rule(f'3{s}', C(**kw(L(s, t3['len'], t3.get('len_max', t3['len'])), hcp=(t3.get('hcp_min', 0), t3['hcp_max']),
-                                                **{'top5' + s: (self.o['weak_quality'], None)})),
+                                                **{'top5' + s: (self.o['weak_quality'], None)}, **self._top3(s))),
                                 'open_preempt', f'3{s} preempt'))
         t3n = self.o['three_nt']
         if t3n and t3n.get('type') == 'gambling':
@@ -735,6 +755,8 @@ class CardSystem:
             low = [s for s in 'CDH' if s != x][:2]
             out.append(Rule('2N', C(**{low[0]: (5, None), low[1]: (5, None)}, hcp=(8, None)), 'comp_two_suited', 'unusual 2NT', artificial=True))
         ntr = cp['balancing_nt'] if balancing else cp['nt_overcall']
+        if balancing and x in 'HS' and cp['balancing_nt_major']:
+            ntr = cp['balancing_nt_major']
         out.append(Rule('1N', C(bal=1, hcp=tuple(ntr), **{'stop' + x: 1}), 'comp_nt', f'1NT overcall {ntr[0]}-{ntr[1]}'))
         out.append(Rule('X', C(hcp=(cp['strong_double_min'] + adj, None)), 'comp_double', 'strong double'))
         jt = cp['jump_overcall']
@@ -776,8 +798,17 @@ class CardSystem:
     def vs_nt(self, ctx):
         conv = self.cp['vs_nt']
         out = []
-        if self.cp['vs_nt_double'] == 'penalty' and conv != 'dont':
+        if self.cp['vs_nt_double'] == 'penalty' and conv not in ('dont', 'woolsey'):
             out.append(Rule('X', C(hcp=(self.cp['vs_nt_double_min'], None)), 'comp_vs_nt', 'penalty double'))
+        if conv == 'woolsey':
+            # X a four-card major and a longer minor; 2C both majors; 2D one six-card major; 2M five of it and four of a minor
+            mm = Pred.of(*(C(**{M: 4, m: (5, None)}) for M in 'SH' for m in 'CD'))
+            out += [Rule('X', mm & C(hcp=(8, None)), 'comp_vs_nt', 'a major and a longer minor', artificial=True),
+                    Rule('2C', C(H=(4, None), S=(4, None), hcp=(8, None)), 'comp_vs_nt', 'both majors', artificial=True),
+                    Rule('2D', C(H=(6, None), S=(None, 3), hcp=(8, None)) | C(S=(6, None), H=(None, 3), hcp=(8, None)), 'comp_vs_nt',
+                         'one six-card major', artificial=True),
+                    Rule('2H', C(H=(5, None), hcp=(8, None)) & (C(C=(4, None)) | C(D=(4, None))), 'comp_vs_nt', 'hearts and a minor'),
+                    Rule('2S', C(S=(5, None), hcp=(8, None)) & (C(C=(4, None)) | C(D=(4, None))), 'comp_vs_nt', 'spades and a minor')]
         if conv == 'cappelletti':
             out += [Rule('2D', C(H=(5, None), S=(4, None), hcp=(9, None)) | C(H=(4, None), S=(5, None), hcp=(9, None)), 'comp_vs_nt', 'both majors', artificial=True),
                     Rule('2H', C(H=(5, None), hcp=(9, None)) & (C(C=(4, None)) | C(D=(4, None))), 'comp_vs_nt', 'hearts and a minor'),

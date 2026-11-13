@@ -1,7 +1,7 @@
 {
  "schema": "card-fields-v0",
  "status": "provisional",
- "note": "Bidding fields of the card IR (Gen 9 WIP). executable: meanings = compiled into call meanings by bridge_harness/cards/system.py; no = recorded and reported as residual, not compiled. settings: the rule_bidder.Settings field a card in its family maps to, if any. Carding fields are configs/systems/_carding_fields.json (sam).",
+ "note": "Bidding fields of the card IR (Gen 9 WIP). executable: meanings = compiled into call meanings by bridge_harness/cards/system.py; no = recorded and reported as residual, not compiled. settings: the rule_bidder.Settings field a card in its family maps to, if any. Carding fields are configs/systems/_carding_fields.json (sam). Beside the descriptor a card may carry variants (by seat and vulnerability), recorded (keys here marked executable: no) and style (see bridge_harness/cards/card.py; G9-B8).",
  "fields": {
   "open.min_hcp": {
    "default": 12,
@@ -142,6 +142,12 @@
    },
    "executable": "meanings",
    "settings": "2D precision -> two_diamonds; weak hcp -> weak_lo, weak_hi"
+  },
+  "open.weak_top3": {
+   "default": null,
+   "executable": "meanings",
+   "settings": null,
+   "note": "weak twos and three-level preempts: honours among the suit's top three (null: no condition); G9-B8"
   },
   "open.precision_2c": {
    "default": null,
@@ -330,6 +336,12 @@
    "executable": "meanings",
    "settings": null
   },
+  "comp.balancing_nt_major": {
+   "default": null,
+   "executable": "meanings",
+   "settings": null,
+   "note": "balancing 1NT over a major where it differs from comp.balancing_nt; G9-B8"
+  },
   "comp.takeout_double_min": {
    "default": 12,
    "executable": "meanings",
@@ -353,7 +365,8 @@
   "comp.vs_nt": {
    "default": "natural",
    "executable": "meanings",
-   "settings": null
+   "settings": null,
+   "note": "natural | cappelletti | dont | landy | multi_landy | woolsey (X a major and a longer minor, 2C both majors, 2D one six-card major, 2M five of it and four of a minor; G9-B8)"
   },
   "comp.vs_nt_double": {
    "default": "penalty",

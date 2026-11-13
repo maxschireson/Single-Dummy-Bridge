@@ -34,7 +34,7 @@ class CardBidder:
     def __init__(self, card, fallback=None):
         self.system = card if isinstance(card, CardSystem) else CardSystem(card)
         self.fallback = fallback
-        self.sha256 = hashlib.sha256(json.dumps({'kind': 'card', 'card': self.system.card.d}, sort_keys=True).encode()).hexdigest()
+        self.sha256 = hashlib.sha256(json.dumps(self.system.card.identity_doc(), sort_keys=True).encode()).hexdigest()
         self.stats = {'covered': 0, 'fallback': 0}
 
     def decide(self, hand, seat, dealer, vul, calls):

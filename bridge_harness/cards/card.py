@@ -8,6 +8,21 @@ descriptor states only where it differs from the base: a natural five-card-major
 
 Fields the compiler does not understand are kept and reported by ``unsupported()``, so a
 card's residual against what was compiled is explicit rather than silently dropped.
+
+Three optional blocks sit beside the descriptor (G9-B8):
+
+- ``variants``: departures by seat and vulnerability, ``[{"when": {"seats": [1], "vul": "fav",
+  "scoring": "imps"}, "descriptor": {flat keys}, "source": "..."}]``. ``seats`` are positions in
+  the bidding order from the dealer (1..4) of the player making the call; ``vul`` is one of
+  any | we | nv | fav | unfav | both | none, seen from that player; ``scoring`` is any | imps | mp.
+  ``Card.at(position, we_vul, they_vul, scoring)`` returns the card with every matching variant
+  applied in list order (later entries win). A variant changes the calls of the seats it names;
+  partner reads the base card unless the variant names partner's seat too, so a 1NT range by seat
+  belongs in ``open.nt``'s own entries (both partners read those).
+- ``recorded``: agreements with a field in ``configs/cards/_fields.json`` marked ``executable: no``
+  (Drury, Smolen, ...), kept as structured values and not compiled; an unknown key is reported.
+- ``style``: the card's and the notes' style statements, each with where it was placed
+  (a field, a variant, the defaults) or why it was not.
 """
 import copy
 import json
@@ -46,6 +61,7 @@ DEFAULTS = {
             '2S': {'type': 'weak', 'hcp': [5, 10], 'len': [6, 6]},
         },                              # types: weak | multi | flannery | precision | natural | none
         'weak_quality': 2,             # weak twos and preempts: honours among the suit's top five
+        'weak_top3': None,             # weak twos and three-level preempts: honours among the suit's top three (null: no condition)
         'weak_other_major_max': 3,     # a weak two in a major denies this many or more in the other major (null: no limit)
         'preempt_seats': [1, 2, 3, 4], # seats in which weak twos and preempts are opened
         'precision_2c': None,          # {'hcp': [11, 15]}: 6+ clubs, or 5 clubs and a 4-card major
@@ -94,12 +110,13 @@ DEFAULTS = {
         'jump_overcall': 'weak',       # weak | intermediate | strong | none
         'nt_overcall': [15, 18],
         'balancing_nt': [11, 14],
+        'balancing_nt_major': None,    # [lo, hi]: balancing 1NT over a major, where it differs from balancing_nt
         'takeout_double_min': 12,
         'michaels': True,
         'michaels_major_min': 8,       # Michaels over a major: HCP from (over a minor: 8)
         'unusual_2nt': True,
         'negative_double_thru': '2S',  # highest overcall over which a double is negative; null = none
-        'vs_nt': 'natural',            # natural | cappelletti | dont | landy | multi_landy
+        'vs_nt': 'natural',            # natural | cappelletti | dont | landy | multi_landy | woolsey
         'vs_nt_double': 'penalty',
         'vs_nt_double_min': 15,
         'vs_nt_natural': {'len_major': 5, 'len_minor': 6, 'hcp': [8, 15], 'top3': 2, 'top5': 0},
@@ -124,6 +141,28 @@ LEAF = {'overcall_quality', 'vs_nt_natural', 'light', 'strong_2c', 'strong_club'
         'precision_2c', 'three_level', 'four_level', 'three_nt'}
 
 TYPES_TWO = ('weak', 'multi', 'flannery', 'precision', 'natural', 'none')
+VS_NT = ('natural', 'cappelletti', 'dont', 'landy', 'multi_landy', 'woolsey')
+VUL_WHEN = ('any', 'we', 'nv', 'fav', 'unfav', 'both', 'none')
+SCORING = ('any', 'imps', 'mp')
+SIDE_BLOCKS = ('provenance', 'generator', 'residual', 'variants', 'recorded', 'style')
+LATER_FIELDS = {('open', 'weak_top3'): None, ('comp', 'balancing_nt_major'): None}   # added in G9-B8 (13 Nov 2026)
+FIELDS = CARD_DIR / '_fields.json'
+
+
+def vul_matches(when, we_vul, they_vul):
+    """Whether a variant's `vul` holds for the caller's side (we_vul) and the opponents (they_vul)."""
+    we, they = bool(we_vul), bool(they_vul)
+    return {'any': True, 'we': we, 'nv': not we, 'fav': not we and they, 'unfav': we and not they,
+            'both': we and they, 'none': not we and not they}[when]
+
+
+def recorded_fields():
+    """Keys of _fields.json that are recorded and not compiled (executable: no)."""
+    try:
+        fields = json.loads(FIELDS.read_text())['fields']
+    except (OSError, ValueError, KeyError):
+        return set()
+    return {k for k, v in fields.items() if v.get('executable') == 'no'}
 
 
 def _merge(base, over, path, unknown):
@@ -166,7 +205,10 @@ class Card:
 
     def __init__(self, descriptor):
         self.residual = {str(k): (dict(v) if isinstance(v, dict) else list(v)) for k, v in (descriptor.get('residual') or {}).items()}
-        descriptor = unflatten({k: v for k, v in descriptor.items() if k not in ('provenance', 'generator', 'residual')})
+        variants = descriptor.get('variants') or []
+        self.recorded = dict(descriptor.get('recorded') or {})
+        self.style = list(descriptor.get('style') or [])
+        descriptor = unflatten({k: v for k, v in descriptor.items() if k not in SIDE_BLOCKS})
         if descriptor.get('schema', SCHEMA) != SCHEMA:
             raise ValueError(f'not a {SCHEMA} document: {descriptor.get("schema")!r}')
         self.unknown = []
@@ -175,6 +217,72 @@ class Card:
         if not self.d.get('id'):
             raise ValueError('a card needs an id')
         self._check()
+        self.variant = ()
+        self.variants = [self._variant_spec(i, v) for i, v in enumerate(variants)]
+        self._at = {}
+        for i in range(len(self.variants)):                     # each variant must stand on the base card
+            unknown = []
+            self._apply((i,), unknown)
+            self.unknown += [f'variants[{i}].{p}' for p in unknown]
+        if self.recorded:
+            known = recorded_fields()
+            self.unknown += [f'recorded.{k}' for k in self.recorded if k not in known]
+
+    @staticmethod
+    def _variant_spec(i, v):
+        when = dict(v.get('when') or {})
+        bad = set(when) - {'seats', 'vul', 'scoring'}
+        if bad:
+            raise ValueError(f'variants[{i}].when: unexpected keys {sorted(bad)}')
+        seats = [int(s) for s in when.get('seats', [1, 2, 3, 4])]
+        vul, scoring = when.get('vul', 'any'), when.get('scoring', 'any')
+        if not seats or any(s not in (1, 2, 3, 4) for s in seats):
+            raise ValueError(f'variants[{i}].when.seats must be positions 1..4')
+        if vul not in VUL_WHEN:
+            raise ValueError(f'variants[{i}].when.vul must be one of {VUL_WHEN}')
+        if scoring not in SCORING:
+            raise ValueError(f'variants[{i}].when.scoring must be one of {SCORING}')
+        over = unflatten(dict(v.get('descriptor') or {}))
+        if not over:
+            raise ValueError(f'variants[{i}] changes nothing')
+        return {'seats': seats, 'vul': vul, 'scoring': scoring, 'over': over, 'source': v.get('source')}
+
+    def _apply(self, idx, unknown=None):
+        """This card with the variants `idx` (indices, in order) applied; cached."""
+        if idx not in self._at:
+            c = copy.copy(self)
+            d = self.d
+            for i in idx:
+                d = _merge(d, self.variants[i]['over'], '', unknown if unknown is not None else [])
+            c.d, c.variant, c.variants, c._at = d, tuple(idx), [], {}
+            c._check()
+            self._at[idx] = c
+        return self._at[idx]
+
+    def at(self, position, we_vul, they_vul, scoring='imps'):
+        """The card that holds for a caller in this seat (1..4 from the dealer) and vulnerability."""
+        if not self.variants:
+            return self
+        idx = tuple(i for i, v in enumerate(self.variants)
+                    if position in v['seats'] and vul_matches(v['vul'], we_vul, they_vul) and v['scoring'] in ('any', scoring))
+        return self._apply(idx) if idx else self
+
+    def variant_doc(self):
+        """The variants as a card file states them (for identities and reports)."""
+        return [{'when': {'seats': v['seats'], 'vul': v['vul'], 'scoring': v['scoring']}, 'descriptor': v['over']} for v in self.variants]
+
+    def identity_doc(self):
+        """What a bidder's identity hashes: the filled descriptor without fields added after a card's identity
+        was first taken (while they hold their defaults), and the variants when there are any. Cards from before
+        G9-B8 keep their identities."""
+        d = copy.deepcopy(self.d)
+        for (sec, key), default in LATER_FIELDS.items():
+            if d.get(sec, {}).get(key, default) == default:
+                d.get(sec, {}).pop(key, None)
+        doc = {'kind': 'card', 'card': d}
+        if self.variants:
+            doc['variants'] = self.variant_doc()
+        return doc
 
     @property
     def id(self):
@@ -200,8 +308,11 @@ class Card:
                 raise ValueError(f'open.two.{call}: type must be one of {TYPES_TWO}')
         if self.d['resp']['two_over_one'] not in ('gf', 'standard'):
             raise ValueError('resp.two_over_one must be gf or standard')
-        if self.d['comp']['vs_nt'] not in ('natural', 'cappelletti', 'dont', 'landy', 'multi_landy'):
-            raise ValueError('comp.vs_nt must be natural | cappelletti | dont | landy | multi_landy')
+        if self.d['comp']['vs_nt'] not in VS_NT:
+            raise ValueError('comp.vs_nt must be ' + ' | '.join(VS_NT))
+        bm = self.d['comp']['balancing_nt_major']
+        if bm is not None and not (len(bm) == 2 and 8 <= bm[0] <= bm[1] <= 22):
+            raise ValueError(f'implausible comp.balancing_nt_major {bm}')
 
     def unsupported(self):
         """Descriptor paths the compiler does not read (kept, reported, not compiled)."""
