@@ -35,7 +35,7 @@
 | Outright claims (`sure_cpp`), declarer and defender hand-over rule | 8X engine (`x8_claims.py`) | In 8X; defender rule +0.225 +- 0.097 IMPs a decision on Gen 8 feeds (674), games, slams and doubled +0.535 +- 0.198 | x8, solver session |
 | Claim floors inside rollouts | 8X | Takes a third of the loss of rollouts alone away on the calibration pairs | x8 |
 | Conditional claims (cells): reference solver, measurements, design for 8X | `research/conditional-claims-20261113` | Measured on 1,520 recorded Gen 8 tables; not in a bot | solver session |
-| SiD loop: labels, student net, tree, self-play rounds | `research/sid-selfplay-loop-20261113` | Specification | not yet assigned |
+| SiD loop: labels, student net, tree, self-play rounds | `research/sid-selfplay-loop-20261113` | Specification; labels and `S_0` running on azure6 since 07:48 UTC (sidnet, `research/sid-net-s0-20261113`); round 1 of a self-play loop on the rollout bot waiting for boxes (loop, the SPEC's author) | sidnet (labels, student), loop (rounds) |
 | Gen 9 readers and player models | `feature/gen9` (`gen9.py`, `player_model.py`) | In the Gen 9 shell on Gen 8's prototype engine | g9, bill, sam |
 
 What the measurements say about weight (`cells/README.md` sections 2, 4, 7, 8; 8-card decisions, scorer weights):
@@ -102,7 +102,7 @@ signalling of one card could unlock; E9-6's numbers say how much of it a declare
 
 ### 2.5 The arena for SiD's self-play loop
 
-SPEC Part E leaves the population to the arena: a share of each round against earlier rounds and outside bots,
+The loop session is starting round 1 on the rollout bot now (board, 07:56 UTC). SPEC Part E leaves the population to the arena: a share of each round against earlier rounds and outside bots,
 exploitability from round 2 (E4), yardsticks never trained on (E5). These are the roles of
 [the arena note](arena-selfplay.md): each SiD round enters as a league member and stays as a past champion;
 exploiters and the informed reader of 6.1 are E4; held-out styles and outside panel are E5. Promotion uses the arena
@@ -142,8 +142,8 @@ sub-agents, Max, 07:48 UTC):
 | The arena interface for SiD's rounds (2.5) | dave | Part of the population page and registry work |
 
 Not Gen 9's: `sure.cpp` and `cells.cpp` (solver session), conditional claims inside the 8X engine (`DESIGN.md`
-section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefers), the labels, student and tree
-(SPEC Parts A to D). The other two thirds stay on the arena and the readers.
+section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefers), the labels and student
+(sidnet), the tree and the rounds (loop, x8). The other two thirds stay on the arena and the readers.
 
 Why a third and not more: the measured gains from SiD so far are counts of missed sure makes (32 of 1,520 tables,
 one-sided) and neutral choice rules; nothing has been played. Why not less: the floors are only as good as the
