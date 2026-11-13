@@ -1,0 +1,23 @@
+{
+ "pair": "n-v41~n-v4",
+ "boards": 300,
+ "cpu_per_board": 0.53,
+ "common": {
+  "imps_per_board": 1.1767,
+  "se": 0.2785,
+  "boards": 300,
+  "won": 116,
+  "lost": 60,
+  "flat": 124
+ },
+ "native": {
+  "imps_per_board": 1.1767,
+  "se": 0.2785,
+  "boards": 300,
+  "won": 116,
+  "lost": 60,
+  "flat": 124
+ },
+ "failures": 0,
+ "boards_per_hour": 13370
+}

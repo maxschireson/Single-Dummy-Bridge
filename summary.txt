@@ -1,0 +1,25 @@
+rollouts on v4.1 vs v4.1 alone: +2.69 +- 0.24 over 300 (won 179, lost 2, flat 119)
+rollouts on v4   vs v4.1 alone: +1.28 +- 0.20 over 300 (won 112, lost 22, flat 166)
+rollouts on v0   vs v4.1 alone: +0.48 +- 0.23 over 300 (won 85, lost 48, flat 167)
+v4.1 alone       vs v4 alone  : +1.18 +- 0.28 over 300 (won 116, lost 60, flat 124)
+rollouts on v4.1 vs v4 alone  : +3.22 +- 0.28 over 300 (won 187, lost 18, flat 95)
+rollouts on v4   vs v4 alone  : +4.05 +- 0.30 over 300 (won 207, lost 12, flat 81)
+rollout bot all v4.1 vs rollout bot all v4: +0.79 +- 0.27 over 300 (won 107, lost 53, flat 140)
+
+paired: opponent v4.1 alone, v4.1 inside minus v4 inside (better net AND exact model): +1.41 +- 0.21 over 300
+paired: opponent v4 alone,   v4.1 inside minus v4 inside (better net, v4 is the exact model): -0.82 +- 0.22 over 300
+paired: opponent v4 alone, rollouts on v4.1 minus v4.1 alone (what rollouts add, inexact model): +2.05 +- 0.25 over 300
+paired: opponent v4 alone, rollouts on v4   minus v4.1 alone (what rollouts add, exact model): +2.87 +- 0.28 over 300
+net quality (half the sum of the two gaps): +0.29 +- 0.15 over 300
+exact model (half the difference):          +1.12 +- 0.16 over 300
+paired: generation gap with rollouts minus generation gap of the nets alone: -0.38 +- 0.24 over 300
+rollouts on v4.1 vs v4 alone [candidate]: moved 18.1% of 20.5 rollout decisions a board
+rollouts on v4   vs v4 alone [candidate]: moved 20.8% of 20.5 rollout decisions a board
+rollout bot all v4.1 vs rollout bot all v4 [candidate]: moved 19.4% of 20.3 rollout decisions a board
+rollout bot all v4.1 vs rollout bot all v4 [opponent]: moved 22.7% of 20.3 rollout decisions a board
+rollouts on v0    vs v4.1 alone: +0.48 +- 0.23 IMPs a board over 300 (won 85, lost 48, flat 167); moved 26.1% of 20.1 decisions a board
+rollouts on v4    vs v4.1 alone: +1.28 +- 0.20 IMPs a board over 300 (won 112, lost 22, flat 166); moved 21.3% of 20.4 decisions a board
+rollouts on v4.1  vs v4.1 alone: +2.69 +- 0.24 IMPs a board over 300 (won 179, lost 2, flat 119); moved 17.5% of 20.5 decisions a board
+paired by deal, rollouts on v4 minus rollouts on v0: +0.80 +- 0.27 IMPs a board over 300
+paired by deal, rollouts on v4.1 minus rollouts on v4: +1.41 +- 0.21 IMPs a board over 300
+paired by deal, rollouts on v4.1 minus rollouts on v0: +2.21 +- 0.29 IMPs a board over 300

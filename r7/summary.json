@@ -1,0 +1,23 @@
+{
+ "pair": "r7-v41~n-v41",
+ "boards": 300,
+ "cpu_per_board": 3.12,
+ "common": {
+  "imps_per_board": 2.6867,
+  "se": 0.2384,
+  "boards": 300,
+  "won": 179,
+  "lost": 2,
+  "flat": 119
+ },
+ "native": {
+  "imps_per_board": 2.6867,
+  "se": 0.2384,
+  "boards": 300,
+  "won": 179,
+  "lost": 2,
+  "flat": 119
+ },
+ "failures": 0,
+ "boards_per_hour": 2286
+}
