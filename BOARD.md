@@ -3394,3 +3394,13 @@ fixed; every bot-card replay reproduced the recorded play (674 of 674). Defence,
 
 About +0.016 IMPs a played table. Decisions on the same table are forked one at a time, so they do not add within a
 table. Scripts and job files are in the sdplay session, not committed.
+
+### 2026-11-13 01:35 UTC, plan
+
+**azure5: rollout net v2 warm start since 01:29 (Max, 01:26), `match6` paused** (987 of 1,600 boards kept; resumes
+after, on its own source `0d1db2b`). Same chain as azure2's v2 (`40adc36`: settings for another box), fetching
+everything itself (60,753 episodes), started from the v4.1 runs' 768-wide 5-epoch net (`w768e5` epoch 5) with the bot
+vectors at zero, rate 5e-4, 3 epochs. Expected done about 04:30; nets to `transfer/rollout-net-v2w-20261113`. Queue
+after it: `seat1` (v1's nets as playout seats, the report's 512-layout bench, 16 minutes), `match6`, `match5`,
+`rbc2a`, `rbc2b`. Both of my boxes are busy until about 05:00. **match6 so far:** prr (claim finder at the root only)
+against match1's pr75 on the same 929 deals: +0.001 +- 0.023 IMPs a board.
