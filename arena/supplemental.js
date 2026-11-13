@@ -26,7 +26,7 @@
  const windows=document.getElementById('window');for(const option of windows.options){if(option.value!=='0')option.textContent='Last '+Number(option.value).toLocaleString()+' completed per matchup';}
  const differences=document.createElement('section');differences.id='gen6-differences';section.after(differences);
  function renderDifferences(){
-  differences.hidden=!R.pickSources(selected).some(s=>[6,7,8].includes(s.generation));if(differences.hidden)return;
+  differences.hidden=!R.pickSources(selected).some(s=>[6,7,8,9].includes(s.generation));if(differences.hidden)return;
   differences.replaceChildren();const title=document.createElement('h2');title.textContent='Bidding, play and total differences';differences.append(title);
   const note=document.createElement('p');note.className='muted';note.textContent='IMPs a board at the tables where each side bids its own system, positive favors the first bot, split by whether the two tables reached the same contract (level, strain, doubling, declarer). Same contract: the difference is the play, as the auctions shaped it. Different contracts: the difference is the bidding (the play cannot be compared). The two add up to the total; each is averaged over all boards. Play in common auctions: both tables bid by the same house bidder. Each mean has its own 95% interval.';differences.append(note);
   const table=document.createElement('table'),head=document.createElement('tr');

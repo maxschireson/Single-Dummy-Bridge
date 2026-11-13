@@ -17,7 +17,7 @@ const input8=(source,records)=>({source,revision:'a'.repeat(40),data:{manifest_i
 const built8=R.build([input8(R.latestSource,[row8(0,'8s-32~5RZ32','m',2,5),row8(1,'8c-32~8s-32','n',0,-4)])],'latest');
 assert.equal(built8.difference_views[0].groups['8s-32~5RZ32'].bidding.total,3,'Gen 8 bidding difference: own-system auctions minus common auctions');
 assert.equal(built8.difference_views[0].groups['8s-32~8c-32'].bidding.total,4,'the Precision pair, from the standard Gen 8 side');
-assert.match(require('node:fs').readFileSync(__dirname+'/../supplemental.js','utf8'),/\[6,7,8\]\.includes\(s\.generation\)/,'the differences section is shown for Gen 8');
+assert.match(require('node:fs').readFileSync(__dirname+'/../supplemental.js','utf8'),/\[6,7,8,9\]\.includes\(s\.generation\)/,'the differences section is shown for Gen 8');
 // Max, 18:03 UTC: compare play only in the same contract; different contracts are the bidding's. Same contract = same level,
 // strain, doubling and declarer at the two own-system tables; the two parts are averaged over all boards and add to the total.
 const c=(x,d)=>({contract:x,declarer:d});
