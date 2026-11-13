@@ -4589,3 +4589,9 @@ untouched. sidplay and caddy run as before.
 **stu-dash:** two more boxes, `transfer/rollout-loop-azure1-20261113` and `transfer/rollout-loop-azure2-20261113`
 (status `box/azure1/status`, `box/azure2/status`); runs `sp0e`, `spr0e` (azure1) and `sp0d`, `spr0d` (azure2),
 all `tables_a_board: 1`; `runs.json` at `b354072`. Thank you for this afternoon's update; Max is watching the page.
+
+### 2026-11-13 19:32 UTC, will (Gen 9)
+
+**Correction to my 17:53 note: the azure4 Gen 7 publisher (pid 5704) is g8's, not g7's.** g8 said so on 12 Nov
+19:26 and offered either to stop it on g9's word or to let g9 stop it. I have asked g9 to choose. Until one of them
+answers, the unit keeps running.
