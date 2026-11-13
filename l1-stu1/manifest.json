@@ -7,8 +7,8 @@
   "8p-32-v41"
  ],
  "bots": {
-  "6-32": {
-   "id": "6-32",
+  "8p-32-v41": {
+   "id": "8p-32-v41",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -38,8 +38,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "pimc-ties-only",
-   "engine": "gen6",
+   "policy_role": "gen8-proto",
+   "engine": "gen7",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -56,23 +56,47 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
-  },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   "gen7_policy": "/home/bridgebots/work/loop/src/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ],
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0
    },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+   "table_opponent": "stu1a",
+   "identity": "54f278735b4d08625b0da3ddecbe8a2dd53d85f77e376c9812931a790f5a591a"
   },
   "stu1a": {
    "id": "stu1a",
@@ -189,7 +213,13 @@
      "stu0-pl": 1.0,
      "stu0-pr": 1.0,
      "stu0-pra": 1.0,
-     "stu0-prb": 1.0
+     "stu0-prb": 1.0,
+     "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
+     "stu2-p": 1.0,
+     "stu2-pr": 1.0,
+     "stu2-pt": 1.0,
+     "stu2-pv": 1.0
     }
    },
    "x8": {
@@ -247,6 +277,8 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -261,7 +293,11 @@
       "stu1-r3",
       "stu1-r6",
       "stu1a",
-      "stu1b"
+      "stu1b",
+      "stu2-p",
+      "stu2-pr",
+      "stu2-pt",
+      "stu2-pv"
      ],
      "guard": true,
      "full": true
@@ -293,6 +329,8 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -307,7 +345,11 @@
       "stu1-r3",
       "stu1-r6",
       "stu1a",
-      "stu1b"
+      "stu1b",
+      "stu2-p",
+      "stu2-pr",
+      "stu2-pt",
+      "stu2-pv"
      ]
     },
     "names": {
@@ -319,10 +361,10 @@
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "f260989c6b3e5a1e3f9f597765eb3915dab44a606dfdc6c8345c4de1493c050f"
+   "identity": "33c5e846b7c07058886e9007afdca639488fa3a945c6fccdcfb0e5b9c5889d45"
   },
-  "8p-32-v41": {
-   "id": "8p-32-v41",
+  "6-32": {
+   "id": "6-32",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -352,8 +394,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "gen8-proto",
-   "engine": "gen7",
+   "policy_role": "pimc-ties-only",
+   "engine": "gen6",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -370,47 +412,23 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "gen7_policy": "/home/bridgebots/work/loop/src/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
-   "gen7": {
-    "play_weight": 1.0,
-    "play_floor": 0.05,
-    "play_max_layouts": 1024,
-    "play_lead": true,
-    "tie_break": "net",
-    "search_from_trick": 1,
-    "net_sample": false,
-    "tree_audit": true,
-    "tree": [
-     {
-      "from_trick": 3,
-      "to_trick": 6,
-      "root_margin": 0.25,
-      "root_cards": 3,
-      "trust": 0.3,
-      "max_solves": 12000,
-      "tricks": 3,
-      "breadth": 3,
-      "mass": 0.98,
-      "layouts": 8,
-      "reply": "net",
-      "reply_power": 1.0,
-      "reply_gap": 99.0,
-      "own": "best",
-      "own_breadth": 0,
-      "reply_layouts": 8,
-      "reply_pool": 64,
-      "plain": 1,
-      "path": 0.5,
-      "spread": 0.0,
-      "path_solves": 3000
-     }
-    ],
-    "early_play_weight": 1.0,
-    "early_pool": 512,
-    "early_min_effective": 8.0
+   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
+  },
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
    },
-   "table_opponent": "stu1a",
-   "identity": "54f278735b4d08625b0da3ddecbe8a2dd53d85f77e376c9812931a790f5a591a"
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   }
  },
  "pair_schedule": [
@@ -437,9 +455,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "745bfae7d49339645a0b1e6aa56d4477821124b1be2f8960c7c52f76f2ca8b93",
+ "identity": "1008fb57e84e21a30bdda4d83716e82d53fa63d72e0d73cbfe65e1303d277414",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 0,
- "deals": 500,
- "source_commit": "bc4b3af595f0774a9c20500f27fe22158dacb303"
+ "deals": 200,
+ "source_commit": "b4eea94140909f67ff049218e200e8d70b3b5029"
 }

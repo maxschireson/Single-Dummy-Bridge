@@ -1,0 +1,23 @@
+{
+ "pair": "stu0-pr~ben64",
+ "boards": 32,
+ "cpu_per_board": 63.07,
+ "common": {
+  "imps_per_board": 0.4062,
+  "se": 0.6005,
+  "boards": 32,
+  "won": 10,
+  "lost": 8,
+  "flat": 14
+ },
+ "native": {
+  "imps_per_board": 0.4062,
+  "se": 0.6005,
+  "boards": 32,
+  "won": 10,
+  "lost": 8,
+  "flat": 14
+ },
+ "failures": 0,
+ "boards_per_hour": 34
+}
