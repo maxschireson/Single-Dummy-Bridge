@@ -1,4 +1,4 @@
-# Gen 9: state at Fri 13 Nov 14:55 UTC (hand-over note)
+# Gen 9: state at the freeze, Fri 13 Nov 18:00 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -12,22 +12,38 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
 
 ## Dates
 
-- Fri 13 Nov 18:00 UTC: freeze (no new runs started after it).
-- Sat 14 Nov 01:00 UTC (Friday evening California): review package for Max (task G9-A6, g9). The page is up as a
-  draft (a Claude doc, private to Max): https://claude.ai/artifact/Mc5Fhz74bcoUJND3bHMUzL; numbers refresh at the freeze.
+- Fri 13 Nov 18:00 UTC: freeze (no new runs started after it). Passed; the numbers below are the freeze's: the last
+  feed commits before 18:00 (cohort 17:59:47, BEN pair 17:59:24) and `team/gen9` at 18:01.
+- Sat 14 Nov 01:00 UTC (Friday evening California): review package for Max (task G9-A6, g9). The page is final
+  at the freeze numbers (a Claude doc, private to Max, rev 31): https://claude.ai/artifact/Mc5Fhz74bcoUJND3bHMUzL.
 
 ## Running
 
-- **azure4** (Gen 9's only box; no instance added): will's job queue (`tools/boxq.py`); `tools/q jobs` shows it.
-  - `g9-cohort-azure4` (dave, priority 1, all 8 cores, since 06:44 UTC): the Gen 9 cohort, `configs/round9-cohort.json`
+- **azure4** (Gen 9's only box; no instance added): will's job queue (`tools/boxq.py`); `tools/q jobs` shows it. Idle 2.8
+  core-hours since 12 Nov 15:03 of about 216, all while jobs waited (STATUS, 18:01).
+  - `g9-cohort-azure4` (dave, priority 1, since 06:44 UTC; 6 cores and 5 workers since 10:14): the Gen 9 cohort, `configs/round9-cohort.json`
     on `feature/gen9-cohort` (46b7e004): `9a-32` against `8s-32`, `71s-32` and `8p-32` (the control) on 10,000 fresh
-    deals (seed 9013), cohort identity 75b73937750652a5. About 200 boards an hour (180 at 07:38), so about 3,500 by the
-    review and all 10,000 on 15 Nov. Feed `arena-gen9-azure4-feed`, registered on the page by g7 as generation 9
+    deals (seed 9013), cohort identity 75b73937750652a5. At the freeze 1,783 of 10,000; `9a-32`'s IMPs a board against
+    `71s-32` +0.54 +- 0.15 (594 boards), `8p-32` +0.30 +- 0.15 (594), `8s-32` +0.17 +- 0.13 (595). Both tables bid the same
+    auction on all 1,783 boards (`different_bidding` false in the replays), so these compare card play. 160 to 167
+    boards an hour until about 16:45, about 105 since (below), so about 2,500 by the review and all 10,000 near 17 Nov 01:00. Feed `arena-gen9-azure4-feed`, registered on the page by g7 as generation 9
     (`gen9azure4`); the page's default view is Gen 9 since 07:19 UTC (Max). `9a-32` takes 0.354 s per card
     decision with a choice against `8p-32`'s 0.376 on the same box.
   - `9a-32~ben64`: job `g9-cohort-ben64-azure4` since about 07:50 UTC, 2,000 fresh deals (seed 9014), feed
-    `arena-gen9-azure4-ben64-feed`, BEN 64 through will's `gen9_ben_lanes serve`.
-  - Paused until the cohort ends: `e9-0-n04` (281 of 800), `e9-16-h-v-p` (269 of 800), both g9's.
+    `arena-gen9-azure4-ben64-feed`, BEN 64 through will's `gen9_ben_lanes serve`. At the freeze 454 of 2,000, +0.19 +- 0.18 IMPs a board; about
+    46 an hour, ending about 15 Nov 03:30 by the queue's estimate, which frees the core E9-25 waits for.
+  - Paused until the cohort ends: `e9-0-n04` (284 of 800), `e9-16-h-v-p` (269 of 800), both g9's. Waiting: `e9-25`.
+  - **Disk (will, 17:52):** azure4's P10 disk (Premium_LRS, 128 GB) is at its write limit, 595 writes/s at 42 ms, which
+    looks like the 500-IOPS baseline after the burst credits ran out; CPU 45% idle. Most writes are the cohort's
+    `run/dds-cache.sqlite` (11.4 GB, 6.5 MB a board, WAL with `synchronous=FULL`, `bridge_harness/dds_cache.py`). will's
+    options: (1) `synchronous=NORMAL` or the cache off, a source change mid-run; (2) a fresh cache; (3) a faster disk,
+    which costs money (Max's rule: recap, then his go); (4) leave it. g9 (18:10, to all): leave it tonight; first a fresh
+    cache on a local temp disk if azure4 has one (a symlink; check that SQLite puts `-wal` and `-shm` beside the real
+    file); else (1), logged with its commit: play is unchanged, but the manifest's `source_sha256` covers every
+    `bridge_harness/*.py`. dave decides as owner; if he is silent at 08:00 UTC on 14 Nov, will may apply it on g9's
+    agreement; (3) only through a recap to Max. At 6.5 MB a board the cache reaches about 65 GB by 10,000 boards; will to
+    check free space (STATUS's 108.5 GB is from 12 Nov 17:49). A Gen 7 publisher (pid 5704) still writes about 0.4 MB/s
+    on azure4; will raised it with g7 and is not touching it.
 - **The ladder** (G9-D9, dave and will, accepted 07:24): `arena/ladder.json` and `ladder.js` at the top of the arena page,
   refreshed hourly; the cohort's points appear as its boards come in.
 
@@ -37,12 +53,12 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
   population, three diversity distances and a redundancy rule, training opponents by what the champion still has to
   learn, ratings in a diverse field, exploiters and leakage, the nets' view of a newcomer, page additions, five decisions
   for Max, tasks E9-18 to E9-23, G9-B9, G9-S8, G9-D10.
-- **E9-21** (submitted; will to give the verdict): on the ladder's 22 points the field moves the levels, not the order;
+- **E9-21** (adopted by will, 08:27): on the ladder's 22 points the field moves the levels, not the order;
   the equilibrium is `8s-32` alone; the Nash average's errors are about the field scores'. `reports/gen9-arena-field-2026-11-13`.
-- **E9-20** (submitted; will): no current member is redundant. By results alone `6-32` and `8c-32` look alike; by card
+- **E9-20** (rejected as worded by will, 08:27): no current member is redundant. By results alone `6-32` and `8c-32` look alike; by card
   play alone `8c-32` and `8s-32` never chose differently in 25,953 paired decisions (they differ only in bidding, 0.79
   IMPs a board natively). `reports/gen9-arena-diversity-2026-11-13`.
-- **E9-19** (open): on 64,790 native boards, boards where the two tables' contracts differ carry 30% of house pairs'
+- **E9-19** (the cheap version was rejected by will, 13:35; below): on 64,790 native boards, boards where the two tables' contracts differ carry 30% of house pairs'
   variance (55% with BEN), so re-scoring contracts can cut the SD by at most 16% (33%); most of the variance is card
   play in the same contract.
 - **E9-12 interim** (bill, 04:02): `9c-32` (reads the foreign system by its card) against `8p-32` +0.375 +- 0.092 IMPs a
@@ -132,16 +148,21 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
   Gen 1, Gen 5 or `8c-32`) the SD of the re-scored boards fell 29.6% (bar 30%), 12% over all boards, with mean shifts
   up to 1.7 IMPs a board; reported and stopped. Arena note 5.4 updated.
 - **E9-25** queued on azure4 (job `e9-25`, 1 core, priority 3, validated by will 13:34): the cohort's two jobs hold all
-  8 cores until the BEN pair ends (about 15 Nov 07:00); with conditional claims off in X9 it is not worth slowing the
+  8 cores until the BEN pair ends (about 15 Nov 03:30 by the queue's estimate at 18:01); with conditional claims off in X9 it is not worth slowing the
   cohort, so it waits; due moved to 15 Nov 18:00. Job checkouts now fetch over public HTTPS (will, team/gen9 0122f15).
-- **G9-B8 card intake, first version** (submitted 09:55, bill to review): `scripts/gen9_card_intake.py`; Max's two
+- **G9-B8 card intake, first version** (submitted 09:55; reviewer set to will at 18:10, since bill and sam are silent): `scripts/gen9_card_intake.py`; Max's two
   cards read into `configs/cards/intake/` with variants by seat and vulnerability, recorded agreements and the notes'
   style statements; results `reports/gen9-card-intake-2026-11-13`. The check sheets wait for Max's confirmation.
+- **Freeze, 18:00 UTC.** The review page's Running and Team record were refreshed from
+  `/home/claude/scratch/review/freeze.py` (sandbox): reviews 46, median 22 minutes from submission to verdict, longest
+  2.8 hours; g9 gave 25, will 13, dave 4, sam 3, bill 1. Last log lines: sam 00:19, bill 04:02, dave 08:42 (last commit
+  10:15), will 15:39 (messages to 17:52).
 
 ## Waiting
 
-- **bill**: last seen 04:02 UTC. G9-B8 first version submitted by g9 for his review; G9-B9, E9-13, G9-B5.
+- **bill**: last seen 04:02 UTC. G9-B8's review moved to will (18:10); G9-B9, E9-13, G9-B5.
 - **sam**: last seen 00:19 UTC. E9-4 and E9-6 leases expired; G9-S8 new.
+- **dave**: last commit 10:15 UTC. Owns both cohort jobs; the disk decision is his until 08:00 UTC on 14 Nov (above).
 - will's verdicts: G9-A11 accepted (13:37), E9-19 rejected (13:35).
 - Verdicts (will, 10:06): E9-12 adopted (about +0.4 IMPs a board from reading a foreign system by its card; replay
   adds nothing, -0.08 +- 0.10), E9-24 inconclusive (post hoc; E9-25 registered), G9-A10 and G9-S9 accepted.
@@ -155,4 +176,4 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 - dave: guest-b's native cost (-0.347 +- 0.160 in the arrival run), still open.
 - E9-18 blocked on Max (a training box). E9-22 and E9-23 after the review package (their plumbing takes hours).
 - Decisions for Max: the arena note's section 10; the card intake check sheets.
-- G9-A5 base swap when Gen 8 lands on main; G9-A6 review package (g9, from 13:00 UTC).
+- G9-A5 base swap when Gen 8 lands on main; G9-A6 review package (g9): page final at the freeze; Max reviews from 01:00 UTC.
