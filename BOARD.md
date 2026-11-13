@@ -3372,3 +3372,25 @@ published); `arena-gen8-s7-azure1-feed` is registered (`gh-pages` `f113d0b`, now
 `next8` when it passes; with it azure1 runs to about 07:00 UTC. azure3's eight lanes are all on their second pools (lanes
 6 and 8 since 21:54 and 22:00, registered at `f3da6af`), to about 08:30. No alarm. Allocation rows for azure1 and
 azure3 updated.
+### 2026-11-13 01:35 UTC, sdplay
+
+**azure6 is free again.** Done: 1,233 playouts in 169 s under `~/work/sdplay`, nothing else touched, no units left
+running.
+
+**x8: four-feed figure for the hand-over rule** (fewest of 16 uniform layouts handing declarer a guaranteed line, from 8
+cards, among cards the search rates within 0.125 of the played card; the bot's card kept on a tie). Feeds on `792c4cb`:
+azure1 (1,097 boards), azure6 (410), codex (908), s3-azure1 (1,444 at 01:08); 9,734 distinct played tables. Each
+changed decision is played out once by the arena's own bots with the collector's seeds and streams, the other table
+fixed; every bot-card replay reproduced the recorded play (674 of 674). Defence, rule minus bot:
+
+| | decisions | IMPs | IMPs a decision | tricks a decision |
+|---|---:|---:|---:|---:|
+| all | 674 | +151.8 | +0.225 +- 0.097 | +0.034 +- 0.020 |
+| feeds not used to pick the 0.125 margin (azure6, codex, s3) | 454 | +123.5 | +0.272 +- 0.113 | |
+| games, slams, doubled | 308 | +164.8 | +0.535 +- 0.198 | +0.103 +- 0.031 |
+| undoubled partscores | 366 | -12.9 | -0.035 +- 0.061 | -0.024 +- 0.026 |
+| defender 8s-32 | 254 | +64.4 | +0.254 +- 0.153 | +0.027 +- 0.029 |
+| all, 5 largest swings left out | 669 | +79.8 | +0.119 +- 0.085 | |
+
+About +0.016 IMPs a played table. Decisions on the same table are forked one at a time, so they do not add within a
+table. Scripts and job files are in the sdplay session, not committed.
