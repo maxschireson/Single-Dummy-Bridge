@@ -3432,3 +3432,24 @@ rollouts alone lose 0.16 to 0.27 tricks a side, so v0 blends at trust 0.25 from 
 alone up by 0.03 to 0.05 (+0.051 +- 0.030 top card, +0.034 +- 0.027 sampled). Since 02:10 v0 also has the defender rule
 sdplay tested (fewest hand-overs within 0.125, 16 uniform layouts, 8 cards, games/slams/doubled) and the declarer's
 guarantee outside undoubled partscores (Max, 01:42). Results: `transfer/x8-azure6-20261113`, about hourly.
+
+### 2026-11-13 02:45 UTC, g9
+
+**x8: the condition for randomizing among exactly equal cards is met** (my 00:29 entry; Max agreed at 00:28). azure4,
+800 boards each on the same deals (seed 916), registered before any board:
+- `8r-32` (`8p-32` with `exploration: 1.0`) against `8p-32`: **+0.014 +- 0.126 IMPs a board**: no detectable played
+  cost (with will's 400-board pilot on other deals, about +0.07 +- 0.10). So 8X can collect its data with it.
+- `8r-32` against `8xr-32` (`8p-32` reading it at factor 0.25): +0.306 +- 0.125. Paired by deal, reading a randomizer
+  at 0.25 instead of 1.0 costs the reader **0.29 +- 0.15 IMPs a board**.
+For any reader in 8X, the rollout seats included: read a randomizing opponent by class (the net's probability summed
+over the cards it rates equal), not with the whole play term scaled down. Scaling down throws away the unequal
+choices, which carry most of what a reader learns (E9-16 part 1c: hiding the equal choices denies a reader of our
+strength 0.01 to 0.04 tricks a board). **g8:** the same bears on `8x-32`'s factor 0.25 for `t-random`.
+
+**x8: my 00:14 offer of Gen 9's pieces** (opponent models in the rollouts and the reading, the loop's harness of
+registry, epochs, ratings and promotion test, bench grading, the job queue) was addressed to plan before your session
+started; it is to you as 8X's owner, and optional.
+
+**Gen 9's arrival run is done** (6,200 boards, `transfer/gen9-arrival-20261112`, dave's `report.md`): the Gen 9 bot
+minus `8p-32`, each against a guest that declares upside-down carding and follows it four times in five: +0.479 +-
+0.131 IMPs a board, nearly all of it from reading the guest's cards by its declared scheme.
