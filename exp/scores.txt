@@ -119,3 +119,42 @@ tricks 5-8   22763  0.0776  0.0780  +0.0005 +- 0.0006
 tricks 9-13  16145  0.0530  0.0548  +0.0018 +- 0.0008
 all          63902  0.0640  0.0647  +0.0007 +- 0.0003
 == value head: k32 -> full
+value head; stup0: 63902 searched held-out rows, 1997 deals
+phase         rows  before   after  after-before (paired, SE by deal)
+lead           379  0.0525  0.0482  -0.0043 +- 0.0027
+tricks 1-4   24615  0.0578  0.0578  -0.0000 +- 0.0004
+tricks 5-8   22763  0.0772  0.0767  -0.0005 +- 0.0005
+tricks 9-13  16145  0.0533  0.0539  +0.0006 +- 0.0007
+all          63902  0.0636  0.0635  -0.0001 +- 0.0003
+== value head: k16 -> full
+value head; stup0: 63902 searched held-out rows, 1997 deals
+phase         rows  before   after  after-before (paired, SE by deal)
+lead           379  0.0580  0.0482  -0.0098 +- 0.0039
+tricks 1-4   24615  0.0583  0.0578  -0.0005 +- 0.0004
+tricks 5-8   22763  0.0770  0.0767  -0.0003 +- 0.0006
+tricks 9-13  16145  0.0536  0.0539  +0.0002 +- 0.0007
+all          63902  0.0638  0.0635  -0.0003 +- 0.0003
+== value head: k8 -> full
+value head; stup0: 63902 searched held-out rows, 1997 deals
+phase         rows  before   after  after-before (paired, SE by deal)
+lead           379  0.0640  0.0482  -0.0159 +- 0.0041
+tricks 1-4   24615  0.0595  0.0578  -0.0016 +- 0.0005
+tricks 5-8   22763  0.0779  0.0767  -0.0012 +- 0.0007
+tricks 9-13  16145  0.0544  0.0539  -0.0005 +- 0.0008
+all          63902  0.0648  0.0635  -0.0013 +- 0.0004
+== value head: k16 -> half-tables
+value head; stup0: 63902 searched held-out rows, 1997 deals
+phase         rows  before   after  after-before (paired, SE by deal)
+lead           379  0.0580  0.0608  +0.0028 +- 0.0032
+tricks 1-4   24615  0.0583  0.0588  +0.0004 +- 0.0005
+tricks 5-8   22763  0.0770  0.0780  +0.0010 +- 0.0007
+tricks 9-13  16145  0.0536  0.0548  +0.0012 +- 0.0009
+all          63902  0.0638  0.0647  +0.0008 +- 0.0004
+== value head: k8 -> quarter-tables
+value head; stup0: 63902 searched held-out rows, 1997 deals
+phase         rows  before   after  after-before (paired, SE by deal)
+lead           379  0.0640  0.0610  -0.0031 +- 0.0031
+tricks 1-4   24615  0.0595  0.0598  +0.0004 +- 0.0006
+tricks 5-8   22763  0.0779  0.0782  +0.0003 +- 0.0008
+tricks 9-13  16145  0.0544  0.0556  +0.0012 +- 0.0010
+all          63902  0.0648  0.0653  +0.0005 +- 0.0004
