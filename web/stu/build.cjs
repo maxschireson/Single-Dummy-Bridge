@@ -56,6 +56,7 @@ function main() {
   const listText = registry.runs_list ? show(registry.runs_list.branch, registry.runs_list.path) : null;
   const runsList = listText ? JSON.parse(listText) : { runs: [] };
   const entries = new Map(runsList.runs.map(r => [`${r.box}/${r.name}`, r]));
+  const ids = core.botIds(runsList);
   const runs = [];
   for (const b of registry.boxes) {
     if (!heads[b.branch]) continue;
@@ -76,7 +77,7 @@ function main() {
       meta[e.name] = { name: e.name, box: b.box, pair: e.pair, seed: e.seed, first: e.first, deals: e.deals, sources: [], status: 'queued', started: null };
     for (const r of Object.values(meta)) {
       const entry = entries.get(`${b.box}/${r.name}`) || null;
-      const cls = core.classify(r, entry, registry);
+      const cls = core.classify(r, entry, registry, ids);
       if (cls.role === 'excluded') continue;
       const dir = r.name + '/';
       let red = null, bad = 0;
@@ -109,13 +110,15 @@ function main() {
     for (const [k, f] of Object.entries(n.before || {})) { const t = show(f.branch, f.path); if (t) try { before[k] = JSON.parse(t); } catch (e) { console.warn(`${n.key} before ${k}: ${e.message}`); } }
     if (text) try { metrics[`${m.branch}:${m.path}`] = core.netMetrics(JSON.parse(text), n.compare, before, n.focus_bot || null); } catch (e) { console.warn(`${n.key}: ${e.message}`); }
   }
+  let ledger = null;
+  if (registry.ledger) { const t = show(registry.ledger.branch, registry.ledger.path); if (t) try { ledger = JSON.parse(t); } catch (e) { console.warn('ledger: ' + e.message); } }
   const snapshot = { schema: 'stu-snapshot-v2', built_epoch: Date.now() / 1000, registry_updated: registry.updated || null,
-    heads, runs_list: runsList, runs, health, metrics };
+    heads, runs_list: runsList, runs, health, metrics, ledger };
   fs.writeFileSync(a.out, JSON.stringify(snapshot));
-  const model = core.buildModel(registry, runs, metrics, runsList);
+  const model = core.buildModel(registry, runs, metrics, runsList, ledger);
   for (const r of model.rounds) {
-    const g = r.gate?.stats;
-    console.log(`${r.label}: collection ${r.collection.boards} boards (cut ${r.collection.cut}, ${r.collection.rate ?? '-'} an hour); gate ${g?.n ? g.n + ' boards, ' + g.mean.toFixed(3) + ' +- ' + g.se.toFixed(3) : 'none'}`);
+    const cells = Object.entries(r.cells).map(([k, c]) => `${k} ${c?.stats.n ? c.stats.n + ': ' + c.stats.mean.toFixed(3) + ' +- ' + c.stats.se.toFixed(3) : '-'}`).join('; ');
+    console.log(`${r.label}: collection ${r.collection.boards} boards (${JSON.stringify(r.collection.by_rung)}, ${r.collection.rate ?? '-'} an hour); ${cells}`);
   }
   console.log(`ladder cells: ${Object.entries(model.ladder).map(([k, c]) => k + ' ' + c.stats.n).join(', ') || 'none'}`);
   console.log(`${runs.length} runs, ${Object.keys(metrics).length} nets scored, ${(fs.statSync(a.out).size / 1024).toFixed(0)} KB -> ${a.out}`);

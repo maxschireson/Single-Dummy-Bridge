@@ -15,8 +15,9 @@ into the numbers.
 
 | Section | What | Source |
 | --- | --- | --- |
-| Round by round | The collection against the round's cut (rate, time to the cut, failures), the gate (the round's Stu against Gen 8 card play on seed 131, 2,000 deals), the change from the previous gate paired by deal, the net's held-out log-loss, the decision mix and how often rollouts changed the net's card | runs `collection`, `gate`, and the `stu` rung of `ladder` |
-| The ladder | Every rung (where rollouts take over) by net, against Gen 8 card play on the first 500 gate deals; each rung minus Stu's own rung, and each net minus the one before it, paired by deal | runs `ladder` |
+| Round by round | The collection (rate, boards by the bot that played them), and each round's own net alone, inside Stu's own stages and inside pure Stu (the main line from 11:25 UTC) against Gen 8 card play on every seed-131 deal played (0 to 1,999), with the change from the previous round paired by deal; the net's held-out log-loss (Stu's own rows from round 1); the decision mix and how often rollouts changed the net's card or lead | runs `collection`, `gate`, `ladder` (`registry.round_rungs`) |
+| The ladder | Every rung (where rollouts take over) by net, against Gen 8 card play on the deals its ladder runs plan (0 to 499, or 0 to 999 for Stu's own stages and pure Stu with v2); each rung minus its reference rung (`ref`: Stu's own stages, or pure Stu for the two lead variants), and each net minus the one before it, paired by deal | runs `ladder` |
+| The fusion ledger | Per bot (net and rung) and for Gen 8 card play pooled: declaring cards that gave up a held guarantee, defending cards that handed one over, by contract class | `ledger/ledger.json` on azure3's transfer branch (`fusion_ledger.py`) |
 | Leverage | For consecutive nets: the change in held-out log-loss and regret on the same rows, beside the change in IMPs at each rung. The `net` rung (the net alone, no search, no rollouts) is the unamplified measurement | trainer `metrics.json` (`compared`), ladder |
 | The nets | Held-out scores, the earlier nets on the same rows, training curves | trainer `metrics.json` |
 | Collections | Per run: boards, rate, failures, CPU, decision mix, the self-play IMPs check, a stall flag | runs `collection`, `<run>.log` |
@@ -30,7 +31,9 @@ into the numbers.
   opponent, the control's cells, the boxes and their branches, cautions.
 - The loop's `runs.json` says what each run is (role, round, net, rung, whether it is still in a job file, `passes`),
   and per round any collection cut (`rounds`). A run it does not list is shown under other matches; preflights are left
-  out. A job that ends at the end of a pass short of the planned deals shows as "pass done".
+  out; a run it no longer lists is read by the bot ids it does list (marked superseded). A job that ends at the end of a
+  pass short of the planned deals shows as "pass done". Collection rows with one table a board (`common: null`) count
+  as boards, CPU and decisions, not IMPs.
 - A net can name `before` files: the same held-out rows scored by an earlier net, for an earlier net that `compared`
   misreads (round 1: v2 reads Stu as an unknown bot under `compared`; `train-r1/metrics_before.json` tells it Stu is
   `8s-32`). `focus_bot` (round 1: `stu0`) adds that bot's rows from `by_bot` beside all rows.

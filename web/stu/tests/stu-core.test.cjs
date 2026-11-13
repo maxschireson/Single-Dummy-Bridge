@@ -40,6 +40,8 @@ test('match log: the last progress line', () => {
   const p = C.parseMatchLog(FX.s0_log);
   assert.ok(p.boards >= 50 && p.per_hour > 0 && p.failed === 0 && p.bot === 'stu0a');
   assert.equal(C.parseMatchLog('stu0a v stu0b: 19000 boards to play (0 done), 8 workers\n'), null);
+  const one = C.parseMatchLog('stu0-pra v stu0-prb: 20000 boards to play (0 done), 8 workers\n50 boards: None +- None IMPs/board for stu0-pra; 454 boards/hour; 0 failed\n');
+  assert.deepEqual([one.boards, one.mean, one.se, one.per_hour], [50, null, null, 454]);
 });
 
 test('parseResults skips a line cut off by the publisher', () => {
@@ -66,7 +68,7 @@ test('classify from the loop\'s runs.json', () => {
 
 test('every run the loop lists is understood', () => {
   const roles = new Set(['collection', 'gate', 'ladder', 'data', 'control', 'excluded']);
-  for (const e of FX.runs_json.runs) {
+  for (const e of [...FX.runs_json.runs, ...FX.runs_json_1255.runs]) {
     const c = C.classify({ name: e.name }, e, REG);
     assert.ok(roles.has(c.role), e.name + ' ' + c.role);
     if (['gate', 'ladder', 'data'].includes(c.role)) assert.ok(REG.rungs.some(r => r.key === c.rung), 'rung ' + c.rung + ' in the registry');
@@ -146,9 +148,11 @@ test('buildModel: round 0, the ladder and the control from the fixtures', () => 
   assert.equal(C.buildModel(REG, runs, metrics, { rounds: { 0: { collection_cut_boards: 4000 } } }).rounds[0].collection.cut, 4000);
   assert.ok(r0.collection.mix.rollout > 0);
   assert.equal(r0.gate.stats.n, new Set([...FX.g0_v2_rows, ...FX.g0_stu0_rows].map(r => r.family)).size);
+  assert.equal(r0.cells.stu, r0.gate); assert.equal(r0.cells.net, null);
   assert.equal(r0.gate.superseded_boards, r0.gate.stats.n, 'every gate board so far is from a superseded run');
-  assert.equal(r0.gate_change, null);
-  assert.ok(M.ladder['v2|stu'] && M.ladder['v2|stu'].boards.every(b => b[1] < 500));
+  assert.equal(r0.change, null);
+  assert.ok(M.ladder['v2|stu'] && M.ladder['v2|stu'].boards.every(b => b[1] < 500), 'l0-stu0 plans deals 0 to 499');
+  assert.equal(M.ladder['v2|stu'].deals, 500);
   assert.deepEqual(M.ladder_nets, ['v2']);
   assert.ok(M.nets.find(n => n.key === 'v2').metrics);
   // control: the derived split agrees with direct pairing
@@ -197,4 +201,61 @@ test('round 1 net: earlier nets from a before-file, and the round\'s own bot\'s 
   assert.equal(out.focus.nll, 0.85); assert.equal(out.focus_bot, 'stu0');
   assert.equal(out.same_rows.v2.before, true); assert.equal(out.same_rows.v2.focus.nll, 1.2); assert.equal(out.same_rows.v2.all.nll, 0.6);
   assert.equal(C.netMetrics(m, stu1.compare, {}, 'stu0').same_rows.v2, undefined, 'v2 is not read from compared for round 1');
+});
+
+test('one table a board: rows count, CPU and decisions too, no IMPs', () => {
+  const rows = FX.g0_stu0_rows.slice(0, 6).map(r => ({ ...r, common: null, tables: 1 }));
+  const red = C.reduceRun(rows, { keepBoards: false });
+  assert.equal(red.rows, 6); assert.equal(red.n, 0); assert.equal(red.tables, 6);
+  assert.ok(red.cpu_n === 6 && red.x8_boards === 6);
+  assert.equal(C.summaryOf(red).mean, null);
+});
+
+test('a run the list dropped is read by its bots (s0b, Stu-as-is self-play, after 12:05)', () => {
+  const ids = C.botIds(FX.runs_json_1255);
+  assert.ok(!FX.runs_json_1255.runs.some(e => e.name === 's0b'));
+  assert.deepEqual([ids.stu0a.rung, ids.stu0b.rung, ids['stu0-pra'].rung, ids.stu1a.net], ['stu', 'stu', 'pure-rl', 'stu1']);
+  const c = C.classify({ name: 's0b', pair: 'stu0a~stu0b', seed: 9001 }, null, REG, ids);
+  assert.deepEqual([c.role, c.round, c.rung, c.superseded, c.listed], ['collection', 0, 'stu', true, false]);
+  assert.equal(C.classify({ name: 'x', pair: 'stu0-p~8p-32-v41', seed: 131 }, null, REG, ids).role, 'ladder');
+  assert.equal(C.classify({ name: 'y', pair: 'stu0a~ben', seed: 131 }, null, REG, ids).role, 'other');
+});
+
+test('the ladder takes its deals from its runs; the two lead rungs are compared with pure Stu', () => {
+  const E = new Map(FX.runs_json_1255.runs.map(e => [e.name, e])), runs = [];
+  const add = (name, rows) => { const e = E.get(name), cls = C.classify({ name }, e, REG);
+    runs.push({ key: e.box + '/' + name, box: e.box, name, pair: e.pair, seed: e.seed, first: e.first, deals: e.deals, started: 1, status: 'running', cls, red: C.reduceRun(rows) }); };
+  const base = FX.g0_stu0_rows, shift = (rows, k) => rows.map(r => ({ ...r, index: r.index + k, family: 'f' + (r.index + k) }));
+  add('l0-stu0', shift(base, 0)); add('l0b-stu0', shift(base, 500)); add('l0-p', shift(base, 0).map(r => ({ ...r, common: r.common - 1 })));
+  add('l0-pr', shift(base, 0).map(r => ({ ...r, common: r.common - 3 })));
+  const M = C.buildModel(REG, runs, {}, FX.runs_json_1255);
+  assert.equal(M.ladder['v2|stu'].deals, 1000); assert.equal(M.ladder['v2|stu'].stats.n, 2 * base.length);
+  assert.equal(M.ladder['v2|pure'].deals, 500);
+  assert.equal(M.ref_of['pure-rl'], 'pure'); assert.equal(M.ref_of.pure, 'stu');
+  close(M.vs_ref['v2|pure-rl'].mean, -2); close(M.vs_ref['v2|pure'].mean, -1);
+  const r0 = M.rounds[0];
+  assert.equal(r0.cells.stu.stats.n, 2 * base.length); assert.equal(r0.cells.pure.stats.n, base.length);
+  assert.equal(r0.main_rung, 'pure');
+});
+
+test('round over round: the change at each rung is paired by deal', () => {
+  const reg = { ...REG, rounds: REG.rounds };
+  const E = new Map(FX.runs_json_1255.runs.map(e => [e.name, e])), runs = [];
+  const add = (name, d) => { const e = E.get(name), cls = C.classify({ name }, e, reg);
+    runs.push({ key: name, box: e.box, name, pair: e.pair, seed: 131, first: e.first, deals: e.deals, started: 1, status: 'running', cls, red: C.reduceRun(FX.g0_stu0_rows.map(r => ({ ...r, common: r.common + d }))) }); };
+  add('l0-n', 0); add('l1-n', 0.5); add('l0-p', 0); add('l1-p', 1);
+  const M = C.buildModel(reg, runs, {}, FX.runs_json_1255), r1 = M.rounds.find(r => r.round === 1);
+  close(r1.change.net.mean, 0.5); close(r1.change.pure.mean, 1); assert.equal(r1.change.stu, null);
+  assert.ok(M.vs_net['stu1|v2|pure'] && Math.abs(M.vs_net['stu1|v2|pure'].mean - 1) < 1e-9);
+});
+
+test('fusion ledger: pooled by net and rung, the opponent pooled across runs', () => {
+  const E = new Map(FX.runs_json_1255.runs.map(e => [e.name, e]));
+  const runs = ['l0-stu0', 'l0-p', 'l0-n'].map(name => ({ name, cls: C.classify({ name }, E.get(name), REG) }));
+  const L = C.ledgerModel(FX.ledger, runs, '8p-32-v41');
+  const opp = L.rows.find(r => r.key === 'opp'), pure = L.rows.find(r => r.key === 'v2|pure');
+  const want = ['l0-stu0', 'l0-p', 'l0-n'].reduce((a, k) => a + FX.ledger.runs[k].bots['8p-32-v41'].all.gave_up, 0);
+  assert.equal(opp.classes.all.gave_up, want); assert.equal(opp.runs, 3);
+  assert.equal(pure.classes.all.held, FX.ledger.runs['l0-p'].bots['stu0-p'].all.held);
+  assert.equal(C.ledgerModel(null, runs, 'x'), null);
 });

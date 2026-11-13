@@ -1,7 +1,7 @@
 {
   "schema": "stu-registry-v2",
   "title": "Stu: the rollout loop, generation by generation",
-  "updated": "2026-11-13T10:45Z",
+  "updated": "2026-11-13T13:10Z",
   "runs_list": {
     "branch": "research/rollout-loop-20261113",
     "path": "training/rollout-loop-20261113/runs.json"
@@ -31,7 +31,6 @@
   "training_seeds": [
     9001
   ],
-  "ladder_deals": 500,
   "gate_deals": 2000,
   "opponent": {
     "id": "8p-32-v41",
@@ -46,7 +45,7 @@
     },
     {
       "key": "stu",
-      "label": "Stu",
+      "label": "Stu's own stages",
       "text": "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7"
     },
     {
@@ -66,8 +65,20 @@
     },
     {
       "key": "pure",
-      "label": "Pure rollouts",
-      "text": "The net's opening lead, rollouts alone from the second card on; no double dummy"
+      "label": "Pure Stu",
+      "text": "The net's opening lead, rollouts alone from the second card on; no double dummy. The loop's main line from 11:25 UTC on 13 Nov (Max), with the single-dummy guarantee kept"
+    },
+    {
+      "key": "pure-sl",
+      "label": "Pure, searched lead",
+      "ref": "pure",
+      "text": "Pure Stu with a searched opening lead: the search decides the lead, rollouts alone from the second card on"
+    },
+    {
+      "key": "pure-rl",
+      "label": "Pure, rolled-out lead",
+      "ref": "pure",
+      "text": "Pure Stu with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on. The collection's bot from 12:43 UTC (spr0)"
     }
   ],
   "nets": [
@@ -99,7 +110,7 @@
     {
       "key": "stu1",
       "label": "Stu 1's net",
-      "trained": "v2 trained on Stu 0's games (azure5, from 10:29 UTC 13 Nov)",
+      "trained": "v2 with one bot added, stu0, whose two vectors start from 8s-32's and are trained on 759 boards of round 0's Stu (62,504 decisions; --only-vectors stu0, rate 1e-2, epoch 6 of 8). Every other weight is v2's, bit for bit.",
       "metrics": {
         "branch": "transfer/rollout-loop-azure5-20261113",
         "path": "train-r1/metrics.json"
@@ -115,7 +126,7 @@
         }
       },
       "focus_bot": "stu0",
-      "note": "Held-out rows: Stu's 250 most recent boards on azure5 (bot stu0) joined to freshB.npz (the other bots). v2 on the same rows comes from metrics_before.json (Stu's vectors set to 8s-32's, as round 0's rollouts read it); under compared, v2 reads stu0 as an unknown bot."
+      "note": "Held-out rows: 250 later boards of Stu's (bot stu0) joined to freshB.npz (the other bots). v2 on the same rows from metrics_before.json (nothing trained)."
     }
   ],
   "rounds": [
@@ -125,14 +136,16 @@
       "net": "v2",
       "cut": null,
       "started": "2026-11-13T08:43Z",
-      "note": "x8's 8Z with rollout net v2 inside; the table net (the candidates' prior) is policy v4.1."
+      "note": "x8's 8Z with rollout net v2 inside; the table net (the candidates' prior) is policy v4.1. Pure Stu is the main line from 11:25 UTC.",
+      "main_rung": "pure"
     },
     {
       "round": 1,
       "label": "Stu 1",
       "net": "stu1",
       "cut": null,
-      "note": "Round 1's quick net trains on azure5 from 10:29 UTC on Stu 0's games (v2 fine-tuned on a few hundred of Stu's boards already predicts Stu's card at log-loss 0.87 against 1.23 untrained; PLAN.md)."
+      "note": "Round 1's net: v2 with Stu's two bot vectors trained on 759 of Stu 0's boards; every other weight is v2's (train-r1/README.md).",
+      "main_rung": "pure"
     }
   ],
   "control": {
@@ -163,7 +176,8 @@
     "Seed 131 is the gate's and the ladder's and is never trained on. Seed 9001 is round 0's training seed: a run on a training seed says nothing about strength on fresh deals once a net has been trained on it.",
     "New Stu against old Stu is not the gate. A net trained on a bot's games predicts that bot; in the control the inside net matching the opponent was worth +1.12 ± 0.16 IMPs a board by itself. The gate is the outside opponent.",
     "Everything here is against one outside opponent, Gen 8 card play. Reference, same opponent and seed: x8's 8Z (the rung Stu with net v1) −0.38 ± 0.14 over 541 boards, with feature forks on.",
-    "Self-play IMPs are a check (one bot against itself), not strength. Data runs (a ladder bot against Stu on training deals) flatter Stu: a rollout bot is the opponent Stu's net models best."
+    "Self-play IMPs are a check (one bot against itself), not strength. Data runs (a ladder bot against Stu on training deals) flatter Stu: a rollout bot is the opponent Stu's net models best.",
+    "s0 and r0 (round 0's first collection, Stu's own stages) played most boards identically in both rooms (two ids of one bot shared the room seeds): 113 of 119 boards of s0 card for card. Their distinct tables are about half their boards. From 12:37 UTC the collection plays one table a board."
   ],
   "exclude_runs": [
     "pf-*",
@@ -173,5 +187,14 @@
   "plan": {
     "branch": "research/rollout-loop-20261113",
     "path": "training/rollout-loop-20261113/PLAN.md"
-  }
+  },
+  "ledger": {
+    "branch": "transfer/rollout-loop-azure3-20261113",
+    "path": "ledger/ledger.json"
+  },
+  "round_rungs": [
+    "net",
+    "stu",
+    "pure"
+  ]
 }
