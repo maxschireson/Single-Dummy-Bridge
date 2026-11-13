@@ -1,15 +1,15 @@
 {
  "schema": "arena-ladder-v1",
- "computed_utc": "2026-11-13T20:51Z",
+ "computed_utc": "2026-11-13T21:53Z",
  "anchor": "ben64",
  "condition": "native",
  "unit": "IMPs a board",
  "model": {
   "name": "ratings-v1 with priors (bridge_harness/arena_ratings.py; scripts/arena_ladder.py)",
-  "t2": 0.01138,
-  "Q": 66.66,
+  "t2": 0.0121,
+  "Q": 68.91,
   "df": 34,
-  "field_mean": -0.7651,
+  "field_mean": -0.7739,
   "weak_prior_sd": 2.0,
   "imps_per_trick": 3.8,
   "conversion_error": 0.1
@@ -17,9 +17,9 @@
  "sources": {
   "feeds": 123,
   "failed": 0,
-  "boards_fetched": 117006,
-  "boards_fitted": 80024,
-  "collected_utc": "2026-11-13T20:51Z",
+  "boards_fetched": 117632,
+  "boards_fitted": 80634,
+  "collected_utc": "2026-11-13T21:53Z",
   "registry_sha256": "10d7185997f3395870560805293fb12a180df03435563695324d8da015b73cf1"
  },
  "notes": [
@@ -46,18 +46,18 @@
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/commit/63a4aa4b",
     "note": "Gen 1 played before the arena and before this commit; the repository does not record when it first played, so this is the latest it can have been."
    },
-   "boards": 6064,
-   "strength": -1.8707,
-   "se": 0.1161,
+   "boards": 6121,
+   "strength": -1.8817,
+   "se": 0.1175,
    "ci95": [
-    -2.0983,
-    -1.6431
+    -2.1119,
+    -1.6515
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -65,12 +65,12 @@
    "hollow": false,
    "timing": {
     "seconds_per_choice": 0.093,
-    "decisions_with_choice": 393784,
-    "forced_decisions": 107366,
+    "decisions_with_choice": 398609,
+    "forced_decisions": 108677,
     "by_environment": {
      "azure": 0.087,
      "chatgpt": 0.08,
-     "codex": 0.106
+     "codex": 0.105
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
@@ -80,7 +80,7 @@
     {
      "id": "1",
      "fingerprint": "b6ed89",
-     "boards": 5964,
+     "boards": 6023,
      "share": 0.931,
      "sources": [
       "gen5",
@@ -122,12 +122,12 @@
      "id": "1#unpublished",
      "fingerprint": "unpublished",
      "boards": 139,
-     "share": 0.022,
+     "share": 0.021,
      "sources": [
       "primary"
      ],
-     "difference": 0.503,
-     "se": 1.1327,
+     "difference": 0.5058,
+     "se": 1.133,
      "merged": true,
      "rule": "settings not published: merged unless the boards tell it apart (2 SE)",
      "differs_in": [
@@ -147,17 +147,17 @@
    "first_registered_board_utc": "2026-11-09T11:59Z",
    "introduced_source": "first board on a registered feed",
    "boards": 4090,
-   "strength": -0.9671,
-   "se": 0.1396,
+   "strength": -0.9748,
+   "se": 0.1412,
    "ci95": [
-    -1.2406,
-    -0.6935
+    -1.2517,
+    -0.698
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -176,8 +176,8 @@
    "point_label": "Gen 2, 0.11 s",
    "vs_parent": {
     "parent": "1",
-    "mean": 0.9037,
-    "se": 0.1271
+    "mean": 0.9069,
+    "se": 0.1283
    },
    "variants": [
     {
@@ -212,8 +212,8 @@
      "sources": [
       "primary"
      ],
-     "difference": 0.8234,
-     "se": 1.1139,
+     "difference": 0.8224,
+     "se": 1.1141,
      "merged": true,
      "rule": "settings not published: merged unless the boards tell it apart (2 SE)",
      "differs_in": [
@@ -261,17 +261,17 @@
    "first_registered_board_utc": "2026-11-09T11:59Z",
    "introduced_source": "first board on a registered feed",
    "boards": 7610,
-   "strength": -1.0177,
-   "se": 0.1354,
+   "strength": -1.0265,
+   "se": 0.1371,
    "ci95": [
-    -1.2831,
-    -0.7523
+    -1.2952,
+    -0.7578
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -290,8 +290,8 @@
    "point_label": "Gen 3, 0.10 s",
    "vs_parent": {
     "parent": "2",
-    "mean": -0.0507,
-    "se": 0.0987
+    "mean": -0.0517,
+    "se": 0.0999
    },
    "variants": [
     {
@@ -327,8 +327,8 @@
      "sources": [
       "primary"
      ],
-     "difference": 0.63,
-     "se": 1.1096,
+     "difference": 0.6295,
+     "se": 1.1098,
      "merged": true,
      "rule": "settings not published: merged unless the boards tell it apart (2 SE)",
      "differs_in": [
@@ -376,17 +376,17 @@
    "first_registered_board_utc": "2026-11-09T11:59Z",
    "introduced_source": "first board on a registered feed",
    "boards": 3955,
-   "strength": -1.371,
-   "se": 0.1533,
+   "strength": -1.3789,
+   "se": 0.1551,
    "ci95": [
-    -1.6714,
-    -1.0705
+    -1.683,
+    -1.0748
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -404,8 +404,8 @@
    "point_label": "Gen 4, 0.11 s",
    "vs_parent": {
     "parent": "3",
-    "mean": -0.3532,
-    "se": 0.0995
+    "mean": -0.3524,
+    "se": 0.1008
    },
    "variants": [
     {
@@ -426,8 +426,8 @@
      "sources": [
       "primary"
      ],
-     "difference": 0.3754,
-     "se": 1.1075,
+     "difference": 0.3745,
+     "se": 1.1077,
      "merged": true,
      "rule": "settings not published: merged unless the boards tell it apart (2 SE)",
      "differs_in": [
@@ -475,17 +475,17 @@
    "first_registered_board_utc": "2026-11-09T13:14Z",
    "introduced_source": "first board on a registered feed",
    "boards": 306,
-   "strength": -2.0532,
-   "se": 0.3239,
+   "strength": -2.061,
+   "se": 0.3258,
    "ci95": [
-    -2.6881,
-    -1.4183
+    -2.6996,
+    -1.4223
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -495,20 +495,20 @@
    "point_label": "Gen 1 (variant 330e78)",
    "vs_parent": {
     "parent": "1",
-    "mean": -0.1825,
-    "se": 0.3175
+    "mean": -0.1792,
+    "se": 0.3191
    },
    "variants": [
     {
      "id": "1#330e78",
      "fingerprint": "330e78",
      "boards": 306,
-     "share": 0.048,
+     "share": 0.047,
      "sources": [
       "supplement"
      ],
-     "difference": -0.1078,
-     "se": 0.3244,
+     "difference": -0.104,
+     "se": 0.3263,
      "merged": false,
      "rule": "merged when under 0.1 IMPs a board and under 2 SE",
      "differs_in": [
@@ -548,17 +548,17 @@
    "first_registered_board_utc": "2026-11-09T16:16Z",
    "introduced_source": "first board on a registered feed",
    "boards": 6738,
-   "strength": -0.954,
-   "se": 0.143,
+   "strength": -0.9622,
+   "se": 0.145,
    "ci95": [
-    -1.2343,
-    -0.6736
+    -1.2464,
+    -0.678
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -576,8 +576,8 @@
    "point_label": "Gen 4b, 0.10 s",
    "vs_parent": {
     "parent": "3",
-    "mean": 0.0637,
-    "se": 0.0928
+    "mean": 0.0643,
+    "se": 0.0942
    },
    "variants": [],
    "features": [
@@ -602,17 +602,17 @@
    "first_registered_board_utc": "2026-11-09T16:17Z",
    "introduced_source": "first board on a registered feed",
    "boards": 1402,
-   "strength": -1.6376,
-   "se": 0.1768,
+   "strength": -1.6466,
+   "se": 0.1787,
    "ci95": [
-    -1.9841,
-    -1.2911
+    -1.997,
+    -1.2963
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -630,8 +630,8 @@
    "point_label": "Gen 4p, 0.10 s",
    "vs_parent": {
     "parent": "3",
-    "mean": -0.6199,
-    "se": 0.1252
+    "mean": -0.6201,
+    "se": 0.1266
    },
    "variants": [],
    "features": [
@@ -656,17 +656,17 @@
    "first_registered_board_utc": "2026-11-10T03:51Z",
    "introduced_source": "first board on a registered feed",
    "boards": 1549,
-   "strength": -0.6961,
-   "se": 0.1689,
+   "strength": -0.7049,
+   "se": 0.1709,
    "ci95": [
-    -1.0271,
-    -0.3652
+    -1.0398,
+    -0.3699
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -684,8 +684,8 @@
    "point_label": "Gen 5 (192), 0.56 s",
    "vs_parent": {
     "parent": "5-32",
-    "mean": 0.2313,
-    "se": 0.132
+    "mean": 0.2305,
+    "se": 0.1337
    },
    "variants": [],
    "features": [
@@ -710,17 +710,17 @@
    "first_registered_board_utc": "2026-11-10T03:51Z",
    "introduced_source": "first board on a registered feed",
    "boards": 7920,
-   "strength": -0.9274,
-   "se": 0.1339,
+   "strength": -0.9353,
+   "se": 0.1357,
    "ci95": [
-    -1.19,
-    -0.6649
+    -1.2013,
+    -0.6694
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -738,8 +738,8 @@
    "point_label": "Gen 5 (32), 0.09 s",
    "vs_parent": {
     "parent": "4",
-    "mean": 0.4435,
-    "se": 0.1169
+    "mean": 0.4436,
+    "se": 0.1185
    },
    "variants": [],
    "features": [
@@ -781,31 +781,31 @@
    "introduced_utc": "2026-11-10T03:52Z",
    "first_registered_board_utc": "2026-11-10T03:52Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 5669,
-   "strength": -0.1421,
-   "se": 0.1215,
+   "boards": 5692,
+   "strength": -0.1525,
+   "se": 0.1228,
    "ci95": [
-    -0.3801,
-    0.096
+    -0.3933,
+    0.0882
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
    "prior_share": 0.001,
    "hollow": false,
    "timing": {
-    "seconds_per_choice": 0.731,
-    "decisions_with_choice": 287444,
-    "forced_decisions": 74138,
+    "seconds_per_choice": 0.73,
+    "decisions_with_choice": 289340,
+    "forced_decisions": 74634,
     "by_environment": {
      "azure": 0.782,
      "chatgpt": 0.781,
-     "codex": 0.713
+     "codex": 0.712
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
@@ -824,17 +824,17 @@
    "first_registered_board_utc": "2026-11-10T14:19Z",
    "introduced_source": "first board on a registered feed",
    "boards": 738,
-   "strength": -0.6928,
-   "se": 0.2007,
+   "strength": -0.7013,
+   "se": 0.2026,
    "ci95": [
-    -1.0861,
-    -0.2994
+    -1.0984,
+    -0.3043
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -852,8 +852,8 @@
    "point_label": "Gen 5R (192), 0.43 s",
    "vs_parent": {
     "parent": "5R32",
-    "mean": 0.2048,
-    "se": 0.1681
+    "mean": 0.2041,
+    "se": 0.1695
    },
    "variants": [],
    "features": [
@@ -888,17 +888,17 @@
    "first_registered_board_utc": "2026-11-10T14:19Z",
    "introduced_source": "first board on a registered feed",
    "boards": 10432,
-   "strength": -0.8975,
-   "se": 0.1258,
+   "strength": -0.9054,
+   "se": 0.1275,
    "ci95": [
-    -1.1442,
-    -0.6509
+    -1.1554,
+    -0.6555
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -917,7 +917,7 @@
    "vs_parent": {
     "parent": "5-32",
     "mean": 0.0299,
-    "se": 0.0822
+    "se": 0.0837
    },
    "variants": [],
    "features": [
@@ -952,18 +952,18 @@
    "introduced_utc": "2026-11-10T17:34Z",
    "first_registered_board_utc": "2026-11-10T17:34Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 10033,
-   "strength": -0.8595,
-   "se": 0.1099,
+   "boards": 10092,
+   "strength": -0.8683,
+   "se": 0.1114,
    "ci95": [
-    -1.0748,
-    -0.6441
+    -1.0867,
+    -0.6499
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -971,20 +971,20 @@
    "hollow": false,
    "timing": {
     "seconds_per_choice": 0.082,
-    "decisions_with_choice": 573820,
-    "forced_decisions": 148148,
+    "decisions_with_choice": 578698,
+    "forced_decisions": 149406,
     "by_environment": {
      "azure": 0.077,
      "chatgpt": 0.082,
-     "codex": 0.085
+     "codex": 0.084
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
    "point_label": "Gen 5RZ (32), 0.08 s",
    "vs_parent": {
     "parent": "5R32",
-    "mean": 0.0381,
-    "se": 0.0951
+    "mean": 0.0371,
+    "se": 0.0968
    },
    "variants": [],
    "features": [
@@ -1032,17 +1032,17 @@
    "first_registered_board_utc": "2026-11-10T17:44Z",
    "introduced_source": "first board on a registered feed",
    "boards": 426,
-   "strength": -0.547,
-   "se": 0.281,
+   "strength": -0.5575,
+   "se": 0.2828,
    "ci95": [
-    -1.0978,
-    0.0038
+    -1.1119,
+    -0.0031
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -1060,8 +1060,8 @@
    "point_label": "Gen 5RZ (192), 0.41 s",
    "vs_parent": {
     "parent": "5RZ32",
-    "mean": 0.3124,
-    "se": 0.2769
+    "mean": 0.3108,
+    "se": 0.2787
    },
    "variants": [],
    "features": [
@@ -1096,17 +1096,17 @@
    "first_registered_board_utc": "2026-11-11T02:04Z",
    "introduced_source": "first board on a registered feed",
    "boards": 1705,
-   "strength": 0.1038,
-   "se": 0.1558,
+   "strength": 0.0948,
+   "se": 0.1577,
    "ci95": [
-    -0.2016,
-    0.4093
+    -0.2144,
+    0.4039
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -1125,8 +1125,8 @@
    "point_label": "Gen 6 medium (256), 0.77 s",
    "vs_parent": {
     "parent": "6-32",
-    "mean": 0.1363,
-    "se": 0.1284
+    "mean": 0.1361,
+    "se": 0.1301
    },
    "variants": [],
    "features": [
@@ -1169,17 +1169,17 @@
    "first_registered_board_utc": "2026-11-11T02:04Z",
    "introduced_source": "first board on a registered feed",
    "boards": 13579,
-   "strength": -0.0325,
-   "se": 0.0987,
+   "strength": -0.0413,
+   "se": 0.1,
    "ci95": [
-    -0.226,
-    0.1609
+    -0.2374,
+    0.1548
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -1199,8 +1199,8 @@
    "point_label": "Gen 6 fast (32), 0.21 s",
    "vs_parent": {
     "parent": "5RZ32",
-    "mean": 0.8269,
-    "se": 0.0819
+    "mean": 0.827,
+    "se": 0.0831
    },
    "variants": [],
    "features": [
@@ -1320,7 +1320,7 @@
    "introduced_utc": "2026-11-11T05:50Z",
    "first_registered_board_utc": "2026-11-11T05:50Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 10885,
+   "boards": 10951,
    "strength": 0.0,
    "se": 0.0,
    "ci95": [
@@ -1331,33 +1331,33 @@
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
    "prior_share": 0.0,
    "hollow": false,
    "timing": {
-    "seconds_per_choice": 0.943,
-    "decisions_with_choice": 733230,
-    "forced_decisions": 190264,
+    "seconds_per_choice": 0.941,
+    "decisions_with_choice": 739051,
+    "forced_decisions": 191801,
     "by_environment": {
-     "azure": 0.948,
-     "codex": 0.891
+     "azure": 0.947,
+     "codex": 0.89
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
    "point_label": "BEN (64), 0.94 s",
    "vs_parent": {
     "parent": "ben",
-    "mean": 0.1421,
-    "se": 0.1215
+    "mean": 0.1525,
+    "se": 0.1228
    },
    "variants": [
     {
      "id": "ben64",
      "fingerprint": "b57482",
-     "boards": 11219,
+     "boards": 11290,
      "share": 0.989,
      "sources": [
       "gen6capturemixedcompleted",
@@ -1454,21 +1454,21 @@
    "first_registered_board_utc": "2026-11-11T05:56Z",
    "introduced_source": "first board on a registered feed",
    "boards": 121,
-   "strength": -0.7402,
-   "se": 0.4377,
+   "strength": -0.7493,
+   "se": 0.4391,
    "ci95": [
-    -1.5981,
-    0.1176
+    -1.6099,
+    0.1113
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
-   "prior_share": 0.041,
+   "prior_share": 0.042,
    "hollow": false,
    "timing": {
     "seconds_per_choice": 0.843,
@@ -1483,8 +1483,8 @@
    "point_label": "BEN (64) (variant 41c8c9), 0.84 s",
    "vs_parent": {
     "parent": "ben64",
-    "mean": -0.7402,
-    "se": 0.4377
+    "mean": -0.7493,
+    "se": 0.4391
    },
    "variants": [
     {
@@ -1496,8 +1496,8 @@
       "gen6chatgptcapturecompleted",
       "gen6codexv7capture"
      ],
-     "difference": -0.7414,
-     "se": 0.4373,
+     "difference": -0.7502,
+     "se": 0.4388,
      "merged": false,
      "rule": "merged when under 0.1 IMPs a board and under 2 SE",
      "differs_in": [
@@ -1527,18 +1527,18 @@
    "first_registered_board_utc": "2026-11-12T01:41Z",
    "introduced_source": "first board on a registered feed",
    "boards": 13318,
-   "strength": 0.2693,
-   "se": 0.0871,
+   "strength": 0.2605,
+   "se": 0.0882,
    "ci95": [
-    0.0986,
-    0.44
+    0.0877,
+    0.4333
    ],
    "prior": {
     "kind": "parent",
     "parent": "6-32",
     "estimate": 0.28,
     "sd": 0.111,
-    "mean": 0.2475,
+    "mean": 0.2387,
     "boards": 800,
     "source": "box match 7s-32 against 6-32 (Gen 8 session; p41's check of the rows, box/coordination BOARD.md, 12 Nov 15:10 UTC)",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
@@ -1561,7 +1561,7 @@
    "vs_parent": {
     "parent": "6-32",
     "mean": 0.3018,
-    "se": 0.0592
+    "se": 0.06
    },
    "variants": [
     {
@@ -1618,7 +1618,7 @@
       "gen7azure4pre7"
      ],
      "difference": -0.0659,
-     "se": 0.1441,
+     "se": 0.147,
      "merged": true,
      "rule": "merged when under 0.1 IMPs a board and under 2 SE",
      "differs_in": [
@@ -1775,30 +1775,30 @@
    "introduced_utc": "2026-11-12T06:06Z",
    "first_registered_board_utc": "2026-11-12T06:06Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 21589,
-   "strength": 0.2272,
-   "se": 0.082,
+   "boards": 21820,
+   "strength": 0.2191,
+   "se": 0.0831,
    "ci95": [
-    0.0666,
-    0.3879
+    0.0562,
+    0.382
    ],
    "prior": {
     "kind": "parent",
     "parent": "7s-32",
     "estimate": -0.003,
     "sd": 0.047,
-    "mean": 0.2663,
+    "mean": 0.2575,
     "boards": 3200,
     "source": "box match 7s-32 with policy v4.1 against with v4, two boxes on different deals (p41's check, box/coordination BOARD.md, 12 Nov 15:10 UTC)",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
     "note": "71s-32's published spec differs from 7s-32's only in the policy net (v4.1)."
    },
-   "prior_share": 0.025,
+   "prior_share": 0.026,
    "hollow": false,
    "timing": {
     "seconds_per_choice": 0.266,
-    "decisions_with_choice": 1094355,
-    "forced_decisions": 278315,
+    "decisions_with_choice": 1106664,
+    "forced_decisions": 281450,
     "by_environment": {
      "azure": 0.286,
      "chatgpt": 0.24,
@@ -1809,8 +1809,8 @@
    "point_label": "Gen 7.1 standard (32), 0.27 s",
    "vs_parent": {
     "parent": "7s-32",
-    "mean": -0.0421,
-    "se": 0.0393
+    "mean": -0.0414,
+    "se": 0.0395
    },
    "variants": [],
    "features": [
@@ -1849,42 +1849,42 @@
    "introduced_utc": "2026-11-12T16:32Z",
    "first_registered_board_utc": "2026-11-12T16:32Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 19604,
-   "strength": 0.6176,
-   "se": 0.0828,
+   "boards": 19994,
+   "strength": 0.6105,
+   "se": 0.0839,
    "ci95": [
-    0.4553,
-    0.7799
+    0.4461,
+    0.7749
    ],
    "prior": {
     "kind": "parent",
     "parent": "71s-32",
     "estimate": 0.453,
     "sd": 0.08,
-    "mean": 0.6802,
+    "mean": 0.6721,
     "boards": 1600,
     "source": "box match 8p-32 against 7s-32, both with policy v4.1 (p41's check, box/coordination BOARD.md, 12 Nov 15:10 UTC)",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
     "note": "Not 8s-32 itself: p41 notes the candidate plays board for board as 8p-32-v41 on house tables; it adds the opponent table and the system scorer, which act only against other systems (BEN, rule bidders)."
    },
-   "prior_share": 0.062,
+   "prior_share": 0.063,
    "hollow": false,
    "timing": {
     "seconds_per_choice": 0.28,
-    "decisions_with_choice": 1364674,
-    "forced_decisions": 343760,
+    "decisions_with_choice": 1390739,
+    "forced_decisions": 350299,
     "by_environment": {
-     "azure": 0.287,
+     "azure": 0.288,
      "chatgpt": 0.278,
-     "codex": 0.269
+     "codex": 0.27
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
    "point_label": "Gen 8 candidate (32), 0.28 s",
    "vs_parent": {
     "parent": "71s-32",
-    "mean": 0.3904,
-    "se": 0.0501
+    "mean": 0.3914,
+    "se": 0.0506
    },
    "variants": [],
    "features": [
@@ -2059,18 +2059,18 @@
    "introduced_utc": "2026-11-12T16:43Z",
    "first_registered_board_utc": "2026-11-12T16:43Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 4776,
-   "strength": 0.0733,
-   "se": 0.14,
+   "boards": 4892,
+   "strength": 0.0677,
+   "se": 0.1414,
    "ci95": [
-    -0.2012,
-    0.3478
+    -0.2095,
+    0.3449
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -2078,8 +2078,8 @@
    "hollow": false,
    "timing": {
     "seconds_per_choice": 0.341,
-    "decisions_with_choice": 402302,
-    "forced_decisions": 101032,
+    "decisions_with_choice": 412123,
+    "forced_decisions": 103535,
     "by_environment": {
      "azure": 0.346,
      "chatgpt": 0.336,
@@ -2090,8 +2090,8 @@
    "point_label": "Gen 8, Precision rule bidder (32), 0.34 s",
    "vs_parent": {
     "parent": "8s-32",
-    "mean": -0.5443,
-    "se": 0.1187
+    "mean": -0.5428,
+    "se": 0.1197
    },
    "variants": [],
    "features": [
@@ -2162,40 +2162,40 @@
    "introduced_utc": "2026-11-13T06:46Z",
    "first_registered_board_utc": "2026-11-13T06:46Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 2810,
-   "strength": 0.7909,
-   "se": 0.1028,
+   "boards": 3031,
+   "strength": 0.8028,
+   "se": 0.1029,
    "ci95": [
-    0.5893,
-    0.9925
+    0.6011,
+    1.0045
    ],
    "prior": {
     "kind": "parent",
     "parent": "8s-32",
     "estimate": 0.187,
     "sd": 0.127,
-    "mean": 0.8046,
+    "mean": 0.7975,
     "boards": 669,
     "source": "Gen 9 arrival run (transfer/gen9-d6-arrival-azure4-20261112): 9a-32 against 8p-32 head to head, native boards, a family once",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112",
     "note": "Not the cohort's configuration: in the arrival run both bots used policy v4 and 9a-32 had no exploration; the cohort's 9a-32 has v4.1 and exploration 1.0. 8p-32 stands in for 8s-32, which plays as 8p-32-v41 against house bots."
    },
-   "prior_share": 0.164,
+   "prior_share": 0.157,
    "hollow": false,
    "timing": {
-    "seconds_per_choice": 0.321,
-    "decisions_with_choice": 139645,
-    "forced_decisions": 36453,
+    "seconds_per_choice": 0.32,
+    "decisions_with_choice": 150616,
+    "forced_decisions": 39340,
     "by_environment": {
-     "azure": 0.321
+     "azure": 0.32
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
    "point_label": "Gen 9 candidate, player models (32), 0.32 s",
    "vs_parent": {
     "parent": "8s-32",
-    "mean": 0.1733,
-    "se": 0.075
+    "mean": 0.1923,
+    "se": 0.0746
    },
    "variants": [],
    "features": [
@@ -2454,40 +2454,40 @@
    "introduced_utc": "2026-11-13T06:47Z",
    "first_registered_board_utc": "2026-11-13T06:47Z",
    "introduced_source": "first board on a registered feed",
-   "boards": 743,
-   "strength": 0.6094,
-   "se": 0.095,
+   "boards": 800,
+   "strength": 0.5999,
+   "se": 0.0959,
    "ci95": [
-    0.4231,
-    0.7956
+    0.412,
+    0.7879
    ],
    "prior": {
     "kind": "parent",
     "parent": "8s-32",
     "estimate": 0.0,
     "sd": 0.05,
-    "mean": 0.6176,
+    "mean": 0.6105,
     "boards": null,
     "source": "g8, quoted in G9-D9's task log (g9, 13 Nov 04:17 UTC): 8s-32 and 8p-32 'the same within 0.05 +- 0.04'",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md",
     "note": "8p-32 is 8s-32 without the opponent table, the system scorer and the lead-system list; against house bots they play alike by design. The source gives no signed figure, so the prior is centred at 0 with SD 0.05."
    },
-   "prior_share": 0.77,
+   "prior_share": 0.76,
    "hollow": true,
    "timing": {
-    "seconds_per_choice": 0.346,
-    "decisions_with_choice": 30698,
-    "forced_decisions": 7834,
+    "seconds_per_choice": 0.344,
+    "decisions_with_choice": 33011,
+    "forced_decisions": 8433,
     "by_environment": {
-     "azure": 0.346
+     "azure": 0.344
     },
     "source": "records' decision_timing (the data behind the page's decision-timing.js): wall-clock seconds of card decisions, forced moves' time included; no bidding; host-dependent"
    },
-   "point_label": "Gen 8 prototype, Gen 9 control (32), 0.35 s",
+   "point_label": "Gen 8 prototype, Gen 9 control (32), 0.34 s",
    "vs_parent": {
     "parent": "8s-32",
-    "mean": -0.0082,
-    "se": 0.0483
+    "mean": -0.0106,
+    "se": 0.0482
    },
    "variants": [],
    "features": [
@@ -2614,17 +2614,17 @@
    "first_registered_board_utc": "2026-11-13T08:23Z",
    "introduced_source": "first board on a registered feed",
    "boards": 3986,
-   "strength": 0.6923,
-   "se": 0.1167,
+   "strength": 0.682,
+   "se": 0.1183,
    "ci95": [
-    0.4636,
-    0.921
+    0.45,
+    0.9139
    ],
    "prior": {
     "kind": "weak",
     "estimate": null,
     "sd": 2.0,
-    "mean": -0.7651,
+    "mean": -0.7739,
     "source": "weak prior at the field mean",
     "note": null
    },
@@ -2642,8 +2642,8 @@
    "point_label": "8X v3 (32), 0.27 s",
    "vs_parent": {
     "parent": "8s-32",
-    "mean": 0.0747,
-    "se": 0.0895
+    "mean": 0.0715,
+    "se": 0.0908
    },
    "variants": [],
    "features": [
@@ -3043,11 +3043,11 @@
    "parent": "8s-32",
    "introduced_utc": null,
    "boards": 1011,
-   "strength": 0.6976,
-   "se": 0.1151,
+   "strength": 0.6905,
+   "se": 0.1159,
    "ci95": [
-    0.4719,
-    0.9233
+    0.4633,
+    0.9177
    ],
    "prior": null,
    "prior_share": null,
@@ -3077,11 +3077,11 @@
    "parent": "8s-32",
    "introduced_utc": null,
    "boards": 522,
-   "strength": 0.9176,
-   "se": 0.1713,
+   "strength": 0.9105,
+   "se": 0.1719,
    "ci95": [
-    0.5818,
-    1.2534
+    0.5736,
+    1.2473
    ],
    "prior": null,
    "prior_share": null,
@@ -3111,11 +3111,11 @@
    "parent": "8s-32",
    "introduced_utc": null,
    "boards": 550,
-   "strength": 0.4676,
-   "se": 0.1458,
+   "strength": 0.4605,
+   "se": 0.1464,
    "ci95": [
-    0.1818,
-    0.7534
+    0.1735,
+    0.7475
    ],
    "prior": null,
    "prior_share": null,
@@ -3145,11 +3145,11 @@
    "parent": "8s-32",
    "introduced_utc": null,
    "boards": 246,
-   "strength": 0.5476,
-   "se": 0.1627,
+   "strength": 0.5405,
+   "se": 0.1632,
    "ci95": [
-    0.2288,
-    0.8664
+    0.2206,
+    0.8604
    ],
    "prior": null,
    "prior_share": null,
@@ -3179,11 +3179,11 @@
    "parent": "8s-32",
    "introduced_utc": null,
    "boards": 541,
-   "strength": 0.2376,
-   "se": 0.1627,
+   "strength": 0.2305,
+   "se": 0.1632,
    "ci95": [
-    -0.0812,
-    0.5564
+    -0.0894,
+    0.5504
    ],
    "prior": null,
    "prior_share": null,
