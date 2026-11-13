@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 07:08 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 07:12 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -8,7 +8,7 @@ Generated 2026-11-13 07:08 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 2 | 0 | 6 |
 | dave | 0 | 1 | 0 | 0 | 0 | 8 |
-| g9 | 0 | 0 | 1 | 1 | 0 | 5 |
+| g9 | 0 | 0 | 1 | 2 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
@@ -29,6 +29,7 @@ Generated 2026-11-13 07:08 UTC by `tools/workq.py` after a change by `azure4`. D
 | [G9-D9](tasks/G9-D9.md) | The ladder at the top of the arena page: strength by introduction date, joint fit with bench priors, time per decision | dave | dave | submitted | high | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
+| [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
