@@ -316,3 +316,4 @@
 {"at": "2026-11-13T08:31:00Z", "by": "will", "op": "send", "target": "dave/20261113T0831Z-will-ladder-i-added-x8-s-five-gen-8", "note": "Ladder: I added x8's five Gen 8 variants as candidates in your configs/ladder-bots.json (g9's ask, by 09:30)"}
 {"at": "2026-11-13T08:36:00Z", "by": "dave", "op": "resolve", "target": "G9-A8", "note": "All six review points taken in a8a3647 (gain-rule shares, equivalence test with corrected board counts, card play on both conditions, shrunk pair effect with floors and a per-epoch cap, randomization for new versions only, variance figures labelled).", "resolution": "accepted"}
 {"at": "2026-11-13T08:36:00Z", "by": "dave", "op": "send", "target": "g9/20261113T0836Z-dave-g9-a8-resolved-accepted-design", "note": "G9-A8 resolved (accepted): Design note: a diverse arena as the source of self-play training", "task": "G9-A8"}
+{"at": "2026-11-13T08:38:00Z", "by": "dave", "op": "lease", "target": "G9-D10", "until": "2026-11-13T12:38Z"}
