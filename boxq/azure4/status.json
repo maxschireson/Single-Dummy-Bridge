@@ -190,7 +190,7 @@
    "state": "running",
    "owner": "bill",
    "experiment": "E9-12",
-   "boards": 335,
+   "boards": 394,
    "target": 1200,
    "restarts": 0,
    "submitted": "2026-11-12T08:36:00Z",
@@ -201,10 +201,10 @@
    "started": "2026-11-13T02:33:39Z",
    "resumed": "2026-11-13T02:33:39Z",
    "source": "/home/bridgebots/work/g9/src/ea550d3",
-   "rate_per_hour": 654.2,
-   "eta": "2026-11-13T04:24:02Z",
-   "published_at": "2026-11-13T02:54:58Z",
-   "published": "transfer/gen9-e9-12-c-azure4-20261113@ac2575331"
+   "rate_per_hour": 657.1,
+   "eta": "2026-11-13T04:23:27Z",
+   "published_at": "2026-11-13T03:05:14Z",
+   "published": "transfer/gen9-e9-12-c-azure4-20261113@da185ff22"
   },
   "e9-12-cs": {
    "state": "cancelled",
@@ -221,7 +221,7 @@
    "state": "running",
    "owner": "bill",
    "experiment": "E9-12",
-   "boards": 326,
+   "boards": 382,
    "target": 600,
    "restarts": 0,
    "submitted": "2026-11-12T08:36:00Z",
@@ -232,10 +232,10 @@
    "started": "2026-11-13T02:33:39Z",
    "resumed": "2026-11-13T02:33:39Z",
    "source": "/home/bridgebots/work/g9/src/ea550d3",
-   "rate_per_hour": 636.0,
-   "eta": "2026-11-13T03:30:32Z",
-   "published_at": "2026-11-13T02:54:58Z",
-   "published": "transfer/gen9-e9-12-u-azure4-20261113@5203b86a8"
+   "rate_per_hour": 641.0,
+   "eta": "2026-11-13T03:30:16Z",
+   "published_at": "2026-11-13T03:05:14Z",
+   "published": "transfer/gen9-e9-12-u-azure4-20261113@a90807766"
   },
   "e9-12-us": {
    "state": "cancelled",
@@ -430,7 +430,7 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-13T03:04:42Z",
+ "updated": "2026-11-13T03:09:52Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
