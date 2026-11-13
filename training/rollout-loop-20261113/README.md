@@ -104,6 +104,20 @@ that differ from it only in where rollouts take over, and each plays Gen 8 card 
 | `stu0-p` | the net's lead; rollouts alone from the second card on | | no double dummy anywhere; the claims stay |
 | `stu0-n` | the net alone: its first card at every trick | | no search, no rollouts, no claims (asked by the dashboard session for Max) |
 | `stu0-pl` | the search's lead; rollouts alone from the second card on | | `stu0-p` with a searched lead: the gap is what the net's lead costs (Max, 11:27 UTC) |
+| `stu0-pr` | the lead from rollouts: every distinct lead on 512 layouts of the three hidden hands; rollouts alone from the second card on | | `stu0-p` with the lead rolled out (Max, 11:29 UTC; the engine's `lead` block) |
+
+Against `8p-32-v41` on seed 131, IMPs a board +- standard error (boards), rows as of 12:12 UTC on 13 November (`l0-*`
+on azure3's transfer branch, deals 0 to 499; `l0b-*` on azure5's, deals 500 to 999):
+
+| Rung | rollout net v2 inside | rollout net v1 (ft) inside | v2 minus v1, by deal |
+| --- | --- | --- | --- |
+| Stu's own stages | -0.42 +- 0.10 (1,000) | -0.40 +- 0.20 (200) | -0.26 +- 0.21 (200) |
+| Pure | -0.63 +- 0.16 (714) | -0.77 +- 0.28 (200) | +0.22 +- 0.27 (200) |
+| The net alone | -2.63 +- 0.32 (200) | -3.27 +- 0.34 (200) | +0.65 +- 0.34 (200) |
+
+Pure minus Stu's own stages, by deal, v2 inside: -0.14 +- 0.20 (714); deals 0 to 499 +0.08 +- 0.26 (500), deals 500 to
+999 -0.66 +- 0.31 (214, still playing). v1 inside: -0.38 +- 0.36 (200). The lead rungs, round 1's net and the middle
+rungs are not played yet.
 
 - The same bots are also measured with rollout net v1 (ft) inside (`stu0v1`, `stu0v1-b50`, `stu0v1-r6`,
   `stu0v1-r3`, `stu0v1-p`, `stu0v1-n`; Max, 09:27 UTC: "We should measure v1 rungs too"). `stu0v1` is x8's `8z-ft1` with the
@@ -115,6 +129,33 @@ that differ from it only in where rollouts take over, and each plays Gen 8 card 
   `jobs-azure3.txt`).
 - Known before the ladder (x8, older nets, different deal counts): against Gen 8 card play the blend at trust 0.25
   from trick 3 scored -0.07 +- 0.14 (246 boards) and rollouts alone from trick 7 scored -0.38 +- 0.14 (541).
+
+## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
+
+A count with no opponent in it, from any run's full records: in the last seven tricks, with the contract still open,
+how often the declaring side's card gives up a contract it held guaranteed from its own view (the exact single-dummy
+solver: against every split of the unseen cards and every defence), and how often a defender's card leaves declarer
+holding such a guarantee when another card would not have (in the deal as it lies). It runs on azure3 every half hour
+over the ladder's records and is published as `ledger/ledger.json` and `ledger/ledger.txt` on azure3's transfer branch.
+
+What it is not: a pure count of strategy fusion. A bot that maximizes mean tricks also gives up a sure contract when
+it plays for an overtrick, and that is counted too. Stu keeps a guaranteed contract by rule in games, slams and doubled
+contracts (0 of 5,474 such decisions given up, which checks the ledger against the engine) and has no such rule in
+undoubled partscores.
+
+First numbers, 12:08 UTC, all ladder runs pooled (games, slams, doubled | undoubled partscores):
+
+| Bot | Declaring: gave up / held | | Defending: handed over / had the choice | |
+| --- | --- | --- | --- | --- |
+| Gen 8 card play (`8p-32-v41`) | 81 / 6,818 (1.19%) | 55 / 3,793 (1.45%) | 32 / 587 (5.5%) | 79 / 761 (10.4%) |
+| Stu's own stages, v2 | 0 / 1,911 | 12 / 983 (1.22%) | 12 / 201 (6.0%) | 17 / 143 (11.9%) |
+| Pure Stu, v2 | 0 / 1,937 | 7 / 990 (0.71%) | 6 / 212 (2.8%) | 17 / 135 (12.6%) |
+| v2 alone | 3 / 600 (0.50%) | 6 / 295 (2.03%) | 4 / 44 (9.1%) | 14 / 84 (16.7%) |
+| v1 (ft) alone | 5 / 562 (0.89%) | 3 / 304 (0.99%) | 10 / 63 (15.9%) | 11 / 49 (22.4%) |
+
+"Held" counts decisions, so one contract held over several cards counts several times; "gave up" counts cards. Gen 8
+gives up a guaranteed contract about once in 13 hands it declares (136 in 1,798). The counts for the nets alone are too
+small to rank them; the collection's records (thousands of boards, any bot) can be read the same way.
 
 ## Round 1's rows and trainer (in this branch, tested on six recorded boards)
 
