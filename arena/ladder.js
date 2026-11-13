@@ -20,7 +20,9 @@
   // categorical slots in fixed order (dark steps of the reference palette, validated against this page's #192333:
   // adjacent CVD dE >= 8.4, normal-vision >= 19.3, all >= 3:1); every point is also direct-labelled and tabled
   const SLOTS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
-  const ORDER = ['Gen 1-4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 7.1', 'Gen 8', 'BEN', 'Gen 9 candidate'];
+  const ORDER = ['Gen 1-4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 7.1', 'Gen 8', 'BEN', 'Gen 9', 'Gen 9 candidate'];
+  const SLOT_OF = { 'Gen 9': 7, 'Gen 9 candidate': 7 };   // a candidate wears its generation's colour (dashed)
+  const OTHER = '#8b9bb0';                                   // a group the page does not know: neutral, never a slot
   const SURFACE = '#192333', GRID = '#2a394f', AXIS = '#3a4d68', MUTED = '#acbbcf', TEXT = '#e9eff8';
   let data = null, selected = null;
 
@@ -45,7 +47,7 @@
   const when = s => { if (!s) return '—'; const d = new Date(s.replace(/Z?$/, 'Z')); return isNaN(d) ? String(s) : d.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' }).replace(',', ''); };
   const safeUrl = u => (typeof u === 'string' && /^https?:\/\//.test(u)) ? u : null;
   const link = (text, url) => { const u = safeUrl(url); const s = el('span', {}, text + ' '); if (u) s.append(el('a', { href: u, target: '_blank', rel: 'noopener' }, 'source')); return s; };
-  const colour = g => SLOTS[Math.max(0, ORDER.indexOf(g)) % SLOTS.length];
+  const colour = g => g in SLOT_OF ? SLOTS[SLOT_OF[g]] : (ORDER.indexOf(g) >= 0 ? SLOTS[ORDER.indexOf(g)] : OTHER);
   const timeOf = p => p.introduced_utc ? Date.parse(p.introduced_utc.replace(/Z?$/, 'Z')) : null;
   const seconds = p => p.timing && Number.isFinite(p.timing.seconds_per_choice) ? p.timing.seconds_per_choice : null;
   const variantWords = p => {
@@ -354,6 +356,8 @@
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const d = await r.json();
       if (d.schema !== 'arena-ladder-v1' || !Array.isArray(d.points)) throw new Error('unexpected ladder.json');
+      const registered = new Set(d.points.map(p => p.id));   // once a candidate plays on a registered feed, its measured point replaces it
+      d.candidates = (d.candidates || []).filter(c => !registered.has(c.id));
       if (!data || d.computed_utc !== data.computed_utc) { data = d; build(); }
     } catch (e) {
       if (!data) root.hidden = true;           // nothing to show: the rest of the page is unaffected
