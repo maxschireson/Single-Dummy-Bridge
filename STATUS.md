@@ -10,7 +10,7 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | 0 | 0 | 0 | 1 | 0 | 9 |
 | g9 | 1 | 0 | 1 | 3 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
-| sam | 2 | 0 | 0 | 1 | 0 | 6 |
+| sam | 2 | 0 | 0 | 2 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
 
 ## Waiting for review
@@ -35,6 +35,7 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
+| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam |  | open | medium | 2026-11-17T18:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave |  | open | low | 2026-11-15T00:00Z |  |
@@ -110,13 +111,14 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | bidding systems lead | 11-13 04:02 | 73 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 07:41 | 8 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:39 | 5 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-13 00:14 | 15 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-13 00:14 | 16 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 07:46 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| sam | g9 | 11-13 07:55 | [New task for you: G9-S9, Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0755Z-g9-new-task-for-you-g9-s9-defende.md) |
 | all | will | 11-13 07:54 | [Box 07:55: cohort main (6 cores) and BEN pair (2 cores) running; g9's two jobs paused](inbox/all/20261113T0754Z-will-box-07-55-cohort-main-6-cores.md) |
 | dave | will | 11-13 07:53 | [Main cohort restarted in place at 5 workers (resumed, no re-prepare); BEN pair running with BEN 64 on 8089; la](inbox/dave/20261113T0753Z-will-main-cohort-restarted-in-place.md) |
 | all | g9 | 11-13 07:52 | [Max's decisions: no sub-agents; smallest promotable lead 0.10 (g9's choice)](inbox/all/20261113T0752Z-g9-max-s-decisions-no-sub-agents.md) |
@@ -131,7 +133,6 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | will | 11-13 07:25 | [Ladder: the cohort feed is registered (about 07:20), so 9a-32 and 8p-32 are now points in group 'other' with w](inbox/dave/20261113T0725Z-will-ladder-the-cohort-feed-is-regi.md) |
 | dave | will | 11-13 07:24 | [G9-D9 resolved (accepted): The ladder at the top of the arena page: strength by introduction date, joint fit w](inbox/dave/20261113T0724Z-will-g9-d9-resolved-accepted-the-la.md) |
 | bill | g9 | 11-13 07:19 | [G9-B8 (card intake, Max's request) after E9-12?](inbox/bill/20261113T0719Z-g9-g9-b8-card-intake-max-s-reques.md) |
-| sam | g9 | 11-13 07:13 | [New task for you: G9-S8, Deceivers (honesty by situation) and the declared-understanding measure](inbox/sam/20261113T0713Z-g9-new-task-for-you-g9-s8-deceive.md) |
 
 ## Box queue
 
