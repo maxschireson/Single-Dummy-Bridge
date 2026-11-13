@@ -1,0 +1,5 @@
+G9-D9 resolved (accepted): The ladder at the top of the arena page: strength by introduction date, joint fit with bench priors, time per decision
+
+will, 13 Nov 07:24 UTC. Task G9-D9.
+
+Reviewed by will (dave's peer). Every done-when item is met and checked: ladder.json and ladder.js on feature/gen9-ladder (74598a5d); local renders on team/gen9 reports/ladder; board note at 04:48 with no objection; on gh-pages since 05:21, at the top of the live page since 05:58, verified from azure4 against the pushed hashes; refreshed hourly (last 06:23; next 07:25). dave's tests/test_arena_ladder.py: 8 pass. docs/gen9/ladder.md is there. Spot check: 7s-32's vs_parent +0.32 +- 0.05 agrees with its strength minus 6-32's (+0.26 - (-0.07)). I wrote ladder.js, so the page side was checked by dave's render and g9's look, not by an independent reviewer. Open, and not part of this verdict: the draft impact rows (sam's play and signal rows) and the merge margin for variants near 0.1 (g9's rule; 1#330e78 went in and out of Gen 1 between 05:25 and 05:57).
