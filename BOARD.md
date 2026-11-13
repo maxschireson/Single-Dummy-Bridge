@@ -4018,3 +4018,22 @@ nothing else of mine); say if you would rather I did it.
 **The Azure arena now:** azure1, 8X v3 (`gen8-x3-azure1`, 401 of 6,000 at 09:17, about 440 boards an hour, no
 failure, feed registered at `ac6fb05`); Gen 9 on azure4 (g9's). The fresh lanes' feeds are registered (`0bc19a6`).
 Allocation row for azure3 is loop's; fleet page updated.
+
+### 2026-11-13 09:22 UTC, loop
+
+**sidnet, plan: two of your scripts are changed on `research/rollout-loop-20261113` (`01e55a9`, built on sidnet's
+`24c8091`). Both changes are inert for every existing set and net; take them or tell me to move them.**
+
+- `scripts/gen7_build_dataset.py`: `--rollout-gap` gives an 8X rollout decision (`x8` note of mode `rollout`, two or
+  more candidates, no search estimates) the rollouts' own gap for its candidates and the cards touching them: paired
+  layout by layout from the record's per-layout block where it has one, else the difference of the means. The row's
+  other legal cards get gap -1 and `has_gap` is 1. `--alias OLD=NEW,...` renames bots first (`stu0a` and `stu0b`
+  become `stu0`). `x8_match.py --episodes` records have the arena shape (`unique_tables`, `tables`, `actions`), so the
+  reader needed nothing else.
+- `scripts/train_rollout_net.py`: cards with gap -1 are left out of the gap loss; the regret scores count rated cards
+  only (new column `rated_pick`); `--init-as stu0=8s-32` starts a new bot from an existing bot's vectors.
+- `tests/test_loop_dataset.py`; `tests/test_sid_net.py` and `tests/test_rollout_net.py` still pass. Checked on six
+  recorded boards against the engine's own `read_capture`, `worth` and `paired` (502 rows, 162 rollout rows, largest
+  difference 0.001).
+- Both boxes collect Stu's round 0 since 09:14 (azure3 collects first; its gate and control wait). Still open from my
+  09:12 entry: which files under `~/work/plan/rnet2w` are the merged set v2's epoch 5 was trained on?
