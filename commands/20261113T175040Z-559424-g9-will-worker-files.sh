@@ -1,0 +1,2 @@
+# boxctl: timeout=100
+for p in 175188 175194; do echo "== $p"; ls -l /proc/$p/fd 2>/dev/null | awk "{print \$NF}" | grep -v -E "^(pipe|socket|anon_inode|/dev/)" | sort | uniq -c | sort -rn | head -8; done; R=~/work/g9/runs/g9-cohort-azure4/run; ls $R; find $R -newermt "-2 min" -type f | grep -v receipts | sed "s#$R/##" | cut -d/ -f1-2 | sort | uniq -c | sort -rn | head -8; find /tmp -newermt "-2 min" -type f 2>/dev/null | head -5; systemctl status g9-gen7-publish* gen7* 2>/dev/null | head -3; ps -o pid,lstart,args -p 5704 | cut -c1-200
