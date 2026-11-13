@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:11 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:16 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -24,8 +24,8 @@ Generated 2026-11-13 04:11 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | past due |
-| [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z |  |
+| [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired |
+| [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 06:42 | leased | medium |  |  |
 | [G9-D8](tasks/G9-D8.md) | The arena's results page for a population: data feed and a prototype from the arrival run | dave | dave | submitted | medium | 2026-11-14T00:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will | submitted | medium | 2026-11-13T12:00Z |  |
@@ -72,8 +72,8 @@ Generated 2026-11-13 04:11 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-13 08:02 | leased | high | 2026-11-13T04:00Z | past due |
-| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | past due |
-| [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z |  |
+| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired |
+| [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z |  |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 | resolved | high | 2026-11-13T06:00Z | adopted |
@@ -121,12 +121,12 @@ Generated 2026-11-13 04:11 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 04:11 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 04:16 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-12-c | E9-12 | bill | 3 | 4 | running | 1,070 of 1,200 | 663.2 | 11-13 04:23 | `transfer/gen9-e9-12-c-azure4-20261113@1ea40beb5` |
-| e9-12-x | E9-12 | bill | 3 | 4 | running | 392 of 1,200 | 584.5 | 11-13 05:34 | `transfer/gen9-e9-12-x-azure4-20261113@cd7686028` |
+| e9-12-c | E9-12 | bill | 3 | 4 | running | 1,120 of 1,200 | 655.1 | 11-13 04:23 | `transfer/gen9-e9-12-c-azure4-20261113@1ea40beb5` |
+| e9-12-x | E9-12 | bill | 3 | 4 | running | 440 of 1,200 | 588.6 | 11-13 05:34 | `transfer/gen9-e9-12-x-azure4-20261113@5135c989f` |
 | e9-4-8x | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-4-r9 | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
