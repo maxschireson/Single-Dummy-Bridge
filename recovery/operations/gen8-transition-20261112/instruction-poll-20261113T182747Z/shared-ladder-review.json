@@ -1,0 +1,16 @@
+{
+  "revision": "9ea0ad99e5ebc25b97c7805f8d7198ec36e45b01",
+  "index_blob": "bea11586eab70fbcbcce565a9778925c3ed09c3c",
+  "preserve_lines": [
+    "<section id=\"ladder\" hidden></section>",
+    "<script src=\"ladder.js?v=g9-ladder-20261113g\" defer></script>"
+  ],
+  "known_replay_catalog_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
+  "known_replay_issue_unchanged": true,
+  "shared_ui_mutated": false,
+  "registry_mutated": false,
+  "changes": [
+    "arena/ladder.json"
+  ],
+  "disposition": "Only ladder data refreshed. The six owned registry entries, shared index and replay catalog are unchanged. The Stu-page request belongs to stu-dash and does not approve the pending arena replay patch; preserve it without repeating the old notification."
+}
