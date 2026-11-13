@@ -40,10 +40,19 @@
   const int = x => (x === null || x === undefined) ? '—' : Math.round(+x).toLocaleString('en-US');
   const when = s => { if (!s) return '—'; const d = new Date(s.replace(/Z?$/, 'Z')); return isNaN(d) ? String(s) : d.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' }).replace(',', ''); };
   const safeUrl = u => (typeof u === 'string' && /^https?:\/\//.test(u)) ? u : null;
+  const link = (text, url) => { const u = safeUrl(url); const s = el('span', {}, text + ' '); if (u) s.append(el('a', { href: u, target: '_blank', rel: 'noopener' }, 'source')); return s; };
   const colour = g => SLOTS[Math.max(0, ORDER.indexOf(g)) % SLOTS.length];
   const timeOf = p => p.introduced_utc ? Date.parse(p.introduced_utc.replace(/Z?$/, 'Z')) : null;
   const seconds = p => p.timing && Number.isFinite(p.timing.seconds_per_choice) ? p.timing.seconds_per_choice : null;
-  const labelOf = p => p.point_label || p.label || p.id;
+  const variantWords = p => {
+    if (!String(p.id).includes('#')) return null;
+    const v = (p.variants || []).find(q => q.id === p.id) || {};
+    const w = (v.differs_in && v.differs_in.length ? v.differs_in : (p.features || []).map(f => f.feature)).join(' and ');
+    return w ? 'other ' + w : null;
+  };
+  const words = (text, p) => { const w = variantWords(p); return w ? String(text).replace(/\(variant [0-9a-f]+\)/, '(' + w + ')') : text; };
+  const nm = p => words(p.label || p.id, p);
+  const labelOf = p => words(p.point_label || p.label || p.id, p);
 
   // ---- layout ---------------------------------------------------------------------------------------
   function build() {
@@ -57,7 +66,7 @@
       el('p', { class: 'muted' },
         `${data.unit || 'IMPs a board'} against ${anchor ? anchor.label : data.anchor} (fixed at 0), ${data.condition === 'native' ? 'each side with its own bidder' : data.condition}; ` +
         `fitted ${when(data.computed_utc)} UTC from ${int(s.boards_fitted)} boards on ${int(s.feeds)} registered feeds. ` +
-        'x: first board on a registered feed. Labels: seconds per card decision with a choice. Hollow: the prior carries more than half the information. ' +
+        'x: introduction, the first board on a registered feed unless the bot is known to have played earlier. Labels: seconds per card decision with a choice. Hollow: the prior carries more than half the information. ' +
         'Dashed diamonds: candidates not yet on a registered feed. Click a point, label or row for its features.'),
       legend(), chart = chartBox(), el('div', { id: 'ladder-drill', class: 'ladder-drill' }), table(), notes());
     chart.placeLabels();
@@ -103,7 +112,7 @@
       const t = sv('text', { x: X(d), y: H - M.b + 18, 'text-anchor': 'middle' });
       t.textContent = new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' }); svg.append(t);
     }
-    const xl = sv('text', { x: (M.l + W - M.r) / 2, y: H - 6, 'text-anchor': 'middle' }); xl.textContent = 'first board on a registered feed (UTC)'; svg.append(xl);
+    const xl = sv('text', { x: (M.l + W - M.r) / 2, y: H - 6, 'text-anchor': 'middle' }); xl.textContent = 'introduced (UTC)'; svg.append(xl);
     // positions: candidates at the computed time; marks at nearly the same x are dodged sideways
     const marks = pts.map(p => ({ p, x: X(timeOf(p) ?? computed), y: Y(p.strength), cand: false }))
       .concat(cands.map(p => ({ p, x: X(computed), y: Y(p.strength), cand: true })));
@@ -174,7 +183,7 @@
   }
 
   function describe(p) {
-    return `${p.label}: ${pm(p.strength)} ${data.unit || ''}, 95% ${num(p.ci95 && p.ci95[0])} to ${num(p.ci95 && p.ci95[1])}, ${int(p.boards)} boards` +
+    return `${nm(p)}: ${pm(p.strength)} ${data.unit || ''}, 95% ${num(p.ci95 && p.ci95[0])} to ${num(p.ci95 && p.ci95[1])}, ${int(p.boards)} boards` +
       (seconds(p) !== null ? `, ${num(seconds(p))} s per decision` : '') + (p.candidate ? ', candidate' : '');
   }
 
@@ -183,12 +192,13 @@
     if (!box) return;
     if (!ev || !p) { box.hidden = true; return; }
     box.replaceChildren(
-      el('div', { style: 'font-weight:600' }, p.label),
+      el('div', { style: 'font-weight:600' }, nm(p)),
       el('div', {}, `${pm(p.strength)} ${data.unit || ''}`),
       el('div', { style: 'color:' + MUTED }, `95%: ${num(p.ci95 && p.ci95[0])} to ${num(p.ci95 && p.ci95[1])} · ${int(p.boards)} boards`),
-      el('div', { style: 'color:' + MUTED }, (p.candidate ? 'candidate, not on a registered feed' : `first board ${when(p.introduced_utc)} UTC`) +
+      el('div', { style: 'color:' + MUTED }, (p.candidate ? 'candidate, not on a registered feed' : `introduced ${when(p.introduced_utc)} UTC`) +
         (p.prior_share !== null && p.prior_share !== undefined ? ` · prior ${Math.round(100 * p.prior_share)}%` : '')),
-      seconds(p) !== null ? el('div', { style: 'color:' + MUTED }, `${num(seconds(p), 3)} s per card decision with a choice`) : null);
+      seconds(p) !== null ? el('div', { style: 'color:' + MUTED }, `${num(seconds(p), 3)} s per card decision with a choice`) : null,
+      p.candidate ? el('div', { style: 'color:' + MUTED }, (p.estimate && p.estimate.edge) ? 'Click for where its edge comes from.' : 'Click for how it is placed.') : null);
     box.hidden = false;
     const r = wrap.getBoundingClientRect(), t = ev.target.getBoundingClientRect();
     let left = t.left - r.left + 18, top = t.top - r.top - 10;
@@ -207,7 +217,7 @@
     box.hidden = false;
     const c = colour(p.group);
     const sw = sv('svg', { width: 12, height: 12, 'aria-hidden': 'true' }); sw.append(sv('circle', { cx: 6, cy: 6, r: 5, fill: c }));
-    const head = el('h3', { style: 'margin:4px 0 6px;font-size:17px' }, sw, ' ' + p.label);
+    const head = el('h3', { style: 'margin:4px 0 6px;font-size:17px' }, sw, ' ' + nm(p));
     const close = el('button', { type: 'button', style: 'float:right;background:#25354b;color:' + TEXT + ';border:1px solid #405875;border-radius:6px;padding:4px 10px;cursor:pointer' }, 'Close');
     close.addEventListener('click', () => { selected = null; drill(null); });
     const facts = [
@@ -215,7 +225,9 @@
       ['Group', p.group + (p.parent ? ` · parent ${nameOf(p.parent)}` : '')],
       p.vs_parent ? ['Against its parent', `${pm(p.vs_parent.mean, p.vs_parent.se)} (${nameOf(p.vs_parent.parent)})`] : null,
       ['Boards', int(p.boards)],
-      ['First board', p.candidate ? 'candidate: not on a registered feed' : when(p.introduced_utc) + ' UTC'],
+      ['Introduced', p.candidate ? 'candidate: not on a registered feed' + (p.introduced_utc ? ` (in the arrival run from ${when(p.introduced_utc)} UTC)` : '')
+        : when(p.introduced_utc) + ' UTC' + (p.first_registered_board_utc && p.first_registered_board_utc !== p.introduced_utc ? ` · first board on a registered feed ${when(p.first_registered_board_utc)} UTC` : '')],
+      p.introduced_source ? ['Introduction evidence', link(p.introduced_source.source + (p.introduced_source.note ? ' ' + p.introduced_source.note : ''), p.introduced_source.url)] : null,
       p.prior ? ['Prior', `${p.prior.kind}${p.prior.mean !== null && p.prior.mean !== undefined ? ', mean ' + signed(p.prior.mean) : ''}${p.prior.sd ? ', SD ' + num(p.prior.sd) : ''}${p.prior.source ? ' · ' + p.prior.source : ''}` +
         (p.prior_share !== null && p.prior_share !== undefined ? ` · ${Math.round(100 * p.prior_share)}% of the information` : '')] : null,
       p.timing ? ['Time per decision', `${num(p.timing.seconds_per_choice, 3)} s with a choice (${int(p.timing.decisions_with_choice)} decisions, ${int(p.timing.forced_decisions)} forced)` +
@@ -223,10 +235,14 @@
     ].filter(Boolean);
     const dl = el('table', { style: 'width:auto;margin:6px 0 10px' });
     for (const [k, v] of facts) dl.append(el('tr', {}, el('th', { style: 'text-align:left;padding:4px 14px 4px 0' }, k), el('td', { style: 'text-align:left;white-space:normal;padding:4px 0' }, v)));
-    const parts = [close, head, dl];
+    const parts = [close, head];
+    const edge = p.estimate && (p.estimate.edge || p.edge);
+    if (p.candidate) parts.push(el('p', { class: 'notice', style: 'margin:6px 0 10px;color:' + TEXT },
+      el('strong', {}, edge ? 'Where its edge comes from: ' : 'How it is placed: '), edge || (p.estimate && p.estimate.note) || 'not stated in ladder.json.'));
+    parts.push(dl);
     if (p.estimate) {
       const e = p.estimate, u = safeUrl(e.url);
-      parts.push(el('p', { class: 'muted' }, `Estimate: ${pm(e.mean, e.se)} against ${nameOf(e.vs)} over ${int(e.boards)} boards, placed on ${nameOf(e.placed_on)}. ${e.note || ''} `,
+      parts.push(el('p', { class: 'muted' }, `Estimate: ${pm(e.mean, e.se)} against ${nameOf(e.vs)} over ${int(e.boards)} boards, placed on ${nameOf(e.placed_on)}. ${e.edge ? (e.note || '') : ''} `,
         u ? el('a', { href: u, target: '_blank', rel: 'noopener' }, e.source || 'source') : (e.source || '')));
     }
     // features
@@ -287,19 +303,19 @@
 
   function nameOf(id) {
     const p = [...(data.points || []), ...(data.candidates || [])].find(q => q.id === id);
-    return p ? p.label : (id || '—');
+    return p ? nm(p) : (id || '—');
   }
 
   // ---- table under the chart ----------------------------------------------------------------------
   function table() {
     const rows = (data.points || []).slice().sort((a, b) => b.strength - a.strength).concat(data.candidates || []);
     const t = el('table'), hd = el('tr');
-    for (const h of ['Bot', 'Group', 'First board (UTC)', 'Boards', 'Strength', '95% interval', 'Prior share', 's per decision']) hd.append(el('th', {}, h));
+    for (const h of ['Bot', 'Group', 'Introduced (UTC)', 'Boards', 'Strength', '95% interval', 'Prior share', 's per decision']) hd.append(el('th', {}, h));
     t.append(el('thead', {}, hd));
     const tb = el('tbody');
     for (const p of rows) {
       const tr = el('tr', { tabindex: 0, style: 'cursor:pointer' },
-        el('td', {}, p.label + (p.candidate ? ' (candidate)' : '') + (p.hollow ? ' (mostly prior)' : '')),
+        el('td', {}, nm(p) + (p.candidate ? ' (candidate)' : '') + (p.hollow ? ' (mostly prior)' : '')),
         el('td', {}, p.group), el('td', {}, p.candidate ? '—' : when(p.introduced_utc)), el('td', {}, int(p.boards)),
         el('td', { class: p.strength > 0 ? 'pos' : p.strength < 0 ? 'neg' : '' }, signed(p.strength)),
         el('td', {}, p.ci95 ? `${num(p.ci95[0])} to ${num(p.ci95[1])}` : '—'),
@@ -315,6 +331,10 @@
 
   function notes() {
     const list = el('ul', { class: 'muted', style: 'margin:6px 0 0 18px;padding:0' });
+    const a = (data.points || []).find(p => p.anchor || p.id === data.anchor);
+    list.append(el('li', { style: 'margin:3px 0' }, `Every strength and interval is relative to ${a ? nm(a) : data.anchor}, fixed at 0, which is why its point has no interval. ` +
+      `Its own uncertainty is part of every other bot's interval and shared by all of them, so the difference between two bots is less uncertain ` +
+      `than their two intervals together suggest.`));
     for (const n of data.notes || []) list.append(el('li', { style: 'margin:3px 0' }, n));
     const s = data.sources || {};
     list.append(el('li', { style: 'margin:3px 0' }, `Sources: ${int(s.feeds)} feeds (${int(s.failed)} failed), ${int(s.boards_fetched)} boards fetched, ${int(s.boards_fitted)} fitted; collected ${when(s.collected_utc)} UTC; registry ${String(s.registry_sha256 || '').slice(0, 12)}.`));
