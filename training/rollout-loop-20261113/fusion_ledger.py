@@ -2,11 +2,12 @@
 """The fusion ledger: how often a bot's card gives away a contract that was guaranteed, counted against the exact
 single-dummy solver and not against any opponent.
 
-  SURE_BIN=/path/to/sure_cpp python training/rollout-loop-20261113/fusion_ledger.py RUN=DIR [RUN=DIR ...] --out ledger.json
+  SURE_BIN=/path/to/sure_cpp python training/rollout-loop-20261113/fusion_ledger.py RUN=DIR[,DIR...] [RUN=...] --out ledger.json
 
 Why (Max, 13 November 11:16 UTC): Gen 8 and the nets trained on it carry strategy-fusion errors, so IMPs against Gen 8
 need not rise as Stu sheds them. This count has no opponent in it. Each DIR holds a run's full records (`episodes/` of
-scripts/x8_match.py --episodes). Every bot at the table is counted, the outside opponent too.
+scripts/x8_match.py --episodes); a run played in shards names all its folders. Every bot at the table is counted, the
+outside opponent too (BEN included: its cards are in the records like anyone's).
 
 Decisions counted: dummy down, at least two legal cards, at most --cards cards in the hand to play (default 7: the last
 seven tricks), the contract neither made nor lost yet. The solver (bridge_harness/x8_claims.py) is asked as the engine
@@ -95,7 +96,7 @@ def one(args):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('runs', nargs='+', help='NAME=DIR: a run and its folder (with episodes/)')
+    p.add_argument('runs', nargs='+', help='NAME=DIR[,DIR...]: a run and its folders (each with episodes/)')
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--cards', type=int, default=7)
     p.add_argument('--each', type=float, default=1.)
@@ -106,8 +107,9 @@ def main():
     report = dict(what='fusion_ledger.py: see its docstring for each count', cards=a.cards, each=a.each, runs={})
     with ProcessPoolExecutor(a.workers) as pool:
         for item in a.runs:
-            name, folder = item.split('=', 1)
-            files = [f for f in sorted((Path(folder) / 'episodes').glob('*.json.gz')) if a.first <= int(f.name.split('.')[0]) < a.last]
+            name, folders = item.split('=', 1)
+            files = [f for folder in folders.split(',') for f in sorted((Path(folder) / 'episodes').glob('*.json.gz'))
+                     if a.first <= int(f.name.split('.')[0]) < a.last]
             total = collections.Counter()
             for part in pool.map(one, [(f, a.cards, a.each) for f in files], chunksize=8):
                 total.update(part)
