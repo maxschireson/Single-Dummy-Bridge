@@ -21,6 +21,7 @@ Sessions:
 - **plan**: plan-level search and leverage research (Max, 06:46 UTC), https://claude.ai/code/session_01N2EvxETgngTN3WCMv4MhwW
 - **x8**: the 8X bot engine (Max, 12 Nov 23:54 UTC), https://claude.ai/code/session_01N2EvxCQ6vgu8n15HtXEr6u
 - **sidnet**: SiD labels and the first student net `S_0`, steps 1 and 2 of `experiments/sid_loop/SPEC.md` (Max, 13 Nov 06:50 and 07:03 UTC), https://claude.ai/code/session_01N2EvxD5yoTRF2UbroPRKHK
+- **stu-dash**: the Stu loop's dashboard (Max, 13 Nov 09:17 UTC; the loop session's brief `DASHBOARD.md`), https://claude.ai/code/session_01N2EvxDVqCSDCt5YRoesD7
 
 ## Allocation (edit in place)
 
@@ -4089,3 +4090,33 @@ rungs measured against `8p-32-v41` on seed 131 without feature forks, say so and
 
 **azure6 at 09:36:** 40,200 of 75,545 episodes labelled, 11.7M rows, 0 failed; labels done about 11:05, release about
 15:45 UTC.
+
+### 2026-11-13 09:58 UTC, stu-dash
+
+**loop: the dashboard is up, built from your brief: https://maxschireson.github.io/Single-Dummy-Bridge/stu/** (source
+`web/stu/` on `feature/stu-dashboard-20261113`, deployed to `gh-pages:stu/` only; nothing else on gh-pages touched).
+It reads your `runs.json` for what each run is, the transfer branches for rows and `<run>.log` progress lines, and
+`box/azure{3,5}/status:heartbeat.json`. It shows: rounds (collection against the cut with rate and time to it, the gate
+and its paired change, decision mix, "moved over rollout"), the ladder by rung and net with "rung minus Stu" and "net
+minus previous net" paired by deal, the nets' held-out scores with earlier nets on the same rows, the control's 2 by 2
+(from the sandbox it reproduces your +1.12 +- 0.16 and +0.29 +- 0.15), box health, and your standing cautions. A snapshot
+(`data.json`) carries finished runs; the page re-reads moving runs every five minutes. I take no box.
+
+Three asks and one question:
+
+1. **A `net` rung: the net alone** (top card at every trick: no search, no rollouts, no claims), for each net in the
+   ladder, against `8p-32-v41` on seed 131, deals 0 to 499. Max asked to see how the net's improvement shows up
+   without rollouts as well as with them; the page has the row and the leverage column ready (rung key `net`). Ids such
+   as `stu0-n`, `stu0v1-n`, with `-n` -> `net` in `make_runs.py`'s `RUNG`. No rollouts, so its cost is mostly
+   `8p-32-v41`'s side.
+2. **Round 1's `metrics.json`:** when `train-r1/` publishes, please have the trainer score v2 (and v1 if cheap) on round
+   1's held-out rows (`--compare`) and tell me the key under `compared`, so the page shows the change on the same rows.
+   I have put `train-r1/metrics.json` on azure5's branch in the registry as you wrote; say if the path or the format
+   (one record an epoch) differs from v2's `metrics.json`.
+3. **The cut:** the registry holds 6,000 for round 0; post here when you change it or cut, and I update it.
+4. **Question:** `runs.log` on azure3 says `l0-stu0` runs deals 0 to 199 (`deals 200`); `runs.json` says 500. Which
+   is meant? The page uses 500 for the ladder's denominators and counts any board under 500.
+
+**Rule I applied, say if you want it otherwise:** the round 0 gate counts boards of the superseded `g0-v2` and
+`g0-stu0` (the same bot, the same deals) only where `l0-stu0`/`g0b-stu0` have not played that deal, and says how many
+(now 154 of 163). Remove them by name in the registry if you prefer the gate from the current runs only.
