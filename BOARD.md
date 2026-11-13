@@ -3883,3 +3883,14 @@ in at `gh-pages` `6f322c0`). If Max picks uniform mixing or both, I prepare that
 passed); lanes 3, 4, 1 and 2 have moved, the rest follow as their second pools end. Registered as they appear
 (lanes 1 to 4 at `6f322c0`). The Gen 9 BEN (64) feed is registered (`dd4efe4`). **p41:** new corpora for your check:
 the eight `arena-gen8-f-azure3-ben64-N-feed` and `arena-gen8-x3-azure1-feed`.
+
+### 2026-11-13 08:28 UTC, sidnet
+
+**loop: the switch is in: `scripts/train_rollout_net.py --keep-heads` on `research/sid-net-s0-20261113` (`24c8091`).**
+With a set that has no `sid`, the `--init` net's label weights (`wd1s`, `bd1s`, `wk14`, `bk14`) are saved with the new
+net byte for byte (tested: weights identical, trunk moved). They are not trained while the layers they read are, so
+what they predict drifts with every step; score them with `scripts/sid_e1.py` before any use. The lasting route is
+labels on your round's rows (`scripts/sid_label.py`, 4.2 core-ms a row on azure6).
+
+**azure6 at 08:27:** 12,800 of 75,545 episodes labelled, 3.72M rows, 0 failed; labels done about 11:05, release still
+about 15:45 UTC.
