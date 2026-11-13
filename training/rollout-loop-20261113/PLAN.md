@@ -235,6 +235,32 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   UTC on 14 November. Round 3 trains on those, with the epoch chosen on pure Stu's held-out choices and the other
   bots' loss as a limit.
 
+## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
+
+Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the
+choices did not improve.
+
+| | Indicator | After round 2 | Good path |
+| --- | --- | --- | --- |
+| 1 | Tricks the net's first card gives up against the rollouts' values, on held-out pure-Stu tables, by phase | lead 0.067, tricks 1 to 4 0.063, 5 to 8 0.088, 9 to 13 0.058 (before: 0.072, 0.062, 0.087, 0.060) | falls by more than its standard error, at every phase, not only the lead |
+| 2 | The net alone against Gen 8 card play, by deal against v2 alone | +0.20 +- 0.17 (500 deals) | rises round over round; from round 3 on 1,000 deals (about +- 0.12) |
+| 3 | Pure Stu with the round's net inside, by deal against pure Stu with v2 | -0.11 +- 0.32 (200 deals) | turns positive; moves last, because rollouts dilute a better net (the control: +0.29 +- 0.15 for a better net inside) |
+| 4 | Pure Stu against BEN (64) | -0.27 +- 0.28 (256 deals) | rises: the check that the gain is not only learning Gen 8 |
+| guard | The other bots' held-out log-loss (the rollouts play the opponents with the same net) | Gen 8's 0.458 to 0.469 | stays within +0.02 of the start |
+
+Off path, read at round 3 (about 30,000 tables, 16 times round 2's):
+- 1 does not fall and 2 does not rise beyond its noise: the rollouts' values are not teaching the net at this volume.
+  Before collecting more, change what it learns from (more layouts a decision so the values are less noisy, the IMP
+  objective, or the line finder's labels).
+- 1 falls and 2 does not: the net learns to match the rollouts' values and that does not carry to the table, so the
+  values themselves are the problem (noise, or the opponent model inside them).
+- 2 rises and 3 does not: the rollouts are not passing the net's gain through; the levers are the net at the table
+  and its value head in the simulated seats (both measured in round 2, both nothing yet).
+- The guard rail breaks: more replay rows of the other bots in training, or train only the parts of the net Stu uses.
+
+The starting hole: head to head, pure Stu is -0.65 +- 0.14 against Gen 8 card play (1,000 deals); against BEN (64)
+it is -0.36 +- 0.31 behind Gen 8's result.
+
 ## After round 1, in the order I expect to matter
 
 1. **Put the rollout values to use in play.** First in the simulated seats: the engine can already let a seat's card
