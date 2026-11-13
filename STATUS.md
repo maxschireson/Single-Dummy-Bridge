@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 03:20 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 03:25 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -118,12 +118,12 @@ Generated 2026-11-13 03:20 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 03:20 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 03:25 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-12-c | E9-12 | bill | 3 | 4 | running | 506 of 1,200 | 667.2 | 11-13 04:22 | `transfer/gen9-e9-12-c-azure4-20261113@83795acc6` |
-| e9-12-u | E9-12 | bill | 3 | 4 | running | 490 of 600 | 643.0 | 11-13 03:30 | `transfer/gen9-e9-12-u-azure4-20261113@da1160f06` |
+| e9-12-c | E9-12 | bill | 3 | 4 | running | 565 of 1,200 | 665.9 | 11-13 04:22 | `transfer/gen9-e9-12-c-azure4-20261113@83795acc6` |
+| e9-12-u | E9-12 | bill | 3 | 4 | running | 545 of 600 | 639.7 | 11-13 03:30 | `transfer/gen9-e9-12-u-azure4-20261113@da1160f06` |
 | e9-12-x | E9-12 | bill | 3 | 4 | waiting | 0 of 1,200 |  |  |  |
 | e9-4-8x | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-4-r9 | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
