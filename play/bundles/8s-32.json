@@ -2,6 +2,9 @@
  "schema": "sid-bot-spec-v1",
  "bot": "8s-32",
  "label": "Gen 8 standard (8s-32)",
+ "stand_in": true,
+ "stand_in_note": "Sid is not any of the current bots (Max, 13 Nov 2026). This recipe stands in so the site is ready when Sid exists.",
+ "entry": null,
  "system": "house-gen6",
  "provenance": {
   "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",

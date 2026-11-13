@@ -33,6 +33,7 @@ class Config:
     bot_label: str
     bot_identity: str | None
     bot_system: str | None
+    bot_stand_in: bool      # the installed bot is standing in until Sid itself exists
     source: str | None      # path of the source checkout providing bridge_harness
 
     @classmethod
@@ -63,5 +64,6 @@ class Config:
             bot_label=meta.get('label', meta.get('bot', 'fake bot')),
             bot_identity=meta.get('spec', {}).get('identity'),
             bot_system=meta.get('system'),
+            bot_stand_in=bool(meta.get('stand_in', engine == 'fake')),
             source=source,
         )

@@ -72,6 +72,6 @@ def sid_table(hands, dealer, vulnerability, board_id, seed, systems):
         return dict(calls=calls, contract=None, declarer=None, tricks=None, ns_score=0, play=[], seconds=0.)
     game = Game(Board(str(board_id), tuple(tuple(h) for h in hands), contract, dealer, vulnerability, tuple(calls)))
     while not game.done:
-        game.play(play(game.observation(), 'bot', systems, 0)[0])
+        game.play(play(game.observation(), 'sid', systems, 0)[0])
     return dict(calls=calls, contract=contract.text(), declarer=SEATS[contract.declarer], tricks=game.declarer_tricks,
                 ns_score=game.ns_score(), play=[[SEATS[s], symbol(c)] for s, c in game.history], seconds=0.)

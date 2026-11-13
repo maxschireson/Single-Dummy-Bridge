@@ -132,7 +132,7 @@ class Table:
     def bot_kind(self, seat):
         """Which of the worker's two Sid instances plays this seat: the one facing humans, or the one facing Sid."""
         opponents = (self.seats[(seat + 1) % 4], self.seats[(seat + 3) % 4])
-        return 'human' if any(s is not None and s.kind == HUMAN for s in opponents) else 'bot'
+        return 'human' if any(s is not None and s.kind == HUMAN for s in opponents) else 'sid'
 
     # ---- whose turn ----------------------------------------------------------------------
     def declaring_controller(self):
@@ -374,7 +374,7 @@ class Table:
                    seats=[dict(seat=SEATS[i], kind=s.kind if s else 'empty', name=(s.name if s else 'waiting for partner'))
                           for i, s in enumerate(self.seats)],
                    invite=self.invite if self.status == 'waiting' else None,
-                   bot=dict(label=self.config.bot_label, system=self.config.bot_system), scores=self.scores,
+                   bot=dict(label=self.config.bot_label, system=self.config.bot_system, stand_in=self.config.bot_stand_in), scores=self.scores,
                    totals=dict(boards=len(self.scores), imps=sum(r['imps'] or 0 for r in self.scores),
                                compared=sum(r['imps'] is not None for r in self.scores)),
                    closed_reason=getattr(self, 'closed_reason', None))

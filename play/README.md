@@ -1,6 +1,8 @@
 # Play against Sid
 
-A web server where people play bridge against Sid, the project's bot. Guests can play
+A web server where people play bridge against Sid. Sid is not any of the project's current bots: it does not exist
+yet, and this server is ready for it. Until it does, a stand-in plays Sid's seats: `8s-32`, Gen 8 standard. The
+page says so, and names the stand-in, whenever the installed bundle is marked `stand_in`. Guests can play
 straight away: they sit South and Sid takes the other three seats. Account holders can also bring a partner: the
 two of them play North–South against two Sids. Each finished board shows the score and the IMPs against a "Sid
 table", where Sid plays the same deal at all four seats. Accounts keep every board with its auction and play.
@@ -51,12 +53,31 @@ where every seat is Sid. The tests and `smoke.py` check each response for a hand
 | `deploy/` | `install.sh`, `sidplay.service`, `sidplay.env`, `expose.sh`, `caddy.sh` |
 
 **The bundle is what makes Sid swappable.** The server does not name a generation. It loads one bundle: the bot's
-spec, its artifacts, and a source checkout at the commit the bot was frozen with (`8s-32`: `792c4cb` on
-`feature/gen8-prototype-20261112`). Workers import `bridge_harness` from that checkout and build the player with
-its own `ops/gen5_runtime.player`, so any engine the source knows can be Sid. To change Sid: add a recipe, run
-`install.sh` with its source commit, and the symlink `/opt/sidplay/bundle` moves.
+spec, its artifacts, a source checkout at the commit the bot was frozen with (`8s-32`: `792c4cb` on
+`feature/gen8-prototype-20261112`), an entry point, and the `stand_in` flag. To install Sid: add a recipe
+(`bundles/sid-….json`, `stand_in` false), run `install.sh` with its source commit, and the symlink
+`/opt/sidplay/bundle` moves. Finished boards record the bot and its identity, so the stand-in's boards stay
+separable from Sid's.
 
-Each worker builds two Sid instances. One faces humans: Gen 8 reads unknown opponents' plays at the
+## The Sid contract
+
+The entry point (`entry` in the recipe, `module:callable`, importable from the bot's source) builds an object with
+two methods. The full text is in [`sidplay/engine.py`](sidplay/engine.py).
+
+- `bid(hand, seat, dealer, vulnerability, calls) -> call`: one seat's 13 cards (ints, `bridge_harness.core`
+  order), seats 0–3 for N E S W, `'None' | 'NS' | 'EW' | 'Both'`, and the calls so far (`'PASS'`, `'X'`, `'XX'`,
+  `'1C'` … `'7N'`).
+- `play(observation, facing, systems, rng) -> card`: a `bridge_harness.core.Observation` for the seat that controls
+  the card, `'human'` or `'sid'` for who the opponents are, the declared systems `(NS, EW)`, and a seeded
+  `random.Random`.
+
+One object serves many tables in turn, so it must not carry table state that its arguments do not determine. The
+server checks every call and card for legality. With no `entry`, `ArenaSid` is used: the bot exactly as the
+source's arena runtime builds it (a BEN-format bidding net or a Gen 8 system bidder, and
+`ops/gen5_runtime.player`). Any bot the arena can run needs only a recipe. A bot the arena cannot build needs one
+small class in its own source. `tests/toy_sid.py` is the smallest example.
+
+`ArenaSid` builds two player instances in each worker. One faces humans: Gen 8 reads unknown opponents' plays at the
 `opponent_play_weight` `'*'` factor, 0.3 for `8s-32`. The other faces Sid, at factor 1.0. A Sid seat whose partner is human
 still reads partner's cards as Sid's, as the engine always does for partners.
 

@@ -55,7 +55,8 @@ fi
 
 echo "== bundle"
 BOT=$(basename "$RECIPE" .json)
-BUNDLE="$ROOT/bundles/$BOT-$SOURCE_COMMIT"
+RECIPE_SHA=$(sha256sum "$ROOT/app-$APP_COMMIT/play/bundles/$RECIPE" | cut -c1-12)
+BUNDLE="$ROOT/bundles/$BOT-$SOURCE_COMMIT-$RECIPE_SHA"
 if [ ! -f "$BUNDLE/bundle.json" ]; then
   rm -rf "$BUNDLE"
   "$ROOT/venv/bin/python" "$ROOT/app-$APP_COMMIT/play/bundle.py" from-models \

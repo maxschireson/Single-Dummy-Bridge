@@ -156,7 +156,7 @@ app.mount('/static', StaticFiles(directory=STATIC), name='static')
 @app.get('/api/health')
 async def health():
     bots, reg = STATE['bots'], STATE['registry']
-    return dict(ok=True, bot=CONFIG.bot, label=CONFIG.bot_label, engine=CONFIG.engine, open_tables=reg.open_count(),
+    return dict(ok=True, bot=CONFIG.bot, label=CONFIG.bot_label, stand_in=CONFIG.bot_stand_in, engine=CONFIG.engine, open_tables=reg.open_count(),
                 busy=bots.busy, decisions=bots.decisions, uptime=int(time.time() - STATE['started']))
 
 
@@ -165,7 +165,8 @@ async def health():
 async def me(request: Request, response: Response):
     v = ensure_anon(request, response, viewer(request))
     t = STATE['registry'].current(v)
-    return dict(user=v.name, table=t.id if t else None, bot=dict(label=CONFIG.bot_label, system=CONFIG.bot_system),
+    return dict(user=v.name, table=t.id if t else None,
+                bot=dict(label=CONFIG.bot_label, system=CONFIG.bot_system, stand_in=CONFIG.bot_stand_in),
                 sid_tables=CONFIG.sid_tables)
 
 

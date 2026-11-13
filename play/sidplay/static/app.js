@@ -9,7 +9,7 @@ const SUIT_NAME = { S: 'spades', H: 'hearts', D: 'diamonds', C: 'clubs' };
 const RANK_NAME = { A: 'ace', K: 'king', Q: 'queen', J: 'jack', T: 'ten' };
 const RANKS = '23456789TJQKA';
 const SYSTEMS = {
-  'house-gen6': 'Sid’s bidding grew out of BEN’s network, which learned from GIB auctions (broadly 2/1 game forcing). It has since been retrained to reach good contracts, so treat it as a style rather than a written system. Sid makes no alerts and gives no explanations.',
+  'house-gen6': 'Its bidding grew out of BEN\u2019s network, which learned from GIB auctions (broadly 2/1 game forcing), and has since been retrained to reach good contracts, so treat it as a style rather than a written system. It makes no alerts and gives no explanations.',
 };
 
 const app = { me: null, view: null, version: -1, pollToken: 0, tableId: null };
@@ -147,9 +147,10 @@ async function refreshMe() {
   acct.replaceChildren(app.me.user
     ? h('span', {}, h('b', {}, app.me.user), ' ', h('button', { class: 'linklike', onclick: logout }, 'Sign out'))
     : h('a', { href: '#/login' }, 'Sign in'));
-  const sys = SYSTEMS[app.me.bot.system] || 'Sid makes no alerts and gives no explanations.';
-  document.getElementById('colophon').replaceChildren(h('p', {},
-    `Sid is a bridge program in development. This table runs ${app.me.bot.label}. ${sys}`));
+  const sys = SYSTEMS[app.me.bot.system] || 'It makes no alerts and gives no explanations.';
+  document.getElementById('colophon').replaceChildren(h('p', {}, app.me.bot.stand_in
+    ? `Sid is a bridge program in development and is not released yet. Until it is, the seats marked Sid are played by ${app.me.bot.label}, the project\u2019s current arena bot. ${sys}`
+    : `Sid is a bridge program in development. These tables run ${app.me.bot.label}. ${sys}`));
 }
 
 async function logout() {
@@ -211,6 +212,7 @@ function renderLobby() {
       h('div', {},
         h('h1', {}, 'Play bridge against Sid'),
         h('p', {}, 'Sid is a bridge program in development. Sit South and Sid takes the other three seats, or bring a partner and the two of you play North–South against two Sids.'),
+        app.me && app.me.bot.stand_in ? h('p', { class: 'notice' }, `Sid itself is not released yet. Until it is, its seats are played by ${app.me.bot.label}, the project\u2019s current arena bot.`) : null,
         h('div', { class: 'actions' }, actions),
         app.me && !app.me.user ? h('p', { class: 'muted' }, 'No account needed to play alone. ',
           h('a', { href: '#/signup' }, 'Sign up'), ' to play with a partner and keep your history.') : null)),

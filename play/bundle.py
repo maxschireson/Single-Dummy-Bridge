@@ -9,8 +9,9 @@ pointing SIDPLAY_BUNDLE at it; nothing in the server names a generation.
   # anywhere, from a recipe (play/bundles/*.json) and the model releases in a source checkout
   python play/bundle.py from-models --recipe play/bundles/8s-32.json --source /path/to/checkout --out /tmp/bundle
 
-bundle.json records the bot key, its spec, its declared bidding system, the source path and commit, and where
-the artifacts came from. The source checkout must be the commit the bot was frozen with (or one that plays it
+bundle.json records the bot key, its spec, its declared bidding system, the source path and commit, where the
+artifacts came from, the entry point that builds the bot (see sidplay/engine.py, "The Sid contract") and whether
+the bot is a stand-in until Sid itself exists. The source checkout must be the commit the bot was frozen with (or one that plays it
 identically); the builder records the commit it finds and refuses a mismatch with the recipe unless --allow-commit.
 """
 import argparse
@@ -53,16 +54,16 @@ def artifact_paths(spec):
     return out
 
 
-def write_bundle(out, bot, spec, system, source, origin, label=None, provenance=None):
+def write_bundle(out, bot, spec, system, source, origin, label=None, provenance=None, entry=None, stand_in=False):
     out = Path(out)
-    meta = dict(schema=SCHEMA, bot=bot, label=label or bot, system=system, spec=spec,
+    meta = dict(schema=SCHEMA, bot=bot, label=label or bot, system=system, spec=spec, entry=entry, stand_in=bool(stand_in),
                 source=dict(path=str(Path(source).resolve()), commit=git_commit(source)),
                 origin=origin, provenance=provenance or {}, created_epoch=time.time())
     (out / 'bundle.json').write_text(json.dumps(meta, indent=1, sort_keys=True))
     return meta
 
 
-def from_run(run, bot, source, out, allow_commit=False):
+def from_run(run, bot, source, out, allow_commit=False, label=None, entry=None, stand_in=False):
     run, out = Path(run).expanduser().resolve(), Path(out).expanduser()
     manifest = json.loads((run / 'manifest.json').read_text())
     spec = manifest['bots'][bot]
@@ -79,7 +80,7 @@ def from_run(run, bot, source, out, allow_commit=False):
         shutil.copy2(src, dst)
     system = (manifest.get('systems') or {}).get(bot)
     return write_bundle(out, bot, spec, system, source, origin=dict(kind='run', run=str(run), manifest_identity=manifest.get('identity'),
-                        run_source_commit=wanted))
+                        run_source_commit=wanted), label=label, entry=entry, stand_in=stand_in)
 
 
 PART = re.compile(r'^(?P<stem>.+)\.part-?(?P<n>\d+)$')
@@ -128,7 +129,8 @@ def from_models(recipe, source, out, allow_commit=False):
         if sha256(dst) != digest:
             raise SystemExit(f'{key}: restored file does not match {digest}')
     return write_bundle(out, recipe['bot'], spec, recipe.get('system'), source, origin=dict(kind='models', recipe=recipe),
-                        label=recipe.get('label'), provenance=recipe.get('provenance'))
+                        label=recipe.get('label'), provenance=recipe.get('provenance'), entry=recipe.get('entry'),
+                        stand_in=recipe.get('stand_in', False))
 
 
 if __name__ == '__main__':
@@ -140,6 +142,9 @@ if __name__ == '__main__':
     a.add_argument('--source', required=True)
     a.add_argument('--out', required=True)
     a.add_argument('--allow-commit', action='store_true')
+    a.add_argument('--label')
+    a.add_argument('--entry', help='module:callable building the bot (default: the arena-runtime adapter)')
+    a.add_argument('--stand-in', action='store_true', help='this bot plays until Sid itself exists')
     b = sub.add_parser('from-models')
     b.add_argument('--recipe', required=True)
     b.add_argument('--source', required=True)
@@ -147,7 +152,8 @@ if __name__ == '__main__':
     b.add_argument('--allow-commit', action='store_true')
     args = p.parse_args()
     if args.cmd == 'from-run':
-        meta = from_run(args.run, args.bot, args.source, args.out, args.allow_commit)
+        meta = from_run(args.run, args.bot, args.source, args.out, args.allow_commit, args.label, args.entry, args.stand_in)
     else:
         meta = from_models(args.recipe, args.source, args.out, args.allow_commit)
-    print(json.dumps(dict(bot=meta['bot'], system=meta['system'], source=meta['source'], artifacts=sorted(meta['spec']['artifact_sha256']))))
+    print(json.dumps(dict(bot=meta['bot'], label=meta['label'], stand_in=meta['stand_in'], entry=meta['entry'], system=meta['system'],
+                          source=meta['source'], artifacts=sorted(meta['spec']['artifact_sha256']))))
