@@ -8,8 +8,12 @@ set -euo pipefail
 W=$HOME/work/loop; S=$W/src; PY=$W/venv/bin/python
 NAME=$1; PAIR=$2; SEED=$3; FIRST=$4; DEALS=$5; WORKERS=$6; shift 6
 export SURE_BIN=$W/bin/sure_cpp OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 BRIDGE_DDS_CACHE=
+# ~/work/loop/BF16 present: collection runs (names starting sp) play with the nets' forward pass in bf16
+# (gen7_net.Bf16Forward, about 2x the net; the first card unchanged on 99.7% of held-out rows). Measurement runs stay fp32.
+PREC=fp32
+if [ -e "$W/BF16" ]; then case "$NAME" in sp*) export BRIDGE_NET_BF16=1; PREC=bf16 ;; esac; fi
 cd "$S"
-echo "$(date -u +%FT%TZ) start $NAME $PAIR seed $SEED first $FIRST deals $DEALS workers $WORKERS $* (source $(git rev-parse --short HEAD))" >> "$W/runs.log"
+echo "$(date -u +%FT%TZ) start $NAME $PAIR seed $SEED first $FIRST deals $DEALS workers $WORKERS $* (source $(git rev-parse --short HEAD), nets $PREC)" >> "$W/runs.log"
 "$PY" scripts/x8_match.py --source "$W/capsule/recovery" --bots configs/loop-bots.json --pair "$PAIR" --deals "$DEALS" --first "$FIRST" \
   --seed "$SEED" --workers "$WORKERS" --out "$W/runs/$NAME" "$@" >> "$W/runs/$NAME.log" 2>&1 && rc=0 || rc=$?
 echo "$(date -u +%FT%TZ) end $NAME: exit $rc" >> "$W/runs.log"

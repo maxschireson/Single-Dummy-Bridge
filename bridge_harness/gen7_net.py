@@ -25,6 +25,8 @@ that carries `sid`) has more outputs, present when the weights `wd1s` and `wk14`
   tricks14             [n, 14] logits for the actor's side's final tricks, 0 to 13
 A net without those weights behaves as before.
 """
+import os
+
 import numpy as np
 
 from .core import normalize_bid, vulnerable
@@ -259,6 +261,61 @@ def log_softmax(x):
     return x - np.log(np.exp(x).sum(axis=1, keepdims=True))
 
 
+class Bf16Forward:
+    """`forward` for a suit-shared net with every matrix product in bf16 through torch's CPU kernels (oneDNN, which use
+    the AVX512_BF16 instructions where the CPU has them): weights and activations rounded to bf16, sums kept in fp32
+    inside each product, outputs returned as fp32 NumPy. On the Zen 4 boxes about 2x the fp32 NumPy forward on one core
+    (rollout net v2: 15,765 -> 33,486 rows/s at 512 rows a call), with the first card unchanged on 99.7% of held-out rows
+    and the tricks it gives up unchanged (training/rollout-loop-20261113/bench/bf16.py). Not for nets with the line
+    finder's label heads, nor flat nets: `make` returns None for those, and for any net when torch is missing."""
+    KEYS = ('ws0', 'bs0', 'ws1', 'bs1', 'wt0', 'bt0', 'wt1', 'bt1', 'wd0', 'bd0', 'wd1', 'bd1', 'wk', 'bk', 'emb_own', 'emb_other')
+
+    @classmethod
+    def make(cls, params):
+        if int(np.asarray(params['kind'])) == 0 or 'wd1s' in params or 'wk14' in params:
+            return None
+        try:
+            import torch
+        except ImportError:
+            return None
+        return cls(params, torch)
+
+    def __init__(self, params, torch):
+        self.torch = torch
+        threads = int(os.environ.get('OMP_NUM_THREADS') or 0)
+        if threads:
+            torch.set_num_threads(threads)
+        self.t = {k: torch.from_numpy(np.ascontiguousarray(np.asarray(params[k], np.float32))).to(torch.bfloat16)
+                  for k in self.KEYS if k in params}
+
+    def __call__(self, batch):
+        torch, T = self.torch, self.t
+        cards, g = features(batch)
+        n = cards.shape[0]
+        shown = np.asarray(batch['shown']).astype(np.float32).reshape(n, 4, SEAT_SHOWN)[:, :, :SUIT_SHOWN * 4]
+        about = np.transpose(shown.reshape(n, 4, SUIT_SHOWN, 4), (0, 3, 1, 2)).reshape(n, 4, 4 * SUIT_SHOWN)
+        x = np.concatenate([cards.reshape(n, 4, 13 * CARD_FEATURES), about], axis=2).reshape(n * 4, -1)
+        with torch.inference_mode():
+            s = torch.from_numpy(np.ascontiguousarray(x)).to(torch.bfloat16)
+            s = torch.relu(s @ T['ws0'] + T['bs0'])
+            s = torch.relu(s @ T['ws1'] + T['bs1'])
+            e = s.shape[1]
+            h = torch.cat([s.reshape(n, 4 * e), torch.from_numpy(np.ascontiguousarray(g)).to(torch.bfloat16)], dim=1) @ T['wt0'] + T['bt0']
+            if 'emb_own' in T:
+                for key in ('own', 'other'):
+                    ids = batch.get('bot_' + key)
+                    h = h + T['emb_' + key][torch.zeros(n, dtype=torch.long) if ids is None else torch.from_numpy(np.asarray(ids).astype(np.int64))]
+            h = torch.relu(h)
+            h = torch.relu(h @ T['wt1'] + T['bt1'])
+            t, wd0 = h.shape[1], T['wd0']
+            d = (s @ wd0[:e]).reshape(n, 4, -1) + (h @ wd0[e:e + t])[:, None, :] + wd0[e + t:e + t + 4][None, :, :] + T['bd0']
+            d = torch.relu(d).reshape(n * 4, -1)
+            out = (d @ T['wd1'] + T['bd1']).float().reshape(n, 4, 13, 5).numpy()
+            tricks = (h @ T['wk'] + T['bk']).float().numpy()[:, 0]
+        policy, gap, owner = out[..., 0].reshape(n, 52), out[..., 1].reshape(n, 52), out[..., 2:].reshape(n, 52, 3)
+        return dict(policy=np.where(np.asarray(batch['legal']), policy, -1e9), gap=gap, owner=owner, tricks=tricks)
+
+
 class PolicyNet:
     """NumPy inference from an exported .npz. `scorer` is the FitScorer the net's `shown` inputs were made with.
 
@@ -272,6 +329,10 @@ class PolicyNet:
         vocab = self.params.pop('bot_vocab', None)
         self.vocab = {str(x): i for i, x in enumerate(vocab)} if vocab is not None else {}
         self.who = ('', '')
+        # BRIDGE_NET_BF16=1: the forward pass in bf16 where it can be (Bf16Forward); otherwise, and by default, fp32 NumPy
+        fast = Bf16Forward.make(self.params) if os.environ.get('BRIDGE_NET_BF16') == '1' else None
+        self.run = fast if fast is not None else (lambda batch: forward(self.params, batch))
+        self.precision = 'bf16' if fast is not None else 'fp32'
 
     def bot_id(self, name):
         return self.vocab.get(name or '', 0)
@@ -291,7 +352,7 @@ class PolicyNet:
         batch = batch if 'bot_own' in batch else self.tag(batch, n)
         out = np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
-            out[i:i + chunk] = log_softmax(forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})['policy'])
+            out[i:i + chunk] = log_softmax(self.run({k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})['policy'])
         return out
 
     def policy_and_gap_arrays(self, batch, chunk=4096):
@@ -300,7 +361,7 @@ class PolicyNet:
         batch = batch if 'bot_own' in batch else self.tag(batch, n)
         logp, gap = np.empty((n, 52), np.float32), np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
-            out = forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})
+            out = self.run({k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})
             logp[i:i + chunk], gap[i:i + chunk] = log_softmax(out['policy']), out['gap']
         return logp, gap
 
@@ -310,5 +371,5 @@ class PolicyNet:
         return self.log_policy_arrays(self.tag(stack([self.encode(o) for o in observations]), len(observations)))
 
     def heads(self, observations):
-        out = forward(self.params, self.tag(stack([self.encode(o) for o in observations]), len(observations)))
+        out = self.run(self.tag(stack([self.encode(o) for o in observations]), len(observations)))
         return dict(out, policy=log_softmax(out['policy']))
