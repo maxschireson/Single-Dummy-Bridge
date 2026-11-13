@@ -1,0 +1,80 @@
+{
+  "schema": "gen7-candidate-match-mix-v1",
+  "status": "phase1_authorized",
+  "authority": "Max, 2026-11-12 02:09 and 02:16 UTC: launch Gen 7 in the arena with the mix as discussed; standard is margin 0.25, trust 0.3, `path` 0.5, 3 tricks. Phase 1 is open. Phase 2 is not: it waits for phase 1 and for the self-play runtime to carry the gen7 engine.",
+  "notice": "docs/gen7_candidate_2026-11-11.md",
+  "source_branch": "feature/gen7-candidate-20261111",
+  "plans": {
+    "phase1": "configs/round7-candidate-phase1.json",
+    "phase1_nonben": "configs/round7-candidate-phase1-nonben.json",
+    "phase1_ben": "configs/round7-candidate-phase1-ben.json",
+    "phase2": "configs/round7-candidate-phase2.json"
+  },
+  "common_bidder": "6-32",
+  "labels": {
+    "7f-32": "Gen 7 fast (32): play weights and net tie-break, no tree",
+    "7s-32": "Gen 7 standard (32): fast plus the tree at tricks 3 to 6",
+    "6-32": "Gen 6 fast (32)",
+    "ben64": "BEN (64)",
+    "ben": "BEN (16)",
+    "5RZ32": "Gen 5 (32)",
+    "1": "Gen 1"
+  },
+  "phase1": {
+    "until": "2,000 completed boards in every pair",
+    "pair_weights": {
+      "7s-32~6-32": 1,
+      "7s-32~ben64": 1,
+      "7s-32~ben": 1,
+      "7s-32~5RZ32": 1,
+      "7s-32~1": 1
+    },
+    "halves": {
+      "nonben": {
+        "7s-32~6-32": 1,
+        "7s-32~5RZ32": 1,
+        "7s-32~1": 1
+      },
+      "ben": {
+        "7s-32~ben64": 1,
+        "7s-32~ben": 1
+      },
+      "note": "The same five pairs as two plans, for a fleet where only some machines have BEN servers. Either way every pair runs to 2,000 boards."
+    }
+  },
+  "phase2": {
+    "pair_weights": {
+      "7f-32~7f-32": 6,
+      "7s-32~7s-32": 6,
+      "7s-32~6-32": 4,
+      "7s-32~ben64": 1,
+      "7s-32~ben": 1,
+      "7s-32~5RZ32": 1,
+      "7s-32~1": 1
+    },
+    "shares_of_boards": {
+      "7f-32~7f-32": "30%",
+      "7s-32~7s-32": "30%",
+      "7s-32~6-32": "20%",
+      "7s-32~ben64": "5%",
+      "7s-32~ben": "5%",
+      "7s-32~5RZ32": "5%",
+      "7s-32~1": "5%"
+    }
+  },
+  "audits": {
+    "7f-32~7f-32": "as the cohort (tie audits, gap forks)",
+    "7s-32~7s-32": "as the cohort, with tree audits (`tree_audit` true)",
+    "7s-32~6-32": "as the cohort, with tree audits",
+    "anchors": "BEN boards have none (`ben_audit`). 5RZ32 and 1 boards carry the cohort's audits: there is no per-pair switch. Max allows audits off in any anchor pair."
+  },
+  "notes": [
+    "Phase 1 may be prepared and run from the three phase 1 plan files. Phase 2 may not.",
+    "Old data and scores are untouched. A Gen 7 cohort is a new immutable cohort with new source and run identities, as every cutover is.",
+    "Machines that prepare from the same source run pass their own --shard K/N to ops/prepare_gen7_alpha.py."
+  ],
+  "open_for_phase2": [
+    "every phase 1 pair at 2,000 completed boards",
+    "the self-play runtime carrying the gen7 engine"
+  ]
+}

@@ -1,0 +1,536 @@
+"""Gen 9 player: the Gen 8 prototype player, reading calls and cards through a model of
+whoever made them.
+
+Design in progress (docs/gen9/architecture.md, sections 4 and 7). Used by no arena bot; the
+arena's collector runtime does not know the engine name 'gen9'.
+
+The search, the tree and every setting of Gen 7 and the Gen 8 prototype are unchanged. What
+changes is how a candidate layout is weighted, at the two places the Gen 8 player already has,
+and which of its exactly tied cards a bot with declared carding plays:
+
+  type_log_weights      calls. For a partnership whose PlayerModel is not plain, the hand-fit
+                        score becomes a mixture over that partnership's profiles, taken over
+                        the whole board: log sum_k p_k * exp(sum over its seats of row_k), its
+                        visible hands included. For a net profile row_k is that profile's
+                        scorer plus the declared card's term on the contexts where the card
+                        departs from the profile; for the reserved profile 'card' it is the
+                        card's term alone, with no scorer. A plain partnership is scored
+                        exactly as before.
+  play_log_likelihood   cards. The layer below (gen9_play.SignalPlayer) splits the reading of
+                        a defender with declared carding into the net's part (which class of
+                        card) and the signal's part (which spot). Here the signal part is kept
+                        out of the caller's exponent; without declared carding it is Gen 8's
+                        reading, with the opponent's play factor taken from experience when
+                        there is enough of it.
+  break_ties            a bot with its own declared carding signals by it (SignalPlayer).
+
+Two facts are told to the player by whoever runs the table:
+
+  meet(opponent)        who plays the cards against it (already called by gen5_arena.run_board):
+                        a PlayerModel, or a bot id resolved against spec['gen9']['models'].
+  auction_by(bidders)   who made the calls at this table, four models or ids in seat order. Not
+                        called: each side bid for itself. In a common auction all four are the
+                        common bidder.
+
+spec['gen9'], every key optional:
+
+  models           {bot id: player model as a dict}; '*' is the default entry
+  own              this bot's own partnership as a player model (what it has declared about
+                   its bidding; its carding is the `carding` key)
+  carding, signal_eps, signal_margin, read_partner, reader_eps      gen9_play.SignalConfig
+  bidding_reader   'module:callable'. Called as f(model, other_model, root) for a partnership
+                   that declared a bidding card; returns an object with FitScorer's
+                   type_log_score(length, hon, seat, dealer, vulnerability, auction), which may
+                   also take profile=<system id> to return only the part on that profile's
+                   residual contexts; or None.
+  replay_reader    'module:callable'. Called as f(model, other_model, root) for a partnership
+                   whose model is not plain; returns None, or an object whose
+                   type_log_score(length, hon, seat, dealer, vulnerability, auction, profile=<system id>)
+                   is the log-likelihood of the seat's calls under that profile's own bidder
+                   (a replay: would this hand have made these calls), or None for a profile
+                   whose bidder it does not hold. Where it answers, it replaces the scorer for
+                   that profile on the pool of layouts the readers weigh after the opening
+                   lead; the scorer still draws the pool. (Experiment E9-8.)
+  max_profiles, card_weight, factor_min_plays, factor_prior_plays      Gen9Config
+  oracle           TEST ONLY: tilt the layout weights toward the true deal (experiment E9-0).
+                   Refused unless BRIDGE_ALLOW_ORACLE=1, and the deal must be shown with peek().
+
+With no 'gen9' block, or one whose models are all plain and which declares no carding, the
+player is the Gen 8 prototype player card for card (tests/test_gen9_player.py).
+"""
+from dataclasses import asdict, dataclass
+import importlib
+import inspect
+import math
+import os
+
+import numpy as np
+
+from . import experience as xp
+from .gen6_nets import hand_types
+from .gen7 import player as gen7_player
+from .gen9_play import SIGNAL_KEYS, SignalPlayer
+from .player_model import CARD_PROFILE, FLAT_PROFILE, PlayerModel, believed, resolve
+
+ENGINE = 'gen9'
+CONFIG_KEYS = ('max_profiles', 'card_weight', 'card_on_nets', 'factor_min_plays', 'factor_prior_plays', 'profile_temper', 'profile_floor')
+BLOCK_KEYS = CONFIG_KEYS + SIGNAL_KEYS + ('own', 'bidding_reader', 'replay_reader', 'oracle')
+RANK_WEIGHT = np.array([0.5] * 8 + [1.0, 1.5, 2.0, 3.0, 4.0])      # by rank, 2 to ace: how much a misplaced card counts (gen6.CARD_WEIGHT)
+
+
+@dataclass(frozen=True)
+class Gen9Config:
+    max_profiles: int = 4           # net profiles kept in the mixture, most probable first; 'card' and 'flat' are always kept
+    card_weight: float = 1.         # factor on the declared card's term; 0 = the card is not read
+    card_on_nets: str = 'off'       # the card's term on a net profile's own row: 'off' (the card is read as the profile 'card' only),
+                                    # 'residual' (where that profile's bidder departs from the card; needs a reader that can), 'full'
+    factor_min_plays: float = 200.  # occasions of the 'play.info' statistic before experience sets the opponent's play factor
+    factor_prior_plays: float = 50. # shrinkage of each factor's mean gain toward zero, as this many occasions
+    profile_temper: float = 1.      # exponent on the experience's evidence about a partnership's profile; 0 = the declared prior stands
+    profile_floor: float = 0.02     # share of the scored profiles' mass spread evenly over them, so none is ever ruled out
+
+    def __post_init__(self):
+        if isinstance(self.max_profiles, bool) or not isinstance(self.max_profiles, int) or not 1 <= self.max_profiles <= 16 \
+                or not 0 <= self.card_weight <= 8 or self.card_on_nets not in ('off', 'residual', 'full') \
+                or self.factor_min_plays < 1 or self.factor_prior_plays < 0 \
+                or not 0 <= self.profile_temper <= 1 or not 0 <= self.profile_floor < 1:
+            raise ValueError('Invalid Gen9 settings')
+
+
+@dataclass(frozen=True)
+class Oracle:
+    """Test only: two ways of telling the bot more about the true deal than its readers do.
+
+    tilt      the true layout itself is put among the layouts the search solves, at exp(tilt) times their mean
+              weight ('inf': it gets all the weight, so the bot plays double dummy).
+    near      every layout of the pool the readers weigh (after the opening lead) is multiplied by
+              exp(-near * distance), distance = the cards it places in the wrong hidden hand, counted by rank
+              (2-9: 0.5, T: 1, J: 1.5, Q: 2, K: 3, A: 4). This is where a real reader acts: belief moves toward
+              layouts like the true one, and the true one is never handed over. The realised gain in the true
+              layout's log weight is recorded with each decision."""
+    tilt: float = 0.
+    near: float = 0.
+    roles: str = 'both'             # 'both' | 'declarer' | 'defender': whose decisions are helped
+    from_trick: int = 1
+    to_trick: int = 13
+
+    def __post_init__(self):
+        if self.roles not in ('both', 'declarer', 'defender') or not 1 <= self.from_trick <= self.to_trick <= 13 \
+                or not (self.tilt == math.inf or 0 <= self.tilt <= 50) or not 0 <= self.near <= 10:
+            raise ValueError('Invalid oracle settings')
+
+
+def gen9_settings(block):
+    """spec['gen9'] -> (Gen9Config, the rest of the block)."""
+    block = dict(block or {})
+    extra = set(block) - set(BLOCK_KEYS)
+    if extra:
+        raise ValueError(f'Unknown Gen9 settings: {sorted(extra)}')
+    return Gen9Config(**{k: block[k] for k in CONFIG_KEYS if k in block}), block
+
+
+def _factory(name):
+    module, _, attr = str(name).partition(':')
+    if not module or not attr:
+        raise ValueError(f"a reader is named 'module:callable', not {name!r}")
+    return getattr(importlib.import_module(module), attr)
+
+
+def _logsumexp(rows):
+    stacked = np.stack(rows)
+    top = stacked.max(axis=0)
+    return top + np.log(np.exp(stacked - top).sum(axis=0))
+
+
+def _log_mean(row, ref=None):
+    """log of the mean of exp(row) over the layouts: rows weighted by exp(ref) (the log of each row's number of
+    layouts), or equally when every row is one layout."""
+    w = np.zeros(len(row)) if ref is None else np.asarray(ref, float) - np.max(ref)
+    x = row + w
+    top = x.max()
+    return float(top + np.log(np.exp(x - top).sum()) - np.log(np.exp(w).sum()))
+
+
+_POP5 = np.array([bin(i).count('1') for i in range(32)])
+_LOG_FACT = np.cumsum(np.log(np.maximum(np.arange(14), 1)))
+
+
+def class_log_layouts(view, length, hon):
+    """log of the number of layouts in each hand-type class (gen6.Classes.logmult), from the types of hidden hand 0:
+    its unseen honours are fixed by the class, its unseen low cards of each suit are any k of those unseen."""
+    a = view.hidden[0]
+    length, hon = np.asarray(length, np.int64).reshape(-1, 4), np.asarray(hon, np.int64).reshape(-1, 4)
+    out = np.zeros(len(length))
+    for s in range(4):
+        lows = sum(1 for c in view.unseen if int(c) // 13 == s and int(c) % 13 < 8)
+        played = sum(1 for c in view.played[a] if int(c) // 13 == s and int(c) % 13 < 8)
+        k = length[:, s] - _POP5[hon[:, s]] - played
+        if k.min() < 0 or k.max() > lows:
+            raise ValueError('these hand types are not classes of this view')
+        out += _LOG_FACT[lows] - _LOG_FACT[k] - _LOG_FACT[lows - k]
+    return out
+
+
+class Gen9Player(SignalPlayer):
+    """The Gen 8 prototype player whose layout weights read each partnership's model (calls here, cards in SignalPlayer)."""
+
+    def __init__(self, spec, root, reference=None):
+        self.g9, block = gen9_settings(spec.get('gen9'))
+        self.models = dict(block.get('models') or {})
+        own = dict(block.get('own') or {})
+        if block.get('carding') and 'carding' not in own:
+            own['carding'] = block['carding']
+        self.own = PlayerModel.from_dict(dict(own, id=own.get('id', str(spec.get('id', 'own'))), kind=own.get('kind', 'house')))
+        self.opponent, self.bidders = PlayerModel('unknown'), None
+        self.readers = {}
+        self.deal = None
+        self.oracle = None
+        self.near_note = None
+        self.class_rows = False         # set by layouts(): the next type_log_weights call is given hand-type classes
+        if block.get('oracle'):
+            if os.environ.get('BRIDGE_ALLOW_ORACLE') != '1':
+                raise ValueError('An oracle bot is given the deal. It is for experiments only: set BRIDGE_ALLOW_ORACLE=1 to build one.')
+            tilt = block['oracle'].get('tilt', 0.)
+            self.oracle = Oracle(**dict(block['oracle'], tilt=math.inf if tilt in ('inf', math.inf) else float(tilt)))
+        self.bidding_factory = _factory(block['bidding_reader']) if block.get('bidding_reader') else None
+        self.replay_factory = _factory(block['replay_reader']) if block.get('replay_reader') else None
+        self.replayers = {}
+        super().__init__(spec, root, reference)             # ends by calling meet(spec.get('table_opponent'))
+        self.root = root
+        # Gen6Player keeps the unbound system scorer (system_scorer) and the table's declared systems (table_systems,
+        # set by seat_table before every table); profile_scorer reads a partnership under each candidate system with them.
+
+    # ---- what the table tells the player -----------------------------------------------------
+    def meet(self, opponent):
+        """Who plays the cards against this bot: a PlayerModel, a bot id, or None."""
+        super().meet(opponent)                              # SignalPlayer: resolves the model, its carding, Gen 8's factor by bot id
+        self.opponent = self.opponent_model = self.learned(self.opponent_model)
+        self.bidders = None
+        stat = self.opponent.stat('play.info')
+        if stat is not None and stat['n'] >= self.g9.factor_min_plays:      # enough boards against them: their own best factor
+            self.opponent_factor = float(xp.grid_best(stat, prior_n=self.g9.factor_prior_plays)[0])
+            carding = self.opponent.carding or {}
+            if carding.get('phi') is None:
+                self.opponent_phi = self.opponent_factor
+
+    def auction_by(self, bidders):
+        """Who made the calls at this table: four PlayerModels or ids, seats N E S W. None = each side bid for itself."""
+        if bidders is None:
+            self.bidders = None
+            return
+        if len(bidders) != 4:
+            raise ValueError('auction_by takes four bidders in seat order')
+        self.bidders = tuple(self.learned(resolve(b, self.models)) for b in bidders)
+
+    def learned(self, model):
+        """The model with its profile probabilities moved by its experience (player_model.believed)."""
+        if self.g9.profile_temper <= 0:
+            return model
+        return believed(model, self.g9.profile_temper, self.g9.profile_floor)
+
+    def peek(self, hands):
+        """TEST ONLY: the four original hands, for an oracle bot. Anything else refuses it."""
+        if self.oracle is None:
+            raise ValueError('Only an oracle bot may be shown the deal')
+        self.deal = tuple(tuple(sorted(int(c) for c in h)) for h in hands)
+
+    def bidder_of(self, o, seat):
+        """The model of whoever made `seat`'s calls."""
+        if self.bidders is not None:
+            return self.bidders[seat]
+        return self.own if seat % 2 == o.controller % 2 else self.opponent
+
+    # ---- calls ---------------------------------------------------------------------------------
+    def card_reader(self, model, other):
+        """The reader built from a partnership's declared bidding card, or None."""
+        if self.bidding_factory is None or model.bidding is None or self.g9.card_weight <= 0:
+            return None
+        key = (model.id, model.snapshot, other.id, other.snapshot)
+        if key not in self.readers:
+            if len(self.readers) >= 32:
+                self.readers.clear()
+            reader = self.bidding_factory(model, other, self.root)
+            takes = reader is not None and 'profile' in inspect.signature(reader.type_log_score).parameters
+            self.readers[key] = (reader, takes)
+        return self.readers[key]
+
+    def profile_scorer(self, side, system):
+        """The hand-fit scorer if side `side` (0 = NS, 1 = EW) plays `system`. Without a system-aware scorer file
+        every net profile is read alike, by the player's own scorer."""
+        if self.system_scorer is None:
+            return self.scorer
+        from .systems import TableSystems
+        systems = list(self.table_systems)
+        systems[side] = system
+        return self.system_scorer.bind(TableSystems(*systems))
+
+    def replayer(self, model, other):
+        """The replay reader for a partnership (the log-likelihood of its calls under a profile's own bidder), or None."""
+        if self.replay_factory is None:
+            return None
+        key = (model.id, model.snapshot, other.id, other.snapshot)
+        if key not in self.replayers:
+            if len(self.replayers) >= 32:
+                self.replayers.clear()
+            self.replayers[key] = self.replay_factory(model, other, self.root)
+        return self.replayers[key]
+
+    def read_calls(self, o, model, other, side, seats, length, hon, replay=None, ref=None, exact=False):
+        """Log weight of side `side`'s hidden hands (seats: [(index into view.hidden, seat)]) given its calls: the
+        mixture over its profiles carried through the board.
+
+        Rows. A net profile's row is its scorer. The profile 'card' is the card's term alone; the profile 'flat' is no
+        term at all (a pair whose calls we cannot read). By default the card is read nowhere else: multiplied onto a
+        matching profile it makes the reading worse (bill, 12 Nov: -0.35 to -0.6 nats; dave's check for the arrival
+        run: -0.43 on a guest who bids a held net and declares the nearest card). `card_on_nets` can add the card's
+        term to a net profile's row: 'residual' on the contexts where that profile's bidder departs from the card (a
+        reader that takes `profile=`; experiment E9-13), 'full' everywhere when 'card' is not among the candidates
+        (the reading E9-1 tested). With `replay` (a replay reader), a net profile whose bidder the reader holds is
+        read by it instead: the log-likelihood of the calls under that bidder, with no scorer and no card term.
+
+        Scales. Rows of one kind (scorer, replay, card, flat) are on one scale and are mixed as they are, with the
+        terms of that side's visible hands, which say which of them is in force. Rows of different kinds are not on
+        one scale: a replay row is a log-likelihood of the calls (well below zero even for a hand that fits), a scorer
+        row is the log of a probability that the hand fits, a card row is near zero for a hand that fits, and flat is
+        zero. So with more than one kind among the candidates, each kind's mixture is taken relative to its own mean
+        over the layouts and carries the probability of its profiles and no more. `ref` is the log of each row's
+        number of layouts (hand-type classes), None when every row is one layout drawn evenly. The price is that the
+        board's own calls no longer shift weight between kinds; experience across boards does that (believed()). The
+        gain is a bound: with probability p on the kind that is right, the true layout is read at most -log p nats
+        below that kind alone.
+
+        `exact=True` asks for the mixture only if every candidate is a replay row (None otherwise): the case in which
+        the pool's weights can be corrected to the replay's without knowing how the pool was drawn."""
+        ranked = sorted(model.profiles, key=lambda sp: -sp[1])
+        reserved = (CARD_PROFILE, FLAT_PROFILE)             # cheap to read, and the safety net: always kept
+        profiles = [sp for sp in ranked if sp[0] not in reserved][:self.g9.max_profiles] + [sp for sp in ranked if sp[0] in reserved]
+        total = sum(p for _, p in profiles)
+        hidden = {seat for _, seat in seats}
+        n = len(length[seats[0][0]])
+        seen = []
+        for s in (side, side + 2):                      # a hand of theirs we can see says which system they are playing
+            if s not in hidden and o.known_hands[s] is not None:
+                member = np.zeros((1, 52), np.int8)
+                member[0, list(o.original_hand(s))] = 1
+                seen.append((s, member, hand_types(member)))
+        reader, takes_profile = self.card_reader(model, other) or (None, False)
+        card_only = any(system == CARD_PROFILE for system, _ in profiles)
+        where = (o.dealer, o.vulnerability, o.auction)
+
+        def card_term(seat, ln, hn, profile):
+            if reader is None:
+                return 0.
+            if profile is None or not takes_profile:
+                return self.g9.card_weight * reader.type_log_score(ln, hn, seat, *where)
+            return self.g9.card_weight * reader.type_log_score(ln, hn, seat, *where, profile=profile)
+
+        kinds, mass = {}, {}
+        for system, p in profiles:
+            row = math.log(p / total) + np.zeros(n)
+            if system == FLAT_PROFILE:                  # the calls say nothing about the hands
+                kind = 'flat'
+            elif system == CARD_PROFILE:                # the rules alone; with no reader this profile says nothing either
+                kind = 'card'
+                for j, seat in seats:
+                    row = row + card_term(seat, length[j], hon[j], None)
+                if reader is not None:
+                    for s, _, (ln, hn) in seen:
+                        row = row + float(np.asarray(card_term(s, ln, hn, None)).reshape(-1)[0])
+            else:
+                held = None
+                if replay is not None:                  # the profile's own bidder, if the replay reader holds it
+                    held = [replay.type_log_score(length[j], hon[j], seat, *where, profile=system) for j, seat in seats]
+                    held += [replay.type_log_score(ln, hn, s, *where, profile=system) for s, _, (ln, hn) in seen]
+                    if any(x is None for x in held):
+                        held = None
+                if held is not None:
+                    kind = 'replay'
+                    for k, x in enumerate(held):
+                        row = row + (x if k < len(seats) else float(np.asarray(x).reshape(-1)[0]))
+                else:
+                    kind = 'scorer'
+                    scorer = self.profile_scorer(side, system)
+                    how = self.g9.card_on_nets
+                    with_card = reader is not None and ((how == 'residual' and takes_profile) or (how == 'full' and not card_only))
+                    for j, seat in seats:
+                        row = row + scorer.type_log_score(length[j], hon[j], seat, *where)
+                        if with_card:
+                            row = row + card_term(seat, length[j], hon[j], system if how == 'residual' else None)
+                    for s, member, (ln, hn) in seen:
+                        row = row + float(scorer.seat_log_score(member, s, *where)[0])
+                        if with_card:
+                            row = row + float(np.asarray(card_term(s, ln, hn, system if how == 'residual' else None)).reshape(-1)[0])
+            kinds.setdefault(kind, []).append(row)
+            mass[kind] = mass.get(kind, 0.) + p / total
+        if exact and set(kinds) != {'replay'}:
+            return None
+        mixed = {kind: rows[0] if len(rows) == 1 else _logsumexp(rows) for kind, rows in kinds.items()}
+        if len(mixed) == 1:                             # one scale: the mixture as it is
+            return next(iter(mixed.values()))
+        out = []
+        for kind, row in mixed.items():                 # several: each relative to its own mean over the layouts
+            mean = _log_mean(row, ref)
+            if math.isfinite(mean):
+                out.append(math.log(mass[kind]) + row - mean)
+        return out[0] if len(out) == 1 else _logsumexp(out)
+
+    def sides(self, o, view):
+        """{side: ([(index into view.hidden, seat)], the model of whoever made that side's calls)} for the hidden seats."""
+        by_side = {}
+        for j, seat in enumerate(view.hidden):
+            by_side.setdefault(seat % 2, []).append((j, seat))
+        return {side: (seats, self.bidder_of(o, seats[0][1])) for side, seats in by_side.items()}
+
+    def replay_correction(self, o, view, assign):
+        """[layouts] what replaying the bidders changes on a pool of layouts, or None: for each partnership with a
+        replay reader that holds every one of its candidate profiles, its calls read by replay minus the same calls as
+        type_log_weights read them when the pool was drawn. Added to the pool's log weights, it makes the pool's
+        weights the replay's. A partnership with a card, flat or unheld profile among its candidates is left as the
+        pool was drawn: its kinds were each taken relative to their mean over all layouts, which a pool cannot redo."""
+        if self.replay_factory is None:
+            return None
+        total, types = None, None
+        for side, (seats, model) in self.sides(o, view).items():
+            if model.plain:
+                continue
+            other = self.bidder_of(o, (seats[0][1] + 1) % 4)
+            replay = self.replayer(model, other)
+            if replay is None:
+                continue
+            if types is None:
+                types = [hand_types(view.original(assign, j)) for j in range(len(view.hidden))]
+                length, hon = [t[0] for t in types], [t[1] for t in types]
+            again = self.read_calls(o, model, other, side, seats, length, hon, replay, exact=True)
+            if again is None:                           # a card, flat or unheld profile among the candidates: the pool stands
+                continue
+            change = again - self.read_calls(o, model, other, side, seats, length, hon)
+            total = change if total is None else total + change
+        return total
+
+    def layout_log_weights(self, o, view, assign, source='scorer'):
+        self.class_rows = False                         # the rows are layouts here, each counted once
+        return super().layout_log_weights(o, view, assign, source)
+
+    def type_log_weights(self, o, view, length, hon, source):
+        classes, self.class_rows = self.class_rows, False
+        if source == 'lead_net':                        # the lead net knows only the house system; Gen 8 routes other tables to the scorer
+            return super().type_log_weights(o, view, length, hon, source)
+        sides = self.sides(o, view)
+        if all(model.plain for _, model in sides.values()):
+            return super().type_log_weights(o, view, length, hon, source)
+        ref = class_log_layouts(view, length[0], hon[0]) if classes and len(view.hidden) == 2 else None
+        total = 0.
+        for side, (seats, model) in sides.items():
+            if model.plain:
+                total = total + sum(self.scorer.type_log_score(length[j], hon[j], seat, o.dealer, o.vulnerability, o.auction) for j, seat in seats)
+            else:
+                other = self.bidder_of(o, (seats[0][1] + 1) % 4)
+                total = total + self.read_calls(o, model, other, side, seats, length, hon, ref=ref)
+        return total
+
+    # ---- cards ---------------------------------------------------------------------------------
+    def reading_exponent(self, o, view):
+        """The exponent the caller is about to put on play_log_likelihood: Gen 7's on the deal list, Gen 8's before it."""
+        return self.g7.play_weight if self.source(o, view) == 'list' else self.g7.early_play_weight
+
+    def play_log_likelihood(self, o, view, assign, plays=None):
+        net, signal = self.play_log_terms(o, view, assign, plays)
+        out = net
+        if signal.any():                # the signal part is a likelihood, not a net score: not tempered
+            out = out + signal / max(self.reading_exponent(o, view), 1e-6)
+        if self.oracle is not None and self.oracle.near > 0 and self.helped(o):
+            out = out + self.nearness(o, view, assign) / max(self.reading_exponent(o, view), 1e-6)
+        change = self.replay_correction(o, view, assign)
+        if change is not None:                          # the calls, read again on this pool by replaying the bidders
+            out = out + change / max(self.reading_exponent(o, view), 1e-6)
+        return out
+
+    # ---- the test-only oracle --------------------------------------------------------------------
+    def helped(self, o):
+        """Does the oracle apply to this decision (its roles and tricks)?"""
+        k = self.oracle
+        declaring = o.controller % 2 == o.contract.declarer % 2
+        trick = len(o.history) // 4 + 1
+        return not ((k.roles == 'declarer' and not declaring) or (k.roles == 'defender' and declaring)) and k.from_trick <= trick <= k.to_trick
+
+    def truth(self, o):
+        """The four hands as they are now, from the deal the oracle was shown."""
+        if self.deal is None:
+            raise RuntimeError('An oracle bot was not shown the deal (peek)')
+        gone = {x for _, x in o.history}
+        truth = tuple(tuple(x for x in hand if x not in gone) for hand in self.deal)
+        for s, hand in enumerate(o.known_hands):
+            if hand is not None and tuple(hand) != truth[s]:
+                raise RuntimeError('The deal shown to the oracle is not the deal being played')
+        return truth
+
+    def nearness(self, o, view, assign):
+        """[layouts] -near * (rank-weighted count of unseen cards a layout puts in the wrong hidden hand)."""
+        truth = self.truth(o)
+        owner = np.full(52, -1, np.int8)
+        for j, seat in enumerate(view.hidden):
+            owner[list(truth[seat])] = j
+        right = owner[view.unseen]
+        if (right < 0).any():
+            raise RuntimeError('The deal shown to the oracle does not account for every unseen card')
+        distance = (assign != right[None, :]) @ RANK_WEIGHT[view.unseen % 13]
+        term = -self.oracle.near * distance
+        # what this does for the true layout among these rows, taken at equal weight: log(1 / mean exp(term))
+        self.near_note = dict(near=self.oracle.near, rows=len(assign), mean_distance=float(distance.mean()),
+                              gain=float(-np.log(np.mean(np.exp(term)))))
+        return term
+
+    def tilted(self, o, worlds, weights):
+        """(worlds, weights, note) with the true layout's weight multiplied by exp(tilt); it is added if absent."""
+        k = self.oracle
+        if not self.helped(o) or (k.tilt == 0 and k.near > 0):
+            return worlds, weights, None
+        truth = self.truth(o)
+        worlds = [tuple(tuple(int(x) for x in h) for h in w) for w in worlds]
+        w = np.asarray(weights, np.float64)
+        w = w / w.sum()
+        present = truth in worlds
+        if present:
+            i = worlds.index(truth)
+            before = float(np.log(w[i]))
+        else:
+            i, before = len(worlds), float(np.log(1. / len(worlds)))        # taken in at the pool's mean weight
+            worlds, w = worlds + [truth], np.append(w, 1. / len(w))
+        if k.tilt == math.inf:
+            w = np.zeros(len(w))
+            w[i] = 1.
+        else:
+            w[i] *= math.exp(k.tilt)
+            w = w / w.sum()
+        return worlds, w, dict(tilt='inf' if k.tilt == math.inf else k.tilt, present=present, log_weight_before=before,
+                               log_weight_after=float(np.log(w[i])), layouts=len(worlds))
+
+    def layouts(self, o, view, source, rng):
+        self.near_note = None
+        self.class_rows = True          # Gen 6 and Gen 7 weigh hand-type classes here unless they go through layout_log_weights
+        try:
+            worlds, weights, info = super().layouts(o, view, source, rng)
+        finally:
+            self.class_rows = False
+        if self.oracle is not None:
+            worlds, weights, note = self.tilted(o, worlds, weights)
+            if note is not None:
+                self.solved_layouts = worlds
+                info = dict(info, oracle=note)
+            if self.near_note is not None:
+                info = dict(info, oracle_near=self.near_note)
+        return worlds, weights, info
+
+    def choose(self, o, rng):
+        result = super().choose(o, rng)
+        if 'gen6' in result.details and not (self.opponent.plain and self.own.plain and self.bidders is None):
+            result.details['gen9'] = dict(asdict(self.g9), opponent=self.opponent.id, opponent_boards=self.opponent.boards,
+                                          snapshot=self.opponent.snapshot, opponent_factor=self.opponent_factor)
+        return result
+
+
+def player(spec, root, reference=None):
+    """player_factory for gen5_arena.run_board: Gen 9 specs get this engine, every other spec is as before."""
+    if spec.get('engine') == ENGINE:
+        return Gen9Player(spec, root, reference)
+    return gen7_player(spec, root, reference)
