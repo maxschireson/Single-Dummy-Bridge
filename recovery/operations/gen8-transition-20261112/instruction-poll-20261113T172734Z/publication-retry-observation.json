@@ -1,0 +1,24 @@
+{
+  "checked_epoch": 1794591211.5482092,
+  "ls_remote_returncode": 0,
+  "ls_remote_stdout": "b636d5915eac89db3c0ecbb47237ab6b15352468\trefs/heads/arena-gen8-candidate-codex-20261112-feed\n",
+  "ls_remote_stderr": "",
+  "publisher_status": {
+    "status": "published",
+    "epoch": 1794591191.1572993,
+    "completed": 2810,
+    "commit": "b636d5915eac89db3c0ecbb47237ab6b15352468",
+    "branch": "arena-gen8-candidate-codex-20261112-feed"
+  },
+  "observed_failure": {
+    "status": "retrying",
+    "epoch": 1794591120.9626954,
+    "error": "CalledProcessError(128, ['git', '-C', '/workspace/work/gen8-candidate-codex-20261112/publication', 'push', '-u', 'origin', 'HEAD:refs/heads/arena-gen8-candidate-codex-20261112-feed'])",
+    "git_returncode": 128,
+    "stderr_retained_by_publisher": false
+  },
+  "outcome": "The existing publisher succeeded on its next natural retry; local and remote heads both b636d5915eac89db3c0ecbb47237ab6b15352468, 2810 deals.",
+  "diagnosis": "Exact cause was not retained and is unconfirmed. A fresh read reached GitHub successfully; the retry caught the remote up without divergence. No manual restart, push, reset, failure clearance or configuration change was performed.",
+  "requires_attention": false,
+  "manual_restart": false
+}
