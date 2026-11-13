@@ -2,16 +2,13 @@
  "schema": "gen7-alpha-plan-v1",
  "campaign": "gen9-cohort-ben-20261113",
  "title": "Gen 9 cohort · against BEN (64)",
- "launch_enabled": false,
- "pending": [
-  "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
-  "preflight on azure4 (ops/smoke_gen7.py) clean",
-  "feed registration route from g7 (board, g9 03:53 UTC)"
- ],
+ "launch_enabled": true,
+ "pending": [],
  "exclude_training_families": true,
  "notes": [
   "Gen 9 cohort, prepared by dave (G9, 13 Nov 2026) the way Gen 8's were (docs/gen8_candidate_2026-11-12.md, Launch steps). Max, 13 Nov 03:47 UTC (to g9): \"You have done great work so far and I would like to see it deployed. Can we accelerate?\" g9, 03:49 UTC: the cohort is 9a-32 against 8s-32, ben64 and 71s-32, with 8p-32 as its control, on fresh deals.",
-  "For machines with BEN's servers, as Gen 8's BEN plan. BEN (64) is the source run's."
+  "For machines with BEN's servers, as Gen 8's BEN plan. BEN (64) is the source run's.",
+  "Opened 13 Nov 2026 by dave on g9's go (team/gen9, 06:18 UTC: \"Add round9-cohort-ben.json (9a-32~ben64) as soon as BEN 64 answers on azure4\"). will's check on azure4 at 07:04 UTC: a real /bid request to the capsule's BEN 64 server answered in 0.03 s (ops/gen9_ben_lanes.py serve, feature/gen9-workflow-ben-lanes 249ab383). Collector run by Gen 9 on azure4 beside the main cohort; feed arena-gen9-azure4-ben64-feed."
  ],
  "model_note": "Gen 9 (9a-32) is the Gen 8 prototype (8p-32: Gen 7.1 standard with the play read from trick 1 at exponent 1.0, policy v4.1) reading each partnership through a player model: house bots are modelled as the house system, so the auction is read by replaying the house bidder after the opening lead; BEN and anyone without a model are read exactly as 8p-32 reads them. It plays a random one of its exactly equal-best cards (exploration 1.0). No experience is carried: the models are what each side declares. 8p-32 is the control. 8s-32 and 71s-32 are the arena's Gen 8 and Gen 7.1 (same identities). docs/gen9/cohort.md.",
  "interpretation": "Gen 9 against BEN (64). 9a-32 reads BEN as 8p-32 does (no model for BEN). Compare with Gen 8 against BEN (64) (campaign gen8-candidate-ben-20261112).",
@@ -42,7 +39,7 @@
  "gen7_bots": {
   "9a-32": {
    "base": "6-32",
-   "label": "Gen 9 (32): 8p-32 reading each partnership through its player model, random among exactly equal-best cards",
+   "label": "Gen 9 candidate, player models (32)",
    "engine": "gen9",
    "policy": "gen7_policy_v41",
    "gen7": {
