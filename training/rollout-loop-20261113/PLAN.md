@@ -235,6 +235,31 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   UTC on 14 November. Round 3 trains on those, with the epoch chosen on pure Stu's held-out choices and the other
   bots' loss as a limit.
 
+## Round 3
+
+- **The interim net, r3a (21:16 to 22:06 UTC, `train-r3a/`, sha256 `a9c1d1474ff7...`):** 17,350 pure-Stu tables (all of
+  azure5's, every block and cut file of the other four boxes), 150 held out, 4 epochs, epoch 4 selected. Indicator 1
+  against the start (paired, SE by deal): lead -0.0002 +- 0.0021, tricks 1 to 4 -0.0067 +- 0.0021, 5 to 8 -0.0027 +-
+  0.0023, 9 to 13 -0.0017 +- 0.0042, all -0.0039 +- 0.0016; against round 2's net, all -0.0022 +- 0.0015. The value head
+  moved more (lead 0.058 to 0.044, tricks 1 to 4 0.065 to 0.058). Gen 8's log-loss 0.458 to 0.476. Pure Stu's log-loss
+  1.065 to 0.936, against 1.057 to 0.992 at round 2: 0.020 a doubling of tables, as the morning's learning curve said.
+  The 150 held-out tables also chose the epoch, so these are validation numbers (slightly optimistic); from round 3 on,
+  indicator 1 is read on a test set that makes no choice (`round2.sh` TEST). Alone on gate deals 500 to 999: minus v2
+  alone +0.14 +- 0.20, minus round 2's net -0.06 +- 0.19 (the -0.002 tricks a decision over round 2 is about 0.06 tricks
+  a board: far below what 500 deals resolve).
+- **The cut, 23:00 UTC.** Round 3 trains on every table to then (`round2.sh r3`, TEST 300), on azure5 with its
+  collection paused. From the cut the collection is pure rollout (Max, 22:19 UTC: "My instinct is to just go pure
+  rollout"): all eight workers of every box play `stu0-ps`, whose lead is rolled out on the settings of every other
+  card (at most 4 candidates by prior, 32 then up to 128 layouts with the race), so every table has a rated lead and
+  the lead improves as the net does. 17.2 CPU-s a table on 8 test tables, against 18.8 for the net's lead and about 26
+  for the 512-layout lead. The 512-layout lead stays a play-time setting (`stu0-pr`), to be measured against BEN and Gen
+  8 apart from training (Max, 22:29 UTC).
+- **Experiments on azure6 (Max, 22:26 and 22:31 UTC; `exp_labels.sh`):** label quality against volume (labels and the
+  card learned as a bot with only 8, 16 or 32 layouts would have had them, from the per-layout records), tables against
+  positions (every decision of half the tables against half the decisions of all of them), and the learning curve on
+  the same tables, all scored on the test split of every published block. Then, for play, the rollout budget swept on
+  replayed decisions (tricks given up against CPU), confirmed by a match.
+
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
 Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the
