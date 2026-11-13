@@ -42,12 +42,17 @@ class Seats:
     mode   'top'    the net's most probable card
            'draw'   drawn from its probabilities raised to `power`
            'blend'  the card with the best log-probability minus `gap_weight` x the net's gap head
+
+    who    (the deciding side's bot, the other side's bot) as names in a rollout net's vocabulary, for nets that take
+           who is playing (gen7_net.PolicyNet.vocab, rollout net v2 on): each row is told the bot of the side to play
+           (`bot_own`) and of the other side (`bot_other`). Names the net does not know are read as unknown.
     """
 
-    def __init__(self, nets, mode='top', power=1., gap_weight=10., seed=0):
+    def __init__(self, nets, mode='top', power=1., gap_weight=10., seed=0, who=('', '')):
         if mode not in ('top', 'draw', 'blend'):
             raise ValueError(f'Unknown seat mode {mode!r}')
         self.nets, self.mode, self.power, self.gap_weight = list(nets), mode, power, gap_weight
+        self.who = tuple(who)
         self.rng = np.random.default_rng(seed)
         self.net_rows = 0
         self.side, self.publics = None, None
@@ -78,6 +83,12 @@ class Seats:
             b = {key: batch[key][free[at]] for key in INPUTS}
             if k:
                 b['shown'] = self.publics[k].shown[controller[at]]
+            net = self.nets[k]
+            if getattr(net, 'vocab', None):              # a net that takes who is playing: the side to play's bot, then the other's
+                mine = controller[at] % 2 == self.side
+                me, them = net.bot_id(self.who[0]), net.bot_id(self.who[1])
+                b['bot_own'] = np.where(mine, me, them).astype(np.int32)
+                b['bot_other'] = np.where(mine, them, me).astype(np.int32)
             if self.mode == 'blend':
                 logp[at], gap = self.nets[k].policy_and_gap_arrays(b)
                 score[at] = logp[at] - self.gap_weight * gap

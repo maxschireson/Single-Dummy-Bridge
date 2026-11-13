@@ -174,6 +174,43 @@ class RolloutTests(Fixture8):
             differ += int((mixed.lines[1::2] != alone.lines[1::2]).any())
         self.assertGreater(differ, 2)
 
+    def test_a_net_that_takes_who_is_playing_is_told_each_rows_side(self):
+        """With a rollout net that has bot vectors, every row's choice is the net's on that row with the side to play's
+        bot as `bot_own` and the other side's as `bot_other`; unknown names are row 0."""
+        from bridge_harness.gen7_net import PolicyNet, forward, log_softmax
+        from bridge_harness.plan_rollout import inputs
+        p = self.make()
+        with np.load(self.root / 'gen7.npz') as z:
+            params = {k: z[k] for k in z.files}
+        width = params['bt0'].shape[0]
+        r = np.random.default_rng(3)
+        params.update(emb_own=(2 * r.standard_normal((3, width))).astype(np.float32), emb_other=(2 * r.standard_normal((3, width))).astype(np.float32),
+                      bot_vocab=np.array(['?', 'me', 'them']))
+        np.savez(self.root / 'who.npz', **params)
+        net = PolicyNet(self.root / 'who.npz', p.scorer)
+        self.assertEqual((net.bot_id('me'), net.bot_id('them'), net.bot_id('nobody')), (1, 2, 0))
+        told = 0
+        for seed in range(6):
+            _, o, world = spot(seed, 9 + 4 * seed)
+            rng = random.Random(seed)
+            worlds = [world] + [shuffled(o, world, rng) for _ in range(3)]
+            for who, ids in ((('me', 'them'), (1, 2)), (('me', 'nobody'), (1, 0))):
+                seats = Seats([net], who=who).start(o)
+                rows = Rows(o, worlds)
+                rows.play(np.full(rows.n, o.legal[0]))
+                while not rows.done:
+                    got, free, _ = seats.cards(rows)
+                    if len(free):
+                        b = {k: v[free] for k, v in inputs(rows, seats.publics[0]).items()}
+                        mine = rows.controller()[free] % 2 == o.controller % 2
+                        b['bot_own'] = np.where(mine, ids[0], ids[1])
+                        b['bot_other'] = np.where(mine, ids[1], ids[0])
+                        want = log_softmax(forward(net.params, b)['policy']).argmax(axis=1)
+                        np.testing.assert_array_equal(got[free], want)
+                        told += len(free)
+                    rows.play(got)
+        self.assertGreater(told, 100)
+
     def test_forks_replay_to_their_seat_and_their_results(self):
         p = self.make()
         seen = 0

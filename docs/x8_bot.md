@@ -49,9 +49,16 @@ active with `cards` or fewer cards in hand:
 
 - **Declarer.** If some card guarantees the contract from the declaring side's own view, only such cards are
   candidates, in every mode.
-- **Defender.** For each candidate and each of the `defender` likeliest layouts: would declarer, from its own view
-  in that layout once the card is played, hold a guaranteed line? The weighted share is the card's hand-over odds;
-  among cards within `odds_margin` of the best value the lowest odds win.
+- **Defender**, with `defender_cards` (8) or fewer cards. For each candidate and each of `defender` (16) layouts the
+  defender cannot rule out (`sample`: uniform, as tested; or the likeliest of the decision's own): would declarer, from
+  its own view in that layout once the card is played, hold a guaranteed line? The share is the card's hand-over odds.
+  In blend and rollout decisions the lowest odds win among candidates within `odds_margin` (0.125) of the best value.
+  Elsewhere, with `guard`, the rule the strategy-fusion session tested on the Gen 8 feeds (13 Nov: 674 decisions,
+  +0.225 +- 0.097 IMPs a decision; games, slams and doubled contracts +0.535 +- 0.198, undoubled partscores
+  -0.035 +- 0.061): among cards the search rates within 0.125 of its own card, the one with the fewest hand-overs,
+  its own card when tied.
+- **Contract class** (`contracts`): by default the logic acts only in games, slams and doubled contracts, for both
+  sides (Max, 13 Nov 01:42 UTC: act on claims outside undoubled partscores).
 - **Inside rollouts.** For a side treated as keeping a guaranteed contract (this bot's side when it declares, `own`;
   opponents listed in `opponents`), the claim finder is asked at the start of each trick with `leaf` or fewer cards.
   Where the contract is guaranteed the row's result is floored at the contract and the rollout plays on, so the
@@ -76,6 +83,19 @@ are not pooled; telling them apart needs the mixer's own search.
 A mixing defender misleads a partner that reads it as the net plays, so the v0 bots mix as declarer only. The Gen
 9 lead's two azure4 matches (`e9-16-r-v-p`, `e9-16-r-v-x`) measure what mixing costs in play.
 
+## Forks on every feature that changes a card
+
+With `capture.audit: features` (the default) an audited 8X bot names as reference card the card plain Gen 8 (this
+spec's search, the net's tie-break, no 8X feature) would have played, wherever a feature in `audit_features` changed
+the card, and names no card anywhere else; `x8_features` in the action says which features changed it (`rollout`,
+`blend`, `guarantee`, `odds`, `guard`, `mix`). The collector's audit forks (`fork_audit.collect_board`) then play
+plain Gen 8's card out from the same position with the same bots. `scripts/x8_match.py --feature-forks` sets the
+audit budget to fork every such decision, one level deep; `scripts/x8_forks.py` pools the forks by feature and
+contract class (IMPs to the deciding side of the 8X card over plain Gen 8's, boards as the unit of the errors). So
+every 8X match is also a post-mortem of each feature, at the cost of the forked decisions only. `mix` is left out of
+`audit_features` by default: most of its changes are between touching cards. In the arena, the same setting means an
+8X bot's audits fork only feature changes, not Gen 7's tie audits.
+
 ## The record
 
 Every 8X decision writes an `x8` note into the action (`bridge_harness/x8_capture.py`): mode, candidates and their
@@ -94,11 +114,12 @@ claim verdict, timings. `x8.capture.level`:
 
 | Bot | What |
 | --- | --- |
-| `8xr0-v41` | v0, as set by the calibration below: the Gen 8 search at tricks 1 to 2; from trick 3 that search blended with rollouts (sampled seats) on 256 fresh layouts at trust 0.25 for up to 3 candidates within 0.25 of its best; winning-line logic to 10 cards; declarer mixes; forks recorded |
+| `8xr0-v41` | v0, as set by the calibration below: the Gen 8 search at tricks 1 to 2; from trick 3 that search blended with rollouts (sampled seats) on 256 fresh layouts at trust 0.25 for up to 3 candidates within 0.25 of its best; the declarer's guarantee from 10 cards and the defender's hand-over odds and rule from 8, in games, slams and doubled contracts; declarer mixes; inside-rollout forks recorded |
 | `8xr0n-v41` | `8xr0-v41` without the winning-line logic |
 | `8xr7-v41` | the first v0 layout: blend at tricks 3 to 6, rollouts alone from trick 7 (up to 4 candidates, 128 layouts, race from 32); for testing rollout nets |
 | `8xl0-v41` | rollouts alone from trick 3 |
-| `8xc0-v41` | `8x-32-v41` with only the declarer's guarantee |
+| `8xc0-v41` | `8x-32-v41` with only the declarer's guarantee (from 10 cards, games, slams and doubled contracts) |
+| `8xg0-v41` | `8x-32-v41` with only the defender rule as tested on the Gen 8 feeds |
 | `8xm0-v41` | `8x-32-v41` with only the declarer's mixing |
 | `8xs0-v41` | `8x-32-v41` through this engine with nothing on: plays `8x-32-v41`'s game card for card |
 
@@ -120,6 +141,17 @@ Tricks 7 to 12, this session (2,990 pairs, 1,378 deals, about 119 layouts a pair
 | v4.1, top card | -0.274 +- 0.058 | -0.030 +- 0.019 | +0.010 +- 0.011 | 0.106 |
 | v4.1, sampled, 4 a layout | -0.159 +- 0.031 | -0.012 +- 0.017 | +0.013 +- 0.007 | 0.146 |
 | v4.1, top card, claim floors (`xc`) | -0.189 +- 0.038 | -0.017 +- 0.018 | +0.012 +- 0.011 | 0.126 |
+
+Rollout net v1 (`transfer/rollout-net-v1-20261113`, `runs/ft`: v4.1 fine-tuned on the Gen 7+ bots' play), same pairs:
+
+| Rollout net, seats | Rollouts alone | 0.5 search + 0.5 rollouts | 0.75 search + 0.25 rollouts | Share | Rollouts alone, minus v4.1's, same pairs |
+| --- | --- | --- | --- | --- | --- |
+| v1 ft, top card | -0.223 +- 0.055 | -0.016 +- 0.018 | +0.009 +- 0.008 | 0.124 | +0.051 +- 0.030 |
+| v1 ft, sampled, 4 a layout | -0.126 +- 0.028 | +0.003 +- 0.010 | +0.010 +- 0.007 | 0.176 | +0.034 +- 0.027 |
+
+The better net moves rollouts alone toward zero by 0.03 to 0.05 tricks a side (about 1.5 standard errors), and the
+share of its correction that shows in real results from 0.11 to 0.12 and 0.15 to 0.18: the direction the plan needs,
+far from enough for rollouts to decide alone.
 
 So with v4.1 as the rollout net, rollouts cannot choose cards on their own late in the hand, and v0 blends at trust
 0.25 from trick 3. The claim floors change 37% of the pairs' rollout values and take a third of the loss of rollouts
@@ -162,10 +194,12 @@ the claim floors), for `scripts/plan_headroom.py --sims`.
 
 ## Not done, and limits
 
-- Calibration of rollout net v1 (`transfer/rollout-net-v1-20261113`) on the same pairs: running.
+- More rollout nets on the same calibration pairs as they come (v1 scratch, v2).
 - No played result yet. With v4.1 as the rollout net there is no reason to expect a gain over Gen 8.
 - Branching inside rollouts (the net's top two or three cards at chosen turns, opponents averaged, own side
   maximised per information state) is not built: each rollout is a single line.
-- Other-side nets inside rollouts are by share of layouts (`x8.others`), not yet by who the opponent is.
+- Other-side nets inside rollouts are by share of layouts (`x8.others`). A rollout net that takes who is playing
+  (rollout net v2, `PolicyNet.vocab`) is told the bots of both sides in every row (`x8.names`: this bot's and each
+  opponent's name in the net's vocabulary); tested with a stand-in net, not yet with v2.
 - The time allowances make a claim answer depend on machine speed when a question nears its limit, so two runs
   of the same board can differ there. The limits are well above the measured times (median well under 10 ms).

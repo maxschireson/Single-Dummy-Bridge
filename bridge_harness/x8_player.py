@@ -186,12 +186,14 @@ class X8Config:
     capture: CaptureUse = field(default_factory=CaptureUse)
     mix: MixUse = field(default_factory=MixUse)
     others: tuple = ()          # ({'policy': path, 'share': s}, ...): nets that play the other side in a share of the rollouts' layouts
+    names: dict = field(default_factory=dict)     # for rollout nets that take who is playing: the name in the net's vocabulary for
+                                # this bot ('self') and for each opponent bot id ('*' = any other); unlisted opponents are unknown
 
 
 def x8_settings(block):
     """spec['x8'] -> X8Config. No trick may belong to two stages."""
     block = dict(block or {})
-    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others'}
+    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names'}
     if unknown:
         raise ValueError(f'Unknown 8X settings: {sorted(unknown)}')
     try:
@@ -207,7 +209,10 @@ def x8_settings(block):
     others = tuple(dict(o) for o in block.get('others') or ())
     if any(set(o) != {'policy', 'share'} or not 0 < o['share'] < 1 for o in others) or sum(o['share'] for o in others) > 1:
         raise ValueError('8X others are {policy, share} with shares that sum to at most 1')
-    return X8Config(stages, claims, capture, mix, others)
+    names = dict(block.get('names') or {})
+    if not all(isinstance(k, str) and isinstance(v, str) for k, v in names.items()):
+        raise ValueError('8X names map bot ids to names')
+    return X8Config(stages, claims, capture, mix, others, names)
 
 
 def resolved(block):
@@ -215,7 +220,7 @@ def resolved(block):
     c = x8_settings(block)
     return dict(stages=[asdict(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
                 capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
-                others=[dict(o) for o in c.others])
+                others=[dict(o) for o in c.others], names=dict(c.names))
 
 
 def touching(o):
@@ -541,7 +546,9 @@ class X8Player(Gen7Player):
         declaring = o.controller % 2 == o.contract.declarer % 2
         target = o.contract.level + 6
         inside = self.aware(declaring) and claims.leaf > 0
-        seats = Seats([self.rollout_net, *self.other_nets], stage.seat, stage.power, seed=int(rng.integers(1 << 62))).start(o)
+        names = self.x8.names
+        who = (names.get('self', ''), names.get(self.opponent_id or '', names.get('*', '')))
+        seats = Seats([self.rollout_net, *self.other_nets], stage.seat, stage.power, seed=int(rng.integers(1 << 62)), who=who).start(o)
         other = None
         if self.other_nets:
             other = np.searchsorted(np.cumsum(self.other_share), rng.random(n_w), side='right') + 1
