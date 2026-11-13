@@ -829,75 +829,75 @@
    }
   },
   "b0-g8": {
-   "boards": 170,
+   "boards": 256,
    "bots": {
     "8p-32-v41": {
      "game": {
-      "tables": 210,
-      "decl_decisions": 862,
-      "held": 613,
-      "gave_up": 6,
+      "tables": 314,
+      "decl_decisions": 1276,
+      "held": 946,
+      "gave_up": 11,
       "decl_unknown": 0,
-      "def_decisions": 778,
-      "choice": 40,
-      "handed": 3,
+      "def_decisions": 1170,
+      "choice": 77,
+      "handed": 8,
       "def_unknown": 0
      },
      "part": {
-      "tables": 128,
-      "decl_decisions": 546,
-      "held": 332,
-      "gave_up": 5,
+      "tables": 196,
+      "decl_decisions": 831,
+      "held": 540,
+      "gave_up": 9,
       "decl_unknown": 0,
-      "def_decisions": 494,
-      "choice": 54,
-      "handed": 1,
+      "def_decisions": 769,
+      "choice": 68,
+      "handed": 3,
       "def_unknown": 0
      },
      "all": {
-      "tables": 338,
-      "decl_decisions": 1408,
-      "held": 945,
-      "gave_up": 11,
+      "tables": 510,
+      "decl_decisions": 2107,
+      "held": 1486,
+      "gave_up": 20,
       "decl_unknown": 0,
-      "def_decisions": 1272,
-      "choice": 94,
-      "handed": 4,
+      "def_decisions": 1939,
+      "choice": 145,
+      "handed": 11,
       "def_unknown": 0
      }
     },
     "ben64": {
      "game": {
-      "tables": 210,
-      "decl_decisions": 851,
-      "held": 660,
+      "tables": 314,
+      "decl_decisions": 1281,
+      "held": 985,
       "gave_up": 0,
       "decl_unknown": 0,
-      "def_decisions": 753,
-      "choice": 64,
-      "handed": 6,
+      "def_decisions": 1116,
+      "choice": 86,
+      "handed": 9,
       "def_unknown": 0
      },
      "part": {
-      "tables": 128,
-      "decl_decisions": 508,
-      "held": 295,
-      "gave_up": 3,
+      "tables": 196,
+      "decl_decisions": 807,
+      "held": 501,
+      "gave_up": 4,
       "decl_unknown": 0,
-      "def_decisions": 506,
-      "choice": 38,
-      "handed": 7,
+      "def_decisions": 790,
+      "choice": 56,
+      "handed": 11,
       "def_unknown": 0
      },
      "all": {
-      "tables": 338,
-      "decl_decisions": 1359,
-      "held": 955,
-      "gave_up": 3,
+      "tables": 510,
+      "decl_decisions": 2088,
+      "held": 1486,
+      "gave_up": 4,
       "decl_unknown": 0,
-      "def_decisions": 1259,
-      "choice": 102,
-      "handed": 13,
+      "def_decisions": 1906,
+      "choice": 142,
+      "handed": 20,
       "def_unknown": 0
      }
     }
@@ -973,6 +973,81 @@
       "def_decisions": 1912,
       "choice": 123,
       "handed": 12,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "b0-stu0": {
+   "boards": 147,
+   "bots": {
+    "ben64": {
+     "game": {
+      "tables": 178,
+      "decl_decisions": 710,
+      "held": 531,
+      "gave_up": 4,
+      "decl_unknown": 0,
+      "def_decisions": 648,
+      "choice": 43,
+      "handed": 1,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 114,
+      "decl_decisions": 477,
+      "held": 257,
+      "gave_up": 3,
+      "decl_unknown": 0,
+      "def_decisions": 430,
+      "choice": 54,
+      "handed": 8,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 292,
+      "decl_decisions": 1187,
+      "held": 788,
+      "gave_up": 7,
+      "decl_unknown": 0,
+      "def_decisions": 1078,
+      "choice": 97,
+      "handed": 9,
+      "def_unknown": 0
+     }
+    },
+    "stu0a": {
+     "game": {
+      "tables": 178,
+      "decl_decisions": 728,
+      "held": 575,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 629,
+      "choice": 35,
+      "handed": 3,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 114,
+      "decl_decisions": 457,
+      "held": 255,
+      "gave_up": 1,
+      "decl_unknown": 0,
+      "def_decisions": 441,
+      "choice": 49,
+      "handed": 5,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 292,
+      "decl_decisions": 1185,
+      "held": 830,
+      "gave_up": 1,
+      "decl_unknown": 0,
+      "def_decisions": 1070,
+      "choice": 84,
+      "handed": 8,
       "def_unknown": 0
      }
     }
