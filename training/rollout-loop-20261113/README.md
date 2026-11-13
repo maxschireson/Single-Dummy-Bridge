@@ -174,6 +174,54 @@ The nets alone on deals 500 to 999: v2 -2.63 +- 0.21 (500); round 2's net (epoch
 358 deals, by deal against v2 +0.18 +- 0.21. Inside the full bot the net's change does not show; alone it points the
 right way without being established, and more epochs on the same tables add nothing.
 
+## Round 3 (`round2.sh r3`, 23:09 to 23:29 UTC; `train-r3/`, sha256 `a8cf8a94ebcf...`)
+
+About 28,000 pure-Stu tables: azure5's own (7,233 trained on; the 300 newest of `spr0` held out to choose the epoch,
+the 300 newest of `sp0` held out as a test set that makes no choice) and every row block and cut file of the other four
+boxes. Four epochs at 1e-4 from round 1's net with as many replay rows; epoch 4 chosen. Gen 8's held-out log-loss 0.458
+to 0.473 (the limit is +0.02).
+
+Indicator 1 on the test set (tricks the net's card gives up against the rollouts' values, a decision; paired, SE by
+deal; the test tables have the net's own lead, so no lead rows):
+
+| Policy head | Tricks 1 to 4 | 5 to 8 | 9 to 13 | All |
+| --- | --- | --- | --- | --- |
+| round 1's net (the start) to round 3's | -0.0057 +- 0.0014 | -0.0023 +- 0.0021 | +0.0019 +- 0.0030 | -0.0025 +- 0.0012 |
+| round 2's net to round 3's | -0.0038 +- 0.0013 | -0.0019 +- 0.0020 | +0.0030 +- 0.0028 | -0.0013 +- 0.0011 |
+| the interim net (r3a) to round 3's | -0.0012 +- 0.0009 | -0.0023 +- 0.0012 | -0.0018 +- 0.0011 | -0.0018 +- 0.0006 |
+| Value head, start to round 3's | -0.0064 +- 0.0016 | -0.0022 +- 0.0023 | -0.0049 +- 0.0027 | -0.0045 +- 0.0013 |
+
+## Label quality, tables against positions, and the rollout budget (Max, 22:26 to 22:31 UTC)
+
+`exp_labels.sh` on azure6's 5,100 pure-Stu tables (train split; no replay rows), each net from round 1's for 3 epochs,
+the epoch chosen on the validation split of every published block and cut file, scored on their test split (1,997
+deals, 63,902 decisions; full labels). Tricks the policy's card gives up, a decision, paired against the net trained on
+every table with full labels:
+
+| Net | Policy head | Value head |
+| --- | --- | --- |
+| round 1's (the start) | +0.0028 +- 0.0004 | +0.0041 +- 0.0005 |
+| a quarter of the tables | +0.0013 +- 0.0003 | +0.0018 +- 0.0004 |
+| half the tables | +0.0007 +- 0.0003 | +0.0012 +- 0.0003 |
+| half the decisions of every table | +0.0007 +- 0.0003 | +0.0005 +- 0.0003 |
+| labels from 32 of the layouts | +0.0003 +- 0.0002 | |
+| labels from 16 | +0.0009 +- 0.0003 | |
+| labels from 8 | +0.0016 +- 0.0003 | |
+
+- A doubling of the tables is worth about 0.0007 a decision. The same rows from half the tables (every decision) or
+  from every table (half the decisions) give the same policy (0.0000 +- 0.0002): learning goes with positions.
+- Labels from 16 layouts on every table equal full labels on half the tables (-0.0002 +- 0.0003); from 8, full labels
+  on a quarter (-0.0003 +- 0.0003). A decision costs 0.26 s at 32 or 64 layouts and 0.35 s at 128 (fixed costs, reading
+  the layouts and the claims test, dominate low budgets), so fewer rollouts would not buy more learning a CPU-hour.
+- The labels come from K of the recorded layouts on which every candidate was played (drawn at random), and the card
+  learned is the one best over them; the line played after the decision is still the 128-layout bot's.
+
+`bench/budget.py`, 997 rollout decisions of `sp0d` played again at other budgets, each card scored against a 1,024-layout
+rollout of every legal card: at 128 layouts and 4 candidates pure Stu gives up 0.037 tricks a decision to it; 512
+layouts +0.001 +- 0.002 (0.83 s a decision against 0.35), 256 +0.002 +- 0.002, 6 candidates -0.0001 +- 0.0013, no race
++0.001 +- 0.002, 64 layouts +0.003 +- 0.002 (0.26 s), 32 layouts +0.007 +- 0.003. The budget is saturated at 128. The
+reference rates by the same rollouts, so this is the noise part of the budget's cost, not whether the values are right.
+
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
 
 A count with no opponent in it, from any run's full records: in the last seven tricks, with the contract still open,
