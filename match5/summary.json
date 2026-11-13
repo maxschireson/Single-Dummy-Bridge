@@ -1,23 +1,23 @@
 {
  "pair": "cl-32-v41~7s-32-v41",
- "boards": 667,
- "cpu_per_board": 20.94,
+ "boards": 767,
+ "cpu_per_board": 21.32,
  "common": {
-  "imps_per_board": 0.015,
-  "se": 0.0259,
-  "boards": 667,
+  "imps_per_board": 0.0117,
+  "se": 0.0226,
+  "boards": 767,
   "won": 5,
-  "lost": 16,
-  "flat": 646
+  "lost": 17,
+  "flat": 745
  },
  "native": {
-  "imps_per_board": 0.015,
-  "se": 0.0259,
-  "boards": 667,
+  "imps_per_board": 0.0117,
+  "se": 0.0226,
+  "boards": 767,
   "won": 5,
-  "lost": 16,
-  "flat": 646
+  "lost": 17,
+  "flat": 745
  },
  "failures": 0,
- "boards_per_hour": 1314
+ "boards_per_hour": 1285
 }
