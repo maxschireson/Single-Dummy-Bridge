@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+P=~/work/g9/runs/g9-cohort-azure4/publication; git -C $P remote -v | head -1; git -C $P log --oneline -1 2>&1 | head -1; git ls-remote https://github.com/maxschireson/Single-Dummy-Bridge.git refs/heads/arena-gen9-azure4-feed | cut -c1-12; journalctl -u g9-job-g9-cohort-azure4 --no-pager -n 400 2>/dev/null | grep -iE "push|fatal|username|denied|error|prepare|ready|worker" | tail -8; ls ~/work/g9/runs/g9-cohort-azure4/run/receipts 2>/dev/null | wc -l
