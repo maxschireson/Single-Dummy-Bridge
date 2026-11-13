@@ -12,6 +12,10 @@
   'use strict';
   const root = document.getElementById('ladder');
   if (!root) return;
+  // at the top of the page: straight after the title lines, above what the other scripts insert (they insert before or
+  // after #cards and after the h1), whichever runs first; their files are not touched
+  const toTop = () => { const f = document.getElementById('feed-schedule'); if (f && root.previousElementSibling !== f) f.after(root); };
+  toTop();
   const SVGNS = 'http://www.w3.org/2000/svg';
   // categorical slots in fixed order (dark steps of the reference palette, validated against this page's #192333:
   // adjacent CVD dE >= 8.4, normal-vision >= 19.3, all >= 3:1); every point is also direct-labelled and tabled
@@ -57,6 +61,7 @@
   // ---- layout ---------------------------------------------------------------------------------------
   function build() {
     root.replaceChildren();
+    toTop();
     root.hidden = false;
     const s = data.sources || {};
     const anchor = (data.points || []).find(p => p.anchor || p.id === data.anchor);
@@ -227,7 +232,7 @@
       ['Boards', int(p.boards)],
       ['Introduced', p.candidate ? 'candidate: not on a registered feed' + (p.introduced_utc ? ` (in the arrival run from ${when(p.introduced_utc)} UTC)` : '')
         : when(p.introduced_utc) + ' UTC' + (p.first_registered_board_utc && p.first_registered_board_utc !== p.introduced_utc ? ` · first board on a registered feed ${when(p.first_registered_board_utc)} UTC` : '')],
-      p.introduced_source ? ['Introduction evidence', link(p.introduced_source.source + (p.introduced_source.note ? ' ' + p.introduced_source.note : ''), p.introduced_source.url)] : null,
+      p.introduced_source && typeof p.introduced_source === 'object' ? ['Introduction evidence', link(p.introduced_source.source + (p.introduced_source.note ? ' ' + p.introduced_source.note : ''), p.introduced_source.url)] : null,
       p.prior ? ['Prior', `${p.prior.kind}${p.prior.mean !== null && p.prior.mean !== undefined ? ', mean ' + signed(p.prior.mean) : ''}${p.prior.sd ? ', SD ' + num(p.prior.sd) : ''}${p.prior.source ? ' · ' + p.prior.source : ''}` +
         (p.prior_share !== null && p.prior_share !== undefined ? ` · ${Math.round(100 * p.prior_share)}% of the information` : '')] : null,
       p.timing ? ['Time per decision', `${num(p.timing.seconds_per_choice, 3)} s with a choice (${int(p.timing.decisions_with_choice)} decisions, ${int(p.timing.forced_decisions)} forced)` +
@@ -238,7 +243,8 @@
     const parts = [close, head];
     const edge = p.estimate && (p.estimate.edge || p.edge);
     if (p.candidate) parts.push(el('p', { class: 'notice', style: 'margin:6px 0 10px;color:' + TEXT },
-      el('strong', {}, edge ? 'Where its edge comes from: ' : 'How it is placed: '), edge || (p.estimate && p.estimate.note) || 'not stated in ladder.json.'));
+      el('strong', {}, edge ? 'Where its edge comes from: ' : 'How it is placed: '), edge || (p.estimate && p.estimate.note) || 'not stated in ladder.json.',
+      edge && safeUrl(p.estimate.edge_url) ? el('span', {}, ' ', el('a', { href: safeUrl(p.estimate.edge_url), target: '_blank', rel: 'noopener' }, 'source')) : null));
     parts.push(dl);
     if (p.estimate) {
       const e = p.estimate, u = safeUrl(e.url);
