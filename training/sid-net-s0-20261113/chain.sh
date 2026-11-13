@@ -15,6 +15,7 @@ set -uo pipefail
 W=${W:-$HOME/work/sidnet}; PY=${PY:-$HOME/work/venv/bin/python}; T=training/sid-net-s0-20261113; V2T=training/rollout-net-v2-20261113
 SCORER=${SCORER:-$W/models/hand_fit_v0.npz}; CELLS=${CELLS:-$W/bin/cells}; V2=${V2:-$W/models/rollout_v2_w768_epoch5.npz}
 CARDS=${CARDS:-7}; WORKERS=${WORKERS:-8}; LIMITB=${LIMITB:-4000}; SHARDS=${SHARDS:-16}; WIDTH=${WIDTH:-768}; EPOCHS=${EPOCHS:-5}; LR=${LR:-2e-3}
+VALDEALS=${VALDEALS:-600}                # held-out deals the trainer scores every epoch on; E1 uses all of them
 STAGES=${STAGES:-fetch label fetchB labelB build buildB train e1 push}
 FEEDS=('arena-gen6-*' 'arena-gen7-*' 'arena-gen71-*' 'arena-gen8-*' 'arena-gen5rz*' 'transfer/pre7-test-azure*-20261112')
 mkdir -p "$W/logs" "$W/data" "$W/done"
@@ -46,6 +47,12 @@ if want labelB; then
 fi
 for s in build buildB train e1 push; do
   if want $s; then
+    case $s in                              # a stage never runs on an earlier stage's partial output
+      build) [ -f "$W/done/label" ] || stop "build needs the label stage finished";;
+      buildB) [ -f "$W/done/labelB" ] && [ -f "$W/done/build" ] || stop "buildB needs labelB and build finished";;
+      train) [ -f "$W/done/buildB" ] || stop "train needs buildB finished";;
+      e1) [ -f "$W/done/train" ] || stop "e1 needs train finished";;
+    esac
     [ -f $T/stage-$s.sh ] || stop "stage $s is not written yet at this source"
     . $T/stage-$s.sh || stop "stage $s failed"
     touch "$W/done/$s"
