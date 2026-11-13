@@ -28,7 +28,9 @@ the rollout boundary over time", 09:24 UTC). He named the bot **Stu** (09:05).
 | 11:10 | "The rollout should supply that? Choosing moves with more known cards." (on who models expert opponents; 11:16: "not more of the layout, just the future") | The simulated seats are the net, and the net is to learn from the rollouts' choices: that is the loop's own answer, and its value targets are how (below) |
 | 11:16 | "v8 is trained to have strategy fusion errors. As we extinguish those, it may not be all up and to the right" | IMPs against Gen 8 are not the only yardstick: a count against the exact single-dummy solver is added (below) |
 | 11:25 | "Should we just do pure Stu (with single dummy guarantee)?" | Pure Stu becomes the main line and plays the collection, from the 1,000-deal comparison at about 12:35 UTC unless it is more than about half an IMP behind Stu-as-is |
-| 11:27 | "I don't mind a different lead I think. Leading is different than every other trick at bridge - you don't see the dummy." | The lead is the net's own card or the search's, whichever measures better (`stu0-pl` against `stu0-p`); rollouts at the lead are not asked of the engine |
+| 11:27 | "I don't mind a different lead I think. Leading is different than every other trick at bridge - you don't see the dummy." | The lead may differ from Gen 8's: the net's own card (`stu0-p`), the search's (`stu0-pl`), or rollouts' (next row), whichever measures better on the same deals |
+| 11:29 | "Or we could try rollouts for the lead but with more layouts and more choices - try everything for 512 because you don't know, and let the rollouts teach you?" "Same methodology but different parameters." | Built (`0a87e01`): the engine's `lead` block. `stu0-pr` is pure Stu with every distinct lead rolled out on 512 layouts of the three hidden hands; its records give every lead a value to learn from |
+| 11:30 | "I think this won't do as well against Ben, but we'll see!" | BEN (64) as a second outside opponent: asked of the arena session on the board (12:05) |
 
 ## Stu from here: pure
 
@@ -44,6 +46,30 @@ board gives about twice the rollout decisions to learn from (35 a side against 1
 by the search, so the net is no longer trained on new strategy-fusion play. The comparison at 1,000 deals lands at
 about 12:35 UTC; pure Stu's games (`sp0`, `sp0b`) start then.
 
+At 11:42 UTC: Stu-as-is -0.46 +- 0.10 IMPs a board against Gen 8 card play over 916 deals; pure Stu -0.76 +- 0.30 over
+221, by deal against Stu-as-is -0.05 +- 0.36.
+
+**The opening lead, three ways** (same bot otherwise, same deals; runs `l0-p`, `l0-pl`, `l0-pr`):
+
+| Lead | Bot | How |
+| --- | --- | --- |
+| The net's | `stu0-p` | policy v4.1's likeliest card; nothing is sampled |
+| Searched | `stu0-pl` | Gen 8's lead: layouts from the lead belief net, each solved double dummy |
+| Rolled out | `stu0-pr` | every distinct lead (touching cards are one; 9 to 12 a hand) on 512 layouts of the three hidden hands, drawn as the search draws them; all four seats then play each layout out from their own views, dummy as that layout has it; none is dropped on the way |
+
+A rolled-out lead costs 27 to 29 CPU-s (about 200,000 net rows), so against Gen 8 a board goes from 48 to about 77
+CPU-s. On 24 leads the rollouts' choice was not the net's first choice in 14. The record keeps all 512 layouts with
+every lead's result in each, and the dataset builder gives all 13 cards a value. If Stu rolls out every lead, what the
+net learns from those values does not change Stu's lead (every lead is tried whatever the net says); it changes the
+net's own lead and would let a later Stu try fewer leads.
+
+**One table a board in the collection.** Until 12:00 UTC the collection played two ids of one bot at two tables, as a
+match does. Both tables get the same random seed by ply and seat, so the same bot played the same cards at both: 113
+of 119 boards of `s0` and 111 of 119 of `r0` were identical card for card. Half that CPU bought nothing, and round 1's
+set (759 boards) held about half the distinct tables its 62,504 rows suggest; the learning curve was by board and
+stands. `scripts/gen8_match.py --one-room` plays one table a board: 28.6 CPU-s a distinct table for pure Stu against
+52.4, about 1,000 tables an hour a box (46.5 CPU-s and about 620 an hour with rolled leads).
+
 **Two yardsticks, because of fusion.** Against Gen 8, removing fusion from Stu does two things at once: Stu's own
 cards improve where fusion cost tricks, and Stu's simulated opponents stop making Gen 8's fusion mistakes and so
 predict Gen 8 less well. The gate nets the two and need not rise. Two of the usual scores are biased the same way: the
@@ -54,8 +80,8 @@ often a defender's card hands declarer one (`fusion_ledger.py`, not written yet)
 
 ## A round
 
-1. **Play.** Stu against itself on training deals, full records (`s<round>...` runs). It does not stop between rounds:
-   the rollout values need volume (below).
+1. **Play.** Stu against itself on training deals, full records, one table a board (`sp<round>...` runs with
+   `--one-room`). It does not stop between rounds: the rollout values need volume (below).
 2. **Rows.** `scripts/gen7_build_dataset.py --policy-only --rollout-gap --alias ...` (README).
 3. **Net.** Train from the last round's net on Stu's rows together with the rows of the bots the net already knows, so
    that it keeps its model of the others (the opponents at the gate are among them).
@@ -156,7 +182,7 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
    depend on the net's gap head (`seat: blend`), and for a seat told it is Stu that head would carry Stu's rollout
    values. Measured as a rung. Later as the value at the end of a shortened rollout, which needs engine work.
 2. **The boundary** is at the first card after the lead (pure Stu, above). What is left of it is the lead: the net's
-   own or the search's, by `stu0-pl` against `stu0-p`.
+   own, the search's or rollouts' (`l0-p`, `l0-pl`, `l0-pr`), and then whether the collection rolls its leads out.
 3. **A net that knows pure Stu:** its own name in the net (as `stu0` is Stu-as-is's), trained on its games, the two
    vectors first; then the rollout values at every trick, which only its games have.
 4. **The IMP objective** as a second bot and a second target from the same records (Max: "eventually I will do both").
@@ -181,6 +207,9 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 - The bar for pure Stu at the 1,000-deal comparison: my default is to go ahead unless it is more than about half an
   IMP behind Stu-as-is.
 - The opponent mix in the collection and when BEN joins the gate.
+- Whether the collection rolls out its leads if the rolled lead measures no worse: it costs 46.5 CPU-s a table against
+  28.6, so about 620 tables an hour a box against about 1,000, and buys a value for every lead on every board. My
+  default: yes if `l0-pr` is not behind `l0-p`.
 - A yardstick that rewards modelling good play, not Gen 8's habits: the single-dummy count is one; a second outside
   opponent or strong people on the play server would be another.
 

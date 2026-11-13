@@ -37,7 +37,7 @@ A row of `results.jsonl`:
 
 | Role | What it is | Worth showing | Not to be read as |
 | --- | --- | --- | --- |
-| `collection` | Stu against itself (two ids of one bot) on training deals, full records kept: a round's games | Boards done against `deals` and against the round's cut (below), boards an hour, failures (the log's `N failed`), CPU a board, the decision mix | Strength. `common` is one bot against itself: its mean is a check (it should sit within noise of 0), nothing more |
+| `collection` | Stu against itself (two ids of one bot) on training deals, full records kept: a round's games | Boards done against `deals` and against the round's cut (below), boards an hour, failures (the log's `N failed`), CPU a board, the decision mix | Strength. `common` is one bot against itself: its mean is a check (it should sit within noise of 0), nothing more. A run with `tables_a_board: 1` in `runs.json` (`sp0`, `sp0b`: one table a board, since 12:00 UTC on 13 November) has `common: null` and `tables: 1` in every row: count boards and CPU only |
 | `ladder` | A bot of the Stu family against Gen 8 card play (`8p-32-v41`) on the gate's first 500 deals (a first pass of 200 deals a rung, then the rest: `passes` in `runs.json`). `first_bot.net` is the net inside (`v2`, `v1`, later a round's own), `first_bot.rung` where rollouts take over (`runs.json` `rungs`) | A table, rung by net: mean of `common` +- standard error, boards. Beside it the paired differences below | A ranking of nets against people or against other bots: it is each bot against this one opponent |
 | `gate` | A round's Stu against Gen 8 card play on the gate's deals | By round: mean +- standard error, boards; the paired difference between consecutive rounds | |
 | `data` | Ladder bots against Stu on training deals, for rows the collection lacks (rollout decisions at early tricks) | Boards done. Its `common` (the first-named bot against Stu) only with the warning beside this table | A measure of the rung: a rollout bot is the opponent Stu's net models best, which flatters Stu |
@@ -71,6 +71,18 @@ A row of `results.jsonl`:
   opponent.
 - Everything here is against one outside opponent, Gen 8 card play. Reference from the 8X session, same opponent and
   seed: x8's 8Z (which is the rung `stu` with net `v1`) -0.38 +- 0.14 over 541 boards, with feature forks on.
+
+## Added 13 November, 12:00 UTC
+
+- **Rungs `pure-sl` and `pure-rl`** (runs `l0-pl`, `l0-pr`; `runs.json` `rungs` has the text): pure Stu with a searched
+  opening lead and with the lead from rollouts. Compare each with the rung `pure` (`l0-p`) by deal: the three differ
+  only in the opening lead.
+- **Lead rollouts in a row:** where a bot rolled out an opening lead, its `x8` summary also has `lead` (leads rolled
+  out on the board), `lead_moved` (of them, not the net's first choice) and `lead_seconds`. They are counted under
+  `rollout` too. Rows of bots without it lack the keys.
+- **Why the collection changed:** two ids of one bot played the same cards at both tables of a board (same seed by ply
+  and seat), so in `s0`, `s0b` and `r0` a board is one distinct table played twice. For those runs, boards is the
+  honest count of distinct tables. From `sp0` on a board is one table and costs about half the CPU.
 
 ## Coming, not there yet
 

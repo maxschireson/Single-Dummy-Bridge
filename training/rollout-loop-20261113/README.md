@@ -22,6 +22,11 @@ Round 0's Stu is x8's 8Z with rollout net v2 inside (`stu0a`, `stu0b` in `config
 (run `r0` on azure5, deals under 1,000) were played under the ids `z0a-v2` and `z0b-v2` with capture level 1: the same
 bot, card for card.
 
+Since 12:00 UTC on 13 November the collection is pure Stu (`stu0-pa~stu0-pb`; PLAN.md) and plays one table a board
+(`run.sh ... --episodes --one-room`): at two tables two ids of one bot play the same cards, because both tables get
+the same seed by ply and seat. The opening lead can be rolled out (`stu0-pr`, the engine's `lead` block; PLAN.md, "The
+opening lead, three ways").
+
 **What a record keeps.** For every rollout or blend decision: the candidate cards, each one's mean tricks, layouts
 played and standard error, and (capture level 2, up to 128 layouts) every layout's result for every candidate with
 the layout's weight. Measured on six deals played both ways on azure3: 27.2 KB a board at level 1, 43.1 KB at level 2
