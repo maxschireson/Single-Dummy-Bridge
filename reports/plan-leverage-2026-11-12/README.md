@@ -2,7 +2,7 @@
 
 Research report, branch `research/plan-leverage-20261112` (and the same commits on the Gen 8 prototype as
 `research/plan-leverage-g8-20261112`, which also holds the match wrapper and bot settings). Nothing here is launched or
-merged. Work in progress: the items marked *pending* are still running as this is written.
+merged. Work in progress: the items marked *pending* are still running as this is written (13 November, 11:00 UTC).
 
 **Correction, 16:40 UTC.** Until then every "tricks a side" figure divided a total by the tables that had a sampled
 pair in the trick range, not by the tables read. A table with no such pair adds nothing to the total and still
@@ -440,8 +440,12 @@ level, +0.19. p41 notes that this bench has run above matches. A board is two si
 tricks a side: the same size as the look-ahead headroom of section 1, and for a reader that costs one full search for
 every candidate layout and past play.
 
-The posterior by tempered walks over layouts (`--chain`): started and stopped after 35 minutes without output (hours
-longer than estimated); two short parts are queued behind the played test on azure5. *Pending*, low priority.
+The posterior by walks over layouts with the bot itself as the model of the plays (`--chain 400 --chains 2`, trick 6;
+`rbc2a`, azure5, 21 positions of 8 files, 529 s a position): the walk gives each unseen card's true holder a
+probability of 0.752 on average, against 0.676 for v4.1's reading and 0.597 for the prior: +0.076 +- 0.013 over the
+net. The walks are not settled: the two chains of a position differ by 0.14 a card in the share they give a holder,
+and 14% of proposed swaps are accepted, so read this as a lower bound on what the bot as its own model reads, from a
+small sample. `rbc2b` (the next 8 files) is *pending*.
 
 ## 6. Played test
 
@@ -487,12 +491,20 @@ are small swings: 18 that `match1` won where it was flat, 19 it lost where `matc
 once the contract is settled, a simulated declarer that plays only for its guaranteed tricks hides every later
 finesse and guess from the playouts, at the defenders' decisions too, and much of the late rule's IMP gain is over-
 and undertricks (`match1`'s boards under 10 IMPs alone +0.100). The ceiling check priced only the first use.
-`match6` (`prr-32-v41`, the first use alone, 38% of the playout CPU saved) and `match5` (`cl-32-v41`, the claim rule
-alone, no playouts) on the same deals: *pending* (azure5).
+`match6` (`prr-32-v41`, the first use alone) on the same 1,600 deals: +0.164 +- 0.038 IMPs a board against
+`7s-32-v41`; paired with `match1` by deal **-0.011 +- 0.016**, at 56.8 CPU seconds a board for the pair against
+`match1`'s 78.1 (27% less). So at the root the claim finder saves CPU at no measurable cost. It ran with a tie bug
+fixed afterwards (`983aa39`): where the search's own card guaranteed the contract but was rated level with cards that
+did not, the tie-break could still pick one of those, so the rule acted on somewhat fewer decisions than intended.
+`match5` (`cl-32-v41`: the claim rule alone, on `7s-32-v41`, no playouts): +0.007 +- 0.016 IMPs a board, 21.3 CPU
+seconds a board. Acting on claims adds nothing measurable by itself; the strategy-fusion session's offline estimate
+for taking the guarantee from 9 cards left is about 0.03 IMPs per table declared, below what these matches resolve.
+A test that forks only the changed decisions is specified for x8 in [claim-fork-test.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/plan-leverage-g8-20261112/reports/plan-leverage-2026-11-12/claim-fork-test.md).
 
 `match2`: `pr75x-32-v41` (the late rule, and from trick 5 on 12 layouts at trust 0.5, its tree stopping after
-trick 4) against `7s-32-v41` on `match1`'s deals. 199 CPU seconds a board on four boards timed, so about 11 hours:
-*pending* (azure2, from 23:13 UTC).
+trick 4) against `7s-32-v41` on `match1`'s deals, 205 CPU seconds a board (paused three times for the rollout nets).
+At 941 of 1,600 boards (11:00 UTC): +0.294 +- 0.078 IMPs a board; paired with `match1` by deal **+0.123 +- 0.076**.
+*Pending* (azure2; about 7 hours left).
 
 ## 7. What a better net buys
 
@@ -515,17 +527,31 @@ Every channel through which a better net reaches the table is the net as a model
 (p41: v4.1 over v4, +0.012 +- 0.012 tricks a board), simulated seats (above), and ties (p41: -0.0001 +- 0.0005 tricks
 a pair). None of them asks the net to judge a position.
 
+**Rollout nets** (13 November; [training/rollout-net-v2-20261113](https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/plan-leverage-g8-20261112/training/rollout-net-v2-20261113/README.md)).
+v1 is v4.1 fine-tuned on the Gen 7+ bots' searched decisions; v2 is 768 wide, trained from scratch for 5 epochs on
+30.4 million decisions of every bot on every Gen 6 to Gen 8 and Gen 5RZ feed, with each side's bot as a learned
+input. On one held-out set of later boards (1,360 deals, 1.2 million decisions; `scripts/score_rollout_nets.py`),
+on Gen 7.1 and Gen 8's decisions: log-loss v4.1 0.48, v1 0.42, v2 0.46; tricks given up by the net's top card v4.1
+0.028 to 0.031, v1 0.024 to 0.027, v2 0.020 to 0.023; on Gen 1's and 5RZ's decisions v2 is far ahead (log-loss 1.04
+and 0.58, v1 3.00 and 0.74). v1's lower log-loss on our bots fits tie copying: 7.1 and 8 break ties with v4.1.
+As every seat of the 512-layout bench above (678 Gen 6 pairs, ceiling scored), the share of what the real
+playouts add beyond double dummy that the net's correction explains: v4.1 top card 18%, v4.1 blend 32%, v1 28%,
+**v2 40%** (coefficient 0.30); the 0.25 x correction rule gains within noise of the others with every net (+0.01 to
++0.04 tricks a side). So a better simulator is available; at 32 layouts the layouts still bound the rule.
+
 ## What I would do next
 
 1. **Put the late rule forward as a candidate change on Gen 8** (+0.198 +- 0.033 IMPs a board on its card play),
    with its cost stated: about six times the card-play CPU. It is the one thing here that has gained in play. The
-   cheaper forms are not free: the claim finder inside the playouts loses most of the gain; at the root only it is
-   being played (`match6`). Skipping playouts between level cards would drop exactly the commitments the playouts
-   earn most on (section 1).
+   cheaper forms are not free: the claim finder inside the playouts loses most of the gain. At the root only it
+   costs nothing measurable and saves 27% of the pair's CPU (`match6`), so use it there. Skipping playouts between
+   level cards would drop exactly the commitments the playouts earn most on (section 1).
 2. **Stop expecting the tree at tricks 3 to 6 to carry a better net.** About 0.10 tricks a side is there in all; the
    tree collects 0.01 to 0.03; what limits it is how well the net reproduces the bots, and the last 2.3-fold of data
-   moved that by two points. `match2` says whether brute force (the bot simulating itself from trick 5, at 199 CPU
-   seconds a board) collects more of it.
+   moved that by two points. `match2` (the bot simulating itself from trick 5, 205 CPU seconds a board) stands at
+   +0.123 +- 0.076 IMPs a board over the late rule alone after 941 of 1,600 deals: possibly more, at 2.6 times the CPU.
+   For the simulator itself, rollout net v2 tracks the real playouts better than v4.1 (40% against 18 to 32%,
+   section 7); 8X (x8) takes it as its rollout net.
 3. **Train on the teacher only if the late rule is adopted.** Its consultations are playout means for up to three
    cards on 16 layouts each, about nine a board: labels with a sixteenth of the noise variance of a fork's one real
    deal, at no extra cost. A head fitted on a hundred thousand of them is the untried version of the formula's third step. The evidence
