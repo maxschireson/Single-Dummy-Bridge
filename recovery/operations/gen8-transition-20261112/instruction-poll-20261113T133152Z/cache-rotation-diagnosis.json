@@ -1,0 +1,77 @@
+{
+  "type": "authorized_disposable_dds_cache_rotation",
+  "journal": {
+    "epoch": 1794576139.9905853,
+    "completed": 2326,
+    "previous_bytes": 2146521088
+  },
+  "old_collector_pid": 124096,
+  "new_collector_pid": 139631,
+  "old_collector_exited": true,
+  "supervisor_pid_unchanged": true,
+  "publisher_pid_unchanged": true,
+  "guard_sha256": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+  "guard_exact_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "drain_final_revision": "f40536b71c855a86fd40aa7c5783833d0bbdb0b2",
+  "drain_completed": 2326,
+  "drain_contiguous": 2326,
+  "drain_heartbeat": {
+    "epoch": 1794576132.2770875,
+    "completed": 2326,
+    "in_flight": [
+      2325
+    ],
+    "workers": 3,
+    "ben_workers": 0,
+    "started_epoch": 1794564259.441621,
+    "stopping": true
+  },
+  "drain_established": "The unchanged supervisor journals rotation only after collector exit and a free writer lock; pinned state has all 2326 contiguous committed receipts. Final heartbeat retains its last in-flight entry and was not edited.",
+  "pre_rotation_revision": "657c3cd13a4926b760bcb7a9aca02a0acb69cb4f",
+  "pre_rotation_records_verified": 4646,
+  "frozen_scientific_files_verified": 777,
+  "all_current_receipt_episode_pairs_verified": 2352,
+  "post_rotation_samples": [
+    {
+      "index": 2326,
+      "pair": "8c-32~71s-32",
+      "gap_forks": 24,
+      "observed_fields": {
+        "guess_size": 1049,
+        "best_share": 4595
+      },
+      "episode_sha256": "5635b60176a8af172beff629bf62317d4158a9ed5e410f42cd82b5723ed78e1a",
+      "receipt_hash_verified": true
+    },
+    {
+      "index": 2327,
+      "pair": "8s-32~1",
+      "gap_forks": 19,
+      "observed_fields": {
+        "guess_size": 1185,
+        "best_share": 5474
+      },
+      "episode_sha256": "aa22459561540e05b9ff97689503601e04e7bda174a933c9038a482ebf4b32a0",
+      "receipt_hash_verified": true
+    },
+    {
+      "index": 2328,
+      "pair": "8s-32~1",
+      "gap_forks": 17,
+      "observed_fields": {
+        "guess_size": 723,
+        "best_share": 3582
+      },
+      "episode_sha256": "543ea173d01b08740b8a85ae48def383d29732806938fba625c242e66665ce3b",
+      "receipt_hash_verified": true
+    }
+  ],
+  "preserved_failures": true,
+  "failures_cleared": false,
+  "manual_restart": false,
+  "scientific_behavior_changed": false,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "journal_byte_count_note": "The journal measures cache bytes after the collector drains; it is not a record of peak cache size.",
+  "recovery_stop_note": "The publisher preserves earlier recovery STOP copies. Current live RUN/STOP is absent and current collection status is running; do not infer current stopping state from an archived STOP file alone.",
+  "verified_epoch": 1794576995.331871
+}
