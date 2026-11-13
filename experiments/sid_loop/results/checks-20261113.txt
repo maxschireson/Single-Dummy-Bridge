@@ -1,0 +1,21 @@
+check_labels.py, 13 November 2026, 2-core sandbox. cells and sure_cpp built with g++ -O2 -march=native -std=c++17 from
+experiments/sure_tricks/cells/cells.cpp and experiments/sure_tricks/sure.cpp (research/sure-trick-table-20261112 at 2e6ed6d);
+scorer hand_fit_v0.npz (sha256 56e64440...). --cards 7 --brute 4. Episodes: the first N blobs fetch_feeds.py returns for the feed.
+Columns: episodes, labelled rows; declaring-row card answers compared with sure_cpp (three targets) and differences;
+defender card answers at the contract compared with Finder.handovers and differences; tables that played a guaranteed
+(contract) card at every labelled declaring decision from the first such row on, and how many of them went down;
+entries breaking guar <= cert <= single or floor <= ceil; `single` and `guar` answers on rows of four cards or fewer
+compared with brute force over explicit layouts, and differences.
+
+feed                                              eps   rows   decl  diff    def  diff  kept down  order  b.single diff  b.guar diff
+arena-gen8-azure1-feed                             12   7625  41622     0  13226     0   244    0      0     17696    0   18738    0
+arena-gen5rz-ben-feed                               8   1528   8562     0   2652     0    59    0      0      3920    0    4080    0
+arena-gen6-chatgpt-feed                             8   2706  14655     0   4471     0   122    0      0      6216    0    6696    0
+arena-gen6-codex-feed                               8    970   5508     0   1554     0    46    0      0      2140    0    2310    0
+arena-gen6-fast-selfplay-20261111-19bbdce5-feed     8   2379  12852     0   3966     0    86    0      0      6276    0    6471    0
+arena-gen6-medium-ben-feed                          8   1050   5517     0   1655     0    31    0      0      2628    0    2715    0
+arena-gen7-1-fresh-azure3-ben64-3-feed              8    380   2391     0    630     0    11    0      0       782    0     852    0
+arena-gen7-phase1-azure1-feed                       8   1795  10305     0   2868     0    84    0      0      4381    0    4800    0
+arena-gen71-independent-feed                        8   2339  13329     0   3994     0   130    0      0      5591    0    5889    0
+transfer/pre7-test-azure1-20261112                  8   1568   8682     0   2556     0    62    0      0      4144    0    4368    0
+all ten feeds                                      84  22340 123423     0  37572     0   875    0      0     53774    0   56919    0

@@ -14,7 +14,7 @@ deals = len({r['episode'] for r in pos})
 print(f'{len(pos)} decisions of the declaring side with {pos[0]["cards"]} cards, in {deals} episodes ({sum(1 for r in rows if r.get("none"))} episodes had none)')
 rel_s = [r['true_rel_scorer'] for r in pos if r.get('true_rel_scorer')]
 rel_r = [r['true_rel_read'] for r in pos if r.get('true_rel_read')]
-print(f'weights computed at {len(rel_s)} of them (the others: every asked target had an outright answer)')
+print(f'layout weights recorded at {len(rel_s)} of them (none are recorded where every asked target has an outright answer)')
 if rel_s:
     gm = lambda v: math.exp(sum(math.log(x) for x in v) / len(v))
     print(f'true layout over the mean layout, geometric mean: scorer {gm(rel_s):.2f}, with the play {gm(rel_r):.2f}')
