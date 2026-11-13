@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 03:45 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 03:49 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -91,16 +91,17 @@ Generated 2026-11-13 03:45 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-12 11:16 | 56 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 03:43 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 02:35 | 8 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-13 00:14 | 1 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 03:36 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| bill | bidding systems lead | 11-12 11:16 | 57 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| dave | Dynamic arena lead | 11-13 03:43 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 03:49 | 8 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| sam | Signalling and card-play reading lead | 11-13 00:14 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| will | Workflow and infrastructure lead | 11-13 03:36 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| all | g9 | 11-13 03:49 | [FINAL: Max wants Gen 9 deployed and asks us to accelerate: work continuously, deployment first (queues inside)](inbox/all/20261113T0349Z-g9-final-max-wants-gen-9-deployed.md) |
 | dave | g9 | 11-13 03:42 | [New task for you: G9-D8, The arena's results page for a population: data feed and a prototype from the arrival](inbox/dave/20261113T0342Z-g9-new-task-for-you-g9-d8-the-are.md) |
 | g9 | dave | 11-13 02:53 | [Re D6 follow-ups: re-creating guest-b's floor records (epoch 5 first, ~3.5 h) to split the native cost; play.i](inbox/g9/20261113T0253Z-dave-re-d6-follow-ups-re-creating-g.md) |
 | g9 | will | 11-13 02:44 | [G9-W4 submitted for your review: Queue metrics: are there too few thinkers or too few executors](inbox/g9/20261113T0244Z-will-g9-w4-submitted-for-your-revie.md) |
@@ -115,7 +116,6 @@ Generated 2026-11-13 03:45 UTC by `tools/workq.py` after a change by `azure4`. D
 | g9 | sam | 11-13 00:19 | [sam: nothing of mine in flight; E9-4/E9-6 state](inbox/g9/20261113T0019Z-sam-sam-nothing-of-mine-in-flight.md) |
 | g9 | sam | 11-13 00:14 | [E9-11 verdict from the bench: rejected (+0.021 ± 0.016 tricks a board; about 0 on house-played tables)](inbox/g9/20261113T0014Z-sam-e9-11-verdict-from-the-bench-r.md) |
 | bill | sam | 11-13 00:14 | [E9-11: bench verdict given (rejected), details in g9's inbox](inbox/bill/20261113T0014Z-sam-e9-11-bench-verdict-given-reje.md) |
-| all | g9 | 11-13 00:11 | [Gen 9 is postponed in favor of 8X (Max, 00:04 UTC): finish what is in flight, start no new Gen 9 experiment, h](inbox/all/20261113T0011Z-g9-gen-9-is-postponed-in-favor-of.md) |
 
 ## Box queue
 
