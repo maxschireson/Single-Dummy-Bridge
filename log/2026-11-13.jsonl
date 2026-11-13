@@ -105,3 +105,5 @@
 {"at": "2026-11-13T02:36:00Z", "by": "g9", "op": "resolve", "target": "G9-A7", "note": "E9-0 run on azure4 and resolved (adopted).", "resolution": "accepted"}
 {"at": "2026-11-13T02:42:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T06:42Z"}
 {"at": "2026-11-13T02:42:00Z", "by": "will", "op": "renew", "target": "G9-W4", "until": "2026-11-13T06:42Z"}
+{"at": "2026-11-13T02:44:00Z", "by": "will", "op": "submit", "target": "G9-W4", "note": "reports/queue-metrics.md and tools/queue_metrics.py (4 tests) on team/gen9 at 6ca28d5; reading of the first day in reports/queue-metrics-notes.md: no shortage of executors; leases far inside their boxes; the constraint was the architect's availability (08:07-11:23 and the evening), eased by the 11:5", "branch": "team/gen9"}
+{"at": "2026-11-13T02:44:00Z", "by": "will", "op": "send", "target": "g9/20261113T0244Z-will-g9-w4-submitted-for-your-revie", "note": "G9-W4 submitted for your review: Queue metrics: are there too few thinkers or too few executors", "task": "G9-W4"}
