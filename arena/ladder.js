@@ -243,7 +243,8 @@
     const parts = [close, head];
     const edge = p.estimate && (p.estimate.edge || p.edge);
     if (p.candidate) parts.push(el('p', { class: 'notice', style: 'margin:6px 0 10px;color:' + TEXT },
-      el('strong', {}, edge ? 'Where its edge comes from: ' : 'How it is placed: '), edge || (p.estimate && p.estimate.note) || 'not stated in ladder.json.'));
+      el('strong', {}, edge ? 'Where its edge comes from: ' : 'How it is placed: '), edge || (p.estimate && p.estimate.note) || 'not stated in ladder.json.',
+      edge && safeUrl(p.estimate.edge_url) ? el('span', {}, ' ', el('a', { href: safeUrl(p.estimate.edge_url), target: '_blank', rel: 'noopener' }, 'source')) : null));
     parts.push(dl);
     if (p.estimate) {
       const e = p.estimate, u = safeUrl(e.url);
