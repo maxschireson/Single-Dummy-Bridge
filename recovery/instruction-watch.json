@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794576771.335444,
+  "checked_epoch": 1794580764.6916664,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "8c045061915e0beef30ec27b23443ef1bf96eb97",
-  "coordination_blob": "bde5119e68271f4e2f0b83a4c1f49bd4de685051",
-  "registry_blob": "3bd16b201da285d965519f90bfb2847bdf96facd",
+  "coordination_revision": "eb9451c8a8a72543f61abb6d0bf2257ddf5fa23d",
+  "coordination_blob": "5c373206babd27f6674e5079ca662df51359fd7a",
+  "registry_blob": "f3bcd2ce37136d4f19045fb848931aafd0f37a6f",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -107,29 +107,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 2410,
+      "completed": 2538,
       "target": 16036,
-      "contiguous": 2410,
+      "contiguous": 2537,
       "by_pair": {
-        "8s-32~71s-32": 804,
-        "8s-32~1": 402,
-        "8s-32~5RZ32": 402,
-        "8c-32~8s-32": 401,
-        "8c-32~71s-32": 401
+        "8s-32~71s-32": 846,
+        "8s-32~1": 424,
+        "8s-32~5RZ32": 423,
+        "8c-32~8s-32": 423,
+        "8c-32~71s-32": 422
       },
-      "root_games": 8032,
-      "tables": 99545,
+      "root_games": 8460,
+      "tables": 105036,
       "failures": 0,
-      "epoch": 1794576738.5132082,
+      "epoch": 1794580749.2096016,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794576768.519427,
-      "completed": 2410,
+      "epoch": 1794580759.2145486,
+      "completed": 2538,
       "in_flight": [
-        2410,
-        2411,
-        2412
+        2537,
+        2538,
+        2540
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -137,15 +137,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794576727.4660697,
+      "epoch": 1794580747.7832787,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794576751.719936,
+      "epoch": 1794580743.9520266,
       "status": "published",
-      "completed": 2410
+      "completed": 2537
     },
     "process.json": {
       "pid": 133011,
@@ -162,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new instruction changes this owned collector. Main, adopted Gen8 notices, historical Gen7.1 notices, cleanup and known successor deployment references are unchanged. New coordination concerns separate Stu/S0 research, labels and dashboard reporting. Frozen source, models, manifest, corpus and training exclusion union verified. Existing watchdog performed its planned derived DDS-cache rotation after draining at 2299 completed families; fresh collector progress, held locks and publisher are healthy with no failures.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, cleanup and known successor deployment references remain unchanged. New coordination concerns loop-owned Stu/BEN research and optional script settings, while the registry update is another producer's recovery handoff. Current frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -175,33 +175,22 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T12:31:48Z",
-  "reviewed_discussions": [
-    {
-      "number": 22,
-      "disposition": "Gen9 development queue only; no new comments or collector deployment instruction",
-      "new_comments": 0
-    }
-  ],
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T13:32:51Z",
+  "reviewed_discussions": [],
   "observed_notices": [
     {
-      "notice": "sidnet 2026-11-13 12:31 UTC",
-      "classification": "S0 training and held-out research labels on Azure 6",
-      "action": "This stream's published Gen8 records are included in research labels; current arena actors still use frozen policy v4.1. No S0 or rollout-v2 model adoption or new exclusion change is directed here."
+      "notice": "loop 2026-11-13 14:32 UTC",
+      "classification": "Stu versus BEN research on Azure 3, optional common-only script flag, lead evaluation and Azure 5 training/collection split",
+      "action": "Host-specific work under loop and g7 ownership. No new BEN service, common-only mode, lead setting, model or comparison-plan change is directed to this owned Gen8 stream."
     },
     {
-      "notice": "loop 2026-11-13 12:46 UTC",
-      "classification": "Pure Stu evaluation, separate one-table research collection and fusion ledger",
-      "action": "Applies to loop-owned Azure 3 and Azure 5 work. No adopted change to this Gen8 comparison plan, actor identities, lead policy or room settings."
-    },
-    {
-      "notice": "stu-dash 2026-11-13 13:02 UTC",
-      "classification": "Separate Stu dashboard reporting update",
-      "action": "No owned feed, registry source or runtime change"
+      "notice": "Arena registry collector_updates.gen6chatgpt",
+      "classification": "Another producer's seventeenth workspace restoration and checkpoint handoff",
+      "action": "Other manifest and ownership; no takeover, recovery action or failure clearance. Own active entry, instructions and both retired source pins remain unchanged."
     }
   ],
-  "registry_disposition": "Entire registry unchanged; owned active Gen8 source and both permanently retired source pins verified",
-  "previous_checked_epoch": 1794573108.0890365,
+  "registry_disposition": "Changed only another producer's gen6chatgpt recovery checkpoint and handoff; own active Gen8 entry, collector update and both permanently retired source pins unchanged and verified",
+  "previous_checked_epoch": 1794576771.335444,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -222,11 +211,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 2.816016912460327,
-  "publisher_age": 19.61550807952881,
-  "free_bytes": 20835655680,
+  "heartbeat_age": 5.4771177768707275,
+  "publisher_age": 20.73963975906372,
+  "free_bytes": 20085805056,
   "new_applicable_instructions": [],
-  "registry_revision": "cbbb4e1e11431a7655fdf73303c78a750fbba364",
+  "registry_revision": "0296e9725862ecb7037ebf14bfca9a88cb7bc9cf",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -313,7 +302,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 43.86937427520752,
+  "watchdog_age": 16.908387660980225,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
