@@ -8,3 +8,9 @@ k=16: 51010 of 263142 rows learn another card; 33028 kept the full labels
 k=8: 62580 of 263142 rows learn another card; 22443 kept the full labels
 rows: kept 131180 of 263142, deals with any row 6367
 2026-11-13T23:25:23Z trained full (full, fraction 1): "selected_epoch": 3
+2026-11-13T23:26:44Z trained half-tables (full, fraction 0.5): "selected_epoch": 3
+2026-11-13T23:27:51Z trained quarter-tables (full, fraction 0.25): "selected_epoch": 3
+2026-11-13T23:29:15Z trained half-rows (halfrows, fraction 1): "selected_epoch": 3
+2026-11-13T23:31:08Z trained k32 (k32, fraction 1): "selected_epoch": 3
+2026-11-13T23:33:03Z trained k16 (k16, fraction 1): "selected_epoch": 3
+2026-11-13T23:34:50Z trained k8 (k8, fraction 1): "selected_epoch": 3
