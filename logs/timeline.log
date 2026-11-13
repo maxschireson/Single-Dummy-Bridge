@@ -1,0 +1,32 @@
+2026-11-13T01:14:23Z start; source a23f9f9
+/dev/root       123G   36G   88G  29% /
+2026-11-13T01:15:16Z fetched 37722 more episodes; with v1's 28275
+2026-11-13T01:18:41Z built s00: {"episodes": 4124, "deals": 4116, "unique_families": 4035, "examples": 1712610, "train": 1362992, "validation": 176601, "test": 173017}
+2026-11-13T01:21:52Z built s01: {"episodes": 4125, "deals": 4116, "unique_families": 4024, "examples": 1708345, "train": 1351495, "validation": 183360, "test": 173490}
+2026-11-13T01:25:08Z built s02: {"episodes": 4125, "deals": 4117, "unique_families": 4053, "examples": 1716405, "train": 1374952, "validation": 174389, "test": 167064}
+2026-11-13T01:28:22Z built s03: {"episodes": 4125, "deals": 4116, "unique_families": 4051, "examples": 1731660, "train": 1386611, "validation": 161606, "test": 183443}
+2026-11-13T01:31:34Z built s04: {"episodes": 4125, "deals": 4124, "unique_families": 4055, "examples": 1680089, "train": 1341084, "validation": 162026, "test": 176979}
+2026-11-13T01:34:50Z built s05: {"episodes": 4124, "deals": 4112, "unique_families": 4025, "examples": 1722192, "train": 1369351, "validation": 184042, "test": 168799}
+2026-11-13T01:38:04Z built s06: {"episodes": 4125, "deals": 4117, "unique_families": 4048, "examples": 1701620, "train": 1382791, "validation": 149570, "test": 169259}
+2026-11-13T01:41:13Z built s07: {"episodes": 4125, "deals": 4116, "unique_families": 4059, "examples": 1710002, "train": 1385670, "validation": 160405, "test": 163927}
+2026-11-13T01:44:23Z built s08: {"episodes": 4125, "deals": 4119, "unique_families": 4048, "examples": 1717757, "train": 1385673, "validation": 157547, "test": 174537}
+2026-11-13T01:47:33Z built s09: {"episodes": 4125, "deals": 4117, "unique_families": 4049, "examples": 1690863, "train": 1373316, "validation": 154163, "test": 163384}
+2026-11-13T01:50:42Z built s10: {"episodes": 4124, "deals": 4116, "unique_families": 4051, "examples": 1718469, "train": 1368603, "validation": 163694, "test": 186172}
+2026-11-13T01:53:54Z built s11: {"episodes": 4125, "deals": 4110, "unique_families": 4046, "examples": 1731789, "train": 1404490, "validation": 148944, "test": 178355}
+2026-11-13T01:57:03Z built s12: {"episodes": 4125, "deals": 4119, "unique_families": 4047, "examples": 1724373, "train": 1394535, "validation": 155776, "test": 174062}
+2026-11-13T02:00:16Z built s13: {"episodes": 4125, "deals": 4119, "unique_families": 4045, "examples": 1730722, "train": 1383038, "validation": 179950, "test": 167734}
+2026-11-13T02:03:29Z built s14: {"episodes": 4125, "deals": 4113, "unique_families": 4040, "examples": 1699082, "train": 1375985, "validation": 160221, "test": 162876}
+2026-11-13T02:06:44Z built s15: {"episodes": 4125, "deals": 4119, "unique_families": 4037, "examples": 1701527, "train": 1359043, "validation": 174657, "test": 167827}
+2026-11-13T02:08:52Z set: {"parts": 16, "deals": 65866, "bots": ["1", "2", "3", "5RZ32", "6-256", "6-32", "71s-32", "7s-32", "8c-32", "8s-32", "ben", "ben32", "ben64"], "unique_families": 52152, "examples": 27397505, "deals_by_hash_split": [52892, 6353, 6621]}
+2026-11-13T02:10:09Z freshB: {"deals_in": 885, "deals_kept": 277, "dropped_as_seen": 608, "examples": 236734}
+2026-11-13T02:10:09Z w768 start
+2026-11-13T02:17:20Z start; source 7caad4f
+/dev/root       123G   62G   62G  50% /
+2026-11-13T02:17:38Z fetched 47270 episodes; with v1 28275
+2026-11-13T02:17:39Z resume: the joined set so far is one part
+2026-11-13T02:17:48Z resume: 9548 newly fetched episodes as part sx021739
+2026-11-13T02:24:26Z built sx021739: {"episodes": 9548, "deals": 9524, "unique_families": 9483, "examples": 2970250, "train": 2354750, "validation": 297846, "test": 317654}
+2026-11-13T02:27:04Z set: {"parts": 2, "deals": 75390, "bots": ["1", "2", "3", "4b", "5-32", "5R192", "5R32", "5RZ192", "5RZ32", "6-256", "6-32", "71s-32", "7s-32", "8c-32", "8s-32", "ben", "ben32", "ben64"], "unique_families": 60992, "examples": 30367755, "deals_by_hash_split": [60472, 7321, 7597]}
+2026-11-13T02:27:33Z freshB: {"deals_in": 171, "deals_kept": 100, "dropped_as_seen": 71, "examples": 86206}
+2026-11-13T02:27:33Z w768 start (lr 2e-3, 5 epochs)
+2026-11-13T04:34:50Z w768 done: {"done": "/home/bridgebots/work/plan/rnet2/w768", "selected_epoch": 5, "validation": {"n": 86206, "searched": 69762, "nll": 0.5162, "uniform_nll": 1.2735, "tie_nll": 0.7897, "agree": 0.7857, "in_best": 0.9233, "regret": 0.021, "regret_gap_head": 0.0186, "regret_random": 0.2127, "regret_lowest": 0.2319}, "parity": 3.814697265625e-06, "auction_use": {"real": {"nll": 0.5162, "agree": 0.7857, "regret"
