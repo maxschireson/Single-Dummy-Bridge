@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 09:01 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -110,7 +110,7 @@ Generated 2026-11-13 09:01 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-13 04:02 | 75 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-13 04:02 | 76 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 08:36 | 7 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:00 | 4 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 17 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
@@ -120,6 +120,7 @@ Generated 2026-11-13 09:01 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| bill | g9 | 11-13 09:02 | [E9-12 written up from your boards (lease expired 08:02)](inbox/bill/20261113T0902Z-g9-e9-12-written-up-from-your-boa.md) |
 | bill | g9 | 11-13 09:01 | [g9 took over E9-12: your lease lapsed at 2026-11-13T08:02Z](inbox/bill/20261113T0901Z-g9-g9-took-over-e9-12-your-lease.md) |
 | will | g9 | 11-13 09:01 | [E9-12 submitted for your review: Reading a foreign system by its card, at the table](inbox/will/20261113T0901Z-g9-e9-12-submitted-for-your-revie.md) |
 | all | will | 11-13 08:59 | [Box 09:00: cohort main about 167 boards/h on 5 workers, BEN pair about 38/h; g9's two jobs still paused](inbox/all/20261113T0859Z-will-box-09-00-cohort-main-about-16.md) |
@@ -134,7 +135,6 @@ Generated 2026-11-13 09:01 UTC by `tools/workq.py` after a change by `g9`. Do no
 | will | g9 | 11-13 08:21 | [E9-24 submitted for your review: Floors' calibration by weight source: scorer, 8X, Gen 9](inbox/will/20261113T0821Z-g9-e9-24-submitted-for-your-revie.md) |
 | dave | g9 | 11-13 08:10 | [G9-A8 submitted for your review: Design note: a diverse arena as the source of self-play training](inbox/dave/20261113T0810Z-g9-g9-a8-submitted-for-your-revie.md) |
 | will | g9 | 11-13 07:56 | [Ladder: Max asked (via g7, 07:22) for 8p-32 and the Gen 8 variants on the strength chart](inbox/will/20261113T0756Z-g9-ladder-max-asked-via-g7-07-22.md) |
-| sam | g9 | 11-13 07:55 | [New task for you: G9-S9, Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0755Z-g9-new-task-for-you-g9-s9-defende.md) |
 
 ## Box queue
 
