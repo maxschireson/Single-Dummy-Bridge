@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+L=/home/bridgebots/.boxctl/logs/20261113T044841Z-155465-g9-will-cohort-inventory.log; head -1 $L; grep -o "{\"path\": \"[^\"]*\", \"identity\": \"[^\"]*\", \"campaign\": \"[^\"]*\", \"target\": [0-9]*, \"receipts\": [0-9]*, \"episodes\": [0-9]*, \"failures\": [0-9]*, \"STOP\": [a-z]*, \"WATCHDOG_STOP\": [a-z]*" $L | grep -v "feeds/arena-gen6-chatgpt-feed/recovery/" | sed "s/\"//g" | cut -c1-260; ls /home/bridgebots/work/g8 /home/bridgebots/work/gen71 2>&1 | head -30
