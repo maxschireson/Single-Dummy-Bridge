@@ -1,23 +1,23 @@
 {
  "pair": "stu2-ns~8p-32-v41",
- "boards": 350,
- "cpu_per_board": 12.68,
+ "boards": 500,
+ "cpu_per_board": 12.81,
  "common": {
-  "imps_per_board": -2.54,
-  "se": 0.2437,
-  "boards": 350,
-  "won": 26,
-  "lost": 184,
-  "flat": 140
+  "imps_per_board": -2.432,
+  "se": 0.2016,
+  "boards": 500,
+  "won": 39,
+  "lost": 263,
+  "flat": 198
  },
  "native": {
-  "imps_per_board": -2.54,
-  "se": 0.2437,
-  "boards": 350,
-  "won": 26,
-  "lost": 184,
-  "flat": 140
+  "imps_per_board": -2.432,
+  "se": 0.2016,
+  "boards": 500,
+  "won": 39,
+  "lost": 263,
+  "flat": 198
  },
  "failures": 0,
- "boards_per_hour": 2248
+ "boards_per_hour": 2227
 }
