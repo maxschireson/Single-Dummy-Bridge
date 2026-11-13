@@ -1,0 +1,42 @@
+{
+  "samples": [
+    {
+      "index": 1759,
+      "pair": "8s-32~71s-32",
+      "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "episode_sha256": "e1b9b4cee162a0d419828d4aa1e275ee71fde674a39ce6c4b6014ed5b49652af",
+      "receipt_hash_verified": true,
+      "gap_forks": 12,
+      "observed_guess_fields": {
+        "guess_size": 868,
+        "best_share": 3963
+      }
+    },
+    {
+      "index": 1760,
+      "pair": "8c-32~71s-32",
+      "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "episode_sha256": "5ba2b22bdc42e0b87b43f5bd4c6a050d245e8d75c14334b7513a2dd3a954931b",
+      "receipt_hash_verified": true,
+      "gap_forks": 23,
+      "observed_guess_fields": {
+        "guess_size": 1228,
+        "best_share": 5414
+      }
+    },
+    {
+      "index": 1761,
+      "pair": "8s-32~71s-32",
+      "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "episode_sha256": "84ea345081299eeed809153844a362e64579f85c3c47d00d8b91a5d0ddca0144",
+      "receipt_hash_verified": true,
+      "gap_forks": 11,
+      "observed_guess_fields": {
+        "guess_size": 910,
+        "best_share": 3967
+      }
+    }
+  ],
+  "actual_capture_observed": true,
+  "new_launch_or_setting_change": false
+}
