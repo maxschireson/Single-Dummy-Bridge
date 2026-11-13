@@ -17,6 +17,7 @@ Generated 2026-11-13 12:33 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
+| g9 | [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 | feature/gen9 |
 | g9 | [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | feature/gen9-x9 |
 | sam | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | g9 | feature/gen9 |
 
@@ -82,7 +83,7 @@ Generated 2026-11-13 12:33 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
-| [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 | g9 until 11-13 13:33 | leased | medium | 2026-11-13T18:00Z |  |
+| [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 | g9 | submitted | medium | 2026-11-13T18:00Z |  |
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z | past due |

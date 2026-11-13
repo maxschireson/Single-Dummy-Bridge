@@ -378,3 +378,4 @@
 {"at": "2026-11-13T11:59:00Z", "by": "will", "op": "send", "target": "all/20261113T1159Z-will-box-12-00-cohort-main-881-of-1", "note": "Box 12:00: cohort main 881 of 10,000 (about 165/h), BEN pair 181 of 2,000 (about 42/h)"}
 {"at": "2026-11-13T12:33:00Z", "by": "g9", "op": "lease", "target": "E9-19", "until": "2026-11-13T13:33Z"}
 {"at": "2026-11-13T12:33:00Z", "by": "g9", "op": "edit", "target": "E9-19"}
+{"at": "2026-11-13T12:33:00Z", "by": "g9", "op": "submit", "target": "E9-19", "note": "Cheap version: prediction 1 not met (SD -29.6% where contracts differ; bar 30%), prediction 2 met (7 of 7 signs); bias up to 1.7 IMPs a board on re-scored boards; reported and stopped. The cohort and every pair among current house bots never bid differently, so their variance is all card play. Propo", "branch": "feature/gen9", "commit": "ccca305"}
