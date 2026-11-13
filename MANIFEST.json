@@ -1,0 +1,110 @@
+{
+ "schema": "conditional-claims-raw-v1",
+ "created": "2026-11-13",
+ "source_branch": "research/conditional-claims-20261113",
+ "source_commit": "2842075",
+ "scripts": "experiments/sure_tricks/cells/",
+ "recorded_tables": "arena-gen8-azure1-feed at 210f7b2, boards-00000.json to boards-00005.json",
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "files": [
+  {
+   "file": "positions.jsonl.gz",
+   "what": "arena_positions.py output: the first declarer-side decision with 9, 8, 7 and 6 cards in each of 1,520 recorded tables",
+   "bytes": 256222,
+   "sha256": "e4b00657c5f51a71a01b0fa39c416e1747701f45772bc62ce73f3846a27b70ee",
+   "lines": 5668,
+   "unpacked_bytes": 3802743,
+   "unpacked_sha256": "3474c03fb7a69a6a2c326bd4e9b4a85a1538167eae6dd930213365b17bdc945e"
+  },
+  {
+   "file": "dual8_a.jsonl.gz",
+   "what": "study.py, 8 cards, positions with even index",
+   "bytes": 585979,
+   "sha256": "fe039ad8eec03e5f131e3e8cfbc81854c906d9b2b35ae34007229b935a482960",
+   "lines": 725,
+   "unpacked_bytes": 4920687,
+   "unpacked_sha256": "d936cdf2c921e0a9459e6fd5442d46eed694d791ca1661949dd96fb7655498bf"
+  },
+  {
+   "file": "dual8_b.jsonl.gz",
+   "what": "study.py, 8 cards, odd index",
+   "bytes": 590903,
+   "sha256": "6730f4c4176f9bb9b544eba838bad91a1f33d3c8ea855d420ab8a958e87fedf0",
+   "lines": 725,
+   "unpacked_bytes": 4911191,
+   "unpacked_sha256": "318721ff1313847c5ac2cb5ffe22bee048f0cdd504aec4d70e1ec7f11f597be2"
+  },
+  {
+   "file": "dual7_a.jsonl.gz",
+   "what": "study.py, 7 cards, even index",
+   "bytes": 429108,
+   "sha256": "9b1d8e80a110472592f363e140eb3e0e69dc6cdc0f22d3426347c540f4b99280",
+   "lines": 703,
+   "unpacked_bytes": 3768404,
+   "unpacked_sha256": "1a9eb890eaaed6081751863638895206407bb50917a84022f7fc7e4c445f2b72"
+  },
+  {
+   "file": "dual7_b.jsonl.gz",
+   "what": "study.py, 7 cards, odd index",
+   "bytes": 418059,
+   "sha256": "54460c228a69bc32b6846e3fb12f78f09f8e6e2be8dab9656f83167648d8e666",
+   "lines": 702,
+   "unpacked_bytes": 3754923,
+   "unpacked_sha256": "9309a4c4327bf1a1f702e88fcd9a91c1eb04ec33407c1dd7b1ca2ba3aabcd47b"
+  },
+  {
+   "file": "cost6.jsonl.gz",
+   "what": "extra_cost.py, 6 cards, 300 positions",
+   "bytes": 57271,
+   "sha256": "87ad8c4aec84e9e4381b7abf0bafbd49f76ce7b0e6ad5ff93d115ca7983d2455",
+   "lines": 300,
+   "unpacked_bytes": 234894,
+   "unpacked_sha256": "e9810f7ea95662175c9bddc5ecf23260348185d1108c2d2fa538fdcf8e89f0c1"
+  },
+  {
+   "file": "cost7.jsonl.gz",
+   "what": "extra_cost.py, 7 cards, 300 positions",
+   "bytes": 92679,
+   "sha256": "5af51a60f10913acf6b8738541f9992db3eb0600891d268c1dfc1d8acf9260fb",
+   "lines": 300,
+   "unpacked_bytes": 330096,
+   "unpacked_sha256": "58be1da5dcf084cbf3609325432ec71ca692fa77a56faacc65218f756840204d"
+  },
+  {
+   "file": "cost8.jsonl.gz",
+   "what": "extra_cost.py, 8 cards, 300 positions",
+   "bytes": 144731,
+   "sha256": "8e81d4eeea88cfa092ff29468fb660156bf5873b1038b1d80686874fda9aaca7",
+   "lines": 300,
+   "unpacked_bytes": 471738,
+   "unpacked_sha256": "4b6e3703b1a2fd49548ca9fc57c8d41c762197bbe5f2f9a6c7e22450ae0525ee"
+  },
+  {
+   "file": "cost9.jsonl.gz",
+   "what": "extra_cost.py, 9 cards, 150 positions",
+   "bytes": 118315,
+   "sha256": "ace9e03ecf44b4043159d3ed32e5c2c9e4276443fa0a67e5f0318c24b769d2f3",
+   "lines": 150,
+   "unpacked_bytes": 349012,
+   "unpacked_sha256": "8cdc19f62556ab2432550cce470f456d0dfcb8cc80871a861731eb2849b393ad"
+  },
+  {
+   "file": "allruns8.jsonl.gz",
+   "what": "allruns.py, 8 cards, 300 positions without an outright claim",
+   "bytes": 42545,
+   "sha256": "7cd748283ea47f85d9d987b5e8f8a383a170ba8ca2f688e92852b7f731d9f93b",
+   "lines": 300,
+   "unpacked_bytes": 460081,
+   "unpacked_sha256": "515efa1cf3c24e1684a20ba15786006cf7d6c01655d34e927ae26a460c3941f0"
+  },
+  {
+   "file": "allruns7.jsonl.gz",
+   "what": "allruns.py, 7 cards, 300 positions without an outright claim",
+   "bytes": 36052,
+   "sha256": "14daaccff009f8b31b6754417d1b9ea21b926235e8a25be8fa91cf3e61e3ee67",
+   "lines": 300,
+   "unpacked_bytes": 413311,
+   "unpacked_sha256": "9c6e267e17de12d811a561ec10125d59e75ac75fe94401479c5ce3f2ae117c94"
+  }
+ ]
+}
