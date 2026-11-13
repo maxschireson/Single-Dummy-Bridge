@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -10,7 +10,7 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `azure4`. D
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
 | g9 | 0 | 1 | 1 | 2 | 0 | 6 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
-| sam | 2 | 0 | 0 | 2 | 0 | 6 |
+| sam | 3 | 0 | 0 | 1 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
 
 ## Waiting for review
@@ -26,6 +26,7 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
+| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam | g9 until 11-13 09:38 | leased | medium | 2026-11-13T22:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 09:25 | leased | medium |  |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z |  |
 | [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 | submitted | high | 2026-11-13T15:00Z |  |
@@ -35,7 +36,6 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `azure4`. D
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
-| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam |  | open | medium | 2026-11-13T22:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
@@ -110,7 +110,7 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 73 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 08:36 | 6 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 08:21 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 08:38 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 16 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 08:25 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
