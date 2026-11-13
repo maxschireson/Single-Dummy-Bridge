@@ -46,8 +46,11 @@ board gives about twice the rollout decisions to learn from (35 a side against 1
 by the search, so the net is no longer trained on new strategy-fusion play. The comparison at 1,000 deals lands at
 about 12:35 UTC; pure Stu's games (`sp0`, `sp0b`) start then.
 
-At 11:42 UTC: Stu-as-is -0.46 +- 0.10 IMPs a board against Gen 8 card play over 916 deals; pure Stu -0.76 +- 0.30 over
-221, by deal against Stu-as-is -0.05 +- 0.36.
+**The comparison at 1,000 deals (12:42 UTC):** Stu-as-is -0.42 +- 0.10 IMPs a board against Gen 8 card play, pure Stu
+-0.65 +- 0.14, by deal -0.22 +- 0.17. That is inside the bar (not more than about half an IMP behind), so pure Stu
+plays the collection. The halves disagree: +0.08 +- 0.26 on deals 0 to 499 (azure3), -0.53 +- 0.23 on deals 500 to 999
+(azure5). 64 of azure3's boards replayed on azure5 came out the same on all 64 (same decision counts on 63), so the
+boxes play alike and the halves differ by their deals.
 
 **The opening lead, three ways** (same bot otherwise, same deals; runs `l0-p`, `l0-pl`, `l0-pr`):
 
@@ -63,6 +66,11 @@ every lead's result in each, and the dataset builder gives all 13 cards a value.
 net learns from those values does not change Stu's lead (every lead is tried whatever the net says); it changes the
 net's own lead and would let a later Stu try fewer leads.
 
+At 200 deals (12:42 UTC) the rolled-out lead is level with the net's against Gen 8: -0.01 +- 0.22 by deal. It is a
+different card in 63% of hands; the board's result differs on 59 of 200, 31 better and 28 worse. **The collection
+rolls out its leads from 12:43 UTC** (`spr0`; my call, Max told at 12:45): a net that leads its own first choice
+teaches itself nothing about leads, and only these records give a lead a value. The price is volume (below).
+
 **One table a board in the collection.** Until 12:00 UTC the collection played two ids of one bot at two tables, as a
 match does. Both tables get the same random seed by ply and seat, so the same bot played the same cards at both: 113
 of 119 boards of `s0` and 111 of 119 of `r0` were identical card for card. Half that CPU bought nothing, and round 1's
@@ -76,7 +84,11 @@ predict Gen 8 less well. The gate nets the two and need not rise. Two of the usu
 nets' "tricks given up" is the double-dummy search's value on every search bot's rows, and v2 and v4.1 learned their
 cards from search bots. So beside IMPs against Gen 8: in the last seven tricks, for every bot in the ladder's records
 (Gen 8 included), how often its card gives up a contract the exact single-dummy solver says it had guaranteed, and how
-often a defender's card hands declarer one (`fusion_ledger.py`, not written yet).
+often a defender's card hands declarer one (`fusion_ledger.py`; README, "The fusion ledger", has the first numbers: Gen
+8 gives up a guaranteed contract about once in 13 hands it declares, Stu never where its rule applies and at about
+Gen 8's rate in partscores, where it has no such rule). The count includes playing for an overtrick at the contract's
+risk, which a bot that maximizes mean tricks does on purpose, so it is not fusion alone; a sharper yardstick needs the
+single-dummy value of each card, which the sidnet session's labels carry.
 
 ## A round
 
@@ -204,12 +216,14 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 
 ## Open, for Max
 
-- The bar for pure Stu at the 1,000-deal comparison: my default is to go ahead unless it is more than about half an
-  IMP behind Stu-as-is.
+- Pure Stu passed the bar I set (not more than about half an IMP behind Stu-as-is at 1,000 deals: it is -0.22 +- 0.17).
+  If a fifth of an IMP against Gen 8 matters more to you than a bot with no double dummy in it, say so.
 - The opponent mix in the collection and when BEN joins the gate.
-- Whether the collection rolls out its leads if the rolled lead measures no worse: it costs 46.5 CPU-s a table against
-  28.6, so about 620 tables an hour a box against about 1,000, and buys a value for every lead on every board. My
-  default: yes if `l0-pr` is not behind `l0-p`.
+- The collection rolls out its leads since 12:43 UTC (level with the net's lead at 200 deals): 46.5 CPU-s a table
+  against 28.6, so about 620 tables an hour a box against about 1,000, for a value on every lead of every board. Yours
+  to reverse if you would rather have the volume.
+- Stu in partscores gives up a guaranteed contract about as often as Gen 8 (the ledger): its rule is off there, on
+  x8's finding that it lost IMPs in partscores. Worth a rung with the rule on everywhere once the lead rungs are in.
 - A yardstick that rewards modelling good play, not Gen 8's habits: the single-dummy count is one; a second outside
   opponent or strong people on the play server would be another.
 
