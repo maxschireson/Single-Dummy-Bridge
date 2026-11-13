@@ -3198,3 +3198,36 @@ on the 82 Gen 7 and Gen 8 feeds of the registry, a set from the Gen 7+ bots' sea
 held-out deals by bot and from trick 7 (the `8s-32`/`8c-32` rows are the clean comparison with v4.1). About an hour;
 nets and scores to `transfer/rollout-net-v1-20261113`. JAX is installed under `~/work/plan/pylib`, not in the shared
 venv. The fetch reads the feeds only.
+
+### 2026-11-13 00:14 UTC, g9
+
+**Gen 9 is postponed in favor of 8X (Max to g9, 00:04 UTC).** Two changes and an offer.
+
+**azure4.** Gen 9's queue finishes the arrival run (about 01:00), then four short jobs that bear on 8X, about 2.5
+hours in all: `e9-0-n02` and `e9-0-n02e` to 800 boards (the played check that p41's bench predicts IMPs; at about 600
+boards each it agrees within one standard error at three settings, about 4 IMPs a proxy trick), and `e9-16-r-v-p` and
+`e9-16-r-v-x` (does playing a random one of the exactly equal-best cards cost anything in play). Every other Gen 9 job
+is cancelled. Then azure4 is released here: to plan if 8X wants it, otherwise back to g7's shard as the allocation row
+says. If 8X needs it sooner, say so here and the four jobs wait.
+
+**plan: a split for 8X, for you to accept or change.** You own the 8X engine (rollout net, rollouts, the single-dummy
+line logic, the PIMC fallback). Gen 9's pieces are offered, each only if you want it, built against your interfaces;
+nobody on the Gen 9 team edits `plan_player.py`, `plan_rollout.py` or `claims.py` without your agreement.
+1. **Opponent models inside the rollouts.** A rollout net trained on our own bots plays every seat, so against BEN or
+   another system the rollouts simulate the opponents as us, and the play reading reads them as us. Gen 9 has: a head
+   fitted to BEN's own choices (526 numbers, at its limit by about 1,000 tables, BEN's declarer play read +0.013 and
+   +0.035 tricks a board better than the net at its best factor; E9-14), signal models with learned honesty (E9-4,
+   E9-7, E9-15) and a card-based auction reading for systems we hold no net for (E9-1, E9-8). Seams: a seat policy for
+   your `NetPlayer` chosen by who sits there; and the belief methods (`type_log_weights`, `play_log_likelihood`,
+   `layouts`, `meet`, `auction_by`), which `PlanPlayer` does not override, so `class X(PlanPlayer, Gen9Player)` composes.
+2. **The loop's harness** (dave): registry, epochs with frozen snapshots, ratings, and an anytime-valid promotion test
+   (false promotion 1.5% to 3.5% against 9.5% to 12% for a fixed hand rule; E9-5), for "play, retrain, repeat" with a
+   fixed outside panel (BEN, Gen 6, 7.1, guests with other systems) in every generation.
+3. **Grading** (sam): the bench stage on p41's pools, tricks saved a board paired by deal (PR #30), for each new
+   rollout net and setting before it gets box time.
+4. **Workflow** (will): the job queue (priorities, preemption, resumable jobs, publishing) with full records kept, so
+   inside-rollout data is not lost as it was for tonight's matches.
+5. **Leakage default:** randomize among exactly equal cards (free double dummy; denies a reader of our strength 0.01
+   to 0.04 tricks a board; 400-board pilot +0.17 +- 0.17 IMPs). Worth deciding before 8X's data is collected, since the
+   rollout net learns whatever tie habit its data has. The two azure4 matches above settle the played cost.
+Tell me which you want, on which branch and through which interface.
