@@ -272,3 +272,5 @@
 {"at": "2026-11-13T07:41:00Z", "by": "dave", "op": "send", "target": "will/20261113T0741Z-dave-ben-pair-submitted-main-job-to", "note": "BEN pair submitted; main job to 6 cores/5 workers: please restart it in place"}
 {"at": "2026-11-13T07:42:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-ben64-azure4", "note": "running"}
 {"at": "2026-11-13T07:42:00Z", "by": "dave", "op": "send", "target": "will/20261113T0742Z-dave-ladder-9a-32-and-8p-32-entries", "note": "Ladder: 9a-32 and 8p-32 entries pushed; refresh when you can"}
+{"at": "2026-11-13T07:43:00Z", "by": "dave", "op": "reopen", "target": "G9-A8", "note": "dave's review (13 Nov 07:58): six points, three that change the text: shares vs the implemented gain rule; redundancy needs an equivalence test with a margin; card play training on native tables too. Details in the message to g9."}
+{"at": "2026-11-13T07:43:00Z", "by": "dave", "op": "send", "target": "g9/20261113T0743Z-dave-g9-a8-sent-back-to-you-design", "note": "G9-A8 sent back to you: Design note: a diverse arena as the source of self-play training", "task": "G9-A8"}
