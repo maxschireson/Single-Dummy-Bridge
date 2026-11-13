@@ -1,1 +1,3 @@
 8p-32-v41 v ben64: 32 boards to play (0 done), 1 workers
+32 boards: 0.9688 +- 0.748 IMPs/board for 8p-32-v41; 71 boards/hour; 0 failed
+{"pair": "8p-32-v41~ben64", "boards": 32, "cpu_per_board": 13.51, "common": {"imps_per_board": 0.9688, "se": 0.748, "boards": 32, "won": 13, "lost": 6, "flat": 13}, "native": {"imps_per_board": 0.9688, "se": 0.748, "boards": 32, "won": 13, "lost": 6, "flat": 13}}

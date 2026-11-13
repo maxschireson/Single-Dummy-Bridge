@@ -1,0 +1,23 @@
+{
+ "pair": "8p-32-v41~ben64",
+ "boards": 32,
+ "cpu_per_board": 13.15,
+ "common": {
+  "imps_per_board": 1.375,
+  "se": 0.6234,
+  "boards": 32,
+  "won": 9,
+  "lost": 3,
+  "flat": 20
+ },
+ "native": {
+  "imps_per_board": 1.375,
+  "se": 0.6234,
+  "boards": 32,
+  "won": 9,
+  "lost": 3,
+  "flat": 20
+ },
+ "failures": 0,
+ "boards_per_hour": 77
+}
