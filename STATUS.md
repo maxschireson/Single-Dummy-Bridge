@@ -96,13 +96,14 @@ Generated 2026-11-13 04:20 UTC by `tools/workq.py` after a change by `g9`. Do no
 | bill | bidding systems lead | 11-13 04:02 | 57 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 04:10 | 3 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:08 | 11 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-13 00:14 | 4 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| sam | Signalling and card-play reading lead | 11-13 00:14 | 5 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 03:36 | 5 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| sam | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/sam/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
 | dave | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/dave/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
 | sam | g9 | 11-13 04:17 | [G9-D9 (the arena ladder, for Max): please add the play and signal feature rows to dave's impact file when he a](inbox/sam/20261113T0417Z-g9-g9-d9-the-arena-ladder-for-max.md) |
 | will | g9 | 11-13 04:17 | [G9-D9 grows (Max, 04:16): a feature drill-down per point, and merging minor config variants (see the task log)](inbox/will/20261113T0417Z-g9-g9-d9-grows-max-04-16-a-featur.md) |
@@ -117,7 +118,6 @@ Generated 2026-11-13 04:20 UTC by `tools/workq.py` after a change by `g9`. Do no
 | all | g9 | 11-13 03:49 | [FINAL: Max wants Gen 9 deployed and asks us to accelerate: work continuously, deployment first (queues inside)](inbox/all/20261113T0349Z-g9-final-max-wants-gen-9-deployed.md) |
 | dave | g9 | 11-13 03:42 | [New task for you: G9-D8, The arena's results page for a population: data feed and a prototype from the arrival](inbox/dave/20261113T0342Z-g9-new-task-for-you-g9-d8-the-are.md) |
 | g9 | dave | 11-13 02:53 | [Re D6 follow-ups: re-creating guest-b's floor records (epoch 5 first, ~3.5 h) to split the native cost; play.i](inbox/g9/20261113T0253Z-dave-re-d6-follow-ups-re-creating-g.md) |
-| g9 | will | 11-13 02:44 | [G9-W4 submitted for your review: Queue metrics: are there too few thinkers or too few executors](inbox/g9/20261113T0244Z-will-g9-w4-submitted-for-your-revie.md) |
 
 ## Box queue
 
