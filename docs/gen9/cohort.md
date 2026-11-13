@@ -64,7 +64,7 @@ a changed Gen 9 player.
 4. **Preflight**: `python ops/smoke_gen7.py --run <run> --out <report> --deals 2`. Done locally on 13 Nov at 05:05
    UTC (a synthetic drained source built from the capsule's bots, 60 fresh deals, seed 913, TensorFlow 2.21): the
    three pairs one deal each through the runtime path, no failure, the Gen 7 decision checks passed for `9a-32`
-   (2,810 decisions, 345 tree consultations, none over budget), 66 to 92 seconds a deal in one process.
+   (2,810 searched decisions, 267 tree consultations, none over budget), 66 to 92 seconds a deal in one process.
 5. **Open** the plan (`launch_enabled` true, `pending` empty, Max's words in `notes`) only after Max's go.
 6. **Collector and feed**: run as the Gen 8 collectors are (g7 operates them); feed `arena-gen9-azure4-feed`;
    registration on the dashboard as g7 says.
