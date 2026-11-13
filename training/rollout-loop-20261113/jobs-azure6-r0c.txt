@@ -1,0 +1,7 @@
+# Two round-0 controls for round 2's rungs, on azure6 (its collection is paused for them), against Gen 8 card play on the
+# gate's deals 500 to 699, where l0b-p (pure Stu, v2 in the rollouts, policy v4.1 at the table, seats drawn) on azure5's
+# branch is the reference:
+#   l0b-pt   v2 at the table as well (its lead, first choices and reading of the play)
+#   l0b-pv   the simulated seats playing by v2's value head (seat blend) in place of a draw
+l0b-pt stu0-pt~8p-32-v41 131 500 200 8 --episodes
+l0b-pv stu0-pv~8p-32-v41 131 500 200 8 --episodes
