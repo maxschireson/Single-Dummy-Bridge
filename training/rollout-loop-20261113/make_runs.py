@@ -3,7 +3,8 @@
 
   python training/rollout-loop-20261113/make_runs.py
 
-A run's state is not here: read it from the box's transfer branch (rows in <run>/results.jsonl against `deals`, and
+A run listed twice in a job file (a first pass, then more deals in the same folder) is one run here: `deals` is the
+larger figure and `passes` lists both. A run's state is not here: read it from the box's transfer branch (rows in <run>/results.jsonl against `deals`, and
 runs.log). This file says what each run is: its role, round, pair, deals, and for a Stu-family bot the net inside and
 the rung of the ladder. DASHBOARD.md explains the roles and what to compute from the rows.
 """
@@ -64,6 +65,11 @@ def main():
             if not line.strip() or line.startswith('#'):
                 continue
             name, pair, seed, first, deals, _workers, *options = line.split()
+            again = next((r for r in runs if r['name'] == name and r['box'] == box), None)
+            if again is not None:                   # a name that comes twice goes on in the same folder: the later line's deals
+                again['passes'] = again.get('passes', [again['deals']]) + [int(deals)]
+                again['deals'] = max(again['deals'], int(deals))
+                continue
             runs.append(run(name, box, pair, seed, first, deals, '--episodes' in options))
         for r in runs:
             r.setdefault('queue_order', None)

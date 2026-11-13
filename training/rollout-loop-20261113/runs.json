@@ -112,30 +112,6 @@
    "queue_order": 1
   },
   {
-   "name": "s0b",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "collection",
-   "pair": "stu0a~stu0b",
-   "seed": 9001,
-   "first": 20000,
-   "deals": 20000,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "stu"
-   },
-   "second_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "stu"
-   },
-   "queue_order": 1
-  },
-  {
    "name": "l0-stu0",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
@@ -154,7 +130,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 2
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 1
   },
   {
    "name": "l0-v1",
@@ -175,7 +155,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 3
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 2
   },
   {
    "name": "l0-p",
@@ -196,7 +180,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 4
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 3
   },
   {
    "name": "l0-v1-p",
@@ -217,7 +205,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 5
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 4
   },
   {
    "name": "l0-r3",
@@ -238,7 +230,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 6
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 5
   },
   {
    "name": "l0-v1-r3",
@@ -259,7 +255,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 7
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 6
   },
   {
    "name": "l0-r6",
@@ -280,7 +280,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 8
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 7
   },
   {
    "name": "l0-v1-r6",
@@ -301,7 +305,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 9
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 8
   },
   {
    "name": "l0-b50",
@@ -322,7 +330,11 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 10
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 9
   },
   {
    "name": "l0-v1-b50",
@@ -342,6 +354,34 @@
    },
    "second_bot": {
     "family": "other"
+   },
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 10
+  },
+  {
+   "name": "s0b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "stu0a~stu0b",
+   "seed": 9001,
+   "first": 20000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
    },
    "queue_order": 11
   },

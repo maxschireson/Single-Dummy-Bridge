@@ -1,12 +1,25 @@
-# azure3, Stu round 0. NAME PAIR SEED FIRST DEALS WORKERS [options]; each job resumes.
+# azure3, Stu round 0. NAME PAIR SEED FIRST DEALS WORKERS [options]; each job resumes (a name that comes twice goes on
+# in the same folder: only the deals not yet played are played).
 # Seed 131 is the gate's and the ladder's: its deals are never trained on. Seed 9001 is round 0's training seed.
 #
-# Round 0's collection, second shard of the deals, first: the round waits on games, not on the gate. It is ended by hand
-# when the round has enough (stop the match's process, not the unit: the chain then goes on to the next line).
+# The ladder's first pass (Max, 09:38 UTC: "ETA for initial calibration results?"): 200 deals a rung now, the two ends
+# of the ladder first for both nets. Stu and four bots with the boundary between search and rollouts moved (Max, 09:24),
+# with rollout net v2 inside and with rollout net v1 (ft) inside (Max, 09:27), each against Gen 8 card play on the
+# gate's deals. Records are kept to read, not to train on.
+l0-stu0 stu0a~8p-32-v41 131 0 200 8 --episodes
+l0-v1 stu0v1~8p-32-v41 131 0 200 8 --episodes
+l0-p stu0-p~8p-32-v41 131 0 200 8 --episodes
+l0-v1-p stu0v1-p~8p-32-v41 131 0 200 8 --episodes
+l0-r3 stu0-r3~8p-32-v41 131 0 200 8 --episodes
+l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 200 8 --episodes
+l0-r6 stu0-r6~8p-32-v41 131 0 200 8 --episodes
+l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 200 8 --episodes
+l0-b50 stu0-b50~8p-32-v41 131 0 200 8 --episodes
+l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 200 8 --episodes
+# Round 0's collection, second shard of the deals (196 boards were played before the ladder's first pass). It is ended
+# by hand when the round has enough (stop the match's process, not the unit: the chain then goes on to the next line).
 s0b stu0a~stu0b 9001 20000 20000 8 --episodes
-# The ladder (Max, 09:24 and 09:27 UTC): Stu and four bots with the boundary between search and rollouts moved, with
-# rollout net v2 inside and with rollout net v1 (ft) inside, each against Gen 8 card play on the gate's first 500 deals.
-# Records are kept to read, not to train on. Ordered so the two ends of the ladder come first for both nets.
+# The ladder to 500 deals a rung.
 l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
 l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
