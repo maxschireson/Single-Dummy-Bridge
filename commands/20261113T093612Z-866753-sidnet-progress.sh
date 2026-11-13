@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+W=~/work/sidnet; tail -3 $W/logs/timeline.log | cut -c1-200; for f in label labelB build s0; do [ -f $W/logs/$f.log ] && echo "$f: $(tail -1 $W/logs/$f.log | cut -c1-180)"; [ -f $W/logs/$f.out ] && echo "$f.out: $(tail -1 $W/logs/$f.out | cut -c1-180)"; done; for d in labels labelsB; do [ -f $W/$d/errors.jsonl ] && echo "$d errors: $(wc -l < $W/$d/errors.jsonl)"; done; echo "units: $(systemctl is-active sidnet-run sidnet-run2 | tr "\n" " ")"; uptime | sed "s/.*load/load/"; free -g | sed -n 2p | cut -c1-70; df -h $HOME | tail -1
