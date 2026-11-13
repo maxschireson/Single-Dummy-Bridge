@@ -1,60 +1,57 @@
 {
-  "schema": "stu-registry-v1",
+  "schema": "stu-registry-v2",
   "title": "Stu: the rollout loop, generation by generation",
-  "updated": "2026-11-13T09:45Z",
-  "branches": [
-    {"box": "azure3", "branch": "transfer/rollout-loop-azure3-20261113"},
-    {"box": "azure5", "branch": "transfer/rollout-loop-azure5-20261113"},
+  "updated": "2026-11-13T10:00Z",
+  "runs_list": {"branch": "research/rollout-loop-20261113", "path": "training/rollout-loop-20261113/runs.json"},
+  "brief": {"branch": "research/rollout-loop-20261113", "path": "training/rollout-loop-20261113/DASHBOARD.md"},
+  "boxes": [
+    {"box": "azure3", "branch": "transfer/rollout-loop-azure3-20261113", "status": "box/azure3/status"},
+    {"box": "azure5", "branch": "transfer/rollout-loop-azure5-20261113", "status": "box/azure5/status"},
     {"box": "sandbox", "branch": "transfer/rollout-loop-sandbox-20261113", "frozen": true}
   ],
-  "validation": {
-    "seed": 131,
-    "note": "Fixed validation deals: seed 131, deal index from 0, the common bidder (both tables play the same contract, so the IMPs are card play). The same deals every round, so rounds and roles pair deal by deal. Collections never use seed 131.",
-    "opponents": [
-      {"id": "8p-32-v41", "label": "Gen 8 card play", "detail": "8p-32 with policy v4.1: the Gen 8 prototype's search. Not trained on Stu's games.", "primary": true},
-      {"id": "ben64", "label": "BEN (64)", "detail": "BEN's card play, 64 samples. Not trained on Stu's games."}
-    ]
+  "gate_seed": 131,
+  "training_seeds": [9001],
+  "ladder_deals": 500,
+  "gate_deals": 2000,
+  "opponent": {"id": "8p-32-v41", "label": "Gen 8 card play", "detail": "8p-32 with policy v4.1, the Gen 8 prototype's search. No net in the loop is trained on its games or on seed 131."},
+  "rungs": [
+    {"key": "net", "label": "Net alone", "text": "The net's top card at every trick: no search, no rollouts, no claims. The unamplified player. Not yet in the ladder (asked of the loop session, 13 Nov)."},
+    {"key": "stu", "label": "Stu", "text": "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7"},
+    {"key": "b50", "label": "Blend 0.5", "text": "Stu with the blend at tricks 3 to 6 at trust 0.5"},
+    {"key": "r6", "label": "Rollouts from 6", "text": "Stu with rollouts alone from trick 6"},
+    {"key": "r3", "label": "Rollouts from 3", "text": "Stu with rollouts alone from trick 3"},
+    {"key": "pure", "label": "Pure rollouts", "text": "The net's opening lead, rollouts alone from the second card on; no double dummy"}
+  ],
+  "nets": [
+    {"key": "v1", "label": "Rollout net v1 (ft)", "trained": "policy v4.1 fine-tuned on the Gen 7+ bots' searched decisions, 512 wide",
+     "metrics": {"branch": "transfer/rollout-net-v1-20261113", "path": "runs/ft/metrics.json"},
+     "compare": {"v4.1": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz"}},
+    {"key": "v2", "label": "Rollout net v2", "trained": "every Gen 6-8 arena episode (about 66,000), every bot's decisions, a vector for each side's bot; 768 wide, 5 epochs from random weights",
+     "metrics": {"branch": "transfer/rollout-net-v2-20261113", "path": "runs/w768/metrics.json"},
+     "compare": {"v1": "/home/bridgebots/work/plan/rnet1/ft/policy.npz", "v4.1": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz"}},
+    {"key": "stu1", "label": "Stu 1's net", "trained": "v2 trained on to Stu 0's games (planned on azure5)",
+     "metrics": {"branch": "transfer/rollout-loop-azure5-20261113", "path": "train-r1/metrics.json"},
+     "compare": {"v2": "models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz"}}
+  ],
+  "rounds": [
+    {"round": 0, "label": "Stu 0", "net": "v2", "cut": 6000, "started": "2026-11-13T08:43Z",
+     "note": "x8's 8Z with rollout net v2 inside; the table net (the candidates' prior) is policy v4.1. The cut of about 6,000 boards is the loop session's guess, not a measured need."}
+  ],
+  "control": {
+    "note": "Rollouts from trick 7 against a net alone (README, Measured before round 0). R41 and R4: rollouts with v4.1 or v4 playing the simulated seats (table net v4.1 in both); N41, N4: v4.1 or v4 alone; F41, F4: the rollout bot built wholly on v4.1 or v4.",
+    "cells": {"N41_N4": "n-v41~n-v4", "R41_N41": "r7-v41~n-v41", "R4_N41": "r7x-v4~n-v41", "R41_N4": "r7-v41~n-v4",
+              "R4_N4": "r7x-v4~n-v4", "F41_F4": "r7-v41~r7f-v4", "R0_N41": "r7x-v0~n-v41", "R3_N41": "r3-v41~n-v41"}
   },
-  "roles": [
-    {"key": "net", "label": "Net alone", "short": "Net", "description": "The round's net plays its top card at every trick: no search, no rollouts, no claims. The unamplified player; the loop is alive if this rises."},
-    {"key": "roll", "label": "Net + rollouts", "short": "Rollouts", "description": "The net's top card through trick 6; from trick 7, rollouts on the same net (up to 4 candidates, up to 128 layouts, the net choosing every simulated card). No search, no claims. Amplification by rollouts alone."},
-    {"key": "stu", "label": "Stu", "short": "Stu", "description": "The bot as it plays the loop (x8's 8Z settings): tricks 1-2 the Gen 8 search, 3-6 the search blended with rollouts, 7-13 rollouts alone, claims, declarer mixing. The round's net is the rollout net."}
-  ],
-  "generations": [
-    {
-      "round": "v4.1",
-      "kind": "reference",
-      "label": "Policy v4.1 (reference)",
-      "note": "The Gen 7-8 policy net the teachers used, for scale. Not a round of the loop.",
-      "bots": {"net": ["n-v41"], "roll": ["r7-v41"]},
-      "net": {"label": "Gen 7 policy v4.1", "file": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz"}
-    },
-    {
-      "round": 0,
-      "label": "Stu 0",
-      "started": "2026-11-13T08:43Z",
-      "note": "Rollout net v2 inside x8's 8Z. Table net (candidates' prior, tricks 1-6) is policy v4.1. Every simulated seat is told both sides are 8s-32. Records keep every layout's result for every candidate from 09:09 UTC.",
-      "bots": {"stu": ["stu0a", "stu0b"], "net": ["n-stu0"], "roll": ["r7-stu0"]},
-      "aliases": {"z0a-v2": "stu0a", "z0b-v2": "stu0b"},
-      "net": {
-        "label": "Rollout net v2 (768 wide, epoch 5)",
-        "file": "models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz",
-        "trained_from": "random weights, v4.1's recipe, 5 epochs",
-        "data": "every Gen 6-8 arena episode (about 66,000), every bot's decisions, with a vector for each side's bot",
-        "metrics": {"branch": "transfer/rollout-net-v2-20261113", "path": "runs/w768/metrics.json"},
-        "previous_compare": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
-        "previous_label": "policy v4.1 on the same rows"
-      },
-      "source": "research/rollout-loop-20261113"
-    }
-  ],
   "labels": {
-    "stu0a": "Stu 0", "stu0b": "Stu 0 (second id)", "z0a-v2": "Stu 0 (first id, before the rename)", "z0b-v2": "Stu 0 (second id, before the rename)",
-    "n-stu0": "Rollout net v2 alone", "r7-stu0": "Rollout net v2 + rollouts from trick 7",
-    "8p-32-v41": "Gen 8 card play (8p-32, v4.1)", "ben64": "BEN (64)",
-    "n-v41": "Policy v4.1 alone", "n-v4": "Policy v4 alone",
+    "8p-32-v41": "Gen 8 card play", "n-v41": "Policy v4.1 alone", "n-v4": "Policy v4 alone",
     "r7-v41": "Rollouts from trick 7 on v4.1", "r7x-v4": "Rollouts on v4 (table net v4.1)", "r7x-v0": "Rollouts on v0 (table net v4.1)",
     "r7f-v4": "Rollout bot wholly on v4", "r3-v41": "Rollouts from trick 3 on v4.1", "8z-ft1": "8Z with rollout net v1"
   },
+  "cautions": [
+    "Seed 131 is the gate's and the ladder's and is never trained on. Seed 9001 is round 0's training seed: a run on a training seed says nothing about strength on fresh deals once a net has been trained on it.",
+    "New Stu against old Stu is not the gate. A net trained on a bot's games predicts that bot; in the control the inside net matching the opponent was worth +1.12 ± 0.16 IMPs a board by itself. The gate is the outside opponent.",
+    "Everything here is against one outside opponent, Gen 8 card play. Reference, same opponent and seed: x8's 8Z (the rung Stu with net v1) −0.38 ± 0.14 over 541 boards, with feature forks on.",
+    "Self-play IMPs are a check (one bot against itself), not strength. Data runs (a ladder bot against Stu on training deals) flatter Stu: a rollout bot is the opponent Stu's net models best."
+  ],
   "exclude_runs": ["pf-*", "t-*", "smoke*"]
 }

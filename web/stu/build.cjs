@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /* Builds the Stu dashboard's snapshot (data.json) from the loop's published branches.
  *
- *   node web/stu/build.cjs --repo <git checkout with origin = the GitHub repo> [--registry web/stu/registry.json]
+ *   node web/stu/build.cjs --repo <git checkout whose origin is the GitHub repo> [--registry web/stu/registry.json]
  *                          [--out data.json] [--no-fetch]
  *
- * For every branch in the registry (and every net's metrics branch) it fetches the branch tip (depth 1), reads
- * runs.log and each run folder's results.jsonl, summary.json and EPISODES.txt, and reduces them with stu-core.js, the
- * same code the page runs on live data. The page shows the snapshot and re-reads runs that are still going. */
+ * Fetches (depth 1) the loop's run list, every box's transfer and status branch and every net's metrics branch; reads
+ * runs.log, each run's results.jsonl, <run>.log, summary.json and EPISODES.txt, and the boxes' heartbeats; reduces them
+ * with stu-core.js, the same code the page runs on live data. The page shows the snapshot and re-reads what is moving. */
 'use strict';
 const fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
 const core = require('./stu-core.js');
@@ -26,72 +26,95 @@ function args(argv) {
 }
 const git = (repo, ...xs) => execFileSync('git', ['-C', repo, ...xs], { encoding: 'utf8', maxBuffer: 1 << 30, stdio: ['ignore', 'pipe', 'pipe'] });
 const tryGit = (repo, ...xs) => { try { return git(repo, ...xs); } catch (e) { return null; } };
+const ref = br => `refs/remotes/origin/${br}`;
+
+// What the page shows of a box's heartbeat (the ops/boxctl agent's heartbeat.json).
+function heartbeat(h) {
+  return { time: Date.parse(h.time) / 1000 || null, load: h.load || null, cpus: h.cpus ?? null,
+    mem_available_mb: h.memory_mb?.MemAvailable ?? null, mem_total_mb: h.memory_mb?.MemTotal ?? null,
+    disk_free_gb: h.disk?.home?.free_gb ?? null, last_push: h.previous_push || null, running: h.running || null };
+}
 
 function main() {
   const a = args(process.argv);
   const registry = JSON.parse(fs.readFileSync(a.registry, 'utf8'));
-  const branchList = registry.branches.map(b => b.branch);
-  const metricBranches = [...new Set(registry.generations.map(g => g.net?.metrics?.branch).filter(Boolean))];
-  const heads = {};
-  for (const br of [...branchList, ...metricBranches]) {
-    const ref = `refs/remotes/origin/${br}`;
-    if (a.fetch) tryGit(a.repo, 'fetch', '-q', '--depth', '1', 'origin', `+refs/heads/${br}:${ref}`);
-    const head = tryGit(a.repo, 'rev-parse', ref);
-    heads[br] = head ? { sha: head.trim(), committed_epoch: +git(a.repo, 'log', '-1', '--format=%ct', ref).trim() } : null;
+  const full = [...new Set(registry.boxes.map(b => b.branch))];          // rows: every blob is read
+  const sparse = [...new Set([registry.runs_list?.branch, ...registry.boxes.map(b => b.status), ...registry.nets.map(n => n.metrics?.branch)]
+    .filter(b => b && !full.includes(b)))];                               // a file or two each: blobs fetched on demand
+  if (a.fetch) {
+    for (const br of full) tryGit(a.repo, 'fetch', '-q', '--depth', '1', 'origin', `+refs/heads/${br}:${ref(br)}`);
+    for (const br of sparse) tryGit(a.repo, 'fetch', '-q', '--depth', '1', '--filter=blob:none', 'origin', `+refs/heads/${br}:${ref(br)}`);
   }
-  const idx = core.botIndex(registry), runs = [];
-  for (const b of registry.branches) {
+  const heads = {};
+  for (const br of [...full, ...sparse]) {
+    const head = tryGit(a.repo, 'rev-parse', ref(br));
+    heads[br] = head ? { sha: head.trim(), committed_epoch: +git(a.repo, 'log', '-1', '--format=%ct', ref(br)).trim() } : null;
+  }
+  const show = (br, p) => heads[br] ? tryGit(a.repo, 'show', `${ref(br)}:${p}`) : null;
+
+  const listText = registry.runs_list ? show(registry.runs_list.branch, registry.runs_list.path) : null;
+  const runsList = listText ? JSON.parse(listText) : { runs: [] };
+  const entries = new Map(runsList.runs.map(r => [`${r.box}/${r.name}`, r]));
+  const runs = [];
+  for (const b of registry.boxes) {
     if (!heads[b.branch]) continue;
-    const ref = `refs/remotes/origin/${b.branch}`;
-    const files = new Set(git(a.repo, 'ls-tree', '-r', '--name-only', ref).split('\n').filter(Boolean));
-    const log = files.has('runs.log') ? git(a.repo, 'show', `${ref}:runs.log`) : '';
-    const meta = core.parseRunsLog(log, b.box);
-    // Runs on a frozen branch with no runs.log (the sandbox): folders with a manifest name their pair and seed.
+    const files = new Set(git(a.repo, 'ls-tree', '-r', '--name-only', ref(b.branch)).split('\n').filter(Boolean));
+    const meta = core.parseRunsLog(files.has('runs.log') ? show(b.branch, 'runs.log') : '', b.box);
+    // Folders with rows but no runs.log line (the sandbox): the manifest names the pair and seed.
     for (const f of files) {
       const m = /^([^/]+)\/results\.jsonl$/.exec(f);
       if (!m || meta[m[1]]) continue;
-      const man = files.has(`${m[1]}/manifest.json`) ? JSON.parse(git(a.repo, 'show', `${ref}:${m[1]}/manifest.json`)) : {};
+      const man = files.has(`${m[1]}/manifest.json`) ? JSON.parse(show(b.branch, `${m[1]}/manifest.json`)) : {};
       const pair = man.pair || (Array.isArray(man.pair_schedule) && man.pair_schedule.length === 1 ? man.pair_schedule[0] : null);
       if (!pair) continue;
       meta[m[1]] = { name: m[1], box: b.box, pair, seed: man.seed ?? null, first: man.first ?? 0, deals: man.deals ?? null,
-        sources: man.source_commit ? [man.source_commit.slice(0, 7)] : [], starts: [], ends: [],
-        status: b.frozen ? 'complete' : 'unknown', started: null, common_bidder: man.common_bidder || null };
+        sources: man.source_commit ? [man.source_commit.slice(0, 7)] : [], status: b.frozen ? 'complete' : 'unknown', started: null };
     }
+    // Runs the list names that have not started yet are shown as queued.
+    for (const e of runsList.runs.filter(e => e.box === b.box && !meta[e.name]))
+      meta[e.name] = { name: e.name, box: b.box, pair: e.pair, seed: e.seed, first: e.first, deals: e.deals, sources: [], status: 'queued', started: null };
     for (const r of Object.values(meta)) {
-      const cls = core.classify(r, registry, idx);
-      if (cls.kind === 'excluded') continue;
-      const folder = r.name + '/';
-      let red = null, bad = 0, summary = null, episodes = null;
-      if (files.has(folder + 'results.jsonl')) {
-        const parsed = core.parseResults(git(a.repo, 'show', `${ref}:${folder}results.jsonl`));
-        bad = parsed.bad; red = core.reduceRun(parsed.rows, cls);
+      const entry = entries.get(`${b.box}/${r.name}`) || null;
+      const cls = core.classify(r, entry, registry);
+      if (cls.role === 'excluded') continue;
+      const dir = r.name + '/';
+      let red = null, bad = 0;
+      if (files.has(dir + 'results.jsonl')) {
+        const parsed = core.parseResults(show(b.branch, dir + 'results.jsonl'));
+        bad = parsed.bad; red = core.reduceRun(parsed.rows, { sign: cls.sign || 1, keepBoards: cls.role !== 'collection' });
       }
-      if (files.has(folder + 'summary.json')) summary = JSON.parse(git(a.repo, 'show', `${ref}:${folder}summary.json`));
-      if (files.has(folder + 'EPISODES.txt')) episodes = parseInt(git(a.repo, 'show', `${ref}:${folder}EPISODES.txt`), 10) || null;
-      if (b.frozen && r.status === 'unknown') r.status = 'complete';
+      const summary = files.has(dir + 'summary.json') ? JSON.parse(show(b.branch, dir + 'summary.json')) : null;
+      const episodes = files.has(dir + 'EPISODES.txt') ? parseInt(show(b.branch, dir + 'EPISODES.txt'), 10) || null : null;
+      const progress = files.has(r.name + '.log') ? core.parseMatchLog(show(b.branch, r.name + '.log')) : null;
       runs.push({ key: `${b.box}/${r.name}`, branch: b.branch, box: b.box, name: r.name, pair: r.pair, seed: r.seed,
-        first: r.first, deals: r.deals, options: r.options || '', sources: r.sources, started: r.started,
-        last_event: r.last_event ?? null, status: r.status, exit: r.exit ?? null, cls, red, bad_lines: bad,
-        summary: summary ? { boards_per_hour: summary.boards_per_hour ?? null, cpu_per_board: summary.cpu_per_board ?? null,
-          failures: summary.failures ?? null } : null, episodes });
+        first: r.first, deals: r.deals, options: r.options || '', sources: r.sources || [], started: r.started ?? null,
+        last_event: r.last_event ?? null, status: r.status, exit: r.exit ?? null, cls, red, bad_lines: bad, progress, episodes,
+        queue_order: entry?.queue_order ?? null, note: entry?.note || null,
+        summary: summary ? { boards_per_hour: summary.boards_per_hour ?? null, cpu_per_board: summary.cpu_per_board ?? null, failures: summary.failures ?? null } : null });
     }
+  }
+  const health = {};
+  for (const b of registry.boxes.filter(b => b.status)) {
+    const hb = show(b.status, 'heartbeat.json');
+    if (hb) health[b.box] = heartbeat(JSON.parse(hb));
   }
   const metrics = {};
-  for (const g of registry.generations) {
-    const m = g.net?.metrics;
-    if (!m || !heads[m.branch]) continue;
-    const text = tryGit(a.repo, 'show', `refs/remotes/origin/${m.branch}:${m.path}`);
-    if (text) metrics[`${m.branch}:${m.path}`] = core.netMetrics(JSON.parse(text), g);
+  for (const n of registry.nets) {
+    const m = n.metrics;
+    if (!m) continue;
+    const text = show(m.branch, m.path);
+    if (text) try { metrics[`${m.branch}:${m.path}`] = core.netMetrics(JSON.parse(text), n.compare); } catch (e) { console.warn(`${n.key}: ${e.message}`); }
   }
-  const snapshot = { schema: 'stu-snapshot-v1', built_epoch: Date.now() / 1000, registry_updated: registry.updated || null,
-    heads, runs, metrics };
+  const snapshot = { schema: 'stu-snapshot-v2', built_epoch: Date.now() / 1000, registry_updated: registry.updated || null,
+    heads, runs_list: runsList, runs, health, metrics };
   fs.writeFileSync(a.out, JSON.stringify(snapshot));
   const model = core.buildModel(registry, runs, metrics);
-  for (const g of model.generations) {
-    const c = g.cells[`stu|${model.primary}`];
-    console.log(`${g.label}: self-play ${g.selfplay.boards} boards; Stu v ${model.primary}: ${c ? c.stats.n + ' boards, ' +
-      (c.stats.mean ?? NaN).toFixed(3) + ' +- ' + (c.stats.se ?? NaN).toFixed(3) : 'not run'}; net metrics ${g.metrics ? 'yes' : 'no'}`);
+  for (const r of model.rounds) {
+    const g = r.gate?.stats;
+    console.log(`${r.label}: collection ${r.collection.boards} boards (cut ${r.collection.cut}, ${r.collection.rate ?? '-'} an hour); gate ${g?.n ? g.n + ' boards, ' + g.mean.toFixed(3) + ' +- ' + g.se.toFixed(3) : 'none'}`);
   }
-  console.log(`${runs.length} runs, ${(fs.statSync(a.out).size / 1024).toFixed(0)} KB -> ${a.out}`);
+  console.log(`ladder cells: ${Object.entries(model.ladder).map(([k, c]) => k + ' ' + c.stats.n).join(', ') || 'none'}`);
+  console.log(`${runs.length} runs, ${Object.keys(metrics).length} nets scored, ${(fs.statSync(a.out).size / 1024).toFixed(0)} KB -> ${a.out}`);
 }
-main();
+module.exports = { heartbeat };
+if (require.main === module) main();
