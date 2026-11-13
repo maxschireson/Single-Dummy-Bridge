@@ -2,7 +2,7 @@
  "schema": "conditional-claims-raw-v1",
  "created": "2026-11-13",
  "source_branch": "research/conditional-claims-20261113",
- "source_commit": "2842075",
+ "source_commit": "26ee9f1",
  "scripts": "experiments/sure_tricks/cells/",
  "recorded_tables": "arena-gen8-azure1-feed at 210f7b2, boards-00000.json to boards-00005.json",
  "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
@@ -105,6 +105,63 @@
    "lines": 300,
    "unpacked_bytes": 413311,
    "unpacked_sha256": "9c6e267e17de12d811a561ec10125d59e75ac75fe94401479c5ce3f2ae117c94"
+  }
+ ],
+ "source_commit_note": "files listed under \"files\" were written at 2842075; files listed under \"files_added\" at 26ee9f1 (same scripts folder, section 8 of its README)",
+ "files_added": [
+  {
+   "file": "dd8_a.jsonl.gz",
+   "what": "ddrules.py, 8 cards, positions with even index: per card the shape-level and two-named certified sets, double-dummy value on 256 layouts drawn by scorer weight, double-dummy result on the actual layout",
+   "bytes": 64248,
+   "sha256": "3138f17a79eeeacc62ea84dfba9203add17977c538e231441eb169f64437a202",
+   "lines": 725,
+   "unpacked_bytes": 346641,
+   "unpacked_sha256": "975538df9ee6c3210a05b4d34697e2885d21fa49e61e79ca90303642e556e86e"
+  },
+  {
+   "file": "dd8_b.jsonl.gz",
+   "what": "ddrules.py, 8 cards, odd index",
+   "bytes": 64861,
+   "sha256": "292c12cade00ac613792c53e32debf15888ebf5c4799764c2502b93a99d309d4",
+   "lines": 725,
+   "unpacked_bytes": 347411,
+   "unpacked_sha256": "d9fba753b7f2b2f8aeaaedbd1ef8e0fce69e2b1569ddb2d9c53bac5ec807ea5f"
+  },
+  {
+   "file": "dd7_a.jsonl.gz",
+   "what": "ddrules.py, 7 cards, even index",
+   "bytes": 54988,
+   "sha256": "5885e45d6b82c90218bb0da4706ac5845746a20194e8cda381f150be6c93fdfb",
+   "lines": 703,
+   "unpacked_bytes": 301133,
+   "unpacked_sha256": "5ba8215d1f5afda61fb57d5ebc204cff8823a01174c525127d40b6ae0adc9072"
+  },
+  {
+   "file": "dd7_b.jsonl.gz",
+   "what": "ddrules.py, 7 cards, odd index",
+   "bytes": 55711,
+   "sha256": "49b0643e3236f75cfacdedd6cdf8ae8b69a5bfd1724f6181306f1a1d3044fd24",
+   "lines": 702,
+   "unpacked_bytes": 304538,
+   "unpacked_sha256": "439a37bfbfd4b2f3173be7fd610ca7de1dc25900079ac63e8e49821ef9ea4b85"
+  },
+  {
+   "file": "tgt8_a.jsonl.gz",
+   "what": "targets.py, 8 cards, first 600 positions, even index: certified sets for the contract, one trick fewer and one trick more",
+   "bytes": 21635,
+   "sha256": "716656df3ca472fc4f4a54c6e943bf03504741464771e937be98fd5c34b20095",
+   "lines": 300,
+   "unpacked_bytes": 153282,
+   "unpacked_sha256": "3d160c764142b2120a9b752fef18b013e89dfb03d6930bd4a186305b52aae447"
+  },
+  {
+   "file": "tgt8_b.jsonl.gz",
+   "what": "targets.py, 8 cards, first 600 positions, odd index",
+   "bytes": 21613,
+   "sha256": "4c4712b379ed0374bf1f6d2b14663cfffbfa26f656cb78d5a60bb92b207554e9",
+   "lines": 300,
+   "unpacked_bytes": 153123,
+   "unpacked_sha256": "52cdc24f81ca180ff6ba7f86ef5778f6f2c2ff2f7bd49b7d970360ebba34b556"
   }
  ]
 }
