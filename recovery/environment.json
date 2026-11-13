@@ -1,0 +1,25 @@
+{
+ "host": "azure1",
+ "machine": "Azure Standard_F8as_v6, 8 vCPUs, 32 GB",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
+ "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+ "python": "3.12.3",
+ "packages": {
+  "tensorflow": "2.21.0",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1"
+ },
+ "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
+ "source_branch": "feature/gen8x-arena-20261113",
+ "source_commit": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+ "generation": "8X v3 (x8): 8s-32 card for card through trick 6, then rollout-net re-valuation in games, slams and doubled contracts; against Gen 8, Gen 7.1, Gen 5 and Gen 1",
+ "source_run": "azure1's drained Gen 8 cohort gen8-m1-azure1: bots and artifacts only; the deals are fresh (manifest fresh_deals), clear of the families policy v4.1 and rollout net v1 were trained on (artifacts/validation/evaluation-exclusions.json, 50,818) and of the families played on registered feeds at 04:26 UTC",
+ "plan": "configs/round8x-v3.json as it is (plan.json beside this file)",
+ "sure_bin": "/home/Bridgebots/work/gen8x/sure_cpp",
+ "sure_source": "2e6ed6db12cba4110f43c29a70823a992c296ea1",
+ "memory": "unit gen8x-recycle restarts the collector after the boards in hand when the box has under 5 GB of memory available",
+ "threads": "one BLAS, OpenMP and TensorFlow thread a process",
+ "publication_branch": "arena-gen8-x3-azure1-feed",
+ "supervision": "systemd units arena-gen8x and arena-gen8x-publish; no BEN pair in this cohort; the box also hosts the play-against-Sid server (sidplay)",
+ "operator": "Claude session https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ, through the boxctl agent (docs/boxctl.md)"
+}

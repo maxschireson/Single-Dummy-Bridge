@@ -1,0 +1,31 @@
+{
+  "schema": "system-package-v1",
+  "id": "house-dds40k",
+  "display_name": "House system, DDS-trained bidder (40,000 pairs)",
+  "status": "active",
+  "family": "2/1 lineage (BEN GIB-BBO-8742 base), changed by training",
+  "bidding": {
+    "card": null,
+    "descriptor": {},
+    "notes": [
+      "No convention card. See models/bidding/dds-40000/README.md."
+    ]
+  },
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared."
+    ]
+  },
+  "generators": [
+    {
+      "kind": "ben-lstm-keras",
+      "path": "models/bidding/dds-40000/bidder.keras",
+      "sha256": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+    }
+  ],
+  "lineage": {
+    "parent": "ben-gib-bbo-8742",
+    "source": "models/bidding/dds-40000/README.md"
+  }
+}

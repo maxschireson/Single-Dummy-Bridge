@@ -1,0 +1,8 @@
+{
+ "launched_epoch": 1794558156.9794474,
+ "authority": "Max, 13 November 2026: to x8 at 06:40 UTC, put 8X v3 into the mix on the arena, on lanes of g7's arena boxes; to the operator at 07:1x UTC: azure1 goes to 8X v3, fresh deals",
+ "notice": "docs/x8_bot.md on feature/gen8x-arena-20261113",
+ "host": "azure1",
+ "reason": "8X v3 into the arena",
+ "steps": "prepare with --fresh, --exclude-families and --played, preflight with ops/smoke_gen7.py (8x3-32 against 8s-32 and 71s-32), then the collector under systemd"
+}
