@@ -12,6 +12,10 @@
   'use strict';
   const root = document.getElementById('ladder');
   if (!root) return;
+  // at the top of the page: straight after the title lines, above what the other scripts insert (they insert before or
+  // after #cards and after the h1), whichever runs first; their files are not touched
+  const toTop = () => { const f = document.getElementById('feed-schedule'); if (f && root.previousElementSibling !== f) f.after(root); };
+  toTop();
   const SVGNS = 'http://www.w3.org/2000/svg';
   // categorical slots in fixed order (dark steps of the reference palette, validated against this page's #192333:
   // adjacent CVD dE >= 8.4, normal-vision >= 19.3, all >= 3:1); every point is also direct-labelled and tabled
@@ -57,6 +61,7 @@
   // ---- layout ---------------------------------------------------------------------------------------
   function build() {
     root.replaceChildren();
+    toTop();
     root.hidden = false;
     const s = data.sources || {};
     const anchor = (data.points || []).find(p => p.anchor || p.id === data.anchor);
