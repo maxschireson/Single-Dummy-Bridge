@@ -22,6 +22,9 @@ What differs from scripts/train_gen7_policy.py (the v4.1 run's trainer, copied w
   the labelled (row, legal card, target) entries, and cross-entropy on the final tricks, each added with
   --sid-weight (1.0). Rows without labels train the other heads only. The new weights may be missing from --init
   (they start random). Held-out scores of the label heads are printed every epoch (`sid`). Not with --augment.
+  A set with no labels at all trains a net without the label heads; --keep-heads then saves the --init net's label
+  weights with the new net, byte for byte. They are not trained, and the layers they read are, so what they
+  predict drifts with every step: a stop-gap until the set carries labels, to be scored (scripts/sid_e1.py) before use.
 
 Options as in train_gen7_policy.py:
   python scripts/train_rollout_net.py --data data.npz --out run_dir [--kind suit|mlp] [--epochs 8]
@@ -340,6 +343,7 @@ def main():
     p.add_argument('--id-dropout', type=float, default=.15, help='share of training rows whose each bot id is read as unknown')
     p.add_argument('--compare', type=Path, action='append', default=[], help='also score this net on the same held-out rows')
     p.add_argument('--sid-weight', type=float, default=1., help='weight of each label-head loss (guar, cert, single, tricks14) when the set has labels')
+    p.add_argument('--keep-heads', action='store_true', help='a set without labels: save the label weights of the --init net unchanged with the new net')
     a = p.parse_args()
     if a.all_train and not a.val_data:
         p.error('--all-train needs --val-data: with no deal held back there is nothing to score an epoch on')
@@ -378,9 +382,14 @@ def main():
           + (f" from {a.val_data.name} ({len(np.unique(vdata['deal']))} deals)" if a.val_data else ''), file=sys.stderr, flush=True)
     rng = np.random.default_rng(a.seed)
     start = init(kind, rng, a.width, len(vocab), sid)
+    kept = {}
     if a.init:
         with np.load(a.init) as f:
             loaded = {k: f[k].astype(np.float32) for k in f.files if k in start}
+            if a.keep_heads and not sid:
+                kept = {k: f[k] for k in SID_NEW if k in f.files}
+                if len(kept) != len(SID_NEW):
+                    raise SystemExit(f'--keep-heads: {a.init} has no label heads')
             theirs = [str(x) for x in f['bot_vocab']] if 'bot_vocab' in f.files else None
             same_kind = int(f['kind']) == kind
         if theirs is not None and theirs != vocab:              # the bot vectors by name; a bot the net lacks starts at zero
@@ -480,14 +489,14 @@ def main():
         history.append(row)
         print(json.dumps(row), flush=True)
         if a.save_epochs:                   # every epoch's weights, so an epoch can be chosen by another measure
-            np.savez(a.out / f'policy_epoch{epoch + 1}.npz', **{k: np.asarray(x) for k, x in params.items()}, kind=np.array(kind),
+            np.savez(a.out / f'policy_epoch{epoch + 1}.npz', **{k: np.asarray(x) for k, x in params.items()}, **kept, kind=np.array(kind),
                      bot_vocab=np.array(vocab), **bank)
         if best is None or v['all']['nll'] < best[0]:
             best = (v['all']['nll'], epoch + 1, {k: np.asarray(x) for k, x in params.items()})
         elif a.patience and epoch + 1 - best[1] >= a.patience:
             break
     final = {k: jnp.asarray(x) for k, x in best[2].items()}
-    exported = dict(best[2], kind=np.array(kind))
+    exported = dict(best[2], **kept, kind=np.array(kind))
     np.savez(a.out / 'policy.npz', **exported, bot_vocab=np.array(vocab), **bank)
     # NumPy inference must agree with the trained graph.
     rows = val[:512]

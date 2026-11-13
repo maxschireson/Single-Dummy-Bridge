@@ -126,13 +126,11 @@ class Weights:
                                 if k else np.zeros((1, 0), np.int32))
         return self.combos[key]
 
-    def cells(self, pos, who):
-        """{(eu, 0): weight}, summing to 1. `who` = (East's real seat, West's, the cards each has played (masks),
-        dealer, vulnerability, auction)."""
-        t0 = time.perf_counter()
-        e_real, w_real, e_played, w_played, dealer, vul, auction = who
+    def layouts(self, pos, who):
+        """(pool, east, logw): the unseen cards in rising order, every card-fit layout as East's cards among them
+        [layouts, len(pool)] bool, and each layout's log weight from the scorer (not normalised)."""
+        e_real, w_real, e_played, w_played, dealer, vul, auction = who[:7]
         pool = cards_of(pos['pool'])
-        suit = np.array([c // 13 for c in pool], np.int64)
         forced = np.full(len(pool), -1, np.int8)                # 0 East, 1 West
         for i, c in enumerate(pool):
             if pos['vE'] >> (c // 13) & 1:
@@ -155,6 +153,12 @@ class Weights:
                 raise ValueError('a hidden hand does not have thirteen cards')
             length, hon = hand_types(member)
             logw += self.scorer.type_log_score(length, hon, seat, dealer, vul, auction)
+        return pool, east, logw
+
+    @staticmethod
+    def by_cell(pool, east, logw):
+        """{(eu, 0): weight} from layouts and their log weights, summing to 1."""
+        suit = np.array([c // 13 for c in pool], np.int64)
         w = np.exp(logw - logw.max())
         w /= w.sum()
         key = np.zeros(len(east), np.int64)
@@ -162,8 +166,16 @@ class Weights:
             key = key * 16 + east[:, suit == s].sum(axis=1)
         uniq, inv = np.unique(key, return_inverse=True)
         sums = np.bincount(inv.ravel(), weights=w, minlength=len(uniq))
+        return {(((int(k) >> 12) & 15, (int(k) >> 8) & 15, (int(k) >> 4) & 15, int(k) & 15), 0): float(v) for k, v in zip(uniq, sums)}
+
+    def cells(self, pos, who):
+        """({(eu, 0): weight}, layouts): the weights sum to 1. `who` = (East's real seat, West's, the cards each has
+        played (masks), dealer, vulnerability, auction)."""
+        t0 = time.perf_counter()
+        pool, east, logw = self.layouts(pos, who)
+        out = self.by_cell(pool, east, logw)
         self.seconds += time.perf_counter() - t0
-        return {(((int(k) >> 12) & 15, (int(k) >> 8) & 15, (int(k) >> 4) & 15, int(k) & 15), 0): float(v) for k, v in zip(uniq, sums)}, len(east)
+        return out, len(east)
 
 
 class Labeller:
