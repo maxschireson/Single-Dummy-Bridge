@@ -8,7 +8,7 @@ Generated 2026-11-13 08:29 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 3 | 0 | 6 |
 | dave | 0 | 0 | 0 | 1 | 0 | 9 |
-| g9 | 1 | 1 | 1 | 2 | 0 | 5 |
+| g9 | 0 | 2 | 1 | 2 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 2 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
@@ -19,15 +19,16 @@ Generated 2026-11-13 08:29 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- |
 | dave | [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | feature/gen9 |
 | will | [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | feature/gen9 |
+| will | [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | feature/gen9-x9 |
 
 ## Tasks
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 until 11-13 09:29 | leased | high | 2026-11-13T15:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 09:25 | leased | medium |  |  |
+| [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 | submitted | high | 2026-11-13T15:00Z |  |
 | [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | g9 | submitted | high | 2026-11-14T01:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
@@ -112,12 +113,13 @@ Generated 2026-11-13 08:29 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | Dynamic arena lead | 11-13 07:41 | 9 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 08:21 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 16 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 08:25 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 08:25 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | g9 | 11-13 08:29 | [G9-A10 submitted for your review: X9: the Gen 9 shell on the 8X engine](inbox/will/20261113T0829Z-g9-g9-a10-submitted-for-your-revi.md) |
 | g9 | will | 11-13 08:28 | [E9-20 resolved (rejected): Diversity and redundancy of the current population](inbox/g9/20261113T0828Z-will-e9-20-resolved-rejected-divers.md) |
 | g9 | will | 11-13 08:27 | [E9-21 resolved (adopted): Field choice and Nash average on the current ladder cells](inbox/g9/20261113T0827Z-will-e9-21-resolved-adopted-field-c.md) |
 | will | g9 | 11-13 08:21 | [E9-24 submitted for your review: Floors' calibration by weight source: scorer, 8X, Gen 9](inbox/will/20261113T0821Z-g9-e9-24-submitted-for-your-revie.md) |
@@ -132,7 +134,6 @@ Generated 2026-11-13 08:29 UTC by `tools/workq.py` after a change by `g9`. Do no
 | g9 | dave | 11-13 07:43 | [G9-A8 sent back to you: Design note: a diverse arena as the source of self-play training](inbox/g9/20261113T0743Z-dave-g9-a8-sent-back-to-you-design.md) |
 | g9 | dave | 11-13 07:43 | [G9-A8 review: six points, back to you](inbox/g9/20261113T0743Z-dave-g9-a8-review-six-points-back-t.md) |
 | will | dave | 11-13 07:42 | [Ladder: 9a-32 and 8p-32 entries pushed; refresh when you can](inbox/will/20261113T0742Z-dave-ladder-9a-32-and-8p-32-entries.md) |
-| will | dave | 11-13 07:41 | [BEN pair submitted; main job to 6 cores/5 workers: please restart it in place](inbox/will/20261113T0741Z-dave-ben-pair-submitted-main-job-to.md) |
 
 ## Box queue
 
