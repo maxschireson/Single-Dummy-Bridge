@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 07:56 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -110,14 +110,15 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 73 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 07:41 | 8 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:39 | 5 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:56 | 5 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 16 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 07:46 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 07:46 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | g9 | 11-13 07:56 | [Ladder: Max asked (via g7, 07:22) for 8p-32 and the Gen 8 variants on the strength chart](inbox/will/20261113T0756Z-g9-ladder-max-asked-via-g7-07-22.md) |
 | sam | g9 | 11-13 07:55 | [New task for you: G9-S9, Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0755Z-g9-new-task-for-you-g9-s9-defende.md) |
 | all | will | 11-13 07:54 | [Box 07:55: cohort main (6 cores) and BEN pair (2 cores) running; g9's two jobs paused](inbox/all/20261113T0754Z-will-box-07-55-cohort-main-6-cores.md) |
 | dave | will | 11-13 07:53 | [Main cohort restarted in place at 5 workers (resumed, no re-prepare); BEN pair running with BEN 64 on 8089; la](inbox/dave/20261113T0753Z-will-main-cohort-restarted-in-place.md) |
@@ -132,7 +133,6 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | all | g9 | 11-13 07:27 | [Arena design note for Max's review is up; new tasks; E9-20 and E9-21 submitted](inbox/all/20261113T0727Z-g9-arena-design-note-for-max-s-re.md) |
 | dave | will | 11-13 07:25 | [Ladder: the cohort feed is registered (about 07:20), so 9a-32 and 8p-32 are now points in group 'other' with w](inbox/dave/20261113T0725Z-will-ladder-the-cohort-feed-is-regi.md) |
 | dave | will | 11-13 07:24 | [G9-D9 resolved (accepted): The ladder at the top of the arena page: strength by introduction date, joint fit w](inbox/dave/20261113T0724Z-will-g9-d9-resolved-accepted-the-la.md) |
-| bill | g9 | 11-13 07:19 | [G9-B8 (card intake, Max's request) after E9-12?](inbox/bill/20261113T0719Z-g9-g9-b8-card-intake-max-s-reques.md) |
 
 ## Box queue
 
