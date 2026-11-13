@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794551211.4849691,
+  "checked_epoch": 1794554901.3589942,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "b8c30836ddb7863761cc3d8feef69f6965edd4fb",
-  "coordination_blob": "00ed6b099b9d4ef89a90e9b835f3faa0ce98bb63",
-  "registry_blob": "117db53d037eed9c8850f3cad1d4db032fb5bf8a",
+  "coordination_revision": "5455bb08075d4b7def0c23e8c8eb7825f63e1ec4",
+  "coordination_blob": "618e3932d7098a25403c41bdb12c2c4d8d4febbd",
+  "registry_blob": "40aa491f73af16f0dd4ebe861711f87b7190d05f",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -102,29 +102,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 1585,
+      "completed": 1708,
       "target": 16036,
-      "contiguous": 1585,
+      "contiguous": 1707,
       "by_pair": {
-        "8s-32~71s-32": 528,
-        "8s-32~1": 265,
-        "8s-32~5RZ32": 264,
-        "8c-32~8s-32": 264,
-        "8c-32~71s-32": 264
+        "8s-32~71s-32": 570,
+        "8s-32~1": 285,
+        "8s-32~5RZ32": 285,
+        "8c-32~8s-32": 284,
+        "8c-32~71s-32": 284
       },
-      "root_games": 5284,
-      "tables": 65241,
+      "root_games": 5692,
+      "tables": 70103,
       "failures": 0,
-      "epoch": 1794551194.9265215,
+      "epoch": 1794554900.7067091,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794551204.9275224,
-      "completed": 1585,
+      "epoch": 1794554900.4407172,
+      "completed": 1707,
       "in_flight": [
-        1585,
-        1586,
-        1587
+        1707,
+        1708,
+        1709
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -132,15 +132,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794551205.5748682,
+      "epoch": 1794554865.8458464,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794551166.4640727,
+      "epoch": 1794554893.840391,
       "status": "published",
-      "completed": 1584
+      "completed": 1707
     },
     "process.json": {
       "pid": 108374,
@@ -157,7 +157,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction requiring a current collection change. Gen9 launch and public server are explicitly host-specific Azure4/Azure1 assignments; successor notice reviewed without adopting it. Main/Gen8/Gen7.1/cleanup refs unchanged. Current source, released actors, mix, corpus andv4.1 union verified. Planned cache rotation at1547 accounts forPIDchange; fresh collector/watchdog/publisher/locks healthy, no failures or stop markers.",
+  "result": "No new applicable instruction requiring a change to this owned stream. OpenedGen9 cohort isAzure4;8Xv3 assigned toAzure1 whileAzure3 keepsGen8BEN. FliptoGen9 refers explicitly to dashboarddefault. Currentmain/operationalGen8/historicalGen7.1/cleanuprefs unchanged. Frozen source, releasedv4.1 actors, mix, corpus andunion verified; fresh collector/watchdog/publisher/heldlocks healthy, no failures orstopmarkers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -170,48 +170,43 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T05:29:48Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T06:26:51Z",
   "reviewed_discussions": [
     {
       "number": 22,
       "disposition": "Gen9 queue only",
       "new_comments": 0
-    },
-    {
-      "number": 29,
-      "disposition": "Gen9 pipeline source, no current stream instruction",
-      "new_comments": 0
-    },
-    {
-      "number": 30,
-      "disposition": "Gen9 reading-bench research",
-      "new_comments": 0
-    },
-    {
-      "number": 33,
-      "disposition": "Self-contained public play server deployed onAzure1",
-      "new_comments": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "sidplay 2026-11-13 05:55/06:04 UTC",
-      "classification": "Max-authorized public play server onAzure1, side effects confined to that host",
-      "action": "No server install, network change or producer intervention in this workspace; no liveness inference fromAzure1 report"
+      "notice": "g7/dave 2026-11-13 06:32/06:45/07:06/07:18 UTC",
+      "classification": "Azure4 Gen9 cohort opened/registered; Azure Gen8 pools closing",
+      "action": "Other producer's collector, cohorts and registry actions. Reviewed updatedGen9 notice; no takeover or current-stream move"
     },
     {
-      "notice": "dave 2026-11-13 06:08 UTC",
-      "classification": "Gen9 Azure4-specific preflight and launch-plan handoff",
-      "action": "Reviewed immutable launch notice. It uses separate actors/source and fresh deals; no general Gen8 migration instruction"
+      "notice": "plan 2026-11-13 06:47 UTC",
+      "classification": "Rollout-netv2 research results and advice tox8",
+      "action": "Current releasedv4.1 actors unchanged. Do not train or adopt rollout nets"
     },
     {
-      "notice": "g9 2026-11-13 06:19 UTC",
-      "classification": "Gen9 Azure4 deployment starts underMax03:47; registration assigned to g7",
-      "action": "Other producer owns the collector/feed. Keep this stream on its current adoptedGen8 mix; no foreign registration or takeover"
+      "notice": "x8 2026-11-13 07:10 UTC",
+      "classification": "Max-authorized8Xv3 lanes specificallyong7 arena boxes",
+      "action": "OnlyAzure1/Azure3 lane allocation proposed; not a general collector cutover.50,818-family exclusions belong to8Xv3 using rolloutnetv1, not currentv4.1-onlyGen8"
+    },
+    {
+      "notice": "g7 2026-11-13 07:22 UTC",
+      "classification": "Max fresh-pool permission, Azure1to8Xv3, Azure3Gen8BEN, dashboarddefaultGen9, ladder additions",
+      "action": "Host-specific assignments and aggregate UI changes. This stream has16,036fixedownedfamilies and no new-pool need; keep current mix, target and source. Future new pools retain cross-corpus/training exclusions"
+    },
+    {
+      "notice": "sidnet 2026-11-13 07:23 UTC",
+      "classification": "Other session seeks clarification of crossingAzurebox assignments",
+      "action": "No box taken; no conflict involving this workspace. Do not resolve by taking or yielding another producer"
     }
   ],
-  "registry_disposition": "Entire registry unchanged from prior check; owned activeGen8 and both retired immutable pins verified.",
-  "previous_checked_epoch": 1794547788.1940427,
+  "registry_disposition": "Owned activeGen8 and both pinned retired sources unchanged and verified. Gen9 registry/default-view changes are aggregate UI actions, not relabeling this stream.",
+  "previous_checked_epoch": 1794551211.4849691,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -232,11 +227,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 6.557446718215942,
-  "publisher_age": 45.020896434783936,
-  "free_bytes": 21900152832,
+  "heartbeat_age": 0.9182770252227783,
+  "publisher_age": 7.518603324890137,
+  "free_bytes": 21107560448,
   "new_applicable_instructions": [],
-  "registry_revision": "5e367b0fa88f1dd72a1c20f165c26463a030ece7",
+  "registry_revision": "daac1de293d4fdd7aa1f488eca14643d13ed6ecf",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -290,9 +285,9 @@
   ],
   "successor_notice_review": {
     "branch": "feature/gen9-cohort",
-    "revision": "bec3c39c9e76f8ca5cc17fcd35ab16f64ad386d2",
+    "revision": "46b7e0044be79d40ad17499334b6ececf022910e",
     "path": "docs/gen9/cohort.md",
-    "blob": "9512ae470a84ad73c903685c64efff6c54e2ae0b",
-    "scope": "Azure4 Gen9 cohort, separate source/actors, no instruction to migrate other Gen8 collectors"
+    "blob": "36f6f5d4d2c8db4098a7c8112dc425d50b5263c6",
+    "scope": "Opened plan and running cohort explicitlyAzure4; no instruction to migrate otherGen8 collectors"
   }
 }
