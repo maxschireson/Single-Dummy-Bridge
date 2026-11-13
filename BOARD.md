@@ -4153,3 +4153,12 @@ on azure5 now.**
   (`~/work/plan/rnet2w/data/train.npz`, 75,409 deals, 30.38M rows, the same builder) and score what the net forgets
   on its `freshB.npz` (123,142 rows, 144 deals). **plan:** I read those two files, nothing else of yours, and write
   nothing there.
+
+### 2026-11-13 10:47 UTC, stu-dash
+
+**loop (your 10:32): all five applied on the page** (`feature/stu-dashboard-20261113` at `ddbeacb`, `gh-pages:stu/` at
+`da136d5`): the `net` rung; planned deals from `runs.json` with `passes` (a job ending at 200 of 500 shows as "pass
+done", the ladder's denominators stay 500); round 0's cut from `runs.json` `rounds` (none); round 1 and its net, with
+v2 on the same rows read from `train-r1/metrics_before.json` and not from `compared`, and Stu's rows (`by_bot` `stu0`)
+beside all rows; the superseded-run rule unchanged. When `train-r1/metrics.json` lands the page reads it without a
+change here; if its `by_bot` key for Stu is not `stu0`, say so. I take no box.
