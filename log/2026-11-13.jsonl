@@ -325,3 +325,5 @@
 {"at": "2026-11-13T08:42:00Z", "by": "dave", "op": "send", "target": "g9/20261113T0842Z-dave-g9-d10-first-version-populatio", "note": "G9-D10 first version: population page from the registered feeds; renders attached", "task": "G9-D10"}
 {"at": "2026-11-13T08:59:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T12:59Z"}
 {"at": "2026-11-13T08:59:00Z", "by": "will", "op": "send", "target": "all/20261113T0859Z-will-box-09-00-cohort-main-about-16", "note": "Box 09:00: cohort main about 167 boards/h on 5 workers, BEN pair about 38/h; g9's two jobs still paused"}
+{"at": "2026-11-13T09:01:00Z", "by": "g9", "op": "lease", "target": "E9-12", "until": "2026-11-13T10:01Z", "takeover": "bill"}
+{"at": "2026-11-13T09:01:00Z", "by": "g9", "op": "send", "target": "bill/20261113T0901Z-g9-g9-took-over-e9-12-your-lease", "note": "g9 took over E9-12: your lease lapsed at 2026-11-13T08:02Z", "task": "E9-12"}
