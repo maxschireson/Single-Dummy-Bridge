@@ -8,7 +8,7 @@
 - Transposition table at trick boundaries. Key: who holds each remaining card of each suit in rank order (North, South, unseen), show-outs, leader, trump. Stores lower and upper bounds and the best card. The value depends only on the key, so entries stay valid across decisions and deals and the table never needs clearing.
 - At a trick boundary with K cards left (`--front K`) the search reads the ending table instead of searching. The stand-in table key is the same information made canonical under suit permutation and the half-turn of the table.
 - Bounds tried before a table read and before a search: sure winners of the hand on lead; quick tricks using both declaring hands; top trumps for either side whoever leads.
-- Touching cards: declarer plays one card per run. A defender plays one per run when partner has already played, when partner is known void in the suit, or when the card is a plain discard; otherwise both ends of the run (lowest only is unsound, see README section 5).
+- Touching cards: declarer plays one card per run. A defender plays one per run when partner has already played, when partner is known void in the suit, or when the card is a plain discard; otherwise every card. Until 13 November the last case tried only both ends of the run, which is unsound (`endtable/REPORT.md` section 1); the fix and its checks are in `defender_rule/README.md`. The timings below were taken with the old rule; the fix costs 5 to 25 percent more search time on these positions.
 - Move order: stored best card first, then the two leads that last settled a node for this seat at this depth, then winners and long suits on lead, cheapest winner or lowest when following.
 
 ## The table is simulated

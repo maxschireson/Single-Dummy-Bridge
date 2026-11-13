@@ -165,19 +165,29 @@ class Sure:
         else:
             i = self.defs.index(seat)
             moves = self.defender_moves(i, pool, cnt, void, known, trick)
-            # Touching pool cards: once the other defender has played to this trick they are
-            # interchangeable, so one per run is enough. Before that the choice decides which defender
-            # can win the trick (the lowest of a run leaves partner only higher cards of it, the highest
-            # only lower ones), so both ends of each run are kept; a middle card adds nothing to those.
+            # Touching pool cards (no declaring-side or trick card between them) have no hand until played, so they
+            # are interchangeable only when the run cannot be split between the two defenders in a way that matters
+            # for this trick: the other defender has already played to it, or cannot hold the suit, or the card is a
+            # plain discard. Then one per run is enough; otherwise every card is tried. (Trying only both ends of a
+            # run while partner is still to play was unsound: endtable/REPORT.md section 1.)
             free = pool & ~known[0] & ~known[1]
             fc = [m[0] for m in moves if free >> m[0] & 1]
             keep = {m[0] for m in moves if not free >> m[0] & 1}
+            led = trick[0][1] // 13 if trick else None
+
+            def shared(c):
+                st = c // 13
+                if void[1 - i] >> st & 1:
+                    return False
+                return led is None or st == led or st == self.trump
+
             if not self.reduce:
                 keep |= set(fc)
             elif any(x == self.defs[1 - i] for x, _ in trick):
                 keep |= set(self.reps(fc, free, live))
             else:
-                keep |= set(self.reps(fc, free, live)) | set(self.reps(fc, free, live, top=True))
+                keep |= {c for c in fc if shared(c)}
+                keep |= set(self.reps([c for c in fc if not shared(c)], free, live))
             r = True
             for c, nv, nc, nk in sorted(moves, key=lambda m: -(m[0] % 13)):
                 if c not in keep:

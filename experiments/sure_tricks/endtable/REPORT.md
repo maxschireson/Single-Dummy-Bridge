@@ -34,7 +34,7 @@ last trump and cashes the red two South let go: no trick. The section 6.2 rule n
 (`./sure_cpp --value`, `sure.Sure.can`); `pooled_ref.py` gives 0. Their values can therefore be too high for declarer.
 Among all 21,869,828 show-out-only 3-card entries this is the only disagreement with the table (section 4, T4). Among
 1,000,000 random show-out-only 4-card entries there are 4, all with the table lower and `pooled_ref.py` agreeing with the
-table (section 5). These files belong to the search owner and are not changed here.
+table (section 5). These files belong to the search owner and were not changed here. **Fixed on 13 November**: both now try every card of a run unless partner has played, is void in the suit, or the card is a plain discard; the fixed `sure_cpp` agrees with the table on all 21,869,828 show-out 3-card entries and on the four 4-card lines above ([`../defender_rule/README.md`](../defender_rule/README.md)).
 
 Declarer's equivalence (one card per run of his own legal cards with no live card of another hand and no card of the
 current trick between them) is implemented as an option. Tables built with it are byte-identical to the plain ones for
@@ -179,4 +179,4 @@ minimums, more spread than the stand-in and free configurations (at most 8.5 per
   copy of the table on every azure box"). azure1 to azure5 fetched them from azure6 over the private network at idle
   priority (`azure/endtable-serve.sh`, `azure/endtable-fetch.sh`, 20:23 UTC) and kept each file only after its SHA-256
   matched section 4 or 5. Not committed. Anyone can rebuild them from this branch with the commands in section 2.
-- `sure.cpp` and `sure.py` carry the unsound defender rule (section 1); the search owner should know.
+- `sure.cpp` and `sure.py` carried the unsound defender rule (section 1); fixed on 13 November (`../defender_rule/README.md`).

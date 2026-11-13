@@ -29,6 +29,7 @@
 //        --dupkey N --dupbound N   compute the table key / the frontier bound N extra times (rough pricing)
 //        --table FILE  (built with -DENDTABLE) read values from a built ending table through endtable/endtable.h
 // A line may start with N<k> to set --need for that line.
+//        --nodefeq     try every legal card of a defender (no run equivalences; slower, exact by construction)
 //        --nobounds --noorder --nokiller --norun --norunfront --notrumpbounds --hist
 //                      switch off: sure-winner bounds, move ordering, lead memory, two-hand quick tricks (everywhere /
 //                      before table reads only), trump later-tricks bounds; switch on: the history heuristic
@@ -296,8 +297,18 @@ static inline int genDecl(const Pos& p, int seat, u64 live, Move* out) {
     return n;
 }
 
-// Defender i (0 East, 1 West): every card he may turn up with. Touching pool cards: once his partner has
-// played to the trick (or cannot hold the suit) one per run; otherwise both ends of each run.
+// Defender i (0 East, 1 West): every card he may turn up with. Pool cards have no hand until played, so touching
+// pool cards (no North-South or trick card between them) are interchangeable only when the run cannot be split
+// between him and his partner in a way that matters for this trick:
+//   1. his partner has already played to the trick (every card of the run compares alike with the trick so far and
+//      with the North-South cards still to come, and the pool left afterwards is the same up to relative rank),
+//   2. his partner is known to hold none of the suit (the run is all in his hand),
+//   3. the card is a plain discard (it cannot win the trick).
+// Then one card per run is tried. Otherwise, including when he is on lead, every card is tried. The earlier rule
+// (both ends of a run while partner is still to play) was unsound: the middle card of a run can leave the trick's
+// winner unsettled until partner plays, after declarer's side has had to commit (experiments/sure_tricks/endtable/
+// REPORT.md section 1; k3_defender_rule_counterexamples.txt). DEF_EQ = false (--nodefeq) tries every card always.
+static bool DEF_EQ = true;
 static inline int genDef(const Pos& p, int i, u64 live, Move* out) {
     int led = p.nt ? p.tc[0] / 13 : -1;
     int partnerSeat = i == 0 ? 3 : 1;
@@ -324,8 +335,11 @@ static inline int genDef(const Pos& p, int i, u64 live, Move* out) {
             if (ev) mustW += m; else if (wv) mustE += m;
         }
         if (!ok || mustE > cE || mustW > cW) continue;
-        // a plain discard cannot take the trick, so its rank against partner's card does not matter
-        bool both = !partnerPlayed && !(p.vd[1 - i] >> s & 1) && (led < 0 || s == led || s == TRUMP);
+        bool every = !DEF_EQ || (!partnerPlayed && !(p.vd[1 - i] >> s & 1) && (led < 0 || s == led || s == TRUMP));
+        if (every) {
+            for (u64 c = cards; c; c &= c - 1) { out[n].card = (int8_t)(13 * s + __builtin_ctzll(c)); out[n].nv = (uint8_t)nv; out[n].score = 0; n++; }
+            continue;
+        }
         u64 block = ((live & ~p.pool) >> (13 * s)) & S13;
         int lo = -1, hi = -1;
         u64 rest = cards;
@@ -338,7 +352,6 @@ static inline int genDef(const Pos& p, int i, u64 live, Move* out) {
             }
             if (newRun && lo >= 0) {
                 out[n].card = (int8_t)(13 * s + lo); out[n].nv = (uint8_t)nv; out[n].score = 0; n++;
-                if (both && hi != lo) { out[n].card = (int8_t)(13 * s + hi); out[n].nv = (uint8_t)nv; out[n].score = 0; n++; }
                 lo = -1;
             }
             if (r < 0) break;
@@ -736,6 +749,7 @@ int main(int argc, char** argv) {
         else if (a == "--norunfront") RUN_FRONT = false;
         else if (a == "--noorder") USE_ORDER = false;
         else if (a == "--nokiller") USE_KILLER = false;
+        else if (a == "--nodefeq") DEF_EQ = false;     // no defender equivalences: every legal card of a defender
         else if (a == "--hist") USE_HIST = true;        // history heuristic: measured no gain, off by default
         else if (a == "--mem") memGB = atof(argv[++i]);
         else if (a == "--cells") cellsGB = atof(argv[++i]);
