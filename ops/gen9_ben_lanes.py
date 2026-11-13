@@ -11,6 +11,12 @@ units with NetworkNamespacePath= (systemd 242 or later; Ubuntu 24.04 has 255). N
   python3 ops/gen9_ben_lanes.py run --pair 9p-32~ben --deals 16 --lanes 2 --seed 91 \
       --source ~/work/g9/capsule/recovery --bots configs/gen9-proto-bots.json --out ~/work/g9/runs/w7-smoke
   python3 ops/gen9_ben_lanes.py status | measure | down [--lanes N]
+  python3 ops/gen9_ben_lanes.py serve --ben-bot ben64 --source RUN_OR_CAPSULE -- CMD ...
+
+`serve` is for one process that needs one BEN server, such as an arena collector with one worker: the server runs on the
+host's own loopback (no namespace, so CMD keeps the network, e.g. for its publisher) at the bot's port, for as long as
+CMD runs, restarted if it fails meanwhile, and stopped when CMD ends; serve exits with CMD's code. It refuses if the port
+is already taken, so two servers never share a URL; for several lanes use `run`. No sudo.
 
 `run` is `up`, then `play` (start one match unit per lane, wait for them), then `merge`. On SIGTERM (a box queue
 preempting it) it takes its lanes down; run again, it resumes, since the split is the same and each lane's
@@ -276,6 +282,62 @@ def merge(out: Path) -> dict:
     return summary
 
 
+def port_free(port: int) -> bool:
+    import socket
+    with socket.socket() as s:
+        s.settimeout(1)
+        return s.connect_ex(("127.0.0.1", port)) != 0
+
+
+def serve(ben: Path, venv: Path, conf: Path, port: int, cmd: list[str], wait: float = 600, server: list[str] | None = None) -> int:
+    """One BEN server on the host's loopback for the length of cmd (see the module notes); cmd's exit code."""
+    import threading
+    if not cmd:
+        raise SystemExit("serve needs a command after --")
+    if not port_free(port):
+        raise SystemExit(f"127.0.0.1:{port} is already in use: refusing to share a BEN URL")
+    argv = server or [str(venv / "bin" / "python"), "src/gameapi.py", "--config", str(conf), "--host", "127.0.0.1",
+                      "--port", str(port), "--record", "false"]
+    env = dict(os.environ, **THREADS, PYTHONUNBUFFERED="1", XDG_CACHE_HOME=str(ben.parent / "ben-cache"))
+    if DRY:
+        print("+ (cwd " + str(ben) + ") " + " ".join(shlex.quote(c) for c in argv))
+        print("+ " + " ".join(shlex.quote(c) for c in cmd))
+        return 0
+    state = dict(proc=subprocess.Popen(argv, cwd=ben, env=env), restarts=0, done=False)
+    deadline = time.time() + wait
+    while port_free(port):
+        if state["proc"].poll() is not None:
+            raise SystemExit(f"BEN exited ({state['proc'].returncode}) before answering on 127.0.0.1:{port}")
+        if time.time() > deadline:
+            state["proc"].terminate()
+            raise SystemExit(f"BEN not ready after {wait:.0f} s")
+        time.sleep(1)
+    print(f"serve: BEN ready at 127.0.0.1:{port} (pid {state['proc'].pid})", flush=True)
+
+    def keep() -> None:  # restart the server if it fails while cmd runs, as the lane units do (Restart=on-failure)
+        while not state["done"]:
+            if state["proc"].poll() is not None and not state["done"]:
+                state["restarts"] += 1
+                print(f"serve: BEN exited ({state['proc'].returncode}); restart {state['restarts']}", flush=True)
+                time.sleep(5)
+                state["proc"] = subprocess.Popen(argv, cwd=ben, env=env)
+            time.sleep(2)
+
+    threading.Thread(target=keep, daemon=True).start()
+    child = subprocess.Popen(cmd)
+    import signal
+    signal.signal(signal.SIGTERM, lambda signum, frame: child.send_signal(signal.SIGTERM))  # the queue's stop goes to cmd
+    code = child.wait()
+    state["done"] = True
+    state["proc"].terminate()
+    try:
+        state["proc"].wait(timeout=20)
+    except subprocess.TimeoutExpired:
+        state["proc"].kill()
+    print(f"serve: {cmd[0]} exited {code}; BEN stopped ({state['restarts']} restarts)", flush=True)
+    return code
+
+
 def measure(lanes: int) -> list[dict]:
     rows = []
     for k in range(1, lanes + 1):
@@ -325,6 +387,16 @@ def main() -> int:
             p.add_argument("--episodes", action="store_true")
             p.add_argument("--python", help="interpreter for the match workers (default: this one)")
             p.add_argument("--keep-up", action="store_true", help="leave the BEN servers running afterwards")
+    p = sub.add_parser("serve")
+    p.add_argument("--ben", type=Path, default=Path("~/work/g9/ben").expanduser())
+    p.add_argument("--venv", type=Path, default=Path("~/work/g9/ben-venv").expanduser())
+    p.add_argument("--ben-bot", choices=sorted(BEN_BOTS), default="ben64")
+    p.add_argument("--port", type=int, help="override the port (default: the --ben-bot's)")
+    p.add_argument("--source", help="a run or capsule folder whose assets/ hold the --ben-bot's config")
+    p.add_argument("--conf", type=Path, help="override the BEN config")
+    p.add_argument("--wait", type=float, default=600)
+    p.add_argument("--server-cmd", help=argparse.SUPPRESS)  # tests: a stand-in for BEN's gameapi
+    p.add_argument("cmd_rest", nargs=argparse.REMAINDER, metavar="-- CMD", help="the command to run while the server is up")
     p = sub.add_parser("merge")
     p.add_argument("--out", required=True)
     a = ap.parse_args()
@@ -351,6 +423,15 @@ def main() -> int:
             print(json.dumps(merge(Path(a.out)), indent=1))
         if not a.keep_up:
             down(a.lanes)
+    elif a.cmd == "serve":
+        cmd = list(a.cmd_rest or [])
+        if cmd and cmd[0] == "--":
+            cmd = cmd[1:]
+        conf = a.conf or (conf_for(a.source, a.ben_bot) if a.source or a.ben_bot == "ben" else None)
+        if conf is None:
+            raise SystemExit("serve needs --source (whose assets/ hold the config) or --conf")
+        return serve(a.ben.expanduser(), a.venv.expanduser(), Path(conf), a.port or BEN_BOTS[a.ben_bot][0], cmd, a.wait,
+                     shlex.split(a.server_cmd) if a.server_cmd else None)
     elif a.cmd == "merge":
         print(json.dumps(merge(Path(a.out)), indent=1))
     elif a.cmd in ("status", "measure"):

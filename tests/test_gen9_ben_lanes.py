@@ -105,3 +105,49 @@ class BenLanesTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ServeTest(unittest.TestCase):
+    """serve: a stand-in server on a free port, a command that connects to it; the command's code comes back and the
+    server is gone afterwards; a taken port is refused."""
+
+    def setUp(self):
+        lanes.DRY = False  # main() --dry-run in another test leaves the module flag set
+
+    def free_port(self):
+        import socket
+        with socket.socket() as s:
+            s.bind(("127.0.0.1", 0))
+            return s.getsockname()[1]
+
+    def test_serve_runs_the_command_while_the_server_answers(self):
+        import subprocess
+        port = self.free_port()
+        server = [sys.executable, "-c", f"import socket,time;s=socket.socket();s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);"
+                                        f"s.bind(('127.0.0.1',{port}));s.listen();time.sleep(120)"]
+        cmd = [sys.executable, "-c", f"import socket,sys;socket.create_connection(('127.0.0.1',{port}),timeout=2).close();sys.exit(3)"]
+        with tempfile.TemporaryDirectory() as d, redirect_stdout(io.StringIO()):
+            code = lanes.serve(Path(d), Path(d), Path(d) / "ben-64.conf", port, cmd, wait=20, server=server)
+        self.assertEqual(code, 3)
+        self.assertTrue(lanes.port_free(port))
+
+    def test_serve_refuses_a_taken_port(self):
+        import socket
+        with socket.socket() as s:
+            s.bind(("127.0.0.1", 0)); s.listen()
+            port = s.getsockname()[1]
+            with tempfile.TemporaryDirectory() as d, self.assertRaises(SystemExit):
+                lanes.serve(Path(d), Path(d), Path(d) / "c", port, ["true"], wait=5, server=["sleep", "5"])
+
+    def test_serve_command_line(self):
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "assets").mkdir()
+            (Path(d) / "assets" / "ben-64.conf").write_text("[models]\n")
+            buf = io.StringIO()
+            with patch.object(sys, "argv", ["gen9_ben_lanes.py", "--dry-run", "serve", "--ben-bot", "ben64", "--source", d,
+                                            "--", "python3", "ops/run_gen9_cohort.py", "--workers", "1"]), redirect_stdout(buf):
+                self.assertEqual(lanes.main(), 0)
+            out = buf.getvalue()
+            self.assertIn("--port 8089", out)
+            self.assertIn(str(Path(d) / "assets" / "ben-64.conf"), out)
+            self.assertIn("ops/run_gen9_cohort.py --workers 1", out)
