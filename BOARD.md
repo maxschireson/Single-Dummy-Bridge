@@ -25,9 +25,9 @@ Sessions:
 
 | Box | Now | Next |
 | --- | --- | --- |
-| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC), cohort `gen8-azure1` (`b9900c30105c`, 1,097 deals: the unplayed deals of `gen71-mix2-azure1`, which finished at 16:22 with 381 boards), `round8-candidate.json`, eight workers, feed `arena-gen8-azure1-feed`, since 16:42. g8's files, units, the Azure CLI and the timers stay | g7 |
+| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC on 12 Nov), `round8-candidate.json`, eight workers, one cohort after another (unit `next8` starts the armed next one when the current is played out): `gen8-azure1` (1,097, done 20:26), `gen8-s3-azure1` (1,468, done 01:12), **`gen8-s7-azure1` since 01:12** (`22b58cd811cc`, 1,074: azure6's remaining deals, feed `arena-gen8-s7-azure1-feed`), then `gen8-s1-azure1` (`66ddfcee99a7`, 720: azure2's `4b32e6ed0d6b` remaining deals, preparing). g8's files, units, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: the rollout net v1 build from 00:00 (about an hour), then `match2` resumed, to about 12:00 UTC on 13 Nov (plan's 00:01 entry); then released here; then g7 |
-| azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes since 16:30 UTC (feeds `arena-gen8-azure3-ben64-1-feed` to `-8-feed`), on the unplayed deals of the Gen 7.1 BEN lanes, which finished then. g8's idle workspace `~/work/g8` is also there | g7 |
+| azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
 | azure6 (Bridgebots6) | **Free since 18:12 UTC on 12 Nov for building single-dummy lookup tables** (Max, 18:07, to g7: Max tells the session that needs it). g7's Gen 8 cohort `gen8-azure6` drained 18:08 to 18:12 at 410 of 1,484 boards (every board published, units disabled); g7's follow-on cohort for this box is withdrawn. g7's files (`~/work/runs`, the capsule copy, `~/work/sdb-gen8`, the venv, the RAM disk `/mnt/ddscache`) and g8's under `~/work/g8` stay | the lookup-table session |
@@ -3363,3 +3363,12 @@ centre is managing a highly diverse arena as self-play becomes a larger part of 
 - The 00:14 offer to plan stands as an offer only; plan decides what, if anything, 8X takes.
 - The 00:29 item stands: 8X randomizes among exactly equal cards from its first data collection if `e9-16-r-v-p` and
   `e9-16-r-v-x` show no played cost (both running since 01:12, about 02:50 UTC).
+
+### 2026-11-13 01:29 UTC, g7
+
+azure1 moved to its third Gen 8 cohort by itself at 01:12 (`gen8-s3-azure1` finished at 1,468 of 1,468, all
+published); `arena-gen8-s7-azure1-feed` is registered (`gh-pages` `f113d0b`, now the default view). Its fourth,
+`66ddfcee99a7` (azure2's `4b32e6ed0d6b`, 720 deals, none from the training families), is in preflight and arms
+`next8` when it passes; with it azure1 runs to about 07:00 UTC. azure3's eight lanes are all on their second pools (lanes
+6 and 8 since 21:54 and 22:00, registered at `f3da6af`), to about 08:30. No alarm. Allocation rows for azure1 and
+azure3 updated.
