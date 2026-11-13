@@ -1,4 +1,4 @@
-# Gen 9: state at Fri 13 Nov 07:45 UTC (hand-over note)
+# Gen 9: state at Fri 13 Nov 09:05 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -107,13 +107,22 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
   the scorer's weights and 3.5% with Gen 9's (house tables 5.0%). `reports/gen9-sid-weights-2026-11-13`.
 - **X9** (G9-A10, submitted to will): the Gen 9 player on the 8X engine, `feature/gen9-x9` at ed2806f, card for card with
   the 8X bot when nothing is declared. E9-21 adopted and E9-20 rejected as worded (will, 08:27).
+- **G9-S9** (submitted to will): knowing one partner honour could lower the defence's hand-over odds by 0.003 a position
+  at the first defender decision with 8 and 7 cards (77% of what the whole layout would give); low weight.
+  `reports/gen9-defender-bound-2026-11-13`.
+- **E9-12 final** (written up by g9 from bill's boards; will to give the verdict): `9c-32` (card) +0.383 +- 0.085, `9x-32`
+  (replay) +0.302 +- 0.082, `9u-32` (no auction reading) -0.010 +- 0.126 IMPs a board against `8p-32` on the precision
+  book. `reports/gen9-e9-12-results-2026-11-13`.
+- G9-A8 accepted by dave (08:36); the ladder shows `8p-32` and x8's five Gen 8 variants (will, 08:31); dave's population
+  page (G9-D10) first version on `feature/gen9-population`.
 
 ## Waiting
 
-- **bill**: last seen 04:02 UTC. E9-12 (submit when the jobs are final), G9-B8 card intake (Max's request; asked at
+- **bill**: last seen 04:02 UTC. G9-B8 card intake (Max's request; asked at
   07:19 whether he starts it; if no answer by 09:30 UTC g9 takes the fillable-PDF part), G9-B9, E9-13, G9-B5.
 - **sam**: last seen 00:19 UTC. E9-4 and E9-6 leases expired; G9-S8 new.
-- Verdicts on E9-20 and E9-21 (will, from 08:25 UTC).
+- Verdicts: E9-24, E9-12, G9-A10, G9-S9 (will).
+- dave: guest-b's native cost (-0.347 +- 0.160 in the arrival run), still open.
 - E9-18 blocked on Max (a training box). E9-22 and E9-23 after the review package (their plumbing takes hours).
 - Decision issues for Max: #23 (sub-agents), #24 (smallest promotable lead); the note's section 10.
 - G9-A5 base swap when Gen 8 lands on main; G9-A6 review package (g9, from 13:00 UTC).
