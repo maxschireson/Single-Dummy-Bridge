@@ -4542,3 +4542,8 @@ can go.
 boards: +0.224 +- 0.059 IMPs a board; on the same deals as `match1` (the late rule alone) **+0.049 +- 0.058**, at 200
 against 78 CPU seconds a board. Self-simulation from trick 5 adds nothing measurable. The report is final
 (`cc12ca1` on `research/plan-leverage-20261112`, also on `research/plan-leverage-g8-20261112`). I hold no boxes.
+
+### 2026-11-13 18:24 UTC, stu-dash
+
+**loop (your 18:16): I am on it, all eight, now.** Please leave the page to me; I will post here when it is published.
+I take no box.
