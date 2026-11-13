@@ -1,0 +1,532 @@
+{
+ "what": "fusion_ledger.py: see its docstring for each count",
+ "cards": 7,
+ "each": 1.0,
+ "runs": {
+  "l0-n": {
+   "boards": 200,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 1070,
+      "held": 846,
+      "gave_up": 7,
+      "decl_unknown": 0,
+      "def_decisions": 887,
+      "choice": 120,
+      "handed": 3,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 710,
+      "held": 455,
+      "gave_up": 6,
+      "decl_unknown": 0,
+      "def_decisions": 642,
+      "choice": 124,
+      "handed": 9,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1780,
+      "held": 1301,
+      "gave_up": 13,
+      "decl_unknown": 0,
+      "def_decisions": 1529,
+      "choice": 244,
+      "handed": 12,
+      "def_unknown": 0
+     }
+    },
+    "stu0-n": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 970,
+      "held": 600,
+      "gave_up": 3,
+      "decl_unknown": 0,
+      "def_decisions": 936,
+      "choice": 44,
+      "handed": 4,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 652,
+      "held": 295,
+      "gave_up": 6,
+      "decl_unknown": 0,
+      "def_decisions": 657,
+      "choice": 84,
+      "handed": 14,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1622,
+      "held": 895,
+      "gave_up": 9,
+      "decl_unknown": 0,
+      "def_decisions": 1593,
+      "choice": 128,
+      "handed": 18,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "l0-p": {
+   "boards": 500,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 618,
+      "decl_decisions": 2539,
+      "held": 1784,
+      "gave_up": 33,
+      "decl_unknown": 0,
+      "def_decisions": 2239,
+      "choice": 128,
+      "handed": 8,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 378,
+      "decl_decisions": 1571,
+      "held": 978,
+      "gave_up": 18,
+      "decl_unknown": 0,
+      "def_decisions": 1480,
+      "choice": 157,
+      "handed": 21,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 996,
+      "decl_decisions": 4110,
+      "held": 2762,
+      "gave_up": 51,
+      "decl_unknown": 0,
+      "def_decisions": 3719,
+      "choice": 285,
+      "handed": 29,
+      "def_unknown": 0
+     }
+    },
+    "stu0-p": {
+     "game": {
+      "tables": 618,
+      "decl_decisions": 2489,
+      "held": 1937,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 2238,
+      "choice": 212,
+      "handed": 6,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 378,
+      "decl_decisions": 1540,
+      "held": 990,
+      "gave_up": 7,
+      "decl_unknown": 0,
+      "def_decisions": 1440,
+      "choice": 135,
+      "handed": 17,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 996,
+      "decl_decisions": 4029,
+      "held": 2927,
+      "gave_up": 7,
+      "decl_unknown": 0,
+      "def_decisions": 3678,
+      "choice": 347,
+      "handed": 23,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "l0-pr": {
+   "boards": 6,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 8,
+      "decl_decisions": 42,
+      "held": 35,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 39,
+      "choice": 3,
+      "handed": 0,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 4,
+      "decl_decisions": 11,
+      "held": 4,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 14,
+      "choice": 8,
+      "handed": 0,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 12,
+      "decl_decisions": 53,
+      "held": 39,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 53,
+      "choice": 11,
+      "handed": 0,
+      "def_unknown": 0
+     }
+    },
+    "stu0-pr": {
+     "game": {
+      "tables": 8,
+      "decl_decisions": 45,
+      "held": 34,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 39,
+      "choice": 1,
+      "handed": 0,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 4,
+      "decl_decisions": 13,
+      "held": 6,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 11,
+      "choice": 4,
+      "handed": 0,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 12,
+      "decl_decisions": 58,
+      "held": 40,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 50,
+      "choice": 5,
+      "handed": 0,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "l0-stu0": {
+   "boards": 500,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 618,
+      "decl_decisions": 2599,
+      "held": 1822,
+      "gave_up": 20,
+      "decl_unknown": 0,
+      "def_decisions": 2321,
+      "choice": 146,
+      "handed": 10,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 378,
+      "decl_decisions": 1602,
+      "held": 1020,
+      "gave_up": 10,
+      "decl_unknown": 0,
+      "def_decisions": 1533,
+      "choice": 185,
+      "handed": 20,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 996,
+      "decl_decisions": 4201,
+      "held": 2842,
+      "gave_up": 30,
+      "decl_unknown": 0,
+      "def_decisions": 3854,
+      "choice": 331,
+      "handed": 30,
+      "def_unknown": 0
+     }
+    },
+    "stu0a": {
+     "game": {
+      "tables": 618,
+      "decl_decisions": 2518,
+      "held": 1911,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 2284,
+      "choice": 201,
+      "handed": 12,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 378,
+      "decl_decisions": 1583,
+      "held": 983,
+      "gave_up": 12,
+      "decl_unknown": 0,
+      "def_decisions": 1470,
+      "choice": 143,
+      "handed": 17,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 996,
+      "decl_decisions": 4101,
+      "held": 2894,
+      "gave_up": 12,
+      "decl_unknown": 0,
+      "def_decisions": 3754,
+      "choice": 344,
+      "handed": 29,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "l0-v1": {
+   "boards": 200,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 1014,
+      "held": 759,
+      "gave_up": 7,
+      "decl_unknown": 0,
+      "def_decisions": 905,
+      "choice": 54,
+      "handed": 5,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 682,
+      "held": 408,
+      "gave_up": 4,
+      "decl_unknown": 0,
+      "def_decisions": 648,
+      "choice": 102,
+      "handed": 10,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1696,
+      "held": 1167,
+      "gave_up": 11,
+      "decl_unknown": 0,
+      "def_decisions": 1553,
+      "choice": 156,
+      "handed": 15,
+      "def_unknown": 0
+     }
+    },
+    "stu0v1": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 1028,
+      "held": 818,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 892,
+      "choice": 79,
+      "handed": 5,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 673,
+      "held": 396,
+      "gave_up": 10,
+      "decl_unknown": 0,
+      "def_decisions": 617,
+      "choice": 61,
+      "handed": 6,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1701,
+      "held": 1214,
+      "gave_up": 10,
+      "decl_unknown": 0,
+      "def_decisions": 1509,
+      "choice": 140,
+      "handed": 11,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "l0-v1-n": {
+   "boards": 200,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 1076,
+      "held": 839,
+      "gave_up": 6,
+      "decl_unknown": 0,
+      "def_decisions": 882,
+      "choice": 90,
+      "handed": 5,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 709,
+      "held": 483,
+      "gave_up": 7,
+      "decl_unknown": 0,
+      "def_decisions": 627,
+      "choice": 100,
+      "handed": 8,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1785,
+      "held": 1322,
+      "gave_up": 13,
+      "decl_unknown": 0,
+      "def_decisions": 1509,
+      "choice": 190,
+      "handed": 13,
+      "def_unknown": 0
+     }
+    },
+    "stu0v1-n": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 915,
+      "held": 562,
+      "gave_up": 5,
+      "decl_unknown": 0,
+      "def_decisions": 938,
+      "choice": 63,
+      "handed": 10,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 646,
+      "held": 304,
+      "gave_up": 3,
+      "decl_unknown": 0,
+      "def_decisions": 634,
+      "choice": 49,
+      "handed": 11,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1561,
+      "held": 866,
+      "gave_up": 8,
+      "decl_unknown": 0,
+      "def_decisions": 1572,
+      "choice": 112,
+      "handed": 21,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "l0-v1-p": {
+   "boards": 200,
+   "bots": {
+    "8p-32-v41": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 1011,
+      "held": 733,
+      "gave_up": 8,
+      "decl_unknown": 0,
+      "def_decisions": 912,
+      "choice": 46,
+      "handed": 1,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 704,
+      "held": 445,
+      "gave_up": 10,
+      "decl_unknown": 0,
+      "def_decisions": 641,
+      "choice": 85,
+      "handed": 11,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1715,
+      "held": 1178,
+      "gave_up": 18,
+      "decl_unknown": 0,
+      "def_decisions": 1553,
+      "choice": 131,
+      "handed": 12,
+      "def_unknown": 0
+     }
+    },
+    "stu0v1-p": {
+     "game": {
+      "tables": 240,
+      "decl_decisions": 1016,
+      "held": 808,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 874,
+      "choice": 68,
+      "handed": 7,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 158,
+      "decl_decisions": 670,
+      "held": 415,
+      "gave_up": 6,
+      "decl_unknown": 0,
+      "def_decisions": 647,
+      "choice": 79,
+      "handed": 9,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 398,
+      "decl_decisions": 1686,
+      "held": 1223,
+      "gave_up": 6,
+      "decl_unknown": 0,
+      "def_decisions": 1521,
+      "choice": 147,
+      "handed": 16,
+      "def_unknown": 0
+     }
+    }
+   }
+  }
+ }
+}
