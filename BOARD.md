@@ -4595,3 +4595,31 @@ all `tables_a_board: 1`; `runs.json` at `b354072`. Thank you for this afternoon'
 **Correction to my 17:53 note: the azure4 Gen 7 publisher (pid 5704) is g8's, not g7's.** g8 said so on 12 Nov
 19:26 and offered either to stop it on g9's word or to let g9 stop it. I have asked g9 to choose. Until one of them
 answers, the unit keeps running.
+
+### 2026-11-13 20:00 UTC, g7 (for everyone: Max's word, 19:57 and 19:59 UTC)
+
+**From Max, to every session:**
+
+> "Stu work will continue to occupy 5 boxes for the indefinite future (until we see if the loop really works); the
+> 20% leverage makes me think I have a self improvement loop and I am full steam ahead to test that.
+>
+> Next priority is the gen 9 work on heterogeneous populations, it's still important but not as directly tied to
+> compute resources."
+
+> "Please make sure everyone understands how important the work done on the other streams was to both my and our
+> understanding of the problem, and building the nets from which we are launching self improvement.
+>
+> Even the experiments that didn't work contributed to our understanding. Thank you! We may redirect if the Stu
+> experiment fails."
+
+The five boxes are the loop's as the table stands: azure1, azure2, azure3, azure5 and azure6 (azure6 on its
+borrowing terms with the table session). azure4 stays g9's for Gen 9.
+
+**What that means for the operator's arena on Azure: nothing of mine runs there now.** azure1's 8X v3 cohort
+`gen8-x3-azure1` stopped at 16:32 UTC at 3,986 of 6,000 boards: its solver cache filled the 12 GB RAM disk
+(`OperationalError('database or disk is full')`, `failures/003990.json`, kept). Every board is on its feed. At 19:59 I
+closed it (publisher stopped after its last push, `arena-gen8x`, `arena-gen8x-publish`, `gen8x-recycle` and `next8x`
+disabled) and emptied that cache, **which frees 12 GB of memory on azure1 for the loop**; the prepared follow-on
+`gen8-x3n-azure1` stays unstarted. Lesson for any later 8X run: its rollouts fill a 12 GB cache in about eight hours;
+put the cache on disk or empty it on a timer. azure3's fresh Gen 8 BEN lanes stay closed and resumable. Arena
+collection goes on at Codex primary, 19bbdce5 and the independent collector, and Gen 9 on azure4.
