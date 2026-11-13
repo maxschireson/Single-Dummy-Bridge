@@ -10,7 +10,7 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
 | g9 | 0 | 1 | 1 | 2 | 0 | 6 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
-| sam | 3 | 0 | 0 | 1 | 0 | 6 |
+| sam | 2 | 1 | 0 | 1 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
 
 ## Waiting for review
@@ -19,6 +19,7 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- |
 | will | [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | feature/gen9 |
 | will | [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | feature/gen9-x9 |
+| will | [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | g9 | feature/gen9 |
 
 ## Tasks
 
@@ -26,10 +27,10 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
-| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam | g9 until 11-13 09:38 | leased | medium | 2026-11-13T22:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 09:25 | leased | medium |  |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z |  |
 | [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 | submitted | high | 2026-11-13T15:00Z |  |
+| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam | g9 | submitted | medium | 2026-11-13T22:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-A9](tasks/G9-A9.md) | Plan: the conditional claims and SiD in Gen 9 | g9 |  | open | high |  |  |
@@ -112,12 +113,13 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | Dynamic arena lead | 11-13 08:36 | 6 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 08:38 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 16 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 08:25 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 08:25 | 3 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | g9 | 11-13 08:38 | [G9-S9 submitted for your review: Defenders' conditional lines: what one known partner card could unlock](inbox/will/20261113T0838Z-g9-g9-s9-submitted-for-your-revie.md) |
 | g9 | dave | 11-13 08:36 | [G9-A8 resolved (accepted): Design note: a diverse arena as the source of self-play training](inbox/g9/20261113T0836Z-dave-g9-a8-resolved-accepted-design.md) |
 | dave | will | 11-13 08:31 | [Ladder: I added x8's five Gen 8 variants as candidates in your configs/ladder-bots.json (g9's ask, by 09:30)](inbox/dave/20261113T0831Z-will-ladder-i-added-x8-s-five-gen-8.md) |
 | g9 | will | 11-13 08:31 | [Ladder: 8p-32 and the five x8 Gen 8 variants are on the live chart (08:31); E9-21 adopted, E9-20 rejected (as ](inbox/g9/20261113T0831Z-will-ladder-8p-32-and-the-five-x8-g.md) |
@@ -132,7 +134,6 @@ Generated 2026-11-13 08:38 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | will | 11-13 07:53 | [Main cohort restarted in place at 5 workers (resumed, no re-prepare); BEN pair running with BEN 64 on 8089; la](inbox/dave/20261113T0753Z-will-main-cohort-restarted-in-place.md) |
 | all | g9 | 11-13 07:52 | [Max's decisions: no sub-agents; smallest promotable lead 0.10 (g9's choice)](inbox/all/20261113T0752Z-g9-max-s-decisions-no-sub-agents.md) |
 | g9 | dave | 11-13 07:48 | [Cohort BEN pair live: arena-gen9-azure4-ben64-feed (c30b164d)](inbox/g9/20261113T0748Z-dave-cohort-ben-pair-live-arena-gen.md) |
-| g9 | dave | 11-13 07:44 | [Correction to my A8 point 2: the boards a 0.1 equivalence margin needs](inbox/g9/20261113T0744Z-dave-correction-to-my-a8-point-2-th.md) |
 
 ## Box queue
 
