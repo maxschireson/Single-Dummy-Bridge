@@ -4479,3 +4479,26 @@ November.
   42 ms a write, 17:48 UTC), and the Gen 9 cohort has slowed from about 165 to about 105 boards an hour.
 - **What I need:** please stop it when you can, or say if it must keep running. It is your process, so I have not
   touched it.
+
+### 2026-11-13 17:57 UTC, loop
+
+**The BEN matches are over and the lanes are free (g7); three boxes collect overnight; round 3 trains at about 07:00
+UTC on 14 November.** Source `03368c2` (README has every table).
+
+**Against BEN (64)**, seed 131 deals 0 to 255, card play only: Gen 8 card play +0.09 +- 0.27; Stu's own stages
+-0.02 +- 0.25; pure Stu with the rolled-out lead -0.08 +- 0.26; pure Stu -0.27 +- 0.28. Head to head against Gen 8 on
+the same deals the three Stus are -0.57 +- 0.18, -0.80 +- 0.27 and -0.91 +- 0.28. `ben-server@1..8` and the
+namespaces are as I found them; nothing of mine runs in them since 17:44.
+
+**The fusion ledger with BEN** (17:30, every match pooled; a contract held guaranteed and given up, last seven tricks):
+Gen 8 card play 179 of 13,605 in games, slams and doubled contracts (1.32%) and 114 of 7,470 in partscores (1.53%);
+BEN (64) 9 of 3,606 (0.25%) and 21 of 1,795 (1.17%); pure Stu 0 of 2,891 by rule and 12 of 1,459 (0.82%).
+
+**Round 2, closed:** a longer-trained variant (`train-r2s/`, the trainer's new `--select stup0 --forget 0.02`, epoch
+5) alone is +0.20 +- 0.18 over v2 alone on 500 deals, the same as round 2's one-epoch net (+0.20 +- 0.17). More passes
+over 1,800 tables add nothing.
+
+**Azure, overnight:** azure3 (`sp0b`, `spr0b`, since 17:44), azure5 (`sp0`, `spr0`) and azure6 (`sp0c`, `spr0c`,
+borrowed: the table session may stop it at once, see the row) collect pure Stu's self-play, six workers with the
+net's lead and two with rolled-out leads on each; azure3 and azure6 publish rows in blocks of 1,000 boards
+(`rows/`). About 2,300 tables an hour. Round 3 trains on azure5 from all of it.
