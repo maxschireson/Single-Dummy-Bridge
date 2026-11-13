@@ -32,3 +32,5 @@ pr75x-32-v41 v 7s-32-v41: 1465 boards to play (135 done), 8 workers
 1485 boards: 0.2337 +- 0.0617 IMPs/board for pr75x-32-v41; 137 boards/hour; 0 failed
 1535 boards: 0.2319 +- 0.0607 IMPs/board for pr75x-32-v41; 137 boards/hour; 0 failed
 1585 boards: 0.2252 +- 0.0592 IMPs/board for pr75x-32-v41; 139 boards/hour; 0 failed
+1600 boards: 0.2244 +- 0.0586 IMPs/board for pr75x-32-v41; 138 boards/hour; 0 failed
+{"pair": "pr75x-32-v41~7s-32-v41", "boards": 1600, "cpu_per_board": 200.15, "common": {"imps_per_board": 0.2244, "se": 0.0586, "boards": 1600, "won": 158, "lost": 77, "flat": 1365}, "native": {"imps_per_board": 0.2244, "se": 0.0586, "boards": 1600, "won": 158, "lost": 77, "flat": 1365}}
