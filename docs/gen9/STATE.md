@@ -56,6 +56,13 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 - Arrival run interim (epoch 2): against the foreign-system guest, `9a-32` reads the auction +4.30 +- 0.37 nats
   better than `8p-32` and scores +0.43 +- 0.26 IMPs a board better.
 
+- **Margin and noise in ratings** (for the arena design note; Max asked 13 Nov 01:22 whether ratings should be Elo with
+  margin as a factor). On E9-0's two 800-board box matches: boards of 10 or more IMPs (5% of boards) carry 61% to 65%
+  of the IMPs won and about 80% of the variance; counting boards won and lost detects the same edge with 1.5 to 1.9
+  times fewer boards (z 7.7 against 6.3; 6.7 against 4.8), and margins capped at 2 IMPs do the same. Ratings stay in
+  IMPs a board (the objective); won/lost or capped margins are candidates for a faster screen; a double-dummy luck
+  adjustment of the large swings is to be tested.
+
 ## Decided
 
 - The player model, the mixture over profiles and the rule for mixing kinds of profile row: `docs/gen9/architecture.md`
