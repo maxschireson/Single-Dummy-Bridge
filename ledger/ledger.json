@@ -828,76 +828,151 @@
     }
    }
   },
-  "b0-p": {
-   "boards": 181,
+  "b0-g8": {
+   "boards": 170,
    "bots": {
-    "ben64": {
+    "8p-32-v41": {
      "game": {
-      "tables": 222,
-      "decl_decisions": 936,
-      "held": 689,
-      "gave_up": 2,
+      "tables": 210,
+      "decl_decisions": 862,
+      "held": 613,
+      "gave_up": 6,
       "decl_unknown": 0,
-      "def_decisions": 791,
-      "choice": 62,
-      "handed": 4,
+      "def_decisions": 778,
+      "choice": 40,
+      "handed": 3,
       "def_unknown": 0
      },
      "part": {
-      "tables": 138,
-      "decl_decisions": 563,
-      "held": 314,
-      "gave_up": 4,
+      "tables": 128,
+      "decl_decisions": 546,
+      "held": 332,
+      "gave_up": 5,
       "decl_unknown": 0,
-      "def_decisions": 534,
-      "choice": 48,
-      "handed": 4,
+      "def_decisions": 494,
+      "choice": 54,
+      "handed": 1,
       "def_unknown": 0
      },
      "all": {
-      "tables": 360,
-      "decl_decisions": 1499,
-      "held": 1003,
-      "gave_up": 6,
+      "tables": 338,
+      "decl_decisions": 1408,
+      "held": 945,
+      "gave_up": 11,
       "decl_unknown": 0,
-      "def_decisions": 1325,
-      "choice": 110,
-      "handed": 8,
+      "def_decisions": 1272,
+      "choice": 94,
+      "handed": 4,
+      "def_unknown": 0
+     }
+    },
+    "ben64": {
+     "game": {
+      "tables": 210,
+      "decl_decisions": 851,
+      "held": 660,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 753,
+      "choice": 64,
+      "handed": 6,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 128,
+      "decl_decisions": 508,
+      "held": 295,
+      "gave_up": 3,
+      "decl_unknown": 0,
+      "def_decisions": 506,
+      "choice": 38,
+      "handed": 7,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 338,
+      "decl_decisions": 1359,
+      "held": 955,
+      "gave_up": 3,
+      "decl_unknown": 0,
+      "def_decisions": 1259,
+      "choice": 102,
+      "handed": 13,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "b0-p": {
+   "boards": 256,
+   "bots": {
+    "ben64": {
+     "game": {
+      "tables": 314,
+      "decl_decisions": 1303,
+      "held": 1005,
+      "gave_up": 3,
+      "decl_unknown": 0,
+      "def_decisions": 1109,
+      "choice": 92,
+      "handed": 5,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 196,
+      "decl_decisions": 811,
+      "held": 445,
+      "gave_up": 5,
+      "decl_unknown": 0,
+      "def_decisions": 769,
+      "choice": 82,
+      "handed": 5,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 510,
+      "decl_decisions": 2114,
+      "held": 1450,
+      "gave_up": 8,
+      "decl_unknown": 0,
+      "def_decisions": 1878,
+      "choice": 174,
+      "handed": 10,
       "def_unknown": 0
      }
     },
     "stu0-p": {
      "game": {
-      "tables": 222,
-      "decl_decisions": 890,
-      "held": 679,
+      "tables": 314,
+      "decl_decisions": 1252,
+      "held": 954,
       "gave_up": 0,
       "decl_unknown": 0,
-      "def_decisions": 823,
-      "choice": 51,
-      "handed": 5,
+      "def_decisions": 1157,
+      "choice": 66,
+      "handed": 9,
       "def_unknown": 0
      },
      "part": {
-      "tables": 138,
-      "decl_decisions": 568,
-      "held": 330,
-      "gave_up": 3,
+      "tables": 196,
+      "decl_decisions": 822,
+      "held": 469,
+      "gave_up": 5,
       "decl_unknown": 0,
-      "def_decisions": 525,
-      "choice": 46,
-      "handed": 2,
+      "def_decisions": 755,
+      "choice": 57,
+      "handed": 3,
       "def_unknown": 0
      },
      "all": {
-      "tables": 360,
-      "decl_decisions": 1458,
-      "held": 1009,
-      "gave_up": 3,
+      "tables": 510,
+      "decl_decisions": 2074,
+      "held": 1423,
+      "gave_up": 5,
       "decl_unknown": 0,
-      "def_decisions": 1348,
-      "choice": 97,
-      "handed": 7,
+      "def_decisions": 1912,
+      "choice": 123,
+      "handed": 12,
       "def_unknown": 0
      }
     }
