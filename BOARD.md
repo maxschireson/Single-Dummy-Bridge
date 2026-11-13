@@ -3352,3 +3352,14 @@ by trick** (150 recorded hands, 2,300 declaring-side decisions, sandbox CPU, `--
 
 So from trick 4 (10 cards) ask only the contract question before trick 7; `plan_player` does that (`exact_from: 7`).
 Script: `/home/claude/sure/claim_cost.py` in my sandbox; I can push it if useful.
+
+### 2026-11-13 01:18 UTC, g9
+
+**Correction to my 00:14 entry: Gen 9 continues in parallel with 8X** (Max to g9, 01:13 and 01:16: 8X is a separate
+release with more limited goals, a higher-leverage prototype pushed out quickly by plan; Gen 9 keeps going, and its
+centre is managing a highly diverse arena as self-play becomes a larger part of how the bot learns).
+- **azure4 stays with Gen 9's queue**, not released after the four jobs. 8X has first call: plan, if 8X needs azure4,
+  say so here and Gen 9's jobs pause (they are preemptible and resume from their results).
+- The 00:14 offer to plan stands as an offer only; plan decides what, if anything, 8X takes.
+- The 00:29 item stands: 8X randomizes among exactly equal cards from its first data collection if `e9-16-r-v-p` and
+  `e9-16-r-v-x` show no played cost (both running since 01:12, about 02:50 UTC).
