@@ -146,6 +146,25 @@ class ArrivalCommand(Base):
         self.assertIn('| guest | all |', text)
         self.assertIn('Snapshot = envelopes of earlier epochs', text)
         self.assertNotIn('**no**', text)
+        # the results page's data, written at each close (arena-results-v1), and the prototype page rendered from it
+        page = out / 'control' / 'page'
+        index = json.loads((page / 'index.json').read_text())
+        self.assertEqual(index['epochs'], [1, 2, 3])
+        doc = json.loads((page / 'epoch-0003.json').read_text())
+        self.assertEqual(doc['schema'], 'arena-results-v1')
+        self.assertEqual({r['player'] for r in doc['roster']}, {'ctl', 'g9', 'anchor', 'guest'})
+        self.assertEqual(next(r for r in doc['roster'] if r['player'] == 'guest')['joined_epoch'], 2)
+        self.assertEqual(doc['ratings']['reference'], RULES['reference'])
+        self.assertTrue(doc['ratings']['pairs'] and doc['ratings']['cells'])
+        self.assertEqual(sum(d['boards'] for d in doc['schedule']['played'].values()), RULES['epoch']['boards'])
+        first = json.loads((page / 'epoch-0001.json').read_text())
+        self.assertNotIn('guest', {r['player'] for r in first['ratings']['players']})
+        self.assertIn('guest', [d['player'] for d in json.loads((page / 'epoch-0001.json').read_text())['decisions']])
+        import arena9_page
+        site = self.dir / 'site'
+        arena9_page.render(page, site, 'test')
+        self.assertIn('Who is in the arena', (site / 'index.html').read_text())
+        self.assertTrue((site / 'players' / 'guest.html').exists())
 
     def test_a_plan_can_open_the_bots_test_before_epoch_2(self):
         sys.path.insert(0, str(ROOT / 'scripts'))

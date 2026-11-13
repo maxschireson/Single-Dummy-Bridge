@@ -428,6 +428,17 @@ def arrival_report(control, packages, bot='9a-32', control_bot='8p-32', replay_r
     return '\n'.join(L) + '\n'
 
 
+def write_page_data(control, packages, n):
+    """The results page's data for the epoch just closed (arena-results-v1, control/page/); a failure is printed, never
+    a reason to stop the run."""
+    try:
+        from bridge_harness.arena9_results import write_results
+        reader = next((p for p in packages.values() if (p['bundle'].get('overrides') or {}).get('engine') == 'gen9'), None)
+        write_results(control, packages, Path(control) / 'page', reader_spec=(reader or {}).get('bundle', {}).get('overrides'), epochs=[n])
+    except Exception as e:
+        print(f'results page data for epoch {n} not written: {type(e).__name__}: {e}', flush=True)
+
+
 def restore_nets():
     """Rebuild any net kept in the repository as parts and not restored yet (will's idempotent restore in run_tests.py):
     a box job gets DDS built in its checkout, not the nets."""
@@ -473,6 +484,7 @@ def arrival(out, players, rules, capsule, events, epochs, workers, backend=None)
         a9.play_epoch(control, backend, workers=workers, mirror=out / 'results.jsonl')
         queue_planned(control, plan, m['epoch'] + 1)
         nxt, decisions = a9.close_epoch(control, pkgs, source_commit=commit(), arrival=hook)
+        write_page_data(control, pkgs, m['epoch'])
         print(f"epoch {m['epoch']} played and closed in {time.time() - t:.0f}s; decisions: {json.dumps(decisions, default=str)[:800]}", flush=True)
         print(status(control), flush=True)
     rp = out / 'replay.json'
@@ -564,6 +576,7 @@ def main():
             t = time.time()
             a9.play_epoch(a.control, backend, slot=a.slot, workers=a.workers)
             nxt, decisions = a9.close_epoch(a.control, pkgs, source_commit=commit(), arrival=hook)
+            write_page_data(a.control, pkgs, m['epoch'])
             print(f"epoch {m['epoch']} played in {time.time() - t:.0f}s; decisions: {json.dumps(decisions, default=str)[:600]}")
             print(status(a.control))
 
