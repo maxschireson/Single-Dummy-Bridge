@@ -1,4 +1,4 @@
-# Gen 9: state at Fri 13 Nov 12:00 UTC (hand-over note)
+# Gen 9: state at Fri 13 Nov 12:45 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -126,11 +126,13 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 - **Pilot 2** (`9x3p-ft1`, `prefer` 0.25, same deals, done 11:53): 13 played cards changed on 12 boards, -0.0075 +- 0.0056
   IMPs a board, +0.2% time. Both pilots: of 24 changed cards none gained and 3 gave up overtricks (4S made at both
   tables). G9-A11 submitted to will (12:00) with the recommendation: `x9.conditional` off by default, no box time.
-- **E9-19, cheap version** (running in the sandbox since 11:55, `/home/claude/e919`): every one of the cohort's first
-  715 boards had the same auction at both tables (all four bots bid with house-gen6), so the cohort has nothing to
-  re-score; the same holds for the Gen 8 house pairs. Contracts differ only where an older generation (`1`, `5RZ32`) or a
-  foreign system (`8c-32`, BEN) bids. Running on the Gen 8 feeds `arena-gen8-azure1-feed` and `arena-gen8-x3-azure1-feed`
-  (439 such boards).
+- **E9-19, cheap version** (done 12:32, submitted; `reports/gen9-e9-19-2026-11-13`): every board of the Gen 9 cohort and
+  of the Gen 8 pairs among `8s-32`, `8x3-32` and `71s-32` has the same auction at both tables (all bid with house-gen6),
+  so those comparisons are card play only. On 2,322 Gen 8 native boards (439 with different contracts, all against
+  Gen 1, Gen 5 or `8c-32`) the SD of the re-scored boards fell 29.6% (bar 30%), 12% over all boards, with mean shifts
+  up to 1.7 IMPs a board; reported and stopped. Arena note 5.4 updated.
+- **E9-25** queued on azure4 (job `e9-25`, 1 core, priority 3): starts only when a core frees or dave lets it share
+  one (asked 10:29, no answer yet).
 - **G9-B8 card intake, first version** (submitted 09:55, bill to review): `scripts/gen9_card_intake.py`; Max's two
   cards read into `configs/cards/intake/` with variants by seat and vulnerability, recorded agreements and the notes'
   style statements; results `reports/gen9-card-intake-2026-11-13`. The check sheets wait for Max's confirmation.
@@ -141,8 +143,9 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 - **sam**: last seen 00:19 UTC. E9-4 and E9-6 leases expired; G9-S8 new.
 - Verdicts (will, 10:06): E9-12 adopted (about +0.4 IMPs a board from reading a foreign system by its card; replay
   adds nothing, -0.08 +- 0.10), E9-24 inconclusive (post hoc; E9-25 registered), G9-A10 and G9-S9 accepted.
-- E9-25 scripts on `feature/gen9` (`experiments/e9_25`, 9bb9aed; dry run checked); the azure4 job (1 core) waits for
-  will's answer on where BEN's bidding net is on azure4 (asked 10:07).
+- E9-25: scripts on `feature/gen9` (`experiments/e9_25`, 9bb9aed); BEN's net is at
+  `{home}/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras` (will, 10:28); job queued (above).
+- E9-22: the arrival records hold no card decisions; the guests' games must be played again first (logged 10:55).
 - dave: guest-b's native cost (-0.347 +- 0.160 in the arrival run), still open.
 - E9-18 blocked on Max (a training box). E9-22 and E9-23 after the review package (their plumbing takes hours).
 - Decisions for Max: the arena note's section 10; the card intake check sheets.
