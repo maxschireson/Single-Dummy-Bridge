@@ -28,9 +28,9 @@ Sessions:
 | --- | --- | --- |
 | azure1 (Bridgebots) | g7: **8X v3 in the arena** (Max to x8, 06:40; to g7, 07:1x UTC on 13 Nov), cohort `gen8-x3-azure1` (`e5c845da95a3`, 6,000 fresh deals, seed 8380), `configs/round8x-v3.json` at `3d93d78`, eight workers, feed `arena-gen8-x3-azure1-feed`, since 08:22 (units `arena-gen8x`, `arena-gen8x-publish`, `gen8x-recycle`). Its Gen 8 pools ended at 08:18 (five cohorts, 4,574 boards). Also the play-against-Sid server (sidplay). g8's files, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: the rollout net v1 build from 00:00 (about an hour), then `match2` resumed, to about 12:00 UTC on 13 Nov (plan's 00:01 entry); then released here; then g7 |
-| azure3 (Bridgebots3) | **loop, from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: round 1 of the rollout self-play loop (gates, the leverage control, then training) under `~/work/loop`, CPU only. It takes over from g7's Gen 8 arena `8s-32~ben64` lanes (fresh-deal pools `gen8-f-azure3-ben64-N`, armed 07:44, lanes 3, 4, 1 and 2 moved; second pools on the rest): the lanes are drained, not deleted. g7's `~/work/lanes`, the feeds `arena-gen8-f-azure3-ben64-N-feed`, the BEN (64) servers' files and g8's `~/work/g8` stay as they are | loop, until it releases the box here; then g7 |
+| azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the gate `stu0a~8p-32-v41`, then the leverage control, then a second collection shard) and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers are still up and idle; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **loop, from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: round 1 collection (the rollout bot's self-play games with every decision's rollout means) under `~/work/loop`, CPU only. plan's queue (`match5`, `rbc2a`, `rbc2b`) is paused where it stands, nothing deleted: plan's files stay under `~/work/plan`, p41's stored pools under `~/work/p41`, the prototype checkout under `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then plan |
+| azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (Stu's self-play games with full records, run `s0`) and `loop-publish`, under `~/work/loop`, CPU only; round 1's training is planned here, beside v2's set. plan's queue is frozen (`queue.sh` pid 53065 under SIGSTOP, `rbc2b` not run; loop's 08:46 entry says how to resume), nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then plan |
 | azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run` then `sidnet-run2`, CPU only, to about 15:45 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
 
 ## Log
@@ -3962,3 +3962,30 @@ its run, start `arena-ben@N` and `arena-ben-publish@N`, remove the two OFF files
 11:05, release about 15:45 UTC. **Label checks now cover ten feed types** (Gen 5, 6, 7, 7.1, 8, BEN lanes, the pre-7
 test; 84 episodes, 22,340 rows): 123,423 declaring answers against `sure_cpp`, 37,572 defender answers against
 `Finder.handovers`, 875 tables that kept a guarantee (none down), 110,693 answers against brute force: 0 differences.
+
+### 2026-11-13 09:12 UTC, loop
+
+**The loop's bot is named Stu (Max, 09:05 UTC). azure3's lanes are drained, every board published. Both boxes run Stu's
+round 0. Rows updated.**
+
+- **g7, azure3's lanes at the end of the drain (08:59:35):** lane 6 played its second pool out by itself
+  (`gen8-p2-azure3-ben64-6`, 372 boards); the fresh pools stopped after the board in hand at 19, 22, 36, 40, 16, 9 and
+  9 boards (lanes 1, 2, 3, 4, 5, 7, 8). 523 boards in those runs, each on its feed (heads `70af3d4`, `0c2d19b`,
+  `91c75e8`, `17c0814`, `74e31aa`, `2bef771`, `352bfad`, `7159a51` for lanes 1 to 8). No failure record. Collectors
+  and publishers are inactive, not disabled; the BEN servers are up and idle; `lane-switch` and `lane-recycle` run but
+  are switched off by their OFF files. Log: `~/work/loop/drain.log`. To resume a lane: my 08:46 entry.
+- **Stu, round 0** = x8's 8Z with rollout net v2 inside, ids `stu0a` and `stu0b` (the first runs' ids `z0a-v2` and
+  `z0b-v2` are the same bot). Source `research/rollout-loop-20261113` at `29d2e6a`.
+  - azure5: run `s0`, `stu0a~stu0b`, seed 9001, deals 1,000 to 19,999, since 09:09. Run `r0` (248 boards under the
+    old ids, deals under 250) is kept.
+  - azure3: `g0-stu0`, `stu0a~8p-32-v41` on seed 131, 2,000 deals, since 09:08; then the control of my 08:22 entry
+    at 3,000 deals a match; then `s0b`, deals 20,000 on. The gate's first run under the old id stopped at 163 boards
+    (-0.51 +- 0.20 over 150, interim; x8's 8z-ft1 was -0.38 +- 0.14 over 541).
+  - Rows and logs: `transfer/rollout-loop-azure3-20261113`, `transfer/rollout-loop-azure5-20261113`. The sandbox
+    matches: `transfer/rollout-loop-sandbox-20261113`.
+- **Records keep every layout's result for every candidate** (capture level 2, 128 layouts; Max, 08:59: "See how much
+  bigger / if it matters"): 43.1 KB a board against 27.2 KB on the same six deals, the same 416 decisions and cards,
+  all 444 candidate means rebuilt from the blocks exactly. So an IMP target can be built from these games later.
+- **plan, sidnet:** round 1 trains on azure5, where v2's set is (`~/work/plan/rnet2w`, 35 GB). I will read it, not
+  write it. Which files are the merged set that `policy_epoch5.npz` was trained on? If sidnet's joined set (13:05 on
+  azure6) is the better base, say so and I fetch that instead.
