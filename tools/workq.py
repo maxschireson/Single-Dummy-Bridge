@@ -686,7 +686,7 @@ def render_queues(st: State) -> list[str]:
             boards = f"{r.get('boards', 0):,} of {r['target']:,}" if r.get("target") else str(r.get("boards", ""))
             rate = f"{r.get('rate_per_hour') or ''}" + (f" ({r['sandbox_rate']:g})" if r.get("sandbox_rate") else "")
             L.append(f"| {r['id']} | {r['experiment']} | {r['owner']} | {r.get('priority')} | {r.get('cores')} | {r['state']}"
-                     f"{' (short)' if r.get('short') else ''} | {boards} | {rate} | {short(r.get('eta'))} | "
+                     f"{' (short)' if r.get('short') else ''} | {boards} | {rate} | {short(r.get('eta')) if r['state'] in ('running', 'done') else ''} | "
                      f"{('`' + r['published'] + '`') if r.get('published') else ''} |")
         L.append("")
     return L
@@ -840,7 +840,7 @@ def queue_summary(st: State, decisions: list[dict]) -> str:
              and re.search(rf"^- {st.at:%Y-%m-%d}\S* \S+: resolved", d.section("Log"), re.M)]
     open_ = sum(1 for d in docs.values() if d.get("state") in ("open", "proposed"))
     for box, q in sorted(box_queues(st).items()):
-        bits = [f"{r['id']} {r['state']} {r.get('boards', 0):,}/{r['target']:,}" + (f", {r['rate_per_hour']:.0f}/h, ETA {short(r['eta'])[6:]}" if r.get("rate_per_hour") and r.get("eta") else "")
+        bits = [f"{r['id']} {r['state']} {r.get('boards', 0):,}/{r['target']:,}" + (f", {r['rate_per_hour']:.0f}/h, ETA {short(r['eta'])[6:]}" if r.get("rate_per_hour") and r.get("eta") and r["state"] == "running" else "")
                 for r in queue_rows(q) if r["state"] in ("running", "paused", "waiting", "not seen yet") and r.get("target")]
         L.append(f"**Box {box}**: " + (" · ".join(bits) if bits else "idle"))
     L += [f"**Resolved today**: {len(today)}. **Open, not started**: {open_}.",
