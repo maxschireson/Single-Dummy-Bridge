@@ -62,7 +62,7 @@ def one(task):
     first_try = BOT.choose(o, random.Random(seed))          # as in play; it also sets the claim state the reference uses
     if (first_try.details.get('x8') or {}).get('mode') != 'rollout':
         return None
-    ref_stage = replace(base, layouts=REF, first=REF, cards=52, prior=0., race=0.)
+    ref_stage = replace(base, layouts=REF, first=REF, cards=13, prior=0., race=0.)
     t = time.process_time()
     ref = BOT.rollout_decision(o, random.Random(seed + 1), ref_stage)
     out['ref_cpu'] = time.process_time() - t
