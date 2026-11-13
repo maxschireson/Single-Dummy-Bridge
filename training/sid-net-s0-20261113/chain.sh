@@ -45,17 +45,17 @@ if want labelB; then
     --cards "$CARDS" --workers "$WORKERS" --full >> "$W/logs/labelB.log" 2>&1 || stop "label B failed: $(tail -2 "$W/logs/labelB.log")"
   log "labelB: $(tail -1 "$W/logs/labelB.log")"; touch "$W/done/labelB"
 fi
-for s in build buildB train e1 push; do
-  if want $s; then
-    case $s in                              # a stage never runs on an earlier stage's partial output
+for STAGE in build buildB train e1 push; do         # STAGE, not a name a sourced stage file might use (s was: stage-build's loop
+  if want $STAGE; then                               # over parts overwrote it, and build's marker was written as done/s15)
+    case $STAGE in                          # a stage never runs on an earlier stage's partial output
       build) [ -f "$W/done/label" ] || stop "build needs the label stage finished";;
       buildB) [ -f "$W/done/labelB" ] && [ -f "$W/done/build" ] || stop "buildB needs labelB and build finished";;
       train) [ -f "$W/done/buildB" ] || stop "train needs buildB finished";;
       e1) [ -f "$W/done/train" ] || stop "e1 needs train finished";;
     esac
-    [ -f $T/stage-$s.sh ] || stop "stage $s is not written yet at this source"
-    . $T/stage-$s.sh || stop "stage $s failed"
-    touch "$W/done/$s"
+    [ -f $T/stage-$STAGE.sh ] || stop "stage $STAGE is not written yet at this source"
+    . $T/stage-$STAGE.sh || stop "stage $STAGE failed"
+    touch "$W/done/$STAGE"
   fi
 done
 log "end of stages: $STAGES"

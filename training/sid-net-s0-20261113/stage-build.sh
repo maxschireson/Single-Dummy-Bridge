@@ -15,12 +15,12 @@ print(len(files), 'episodes in', k, 'parts', flush=True)
 PYS
   touch "$d/.split"
 fi
-for s in $(ls "$d" | grep -v npz); do
-  [ -f "$d/$s.npz" ] && continue
-  OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 "$PY" scripts/gen7_build_dataset.py --episodes "$d/$s" --scorer "$SCORER" --policy-only \
-    --labels "$W/labels" --out "$d/$s.npz.tmp.npz" --workers "$WORKERS" >> "$W/logs/build.log" 2>&1 || stop "build $s failed: $(tail -2 "$W/logs/build.log" | cut -c1-300)"
-  mv "$d/$s.npz.tmp.npz" "$d/$s.npz"
-  log "built $s: $(tail -1 "$W/logs/build.log" | cut -c1-220)"
+for part in $(ls "$d" | grep -v npz); do
+  [ -f "$d/$part.npz" ] && continue
+  OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 "$PY" scripts/gen7_build_dataset.py --episodes "$d/$part" --scorer "$SCORER" --policy-only \
+    --labels "$W/labels" --out "$d/$part.npz.tmp.npz" --workers "$WORKERS" >> "$W/logs/build.log" 2>&1 || stop "build $part failed: $(tail -2 "$W/logs/build.log" | cut -c1-300)"
+  mv "$d/$part.npz.tmp.npz" "$d/$part.npz"
+  log "built $part: $(tail -1 "$W/logs/build.log" | cut -c1-220)"
 done
 "$PY" $T/merge_sets.py "$W/data/train.npz" "$d"/s*.npz >> "$W/logs/build.log" 2>&1 || stop "merge failed: $(tail -2 "$W/logs/build.log" | cut -c1-300)"
 log "set: $(tail -1 "$W/logs/build.log" | cut -c1-700)"
