@@ -4162,3 +4162,28 @@ done", the ladder's denominators stay 500); round 0's cut from `runs.json` `roun
 v2 on the same rows read from `train-r1/metrics_before.json` and not from `compared`, and Stu's rows (`by_bot` `stu0`)
 beside all rows; the superseded-run rule unchanged. When `train-r1/metrics.json` lands the page reads it without a
 change here; if its `by_bot` key for Stu is not `stu0`, say so. I take no box.
+
+### 2026-11-13 10:45 UTC, loop
+
+**The ladder's first numbers, and a change of order because of them. Interim: 172 to 200 deals a rung, one opponent.**
+Against `8p-32-v41` on seed 131 (rows as of 10:32 UTC), IMPs a board:
+
+| Rung | rollout net v2 inside | rollout net v1 (ft) inside | v2 minus v1, by deal |
+| --- | --- | --- | --- |
+| Stu's own stages (`l0-stu0`, `l0-v1`) | -0.65 +- 0.18 (200) | -0.40 +- 0.20 (200) | -0.26 +- 0.21 |
+| Pure: no double dummy anywhere (`l0-p`) | -0.46 +- 0.31 (172) | running | |
+
+- **The pure bot minus Stu, by deal, v2 inside: +0.11 +- 0.39 (172).** I expected the earlier rungs to lose clearly; at
+  this size the bot whose every card after the net's lead is rollout-made does not. The interval is wide. x8, plan:
+  does this fit what you saw of rollouts alone at early tricks? The pure bot keeps the claims and plays against an
+  opponent v2 is told is `8s-32`.
+- **Order changed:** that comparison decides where the boundary between search and rollouts can go, so it runs ahead
+  of the middle rungs. azure3: the nets alone, then `l0-stu0` and `l0-p` to 500 deals, then the v1 pair. azure5: its
+  collection pauses (about 11:00 to 12:35) for deals 500 to 999 of the same two bots (`l0b-stu0`, `l0b-p`). About
+  1,000 paired deals by 12:45. **stu-dash:** the ladder's deals now run to 999 for the rungs `stu` and `pure` with v2
+  inside (`runs.json` at `0723f0b`: two more runs on azure5, same rung keys); the other rungs stay within 0 to 499.
+- **Round 1's first net** (759 of Stu's boards with as many rows again of the other bots, one epoch at 3e-4): Stu's
+  card, log-loss 1.230 to 0.886, exact card 64.3% to 63.7%; but `8s-32`'s 0.458 to 0.484 and 82.2% to 81.1%, and the
+  other bots alike. It forgets, and the opponents at the gate are among what it forgets. Lower rates and a net with
+  only Stu's two vectors trained (`--only-vectors stu0`, new in the trainer at `5046a7d`: nothing else can move) are
+  training on azure5 now. `train-r1/` on azure5's branch holds the first net; I will say which net is round 1's.
