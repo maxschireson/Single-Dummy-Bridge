@@ -47,11 +47,22 @@ likeliest of them. `declarer` switches it for the declaring side, whose cards no
 `defender` for a defender, whose partner reads the same cards. The record's behavior_probabilities are the
 probabilities really used.
 
+How much it mixes (`declarer_power`, `defender_power`; Max, 13 Nov 04:33: randomize only where the net has no
+clear preference, trading the information a card gives away against the value given up): among the equal cards,
+card x is played with probability proportional to p(x) ** power, p the net's probability. This is the choice that
+maximizes  power * E[log p(x)] + H(choice):  the value given up, measured by how far below the net's favourite
+the card is in log probability, against the information given away, measured by how predictable the choice is
+(its entropy H; an opponent who knows the rule learns at most log n - H nats about which card of n was chosen).
+The power is the price ratio: the value of a nat of the net's preference over the price of a nat of information.
+Power 0 plays every equal card alike; at 1 the net's own odds; large powers the favourite. A card the net likes
+half as much as its favourite is played 2 ** -power as often.
+
 Reading a mixer (`read_declarer`, `read_defender`: opponent ids; partner when `defender` is on): where the play is
 read (the deal list's weights, and the early pool), a mixer's card counts as its run of touching cards, each card
 of the run equally likely: the probability of the card played in a layout is the net's probability of the whole
 run divided by the run's length, the run taken in the hand that played the card as that layout has it. So which
-card of a run was played says nothing, and how long the run is still does. Cards rated exactly level but not
+card of a run was played says nothing, and how long the run is still does. With a power, the run's probability is
+shared out as the mixer would: the card played gets p(x) ** power / (sum over the run of p(y) ** power) of it. Cards rated exactly level but not
 touching are not pooled: telling them needs the mixer's own search.
 
 Capture (spec['x8']['capture'], x8_capture.py): every decision records its candidates and their values; from level
@@ -184,11 +195,15 @@ class MixUse:
     near: float = 0.            # rollout stages: candidates within this of the best value count as equal
     read_declarer: tuple = ()   # opponent bot ids ('*' = any) whose declaring side mixes: their cards are read as a mixer's
     read_defender: tuple = ()   # the same for opponents' defenders. Partner is read as a mixer when `defender` is on
+    declarer_power: float = 0.  # how the declaring side mixes its equal cards: card x with probability proportional to p(x) ** power,
+    defender_power: float = 0.  # p the net's probability (Max, 13 Nov 04:33: randomize only where the net has no clear preference;
+                                # see the module note). 0 = all alike; large = the net's favourite. A seat read as a mixer is read
+                                # with the power of its role here (the bots it is used against share these settings)
 
     def __post_init__(self):
         object.__setattr__(self, 'read_declarer', tuple(self.read_declarer))
         object.__setattr__(self, 'read_defender', tuple(self.read_defender))
-        if not 0 <= self.near <= 13:
+        if not 0 <= self.near <= 13 or not 0 <= self.declarer_power <= 64 or not 0 <= self.defender_power <= 64:
             raise ValueError('Invalid 8X mix settings')
 
 
@@ -335,8 +350,10 @@ class X8Player(Gen7Player):
         return logp, options
 
     def pooled_play(self, o, view, assign, i, seat, chooser):
-        """([layouts] log of the net's probability of play i's run divided by the run's length, [layouts] legal cards)."""
+        """([layouts] log of the net's probability of play i's run divided by the run's length, or with a power shared out
+        as the mixer would, [layouts] legal cards)."""
         c = o.contract
+        power = self.mix_power(chooser, c.declarer)
         ident = (o.auction, o.dealer, o.vulnerability, c, o.original_hand(c.dummy))
         if getattr(self, 'mix_cache', (None,))[0] != ident:
             self.mix_cache = (ident, {})
@@ -379,7 +396,13 @@ class X8Player(Gen7Player):
                         active = ok
                         y += step
                 p = np.exp(full) * run
-                fresh[choice] = np.log(np.maximum(p.sum(axis=1), 1e-30)) - np.log(run.sum(axis=1))
+                total = np.log(np.maximum(p.sum(axis=1), 1e-30))
+                if power > 0:                               # the run's probability shared out as p ** power
+                    lr = np.where(run, full, -np.inf)
+                    top = lr.max(axis=1)
+                    fresh[choice] = total + power * (full[:, played] - top) - np.log(np.exp(power * (lr - top[:, None])).sum(axis=1))
+                else:
+                    fresh[choice] = total - np.log(run.sum(axis=1))
             logp[~known], options[~known] = fresh, count
             keys, values, counts = np.concatenate([keys, masks[~known]]), np.concatenate([values, fresh]), np.concatenate([counts, count])
             order = np.argsort(keys)
@@ -650,14 +673,29 @@ class X8Player(Gen7Player):
         m = self.x8.mix
         return m.declarer if o.controller % 2 == o.contract.declarer % 2 else m.defender
 
+    def mix_power(self, seat, declarer):
+        m = self.x8.mix
+        return m.declarer_power if seat % 2 == declarer % 2 else m.defender_power
+
+    def mix_shares(self, o, eligible, logp):
+        """{card: probability} a mixing seat plays among its equal cards: proportional to p ** power (see the module note)."""
+        power = self.mix_power(o.controller, o.contract.declarer)
+        lp = np.array([float(logp[x]) for x in eligible])
+        w = np.exp(power * (lp - lp.max())) if power > 0 else np.ones(len(eligible))
+        return dict(zip(eligible, w / w.sum()))
+
     def pick(self, o, rng, eligible, logp):
         """One of `eligible`: the net's most probable (the spec's `exploration` as Gen 7's tie-break), or with the mix
         any of them alike. Returns (card, {card: probability of playing it})."""
         eligible = sorted(eligible)
         best = max(float(logp[x]) for x in eligible)
-        ties = set(eligible) if self.mixes(o) else {x for x in eligible if best - float(logp[x]) <= 1e-7}
+        if self.mixes(o):
+            share = self.mix_shares(o, eligible, logp)
+        else:
+            ties = {x for x in eligible if best - float(logp[x]) <= 1e-7}
+            share = {x: (x in ties) / len(ties) for x in eligible}
         epsilon = self.spec.get('exploration', 0.)
-        probs = {x: epsilon / len(eligible) + (1 - epsilon) * (x in ties) / len(ties) for x in eligible}
+        probs = {x: epsilon / len(eligible) + (1 - epsilon) * share[x] for x in eligible}
         ticket = rng.random()
         for chosen, probability in sorted(probs.items()):
             ticket -= probability
@@ -872,12 +910,23 @@ class X8Player(Gen7Player):
         eligible = sorted(card(k) for k, p in d['behavior_probabilities'].items() if p > 0)
         if len(eligible) < 2:
             return result
-        chosen = eligible[rng.randrange(len(eligible))]
-        logp = self.net.log_policy([o])[0]
+        if self.mix_power(o.controller, o.contract.declarer) > 0:
+            logp = self.net.log_policy([o])[0]
+            share = self.mix_shares(o, eligible, logp)
+            ticket, chosen = rng.random(), eligible[-1]
+            for x in eligible:
+                ticket -= share[x]
+                if ticket <= 0:
+                    chosen = x
+                    break
+        else:                                               # all alike: the draw as before powers existed
+            chosen = eligible[rng.randrange(len(eligible))]
+            logp = self.net.log_policy([o])[0]
+            share = {x: 1 / len(eligible) for x in eligible}
         likeliest = max(eligible, key=lambda x: (float(logp[x]), -x))
         details = dict(d, selector='x8-mix-' + self.spec['id'], proposal_probabilities=d['behavior_probabilities'],
-                       behavior_probabilities={symbol(x): (1 / len(eligible) if x in eligible else 0.) for x in o.legal},
-                       selected_probability=1 / len(eligible), selected_pimc_gap=d['estimates'][symbol(chosen)]['gap_to_best'],
+                       behavior_probabilities={symbol(x): float(share.get(x, 0.)) for x in o.legal},
+                       selected_probability=float(share[chosen]), selected_pimc_gap=d['estimates'][symbol(chosen)]['gap_to_best'],
                        x8_mix_moved=chosen != likeliest)
         if self.reference:                                  # an audited bot names the card it would have played without the mix
             details.update(reference_card=symbol(likeliest), expected_gain_imps=None, prediction_units='mix-against-the-net')

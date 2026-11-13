@@ -72,7 +72,8 @@ class SettingsTests(unittest.TestCase):
         r = resolved(None)
         self.assertEqual(r['stages'], [])
         self.assertEqual(r['claims']['cards'], 0)
-        self.assertEqual(r['mix'], dict(declarer=False, defender=False, near=0., read_declarer=[], read_defender=[]))
+        self.assertEqual(r['mix'], dict(declarer=False, defender=False, near=0., read_declarer=[], read_defender=[],
+                                        declarer_power=0., defender_power=0.))
         full = resolved(dict(stages=[dict(from_trick=3, to_trick=6, mode='blend', trust=.25)], claims=dict(cards=10, opponents=['a'])))
         self.assertEqual(full['stages'][0]['layouts'], 128)
         self.assertEqual(full['claims']['opponents'], ['a'])
@@ -83,7 +84,7 @@ class SettingsTests(unittest.TestCase):
                       dict(stages=[dict(from_trick=3, to_trick=6), dict(from_trick=6, to_trick=9)]), dict(claims=dict(cards=14)),
                       dict(capture=dict(level=3)), dict(mix=dict(near=-1)), dict(other=1), dict(stages=[dict(mode='rollout', layouts=0)]),
                       dict(stages=[dict(mode='blend', objective='imps')]), dict(others=[dict(policy='x', share=1.5)]),
-                      dict(capture=dict(mix_share=1.5))):
+                      dict(capture=dict(mix_share=1.5)), dict(mix=dict(defender_power=-1))):
             with self.assertRaises(ValueError, msg=str(block)):
                 x8_settings(block)
 
@@ -384,14 +385,43 @@ class PlayerTests(Fixture8):
                         plain += 1
         self.assertGreater(mixed, 5)
 
+    def test_with_a_power_equal_cards_are_mixed_as_the_nets_probability_to_that_power(self):
+        x8 = dict(stages=[dict(from_trick=8, to_trick=13, mode='rollout', layouts=12, first=4)], mix=dict(declarer=True, declarer_power=2.))
+        p = self.make8(x8, gen7=self.GEN8, list_solve=16)
+        seen = uneven = 0
+        for seed in (2, 3, 4):
+            board = next(generate(1, 700 + seed))
+            for room in (0, 1):
+                for a, o in self.views(board, self.table(p, board, room)):
+                    if a['player'] != 'x' or 'behavior_probabilities' not in a or o.controller % 2 != o.contract.declarer % 2:
+                        continue
+                    live = {k: q for k, q in a['behavior_probabilities'].items() if q > 0}
+                    if len(live) < 2:
+                        continue
+                    lp = p.net.log_policy([o])[0].astype(np.float64)
+                    w = {k: np.exp(2. * lp[card(k)]) for k in live}
+                    for k in live:
+                        self.assertAlmostEqual(live[k], w[k] / sum(w.values()), places=5)
+                    seen += 1
+                    uneven += max(live.values()) - min(live.values()) > .05
+        self.assertGreater(seen, 5)
+        self.assertGreater(uneven, 0)
+
     def test_a_mixers_card_is_read_as_its_run_of_touching_cards(self):
         """For every hidden chooser's play, the pooled probability in a layout is the net's probability of the run of
         touching cards (taken in the hand that played, as that layout has it) divided by the run's length, computed
-        here from each layout's own Observation; and with no mixer listed the reading is Gen7Player's."""
+        here from each layout's own Observation (with a power, shared out as p ** power over the run); and with no
+        mixer listed the reading is Gen7Player's."""
         from bridge_harness.gen7 import hidden_plays, past_view
         plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
         quiet = self.make8({}, gen7=self.GEN8, list_solve=16)
-        mixing = self.make8(dict(mix=dict(read_declarer=['*'], read_defender=['*'], defender=True)), gen7=self.GEN8, list_solve=16)
+        for power in (0., 2.):
+            self.check_reading(plain, quiet, power)
+
+    def check_reading(self, plain, quiet, power):
+        from bridge_harness.gen7 import hidden_plays, past_view
+        mixing = self.make8(dict(mix=dict(read_declarer=['*'], read_defender=['*'], defender=True, declarer_power=power,
+                                          defender_power=power)), gen7=self.GEN8, list_solve=16)
         checked = pooled = 0
         for seed in range(8):
             _, o, world = spot(seed, 14 + 3 * seed)
@@ -422,6 +452,8 @@ class PlayerTests(Fixture8):
                                     run.add(y)
                                 y += step
                         want = np.log(sum(np.exp(lp[y]) for y in run)) - np.log(len(run))
+                        if power:
+                            want = np.log(sum(np.exp(lp[y]) for y in run)) + power * lp[x] - np.log(sum(np.exp(power * lp[y]) for y in run))
                         pooled += len(run) > 1
                     else:
                         want = lp[x]
