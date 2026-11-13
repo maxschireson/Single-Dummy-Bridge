@@ -122,9 +122,15 @@ def evaluate(predict, data, index, batch=4096):
         return dict(n=int(mask.sum()), **{k: round(float(v[mask].mean()), 4) for k, v in cols.items()})
     phase = phase_of(meta[:, 3])
     declaring = meta[:, 6] < 2
-    return dict(all=summary(np.ones(n, bool)), root_tables=summary(meta[:, 2] == 0),
-                by_phase={PHASES[i]: summary(phase == i) for i in range(4) if (phase == i).any()},
-                declaring=summary(declaring), defending=summary(~declaring))
+    out = dict(all=summary(np.ones(n, bool)), root_tables=summary(meta[:, 2] == 0),
+               by_phase={PHASES[i]: summary(phase == i) for i in range(4) if (phase == i).any()},
+               declaring=summary(declaring), defending=summary(~declaring),
+               from_trick_7=summary(meta[:, 3] >= 24))
+    if meta.shape[1] > 8:                                       # sets built with a bot_name column
+        names = data.get('bot_names')
+        out['by_bot'] = {(str(names[b]) if names is not None and b < len(names) else f'other{b}'): summary(meta[:, 8] == b)
+                         for b in np.unique(meta[:, 8])}
+    return out
 
 
 def main():
@@ -146,11 +152,15 @@ def main():
     p.add_argument('--patience', type=int, default=0, help='stop after this many epochs without a better held-out loss; 0 = never')
     p.add_argument('--weight-decay', type=float, default=1e-4)
     p.add_argument('--kinds', default='0,1,2', help='table kinds to train on: 0 root tables, 1 tie-fork tables, 2 gap-fork tables')
+    p.add_argument('--init', type=Path, help='start from this policy.npz (same kind and width) instead of random weights')
+    p.add_argument('--compare', type=Path, action='append', default=[], help='also score this policy.npz on the same held-out rows')
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     kind = KINDS[a.kind]
     z = np.load(a.data)
     data = {k: z[k] for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal')}
+    if 'bot_names' in z.files:
+        data['bot_names'] = z['bot_names']
     bank = {k: z[k] for k in BANK_KEYS}
     split = z['deal_split']
     train_deals = np.flatnonzero(split == 0)
@@ -161,6 +171,12 @@ def main():
     test = np.flatnonzero(split[data['deal']] == 2)
     rng = np.random.default_rng(a.seed)
     params = {k: jnp.asarray(v) for k, v in init(kind, rng, a.width).items()}
+    if a.init:
+        with np.load(a.init) as w:
+            missing = [k for k in params if k not in w.files or w[k].shape != params[k].shape]
+            if missing:
+                raise SystemExit(f'--init {a.init}: no matching weights for {missing[:5]}')
+            params = {k: jnp.asarray(w[k]) for k in params}
     steps = a.epochs * (len(train) // a.batch)
     schedule = optax.warmup_cosine_decay_schedule(0., a.lr, min(500, steps // 10), steps, a.lr / 50)
     opt = optax.chain(optax.clip_by_global_norm(1.), optax.adamw(schedule, weight_decay=a.weight_decay))
@@ -247,7 +263,13 @@ def main():
         'blank_calls_only': short(evaluate(lambda b: predict(final, b), dict(held, auction=np.zeros_like(held['auction'])), everyone)),
         'blank_shown_only': short(evaluate(lambda b: predict(final, b), dict(held, shown=np.zeros_like(held['shown'])), everyone)),
     }
-    metrics = dict(kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
+    compared = {}
+    for path in a.compare:
+        with np.load(path) as w:
+            other = {k: jnp.asarray(w[k]) for k in best[2]}
+        compared[str(path)] = dict(validation=evaluate(lambda b: predict(other, b), data, val),
+                                   test=evaluate(lambda b: predict(other, b), data, test) if a.fraction == 1. else None)
+    metrics = dict(init=str(a.init) if a.init else None, compared=compared, kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
                    selected_epoch=best[1], fraction=a.fraction, train_deals=int(len(keep)), train_examples=int(len(train)),
                    validation=evaluate(lambda b: predict(final, b), data, val),
                    test=evaluate(lambda b: predict(final, b), data, test) if a.fraction == 1. else None,

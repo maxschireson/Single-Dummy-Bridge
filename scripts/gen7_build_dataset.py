@@ -5,7 +5,10 @@ One example per committed Gen 6 search decision (root tables and the fresh decis
 tables): the actor's view through bridge_harness.gen7_net.encode, the search's gap for every
 legal card, the card played, the holder of each unseen card and the final tricks.
 
-  python scripts/gen7_build_dataset.py --episodes DIR --scorer hand_fit_v0.npz --out data.npz [--workers 2]
+  python scripts/gen7_build_dataset.py --episodes DIR --scorer hand_fit_v0.npz --out data.npz [--workers 2] [--bots 7s-32,71s-32]
+
+--bots keeps only the decisions of those bots (by name, as the episodes' candidate and opponent). Column 8 of
+`meta` ('bot_name') is the bot's index in BOT_NAMES, len(BOT_NAMES) for any other.
 
 --scorer is the hand-fit scorer the bots play with; the net's `shown` inputs are its reading
 of each seat's calls (see bridge_harness.gen7_net.Shown).
@@ -30,6 +33,7 @@ from bridge_harness.gen7_net import Shown, encode, make_bank, role
 
 SOURCES = {'lead_net': 0, 'scorer': 1, 'deal_list': 2, 'gen5': 3}
 SKIP = ('replayed_prefix', 'counterfactual_forced', 'forced', 'fixed_opening_lead')
+BOT_NAMES = ('6-32', '6-256', '7s-32', '71s-32', '8s-32', '8c-32', '7f-32')
 
 
 def split_of(family):
@@ -38,11 +42,13 @@ def split_of(family):
 
 
 SHOWN = None
+KEEP = None
 
 
-def start(scorer_path):
-    global SHOWN
+def start(scorer_path, bots=None):
+    global SHOWN, KEEP
     SHOWN = Shown(FitScorer(scorer_path), *make_bank())
+    KEEP = set(bots) if bots else None
 
 
 def examples(path):
@@ -61,7 +67,8 @@ def examples(path):
             for a in table['actions']:
                 c = card(a['card'])
                 est = a.get('estimates')
-                if a.get('gen6') and est and len(est) > 1 and not any(a.get(k) for k in SKIP):
+                if a.get('gen6') and est and len(est) > 1 and not any(a.get(k) for k in SKIP) \
+                        and (KEEP is None or who.get(a['player'], '') in KEEP):
                     o = game.observation()
                     x = encode(o, SHOWN)
                     gap = np.zeros(52, np.float16)
@@ -77,7 +84,8 @@ def examples(path):
                     rows.append((x['state'], x['order'], x['legal'], x['ctx'], x['auction'], x['shown'].astype(np.float16), gap, owner, (
                         c, table['declarer_tricks'] if mine else 13 - table['declarer_tricks'], kind, a['ply'],
                         0 if bot == '6-32' else 1 if bot == '6-256' else 2, SOURCES.get(a['gen6'].get('source'), 4),
-                        role(o), min(int(a.get('samples') or 0), 30000))))
+                        role(o), min(int(a.get('samples') or 0), 30000),
+                        BOT_NAMES.index(bot) if bot in BOT_NAMES else len(BOT_NAMES))))
                 game.play(c)
     if not rows:
         return None
@@ -92,12 +100,13 @@ def main():
     p.add_argument('--scorer', type=Path, required=True)
     p.add_argument('--workers', type=int, default=2)
     p.add_argument('--limit', type=int, default=0)
+    p.add_argument('--bots', default='', help='comma-separated bot names whose decisions are kept; all when empty')
     a = p.parse_args()
     files = sorted(a.episodes.glob('*.json.gz'))
     if a.limit:
         files = files[:a.limit]
     families, parts, deal = [], [], []
-    with Pool(a.workers, initializer=start, initargs=(a.scorer,)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(a.scorer, [b for b in a.bots.split(',') if b])) as pool:
         for i, result in enumerate(pool.imap(examples, files, chunksize=8)):
             if result is None:
                 continue
@@ -113,7 +122,8 @@ def main():
     out['family'] = np.array(families)
     out['deal_split'] = np.array([split_of(f) for f in families], np.int8)
     out['bank_length'], out['bank_hon'], out['bank_log_weight'] = make_bank()
-    out['meta_columns'] = np.array(['card', 'side_tricks', 'table_kind', 'ply', 'bot', 'source', 'role', 'samples'])
+    out['meta_columns'] = np.array(['card', 'side_tricks', 'table_kind', 'ply', 'bot', 'source', 'role', 'samples', 'bot_name'])
+    out['bot_names'] = np.array(BOT_NAMES)
     np.savez(a.out, **out)
     n = len(out['deal'])
     by = np.bincount(out['deal_split'][out['deal']], minlength=3)
