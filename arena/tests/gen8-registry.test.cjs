@@ -30,5 +30,8 @@ assert.equal(split.contract_play.total,3,'same contract: play, from the standard
 assert.equal(split.contract_play.total+split.contract_bidding.total,split.contract_total.total);assert.equal(split.contract_play.n,3,'each part is averaged over all boards');
 const none=R.build([input8(R.latestSource,[row8(30,'8s-32~1','z',1,2)])],'latest').difference_views[0].groups['8s-32~1'];
 assert.equal(none.contracts_known,0,'a record without the own tables\' contracts is not classified');
+// 8X v3 (x8; Max 13 November 2026: into the arena on azure1) is counted with Gen 8: its 8s-32 and 71s-32 are the arena's.
+for(const bot of ['8x3-32','8x3u-32'])assert.ok(R.labels[bot]&&R.order.indexOf(bot)<R.order.indexOf('8s-32'),bot+' is labelled and ordered ahead of 8s-32');
+assert.deepEqual(R.members('8s-32~8x3-32').slice().sort(),['8s-32','8x3-32']);
 console.log('PASS Gen 8 sources: default view, rollups, and bidding/play/total differences, split by contract');
 
