@@ -134,7 +134,13 @@
      "stu3-pa": 1.0,
      "stu3-pb": 1.0,
      "stu3-pra": 1.0,
-     "stu3-prb": 1.0
+     "stu3-prb": 1.0,
+     "stu0-ps": 1.0,
+     "stu0-psa": 1.0,
+     "stu0-psb": 1.0,
+     "stu3-ps": 1.0,
+     "stu3-psa": 1.0,
+     "stu3-psb": 1.0
     }
    },
    "x8": {
@@ -182,6 +188,9 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-ps",
+      "stu0-psa",
+      "stu0-psb",
       "stu0-pt",
       "stu0-pv",
       "stu0-r3",
@@ -208,7 +217,10 @@
       "stu3-pb",
       "stu3-pr",
       "stu3-pra",
-      "stu3-prb"
+      "stu3-prb",
+      "stu3-ps",
+      "stu3-psa",
+      "stu3-psb"
      ],
      "guard": true,
      "full": true
@@ -240,6 +252,9 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-ps",
+      "stu0-psa",
+      "stu0-psb",
       "stu0-pt",
       "stu0-pv",
       "stu0-r3",
@@ -266,12 +281,15 @@
       "stu3-pb",
       "stu3-pr",
       "stu3-pra",
-      "stu3-prb"
+      "stu3-prb",
+      "stu3-ps",
+      "stu3-psa",
+      "stu3-psb"
      ]
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "281f044715235e28fb1f81ec14da73cc8641239c60a195f1387625d0764daedb"
+   "identity": "fb42d62ae5f49c921b370e9514be1fd9e85122a6a3cbbd333d8bb488ea70a52b"
   },
   "8p-32-v41": {
    "id": "8p-32-v41",
@@ -456,9 +474,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "8333867b8ca3bc61206fe8f0a2e9d5c167e39dafccd20f4ff6ce6057ebf11efe",
+ "identity": "e2dc918fa1a475dc1e78a7f6f41f27324ee4cbafb2220ad705ec391be5da50b1",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 0,
  "deals": 200,
- "source_commit": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01"
+ "source_commit": "1a40de0ca034c886228480e0d834550c7a2d19d2"
 }

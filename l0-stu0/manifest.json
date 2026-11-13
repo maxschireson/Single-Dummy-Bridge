@@ -7,6 +7,22 @@
   "8p-32-v41"
  ],
  "bots": {
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+  },
   "8p-32-v41": {
    "id": "8p-32-v41",
    "samples": 32,
@@ -97,22 +113,6 @@
    },
    "table_opponent": "stu0a",
    "identity": "df67d0c02cefbf5b906d7951c505348f14391571efd72e1599f746f2aa13f28e"
-  },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   },
   "6-32": {
    "id": "6-32",
@@ -292,7 +292,13 @@
      "stu3-pa": 1.0,
      "stu3-pb": 1.0,
      "stu3-pra": 1.0,
-     "stu3-prb": 1.0
+     "stu3-prb": 1.0,
+     "stu0-ps": 1.0,
+     "stu0-psa": 1.0,
+     "stu0-psb": 1.0,
+     "stu3-ps": 1.0,
+     "stu3-psa": 1.0,
+     "stu3-psb": 1.0
     }
    },
    "x8": {
@@ -350,6 +356,9 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-ps",
+      "stu0-psa",
+      "stu0-psb",
       "stu0-pt",
       "stu0-pv",
       "stu0-r3",
@@ -376,7 +385,10 @@
       "stu3-pb",
       "stu3-pr",
       "stu3-pra",
-      "stu3-prb"
+      "stu3-prb",
+      "stu3-ps",
+      "stu3-psa",
+      "stu3-psb"
      ],
      "guard": true,
      "full": true
@@ -408,6 +420,9 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-ps",
+      "stu0-psa",
+      "stu0-psb",
       "stu0-pt",
       "stu0-pv",
       "stu0-r3",
@@ -434,7 +449,10 @@
       "stu3-pb",
       "stu3-pr",
       "stu3-pra",
-      "stu3-prb"
+      "stu3-prb",
+      "stu3-ps",
+      "stu3-psa",
+      "stu3-psb"
      ]
     },
     "names": {
@@ -445,7 +463,7 @@
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "189d196d25a29a44d285e6aa2b6da79a2ca4874ba235bc6a1cdf2fc171759650"
+   "identity": "db54bf32b3d0a0385cd6c91902d47d746ae2769ecaa1ad440ce572d2ecaf7490"
   }
  },
  "pair_schedule": [
@@ -472,9 +490,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "47087301f23d92a164dcee2e18a5301e7dca84f445e2f18c765d879935ac7e7b",
+ "identity": "1c5aa983f89a8a780c0dfb9ec019f8ff183a513ac498d943a803c26fc59ccb89",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 0,
  "deals": 500,
- "source_commit": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01"
+ "source_commit": "1a40de0ca034c886228480e0d834550c7a2d19d2"
 }
