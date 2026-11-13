@@ -1,0 +1,46 @@
+{
+  "poll_start": "2026-11-13T23:27:48Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "52033bcfd64000a61543b7d6839303360bd763e0",
+  "commits": [
+    {
+      "sha": "52033bcfd64000a61543b7d6839303360bd763e0",
+      "date": "2026-11-13T23:07:10Z",
+      "message": "Stu round 3: the rung in the rollouts on 500 deals (500-999, against l0b-p) and on azure1 (azure6 runs the label experiments)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "15335540220f55f538aa770faebb01a8e3530ec4",
+      "date": "2026-11-13T23:03:47Z",
+      "message": "Stu bench: budget.py reference rolls out at most 13 cards (the stage's limit)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "9c3467bfbf703b79b6cc3fa8c856f0c9136d24f9",
+      "date": "2026-11-13T22:54:47Z",
+      "message": "Stu bench: budget.py, pure Stu's rollout decisions played again at other rollout budgets and scored against a large reference rollout of every card\n\nMax, 22:31 UTC: \"do a sweep to see how much more rollouts help\".\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "e3b764907b37d8a885ee0422bb58f85657808d65",
+      "date": "2026-11-13T22:43:18Z",
+      "message": "Stu PLAN: round 3 (the interim net, the cut and the switch to pure rollout, the experiments)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "1a40de0ca034c886228480e0d834550c7a2d19d2",
+      "date": "2026-11-13T22:42:18Z",
+      "message": "Stu: a test set apart from the validation set (round2.sh TEST: the newest boards of the second run, used for no choice; exp_labels.sh picks epochs on the validation split and scores on the test split)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "955735ad25b3a744ec979fdcec6850d560014bbe",
+      "date": "2026-11-13T22:40:46Z",
+      "message": "gen7_build_dataset --rollout-layouts: the K layouts drawn at random among those every candidate was played on (the record keeps them heaviest first, not in play order)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "5258edef45ba8021447b8ae22f1df306cfc7ea18",
+      "date": "2026-11-13T22:38:16Z",
+      "message": "Stu experiments: labels from the first K recorded layouts (gen7_build_dataset --rollout-layouts), label_variant.py, regret_pairs --head value, exp_labels.sh (label quality against volume, tables against positions)\n\nMax, 22:26 and 22:31 UTC on 13 November.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu round 3 and pure rollout on five Azure boxes; conditional process-pool memory guidance for bf16 users; label and budget research on Azure6 and Azure2.",
+  "disposition": "This collector does not run bf16 nets or Stu's fork-free research runtime. No worker recycling, pure rollout, training, model/source adoption, host/peer commands or local settings change. Maintain immutable Gen8 main mix, three normal workers and zero BEN; inspect local resources independently.",
+  "training_exclusions_for_future_cohorts": "Any future new owned cohort still needs complete pinned training-family membership for all released models, including subsequent Stu nets, and all prior corpus safeguards. Do not rewrite this existing v4.1 union, manifest or audit."
+}

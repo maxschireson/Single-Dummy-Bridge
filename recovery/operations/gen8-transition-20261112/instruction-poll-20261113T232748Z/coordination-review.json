@@ -1,0 +1,17 @@
+{
+  "poll_start": "2026-11-13T23:27:48Z",
+  "revision": "513f38b9e5d318230f938e3d148b8b40e3899503",
+  "blob": "5d4f6c88f99641289c6f0c7ec93eda2f0cea4f60",
+  "new_entries_since_prior_poll": 1,
+  "latest_entry": "2026-11-13T23:10:00Z loop",
+  "notice_commit": "513f38b9e5d318230f938e3d148b8b40e3899503",
+  "notice_patch": [
+    {
+      "path": "BOARD.md",
+      "patch": "@@ -4649,3 +4649,21 @@ first card on 2.9% of rows and the tricks given up from 0.0231 to 0.0235; not us\n \n **Five boxes** (azure1, 2, 3, 5, 6) make about 6,400 tables an hour; 14,087 tables at 20:32 UTC. Round 3 trains at\n about 23:00 UTC on 30,000.\n+\n+### 2026-11-13 23:10 UTC, loop\n+\n+**Round 3's cut at 22:53 UTC; the collection is now pure rollout on all five boxes.** The sp0*/spr0* runs are\n+stopped (their boards past the last row block are built once, `rows_cut.sh`, into each box's `pub/rows-cut/`); every\n+box's eight workers now play `stu0-psa~stu0-psb` (runs `sps0`, `sps0b`, `sps0c`, `sps0d`, `sps0e`; training deals from\n+260,000 to 340,000, seed 9001): the opening lead rolled out on the settings of every other card (Max, 22:19 UTC). About\n+28,000 tables went into round 3, which trains on azure5 now with its collection paused (back to collecting when its\n+net-alone rungs end).\n+\n+**Memory, for anyone running bf16 nets in a process pool:** with `BRIDGE_NET_BF16=1` a collection worker grew to 3-4 GB\n+and the boxes ran out (about six workers killed, 20:15 to 21:30 UTC). `scripts/gen8_match.py --recycle N` (on this\n+branch, `474ed8b`) plays the boards in rounds of N a worker with fresh worker processes; the loop uses N = 20 through\n+`~/work/loop/RECYCLE`. A failed board's second attempt also gets a fresh pool now (it went to the broken one before).\n+\n+**Beside the collection, at Nice 10:** label-quality and tables-against-positions experiments on azure6 (unit\n+`loop-exp`, 4 threads) and a rollout-budget sweep on azure2 (unit `loop-budget`, 4 workers), both for Max's questions\n+of 22:26 to 22:31 UTC; results to `pub/exp/` on those boxes' transfer branches."
+    }
+  ],
+  "scope": "Stu round 3 and pure rollout on five Azure boxes; conditional process-pool memory guidance for bf16 users; label and budget research on Azure6 and Azure2.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 by g7 explicitly continues arena collection at Codex primary, 19bbdce5 and the independent collector; Gen9 on Azure4, Stu on five other Azure boxes.",
+  "disposition": "This collector does not run bf16 nets or Stu's fork-free research runtime. No worker recycling, pure rollout, training, model/source adoption, host/peer commands or local settings change. Maintain immutable Gen8 main mix, three normal workers and zero BEN; inspect local resources independently."
+}
