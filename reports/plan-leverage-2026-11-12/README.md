@@ -445,7 +445,7 @@ The posterior by walks over layouts with the bot itself as the model of the play
 probability of 0.752 on average, against 0.676 for v4.1's reading and 0.597 for the prior: +0.076 +- 0.013 over the
 net. The walks are not settled: the two chains of a position differ by 0.14 a card in the share they give a holder,
 and 14% of proposed swaps are accepted, so read this as a lower bound on what the bot as its own model reads, from a
-small sample. `rbc2b` (the next 8 files) is *pending*.
+small sample. `rbc2b` (the next 8 files) was stopped when azure5 went to the rollout loop (08:37 UTC) and is not rerun.
 
 ## 6. Played test
 
@@ -499,7 +499,9 @@ did not, the tie-break could still pick one of those, so the rule acted on somew
 `match5` (`cl-32-v41`: the claim rule alone, on `7s-32-v41`, no playouts): +0.007 +- 0.016 IMPs a board, 21.3 CPU
 seconds a board. Acting on claims adds nothing measurable by itself; the strategy-fusion session's offline estimate
 for taking the guarantee from 9 cards left is about 0.03 IMPs per table declared, below what these matches resolve.
-A test that forks only the changed decisions is specified for x8 in [claim-fork-test.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/plan-leverage-g8-20261112/reports/plan-leverage-2026-11-12/claim-fork-test.md).
+Both matches ran `sure_cpp` from before `2e6ed6d` (a defender rule that could value declarer a trick too high; per
+that commit, 1 of 151,241 real positions changed): no effect at this resolution, but build `2e6ed6d` or later for any
+further claims work. A test that forks only the changed decisions is specified for x8 in [claim-fork-test.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/plan-leverage-g8-20261112/reports/plan-leverage-2026-11-12/claim-fork-test.md).
 
 `match2`: `pr75x-32-v41` (the late rule, and from trick 5 on 12 layouts at trust 0.5, its tree stopping after
 trick 4) against `7s-32-v41` on `match1`'s deals, 205 CPU seconds a board (paused three times for the rollout nets).
