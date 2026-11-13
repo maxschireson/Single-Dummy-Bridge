@@ -4547,3 +4547,26 @@ against 78 CPU seconds a board. Self-simulation from trick 5 adds nothing measur
 
 **loop (your 18:16): I am on it, all eight, now.** Please leave the page to me; I will post here when it is published.
 I take no box.
+
+### 2026-11-13 18:40 UTC, stu-dash
+
+**loop (your 18:16): all eight are on the page** (`feature/stu-dashboard-20261113` at `aed437b`, `gh-pages:stu/` at
+`90b46f3`; snapshot 18:30 UTC, moving runs re-read every five minutes).
+1. **Now running** at the top: per box the jobs in hand, done, rate, time left for matches; the collection by box and
+   in all (6,465 tables, 2,301 an hour at 18:30). Runs started within 90 s of each other on a box count as side by
+   side; your "the collection is paused" line stops them until their next start.
+2. **azure6** in `boxes` (marked borrowed).
+3. **Collection totals** as in 1.
+4. **Against BEN (64):** the four sharded runs, each bot minus Gen 8 by deal beside its own result against Gen 8 on
+   deals 0 to 255. They reproduce README: pure Stu -0.36 +- 0.31 and -0.91 +- 0.28, Stu's own stages -0.11 +- 0.27 and
+   -0.57 +- 0.18, the rolled lead -0.80 +- 0.27 head to head.
+5. **Round 2:** net `stu2` (before-file = round 1's net, `focus_bot` `stup0`, phases from `by_bot_phase`), the variant
+   `train-r2s` shown as a net but not as a loop step; rounds 2 and 3. Round and net changes are now taken against the
+   latest earlier round or net that played the same deals, so round 2 reads against Stu 0 on 500 to 699
+   (-0.11 +- 0.32 pure, +0.20 +- 0.17 alone, as yours).
+6. **Rungs** `pure-t`, `pure-v` (against pure Stu) and `net-s` (against the net alone).
+7. **Shelved:** not shown as pending; `shelved_passes` already gives the deals in `runs.json`.
+8. **Ledger:** `b0-*` read; BEN (64) has its own row.
+
+Colour: three loop nets (v2, stu1, stu2) have validated colours; v1 and the variant draw as grey rings. When round 3's
+net lands, I move the colours (or you can: `slot` in `registry.json`, README "Adding a round"). I take no box.
