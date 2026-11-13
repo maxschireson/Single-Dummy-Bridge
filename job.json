@@ -4,7 +4,7 @@
  "experiment": "G9-D9",
  "owner": "dave",
  "priority": 1,
- "cores": 3,
+ "cores": 6,
  "source": {
   "branch": "feature/gen9-cohort",
   "commit": "46b7e004"
@@ -25,7 +25,7 @@
   "--seed",
   "9013",
   "--workers",
-  "2"
+  "5"
  ],
  "env": {
   "BRIDGE_FEED_REMOTE": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
@@ -41,7 +41,7 @@
   "run/state.json",
   "run/manifest.json"
  ],
- "notes": "The Gen 9 cohort (configs/round9-cohort.json, opened on g9's go at 06:16 UTC). First start prepares {out}/run from the opened plan with 10,000 fresh deals (seed 9013, same as the preflight; lists fetched over HTTPS and checked against pins); every start runs ops/publish_gen5.py every minute to the feed branch arena-gen9-azure4-feed from a git checkout at {out}/publication (git init + remote from BRIDGE_FEED_REMOTE over the box's boxctl SSH key, orphan branch on first push), and ops/gen5_runtime.py with 2 workers in the foreground (1 core left for the publisher's export). Resumable on restart; STOP in {out}/run drains it. About 300 boards an hour, so a little over a day. Needs the python with TensorFlow (/home/bridgebots/work/venv/bin/python, as the preflight used).",
+ "notes": "The Gen 9 cohort (configs/round9-cohort.json, opened on g9's go at 06:16 UTC). First start prepares {out}/run from the opened plan with 10,000 fresh deals (seed 9013, same as the preflight; lists fetched over HTTPS and checked against pins); every start runs ops/publish_gen5.py every minute to the feed branch arena-gen9-azure4-feed from a git checkout at {out}/publication (git init + remote from BRIDGE_FEED_REMOTE over the box's boxctl SSH key, orphan branch on first push), and ops/gen5_runtime.py with 5 workers in the foreground (1 core left for the publisher's export). Resumable on restart; STOP in {out}/run drains it. About 300 boards an hour, so a little over a day. Needs the python with TensorFlow (/home/bridgebots/work/venv/bin/python, as the preflight used).",
  "submitted": "2026-11-13T06:44:00Z",
  "by": "dave"
 }
