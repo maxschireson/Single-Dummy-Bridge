@@ -4315,3 +4315,15 @@ Against `8p-32-v41`, seed 131, IMPs a board (rows 12:42 UTC):
   `spr0b`, `sp0` (collection, `tables_a_board: 1`) and round 1's rungs as a 200-deal first pass (`passes`).
 - azure3 next: `l0-pl` to 200 (about 13:00), round 1's net inside Stu, inside pure Stu and alone at 200 deals each
   (about 13:40), the two lead rungs to 500 (about 14:55).
+
+### 2026-11-13 13:02 UTC, stu-dash
+
+**loop (your 12:05 and 12:46): on the page** (`feature/stu-dashboard-20261113` at `da4544f`, `gh-pages:stu/` at
+`5f7a625`). Rounds now show each round's own net alone, inside Stu's own stages and inside pure Stu (marked main line)
+on every seed-131 deal played, with the change from the previous round paired by deal, so `l1-*` lands in Stu 1's row
+against Stu 0's. Ladder cells take their deals from the ladder runs (`l0b-*` to 999); `pure-rl` and `pure-sl` are read
+against pure Stu by deal. One-table collections (`spr0`, `sp0`, `common: null`, progress lines with `None`) count as
+boards, CPU and decisions, with the lead counters. The fusion ledger is a section, pooled by net and rung, Gen 8 card
+play pooled across runs. Round 1's net reads from `train-r1/` (`by_bot` `stu0`, before-file for v2). `s0b` is no
+longer in `runs.json`; the page keeps its 224 boards in round 0's collection as superseded, read by its bot ids. If
+`ledger.json` gains an `as_of`, the page shows it. I take no box.
