@@ -96,6 +96,12 @@
    "top5": 2
   },
   "comp.vs_nt_2nt_minors": false,
+  "resp.major_2nt": "invite",
+  "resp.minor_2nt": [
+   13,
+   15
+  ],
+  "resp.weak_game_raise": false,
   "resp.nt": {
    "stayman": true,
    "transfers": "jacoby",
@@ -161,7 +167,8 @@
   "balance",
   "vs_nt",
   "respond_nt",
-  "nt_answers"
+  "nt_answers",
+  "respond"
  ],
  "name": "The rule bidder's standard settings, as a card",
  "notes": [

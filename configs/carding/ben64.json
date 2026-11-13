@@ -1,0 +1,83 @@
+{
+ "schema": "carding-model-v1",
+ "id": "ben64",
+ "status": "fitted model of an outside player (E9-7); work in progress",
+ "carding": {
+  "descriptor": {
+   "length_lead_vs_suit": "3rd_5th",
+   "length_lead_vs_nt": "3rd_5th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "count": "standard",
+   "signal_on_partner_lead": "count",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "count",
+   "trump_signal": "count"
+  },
+  "emission": {
+   "partner_lead.count": [
+    [
+     0.6607,
+     0.2237,
+     0.1156
+    ],
+    [
+     0.7992,
+     0.0937,
+     0.1071
+    ]
+   ],
+   "declarer_lead.count": [
+    [
+     0.7397,
+     0.1957,
+     0.0646
+    ],
+    [
+     0.8724,
+     0.0477,
+     0.0799
+    ]
+   ],
+   "first_discard.count": [
+    [
+     0.7343,
+     0.1896,
+     0.0761
+    ],
+    [
+     0.8009,
+     0.1341,
+     0.065
+    ]
+   ],
+   "trump.count": [
+    [
+     0.8681,
+     0.0909,
+     0.041
+    ],
+    [
+     0.8904,
+     0.0693,
+     0.0403
+    ]
+   ]
+  },
+  "honesty": {
+   "lead.opening": 0.48,
+   "*": 0.5
+  },
+  "phi": 0.3
+ },
+ "provenance": {
+  "source": "arena-gen7-* and arena-gen7-1-* feeds against BEN, deal families with crc32(family) % 5 != 0",
+  "fit_tables": 2918,
+  "script": "scripts/gen9_ben_reading.py",
+  "experiment": "E9-7"
+ },
+ "notes": [
+  "Not a declared card: BEN publishes no carding. The descriptor is the reading under which its spots carry the most (count everywhere; third-and-fifth leads), and the emission tables say how its spots depend on the parity: the lowest spot by default, the highest mostly from even length.",
+  "phi 0.3 is Gen 8's factor for an unknown opponent; on held-out boards the class term at 0.3 read BEN 64 best and BEN 16 about as well as at 1."
+ ]
+}

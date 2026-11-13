@@ -129,10 +129,10 @@ def fold(log):
     st = {}
     for e in sorted(log, key=lambda e: e['seq']):
         p, k = e['player'], e['event']
-        s = st.setdefault(p, dict(status=None, protected=False, package_sha256=None, kind=None, test=None, since=None))
+        s = st.setdefault(p, dict(status=None, protected=False, package_sha256=None, kind=None, test=None, since=None, model=None))
         if k == 'submit':
             s.update(status='anchor' if e.get('kind') == 'anchor' else 'candidate', package_sha256=e['package_sha256'],
-                     kind=e.get('kind'), since=e.get('epoch'), protected=e.get('kind') == 'anchor')
+                     kind=e.get('kind'), since=e.get('epoch'), protected=e.get('kind') == 'anchor', model=e.get('model'))
         elif k == 'activate':
             s['status'] = 'active' if s['status'] == 'candidate' else s['status']
             s['since'] = e.get('epoch')
@@ -172,10 +172,64 @@ def pair_name(a, b):
     return f'{a}~{b}'
 
 
-def schedule(st, rules, previous=None):
+def gain_units(pairs, units, ratings, fixed, chunk):
+    """{pair: units} for the pairs of the gain pool: `units` chunks of `chunk` boards each, one at a time, to the pair
+    whose next chunk most reduces the total variance of the centred ratings (G9-A4's gain rule; scripts/arena_sim.py's
+    variance schedule). The covariance starts from `ratings` (a newcomer it does not know gets the weak prior S_PRIOR)
+    and first takes in `fixed` ({pair: boards} this epoch outside the pool: floors, promotion). A board's variance is
+    V0; ties go to the first pair in sorted order."""
+    names = sorted({x for p in list(pairs) + list(fixed) for x in p.split('~')} | set(ratings.players if ratings else ()))
+    k = {x: i for i, x in enumerate(names)}
+    C = np.diag([ar.S_PRIOR ** 2] * len(names)).astype(float)
+    if ratings is not None:
+        for a in ratings.players:
+            for b in ratings.players:
+                C[k[a], k[b]] = ratings.C[ratings.index(a), ratings.index(b)]
+    J = np.ones((len(names), len(names))) / len(names)
+    S = (np.eye(len(names)) - J) @ C @ (np.eye(len(names)) - J)
+
+    def vec(pair):
+        a, b = pair.split('~')
+        v = np.zeros(len(names))
+        v[k[a]] += 1; v[k[b]] -= 1
+        return v
+
+    def add(S, v, boards):
+        w = boards / ar.V0
+        Sv = S @ v
+        return S - np.outer(Sv, Sv) * (w / (1 + w * (v @ Sv)))
+
+    for pair, boards in sorted(fixed.items()):
+        if boards > 0 and len(set(pair.split('~'))) == 2:
+            S = add(S, vec(pair), boards)
+    out = {p: 0 for p in sorted(pairs)}
+    w = chunk / ar.V0
+    for _ in range(int(units)):
+        best, top = None, -1.0
+        for p in sorted(pairs):
+            v = vec(p)
+            Sv = S @ v
+            g = w * (Sv @ Sv) / (1 + w * (v @ Sv))
+            if g > top + 1e-12:
+                best, top = p, g
+        if best is None:
+            break
+        out[best] += 1
+        S = add(S, vec(best), chunk)
+    return out
+
+
+def schedule(st, rules, previous=None, ratings=None, boards=None):
     """Purposes and integer pair weights for the next epoch (docs/gen9/arena.md section 4). `previous` is the last
     epoch's schedule: a pair that keeps its purpose may not more than double or halve its weight; a pair whose purpose
-    changed (an admission becoming a promotion test, say) or that is new takes its weight at once."""
+    changed (an admission becoming a promotion test, say) or that is new takes its weight at once.
+
+    Two options in the rules (the arrival run's, G9-D6): `training_pairs: "self-play"` keeps the training purpose to
+    the champion's self-play; a `gain` share, with `gain_purposes` (say admission and panel), puts those purposes'
+    pairs in one pool whose units go by gain_units, from `ratings` (the last close's table for the rules' condition)
+    with the epoch's floors and promotion boards taken in first; `boards` is the epoch's boards less its floors. An
+    empty purpose's share goes to the gain pool when there is one, else to training. The weight cap does not apply
+    to the pool's pairs."""
     champ = champion_of(st)
     anchors = sorted(p for p, s in st.items() if s['status'] == 'anchor')
     actives = sorted(p for p, s in st.items() if s['status'] == 'active')
@@ -185,28 +239,62 @@ def schedule(st, rules, previous=None):
         'promotion': [pair_name(p, champ) for p in testing],
         'admission': [pair_name(p, q) for p in candidates for q in [champ, *anchors[:2]]],
         'panel': [pair_name(champ, a) for a in anchors],
-        'training': [pair_name(champ, champ)] + [pair_name(champ, a) for a in actives if a not in testing],
+        'training': [pair_name(champ, champ)] + ([] if rules.get('training_pairs') == 'self-play' else [pair_name(champ, a) for a in actives if a not in testing]),
     }
     shares = dict(rules['shares'])
-    spare = sum(shares[k] for k, v in purposes.items() if not v and k != 'training')
-    shares['training'] += spare
+    pool_of = tuple(rules.get('gain_purposes') or ()) if 'gain' in shares else ()
+    pool = sorted({p for k in pool_of for p in purposes.get(k, [])})
+    spare = sum(shares.get(k, 0) for k, v in purposes.items() if not v and k != 'training')
+    shares['gain' if pool else 'training'] = shares.get('gain' if pool else 'training', 0) + spare
+    if not pool:
+        shares['training'] += shares.pop('gain', 0)
     units = rules.get('weight_units', 100)
     weights = {}
     for purpose, pairs in purposes.items():
-        if not pairs or shares.get(purpose, 0) <= 0:
+        if not pairs or purpose in pool_of or shares.get(purpose, 0) <= 0:
             continue
         w = max(1, round(shares[purpose] * units / len(pairs)))
         for p in pairs:
             weights[p] = weights.get(p, 0) + w
+    if pool:
+        n_units = max(1, round(shares['gain'] * units))
+        if ratings is None or not boards:           # nothing rated yet (the first epoch): the pool is split evenly
+            each = max(1, round(n_units / len(pool)))
+            got = {p: each for p in pool}
+        else:
+            chunk = boards / units
+            fixed = {}
+            for f in floors(st, rules):
+                for p in f['pairs']:
+                    fixed[p] = fixed.get(p, 0) + f['boards']
+            for p in purposes['promotion']:
+                fixed[p] = fixed.get(p, 0) + weights.get(p, 0) * chunk
+            got = gain_units(pool, n_units, ratings, fixed, chunk)
+        for p, w in got.items():
+            if w > 0:
+                weights[p] = weights.get(p, 0) + w
     if previous:
         ratio = rules.get('max_weight_ratio', 2)
         was = {p: k for k, ps in previous.get('purposes', {}).items() for p in ps}
         now = {p: k for k, ps in purposes.items() for p in ps}
         for p, w in weights.items():
             old = previous['pair_weights'].get(p)
-            if old and was.get(p) == now.get(p):
+            if old and was.get(p) == now.get(p) and p not in pool:       # the gain pool's units are the gain rule's alone
                 weights[p] = int(min(max(w, math.ceil(old / ratio)), old * ratio))
-    return dict(purposes={k: v for k, v in purposes.items() if v}, pair_weights=dict(sorted(weights.items())))
+    return dict(purposes={k: v for k, v in purposes.items() if v}, pair_weights=dict(sorted(weights.items())), floors=floors(st, rules))
+
+
+def floors(st, rules):
+    """The rules' fixed floors whose players are all in the arena: groups of pairs that play the same deals, n boards
+    each, every epoch (a comparison such as the Gen 9 bot and its control against one guest). The scheduler places
+    the rest of an epoch's boards."""
+    out = []
+    for f in rules.get('floors', []):
+        players = {x for p in f['pairs'] for x in p.split('~')}
+        if all((st.get(x) or {}).get('status') not in (None, 'retired') for x in players):
+            out.append(dict(pairs=list(f['pairs']), boards=int(f['boards']), same_deals=bool(f.get('same_deals', True)),
+                            purpose=f.get('purpose', 'comparison')))
+    return out
 
 
 def pair_at(seed, slot, k, weights):
@@ -221,7 +309,20 @@ def deal_index(slot, k):
     return slot * (1 << 20) + k
 
 
+# k of a floor board: above the scheduler's boards, by floor group, pair and board; pairs of a same-deals group share
+# the deal index of board j
+FLOOR_BASE, FLOOR_GROUP, FLOOR_PAIR = 1 << 19, 1 << 15, 1 << 11
+
+
 # ---- epochs ---------------------------------------------------------------------------------
+
+def epoch_boards(rules, n):
+    """Boards in epoch n: `sizes[n - 1]` when the rules list sizes by epoch, else the epoch size (`first` for epoch 1)."""
+    e = rules['epoch']
+    if e.get('sizes') and n <= len(e['sizes']):
+        return int(e['sizes'][n - 1])
+    return int(e.get('first', e['boards'])) if n == 1 else int(e['boards'])
+
 
 def epoch_path(control, n):
     return Path(control) / 'epochs' / f'{n:04d}.json'
@@ -239,17 +340,20 @@ def epoch_id(m):
     return sha({k: v for k, v in m.items() if k not in ('id', 'opened_utc')})
 
 
-def make_epoch(n, previous, st, packages, rules, snapshot_id, applied, source_commit=None):
-    sch = schedule(st, rules, previous['schedule'] if previous else None)
-    rostered = sorted({x for p in sch['pair_weights'] for x in p.split('~')})
+def make_epoch(n, previous, st, packages, rules, snapshot_id, applied, source_commit=None, ratings=None):
+    scheduled = epoch_boards(rules, n) - sum(f['boards'] * len(f['pairs']) for f in floors(st, rules))
+    sch = schedule(st, rules, previous['schedule'] if previous else None, ratings=ratings, boards=max(scheduled, 0))
+    rostered = sorted({x for p in sch['pair_weights'] for x in p.split('~')} | {x for f in sch['floors'] for p in f['pairs'] for x in p.split('~')})
     players = {p: dict(package_sha256=st[p]['package_sha256'], identity=identity(packages[p]), status=st[p]['status'],
-                       protected=st[p]['protected'], test=st[p]['test']) for p in rostered}
+                       protected=st[p]['protected'], test=st[p]['test'], model=st[p].get('model')) for p in rostered}
+    if sum(f['boards'] * len(f['pairs']) for f in sch['floors']) > epoch_boards(rules, n):
+        raise ValueError('the floors need more boards than an epoch has')
     excluded = sorted({f for p in rostered for f in (packages[p].get('lineage') or {}).get('training_families', {}).values()})
     m = dict(schema=EPOCH, epoch=n, previous=previous['id'] if previous else None, rules=dict(version=rules['version'], sha256=sha(rules)),
              source_commit=source_commit, champion=champion_of(st), players=players, schedule=sch,
              conditions=dict(regimes=['common', 'native'], common_bidder=rules.get('common_bidder')),
              deals=dict(generator='gen8_match.deal(seed, slot * 2**20 + k)', seed=None, exclude_training_family_lists=excluded),
-             experience_snapshot=snapshot_id, end=dict(boards=rules['epoch']['boards']), events_applied=applied)
+             experience_snapshot=snapshot_id, end=dict(boards=epoch_boards(rules, n)), events_applied=applied)
     m['deals']['seed'] = int(sha(dict(m, deals=None))[:8], 16)
     m['id'] = epoch_id(m)
     m['opened_utc'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
@@ -267,7 +371,7 @@ def write_epoch(control, m):
     tmp.replace(Path(control) / 'CURRENT')
 
 
-def init(control, packages, rules, champion, author, authority):
+def init(control, packages, rules, champion, author, authority, arrival=None):
     control = Path(control)
     if (control / 'CURRENT').exists():
         raise ValueError('control directory already initialised')
@@ -278,7 +382,8 @@ def init(control, packages, rules, champion, author, authority):
         problems = check_package(p)
         if problems:
             raise ValueError(f'{pid}: {problems}')
-        events.append(event('submit', pid, author, authority, kind=p['kind'], package_sha256=sha(p), epoch=0))
+        extra = dict(model=arrival(p)) if arrival is not None else {}
+        events.append(event('submit', pid, author, authority, kind=p['kind'], package_sha256=sha(p), epoch=0, **extra))
     events.append(event('champion', champion, author, authority, epoch=0))
     append_log(control, events)
     (control / 'rules.json').write_text(json.dumps(rules, indent=1, sort_keys=True))
@@ -293,10 +398,30 @@ def init(control, packages, rules, champion, author, authority):
 # ---- results ---------------------------------------------------------------------------------
 
 def read_results(control):
-    rows = []
-    for path in sorted((Path(control) / 'results').glob('e*/*.jsonl')):
-        rows += [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
+    """Every board row, the first written for each (epoch, slot, k): a board written twice (two runners on one control
+    directory, which `lock` prevents) counts once."""
+    rows, seen = [], set()
+    for path in sorted((Path(control) / 'results').glob('e*/slot*.jsonl')):       # board rows; experience-*.jsonl are envelopes
+        for l in path.read_text().splitlines():
+            if l.strip():
+                r = json.loads(l)
+                key = (r['epoch'], r['slot'], r['k'])
+                if key not in seen:
+                    seen.add(key)
+                    rows.append(r)
     return rows
+
+
+def lock(control):
+    """An exclusive lock on a control directory for the life of the returned file: a second runner stops at once."""
+    import fcntl
+    f = (Path(control) / '.runner.lock').open('a+')
+    try:
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        f.close()
+        raise SystemExit(f'another runner holds {control}/.runner.lock')
+    return f
 
 
 def pooled(rows, condition):
@@ -316,7 +441,7 @@ def pooled(rows, condition):
 
 # ---- the boundary ------------------------------------------------------------------------------
 
-def close_epoch(control, packages, author='controller', source_commit=None):
+def close_epoch(control, packages, author='controller', source_commit=None, arrival=None):
     """Decide what the results of the current epoch change and open the next epoch. Returns (next manifest, decisions)."""
     control = Path(control)
     rules = json.loads((control / 'rules.json').read_text())
@@ -411,6 +536,8 @@ def close_epoch(control, packages, author='controller', source_commit=None):
                 path.rename(path.with_suffix('.refused'))
                 continue
             e = dict(e, kind=pkg['kind'], package_sha256=sha(pkg), epoch=n + 1)
+            if arrival is not None:
+                e['model'] = arrival(pkg)
         queued.append((path, e))
     append_log(control, new + [e for _, e in queued])
     for path, _ in queued:
@@ -424,7 +551,7 @@ def close_epoch(control, packages, author='controller', source_commit=None):
     st = fold(read_log(control))
     log = read_log(control)
     applied = [e['seq'] for e in log if e['seq'] not in set(_applied_so_far(control))]
-    nxt = make_epoch(n + 1, m, st, packages, rules, snap['id'], applied, source_commit=source_commit)
+    nxt = make_epoch(n + 1, m, st, packages, rules, snap['id'], applied, source_commit=source_commit, ratings=R)
     write_epoch(control, nxt)
     return nxt, decisions
 
@@ -438,24 +565,50 @@ def _applied_so_far(control):
 
 # ---- playing an epoch ------------------------------------------------------------------------
 
-def play_epoch(control, backend, slot=0, workers=1, limit=None):
+def play_epoch(control, backend, slot=0, workers=1, limit=None, mirror=None):
     """Play the current epoch's boards for one slot with a backend; rows go to results/e<n>/slot<s>.jsonl."""
     m = current(control)
     n, seed, weights = m['epoch'], m['deals']['seed'], m['schedule']['pair_weights']
     out = Path(control) / 'results' / f'e{n:04d}' / f'slot{slot}.jsonl'
     out.parent.mkdir(parents=True, exist_ok=True)
     done = {json.loads(l)['k'] for l in out.read_text().splitlines() if l.strip()} if out.exists() else set()
-    total = m['end']['boards'] if limit is None else min(limit, m['end']['boards'])
-    todo = [k for k in range(total) if k not in done]
-    jobs = {}
-    for k in todo:
-        jobs.setdefault(pair_at(seed, slot, k, weights), []).append(k)
-    with out.open('a') as f:
-        for pair, ks in sorted(jobs.items()):
-            for k, row in backend.play(m, pair, [deal_index(slot, k) for k in ks], seed, workers):
-                k = k - deal_index(slot, 0)
-                f.write(canonical(dict(row, epoch=n, epoch_id=m['id'], slot=slot, k=k, pair=pair)) + '\n')
+    jobs = {}                                   # pair -> [(k, deal index, floor group or None)]
+    floor_total = 0
+    for g, fl in enumerate(m['schedule'].get('floors', [])):
+        for pi, pair in enumerate(fl['pairs']):
+            for j in range(fl['boards']):
+                k = FLOOR_BASE + g * FLOOR_GROUP + pi * FLOOR_PAIR + j
+                d = FLOOR_BASE + g * FLOOR_GROUP + (j if fl['same_deals'] else pi * FLOOR_PAIR + j)
+                jobs.setdefault(pair, []).append((k, deal_index(slot, d), g))
+        floor_total += fl['boards'] * len(fl['pairs'])
+    rest = m['end']['boards'] - floor_total
+    for k in range(rest):
+        jobs.setdefault(pair_at(seed, slot, k, weights), []).append((k, deal_index(slot, k), None))
+    if limit is not None:
+        jobs = {p: v[:limit] for p, v in jobs.items()}
+    xp_out = out.parent / f'experience-slot{slot}.jsonl'
+    mirror = Path(mirror).open('a') if mirror else None
+    with out.open('a') as f, xp_out.open('a') as fx:
+        for pair, items in sorted(jobs.items()):
+            items = [x for x in items if x[0] not in done]
+            if not items:
+                continue
+            for (k, idx, g), (got, row) in zip(items, backend.play(m, pair, [x[1] for x in items], seed, workers)):
+                if got != idx:
+                    raise ValueError('the backend answered for another deal')
+                envelopes = row.pop('envelopes', None) or []
+                for e in envelopes:
+                    fx.write(canonical(dict(e, epoch=n)) + '\n')
+                fx.flush()
+                line = canonical(dict(row, epoch=n, epoch_id=m['id'], slot=slot, k=k, pair=pair, floor=g,
+                                      experience_snapshot=m['experience_snapshot'])) + '\n'
+                f.write(line)
                 f.flush()
+                if mirror:                      # a flat copy of every row, for a box queue's progress count
+                    mirror.write(line)
+                    mirror.flush()
+    if mirror:
+        mirror.close()
     return out
 
 
@@ -468,6 +621,9 @@ class SimBackend:
 
     def play(self, m, pair, indices, seed, workers=1):
         a, b = pair.split('~')
+        missing = [x for x in (a, b) if 'sim' not in self.packages[x]['bundle']]
+        if missing:
+            raise ValueError(f'{missing} have no bundle.sim (no synthetic strength): play them with --backend match')
         sa, sb = (self.packages[x]['bundle']['sim'] for x in (a, b))
         for idx in indices:
             rng = np.random.default_rng([seed, idx])

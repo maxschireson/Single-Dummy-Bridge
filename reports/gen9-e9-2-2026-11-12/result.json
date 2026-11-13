@@ -1,0 +1,106 @@
+{
+ "protocol": "E9-2",
+ "boards": 1000,
+ "orderings": 200,
+ "seed": 7301,
+ "unknown": "per call: 0.8 x the average of the candidates' distributions + 0.2 uniform over legal calls",
+ "eps": 0.05,
+ "pairs": {
+  "rb-precision-vs-standard": {
+   "candidates": [
+    "rb-precision",
+    "rb-standard",
+    "unknown"
+   ],
+   "truth": "rb-precision",
+   "boards": 999,
+   "to_0.95": {
+    "median": 3.0,
+    "p90": 8.0,
+    "reached": 1.0
+   },
+   "to_0.95_wrong_card_declared": {
+    "median": 3.0,
+    "p90": 8.0,
+    "reached": 1.0
+   },
+   "unknown_share_when_truth_missing": {
+    "10": 0.445,
+    "50": 0.413,
+    "200": 0.428,
+    "999": 0.0
+   },
+   "mean_loglik_per_board": {
+    "rb-precision": -0.227,
+    "rb-standard": -3.676,
+    "unknown": -1.577
+   },
+   "discriminating_boards": 0.257,
+   "seconds": 3
+  },
+  "house-gen6-vs-gen5": {
+   "candidates": [
+    "house-gen6",
+    "house-gen5",
+    "unknown"
+   ],
+   "truth": "house-gen6",
+   "boards": 1000,
+   "to_0.95": {
+    "median": 20.0,
+    "p90": 37.0,
+    "reached": 1.0
+   },
+   "to_0.95_wrong_card_declared": {
+    "median": 36.0,
+    "p90": 55.099999999999994,
+    "reached": 1.0
+   },
+   "unknown_share_when_truth_missing": {
+    "10": 0.0,
+    "50": 0.0,
+    "200": 0.0,
+    "1000": 0.0
+   },
+   "mean_loglik_per_board": {
+    "house-gen6": -0.589,
+    "house-gen5": -0.768,
+    "unknown": -1.524
+   },
+   "discriminating_boards": 0.143,
+   "seconds": 13
+  },
+  "card-nt-15-17-vs-14-16": {
+   "candidates": [
+    "two-over-one",
+    "two-over-one-14-16",
+    "unknown"
+   ],
+   "truth": "two-over-one",
+   "boards": 1000,
+   "to_0.95": {
+    "median": 9.0,
+    "p90": 29.0,
+    "reached": 1.0
+   },
+   "to_0.95_wrong_card_declared": {
+    "median": 9.0,
+    "p90": 29.0,
+    "reached": 1.0
+   },
+   "unknown_share_when_truth_missing": {
+    "10": 0.001,
+    "50": 0.0,
+    "200": 0.0,
+    "1000": 0.0
+   },
+   "mean_loglik_per_board": {
+    "two-over-one": -0.229,
+    "two-over-one-14-16": -0.817,
+    "unknown": -1.28
+   },
+   "discriminating_boards": 0.075,
+   "seconds": 9
+  }
+ }
+}
