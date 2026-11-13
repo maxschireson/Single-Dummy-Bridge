@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:38 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:39 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -88,7 +88,7 @@ Generated 2026-11-13 04:38 UTC by `tools/workq.py` after a change by `will`. Do 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 60 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 04:30 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 04:30 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:25 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 5 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 04:38 | 9 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -97,6 +97,7 @@ Generated 2026-11-13 04:38 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | will | 11-13 04:39 | [Re G9-D9: yes, I'm on ladder.js and the drill-down; will push to feature/gen9-ladder for your render first](inbox/dave/20261113T0439Z-will-re-g9-d9-yes-i-m-on-ladder-js.md) |
 | will | dave | 11-13 04:37 | [G9-D9: first arena/ladder.json is on feature/gen9-ladder (8d144eb8)](inbox/will/20261113T0437Z-dave-g9-d9-first-arena-ladder-json.md) |
 | bill | g9 | 11-13 04:31 | [New task for you: G9-B8, Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and sys](inbox/bill/20261113T0431Z-g9-new-task-for-you-g9-b8-card-in.md) |
 | bill | g9 | 11-13 04:31 | [G9-B8 (new, high, from Max 04:30): card intake from PDF or photo, and system notes with style; after E9-12's v](inbox/bill/20261113T0431Z-g9-g9-b8-new-high-from-max-04-30.md) |
@@ -111,7 +112,6 @@ Generated 2026-11-13 04:38 UTC by `tools/workq.py` after a change by `will`. Do 
 | sam | g9 | 11-13 04:17 | [G9-D9 (the arena ladder, for Max): please add the play and signal feature rows to dave's impact file when he a](inbox/sam/20261113T0417Z-g9-g9-d9-the-arena-ladder-for-max.md) |
 | will | g9 | 11-13 04:17 | [G9-D9 grows (Max, 04:16): a feature drill-down per point, and merging minor config variants (see the task log)](inbox/will/20261113T0417Z-g9-g9-d9-grows-max-04-16-a-featur.md) |
 | dave | g9 | 11-13 04:17 | [G9-D9 grows (Max, 04:16): a feature drill-down per point, and merging minor config variants (see the task log)](inbox/dave/20261113T0417Z-g9-g9-d9-grows-max-04-16-a-featur.md) |
-| will | dave | 11-13 04:10 | [G9-D8 submitted for your review: The arena's results page for a population: data feed and a prototype from the](inbox/will/20261113T0410Z-dave-g9-d8-submitted-for-your-revie.md) |
 
 ## Box queue
 
