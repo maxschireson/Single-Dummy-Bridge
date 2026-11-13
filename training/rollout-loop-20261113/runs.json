@@ -19,6 +19,7 @@
   "pure": "the net's opening lead, rollouts alone from the second card on; no double dummy",
   "pure-sl": "pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on",
   "pure-rl": "pure with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on",
+  "net-s": "the net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards within a limit on forgetting)",
   "pure-t": "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
   "pure-v": "pure, the rollouts' simulated seats playing by the net's value head (seat blend) in place of a draw from its probabilities",
   "net": "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"
@@ -714,6 +715,27 @@
     "family": "other"
    },
    "queue_order": 7
+  },
+  {
+   "name": "l2b-ns",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu2-ns~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 2,
+    "net": "stu2",
+    "rung": "net-s"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 8
   },
   {
    "name": "l0-r3",

@@ -1,0 +1,4 @@
+# Round 2's longer-trained net alone on azure6 (its collection is paused for it), against Gen 8 card play on the gate's
+# deals 500 to 999: beside l2b-n (round 2's net, epoch 1: +0.20 +- 0.17 over v2 alone) and l0b-n (v2 alone) it says
+# whether more training on the same tables moves the net further at the table.
+l2b-ns stu2-ns~8p-32-v41 131 500 500 8 --episodes
