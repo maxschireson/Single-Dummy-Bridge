@@ -32,6 +32,12 @@ the difference of the candidates' means. Every card of a candidate's run of touc
 value. The row's other legal cards were not rolled out: their gap is -1, which a trainer must leave out of the gap
 loss, and has_gap is 1.
 
+--rollout-layouts K[,K...] (with --rollout-gap): also, for each K, the labels a bot with only the first K of the recorded
+layouts would have had: `gap_kK` (each candidate's deficit over those layouts) and `card_kK` (the candidate best over
+them, the card played where that is the played card's candidate). Rows the per-layout results cannot shorten (no
+capture, or a candidate not played on all K layouts) keep the full labels; the summary counts them. For measuring how
+label quality trades against volume; training reads a variant through training/rollout-loop-20261113/label_variant.py.
+
 --alias OLD=NEW[,OLD=NEW...] renames bots before anything else reads their names (two ids of one bot, as a pair of
 distinct ids for self-play, become one name).
 
@@ -72,11 +78,13 @@ SID_KINDS = ('guar', 'single', 'cert')
 SID_SLOTS = 8
 ROLLOUT_GAP = False
 ALIAS = {}
+LAYOUTS_K = ()
 
 
-def start(scorer_path, bots=None, policy_only=False, labels=(), floors=False, rollout_gap=False, alias=None):
-    global SHOWN, KEEP, POLICY_ONLY, LABELS, FLOORS, ROLLOUT_GAP, ALIAS
+def start(scorer_path, bots=None, policy_only=False, labels=(), floors=False, rollout_gap=False, alias=None, layouts_k=()):
+    global SHOWN, KEEP, POLICY_ONLY, LABELS, FLOORS, ROLLOUT_GAP, ALIAS, LAYOUTS_K
     ROLLOUT_GAP = rollout_gap
+    LAYOUTS_K = tuple(layouts_k)
     ALIAS = dict(alias or {})
     SHOWN = Shown(FitScorer(scorer_path), *make_bank())
     KEEP = set(bots) if bots else None
@@ -140,6 +148,30 @@ def rollout_gaps(note, declaring, target):
     return {card(x): float(min(max(deficit[j], 0.), 8.)) for j, run in enumerate(note['runs']) for x in run}
 
 
+def rollout_gaps_first(note, declaring, target, k):
+    """({card: deficit}, best card) for an 8X rollout decision as its first `k` recorded layouts alone measure it (the
+    same deficit as rollout_gaps, over those layouts); None where the record cannot say (no per-layout results, fewer
+    than k of them, or a candidate not played on all k)."""
+    cap = note.get('cap') if note else None
+    if not cap or note.get('mode') != 'rollout' or len(note.get('cards') or ()) < 2:
+        return None
+    rows_, m = cap['shape']
+    if rows_ < k:
+        return None
+    t = np.frombuffer(base64.b64decode(cap['t']), np.int8).reshape(rows_, m).astype(np.int64)[:k]
+    f = np.frombuffer(base64.b64decode(cap['f']), np.uint8).reshape(rows_, m).astype(bool)[:k]
+    w = np.frombuffer(base64.b64decode(cap['w']), np.float32).astype(np.float64)[:k]
+    if (t < 0).any() or w.sum() <= 0:
+        return None
+    final = np.where(f, np.maximum(t, target), t)
+    worth = (final if declaring else -final).astype(np.float64)
+    mean = w @ worth / w.sum()
+    best = int(np.argmax(mean))
+    deficit = mean[best] - mean
+    return ({card(x): float(min(max(deficit[j], 0.), 8.)) for j, run in enumerate(note['runs']) for x in run},
+            card(note['cards'][best]), [card(x) for x in note['runs'][best]])
+
+
 def examples(path):
     with gzip.open(path, 'rt') as f:
         d = json.load(f)
@@ -149,6 +181,7 @@ def examples(path):
     rows, names = [], []
     side_rows = sidecar(path) if LABELS else None
     sid, sid_floor, sid_ceil, used = [], [], [], 0
+    extra_k = {}
     for ei, e in enumerate(d['unique_tables'].values()):
         if e.get('schema_version') == 'v4-passed-out-v1':
             continue
@@ -200,6 +233,18 @@ def examples(path):
                     mine = o.controller % 2 == declarer % 2
                     bot = who.get(a['player'], '')
                     names.append((bot, side.get(a['player'], '')))
+                    for kk in LAYOUTS_K:            # the labels from the first kk recorded layouts (the full ones where they cannot be shortened)
+                        short = rollout_gaps_first(a['x8'], o.controller % 2 == declarer % 2, board.contract.level + 6, kk) \
+                            if rolled is not None else None
+                        g = gap.copy()
+                        pick = c
+                        if short is not None:
+                            values, best, best_run = short
+                            g[list(o.legal)] = -1.
+                            for key, v in values.items():
+                                g[key] = v
+                            pick = c if c in best_run else best
+                        extra_k.setdefault(kk, []).append((g, pick, short is None and rolled is not None))
                     rows.append((x['state'], x['order'], x['legal'], x['ctx'], x['auction'], x['shown'].astype(np.float16), gap, owner, (
                         c, table['declarer_tricks'] if mine else 13 - table['declarer_tricks'], kind, a['ply'],
                         0 if bot == '6-32' else 1 if bot == '6-256' else 2, SOURCES.get((a.get('gen6') or {}).get('source'), 4),
@@ -215,6 +260,11 @@ def examples(path):
         arrays.append(np.stack(sid).reshape(len(rows), -1))
         if FLOORS:
             arrays += [np.stack(sid_floor), np.stack(sid_ceil)]
+    for kk in LAYOUTS_K:
+        got = extra_k.get(kk, [])
+        arrays.append(np.stack([g for g, _, _ in got]))
+        arrays.append(np.array([pk for _, pk, _ in got], np.int32))
+        arrays.append(np.array([full for _, _, full in got], bool))
     return d['family'], arrays, names
 
 
@@ -230,15 +280,19 @@ def main():
     p.add_argument('--labels', type=Path, nargs='*', default=[], help='directories of scripts/sid_label.py sidecar files to join as `sid`')
     p.add_argument('--label-floors', action='store_true', help='with --labels: also store sid_floor and sid_ceil')
     p.add_argument('--rollout-gap', action='store_true', help="8X rollout decisions get the rollouts' gap for their candidates (-1 for the other legal cards)")
+    p.add_argument('--rollout-layouts', default='', help='K[,K...]: also the labels from the first K recorded layouts of each rollout decision (gap_kK, card_kK)')
     p.add_argument('--alias', default='', help='OLD=NEW[,OLD=NEW...]: bots renamed before anything else reads their names')
     a = p.parse_args()
     alias = dict(x.split('=', 1) for x in a.alias.split(',') if x)
+    layouts_k = tuple(int(x) for x in a.rollout_layouts.split(',') if x)
+    if layouts_k and not a.rollout_gap:
+        p.error('--rollout-layouts needs --rollout-gap')
     files = sorted(a.episodes.glob('*.json.gz'))
     if a.limit:
         files = files[:a.limit]
     families, parts, deal, who = [], [], [], []
     with Pool(a.workers, initializer=start, initargs=(a.scorer, [b for b in a.bots.split(',') if b], a.policy_only, a.labels,
-                                                      a.label_floors, a.rollout_gap, alias)) as pool:
+                                                      a.label_floors, a.rollout_gap, alias, layouts_k)) as pool:
         for i, result in enumerate(pool.imap(examples, files, chunksize=8)):
             if result is None:
                 continue
@@ -252,6 +306,8 @@ def main():
     names = ('state', 'order', 'legal', 'ctx', 'auction', 'shown', 'gap', 'owner', 'meta')
     if a.labels:
         names += ('sid', 'sid_floor', 'sid_ceil') if a.label_floors else ('sid',)
+    for kk in layouts_k:
+        names += (f'gap_k{kk}', f'card_k{kk}', f'full_k{kk}')
     out = {n: np.concatenate([part[j] for part in parts]) for j, n in enumerate(names)}
     out['deal'] = np.concatenate(deal)
     out['family'] = np.array(families)
@@ -273,6 +329,8 @@ def main():
         summary['labelled'] = int((out['sid'] >= 0).any(axis=1).sum())
     if a.rollout_gap:
         summary['rows_with_unrated_cards'] = int((out['gap'] < 0).any(axis=1).sum())
+    for kk in layouts_k:
+        summary[f'k{kk}'] = dict(card_changed=int((out[f'card_k{kk}'] != out['meta'][:, 0]).sum()), kept_full=int(out[f'full_k{kk}'].sum()))
     print(json.dumps(summary))
 
 

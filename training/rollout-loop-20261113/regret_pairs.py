@@ -26,17 +26,21 @@ def phase_of(ply):
     return np.where(ply == 0, 0, np.where(trick <= 4, 1, np.where(trick <= 8, 2, 3)))
 
 
-def regret(net, data, names, alias):
-    """[rows] gap of the net's most probable card, nan where the rollouts did not rate it."""
+def regret(net, data, names, alias, head='policy'):
+    """[rows] gap of the net's most probable card (head 'policy'), or of the rated card its value head rates best
+    (head 'value', as the trainer's regret_gap_head), nan where the rollouts did not rate the card."""
     table = np.array([net.bot_id(n if n in net.vocab else alias.get(n, n)) for n in names], np.int32)
     meta = data['meta']
     batch = {k: data[k] for k in INPUTS}
     batch['bot_own'], batch['bot_other'] = table[meta[:, 8]], table[meta[:, 9]]
-    logp = net.log_policy_arrays(batch)
-    pick = logp.argmax(1)
-    rows = np.arange(len(pick))
     gap = data['gap'].astype(np.float64)
     rated = data['legal'].astype(bool) & (gap >= 0)
+    if head == 'value':
+        _, gap_hat = net.policy_and_gap_arrays(batch)
+        pick = np.where(rated, gap_hat, 1e9).argmin(1)
+    else:
+        pick = net.log_policy_arrays(batch).argmax(1)
+    rows = np.arange(len(pick))
     return np.where(rated[rows, pick], gap[rows, pick], np.nan)
 
 
@@ -57,6 +61,7 @@ def main():
     p.add_argument('after', type=Path)
     p.add_argument('--bot', default='stup0')
     p.add_argument('--as', dest='alias', default='stup0=stu0')
+    p.add_argument('--head', choices=('policy', 'value'), default='policy')
     p.add_argument('--json', type=Path)
     a = p.parse_args()
     alias = dict(x.split('=', 1) for x in a.alias.split(',') if x)
@@ -65,13 +70,13 @@ def main():
         names = [str(x) for x in z['bot_names']]
     if 'legal' not in data:
         raise SystemExit(f'{a.val} has no legal cards')
-    r0 = regret(PolicyNet(a.before, None), data, names, alias)
-    r1 = regret(PolicyNet(a.after, None), data, names, alias)
+    r0 = regret(PolicyNet(a.before, None), data, names, alias, a.head)
+    r1 = regret(PolicyNet(a.after, None), data, names, alias, a.head)
     meta = data['meta']
     mine = (meta[:, 8] == names.index(a.bot)) & (meta[:, 10] == 1)
     phase = phase_of(meta[:, 3])
     out = {}
-    print(f'{a.bot}: {int(mine.sum())} searched held-out rows, {len(np.unique(data["deal"][mine]))} deals')
+    print(f'{a.head} head; {a.bot}: {int(mine.sum())} searched held-out rows, {len(np.unique(data["deal"][mine]))} deals')
     print('phase         rows  before   after  after-before (paired, SE by deal)')
     for i, name in enumerate(PHASES + ('all',)):
         m = mine & (phase == i) if i < 4 else mine
