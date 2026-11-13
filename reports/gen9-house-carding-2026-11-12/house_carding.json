@@ -1,0 +1,2633 @@
+{
+ "tables": 1824,
+ "schemes": {
+  "standard": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "count",
+   "attitude": "standard",
+   "count": "standard"
+  },
+  "upside_down": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "count",
+   "attitude": "upside_down",
+   "count": "upside_down"
+  },
+  "count_on_partner_std": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "count",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "count",
+   "attitude": "standard",
+   "count": "standard"
+  },
+  "count_on_partner_ud": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "count",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "count",
+   "attitude": "upside_down",
+   "count": "upside_down"
+  },
+  "suitpref_on_partner": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "suit_preference",
+   "signal_on_declarer_lead": "suit_preference",
+   "first_discard": "attitude",
+   "trump_signal": "count"
+  },
+  "discards_odd_even": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "odd_even",
+   "trump_signal": "count"
+  },
+  "discards_lavinthal": {
+   "length_lead_vs_suit": "4th",
+   "length_lead_vs_nt": "4th",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "lavinthal",
+   "trump_signal": "count"
+  },
+  "leads_3rd_5th": {
+   "length_lead_vs_suit": "3rd_5th",
+   "length_lead_vs_nt": "3rd_5th",
+   "lead_from_ak": "king",
+   "honor_sequence_lead": "top",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "count"
+  },
+  "leads_attitude": {
+   "length_lead_vs_suit": "attitude",
+   "length_lead_vs_nt": "attitude",
+   "lead_from_ak": "ace",
+   "honor_sequence_lead": "rusinow",
+   "signal_on_partner_lead": "attitude",
+   "signal_on_declarer_lead": "count",
+   "first_discard": "attitude",
+   "trump_signal": "count"
+  }
+ },
+ "bots": {
+  "1": {
+   "count_on_partner_std|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3866,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "count_on_partner_std|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.4217,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.019
+   },
+   "count_on_partner_std|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|class|partner_lead.count": {
+    "occasions": 210,
+    "hit_rate": 0.3952,
+    "chance": 0.5,
+    "honesty": 0.036,
+    "sd": 0.023
+   },
+   "count_on_partner_std|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "count_on_partner_std|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.3907,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "count_on_partner_std|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.4343,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.021
+   },
+   "count_on_partner_std|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|ties|partner_lead.count": {
+    "occasions": 204,
+    "hit_rate": 0.3971,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.024
+   },
+   "count_on_partner_std|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "count_on_partner_ud|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3889,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "count_on_partner_ud|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.3765,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "count_on_partner_ud|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|class|partner_lead.count": {
+    "occasions": 210,
+    "hit_rate": 0.4,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.024
+   },
+   "count_on_partner_ud|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4225,
+    "chance": 0.5,
+    "honesty": 0.058,
+    "sd": 0.036
+   },
+   "count_on_partner_ud|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.386,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "count_on_partner_ud|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.367,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.014
+   },
+   "count_on_partner_ud|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|ties|partner_lead.count": {
+    "occasions": 204,
+    "hit_rate": 0.402,
+    "chance": 0.5,
+    "honesty": 0.038,
+    "sd": 0.025
+   },
+   "count_on_partner_ud|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4245,
+    "chance": 0.5,
+    "honesty": 0.059,
+    "sd": 0.036
+   },
+   "discards_lavinthal|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3866,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "discards_lavinthal|class|first_discard.lavinthal": {
+    "occasions": 332,
+    "hit_rate": 0.3675,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.014
+   },
+   "discards_lavinthal|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.419,
+    "chance": 0.5,
+    "honesty": 0.042,
+    "sd": 0.027
+   },
+   "discards_lavinthal|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "discards_lavinthal|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.3907,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "discards_lavinthal|ties|first_discard.lavinthal": {
+    "occasions": 327,
+    "hit_rate": 0.3731,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "discards_lavinthal|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|ties|partner_lead.attitude": {
+    "occasions": 204,
+    "hit_rate": 0.4118,
+    "chance": 0.5,
+    "honesty": 0.041,
+    "sd": 0.026
+   },
+   "discards_lavinthal|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "discards_odd_even|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3866,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "discards_odd_even|class|first_discard.odd_even": {
+    "occasions": 290,
+    "hit_rate": 0.4828,
+    "chance": 0.5,
+    "honesty": 0.059,
+    "sd": 0.033
+   },
+   "discards_odd_even|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.419,
+    "chance": 0.5,
+    "honesty": 0.042,
+    "sd": 0.027
+   },
+   "discards_odd_even|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "discards_odd_even|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.3907,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "discards_odd_even|ties|first_discard.odd_even": {
+    "occasions": 283,
+    "hit_rate": 0.4947,
+    "chance": 0.5,
+    "honesty": 0.068,
+    "sd": 0.037
+   },
+   "discards_odd_even|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|ties|partner_lead.attitude": {
+    "occasions": 204,
+    "hit_rate": 0.4118,
+    "chance": 0.5,
+    "honesty": 0.041,
+    "sd": 0.026
+   },
+   "discards_odd_even|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "leads_3rd_5th|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3866,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "leads_3rd_5th|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.4217,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.019
+   },
+   "leads_3rd_5th|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.4261,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.419,
+    "chance": 0.5,
+    "honesty": 0.042,
+    "sd": 0.027
+   },
+   "leads_3rd_5th|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "leads_3rd_5th|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.3907,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "leads_3rd_5th|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.4343,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.021
+   },
+   "leads_3rd_5th|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.4389,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|ties|partner_lead.attitude": {
+    "occasions": 204,
+    "hit_rate": 0.4118,
+    "chance": 0.5,
+    "honesty": 0.041,
+    "sd": 0.026
+   },
+   "leads_3rd_5th|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "leads_attitude|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3866,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "leads_attitude|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.4217,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.019
+   },
+   "leads_attitude|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3873,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.419,
+    "chance": 0.5,
+    "honesty": 0.042,
+    "sd": 0.027
+   },
+   "leads_attitude|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "leads_attitude|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.3907,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "leads_attitude|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.4343,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.021
+   },
+   "leads_attitude|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3931,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|ties|partner_lead.attitude": {
+    "occasions": 204,
+    "hit_rate": 0.4118,
+    "chance": 0.5,
+    "honesty": 0.041,
+    "sd": 0.026
+   },
+   "leads_attitude|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "standard|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3866,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "standard|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.4217,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.019
+   },
+   "standard|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.419,
+    "chance": 0.5,
+    "honesty": 0.042,
+    "sd": 0.027
+   },
+   "standard|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "standard|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.3907,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "standard|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.4343,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.021
+   },
+   "standard|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|ties|partner_lead.attitude": {
+    "occasions": 204,
+    "hit_rate": 0.4118,
+    "chance": 0.5,
+    "honesty": 0.041,
+    "sd": 0.026
+   },
+   "standard|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "suitpref_on_partner|class|declarer_lead.suit_preference": {
+    "occasions": 296,
+    "hit_rate": 0.402,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "suitpref_on_partner|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.4217,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.019
+   },
+   "suitpref_on_partner|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|class|partner_lead.suit_preference": {
+    "occasions": 159,
+    "hit_rate": 0.3396,
+    "chance": 0.5,
+    "honesty": 0.033,
+    "sd": 0.022
+   },
+   "suitpref_on_partner|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4437,
+    "chance": 0.5,
+    "honesty": 0.066,
+    "sd": 0.04
+   },
+   "suitpref_on_partner|ties|declarer_lead.suit_preference": {
+    "occasions": 294,
+    "hit_rate": 0.4014,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.019
+   },
+   "suitpref_on_partner|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.4343,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.021
+   },
+   "suitpref_on_partner|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|ties|partner_lead.suit_preference": {
+    "occasions": 154,
+    "hit_rate": 0.3442,
+    "chance": 0.5,
+    "honesty": 0.035,
+    "sd": 0.023
+   },
+   "suitpref_on_partner|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4388,
+    "chance": 0.5,
+    "honesty": 0.065,
+    "sd": 0.039
+   },
+   "upside_down|class|declarer_lead.count": {
+    "occasions": 432,
+    "hit_rate": 0.3889,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "upside_down|class|first_discard.attitude": {
+    "occasions": 332,
+    "hit_rate": 0.3765,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "upside_down|class|lead.opening": {
+    "occasions": 284,
+    "hit_rate": 0.3908,
+    "chance": 0.298,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.3762,
+    "chance": 0.5,
+    "honesty": 0.032,
+    "sd": 0.021
+   },
+   "upside_down|class|trump.count": {
+    "occasions": 142,
+    "hit_rate": 0.4225,
+    "chance": 0.5,
+    "honesty": 0.058,
+    "sd": 0.036
+   },
+   "upside_down|ties|declarer_lead.count": {
+    "occasions": 430,
+    "hit_rate": 0.386,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "upside_down|ties|first_discard.attitude": {
+    "occasions": 327,
+    "hit_rate": 0.367,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.014
+   },
+   "upside_down|ties|lead.opening": {
+    "occasions": 262,
+    "hit_rate": 0.3969,
+    "chance": 0.3582,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|ties|partner_lead.attitude": {
+    "occasions": 204,
+    "hit_rate": 0.3873,
+    "chance": 0.5,
+    "honesty": 0.035,
+    "sd": 0.023
+   },
+   "upside_down|ties|trump.count": {
+    "occasions": 139,
+    "hit_rate": 0.4245,
+    "chance": 0.5,
+    "honesty": 0.059,
+    "sd": 0.036
+   }
+  },
+  "5RZ32": {
+   "count_on_partner_std|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4458,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "count_on_partner_std|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.3754,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.013
+   },
+   "count_on_partner_std|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|class|partner_lead.count": {
+    "occasions": 260,
+    "hit_rate": 0.4269,
+    "chance": 0.5,
+    "honesty": 0.038,
+    "sd": 0.024
+   },
+   "count_on_partner_std|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "count_on_partner_std|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4524,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.019
+   },
+   "count_on_partner_std|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.3835,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "count_on_partner_std|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|ties|partner_lead.count": {
+    "occasions": 247,
+    "hit_rate": 0.4372,
+    "chance": 0.5,
+    "honesty": 0.043,
+    "sd": 0.027
+   },
+   "count_on_partner_std|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "count_on_partner_ud|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4083,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "count_on_partner_ud|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.4566,
+    "chance": 0.5,
+    "honesty": 0.039,
+    "sd": 0.024
+   },
+   "count_on_partner_ud|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|class|partner_lead.count": {
+    "occasions": 260,
+    "hit_rate": 0.3846,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "count_on_partner_ud|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4757,
+    "chance": 0.5,
+    "honesty": 0.072,
+    "sd": 0.041
+   },
+   "count_on_partner_ud|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4199,
+    "chance": 0.5,
+    "honesty": 0.022,
+    "sd": 0.015
+   },
+   "count_on_partner_ud|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.038,
+    "sd": 0.024
+   },
+   "count_on_partner_ud|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|ties|partner_lead.count": {
+    "occasions": 247,
+    "hit_rate": 0.3765,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "count_on_partner_ud|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.479,
+    "chance": 0.5,
+    "honesty": 0.078,
+    "sd": 0.044
+   },
+   "discards_lavinthal|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4458,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "discards_lavinthal|class|first_discard.lavinthal": {
+    "occasions": 357,
+    "hit_rate": 0.4202,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "discards_lavinthal|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|class|partner_lead.attitude": {
+    "occasions": 260,
+    "hit_rate": 0.4808,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.035
+   },
+   "discards_lavinthal|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "discards_lavinthal|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4524,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.019
+   },
+   "discards_lavinthal|ties|first_discard.lavinthal": {
+    "occasions": 352,
+    "hit_rate": 0.4233,
+    "chance": 0.5,
+    "honesty": 0.029,
+    "sd": 0.019
+   },
+   "discards_lavinthal|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|ties|partner_lead.attitude": {
+    "occasions": 247,
+    "hit_rate": 0.4899,
+    "chance": 0.5,
+    "honesty": 0.07,
+    "sd": 0.038
+   },
+   "discards_lavinthal|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "discards_odd_even|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4458,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "discards_odd_even|class|first_discard.odd_even": {
+    "occasions": 308,
+    "hit_rate": 0.3409,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "discards_odd_even|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|class|partner_lead.attitude": {
+    "occasions": 260,
+    "hit_rate": 0.4808,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.035
+   },
+   "discards_odd_even|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "discards_odd_even|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4524,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.019
+   },
+   "discards_odd_even|ties|first_discard.odd_even": {
+    "occasions": 302,
+    "hit_rate": 0.3543,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.014
+   },
+   "discards_odd_even|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|ties|partner_lead.attitude": {
+    "occasions": 247,
+    "hit_rate": 0.4899,
+    "chance": 0.5,
+    "honesty": 0.07,
+    "sd": 0.038
+   },
+   "discards_odd_even|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "leads_3rd_5th|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4458,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "leads_3rd_5th|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.3754,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.013
+   },
+   "leads_3rd_5th|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.2465,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|class|partner_lead.attitude": {
+    "occasions": 260,
+    "hit_rate": 0.4808,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.035
+   },
+   "leads_3rd_5th|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "leads_3rd_5th|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4524,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.019
+   },
+   "leads_3rd_5th|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.3835,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "leads_3rd_5th|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.2709,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|ties|partner_lead.attitude": {
+    "occasions": 247,
+    "hit_rate": 0.4899,
+    "chance": 0.5,
+    "honesty": 0.07,
+    "sd": 0.038
+   },
+   "leads_3rd_5th|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "leads_attitude|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4458,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "leads_attitude|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.3754,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.013
+   },
+   "leads_attitude|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.2222,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|class|partner_lead.attitude": {
+    "occasions": 260,
+    "hit_rate": 0.4808,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.035
+   },
+   "leads_attitude|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "leads_attitude|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4524,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.019
+   },
+   "leads_attitude|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.3835,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "leads_attitude|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.2315,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|ties|partner_lead.attitude": {
+    "occasions": 247,
+    "hit_rate": 0.4899,
+    "chance": 0.5,
+    "honesty": 0.07,
+    "sd": 0.038
+   },
+   "leads_attitude|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "standard|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4458,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "standard|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.3754,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.013
+   },
+   "standard|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|class|partner_lead.attitude": {
+    "occasions": 260,
+    "hit_rate": 0.4808,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.035
+   },
+   "standard|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "standard|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4524,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.019
+   },
+   "standard|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.3835,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "standard|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|ties|partner_lead.attitude": {
+    "occasions": 247,
+    "hit_rate": 0.4899,
+    "chance": 0.5,
+    "honesty": 0.07,
+    "sd": 0.038
+   },
+   "standard|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "suitpref_on_partner|class|declarer_lead.suit_preference": {
+    "occasions": 325,
+    "hit_rate": 0.4185,
+    "chance": 0.5,
+    "honesty": 0.029,
+    "sd": 0.019
+   },
+   "suitpref_on_partner|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.3754,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.013
+   },
+   "suitpref_on_partner|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|class|partner_lead.suit_preference": {
+    "occasions": 204,
+    "hit_rate": 0.451,
+    "chance": 0.5,
+    "honesty": 0.055,
+    "sd": 0.033
+   },
+   "suitpref_on_partner|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4324,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.031
+   },
+   "suitpref_on_partner|ties|declarer_lead.suit_preference": {
+    "occasions": 313,
+    "hit_rate": 0.4377,
+    "chance": 0.5,
+    "honesty": 0.036,
+    "sd": 0.023
+   },
+   "suitpref_on_partner|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.3835,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "suitpref_on_partner|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|ties|partner_lead.suit_preference": {
+    "occasions": 197,
+    "hit_rate": 0.4518,
+    "chance": 0.5,
+    "honesty": 0.056,
+    "sd": 0.034
+   },
+   "suitpref_on_partner|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.4371,
+    "chance": 0.5,
+    "honesty": 0.057,
+    "sd": 0.035
+   },
+   "upside_down|class|declarer_lead.count": {
+    "occasions": 480,
+    "hit_rate": 0.4083,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "upside_down|class|first_discard.attitude": {
+    "occasions": 357,
+    "hit_rate": 0.4566,
+    "chance": 0.5,
+    "honesty": 0.039,
+    "sd": 0.024
+   },
+   "upside_down|class|lead.opening": {
+    "occasions": 288,
+    "hit_rate": 0.4132,
+    "chance": 0.3004,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|class|partner_lead.attitude": {
+    "occasions": 260,
+    "hit_rate": 0.3308,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "upside_down|class|trump.count": {
+    "occasions": 185,
+    "hit_rate": 0.4757,
+    "chance": 0.5,
+    "honesty": 0.072,
+    "sd": 0.041
+   },
+   "upside_down|ties|declarer_lead.count": {
+    "occasions": 462,
+    "hit_rate": 0.4199,
+    "chance": 0.5,
+    "honesty": 0.022,
+    "sd": 0.015
+   },
+   "upside_down|ties|first_discard.attitude": {
+    "occasions": 352,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.038,
+    "sd": 0.024
+   },
+   "upside_down|ties|lead.opening": {
+    "occasions": 203,
+    "hit_rate": 0.5074,
+    "chance": 0.4258,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|ties|partner_lead.attitude": {
+    "occasions": 247,
+    "hit_rate": 0.3239,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "upside_down|ties|trump.count": {
+    "occasions": 167,
+    "hit_rate": 0.479,
+    "chance": 0.5,
+    "honesty": 0.078,
+    "sd": 0.044
+   }
+  },
+  "6-32": {
+   "count_on_partner_std|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.4623,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.023
+   },
+   "count_on_partner_std|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.3994,
+    "chance": 0.5,
+    "honesty": 0.025,
+    "sd": 0.017
+   },
+   "count_on_partner_std|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|class|partner_lead.count": {
+    "occasions": 210,
+    "hit_rate": 0.4286,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.028
+   },
+   "count_on_partner_std|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "count_on_partner_std|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.4751,
+    "chance": 0.5,
+    "honesty": 0.044,
+    "sd": 0.026
+   },
+   "count_on_partner_std|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4012,
+    "chance": 0.5,
+    "honesty": 0.026,
+    "sd": 0.017
+   },
+   "count_on_partner_std|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|ties|partner_lead.count": {
+    "occasions": 192,
+    "hit_rate": 0.4375,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.032
+   },
+   "count_on_partner_std|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "count_on_partner_ud|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.3869,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "count_on_partner_ud|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.4512,
+    "chance": 0.5,
+    "honesty": 0.039,
+    "sd": 0.024
+   },
+   "count_on_partner_ud|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|class|partner_lead.count": {
+    "occasions": 210,
+    "hit_rate": 0.3857,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.022
+   },
+   "count_on_partner_ud|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4345,
+    "chance": 0.5,
+    "honesty": 0.061,
+    "sd": 0.037
+   },
+   "count_on_partner_ud|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.393,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.014
+   },
+   "count_on_partner_ud|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4506,
+    "chance": 0.5,
+    "honesty": 0.039,
+    "sd": 0.024
+   },
+   "count_on_partner_ud|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|ties|partner_lead.count": {
+    "occasions": 192,
+    "hit_rate": 0.375,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.022
+   },
+   "count_on_partner_ud|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4231,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.038
+   },
+   "discards_lavinthal|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.4623,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.023
+   },
+   "discards_lavinthal|class|first_discard.lavinthal": {
+    "occasions": 328,
+    "hit_rate": 0.4238,
+    "chance": 0.5,
+    "honesty": 0.031,
+    "sd": 0.02
+   },
+   "discards_lavinthal|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.4286,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.028
+   },
+   "discards_lavinthal|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "discards_lavinthal|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.4751,
+    "chance": 0.5,
+    "honesty": 0.044,
+    "sd": 0.026
+   },
+   "discards_lavinthal|ties|first_discard.lavinthal": {
+    "occasions": 324,
+    "hit_rate": 0.4198,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.019
+   },
+   "discards_lavinthal|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|ties|partner_lead.attitude": {
+    "occasions": 192,
+    "hit_rate": 0.4635,
+    "chance": 0.5,
+    "honesty": 0.063,
+    "sd": 0.037
+   },
+   "discards_lavinthal|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "discards_odd_even|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.4623,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.023
+   },
+   "discards_odd_even|class|first_discard.odd_even": {
+    "occasions": 290,
+    "hit_rate": 0.369,
+    "chance": 0.5,
+    "honesty": 0.023,
+    "sd": 0.015
+   },
+   "discards_odd_even|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.4286,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.028
+   },
+   "discards_odd_even|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "discards_odd_even|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.4751,
+    "chance": 0.5,
+    "honesty": 0.044,
+    "sd": 0.026
+   },
+   "discards_odd_even|ties|first_discard.odd_even": {
+    "occasions": 288,
+    "hit_rate": 0.375,
+    "chance": 0.5,
+    "honesty": 0.024,
+    "sd": 0.016
+   },
+   "discards_odd_even|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|ties|partner_lead.attitude": {
+    "occasions": 192,
+    "hit_rate": 0.4635,
+    "chance": 0.5,
+    "honesty": 0.063,
+    "sd": 0.037
+   },
+   "discards_odd_even|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "leads_3rd_5th|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.4623,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.023
+   },
+   "leads_3rd_5th|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.3994,
+    "chance": 0.5,
+    "honesty": 0.025,
+    "sd": 0.017
+   },
+   "leads_3rd_5th|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.3086,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.4286,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.028
+   },
+   "leads_3rd_5th|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "leads_3rd_5th|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.4751,
+    "chance": 0.5,
+    "honesty": 0.044,
+    "sd": 0.026
+   },
+   "leads_3rd_5th|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4012,
+    "chance": 0.5,
+    "honesty": 0.026,
+    "sd": 0.017
+   },
+   "leads_3rd_5th|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.3122,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|ties|partner_lead.attitude": {
+    "occasions": 192,
+    "hit_rate": 0.4635,
+    "chance": 0.5,
+    "honesty": 0.063,
+    "sd": 0.037
+   },
+   "leads_3rd_5th|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "leads_attitude|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.4623,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.023
+   },
+   "leads_attitude|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.3994,
+    "chance": 0.5,
+    "honesty": 0.025,
+    "sd": 0.017
+   },
+   "leads_attitude|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.2812,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.4286,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.028
+   },
+   "leads_attitude|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "leads_attitude|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.4751,
+    "chance": 0.5,
+    "honesty": 0.044,
+    "sd": 0.026
+   },
+   "leads_attitude|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4012,
+    "chance": 0.5,
+    "honesty": 0.026,
+    "sd": 0.017
+   },
+   "leads_attitude|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.278,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|ties|partner_lead.attitude": {
+    "occasions": 192,
+    "hit_rate": 0.4635,
+    "chance": 0.5,
+    "honesty": 0.063,
+    "sd": 0.037
+   },
+   "leads_attitude|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "standard|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.4623,
+    "chance": 0.5,
+    "honesty": 0.037,
+    "sd": 0.023
+   },
+   "standard|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.3994,
+    "chance": 0.5,
+    "honesty": 0.025,
+    "sd": 0.017
+   },
+   "standard|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.4286,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.028
+   },
+   "standard|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "standard|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.4751,
+    "chance": 0.5,
+    "honesty": 0.044,
+    "sd": 0.026
+   },
+   "standard|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4012,
+    "chance": 0.5,
+    "honesty": 0.026,
+    "sd": 0.017
+   },
+   "standard|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|ties|partner_lead.attitude": {
+    "occasions": 192,
+    "hit_rate": 0.4635,
+    "chance": 0.5,
+    "honesty": 0.063,
+    "sd": 0.037
+   },
+   "standard|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "suitpref_on_partner|class|declarer_lead.suit_preference": {
+    "occasions": 257,
+    "hit_rate": 0.4514,
+    "chance": 0.5,
+    "honesty": 0.047,
+    "sd": 0.028
+   },
+   "suitpref_on_partner|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.3994,
+    "chance": 0.5,
+    "honesty": 0.025,
+    "sd": 0.017
+   },
+   "suitpref_on_partner|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|class|partner_lead.suit_preference": {
+    "occasions": 168,
+    "hit_rate": 0.4226,
+    "chance": 0.5,
+    "honesty": 0.051,
+    "sd": 0.032
+   },
+   "suitpref_on_partner|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4621,
+    "chance": 0.5,
+    "honesty": 0.074,
+    "sd": 0.043
+   },
+   "suitpref_on_partner|ties|declarer_lead.suit_preference": {
+    "occasions": 252,
+    "hit_rate": 0.4643,
+    "chance": 0.5,
+    "honesty": 0.053,
+    "sd": 0.032
+   },
+   "suitpref_on_partner|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4012,
+    "chance": 0.5,
+    "honesty": 0.026,
+    "sd": 0.017
+   },
+   "suitpref_on_partner|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|ties|partner_lead.suit_preference": {
+    "occasions": 160,
+    "hit_rate": 0.4313,
+    "chance": 0.5,
+    "honesty": 0.056,
+    "sd": 0.034
+   },
+   "suitpref_on_partner|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4692,
+    "chance": 0.5,
+    "honesty": 0.084,
+    "sd": 0.047
+   },
+   "upside_down|class|declarer_lead.count": {
+    "occasions": 411,
+    "hit_rate": 0.3869,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.013
+   },
+   "upside_down|class|first_discard.attitude": {
+    "occasions": 328,
+    "hit_rate": 0.4512,
+    "chance": 0.5,
+    "honesty": 0.039,
+    "sd": 0.024
+   },
+   "upside_down|class|lead.opening": {
+    "occasions": 256,
+    "hit_rate": 0.4531,
+    "chance": 0.3014,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|class|partner_lead.attitude": {
+    "occasions": 210,
+    "hit_rate": 0.3857,
+    "chance": 0.5,
+    "honesty": 0.034,
+    "sd": 0.022
+   },
+   "upside_down|class|trump.count": {
+    "occasions": 145,
+    "hit_rate": 0.4345,
+    "chance": 0.5,
+    "honesty": 0.061,
+    "sd": 0.037
+   },
+   "upside_down|ties|declarer_lead.count": {
+    "occasions": 402,
+    "hit_rate": 0.393,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.014
+   },
+   "upside_down|ties|first_discard.attitude": {
+    "occasions": 324,
+    "hit_rate": 0.4506,
+    "chance": 0.5,
+    "honesty": 0.039,
+    "sd": 0.024
+   },
+   "upside_down|ties|lead.opening": {
+    "occasions": 205,
+    "hit_rate": 0.4927,
+    "chance": 0.4104,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|ties|partner_lead.attitude": {
+    "occasions": 192,
+    "hit_rate": 0.349,
+    "chance": 0.5,
+    "honesty": 0.03,
+    "sd": 0.02
+   },
+   "upside_down|ties|trump.count": {
+    "occasions": 130,
+    "hit_rate": 0.4231,
+    "chance": 0.5,
+    "honesty": 0.062,
+    "sd": 0.038
+   }
+  },
+  "7s-32": {
+   "count_on_partner_std|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.445,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.007
+   },
+   "count_on_partner_std|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.3748,
+    "chance": 0.5,
+    "honesty": 0.007,
+    "sd": 0.005
+   },
+   "count_on_partner_std|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|class|partner_lead.count": {
+    "occasions": 729,
+    "hit_rate": 0.4417,
+    "chance": 0.5,
+    "honesty": 0.019,
+    "sd": 0.012
+   },
+   "count_on_partner_std|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "count_on_partner_std|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "count_on_partner_std|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.387,
+    "chance": 0.5,
+    "honesty": 0.008,
+    "sd": 0.006
+   },
+   "count_on_partner_std|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_std|ties|partner_lead.count": {
+    "occasions": 684,
+    "hit_rate": 0.443,
+    "chance": 0.5,
+    "honesty": 0.02,
+    "sd": 0.013
+   },
+   "count_on_partner_std|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "count_on_partner_ud|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.3942,
+    "chance": 0.5,
+    "honesty": 0.006,
+    "sd": 0.004
+   },
+   "count_on_partner_ud|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.4612,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "count_on_partner_ud|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|class|partner_lead.count": {
+    "occasions": 729,
+    "hit_rate": 0.3937,
+    "chance": 0.5,
+    "honesty": 0.012,
+    "sd": 0.008
+   },
+   "count_on_partner_ud|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4871,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.025
+   },
+   "count_on_partner_ud|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.3954,
+    "chance": 0.5,
+    "honesty": 0.006,
+    "sd": 0.005
+   },
+   "count_on_partner_ud|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.46,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "count_on_partner_ud|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "count_on_partner_ud|ties|partner_lead.count": {
+    "occasions": 684,
+    "hit_rate": 0.3977,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "count_on_partner_ud|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4882,
+    "chance": 0.5,
+    "honesty": 0.048,
+    "sd": 0.027
+   },
+   "discards_lavinthal|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.445,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.007
+   },
+   "discards_lavinthal|class|first_discard.lavinthal": {
+    "occasions": 1030,
+    "hit_rate": 0.4029,
+    "chance": 0.5,
+    "honesty": 0.009,
+    "sd": 0.006
+   },
+   "discards_lavinthal|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|class|partner_lead.attitude": {
+    "occasions": 729,
+    "hit_rate": 0.4486,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.013
+   },
+   "discards_lavinthal|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "discards_lavinthal|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "discards_lavinthal|ties|first_discard.lavinthal": {
+    "occasions": 1013,
+    "hit_rate": 0.4018,
+    "chance": 0.5,
+    "honesty": 0.009,
+    "sd": 0.006
+   },
+   "discards_lavinthal|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_lavinthal|ties|partner_lead.attitude": {
+    "occasions": 684,
+    "hit_rate": 0.4649,
+    "chance": 0.5,
+    "honesty": 0.027,
+    "sd": 0.017
+   },
+   "discards_lavinthal|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "discards_odd_even|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.445,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.007
+   },
+   "discards_odd_even|class|first_discard.odd_even": {
+    "occasions": 885,
+    "hit_rate": 0.3718,
+    "chance": 0.5,
+    "honesty": 0.008,
+    "sd": 0.006
+   },
+   "discards_odd_even|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|class|partner_lead.attitude": {
+    "occasions": 729,
+    "hit_rate": 0.4486,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.013
+   },
+   "discards_odd_even|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "discards_odd_even|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "discards_odd_even|ties|first_discard.odd_even": {
+    "occasions": 871,
+    "hit_rate": 0.3858,
+    "chance": 0.5,
+    "honesty": 0.009,
+    "sd": 0.007
+   },
+   "discards_odd_even|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "discards_odd_even|ties|partner_lead.attitude": {
+    "occasions": 684,
+    "hit_rate": 0.4649,
+    "chance": 0.5,
+    "honesty": 0.027,
+    "sd": 0.017
+   },
+   "discards_odd_even|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "leads_3rd_5th|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.445,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.007
+   },
+   "leads_3rd_5th|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.3748,
+    "chance": 0.5,
+    "honesty": 0.007,
+    "sd": 0.005
+   },
+   "leads_3rd_5th|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.354,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|class|partner_lead.attitude": {
+    "occasions": 729,
+    "hit_rate": 0.4486,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.013
+   },
+   "leads_3rd_5th|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "leads_3rd_5th|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "leads_3rd_5th|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.387,
+    "chance": 0.5,
+    "honesty": 0.008,
+    "sd": 0.006
+   },
+   "leads_3rd_5th|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.3529,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_3rd_5th|ties|partner_lead.attitude": {
+    "occasions": 684,
+    "hit_rate": 0.4649,
+    "chance": 0.5,
+    "honesty": 0.027,
+    "sd": 0.017
+   },
+   "leads_3rd_5th|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "leads_attitude|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.445,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.007
+   },
+   "leads_attitude|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.3748,
+    "chance": 0.5,
+    "honesty": 0.007,
+    "sd": 0.005
+   },
+   "leads_attitude|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.3083,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|class|partner_lead.attitude": {
+    "occasions": 729,
+    "hit_rate": 0.4486,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.013
+   },
+   "leads_attitude|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "leads_attitude|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "leads_attitude|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.387,
+    "chance": 0.5,
+    "honesty": 0.008,
+    "sd": 0.006
+   },
+   "leads_attitude|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.2882,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "leads_attitude|ties|partner_lead.attitude": {
+    "occasions": 684,
+    "hit_rate": 0.4649,
+    "chance": 0.5,
+    "honesty": 0.027,
+    "sd": 0.017
+   },
+   "leads_attitude|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "standard|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.445,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.007
+   },
+   "standard|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.3748,
+    "chance": 0.5,
+    "honesty": 0.007,
+    "sd": 0.005
+   },
+   "standard|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|class|partner_lead.attitude": {
+    "occasions": 729,
+    "hit_rate": 0.4486,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.013
+   },
+   "standard|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "standard|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.4545,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.009
+   },
+   "standard|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.387,
+    "chance": 0.5,
+    "honesty": 0.008,
+    "sd": 0.006
+   },
+   "standard|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "standard|ties|partner_lead.attitude": {
+    "occasions": 684,
+    "hit_rate": 0.4649,
+    "chance": 0.5,
+    "honesty": 0.027,
+    "sd": 0.017
+   },
+   "standard|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "suitpref_on_partner|class|declarer_lead.suit_preference": {
+    "occasions": 976,
+    "hit_rate": 0.4283,
+    "chance": 0.5,
+    "honesty": 0.013,
+    "sd": 0.008
+   },
+   "suitpref_on_partner|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.3748,
+    "chance": 0.5,
+    "honesty": 0.007,
+    "sd": 0.005
+   },
+   "suitpref_on_partner|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|class|partner_lead.suit_preference": {
+    "occasions": 568,
+    "hit_rate": 0.4613,
+    "chance": 0.5,
+    "honesty": 0.029,
+    "sd": 0.018
+   },
+   "suitpref_on_partner|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4215,
+    "chance": 0.5,
+    "honesty": 0.021,
+    "sd": 0.014
+   },
+   "suitpref_on_partner|ties|declarer_lead.suit_preference": {
+    "occasions": 933,
+    "hit_rate": 0.4384,
+    "chance": 0.5,
+    "honesty": 0.015,
+    "sd": 0.01
+   },
+   "suitpref_on_partner|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.387,
+    "chance": 0.5,
+    "honesty": 0.008,
+    "sd": 0.006
+   },
+   "suitpref_on_partner|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "suitpref_on_partner|ties|partner_lead.suit_preference": {
+    "occasions": 542,
+    "hit_rate": 0.4742,
+    "chance": 0.5,
+    "honesty": 0.036,
+    "sd": 0.021
+   },
+   "suitpref_on_partner|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4433,
+    "chance": 0.5,
+    "honesty": 0.028,
+    "sd": 0.018
+   },
+   "upside_down|class|declarer_lead.count": {
+    "occasions": 1474,
+    "hit_rate": 0.3942,
+    "chance": 0.5,
+    "honesty": 0.006,
+    "sd": 0.004
+   },
+   "upside_down|class|first_discard.attitude": {
+    "occasions": 1030,
+    "hit_rate": 0.4612,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "upside_down|class|lead.opening": {
+    "occasions": 853,
+    "hit_rate": 0.4795,
+    "chance": 0.3011,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|class|partner_lead.attitude": {
+    "occasions": 729,
+    "hit_rate": 0.3868,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.008
+   },
+   "upside_down|class|trump.count": {
+    "occasions": 503,
+    "hit_rate": 0.4871,
+    "chance": 0.5,
+    "honesty": 0.045,
+    "sd": 0.025
+   },
+   "upside_down|ties|declarer_lead.count": {
+    "occasions": 1406,
+    "hit_rate": 0.3954,
+    "chance": 0.5,
+    "honesty": 0.006,
+    "sd": 0.005
+   },
+   "upside_down|ties|first_discard.attitude": {
+    "occasions": 1013,
+    "hit_rate": 0.46,
+    "chance": 0.5,
+    "honesty": 0.018,
+    "sd": 0.012
+   },
+   "upside_down|ties|lead.opening": {
+    "occasions": 680,
+    "hit_rate": 0.5044,
+    "chance": 0.4064,
+    "honesty": null,
+    "sd": null
+   },
+   "upside_down|ties|partner_lead.attitude": {
+    "occasions": 684,
+    "hit_rate": 0.3757,
+    "chance": 0.5,
+    "honesty": 0.011,
+    "sd": 0.008
+   },
+   "upside_down|ties|trump.count": {
+    "occasions": 467,
+    "hit_rate": 0.4882,
+    "chance": 0.5,
+    "honesty": 0.048,
+    "sd": 0.027
+   }
+  }
+ }
+}

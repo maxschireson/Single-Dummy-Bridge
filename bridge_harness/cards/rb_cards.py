@@ -3,9 +3,12 @@
 ``card_from_settings(settings)`` writes the card IR for a ``rule_bidder.Settings`` (given as a
 dict of its fields): the agreements its tables make in the contexts the card covers, which are
 openings, direct and balancing overcalls and doubles, the defence to 1NT, responses to 1NT and
-2NT, and opener's answers to Stayman and transfers. Responses to suit openings, rebids and
-advances are left uncovered: there its tables value hands with support points and its general
-procedure decides, and the filter then defers to the scorer. Written from the documented meaning
+2NT, opener's answers to Stayman and transfers, and (since 12 Nov) responder's first call to a suit
+opening. Rebids and advances are left uncovered: there its tables value hands with support points
+and its general procedure decides. Covering the responses is worth 0.2-0.3 nats a decision to the
+card read alone (reports/gen9-e9-12-2026-11-12, supplement); three response fields (major_2nt,
+minor_2nt, weak_game_raise) were chosen by a fit to the bidder's own auctions (scripts/gen9_fit_card.py),
+the others are the documented settings. Written from the documented meaning
 of each Settings field, not from the tables' code; tests/test_gen9_cards.py checks the card
 against the bidder's own auctions.
 
@@ -17,7 +20,10 @@ from .card import load_card
 STANDARD_OPPONENTS_NT_HI = 17         # the rule bidder reads opponents as its standard settings unless told otherwise
 
 
-def card_from_settings(g, card_id='rb-custom', opponents_nt_hi=STANDARD_OPPONENTS_NT_HI):
+def card_from_settings(g, card_id='rb-custom', opponents_nt_hi=STANDARD_OPPONENTS_NT_HI, respond=True):
+    """The card for the settings. respond=False leaves responses to suit openings uncovered: the card is then
+    exact on every call it covers (the bidder never breaks it); with them covered the bidder breaks about 2% of
+    the responses (it values raises by support points), and the card read alone is 0.2-0.3 nats better."""
     g = dict(g)
     precision = g.get('style', 'precision') == 'precision'
     lo = g['open_min']
@@ -57,8 +63,14 @@ def card_from_settings(g, card_id='rb-custom', opponents_nt_hi=STANDARD_OPPONENT
     else:
         d.update({'open.strong_2c': {'hcp': 22, 'ltc': None}, 'open.two_nt': [20, 21], 'open.two_nt_five_major': True,
                   'open.two': {'2D': weak, '2H': weak, '2S': weak}})
+    cover = ['open', 'overcall', 'balance', 'vs_nt', 'respond_nt', 'nt_answers']
+    if respond:
+        d.update({'resp.major_2nt': 'invite', 'resp.minor_2nt': [13, 15], 'resp.weak_game_raise': False})
+        if precision:
+            d['resp.strong_club'] = {'negative': '1D', 'negative_max': g['neg_max']}
+        cover.append('respond')
     return {'schema': 'card-descriptor-v0', 'id': card_id, 'family': 'strong_club' if precision else 'natural',
-            'descriptor': d, 'cover': ['open', 'overcall', 'balance', 'vs_nt', 'respond_nt', 'nt_answers']}
+            'descriptor': d, 'cover': cover}
 
 
 def settings_from_card(card):
