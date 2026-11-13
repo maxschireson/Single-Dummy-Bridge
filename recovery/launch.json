@@ -1,0 +1,10 @@
+{
+ "launched_epoch": 1794555842.250107,
+ "authority": "Max, 12 November 2026: Gen 8 arena (15:32, 16:11 UTC), never a board in a training family (15:50); 13 November 2026, 07:1x UTC, to the operator: fresh deals for Gen 8 and azure3 stays on Gen 8 BEN (64) lanes",
+ "notice": "docs/gen8_candidate_2026-11-12.md on feature/gen8-prototype-20261112",
+ "reason": "the unplayed deals were used up; Max chose fresh deals",
+ "steps": "prepare with --fresh, --exclude-families and --played from feature/gen9-cohort, preflight inside the lane while the second pool plays, then lane-switch",
+ "host": "azure3",
+ "lane": 8,
+ "shard": "1500 fresh deals, seed 8308, clear of the v4.1 training families, the source corpus and the families played on registered feeds at 04:26 UTC"
+}
