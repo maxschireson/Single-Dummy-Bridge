@@ -8,6 +8,7 @@ scoring; this script chooses the tables and decisions and adds Gen 9 readings to
   python scripts/gen9_reading_bench.py readings --feeds DIR... --out OUT --source CAPSULE/recovery --bots BOTS.json --reading NAME=BOT [...]
   python scripts/gen9_reading_bench.py relabel  --episodes DIR --cell std-80 --tables 300 --out OUT    (E9-4 part 1's tables)
   python scripts/gen9_reading_bench.py pools    --episodes OUT/episodes --deciders declarer --out OUT ...
+  python scripts/gen9_reading_bench.py replay   --out POOLS [--replay-base proto]                 (E9-11: needs rpl-<part>.npz)
   python scripts/gen9_reading_bench.py report   --out OUT [--against NAME] [--json FILE]       (the bench's report)
   python scripts/gen9_reading_bench.py box      --opponent ben --first 60 --tables 240 --workers 8 --feeds-dir DIR --out OUT
                                                 --source CAPSULE/recovery --reading NAME=BOT [...]     (a box job: all of it)
@@ -35,6 +36,15 @@ readings  (On an --out folder without tables.json, such as p41's published house
           wherever bridge_harness.signal_expert finds an occasion, read by an E9-15 model (m1, m2 or m3 of
           scripts/gen9_signal_expert.py's models.json; MODEL-first reads first rounds only) in place of its emission table;
           its class term is unchanged.
+replay    E9-11 on p41's house pools: the replayed house bidder's reading of the calls added to a reading already stored
+          (--replay-base, default proto: 8p-32's), from scripts/gen9_replay_terms.py's rpl-<part>.npz. 9r-32 adds, for a
+          side whose calls it replays, replay - scorer on that side's hidden seats (gen9.Gen9Player.replay_correction):
+          the pool was drawn, or the deal list weighted, by the scorer, so this makes the weights the replay's. The term
+          goes in the partner row for the decider's partner and in the opponents' row for the others, and is scored at the
+          reading's exponent, as the player divides it by its exponent. Readings written: rpl (every hidden seat whose
+          calls are the house bidder's own choices on its true hand), rplall (every hidden seat), rplpar and rplopp
+          (partner's seat only, the opponents' only, where house), rplonly (rpl's term with no play reading: the calls
+          alone against the scorer alone).
 report    The bench's report on OUT; `--against` pairs every reading with one.
 box       For a box job: fetch the version's BEN feeds into --feeds-dir (sparse clones of their episodes) if they are not
           there, run `pools` in --workers shards on tables [--first, --first + --tables) of the held-out list, then
@@ -480,6 +490,48 @@ def readings(a):
         print(f'{part.name}: {len(rows)} decisions, readings {sorted(todo)}', flush=True)
 
 
+def replay(a):
+    """E9-11: fit-<name>-<part>.npz from --replay-base's fit files and gen9_replay_terms.py's rpl files (see the docstring)."""
+    out = Path(a.out)
+    for part in sorted(out.glob('pools-*-*.npz')):
+        terms = out / part.name.replace('pools-', 'rpl-')
+        base = out / part.name.replace('pools-', f'fit-{a.replay_base}-')
+        if not (terms.exists() and base.exists()):
+            continue
+        rows, _, _ = bench.load(part)
+        with np.load(terms) as z:
+            rep, sco, house = z['replay'].astype(np.float64), z['scorer'].astype(np.float64), z['house']
+        with np.load(base) as z:
+            flat = z['fit'].astype(np.float64)
+        with np.load(out / part.name.replace('pools-', 'uns-')) as z:
+            hidden, controller = z['hidden'].reshape(-1, 2), z['controller']
+        new = {n: [] for n in ('rpl', 'rplall', 'rplpar', 'rplopp', 'rplonly')}
+        at, af = 0, 0
+        for k, r in enumerate(rows):
+            n1 = int(r['layouts']) + 1
+            f = flat[af:af + 3 * n1].reshape(3, n1)
+            af += 3 * n1
+            c = rep[:, at:at + n1] - sco[:, at:at + n1]                  # [2, L+1]: each hidden seat's replay - scorer
+            at += n1
+            c = c - c[:, :1]                                             # a constant per decision changes nothing
+            partner = (int(controller[k]) + 2) % 4
+            for name in new:
+                g = np.zeros((3, n1)) if name == 'rplonly' else f.copy()
+                for j in range(2):
+                    seat = int(hidden[k, j])
+                    mine = seat == partner
+                    take = name == 'rplall' or (house[k, seat] and (name in ('rpl', 'rplonly') or (name == 'rplpar') == mine))
+                    if take:
+                        g[1 if mine else 2] += c[j]
+                new[name].append(g.ravel())
+        assert at == rep.shape[1] and af == len(flat)
+        for name, chunks in new.items():
+            target = out / part.name.replace('pools-', f'fit-{name}-')
+            tmp = target.with_name(target.name + '.tmp.npz')
+            np.savez_compressed(tmp, fit=np.concatenate(chunks).astype(np.float32) if chunks else np.zeros(0, np.float32))
+            os.replace(tmp, target)
+
+
 def relabel(a):
     """E9-4 part 1's relabelled tables as one-table episodes."""
     from bridge_harness.core import Board
@@ -599,7 +651,7 @@ def box(a):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('step', choices=('relabel', 'pools', 'readings', 'report', 'box'))
+    ap.add_argument('step', choices=('relabel', 'pools', 'readings', 'replay', 'report', 'box'))
     ap.add_argument('--feeds', nargs='+', default=[], help='episode directories of the BEN feeds')
     ap.add_argument('--opponent', default='ben', choices=('ben', 'ben64'))
     ap.add_argument('--episodes', help='pools: every table of this folder, in place of the BEN held-out list')
@@ -634,6 +686,7 @@ def main():
     ap.add_argument('--equal-best', help="class readings of kind 'equal': reports/gen9-leakage-2026-11-12/equal_best.json.gz")
     ap.add_argument('--part-shard', default='0/1', help='readings: this process takes part files k, k + n, ... (k/n)')
     ap.add_argument('--reverse', action='store_true', help='readings: take the part files last first (a second process beside one running forward)')
+    ap.add_argument('--replay-base', default='proto', help='replay: the stored reading the replay term is added to')
     ap.add_argument('--against')
     ap.add_argument('--sweep', action='store_true')
     ap.add_argument('--verbose', action='store_true')
@@ -645,6 +698,8 @@ def main():
         readings(a)
     elif a.step == 'relabel':
         relabel(a)
+    elif a.step == 'replay':
+        replay(a)
     elif a.step == 'box':
         box(a)
     else:
