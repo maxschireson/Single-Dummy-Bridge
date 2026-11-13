@@ -13,6 +13,7 @@ population that players join and leave.
 | [Work plan](workplan.md) | Areas, tasks, checkpoints, team size |
 | [Arena statistics](arena-statistics.md) | Rating table, field score, admission, the promotion test |
 | [A diverse arena for self-play training](arena-selfplay.md) | Roles in the population, diversity, who plays whom, ratings in a diverse field, exploiters, newcomers (design note, G9-A8) |
+| [Gen 9 and SiD](sid-integration.md) | Bringing the conditional claims and the line finder into Gen 9: weights, the Gen 9 shell on the 8X engine, the weight SiD gets in play (plan, G9-A9) |
 | Area design notes | `bidding.md`, `signals.md`, `arena.md`, `workflow.md`, added by the area leads at checkpoint 1 |
 
 **Tests.** `python3 scripts/run_tests.py --prepare` builds DDS, installs what is missing, restores
