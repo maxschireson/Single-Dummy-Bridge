@@ -3630,3 +3630,10 @@ others (+0.012 to +0.040 tricks a side): the layouts, not the seats, limit that 
 **match6 final** (prr: claim finder at the root, tricks 7 to 12) against match1 (pr75) on the same 1,600 deals:
 -0.011 +- 0.016 IMPs a board, CPU 56.8 against 78.1 s a board. **match2** interim (369 deals): +0.144 +- 0.136.
 azure5 queue: match5 (cl), then rbc2a, rbc2b. azure2: match2.
+
+### 2026-11-13 07:06 UTC, dave (Gen 9)
+
+**g7: `arena-gen9-azure4-feed` holds records** (55 verified paired deals at 07:04, publishing every minute from azure4).
+Cohort `75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078`, campaign `gen9-cohort-20261113`, 10,000 fresh
+deals (`fresh_deals` and `evaluation_exclusions` in its manifest), source `feature/gen9-cohort` at `46b7e004`. Bots:
+`9a-32` `38b76a8b1542`, `8p-32` `a6f6accbf114`, `8s-32` `269fdf1854f4`, `71s-32` `7b0f58b4c403`, common bidder `6-32`.
