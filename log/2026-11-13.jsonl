@@ -348,3 +348,4 @@
 {"at": "2026-11-13T09:23:00Z", "by": "g9", "op": "lease", "target": "G9-B8", "until": "2026-11-13T13:23Z"}
 {"at": "2026-11-13T09:23:00Z", "by": "g9", "op": "log", "target": "G9-B8", "note": "13 Nov 09:28 UTC, g9: taken by g9 (bill silent since 04:02, asked at 07:19). Plan for a first version today: (1) scripts/gen9_card_intake.py makes a reading bundle from a PDF or photos (page images, text with positions or OCR, the card's layout guessed, an IR template and a checklist per card sectio"}
 {"at": "2026-11-13T09:29:00Z", "by": "dave", "op": "job-submit", "target": "azure4/g9-cohort-azure4", "note": "priority 1, 3 cores", "task": "G9-D9"}
+{"at": "2026-11-13T09:29:00Z", "by": "dave", "op": "send", "target": "g9/20261113T0929Z-dave-yes-cohort-to-2-workers-for-x9", "note": "Yes: cohort to 2 workers for X9's match; back to 5 when it ends"}
