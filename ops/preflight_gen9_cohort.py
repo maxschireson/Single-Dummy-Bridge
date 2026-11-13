@@ -27,15 +27,28 @@ LISTS = {
 RESTORE = ('models/cardplay/gen7-policy-v4.1-2026-11-12/restore.py', 'models/cardplay/gen8-system-scorer-v1-2026-11-12/restore_model.py')
 
 
+RAW = 'https://raw.githubusercontent.com/maxschireson/Single-Dummy-Bridge/'
+
+
 def fetch_list(name, branch, pin, out):
+    """The file from its transfer branch, over HTTPS (a job's source folder need not be a git checkout), else with git."""
     path = out / name
     if not path.exists():
-        subprocess.run(['git', 'fetch', '--quiet', 'origin', f'+refs/heads/{branch}:refs/remotes/origin/{branch}'], cwd=ROOT, check=True)
-        blob = subprocess.run(['git', 'show', f'origin/{branch}:{name}'], cwd=ROOT, check=True, capture_output=True).stdout
-        path.write_bytes(blob)
+        try:
+            import urllib.request
+            with urllib.request.urlopen(RAW + branch + '/' + name, timeout=120) as r:
+                path.write_bytes(r.read())
+        except Exception as e:
+            print(f'{name}: HTTPS fetch failed ({e!r}); trying git', file=sys.stderr, flush=True)
+            subprocess.run(['git', 'fetch', '--quiet', 'origin', f'+refs/heads/{branch}:refs/remotes/origin/{branch}'], cwd=ROOT, check=True)
+            path.write_bytes(subprocess.run(['git', 'show', f'origin/{branch}:{name}'], cwd=ROOT, check=True, capture_output=True).stdout)
     if sha(path) != pin:
         raise ValueError(f'{name} does not match its pin')
     return path
+
+
+def step(name):
+    print(f'[preflight] {time.strftime("%H:%M:%S")} {name}', file=sys.stderr, flush=True)
 
 
 def main():
@@ -48,8 +61,16 @@ def main():
     a = ap.parse_args()
     out = a.out.resolve(); out.mkdir(parents=True, exist_ok=True)
     started = time.time()
+    step(f'python {sys.executable}')
+    try:
+        import tensorflow  # noqa: F401  the collector's bidders load with it (ops/gen5_runtime.initialize_worker)
+    except ImportError as e:
+        raise SystemExit(f'This python has no TensorFlow ({e}); run the preflight with the collectors\' python') from None
+    from bridge_harness import dds  # noqa: F401  the solver binding (the library is built by the job runner)
+    step('restore artifacts')
     for script in RESTORE:
         subprocess.run([sys.executable, str(ROOT / script)], cwd=(ROOT / script).parent, check=True, stdout=subprocess.DEVNULL)
+    step('family lists')
     lists = {name: fetch_list(name, branch, pin, out) for name, (branch, pin) in LISTS.items()}
     plan = json.loads(PLAN.read_text())
     plan.update(launch_enabled=True, pending=[])
@@ -58,9 +79,11 @@ def main():
     opened.write_text(json.dumps(plan, indent=1) + '\n')
     from ops import prepare_gen7_alpha as P
     from ops import smoke_gen7 as S
+    step('prepare')
     m = P.prepare(out / 'run', a.source, opened, exclude_families=lists['v41-training-families-union.json'],
                   fresh=(a.fresh, a.seed), played=lists['played-families-20261113.json.gz'])
     prepared = time.time()
+    step('smoke')
     S.smoke(out / 'run', out / 'smoke.json', deals=a.deals)
     report = json.loads((out / 'smoke.json').read_text())
     summary = dict(manifest=m['identity'], target=m['target'], fresh_deals=m['fresh_deals'],
