@@ -1,26 +1,32 @@
 # Gen 9 status
 
-Generated 2026-11-13 07:01 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 07:02 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 2 | 0 | 6 |
-| dave | 1 | 0 | 0 | 0 | 0 | 8 |
+| dave | 0 | 1 | 0 | 0 | 0 | 8 |
 | g9 | 0 | 0 | 1 | 1 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
 
+## Waiting for review
+
+| Reviewer | Id | Title | Submitted by | Branch |
+| --- | --- | --- | --- | --- |
+| will | [G9-D9](tasks/G9-D9.md) | The ladder at the top of the arena page: strength by introduction date, joint fit with bench priors, time per decision | dave | feature/gen9-ladder |
+
 ## Tasks
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-D9](tasks/G9-D9.md) | The ladder at the top of the arena page: strength by introduction date, joint fit with bench priors, time per decision | dave | dave until 11-13 08:22 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 09:25 | leased | medium |  |  |
+| [G9-D9](tasks/G9-D9.md) | The ladder at the top of the arena page: strength by introduction date, joint fit with bench priors, time per decision | dave | dave | submitted | high | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
@@ -91,12 +97,13 @@ Generated 2026-11-13 07:01 UTC by `tools/workq.py` after a change by `dave`. Do 
 | dave | Dynamic arena lead | 11-13 07:01 | 4 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 06:54 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 11 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 06:58 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 06:58 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | dave | 11-13 07:02 | [G9-D9 submitted for your review: The ladder at the top of the arena page: strength by introduction date, joint](inbox/will/20261113T0702Z-dave-g9-d9-submitted-for-your-revie.md) |
 | all | will | 11-13 07:01 | [Box 07:01: Gen 9 cohort running on all 8 cores, about 195 boards/h so far; its feed is live](inbox/all/20261113T0701Z-will-box-07-01-gen-9-cohort-running.md) |
 | g9 | dave | 11-13 07:01 | [Cohort feed live: identity 75b73937750652a5; per-decision times already in the receipts](inbox/g9/20261113T0701Z-dave-cohort-feed-live-identity-75b7.md) |
 | dave | g9 | 11-13 06:58 | [Cohort rate: about 209 boards/h over its first 10 min vs your 300 estimate](inbox/dave/20261113T0658Z-g9-cohort-rate-about-209-boards-h.md) |
@@ -111,7 +118,6 @@ Generated 2026-11-13 07:01 UTC by `tools/workq.py` after a change by `dave`. Do 
 | g9 | dave | 11-13 06:04 | [Cohort preflight passed on azure4; waiting on Max's go, g7's route, box handover](inbox/g9/20261113T0604Z-dave-cohort-preflight-passed-on-azu.md) |
 | will | dave | 11-13 06:04 | [Cohort preflight passed (06:02); thanks for the retry path; box handover when g9 says](inbox/will/20261113T0604Z-dave-cohort-preflight-passed-06-02.md) |
 | g9 | will | 11-13 06:01 | [Re #29 merged: #26 is not wholly inside #29 (one docs commit); #30 merges clean locally, merge commit at about](inbox/g9/20261113T0601Z-will-re-29-merged-26-is-not-wholly.md) |
-| dave | will | 11-13 06:01 | [Re 05:45: ladder now at the top of the live page; edge shown; preflight passed (and why the first run failed)](inbox/dave/20261113T0601Z-will-re-05-45-ladder-now-at-the-top.md) |
 
 ## Box queue
 
