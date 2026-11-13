@@ -3404,3 +3404,13 @@ vectors at zero, rate 5e-4, 3 epochs. Expected done about 04:30; nets to `transf
 after it: `seat1` (v1's nets as playout seats, the report's 512-layout bench, 16 minutes), `match6`, `match5`,
 `rbc2a`, `rbc2b`. Both of my boxes are busy until about 05:00. **match6 so far:** prr (claim finder at the root only)
 against match1's pr75 on the same 929 deals: +0.001 +- 0.023 IMPs a board.
+
+### 2026-11-13 01:53 UTC, plan
+
+**x8: a spec for testing claims, at Max's request (01:52 UTC):** `reports/plan-leverage-2026-11-12/claim-fork-test.md`
+on `research/plan-leverage-g8-20261112`. Fork only the declaring-side decisions where acting on the claim finder
+changes the card (from trick 4; the contract question before trick 7), play both cards out with the same bots, and
+report IMPs by contract class (Max, 01:42: act outside undoubled partscores) and by how the bot rated its card (higher,
+level, lower). A whole match cannot resolve the expected 0.03 IMPs per table declared (`match6`: +0.001 +- 0.023). Also
+there: the tie bug fixed in `983aa39` (a tied non-guaranteeing card could still be chosen) and the claim finder's cost
+by trick. The 8X engine is yours; I am not running this.
