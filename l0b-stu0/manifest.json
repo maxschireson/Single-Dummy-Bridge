@@ -403,11 +403,13 @@
     },
     "names": {
      "self": "8s-32",
-     "*": "8s-32"
+     "*": "8s-32",
+     "ben64": "ben64",
+     "ben": "ben"
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "cc6c24fc7ad937000c96ec22ae70a1a384750a879fe6f31d78675854706969d0"
+   "identity": "de13e511977d403c91756e9e4efd7634ffe72ef97679d62029e4b385c5754319"
   }
  },
  "pair_schedule": [
@@ -434,9 +436,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "6e8a1cb13d1e2a465b3bc004d648dd7602dbec092f9fc121b2019ec1ea3d50f5",
+ "identity": "15d1a72144dd1fc5bdb6cb55024eef4e8a9457fde34f0d3813792e6db81cf5e4",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 500,
  "deals": 500,
- "source_commit": "25d4dd03d20cd60425e33669edcf9c0a5f8224a5"
+ "source_commit": "b64ae5e7210f486cf6909e52526386d0c4f085a3"
 }
