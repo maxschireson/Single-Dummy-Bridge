@@ -1,0 +1,1 @@
+echo "# loop session: read g7s own drain script (read-only)"; cat ~/work/lanes/drain71.sh; echo; echo "== role.env"; cat ~/work/lanes/role.env; echo "== lane 1 env"; cat ~/work/lanes/1.env; echo "== run folder"; R=$(. ~/work/lanes/1.env; echo $RUN); ls $R | head -30; cat $R/publisher-status.json 2>/dev/null | head -c 600; echo; ls ~/work/lanes | grep -E "OFF|recycling|next" 
