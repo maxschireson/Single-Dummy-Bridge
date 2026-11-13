@@ -43,8 +43,9 @@ Round 2 (PLAN.md): round 1's net with every weight trained on pure Stu's games, 
   stu2-n            that net alone
   stu2-ns           round 2's longer-trained variant alone (train-r2s/: the same rows, the epoch best on pure Stu's held-out
                     cards with the other bots' log-loss within 0.02 of the start, epoch 5 where round 2's net is epoch 1)
-Round 3 (alone, told its own side is stup0): stu3a-n the interim net (train-r3a/, about half of round 3's tables),
-stu3-n round 3's net (train-r3/).
+Round 3 (told its own side is stup0): stu3a-n the interim net alone (train-r3a/, about half of round 3's tables);
+stu3-n round 3's net alone (train-r3/); stu3-p, stu3-pr pure Stu and pure Stu with rolled-out leads with round 3's net
+inside, and stu3-pa/-pb, stu3-pra/-prb the same under two ids for self-play.
 The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
 names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
   stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
@@ -81,7 +82,8 @@ RUNGS = ['-b50', '-r6', '-r3', '-p']
 STU1 = ['stu1a', 'stu1b']
 FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
-          + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv'])   # every bot that claims and mixes as Stu does
+          + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
+          + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben'}      # against BEN the net is told so (v2 knows both from BEN's own cards); no other match changes
@@ -205,6 +207,13 @@ def main():
     bots['stu2-n']['label'] = bots['stu2-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 2 ladder: ')
     bots['stu2-ns'] = alone("round 2's longer-trained net (epoch 5) alone, told its own side is stup0: its first card at every trick", R2S, dict(NAMES2))
     bots['stu2-ns']['label'] = bots['stu2-ns']['label'].replace('Stu round 0 ladder: ', 'Stu round 2 ladder: ')
+    for name, base in (('stu3-p', 'stu0-p'), ('stu3-pa', 'stu0-p'), ('stu3-pb', 'stu0-p'), ('stu3-pr', 'stu0-pr'), ('stu3-pra', 'stu0-pr'),
+                       ('stu3-prb', 'stu0-pr')):                 # round 3's net inside pure Stu; -pa/-pb, -pra/-prb: two ids for self-play
+        b = dict(copy.deepcopy(bots[base]), rollout_policy=R3)
+        b['x8']['names'] = dict(NAMES2)
+        b['label'] = ("Stu round 3 ladder (round 3's net inside, its own side read as stup0): "
+                      + ("pure: policy v4.1's lead, rollouts alone from the second card on" if base == 'stu0-p' else 'pure with the opening lead from rollouts'))
+        bots[name] = b
     for name, path, what in (('stu3a-n', R3A, "the interim round 3 net (about half of round 3's tables)"), ('stu3-n', R3, "round 3's net")):
         bots[name] = alone(what + ' alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims',
                            path, dict(NAMES2))
