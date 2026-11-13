@@ -211,10 +211,11 @@ until the standard error of its rating is 0.15 IMPs a board or it has 2,000 boar
 nats a call and IMPs a board against boards seen (E9-22).
 
 **7.3 The nets' view of a newcomer.** Reading known bots through the generic row costs v2 about 0.10 in log-loss a
-decision (section 1.2); for a bot it never saw, the cost is not measured. Gen 9 already holds a better prior for a newcomer: the arrival mixture over
-profiles. Proposal: give the net the row of the profile the arrival mixture believes (or a mixture of rows), and
+decision (section 1.2); for a bot it never saw, the cost is not measured. Gen 9 already holds a better prior for a
+newcomer: the arrival mixture over profiles. Proposal: give the net the row of the profile the arrival mixture believes (or a mixture of rows), and
 later a per-player embedding learned from experience (the brief's experience base per player). E9-22 tests the first
-step on bots v2 never saw (the arrival run's guests; `9a-32`'s card play is `8p-32`'s and is the control).
+step on bots v2 never saw (the arrival run's guests), with a bot v2 knows, read with its own row and with the
+generic row, as the control.
 
 **7.4 Leavers.** Retired by rule (arena.md section 5) with the protections above. Packages, records and experience
 stay, and a returning guest resumes from its experience.
@@ -222,7 +223,7 @@ stay, and a returning guest resumes from its experience.
 ## 8. The page
 
 Now: the ladder at the top (strength against introduction date, bench priors, time per decision, a drill-down per
-bot), Gen 8 as the default view, and the Gen 9 cohort's feed waiting for g7 to register it. `arena-results-v1`
+bot), Gen 8 as the default view, and the Gen 9 cohort's feed registered as generation 9 (g7, about 07:20 UTC). `arena-results-v1`
 (G9-D8) holds the data for one page per population and one per player.
 
 Additions for a population (G9-D10):
