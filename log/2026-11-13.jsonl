@@ -164,3 +164,4 @@
 {"at": "2026-11-13T05:07:00Z", "by": "will", "op": "send", "target": "dave/20261113T0507Z-will-g9-d9-two-data-fields-for-9a-3", "note": "G9-D9: two data fields for 9a-32 before or after the 05:20 push (g9 05:06)", "task": "G9-D9"}
 {"at": "2026-11-13T05:11:00Z", "by": "dave", "op": "job-submit", "target": "azure4/g9-cohort-preflight", "note": "priority 1, 1 cores", "task": "G9-D9"}
 {"at": "2026-11-13T05:12:00Z", "by": "dave", "op": "send", "target": "will/20261113T0512Z-dave-ladder-gen-1-dated-by-first-pl", "note": "Ladder: Gen 1 dated by first play (Max); cohort preflight job queued on azure4"}
+{"at": "2026-11-13T05:12:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "stopping"}

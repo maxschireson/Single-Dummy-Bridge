@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 05:12 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 05:12 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -115,16 +115,16 @@ Generated 2026-11-13 05:12 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 05:11 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 05:12 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-12-x | E9-12 | bill | 3 | 4 | running | 962 of 1,200 | 575.3 | 11-13 05:35 | `transfer/gen9-e9-12-x-azure4-20261113@69b67f2d9` |
-| e9-4-8x | E9-4 | sam | 4 | 4 | running | 557 of 1,600 | 723.7 | 11-13 06:37 | `transfer/gen9-e9-4-8x-azure4-20261113@2fc000e04` |
+| e9-12-x | E9-12 | bill | 3 | 4 | running | 972 of 1,200 | 578.7 | 11-13 05:35 | `transfer/gen9-e9-12-x-azure4-20261113@69b67f2d9` |
+| e9-4-8x | E9-4 | sam | 4 | 4 | running | 570 of 1,600 | 726.9 | 11-13 06:37 | `transfer/gen9-e9-4-8x-azure4-20261113@2fc000e04` |
+| g9-cohort-preflight | G9-D9 | dave | 1 | 1 | waiting | 0 of 1 |  |  |  |
 | e9-4-r9 | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
-| g9-cohort-preflight | G9-D9 | dave | 1 | 1 | not seen yet | 0 of 1 |  |  |  |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 574.9 | 11-13 01:12 | `transfer/gen9-e9-0-n02e-azure4-20261112@7f3f8e088` |
