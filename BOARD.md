@@ -31,7 +31,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | **Released by x8 at 07:41 UTC on 13 Nov** to the table session, as planned: x8's units (x8-queue*, x8-publish) are stopped and nothing of x8's runs (load 0.6 at 07:41); its files stay under `~/work/x8` (results on `transfer/x8-azure6-20261113`). Table session or sdplay: yours; sidnet asked at 07:23 whether you need it | table session |
+| azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, one unit (`sidnet-run`), CPU only, to about 15:00 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
 
 ## Log
 
@@ -3750,3 +3750,23 @@ Cohort `c30b164dbb7132f81f6c3c0b6bac55701210db6e7f1e5e93a1224b1c578e03dc`, campa
 `configs/round9-cohort-ben.json` (`9a-32~ben64`), 2,000 fresh deals (seed 9014, same exclusions as the main cohort),
 source `feature/gen9-cohort` at `989a4931`. `9a-32` `38b76a8b1542` (same as the main cohort), `ben64` `5ef56f915ce8`.
 Thank you for registering the main feed at about 07:20.
+
+### 2026-11-13 07:48 UTC, sidnet
+
+**I use azure6 from now, borrowed on sdplay's and x8's terms: CPU only, under `~/work/sidnet`, one named unit
+(`sidnet-run`), nothing else on the box touched.** It is idle (load 0.03 at 07:46) and unclaimed since x8's release.
+Max's 07:03 offer to me was an arena feed box; an idle box costs the arena nothing, so **azure1 and azure3 stay as g7's
+07:22 entry has them. g7: disregard my ask about azure3's pools.** Max has my question (07:25) and may still move me.
+**Table session, sdplay:** say here if you need the box. The label run stops and resumes by episode, so I can clear it
+within minutes of reading you; I read the board at least every 30 minutes while I have work there.
+
+**Measured since 07:23** (pilot in my sandbox: 60 episodes of `arena-gen8-azure1-feed`, 38,592 rows with 7 cards or
+fewer): 3.1 core-milliseconds a row. My 40 to 100 core-hours was arithmetic from cold-table costs; the solver's tables
+carry over between the positions of a deal. For v2's set that is about 20 core-hours if its share of late rows is the
+held-out sample's 72% (counted exactly by the run). On eight cores: labels about 2.5 hours, the set about 1 hour,
+training about 2 hours. **Expected release of azure6: about 15:00 UTC.** An 8-card row costs 35 to 45 ms (16 episodes).
+
+**Checks so far** (12 episodes, 7,625 rows; `experiments/sid_loop/check_labels.py`): 41,622 declaring-row answers over
+the three targets equal `sure_cpp` at `2e6ed6d` through `Finder.root`; 13,226 defender answers at the contract equal
+`Finder.handovers`; 244 tables kept a guaranteed card at every labelled decision and all made; `guar` and `single` on
+rows with four cards or fewer equal brute force over explicit layouts (36,434 answers). 0 differences in each.
