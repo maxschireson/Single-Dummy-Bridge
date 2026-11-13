@@ -84,7 +84,7 @@ class SettingsTests(unittest.TestCase):
                       dict(stages=[dict(from_trick=3, to_trick=6), dict(from_trick=6, to_trick=9)]), dict(claims=dict(cards=14)),
                       dict(capture=dict(level=3)), dict(mix=dict(near=-1)), dict(other=1), dict(stages=[dict(mode='rollout', layouts=0)]),
                       dict(stages=[dict(mode='blend', objective='imps')]), dict(others=[dict(policy='x', share=1.5)]),
-                      dict(capture=dict(mix_share=1.5)), dict(mix=dict(defender_power=-1))):
+                      dict(capture=dict(mix_share=1.5)), dict(mix=dict(defender_power=-1)), dict(stages=[dict(contracts='slams')])):
             with self.assertRaises(ValueError, msg=str(block)):
                 x8_settings(block)
 
@@ -811,6 +811,22 @@ class MixForkTests(Fixture8):
                 self.assertTrue(every.mix_forked(o))
                 self.assertFalse(none.mix_forked(o))
         self.assertTrue(.12 < np.mean(picked) < .40, np.mean(picked))
+
+
+class StageClassTests(Fixture8):
+    def test_a_games_only_stage_leaves_undoubled_partscores_to_the_search(self):
+        from bridge_harness.x8_player import game_or_doubled
+        p = self.make8(dict(stages=[dict(from_trick=2, to_trick=13, mode='blend', trust=.25, contracts='games')]), gen7=PlayerTests.GEN8)
+        board0, _, _ = __import__('test_gen7').played(3, 0)
+        cases = [(Contract(2, 'S', 0), False), (Contract(3, 'N', 0), True), (Contract(4, 'H', 1), True), (Contract(4, 'D', 2), False),
+                 (Contract(5, 'C', 3), True), (Contract(1, 'N', 0, 1), True), (Contract(6, 'S', 2), True), (Contract(3, 'S', 1, 2), True)]
+        for contract, game in cases:
+            self.assertEqual(game_or_doubled(contract), game)
+            game_ = Game(Board('t', board0.hands, contract, 0, 'None', ()))
+            for _ in range(5):                              # into the second trick
+                game_.play(game_.observation().legal[0])
+            o = game_.observation()
+            self.assertEqual(p.x8_stage(o) is not None, game, str(contract))
 
 
 if __name__ == '__main__':

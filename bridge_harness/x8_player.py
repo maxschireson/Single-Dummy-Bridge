@@ -111,13 +111,16 @@ class Stage:
     seat: str = 'top'           # the simulated seat: 'top' | 'draw' | 'blend' (x8_rollout.Seats)
     power: float = 1.           # 'draw': the exponent on the net's probabilities
     objective: str = 'tricks'   # rollout: 'tricks' | 'imps' (the swing against the card with the best mean tricks, layout by layout)
+    contracts: str = 'all'      # 'all' | 'games': only in games, slams and doubled contracts; in undoubled partscores the trick is
+                                # played as with no stage (the plain search). Max, 13 Nov 05:30, after partscore forks lost in every match
 
     def __post_init__(self):
         for name in ('from_trick', 'to_trick', 'layouts', 'first', 'cards', 'horizon'):
             if isinstance(getattr(self, name), bool) or not isinstance(getattr(self, name), int):
                 raise ValueError(f'8X stage {name} must be an integer')
         if self.mode not in ('search', 'blend', 'rollout') or self.seat not in ('top', 'draw', 'blend') \
-                or self.objective not in ('tricks', 'imps') or not (1 <= self.from_trick <= self.to_trick <= 13) \
+                or self.objective not in ('tricks', 'imps') or self.contracts not in ('all', 'games') \
+                or not (1 <= self.from_trick <= self.to_trick <= 13) \
                 or not (0 <= self.trust <= 4 and 0 <= self.layouts <= 4096 and 1 <= self.first <= 4096 and 2 <= self.cards <= 13
                         and 0 <= self.prior < 1 and 0 <= self.margin <= 13 and 0 <= self.race <= 100 and 0 <= self.slack <= 13
                         and 0 <= self.horizon <= 13 and 0 < self.power <= 8):
@@ -249,6 +252,11 @@ def resolved(block):
     return dict(stages=[asdict(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
                 capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
                 others=[dict(o) for o in c.others], names=dict(c.names))
+
+
+def game_or_doubled(k):
+    """A game, a slam or a doubled contract (not an undoubled partscore)."""
+    return k.doubled > 0 or k.level >= {'N': 3, 'S': 4, 'H': 4, 'D': 5, 'C': 5}[k.strain]
 
 
 def touching(o):
@@ -416,6 +424,8 @@ class X8Player(Gen7Player):
         trick = len(o.history) // 4 + 1
         for s in self.x8.stages:
             if s.from_trick <= trick <= s.to_trick:
+                if s.contracts == 'games' and not game_or_doubled(o.contract):
+                    return None
                 return s if s.mode != 'search' else None
         return None
 
@@ -484,8 +494,7 @@ class X8Player(Gen7Player):
     # ---- the winning-line logic at a defender's decision -----------------------------------
     def in_class(self, o):
         """Is the contract one the winning-line logic acts on (`contracts`)?"""
-        k = o.contract
-        return self.x8.claims.contracts == 'all' or k.doubled > 0 or k.level >= {'N': 3, 'S': 4, 'H': 4, 'D': 5, 'C': 5}[k.strain]
+        return self.x8.claims.contracts == 'all' or game_or_doubled(o.contract)
 
     def defends(self, o):
         """Does the defender's hand-over test apply to this decision?"""
