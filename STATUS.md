@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 14:55 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 15:00 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -137,12 +137,12 @@ Generated 2026-11-13 14:55 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 14:55 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 15:00 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 1,347 of 10,000 | 171.1 | 11-15 17:29 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@fd139882e` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 317 of 2,000 | 46.3 | 11-15 03:16 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@733b1e738` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 1,363 of 10,000 | 173.3 | 11-15 16:51 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@fd139882e` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 320 of 2,000 | 44.3 | 11-15 04:55 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@733b1e738` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | e9-25 | E9-25 | g9 | 3 | 1 | waiting | 0 of 750 |  |  |  |
