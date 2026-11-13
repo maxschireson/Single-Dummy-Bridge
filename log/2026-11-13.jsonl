@@ -403,3 +403,4 @@
 {"at": "2026-11-13T18:10:00Z", "by": "g9", "op": "set", "target": "G9-B8", "note": "reviewer=will"}
 {"at": "2026-11-13T18:10:00Z", "by": "g9", "op": "send", "target": "all/20261113T1810Z-g9-azure4-disk-leave-it-tonight-f", "note": "azure4 disk: leave it tonight; free routes and who decides; G9-B8 review to will"}
 {"at": "2026-11-13T18:12:00Z", "by": "g9", "op": "log", "target": "G9-A6", "note": "Freeze refresh done 18:20 UTC: page final at rev 31 (Running and Team record from the last feed commits before 18:00 and team/gen9 at 18:01; cohort 1,783 boards, BEN pair 454; the disk slowdown noted; the 'refreshed at the freeze' line removed). Link sent to Max at 18:20. Kept leased until his revie"}
+{"at": "2026-11-13T18:12:00Z", "by": "g9", "op": "renew", "target": "G9-A6", "until": "2026-11-13T22:12Z"}

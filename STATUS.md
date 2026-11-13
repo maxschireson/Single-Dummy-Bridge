@@ -23,7 +23,7 @@ Generated 2026-11-13 18:12 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 | g9 until 11-13 18:52 | leased | high | 2026-11-14T01:00Z |  |
+| [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 | g9 until 11-13 22:12 | leased | high | 2026-11-14T01:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 19:39 | leased | medium |  |  |
