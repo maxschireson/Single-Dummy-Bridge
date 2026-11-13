@@ -1,23 +1,23 @@
 {
  "pair": "r9-32~c-std-80",
- "boards": 233,
- "cpu_per_board": 20.3,
+ "boards": 333,
+ "cpu_per_board": 20.05,
  "common": {
-  "imps_per_board": 0.5923,
-  "se": 0.1715,
-  "boards": 233,
-  "won": 57,
-  "lost": 21,
-  "flat": 155
+  "imps_per_board": 0.5315,
+  "se": 0.1555,
+  "boards": 333,
+  "won": 76,
+  "lost": 32,
+  "flat": 225
  },
  "native": {
-  "imps_per_board": 0.5923,
-  "se": 0.1715,
-  "boards": 233,
-  "won": 57,
-  "lost": 21,
-  "flat": 155
+  "imps_per_board": 0.5315,
+  "se": 0.1555,
+  "boards": 333,
+  "won": 76,
+  "lost": 32,
+  "flat": 225
  },
  "failures": 0,
- "boards_per_hour": 687
+ "boards_per_hour": 712
 }
