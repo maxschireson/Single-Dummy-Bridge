@@ -95,6 +95,48 @@
    "queue_order": null
   },
   {
+   "name": "l0b-stu0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "ladder",
+   "pair": "stu0a~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 1
+  },
+  {
+   "name": "l0b-p",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "ladder",
+   "pair": "stu0-p~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 2
+  },
+  {
    "name": "s0",
    "box": "azure5",
    "branch": "transfer/rollout-loop-azure5-20261113",
@@ -116,7 +158,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 1
+   "queue_order": 3
   },
   {
    "name": "l0-stu0",
@@ -419,6 +461,27 @@
    "queue_order": 12
   },
   {
+   "name": "g0b-stu0",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "gate",
+   "pair": "stu0a~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 13
+  },
+  {
    "name": "s0b",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
@@ -439,27 +502,6 @@
     "round": 0,
     "net": "v2",
     "rung": "stu"
-   },
-   "queue_order": 13
-  },
-  {
-   "name": "g0b-stu0",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "gate",
-   "pair": "stu0a~8p-32-v41",
-   "seed": 131,
-   "first": 500,
-   "deals": 1500,
-   "records": false,
-   "first_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "stu"
-   },
-   "second_bot": {
-    "family": "other"
    },
    "queue_order": 14
   },

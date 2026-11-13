@@ -2,30 +2,30 @@
 # in the same folder: only the deals not yet played are played).
 # Seed 131 is the gate's and the ladder's: its deals are never trained on. Seed 9001 is round 0's training seed.
 #
-# The ladder's first pass (Max, 09:38 UTC: "ETA for initial calibration results?"): 200 deals a rung now, the two ends
-# of the ladder first for both nets. Stu and four bots with the boundary between search and rollouts moved (Max, 09:24),
-# with rollout net v2 inside and with rollout net v1 (ft) inside (Max, 09:27), each against Gen 8 card play on the
-# gate's deals. Records are kept to read, not to train on. After the pure bots: each net alone (the dashboard's ask).
+# The ladder's first pass (Max, 09:38 UTC), 200 deals a rung: the two ends first for both nets, then each net alone.
+# Stu and bots with the boundary between search and rollouts moved (Max, 09:24), with rollout net v2 inside and with
+# rollout net v1 (ft) inside (Max, 09:27), each against Gen 8 card play on the gate's deals. Records are kept to read,
+# not to train on.
 l0-stu0 stu0a~8p-32-v41 131 0 200 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 200 8 --episodes
 l0-p stu0-p~8p-32-v41 131 0 200 8 --episodes
 l0-v1-p stu0v1-p~8p-32-v41 131 0 200 8 --episodes
 l0-n stu0-n~8p-32-v41 131 0 200 8 --episodes
 l0-v1-n stu0v1-n~8p-32-v41 131 0 200 8 --episodes
+# At 172 deals the pure bot (no double dummy anywhere) was within noise of Stu against Gen 8 (-0.46 +- 0.31 against
+# -0.65 +- 0.18; paired +0.11 +- 0.39). That comparison decides where the boundary goes, so it comes before the middle
+# rungs: Stu and the pure bot to 500 deals here (azure5 plays deals 500 to 999 of the same two), then the same with v1.
+l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
+l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
+l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
+l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
+# The middle rungs' first pass, then every rung to 500.
 l0-r3 stu0-r3~8p-32-v41 131 0 200 8 --episodes
 l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 200 8 --episodes
 l0-r6 stu0-r6~8p-32-v41 131 0 200 8 --episodes
 l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 200 8 --episodes
 l0-b50 stu0-b50~8p-32-v41 131 0 200 8 --episodes
 l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 200 8 --episodes
-# Round 0's collection, second shard of the deals (196 boards were played before the ladder's first pass). It is ended
-# by hand when the round has enough (stop the match's process, not the unit: the chain then goes on to the next line).
-s0b stu0a~stu0b 9001 20000 20000 8 --episodes
-# The ladder to 500 deals a rung.
-l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
-l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
-l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
-l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
 l0-n stu0-n~8p-32-v41 131 0 500 8 --episodes
 l0-v1-n stu0v1-n~8p-32-v41 131 0 500 8 --episodes
 l0-r3 stu0-r3~8p-32-v41 131 0 500 8 --episodes
@@ -34,10 +34,13 @@ l0-r6 stu0-r6~8p-32-v41 131 0 500 8 --episodes
 l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 500 8 --episodes
 l0-b50 stu0-b50~8p-32-v41 131 0 500 8 --episodes
 l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 500 8 --episodes
-# The gate's baseline, the rest of its deals. (Folder g0-stu0 holds 58 boards under deal 500 from before the reorder.)
-g0b-stu0 stu0a~8p-32-v41 131 500 1500 8
-# Rollout-made decisions at early tricks, for round 2's set: the pure bot and rollouts from trick 3 against Stu, on
-# training deals of their own.
+# The gate's baseline, the rest of its deals. (Folder g0-stu0 holds 58 boards under deal 500 from before the reorder;
+# azure5's l0b-stu0 covers deals 500 to 999.)
+g0b-stu0 stu0a~8p-32-v41 131 1000 1000 8
+# Round 0's collection, second shard of the deals (224 boards so far).
+s0b stu0a~stu0b 9001 20000 20000 8 --episodes
+# Rollout-made decisions at early tricks, for a later round's set: the pure bot and rollouts from trick 3 against Stu,
+# on training deals of their own.
 d0-p stu0-p~stu0a 9001 40000 1000 8 --episodes
 d0-r3 stu0-r3~stu0a 9001 50000 1000 8 --episodes
 # The leverage control at ten times the sandbox's deals.
