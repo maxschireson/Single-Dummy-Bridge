@@ -104,8 +104,20 @@ def _play_one(index, seed):
         except Exception as e:                  # a failed measurement must not stop the run; it is reported
             row['reading_error'] = f'{type(e).__name__}: {e}'[:300]
     if WORKER.get('experience'):
-        row['envelopes'] = pl.board_envelopes(r, f"{WORKER['epoch_id'][:16]}/{WORKER['pair']}/{index}", WORKER['models'], WORKER['declared'],
+        key = f"{WORKER['epoch_id'][:16]}/{WORKER['pair']}/{index}"
+        row['envelopes'] = pl.board_envelopes(r, key, WORKER['models'], WORKER['declared'],
                                               WORKER['pair'], row['completed_epoch'], root=str(ROOT), occasions=WORKER.get('occasions'))
+        info = WORKER.get('play_info')
+        if info:                                 # play.info for the guest, read by the house bot it faced
+            try:
+                readers = WORKER.setdefault('readers', {})
+                if info['bot'] not in readers:
+                    from bridge_harness import gen9 as g9engine
+                    readers[info['bot']] = g9engine.player(m['bots'][info['bot']], source)
+                row['envelopes'] += pl.play_info_envelopes(readers[info['bot']], r, key, info['bot'], info['guest'], WORKER['pair'],
+                                                           row['completed_epoch'], pool=info['pool'], until=info['until'])
+            except Exception as e:              # measured, never a reason to stop the run
+                row['play_info_error'] = f'{type(e).__name__}: {e}'[:300]
     return row
 
 
@@ -177,6 +189,18 @@ class MatchBackend:
             return None
         return dict(bot=b if guests[0] == a else a, guest=guests[0])
 
+    def play_info_pair(self, rules, pair):
+        """With experience.play_info in the rules ({'pool', 'until'}), for a pair of a house bot and a guest: what
+        play_info_envelopes needs; else None."""
+        conf = ((rules or {}).get('experience') or {}).get('play_info')
+        if not conf or not self.experience:
+            return None
+        a, b = pair.split('~')
+        guests = [x for x in (a, b) if self.packages[x]['kind'] == 'guest']
+        if len(guests) != 1 or a == b:
+            return None
+        return dict(bot=b if guests[0] == a else a, guest=guests[0], pool=int(conf.get('pool', 128)), until=int(conf.get('until', 7)))
+
     def bots_file(self, pair, models=None):
         bots = {}
         for pid in set(pair.split('~')):
@@ -219,7 +243,7 @@ class MatchBackend:
         man, models = self.manifest(m, pair, seed)
         rules = json.loads((self.control / 'rules.json').read_text()) if self.control and (self.control / 'rules.json').exists() else None
         ctx = dict(epoch_id=m['id'], pair=pair, models=models or {}, declared=pl.declared_map(self.packages, ROOT), experience=self.experience,
-                   occasions=pl.occasion_rule(rules), reading=self.reading_pair(m, pair))
+                   occasions=pl.occasion_rule(rules), reading=self.reading_pair(m, pair), play_info=self.play_info_pair(rules, pair))
         with ProcessPoolExecutor(workers, initializer=_worker_start, initargs=(str(self.capsule), man, ctx)) as pool:
             for idx, row in zip(indices, pool.map(_worker_play, indices, [seed] * len(indices))):
                 yield idx, row

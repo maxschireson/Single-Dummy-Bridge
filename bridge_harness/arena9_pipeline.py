@@ -289,6 +289,74 @@ def reading_gain(player, record, bot, guest):
     return out
 
 
+def play_info_envelopes(player, record, key, reader, guest, source, completed, pool=128, until=7, seed=0):
+    """The `play.info` statistic for `guest` from one finished board (hidden hands read only here, after the board).
+
+    At each table, every decision of `reader`'s side before trick `until` with two hands hidden and at least one card
+    of the guest's partnership played is one occasion. The occasion's values are the gain at each factor of
+    signal_experience.FACTOR_GRID from those cards alone: factor x fit(true layout) - log mean over a pool of
+    exp(factor x fit(layout)), where fit is the sum of the cards' floored log probabilities under `player`'s policy
+    net and the pool is drawn by `player`'s auction weights over hand-type classes (scripts/gen8_play_info.py's
+    measure, restricted to the guest's cards). `player` is a fresh instance of the reader from the pair's manifest.
+    One envelope per table, its occasion holding the whole play, so the same play counts once."""
+    from .core import Board, Game, card
+    from .gen6 import Classes, View, spaced
+    from .gen7 import floored, hidden_plays
+    from .signal_experience import FACTOR_GRID, play_info
+    rng = np.random.default_rng([seed, int(hashlib.sha256(key.encode()).hexdigest()[:8], 16)])
+    ids = {'candidate': record['candidate'], 'opponent': record['opponent']}
+    if hasattr(player, 'meet'):
+        player.meet(guest)
+    out = []
+    for tkey, e in sorted(record['unique_tables'].items()):
+        actions = e['tables'][0]['actions']
+        if not actions or e.get('schema_version') == 'v4-passed-out-v1':
+            continue
+        seats = {s: ids[e['assignments'][s]] for s in range(4)}
+        if guest not in seats.values() or reader not in seats.values():
+            continue
+        theirs_side = next(s for s in range(4) if seats[s] == guest) % 2
+        if hasattr(player, 'auction_by'):
+            player.auction_by(None if any(k.startswith('native') and b['table'] == tkey for k, b in record['bidding'].items()) else
+                              [record['bidding'][next(k for k, b in record['bidding'].items() if b['table'] == tkey)]['bidders'][x] for x in range(4)])
+        board = Board.from_dict(e['board'])
+        game = Game(board)
+        truth = tuple(tuple(sorted(h)) for h in board.hands)
+        stat = None
+        for a in actions:
+            o = game.observation()
+            trick = len(o.history) // 4 + 1
+            if o.history and trick < until and o.controller % 2 != theirs_side:
+                view = View(o)
+                plays = hidden_plays(o, True)
+                theirs = np.array([chooser % 2 == theirs_side for _, _, chooser in plays], bool)
+                if len(view.hidden) == 2 and plays and theirs.any() and len(o.legal) > 1:
+                    if hasattr(player, 'class_rows'):
+                        player.class_rows = True
+                    classes = Classes(view)
+                    logw = classes.logmult + np.asarray(player.type_log_weights(o, view, classes.length, classes.hon, 'scorer'), float).reshape(-1)
+                    worlds = classes.worlds(spaced(logw, pool, rng.random()), rng)
+                    worlds.append(truth)                                              # the true layout, last
+                    owner = np.zeros(52, np.int8)
+                    assign = np.empty((len(worlds), len(view.unseen)), np.int8)
+                    for i, world in enumerate(worlds):
+                        owner[list(world[view.hidden[1]])] = 1
+                        owner[list(world[view.hidden[0]])] = 0
+                        assign[i] = owner[view.unseen]
+                    logp, options = player.play_log_probabilities(o, view, assign, plays)
+                    fit = floored(logp, options, player.g7.play_floor)[theirs].sum(axis=0)
+                    gains = [float(q * fit[-1] - (np.logaddexp.reduce(q * fit[:-1]) - np.log(len(fit) - 1))) for q in FACTOR_GRID]
+                    one = play_info(gains)
+                    stat = one if stat is None else xp.merge_stat(stat, one)
+            game.play(card(a['card']))
+        if stat is not None:
+            name = SIDES[theirs_side][2]
+            d = xp.delta(guest, f'{key}/{tkey}/{name}/play', {'play.info': stat})
+            auction = tuple(c for c in (e['board'].get('auction') or []))
+            out.append(xs.envelope(d, source, completed, xs.occasion(record['family'], _occasion_seats(name, 'play', 'play', reader, actions), auction)))
+    return out
+
+
 def trace(record):
     """A digest of what was played: each distinct table's auction and cards in order. A replay must give the same."""
     rows = []

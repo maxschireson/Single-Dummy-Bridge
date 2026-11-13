@@ -202,6 +202,43 @@ class FailedBoard(unittest.TestCase):
         self.assertEqual(a9.pooled([dict(row, epoch=1, slot=0, k=0, pair='a~b')], 'native'), [])
 
 
+class PlayInfo(unittest.TestCase):
+    CAPSULE = Path('/home/claude/capsule/recovery')
+
+    def test_the_runner_asks_for_it_only_when_the_rules_do(self):
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        import arena9 as cli
+        mb = cli.MatchBackend.__new__(cli.MatchBackend)
+        mb.packages = {'h': dict(kind='house'), 'g': dict(kind='guest'), 'g2': dict(kind='guest')}
+        mb.experience = True
+        on = dict(experience=dict(play_info=dict(pool=64)))
+        self.assertIsNone(mb.play_info_pair({}, 'h~g'))
+        self.assertEqual(mb.play_info_pair(on, 'g~h'), dict(bot='h', guest='g', pool=64, until=7))
+        self.assertIsNone(mb.play_info_pair(on, 'g~g2'))
+        mb.experience = False
+        self.assertIsNone(mb.play_info_pair(on, 'h~g'))
+
+    @unittest.skipUnless((CAPSULE / 'manifest.json').exists(), 'needs the capsule and the nets')
+    def test_one_occasion_per_decision_that_reads_the_guests_cards(self):
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        sys.path.insert(0, str(ROOT))
+        from gen8_match import build_manifest
+        from bridge_harness import gen9
+        from bridge_harness.signal_experience import FACTOR_GRID
+        man = build_manifest(self.CAPSULE, str(ROOT / 'configs' / 'gen9-proto-bots.json'), '9a-32~6-32', 1)
+        p = gen9.player(man['bots']['9a-32'], str(self.CAPSULE))
+        rec = json.loads((ROOT / 'tests' / 'data' / 'arena9_board_record.json').read_text())
+        envs = pl.play_info_envelopes(p, rec, 'k', '9a-32', 'guest-a', 'test', 1.0, pool=32)
+        self.assertTrue(envs)
+        for e in envs:
+            s = e['delta']['stats']['play.info']
+            self.assertEqual((s['kind'], s['grid'], e['delta']['player']), ('moment', list(FACTOR_GRID), 'guest-a'))
+            self.assertGreater(s['n'], 0)
+            self.assertEqual(s['sum'][0], 0.)                            # factor 0 reads nothing
+        again = pl.play_info_envelopes(p, rec, 'k', '9a-32', 'guest-a', 'test', 1.0, pool=32)
+        self.assertEqual([e['delta'] for e in envs], [e['delta'] for e in again])      # seeded by the key: the same board, the same values
+
+
 class Arrival(unittest.TestCase):
     def test_a_guest_with_a_card_gets_arrive_and_a_house_bot_its_profiles(self):
         card = json.loads((ROOT / 'configs/cards/rb-precision.json').read_text())

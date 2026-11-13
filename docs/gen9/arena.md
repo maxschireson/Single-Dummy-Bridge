@@ -98,6 +98,18 @@ Because the epoch facts are in the cohort manifest, today's runtime, validator, 
 publisher run unchanged in phase 0. Per-record `arena` fields come when the runtime is changed
 for other reasons (backlog item 1).
 
+**Experience after a board** (prototype, `bridge_harness/arena9_pipeline.py`). Once a board is finished, so that
+every hand is known, the runner writes envelopes into `results/e<n>/experience-slot<s>.jsonl`; they enter a snapshot
+only after their epoch has closed. There are three kinds of statistic:
+- bidding statistics, credited to whoever made the calls (bill's `bidding_delta` and profile evidence);
+- card statistics, credited to whoever played the cards (sam's `card_delta`);
+- with `experience.play_info` in the rules, `play.info`: the guest's cards as the house bot it faced reads them, at
+  each factor of `signal_experience.FACTOR_GRID`. The Gen 9 shell sets an opponent's play factor from it once it
+  holds `factor_min_plays` occasions.
+
+Occasions (`experience.occasions`) decide what counts once. Bids count once per deal family, seats and auction.
+Cards and `play.info` also include the whole play, so an identical play counts once and a different play again.
+
 **Needed from the collector-runtime lineage** (backlog item 1; PRs #13 and #15, open): the
 self-play regime, gap-fork and guess capture, feed-health heartbeats (which collectors are alive)
 and BEN lanes. Until they are on one main-based runtime, the prototype (G9-D4) uses
