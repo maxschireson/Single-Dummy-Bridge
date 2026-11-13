@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 12:29 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 12:33 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -82,10 +82,10 @@ Generated 2026-11-13 12:29 UTC by `tools/workq.py` after a change by `azure4`. D
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
+| [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 | g9 until 11-13 13:33 | leased | medium | 2026-11-13T18:00Z |  |
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z | past due |
-| [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 |  | open | medium | 2026-11-13T18:00Z |  |
 | [E9-22](experiments/E9-22.md) | A newcomer's who for the nets from the arrival mixture, and the learning curve | g9 |  | open | medium | 2026-11-13T18:00Z |  |
 | [E9-25](experiments/E9-25.md) | The 0.9 threshold against BEN defenders: scorer weights against Gen 9's (registered from E9-24) | g9 |  | open | medium | 2026-11-14T18:00Z |  |
 | [E9-23](experiments/E9-23.md) | Exploitability report for 8s-32 and 8x3-32: the informed reader on the bench | g9 |  | open | low |  |  |
@@ -112,7 +112,7 @@ Generated 2026-11-13 12:29 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 80 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 10:14 | 13 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 11:55 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 12:33 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 22 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 12:27 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
