@@ -205,7 +205,7 @@
       el('div', { style: 'color:' + MUTED }, (p.candidate ? 'candidate, not on a registered feed' : `introduced ${when(p.introduced_utc)} UTC`) +
         (p.prior_share !== null && p.prior_share !== undefined ? ` · prior ${Math.round(100 * p.prior_share)}%` : '')),
       seconds(p) !== null ? el('div', { style: 'color:' + MUTED }, `${num(seconds(p), 3)} s per card decision with a choice`) : null,
-      p.candidate ? el('div', { style: 'color:' + MUTED }, (p.estimate && p.estimate.edge) ? 'Click for where its edge comes from.' : 'Click for how it is placed.') : null);
+      (p.edge || p.candidate) ? el('div', { style: 'color:' + MUTED }, (p.edge || (p.estimate && p.estimate.edge)) ? 'Click for where its edge comes from.' : 'Click for how it is placed.') : null);
     box.hidden = false;
     const r = wrap.getBoundingClientRect(), t = ev.target.getBoundingClientRect();
     let left = t.left - r.left + 18, top = t.top - r.top - 10;
@@ -243,10 +243,13 @@
     const dl = el('table', { style: 'width:auto;margin:6px 0 10px' });
     for (const [k, v] of facts) dl.append(el('tr', {}, el('th', { style: 'text-align:left;padding:4px 14px 4px 0' }, k), el('td', { style: 'text-align:left;white-space:normal;padding:4px 0' }, v)));
     const parts = [close, head];
-    const edge = p.estimate && (p.estimate.edge || p.edge);
-    if (p.candidate) parts.push(el('p', { class: 'notice', style: 'margin:6px 0 10px;color:' + TEXT },
+    // where a bot's edge comes from: a point's `edge` {text, url} (or a string), or a candidate's estimate.edge / edge_url
+    const pe = p.edge && typeof p.edge === 'object' ? p.edge : (typeof p.edge === 'string' ? { text: p.edge } : null);
+    const edge = pe ? pe.text : (p.estimate && p.estimate.edge);
+    const edgeUrl = safeUrl(pe ? pe.url : (p.estimate && p.estimate.edge_url));
+    if (edge || p.candidate) parts.push(el('p', { class: 'notice', style: 'margin:6px 0 10px;color:' + TEXT },
       el('strong', {}, edge ? 'Where its edge comes from: ' : 'How it is placed: '), edge || (p.estimate && p.estimate.note) || 'not stated in ladder.json.',
-      edge && safeUrl(p.estimate.edge_url) ? el('span', {}, ' ', el('a', { href: safeUrl(p.estimate.edge_url), target: '_blank', rel: 'noopener' }, 'source')) : null));
+      edge && edgeUrl ? el('span', {}, ' ', el('a', { href: edgeUrl, target: '_blank', rel: 'noopener' }, 'source')) : null));
     parts.push(dl);
     if (p.estimate) {
       const e = p.estimate, u = safeUrl(e.url);
