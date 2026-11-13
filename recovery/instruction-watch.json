@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794569507.969436,
+  "checked_epoch": 1794573108.0890365,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "8435fc660f433b2aeea67d11b10c8fe7bff56b5d",
-  "coordination_blob": "dc8f51471a10fcd265ce3a974c44ffbb43f58a63",
+  "coordination_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
+  "coordination_blob": "453185129000fb0836343359dae89eef7e450bca",
   "registry_blob": "3bd16b201da285d965519f90bfb2847bdf96facd",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -107,29 +107,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 2178,
+      "completed": 2292,
       "target": 16036,
-      "contiguous": 2176,
+      "contiguous": 2292,
       "by_pair": {
-        "8s-32~71s-32": 726,
-        "8s-32~1": 363,
-        "8s-32~5RZ32": 364,
-        "8c-32~8s-32": 362,
-        "8c-32~71s-32": 363
+        "8s-32~71s-32": 764,
+        "8s-32~1": 382,
+        "8s-32~5RZ32": 382,
+        "8c-32~8s-32": 382,
+        "8c-32~71s-32": 382
       },
-      "root_games": 7260,
-      "tables": 89882,
+      "root_games": 7640,
+      "tables": 94547,
       "failures": 0,
-      "epoch": 1794569482.8682601,
+      "epoch": 1794573094.2633798,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794569502.8696117,
-      "completed": 2178,
+      "epoch": 1794573104.266449,
+      "completed": 2292,
       "in_flight": [
-        2176,
-        2179,
-        2180
+        2292,
+        2293,
+        2294
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -137,15 +137,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794569457.3965464,
+      "epoch": 1794573057.6535323,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794569494.1041865,
+      "epoch": 1794573090.3073466,
       "status": "published",
-      "completed": 2178
+      "completed": 2291
     },
     "process.json": {
       "pid": 119770,
@@ -162,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction. Current authoritative main and operational notices, historical Gen7.1 notices and successor references remain unchanged. New coordination notices concern separate Stu research, Azure host assignments and a claim solver absent from this Gen8 runtime. Frozen source, models, manifest, corpus and exclusion union verified; current health is fresh and healthy.",
+  "result": "No new instruction changes this owned collector. Main, Gen8 release notices, earlier Gen7.1 notices, cleanup and known successor deployment references are unchanged. New coordination reports Stu research and a same-bot room duplication finding; no adopted successor or current comparison-plan change is directed here. Frozen source, models, manifest, corpus and training exclusion union verified.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -175,33 +175,23 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T10:32:25Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T11:31:47Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 development queue only; no collector deployment instruction",
+      "disposition": "Gen9 development queue only; no new comments or collector deployment instruction",
       "new_comments": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "stu-dash 2026-11-13 10:47 UTC",
-      "classification": "Separate Stu dashboard update",
-      "action": "No owned feed or runtime change"
-    },
-    {
-      "notice": "loop 2026-11-13 10:45 UTC",
-      "classification": "Stu research ladder, training and job-order change",
-      "action": "Outside this owned stream; fixed target, mix and models unchanged"
-    },
-    {
-      "notice": "plan 2026-11-13 10:56 UTC",
-      "classification": "Azure 2 and Azure 5 host-specific release and claim-solver version reminder",
-      "action": "Outside ownership. This frozen Gen8 runtime does not use the claim solver"
+      "notice": "loop 2026-11-13 12:05 UTC",
+      "classification": "Stu research deployment, opening-lead rollout prototype and same-bot room duplication finding",
+      "action": "Pure Stu and lead settings apply to loop-owned research on Azure 3 and Azure 5. BEN request addresses g7. Current five-pair Gen8 comparison plan remains the authorized release; no identical-actor self-play cohort is scheduled, and the new one_room research option is not an adopted replacement plan for this stream."
     }
   ],
-  "registry_disposition": "Entire registry unchanged; owned active Gen8 and both retired pins verified",
-  "previous_checked_epoch": 1794565945.7974339,
+  "registry_disposition": "Entire registry unchanged; owned active Gen8 source and both permanently retired source pins verified",
+  "previous_checked_epoch": 1794569507.969436,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -222,11 +212,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 5.0998241901397705,
-  "publisher_age": 13.865249395370483,
-  "free_bytes": 20210655232,
+  "heartbeat_age": 3.822587490081787,
+  "publisher_age": 17.781689882278442,
+  "free_bytes": 19449462784,
   "new_applicable_instructions": [],
-  "registry_revision": "0a5fbb44cc946ffea46f9439e5cf315f22e2de56",
+  "registry_revision": "91c74db0a197be21e47260f5bab14a9fa496bce0",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -305,5 +295,12 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 50.57288956642151
+  "watchdog_age": 50.43550419807434,
+  "future_selfplay_review": {
+    "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
+    "notice": "loop 2026-11-13 12:05 UTC",
+    "finding": "Two IDs of the same bot can repeat both rooms with shared per-ply and seat seeds.",
+    "current_scope": "Current plan contains comparisons between distinct released actor identities. 8c-32 versus 8s-32 intentionally measures identical card-play engines in common auctions and different bidding systems in native auctions, as the adopted plan documents; preserve its two-condition provenance.",
+    "future_action": "Review room independence or a validated single-room collection design before preparing any newly authorized identical-bot self-play cohort. No change to current frozen source, room seeds, manifest, completed records or receipts."
+  }
 }
