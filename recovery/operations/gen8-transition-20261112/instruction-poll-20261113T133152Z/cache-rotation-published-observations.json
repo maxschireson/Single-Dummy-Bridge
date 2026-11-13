@@ -1,0 +1,210 @@
+[
+  {
+    "log": "b379e461a88350715fe9166267a8ad0e78a3fdb2 2026-11-13T13:24:41Z Gen8 candidate \u00b7 Codex main arena mix: 2329 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 2329,
+      "target": 18283,
+      "contiguous": 2329,
+      "by_pair": {
+        "8s-32~1": 389,
+        "8c-32~71s-32": 388,
+        "8c-32~8s-32": 388,
+        "8s-32~71s-32": 776,
+        "8s-32~5RZ32": 388
+      },
+      "root_games": 7764,
+      "tables": 95692,
+      "failures": 0,
+      "epoch": 1794576278.1194532,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794576275.2381253,
+      "completed": 2329,
+      "in_flight": [
+        2329,
+        2330,
+        2331
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794576144.7591004,
+      "stopping": false
+    }
+  },
+  {
+    "log": "cec123391dc77f5dcb635091d9f75e7a80d22e7e 2026-11-13T13:23:35Z Gen8 candidate \u00b7 Codex main arena mix: 2326 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 2326,
+      "target": 18283,
+      "contiguous": 2326,
+      "by_pair": {
+        "8s-32~1": 387,
+        "8c-32~71s-32": 387,
+        "8c-32~8s-32": 388,
+        "8s-32~71s-32": 776,
+        "8s-32~5RZ32": 388
+      },
+      "root_games": 7752,
+      "tables": 95546,
+      "failures": 0,
+      "epoch": 1794576212.1690488,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794576211.993134,
+      "completed": 2326,
+      "in_flight": [
+        2326,
+        2327,
+        2328
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794576144.7591004,
+      "stopping": false
+    }
+  },
+  {
+    "log": "f40536b71c855a86fd40aa7c5783833d0bbdb0b2 2026-11-13T13:22:28Z Gen8 candidate \u00b7 Codex main arena mix: 2326 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 2326,
+      "target": 18283,
+      "contiguous": 2326,
+      "by_pair": {
+        "8s-32~1": 387,
+        "8c-32~71s-32": 387,
+        "8c-32~8s-32": 388,
+        "8s-32~71s-32": 776,
+        "8s-32~5RZ32": 388
+      },
+      "root_games": 7752,
+      "tables": 95546,
+      "failures": 0,
+      "epoch": 1794576143.4935215,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794576132.2770875,
+      "completed": 2326,
+      "in_flight": [
+        2325
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794564259.441621,
+      "stopping": true
+    }
+  },
+  {
+    "log": "657c3cd13a4926b760bcb7a9aca02a0acb69cb4f 2026-11-13T13:21:20Z Gen8 candidate \u00b7 Codex main arena mix: 2323 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 2323,
+      "target": 18283,
+      "contiguous": 2323,
+      "by_pair": {
+        "8s-32~1": 387,
+        "8c-32~71s-32": 387,
+        "8c-32~8s-32": 387,
+        "8s-32~71s-32": 775,
+        "8s-32~5RZ32": 387
+      },
+      "root_games": 7742,
+      "tables": 95391,
+      "failures": 0,
+      "epoch": 1794576077.3136747,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794576075.7759235,
+      "completed": 2323,
+      "in_flight": [
+        2323,
+        2324,
+        2325
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794564259.441621,
+      "stopping": false
+    }
+  },
+  {
+    "log": "f86748373cedffe7aac200d6cfa189029e87ab9b 2026-11-13T13:20:14Z Gen8 candidate \u00b7 Codex main arena mix: 2320 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 2320,
+      "target": 18283,
+      "contiguous": 2319,
+      "by_pair": {
+        "8s-32~1": 387,
+        "8c-32~71s-32": 387,
+        "8c-32~8s-32": 386,
+        "8s-32~71s-32": 773,
+        "8s-32~5RZ32": 387
+      },
+      "root_games": 7734,
+      "tables": 95269,
+      "failures": 0,
+      "epoch": 1794576011.2804065,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794576005.7827396,
+      "completed": 2320,
+      "in_flight": [
+        2319,
+        2321,
+        2322
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794564259.441621,
+      "stopping": false
+    }
+  },
+  {
+    "log": "9639a0322ddf7f49983f49269b6e0c3b33596067 2026-11-13T13:19:08Z Gen8 candidate \u00b7 Codex main arena mix: 2318 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 2318,
+      "target": 18283,
+      "contiguous": 2318,
+      "by_pair": {
+        "8s-32~1": 387,
+        "8c-32~71s-32": 386,
+        "8c-32~8s-32": 386,
+        "8s-32~71s-32": 773,
+        "8s-32~5RZ32": 386
+      },
+      "root_games": 7726,
+      "tables": 95177,
+      "failures": 0,
+      "epoch": 1794575944.4505382,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794575943.1499636,
+      "completed": 2318,
+      "in_flight": [
+        2318,
+        2319,
+        2320
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794564259.441621,
+      "stopping": false
+    }
+  }
+]
