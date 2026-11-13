@@ -1,0 +1,21 @@
+{
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "pair_weights": {
+    "8s-32~71s-32": 2,
+    "8c-32~71s-32": 1,
+    "8c-32~8s-32": 1,
+    "8s-32~5RZ32": 1,
+    "8s-32~1": 1
+  },
+  "canonical_selfplay_scheduled": false,
+  "selfplay_launch_enabled": false,
+  "systems": {
+    "8s-32": "house-gen6",
+    "8c-32": "rules-precision",
+    "71s-32": "house-gen6",
+    "6-32": "house-gen6",
+    "5RZ32": "house-gen5",
+    "1": "house-dds40k"
+  },
+  "8c_vs_8s_interpretation": "Distinct canonical actor identities and native bidding systems; common comparison remains numeric zero, not null self-play. Preserve paired common/native conditions."
+}
