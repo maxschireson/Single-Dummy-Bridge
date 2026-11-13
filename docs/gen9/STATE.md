@@ -103,6 +103,10 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
   gains through the bench and arena non-inferiority (issue #24 closed). SiD and the conditional claims into Gen 9: plan
   `docs/gen9/sid-integration.md` (G9-A9; tasks E9-24, G9-A10, G9-S9); question to x8 on the board about who builds
   conditional claims in the 8X engine.
+- **E9-24** (submitted): against Precision defenders, lines committed at a floor of 0.9 failed 8.7% of the time with
+  the scorer's weights and 3.5% with Gen 9's (house tables 5.0%). `reports/gen9-sid-weights-2026-11-13`.
+- **X9** (G9-A10, submitted to will): the Gen 9 player on the 8X engine, `feature/gen9-x9` at ed2806f, card for card with
+  the 8X bot when nothing is declared. E9-21 adopted and E9-20 rejected as worded (will, 08:27).
 
 ## Waiting
 

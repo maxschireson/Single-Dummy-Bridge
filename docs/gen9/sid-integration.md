@@ -87,6 +87,9 @@ of G9-A5, done against the 8X branch instead of main. Three things to settle in 
   (E9-22) instead of the generic row.
 
 Test, as every Gen 9 input: with nothing declared and empty experience, `X9` plays exactly as the 8X bot it wraps.
+Built 13 Nov 08:30 UTC on `feature/gen9-x9` (ed2806f, from `feature/gen8x-arena-20261113` at 3d93d78): card for card
+with 8X off, with rollouts and the blend, and with rollouts and the winning-line logic (`sure_cpp` from 2e6ed6d); the
+8X and Gen 9 test files pass on that base. `x8.names` for a newcomer is not in it yet (E9-22).
 
 ### 2.3 Opponents inside the rollouts and the tree
 
@@ -141,7 +144,7 @@ piece in a lead's own session (no sub-agents, Max, 07:48 UTC), all in the review
 | Piece | Who | Aim (UTC, estimates) |
 | --- | --- | --- |
 | E9-24: calibration of floors by weight source | g9 | done 08:20 |
-| `X9`: the Gen 9 shell on the 8X engine, inert by default, with tests | g9 | 15:00 |
+| `X9`: the Gen 9 shell on the 8X engine, inert by default, with tests | g9 | done 08:30 (`feature/gen9-x9`, ed2806f) |
 | Defenders' conditional lines: the bound of 2.4 | sam, or g9 if sam is away | evening |
 | The arena interface for SiD's rounds (2.5) | dave, g9 | posted on the board at 07:57 |
 
@@ -154,7 +157,7 @@ section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefe
 | Step | What | Needs | When |
 | --- | --- | --- | --- |
 | 1 | E9-24 on recorded positions | `cells.cpp`, Gen 8 feeds, the Gen 9 shell | Done 08:20 UTC |
-| 2 | `X9` with tests | the 8X engine at its current commit | Today, about 15:00 UTC |
+| 2 | `X9` with tests | the 8X engine at its current commit | Done 08:30 UTC: `feature/gen9-x9` at ed2806f |
 | 3 | Conditional claims in 8X (`DESIGN.md` 6) | owner agreed with x8 | x8's call |
 | 4 | `X9` with conditional claims against the 8X bot it wraps, forks on, on a Gen 9 box | 2, 3 | After 3 |
 | 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Today, evening |
