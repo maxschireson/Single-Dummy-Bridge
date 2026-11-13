@@ -1,0 +1,30 @@
+{
+  "revision": "3f15ae39471c8ebcb990abc570d778d32bd7b426",
+  "blob": "a35e779a24de879abf249d89030bf44c2712a446",
+  "global_confirmation": {
+    "revision": "3f15ae39471c8ebcb990abc570d778d32bd7b426",
+    "entry": "2026-11-13T20:00:00Z",
+    "authority_times": [
+      "2026-11-13T19:57:00Z",
+      "2026-11-13T19:59:00Z"
+    ],
+    "general_priority": "Stu continues on five Azure boxes indefinitely; Gen9 heterogeneous populations are next priority. Preserve the scientific contribution and evidence from earlier streams.",
+    "owned_stream_confirmation": "Arena collection goes on at Codex primary, 19bbdce5 and the independent collector; Gen9 stays on Azure4.",
+    "effect": "Current Gen8 collection is explicitly reaffirmed. No local allocation, source, model, scientific setting or target change."
+  },
+  "peer_8x": {
+    "notice_revision": "3f15ae39471c8ebcb990abc570d778d32bd7b426",
+    "entry": "2026-11-13T20:00:00Z",
+    "cohort_prefix": "e5c845da95a3",
+    "completed_reported": 3986,
+    "target": 6000,
+    "status_reported": "Azure1 cohort closed at 19:59 after its 16:32 cache-full failure; every completed board published, failure003990 preserved, publisher stopped and operator units disabled. Follow-on bd2e22fed5e3 remains unstarted.",
+    "cause_reported": "Rollout solver cache filled the 12GB RAM disk; database or disk full.",
+    "conditional_future_guidance": "For a later authorized 8X run, use disk cache or timed disposable-cache rotation. This Gen8 producer already uses its approved on-disk cache and exact-token 2GiB rotation; do not copy Azure RAM-disk settings.",
+    "read_only": true,
+    "action": "No peer restart, cleanup, failure clearance, host command or registry change."
+  },
+  "azure4_correction": "The old Azure4 Gen7 publisher belongs to g8, not g7; g9/g8 decide whether to stop it. This is a corrected recipient on another host, not an instruction to this producer.",
+  "performance_proposal": "Unmerged runtime optimization proposal, chiefly benchmarked on Stu rollouts. No notice adopts it for this owned stream. Its claim of no bot-identity change does not authorize editing frozen science. Any later authorized source/runtime change here still follows the user's drain, new cohort/source identity, full exclusions and observed preflight requirements.",
+  "current_effect": "Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN jobs and source budget 18,283. Max's general notice explicitly continues Codex primary arena collection. No self-play or retired comparison predicate; no new source, model, corpus, allocation or promotion."
+}

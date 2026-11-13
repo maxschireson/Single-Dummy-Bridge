@@ -1,0 +1,16 @@
+{
+  "revision": "49f81bb3effdce625e345c51dc04365528c4aa8a",
+  "index_blob": "bea11586eab70fbcbcce565a9778925c3ed09c3c",
+  "preserve_lines": [
+    "<section id=\"ladder\" hidden></section>",
+    "<script src=\"ladder.js?v=g9-ladder-20261113g\" defer></script>"
+  ],
+  "known_replay_catalog_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
+  "known_replay_issue_unchanged": true,
+  "shared_ui_mutated": false,
+  "registry_mutated": false,
+  "changes": [
+    "arena/ladder.json"
+  ],
+  "disposition": "Only ladder data refreshed. All six owned entries, arena index and replay catalog are unchanged. Preserve the pending shared UI approval and its already reported blocker."
+}
