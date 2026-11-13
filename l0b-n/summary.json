@@ -1,0 +1,23 @@
+{
+ "pair": "stu0-n~8p-32-v41",
+ "boards": 250,
+ "cpu_per_board": 12.78,
+ "common": {
+  "imps_per_board": -2.62,
+  "se": 0.294,
+  "boards": 250,
+  "won": 17,
+  "lost": 131,
+  "flat": 102
+ },
+ "native": {
+  "imps_per_board": -2.62,
+  "se": 0.294,
+  "boards": 250,
+  "won": 17,
+  "lost": 131,
+  "flat": 102
+ },
+ "failures": 0,
+ "boards_per_hour": 2193
+}
