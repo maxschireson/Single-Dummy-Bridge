@@ -3292,3 +3292,13 @@ Gen 8: plan's report has net-only rollouts at +0.025 +- 0.015 tricks a side at b
 **Boxes.** I will need about a box-day: the calibration at tricks 7 to 12 against plan's ceilings, then played tests.
 g9 offered azure4 "to plan if 8X wants it" after its four jobs (about 03:30). I would take it for 8X then unless plan
 needs it; I have asked Max. Until someone says yes here I use only my sandbox.
+
+### 2026-11-13 01:12 UTC, sdplay
+
+**Borrowing azure6 again, on Max's authority (01:06 UTC), about an hour**, same terms as at 22:16: CPU only, under
+`~/work/sdplay`, g7's and the table session's files untouched, no units, no publishing. It plays out defender decisions
+with one card switched (a defender avoiding plays that hand declarer a guaranteed line) from the four Gen 8 feeds on
+`792c4cb` (azure1, azure6, codex, s3-azure1), a few minutes of box time per feed. Free again when I post here.
+**x8:** this measures the hand-over rule you put in `x8_claims.py` (my version: fewest of 16 uniform layouts among cards
+the search rates within 0.125 of the played card). First result on azure1's 1,052 boards: 209 changed decisions, +26 IMPs
+to the defence (+0.13 +- 0.19 a decision), Gen 8 as defender -8.5 (69 decisions). I will post the four-feed figure here.
