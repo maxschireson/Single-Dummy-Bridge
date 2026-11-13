@@ -15,7 +15,15 @@
     "configs/round8-candidate.json",
     "configs/round8-candidate-ben.json",
     "docs/gen8_candidate_2026-11-12.md",
-    "BOARD.md"
+    "BOARD.md",
+    "configs/round9-cohort.json",
+    "configs/round9-cohort-ben.json",
+    "configs/round8x-v3.json",
+    "configs/round8x-v3u.json",
+    "configs/round8x-v3-both.json",
+    "arena/gen6-sources.json",
+    "arena/replays/common.js",
+    "arena/index.html"
   ],
   "file_revisions": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -42,7 +50,7 @@
     "arena-gen5rz-ben-feed": "a559ccb59e9d3ff09d8c759c016534b4efcef254",
     "arena-gen5rz-feed": "03fd90e694d02ba139559fc323e63e384da9e969",
     "arena-gen6-ben-expansion-feed": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
-    "arena-gen6-chatgpt-feed": "5c0ccc4935d992c2a8b1c2a5b0af7c60b5ac79a3",
+    "arena-gen6-chatgpt-feed": "edd1751b9a58dc92b2cdca01b3e84311885174bb",
     "arena-gen6-codex-ben-followups-feed": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
     "arena-gen6-codex-ben-gate": "32d459d5513005f3c032a04fb6c785d4a0db4d6f",
     "arena-gen6-codex-feed": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
@@ -114,7 +122,7 @@
     "arena-gen7-phase1-azure3-ben64-7-feed": "62b082a31ce2c82927420438998f0d4b265eea81",
     "arena-gen7-phase1-azure3-ben64-8-feed": "0aaf87097a19f2b69226c511231178064d975761",
     "arena-gen7-phase1-azure3-feed": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
-    "arena-gen7-phase1-azure4-feed": "09767608725429ce909aaf91ae86fb129227659f",
+    "arena-gen7-phase1-azure4-feed": "190899cad25c41176c71ccdc9c97d036dc996632",
     "arena-gen7-phase1-cloud-feed": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
     "arena-gen7-phase1-codex-20261112-feed": "dfe3233dec356e48da065702964892354e0db16c",
     "arena-gen7-phase1-extra-feed": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
@@ -126,7 +134,7 @@
     "arena-gen7-pre7-azure4-feed": "2968b84979c87ccb4102d164013e62ce2cf60c07",
     "arena-gen7-selfplay-capture-codex-20261112-feed": "09950642e0d40dc68fecf511569bb72935ba7782",
     "arena-gen7-selfplay-codex-20261112-feed": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
-    "arena-gen8-19bbdce5-20261112-feed": "89eb2b32c3304c30872d6c7073043702cd1b0248",
+    "arena-gen8-19bbdce5-20261112-feed": "3ca81cc3adcd0af09076c5abc01d11e645eaddd4",
     "arena-gen8-azure1-feed": "210f7b205ad822b88a82cc482af3f6952f1b41b5",
     "arena-gen8-azure3-ben64-1-feed": "de640549c40531b5f235b5480a2213c135b690ca",
     "arena-gen8-azure3-ben64-2-feed": "fdee44ee8b5e3dbcf317a3ba2f30fc88a3e718b1",
@@ -137,7 +145,7 @@
     "arena-gen8-azure3-ben64-7-feed": "0e72cf1b5888920eb69d5741cdb885902c3f0b92",
     "arena-gen8-azure3-ben64-8-feed": "846404c8a0de86a8d279748d2b7c7999e7846d95",
     "arena-gen8-azure6-feed": "3b68c77537a88932817f352b23bc032966a33800",
-    "arena-gen8-candidate-codex-20261112-feed": "8269d48aa911f347c3d88ac5bca59172f1d43c10",
+    "arena-gen8-candidate-codex-20261112-feed": "0f2ef12e58b7257e29a180f7a91e16f80420e1cb",
     "arena-gen8-f-azure3-ben64-1-feed": "70af3d4ffa918c6156e556e07826803165052771",
     "arena-gen8-f-azure3-ben64-2-feed": "0c2d19bd46baf6cf9f1b47bb2f636ba0325ab85e",
     "arena-gen8-f-azure3-ben64-3-feed": "91c75e8829d3b596739df445840325b7b63c81a7",
@@ -145,7 +153,7 @@
     "arena-gen8-f-azure3-ben64-5-feed": "74e31aaddecdecd3c71cda957e5633ccad66aacd",
     "arena-gen8-f-azure3-ben64-7-feed": "352bfad7dd1ecc56ffe589214bb123158827971a",
     "arena-gen8-f-azure3-ben64-8-feed": "7159a5191b84fa386bcee8e8c97de2706a006fd4",
-    "arena-gen8-independent-feed": "c4dacb25f973ed6874a48952d613ca72e0e8aca1",
+    "arena-gen8-independent-feed": "d69b8fee8258a995f20bc13450bfcad4ed05c5ab",
     "arena-gen8-m1-azure1-feed": "230222ced59d36761501ca6e94a83f474948ec5a",
     "arena-gen8-p2-azure3-ben64-1-feed": "460aec92e15f061abb7886250d272d9de8cd2581",
     "arena-gen8-p2-azure3-ben64-2-feed": "836c37d38dc6464d351a763808bd136c590e2134",
@@ -159,25 +167,25 @@
     "arena-gen8-s3-azure1-feed": "934d62ee9d89a48dc388c9e94b8bcbd13bccd00d",
     "arena-gen8-s7-azure1-feed": "9c7562342965d32bdea73f1b30f0473d3a2fb436",
     "arena-gen8-x3-azure1-feed": "cda098fcfd890886c379e21813546ff07b9daea2",
-    "arena-gen9-azure4-ben64-feed": "83026d2c20ecd9b26d417607811094b96fbf5a6b",
-    "arena-gen9-azure4-feed": "4a2ac0a597e16175fd30d59b54bb64fbe7acaddc",
+    "arena-gen9-azure4-ben64-feed": "12829029d891ef29cdcdac1e30213b61275b6dd0",
+    "arena-gen9-azure4-feed": "57daa92b38a608e0c98bbe088f77c2fcff6f119b",
     "arena-gen71-19bbdce5-20261112-feed": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
     "arena-gen71-independent-feed": "cbddecbc290efc8e3ab6e088135675df1cec14e5",
     "arena-local-feed": "7201f5a2e5b8f4ca6e03bc6769633b48ca39590e",
     "arena-primary-components-feed": "f11ab55e16787069dfd5c25cf539592c85b7c699",
     "arena-recovery-feed": "599abfc69b17d1e6e4c4c5e5c505d241d2120bbf",
-    "box/azure1/control": "44f78d4bdfe4a02ebf48e6808893ed6906355b56",
-    "box/azure1/status": "3babea20d1135bfc03a5bb9f33d85c5ec6315760",
-    "box/azure2/control": "e2e4312d3b2f78a70856e0831dd5ce92a1c43b87",
-    "box/azure2/status": "be5287612f6d3c15cfb734373c0d604870e58f07",
-    "box/azure3/control": "4de1257f3f62ad7eee9fb3a36495e4a165dcbbb6",
-    "box/azure3/status": "88115d573ef1cf103a36a9db74fa07181f5f4e7f",
+    "box/azure1/control": "5f9841bd83d7c575139c6550cd68c44e6924975f",
+    "box/azure1/status": "57cada92c1ed7b98cbd45cb680fe9c195fb19d66",
+    "box/azure2/control": "77fba222ed1eff2b0b6a5cc5b6d517836caaafe6",
+    "box/azure2/status": "3674efd36fd26abeb8c919f6961eb0232031f38e",
+    "box/azure3/control": "147a9af1c3af309623e447e7f5a1a1820b6cfeb3",
+    "box/azure3/status": "944e5501a8b8c9802ffee16a053d7c4ac106f11a",
     "box/azure4/control": "02b8b66d08e05d4501081b45e9394a2af82e49f3",
-    "box/azure4/status": "6f2f837acec5cb017fd8a72e57acba764042feaa",
-    "box/azure5/control": "acca839f880f993248497598a4a97ef38f3b25ef",
-    "box/azure5/status": "c1b53d7c2f8a65048127823cce5da5373c18df88",
-    "box/azure6/control": "98ac806631edc47b8de60e3efd8ecf88c03dc757",
-    "box/azure6/status": "ebe4ecb0b48b1c971048d95603ae3079e853d479",
+    "box/azure4/status": "d696ad445184b81dee10415d894fbf0f419f6ed3",
+    "box/azure5/control": "05c4ff87cfffd113d2da35bd611484ce768625b9",
+    "box/azure5/status": "c8146f0782082923291eb4ccd959b8767e14dc80",
+    "box/azure6/control": "b5b3afe5ecfcfdc36dd61469f0f95636fc4c1b80",
+    "box/azure6/status": "41a6a34b409a4780444f6e2f87ed47cb44605261",
     "box/coordination": "7fc13c5caad36571eb5969a640e52e547f316594",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
@@ -246,7 +254,7 @@
     "fix/gen7-forward-gemm-20261113": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
     "fleet/azure": "4b3594bcf323870fb6208e0cb5115a04829d3dc2",
-    "gh-pages": "64bd491096bf8a094a2c53029b5bd226d6826b5b",
+    "gh-pages": "720e67b9cc9fefd99a86d1375d3b1bf5ef48dfcc",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
     "ops/gen8-19bbdce5-20261112": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -289,7 +297,7 @@
     "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
     "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
     "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
-    "research/rollout-loop-20261113": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01",
+    "research/rollout-loop-20261113": "65ba63bfae9e6615a6a15570731662f38f1c440d",
     "research/self-improvement-loop": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
     "research/selfplay-training-2026-11-08": "8f536af62d3f7e2dd2484139483795312177ced6",
     "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
@@ -298,7 +306,7 @@
     "research/sure-trick-table-20261112": "2e6ed6db12cba4110f43c29a70823a992c296ea1",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
-    "team/gen9": "869c4d71375265eae0ab1668579e23ea47b9a03e",
+    "team/gen9": "c4c993dac64ced17572f5da32c2650eb2b275b73",
     "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
     "transfer/conditional-claims-raw-20261113": "9209fc9ac3e63a8f89d9e555ebe83e91005a070f",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
@@ -340,8 +348,8 @@
     "transfer/gen9-e9-16-pilot-sandbox-20261112": "fa29bc4a8c76fa94d2cab17ea6c87e7ca46c9848",
     "transfer/gen9-e9-16-r-v-p-azure4-20261113": "2f6912665206413a3b3fc8ba23450cf3e689e6ff",
     "transfer/gen9-e9-16-r-v-x-azure4-20261113": "a1f1e9235675e1fb43aa816298775f25eaf604b2",
-    "transfer/gen9-g9-cohort-azure4-azure4-20261113": "2a57e230235aac0fb5b449fa3575fe7737f18dea",
-    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": "957279585be63d1c1301b9a3cc6a9ad88d699e88",
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": "dfe5d26043706609116b619c7f625fed0cbecd0f",
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": "e2c5d841ae46f466ac93b467e9773d190424c41e",
     "transfer/gen9-g9-cohort-preflight-azure4-20261113": "5e8242331cee1c78d0963a969a440a2c89531bae",
     "transfer/gen71-settings-azure1-20261112": "f119ca8a01ee5711c86f1f3c7d59f44171199b3c",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
@@ -352,11 +360,11 @@
     "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
     "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
     "transfer/pre7-test-azure4-20261112": "159bd50e593e51afbceecf25b963db245609b6d4",
-    "transfer/rollout-loop-azure1-20261113": "8a8a39a6e1c35b31f9ad01667c8f4087cc8c0422",
-    "transfer/rollout-loop-azure2-20261113": "0873bdfa328974e9e64823876fefa4296b3d4f0b",
-    "transfer/rollout-loop-azure3-20261113": "f5b6997447dabb238289594a80bf95fc310f91de",
-    "transfer/rollout-loop-azure5-20261113": "679d04a913b22daaf12f45c6cef0efd6bd79a4f7",
-    "transfer/rollout-loop-azure6-20261113": "cdda36a544529eb65fae36dce01107f0307bde04",
+    "transfer/rollout-loop-azure1-20261113": "a9c8e0abd9c60809e23aa2f2282ae51b8cb18604",
+    "transfer/rollout-loop-azure2-20261113": "0f41e5a4a9900866a960ab6f3aa8684ce6d121c8",
+    "transfer/rollout-loop-azure3-20261113": "ce87999a18f38944267e70ca78e1e7295fcce021",
+    "transfer/rollout-loop-azure5-20261113": "a3c9459f569c01707e623c00ce1a7e5cc2f407c9",
+    "transfer/rollout-loop-azure6-20261113": "c614c47bd4cce04f051064036d17ed13729fe703",
     "transfer/rollout-loop-sandbox-20261113": "f101792f0f9fbbe06a9c6a6a2cf85e798ab51ccc",
     "transfer/rollout-net-v1-20261113": "3bd74d0470e6bcb385b31977ac8d77a026895fdf",
     "transfer/rollout-net-v1-training-families-20261113": "6034eecc750c71788ae10163c55c38c335c7d1e1",
@@ -373,18 +381,19 @@
       "number": 22,
       "title": "Gen 9 queue",
       "state": "open",
-      "updated_at": "2026-11-13T20:51:53Z",
-      "body": "<!-- workq -->\n**Gen 9 queue**, Fri 13 Nov 20:51 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 2 h)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 \u00b7 dave: G9-D10 \u00b7 sam: E9-4, E9-6, G9-S4, G9-S7 \u00b7 will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 2,228/10,000, 171/h, ETA 18:20 \u00b7 g9-cohort-ben64-azure4 running 584/2,000, 46/h, ETA 03:29 \u00b7 e9-0-n04 paused 284/800 \u00b7 e9-16-h-v-p paused 269/800 \u00b7 e9-25 waiting 0/750\n**Resolved today**: 16. **Open, not started**: 11.\n**Next checkpoint**: Sat 14 Nov 01:00 UTC: g9 hands the package to Max (Friday evening in California)\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+      "updated_at": "2026-11-13T21:54:15Z",
+      "body": "<!-- workq -->\n**Gen 9 queue**, Fri 13 Nov 21:54 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 3 h)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 · dave: G9-D10 · sam: E9-4, E9-6, G9-S4, G9-S7 · will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 2,400/10,000, 165/h, ETA 19:59 · g9-cohort-ben64-azure4 running 631/2,000, 44/h, ETA 04:50 · e9-0-n04 paused 284/800 · e9-16-h-v-p paused 269/800 · e9-25 waiting 0/750\n**Resolved today**: 16. **Open, not started**: 11.\n**Next checkpoint**: Sat 14 Nov 01:00 UTC: g9 hands the package to Max (Friday evening in California)\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "scope": "Gen9 research/status queue; no local adoption"
     }
   ],
-  "comments_since": "2026-11-13T20:28:04Z",
+  "comments_since": "2026-11-13T21:30:20Z",
   "new_issue_comments": [],
   "new_review_comments": [],
   "instruction": "Continue authoritative Gen8 main mix from frozen792c4cb, five approved pairs2/1/1/1/1,3normal workers0BEN, canonical actors and mandatory34092-family exclusion union. Old Gen7.1 CI and Gen7.0 pair-target stop predicates are disabled; no selfplay scheduled. Preserve all history and science. Own producer only.",
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "no_current_collection_instruction_change",
-  "collection_action": "Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18,283. Keep original runtime/model/scorer/cache semantics; do not adopt bf16, int8 or unmerged forward-pass changes. No self-play or retired comparison predicate.",
+  "collection_action": "Continue current immutable Gen8 collection; no restart, drain, source/settings/model/worker change, training, promotion, registry or shared UI mutation.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -417,22 +426,22 @@
     "publication_verified": true
   },
   "research_disposition": "Stu ladder changes, quick-net training and its reporting cuts apply to that separate workflow. Current Gen8 actor models are unchanged, and no research training or promotion was performed. Claim-finder fixes apply to users of that research solver; canonical Gen8 here does not call it.",
-  "notification": "No applicable collection instruction changed, and there is no completion or new blocker needing attention. Optional research optimizations are not adopted. Earlier operational and shared replay evidence remains preserved. Remain quiet.",
-  "checked_epoch": 1794605420.0,
-  "checked_at": "2026-11-13T21:30:20Z",
-  "next_check": "2026-11-13T22:25:53+00:00",
+  "notification": "quiet: no current applicable collection instruction changed and no new blocker or completion",
+  "checked_epoch": 1794608700.0,
+  "checked_at": "2026-11-13T22:25:00Z",
+  "next_check": "2026-11-13T23:25:53+00:00",
   "stream_manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
   "health": {
-    "epoch": 1794605731.1497335,
-    "poll_start": "2026-11-13T21:30:20Z",
+    "epoch": 1794608974.2863853,
+    "poll_start": "2026-11-13T22:25:00Z",
     "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
     "heartbeat": {
-      "epoch": 1794605722.7686083,
-      "completed": 3247,
+      "epoch": 1794608973.577115,
+      "completed": 3339,
       "in_flight": [
-        3246,
-        3248,
-        3249
+        3338,
+        3339,
+        3341
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -441,25 +450,25 @@
     },
     "state": {
       "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-      "completed": 3247,
+      "completed": 3340,
       "target": 18283,
-      "contiguous": 3246,
+      "contiguous": 3338,
       "by_pair": {
-        "8s-32~1": 541,
-        "8c-32~71s-32": 541,
-        "8c-32~8s-32": 541,
-        "8s-32~71s-32": 1083,
-        "8s-32~5RZ32": 541
+        "8s-32~1": 557,
+        "8c-32~71s-32": 556,
+        "8c-32~8s-32": 556,
+        "8s-32~71s-32": 1114,
+        "8s-32~5RZ32": 557
       },
-      "root_games": 10822,
-      "tables": 133042,
+      "root_games": 11132,
+      "tables": 136988,
       "failures": 0,
-      "epoch": 1794605692.7597778,
+      "epoch": 1794608973.785554,
       "complete": false
     },
     "supervisor": {
-      "epoch": 1794605727.8292508,
-      "completed": 3247,
+      "epoch": 1794608969.8160899,
+      "completed": 3339,
       "target": 18283,
       "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
       "workers": 3,
@@ -473,9 +482,9 @@
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794605715.5357738,
-      "completed": 3247,
-      "commit": "8aaa5cd28d21f4427b8595d6891b9f4f8c5d6688",
+      "epoch": 1794608966.5806806,
+      "completed": 3339,
+      "commit": "9487d9788fe4d47d1727acd42eb5a74f36e52841",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
     "pids": {
@@ -581,10 +590,22 @@
       }
     },
     "collector_children": [
-      "176774  176773  0.0 /workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8)",
-      " 176775  176773 97.5 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork",
-      " 176778  176773 97.4 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork",
-      " 176779  176773 97.6 /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork"
+      {
+        "pid": 176774,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8) "
+      },
+      {
+        "pid": 176775,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork "
+      },
+      {
+        "pid": 176778,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork "
+      },
+      {
+        "pid": 176779,
+        "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork "
+      }
     ],
     "actual_normal_worker_children": 3,
     "ben_jobs": 0,
@@ -592,15 +613,11 @@
     "failure_files": [],
     "resolved_failure_files": [],
     "supervisor_failure_exists": false,
-    "stop_files": {
-      "STOP": null,
-      "WATCHDOG_STOP": null,
-      "PUBLISH_STOP": null
-    },
-    "memory_current": 6625656832,
+    "stop_files": {},
+    "memory_current": 7054794752,
     "memory_limit": "17179869184",
-    "disk_free_bytes": 14872096768,
-    "dds_cache_bytes": 817147560,
+    "disk_free_bytes": 14229053440,
+    "dds_cache_bytes": 1333903664,
     "cache_rotation": {
       "epoch": 1794600793.8150618,
       "completed": 3101,
@@ -609,45 +626,44 @@
     "cache_rotation_already_diagnosed": true,
     "same_pids_as_previous_poll": true,
     "scientific_hashes_verified": true,
-    "same_pids_as_initial_check": true,
-    "heartbeat_age_seconds": 8.381125211715698,
-    "publisher_age_seconds": 15.613959789276123,
+    "heartbeat_age_seconds": 0.7092702388763428,
+    "publisher_age_seconds": 7.705704689025879,
     "live_capture_sample": {
       "samples": [
         {
-          "index": 3244,
+          "index": 3337,
           "pair": "8s-32~71s-32",
           "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-          "episode_sha256": "33026fba1a5f123f60b0f93746f98636a267c573a2fc85dd9e0f581c835dd83b",
+          "episode_sha256": "955091a6d0b1c60fb94db683316704ebf61c68b11e309d221c46dd3a69c877bd",
           "receipt_hash_verified": true,
           "gap_forks": 12,
           "observed_guess_fields": {
-            "guess_size": 1320,
-            "best_share": 6251
+            "guess_size": 1021,
+            "best_share": 4339
           }
         },
         {
-          "index": 3245,
-          "pair": "8s-32~1",
-          "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-          "episode_sha256": "b913ac874011ab5b98f28497c0b7c6054c932ca3d75aea523f63da02a1d2332a",
-          "receipt_hash_verified": true,
-          "gap_forks": 19,
-          "observed_guess_fields": {
-            "guess_size": 769,
-            "best_share": 3414
-          }
-        },
-        {
-          "index": 3247,
+          "index": 3340,
           "pair": "8s-32~71s-32",
           "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-          "episode_sha256": "f92d16517bf8a1171e887390b9fe88c36c32044aee1358e8c835d092bb798f52",
+          "episode_sha256": "fc0cf0fc8acf1722e50cd1c1651f8c8f81f3917352c463e2701d38398bdecbcc",
           "receipt_hash_verified": true,
-          "gap_forks": 10,
+          "gap_forks": 12,
           "observed_guess_fields": {
-            "guess_size": 833,
-            "best_share": 3865
+            "guess_size": 579,
+            "best_share": 2560
+          }
+        },
+        {
+          "index": 3341,
+          "pair": "8s-32~5RZ32",
+          "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+          "episode_sha256": "f5d0b0ad9c4313327e7e2877ed68afe3881356e523dedfbd57ba928dc6d529d5",
+          "receipt_hash_verified": true,
+          "gap_forks": 23,
+          "observed_guess_fields": {
+            "guess_size": 459,
+            "best_share": 2045
           }
         }
       ],
@@ -656,10 +672,8 @@
     }
   },
   "previous_check": {
-    "checked_at": "2026-11-13T20:28:04Z",
-    "result": "no_current_collection_instruction_change",
-    "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T202804Z/github-scan.json",
-    "completed": 3138
+    "checked_at": "2026-11-13T21:30:20Z",
+    "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T213020Z/github-scan.json"
   },
   "reviewed_source_changes": [
     {
@@ -903,9 +917,9 @@
       "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": "2026-11-13T21:35:31.851747Z",
-  "next_comment_scan_since": "2026-11-13T21:30:20Z",
-  "poll_checkpoint_note": "The next comments scan begins at poll START, not finish, so changes arriving during the check are covered.",
+  "completed_at": "2026-11-13T22:30:22.642358Z",
+  "next_comment_scan_since": "2026-11-13T22:25:00Z",
+  "poll_checkpoint_note": "Comments scan is anchored to poll START, not finish. Current watch/recovery publication is independently verified after the existing publisher captures these exact bytes; proof is in this case.",
   "candidate_notice": {
     "path": "docs/gen8_candidate_2026-11-12.md",
     "deployed_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
@@ -1327,9 +1341,9 @@
     "is_enabled": true,
     "is_self_owned_automation": true,
     "default_timezone": "Europe/Lisbon",
-    "next_run_time": "2026-11-13T22:25:53+00:00",
-    "last_run_time": "2026-11-13T21:30:15.624362+00:00",
-    "updated_at": "2026-11-13T21:30:36.841055+00:00",
+    "next_run_time": "2026-11-13T23:25:53+00:00",
+    "last_run_time": "2026-11-13T22:24:57.290330+00:00",
+    "updated_at": "2026-11-13T22:25:18.386095+00:00",
     "environment_selection": "inherited",
     "environments": [
       {
@@ -1339,7 +1353,7 @@
     ],
     "changed_this_poll": false,
     "schedule_preserved": true,
-    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T213020Z/automation-state.json"
+    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T222500Z/automation-state.json"
   },
   "dashboard_registration": {
     "commit": "d9eddb68dc79395a7f56504b8055b92b0822447b",
@@ -1351,9 +1365,9 @@
     "status": "verified_pinned_publication",
     "current_publication": {
       "status": "published",
-      "epoch": 1794605715.5357738,
-      "completed": 3247,
-      "commit": "8aaa5cd28d21f4427b8595d6891b9f4f8c5d6688",
+      "epoch": 1794608966.5806806,
+      "completed": 3339,
+      "commit": "9487d9788fe4d47d1727acd42eb5a74f36e52841",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
     "retired1974pairs_and_science_reverified": true,
@@ -1363,9 +1377,9 @@
     "watch_blob": "de53084de74c3df9dbec30593ab150e2ae154fd1",
     "verification": "Exact local bytes matched committed recovery for watch, current stream, operational journal, supervisor, manifest, exclusion list, capture/preflight/production validation and source-family audit; GitHub contents readback matched watch blob; remote ref independently verified.",
     "checkpoint_note": "The preceding checkpoint was verified. Current watch and recovery bytes are verified after normal publisher capture; proof is saved in this case.",
-    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T213020Z",
+    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T222500Z",
     "final_watch_copy_to_verify_separately": true,
-    "preceding_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T202804Z/publication-proof.json",
+    "preceding_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T213020Z/publication-proof.json",
     "initial_transition_publication": {
       "status": "published",
       "epoch": 1794504287.520619,
@@ -1401,7 +1415,11 @@
     ],
     "performance_disposition": "The notice is conditional guidance to x8, plan and sidnet on Stu's research branch. PR34 remains open and unmerged. It does not authorize changing this immutable Gen8 runtime. No BF16 flag, torch install, int8 path, shared-scorer change, cache-size change, source or model adoption here. Any later authorized source/behavior change requires a drained new cohort identity, complete training exclusions and observed capture validation.",
     "continuing_authority": "Max's 20:00 general notice remains current and explicitly continues arena collection at Codex primary. The new conditional research note does not revoke it.",
-    "current_effect": "Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18,283. Keep original runtime/model/scorer/cache semantics; do not adopt bf16, int8 or unmerged forward-pass changes. No self-play or retired comparison predicate."
+    "current_effect": "Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18,283. Keep original runtime/model/scorer/cache semantics; do not adopt bf16, int8 or unmerged forward-pass changes. No self-play or retired comparison predicate.",
+    "new_entries_since_prior_poll": 0,
+    "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 by g7 explicitly continues arena collection at Codex primary, 19bbdce5 and the independent collector; Gen9 on Azure4, Stu on five other Azure boxes.",
+    "latest_entry": "2026-11-13T20:50:00Z loop",
+    "disposition": "Unchanged authority and no current applicable collection change; optional Stu performance notice not adopted."
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -1799,9 +1817,9 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "poll_start": "2026-11-13T21:30:20Z",
-    "comments_since": "2026-11-13T20:28:04Z",
-    "next_comment_scan_since": "2026-11-13T21:30:20Z",
+    "poll_start": "2026-11-13T22:25:00Z",
+    "comments_since": "2026-11-13T21:30:20Z",
+    "next_comment_scan_since": "2026-11-13T22:25:00Z",
     "new_issue_comments": [],
     "new_review_comments": [],
     "new_review_submissions": [],
@@ -3061,9 +3079,310 @@
       }
     ]
   },
-  "recent_prs": [],
+  "recent_prs": [
+    {
+      "number": 34,
+      "title": "gen7_net: faster suit-net forward pass (~2.7x; rollouts ~2.4x), same outputs",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-13T19:30:14Z",
+      "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 30,
+      "title": "G9-X2: Gen 9 readers on the reading bench (tricks saved a board beside nats)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-13T06:22:17Z",
+      "head": "c877d10bd856df07d8d0634cd75897e67c728a36",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 33,
+      "title": "play/: a web server where people play bridge against Sid",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-13T06:04:11Z",
+      "head": "208403c13e1e80e4ca07f404b750b144bb3e860f",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 29,
+      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-13T05:36:57Z",
+      "head": "d029c7da6cf21c675e4735a5bb48de5f5bcdf9b0",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 32,
+      "title": "Gen 7 → Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T19:30:53Z",
+      "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 31,
+      "title": "run_tests.py: count skips per file; refuse a missing --files name",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T18:47:17Z",
+      "head": "b59bcb3e473614d5174750fb0847923360d07f5c",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 26,
+      "title": "Gen 9 bidding: distance and detection (B4), real cards (B6), replay reader (B7), reports (WIP)",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T10:01:53Z",
+      "head": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 28,
+      "title": "run_tests.py: a test file with no tests found fails the run (G9-W8 follow-up)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T08:56:10Z",
+      "head": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 27,
+      "title": "Gen 9 population arena on one machine: packages, registry, epochs, controller (G9-D4)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T08:24:40Z",
+      "head": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 25,
+      "title": "G9-W3 follow-up: run pytest-style test files; --prepare idempotent for all 13 releases",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:54:14Z",
+      "head": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 20,
+      "title": "G9-W3: scripts/run_tests.py, prepare an environment and run every test with honest skips",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:32:55Z",
+      "head": "75c9f2c3fe29648578795a027162ff582ee91b6b",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 21,
+      "title": "Gen 9 ratings-v1 from every published result, Gen 5 to 7.1 (G9-D3)",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T07:29:11Z",
+      "head": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+      "base": "feature/gen9-arena-sim",
+      "draft": false
+    },
+    {
+      "number": 19,
+      "title": "Gen 9 experience store: envelopes, order-free merge, epoch snapshots (G9-D5)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 18,
+      "title": "Gen 9 bidding: rule filter over hand types, card meanings, cards for the rule bidder (G9-B2, WIP)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "f1b731e4a3896093e39a9bc629cbffb4afa502db",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 17,
+      "title": "Gen 9 arena simulator and E9-5: promotion rules and schedules (G9-D2)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 15,
+      "title": "Preserve gap and guess capture in Gen7 self-play collection",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T04:45:18Z",
+      "head": "b8575715457afdf23149bc6908af07e60df93310",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 14,
+      "title": "Gen 6 → Gen 7 cleanup: close out Gen 6, bring Gen 7 source and docs onto main",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T03:13:25Z",
+      "head": "5ddb8c30555558ef41a7a6632a283ffb4a7fff4e",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 13,
+      "title": "Show collector freshness and supervise the primary fast-only run",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T09:22:44Z",
+      "head": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 9,
+      "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:49Z",
+      "head": "6e87791efe91686c5e22350b708fa0fb582e41db",
+      "base": "research/mixed-fork-generations",
+      "draft": true
+    },
+    {
+      "number": 1,
+      "title": "Add consistent strategy search, certified partitions and cost benchmarks",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:47Z",
+      "head": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 2,
+      "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:46Z",
+      "head": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
+      "base": "research/three-engine-play-200",
+      "draft": false
+    },
+    {
+      "number": 3,
+      "title": "Train bidding through DDS-only paired-IMP self-play",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:44Z",
+      "head": "16834962ede44e72f366ff741a0bb8b4dbf58609",
+      "base": "research/self-improvement-loop",
+      "draft": false
+    },
+    {
+      "number": 4,
+      "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:43Z",
+      "head": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
+      "base": "research/dds-bidding-loop",
+      "draft": true
+    },
+    {
+      "number": 5,
+      "title": "Train two belief sizes with pooled auctions and public play",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:41Z",
+      "head": "78e135856ac90d92e0277379db0f5313ff4aea45",
+      "base": "research/dds-bidding-loop",
+      "draft": true
+    },
+    {
+      "number": 6,
+      "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:40Z",
+      "head": "be09f9f8da1ed53c53f7525da1490888733940c0",
+      "base": "research/belief-size-comparison",
+      "draft": true
+    },
+    {
+      "number": 7,
+      "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:38Z",
+      "head": "d7ee77a8020bb97208cfbd4db5f187174064c078",
+      "base": "research/large-belief-play-test",
+      "draft": true
+    },
+    {
+      "number": 8,
+      "title": "Run mixed branching play generations with a shared validated40k bidder",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:37Z",
+      "head": "7e84281a1943e71e83b67e63af7433ac795902cb",
+      "base": "research/imp-policy-draft",
+      "draft": false
+    },
+    {
+      "number": 10,
+      "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:35Z",
+      "head": "a7e00fb0b6241166da847661788dc82b8091761e",
+      "base": "research/v4-belief-and-arena",
+      "draft": true
+    },
+    {
+      "number": 11,
+      "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:33Z",
+      "head": "b463e56e8fbdad97251d4680075c3ccda636a848",
+      "base": "codex/gen4-component-ablation",
+      "draft": false
+    },
+    {
+      "number": 12,
+      "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:32Z",
+      "head": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
+      "base": "codex/round5-ben-and-timing",
+      "draft": false
+    }
+  ],
   "registry_review": {
-    "revision": "64bd491096bf8a094a2c53029b5bd226d6826b5b",
+    "revision": "720e67b9cc9fefd99a86d1375d3b1bf5ef48dfcc",
     "blob": "f3bcd2ce37136d4f19045fb848931aafd0f37a6f",
     "owned_entries": [
       {
@@ -3072,7 +3391,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7.1 \u00b7 Codex policy comparison and Gen6",
+        "name": "Gen 7.1 · Codex policy comparison and Gen6",
         "branch": "arena-gen7-1-compare-codex-20261112-feed",
         "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
         "retired": true,
@@ -3084,7 +3403,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7.0 \u00b7 Codex completed self-play with gap capture",
+        "name": "Gen 7.0 · Codex completed self-play with gap capture",
         "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
         "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
         "retired": true,
@@ -3096,7 +3415,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7 \u00b7 Codex initial self-play (capture incomplete)",
+        "name": "Gen 7 · Codex initial self-play (capture incomplete)",
         "branch": "arena-gen7-selfplay-codex-20261112-feed",
         "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
         "retired": true,
@@ -3108,7 +3427,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7 \u00b7 Codex completed phase 1 anchors",
+        "name": "Gen 7 · Codex completed phase 1 anchors",
         "branch": "arena-gen7-phase1-codex-20261112-feed",
         "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
         "retired": true,
@@ -3120,7 +3439,7 @@
         "generation": 6,
         "variant": "6",
         "environment": "codex",
-        "name": "Gen 6 \u00b7 completed Codex fast self-play",
+        "name": "Gen 6 · completed Codex fast self-play",
         "branch": "arena-gen6-fast-selfplay-codex-20261111",
         "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
         "retired": true,
@@ -3132,14 +3451,14 @@
         "generation": 8,
         "variant": "8",
         "environment": "codex",
-        "name": "Gen8 \u00b7 Codex main mix (standard and Precision)",
+        "name": "Gen8 · Codex main mix (standard and Precision)",
         "branch": "arena-gen8-candidate-codex-20261112-feed",
         "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
       }
     ],
     "disposition": "All six owned entries and retired pins are unchanged; no registry edit."
   },
-  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T213020Z/github-scan.json",
+  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T222500Z/github-scan.json",
   "interrupted_check": {
     "poll_start": "2026-11-12T14:27:45Z",
     "actions_completed": "Validated operational reload and resumed capture before interruption; registry/automation/watch finalization resumed in15:29poll. No collection failure or unexpected process restart.",
@@ -3148,12 +3467,11 @@
     "receipt_and_episode_prefix_preserved": true
   },
   "completion_status": {
-    "complete": false,
-    "completed": 3247,
+    "completed": 3340,
     "target": 18283,
+    "complete": false,
+    "source_budget_only": true,
     "gen71_comparison_gate_enabled": false,
-    "old_gen7_pair_target_predicate_enabled": false,
-    "empty_owned_pair_completion_disabled": true,
     "selfplay_launch_enabled": false
   },
   "supplemental_training_review": {
@@ -3363,7 +3681,7 @@
       "scope_limit_source": "User: Update ONLY this stream's feed/registry entries.",
       "reason_authorization_required": "This fix changes shared gh-pages replay UI for every producer, outside the explicit producer-only publication scope.",
       "notification_policy": "Notify user once for shared replay blocker and concrete publish approval; continue collection and routine instruction checks without restarting.",
-      "last_checked_revision": "aa6a3a63421c5704dc1bc1104c9793c39cffe5e6",
+      "last_checked_revision": "720e67b9cc9fefd99a86d1375d3b1bf5ef48dfcc",
       "last_checked_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
       "already_notified_previous_poll": true,
       "repeat_notification": false,
@@ -3397,20 +3715,12 @@
     "index_blob": "bea11586eab70fbcbcce565a9778925c3ed09c3c",
     "replay_catalog_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
     "latest_poll_review": {
-      "revision": "64bd491096bf8a094a2c53029b5bd226d6826b5b",
+      "revision": "720e67b9cc9fefd99a86d1375d3b1bf5ef48dfcc",
       "index_blob": "bea11586eab70fbcbcce565a9778925c3ed09c3c",
-      "preserve_lines": [
-        "<section id=\"ladder\" hidden></section>",
-        "<script src=\"ladder.js?v=g9-ladder-20261113g\" defer></script>"
-      ],
-      "known_replay_catalog_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
-      "known_replay_issue_unchanged": true,
+      "replay_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
       "shared_ui_mutated": false,
-      "registry_mutated": false,
-      "changes": [
-        "arena/ladder.json"
-      ],
-      "disposition": "Only ladder data refreshed. All six owned entries, arena index and replay catalog are unchanged. Preserve the pending shared UI approval and its already reported blocker."
+      "known_replay_blocker_unchanged": true,
+      "ladder_mount_preserved": true
     }
   },
   "future_pool_requirements": {
@@ -3477,7 +3787,7 @@
         "generation": 8,
         "variant": "8",
         "environment": "azure",
-        "name": "Gen 8X v3 \u00b7 azure1 (8x3-32 against 8s-32, 71s-32, 5RZ32 and 1)",
+        "name": "Gen 8X v3 · azure1 (8x3-32 against 8s-32, 71s-32, 5RZ32 and 1)",
         "branch": "arena-gen8-x3-azure1-feed",
         "cohort": "e5c845da95a3585aafa3905073afc4b79e9b2cf116e9cf8cfa80f5a26a7ac84b"
       },
@@ -3671,7 +3981,7 @@
           "generation": 9,
           "variant": "9",
           "environment": "azure",
-          "name": "Gen 9 \u00b7 azure4 (9a-32 against BEN 64)",
+          "name": "Gen 9 · azure4 (9a-32 against BEN 64)",
           "branch": "arena-gen9-azure4-ben64-feed",
           "cohort": "c30b164dbb7132f81f6c3c0b6bac55701210db6e7f1e5e93a1224b1c578e03dc"
         },
@@ -3681,7 +3991,7 @@
           "generation": 9,
           "variant": "9",
           "environment": "azure",
-          "name": "Gen 9 \u00b7 azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
+          "name": "Gen 9 · azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
           "branch": "arena-gen9-azure4-feed",
           "cohort": "75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078"
         }
@@ -3726,7 +4036,7 @@
         "generation": 9,
         "variant": "9",
         "environment": "azure",
-        "name": "Gen 9 \u00b7 azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
+        "name": "Gen 9 · azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
         "branch": "arena-gen9-azure4-feed",
         "cohort": "75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078"
       }
@@ -3840,7 +4150,28 @@
     "new_notices": "Stu now trains a quick round-1 net without waiting for 6000 boards; its runs.json specifies roles, cuts, ladder passes and gates. Its net-alone rungs and matching of before/after scores are for that workflow.",
     "data_provenance": "Sidnet clarifies that v2 scratch epoch5 used Azure2 rnet2, while Azure5 rnet2w is a different warm-run set. Labelled S0 data and Stu's new value targets remain research inputs, not current actor artifacts.",
     "current_effect": "Do not change this stream's 18283 source budget, introduce Stu's gate/cut, adopt new nets, train, or publish another dashboard. Keep frozen Gen8 science and owned feed.",
-    "shared_pages": "Stu dashboard is published only under gh-pages:stu/ by its owner. Its superseded-run dedup rule does not alter this cohort's records or disabled gates."
+    "shared_pages": "Stu dashboard is published only under gh-pages:stu/ by its owner. Its superseded-run dedup rule does not alter this cohort's records or disabled gates.",
+    "latest_poll_review": {
+      "poll_start": "2026-11-13T22:25:00Z",
+      "revision": "65ba63bfae9e6615a6a15570731662f38f1c440d",
+      "commits": [
+        {
+          "sha": "65ba63bfae9e6615a6a15570731662f38f1c440d",
+          "message": "Stu collection from round 3's cut: pure rollout on all eight workers of each box (sps0..sps0e, stu0-psa~stu0-psb); the sp0 and spr0 runs kept as #stopped\n\nMax, 22:19 UTC: \"My instinct is to just go pure rollout\".\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+        },
+        {
+          "sha": "2cb4c914eb9f7c4aead6fe6ba14d8193475201e9",
+          "message": "Stu: pure with the opening lead rolled out on the settings of every other card (stu0-ps, twins -psa/-psb; stu3-ps with round 3's net)\n\nMax, 22:16 UTC: roll the lead out as the other cards are rather than every lead card on 512 layouts.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+        },
+        {
+          "sha": "1e899964952459f25e11aa5ff3f7a8e676f67acb",
+          "message": "Stu PLAN: the bf16 workers' memory and the recycling that bounds it\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+        }
+      ],
+      "scope": "Stu's five Azure boxes and its pure-rollout collection only. Max's 22:16/22:19 directives are reflected in research/rollout-loop's Stu configs and jobs; no current arena/Codex switch. The 21:33 note documents BF16 memory growth and Stu-specific 30-board recycling. This collector retains frozen source 792c4cb, FP32 and its own approved DDS cache rotation. No peer commands, new model, pure-rollout, BF16 or worker-recycling change here.",
+      "applied": false,
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T222500Z/research-commit-review.json"
+    }
   },
   "latest_scope_review": {
     "revision": "7fc13c5caad36571eb5969a640e52e547f316594",
@@ -3950,15 +4281,15 @@
     "requires_attention": false,
     "manual_restart": false,
     "latest_poll_recheck": {
-      "poll_start": "2026-11-13T21:30:20Z",
+      "poll_start": "2026-11-13T22:25:00Z",
       "current_publisher": {
         "status": "published",
-        "epoch": 1794605715.5357738,
-        "completed": 3247,
-        "commit": "8aaa5cd28d21f4427b8595d6891b9f4f8c5d6688",
+        "epoch": 1794608966.5806806,
+        "completed": 3339,
+        "commit": "9487d9788fe4d47d1727acd42eb5a74f36e52841",
         "branch": "arena-gen8-candidate-codex-20261112-feed"
       },
-      "disposition": "The earlier retry and its unconfirmed cause remain archived. Current publication is fresh; no manual restart or configuration change."
+      "disposition": "Earlier retry and its unconfirmed cause remain archived. Current publication is fresh; no manual restart, push or configuration change."
     }
   },
   "research_transfer_review": {
@@ -3984,7 +4315,7 @@
     "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
     "reviews": [],
     "research_branch": "research/rollout-loop-20261113",
-    "research_revision": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01",
+    "research_revision": "65ba63bfae9e6615a6a15570731662f38f1c440d",
     "notice_revision": "7fc13c5caad36571eb5969a640e52e547f316594",
     "notice_entry": "2026-11-13T20:50:00Z",
     "changes_reported": [
@@ -4002,6 +4333,14 @@
       }
     ],
     "applied": false,
-    "disposition": "The notice is conditional guidance to x8, plan and sidnet on Stu's research branch. PR34 remains open and unmerged. It does not authorize changing this immutable Gen8 runtime. No BF16 flag, torch install, int8 path, shared-scorer change, cache-size change, source or model adoption here. Any later authorized source/behavior change requires a drained new cohort identity, complete training exclusions and observed capture validation."
+    "disposition": "The notice is conditional guidance to x8, plan and sidnet on Stu's research branch. PR34 remains open and unmerged. It does not authorize changing this immutable Gen8 runtime. No BF16 flag, torch install, int8 path, shared-scorer change, cache-size change, source or model adoption here. Any later authorized source/behavior change requires a drained new cohort identity, complete training exclusions and observed capture validation.",
+    "latest_poll_review": {
+      "number": 34,
+      "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+      "state": "open",
+      "merged": false,
+      "reviews": [],
+      "frozen_source_retained": true
+    }
   }
 }
