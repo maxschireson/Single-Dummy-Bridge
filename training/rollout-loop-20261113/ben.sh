@@ -12,8 +12,9 @@ W=$HOME/work/loop; S=$W/src; HERE=$(cd "$(dirname "$0")" && pwd)
 NAME=$1; PAIR=$2; SEED=$3; FIRST=$4; DEALS=$5; LANES=$6; shift 6
 [ $((DEALS % LANES)) -eq 0 ] || { echo "DEALS must divide by LANES"; exit 1; }
 EACH=$((DEALS / LANES))
+SERVER=ben-server; case "$PAIR" in *ben200*) SERVER=loop-ben200 ;; esac    # BEN (200): the lanes' second servers (ben_session.sh)
 for n in $(seq 1 "$LANES"); do
-  [ "$(systemctl is-active "ben-server@$n")" = active ] || { echo "$(date -u +%FT%TZ) ben-server@$n is not running" >> "$W/runs.log"; exit 1; }
+  [ "$(systemctl is-active "$SERVER@$n")" = active ] || { echo "$(date -u +%FT%TZ) $SERVER@$n is not running" >> "$W/runs.log"; exit 1; }
   unit=loop-ben-$NAME-$n
   sudo systemctl stop "$unit" 2>/dev/null || true; sudo systemctl reset-failed "$unit" 2>/dev/null || true
   sudo systemd-run --quiet --wait --unit="$unit" --uid="$USER" --working-directory="$S" --setenv=HOME="$HOME" \

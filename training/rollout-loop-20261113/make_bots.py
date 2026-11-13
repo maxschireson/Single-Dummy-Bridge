@@ -88,7 +88,8 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
-BEN = {'ben64': 'ben64', 'ben': 'ben'}      # against BEN the net is told so (v2 knows both from BEN's own cards); no other match changes
+BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
+                                                            # cards; BEN at its upstream 200 samples is read as ben64, the nearest it knows)
 NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32', **BEN}
 R2 = 'models/cardplay/stu-net-r2-20261113/policy.npz'          # train-r2/policy.npz on transfer/rollout-loop-azure5-20261113
 NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
@@ -231,6 +232,11 @@ def main():
         bots[name] = alone(what + ' alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims',
                            path, dict(NAMES2))
         bots[name]['label'] = bots[name]['label'].replace('Stu round 0 ladder: ', 'Stu round 3 ladder: ')
+    # BEN at its upstream default play sampling (Max, 23:31 UTC on 13 November: "a more principled and credible baseline"):
+    # BEN (64)'s spec at another address, where ben_session.sh starts servers with sample_hands_play 200 and
+    # min_sample_hands_play 20 (lorserker/ben's values), every other setting as BEN (64)'s lanes.
+    bots['ben200'] = {'base': 'ben64', 'url': 'http://127.0.0.1:8090', 'samples': 200, 'config': '~/work/loop/ben/ben-200.conf',
+                      'label': 'BEN at its upstream play sampling (200 layouts, at least 20), otherwise as BEN (64)'}
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

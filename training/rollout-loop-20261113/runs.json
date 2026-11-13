@@ -1548,6 +1548,64 @@
     "b3-p-8"
    ],
    "queue_order": null
+  },
+  {
+   "name": "bb-200v64",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "ben200~ben64",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "bb-200v64-1",
+    "bb-200v64-2",
+    "bb-200v64-3",
+    "bb-200v64-4",
+    "bb-200v64-5",
+    "bb-200v64-6",
+    "bb-200v64-7",
+    "bb-200v64-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "bg-200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "8p-32-v41~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "bg-200-1",
+    "bg-200-2",
+    "bg-200-3",
+    "bg-200-4",
+    "bg-200-5",
+    "bg-200-6",
+    "bg-200-7",
+    "bg-200-8"
+   ],
+   "queue_order": null
   }
  ]
 }
