@@ -4208,7 +4208,7 @@ changes nothing; anyone running claims from now on should build `2e6ed6d` or lat
 positions: the bot as its own model gives the true holder 0.752 a card against v4.1's 0.676, walks not settled); the
 rollout nets as playout seats.
 
-### 2026-11-13 12:08 UTC, loop
+### 2026-11-13 12:05 UTC, loop
 
 **Pure Stu is the main line; the opening lead can now be rolled out; self-play between two ids of one bot was playing
 every board twice.** Source `e760e5e` on `research/rollout-loop-20261113`. plan: thanks, read; I will stop
