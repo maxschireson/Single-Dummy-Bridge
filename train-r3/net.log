@@ -1,0 +1,28 @@
+data in memory 1.08 GB, 2308843 examples
+30816 training deals, 2308843 training examples, 135543 held-out examples from val.npz (444 deals)
+{"epoch": 0, "val": {"n": 135543, "searched": 110242, "nll": 0.5588, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7705, "in_best": 0.8972, "rated_pick": 0.9996, "regret": 0.0253, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "select": {"bot": "stup0", "key": "nll", "value": 1.0505, "rest_nll": 0.5093}}
+epoch 1 step 2000 of 9018, 21 s
+epoch 1 step 4000 of 9018, 39 s
+epoch 1 step 6000 of 9018, 57 s
+epoch 1 step 8000 of 9018, 75 s
+{"epoch": 1, "seconds": 85, "train_ce": 0.7242, "train_gap": 0.0292, "train_owner": 0.5822, "val": {"n": 135543, "searched": 110242, "nll": 0.5583, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7672, "in_best": 0.8948, "rated_pick": 0.9994, "regret": 0.0261, "regret_gap_head": 0.0238, "regret_random": 0.2032, "regret_lowest": 0.2233}, "temperature": {"t": 1.03, "nll": 0.5582, "nll_at_1": 0.5583}}
+{"epoch": 1, "select": {"bot": "stup0", "key": "nll", "value": 0.9302, "rest_nll": 0.5208, "within": true}}
+epoch 2 step 2000 of 9018, 114 s
+epoch 2 step 4000 of 9018, 132 s
+epoch 2 step 6000 of 9018, 150 s
+epoch 2 step 8000 of 9018, 168 s
+{"epoch": 2, "seconds": 179, "train_ce": 0.7003, "train_gap": 0.0286, "train_owner": 0.5811, "val": {"n": 135543, "searched": 110242, "nll": 0.5596, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.767, "in_best": 0.8955, "rated_pick": 0.9994, "regret": 0.026, "regret_gap_head": 0.0236, "regret_random": 0.2032, "regret_lowest": 0.2233}, "temperature": {"t": 1.07, "nll": 0.5587, "nll_at_1": 0.5596}}
+{"epoch": 2, "select": {"bot": "stup0", "key": "nll", "value": 0.9253, "rest_nll": 0.5228, "within": true}}
+epoch 3 step 2000 of 9018, 208 s
+epoch 3 step 4000 of 9018, 226 s
+epoch 3 step 6000 of 9018, 244 s
+epoch 3 step 8000 of 9018, 262 s
+{"epoch": 3, "seconds": 273, "train_ce": 0.6903, "train_gap": 0.0283, "train_owner": 0.5806, "val": {"n": 135543, "searched": 110242, "nll": 0.5595, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.767, "in_best": 0.8958, "rated_pick": 0.9994, "regret": 0.026, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "temperature": {"t": 1.08, "nll": 0.5585, "nll_at_1": 0.5595}}
+{"epoch": 3, "select": {"bot": "stup0", "key": "nll", "value": 0.923, "rest_nll": 0.5229, "within": true}}
+epoch 4 step 2000 of 9018, 302 s
+epoch 4 step 4000 of 9018, 320 s
+epoch 4 step 6000 of 9018, 338 s
+epoch 4 step 8000 of 9018, 356 s
+{"epoch": 4, "seconds": 367, "train_ce": 0.6855, "train_gap": 0.0281, "train_owner": 0.5803, "val": {"n": 135543, "searched": 110242, "nll": 0.5599, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7665, "in_best": 0.8954, "rated_pick": 0.9994, "regret": 0.0261, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "temperature": {"t": 1.09, "nll": 0.5586, "nll_at_1": 0.5599}}
+{"epoch": 4, "select": {"bot": "stup0", "key": "nll", "value": 0.9227, "rest_nll": 0.5234, "within": true}}
+{"done": "/home/bridgebots/work/loop/r3/net", "selected_epoch": 4, "validation": {"n": 135543, "searched": 110242, "nll": 0.5599, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7665, "in_best": 0.8954, "rated_pick": 0.9994, "regret": 0.0261, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "parity": 4.76837158203125e-06, "auction_use": {"real": {"nll": 0.5599, "agree": 0.7665, "regret": 0.0261}, "blank": {"nll": 6.087, "agree": 0.5933, "regret": 0.0939}, "another_deals": {"nll": 0.5946, "agree": 0.755, "regret": 0.0306}, "blank_calls_only": {"nll": 0.5605, "agree": 0.7658, "regret": 0.0262}, "blank_shown_only": {"nll": 5.1228, "agree": 0.6048, "regret": 0.0899}}, "auction_use_lead": {"real": {"nll": 1.571, "agree": 0.5019, "regret": 0.0528}, "blank": {"nll": 15.0964, "agree": 0.2771, "regret": 0.1491}, "another_deals": {"nll": 2.0897, "agree": 0.4163, "regret": 0.1008}, "blank_calls_only": {"nll": 1.5679, "agree": 0.4955, "regret": 0.0552}, "blank_shown_only": {"nll": 13.6166, "agree": 0.2784, "regret": 0.1415}}}
