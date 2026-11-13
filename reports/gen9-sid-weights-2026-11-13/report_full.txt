@@ -1,0 +1,122 @@
+
+## house8.jsonl: house_defends, 1137 positions, 585 without an outright claim
+
+scorer: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 144 | 0.031 | 0.021 +- 0.012 |
+  | 0.25 to 0.50 | 46 | 0.387 | 0.391 +- 0.073 |
+  | 0.50 to 0.75 | 59 | 0.617 | 0.508 +- 0.066 |
+  | 0.75 to 0.90 | 50 | 0.827 | 0.680 +- 0.067 |
+  | 0.90 to 1.00 | 105 | 0.972 | 0.952 +- 0.021 |
+  floors of 0.25 or more: 260 positions, floor minus realised +0.060 +- 0.025
+  all: mean floor 0.500, realised 0.458 +- 0.025
+
+Gen 9: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 144 | 0.031 | 0.021 +- 0.012 |
+  | 0.25 to 0.50 | 46 | 0.387 | 0.391 +- 0.073 |
+  | 0.50 to 0.75 | 59 | 0.617 | 0.508 +- 0.066 |
+  | 0.75 to 0.90 | 50 | 0.827 | 0.680 +- 0.067 |
+  | 0.90 to 1.00 | 105 | 0.972 | 0.952 +- 0.021 |
+  floors of 0.25 or more: 260 positions, floor minus realised +0.060 +- 0.025
+  all: mean floor 0.500, realised 0.458 +- 0.025
+
+paired (404 positions): best card differs in 0; true layout inside the best set, Gen 9 minus scorer +0.000 +- 0.000
+  true layout weighted below 1% of uniform: scorer 0, Gen 9 0 (of 585)
+  effective layouts, median: scorer 1461, Gen 9 1461
+  seconds a position, mean: weights 0.06, solver 0.15
+
+## prec8.jsonl: precision_defends, 1240 positions, 667 without an outright claim
+
+scorer: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 158 | 0.031 | 0.057 +- 0.018 |
+  | 0.25 to 0.50 | 41 | 0.386 | 0.390 +- 0.077 |
+  | 0.50 to 0.75 | 68 | 0.632 | 0.441 +- 0.061 |
+  | 0.75 to 0.90 | 54 | 0.830 | 0.648 +- 0.066 |
+  | 0.90 to 1.00 | 134 | 0.976 | 0.925 +- 0.023 |
+  floors of 0.25 or more: 297 positions, floor minus realised +0.099 +- 0.024
+  all: mean floor 0.526, realised 0.470 +- 0.023
+
+Gen 9: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 165 | 0.034 | 0.042 +- 0.016 |
+  | 0.25 to 0.50 | 39 | 0.396 | 0.385 +- 0.079 |
+  | 0.50 to 0.75 | 65 | 0.620 | 0.446 +- 0.062 |
+  | 0.75 to 0.90 | 52 | 0.833 | 0.635 +- 0.067 |
+  | 0.90 to 1.00 | 133 | 0.978 | 0.962 +- 0.017 |
+  floors of 0.25 or more: 289 positions, floor minus realised +0.083 +- 0.023
+  all: mean floor 0.517, realised 0.467 +- 0.023
+
+paired (453 positions): best card differs in 37; true layout inside the best set, Gen 9 minus scorer -0.004 +- 0.005
+  where the best card differs: Gen 9 minus scorer +0.000 +- 0.055
+  true layout weighted below 1% of uniform: scorer 108, Gen 9 0 (of 667)
+  effective layouts, median: scorer 1071, Gen 9 1147
+  seconds a position, mean: weights 0.27, solver 0.16
+
+## house7.jsonl: house_defends, 1110 positions, 492 without an outright claim
+
+scorer: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 111 | 0.035 | 0.036 +- 0.018 |
+  | 0.25 to 0.50 | 29 | 0.385 | 0.483 +- 0.094 |
+  | 0.50 to 0.75 | 56 | 0.606 | 0.500 +- 0.067 |
+  | 0.75 to 0.90 | 39 | 0.832 | 0.718 +- 0.073 |
+  | 0.90 to 1.00 | 75 | 0.975 | 0.947 +- 0.026 |
+  floors of 0.25 or more: 199 positions, floor minus realised +0.049 +- 0.029
+  all: mean floor 0.499, realised 0.468 +- 0.028
+
+Gen 9: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 111 | 0.035 | 0.036 +- 0.018 |
+  | 0.25 to 0.50 | 29 | 0.385 | 0.483 +- 0.094 |
+  | 0.50 to 0.75 | 56 | 0.606 | 0.500 +- 0.067 |
+  | 0.75 to 0.90 | 39 | 0.832 | 0.718 +- 0.073 |
+  | 0.90 to 1.00 | 75 | 0.975 | 0.947 +- 0.026 |
+  floors of 0.25 or more: 199 positions, floor minus realised +0.049 +- 0.029
+  all: mean floor 0.499, realised 0.468 +- 0.028
+
+paired (310 positions): best card differs in 0; true layout inside the best set, Gen 9 minus scorer +0.000 +- 0.000
+  true layout weighted below 1% of uniform: scorer 0, Gen 9 0 (of 492)
+  effective layouts, median: scorer 391, Gen 9 391
+  seconds a position, mean: weights 0.03, solver 0.03
+
+## prec7.jsonl: precision_defends, 1217 positions, 563 without an outright claim
+
+scorer: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 118 | 0.027 | 0.042 +- 0.019 |
+  | 0.25 to 0.50 | 41 | 0.401 | 0.439 +- 0.078 |
+  | 0.50 to 0.75 | 48 | 0.640 | 0.375 +- 0.071 |
+  | 0.75 to 0.90 | 38 | 0.826 | 0.684 +- 0.076 |
+  | 0.90 to 1.00 | 97 | 0.973 | 0.897 +- 0.031 |
+  floors of 0.25 or more: 224 positions, floor minus realised +0.107 +- 0.029
+  all: mean floor 0.515, realised 0.450 +- 0.027
+
+Gen 9: | floor band | positions | mean floor | true layout inside the best card's set |
+  | 0.00 to 0.25 | 119 | 0.025 | 0.034 +- 0.017 |
+  | 0.25 to 0.50 | 39 | 0.405 | 0.308 +- 0.075 |
+  | 0.50 to 0.75 | 50 | 0.633 | 0.520 +- 0.071 |
+  | 0.75 to 0.90 | 39 | 0.828 | 0.590 +- 0.080 |
+  | 0.90 to 1.00 | 95 | 0.980 | 0.968 +- 0.018 |
+  floors of 0.25 or more: 223 positions, floor minus realised +0.089 +- 0.027
+  all: mean floor 0.514, realised 0.459 +- 0.027
+
+paired (341 positions): best card differs in 24; true layout inside the best set, Gen 9 minus scorer +0.009 +- 0.007
+  where the best card differs: Gen 9 minus scorer +0.042 +- 0.073
+  true layout weighted below 1% of uniform: scorer 86, Gen 9 0 (of 563)
+  effective layouts, median: scorer 281, Gen 9 294
+  seconds a position, mean: weights 0.12, solver 0.03
+
+## prec8n.jsonl: two named cards, 327 positions without an outright claim
+
+scorer: | floor band | positions | mean floor | true layout inside |
+  | 0.00 to 0.25 | 76 | 0.062 | 0.039 +- 0.022 |
+  | 0.25 to 0.50 | 32 | 0.376 | 0.312 +- 0.083 |
+  | 0.50 to 0.75 | 45 | 0.612 | 0.489 +- 0.075 |
+  | 0.75 to 0.90 | 47 | 0.826 | 0.745 +- 0.064 |
+  | 0.90 to 1.00 | 72 | 0.973 | 0.889 +- 0.037 |
+  floors of 0.25 or more: 196, floor minus realised +0.089 +- 0.030; all: mean floor 0.563, realised 0.493 +- 0.030
+
+Gen 9: | floor band | positions | mean floor | true layout inside |
+  | 0.00 to 0.25 | 82 | 0.065 | 0.024 +- 0.017 |
+  | 0.25 to 0.50 | 36 | 0.372 | 0.278 +- 0.076 |
+  | 0.50 to 0.75 | 46 | 0.636 | 0.413 +- 0.073 |
+  | 0.75 to 0.90 | 36 | 0.828 | 0.778 +- 0.070 |
+  | 0.90 to 1.00 | 74 | 0.972 | 0.932 +- 0.029 |
+  floors of 0.25 or more: 192, floor minus realised +0.096 +- 0.029; all: mean floor 0.547, realised 0.467 +- 0.030
+
+paired (272): line (card or named cards) differs in 88; true layout inside the best set, Gen 9 minus scorer -0.022 +- 0.013

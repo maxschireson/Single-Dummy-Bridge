@@ -63,9 +63,13 @@ Why it matters most against the opponents Gen 9 is for: the scorer reads every a
 means 0.9. Against house bots Gen 9's weights equal the scorer's (E9-9: they signal nothing; same system), so this
 changes nothing there.
 
-**First measurement (E9-24):** the "claimed against realised" table of `cells/README.md` section 4 by weight source
-(scorer; 8X's `read_layouts`; Gen 9's), on native tables where the defending pair bids another system (`8c-32` in
-the Gen 8 feeds) and, as a control, on house-only tables.
+**E9-24 (13 Nov, `reports/gen9-sid-weights-2026-11-13`).** On native Gen 8 tables where `8c-32` (Precision) defends,
+the scorer gives the actual layout under 1% of a uniform weight in 15% to 16% of positions; Gen 9's replay of the
+defenders' own bidder never does. Overall calibration moves little (floor minus realised above 0.25: +0.099 to
++0.083 at 8 cards, +0.107 to +0.089 at 7). At the 0.9 threshold the weights decide which lines are taken: committed
+lines failed 8.7% of the time with the scorer's weights (231 lines; house control 5.0%) and 3.5% with Gen 9's (228).
+The scorer alone certified 25 lines that covered the actual layout 44% of the time; Gen 9 alone certified 22 that
+covered it 91%. So Gen 9's weights are what keeps a 0.9 floor meaning 0.9 against another system.
 
 ### 2.2 `X9`: the Gen 9 shell on the 8X engine
 
@@ -136,7 +140,7 @@ piece in a lead's own session (no sub-agents, Max, 07:48 UTC), all in the review
 
 | Piece | Who | Aim (UTC, estimates) |
 | --- | --- | --- |
-| E9-24: calibration of floors by weight source | g9 | 11:00 |
+| E9-24: calibration of floors by weight source | g9 | done 08:50 |
 | `X9`: the Gen 9 shell on the 8X engine, inert by default, with tests | g9 | 15:00 |
 | Defenders' conditional lines: the bound of 2.4 | sam, or g9 if sam is away | evening |
 | The arena interface for SiD's rounds (2.5) | dave, g9 | posted on the board at 07:57 |
@@ -149,7 +153,7 @@ section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefe
 
 | Step | What | Needs | When |
 | --- | --- | --- | --- |
-| 1 | E9-24 on recorded positions | `cells.cpp`, Gen 8 feeds, the Gen 9 shell | Today, about 11:00 UTC |
+| 1 | E9-24 on recorded positions | `cells.cpp`, Gen 8 feeds, the Gen 9 shell | Done 08:50 UTC |
 | 2 | `X9` with tests | the 8X engine at its current commit | Today, about 15:00 UTC |
 | 3 | Conditional claims in 8X (`DESIGN.md` 6) | owner agreed with x8 | x8's call |
 | 4 | `X9` with conditional claims against the 8X bot it wraps, forks on, on a Gen 9 box | 2, 3 | After 3 |
@@ -158,7 +162,7 @@ section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefe
 
 ## 6. Unknown
 
-- How far Gen 9's weights move the floors' calibration (E9-24 measures it).
+- How the 0.9 rule's failures translate into IMPs: E9-24 counts lines, not contracts.
 - The cost of SiD at 8 cards (mean 117 ms, 99th percentile 1.1 s, one thread, no table) inside a Gen 9 bot that also
   runs the profile mixture; measured in step 4.
 - Whether conditional claims gain in play at all: nothing has been played.
