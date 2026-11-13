@@ -1,0 +1,17 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "d50c8eda9471b9c6ab44051ef56921027e78c127",
+  "direction": "8X remains a development candidate with separate host-specific matches; Gen9 continues in parallel.",
+  "engine": {
+    "branch": "feature/gen8x-rollout-bot-20261113",
+    "revision": "bb8506640cc5b3dc0dcc802ef224d5d74aaa7158",
+    "status": "Experimental v0 tests x1/x2 on Azure6; no current arena deployment opening."
+  },
+  "condition": "Exact-tie randomization still depends on two Azure4 matches showing no played cost; no figures or opening published in the checked notices.",
+  "new_notices": "Max02:20 gives x8 idle Azure6 for x1/x2 and prioritizes that work there. The notice explicitly avoids draining an arena box and says g7's work is unchanged; this is not an all-collector stop or reallocation.",
+  "claim_work": "Claim-fork test spec and defender hand-over measurements are research evidence; do not change current Gen8 claim/card rules.",
+  "models": "Rollout-net v2/v2w builds are on Azure2/5. Current v4.1 actor models are unchanged; future adopted nets need complete training-family provenance/exclusions.",
+  "existing_gen8_effect": "Keep canonical8s/8c, source792c4cb, current manifest, mix, three normal workers and zeroBEN. No exploration1.0, 8X engine adoption or model swap in this cohort.",
+  "future_requirements": "Adopt only under a ready published arena plan and exact actors/models/source, with drain/new identity, all training-family exclusions and observed-capture preflight.",
+  "host_scope": "No host/queue/peer producer command or training performed by this task."
+}
