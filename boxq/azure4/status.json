@@ -119,7 +119,7 @@
    "cores": 4
   },
   "e9-0-n04": {
-   "state": "running",
+   "state": "paused",
    "owner": "g9",
    "experiment": "E9-0",
    "boards": 281,
@@ -137,7 +137,7 @@
    "eta": "2026-11-13T07:36:42Z",
    "published_at": "2026-11-13T06:37:50Z",
    "published": "transfer/gen9-e9-0-n04-azure4-20261113@8885f055c",
-   "stopping": true
+   "ended": "2026-11-13T06:45:19Z"
   },
   "e9-10-8x-ben16": {
    "state": "cancelled",
@@ -410,7 +410,7 @@
    "cores": 4
   },
   "e9-16-h-v-p": {
-   "state": "running",
+   "state": "paused",
    "owner": "g9",
    "experiment": "E9-16",
    "boards": 269,
@@ -428,7 +428,7 @@
    "eta": "2026-11-13T07:40:17Z",
    "published_at": "2026-11-13T06:37:50Z",
    "published": "transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17",
-   "stopping": true
+   "ended": "2026-11-13T06:45:19Z"
   },
   "e9-16-r-v-p": {
    "state": "done",
@@ -492,7 +492,7 @@
    "ended": "2026-11-13T05:57:02Z"
   },
   "g9-cohort-azure4": {
-   "state": "waiting",
+   "state": "running",
    "owner": "dave",
    "experiment": "G9-D9",
    "boards": 0,
@@ -500,11 +500,16 @@
    "restarts": 0,
    "submitted": "2026-11-13T06:44:00Z",
    "priority": 1,
-   "cores": 8
+   "cores": 8,
+   "started": "2026-11-13T06:45:19Z",
+   "resumed": "2026-11-13T06:45:19Z",
+   "source": "/home/bridgebots/work/g9/src/46b7e004",
+   "rate_per_hour": null,
+   "eta": null
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-13T06:44:47Z",
+ "updated": "2026-11-13T06:45:19Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
