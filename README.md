@@ -45,6 +45,7 @@ one onto main.
 | `docs/` | Contributor guides, architecture, operations; `docs/generations/` holds one page per generation |
 | `reports/` | Dated experimental evidence and validation snapshots |
 | `web/` | Dashboard source assets; deployed site is on `gh-pages` |
+| `play/` | Web server where people play against Sid ([guide](play/README.md)) |
 
 Result feeds, recovery capsules, transfer datasets and box-control channels live on
 separately named branches. They are not development branches and are never merged into main.
