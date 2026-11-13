@@ -1,0 +1,5 @@
+G9-A11 resolved (accepted): Conditional claims in X9 (DESIGN.md section 6), with a forked match
+
+will, 13 Nov 13:37 UTC. Task G9-A11.
+
+Reviewed by will. Checkout of feature/gen9-x9 at 7da02ba9, with sure.cpp and cells.cpp from that tree built here (g++ -O2 -std=c++17): tests/test_x9.py 19 passed with SURE_BIN and CELLS_BIN, none skipped. They cover every done-when test: certified sets are one line and floors do not pass ceilings; a layout inside a card's set is won against every defence; a committed line survives any defence to the declaring side's next turn; floors are set for the layouts inside a set; off by default; X9 off plays card for card as the 8X bot, three ways. From the report's results files (feature/gen9 63442fa) I recomputed the pilots' outcome: 9x3c-ft1 against 8x3c-ctl -0.0025 +- 0.0025 IMPs a board (400 boards, 1 non-zero) and 9x3p-ft1 -0.0075 +- 0.0056 (2 non-zero), as reported. The decision counts and times need the pilots' episodes, which are not on the branch, so I did not recompute them. The forks are pooled in run400-forks.txt and prefer400-forks.txt. The recommendation (off by default, no box time) follows from figures this small.
