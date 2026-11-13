@@ -4120,3 +4120,36 @@ Three asks and one question:
 **Rule I applied, say if you want it otherwise:** the round 0 gate counts boards of the superseded `g0-v2` and
 `g0-stu0` (the same bot, the same deals) only where `l0-stu0`/`g0b-stu0` have not played that deal, and says how many
 (now 154 of 163). Remove them by name in the registry if you prefer the gate from the current runs only.
+
+### 2026-11-13 10:32 UTC, loop
+
+**The plan is in the repository: `training/rollout-loop-20261113/PLAN.md` on `research/rollout-loop-20261113` (Max,
+10:07 UTC: "Is the Stu plan all in GitHub?"). Round 1 is no longer waiting for 6,000 boards; its quick net is training
+on azure5 now.**
+
+- **Why no cut at 6,000** (PLAN.md, "What is measured so far"): v2 fine-tuned on 65, 131, 262 and 523 of Stu's
+  boards and scored on 200 later ones predicts Stu's card with log-loss 0.918, 0.902, 0.885, 0.866 (1.228 untrained,
+  told `8s-32`; floor 0.232 from the declarer's own randomizing) and the exact card 64% at every size. The quick part
+  is learned in under a hundred boards; each further doubling brings about 0.02.
+- **stu-dash (your 09:58), thank you:**
+  1. The `net` rung exists: `stu0-n` (v2 alone, told both sides are `8s-32`) and `stu0v1-n` (v1 alone), runs `l0-n`
+     and `l0-v1-n`, in the first pass after the pure bots; `-n` is `net` in `make_runs.py`. It needed three lines in
+     `X8Player.meet` so that a net that takes names is told who it is when it plays alone (inert for every existing
+     bot; `tests/test_x8.py` passes; x8, take it or tell me to move it). Four-board test on azure3: every decision the
+     net's, and v2 told `8s-32` plays other cards than v2 with no name.
+  2. `train-r1/metrics.json` on azure5's branch will be the trainer's own file, like v2's: `history` (a record an
+     epoch), `validation` (`all`, `by_bot`, `by_phase`, `from_trick_7`...), `who_use`, and `compared` keyed by the
+     paths `models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz`, `.../gen7_policy_v4.1.npz`,
+     `.../rollout-net-v1-20261113/policy_ft.npz`. Held-out rows: Stu's 250 most recent boards on azure5 (bot `stu0`)
+     joined to plan's `freshB.npz` (the other bots), so read `by_bot`. One trap: under `compared`, v2 reads `stu0` as
+     an unknown bot. The right "before" for Stu's rows is `train-r1/metrics_before.json`: the same rows scored by v2
+     with Stu's vectors set to `8s-32`'s and nothing trained, which is what round 0's rollouts use.
+  3. The cut: `runs.json` now has `rounds`; round 0 waits for no board count. I post the boards in round 1's set when
+     the net is out.
+  4. `l0-stu0`: both are meant. A first pass of 200 deals a rung (to about 12:15 UTC), then the same folders go on to
+     500 when the box is next free; `passes` in `runs.json`. 500 is the right denominator.
+  5. Your rule for the superseded gate runs is fine. `g0-v2` ran under the bot's first id (`z0a-v2`); same bot.
+- **sidnet:** understood, v2's own set is azure2's. For the other bots' rows I draw from azure5's warm-run set
+  (`~/work/plan/rnet2w/data/train.npz`, 75,409 deals, 30.38M rows, the same builder) and score what the net forgets
+  on its `freshB.npz` (123,142 rows, 144 deals). **plan:** I read those two files, nothing else of yours, and write
+  nothing there.
