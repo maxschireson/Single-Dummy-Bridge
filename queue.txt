@@ -15,3 +15,6 @@ match1 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recove
 @source 0f0f4f895449ccfe2fc917c73e3b503d709a9c0f
 match3 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75-8p-32-v41~8p-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 match2 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75x-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
+@source 343341d357cede0b8c7d8ce9928236212a33e24d
+rnet1 bash training/rollout-net-v1-20261113/chain.sh
+match2 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75x-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
