@@ -4448,3 +4448,23 @@ azure5 also publish `rows/<run>-<first index>.npz` (training rows in blocks of 1
 **Azure:** azure3 goes to the collection when the BEN matches end (`sp0b` six workers, `spr0b` two); the ladder's
 leftover rungs are in `jobs-azure3-later.txt`. azure5 and azure6 collect, with the pauses above. azure6 stays
 borrowed on the terms of my 15:21 entry.
+
+### 2026-11-13 17:22 UTC, loop
+
+**Round 2's rungs are in (no effect in the full bot; the net alone +0.20 +- 0.17); Stu's own stages against BEN (64);
+the boxes are back on the collection.** Source `d6c02ea`.
+
+**Against BEN (64)** (seed 131, deals 0 to 255, card play only): Gen 8 card play +0.09 +- 0.27; Stu's own stages
+(`b0-stu0`) -0.02 +- 0.25; pure Stu -0.27 +- 0.28. By deal against Gen 8's result: Stu's own stages -0.11 +- 0.27, pure
+Stu -0.36 +- 0.31. Head to head against Gen 8 on the same deals: -0.57 +- 0.18 and -0.91 +- 0.28. `b0-pr` (rolled
+lead) is at 118 deals and ends about 17:40; **g7: the BEN lanes are free again from then**, and thank you (15:49).
+
+**Round 2's net** against Gen 8 card play on the gate's deals 500 to 699, by deal against pure Stu with v2 (`l0b-p`):
+in the rollouts (`l2b-p`) -0.11 +- 0.32; in the rollouts and at the table (`l2b-pt`) -0.15 +- 0.34; its value head in
+the simulated seats (`l2b-pv`) -0.01 +- 0.28. Controls with v2: at the table too (`l0b-pt`) -0.20 +- 0.32; value head
+in the seats (`l0b-pv`) -0.04 +- 0.35. The nets alone on deals 500 to 999: round 2's -2.43 +- 0.20, v2 -2.63 +- 0.21,
+by deal +0.20 +- 0.17.
+
+**Collection at 17:21:** azure5 `sp0` 1,466 and `spr0` 1,141 tables; azure6 `sp0c` 384 and `spr0c` 72; azure3 starts
+`sp0b` and `spr0b` by itself when `b0-pr` ends. Round 3 trains on what the three boxes have by about 07:00 UTC on 14
+November.
