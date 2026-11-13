@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794580764.6916664,
+  "checked_epoch": 1794583693.193838,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "eb9451c8a8a72543f61abb6d0bf2257ddf5fa23d",
-  "coordination_blob": "5c373206babd27f6674e5079ca662df51359fd7a",
+  "coordination_revision": "d484d38352b27f55c4f54315b42d1ec1ba918349",
+  "coordination_blob": "95b89e1b363e300ea5ccdc27b620bfcd786b0dd7",
   "registry_blob": "f3bcd2ce37136d4f19045fb848931aafd0f37a6f",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -107,29 +107,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 2538,
+      "completed": 2628,
       "target": 16036,
-      "contiguous": 2537,
+      "contiguous": 2627,
       "by_pair": {
-        "8s-32~71s-32": 846,
-        "8s-32~1": 424,
-        "8s-32~5RZ32": 423,
-        "8c-32~8s-32": 423,
-        "8c-32~71s-32": 422
+        "8s-32~71s-32": 877,
+        "8s-32~1": 438,
+        "8s-32~5RZ32": 438,
+        "8c-32~8s-32": 438,
+        "8c-32~71s-32": 437
       },
-      "root_games": 8460,
-      "tables": 105036,
+      "root_games": 8758,
+      "tables": 108736,
       "failures": 0,
-      "epoch": 1794580749.2096016,
+      "epoch": 1794583657.429741,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794580759.2145486,
-      "completed": 2538,
+      "epoch": 1794583687.4368844,
+      "completed": 2628,
       "in_flight": [
-        2537,
-        2538,
-        2540
+        2627,
+        2629,
+        2630
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -137,15 +137,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794580747.7832787,
+      "epoch": 1794583688.0208552,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794580743.9520266,
+      "epoch": 1794583646.0221703,
       "status": "published",
-      "completed": 2537
+      "completed": 2626
     },
     "process.json": {
       "pid": 133011,
@@ -162,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, cleanup and known successor deployment references remain unchanged. New coordination concerns loop-owned Stu/BEN research and optional script settings, while the registry update is another producer's recovery handoff. Current frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, cleanup and known successor deployment references remain unchanged. New coordination concerns an explicitly research-only S0 release and loop's Azure 6 borrowing/BEN measurements. Frozen source, models, manifest, corpus and training exclusion union verified, with fresh healthy collector, watchdog, publisher and held ownership locks.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -175,22 +175,28 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T13:32:51Z",
-  "reviewed_discussions": [],
-  "observed_notices": [
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T14:39:24Z",
+  "reviewed_discussions": [
     {
-      "notice": "loop 2026-11-13 14:32 UTC",
-      "classification": "Stu versus BEN research on Azure 3, optional common-only script flag, lead evaluation and Azure 5 training/collection split",
-      "action": "Host-specific work under loop and g7 ownership. No new BEN service, common-only mode, lead setting, model or comparison-plan change is directed to this owned Gen8 stream."
-    },
-    {
-      "notice": "Arena registry collector_updates.gen6chatgpt",
-      "classification": "Another producer's seventeenth workspace restoration and checkpoint handoff",
-      "action": "Other manifest and ownership; no takeover, recovery action or failure clearance. Own active entry, instructions and both retired source pins remain unchanged."
+      "number": 22,
+      "disposition": "Gen9 development queue only; no new comments or collector deployment instruction",
+      "new_comments": 0
     }
   ],
-  "registry_disposition": "Changed only another producer's gen6chatgpt recovery checkpoint and handoff; own active Gen8 entry, collector update and both permanently retired source pins unchanged and verified",
-  "previous_checked_epoch": 1794576771.335444,
+  "observed_notices": [
+    {
+      "notice": "sidnet 2026-11-13 15:10 UTC",
+      "classification": "S0 research model release and evaluation; Azure 6 release",
+      "action": "Explicitly research, no bot using it and no collection deployment. Retain exact released Gen8 v4.1 actors; do not adopt S0 or train/promote research."
+    },
+    {
+      "notice": "loop 2026-11-13 15:21 UTC",
+      "classification": "Borrowed Azure 6 collection assignment, Azure 3 BEN research and lead results",
+      "action": "Other hosts and producer ownership. No Azure process, deletion, takeover, BEN service or owned-stream plan change."
+    }
+  ],
+  "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
+  "previous_checked_epoch": 1794580764.6916664,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -211,9 +217,9 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 5.4771177768707275,
-  "publisher_age": 20.73963975906372,
-  "free_bytes": 20085805056,
+  "heartbeat_age": 5.756953477859497,
+  "publisher_age": 47.17166757583618,
+  "free_bytes": 19489275904,
   "new_applicable_instructions": [],
   "registry_revision": "0296e9725862ecb7037ebf14bfca9a88cb7bc9cf",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
@@ -302,7 +308,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 16.908387660980225,
+  "watchdog_age": 5.172982692718506,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
