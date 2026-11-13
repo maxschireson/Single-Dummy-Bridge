@@ -27,17 +27,21 @@
   "--workers",
   "7"
  ],
- "env": {},
+ "env": {
+  "BRIDGE_FEED_REMOTE": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
+  "GIT_SSH_COMMAND": "ssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20"
+ },
  "progress": {
   "results": "run/receipts/*.json",
-  "target": 10000
+  "target": 10000,
+  "count": "files"
  },
  "preemptible": false,
  "publish": [
   "run/state.json",
   "run/manifest.json"
  ],
- "notes": "The Gen 9 cohort (configs/round9-cohort.json, opened on g9's go at 06:16 UTC). First start prepares {out}/run from the opened plan with 10,000 fresh deals (seed 9013, same as the preflight; lists fetched over HTTPS and checked against pins); every start runs ops/publish_gen5.py every minute to the feed branch arena-gen9-azure4-feed from a git checkout at {out}/publication (git init + remote https://github.com/maxschireson/Single-Dummy-Bridge.git, orphan branch on first push: needs the box's push credential for that URL), and ops/gen5_runtime.py with 7 workers in the foreground (1 core left for the publisher's export). Resumable on restart; STOP in {out}/run drains it. About 300 boards an hour, so a little over a day. Needs the python with TensorFlow (/home/bridgebots/work/venv/bin/python, as the preflight used).",
+ "notes": "The Gen 9 cohort (configs/round9-cohort.json, opened on g9's go at 06:16 UTC). First start prepares {out}/run from the opened plan with 10,000 fresh deals (seed 9013, same as the preflight; lists fetched over HTTPS and checked against pins); every start runs ops/publish_gen5.py every minute to the feed branch arena-gen9-azure4-feed from a git checkout at {out}/publication (git init + remote from BRIDGE_FEED_REMOTE over the box's boxctl SSH key, orphan branch on first push), and ops/gen5_runtime.py with 7 workers in the foreground (1 core left for the publisher's export). Resumable on restart; STOP in {out}/run drains it. About 300 boards an hour, so a little over a day. Needs the python with TensorFlow (/home/bridgebots/work/venv/bin/python, as the preflight used).",
  "submitted": "2026-11-13T06:44:00Z",
  "by": "dave"
 }
