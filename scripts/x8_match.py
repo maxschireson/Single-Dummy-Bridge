@@ -36,6 +36,9 @@ _build = gen8_match.build_manifest
 def player(spec, root, reference=None):
     if spec.get('engine') == x8_player.ENGINE:
         return x8_player.X8Player(spec, root, reference)
+    if spec.get('engine') == 'gen9x':                     # Gen 9's X9 (bridge_harness/x9_player.py, feature/gen9-x9)
+        from bridge_harness import x9_player
+        return x9_player.X9Player(spec, root, reference)
     return plan_player.player(spec, root, reference)
 
 
