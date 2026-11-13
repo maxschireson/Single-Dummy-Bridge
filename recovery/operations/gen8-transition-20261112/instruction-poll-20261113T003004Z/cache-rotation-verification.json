@@ -1,0 +1,55 @@
+{
+  "status": "authorized_disposable_cache_rotation_diagnosed",
+  "journal": {
+    "epoch": 1794527588.8953915,
+    "completed": 774,
+    "previous_bytes": 2153717760
+  },
+  "exact_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "supervisor_sha256": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+  "new_collector_pid": 87451,
+  "previous_collector_pid": 78717,
+  "previous_collector_exited": true,
+  "ownership_pid_checks": {
+    ".writer.lock": 87451,
+    ".watchdog.lock": 68686,
+    ".publisher.lock": 68688
+  },
+  "pre_rotation_publication": "8b72de60bea48755e2772182fc1eda84f34ccefa",
+  "pre_rotation_published_completed": 773,
+  "all_pre_rotation_episode_receipt_blobs_unchanged": true,
+  "pre_rotation_files_compared": 1546,
+  "all_current_episode_receipt_pairs_verified": 842,
+  "all_drain_receipts_present": true,
+  "post_rotation_capture_samples": [
+    {
+      "index": 774,
+      "fields": {
+        "guess_size": 537,
+        "best_share": 2522
+      },
+      "actual_gap_forks": 12
+    },
+    {
+      "index": 775,
+      "fields": {
+        "guess_size": 719,
+        "best_share": 3312
+      },
+      "actual_gap_forks": 14
+    },
+    {
+      "index": 776,
+      "fields": {
+        "guess_size": 990,
+        "best_share": 4700
+      },
+      "actual_gap_forks": 12
+    }
+  ],
+  "post_rotation_gap_and_guess_capture_verified": true,
+  "scientific_manifest_unchanged": true,
+  "failures_cleared": false,
+  "manual_restart_performed": false,
+  "current_STOP_exists": false
+}
