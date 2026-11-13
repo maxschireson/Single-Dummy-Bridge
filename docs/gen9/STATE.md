@@ -1,4 +1,4 @@
-# Gen 9: state at Fri 13 Nov 10:25 UTC (hand-over note)
+# Gen 9: state at Fri 13 Nov 10:55 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -118,13 +118,14 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
   page (G9-D10) first version on `feature/gen9-population`.
 - **Max, 09:03 UTC:** conditional claims are built in Gen 9 (X9), not by x8. Done: `feature/gen9-x9` ac7dfdb (floors,
   commitment, forks against the card without them; 17 tests), 7da02ba (`x9.prefer`, off by default; 19 tests).
-- **X9 conditional-claims pilot** (G9-A11, sandbox, `9x3c-ft1` against `8x3c-ctl`, seed 9241, 400 boards,
-  `/home/claude/x9match/run400`): at 233 boards the claims ran in 173 decisions, set floors in 21, committed 14, restricted
-  65 later decisions and changed the played card 5 times (4 boards); every fork so far 0 IMPs; +3.0% time a board (the
-  first count, 7 moves at 194 boards, also counted the fork branches' copies of the same decisions). So
-  the azure4 job `g9-x9-cond` is withdrawn (message to dave and will, 09:58): it could not measure anything. Next: the
-  same deals with `9x3p-ft1` (prefer 0.25: the highest certified floor wins among the blend's candidates within 0.25
-  tricks), `configs/x9-bots-prefer.json`.
+- **X9 conditional-claims pilot 1** (G9-A11, sandbox, `9x3c-ft1` against `8x3c-ctl`, seed 9241, 400 boards, done 10:49;
+  `reports/gen9-x9-conditional-2026-11-13`): the claims ran at 295 decisions, set floors at 36, committed 25 lines,
+  restricted 117 later decisions and changed the played card 11 times on 8 boards; -0.0025 +- 0.0025 IMPs a board (one
+  board lost 1 IMP, 399 flat); the 11 forks: none better, one worse; +1.9% time a board. The azure4 job `g9-x9-cond` is
+  withdrawn (09:58). The sandbox restarted at about 10:23 and killed the run at 294 boards; it resumed from there.
+- **Pilot 2** (running since 10:49, about 1.4 hours): the same deals with `9x3p-ft1` (`prefer` 0.25: the highest
+  certified floor wins among the blend's candidates within 0.25 tricks), `configs/x9-bots-prefer.json`,
+  `/home/claude/x9match/prefer400`. Restart with the same command if the sandbox restarts (it resumes).
 - **G9-B8 card intake, first version** (submitted 09:55, bill to review): `scripts/gen9_card_intake.py`; Max's two
   cards read into `configs/cards/intake/` with variants by seat and vulnerability, recorded agreements and the notes'
   style statements; results `reports/gen9-card-intake-2026-11-13`. The check sheets wait for Max's confirmation.

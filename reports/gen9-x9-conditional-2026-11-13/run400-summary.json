@@ -1,0 +1,23 @@
+{
+ "pair": "9x3c-ft1~8x3c-ctl",
+ "boards": 400,
+ "cpu_per_board": 24.07,
+ "common": {
+  "imps_per_board": -0.0025,
+  "se": 0.0025,
+  "boards": 400,
+  "won": 0,
+  "lost": 1,
+  "flat": 399
+ },
+ "native": {
+  "imps_per_board": -0.0025,
+  "se": 0.0025,
+  "boards": 400,
+  "won": 0,
+  "lost": 1,
+  "flat": 399
+ },
+ "failures": 0,
+ "boards_per_hour": 296
+}
