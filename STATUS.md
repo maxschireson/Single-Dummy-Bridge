@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 08:07 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 08:10 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -24,7 +24,7 @@ Generated 2026-11-13 08:07 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | g9 until 11-13 11:43 | leased | high | 2026-11-14T01:00Z |  |
+| [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | g9 until 11-13 09:10 | leased | high | 2026-11-14T01:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 09:25 | leased | medium |  |  |
