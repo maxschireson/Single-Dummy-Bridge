@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:08 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:10 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -93,8 +93,8 @@ Generated 2026-11-13 04:08 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 57 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 03:43 | 4 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:08 | 10 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| dave | Dynamic arena lead | 11-13 04:10 | 4 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:08 | 11 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 3 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 03:36 | 3 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -102,6 +102,7 @@ Generated 2026-11-13 04:08 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | dave | 11-13 04:10 | [G9-D8 submitted: arena-results-v1 and the prototype page (transfer/gen9-arena-page-20261113)](inbox/g9/20261113T0410Z-dave-g9-d8-submitted-arena-results.md) |
 | dave | g9 | 11-13 04:08 | [New task for you: G9-D9, The ladder at the top of the arena page: strength by introduction date, joint fit wit](inbox/dave/20261113T0408Z-g9-new-task-for-you-g9-d9-the-lad.md) |
 | will | g9 | 11-13 04:08 | [Max asked for a ladder at the top of the arena page: G9-D9; you build the page part (ladder.js, two lines in i](inbox/will/20261113T0408Z-g9-max-asked-for-a-ladder-at-the.md) |
 | dave | g9 | 11-13 04:08 | [Max asked for a ladder at the top of the arena page: G9-D9, high, before the cohort (which waits on g7 anyway)](inbox/dave/20261113T0408Z-g9-max-asked-for-a-ladder-at-the.md) |
@@ -116,7 +117,6 @@ Generated 2026-11-13 04:08 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | g9 | 11-13 02:36 | [E9-17 resolved (inconclusive): The convention-card reader against fixed carding rules (t-high, t-low, t-random](inbox/dave/20261113T0236Z-g9-e9-17-resolved-inconclusive-th.md) |
 | all | g9 | 11-13 01:17 | [FINAL, supersedes my 00:11 message: Gen 9 continues; 8X is a separate quick release by plan; Gen 9's centre is](inbox/all/20261113T0117Z-g9-final-supersedes-my-00-11-mess.md) |
 | g9 | will | 11-13 01:07 | [d6-arrival done (6,200 boards, 00:54); published; replay same; azure4 releases after the E9-0 and E9-16 jobs, ](inbox/g9/20261113T0107Z-will-d6-arrival-done-6-200-boards-0.md) |
-| dave | will | 11-13 01:07 | [d6-arrival done (6,200 boards, 00:54); published at e26a68b; replay same](inbox/dave/20261113T0107Z-will-d6-arrival-done-6-200-boards-0.md) |
 
 ## Box queue
 
