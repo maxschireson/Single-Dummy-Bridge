@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794565945.7974339,
+  "checked_epoch": 1794569507.969436,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "4385504591e9161d71a9bc23ba15db1634a7e194",
-  "coordination_blob": "ce694a035313e6f6614946c68bfc7184dc423e1d",
+  "coordination_revision": "8435fc660f433b2aeea67d11b10c8fe7bff56b5d",
+  "coordination_blob": "dc8f51471a10fcd265ce3a974c44ffbb43f58a63",
   "registry_blob": "3bd16b201da285d965519f90bfb2847bdf96facd",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -107,29 +107,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 2065,
+      "completed": 2178,
       "target": 16036,
-      "contiguous": 2064,
+      "contiguous": 2176,
       "by_pair": {
-        "8s-32~71s-32": 689,
-        "8s-32~1": 344,
-        "8s-32~5RZ32": 344,
-        "8c-32~8s-32": 344,
-        "8c-32~71s-32": 344
+        "8s-32~71s-32": 726,
+        "8s-32~1": 363,
+        "8s-32~5RZ32": 364,
+        "8c-32~8s-32": 362,
+        "8c-32~71s-32": 363
       },
-      "root_games": 6882,
-      "tables": 85205,
+      "root_games": 7260,
+      "tables": 89882,
       "failures": 0,
-      "epoch": 1794565890.428415,
+      "epoch": 1794569482.8682601,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794565940.4340274,
-      "completed": 2065,
+      "epoch": 1794569502.8696117,
+      "completed": 2178,
       "in_flight": [
-        2064,
-        2066,
-        2067
+        2176,
+        2179,
+        2180
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -137,15 +137,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794565917.1350932,
+      "epoch": 1794569457.3965464,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794565911.6238842,
+      "epoch": 1794569494.1041865,
       "status": "published",
-      "completed": 2065
+      "completed": 2178
     },
     "process.json": {
       "pid": 119770,
@@ -162,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction requiring a current collection change. New notices concern the separate Stu loop, training datasets and its dashboard. Main, operational Gen8, historical Gen7.1, cleanup and reviewed successor source refs unchanged. Frozen source, released identities, plan, corpus and v4.1 union verified. Fresh collector, watchdog, single publisher and held ownership locks healthy; no failures or stop markers.",
+  "result": "No new applicable instruction. Current authoritative main and operational notices, historical Gen7.1 notices and successor references remain unchanged. New coordination notices concern separate Stu research, Azure host assignments and a claim solver absent from this Gen8 runtime. Frozen source, models, manifest, corpus and exclusion union verified; current health is fresh and healthy.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -175,38 +175,33 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T09:27:51Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T10:32:25Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue only",
+      "disposition": "Gen9 development queue only; no collector deployment instruction",
       "new_comments": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "loop 2026-11-13 09:38 UTC",
-      "classification": "Stu dashboard brief and research ladder schedule",
-      "action": "Dedicated loop runs and models, not a collector instruction for this stream"
+      "notice": "stu-dash 2026-11-13 10:47 UTC",
+      "classification": "Separate Stu dashboard update",
+      "action": "No owned feed or runtime change"
     },
     {
-      "notice": "sidnet 2026-11-13 09:38 UTC",
-      "classification": "Research dataset provenance correction and Azure6 progress",
-      "action": "Current actors use v4.1 and this stream does not train nets; no current corpus or model change"
+      "notice": "loop 2026-11-13 10:45 UTC",
+      "classification": "Stu research ladder, training and job-order change",
+      "action": "Outside this owned stream; fixed target, mix and models unchanged"
     },
     {
-      "notice": "stu-dash 2026-11-13 09:58 UTC",
-      "classification": "Separate Stu dashboard published under gh-pages:stu",
-      "action": "No aggregate or producer feed rewrite by this stream"
-    },
-    {
-      "notice": "loop 2026-11-13 10:32 UTC",
-      "classification": "Stu plan recorded, training cut changed and round1 research metrics",
-      "action": "No change to this stream's fixed target, immutable source, models, mix or publisher"
+      "notice": "plan 2026-11-13 10:56 UTC",
+      "classification": "Azure 2 and Azure 5 host-specific release and claim-solver version reminder",
+      "action": "Outside ownership. This frozen Gen8 runtime does not use the claim solver"
     }
   ],
-  "registry_disposition": "Entire registry unchanged from preceding check; owned active Gen8 and both retired immutable pins verified.",
-  "previous_checked_epoch": 1794562071.1489537,
+  "registry_disposition": "Entire registry unchanged; owned active Gen8 and both retired pins verified",
+  "previous_checked_epoch": 1794565945.7974339,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -227,11 +222,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 5.363406419754028,
-  "publisher_age": 34.17354965209961,
-  "free_bytes": 20956577792,
+  "heartbeat_age": 5.0998241901397705,
+  "publisher_age": 13.865249395370483,
+  "free_bytes": 20210655232,
   "new_applicable_instructions": [],
-  "registry_revision": "27f5d392ac62ceb1c5f30af2237d8764dad69a23",
+  "registry_revision": "0a5fbb44cc946ffea46f9439e5cf315f22e2de56",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -309,5 +304,6 @@
     "instruction": "Arena promotion decision: smallest lead 0.10 IMPs per board, cap 10,000 direct boards. Smaller gains require bench evidence at least 2 SE and arena non-inferiority after at least 2,000 direct boards with the always-valid 95% lower bound above -0.10; retain the panel check.",
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
-  }
+  },
+  "watchdog_age": 50.57288956642151
 }
