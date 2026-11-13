@@ -36,6 +36,8 @@ deal; on p41's house pools it is the four seats of one table. 0.1 tricks is abou
 | Can we model BEN's choices of card? | Yes: a head fitted on BEN's record predicts its choices +0.44 to +0.53 nats a decision better than the net, reads BEN's declarer play +0.08 to +0.14 nats better than the net at its best factor, and is worth **+0.035 ± 0.014 (BEN 64) and +0.013 ± 0.012 (BEN 16) tricks a board**; nothing measurable on BEN's defence | `reports/gen9-play-head-2026-11-12` (E9-14) |
 | Is there enough BEN data? | For the head, yes: it is flat from about 1,000 tables, and a box of BEN lanes makes about 1,000 tables an hour. Whether a model with more capacity reads more is open | same |
 | How much do our own equal cards give away? | To a reader of our strength, which of several equal spots we play is worth 0.038 ± 0.013 tricks a board, 0.023 of it our defenders' spots read by declarer; our partner gets 0.004 from them. Read by equal-best sets instead: 0.009 ± 0.017 | `reports/gen9-leakage-classes-2026-11-12` (E9-16 parts 1b, 1c) |
+| Is the net too flat or too sharp as a reading of the house bots? | Neither: raising its probabilities to a power from 0.85 to 1.5 gains no tricks on p41's house pools, and the power 1 gives the true layout the most weight | `reports/gen9-reading-temperature-2026-11-12` |
+| What does replaying the house bidder add to the reading (E9-11, bill's reader)? | +0.32 nats a decision over 8p-32's reading, +0.021 ± 0.016 tricks a board on all decisions and -0.001 ± 0.012 where both hidden seats were house bots; partner's calls alone +0.014 ± 0.006 | `reports/gen9-e911-bench-2026-11-12` |
 
 ## What it adds up to
 
