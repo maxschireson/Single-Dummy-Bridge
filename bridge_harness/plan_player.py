@@ -32,6 +32,26 @@ Settings live in spec['plan']['playout'], one stage or a list of them (no trick 
                          the fresh layouts, so the count can be large; the mean over many layouts also carries less of
                          the search's own sampling noise than its 32-layout estimate does.
 
+The claim finder (bridge_harness/claims.py: single-dummy tricks the declaring side is sure of whatever the
+defenders hold) can also be consulted at every declaring-side decision from some trick on, whether or not a playout
+stage applies there, with spec['plan']['claim'] = {from_trick, act}:
+
+  from_trick   first trick at which it is consulted (dummy must be down)
+  exact_from   first trick at which each card's guarantee is asked for (default 7); before it, only whether each card
+               guarantees the contract (the finder's cheap question: at trick 4 the full one averages seconds, with
+               a tail past a minute, the cheap one about a tenth of a second)
+  act          false (the default): log only, no card changes. True: as a stage's claim 'root' (a card that keeps a
+               guaranteed contract is played and no playouts are run when the contract is settled)
+
+Wherever the finder is consulted (here or by a stage's `claim`), the decision record carries `claim`: its state
+('guaranteed', 'made', 'lost', 'open'), the trick, the tricks still needed, `sure` (the most tricks any card
+guarantees, the current trick included), each card's guarantee, `first` (the first decision of the hand at which the
+contract is guaranteed or already made: the point where the bot could have claimed), and, once there is a claim,
+whether the card played keeps the contract's guarantee (`keeps`) and the most (`keeps_sure`). Before `exact_from`
+(`exact` false) `guaranteed` is 1 or 0 by card (does it guarantee the contract), `sure` and `keeps_sure` are absent,
+and nothing is asked once the contract is made or lost. Play goes on to trick 13 either way; scripts/claim_log.py
+lists the claims and the line played after them.
+
 A spec with engine 'plan' and no playout stage is a Gen 7 player. The spec's own `gen7.tree` should be
 absent: the two corrections are alternatives, and if both are present the playouts correct the tree's card.
 """
@@ -83,6 +103,30 @@ class PlayoutUse:
             raise ValueError(f'Unknown plan claim setting {self.claim!r}')
 
 
+@dataclass(frozen=True)
+class ClaimUse:
+    from_trick: int = 4
+    exact_from: int = 7
+    act: bool = False
+
+    def __post_init__(self):
+        for name in ('from_trick', 'exact_from'):
+            x = getattr(self, name)
+            if isinstance(x, bool) or not isinstance(x, int) or not 1 <= x <= 14:
+                raise ValueError(f'Plan claim {name} must be an integer from 1 to 14')
+        if not isinstance(self.act, bool):
+            raise ValueError('Plan claim act must be true or false')
+
+
+def claim_use(block):
+    if not block:
+        return None
+    try:
+        return ClaimUse(**block)
+    except TypeError as e:
+        raise ValueError(f'Unknown plan claim setting: {e}') from None
+
+
 def seat_player(net, dds, kind, seed):
     """The simulated seat named by `kind` (see the module docstring)."""
     for name, belief, top in (('map', 'map', 0), ('bdraw', 'draw', 0), ('hyb', 'map', 3)):
@@ -114,6 +158,8 @@ class PlanPlayer(Gen7Player):
     def __init__(self, spec, root, reference=None):
         super().__init__(spec, root, reference)
         self.playouts = playout_stages((spec.get('plan') or {}).get('playout'))
+        self.claim_use = claim_use((spec.get('plan') or {}).get('claim'))
+        self.claim_hand = None          # the hand whose claim is logged already: its key and the play up to that point
         self.root, self.inner = root, None
 
     def playout_stage(self, o):
@@ -125,38 +171,88 @@ class PlanPlayer(Gen7Player):
                 return s
         return None
 
+    def choose(self, o, rng):
+        self.pending_claim = self.claim_check(o, self.playout_stage(o))
+        decision = super().choose(o, rng)
+        check, self.pending_claim = self.pending_claim, None
+        return self.with_claim(o, decision, check)      # after the tie-break: the card the table gets
+
     def search_decision(self, o, rng, solved, weights, before, after, info):
         result = super().search_decision(o, rng, solved, weights, before, after, info)
-        stage = self.playout_stage(o)
-        if stage is None:
-            return result
-        if stage.claim and o.controller % 2 == o.contract.declarer % 2:
-            settled = self.claim_decision(o, result)
+        return self.staged_decision(o, rng, result, solved, weights, self.playout_stage(o), getattr(self, 'pending_claim', None))
+
+    def staged_decision(self, o, rng, result, solved, weights, stage, check):
+        act = check is not None and ((stage is not None and stage.claim) or self.claim_use.act)
+        if act:
+            settled = self.claim_decision(o, result, check)
             if settled is not None:
                 return settled
+        if stage is None:
+            return result
         self.claim_stage = stage
         return self.playout_decision(o, rng, result, solved, weights, stage)
 
-    def claim_decision(self, o, result):
+    def claim_check(self, o, stage):
+        """The claim finder's verdict at a declaring-side decision where a stage's `claim` or spec['plan']['claim']
+        asks for it, with the seconds it took; None elsewhere."""
+        if not o.history or o.known_hands[o.contract.dummy] is None or o.controller % 2 != o.contract.declarer % 2:
+            return None
+        trick = len(o.history) // 4 + 1
+        use = self.claim_use
+        if not ((stage is not None and stage.claim) or (use is not None and trick >= use.from_trick)):
+            return None
+        exact = (stage is not None and bool(stage.claim)) or trick >= use.exact_from
+        started = time.perf_counter()
+        state, value = claims.shared().verdict(o, exact)
+        return dict(state=state, value=value, exact=exact, seconds=time.perf_counter() - started)
+
+    def with_claim(self, o, decision, check):
+        """The decision with the claim log (see the module docstring) under `claim`."""
+        if check is None:
+            return decision
+        c, value, state, exact = o.contract, check['value'], check['state'], check['exact']
+        need = c.level + 6 - o.declarer_tricks
+        hand = (str(c), o.dealer, o.vulnerability, o.auction, o.original_hand(c.declarer), o.original_hand(c.dummy))
+        seen = self.claim_hand and self.claim_hand[1]        # later decisions of the logged hand: a longer play that continues it
+        logged = bool(seen) and self.claim_hand[0] == hand and len(o.history) > len(seen) and o.history[:len(seen)] == seen
+        first = state in ('guaranteed', 'made') and not logged
+        if first:
+            self.claim_hand = (hand, o.history)
+        record = dict(state=state, trick=len(o.history) // 4 + 1, need=need, exact=exact, first=first, seconds=check['seconds'],
+                      guaranteed={symbol(x): v for x, v in value.items()})
+        if exact:
+            sure = max(value.values())
+            record['sure'] = sure
+            if state in ('guaranteed', 'made'):
+                record.update(keeps=value[decision.card] >= need, keeps_sure=value[decision.card] == sure)
+        elif state == 'guaranteed':
+            record['keeps'] = bool(value[decision.card])
+        return Decision(decision.card, dict(decision.details, claim=record))
+
+    def claim_decision(self, o, result, check):
         """The declaring side's decision when the claim finder settles the contract from its view: some card
         guarantees it (the search's card if it is one, else the search's best-rated card that is), its tricks are
         already in, or too few are left. No playouts then. None when the contract is open."""
-        started = time.perf_counter()
-        state, value = claims.shared().verdict(o)
+        state, value = check['state'], check['value']
         if state == 'open':
             return None
         d = result.details
         choice = result.card
+        eligible = sorted(card(k) for k, q in d['behavior_probabilities'].items() if q > 0)     # what the tie-break chooses among
         if state == 'guaranteed':
             need = o.contract.level + 6 - o.declarer_tricks
-            sure = [x for x in o.legal if value[x] >= need]
-            if choice not in sure:
+            sure = [x for x in o.legal if (value[x] >= need if check['exact'] else value[x])]
+            keep = [x for x in eligible if x in sure]
+            if keep:
+                eligible = keep
+                choice = choice if choice in keep else keep[0]
+            else:
                 choice = min(sure, key=lambda x: (d['estimates'][symbol(x)]['gap_to_best'], x))
-        note = dict(kind='claim', consulted=False, claim=state, moved=choice != result.card, seconds=time.perf_counter() - started,
+                eligible = [choice]
+        note = dict(kind='claim', consulted=False, claim=state, moved=choice != result.card, seconds=check['seconds'],
                     guaranteed={symbol(x): v for x, v in value.items()})
-        if choice == result.card:
-            return Decision(choice, dict(d, gen7_tree=note))
-        return Decision(choice, dict(d, behavior_probabilities={symbol(x): float(x == choice) for x in o.legal}, selected_probability=1.,
+        return Decision(choice, dict(d, behavior_probabilities={symbol(x): (1 / len(eligible) if x in eligible else 0.) for x in o.legal},
+                                     selected_probability=1 / len(eligible),
                                      selected_pimc_gap=d['estimates'][symbol(choice)]['gap_to_best'], gen7_tree=note))
 
     def fresh_layouts(self, o, count, seed):
