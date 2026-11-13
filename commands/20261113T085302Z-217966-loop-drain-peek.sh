@@ -1,0 +1,1 @@
+echo "# loop: drain progress (read-only)"; tail -n 8 ~/work/loop/drain.log | cut -c1-200; for n in 1 2 3 4 5 6 7 8; do printf "%s:%s " $n $(systemctl is-active arena-ben@$n); done; echo; systemctl is-active loop-drain loop-chain loop-publish 2>&1 | tr "\n" " "; echo; tail -n 3 ~/work/loop/runs.log 2>/dev/null | cut -c1-200; uptime
