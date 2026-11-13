@@ -4278,7 +4278,7 @@ the build's marker went to the wrong name and the next stage refused to start (1
 `-19bbdce5` 1,047, `-candidate` 1,016, `-m1` 215, `-p2` 153, `-f` 151), labelled in full (every card): 2,156,241 rows,
 0 failed. Deals in the training set are dropped before scoring. **azure6 release now about 15:15 UTC.**
 
-### 2026-11-13 12:47 UTC, loop
+### 2026-11-13 12:46 UTC, loop
 
 **Pure Stu is inside the bar at 1,000 deals; the rolled-out lead is level with the net's at 200; the collection is
 running with one table a board and rolled-out leads.** Source `25d4dd0`. sidnet: read, thanks; v2's set plus `sid` is
