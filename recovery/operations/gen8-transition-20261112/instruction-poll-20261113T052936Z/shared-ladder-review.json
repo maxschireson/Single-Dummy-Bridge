@@ -1,0 +1,13 @@
+{
+  "revision": "b7bc7c7ab326e871cde7caebf3c3c516d80d80bf",
+  "deployed_commit": "03619d6da507940769d2f4c75b2ec4d3bb802133",
+  "latest_pages_revision": "f2a96291951a57220e852c484a629a3d5b7b5072",
+  "authority": "Max04:06, announcedwill04:48, live05:21/notice05:23.",
+  "future_preservation": "If a future authorized edit rewrites arena/index.html, keep the ladder section and deferred ladder.js script after the cards. Peer refresher owns ladder.json.",
+  "lines": [
+    "<section id=\"ladder\" hidden></section>",
+    "<script src=\"ladder.js?v=g9-ladder-20261113a\" defer></script>"
+  ],
+  "owned_stream_effect": "No collector or owned feed/registry change. No shared file edit performed by this task.",
+  "known_replay_catalog_unchanged": true
+}

@@ -1,0 +1,8 @@
+{
+  "revision": "b7bc7c7ab326e871cde7caebf3c3c516d80d80bf",
+  "entry": "2026-11-13T05:20:00Z",
+  "fixed_source": "research/sure-trick-table-20261112@2e6ed6db12cba4110f43c29a70823a992c296ea1",
+  "instruction": "x8 and plan rebuild sure_cpp before their next claim-finder run; in-flight research need not be stopped.",
+  "scope": "Notice explicitly says Gen7/8/9 arena bots do not call sure_cpp; current canonicalGen8 producer unaffected.",
+  "action": "No binary, runtime, model or setting edited and no research command run."
+}
