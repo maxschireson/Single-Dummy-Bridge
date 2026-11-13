@@ -1037,13 +1037,13 @@
   },
   {
    "name": "l3-p",
-   "box": "azure6",
-   "branch": "transfer/rollout-loop-azure6-20261113",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
    "role": "ladder",
    "pair": "stu3-p~8p-32-v41",
    "seed": 131,
    "first": 500,
-   "deals": 200,
+   "deals": 500,
    "records": true,
    "first_bot": {
     "family": "stu",
@@ -1054,7 +1054,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 8
+   "queue_order": 2
   },
   {
    "name": "l0-r3",
