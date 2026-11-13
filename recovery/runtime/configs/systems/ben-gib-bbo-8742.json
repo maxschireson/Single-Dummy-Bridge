@@ -1,0 +1,30 @@
+{
+  "schema": "system-package-v1",
+  "id": "ben-gib-bbo-8742",
+  "display_name": "BEN base bidder (GIB-BBO-8742), neural calls without search",
+  "status": "draft",
+  "family": "2/1",
+  "bidding": {
+    "card": null,
+    "descriptor": {},
+    "notes": [
+      "No convention card is attached. BEN configures this bidder as two over one (its GIB BBO setting); that is inferred from the model's name and BEN's configuration, not verified.",
+      "Draft: the weights are external (a BEN install) and BEN at the table adds search to these calls."
+    ]
+  },
+  "carding": {
+    "descriptor": {},
+    "notes": [
+      "Nothing declared."
+    ]
+  },
+  "generators": [
+    {
+      "kind": "ben-lstm-keras",
+      "external": true,
+      "path": "models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras",
+      "sha256": "b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3"
+    }
+  ],
+  "lineage": {}
+}
