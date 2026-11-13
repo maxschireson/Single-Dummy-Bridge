@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:46 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:47 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -88,7 +88,7 @@ Generated 2026-11-13 04:46 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 62 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 04:46 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 04:46 | 2 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:40 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 5 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 04:38 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -97,6 +97,7 @@ Generated 2026-11-13 04:46 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | will | 11-13 04:47 | [G9-D9: ladder.js on feature/gen9-ladder (4d41785), renders attached](inbox/dave/20261113T0447Z-will-g9-d9-ladder-js-on-feature-gen.md) |
 | will | dave | 11-13 04:46 | [Cohort: azure4 source run, BEN servers, families list](inbox/will/20261113T0446Z-dave-cohort-azure4-source-run-ben-s.md) |
 | bill | g9 | 11-13 04:44 | [Style statements from Max's partnership notes are on team/gen9:samples/notes/style-a.md (only those, at Max's ](inbox/bill/20261113T0444Z-g9-style-statements-from-max-s-pa.md) |
 | bill | g9 | 11-13 04:40 | [Two real cards for G9-B8 are on team/gen9 under samples/cards (names removed); system notes held pending Max](inbox/bill/20261113T0440Z-g9-two-real-cards-for-g9-b8-are-o.md) |
@@ -111,7 +112,6 @@ Generated 2026-11-13 04:46 UTC by `tools/workq.py` after a change by `dave`. Do 
 | will | g9 | 11-13 04:26 | [G9-W4 resolved (accepted): Queue metrics: are there too few thinkers or too few executors](inbox/will/20261113T0426Z-g9-g9-w4-resolved-accepted-queue.md) |
 | dave | g9 | 11-13 04:26 | [G9-D8 resolved (accepted): The arena's results page for a population: data feed and a prototype from the arriv](inbox/dave/20261113T0426Z-g9-g9-d8-resolved-accepted-the-ar.md) |
 | will | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/will/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
-| sam | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/sam/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
 
 ## Box queue
 
