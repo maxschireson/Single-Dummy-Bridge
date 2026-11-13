@@ -154,7 +154,7 @@ async function load() {
   await live();
   setInterval(live, 300000);
 }
-function rebuild() { MODEL = C.buildModel(REG, RUNS, METRICS); }
+function rebuild() { MODEL = C.buildModel(REG, RUNS, METRICS, LIST); }
 
 // Re-read what is still moving: the run list, each box's runs.log, every run that is running or changed after the
 // snapshot, the heartbeats, the branches' last commits, and the nets the snapshot has no scores for.
@@ -179,9 +179,10 @@ async function live() {
       const entry = entries.get(`${b.box}/${m.name}`) || null, cls = C.classify(m, entry, REG);
       if (cls.role === 'excluded') return;
       const key = `${b.box}/${m.name}`, old = byKey.get(key);
-      const base = { key, branch: b.branch, box: b.box, name: m.name, pair: m.pair, seed: m.seed, first: m.first, deals: m.deals,
-        options: m.options || '', sources: m.sources || [], started: m.started ?? null, last_event: m.last_event ?? null, status: m.status,
-        exit: m.exit ?? null, cls, queue_order: entry?.queue_order ?? null, note: entry?.note || null };
+      const plan = C.planRun(m, entry);
+      const base = { key, branch: b.branch, box: b.box, name: m.name, pair: m.pair, seed: m.seed, first: m.first, deals: plan.deals,
+        pass_deals: plan.pass_deals, passes: plan.passes, options: m.options || '', sources: m.sources || [], started: m.started ?? null,
+        last_event: m.last_event ?? null, status: plan.status, exit: m.exit ?? null, cls, queue_order: entry?.queue_order ?? null, note: entry?.note || null };
       const moving = m.status !== 'queued' && (!old || old.status === 'queued' || m.status === 'running' || (m.last_event || 0) > built - 60);
       if (!moving) { if (old) Object.assign(old, base); else { RUNS.push({ ...base, red: null }); byKey.set(key, RUNS.at(-1)); } return; }
       const run = { ...(old || { red: null, summary: null, episodes: null, progress: null, bad_lines: 0 }), ...base };
@@ -195,7 +196,11 @@ async function live() {
   await Promise.all(REG.nets.filter(n => n.metrics).map(async n => {
     const k = `${n.metrics.branch}:${n.metrics.path}`;
     if (METRICS[k]) return;
-    try { METRICS[k] = C.netMetrics(await getJSON(C.rawURL(n.metrics.branch, n.metrics.path)), n.compare); } catch (e) { /* not published yet */ }
+    try {
+      const m = await getJSON(C.rawURL(n.metrics.branch, n.metrics.path)), before = {};
+      for (const [bk, f] of Object.entries(n.before || {})) { try { before[bk] = await getJSON(C.rawURL(f.branch, f.path)); } catch (e) { /* not published yet */ } }
+      METRICS[k] = C.netMetrics(m, n.compare, before, n.focus_bot || null);
+    } catch (e) { /* not published yet */ }
   }));
   trackStalls();
   liveChecked = Date.now() / 1000;
@@ -325,12 +330,16 @@ function render() {
   }).join('');
 
   // cards
-  const cur = M.rounds.at(-1), coll = cur?.collection, gate = cur?.gate, curNet = M.nets.find(n => n.key === cur?.net);
+  // The tiles follow the latest round with boards; a later round still training its net is named under the first tile.
+  const started = M.rounds.filter(r => r.collection.boards > 0 || r.gate?.stats.n);
+  const cur = started.at(-1) || M.rounds[0], next = M.rounds[M.rounds.indexOf(cur) + 1];
+  const coll = cur?.collection, gate = cur?.gate, curNet = M.nets.find(n => n.key === cur?.net);
+  const nextNet = next ? M.nets.find(n => n.key === next.net) : null;
   const card = (k, v, sub) => `<div class="card"><span class="muted">${k}</span><div class="big">${v}</div><span class="muted">${sub}</span></div>`;
   const prevNet = curNet?.metrics ? Object.entries(curNet.metrics.same_rows || {})[0] : null;
   $('cards').innerHTML = cur ? [
-    card('Current round', esc(cur.label), esc(netInfo(cur.net).label) + ' inside'),
-    card('Collection', `${int(coll.boards)}<span class="muted" style="font-size:15px"> / ${int(coll.cut)}</span>`, coll.rate ? `${int(coll.rate)} boards an hour · ${coll.eta_hours != null ? 'cut in about ' + num(coll.eta_hours, 1) + ' h' : 'at the cut'}` : esc(coll.status)),
+    card('Current round', esc(cur.label), esc(netInfo(cur.net).label) + ' inside' + (next ? ` · next: ${esc(next.label)}, net ${nextNet?.metrics ? 'scored' : 'not published yet'}` : '')),
+    card('Collection', `${int(coll.boards)}${coll.cut ? `<span class="muted" style="font-size:15px"> / ${int(coll.cut)}</span>` : ''}`, (coll.rate ? `${int(coll.rate)} boards an hour` : esc(coll.status)) + (coll.cut ? (coll.eta_hours != null ? ' · cut in about ' + num(coll.eta_hours, 1) + ' h' : ' · at the cut') : ' · no board count waited for')),
     card(`Gate: Stu vs ${esc(oppLabel)}`, gate?.stats.n ? sgn(gate.stats.mean) : '–', gate?.stats.n ? `± ${num(gate.stats.se)} · ${int(gate.stats.n)} of ${int(gate.deals)} boards${gate.stats.n < 200 ? ', interim' : ''}` : 'not run'),
     card('Net held-out log-loss', curNet?.metrics ? num(curNet.metrics.all.nll, 4) : '–', prevNet && prevNet[1].all ? `${esc(prevNet[0])} on the same rows: ${num(prevNet[1].all.nll, 4)}` : esc(curNet?.label || '')),
     card('Rollouts changed the card', pct(coll?.mix?.moved), coll?.mix ? `of ${num(coll.mix.rollout, 1)} rollout decisions a board (collection)` : 'no collection rows yet'),
@@ -343,7 +352,7 @@ function render() {
   $('rounds-table').innerHTML = M.rounds.map(r => {
     const c = r.collection, n = M.nets.find(x => x.key === r.net), mx = c.mix;
     return `<tr><td><b>${esc(r.label)}</b><span class="sub">${esc(netInfo(r.net).label)}</span></td>` +
-      `<td>${int(c.boards)} / ${int(c.cut)}<span class="sub">${c.rate ? int(c.rate) + ' an hour' + (c.eta_hours != null ? ' · cut in ' + num(c.eta_hours, 1) + ' h' : '') : esc(c.status)}${c.failed ? ' · ' + c.failed + ' failed' : ''}</span></td>` +
+      `<td>${int(c.boards)}${c.cut ? ' / ' + int(c.cut) : ''}<span class="sub">${c.rate ? int(c.rate) + ' an hour' + (c.eta_hours != null ? ' · cut in ' + num(c.eta_hours, 1) + ' h' : '') : esc(c.status)}${c.failed ? ' · ' + c.failed + ' failed' : ''}</span></td>` +
       `<td>${cell(r.gate?.stats, r.gate?.superseded_boards ? ` · ${int(r.gate.superseded_boards)} from superseded runs` : '')}</td>` +
       `<td>${r.previous ? diff(r.gate_change) : '<span class="na">first round</span>'}</td>` +
       `<td>${n?.metrics ? num(n.metrics.all.nll, 4) + `<span class="sub">regret ${num(n.metrics.all.regret, 4)}</span>` : '<span class="na">not published</span>'}</td>` +
@@ -367,15 +376,16 @@ function render() {
   // leverage
   const order = REG.nets.map(n => n.key);
   const levPairs = order.slice(1).map((k, i) => [k, order[i]]).filter(([a]) => M.nets.find(n => n.key === a)?.metrics || nets.includes(a));
-  $('lev-head').innerHTML = `<tr><th>Nets</th><th>Log-loss change</th><th>Regret change</th>${rungs.map(g => `<th>${esc(rungInfo(g).label)}</th>`).join('')}</tr>`;
+  $('lev-head').innerHTML = `<tr><th>Nets</th><th>Log-loss change</th><th>Regret change</th><th>On the round's own bot's rows</th>${rungs.map(g => `<th>${esc(rungInfo(g).label)}</th>`).join('')}</tr>`;
   $('lev-table').innerHTML = levPairs.map(([a, b]) => {
     const A = M.nets.find(n => n.key === a)?.metrics, same = A?.same_rows?.[b];
     const dl = A && same?.all ? A.all.nll - same.all.nll : null, dr = A && same?.all ? A.all.regret - same.all.regret : null;
     return `<tr><td><b>${esc(a)} vs ${esc(b)}</b><span class="sub">${esc(netInfo(a).label)} minus ${esc(netInfo(b).label)}</span></td>` +
       `<td>${dl == null ? '<span class="na">not on shared rows</span>' : `<span class="${dl < 0 ? 'pos' : 'neg'}">${sgn(dl, 4)}</span><span class="sub">on ${int(A.all.n)} rows</span>`}</td>` +
       `<td>${dr == null ? '<span class="na">–</span>' : `<span class="${dr < 0 ? 'pos' : 'neg'}">${sgn(dr, 4)}</span><span class="sub">tricks a decision</span>`}</td>` +
+      `<td>${A?.focus && same?.focus ? `<span class="${A.focus.nll < same.focus.nll ? 'pos' : 'neg'}">${sgn(A.focus.nll - same.focus.nll, 4)}</span><span class="sub">log-loss on ${int(A.focus.n)} ${esc(A.focus_bot)} rows; regret ${sgn(A.focus.regret - same.focus.regret, 4)}</span>` : '<span class="na">–</span>'}</td>` +
       rungs.map(g => `<td>${diff(M.vs_net[`${a}|${b}|${g}`])}</td>`).join('') + '</tr>';
-  }).join('') || '<tr><td colspan="9" class="na">One net so far.</td></tr>';
+  }).join('') || '<tr><td colspan="10" class="na">One net so far.</td></tr>';
   $('lev-note').textContent = 'v2 against v1 is not a step of the loop: the two nets differ in training data, width and bot vectors. From Stu 1 on, each row is one round of the loop. The log-loss and regret changes are coloured by direction only (no interval: the trainer reports none).';
 
   // nets
@@ -383,9 +393,12 @@ function render() {
   $('net-table').innerHTML = M.nets.map(n => {
     const m = n.metrics;
     if (!m) return `<tr><td><b>${esc(n.label)}</b><span class="sub">${esc(n.key)}</span></td><td class="wrap">${esc(n.trained || '')}</td><td colspan="8" class="na">not published (${esc(n.metrics?.branch || '')} ${esc(n.metrics?.path || '')})</td></tr>`;
-    const same = Object.entries(m.same_rows || {}).map(([k, x]) => `${esc(k)}: ${num(x.all?.nll, 4)} · ${pct(x.all?.agree)} · ${num(x.all?.regret, 4)}`).join('<br>');
+    const same = Object.entries(m.same_rows || {}).map(([k, x]) => `${esc(k)}${x.before ? ' (before)' : ''}: ${num(x.all?.nll, 4)} · ${pct(x.all?.agree)} · ${num(x.all?.regret, 4)}` +
+      (x.focus ? `<br><span class="faint">&nbsp;&nbsp;${esc(m.focus_bot)} rows: ${num(x.focus.nll, 4)} · ${pct(x.focus.agree)} · ${num(x.focus.regret, 4)}</span>` : '')).join('<br>');
     return `<tr><td><b>${esc(n.label)}</b><span class="sub">${esc(n.key)}</span></td><td class="wrap">${esc(n.trained || '')}<span class="sub">${int(m.train_examples)} decisions, ${int(m.train_deals)} deals · ${m.epochs ?? '–'} epochs · ${m.width ?? '–'} wide</span></td>` +
-      `<td>${int(m.all?.n)}<span class="sub">${esc(m.val_data || '')}</span></td><td>${num(m.all?.nll, 4)}</td><td>${pct(m.all?.agree)}</td><td>${pct(m.all?.in_best)}</td><td>${num(m.all?.regret, 4)}</td>` +
+      `<td>${int(m.all?.n)}<span class="sub">${esc(m.val_data || '')}${m.focus ? ` · ${int(m.focus.n)} of ${esc(m.focus_bot)}` : ''}</span></td>` +
+      `<td>${num(m.all?.nll, 4)}${m.focus ? `<span class="sub">${esc(m.focus_bot)}: ${num(m.focus.nll, 4)}</span>` : ''}</td><td>${pct(m.all?.agree)}${m.focus ? `<span class="sub">${esc(m.focus_bot)}: ${pct(m.focus.agree)}</span>` : ''}</td>` +
+      `<td>${pct(m.all?.in_best)}</td><td>${num(m.all?.regret, 4)}${m.focus ? `<span class="sub">${esc(m.focus_bot)}: ${num(m.focus.regret, 4)}</span>` : ''}</td>` +
       `<td>${num(m.late?.nll, 4)}</td><td>${num(m.late?.regret, 4)}</td><td style="text-align:left">${same || '<span class="na">–</span>'}<span class="sub">log-loss · agreement · regret</span></td></tr>`;
   }).join('');
   $('hist-chart').innerHTML = historyChart();
@@ -431,10 +444,11 @@ function render() {
   const boxOrder = REG.boxes.map(b => b.box);
   $('runs-table').innerHTML = RUNS.slice().sort((a, b) => (boxOrder.indexOf(a.box) - boxOrder.indexOf(b.box)) || ((a.queue_order ?? -1) - (b.queue_order ?? -1)) || ((a.started || 0) - (b.started || 0))).map(r =>
     `<tr><td>${r.status === 'queued' ? esc(r.key) : `<a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a>`}${r.note ? `<span class="sub" style="white-space:normal;max-width:300px">${esc(r.note)}</span>` : ''}</td><td>${esc(roleText(r.cls))}</td><td><code>${esc(r.pair)}</code></td>` +
-    `<td>${r.seed ?? '–'} · ${int(r.first)}–${int((r.first || 0) + (r.deals || 0) - 1)}</td><td>${int(Math.max(r.red?.n || 0, r.episodes || 0, r.progress?.boards || 0))}${r.bad_lines ? `<span class="sub">${r.bad_lines} partial line(s) skipped</span>` : ''}</td>` +
+    `<td>${r.seed ?? '–'} · ${int(r.first)}–${int((r.first || 0) + (r.deals || 0) - 1)}${r.passes ? `<span class="sub">passes of ${r.passes.map(int).join(', then ')}${r.pass_deals && r.pass_deals !== r.deals ? '; this pass ' + int(r.pass_deals) : ''}</span>` : ''}</td><td>${int(Math.max(r.red?.n || 0, r.episodes || 0, r.progress?.boards || 0))}${r.bad_lines ? `<span class="sub">${r.bad_lines} partial line(s) skipped</span>` : ''}</td>` +
     `<td><span class="pill ${r.status === 'running' ? 'live' : ''}">${esc(r.status === 'stopped' ? 'stopped (exit ' + r.exit + ')' : r.status)}</span></td><td>${when(r.started)}</td><td>${(r.sources || []).map(s => `<code>${esc(s)}</code>`).join(' ')}</td></tr>`).join('');
   $('prov').innerHTML = 'Branch tips in the snapshot: ' + Object.entries(SNAP.heads || {}).filter(([, h]) => h).map(([b, h]) => `<a href="${C.treeURL(b)}">${esc(b)}</a> <code>${esc(h.sha.slice(0, 7))}</code> (${when(h.committed_epoch)})`).join(' · ') +
-    `. The loop's brief: <a href="https://github.com/${C.REPO}/blob/${REG.brief.branch}/${REG.brief.path}">DASHBOARD.md</a>.`;
+    `. The loop's brief: <a href="https://github.com/${C.REPO}/blob/${REG.brief.branch}/${REG.brief.path}">DASHBOARD.md</a>` +
+    (REG.plan ? `; its plan: <a href="https://github.com/${C.REPO}/blob/${REG.plan.branch}/${REG.plan.path}">PLAN.md</a>` : '') + '.';
   $('cautions').innerHTML = REG.cautions.map(c => `<p class="caution">${esc(c)}</p>`).join('');
   $('rung-defs').innerHTML = '<table><tbody>' + rungs.map(g => `<tr><td><b>${esc(rungInfo(g).label)}</b> <code>${esc(g)}</code></td><td class="wrap">${esc(rungInfo(g).text || LIST?.rungs?.[g] || '')}</td></tr>`).join('') + '</tbody></table>';
 }

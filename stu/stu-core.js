@@ -179,7 +179,10 @@
   const pick = g => g ? Object.fromEntries(['n', 'nll', 'uniform_nll', 'agree', 'in_best', 'regret', 'rated_pick', 'regret_gap_head']
     .filter(k => g[k] !== undefined && g[k] !== null).map(k => [k, g[k]])) : null;
   // compare: {netKey: key under metrics.compared}, the other nets the trainer scored on this net's held-out rows.
-  function netMetrics(m, compare = {}) {
+  // before: {netKey: a metrics.json of the same rows scored by that net}, for an earlier net that `compared` reads
+  // wrongly (round 1's v2 under `compared` reads Stu as an unknown bot; metrics_before.json tells it Stu is 8s-32).
+  // focus: the bot whose rows matter most (round 1 on: the round's own Stu), scored from `by_bot`.
+  function netMetrics(m, compare = {}, before = {}, focus = null) {
     if (!m || typeof m !== 'object') return null;
     const v = m.validation || {};
     const byBot = {};
@@ -187,13 +190,18 @@
     const same = {};
     for (const [net, key] of Object.entries(compare || {})) {
       const c = m.compared?.[key];
-      if (c) same[net] = { all: pick(c.all), late: pick(c.from_trick_7) };
+      if (c) same[net] = { all: pick(c.all), late: pick(c.from_trick_7), focus: focus ? pick(c.by_bot?.[focus]) : null };
+    }
+    for (const [net, b] of Object.entries(before || {})) {
+      const bv = b?.validation;
+      if (bv) same[net] = { all: pick(bv.all), late: pick(bv.from_trick_7), focus: focus ? pick(bv.by_bot?.[focus]) : null, before: true };
     }
     return {
       width: m.width ?? null, epochs: m.epochs ?? null, selected_epoch: m.selected_epoch ?? null, parameters: m.parameters ?? null,
       train_examples: m.train_examples ?? null, train_deals: m.train_deals ?? null, init: m.init ?? null, val_data: m.val_data ?? null,
       lr: m.lr ?? null, seconds: m.seconds ?? null,
       all: pick(v.all), late: pick(v.from_trick_7), declaring: pick(v.declaring), defending: pick(v.defending), by_bot: byBot,
+      focus_bot: focus, focus: focus ? byBot[focus] || null : null,
       history: (m.history || []).map(h => ({ epoch: h.epoch, train_ce: h.train_ce ?? null, nll: h.val?.nll ?? null,
         agree: h.val?.agree ?? null, regret: h.val?.regret ?? null })),
       same_rows: same,
@@ -215,6 +223,7 @@
     const live = runs.filter(r => !r.cls.superseded);
     const status = runs.some(r => r.status === 'running') ? 'running'
       : live.length && live.every(r => r.status === 'complete') ? 'complete'
+      : live.some(r => r.status === 'pass done') ? 'pass done'
       : boards.length ? 'paused' : 'queued';
     return { runs: runs.map(r => r.key), boards, stats: s, deals: deals ?? (live.reduce((n, r) => n + (r.deals || 0), 0) || boards.length),
       status, superseded_boards: merged.superseded,
@@ -231,7 +240,7 @@
     return d.length ? stats(d) : null;
   }
 
-  function buildModel(registry, runs, metrics = {}) {
+  function buildModel(registry, runs, metrics = {}, runsList = null) {
     const vseed = registry.gate_seed ?? 131, primary = registry.opponent?.id || '8p-32-v41';
     const ladderDeals = registry.ladder_deals ?? 500, gateDeals = registry.gate_deals ?? 2000;
     const rungOrder = (registry.rungs || []).map(r => r.key), netOrder = (registry.nets || []).map(n => n.key);
@@ -258,7 +267,8 @@
       const boards = coll.reduce((n, r) => n + done(r), 0);
       const running = coll.filter(r => r.status === 'running');
       const rate = running.reduce((a, r) => a + (r.progress?.per_hour || 0), 0);
-      const cut = g.cut ?? null;
+      const listed = runsList?.rounds?.[String(g.round)];
+      const cut = listed && 'collection_cut_boards' in listed ? listed.collection_cut_boards : (g.cut ?? null);
       const gateRuns = stuVsOpp.filter(r => r.cls.round === g.round && r.cls.net === g.net && r.cls.rung === 'stu');
       const gate = gateRuns.length ? cellOf(gateRuns, { keep: b => b[1] < gateDeals, deals: gateDeals }) : null;
       const x8 = coll.reduce((acc, r) => addX8(acc, r.red), null);
@@ -267,7 +277,7 @@
       const cpuN = coll.reduce((a, r) => a + (r.red?.cpu_n || 0), 0);
       const prev = rounds.at(-1);
       rounds.push({
-        round: g.round, label: g.label, net: g.net, note: g.note || null, started: g.started || null,
+        round: g.round, label: g.label, net: g.net, note: listed?.note || g.note || null, started: g.started || null,
         collection: { runs: coll.map(r => r.key), boards, cut, rate: running.length ? rate : null,
           eta_hours: cut && rate > 0 && boards < cut ? (cut - boards) / rate : null,
           failed: coll.reduce((n, r) => n + (r.progress?.failed || 0), 0),
@@ -312,7 +322,16 @@
     };
   }
 
-  const api = { REPO, rawURL, treeURL, commitsURL, tcrit, stats, fromSums, curve, parseRunsLog, parseResults, parseMatchLog,
+  // The run's planned deals are the run list's; a box may play them in passes (runs.json `passes`, e.g. 200 then 500),
+  // so a job that ended at the end of a pass short of the plan is "pass done", not complete.
+  function planRun(m, entry) {
+    const planned = entry?.deals ?? m.deals, pass = m.deals;
+    let status = m.status;
+    if (status === 'complete' && entry && Number.isFinite(planned) && Number.isFinite(pass) && pass < planned) status = 'pass done';
+    return { deals: planned, pass_deals: pass, passes: entry?.passes || null, status };
+  }
+
+  const api = { REPO, planRun, rawURL, treeURL, commitsURL, tcrit, stats, fromSums, curve, parseRunsLog, parseResults, parseMatchLog,
     classify, contractClass, reduceRun, summaryOf, decisionMix, netMetrics, mergeBoards, cellOf, paired, buildModel, X8_KEYS };
   root.StuCore = api;
   if (typeof module !== 'undefined') module.exports = api;
