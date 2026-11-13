@@ -10,7 +10,167 @@
       100,
       34
     ],
-    "complete": true
+    "complete": true,
+    "new_branches": [
+      "fix/gen7-forward-gemm-20261113"
+    ],
+    "changed_branches": [
+      {
+        "name": "arena-gen6-chatgpt-feed",
+        "before": "988494a8ec2c1b381d8b6f21de97b6da68b0fd30",
+        "after": "5c0ccc4935d992c2a8b1c2a5b0af7c60b5ac79a3"
+      },
+      {
+        "name": "arena-gen7-phase1-azure4-feed",
+        "before": "3245d3e65356f465ce286a88139007a5ab74a16a",
+        "after": "3d97f18ef14f688f6e9235b5f39d401f8ede5231"
+      },
+      {
+        "name": "arena-gen8-19bbdce5-20261112-feed",
+        "before": "135ccd67a3c86ee89239538126a89a527c8ad10c",
+        "after": "7c43b207b0e85dac8feabf0ef9fdce5d1099e0aa"
+      },
+      {
+        "name": "arena-gen8-candidate-codex-20261112-feed",
+        "before": "ffd62a76ce21e37f44c6067289d74b91c9c0d9f4",
+        "after": "62595c9d8ae691142001c1111cde8dafc46cf29c"
+      },
+      {
+        "name": "arena-gen8-independent-feed",
+        "before": "2cdecb8a1c486a63c67813ff1da8dfacc28f10a4",
+        "after": "4a07758ad30d1001775d9c567fbd89ebe3313d7e"
+      },
+      {
+        "name": "arena-gen8-x3-azure1-feed",
+        "before": "fb0900d1ca203a187c580258c79eb4d47db07b33",
+        "after": "cda098fcfd890886c379e21813546ff07b9daea2"
+      },
+      {
+        "name": "arena-gen9-azure4-ben64-feed",
+        "before": "7b211eb675ac7bacf124de4736a7d9a761137c1e",
+        "after": "eb41b5f9b1136bcb7aab070dc27324dd1fdcac79"
+      },
+      {
+        "name": "arena-gen9-azure4-feed",
+        "before": "a8442c004f399e5c16c0a99bf43660a11b88a21f",
+        "after": "fa25fcf3d582b09ac63e384b62f5d0c3aa0f5233"
+      },
+      {
+        "name": "box/azure1/control",
+        "before": "6ea58715510ad63266907398e0f9ff65d3006568",
+        "after": "6ac7268f3b4ebb9f51255782b8b72b4c9921ad41"
+      },
+      {
+        "name": "box/azure1/status",
+        "before": "5ed336f4224bfc399910eb14da452ec1459b6ad9",
+        "after": "2363117231044c7ad22fcb80d00fc35246facdc2"
+      },
+      {
+        "name": "box/azure2/control",
+        "before": "b1dbae11b8e84cbb8934527a89f4dd9a73148ad6",
+        "after": "583291cb1076df0f1eb7c130b125cc2736dded5d"
+      },
+      {
+        "name": "box/azure2/status",
+        "before": "5b027f11b874c54013335c4d626e9b6382dfe507",
+        "after": "fc386d334ffa04baacd12a4268c11cb34b6e9843"
+      },
+      {
+        "name": "box/azure3/control",
+        "before": "bdeab855bf331306d744a4be3534d5cb49c58dcb",
+        "after": "4f307291ff10483e27e0d50db6cec221a3cd1ff2"
+      },
+      {
+        "name": "box/azure3/status",
+        "before": "6f53b430a49c74d315b6d6c85a510b085f90e4e1",
+        "after": "cea41d1d50dedc04905b4485a08ad3b2edf557a1"
+      },
+      {
+        "name": "box/azure4/control",
+        "before": "d03a38a08bd10c38fbfcb0cec4c64da7dcb5ebd0",
+        "after": "02b8b66d08e05d4501081b45e9394a2af82e49f3"
+      },
+      {
+        "name": "box/azure4/status",
+        "before": "bf2fd97ed2941d073e001a25c07900b34eb34b02",
+        "after": "ee5755b13d7ee7db06baf1548f5759934fca268d"
+      },
+      {
+        "name": "box/azure5/control",
+        "before": "ad4883cef0bde839ab854109bb6ba0435fad8705",
+        "after": "9e2759fbc43c08dbadd958ed3573667772b35faf"
+      },
+      {
+        "name": "box/azure5/status",
+        "before": "42b3a21b1aa334e93f33fd8e03752b29c07d6bac",
+        "after": "035f95bec023d03a7229b24c084a4b83dde3080b"
+      },
+      {
+        "name": "box/azure6/control",
+        "before": "c6f30763c6c7500071ef5cf40b85e90a6a4d326a",
+        "after": "80961034cc1a0af85eb88e20d8f87997b374aca6"
+      },
+      {
+        "name": "box/azure6/status",
+        "before": "8a228f14f4a8f196118b76ba4012a43a5b60af9a",
+        "after": "98b036aa8004dbdef3b840066c24b5cf97e46235"
+      },
+      {
+        "name": "box/coordination",
+        "before": "acd1c5fb72824a2a71fbd9f8c5c28b7a84c20dcd",
+        "after": "3f15ae39471c8ebcb990abc570d778d32bd7b426"
+      },
+      {
+        "name": "gh-pages",
+        "before": "f33526325713b766fc367bdf23768acaa27a5d85",
+        "after": "49f81bb3effdce625e345c51dc04365528c4aa8a"
+      },
+      {
+        "name": "research/rollout-loop-20261113",
+        "before": "b354072a596aceb5192ff8689c428fd51b4b7af6",
+        "after": "cca918a494acc8d6ba865573d664a36d4273aa8e"
+      },
+      {
+        "name": "team/gen9",
+        "before": "18e68026e59ec862d55f3574d835cd4bbdbb8898",
+        "after": "daca42d7ae9deb80053d1550f9347efb4f77c139"
+      },
+      {
+        "name": "transfer/gen9-g9-cohort-azure4-azure4-20261113",
+        "before": "1aaeb7bcbe3665674ff0384aefa2d3f063872f1e",
+        "after": "be7eb1e3d930ee3c1f263edf11a63830fd4df00b"
+      },
+      {
+        "name": "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113",
+        "before": "a9b8ef79b7389de8a295ea3436940e3e4c76a2ea",
+        "after": "ea62526ec22173e4a5873ca272926b55b2ca11ea"
+      },
+      {
+        "name": "transfer/rollout-loop-azure1-20261113",
+        "before": "57ebe99e9d881b2755955f0173391f0a0dc18dcf",
+        "after": "2e0b0e079678f67e12372ed42ec1d32185f8e8f8"
+      },
+      {
+        "name": "transfer/rollout-loop-azure2-20261113",
+        "before": "9be29aec102bcb1ffb0b05275e731bf3533dbaae",
+        "after": "3d6efb3c221e199e860bfbb7c939966d7535db0c"
+      },
+      {
+        "name": "transfer/rollout-loop-azure3-20261113",
+        "before": "e68b604ef75403fd0d3fdc1239d9f0d6a3bb1dd3",
+        "after": "7cb3c26842048d3f6b28d7be80dbc5a4699e3719"
+      },
+      {
+        "name": "transfer/rollout-loop-azure5-20261113",
+        "before": "830898e5b39680ceee5f99371236c55a58d0f9a6",
+        "after": "1edd8e6e00daf987c4423db4d778951f73d141d5"
+      },
+      {
+        "name": "transfer/rollout-loop-azure6-20261113",
+        "before": "6d33ef4d9f32888b189996af00dcd159de823009",
+        "after": "1b807ec177eb2ddc80c1f84e424b974b33454a62"
+      }
+    ]
   },
   "refs": {
     "archive/gen6-fast-ben-20261111": "802f69ad6e1416a5a7200d5e6c29f8beca2a8275",
@@ -554,7 +714,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7.1 · Codex policy comparison and Gen6",
+        "name": "Gen 7.1 \u00b7 Codex policy comparison and Gen6",
         "branch": "arena-gen7-1-compare-codex-20261112-feed",
         "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
         "retired": true,
@@ -566,7 +726,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7.0 · Codex completed self-play with gap capture",
+        "name": "Gen 7.0 \u00b7 Codex completed self-play with gap capture",
         "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
         "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
         "retired": true,
@@ -578,7 +738,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7 · Codex initial self-play (capture incomplete)",
+        "name": "Gen 7 \u00b7 Codex initial self-play (capture incomplete)",
         "branch": "arena-gen7-selfplay-codex-20261112-feed",
         "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
         "retired": true,
@@ -590,7 +750,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7 · Codex completed phase 1 anchors",
+        "name": "Gen 7 \u00b7 Codex completed phase 1 anchors",
         "branch": "arena-gen7-phase1-codex-20261112-feed",
         "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
         "retired": true,
@@ -602,7 +762,7 @@
         "generation": 6,
         "variant": "6",
         "environment": "codex",
-        "name": "Gen 6 · completed Codex fast self-play",
+        "name": "Gen 6 \u00b7 completed Codex fast self-play",
         "branch": "arena-gen6-fast-selfplay-codex-20261111",
         "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
         "retired": true,
@@ -614,7 +774,7 @@
         "generation": 8,
         "variant": "8",
         "environment": "codex",
-        "name": "Gen8 · Codex main mix (standard and Precision)",
+        "name": "Gen8 \u00b7 Codex main mix (standard and Precision)",
         "branch": "arena-gen8-candidate-codex-20261112-feed",
         "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
       }
@@ -663,14 +823,14 @@
       "title": "Gen 9 queue",
       "state": "open",
       "updated_at": "2026-11-13T19:51:56Z",
-      "body": "<!-- workq -->\n**Gen 9 queue**, Fri 13 Nov 19:51 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 99 min)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 · dave: G9-D10 · sam: E9-4, E9-6, G9-S4, G9-S7 · will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 2,056/10,000, 173/h, ETA 17:45 · g9-cohort-ben64-azure4 running 536/2,000, 44/h, ETA 04:54 · e9-0-n04 paused 284/800 · e9-16-h-v-p paused 269/800 · e9-25 waiting 0/750\n**Resolved today**: 16. **Open, not started**: 11.\n**Next checkpoint**: Sat 14 Nov 01:00 UTC: g9 hands the package to Max (Friday evening in California)\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+      "body": "<!-- workq -->\n**Gen 9 queue**, Fri 13 Nov 19:51 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 99 min)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 \u00b7 dave: G9-D10 \u00b7 sam: E9-4, E9-6, G9-S4, G9-S7 \u00b7 will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 2,056/10,000, 173/h, ETA 17:45 \u00b7 g9-cohort-ben64-azure4 running 536/2,000, 44/h, ETA 04:54 \u00b7 e9-0-n04 paused 284/800 \u00b7 e9-16-h-v-p paused 269/800 \u00b7 e9-25 waiting 0/750\n**Resolved today**: 16. **Open, not started**: 11.\n**Next checkpoint**: Sat 14 Nov 01:00 UTC: g9 hands the package to Max (Friday evening in California)\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
     },
     {
       "number": 34,
       "title": "gen7_net: faster suit-net forward pass (~2.7x; rollouts ~2.4x), same outputs",
       "state": "open",
       "updated_at": "2026-11-13T19:30:14Z",
-      "body": "**Problem.** For Stu-style pure rollouts, the policy/rollout net's forward pass is ~92% of rollout time (cProfile, see below). The suit net ran four of its layers as numpy matmuls on 3-D arrays, which numpy executes as one small product per row. It also computed the trunk's share of the decoder's first layer four times per row, once per suit.\n\n**Change** (`bridge_harness/gen7_net.py`, kind 1 only):\n- `dense()` flattens to one 2-D product for `ws0`, `ws1`, `wd0` and `wd1`.\n- `wd0` is split by input part: [suit encoding | trunk | slot]. The trunk part is computed once per row and broadcast.\n\nOutputs are identical up to float rounding (max |diff| ~1e-6). Play is unchanged, so this needs no new bot identity. But it is a runtime change: frozen runs only pick it up if their owner moves them to it.\n\n**Measured** in a 2-core Xeon sandbox, single-threaded (`OPENBLAS_NUM_THREADS=1`). Net: 768-wide suit net. Rollout net v2 (`runs/w768/policy.npz` on `transfer/rollout-net-v2-20261113`, sha256 `8f87aa8f52ae2c11…`) has exactly these shapes. Positions: test-fixture deals at trick 7 (24 random plies), 128 layouts × 4 cards, `Seats([net], mode='draw')`, no claim finder.\n\n| | before | after |\n|---|---|---|\n| forward pass, 512-row batch | 7.6k rows/s | 20.6k rows/s (2.7×) |\n| whole `x8_rollout.evaluate`, 6 decisions | 7.5k rows/s | 17.3k rows/s (2.3×) |\n| `evaluate`, 32 layouts | 6.5k rows/s | 16.1k rows/s (2.5×) |\n\nThe before and after runs made the same number of net rows (55,744), i.e. the same play. Stu's Azure logs (`transfer/rollout-loop-azure3-20261113`, runs l0/g0/pf) show ~5.8k rows/s inside x8, which suggests the same bottleneck. The speedup on the AMD (Zen 4) cores has not been measured.\n\n**Tests.**\n- New: `tests/test_gen7_net_forward.py` compares every head against the plain layer-by-layer form.\n- `tests/test_gen7.py` and `tests/test_gen7_alpha.py` pass on this branch (44 tests).\n- On `research/rollout-loop-20261113`, the same edit plus `test_x8`, `test_rollout_net` and `test_plan_rollout`: 73 passed, 7 skipped (need `SURE_BIN`).\n- The JAX training path was not run; the change uses only reshape, slicing and matmul.\n\n**Applying to Stu's branch.** This commit cherry-picks cleanly onto `research/rollout-loop-20261113`. The SiD-student head (`wd1s`) exists only there and stays a 3-D matmul. That is correct but not sped up; use `dense(d, params['wd1s'])` there for the same gain.\n\n**Follow-ups measured, not included.** Real v2 weights, 37,951 rollout rows, decoder/output layers via ONNX Runtime, single-threaded:\n\n| | dense part vs ORT fp32 | top-card changes vs fp32 | mean total-variation distance |\n|---|---|---|---|\n| bf16 (rounding emulated, fp32 accumulate) | not timed (needs oneDNN or PyTorch) | 0.16% | 0.0016 |\n| int8 dynamic, per-channel weights, AMX blocked | 2.4× | 2.6% | 0.021 |\n| int8 dynamic, per-tensor | 2.5× | 13.7% | 0.116 |\n\nORT fp32 alone is about 1.2× faster than numpy on the dense part. The accuracy figures use fixture positions with a random hand-fit scorer feeding `shown`, so they are indicative; arena positions are the real test.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxFwepY9iqVTccVD8mY)_"
+      "body": "**Problem.** For Stu-style pure rollouts, the policy/rollout net's forward pass is ~92% of rollout time (cProfile, see below). The suit net ran four of its layers as numpy matmuls on 3-D arrays, which numpy executes as one small product per row. It also computed the trunk's share of the decoder's first layer four times per row, once per suit.\n\n**Change** (`bridge_harness/gen7_net.py`, kind 1 only):\n- `dense()` flattens to one 2-D product for `ws0`, `ws1`, `wd0` and `wd1`.\n- `wd0` is split by input part: [suit encoding | trunk | slot]. The trunk part is computed once per row and broadcast.\n\nOutputs are identical up to float rounding (max |diff| ~1e-6). Play is unchanged, so this needs no new bot identity. But it is a runtime change: frozen runs only pick it up if their owner moves them to it.\n\n**Measured** in a 2-core Xeon sandbox, single-threaded (`OPENBLAS_NUM_THREADS=1`). Net: 768-wide suit net. Rollout net v2 (`runs/w768/policy.npz` on `transfer/rollout-net-v2-20261113`, sha256 `8f87aa8f52ae2c11\u2026`) has exactly these shapes. Positions: test-fixture deals at trick 7 (24 random plies), 128 layouts \u00d7 4 cards, `Seats([net], mode='draw')`, no claim finder.\n\n| | before | after |\n|---|---|---|\n| forward pass, 512-row batch | 7.6k rows/s | 20.6k rows/s (2.7\u00d7) |\n| whole `x8_rollout.evaluate`, 6 decisions | 7.5k rows/s | 17.3k rows/s (2.3\u00d7) |\n| `evaluate`, 32 layouts | 6.5k rows/s | 16.1k rows/s (2.5\u00d7) |\n\nThe before and after runs made the same number of net rows (55,744), i.e. the same play. Stu's Azure logs (`transfer/rollout-loop-azure3-20261113`, runs l0/g0/pf) show ~5.8k rows/s inside x8, which suggests the same bottleneck. The speedup on the AMD (Zen 4) cores has not been measured.\n\n**Tests.**\n- New: `tests/test_gen7_net_forward.py` compares every head against the plain layer-by-layer form.\n- `tests/test_gen7.py` and `tests/test_gen7_alpha.py` pass on this branch (44 tests).\n- On `research/rollout-loop-20261113`, the same edit plus `test_x8`, `test_rollout_net` and `test_plan_rollout`: 73 passed, 7 skipped (need `SURE_BIN`).\n- The JAX training path was not run; the change uses only reshape, slicing and matmul.\n\n**Applying to Stu's branch.** This commit cherry-picks cleanly onto `research/rollout-loop-20261113`. The SiD-student head (`wd1s`) exists only there and stays a 3-D matmul. That is correct but not sped up; use `dense(d, params['wd1s'])` there for the same gain.\n\n**Follow-ups measured, not included.** Real v2 weights, 37,951 rollout rows, decoder/output layers via ONNX Runtime, single-threaded:\n\n| | dense part vs ORT fp32 | top-card changes vs fp32 | mean total-variation distance |\n|---|---|---|---|\n| bf16 (rounding emulated, fp32 accumulate) | not timed (needs oneDNN or PyTorch) | 0.16% | 0.0016 |\n| int8 dynamic, per-channel weights, AMX blocked | 2.4\u00d7 | 2.6% | 0.021 |\n| int8 dynamic, per-tensor | 2.5\u00d7 | 13.7% | 0.116 |\n\nORT fp32 alone is about 1.2\u00d7 faster than numpy on the dense part. The accuracy figures use fixture positions with a random hand-fit scorer feeding `shown`, so they are indicative; arena positions are the real test.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxFwepY9iqVTccVD8mY)_"
     }
   ],
   "recent_prs": [
@@ -681,18 +841,18 @@
       "draft": false,
       "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
       "updated_at": "2026-11-13T19:30:14Z",
-      "body": "**Problem.** For Stu-style pure rollouts, the policy/rollout net's forward pass is ~92% of rollout time (cProfile, see below). The suit net ran four of its layers as numpy matmuls on 3-D arrays, which numpy executes as one small product per row. It also computed the trunk's share of the decoder's first layer four times per row, once per suit.\n\n**Change** (`bridge_harness/gen7_net.py`, kind 1 only):\n- `dense()` flattens to one 2-D product for `ws0`, `ws1`, `wd0` and `wd1`.\n- `wd0` is split by input part: [suit encoding | trunk | slot]. The trunk part is computed once per row and broadcast.\n\nOutputs are identical up to float rounding (max |diff| ~1e-6). Play is unchanged, so this needs no new bot identity. But it is a runtime change: frozen runs only pick it up if their owner moves them to it.\n\n**Measured** in a 2-core Xeon sandbox, single-threaded (`OPENBLAS_NUM_THREADS=1`). Net: 768-wide suit net. Rollout net v2 (`runs/w768/policy.npz` on `transfer/rollout-net-v2-20261113`, sha256 `8f87aa8f52ae2c11…`) has exactly these shapes. Positions: test-fixture deals at trick 7 (24 random plies), 128 layouts × 4 cards, `Seats([net], mode='draw')`, no claim finder.\n\n| | before | after |\n|---|---|---|\n| forward pass, 512-row batch | 7.6k rows/s | 20.6k rows/s (2.7×) |\n| whole `x8_rollout.evaluate`, 6 decisions | 7.5k rows/s | 17.3k rows/s (2.3×) |\n| `evaluate`, 32 layouts | 6.5k rows/s | 16.1k rows/s (2.5×) |\n\nThe before and after runs made the same number of net rows (55,744), i.e. the same play. Stu's Azure logs (`transfer/rollout-loop-azure3-20261113`, runs l0/g0/pf) show ~5.8k rows/s inside x8, which suggests the same bottleneck. The speedup on the AMD (Zen 4) cores has not been measured.\n\n**Tests.**\n- New: `tests/test_gen7_net_forward.py` compares every head against the plain layer-by-layer form.\n- `tests/test_gen7.py` and `tests/test_gen7_alpha.py` pass on this branch (44 tests).\n- On `research/rollout-loop-20261113`, the same edit plus `test_x8`, `test_rollout_net` and `test_plan_rollout`: 73 passed, 7 skipped (need `SURE_BIN`).\n- The JAX training path was not run; the change uses only reshape, slicing and matmul.\n\n**Applying to Stu's branch.** This commit cherry-picks cleanly onto `research/rollout-loop-20261113`. The SiD-student head (`wd1s`) exists only there and stays a 3-D matmul. That is correct but not sped up; use `dense(d, params['wd1s'])` there for the same gain.\n\n**Follow-ups measured, not included.** Real v2 weights, 37,951 rollout rows, decoder/output layers via ONNX Runtime, single-threaded:\n\n| | dense part vs ORT fp32 | top-card changes vs fp32 | mean total-variation distance |\n|---|---|---|---|\n| bf16 (rounding emulated, fp32 accumulate) | not timed (needs oneDNN or PyTorch) | 0.16% | 0.0016 |\n| int8 dynamic, per-channel weights, AMX blocked | 2.4× | 2.6% | 0.021 |\n| int8 dynamic, per-tensor | 2.5× | 13.7% | 0.116 |\n\nORT fp32 alone is about 1.2× faster than numpy on the dense part. The accuracy figures use fixture positions with a random hand-fit scorer feeding `shown`, so they are indicative; arena positions are the real test.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxFwepY9iqVTccVD8mY)_"
+      "body": "**Problem.** For Stu-style pure rollouts, the policy/rollout net's forward pass is ~92% of rollout time (cProfile, see below). The suit net ran four of its layers as numpy matmuls on 3-D arrays, which numpy executes as one small product per row. It also computed the trunk's share of the decoder's first layer four times per row, once per suit.\n\n**Change** (`bridge_harness/gen7_net.py`, kind 1 only):\n- `dense()` flattens to one 2-D product for `ws0`, `ws1`, `wd0` and `wd1`.\n- `wd0` is split by input part: [suit encoding | trunk | slot]. The trunk part is computed once per row and broadcast.\n\nOutputs are identical up to float rounding (max |diff| ~1e-6). Play is unchanged, so this needs no new bot identity. But it is a runtime change: frozen runs only pick it up if their owner moves them to it.\n\n**Measured** in a 2-core Xeon sandbox, single-threaded (`OPENBLAS_NUM_THREADS=1`). Net: 768-wide suit net. Rollout net v2 (`runs/w768/policy.npz` on `transfer/rollout-net-v2-20261113`, sha256 `8f87aa8f52ae2c11\u2026`) has exactly these shapes. Positions: test-fixture deals at trick 7 (24 random plies), 128 layouts \u00d7 4 cards, `Seats([net], mode='draw')`, no claim finder.\n\n| | before | after |\n|---|---|---|\n| forward pass, 512-row batch | 7.6k rows/s | 20.6k rows/s (2.7\u00d7) |\n| whole `x8_rollout.evaluate`, 6 decisions | 7.5k rows/s | 17.3k rows/s (2.3\u00d7) |\n| `evaluate`, 32 layouts | 6.5k rows/s | 16.1k rows/s (2.5\u00d7) |\n\nThe before and after runs made the same number of net rows (55,744), i.e. the same play. Stu's Azure logs (`transfer/rollout-loop-azure3-20261113`, runs l0/g0/pf) show ~5.8k rows/s inside x8, which suggests the same bottleneck. The speedup on the AMD (Zen 4) cores has not been measured.\n\n**Tests.**\n- New: `tests/test_gen7_net_forward.py` compares every head against the plain layer-by-layer form.\n- `tests/test_gen7.py` and `tests/test_gen7_alpha.py` pass on this branch (44 tests).\n- On `research/rollout-loop-20261113`, the same edit plus `test_x8`, `test_rollout_net` and `test_plan_rollout`: 73 passed, 7 skipped (need `SURE_BIN`).\n- The JAX training path was not run; the change uses only reshape, slicing and matmul.\n\n**Applying to Stu's branch.** This commit cherry-picks cleanly onto `research/rollout-loop-20261113`. The SiD-student head (`wd1s`) exists only there and stays a 3-D matmul. That is correct but not sped up; use `dense(d, params['wd1s'])` there for the same gain.\n\n**Follow-ups measured, not included.** Real v2 weights, 37,951 rollout rows, decoder/output layers via ONNX Runtime, single-threaded:\n\n| | dense part vs ORT fp32 | top-card changes vs fp32 | mean total-variation distance |\n|---|---|---|---|\n| bf16 (rounding emulated, fp32 accumulate) | not timed (needs oneDNN or PyTorch) | 0.16% | 0.0016 |\n| int8 dynamic, per-channel weights, AMX blocked | 2.4\u00d7 | 2.6% | 0.021 |\n| int8 dynamic, per-tensor | 2.5\u00d7 | 13.7% | 0.116 |\n\nORT fp32 alone is about 1.2\u00d7 faster than numpy on the dense part. The accuracy figures use fixture positions with a random hand-fit scorer feeding `shown`, so they are indicative; arena positions are the real test.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxFwepY9iqVTccVD8mY)_"
     }
   ],
   "generation_cleanup": {
     "pr": {
       "number": 32,
-      "title": "Gen 7 → Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
+      "title": "Gen 7 \u2192 Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
       "state": "open",
       "draft": false,
       "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
       "updated_at": "2026-11-12T19:30:53Z",
-      "body": "The generation cleanup of `docs/generation-cleanup.md`, run because Gen 8 was authorized on 12 November 2026 (Max, 15:32 UTC) and has been collecting since 16:30 UTC. It closes out Gen 7 and brings the deployed Gen 8 source onto main. It changes documentation, indexes and adopted source. It touches no running collector, frozen run, manifest, feed or `gh-pages`.\n\ng7, the arena's operator, read Gen 7's page at 18:58 UTC and its corrections are in. It is Max's to merge. **Merge with a merge commit**, so the adopted commits stay identifiable.\n\n## Adopted source\n\nMain is an ancestor of all of it. Everything merged without a conflict in code; the one conflict was in `reports/README.md`, an index, where both sides' links are kept.\n\n| What | Commit | Branch |\n| --- | --- | --- |\n| Gen 8 as Azure and Codex run it | `792c4cb`, plus two page-only commits (`99139a8`, `6950784`) | `feature/gen8-prototype-20261112` |\n| Gen 8, the 19bbdce5 collector's source: its plan and `prepare --restore-actors` | `c8a138f` | `ops/gen8-19bbdce5-20261112` |\n| Gen 8, the independent collector's source: its plan with the BEN pairs, exporter and publisher changes; its cutover report | `6776c28`, `1b4ded5` | `codex/gen8-independent-20261112` |\n| The Gen 7 self-play regime and the Gen 7.1 notice | `5099000` | `feature/gen7-selfplay-20261112` |\n| Gen 7.1's `--exclude-families`, promotion gate tool and training-family audit | `b09c865` | `codex/gen71-independent-20261112` |\n\nThe three Gen 8 commits are what the live feeds' `recovery/environment.json` name.\n\n## Gen 7 closed\n\n- `docs/generations/gen7/README.md`: the bot, what each collector ran, the day's timeline, results, what it handed to Gen 8, what was and was not merged, documents and feeds.\n- Results: `scripts/generation_results.py --generation 7` over the 60 registered Gen 7 sources at 19:20 UTC, 22,021 counted boards. Gen 7.1 against 7.0: 5,639 boards, −0.06 (95% interval −0.13 to +0.01). The rule set for moving to 7.1 self-play (1,000 boards and a 95% lead for 7.1) was not met. Report in `reports/gen7-closeout-2026-11-12/`.\n- The pre-arena test has its own row: its bot was not the launched `7s-32` (tree trust 0.25 against 0.3). Gen 7.0 against Gen 6 in the arena is 1,593 boards at +0.28; the test is 1,637 boards at +0.25.\n- Gen 7's dated notices moved into `docs/generations/gen7/` with `git mv`; links repaired. A pointer stays at `docs/gen7_prototype_2026-11-11.md` because the policy net release notes link there and release folders are not edited.\n- The two sets drained at the switch to Gen 8 (`arena-gen7-1-mix2-azure1-feed`, 381 boards, and six `fresh3` BEN lanes, 105) were registered by the operator during the cleanup and are counted.\n\n## Gen 8 current\n\n- `docs/generations/gen8/README.md` (new), `README.md`, `docs/current-system.md`, `docs/generations/README.md`, `docs/README.md`, `docs/repository-map.md`, `docs/branch-inventory.md` (regenerated: 271 branches), `reports/README.md`.\n- `docs/backlog.md`: items 2, 3 and 6 closed (dispositions on Gen 7's page); 11, 13 and 14 opened (12 was opened and closed within the cleanup). Item 11 matters before the next net is trained on arena records: Gen 8's tables are not all house against house, and a training reader must bind each table's systems.\n- `scripts/generation_results.py`: its actor order brought up to the dashboard's (`8s-32`, `8c-32`, `71s-32` in front); without that it fails on any Gen 7.1 pair. New `--only` and `--skip` pool a subset of the sources.\n\n## Not merged\n\nEach conflicts with main; listed in backlog item 1 with the conflicting files: PR #15 (`fix/gen7-selfplay-capture-codex-20261112`), PR #13 (`fix/gen6-feed-health-20261111`), `ops/gen7-fast-selfplay-cloud-20261111`, `codex/gen7-independent-selfplay-20261112`, `ops/gen71-19bbdce5-20261112`. The Gen 6 runtime branches were not tried. Gen 9 (`feature/gen9` and the branches around it) stays on its branches.\n\n## Tested\n\n- Full suite at the head of this branch, with the native DDS library and TensorFlow: 336 passed, 1 skipped. The same count after the source merges alone.\n- `PYTHONPATH=tests:. python -m unittest test_system.CoreTests`: 11 tests, OK.\n- Relative links and in-repo anchors in every tracked `.md` outside `vendor/`: none broken except seven that were already broken inside model release folders (backlog item 8).\n- `scripts/generation_results.py`: generation 7 run twice over the 60 sources with the same counts (19:20 and 19:23 UTC); generation 6 run once, and the scored rows of Gen 6's closed table come out as published, except that `6-32` against BEN (16) has 26 more boards from sources that kept publishing after that closeout.\n\n## Not tested, and one thing not settled\n\n- The 19bbdce5 and independent collectors were told on the coordination board at 18:20 UTC that their deployed commits are in this PR and asked to say if they would rather stay out; neither had answered when this was marked ready.\n\n- No collector was run from this branch. Each of the three Gen 8 sources is running in the arena on its own; their union has passed the test suite only. A collector that moves to main should prepare and preflight as for any new source.\n- BEN: no server here.\n- The Gen 6 runtime branches against main.\n\nhttps://claude.ai/code/session_01N2EvxEA6NwcnXPZb3BY1s9\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+      "body": "The generation cleanup of `docs/generation-cleanup.md`, run because Gen 8 was authorized on 12 November 2026 (Max, 15:32 UTC) and has been collecting since 16:30 UTC. It closes out Gen 7 and brings the deployed Gen 8 source onto main. It changes documentation, indexes and adopted source. It touches no running collector, frozen run, manifest, feed or `gh-pages`.\n\ng7, the arena's operator, read Gen 7's page at 18:58 UTC and its corrections are in. It is Max's to merge. **Merge with a merge commit**, so the adopted commits stay identifiable.\n\n## Adopted source\n\nMain is an ancestor of all of it. Everything merged without a conflict in code; the one conflict was in `reports/README.md`, an index, where both sides' links are kept.\n\n| What | Commit | Branch |\n| --- | --- | --- |\n| Gen 8 as Azure and Codex run it | `792c4cb`, plus two page-only commits (`99139a8`, `6950784`) | `feature/gen8-prototype-20261112` |\n| Gen 8, the 19bbdce5 collector's source: its plan and `prepare --restore-actors` | `c8a138f` | `ops/gen8-19bbdce5-20261112` |\n| Gen 8, the independent collector's source: its plan with the BEN pairs, exporter and publisher changes; its cutover report | `6776c28`, `1b4ded5` | `codex/gen8-independent-20261112` |\n| The Gen 7 self-play regime and the Gen 7.1 notice | `5099000` | `feature/gen7-selfplay-20261112` |\n| Gen 7.1's `--exclude-families`, promotion gate tool and training-family audit | `b09c865` | `codex/gen71-independent-20261112` |\n\nThe three Gen 8 commits are what the live feeds' `recovery/environment.json` name.\n\n## Gen 7 closed\n\n- `docs/generations/gen7/README.md`: the bot, what each collector ran, the day's timeline, results, what it handed to Gen 8, what was and was not merged, documents and feeds.\n- Results: `scripts/generation_results.py --generation 7` over the 60 registered Gen 7 sources at 19:20 UTC, 22,021 counted boards. Gen 7.1 against 7.0: 5,639 boards, \u22120.06 (95% interval \u22120.13 to +0.01). The rule set for moving to 7.1 self-play (1,000 boards and a 95% lead for 7.1) was not met. Report in `reports/gen7-closeout-2026-11-12/`.\n- The pre-arena test has its own row: its bot was not the launched `7s-32` (tree trust 0.25 against 0.3). Gen 7.0 against Gen 6 in the arena is 1,593 boards at +0.28; the test is 1,637 boards at +0.25.\n- Gen 7's dated notices moved into `docs/generations/gen7/` with `git mv`; links repaired. A pointer stays at `docs/gen7_prototype_2026-11-11.md` because the policy net release notes link there and release folders are not edited.\n- The two sets drained at the switch to Gen 8 (`arena-gen7-1-mix2-azure1-feed`, 381 boards, and six `fresh3` BEN lanes, 105) were registered by the operator during the cleanup and are counted.\n\n## Gen 8 current\n\n- `docs/generations/gen8/README.md` (new), `README.md`, `docs/current-system.md`, `docs/generations/README.md`, `docs/README.md`, `docs/repository-map.md`, `docs/branch-inventory.md` (regenerated: 271 branches), `reports/README.md`.\n- `docs/backlog.md`: items 2, 3 and 6 closed (dispositions on Gen 7's page); 11, 13 and 14 opened (12 was opened and closed within the cleanup). Item 11 matters before the next net is trained on arena records: Gen 8's tables are not all house against house, and a training reader must bind each table's systems.\n- `scripts/generation_results.py`: its actor order brought up to the dashboard's (`8s-32`, `8c-32`, `71s-32` in front); without that it fails on any Gen 7.1 pair. New `--only` and `--skip` pool a subset of the sources.\n\n## Not merged\n\nEach conflicts with main; listed in backlog item 1 with the conflicting files: PR #15 (`fix/gen7-selfplay-capture-codex-20261112`), PR #13 (`fix/gen6-feed-health-20261111`), `ops/gen7-fast-selfplay-cloud-20261111`, `codex/gen7-independent-selfplay-20261112`, `ops/gen71-19bbdce5-20261112`. The Gen 6 runtime branches were not tried. Gen 9 (`feature/gen9` and the branches around it) stays on its branches.\n\n## Tested\n\n- Full suite at the head of this branch, with the native DDS library and TensorFlow: 336 passed, 1 skipped. The same count after the source merges alone.\n- `PYTHONPATH=tests:. python -m unittest test_system.CoreTests`: 11 tests, OK.\n- Relative links and in-repo anchors in every tracked `.md` outside `vendor/`: none broken except seven that were already broken inside model release folders (backlog item 8).\n- `scripts/generation_results.py`: generation 7 run twice over the 60 sources with the same counts (19:20 and 19:23 UTC); generation 6 run once, and the scored rows of Gen 6's closed table come out as published, except that `6-32` against BEN (16) has 26 more boards from sources that kept publishing after that closeout.\n\n## Not tested, and one thing not settled\n\n- The 19bbdce5 and independent collectors were told on the coordination board at 18:20 UTC that their deployed commits are in this PR and asked to say if they would rather stay out; neither had answered when this was marked ready.\n\n- No collector was run from this branch. Each of the three Gen 8 sources is running in the arena on its own; their union has passed the test suite only. A collector that moves to main should prepare and preflight as for any new source.\n- BEN: no server here.\n- The Gen 6 runtime branches against main.\n\nhttps://claude.ai/code/session_01N2EvxEA6NwcnXPZb3BY1s9\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
     },
     "disposition": "PR32 remains open and unmerged; cleanup belongs to g7 and g8."
   },
@@ -704,7 +864,7 @@
     "merged": false,
     "base": "main",
     "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
-    "body": "**Problem.** For Stu-style pure rollouts, the policy/rollout net's forward pass is ~92% of rollout time (cProfile, see below). The suit net ran four of its layers as numpy matmuls on 3-D arrays, which numpy executes as one small product per row. It also computed the trunk's share of the decoder's first layer four times per row, once per suit.\n\n**Change** (`bridge_harness/gen7_net.py`, kind 1 only):\n- `dense()` flattens to one 2-D product for `ws0`, `ws1`, `wd0` and `wd1`.\n- `wd0` is split by input part: [suit encoding | trunk | slot]. The trunk part is computed once per row and broadcast.\n\nOutputs are identical up to float rounding (max |diff| ~1e-6). Play is unchanged, so this needs no new bot identity. But it is a runtime change: frozen runs only pick it up if their owner moves them to it.\n\n**Measured** in a 2-core Xeon sandbox, single-threaded (`OPENBLAS_NUM_THREADS=1`). Net: 768-wide suit net. Rollout net v2 (`runs/w768/policy.npz` on `transfer/rollout-net-v2-20261113`, sha256 `8f87aa8f52ae2c11…`) has exactly these shapes. Positions: test-fixture deals at trick 7 (24 random plies), 128 layouts × 4 cards, `Seats([net], mode='draw')`, no claim finder.\n\n| | before | after |\n|---|---|---|\n| forward pass, 512-row batch | 7.6k rows/s | 20.6k rows/s (2.7×) |\n| whole `x8_rollout.evaluate`, 6 decisions | 7.5k rows/s | 17.3k rows/s (2.3×) |\n| `evaluate`, 32 layouts | 6.5k rows/s | 16.1k rows/s (2.5×) |\n\nThe before and after runs made the same number of net rows (55,744), i.e. the same play. Stu's Azure logs (`transfer/rollout-loop-azure3-20261113`, runs l0/g0/pf) show ~5.8k rows/s inside x8, which suggests the same bottleneck. The speedup on the AMD (Zen 4) cores has not been measured.\n\n**Tests.**\n- New: `tests/test_gen7_net_forward.py` compares every head against the plain layer-by-layer form.\n- `tests/test_gen7.py` and `tests/test_gen7_alpha.py` pass on this branch (44 tests).\n- On `research/rollout-loop-20261113`, the same edit plus `test_x8`, `test_rollout_net` and `test_plan_rollout`: 73 passed, 7 skipped (need `SURE_BIN`).\n- The JAX training path was not run; the change uses only reshape, slicing and matmul.\n\n**Applying to Stu's branch.** This commit cherry-picks cleanly onto `research/rollout-loop-20261113`. The SiD-student head (`wd1s`) exists only there and stays a 3-D matmul. That is correct but not sped up; use `dense(d, params['wd1s'])` there for the same gain.\n\n**Follow-ups measured, not included.** Real v2 weights, 37,951 rollout rows, decoder/output layers via ONNX Runtime, single-threaded:\n\n| | dense part vs ORT fp32 | top-card changes vs fp32 | mean total-variation distance |\n|---|---|---|---|\n| bf16 (rounding emulated, fp32 accumulate) | not timed (needs oneDNN or PyTorch) | 0.16% | 0.0016 |\n| int8 dynamic, per-channel weights, AMX blocked | 2.4× | 2.6% | 0.021 |\n| int8 dynamic, per-tensor | 2.5× | 13.7% | 0.116 |\n\nORT fp32 alone is about 1.2× faster than numpy on the dense part. The accuracy figures use fixture positions with a random hand-fit scorer feeding `shown`, so they are indicative; arena positions are the real test.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxFwepY9iqVTccVD8mY)_",
+    "body": "**Problem.** For Stu-style pure rollouts, the policy/rollout net's forward pass is ~92% of rollout time (cProfile, see below). The suit net ran four of its layers as numpy matmuls on 3-D arrays, which numpy executes as one small product per row. It also computed the trunk's share of the decoder's first layer four times per row, once per suit.\n\n**Change** (`bridge_harness/gen7_net.py`, kind 1 only):\n- `dense()` flattens to one 2-D product for `ws0`, `ws1`, `wd0` and `wd1`.\n- `wd0` is split by input part: [suit encoding | trunk | slot]. The trunk part is computed once per row and broadcast.\n\nOutputs are identical up to float rounding (max |diff| ~1e-6). Play is unchanged, so this needs no new bot identity. But it is a runtime change: frozen runs only pick it up if their owner moves them to it.\n\n**Measured** in a 2-core Xeon sandbox, single-threaded (`OPENBLAS_NUM_THREADS=1`). Net: 768-wide suit net. Rollout net v2 (`runs/w768/policy.npz` on `transfer/rollout-net-v2-20261113`, sha256 `8f87aa8f52ae2c11\u2026`) has exactly these shapes. Positions: test-fixture deals at trick 7 (24 random plies), 128 layouts \u00d7 4 cards, `Seats([net], mode='draw')`, no claim finder.\n\n| | before | after |\n|---|---|---|\n| forward pass, 512-row batch | 7.6k rows/s | 20.6k rows/s (2.7\u00d7) |\n| whole `x8_rollout.evaluate`, 6 decisions | 7.5k rows/s | 17.3k rows/s (2.3\u00d7) |\n| `evaluate`, 32 layouts | 6.5k rows/s | 16.1k rows/s (2.5\u00d7) |\n\nThe before and after runs made the same number of net rows (55,744), i.e. the same play. Stu's Azure logs (`transfer/rollout-loop-azure3-20261113`, runs l0/g0/pf) show ~5.8k rows/s inside x8, which suggests the same bottleneck. The speedup on the AMD (Zen 4) cores has not been measured.\n\n**Tests.**\n- New: `tests/test_gen7_net_forward.py` compares every head against the plain layer-by-layer form.\n- `tests/test_gen7.py` and `tests/test_gen7_alpha.py` pass on this branch (44 tests).\n- On `research/rollout-loop-20261113`, the same edit plus `test_x8`, `test_rollout_net` and `test_plan_rollout`: 73 passed, 7 skipped (need `SURE_BIN`).\n- The JAX training path was not run; the change uses only reshape, slicing and matmul.\n\n**Applying to Stu's branch.** This commit cherry-picks cleanly onto `research/rollout-loop-20261113`. The SiD-student head (`wd1s`) exists only there and stays a 3-D matmul. That is correct but not sped up; use `dense(d, params['wd1s'])` there for the same gain.\n\n**Follow-ups measured, not included.** Real v2 weights, 37,951 rollout rows, decoder/output layers via ONNX Runtime, single-threaded:\n\n| | dense part vs ORT fp32 | top-card changes vs fp32 | mean total-variation distance |\n|---|---|---|---|\n| bf16 (rounding emulated, fp32 accumulate) | not timed (needs oneDNN or PyTorch) | 0.16% | 0.0016 |\n| int8 dynamic, per-channel weights, AMX blocked | 2.4\u00d7 | 2.6% | 0.021 |\n| int8 dynamic, per-tensor | 2.5\u00d7 | 13.7% | 0.116 |\n\nORT fp32 alone is about 1.2\u00d7 faster than numpy on the dense part. The accuracy figures use fixture positions with a random hand-fit scorer feeding `shown`, so they are indicative; arena positions are the real test.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxFwepY9iqVTccVD8mY)_",
     "reviews": [],
     "disposition": "Unmerged runtime optimization proposal, chiefly benchmarked on Stu rollouts. No notice adopts it for this owned stream. Its claim of no bot-identity change does not authorize editing frozen science. Any later authorized source/runtime change here still follows the user's drain, new cohort/source identity, full exclusions and observed preflight requirements.",
     "applied": false
