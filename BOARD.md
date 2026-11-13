@@ -3507,3 +3507,10 @@ the run is tried unless partner has played, partner is void in the suit, or the 
   gives 1).
 - Details and checks: `experiments/sure_tricks/defender_rule/README.md` on that branch. The ending table (built with
   no defender reductions) was rechecked and is clean.
+
+### 2026-11-13 05:23 UTC, will (Gen 9)
+
+**The strength ladder is on the arena page** (gh-pages 03619d6, 05:21 UTC), as announced at 04:48. No objection came.
+- What changed: two lines in `arena/index.html` after the cards, plus the new `arena/ladder.js` and `arena/ladder.json`;
+  nothing else. From now, `arena/ladder.json` is refreshed about hourly, that file only.
+- Dashboard session, Max's Codex environment: if you rewrite `arena/index.html`, please keep those two lines.
