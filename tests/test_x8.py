@@ -19,7 +19,7 @@ from bridge_harness.gen6 import View
 from bridge_harness.gen7 import Gen7Player
 from bridge_harness.plan_rollout import NetPlayer, Public, Rows, card_values
 from bridge_harness.players import GreedyPlayer
-from bridge_harness.runner import play_table, replay
+from bridge_harness.runner import decision_rng, play_table, replay
 from bridge_harness.x8_player import Stage, X8Player, paired, player, resolved, touching, worth, x8_settings
 from bridge_harness.x8_rollout import Seats, evaluate, runs_with
 from test_gen6 import FakeBelief, FakeState
@@ -580,7 +580,7 @@ class ClaimTests(Fixture8):
     def test_a_declarer_that_holds_a_guarantee_keeps_it_and_makes(self):
         x8 = dict(stages=[dict(from_trick=4, to_trick=6, mode='blend', trust=.5, layouts=8, margin=3.),
                           dict(from_trick=7, to_trick=13, mode='rollout', layouts=12, first=4, prior=0.)],
-                  claims=dict(cards=8, defender=6, leaf=5), capture=dict(level=0), mix=dict(declarer=True))
+                  claims=dict(cards=8, defender=6, leaf=5, contracts='all'), capture=dict(level=0), mix=dict(declarer=True))
         p = self.make8(x8, gen7=self.GEN8, list_solve=16)
         check = x8_claims.Finder(BIN)
         kept = moved = odds = 0
@@ -611,6 +611,71 @@ class ClaimTests(Fixture8):
         finally:
             check.close()
         self.assertGreater(kept, 20)
+
+    def test_the_defender_rule_moves_only_to_the_fewest_hand_overs_within_the_margin(self):
+        x8 = dict(claims=dict(cards=0, declarer=False, defender=12, defender_cards=8, contracts='all', guard=True, odds_margin=.25, leaf=0),
+                  capture=dict(level=0))
+        p = self.make8(x8, gen7=self.GEN8, list_solve=16)
+        plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
+        tested = moved = 0
+        for seed in range(10):
+            board = next(generate(1, 900 + seed))
+            for room in (0, 1):
+                result = self.table(p, board, room)
+                for a, o in self.views(board, result):
+                    if a['player'] != 'x' or len(o.legal) < 2:
+                        continue
+                    guard = (a.get('x8') or {}).get('guard')
+                    want = plain.choose(o, decision_rng(5, board.id, 'x', o)).card
+                    if not guard:
+                        self.assertEqual(card(a['card']), want)         # the rule did not act: plain Gen 8's card
+                        continue
+                    self.assertNotEqual(o.controller % 2, o.contract.declarer % 2)
+                    self.assertLessEqual(len(o.known_hands[o.actor]), 8)
+                    tested += 1
+                    if guard['odds'] is None:
+                        continue
+                    odds = dict(zip(guard['cards'], guard['odds']))
+                    if guard['moved']:
+                        moved += 1
+                        self.assertEqual(odds[a['card']], min(odds.values()))
+                        self.assertGreater(odds[symbol(want)] if symbol(want) in odds else 1., min(odds.values()))
+                        u = a['estimates']
+                        self.assertLessEqual(abs(u[a['card']]['utility'] - u[symbol(want)]['utility']), .25 + 1e-9)
+                    else:
+                        self.assertEqual(card(a['card']), want)
+        self.assertGreater(tested, 20)
+        self.assertGreater(moved, 2)
+
+    def test_an_audited_bot_names_plain_gen8s_card_where_a_feature_changed_it(self):
+        class Reference:                                                # a stand-in for the audit reference selector
+            def choose(self, o, details, rng):
+                return o.legal[0], {}
+        x8 = dict(stages=[dict(from_trick=3, to_trick=13, mode='blend', trust=1., layouts=12, cards=3, margin=2.)],
+                  claims=dict(cards=8, defender=8, contracts='all', guard=True, leaf=4), capture=dict(level=0))
+        p = self.make8(x8, gen7=self.GEN8, list_solve=16)
+        p.reference = Reference()
+        plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
+        plain.reference = Reference()
+        named = changed = 0
+        for seed in range(4):
+            board = next(generate(1, 950 + seed))
+            for room in (0, 1):
+                for a, o in self.views(board, self.table(p, board, room)):
+                    if a['player'] != 'x' or len(o.legal) < 2 or 'estimates' not in a:
+                        continue
+                    want = plain.choose(o, decision_rng(5, board.id, 'x', o)).card
+                    if 'reference_card' in a:
+                        named += 1
+                        self.assertEqual(card(a['reference_card']), want)
+                        self.assertNotEqual(a['reference_card'], a['card'])
+                        self.assertEqual(a['prediction_units'], 'x8-against-plain')
+                        self.assertTrue(set(a['x8_features']) & {'blend', 'guarantee', 'odds', 'guard'})
+                    else:
+                        self.assertEqual(card(a['card']), want)
+                    changed += card(a['card']) != want
+        self.assertGreater(named, 5)
+        self.assertEqual(named, changed)
 
     GEN8 = PlayerTests.GEN8
 
