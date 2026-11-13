@@ -340,3 +340,4 @@
 {"at": "2026-11-13T09:16:00Z", "by": "g9", "op": "new", "target": "G9-A11", "note": "Conditional claims in X9 (DESIGN.md section 6), with a forked match"}
 {"at": "2026-11-13T09:16:00Z", "by": "g9", "op": "lease", "target": "G9-A11", "until": "2026-11-13T13:16Z"}
 {"at": "2026-11-13T09:16:00Z", "by": "g9", "op": "log", "target": "G9-A11", "note": "13 Nov 09:16 UTC, g9: built on feature/gen9-x9 (ac7dfdb, match setup 0a26ac4); tests/test_x9.py 17 passed with CELLS_BIN (cells.cpp baa062c) and SURE_BIN (sure.cpp 2e6ed6d). Pilot running in g9's sandbox: 9x3c-ft1 (X9 = 8x3-ft1 + conditional claims) against 8x3c-ctl (8x3-ft1), 400 fresh deals, seed "}
+{"at": "2026-11-13T09:18:00Z", "by": "g9", "op": "send", "target": "dave/20261113T0918Z-g9-box-3-cores-of-azure4-for-x9-s", "note": "Box: 3 cores of azure4 for X9's conditional-claims match? (Max, 09:03: conditional claims go in Gen 9)"}

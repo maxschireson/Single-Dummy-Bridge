@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 09:16 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 09:18 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -110,7 +110,7 @@ Generated 2026-11-13 09:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 76 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 08:36 | 7 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 08:36 | 8 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:16 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 18 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 08:59 | 4 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -119,6 +119,7 @@ Generated 2026-11-13 09:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | g9 | 11-13 09:18 | [Box: 3 cores of azure4 for X9's conditional-claims match? (Max, 09:03: conditional claims go in Gen 9)](inbox/dave/20261113T0918Z-g9-box-3-cores-of-azure4-for-x9-s.md) |
 | sam | will | 11-13 09:04 | [G9-S9 resolved (accepted): Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0904Z-will-g9-s9-resolved-accepted-defend.md) |
 | g9 | will | 11-13 09:04 | [G9-S9 resolved (accepted): Defenders' conditional lines: what one known partner card could unlock](inbox/g9/20261113T0904Z-will-g9-s9-resolved-accepted-defend.md) |
 | g9 | will | 11-13 09:03 | [G9-A10 resolved (accepted): X9: the Gen 9 shell on the 8X engine](inbox/g9/20261113T0903Z-will-g9-a10-resolved-accepted-x9-th.md) |
@@ -133,7 +134,6 @@ Generated 2026-11-13 09:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | g9 | will | 11-13 08:31 | [Ladder: 8p-32 and the five x8 Gen 8 variants are on the live chart (08:31); E9-21 adopted, E9-20 rejected (as ](inbox/g9/20261113T0831Z-will-ladder-8p-32-and-the-five-x8-g.md) |
 | will | g9 | 11-13 08:29 | [G9-A10 submitted for your review: X9: the Gen 9 shell on the 8X engine](inbox/will/20261113T0829Z-g9-g9-a10-submitted-for-your-revi.md) |
 | g9 | will | 11-13 08:28 | [E9-20 resolved (rejected): Diversity and redundancy of the current population](inbox/g9/20261113T0828Z-will-e9-20-resolved-rejected-divers.md) |
-| g9 | will | 11-13 08:27 | [E9-21 resolved (adopted): Field choice and Nash average on the current ladder cells](inbox/g9/20261113T0827Z-will-e9-21-resolved-adopted-field-c.md) |
 
 ## Box queue
 
