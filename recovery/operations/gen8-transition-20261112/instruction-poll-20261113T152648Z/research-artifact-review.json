@@ -1,0 +1,46 @@
+{
+  "s0": {
+    "branch": "transfer/sid-net-s0-20261113",
+    "revision": "1888cc9dbbe66e352ff3d7d4dc8e2df9b42eb6ed",
+    "source_branch": "research/sid-net-s0-20261113",
+    "source_revision": "ce3955807dc7a639b55256feffd693bb52f1e378",
+    "readme": {
+      "sha": "88b799d1cba92db361950e51ac43373f7c1610f0",
+      "path": "s0TransferReadme"
+    },
+    "readme_text": "# SiD net S_0: training outputs\n\nResearch data, not a feed; never merge. Made by `training/sid-net-s0-20261113/chain.sh` on\n`research/sid-net-s0-20261113` (source and settings in `logs/timeline.log`; steps 1 and 2 of `experiments/sid_loop/SPEC.md`).\n\n- `runs/s0`: `policy.npz` (the epoch with the best held-out card log-loss), every epoch, `metrics.json`.\n- `e1/`: the student against the exact solver on held-out boards (`scripts/sid_e1.py`).\n- `labels/`, `labelsB/`: the label sidecars of the training episodes and of the held-out ones (`--full`), as tar parts\n  of `<episode blob id>.npz`; `manifest.json` says what they were made with, `stats.jsonl` what each episode cost.\n- `data/`: the fetch manifests (the training episodes are those at the tips of rollout net v2's last fetch) and label statistics.\n- `logs/`: every stage.\n",
+    "data_files": [
+      {
+        "path": "data/fetch.json",
+        "sha": "ba06f3726e47e36ae461df546c8c757b06621fbb"
+      },
+      {
+        "path": "data/fetchB.json",
+        "sha": "f1260ad298ae424c4657cd2757d0d752dcb604f6"
+      },
+      {
+        "path": "data/labelB_stats.json",
+        "sha": "95bb7fc4686e1d35d0c2d546796a6c60d6002bcc"
+      },
+      {
+        "path": "data/label_stats.json",
+        "sha": "c70dd0085ed4a945eba28cd27f0253d3d975433a"
+      }
+    ],
+    "scope": "Released research artifact; the notice explicitly says no bot uses it and no play occurred. It does not replace any canonical actor or model in this owned cohort.",
+    "future_exclusions": "For ANY later new owned cohort, retain the standing requirement to exclude all released-model training families, including S0's set. The notice says its training set matches rollout v2's; fetch.json is provenance, not a certified standalone family list. Obtain and validate complete pinned membership before any future preparation. Do not rewrite this current v4.1 cohort's immutable union or proof."
+  },
+  "azure6": {
+    "branch": "transfer/rollout-loop-azure6-20261113",
+    "revision": "56621ee84688b32ac54e04dd04cfe8b83c054ea5",
+    "readme": {
+      "sha": "bc3f73f307536cae411316511d8206eb8801201c",
+      "path": "azure6TransferReadme"
+    },
+    "readme_text": "# Rollout loop outputs: azure6\n\n**Work in progress. Research data, not an arena cohort and not a feed.** Outputs of the rollout loop's matches and\ncollections on azure6, run from branch `research/rollout-loop-20261113` (`runs.log` names each job's source commit):\nmatch folders with one row a board, summaries and logs. Full records stay on the box. Never merge this branch.\n",
+    "scope": "Research match/collection outputs, explicitly not an arena cohort or feed. Do not count them as registered arena observations, adopt their settings, or control their host."
+  },
+  "adopted": false,
+  "training_or_promotion_performed": false,
+  "current_scientific_identity_unchanged": true
+}
