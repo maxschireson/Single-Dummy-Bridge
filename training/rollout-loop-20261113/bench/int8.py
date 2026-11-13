@@ -108,6 +108,11 @@ def main():
         q_mixed = torch.ao.quantization.quantize_dynamic(net_mixed, {'s0', 's1', 't0', 't1', 'd0s', 'd0h'}, dtype=torch.qint8)
         variants['int8'] = lambda b: run(q_all, b)
         variants['int8 mixed'] = lambda b: run(q_mixed, b)
+        pc = torch.ao.quantization.per_channel_dynamic_qconfig       # one weight scale per output column
+        q_pc = torch.ao.quantization.quantize_dynamic(Net(P), {nn.Linear: pc}, dtype=torch.qint8)
+        q_pcm = torch.ao.quantization.quantize_dynamic(Net(P), {k: pc for k in ('s0', 's1', 't0', 't1', 'd0s', 'd0h')}, dtype=torch.qint8)
+        variants['int8 per-col'] = lambda b: run(q_pc, b)
+        variants['int8 per-col mixed'] = lambda b: run(q_pcm, b)
 
         def clock(f, b, reps=30):
             f(b); s = time.perf_counter()
@@ -127,7 +132,7 @@ def main():
             lp = log_softmax(got); pr = np.exp(lp); first = lp.argmax(1)
             dl = np.abs(np.where(legal, lp - lp_ref, 0)); tv = .5 * np.abs(pr - p_ref).sum(1)
             reg = np.where(rated[np.arange(len(pick)), first], gap[np.arange(len(pick)), first], np.nan)[has]
-            print(f'  {name:10s} first card same {100 * (first == first_ref).mean():6.2f}% | log-prob change mean {dl.sum() / legal.sum():.4f} '
+            print(f'  {name:18s} first card same {100 * (first == first_ref).mean():6.2f}% | log-prob change mean {dl.sum() / legal.sum():.4f} '
                   f'max {dl.max():.3f} | TV mean {tv.mean():.4f} | tricks given up {np.nanmean(reg):.4f} (fp32 {gap[np.arange(len(pick)), first_ref][has].mean():.4f})')
 
 
