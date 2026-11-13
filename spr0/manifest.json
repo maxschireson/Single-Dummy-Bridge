@@ -138,7 +138,13 @@
      "stu0-pl": 1.0,
      "stu0-pr": 1.0,
      "stu0-pra": 1.0,
-     "stu0-prb": 1.0
+     "stu0-prb": 1.0,
+     "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
+     "stu2-p": 1.0,
+     "stu2-pr": 1.0,
+     "stu2-pt": 1.0,
+     "stu2-pv": 1.0
     }
    },
    "x8": {
@@ -186,6 +192,8 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -200,7 +208,11 @@
       "stu1-r3",
       "stu1-r6",
       "stu1a",
-      "stu1b"
+      "stu1b",
+      "stu2-p",
+      "stu2-pr",
+      "stu2-pt",
+      "stu2-pv"
      ],
      "guard": true,
      "full": true
@@ -232,6 +244,8 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -246,7 +260,11 @@
       "stu1-r3",
       "stu1-r6",
       "stu1a",
-      "stu1b"
+      "stu1b",
+      "stu2-p",
+      "stu2-pr",
+      "stu2-pt",
+      "stu2-pv"
      ]
     },
     "names": {
@@ -262,7 +280,7 @@
     }
    },
    "table_opponent": "stu0-prb",
-   "identity": "7c03bb998d9bd88775bccfa3414545c6608132e36cf3c521dc3c6293a11d2b85"
+   "identity": "a0c56caa156a6d8122b263ddb5e94eb350a83e5dea9590910c82df914bbce089"
   },
   "6-32": {
    "id": "6-32",
@@ -430,7 +448,13 @@
      "stu0-pl": 1.0,
      "stu0-pr": 1.0,
      "stu0-pra": 1.0,
-     "stu0-prb": 1.0
+     "stu0-prb": 1.0,
+     "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
+     "stu2-p": 1.0,
+     "stu2-pr": 1.0,
+     "stu2-pt": 1.0,
+     "stu2-pv": 1.0
     }
    },
    "x8": {
@@ -478,6 +502,8 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -492,7 +518,11 @@
       "stu1-r3",
       "stu1-r6",
       "stu1a",
-      "stu1b"
+      "stu1b",
+      "stu2-p",
+      "stu2-pr",
+      "stu2-pt",
+      "stu2-pv"
      ],
      "guard": true,
      "full": true
@@ -524,6 +554,8 @@
       "stu0-pr",
       "stu0-pra",
       "stu0-prb",
+      "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -538,7 +570,11 @@
       "stu1-r3",
       "stu1-r6",
       "stu1a",
-      "stu1b"
+      "stu1b",
+      "stu2-p",
+      "stu2-pr",
+      "stu2-pt",
+      "stu2-pv"
      ]
     },
     "names": {
@@ -554,7 +590,7 @@
     }
    },
    "table_opponent": "stu0-pra",
-   "identity": "6570613a749cc1f9802d1c0151d5d8b1ee9f5b6954ff11b6f612aef4bcb23c61"
+   "identity": "3200ed1b2a6b423d841efcc332c2159d7e455d0db96f006550358cc17b25a024"
   }
  },
  "pair_schedule": [
@@ -582,9 +618,9 @@
  },
  "target": 1073741824,
  "one_room": true,
- "identity": "f9c70735b8ac11d43805a735b5718ddcea89a78b8e1b4c59412f6a33e88645ab",
+ "identity": "eacb78c2f7b6f8b3f280aa944141ae0b2a9eb34a6c74b89a001637e77463136b",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 100000,
  "deals": 20000,
- "source_commit": "b64ae5e7210f486cf6909e52526386d0c4f085a3"
+ "source_commit": "3435a1b007441f6e119cfecc9243062c96ff8a3d"
 }
