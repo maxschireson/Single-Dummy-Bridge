@@ -6308,6 +6308,76 @@
    }
   }
  },
+ "stu3a-n": {
+  "base": "6-32",
+  "label": "Stu round 3 ladder: the interim round 3 net (about half of round 3's tables) alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims",
+  "engine": "gen8x",
+  "policy_role": "gen8x",
+  "gen7_policy": "models/cardplay/stu-net-r3a-20261113/policy.npz",
+  "gen7": {
+   "play_weight": 0.5,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 14,
+   "net_sample": false,
+   "tree_audit": true
+  },
+  "x8": {
+   "stages": [],
+   "claims": {
+    "cards": 0
+   },
+   "capture": {
+    "level": 0,
+    "forks": 0
+   },
+   "mix": {},
+   "names": {
+    "self": "stup0",
+    "*": "stup0",
+    "8p-32-v41": "8s-32",
+    "ben64": "ben64",
+    "ben": "ben"
+   }
+  }
+ },
+ "stu3-n": {
+  "base": "6-32",
+  "label": "Stu round 3 ladder: round 3's net alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims",
+  "engine": "gen8x",
+  "policy_role": "gen8x",
+  "gen7_policy": "models/cardplay/stu-net-r3-20261113/policy.npz",
+  "gen7": {
+   "play_weight": 0.5,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 14,
+   "net_sample": false,
+   "tree_audit": true
+  },
+  "x8": {
+   "stages": [],
+   "claims": {
+    "cards": 0
+   },
+   "capture": {
+    "level": 0,
+    "forks": 0
+   },
+   "mix": {},
+   "names": {
+    "self": "stup0",
+    "*": "stup0",
+    "8p-32-v41": "8s-32",
+    "ben64": "ben64",
+    "ben": "ben"
+   }
+  }
+ },
  "8z-ft1": {
   "base": "6-32",
   "label": "8Z (Max, 13 Nov 02:39): rollouts alone from trick 7 on rollout net v1 (ft), sampled seats, up to 4 candidates from the net's prior raced on up to 128 layouts; unless it has a claim (02:40): a card that guarantees every trick left is played in any contract with no rollouts. Tricks 1 to 2 the Gen 8 search, 3 to 6 the search blended with rollouts at trust 0.25. Declarer keeps a guaranteed contract (games, slams, doubled), defender hand-over odds, declarer mixes; forks against plain Gen 8's card on every change (the search is run for the audit)",

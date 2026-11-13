@@ -840,6 +840,24 @@
    "queue_order": 2
   },
   {
+   "name": "l3a-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "ladder",
+   "pair": "stu3a-n~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
    "name": "l0-r3",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",

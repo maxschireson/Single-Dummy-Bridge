@@ -43,6 +43,8 @@ Round 2 (PLAN.md): round 1's net with every weight trained on pure Stu's games, 
   stu2-n            that net alone
   stu2-ns           round 2's longer-trained variant alone (train-r2s/: the same rows, the epoch best on pure Stu's held-out
                     cards with the other bots' log-loss within 0.02 of the start, epoch 5 where round 2's net is epoch 1)
+Round 3 (alone, told its own side is stup0): stu3a-n the interim net (train-r3a/, about half of round 3's tables),
+stu3-n round 3's net (train-r3/).
 The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
 names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
   stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
@@ -87,6 +89,8 @@ NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32', **BEN}
 R2 = 'models/cardplay/stu-net-r2-20261113/policy.npz'          # train-r2/policy.npz on transfer/rollout-loop-azure5-20261113
 NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
 R2S = 'models/cardplay/stu-net-r2s-20261113/policy.npz'        # train-r2s/policy.npz on the same branch
+R3A = 'models/cardplay/stu-net-r3a-20261113/policy.npz'        # train-r3a/policy.npz on the same branch: the interim round
+R3 = 'models/cardplay/stu-net-r3-20261113/policy.npz'          # train-r3/policy.npz on the same branch
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
@@ -201,6 +205,10 @@ def main():
     bots['stu2-n']['label'] = bots['stu2-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 2 ladder: ')
     bots['stu2-ns'] = alone("round 2's longer-trained net (epoch 5) alone, told its own side is stup0: its first card at every trick", R2S, dict(NAMES2))
     bots['stu2-ns']['label'] = bots['stu2-ns']['label'].replace('Stu round 0 ladder: ', 'Stu round 2 ladder: ')
+    for name, path, what in (('stu3a-n', R3A, "the interim round 3 net (about half of round 3's tables)"), ('stu3-n', R3, "round 3's net")):
+        bots[name] = alone(what + ' alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims',
+                           path, dict(NAMES2))
+        bots[name]['label'] = bots[name]['label'].replace('Stu round 0 ladder: ', 'Stu round 3 ladder: ')
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 
