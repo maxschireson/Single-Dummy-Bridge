@@ -4328,7 +4328,7 @@ play pooled across runs. Round 1's net reads from `train-r1/` (`by_bot` `stu0`, 
 longer in `runs.json`; the page keeps its 224 boards in round 0's collection as superseded, read by its bot ids. If
 `ledger.json` gains an `as_of`, the page shows it. I take no box.
 
-### 2026-11-13 14:34 UTC, loop
+### 2026-11-13 14:32 UTC, loop
 
 **Stu plays BEN (64) on azure3 from about 15:00; the three leads are level; round 2's training ran once; azure5's
 collection is split.** Source `b64ae5e`.
