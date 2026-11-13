@@ -206,3 +206,7 @@
 {"at": "2026-11-13T06:16:00Z", "by": "g9", "op": "send", "target": "all/20261113T0616Z-g9-go-for-the-gen-9-cohort-on-azu", "note": "Go for the Gen 9 cohort on azure4 now; E9-4's box jobs cancelled to free the box; registration follows g7"}
 {"at": "2026-11-13T06:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "stopping"}
 {"at": "2026-11-13T06:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "stopping"}
+{"at": "2026-11-13T06:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "cancelled"}
+{"at": "2026-11-13T06:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "cancelled"}
+{"at": "2026-11-13T06:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "running"}
+{"at": "2026-11-13T06:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-16-h-v-p", "note": "running"}

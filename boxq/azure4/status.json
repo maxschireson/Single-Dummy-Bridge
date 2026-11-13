@@ -119,7 +119,7 @@
    "cores": 4
   },
   "e9-0-n04": {
-   "state": "waiting",
+   "state": "running",
    "owner": "g9",
    "experiment": "E9-0",
    "boards": 0,
@@ -129,7 +129,12 @@
    "priority": 5,
    "cores": 4,
    "retry_seen": 1,
-   "short": false
+   "short": false,
+   "started": "2026-11-13T06:16:40Z",
+   "resumed": "2026-11-13T06:16:40Z",
+   "source": "/home/bridgebots/work/g9/src/4b54972",
+   "rate_per_hour": null,
+   "eta": null
   },
   "e9-10-8x-ben16": {
    "state": "cancelled",
@@ -283,7 +288,7 @@
    "cores": 4
   },
   "e9-4-8x": {
-   "state": "running",
+   "state": "cancelled",
    "owner": "sam",
    "experiment": "E9-4",
    "boards": 1292,
@@ -299,13 +304,12 @@
    "source": "/home/bridgebots/work/g9/src/83f373d",
    "rate_per_hour": 692.9,
    "eta": "2026-11-13T06:42:47Z",
-   "published_at": "2026-11-13T06:07:55Z",
-   "published": "transfer/gen9-e9-4-8x-azure4-20261113@d1a025c27",
-   "ended": "2026-11-13T05:12:42Z",
-   "stopping": true
+   "published_at": "2026-11-13T06:16:40Z",
+   "published": "transfer/gen9-e9-4-8x-azure4-20261113@15fdbae79",
+   "ended": "2026-11-13T06:16:40Z"
   },
   "e9-4-r9": {
-   "state": "running",
+   "state": "cancelled",
    "owner": "sam",
    "experiment": "E9-4",
    "boards": 358,
@@ -321,10 +325,9 @@
    "source": "/home/bridgebots/work/g9/src/83f373d",
    "rate_per_hour": 484.2,
    "eta": "2026-11-13T08:50:01Z",
-   "published_at": "2026-11-13T06:07:21Z",
-   "published": "transfer/gen9-e9-4-r9-azure4-20261113@b214ff13c",
-   "ended": "2026-11-13T05:48:08Z",
-   "stopping": true
+   "published_at": "2026-11-13T06:16:40Z",
+   "published": "transfer/gen9-e9-4-r9-azure4-20261113@e9a3b6166",
+   "ended": "2026-11-13T06:16:40Z"
   },
   "e9-6-att-vs-reader": {
    "state": "cancelled",
@@ -404,7 +407,7 @@
    "cores": 4
   },
   "e9-16-h-v-p": {
-   "state": "waiting",
+   "state": "running",
    "owner": "g9",
    "experiment": "E9-16",
    "boards": 0,
@@ -414,7 +417,12 @@
    "priority": 5,
    "cores": 4,
    "retry_seen": 1,
-   "short": false
+   "short": false,
+   "started": "2026-11-13T06:16:40Z",
+   "resumed": "2026-11-13T06:16:40Z",
+   "source": "/home/bridgebots/work/g9/src/491c7f7",
+   "rate_per_hour": null,
+   "eta": null
   },
   "e9-16-r-v-p": {
    "state": "done",
@@ -479,10 +487,10 @@
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-13T06:16:07Z",
+ "updated": "2026-11-13T06:16:40Z",
  "bad_jobs": [],
  "cores_busy": 8,
- "waiting_before": true,
+ "waiting_before": false,
  "idle_core_hours": 0.538,
  "idle_core_hours_while_waiting": 0.538
 }

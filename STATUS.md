@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 06:16 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 06:16 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -119,10 +119,8 @@ Generated 2026-11-13 06:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-4-8x | E9-4 | sam | 4 | 4 | running | 1,292 of 1,600 | 692.9 | 11-13 06:42 | `transfer/gen9-e9-4-8x-azure4-20261113@d1a025c27` |
-| e9-4-r9 | E9-4 | sam | 4 | 4 | running | 358 of 1,600 | 484.2 | 11-13 08:50 | `transfer/gen9-e9-4-r9-azure4-20261113@b214ff13c` |
-| e9-0-n04 | E9-0 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
-| e9-16-h-v-p | E9-16 | g9 | 5 | 4 | waiting | 0 of 800 |  |  |  |
+| e9-0-n04 | E9-0 | g9 | 5 | 4 | running | 0 of 800 |  |  |  |
+| e9-16-h-v-p | E9-16 | g9 | 5 | 4 | running | 0 of 800 |  |  |  |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | g9-cohort-preflight | G9-D9 | dave | 1 | 1 | done | 1 of 1 |  |  | `transfer/gen9-g9-cohort-preflight-azure4-20261113@5e8242331` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |
@@ -138,6 +136,8 @@ Generated 2026-11-13 06:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | g9-x2-ben64 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 47 |  |  |  |
 | g9-x2-rel-std-50 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 300 |  |  |  |
 | g9-x2-rel-std-80 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 300 |  |  |  |
+| e9-4-8x | E9-4 | sam | 4 | 4 | cancelled | 1,292 of 1,600 | 692.9 | 11-13 06:42 | `transfer/gen9-e9-4-8x-azure4-20261113@15fdbae79` |
+| e9-4-r9 | E9-4 | sam | 4 | 4 | cancelled | 358 of 1,600 | 484.2 | 11-13 08:50 | `transfer/gen9-e9-4-r9-azure4-20261113@e9a3b6166` |
 | e9-0-n005 | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-0-n01 | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-0-n02d | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
