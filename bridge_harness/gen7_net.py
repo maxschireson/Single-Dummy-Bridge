@@ -190,6 +190,13 @@ def relu(x, xp=np):
     return xp.maximum(x, 0)
 
 
+def dense(x, w):
+    """x [..., k] @ w [k, m] as one 2-D matrix product. numpy's matmul on a 3-D x runs one small product per leading
+    index; flattening first gives BLAS one large product (about 3x faster for the suit net, same numbers)."""
+    shape = x.shape
+    return (x.reshape(-1, shape[-1]) @ w).reshape(shape[:-1] + (w.shape[1],))
+
+
 def forward(params, batch, xp=np, kind=None):
     """All heads for a batch. `params` is a flat dict of arrays (see scripts/train_gen7_policy.py)."""
     cards, g = features(batch, xp)
@@ -207,15 +214,17 @@ def forward(params, batch, xp=np, kind=None):
         shown = xp.asarray(batch['shown']).astype(xp.float32).reshape(n, 4, SEAT_SHOWN)[:, :, :SUIT_SHOWN * 4]
         about_suit = xp.transpose(shown.reshape(n, 4, SUIT_SHOWN, 4), (0, 3, 1, 2)).reshape(n, 4, 4 * SUIT_SHOWN)
         s = xp.concatenate([cards.reshape(n, 4, 13 * CARD_FEATURES), about_suit], axis=2)
-        s = relu(s @ params['ws0'] + params['bs0'], xp)
-        s = relu(s @ params['ws1'] + params['bs1'], xp)                         # [n, 4, e]
+        s = relu(dense(s, params['ws0']) + params['bs0'], xp)
+        s = relu(dense(s, params['ws1']) + params['bs1'], xp)                         # [n, 4, e]
         h = xp.concatenate([s.reshape(n, -1), g], axis=1)
         h = relu(h @ params['wt0'] + params['bt0'], xp)
         h = relu(h @ params['wt1'] + params['bt1'], xp)                         # [n, t]
-        slot = xp.broadcast_to(xp.eye(4, dtype=xp.float32)[None], (n, 4, 4))
-        d = xp.concatenate([s, xp.broadcast_to(h[:, None, :], (n, 4, h.shape[1])), slot], axis=2)
-        d = relu(d @ params['wd0'] + params['bd0'], xp)
-        out = (d @ params['wd1'] + params['bd1']).reshape(n, 4, 13, 5)
+        # the decoder's input is [suit encoding, trunk, one-hot slot]; its first layer is split by those parts so the
+        # trunk's share is computed once a row rather than once a suit (same sum as concatenating, fewer products)
+        e, t, wd0 = s.shape[2], h.shape[1], params['wd0']
+        d = dense(s, wd0[:e]) + (h @ wd0[e:e + t])[:, None, :] + wd0[e + t:e + t + 4][None, :, :]
+        d = relu(d + params['bd0'], xp)
+        out = (dense(d, params['wd1']) + params['bd1']).reshape(n, 4, 13, 5)
         policy, gap, owner = out[..., 0].reshape(n, 52), out[..., 1].reshape(n, 52), out[..., 2:].reshape(n, 52, 3)
         tricks = (h @ params['wk'] + params['bk'])[:, 0]
     legal = xp.asarray(batch['legal'])
