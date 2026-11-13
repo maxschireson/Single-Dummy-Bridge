@@ -1,23 +1,23 @@
 {
  "pair": "prr-32-v41~7s-32-v41",
- "boards": 550,
- "cpu_per_board": 56.27,
+ "boards": 600,
+ "cpu_per_board": 55.68,
  "common": {
-  "imps_per_board": 0.1509,
-  "se": 0.0755,
-  "boards": 550,
-  "won": 28,
-  "lost": 21,
-  "flat": 501
+  "imps_per_board": 0.135,
+  "se": 0.0701,
+  "boards": 600,
+  "won": 31,
+  "lost": 27,
+  "flat": 542
  },
  "native": {
-  "imps_per_board": 0.1509,
-  "se": 0.0755,
-  "boards": 550,
-  "won": 28,
-  "lost": 21,
-  "flat": 501
+  "imps_per_board": 0.135,
+  "se": 0.0701,
+  "boards": 600,
+  "won": 31,
+  "lost": 27,
+  "flat": 542
  },
  "failures": 0,
- "boards_per_hour": 507
+ "boards_per_hour": 514
 }
