@@ -7,3 +7,5 @@ jax 0.12.0.1 optax 0.2.9
 2026-11-13T00:24:50Z built s3: {"episodes": 7069, "deals": 7059, "unique_families": 6456, "examples": 2299975, "train": 1853439, "validation": 221016, "test": 225520}
 2026-11-13T00:25:17Z set: {"parts": 4, "deals": 28220, "unique_families": 19811, "examples": 9285986, "deals_by_hash_split": [22657, 2752, 2811]}
 2026-11-13T00:25:19Z ft start
+2026-11-13T00:38:55Z ft done: {"done": "/home/bridgebots/work/plan/rnet1/ft", "selected_epoch": 3, "validation": {"n": 902619, "nll": 0.4487, "uniform_nll": 1.2765, "tie_nll": 0.7756, "agree": 0.8312, "in_best": 0.9137, "regret": 0.0241, "regret_gap_head": 0.0227, "regret_random": 0.2072, "regret_lowest": 0.2258}, "parity": 4.76
+2026-11-13T00:38:55Z scratch start
