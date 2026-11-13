@@ -53,13 +53,18 @@ a changed Gen 9 player.
 1. **Source**: a checkout of `feature/gen9-cohort` at the commit the preflight passed on.
 2. **Artifacts**: `python models/cardplay/gen7-policy-v4.1-2026-11-12/restore.py` and
    `python models/cardplay/gen8-system-scorer-v1-2026-11-12/restore_model.py`.
-3. **Prepare**, per machine and shard, from a drained source run with unplayed deals:
-   `python ops/prepare_gen7_alpha.py --source <source run> --run <run> --plan configs/round9-cohort.json [--shard K/N] --exclude-families v41-training-families-union.json`
-   (`transfer/v41-training-families-union-20261112`, `fccbbd8`, 34,092 families). Deals any registered cohort has
-   played are checked against p41's union list before the plan opens.
-4. **Preflight**: `python ops/smoke_gen7.py --run <run> --out <report> --deals 2`. Locally (capsule, policy v4.1,
-   seed 977) `scripts/gen9_match.py` played `9a-32~8s-32` and `9a-32~71s-32` two deals each with no failure,
-   about 40 to 45 CPU seconds a board, and the records carry `9a-32`'s Gen 9 notes at every searched decision.
+3. **Prepare**, with fresh deals: azure4 has no drained run with deals no cohort was given (will's inventory,
+   13 Nov 04:48 UTC), so the cohort takes fresh deals the way independent cohorts did
+   (`ops/prepare_gen6_independent.py`), and the drained source run supplies only the bots and artifacts:
+   `python ops/prepare_gen7_alpha.py --source <drained run> --run <run> --plan configs/round9-cohort.json --exclude-families v41-training-families-union.json --fresh N --fresh-seed S --played played-families-20261113.json.gz`.
+   Left out: v4.1's training families (`transfer/v41-training-families-union-20261112`, `fccbbd8`, 34,092), every
+   family of the source's corpus, and every family played on a registered feed at 04:26 UTC (85,910, from the
+   ladder's collection; `transfer/gen9-cohort-inputs-20261113`). The manifest records the seed, the count and what was
+   left out under `fresh_deals`, and is marked `independent_cohort`.
+4. **Preflight**: `python ops/smoke_gen7.py --run <run> --out <report> --deals 2`. Done locally on 13 Nov at 05:05
+   UTC (a synthetic drained source built from the capsule's bots, 60 fresh deals, seed 913, TensorFlow 2.21): the
+   three pairs one deal each through the runtime path, no failure, the Gen 7 decision checks passed for `9a-32`
+   (2,810 decisions, 345 tree consultations, none over budget), 66 to 92 seconds a deal in one process.
 5. **Open** the plan (`launch_enabled` true, `pending` empty, Max's words in `notes`) only after Max's go.
 6. **Collector and feed**: run as the Gen 8 collectors are (g7 operates them); feed `arena-gen9-azure4-feed`;
    registration on the dashboard as g7 says.

@@ -44,7 +44,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from bridge_harness.arena_pairs import pair_members
 from bridge_harness.bidding_env import deal_key
-from bridge_harness.corpus import load, save
+from bridge_harness.core import Board
+from bridge_harness.corpus import generate, load, save
 from bridge_harness.gen6 import Gen6Config
 from bridge_harness.gen7 import ENGINE, resolved
 from bridge_harness.loop_registry import sha, source_hash
@@ -329,7 +330,18 @@ def restore_missing_actors(old, plan, manifest_path):
     return dict(old, bots=bots), {key: bots[key] for key in sorted(missing)}
 
 
-def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude_families=None, restore_actors=None):
+def _family_list(path):
+    """A JSON list of canonical family hashes (.json or .json.gz)."""
+    import gzip
+    path = Path(path)
+    text = gzip.open(path, 'rt').read() if path.suffix == '.gz' else path.read_text()
+    values = json.loads(text)
+    if not isinstance(values, list) or any(not isinstance(v, str) or not re.fullmatch(r'[0-9a-f]{64}', v) for v in values):
+        raise ValueError('A family list is a JSON list of canonical family hashes')
+    return values
+
+
+def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude_families=None, restore_actors=None, fresh=None, played=None):
     root, source = Path(root).resolve(), Path(source).resolve()
     plan_path = Path(plan_path or PLAN)
     if root.exists():
@@ -369,6 +381,29 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
                 raise ValueError('Evaluation exclusions must be a JSON list of canonical family hashes')
             excluded = set(values)
             keep = [i for i in keep if deal_key(boards[i].hands, True) not in excluded]
+        fresh_note = None
+        if fresh is not None:
+            # Gen 9: fresh deals in place of the source's unplayed ones (the independent-cohort rule of
+            # ops/prepare_gen6_independent.py). The source run still supplies the bots and artifacts. Left out: the
+            # training families, every family of the source's corpus, and every family in `played`.
+            count, seed = fresh
+            blocked_played = set(_family_list(played)) if played else set()
+            blocked_source = {deal_key(b.hands, True) for b in boards}
+            boards, seen = [], set()
+            for b in generate(count + 1000, seed):
+                family = deal_key(b.hands, True)
+                if family in excluded or family in blocked_source or family in blocked_played or family in seen:
+                    continue
+                seen.add(family)
+                boards.append(Board('gen9-fresh-' + family, b.hands, None, b.dealer, b.vulnerability, auction=(), auction_source='gen9-fresh-unbid'))
+                if len(boards) == count:
+                    break
+            if len(boards) != count:
+                raise ValueError('Insufficient fresh deals')
+            keep = list(range(count))
+            fresh_note = dict(seed=seed, count=count, rule='fresh deals from bridge_harness.corpus.generate; the source supplies bots and artifacts only',
+                              excluded=dict(training_families=len(excluded), source_corpus=len(blocked_source), played=len(blocked_played)),
+                              played_list=None if not played else dict(file=Path(played).name, sha256=sha(Path(played))))
         if not keep:
             raise ValueError('No unplayed source deals remain')
         if shard is not None:                   # this machine's share: every n-th unplayed deal, starting at the k-th
@@ -431,7 +466,7 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
         for folder in ('episodes', 'receipts', 'failures'):
             (root / folder).mkdir()
         save([boards[i] for i in keep], root / 'corpus.jsonl')
-        atomic_json(root / 'source-indices.json', keep)
+        atomic_json(root / 'source-indices.json', [] if fresh_note else keep)       # fresh deals have no source index
         labels = dict(old.get('labels', {}), **plan.get('labels', {}))
         if restore_actors:
             catalog_labels = json.loads(Path(restore_actors).read_text()).get('labels', {})
@@ -488,6 +523,9 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
                 sha256=sha(exclusion_path), families=len(excluded), reason='Exclude released-policy training families from fresh comparisons')
         if shard is not None:
             m['shard'] = dict(index=k, of=n)
+        if fresh_note is not None:
+            m['fresh_deals'] = fresh_note
+            m['independent_cohort'] = True
         m['identity'] = digest(m)
         atomic_json(root / 'manifest.json', m)
         atomic_json(root / 'state.json', dict(manifest_identity=m['identity'], completed=0, target=len(keep), by_pair={}, root_games=0, tables=0, epoch=time.time()))
@@ -505,7 +543,13 @@ if __name__ == '__main__':
     p.add_argument('--actor-source', type=Path, help='Verified direct predecessor supplying actors pruned by self-play; deals come only from --source')
     p.add_argument('--exclude-families', type=Path, help='JSON family hashes to exclude from evaluation, preserved with their hash')
     p.add_argument('--restore-actors', type=Path, help='Pinned manifest plus artifacts for missing requested actors only; imports no deals and never overrides a retained actor')
+    p.add_argument('--fresh', type=int, help='Gen 9: this many fresh deals in place of the source\'s unplayed ones (the source supplies bots and artifacts)')
+    p.add_argument('--fresh-seed', type=int, help='the seed of the fresh deals (required with --fresh)')
+    p.add_argument('--played', type=Path, help='with --fresh: JSON (or .json.gz) list of the families already played on registered feeds, left out')
     a = p.parse_args()
-    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families, a.restore_actors)
+    if a.fresh is not None and a.fresh_seed is None:
+        p.error('--fresh needs --fresh-seed')
+    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families, a.restore_actors,
+                (a.fresh, a.fresh_seed) if a.fresh is not None else None, a.played)
     print(json.dumps(dict(identity=m['identity'], target=m['target'], shard=m.get('shard'), allocation=m['pair_weights'], policy=m['gen7_alpha'],
                           gen7={k: v['gen7'] for k, v in m['bots'].items() if v.get('engine') == ENGINE})))
