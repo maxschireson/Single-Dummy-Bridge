@@ -1,0 +1,35 @@
+2026-11-13T01:28:54Z start; source 40adc36
+/dev/root       123G   28G   96G  23% /
+2026-11-13T01:30:58Z fetched 60753 episodes
+2026-11-13T01:33:44Z built s00: {"episodes": 3797, "deals": 3790, "unique_families": 3730, "examples": 1563172, "train": 1243582, "validation": 161439, "test": 158151}
+2026-11-13T01:36:35Z built s01: {"episodes": 3797, "deals": 3788, "unique_families": 3714, "examples": 1547978, "train": 1224382, "validation": 167929, "test": 155667}
+2026-11-13T01:39:28Z built s02: {"episodes": 3797, "deals": 3789, "unique_families": 3738, "examples": 1562882, "train": 1249228, "validation": 162844, "test": 150810}
+2026-11-13T01:42:13Z built s03: {"episodes": 3797, "deals": 3789, "unique_families": 3737, "examples": 1576033, "train": 1257879, "validation": 149013, "test": 169141}
+2026-11-13T01:44:50Z built s04: {"episodes": 3797, "deals": 3796, "unique_families": 3742, "examples": 1527237, "train": 1216554, "validation": 145595, "test": 165088}
+2026-11-13T01:47:27Z built s05: {"episodes": 3797, "deals": 3787, "unique_families": 3718, "examples": 1564122, "train": 1238458, "validation": 165088, "test": 160576}
+2026-11-13T01:50:15Z built s06: {"episodes": 3797, "deals": 3788, "unique_families": 3734, "examples": 1544482, "train": 1259162, "validation": 139888, "test": 145432}
+2026-11-13T01:53:13Z built s07: {"episodes": 3797, "deals": 3789, "unique_families": 3743, "examples": 1556824, "train": 1255010, "validation": 147742, "test": 154072}
+2026-11-13T01:56:12Z built s08: {"episodes": 3797, "deals": 3791, "unique_families": 3742, "examples": 1555917, "train": 1259325, "validation": 137118, "test": 159474}
+2026-11-13T01:59:08Z built s09: {"episodes": 3797, "deals": 3791, "unique_families": 3739, "examples": 1535349, "train": 1251316, "validation": 143172, "test": 140861}
+2026-11-13T02:01:50Z built s10: {"episodes": 3797, "deals": 3788, "unique_families": 3746, "examples": 1565728, "train": 1241141, "validation": 153443, "test": 171144}
+2026-11-13T02:04:28Z built s11: {"episodes": 3797, "deals": 3783, "unique_families": 3733, "examples": 1583765, "train": 1284785, "validation": 136293, "test": 162687}
+2026-11-13T02:07:14Z built s12: {"episodes": 3797, "deals": 3791, "unique_families": 3739, "examples": 1558912, "train": 1252999, "validation": 144940, "test": 160973}
+2026-11-13T02:10:07Z built s13: {"episodes": 3797, "deals": 3791, "unique_families": 3736, "examples": 1579424, "train": 1256840, "validation": 165239, "test": 157345}
+2026-11-13T02:10:43Z start; source bc85241
+/dev/root       123G   53G   71G  44% /
+2026-11-13T02:10:58Z fetched 66913 episodes
+2026-11-13T02:10:58Z resume: keeping the parts in /home/bridgebots/work/plan/rnet2w/shards
+2026-11-13T02:11:04Z resume: 6160 newly fetched episodes as part sx
+2026-11-13T02:13:50Z built s14: {"episodes": 3797, "deals": 3787, "unique_families": 3734, "examples": 1553763, "train": 1258529, "validation": 145839, "test": 149395}
+2026-11-13T02:16:30Z built s15: {"episodes": 3798, "deals": 3793, "unique_families": 3727, "examples": 1542296, "train": 1231919, "validation": 159366, "test": 151011}
+2026-11-13T02:18:46Z start; source 7caad4f
+/dev/root       123G   57G   67G  46% /
+2026-11-13T02:19:02Z fetched 75564 episodes
+2026-11-13T02:19:02Z resume: keeping the parts in /home/bridgebots/work/plan/rnet2w/shards
+2026-11-13T02:19:10Z resume: 8651 newly fetched episodes as part sx021902
+2026-11-13T02:23:47Z built sx: {"episodes": 6160, "deals": 6150, "unique_families": 5976, "examples": 3075489, "train": 2487948, "validation": 282323, "test": 305218}
+2026-11-13T02:29:28Z built sx021902: {"episodes": 8651, "deals": 8628, "unique_families": 8627, "examples": 2387726, "train": 1896369, "validation": 237694, "test": 253663}
+2026-11-13T02:32:22Z set: {"parts": 18, "deals": 75409, "bots": ["1", "2", "3", "4b", "5-32", "5R192", "5R32", "5RZ192", "5RZ32", "6-256", "6-32", "71s-32", "7s-32", "8c-32", "8s-32", "ben", "ben32", "ben64"], "unique_families": 61003, "examples": 30381099, "deals_by_hash_split": [60487, 7322, 7600]}
+2026-11-13T02:32:55Z freshB: {"deals_in": 247, "deals_kept": 144, "dropped_as_seen": 103, "examples": 123142}
+2026-11-13T02:32:55Z warm start from /home/bridgebots/work/plan/nets/w768e5_epoch5.npz (lr 5e-4, 3 epochs)
+2026-11-13T03:51:24Z warm done: {"done": "/home/bridgebots/work/plan/rnet2w/warm", "selected_epoch": 3, "validation": {"n": 123142, "searched": 100592, "nll": 0.524, "uniform_nll": 1.2695, "tie_nll": 0.7885, "agree": 0.7838, "in_best": 0.923, "regret": 0.0221, "regret_gap_head": 0.0194, "regret_random": 0.2075, "regret_lowest": 0.2281}, "parity": 6.67572021484375e-06, "auction_use": {"real": {"nll": 0.524, "agree": 0.7838, "regr
