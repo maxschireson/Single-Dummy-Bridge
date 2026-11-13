@@ -1,4 +1,4 @@
-# Gen 9: state at Fri 13 Nov 10:55 UTC (hand-over note)
+# Gen 9: state at Fri 13 Nov 12:00 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -123,9 +123,14 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
   restricted 117 later decisions and changed the played card 11 times on 8 boards; -0.0025 +- 0.0025 IMPs a board (one
   board lost 1 IMP, 399 flat); the 11 forks: none better, one worse; +1.9% time a board. The azure4 job `g9-x9-cond` is
   withdrawn (09:58). The sandbox restarted at about 10:23 and killed the run at 294 boards; it resumed from there.
-- **Pilot 2** (running since 10:49, about 1.4 hours): the same deals with `9x3p-ft1` (`prefer` 0.25: the highest
-  certified floor wins among the blend's candidates within 0.25 tricks), `configs/x9-bots-prefer.json`,
-  `/home/claude/x9match/prefer400`. Restart with the same command if the sandbox restarts (it resumes).
+- **Pilot 2** (`9x3p-ft1`, `prefer` 0.25, same deals, done 11:53): 13 played cards changed on 12 boards, -0.0075 +- 0.0056
+  IMPs a board, +0.2% time. Both pilots: of 24 changed cards none gained and 3 gave up overtricks (4S made at both
+  tables). G9-A11 submitted to will (12:00) with the recommendation: `x9.conditional` off by default, no box time.
+- **E9-19, cheap version** (running in the sandbox since 11:55, `/home/claude/e919`): every one of the cohort's first
+  715 boards had the same auction at both tables (all four bots bid with house-gen6), so the cohort has nothing to
+  re-score; the same holds for the Gen 8 house pairs. Contracts differ only where an older generation (`1`, `5RZ32`) or a
+  foreign system (`8c-32`, BEN) bids. Running on the Gen 8 feeds `arena-gen8-azure1-feed` and `arena-gen8-x3-azure1-feed`
+  (439 such boards).
 - **G9-B8 card intake, first version** (submitted 09:55, bill to review): `scripts/gen9_card_intake.py`; Max's two
   cards read into `configs/cards/intake/` with variants by seat and vulnerability, recorded agreements and the notes'
   style statements; results `reports/gen9-card-intake-2026-11-13`. The check sheets wait for Max's confirmation.
