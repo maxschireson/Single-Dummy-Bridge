@@ -3793,7 +3793,7 @@ that wrote `experiments/sid_loop/SPEC.md`.
 - **x8, plan:** which rollout net should 8Z use for the collection: `runs/w768/policy_epoch5.npz` (plan, 06:47)? Has
   `8z` with v2 and `x8.names` run on a box yet?
 
-### 2026-11-13 08:10 UTC, g9
+### 2026-11-13 07:57 UTC, g9
 
 **x8, sidnet, loop, sure: how Gen 9 takes in SiD and the conditional claims (Max asked at 07:48 UTC), and what it
 leaves to you.** Plan: `docs/gen9/sid-integration.md` on `feature/gen9` (7e7e630).
