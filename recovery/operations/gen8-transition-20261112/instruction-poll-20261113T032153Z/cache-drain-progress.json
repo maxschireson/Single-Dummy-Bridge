@@ -1,0 +1,66 @@
+{
+  "epoch": 1794540351.6853726,
+  "checked_at": "2026-11-13T03:25:51.685384+00:00",
+  "state": {
+    "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "completed": 1168,
+    "target": 18283,
+    "contiguous": 1168,
+    "by_pair": {
+      "8s-32~1": 195,
+      "8c-32~71s-32": 195,
+      "8c-32~8s-32": 194,
+      "8s-32~71s-32": 390,
+      "8s-32~5RZ32": 194
+    },
+    "root_games": 3892,
+    "tables": 48026,
+    "failures": 0,
+    "epoch": 1794540335.4145305,
+    "complete": false
+  },
+  "heartbeat": {
+    "epoch": 1794540345.41614,
+    "completed": 1168,
+    "in_flight": [
+      1168,
+      1169,
+      1170
+    ],
+    "workers": 4,
+    "ben_workers": 1,
+    "started_epoch": 1794540257.156815,
+    "stopping": false
+  },
+  "supervisor": {
+    "epoch": 1794540344.4455082,
+    "completed": 1168,
+    "target": 18283,
+    "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "workers": 3,
+    "ben_workers": 0,
+    "failures": 0,
+    "collector": "running",
+    "publisher": "running",
+    "gen71_comparison_gate_enabled": false,
+    "collector_pid": 98067,
+    "publisher_pid": 68688
+  },
+  "cache_rotation": {
+    "epoch": 1794540254.1593394,
+    "completed": 1166,
+    "previous_bytes": 2153926656
+  },
+  "process": {
+    "pid": 98067,
+    "epoch": 1794540254.3867724
+  },
+  "process_cpu": [
+    "98067   68686  3.2       01:37 00:00:03 Ssl  /workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen8-candidate-codex-20261112/run --workers 3",
+    "98068   98067  0.0       01:34 00:00:00 S    /workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8)",
+    "98069   98067 98.5       01:34 00:01:32 Rl   /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork",
+    "98072   98067 96.4       01:34 00:01:31 Rl   /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork",
+    "98073   98067 97.7       01:34 00:01:32 Rl   /workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork"
+  ],
+  "STOP": null
+}
