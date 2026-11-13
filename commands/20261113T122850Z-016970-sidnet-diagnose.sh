@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+W=~/work/sidnet; ls -la --time-style=+%H:%M:%S $W/done; echo ---; grep -v "built s" $W/logs/timeline.log | cut -c1-200; echo ---; journalctl -u sidnet-run --no-pager -n 12 2>/dev/null | cut -c1-200; echo ---; journalctl -u sidnet-run2 --no-pager -n 6 2>/dev/null | cut -c1-200; echo ---; tail -2 $W/logs/labelB.log | cut -c1-200; ls $W/labelsB | grep -c "^[0-9a-f]*\.npz$"; cat $W/labelsB/manifest.json | head -20
