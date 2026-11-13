@@ -24,10 +24,22 @@ rows keyed by table and action). The set then has `sid` [rows, 72] int8: label k
 label, which is every entry of a row no sidecar covers. --label-floors also stores `sid_floor` and `sid_ceil`
 [rows, 8, 3] float16 (NaN = none), for scoring a student. A sidecar row the builder does not keep is an error.
 
+--rollout-gap also gives a gap to the decisions an 8X bot made by rollouts alone (the records of
+scripts/x8_match.py --episodes; their `x8` note of mode 'rollout' with two or more candidates). Such a decision has no
+search estimates. Its gap is each candidate's deficit to the best candidate in the deciding side's tricks, as the
+rollouts measured it: paired, layout by layout, where the record keeps the per-layout results (capture level 2), else
+the difference of the candidates' means. Every card of a candidate's run of touching cards gets the candidate's
+value. The row's other legal cards were not rolled out: their gap is -1, which a trainer must leave out of the gap
+loss, and has_gap is 1.
+
+--alias OLD=NEW[,OLD=NEW...] renames bots before anything else reads their names (two ids of one bot, as a pair of
+distinct ids for self-play, become one name).
+
 DIR holds *.json.gz episode files (any names). Deals are split by family hash:
 test when int(family[:8], 16) % 10 == 0, validation when it is 5, otherwise train.
 """
 import argparse
+import base64
 import gzip
 import json
 from multiprocessing import Pool
@@ -58,10 +70,14 @@ LABELS = ()
 FLOORS = False
 SID_KINDS = ('guar', 'single', 'cert')
 SID_SLOTS = 8
+ROLLOUT_GAP = False
+ALIAS = {}
 
 
-def start(scorer_path, bots=None, policy_only=False, labels=(), floors=False):
-    global SHOWN, KEEP, POLICY_ONLY, LABELS, FLOORS
+def start(scorer_path, bots=None, policy_only=False, labels=(), floors=False, rollout_gap=False, alias=None):
+    global SHOWN, KEEP, POLICY_ONLY, LABELS, FLOORS, ROLLOUT_GAP, ALIAS
+    ROLLOUT_GAP = rollout_gap
+    ALIAS = dict(alias or {})
     SHOWN = Shown(FitScorer(scorer_path), *make_bank())
     KEEP = set(bots) if bots else None
     POLICY_ONLY = policy_only
@@ -83,11 +99,47 @@ def sidecar(path):
     return None
 
 
+def rollout_gaps(note, declaring, target):
+    """{card: deficit to the best candidate, in the deciding side's tricks} for an 8X decision made by rollouts alone,
+    from its `x8` note; None for any other decision. `declaring`: the deciding side is the declaring side. `target`: the
+    tricks the contract needs (a rollout row with a guaranteed contract counts as at least that, as the bot counted it).
+
+    The reference is the surviving candidate with the best mean. With the per-layout results (`cap`: [layout, candidate]
+    declarer's tricks, -1 where the candidate was dropped before the layout) a deficit is the weighted mean, over the
+    layouts both were played on, of the reference's tricks minus the candidate's; without them it is the difference of
+    the two means, each over its own layouts. The surviving candidate with the least deficit is the zero."""
+    if not note or note.get('mode') != 'rollout' or len(note.get('cards') or ()) < 2:
+        return None
+    roll = note.get('roll') or ()
+    if len(roll) != len(note['cards']) or any(r is None for r in roll):
+        return None
+    roll = np.array(roll, np.float64)
+    alive = [int(j) for j in note.get('alive') or range(len(roll))]
+    ref = max(alive, key=lambda j: (roll[j], -j))
+    deficit = roll[ref] - roll
+    cap = note.get('cap')
+    if cap:
+        k, m = cap['shape']
+        t = np.frombuffer(base64.b64decode(cap['t']), np.int8).reshape(k, m).astype(np.int64)
+        f = np.frombuffer(base64.b64decode(cap['f']), np.uint8).reshape(k, m).astype(bool)
+        w = np.frombuffer(base64.b64decode(cap['w']), np.float32).astype(np.float64)
+        played = t >= 0
+        final = np.where(f & played, np.maximum(t, target), t)
+        worth = final if declaring else -final
+        for j in range(m):
+            rows = played[:, j] & played[:, ref]
+            if rows.any():
+                deficit[j] = w[rows] @ (worth[rows, ref] - worth[rows, j]) / w[rows].sum()
+    deficit = deficit - min(deficit[j] for j in alive)
+    return {card(x): float(min(max(deficit[j], 0.), 8.)) for j, run in enumerate(note['runs']) for x in run}
+
+
 def examples(path):
     with gzip.open(path, 'rt') as f:
         d = json.load(f)
-    who = {'candidate': d['candidate'], 'opponent': d['opponent']}
-    side = {'candidate': d['opponent'], 'opponent': d['candidate']}         # the other side's bot
+    first, second = ALIAS.get(d['candidate'], d['candidate']), ALIAS.get(d['opponent'], d['opponent'])
+    who = {'candidate': first, 'opponent': second}
+    side = {'candidate': second, 'opponent': first}                         # the other side's bot
     rows, names = [], []
     side_rows = sidecar(path) if LABELS else None
     sid, sid_floor, sid_ceil, used = [], [], [], 0
@@ -103,13 +155,23 @@ def examples(path):
                 c = card(a['card'])
                 est = a.get('estimates')
                 searched = bool(a.get('gen6') and est and len(est) > 1)
-                if (searched or (POLICY_ONLY and len(game.observation().legal) > 1)) and not any(a.get(k) for k in SKIP) \
+                rolled = None
+                if ROLLOUT_GAP and not searched and a.get('x8'):
+                    seat = game.observation().controller
+                    rolled = rollout_gaps(a['x8'], seat % 2 == declarer % 2, board.contract.level + 6)
+                if (searched or rolled is not None or (POLICY_ONLY and len(game.observation().legal) > 1)) and not any(a.get(k) for k in SKIP) \
                         and (KEEP is None or who.get(a['player'], '') in KEEP):
                     o = game.observation()
                     x = encode(o, SHOWN)
                     gap = np.zeros(52, np.float16)
                     for k, v in (est.items() if searched else ()):
                         gap[card(k)] = min(v['gap_to_best'], 8.)
+                    if rolled is not None:
+                        if c not in rolled or not set(rolled) <= set(o.legal):
+                            raise ValueError(f'{path.name}: the rollout candidates of {(ei, ti, ai)} do not fit the legal cards')
+                        gap[list(o.legal)] = -1.
+                        for k, v in rolled.items():
+                            gap[k] = v
                     owner = np.full(52, -1, np.int8)
                     for seat, hand in enumerate(game.hands):
                         if seat != o.controller and not (seat == board.contract.dummy and o.history):
@@ -135,7 +197,7 @@ def examples(path):
                     rows.append((x['state'], x['order'], x['legal'], x['ctx'], x['auction'], x['shown'].astype(np.float16), gap, owner, (
                         c, table['declarer_tricks'] if mine else 13 - table['declarer_tricks'], kind, a['ply'],
                         0 if bot == '6-32' else 1 if bot == '6-256' else 2, SOURCES.get((a.get('gen6') or {}).get('source'), 4),
-                        role(o), min(int(a.get('samples') or 0), 30000), -1, -1, int(searched))))
+                        role(o), min(int(a.get('samples') or 0), 30000), -1, -1, int(searched or rolled is not None))))
                 game.play(c)
     if side_rows and KEEP is None and used != len(side_rows):
         raise ValueError(f'{path.name}: {len(side_rows) - used} label rows match no decision the builder keeps')
@@ -161,13 +223,16 @@ def main():
     p.add_argument('--policy-only', action='store_true', help='also keep decisions without search estimates (has_gap 0)')
     p.add_argument('--labels', type=Path, nargs='*', default=[], help='directories of scripts/sid_label.py sidecar files to join as `sid`')
     p.add_argument('--label-floors', action='store_true', help='with --labels: also store sid_floor and sid_ceil')
+    p.add_argument('--rollout-gap', action='store_true', help="8X rollout decisions get the rollouts' gap for their candidates (-1 for the other legal cards)")
+    p.add_argument('--alias', default='', help='OLD=NEW[,OLD=NEW...]: bots renamed before anything else reads their names')
     a = p.parse_args()
+    alias = dict(x.split('=', 1) for x in a.alias.split(',') if x)
     files = sorted(a.episodes.glob('*.json.gz'))
     if a.limit:
         files = files[:a.limit]
     families, parts, deal, who = [], [], [], []
     with Pool(a.workers, initializer=start, initargs=(a.scorer, [b for b in a.bots.split(',') if b], a.policy_only, a.labels,
-                                                      a.label_floors)) as pool:
+                                                      a.label_floors, a.rollout_gap, alias)) as pool:
         for i, result in enumerate(pool.imap(examples, files, chunksize=8)):
             if result is None:
                 continue
@@ -200,6 +265,8 @@ def main():
                    train=int(by[0]), validation=int(by[1]), test=int(by[2]))
     if a.labels:
         summary['labelled'] = int((out['sid'] >= 0).any(axis=1).sum())
+    if a.rollout_gap:
+        summary['rows_with_unrated_cards'] = int((out['gap'] < 0).any(axis=1).sum())
     print(json.dumps(summary))
 
 
