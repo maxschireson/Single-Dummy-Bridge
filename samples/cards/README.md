@@ -11,5 +11,5 @@ and do not commit any other personal material from these cards.
 | `wbf-sample-a-redacted.pdf` | WBF card for a world championship teams event, 2 pages, with style statements (preempts "Sound vul", "1st NV vs V 'joke'", 4-level "Aggressive NV", "NV 4th seat overcall can be light", "MAY PASS BAL. 12 HCP VUL", "RESPOND VERY LIGHT") | PDF with a text layer; WBF layout |
 | `wbf-sample-a-p1.png`, `-p2.png` | the same, rendered | photo |
 
-The partnership's system notes (about 18,500 words) are held back until Max says whether they may go in this
-public repository.
+The style statements from the partnership's system notes are in `../notes/style-a.md` (only those, at Max's choice);
+the rest of the notes stays private.
