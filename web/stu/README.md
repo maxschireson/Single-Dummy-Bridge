@@ -2,8 +2,8 @@
 
 Live page: <https://maxschireson.github.io/Single-Dummy-Bridge/stu/> (deployed from this folder to `gh-pages:stu/`).
 
-**Status: work in progress (13 November 2026).** Round 0 is collecting; its gate has interim boards only and the
-ladder has just started.
+**Status: work in progress (13 November 2026).** Round 0 is collecting with no board count waited for; the ladder is on
+its first pass (200 deals a rung, then 500); round 1's net is training on azure5.
 
 Stu is the rollout loop's bot (`training/rollout-loop-20261113/` on `research/rollout-loop-20261113`): each round's net
 is trained on the previous Stu's games, and the next Stu plays with that net inside its rollouts. The arena page compares
@@ -28,8 +28,12 @@ into the numbers.
 - `registry.json` (this folder): the rounds (net, the round's cut), the nets (label, `metrics.json` location, and
   `compare`: the keys under `compared` that hold earlier nets scored on this net's rows), the rungs in display order, the
   opponent, the control's cells, the boxes and their branches, cautions.
-- The loop's `runs.json` says what each run is (role, round, net, rung, whether it is still in a job file). A run it
-  does not list is shown under other matches; preflights are left out.
+- The loop's `runs.json` says what each run is (role, round, net, rung, whether it is still in a job file, `passes`),
+  and per round any collection cut (`rounds`). A run it does not list is shown under other matches; preflights are left
+  out. A job that ends at the end of a pass short of the planned deals shows as "pass done".
+- A net can name `before` files: the same held-out rows scored by an earlier net, for an earlier net that `compared`
+  misreads (round 1: v2 reads Stu as an unknown bot under `compared`; `train-r1/metrics_before.json` tells it Stu is
+  `8s-32`). `focus_bot` (round 1: `stu0`) adds that bot's rows from `by_bot` beside all rows.
 - The boxes' transfer branches (`transfer/rollout-loop-<box>-20261113`): `runs.log`, and per run `results.jsonl`,
   `<run>.log`, `EPISODES.txt`, published about every ten minutes.
 - `data.json`: a snapshot reduced to a few numbers a board, written by `build.cjs` with the same code the page uses.

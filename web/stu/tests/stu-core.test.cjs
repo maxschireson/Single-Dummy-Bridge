@@ -136,10 +136,14 @@ test('buildModel: round 0, the ladder and the control from the fixtures', () => 
   for (const [n, pair] of [['r7', 'r7-v41~n-v41'], ['r7x_v4', 'r7x-v4~n-v41'], ['c_r7_n4', 'r7-v41~n-v4'], ['c_r7x4_n4', 'r7x-v4~n-v4'], ['c_n41_n4', 'n-v41~n-v4']])
     add('sandbox', n, FX['sb_' + n], 'complete', 0, { pair });
   const v2 = REG.nets.find(n => n.key === 'v2');
-  const M = C.buildModel(REG, runs, { [`${v2.metrics.branch}:${v2.metrics.path}`]: C.netMetrics(FX.metrics_v2, v2.compare) });
+  const metrics = { [`${v2.metrics.branch}:${v2.metrics.path}`]: C.netMetrics(FX.metrics_v2, v2.compare) };
+  const M = C.buildModel(REG, runs, metrics, { rounds: { 0: { collection_cut_boards: null, note: 'no count' } } });
   const r0 = M.rounds[0];
   assert.equal(r0.collection.boards, 200 + 150); assert.equal(r0.collection.rate, 1074); assert.equal(r0.collection.failed, 1);
-  close(r0.collection.eta_hours, (6000 - 350) / 1074);
+  assert.equal(r0.collection.cut, null); assert.equal(r0.collection.eta_hours, null); assert.equal(r0.note, 'no count');
+  const withCut = C.buildModel({ ...REG, rounds: [{ ...REG.rounds[0], cut: 6000 }] }, runs, metrics).rounds[0];
+  close(withCut.collection.eta_hours, (6000 - 350) / 1074);
+  assert.equal(C.buildModel(REG, runs, metrics, { rounds: { 0: { collection_cut_boards: 4000 } } }).rounds[0].collection.cut, 4000);
   assert.ok(r0.collection.mix.rollout > 0);
   assert.equal(r0.gate.stats.n, new Set([...FX.g0_v2_rows, ...FX.g0_stu0_rows].map(r => r.family)).size);
   assert.equal(r0.gate.superseded_boards, r0.gate.stats.n, 'every gate board so far is from a superseded run');
@@ -168,4 +172,29 @@ test('the registry: unique keys, one opponent, nets and rungs the page can colou
   assert.ok(REG.nets.length <= 3, 'the page colours three nets (validated palette); fold older nets out or extend the palette check');
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.ok(html.includes("src=\"stu-core.js"));
+});
+
+test('passes: a job that ends short of the planned deals is a pass, not complete', () => {
+  const e = entries.get('l0-stu0');
+  assert.deepEqual(e.deals, 500);
+  const done = C.planRun({ status: 'complete', deals: 200 }, { ...e, passes: [200, 500] });
+  assert.deepEqual([done.status, done.deals, done.pass_deals], ['pass done', 500, 200]);
+  assert.equal(C.planRun({ status: 'complete', deals: 500 }, e).status, 'complete');
+  assert.equal(C.planRun({ status: 'running', deals: 200 }, e).status, 'running');
+  assert.equal(C.planRun({ status: 'complete', deals: 300 }, null).status, 'complete');
+  const mk = (st, n) => ({ key: 'k' + n, started: n, status: st, cls: { superseded: false }, red: C.reduceRun(FX.g0_stu0_rows.slice(0, 5)) });
+  assert.equal(C.cellOf([mk('pass done', 1)], { deals: 500 }).status, 'pass done');
+});
+
+test('round 1 net: earlier nets from a before-file, and the round\'s own bot\'s rows', () => {
+  const stu1 = REG.nets.find(n => n.key === 'stu1');
+  assert.ok(stu1.before?.v2 && stu1.focus_bot === 'stu0');
+  // a stand-in for train-r1/metrics.json: v2's file with a stu0 row added, and a before-file scored by v2
+  const m = JSON.parse(JSON.stringify(FX.metrics_v2));
+  m.validation.by_bot = { ...(m.validation.by_bot || {}), stu0: { n: 9000, nll: 0.85, agree: 0.66, regret: 0.03 } };
+  const before = { validation: { all: { n: m.validation.all.n, nll: 0.6 }, by_bot: { stu0: { n: 9000, nll: 1.2, agree: 0.5, regret: 0.05 } } } };
+  const out = C.netMetrics(m, stu1.compare, { v2: before }, 'stu0');
+  assert.equal(out.focus.nll, 0.85); assert.equal(out.focus_bot, 'stu0');
+  assert.equal(out.same_rows.v2.before, true); assert.equal(out.same_rows.v2.focus.nll, 1.2); assert.equal(out.same_rows.v2.all.nll, 0.6);
+  assert.equal(C.netMetrics(m, stu1.compare, {}, 'stu0').same_rows.v2, undefined, 'v2 is not read from compared for round 1');
 });

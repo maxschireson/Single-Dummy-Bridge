@@ -39,7 +39,8 @@ function main() {
   const a = args(process.argv);
   const registry = JSON.parse(fs.readFileSync(a.registry, 'utf8'));
   const full = [...new Set(registry.boxes.map(b => b.branch))];          // rows: every blob is read
-  const sparse = [...new Set([registry.runs_list?.branch, ...registry.boxes.map(b => b.status), ...registry.nets.map(n => n.metrics?.branch)]
+  const sparse = [...new Set([registry.runs_list?.branch, ...registry.boxes.map(b => b.status), ...registry.nets.map(n => n.metrics?.branch),
+    ...registry.nets.flatMap(n => Object.values(n.before || {}).map(b => b.branch))]
     .filter(b => b && !full.includes(b)))];                               // a file or two each: blobs fetched on demand
   if (a.fetch) {
     for (const br of full) tryGit(a.repo, 'fetch', '-q', '--depth', '1', 'origin', `+refs/heads/${br}:${ref(br)}`);
@@ -86,9 +87,10 @@ function main() {
       const summary = files.has(dir + 'summary.json') ? JSON.parse(show(b.branch, dir + 'summary.json')) : null;
       const episodes = files.has(dir + 'EPISODES.txt') ? parseInt(show(b.branch, dir + 'EPISODES.txt'), 10) || null : null;
       const progress = files.has(r.name + '.log') ? core.parseMatchLog(show(b.branch, r.name + '.log')) : null;
+      const plan = core.planRun(r, entry);
       runs.push({ key: `${b.box}/${r.name}`, branch: b.branch, box: b.box, name: r.name, pair: r.pair, seed: r.seed,
-        first: r.first, deals: r.deals, options: r.options || '', sources: r.sources || [], started: r.started ?? null,
-        last_event: r.last_event ?? null, status: r.status, exit: r.exit ?? null, cls, red, bad_lines: bad, progress, episodes,
+        first: r.first, deals: plan.deals, pass_deals: plan.pass_deals, passes: plan.passes, options: r.options || '', sources: r.sources || [],
+        started: r.started ?? null, last_event: r.last_event ?? null, status: plan.status, exit: r.exit ?? null, cls, red, bad_lines: bad, progress, episodes,
         queue_order: entry?.queue_order ?? null, note: entry?.note || null,
         summary: summary ? { boards_per_hour: summary.boards_per_hour ?? null, cpu_per_board: summary.cpu_per_board ?? null, failures: summary.failures ?? null } : null });
     }
@@ -103,12 +105,14 @@ function main() {
     const m = n.metrics;
     if (!m) continue;
     const text = show(m.branch, m.path);
-    if (text) try { metrics[`${m.branch}:${m.path}`] = core.netMetrics(JSON.parse(text), n.compare); } catch (e) { console.warn(`${n.key}: ${e.message}`); }
+    const before = {};
+    for (const [k, f] of Object.entries(n.before || {})) { const t = show(f.branch, f.path); if (t) try { before[k] = JSON.parse(t); } catch (e) { console.warn(`${n.key} before ${k}: ${e.message}`); } }
+    if (text) try { metrics[`${m.branch}:${m.path}`] = core.netMetrics(JSON.parse(text), n.compare, before, n.focus_bot || null); } catch (e) { console.warn(`${n.key}: ${e.message}`); }
   }
   const snapshot = { schema: 'stu-snapshot-v2', built_epoch: Date.now() / 1000, registry_updated: registry.updated || null,
     heads, runs_list: runsList, runs, health, metrics };
   fs.writeFileSync(a.out, JSON.stringify(snapshot));
-  const model = core.buildModel(registry, runs, metrics);
+  const model = core.buildModel(registry, runs, metrics, runsList);
   for (const r of model.rounds) {
     const g = r.gate?.stats;
     console.log(`${r.label}: collection ${r.collection.boards} boards (cut ${r.collection.cut}, ${r.collection.rate ?? '-'} an hour); gate ${g?.n ? g.n + ' boards, ' + g.mean.toFixed(3) + ' +- ' + g.se.toFixed(3) : 'none'}`);
