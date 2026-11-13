@@ -1,6 +1,6 @@
 {
  "schema": "arena-ladder-v1",
- "computed_utc": "2026-11-13T05:05Z",
+ "computed_utc": "2026-11-13T05:41Z",
  "anchor": "ben64",
  "condition": "native",
  "unit": "IMPs a board",
@@ -2170,9 +2170,76 @@
     "boards": 669,
     "source": "Gen 9 arrival run (transfer/gen9-d6-arrival-azure4-20261112): 9a-32 against 8p-32, direct native boards, a deal family once (scripts/arena_ladder.py arrival_estimate on its control directory)",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112",
-    "note": "Measured against 8p-32 in the arrival run, both on policy v4, and placed on 8s-32 (v4.1): 8s-32 plays as 8p-32-v41 against house bots, and the v4 to v4.1 swap inside 8p-32 measured -0.036 +- 0.080 (box/coordination BOARD.md). Not a registered feed."
+    "note": "Measured against 8p-32 in the arrival run, both on policy v4, and placed on 8s-32 (v4.1): 8s-32 plays as 8p-32-v41 against house bots, and the v4 to v4.1 swap inside 8p-32 measured -0.036 +- 0.080 (box/coordination BOARD.md). Not a registered feed.",
+    "edge": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The registered feeds hold no guest that declares carding, so the ladder places it by the head-to-head figure.",
+    "edge_url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112"
    },
-   "features": [],
+   "features": [
+    {
+     "feature": "player model",
+     "keys": [],
+     "parent_value": null,
+     "value": "each partnership read through its model: a declared carding card read with learned honesty, the auction read by its declared card or by replaying the house bidder, experience",
+     "impacts": [
+      {
+       "id": "player-model",
+       "features": [
+        "player model"
+       ],
+       "compares": "9a-32 against 8p-32, each playing guest-a, a guest that declares upside-down carding and follows it four times in five",
+       "mean": 0.479,
+       "se": 0.131,
+       "also_differs": "9a-32 also reads house auctions by replaying the house bidder; against house bots the two are meant to play alike (head to head +0.19 +- 0.13, 669 boards)",
+       "source": "Gen 9 arrival run (G9-D6), dave's report.md on transfer/gen9-arrival-20261112",
+       "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112",
+       "boards": 1200
+      }
+     ]
+    },
+    {
+     "feature": "tie-break rule",
+     "keys": [],
+     "parent_value": null,
+     "value": "none in the arrival run; exploration 1.0 (random among exactly equal-best cards) in the planned cohort",
+     "impacts": [
+      {
+       "id": "tie-break-own",
+       "features": [
+        "tie-break rule"
+       ],
+       "compares": "8r-32 (a random one of its exactly equal-best cards) against 8p-32 (net tie-break), 8p-32 reading it at full weight",
+       "mean": 0.014,
+       "se": 0.126,
+       "boards": 800,
+       "also_differs": "nothing else. Not the t-high figure: 7s-32's +0.449 against t-high is mostly Gen 7 against a Gen 6 bot that does not read the play (g9's correction, 13 Nov 04:24 UTC).",
+       "source": "E9-16 part 2 (box, seed 916; g9, 13 Nov 02:36 UTC)",
+       "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/experiments/E9-16.md"
+      }
+     ]
+    },
+    {
+     "feature": "card policy net version",
+     "keys": [],
+     "parent_value": null,
+     "value": "v4 in the arrival run (8s-32 has v4.1)",
+     "impacts": [
+      {
+       "id": "policy-v41-in-bot",
+       "features": [
+        "card policy net version"
+       ],
+       "compares": "7s-32 with policy v4.1 against with v4 (box, two boxes on different deals)",
+       "mean": -0.003,
+       "se": 0.047,
+       "boards": 3200,
+       "also_differs": "nothing else. Inside 8p-32, v4.1 against v4: -0.036 +- 0.080 (1,600). Inside 7s-32, v4 against v0: -0.017 +- 0.089 (1,000). Played alone the nets differ by whole IMPs (v4.1 over v4 +0.76 +- 0.07).",
+       "source": "box/coordination BOARD.md, p41's check, 12 Nov 15:10 UTC",
+       "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
+       "when": "changed"
+      }
+     ]
+    }
+   ],
    "variants": [],
    "candidate": true
   }

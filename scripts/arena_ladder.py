@@ -610,8 +610,12 @@ def fit_command(args):
                                ci95=[round(m - 1.96 * se, 4), round(m + 1.96 * se, 4)], prior=None, prior_share=None,
                                hollow=False, timing=None, point_label=c['label'],
                                estimate=dict(vs=vs, placed_on=par, mean=round(est['mean'], 4), se=round(est['se'], 4),
-                                             boards=est['boards'], source=c['source'], url=c.get('url'), note=c.get('note')),
-                               features=[], variants=[], candidate=True))
+                                             boards=est['boards'], source=c['source'], url=c.get('url'), note=c.get('note'),
+                                             edge=c.get('edge'), edge_url=c.get('edge_url')),
+                               features=[dict(feature=f['feature'], keys=[], parent_value=None, value=f.get('value'),
+                                              impacts=[i for i in impacts if i['id'] in f.get('impacts', [])])
+                                         for f in c.get('features', [])],
+                               variants=[], candidate=True))
 
     split = sorted(v for v, ok in merged.items() if not ok)
     doc = dict(

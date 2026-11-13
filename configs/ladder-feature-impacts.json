@@ -149,12 +149,13 @@
    "features": [
     "player model"
    ],
-   "compares": "a player model against none, facing a guest that declares its carding",
-   "mean": 0.48,
-   "se": 0.13,
-   "also_differs": "nil against house bots by design",
-   "source": "G9-D6 (Gen 9 arrival run), as listed in G9-D9's task log",
-   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md"
+   "compares": "9a-32 against 8p-32, each playing guest-a, a guest that declares upside-down carding and follows it four times in five",
+   "mean": 0.479,
+   "se": 0.131,
+   "also_differs": "9a-32 also reads house auctions by replaying the house bidder; against house bots the two are meant to play alike (head to head +0.19 +- 0.13, 669 boards)",
+   "source": "Gen 9 arrival run (G9-D6), dave's report.md on transfer/gen9-arrival-20261112",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112",
+   "boards": 1200
   },
   {
    "id": "late-self-simulation",
