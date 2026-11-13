@@ -70,7 +70,8 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'])              # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
-NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32'}
+BEN = {'ben64': 'ben64', 'ben': 'ben'}      # against BEN the net is told so (v2 knows both from BEN's own cards); no other match changes
+NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32', **BEN}
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
@@ -84,7 +85,7 @@ def main():
         b['label'] = ('Stu, round 0: 8Z with rollout net v2 as the rollout net (every simulated seat read as 8s-32); every '
                       "layout's result kept for every candidate; no audit search")
         b['rollout_policy'] = V2
-        b['x8']['names'] = {'self': '8s-32', '*': '8s-32'}
+        b['x8']['names'] = {'self': '8s-32', '*': '8s-32', **BEN}
         b['x8']['capture'] = {'level': 2, 'layouts': 128, 'forks': 8, 'audit': 'features', 'audit_search': False}
         b['x8']['claims']['opponents'] = sorted(set(b['x8']['claims']['opponents']) | set(FAMILY))
         b['x8']['mix']['read_declarer'] = sorted(set(b['x8']['mix']['read_declarer']) | set(FAMILY))
@@ -143,7 +144,7 @@ def main():
         return b
 
     bots['stu0-n'] = alone('rollout net v2 alone, told both sides are 8s-32: its first card at every trick, no search, no rollouts, no claims',
-                           V2, {'self': '8s-32', '*': '8s-32'})
+                           V2, {'self': '8s-32', '*': '8s-32', **BEN})
     bots['stu0v1-n'] = alone('rollout net v1 (ft) alone: its first card at every trick, no search, no rollouts, no claims', V1)
     # Round 1: round 0's bots with round 1's net in place of rollout net v2, and the names it was trained with.
     for old, new in zip(STU, STU1):

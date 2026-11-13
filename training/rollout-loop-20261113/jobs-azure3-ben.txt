@@ -1,0 +1,11 @@
+# Stu against BEN (64), a second outside opponent (Max, 11:30 UTC: "I think this won't do as well against Ben, but we'll
+# see!"). Played by ben.sh through chain.sh (chain.sh jobs-azure3-ben.txt ben.sh): eight shards, one a BEN lane of
+# azure3, card play only (the common bidder's auction at both tables, as everywhere in the loop).
+# A line is: NAME PAIR SEED FIRST DEALS LANES [options]; lane n writes runs/NAME-n.
+# The gate's deals (seed 131), the first 256: the same deals as the ladder against Gen 8, so each bot's result against
+# BEN can be set beside its result against Gen 8, and beside Gen 8's own result against BEN (b0-g8).
+# Stu's nets are told the opponent is BEN (64) (`ben64` in the bots' names; rollout net v2 knows it from BEN's own cards).
+b0-p stu0-p~ben64 131 0 256 8 --episodes
+b0-g8 8p-32-v41~ben64 131 0 256 8 --episodes
+b0-stu0 stu0a~ben64 131 0 256 8 --episodes
+b0-pr stu0-pr~ben64 131 0 256 8 --episodes

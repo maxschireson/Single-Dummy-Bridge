@@ -839,6 +839,131 @@
     "family": "other"
    },
    "queue_order": 27
+  },
+  {
+   "name": "b0-p",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu0-p~ben64",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b0-p-1",
+    "b0-p-2",
+    "b0-p-3",
+    "b0-p-4",
+    "b0-p-5",
+    "b0-p-6",
+    "b0-p-7",
+    "b0-p-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "b0-g8",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "8p-32-v41~ben64",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b0-g8-1",
+    "b0-g8-2",
+    "b0-g8-3",
+    "b0-g8-4",
+    "b0-g8-5",
+    "b0-g8-6",
+    "b0-g8-7",
+    "b0-g8-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "b0-stu0",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu0a~ben64",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b0-stu0-1",
+    "b0-stu0-2",
+    "b0-stu0-3",
+    "b0-stu0-4",
+    "b0-stu0-5",
+    "b0-stu0-6",
+    "b0-stu0-7",
+    "b0-stu0-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "b0-pr",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu0-pr~ben64",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rl"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b0-pr-1",
+    "b0-pr-2",
+    "b0-pr-3",
+    "b0-pr-4",
+    "b0-pr-5",
+    "b0-pr-6",
+    "b0-pr-7",
+    "b0-pr-8"
+   ],
+   "queue_order": null
   }
  ]
 }

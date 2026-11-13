@@ -150,6 +150,8 @@ def start(source, manifest, book=None):
     STATE.update(source=source, m=manifest, bidders={}, system_of={}, book=load_book(book)[1] if book else None, booked=None)
     loaded = {}
     for key, spec in manifest['bots'].items():
+        if manifest.get('common_only'):         # card play only: every bot bids as the common bidder
+            spec = manifest['bots'][manifest['common_bidder']]
         entry = spec.get('bidder')
         name = json.dumps(entry, sort_keys=True) if entry else str((Path(source) / spec['bidding']).resolve())
         if name not in loaded:
@@ -244,6 +246,8 @@ def main():
     ap.add_argument('--episodes', action='store_true', help='keep full records (collector format) under episodes/')
     ap.add_argument('--one-room', action='store_true', help='play one table a board, sides alternating by board, and score no IMPs: for '
                                                             'collecting records from two ids of one bot, whose two rooms are the same play')
+    ap.add_argument('--common-only', action='store_true', help="card play only: every bot bids as the common bidder, so the native auction is "
+                                                               "the common one and no bot's own bidder is loaded (BEN's is not one this script loads)")
     ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (see load_book for the format); '
                                    'both rooms of a board then play the same auction')
     args = ap.parse_args()
@@ -251,9 +255,12 @@ def main():
         raise SystemExit('the auction book was made with another seed')
     source = args.source.resolve()
     m = build_manifest(source, args.bots, args.pair, args.seed)
-    if args.one_room:
+    if args.one_room or args.common_only:
         m.pop('identity', None)
-        m['one_room'] = True
+        if args.one_room:
+            m['one_room'] = True
+        if args.common_only:
+            m['common_only'] = True
         m['identity'] = digest(m)
     a, b = m['roster']
     args.out.mkdir(parents=True, exist_ok=True)
