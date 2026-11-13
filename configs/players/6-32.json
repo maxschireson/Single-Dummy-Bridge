@@ -18,7 +18,10 @@
  "declaration": {
   "system": "house-gen6",
   "card": null,
-  "carding": null
+  "carding": null,
+  "profiles": {
+   "house-gen6": 1.0
+  }
  },
  "lineage": {
   "parents": [],
@@ -27,7 +30,8 @@
  },
  "needs": {
   "ben_server": false,
-  "tensorflow": false
+  "tensorflow": false,
+  "h5py": true
  },
  "licence": "redistributable",
  "notes": "A bot of the Gen 7 capture capsule (arena-gen6-gen7-capture-feed at 8833c62f), unchanged."

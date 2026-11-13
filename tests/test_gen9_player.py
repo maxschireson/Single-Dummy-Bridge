@@ -225,11 +225,13 @@ class CallsTests(Shell):
 
     def test_the_card_adds_its_term_and_can_be_switched_off(self):
         declared = dict(kind='synthetic', bidding=dict(toy=True))
-        on = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card'))
-        off = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_weight=0.))
-        half = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_weight=.5))
+        full = dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card', card_on_nets='full')
+        on = self.make9(gen9=full)
+        off = self.make9(gen9=dict(full, card_weight=0.))
+        half = self.make9(gen9=dict(full, card_weight=.5))
+        default = self.make9(gen9=dict(models={'them': declared}, bidding_reader='test_gen9_player:toy_card'))
         plain = self.make9(gen9={})
-        for p in (on, off, half, plain):
+        for p in (on, off, half, default, plain):
             p.meet('them')
         o, game = next(self.two_hidden(range(40), (5,), declarer=True))
         view = View(o)
@@ -239,6 +241,8 @@ class CallsTests(Shell):
         base = plain.type_log_weights(o, view, length, hon, 'scorer')
         ToyCard.calls = 0
         np.testing.assert_allclose(off.type_log_weights(o, view, length, hon, 'scorer'), base, atol=1e-9)
+        # by default the card is read only as the profile 'card': a net profile's own row is the scorer alone
+        np.testing.assert_allclose(default.type_log_weights(o, view, length, hon, 'scorer'), base, atol=1e-9)
         self.assertEqual(ToyCard.calls, 0)
         term = sum(np.where(HON_HCP[hon[j]].sum(axis=1) >= 12, 0., -3.) for j in range(2))
         self.assertGreater(float(np.abs(term).max()), 0.)
@@ -297,7 +301,7 @@ class CardProfileTests(Shell):
         scorer_weights(self.root / 'alpha.npz', seed=31)
         alpha = FitScorer(self.root / 'alpha.npz')
         model = dict(profiles={'alpha': .7, 'card': .3}, bidding=dict(toy=True))
-        p = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:residual_card'))
+        p = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:residual_card', card_on_nets='residual'))
         p.profile_scorer = lambda side, system: alpha
         p.meet('them')
         ResidualCard.asked = []
@@ -308,8 +312,12 @@ class CardProfileTests(Shell):
         a, c = net + self.term(8, -1.), self.term(12, -3.)
         want = np.logaddexp(math.log(.7) + a - lm(a), math.log(.3) + c - lm(c))          # each kind relative to its own mean
         np.testing.assert_allclose(got, want, atol=1e-9)
-        # a reader that cannot give a residual is left off the net profile when the card profile is a candidate
-        q = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:toy_card'))
+        # by default, and with a reader that cannot give a residual, the net profile's row is the scorer alone
+        d = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:residual_card'))
+        d.profile_scorer = lambda side, system: alpha
+        d.meet('them')
+        np.testing.assert_allclose(self.weights(d), np.logaddexp(math.log(.7) + net - lm(net), math.log(.3) + c - lm(c)), atol=1e-9)
+        q = self.make9(gen9=dict(models={'them': model}, bidding_reader='test_gen9_player:toy_card', card_on_nets='residual'))
         q.profile_scorer = lambda side, system: alpha
         q.meet('them')
         np.testing.assert_allclose(self.weights(q), np.logaddexp(math.log(.7) + net - lm(net), math.log(.3) + c - lm(c)), atol=1e-9)

@@ -371,6 +371,9 @@ def main() -> int:
         meta["prepare"] = prepare([x.strip() for x in a.heavy.split(",") if x.strip()], a.rebuild_dds)
         meta["prepare_seconds"] = round(time.time() - started, 1)
     files = a.files or sorted(p.name for p in (ROOT / "tests").glob("test_*.py"))
+    missing = [f for f in files if not (ROOT / "tests" / f).is_file()]
+    if missing:
+        raise SystemExit(f"no such test file in tests/: {', '.join(missing)}")
     if a.set != "all" and not a.files:
         files = [f for f in files if re.match(SETS[a.set], f)]
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
@@ -386,7 +389,8 @@ def main() -> int:
             r = fut.result()
             results.append(r)
             n = len(r["tests"])
-            log(f"  {r['file']}: {r['status']} ({n} tests, {r['seconds']} s)" + (f", needs {r['needs']}" if r.get("needs") else ""))
+            sk = sum(1 for t in r["tests"] if t["outcome"] == "skipped")   # "passed (3 tests)" with 2 of them skipped hid the skips
+            log(f"  {r['file']}: {r['status']} ({n} tests{f', {sk} skipped' if sk else ''}, {r['seconds']} s)" + (f", needs {r['needs']}" if r.get("needs") else ""))
     meta["wall_seconds"] = round(time.time() - t_run, 1)
     meta["finished"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     text = render(results, meta)

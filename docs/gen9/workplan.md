@@ -121,9 +121,52 @@ four to eight in all, started by the lead for a specific task and ended with it.
 - Boxes idle while experiment tasks wait: add executors. Boxes full: more executors add nothing
   until compute does.
 
+**What the first six hours showed** (12 November, 06:47 to 12:10 UTC; will's
+`reports/queue-metrics.md` on `team/gen9` has the tables, and is rerun on Friday morning):
+
+- **Executors: none were needed.** Four leads with no executors closed 29 leases with a median
+  of 8 to 17 minutes each; after the first 90 minutes nothing that was ready waited an hour for
+  a taker. What ran out was not hands. All four leads say their rules let them start sub-agents
+  only if Max asks directly (decision issue #23); on today's evidence the answer would change
+  nothing yet.
+- **Compute is the binding constraint on experiments.** By midday the box queue held about
+  28,600 boards for one box that plays about 1,000 an hour, which is the whole window to the
+  freeze. The sandboxes (two cores each) played pilots of 200 to 400 boards, which is enough to
+  see 0.3 IMPs and not 0.1.
+- **The architect was the binding constraint on decisions, twice.** At 07:05 twelve
+  submissions waited on one reviewer; module reviews moved to the leads (bill with sam, dave
+  with will) and flowed from then on. From 08:10 to 11:20 the architect's session was paused,
+  and three things waited: experiment verdicts, the wiring check of the arrival run and its
+  release. The leads did not stop: they had the arrival run rehearsed before the architect was
+  back.
+- **What only the architect did.** The design across areas (the mixture over profiles and the
+  interfaces), the integration target that made the areas meet (the arrival run), the order of
+  the box queue, and one error that crossed three modules and that no module review or
+  rehearsal caught: profiles of different kinds were mixed on different scales, so a newcomer
+  mapped to a house system would have been read as if its calls said nothing.
+- **What the architect should not have held.** An experiment of its own (E9-0) and every
+  experiment verdict. Both made the pause costly.
+
+**Revised numbers.**
+
+- **Thinkers: two, plus a lead per area.** One architect for design across areas and for what
+  goes on the box, and one evaluation lead who gives experiment verdicts, holds the release
+  checks and stands in when the architect is silent. The second is the change from the
+  starting numbers; until there is one, any lead other than the owner may give a verdict after
+  60 minutes and will releases on a written check after 30 (in force from 12 November).
+- **Area leads: four were right** for four areas with their own context. Each wrote its own
+  design note and then built from it.
+- **Executors: none now; add them when box time or ready tasks outrun the leads**, by the same
+  signals as above. The first place they would pay is experiment running on the box (writing
+  job files, watching runs, tabulating), which is mechanical and today fell to the leads.
+- **A session that coordinates must schedule its own wake-ups.** A paused coordinator is the
+  same as an absent one.
+
 ## Resources
 
-Gen 9 holds no Azure box yet. Allocation is on `box/coordination`. Max's instruction of
-12 November: g9 coordinates with the Gen 8 session, takes over its boxes when Gen 8 launches,
-and may take one box before that if needed. The first experiments that need one are E9-1 and
-E9-4 (expected from about 14:00 UTC on Thursday).
+Gen 9 has azure4 from 13:00 UTC on 12 November (given by the Gen 8 session on the board), run
+by will's job queue (`tools/boxq.py` on `team/gen9`): jobs by priority, preemption for the
+arrival run, results published to `transfer/gen9-*` branches. Allocation is on
+`box/coordination`. Max's instruction of 12 November: g9 coordinates with the Gen 8 session,
+takes over its boxes when Gen 8 launches, and may take one box before that if needed. No
+instance has been added.

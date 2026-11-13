@@ -123,5 +123,15 @@ class RuleBidderTests(unittest.TestCase):
         self.assertGreater(strong, 0)
 
 
+class OpeningsTheTablesNeverMake(unittest.TestCase):
+    def test_another_systems_notrump_opening_is_explained_not_raised(self):
+        """G9-D6, 12 Nov: a 3NT opening (no table of ours makes one) and two passes raised IndexError in response_table."""
+        for opening in (19, 14, 9):
+            st = R.State(0, 0, (R.STANDARD, R.STANDARD))
+            for t in (opening, R.PASS, R.PASS, R.PASS):
+                st.push(t)
+            self.assertEqual(len(st.calls), 4)
+
+
 if __name__ == '__main__':
     unittest.main()

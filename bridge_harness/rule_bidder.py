@@ -359,6 +359,8 @@ def response_table(st, me, g):
         t.append((bid(1, N), M((g.resp_min, g.two_over_one), kind='nt-response')))
         t.append((PASS, M((0, g.resp_min - 1))))
         return t
+    if s not in (C, D):                                 # an opening these tables never make, such as another system's 3NT:
+        return t                                        # no table, so explain() falls back to general_meaning (G9-D6, 12 Nov)
     # a one-level minor opening (precision 1D may be short)
     real = st.shown[seat].len[s][0]
     t.append((bid(1, H), M((g.resp_min, 40), force=1, H=(4, 13), test=lambda h: h.len[H] >= h.len[S] or h.len[S] < 4 or (h.len[H] == 4 and h.len[S] == 4))))

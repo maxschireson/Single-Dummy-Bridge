@@ -73,7 +73,7 @@ from .gen9_play import SIGNAL_KEYS, SignalPlayer
 from .player_model import CARD_PROFILE, FLAT_PROFILE, PlayerModel, believed, resolve
 
 ENGINE = 'gen9'
-CONFIG_KEYS = ('max_profiles', 'card_weight', 'factor_min_plays', 'factor_prior_plays', 'profile_temper', 'profile_floor')
+CONFIG_KEYS = ('max_profiles', 'card_weight', 'card_on_nets', 'factor_min_plays', 'factor_prior_plays', 'profile_temper', 'profile_floor')
 BLOCK_KEYS = CONFIG_KEYS + SIGNAL_KEYS + ('own', 'bidding_reader', 'replay_reader', 'oracle')
 RANK_WEIGHT = np.array([0.5] * 8 + [1.0, 1.5, 2.0, 3.0, 4.0])      # by rank, 2 to ace: how much a misplaced card counts (gen6.CARD_WEIGHT)
 
@@ -82,6 +82,8 @@ RANK_WEIGHT = np.array([0.5] * 8 + [1.0, 1.5, 2.0, 3.0, 4.0])      # by rank, 2 
 class Gen9Config:
     max_profiles: int = 4           # net profiles kept in the mixture, most probable first; 'card' and 'flat' are always kept
     card_weight: float = 1.         # factor on the declared card's term; 0 = the card is not read
+    card_on_nets: str = 'off'       # the card's term on a net profile's own row: 'off' (the card is read as the profile 'card' only),
+                                    # 'residual' (where that profile's bidder departs from the card; needs a reader that can), 'full'
     factor_min_plays: float = 200.  # occasions of the 'play.info' statistic before experience sets the opponent's play factor
     factor_prior_plays: float = 50. # shrinkage of each factor's mean gain toward zero, as this many occasions
     profile_temper: float = 1.      # exponent on the experience's evidence about a partnership's profile; 0 = the declared prior stands
@@ -89,7 +91,8 @@ class Gen9Config:
 
     def __post_init__(self):
         if isinstance(self.max_profiles, bool) or not isinstance(self.max_profiles, int) or not 1 <= self.max_profiles <= 16 \
-                or not 0 <= self.card_weight <= 8 or self.factor_min_plays < 1 or self.factor_prior_plays < 0 \
+                or not 0 <= self.card_weight <= 8 or self.card_on_nets not in ('off', 'residual', 'full') \
+                or self.factor_min_plays < 1 or self.factor_prior_plays < 0 \
                 or not 0 <= self.profile_temper <= 1 or not 0 <= self.profile_floor < 1:
             raise ValueError('Invalid Gen9 settings')
 
@@ -280,12 +283,14 @@ class Gen9Player(SignalPlayer):
         """Log weight of side `side`'s hidden hands (seats: [(index into view.hidden, seat)]) given its calls: the
         mixture over its profiles carried through the board.
 
-        Rows. A net profile's row is its scorer, plus the card's term on that profile's residual contexts when the
-        reader can give it. The profile 'card' is the card's term alone; the profile 'flat' is no term at all (a pair
-        whose calls we cannot read). A reader that cannot restrict itself to a profile's residual is applied in full to
-        net profiles only when 'card' is not among the candidates. With `replay` (a replay reader), a net profile whose
-        bidder the reader holds is read by it instead: the log-likelihood of the calls under that bidder, with no
-        scorer and no card term.
+        Rows. A net profile's row is its scorer. The profile 'card' is the card's term alone; the profile 'flat' is no
+        term at all (a pair whose calls we cannot read). By default the card is read nowhere else: multiplied onto a
+        matching profile it makes the reading worse (bill, 12 Nov: -0.35 to -0.6 nats; dave's check for the arrival
+        run: -0.43 on a guest who bids a held net and declares the nearest card). `card_on_nets` can add the card's
+        term to a net profile's row: 'residual' on the contexts where that profile's bidder departs from the card (a
+        reader that takes `profile=`; experiment E9-13), 'full' everywhere when 'card' is not among the candidates
+        (the reading E9-1 tested). With `replay` (a replay reader), a net profile whose bidder the reader holds is
+        read by it instead: the log-likelihood of the calls under that bidder, with no scorer and no card term.
 
         Scales. Rows of one kind (scorer, replay, card, flat) are on one scale and are mixed as they are, with the
         terms of that side's visible hands, which say which of them is in force. Rows of different kinds are not on
@@ -349,15 +354,16 @@ class Gen9Player(SignalPlayer):
                 else:
                     kind = 'scorer'
                     scorer = self.profile_scorer(side, system)
-                    with_card = reader is not None and (takes_profile or not card_only)
+                    how = self.g9.card_on_nets
+                    with_card = reader is not None and ((how == 'residual' and takes_profile) or (how == 'full' and not card_only))
                     for j, seat in seats:
                         row = row + scorer.type_log_score(length[j], hon[j], seat, *where)
                         if with_card:
-                            row = row + card_term(seat, length[j], hon[j], system)
+                            row = row + card_term(seat, length[j], hon[j], system if how == 'residual' else None)
                     for s, member, (ln, hn) in seen:
                         row = row + float(scorer.seat_log_score(member, s, *where)[0])
                         if with_card:
-                            row = row + float(np.asarray(card_term(s, ln, hn, system)).reshape(-1)[0])
+                            row = row + float(np.asarray(card_term(s, ln, hn, system if how == 'residual' else None)).reshape(-1)[0])
             kinds.setdefault(kind, []).append(row)
             mass[kind] = mass.get(kind, 0.) + p / total
         if exact and set(kinds) != {'replay'}:
