@@ -1,0 +1,5 @@
+# Round 3's net alone on azure5 (its collection paused for it by rungs.sh), against Gen 8 card play on the gate's deals
+# 0 to 999 (indicator 2 of PLAN.md, from round 3 on 1,000 deals), and the control: v2 alone on deals 200 to 499, which
+# with l0-n (0 to 199) and l0b-n (500 to 999) puts v2 alone on the same 1,000 deals.
+l3-n stu3-n~8p-32-v41 131 0 1000 8 --episodes
+l0c-n stu0-n~8p-32-v41 131 200 300 8 --episodes
