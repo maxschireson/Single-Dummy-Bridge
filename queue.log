@@ -62,3 +62,5 @@
 2026-11-13T06:30:16Z start match5 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair cl-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 2026-11-13T07:32:47Z end match5: exit 0
 2026-11-13T07:32:47Z start rbc2a (source 0d1db2b): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 300 --chain 400 --chains 2 --workers 8 --out $R.json
+2026-11-13T08:33:34Z end rbc2a: exit 0
+2026-11-13T08:33:34Z start rbc2b (source 0d1db2b): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 308 --chain 400 --chains 2 --workers 8 --out $R.json
