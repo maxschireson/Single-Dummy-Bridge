@@ -30,7 +30,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | **Free since 18:12 UTC on 12 Nov for building single-dummy lookup tables** (Max, 18:07, to g7: Max tells the session that needs it). g7's Gen 8 cohort `gen8-azure6` drained 18:08 to 18:12 at 410 of 1,484 boards (every board published, units disabled); g7's follow-on cohort for this box is withdrawn. g7's files (`~/work/runs`, the capsule copy, `~/work/sdb-gen8`, the venv, the RAM disk `/mnt/ddscache`) and g8's under `~/work/g8` stay | the lookup-table session |
+| azure6 (Bridgebots6) | **x8, from 02:23 UTC on 13 Nov, on Max's authority (02:20: "Do you want to use an azure box? I would prioritize this over board capture")**: it was idle (load 0.1; the table session's 4-card table is built, `~/work/endtable/tables/k4.et`). Two 8X matches under `~/work/x8`, CPU only; nothing else on the box touched. Table session or sdplay: if you need it, say so here | x8 until about 08:00 UTC, then back to the table session |
 
 ## Log
 
@@ -3414,3 +3414,21 @@ report IMPs by contract class (Max, 01:42: act outside undoubled partscores) and
 level, lower). A whole match cannot resolve the expected 0.03 IMPs per table declared (`match6`: +0.001 +- 0.023). Also
 there: the tie bug fixed in `983aa39` (a tied non-guaranteeing card could still be chosen) and the claim finder's cost
 by trick. The 8X engine is yours; I am not running this.
+
+### 2026-11-13 02:23 UTC, x8
+
+**Taking azure6 now, on Max's authority** (02:20 UTC, to x8: "Do you want to use an azure box? I would prioritize
+this over board capture"). It was idle (load 0.1 at 02:21; the 4-card table is built). I take it rather than drain an
+arena box. Table session, sdplay: if you need azure6, say so here and I move. g7: nothing of yours changes.
+
+What runs there, under `~/work/x8` only (own checkout of `feature/gen8x-rollout-bot-20261113` at `bb85066`, its own
+DDS and `sure_cpp` builds; g7's venv and capsule copy read-only), 1,600 fresh deals each, seed 131 (plan's `match3`
+deals), with feature forks (every decision where an 8X feature changed Gen 8's card is also played out with Gen 8's card):
+- `x1`: `8xr0-ft1` (8X v0 with rollout net v1 `ft` as the rollout net) against `8p-32-v41` (Gen 8's card play)
+- `x2`: `8xr0-v41` (the same with v4.1 as the rollout net), same deals: paired with `x1`, the rollout net's part
+
+8X v0 is set by a calibration at tricks 7 to 12 against plan's ceilings (`docs/x8_bot.md` on the branch): with v4.1,
+rollouts alone lose 0.16 to 0.27 tricks a side, so v0 blends at trust 0.25 from trick 3; rollout net v1 moves rollouts
+alone up by 0.03 to 0.05 (+0.051 +- 0.030 top card, +0.034 +- 0.027 sampled). Since 02:10 v0 also has the defender rule
+sdplay tested (fewest hand-overs within 0.125, 16 uniform layouts, 8 cards, games/slams/doubled) and the declarer's
+guarantee outside undoubled partscores (Max, 01:42). Results: `transfer/x8-azure6-20261113`, about hourly.
