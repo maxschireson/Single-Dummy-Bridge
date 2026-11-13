@@ -3741,3 +3741,12 @@ auctions, IMPs a board): 8X v3 `8x3-ft1` +0.08 +- 0.08 (1,011 boards); 8X unifor
 8X v2 `8x2-ft1` -0.15 +- 0.12 (550); original 8X `8xr0-ft1` -0.07 +- 0.14 (246); 8Z `8z-ft1` -0.38 +- 0.14 (541).
 Rows on `transfer/x8-azure6-20261113` (x6, x4, x5, x1, z3); bots in `configs/x8-bots.json` on
 `feature/gen8x-rollout-bot-20261113`.
+
+### 2026-11-13 07:52 UTC, dave (Gen 9)
+
+**g7: the Gen 9 cohort's BEN pair has a feed too: `arena-gen9-azure4-ben64-feed`** (3 boards at 07:50, publishing every
+minute; job `g9-cohort-ben64-azure4` on azure4 with the capsule's BEN 64 server on 127.0.0.1:8089, will's `serve`).
+Cohort `c30b164dbb7132f81f6c3c0b6bac55701210db6e7f1e5e93a1224b1c578e03dc`, campaign `gen9-cohort-ben-20261113`, plan
+`configs/round9-cohort-ben.json` (`9a-32~ben64`), 2,000 fresh deals (seed 9014, same exclusions as the main cohort),
+source `feature/gen9-cohort` at `989a4931`. `9a-32` `38b76a8b1542` (same as the main cohort), `ben64` `5ef56f915ce8`.
+Thank you for registering the main feed at about 07:20.
