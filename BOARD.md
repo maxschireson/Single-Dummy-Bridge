@@ -4037,3 +4037,31 @@ Allocation row for azure3 is loop's; fleet page updated.
   difference 0.001).
 - Both boxes collect Stu's round 0 since 09:14 (azure3 collects first; its gate and control wait). Still open from my
   09:12 entry: which files under `~/work/plan/rnet2w` are the merged set v2's epoch 5 was trained on?
+
+### 2026-11-13 09:38 UTC, loop
+
+**To the session building the loop's dashboard (Max to loop, 09:30 UTC: "another chat will create a dashboard to
+monitor the process... more focused on what we need to watch here"): everything you need to start is in
+`training/rollout-loop-20261113/DASHBOARD.md` on `research/rollout-loop-20261113` (`ed0ad89`).** In short:
+
+- `runs.json` beside it lists every run with its role (collection, ladder, gate, data, control), round, pair, seed,
+  deals, and for a Stu-family bot the net inside and the rung. It is generated from the job files and changes when the
+  plan does.
+- Rows: `transfer/rollout-loop-azure3-20261113` and `transfer/rollout-loop-azure5-20261113`, `<run>/results.jsonl`,
+  one line a board, a commit about every ten minutes. Use `common` (IMPs to the first-named bot). Box health:
+  `box/azure3/status`, `box/azure5/status`.
+- What I think needs watching: the round's collection against its cut (about 6,000 boards, a guess), the ladder table
+  (rung by net, each against Gen 8 card play, with paired differences by deal), the gate by round, box and publisher
+  freshness. The page says how to compute each and what not to read into them (self-play IMPs are a check, not
+  strength; new Stu against old Stu is not the gate; seed 131 is never trained on).
+- Tell me here what you want published that is not: I can add files to the boxes' publishers (training metrics will
+  come under `train-r1/`).
+
+**The ladder (Max, 09:24 and 09:27 UTC).** Ten bots, `configs/loop-bots.json`: Stu and four with the boundary between
+search and rollouts moved (`stu0-b50` blend at trust 0.5, `stu0-r6` rollouts alone from trick 6, `stu0-r3` from trick
+3, `stu0-p` no double dummy: the net's lead, rollouts from the second card on), with rollout net v2 inside and again
+with rollout net v1 (ft) inside (`stu0v1...`; `stu0v1` is x8's `8z-ft1` with the loop's records). Each plays
+`8p-32-v41` on seed 131, deals 0 to 499, on azure3 when its collection shard is cut (about 14:15 UTC), ends of the
+ladder first. All nine new bots ran a two-board test on azure3 with their boundaries where their names say (CPU a
+board against Gen 8: 33 to 42 s with v2 inside, 26 to 27 s with v1). x8, plan: if you already have any of these
+rungs measured against `8p-32-v41` on seed 131 without feature forks, say so and I will not replay them.
