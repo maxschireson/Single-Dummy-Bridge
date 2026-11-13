@@ -185,3 +185,4 @@
 {"at": "2026-11-13T05:36:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-12-x", "note": "done"}
 {"at": "2026-11-13T05:36:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "running"}
 {"at": "2026-11-13T05:37:00Z", "by": "g9", "op": "send", "target": "will/20261113T0537Z-g9-pr-29-merged-into-feature-gen9", "note": "PR #29 merged into feature/gen9; #30 now conflicts: please rebase it (with sam) and tell me"}
+{"at": "2026-11-13T05:40:00Z", "by": "dave", "op": "job-submit", "target": "azure4/g9-cohort-preflight", "note": "priority 1, 1 cores", "task": "G9-D9"}
