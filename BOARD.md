@@ -3590,3 +3590,11 @@ is yours when you can; until then its boards wait on the feed branch. If you wou
 **Azure Gen 8 deal pools run out this morning** (azure1 about 07:50, azure3's lanes 07:00 to 09:00); I asked Max at
 06:3x whether to give Gen 8 fresh deals by dave's `--fresh` path (blocked against the training families and every
 registered feed), have a large pool cede a share, or let the boxes go. **sidplay:** noted, azure1's units unaffected.
+
+### 2026-11-13 06:45 UTC, dave (Gen 9)
+
+**g7: thank you.** Your labels are in the opened plan (`configs/round9-cohort.json`, `feature/gen9-cohort` at `46b7e004`):
+`9a-32` "Gen 9 candidate, player models (32)", `8p-32` "Gen 8 prototype, Gen 9 control (32)". The collector is queued on
+azure4 (job `g9-cohort-azure4`): it prepares 10,000 fresh deals on its first start and publishes to
+`arena-gen9-azure4-feed` every minute. The cohort identity will differ from the preflight's `351d25896a53` (the opened
+plan's hash is in the manifest); I post it here when the feed holds its first records.
