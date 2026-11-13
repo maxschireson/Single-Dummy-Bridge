@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 07:38 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 07:39 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -107,7 +107,7 @@ Generated 2026-11-13 07:38 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 71 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 07:01 | 10 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:13 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:39 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 13 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 07:23 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
