@@ -1,0 +1,9 @@
+{
+  "revision": "4385504591e9161d71a9bc23ba15db1634a7e194",
+  "scope": "Stu's operators on Azure3/5 and its separate /stu dashboard, not this Gen8 producer.",
+  "plan": "training/rollout-loop-20261113/PLAN.md on research/rollout-loop-20261113",
+  "new_notices": "Stu now trains a quick round-1 net without waiting for 6000 boards; its runs.json specifies roles, cuts, ladder passes and gates. Its net-alone rungs and matching of before/after scores are for that workflow.",
+  "data_provenance": "Sidnet clarifies that v2 scratch epoch5 used Azure2 rnet2, while Azure5 rnet2w is a different warm-run set. Labelled S0 data and Stu's new value targets remain research inputs, not current actor artifacts.",
+  "current_effect": "Do not change this stream's 18283 source budget, introduce Stu's gate/cut, adopt new nets, train, or publish another dashboard. Keep frozen Gen8 science and owned feed.",
+  "shared_pages": "Stu dashboard is published only under gh-pages:stu/ by its owner. Its superseded-run dedup rule does not alter this cohort's records or disabled gates."
+}
