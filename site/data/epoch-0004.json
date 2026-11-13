@@ -1,0 +1,1234 @@
+{
+ "schema": "arena-results-v1",
+ "epoch": 4,
+ "condition": "native",
+ "closed_utc": "2026-11-12T22:27:14Z",
+ "source": {
+  "epoch_manifest": "2bdf1b9ca8f82eba9bf7d819732c442e626829b0cdd3a1869921af70d25286ac",
+  "next_manifest": "e279332cdea436018acc39b46aca611e31cce6f890989a1bd0e7b855f05a7856",
+  "rules_version": "arrival-v2",
+  "source_commit": "698679eeca002ca90aef1bbbd13b3387b0f0d1a8",
+  "next_snapshot": "5815df5699fae32e07f4a159857e80eb5fa8577d63f3dca68877de6aa8ad7d2b"
+ },
+ "roster": [
+  {
+   "player": "8p-32",
+   "kind": "house",
+   "status": "champion",
+   "version": "855c671d880d",
+   "identity": "3cf2f5d52375",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {}
+  },
+  {
+   "player": "7s-32",
+   "kind": "house",
+   "status": "retired",
+   "version": "ea537fc9f041",
+   "identity": "",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": 4,
+   "test": null,
+   "declared": {}
+  },
+  {
+   "player": "9a-32",
+   "kind": "house",
+   "status": "active",
+   "version": "5bcce0228504",
+   "identity": "43fbef5a73f4",
+   "since": 2,
+   "joined_epoch": 0,
+   "admitted_epoch": 2,
+   "retired_epoch": null,
+   "test": {
+    "champion": "8p-32",
+    "opened_epoch": 2
+   },
+   "declared": {}
+  },
+  {
+   "player": "guest-a",
+   "kind": "guest",
+   "status": "active",
+   "version": "d555bcab0308",
+   "identity": "45ac96295f00",
+   "since": 4,
+   "joined_epoch": 2,
+   "admitted_epoch": 4,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {
+    "card": "rb-precision",
+    "carding": "declared"
+   }
+  },
+  {
+   "player": "guest-b",
+   "kind": "guest",
+   "status": "candidate",
+   "version": "2e010811bf64",
+   "identity": "0d53ecd4461c",
+   "since": 4,
+   "joined_epoch": 4,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {
+    "card": "rb-standard",
+    "carding": "declared"
+   }
+  },
+  {
+   "player": "1",
+   "kind": "anchor",
+   "status": "anchor",
+   "version": "e6805f0ee817",
+   "identity": "38b9d00cf11f",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {}
+  },
+  {
+   "player": "5RZ32",
+   "kind": "anchor",
+   "status": "anchor",
+   "version": "9b7a5a3ef3bc",
+   "identity": "49f4aeb51f52",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {}
+  }
+ ],
+ "ratings": {
+  "reference": "1",
+  "t2": 0.0,
+  "boards": 4378,
+  "players": [
+   {
+    "player": "guest-b",
+    "strength": 2.2378,
+    "se": 0.2269,
+    "ci95": [
+     1.793,
+     2.6826
+    ],
+    "boards": 820,
+    "field": {
+     "score": 1.0783,
+     "se": 0.1303,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": 0.0513,
+      "se": 0.1697
+     }
+    },
+    "screen": {
+     "won": [
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [],
+     "even": 3
+    }
+   },
+   {
+    "player": "9a-32",
+    "strength": 2.1866,
+    "se": 0.2172,
+    "ci95": [
+     1.7608,
+     2.6123
+    ],
+    "boards": 1883,
+    "field": {
+     "score": 1.0168,
+     "se": 0.1026,
+     "worst": {
+      "opponent": "guest-b",
+      "estimate": -0.0513,
+      "se": 0.1697
+     }
+    },
+    "screen": {
+     "won": [
+      "8p-32",
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [],
+     "even": 2
+    }
+   },
+   {
+    "player": "7s-32",
+    "strength": 2.0172,
+    "se": 0.239,
+    "ci95": [
+     1.5487,
+     2.4856
+    ],
+    "boards": 537,
+    "field": {
+     "score": 0.6779,
+     "se": 0.1737,
+     "worst": {
+      "opponent": "guest-b",
+      "estimate": -0.2206,
+      "se": 0.2459
+     }
+    },
+    "screen": {
+     "won": [
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [],
+     "even": 3
+    }
+   },
+   {
+    "player": "8p-32",
+    "strength": 1.9327,
+    "se": 0.2098,
+    "ci95": [
+     1.5215,
+     2.344
+    ],
+    "boards": 2017,
+    "field": {
+     "score": 0.7122,
+     "se": 0.0949,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -0.2538,
+      "se": 0.116
+     }
+    },
+    "screen": {
+     "won": [
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [
+      "9a-32"
+     ],
+     "even": 2
+    }
+   },
+   {
+    "player": "guest-a",
+    "strength": 0.9331,
+    "se": 0.2226,
+    "ci95": [
+     0.4967,
+     1.3695
+    ],
+    "boards": 2174,
+    "field": {
+     "score": -0.4874,
+     "se": 0.1221,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -1.2534,
+      "se": 0.148
+     }
+    },
+    "screen": {
+     "won": [
+      "1"
+     ],
+     "lost": [
+      "8p-32",
+      "7s-32",
+      "9a-32",
+      "guest-b"
+     ],
+     "even": 1
+    }
+   },
+   {
+    "player": "5RZ32",
+    "strength": 0.7453,
+    "se": 0.2561,
+    "ci95": [
+     0.2433,
+     1.2472
+    ],
+    "boards": 623,
+    "field": {
+     "score": -0.7128,
+     "se": 0.1669,
+     "worst": {
+      "opponent": "guest-b",
+      "estimate": -1.4926,
+      "se": 0.2167
+     }
+    },
+    "screen": {
+     "won": [
+      "1"
+     ],
+     "lost": [
+      "8p-32",
+      "7s-32",
+      "9a-32",
+      "guest-b"
+     ],
+     "even": 1
+    }
+   },
+   {
+    "player": "1",
+    "strength": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "boards": 702,
+    "field": {
+     "score": -1.6071,
+     "se": 0.1743,
+     "worst": {
+      "opponent": "guest-b",
+      "estimate": -2.2378,
+      "se": 0.2269
+     }
+    },
+    "screen": {
+     "won": [],
+     "lost": [
+      "8p-32",
+      "7s-32",
+      "9a-32",
+      "guest-a",
+      "guest-b",
+      "5RZ32"
+     ],
+     "even": 0
+    }
+   }
+  ],
+  "pairs": [
+   {
+    "pair": "9a-32~guest-a",
+    "boards": 900,
+    "mean": 1.4122,
+    "se": 0.2109,
+    "predicted": 1.0887,
+    "predicted_se": 0.2112,
+    "z": 1.093,
+    "p": 0.27441,
+    "testable": true,
+    "cell": 1.2534,
+    "cell_se": 0.148,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~guest-a",
+    "boards": 900,
+    "mean": 0.9311,
+    "se": 0.2127,
+    "predicted": 1.0648,
+    "predicted_se": 0.2038,
+    "z": -0.458,
+    "p": 0.64705,
+    "testable": true,
+    "cell": 0.9996,
+    "cell_se": 0.1459,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~8p-32",
+    "boards": 549,
+    "mean": 0.2659,
+    "se": 0.1388,
+    "predicted": 0.2284,
+    "predicted_se": 0.2042,
+    "z": 0.151,
+    "p": 0.87971,
+    "testable": true,
+    "cell": 0.2538,
+    "cell_se": 0.116,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~guest-b",
+    "boards": 300,
+    "mean": -0.1967,
+    "se": 0.2687,
+    "predicted": 0.0535,
+    "predicted_se": 0.2225,
+    "z": -0.727,
+    "p": 0.46701,
+    "testable": true,
+    "cell": -0.0513,
+    "cell_se": 0.1697,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~guest-b",
+    "boards": 300,
+    "mean": -0.1367,
+    "se": 0.2562,
+    "predicted": -0.4333,
+    "predicted_se": 0.2193,
+    "z": 0.889,
+    "p": 0.37377,
+    "testable": true,
+    "cell": -0.3051,
+    "cell_se": 0.1652,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "7s-32~1",
+    "boards": 223,
+    "mean": 2.4574,
+    "se": 0.3618,
+    "predicted": 1.6095,
+    "predicted_se": 0.3317,
+    "z": 1.773,
+    "p": 0.0763,
+    "testable": true,
+    "cell": 2.0172,
+    "cell_se": 0.239,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "7s-32~5RZ32",
+    "boards": 210,
+    "mean": 1.0762,
+    "se": 0.3371,
+    "predicted": 1.4761,
+    "predicted_se": 0.331,
+    "z": -0.863,
+    "p": 0.38792,
+    "testable": true,
+    "cell": 1.2719,
+    "cell_se": 0.2315,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "guest-a~1",
+    "boards": 202,
+    "mean": 0.8168,
+    "se": 0.4221,
+    "predicted": 0.9867,
+    "predicted_se": 0.2692,
+    "z": -0.355,
+    "p": 0.72279,
+    "testable": true,
+    "cell": 0.9331,
+    "cell_se": 0.2226,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "guest-a~5RZ32",
+    "boards": 172,
+    "mean": 0.7209,
+    "se": 0.4554,
+    "predicted": -0.0071,
+    "predicted_se": 0.2562,
+    "z": 1.47,
+    "p": 0.14152,
+    "testable": true,
+    "cell": 0.1878,
+    "cell_se": 0.2193,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "guest-b~1",
+    "boards": 112,
+    "mean": 2.1964,
+    "se": 0.4019,
+    "predicted": 2.2591,
+    "predicted_se": 0.2794,
+    "z": -0.131,
+    "p": 0.89586,
+    "testable": true,
+    "cell": 2.2378,
+    "cell_se": 0.2269,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "guest-b~5RZ32",
+    "boards": 108,
+    "mean": 1.6204,
+    "se": 0.3351,
+    "predicted": 1.4093,
+    "predicted_se": 0.2784,
+    "z": 0.476,
+    "p": 0.63407,
+    "testable": true,
+    "cell": 1.4926,
+    "cell_se": 0.2167,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "7s-32~8p-32",
+    "boards": 104,
+    "mean": -0.0769,
+    "se": 0.2846,
+    "predicted": 0.2244,
+    "predicted_se": 0.2941,
+    "z": -0.698,
+    "p": 0.48512,
+    "testable": true,
+    "cell": 0.0844,
+    "cell_se": 0.2153,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~1",
+    "boards": 98,
+    "mean": 1.8673,
+    "se": 0.5386,
+    "predicted": 1.9473,
+    "predicted_se": 0.232,
+    "z": -0.147,
+    "p": 0.88313,
+    "testable": true,
+    "cell": 1.9327,
+    "cell_se": 0.2098,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~1",
+    "boards": 67,
+    "mean": 1.7164,
+    "se": 0.6845,
+    "predicted": 2.2574,
+    "predicted_se": 0.233,
+    "z": -0.84,
+    "p": 0.40087,
+    "testable": true,
+    "cell": 2.1866,
+    "cell_se": 0.2172,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~5RZ32",
+    "boards": 67,
+    "mean": 1.2388,
+    "se": 0.6255,
+    "predicted": 1.4742,
+    "predicted_se": 0.2265,
+    "z": -0.388,
+    "p": 0.69783,
+    "testable": true,
+    "cell": 1.4413,
+    "cell_se": 0.2101,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~5RZ32",
+    "boards": 66,
+    "mean": 0.8788,
+    "se": 0.4111,
+    "predicted": 1.2714,
+    "predicted_se": 0.2275,
+    "z": -0.798,
+    "p": 0.42506,
+    "testable": true,
+    "cell": 1.1875,
+    "cell_se": 0.2018,
+    "p_holm": 1.0,
+    "out_of_line": false
+   }
+  ],
+  "cells": [
+   {
+    "player": "1",
+    "opponent": "5RZ32",
+    "cell": -0.7453,
+    "se": 0.2561
+   },
+   {
+    "player": "1",
+    "opponent": "7s-32",
+    "cell": -2.0172,
+    "se": 0.239
+   },
+   {
+    "player": "1",
+    "opponent": "8p-32",
+    "cell": -1.9327,
+    "se": 0.2098
+   },
+   {
+    "player": "1",
+    "opponent": "9a-32",
+    "cell": -2.1866,
+    "se": 0.2172
+   },
+   {
+    "player": "1",
+    "opponent": "guest-a",
+    "cell": -0.9331,
+    "se": 0.2226
+   },
+   {
+    "player": "1",
+    "opponent": "guest-b",
+    "cell": -2.2378,
+    "se": 0.2269
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "1",
+    "cell": 0.7453,
+    "se": 0.2561
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "7s-32",
+    "cell": -1.2719,
+    "se": 0.2315
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "8p-32",
+    "cell": -1.1875,
+    "se": 0.2018
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "9a-32",
+    "cell": -1.4413,
+    "se": 0.2101
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "guest-a",
+    "cell": -0.1878,
+    "se": 0.2193
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "guest-b",
+    "cell": -1.4926,
+    "se": 0.2167
+   },
+   {
+    "player": "7s-32",
+    "opponent": "1",
+    "cell": 2.0172,
+    "se": 0.239
+   },
+   {
+    "player": "7s-32",
+    "opponent": "5RZ32",
+    "cell": 1.2719,
+    "se": 0.2315
+   },
+   {
+    "player": "7s-32",
+    "opponent": "8p-32",
+    "cell": 0.0844,
+    "se": 0.2153
+   },
+   {
+    "player": "7s-32",
+    "opponent": "9a-32",
+    "cell": -0.1694,
+    "se": 0.2308
+   },
+   {
+    "player": "7s-32",
+    "opponent": "guest-a",
+    "cell": 1.0841,
+    "se": 0.2411
+   },
+   {
+    "player": "7s-32",
+    "opponent": "guest-b",
+    "cell": -0.2206,
+    "se": 0.2459
+   },
+   {
+    "player": "8p-32",
+    "opponent": "1",
+    "cell": 1.9327,
+    "se": 0.2098
+   },
+   {
+    "player": "8p-32",
+    "opponent": "5RZ32",
+    "cell": 1.1875,
+    "se": 0.2018
+   },
+   {
+    "player": "8p-32",
+    "opponent": "7s-32",
+    "cell": -0.0844,
+    "se": 0.2153
+   },
+   {
+    "player": "8p-32",
+    "opponent": "9a-32",
+    "cell": -0.2538,
+    "se": 0.116
+   },
+   {
+    "player": "8p-32",
+    "opponent": "guest-a",
+    "cell": 0.9996,
+    "se": 0.1459
+   },
+   {
+    "player": "8p-32",
+    "opponent": "guest-b",
+    "cell": -0.3051,
+    "se": 0.1652
+   },
+   {
+    "player": "9a-32",
+    "opponent": "1",
+    "cell": 2.1866,
+    "se": 0.2172
+   },
+   {
+    "player": "9a-32",
+    "opponent": "5RZ32",
+    "cell": 1.4413,
+    "se": 0.2101
+   },
+   {
+    "player": "9a-32",
+    "opponent": "7s-32",
+    "cell": 0.1694,
+    "se": 0.2308
+   },
+   {
+    "player": "9a-32",
+    "opponent": "8p-32",
+    "cell": 0.2538,
+    "se": 0.116
+   },
+   {
+    "player": "9a-32",
+    "opponent": "guest-a",
+    "cell": 1.2534,
+    "se": 0.148
+   },
+   {
+    "player": "9a-32",
+    "opponent": "guest-b",
+    "cell": -0.0513,
+    "se": 0.1697
+   },
+   {
+    "player": "guest-a",
+    "opponent": "1",
+    "cell": 0.9331,
+    "se": 0.2226
+   },
+   {
+    "player": "guest-a",
+    "opponent": "5RZ32",
+    "cell": 0.1878,
+    "se": 0.2193
+   },
+   {
+    "player": "guest-a",
+    "opponent": "7s-32",
+    "cell": -1.0841,
+    "se": 0.2411
+   },
+   {
+    "player": "guest-a",
+    "opponent": "8p-32",
+    "cell": -0.9996,
+    "se": 0.1459
+   },
+   {
+    "player": "guest-a",
+    "opponent": "9a-32",
+    "cell": -1.2534,
+    "se": 0.148
+   },
+   {
+    "player": "guest-a",
+    "opponent": "guest-b",
+    "cell": -1.3047,
+    "se": 0.199
+   },
+   {
+    "player": "guest-b",
+    "opponent": "1",
+    "cell": 2.2378,
+    "se": 0.2269
+   },
+   {
+    "player": "guest-b",
+    "opponent": "5RZ32",
+    "cell": 1.4926,
+    "se": 0.2167
+   },
+   {
+    "player": "guest-b",
+    "opponent": "7s-32",
+    "cell": 0.2206,
+    "se": 0.2459
+   },
+   {
+    "player": "guest-b",
+    "opponent": "8p-32",
+    "cell": 0.3051,
+    "se": 0.1652
+   },
+   {
+    "player": "guest-b",
+    "opponent": "9a-32",
+    "cell": 0.0513,
+    "se": 0.1697
+   },
+   {
+    "player": "guest-b",
+    "opponent": "guest-a",
+    "cell": 1.3047,
+    "se": 0.199
+   }
+  ]
+ },
+ "decisions": [],
+ "tests": [
+  {
+   "pair": "9a-32~8p-32",
+   "opened_epoch": 2,
+   "boards": 480,
+   "K": 2.5276,
+   "L": 0.6724,
+   "promote_at": 20.0,
+   "futility_at": 10.0,
+   "decision": null
+  }
+ ],
+ "schedule": {
+  "epoch": 4,
+  "boards": 1600,
+  "played": {
+   "training": {
+    "boards": 40,
+    "pairs": {
+     "8p-32~8p-32": 40
+    }
+   },
+   "floor": {
+    "boards": 1200,
+    "pairs": {
+     "8p-32~guest-a": 300,
+     "8p-32~guest-b": 300,
+     "9a-32~guest-a": 300,
+     "9a-32~guest-b": 300
+    }
+   },
+   "promotion": {
+    "boards": 120,
+    "pairs": {
+     "9a-32~8p-32": 120
+    }
+   },
+   "admission": {
+    "boards": 240,
+    "pairs": {
+     "guest-a~1": 16,
+     "guest-a~5RZ32": 4,
+     "guest-b~1": 112,
+     "guest-b~5RZ32": 108
+    }
+   }
+  },
+  "next": {
+   "epoch": 5,
+   "boards": 1600,
+   "purposes": {
+    "admission": [
+     "guest-b~8p-32",
+     "guest-b~1",
+     "guest-b~5RZ32"
+    ],
+    "panel": [
+     "8p-32~1",
+     "8p-32~5RZ32"
+    ],
+    "promotion": [
+     "9a-32~8p-32"
+    ],
+    "training": [
+     "8p-32~8p-32"
+    ]
+   },
+   "pair_weights": {
+    "8p-32~1": 13,
+    "8p-32~5RZ32": 10,
+    "8p-32~8p-32": 10,
+    "9a-32~8p-32": 30,
+    "guest-b~1": 21,
+    "guest-b~5RZ32": 16
+   },
+   "floors": [
+    {
+     "boards": 300,
+     "pairs": [
+      "9a-32~guest-a",
+      "8p-32~guest-a"
+     ],
+     "purpose": "comparison",
+     "same_deals": true
+    },
+    {
+     "boards": 300,
+     "pairs": [
+      "9a-32~guest-b",
+      "8p-32~guest-b"
+     ],
+     "purpose": "comparison",
+     "same_deals": true
+    }
+   ]
+  }
+ },
+ "learned": {
+  "guest-a": {
+   "boards": 5968,
+   "deals": 2074,
+   "profiles_read": [
+    [
+     "card",
+     0.984
+    ],
+    [
+     "flat",
+     0.004
+    ],
+    [
+     "house-dds40k",
+     0.004
+    ],
+    [
+     "house-gen5",
+     0.004
+    ],
+    [
+     "house-gen6",
+     0.004
+    ]
+   ],
+   "honesty_read": {
+    "declarer_lead.count": 0.7859,
+    "first_discard.attitude": 0.8362,
+    "lead.opening": 0.6533,
+    "partner_lead.attitude": 0.7947,
+    "*": 0.7607
+   },
+   "play_factor": null,
+   "off_card": {
+    "comp_double": [
+     54,
+     0
+    ],
+    "comp_jump": [
+     49,
+     0
+    ],
+    "comp_nt": [
+     31,
+     0
+    ],
+    "comp_overcall": [
+     237,
+     0
+    ],
+    "comp_pass": [
+     728,
+     0
+    ],
+    "comp_vs_nt": [
+     15,
+     0
+    ],
+    "nt_answer": [
+     46,
+     0
+    ],
+    "open_major": [
+     342,
+     0
+    ],
+    "open_minor": [
+     396,
+     0
+    ],
+    "open_nt": [
+     90,
+     0
+    ],
+    "open_pass": [
+     1009,
+     0
+    ],
+    "open_preempt": [
+     36,
+     0
+    ],
+    "open_strong": [
+     299,
+     0
+    ],
+    "open_two": [
+     60,
+     0
+    ],
+    "open_weak": [
+     53,
+     0
+    ],
+    "resp_negative": [
+     96,
+     0
+    ],
+    "resp_new": [
+     221,
+     29
+    ],
+    "resp_nt": [
+     70,
+     23
+    ],
+    "resp_nt_relay": [
+     49,
+     0
+    ],
+    "resp_pass": [
+     56,
+     3
+    ],
+    "resp_positive": [
+     106,
+     4
+    ],
+    "resp_raise": [
+     33,
+     26
+    ]
+   },
+   "snapshot_matches_envelopes": true
+  },
+  "guest-b": {
+   "boards": 2076,
+   "deals": 776,
+   "profiles_read": [
+    [
+     "card",
+     0.004
+    ],
+    [
+     "flat",
+     0.004
+    ],
+    [
+     "house-dds40k",
+     0.3669
+    ],
+    [
+     "house-gen5",
+     0.6211
+    ],
+    [
+     "house-gen6",
+     0.004
+    ]
+   ],
+   "honesty_read": {
+    "declarer_lead.count": 0.0101,
+    "first_discard.attitude": 0.0145,
+    "lead.opening": 0.031,
+    "partner_lead.attitude": 0.0381,
+    "*": 0.024
+   },
+   "play_factor": null,
+   "off_card": {
+    "comp_double": [
+     20,
+     24
+    ],
+    "comp_jump": [
+     13,
+     9
+    ],
+    "comp_nt": [
+     9,
+     1
+    ],
+    "comp_overcall": [
+     65,
+     36
+    ],
+    "comp_pass": [
+     266,
+     12
+    ],
+    "comp_vs_nt": [
+     3,
+     8
+    ],
+    "nt_answer": [
+     34,
+     1
+    ],
+    "open_major": [
+     153,
+     4
+    ],
+    "open_minor": [
+     206,
+     3
+    ],
+    "open_nt": [
+     60,
+     25
+    ],
+    "open_pass": [
+     341,
+     42
+    ],
+    "open_preempt": [
+     13,
+     6
+    ],
+    "open_strong": [
+     7,
+     1
+    ],
+    "open_weak": [
+     21,
+     16
+    ],
+    "resp_ask": [
+     2,
+     1
+    ],
+    "resp_negative": [
+     5,
+     0
+    ],
+    "resp_new": [
+     90,
+     24
+    ],
+    "resp_nt": [
+     24,
+     30
+    ],
+    "resp_nt_relay": [
+     37,
+     6
+    ],
+    "resp_pass": [
+     40,
+     8
+    ],
+    "resp_positive": [
+     2,
+     1
+    ],
+    "resp_raise": [
+     20,
+     7
+    ]
+   },
+   "snapshot_matches_envelopes": true
+  }
+ },
+ "panel": {
+  "anchors": [
+   "1",
+   "5RZ32"
+  ],
+  "players": {
+   "8p-32": {
+    "1": {
+     "cell": 1.9327,
+     "se": 0.2098
+    },
+    "5RZ32": {
+     "cell": 1.1875,
+     "se": 0.2018
+    }
+   },
+   "7s-32": {
+    "1": {
+     "cell": 2.0172,
+     "se": 0.239
+    },
+    "5RZ32": {
+     "cell": 1.2719,
+     "se": 0.2315
+    }
+   },
+   "9a-32": {
+    "1": {
+     "cell": 2.1866,
+     "se": 0.2172
+    },
+    "5RZ32": {
+     "cell": 1.4413,
+     "se": 0.2101
+    }
+   },
+   "guest-a": {
+    "1": {
+     "cell": 0.9331,
+     "se": 0.2226
+    },
+    "5RZ32": {
+     "cell": 0.1878,
+     "se": 0.2193
+    }
+   },
+   "guest-b": {
+    "1": {
+     "cell": 2.2378,
+     "se": 0.2269
+    },
+    "5RZ32": {
+     "cell": 1.4926,
+     "se": 0.2167
+    }
+   }
+  }
+ }
+}

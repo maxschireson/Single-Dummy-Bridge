@@ -1,0 +1,1005 @@
+{
+ "schema": "arena-results-v1",
+ "epoch": 3,
+ "condition": "native",
+ "closed_utc": "2026-11-12T19:58:54Z",
+ "source": {
+  "epoch_manifest": "176653133b5df550ae56c5abf5212ac0ecd064cb29f7dafc36c7392d7584fa13",
+  "next_manifest": "2bdf1b9ca8f82eba9bf7d819732c442e626829b0cdd3a1869921af70d25286ac",
+  "rules_version": "arrival-v2",
+  "source_commit": "8cb03484f498ffd77af95301d5244db5c27bcd63",
+  "next_snapshot": "167eafe83d70db6a54fe49a78beb080f2bd43ab0c5abd6159bb69b55ecb2e674"
+ },
+ "roster": [
+  {
+   "player": "8p-32",
+   "kind": "house",
+   "status": "champion",
+   "version": "855c671d880d",
+   "identity": "3cf2f5d52375",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {}
+  },
+  {
+   "player": "7s-32",
+   "kind": "house",
+   "status": "retired",
+   "version": "ea537fc9f041",
+   "identity": "",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": 4,
+   "test": null,
+   "declared": {}
+  },
+  {
+   "player": "9a-32",
+   "kind": "house",
+   "status": "active",
+   "version": "5bcce0228504",
+   "identity": "43fbef5a73f4",
+   "since": 2,
+   "joined_epoch": 0,
+   "admitted_epoch": 2,
+   "retired_epoch": null,
+   "test": {
+    "champion": "8p-32",
+    "opened_epoch": 2
+   },
+   "declared": {}
+  },
+  {
+   "player": "guest-a",
+   "kind": "guest",
+   "status": "active",
+   "version": "d555bcab0308",
+   "identity": "45ac96295f00",
+   "since": 4,
+   "joined_epoch": 2,
+   "admitted_epoch": 4,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {
+    "card": "rb-precision",
+    "carding": "declared"
+   }
+  },
+  {
+   "player": "guest-b",
+   "kind": "guest",
+   "status": "candidate",
+   "version": "2e010811bf64",
+   "identity": "0d53ecd4461c",
+   "since": 4,
+   "joined_epoch": 4,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {
+    "card": "rb-standard",
+    "carding": "declared"
+   }
+  },
+  {
+   "player": "1",
+   "kind": "anchor",
+   "status": "anchor",
+   "version": "e6805f0ee817",
+   "identity": "38b9d00cf11f",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {}
+  },
+  {
+   "player": "5RZ32",
+   "kind": "anchor",
+   "status": "anchor",
+   "version": "9b7a5a3ef3bc",
+   "identity": "49f4aeb51f52",
+   "since": 0,
+   "joined_epoch": 0,
+   "admitted_epoch": null,
+   "retired_epoch": null,
+   "test": null,
+   "declared": {}
+  }
+ ],
+ "ratings": {
+  "reference": "1",
+  "t2": 0.0,
+  "boards": 2818,
+  "players": [
+   {
+    "player": "9a-32",
+    "strength": 2.2022,
+    "se": 0.2557,
+    "ci95": [
+     1.701,
+     2.7035
+    ],
+    "boards": 1163,
+    "field": {
+     "score": 1.2505,
+     "se": 0.1302,
+     "worst": {
+      "opponent": "8p-32",
+      "estimate": 0.2161,
+      "se": 0.1383
+     }
+    },
+    "screen": {
+     "won": [
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [],
+     "even": 2
+    }
+   },
+   {
+    "player": "7s-32",
+    "strength": 2.0605,
+    "se": 0.2541,
+    "ci95": [
+     1.5625,
+     2.5585
+    ],
+    "boards": 537,
+    "field": {
+     "score": 0.8586,
+     "se": 0.1712,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -0.1417,
+      "se": 0.2468
+     }
+    },
+    "screen": {
+     "won": [
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [],
+     "even": 2
+    }
+   },
+   {
+    "player": "8p-32",
+    "strength": 1.9861,
+    "se": 0.2438,
+    "ci95": [
+     1.5084,
+     2.4639
+    ],
+    "boards": 1297,
+    "field": {
+     "score": 0.9803,
+     "se": 0.1178,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -0.2161,
+      "se": 0.1383
+     }
+    },
+    "screen": {
+     "won": [
+      "guest-a",
+      "1",
+      "5RZ32"
+     ],
+     "lost": [],
+     "even": 2
+    }
+   },
+   {
+    "player": "guest-a",
+    "strength": 1.0042,
+    "se": 0.254,
+    "ci95": [
+     0.5062,
+     1.5021
+    ],
+    "boards": 1554,
+    "field": {
+     "score": -0.2471,
+     "se": 0.1347,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -1.1981,
+      "se": 0.1756
+     }
+    },
+    "screen": {
+     "won": [
+      "1"
+     ],
+     "lost": [
+      "8p-32",
+      "7s-32",
+      "9a-32"
+     ],
+     "even": 1
+    }
+   },
+   {
+    "player": "5RZ32",
+    "strength": 0.8168,
+    "se": 0.2967,
+    "ci95": [
+     0.2354,
+     1.3983
+    ],
+    "boards": 511,
+    "field": {
+     "score": -0.4813,
+     "se": 0.1989,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -1.3854,
+      "se": 0.2473
+     }
+    },
+    "screen": {
+     "won": [
+      "1"
+     ],
+     "lost": [
+      "8p-32",
+      "7s-32",
+      "9a-32"
+     ],
+     "even": 1
+    }
+   },
+   {
+    "player": "1",
+    "strength": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "boards": 574,
+    "field": {
+     "score": -1.5023,
+     "se": 0.207,
+     "worst": {
+      "opponent": "9a-32",
+      "estimate": -2.2022,
+      "se": 0.2557
+     }
+    },
+    "screen": {
+     "won": [],
+     "lost": [
+      "8p-32",
+      "7s-32",
+      "9a-32",
+      "guest-a",
+      "5RZ32"
+     ],
+     "even": 0
+    }
+   }
+  ],
+  "pairs": [
+   {
+    "pair": "9a-32~guest-a",
+    "boards": 600,
+    "mean": 1.405,
+    "se": 0.256,
+    "predicted": 0.9956,
+    "predicted_se": 0.2469,
+    "z": 1.166,
+    "p": 0.24374,
+    "testable": true,
+    "cell": 1.1981,
+    "cell_se": 0.1756,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~guest-a",
+    "boards": 600,
+    "mean": 0.9483,
+    "se": 0.2551,
+    "predicted": 1.0118,
+    "predicted_se": 0.2346,
+    "z": -0.186,
+    "p": 0.85269,
+    "testable": true,
+    "cell": 0.982,
+    "cell_se": 0.1707,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~8p-32",
+    "boards": 429,
+    "mean": 0.1841,
+    "se": 0.156,
+    "predicted": 0.3153,
+    "predicted_se": 0.2802,
+    "z": -0.407,
+    "p": 0.68401,
+    "testable": true,
+    "cell": 0.2161,
+    "cell_se": 0.1383,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "7s-32~1",
+    "boards": 223,
+    "mean": 2.4574,
+    "se": 0.3618,
+    "predicted": 1.5883,
+    "predicted_se": 0.376,
+    "z": 1.704,
+    "p": 0.08839,
+    "testable": true,
+    "cell": 2.0605,
+    "cell_se": 0.2541,
+    "p_holm": 0.97228,
+    "out_of_line": false
+   },
+   {
+    "pair": "7s-32~5RZ32",
+    "boards": 210,
+    "mean": 1.0762,
+    "se": 0.3371,
+    "predicted": 1.4648,
+    "predicted_se": 0.3723,
+    "z": -0.787,
+    "p": 0.43113,
+    "testable": true,
+    "cell": 1.2437,
+    "cell_se": 0.2444,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "guest-a~1",
+    "boards": 186,
+    "mean": 0.8978,
+    "se": 0.4496,
+    "predicted": 1.0659,
+    "predicted_se": 0.3194,
+    "z": -0.319,
+    "p": 0.74987,
+    "testable": true,
+    "cell": 1.0042,
+    "cell_se": 0.254,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "guest-a~5RZ32",
+    "boards": 168,
+    "mean": 0.7976,
+    "se": 0.4485,
+    "predicted": -0.1433,
+    "predicted_se": 0.3077,
+    "z": 1.813,
+    "p": 0.06984,
+    "testable": true,
+    "cell": 0.1873,
+    "cell_se": 0.2478,
+    "p_holm": 0.8381,
+    "out_of_line": false
+   },
+   {
+    "pair": "7s-32~8p-32",
+    "boards": 104,
+    "mean": -0.0769,
+    "se": 0.2846,
+    "predicted": 0.2269,
+    "predicted_se": 0.3171,
+    "z": -0.679,
+    "p": 0.49722,
+    "testable": true,
+    "cell": 0.0744,
+    "cell_se": 0.2238,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~1",
+    "boards": 98,
+    "mean": 1.8673,
+    "se": 0.5386,
+    "predicted": 2.0248,
+    "predicted_se": 0.2807,
+    "z": -0.278,
+    "p": 0.78095,
+    "testable": true,
+    "cell": 1.9861,
+    "cell_se": 0.2438,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~1",
+    "boards": 67,
+    "mean": 1.7164,
+    "se": 0.6845,
+    "predicted": 2.3099,
+    "predicted_se": 0.2827,
+    "z": -0.894,
+    "p": 0.37106,
+    "testable": true,
+    "cell": 2.2022,
+    "cell_se": 0.2557,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "9a-32~5RZ32",
+    "boards": 67,
+    "mean": 1.2388,
+    "se": 0.6255,
+    "predicted": 1.4205,
+    "predicted_se": 0.2753,
+    "z": -0.29,
+    "p": 0.77161,
+    "testable": true,
+    "cell": 1.3854,
+    "cell_se": 0.2473,
+    "p_holm": 1.0,
+    "out_of_line": false
+   },
+   {
+    "pair": "8p-32~5RZ32",
+    "boards": 66,
+    "mean": 0.8788,
+    "se": 0.4111,
+    "predicted": 1.2863,
+    "predicted_se": 0.277,
+    "z": -0.788,
+    "p": 0.4305,
+    "testable": true,
+    "cell": 1.1693,
+    "cell_se": 0.2339,
+    "p_holm": 1.0,
+    "out_of_line": false
+   }
+  ],
+  "cells": [
+   {
+    "player": "1",
+    "opponent": "5RZ32",
+    "cell": -0.8168,
+    "se": 0.2967
+   },
+   {
+    "player": "1",
+    "opponent": "7s-32",
+    "cell": -2.0605,
+    "se": 0.2541
+   },
+   {
+    "player": "1",
+    "opponent": "8p-32",
+    "cell": -1.9861,
+    "se": 0.2438
+   },
+   {
+    "player": "1",
+    "opponent": "9a-32",
+    "cell": -2.2022,
+    "se": 0.2557
+   },
+   {
+    "player": "1",
+    "opponent": "guest-a",
+    "cell": -1.0042,
+    "se": 0.254
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "1",
+    "cell": 0.8168,
+    "se": 0.2967
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "7s-32",
+    "cell": -1.2437,
+    "se": 0.2444
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "8p-32",
+    "cell": -1.1693,
+    "se": 0.2339
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "9a-32",
+    "cell": -1.3854,
+    "se": 0.2473
+   },
+   {
+    "player": "5RZ32",
+    "opponent": "guest-a",
+    "cell": -0.1873,
+    "se": 0.2478
+   },
+   {
+    "player": "7s-32",
+    "opponent": "1",
+    "cell": 2.0605,
+    "se": 0.2541
+   },
+   {
+    "player": "7s-32",
+    "opponent": "5RZ32",
+    "cell": 1.2437,
+    "se": 0.2444
+   },
+   {
+    "player": "7s-32",
+    "opponent": "8p-32",
+    "cell": 0.0744,
+    "se": 0.2238
+   },
+   {
+    "player": "7s-32",
+    "opponent": "9a-32",
+    "cell": -0.1417,
+    "se": 0.2468
+   },
+   {
+    "player": "7s-32",
+    "opponent": "guest-a",
+    "cell": 1.0563,
+    "se": 0.2536
+   },
+   {
+    "player": "8p-32",
+    "opponent": "1",
+    "cell": 1.9861,
+    "se": 0.2438
+   },
+   {
+    "player": "8p-32",
+    "opponent": "5RZ32",
+    "cell": 1.1693,
+    "se": 0.2339
+   },
+   {
+    "player": "8p-32",
+    "opponent": "7s-32",
+    "cell": -0.0744,
+    "se": 0.2238
+   },
+   {
+    "player": "8p-32",
+    "opponent": "9a-32",
+    "cell": -0.2161,
+    "se": 0.1383
+   },
+   {
+    "player": "8p-32",
+    "opponent": "guest-a",
+    "cell": 0.982,
+    "se": 0.1707
+   },
+   {
+    "player": "9a-32",
+    "opponent": "1",
+    "cell": 2.2022,
+    "se": 0.2557
+   },
+   {
+    "player": "9a-32",
+    "opponent": "5RZ32",
+    "cell": 1.3854,
+    "se": 0.2473
+   },
+   {
+    "player": "9a-32",
+    "opponent": "7s-32",
+    "cell": 0.1417,
+    "se": 0.2468
+   },
+   {
+    "player": "9a-32",
+    "opponent": "8p-32",
+    "cell": 0.2161,
+    "se": 0.1383
+   },
+   {
+    "player": "9a-32",
+    "opponent": "guest-a",
+    "cell": 1.1981,
+    "se": 0.1756
+   },
+   {
+    "player": "guest-a",
+    "opponent": "1",
+    "cell": 1.0042,
+    "se": 0.254
+   },
+   {
+    "player": "guest-a",
+    "opponent": "5RZ32",
+    "cell": 0.1873,
+    "se": 0.2478
+   },
+   {
+    "player": "guest-a",
+    "opponent": "7s-32",
+    "cell": -1.0563,
+    "se": 0.2536
+   },
+   {
+    "player": "guest-a",
+    "opponent": "8p-32",
+    "cell": -0.982,
+    "se": 0.1707
+   },
+   {
+    "player": "guest-a",
+    "opponent": "9a-32",
+    "cell": -1.1981,
+    "se": 0.1756
+   }
+  ]
+ },
+ "decisions": [
+  {
+   "seq": 9,
+   "epoch": 4,
+   "event": "retire",
+   "player": "7s-32",
+   "author": "plan",
+   "authority": "arrival run plan: a house bot retired by a queued command before epoch 4",
+   "champion": null,
+   "evidence": null
+  },
+  {
+   "seq": 10,
+   "epoch": 4,
+   "event": "submit",
+   "player": "guest-b",
+   "author": "plan",
+   "authority": "arrival run plan: guest-b arrives before epoch 4",
+   "champion": null,
+   "evidence": null
+  },
+  {
+   "seq": 11,
+   "epoch": 4,
+   "event": "activate",
+   "player": "guest-a",
+   "author": "controller",
+   "authority": "rules arrival-v2: admitted",
+   "champion": null,
+   "evidence": {
+    "boards": 2174,
+    "se": 0.2226
+   }
+  }
+ ],
+ "tests": [
+  {
+   "pair": "9a-32~8p-32",
+   "opened_epoch": 2,
+   "boards": 360,
+   "K": 0.8975,
+   "L": 0.6724,
+   "promote_at": 20.0,
+   "futility_at": 10.0,
+   "decision": null
+  }
+ ],
+ "schedule": {
+  "epoch": 3,
+  "boards": 1200,
+  "played": {
+   "admission": {
+    "boards": 342,
+    "pairs": {
+     "7s-32~1": 84,
+     "7s-32~5RZ32": 72,
+     "guest-a~1": 102,
+     "guest-a~5RZ32": 84
+    }
+   },
+   "panel": {
+    "boards": 18,
+    "pairs": {
+     "8p-32~1": 18
+    }
+   },
+   "training": {
+    "boards": 60,
+    "pairs": {
+     "8p-32~8p-32": 60
+    }
+   },
+   "floor": {
+    "boards": 600,
+    "pairs": {
+     "8p-32~guest-a": 300,
+     "9a-32~guest-a": 300
+    }
+   },
+   "promotion": {
+    "boards": 180,
+    "pairs": {
+     "9a-32~8p-32": 180
+    }
+   }
+  },
+  "next": {
+   "epoch": 4,
+   "boards": 1600,
+   "purposes": {
+    "admission": [
+     "guest-a~8p-32",
+     "guest-a~1",
+     "guest-a~5RZ32",
+     "guest-b~8p-32",
+     "guest-b~1",
+     "guest-b~5RZ32"
+    ],
+    "panel": [
+     "8p-32~1",
+     "8p-32~5RZ32"
+    ],
+    "promotion": [
+     "9a-32~8p-32"
+    ],
+    "training": [
+     "8p-32~8p-32"
+    ]
+   },
+   "pair_weights": {
+    "8p-32~8p-32": 10,
+    "9a-32~8p-32": 30,
+    "guest-a~1": 4,
+    "guest-a~5RZ32": 1,
+    "guest-b~1": 28,
+    "guest-b~5RZ32": 27
+   },
+   "floors": [
+    {
+     "boards": 300,
+     "pairs": [
+      "9a-32~guest-a",
+      "8p-32~guest-a"
+     ],
+     "purpose": "comparison",
+     "same_deals": true
+    },
+    {
+     "boards": 300,
+     "pairs": [
+      "9a-32~guest-b",
+      "8p-32~guest-b"
+     ],
+     "purpose": "comparison",
+     "same_deals": true
+    }
+   ]
+  }
+ },
+ "learned": {
+  "guest-a": {
+   "boards": 4362,
+   "deals": 1494,
+   "profiles_read": [
+    [
+     "card",
+     0.984
+    ],
+    [
+     "flat",
+     0.004
+    ],
+    [
+     "house-dds40k",
+     0.004
+    ],
+    [
+     "house-gen5",
+     0.004
+    ],
+    [
+     "house-gen6",
+     0.004
+    ]
+   ],
+   "honesty_read": {
+    "declarer_lead.count": 0.7921,
+    "first_discard.attitude": 0.841,
+    "lead.opening": 0.6591,
+    "partner_lead.attitude": 0.8018,
+    "*": 0.7663
+   },
+   "play_factor": null,
+   "off_card": {
+    "comp_double": [
+     35,
+     0
+    ],
+    "comp_jump": [
+     40,
+     0
+    ],
+    "comp_nt": [
+     27,
+     0
+    ],
+    "comp_overcall": [
+     179,
+     0
+    ],
+    "comp_pass": [
+     544,
+     0
+    ],
+    "comp_vs_nt": [
+     8,
+     0
+    ],
+    "nt_answer": [
+     28,
+     0
+    ],
+    "open_major": [
+     258,
+     0
+    ],
+    "open_minor": [
+     294,
+     0
+    ],
+    "open_nt": [
+     58,
+     0
+    ],
+    "open_pass": [
+     756,
+     0
+    ],
+    "open_preempt": [
+     27,
+     0
+    ],
+    "open_strong": [
+     228,
+     0
+    ],
+    "open_two": [
+     49,
+     0
+    ],
+    "open_weak": [
+     42,
+     0
+    ],
+    "resp_negative": [
+     77,
+     0
+    ],
+    "resp_new": [
+     157,
+     21
+    ],
+    "resp_nt": [
+     58,
+     18
+    ],
+    "resp_nt_relay": [
+     31,
+     0
+    ],
+    "resp_pass": [
+     42,
+     1
+    ],
+    "resp_positive": [
+     76,
+     3
+    ],
+    "resp_raise": [
+     23,
+     21
+    ]
+   },
+   "snapshot_matches_envelopes": true
+  },
+  "guest-b": {
+   "boards": 0,
+   "deals": 0,
+   "profiles_read": [
+    [
+     "card",
+     0.2399
+    ],
+    [
+     "flat",
+     0.06
+    ],
+    [
+     "house-dds40k",
+     0.2204
+    ],
+    [
+     "house-gen5",
+     0.2399
+    ],
+    [
+     "house-gen6",
+     0.2399
+    ]
+   ],
+   "honesty_read": null,
+   "play_factor": null,
+   "off_card": null,
+   "snapshot_matches_envelopes": true
+  }
+ },
+ "panel": {
+  "anchors": [
+   "1",
+   "5RZ32"
+  ],
+  "players": {
+   "8p-32": {
+    "1": {
+     "cell": 1.9861,
+     "se": 0.2438
+    },
+    "5RZ32": {
+     "cell": 1.1693,
+     "se": 0.2339
+    }
+   },
+   "7s-32": {
+    "1": {
+     "cell": 2.0605,
+     "se": 0.2541
+    },
+    "5RZ32": {
+     "cell": 1.2437,
+     "se": 0.2444
+    }
+   },
+   "9a-32": {
+    "1": {
+     "cell": 2.2022,
+     "se": 0.2557
+    },
+    "5RZ32": {
+     "cell": 1.3854,
+     "se": 0.2473
+    }
+   },
+   "guest-a": {
+    "1": {
+     "cell": 1.0042,
+     "se": 0.254
+    },
+    "5RZ32": {
+     "cell": 0.1873,
+     "se": 0.2478
+    }
+   },
+   "guest-b": {}
+  }
+ }
+}
