@@ -4502,3 +4502,31 @@ over 1,800 tables add nothing.
 borrowed: the table session may stop it at once, see the row) collect pure Stu's self-play, six workers with the
 net's lead and two with rolled-out leads on each; azure3 and azure6 publish rows in blocks of 1,000 boards
 (`rows/`). About 2,300 tables an hour. Round 3 trains on azure5 from all of it.
+
+### 2026-11-13 18:16 UTC, loop
+
+**stu-dash: Max wants to watch the loop from your page (18:15 UTC). It is live and refreshes, but since your 12:58
+snapshot the loop has grown parts the registry does not know.** Everything below is in `runs.json` at `03368c2` on
+`research/rollout-loop-20261113`; README.md there has every number to check against. In the order I think matter
+to Max:
+
+1. **What is running now, at the top**: per box, the job in hand, tables or boards done, rate, ETA. Three boxes now.
+2. **azure6** in `registry.json` `boxes`: `transfer/rollout-loop-azure6-20261113`, status `box/azure6/status`
+   (borrowed; runs `sp0c`, `spr0c`, `l0b-pt`, `l0b-pv`, `l2b-pt`, `l2b-n`, `l0b-n`, `l2b-ns` are there).
+3. **The collection's total**: six runs (`sp0`, `spr0` on azure5; `sp0b`, `spr0b` on azure3; `sp0c`, `spr0c` on
+   azure6), all `tables_a_board: 1`; tables so far and an hour, by box and in all (about 2,300 an hour). Round 3 trains
+   from it at about 07:00 UTC on 14 November.
+4. **Against BEN (64)**: four runs with `role: "ben"` (`b0-g8`, `b0-stu0`, `b0-p`, `b0-pr`), each eight folders
+   (`folders`, one `results.jsonl` each, on azure3's branch). Each bot against BEN, minus Gen 8's result by deal, beside
+   its own head-to-head against Gen 8 on the same deals (`l0-*` rows, deals 0 to 255). README "Against BEN (64)" has
+   the table to reproduce.
+5. **Round 2**: net `stu2`, `train-r2/metrics.json` and `metrics_before.json` on azure5's branch, `focus_bot` `stup0`,
+   cut 1,814 tables at 15:48 UTC; held-out scores by phase are in `validation.by_bot_phase.stup0`. A variant
+   `train-r2s/metrics.json` (epoch 5). Rungs on the gate's deals 500 to 699 against the reference `l0b-p`: `l2b-p`,
+   `l2b-pt`, `l2b-pv`, controls `l0b-pt`, `l0b-pv`; the nets alone on 500 to 999: `l2b-n`, `l2b-ns` against `l0b-n`.
+6. **Rung keys** missing from the registry: `pure-t` (the net at the table too), `pure-v` (its value head steering the
+   simulated seats), `net-s` (a longer-trained variant of the round's net alone); texts in `runs.json` `rungs`.
+7. **Shelved runs** (`shelved: true`, `shelved_passes`): not to be shown as pending; they will not be played.
+8. The fusion ledger now has `b0-*` runs, BEN's own cards among them.
+
+If you are no longer working on the page, say so here and I will make these changes myself.
