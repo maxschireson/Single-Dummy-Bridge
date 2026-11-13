@@ -18,7 +18,10 @@ import io
 import math
 import zipfile
 
+import os
+
 import numpy as np
+from pathlib import Path
 
 from .bidding_env import CALL_ID
 from .core import normalize_bid, vulnerable
@@ -266,13 +269,33 @@ class LeadNet:
 
 
 class FitScorer:
-    """log P(hand fits the calls its seat made). Three ReLU layers over hand type, vulnerability, auction."""
+    """log P(hand fits the calls its seat made). Three ReLU layers over hand type, vulnerability, auction.
+
+    `shared(path)` gives every player in a process one scorer for a model file, so its memory of scored hand types
+    (`types`) serves both sides of a table: the same numbers, each type scored once. With BRIDGE_NET_BF16=1 and torch
+    installed, the three hidden layers run in bf16 (gen7_net.Bf16Forward's kernels) and the output layer in fp32."""
+    SHARED = {}
+
+    @classmethod
+    def shared(cls, path):
+        key = str(Path(path).resolve())
+        if key not in cls.SHARED:
+            cls.SHARED[key] = cls(path)
+        return cls.SHARED[key]
 
     def __init__(self, path):
         with np.load(path, allow_pickle=False) as z:
             self.p = {k: z[k] for k in z.files}
         self.cache = {}
         self.types = {}
+        self.t = None
+        if os.environ.get('BRIDGE_NET_BF16') == '1':
+            try:
+                import torch
+                self.torch = torch
+                self.t = {k: torch.from_numpy(np.ascontiguousarray(self.p[k].astype(np.float32))).to(torch.bfloat16) for k in ('Wh', 'W1', 'b1', 'W2', 'b2')}
+            except ImportError:
+                self.t = None
 
     def auction_part(self, auction, dealer, seat):
         key = (tuple(auction), dealer, seat)
@@ -292,9 +315,16 @@ class FitScorer:
             v[:, 0], v[:, 1] = own_vul, opp_vul
             x = np.concatenate([EYE14[ln].reshape(n, 56), BITS5[hn].reshape(n, 20), ((ln - POP[hn]) / 8.0).astype(np.float32),
                                 EYE38[HON_HCP[hn].sum(axis=1)], v], axis=1)
-            z = _relu(x @ p['Wh'] + auction_part)
-            z = _relu(z @ p['W1'] + p['b1'])
-            z = _relu(z @ p['W2'] + p['b2'])
+            if self.t is not None:
+                torch, t = self.torch, self.t
+                with torch.inference_mode():
+                    z = torch.relu(torch.from_numpy(x).to(torch.bfloat16) @ t['Wh'] + torch.from_numpy(np.asarray(auction_part, np.float32)).to(torch.bfloat16))
+                    z = torch.relu(z @ t['W1'] + t['b1'])
+                    z = torch.relu(z @ t['W2'] + t['b2']).float().numpy()
+            else:
+                z = _relu(x @ p['Wh'] + auction_part)
+                z = _relu(z @ p['W1'] + p['b1'])
+                z = _relu(z @ p['W2'] + p['b2'])
             z = (z @ p['Wo'] + p['bo'])[:, 0].astype(np.float64)
             out[s:s + chunk] = -np.logaddexp(0.0, -z)
         return out
@@ -304,7 +334,7 @@ class FitScorer:
         per seat and auction and remembered, so later decisions of the same deal cost almost nothing."""
         key = (tuple(auction), dealer, vulnerability, seat)
         if key not in self.types:
-            if len(self.types) >= 16:
+            if len(self.types) >= 64:                       # shared by every player in the process: a few boards' seats
                 self.types.clear()
             self.types[key] = (np.zeros(0, np.int64), np.zeros(0))
         keys, vals = self.types[key]

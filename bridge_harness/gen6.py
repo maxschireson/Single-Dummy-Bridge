@@ -322,7 +322,7 @@ class Gen6Player(ArenaPlayer):
         root = Path(root)
         if 'gen5' in (c.lead_source, c.early_source) and not spec.get('belief'):
             raise ValueError("A 'gen5' layout source needs the spec's belief net")
-        self.scorer = FitScorer(root / spec['scorer'])
+        self.scorer = FitScorer.shared(root / spec['scorer'])
         # Gen 8 prototype (inert unless the spec names these): the systems NS and EW have declared at this table
         # (spec['table_systems']), a scorer that reads each side's calls by its system (spec['system_scorer']), and
         # the systems whose auctions the lead net was trained on (spec['lead_systems']; elsewhere the scorer leads).
