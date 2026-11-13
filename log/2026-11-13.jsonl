@@ -136,3 +136,5 @@
 {"at": "2026-11-13T04:22:00Z", "by": "dave", "op": "lease", "target": "G9-D9", "until": "2026-11-13T08:22Z"}
 {"at": "2026-11-13T04:24:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-12-c", "note": "done"}
 {"at": "2026-11-13T04:24:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "running"}
+{"at": "2026-11-13T04:26:00Z", "by": "g9", "op": "resolve", "target": "G9-W4", "note": "Accepted: the first day's queue metrics answer the thinkers-and-executors question (executors were not the bottleneck; decisions and absences were); rerun Friday morning.", "resolution": "accepted"}
+{"at": "2026-11-13T04:26:00Z", "by": "g9", "op": "send", "target": "will/20261113T0426Z-g9-g9-w4-resolved-accepted-queue", "note": "G9-W4 resolved (accepted): Queue metrics: are there too few thinkers or too few executors", "task": "G9-W4"}

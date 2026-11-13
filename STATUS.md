@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:25 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:26 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -11,13 +11,12 @@ Generated 2026-11-13 04:25 UTC by `tools/workq.py` after a change by `g9`. Do no
 | g9 | 0 | 0 | 1 | 1 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
-| will | 1 | 1 | 0 | 1 | 0 | 6 |
+| will | 1 | 0 | 0 | 1 | 0 | 7 |
 
 ## Waiting for review
 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
-| g9 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | team/gen9 |
 | will | [G9-D8](tasks/G9-D8.md) | The arena's results page for a population: data feed and a prototype from the arrival run | dave | transfer/gen9-arena-page-20261113 |
 
 ## Tasks
@@ -29,7 +28,6 @@ Generated 2026-11-13 04:25 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 06:42 | leased | medium |  |  |
 | [G9-D8](tasks/G9-D8.md) | The arena's results page for a population: data feed and a prototype from the arrival run | dave | dave | submitted | medium | 2026-11-14T00:00Z |  |
-| [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will | submitted | medium | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
@@ -62,6 +60,7 @@ Generated 2026-11-13 04:25 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-S5](tasks/G9-S5.md) | Honesty and play-factor estimators; learning curve by boards seen | sam | sam | resolved | medium | 2026-11-13T12:00Z | accepted |
 | [G9-S6](tasks/G9-S6.md) | The house bots' own carding, measured | sam | sam | resolved | medium | 2026-11-13T16:00Z | accepted |
 | [G9-W3](tasks/G9-W3.md) | One command to prepare an environment and run the Gen 9 tests | will | will | resolved | medium | 2026-11-12T20:00Z | accepted |
+| [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will | resolved | medium | 2026-11-13T12:00Z | accepted |
 | [G9-W6](tasks/G9-W6.md) | Script for the base swap | will | will | resolved | medium | 2026-11-12T22:00Z | accepted |
 | [G9-W8](tasks/G9-W8.md) | W3 follow-up: run pytest-style test files; --prepare idempotent for all releases | will | will | resolved | medium |  | accepted |
 | [G9-W9](tasks/G9-W9.md) | run_tests.py: count skips per file; refuse a missing --files name | will | will | resolved | low |  | accepted |
@@ -97,12 +96,13 @@ Generated 2026-11-13 04:25 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | Dynamic arena lead | 11-13 04:10 | 0 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:25 | 11 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 5 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 03:36 | 6 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 03:36 | 7 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | g9 | 11-13 04:26 | [G9-W4 resolved (accepted): Queue metrics: are there too few thinkers or too few executors](inbox/will/20261113T0426Z-g9-g9-w4-resolved-accepted-queue.md) |
 | will | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/will/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
 | sam | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/sam/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
 | dave | g9 | 11-13 04:20 | [Correction to the G9-D9 impact rows: drop 'tie-break high -0.45'](inbox/dave/20261113T0420Z-g9-correction-to-the-g9-d9-impact.md) |
@@ -117,7 +117,6 @@ Generated 2026-11-13 04:25 UTC by `tools/workq.py` after a change by `g9`. Do no
 | all | bill | 11-13 04:02 | [bill is back (04:02 UTC), working continuously: E9-12 verdict next, then bidding checks for the 9a-32 cohort, ](inbox/all/20261113T0402Z-bill-bill-is-back-04-02-utc-working.md) |
 | g9 | bill | 11-13 04:02 | [bill back, working continuously: E9-12 interim card v wrong net +0.375 ± 0.092 IMPs/board (902), no-reading −0](inbox/g9/20261113T0402Z-bill-bill-back-working-continuously.md) |
 | all | g9 | 11-13 03:49 | [FINAL: Max wants Gen 9 deployed and asks us to accelerate: work continuously, deployment first (queues inside)](inbox/all/20261113T0349Z-g9-final-max-wants-gen-9-deployed.md) |
-| dave | g9 | 11-13 03:42 | [New task for you: G9-D8, The arena's results page for a population: data feed and a prototype from the arrival](inbox/dave/20261113T0342Z-g9-new-task-for-you-g9-d8-the-are.md) |
 
 ## Box queue
 
