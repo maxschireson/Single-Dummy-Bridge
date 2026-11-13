@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794554901.3589942,
+  "checked_epoch": 1794559133.1545844,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,9 +24,9 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "5455bb08075d4b7def0c23e8c8eb7825f63e1ec4",
-  "coordination_blob": "618e3932d7098a25403c41bdb12c2c4d8d4febbd",
-  "registry_blob": "40aa491f73af16f0dd4ebe861711f87b7190d05f",
+  "coordination_revision": "ff860c9aa808ef3d947eee8db88bf69cf9a56e59",
+  "coordination_blob": "f90764ddd4395dbefc76e3cb80d15fccb8629ef3",
+  "registry_blob": "c79f2265fd8c8941d65249be795bd7d234412a98",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
@@ -94,6 +94,11 @@
       "instruction": "Any new pool, whoever freezes it, should be blocked against every published corpus.",
       "authority": "g7 2026-11-12 19:27 UTC on box/coordination",
       "action": "Recorded for a future cohort; current immutable corpus unchanged, no pool prepared or transferred."
+    },
+    {
+      "instruction": "Arena promotion decision: smallest lead 0.10 IMPs per board, cap 10,000 direct boards. Smaller gains require bench evidence at least 2 SE and arena non-inferiority after at least 2,000 direct boards with the always-valid 95% lower bound above -0.10; retain the panel check.",
+      "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
+      "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
     }
   ],
   "historical_provenance": "recovery/history-index.json",
@@ -102,29 +107,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 1708,
+      "completed": 1847,
       "target": 16036,
-      "contiguous": 1707,
+      "contiguous": 1847,
       "by_pair": {
-        "8s-32~71s-32": 570,
-        "8s-32~1": 285,
-        "8s-32~5RZ32": 285,
-        "8c-32~8s-32": 284,
-        "8c-32~71s-32": 284
+        "8s-32~71s-32": 615,
+        "8s-32~1": 308,
+        "8s-32~5RZ32": 308,
+        "8c-32~8s-32": 308,
+        "8c-32~71s-32": 308
       },
-      "root_games": 5692,
-      "tables": 70103,
+      "root_games": 6158,
+      "tables": 75869,
       "failures": 0,
-      "epoch": 1794554900.7067091,
+      "epoch": 1794559104.102992,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794554900.4407172,
-      "completed": 1707,
+      "epoch": 1794559124.1045792,
+      "completed": 1847,
       "in_flight": [
-        1707,
-        1708,
-        1709
+        1847,
+        1848,
+        1849
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -132,15 +137,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794554865.8458464,
+      "epoch": 1794559126.142127,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794554893.840391,
+      "epoch": 1794559075.8888514,
       "status": "published",
-      "completed": 1707
+      "completed": 1845
     },
     "process.json": {
       "pid": 108374,
@@ -157,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction requiring a change to this owned stream. OpenedGen9 cohort isAzure4;8Xv3 assigned toAzure1 whileAzure3 keepsGen8BEN. FliptoGen9 refers explicitly to dashboarddefault. Currentmain/operationalGen8/historicalGen7.1/cleanuprefs unchanged. Frozen source, releasedv4.1 actors, mix, corpus andunion verified; fresh collector/watchdog/publisher/heldlocks healthy, no failures orstopmarkers.",
+  "result": "Promotion policy from issue #24 recorded for future authorized decisions; no live gate or promotion action applies here. New Azure host assignments and successor launches do not direct a transition for this owned stream. Main, Gen8, historical Gen7.1 and cleanup refs unchanged. Frozen source, released actors, mix, corpus and v4.1 union verified. Fresh collector, watchdog, publisher and held locks healthy, no failures or stop markers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -170,43 +175,57 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T06:26:51Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T07:28:21Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue only",
+      "disposition": "Gen9 queue",
       "new_comments": 0
+    },
+    {
+      "number": 23,
+      "comment_ids": [
+        6847322214
+      ],
+      "disposition": "Max decided no sub-agents for Gen9 leads; no delegation performed"
+    },
+    {
+      "number": 24,
+      "comment_ids": [
+        6847322760
+      ],
+      "disposition": "Explicit promotion parameters recorded for future authorized decisions; no current gate or runtime change"
     }
   ],
   "observed_notices": [
     {
-      "notice": "g7/dave 2026-11-13 06:32/06:45/07:06/07:18 UTC",
-      "classification": "Azure4 Gen9 cohort opened/registered; Azure Gen8 pools closing",
-      "action": "Other producer's collector, cohorts and registry actions. Reviewed updatedGen9 notice; no takeover or current-stream move"
+      "notice": "x8/g7 2026-11-13 07:45/08:24 UTC",
+      "classification": "8X v3 prepare hold then launch specifically on Azure1",
+      "action": "Host-specific successor; current fixed Gen8 stream remains unchanged"
     },
     {
-      "notice": "plan 2026-11-13 06:47 UTC",
-      "classification": "Rollout-netv2 research results and advice tox8",
-      "action": "Current releasedv4.1 actors unchanged. Do not train or adopt rollout nets"
+      "notice": "dave 2026-11-13 07:52 UTC",
+      "classification": "Gen9 BEN feed on Azure4",
+      "action": "Other producer's feed; no BEN service or registry takeover here"
     },
     {
-      "notice": "x8 2026-11-13 07:10 UTC",
-      "classification": "Max-authorized8Xv3 lanes specificallyong7 arena boxes",
-      "action": "OnlyAzure1/Azure3 lane allocation proposed; not a general collector cutover.50,818-family exclusions belong to8Xv3 using rolloutnetv1, not currentv4.1-onlyGen8"
+      "notice": "sidnet 2026-11-13 07:48/08:13/08:28 UTC",
+      "classification": "Azure6 labels and student-net research",
+      "action": "No model or label training in this stream"
     },
     {
-      "notice": "g7 2026-11-13 07:22 UTC",
-      "classification": "Max fresh-pool permission, Azure1to8Xv3, Azure3Gen8BEN, dashboarddefaultGen9, ladder additions",
-      "action": "Host-specific assignments and aggregate UI changes. This stream has16,036fixedownedfamilies and no new-pool need; keep current mix, target and source. Future new pools retain cross-corpus/training exclusions"
+      "notice": "loop/g9 2026-11-13 07:56/07:57/08:22 UTC",
+      "classification": "Rollout research, SiD integration and gating recommendation",
+      "action": "No deployment instruction to this collector; do not adopt research or train"
     },
     {
-      "notice": "sidnet 2026-11-13 07:23 UTC",
-      "classification": "Other session seeks clarification of crossingAzurebox assignments",
-      "action": "No box taken; no conflict involving this workspace. Do not resolve by taking or yielding another producer"
+      "notice": "loop 2026-11-13 08:32 UTC",
+      "classification": "Max assigns Azure3 and Azure5 to the loop",
+      "action": "Specific named hosts; do not drain or transfer this cloud stream, touch other producers, or interfere with the assigned owners"
     }
   ],
-  "registry_disposition": "Owned activeGen8 and both pinned retired sources unchanged and verified. Gen9 registry/default-view changes are aggregate UI actions, not relabeling this stream.",
-  "previous_checked_epoch": 1794551211.4849691,
+  "registry_disposition": "Owned active Gen8 and both pinned retired entries remain unchanged and verified; aggregate and foreign-producer changes do not alter ownership.",
+  "previous_checked_epoch": 1794554901.3589942,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -227,11 +246,18 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 0.9182770252227783,
-  "publisher_age": 7.518603324890137,
-  "free_bytes": 21107560448,
-  "new_applicable_instructions": [],
-  "registry_revision": "daac1de293d4fdd7aa1f488eca14643d13ed6ecf",
+  "heartbeat_age": 9.050005197525024,
+  "publisher_age": 57.26573300361633,
+  "free_bytes": 20302204928,
+  "new_applicable_instructions": [
+    {
+      "instruction": "Arena promotion decision: smallest lead 0.10 IMPs per board, cap 10,000 direct boards. Smaller gains require bench evidence at least 2 SE and arena non-inferiority after at least 2,000 direct boards with the always-valid 95% lower bound above -0.10; retain the panel check.",
+      "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
+      "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix.",
+      "disposition": "Future promotion policy only; no active promotion or collection change"
+    }
+  ],
+  "registry_revision": "b1d2f2934a138e69a347fc4e03b25f0766d0f47a",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -285,9 +311,21 @@
   ],
   "successor_notice_review": {
     "branch": "feature/gen9-cohort",
-    "revision": "46b7e0044be79d40ad17499334b6ececf022910e",
+    "revision": "989a493105edd2a576c274b36a0cc3ff5efb7120",
     "path": "docs/gen9/cohort.md",
     "blob": "36f6f5d4d2c8db4098a7c8112dc425d50b5263c6",
-    "scope": "Opened plan and running cohort explicitlyAzure4; no instruction to migrate otherGen8 collectors"
+    "scope": "Azure4 Gen9 cohort; no instruction to migrate other Gen8 collectors"
+  },
+  "policy_review": {
+    "branch": "feature/gen9",
+    "revision": "b2acd83e0a966d77c9319edfaf1067dbaaee886f",
+    "path": "docs/gen9/arena-statistics.md",
+    "blob": "0ca97da4400f3a50a804779e94676816daba0a3b",
+    "scope": "Explicit decided paragraph confirmed from issue #24. Remaining design prose is not automatically adopted."
+  },
+  "future_promotion_policy": {
+    "instruction": "Arena promotion decision: smallest lead 0.10 IMPs per board, cap 10,000 direct boards. Smaller gains require bench evidence at least 2 SE and arena non-inferiority after at least 2,000 direct boards with the always-valid 95% lower bound above -0.10; retain the panel check.",
+    "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
+    "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   }
 }
