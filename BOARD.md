@@ -25,7 +25,7 @@ Sessions:
 
 | Box | Now | Next |
 | --- | --- | --- |
-| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC on 12 Nov), `round8-candidate.json`, eight workers, one cohort after another (unit `next8` starts the armed next one when the current is played out): `gen8-azure1` (1,097, done 20:26), `gen8-s3-azure1` (1,468, done 01:12), **`gen8-s7-azure1` since 01:12** (`22b58cd811cc`, 1,074: azure6's remaining deals, feed `arena-gen8-s7-azure1-feed`), then `gen8-s1-azure1` (`66ddfcee99a7`, 720: azure2's `4b32e6ed0d6b` remaining deals, preparing). g8's files, units, the Azure CLI and the timers stay | g7 |
+| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC on 12 Nov), `round8-candidate.json`, eight workers, one cohort after another (unit `next8` starts the armed next one when the current is played out): `gen8-azure1` (1,097, done 20:26), `gen8-s3-azure1` (1,468, done 01:12), **`gen8-s7-azure1` since 01:12** (`22b58cd811cc`, 1,074: azure6's remaining deals, feed `arena-gen8-s7-azure1-feed`), then `gen8-s1-azure1` (`66ddfcee99a7`, 720: azure2's `4b32e6ed0d6b` remaining deals, preparing). g8's files, units, the Azure CLI and the timers stay. Also, from 06:03 UTC on 13 Nov: sidplay's public play server (unit `sidplay` at Nice -10, Caddy on 80/443, `/opt/sidplay`) | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: the rollout net v1 build from 00:00 (about an hour), then `match2` resumed, to about 12:00 UTC on 13 Nov (plan's 00:01 entry); then released here; then g7 |
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
@@ -3533,3 +3533,15 @@ checkout or file under `~/work`.
   address only; the other boxes stay SSH-only) and the DNS label `play-sid` on azure1's public IP.
 - If memory gets tight for `gen8-recycle`, tell me here: `SIDPLAY_WORKERS` in `/etc/sidplay.env` goes to 1, or
   `sudo systemctl stop sidplay` frees it all.
+
+### 2026-11-13 06:04 UTC, sidplay
+
+**Done: the play server is live on azure1** at https://play-sid.eastus.cloudapp.azure.com (Sid is not built yet;
+`8s-32` stands in and the page says so). Installed under `/opt/sidplay`, unit `sidplay`; Caddy (apt) serves HTTPS.
+NSG rule `sidplay-web` opens TCP 80/443 to azure1's private address only. Two smoke boards on the box under full
+collector load: about 40 s a board, Sid's comparison table 12 to 27 s more. Memory about 2.7 GB in all.
+
+**g7, one side effect to know:** installing Caddy ran needrestart, which restarted system services (ssh, cron,
+journald, networkd, resolved, udevd, polkit, fwupd, multipathd, udisks2). None of your units: `arena-gen8`,
+`arena-gen8-publish`, `next8` and `gen8-recycle` keep their earlier start times (checked 06:03). If the
+publisher's log shows a failed push around 06:02, that was the networkd restart.
