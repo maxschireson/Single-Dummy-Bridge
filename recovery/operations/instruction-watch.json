@@ -969,7 +969,7 @@
   "initial_override": "Historical initial Gen6-only scope; superseded for this owned stream by the standing instruction to follow general collection-worker changes and the Gen7 phase1 go-ahead.",
   "automation_id": "Automation_9145205e9ee481919c6395359b8d748c",
   "result": "no_current_collection_instruction_change",
-  "collection_action": "Continue identicalthree-workerzero-BENGen8cohort. No source/model/settings/manifest/runtime/corpus/guard/feed/registrychange, restart, failureclearing, peermutationorremote-hostcommand.",
+  "collection_action": "Continue the identical three-worker, zero-BEN Gen8 cohort. Source, models, settings, manifest, runtime, corpus, guard and registry remain unchanged. No restart, failure clearing, peer mutation or remote-host command was performed.",
   "capture_instruction": {
     "branch": "transfer/gen7-capture-forks-20261111",
     "commit": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
@@ -1001,8 +1001,8 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "Azure3/5looptrainingandAzure6S0remainhost-specificresearch; Azure1 8Xv3andAzure4Gen9aretheiradoptedcohorts. Gen9promotiond0.10/cap10000directboardsdoesnotcapthisGen8sourcebudgetorenableapromotionprocesshere. Noagentsalreadycompliant.",
-  "notification": "No currentcollectionbehaviorchange, completionornewblockerneedingattention. Knownsharedreplayissuealreadynotified; remainquiet.",
+  "research_disposition": "Azure3/5 loop training and Azure6 S0 work are assigned to those hosts. Azure1 8X v3 and Azure4 Gen9 are their adopted cohorts. The Gen9 promotion threshold of 0.10 IMP/board and cap of 10,000 direct boards do not change this Gen8 source budget or add a promotion process. No sub-agents were used.",
+  "notification": "No applicable collection behavior changed, and there is no completion or new blocker needing attention. The known shared replay issue was already reported. Remain quiet.",
   "checked_epoch": 1794558678.0,
   "checked_at": "2026-11-13T08:31:18Z",
   "next_check": "2026-11-13T09:25:53+00:00",
@@ -1486,7 +1486,7 @@
   ],
   "completed_at": "2026-11-13T08:36:44.292680Z",
   "next_comment_scan_since": "2026-11-13T08:31:18Z",
-  "poll_checkpoint_note": "NextcommentsscananchorstopollSTART08:31:18Z, notfinish. Existingpublishercopiesfinalwatchandevidence; exactpinnedrecoveryverificationstoredseparatelyinthiscase.",
+  "poll_checkpoint_note": "The next comments scan starts at this poll START, 08:31:18Z, rather than its finish. The existing publisher copies the final watch and evidence; exact pinned recovery verification is stored separately in this poll case.",
   "candidate_notice": {
     "path": "docs/gen8_candidate_2026-11-12.md",
     "deployed_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
@@ -1943,7 +1943,7 @@
     "verified_revision": "84650f722302379220b9f01bb5378272847356a8",
     "watch_blob": "607f42497ab7aff259f3c8e46b9f92435f1767df",
     "verification": "Exact local bytes matched committed recovery for watch, current stream, operational journal, supervisor, manifest, exclusion list, capture/preflight/production validation and source-family audit; GitHub contents readback matched watch blob; remote ref independently verified.",
-    "checkpoint_note": "Preceding watchverifiedonGitHub; currentexactwatchandevidencecheckedseparatelyafternormalpublishercapture, withproofinthiscase.",
+    "checkpoint_note": "The preceding watch was verified on GitHub. Exact current watch bytes and evidence will be checked after the normal publisher captures them; proof is stored in this poll case.",
     "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T083118Z",
     "final_watch_copy_to_verify_separately": true,
     "preceding_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261113T073230Z/publication-proof.json"
@@ -1952,12 +1952,12 @@
     "frozen_source": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
     "latest_reviewed": "695078457205693f48a24c355681aef47ca21935",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
-    "disposition": "CurrentGen8source792c4cb/manifestcd98/plans/actors unchanged;main62bd8a2andPR32unchanged. PeerGen9BENopeningand8Xfreshpreparearenothereadoptedscience."
+    "disposition": "Gen8 source 792c4cb, manifest cd98, plans and actor models remain unchanged. Main 62bd8a2 and PR32 are unchanged. Peer Gen9 BEN and 8X fresh-deal changes are scoped to their named hosts."
   },
   "coordination_review": {
     "revision": "ff860c9aa808ef3d947eee8db88bf69cf9a56e59",
     "blob": "f90764ddd4395dbefc76e3cb80d15fccb8629ef3",
-    "disposition": "Azure1 8Xv3 live, alternateuniform/bothplansclosed; Gen9mainandBENopenonAzure4; latestMax08:23 assignsAzure3/5torolloutloop, withownersdrainingpreservingtheirlanes. No instruction toswitchthisCodexstream. Issue23noagents alreadyfollowed; issue24Gen9promotionpolicy doesnotcreateacurrentGen8gate."
+    "disposition": "Gen9 main and BEN cohorts run on Azure4. 8X v3 runs on Azure1; uniform and both-bot plans remain closed. Max assigned Azure3 and Azure5 to the rollout loop. These host allocations do not change this Codex producer. Issue 23 confirms no sub-agents; issue 24 sets Gen9 promotion rules, while this Gen8 collection has no promotion gate."
   },
   "selfplay_authority": {
     "issued": "2026-11-12T04:09:00Z",
@@ -4020,7 +4020,7 @@
     "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
     "disposition": "Gen7-to-Gen8 PR32 remains unmerged; old Gen6-to-Gen7 merge on coordination is historical.",
     "revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
-    "status": "PR32open/unmerged; existing collectorsstayfrozen."
+    "status": "PR32 is open and unmerged; existing collectors retain their frozen source."
   },
   "last_diagnosed_cache_rotation": {
     "epoch": 1794552359.3101163,
@@ -4067,7 +4067,7 @@
       "revision": "1a779a9e67caef3d362015e621d0de18b5c6553c",
       "documentation_blob": "209f812370c905391d3a4277e2092dc54f0529af"
     },
-    "status": "8Xv3liveonAzure1at08:22, source3d93d78. NoMaxmixingreplyby08:15: temperedplanunchanged. Uniformandbothplansremainclosed; no currentCodexswitch.",
+    "status": "8X v3 has run on Azure1 since 08:22 at source 3d93d78. With no mixing decision by 08:15, the existing tempered plan was used. Uniform and both-bot plans remain closed. The Codex stream is unchanged.",
     "condition_met": true,
     "training_exclusions": {
       "branch": "transfer/rollout-net-v1-training-families-20261113",
@@ -4258,9 +4258,9 @@
         "cohort": "75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078"
       }
     ],
-    "status": "Both mainandBENplansopen, registeredandrunningonAzure4. Host-specific; no currentCodexswitch.",
+    "status": "Both main and BEN plans are open, registered and running on Azure4. This host-specific opening does not switch the Codex stream.",
     "dashboard": "Max07:19 Flip toGen9 is the DEFAULT PAGE VIEW change at44f4bae, not an all-collector scientific switch. This producer remains on Gen8 selectable via ?source=gen8&older=1.",
-    "owned_stream_effect": "Continue unchangedGen8candidate792c4cb/cd98/currentmix/3workers/0BEN.",
+    "owned_stream_effect": "Continue the approved Gen8 candidate at 792c4cb with manifest cd98, the existing pair mix, three normal workers and zero BEN jobs.",
     "future_requirements": "Applicable authority for this producer, exact source/actors/models, drained successor/new identity, required complete released-model exclusions and corpus-overlap safeguards, actual capture validation.",
     "peer_control": "Read-only peer progress; do not register or operate other producers."
   },
