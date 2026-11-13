@@ -4,3 +4,5 @@ stu0a v 8p-32-v41: 200 boards to play (0 done), 8 workers
 150 boards: -0.5133 +- 0.1981 IMPs/board for stu0a; 667 boards/hour; 0 failed
 200 boards: -0.65 +- 0.1845 IMPs/board for stu0a; 671 boards/hour; 0 failed
 {"pair": "stu0a~8p-32-v41", "boards": 200, "cpu_per_board": 41.82, "common": {"imps_per_board": -0.65, "se": 0.1845, "boards": 200, "won": 17, "lost": 44, "flat": 139}, "native": {"imps_per_board": -0.65, "se": 0.1845, "boards": 200, "won": 17, "lost": 44, "flat": 139}}
+stu0a v 8p-32-v41: 0 boards to play (200 done), 8 workers
+{"pair": "stu0a~8p-32-v41", "boards": 200, "cpu_per_board": 41.82, "common": {"imps_per_board": -0.65, "se": 0.1845, "boards": 200, "won": 17, "lost": 44, "flat": 139}, "native": {"imps_per_board": -0.65, "se": 0.1845, "boards": 200, "won": 17, "lost": 44, "flat": 139}}
