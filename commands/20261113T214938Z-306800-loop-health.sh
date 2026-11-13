@@ -1,0 +1,11 @@
+# boxctl: timeout=120
+# boxctl: timeout=120
+# loop session: tables so far and the last hour's rate per collection run (read-only).
+W=$HOME/work/loop; now=$(date +%s)
+for r in sp0 spr0 sp0b spr0b sp0c spr0c sp0d spr0d sp0e spr0e; do
+  E=$W/runs/$r/episodes; [ -d "$E" ] || continue
+  n=$(ls "$E" | wc -l); h=$(find "$E" -name '*.json.gz' -mmin -60 | wc -l); q=$(find "$E" -name '*.json.gz' -mmin -20 | wc -l)
+  echo "$r $n tables | last 60 min $h | last 20 min $q"
+done
+systemctl is-active loop-collect loop-collect-b loop-chain 2>/dev/null | tr '\n' ' '; uptime | sed 's/.*load/load/'; date -u +%FT%TZ
+free -m | sed -n 2p; ps -eo rss,etimes,args --sort=-rss | grep "[x]8_match\|multiprocessing" | head -9 | awk '{printf "%5.0f MB up %5ds\n", $1/1024, $2}' | tr "\n" ";"; echo
