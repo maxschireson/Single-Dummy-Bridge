@@ -1,0 +1,12 @@
+{
+  "revision": "b8c30836ddb7863761cc3d8feef69f6965edd4fb",
+  "authority": "Max04:06, will04:48/05:23 instruction: keep ladder's section and script if future authorized index rewrite.",
+  "latest_pages_revision": "5e367b0fa88f1dd72a1c20f165c26463a030ece7",
+  "index_blob": "53b9b43df3d10089eb6940bca564a815f2c5fac7",
+  "lines": [
+    "<section id=\"ladder\" hidden></section>",
+    "<script src=\"ladder.js?v=g9-ladder-20261113c\" defer></script>"
+  ],
+  "future_preservation": "Preserve the current section and script reference, including the latest version, and other-owner hourly ladder.json updates.",
+  "owned_stream_effect": "No shared file or own registry update performed."
+}

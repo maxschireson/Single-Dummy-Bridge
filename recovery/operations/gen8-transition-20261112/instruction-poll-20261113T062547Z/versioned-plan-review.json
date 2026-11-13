@@ -1,0 +1,58 @@
+{
+  "gen9_notice": {
+    "ref": "bec3c39c9e76f8ca5cc17fcd35ab16f64ad386d2",
+    "path": "docs/gen9/cohort.md",
+    "blob": "9512ae470a84ad73c903685c64efff6c54e2ae0b",
+    "opening": [
+      "# The Gen 9 cohort: launch plan",
+      "",
+      "Prepared by dave (Gen 9), 13 November 2026, the way Gen 8's cohorts were prepared",
+      "([notice, launch steps](../gen8_candidate_2026-11-12.md)). Not open: the plans are closed until Max says go,",
+      "the preflight on azure4 is clean and g7 has said how the feed is registered.",
+      "",
+      "Goal (g9, 03:49 UTC, after Max at 03:47: \"I would like to see it deployed. Can we accelerate?\"): the Gen 9 bot in",
+      "the live arena on azure4, counted on the dashboard, by about 14:00 UTC."
+    ]
+  },
+  "gen9_plans": {
+    "configs/round9-cohort.json": {
+      "blob": "2c9deeba1319d7b41617acb261acf052d5509bb6",
+      "launch_enabled": false,
+      "pending": [
+        "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
+        "preflight on azure4 (ops/smoke_gen7.py) clean",
+        "feed registration route from g7 (board, g9 03:53 UTC)"
+      ],
+      "pair_weights": {
+        "9a-32~8s-32": 1,
+        "9a-32~71s-32": 1,
+        "9a-32~8p-32": 1
+      }
+    },
+    "configs/round9-cohort-ben.json": {
+      "blob": "2d3d345aa5bd2c329b5d48c11867b07501f32959",
+      "launch_enabled": false,
+      "pending": [
+        "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
+        "preflight on azure4 (ops/smoke_gen7.py) clean",
+        "feed registration route from g7 (board, g9 03:53 UTC)"
+      ],
+      "pair_weights": {
+        "9a-32~ben64": 1
+      }
+    }
+  },
+  "host_specific_launch_notice": "BOARD06:19 applies toAzure4, no general opening here",
+  "x8_notice": {
+    "ref": "1a779a9e67caef3d362015e621d0de18b5c6553c",
+    "path": "docs/x8_bot.md",
+    "blob": "209f812370c905391d3a4277e2092dc54f0529af",
+    "opening": [
+      "# The 8X bot (work in progress, not deployed)",
+      "",
+      "Branch `feature/gen8x-rollout-bot-20261113`. Engine `gen8x`, `bridge_harness/x8_player.py`. Nothing here is",
+      "launched, merged or adopted. Session `x8` on the coordination board.",
+      ""
+    ]
+  }
+}

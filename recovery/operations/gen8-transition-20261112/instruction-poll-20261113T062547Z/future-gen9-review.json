@@ -1,0 +1,46 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "b8c30836ddb7863761cc3d8feef69f6965edd4fb",
+  "notice_blob": "00ed6b099b9d4ef89a90e9b835f3faa0ce98bb63",
+  "authority": "Max03:47 wants deployment; g9 BOARD06:19 announces Azure4 start run by Gen9, retaining original explicitly nothing-else-moves scope.",
+  "scope": "Azure4 host-specific launch announcement. No general instruction to switch other collectors or this owned Codex stream.",
+  "source": {
+    "branch": "feature/gen9-cohort",
+    "revision": "bec3c39c9e76f8ca5cc17fcd35ab16f64ad386d2",
+    "notice": "docs/gen9/cohort.md",
+    "notice_blob": "9512ae470a84ad73c903685c64efff6c54e2ae0b"
+  },
+  "plans": {
+    "configs/round9-cohort.json": {
+      "blob": "2c9deeba1319d7b41617acb261acf052d5509bb6",
+      "launch_enabled": false,
+      "pending": [
+        "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
+        "preflight on azure4 (ops/smoke_gen7.py) clean",
+        "feed registration route from g7 (board, g9 03:53 UTC)"
+      ],
+      "pair_weights": {
+        "9a-32~8s-32": 1,
+        "9a-32~71s-32": 1,
+        "9a-32~8p-32": 1
+      }
+    },
+    "configs/round9-cohort-ben.json": {
+      "blob": "2d3d345aa5bd2c329b5d48c11867b07501f32959",
+      "launch_enabled": false,
+      "pending": [
+        "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
+        "preflight on azure4 (ops/smoke_gen7.py) clean",
+        "feed registration route from g7 (board, g9 03:53 UTC)"
+      ],
+      "pair_weights": {
+        "9a-32~ben64": 1
+      }
+    }
+  },
+  "status": "Azure4 preflight passed06:02 and g9 announces collector start06:19. Published generic plan files still launch-disabled atbec3c39; do not interpret the host-specific announcement as a general opening or edit those plans here.",
+  "peer_feed": "arena-gen9-azure4-feed, registration assigned to g7; do not register, operate or mutate this peer.",
+  "preflight": "Peer351d25896a53, 10000 fresh deals, six smoke boards,417tree consultations,0overbudget, per published report; dated evidence, not this producer.",
+  "owned_stream_effect": "Continue canonicalGen8 at792c4cb, manifestcd98, approvedpairmix,three normalworkers,zeroBEN. No actor/source/model/corpus/guard change.",
+  "future_requirements": "Applicable launch authority, published plan/actors/models/source, drained new identity, all released-model training exclusions and corpus-overlap safeguards, actual capture validation."
+}

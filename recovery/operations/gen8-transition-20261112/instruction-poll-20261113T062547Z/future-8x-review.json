@@ -1,0 +1,19 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "b8c30836ddb7863761cc3d8feef69f6965edd4fb",
+  "engine": {
+    "branch": "feature/gen8x-rollout-bot-20261113",
+    "revision": "1a779a9e67caef3d362015e621d0de18b5c6553c",
+    "documentation_blob": "209f812370c905391d3a4277e2092dc54f0529af",
+    "status": "Work in progress/not deployed; no adopted arena opening here."
+  },
+  "condition_met": true,
+  "condition": {
+    "authority": "Max00:28, g9 BOARD02:45: equal-card randomization no-detectable-played-cost prerequisite met.",
+    "reading": "Retain exact-equal class probability reading requirement for8X."
+  },
+  "new_development": "Max05:33 permits experimental8Xv3: Gen8 throughtrick6, blendfromtrick7 in gamesonly, claim/mixing retained, new8x3-ft1. This is a separate researchmatch, not an edit to canonicalGen8.",
+  "models": "Currentv4.1 science unchanged. Future adopted rollout models need complete training-family exclusions and a new validated identity.",
+  "existing_gen8_effect": "Keep frozen792c4cb/cd98/currentmix/3workers/0BEN; no claims, mixing, blend or model changes in currentcohort.",
+  "future_requirements": "Applicable arena opening, exact actors/source/models, drain/newidentity, exclusions and observed capture preflight."
+}
