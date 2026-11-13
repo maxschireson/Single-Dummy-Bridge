@@ -7,11 +7,12 @@ l0b-stu0 stu0a~8p-32-v41 131 500 500 8 --episodes
 l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 # The collection: pure Stu against itself, one table a board (--one-room: the two rooms of a board between two ids of
 # one bot get the same random seed by ply and seat, so they were the same play card for card; 113 of 119 boards of s0).
-# With the opening lead rolled out (stu0-pra~stu0-prb; Max, 11:29 UTC: "let the rollouts teach you"): at 163 deals the
-# rolled lead is level with the net's own against Gen 8 (+0.01 +- 0.25 by deal), and its records are the only ones that
-# say anything new about leads (a net that leads its own first choice teaches itself nothing there). 46.5 CPU-s a table
-# against 28.6. Training deals from 100,000.
-spr0 stu0-pra~stu0-prb 9001 100000 20000 8 --episodes --one-room
-# Pure Stu with the net's own lead against itself (training deals from 60,000): played from 12:37 UTC until the
-# collection moved to rolled leads. Reached again only if spr0 is stopped.
-sp0 stu0-pa~stu0-pb 9001 60000 20000 8 --episodes --one-room
+# Two runs side by side since 14:35 UTC: this file's, with the net's own lead, on six workers (training deals from
+# 60,000), and jobs-azure5b.txt's, with the lead rolled out, on two (unit loop-collect-b).
+# Why the split: as training data a rolled-out lead costs as much CPU as the table's forty other decisions together
+# (55 CPU-s a table against 28). On 148 held-out leads of spr0 the net's first choice gives up 0.058 tricks against the
+# rollouts' best lead (a random lead 0.185; part of the 0.058 is the best of ten noisy means). At the table that is
+# worth having if it is real (about what the +0.23 +- 0.20 IMPs a board at 333 deals would be), and the bot keeps its
+# rung (stu0-pr); in the collection the other decisions need the volume more. Six workers on volume and two on leads
+# give about 890 tables an hour, some 130 of them with a value for every lead.
+sp0 stu0-pa~stu0-pb 9001 60000 20000 6 --episodes --one-room
