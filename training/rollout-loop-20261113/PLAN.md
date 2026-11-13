@@ -30,7 +30,7 @@ the rollout boundary over time", 09:24 UTC). He named the bot **Stu** (09:05).
 | 11:25 | "Should we just do pure Stu (with single dummy guarantee)?" | Pure Stu becomes the main line and plays the collection, from the 1,000-deal comparison at about 12:35 UTC unless it is more than about half an IMP behind Stu-as-is |
 | 11:27 | "I don't mind a different lead I think. Leading is different than every other trick at bridge - you don't see the dummy." | The lead may differ from Gen 8's: the net's own card (`stu0-p`), the search's (`stu0-pl`), or rollouts' (next row), whichever measures better on the same deals |
 | 11:29 | "Or we could try rollouts for the lead but with more layouts and more choices - try everything for 512 because you don't know, and let the rollouts teach you?" "Same methodology but different parameters." | Built (`0a87e01`): the engine's `lead` block. `stu0-pr` is pure Stu with every distinct lead rolled out on 512 layouts of the three hidden hands; its records give every lead a value to learn from |
-| 11:30 | "I think this won't do as well against Ben, but we'll see!" | BEN (64) as a second outside opponent, on azure3 from about 15:00 UTC: pure Stu, Gen 8 card play, Stu-as-is and the rolled-lead bot against `ben64` on the gate's first 256 deals (`jobs-azure3-ben.txt`, `ben.sh`; the arena's idle BEN servers) |
+| 11:30 | "I think this won't do as well against Ben, but we'll see!" | Played 14:58 to 17:44 UTC on the gate's first 256 deals (`jobs-azure3-ben.txt`, `ben.sh`; the arena's idle BEN servers): Gen 8 card play +0.09 +- 0.27 against BEN (64), Stu-as-is -0.02 +- 0.25, pure Stu -0.27 +- 0.28, pure Stu with the rolled-out lead -0.08 +- 0.26. Each Stu is closer to Gen 8 measured against BEN than head to head (README) |
 
 ## Stu from here: pure
 
@@ -224,6 +224,12 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   controls `stu0-pt`, `stu0-pv`, `stu0-n`. Rungs on the gate's deals 500 to 699 against `l0b-p` (`jobs-azure5-r2.txt`,
   `jobs-azure6-r0c.txt`, `jobs-azure6-r2.txt`), and the two nets alone on 500 deals: the plainest read of whether the
   net learned to choose.
+- **At the table (17:55 UTC):** by deal against pure Stu with v2 on 200 deals: the net in the rollouts -0.11 +- 0.32, in
+  the rollouts and at the table -0.15 +- 0.34, its value head steering the seats -0.01 +- 0.28 (controls with v2: at
+  the table -0.20 +- 0.32, value head -0.04 +- 0.35). The net alone on 500 deals: +0.20 +- 0.17 over v2 alone. A
+  longer-trained variant (`train-r2s/`: epoch 5 of 6 under the trainer's new `--select stup0 --forget 0.02`; held-out
+  first-card regret at the lead 0.058, tricks 5 to 8 0.083, tricks 9 to 13 0.055) alone: +0.18 +- 0.21 over v2 at 358
+  deals. So more epochs on the same tables do not show at the table either.
 - **What follows from it:** the loop needs tables before anything else. From about 17:45 UTC three boxes collect
   (azure5, azure6 borrowed, azure3 after the matches against BEN): about 2,300 tables an hour, some 30,000 by 07:00
   UTC on 14 November. Round 3 trains on those, with the epoch chosen on pure Stu's held-out choices and the other

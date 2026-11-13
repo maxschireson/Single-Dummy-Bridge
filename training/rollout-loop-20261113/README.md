@@ -142,18 +142,37 @@ The gate's first 256 deals, card play only (the common bidder's auction at both 
 on azure3; Stu's rollout net is told the opponent is `ben64`. Runs `b0-p`, `b0-g8`, `b0-stu0`, `b0-pr`, each in eight
 folders (`b0-p-1` to `b0-p-8`) on azure3's transfer branch.
 
-| | Deals | IMPs a board |
+| Against BEN (64), 256 deals | IMPs a board | Minus Gen 8's result, by deal | Against Gen 8 head to head, the same deals |
+| --- | --- | --- | --- |
+| Gen 8 card play | +0.09 +- 0.27 | | |
+| Stu's own stages | -0.02 +- 0.25 | -0.11 +- 0.27 | -0.57 +- 0.18 |
+| Pure Stu | -0.27 +- 0.28 | -0.36 +- 0.31 | -0.91 +- 0.28 |
+| Pure Stu, rolled-out lead | -0.08 +- 0.26 | -0.18 +- 0.29 | -0.80 +- 0.27 |
+
+Every bot is within noise of level with BEN (64), and each Stu is closer to Gen 8 when both are measured against BEN
+than head to head (Max had expected pure Stu to do less well against BEN). By deal against BEN: pure Stu minus Stu's
+own stages -0.25 +- 0.29; the rolled-out lead minus the net's lead +0.19 +- 0.18.
+
+On BEN's own cards the fusion ledger counts 11 guaranteed contracts given up in 2,405 decisions holding one (0.46%, at
+15:58 UTC); Gen 8 card play in the same matches 11 in 945 (1.16%).
+
+## Round 2's rungs (`jobs-azure5-r2.txt`, `jobs-azure6-r0c.txt`, `jobs-azure6-r2.txt`, `jobs-azure6-r2s.txt`)
+
+Against Gen 8 card play on the gate's deals 500 to 699, by deal against pure Stu with v2 on the same deals (`l0b-p`,
+-0.84 +- 0.27 there):
+
+| | Run | IMPs a board against the reference |
 | --- | --- | --- |
-| Gen 8 card play against BEN (64) | 256 | +0.09 +- 0.27 |
-| Pure Stu against BEN (64) | 256 | -0.27 +- 0.28 |
-| Pure Stu minus Gen 8 card play, each against BEN (64), by deal | 256 | -0.36 +- 0.31 |
-| Pure Stu against Gen 8 card play head to head, the same deals | 256 | -0.91 +- 0.28 |
+| Round 2's net in the rollouts | `l2b-p` | -0.11 +- 0.32 |
+| Round 2's net in the rollouts and at the table | `l2b-pt` | -0.15 +- 0.34 |
+| Round 2's net, its value head steering the simulated seats | `l2b-pv` | -0.01 +- 0.28 |
+| Control: v2 at the table too | `l0b-pt` | -0.20 +- 0.32 |
+| Control: v2's value head steering the simulated seats | `l0b-pv` | -0.04 +- 0.35 |
 
-Measured against BEN, pure Stu is no further behind Gen 8 than head to head (Max had expected it to do less well
-against BEN). Stu's own stages and the rolled-lead bot against BEN (64) follow (about 16:50 and 17:45 UTC).
-
-On BEN's own cards the fusion ledger counts 11 guaranteed contracts given up in 2,405 decisions holding one (0.46%);
-Gen 8 card play in the same matches 11 in 945 (1.16%).
+The nets alone on deals 500 to 999: v2 -2.63 +- 0.21 (500); round 2's net (epoch 1) -2.43 +- 0.20 (500), by deal
++0.20 +- 0.17; the longer-trained variant (`train-r2s/`, epoch 5 under `--select stup0 --forget 0.02`) -2.54 +- 0.24 at
+358 deals, by deal against v2 +0.18 +- 0.21. Inside the full bot the net's change does not show; alone it points the
+right way without being established, and more epochs on the same tables add nothing.
 
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
 
