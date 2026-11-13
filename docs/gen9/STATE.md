@@ -1,4 +1,4 @@
-# Gen 9: state at Fri 13 Nov 12:45 UTC (hand-over note)
+# Gen 9: state at Fri 13 Nov 13:15 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -141,11 +141,16 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 
 - **bill**: last seen 04:02 UTC. G9-B8 first version submitted by g9 for his review; G9-B9, E9-13, G9-B5.
 - **sam**: last seen 00:19 UTC. E9-4 and E9-6 leases expired; G9-S8 new.
+- G9-A11 and E9-19 submitted with reviewer=will (12:41).
 - Verdicts (will, 10:06): E9-12 adopted (about +0.4 IMPs a board from reading a foreign system by its card; replay
   adds nothing, -0.08 +- 0.10), E9-24 inconclusive (post hoc; E9-25 registered), G9-A10 and G9-S9 accepted.
 - E9-25: scripts on `feature/gen9` (`experiments/e9_25`, 9bb9aed); BEN's net is at
   `{home}/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras` (will, 10:28); job queued (above).
 - E9-22: the arrival records hold no card decisions; the guests' games must be played again first (logged 10:55).
+  Exploratory instead, on the cohort's boards (`reports/gen9-newcomer-rows-2026-11-13`): the `8s-32` row predicts the
+  newcomer `8p-32` 0.038 nats a decision better than v2's generic row (known bots' own rows gain 0.037 to 0.039); for
+  `9a-32`, which randomizes among exactly equal cards, the house rows are 0.47 to 0.84 nats worse than generic. Arena note
+  section 7: pick a newcomer's row from its play.
 - dave: guest-b's native cost (-0.347 +- 0.160 in the arrival run), still open.
 - E9-18 blocked on Max (a training box). E9-22 and E9-23 after the review package (their plumbing takes hours).
 - Decisions for Max: the arena note's section 10; the card intake check sheets.
