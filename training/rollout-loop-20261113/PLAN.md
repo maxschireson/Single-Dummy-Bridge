@@ -3,7 +3,7 @@
 **Work in progress, research only.** Kept by the loop session (`https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j`).
 This page is what is intended and why. What exists and how to run it: [README.md](README.md). What each run is:
 `runs.json`. Who decided what and when, and who holds which box: the board (`box/coordination`, `BOARD.md`, entries
-signed `loop`). Last revised 13 November 2026, 10:20 UTC.
+signed `loop`). Last revised 13 November 2026, 10:25 UTC.
 
 ## The aim
 

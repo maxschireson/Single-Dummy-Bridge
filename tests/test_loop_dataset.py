@@ -87,6 +87,23 @@ class RolloutGapTest(unittest.TestCase):
         self.assertIsNone(builder.rollout_gaps(dict(mode='rollout', cards=['SA'], runs=[['SA']], roll=[None], alive=[0]), True, 10))
 
 
+class TableNetNamesTest(unittest.TestCase):
+    def test_a_table_net_that_takes_names_is_told_who_plays(self):
+        from types import SimpleNamespace
+        from bridge_harness import x8_player
+        p = object.__new__(x8_player.X8Player)
+        p.g7 = SimpleNamespace(opponent_play_weight={})
+        p.x8 = x8_player.x8_settings({'names': {'self': 'stu0', '8p-32-v41': '8s-32', '*': 'ben'}})
+        p.net = SimpleNamespace(vocab={'': 0, 'stu0': 1, '8s-32': 2, 'ben': 3}, who=('', ''))
+        p.meet('8p-32-v41')
+        self.assertEqual(p.net.who, ('stu0', '8s-32'))
+        p.meet('someone-else')
+        self.assertEqual(p.net.who, ('stu0', 'ben'))
+        p.net = SimpleNamespace(vocab={}, who=('', ''))          # a net without names (policy v4.1, rollout net v1) is left alone
+        p.meet('8p-32-v41')
+        self.assertEqual(p.net.who, ('', ''))
+
+
 class UnratedCardsTest(unittest.TestCase):
     def test_scores_count_rated_cards_only(self):
         trainer = load('train_rollout_net')

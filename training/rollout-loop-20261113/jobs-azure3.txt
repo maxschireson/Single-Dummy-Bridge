@@ -5,11 +5,13 @@
 # The ladder's first pass (Max, 09:38 UTC: "ETA for initial calibration results?"): 200 deals a rung now, the two ends
 # of the ladder first for both nets. Stu and four bots with the boundary between search and rollouts moved (Max, 09:24),
 # with rollout net v2 inside and with rollout net v1 (ft) inside (Max, 09:27), each against Gen 8 card play on the
-# gate's deals. Records are kept to read, not to train on.
+# gate's deals. Records are kept to read, not to train on. After the pure bots: each net alone (the dashboard's ask).
 l0-stu0 stu0a~8p-32-v41 131 0 200 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 200 8 --episodes
 l0-p stu0-p~8p-32-v41 131 0 200 8 --episodes
 l0-v1-p stu0v1-p~8p-32-v41 131 0 200 8 --episodes
+l0-n stu0-n~8p-32-v41 131 0 200 8 --episodes
+l0-v1-n stu0v1-n~8p-32-v41 131 0 200 8 --episodes
 l0-r3 stu0-r3~8p-32-v41 131 0 200 8 --episodes
 l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 200 8 --episodes
 l0-r6 stu0-r6~8p-32-v41 131 0 200 8 --episodes
@@ -24,6 +26,8 @@ l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
 l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
 l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
+l0-n stu0-n~8p-32-v41 131 0 500 8 --episodes
+l0-v1-n stu0v1-n~8p-32-v41 131 0 500 8 --episodes
 l0-r3 stu0-r3~8p-32-v41 131 0 500 8 --episodes
 l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 500 8 --episodes
 l0-r6 stu0-r6~8p-32-v41 131 0 500 8 --episodes

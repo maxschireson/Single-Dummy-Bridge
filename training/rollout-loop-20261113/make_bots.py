@@ -21,6 +21,10 @@ deals, which are never trained on.
 The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
 names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
   stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
+The nets alone, as the ladder's lowest rung (the dashboard session's ask for Max, 09:58 UTC: how a net's improvement shows
+without rollouts as well as with them): the net's first card at every trick, no search, no rollouts, no claims, no mixing.
+  stu0-n            rollout net v2, told both sides are 8s-32 as Stu's rollouts tell it
+  stu0v1-n          rollout net v1 (ft)
 Copied unchanged from configs/x8-bots.json:
   8z-ft1            x8's 8Z with rollout net v1 (ft)
   8p-32-v41         Gen 8 card play, the gate's outside opponent
@@ -92,6 +96,19 @@ def main():
     del b['x8']['names']
     bots['stu0v1'] = b
     assert x8['8z-ft1']['rollout_policy'] == V1
+
+    def alone(label, policy, names=None):
+        b = {'base': '6-32', 'label': 'Stu round 0 ladder: ' + label, 'engine': 'gen8x', 'policy_role': 'gen8x', 'gen7_policy': policy,
+             'gen7': copy.deepcopy(x8['n-v41']['gen7']),
+             'x8': {'stages': [], 'claims': {'cards': 0}, 'capture': {'level': 0, 'forks': 0}, 'mix': {}}}
+        assert b['gen7']['search_from_trick'] == 14 and not b['gen7']['net_sample']
+        if names:
+            b['x8']['names'] = names
+        return b
+
+    bots['stu0-n'] = alone('rollout net v2 alone, told both sides are 8s-32: its first card at every trick, no search, no rollouts, no claims',
+                           V2, {'self': '8s-32', '*': '8s-32'})
+    bots['stu0v1-n'] = alone('rollout net v1 (ft) alone: its first card at every trick, no search, no rollouts, no claims', V1)
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

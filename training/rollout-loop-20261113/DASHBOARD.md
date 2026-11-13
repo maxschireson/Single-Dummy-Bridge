@@ -52,10 +52,11 @@ A row of `results.jsonl`:
   error of the row-by-row difference of `common`. Use it for rung against the `stu` rung of the same net, v2 against v1
   at the same rung, and one round's gate against the last round's. It is much tighter than the difference of two
   means. Runs with different seeds cannot be paired.
-- **The round's cut.** Round 0's collection is the runs with role `collection` and round 0 (`s0`, `s0b`, `r0`). The
-  loop session plans to end it at about 6,000 boards in all (a guess at what a first round needs, not a measured
-  requirement; it will say on the board when it cuts). Show the total, the rate over the last hour, and the time the
-  total reaches the cut at that rate.
+- **The round's cut.** Round 0's collection is the runs with role `collection` and round 0 (`s0`, `s0b`, `r0`).
+  `runs.json` `rounds` says what is waited for. Since 10:12 UTC on 13 November no board count is: a learning curve
+  (PLAN.md) showed that waiting for 6,000 boards buys almost nothing, so round 1's set is cut when its training chain
+  is ready, and the collection goes on for later rounds. Show the total and the rate; the loop session posts the cut
+  (time and boards) on the board when it happens.
 - **Decision mix** for a Stu-family bot in a run: per board, `rollout`, `blend` and `claim` decisions, and `moved`
   over `rollout`.
 - **Health:** the age of each box's heartbeat and of each transfer branch's last commit; a collection whose row count

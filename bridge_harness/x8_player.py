@@ -322,6 +322,9 @@ class X8Player(Gen7Player):
     def meet(self, opponent_id):
         super().meet(opponent_id)
         self.opponent_id = opponent_id
+        if getattr(self.net, 'vocab', None):                # a table net that takes who is playing (a rollout net as `gen7_policy`)
+            names = self.x8.names                           # is told what the rollouts' seats are told: its own cards (a net-alone
+            self.net.who = (names.get('self', ''), names.get(opponent_id or '', names.get('*', '')))    # bot's every card) are then that bot's
 
     def aware(self, declaring):
         """Is the declaring side rolled out as keeping a guaranteed contract? `declaring`: this bot's side declares."""

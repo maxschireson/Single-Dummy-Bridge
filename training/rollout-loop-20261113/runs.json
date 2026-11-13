@@ -15,7 +15,14 @@
   "b50": "the blend at tricks 3 to 6 at trust 0.5",
   "r6": "rollouts alone from trick 6",
   "r3": "rollouts alone from trick 3",
-  "pure": "the net's opening lead, rollouts alone from the second card on; no double dummy"
+  "pure": "the net's opening lead, rollouts alone from the second card on; no double dummy",
+  "net": "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"
+ },
+ "rounds": {
+  "0": {
+   "collection_cut_boards": null,
+   "note": "No board count is waited for. Round 1's set is cut when its training chain is ready (13 November); the collection goes on for the later rounds."
+  }
  },
  "runs": [
   {
@@ -212,6 +219,56 @@
    "queue_order": 4
   },
   {
+   "name": "l0-n",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu0-n~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 5
+  },
+  {
+   "name": "l0-v1-n",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu0v1-n~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v1",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    200,
+    500
+   ],
+   "queue_order": 6
+  },
+  {
    "name": "l0-r3",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
@@ -234,7 +291,7 @@
     200,
     500
    ],
-   "queue_order": 5
+   "queue_order": 7
   },
   {
    "name": "l0-v1-r3",
@@ -259,7 +316,7 @@
     200,
     500
    ],
-   "queue_order": 6
+   "queue_order": 8
   },
   {
    "name": "l0-r6",
@@ -284,7 +341,7 @@
     200,
     500
    ],
-   "queue_order": 7
+   "queue_order": 9
   },
   {
    "name": "l0-v1-r6",
@@ -309,7 +366,7 @@
     200,
     500
    ],
-   "queue_order": 8
+   "queue_order": 10
   },
   {
    "name": "l0-b50",
@@ -334,7 +391,7 @@
     200,
     500
    ],
-   "queue_order": 9
+   "queue_order": 11
   },
   {
    "name": "l0-v1-b50",
@@ -359,7 +416,7 @@
     200,
     500
    ],
-   "queue_order": 10
+   "queue_order": 12
   },
   {
    "name": "s0b",
@@ -383,7 +440,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 11
+   "queue_order": 13
   },
   {
    "name": "g0b-stu0",
@@ -404,7 +461,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 12
+   "queue_order": 14
   },
   {
    "name": "d0-p",
@@ -428,7 +485,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 13
+   "queue_order": 15
   },
   {
    "name": "d0-r3",
@@ -452,7 +509,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 14
+   "queue_order": 16
   },
   {
    "name": "c-n41-n4",
@@ -470,7 +527,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 15
+   "queue_order": 17
   },
   {
    "name": "c-r7-n41",
@@ -488,7 +545,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 16
+   "queue_order": 18
   },
   {
    "name": "c-r7x4-n41",
@@ -506,7 +563,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 17
+   "queue_order": 19
   },
   {
    "name": "c-r7-n4",
@@ -524,7 +581,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 18
+   "queue_order": 20
   },
   {
    "name": "c-r7x4-n4",
@@ -542,7 +599,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 19
+   "queue_order": 21
   },
   {
    "name": "c-r7-r7f4",
@@ -560,7 +617,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 20
+   "queue_order": 22
   }
  ]
 }
