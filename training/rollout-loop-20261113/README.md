@@ -106,29 +106,48 @@ that differ from it only in where rollouts take over, and each plays Gen 8 card 
 | `stu0-pl` | the search's lead; rollouts alone from the second card on | | `stu0-p` with a searched lead: the gap is what the net's lead costs (Max, 11:27 UTC) |
 | `stu0-pr` | the lead from rollouts: every distinct lead on 512 layouts of the three hidden hands; rollouts alone from the second card on | | `stu0-p` with the lead rolled out (Max, 11:29 UTC; the engine's `lead` block) |
 
-Against `8p-32-v41` on seed 131, IMPs a board +- standard error (boards), rows as of 12:12 UTC on 13 November (`l0-*`
-on azure3's transfer branch, deals 0 to 499; `l0b-*` on azure5's, deals 500 to 999):
+Against `8p-32-v41` on seed 131, IMPs a board +- standard error (boards), rows as of 15:12 UTC on 13 November (`l0-*`
+and `l1-*` on azure3's transfer branch, deals 0 to 499; `l0b-*` on azure5's, deals 500 to 999):
 
-| Rung | rollout net v2 inside | rollout net v1 (ft) inside | v2 minus v1, by deal |
+| Rung | rollout net v2 inside | rollout net v1 (ft) inside | round 1's net inside |
 | --- | --- | --- | --- |
-| Stu's own stages | -0.42 +- 0.10 (1,000) | -0.40 +- 0.20 (200) | -0.26 +- 0.21 (200) |
-| Pure | -0.63 +- 0.16 (714) | -0.77 +- 0.28 (200) | +0.22 +- 0.27 (200) |
-| The net alone | -2.63 +- 0.32 (200) | -3.27 +- 0.34 (200) | +0.65 +- 0.34 (200) |
+| Stu's own stages | -0.42 +- 0.10 (1,000) | -0.40 +- 0.20 (200) | -0.52 +- 0.19 (200) |
+| Pure (the net's lead) | -0.65 +- 0.14 (1,000) | -0.77 +- 0.28 (200) | -0.33 +- 0.27 (200) |
+| Pure, searched lead | -0.63 +- 0.18 (500) | | |
+| Pure, rolled-out lead | -0.44 +- 0.18 (500) | | |
+| The net alone | -2.63 +- 0.32 (200) | -3.27 +- 0.34 (200) | -2.62 +- 0.31 (200) |
 
-Pure minus Stu's own stages, by deal, v2 inside: -0.14 +- 0.20 (714); deals 0 to 499 +0.08 +- 0.26 (500), deals 500 to
-999 -0.66 +- 0.31 (214, still playing). v1 inside: -0.38 +- 0.36 (200). The lead rungs, round 1's net and the middle
-rungs are not played yet.
+By deal:
 
-- The same bots are also measured with rollout net v1 (ft) inside (`stu0v1`, `stu0v1-b50`, `stu0v1-r6`,
-  `stu0v1-r3`, `stu0v1-p`, `stu0v1-n`; Max, 09:27 UTC: "We should measure v1 rungs too"). `stu0v1` is x8's `8z-ft1` with the
-  loop's records and lists. v1 does not change from round to round, so its rungs are measured once.
-- A rollout bot is not used as the opponent: the net inside Stu models such a bot better than any other, and in the
-  control above that match alone was worth +1.12 +- 0.16 IMPs a board.
-- **Seed 131 is never trained on**, so the ladder's records are for reading only. Rollout-made decisions at early
-  tricks, which Stu itself does not make, come from the same bots on training deals (`d0-p`, `d0-r3` in
-  `jobs-azure3.txt`).
-- Known before the ladder (x8, older nets, different deal counts): against Gen 8 card play the blend at trust 0.25
-  from trick 3 scored -0.07 +- 0.14 (246 boards) and rollouts alone from trick 7 scored -0.38 +- 0.14 (541).
+| Comparison | Deals | IMPs a board |
+| --- | --- | --- |
+| Pure minus Stu's own stages (v2) | 1,000 | -0.22 +- 0.17 |
+| Searched lead minus the net's lead (pure, v2) | 500 | -0.13 +- 0.13 |
+| Rolled-out lead minus the net's lead (pure, v2) | 500 | +0.05 +- 0.16 |
+| Rolled-out lead minus searched lead (pure, v2) | 500 | +0.19 +- 0.17 |
+| Round 1's net minus v2, inside Stu's own stages | 200 | +0.13 +- 0.17 |
+| Round 1's net minus v2, inside pure Stu | 200 | +0.22 +- 0.26 |
+| Round 1's net minus v2, alone | 200 | +0.01 +- 0.23 |
+| v2 minus v1 (ft), inside Stu's own stages | 200 | -0.26 +- 0.21 |
+| v2 minus v1 (ft), inside pure Stu | 200 | +0.22 +- 0.27 |
+| v2 minus v1 (ft), alone | 200 | +0.65 +- 0.34 |
+
+The rolled-out lead is not the net's first choice in 62% of hands (310 of 498) and the board's result differs on 147
+of 500, 82 better and 65 worse. The net's own lead is as good as either other lead to within about 0.15 IMPs a board.
+The middle rungs are not played.
+
+## Against BEN (64) (`jobs-azure3-ben.txt`, `ben.sh`; Max, 11:30 UTC)
+
+The gate's first 256 deals, card play only (the common bidder's auction at both tables), in the arena's eight BEN lanes
+on azure3; Stu's rollout net is told the opponent is `ben64`. Runs `b0-p`, `b0-g8`, `b0-stu0`, `b0-pr`, each in eight
+folders (`b0-p-1` to `b0-p-8`) on azure3's transfer branch.
+
+| | Deals | IMPs a board |
+| --- | --- | --- |
+| Pure Stu against BEN (64) | 256 | -0.27 +- 0.28 |
+| Pure Stu against Gen 8 card play, the same deals | 256 | -0.91 +- 0.28 |
+
+Gen 8 card play, Stu's own stages and the rolled-lead bot against BEN (64) follow (about 16:10, 16:55 and 17:45 UTC).
 
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
 
