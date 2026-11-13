@@ -68,7 +68,7 @@ def smoke(run, out, deals=2, start=0):
     run = Path(run).resolve()
     m = json.loads((run / 'manifest.json').read_text())
     verify_generation(run, m)
-    gen7 = {k: gen7_settings(s['gen7']) for k, s in m['bots'].items() if s.get('engine') == ENGINE}
+    gen7 = {k: gen7_settings(s['gen7']) for k, s in m['bots'].items() if s.get('engine') in (ENGINE, 'gen9')}   # Gen 9 bots search as Gen 7 does
     if not gen7:
         raise ValueError('The run has no Gen7 bot')
     boards = load(run / m['corpus'])

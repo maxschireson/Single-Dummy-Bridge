@@ -51,7 +51,7 @@ def player(spec, root, reference=None):
     return p
 
 
-def auction_any(board, bidders):
+def auction_any(board, bidders, systems=None):
     """gen8_match's auction, after telling every Gen 9 player at the table who is bidding. run_board bids the common
     auction once with four copies of the common bidder, then each native table with the seats' own bidders: four
     copies of the common bidder are announced as such, anything else as "each side bid for itself"."""
@@ -60,7 +60,7 @@ def auction_any(board, bidders):
     for p in SEEN.get('players', ()):
         if hasattr(p, 'auction_by'):
             p.auction_by([common] * 4 if same else None)
-    return _auction(board, bidders)
+    return _auction(board, bidders, systems)
 
 
 def start(source, manifest, book=None):

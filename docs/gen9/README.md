@@ -12,6 +12,7 @@ population that players join and leave.
 | [Architecture](architecture.md) | The overall flow and the interfaces between the areas |
 | [Work plan](workplan.md) | Areas, tasks, checkpoints, team size |
 | [Arena statistics](arena-statistics.md) | Rating table, field score, admission, the promotion test |
+| [The Gen 9 cohort](cohort.md) | Launch plan for 9a-32 in the live arena: plans, bots, choices, steps, limits |
 | Area design notes | `bidding.md`, `signals.md`, `arena.md`, `workflow.md`, added by the area leads at checkpoint 1 |
 
 **Tests.** `python3 scripts/run_tests.py --prepare` builds DDS, installs what is missing, restores

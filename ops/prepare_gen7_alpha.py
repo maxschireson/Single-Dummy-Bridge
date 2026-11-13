@@ -23,6 +23,10 @@ rule system, in place of its bidding net), `system_scorer` (true: it reads each 
 declared system, with the plan's `system_scorer` artifact) and `lead_systems` (the systems whose
 auctions the lead net serves). docs/gen8_candidate_2026-11-12.md.
 
+Gen 9 (nothing changes for a plan that uses none of it): a bot entry may give `engine: gen9` with a `gen9`
+block (bridge_harness/gen9.py: the Gen 8 prototype player reading each partnership through its player model;
+no experience, no oracle) and `exploration` (random among exactly equal-best cards). docs/gen9/cohort.md.
+
   python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json] [--shard K/N]
 """
 import argparse
@@ -65,7 +69,7 @@ def policy_path(key):
     return GEN7_POLICY if key == POLICY_KEY else f'artifacts/gen7/{key}.npz'
 SYSTEM_SCORER_KEY = 'system_scorer'            # Gen 8: the artifact key of a system-aware hand-fit scorer
 SYSTEM_SCORER = 'artifacts/gen8/system_scorer.npz'
-RUNTIME = ('ops/gen5_runtime.py', 'ops/prepare_gen7_alpha.py')
+RUNTIME = ('ops/gen5_runtime.py', 'ops/prepare_gen7_alpha.py')     # bridge_harness/ (gen9.py and the card readers included) is in source_sha256
 # What the plan does not own: how tables are audited and forked, how rooms are seeded, the labels the
 # exporter and report registration key on, and facts about the corpus the unplayed deals come from.
 CARRIED = ('generation', 'variant', 'audit', 'ben_audit', 'bidding_conditions', 'gap_fork', 'two_self_rooms', 'independent_room_seeds',
@@ -132,6 +136,32 @@ def check_systems(plan):
         raise ValueError('The system scorer artifact needs release, file, restore and sha256')
 
 
+GEN9 = 'gen9'
+GEN9_KEYS = {'models', 'own', 'carding', 'signal_eps', 'signal_margin', 'read_partner', 'reader_eps', 'bidding_reader',
+             'replay_reader', 'max_profiles', 'card_weight', 'factor_min_plays', 'factor_prior_plays', 'profile_temper',
+             'profile_floor'}
+
+
+def gen9_block(key, entry):
+    """A Gen 9 bot's `gen9` block (bridge_harness/gen9.py), checked: known keys only, readers that import, models that
+    parse, and never the test-only oracle. Experience is not carried: the cohort's player models are what they declare."""
+    import importlib
+    from bridge_harness.player_model import PlayerModel
+    block = deepcopy(entry.get('gen9') or {})
+    unknown = set(block) - GEN9_KEYS
+    if 'oracle' in block or unknown:
+        raise ValueError(f'{key}: gen9 block keys {sorted(unknown | ({"oracle"} & set(block)))} are not for an arena bot')
+    for name in ('bidding_reader', 'replay_reader'):
+        if block.get(name):
+            module, _, attr = block[name].partition(':')
+            getattr(importlib.import_module(module), attr)
+    for bot, model in (block.get('models') or {}).items():
+        if (model or {}).get('experience'):
+            raise ValueError(f'{key}: model {bot} carries experience; a frozen cohort declares models without it')
+        PlayerModel.from_dict(dict(model, id=model.get('id', bot)))
+    return block
+
+
 def make_bots(old, plan):
     """Source bots unchanged, plus each Gen7 bot built from its Gen6 base bot's spec.
 
@@ -147,6 +177,14 @@ def make_bots(old, plan):
         spec.update(id=key, engine=ENGINE, policy_role='gen7-alpha', samples=entry.get('samples', base['samples']),
                     gen6=asdict(Gen6Config(**dict(base['gen6'], **entry.get('gen6', {})))),
                     gen7=resolved(entry.get('gen7')), gen7_policy=policy_path(policy_key(entry)))
+        if entry.get('engine', ENGINE) == GEN9:          # Gen 9: the Gen 8 prototype player reading through player models
+            spec.update(engine=GEN9, policy_role='gen9-proto', gen9=gen9_block(key, entry))
+        elif entry.get('engine', ENGINE) != ENGINE:
+            raise ValueError(f'{key}: engine is gen7 (the default) or gen9')
+        if 'exploration' in entry:                      # random among exactly equal-best cards (E9-16)
+            if not 0.0 <= float(entry['exploration']) <= 1.0:
+                raise ValueError(f'{key}: exploration is between 0 and 1')
+            spec['exploration'] = float(entry['exploration'])
         spec['artifact_sha256'] = dict(base['artifact_sha256'], gen7_policy=plan['artifacts'][policy_key(entry)]['sha256'])
         if entry.get('system_scorer'):                  # Gen 8: each side's calls are read by the system it declares
             spec['system_scorer'] = SYSTEM_SCORER

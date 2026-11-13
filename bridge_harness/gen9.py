@@ -197,12 +197,8 @@ class Gen9Player(SignalPlayer):
         self.replayers = {}
         super().__init__(spec, root, reference)             # ends by calling meet(spec.get('table_opponent'))
         self.root = root
-        # the unbound system scorer, to read a partnership under each of its candidate systems
-        self.system_scorer, self.table_systems = None, tuple(spec.get('table_systems') or (None, None))
-        if spec.get('system_scorer'):
-            from pathlib import Path
-            from .system_nets import SystemFitScorer
-            self.system_scorer = SystemFitScorer(Path(root) / spec['system_scorer'])
+        # Gen6Player keeps the unbound system scorer (system_scorer) and the table's declared systems (table_systems,
+        # set by seat_table before every table); profile_scorer reads a partnership under each candidate system with them.
 
     # ---- what the table tells the player -----------------------------------------------------
     def meet(self, opponent):
