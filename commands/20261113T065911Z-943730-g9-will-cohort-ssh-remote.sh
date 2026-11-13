@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+P=~/work/g9/runs/g9-cohort-azure4/publication; git -C $P remote set-url origin git@github.com:maxschireson/Single-Dummy-Bridge.git && git -C $P config core.sshCommand "ssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20" && echo applied; git -C $P remote -v | head -1; git -C $P config --get core.sshCommand; systemctl is-active g9-job-g9-cohort-azure4; ls ~/work/g9/runs/g9-cohort-azure4/run/receipts | wc -l
