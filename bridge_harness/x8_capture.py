@@ -11,7 +11,9 @@ its samples of the hidden hands, never the deal.
 
 Cards in a line are one letter each (A-Z for cards 0-25, a-z for 26-51; card = 13 x suit + rank, suits S H D C,
 ranks 2..A). A layout is a hex number over the unseen cards in ascending order: bit k set = the k-th unseen card is
-held by the second of the two hidden seats (in seat order N E S W).
+held by the second of the two hidden seats (in seat order N E S W). At the opening lead three hands are hidden and the
+number is read in base 3 instead: digit k (the k-th unseen card's, lowest first) is the place of its holder among the
+three hidden seats in seat order. Which reading applies follows from the decision the note belongs to.
 """
 import base64
 
@@ -32,18 +34,22 @@ def text_cards(text):
 
 
 def hidden_of(o):
-    """(the two hidden seats, the unseen cards in ascending order) at a decision with dummy down."""
+    """(the hidden seats, the unseen cards in ascending order): two seats at a decision with dummy down, three at the
+    opening lead."""
     hidden = [s for s in range(4) if o.known_hands[s] is None]
-    if len(hidden) != 2:
-        raise ValueError('A layout code needs exactly two hidden hands')
+    if len(hidden) not in (2, 3):
+        raise ValueError('A layout code needs two hidden hands, or three at the opening lead')
     gone = {c for _, c in o.history} | {c for h in o.known_hands if h is not None for c in h}
     return hidden, [c for c in range(52) if c not in gone]
 
 
 def layout_code(o, world):
     hidden, unseen = hidden_of(o)
-    second = set(world[hidden[1]])
-    return '%x' % sum(1 << k for k, c in enumerate(unseen) if c in second)
+    if len(hidden) == 2:
+        second = set(world[hidden[1]])
+        return '%x' % sum(1 << k for k, c in enumerate(unseen) if c in second)
+    place = {c: j for j, s in enumerate(hidden) for c in world[s]}
+    return '%x' % sum(place[c] * 3 ** k for k, c in enumerate(unseen))
 
 
 def layout_world(o, code):
@@ -51,8 +57,13 @@ def layout_world(o, code):
     hidden, unseen = hidden_of(o)
     bits = int(code, 16)
     hands = list(o.known_hands)
-    hands[hidden[0]] = tuple(c for k, c in enumerate(unseen) if not bits >> k & 1)
-    hands[hidden[1]] = tuple(c for k, c in enumerate(unseen) if bits >> k & 1)
+    if len(hidden) == 2:
+        hands[hidden[0]] = tuple(c for k, c in enumerate(unseen) if not bits >> k & 1)
+        hands[hidden[1]] = tuple(c for k, c in enumerate(unseen) if bits >> k & 1)
+        return tuple(hands)
+    digit = [bits // 3 ** k % 3 for k in range(len(unseen))]
+    for j, s in enumerate(hidden):
+        hands[s] = tuple(c for k, c in enumerate(unseen) if digit[k] == j)
     return tuple(hands)
 
 

@@ -71,6 +71,24 @@ class RolloutGapTest(unittest.TestCase):
         self.assertAlmostEqual(got[card('HK')], 0.)
         self.assertAlmostEqual(got[card('D2')], .5)
 
+    def test_a_record_that_keeps_some_of_the_layouts_does_not_replace_means_over_all_of_them(self):
+        # an opening lead from rollouts: every candidate on all 8 layouts, the record keeps 2 of them, on which the
+        # third card happens to look best
+        n = note([[9, 9, 8], [8, 8, 7]], [1, 1])
+        n.update(roll=[-9.5, -9.0, -10.0], n=[8, 8, 8], layouts=8, lead=True)       # a defender's means, over all 8
+        got = builder.rollout_gaps(n, False, 10)
+        self.assertAlmostEqual(got[card('HK')], 0.)
+        self.assertAlmostEqual(got[card('SA')], .5)
+        self.assertAlmostEqual(got[card('D2')], 1.)
+        # with a candidate that did not get every layout the kept layouts decide, as before
+        raced = builder.rollout_gaps(dict(n, n=[8, 8, 2], alive=[0, 1]), False, 10)
+        self.assertAlmostEqual(raced[card('D2')], 0.)           # paired on the kept layouts: one trick better than the reference there
+        self.assertAlmostEqual(raced[card('SA')], .5)
+        # and a record that keeps every layout is read from its layouts
+        kept = builder.rollout_gaps(dict(n, n=[2, 2, 2], layouts=2), False, 10)
+        self.assertAlmostEqual(kept[card('D2')], 0.)
+        self.assertAlmostEqual(kept[card('SA')], 1.)
+
     def test_the_zero_is_the_best_surviving_candidate_and_values_are_never_negative(self):
         # on the layouts they share the dropped third candidate did better than the reference: it is not the zero, and is 0
         n = note([[9, 8, 10], [9, 9, -1], [9, 9, -1]], [1, 1, 1], alive=(0, 1))

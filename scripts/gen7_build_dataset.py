@@ -107,7 +107,10 @@ def rollout_gaps(note, declaring, target):
     The reference is the surviving candidate with the best mean. With the per-layout results (`cap`: [layout, candidate]
     declarer's tricks, -1 where the candidate was dropped before the layout) a deficit is the weighted mean, over the
     layouts both were played on, of the reference's tricks minus the candidate's; without them it is the difference of
-    the two means, each over its own layouts. The surviving candidate with the least deficit is the zero."""
+    the two means, each over its own layouts. Where the record keeps only some of the layouts and the candidate and the
+    reference were both played on every layout (an opening lead from rollouts: 512 layouts, none dropped), the difference
+    of the two means is already that paired mean over all of them, and it is used as it stands. The surviving candidate
+    with the least deficit is the zero."""
     if not note or note.get('mode') != 'rollout' or len(note.get('cards') or ()) < 2:
         return None
     roll = note.get('roll') or ()
@@ -126,7 +129,10 @@ def rollout_gaps(note, declaring, target):
         played = t >= 0
         final = np.where(f & played, np.maximum(t, target), t)
         worth = final if declaring else -final
+        count, full = note.get('n') or (), note.get('layouts') or 0
         for j in range(m):
+            if k < full and len(count) == m and count[j] == count[ref] == full:
+                continue                                    # both means are over every layout: their difference is the paired one
             rows = played[:, j] & played[:, ref]
             if rows.any():
                 deficit[j] = w[rows] @ (worth[rows, ref] - worth[rows, j]) / w[rows].sum()

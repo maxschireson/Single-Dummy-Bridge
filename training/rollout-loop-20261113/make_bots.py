@@ -23,6 +23,14 @@ mind a different lead"):
   stu0-pa, stu0-pb  stu0-p under two ids, so that it can play itself (the collection `sp0`)
   stu0-pl           stu0-p with the searched opening lead Stu-as-is and Gen 8 play, in place of the net's own lead. The
                     gap between stu0-pl and stu0-p on the same deals is what the net's lead costs.
+The opening lead from rollouts (Max, 11:29 UTC: "we could try rollouts for the lead but with more layouts and more choices
+- try everything for 512 because you don't know, and let the rollouts teach you... Same methodology but different
+parameters"):
+  stu0-pr           stu0-p with the lead rolled out (x8_player's `lead` block): every distinct lead (touching cards are one)
+                    on 512 layouts of the three hidden hands, drawn as the search draws them for its own lead; none is
+                    dropped on the way; the seats are drawn from the net as at every other trick. The record keeps all 512
+                    layouts with every lead's result in each.
+  stu0-pra, stu0-prb    stu0-pr under two ids, for self-play
 The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
 names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
   stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
@@ -58,7 +66,9 @@ STU = ['stu0a', 'stu0b']
 RUNGS = ['-b50', '-r6', '-r3', '-p']
 STU1 = ['stu1a', 'stu1b']
 FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]
-          + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl'])    # every bot that claims and mixes as Stu does
+          + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
+          + ['stu0-pr', 'stu0-pra', 'stu0-prb'])              # every bot that claims and mixes as Stu does
+LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32'}
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
@@ -103,7 +113,13 @@ def main():
     bots['stu0-pl'] = copy.deepcopy(bots['stu0-p'])
     bots['stu0-pl']['label'] = ('Stu round 0 ladder: pure with a searched opening lead (the search decides the lead as in Stu-as-is; rollouts '
                                 'alone from the second card on)')
-    bots['stu0-pl']['gen7']['search_from_trick'] = 1            # the lead cannot be rolled out (three hands hidden), so it falls to the search
+    bots['stu0-pl']['gen7']['search_from_trick'] = 1            # no `lead` block: the lead falls to the search
+    for name in ('stu0-pr', 'stu0-pra', 'stu0-prb'):
+        b = copy.deepcopy(bots['stu0-p'])
+        b['label'] = ('Stu round 0 ladder: pure with the opening lead from rollouts (every distinct lead on 512 layouts of the three hidden '
+                      'hands, none dropped; rollouts alone from the second card on)')
+        b['x8']['lead'] = dict(LEAD)
+        bots[name] = b
     for name in ['stu0' + r for r in RUNGS]:                    # the same rungs with rollout net v1 (ft), which takes no names
         b = copy.deepcopy(bots[name])
         b['label'] = b['label'].replace('Stu round 0 ladder: ', 'Stu round 0 ladder, rollout net v1 (ft) inside: ')

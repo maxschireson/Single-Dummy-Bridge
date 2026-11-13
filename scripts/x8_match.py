@@ -122,6 +122,10 @@ def summarise_actions(record, roles):
                     s['seconds'] += sum((note.get('seconds') or {}).values())
                     if note['mode'] == 'rollout':           # did the rollouts play another card than the net's likeliest candidate?
                         s['moved'] += note['chosen'] not in note['runs'][0]
+                        if note.get('lead'):                # an opening lead from rollouts (counted under 'rollout' too)
+                            s['lead'] = s.get('lead', 0) + 1
+                            s['lead_moved'] = s.get('lead_moved', 0) + (note['chosen'] not in note['runs'][0])
+                            s['lead_seconds'] = round(s.get('lead_seconds', 0.) + sum((note.get('seconds') or {}).values()), 3)
                     else:
                         s['moved'] += a.get('selected_pimc_gap', 0.) > 1e-9
                     if note.get('odds'):

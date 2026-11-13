@@ -27,6 +27,15 @@ are 'search'):
 `trust`, the stage boundaries, the depth (`horizon`: 0 = to the end, k = k tricks and then double dummy) and the
 simulated seat are settings, to be set from the calibration test (scripts/x8_calibrate.py), not constants.
 
+The opening lead from rollouts (spec['x8']['lead']; Max, 13 Nov 11:29 UTC: "try everything for 512 because you don't
+know, and let the rollouts teach you... Same methodology but different parameters"). The same rollout decision with
+dummy unseen: the layouts are all three hidden hands, drawn as the Gen 8 search draws them for its own lead (the lead
+belief net's samples of declarer and dummy, or the hand-fit scorer's weighted pool where the auction does not fit
+that net), and each rollout shows its own layout's dummy from the second card on. The settings are a rollout stage's,
+with other defaults: every distinct lead is a candidate (`cards` 13, `prior` 0), each on all of `layouts` 512, and
+none is dropped on the way (`race` 0). `capture`: how many of those layouts a level 2 record keeps (0 = the capture
+block's `layouts`). Without the block the opening lead is the search's, or the net's where the search is off.
+
 The winning-line logic (spec['x8']['claims'], x8_claims.py), with `cards` or fewer cards in hand:
 
   declarer    if some card guarantees the contract from the declaring side's own view, only such cards are
@@ -84,6 +93,7 @@ import numpy as np
 from . import x8_capture, x8_claims
 from .core import IMP_LIMITS, card, score, symbol, vulnerable
 from .gen6 import Classes, View, _effective, _merge, spaced, systematic
+from .gen6_nets import LeadNet
 from .gen7 import BIT, Gen7Player, hidden_plays, utilities
 from .gen7 import player as gen7_player
 from .gen7_net import INPUTS, PolicyNet
@@ -219,12 +229,17 @@ class X8Config:
     others: tuple = ()          # ({'policy': path, 'share': s}, ...): nets that play the other side in a share of the rollouts' layouts
     names: dict = field(default_factory=dict)     # for rollout nets that take who is playing: the name in the net's vocabulary for
                                 # this bot ('self') and for each opponent bot id ('*' = any other); unlisted opponents are unknown
+    lead: object = None         # a rollout Stage for the opening lead (see the module note), or None: the search's or the net's lead
+    lead_capture: int = 0       # level 2 records of that decision keep at most this many layouts; 0 = capture.layouts
+
+
+LEAD_DEFAULTS = dict(mode='rollout', from_trick=1, to_trick=1, layouts=512, cards=13, prior=0., race=0.)
 
 
 def x8_settings(block):
     """spec['x8'] -> X8Config. No trick may belong to two stages."""
     block = dict(block or {})
-    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names'}
+    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names', 'lead'}
     if unknown:
         raise ValueError(f'Unknown 8X settings: {sorted(unknown)}')
     try:
@@ -232,6 +247,11 @@ def x8_settings(block):
         claims = ClaimUse(**(block.get('claims') or {}))
         capture = CaptureUse(**(block.get('capture') or {}))
         mix = MixUse(**(block.get('mix') or {}))
+        lead, lead_capture = None, 0
+        if block.get('lead') is not None:
+            given = dict(block['lead'])
+            lead_capture = given.pop('capture', 0)
+            lead = Stage(**{**LEAD_DEFAULTS, **given})
     except TypeError as e:
         raise ValueError(f'Unknown 8X setting: {e}') from None
     tricks = [t for s in stages for t in range(s.from_trick, s.to_trick + 1)]
@@ -243,15 +263,21 @@ def x8_settings(block):
     names = dict(block.get('names') or {})
     if not all(isinstance(k, str) and isinstance(v, str) for k, v in names.items()):
         raise ValueError('8X names map bot ids to names')
-    return X8Config(stages, claims, capture, mix, others, names)
+    if lead is not None and (lead.mode != 'rollout' or (lead.from_trick, lead.to_trick) != (1, 1) or isinstance(lead_capture, bool)
+                             or not isinstance(lead_capture, int) or not 0 <= lead_capture <= 4096):
+        raise ValueError('The 8X lead block is a rollout stage (no tricks to name) and a capture count')
+    return X8Config(stages, claims, capture, mix, others, names, lead, lead_capture)
 
 
 def resolved(block):
     """spec['x8'] with every setting written out, defaults included: what a manifest should pin."""
     c = x8_settings(block)
-    return dict(stages=[asdict(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
-                capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
-                others=[dict(o) for o in c.others], names=dict(c.names))
+    out = dict(stages=[asdict(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
+               capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
+               others=[dict(o) for o in c.others], names=dict(c.names))
+    if c.lead is not None:                                  # written only where set: a bot without it pins what it always pinned
+        out['lead'] = dict(asdict(c.lead), capture=c.lead_capture)
+    return out
 
 
 def game_or_doubled(k):
@@ -452,6 +478,8 @@ class X8Player(Gen7Player):
         the hand-fit scorer, the play through the net's reading), as distinct layouts and their weights. None for a
         source the play does not re-weigh (the caller then keeps to the search)."""
         g, c = self.g7, self.config
+        if not o.history:                                   # the opening lead: three hands hidden, nothing played to read
+            return self.lead_layouts(o, view, source, rng, n)
         plays = hidden_plays(o, g.play_lead)
         if source == 'list':
             assign = view.every()
@@ -492,6 +520,28 @@ class X8Player(Gen7Player):
             index, share = systematic(np.exp(logp - logp.max()), n, rng)
             worlds, weights = _merge([worlds[i] for i in index], share)
             return worlds, np.asarray(weights, np.float64), info
+        return None
+
+    def lead_layouts(self, o, view, source, rng, n):
+        """`n` draws of the layouts the Gen 8 search draws for its own opening lead (Gen6Player.layouts): from the lead
+        belief net, declarer's and dummy's hands and so partner's; where the auction does not fit that net, uniform
+        layouts weighted by the hand-fit scorer, from a pool at least 16 times the draws. Distinct layouts, weights."""
+        c = self.config
+        if source == 'lead_net':
+            leader, context = o.controller, self.leader_context(o)
+            worlds = []
+            for d, m, q in LeadNet.deal(o.known_hands[leader], self.lead_net.sample(context, n, rng), rng):
+                world = [None] * 4
+                world[leader], world[(leader + 3) % 4], world[(leader + 1) % 4], world[(leader + 2) % 4] = o.known_hands[leader], d, m, q
+                worlds.append(tuple(world))
+            worlds, weights = _merge(worlds)
+            return worlds, np.asarray(weights, np.float64), dict(draws=n, source='lead_net')
+        if source == 'scorer':
+            assign = view.uniform(max(c.lead_pool, 16 * n), rng)
+            logw = self.layout_log_weights(o, view, assign)
+            index, weights = systematic(np.exp(logw - logw.max()), n, rng)
+            return ([view.world(assign[i]) for i in index], np.asarray(weights, np.float64),
+                    dict(pool=len(assign), effective=_effective(logw), draws=n, source='scorer'))
         return None
 
     # ---- the winning-line logic at a defender's decision -----------------------------------
@@ -678,7 +728,8 @@ class X8Player(Gen7Player):
         if cap.level >= 1 and got is not None:
             note['forks'] = [x8_capture.fork_row(o, worlds[i], f) for i, f in got['forks']]
         if cap.level >= 2 and got is not None:
-            note['cap'] = x8_capture.capture_block(o, worlds, w, got['tricks'], got['floor'], cap.layouts)
+            limit = self.x8.lead_capture if not o.history and self.x8.lead_capture else cap.layouts
+            note['cap'] = x8_capture.capture_block(o, worlds, w, got['tricks'], got['floor'], limit)
 
     def mixes(self, o):
         """Does this seat play a random one of its equal cards?"""
@@ -753,6 +804,8 @@ class X8Player(Gen7Player):
         note = dict(v=1, mode='rollout', trick=len(o.history) // 4 + 1, seat=stage.seat, objective=stage.objective, net=self.rollout_name,
                     cards=[symbol(x) for x in reps], runs=[[symbol(x) for x in run] for run in runs], prior=[round(float(m), 4) for m in mass],
                     layouts=len(worlds), claim=self.claim[0] if self.claim else None)
+        if not o.history:
+            note['lead'] = True                             # the opening lead: its layouts are three hands each (x8_capture)
         got, odds = None, None
         if len(reps) > 1:
             before = time.perf_counter()
@@ -973,8 +1026,11 @@ class X8Player(Gen7Player):
             return self.audited(o, result)
         self.live = self.x8_stage(o)
         self.claim = self.root_claim(o)
-        if self.live is not None and self.live.mode == 'rollout':
-            result = self.rollout_decision(o, rng, self.live)
+        stage = self.live if self.live is not None and self.live.mode == 'rollout' else None
+        if not o.history and self.x8.lead is not None and (self.x8.lead.contracts == 'all' or game_or_doubled(o.contract)):
+            stage = self.x8.lead                            # the opening lead from rollouts
+        if stage is not None:
+            result = self.rollout_decision(o, rng, stage)
             if result is not None:
                 return self.audited(o, result)
             self.live = None                                # no layouts of the kind rollouts need: the search decides
