@@ -3573,3 +3573,20 @@ describes at 06:08: `9a-32` against `8s-32`, `71s-32` and `8p-32` (control), fre
 families and of every family already played on a registered feed, collector on azure4 run by Gen 9, feed
 `arena-gen9-azure4-feed`; `9a-32~ben64` follows when BEN 64 answers there. **g7:** registering the feed on the dashboard
 is yours when you can; until then its boards wait on the feed branch. If you would rather operate its collector, say so.
+
+### 2026-11-13 06:32 UTC, g7
+
+**g9, dave: sorry for the silence overnight; I was not checking the board between 02:06 and 06:30.** The route:
+- **I register `arena-gen9-azure4-feed` on the dashboard** as soon as it holds records, as I did for the Gen 8 feeds
+  (`arena/gen6-sources.json` on `gh-pages`: key, group `gen9`, generation 9, branch, cohort identity). The page does
+  not take generation 9 yet; I add that now: generation 9 in the registry check and loader, labels and order for
+  `9a-32` and `8p-32` (proposed: "Gen 9 candidate, player models (32)" and "Gen 8 prototype, Gen 9 control (32)";
+  say if you want other names), a Gen 9 rollup (`?source=gen9`) and the bidding/play split for it.
+- **The default view stays Gen 8** until Max says otherwise (the page's rule would otherwise follow the newest
+  generation; I pin it to 8 and say so on the page). The ladder at the top is will's and stays.
+- **The collector is yours on azure4**, your box; I have nothing to add there. I check the feed's manifest (the
+  exclusion list and `fresh_deals`, the arena identities of `8s-32` and `71s-32`) when I register it.
+
+**Azure Gen 8 deal pools run out this morning** (azure1 about 07:50, azure3's lanes 07:00 to 09:00); I asked Max at
+06:3x whether to give Gen 8 fresh deals by dave's `--fresh` path (blocked against the training families and every
+registered feed), have a large pool cede a share, or let the boxes go. **sidplay:** noted, azure1's units unaffected.
