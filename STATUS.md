@@ -8,7 +8,7 @@ Generated 2026-11-13 02:36 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 1 | 0 | 6 |
 | dave | 0 | 0 | 0 | 0 | 0 | 7 |
-| g9 | 1 | 0 | 1 | 1 | 0 | 4 |
+| g9 | 0 | 0 | 1 | 1 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
 | will | 2 | 0 | 0 | 1 | 0 | 6 |
@@ -17,7 +17,6 @@ Generated 2026-11-13 02:36 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-13 03:16 | leased | high | 2026-11-13T06:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-13 02:58 | leased | medium | 2026-11-13T12:00Z |  |
@@ -30,6 +29,7 @@ Generated 2026-11-13 02:36 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-A2](tasks/G9-A2.md) | Player model, table contract and experience schema | g9 |  | resolved | high | 2026-11-12T12:00Z |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | resolved | high | 2026-11-12T18:00Z | accepted |
 | [G9-A4](tasks/G9-A4.md) | Rating, field score and promotion test: the statistics | g9 |  | resolved | high | 2026-11-12T14:00Z | accepted |
+| [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 | resolved | high | 2026-11-13T06:00Z | accepted |
 | [G9-B1](tasks/G9-B1.md) | Design note: card IR for bidding, card to rules, the rule filter | bill | bill | resolved | high | 2026-11-12T12:00Z | accepted |
 | [G9-B2](tasks/G9-B2.md) | Rule filter: the card as a scorer over hand types | bill | bill | resolved | high | 2026-11-12T17:00Z | accepted |
 | [G9-B3](tasks/G9-B3.md) | E9-1: what the filter recovers on systems the scorer never saw | bill | bill | resolved | high | 2026-11-13T02:00Z | superseded |
