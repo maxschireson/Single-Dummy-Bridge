@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+W=~/work/sidnet; tail -8 $W/logs/timeline.log | cut -c1-300; echo "--- s0.err tail"; tail -3 $W/logs/s0.err 2>/dev/null | cut -c1-200; echo "--- s0.out lines: $(wc -l < $W/logs/s0.out 2>/dev/null)"; ls -la $W/s0 2>/dev/null | awk "{print \$5, \$9}" | tail -12; ls $W/e1 2>/dev/null; tail -3 $W/logs/e1.log 2>/dev/null | cut -c1-200; echo "units: $(systemctl is-active sidnet-run3)"; free -g | sed -n 2p | cut -c1-80; uptime | sed "s/.*load/load/"; df -h $HOME | tail -1
