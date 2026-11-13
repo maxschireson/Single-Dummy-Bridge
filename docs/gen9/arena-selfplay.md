@@ -161,10 +161,11 @@ average is shown beside the field score; decisions stay on the field score and t
 between-pair variance the strengths explain. If that share is low, one number per member is not enough and the page
 shows each member's cells by role.
 
-**5.4 Variance.** The noise is in the large swings, and many of them are a decision taken at one table and not the
-other whose result then turns on the layout (a slam on a finesse). Replacing the layout's luck in those decisions by
-their expected value is the bridge form of AIVAT (Burch et al. 2018), which cut the standard deviation of a poker
-match by 85%. Two versions:
+**5.4 Variance.** The noise is in the large swings: on the 64,790 native boards below, boards of 10 IMPs or more are
+10% of boards and 76% of the sum of squares. Each comes from a decision whose result turns on the layout: a contract
+one table bid and the other did not (a slam on a finesse), or a line of play. Replacing the layout's luck in those
+decisions by their expected value is the bridge form of AIVAT (Burch et al. 2018), which cut the standard deviation
+of a poker match by 85%. For contracts, two versions:
 - **cheap**: re-score each swing board by the double-dummy expectation of each table's contract over layouts
   consistent with its auction. Biased, since it replaces the play of those contracts by double dummy; useful as a
   screen if it removes much of the variance.
