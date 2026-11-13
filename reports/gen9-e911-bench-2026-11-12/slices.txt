@@ -1,0 +1,79 @@
+21417 decisions on 530 tables of 329 deals (136 parts); 0.967 of decisions have every hidden seat's calls the house bidder's own
+
+== rpl against proto: tricks a board (slice's share), nats a decision, effective layouts
+  all                                               21417 decisions | +0.021 +- 0.016 tricks a board | +0.318 +- 0.020 nats | effective median 67 v 108
+  declarer deciding                                 11212 decisions | +0.005 +- 0.011 tricks a board | +0.238 +- 0.024 nats | effective median 102 v 138
+  defender deciding                                 10205 decisions | +0.016 +- 0.011 tricks a board | +0.406 +- 0.026 nats | effective median 43 v 75
+  before the deal list                              10683 decisions | +0.014 +- 0.013 tricks a board | +0.484 +- 0.030 nats | effective median 196 v 268
+  deal list                                         10734 decisions | +0.007 +- 0.008 tricks a board | +0.152 +- 0.012 nats | effective median 5 v 5
+  hidden seats played by house bots                 13201 decisions | -0.001 +- 0.012 tricks a board | +0.322 +- 0.023 nats | effective median 72 v 118
+  hidden seats' calls all the house bidder's        20703 decisions | +0.020 +- 0.016 tricks a board | +0.323 +- 0.020 nats | effective median 67 v 108
+  hidden seats' calls not all the house bidder's      714 decisions | +0.001 +- 0.001 tricks a board | +0.174 +- 0.057 nats | effective median 71 v 83
+  hidden seats only passed                           4863 decisions | +0.001 +- 0.007 tricks a board | +0.074 +- 0.012 nats | effective median 146 v 154
+  a hidden seat bid once                             7247 decisions | +0.011 +- 0.009 tricks a board | +0.270 +- 0.036 nats | effective median 70 v 105
+  a hidden seat bid twice or more                    9307 decisions | +0.009 +- 0.011 tricks a board | +0.482 +- 0.029 nats | effective median 39 v 77
+
+== rplall against proto: tricks a board (slice's share), nats a decision, effective layouts
+  all                                               21417 decisions | +0.019 +- 0.016 tricks a board | +0.313 +- 0.020 nats | effective median 66 v 108
+  declarer deciding                                 11212 decisions | +0.004 +- 0.011 tricks a board | +0.226 +- 0.023 nats | effective median 100 v 138
+  defender deciding                                 10205 decisions | +0.014 +- 0.011 tricks a board | +0.409 +- 0.027 nats | effective median 41 v 75
+  before the deal list                              10683 decisions | +0.012 +- 0.013 tricks a board | +0.480 +- 0.030 nats | effective median 193 v 268
+  deal list                                         10734 decisions | +0.007 +- 0.008 tricks a board | +0.148 +- 0.013 nats | effective median 5 v 5
+  hidden seats played by house bots                 13201 decisions | -0.001 +- 0.012 tricks a board | +0.322 +- 0.023 nats | effective median 72 v 118
+  hidden seats' calls all the house bidder's        20703 decisions | +0.020 +- 0.016 tricks a board | +0.323 +- 0.020 nats | effective median 67 v 108
+  hidden seats' calls not all the house bidder's      714 decisions | -0.001 +- 0.003 tricks a board | +0.037 +- 0.184 nats | effective median 45 v 83
+  hidden seats only passed                           4863 decisions | +0.001 +- 0.007 tricks a board | +0.055 +- 0.019 nats | effective median 145 v 154
+  a hidden seat bid once                             7247 decisions | +0.011 +- 0.009 tricks a board | +0.269 +- 0.036 nats | effective median 69 v 105
+  a hidden seat bid twice or more                    9307 decisions | +0.007 +- 0.011 tricks a board | +0.483 +- 0.030 nats | effective median 39 v 77
+
+== rplpar against proto: tricks a board (slice's share), nats a decision, effective layouts
+  all                                               21417 decisions | +0.014 +- 0.006 tricks a board | +0.056 +- 0.006 nats | effective median 100 v 108
+  declarer deciding                                 11212 decisions | +0.000 +- 0.000 tricks a board | +0.000 +- 0.000 nats | effective median 138 v 138
+  defender deciding                                 10205 decisions | +0.014 +- 0.006 tricks a board | +0.118 +- 0.013 nats | effective median 65 v 75
+  before the deal list                              10683 decisions | +0.008 +- 0.006 tricks a board | +0.088 +- 0.010 nats | effective median 254 v 268
+  deal list                                         10734 decisions | +0.006 +- 0.003 tricks a board | +0.025 +- 0.003 nats | effective median 5 v 5
+  hidden seats played by house bots                 13201 decisions | +0.008 +- 0.005 tricks a board | +0.045 +- 0.007 nats | effective median 109 v 118
+  hidden seats' calls all the house bidder's        20703 decisions | +0.013 +- 0.006 tricks a board | +0.055 +- 0.006 nats | effective median 100 v 108
+  hidden seats' calls not all the house bidder's      714 decisions | +0.000 +- 0.000 tricks a board | +0.091 +- 0.048 nats | effective median 80 v 83
+  hidden seats only passed                           4863 decisions | +0.000 +- 0.000 tricks a board | +0.000 +- 0.000 nats | effective median 154 v 154
+  a hidden seat bid once                             7247 decisions | +0.008 +- 0.005 tricks a board | +0.043 +- 0.011 nats | effective median 96 v 105
+  a hidden seat bid twice or more                    9307 decisions | +0.006 +- 0.004 tricks a board | +0.097 +- 0.010 nats | effective median 70 v 77
+
+== rplopp against proto: tricks a board (slice's share), nats a decision, effective layouts
+  all                                               21417 decisions | +0.011 +- 0.015 tricks a board | +0.270 +- 0.017 nats | effective median 72 v 108
+  declarer deciding                                 11212 decisions | +0.005 +- 0.011 tricks a board | +0.238 +- 0.024 nats | effective median 102 v 138
+  defender deciding                                 10205 decisions | +0.007 +- 0.011 tricks a board | +0.305 +- 0.025 nats | effective median 46 v 75
+  before the deal list                              10683 decisions | +0.008 +- 0.012 tricks a board | +0.409 +- 0.026 nats | effective median 207 v 268
+  deal list                                         10734 decisions | +0.003 +- 0.008 tricks a board | +0.131 +- 0.011 nats | effective median 5 v 5
+  hidden seats played by house bots                 13201 decisions | -0.006 +- 0.012 tricks a board | +0.287 +- 0.021 nats | effective median 77 v 118
+  hidden seats' calls all the house bidder's        20703 decisions | +0.011 +- 0.015 tricks a board | +0.276 +- 0.018 nats | effective median 72 v 108
+  hidden seats' calls not all the house bidder's      714 decisions | +0.000 +- 0.001 tricks a board | +0.082 +- 0.030 nats | effective median 73 v 83
+  hidden seats only passed                           4863 decisions | +0.001 +- 0.007 tricks a board | +0.074 +- 0.012 nats | effective median 146 v 154
+  a hidden seat bid once                             7247 decisions | +0.006 +- 0.008 tricks a board | +0.238 +- 0.034 nats | effective median 75 v 105
+  a hidden seat bid twice or more                    9307 decisions | +0.004 +- 0.011 tricks a board | +0.397 +- 0.027 nats | effective median 42 v 77
+
+== rplonly against no reading: tricks a board (slice's share), nats a decision, effective layouts
+  all                                               21417 decisions | +0.069 +- 0.017 tricks a board | +0.373 +- 0.023 nats | effective median 177 v 512
+  declarer deciding                                 11212 decisions | +0.022 +- 0.011 tricks a board | +0.258 +- 0.028 nats | effective median 267 v 512
+  defender deciding                                 10205 decisions | +0.047 +- 0.012 tricks a board | +0.499 +- 0.032 nats | effective median 115 v 512
+  before the deal list                              10683 decisions | +0.055 +- 0.013 tricks a board | +0.534 +- 0.033 nats | effective median 420 v 512
+  deal list                                         10734 decisions | +0.014 +- 0.012 tricks a board | +0.212 +- 0.016 nats | effective median 10 v 10
+  hidden seats played by house bots                 13201 decisions | +0.034 +- 0.012 tricks a board | +0.376 +- 0.027 nats | effective median 187 v 512
+  hidden seats' calls all the house bidder's        20703 decisions | +0.064 +- 0.017 tricks a board | +0.379 +- 0.024 nats | effective median 176 v 512
+  hidden seats' calls not all the house bidder's      714 decisions | +0.005 +- 0.004 tricks a board | +0.191 +- 0.072 nats | effective median 240 v 512
+  hidden seats only passed                           4863 decisions | +0.001 +- 0.006 tricks a board | +0.068 +- 0.011 nats | effective median 455 v 512
+  a hidden seat bid once                             7247 decisions | +0.023 +- 0.009 tricks a board | +0.299 +- 0.041 nats | effective median 192 v 512
+  a hidden seat bid twice or more                    9307 decisions | +0.046 +- 0.014 tricks a board | +0.590 +- 0.035 nats | effective median 99 v 512
+
+== proto against no reading: tricks a board (slice's share), nats a decision, effective layouts
+  all                                               21417 decisions | +0.185 +- 0.029 tricks a board | +0.649 +- 0.029 nats | effective median 108 v 512
+  declarer deciding                                 11212 decisions | +0.101 +- 0.020 tricks a board | +0.656 +- 0.035 nats | effective median 138 v 512
+  defender deciding                                 10205 decisions | +0.084 +- 0.019 tricks a board | +0.642 +- 0.035 nats | effective median 75 v 512
+  before the deal list                              10683 decisions | +0.131 +- 0.021 tricks a board | +0.707 +- 0.035 nats | effective median 268 v 512
+  deal list                                         10734 decisions | +0.054 +- 0.018 tricks a board | +0.592 +- 0.031 nats | effective median 5 v 10
+  hidden seats played by house bots                 13201 decisions | +0.140 +- 0.023 tricks a board | +0.775 +- 0.029 nats | effective median 118 v 512
+  hidden seats' calls all the house bidder's        20703 decisions | +0.184 +- 0.029 tricks a board | +0.657 +- 0.029 nats | effective median 108 v 512
+  hidden seats' calls not all the house bidder's      714 decisions | +0.001 +- 0.002 tricks a board | +0.420 +- 0.170 nats | effective median 83 v 512
+  hidden seats only passed                           4863 decisions | +0.065 +- 0.016 tricks a board | +0.772 +- 0.054 nats | effective median 154 v 512
+  a hidden seat bid once                             7247 decisions | +0.057 +- 0.017 tricks a board | +0.571 +- 0.041 nats | effective median 105 v 512
+  a hidden seat bid twice or more                    9307 decisions | +0.064 +- 0.017 tricks a board | +0.646 +- 0.038 nats | effective median 77 v 512
