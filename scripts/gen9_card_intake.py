@@ -2,7 +2,8 @@
 
 Turns a card as a PDF or as photos of its pages into what a reader (an intake agent or a person) needs
 to fill the card IR by docs/gen9/card-intake.md: the page images, the text with positions (the PDF's text
-layer, or OCR for photos), suit symbols decoded where the text layer keeps them, the tick boxes of a
+layer, or OCR for photos), suit symbols decoded where the text layer keeps them, a fillable card's form
+fields read directly, the tick boxes of a
 flattened ACBL-style PDF with their state and label, the card's layout guessed and its text grouped under
 the layout's section headings, a checklist of IR fields per section, candidate style statements, and an
 IR template. The tool does not fill the IR: reading the card is the reader's job, against the images.
@@ -138,7 +139,7 @@ def pdf_pages(path, out, dpi):
                           'bold': all('Bold' in f for f in fonts), 'fonts': sorted(fonts)})
         pages.append({'source': str(path), 'page': i + 1, 'image': str(img.relative_to(out)), 'size': [page.rect.width, page.rect.height],
                       'text_from': 'pdf text layer', 'lines': merge_lines(lines), 'boxes': boxes_of(page),
-                      'suit_symbols': symbols})
+                      'fields': form_fields(page), 'suit_symbols': symbols})
     return pages
 
 
@@ -152,6 +153,26 @@ def merge_lines(lines):
             prev['bbox'] = [prev['bbox'][0], min(prev['bbox'][1], ln['bbox'][1]), ln['bbox'][2], max(prev['bbox'][3], ln['bbox'][3])]
             continue
         out.append(dict(ln))
+    return out
+
+
+def form_fields(page):
+    """A fillable card's form fields (the ACBL editor's PDFs keep them): name, type, value, and the words just left of or
+    above the field, read directly with no OCR."""
+    words = page.get_text('words')
+    out = []
+    for w in page.widgets() or []:
+        r = w.rect
+        cy = (r.y0 + r.y1) / 2
+        left = sorted((x for x in words if abs((x[1] + x[3]) / 2 - cy) < 5 and -1 <= r.x0 - x[2] < 80), key=lambda x: x[2])
+        above = [x for x in words if x[3] <= r.y0 + 1 and r.y0 - x[3] < 25 and x[0] - 6 <= (r.x0 + r.x1) / 2 <= x[2] + 6]
+        value = w.field_value
+        if w.field_type_string in ('CheckBox', 'RadioButton'):
+            value = value not in (False, None, '', 'Off')
+        out.append({'name': w.field_name, 'type': w.field_type_string, 'value': value,
+                    'label': ' '.join(decode(x[4]) for x in left[-3:]),
+                    'header': decode(max(above, key=lambda x: x[3])[4]) if above else '',
+                    'bbox': [round(v, 1) for v in (r.x0, r.y0, r.x1, r.y1)]})
     return out
 
 
@@ -318,6 +339,11 @@ def write_bundle(out, pages, layout, scores, styles, tmpl, rec):
             if fields:
                 md += ['Fields this section feeds:', ''] + [checklist_line(x, f, c) for x in fields] + ['']
             md += ['```'] + lines + ['```', '']
+        if p.get('fields'):
+            md += ['### Form fields', '', 'Read directly from the PDF form (no OCR); a filled field is the card owner\'s own entry.', '',
+                   '| Field | Type | Value | Words left of it | Header above | Box |', '| --- | --- | --- | --- | --- | --- |']
+            md += [f'| {f_["name"]} | {f_["type"]} | {f_["value"]} | {f_["label"]} | {f_["header"]} | {f_["bbox"]} |' for f_ in p['fields']]
+            md.append('')
         if p['boxes']:
             md += ['### Tick boxes', '', 'A box follows its label on ACBL-style cards: the label is the word just left of the box.', '',
                    '| Ticked | Colour | Label | Words before it | Header above | Box |', '| --- | --- | --- | --- | --- | --- |']
@@ -357,6 +383,7 @@ def main():
     rec = recall(pages, a.reference) if a.reference else None
     write_bundle(out, pages, layout, scores, styles, tmpl, rec)
     print(f'{out}/bundle.md: {len(pages)} pages, layout {layout}, {sum(len(p["lines"]) for p in pages)} lines, '
+          f'{sum(len(p.get("fields") or []) for p in pages)} form fields, '
           f'{sum(len(p["boxes"] or []) for p in pages)} tick boxes, {len(styles)} style candidates'
           + (f', OCR recall {rec[0]:.1%} of {rec[1]} words' if rec else ''))
 

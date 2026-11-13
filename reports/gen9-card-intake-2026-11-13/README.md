@@ -43,6 +43,11 @@ partnership (names removed) and the style statements of its notes, on branch `te
   - OCR (tesseract) recovered 80.3% (ACBL) and 82.9% (WBF) of the words of three or more letters in the same card's PDF text
     layer. Mean word confidence was 72 to 82.
   - Neither suit symbols nor tick boxes are read from photos. The bundle says to read those from the image.
+- **Form fields.** A fillable PDF's form fields (the ACBL editor keeps them) are read directly: name, type, value and nearby
+  words.
+  - Both sample PDFs are flattened and have none.
+  - The reader is tested on a fillable PDF that the test builds. I have not run it on a public ACBL editor card: the sandbox
+    cannot download one.
 - **Section headings.** The tool groups text lines under the nearest heading above. This is a guess, and the bundle says so.
 
 ### Two cards read
@@ -115,7 +120,8 @@ partnership (names removed) and the style statements of its notes, on branch `te
   - `weak_top3` in weak twos and three-level preempts.
 - **`scripts/gen9_check_sheet.py`**: the variants table.
 - **Tests.**
-  - `tests/test_gen9_card_intake.py`: 10 tests.
+  - `tests/test_gen9_card_intake.py`: 12 tests, including five-card weak twos in third seat as a variant (the "can preempt 5
+    card suits" case).
   - `tests/test_gen9_cards.py` still passes: 27 passed, 2 skipped.
 
 ## Found, not fixed
@@ -124,6 +130,21 @@ partnership (names removed) and the style statements of its notes, on branch `te
   derives (18, 17). `rb-precision`, with a 14-16 1NT, derives (17, 17).
   - The sample cards set `rebid.one_nt` themselves.
   - Fixing the derivation would change `rb-precision`'s compiled calls under the same identity, so I left it for bill.
+
+## Against the task's done-when
+
+- **Done:**
+  - the agent procedure and template (the bundle and `template.json`);
+  - two cards, each with provenance and a check sheet;
+  - the style section compiled and tested on hands: "only preempt good suits vul" as `open.weak_top3` vulnerable, "can
+    preempt 5 card suits" as a seat variant;
+  - this list of what the cards held and the descriptor could not.
+- **Not done:**
+  - an older ACBL card (none in hand);
+  - a card read from a photo as its own IR. The photos are renders of the same two PDFs: OCR recall is measured, and my
+    reading used the images throughout;
+  - the form reader on a public ACBL editor card.
+- **Branch.** The work went straight to `feature/gen9`, not to a PR.
 
 ## Limits
 

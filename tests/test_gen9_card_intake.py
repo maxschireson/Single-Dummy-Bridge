@@ -139,3 +139,38 @@ def test_intake_tool_decodes_symbol_font_suits():
     assert m.decode('1 3, 1 3, 2, 2') == '1♣ 3, 1♦ 3, 2♥, 2♠'
     found = m.style_candidates(['Sound Vul. 1st NV vs. V joke', 'STAYMAN, TRANSFERS'], 'card')
     assert [s['text'] for s in found] == ['Sound Vul.', '1st NV vs. V joke']
+
+
+def test_intake_tool_reads_form_fields(tmp_path):
+    pymupdf = pytest.importorskip('pymupdf')
+    spec = importlib.util.spec_from_file_location('intake', ROOT / 'scripts/gen9_card_intake.py')
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    doc = pymupdf.open()
+    page = doc.new_page()
+    page.insert_text((40, 72), 'Negative', fontsize=9)
+    page.insert_text((40, 102), '1NT', fontsize=9)
+    for name, kind, rect, value in (('neg_dbl', pymupdf.PDF_WIDGET_TYPE_CHECKBOX, (90, 63, 99, 72), True),
+                                    ('nt_lo', pymupdf.PDF_WIDGET_TYPE_TEXT, (60, 92, 90, 104), '15'),
+                                    ('nt_hi', pymupdf.PDF_WIDGET_TYPE_TEXT, (100, 92, 130, 104), '')):
+        w = pymupdf.Widget()
+        w.field_type, w.field_name, w.rect, w.field_value = kind, name, pymupdf.Rect(*rect), value
+        page.add_widget(w)
+    pdf = tmp_path / 'form.pdf'
+    doc.save(str(pdf))
+    (tmp_path / 'pages').mkdir()
+    pages = m.pdf_pages(pdf, tmp_path, 72)
+    got = {f['name']: f for f in pages[0]['fields']}
+    assert got['neg_dbl']['value'] is True and got['neg_dbl']['label'] == 'Negative'
+    assert got['nt_lo']['value'] == '15' and got['nt_lo']['label'] == '1NT'
+    assert got['nt_hi']['value'] == ''
+
+
+def test_five_card_weak_twos_in_third_seat():
+    """'can preempt 5 card suits': a variant for third seat, the base keeps six cards."""
+    c = load_card({'id': 'x', 'variants': [{'when': {'seats': [3]}, 'descriptor': {'open.two': {
+        '2H': {'type': 'weak', 'hcp': [5, 10], 'len': [5, 6]}, '2S': {'type': 'weak', 'hcp': [5, 10], 'len': [5, 6]}}}}]})
+    s = CardSystem(c)
+    five = 'S:KQT93 H:32 D:J32 C:432'                    # 6 HCP, five good spades
+    assert call(s, [], 0, 0, 'None', five) == 'PASS'
+    assert call(s, ['PASS', 'PASS'], 0, 2, 'None', five) == '2S'
