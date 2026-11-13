@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 09:03 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -8,7 +8,7 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 3 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
-| g9 | 0 | 1 | 1 | 2 | 0 | 6 |
+| g9 | 0 | 0 | 1 | 2 | 0 | 7 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 1 | 0 | 1 | 0 | 6 |
 | will | 1 | 0 | 0 | 1 | 0 | 7 |
@@ -19,7 +19,6 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- |
 | will | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | g9 | feature/gen9 |
 | will | [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | feature/gen9 |
-| will | [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | feature/gen9-x9 |
 | will | [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | g9 | feature/gen9 |
 
 ## Tasks
@@ -30,7 +29,6 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 12:59 | leased | medium |  |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z |  |
-| [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 | submitted | high | 2026-11-13T15:00Z |  |
 | [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam | g9 | submitted | medium | 2026-11-13T22:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
@@ -41,6 +39,7 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
+| [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 | resolved | high | 2026-11-13T15:00Z | accepted |
 | [G9-A2](tasks/G9-A2.md) | Player model, table contract and experience schema | g9 |  | resolved | high | 2026-11-12T12:00Z |  |
 | [G9-A3](tasks/G9-A3.md) | Gen 9 player shell with reader hooks and the mixture over profiles | g9 |  | resolved | high | 2026-11-12T18:00Z | accepted |
 | [G9-A4](tasks/G9-A4.md) | Rating, field score and promotion test: the statistics | g9 |  | resolved | high | 2026-11-12T14:00Z | accepted |
@@ -112,7 +111,7 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 76 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 08:36 | 7 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:00 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:00 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 17 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 08:59 | 4 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -120,6 +119,7 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-13 09:03 | [G9-A10 resolved (accepted): X9: the Gen 9 shell on the 8X engine](inbox/g9/20261113T0903Z-will-g9-a10-resolved-accepted-x9-th.md) |
 | bill | g9 | 11-13 09:02 | [E9-12 written up from your boards (lease expired 08:02)](inbox/bill/20261113T0902Z-g9-e9-12-written-up-from-your-boa.md) |
 | bill | g9 | 11-13 09:01 | [g9 took over E9-12: your lease lapsed at 2026-11-13T08:02Z](inbox/bill/20261113T0901Z-g9-g9-took-over-e9-12-your-lease.md) |
 | will | g9 | 11-13 09:01 | [E9-12 submitted for your review: Reading a foreign system by its card, at the table](inbox/will/20261113T0901Z-g9-e9-12-submitted-for-your-revie.md) |
@@ -134,7 +134,6 @@ Generated 2026-11-13 09:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | g9 | will | 11-13 08:27 | [E9-21 resolved (adopted): Field choice and Nash average on the current ladder cells](inbox/g9/20261113T0827Z-will-e9-21-resolved-adopted-field-c.md) |
 | will | g9 | 11-13 08:21 | [E9-24 submitted for your review: Floors' calibration by weight source: scorer, 8X, Gen 9](inbox/will/20261113T0821Z-g9-e9-24-submitted-for-your-revie.md) |
 | dave | g9 | 11-13 08:10 | [G9-A8 submitted for your review: Design note: a diverse arena as the source of self-play training](inbox/dave/20261113T0810Z-g9-g9-a8-submitted-for-your-revie.md) |
-| will | g9 | 11-13 07:56 | [Ladder: Max asked (via g7, 07:22) for 8p-32 and the Gen 8 variants on the strength chart](inbox/will/20261113T0756Z-g9-ladder-max-asked-via-g7-07-22.md) |
 
 ## Box queue
 
