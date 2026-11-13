@@ -258,6 +258,34 @@ class X9ConditionalTables(X9Tests):
         self.assertGreaterEqual(applied, 0)
         del committed, kept
 
+    def test_prefer_takes_the_highest_floor_within_its_margin(self):
+        p = self.make9({}, x9=dict(conditional=8, contracts='all', min_floor=.5, prefer=.3, binary=CELLS))
+        p.prefer_odds = np.array([.4, .05, .2])                 # floors .6, .95, .8
+        self.assertEqual(p.by_odds([0, 1, 2], [9.0, 8.8, 8.9], p.prefer_odds, .125), [1])     # all within .3: the .95 floor
+        self.assertEqual(p.by_odds([0, 1, 2], [9.0, 8.6, 8.9], p.prefer_odds, .125), [2])     # .95 is .4 short: the .8 floor
+        self.assertEqual(p.by_odds([0, 1, 2], [9.0, 8.8, 8.9], p.prefer_odds.copy(), .125), [2])   # other odds keep 8X's margin (.125)
+        self.assertEqual(p.by_odds([0, 1, 2], [9.0, 8.8, 8.9], None, 0.), [0])
+
+    def test_prefer_on_full_tables(self):
+        x8 = dict(ROLLOUTS, claims=dict(cards=8, defender=6, leaf=5, contracts='all', binary=BIN), capture=dict(level=0))
+        p = self.make9(x8, x9=dict(conditional=8, contracts='all', min_floor=.5, prefer=.5, binary=CELLS))
+        ran = preferred = 0
+        for seed in range(2, 5):
+            board = next(generate(1, 700 + seed))
+            for room in (0, 1):
+                result = self.table(p, board, room)
+                for a in result['actions']:
+                    note = a.get('x9')
+                    if a['player'] != 'x' or note is None or note.get('cells') is None:
+                        continue
+                    ran += 1
+                    if note.get('preferred'):
+                        preferred += 1
+                        floors = note['floor']
+                        self.assertGreaterEqual(max(floors.values()), .5)
+        self.assertGreater(ran, 0)
+        del preferred
+
     def test_with_nothing_declared_it_plays_the_8x_bots_game_card_for_card(self):
         pass
 

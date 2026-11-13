@@ -21,6 +21,9 @@ Conditional claims (`x9` settings; `x9_conditional.py`; DESIGN.md section 6 of t
 - **Floors.** The cells and weights come from the decision's own layouts and weights (Gen 9's reading). Where a
   candidate's floor is `min_floor` or more, the rollouts' `floor0` is set for the layouts inside its certified set, so
   those layouts count as made and the rollouts value the rest and the overtricks. No blending weight.
+- **Preference** (`prefer`, off by default). For the declaring side, the floors take the place of 8X's hand-over odds:
+  among the stage's candidates within `prefer` tricks of the best value, the card with the highest certified floor wins
+  when that floor is `min_floor` or more.
 - **Commitment.** The chosen card's certified set is stored; at the declaring side's next decision of the deal, one
   question asks which cards keep the line over that set's live cells, and only those stay candidates (when some do).
   Not built: the exception for a heavier set certified at the new decision, and adding the best-floor card when the
@@ -55,10 +58,12 @@ class X9Config:
     commit: bool = True         # keep to the chosen card's certified set at the next decisions
     fork: bool = True           # where it moved the card and capture.audit is 'features', fork against the card without it
     binary: str = ''            # the cells solver; default the environment's CELLS_BIN
+    prefer: float = 0.          # among the stage's candidates within this many tricks of the best value, the highest certified
+                                # floor wins when it is min_floor or more (8X's odds rule, for the declaring side); 0 = off
 
     def __post_init__(self):
         if not (0 <= self.conditional <= 13 and 0. <= self.min_floor <= 1. and 0. < self.mass <= 1. and self.ms > 0 and self.nodes > 0
-                and self.contracts in ('games', 'all')):
+                and self.contracts in ('games', 'all') and 0. <= self.prefer <= 13.):
             raise ValueError('Invalid X9 settings')
 
 
@@ -81,6 +86,8 @@ class X9Player(X8Player, Gen9Player):
         self.cond = None
         self.keep = None
         self.stash = None
+        self.certified = None
+        self.prefer_odds = None
         super().__init__(spec, root, reference)
         if self.x9.conditional:
             self.cells = xc.Cells(self.x9.binary or None, self.x9.nodes)
@@ -115,14 +122,43 @@ class X9Player(X8Player, Gen9Player):
 
     def hand_overs(self, o, worlds, w, reps, rng):
         self.stash = (worlds, w)                       # first_floor, called next, needs the layouts' weights
-        return super().hand_overs(o, worlds, w, reps, rng)
+        hand, odds, cover = super().hand_overs(o, worlds, w, reps, rng)
+        self.prefer_odds = None
+        if self.x9.prefer > 0 and odds is None and self.conditional_applies(o):
+            got = self.certify(o, worlds, reps)
+            if got is not None:
+                floors = [self.rep_floor(got, x) for x in reps]
+                if max(floors) >= self.x9.min_floor:
+                    self.prefer_odds = np.array([1. - f for f in floors])      # 8X's odds rule: the lowest wins
+                    return hand, self.prefer_odds, cover
+        return hand, odds, cover
+
+    def by_odds(self, order, value, odds, margin):
+        if odds is not None and odds is self.prefer_odds and margin > 0:
+            margin = self.x9.prefer
+        return super().by_odds(order, value, odds, margin)
+
+    def certify(self, o, worlds, reps):
+        """The conditional questions for this decision's layouts and candidates, asked once."""
+        if self.stash is None or self.stash[0] is not worlds:
+            return None
+        if self.certified is not None and self.certified[0] is worlds and self.certified[1] == tuple(reps):
+            return self.certified[2]
+        w = np.asarray(self.stash[1], np.float64)
+        got = xc.decide(self.cells, o, worlds, w, reps, mass=self.x9.mass, allowance=self.x9.ms / 1000)
+        self.certified = (worlds, tuple(reps), got)
+        return got
+
+    @staticmethod
+    def rep_floor(got, x):
+        r = got.get('rep_of', {}).get(int(x))
+        return got['floor'].get(r, 0.) if r is not None and r in got['set'] else 0.
 
     def first_floor(self, o, worlds, reps, hand):
         floor0 = super().first_floor(o, worlds, reps, hand)
         if not self.conditional_applies(o) or self.stash is None or self.stash[0] is not worlds:
             return floor0
-        w = np.asarray(self.stash[1], np.float64)
-        got = xc.decide(self.cells, o, worlds, w, reps, mass=self.x9.mass, allowance=self.x9.ms / 1000)
+        got = self.certify(o, worlds, reps)
         if got is None:
             return floor0
         applied = {}
@@ -134,7 +170,8 @@ class X9Player(X8Player, Gen9Player):
                 inside = np.isin(cell, got['set'][r])
                 floor0[:, j] |= inside
                 applied[symbol(x)] = f
-        self.cond = dict(got, applied=applied, reps=[symbol(x) for x in reps])
+        self.cond = dict(got, applied=applied, reps=[symbol(x) for x in reps],
+                         preferred=self.prefer_odds is not None)
         return floor0
 
     def allowed(self, o):
@@ -160,6 +197,7 @@ class X9Player(X8Player, Gen9Player):
 
     def choose(self, o, rng):
         self.cond, self.keep, self.stash = None, None, None
+        self.certified, self.prefer_odds = None, None
         kept_note = None
         if self.x9.conditional and self.x9.commit and self.commitment is not None and self.cells is not None \
                 and o.contract is not None and o.controller % 2 == o.contract.declarer % 2 and len(o.legal) > 1:
@@ -182,14 +220,15 @@ class X9Player(X8Player, Gen9Player):
             f = got['floor'].get(chosen, 0.) if chosen is not None else 0.
             note.update(cells=got['cells'], weight=got['weight'], covered=got['covered'], reps=got['reps'],
                         floor={symbol(k): v for k, v in got['floor'].items()}, ceiling={symbol(k): v for k, v in got['ceiling'].items()},
-                        applied=got['applied'], chosen_floor=f, queries=got['queries'], seconds=got['seconds'], complete=got['complete'])
+                        applied=got['applied'], chosen_floor=f, queries=got['queries'], seconds=got['seconds'], complete=got['complete'],
+                        preferred=got.get('preferred', False))
             if f >= self.x9.min_floor and self.x9.commit:
                 pos = xc.position(o)
                 self.commitment = dict(history=tuple((int(a), int(b)) for a, b in o.history), side=o.controller % 2, east=pos[1],
                                        cells=[tuple(got['cells'][i]) for i in got['set'][chosen]]) if pos else None
             elif self.keep is None:
                 self.commitment = None
-        acted = bool((self.cond or {}).get('applied')) or self.keep is not None
+        acted = bool((self.cond or {}).get('applied')) or self.keep is not None or bool((self.cond or {}).get('preferred'))
         if acted:
             plain = self.unconditional_card(o)
             note['moved'] = plain != result.card
