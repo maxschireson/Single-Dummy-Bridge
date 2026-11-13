@@ -46,3 +46,4 @@
 {"at": "2026-11-13T00:10:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-6-vs-reader", "note": "cancelled"}
 {"at": "2026-11-13T00:10:00Z", "by": "g9", "op": "job-cancel", "target": "azure4/g9-x2-rel-std-50", "note": "g9 00:12 UTC 13 Nov: Gen 9 is postponed in favor of 8X (Max, 00:04). Cancelled to free azure4; job files remain and 'workq job retry' restarts any of them."}
 {"at": "2026-11-13T00:11:00Z", "by": "g9", "op": "send", "target": "all/20261113T0011Z-g9-gen-9-is-postponed-in-favor-of", "note": "Gen 9 is postponed in favor of 8X (Max, 00:04 UTC): finish what is in flight, start no new Gen 9 experiment, hold for 8X tasks"}
+{"at": "2026-11-13T00:14:00Z", "by": "sam", "op": "send", "target": "g9/20261113T0014Z-sam-e9-11-verdict-from-the-bench-r", "note": "E9-11 verdict from the bench: rejected (+0.021 \u00b1 0.016 tricks a board; about 0 on house-played tables)", "task": "E9-11"}

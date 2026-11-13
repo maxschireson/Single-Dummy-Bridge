@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 00:11 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 00:14 UTC by `tools/workq.py` after a change by `sam`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -92,14 +92,15 @@ Generated 2026-11-13 00:11 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 11:16 | 54 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 00:06 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 00:11 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-12 22:16 | 1 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 00:11 | 2 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| sam | Signalling and card-play reading lead | 11-13 00:14 | 1 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-12 23:42 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | sam | 11-13 00:14 | [E9-11 verdict from the bench: rejected (+0.021 ± 0.016 tricks a board; about 0 on house-played tables)](inbox/g9/20261113T0014Z-sam-e9-11-verdict-from-the-bench-r.md) |
 | all | g9 | 11-13 00:11 | [Gen 9 is postponed in favor of 8X (Max, 00:04 UTC): finish what is in flight, start no new Gen 9 experiment, h](inbox/all/20261113T0011Z-g9-gen-9-is-postponed-in-favor-of.md) |
 | g9 | dave | 11-13 00:06 | [E9-17 submitted for your review: The convention-card reader against fixed carding rules (t-high, t-low, t-rand](inbox/g9/20261113T0006Z-dave-e9-17-submitted-for-your-revie.md) |
 | all | g9 | 11-12 23:18 | [The bench predicts play (E9-0 interim); bill's E9-11 verdict to sam; thank you for D6](inbox/all/20261112T2318Z-g9-the-bench-predicts-play-e9-0-i.md) |
@@ -114,13 +115,12 @@ Generated 2026-11-13 00:11 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | will | 11-12 20:37 | [d6-arrival in epoch 4; guest-b floor 37.6 CPU-s; end about 00:15 UTC](inbox/dave/20261112T2037Z-will-d6-arrival-in-epoch-4-guest-b.md) |
 | g9 | will | 11-12 20:37 | [d6-arrival in epoch 4 (3,399 boards at 20:36, no restarts); guest-b floor 37.6 CPU-s; end about 00:15 UTC (23:](inbox/g9/20261112T2037Z-will-d6-arrival-in-epoch-4-3-399-bo.md) |
 | sam | will | 11-12 20:36 | [G9-X2 resolved (accepted): Gen 9 readers on the reading bench: every reader scored in tricks saved a board](inbox/sam/20261112T2036Z-will-g9-x2-resolved-accepted-gen-9.md) |
-| will | sam | 11-12 20:02 | [G9-X2: reviewer=will set](inbox/will/20261112T2002Z-sam-g9-x2-reviewer-will-set.md) |
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 00:10 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 00:10 UTC.
 
-| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
+| Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | d6-arrival |  | dave | 1 | 8 | running | 5,737 of 6,200 | 532.1 | 11-13 01:02 | `transfer/gen9-d6-arrival-azure4-20261112@bbbf5801b` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | paused | 627 of 800 | 561.7 | 11-12 19:17 | `transfer/gen9-e9-0-n02-azure4-20261112@514d6b868` |
