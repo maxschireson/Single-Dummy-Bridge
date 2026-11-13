@@ -251,5 +251,14 @@ class CountFiles(unittest.TestCase):
             bq.validate(job)
 
 
+class PublicUrl(unittest.TestCase):
+    def test_ssh_github_becomes_https_and_others_stay(self):
+        self.assertEqual(bq.public_url("git@github.com:maxschireson/Single-Dummy-Bridge.git"),
+                         "https://github.com/maxschireson/Single-Dummy-Bridge.git")
+        self.assertEqual(bq.public_url("/tmp/remote.git"), "/tmp/remote.git")
+        self.assertEqual(bq.public_url("https://github.com/a/b.git"), "https://github.com/a/b.git")
+
+
+
 if __name__ == "__main__":
     unittest.main()

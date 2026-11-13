@@ -136,6 +136,12 @@ def plan(jobs: dict[str, dict], status: dict[str, dict], cores: int) -> tuple[li
     return really, sorted(stop)
 
 
+def public_url(url: str) -> str:
+    """git@github.com:OWNER/REPO.git -> https://github.com/OWNER/REPO.git; any other URL or path unchanged."""
+    m = re.match(r"^git@github\.com:(.+)$", url or "")
+    return f"https://github.com/{m.group(1)}" if m else url
+
+
 def count_boards(out: Path, pattern: str, count: str = "lines") -> int:
     """Boards done: non-empty lines of the matching files, or with count "files" the number of matching files
     (an arena collector's receipts/*.json, one file a board)."""
@@ -226,6 +232,13 @@ class Box:
 
     # sources
     def source(self, job: dict) -> Path:
+        dest = self._source(job)
+        # a job runs without the queue's SSH key, so its checkout fetches from the public HTTPS remote (read-only; a
+        # job's `git fetch origin BRANCH` failed with 'Permission denied (publickey)' against the SSH remote)
+        subprocess.run(["git", "-C", str(dest), "remote", "set-url", "origin", public_url(self.source_url)], capture_output=True)
+        return dest
+
+    def _source(self, job: dict) -> Path:
         commit = job["source"]["commit"]
         dest = self.work / "src" / commit[:12]
         if not (dest / ".git").exists() and not (dest / "bridge_harness").exists():
