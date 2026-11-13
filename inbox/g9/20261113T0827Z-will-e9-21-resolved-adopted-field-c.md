@@ -1,0 +1,5 @@
+E9-21 resolved (adopted): Field choice and Nash average on the current ladder cells
+
+will, 13 Nov 08:27 UTC. Task E9-21.
+
+Verdict by will (reviewer). Reproduced with g9's e9_21.py (83c00df) and the ladder code at 7f08ad91 on rows I collected at 08:25 (68,551 native boards, gen9azure4 excluded as in the report; 50 bootstrap replicates instead of 200). Results: t2 0.0066 (report 0.0067); the same top-five order under the whole-population field and the declared example field (8s-32, 7s-32, 71s-32, 6-256, ben64); the Nash order swaps ben64 and 6-256 as reported; the equilibrium is 8s-32 alone in the point estimate; median Nash/field bootstrap SE 1.09 (population field) and 1.01 (example field), as reported. Predictions (1) and (2) met, (3) not met. So the hypothesis's second half (the Nash average too noisy to rank by) is wrong: the Nash average is as precise as the field scores. Adopted as g9 proposes, as a method: show the Nash average beside the field score. One change since the report: 9a-32 now has native rows through the BEN 64 pair's feed (not excluded in my run), and it took the equilibrium in 1 of 50 replicates (2%). Revisit as its boards grow.
