@@ -30,7 +30,7 @@ the rollout boundary over time", 09:24 UTC). He named the bot **Stu** (09:05).
 | 11:25 | "Should we just do pure Stu (with single dummy guarantee)?" | Pure Stu becomes the main line and plays the collection, from the 1,000-deal comparison at about 12:35 UTC unless it is more than about half an IMP behind Stu-as-is |
 | 11:27 | "I don't mind a different lead I think. Leading is different than every other trick at bridge - you don't see the dummy." | The lead may differ from Gen 8's: the net's own card (`stu0-p`), the search's (`stu0-pl`), or rollouts' (next row), whichever measures better on the same deals |
 | 11:29 | "Or we could try rollouts for the lead but with more layouts and more choices - try everything for 512 because you don't know, and let the rollouts teach you?" "Same methodology but different parameters." | Built (`0a87e01`): the engine's `lead` block. `stu0-pr` is pure Stu with every distinct lead rolled out on 512 layouts of the three hidden hands; its records give every lead a value to learn from |
-| 11:30 | "I think this won't do as well against Ben, but we'll see!" | BEN (64) as a second outside opponent: asked of the arena session on the board (12:05) |
+| 11:30 | "I think this won't do as well against Ben, but we'll see!" | BEN (64) as a second outside opponent, on azure3 from about 15:00 UTC: pure Stu, Gen 8 card play, Stu-as-is and the rolled-lead bot against `ben64` on the gate's first 256 deals (`jobs-azure3-ben.txt`, `ben.sh`; the arena's idle BEN servers) |
 
 ## Stu from here: pure
 
@@ -70,6 +70,15 @@ At 200 deals (12:42 UTC) the rolled-out lead is level with the net's against Gen
 different card in 63% of hands; the board's result differs on 59 of 200, 31 better and 28 worse. **The collection
 rolls out its leads from 12:43 UTC** (`spr0`; my call, Max told at 12:45): a net that leads its own first choice
 teaches itself nothing about leads, and only these records give a lead a value. The price is volume (below).
+
+At 14:02 UTC: the rolled-out lead minus the net's +0.23 +- 0.20 (333 deals), the searched lead minus the net's
+-0.02 +- 0.18 (200), rolled-out minus searched +0.01 +- 0.26 (200). **Since 14:29 UTC the collection is split** (my
+call, Max told at 14:32): six workers play pure Stu with the net's lead (`sp0`) and two with the lead rolled out
+(`spr0`), about 890 tables an hour with some 130 rolled-out leads among them. As training data a rolled-out lead costs
+as much CPU as a table's forty other decisions together (55 CPU-s a table against 28), and the first run of round 2's
+training puts the net's first-choice lead 0.058 tricks behind the rollouts' best on 148 held-out leads (a random lead
+0.185; part of the 0.058 is the best of ten noisy means). At the table that would be about 0.15 IMPs a board, so the
+bot keeps its rolled-lead rung; the collection needs the volume for the other decisions.
 
 **One table a board in the collection.** Until 12:00 UTC the collection played two ids of one bot at two tables, as a
 match does. Both tables get the same random seed by ply and seat, so the same bot played the same cards at both: 113
@@ -188,6 +197,24 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   round 0's follows from `l1-p` against `l0-p`. Stu-as-is has 1,448 boards on the two boxes (`r0`, `s0`, `s0b`); its
   collection is not resumed.
 
+- **Result (14:02 UTC, 200 deals each, by deal against the same rung with v2):** inside Stu's own stages
+  +0.13 +- 0.17, inside pure Stu +0.22 +- 0.26, alone +0.01 +- 0.23. Within noise, as expected of two vectors.
+
+## Round 2
+
+- **Net.** Round 1's net with one more bot, `stup0` (pure Stu, both its lead variants), whose vectors start from
+  `stu0`'s; every weight trained at a low rate on pure Stu's rows with as many replay rows of the bots the net knows
+  (`round2.sh`). Its rows carry the rollouts' value for each candidate at every trick, and for all 13 cards at a
+  rolled-out lead.
+- **A first run at 14:09 UTC** (`train-r2a/`, 647 tables, 148 held out, 6 minutes, selected epoch 1) to prove the
+  chain. Log-loss on pure Stu's cards 1.031 to 0.984. Tricks the net's first card gives up against the rollouts'
+  values: lead 0.058 to 0.053, tricks 1 to 4 0.061 to 0.061, tricks 5 to 8 0.077 to 0.073, tricks 9 to 13 0.040 to
+  0.039 (a random rated card gives up 0.13 to 0.19). `8s-32` log-loss 0.4581 to 0.4641. These "given up" numbers are
+  against the best of a few noisy means, so they overstate what a perfect net would gain.
+- **The run that counts** waits for about 2,500 tables (about 16:30 UTC). Its bots: pure Stu with that net in the
+  rollouts, the same with the net also at the table (its own lead and first choices), and one whose simulated seats
+  use the net's value head (`seat: blend`); each against Gen 8 card play on the gate's deals.
+
 ## After round 1, in the order I expect to matter
 
 1. **Put the rollout values to use in play.** First in the simulated seats: the engine can already let a seat's card
@@ -219,9 +246,8 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 - Pure Stu passed the bar I set (not more than about half an IMP behind Stu-as-is at 1,000 deals: it is -0.22 +- 0.17).
   If a fifth of an IMP against Gen 8 matters more to you than a bot with no double dummy in it, say so.
 - The opponent mix in the collection and when BEN joins the gate.
-- The collection rolls out its leads since 12:43 UTC (level with the net's lead at 200 deals): 46.5 CPU-s a table
-  against 28.6, so about 620 tables an hour a box against about 1,000, for a value on every lead of every board. Yours
-  to reverse if you would rather have the volume.
+- The collection's split since 14:29 UTC: six workers on volume with the net's lead, two on rolled-out leads (a table
+  with a rolled-out lead measured 55 CPU-s, not the 46.5 first estimated, against 28). Yours to change either way.
 - Stu in partscores gives up a guaranteed contract about as often as Gen 8 (the ledger). Its rule is off there by your
   instruction to the 8X session (13 November 01:42 UTC: act on claims outside undoubled partscores). A rung with the
   rule on everywhere would say what that costs or gains for pure Stu; it is not queued.

@@ -30,7 +30,7 @@ RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, ble
 ROUNDS = {'0': dict(collection_cut_boards=None, note="No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November "
                                                        '(1,009 boards of Stu-as-is). Since 12:37 UTC the collection is pure Stu playing '
                                                        'itself, one table a board: sp0 (the net\'s own lead) and spr0 (the lead rolled '
-                                                       "out), side by side on azure5 since 14:35 UTC. A collection run's first_bot.rung "
+                                                       "out), side by side on azure5 since 14:29 UTC. A collection run's first_bot.rung "
                                                        'says which bot plays it, and tables_a_board 1 that its rows carry no IMPs.')}
 # runs that are not in a job file any more
 STATIC = [

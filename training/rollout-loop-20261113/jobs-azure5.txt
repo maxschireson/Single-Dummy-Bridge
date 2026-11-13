@@ -7,7 +7,7 @@ l0b-stu0 stu0a~8p-32-v41 131 500 500 8 --episodes
 l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 # The collection: pure Stu against itself, one table a board (--one-room: the two rooms of a board between two ids of
 # one bot get the same random seed by ply and seat, so they were the same play card for card; 113 of 119 boards of s0).
-# Two runs side by side since 14:35 UTC: this file's, with the net's own lead, on six workers (training deals from
+# Two runs side by side since 14:29 UTC: this file's, with the net's own lead, on six workers (training deals from
 # 60,000), and jobs-azure5b.txt's, with the lead rolled out, on two (unit loop-collect-b).
 # Why the split: as training data a rolled-out lead costs as much CPU as the table's forty other decisions together
 # (55 CPU-s a table against 28). On 148 held-out leads of spr0 the net's first choice gives up 0.058 tricks against the
