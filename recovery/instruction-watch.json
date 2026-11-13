@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794533367.9572916,
+  "checked_epoch": 1794537101.8994086,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "3810bce8fcad8439df0bf34686f8db03615d83aa",
-  "coordination_blob": "cdc9861c307745c3fef171b3955b5854de9242dc",
+  "coordination_revision": "d50c8eda9471b9c6ab44051ef56921027e78c127",
+  "coordination_blob": "a87c1ac06795bc31e73c12f6df0b4a53c23660ba",
   "registry_blob": "9c888158ebef62ca33f8443e7a79c123caff72a1",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -102,29 +102,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 993,
+      "completed": 1117,
       "target": 16036,
-      "contiguous": 992,
+      "contiguous": 1116,
       "by_pair": {
-        "8s-32~71s-32": 331,
-        "8s-32~1": 166,
-        "8s-32~5RZ32": 166,
-        "8c-32~8s-32": 165,
-        "8c-32~71s-32": 165
+        "8s-32~71s-32": 373,
+        "8s-32~1": 186,
+        "8s-32~5RZ32": 186,
+        "8c-32~8s-32": 186,
+        "8c-32~71s-32": 186
       },
-      "root_games": 3310,
-      "tables": 40848,
+      "root_games": 3722,
+      "tables": 45951,
       "failures": 0,
-      "epoch": 1794533350.3453681,
+      "epoch": 1794537094.621154,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794533360.346047,
-      "completed": 993,
+      "epoch": 1794537094.411099,
+      "completed": 1116,
       "in_flight": [
-        992,
-        994,
-        995
+        1116,
+        1117,
+        1118
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -132,15 +132,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794533366.553073,
+      "epoch": 1794537086.7666645,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794533331.992403,
+      "epoch": 1794537095.2888093,
       "status": "published",
-      "completed": 992
+      "completed": 1116
     },
     "process.json": {
       "pid": 90708,
@@ -157,7 +157,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction requiring a current collection change. Separate8X/Gen9 research, claims and new rollout nets do not upgrade released Gen8 actors. Current source, identities, plan, corpus and v4.1 union verified; main/operational/historicalGen7.1/cleanup revisions unchanged. Fresh collector, watchdog, publisher and held ownership locks healthy; no failures or stop markers. Other producer restoration left untouched.",
+  "result": "No new applicable instruction requiring a current collection change. New8X/plan/sdplay notices are research and host assignments; x8 explicitly uses idleAzure6 rather than draining an arena box. Historical#14 merge into coordination is not a new deployment. Main/Gen8/Gen7.1/cleanup refs unchanged. Current source, released identities, mix, corpus and training union verified. Fresh collector, watchdog, publisher and ownership locks healthy; no failures or stop markers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -170,38 +170,43 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T00:29:43Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T01:29:27Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue; no current collector instruction",
+      "disposition": "Gen9 queue only",
       "new_comments": 0
     }
   ],
   "observed_notices": [
     {
-      "notice": "x8 2026-11-13 00:44 UTC",
-      "classification": "Separate8X engine ownership and work-in-progress prototype",
-      "action": "Explicitly nothing launched or merged; no adoption or host claim by this stream"
+      "notice": "g7 2026-11-13 01:29 UTC",
+      "classification": "Azure1 third/fourth cohorts and Azure3 second pools",
+      "action": "Other producer's host-specific cohorts; no change here"
     },
     {
-      "notice": "sdplay 2026-11-13 01:12 UTC",
-      "classification": "Other session's Azure6 research loan",
-      "action": "Outside owned resources; no action"
+      "notice": "coordination merge ae35a321",
+      "classification": "Historical Gen6-to-Gen7 cleanup#14 merged into coordination ancestry",
+      "action": "Main, operational Gen8 and running source refs unchanged; historical source additions do not deploy old recipes"
     },
     {
-      "notice": "plan 2026-11-13 01:16 UTC",
-      "classification": "Rollout-netv1 results/v2 training,8X claim logging format and experiments",
-      "action": "Research and8X-specific Max direction; do not train, install nets, add claim behavior or change current frozen Gen8. Future adoption requires proper model training-family exclusions"
+      "notice": "sdplay 2026-11-13 01:35 UTC",
+      "classification": "Hand-over-rule research results and Azure6 release",
+      "action": "Not an adopted general arena actor change"
     },
     {
-      "notice": "g9 2026-11-13 01:18 UTC",
-      "classification": "Correction: Gen9 continues in parallel with separate8X release",
-      "action": "Supersedes00:14 postponement prose. Still research/resource coordination; no adopted Gen8 arena deployment. Exact-tie randomization remains conditional8X-only"
+      "notice": "plan 2026-11-13 01:35/01:53 UTC",
+      "classification": "Azure5 rollout-net warm-start and8X claim-fork test specification",
+      "action": "Other host's research; current v4.1 models, claims/settings and capture unchanged"
+    },
+    {
+      "notice": "x8 2026-11-13 02:23 UTC",
+      "classification": "Max-authorized8X tests on idleAzure6, explicitly rather than draining arena",
+      "action": "Host-specific research. Notice says g7 nothing changes; no Gen8 arena cutover or stream stop"
     }
   ],
-  "registry_disposition": "Owned active Gen8 and both retired pins unchanged and verified at latestregistry. Only newly changed collector update is gen6chatgpt's eleventh workspace restoration, preserving its diagnosed failures and stopped state; outside our ownership.",
-  "previous_checked_epoch": 1794529783.6308005,
+  "registry_disposition": "Entire registry unchanged from preceding check, owned Gen8 active and both retired immutable pins verified.",
+  "previous_checked_epoch": 1794533367.9572916,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -222,9 +227,9 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 7.6112446784973145,
-  "publisher_age": 35.96488857269287,
-  "free_bytes": 21350490112,
+  "heartbeat_age": 7.488309621810913,
+  "publisher_age": 6.6105992794036865,
+  "free_bytes": 20537131008,
   "new_applicable_instructions": [],
   "registry_revision": "aa6a3a63421c5704dc1bc1104c9793c39cffe5e6",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
