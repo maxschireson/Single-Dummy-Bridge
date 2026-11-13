@@ -124,6 +124,7 @@
      "stu0-pra": 1.0,
      "stu0-prb": 1.0,
      "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
@@ -176,6 +177,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -227,6 +229,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -261,7 +264,7 @@
     }
    },
    "table_opponent": "stu0-pra",
-   "identity": "2f2d2cf4d82e63bb29ea6852fdd787e1d8e34e3fa83cdadd941462de8413ce42"
+   "identity": "3200ed1b2a6b423d841efcc332c2159d7e455d0db96f006550358cc17b25a024"
   },
   "3": {
    "id": "v3",
@@ -447,6 +450,7 @@
      "stu0-pra": 1.0,
      "stu0-prb": 1.0,
      "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
@@ -499,6 +503,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -550,6 +555,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -584,7 +590,7 @@
     }
    },
    "table_opponent": "stu0-prb",
-   "identity": "8a1af2aeff9acb7d4f24b35785a4a209764e8dc9bc0b8081b18e50df556e0855"
+   "identity": "a0c56caa156a6d8122b263ddb5e94eb350a83e5dea9590910c82df914bbce089"
   }
  },
  "pair_schedule": [
@@ -612,9 +618,9 @@
  },
  "target": 1073741824,
  "one_room": true,
- "identity": "73023be5c3c820a3477f5fbc435755b07bd322b49849015b92ba0610d3830777",
+ "identity": "eacb78c2f7b6f8b3f280aa944141ae0b2a9eb34a6c74b89a001637e77463136b",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 160000,
  "deals": 20000,
- "source_commit": "fd641727af6bcaa819a51ffece408bc9c40736da"
+ "source_commit": "6fede601c00a19887fce259ec6995f9ba7ff7e4c"
 }

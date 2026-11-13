@@ -7,22 +7,6 @@
   "stu0-pb"
  ],
  "bots": {
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
-  },
   "6-32": {
    "id": "6-32",
    "samples": 32,
@@ -191,6 +175,7 @@
      "stu0-pra": 1.0,
      "stu0-prb": 1.0,
      "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
@@ -243,6 +228,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -294,6 +280,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -323,7 +310,23 @@
     }
    },
    "table_opponent": "stu0-pb",
-   "identity": "1167a0ee9b1067360de2d937ed1e6f62c60df63957825e330aeb629fa46946d3"
+   "identity": "fb8a1daa6ec8e3e2bbf88b5dd64fb98a9859876c4e0bb4e022897125dee6ddb8"
+  },
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   },
   "stu0-pb": {
    "id": "stu0-pb",
@@ -442,6 +445,7 @@
      "stu0-pra": 1.0,
      "stu0-prb": 1.0,
      "stu0-pt": 1.0,
+     "stu0-pv": 1.0,
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
@@ -494,6 +498,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -545,6 +550,7 @@
       "stu0-pra",
       "stu0-prb",
       "stu0-pt",
+      "stu0-pv",
       "stu0-r3",
       "stu0-r6",
       "stu0a",
@@ -574,7 +580,7 @@
     }
    },
    "table_opponent": "stu0-pa",
-   "identity": "0e9ccdc52b919f2ca25e998d280c1016f2a51085d426605fd743533899244e32"
+   "identity": "f183e63419184f2e817b1effe7736ac04756f36c99b4c960c9e3fbf8515d8eb7"
   }
  },
  "pair_schedule": [
@@ -602,9 +608,9 @@
  },
  "target": 1073741824,
  "one_room": true,
- "identity": "838d9097b1461677bdd4ebfc829e41461c196488f3d65afdd72c6ced9900a77c",
+ "identity": "fcb82a8ecfd6d4cbc93c0e4a56c7d6959da2de6b5b72a2354913258f2e46298c",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 140000,
  "deals": 20000,
- "source_commit": "fd641727af6bcaa819a51ffece408bc9c40736da"
+ "source_commit": "6fede601c00a19887fce259ec6995f9ba7ff7e4c"
 }
