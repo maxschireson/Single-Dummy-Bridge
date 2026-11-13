@@ -1,0 +1,23 @@
+{
+ "pair": "8p-32~t-high",
+ "boards": 400,
+ "cpu_per_board": 13.41,
+ "common": {
+  "imps_per_board": 0.3125,
+  "se": 0.2196,
+  "boards": 400,
+  "won": 98,
+  "lost": 62,
+  "flat": 240
+ },
+ "native": {
+  "imps_per_board": 0.3125,
+  "se": 0.2196,
+  "boards": 400,
+  "won": 98,
+  "lost": 62,
+  "flat": 240
+ },
+ "failures": 0,
+ "boards_per_hour": 528
+}

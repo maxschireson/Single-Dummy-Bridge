@@ -1,0 +1,23 @@
+{
+ "pair": "r9t-32~t-random",
+ "boards": 400,
+ "cpu_per_board": 13.86,
+ "common": {
+  "imps_per_board": 0.52,
+  "se": 0.1881,
+  "boards": 400,
+  "won": 84,
+  "lost": 53,
+  "flat": 263
+ },
+ "native": {
+  "imps_per_board": 0.52,
+  "se": 0.1881,
+  "boards": 400,
+  "won": 84,
+  "lost": 53,
+  "flat": 263
+ },
+ "failures": 0,
+ "boards_per_hour": 511
+}

@@ -1,0 +1,260 @@
+{
+ "schema": "gen9-e9-17-v1",
+ "seed": 917,
+ "matches": {
+  "r9t-32~t-high": {
+   "native": {
+    "n": 400,
+    "mean": 0.5425,
+    "se": 0.21
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.5425,
+    "se": 0.21
+   },
+   "boards": 400,
+   "cpu": 11.23
+  },
+  "8x-32~t-high": {
+   "native": {
+    "n": 400,
+    "mean": 0.64,
+    "se": 0.1969
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.64,
+    "se": 0.1969
+   },
+   "boards": 400,
+   "cpu": 17.32
+  },
+  "8p-32~t-high": {
+   "native": {
+    "n": 400,
+    "mean": 0.3125,
+    "se": 0.2196
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.3125,
+    "se": 0.2196
+   },
+   "boards": 400,
+   "cpu": 13.41
+  },
+  "r9t-32~t-low": {
+   "native": {
+    "n": 400,
+    "mean": 0.59,
+    "se": 0.1874
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.59,
+    "se": 0.1874
+   },
+   "boards": 400,
+   "cpu": 15.21
+  },
+  "8x-32~t-low": {
+   "native": {
+    "n": 400,
+    "mean": 0.505,
+    "se": 0.1778
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.505,
+    "se": 0.1778
+   },
+   "boards": 400,
+   "cpu": 11.17
+  },
+  "8p-32~t-low": {
+   "native": {
+    "n": 400,
+    "mean": 0.4725,
+    "se": 0.1879
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.4725,
+    "se": 0.1879
+   },
+   "boards": 400,
+   "cpu": 12.82
+  },
+  "r9t-32~t-random": {
+   "native": {
+    "n": 400,
+    "mean": 0.52,
+    "se": 0.1881
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.52,
+    "se": 0.1881
+   },
+   "boards": 400,
+   "cpu": 13.86
+  },
+  "8x-32~t-random": {
+   "native": {
+    "n": 400,
+    "mean": 0.6625,
+    "se": 0.1993
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.6625,
+    "se": 0.1993
+   },
+   "boards": 400,
+   "cpu": 10.99
+  },
+  "8p-32~t-random": {
+   "native": {
+    "n": 400,
+    "mean": 0.6575,
+    "se": 0.173
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.6575,
+    "se": 0.173
+   },
+   "boards": 400,
+   "cpu": 11.61
+  }
+ },
+ "paired": {
+  "r9t-32-8x-32~t-high": {
+   "native": {
+    "n": 400,
+    "mean": -0.0975,
+    "se": 0.1424
+   },
+   "common": {
+    "n": 400,
+    "mean": -0.0975,
+    "se": 0.1424
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "r9t-32-8p-32~t-high": {
+   "native": {
+    "n": 400,
+    "mean": 0.23,
+    "se": 0.1994
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.23,
+    "se": 0.1994
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "8x-32-8p-32~t-high": {
+   "native": {
+    "n": 400,
+    "mean": 0.3275,
+    "se": 0.2054
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.3275,
+    "se": 0.2054
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "r9t-32-8x-32~t-low": {
+   "native": {
+    "n": 400,
+    "mean": 0.085,
+    "se": 0.1412
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.085,
+    "se": 0.1412
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "r9t-32-8p-32~t-low": {
+   "native": {
+    "n": 400,
+    "mean": 0.1175,
+    "se": 0.1897
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.1175,
+    "se": 0.1897
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "8x-32-8p-32~t-low": {
+   "native": {
+    "n": 400,
+    "mean": 0.0325,
+    "se": 0.1845
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.0325,
+    "se": 0.1845
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "r9t-32-8x-32~t-random": {
+   "native": {
+    "n": 400,
+    "mean": -0.1425,
+    "se": 0.14
+   },
+   "common": {
+    "n": 400,
+    "mean": -0.1425,
+    "se": 0.14
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "r9t-32-8p-32~t-random": {
+   "native": {
+    "n": 400,
+    "mean": -0.1375,
+    "se": 0.1843
+   },
+   "common": {
+    "n": 400,
+    "mean": -0.1375,
+    "se": 0.1843
+   },
+   "deals": 400,
+   "same_contract": 400
+  },
+  "8x-32-8p-32~t-random": {
+   "native": {
+    "n": 400,
+    "mean": 0.005,
+    "se": 0.1812
+   },
+   "common": {
+    "n": 400,
+    "mean": 0.005,
+    "se": 0.1812
+   },
+   "deals": 400,
+   "same_contract": 400
+  }
+ }
+}
