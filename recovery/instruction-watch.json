@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794562071.1489537,
+  "checked_epoch": 1794565945.7974339,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "5aa01e91206baa1c9d358e699411de97c13ad211",
-  "coordination_blob": "c2a66414c498d535ea0521d3de817357538c22ec",
+  "coordination_revision": "4385504591e9161d71a9bc23ba15db1634a7e194",
+  "coordination_blob": "ce694a035313e6f6614946c68bfc7184dc423e1d",
   "registry_blob": "3bd16b201da285d965519f90bfb2847bdf96facd",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -107,29 +107,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 1940,
+      "completed": 2065,
       "target": 16036,
-      "contiguous": 1940,
+      "contiguous": 2064,
       "by_pair": {
-        "8s-32~71s-32": 647,
-        "8s-32~1": 324,
-        "8s-32~5RZ32": 323,
-        "8c-32~8s-32": 323,
-        "8c-32~71s-32": 323
+        "8s-32~71s-32": 689,
+        "8s-32~1": 344,
+        "8s-32~5RZ32": 344,
+        "8c-32~8s-32": 344,
+        "8c-32~71s-32": 344
       },
-      "root_games": 6466,
-      "tables": 79948,
+      "root_games": 6882,
+      "tables": 85205,
       "failures": 0,
-      "epoch": 1794562037.0632312,
+      "epoch": 1794565890.428415,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794562067.0688317,
-      "completed": 1940,
+      "epoch": 1794565940.4340274,
+      "completed": 2065,
       "in_flight": [
-        1940,
-        1941,
-        1942
+        2064,
+        2066,
+        2067
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -137,15 +137,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794562016.8631964,
+      "epoch": 1794565917.1350932,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794562011.890538,
+      "epoch": 1794565911.6238842,
       "status": "published",
-      "completed": 1938
+      "completed": 2065
     },
     "process.json": {
       "pid": 119770,
@@ -162,7 +162,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No new applicable instruction requiring a current collection change. Research calibration warning concerns rollout net v2/S_0 on this stream's retired Gen6 data; current actors still use pinned v4.1 and pass unchanged corpus/union checks. Host handoffs and X9 pilot do not assign this stream. Main, Gen8, historical Gen7.1, cleanup and reviewed successor source refs unchanged. Planned cache rotation at 1927 explains PID change; fresh collector/watchdog/publisher/locks healthy with no failures or stop markers.",
+  "result": "No new applicable instruction requiring a current collection change. New notices concern the separate Stu loop, training datasets and its dashboard. Main, operational Gen8, historical Gen7.1, cleanup and reviewed successor source refs unchanged. Frozen source, released identities, plan, corpus and v4.1 union verified. Fresh collector, watchdog, single publisher and held ownership locks healthy; no failures or stop markers.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -175,7 +175,7 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T08:38:53Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T09:27:51Z",
   "reviewed_discussions": [
     {
       "number": 22,
@@ -185,28 +185,28 @@
   ],
   "observed_notices": [
     {
-      "notice": "loop 2026-11-13 08:46/09:12/09:22 UTC",
-      "classification": "Stu collection/training and Azure3/Azure5 handoffs",
-      "action": "Named hosts and research branches; no instruction to change this collector or take other producers"
+      "notice": "loop 2026-11-13 09:38 UTC",
+      "classification": "Stu dashboard brief and research ladder schedule",
+      "action": "Dedicated loop runs and models, not a collector instruction for this stream"
     },
     {
-      "notice": "sidnet 2026-11-13 09:06 UTC",
-      "classification": "Rollout-net v2 calibration exposure to retired Gen6 episodes 5214\u20136774 of this stream",
-      "action": "Research measurement limitation applies to v2 scratch/warm and S_0, not current released v4.1. Active policy SHA verified and current corpus/union binding unchanged. Preserve retired feed and do not train, gate or promote v2 here"
+      "notice": "sidnet 2026-11-13 09:38 UTC",
+      "classification": "Research dataset provenance correction and Azure6 progress",
+      "action": "Current actors use v4.1 and this stream does not train nets; no current corpus or model change"
     },
     {
-      "notice": "g9 2026-11-13 09:18 UTC",
-      "classification": "Conditional claims assigned to Gen9 X9, off by default with sandbox pilot",
-      "action": "No general arena deployment or frozen Gen8 change; no new solver installed"
+      "notice": "stu-dash 2026-11-13 09:58 UTC",
+      "classification": "Separate Stu dashboard published under gh-pages:stu",
+      "action": "No aggregate or producer feed rewrite by this stream"
     },
     {
-      "notice": "g7 2026-11-13 09:20 UTC",
-      "classification": "Acknowledges Azure3 reassignment; Azure1 8X and Azure4 Gen9 status",
-      "action": "Other owners' resources and dated reports; no local liveness inference or stream transition"
+      "notice": "loop 2026-11-13 10:32 UTC",
+      "classification": "Stu plan recorded, training cut changed and round1 research metrics",
+      "action": "No change to this stream's fixed target, immutable source, models, mix or publisher"
     }
   ],
-  "registry_disposition": "Owned active Gen8 and both pinned retired sources unchanged and verified; foreign producer and aggregate changes remain outside ownership.",
-  "previous_checked_epoch": 1794559133.1545844,
+  "registry_disposition": "Entire registry unchanged from preceding check; owned active Gen8 and both retired immutable pins verified.",
+  "previous_checked_epoch": 1794562071.1489537,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -227,11 +227,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 4.080121994018555,
-  "publisher_age": 59.25841569900513,
-  "free_bytes": 21822144512,
+  "heartbeat_age": 5.363406419754028,
+  "publisher_age": 34.17354965209961,
+  "free_bytes": 20956577792,
   "new_applicable_instructions": [],
-  "registry_revision": "b2bc50a7514d85752fa24bc6de961f1d92d0e432",
+  "registry_revision": "27f5d392ac62ceb1c5f30af2237d8764dad69a23",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
