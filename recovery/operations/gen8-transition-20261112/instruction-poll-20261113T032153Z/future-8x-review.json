@@ -1,0 +1,21 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "e391410019b77729f2b85f688ed9d4faaa29bfa2",
+  "direction": "8X remains a development candidate with separate host-specific matches; Gen9 continues in parallel.",
+  "engine": {
+    "branch": "feature/gen8x-rollout-bot-20261113",
+    "revision": "5c77d79be7fef2299e00790c0ce9026d923cabb6",
+    "documentation_blob": "209f812370c905391d3a4277e2092dc54f0529af",
+    "status": "Documentation explicitly says work in progress, not deployed, not launched, merged or adopted. Config inventory contains x8-bots.json and no opened round8X arena collection plan."
+  },
+  "condition_met": true,
+  "condition": {
+    "authority": "Max00:28 conditional agreement, g9 report in BOARD02:45 at e391410",
+    "finding": "800 boards each, seed916: 8r versus 8p +0.014 +/-0.126 IMP/board, reported no detectable played cost; condition for equal-card randomization in future8X met.",
+    "reading": "For any reader in8X, including rollout seats, sum net probability over exact-equal card classes rather than scaling down the whole play term. Factor0.25 cost reader0.29 +/-0.15 IMP/board."
+  },
+  "models": "Rollout-net v2/v2w development remains on assigned Azure hosts. Current v4.1 actor models are unchanged. Future adopted models require complete training-family provenance and exclusions.",
+  "existing_gen8_effect": "Continue canonical8s/8c, frozen792c4cb, unchangedmanifestcd98, plan2:1:1:1:1, three normal workers and zeroBEN. Conditional8X finding does not open currentGen8 exploration1.0, model or engine edits.",
+  "future_requirements": "Follow a current published arena launch plan with exact actors/models/source; drain, new identity, exclude all released-model training families, fresh-pool published-corpus overlap proof where applicable, and observed gap/guess preflight.",
+  "host_scope": "No commands on peer hosts/queues/producers; no research training or model promotion performed."
+}
