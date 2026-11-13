@@ -222,8 +222,9 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 - The collection rolls out its leads since 12:43 UTC (level with the net's lead at 200 deals): 46.5 CPU-s a table
   against 28.6, so about 620 tables an hour a box against about 1,000, for a value on every lead of every board. Yours
   to reverse if you would rather have the volume.
-- Stu in partscores gives up a guaranteed contract about as often as Gen 8 (the ledger): its rule is off there, on
-  x8's finding that it lost IMPs in partscores. Worth a rung with the rule on everywhere once the lead rungs are in.
+- Stu in partscores gives up a guaranteed contract about as often as Gen 8 (the ledger). Its rule is off there by your
+  instruction to the 8X session (13 November 01:42 UTC: act on claims outside undoubled partscores). A rung with the
+  rule on everywhere would say what that costs or gains for pure Stu; it is not queued.
 - A yardstick that rewards modelling good play, not Gen 8's habits: the single-dummy count is one; a second outside
   opponent or strong people on the play server would be another.
 
