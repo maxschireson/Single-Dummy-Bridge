@@ -4419,3 +4419,32 @@ reason (the same card player), which the dashboard already shows as zero play di
 commit (`round8x-v3.json`, `3d93d78`), disjoint from the first pool, preflight passed at 15:46; `next8x` starts it when
 the first is played out. Feed `arena-gen8-x3n-azure1-feed`, registered when it holds records. Pooled so far (IMPs a
 board, 2 se): `8x3-32` against `8s-32` +0.32 +- 0.16 (1,426 boards), against `71s-32` +0.40 +- 0.26 (713).
+
+### 2026-11-13 16:14 UTC, loop
+
+**Pure Stu and Gen 8 against BEN (64) on the same 256 deals; round 2's net trained and on its rungs; azure3 collects
+after the BEN matches.** Source `b4eea94`.
+
+**Against BEN (64)** (seed 131, deals 0 to 255, card play only, IMPs a board to the first-named bot): Gen 8 card play
+(`8p-32-v41`) +0.09 +- 0.27; pure Stu (`stu0-p`, its rollout net told the opponent is `ben64`) -0.27 +- 0.28; by deal,
+pure Stu minus Gen 8, each against BEN, -0.36 +- 0.31. Head to head on the same deals pure Stu is -0.91 +- 0.28 against
+Gen 8. `b0-stu0` (Stu's own stages) is playing, `b0-pr` follows; the lanes are free again at about 17:45.
+The fusion ledger on BEN's own cards (`b0-p` and `b0-g8` at 15:58): BEN (64) gives up a contract it holds guaranteed at
+11 of 2,405 such decisions (0.46%); Gen 8 card play in the same matches at 11 of 945 (1.16%).
+
+**Round 2** (`train-r2/` on azure5's branch, sha256 `fa5df4e1a7f8...`; 1,814 tables of `spr0` and `sp0`, 150 held out,
+selected epoch 1): log-loss on pure Stu's cards 1.057 to 0.992; tricks its first card gives up against the rollouts'
+values: lead 0.072 to 0.067, tricks 1 to 4 0.062 to 0.063, tricks 5 to 8 0.087 to 0.088, tricks 9 to 13 0.060 to 0.058;
+`8s-32` log-loss 0.4581 to 0.4685. Nothing moved in the choices. Rungs on the gate's deals 500 to 699 (reference
+`l0b-p`, -0.84 +- 0.27 there): `l2b-p`, `l2b-pv` on azure5; `l2b-pt`, then the net alone and v2 alone on 500 deals
+(`l2b-n`, `l0b-n`) on azure6; controls `l0b-pt` (v2 at the table too: -0.18 +- 0.32 against the reference at 194
+deals) and `l0b-pv`. Both boxes return to the collection by themselves (`rungs.sh`).
+
+**stu-dash:** `runs.json` at `b4eea94`: azure6 has a branch (`transfer/rollout-loop-azure6-20261113`) and runs
+(`sp0c`, `spr0c`, the rungs above); runs with `shelved: true` or `shelved_passes` were taken out of azure3's queue
+and will not be played; `train-r2/metrics.json` has `validation.by_bot_phase.stup0`. Collecting boxes other than
+azure5 also publish `rows/<run>-<first index>.npz` (training rows in blocks of 1,000 boards) and `rows/rows.log`.
+
+**Azure:** azure3 goes to the collection when the BEN matches end (`sp0b` six workers, `spr0b` two); the ladder's
+leftover rungs are in `jobs-azure3-later.txt`. azure5 and azure6 collect, with the pauses above. azure6 stays
+borrowed on the terms of my 15:21 entry.
