@@ -358,6 +358,10 @@ def main():
     p.add_argument('--only-vectors', default='', help="BOT[,BOT...]: train only these bots' vectors; every other weight stays as --init gave it")
     p.add_argument('--id-dropout', type=float, default=.15, help='share of training rows whose each bot id is read as unknown')
     p.add_argument('--compare', type=Path, action='append', default=[], help='also score this net on the same held-out rows')
+    p.add_argument('--select', default='', help="BOT[:KEY]: keep the epoch with the lowest held-out KEY (default nll) on this bot's rows, among "
+                                                "the epochs whose log-loss on every other bot's rows is within --forget of the starting net's; "
+                                                'the starting weights are kept if none is. Default: the lowest log-loss over all rows')
+    p.add_argument('--forget', type=float, default=.02, help="with --select: how far the other bots' held-out log-loss may rise")
     p.add_argument('--sid-weight', type=float, default=1., help='weight of each label-head loss (guar, cert, single, tricks14) when the set has labels')
     p.add_argument('--keep-heads', action='store_true', help='a set without labels: save the label weights of the --init net unchanged with the new net')
     a = p.parse_args()
@@ -505,6 +509,24 @@ def main():
         return b
 
     history, best, started = [], None, time.time()
+    select_bot, _, select_key = a.select.partition(':')
+    select_key = select_key or 'nll'
+
+    def chooser(v):
+        """(the bot's score, the other bots' log-loss) on the held-out rows, for --select."""
+        mine, everyone = v['by_bot'][select_bot], v['all']
+        rest = (everyone['nll'] * everyone['n'] - mine['nll'] * mine['n']) / max(everyone['n'] - mine['n'], 1)
+        return mine[select_key], rest
+
+    start_rest = None
+    if select_bot:                              # the starting net is epoch 0: the limit on forgetting is measured from it
+        v0 = evaluate(lambda b: predict(params, b), vdata, val)
+        if select_bot not in v0['by_bot']:
+            raise SystemExit(f'--select: no held-out rows of {select_bot}')
+        score0, start_rest = chooser(v0)
+        best = (score0, 0, {k: np.asarray(x) for k, x in params.items()})
+        history.append(dict(epoch=0, val=v0['all'], select=dict(bot=select_bot, key=select_key, value=score0, rest_nll=round(start_rest, 4))))
+        print(json.dumps(history[-1]), flush=True)
     for epoch in range(a.epochs):
         order = rng.permutation(train)
         total = np.zeros(4 + (len(SID_HEADS) + 1 if sid else 0))
@@ -527,7 +549,15 @@ def main():
         if a.save_epochs:                   # every epoch's weights, so an epoch can be chosen by another measure
             np.savez(a.out / f'policy_epoch{epoch + 1}.npz', **{k: np.asarray(x) for k, x in params.items()}, **kept, kind=np.array(kind),
                      bot_vocab=np.array(vocab), **bank)
-        if best is None or v['all']['nll'] < best[0]:
+        if select_bot:
+            score, rest = chooser(v)
+            row['select'] = dict(bot=select_bot, key=select_key, value=score, rest_nll=round(rest, 4), within=bool(rest <= start_rest + a.forget))
+            print(json.dumps(dict(epoch=epoch + 1, select=row['select'])), flush=True)
+            if rest <= start_rest + a.forget and score < best[0]:
+                best = (score, epoch + 1, {k: np.asarray(x) for k, x in params.items()})
+            elif rest > start_rest + a.forget or (a.patience and epoch + 1 - best[1] >= a.patience):
+                break                           # past the limit on forgetting (it does not come back), or no better for `patience` epochs
+        elif best is None or v['all']['nll'] < best[0]:
             best = (v['all']['nll'], epoch + 1, {k: np.asarray(x) for k, x in params.items()})
         elif a.patience and epoch + 1 - best[1] >= a.patience:
             break

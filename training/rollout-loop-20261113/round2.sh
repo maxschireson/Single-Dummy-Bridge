@@ -10,6 +10,10 @@
 # collection's records (hard links), and the plan session's warm-run set and held-out set (BIG, FRESH). Runs at Nice 10
 # on THREADS threads. Writes ~/work/loop/NAME and copies the net, its scores and logs to ~/work/loop/pub/train-NAME.
 # EXTRA: more row files to train on, e.g. other boxes' blocks fetched by fetch_rows.sh ("$HOME"/work/loop/in/rows-*/*.npz).
+# SELECT, FORGET: the trainer's --select and --forget (e.g. SELECT=stup0 FORGET=0.02: the epoch that is best on pure
+# Stu's held-out cards among those that leave the other bots' log-loss within 0.02 of the starting net's). Without
+# SELECT the epoch with the lowest log-loss over every bot's rows is kept, which is the least-trained one here.
+# Later rounds use this script too: each trains from INIT on every table so far, not from the round before.
 set -euo pipefail
 NAME=${1:-r2}; RUNS=${2:-spr0,sp0}; HELD=${3:-150}; EPOCHS=${4:-4}; LR=${5:-1e-4}
 REPLAY=${REPLAY:-1}
@@ -21,7 +25,7 @@ V41=models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz
 V1=models/cardplay/rollout-net-v1-20261113/policy_ft.npz
 SCORER=models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz
 ALIAS=$(cat "$(dirname "$0")/alias.txt")
-EXTRA=${EXTRA:-}
+EXTRA=${EXTRA:-}; SELECT=${SELECT:-}; FORGET=${FORGET:-0.02}
 cd "$(dirname "$0")/../.."
 R=$W/$NAME; rm -rf "$R"; mkdir -p "$R/train" "$R/held"
 say() { echo "$(date -u +%FT%TZ) $*" | tee -a "$R/timeline.log"; }
@@ -66,6 +70,7 @@ export OPENBLAS_NUM_THREADS=$THREADS OMP_NUM_THREADS=$THREADS MKL_NUM_THREADS=$T
 train() {   # folder epochs rate
   nice -n 10 "$PY" scripts/train_rollout_net.py --data "$R/train.npz" --all-train --val-data "$R/val.npz" --out "$R/$1" --width 768 \
     --epochs "$2" --patience 2 --batch 256 --lr "$3" --id-dropout 0 --save-epochs --init "$INIT" --init-as stup0=stu0 \
+    ${SELECT:+--select "$SELECT" --forget "$FORGET"} \
     --compare "$V2" --compare "$V41" --compare "$V1" > "$R/$1.log" 2>&1 || { say "training $1 failed"; tail -n 5 "$R/$1.log"; exit 1; }
 }
 train before 1 1e-12
