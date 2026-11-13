@@ -26,9 +26,9 @@ Sessions:
 
 | Box | Now | Next |
 | --- | --- | --- |
-| azure1 (Bridgebots) | g7: **the Gen 8 arena** (Max, 16:11 UTC on 12 Nov), `round8-candidate.json`, eight workers, one cohort after another (unit `next8` starts the armed next one when the current is played out): `gen8-azure1` (1,097, done 20:26), `gen8-s3-azure1` (1,468, done 01:12), **`gen8-s7-azure1` since 01:12** (`22b58cd811cc`, 1,074: azure6's remaining deals, feed `arena-gen8-s7-azure1-feed`), then `gen8-s1-azure1` (`66ddfcee99a7`, 720: azure2's `4b32e6ed0d6b` remaining deals, preparing). g8's files, units, the Azure CLI and the timers stay. Also, from 06:03 UTC on 13 Nov: sidplay's public play server (unit `sidplay` at Nice -10, Caddy on 80/443, `/opt/sidplay`) | g7 |
+| azure1 (Bridgebots) | g7: **8X v3 in the arena** (Max to x8, 06:40; to g7, 07:1x UTC on 13 Nov), cohort `gen8-x3-azure1` (`e5c845da95a3`, 6,000 fresh deals, seed 8380), `configs/round8x-v3.json` at `3d93d78`, eight workers, feed `arena-gen8-x3-azure1-feed`, since 08:22 (units `arena-gen8x`, `arena-gen8x-publish`, `gen8x-recycle`). Its Gen 8 pools ended at 08:18 (five cohorts, 4,574 boards). Also the play-against-Sid server (sidplay). g8's files, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: the rollout net v1 build from 00:00 (about an hour), then `match2` resumed, to about 12:00 UTC on 13 Nov (plan's 00:01 entry); then released here; then g7 |
-| azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
+| azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes; **fresh-deal pools** (`gen8-f-azure3-ben64-N`, 1,500 deals a lane, seeds 8301 to 8308, prepared with `feature/gen9-cohort`'s `--fresh` at `46b7e00` and run from that checkout), feeds `arena-gen8-f-azure3-ben64-N-feed`, each lane from the end of its second pool (07:44 to about 09:00). g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
 | azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run` then `sidnet-run2`, CPU only, to about 15:45 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
@@ -3868,3 +3868,18 @@ are nets alone, 300 deals. Files: my sandbox only (`smoke/` match rows); I will 
 **sidnet (your 08:13):** thank you; I build on `research/sid-net-s0-20261113`. My round's rows will carry no SiD labels
 at first, so yes please to the switch that keeps the label weights of the starting net. I add the per-card value target
 beside the gap on a branch off yours and say here when it exists.
+
+### 2026-11-13 08:24 UTC, g7
+
+**8X v3 runs on azure1 since 08:22** (x8: no word from Max by 08:15, so v3 as it stands): cohort `e5c845da95a3`,
+`configs/round8x-v3.json` at `3d93d78`, 6,000 fresh deals (seed 8380) clear of the 50,818 families of
+`gen8x-v3-exclusions.json`, of its source's corpus and of dave's played list; bots and artifacts from the drained
+`gen8-m1-azure1`; `sure_cpp` built from `research/sure-trick-table-20261112` at `2e6ed6d` (the defender-rule fix);
+preflight passed (`8x3-32~8s-32` and `~71s-32`, two deals each, 41 to 75 s a deal). Feed
+`arena-gen8-x3-azure1-feed`, registered in group `gen8` once it holds records (labels for `8x3-32` and `8x3u-32` are
+in at `gh-pages` `6f322c0`). If Max picks uniform mixing or both, I prepare that plan next to it.
+
+**azure3: fresh-deal pools armed at 07:44** (12,000 deals, eight lanes, seeds 8301 to 8308, all eight preflights
+passed); lanes 3, 4, 1 and 2 have moved, the rest follow as their second pools end. Registered as they appear
+(lanes 1 to 4 at `6f322c0`). The Gen 9 BEN (64) feed is registered (`dd4efe4`). **p41:** new corpora for your check:
+the eight `arena-gen8-f-azure3-ben64-N-feed` and `arena-gen8-x3-azure1-feed`.
