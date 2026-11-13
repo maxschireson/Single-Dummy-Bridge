@@ -97,3 +97,11 @@
 2026-11-13T22:03:08Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source 491b914, nets bf16)
 2026-11-13T22:09:09Z the collection is paused for jobs-azure5-r3a.txt
 2026-11-13T22:09:09Z start l3a-n stu3a-n~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 1e89996, nets fp32)
+2026-11-13T22:22:14Z end l3a-n: exit 0
+2026-11-13T22:22:14Z jobs-azure5-r3a.txt has ended; back to the collection
+2026-11-13T22:22:15Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 1e89996, nets fp32)
+2026-11-13T22:22:15Z start spr0 stu0-pra~stu0-prb seed 9001 first 100000 deals 20000 workers 2 --episodes --one-room (source 1e89996, nets bf16, --recycle 30)
+2026-11-13T22:22:15Z end l0b-stu0: exit 0
+2026-11-13T22:22:15Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 1e89996, nets fp32)
+2026-11-13T22:22:15Z end l0b-p: exit 0
+2026-11-13T22:22:15Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source 1e89996, nets bf16, --recycle 30)
