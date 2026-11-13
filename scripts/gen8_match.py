@@ -248,6 +248,8 @@ def main():
                                                             'collecting records from two ids of one bot, whose two rooms are the same play')
     ap.add_argument('--common-only', action='store_true', help="card play only: every bot bids as the common bidder, so the native auction is "
                                                                "the common one and no bot's own bidder is loaded (BEN's is not one this script loads)")
+    ap.add_argument('--recycle', type=int, default=0, help='play the boards in rounds of RECYCLE a worker, each round with fresh worker '
+                                                           'processes, so that what a worker holds on to does not grow without end; 0 = one pool')
     ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (see load_book for the format); '
                                    'both rooms of a board then play the same auction')
     args = ap.parse_args()
@@ -276,27 +278,32 @@ def main():
     todo = [i for i in range(args.first, args.first + args.deals) if i not in done]
     print(f'{a} v {b}: {len(todo)} boards to play ({len(done)} done), {args.workers} workers', flush=True)
     started, fresh, failed, pending = time.time(), [], [], todo
-    with ProcessPoolExecutor(args.workers, initializer=start, initargs=(str(source), m, args.book)) as pool, results.open('a') as f:
+    played = 0
+    with results.open('a') as f:
         for attempt in (1, 2):                          # a board that failed is played once more
-            jobs = {pool.submit(play, i, args.seed, str(episodes) if episodes else None): i for i in pending}
             failed = []
-            for n, job in enumerate(as_completed(jobs), 1):
-                try:
-                    row = job.result()
-                except Exception as e:                  # one bad board must not end the match; it is reported and counted
-                    failed.append(jobs[job])
-                    print(f'board {jobs[job]} failed (attempt {attempt}): {type(e).__name__}: {e}'[:300], flush=True)
-                    continue
-                rows.append(row)
-                fresh.append(row)
-                f.write(json.dumps(row) + '\n')
-                f.flush()
-                if n % 50 == 0 or n == len(jobs):
-                    s = summary(rows, a, b)
-                    c = s.get('common', {})
-                    print(f'{len(rows)} boards: {c.get("imps_per_board")} +- {c.get("se")} IMPs/board for {a}; '
-                          f'{len(fresh) / (time.time() - started) * 3600:.0f} boards/hour; {len(failed)} failed', flush=True)
-                    (args.out / 'summary.json').write_text(json.dumps(dict(s, failures=len(failed), boards_per_hour=round(len(fresh) / (time.time() - started) * 3600)), indent=1))
+            size = args.recycle * args.workers if args.recycle > 0 else max(len(pending), 1)
+            for lo in range(0, len(pending), size):     # a fresh pool for each round of boards (one round unless --recycle)
+                with ProcessPoolExecutor(args.workers, initializer=start, initargs=(str(source), m, args.book)) as pool:
+                    jobs = {pool.submit(play, i, args.seed, str(episodes) if episodes else None): i for i in pending[lo:lo + size]}
+                    for job in as_completed(jobs):
+                        try:
+                            row = job.result()
+                        except Exception as e:          # one bad board must not end the match; it is reported and counted
+                            failed.append(jobs[job])
+                            print(f'board {jobs[job]} failed (attempt {attempt}): {type(e).__name__}: {e}'[:300], flush=True)
+                            continue
+                        rows.append(row)
+                        fresh.append(row)
+                        f.write(json.dumps(row) + '\n')
+                        f.flush()
+                        played += 1
+                        if played % 50 == 0 or played == len(todo):
+                            s = summary(rows, a, b)
+                            c = s.get('common', {})
+                            print(f'{len(rows)} boards: {c.get("imps_per_board")} +- {c.get("se")} IMPs/board for {a}; '
+                                  f'{len(fresh) / (time.time() - started) * 3600:.0f} boards/hour; {len(failed)} failed', flush=True)
+                            (args.out / 'summary.json').write_text(json.dumps(dict(s, failures=len(failed), boards_per_hour=round(len(fresh) / (time.time() - started) * 3600)), indent=1))
             if not failed:
                 break
             pending = failed
