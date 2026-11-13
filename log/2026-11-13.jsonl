@@ -83,3 +83,4 @@
 {"at": "2026-11-13T01:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-12-x", "note": "retry"}
 {"at": "2026-11-13T01:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "retry"}
 {"at": "2026-11-13T01:16:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "retry"}
+{"at": "2026-11-13T01:16:00Z", "by": "g9", "op": "job-retry", "target": "azure4/e9-0-n04", "note": "retry 1: g9 01:15 UTC: Gen 9 continues in parallel with 8X (Max, 01:13: 8X is a separate, more limited release); restored", "task": "E9-0"}
