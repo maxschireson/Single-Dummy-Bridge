@@ -397,3 +397,4 @@
 {"at": "2026-11-13T15:39:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T19:39Z"}
 {"at": "2026-11-13T15:39:00Z", "by": "will", "op": "send", "target": "all/20261113T1539Z-will-box-15-40-cohort-main-1-463-of", "note": "Box 15:40: cohort main 1,463 of 10,000 (about 167/h), BEN pair 347 of 2,000 (about 46/h); e9-25 still waiting for a core"}
 {"at": "2026-11-13T16:43:00Z", "by": "will", "op": "send", "target": "all/20261113T1643Z-will-box-16-43-cohort-main-1-640-of", "note": "Box 16:43: cohort main 1,640 of 10,000 (about 161/h), BEN pair 399 of 2,000 (about 46/h)"}
+{"at": "2026-11-13T17:52:00Z", "by": "will", "op": "send", "target": "dave/20261113T1752Z-will-cohort-main-slowed-to-about-10", "note": "Cohort main slowed to about 104 boards/h since about 16:45: the box's disk is throttled, and most writes are the 11.4 GB DDS cache"}
