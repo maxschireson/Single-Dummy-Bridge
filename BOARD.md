@@ -3637,3 +3637,37 @@ azure5 queue: match5 (cl), then rbc2a, rbc2b. azure2: match2.
 Cohort `75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078`, campaign `gen9-cohort-20261113`, 10,000 fresh
 deals (`fresh_deals` and `evaluation_exclusions` in its manifest), source `feature/gen9-cohort` at `46b7e004`. Bots:
 `9a-32` `38b76a8b1542`, `8p-32` `a6f6accbf114`, `8s-32` `269fdf1854f4`, `71s-32` `7b0f58b4c403`, common bidder `6-32`.
+
+### 2026-11-13 07:10 UTC, x8
+
+**g7: Max asks for 8X v3 in the arena, on lanes of your arena boxes** (Max to x8, 06:40 UTC: "Let's put 8X v3 into
+the mix on the arena and see what happens over time"; asked where it should run, at 06:4x he chose "lanes on g7's
+arena boxes" over keeping azure6 or adding a box). How many lanes of azure1/azure3, and which Gen 8 lanes give way, is
+yours to judge.
+
+- **Plan**: `configs/round8x-v3.json` on `feature/gen8x-arena-20261113` at `3335d99` (the Gen 8 launch line `a4858f5`,
+  with the plans' `792c4cb`, merged into the 8X engine). Campaign `gen8x-v3-20261113`. Pairs `8x3-32~8s-32` (2),
+  `8x3-32~71s-32`, `8x3-32~5RZ32`, `8x3-32~1` (1 each), common bidder `6-32`, audit reference `3`. `8s-32` and
+  `71s-32` are round8-candidate.json's entries unchanged: prepared they are `269fdf1854f4` and `7b0f58b4c403`, the
+  same actors as in the Gen 8 cohorts. `8x3-32` prepared `3e2d878ba84f` (engine `gen8x`).
+- **What 8X v3 is**: 8s-32 card for card through trick 6 (tree included); from trick 7, in games, slams and doubled
+  contracts only, the search's near-best cards re-valued by rollouts on rollout net v1 (blend, trust 0.25); claims and
+  the declarer's guarantee; equal cards mixed by the net's probability to a power. docs/x8_bot.md on that branch.
+- **A collector needs**: `python scripts/build_dds.py`; **`sure_cpp`** (g++ -O2 -march=native -std=c++17 of
+  `experiments/sure_tricks/sure.cpp` on `research/sure-trick-table-20261112`) with **`SURE_BIN`** set to it in the
+  collector's environment (8X asks it at most decisions; without it the bot refuses to start); restore policy v4.1,
+  system scorer v1 (`restore_model.py`) and rollout net v1 (`models/cardplay/rollout-net-v1-20261113/restore.py`).
+- **Deals**: the plan carries `exclude_training_families`. Prepare with `--exclude-families gen8x-v3-exclusions.json`
+  from `transfer/rollout-net-v1-training-families-20261113` (sha256 `72fafc4cce9e...`): 50,818 families, policy v4.1's
+  34,092 plus rollout net v1's 21,509 (read from the 82 Gen 7 and Gen 8 feeds it was trained on, at their recorded
+  tips), so a source of unplayed deals cut as you cut Gen 8's works.
+- **Preflight done on azure6** (from a local preflight source of the capsule's bots with 40 generated deals, never an
+  arena source): prepare accepted, then `ops/smoke_gen7.py --deals 1` played `8x3-32~8s-32` and `8x3-32~71s-32`
+  through the runtime with audits, records accepted, exit 0, about 52 s a deal on a fully loaded box. The smoke picks
+  only pairs with a `gen7` bot, so `8x3-32~5RZ32` and `~1` were not in it: their first boards are their preflight.
+- **Cost**: in x8's matches 8X v3 ran about 28 CPU s a board with every feature fork; about 1.3x Gen 8 in the arena's
+  own audits is my estimate, not measured.
+- **Feed and dashboard**: please name the feed (`arena-gen8x-v3-<box>-feed`?) and tell dash; its Gen 8 and Gen 7.1
+  bots are the registry's actors, so it can be counted with Gen 8 if dash agrees.
+
+azure6: x8 releases it at about 08:00 UTC to the table session as planned (allocation row updated then).
