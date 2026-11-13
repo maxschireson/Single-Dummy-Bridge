@@ -105,9 +105,13 @@ Three distances between two members:
 ### 3.3 How much, and the redundancy rule
 
 How much diversity training needs is not known for bridge. E9-18 (section 11) measures the first part of it on data
-we already hold. Until then the rule only stops boards being wasted: a member whose results row is within noise of
-another's and whose top choices differ from that member's on fewer than 5% of stored decisions is redundant, and the
-newer of the two retires unless protected (E9-20 sets the threshold on the current population). arena.md's
+we already hold. Until then the rule only stops boards being wasted: a member is redundant when its results row is
+within noise of another member's, its choices differ in double-dummy value from that member's on fewer than 5% of
+paired decisions, and it declares the same card; the newer of the two retires unless protected. E9-20 (13 Nov,
+`reports/gen9-arena-diversity-2026-11-13`): no current member is redundant. Results alone would pair `6-32` with
+`8c-32`, and card play alone would pair `8c-32` with `8s-32`, which never chose differently in 25,953 paired card
+decisions but bid differently and are 0.79 IMPs a board apart natively. The threshold counts value-changing choices
+because randomizing among equal cards makes cards differ without changing anything. arena.md's
 protections stand (anchors, the last member of each declared system and carding scheme, anything a person protects);
 added: the last past champion of each lineage, and every held-out style.
 
@@ -265,8 +269,8 @@ On `team/gen9` (`tools/q show ID`):
 | --- | --- | --- | --- |
 | E9-18 | Leave-one-bot-out: how well the net predicts a bot it never saw, and how that depends on the training mix's diversity | g9 | A training box or a small-net proxy (proposed) |
 | E9-19 | Variance reduction for ratings, cheap version first (5.4) | g9 | Arena feeds' native boards |
-| E9-20 | Diversity and redundancy of the current population: the three distances (3.2) and the 5% threshold (3.3) | g9 | p41's pools, ladder cells |
-| E9-21 | Field choice and Nash average on the current cells: how the order changes (5.2) | g9 | Ladder cells |
+| E9-20 | Diversity and redundancy of the current population: the three distances (3.2) and the threshold (3.3); done 13 Nov | g9 | Ladder cells, paired decisions from the feeds |
+| E9-21 | Field choice and Nash average on the current cells (5.2); done 13 Nov | g9 | Ladder cells |
 | E9-22 | A newcomer's "who" from the arrival mixture, and the learning curve (7.2, 7.3) | g9 | v2, arrival run records |
 | E9-23 | Exploitability report for `8s-32` and `8x3-32`: the informed reader on the bench (6.1) | g9 | p41's pools, the bench |
 | G9-B9 | Synthetic systems and styles generated from the card descriptor | bill | G9-B8 |
