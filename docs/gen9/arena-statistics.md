@@ -15,6 +15,11 @@
 > normal-mixture interval, which still held zero at 64% to 79% of promotions; **out-of-line pairs
 > are found by a leave-one-out test per pair**, since one shared pair-effect variance does not
 > catch a single real one. Where the text below says otherwise, this paragraph holds.
+>
+> **Decided 13 November (issue #24; Max left the choice to g9 at 07:48 UTC): the smallest lead promoted on is
+> `d = 0.10`, cap 10,000 direct boards.** A smaller gain is promoted only from the bench: a gain of 2 SE or more there
+> (E9-0: bench tricks predict played IMPs), then non-inferiority in the arena: after at least 2,000 direct boards, the
+> lower end of the always-valid 95% interval above -0.10. The panel check is unchanged.
 
 ## 0. The data
 
