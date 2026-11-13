@@ -18,7 +18,6 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | will | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | g9 | feature/gen9 |
-| will | [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | feature/gen9 |
 
 ## Tasks
 
@@ -83,7 +82,6 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | g9 | submitted | high | 2026-11-13T04:00Z |  |
-| [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | g9 | submitted | high | 2026-11-13T11:00Z |  |
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z |  |
@@ -95,6 +93,7 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | [E9-10](experiments/E9-10.md) | Gen 9 against BEN with a model of BEN | sam | sam | resolved | high | 2026-11-13T16:00Z | retired. **Not played. The reading bench, which scores readings on stored double-dummy solves of E9-7's held-out tables, puts r9b-32's model of BEN at +0.021 ± 0.023 (BEN 16) and +0.009 ± 0.023 (BEN 64) tricks a board over 8x-32, +0.015 ± 0.016 pooled, about +0.05 IMPs: below what a 1,600-board match can see. The match was cancelled for that reason (g9, 13:02).** |
 | [E9-14](experiments/E9-14.md) | A per-player head on the policy net: experience that fine-tunes the play inference | sam | sam | resolved | high | 2026-11-13T12:00Z | adopted. **A per-player head on the net (526 numbers: a temperature, suit and rank preferences, a reweighting of the decoder's 256 units), fitted on BEN's own recorded choices, reads BEN +0.08 (BEN 16) and +0.14 (BEN 64) nats a house defender decision better than the net at its best factor, and its class term lets BEN's defence be read at factor 1 (+0.13 to +0.19 nats over E9-7's reading). In tricks on the reading bench it is worth +0.035 ± 0.014 (BEN 64) and +0.013 ± 0.012 (BEN 16) a board on BEN's declarer play, and nothing measurable on its defence. It is at its limit by about 1,000 tables; tables are not what limits it.** |
 | [E9-15](experiments/E9-15.md) | Honesty by situation: a signal expert per known opponent (BEN first) | sam | sam | resolved | high | 2026-11-13T10:00Z | adopted. **BEN's honesty depends on the situation, by a factor of two to four, but its signals carry little information anywhere: at most 0.07 to 0.12 bits a signal in the best situations. An expert fitted to BEN reads it +0.05 nats a house declarer decision better than E9-7's tables, which is worth no measurable tricks on the reading bench. Adopted as the model of BEN's spots (M3, with M2 as the additive form for the experience store); not worth a match.** |
+| [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | g9 | resolved | high | 2026-11-13T11:00Z | inconclusive. Evidence: native tables of eight Gen 8 feeds seating 8c-32; first declarer-side decisions at 8 and 7 cards, no outright claim. The scorer gives the actual layout under 1% of a uniform weight in 108 of 667 Precision-defended positions at 8 cards and 86 of 563 at 7; Gen 9's replay of 8c-32's own bidder (identity f50e95de checked) in none. Floor minus realised above 0.25: house control +0.060 +- 0.025 (8) and +0.049 +- 0.029 (7); Precision defends, scorer +0.099 +- 0.024 and +0.107 +- 0.029; Gen 9 +0.083 +- 0.023 and +0.089 +- 0.027; two named cards (8) +0.089 against +0.096. Lines committed at a floor of 0.9 or more (7 and 8 cards): scorer 231, covered 0.913 +- 0.019; Gen 9 228, covered 0.965 +- 0.012; house control 180, 0.950 +- 0.016. Both commit in 206 and cover the same 200; scorer alone 25, covered 11; Gen 9 alone 22, covered 20. Paired coverage of the best line over all positions: -0.004 +- 0.005 (8), +0.009 +- 0.007 (7), -0.022 +- 0.013 (two named). Predictions: (1) direction as predicted, each under 1.5 SE, not shown; (2) not met (a sixth less, not half); (3) met by construction. 8X's read_layouts weighting not run. Report: reports/gen9-sid-weights-2026-11-13 (feature/gen9 33ddcbe) |
 | [E9-3](experiments/E9-3.md) | How often spot cards nine and below are not equivalent | sam | sam | resolved | high | 2026-11-12T20:00Z | adopted. **The class rule holds.** Defenders' spots (two to nine) in the suit played do not all take the same number of tricks on the true deal in **1.49% ± 0.08%** of 21,057 decisions (prediction: at most 5%). When they differ, the worst spot costs 1.13 tricks on average; the lowest spot is among the best in 99.2% of all decisions |
 | [E9-5](experiments/E9-5.md) | Arena simulator: schedule and promotion rule against fixed pairs | dave | dave | resolved | high | 2026-11-13T02:00Z | adopted. Kind of evidence: simulation. Report, data and code: `reports/gen9-arena-sim-2026-11-12/README.md` on |
 | [E9-7](experiments/E9-7.md) | A reading model for BEN from recorded boards | pool | sam | resolved | high | 2026-11-13T12:00Z | adopted. **A model fitted to BEN's own cards reads BEN's defenders +0.16 ± 0.05 (BEN 16) and +0.32 ± 0.05 (BEN 64) nats of the true layout's weight per house declarer decision better than Gen 8 (net at 0.3), on held-out deal families. The gain comes from BEN's count signals, read by an asymmetric emission model, not from tuning the play factor, which was already right.** |
@@ -111,7 +110,7 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 76 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 08:36 | 8 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:16 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 09:16 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 18 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 09:21 | 4 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -119,6 +118,7 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-13 09:21 | [E9-24 resolved (inconclusive): Floors' calibration by weight source: scorer, 8X, Gen 9](inbox/g9/20261113T0921Z-will-e9-24-resolved-inconclusive-fl.md) |
 | dave | g9 | 11-13 09:18 | [Box: 3 cores of azure4 for X9's conditional-claims match? (Max, 09:03: conditional claims go in Gen 9)](inbox/dave/20261113T0918Z-g9-box-3-cores-of-azure4-for-x9-s.md) |
 | sam | will | 11-13 09:04 | [G9-S9 resolved (accepted): Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0904Z-will-g9-s9-resolved-accepted-defend.md) |
 | g9 | will | 11-13 09:04 | [G9-S9 resolved (accepted): Defenders' conditional lines: what one known partner card could unlock](inbox/g9/20261113T0904Z-will-g9-s9-resolved-accepted-defend.md) |
@@ -133,7 +133,6 @@ Generated 2026-11-13 09:21 UTC by `tools/workq.py` after a change by `will`. Do 
 | dave | will | 11-13 08:31 | [Ladder: I added x8's five Gen 8 variants as candidates in your configs/ladder-bots.json (g9's ask, by 09:30)](inbox/dave/20261113T0831Z-will-ladder-i-added-x8-s-five-gen-8.md) |
 | g9 | will | 11-13 08:31 | [Ladder: 8p-32 and the five x8 Gen 8 variants are on the live chart (08:31); E9-21 adopted, E9-20 rejected (as ](inbox/g9/20261113T0831Z-will-ladder-8p-32-and-the-five-x8-g.md) |
 | will | g9 | 11-13 08:29 | [G9-A10 submitted for your review: X9: the Gen 9 shell on the 8X engine](inbox/will/20261113T0829Z-g9-g9-a10-submitted-for-your-revi.md) |
-| g9 | will | 11-13 08:28 | [E9-20 resolved (rejected): Diversity and redundancy of the current population](inbox/g9/20261113T0828Z-will-e9-20-resolved-rejected-divers.md) |
 
 ## Box queue
 
