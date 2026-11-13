@@ -2,3 +2,6 @@ stu0-pl v 8p-32-v41: 200 boards to play (0 done), 8 workers
 50 boards: -0.98 +- 0.4204 IMPs/board for stu0-pl; 597 boards/hour; 0 failed
 stu0-pl v 8p-32-v41: 142 boards to play (58 done), 8 workers
 108 boards: -1.1019 +- 0.3672 IMPs/board for stu0-pl; 573 boards/hour; 0 failed
+158 boards: -0.5506 +- 0.3165 IMPs/board for stu0-pl; 585 boards/hour; 0 failed
+200 boards: -0.57 +- 0.2833 IMPs/board for stu0-pl; 578 boards/hour; 0 failed
+{"pair": "stu0-pl~8p-32-v41", "boards": 200, "cpu_per_board": 46.5, "common": {"imps_per_board": -0.57, "se": 0.2833, "boards": 200, "won": 33, "lost": 54, "flat": 113}, "native": {"imps_per_board": -0.57, "se": 0.2833, "boards": 200, "won": 33, "lost": 54, "flat": 113}}
