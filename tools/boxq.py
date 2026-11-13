@@ -96,6 +96,7 @@ def validate(job: dict, box: str | None = None, cores: int | None = None) -> dic
     prog = job.get("progress") or {}
     need(isinstance(prog.get("results"), str) and isinstance(prog.get("target"), int) and prog["target"] > 0,
          "progress has results (a file or glob under the job's folder) and target (boards)")
+    need(prog.get("count", "lines") in ("lines", "files"), "progress count is lines (default: non-empty lines of the results files) or files")
     need(job.get("state", "queued") in ("queued", "cancelled"), "state is queued or cancelled")
     need(isinstance(job.get("preemptible", True), bool), "preemptible is true or false")
     need(isinstance(job.get("env", {}), dict), "env is an object")
@@ -135,7 +136,11 @@ def plan(jobs: dict[str, dict], status: dict[str, dict], cores: int) -> tuple[li
     return really, sorted(stop)
 
 
-def count_boards(out: Path, pattern: str) -> int:
+def count_boards(out: Path, pattern: str, count: str = "lines") -> int:
+    """Boards done: non-empty lines of the matching files, or with count "files" the number of matching files
+    (an arena collector's receipts/*.json, one file a board)."""
+    if count == "files":
+        return sum(1 for f in out.glob(pattern) if f.is_file())
     n = 0
     for f in sorted(out.glob(pattern)):
         try:
@@ -308,7 +313,7 @@ class Box:
                 j = jobs.get(jid)
                 ef = (self.out_dir(j) if j else self.work / "runs" / jid) / ".exit"
                 code = int(ef.read_text().strip() or -1) if ef.exists() else None
-                s["boards"] = count_boards(self.out_dir(j), j["progress"]["results"]) if j else s["boards"]
+                s["boards"] = count_boards(self.out_dir(j), j["progress"]["results"], j["progress"].get("count", "lines")) if j else s["boards"]
                 if s.get("stopping"):
                     s["state"] = "cancelled" if (not j or j.get("state") == "cancelled") else "paused"
                 elif code == 0:
@@ -345,7 +350,7 @@ class Box:
         for jid, s in S.items():
             j = jobs.get(jid)
             if s["state"] == "running" and j:
-                s["boards"] = count_boards(self.out_dir(j), j["progress"]["results"])
+                s["boards"] = count_boards(self.out_dir(j), j["progress"]["results"], j["progress"].get("count", "lines"))
                 s["samples"] = [x for x in s.get("samples", []) if now - parse(x[0]) <= RATE_WINDOW] + [[stamp(now), s["boards"]]]
                 s["rate_per_hour"], s["eta"] = rate_and_eta(s["samples"], s["boards"], s["target"], now)
                 if j.get("publish") and (not s.get("published_at") or now - parse(s["published_at"]) >= PUBLISH_EVERY):

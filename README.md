@@ -216,6 +216,8 @@ A box pulls its work from this branch. To run something on a Gen 9 box, write a 
 
 - A job names the experiment (`experiment`) or the task (`task`, such as `G9-D6`) it serves; either must exist.
 - `sandbox_rate` (optional): boards an hour measured off the box at the job's cores; STATUS.md shows it beside the box's rate.
+- `progress.count` (optional): `lines` (default) counts non-empty lines of the `results` files; `files` counts the matching
+  files, for an arena collector whose `receipts/*.json` hold one board each.
 - Priority 1 is highest; the box runs the highest-priority jobs that fit its cores, and fills leftover cores with
   smaller jobs. `cores` should equal the job's `--workers`.
 - A `preemptible` job (resumable: `gen8_match.py` and `gen9_match.py` skip boards already in `results.jsonl`) is

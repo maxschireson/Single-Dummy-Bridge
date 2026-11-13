@@ -229,5 +229,27 @@ class LoopTest(unittest.TestCase):
         self.assertIn("G9-Z99", str(cm.exception))
 
 
+class CountFiles(unittest.TestCase):
+    def test_count_lines_and_files(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            out = Path(d)
+            (out / "receipts").mkdir()
+            for i in range(3):
+                (out / "receipts" / f"{i:06d}.json").write_text('{\n "a": 1\n}\n')
+            (out / "results.jsonl").write_text('{"x":1}\n\n{"x":2}\n')
+            self.assertEqual(bq.count_boards(out, "results.jsonl"), 2)
+            self.assertEqual(bq.count_boards(out, "receipts/*.json", "files"), 3)
+            self.assertEqual(bq.count_boards(out, "receipts/*.json"), 9)  # lines would over-count pretty-printed receipts
+
+    def test_validate_count(self):
+        job = dict(id="c1", box="azure4", owner="dave", priority=1, cores=8, source=dict(branch="b", commit="abcdef1"),
+                   argv=["{python}", "x.py"], progress=dict(results="run/receipts/*.json", target=10000, count="files"))
+        bq.validate(job)
+        job["progress"]["count"] = "bytes"
+        with self.assertRaises(Exception):
+            bq.validate(job)
+
+
 if __name__ == "__main__":
     unittest.main()
