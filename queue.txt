@@ -22,6 +22,8 @@ match4 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --
 match6 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prr-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 @source 40adc36c98cb68b8d6b3724d1289b63f36efd413
 rnet2w W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/hand_fit_v0.npz BRANCH=transfer/rollout-net-v2w-20261113 CMP_NETS="$P/nets/rnet1/ft.npz $P/nets/rnet1/scratch.npz" bash training/rollout-net-v2-20261113/chain.sh
+@source bc8524160b5ae833ea3cc1f6eb55d290b85171ad
+rnet2wr RESUME=1 W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/hand_fit_v0.npz BRANCH=transfer/rollout-net-v2w-20261113 CMP_NETS="$P/nets/rnet1/ft.npz $P/nets/rnet1/scratch.npz" bash training/rollout-net-v2-20261113/chain.sh
 seat1 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,ft=$P/nets/rnet1/ft.npz,scr=$P/nets/rnet1/scratch.npz" --sims "v41:top;ft:top;scr:top;ft:blend" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
 @source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44
 match6 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prr-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
