@@ -9,6 +9,7 @@
 # has `stu0`). Run from a checkout of this branch with ~/work/loop set up (README). Reads, never writes: the
 # collection's records (hard links), and the plan session's warm-run set and held-out set (BIG, FRESH). Runs at Nice 10
 # on THREADS threads. Writes ~/work/loop/NAME and copies the net, its scores and logs to ~/work/loop/pub/train-NAME.
+# EXTRA: more row files to train on, e.g. other boxes' blocks fetched by fetch_rows.sh ("$HOME"/work/loop/in/rows-*/*.npz).
 set -euo pipefail
 NAME=${1:-r2}; RUNS=${2:-spr0,sp0}; HELD=${3:-150}; EPOCHS=${4:-4}; LR=${5:-1e-4}
 REPLAY=${REPLAY:-1}
@@ -19,7 +20,8 @@ V2=models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz
 V41=models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz
 V1=models/cardplay/rollout-net-v1-20261113/policy_ft.npz
 SCORER=models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz
-ALIAS=stu0a=stu0,stu0b=stu0,z0a-v2=stu0,z0b-v2=stu0,stu0-pa=stup0,stu0-pb=stup0,stu0-pra=stup0,stu0-prb=stup0
+ALIAS=$(cat "$(dirname "$0")/alias.txt")
+EXTRA=${EXTRA:-}
 cd "$(dirname "$0")/../.."
 R=$W/$NAME; rm -rf "$R"; mkdir -p "$R/train" "$R/held"
 say() { echo "$(date -u +%FT%TZ) $*" | tee -a "$R/timeline.log"; }
@@ -51,9 +53,12 @@ for part in train held; do
 done
 
 # 3. As many rows again of the bots the net knows; the joined training set; the joined held-out set.
-rows=$("$PY" -c "import numpy as np, sys; print(int(len(np.load(sys.argv[1])['deal']) * float(sys.argv[2])))" "$R/stu_train.npz" "$REPLAY")
+# shellcheck disable=SC2086
+rows=$("$PY" -c "import numpy as np, sys; print(int(sum(len(np.load(f)['deal']) for f in sys.argv[2:]) * float(sys.argv[1])))" "$REPLAY" "$R/stu_train.npz" $EXTRA)
+[ -z "$EXTRA" ] || say "with $(echo $EXTRA | wc -w) more row files from other boxes"
 nice -n 10 "$PY" $T/sample_set.py "$BIG" "$R/replay.npz" --rows "$rows" --seed 1 | tee -a "$R/timeline.log"
-nice -n 10 "$PY" $M "$R/train.npz" "$R/stu_train.npz" "$R/replay.npz" | tee -a "$R/timeline.log"
+# shellcheck disable=SC2086
+nice -n 10 "$PY" $M "$R/train.npz" "$R/stu_train.npz" $EXTRA "$R/replay.npz" | tee -a "$R/timeline.log"
 nice -n 10 "$PY" $M "$R/val.npz" "$R/stu_held.npz" "$FRESH" | tee -a "$R/timeline.log"
 
 # 4. The net before (pure Stu's vectors are Stu's and nothing is trained: a rate of 1e-12) and after, on the same held-out rows.
