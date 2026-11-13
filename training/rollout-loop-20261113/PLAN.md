@@ -322,6 +322,11 @@ Not adopted:
   possible at the same player's next decision, so it would save at most 37% of the play-reading rows. Play reading is
   about 14% of a table's CPU, so the saving is at most about 5%, below the 2-3 s a table I had estimated.
 
+Memory: with bf16 on, a collection worker's resident memory grew to 3-4 GB, the boxes ran out and a worker was killed
+about six times between 20:15 and 21:30 UTC (the run restarts; the boards in hand are lost). One process alone
+(`bench/memory.py`): 1.1 to 1.4 GB over its first 22 boards in bf16, 0.34 to 0.39 GB in fp32. Since 21:30 UTC the
+collection's workers are replaced every 30 boards (`gen8_match --recycle`, `~/work/loop/RECYCLE`); play is unchanged.
+
 Where the CPU goes now (py-spy, one pure Stu worker): the net's forward pass about two thirds, the hand-fit scorer 17%,
 play reading 14% (both inclusive of their share of the forward pass).
 
