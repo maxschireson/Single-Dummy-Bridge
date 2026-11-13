@@ -1,9 +1,22 @@
 # azure3, Stu round 0. NAME PAIR SEED FIRST DEALS WORKERS [options]; each job resumes.
+# Seed 131 is the gate's and the ladder's: its deals are never trained on. Seed 9001 is round 0's training seed.
+#
 # Round 0's collection, second shard of the deals, first: the round waits on games, not on the gate. It is ended by hand
 # when the round has enough (stop the match's process, not the unit: the chain then goes on to the next line).
 s0b stu0a~stu0b 9001 20000 20000 8 --episodes
-# The gate's baseline: round 0's Stu against Gen 8 card play on the gate's deals (58 boards played before the reorder).
-g0-stu0 stu0a~8p-32-v41 131 0 2000 8
+# The ladder (Max, 09:24 UTC): Stu and four bots with the boundary between search and rollouts moved, each against
+# Gen 8 card play on the gate's first 500 deals. Records are kept to read, not to train on.
+l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
+l0-b50 stu0-b50~8p-32-v41 131 0 500 8 --episodes
+l0-r6 stu0-r6~8p-32-v41 131 0 500 8 --episodes
+l0-r3 stu0-r3~8p-32-v41 131 0 500 8 --episodes
+l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
+# The gate's baseline, the rest of its deals. (Folder g0-stu0 holds 58 boards under deal 500 from before the reorder.)
+g0b-stu0 stu0a~8p-32-v41 131 500 1500 8
+# Rollout-made decisions at early tricks, for round 2's set: the pure bot and rollouts from trick 3 against Stu, on
+# training deals of their own.
+d0-p stu0-p~stu0a 9001 40000 1000 8 --episodes
+d0-r3 stu0-r3~stu0a 9001 50000 1000 8 --episodes
 # The leverage control at ten times the sandbox's deals.
 c-n41-n4 n-v41~n-v4 131 0 3000 8
 c-r7-n41 r7-v41~n-v41 131 0 3000 8

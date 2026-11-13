@@ -10,6 +10,14 @@ ids: self-play is stu0a~stu0b.
                     vector for each side's bot) as the rollout net. Every simulated seat is told both sides are
                     8s-32, the nearest bot v2 was trained on. Records keep every layout's result for every candidate
                     (capture level 2, up to 128 layouts), so a target other than mean tricks can be rebuilt later.
+The ladder (Max, 13 November 09:24 UTC: calibrate also with rollouts one trick sooner, at a higher weight, and pure):
+round 0's Stu with only the boundary between search and rollouts moved. Each is measured against 8p-32-v41 on the gate's
+deals, which are never trained on.
+  stu0-b50          the blend at tricks 3 to 6 at trust 0.5 (Stu: 0.25)
+  stu0-r6           rollouts alone from trick 6 (the blend at tricks 3 to 5)
+  stu0-r3           rollouts alone from trick 3 (the search at tricks 1 to 2 only)
+  stu0-p            pure: the net's own opening lead, rollouts alone from the second card on; no double dummy anywhere.
+                    The claims stay (the exact single-dummy solver).
 Copied unchanged from configs/x8-bots.json:
   8z-ft1            x8's 8Z with rollout net v1 (ft), for comparisons with Stu
   8p-32-v41         Gen 8 card play, the gate's outside opponent
@@ -30,6 +38,7 @@ V4 = 'models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz'
 V0 = 'models/cardplay/gen7-policy-v0-2026-11-11/gen7_policy_v0.npz'
 V2 = 'models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz'       # transfer/rollout-net-v2-20261113 runs/w768/policy_epoch5.npz
 STU = ['stu0a', 'stu0b']
+FAMILY = STU + ['stu0-b50', 'stu0-r6', 'stu0-r3', 'stu0-p']      # every bot that claims and mixes as Stu does
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
 
@@ -44,11 +53,28 @@ def main():
         b['rollout_policy'] = V2
         b['x8']['names'] = {'self': '8s-32', '*': '8s-32'}
         b['x8']['capture'] = {'level': 2, 'layouts': 128, 'forks': 8, 'audit': 'features', 'audit_search': False}
-        b['x8']['claims']['opponents'] = sorted(set(b['x8']['claims']['opponents']) | set(STU))
-        b['x8']['mix']['read_declarer'] = sorted(set(b['x8']['mix']['read_declarer']) | set(STU))
-        for other in STU:
+        b['x8']['claims']['opponents'] = sorted(set(b['x8']['claims']['opponents']) | set(FAMILY))
+        b['x8']['mix']['read_declarer'] = sorted(set(b['x8']['mix']['read_declarer']) | set(FAMILY))
+        for other in FAMILY:
             b['gen7']['opponent_play_weight'][other] = 1.0
         bots[name] = b
+    blend = dict(bots['stu0a']['x8']['stages'][0])
+    rollout = dict(bots['stu0a']['x8']['stages'][1])
+    assert (blend['mode'], blend['from_trick'], blend['to_trick'], rollout['mode'], rollout['from_trick']) == ('blend', 3, 6, 'rollout', 7)
+
+    def rung(label, stages, search_from=None):
+        b = copy.deepcopy(bots['stu0a'])
+        b['label'] = 'Stu round 0 ladder: ' + label
+        b['x8']['stages'] = stages
+        if search_from is not None:
+            b['gen7']['search_from_trick'] = search_from
+        return b
+
+    bots['stu0-b50'] = rung('the blend at tricks 3 to 6 at trust 0.5', [dict(blend, trust=.5), rollout])
+    bots['stu0-r6'] = rung('rollouts alone from trick 6', [dict(blend, to_trick=5), dict(rollout, from_trick=6)])
+    bots['stu0-r3'] = rung('rollouts alone from trick 3', [dict(rollout, from_trick=3)])
+    bots['stu0-p'] = rung("pure: the net's opening lead, rollouts alone from the second card on, no double dummy", [dict(rollout, from_trick=1)],
+                          search_from=14)
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

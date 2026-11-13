@@ -77,6 +77,29 @@ What this says and does not say:
 The bots are `n-v41`, `n-v4`, `r7-v41`, `r7x-v4`, `r7x-v0`, `r7f-v4`, `r3-v41` in `configs/loop-bots.json`. The
 sandbox's match rows are on `transfer/rollout-loop-sandbox-20261113`.
 
+## The ladder (Max, 09:24 UTC)
+
+Max: "we will push the rollout boundary over time. Should we also be calibrating against pure rollout bots, and rollout
+pushed one trick sooner and/or with higher weight?" Each round, the round's net goes inside Stu and inside four bots
+that differ from it only in where rollouts take over, and each plays Gen 8 card play (`8p-32-v41`) on the gate's first
+500 deals, so rungs are compared deal by deal:
+
+| Bot | Lead, tricks 1 to 2 | Tricks 3 to 6 | From |
+| --- | --- | --- | --- |
+| `stu0a` (Stu) | search | blend, trust 0.25 | rollouts alone from trick 7 |
+| `stu0-b50` | search | blend, trust 0.5 | rollouts alone from trick 7 |
+| `stu0-r6` | search | blend, trust 0.25, to trick 5 | rollouts alone from trick 6 |
+| `stu0-r3` | search | rollouts alone from trick 3 | |
+| `stu0-p` | the net's lead; rollouts alone from the second card on | | no double dummy anywhere; the claims stay |
+
+- A rollout bot is not used as the opponent: the net inside Stu models such a bot better than any other, and in the
+  control above that match alone was worth +1.12 +- 0.16 IMPs a board.
+- **Seed 131 is never trained on**, so the ladder's records are for reading only. Rollout-made decisions at early
+  tricks, which Stu itself does not make, come from the same bots on training deals (`d0-p`, `d0-r3` in
+  `jobs-azure3.txt`).
+- Known before the ladder (x8, older nets, different deal counts): against Gen 8 card play the blend at trust 0.25
+  from trick 3 scored -0.07 +- 0.14 (246 boards) and rollouts alone from trick 7 scored -0.38 +- 0.14 (541).
+
 ## Round 1's rows and trainer (in this branch, tested on six recorded boards)
 
 - `scripts/gen7_build_dataset.py --rollout-gap --alias stu0a=stu0,stu0b=stu0,z0a-v2=stu0,z0b-v2=stu0 --policy-only`
