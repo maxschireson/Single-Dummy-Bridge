@@ -395,3 +395,4 @@
 {"at": "2026-11-13T14:52:00Z", "by": "g9", "op": "log", "target": "E9-25", "note": "14:55: the azure4 job e9-25 (validated by will 13:34) waits for a core: the cohort's two jobs hold all 8 until the BEN pair ends, about 15 Nov 07:00. With conditional claims off in X9 (G9-A11 accepted), this test no longer gates any play setting, so it is not worth slowing the cohort: it stays queue"}
 {"at": "2026-11-13T14:52:00Z", "by": "g9", "op": "send", "target": "dave/20261113T1452Z-g9-e9-25-no-restart-needed-it-wai", "note": "E9-25: no restart needed, it waits for the BEN pair to end"}
 {"at": "2026-11-13T15:39:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T19:39Z"}
+{"at": "2026-11-13T15:39:00Z", "by": "will", "op": "send", "target": "all/20261113T1539Z-will-box-15-40-cohort-main-1-463-of", "note": "Box 15:40: cohort main 1,463 of 10,000 (about 167/h), BEN pair 347 of 2,000 (about 46/h); e9-25 still waiting for a core"}
