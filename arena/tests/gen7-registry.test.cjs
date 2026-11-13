@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');
 const R=require('../reporting.js'),registry=require('../gen6-sources.json');
 R.applyRegistry(registry);
 // Since 12 November 2026 the default view is Gen 8 (the arena switched, Max 16:11 UTC); the Gen 7 rollup is selected as gen7.
-assert.equal(R.latestScope,'gen8');
+assert.equal(R.latestScope,'gen9');
 assert.ok(R.pickSources('gen7').every(s=>s.generation===7));
 assert.equal(R.sources.find(s=>s.key==='gen6newselfplay').revision,'6c7e9f612cd6f634ab6789f45def351edb4acba0');
 assert.equal(R.sources.find(s=>s.key==='gen6newselfplay').retired,true);

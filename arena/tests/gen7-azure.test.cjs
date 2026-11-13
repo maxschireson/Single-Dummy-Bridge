@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict');
 const R=require('../reporting.js'),registry=require('../gen6-sources.json');
 R.applyRegistry(registry);
-assert.equal(R.latestScope,'gen8');
+assert.equal(R.latestScope,'gen9');
 const azure=R.pickSources('azure').filter(s=>s.generation===7);
 assert.equal(azure.length,50);
 assert.equal(azure.filter(s=>/^gen71azure/.test(s.key)&&/^arena-gen7-1-(vs70-)?fresh-/.test(s.branch)&&!s.retired).length,9,'Gen 7.1 on Azure, deals v4.1 was not trained on: azure2 against Gen 7.0 and eight BEN (64) lanes on azure3');
@@ -21,6 +21,6 @@ assert.ok(R.pickSources('gen7').every(s=>s.generation===7));
 const azure8=R.pickSources('azure').filter(s=>s.generation===8);
 assert.ok(azure8.every(s=>s.group==='gen8'&&/^arena-gen8-([spm][0-9]-)?azure[136]-/.test(s.branch)&&!s.retired));
 assert.equal(azure8.filter(s=>/^gen8azure3ben64l[1-8]$/.test(s.key)&&s.branch==='arena-gen8-azure3-ben64-'+s.key.at(-1)+'-feed').length,8,'Eight Gen 8 BEN (64) lanes on azure3');
-assert.ok(/^gen8([sm][0-9])?azure[16]$/.test(R.latestSource.key),'The default stream is a Gen 8 main-mix feed');
+assert.ok(R.sources.filter(s=>s.group==='gen8'&&!s.retired).some(s=>/^gen8([sm][0-9])?azure[16]$/.test(s.key)),'Gen 8 main-mix feeds stay registered');
 console.log('PASS Azure Gen 7 phase 1, BEN lanes and pre-arena test sources join the Gen 7 rollup');
 assert.ok(azure.some(s=>s.key==='gen71azure1mix'&&s.branch==='arena-gen7-1-mix-azure1-feed'&&!s.retired),'azure1 plays Gen 7.1 self-play and 7.1 against 7.0');

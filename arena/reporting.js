@@ -154,9 +154,9 @@
    if(!/^[a-zA-Z0-9_-]+$/.test(entry.key)||![6,7,8,9].includes(entry.generation)||entry.group!=='gen'+entry.generation||!new RegExp('^arena-gen'+entry.generation+'[0-9]?-[a-zA-Z0-9_-]+$').test(entry.branch)||!/^[a-f0-9]{64}$/.test(entry.cohort)||entry.retired&&!/^[a-f0-9]{40}$/.test(entry.revision||'')||keys.has(entry.key)||cohorts.has(entry.cohort))throw Error('Invalid or repeated collection registry source');keys.add(entry.key);cohorts.add(entry.cohort);
   }
   for(const entry of value.sources){const i=sources.findIndex(s=>s.key===entry.key);if(i>=0)sources[i]={...sources[i],...entry};else sources.unshift({...entry});names[entry.key]=entry.name;}
-  // Gen 9 is shown (?source=gen9) but does not become the default view until Max says so (13 November 2026).
-   const newest=sources.filter(s=>!s.retired&&/^gen[678]$/.test(s.group||'')).reduce((g,s)=>Math.max(g,s.generation),0);if(['gen6','gen7','gen8'].includes(latestScope)&&newest>Number(latestScope.slice(3))){latestScope='gen'+newest;api.latestScope=latestScope;}
-  if(['gen6','gen7','gen8'].includes(latestScope)){latestSource=sources.find(s=>s.group===latestScope&&!s.retired)||latestSource;api.latestSource=latestSource;names.latest=names[latestScope]='Gen '+latestSource.generation+' · all collectors';}
+  // The default view follows the newest generation with a live source; Gen 9 from 07:19 UTC on 13 November 2026 (Max: "Flip to Gen 9").
+   const newest=sources.filter(s=>!s.retired&&/^gen[6789]$/.test(s.group||'')).reduce((g,s)=>Math.max(g,s.generation),0);if(['gen6','gen7','gen8','gen9'].includes(latestScope)&&newest>Number(latestScope.slice(3))){latestScope='gen'+newest;api.latestScope=latestScope;}
+  if(['gen6','gen7','gen8','gen9'].includes(latestScope)){latestSource=sources.find(s=>s.group===latestScope&&!s.retired)||latestSource;api.latestSource=latestSource;names.latest=names[latestScope]='Gen '+latestSource.generation+' · all collectors';}
   registry=value;api.registry=value;return value;
  }
  async function loadRegistry(){

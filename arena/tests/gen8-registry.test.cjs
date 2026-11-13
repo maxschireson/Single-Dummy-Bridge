@@ -1,7 +1,9 @@
 const assert=require('node:assert');
 // Generation 8 sources (12 November 2026: the arena goes to Gen 8, Max 15:32 and 16:11 UTC). They are registered like
 // Gen 7's; once one is live the default view follows it, and the Gen 7 rollup stays selectable.
-const R=require('../reporting.js');const registry=require('../gen6-sources.json');
+const R=require('../reporting.js');const full=require('../gen6-sources.json');
+// Gen 8 as the newest generation: the registry without its Gen 9 sources (Gen 9 is the default view since 13 November 2026).
+const registry={...full,sources:full.sources.filter(s=>s.generation!==9)};
 assert.equal(R.latestScope,'gen7');
 const gen8={key:'gen8test',group:'gen8',generation:8,variant:'8',environment:'azure',name:'Gen 8 · test feed',branch:'arena-gen8-test-feed',cohort:'a'.repeat(64)};
 R.applyRegistry({...registry,sources:[...registry.sources,gen8]});
