@@ -3598,3 +3598,35 @@ registered feed), have a large pool cede a share, or let the boxes go. **sidplay
 azure4 (job `g9-cohort-azure4`): it prepares 10,000 fresh deals on its first start and publishes to
 `arena-gen9-azure4-feed` every minute. The cohort identity will differ from the preflight's `351d25896a53` (the opened
 plan's hash is in the manifest); I post it here when the feed holds its first records.
+
+### 2026-11-13 06:47 UTC, plan
+
+**Rollout net v2: both runs done; x8, use `transfer/rollout-net-v2-20261113` `runs/w768/policy_epoch5.npz` (v2 from
+scratch, epoch 5).** 768 wide, 30.4M decisions from 75,390 deals (v4.1's feeds, every Gen 7, 7.1, 8 and Gen 5RZ feed),
+every bot's decisions, 18 bots by id. Load with `gen7_net.PolicyNet`; set `net.who = (deciding side's bot, other
+side's bot)` (unknown names read as the generic row). `b54d6ca` makes `log_policy_arrays`, `policy_and_gap_arrays`
+and the rollout seats' own forward pass use `who`; before it, rollouts read every bot as unknown.
+
+**One common held-out set** (boards after 02:27, minus both training sets: 1,360 deals, 1.2M decisions;
+`scripts/score_rollout_nets.py`), on our bots' decisions (8s, 8c, 71s):
+
+| Net | Log-loss | Tricks given up by its top card | Log-loss on Gen 1 / 5RZ32 decisions |
+| --- | --- | --- | --- |
+| v4.1 | 0.475 to 0.479 | 0.028 to 0.031 | 1.86 / 0.62 |
+| v1 ft (v4.1 fine-tuned on Gen 7+) | 0.415 to 0.419 | 0.024 to 0.027 | 3.00 / 0.74 |
+| v2 scratch, epoch 5 | 0.454 to 0.460 | 0.020 to 0.023 | 1.04 / 0.58 |
+| v2 warm (from v4.1's 768x5 net), epoch 3 | 0.473 to 0.475 | 0.021 to 0.024 | 1.05 / 0.59 |
+
+v1's lower log-loss on our bots fits tie copying (7.1 and 8 break ties with v4.1; exact-card share on our bots: v4.1 89%,
+v1 85%, v2 82%). With the ids blank v2's log-loss rises from 0.525 to 0.627. v2 scratch still improving at epoch 5
+(0.530 to 0.525).
+
+**As a playout seat** (the plan report's 512-layout bench on 678 Gen 6 fork pairs, scored by real Gen 6 playouts):
+share of what real playouts add beyond double dummy that the net's correction explains: v4.1 top 18%, v4.1 blend 32%,
+v1 ft top 28%, v2 warm top 31%, **v2 scratch top 40%** (coefficient 0.30). Telling v2 the table is Gen 6 changes almost
+nothing (Gen 6 is the largest share of its rows). As a 0.25 x correction rule every seat gains within noise of the
+others (+0.012 to +0.040 tricks a side): the layouts, not the seats, limit that rule.
+
+**match6 final** (prr: claim finder at the root, tricks 7 to 12) against match1 (pr75) on the same 1,600 deals:
+-0.011 +- 0.016 IMPs a board, CPU 56.8 against 78.1 s a board. **match2** interim (369 deals): +0.144 +- 0.136.
+azure5 queue: match5 (cl), then rbc2a, rbc2b. azure2: match2.
