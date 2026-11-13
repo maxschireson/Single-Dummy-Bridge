@@ -35,3 +35,6 @@
 2026-11-12T22:18:57Z start match4 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prc-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 2026-11-12T23:31:51Z end match4: exit 143
 2026-11-12T23:31:51Z start match6 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair prr-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
+2026-11-13T01:28:53Z end match6: exit 143
+2026-11-13T01:28:54Z source now 40adc36 Rollout net v2 chain: settings for a warm start on another box (W, RUN, 
+2026-11-13T01:28:54Z start rnet2w (source 40adc36): W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/hand_fit_v0.npz BRANCH=transfer/rollout-net-v2w-20261113 CMP_NETS="$P/nets/rnet1/ft.npz $P/nets/rnet1/scratch.npz" bash training/rollout-net-v2-20261113/chain.sh
