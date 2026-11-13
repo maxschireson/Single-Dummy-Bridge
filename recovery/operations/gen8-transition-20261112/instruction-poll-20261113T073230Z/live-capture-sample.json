@@ -1,0 +1,33 @@
+{
+  "samples": [
+    {
+      "index": 1550,
+      "gap_forks": 12,
+      "observed_guess_fields": {
+        "guess_size": 786,
+        "best_share": 3365
+      }
+    },
+    {
+      "index": 1551,
+      "gap_forks": 10,
+      "observed_guess_fields": {
+        "guess_size": 1049,
+        "best_share": 5468
+      }
+    },
+    {
+      "index": 1552,
+      "gap_forks": 18,
+      "observed_guess_fields": {
+        "guess_size": 1494,
+        "best_share": 8153
+      }
+    }
+  ],
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "actual_capture_observed": true,
+  "new_launch_or_setting_change": false,
+  "after_operational_cache_rotation": 1550,
+  "hash_audit_evidence": "post-cache-record-inventory.json"
+}
