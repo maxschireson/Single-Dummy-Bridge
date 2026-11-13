@@ -312,3 +312,26 @@
 2026-11-13T20:15:45Z start l1-n stu1-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
 2026-11-13T20:15:45Z end l1-n: exit 0
 2026-11-13T20:15:45Z start sp0b stu0-pa~stu0-pb seed 9001 first 80000 deals 20000 workers 6 --episodes --one-room (source 57eb87c, nets bf16)
+2026-11-13T20:36:33Z start l0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:33Z end l0-stu0: exit 0
+2026-11-13T20:36:33Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:34Z end l0-p: exit 0
+2026-11-13T20:36:34Z start l0-pr stu0-pr~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:34Z end l0-pr: exit 0
+2026-11-13T20:36:34Z start l0-pl stu0-pl~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:34Z end l0-pl: exit 0
+2026-11-13T20:36:34Z start l0-v1 stu0v1~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:34Z end l0-v1: exit 0
+2026-11-13T20:36:34Z start l0-v1-p stu0v1-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:34Z end l0-v1-p: exit 0
+2026-11-13T20:36:34Z start l0-n stu0-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:35Z end l0-n: exit 0
+2026-11-13T20:36:35Z start l0-v1-n stu0v1-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:35Z end l0-v1-n: exit 0
+2026-11-13T20:36:35Z start l1-stu1 stu1a~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:35Z end l1-stu1: exit 0
+2026-11-13T20:36:35Z start l1-p stu1-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:35Z end l1-p: exit 0
+2026-11-13T20:36:35Z start l1-n stu1-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57eb87c, nets fp32)
+2026-11-13T20:36:35Z end l1-n: exit 0
+2026-11-13T20:36:35Z start sp0b stu0-pa~stu0-pb seed 9001 first 80000 deals 20000 workers 6 --episodes --one-room (source 57eb87c, nets bf16)

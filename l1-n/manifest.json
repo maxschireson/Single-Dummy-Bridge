@@ -7,24 +7,8 @@
   "8p-32-v41"
  ],
  "bots": {
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
-  },
-  "6-32": {
-   "id": "6-32",
+  "stu1-n": {
+   "id": "stu1-n",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -54,8 +38,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "pimc-ties-only",
-   "engine": "gen6",
+   "policy_role": "gen8x",
+   "engine": "gen8x",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -72,7 +56,37 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
+   "gen7_policy": "/home/bridgebots/work/loop/src/models/cardplay/stu-net-r1-20261113/policy.npz",
+   "gen7": {
+    "play_weight": 0.5,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 14,
+    "net_sample": false,
+    "tree_audit": true
+   },
+   "x8": {
+    "stages": [],
+    "claims": {
+     "cards": 0
+    },
+    "capture": {
+     "level": 0,
+     "forks": 0
+    },
+    "mix": {},
+    "names": {
+     "self": "stu0",
+     "*": "stu0",
+     "8p-32-v41": "8s-32",
+     "ben64": "ben64",
+     "ben": "ben"
+    }
+   },
+   "table_opponent": "8p-32-v41",
+   "identity": "e6af01d627ff3a3d9c24f104886cb09841fbe078952e251c0a77b0e26000f120"
   },
   "8p-32-v41": {
    "id": "8p-32-v41",
@@ -165,8 +179,24 @@
    "table_opponent": "stu1-n",
    "identity": "328c01a856650c2ef85ea0c34e52b90b4121f34edc556f7887ca55165c6887da"
   },
-  "stu1-n": {
-   "id": "stu1-n",
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+  },
+  "6-32": {
+   "id": "6-32",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -196,8 +226,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "gen8x",
-   "engine": "gen8x",
+   "policy_role": "pimc-ties-only",
+   "engine": "gen6",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -214,37 +244,7 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "gen7_policy": "/home/bridgebots/work/loop/src/models/cardplay/stu-net-r1-20261113/policy.npz",
-   "gen7": {
-    "play_weight": 0.5,
-    "play_floor": 0.05,
-    "play_max_layouts": 1024,
-    "play_lead": true,
-    "tie_break": "net",
-    "search_from_trick": 14,
-    "net_sample": false,
-    "tree_audit": true
-   },
-   "x8": {
-    "stages": [],
-    "claims": {
-     "cards": 0
-    },
-    "capture": {
-     "level": 0,
-     "forks": 0
-    },
-    "mix": {},
-    "names": {
-     "self": "stu0",
-     "*": "stu0",
-     "8p-32-v41": "8s-32",
-     "ben64": "ben64",
-     "ben": "ben"
-    }
-   },
-   "table_opponent": "8p-32-v41",
-   "identity": "e6af01d627ff3a3d9c24f104886cb09841fbe078952e251c0a77b0e26000f120"
+   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
   }
  },
  "pair_schedule": [
