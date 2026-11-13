@@ -37,3 +37,6 @@
 2026-11-13T02:17:20Z end rnet2: exit 143
 2026-11-13T02:17:20Z source now 7caad4f Rollout net v2 chain: the Gen 5RZ feeds (arena-gen5rz*, Max 02:15); each
 2026-11-13T02:17:20Z start rnet2r (source 7caad4f): RESUME=1 bash training/rollout-net-v2-20261113/chain.sh
+2026-11-13T04:34:56Z end rnet2r: exit 0
+2026-11-13T04:34:56Z source now 343341d Rollout net v1: the Gen 7+ bots' decisions as a training set, a warm sta
+2026-11-13T04:34:56Z start match2 (source 343341d): $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75x-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
