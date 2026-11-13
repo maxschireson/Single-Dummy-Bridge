@@ -26,8 +26,9 @@ V1=models/cardplay/rollout-net-v1-20261113/policy_ft.npz
 SCORER=models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz
 ALIAS=$(cat "$(dirname "$0")/alias.txt")
 EXTRA=${EXTRA:-}; SELECT=${SELECT:-}; FORGET=${FORGET:-0.02}
+TEST=${TEST:-0}     # the TEST most recent boards of the second run are held out as a test set (stu_test.npz): no training, no choice of epoch
 cd "$(dirname "$0")/../.."
-R=$W/$NAME; rm -rf "$R"; mkdir -p "$R/train" "$R/held"
+R=$W/$NAME; rm -rf "$R"; mkdir -p "$R/train" "$R/held" "$R/test"
 say() { echo "$(date -u +%FT%TZ) $*" | tee -a "$R/timeline.log"; }
 INIT=${INIT:-$W/pub/train-r1/policy.npz}
 [ -f "$INIT" ] || { echo "no starting net at $INIT"; exit 1; }
@@ -43,15 +44,18 @@ for run in ${RUNS//,/ }; do
     head -n $((n - HELD)) "$R/$run.txt" | while read -r f; do ln "$f" "$R/train/$run-$(basename "$f")"; done
     tail -n "$HELD" "$R/$run.txt" | while read -r f; do ln "$f" "$R/held/$run-$(basename "$f")"; done
     first=0
+  elif [ "$TEST" -gt 0 ] && [ "$first" = 0 ] && [ "$(ls "$R/test" | wc -l)" = 0 ] && [ "$n" -gt $((TEST + 100)) ]; then
+    head -n $((n - TEST)) "$R/$run.txt" | while read -r f; do ln "$f" "$R/train/$run-$(basename "$f")"; done
+    tail -n "$TEST" "$R/$run.txt" | while read -r f; do ln "$f" "$R/test/$run-$(basename "$f")"; done
   else
     while read -r f; do ln "$f" "$R/train/$run-$(basename "$f")"; done < "$R/$run.txt"
   fi
   say "$run: $n records"
 done
-say "records: $(ls "$R/train" | wc -l) to train on, $(ls "$R/held" | wc -l) held out"
+say "records: $(ls "$R/train" | wc -l) to train on, $(ls "$R/held" | wc -l) held out, $(ls "$R/test" | wc -l) for the test"
 
 # 2. Rows.
-for part in train held; do
+for part in train held $( [ "$TEST" -gt 0 ] && echo test ); do
   nice -n 10 "$PY" scripts/gen7_build_dataset.py --episodes "$R/$part" --scorer "$SCORER" --out "$R/stu_$part.npz" --workers "$THREADS" \
     --policy-only --rollout-gap --alias "$ALIAS" 2>&1 | tail -1 | tee -a "$R/timeline.log"
 done
