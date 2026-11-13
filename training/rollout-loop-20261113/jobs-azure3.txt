@@ -1,70 +1,23 @@
-# azure3, Stu round 0. NAME PAIR SEED FIRST DEALS WORKERS [options]; each job resumes (a name that comes twice goes on
-# in the same folder: only the deals not yet played are played).
-# Seed 131 is the gate's and the ladder's: its deals are never trained on. Seed 9001 is round 0's training seed.
+# azure3's job file from the end of the matches against BEN (about 17:45 UTC on 13 November; loop-switch restarts the
+# chain on it). A line is: NAME PAIR SEED FIRST DEALS WORKERS [options].
 #
-# The ladder's first pass (Max, 09:38 UTC), 200 deals a rung: the two ends first for both nets, then each net alone.
-# Stu and bots with the boundary between search and rollouts moved (Max, 09:24), with rollout net v2 inside and with
-# rollout net v1 (ft) inside (Max, 09:27), each against Gen 8 card play on the gate's deals. Records are kept to read,
-# not to train on.
-l0-stu0 stu0a~8p-32-v41 131 0 200 8 --episodes
+# The ladder's played passes, kept so the run index lists them (each is skipped in a few seconds: its boards are there):
+# Stu's own stages and the pure bot to 500 deals, the two other leads to 500, v1's rungs and the nets alone at 200,
+# round 1's net at 200. The results are in README.md.
+l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
+l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
+l0-pr stu0-pr~8p-32-v41 131 0 500 8 --episodes
+l0-pl stu0-pl~8p-32-v41 131 0 500 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 200 8 --episodes
-l0-p stu0-p~8p-32-v41 131 0 200 8 --episodes
 l0-v1-p stu0v1-p~8p-32-v41 131 0 200 8 --episodes
 l0-n stu0-n~8p-32-v41 131 0 200 8 --episodes
 l0-v1-n stu0v1-n~8p-32-v41 131 0 200 8 --episodes
-# At 172 deals the pure bot (no double dummy anywhere) was within noise of Stu against Gen 8 (-0.46 +- 0.31 against
-# -0.65 +- 0.18; paired +0.11 +- 0.39). That comparison decides where the boundary goes, so it comes before the middle
-# rungs: Stu and the pure bot to 500 deals here (azure5 plays deals 500 to 999 of the same two), then the same with v1.
-l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
-l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
-# The opening lead (Max, 11:27 and 11:29 UTC), on the pure bot and the same deals: the net's own lead (l0-p above), the
-# searched lead Stu-as-is and Gen 8 play (l0-pl), and the lead from rollouts, every distinct lead on 512 layouts of the
-# three hidden hands (l0-pr). First pass of 200 deals each, before round 1's rungs: the answer decides how the
-# collection leads.
-l0-pr stu0-pr~8p-32-v41 131 0 200 8 --episodes
-l0-pl stu0-pl~8p-32-v41 131 0 200 8 --episodes
-# Round 1's net (rollout net v2 with only Stu's two vectors trained, train-r1/ on azure5's branch) inside Stu, inside the
-# pure bot and alone, on the same deals: a first pass of 200 deals each.
 l1-stu1 stu1a~8p-32-v41 131 0 200 8 --episodes
 l1-p stu1-p~8p-32-v41 131 0 200 8 --episodes
 l1-n stu1-n~8p-32-v41 131 0 200 8 --episodes
-# The lead rungs to 500 deals (at 163 the rolled lead was level with the net's: +0.01 +- 0.25 by deal), then round 1's.
-l0-pr stu0-pr~8p-32-v41 131 0 500 8 --episodes
-l0-pl stu0-pl~8p-32-v41 131 0 500 8 --episodes
-l1-stu1 stu1a~8p-32-v41 131 0 500 8 --episodes
-l1-p stu1-p~8p-32-v41 131 0 500 8 --episodes
-l1-n stu1-n~8p-32-v41 131 0 500 8 --episodes
-l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
-l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
-# The middle rungs' first pass, then every rung to 500.
-l0-r3 stu0-r3~8p-32-v41 131 0 200 8 --episodes
-l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 200 8 --episodes
-l0-r6 stu0-r6~8p-32-v41 131 0 200 8 --episodes
-l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 200 8 --episodes
-l0-b50 stu0-b50~8p-32-v41 131 0 200 8 --episodes
-l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 200 8 --episodes
-l0-n stu0-n~8p-32-v41 131 0 500 8 --episodes
-l0-v1-n stu0v1-n~8p-32-v41 131 0 500 8 --episodes
-l0-r3 stu0-r3~8p-32-v41 131 0 500 8 --episodes
-l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 500 8 --episodes
-l0-r6 stu0-r6~8p-32-v41 131 0 500 8 --episodes
-l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 500 8 --episodes
-l0-b50 stu0-b50~8p-32-v41 131 0 500 8 --episodes
-l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 500 8 --episodes
-# The gate's baseline, the rest of its deals. (Folder g0-stu0 holds 58 boards under deal 500 from before the reorder;
-# azure5's l0b-stu0 covers deals 500 to 999.)
-g0b-stu0 stu0a~8p-32-v41 131 1000 1000 8
-# The collection: pure Stu with rolled-out leads against itself, one table a board, training deals from 120,000 (azure5
-# plays 100,000 on; see jobs-azure5.txt).
-spr0b stu0-pra~stu0-prb 9001 120000 20000 8 --episodes --one-room
-# Rollout-made decisions at early tricks, for a later round's set: the pure bot and rollouts from trick 3 against Stu,
-# on training deals of their own.
-d0-p stu0-p~stu0a 9001 40000 1000 8 --episodes
-d0-r3 stu0-r3~stu0a 9001 50000 1000 8 --episodes
-# The leverage control at ten times the sandbox's deals.
-c-n41-n4 n-v41~n-v4 131 0 3000 8
-c-r7-n41 r7-v41~n-v41 131 0 3000 8
-c-r7x4-n41 r7x-v4~n-v41 131 0 3000 8
-c-r7-n4 r7-v41~n-v4 131 0 3000 8
-c-r7x4-n4 r7x-v4~n-v4 131 0 3000 8
-c-r7-r7f4 r7-v41~r7f-v4 131 0 3000 8
+# The collection, from here on: pure Stu against itself, one table a board, the same split as azure5 and azure6: this
+# file's run with the net's own lead on six workers (training deals from 80,000), jobs-azure3b.txt's with the lead
+# rolled out on two (unit loop-collect-b). Why the collection and not more rungs: round 2's training shows what the
+# loop lacks is tables (1,814 moved nothing measurable on held-out boards), and the rungs left were tails of
+# comparisons already read (jobs-azure3-later.txt keeps them).
+sp0b stu0-pa~stu0-pb 9001 80000 20000 6 --episodes --one-room

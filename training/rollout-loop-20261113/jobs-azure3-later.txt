@@ -1,0 +1,33 @@
+# Rungs and runs taken out of azure3's queue at 16:10 UTC on 13 November, when the box was given to the collection after
+# the matches against BEN. Nothing runs this file. Each line is as it stood in jobs-azure3.txt; to play one, put it back.
+#   round 1's net to 500 deals (at 200: within noise of v2; superseded by round 2), v1's rungs to 500, the nets alone to
+#   500, the middle rungs (rollouts from trick 3 and 6, the blend at trust 0.5: the pure bot made them moot), the gate's
+#   second thousand deals for Stu-as-is, the two data runs against Stu-as-is, and the leverage control at 3,000 deals.
+l1-stu1 stu1a~8p-32-v41 131 0 500 8 --episodes
+l1-p stu1-p~8p-32-v41 131 0 500 8 --episodes
+l1-n stu1-n~8p-32-v41 131 0 500 8 --episodes
+l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
+l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
+l0-n stu0-n~8p-32-v41 131 0 500 8 --episodes
+l0-v1-n stu0v1-n~8p-32-v41 131 0 500 8 --episodes
+l0-r3 stu0-r3~8p-32-v41 131 0 200 8 --episodes
+l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 200 8 --episodes
+l0-r6 stu0-r6~8p-32-v41 131 0 200 8 --episodes
+l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 200 8 --episodes
+l0-b50 stu0-b50~8p-32-v41 131 0 200 8 --episodes
+l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 200 8 --episodes
+l0-r3 stu0-r3~8p-32-v41 131 0 500 8 --episodes
+l0-v1-r3 stu0v1-r3~8p-32-v41 131 0 500 8 --episodes
+l0-r6 stu0-r6~8p-32-v41 131 0 500 8 --episodes
+l0-v1-r6 stu0v1-r6~8p-32-v41 131 0 500 8 --episodes
+l0-b50 stu0-b50~8p-32-v41 131 0 500 8 --episodes
+l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 500 8 --episodes
+g0b-stu0 stu0a~8p-32-v41 131 1000 1000 8
+d0-p stu0-p~stu0a 9001 40000 1000 8 --episodes
+d0-r3 stu0-r3~stu0a 9001 50000 1000 8 --episodes
+c-n41-n4 n-v41~n-v4 131 0 3000 8
+c-r7-n41 r7-v41~n-v41 131 0 3000 8
+c-r7x4-n41 r7x-v4~n-v41 131 0 3000 8
+c-r7-n4 r7-v41~n-v4 131 0 3000 8
+c-r7x4-n4 r7x-v4~n-v4 131 0 3000 8
+c-r7-r7f4 r7-v41~r7f-v4 131 0 3000 8
