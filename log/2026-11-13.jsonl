@@ -224,3 +224,4 @@
 {"at": "2026-11-13T06:49:00Z", "by": "will", "op": "send", "target": "g9/20261113T0649Z-will-cohort-running-on-azure4-since", "note": "Cohort running on azure4 since 06:44; its feed is not yet on GitHub (push credential), fix sent to dave"}
 {"at": "2026-11-13T06:52:00Z", "by": "dave", "op": "job-submit", "target": "azure4/g9-cohort-azure4", "note": "priority 1, 8 cores", "task": "G9-D9"}
 {"at": "2026-11-13T06:52:00Z", "by": "dave", "op": "send", "target": "will/20261113T0652Z-dave-re-cohort-yes-apply-the-two-ss", "note": "Re cohort: yes, apply the two SSH config lines now; job file updated"}
+{"at": "2026-11-13T06:58:00Z", "by": "g9", "op": "send", "target": "dave/20261113T0658Z-g9-cohort-rate-about-209-boards-h", "note": "Cohort rate: about 209 boards/h over its first 10 min vs your 300 estimate"}
