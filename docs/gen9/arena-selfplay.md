@@ -59,7 +59,7 @@ hold whichever pairs each generation's plan scheduled for its ratings.
 | --- | --- | --- | --- | --- |
 | **Champion** | The bot we ship; the learner | `8s-32` (Gen 8 candidate) | Promotion test (A4 section 3) | Replaced; becomes a past champion |
 | **Past champions** | Guard against forgetting; a series of our own earlier styles | Gen 1 to Gen 7.1 | Automatic on replacement | Protected while it is the last of its lineage |
-| **League** | Variants that differ from the champion in one or two features (search width, net, tie-break, randomization) | `6-256`, `5RZ192`, `8c-32`, the variants merged on the ladder; `8x3-32` (8X v3), which Max put into the arena at 06:40 UTC | Admission (A4 section 2) | Redundancy rule (section 3.3) |
+| **League** | Variants that differ from the champion in one or two features (search width, net, tie-break, randomization) | `6-256`, `5RZ192`, `8c-32`, the variants merged on the ladder; `8x3-32` (8X v3), which Max put into the arena at 06:40 UTC; the Gen 9 candidate `9a-32` (cohort against `8s-32`, `71s-32`, `8p-32` and BEN 64) | Admission (A4 section 2) | Redundancy rule (section 3.3) |
 | **Synthetic styles** | Known systems, styles and carding at set honesty: exact ground truth for readers, and the variety the house lineage lacks | The arrival run's guests (G9-D6) | Generated from the card descriptor (bill: systems and styles; sam: carding and honesty) | Redundancy rule; at least one per system family, carding scheme and honesty level is kept |
 | **Outside panel** | Strength against bots we do not control; a drift check | BEN 16, BEN 64 | Max (licence, disclosure) | Max |
 | **Held-out styles** | A generalization check: kept out of every net's training data | None yet | A synthetic style or panel member set aside | Released to training when replaced by a new held-out style |
@@ -107,7 +107,10 @@ Three distances between two members:
 How much diversity training needs is not known for bridge. E9-18 (section 11) measures the first part of it on data
 we already hold. Until then the rule only stops boards being wasted: a member is redundant when its results row is
 within noise of another member's, its choices differ in double-dummy value from that member's on fewer than 5% of
-paired decisions, and it declares the same card; the newer of the two retires unless protected. E9-20 (13 Nov,
+paired decisions, and it declares the same card, each shown by an equivalence test (dave's review): the 90% interval
+of the direct difference inside +-0.1 IMPs a board and the 90% interval of the value-changing share inside 5%. At a
+board SD of 2.5 that takes about 1,700 direct boards when the difference is zero and about 3,900 for 80% power, so a
+member is never retired for lack of data, and the rule seldom fires; the newer of the two retires unless protected. E9-20 (13 Nov,
 `reports/gen9-arena-diversity-2026-11-13`): no current member is redundant. Results alone would pair `6-32` with
 `8c-32`, and card play alone would pair `8c-32` with `8s-32`, which never chose differently in 25,953 paired card
 decisions but bid differently and are 0.79 IMPs a board apart natively. The threshold counts value-changing choices
@@ -117,31 +120,40 @@ added: the last past champion of each lineage, and every held-out style.
 
 ## 4. Who plays whom
 
-arena.md section 4's purposes and shares stand (training 55%, promotion 20%, panel 15%, admission 10%), with two
-new purposes taken from training at 5% each to start: **exploitation probes** (champion against exploiters) and
-**robustness** (champion against held-out styles).
+**Shares.** What runs today is the gain rule of the arrival run (`configs/arena9/rules-arrival.json`, A4 section 4 after
+E9-5): training 10% (self-play), promotion 30%, and gain 60%, which sends boards to the contrasts whose variance falls
+most (admission and the panel) in place of fixed panel and admission shares. arena.md's table (training 55%) was the
+first design. This note starts from the gain rule. The two new purposes enter it as contrasts rather than fixed shares:
+**exploitation probes** (champion against each exploiter) and **robustness** (champion against each held-out style)
+get boards when their variance is the one that falls most. Training rises above 10% in steps as the nets consume
+arena data (the SiD loop's rounds set that demand); each step is a rules version, so Max sees it.
 
 Inside training:
 1. **Self-play** (champion against champion): on-policy data. It counts nothing in ratings (A4).
 2. **League and past champions**, weighted by what the champion still has to learn from them. AlphaStar's
    prioritized fictitious self-play weights each opponent by how often it beats the learner. The bridge version
-   weights by how far the champion's cell against the opponent falls below what the two strengths predict (the pair
-   effect, A4), times the pair's fork yield (decisions where the two tables part, which is where training rows come
-   from).
+   weights by how far the champion's cell against the opponent falls below what the two strengths predict, using the
+   shrunk pair effect the ratings already compute (the cell minus the prediction, with t2) rather than the raw
+   residual, so small pair effects (SD 0.08 today, 5.2) do not send boards after noise; times the pair's fork yield
+   (decisions where the two tables part, which is where training rows come from). Floors as in item 3, and no
+   opponent's weight more than doubles between epochs (arena.md section 4).
 3. **Synthetic styles and guests**, with a floor per axis so that every system family, carding scheme and honesty
    level appears in each epoch's training data.
 
 Default split of the training share until E9-18 reports: 50% self-play, 30% league and past champions, 20%
 synthetic styles and guests. These are placeholders, not results.
 
-**Condition by purpose.** Card play training and card reading train on common auctions, which isolate the play.
-Bidding and auction reading need native auctions, because a common auction removes the opponents' system.
+**Condition by purpose.** Card play trains on both conditions, each table labelled by its `auction_source`
+(`systems:NS|EW`): a common auction is bid by the house net at all four seats, so only native tables show the nets
+another system's auction and the play that follows it. Common tables isolate the play for evaluation. Bidding and
+auction reading need native tables.
 
 ## 5. Ratings in a diverse population
 
 **5.1 Unit.** Ratings stay in IMPs a board (Max, 13 Nov 01:23). On E9-0's two 800-board box matches, boards of 10 or
-more IMPs (5% of boards) carry 61% to 65% of the IMPs won and about 80% of the variance, and counting boards won and
-lost detects the same edges with 1.5 to 1.9 times fewer boards. Won/lost is used as a fast screen; decisions stay on
+more IMPs (5% of boards) carry 61% to 65% of the IMPs won and about 80% of the variance (common-auction box matches;
+on the arena's native boards the share is 10% of boards and 76%, 5.4), and counting boards won and lost detects the
+same edges with 1.5 to 1.9 times fewer boards. Won/lost is used as a fast screen; decisions stay on
 IMPs.
 
 **5.2 The field.** The provisional field score in `arena-results-v1` weights the rest of the population equally.
@@ -161,8 +173,8 @@ average is shown beside the field score; decisions stay on the field score and t
 between-pair variance the strengths explain. If that share is low, one number per member is not enough and the page
 shows each member's cells by role.
 
-**5.4 Variance.** The noise is in the large swings: on the 64,790 native boards below, boards of 10 IMPs or more are
-10% of boards and 76% of the sum of squares. Each comes from a decision whose result turns on the layout: a contract
+**5.4 Variance.** The noise is in the large swings: on the 64,790 native boards below (arena feeds; E9-0's
+common-auction matches give 5% and 80%, 5.1), boards of 10 IMPs or more are 10% of boards and 76% of the sum of squares. Each comes from a decision whose result turns on the layout: a contract
 one table bid and the other did not (a slam on a finesse), or a line of play. Replacing the layout's luck in those
 decisions by their expected value is the bridge form of AIVAT (Burch et al. 2018), which cut the standard deviation
 of a poker match by 85%. For contracts, two versions:
@@ -187,7 +199,8 @@ solves; E9-0 showed bench tricks predict played IMPs):
 - **Informed reader**: a reader that knows the champion's card play policy exactly, reading its cards (E9-16's
   measurement). `8p-32`: 0.124 +- 0.026 tricks a board. Randomizing among exactly equal cards denies 0.01 to 0.04 of
   it at no played cost (`8r-32` against `8p-32` +0.014 +- 0.126 IMPs a board over 800 boards), so it is the default
-  for house members. 8X v2 and v3 mix among equal cards by the net's probabilities (x8, commits 0bcdbc2
+  for new house versions. Frozen members keep their settings: the change gives a new identity, so a randomizing
+  version is a new point or variant on the ladder, and the bots already in the arena are not changed. 8X v2 and v3 mix among equal cards by the net's probabilities (x8, commits 0bcdbc2
   and 1a779a9).
 - **Deceiver**: a defender whose honesty is set by situation, playing against the champion's reader. What it gains
   is what trusting costs.
@@ -247,7 +260,8 @@ Additions for a population (G9-D10):
 | Training runs for E9-18 and later training-mix runs | a training box (azure2 and azure5 are plan's and x8's); Max's decision |
 
 Measured cost: the cohort plays about 200 boards an hour on azure4's seven workers (about 125 worker-seconds a
-board, 32-world searches), and `9a-32` takes 0.354 s per card decision with a choice against `8p-32`'s 0.376 on the
+board, 32-world searches, with seven workers contending for memory and the solver cache; one process alone took 66 to
+114 s a deal), and `9a-32` takes 0.354 s per card decision with a choice against `8p-32`'s 0.376 on the
 same box (dave, 07:06 UTC), so the player model adds no time. A promotion test for a lead of 0.1 IMPs needs about
 4,000 direct boards (A4). At this cost the training share is small; cheaper players (net-only play) would change
 that, and their speed is not measured here.
