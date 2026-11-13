@@ -20,5 +20,7 @@ rnet1 bash training/rollout-net-v1-20261113/chain.sh
 match2 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75x-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 @source a23f9f90955db83ab6fd94dedb80faac269c7e3e
 rnet2 bash training/rollout-net-v2-20261113/chain.sh
+@source 7caad4f197f23f27279d06d825b3eae4b2060d15
+rnet2r RESUME=1 bash training/rollout-net-v2-20261113/chain.sh
 @source 343341d357cede0b8c7d8ce9928236212a33e24d
 match2 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bots.json --pair pr75x-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R

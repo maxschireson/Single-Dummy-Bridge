@@ -34,3 +34,6 @@
 2026-11-13T01:14:23Z end match2: exit 143
 2026-11-13T01:14:23Z source now a23f9f9 Rollout net v2: every bot's decisions with the bots' ids, v4.1's feeds a
 2026-11-13T01:14:23Z start rnet2 (source a23f9f9): bash training/rollout-net-v2-20261113/chain.sh
+2026-11-13T02:17:20Z end rnet2: exit 143
+2026-11-13T02:17:20Z source now 7caad4f Rollout net v2 chain: the Gen 5RZ feeds (arena-gen5rz*, Max 02:15); each
+2026-11-13T02:17:20Z start rnet2r (source 7caad4f): RESUME=1 bash training/rollout-net-v2-20261113/chain.sh
