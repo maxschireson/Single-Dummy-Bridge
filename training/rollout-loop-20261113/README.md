@@ -40,6 +40,7 @@ same games.
 | `chain.sh` | A job file's matches one after another |
 | `pub.sh` | Pushes rows, summaries and logs to `transfer/rollout-loop-<box>-20261113` |
 | `jobs-azure3.txt`, `jobs-azure5.txt` | What each box runs, in order |
+| `sample_set.py`, `round1.sh` | Round 1's net, quick variant: Stu's rows with as many rows again of the bots the net knows, trained and scored on the collecting box |
 | `make_runs.py`, `runs.json` | Every run with its role, round, bots and deals, for readers of the outputs |
 | `DASHBOARD.md` | For the session building the loop's dashboard (Max, 09:30 UTC): where the data is and what to compute |
 
