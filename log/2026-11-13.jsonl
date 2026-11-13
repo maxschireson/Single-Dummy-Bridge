@@ -239,3 +239,5 @@
 {"at": "2026-11-13T07:12:00Z", "by": "g9", "op": "new", "target": "E9-23", "note": "Exploitability report for 8s-32 and 8x3-32: the informed reader on the bench"}
 {"at": "2026-11-13T07:12:00Z", "by": "g9", "op": "new", "target": "E9-18", "note": "Leave-one-bot-out: how well the net predicts a bot it never saw"}
 {"at": "2026-11-13T07:13:00Z", "by": "g9", "op": "block", "target": "E9-18", "note": "Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, item 3). A sandbox proxy is allowed only under the compute cap's check."}
+{"at": "2026-11-13T07:13:00Z", "by": "g9", "op": "new", "target": "G9-B9", "note": "Synthetic players with known systems and styles, from the card descriptor"}
+{"at": "2026-11-13T07:13:00Z", "by": "g9", "op": "send", "target": "bill/20261113T0713Z-g9-new-task-for-you-g9-b9-synthet", "note": "New task for you: G9-B9, Synthetic players with known systems and styles, from the card descriptor", "task": "G9-B9"}

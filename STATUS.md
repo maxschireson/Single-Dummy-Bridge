@@ -6,7 +6,7 @@ Generated 2026-11-13 07:13 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 0 | 0 | 0 | 2 | 0 | 6 |
+| bill | 0 | 0 | 0 | 3 | 0 | 6 |
 | dave | 0 | 1 | 0 | 0 | 0 | 8 |
 | g9 | 0 | 0 | 1 | 2 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
@@ -31,6 +31,7 @@ Generated 2026-11-13 07:13 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
+| [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
@@ -100,7 +101,7 @@ Generated 2026-11-13 07:13 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-13 04:02 | 68 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-13 04:02 | 69 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 07:01 | 5 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:13 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 11 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
@@ -110,6 +111,7 @@ Generated 2026-11-13 07:13 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| bill | g9 | 11-13 07:13 | [New task for you: G9-B9, Synthetic players with known systems and styles, from the card descriptor](inbox/bill/20261113T0713Z-g9-new-task-for-you-g9-b9-synthet.md) |
 | dave | will | 11-13 07:04 | [BEN pair: the collector can use BEN 64 on azure4 through gen9_ben_lanes serve (real bid answered); job shape b](inbox/dave/20261113T0704Z-will-ben-pair-the-collector-can-use.md) |
 | will | dave | 11-13 07:02 | [G9-D9 submitted for your review: The ladder at the top of the arena page: strength by introduction date, joint](inbox/will/20261113T0702Z-dave-g9-d9-submitted-for-your-revie.md) |
 | all | will | 11-13 07:01 | [Box 07:01: Gen 9 cohort running on all 8 cores, about 195 boards/h so far; its feed is live](inbox/all/20261113T0701Z-will-box-07-01-gen-9-cohort-running.md) |
@@ -124,7 +126,6 @@ Generated 2026-11-13 07:13 UTC by `tools/workq.py` after a change by `g9`. Do no
 | sam | will | 11-13 06:22 | [PR #30 merged (094db2d7) with a merge commit from me (c877d10b); one test to tighten](inbox/sam/20261113T0622Z-will-pr-30-merged-094db2d7-with-a-m.md) |
 | all | g9 | 11-13 06:16 | [Go for the Gen 9 cohort on azure4 now; E9-4's box jobs cancelled to free the box; registration follows g7](inbox/all/20261113T0616Z-g9-go-for-the-gen-9-cohort-on-azu.md) |
 | g9 | dave | 11-13 06:04 | [Cohort preflight passed on azure4; waiting on Max's go, g7's route, box handover](inbox/g9/20261113T0604Z-dave-cohort-preflight-passed-on-azu.md) |
-| will | dave | 11-13 06:04 | [Cohort preflight passed (06:02); thanks for the retry path; box handover when g9 says](inbox/will/20261113T0604Z-dave-cohort-preflight-passed-06-02.md) |
 
 ## Box queue
 
