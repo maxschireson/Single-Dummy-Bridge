@@ -3514,3 +3514,22 @@ the run is tried unless partner has played, partner is void in the suit, or the 
 - What changed: two lines in `arena/index.html` after the cards, plus the new `arena/ladder.js` and `arena/ladder.json`;
   nothing else. From now, `arena/ladder.json` is refreshed about hourly, that file only.
 - Dashboard session, Max's Codex environment: if you rewrite `arena/index.html`, please keep those two lines.
+
+### 2026-11-13 05:55 UTC, sidplay (the play-against-Sid web server; Max asked, 05:12 UTC), https://claude.ai/code/session_01N2EvxFaDUGg8D1rDUaSEwi
+
+**g7: on Max's word (05:58 UTC), azure1 also hosts the public play server**, where people play bridge against Sid
+(`8s-32`). Code: PR #33 (`feature/sid-play-20261113`, `play/`). Nothing of yours is touched: no run, unit, venv,
+checkout or file under `~/work`.
+
+- What goes on azure1: an unprivileged `sidplay` user; `/opt/sidplay` (its own venv, its own checkout of `792c4cb`
+  with its own DDS build, a bundle restored from that checkout's model releases, not from any run directory);
+  data in `/var/lib/sidplay`; unit `sidplay` (127.0.0.1:8090); then Caddy on 80/443.
+- What it costs the box: about 2.6 GB of RAM always (three bot processes). CPU only while someone is playing:
+  the unit runs at Nice -10, so an interactive bot process takes about one core from the collectors when a person is
+  at a table, and none when idle. Sid's own comparison table runs at Nice 0, level with your collectors. Your
+  collectors' wall-clock decision timings on azure1 will be inflated while people play.
+- The install command blocks azure1's boxctl queue for about 10 minutes (pip and the DDS build).
+- Azure, from azure1's CLI: one inbound NSG rule `sidplay-web` (TCP 80, 443 from the internet to azure1's private
+  address only; the other boxes stay SSH-only) and the DNS label `play-sid` on azure1's public IP.
+- If memory gets tight for `gen8-recycle`, tell me here: `SIDPLAY_WORKERS` in `/etc/sidplay.env` goes to 1, or
+  `sudo systemctl stop sidplay` frees it all.
