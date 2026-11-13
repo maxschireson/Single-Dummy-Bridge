@@ -7,7 +7,7 @@
 | `main` | Shared source and documentation; contains the deployed Gen 7 source | Start development here |
 | `feature/genN-*`, `fix/*`, `docs/*` | Scoped source work targeting main | Merge through a PR |
 | `codex/*`, `ops/*` | Collector launch and runtime branches | Read manifests; Gen 6 runtime lineage still to integrate ([backlog 1](backlog.md)) |
-| `gh-pages` | Live dashboard and feed registry (`arena/gen6-sources.json`) | Its own publisher |
+| `gh-pages` | Live dashboard and feed registry (`arena/gen6-sources.json`); the Stu loop's page under `stu/` | Its own publisher; `stu/` by [`web/stu/publish.sh`](../web/stu/README.md) |
 | `arena-genN-*` | Producer feeds: scores, replays, recovery capsules | Never merge into main |
 | `transfer/*` | Dataset/model handoffs | Read provenance and restore instructions |
 | `box/*`, `fleet/*` | Azure box control and coordination channels | Never merge; see [operations](operations.md#remote-boxes) |
@@ -32,6 +32,7 @@ commit. Fetch a branch only when you need it; data branches are large.
 | Collection and arena runtime | [operations](operations.md), [`ops/gen5_runtime.py`](../ops/gen5_runtime.py), [`ops/prepare_gen7_alpha.py`](../ops/prepare_gen7_alpha.py) | Collector lineage branches above; PR #13 |
 | Remote boxes | [boxctl](boxctl.md), [`ops/boxctl/`](../ops/boxctl) | `box/*`, `fleet/azure` |
 | Results by generation | [generations](generations/README.md), [`scripts/generation_results.py`](../scripts/generation_results.py) | Feeds via the dashboard registry |
+| Stu (rollout loop) by round | [Stu dashboard](../web/stu/README.md) (WIP) | `research/rollout-loop-20261113`, `transfer/rollout-loop-*-20261113` |
 
 “Separate work” is a place to look, not a claim that it is trained, winning, promoted or
 running.

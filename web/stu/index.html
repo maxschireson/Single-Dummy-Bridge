@@ -1,0 +1,393 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stu: the rollout loop</title>
+<style>
+:root{color-scheme:dark;font:15px system-ui,sans-serif;background:#101722;color:#e9eff8;
+ --surface:#192333;--border:#2a394f;--grid:#304056;--text:#e9eff8;--muted:#acbbcf;--faint:#7f8ea3;
+ --s1:#3987e5;--s2:#d95926;--s3:#199e70;--ref:#8a96a8;--pos:#78dbb2;--neg:#ff9aab}
+body{max-width:1250px;margin:28px auto;padding:0 18px}
+h1{font-size:28px;margin:0 0 6px}h2{font-size:19px;margin:0 0 6px}h3{font-size:15px;margin:14px 0 6px;color:var(--muted);font-weight:600}
+p{line-height:1.5;color:var(--muted);margin:6px 0}.muted{color:var(--muted);font-size:13px}.faint{color:var(--faint)}
+a{color:#8cb8ff}code{font-size:12.5px;color:#cfd9e6}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.card,section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+.card{box-sizing:border-box;flex:1 1 150px;min-width:140px}.big{font-size:26px;font-weight:650;margin:5px 0 2px;font-variant-numeric:tabular-nums}
+section{margin:16px 0;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:right;border-bottom:1px solid var(--grid);padding:9px 8px;white-space:nowrap;vertical-align:top}
+th:first-child,td:first-child{text-align:left}th{color:var(--muted);font-weight:500;font-size:13px}
+thead tr.group th{border-bottom:none;padding-bottom:0;color:var(--faint);font-size:12px;text-align:center}
+td .sub{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.na{color:var(--faint)}
+.pill{display:inline-block;font-size:11.5px;padding:2px 7px;border-radius:9px;border:1px solid var(--border);color:var(--muted)}
+.pill.live{border-color:#2f6b55;color:#9fe3c6}.pill.done{border-color:#405875}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 2px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend i.ring{background:none;border:2px solid var(--ref);width:8px;height:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.mini{border:1px solid var(--border);border-radius:10px;padding:10px}
+svg text{fill:var(--muted);font:12px system-ui,sans-serif}svg .axis{stroke:var(--grid);stroke-width:1}
+svg .zero{stroke:#6f8097;stroke-width:1}
+#tip{position:fixed;pointer-events:none;background:#0c121b;border:1px solid #405875;border-radius:8px;padding:8px 10px;font-size:12.5px;
+ color:var(--text);max-width:320px;line-height:1.45;display:none;z-index:10}
+.hit{fill:transparent;cursor:default}
+details{margin-top:8px}summary{cursor:pointer;color:var(--muted)}
+.notice{border-left:3px solid #405875;padding-left:10px}
+</style>
+<h1>Stu: the rollout loop</h1>
+<p id="subtitle">Each generation's net is trained on the previous Stu's games. This page tracks, round by round, how the net
+itself improves, how that carries through rollouts into Stu's play, and Stu against fixed opponents the nets were never
+trained on.</p>
+<p id="fresh" class="muted" aria-live="polite">Loading…</p>
+<div class="cards" id="cards"></div>
+
+<section id="sec-play"><h2>Play against fixed opponents</h2>
+<p class="muted" id="play-note"></p>
+<label class="muted">Opponent <select id="opp"></select></label>
+<div class="legend" id="play-legend"></div>
+<div id="play-chart"></div>
+<table><thead>
+<tr class="group"><th></th><th colspan="3" id="opp-head">IMPs a board against the opponent</th><th colspan="2">Amplification (paired by deal)</th><th colspan="2">Change from the previous round (paired)</th><th>New vs old</th></tr>
+<tr><th>Generation</th><th>Net alone</th><th>Net + rollouts</th><th>Stu</th><th>Rollouts − net</th><th>Stu − net</th><th>Net</th><th>Stu</th><th>Stu vs previous Stu</th></tr>
+</thead><tbody id="play-table"></tbody></table>
+<p class="muted">Each cell: mean IMPs a board ± one standard error, and boards. Coloured only where the 95% interval excludes zero.
+Amplification and change columns are differences of IMPs against the same opponent on the same deals, not head-to-head IMPs.
+New vs old is reported beside the gate, not as the verdict: a net trained on the old bot's games predicts that bot.</p>
+</section>
+
+<section id="sec-net"><h2>The net</h2>
+<p class="muted" id="net-note"></p>
+<div class="legend"><span><i style="background:var(--s1)"></i>this generation's net</span><span><i class="ring"></i>the previous net scored on the same rows</span></div>
+<div class="grid2" id="net-charts"></div>
+<table><thead><tr><th>Generation</th><th>Net</th><th>Training rows</th><th>Held-out set</th><th>Log-loss</th><th>Top-1 agreement</th><th>In best</th><th>Regret (tricks)</th><th>From trick 7: log-loss</th><th>From trick 7: regret</th></tr></thead>
+<tbody id="net-table"></tbody></table>
+<p class="muted">Scores from the trainer's held-out decisions (<code>metrics.json</code>). Log-loss and agreement are against the card the
+bot played; regret is the tricks the net's top card gives up against the best searched card. Rows with different held-out
+sets are not directly comparable; the previous net's score on the same rows is shown under each value where the trainer
+recorded it.</p>
+<h3>Training curves</h3><div class="legend" id="hist-legend"></div><div id="hist-chart"></div>
+</section>
+
+<section id="sec-curves"><h2>Validation runs as they accumulate</h2>
+<p class="muted">Cumulative mean IMPs a board and its 95% interval, in deal order, for every generation and role measured on the fixed deals.</p>
+<div class="grid2" id="curves"></div></section>
+
+<section id="sec-self"><h2>Self-play: the data each round trains on</h2>
+<table><thead><tr><th>Generation</th><th>Boards</th><th>Status</th><th>CPU s a board</th><th>Rollout decisions a board</th><th>Blend decisions a board</th><th>Claims a board</th><th>Rollouts changed the card</th><th>Rollouts a decision</th><th>Net rows a decision</th><th>IMPs (should be 0)</th></tr></thead>
+<tbody id="self-table"></tbody></table>
+<p class="muted">From the per-board rows of Stu against itself. "Rollouts changed the card": decisions where the rollouts played a card
+outside the net's likeliest candidate (rollout stage) or off the search's best (blend stage), per decision the stages
+consulted. As the net improves this should fall: rollouts have less to correct. The same counters for Stu in the gate are
+under the play table's Stu cell. IMPs in self-play are seat noise and should sit at zero.</p>
+</section>
+
+<section id="sec-other"><h2>Other matches on the fixed deals</h2>
+<p class="muted">Controls and comparisons that are not a generation's standard measurement (for example the leverage control of 13 November).</p>
+<table><thead><tr><th>Match</th><th>Boards</th><th>Mean IMPs</th><th>95% CI</th><th>W / T / L</th><th>Where</th></tr></thead><tbody id="other-table"></tbody></table>
+</section>
+
+<section id="sec-runs"><h2>Runs and provenance</h2>
+<table><thead><tr><th>Run</th><th>Pair</th><th>Kind</th><th>Seed · deals</th><th>Boards</th><th>Status</th><th>Started (UTC)</th><th>Source</th></tr></thead><tbody id="runs-table"></tbody></table>
+<p class="muted" id="prov"></p>
+</section>
+
+<section><h2>How to read this</h2><div id="defs"></div>
+<p class="muted">Scoring: a deal is bid once by the common bidder and played twice with the two bots' seats swapped, so both tables
+play the same contract and the IMPs are card play. One board per deal family per cell; boards played under an old id of the
+same bot count once. Pairing across cells uses the deal family. Rows are read from the loop's transfer branches (one row a
+board, published every ten minutes); the page re-reads runs that are still going every five minutes. Snapshot built by
+<code>web/stu/build.cjs</code>; registry of generations and bots in <code>registry.json</code> beside this page.</p>
+</section>
+<div id="tip" role="tooltip"></div>
+<script src="stu-core.js?v=1"></script>
+<script>
+'use strict';
+const C = window.StuCore;
+const $ = id => document.getElementById(id);
+let REG = null, SNAP = null, RUNS = [], METRICS = {}, MODEL = null, liveChecked = null, liveErrors = [];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const num = (x, d = 2) => x == null || !Number.isFinite(x) ? '–' : x.toFixed(d);
+const sgn = (x, d = 2) => x == null || !Number.isFinite(x) ? '–' : (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x).toFixed(d);
+const pct = (x, d = 1) => x == null || !Number.isFinite(x) ? '–' : (100 * x).toFixed(d) + '%';
+const int = x => x == null || !Number.isFinite(x) ? '–' : Math.round(x).toLocaleString('en-US');
+const label = id => REG?.labels?.[id] || id;
+const pairLabel = p => String(p).split('~').map(label).join(' vs ');
+const when = e => e ? new Date(e * 1000).toISOString().slice(5, 16).replace('T', ' ') : '–';
+const ago = e => { if (!e) return '–'; const m = Math.round((Date.now() / 1000 - e) / 60); return m < 1 ? 'just now' : m < 90 ? m + ' min ago' : (m / 60).toFixed(1) + ' h ago'; };
+function sig(s) { return s && s.ci ? (s.ci[0] > 0 ? 'pos' : s.ci[1] < 0 ? 'neg' : '') : ''; }
+function cellText(s, extra = '') {
+  if (!s || !s.n) return '<span class="na">not run</span>';
+  return `<span class="${sig(s)}">${sgn(s.mean)} ± ${num(s.se)}</span><span class="sub">${int(s.n)} boards${extra}</span>`;
+}
+
+// ---- data -------------------------------------------------------------------------------------------------------
+async function getText(url) { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw Error(r.status + ' ' + url); return r.text(); }
+async function getJSON(url) { return JSON.parse(await getText(url)); }
+async function load() {
+  REG = await getJSON('registry.json?t=' + Date.now());
+  try { SNAP = await getJSON('data.json?t=' + Date.now()); } catch (e) { SNAP = { runs: [], metrics: {}, heads: {}, built_epoch: null }; }
+  RUNS = SNAP.runs.slice(); METRICS = { ...SNAP.metrics };
+  rebuild(); render();
+  await live();
+  setInterval(live, 300000);
+}
+function rebuild() { MODEL = C.buildModel(REG, RUNS, METRICS); }
+
+// Re-read what is still moving: runs whose last event is after the snapshot, and nets the snapshot has no scores for.
+async function live() {
+  liveErrors = [];
+  const idx = C.botIndex(REG), built = SNAP.built_epoch || 0, byKey = new Map(RUNS.map(r => [r.key, r]));
+  await Promise.all(REG.branches.filter(b => !b.frozen).map(async b => {
+    let meta;
+    try { meta = C.parseRunsLog(await getText(C.rawURL(b.branch, 'runs.log')), b.box); }
+    catch (e) { liveErrors.push(b.box + ': ' + e.message); return; }
+    await Promise.all(Object.values(meta).map(async m => {
+      const cls = C.classify(m, REG, idx);
+      if (cls.kind === 'excluded') return;
+      const key = `${b.box}/${m.name}`, old = byKey.get(key);
+      const base = { key, branch: b.branch, box: b.box, name: m.name, pair: m.pair, seed: m.seed, first: m.first, deals: m.deals,
+        options: m.options, sources: m.sources, started: m.started, last_event: m.last_event, status: m.status, exit: m.exit ?? null, cls };
+      const moving = !old || m.status === 'running' || (m.last_event || 0) > built - 60;
+      if (!moving) { Object.assign(old, { status: m.status, last_event: m.last_event, cls }); return; }
+      const run = { ...(old || { red: null, summary: null, episodes: null, bad_lines: 0 }), ...base };
+      try {
+        if (cls.kind === 'selfplay') {
+          run.episodes = parseInt(await getText(C.rawURL(b.branch, m.name + '/EPISODES.txt')), 10) || run.episodes;
+        } else {
+          const parsed = C.parseResults(await getText(C.rawURL(b.branch, m.name + '/results.jsonl')));
+          run.red = C.reduceRun(parsed.rows, cls); run.bad_lines = parsed.bad;
+        }
+      } catch (e) { if (!/^404/.test(e.message)) liveErrors.push(key + ': ' + e.message); }
+      if (old) Object.assign(old, run); else { RUNS.push(run); byKey.set(key, run); }
+    }));
+  }));
+  await Promise.all(REG.generations.filter(g => g.net?.metrics).map(async g => {
+    const k = `${g.net.metrics.branch}:${g.net.metrics.path}`;
+    if (METRICS[k]) return;
+    try { METRICS[k] = C.netMetrics(await getJSON(C.rawURL(g.net.metrics.branch, g.net.metrics.path)), g); } catch (e) { /* not published yet */ }
+  }));
+  liveChecked = Date.now() / 1000;
+  rebuild(); render();
+}
+
+// ---- tooltip ------------------------------------------------------------------------------------------------------
+const tip = $('tip');
+document.addEventListener('mousemove', e => {
+  const t = e.target.closest?.('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.innerHTML = t.getAttribute('data-tip'); tip.style.display = 'block';
+  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8), y = Math.min(e.clientY + 14, window.innerHeight - tip.offsetHeight - 8);
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+});
+document.addEventListener('touchstart', e => {
+  const t = e.target.closest?.('[data-tip]');
+  if (!t) { tip.style.display = 'none'; return; }
+  tip.innerHTML = t.getAttribute('data-tip'); tip.style.display = 'block';
+  const r = t.getBoundingClientRect();
+  tip.style.left = Math.max(8, Math.min(r.left, window.innerWidth - tip.offsetWidth - 8)) + 'px'; tip.style.top = (r.bottom + 8) + 'px';
+}, { passive: true });
+
+// ---- charts -------------------------------------------------------------------------------------------------------
+const ROLE_COLOR = { net: 'var(--s1)', roll: 'var(--s2)', stu: 'var(--s3)' };
+// Wide charts are drawn at the width they get, so their text stays at its set size on a phone.
+const tick = t => sgn(Math.abs(t) < 1e-9 ? 0 : t, 2).replace(/\.?0+$/, '') || '0';
+const chartWidth = id => Math.max(330, Math.min(1200, Math.round($(id)?.clientWidth || 880)));
+function niceTicks(lo, hi, count = 5) {
+  const span = hi - lo || 1, raw = span / count, mag = 10 ** Math.floor(Math.log10(raw));
+  const step = [1, 2, 2.5, 5, 10].map(k => k * mag).find(s => span / s <= count) || mag * 10;
+  const out = []; for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) out.push(Math.round(v / step) * step);
+  return out;
+}
+function playChart(opp) {
+  const gens = MODEL.generations, roles = REG.roles;
+  const pts = [];
+  gens.forEach((g, gi) => roles.forEach((r, ri) => { const c = g.cells[`${r.key}|${opp}`]; if (c && c.stats.n) pts.push({ gi, ri, role: r, g, s: c.stats, c }); }));
+  if (!pts.length) return '<p class="na">Nothing measured against this opponent yet.</p>';
+  const vals = pts.flatMap(p => p.s.ci ? p.s.ci : [p.s.mean]).concat([0]);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.12 || 0.5; lo -= pad; hi += pad;
+  const W = chartWidth('play-chart'), H = W < 600 ? 260 : 300, L = 54, R = 16, T = 14, B = 46, band = (W - L - R) / gens.length;
+  const x = (gi, ri) => L + band * (gi + 0.5) + (ri - (roles.length - 1) / 2) * Math.min(26, band / (roles.length + 1));
+  const y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Mean IMPs a board against ${esc(label(opp))} by generation and role">`;
+  for (const t of niceTicks(lo, hi)) s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 8}" y="${y(t) + 4}" text-anchor="end">${tick(t)}</text>`;
+  s += `<line class="zero" x1="${L}" x2="${W - R}" y1="${y(0)}" y2="${y(0)}"/>`;
+  gens.forEach((g, gi) => { s += `<text x="${L + band * (gi + 0.5)}" y="${H - 22}" text-anchor="middle">${esc(g.label)}</text>`; });
+  s += `<text x="${L}" y="${H - 4}" class="faint">IMPs a board (95% interval)</text>`;
+  for (const p of pts) {
+    const cx = x(p.gi, p.ri), col = ROLE_COLOR[p.role.key] || 'var(--ref)';
+    const t = `<b>${esc(p.g.label)} · ${esc(p.role.label)}</b><br>${sgn(p.s.mean)} ± ${num(p.s.se)} IMPs a board vs ${esc(label(opp))}<br>95%: ${p.s.ci ? sgn(p.s.ci[0]) + ' to ' + sgn(p.s.ci[1]) : '–'}<br>${int(p.s.n)} of ${int(p.c.deals)} boards · ${esc(stText(p.c.status))}`;
+    if (p.s.ci) s += `<line x1="${cx}" x2="${cx}" y1="${y(p.s.ci[0])}" y2="${y(p.s.ci[1])}" stroke="${col}" stroke-width="2" stroke-linecap="round"/>`;
+    s += `<circle cx="${cx}" cy="${y(p.s.mean)}" r="5" fill="${col}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(t)}" x="${cx - 11}" y="${Math.min(y(p.s.ci ? p.s.ci[1] : p.s.mean), y(p.s.mean)) - 8}" width="22" height="${Math.abs((p.s.ci ? y(p.s.ci[0]) - y(p.s.ci[1]) : 0)) + 16}"/>`;
+  }
+  return s + '</svg>';
+}
+function smallMetric(title, key, digits, better) {
+  const gens = MODEL.generations.filter(g => g.metrics?.all);
+  if (!gens.length) return '';
+  const pts = gens.map((g, i) => ({ i, g, v: g.metrics.all[key], p: g.metrics.previous?.all?.[key] })).filter(p => Number.isFinite(p.v));
+  const vals = pts.flatMap(p => [p.v, p.p].filter(Number.isFinite));
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.25 || Math.abs(hi) * 0.05 || 0.01; lo -= pad; hi += pad;
+  const W = 330, H = 170, L = 50, R = 12, T = 12, B = 30, band = (W - L - R) / Math.max(1, gens.length);
+  const x = i => L + band * (i + 0.5), y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  let s = `<div class="mini"><b>${esc(title)}</b> <span class="muted">${better}</span><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(title)} by generation">`;
+  for (const t of niceTicks(lo, hi, 4)) s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${t.toFixed(digits)}</text>`;
+  pts.forEach((p, k) => {
+    s += `<text x="${x(p.i)}" y="${H - 8}" text-anchor="middle">${esc(p.g.label)}</text>`;
+    if (k) s += `<line x1="${x(pts[k - 1].i)}" x2="${x(p.i)}" y1="${y(pts[k - 1].v)}" y2="${y(p.v)}" stroke="var(--s1)" stroke-width="2"/>`;
+  });
+  for (const p of pts) {
+    const prev = p.g.metrics.previous, t = `<b>${esc(p.g.label)}</b>: ${esc(title)} ${p.v.toFixed(digits + 1)}` + (Number.isFinite(p.p) ? `<br>${esc(prev.label)}: ${p.p.toFixed(digits + 1)}` : '') + `<br>held-out decisions: ${int(p.g.metrics.all.n)}`;
+    if (Number.isFinite(p.p)) s += `<circle cx="${x(p.i) + 14}" cy="${y(p.p)}" r="4" fill="none" stroke="var(--ref)" stroke-width="2"/>`;
+    s += `<circle cx="${x(p.i)}" cy="${y(p.v)}" r="5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(t)}" x="${x(p.i) - 14}" y="${T}" width="34" height="${H - T - B}"/>`;
+  }
+  return s + '</svg></div>';
+}
+const ROUND_COLORS = ['var(--s1)', 'var(--s2)', 'var(--s3)', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+function historyChart() {
+  const gens = MODEL.generations.filter(g => g.metrics?.history?.length);
+  if (!gens.length) { $('hist-legend').innerHTML = ''; return '<p class="na">No training history recorded yet.</p>'; }
+  const series = gens.map((g, k) => ({ g, col: ROUND_COLORS[k % 8], h: g.metrics.history.filter(h => Number.isFinite(h.nll)) }));
+  $('hist-legend').innerHTML = series.length > 1 ? series.map(s => `<span><i style="background:${s.col}"></i>${esc(s.g.label)}</span>`).join('') : '';
+  const maxE = Math.max(...series.flatMap(s => s.h.map(h => h.epoch))), vals = series.flatMap(s => s.h.map(h => h.nll));
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.15 || 0.01; lo -= pad; hi += pad;
+  const W = chartWidth('hist-chart'), H = 220, L = 54, R = 70, T = 12, B = 34;
+  const x = e => L + (maxE > 1 ? (e - 1) / (maxE - 1) : 0.5) * (W - L - R), y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Held-out log-loss after each epoch">`;
+  for (const t of niceTicks(lo, hi, 4)) s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${t.toFixed(3)}</text>`;
+  for (let e = 1; e <= maxE; e++) s += `<text x="${x(e)}" y="${H - 14}" text-anchor="middle">${e}</text>`;
+  s += `<text x="${L}" y="${H - 1}" class="faint">epoch · held-out log-loss</text>`;
+  for (const se of series) {
+    s += `<path d="${se.h.map((h, i) => (i ? 'L' : 'M') + x(h.epoch) + ',' + y(h.nll)).join(' ')}" fill="none" stroke="${se.col}" stroke-width="2" stroke-linejoin="round"/>`;
+    for (const h of se.h) s += `<circle cx="${x(h.epoch)}" cy="${y(h.nll)}" r="4" fill="${se.col}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(`<b>${se.g.label}</b>, epoch ${h.epoch}<br>held-out log-loss ${num(h.nll, 4)} · agreement ${pct(h.agree)} · regret ${num(h.regret, 4)}<br>training cross-entropy ${num(h.train_ce, 4)}`)}" x="${x(h.epoch) - 12}" y="${y(h.nll) - 12}" width="24" height="24"/>`;
+    const last = se.h.at(-1); if (last) s += `<text x="${x(last.epoch) + 10}" y="${y(last.nll) + 4}">${num(last.nll, 4)}</text>`;
+  }
+  return s + '</svg>';
+}
+function curveChart(title, cell, col) {
+  const rows = cell.curve; if (!rows.length) return '';
+  const settled = rows.filter(r => r.boards >= Math.min(20, rows.at(-1).boards));
+  const vals = settled.flatMap(r => r.ci || [r.mean]).concat([0]); const ext = Math.max(0.5, ...vals.map(Math.abs)) * 1.1;
+  const clip = v => Math.max(-ext, Math.min(ext, v));
+  const W = 360, H = 190, L = 44, R = 12, T = 10, B = 28, maxB = Math.max(cell.deals || 0, rows.at(-1).boards);
+  const x = n => L + n / maxB * (W - L - R), y = v => T + (ext - v) / (2 * ext) * (H - T - B);
+  const band = rows.filter(r => r.ci), poly = band.map(r => x(r.boards) + ',' + y(clip(r.ci[1]))).concat(band.slice().reverse().map(r => x(r.boards) + ',' + y(clip(r.ci[0])))).join(' ');
+  const last = rows.at(-1), s = cell.stats;
+  let out = `<div class="mini"><b>${esc(title)}</b><span class="sub muted">${sgn(s.mean)} ± ${num(s.se)} · ${int(s.n)} of ${int(cell.deals)} boards · <span class="pill ${cell.status === 'running' ? 'live' : 'done'}">${esc(stText(cell.status))}</span></span>`;
+  out += `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(title)}: cumulative mean IMPs">`;
+  for (const t of niceTicks(-ext, ext, 4)) out += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${tick(t)}</text>`;
+  out += `<line class="zero" x1="${L}" x2="${W - R}" y1="${y(0)}" y2="${y(0)}"/>`;
+  if (poly) out += `<polygon points="${poly}" fill="${col}" opacity="0.14"/>`;
+  out += `<path d="${rows.map((r, i) => (i ? 'L' : 'M') + x(r.boards) + ',' + y(clip(r.mean))).join(' ')}" fill="none" stroke="${col}" stroke-width="2"/>`;
+  out += `<circle cx="${x(last.boards)}" cy="${y(last.mean)}" r="4" fill="${col}" stroke="var(--surface)" stroke-width="2"/>`;
+  out += `<text x="${W - R}" y="${H - 8}" text-anchor="end">${int(maxB)} boards</text><text x="${L}" y="${H - 8}">0</text>`;
+  out += `<rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" data-tip="${esc(`<b>${title}</b><br>${sgn(s.mean)} ± ${num(s.se)} IMPs a board over ${int(s.n)} boards<br>95%: ${s.ci ? sgn(s.ci[0]) + ' to ' + sgn(s.ci[1]) : '–'}<br>W / T / L ${s.won} / ${s.flat} / ${s.lost}`)}"/>`;
+  return out + '</svg></div>';
+}
+
+// ---- render ------------------------------------------------------------------------------------------------------
+function render() {
+  if (!MODEL) return;
+  const opps = MODEL.opponents, sel = $('opp');
+  if (!sel.options.length) { sel.innerHTML = opps.map(o => `<option value="${esc(o.id)}">${esc(o.label)}</option>`).join(''); sel.value = MODEL.primary; sel.onchange = render; }
+  const opp = sel.value || MODEL.primary, oppInfo = opps.find(o => o.id === opp) || {};
+  const rounds = MODEL.generations.filter(g => g.kind === 'round'), cur = rounds.at(-1);
+  const heads = Object.entries(SNAP.heads || {}).filter(([, h]) => h);
+  $('fresh').textContent = `Snapshot built ${SNAP.built_epoch ? when(SNAP.built_epoch) + ' UTC (' + ago(SNAP.built_epoch) + ')' : 'never'}` +
+    (liveChecked ? ` · runs still going re-read ${ago(liveChecked)}` : ' · reading live runs…') +
+    (liveErrors.length ? ` · could not read: ${liveErrors.join('; ')}` : '');
+
+  // cards
+  const gate = cur?.cells[`stu|${MODEL.primary}`], net = cur?.cells[`net|${MODEL.primary}`], sp = cur?.selfplay;
+  const x8 = sp?.x8, moved = x8 && x8.consulted ? x8.moved / x8.consulted : null;
+  const card = (k, v, sub) => `<div class="card"><span class="muted">${k}</span><div class="big">${v}</div><span class="muted">${sub}</span></div>`;
+  $('cards').innerHTML = cur ? [
+    card('Current generation', esc(cur.label), esc(cur.net?.label || '')),
+    card('Self-play boards', int(sp?.boards), `of ${int(sp?.target)} queued · ${esc(sp?.status ? stText(sp.status) : 'not started')}`),
+    card(`Stu vs ${esc(label(MODEL.primary))}`, gate?.stats.n ? sgn(gate.stats.mean) : '–', gate?.stats.n ? `± ${num(gate.stats.se)} · ${int(gate.stats.n)} of ${int(gate.deals)} boards · ${esc(stText(gate.status))}` : 'not run'),
+    card(`Net alone vs ${esc(label(MODEL.primary))}`, net?.stats.n ? sgn(net.stats.mean) : '–', net?.stats.n ? `± ${num(net.stats.se)} · ${int(net.stats.n)} boards` : 'not run'),
+    card('Rollouts changed the card', pct(moved), x8 ? `of ${int(x8.consulted / Math.max(1, x8.boards))} consulted decisions a board, self-play` : 'no self-play rows yet'),
+  ].join('') : '';
+
+  // play
+  $('play-note').innerHTML = esc(REG.validation?.note || '') + (oppInfo.detail ? ' ' + esc(oppInfo.detail) : '');
+  $('opp-head').textContent = `IMPs a board against ${label(opp)}`;
+  $('play-legend').innerHTML = REG.roles.map(r => `<span><i style="background:${ROLE_COLOR[r.key]}"></i>${esc(r.label)}</span>`).join('');
+  $('play-chart').innerHTML = playChart(opp);
+  $('play-table').innerHTML = MODEL.generations.map(g => {
+    const c = r => g.cells[`${r}|${opp}`]?.stats;
+    const amp = opp === MODEL.primary ? g.amplification : { roll_over_net: C.paired(g.cells[`roll|${opp}`], g.cells[`net|${opp}`]), stu_over_net: C.paired(g.cells[`stu|${opp}`], g.cells[`net|${opp}`]) };
+    const prevG = MODEL.generations.find(x => x.round === g.previous_round);
+    const d = r => prevG ? C.paired(g.cells[`${r}|${opp}`], prevG.cells[`${r}|${opp}`]) : null;
+    const vx = g.validation_x8, stuExtra = vx && opp === MODEL.primary && vx.consulted ? ` · changed ${pct(vx.moved / vx.consulted, 0)}` : '';
+    const diff = s => s ? cellText(s) : '<span class="na">–</span>';
+    return `<tr><td><b>${esc(g.label)}</b><span class="sub">${esc(g.kind === 'reference' ? 'reference' : (g.net?.label || ''))}</span></td>` +
+      `<td>${cellText(c('net'))}</td><td>${cellText(c('roll'))}</td><td>${cellText(c('stu'), stuExtra)}</td>` +
+      `<td>${diff(amp.roll_over_net)}</td><td>${diff(amp.stu_over_net)}</td>` +
+      `<td>${g.kind === 'round' && prevG ? diff(d('net')) : '<span class="na">–</span>'}</td><td>${g.kind === 'round' && prevG ? diff(d('stu')) : '<span class="na">–</span>'}</td>` +
+      `<td>${g.h2h ? cellText(g.h2h.stats) : '<span class="na">' + (g.kind === 'round' && prevG ? 'not run' : '–') + '</span>'}</td></tr>`;
+  }).join('');
+
+  // net
+  const mg = MODEL.generations.filter(g => g.metrics);
+  $('net-note').textContent = mg.length ? '' : 'No net scores yet.';
+  $('net-charts').innerHTML = smallMetric('Held-out log-loss', 'nll', 3, 'lower is better') + smallMetric('Top-1 agreement', 'agree', 2, 'higher is better') + smallMetric('Regret, tricks a decision', 'regret', 3, 'lower is better');
+  $('net-table').innerHTML = MODEL.generations.filter(g => g.kind === 'round' || g.metrics).map(g => {
+    const m = g.metrics;
+    if (!m) return `<tr><td><b>${esc(g.label)}</b></td><td>${esc(g.net?.label || '')}</td><td colspan="8" class="na">no scores published${g.net?.metrics ? ' at ' + esc(g.net.metrics.branch) : ''}</td></tr>`;
+    const p = m.previous, sub = (v, d, f = num) => p && v != null ? `<span class="sub">${esc(p.label.split(' on ')[0])}: ${f(v, d)}</span>` : '';
+    return `<tr><td><b>${esc(g.label)}</b></td><td>${esc(g.net?.label || '')}<span class="sub">${esc(g.net?.trained_from || '')}</span></td>` +
+      `<td>${int(m.train_examples)}<span class="sub">${int(m.train_deals)} deals · ${m.epochs ?? '–'} epochs</span></td>` +
+      `<td>${esc(m.val_data || '–')}<span class="sub">${int(m.all?.n)} decisions</span></td>` +
+      `<td>${num(m.all?.nll, 4)}${sub(p?.all?.nll, 4)}</td><td>${pct(m.all?.agree)}${sub(p?.all?.agree, 1, pct)}</td>` +
+      `<td>${pct(m.all?.in_best)}${sub(p?.all?.in_best, 1, pct)}</td><td>${num(m.all?.regret, 4)}${sub(p?.all?.regret, 4)}</td>` +
+      `<td>${num(m.late?.nll, 4)}${sub(p?.late?.nll, 4)}</td><td>${num(m.late?.regret, 4)}${sub(p?.late?.regret, 4)}</td></tr>`;
+  }).join('');
+  $('hist-chart').innerHTML = historyChart();
+
+  // curves
+  const curveCells = [];
+  for (const g of MODEL.generations.slice().reverse()) for (const r of REG.roles) for (const o of opps) {
+    const c = g.cells[`${r.key}|${o.id}`]; if (c && c.stats.n) curveCells.push(curveChart(`${g.label} · ${r.label} vs ${label(o.id)}`, c, ROLE_COLOR[r.key]));
+  }
+  for (const [k, c] of Object.entries(MODEL.h2h)) { const [nw, od] = k.split('|'); curveCells.push(curveChart(`${genLabel(nw)} vs ${genLabel(od)} (new vs old)`, c, 'var(--ref)')); }
+  $('curves').innerHTML = curveCells.join('') || '<p class="na">No validation boards yet.</p>';
+
+  // self-play
+  $('self-table').innerHTML = MODEL.generations.filter(g => g.kind === 'round').map(g => {
+    const s = g.selfplay, x = s.x8, per = k => x && x.boards ? num(x[k] / x.boards, 1) : '–';
+    return `<tr><td><b>${esc(g.label)}</b></td><td>${int(s.boards)}<span class="sub">of ${int(s.target)} queued · rows read ${int(s.rows_seen)}</span></td>` +
+      `<td><span class="pill ${s.status === 'running' ? 'live' : 'done'}">${esc(s.status ? stText(s.status) : 'not started')}</span></td><td>${num(s.cpu, 1)}</td>` +
+      `<td>${per('rollout')}</td><td>${per('blend')}</td><td>${per('claim')}</td><td>${x && x.consulted ? pct(x.moved / x.consulted) : '–'}</td>` +
+      `<td>${x && x.consulted ? int(x.rollouts / x.consulted) : '–'}</td><td>${x && x.consulted ? int(x.net_rows / x.consulted) : '–'}</td>` +
+      `<td>${s.stats ? cellText(s.stats) : '–'}</td></tr>`;
+  }).join('');
+
+  // other matches
+  $('other-table').innerHTML = MODEL.others.filter(r => r.red?.n).sort((a, b) => a.key.localeCompare(b.key)).map(r => {
+    const s = C.summaryOf(r.red);
+    return `<tr><td>${esc(pairLabel(r.pair))}<span class="sub"><code>${esc(r.pair)}</code></span></td><td>${int(s.n)}</td><td class="${sig(s)}">${sgn(s.mean)} ± ${num(s.se)}</td>` +
+      `<td>${s.ci ? sgn(s.ci[0]) + ' to ' + sgn(s.ci[1]) : '–'}</td><td>${s.won} / ${s.flat} / ${s.lost}</td><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a> · seed ${r.seed ?? '–'}</td></tr>`;
+  }).join('') || '<tr><td colspan="6" class="na">none</td></tr>';
+
+  // runs
+  const kindText = c => c.kind === 'validation' ? `validation · ${genLabel(c.round)} · ${roleLabel(c.role)} vs ${label(c.opponent)}` : c.kind === 'selfplay' ? `self-play · ${genLabel(c.round)}` :
+    c.kind === 'h2h' ? `new vs old · ${genLabel(c.newer)} vs ${genLabel(c.older)}` : 'other';
+  const statusText = r => r.status === 'stopped' ? `stopped (exit ${r.exit})` : stText(r.status);
+  $('runs-table').innerHTML = RUNS.slice().sort((a, b) => (b.started || 0) - (a.started || 0) || a.key.localeCompare(b.key)).map(r =>
+    `<tr><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a>${r.cls.alias ? '<span class="sub">old ids of the same bot</span>' : ''}</td><td><code>${esc(r.pair)}</code></td><td>${esc(kindText(r.cls))}</td>` +
+    `<td>${r.seed ?? '–'} · ${int(r.first)}–${int((r.first || 0) + (r.deals || 0) - 1)}</td><td>${int(Math.max(r.red?.n || 0, r.episodes || 0))}${r.bad_lines ? `<span class="sub">${r.bad_lines} partial line(s) skipped</span>` : ''}</td>` +
+    `<td><span class="pill ${r.status === 'running' ? 'live' : 'done'}" title="${r.status === 'set aside' ? 'No end line in runs.log, and another job started after it on this box. The chain may resume it.' : ''}">${esc(statusText(r))}</span></td>` +
+    `<td>${when(r.started)}</td><td>${(r.sources || []).map(s => `<code>${esc(s)}</code>`).join(' ')}</td></tr>`).join('');
+  $('prov').innerHTML = 'Branch tips in the snapshot: ' + heads.map(([b, h]) => `<a href="${C.treeURL(b)}">${esc(b)}</a> <code>${esc(h.sha.slice(0, 7))}</code> (${when(h.committed_epoch)})`).join(' · ');
+
+  // definitions
+  $('defs').innerHTML = '<table><tbody>' + REG.roles.map(r => `<tr><td><i style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${ROLE_COLOR[r.key]};margin-right:8px;vertical-align:-1px"></i><b>${esc(r.label)}</b></td><td style="white-space:normal;text-align:left">${esc(r.description)}</td></tr>`).join('') +
+    MODEL.generations.map(g => `<tr><td><b>${esc(g.label)}</b></td><td style="white-space:normal;text-align:left">${esc(g.note || '')} Bots: ${Object.entries(g.bots).map(([k, v]) => `${esc(roleLabel(k))} <code>${v.map(esc).join(', ')}</code>`).join('; ')}.${g.net?.data ? ' Net trained on ' + esc(g.net.data) + '.' : ''}</td></tr>`).join('') + '</tbody></table>';
+}
+const stText = s => s === 'set aside' ? 'not running' : s;
+const genLabel = r => (REG.generations.find(g => String(g.round) === String(r)) || {}).label || String(r);
+const roleLabel = k => (REG.roles.find(r => r.key === k) || {}).label || k;
+let resizeTimer = null;
+window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 200); });
+load().catch(e => { $('fresh').textContent = 'Could not load: ' + e.message; });
+</script>
+</html>
