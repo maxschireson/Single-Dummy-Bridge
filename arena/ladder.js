@@ -21,7 +21,7 @@
   // adjacent CVD dE >= 8.4, normal-vision >= 19.3, all >= 3:1); every point is also direct-labelled and tabled
   const SLOTS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
   const ORDER = ['Gen 1-4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 7.1', 'Gen 8', 'BEN', 'Gen 9', 'Gen 9 candidate'];
-  const SLOT_OF = { 'Gen 9': 7, 'Gen 9 candidate': 7 };   // a candidate wears its generation's colour (dashed)
+  const SLOT_OF = { 'Gen 9': 7, 'Gen 9 candidate': 7, 'Gen 8 variant (box match)': 5 };   // a candidate wears its generation's colour (dashed)
   const OTHER = '#8b9bb0';                                   // a group the page does not know: neutral, never a slot
   const SURFACE = '#192333', GRID = '#2a394f', AXIS = '#3a4d68', MUTED = '#acbbcf', TEXT = '#e9eff8';
   let data = null, selected = null;
@@ -100,7 +100,9 @@
     const cands = (data.candidates || []).filter(p => Number.isFinite(p.strength));
     const times = pts.map(timeOf).filter(Number.isFinite);
     const computed = Date.parse((data.computed_utc || '').replace(/Z?$/, 'Z')) || Math.max(...times);
-    const t0 = Math.min(...times) - 6 * 3600e3, t1 = Math.max(computed, Math.max(...times)) + 4 * 3600e3;
+    // candidates get their own lane right of the fit time, so they never sit on the newest registered points
+    const lane = cands.length ? 3 * 3600e3 + cands.length * 1.6 * 3600e3 : 0;
+    const t0 = Math.min(...times) - 6 * 3600e3, t1 = Math.max(computed, Math.max(...times)) + 4 * 3600e3 + lane;
     const all = pts.concat(cands);
     let lo = Math.min(...all.map(p => (p.ci95 || [p.strength])[0])), hi = Math.max(...all.map(p => (p.ci95 || [, p.strength])[1] ?? p.strength));
     lo = Math.floor((lo - 0.15) * 2) / 2; hi = Math.ceil((hi + 0.15) * 2) / 2;
@@ -122,7 +124,8 @@
     const xl = sv('text', { x: (M.l + W - M.r) / 2, y: H - 6, 'text-anchor': 'middle' }); xl.textContent = 'introduced (UTC)'; svg.append(xl);
     // positions: candidates at the computed time; marks at nearly the same x are dodged sideways
     const marks = pts.map(p => ({ p, x: X(timeOf(p) ?? computed), y: Y(p.strength), cand: false }))
-      .concat(cands.map(p => ({ p, x: X(computed), y: Y(p.strength), cand: true })));
+      .concat(cands.slice().sort((a, b) => b.strength - a.strength)
+        .map((p, i) => ({ p, x: X(computed + 3 * 3600e3) + i * 16, y: Y(p.strength), cand: true })));
     marks.sort((a, b) => a.x - b.x || a.y - b.y);
     for (let i = 0; i < marks.length;) {
       let j = i; while (j + 1 < marks.length && marks[j + 1].x - marks[i].x < 4) j++;
@@ -162,7 +165,7 @@
         && !marks.some(o => o !== m && o.x > x0 - 7 && o.x < x0 + w + 7 && o.y > yy - 15 && o.y < yy + 4)
         && !(strict && crossesInterval(x0, w, yy, m));
       for (const m of marks.slice().sort((a, b) => a.y - b.y)) {
-        const t = sv('text', { x: 0, y: 0, style: 'cursor:pointer;paint-order:stroke;stroke:' + SURFACE + ';stroke-width:3px;stroke-linejoin:round' }); t.textContent = labelOf(m.p); gL.append(t);
+        const t = sv('text', { x: 0, y: 0, style: 'cursor:pointer;paint-order:stroke;stroke:' + SURFACE + ';stroke-width:3px;stroke-linejoin:round;font-feature-settings:"calt" 0' }); t.textContent = labelOf(m.p); gL.append(t);
         const w = t.getComputedTextLength ? t.getComputedTextLength() : t.textContent.length * 6.8;
         let best = null;
         for (const [strict, rows] of [[true, 4], [false, 16]]) {
