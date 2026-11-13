@@ -1,0 +1,8 @@
+{
+  "revision": "5aa01e91206baa1c9d358e699411de97c13ad211",
+  "entry": "2026-11-13T09:06:00Z",
+  "finding": "The Gen6 calibration/fork boards behind the reported playout bench are in rollout net v2 scratch/warm and S0 training. The reported v2 versus v1/v4.1 bench comparison is not a common held-out comparison.",
+  "affected_source": "arena-gen6-fast-selfplay-20261111-19bbdce5-feed episodes5214-6774; v2 fetch includes all6775 at cb3a31c.",
+  "scope": "Research gating of rollout nets and S0. Current producer uses frozen policy v4.1, not v2 or S0; its existing training-family audit and scientific files remain unchanged.",
+  "future_requirement": "Do not promote future rollout models on in-sample calibration pairs. Require complete training exclusions and independently held-out validation for a newly adopted model."
+}
