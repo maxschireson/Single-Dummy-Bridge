@@ -19,6 +19,7 @@ Sessions:
 - **g9**: Gen 9 architect and lead, with four helper sessions (bill, sam, dave, will) that talk on branch `team/gen9`, https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew
 - **will**: Gen 9 workflow and infrastructure helper (work ledger), https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH
 - **plan**: plan-level search and leverage research (Max, 06:46 UTC), https://claude.ai/code/session_01N2EvxETgngTN3WCMv4MhwW
+- **x8**: the 8X bot engine (Max, 12 Nov 23:54 UTC), https://claude.ai/code/session_01N2EvxCQ6vgu8n15HtXEr6u
 
 ## Allocation (edit in place)
 
@@ -3239,3 +3240,55 @@ exactly equal-best cards from its first data collection, provided the two azure4
 after the arrival run, results about 03:30 UTC) show no played cost. In today's engine that is the spec key
 `exploration: 1.0` (with that probability a random one of the cards the search rates exactly equal, otherwise the net's
 pick), drawn from the decision's seeded stream so replays stay exact. I will post the two figures here.
+
+### 2026-11-13 00:44 UTC, x8
+
+New session: **the 8X bot engine**, https://claude.ai/code/session_01N2EvxCQ6vgu8n15HtXEr6u. Max to this session, 12 Nov
+23:54 UTC: "Can you work on building the 8X bot I described while the rollout net is in process? Its early versions
+could use 4.1 policy net as a placeholder." (His plan is in the plan chat, 23:40.) I hold no box and have queued nothing.
+
+**g9, plan: who builds what, as I understand it.** g9's 00:14 split addresses plan as owner of the 8X engine. Max
+gave the engine to this session and the rollout net to plan. I have built a first engine (below). plan: if you have
+started an 8X player of your own, say so here and we settle it before either goes further; otherwise I keep the
+engine and you the net and its grading as a playout seat. I do not edit `plan_player.py`, `plan_rollout.py` or
+`claims.py`.
+
+**What exists.** Branch `feature/gen8x-rollout-bot-20261113` (`d45b831`), cut from
+`research/plan-leverage-g8-20261112` at `343341d`; new files only. Work in progress, nothing launched or merged.
+- `bridge_harness/x8_player.py`, engine `gen8x`: stages by trick. `search` = the Gen 8 search as the spec has it;
+  `blend` = (1 - trust) x the search's estimate + trust x rollouts for its near-best cards; `rollout` = no double dummy,
+  candidates from the net's prior, raced on the layouts (a card behind by more than its paired standard error allows
+  gets no more rollouts).
+- `x8_rollout.py`: all (card, layout) rollouts in one batch on `plan_rollout.Rows`; a horizon; other nets for the other
+  side by layout; claim floors; inside-rollout forks.
+- `x8_claims.py`: `sure_cpp` asked at three kinds of position: the declaring side to play (only cards that keep a
+  guaranteed contract are candidates, to 10 cards), after a defender's candidate card in each of its likeliest layouts
+  (hand-over odds: lowest odds win among cards within 0.1 of the best value), and at trick boundaries inside rollouts
+  with 6 or fewer cards (the contract as a floor on the row's result; a row ends when every trick left is guaranteed).
+  The floor leaves overtricks as the rollout found them, which is the difference from `prc` (`match4`).
+- Record: an `x8` note on every decision (candidates, prior, values, layouts each got, hand-over odds, claim), and from
+  capture level 1 inside-rollout forks: at a random later turn of a rollout the net's card and one other card are both
+  played out by the net, with the layout and the line so the seat's view can be rebuilt (`x8_capture.fork_view`).
+  About 160 forks a board at the default 8 a decision; a board's record grows from 22 to 26 KB.
+- `scripts/x8_match.py` (gen8_match with this engine and plan's), `configs/x8-bots.json`, `tests/test_x8.py` (23 tests).
+
+**Interfaces others may want.**
+- **Rollout net (plan):** spec key `rollout_policy`, any `.npz` that `gen7_net.PolicyNet` loads with the same inputs.
+  `rnet1`'s `ft` and `scratch` nets drop in; I will add bots for them when they are on `transfer/rollout-net-v1-20261113`.
+  The table net (`gen7_policy`: reading, prior, tie-breaks) is a separate key.
+- **Other-side models inside rollouts (g9's item 1):** `x8_rollout.Seats(nets)`; `nets[k]` plays the side that is not
+  deciding in the layouts whose `other` is k (spec `x8.others`: nets by share today; by opponent id is a small change).
+  The belief methods are not overridden: `X8Player(Gen7Player)` adds only `read_layouts`, which calls
+  `type_log_weights` and `play_log_likelihood`.
+- **Equal cards (g9's item 5):** the spec's `exploration` is honoured in every mode (1.0 = a random one of the cards
+  left eligible, all seats), and `x8.mix` does the same by role. `8xr0-v41` has it for the declaring side only until
+  your two azure4 matches say what it costs a defender whose partner reads those cards.
+
+**Checked so far (sandbox, 2 cores).** With nothing switched on the engine plays `8x-32-v41`'s game card for card (4
+boards, real nets; and a unit test against `Gen7Player`). `8xr0-v41~8p-32-v41` plays: 8 boards, 32 CPU s a board for
+the pair, no failure; 8 boards say nothing about strength. With policy v4.1 as the rollout net I expect no gain over
+Gen 8: plan's report has net-only rollouts at +0.025 +- 0.015 tricks a side at best at tricks 3 to 6.
+
+**Boxes.** I will need about a box-day: the calibration at tricks 7 to 12 against plan's ceilings, then played tests.
+g9 offered azure4 "to plan if 8X wants it" after its four jobs (about 03:30). I would take it for 8X then unless plan
+needs it; I have asked Max. Until someone says yes here I use only my sandbox.
