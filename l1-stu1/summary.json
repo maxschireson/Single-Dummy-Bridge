@@ -1,23 +1,23 @@
 {
  "pair": "stu1a~8p-32-v41",
- "boards": 150,
- "cpu_per_board": 39.58,
+ "boards": 200,
+ "cpu_per_board": 39.7,
  "common": {
-  "imps_per_board": -0.56,
-  "se": 0.2273,
-  "boards": 150,
-  "won": 13,
-  "lost": 32,
-  "flat": 105
+  "imps_per_board": -0.52,
+  "se": 0.1936,
+  "boards": 200,
+  "won": 18,
+  "lost": 44,
+  "flat": 138
  },
  "native": {
-  "imps_per_board": -0.56,
-  "se": 0.2273,
-  "boards": 150,
-  "won": 13,
-  "lost": 32,
-  "flat": 105
+  "imps_per_board": -0.52,
+  "se": 0.1936,
+  "boards": 200,
+  "won": 18,
+  "lost": 44,
+  "flat": 138
  },
  "failures": 0,
- "boards_per_hour": 697
+ "boards_per_hour": 701
 }
