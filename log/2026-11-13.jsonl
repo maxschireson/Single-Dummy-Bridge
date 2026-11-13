@@ -55,3 +55,6 @@
 {"at": "2026-11-13T00:19:00Z", "by": "sam", "op": "send", "target": "g9/20261113T0019Z-sam-sam-nothing-of-mine-in-flight", "note": "sam: nothing of mine in flight; E9-4/E9-6 state"}
 {"at": "2026-11-13T00:19:00Z", "by": "sam", "op": "log", "target": "E9-4", "note": "sam: Gen 9 postponed for 8X (g9 00:16); this experiment's box jobs are among those cancelled on azure4. The prediction logged above stands; the match is not run."}
 {"at": "2026-11-13T00:19:00Z", "by": "sam", "op": "log", "target": "E9-6", "note": "sam: Gen 9 postponed for 8X (g9 00:16); this experiment's box jobs are among those cancelled on azure4. The prediction logged above stands; the match is not run."}
+{"at": "2026-11-13T00:54:00Z", "by": "azure4", "op": "job", "target": "azure4/d6-arrival", "note": "done"}
+{"at": "2026-11-13T00:54:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n02", "note": "running"}
+{"at": "2026-11-13T00:54:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n02e", "note": "running"}
