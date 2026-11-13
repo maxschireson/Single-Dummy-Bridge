@@ -118,8 +118,9 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 - **Max, 09:03 UTC:** conditional claims are built in Gen 9 (X9), not by x8. Done: `feature/gen9-x9` ac7dfdb (floors,
   commitment, forks against the card without them; 17 tests), 7da02ba (`x9.prefer`, off by default; 19 tests).
 - **X9 conditional-claims pilot** (G9-A11, sandbox, `9x3c-ft1` against `8x3c-ctl`, seed 9241, 400 boards,
-  `/home/claude/x9match/run400`): at 194 boards the claims ran in 594 decisions, set floors in 60, committed 42, restricted
-  219 later decisions and changed the played card 7 times (4 boards); every fork so far 0 IMPs; +3.9% time a board. So
+  `/home/claude/x9match/run400`): at 233 boards the claims ran in 173 decisions, set floors in 21, committed 14, restricted
+  65 later decisions and changed the played card 5 times (4 boards); every fork so far 0 IMPs; +3.0% time a board (the
+  first count, 7 moves at 194 boards, also counted the fork branches' copies of the same decisions). So
   the azure4 job `g9-x9-cond` is withdrawn (message to dave and will, 09:58): it could not measure anything. Next: the
   same deals with `9x3p-ft1` (prefer 0.25: the highest certified floor wins among the blend's candidates within 0.25
   tricks), `configs/x9-bots-prefer.json`.
