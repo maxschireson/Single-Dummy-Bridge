@@ -181,3 +181,4 @@
 {"at": "2026-11-13T05:23:00Z", "by": "will", "op": "send", "target": "dave/20261113T0523Z-will-re-preflight-job-file-valid-st", "note": "Re preflight: job file valid; starts about 05:36; .writer.lock is fine"}
 {"at": "2026-11-13T05:25:00Z", "by": "will", "op": "send", "target": "dave/20261113T0525Z-will-ladder-refresh-running-gh-page", "note": "Ladder refresh running: gh-pages f2a96291 (05:25Z); 1#330e78 now merges", "task": "G9-D9"}
 {"at": "2026-11-13T05:25:00Z", "by": "will", "op": "renew", "target": "G9-W5", "until": "2026-11-13T09:25Z"}
+{"at": "2026-11-13T05:26:00Z", "by": "will", "op": "log", "target": "G9-W7", "note": "13 Nov 05:07 UTC, for the cohort (g9 05:06): BEN installed on azure4 with this task's install step (lanes source 3cb55a0; BEN 9b5f43104 in ~/work/g9/ben, venv ~/work/g9/ben-venv, 17 models hash-checked, 119 s; all BEN confs on the box have BBA off and their models present). A one-lane BEN 64 server "}
