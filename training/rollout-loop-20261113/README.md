@@ -7,6 +7,8 @@ This folder holds what round 0 runs.
 Source: this branch, built on `research/sid-net-s0-20261113` at `24c8091` (the 8X engine at `1a779a9`, the plan
 session's `gen7_net.py`, the sidnet session's label heads and trainer).
 
+The plan is in [PLAN.md](PLAN.md). This page is what exists.
+
 ## The loop
 
 1. **Play.** The rollout bot plays itself; every decision's record keeps the rollout means of its candidate cards.
@@ -32,6 +34,7 @@ same games.
 
 | File | What |
 | --- | --- |
+| `PLAN.md` | What is intended and why: the rounds, round 1, what comes after, what would change the plan, Max's decisions |
 | `make_bots.py` | Writes `configs/loop-bots.json` from `configs/x8-bots.json` |
 | `run.sh` | One match or collection as a unit; resumes |
 | `chain.sh` | A job file's matches one after another |
