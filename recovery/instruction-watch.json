@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794605525.8505654,
+  "checked_epoch": 1794609209.4908404,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -112,49 +112,49 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 3347,
+      "completed": 3471,
       "target": 16036,
-      "contiguous": 3347,
+      "contiguous": 3471,
       "by_pair": {
-        "8s-32~71s-32": 1116,
-        "8s-32~1": 558,
-        "8s-32~5RZ32": 558,
-        "8c-32~8s-32": 557,
-        "8c-32~71s-32": 558
+        "8s-32~71s-32": 1157,
+        "8s-32~1": 579,
+        "8s-32~5RZ32": 578,
+        "8c-32~8s-32": 578,
+        "8c-32~71s-32": 579
       },
-      "root_games": 11156,
-      "tables": 138419,
+      "root_games": 11570,
+      "tables": 143597,
       "failures": 0,
-      "epoch": 1794605496.0099428,
+      "epoch": 1794609173.550151,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794605516.0157757,
-      "completed": 3347,
+      "epoch": 1794609203.5653439,
+      "completed": 3471,
       "in_flight": [
-        3347,
-        3348,
-        3349
+        3471,
+        3472,
+        3473
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794597451.4236655,
+      "started_epoch": 1794608921.8213315,
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794605489.3527164,
+      "epoch": 1794609158.538862,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794605502.0562422,
+      "epoch": 1794609155.4123943,
       "status": "published",
-      "completed": 3345
+      "completed": 3468
     },
     "process.json": {
-      "pid": 164762,
-      "epoch": 1794597448.7393107
+      "pid": 182297,
+      "epoch": 1794608918.5203044
     },
     "watchdog-process.json": {
       "pid": 79983,
@@ -167,7 +167,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, cleanup and known successor deployment references remain unchanged. New coordination provides optional research speedups, with no instruction to alter this collector. The prior explicit operator instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known successor deployment references are unchanged; no PR update or new relevant comment. The prior explicit operator instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified. Existing watchdog completed planned derived DDS-cache rotation after draining at 3463 families; fresh collector progress, publisher and held ownership locks are healthy.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -180,7 +180,7 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T20:25:20Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T21:32:05Z",
   "reviewed_discussions": [
     {
       "number": 22,
@@ -188,20 +188,14 @@
       "new_comments": 0
     }
   ],
-  "observed_notices": [
-    {
-      "notice": "loop 2026-11-13 20:50 UTC",
-      "classification": "Optional research-only forward-pass, bf16 and shared-scorer speedups",
-      "action": "Explicitly not on recipients' branches; conditional adoption information, not a general deployment instruction. Preserve this stream's exact c8a138f runtime and v4.1 actors; no bf16 flag, Torch installation, shared-scorer patch, source pull, model adoption or unrelated training."
-    }
-  ],
+  "observed_notices": [],
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
-  "previous_checked_epoch": 1794601520.035761,
+  "previous_checked_epoch": 1794605525.8505654,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
     "process.json": {
-      "pid": 164762,
+      "pid": 182297,
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 "
     },
     "watchdog-process.json": {
@@ -217,11 +211,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 9.834789752960205,
-  "publisher_age": 23.794323205947876,
-  "free_bytes": 19284860928,
+  "heartbeat_age": 5.925496578216553,
+  "publisher_age": 54.07844614982605,
+  "free_bytes": 20618444800,
   "new_applicable_instructions": [],
-  "registry_revision": "64bd491096bf8a094a2c53029b5bd226d6826b5b",
+  "registry_revision": "720e67b9cc9fefd99a86d1375d3b1bf5ef48dfcc",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -232,12 +226,12 @@
   "normal_workers_active": 3,
   "ben_workers_active": 0,
   "cache_rotation_review": {
-    "epoch": 1794597448.5825567,
-    "previous_bytes": 2155630592,
-    "completed": 3082,
-    "previous_collector_pid": 148126,
-    "current_collector_pid": 164762,
-    "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 3082 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
+    "epoch": 1794608918.3437648,
+    "previous_bytes": 2157727744,
+    "completed": 3463,
+    "previous_collector_pid": 164762,
+    "current_collector_pid": 182297,
+    "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 3463 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
   },
   "cache_rotation_history": [
     {
@@ -303,6 +297,14 @@
       "previous_collector_pid": 148126,
       "current_collector_pid": 164762,
       "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 3082 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
+    },
+    {
+      "epoch": 1794608918.3437648,
+      "previous_bytes": 2157727744,
+      "completed": 3463,
+      "previous_collector_pid": 164762,
+      "current_collector_pid": 182297,
+      "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 3463 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
     }
   ],
   "successor_notice_review": {
@@ -324,7 +326,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 36.497848987579346,
+  "watchdog_age": 50.9519784450531,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
@@ -354,5 +356,6 @@
       ],
       "disposition": "Research branch only; bf16 changes some first-card choices. Any authorized adoption requires draining and a separate immutable validated successor."
     }
-  }
+  },
+  "coordination_snapshot_unchanged": true
 }
