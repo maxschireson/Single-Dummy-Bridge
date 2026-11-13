@@ -1,0 +1,421 @@
+{
+ "schema": "gen7-alpha-plan-v1",
+ "campaign": "gen8x-v3-both-20261113",
+ "title": "8X v3 in the Gen 8 arena \u00b7 Gen 8 through trick 6, rollouts blended in from trick 7 in games, claims, mixing",
+ "launch_enabled": false,
+ "pending": [
+  "Max's choice (asked 07:39 UTC 13 Nov): v3 as it stands (round8x-v3.json), v3 with uniform mixing (round8x-v3u.json), or both (round8x-v3-both.json)"
+ ],
+ "exclude_training_families": true,
+ "notes": [
+  "Max, 13 Nov 07:4x UTC (pending): 8X v3 with equal cards mixed uniformly (powers 0) beside the tempered mixing; on azure6 at 07:38 uniform minus tempered mixing was +0.43 +- 0.20 IMPs a board on 522 paired deals against Gen 8.",
+  "Authorized by Max, 13 November 2026, 06:40 UTC: \"Let's put 8X v3 into the mix on the arena and see what happens over time.\" 06:4x UTC, asked where it should run: lanes on g7's arena boxes (azure1, azure3), started by g7, the arena's operator.",
+  "docs/x8_bot.md is the 8X page: what 8X v3 is, what was measured against Gen 8 (8p-32-v41, the same search as 8s-32 here) and on how many boards.",
+  "Deals. No bot plays a board in a family one of its nets was trained on (Max, 12 November 15:50 UTC). 8X v3 plays with policy v4.1 and rollout net v1, so prepare with the union of both training sets: transfer/rollout-net-v1-training-families-20261113, gen8x-v3-exclusions.json (50,818 families: v4.1's 34,092 and v1's 21,509, 4,783 in both).",
+  "The Gen 8 and Gen 7.1 bots are the round8-candidate.json entries unchanged, so they are the same actors (identities) as in the Gen 8 cohorts. They read 8X v3's plays at the table's default for an unknown bot (0.3); 8X v3 reads its opponents as Gen 8 does."
+ ],
+ "model_note": "8X v3 (8x3-32) is the Gen 8 candidate 8s-32 card for card through trick 6, its tree at tricks 3 to 6 included. From trick 7, in games, slams and doubled contracts only, the search's near-best cards are valued again by rollouts on rollout net v1 (policy v4.1 fine-tuned on the Gen 7+ bots' play), blended at trust 0.25; undoubled partscores stay with the search. Declarer keeps a guaranteed contract (games, slams, doubled), plays a card that guarantees every trick left in any contract, and defenders avoid handing declarer a guaranteed line. Equal cards are mixed in proportion to the net's probability to the power 2 (declaring side) or 3 (defenders). Settings are in the bot's `gen7` and `x8` blocks (bridge_harness/x8_player.py).",
+ "interpretation": "8X v3 against Gen 8 in common auctions is card play alone, and 8X v3 equals Gen 8 through trick 6 and in undoubled partscores. Before the arena, against the same search (8p-32-v41) on 459 boards: +0.02 +- 0.13 IMPs a board. Report common and native conditions separately. Only unplayed source deals are allocated. Intervals are descriptive and unadjusted for repeated monitoring.",
+ "roster": [
+  "8x3-32",
+  "8x3u-32",
+  "8s-32",
+  "71s-32",
+  "6-32",
+  "5RZ32",
+  "1"
+ ],
+ "pair_weights": {
+  "8x3-32~8s-32": 2,
+  "8x3u-32~8s-32": 2,
+  "8x3-32~71s-32": 1,
+  "8x3u-32~71s-32": 1
+ },
+ "common_bidder": "6-32",
+ "audit_references": {
+  "8x3-32": "3",
+  "8x3u-32": "3"
+ },
+ "systems": {
+  "8s-32": "house-gen6",
+  "71s-32": "house-gen6",
+  "6-32": "house-gen6",
+  "5RZ32": "house-gen5",
+  "1": "house-dds40k",
+  "8x3-32": "house-gen6",
+  "8x3u-32": "house-gen6"
+ },
+ "artifacts": {
+  "gen7_policy_v41": {
+   "release": "models/cardplay/gen7-policy-v4.1-2026-11-12",
+   "file": "gen7_policy_v4.1.npz",
+   "restore": "restore.py",
+   "sha256": "cb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed"
+  },
+  "system_scorer": {
+   "release": "models/cardplay/gen8-system-scorer-v1-2026-11-12",
+   "file": "system_scorer_v1.npz",
+   "restore": "restore_model.py",
+   "sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d"
+  },
+  "gen7_policy_rnet1": {
+   "release": "models/cardplay/rollout-net-v1-20261113",
+   "file": "policy_ft.npz",
+   "restore": "restore.py",
+   "sha256": "b15b5e2be7599b0898d9c9ba9f6bea22075373e726cb06d1ab1fb7f0e60bec3b"
+  }
+ },
+ "gen7_bots": {
+  "8x3-32": {
+   "base": "6-32",
+   "label": "8X v3 (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0,
+    "opponent_play_weight": {
+     "8s-32": 1.0,
+     "8c-32": 1.0,
+     "71s-32": 1.0,
+     "7s-32": 1.0,
+     "7f-32": 1.0,
+     "6-32": 1.0,
+     "5RZ32": 1.0,
+     "1": 0.2,
+     "ben": 0.5,
+     "ben64": 0.5,
+     "*": 0.3,
+     "8x3-32": 1.0
+    },
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "reply": "net",
+      "own_breadth": 0,
+      "own": "best",
+      "plain": 1,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   },
+   "system_scorer": true,
+   "lead_systems": [
+    "house-gen6",
+    "house-gen5",
+    "house-dds40k",
+    "ben-gib-bbo-8742"
+   ],
+   "x8": {
+    "stages": [
+     {
+      "from_trick": 7,
+      "to_trick": 13,
+      "mode": "blend",
+      "trust": 0.25,
+      "layouts": 256,
+      "cards": 3,
+      "margin": 0.25,
+      "seat": "draw",
+      "contracts": "games"
+     }
+    ],
+    "claims": {
+     "cards": 10,
+     "declarer": true,
+     "defender": 16,
+     "defender_ms": 400,
+     "odds_margin": 0.125,
+     "leaf": 6,
+     "leaf_ms": 300,
+     "own": true,
+     "opponents": [
+      "8x3-32"
+     ],
+     "guard": true,
+     "full": true
+    },
+    "capture": {
+     "level": 1,
+     "forks": 8,
+     "audit": "features",
+     "audit_features": [
+      "rollout",
+      "blend",
+      "guarantee",
+      "odds",
+      "guard",
+      "claim",
+      "mix"
+     ],
+     "mix_share": 0.25
+    },
+    "mix": {
+     "declarer": true,
+     "read_declarer": [
+      "8x3-32"
+     ],
+     "defender": true,
+     "read_defender": [
+      "8x3-32"
+     ],
+     "declarer_power": 2.0,
+     "defender_power": 3.0
+    }
+   },
+   "rollout_policy": "gen7_policy_rnet1"
+  },
+  "8s-32": {
+   "base": "6-32",
+   "label": "Gen 8 candidate (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0,
+    "opponent_play_weight": {
+     "8s-32": 1.0,
+     "8c-32": 1.0,
+     "71s-32": 1.0,
+     "7s-32": 1.0,
+     "7f-32": 1.0,
+     "6-32": 1.0,
+     "5RZ32": 1.0,
+     "1": 0.2,
+     "ben": 0.5,
+     "ben64": 0.5,
+     "*": 0.3
+    },
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "reply": "net",
+      "own_breadth": 0,
+      "own": "best",
+      "plain": 1,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   },
+   "system_scorer": true,
+   "lead_systems": [
+    "house-gen6",
+    "house-gen5",
+    "house-dds40k",
+    "ben-gib-bbo-8742"
+   ]
+  },
+  "71s-32": {
+   "base": "6-32",
+   "label": "Gen 7.1 standard (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 0.5,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   }
+  },
+  "8x3u-32": {
+   "base": "6-32",
+   "label": "8X v3, uniform mixing (32)",
+   "policy": "gen7_policy_v41",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0,
+    "opponent_play_weight": {
+     "8s-32": 1.0,
+     "8c-32": 1.0,
+     "71s-32": 1.0,
+     "7s-32": 1.0,
+     "7f-32": 1.0,
+     "6-32": 1.0,
+     "5RZ32": 1.0,
+     "1": 0.2,
+     "ben": 0.5,
+     "ben64": 0.5,
+     "*": 0.3,
+     "8x3-32": 1.0,
+     "8x3u-32": 1.0
+    },
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "reply": "net",
+      "own_breadth": 0,
+      "own": "best",
+      "plain": 1,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ]
+   },
+   "system_scorer": true,
+   "lead_systems": [
+    "house-gen6",
+    "house-gen5",
+    "house-dds40k",
+    "ben-gib-bbo-8742"
+   ],
+   "x8": {
+    "stages": [
+     {
+      "from_trick": 7,
+      "to_trick": 13,
+      "mode": "blend",
+      "trust": 0.25,
+      "layouts": 256,
+      "cards": 3,
+      "margin": 0.25,
+      "seat": "draw",
+      "contracts": "games"
+     }
+    ],
+    "claims": {
+     "cards": 10,
+     "declarer": true,
+     "defender": 16,
+     "defender_ms": 400,
+     "odds_margin": 0.125,
+     "leaf": 6,
+     "leaf_ms": 300,
+     "own": true,
+     "opponents": [
+      "8x3-32",
+      "8x3u-32"
+     ],
+     "guard": true,
+     "full": true
+    },
+    "capture": {
+     "level": 1,
+     "forks": 8,
+     "audit": "features",
+     "audit_features": [
+      "rollout",
+      "blend",
+      "guarantee",
+      "odds",
+      "guard",
+      "claim",
+      "mix"
+     ],
+     "mix_share": 0.25
+    },
+    "mix": {
+     "declarer": true,
+     "read_declarer": [
+      "8x3-32",
+      "8x3u-32"
+     ],
+     "defender": true,
+     "read_defender": [
+      "8x3-32",
+      "8x3u-32"
+     ],
+     "declarer_power": 0.0,
+     "defender_power": 0.0
+    }
+   },
+   "rollout_policy": "gen7_policy_rnet1"
+  }
+ }
+}
