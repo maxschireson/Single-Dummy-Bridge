@@ -35,7 +35,7 @@ Generated 2026-11-13 08:02 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
-| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam |  | open | medium | 2026-11-17T18:00Z |  |
+| [G9-S9](tasks/G9-S9.md) | Defenders' conditional lines: what one known partner card could unlock | sam |  | open | medium | 2026-11-13T22:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave |  | open | low | 2026-11-15T00:00Z |  |
