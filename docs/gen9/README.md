@@ -12,6 +12,7 @@ population that players join and leave.
 | [Architecture](architecture.md) | The overall flow and the interfaces between the areas |
 | [Work plan](workplan.md) | Areas, tasks, checkpoints, team size |
 | [Arena statistics](arena-statistics.md) | Rating table, field score, admission, the promotion test |
+| [A diverse arena for self-play training](arena-selfplay.md) | Roles in the population, diversity, who plays whom, ratings in a diverse field, exploiters, newcomers (design note, G9-A8) |
 | Area design notes | `bidding.md`, `signals.md`, `arena.md`, `workflow.md`, added by the area leads at checkpoint 1 |
 
 **Tests.** `python3 scripts/run_tests.py --prepare` builds DDS, installs what is missing, restores
