@@ -32,6 +32,8 @@ match6 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --
 match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair cl-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 @source 9e6c3d940b26e9d684f37bbd0cb28efbf72af89c
 seat2 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,v2s=$P/nets/v2/policy_epoch5.npz@6-32:6-32,v2w=$P/nets/v2w/policy_epoch3.npz@6-32:6-32,v2wu=$P/nets/v2w/policy_epoch3.npz" --sims "v2s:top;v2w:top;v2w:blend;v2wu:top" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
+@source b54d6cadb9127712963bbced0802d9f165509127
+seat3 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,v2s=$P/nets/v2/policy_epoch5.npz@6-32:6-32,v2w=$P/nets/v2w/policy_epoch3.npz@6-32:6-32" --sims "v2s:top;v2w:top" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
 @source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44
 match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/plan-bots.json --pair cl-32-v41~7s-32-v41 --deals 1600 --seed 131 --workers 8 --out $R
 rbc2a $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz --trick 6 --files 8 --skip-files 300 --chain 400 --chains 2 --workers 8 --out $R.json
