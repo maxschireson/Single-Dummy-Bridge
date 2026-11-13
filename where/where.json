@@ -1,0 +1,455 @@
+{
+ "what": "first_divergence.py: see its docstring",
+ "runs": {
+  "l0-p": {
+   "boards": 500,
+   "imps_a_board": -0.496,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 2,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": 0.0,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "lead",
+     "boards": 211,
+     "imps": -62,
+     "imps_a_board": -0.294,
+     "se": 0.299,
+     "of_all_boards": -0.124
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 145,
+     "imps": -65,
+     "imps_a_board": -0.448,
+     "se": 0.321,
+     "of_all_boards": -0.13
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 50,
+     "imps": -67,
+     "imps_a_board": -1.34,
+     "se": 0.661,
+     "of_all_boards": -0.134
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 59,
+     "imps": -46,
+     "imps_a_board": -0.78,
+     "se": 0.586,
+     "of_all_boards": -0.092
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 33,
+     "imps": -8,
+     "imps_a_board": -0.242,
+     "se": 0.894,
+     "of_all_boards": -0.016
+    }
+   ]
+  },
+  "l0-stu0": {
+   "boards": 500,
+   "imps_a_board": -0.576,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 2,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": 0.0,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 242,
+     "imps": -170,
+     "imps_a_board": -0.702,
+     "se": 0.216,
+     "of_all_boards": -0.34
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 168,
+     "imps": -44,
+     "imps_a_board": -0.262,
+     "se": 0.208,
+     "of_all_boards": -0.088
+    },
+    {
+     "group": "declaring, tricks 4 to 6",
+     "boards": 29,
+     "imps": -17,
+     "imps_a_board": -0.586,
+     "se": 0.49,
+     "of_all_boards": -0.034
+    },
+    {
+     "group": "declaring, tricks 7 to 9",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 4,
+     "imps": -12,
+     "imps_a_board": -3.0,
+     "se": 1.78,
+     "of_all_boards": -0.024
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 40,
+     "imps": -28,
+     "imps_a_board": -0.7,
+     "se": 0.563,
+     "of_all_boards": -0.056
+    },
+    {
+     "group": "defending, tricks 4 to 6",
+     "boards": 11,
+     "imps": -7,
+     "imps_a_board": -0.636,
+     "se": 0.65,
+     "of_all_boards": -0.014
+    },
+    {
+     "group": "defending, tricks 7 to 9",
+     "boards": 3,
+     "imps": -10,
+     "imps_a_board": -3.333,
+     "se": 3.333,
+     "of_all_boards": -0.02
+    }
+   ]
+  },
+  "l0-pr": {
+   "boards": 200,
+   "imps_a_board": -0.555,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "lead",
+     "boards": 120,
+     "imps": -67,
+     "imps_a_board": -0.558,
+     "se": 0.38,
+     "of_all_boards": -0.335
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 41,
+     "imps": -36,
+     "imps_a_board": -0.878,
+     "se": 0.704,
+     "of_all_boards": -0.18
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 11,
+     "imps": -2,
+     "imps_a_board": -0.182,
+     "se": 0.553,
+     "of_all_boards": -0.01
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 13,
+     "imps": -5,
+     "imps_a_board": -0.385,
+     "se": 1.607,
+     "of_all_boards": -0.025
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 14,
+     "imps": -1,
+     "imps_a_board": -0.071,
+     "se": 0.923,
+     "of_all_boards": -0.005
+    }
+   ]
+  },
+  "l0-pl": {
+   "boards": 105,
+   "imps_a_board": -1.0952,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 54,
+     "imps": -67,
+     "imps_a_board": -1.241,
+     "se": 0.541,
+     "of_all_boards": -0.6381
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 16,
+     "imps": 1,
+     "imps_a_board": 0.062,
+     "se": 1.078,
+     "of_all_boards": 0.0095
+    },
+    {
+     "group": "declaring, tricks 4 to 6",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 21,
+     "imps": -29,
+     "imps_a_board": -1.381,
+     "se": 0.827,
+     "of_all_boards": -0.2762
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 12,
+     "imps": -20,
+     "imps_a_board": -1.667,
+     "se": 0.689,
+     "of_all_boards": -0.1905
+    }
+   ]
+  },
+  "l0-n": {
+   "boards": 200,
+   "imps_a_board": -2.63,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "lead",
+     "boards": 78,
+     "imps": -203,
+     "imps_a_board": -2.603,
+     "se": 0.505,
+     "of_all_boards": -1.015
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 20,
+     "imps": -86,
+     "imps_a_board": -4.3,
+     "se": 1.003,
+     "of_all_boards": -0.43
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 36,
+     "imps": -110,
+     "imps_a_board": -3.056,
+     "se": 0.886,
+     "of_all_boards": -0.55
+    },
+    {
+     "group": "declaring, tricks 4 to 6",
+     "boards": 7,
+     "imps": -3,
+     "imps_a_board": -0.429,
+     "se": 0.297,
+     "of_all_boards": -0.015
+    },
+    {
+     "group": "declaring, tricks 7 to 9",
+     "boards": 2,
+     "imps": -5,
+     "imps_a_board": -2.5,
+     "se": 2.5,
+     "of_all_boards": -0.025
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 8,
+     "imps": -5,
+     "imps_a_board": -0.625,
+     "se": 2.291,
+     "of_all_boards": -0.025
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 42,
+     "imps": -108,
+     "imps_a_board": -2.571,
+     "se": 0.661,
+     "of_all_boards": -0.54
+    },
+    {
+     "group": "defending, tricks 4 to 6",
+     "boards": 6,
+     "imps": -6,
+     "imps_a_board": -1.0,
+     "se": 0.816,
+     "of_all_boards": -0.03
+    }
+   ]
+  },
+  "l0-v1": {
+   "boards": 200,
+   "imps_a_board": -0.395,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 99,
+     "imps": -30,
+     "imps_a_board": -0.303,
+     "se": 0.268,
+     "of_all_boards": -0.15
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 71,
+     "imps": -23,
+     "imps_a_board": -0.324,
+     "se": 0.355,
+     "of_all_boards": -0.115
+    },
+    {
+     "group": "declaring, tricks 4 to 6",
+     "boards": 9,
+     "imps": -7,
+     "imps_a_board": -0.778,
+     "se": 0.572,
+     "of_all_boards": -0.035
+    },
+    {
+     "group": "declaring, tricks 7 to 9",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 2,
+     "imps": -12,
+     "imps_a_board": -6.0,
+     "se": 6.0,
+     "of_all_boards": -0.06
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 15,
+     "imps": -7,
+     "imps_a_board": -0.467,
+     "se": 0.646,
+     "of_all_boards": -0.035
+    },
+    {
+     "group": "defending, tricks 4 to 6",
+     "boards": 2,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": 0.0,
+     "of_all_boards": 0.0
+    }
+   ]
+  },
+  "l0-v1-p": {
+   "boards": 200,
+   "imps_a_board": -0.77,
+   "groups": [
+    {
+     "group": "passed out",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "lead",
+     "boards": 79,
+     "imps": -57,
+     "imps_a_board": -0.722,
+     "se": 0.55,
+     "of_all_boards": -0.285
+    },
+    {
+     "group": "declaring, trick 1",
+     "boards": 57,
+     "imps": -12,
+     "imps_a_board": -0.211,
+     "se": 0.356,
+     "of_all_boards": -0.06
+    },
+    {
+     "group": "declaring, tricks 2 to 3",
+     "boards": 24,
+     "imps": -21,
+     "imps_a_board": -0.875,
+     "se": 0.71,
+     "of_all_boards": -0.105
+    },
+    {
+     "group": "declaring, tricks 4 to 6",
+     "boards": 1,
+     "imps": 0,
+     "imps_a_board": 0.0,
+     "se": null,
+     "of_all_boards": 0.0
+    },
+    {
+     "group": "defending, trick 1",
+     "boards": 21,
+     "imps": -39,
+     "imps_a_board": -1.857,
+     "se": 0.876,
+     "of_all_boards": -0.195
+    },
+    {
+     "group": "defending, tricks 2 to 3",
+     "boards": 17,
+     "imps": -25,
+     "imps_a_board": -1.471,
+     "se": 0.967,
+     "of_all_boards": -0.125
+    }
+   ]
+  }
+ }
+}
