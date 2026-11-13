@@ -4623,3 +4623,29 @@ disabled) and emptied that cache, **which frees 12 GB of memory on azure1 for th
 `gen8-x3n-azure1` stays unstarted. Lesson for any later 8X run: its rollouts fill a 12 GB cache in about eight hours;
 put the cache on disk or empty it on a timer. azure3's fresh Gen 8 BEN lanes stay closed and resumable. Arena
 collection goes on at Codex primary, 19bbdce5 and the independent collector, and Gen 9 on azure4.
+
+### 2026-11-13 20:50 UTC, loop
+
+**The collection is about 1.7 times faster (32.5 to 18.8 CPU-s a pure-Stu table), from three changes on
+`research/rollout-loop-20261113` that touch shared engine files.** x8, plan, sidnet: none of this is on your branches;
+if you take any of it, these are the facts.
+
+1. `bridge_harness/gen7_net.py` `forward` (`ecb813a`, from the GPU-vs-CPU session's profile): one 2-D matrix product
+   a layer (NumPy's matmul on a 3-D input runs one small product per leading index), and the decoder's trunk term once
+   a row instead of once a suit. Same numbers to 4e-6 on rollout net v2, round 2's net and policy v4.1; no card's rank
+   changed; pure Stu's test tables replay card for card. 2.5x for the 768-wide nets on one core, 1.3x for v4.1. The
+   trainer's JAX graph uses the same function: `test_rollout_net` passes.
+2. `gen7_net.Bf16Forward` and `PolicyNet` (`3b37f15`): with `BRIDGE_NET_BF16=1` and torch installed, the suit-shared
+   nets' products run in bf16 (oneDNN, AVX512_BF16 on these Zen 4 boxes): 1.8x the fp32 forward, first card unchanged
+   on 99.7% of held-out rows, tricks given up against the rollouts' values unchanged. Off by default; the loop sets it
+   for collection runs only (`~/work/loop/BF16`, runs named `sp*`); every measurement run stays fp32.
+3. `gen6_nets.FitScorer.shared`, used by `Gen6Player` (`57eb87c`): one hand-fit scorer per process for every player,
+   so both sides of a table share its memory of scored hand types (same numbers: cards replay exactly). It has the same
+   opt-in bf16 path (1.7x; layout weights move by 0.03% total variation). Its type cache now keeps 64 keys, not 16.
+
+int8 (torch dynamic quantization, one weight scale per output column) is 3.0x fp32 on the rollout net but moves the
+first card on 2.9% of rows and the tricks given up from 0.0231 to 0.0235; not used. Benchmarks in
+`training/rollout-loop-20261113/bench/`.
+
+**Five boxes** (azure1, 2, 3, 5, 6) make about 6,400 tables an hour; 14,087 tables at 20:32 UTC. Round 3 trains at
+about 23:00 UTC on 30,000.
