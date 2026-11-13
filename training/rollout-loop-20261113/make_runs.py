@@ -79,7 +79,8 @@ def run(name, box, pair, seed, first, deals, records, note=''):
 def main():
     runs = [run(**r) for r in STATIC]
     for box, jobs in (('azure5', 'jobs-azure5.txt'), ('azure5', 'jobs-azure5b.txt'), ('azure3', 'jobs-azure3.txt'),
-                      ('azure6', 'jobs-azure6.txt'), ('azure6', 'jobs-azure6b.txt')):
+                      ('azure6', 'jobs-azure6.txt'), ('azure6', 'jobs-azure6b.txt'), ('azure5', 'jobs-azure5-r2.txt'),
+                      ('azure6', 'jobs-azure6-r2.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             if not line.strip() or line.startswith('#'):
                 continue

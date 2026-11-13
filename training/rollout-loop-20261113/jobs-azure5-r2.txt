@@ -1,0 +1,8 @@
+# Round 2's rungs on azure5 (the collection is paused for them): pure Stu with round 2's net, against Gen 8 card play on
+# the gate's deals 500 to 699, where l0b-p (pure Stu with v2) is the reference on this box's branch.
+#   l2b-p    round 2's net in the rollouts
+#   l2b-pv   the same, the simulated seats playing by the net's value head (seat blend)
+#   l0b-pv   the control for l2b-pv: v2 with the same seats
+l2b-p stu2-p~8p-32-v41 131 500 200 8 --episodes
+l2b-pv stu2-pv~8p-32-v41 131 500 200 8 --episodes
+l0b-pv stu0-pv~8p-32-v41 131 500 200 8 --episodes

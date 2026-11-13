@@ -33,6 +33,7 @@ parameters"):
   stu0-pra, stu0-prb    stu0-pr under two ids, for self-play
   stu0-pt           stu0-p with rollout net v2 at the table as well (its lead, its first choices, its reading of the play),
                     in place of policy v4.1: the control for stu2-pt
+  stu0-pv           stu0-p whose simulated seats play by rollout net v2's value head (`seat: blend`): the control for stu2-pv
 Round 2 (PLAN.md): round 1's net with every weight trained on pure Stu's games, its rows named `stup0`:
   stu2-p            pure Stu with that net in the rollouts, told its own side is stup0 and Gen 8 card play is 8s-32
   stu2-pr           the same with the opening lead rolled out
@@ -76,7 +77,7 @@ RUNGS = ['-b50', '-r6', '-r3', '-p']
 STU1 = ['stu1a', 'stu1b']
 FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
-          + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv'])   # every bot that claims and mixes as Stu does
+          + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben'}      # against BEN the net is told so (v2 knows both from BEN's own cards); no other match changes
@@ -177,6 +178,9 @@ def main():
     # Round 2: pure Stu with round 2's net, and the control with v2 at the table.
     bots['stu0-pt'] = dict(copy.deepcopy(bots['stu0-p']), gen7_policy=V2,
                            label='Stu round 0 ladder: pure, with rollout net v2 at the table as well (its lead, first choices and reading of the play)')
+    bots['stu0-pv'] = copy.deepcopy(bots['stu0-p'])
+    bots['stu0-pv']['label'] = "Stu round 0 ladder: pure, the simulated seats playing by rollout net v2's value head (seat blend) in place of a draw"
+    bots['stu0-pv']['x8']['stages'] = [dict(st, seat='blend') for st in bots['stu0-pv']['x8']['stages']]
     for name, base, change in (('stu2-p', 'stu0-p', {}), ('stu2-pr', 'stu0-pr', {}), ('stu2-pt', 'stu0-p', {'gen7_policy': R2}),
                                ('stu2-pv', 'stu0-p', {})):
         b = dict(copy.deepcopy(bots[base]), rollout_policy=R2, **change)
