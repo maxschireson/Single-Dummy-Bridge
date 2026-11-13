@@ -133,7 +133,6 @@ Generated 2026-11-13 01:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 574.9 | 11-13 01:12 | `transfer/gen9-e9-0-n02e-azure4-20261112@7f3f8e088` |
-| e9-0-n04 | E9-0 | g9 | 2 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-16-h-v-p | E9-16 | g9 | 3 | 4 | cancelled | 0 of 800 |  |  |  |
@@ -146,6 +145,7 @@ Generated 2026-11-13 01:16 UTC by `tools/workq.py` after a change by `g9`. Do no
 | e9-0-n02d | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-0-n02f | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-0-n02l | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
+| e9-0-n04 | E9-0 | g9 | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-11-p7 | E9-11 | bill | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-11-r7 | E9-11 | bill | 5 | 4 | cancelled | 0 of 800 |  |  |  |
 | e9-11-r8 | E9-11 | bill | 5 | 4 | cancelled | 0 of 1,600 |  |  |  |
