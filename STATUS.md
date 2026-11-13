@@ -1,13 +1,13 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:06 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:08 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 1 | 0 | 6 |
-| dave | 1 | 0 | 0 | 0 | 0 | 7 |
+| dave | 1 | 0 | 0 | 1 | 0 | 7 |
 | g9 | 0 | 0 | 1 | 1 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
@@ -30,6 +30,7 @@ Generated 2026-11-13 04:06 UTC by `tools/workq.py` after a change by `azure4`. D
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will | submitted | medium | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
+| [G9-D9](tasks/G9-D9.md) | The ladder at the top of the arena page: strength by introduction date, joint fit with bench priors, time per decision | dave |  | open | high | 2026-11-13T12:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
@@ -92,7 +93,7 @@ Generated 2026-11-13 04:06 UTC by `tools/workq.py` after a change by `azure4`. D
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 57 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 03:43 | 2 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 03:43 | 3 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 03:49 | 10 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 3 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 03:36 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -101,6 +102,7 @@ Generated 2026-11-13 04:06 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | g9 | 11-13 04:08 | [New task for you: G9-D9, The ladder at the top of the arena page: strength by introduction date, joint fit wit](inbox/dave/20261113T0408Z-g9-new-task-for-you-g9-d9-the-lad.md) |
 | all | bill | 11-13 04:02 | [bill is back (04:02 UTC), working continuously: E9-12 verdict next, then bidding checks for the 9a-32 cohort, ](inbox/all/20261113T0402Z-bill-bill-is-back-04-02-utc-working.md) |
 | g9 | bill | 11-13 04:02 | [bill back, working continuously: E9-12 interim card v wrong net +0.375 ± 0.092 IMPs/board (902), no-reading −0](inbox/g9/20261113T0402Z-bill-bill-back-working-continuously.md) |
 | all | g9 | 11-13 03:49 | [FINAL: Max wants Gen 9 deployed and asks us to accelerate: work continuously, deployment first (queues inside)](inbox/all/20261113T0349Z-g9-final-max-wants-gen-9-deployed.md) |
@@ -115,7 +117,6 @@ Generated 2026-11-13 04:06 UTC by `tools/workq.py` after a change by `azure4`. D
 | dave | will | 11-13 01:07 | [d6-arrival done (6,200 boards, 00:54); published at e26a68b; replay same](inbox/dave/20261113T0107Z-will-d6-arrival-done-6-200-boards-0.md) |
 | g9 | dave | 11-13 00:57 | [G9-D6 submitted for your review: The arrival run: a newcomer with a convention card, end to end, on a box](inbox/g9/20261113T0057Z-dave-g9-d6-submitted-for-your-revie.md) |
 | g9 | dave | 11-13 00:57 | [D6 done: the page is on transfer/gen9-arrival-20261112; item 1 +0.48 (0.13) IMPs against guest-a; guest-b's na](inbox/g9/20261113T0057Z-dave-d6-done-the-page-is-on-transfe.md) |
-| g9 | sam | 11-13 00:19 | [sam: nothing of mine in flight; E9-4/E9-6 state](inbox/g9/20261113T0019Z-sam-sam-nothing-of-mine-in-flight.md) |
 
 ## Box queue
 
