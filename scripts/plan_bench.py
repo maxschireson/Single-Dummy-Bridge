@@ -78,7 +78,13 @@ def imp_gap(o, weights, a_tricks, b_tricks):
 def start(nets, sims, from_trick, to_trick, ties, seed, layouts=0, max_gap=99.):
     os.environ['BRIDGE_DDS_CACHE'] = ''
     six = player(check.spec('gen6'), ROOT)
-    STATE.update(six=six, nets={k: PolicyNet(Path(v).resolve(), six.scorer) for k, v in nets.items()}, sims=sims,
+    loaded = {}
+    for k, v in nets.items():              # name=path, or name=path@own:other for a rollout net told who plays (both sides)
+        path, _, who = v.partition('@')
+        loaded[k] = PolicyNet(Path(path).resolve(), six.scorer)
+        if who:
+            loaded[k].who = tuple((who.split(':') + [''])[:2])
+    STATE.update(six=six, nets=loaded, sims=sims,
                  from_trick=from_trick, to_trick=to_trick, ties=ties, seed=seed, layouts=layouts, max_gap=max_gap)
 
 
@@ -192,7 +198,7 @@ def pairs_of(path):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--episodes', type=Path, required=True, help='a folder of *.json.gz, or a text file listing them')
-    p.add_argument('--nets', required=True, help='name=path,name=path')
+    p.add_argument('--nets', required=True, help='name=path,name=path; a rollout net may add @own:other (its bot names for the deciding side and the other)')
     p.add_argument('--sims', required=True, help='NET:MODE[:repeats[:tricks]];...  modes: top, blend, draw (the net plays); map, bdraw, map3 (the solver plays the '
                                                  "believed layout); own, own4 (as map, but the decider's side plays for the likeliest of its own layouts that still fits)")
     p.add_argument('--from-trick', type=int, default=3)
