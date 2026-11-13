@@ -77,9 +77,24 @@ What this says and does not say:
 The bots are `n-v41`, `n-v4`, `r7-v41`, `r7x-v4`, `r7x-v0`, `r7f-v4`, `r3-v41` in `configs/loop-bots.json`. The
 sandbox's match rows are on `transfer/rollout-loop-sandbox-20261113`.
 
+## Round 1's rows and trainer (in this branch, tested on six recorded boards)
+
+- `scripts/gen7_build_dataset.py --rollout-gap --alias stu0a=stu0,stu0b=stu0,z0a-v2=stu0,z0b-v2=stu0 --policy-only`
+  turns Stu's records into rows. A decision made by rollouts alone gets, for each candidate and the cards touching
+  it, its deficit to the best candidate in the deciding side's tricks: paired layout by layout where the record has
+  the per-layout results, else the difference of the means. The row's other legal cards were not rolled out and
+  are marked -1. Search decisions (tricks 1 to 2) and blend decisions (tricks 3 to 6) keep the search's gap as for
+  any search bot; claims and forced choices are policy rows. Checked against the engine's own functions on the six
+  preflight boards (502 rows, 162 of them rollout rows; largest difference 0.001, the float16 rounding).
+- `scripts/train_rollout_net.py` leaves the -1 cards out of the gap loss and scores regret on rated cards only
+  (`rated_pick` is the share of rows where the net's own card is one the bot rated). `--init-as stu0=8s-32` starts
+  Stu's two vectors from those of the bot round 0's rollouts were told to expect.
+- Tests: `tests/test_loop_dataset.py`.
+- The card target is the card played. Where the declarer mixed equal cards the record also has the probabilities;
+  using them as a soft target is not done (the played card is an unbiased sample of the same target).
+
 ## Not yet done
 
-- The trainer's per-card value target (rollout means of the candidates only, so a per-card mask) and the soft card
-  target from the bot's own probabilities.
-- The dataset builder reading `x8_match.py --episodes` records.
-- The control at ten times the deals, and the gate against `8p-32-v41`.
+- Round 1's set: Stu's rows joined to v2's, and the training run.
+- The gate against `8p-32-v41` (its baseline is queued on azure3 behind the collection) and the control at ten times
+  the deals.

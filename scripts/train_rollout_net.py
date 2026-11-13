@@ -12,10 +12,14 @@ What differs from scripts/train_gen7_policy.py (the v4.1 run's trainer, copied w
   by unknown, so that the unknown row learns a generic player. The net is saved with `bot_vocab`.
 - Rows without the search's gap (has_gap 0: BEN, the net's own cards, any bot without a search) count for the
   policy, owner and tricks heads but not the gap head, and are left out of the regret scores.
+- A legal card whose gap is -1 has no gap (an 8X rollout decision rates its candidates only; scripts/gen7_build_dataset.py
+  --rollout-gap): it is left out of the gap loss, and the regret scores count rated cards only (`rated_pick`: the
+  share of rows where the net's own card is one the bot rated; `regret` is over those rows).
 - Scores also by bot (the deciding side's), from trick 7 on, and with both ids blanked (`who_use`); --compare
   scores other nets on the same held-out rows. Held-out sets are matched to the training set's bots by name.
 - --init loads every weight of the given net that this net has; the bot vectors may be missing (they stay zero),
-  and a net with another list of bots gives each bot's vectors by name.
+  and a net with another list of bots gives each bot's vectors by name. --init-as NEW=OLD[,...] starts a bot the
+  --init net lacks from the vectors of one it has (a new bot built on an old one's play).
 - A set built with --labels (scripts/gen7_build_dataset.py; it carries `sid`) trains a student of the exact line
   finder (experiments/sid_loop/SPEC.md, Part B): per card and target the outputs guar, cert and single, and
   tricks14 from the trunk (bridge_harness.gen7_net.forward). Their losses are binary cross-entropy averaged over
@@ -68,7 +72,7 @@ KINDS = {'mlp': 0, 'suit': 1}
 PHASES = ('lead', 'tricks 1-4', 'tricks 5-8', 'tricks 9-13')
 PERMS = np.array(list(permutations(range(4))), np.int64)        # PERMS[0] is the identity
 CARD_KEYS = ('state', 'order', 'legal', 'gap', 'owner')
-REGRET = ('in_best', 'regret', 'regret_gap_head', 'regret_random', 'regret_lowest', 'tie_nll')
+REGRET = ('in_best', 'regret', 'regret_gap_head', 'regret_random', 'regret_lowest', 'tie_nll', 'rated_pick')
 
 
 def match_bots(meta, names, vocab):
@@ -241,18 +245,22 @@ def evaluate(predict, data, index, batch=4096, blank=False):
     chosen, n = meta[:, 0], len(index)
     rows = np.arange(n)
     pick = logp.argmax(1)
-    pick_q = np.where(legal, gap_hat, 1e9).argmin(1)
-    tied = legal & (gap <= 1e-9)
+    rated = legal.astype(bool) & (gap >= 0)                     # -1: a legal card the bot's rollouts did not rate
+    pick_q = np.where(rated, gap_hat, 1e9).argmin(1)
+    tied = rated & (gap <= 1e-9)
     lowest = legal.argmax(1)                                    # the lowest spade, else heart, ...: a fixed dumb rule
-    cols = dict(nll=-logp[rows, chosen], uniform_nll=np.log(legal.sum(1)), tie_nll=np.log(tied.sum(1)),
-                agree=pick == chosen, in_best=tied[rows, pick], regret=gap[rows, pick], regret_gap_head=gap[rows, pick_q],
-                regret_random=(gap * legal).sum(1) / legal.sum(1), regret_lowest=gap[rows, lowest])
+    cols = dict(nll=-logp[rows, chosen], uniform_nll=np.log(legal.sum(1)), tie_nll=np.log(np.maximum(tied.sum(1), 1)),
+                agree=pick == chosen, in_best=tied[rows, pick], rated_pick=rated[rows, pick],
+                regret=np.where(rated[rows, pick], gap[rows, pick], np.nan), regret_gap_head=gap[rows, pick_q],
+                regret_random=(gap * rated).sum(1) / np.maximum(rated.sum(1), 1),
+                regret_lowest=np.where(rated[rows, lowest], gap[rows, lowest], np.nan))
     searched = meta[:, 10] == 1
     def summary(mask):
         out = dict(n=int(mask.sum()), searched=int((mask & searched).sum()))
         for k, v in cols.items():
-            m = mask & searched if k in REGRET else mask
-            out[k] = round(float(v[m].mean()), 4) if m.any() else None
+            x = np.asarray(v[mask & searched if k in REGRET else mask], np.float64)
+            x = x[~np.isnan(x)]
+            out[k] = round(float(x.mean()), 4) if len(x) else None
         return out
     phase = phase_of(meta[:, 3])
     declaring = meta[:, 6] < 2
@@ -340,6 +348,7 @@ def main():
     p.add_argument('--all-train', action='store_true', help='train on every deal of --data, whatever its split (needs --val-data)')
     p.add_argument('--val-data', type=Path, help='held-out rows come from this set (all of its rows) instead of split 1 of --data')
     p.add_argument('--init', type=Path, help='start from the weights of this net (same kind and width; bot vectors may be missing)')
+    p.add_argument('--init-as', default='', help='NEW=OLD[,NEW=OLD...]: a bot the --init net lacks starts from the vectors of one it has')
     p.add_argument('--id-dropout', type=float, default=.15, help='share of training rows whose each bot id is read as unknown')
     p.add_argument('--compare', type=Path, action='append', default=[], help='also score this net on the same held-out rows')
     p.add_argument('--sid-weight', type=float, default=1., help='weight of each label-head loss (guar, cert, single, tricks14) when the set has labels')
@@ -383,6 +392,9 @@ def main():
     rng = np.random.default_rng(a.seed)
     start = init(kind, rng, a.width, len(vocab), sid)
     kept = {}
+    init_as = dict(x.split('=', 1) for x in a.init_as.split(',') if x)
+    if init_as and not a.init:
+        p.error('--init-as needs --init')
     if a.init:
         with np.load(a.init) as f:
             loaded = {k: f[k].astype(np.float32) for k in f.files if k in start}
@@ -397,8 +409,9 @@ def main():
                 if k in loaded:
                     table = np.zeros_like(start[k])
                     for i, name in enumerate(vocab):
-                        if name in theirs:
-                            table[i] = loaded[k][theirs.index(name)]
+                        source = name if name in theirs else init_as.get(name)
+                        if source in theirs:
+                            table[i] = loaded[k][theirs.index(source)]
                     loaded[k] = table
         if not same_kind or any((k not in loaded and not k.startswith('emb_') and k not in SID_NEW) or (k in loaded and loaded[k].shape != v.shape)
                                 for k, v in start.items()):
@@ -416,7 +429,7 @@ def main():
         rows = jnp.arange(n)
         logp = jax.nn.log_softmax(out['policy'])
         ce = -logp[rows, b['card']].mean()
-        legal = b['legal'].astype(jnp.float32) * b['has_gap'][:, None]
+        legal = b['legal'].astype(jnp.float32) * b['has_gap'][:, None] * (b['gap'] >= 0)       # -1: a card with no gap
         target = jnp.clip(b['gap'].astype(jnp.float32), 0., 3.)
         gap = (optax.huber_loss(out['gap'], target, delta=1.) * legal).sum() / jnp.maximum(legal.sum(), 1.)
         seen = b['owner'] < 0
