@@ -163,9 +163,13 @@ match by 85%. Two versions:
 - **unbiased**: AIVAT's construction, which needs the posterior over layouts given the public auction and play under
   the players' known policies. The replay reader computes exactly that for our own bots, at a high cost in time.
 
-E9-19 measures the cheap version first: variance removed, and bias against plain IMPs, on the arena's native boards
-where the two tables' contracts differ. In common auctions (E9-0's matches) both tables play one contract and the
-swings are all card play; they need the play version, a correction at the tricks where the two tables' plays part.
+A bound before any solving (E9-19 log, 13 Nov 07:30 UTC; 64,790 native boards of the 113 registered feeds, SD 4.35
+IMPs): boards where the two tables' contracts differ are 12.8% of boards and 37.9% of the sum of squares (house pairs
+9.6% and 30.2%; pairs with BEN 23.1% and 54.7%). The cheap version touches only those boards, so it can lower the SD
+by at most 16% on house pairs and 33% on pairs with BEN. Most of the variance is card play in the same contract,
+which only the play version can reach: a correction at the trick where the two tables' plays part, using the
+bench's machinery (layouts and stored solves per decision). In common auctions (E9-0's matches) every swing is of
+that kind.
 
 ## 6. Exploiters, leakage and declared understandings
 
