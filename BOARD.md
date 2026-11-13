@@ -4277,3 +4277,41 @@ the build's marker went to the wrong name and the next stage refused to start (1
 **Held-out boards:** 4,000 episodes that reached the feeds after v2's tips, all Gen 8 (`arena-gen8-*`: 1,418,
 `-19bbdce5` 1,047, `-candidate` 1,016, `-m1` 215, `-p2` 153, `-f` 151), labelled in full (every card): 2,156,241 rows,
 0 failed. Deals in the training set are dropped before scoring. **azure6 release now about 15:15 UTC.**
+
+### 2026-11-13 12:47 UTC, loop
+
+**Pure Stu is inside the bar at 1,000 deals; the rolled-out lead is level with the net's at 200; the collection is
+running with one table a board and rolled-out leads.** Source `25d4dd0`. sidnet: read, thanks; v2's set plus `sid` is
+what the joint net needs later.
+
+Against `8p-32-v41`, seed 131, IMPs a board (rows 12:42 UTC):
+
+| | deals | result |
+| --- | --- | --- |
+| Stu's own stages (`l0-stu0`, `l0b-stu0`) | 1,000 | -0.42 +- 0.10 |
+| Pure Stu (`l0-p`, `l0b-p`) | 1,000 | -0.65 +- 0.14 |
+| Pure minus Stu's own stages, by deal | 1,000 | -0.22 +- 0.17 |
+| Pure Stu with the lead rolled out (`l0-pr`) | 200 | -0.56 +- 0.30 |
+| Rolled-out lead minus the net's lead, by deal | 200 | -0.01 +- 0.22 |
+
+- The two halves of the first comparison disagree (+0.08 +- 0.26 on deals 0 to 499 from azure3, -0.53 +- 0.23 on 500
+  to 999 from azure5). 64 of azure3's boards replayed on azure5 gave the same IMPs on all 64 and the same decision
+  counts on 63 (run `x0-p`), so it is the deals and not the boxes.
+- The rolled-out lead is a different card from the net's first choice in 63% of hands (126 of 199); the board's
+  result differs on 59 of 200, 31 better and 28 worse. The searched lead (`l0-pl`) has 43 deals.
+- **Collection:** `sp0` (pure Stu, the net's lead, one table a board) played 87 boards from 12:37; since 12:43 azure5
+  plays `spr0` (`stu0-pra~stu0-prb`, the lead rolled out, one table a board, deals from 100,000): 46.5 CPU-s a table,
+  about 620 tables an hour. A net that leads its own first choice teaches itself nothing about leads; these records
+  give every lead a value. Max is told and can reverse it.
+- **Fusion ledger** (`training/rollout-loop-20261113/fusion_ledger.py`, README section of that name): from any run's
+  records, with no opponent in the count, how often in the last seven tricks a card gives up a contract the declaring
+  side held guaranteed (the exact solver), and how often a defender's card leaves declarer holding one when another
+  would not. All ladder runs pooled at 12:08 UTC: Gen 8 card play gives one up at 81 of 6,818 such decisions in games,
+  slams and doubled contracts and 55 of 3,793 in partscores, about once in 13 hands it declares; Stu 0 of 5,474 where
+  its rule applies (which checks the count against the engine), and in partscores 12 of 983 (own stages) and 7 of 990
+  (pure). It counts playing for an overtrick at the contract's risk too, so it is not fusion alone.
+  **stu-dash:** `ledger/ledger.json` and `ledger/ledger.txt` on azure3's transfer branch, rewritten every half hour
+  (by run, bot and contract class; the keys are in the script's docstring). `runs.json` at `25d4dd0` has `spr0`,
+  `spr0b`, `sp0` (collection, `tables_a_board: 1`) and round 1's rungs as a 200-deal first pass (`passes`).
+- azure3 next: `l0-pl` to 200 (about 13:00), round 1's net inside Stu, inside pure Stu and alone at 200 deals each
+  (about 13:40), the two lead rungs to 500 (about 14:55).
