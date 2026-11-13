@@ -1,0 +1,20 @@
+data in memory 0.67 GB, 1434377 examples
+19157 training deals, 1434377 training examples, 129293 held-out examples from val.npz (293 deals)
+{"epoch": 0, "val": {"n": 129293, "searched": 105549, "nll": 0.5357, "uniform_nll": 1.2756, "tie_nll": 0.7679, "agree": 0.7789, "in_best": 0.9094, "rated_pick": 0.9998, "regret": 0.0233, "regret_gap_head": 0.0214, "regret_random": 0.2053, "regret_lowest": 0.2256}, "select": {"bot": "stup0", "key": "nll", "value": 1.0651, "rest_nll": 0.5093}}
+epoch 1 step 2000 of 5603, 56 s
+epoch 1 step 4000 of 5603, 106 s
+{"epoch": 1, "seconds": 151, "train_ce": 0.7311, "train_gap": 0.0293, "train_owner": 0.582, "val": {"n": 129293, "searched": 105549, "nll": 0.5429, "uniform_nll": 1.2756, "tie_nll": 0.7679, "agree": 0.774, "in_best": 0.9085, "rated_pick": 0.9997, "regret": 0.0234, "regret_gap_head": 0.0221, "regret_random": 0.2053, "regret_lowest": 0.2256}, "temperature": {"t": 1.03, "nll": 0.5427, "nll_at_1": 0.5429}}
+{"epoch": 1, "select": {"bot": "stup0", "key": "nll", "value": 0.9492, "rest_nll": 0.5226, "within": true}}
+epoch 2 step 2000 of 5603, 216 s
+epoch 2 step 4000 of 5603, 266 s
+{"epoch": 2, "seconds": 310, "train_ce": 0.7044, "train_gap": 0.0286, "train_owner": 0.5805, "val": {"n": 129293, "searched": 105549, "nll": 0.5442, "uniform_nll": 1.2756, "tie_nll": 0.7679, "agree": 0.7741, "in_best": 0.9072, "rated_pick": 0.9997, "regret": 0.024, "regret_gap_head": 0.0227, "regret_random": 0.2053, "regret_lowest": 0.2256}, "temperature": {"t": 1.06, "nll": 0.5435, "nll_at_1": 0.5442}}
+{"epoch": 2, "select": {"bot": "stup0", "key": "nll", "value": 0.9394, "rest_nll": 0.5245, "within": true}}
+epoch 3 step 2000 of 5603, 374 s
+epoch 3 step 4000 of 5603, 424 s
+{"epoch": 3, "seconds": 478, "train_ce": 0.693, "train_gap": 0.0282, "train_owner": 0.5799, "val": {"n": 129293, "searched": 105549, "nll": 0.545, "uniform_nll": 1.2756, "tie_nll": 0.7679, "agree": 0.774, "in_best": 0.9075, "rated_pick": 0.9997, "regret": 0.024, "regret_gap_head": 0.0223, "regret_random": 0.2053, "regret_lowest": 0.2256}, "temperature": {"t": 1.08, "nll": 0.5438, "nll_at_1": 0.545}}
+{"epoch": 3, "select": {"bot": "stup0", "key": "nll", "value": 0.9358, "rest_nll": 0.5255, "within": true}}
+epoch 4 step 2000 of 5603, 521 s
+epoch 4 step 4000 of 5603, 570 s
+{"epoch": 4, "seconds": 623, "train_ce": 0.6877, "train_gap": 0.028, "train_owner": 0.5796, "val": {"n": 129293, "searched": 105549, "nll": 0.5452, "uniform_nll": 1.2756, "tie_nll": 0.7679, "agree": 0.774, "in_best": 0.9076, "rated_pick": 0.9997, "regret": 0.024, "regret_gap_head": 0.0219, "regret_random": 0.2053, "regret_lowest": 0.2256}, "temperature": {"t": 1.08, "nll": 0.5439, "nll_at_1": 0.5452}}
+{"epoch": 4, "select": {"bot": "stup0", "key": "nll", "value": 0.9355, "rest_nll": 0.5257, "within": true}}
+{"done": "/home/bridgebots/work/loop/r3a/net", "selected_epoch": 4, "validation": {"n": 129293, "searched": 105549, "nll": 0.5452, "uniform_nll": 1.2756, "tie_nll": 0.7679, "agree": 0.774, "in_best": 0.9076, "rated_pick": 0.9997, "regret": 0.024, "regret_gap_head": 0.0219, "regret_random": 0.2053, "regret_lowest": 0.2256}, "parity": 3.814697265625e-06, "auction_use": {"real": {"nll": 0.5452, "agree": 0.774, "regret": 0.024}, "blank": {"nll": 5.6506, "agree": 0.6009, "regret": 0.0907}, "another_deals": {"nll": 0.5794, "agree": 0.7611, "regret": 0.0289}, "blank_calls_only": {"nll": 0.5458, "agree": 0.7734, "regret": 0.0243}, "blank_shown_only": {"nll": 4.7465, "agree": 0.613, "regret": 0.0873}}, "auction_use_lead": {"real": {"nll": 1.4457, "agree": 0.5158, "regret": 0.0535}, "blank": {"nll": 15.1207, "agree": 0.2769, "regret": 0.1683}, "another_deals": {"nll": 1.9527, "agree": 0.4114, "regret": 0.1036}, "blank_calls_only": {"nll": 1.4464, "agree": 0.519, "regret": 0.0527}, "blank_shown_only": {"nll": 13.6048, "agree": 0.269, "regret": 0.1565}}}
