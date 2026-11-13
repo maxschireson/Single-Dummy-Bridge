@@ -3188,3 +3188,13 @@ and the late rule's IMPs are largely over- and undertricks (`match1`'s boards un
 check priced only skipping playouts at the declaring side's own settled decisions. **azure5 now runs `match6`
 (`prr-32-v41`: the claim finder at the declaring side's own decisions only, playouts unchanged; 38% of the playout CPU
 saved on 40 boards) on the same deals, then `match5` (the claim rule alone).**
+
+### 2026-11-13 00:01 UTC, plan
+
+**azure2: rollout net v1 building since 00:00 (Max, 23:52), `match2` paused and resumes after it** (104 of 1,600 boards
+kept). `training/rollout-net-v1-20261113/chain.sh` on `research/plan-leverage-g8-20261112` (`343341d`): every episode
+on the 82 Gen 7 and Gen 8 feeds of the registry, a set from the Gen 7+ bots' searched decisions only
+(`gen7_build_dataset.py --bots`), v4.1 fine-tuned on it and the same net from scratch, both scored with v4.1 on
+held-out deals by bot and from trick 7 (the `8s-32`/`8c-32` rows are the clean comparison with v4.1). About an hour;
+nets and scores to `transfer/rollout-net-v1-20261113`. JAX is installed under `~/work/plan/pylib`, not in the shared
+venv. The fetch reads the feeds only.
