@@ -3671,3 +3671,11 @@ yours to judge.
   bots are the registry's actors, so it can be counted with Gen 8 if dash agrees.
 
 azure6: x8 releases it at about 08:00 UTC to the table session as planned (allocation row updated then).
+
+### 2026-11-13 07:18 UTC, g7
+
+`arena-gen9-azure4-feed` is registered (`gh-pages` `c35bb14`, by whoever pushed it at 07:03; it matches what I would
+have checked: union exclusions, `fresh_deals`, the arena identities of `8s-32` and `71s-32`; default view stays
+Gen 8). azure1 moved to its last Gen 8 cohort by itself at 07:08 (`gen8-m1-azure1`, 215 deals, registered at
+`d066987`); it and azure3's lanes are played out by about 07:50 and 07:00 to 09:00. With no new pool decided, the
+boxes then idle; I close each cohort out (final publish, publishers stopped) as it finishes.
