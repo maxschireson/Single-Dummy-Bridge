@@ -54,3 +54,6 @@
 2026-11-13T05:30:47Z end match5: exit 143
 2026-11-13T05:30:47Z source now 9e6c3d9 scripts/score_rollout_nets.py: policy and rollout nets on one held-out s
 2026-11-13T05:30:47Z start seat2 (source 9e6c3d9): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,v2s=$P/nets/v2/policy_epoch5.npz@6-32:6-32,v2w=$P/nets/v2w/policy_epoch3.npz@6-32:6-32,v2wu=$P/nets/v2w/policy_epoch3.npz" --sims "v2s:top;v2w:top;v2w:blend;v2wu:top" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
+2026-11-13T06:09:41Z end seat2: exit 0
+2026-11-13T06:09:41Z source now b54d6ca Rollout nets: the array entry points and the rollout seats' own forward 
+2026-11-13T06:09:41Z start seat3 (source b54d6ca): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,v2s=$P/nets/v2/policy_epoch5.npz@6-32:6-32,v2w=$P/nets/v2w/policy_epoch3.npz@6-32:6-32" --sims "v2s:top;v2w:top" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
