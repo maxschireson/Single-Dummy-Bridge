@@ -1,0 +1,5 @@
+# azure6, borrowed for the collection from 15:25 UTC on 13 November (the table session may take the box at any time:
+# the board's allocation row says how). Pure Stu against itself, one table a board, the same split as azure5: this
+# file's run with the net's own lead on six workers (training deals from 140,000), jobs-azure6b.txt's with the lead
+# rolled out on two (unit loop-collect-b).
+sp0c stu0-pa~stu0-pb 9001 140000 20000 6 --episodes --one-room

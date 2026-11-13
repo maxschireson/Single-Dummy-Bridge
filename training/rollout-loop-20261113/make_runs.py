@@ -14,7 +14,7 @@ import re
 
 HERE = Path(__file__).resolve().parent
 BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transfer/rollout-loop-azure5-20261113',
-            'sandbox': 'transfer/rollout-loop-sandbox-20261113'}
+            'sandbox': 'transfer/rollout-loop-sandbox-20261113', 'azure6': 'transfer/rollout-loop-azure6-20261113'}
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
@@ -78,7 +78,8 @@ def run(name, box, pair, seed, first, deals, records, note=''):
 
 def main():
     runs = [run(**r) for r in STATIC]
-    for box, jobs in (('azure5', 'jobs-azure5.txt'), ('azure5', 'jobs-azure5b.txt'), ('azure3', 'jobs-azure3.txt')):
+    for box, jobs in (('azure5', 'jobs-azure5.txt'), ('azure5', 'jobs-azure5b.txt'), ('azure3', 'jobs-azure3.txt'),
+                      ('azure6', 'jobs-azure6.txt'), ('azure6', 'jobs-azure6b.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             if not line.strip() or line.startswith('#'):
                 continue

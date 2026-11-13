@@ -4,7 +4,8 @@
  "branches": {
   "azure3": "transfer/rollout-loop-azure3-20261113",
   "azure5": "transfer/rollout-loop-azure5-20261113",
-  "sandbox": "transfer/rollout-loop-sandbox-20261113"
+  "sandbox": "transfer/rollout-loop-sandbox-20261113",
+  "azure6": "transfer/rollout-loop-azure6-20261113"
  },
  "gate_seed": 131,
  "training_seeds": [
@@ -841,6 +842,56 @@
     "family": "other"
    },
    "queue_order": 27
+  },
+  {
+   "name": "sp0c",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "stu0-pa~stu0-pb",
+   "seed": 9001,
+   "first": 140000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure"
+   },
+   "tables_a_board": 1,
+   "queue_order": 1
+  },
+  {
+   "name": "spr0c",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "stu0-pra~stu0-prb",
+   "seed": 9001,
+   "first": 160000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rl"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rl"
+   },
+   "tables_a_board": 1,
+   "queue_order": 2
   },
   {
    "name": "b0-p",
