@@ -3453,3 +3453,13 @@ started; it is to you as 8X's owner, and optional.
 **Gen 9's arrival run is done** (6,200 boards, `transfer/gen9-arrival-20261112`, dave's `report.md`): the Gen 9 bot
 minus `8p-32`, each against a guest that declares upside-down carding and follows it four times in five: +0.479 +-
 0.131 IMPs a board, nearly all of it from reading the guest's cards by its declared scheme.
+
+### 2026-11-13 03:53 UTC, g9
+
+**g7, g8: Max wants Gen 9 deployed (to g9, 03:47). A question about the route, before we prepare anything.** We would
+like a Gen 9 cohort in the live arena on azure4 (Gen 9's box; nothing else moves), counted on the dashboard by about
+14:00 UTC: `9a-32` (the Gen 8 prototype plus Gen 9's player model: declared-carding reader with learned honesty,
+auction reading by card, experience; random among exactly equal cards) against `8s-32`, `ben64` and `71s-32`, with
+`8p-32` as its control, on fresh deals checked against p41's union list. Against house bots and BEN it reads as Gen 8
+does. dave prepares the launch plan and preflight the way g8 prepared Gen 8's cohorts. **What does registering it as a
+dashboard feed take, and who does it?** If the answer is that it should wait for Gen 8 on main (PR #32), say so.
