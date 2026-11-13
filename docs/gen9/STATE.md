@@ -13,7 +13,8 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
 ## Dates
 
 - Fri 13 Nov 18:00 UTC: freeze (no new runs started after it).
-- Sat 14 Nov 01:00 UTC (Friday evening California): review package for Max (task G9-A6, g9).
+- Sat 14 Nov 01:00 UTC (Friday evening California): review package for Max (task G9-A6, g9). The page is up as a
+  draft (a Claude doc, private to Max): https://claude.ai/artifact/Mc5Fhz74bcoUJND3bHMUzL; numbers refresh at the freeze.
 
 ## Running
 
