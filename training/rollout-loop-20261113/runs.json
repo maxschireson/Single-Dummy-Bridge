@@ -18,6 +18,8 @@
   "pure": "the net's opening lead, rollouts alone from the second card on; no double dummy",
   "pure-sl": "pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on",
   "pure-rl": "pure with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on",
+  "pure-t": "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
+  "pure-v": "pure, the rollouts' simulated seats playing by the net's value head (seat blend) in place of a draw from its probabilities",
   "net": "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"
  },
  "rounds": {

@@ -31,6 +31,15 @@ parameters"):
                     dropped on the way; the seats are drawn from the net as at every other trick. The record keeps all 512
                     layouts with every lead's result in each.
   stu0-pra, stu0-prb    stu0-pr under two ids, for self-play
+  stu0-pt           stu0-p with rollout net v2 at the table as well (its lead, its first choices, its reading of the play),
+                    in place of policy v4.1: the control for stu2-pt
+Round 2 (PLAN.md): round 1's net with every weight trained on pure Stu's games, its rows named `stup0`:
+  stu2-p            pure Stu with that net in the rollouts, told its own side is stup0 and Gen 8 card play is 8s-32
+  stu2-pr           the same with the opening lead rolled out
+  stu2-pt           stu2-p with that net at the table as well: what it learned of leads and first choices shows here
+  stu2-pv           stu2-p whose simulated seats play the card with the best log-probability minus ten times the net's
+                    value head (`seat: blend`), where round 0's draw from its probabilities: the rollout values put to use
+  stu2-n            that net alone
 The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
 names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
   stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
@@ -67,11 +76,13 @@ RUNGS = ['-b50', '-r6', '-r3', '-p']
 STU1 = ['stu1a', 'stu1b']
 FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
-          + ['stu0-pr', 'stu0-pra', 'stu0-prb'])              # every bot that claims and mixes as Stu does
+          + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben'}      # against BEN the net is told so (v2 knows both from BEN's own cards); no other match changes
 NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32', **BEN}
+R2 = 'models/cardplay/stu-net-r2-20261113/policy.npz'          # train-r2/policy.npz on transfer/rollout-loop-azure5-20261113
+NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
@@ -163,6 +174,24 @@ def main():
     bots['stu1-n'] = alone("round 1's net alone, told its own side is stu0: its first card at every trick, no search, no rollouts, no claims",
                            R1, dict(NAMES1))
     bots['stu1-n']['label'] = bots['stu1-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 1 ladder: ')
+    # Round 2: pure Stu with round 2's net, and the control with v2 at the table.
+    bots['stu0-pt'] = dict(copy.deepcopy(bots['stu0-p']), gen7_policy=V2,
+                           label='Stu round 0 ladder: pure, with rollout net v2 at the table as well (its lead, first choices and reading of the play)')
+    for name, base, change in (('stu2-p', 'stu0-p', {}), ('stu2-pr', 'stu0-pr', {}), ('stu2-pt', 'stu0-p', {'gen7_policy': R2}),
+                               ('stu2-pv', 'stu0-p', {})):
+        b = dict(copy.deepcopy(bots[base]), rollout_policy=R2, **change)
+        b['x8']['names'] = dict(NAMES2)
+        b['label'] = ("Stu round 2 ladder (round 2's net inside, its own side read as stup0): "
+                      + {'stu2-p': "pure: policy v4.1's lead, rollouts alone from the second card on",
+                         'stu2-pr': 'pure with the opening lead from rollouts',
+                         'stu2-pt': "pure, with round 2's net at the table as well (its lead, first choices and reading of the play)",
+                         'stu2-pv': "pure, the simulated seats playing by the net's value head (seat blend) in place of a draw"}[name])
+        if name == 'stu2-pv':
+            b['x8']['stages'] = [dict(st, seat='blend') for st in b['x8']['stages']]
+        bots[name] = b
+    bots['stu2-n'] = alone("round 2's net alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims",
+                           R2, dict(NAMES2))
+    bots['stu2-n']['label'] = bots['stu2-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 2 ladder: ')
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 
