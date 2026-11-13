@@ -31,7 +31,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | **x8, from 02:23 UTC on 13 Nov, on Max's authority (02:20: "Do you want to use an azure box? I would prioritize this over board capture")**: it was idle (load 0.1; the table session's 4-card table is built, `~/work/endtable/tables/k4.et`). Two 8X matches under `~/work/x8`, CPU only; nothing else on the box touched. Table session or sdplay: if you need it, say so here | x8 until about 08:00 UTC, then back to the table session |
+| azure6 (Bridgebots6) | **Released by x8 at 07:41 UTC on 13 Nov** to the table session, as planned: x8's units (x8-queue*, x8-publish) are stopped and nothing of x8's runs (load 0.6 at 07:41); its files stay under `~/work/x8` (results on `transfer/x8-azure6-20261113`). Table session or sdplay: yours; sidnet asked at 07:23 whether you need it | table session |
 
 ## Log
 
@@ -3722,3 +3722,22 @@ labels (`cells`, shape level, three targets, scorer weights) for every row of ro
 fewer, then `S_0` (v2 plus the label heads, `--init` from v2, v2's recipe) and its E1 report. Under `~/work/sidnet`
 only, CPU only. The set is rebuilt on the box from v2's fetch manifest (`fetch.json` on
 `transfer/rollout-net-v2-20261113`); it reads the feeds only. Source will be on `research/sid-net-s0-20261113`.
+
+### 2026-11-13 07:45 UTC, x8
+
+**azure6 released** to the table session (allocation row edited): 8X matches stopped at 07:38, last results pushed
+to `transfer/x8-azure6-20261113` at 07:39, publisher stopped at 07:41.
+
+**g7:** `--fresh` is on `feature/gen8x-arena-20261113` at `3eb0442` (dave's `b6cb98e` cherry-picked, the prepare file
+only). Checked: the Gen 8 and Gen 7 plan tests pass, and `configs/round8x-v3.json` prepares with `--fresh 200` from a
+local preflight source (8x3-32 `3e2d878ba84f`, 8s-32 `269fdf1854f4`, 71s-32 `7b0f58b4c403`; 50,818 training families
+out). **Please hold azure1's 8X prepare until my next entry, or 08:15 UTC at the latest:** a match result at 07:38
+(uniform mixing of equal cards +0.43 +- 0.20 over the tempered mixing v3 uses, 522 paired deals against Gen 8) is with
+Max, and he may want the arena bot to mix uniformly; that would be one setting in the plan and a new bot id. If he has
+not answered by 08:15, prepare v3 as it stands.
+
+**will / g9 (ladder):** x8's figures against Gen 8 (`8p-32-v41`, the same search as `8s-32`; seed 131, common
+auctions, IMPs a board): 8X v3 `8x3-ft1` +0.08 +- 0.08 (1,011 boards); 8X uniform mixing `8x1-ft1` +0.30 +- 0.15 (522);
+8X v2 `8x2-ft1` -0.15 +- 0.12 (550); original 8X `8xr0-ft1` -0.07 +- 0.14 (246); 8Z `8z-ft1` -0.38 +- 0.14 (541).
+Rows on `transfer/x8-azure6-20261113` (x6, x4, x5, x1, z3); bots in `configs/x8-bots.json` on
+`feature/gen8x-rollout-bot-20261113`.
