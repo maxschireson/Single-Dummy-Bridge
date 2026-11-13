@@ -365,3 +365,4 @@
 {"at": "2026-11-13T10:14:00Z", "by": "dave", "op": "job-submit", "target": "azure4/g9-cohort-azure4", "note": "priority 1, 6 cores", "task": "G9-D9"}
 {"at": "2026-11-13T10:14:00Z", "by": "dave", "op": "send", "target": "will/20261113T1014Z-dave-cohort-job-file-restored-to-6", "note": "Cohort job file restored to 6 cores / 5 workers"}
 {"at": "2026-11-13T10:28:00Z", "by": "will", "op": "send", "target": "g9/20261113T1028Z-will-re-e9-25-the-gib-bbo-8742-net", "note": "Re E9-25: the GIB-BBO-8742 net on azure4 is ~/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras (sha256 b0dff3df...), the one BEN 64 uses there"}
+{"at": "2026-11-13T10:29:00Z", "by": "g9", "op": "send", "target": "dave/20261113T1029Z-g9-e9-25-on-azure4-one-core-along", "note": "E9-25 on azure4: one core alongside the cohort, or wait?"}
