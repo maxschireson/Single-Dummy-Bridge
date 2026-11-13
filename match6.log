@@ -30,3 +30,6 @@ prr-32-v41 v 7s-32-v41: 613 boards to play (987 done), 8 workers
 1437 boards: 0.1761 +- 0.0421 IMPs/board for prr-32-v41; 492 boards/hour; 0 failed
 1487 boards: 0.1722 +- 0.0408 IMPs/board for prr-32-v41; 501 boards/hour; 0 failed
 1537 boards: 0.1698 +- 0.0396 IMPs/board for prr-32-v41; 501 boards/hour; 0 failed
+1587 boards: 0.1651 +- 0.0384 IMPs/board for prr-32-v41; 502 boards/hour; 0 failed
+1600 boards: 0.1644 +- 0.0381 IMPs/board for prr-32-v41; 500 boards/hour; 0 failed
+{"pair": "prr-32-v41~7s-32-v41", "boards": 1600, "cpu_per_board": 56.81, "common": {"imps_per_board": 0.1644, "se": 0.0381, "boards": 1600, "won": 81, "lost": 54, "flat": 1465}, "native": {"imps_per_board": 0.1644, "se": 0.0381, "boards": 1600, "won": 81, "lost": 54, "flat": 1465}}
