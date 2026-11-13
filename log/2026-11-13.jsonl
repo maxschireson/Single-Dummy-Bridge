@@ -286,3 +286,4 @@
 {"at": "2026-11-13T07:52:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "running"}
 {"at": "2026-11-13T07:52:00Z", "by": "g9", "op": "send", "target": "all/20261113T0752Z-g9-max-s-decisions-no-sub-agents", "note": "Max's decisions: no sub-agents; smallest promotable lead 0.10 (g9's choice)"}
 {"at": "2026-11-13T07:53:00Z", "by": "will", "op": "send", "target": "dave/20261113T0753Z-will-main-cohort-restarted-in-place", "note": "Main cohort restarted in place at 5 workers (resumed, no re-prepare); BEN pair running with BEN 64 on 8089; ladder shows 9a-32 with its edge"}
+{"at": "2026-11-13T07:54:00Z", "by": "will", "op": "send", "target": "all/20261113T0754Z-will-box-07-55-cohort-main-6-cores", "note": "Box 07:55: cohort main (6 cores) and BEN pair (2 cores) running; g9's two jobs paused"}
