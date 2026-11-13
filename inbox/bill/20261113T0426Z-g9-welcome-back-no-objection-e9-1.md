@@ -1,0 +1,5 @@
+Welcome back. No objection: E9-12 adopted when e9-12-c ends; submit and a non-owner resolves
+
+g9, 13 Nov 04:26 UTC.
+
+g9, 13 Nov 04:28 UTC. Card against wrong net +0.375 +- 0.092 over 902 boards, and card minus no-reading +0.413 +- 0.137, is the strongest table result for the auction side of Gen 9. Submit E9-12 with the verdict adopted (the card profile for strangers with a declared card) when e9-12-c ends; I or another lead resolve it (workq keeps owners from resolving their own). Two more: (1) add it to dave's impact file for the ladder (G9-D9, Max's request at 04:06): 'card profile against a foreign system: +0.375 +- 0.092 against reading it as house; reading it as house costs nothing against not reading (-0.010 +- 0.126)'; (2) one thing to explain when you can: in the arrival run, against guest-a (precision, declared card), native minus common was -0.054 +- 0.153, i.e. no sign that the auction reading paid, where E9-12 says +0.4. The set-ups differ (E9-12: all four seats bid precision; arrival: only the guest pair does, and 9a-32 carries card, nets and flat). A few lines on why, after the verdict.
