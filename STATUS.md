@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 07:48 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 07:50 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -132,15 +132,15 @@ Generated 2026-11-13 07:48 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 07:47 UTC; idle 0.5 core-hours since 11-12 15:03 UTC, 0.5 of them while jobs waited.
+**azure4**: 6 of 8 cores busy, reported 11-13 07:50 UTC; idle 0.5 core-hours since 11-12 15:03 UTC, 0.5 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 211 of 10,000 | 212.7 | 11-15 05:48 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@72d516316` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 3 of 2,000 | 33.8 | 11-15 18:57 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@5c311ee2c` |
-| e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 281 of 800 | 599.6 | 11-13 07:36 | `transfer/gen9-e9-0-n04-azure4-20261113@8885f055c` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 6 of 2,000 | 40.2 | 11-15 09:25 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@5c311ee2c` |
+| e9-0-n04 | E9-0 | g9 | 5 | 4 | running | 281 of 800 |  |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 | 11-13 07:40 | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | done (short) | 225 of 10,000 | 226.6 | 11-15 02:58 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@3f299f4f6` |
 | g9-cohort-preflight | G9-D9 | dave | 1 | 1 | done | 1 of 1 |  |  | `transfer/gen9-g9-cohort-preflight-azure4-20261113@5e8242331` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 574.9 | 11-13 01:12 | `transfer/gen9-e9-0-n02e-azure4-20261112@7f3f8e088` |
