@@ -26,6 +26,8 @@ Evidence: a solver's analysis of recorded play. No double-dummy proxy, and no pl
 | `study.py`, `report.py`, `saves.py` | The main study and its tables. |
 | `extra_cost.py`, `extra_report.py` | Cost details: shapes in weight order, one-card searches, nodes a 4-card table would replace. |
 | `allruns.py`, `allruns_report.py` | Every run of unseen cards named in turn. |
+| `ddrules.py`, `ddrules_report.py`, `rule_diffs.py`, `lost_lines.py` | Certified probability against double-dummy value, card by card, and the lines dropped later (section 8). |
+| `targets.py`, `targets_report.py` | One trick fewer and one trick more than the contract (section 8). |
 | `check_cells.py`, `check_k3.py`, `stress_def.py`, `calib.py`, `xcheck_sure.py`, `xcheck_def.py`, `e2e_check.py` | Checks. |
 | `results/` | Tables as printed and check logs. The raw result lines are on `transfer/conditional-claims-raw-20261113`. |
 
@@ -199,7 +201,63 @@ By the floor of the best card, 8 cards, shape level, positions where the bot pla
 The last column is not a count of losses: the result after switching cards is unknown there. Nothing here was
 played.
 
-## 8. Run
+## 8. Certified probability against double-dummy value (added after the first push, same day)
+
+Question: at an 8-card decision, can the certified probability replace the double-dummy value?
+`ddrules.py` gives, for every card of every position without an outright claim: its certified probability (shapes;
+two named cards), its double-dummy value D on 256 layouts drawn by scorer weight, and whether it makes double dummy on
+the actual layout. Double dummy here is `cells.cpp` with every unseen card named. A card certified on the actual
+layout was double-dummy making there in every case.
+
+The card the bot played, by what the actual layout was for it (`results/ddrules8.txt`, `ddrules7.txt`):
+
+| | 8 cards: positions | made | 7 cards: positions | made |
+| --- | --- | --- | --- | --- |
+| Inside its certified set (shapes) | 249 | 96.0% | 190 | 96.8% |
+| Double-dummy making, not certified | 173 | 82.1% | 117 | 82.9% |
+| Not double-dummy making | 381 | 4.7% | 353 | 3.4% |
+| With two named cards: inside / double-dummy making only | 311 / 111 | 94.9% / 77.5% | 232 / 75 | 95.7% / 78.7% |
+
+The bot's card by its double-dummy value, 8 cards: D = 1.00 made 94.7% (132 positions); mean D 0.958 made 80.7%;
+0.822 made 74.8%; 0.632 made 50.5%; 0.372 made 28.4%. Among the cards with D = 1.00: certified 0.9 or more made
+78 of 78, the others 47 of 54.
+
+Rules for choosing the card, scored by what their card was on the actual layout: 1 if inside its certified set
+(the line kept), otherwise the conversion rate above. Expected makes minus those of "double-dummy value, ties by
+certified probability" (`results/rule_diffs.txt`; errors by deal, conversion rates taken as given):
+
+| Rule | 8 cards, shapes (803) | 8 cards, two named | 7 cards, shapes (660) | 7 cards, two named |
+| --- | --- | --- | --- | --- |
+| Certified probability only, ties by double-dummy value | -8.5 ± 3.2 | -6.6 ± 3.9 | -1.2 ± 2.3 | -0.2 ± 2.6 |
+| Certified + 0.50 × (DD - certified) | +0.4 ± 1.5 | +1.9 ± 2.6 | +0.5 ± 2.0 | +2.8 ± 1.9 |
+| Certified + 0.75 × (DD - certified) | +0.2 ± 1.4 | +1.2 ± 2.0 | +2.1 ± 1.4 | +1.9 ± 1.3 |
+| Double-dummy value, ties at random | -0.4 ± 0.6 | -0.3 ± 0.6 | -0.9 ± 0.3 | -0.7 ± 0.3 |
+
+- Certified-only loses where certification is partial: in the 143 positions at 8 cards whose best certified
+  probability is 0.9 or more it changes the expected makes by +0.2; below that by -8.7 in all.
+- The double-dummy value ties at the top between two or more cards in 474 of the 803 positions; the tied cards differ
+  by more than 0.05 in certified probability in 39.
+- This scores one decision. The rules' later play is not simulated.
+
+Lines dropped later (`results/lost_lines8.txt`). In 16 tables the bot's own card at 8 cards left the actual layout
+inside a certified set (10 at the shape level, 6 more with two named cards) and the contract went down; 13 are games,
+slams or doubled. At the turn where the card played dropped the line, a card guaranteeing the contract outright
+existed in 3. In the other 13 only the conditional line existed. The count is one-sided: it takes the tables where the
+line's condition held, and says nothing of what keeping to a line costs where it did not.
+
+Other targets, shape level, 600 positions at 8 cards, each target searched on its own (`results/targets8.txt`):
+
+| | |
+| --- | --- |
+| Contract guaranteed outright | 271; an overtrick also outright in 105; otherwise its certified probability 0.377 on average |
+| No outright claim | 329; one down guaranteed outright in 151 |
+| Mean certified probability there: contract / one down / overtrick | 0.378 / 0.766 / 0.083 |
+| Nothing certified at the contract (107) | one down: outright in 19, certified 0.9 or more in 35, nothing in 37 |
+| Best card for the contract and best card for one down differ | 25 of 97 positions where both exist and one down is not outright |
+| Went down two or more (58) | one down was outright in 2; the actual layout was inside the best one-down set in 3 |
+| Nodes, mean: contract target / the two other targets together | 445k / 717k |
+
+## 9. Run
 
 ```
 g++ -O2 -march=native -std=c++17 -o cells cells.cpp
@@ -212,13 +270,15 @@ python study.py positions.jsonl out8.jsonl 8 --repo REPO --scorer recovery/artif
 python report.py out8.jsonl ; python saves.py b out8.jsonl -- out7.jsonl
 python extra_cost.py positions.jsonl cost8.jsonl 8 300 --repo REPO --scorer SCORER ; python extra_report.py cost8.jsonl
 python allruns.py positions.jsonl allruns8.jsonl 8 300 --repo REPO --scorer SCORER ; python allruns_report.py allruns8.jsonl
+python ddrules.py positions.jsonl dd8.jsonl 8 --repo REPO --scorer SCORER --samples 256 ; python ddrules_report.py dd8.jsonl ; python rule_diffs.py dd8.jsonl
+python -I lost_lines.py dd8.jsonl -- boards-00000.json ... ; python targets.py positions.jsonl tgt8.jsonl 8 --repo REPO --scorer SCORER --limit 600 ; python targets_report.py tgt8.jsonl
 ```
 
 Run from this folder. `REPO` is a checkout that has `bridge_harness/gen6_nets.py`. Solver input and output are
 described at the top of `cells.cpp`. The tables in `results/` print standard errors that treat positions as
 independent; the by-deal figures quoted above are 0.003 larger for the floors.
 
-## 9. Limits
+## 10. Limits
 
 - One feed, 1,520 tables, the first declarer-side decision at each card count. Bots without claim logic.
 - Weights from the hand-fit scorer alone; no reading of the play.
@@ -226,4 +286,6 @@ independent; the by-deal figures quoted above are 0.003 larger for the floors.
 - The joint step is greedy.
 - Times are from a prototype without an ending table; the table's effect is estimated, not run.
 - The named cards of the main study come from a fixed rule that section 5 shows is not the best one.
+- Section 8 scores choice rules on one decision with conversion rates measured on these bots' own play; it is not
+  a played comparison.
 - Node caps: 20 million a question in the study (never reached at 7 and 8 cards), 30 million in the cost runs.

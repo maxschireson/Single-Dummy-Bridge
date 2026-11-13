@@ -1,0 +1,57 @@
+8 cards, shape-level sets, 803 positions without an outright claim; conversion of double-dummy making but uncertified layouts 0.821, of the rest 0.047
+   expected makes minus those of "double-dummy value, ties by certified probability" (413.3):
+      certified probability only, ties by double-dummy value       -8.5 +- 3.2
+      certified + 0.25 x (DD - certified)                          -1.4 +- 1.9
+      certified + 0.50 x (DD - certified)                          +0.4 +- 1.5
+      certified + 0.75 x (DD - certified)                          +0.2 +- 1.4
+      double-dummy value, ties at random                           -0.4 +- 0.6
+   certified-only minus the same baseline, by the best certified probability in the position:
+      best certified 0.90 to 1.00:  143 positions, the two rules differ in  11, makes  +0.2
+      best certified 0.75 to 0.90:   75 positions, the two rules differ in  16, makes  -1.9
+      best certified 0.50 to 0.75:   89 positions, the two rules differ in  17, makes  -2.3
+      best certified 0.25 to 0.50:   61 positions, the two rules differ in  13, makes  -0.8
+      best certified 0.00 to 0.25:  156 positions, the two rules differ in  21, makes  -3.7
+      best certified 0.00 to 0.00:  279 positions, the two rules differ in   0, makes  +0.0
+8 cards, sets with two named cards, 803 positions without an outright claim; conversion of double-dummy making but uncertified layouts 0.775, of the rest 0.047
+   expected makes minus those of "double-dummy value, ties by certified probability" (419.5):
+      certified probability only, ties by double-dummy value       -6.6 +- 3.9
+      certified + 0.25 x (DD - certified)                          -1.0 +- 3.0
+      certified + 0.50 x (DD - certified)                          +1.9 +- 2.6
+      certified + 0.75 x (DD - certified)                          +1.2 +- 2.0
+      double-dummy value, ties at random                           -0.3 +- 0.6
+   certified-only minus the same baseline, by the best certified probability in the position:
+      best certified 0.90 to 1.00:  172 positions, the two rules differ in  15, makes  -1.9
+      best certified 0.75 to 0.90:   85 positions, the two rules differ in  21, makes  -1.9
+      best certified 0.50 to 0.75:  112 positions, the two rules differ in  24, makes  +1.8
+      best certified 0.25 to 0.50:  117 positions, the two rules differ in  22, makes  -0.2
+      best certified 0.00 to 0.25:  129 positions, the two rules differ in  35, makes  -4.4
+      best certified 0.00 to 0.00:  188 positions, the two rules differ in   0, makes  +0.0
+
+7 cards, shape-level sets, 660 positions without an outright claim; conversion of double-dummy making but uncertified layouts 0.829, of the rest 0.034
+   expected makes minus those of "double-dummy value, ties by certified probability" (298.8):
+      certified probability only, ties by double-dummy value       -1.2 +- 2.3
+      certified + 0.25 x (DD - certified)                          -0.5 +- 2.1
+      certified + 0.50 x (DD - certified)                          +0.5 +- 2.0
+      certified + 0.75 x (DD - certified)                          +2.1 +- 1.4
+      double-dummy value, ties at random                           -0.9 +- 0.3
+   certified-only minus the same baseline, by the best certified probability in the position:
+      best certified 0.90 to 1.00:  105 positions, the two rules differ in   7, makes  +1.9
+      best certified 0.75 to 0.90:   49 positions, the two rules differ in   2, makes  -1.0
+      best certified 0.50 to 0.75:   73 positions, the two rules differ in  14, makes  -0.6
+      best certified 0.25 to 0.50:   53 positions, the two rules differ in   5, makes  -0.8
+      best certified 0.00 to 0.25:  106 positions, the two rules differ in  12, makes  -0.8
+      best certified 0.00 to 0.00:  274 positions, the two rules differ in   0, makes  +0.0
+7 cards, sets with two named cards, 660 positions without an outright claim; conversion of double-dummy making but uncertified layouts 0.787, of the rest 0.034
+   expected makes minus those of "double-dummy value, ties by certified probability" (303.2):
+      certified probability only, ties by double-dummy value       -0.2 +- 2.6
+      certified + 0.25 x (DD - certified)                          -0.2 +- 2.7
+      certified + 0.50 x (DD - certified)                          +2.8 +- 1.9
+      certified + 0.75 x (DD - certified)                          +1.9 +- 1.3
+      double-dummy value, ties at random                           -0.7 +- 0.3
+   certified-only minus the same baseline, by the best certified probability in the position:
+      best certified 0.90 to 1.00:  121 positions, the two rules differ in   7, makes  +1.0
+      best certified 0.75 to 0.90:   63 positions, the two rules differ in   5, makes  -0.5
+      best certified 0.50 to 0.75:   99 positions, the two rules differ in  20, makes  +0.9
+      best certified 0.25 to 0.50:   74 positions, the two rules differ in   8, makes  -0.8
+      best certified 0.00 to 0.25:  103 positions, the two rules differ in  21, makes  -0.8
+      best certified 0.00 to 0.00:  200 positions, the two rules differ in   0, makes  +0.0
