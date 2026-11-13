@@ -254,7 +254,9 @@ Other targets, shape level, 600 positions at 8 cards, each target searched on it
 | Mean certified probability there: contract / one down / overtrick | 0.378 / 0.766 / 0.083 |
 | Nothing certified at the contract (107) | one down: outright in 19, certified 0.9 or more in 35, nothing in 37 |
 | Best card for the contract and best card for one down differ | 25 of 97 positions where both exist and one down is not outright |
-| Went down two or more (58) | one down was outright in 2; the actual layout was inside the best one-down set in 3 |
+| Went down two or more (58) | one down was outright in 2; the actual layout was inside the best one-down set in 1 more |
+| Contract outright and the overtrick certified on the actual layout (163: 105 outright, 58 inside the best set) | the bot made the overtrick in 159 |
+| Contract outright, actual layout outside the best overtrick set (85) | the bot made an overtrick in 24 |
 | Nodes, mean: contract target / the two other targets together | 445k / 717k |
 
 ## 9. Run

@@ -9,5 +9,9 @@ no outright claim: 329
    mean certified probability: contract 0.378, one down 0.766, overtrick 0.083
    best card for the contract and best card for one down are the same in 72 of 97 positions where both have one
    went down: 168; by how many: {1: 110, 2: 35, 3: 19, 4: 3, 5: 1}
-   down two or more: 58; of these one down was guaranteed outright in 2, and the actual layout was inside the best one-down set in 3
+   down two or more: 58; of these one down was guaranteed outright in 2, and the actual layout was inside the best one-down set without that in 1
+   contract outright, overtrick guaranteed outright: 105; the bot made an overtrick in 103, the contract exactly in 2, went down in 0
+   contract outright, actual layout inside the best overtrick set: 58; the bot made an overtrick in 56, the contract exactly in 1, went down in 1
+   contract outright, actual layout outside it: 85; the bot made an overtrick in 24, the contract exactly in 60, went down in 1
+   no outright claim, one down guaranteed outright: 151; the bot made in 104, went one down in 45, two or more down in 2
 nodes, mean: contract target 445300; the two other targets together 717082

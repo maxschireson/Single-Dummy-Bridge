@@ -32,8 +32,19 @@ for r in down:
     by[short] = by.get(short, 0) + 1
 print('   went down: %d; by how many: %s' % (len(down), dict(sorted(by.items()))))
 d2 = [r for r in down if r['level'] + 6 - r['declarer_tricks'] >= 2]
-print('   down two or more: %d; of these one down was guaranteed outright in %d, and the actual layout was inside the best one-down set in %d' % (
-    len(d2), sum(T(r, -1)['outright'] for r in d2), sum(T(r, -1)['true_in'] for r in d2)))
+print('   down two or more: %d; of these one down was guaranteed outright in %d, and the actual layout was inside the best one-down set without that in %d' % (
+    len(d2), sum(T(r, -1)['outright'] for r in d2), sum(T(r, -1)['true_in'] and not T(r, -1)['outright'] for r in d2)))
+# what the recorded play took of the other targets
+over = lambda r: r['declarer_tricks'] - (r['level'] + 6)
+poss = [r for r in claim if not T(r, 1).get('trivial')]
+for lab, S in (('overtrick guaranteed outright', [r for r in poss if T(r, 1)['outright']]),
+               ('actual layout inside the best overtrick set', [r for r in poss if not T(r, 1)['outright'] and T(r, 1)['true_in']]),
+               ('actual layout outside it', [r for r in poss if not T(r, 1)['outright'] and not T(r, 1)['true_in']])):
+    print('   contract outright, %s: %d; the bot made an overtrick in %d, the contract exactly in %d, went down in %d' % (
+        lab, len(S), sum(over(r) >= 1 for r in S), sum(over(r) == 0 for r in S), sum(over(r) < 0 for r in S)))
+r1 = [r for r in rest if T(r, -1)['outright']]
+print('   no outright claim, one down guaranteed outright: %d; the bot made in %d, went one down in %d, two or more down in %d' % (
+    len(r1), sum(r['made'] for r in r1), sum(over(r) == -1 for r in r1), sum(over(r) <= -2 for r in r1)))
 cost = [T(r, -1).get('nodes', 0) + T(r, 1).get('nodes', 0) for r in R]
 base = [T(r, 0).get('nodes', 0) for r in R]
 print('nodes, mean: contract target %d; the two other targets together %d' % (mean(base), mean(cost)))
