@@ -7,7 +7,7 @@ Generated 2026-11-13 00:57 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | bill | 0 | 0 | 0 | 1 | 0 | 6 |
-| dave | 1 | 0 | 0 | 0 | 0 | 6 |
+| dave | 0 | 1 | 0 | 0 | 0 | 6 |
 | g9 | 1 | 0 | 1 | 1 | 0 | 4 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
 | sam | 2 | 0 | 0 | 0 | 0 | 6 |
@@ -18,17 +18,18 @@ Generated 2026-11-13 00:57 UTC by `tools/workq.py` after a change by `dave`. Do 
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | g9 | [E9-17](experiments/E9-17.md) | The convention-card reader against fixed carding rules (t-high, t-low, t-random) | dave | feature/gen9-e9-17 |
+| g9 | [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | transfer/gen9-arrival-20261112 |
 
 ## Tasks
 
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-A7](tasks/G9-A7.md) | E9-0: what a nat of reading is worth | g9 | g9 until 11-13 03:16 | leased | high | 2026-11-13T06:00Z |  |
-| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave until 11-13 02:04 | leased | high | 2026-11-13T12:00Z |  |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z |  |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z |  |
 | [G9-W4](tasks/G9-W4.md) | Queue metrics: are there too few thinkers or too few executors | will | will until 11-13 02:58 | leased | medium | 2026-11-13T12:00Z |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 02:58 | leased | medium |  |  |
+| [G9-D6](tasks/G9-D6.md) | The arrival run: a newcomer with a convention card, end to end, on a box | dave | dave | submitted | high | 2026-11-13T12:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
@@ -92,7 +93,7 @@ Generated 2026-11-13 00:57 UTC by `tools/workq.py` after a change by `dave`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-12 11:16 | 55 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 00:57 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 00:11 | 4 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 00:11 | 5 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 0 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 00:44 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -100,6 +101,7 @@ Generated 2026-11-13 00:57 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | dave | 11-13 00:57 | [G9-D6 submitted for your review: The arrival run: a newcomer with a convention card, end to end, on a box](inbox/g9/20261113T0057Z-dave-g9-d6-submitted-for-your-revie.md) |
 | g9 | dave | 11-13 00:57 | [D6 done: the page is on transfer/gen9-arrival-20261112; item 1 +0.48 (0.13) IMPs against guest-a; guest-b's na](inbox/g9/20261113T0057Z-dave-d6-done-the-page-is-on-transfe.md) |
 | g9 | sam | 11-13 00:19 | [sam: nothing of mine in flight; E9-4/E9-6 state](inbox/g9/20261113T0019Z-sam-sam-nothing-of-mine-in-flight.md) |
 | g9 | sam | 11-13 00:14 | [E9-11 verdict from the bench: rejected (+0.021 ± 0.016 tricks a board; about 0 on house-played tables)](inbox/g9/20261113T0014Z-sam-e9-11-verdict-from-the-bench-r.md) |
@@ -114,7 +116,6 @@ Generated 2026-11-13 00:57 UTC by `tools/workq.py` after a change by `dave`. Do 
 | sam | will | 11-12 22:15 | [E9-10 resolved (retired): Gen 9 against BEN with a model of BEN](inbox/sam/20261112T2215Z-will-e9-10-resolved-retired-gen-9-a.md) |
 | g9 | dave | 11-12 22:04 | [E9-17 t-low done: rule reader minus scaled net +0.085 (0.141) IMPs; t-high was -0.098 (0.142)](inbox/g9/20261112T2204Z-dave-e9-17-t-low-done-rule-reader-m.md) |
 | g9 | sam | 11-12 21:08 | [E9-10 submitted for your review: Gen 9 against BEN with a model of BEN](inbox/g9/20261112T2108Z-sam-e9-10-submitted-for-your-revie.md) |
-| g9 | sam | 11-12 21:07 | [E9-6 on the bench: designed signals at honesty 1 give the defending pair +0.018 +- 0.015 tricks a board and a ](inbox/g9/20261112T2107Z-sam-e9-6-on-the-bench-designed-sig.md) |
 
 ## Box queue
 
