@@ -268,7 +268,13 @@
      "stu0v1-b50": 1.0,
      "stu0v1-r6": 1.0,
      "stu0v1-r3": 1.0,
-     "stu0v1-p": 1.0
+     "stu0v1-p": 1.0,
+     "stu1a": 1.0,
+     "stu1b": 1.0,
+     "stu1-b50": 1.0,
+     "stu1-r6": 1.0,
+     "stu1-r3": 1.0,
+     "stu1-p": 1.0
     }
    },
    "x8": {
@@ -328,7 +334,13 @@
       "stu0v1-b50",
       "stu0v1-p",
       "stu0v1-r3",
-      "stu0v1-r6"
+      "stu0v1-r6",
+      "stu1-b50",
+      "stu1-p",
+      "stu1-r3",
+      "stu1-r6",
+      "stu1a",
+      "stu1b"
      ],
      "guard": true,
      "full": true
@@ -362,12 +374,18 @@
       "stu0v1-b50",
       "stu0v1-p",
       "stu0v1-r3",
-      "stu0v1-r6"
+      "stu0v1-r6",
+      "stu1-b50",
+      "stu1-p",
+      "stu1-r3",
+      "stu1-r6",
+      "stu1a",
+      "stu1b"
      ]
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "2f9df68f03915642214ba0754cff1d3f5e0a9296974badc2ac5f579bcd318e53"
+   "identity": "4e943dd4e5ca43cfb08b1ce88a640269756e3e6e7341a5ed488c0006d82a086e"
   }
  },
  "pair_schedule": [
@@ -394,9 +412,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "21de69915423ccadb2ad8268137fd0074d66bda7754a915443289b0656f7373c",
+ "identity": "b41b6b42a882974db55951458a12609a4b4a856916fb002ce59c729ada3a9e78",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 0,
  "deals": 200,
- "source_commit": "e57865fc904de3e82cd12c2aa229b05cc2cd5ac5"
+ "source_commit": "0723f0b4979845e0e048190b6061cb223c1411b2"
 }
