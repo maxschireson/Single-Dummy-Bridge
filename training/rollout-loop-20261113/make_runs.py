@@ -15,7 +15,8 @@ import re
 HERE = Path(__file__).resolve().parent
 BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transfer/rollout-loop-azure5-20261113',
             'sandbox': 'transfer/rollout-loop-sandbox-20261113'}
-ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('pf-', 'preflight'))
+ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
+         ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-n': 'net'}
 RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7",
              'b50': 'the blend at tricks 3 to 6 at trust 0.5', 'r6': 'rollouts alone from trick 6', 'r3': 'rollouts alone from trick 3',

@@ -20,6 +20,9 @@ What differs from scripts/train_gen7_policy.py (the v4.1 run's trainer, copied w
 - --init loads every weight of the given net that this net has; the bot vectors may be missing (they stay zero),
   and a net with another list of bots gives each bot's vectors by name. --init-as NEW=OLD[,...] starts a bot the
   --init net lacks from the vectors of one it has (a new bot built on an old one's play).
+- --only-vectors BOT[,BOT...] trains nothing but those bots' two vectors: every other weight, the other bots' vectors
+  included, is saved exactly as --init gave it. The net then learns who a new bot is and cannot forget anything
+  about the others. Rows of other bots do not move a weight; use --id-dropout 0 with it.
 - A set built with --labels (scripts/gen7_build_dataset.py; it carries `sid`) trains a student of the exact line
   finder (experiments/sid_loop/SPEC.md, Part B): per card and target the outputs guar, cert and single, and
   tricks14 from the trunk (bridge_harness.gen7_net.forward). Their losses are binary cross-entropy averaged over
@@ -349,6 +352,7 @@ def main():
     p.add_argument('--val-data', type=Path, help='held-out rows come from this set (all of its rows) instead of split 1 of --data')
     p.add_argument('--init', type=Path, help='start from the weights of this net (same kind and width; bot vectors may be missing)')
     p.add_argument('--init-as', default='', help='NEW=OLD[,NEW=OLD...]: a bot the --init net lacks starts from the vectors of one it has')
+    p.add_argument('--only-vectors', default='', help="BOT[,BOT...]: train only these bots' vectors; every other weight stays as --init gave it")
     p.add_argument('--id-dropout', type=float, default=.15, help='share of training rows whose each bot id is read as unknown')
     p.add_argument('--compare', type=Path, action='append', default=[], help='also score this net on the same held-out rows')
     p.add_argument('--sid-weight', type=float, default=1., help='weight of each label-head loss (guar, cert, single, tricks14) when the set has labels')
@@ -418,6 +422,18 @@ def main():
             raise SystemExit(f'{a.init} is not a net of kind {a.kind} and width {a.width}')
         start = {k: loaded.get(k, v) for k, v in start.items()}
     params = {k: jnp.asarray(v) for k, v in start.items()}
+    only = None
+    if a.only_vectors:
+        if not a.init or a.id_dropout:
+            p.error('--only-vectors needs --init and --id-dropout 0')
+        missing = [n for n in a.only_vectors.split(',') if n not in vocab]
+        if missing:
+            p.error(f'--only-vectors: {missing} not among the set\'s bots')
+        rows = np.array([vocab.index(n) for n in a.only_vectors.split(',')])
+        only = {k: np.zeros(v.shape, np.float32) for k, v in start.items()}
+        for k in ('emb_own', 'emb_other'):
+            only[k][rows] = 1.
+        only = {k: jnp.asarray(v) for k, v in only.items()}
     steps = a.epochs * (len(train) // a.batch)
     schedule = optax.warmup_cosine_decay_schedule(0., a.lr, min(500, steps // 10), steps, a.lr / 50)
     opt = optax.chain(optax.clip_by_global_norm(1.), optax.adamw(schedule, weight_decay=a.weight_decay))
@@ -451,7 +467,11 @@ def main():
     @jax.jit
     def step(params, state, b):
         (loss, parts), grads = jax.value_and_grad(loss_fn, has_aux=True)(params, b)
+        if only is not None:                        # before the clip, so its norm is the trained weights' alone
+            grads = {k: g * only[k] for k, g in grads.items()}
         updates, state = opt.update(grads, state, params)
+        if only is not None:                        # and after, so weight decay does not move a frozen weight
+            updates = {k: u * only[k] for k, u in updates.items()}
         return optax.apply_updates(params, updates), state, loss, parts
 
     @jax.jit
@@ -549,7 +569,7 @@ def main():
         compared[str(path)] = evaluate(lambda b: predict(other, b), held_other, val)
     who_use = dict(real=short(evaluate(lambda b: predict(final, b), vdata, val)),
                    blank=short(evaluate(lambda b: predict(final, b), vdata, val, blank=True)))
-    metrics = dict(bots=vocab, id_dropout=a.id_dropout, compared=compared, who_use=who_use, kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
+    metrics = dict(bots=vocab, id_dropout=a.id_dropout, only_vectors=a.only_vectors, compared=compared, who_use=who_use, kind=a.kind, width=a.width, kinds=kinds, augment=a.augment, identity=a.identity, weight_decay=a.weight_decay, parameters=int(sum(x.size for x in best[2].values())), epochs=a.epochs,
                    selected_epoch=best[1], fraction=a.fraction, train_deals=int(len(keep)), train_examples=int(len(train)),
                    all_train=a.all_train, val_data=a.val_data.name if a.val_data else None,
                    init=str(a.init) if a.init else None, lr=a.lr, batch=a.batch,

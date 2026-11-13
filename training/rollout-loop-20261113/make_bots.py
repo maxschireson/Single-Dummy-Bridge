@@ -25,6 +25,11 @@ The nets alone, as the ladder's lowest rung (the dashboard session's ask for Max
 without rollouts as well as with them): the net's first card at every trick, no search, no rollouts, no claims, no mixing.
   stu0-n            rollout net v2, told both sides are 8s-32 as Stu's rollouts tell it
   stu0v1-n          rollout net v1 (ft)
+Round 1 (PLAN.md): the same bots with round 1's net inside (models/cardplay/stu-net-r1-20261113/policy.npz, fetched
+from train-r1/ on azure5's transfer branch). The net is told its own side is Stu (`stu0`, the name of Stu's rows in
+its training set) and the other side is Stu too, except the outside opponent 8p-32-v41, which it is told is 8s-32.
+  stu1a, stu1b      round 1's Stu (two ids for self-play)
+  stu1-b50, stu1-r6, stu1-r3, stu1-p, stu1-n      its ladder
 Copied unchanged from configs/x8-bots.json:
   8z-ft1            x8's 8Z with rollout net v1 (ft)
   8p-32-v41         Gen 8 card play, the gate's outside opponent
@@ -46,7 +51,11 @@ V0 = 'models/cardplay/gen7-policy-v0-2026-11-11/gen7_policy_v0.npz'
 V2 = 'models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz'       # transfer/rollout-net-v2-20261113 runs/w768/policy_epoch5.npz
 STU = ['stu0a', 'stu0b']
 RUNGS = ['-b50', '-r6', '-r3', '-p']
-FAMILY = STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]     # every bot that claims and mixes as Stu does
+STU1 = ['stu1a', 'stu1b']
+FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]
+          + STU1 + ['stu1' + r for r in RUNGS])                 # every bot that claims and mixes as Stu does
+R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
+NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32'}
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
@@ -109,6 +118,23 @@ def main():
     bots['stu0-n'] = alone('rollout net v2 alone, told both sides are 8s-32: its first card at every trick, no search, no rollouts, no claims',
                            V2, {'self': '8s-32', '*': '8s-32'})
     bots['stu0v1-n'] = alone('rollout net v1 (ft) alone: its first card at every trick, no search, no rollouts, no claims', V1)
+    # Round 1: round 0's bots with round 1's net in place of rollout net v2, and the names it was trained with.
+    for old, new in zip(STU, STU1):
+        b = copy.deepcopy(bots[old])
+        b['label'] = ("Stu, round 1: round 0's Stu with round 1's net as the rollout net (its own side read as stu0, Gen 8 card play as "
+                      '8s-32, any other opponent as stu0)')
+        b['rollout_policy'] = R1
+        b['x8']['names'] = dict(NAMES1)
+        bots[new] = b
+    for r in RUNGS:
+        b = copy.deepcopy(bots['stu0' + r])
+        b['label'] = b['label'].replace('Stu round 0 ladder: ', "Stu round 1 ladder (round 1's net inside): ")
+        b['rollout_policy'] = R1
+        b['x8']['names'] = dict(NAMES1)
+        bots['stu1' + r] = b
+    bots['stu1-n'] = alone("round 1's net alone, told its own side is stu0: its first card at every trick, no search, no rollouts, no claims",
+                           R1, dict(NAMES1))
+    bots['stu1-n']['label'] = bots['stu1-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 1 ladder: ')
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 
