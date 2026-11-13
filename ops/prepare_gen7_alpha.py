@@ -23,6 +23,11 @@ rule system, in place of its bidding net), `system_scorer` (true: it reads each 
 declared system, with the plan's `system_scorer` artifact) and `lead_systems` (the systems whose
 auctions the lead net serves). docs/gen8_candidate_2026-11-12.md.
 
+8X (nothing changes for a plan that uses none of it): a bot entry may give `x8`, the 8X block
+(bridge_harness/x8_player.py), and `rollout_policy`, the artifact key of the net its rollouts play with
+(gen7_policy_<name>; the bot's own policy when absent). The bot is then built exactly as a Gen 7/8 bot and
+played by the gen8x engine, its `x8` block written out in full. docs/x8_bot.md.
+
   python ops/prepare_gen7_alpha.py --source /path/to/drained/run --run /path/to/new/run [--plan configs/round7-alpha.json] [--shard K/N]
 """
 import argparse
@@ -43,6 +48,7 @@ from bridge_harness.bidding_env import deal_key
 from bridge_harness.corpus import load, save
 from bridge_harness.gen6 import Gen6Config
 from bridge_harness.gen7 import ENGINE, resolved
+from bridge_harness.x8_player import ENGINE as X8_ENGINE, resolved as x8_resolved
 from bridge_harness.loop_registry import sha, source_hash
 from bridge_harness.mixed_arena import verify_generation
 from bridge_harness.selfplay import atomic_json
@@ -57,6 +63,11 @@ POLICY_KEYS = re.compile(r'gen7_policy(_[a-z0-9]+)?')
 
 def policy_key(entry):
     return entry.get('policy', POLICY_KEY)
+
+
+def entry_keys(entry):
+    """Every policy artifact a bot entry plays with: its policy, and an 8X bot's rollout net."""
+    return {policy_key(entry)} | ({entry['rollout_policy']} if entry.get('rollout_policy') else set())
 
 
 def policy_path(key):
@@ -78,7 +89,7 @@ def load_plan(path=None, require_ready=True):
         raise ValueError('Gen7 alpha plan is not ready: settle every `pending` item, empty the list and enable launch')
     if not plan['gen7_bots']:
         raise ValueError('Gen7 alpha plan needs at least one Gen7 bot')
-    used = {policy_key(bot) for bot in plan['gen7_bots'].values()}
+    used = set().union(*(entry_keys(bot) for bot in plan['gen7_bots'].values()))
     aware = any(bot.get('system_scorer') for bot in plan['gen7_bots'].values())
     if not plan['artifacts'] or set(plan['artifacts']) - {SYSTEM_SCORER_KEY} != used or not all(isinstance(k, str) and POLICY_KEYS.fullmatch(k) for k in used):
         raise ValueError('Gen7 alpha plan artifacts are exactly the policy releases its bots use: gen7_policy, and gen7_policy_<name> for a bot that names another')
@@ -87,9 +98,13 @@ def load_plan(path=None, require_ready=True):
     for entry in plan['artifacts'].values():
         if not all(isinstance(entry.get(k), str) and entry[k] for k in ('release', 'file', 'restore', 'sha256')):
             raise ValueError('A Gen7 policy artifact needs release, file, restore and sha256')
-    for bot in plan['gen7_bots'].values():
+    for key, bot in plan['gen7_bots'].items():
         resolved(bot.get('gen7'))
         Gen6Config(**bot.get('gen6', {}))
+        if 'rollout_policy' in bot and 'x8' not in bot:
+            raise ValueError(f'{key}: `rollout_policy` is for an 8X bot (one with an `x8` block)')
+        if 'x8' in bot:
+            x8_resolved(bot['x8'])
         samples = bot.get('samples', 1)
         if isinstance(samples, bool) or not isinstance(samples, int) or samples < 1:
             raise ValueError('Gen7 bot samples is a positive integer')
@@ -155,6 +170,11 @@ def make_bots(old, plan):
             spec['lead_systems'] = list(entry['lead_systems'])
         if entry.get('bidder'):                         # Gen 8: this bot bids by a system bidder, not by its net
             spec['bidder'] = deepcopy(entry['bidder'])
+        if 'x8' in entry:                               # 8X: the same bot played by the gen8x engine, with its rollout net
+            spec.update(engine=X8_ENGINE, policy_role='gen8x', x8=x8_resolved(entry['x8']))
+            if entry.get('rollout_policy'):
+                spec['rollout_policy'] = policy_path(entry['rollout_policy'])
+                spec['artifact_sha256']['rollout_policy'] = plan['artifacts'][entry['rollout_policy']]['sha256']
         spec['identity'] = digest(spec)
         if key in bots and bots[key] != spec:
             raise ValueError(f'The source run has a different bot called {key}: give the Gen7 bot a new id, or the settings of the bot it continues')
@@ -191,6 +211,10 @@ def gen7_block(plan):
     if set(plan['artifacts']) - {SYSTEM_SCORER_KEY} != {POLICY_KEY}:
         block['policies'] = {k: dict(artifact=policy_key(e), release=plan['artifacts'][policy_key(e)]['release'], sha256=plan['artifacts'][policy_key(e)]['sha256'])
                              for k, e in sorted(plan['gen7_bots'].items())}
+    rollouts = {k: e['rollout_policy'] for k, e in sorted(plan['gen7_bots'].items()) if e.get('rollout_policy')}
+    if rollouts:                                        # 8X: the net each 8X bot's rollouts play with
+        block['rollout_policies'] = {k: dict(artifact=a, release=plan['artifacts'][a]['release'], sha256=plan['artifacts'][a]['sha256'])
+                                     for k, a in rollouts.items()}
     return block
 
 
@@ -354,7 +378,7 @@ def prepare(root, source, plan_path=None, shard=None, actor_source=None, exclude
                                                {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if e.get('system_scorer')})
         rule_bidders = system_bidders(plan)
         for key in sorted(set(plan['artifacts']) - {SYSTEM_SCORER_KEY}):
-            policies[key] = release_file(plan['artifacts'][key], {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if policy_key(e) == key})
+            policies[key] = release_file(plan['artifacts'][key], {bots[k]['artifact_sha256']['scorer'] for k, e in plan['gen7_bots'].items() if key in entry_keys(e)})
         root.mkdir(parents=True)
         for folder in ('artifacts', 'assets'):
             if (source / folder).exists():

@@ -1,0 +1,14 @@
+{
+ "release": "rollout-net-v1-20261113",
+ "files": {
+  "policy_ft": "b15b5e2be7599b0898d9c9ba9f6bea22075373e726cb06d1ab1fb7f0e60bec3b",
+  "policy_scratch": "b13349de9fcfaa1c6025678b8fdcc0e76a00dd0ccbc05327a71022da951e7c6c"
+ },
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "scorer_note": "hand-fit scorer v0 (models/cardplay/hand-fit-scorer-v0-2026-11-11), as for policy v4.1: the same inputs (gen7_net.PolicyNet)",
+ "trained_on": {
+  "feeds": "transfer/rollout-net-v1-20261113:fetch.json (82 arena feeds at their recorded tips, Gen 7 and Gen 8, to 00:01 UTC 13 Nov)",
+  "families": "transfer/rollout-net-v1-training-families-20261113:rollout-net-v1-training-families.json"
+ },
+ "made_by": "plan session, transfer/rollout-net-v1-20261113 (training/rollout-net-v1-20261113/chain.sh on research/plan-leverage-g8-20261112)"
+}

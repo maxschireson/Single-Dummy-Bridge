@@ -183,6 +183,59 @@ class Gen8PlanTests(unittest.TestCase):
         for key, spec in self.old['bots'].items():
             self.assertEqual(m['bots'][key], spec)
 
+    def eightx_plan(self):
+        """The test plan with an 8X bot added: 8s-32's entry, an `x8` block and a rollout net of its own."""
+        rnet = self.tmp / 'rnet'
+        rnet.mkdir(exist_ok=True)
+        (rnet / 'policy_ft.npz').write_bytes(b'rollout net')
+        (rnet / 'manifest.json').write_text(json.dumps(dict(scorer_sha256=self.scorer)))
+        plan = deepcopy(self.plan)
+        x8 = dict(stages=[dict(from_trick=7, to_trick=13, mode='blend', trust=.25, contracts='games')], claims=dict(cards=10, full=True),
+                  mix=dict(declarer=True, defender=True, declarer_power=2., defender_power=3.))
+        plan['gen7_bots']['8x3-32'] = dict(deepcopy(plan['gen7_bots']['8s-32']), label='8X v3 test', x8=x8, rollout_policy='gen7_policy_rnet1')
+        plan['artifacts']['gen7_policy_rnet1'] = dict(release=str(rnet), file='policy_ft.npz', restore='restore.py', sha256=sha(rnet / 'policy_ft.npz'))
+        plan['roster'] = plan['roster'] + ['8x3-32']
+        plan['pair_weights']['8x3-32~8s-32'] = 1
+        plan['audit_references']['8x3-32'] = '3'
+        plan['systems']['8x3-32'] = HOUSE
+        return plan, x8, rnet
+
+    def test_an_8x_bot_is_its_gen8_entry_played_by_the_gen8x_engine_with_its_rollout_net(self):
+        from unittest.mock import patch
+        from bridge_harness.x8_player import resolved as x8_resolved
+        from ops import gen5_runtime
+        plain = prepare(self.tmp / 'plain', self.tmp / 'source', self.plan_path)
+        plan, x8, rnet = self.eightx_plan()
+        self.write(plan)
+        run = self.tmp / 'run'
+        m = prepare(run, self.tmp / 'source', self.plan_path)
+        verify_generation(run, m)
+        spec, gen8 = m['bots']['8x3-32'], m['bots']['8s-32']
+        self.assertEqual(gen8, plain['bots']['8s-32'])     # the Gen 8 bot is the same actor, identity and all
+        self.assertEqual((spec['engine'], spec['policy_role']), ('gen8x', 'gen8x'))
+        self.assertEqual(spec['x8'], x8_resolved(x8))
+        self.assertEqual(sha(run / spec['rollout_policy']), sha(rnet / 'policy_ft.npz'))
+        self.assertEqual(spec['artifact_sha256'], dict(gen8['artifact_sha256'], rollout_policy=sha(rnet / 'policy_ft.npz')))
+        mine = {'id', 'engine', 'policy_role', 'x8', 'rollout_policy', 'artifact_sha256', 'identity'}
+        self.assertEqual({k: v for k, v in spec.items() if k not in mine}, {k: v for k, v in gen8.items() if k not in mine})
+        self.assertEqual(m['gen7_alpha']['rollout_policies']['8x3-32'], dict(artifact='gen7_policy_rnet1', release=str(rnet), sha256=sha(rnet / 'policy_ft.npz')))
+        with patch('bridge_harness.x8_player.X8Player') as made:
+            gen5_runtime.player(spec, run)
+        made.assert_called_once_with(spec, run, None)
+
+    def test_a_rollout_net_without_an_8x_block_or_unlisted_is_refused(self):
+        plan, _, _ = self.eightx_plan()
+        bad = deepcopy(plan)
+        bad['gen7_bots']['8s-32']['rollout_policy'] = 'gen7_policy_rnet1'
+        self.write(bad)
+        with self.assertRaises(ValueError):
+            load_plan(self.plan_path)
+        bad = deepcopy(plan)
+        del bad['artifacts']['gen7_policy_rnet1']
+        self.write(bad)
+        with self.assertRaises(ValueError):
+            load_plan(self.plan_path)
+
     def test_external_rule_estimate_is_pinned_and_tampering_prevents_resume(self):
         estimate = self.tmp / 'estimate.json'
         estimate.write_bytes((ROOT / 'configs/rule-systems/precision-estimate-r4.json').read_bytes())
