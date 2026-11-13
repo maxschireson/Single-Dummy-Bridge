@@ -282,3 +282,5 @@
 {"at": "2026-11-13T07:51:00Z", "by": "will", "op": "job-retry", "target": "azure4/g9-cohort-azure4", "note": "retry 1", "task": "G9-D9"}
 {"at": "2026-11-13T07:51:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "retry"}
 {"at": "2026-11-13T07:51:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "stopping"}
+{"at": "2026-11-13T07:52:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "paused"}
+{"at": "2026-11-13T07:52:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "running"}
