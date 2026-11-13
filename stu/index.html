@@ -4,192 +4,223 @@
 <style>
 :root{color-scheme:dark;font:15px system-ui,sans-serif;background:#101722;color:#e9eff8;
  --surface:#192333;--border:#2a394f;--grid:#304056;--text:#e9eff8;--muted:#acbbcf;--faint:#7f8ea3;
- --s1:#3987e5;--s2:#d95926;--s3:#199e70;--ref:#8a96a8;--pos:#78dbb2;--neg:#ff9aab}
+ --s1:#3987e5;--s2:#d95926;--s3:#199e70;--ref:#8a96a8;--pos:#78dbb2;--neg:#ff9aab;--warn:#e0b45c}
 body{max-width:1250px;margin:28px auto;padding:0 18px}
-h1{font-size:28px;margin:0 0 6px}h2{font-size:19px;margin:0 0 6px}h3{font-size:15px;margin:14px 0 6px;color:var(--muted);font-weight:600}
+h1{font-size:28px;margin:0 0 6px}h2{font-size:19px;margin:0 0 6px}h3{font-size:15px;margin:16px 0 6px;color:var(--muted);font-weight:600}
 p{line-height:1.5;color:var(--muted);margin:6px 0}.muted{color:var(--muted);font-size:13px}.faint{color:var(--faint)}
 a{color:#8cb8ff}code{font-size:12.5px;color:#cfd9e6}
-.cards{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}.card,section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.card,section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
 .card{box-sizing:border-box;flex:1 1 150px;min-width:140px}.big{font-size:26px;font-weight:650;margin:5px 0 2px;font-variant-numeric:tabular-nums}
 section{margin:16px 0;overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
 th,td{text-align:right;border-bottom:1px solid var(--grid);padding:9px 8px;white-space:nowrap;vertical-align:top}
 th:first-child,td:first-child{text-align:left}th{color:var(--muted);font-weight:500;font-size:13px}
-thead tr.group th{border-bottom:none;padding-bottom:0;color:var(--faint);font-size:12px;text-align:center}
-td .sub{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+td.wrap{white-space:normal;text-align:left;min-width:260px}
+td .sub{display:block;font-size:12px;color:var(--muted);margin-top:3px}td:first-child .sub{white-space:normal;max-width:420px}
 .pos{color:var(--pos)}.neg{color:var(--neg)}.na{color:var(--faint)}
 .pill{display:inline-block;font-size:11.5px;padding:2px 7px;border-radius:9px;border:1px solid var(--border);color:var(--muted)}
-.pill.live{border-color:#2f6b55;color:#9fe3c6}.pill.done{border-color:#405875}
+.pill.live{border-color:#2f6b55;color:#9fe3c6}.pill.warn{border-color:#7a5d24;color:var(--warn)}
 .legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 2px;font-size:13px;color:var(--muted)}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend i,.sw{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 .legend i.ring{background:none;border:2px solid var(--ref);width:8px;height:8px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
 .mini{border:1px solid var(--border);border-radius:10px;padding:10px}
-svg text{fill:var(--muted);font:12px system-ui,sans-serif}svg .axis{stroke:var(--grid);stroke-width:1}
-svg .zero{stroke:#6f8097;stroke-width:1}
+.health{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}.health span{font-size:12.5px}
+svg text{fill:var(--muted);font:12px system-ui,sans-serif}svg .axis{stroke:var(--grid);stroke-width:1}svg .zero{stroke:#6f8097;stroke-width:1}
 #tip{position:fixed;pointer-events:none;background:#0c121b;border:1px solid #405875;border-radius:8px;padding:8px 10px;font-size:12.5px;
- color:var(--text);max-width:320px;line-height:1.45;display:none;z-index:10}
-.hit{fill:transparent;cursor:default}
-details{margin-top:8px}summary{cursor:pointer;color:var(--muted)}
-.notice{border-left:3px solid #405875;padding-left:10px}
+ color:var(--text);max-width:340px;line-height:1.45;display:none;z-index:10}
+.hit{fill:transparent}
+.caution{border-left:3px solid #7a5d24;padding:2px 0 2px 10px;margin:6px 0}
 </style>
 <h1>Stu: the rollout loop</h1>
-<p id="subtitle">Each generation's net is trained on the previous Stu's games. This page tracks, round by round, how the net
-itself improves, how that carries through rollouts into Stu's play, and Stu against fixed opponents the nets were never
-trained on.</p>
+<p>Each round's net is trained on the previous Stu's games, and the next Stu plays with that net inside its rollouts.
+This page follows the loop round by round: whether the net improves, whether that reaches the table with and without
+rollouts, and Stu against an outside opponent no net in the loop is trained on.</p>
 <p id="fresh" class="muted" aria-live="polite">Loading…</p>
+<div class="health" id="health"></div>
 <div class="cards" id="cards"></div>
 
-<section id="sec-play"><h2>Play against fixed opponents</h2>
-<p class="muted" id="play-note"></p>
-<label class="muted">Opponent <select id="opp"></select></label>
-<div class="legend" id="play-legend"></div>
-<div id="play-chart"></div>
-<table><thead>
-<tr class="group"><th></th><th colspan="3" id="opp-head">IMPs a board against the opponent</th><th colspan="2">Amplification (paired by deal)</th><th colspan="2">Change from the previous round (paired)</th><th>New vs old</th></tr>
-<tr><th>Generation</th><th>Net alone</th><th>Net + rollouts</th><th>Stu</th><th>Rollouts − net</th><th>Stu − net</th><th>Net</th><th>Stu</th><th>Stu vs previous Stu</th></tr>
-</thead><tbody id="play-table"></tbody></table>
-<p class="muted">Each cell: mean IMPs a board ± one standard error, and boards. Coloured only where the 95% interval excludes zero.
-Amplification and change columns are differences of IMPs against the same opponent on the same deals, not head-to-head IMPs.
-New vs old is reported beside the gate, not as the verdict: a net trained on the old bot's games predicts that bot.</p>
+<section><h2>Round by round</h2>
+<p class="muted" id="rounds-note"></p>
+<div id="gate-chart"></div>
+<table><thead><tr><th>Round</th><th>Collection</th><th>Gate: Stu vs <span class="opp"></span></th><th>Change from the previous gate</th><th>Net: held-out log-loss</th><th>Decisions a board (collection)</th><th>Rollouts changed the card</th><th>CPU s a board</th></tr></thead>
+<tbody id="rounds-table"></tbody></table>
+<p class="muted">Gate: the round's Stu (its own net, Stu's own rung) against <span class="opp"></span> on seed 131, deals 0 to
+<span id="gate-last"></span>; mean IMPs a board ± one standard error, coloured only where the 95% interval excludes zero; under 200
+boards it is interim. Change from the previous gate is paired by deal. "Rollouts changed the card": rollout decisions whose card
+is not the table net's first choice, over rollout decisions; it should fall as the net improves.</p>
 </section>
 
-<section id="sec-net"><h2>The net</h2>
-<p class="muted" id="net-note"></p>
-<div class="legend"><span><i style="background:var(--s1)"></i>this generation's net</span><span><i class="ring"></i>the previous net scored on the same rows</span></div>
+<section><h2>The ladder: where rollouts take over, by net</h2>
+<p class="muted" id="ladder-note"></p>
+<div class="legend" id="ladder-legend"></div>
+<div id="ladder-chart"></div>
+<table><thead id="ladder-head"></thead><tbody id="ladder-table"></tbody></table>
+<p class="muted">Each cell: the bot against <span class="opp"></span> on seed 131, deals 0 to <span id="ladder-last"></span>.
+"− Stu" is the rung minus Stu's own rung with the same net; the right-hand columns are one net minus the one before it at the
+same rung. Both are paired by deal. Each bot against this one opponent; not a ranking against people or other bots.</p>
+</section>
+
+<section><h2>Leverage: does a better net play better, with and without rollouts?</h2>
+<p class="muted">Consecutive nets: the change in held-out scores on the same rows (the later net's trainer scores the earlier net
+on its rows), next to the change in IMPs a board at each rung, paired by deal. A loop with leverage shows the net's gain at
+"Net alone" and a larger or equal gain at the rollout rungs.</p>
+<table><thead id="lev-head"></thead><tbody id="lev-table"></tbody></table>
+<p class="muted" id="lev-note"></p>
+</section>
+
+<section><h2>The nets</h2>
+<div class="legend"><span><i style="background:var(--text)"></i>the net on its own held-out rows</span><span><i class="ring"></i>an earlier net on the same rows</span></div>
 <div class="grid2" id="net-charts"></div>
-<table><thead><tr><th>Generation</th><th>Net</th><th>Training rows</th><th>Held-out set</th><th>Log-loss</th><th>Top-1 agreement</th><th>In best</th><th>Regret (tricks)</th><th>From trick 7: log-loss</th><th>From trick 7: regret</th></tr></thead>
+<table><thead><tr><th>Net</th><th>Training</th><th>Held-out rows</th><th>Log-loss</th><th>Top-1 agreement</th><th>In best</th><th>Regret (tricks)</th><th>From trick 7: log-loss</th><th>From trick 7: regret</th><th>Earlier nets on the same rows</th></tr></thead>
 <tbody id="net-table"></tbody></table>
-<p class="muted">Scores from the trainer's held-out decisions (<code>metrics.json</code>). Log-loss and agreement are against the card the
-bot played; regret is the tricks the net's top card gives up against the best searched card. Rows with different held-out
-sets are not directly comparable; the previous net's score on the same rows is shown under each value where the trainer
-recorded it.</p>
-<h3>Training curves</h3><div class="legend" id="hist-legend"></div><div id="hist-chart"></div>
+<p class="muted">From each training run's <code>metrics.json</code>. Log-loss and agreement are against the card the bot played;
+regret is the tricks the net's top card gives up against the best searched card. Different nets' held-out rows differ, so compare
+across rows only through the "same rows" column.</p>
+<h3>Training curves: held-out log-loss after each epoch</h3><div class="legend" id="hist-legend"></div><div id="hist-chart"></div>
 </section>
 
-<section id="sec-curves"><h2>Validation runs as they accumulate</h2>
-<p class="muted">Cumulative mean IMPs a board and its 95% interval, in deal order, for every generation and role measured on the fixed deals.</p>
+<section><h2>Runs on the fixed deals as they accumulate</h2>
+<p class="muted">Cumulative mean IMPs a board and its 95% interval, in deal order.</p>
 <div class="grid2" id="curves"></div></section>
 
-<section id="sec-self"><h2>Self-play: the data each round trains on</h2>
-<table><thead><tr><th>Generation</th><th>Boards</th><th>Status</th><th>CPU s a board</th><th>Rollout decisions a board</th><th>Blend decisions a board</th><th>Claims a board</th><th>Rollouts changed the card</th><th>Rollouts a decision</th><th>Net rows a decision</th><th>IMPs (should be 0)</th></tr></thead>
-<tbody id="self-table"></tbody></table>
-<p class="muted">From the per-board rows of Stu against itself. "Rollouts changed the card": decisions where the rollouts played a card
-outside the net's likeliest candidate (rollout stage) or off the search's best (blend stage), per decision the stages
-consulted. As the net improves this should fall: rollouts have less to correct. The same counters for Stu in the gate are
-under the play table's Stu cell. IMPs in self-play are seat noise and should sit at zero.</p>
+<section><h2>Collections: the games each round trains on</h2>
+<table><thead><tr><th>Run</th><th>Boards</th><th>Status</th><th>Boards an hour</th><th>Failed</th><th>CPU s a board</th><th>Rollout / blend / claim a board</th><th>Changed the card</th><th>Rollouts a decision</th><th>IMPs (check, should be 0)</th></tr></thead>
+<tbody id="coll-table"></tbody></table>
+<p class="muted">Boards an hour is the run's own average since it started (its log's progress line). A collection whose rows
+have not moved for 20 minutes while its box's heartbeat is fresh is flagged.</p>
+<h3>Data runs (ladder bots against Stu on training deals)</h3>
+<table><thead><tr><th>Run</th><th>Boards</th><th>Status</th><th>The rung against Stu</th></tr></thead><tbody id="data-table"></tbody></table>
+<p class="muted">For rows the collection lacks (rollout decisions at early tricks). The IMPs flatter Stu: a rollout bot is the opponent Stu's net models best.</p>
 </section>
 
-<section id="sec-other"><h2>Other matches on the fixed deals</h2>
-<p class="muted">Controls and comparisons that are not a generation's standard measurement (for example the leverage control of 13 November).</p>
+<section><h2>The leverage control</h2>
+<p class="muted" id="control-note"></p>
+<table><thead><tr><th>Net inside the rollouts</th><th>vs v4.1 alone</th><th>vs v4 alone</th></tr></thead><tbody id="control-table"></tbody></table>
+<div id="control-derived"></div>
+</section>
+
+<section id="sec-other" hidden><h2>Other matches</h2>
 <table><thead><tr><th>Match</th><th>Boards</th><th>Mean IMPs</th><th>95% CI</th><th>W / T / L</th><th>Where</th></tr></thead><tbody id="other-table"></tbody></table>
 </section>
 
-<section id="sec-runs"><h2>Runs and provenance</h2>
-<table><thead><tr><th>Run</th><th>Pair</th><th>Kind</th><th>Seed · deals</th><th>Boards</th><th>Status</th><th>Started (UTC)</th><th>Source</th></tr></thead><tbody id="runs-table"></tbody></table>
+<section><h2>Runs and provenance</h2>
+<table><thead><tr><th>Run</th><th>Role</th><th>Pair</th><th>Seed · deals</th><th>Boards</th><th>Status</th><th>Started (UTC)</th><th>Source</th></tr></thead><tbody id="runs-table"></tbody></table>
 <p class="muted" id="prov"></p>
 </section>
 
-<section><h2>How to read this</h2><div id="defs"></div>
-<p class="muted">Scoring: a deal is bid once by the common bidder and played twice with the two bots' seats swapped, so both tables
-play the same contract and the IMPs are card play. One board per deal family per cell; boards played under an old id of the
-same bot count once. Pairing across cells uses the deal family. Rows are read from the loop's transfer branches (one row a
-board, published every ten minutes); the page re-reads runs that are still going every five minutes. Snapshot built by
-<code>web/stu/build.cjs</code>; registry of generations and bots in <code>registry.json</code> beside this page.</p>
+<section><h2>Read with these</h2><div id="cautions"></div><h3>Rungs</h3><div id="rung-defs"></div>
+<p class="muted">Scoring: a deal is bid once by the common bidder and played twice with the seats swapped, so both tables play
+the same contract and the IMPs are card play (<code>common</code>, IMPs to the first-named bot). One board per deal family per
+cell; boards of a superseded run (the same bot under an earlier id or job) count only where a current run has not played that
+deal. Runs and their roles come from the loop's <code>runs.json</code>; rows from the boxes' transfer branches, published about every
+ten minutes. This page re-reads what is still moving every five minutes (GitHub caches raw files for up to five).
+Source: <code>web/stu/</code> on <code>feature/stu-dashboard-20261113</code>.</p>
 </section>
 <div id="tip" role="tooltip"></div>
-<script src="stu-core.js?v=1"></script>
+<script src="stu-core.js?v=2"></script>
 <script>
 'use strict';
 const C = window.StuCore;
 const $ = id => document.getElementById(id);
-let REG = null, SNAP = null, RUNS = [], METRICS = {}, MODEL = null, liveChecked = null, liveErrors = [];
+let REG = null, SNAP = null, LIST = null, RUNS = [], METRICS = {}, HEALTH = {}, COMMITS = {}, MODEL = null, liveChecked = null, liveErrors = [];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const num = (x, d = 2) => x == null || !Number.isFinite(x) ? '–' : x.toFixed(d);
 const sgn = (x, d = 2) => x == null || !Number.isFinite(x) ? '–' : (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x).toFixed(d);
 const pct = (x, d = 1) => x == null || !Number.isFinite(x) ? '–' : (100 * x).toFixed(d) + '%';
 const int = x => x == null || !Number.isFinite(x) ? '–' : Math.round(x).toLocaleString('en-US');
+const tick = t => sgn(Math.abs(t) < 1e-9 ? 0 : t, 2).replace(/\.?0+$/, '') || '0';
 const label = id => REG?.labels?.[id] || id;
-const pairLabel = p => String(p).split('~').map(label).join(' vs ');
 const when = e => e ? new Date(e * 1000).toISOString().slice(5, 16).replace('T', ' ') : '–';
 const ago = e => { if (!e) return '–'; const m = Math.round((Date.now() / 1000 - e) / 60); return m < 1 ? 'just now' : m < 90 ? m + ' min ago' : (m / 60).toFixed(1) + ' h ago'; };
-function sig(s) { return s && s.ci ? (s.ci[0] > 0 ? 'pos' : s.ci[1] < 0 ? 'neg' : '') : ''; }
-function cellText(s, extra = '') {
+const sig = s => s && s.ci ? (s.ci[0] > 0 ? 'pos' : s.ci[1] < 0 ? 'neg' : '') : '';
+const netInfo = k => (REG.nets.find(n => n.key === k) || { key: k, label: k });
+const rungInfo = k => (REG.rungs.find(r => r.key === k) || { key: k, label: k, text: '' });
+const netColor = k => { const i = REG.nets.findIndex(n => n.key === k); return ['var(--s1)', 'var(--s2)', 'var(--s3)'][i] || 'var(--ref)'; };
+function cell(s, extra = '', interim = true) {
   if (!s || !s.n) return '<span class="na">not run</span>';
-  return `<span class="${sig(s)}">${sgn(s.mean)} ± ${num(s.se)}</span><span class="sub">${int(s.n)} boards${extra}</span>`;
+  return `<span class="${sig(s)}">${sgn(s.mean)} ± ${num(s.se)}</span><span class="sub">${int(s.n)} boards${interim && s.n < 200 ? ', interim' : ''}${extra}</span>`;
 }
+const diff = s => s && s.n ? cell(s, '', false) : '<span class="na">–</span>';
 
 // ---- data -------------------------------------------------------------------------------------------------------
-async function getText(url) { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw Error(r.status + ' ' + url); return r.text(); }
+async function getText(url, opts = {}) { const r = await fetch(url, { cache: 'no-store', ...opts }); if (!r.ok) throw Error(r.status + ' ' + url.split('/').slice(-2).join('/')); return r.text(); }
 async function getJSON(url) { return JSON.parse(await getText(url)); }
 async function load() {
   REG = await getJSON('registry.json?t=' + Date.now());
-  try { SNAP = await getJSON('data.json?t=' + Date.now()); } catch (e) { SNAP = { runs: [], metrics: {}, heads: {}, built_epoch: null }; }
-  RUNS = SNAP.runs.slice(); METRICS = { ...SNAP.metrics };
+  try { SNAP = await getJSON('data.json?t=' + Date.now()); } catch (e) { SNAP = { runs: [], metrics: {}, heads: {}, health: {}, runs_list: { runs: [] }, built_epoch: null }; }
+  RUNS = SNAP.runs.slice(); METRICS = { ...SNAP.metrics }; HEALTH = { ...SNAP.health }; LIST = SNAP.runs_list;
   rebuild(); render();
   await live();
   setInterval(live, 300000);
 }
 function rebuild() { MODEL = C.buildModel(REG, RUNS, METRICS); }
 
-// Re-read what is still moving: runs whose last event is after the snapshot, and nets the snapshot has no scores for.
+// Re-read what is still moving: the run list, each box's runs.log, every run that is running or changed after the
+// snapshot, the heartbeats, the branches' last commits, and the nets the snapshot has no scores for.
 async function live() {
   liveErrors = [];
-  const idx = C.botIndex(REG), built = SNAP.built_epoch || 0, byKey = new Map(RUNS.map(r => [r.key, r]));
-  await Promise.all(REG.branches.filter(b => !b.frozen).map(async b => {
+  const built = SNAP.built_epoch || 0, byKey = new Map(RUNS.map(r => [r.key, r]));
+  try { LIST = await getJSON(C.rawURL(REG.runs_list.branch, REG.runs_list.path)); } catch (e) { liveErrors.push('run list: ' + e.message); }
+  const entries = new Map((LIST?.runs || []).map(r => [`${r.box}/${r.name}`, r]));
+  await Promise.all(REG.boxes.filter(b => !b.frozen).map(async b => {
+    try { const h = JSON.parse(await getText(C.rawURL(b.status, 'heartbeat.json'))); HEALTH[b.box] = { ...HEALTH[b.box], time: Date.parse(h.time) / 1000, load: h.load, cpus: h.cpus, mem_available_mb: h.memory_mb?.MemAvailable, mem_total_mb: h.memory_mb?.MemTotal, disk_free_gb: h.disk?.home?.free_gb, last_push: h.previous_push }; } catch (e) { liveErrors.push(b.box + ' heartbeat: ' + e.message); }
+    // GitHub's API allows 60 calls an hour without a sign-in, shared with the arena page: ask at most every 15 minutes.
+    let asked = 0; try { asked = +localStorage.getItem('stu-commits-' + b.branch) || 0; } catch (e) { /* storage unavailable */ }
+    if (Date.now() - asked > 900000) {
+      try { localStorage.setItem('stu-commits-' + b.branch, String(Date.now())); } catch (e) { /* storage unavailable */ }
+      try { const c = JSON.parse(await getText(C.commitsURL(b.branch))); if (c[0]) { COMMITS[b.branch] = Date.parse(c[0].commit.committer.date) / 1000; try { localStorage.setItem('stu-commit-time-' + b.branch, String(COMMITS[b.branch])); } catch (e) { /* */ } } } catch (e) { /* rate-limited: keep the last value */ }
+    } else { try { COMMITS[b.branch] = +localStorage.getItem('stu-commit-time-' + b.branch) || COMMITS[b.branch]; } catch (e) { /* */ } }
     let meta;
-    try { meta = C.parseRunsLog(await getText(C.rawURL(b.branch, 'runs.log')), b.box); }
-    catch (e) { liveErrors.push(b.box + ': ' + e.message); return; }
+    try { meta = C.parseRunsLog(await getText(C.rawURL(b.branch, 'runs.log')), b.box); } catch (e) { liveErrors.push(b.box + ' runs.log: ' + e.message); return; }
+    for (const e of (LIST?.runs || []).filter(e => e.box === b.box && !meta[e.name]))
+      meta[e.name] = { name: e.name, box: b.box, pair: e.pair, seed: e.seed, first: e.first, deals: e.deals, sources: [], status: 'queued', started: null };
     await Promise.all(Object.values(meta).map(async m => {
-      const cls = C.classify(m, REG, idx);
-      if (cls.kind === 'excluded') return;
+      const entry = entries.get(`${b.box}/${m.name}`) || null, cls = C.classify(m, entry, REG);
+      if (cls.role === 'excluded') return;
       const key = `${b.box}/${m.name}`, old = byKey.get(key);
       const base = { key, branch: b.branch, box: b.box, name: m.name, pair: m.pair, seed: m.seed, first: m.first, deals: m.deals,
-        options: m.options, sources: m.sources, started: m.started, last_event: m.last_event, status: m.status, exit: m.exit ?? null, cls };
-      const moving = !old || m.status === 'running' || (m.last_event || 0) > built - 60;
-      if (!moving) { Object.assign(old, { status: m.status, last_event: m.last_event, cls }); return; }
-      const run = { ...(old || { red: null, summary: null, episodes: null, bad_lines: 0 }), ...base };
-      try {
-        if (cls.kind === 'selfplay') {
-          run.episodes = parseInt(await getText(C.rawURL(b.branch, m.name + '/EPISODES.txt')), 10) || run.episodes;
-        } else {
-          const parsed = C.parseResults(await getText(C.rawURL(b.branch, m.name + '/results.jsonl')));
-          run.red = C.reduceRun(parsed.rows, cls); run.bad_lines = parsed.bad;
-        }
-      } catch (e) { if (!/^404/.test(e.message)) liveErrors.push(key + ': ' + e.message); }
+        options: m.options || '', sources: m.sources || [], started: m.started ?? null, last_event: m.last_event ?? null, status: m.status,
+        exit: m.exit ?? null, cls, queue_order: entry?.queue_order ?? null, note: entry?.note || null };
+      const moving = m.status !== 'queued' && (!old || old.status === 'queued' || m.status === 'running' || (m.last_event || 0) > built - 60);
+      if (!moving) { if (old) Object.assign(old, base); else { RUNS.push({ ...base, red: null }); byKey.set(key, RUNS.at(-1)); } return; }
+      const run = { ...(old || { red: null, summary: null, episodes: null, progress: null, bad_lines: 0 }), ...base };
+      const tries = [getText(C.rawURL(b.branch, m.name + '.log')).then(t => { run.progress = C.parseMatchLog(t) || run.progress; })];
+      if (cls.role === 'collection') tries.push(getText(C.rawURL(b.branch, m.name + '/EPISODES.txt')).then(t => { run.episodes = parseInt(t, 10) || run.episodes; }));
+      else tries.push(getText(C.rawURL(b.branch, m.name + '/results.jsonl')).then(t => { const p = C.parseResults(t); run.red = C.reduceRun(p.rows, { sign: cls.sign || 1 }); run.bad_lines = p.bad; }));
+      for (const r of await Promise.allSettled(tries)) if (r.status === 'rejected' && !/^404/.test(r.reason.message)) liveErrors.push(key + ': ' + r.reason.message);
       if (old) Object.assign(old, run); else { RUNS.push(run); byKey.set(key, run); }
     }));
   }));
-  await Promise.all(REG.generations.filter(g => g.net?.metrics).map(async g => {
-    const k = `${g.net.metrics.branch}:${g.net.metrics.path}`;
+  await Promise.all(REG.nets.filter(n => n.metrics).map(async n => {
+    const k = `${n.metrics.branch}:${n.metrics.path}`;
     if (METRICS[k]) return;
-    try { METRICS[k] = C.netMetrics(await getJSON(C.rawURL(g.net.metrics.branch, g.net.metrics.path)), g); } catch (e) { /* not published yet */ }
+    try { METRICS[k] = C.netMetrics(await getJSON(C.rawURL(n.metrics.branch, n.metrics.path)), n.compare); } catch (e) { /* not published yet */ }
   }));
+  trackStalls();
   liveChecked = Date.now() / 1000;
   rebuild(); render();
 }
+// A collection whose boards have not moved for 20 minutes while its box's heartbeat is fresh.
+let SEEN = {}; try { SEEN = JSON.parse(localStorage.getItem('stu-seen') || '{}'); } catch (e) { SEEN = {}; }
+function trackStalls() {
+  const now = Date.now() / 1000;
+  for (const r of RUNS.filter(r => r.cls.role === 'collection' && r.status === 'running')) {
+    const n = Math.max(r.red?.n || 0, r.episodes || 0, r.progress?.boards || 0), s = SEEN[r.key];
+    if (!s || s.n !== n) SEEN[r.key] = { n, since: now };
+  }
+  try { localStorage.setItem('stu-seen', JSON.stringify(SEEN)); } catch (e) { /* storage unavailable */ }
+}
+const stalled = r => { const s = SEEN[r.key], h = HEALTH[r.box], now = Date.now() / 1000; return r.status === 'running' && s && now - s.since >= 1200 && h?.time && now - h.time < 600; };
 
 // ---- tooltip ------------------------------------------------------------------------------------------------------
 const tip = $('tip');
-document.addEventListener('mousemove', e => {
-  const t = e.target.closest?.('[data-tip]');
-  if (!t) { tip.style.display = 'none'; return; }
-  tip.innerHTML = t.getAttribute('data-tip'); tip.style.display = 'block';
-  const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8), y = Math.min(e.clientY + 14, window.innerHeight - tip.offsetHeight - 8);
-  tip.style.left = x + 'px'; tip.style.top = y + 'px';
-});
-document.addEventListener('touchstart', e => {
-  const t = e.target.closest?.('[data-tip]');
-  if (!t) { tip.style.display = 'none'; return; }
-  tip.innerHTML = t.getAttribute('data-tip'); tip.style.display = 'block';
-  const r = t.getBoundingClientRect();
-  tip.style.left = Math.max(8, Math.min(r.left, window.innerWidth - tip.offsetWidth - 8)) + 'px'; tip.style.top = (r.bottom + 8) + 'px';
-}, { passive: true });
+function showTip(t, x, y) { tip.innerHTML = t.getAttribute('data-tip'); tip.style.display = 'block';
+  tip.style.left = Math.max(8, Math.min(x, window.innerWidth - tip.offsetWidth - 8)) + 'px'; tip.style.top = Math.max(8, Math.min(y, window.innerHeight - tip.offsetHeight - 8)) + 'px'; }
+document.addEventListener('mousemove', e => { const t = e.target.closest?.('[data-tip]'); if (!t) { tip.style.display = 'none'; return; } showTip(t, e.clientX + 14, e.clientY + 14); });
+document.addEventListener('touchstart', e => { const t = e.target.closest?.('[data-tip]'); if (!t) { tip.style.display = 'none'; return; } const r = t.getBoundingClientRect(); showTip(t, r.left, r.bottom + 8); }, { passive: true });
 
 // ---- charts -------------------------------------------------------------------------------------------------------
-const ROLE_COLOR = { net: 'var(--s1)', roll: 'var(--s2)', stu: 'var(--s3)' };
-// Wide charts are drawn at the width they get, so their text stays at its set size on a phone.
-const tick = t => sgn(Math.abs(t) < 1e-9 ? 0 : t, 2).replace(/\.?0+$/, '') || '0';
 const chartWidth = id => Math.max(330, Math.min(1200, Math.round($(id)?.clientWidth || 880)));
 function niceTicks(lo, hi, count = 5) {
   const span = hi - lo || 1, raw = span / count, mag = 10 ** Math.floor(Math.log10(raw));
@@ -197,195 +228,216 @@ function niceTicks(lo, hi, count = 5) {
   const out = []; for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) out.push(Math.round(v / step) * step);
   return out;
 }
-function playChart(opp) {
-  const gens = MODEL.generations, roles = REG.roles;
-  const pts = [];
-  gens.forEach((g, gi) => roles.forEach((r, ri) => { const c = g.cells[`${r.key}|${opp}`]; if (c && c.stats.n) pts.push({ gi, ri, role: r, g, s: c.stats, c }); }));
-  if (!pts.length) return '<p class="na">Nothing measured against this opponent yet.</p>';
-  const vals = pts.flatMap(p => p.s.ci ? p.s.ci : [p.s.mean]).concat([0]);
+// Dots with 95% whiskers on categories; pts: [{cat, series, color, s, tip}]
+function dotChart(id, cats, seriesKeys, pts, aria, shortCats = cats) {
+  if (!pts.length) return '<p class="na">Nothing measured yet.</p>';
+  const vals = pts.flatMap(p => p.s.ci || [p.s.mean]).concat([0]);
   let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.12 || 0.5; lo -= pad; hi += pad;
-  const W = chartWidth('play-chart'), H = W < 600 ? 260 : 300, L = 54, R = 16, T = 14, B = 46, band = (W - L - R) / gens.length;
-  const x = (gi, ri) => L + band * (gi + 0.5) + (ri - (roles.length - 1) / 2) * Math.min(26, band / (roles.length + 1));
-  const y = v => T + (hi - v) / (hi - lo) * (H - T - B);
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Mean IMPs a board against ${esc(label(opp))} by generation and role">`;
+  const W = chartWidth(id), H = W < 600 ? 250 : 290, L = 52, R = 14, T = 12, B = 40, band = (W - L - R) / cats.length;
+  const k = seriesKeys.length, off = i => (i - (k - 1) / 2) * Math.min(24, band / (k + 1));
+  const x = (c, si) => L + band * (cats.indexOf(c) + 0.5) + off(si), y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(aria)}">`;
   for (const t of niceTicks(lo, hi)) s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 8}" y="${y(t) + 4}" text-anchor="end">${tick(t)}</text>`;
   s += `<line class="zero" x1="${L}" x2="${W - R}" y1="${y(0)}" y2="${y(0)}"/>`;
-  gens.forEach((g, gi) => { s += `<text x="${L + band * (gi + 0.5)}" y="${H - 22}" text-anchor="middle">${esc(g.label)}</text>`; });
-  s += `<text x="${L}" y="${H - 4}" class="faint">IMPs a board (95% interval)</text>`;
+  const longest = Math.max(...cats.map(c => String(c).length)), names = longest * 7 > band - 6 ? shortCats : cats;   // about 7 px a character
+  names.forEach((c, i) => { s += `<text x="${L + band * (i + 0.5)}" y="${H - 20}" text-anchor="middle">${esc(c)}</text>`; });
+  s += `<text x="${L}" y="${H - 3}" class="faint">IMPs a board, 95% interval</text>`;
   for (const p of pts) {
-    const cx = x(p.gi, p.ri), col = ROLE_COLOR[p.role.key] || 'var(--ref)';
-    const t = `<b>${esc(p.g.label)} · ${esc(p.role.label)}</b><br>${sgn(p.s.mean)} ± ${num(p.s.se)} IMPs a board vs ${esc(label(opp))}<br>95%: ${p.s.ci ? sgn(p.s.ci[0]) + ' to ' + sgn(p.s.ci[1]) : '–'}<br>${int(p.s.n)} of ${int(p.c.deals)} boards · ${esc(stText(p.c.status))}`;
-    if (p.s.ci) s += `<line x1="${cx}" x2="${cx}" y1="${y(p.s.ci[0])}" y2="${y(p.s.ci[1])}" stroke="${col}" stroke-width="2" stroke-linecap="round"/>`;
-    s += `<circle cx="${cx}" cy="${y(p.s.mean)}" r="5" fill="${col}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(t)}" x="${cx - 11}" y="${Math.min(y(p.s.ci ? p.s.ci[1] : p.s.mean), y(p.s.mean)) - 8}" width="22" height="${Math.abs((p.s.ci ? y(p.s.ci[0]) - y(p.s.ci[1]) : 0)) + 16}"/>`;
+    const cx = x(p.cat, seriesKeys.indexOf(p.series)), top = y(p.s.ci ? p.s.ci[1] : p.s.mean), bot = y(p.s.ci ? p.s.ci[0] : p.s.mean);
+    if (p.s.ci) s += `<line x1="${cx}" x2="${cx}" y1="${top}" y2="${bot}" stroke="${p.color}" stroke-width="2" stroke-linecap="round"/>`;
+    s += `<circle cx="${cx}" cy="${y(p.s.mean)}" r="5" fill="${p.color}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(p.tip)}" x="${cx - 11}" y="${top - 8}" width="22" height="${bot - top + 16}"/>`;
   }
   return s + '</svg>';
 }
+const statTip = (title, s, extra = '') => `<b>${esc(title)}</b><br>${sgn(s.mean)} ± ${num(s.se)} IMPs a board<br>95%: ${s.ci ? sgn(s.ci[0]) + ' to ' + sgn(s.ci[1]) : '–'}<br>${int(s.n)} boards · W / T / L ${s.won} / ${s.flat} / ${s.lost}${extra}`;
 function smallMetric(title, key, digits, better) {
-  const gens = MODEL.generations.filter(g => g.metrics?.all);
-  if (!gens.length) return '';
-  const pts = gens.map((g, i) => ({ i, g, v: g.metrics.all[key], p: g.metrics.previous?.all?.[key] })).filter(p => Number.isFinite(p.v));
-  const vals = pts.flatMap(p => [p.v, p.p].filter(Number.isFinite));
-  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.25 || Math.abs(hi) * 0.05 || 0.01; lo -= pad; hi += pad;
-  const W = 330, H = 170, L = 50, R = 12, T = 12, B = 30, band = (W - L - R) / Math.max(1, gens.length);
+  const rows = MODEL.nets.filter(n => Number.isFinite(n.metrics?.all?.[key]));
+  if (!rows.length) return '';
+  const pts = rows.map(n => ({ n, v: n.metrics.all[key], same: Object.entries(n.metrics.same_rows || {}).map(([k, x]) => ({ k, v: x.all?.[key] })).filter(x => Number.isFinite(x.v)) }));
+  const vals = pts.flatMap(p => [p.v, ...p.same.map(x => x.v)]);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.2 || Math.abs(hi) * 0.05 || 0.01; lo -= pad; hi += pad;
+  const W = 330, H = 170, L = 50, R = 12, T = 12, B = 30, band = (W - L - R) / rows.length;
   const x = i => L + band * (i + 0.5), y = v => T + (hi - v) / (hi - lo) * (H - T - B);
-  let s = `<div class="mini"><b>${esc(title)}</b> <span class="muted">${better}</span><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(title)} by generation">`;
+  let s = `<div class="mini"><b>${esc(title)}</b> <span class="muted">${better}</span><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(title)} by net">`;
   for (const t of niceTicks(lo, hi, 4)) s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${t.toFixed(digits)}</text>`;
-  pts.forEach((p, k) => {
-    s += `<text x="${x(p.i)}" y="${H - 8}" text-anchor="middle">${esc(p.g.label)}</text>`;
-    if (k) s += `<line x1="${x(pts[k - 1].i)}" x2="${x(p.i)}" y1="${y(pts[k - 1].v)}" y2="${y(p.v)}" stroke="var(--s1)" stroke-width="2"/>`;
+  pts.forEach((p, i) => {
+    s += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${esc(p.n.key)}</text>`;
+    p.same.forEach(q => { s += `<circle cx="${x(i) + 16}" cy="${y(q.v)}" r="4" fill="none" stroke="var(--ref)" stroke-width="2"/><text x="${x(i) + 24}" y="${y(q.v) + 4}" class="faint" style="font-size:11px">${esc(q.k)}</text>`; });
+    const t = `<b>${esc(p.n.label)}</b>: ${esc(title)} ${p.v.toFixed(digits + 1)} on its own ${int(p.n.metrics.all.n)} held-out decisions` + p.same.map(q => `<br>${esc(q.k)} on the same rows: ${q.v.toFixed(digits + 1)}`).join('');
+    s += `<circle cx="${x(i)}" cy="${y(p.v)}" r="5" fill="${netColor(p.n.key)}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(t)}" x="${x(i) - 14}" y="${T}" width="${Math.min(band, 60)}" height="${H - T - B}"/>`;
   });
-  for (const p of pts) {
-    const prev = p.g.metrics.previous, t = `<b>${esc(p.g.label)}</b>: ${esc(title)} ${p.v.toFixed(digits + 1)}` + (Number.isFinite(p.p) ? `<br>${esc(prev.label)}: ${p.p.toFixed(digits + 1)}` : '') + `<br>held-out decisions: ${int(p.g.metrics.all.n)}`;
-    if (Number.isFinite(p.p)) s += `<circle cx="${x(p.i) + 14}" cy="${y(p.p)}" r="4" fill="none" stroke="var(--ref)" stroke-width="2"/>`;
-    s += `<circle cx="${x(p.i)}" cy="${y(p.v)}" r="5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(t)}" x="${x(p.i) - 14}" y="${T}" width="34" height="${H - T - B}"/>`;
-  }
   return s + '</svg></div>';
 }
-const ROUND_COLORS = ['var(--s1)', 'var(--s2)', 'var(--s3)', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
 function historyChart() {
-  const gens = MODEL.generations.filter(g => g.metrics?.history?.length);
-  if (!gens.length) { $('hist-legend').innerHTML = ''; return '<p class="na">No training history recorded yet.</p>'; }
-  const series = gens.map((g, k) => ({ g, col: ROUND_COLORS[k % 8], h: g.metrics.history.filter(h => Number.isFinite(h.nll)) }));
-  $('hist-legend').innerHTML = series.length > 1 ? series.map(s => `<span><i style="background:${s.col}"></i>${esc(s.g.label)}</span>`).join('') : '';
+  const series = MODEL.nets.filter(n => n.metrics?.history?.some(h => Number.isFinite(h.nll))).map(n => ({ n, col: netColor(n.key), h: n.metrics.history.filter(h => Number.isFinite(h.nll)) }));
+  $('hist-legend').innerHTML = series.length > 1 ? series.map(s => `<span><i style="background:${s.col}"></i>${esc(s.n.label)}</span>`).join('') : '';
+  if (!series.length) return '<p class="na">No training history recorded.</p>';
   const maxE = Math.max(...series.flatMap(s => s.h.map(h => h.epoch))), vals = series.flatMap(s => s.h.map(h => h.nll));
   let lo = Math.min(...vals), hi = Math.max(...vals); const pad = (hi - lo) * 0.15 || 0.01; lo -= pad; hi += pad;
-  const W = chartWidth('hist-chart'), H = 220, L = 54, R = 70, T = 12, B = 34;
+  const W = chartWidth('hist-chart'), H = 210, L = 54, R = 64, T = 12, B = 34;
   const x = e => L + (maxE > 1 ? (e - 1) / (maxE - 1) : 0.5) * (W - L - R), y = v => T + (hi - v) / (hi - lo) * (H - T - B);
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Held-out log-loss after each epoch">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Held-out log-loss after each epoch, by net">`;
   for (const t of niceTicks(lo, hi, 4)) s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${t.toFixed(3)}</text>`;
   for (let e = 1; e <= maxE; e++) s += `<text x="${x(e)}" y="${H - 14}" text-anchor="middle">${e}</text>`;
-  s += `<text x="${L}" y="${H - 1}" class="faint">epoch · held-out log-loss</text>`;
+  s += `<text x="${L}" y="${H - 1}" class="faint">epoch · each net on its own held-out rows</text>`;
   for (const se of series) {
     s += `<path d="${se.h.map((h, i) => (i ? 'L' : 'M') + x(h.epoch) + ',' + y(h.nll)).join(' ')}" fill="none" stroke="${se.col}" stroke-width="2" stroke-linejoin="round"/>`;
-    for (const h of se.h) s += `<circle cx="${x(h.epoch)}" cy="${y(h.nll)}" r="4" fill="${se.col}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(`<b>${se.g.label}</b>, epoch ${h.epoch}<br>held-out log-loss ${num(h.nll, 4)} · agreement ${pct(h.agree)} · regret ${num(h.regret, 4)}<br>training cross-entropy ${num(h.train_ce, 4)}`)}" x="${x(h.epoch) - 12}" y="${y(h.nll) - 12}" width="24" height="24"/>`;
-    const last = se.h.at(-1); if (last) s += `<text x="${x(last.epoch) + 10}" y="${y(last.nll) + 4}">${num(last.nll, 4)}</text>`;
+    for (const h of se.h) s += `<circle cx="${x(h.epoch)}" cy="${y(h.nll)}" r="4" fill="${se.col}" stroke="var(--surface)" stroke-width="2"/><rect class="hit" data-tip="${esc(`<b>${se.n.label}</b>, epoch ${h.epoch}<br>held-out log-loss ${num(h.nll, 4)} · agreement ${pct(h.agree)} · regret ${num(h.regret, 4)}<br>training cross-entropy ${num(h.train_ce, 4)}`)}" x="${x(h.epoch) - 12}" y="${y(h.nll) - 12}" width="24" height="24"/>`;
+    const last = se.h.at(-1); s += `<text x="${x(last.epoch) + 9}" y="${y(last.nll) + 4}">${esc(se.n.key)} ${num(last.nll, 4)}</text>`;
   }
   return s + '</svg>';
 }
-function curveChart(title, cell, col) {
-  const rows = cell.curve; if (!rows.length) return '';
+function curveChart(title, c, col) {
+  const rows = c.curve; if (!rows.length) return '';
   const settled = rows.filter(r => r.boards >= Math.min(20, rows.at(-1).boards));
-  const vals = settled.flatMap(r => r.ci || [r.mean]).concat([0]); const ext = Math.max(0.5, ...vals.map(Math.abs)) * 1.1;
-  const clip = v => Math.max(-ext, Math.min(ext, v));
-  const W = 360, H = 190, L = 44, R = 12, T = 10, B = 28, maxB = Math.max(cell.deals || 0, rows.at(-1).boards);
+  const ext = Math.max(0.5, ...settled.flatMap(r => r.ci || [r.mean]).map(Math.abs)) * 1.1, clip = v => Math.max(-ext, Math.min(ext, v));
+  const W = 360, H = 190, L = 44, R = 12, T = 10, B = 28, maxB = Math.max(c.deals || 0, rows.at(-1).boards);
   const x = n => L + n / maxB * (W - L - R), y = v => T + (ext - v) / (2 * ext) * (H - T - B);
   const band = rows.filter(r => r.ci), poly = band.map(r => x(r.boards) + ',' + y(clip(r.ci[1]))).concat(band.slice().reverse().map(r => x(r.boards) + ',' + y(clip(r.ci[0])))).join(' ');
-  const last = rows.at(-1), s = cell.stats;
-  let out = `<div class="mini"><b>${esc(title)}</b><span class="sub muted">${sgn(s.mean)} ± ${num(s.se)} · ${int(s.n)} of ${int(cell.deals)} boards · <span class="pill ${cell.status === 'running' ? 'live' : 'done'}">${esc(stText(cell.status))}</span></span>`;
+  const last = rows.at(-1), s = c.stats;
+  let out = `<div class="mini"><b>${esc(title)}</b><span class="sub muted">${sgn(s.mean)} ± ${num(s.se)} · ${int(s.n)} of ${int(c.deals)} boards · <span class="pill ${c.status === 'running' ? 'live' : ''}">${esc(c.status)}</span>${c.superseded_boards ? ` · ${int(c.superseded_boards)} from superseded runs` : ''}</span>`;
   out += `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${esc(title)}: cumulative mean IMPs">`;
   for (const t of niceTicks(-ext, ext, 4)) out += `<line class="axis" x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${tick(t)}</text>`;
   out += `<line class="zero" x1="${L}" x2="${W - R}" y1="${y(0)}" y2="${y(0)}"/>`;
   if (poly) out += `<polygon points="${poly}" fill="${col}" opacity="0.14"/>`;
   out += `<path d="${rows.map((r, i) => (i ? 'L' : 'M') + x(r.boards) + ',' + y(clip(r.mean))).join(' ')}" fill="none" stroke="${col}" stroke-width="2"/>`;
-  out += `<circle cx="${x(last.boards)}" cy="${y(last.mean)}" r="4" fill="${col}" stroke="var(--surface)" stroke-width="2"/>`;
+  out += `<circle cx="${x(last.boards)}" cy="${y(clip(last.mean))}" r="4" fill="${col}" stroke="var(--surface)" stroke-width="2"/>`;
   out += `<text x="${W - R}" y="${H - 8}" text-anchor="end">${int(maxB)} boards</text><text x="${L}" y="${H - 8}">0</text>`;
-  out += `<rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" data-tip="${esc(`<b>${title}</b><br>${sgn(s.mean)} ± ${num(s.se)} IMPs a board over ${int(s.n)} boards<br>95%: ${s.ci ? sgn(s.ci[0]) + ' to ' + sgn(s.ci[1]) : '–'}<br>W / T / L ${s.won} / ${s.flat} / ${s.lost}`)}"/>`;
+  out += `<rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" data-tip="${esc(statTip(title, s))}"/>`;
   return out + '</svg></div>';
 }
 
 // ---- render ------------------------------------------------------------------------------------------------------
 function render() {
   if (!MODEL) return;
-  const opps = MODEL.opponents, sel = $('opp');
-  if (!sel.options.length) { sel.innerHTML = opps.map(o => `<option value="${esc(o.id)}">${esc(o.label)}</option>`).join(''); sel.value = MODEL.primary; sel.onchange = render; }
-  const opp = sel.value || MODEL.primary, oppInfo = opps.find(o => o.id === opp) || {};
-  const rounds = MODEL.generations.filter(g => g.kind === 'round'), cur = rounds.at(-1);
-  const heads = Object.entries(SNAP.heads || {}).filter(([, h]) => h);
+  const M = MODEL, oppLabel = REG.opponent.label;
+  document.querySelectorAll('.opp').forEach(e => { e.textContent = oppLabel; });
+  $('gate-last').textContent = int(M.gate_deals - 1); $('ladder-last').textContent = int(M.ladder_deals - 1);
   $('fresh').textContent = `Snapshot built ${SNAP.built_epoch ? when(SNAP.built_epoch) + ' UTC (' + ago(SNAP.built_epoch) + ')' : 'never'}` +
-    (liveChecked ? ` · runs still going re-read ${ago(liveChecked)}` : ' · reading live runs…') +
-    (liveErrors.length ? ` · could not read: ${liveErrors.join('; ')}` : '');
+    (liveChecked ? ` · moving runs re-read ${ago(liveChecked)}` : ' · reading moving runs…') + (liveErrors.length ? ` · could not read: ${liveErrors.join('; ')}` : '');
 
-  // cards
-  const gate = cur?.cells[`stu|${MODEL.primary}`], net = cur?.cells[`net|${MODEL.primary}`], sp = cur?.selfplay;
-  const x8 = sp?.x8, moved = x8 && x8.consulted ? x8.moved / x8.consulted : null;
-  const card = (k, v, sub) => `<div class="card"><span class="muted">${k}</span><div class="big">${v}</div><span class="muted">${sub}</span></div>`;
-  $('cards').innerHTML = cur ? [
-    card('Current generation', esc(cur.label), esc(cur.net?.label || '')),
-    card('Self-play boards', int(sp?.boards), `of ${int(sp?.target)} queued · ${esc(sp?.status ? stText(sp.status) : 'not started')}`),
-    card(`Stu vs ${esc(label(MODEL.primary))}`, gate?.stats.n ? sgn(gate.stats.mean) : '–', gate?.stats.n ? `± ${num(gate.stats.se)} · ${int(gate.stats.n)} of ${int(gate.deals)} boards · ${esc(stText(gate.status))}` : 'not run'),
-    card(`Net alone vs ${esc(label(MODEL.primary))}`, net?.stats.n ? sgn(net.stats.mean) : '–', net?.stats.n ? `± ${num(net.stats.se)} · ${int(net.stats.n)} boards` : 'not run'),
-    card('Rollouts changed the card', pct(moved), x8 ? `of ${int(x8.consulted / Math.max(1, x8.boards))} consulted decisions a board, self-play` : 'no self-play rows yet'),
-  ].join('') : '';
-
-  // play
-  $('play-note').innerHTML = esc(REG.validation?.note || '') + (oppInfo.detail ? ' ' + esc(oppInfo.detail) : '');
-  $('opp-head').textContent = `IMPs a board against ${label(opp)}`;
-  $('play-legend').innerHTML = REG.roles.map(r => `<span><i style="background:${ROLE_COLOR[r.key]}"></i>${esc(r.label)}</span>`).join('');
-  $('play-chart').innerHTML = playChart(opp);
-  $('play-table').innerHTML = MODEL.generations.map(g => {
-    const c = r => g.cells[`${r}|${opp}`]?.stats;
-    const amp = opp === MODEL.primary ? g.amplification : { roll_over_net: C.paired(g.cells[`roll|${opp}`], g.cells[`net|${opp}`]), stu_over_net: C.paired(g.cells[`stu|${opp}`], g.cells[`net|${opp}`]) };
-    const prevG = MODEL.generations.find(x => x.round === g.previous_round);
-    const d = r => prevG ? C.paired(g.cells[`${r}|${opp}`], prevG.cells[`${r}|${opp}`]) : null;
-    const vx = g.validation_x8, stuExtra = vx && opp === MODEL.primary && vx.consulted ? ` · changed ${pct(vx.moved / vx.consulted, 0)}` : '';
-    const diff = s => s ? cellText(s) : '<span class="na">–</span>';
-    return `<tr><td><b>${esc(g.label)}</b><span class="sub">${esc(g.kind === 'reference' ? 'reference' : (g.net?.label || ''))}</span></td>` +
-      `<td>${cellText(c('net'))}</td><td>${cellText(c('roll'))}</td><td>${cellText(c('stu'), stuExtra)}</td>` +
-      `<td>${diff(amp.roll_over_net)}</td><td>${diff(amp.stu_over_net)}</td>` +
-      `<td>${g.kind === 'round' && prevG ? diff(d('net')) : '<span class="na">–</span>'}</td><td>${g.kind === 'round' && prevG ? diff(d('stu')) : '<span class="na">–</span>'}</td>` +
-      `<td>${g.h2h ? cellText(g.h2h.stats) : '<span class="na">' + (g.kind === 'round' && prevG ? 'not run' : '–') + '</span>'}</td></tr>`;
+  // box health
+  $('health').innerHTML = REG.boxes.filter(b => !b.frozen).map(b => {
+    const h = HEALTH[b.box] || {}, age = h.time ? Date.now() / 1000 - h.time : null, pub = COMMITS[b.branch] || SNAP.heads?.[b.branch]?.committed_epoch;
+    const bad = age == null || age > 900, pubOld = pub && Date.now() / 1000 - pub > 1800;
+    const t = `<b>${b.box}</b><br>heartbeat ${ago(h.time)}${h.load ? ' · load ' + h.load.map(x => x.toFixed(1)).join(' / ') + ' on ' + h.cpus + ' cores' : ''}<br>memory free ${int(h.mem_available_mb)} of ${int(h.mem_total_mb)} MB · disk free ${num(h.disk_free_gb, 0)} GB<br>rows last published ${ago(pub)} (${esc(b.branch)})`;
+    return `<span class="pill ${bad || pubOld ? 'warn' : 'live'}" data-tip="${esc(t)}">${esc(b.box)} · heartbeat ${ago(h.time)} · rows ${ago(pub)}</span>`;
   }).join('');
 
-  // net
-  const mg = MODEL.generations.filter(g => g.metrics);
-  $('net-note').textContent = mg.length ? '' : 'No net scores yet.';
+  // cards
+  const cur = M.rounds.at(-1), coll = cur?.collection, gate = cur?.gate, curNet = M.nets.find(n => n.key === cur?.net);
+  const card = (k, v, sub) => `<div class="card"><span class="muted">${k}</span><div class="big">${v}</div><span class="muted">${sub}</span></div>`;
+  const prevNet = curNet?.metrics ? Object.entries(curNet.metrics.same_rows || {})[0] : null;
+  $('cards').innerHTML = cur ? [
+    card('Current round', esc(cur.label), esc(netInfo(cur.net).label) + ' inside'),
+    card('Collection', `${int(coll.boards)}<span class="muted" style="font-size:15px"> / ${int(coll.cut)}</span>`, coll.rate ? `${int(coll.rate)} boards an hour · ${coll.eta_hours != null ? 'cut in about ' + num(coll.eta_hours, 1) + ' h' : 'at the cut'}` : esc(coll.status)),
+    card(`Gate: Stu vs ${esc(oppLabel)}`, gate?.stats.n ? sgn(gate.stats.mean) : '–', gate?.stats.n ? `± ${num(gate.stats.se)} · ${int(gate.stats.n)} of ${int(gate.deals)} boards${gate.stats.n < 200 ? ', interim' : ''}` : 'not run'),
+    card('Net held-out log-loss', curNet?.metrics ? num(curNet.metrics.all.nll, 4) : '–', prevNet && prevNet[1].all ? `${esc(prevNet[0])} on the same rows: ${num(prevNet[1].all.nll, 4)}` : esc(curNet?.label || '')),
+    card('Rollouts changed the card', pct(coll?.mix?.moved), coll?.mix ? `of ${num(coll.mix.rollout, 1)} rollout decisions a board (collection)` : 'no collection rows yet'),
+  ].join('') : '';
+
+  // rounds
+  $('rounds-note').textContent = M.rounds.map(r => r.note).filter(Boolean).join(' ');
+  $('gate-chart').innerHTML = dotChart('gate-chart', M.rounds.map(r => r.label), ['gate'], M.rounds.filter(r => r.gate?.stats.n).map(r => ({ cat: r.label, series: 'gate', color: netColor(r.net), s: r.gate.stats,
+    tip: statTip(`${r.label}: Stu vs ${oppLabel}`, r.gate.stats, `<br>net inside: ${esc(netInfo(r.net).label)}${r.gate.superseded_boards ? `<br>${int(r.gate.superseded_boards)} boards from superseded runs (same bot)` : ''}`) })), `The gate by round: Stu against ${oppLabel}`);
+  $('rounds-table').innerHTML = M.rounds.map(r => {
+    const c = r.collection, n = M.nets.find(x => x.key === r.net), mx = c.mix;
+    return `<tr><td><b>${esc(r.label)}</b><span class="sub">${esc(netInfo(r.net).label)}</span></td>` +
+      `<td>${int(c.boards)} / ${int(c.cut)}<span class="sub">${c.rate ? int(c.rate) + ' an hour' + (c.eta_hours != null ? ' · cut in ' + num(c.eta_hours, 1) + ' h' : '') : esc(c.status)}${c.failed ? ' · ' + c.failed + ' failed' : ''}</span></td>` +
+      `<td>${cell(r.gate?.stats, r.gate?.superseded_boards ? ` · ${int(r.gate.superseded_boards)} from superseded runs` : '')}</td>` +
+      `<td>${r.previous ? diff(r.gate_change) : '<span class="na">first round</span>'}</td>` +
+      `<td>${n?.metrics ? num(n.metrics.all.nll, 4) + `<span class="sub">regret ${num(n.metrics.all.regret, 4)}</span>` : '<span class="na">not published</span>'}</td>` +
+      `<td>${mx ? `${num(mx.rollout, 1)} / ${num(mx.blend, 1)} / ${num(mx.claim, 1)}<span class="sub">rollout / blend / claim</span>` : '–'}</td>` +
+      `<td>${mx ? pct(mx.moved) : '–'}${r.gate_mix ? `<span class="sub">gate: ${pct(r.gate_mix.moved)}</span>` : ''}</td><td>${num(c.cpu, 1)}</td></tr>`;
+  }).join('');
+
+  // ladder
+  const nets = M.ladder_nets, rungs = M.rungs;
+  $('ladder-note').innerHTML = esc(REG.opponent.detail);
+  $('ladder-legend').innerHTML = nets.map(n => `<span><i style="background:${netColor(n)}"></i>${esc(netInfo(n).label)}</span>`).join('');
+  const lpts = [];
+  for (const g of rungs) for (const n of nets) { const c = M.ladder[`${n}|${g}`]; if (c?.stats.n) lpts.push({ cat: rungInfo(g).label, series: n, color: netColor(n), s: c.stats, tip: statTip(`${netInfo(n).label} · ${rungInfo(g).label}`, c.stats, `<br>${esc(rungInfo(g).text)}`) }); }
+  $('ladder-chart').innerHTML = dotChart('ladder-chart', rungs.map(g => rungInfo(g).label), nets, lpts, `The ladder against ${oppLabel}, by rung and net`, rungs);
+  const pairsN = nets.slice(1).map((n, i) => [n, nets[i]]);
+  $('ladder-head').innerHTML = `<tr><th>Rung</th>${nets.map(n => `<th>${esc(netInfo(n).label)}</th><th>− Stu</th>`).join('')}${pairsN.map(([a, b]) => `<th>${esc(a)} − ${esc(b)}</th>`).join('')}</tr>`;
+  $('ladder-table').innerHTML = rungs.map(g => `<tr><td><b>${esc(rungInfo(g).label)}</b><span class="sub" style="white-space:normal;max-width:260px">${esc(rungInfo(g).text)}</span></td>` +
+    nets.map(n => { const c = M.ladder[`${n}|${g}`]; return `<td>${c?.stats.n ? cell(c.stats, ` of ${int(c.deals)}`) : `<span class="na">${c ? esc(c.status) : 'not planned'}</span>`}</td><td>${g === 'stu' ? '<span class="na">·</span>' : diff(M.vs_stu[`${n}|${g}`])}</td>`; }).join('') +
+    pairsN.map(([a, b]) => `<td>${diff(M.vs_net[`${a}|${b}|${g}`])}</td>`).join('') + '</tr>').join('');
+
+  // leverage
+  const order = REG.nets.map(n => n.key);
+  const levPairs = order.slice(1).map((k, i) => [k, order[i]]).filter(([a]) => M.nets.find(n => n.key === a)?.metrics || nets.includes(a));
+  $('lev-head').innerHTML = `<tr><th>Nets</th><th>Log-loss change</th><th>Regret change</th>${rungs.map(g => `<th>${esc(rungInfo(g).label)}</th>`).join('')}</tr>`;
+  $('lev-table').innerHTML = levPairs.map(([a, b]) => {
+    const A = M.nets.find(n => n.key === a)?.metrics, same = A?.same_rows?.[b];
+    const dl = A && same?.all ? A.all.nll - same.all.nll : null, dr = A && same?.all ? A.all.regret - same.all.regret : null;
+    return `<tr><td><b>${esc(a)} vs ${esc(b)}</b><span class="sub">${esc(netInfo(a).label)} minus ${esc(netInfo(b).label)}</span></td>` +
+      `<td>${dl == null ? '<span class="na">not on shared rows</span>' : `<span class="${dl < 0 ? 'pos' : 'neg'}">${sgn(dl, 4)}</span><span class="sub">on ${int(A.all.n)} rows</span>`}</td>` +
+      `<td>${dr == null ? '<span class="na">–</span>' : `<span class="${dr < 0 ? 'pos' : 'neg'}">${sgn(dr, 4)}</span><span class="sub">tricks a decision</span>`}</td>` +
+      rungs.map(g => `<td>${diff(M.vs_net[`${a}|${b}|${g}`])}</td>`).join('') + '</tr>';
+  }).join('') || '<tr><td colspan="9" class="na">One net so far.</td></tr>';
+  $('lev-note').textContent = 'v2 against v1 is not a step of the loop: the two nets differ in training data, width and bot vectors. From Stu 1 on, each row is one round of the loop. The log-loss and regret changes are coloured by direction only (no interval: the trainer reports none).';
+
+  // nets
   $('net-charts').innerHTML = smallMetric('Held-out log-loss', 'nll', 3, 'lower is better') + smallMetric('Top-1 agreement', 'agree', 2, 'higher is better') + smallMetric('Regret, tricks a decision', 'regret', 3, 'lower is better');
-  $('net-table').innerHTML = MODEL.generations.filter(g => g.kind === 'round' || g.metrics).map(g => {
-    const m = g.metrics;
-    if (!m) return `<tr><td><b>${esc(g.label)}</b></td><td>${esc(g.net?.label || '')}</td><td colspan="8" class="na">no scores published${g.net?.metrics ? ' at ' + esc(g.net.metrics.branch) : ''}</td></tr>`;
-    const p = m.previous, sub = (v, d, f = num) => p && v != null ? `<span class="sub">${esc(p.label.split(' on ')[0])}: ${f(v, d)}</span>` : '';
-    return `<tr><td><b>${esc(g.label)}</b></td><td>${esc(g.net?.label || '')}<span class="sub">${esc(g.net?.trained_from || '')}</span></td>` +
-      `<td>${int(m.train_examples)}<span class="sub">${int(m.train_deals)} deals · ${m.epochs ?? '–'} epochs</span></td>` +
-      `<td>${esc(m.val_data || '–')}<span class="sub">${int(m.all?.n)} decisions</span></td>` +
-      `<td>${num(m.all?.nll, 4)}${sub(p?.all?.nll, 4)}</td><td>${pct(m.all?.agree)}${sub(p?.all?.agree, 1, pct)}</td>` +
-      `<td>${pct(m.all?.in_best)}${sub(p?.all?.in_best, 1, pct)}</td><td>${num(m.all?.regret, 4)}${sub(p?.all?.regret, 4)}</td>` +
-      `<td>${num(m.late?.nll, 4)}${sub(p?.late?.nll, 4)}</td><td>${num(m.late?.regret, 4)}${sub(p?.late?.regret, 4)}</td></tr>`;
+  $('net-table').innerHTML = M.nets.map(n => {
+    const m = n.metrics;
+    if (!m) return `<tr><td><b>${esc(n.label)}</b><span class="sub">${esc(n.key)}</span></td><td class="wrap">${esc(n.trained || '')}</td><td colspan="8" class="na">not published (${esc(n.metrics?.branch || '')} ${esc(n.metrics?.path || '')})</td></tr>`;
+    const same = Object.entries(m.same_rows || {}).map(([k, x]) => `${esc(k)}: ${num(x.all?.nll, 4)} · ${pct(x.all?.agree)} · ${num(x.all?.regret, 4)}`).join('<br>');
+    return `<tr><td><b>${esc(n.label)}</b><span class="sub">${esc(n.key)}</span></td><td class="wrap">${esc(n.trained || '')}<span class="sub">${int(m.train_examples)} decisions, ${int(m.train_deals)} deals · ${m.epochs ?? '–'} epochs · ${m.width ?? '–'} wide</span></td>` +
+      `<td>${int(m.all?.n)}<span class="sub">${esc(m.val_data || '')}</span></td><td>${num(m.all?.nll, 4)}</td><td>${pct(m.all?.agree)}</td><td>${pct(m.all?.in_best)}</td><td>${num(m.all?.regret, 4)}</td>` +
+      `<td>${num(m.late?.nll, 4)}</td><td>${num(m.late?.regret, 4)}</td><td style="text-align:left">${same || '<span class="na">–</span>'}<span class="sub">log-loss · agreement · regret</span></td></tr>`;
   }).join('');
   $('hist-chart').innerHTML = historyChart();
 
   // curves
-  const curveCells = [];
-  for (const g of MODEL.generations.slice().reverse()) for (const r of REG.roles) for (const o of opps) {
-    const c = g.cells[`${r.key}|${o.id}`]; if (c && c.stats.n) curveCells.push(curveChart(`${g.label} · ${r.label} vs ${label(o.id)}`, c, ROLE_COLOR[r.key]));
-  }
-  for (const [k, c] of Object.entries(MODEL.h2h)) { const [nw, od] = k.split('|'); curveCells.push(curveChart(`${genLabel(nw)} vs ${genLabel(od)} (new vs old)`, c, 'var(--ref)')); }
-  $('curves').innerHTML = curveCells.join('') || '<p class="na">No validation boards yet.</p>';
+  const curves = [];
+  for (const r of M.rounds.slice().reverse()) if (r.gate?.stats.n) curves.push(curveChart(`${r.label} gate: Stu vs ${oppLabel}`, r.gate, netColor(r.net)));
+  for (const g of rungs) for (const n of nets) { const c = M.ladder[`${n}|${g}`]; if (c?.stats.n && !(g === 'stu' && M.rounds.some(r => r.net === n && r.gate?.stats.n === c.stats.n))) curves.push(curveChart(`Ladder: ${netInfo(n).label} · ${rungInfo(g).label}`, c, netColor(n))); }
+  $('curves').innerHTML = curves.join('') || '<p class="na">No boards on the fixed deals yet.</p>';
 
-  // self-play
-  $('self-table').innerHTML = MODEL.generations.filter(g => g.kind === 'round').map(g => {
-    const s = g.selfplay, x = s.x8, per = k => x && x.boards ? num(x[k] / x.boards, 1) : '–';
-    return `<tr><td><b>${esc(g.label)}</b></td><td>${int(s.boards)}<span class="sub">of ${int(s.target)} queued · rows read ${int(s.rows_seen)}</span></td>` +
-      `<td><span class="pill ${s.status === 'running' ? 'live' : 'done'}">${esc(s.status ? stText(s.status) : 'not started')}</span></td><td>${num(s.cpu, 1)}</td>` +
-      `<td>${per('rollout')}</td><td>${per('blend')}</td><td>${per('claim')}</td><td>${x && x.consulted ? pct(x.moved / x.consulted) : '–'}</td>` +
-      `<td>${x && x.consulted ? int(x.rollouts / x.consulted) : '–'}</td><td>${x && x.consulted ? int(x.net_rows / x.consulted) : '–'}</td>` +
-      `<td>${s.stats ? cellText(s.stats) : '–'}</td></tr>`;
+  // collections and data runs
+  const coll2 = RUNS.filter(r => r.cls.role === 'collection').sort((a, b) => (a.cls.round - b.cls.round) || ((a.started || 0) - (b.started || 0)));
+  $('coll-table').innerHTML = coll2.map(r => {
+    const mx = C.decisionMix(r.red?.x8 ? { ...r.red.x8, boards: r.red.x8_boards } : null), n = Math.max(r.red?.n || 0, r.episodes || 0, r.progress?.boards || 0), st = stalled(r);
+    return `<tr><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a><span class="sub">round ${esc(r.cls.round)} · ${esc(r.pair)}${r.note ? ' · ' + esc(r.note) : ''}</span></td>` +
+      `<td>${int(n)} / ${int(r.deals)}<span class="sub">deals ${int(r.first)}–${int((r.first || 0) + (r.deals || 0) - 1)}</span></td>` +
+      `<td><span class="pill ${st ? 'warn' : r.status === 'running' ? 'live' : ''}">${st ? 'no new boards in 20 min' : esc(r.status)}</span></td>` +
+      `<td>${r.progress ? int(r.progress.per_hour) : '–'}</td><td>${r.progress ? int(r.progress.failed) : '–'}</td><td>${r.red?.cpu_n ? num(r.red.cpu / r.red.cpu_n, 1) : '–'}</td>` +
+      `<td>${mx ? `${num(mx.rollout, 1)} / ${num(mx.blend, 1)} / ${num(mx.claim, 1)}` : '–'}</td><td>${mx ? pct(mx.moved) : '–'}</td><td>${mx ? int(mx.rollouts) : '–'}</td>` +
+      `<td>${r.red?.n ? cell(C.summaryOf(r.red), '', false) : '–'}</td></tr>`;
   }).join('');
+  $('data-table').innerHTML = M.data.map(r => `<tr><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a><span class="sub">${esc(netInfo(r.cls.net).label)} · ${esc(rungInfo(r.cls.rung).label)} vs Stu</span></td>` +
+    `<td>${int(r.red?.n || r.progress?.boards || 0)} / ${int(r.deals)}</td><td><span class="pill ${r.status === 'running' ? 'live' : ''}">${esc(r.status)}</span></td><td>${r.red?.n ? cell(C.summaryOf(r.red), '', false) : '–'}</td></tr>`).join('') || '<tr><td colspan="4" class="na">none</td></tr>';
 
-  // other matches
-  $('other-table').innerHTML = MODEL.others.filter(r => r.red?.n).sort((a, b) => a.key.localeCompare(b.key)).map(r => {
-    const s = C.summaryOf(r.red);
-    return `<tr><td>${esc(pairLabel(r.pair))}<span class="sub"><code>${esc(r.pair)}</code></span></td><td>${int(s.n)}</td><td class="${sig(s)}">${sgn(s.mean)} ± ${num(s.se)}</td>` +
-      `<td>${s.ci ? sgn(s.ci[0]) + ' to ' + sgn(s.ci[1]) : '–'}</td><td>${s.won} / ${s.flat} / ${s.lost}</td><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a> · seed ${r.seed ?? '–'}</td></tr>`;
-  }).join('') || '<tr><td colspan="6" class="na">none</td></tr>';
+  // control
+  const K = M.control.cells, src = Object.values(K).find(Boolean)?.source;
+  $('control-note').textContent = (REG.control.note || '') + (src ? ` Showing the ${src === 'sandbox' ? "sandbox's 300 deals" : src + "'s runs (3,000 deals planned)"} for each cell that has boards.` : '');
+  const cc = k => K[k] ? cell(K[k].stats, ` · ${K[k].source}`, false) : '<span class="na">not run</span>';
+  $('control-table').innerHTML = `<tr><td>v4.1</td><td>${cc('R41_N41')}</td><td>${cc('R41_N4')}</td></tr><tr><td>v4</td><td>${cc('R4_N41')}</td><td>${cc('R4_N4')}</td></tr>` +
+    `<tr><td>v0</td><td>${cc('R0_N41')}</td><td class="na">–</td></tr><tr><td>none: v4.1 alone<span class="sub">the nets alone, for scale</span></td><td class="na">–</td><td>${cc('N41_N4')}</td></tr>`;
+  const sp = M.control.split;
+  $('control-derived').innerHTML = sp ? `<p class="muted">Paired by deal, v4.1 inside minus v4 inside: ${sgn(sp.matched.mean)} ± ${num(sp.matched.se)} against v4.1 alone, ${sgn(sp.mismatched.mean)} ± ${num(sp.mismatched.se)} against v4 alone.
+    If the two effects add: the inside net matching the opponent's net <b>${sgn(sp.exact.mean)} ± ${num(sp.exact.se)}</b>, the better net inside <b>${sgn(sp.quality.mean)} ± ${num(sp.quality.se)}</b> (${int(sp.quality.n)} deals).` +
+    (K.F41_F4 ? ` A rollout bot wholly on v4.1 against one wholly on v4: ${sgn(K.F41_F4.stats.mean)} ± ${num(K.F41_F4.stats.se)}` + (M.control.generation ? `; minus the nets alone on the same deals, ${sgn(M.control.generation.mean)} ± ${num(M.control.generation.se)}.` : '.') : '') + '</p>' : '';
+
+  // other
+  $('sec-other').hidden = !M.others.length;
+  $('other-table').innerHTML = M.others.map(r => { const s = C.summaryOf(r.red); return `<tr><td>${esc(r.pair.split('~').map(label).join(' vs '))}<span class="sub"><code>${esc(r.pair)}</code></span></td><td>${int(s.n)}</td><td class="${sig(s)}">${sgn(s.mean)} ± ${num(s.se)}</td><td>${s.ci ? sgn(s.ci[0]) + ' to ' + sgn(s.ci[1]) : '–'}</td><td>${s.won} / ${s.flat} / ${s.lost}</td><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a></td></tr>`; }).join('');
 
   // runs
-  const kindText = c => c.kind === 'validation' ? `validation · ${genLabel(c.round)} · ${roleLabel(c.role)} vs ${label(c.opponent)}` : c.kind === 'selfplay' ? `self-play · ${genLabel(c.round)}` :
-    c.kind === 'h2h' ? `new vs old · ${genLabel(c.newer)} vs ${genLabel(c.older)}` : 'other';
-  const statusText = r => r.status === 'stopped' ? `stopped (exit ${r.exit})` : stText(r.status);
-  $('runs-table').innerHTML = RUNS.slice().sort((a, b) => (b.started || 0) - (a.started || 0) || a.key.localeCompare(b.key)).map(r =>
-    `<tr><td><a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a>${r.cls.alias ? '<span class="sub">old ids of the same bot</span>' : ''}</td><td><code>${esc(r.pair)}</code></td><td>${esc(kindText(r.cls))}</td>` +
-    `<td>${r.seed ?? '–'} · ${int(r.first)}–${int((r.first || 0) + (r.deals || 0) - 1)}</td><td>${int(Math.max(r.red?.n || 0, r.episodes || 0))}${r.bad_lines ? `<span class="sub">${r.bad_lines} partial line(s) skipped</span>` : ''}</td>` +
-    `<td><span class="pill ${r.status === 'running' ? 'live' : 'done'}" title="${r.status === 'set aside' ? 'No end line in runs.log, and another job started after it on this box. The chain may resume it.' : ''}">${esc(statusText(r))}</span></td>` +
-    `<td>${when(r.started)}</td><td>${(r.sources || []).map(s => `<code>${esc(s)}</code>`).join(' ')}</td></tr>`).join('');
-  $('prov').innerHTML = 'Branch tips in the snapshot: ' + heads.map(([b, h]) => `<a href="${C.treeURL(b)}">${esc(b)}</a> <code>${esc(h.sha.slice(0, 7))}</code> (${when(h.committed_epoch)})`).join(' · ');
-
-  // definitions
-  $('defs').innerHTML = '<table><tbody>' + REG.roles.map(r => `<tr><td><i style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${ROLE_COLOR[r.key]};margin-right:8px;vertical-align:-1px"></i><b>${esc(r.label)}</b></td><td style="white-space:normal;text-align:left">${esc(r.description)}</td></tr>`).join('') +
-    MODEL.generations.map(g => `<tr><td><b>${esc(g.label)}</b></td><td style="white-space:normal;text-align:left">${esc(g.note || '')} Bots: ${Object.entries(g.bots).map(([k, v]) => `${esc(roleLabel(k))} <code>${v.map(esc).join(', ')}</code>`).join('; ')}.${g.net?.data ? ' Net trained on ' + esc(g.net.data) + '.' : ''}</td></tr>`).join('') + '</tbody></table>';
+  const roleText = c => ({ collection: 'collection', gate: 'gate', ladder: 'ladder', data: 'data', control: 'control', other: 'other' }[c.role] || c.role) +
+    (c.round != null ? ` · round ${c.round}` : '') + (c.net ? ` · ${c.net}` : '') + (c.rung ? ` · ${rungInfo(c.rung).label}` : '') + (c.superseded && c.role !== 'collection' ? ' · superseded' : '');
+  const boxOrder = REG.boxes.map(b => b.box);
+  $('runs-table').innerHTML = RUNS.slice().sort((a, b) => (boxOrder.indexOf(a.box) - boxOrder.indexOf(b.box)) || ((a.queue_order ?? -1) - (b.queue_order ?? -1)) || ((a.started || 0) - (b.started || 0))).map(r =>
+    `<tr><td>${r.status === 'queued' ? esc(r.key) : `<a href="${C.treeURL(r.branch, r.name)}">${esc(r.key)}</a>`}${r.note ? `<span class="sub" style="white-space:normal;max-width:300px">${esc(r.note)}</span>` : ''}</td><td>${esc(roleText(r.cls))}</td><td><code>${esc(r.pair)}</code></td>` +
+    `<td>${r.seed ?? '–'} · ${int(r.first)}–${int((r.first || 0) + (r.deals || 0) - 1)}</td><td>${int(Math.max(r.red?.n || 0, r.episodes || 0, r.progress?.boards || 0))}${r.bad_lines ? `<span class="sub">${r.bad_lines} partial line(s) skipped</span>` : ''}</td>` +
+    `<td><span class="pill ${r.status === 'running' ? 'live' : ''}">${esc(r.status === 'stopped' ? 'stopped (exit ' + r.exit + ')' : r.status)}</span></td><td>${when(r.started)}</td><td>${(r.sources || []).map(s => `<code>${esc(s)}</code>`).join(' ')}</td></tr>`).join('');
+  $('prov').innerHTML = 'Branch tips in the snapshot: ' + Object.entries(SNAP.heads || {}).filter(([, h]) => h).map(([b, h]) => `<a href="${C.treeURL(b)}">${esc(b)}</a> <code>${esc(h.sha.slice(0, 7))}</code> (${when(h.committed_epoch)})`).join(' · ') +
+    `. The loop's brief: <a href="https://github.com/${C.REPO}/blob/${REG.brief.branch}/${REG.brief.path}">DASHBOARD.md</a>.`;
+  $('cautions').innerHTML = REG.cautions.map(c => `<p class="caution">${esc(c)}</p>`).join('');
+  $('rung-defs').innerHTML = '<table><tbody>' + rungs.map(g => `<tr><td><b>${esc(rungInfo(g).label)}</b> <code>${esc(g)}</code></td><td class="wrap">${esc(rungInfo(g).text || LIST?.rungs?.[g] || '')}</td></tr>`).join('') + '</tbody></table>';
 }
-const stText = s => s === 'set aside' ? 'not running' : s;
-const genLabel = r => (REG.generations.find(g => String(g.round) === String(r)) || {}).label || String(r);
-const roleLabel = k => (REG.roles.find(r => r.key === k) || {}).label || k;
 let resizeTimer = null;
 window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 200); });
 load().catch(e => { $('fresh').textContent = 'Could not load: ' + e.message; });

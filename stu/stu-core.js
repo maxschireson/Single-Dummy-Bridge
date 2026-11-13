@@ -1,11 +1,13 @@
-/* Stu dashboard core: reads the rollout loop's published runs, sorts them into generations and roles, and computes
-   paired statistics and net scores. Shared by the page (browser) and build.cjs (Node), so a snapshot and a live
-   reading are reduced by the same code. */
+/* Stu dashboard core: reads the rollout loop's published runs and reduces them to what the page shows, round by
+   round. Shared by the page (browser) and build.cjs (Node), so a snapshot and a live reading go through the same code.
+   What each run is comes from the loop's own run list (training/rollout-loop-20261113/runs.json on
+   research/rollout-loop-20261113, see DASHBOARD.md there); the rows come from the boxes' transfer branches. */
 (function (root) {
   'use strict';
   const REPO = 'maxschireson/Single-Dummy-Bridge';
   const rawURL = (branch, path) => `https://raw.githubusercontent.com/${REPO}/refs/heads/${branch}/${path}`;
   const treeURL = (branch, path = '') => `https://github.com/${REPO}/tree/${branch}${path ? '/' + path : ''}`;
+  const commitsURL = branch => `https://api.github.com/repos/${REPO}/commits?sha=${encodeURIComponent(branch)}&per_page=1`;
 
   // ---- statistics ---------------------------------------------------------------------------------------------
   const T95 = [NaN, 12.706, 4.303, 3.182, 2.776, 2.571, 2.447, 2.365, 2.306, 2.262, 2.228, 2.201, 2.179, 2.160, 2.145,
@@ -16,15 +18,17 @@
     const z = 1.959964;
     return z + (z ** 3 + z) / (4 * df) + (5 * z ** 5 + 16 * z ** 3 + 3 * z) / (96 * df ** 2);
   }
-  function stats(values) {
-    const v = values.filter(Number.isFinite), n = v.length;
-    if (!n) return { n: 0, mean: null, sd: null, se: null, ci: null, won: 0, lost: 0, flat: 0 };
-    const mean = v.reduce((a, b) => a + b, 0) / n;
-    const sd = n > 1 ? Math.sqrt(v.reduce((s, x) => s + (x - mean) ** 2, 0) / (n - 1)) : null;
-    const se = sd === null ? null : sd / Math.sqrt(n);
+  function fromSums(n, sum, sq, won = 0, lost = 0, flat = 0) {
+    if (!n) return { n: 0, mean: null, sd: null, se: null, ci: null, won, lost, flat };
+    const mean = sum / n, variance = n > 1 ? Math.max(0, (sq - n * mean * mean) / (n - 1)) : null;
+    const sd = variance === null ? null : Math.sqrt(variance), se = sd === null ? null : sd / Math.sqrt(n);
     const half = se === null ? null : tcrit(n - 1) * se;
-    return { n, mean, sd, se, ci: half === null ? null : [mean - half, mean + half],
-      won: v.filter(x => x > 0).length, lost: v.filter(x => x < 0).length, flat: v.filter(x => x === 0).length };
+    return { n, mean, sd, se, ci: half === null ? null : [mean - half, mean + half], won, lost, flat };
+  }
+  function stats(values) {
+    const v = values.filter(Number.isFinite);
+    return fromSums(v.length, v.reduce((a, b) => a + b, 0), v.reduce((a, b) => a + b * b, 0),
+      v.filter(x => x > 0).length, v.filter(x => x < 0).length, v.filter(x => x === 0).length);
   }
   // Cumulative mean and 95% CI after each board, thinned to at most `points` points.
   function curve(values, points = 120) {
@@ -34,15 +38,14 @@
       s += values[i]; ss += values[i] * values[i];
       const k = i + 1;
       if (k % step && k !== n) continue;
-      const mean = s / k, variance = k > 1 ? Math.max(0, (ss - k * mean * mean) / (k - 1)) : null;
-      const se = variance === null ? null : Math.sqrt(variance / k), half = se === null ? null : tcrit(k - 1) * se;
-      out.push({ boards: k, mean, ci: half === null ? null : [mean - half, mean + half] });
+      const st = fromSums(k, s, ss);
+      out.push({ boards: k, mean: st.mean, ci: st.ci });
     }
     return out;
   }
 
-  // ---- runs.log -----------------------------------------------------------------------------------------------
-  // Lines written by training/rollout-loop-20261113/run.sh:
+  // ---- what the boxes publish ---------------------------------------------------------------------------------
+  // runs.log (training/rollout-loop-20261113/run.sh):
   //   2026-11-13T09:08:18Z start g0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 2000 workers 8 --opts (source 29d2e6a)
   //   2026-11-13T09:40:00Z end g0-stu0: exit 0
   const START = /^(\S+) start (\S+) (\S+) seed (\d+) first (\d+) deals (\d+) workers (\d+)\s*(.*?)\s*\(source ([0-9a-f]+)\)\s*$/;
@@ -54,8 +57,7 @@
       let m = START.exec(line.trim());
       if (m) {
         const [, t, name, pair, seed, first, deals, workers, options, source] = m;
-        const r = runs[name] ||= { name, box, pair, seed: +seed, first: +first, deals: +deals, workers: +workers,
-          options: options || '', sources: [], starts: [], ends: [] };
+        const r = runs[name] ||= { name, box, sources: [], starts: [], ends: [] };
         Object.assign(r, { pair, seed: +seed, first: +first, deals: +deals, workers: +workers, options: options || '' });
         if (!r.sources.includes(source)) r.sources.push(source);
         r.starts.push(epoch(t)); events.push({ t: epoch(t), name, kind: 'start' });
@@ -68,20 +70,18 @@
       }
     }
     // A box runs its jobs one after another: a run whose last event is a start is running only if no other run
-    // started after it on that box; otherwise it was set aside and resumes later in the chain.
+    // started after it on that box; otherwise it was set aside (stopped by hand, or the chain moved on).
     const latestStart = events.filter(e => e.kind === 'start').reduce((a, e) => (!a || e.t >= a.t ? e : a), null);
     for (const r of Object.values(runs)) {
       const last = events.filter(e => e.name === r.name).at(-1);
-      r.started = r.starts[0];
+      r.started = r.starts[0] ?? null;
       r.last_event = last ? last.t : null;
       if (!last) r.status = 'unknown';
-      else if (last.kind === 'end') r.status = last.exit === 0 ? 'complete' : 'stopped';
-      else r.status = latestStart && latestStart.name === r.name ? 'running' : 'set aside';
-      if (last && last.kind === 'end') r.exit = last.exit;
+      else if (last.kind === 'end') { r.status = last.exit === 0 ? 'complete' : 'stopped'; r.exit = last.exit; }
+      else r.status = latestStart && latestStart.name === r.name ? 'running' : 'not running';
     }
     return runs;
   }
-
   function parseResults(text) {
     const rows = [];
     let bad = 0;
@@ -91,38 +91,35 @@
     }
     return { rows, bad };
   }
-
-  // ---- classification -----------------------------------------------------------------------------------------
-  const globToRegExp = g => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
-  function botIndex(registry) {
-    const idx = {};
-    for (const g of registry.generations || []) {
-      const aliases = g.aliases || {};
-      for (const [role, ids] of Object.entries(g.bots || {}))
-        for (const id of ids) idx[id] = { round: g.round, role, alias: false, canonical: id };
-      for (const [old, canonical] of Object.entries(aliases)) {
-        const c = idx[canonical];
-        if (c) idx[old] = { ...c, alias: true, canonical };
-      }
+  // <run>.log: "150 boards: 0.0467 +- 0.0869 IMPs/board for stu0a; 572 boards/hour; 0 failed" every 50 boards.
+  const PROGRESS = /^(\d+) boards: (-?[\d.]+) \+- ([\d.]+) IMPs\/board for (\S+); ([\d.]+) boards\/hour; (\d+) failed/;
+  function parseMatchLog(text) {
+    let last = null, lines = 0;
+    for (const line of String(text || '').split('\n')) {
+      const m = PROGRESS.exec(line.trim());
+      if (m) { lines++; last = { boards: +m[1], mean: +m[2], se: +m[3], bot: m[4], per_hour: +m[5], failed: +m[6] }; }
     }
-    return idx;
+    return last ? { ...last, lines } : null;
   }
-  const roundOrder = (registry, r) => (registry.generations || []).findIndex(g => g.round === r);
-  function classify(run, registry, idx = botIndex(registry)) {
-    if ((registry.exclude_runs || []).some(g => globToRegExp(g).test(run.name))) return { kind: 'excluded' };
-    const [a, b] = String(run.pair).split('~'), A = idx[a], B = idx[b];
-    const opponents = (registry.validation?.opponents || []).map(o => o.id), vseed = registry.validation?.seed;
-    const alias = !!(A?.alias || B?.alias);
-    if (A && B && A.round === B.round && A.role === 'stu' && B.role === 'stu' && run.seed !== vseed)
-      return { kind: 'selfplay', round: A.round, alias };
-    if (run.seed === vseed && A && opponents.includes(b)) return { kind: 'validation', round: A.round, role: A.role, opponent: b, sign: 1, alias };
-    if (run.seed === vseed && B && opponents.includes(a)) return { kind: 'validation', round: B.round, role: B.role, opponent: a, sign: -1, alias };
-    if (A && B && A.role === B.role && A.round !== B.round) {
-      const newerA = roundOrder(registry, A.round) > roundOrder(registry, B.round);
-      return { kind: 'h2h', role: A.role, newer: newerA ? A.round : B.round, older: newerA ? B.round : A.round,
-        sign: newerA ? 1 : -1, seed: run.seed, alias };
+
+  // ---- classification ----------------------------------------------------------------------------------------
+  // From the loop's runs.json entry; a run it does not list is shown under other matches.
+  const globToRegExp = g => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
+  function classify(run, entry, registry) {
+    if ((registry.exclude_runs || []).some(g => globToRegExp(g).test(run.name))) return { role: 'excluded' };
+    if (!entry) return { role: 'other', listed: false };
+    const [a, b] = String(entry.pair || run.pair || '').split('~');
+    const role = entry.role, fb = entry.first_bot || {}, sb = entry.second_bot || {};
+    if (role === 'preflight') return { role: 'excluded' };
+    const superseded = entry.queue_order == null;
+    if (role === 'collection') return { role, round: fb.round, net: fb.net, rung: fb.rung, superseded, listed: true };
+    if (role === 'gate' || role === 'ladder' || role === 'data') {
+      const stuFirst = fb.family === 'stu';
+      const bot = stuFirst ? fb : sb;
+      return { role, round: bot.round, net: bot.net, rung: bot.rung, opponent: stuFirst ? b : a, sign: stuFirst ? 1 : -1,
+        superseded, listed: true };
     }
-    return { kind: 'other' };
+    return { role: role || 'other', superseded, listed: true };
   }
 
   // ---- one run's rows, reduced ----------------------------------------------------------------------------------
@@ -134,19 +131,20 @@
     if ((strain[0] === 'N' && level >= 3) || ('SH'.includes(strain) && level >= 4) || ('DC'.includes(strain) && level >= 5)) return 'g';
     return 'p';
   }
-  const X8_KEYS = ['rollout', 'blend', 'search', 'claim', 'consulted', 'moved', 'guaranteed', 'rollouts', 'net_rows', 'forks', 'seconds'];
-  function reduceRun(rows, cls) {
-    const sign = cls.sign || 1, keepBoards = cls.kind !== 'selfplay';
-    const out = { rows: rows.length, cpu: 0, cpu_n: 0, x8: null, x8_boards: 0, boards: keepBoards ? [] : null,
-      imps_sum: 0, imps_sq: 0, won: 0, lost: 0, flat: 0, classes: { p: 0, g: 0, s: 0, '0': 0 } };
-    // the side whose engine is the round's bot: the candidate when sign is +1
+  const X8_KEYS = ['rollout', 'blend', 'search', 'claim', 'consulted', 'moved', 'guaranteed', 'mixed', 'rollouts', 'net_rows', 'forks', 'seconds'];
+  // sign: +1 when the first-named bot is the one the run measures. Boards are kept (family, index, IMPs, contract
+  // class) except for collections, whose IMPs are only a check and whose size would make the snapshot large.
+  function reduceRun(rows, { sign = 1, keepBoards = true } = {}) {
+    const out = { cpu: 0, cpu_n: 0, x8: null, x8_boards: 0, boards: keepBoards ? [] : null,
+      sum: 0, sq: 0, won: 0, lost: 0, flat: 0, n: 0, max_index: null, classes: { p: 0, g: 0, s: 0, '0': 0 } };
     const side = sign > 0 ? 'candidate' : 'opponent';
     for (const r of rows) {
       const imps = sign * Number(r.common);
       if (!Number.isFinite(imps)) continue;
-      out.imps_sum += imps; out.imps_sq += imps * imps;
+      out.n++; out.sum += imps; out.sq += imps * imps;
       if (imps > 0) out.won++; else if (imps < 0) out.lost++; else out.flat++;
       if (Number.isFinite(r.cpu)) { out.cpu += r.cpu; out.cpu_n++; }
+      if (Number.isFinite(r.index)) out.max_index = Math.max(out.max_index ?? r.index, r.index);
       const cc = contractClass(r.contract);
       out.classes[cc]++;
       if (keepBoards) out.boards.push([String(r.family || r.index).slice(0, 16), r.index, imps, cc]);
@@ -157,134 +155,165 @@
         out.x8_boards++;
       }
     }
-    out.n = out.won + out.lost + out.flat;
     out.cpu = Math.round(out.cpu * 10) / 10;
     if (out.x8) for (const k of X8_KEYS) out.x8[k] = Math.round(out.x8[k] * 1000) / 1000;
     return out;
   }
-  function summaryOf(red) {
-    const n = red.n;
-    if (!n) return stats([]);
-    const mean = red.imps_sum / n, variance = n > 1 ? Math.max(0, (red.imps_sq - n * mean * mean) / (n - 1)) : null;
-    const se = variance === null ? null : Math.sqrt(variance / n), half = se === null ? null : tcrit(n - 1) * se;
-    return { n, mean, sd: variance === null ? null : Math.sqrt(variance), se, ci: half === null ? null : [mean - half, mean + half],
-      won: red.won, lost: red.lost, flat: red.flat };
+  const summaryOf = red => red ? fromSums(red.n, red.sum, red.sq, red.won, red.lost, red.flat) : fromSums(0, 0, 0);
+  function addX8(acc, red) {
+    if (!red?.x8) return acc;
+    acc ||= Object.fromEntries(X8_KEYS.map(k => [k, 0]).concat([['boards', 0]]));
+    for (const k of X8_KEYS) acc[k] += red.x8[k];
+    acc.boards += red.x8_boards;
+    return acc;
+  }
+  // The decision mix DASHBOARD.md asks for: per board, and moved over rollout decisions.
+  function decisionMix(x8) {
+    if (!x8 || !x8.boards) return null;
+    return { boards: x8.boards, rollout: x8.rollout / x8.boards, blend: x8.blend / x8.boards, claim: x8.claim / x8.boards,
+      moved: x8.rollout ? x8.moved / x8.rollout : null, rollouts: x8.consulted ? x8.rollouts / x8.consulted : null,
+      net_rows: x8.consulted ? x8.net_rows / x8.consulted : null };
   }
 
   // ---- net scores from a trainer's metrics.json (scripts/train_rollout_net.py) ----------------------------------
-  const pick = (g) => g ? Object.fromEntries(['n', 'nll', 'uniform_nll', 'agree', 'in_best', 'regret', 'rated_pick', 'regret_gap_head']
-    .filter(k => g[k] !== undefined).map(k => [k, g[k]])) : null;
-  function netMetrics(m, gen = {}) {
+  const pick = g => g ? Object.fromEntries(['n', 'nll', 'uniform_nll', 'agree', 'in_best', 'regret', 'rated_pick', 'regret_gap_head']
+    .filter(k => g[k] !== undefined && g[k] !== null).map(k => [k, g[k]])) : null;
+  // compare: {netKey: key under metrics.compared}, the other nets the trainer scored on this net's held-out rows.
+  function netMetrics(m, compare = {}) {
     if (!m || typeof m !== 'object') return null;
     const v = m.validation || {};
-    const prevKey = gen.net?.previous_compare;
-    const prev = prevKey && m.compared ? (m.compared[prevKey] || Object.entries(m.compared).find(([k]) => k.endsWith(prevKey))?.[1]) : null;
     const byBot = {};
     for (const [b, g] of Object.entries(v.by_bot || {})) byBot[b] = pick(g);
+    const same = {};
+    for (const [net, key] of Object.entries(compare || {})) {
+      const c = m.compared?.[key];
+      if (c) same[net] = { all: pick(c.all), late: pick(c.from_trick_7) };
+    }
     return {
       width: m.width ?? null, epochs: m.epochs ?? null, selected_epoch: m.selected_epoch ?? null, parameters: m.parameters ?? null,
       train_examples: m.train_examples ?? null, train_deals: m.train_deals ?? null, init: m.init ?? null, val_data: m.val_data ?? null,
       lr: m.lr ?? null, seconds: m.seconds ?? null,
-      all: pick(v.all), late: pick(v.from_trick_7), declaring: pick(v.declaring), defending: pick(v.defending),
-      by_phase: Object.fromEntries(Object.entries(v.by_phase || {}).map(([k, g]) => [k, pick(g)])), by_bot: byBot,
+      all: pick(v.all), late: pick(v.from_trick_7), declaring: pick(v.declaring), defending: pick(v.defending), by_bot: byBot,
       history: (m.history || []).map(h => ({ epoch: h.epoch, train_ce: h.train_ce ?? null, nll: h.val?.nll ?? null,
         agree: h.val?.agree ?? null, regret: h.val?.regret ?? null })),
-      previous: prev ? { label: gen.net?.previous_label || prevKey, all: pick(prev.all), late: pick(prev.from_trick_7) } : null,
+      same_rows: same,
     };
   }
 
-  // ---- the generation model -------------------------------------------------------------------------------------
-  // runs: [{key, branch, box, name, pair, seed, deals, status, started, sources, cls, red, summary, episodes}]
-  function mergeBoards(runs) {
-    // One board per deal family: rows under a round's own ids before rows under an old alias, earlier runs first.
-    const sorted = runs.slice().sort((a, b) => (a.cls.alias - b.cls.alias) || ((a.started || 0) - (b.started || 0)));
+  // ---- the model the page draws ---------------------------------------------------------------------------------
+  // runs: [{key, branch, box, name, pair, seed, first, deals, status, started, sources, cls, red, progress, episodes, note}]
+  function mergeBoards(runs, keep = () => true) {
+    // One board per deal family: runs still in a job file before superseded ones, earlier runs first.
+    const sorted = runs.slice().sort((a, b) => (!!a.cls.superseded - !!b.cls.superseded) || ((a.started || 0) - (b.started || 0)));
     const seen = new Map();
-    for (const r of sorted) for (const b of r.red?.boards || []) if (!seen.has(b[0])) seen.set(b[0], b);
-    return [...seen.values()].sort((a, b) => a[1] - b[1]);
+    for (const r of sorted) for (const b of r.red?.boards || []) if (keep(b) && !seen.has(b[0])) seen.set(b[0], { b, sup: !!r.cls.superseded });
+    const all = [...seen.values()].sort((x, y) => x.b[1] - y.b[1]);
+    return { boards: all.map(x => x.b), superseded: all.filter(x => x.sup).length };
   }
-  function cellOf(runs) {
-    const boards = mergeBoards(runs), s = stats(boards.map(b => b[2]));
-    return { runs: runs.map(r => r.key), boards, stats: s,
-      deals: Math.max(0, ...runs.map(r => r.deals || 0)),
+  function cellOf(runs, { keep, deals } = {}) {
+    const merged = mergeBoards(runs, keep), boards = merged.boards, s = stats(boards.map(b => b[2]));
+    const live = runs.filter(r => !r.cls.superseded);
+    const status = runs.some(r => r.status === 'running') ? 'running'
+      : live.length && live.every(r => r.status === 'complete') ? 'complete'
+      : boards.length ? 'paused' : 'queued';
+    return { runs: runs.map(r => r.key), boards, stats: s, deals: deals ?? (live.reduce((n, r) => n + (r.deals || 0), 0) || boards.length),
+      status, superseded_boards: merged.superseded,
+      x8: runs.reduce((acc, r) => addX8(acc, r.red), null),
       cpu: runs.reduce((a, r) => a + (r.red?.cpu || 0), 0) / Math.max(1, runs.reduce((a, r) => a + (r.red?.cpu_n || 0), 0)),
-      status: runs.some(r => r.status === 'running') ? 'running' : runs.every(r => r.status === 'complete') ? 'complete' : (runs[0]?.status || 'unknown'),
       by_class: Object.fromEntries(['p', 'g', 's'].map(c => [c, stats(boards.filter(b => b[3] === c).map(b => b[2]))])),
       curve: curve(boards.map(b => b[2])) };
   }
-  // A minus B on the deal families both played, each against the same opponent.
+  // A minus B on the deal families both played (each against the same opponent, on the same seed).
   function paired(cellA, cellB) {
     if (!cellA || !cellB) return null;
     const mb = new Map(cellB.boards.map(b => [b[0], b[2]]));
     const d = cellA.boards.filter(b => mb.has(b[0])).map(b => b[2] - mb.get(b[0]));
     return d.length ? stats(d) : null;
   }
-  function buildModel(registry, runs, metricsByKey = {}) {
-    const cells = {}, h2h = {}, selfplay = {}, others = [];
-    const group = (obj, key, run) => (obj[key] ||= []).push(run);
-    for (const r of runs) {
-      const c = r.cls;
-      if (c.kind === 'validation') group(cells, `${c.round}|${c.role}|${c.opponent}`, r);
-      else if (c.kind === 'h2h') group(h2h, `${c.newer}|${c.older}|${c.role}`, r);
-      else if (c.kind === 'selfplay') group(selfplay, c.round, r);
-      else if (c.kind === 'other') others.push(r);
+
+  function buildModel(registry, runs, metrics = {}) {
+    const vseed = registry.gate_seed ?? 131, primary = registry.opponent?.id || '8p-32-v41';
+    const ladderDeals = registry.ladder_deals ?? 500, gateDeals = registry.gate_deals ?? 2000;
+    const rungOrder = (registry.rungs || []).map(r => r.key), netOrder = (registry.nets || []).map(n => n.key);
+    const byRole = role => runs.filter(r => r.cls.role === role);
+    const stuVsOpp = runs.filter(r => ['gate', 'ladder'].includes(r.cls.role) && r.seed === vseed && r.cls.opponent === primary);
+
+    // The ladder: every Stu-family bot against the outside opponent on the ladder's deals, keyed by net and rung.
+    const groups = {};
+    for (const r of stuVsOpp) (groups[`${r.cls.net}|${r.cls.rung}`] ||= []).push(r);
+    const ladder = Object.fromEntries(Object.entries(groups).map(([k, rs]) => [k, cellOf(rs, { keep: b => b[1] < ladderDeals, deals: ladderDeals })]));
+    const seenNets = Object.keys(ladder).map(k => k.split('|')[0]), seenRungs = Object.keys(ladder).map(k => k.split('|')[1]);
+    const nets = [...netOrder.filter(n => seenNets.includes(n)), ...[...new Set(seenNets)].filter(n => !netOrder.includes(n))];
+    const rungs = [...rungOrder, ...[...new Set(seenRungs)].filter(g => !rungOrder.includes(g))];
+    const vsStu = {}, vsNet = {};
+    for (const n of nets) for (const g of rungs) if (g !== 'stu') vsStu[`${n}|${g}`] = paired(ladder[`${n}|${g}`], ladder[`${n}|stu`]);
+    for (let i = 1; i < nets.length; i++) for (const g of rungs)
+      vsNet[`${nets[i]}|${nets[i - 1]}|${g}`] = paired(ladder[`${nets[i]}|${g}`], ladder[`${nets[i - 1]}|${g}`]);
+
+    // Rounds: the round's collection, and its gate (Stu's own rung with the round's own net, on all the gate's deals).
+    const rounds = [];
+    for (const g of registry.rounds || []) {
+      const coll = byRole('collection').filter(r => r.cls.round === g.round).sort((a, b) => (a.started || 0) - (b.started || 0));
+      const done = r => Math.max(r.red?.n || 0, r.episodes || 0, r.progress?.boards || 0);
+      const boards = coll.reduce((n, r) => n + done(r), 0);
+      const running = coll.filter(r => r.status === 'running');
+      const rate = running.reduce((a, r) => a + (r.progress?.per_hour || 0), 0);
+      const cut = g.cut ?? null;
+      const gateRuns = stuVsOpp.filter(r => r.cls.round === g.round && r.cls.net === g.net && r.cls.rung === 'stu');
+      const gate = gateRuns.length ? cellOf(gateRuns, { keep: b => b[1] < gateDeals, deals: gateDeals }) : null;
+      const x8 = coll.reduce((acc, r) => addX8(acc, r.red), null);
+      const chk = coll.reduce((a, r) => r.red ? { n: a.n + r.red.n, sum: a.sum + r.red.sum, sq: a.sq + r.red.sq, won: a.won + r.red.won,
+        lost: a.lost + r.red.lost, flat: a.flat + r.red.flat } : a, { n: 0, sum: 0, sq: 0, won: 0, lost: 0, flat: 0 });
+      const cpuN = coll.reduce((a, r) => a + (r.red?.cpu_n || 0), 0);
+      const prev = rounds.at(-1);
+      rounds.push({
+        round: g.round, label: g.label, net: g.net, note: g.note || null, started: g.started || null,
+        collection: { runs: coll.map(r => r.key), boards, cut, rate: running.length ? rate : null,
+          eta_hours: cut && rate > 0 && boards < cut ? (cut - boards) / rate : null,
+          failed: coll.reduce((n, r) => n + (r.progress?.failed || 0), 0),
+          status: running.length ? 'running' : coll.length ? 'not running' : 'not started',
+          cpu: cpuN ? coll.reduce((a, r) => a + (r.red?.cpu || 0), 0) / cpuN : null,
+          mix: decisionMix(x8), check: fromSums(chk.n, chk.sum, chk.sq, chk.won, chk.lost, chk.flat) },
+        gate, gate_change: prev ? paired(gate, prev.gate) : null, previous: prev ? prev.label : null,
+        gate_mix: gate ? decisionMix(gate.x8) : null,
+      });
     }
-    const cellModel = Object.fromEntries(Object.entries(cells).map(([k, rs]) => [k, cellOf(rs)]));
-    const h2hModel = Object.fromEntries(Object.entries(h2h).map(([k, rs]) => [k, cellOf(rs)]));
-    const opponents = registry.validation?.opponents || [], primary = (opponents.find(o => o.primary) || opponents[0])?.id;
-    const roles = (registry.roles || []).map(r => r.key);
-    const gens = [];
-    let prevGen = null;
-    for (const g of registry.generations || []) {
-      const cell = (role, opp = primary) => cellModel[`${g.round}|${role}|${opp}`] || null;
-      const prevCell = (role, opp = primary) => prevGen ? cellModel[`${prevGen.round}|${role}|${opp}`] || null : null;
-      const sp = (selfplay[g.round] || []).slice().sort((a, b) => (a.started || 0) - (b.started || 0));
-      const spRed = sp.map(r => r.red).filter(Boolean);
-      const spBoards = sp.reduce((n, r) => n + Math.max(r.red?.n || 0, r.episodes || 0), 0);
-      const x8 = spRed.reduce((acc, red) => {
-        if (!red.x8) return acc;
-        acc ||= Object.fromEntries(X8_KEYS.map(k => [k, 0]).concat([['boards', 0]]));
-        for (const k of X8_KEYS) acc[k] += red.x8[k]; acc.boards += red.x8_boards;
-        return acc;
-      }, null);
-      const spCpu = spRed.reduce((a, red) => a + red.cpu, 0), spCpuN = spRed.reduce((a, red) => a + red.cpu_n, 0);
-      const valX8 = (cell('stu') ? runs.filter(r => cell('stu').runs.includes(r.key)) : []).reduce((acc, r) => {
-        if (!r.red?.x8) return acc;
-        acc ||= Object.fromEntries(X8_KEYS.map(k => [k, 0]).concat([['boards', 0]]));
-        for (const k of X8_KEYS) acc[k] += r.red.x8[k]; acc.boards += r.red.x8_boards;
-        return acc;
-      }, null);
-      const metricsKey = g.net?.metrics ? `${g.net.metrics.branch}:${g.net.metrics.path}` : null;
-      const h = prevGen ? h2hModel[`${g.round}|${prevGen.round}|stu`] || null : null;
-      const entry = {
-        round: g.round, label: g.label, kind: g.kind || 'round', status: g.status || null, note: g.note || null,
-        net: g.net || null, metrics: metricsKey ? metricsByKey[metricsKey] || null : null, metrics_key: metricsKey,
-        bots: g.bots || {}, cells: Object.fromEntries(roles.flatMap(role => opponents.map(o => [`${role}|${o.id}`, cell(role, o.id)]))),
-        amplification: {
-          roll_over_net: paired(cell('roll'), cell('net')),
-          stu_over_net: paired(cell('stu'), cell('net')),
-          stu_over_roll: paired(cell('stu'), cell('roll')),
-        },
-        delta: prevGen ? Object.fromEntries(roles.map(role => [role, paired(cell(role), prevCell(role))])) : null,
-        previous_round: prevGen ? prevGen.round : null,
-        h2h: h,
-        // queued deals: the round's own runs; a run under an old id counts only the boards it played
-        selfplay: { runs: sp.map(r => r.key), boards: spBoards,
-          target: sp.reduce((n, r) => n + (r.cls.alias ? Math.max(r.red?.n || 0, r.episodes || 0) : (r.deals || 0)), 0),
-          stats: spRed.length ? summaryOf(spRed.reduce((a, red) => ({ n: a.n + red.n, imps_sum: a.imps_sum + red.imps_sum,
-            imps_sq: a.imps_sq + red.imps_sq, won: a.won + red.won, lost: a.lost + red.lost, flat: a.flat + red.flat }),
-            { n: 0, imps_sum: 0, imps_sq: 0, won: 0, lost: 0, flat: 0 })) : null,
-          cpu: spCpuN ? spCpu / spCpuN : null, x8, rows_seen: spRed.reduce((a, red) => a + red.n, 0),
-          status: sp.some(r => r.status === 'running') ? 'running' : sp.length ? sp.at(-1).status : null },
-        validation_x8: valX8,
-      };
-      gens.push(entry);
-      if ((g.kind || 'round') === 'round') prevGen = g;
+
+    // The nets: held-out scores, and the other nets the trainer scored on the same rows.
+    const netRows = (registry.nets || []).map(n => {
+      const key = n.metrics ? `${n.metrics.branch}:${n.metrics.path}` : null;
+      return { ...n, metrics_key: key, metrics: key ? metrics[key] || null : null };
+    });
+
+    // The leverage control (round README, "Measured before round 0"): a 2 by 2 from the box's 3,000-deal runs once they
+    // have boards, else the sandbox's 300 deals.
+    const C2 = registry.control || {};
+    const controlCell = pair => {
+      const box = runs.filter(r => r.pair === pair && r.box !== 'sandbox' && r.red?.n);
+      const sand = runs.filter(r => r.pair === pair && r.box === 'sandbox' && r.red?.n);
+      const use = box.length ? box : sand;
+      return use.length ? { ...cellOf(use, { deals: Math.max(...use.map(r => r.deals || 0)) }), source: box.length ? use[0].box : 'sandbox' } : null;
+    };
+    const cells = Object.fromEntries(Object.entries(C2.cells || {}).map(([k, pair]) => [k, controlCell(pair)]));
+    let split = null;
+    if (['R41_N41', 'R4_N41', 'R41_N4', 'R4_N4'].every(k => cells[k])) {
+      const maps = ['R41_N41', 'R4_N41', 'R41_N4', 'R4_N4'].map(k => new Map(cells[k].boards.map(b => [b[0], b[2]])));
+      const fams = [...maps[0].keys()].filter(f => maps.every(m => m.has(f)));
+      const d1 = fams.map(f => maps[0].get(f) - maps[1].get(f)), d2 = fams.map(f => maps[2].get(f) - maps[3].get(f));
+      split = { matched: stats(d1), mismatched: stats(d2), quality: stats(d1.map((x, i) => (x + d2[i]) / 2)), exact: stats(d1.map((x, i) => (x - d2[i]) / 2)) };
     }
-    return { generations: gens, cells: cellModel, h2h: h2hModel, others, primary, opponents, roles: registry.roles || [] };
+    const controlPairs = new Set(Object.values(C2.cells || {}));
+    return {
+      rounds, nets: netRows, ladder_nets: nets, rungs, ladder, vs_stu: vsStu, vs_net: vsNet,
+      control: { cells, split, generation: paired(cells.F41_F4, cells.N41_N4) },
+      data: byRole('data'),
+      others: runs.filter(r => (r.cls.role === 'other' || r.cls.role === 'control') && !controlPairs.has(r.pair) && r.red?.n),
+      primary, vseed, ladder_deals: ladderDeals, gate_deals: gateDeals,
+    };
   }
 
-  const api = { REPO, rawURL, treeURL, tcrit, stats, curve, parseRunsLog, parseResults, botIndex, classify, contractClass,
-    reduceRun, summaryOf, netMetrics, mergeBoards, cellOf, paired, buildModel, X8_KEYS };
+  const api = { REPO, rawURL, treeURL, commitsURL, tcrit, stats, fromSums, curve, parseRunsLog, parseResults, parseMatchLog,
+    classify, contractClass, reduceRun, summaryOf, decisionMix, netMetrics, mergeBoards, cellOf, paired, buildModel, X8_KEYS };
   root.StuCore = api;
   if (typeof module !== 'undefined') module.exports = api;
 })(typeof window === 'undefined' ? globalThis : window);
