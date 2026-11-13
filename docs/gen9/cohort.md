@@ -65,9 +65,19 @@ a changed Gen 9 player.
    UTC (a synthetic drained source built from the capsule's bots, 60 fresh deals, seed 913, TensorFlow 2.21): the
    three pairs one deal each through the runtime path, no failure, the Gen 7 decision checks passed for `9a-32`
    (2,810 searched decisions, 267 tree consultations, none over budget), 66 to 92 seconds a deal in one process.
+   **On azure4, 13 Nov 06:02 UTC** (job `g9-cohort-preflight`, `ops/preflight_gen9_cohort.py` at `007ff06d`, results on
+   `transfer/gen9-g9-cohort-preflight-azure4-20261113`): prepared from `~/work/capsule-gen7-capture/recovery` in 4 s,
+   manifest `351d25896a53`, 10,000 fresh deals (seed 9013; left out 34,092 training families, the capsule's 23,233
+   deals and 85,910 played families); `9a-32` `38b76a8b1542`, `8p-32` `a6f6accbf114`, `8s-32` `269fdf1854f4`,
+   `71s-32` `7b0f58b4c403`. Smoke: two deals of each pair, no assertion and no error, 66 to 114 seconds a deal in one
+   process on a box running two other jobs; 417 tree consultations, none over budget.
 5. **Open** the plan (`launch_enabled` true, `pending` empty, Max's words in `notes`) only after Max's go.
-6. **Collector and feed**: run as the Gen 8 collectors are (g7 operates them); feed `arena-gen9-azure4-feed`;
-   registration on the dashboard as g7 says.
+6. **Collector and feed**: run as the Gen 8 collectors are (g7 operates them): the runtime
+   (`python ops/gen5_runtime.py --run <run> --workers N`) and the publisher (`python ops/publish_gen5.py --run <run>
+   --publication <feed checkout>`), feed `arena-gen9-azure4-feed`, registration on the dashboard as g7 says. The
+   publisher's runtime snapshot now copies `bridge_harness/` with its subpackages (the card readers are in
+   `bridge_harness/cards/`), so a recovery from the feed can rebuild the frozen source. At about 85 seconds a deal in
+   one process, eight workers play about 340 boards an hour: 10,000 deals last a little over a day.
 
 ## Known limits
 

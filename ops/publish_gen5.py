@@ -22,7 +22,7 @@ def snapshot_runtime(run,backup):
             raise ValueError('Archive runtime is missing and this checkout belongs to another cohort')
         # Finalizing an older cohort must preserve its frozen runtime verbatim.
         return False
-    for path in (ROOT/'bridge_harness').glob('*.py'):copy_once(path,backup/'runtime/bridge_harness'/path.name)
+    for path in (ROOT/'bridge_harness').rglob('*.py'):copy_once(path,backup/'runtime'/path.relative_to(ROOT))  # subpackages too (Gen 9: bridge_harness/cards)
     copy_once(ROOT/'bridge_harness/libbridge_dds.so',backup/'runtime/bridge_harness/libbridge_dds.so')
     for path in (ROOT/'scripts').glob('*.py'):copy_once(path,backup/'runtime/scripts'/path.name)
     for path in (ROOT/'native').glob('*.cpp'):copy_once(path,backup/'runtime/native'/path.name)
