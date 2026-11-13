@@ -1,2 +1,10 @@
 2026-11-13T23:06:18Z start; source 1a40de0; runs sp0c,spr0c; threads 4
 2026-11-13T23:06:30Z 6382 records
+{"episodes": 6382, "deals": 6367, "unique_families": 6367, "examples": 263142, "train": 212872, "validation": 24881, "test": 25389, "rows_with_unrated_cards": 105906, "k8": {"card_changed": 62580, "kept_full": 22443}, "k16": {"card_changed": 51010, "kept_full": 33028}, "k32": {"card_changed": 37435, "kept_full": 47381}}
+{"parts": 22, "deals": 20720, "bots": ["stup0"], "unique_families": 20720, "examples": 82489, "deals_by_hash_split": [16726, 1997, 1997]}
+{"parts": 22, "deals": 20720, "bots": ["stup0"], "unique_families": 20720, "examples": 82526, "deals_by_hash_split": [16726, 1997, 1997]}
+k=32: 37435 of 263142 rows learn another card; 47381 kept the full labels
+k=16: 51010 of 263142 rows learn another card; 33028 kept the full labels
+k=8: 62580 of 263142 rows learn another card; 22443 kept the full labels
+rows: kept 131180 of 263142, deals with any row 6367
+2026-11-13T23:25:23Z trained full (full, fraction 1): "selected_epoch": 3
