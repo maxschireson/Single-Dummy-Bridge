@@ -82,7 +82,8 @@ class SettingsTests(unittest.TestCase):
         for block in (dict(stages=[dict(mode='deep')]), dict(stages=[dict(from_trick=5, to_trick=4)]), dict(stages=[dict(nonsense=1)]),
                       dict(stages=[dict(from_trick=3, to_trick=6), dict(from_trick=6, to_trick=9)]), dict(claims=dict(cards=14)),
                       dict(capture=dict(level=3)), dict(mix=dict(near=-1)), dict(other=1), dict(stages=[dict(mode='rollout', layouts=0)]),
-                      dict(stages=[dict(mode='blend', objective='imps')]), dict(others=[dict(policy='x', share=1.5)])):
+                      dict(stages=[dict(mode='blend', objective='imps')]), dict(others=[dict(policy='x', share=1.5)]),
+                      dict(capture=dict(mix_share=1.5))):
             with self.assertRaises(ValueError, msg=str(block)):
                 x8_settings(block)
 
@@ -758,6 +759,26 @@ class ClaimTests(Fixture8):
         self.assertGreater(against_bot, 2)
 
     GEN8 = PlayerTests.GEN8
+
+
+
+class MixForkTests(Fixture8):
+    def test_a_share_of_mixing_only_changes_is_forked_by_position(self):
+        """capture.mix_share forks that share of the decisions the mix alone changed, chosen by a hash of the position
+        (no random draw): the same position always answers the same, every position at 1 and none at 0."""
+        gen8 = PlayerTests.GEN8
+        some = self.make8(dict(capture=dict(mix_share=.25)), gen7=gen8)
+        every = self.make8({}, gen7=gen8)
+        none = self.make8(dict(capture=dict(mix_share=0.)), gen7=gen8)
+        picked = []
+        for seed in range(40):
+            for plies in (1, 9, 17, 25):
+                _, o, _ = spot(seed, plies)
+                picked.append(some.mix_forked(o))
+                self.assertEqual(picked[-1], some.mix_forked(o))
+                self.assertTrue(every.mix_forked(o))
+                self.assertFalse(none.mix_forked(o))
+        self.assertTrue(.12 < np.mean(picked) < .40, np.mean(picked))
 
 
 if __name__ == '__main__':

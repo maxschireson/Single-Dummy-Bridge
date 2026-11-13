@@ -62,6 +62,7 @@ With every stage 'search', no claims and no mix the player is Gen7Player with th
 """
 import copy
 from dataclasses import asdict, dataclass, field, fields, replace
+import hashlib
 import math
 from pathlib import Path
 import random
@@ -163,11 +164,14 @@ class CaptureUse:
     claim_reference: str = 'bot'    # where the winning-line logic changed the card (claim, guarantee, odds, guard): the reference is
                                 # 'bot', the card this same bot plays with that logic off (rollouts, the blend, its own search), or
                                 # 'search', plain Gen 8's card. Max, 13 Nov 03:01: measure claims against the net, not the search
+    mix_share: float = 1.       # of the decisions where only the mix changed the card, the share forked: chosen by a hash of the
+                                # position, so no random draw is spent and a replay forks the same ones. Mixing fires about as often
+                                # as every other feature together, and its forks roughly doubled 8X's cost (13 Nov)
 
     def __post_init__(self):
         object.__setattr__(self, 'audit_features', tuple(self.audit_features))
         if self.level not in (0, 1, 2) or not (0 <= self.forks <= 512 and 1 <= self.layouts <= 4096 and 0 <= self.fork_power <= 4) \
-                or self.audit not in ('features', 'gen7') or self.claim_reference not in ('bot', 'search') \
+                or self.audit not in ('features', 'gen7') or self.claim_reference not in ('bot', 'search') or not 0 <= self.mix_share <= 1 \
                 or not set(self.audit_features) <= {'rollout', 'blend', 'guarantee', 'odds', 'guard', 'mix', 'claim'}:
             raise ValueError('Invalid 8X capture settings')
 
@@ -968,6 +972,15 @@ class X8Player(Gen7Player):
             out.append('mix')
         return out
 
+    def mix_forked(self, o):
+        """Is a decision changed by the mix alone forked? capture.mix_share of them, by a hash of the position."""
+        share = self.x8.capture.mix_share
+        if share >= 1:
+            return True
+        key = repr((tuple((int(a), int(b)) for a, b in o.history), int(o.controller),
+                    tuple(int(x) for x in o.known_hands[o.actor]))).encode()
+        return int.from_bytes(hashlib.sha256(key).digest()[:4], 'big') < share * 2 ** 32
+
     def audited(self, o, result):
         """With capture.audit 'features': name as reference card the card plain Gen 8 would have played, where an 8X
         feature changed the card, so the collector's forks (fork_audit.collect_board) play it out from the same
@@ -992,7 +1005,10 @@ class X8Player(Gen7Player):
                 plain = card(note['reference']) if note.get('reference') else None
         else:
             plain = self.plain_card(o)
-        if plain is not None and plain != result.card and set(fired) & set(self.x8.capture.audit_features):
+        forked = set(fired) & set(self.x8.capture.audit_features)
+        if forked == {'mix'} and not self.mix_forked(o):
+            forked = set()
+        if plain is not None and plain != result.card and forked:
             d.update(reference_card=symbol(plain), expected_gain_imps=None, prediction_units='x8-against-plain', x8_features=fired)
         return Decision(result.card, d)
 
