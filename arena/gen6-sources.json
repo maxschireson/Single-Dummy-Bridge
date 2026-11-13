@@ -3,6 +3,16 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen9azure4ben64",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen 9 · azure4 (9a-32 against BEN 64)",
+      "branch": "arena-gen9-azure4-ben64-feed",
+      "cohort": "c30b164dbb7132f81f6c3c0b6bac55701210db6e7f1e5e93a1224b1c578e03dc"
+    },
+    {
       "key": "gen9azure4",
       "group": "gen9",
       "generation": 9,
