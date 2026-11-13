@@ -1,0 +1,214 @@
+[
+  {
+    "revision": "3815f70fc740e96919b687913068579621053988",
+    "log": "3815f70fc740e96919b687913068579621053988 2026-11-13T20:15:46Z Gen8 candidate \u00b7 Codex main arena mix: 3103 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3103,
+      "target": 18283,
+      "contiguous": 3101,
+      "by_pair": {
+        "8s-32~1": 517,
+        "8c-32~71s-32": 517,
+        "8c-32~8s-32": 517,
+        "8s-32~71s-32": 1036,
+        "8s-32~5RZ32": 516
+      },
+      "root_games": 10340,
+      "tables": 127142,
+      "failures": 0,
+      "epoch": 1794600939.9531817,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794600939.1769845,
+      "completed": 3103,
+      "in_flight": [
+        3101,
+        3104,
+        3105
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794600802.1834977,
+      "stopping": false
+    }
+  },
+  {
+    "revision": "d1e9726866d6e11bb80d4b391bff3a4daf0db235",
+    "log": "d1e9726866d6e11bb80d4b391bff3a4daf0db235 2026-11-13T20:14:36Z Gen8 candidate \u00b7 Codex main arena mix: 3101 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3101,
+      "target": 18283,
+      "contiguous": 3101,
+      "by_pair": {
+        "8s-32~1": 517,
+        "8c-32~71s-32": 517,
+        "8c-32~8s-32": 517,
+        "8s-32~71s-32": 1034,
+        "8s-32~5RZ32": 516
+      },
+      "root_games": 10336,
+      "tables": 127075,
+      "failures": 0,
+      "epoch": 1794600869.8192897,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794600862.7261527,
+      "completed": 3101,
+      "in_flight": [
+        3101,
+        3102,
+        3103
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794600802.1834977,
+      "stopping": false
+    }
+  },
+  {
+    "revision": "1b6be9cff2d54fa6535acfd81783be18ffb3e9bd",
+    "log": "1b6be9cff2d54fa6535acfd81783be18ffb3e9bd 2026-11-13T20:13:26Z Gen8 candidate \u00b7 Codex main arena mix: 3101 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3101,
+      "target": 18283,
+      "contiguous": 3101,
+      "by_pair": {
+        "8s-32~1": 517,
+        "8c-32~71s-32": 517,
+        "8c-32~8s-32": 517,
+        "8s-32~71s-32": 1034,
+        "8s-32~5RZ32": 516
+      },
+      "root_games": 10336,
+      "tables": 127075,
+      "failures": 0,
+      "epoch": 1794600800.280392,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794600784.6144743,
+      "completed": 3101,
+      "in_flight": [
+        3100
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794588071.675113,
+      "stopping": true
+    }
+  },
+  {
+    "revision": "77c428fd790cc1d5c47063d3fa79e6b3aaefcb03",
+    "log": "77c428fd790cc1d5c47063d3fa79e6b3aaefcb03 2026-11-13T20:12:14Z Gen8 candidate \u00b7 Codex main arena mix: 3100 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3100,
+      "target": 18283,
+      "contiguous": 3100,
+      "by_pair": {
+        "8s-32~1": 517,
+        "8c-32~71s-32": 517,
+        "8c-32~8s-32": 517,
+        "8s-32~71s-32": 1033,
+        "8s-32~5RZ32": 516
+      },
+      "root_games": 10334,
+      "tables": 127053,
+      "failures": 0,
+      "epoch": 1794600730.939326,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794600729.76044,
+      "completed": 3100,
+      "in_flight": [
+        3100
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794588071.675113,
+      "stopping": true
+    }
+  },
+  {
+    "revision": "4ee4c0c87f5f1421d9d8e9a1919113256549e834",
+    "log": "4ee4c0c87f5f1421d9d8e9a1919113256549e834 2026-11-13T20:11:07Z Gen8 candidate \u00b7 Codex main arena mix: 3097 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3097,
+      "target": 18283,
+      "contiguous": 3097,
+      "by_pair": {
+        "8s-32~1": 517,
+        "8c-32~71s-32": 516,
+        "8c-32~8s-32": 516,
+        "8s-32~71s-32": 1032,
+        "8s-32~5RZ32": 516
+      },
+      "root_games": 10324,
+      "tables": 126908,
+      "failures": 0,
+      "epoch": 1794600660.769749,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794600658.4246545,
+      "completed": 3097,
+      "in_flight": [
+        3095,
+        3097,
+        3098
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794588071.675113,
+      "stopping": false
+    }
+  },
+  {
+    "revision": "91cfd2d50602ef27fd7bd45e7836a4b75d50b449",
+    "log": "91cfd2d50602ef27fd7bd45e7836a4b75d50b449 2026-11-13T20:09:57Z Gen8 candidate \u00b7 Codex main arena mix: 3095 verified deals",
+    "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+    "state.json": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3095,
+      "target": 18283,
+      "contiguous": 3095,
+      "by_pair": {
+        "8s-32~1": 516,
+        "8c-32~71s-32": 516,
+        "8c-32~8s-32": 515,
+        "8s-32~71s-32": 1032,
+        "8s-32~5RZ32": 516
+      },
+      "root_games": 10316,
+      "tables": 126812,
+      "failures": 0,
+      "epoch": 1794600588.858786,
+      "complete": false
+    },
+    "heartbeat.json": {
+      "epoch": 1794600588.1763244,
+      "completed": 3095,
+      "in_flight": [
+        3095,
+        3096,
+        3097
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794588071.675113,
+      "stopping": false
+    }
+  }
+]
