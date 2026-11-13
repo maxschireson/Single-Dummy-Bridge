@@ -241,6 +241,17 @@ generic row, as the control.
 **7.4 Leavers.** Retired by rule (arena.md section 5) with the protections above. Packages, records and experience
 stay, and a returning guest resumes from its experience.
 
+Measured (13 Nov, exploratory, `reports/gen9-newcomer-rows-2026-11-13`; E9-22's registered population, the arrival
+run's guests, has no recorded card decisions). Rollout net v2 on the cohort's 970 boards:
+- `8p-32` is a newcomer that plays like the house. The `8s-32` row predicts its cards 0.038 nats a decision better than
+  the generic row, as much as a known bot's own row gains (0.037 to 0.039).
+- `9a-32` randomizes among exactly equal cards. v2 predicts it at 1.4 to 1.9 nats against about 0.55, and the house rows
+  are 0.47 to 0.84 nats worse than the generic one.
+
+A few boards of play tell the two cases apart: 3 nats of evidence take about 110 to 160 decisions for a house-like bot
+and 3 or 4 decisions for the randomizer. So a newcomer's row is picked from its play, by the likelihood of each
+candidate row, with the generic row kept while nothing fits, rather than from its declared system.
+
 ## 8. The page
 
 Now: the ladder at the top (strength against introduction date, bench priors, time per decision, a drill-down per
