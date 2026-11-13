@@ -268,10 +268,13 @@ def evaluate(predict, data, index, batch=4096, blank=False):
     phase = phase_of(meta[:, 3])
     declaring = meta[:, 6] < 2
     names = data.get('bot_names')
+    name = lambda b: str(names[b]) if names is not None else str(b)
     return dict(all=summary(np.ones(n, bool)), root_tables=summary(meta[:, 2] == 0),
                 by_phase={PHASES[i]: summary(phase == i) for i in range(4) if (phase == i).any()},
                 declaring=summary(declaring), defending=summary(~declaring), from_trick_7=summary(meta[:, 3] >= 24),
-                by_bot={str(names[b]) if names is not None else str(b): summary(meta[:, 8] == b) for b in np.unique(meta[:, 8])})
+                by_bot={name(b): summary(meta[:, 8] == b) for b in np.unique(meta[:, 8])},
+                by_bot_phase={name(b): {PHASES[i]: summary((meta[:, 8] == b) & (phase == i)) for i in range(4) if ((meta[:, 8] == b) & (phase == i)).any()}
+                              for b in np.unique(meta[:, 8])})
 
 
 def evaluate_sid(predict_sid, data, index, batch=4096):
