@@ -35,6 +35,19 @@ class BotVectorTest(unittest.TestCase):
         moved = np.abs(out - base)[:, :13].max(axis=1) > 1e-4
         self.assertEqual(moved.tolist(), [False, True, False, False, True])
 
+    def test_array_calls_use_who(self):
+        rng = np.random.default_rng(1)
+        params = dict(trainer.init(1, rng, 64, bots=3), kind=np.array(1))
+        params['emb_own'][2] = rng.standard_normal(64)
+        net = object.__new__(gen7_net.PolicyNet)        # weights only: the array entry points need no scorer
+        net.params, net.vocab, net.who = params, {'': 0, 'a': 1, 'b': 2}, ('', '')
+        b = batch(4, rng)
+        unknown = net.log_policy_arrays(b)
+        net.who = ('b', 'a')
+        told = net.log_policy_arrays(b)
+        self.assertGreater(float(np.abs(told - unknown)[:, :13].max()), 1e-4)
+        np.testing.assert_allclose(net.policy_and_gap_arrays(b)[0], told, atol=1e-5)
+
     def test_match_bots_by_name(self):
         meta = np.zeros((3, 11), np.int32)
         meta[:, 8], meta[:, 9] = [1, 2, 0], [2, 1, 1]

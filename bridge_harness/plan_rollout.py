@@ -265,7 +265,8 @@ class Believer:
         if not len(free):
             return out
         batch = inputs(rows, public)
-        heads = forward(self.net.params, {k: batch[k][free] for k in INPUTS})
+        sub = {k: batch[k][free] for k in INPUTS}
+        heads = forward(self.net.params, self.net.tag(sub, len(free)) if hasattr(self.net, 'tag') else sub)
         self.net_rows += len(free)
         logp, owner = heads['policy'], heads['owner']
         controller = rows.controller()
