@@ -1,0 +1,29 @@
+{
+  "number": 34,
+  "title": "gen7_net: faster suit-net forward pass (~2.7x; rollouts ~2.4x), same outputs",
+  "state": "open",
+  "merged": false,
+  "base": "main",
+  "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+  "reviews": [],
+  "research_branch": "research/rollout-loop-20261113",
+  "research_revision": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01",
+  "notice_revision": "7fc13c5caad36571eb5969a640e52e547f316594",
+  "notice_entry": "2026-11-13T20:50:00Z",
+  "changes_reported": [
+    {
+      "commit_prefix": "ecb813a",
+      "change": "2-D forward matrix products; limited tests report no rank change and numerical differences up to 4e-6."
+    },
+    {
+      "commit_prefix": "3b37f15",
+      "change": "Opt-in BRIDGE_NET_BF16=1; reports first-card agreement on 99.7% of rows, not identical choices."
+    },
+    {
+      "commit_prefix": "57eb87c",
+      "change": "Shared per-process FitScorer, 64-key type cache and optional bf16; layout weights change under quantization."
+    }
+  ],
+  "applied": false,
+  "disposition": "The notice is conditional guidance to x8, plan and sidnet on Stu's research branch. PR34 remains open and unmerged. It does not authorize changing this immutable Gen8 runtime. No BF16 flag, torch install, int8 path, shared-scorer change, cache-size change, source or model adoption here. Any later authorized source/behavior change requires a drained new cohort identity, complete training exclusions and observed capture validation."
+}
