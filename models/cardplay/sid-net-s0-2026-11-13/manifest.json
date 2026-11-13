@@ -1,0 +1,109 @@
+{
+ "schema": "chunked-gen7-policy-artifact-v1",
+ "status": "research prototype: no arena bot uses it",
+ "description": "SiD net S_0: rollout net v2 plus heads trained on the exact line finder's labels (guar, cert, single per card and target; tricks14); see README.md",
+ "parameters": 1791365,
+ "label_heads": true,
+ "bot_vocab": [
+  "",
+  "1",
+  "2",
+  "3",
+  "4b",
+  "5-32",
+  "5R192",
+  "5R32",
+  "5RZ192",
+  "5RZ32",
+  "6-256",
+  "6-32",
+  "71s-32",
+  "7s-32",
+  "8c-32",
+  "8s-32",
+  "ben",
+  "ben32",
+  "ben64"
+ ],
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "init": "rollout net v2, transfer/rollout-net-v2-20261113 runs/w768/policy_epoch5.npz",
+ "files": [
+  {
+   "output": "sid_net_s0.npz",
+   "size_bytes": 7221136,
+   "sha256": "842f88346f3f094b71871a868aff2401b13fddbfb99f9361e34e13af6ac6951d",
+   "parts": [
+    {
+     "file": "sid_net_s0.npz.part000",
+     "size_bytes": 524288,
+     "sha256": "157ab7961c7362126d94436590022d22ded5f0eb966d3c08ea69e451cd2aabd8"
+    },
+    {
+     "file": "sid_net_s0.npz.part001",
+     "size_bytes": 524288,
+     "sha256": "9621c991eb4817f64f2d118d51443a9146b1c218e75ffd20e2dec8832bc8a29a"
+    },
+    {
+     "file": "sid_net_s0.npz.part002",
+     "size_bytes": 524288,
+     "sha256": "99900bc1c33ac90d45c24b3088743b2772c4b373a25ddea190cff24299cf3b36"
+    },
+    {
+     "file": "sid_net_s0.npz.part003",
+     "size_bytes": 524288,
+     "sha256": "ecf9851c85a0b4096e5fbbad3cd3a25b88025e8e3c45dcc19937f30106ede5de"
+    },
+    {
+     "file": "sid_net_s0.npz.part004",
+     "size_bytes": 524288,
+     "sha256": "5b6b245960b6dba266d2f905d96e91f763d25590bafb7e78ce4297648afa1933"
+    },
+    {
+     "file": "sid_net_s0.npz.part005",
+     "size_bytes": 524288,
+     "sha256": "3c7ee2a529d4bf1426fd3b9f166af734d5ec577960b83d7e01b991c5a7d195ee"
+    },
+    {
+     "file": "sid_net_s0.npz.part006",
+     "size_bytes": 524288,
+     "sha256": "b244b95f85695254735fc3f75b5dccdb58c9be086c0a758160f9db1f9ceb7e68"
+    },
+    {
+     "file": "sid_net_s0.npz.part007",
+     "size_bytes": 524288,
+     "sha256": "ef56a749451dd7198b9ea480038024c7bb4ff8ac9e56d95bf613819e90a2360c"
+    },
+    {
+     "file": "sid_net_s0.npz.part008",
+     "size_bytes": 524288,
+     "sha256": "651a7ec79295dbffd88703199371a6a1c76588c251174a9b0db0c56b2136c0c9"
+    },
+    {
+     "file": "sid_net_s0.npz.part009",
+     "size_bytes": 524288,
+     "sha256": "64f8950821c0ea3fff832c06b1a45d1e4f467b214a8b59f765af3e8d6cc6aac4"
+    },
+    {
+     "file": "sid_net_s0.npz.part010",
+     "size_bytes": 524288,
+     "sha256": "27fe503f7c4c13c07974a4ba8bcb65d054c7d9dd6263ed83aac83eabdf498004"
+    },
+    {
+     "file": "sid_net_s0.npz.part011",
+     "size_bytes": 524288,
+     "sha256": "b8272810f1ea171a2b5348d357f6680bfa8ef7b2b3ef63460e7166284b9d3dbd"
+    },
+    {
+     "file": "sid_net_s0.npz.part012",
+     "size_bytes": 524288,
+     "sha256": "ec8b2c21e401eefc0c95a7ba68ec46e707bfd2a9a7f95d4f544373fb58cf68bb"
+    },
+    {
+     "file": "sid_net_s0.npz.part013",
+     "size_bytes": 405392,
+     "sha256": "969e2e748dbfd259a1ebfccb3ab735964ac3ddd69b2dad15a07de0413c0345d6"
+    }
+   ]
+  }
+ ]
+}
