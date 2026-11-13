@@ -31,7 +31,7 @@ Sessions:
 | azure3 (Bridgebots3) | g7: **the Gen 8 arena, `8s-32~ben64`**, eight lanes. First pools (1,365 deals) played out 20:55 to 22:00; **second pools since then** (`gen8-p2-azure3-ben64-N`, 2,946 deals: azure2's phase 1 BEN (16) lanes' remaining deals), feeds `arena-gen8-p2-azure3-ben64-N-feed`, to about 08:30 UTC on 13 Nov. g8's idle workspace `~/work/g8` is also there | g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **plan, from 13:20 UTC** (g8's yes of 13:20 to plan's ask of 12:2x: Gen 8 does not need it today): the reading bench, the trick 1 to 2 ceiling and, the ceilings (all done by 21:55) and now played tests of the claim finder with late self-simulation (`match6`, then `match5`), to about 04:00 UTC on 13 Nov (plan's 17:11 entry), CPU only, under `~/work/plan`. p41's stored pools stay under `~/work/p41`, the prototype checkout under `~/work/g8p41`: nothing of p41's is touched. Not temporary (Max, 05:59 UTC) | plan, until it releases the box here; then p41 until g8 or Max names a user |
-| azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, one unit (`sidnet-run`), CPU only, to about 15:00 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
+| azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run` then `sidnet-run2`, CPU only, to about 15:45 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
 
 ## Log
 
@@ -3816,3 +3816,26 @@ leaves to you.** Plan: `docs/gen9/sid-integration.md` on `feature/gen9` (7e7e630
 - **g7 (ladder):** will refreshes the ladder; I have asked him to add `8p-32` and the Gen 8 variants with x8's 07:45
   figures, as Max asked you. If will cannot by 09:30, I do it.
 No box is touched by any of this.
+
+### 2026-11-13 08:13 UTC, sidnet
+
+**azure6: labels running since 07:55 (`sidnet-run`), the rest queued behind it (`sidnet-run2`); release now expected
+about 15:45 UTC, not 15:00.** At 08:12: 7,200 of 75,545 episodes, 2.08M rows, 0 failed, 4.17 core-ms a row on this box,
+172 minutes left. Then: held-out boards fetched and labelled in full (to about 11:50), the set built with the labels
+joined (13:05), `S_0` trained from v2 for five epochs (15:25), E1, and everything pushed to
+`transfer/sid-net-s0-20261113`. The episodes are exactly v2's: the 75,545 blobs at the tips of its last fetch
+(`training/sid-net-s0-20261113/fetch_tips.py`). Max (08:11): proceed.
+
+**loop: `research/sid-net-s0-20261113` is pushed (`2012e7a`), on the 8X engine `1a779a9` with the cells code and
+plan's `gen7_net.py`.** What you would build on:
+- `bridge_harness/gen7_net.py`: with the weights `wd1s`/`bd1s` and `wk14`/`bk14` a net also returns `guar`, `cert`,
+  `single` ([n, 52, 3] logits, targets one down / contract / overtrick) and `tricks14`. A net without them is unchanged.
+- `scripts/sid_label.py` (labels, one sidecar an episode, resumable; 7 cards and under by default, `--cards 8` works and
+  costs 35 to 45 ms an 8-card row) and `scripts/gen7_build_dataset.py --labels DIR` (joins them as `sid`; rows without
+  labels are -1 and train the other heads only). It reads arena episodes (`unique_tables`, `tables`, `actions`); if
+  `x8_match.py --episodes` writes another shape, say so and I adapt the reader.
+- `scripts/train_rollout_net.py`: a set with `sid` trains the label heads; `--init` takes a net with or without them.
+  **One gap for your plan:** a set with no `sid` at all drops the label weights of the net it starts from. If your
+  round's rows are to carry no labels, tell me and I add a switch that keeps them; a per-card value target beside the
+  gap is yours to add, and I see no clash with the label heads (separate weights).
+- `S_0` is not trained before about 15:25 UTC; until then v2 is the only base.
