@@ -42,5 +42,41 @@ class PositionTest(unittest.TestCase):
         self.assertEqual(max(value.values()), 13)     # thirteen top tricks, the current one included
 
 
+    def test_first_claim_once_a_hand(self):
+        from bridge_harness.plan_player import PlanPlayer
+        from bridge_harness.players import Decision
+        player = object.__new__(PlanPlayer)        # only the claim log: no net, no search
+        player.claim_hand = None
+        g = Game(self.board(0))
+        g.play(card('C2'))
+        firsts = []
+        for _ in range(3):                         # three declaring-side decisions of the same hand
+            while g.actor % 2:
+                g.play(g.observation().legal[0])
+            o = g.observation()
+            check = dict(state='guaranteed', value={x: 13 - len(o.history) // 4 for x in o.legal}, exact=True, seconds=0.)
+            d = player.with_claim(o, Decision(o.legal[0], {}), check)
+            firsts.append(d.details['claim']['first'])
+            self.assertTrue(d.details['claim']['keeps'])
+            g.play(o.legal[0])
+        self.assertEqual(firsts, [True, False, False])
+        g = Game(self.board(0))                    # the same deal again from the start: a new hand
+        g.play(card('C2'))
+        o = g.observation()
+        d = player.with_claim(o, Decision(o.legal[0], {}), dict(state='guaranteed', value={x: 13 for x in o.legal}, exact=True, seconds=0.))
+        self.assertTrue(d.details['claim']['first'])
+
+    @unittest.skipUnless(BIN and os.path.exists(BIN), 'SURE_BIN is not set to a built sure_cpp')
+    def test_cheap_question_agrees(self):
+        g = Game(self.board(0))
+        g.play(card('C2'))
+        o = g.observation()
+        finder = claims.Claims(BIN)
+        full, cheap = finder.verdict(o), finder.verdict(o, exact=False)
+        self.assertEqual(full[0], cheap[0])
+        need = 9 - o.declarer_tricks
+        self.assertEqual({x: int(v >= need) for x, v in full[1].items()}, cheap[1])
+
+
 if __name__ == '__main__':
     unittest.main()

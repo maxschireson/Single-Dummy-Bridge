@@ -90,12 +90,25 @@ class Claims:
                 return y
         raise RuntimeError(f'No representative for card {x} among {sorted(cards)}')
 
-    def verdict(self, o):
+    def makes(self, o, need):
+        """{card: 1 if it guarantees `need` more tricks (the current trick included), else 0}: the finder's cheaper
+        question, about 25 times faster than values(o) at trick 4 and 10 times at trick 5."""
+        got = self._ask(f'N{need} ' + position(o))
+        cards = {int(k): v for k, v in got['cards'].items()}
+        return {x: int(cards[self._rep(o, x, cards)]) for x in o.legal}
+
+    def verdict(self, o, exact=True):
         """(state, values): 'made' (the contract's tricks are already in), 'lost' (fewer tricks are left than it
-        needs), 'guaranteed' (some card guarantees it), 'open' (no card does); values as values(o)."""
+        needs), 'guaranteed' (some card guarantees it), 'open' (no card does); values as values(o). With exact False
+        only the contract is asked about: values are then makes(o, need), and empty when it is made or lost."""
         c = o.contract
         need = c.level + 6 - o.declarer_tricks
         left = len(o.known_hands[o.actor])
+        if not exact:
+            if need <= 0 or need > left:
+                return ('made' if need <= 0 else 'lost'), {}
+            v = self.makes(o, need)
+            return ('guaranteed' if max(v.values()) else 'open'), v
         v = self.values(o)
         if need <= 0:
             return 'made', v

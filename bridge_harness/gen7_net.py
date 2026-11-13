@@ -157,6 +157,7 @@ def encode(o, shown=None):
 
 INPUTS = ('state', 'order', 'legal', 'ctx', 'auction', 'shown')
 BANK_KEYS = ('bank_length', 'bank_hon', 'bank_log_weight')
+WHO = ('bot_own', 'bot_other')     # optional inputs of rollout nets: the bots' rows in the net's `bot_vocab`
 
 
 def stack(rows):
@@ -210,7 +211,12 @@ def forward(params, batch, xp=np, kind=None):
         s = relu(s @ params['ws0'] + params['bs0'], xp)
         s = relu(s @ params['ws1'] + params['bs1'], xp)                         # [n, 4, e]
         h = xp.concatenate([s.reshape(n, -1), g], axis=1)
-        h = relu(h @ params['wt0'] + params['bt0'], xp)
+        h = h @ params['wt0'] + params['bt0']
+        if 'emb_own' in params:             # rollout nets: who is playing, as learned vectors (row 0: unknown)
+            for key in ('own', 'other'):
+                ids = batch.get('bot_' + key)
+                h = h + params['emb_' + key][xp.zeros(n, xp.int32) if ids is None else xp.asarray(ids).astype(xp.int32)]
+        h = relu(h, xp)
         h = relu(h @ params['wt1'] + params['bt1'], xp)                         # [n, t]
         slot = xp.broadcast_to(xp.eye(4, dtype=xp.float32)[None], (n, 4, 4))
         d = xp.concatenate([s, xp.broadcast_to(h[:, None, :], (n, 4, h.shape[1])), slot], axis=2)
@@ -229,11 +235,27 @@ def log_softmax(x):
 
 
 class PolicyNet:
-    """NumPy inference from an exported .npz. `scorer` is the FitScorer the net's `shown` inputs were made with."""
+    """NumPy inference from an exported .npz. `scorer` is the FitScorer the net's `shown` inputs were made with.
+
+    A rollout net (one with `bot_vocab`) also takes who is playing: `bot_id(name)` is a bot's row (0 for a bot it was
+    not trained on), and a batch may carry `bot_own` (the deciding side's bot) and `bot_other` (the other side's);
+    either missing is read as unknown. `self.who = (own, other)` sets the names used by log_policy and heads."""
     def __init__(self, path, scorer):
         with np.load(path) as z:
             self.params = {k: z[k] for k in z.files}
         self.shown = Shown(scorer, *(self.params.pop(k) for k in BANK_KEYS))
+        vocab = self.params.pop('bot_vocab', None)
+        self.vocab = {str(x): i for i, x in enumerate(vocab)} if vocab is not None else {}
+        self.who = ('', '')
+
+    def bot_id(self, name):
+        return self.vocab.get(name or '', 0)
+
+    def tag(self, batch, n):
+        if not self.vocab:
+            return batch
+        own, other = self.who
+        return dict(batch, bot_own=np.full(n, self.bot_id(own), np.int32), bot_other=np.full(n, self.bot_id(other), np.int32))
 
     def encode(self, o):
         return encode(o, self.shown)
@@ -243,7 +265,7 @@ class PolicyNet:
         n = len(batch['state'])
         out = np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
-            out[i:i + chunk] = log_softmax(forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS})['policy'])
+            out[i:i + chunk] = log_softmax(forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})['policy'])
         return out
 
     def policy_and_gap_arrays(self, batch, chunk=4096):
@@ -251,15 +273,15 @@ class PolicyNet:
         n = len(batch['state'])
         logp, gap = np.empty((n, 52), np.float32), np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
-            out = forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS})
+            out = forward(self.params, {k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})
             logp[i:i + chunk], gap[i:i + chunk] = log_softmax(out['policy']), out['gap']
         return logp, gap
 
     def log_policy(self, observations):
         if not observations:
             return np.zeros((0, 52), np.float32)
-        return self.log_policy_arrays(stack([self.encode(o) for o in observations]))
+        return self.log_policy_arrays(self.tag(stack([self.encode(o) for o in observations]), len(observations)))
 
     def heads(self, observations):
-        out = forward(self.params, stack([self.encode(o) for o in observations]))
+        out = forward(self.params, self.tag(stack([self.encode(o) for o in observations]), len(observations)))
         return dict(out, policy=log_softmax(out['policy']))
