@@ -122,7 +122,7 @@
    "state": "running",
    "owner": "g9",
    "experiment": "E9-0",
-   "boards": 258,
+   "boards": 281,
    "target": 800,
    "restarts": 0,
    "submitted": "2026-11-12T11:42:00Z",
@@ -133,10 +133,11 @@
    "started": "2026-11-13T06:16:40Z",
    "resumed": "2026-11-13T06:16:40Z",
    "source": "/home/bridgebots/work/g9/src/4b54972",
-   "rate_per_hour": 600.0,
-   "eta": "2026-11-13T07:36:40Z",
+   "rate_per_hour": 599.6,
+   "eta": "2026-11-13T07:36:42Z",
    "published_at": "2026-11-13T06:37:50Z",
-   "published": "transfer/gen9-e9-0-n04-azure4-20261113@8885f055c"
+   "published": "transfer/gen9-e9-0-n04-azure4-20261113@8885f055c",
+   "stopping": true
   },
   "e9-10-8x-ben16": {
    "state": "cancelled",
@@ -412,7 +413,7 @@
    "state": "running",
    "owner": "g9",
    "experiment": "E9-16",
-   "boards": 246,
+   "boards": 269,
    "target": 800,
    "restarts": 0,
    "submitted": "2026-11-12T15:15:00Z",
@@ -423,10 +424,11 @@
    "started": "2026-11-13T06:16:40Z",
    "resumed": "2026-11-13T06:16:40Z",
    "source": "/home/bridgebots/work/g9/src/491c7f7",
-   "rate_per_hour": 572.1,
-   "eta": "2026-11-13T07:40:34Z",
+   "rate_per_hour": 574.0,
+   "eta": "2026-11-13T07:40:17Z",
    "published_at": "2026-11-13T06:37:50Z",
-   "published": "transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17"
+   "published": "transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17",
+   "stopping": true
   },
   "e9-16-r-v-p": {
    "state": "done",
@@ -488,13 +490,24 @@
    "published_at": "2026-11-13T05:57:02Z",
    "published": "transfer/gen9-g9-cohort-preflight-azure4-20261113@5e8242331",
    "ended": "2026-11-13T05:57:02Z"
+  },
+  "g9-cohort-azure4": {
+   "state": "waiting",
+   "owner": "dave",
+   "experiment": "G9-D9",
+   "boards": 0,
+   "target": 10000,
+   "restarts": 0,
+   "submitted": "2026-11-13T06:44:00Z",
+   "priority": 1,
+   "cores": 8
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-13T06:42:28Z",
+ "updated": "2026-11-13T06:44:47Z",
  "bad_jobs": [],
  "cores_busy": 8,
- "waiting_before": false,
+ "waiting_before": true,
  "idle_core_hours": 0.538,
  "idle_core_hours_while_waiting": 0.538
 }
