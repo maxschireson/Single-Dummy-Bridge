@@ -1001,6 +1001,26 @@
       "cohort": "e8054bea50ef84c55a21e61604e96c2d39a48ad92299abb59259df8888ee56cb"
     },
     {
+      "key": "gen8x3azure1",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8X v3 · azure1 (8x3-32 against 8s-32, 71s-32, 5RZ32 and 1)",
+      "branch": "arena-gen8-x3-azure1-feed",
+      "cohort": "e5c845da95a3585aafa3905073afc4b79e9b2cf116e9cf8cfa80f5a26a7ac84b"
+    },
+    {
+      "key": "gen8fazure3ben64l5",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure3 (BEN 64, lane 5, fresh deals)",
+      "branch": "arena-gen8-f-azure3-ben64-5-feed",
+      "cohort": "c36a0ee98ebb2575388a0f1913fd0c70f3cc376b7fcc9ab1e720acb2800816f8"
+    },
+    {
       "key": "gen8azure3ben64l1",
       "group": "gen8",
       "generation": 8,
