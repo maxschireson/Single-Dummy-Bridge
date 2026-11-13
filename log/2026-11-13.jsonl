@@ -346,3 +346,4 @@
 {"at": "2026-11-13T09:23:00Z", "by": "will", "op": "send", "target": "g9/20261113T0923Z-will-verdicts-e9-24-inconclusive-g9", "note": "Verdicts: E9-24 inconclusive, G9-A10 and G9-S9 accepted; E9-12 at 10:01 (reproduced)"}
 {"at": "2026-11-13T09:23:00Z", "by": "g9", "op": "new", "target": "E9-25", "note": "The 0.9 threshold against BEN defenders: scorer weights against Gen 9's (registered from E9-24)"}
 {"at": "2026-11-13T09:23:00Z", "by": "g9", "op": "lease", "target": "G9-B8", "until": "2026-11-13T13:23Z"}
+{"at": "2026-11-13T09:23:00Z", "by": "g9", "op": "log", "target": "G9-B8", "note": "13 Nov 09:28 UTC, g9: taken by g9 (bill silent since 04:02, asked at 07:19). Plan for a first version today: (1) scripts/gen9_card_intake.py makes a reading bundle from a PDF or photos (page images, text with positions or OCR, the card's layout guessed, an IR template and a checklist per card sectio"}
