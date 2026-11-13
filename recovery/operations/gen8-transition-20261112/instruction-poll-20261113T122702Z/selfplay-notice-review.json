@@ -1,0 +1,10 @@
+{
+  "revision": "6c447e6921220477de7e00c3cef1816fea07e430",
+  "notice_commit": "b3f2b973da760edf6fa7708414874b63698d06f3",
+  "entry": "2026-11-13T12:05:00Z",
+  "scope": "Collectors using two aliases of one identical bot for self-play",
+  "guidance": "Use one root table, alternate sides, null strength IMPs; do not count duplicated same-seed rooms as independent boards. Preserve historical records.",
+  "current_effect": "No setting change. Current five comparison pairs have distinct canonical actor identities; 8c-32 and 8s-32 have different native bidding systems. Their common condition remains numeric zero, not null self-play.",
+  "future_effect": "For a later explicitly authorized identical-actor self-play cohort, apply the single-table semantics, drain before behavior changes, prepare a new identity, exclude all released-model training families and validate observed capture. This notice does not open self-play here.",
+  "other_scope": "Stu pure-net play, 512 opening-lead rollout settings, Azure3/5 allocation and /stu reporting remain their operators' work. Do not adopt research code or control peers."
+}

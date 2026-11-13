@@ -1,0 +1,14 @@
+{
+  "revision": "91c74db0a197be21e47260f5bab14a9fa496bce0",
+  "index": {
+    "sha": "bea11586eab70fbcbcce565a9778925c3ed09c3c",
+    "path": "arena/index.html"
+  },
+  "required_preservation_lines": [
+    "<section id=\"ladder\" hidden></section>",
+    "<script src=\"ladder.js?v=g9-ladder-20261113g\" defer></script>"
+  ],
+  "scope": "Preserve these lines if a future authorized shared index edit occurs. Current shared pages commits only refresh ladder.json; no shared page edit is authorized or needed here.",
+  "gen9_default": "Reporting view only; Gen8 stream stays in its approved generation. Its view is ?source=gen8&older=1.",
+  "known_replay_issue": "The unchanged shared replay catalog still filters generations 6 and 7. Existing patch and pending shared UI approval are preserved; no repeated notification."
+}
