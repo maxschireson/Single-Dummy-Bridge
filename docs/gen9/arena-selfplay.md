@@ -163,8 +163,9 @@ match by 85%. Two versions:
 - **unbiased**: AIVAT's construction, which needs the posterior over layouts given the public auction and play under
   the players' known policies. The replay reader computes exactly that for our own bots, at a high cost in time.
 
-E9-19 measures the cheap version first: variance removed, and bias against plain IMPs, on the cohort's and E9-0's
-boards.
+E9-19 measures the cheap version first: variance removed, and bias against plain IMPs, on the arena's native boards
+where the two tables' contracts differ. In common auctions (E9-0's matches) both tables play one contract and the
+swings are all card play; they need the play version, a correction at the tricks where the two tables' plays part.
 
 ## 6. Exploiters, leakage and declared understandings
 
@@ -255,7 +256,7 @@ On `team/gen9` (`tools/q show ID`):
 | Id | What | Owner | Needs |
 | --- | --- | --- | --- |
 | E9-18 | Leave-one-bot-out: how well the net predicts a bot it never saw, and how that depends on the training mix's diversity | g9 | A training box or a small-net proxy (proposed) |
-| E9-19 | Variance reduction for ratings, cheap version first (5.4) | g9 | Cohort and E9-0 records |
+| E9-19 | Variance reduction for ratings, cheap version first (5.4) | g9 | Arena feeds' native boards |
 | E9-20 | Diversity and redundancy of the current population: the three distances (3.2) and the 5% threshold (3.3) | g9 | p41's pools, ladder cells |
 | E9-21 | Field choice and Nash average on the current cells: how the order changes (5.2) | g9 | Ladder cells |
 | E9-22 | A newcomer's "who" from the arrival mixture, and the learning curve (7.2, 7.3) | g9 | v2, arrival run records |
