@@ -1513,5 +1513,39 @@
     ]
    }
   }
+ },
+ "n-v41": {
+  "base": "6-32",
+  "label": "Policy v4.1 alone: no search at any trick",
+  "engine": "gen7",
+  "policy_role": "net-only",
+  "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
+  "gen7": {
+   "play_weight": 0.5,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 14,
+   "net_sample": false,
+   "tree_audit": true
+  }
+ },
+ "n-ft1": {
+  "base": "6-32",
+  "label": "Rollout net v1 (ft) alone: no search at any trick",
+  "engine": "gen7",
+  "policy_role": "net-only",
+  "gen7_policy": "models/cardplay/rollout-net-v1-20261113/policy_ft.npz",
+  "gen7": {
+   "play_weight": 0.5,
+   "play_floor": 0.05,
+   "play_max_layouts": 1024,
+   "play_lead": true,
+   "tie_break": "net",
+   "search_from_trick": 14,
+   "net_sample": false,
+   "tree_audit": true
+  }
  }
 }

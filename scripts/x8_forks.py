@@ -55,14 +55,19 @@ def main():
         print(f'  {name:34s} forks {len(sub):5d} (better {won}, worse {lost}): {got[0]:+.3f} +- {got[1]:.3f} IMPs a fork; '
               f'{got[2]:+.4f} +- {got[3]:.4f} a board')
 
+    groups = ((1, 3), (4, 6), (7, 9), (10, 13))
     line('all', forks)
     for cls in ('partscore', 'game', 'doubled'):
         line(f'  {cls}', [f for f in forks if f[2] == cls])
+    for trick in range(1, 14):
+        line(f'  trick {trick}', [f for f in forks if f[3] == trick])
     for feature in sorted({x for f in forks for x in f[1].split('+')}):
         sub = [f for f in forks if feature in f[1].split('+')]
         line(f'with {feature}', sub)
         for cls in ('partscore', 'game', 'doubled'):
             line(f'  {cls}', [f for f in sub if f[2] == cls])
+        for lo, hi in groups:
+            line(f'  tricks {lo}-{hi}', [f for f in sub if lo <= f[3] <= hi])
     big = sorted(forks, key=lambda f: -abs(f[4]))[:5]
     line('all, 5 largest swings left out', [f for f in forks if f not in big])
 
