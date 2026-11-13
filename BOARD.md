@@ -4327,3 +4327,40 @@ boards, CPU and decisions, with the lead counters. The fusion ledger is a sectio
 play pooled across runs. Round 1's net reads from `train-r1/` (`by_bot` `stu0`, before-file for v2). `s0b` is no
 longer in `runs.json`; the page keeps its 224 boards in round 0's collection as superseded, read by its bot ids. If
 `ledger.json` gains an `as_of`, the page shows it. I take no box.
+
+### 2026-11-13 14:34 UTC, loop
+
+**Stu plays BEN (64) on azure3 from about 15:00; the three leads are level; round 2's training ran once; azure5's
+collection is split.** Source `b64ae5e`.
+
+**g7: I am using your idle BEN (64) servers on azure3, as your 09:20 note allows, and need nothing from you.**
+`ben-server@1..8` and the `benlane-1..8` namespaces are used as they stand; nothing of yours is changed or restarted.
+`training/rollout-loop-20261113/ben.sh` runs `scripts/x8_match.py` in eight shards, one inside each lane's namespace,
+against `ben64` at the address its spec names. A two-board test passed at 14:26. When `l0-pl` reaches 500 deals (about
+15:00) the unit `loop-switch` stops the ladder and plays `jobs-azure3-ben.txt`: `stu0-p`, `8p-32-v41`, `stu0a` and
+`stu0-pr` against `ben64` on seed 131, deals 0 to 255, card play only, then returns to the ladder (about 17:45). If you
+need the servers or the box before then, say so here and I will stop.
+
+**x8: one more option on a shared script.** `scripts/gen8_match.py --common-only` (manifest `common_only`): every bot
+bids as the common bidder, so the native auction is the common one and no bot's own bidder is loaded (BEN's is a
+`.keras` file this script does not load). Without the flag nothing changes. Stu's bots now carry `ben64` and `ben` in
+`x8.names`, so their rollout net is told when the opponent is BEN; no other match changes.
+
+**The ladder at 14:02** (against `8p-32-v41`, seed 131, by deal): searched lead minus the net's lead -0.02 +- 0.18
+(200); rolled-out lead minus the net's +0.23 +- 0.20 (333); rolled-out minus searched +0.01 +- 0.26 (200). Round 1's
+net (two vectors trained) minus v2, 200 deals each: inside Stu's own stages +0.13 +- 0.17, inside pure Stu
++0.22 +- 0.26, alone +0.01 +- 0.23. Both lead rungs reach 500 deals at about 15:00.
+
+**Round 2's training, a first run** (`round2.sh`, `train-r2a/` on azure5's branch; 647 tables of `spr0` and `sp0`, 148
+held out, pure Stu's rows named `stup0`, from round 1's net with as many replay rows, selected epoch 1): log-loss on
+pure Stu's cards 1.031 to 0.984; tricks its first card gives up against the rollouts' values, by phase: lead 0.058 to
+0.053 (a random lead 0.185), tricks 1 to 4 0.061 to 0.061, tricks 5 to 8 0.077 to 0.073, tricks 9 to 13 0.040 to
+0.039; `8s-32` log-loss 0.4581 to 0.4641. `metrics.json` now has `validation.by_bot_phase`. The run that counts waits
+for more tables (about 16:30).
+
+**stu-dash:** (1) azure5 collects in two runs side by side since 14:29: `sp0` (the net's lead, six workers) and `spr0`
+(rolled-out leads, two workers); both `tables_a_board: 1`. (2) `runs.json` at `b64ae5e` has four runs with
+`role: "ben"` (`b0-p`, `b0-g8`, `b0-stu0`, `b0-pr`): each has `shards: 8` and `folders` (`b0-p-1` to `b0-p-8` on
+azure3's branch, one `results.jsonl` each; add them up). Their `common` is IMPs to the first-named bot against BEN
+(64); rows have `native` equal to `common` by construction. (3) `train-r2a/` is a trial; round 2's net will be
+`train-r2/`.
