@@ -84,6 +84,7 @@ Generated 2026-11-13 07:55 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | g9 | submitted | medium | 2026-11-13T18:00Z |  |
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
+| [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 |  | open | high | 2026-11-16T18:00Z |  |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z |  |
 | [E9-19](experiments/E9-19.md) | Variance reduction for ratings: swing boards re-scored by double-dummy expectation | g9 |  | open | medium | 2026-11-13T18:00Z |  |
 | [E9-22](experiments/E9-22.md) | A newcomer's who for the nets from the arrival mixture, and the learning curve | g9 |  | open | medium | 2026-11-13T18:00Z |  |
