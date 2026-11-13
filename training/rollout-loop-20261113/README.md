@@ -37,6 +37,8 @@ same games.
 | `chain.sh` | A job file's matches one after another |
 | `pub.sh` | Pushes rows, summaries and logs to `transfer/rollout-loop-<box>-20261113` |
 | `jobs-azure3.txt`, `jobs-azure5.txt` | What each box runs, in order |
+| `make_runs.py`, `runs.json` | Every run with its role, round, bots and deals, for readers of the outputs |
+| `DASHBOARD.md` | For the session building the loop's dashboard (Max, 09:30 UTC): where the data is and what to compute |
 
 On a box everything is under `~/work/loop` (own venv, checkout, `sure_cpp` built from
 `research/sure-trick-table-20261112` at `2e6ed6d`, a copy of the Gen 7 capture capsule). Deals are a function of
