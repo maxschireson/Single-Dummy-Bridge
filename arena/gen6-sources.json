@@ -1071,6 +1071,16 @@
       "name": "Gen 8 · azure1 (main mix, second pool: capsule shard 3/8)",
       "branch": "arena-gen8-s3-azure1-feed",
       "cohort": "05729bda955367b0dc45169f241c2d7bf936a6dac3bc4f7ae559893c7c404c61"
+    },
+    {
+      "key": "gen8s7azure1",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "azure",
+      "name": "Gen 8 · azure1 (main mix, third pool: azure6's remaining deals)",
+      "branch": "arena-gen8-s7-azure1-feed",
+      "cohort": "22b58cd811cc7a1ac3b8557a892e3bdd8f6bc30f8bc34cce00c296b2d2c87a5d"
     }
   ],
   "activation": {
