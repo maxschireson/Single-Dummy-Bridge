@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 12:36 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 12:39 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -29,7 +29,7 @@ Generated 2026-11-13 12:36 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 15:59 | leased | medium |  |  |
-| [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z |  |
+| [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z | lease expired |
 | [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | g9 | submitted | high | 2026-11-13T18:00Z |  |
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill | g9 | submitted | high | 2026-11-14T00:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
@@ -139,15 +139,15 @@ Generated 2026-11-13 12:36 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 12:34 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 12:39 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 970 of 10,000 | 148.3 | 11-16 01:27 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@a071450a6` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 207 of 2,000 | 42.1 | 11-15 07:10 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@c981a8ff2` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 979 of 10,000 | 142.4 | 11-16 04:00 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@c23e4b718` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 211 of 2,000 | 42.1 | 11-15 07:08 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@c981a8ff2` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 | 11-13 09:31 | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 | 11-13 07:40 | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
-| e9-25 | E9-25 | g9 | 3 | 1 | not seen yet | 0 of 750 |  |  |  |
+| e9-25 | E9-25 | g9 | 3 | 1 | waiting | 0 of 750 |  |  |  |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | g9-cohort-preflight | G9-D9 | dave | 1 | 1 | done | 1 of 1 |  |  | `transfer/gen9-g9-cohort-preflight-azure4-20261113@5e8242331` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |
