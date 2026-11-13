@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 17:56 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 18:01 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -34,7 +34,7 @@ Generated 2026-11-13 17:56 UTC by `tools/workq.py` after a change by `azure4`. D
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
-| [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
+| [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z | past due |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
 | [G9-A10](tasks/G9-A10.md) | X9: the Gen 9 shell on the 8X engine | g9 | g9 | resolved | high | 2026-11-13T15:00Z | accepted |
 | [G9-A11](tasks/G9-A11.md) | Conditional claims in X9 (DESIGN.md section 6), with a forked match | g9 | g9 | resolved | high | 2026-11-13T18:00Z | accepted |
@@ -84,7 +84,7 @@ Generated 2026-11-13 17:56 UTC by `tools/workq.py` after a change by `azure4`. D
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z | past due |
 | [E9-13](experiments/E9-13.md) | A declared difference from a held profile, read on that difference alone | bill |  | open | medium | 2026-11-13T10:00Z | past due |
-| [E9-22](experiments/E9-22.md) | A newcomer's who for the nets from the arrival mixture, and the learning curve | g9 |  | open | medium | 2026-11-13T18:00Z |  |
+| [E9-22](experiments/E9-22.md) | A newcomer's who for the nets from the arrival mixture, and the learning curve | g9 |  | open | medium | 2026-11-13T18:00Z | past due |
 | [E9-25](experiments/E9-25.md) | The 0.9 threshold against BEN defenders: scorer weights against Gen 9's (registered from E9-24) | g9 |  | open | medium | 2026-11-15T18:00Z |  |
 | [E9-23](experiments/E9-23.md) | Exploitability report for 8s-32 and 8x3-32: the informed reader on the bench | g9 |  | open | low |  |  |
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 | resolved | high | 2026-11-13T06:00Z | adopted |
@@ -137,12 +137,12 @@ Generated 2026-11-13 17:56 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 17:56 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 18:01 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 1,772 of 10,000 | 112.1 | 11-16 19:19 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@ce3ab2be2` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 451 of 2,000 | 44.0 | 11-15 05:05 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@7f62c6c31` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 1,785 of 10,000 | 112.2 | 11-16 19:14 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@1cc93b83f` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 456 of 2,000 | 46.1 | 11-15 03:31 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@d5f28faf5` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | e9-25 | E9-25 | g9 | 3 | 1 | waiting | 0 of 750 |  |  |  |
