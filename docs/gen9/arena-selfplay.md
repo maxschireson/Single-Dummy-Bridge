@@ -146,7 +146,11 @@ raises that player's Elo-style rating; here, twenty synthetic variants of one st
 part of "strength". Proposal: the headline number is the field score against a **declared field** (a decision for
 Max, section 10). Beside it: the **Nash average** (each member's expected cell against the maximum-entropy
 equilibrium of the cells matrix, which adding redundant members does not change; Balduzzi et al.) and the worst cell
-(A4). The Nash average is shown, not used for decisions, until its noise on our cells is known (E9-21).
+(A4). E9-21 (13 Nov, `reports/gen9-arena-field-2026-11-13`): on today's 22 points the field moves the levels, not
+the order (Spearman 0.999 between the two fields tried); the equilibrium is `8s-32` alone, so the Nash average is
+each point's cell against the champion; and its standard errors are about the field scores'. The population is close
+to transitive (pair-effect SD 0.08 IMPs a board), so the choice of field starts to matter once it is not. The Nash
+average is shown beside the field score; decisions stay on the field score and the tests.
 
 **5.3 Pairs out of line.** A diverse population should produce more pairs that one strength number does not explain
 (style match-ups). The leave-one-out test per pair (A4 after E9-5) finds them, and the page shows the share of
