@@ -1,0 +1,184 @@
+{
+ "schema": "ladder-feature-impacts-v1",
+ "about": "Known strength impacts of bot features, for the ladder's drill-down (scripts/arena_ladder.py, G9-D9). A row is shown beside every changed feature whose name is in its 'features' list (the names are scripts/arena_ladder.py FEATURES). Rule (g9, 13 Nov 04:24 UTC): a row compares two configurations that differ only in that feature, or says in 'also_differs' what else differs. 'mean' is IMPs a board in favour of the configuration named first in 'compares'; null when the source gives no signed figure. Bench rows give the trick figure and the conversion at 3.8 IMPs a trick (E9-0) with 10% on the conversion in 'se'. Draft by dave; sam adds play and signal rows; g9 reviews. 'when': 'added' shows a row only where the parent lacks the feature, 'changed' only where both have it.",
+ "rows": [
+  {
+   "id": "early-read-v41",
+   "features": [
+    "early play reading (from trick 1, before the deal list)"
+   ],
+   "compares": "8p-32 against 7s-32, both with policy v4.1 (box, paired deals)",
+   "mean": 0.453,
+   "se": 0.08,
+   "boards": 1600,
+   "also_differs": "8p-32 also reads the deal list at exponent 1.0 instead of 0.5, worth +0.026 +- 0.030 alone (row deal-list-exponent). With policy v4 on both: +0.405 +- 0.083 over 1,623.",
+   "source": "Gen 8 session's box matches, p41's check of the rows (box/coordination BOARD.md, 12 Nov 15:10 UTC)",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+  },
+  {
+   "id": "deal-list-exponent",
+   "features": [
+    "play reading weight (deal-list exponent)"
+   ],
+   "compares": "deal-list exponent 1.0 against 0.5 (8p-32 minus the first 8s-32, both against 7s-32 on the same 896 deals)",
+   "mean": 0.026,
+   "se": 0.03,
+   "boards": 896,
+   "also_differs": "nothing else",
+   "source": "box/coordination BOARD.md, p41's check, 12 Nov 15:10 UTC",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
+   "when": "changed"
+  },
+  {
+   "id": "play-reading-whole",
+   "features": [
+    "play reading weight (deal-list exponent)",
+    "play reading settings"
+   ],
+   "compares": "reading the hidden seats' plays (v4 net, 8p-32's settings) against not reading them, both reading the auction",
+   "mean": 0.7,
+   "se": 0.13,
+   "tricks": {
+    "mean": 0.185,
+    "se": 0.029
+   },
+   "also_differs": "double-dummy bench on 530 recorded house tables (21,417 decisions), tree off, no tie-break; not a match",
+   "source": "p41, reports/gen8-reading-by-net-2026-11-12 (branch feature/gen8-p41-20261112); reproduced in reports/gen9-auction-worth-2026-11-12",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen8-p41-20261112/reports/gen8-reading-by-net-2026-11-12",
+   "when": "added"
+  },
+  {
+   "id": "auction-reading-whole",
+   "features": [
+    "auction reading (hand-fit scorer)"
+   ],
+   "compares": "reading the auction with the hand-fit scorer against not reading it, both reading the play",
+   "mean": 0.41,
+   "se": 0.08,
+   "tricks": {
+    "mean": 0.107,
+    "se": 0.019
+   },
+   "also_differs": "double-dummy bench on 530 recorded house tables, not a match. Without the play reading: +0.124 +- 0.026 tricks a board.",
+   "source": "g9, reports/gen9-auction-worth-2026-11-12 (branch feature/gen9)",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/feature/gen9/reports/gen9-auction-worth-2026-11-12"
+  },
+  {
+   "id": "policy-v41-in-bot",
+   "features": [
+    "card policy net version"
+   ],
+   "compares": "7s-32 with policy v4.1 against with v4 (box, two boxes on different deals)",
+   "mean": -0.003,
+   "se": 0.047,
+   "boards": 3200,
+   "also_differs": "nothing else. Inside 8p-32, v4.1 against v4: -0.036 +- 0.080 (1,600). Inside 7s-32, v4 against v0: -0.017 +- 0.089 (1,000). Played alone the nets differ by whole IMPs (v4.1 over v4 +0.76 +- 0.07).",
+   "source": "box/coordination BOARD.md, p41's check, 12 Nov 15:10 UTC",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
+   "when": "changed"
+  },
+  {
+   "id": "factors-fixed-rule",
+   "features": [
+    "per-opponent reading factors"
+   ],
+   "compares": "reading an opponent that always plays the high card of equals (t-high) at factor 0.2 against at full weight (8x-32 minus 8p-32, against t-high, paired)",
+   "mean": 0.439,
+   "se": 0.135,
+   "boards": 800,
+   "also_differs": "nothing else. Against house bots the factors are 1.0, so nil by design.",
+   "source": "Gen 8 session (g8); box/coordination BOARD.md, p41's check, 12 Nov 15:10 UTC",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+  },
+  {
+   "id": "factors-random",
+   "features": [
+    "per-opponent reading factors"
+   ],
+   "compares": "reading an opponent that picks a random card among exactly equal-best ones (8r-32) at factor 0.25 against at full weight (8xr-32 minus 8p-32, paired by deal)",
+   "mean": -0.292,
+   "se": 0.148,
+   "boards": 800,
+   "also_differs": "nothing else. A factor below 1.0 is right against a fixed rule (row factors-fixed-rule) and wrong against random tie-breaks.",
+   "source": "E9-16 part 2 (box, seed 916; g9, 13 Nov 02:36 UTC)",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/experiments/E9-16.md"
+  },
+  {
+   "id": "tie-break-own",
+   "features": [
+    "tie-break rule"
+   ],
+   "compares": "8r-32 (a random one of its exactly equal-best cards) against 8p-32 (net tie-break), 8p-32 reading it at full weight",
+   "mean": 0.014,
+   "se": 0.126,
+   "boards": 800,
+   "also_differs": "nothing else. Not the t-high figure: 7s-32's +0.449 against t-high is mostly Gen 7 against a Gen 6 bot that does not read the play (g9's correction, 13 Nov 04:24 UTC).",
+   "source": "E9-16 part 2 (box, seed 916; g9, 13 Nov 02:36 UTC)",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/experiments/E9-16.md"
+  },
+  {
+   "id": "scorer-and-table-house",
+   "features": [
+    "system scorer (reads other systems' auctions)",
+    "per-opponent reading factors",
+    "systems the opening lead reads"
+   ],
+   "compares": "8s-32 (the candidate) against 8p-32",
+   "mean": null,
+   "se": null,
+   "text": "the same within 0.05 +- 0.04",
+   "also_differs": "on house tables the opponent table gives 1.0 and the scorer reads house auctions as the base file does, so the two play alike there by design",
+   "source": "g8, quoted in G9-D9's task log (g9, 13 Nov 04:17 UTC)",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md"
+  },
+  {
+   "id": "near-tie",
+   "features": [
+    "near-tie margin (policy breaks near-ties)"
+   ],
+   "compares": "near-tie margin 0.1 against none (8n-32 against 8p-32)",
+   "mean": -0.025,
+   "se": 0.068,
+   "boards": 2000,
+   "also_differs": "measured on the Gen 8 engine; in the ladder the margin changes between Gen 5R and 5RZ, on the Gen 5 engine",
+   "source": "box/coordination BOARD.md, p41's check, 12 Nov 15:10 UTC",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+  },
+  {
+   "id": "player-model",
+   "features": [
+    "player model"
+   ],
+   "compares": "a player model against none, facing a guest that declares its carding",
+   "mean": 0.48,
+   "se": 0.13,
+   "also_differs": "nil against house bots by design",
+   "source": "G9-D6 (Gen 9 arrival run), as listed in G9-D9's task log",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md"
+  },
+  {
+   "id": "late-self-simulation",
+   "features": [
+    "late self-simulation"
+   ],
+   "compares": "late self-simulation on against off",
+   "mean": 0.175,
+   "se": 0.035,
+   "also_differs": "on Gen 7.1; on Gen 8 +0.198 +- 0.033. No registered bot has it yet.",
+   "source": "the plan, as listed in G9-D9's task log",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md"
+  },
+  {
+   "id": "claim-finder",
+   "features": [
+    "claim finder at the root"
+   ],
+   "compares": "claim finder at the root on against off",
+   "mean": 0.001,
+   "se": 0.023,
+   "also_differs": "No registered bot has it yet.",
+   "source": "the plan, as listed in G9-D9's task log",
+   "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md"
+  }
+ ]
+}
