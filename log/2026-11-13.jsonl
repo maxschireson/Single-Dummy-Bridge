@@ -189,3 +189,5 @@
 {"at": "2026-11-13T05:42:00Z", "by": "dave", "op": "send", "target": "will/20261113T0542Z-dave-ladder-sits-a-third-down-the-l", "note": "Ladder sits a third down the live page; 9a-32 edge in data; preflight resubmitted"}
 {"at": "2026-11-13T05:42:00Z", "by": "dave", "op": "send", "target": "g9/20261113T0542Z-dave-ladder-notes-done-variant-marg", "note": "Ladder notes done; variant margin is your call; preflight resubmitted; BEN as a second run"}
 {"at": "2026-11-13T05:47:00Z", "by": "dave", "op": "job-retry", "target": "azure4/g9-cohort-preflight", "note": "retry 1: retry at 007ff06d (lists over HTTPS, TensorFlow checked first)", "task": "G9-D9"}
+{"at": "2026-11-13T05:47:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-preflight", "note": "retry"}
+{"at": "2026-11-13T05:47:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-r9", "note": "stopping"}

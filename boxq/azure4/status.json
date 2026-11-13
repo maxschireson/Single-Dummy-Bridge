@@ -286,7 +286,7 @@
    "state": "running",
    "owner": "sam",
    "experiment": "E9-4",
-   "boards": 950,
+   "boards": 962,
    "target": 1600,
    "restarts": 0,
    "submitted": "2026-11-12T08:44:00Z",
@@ -297,17 +297,17 @@
    "started": "2026-11-13T04:24:24Z",
    "resumed": "2026-11-13T05:14:31Z",
    "source": "/home/bridgebots/work/g9/src/83f373d",
-   "rate_per_hour": 714.0,
-   "eta": "2026-11-13T06:41:07Z",
-   "published_at": "2026-11-13T05:37:16Z",
-   "published": "transfer/gen9-e9-4-8x-azure4-20261113@63b2cf460",
+   "rate_per_hour": 709.6,
+   "eta": "2026-11-13T06:41:30Z",
+   "published_at": "2026-11-13T05:47:34Z",
+   "published": "transfer/gen9-e9-4-8x-azure4-20261113@0ea88c759",
    "ended": "2026-11-13T05:12:42Z"
   },
   "e9-4-r9": {
    "state": "running",
    "owner": "sam",
    "experiment": "E9-4",
-   "boards": 119,
+   "boards": 133,
    "target": 1600,
    "restarts": 0,
    "submitted": "2026-11-12T08:44:00Z",
@@ -318,10 +318,11 @@
    "started": "2026-11-13T05:36:11Z",
    "resumed": "2026-11-13T05:36:11Z",
    "source": "/home/bridgebots/work/g9/src/83f373d",
-   "rate_per_hour": 692.1,
-   "eta": "2026-11-13T07:54:53Z",
-   "published_at": "2026-11-13T05:36:44Z",
-   "published": "transfer/gen9-e9-4-r9-azure4-20261113@f59a31a26"
+   "rate_per_hour": 701.0,
+   "eta": "2026-11-13T07:53:07Z",
+   "published_at": "2026-11-13T05:47:02Z",
+   "published": "transfer/gen9-e9-4-r9-azure4-20261113@53c1b129b",
+   "stopping": true
   },
   "e9-6-att-vs-reader": {
    "state": "cancelled",
@@ -454,12 +455,12 @@
    "ended": "2026-11-13T02:33:39Z"
   },
   "g9-cohort-preflight": {
-   "state": "failed",
+   "state": "waiting",
    "owner": "dave",
    "experiment": "G9-D9",
    "boards": 0,
    "target": 1,
-   "restarts": 2,
+   "restarts": 0,
    "submitted": "2026-11-13T05:11:00Z",
    "priority": 1,
    "cores": 1,
@@ -468,12 +469,12 @@
    "source": "/home/bridgebots/work/g9/src/fba1dd52",
    "rate_per_hour": 0.0,
    "eta": null,
-   "last_exit": 1,
-   "ended": "2026-11-13T05:14:31Z"
+   "retry_seen": 1,
+   "short": false
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-13T05:46:30Z",
+ "updated": "2026-11-13T05:47:34Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
