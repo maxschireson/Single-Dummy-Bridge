@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+W=~/work/sidnet; tail -5 $W/logs/timeline.log | cut -c1-260; echo "--- s0.err"; tail -6 $W/logs/s0.err 2>/dev/null | cut -c1-200; echo "--- s0.out"; tail -2 $W/logs/s0.out 2>/dev/null | cut -c1-300; echo "units: $(systemctl is-active sidnet-run3)"; free -g | sed -n 2p | cut -c1-80; uptime | sed "s/.*load/load/"; df -h $HOME | tail -1; sudo dmesg 2>/dev/null | grep -i -E "killed process|out of memory" | tail -3; ps -o pid,etimes,rss,pcpu,cmd -C python 2>/dev/null | cut -c1-150 | head -4
