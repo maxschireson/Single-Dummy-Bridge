@@ -23,7 +23,7 @@
    on the rollouts where the certified probability is 0.9 or more, with the commitment rule and a fork on every card
    they change. The threshold comes down (0.75, then 0.5) only when the forks at the current threshold show a gain.
    No blend weight, and SiD never chooses alone.
-4. **Weight in Gen 9's work: about a third for the next week.** Four pieces where Gen 9 is the natural owner:
+4. **Weight in Gen 9's work: about a third of one day (13 November).** Four pieces where Gen 9 is the natural owner:
    weights for the cells, the `X9` composition, the arena for SiD's self-play loop, and defenders' conditional lines
    read through partner's signals. The solver, the labels, the student net and the tree stay with their owners (the
    solver session, x8, plan).
@@ -131,33 +131,29 @@ play, so the threshold starts where the floor cannot do harm and moves on played
 
 ## 4. Weight in Gen 9's work
 
-About a third of the team's effort for the next week, in this order, each piece in a lead's own session (no
-sub-agents, Max, 07:48 UTC):
+About a third of the team's effort for one day, 13 November (Max, 08:02 UTC: "a third for a day, or less"), each
+piece in a lead's own session (no sub-agents, Max, 07:48 UTC), all in the review package:
 
-| Piece | Who | Size |
+| Piece | Who | Aim (UTC, estimates) |
 | --- | --- | --- |
-| E9-24: calibration of floors by weight source | g9 | Half a day; recorded positions only |
-| `X9`: the Gen 9 shell on the 8X engine, inert by default | g9 | A day, with tests |
-| Defenders' conditional lines: the bound of 2.4 | sam (g9 if sam stays away) | Half a day |
-| The arena interface for SiD's rounds (2.5) | dave | Part of the population page and registry work |
+| E9-24: calibration of floors by weight source | g9 | 11:00 |
+| `X9`: the Gen 9 shell on the 8X engine, inert by default, with tests | g9 | 15:00 |
+| Defenders' conditional lines: the bound of 2.4 | sam, or g9 if sam is away | evening |
+| The arena interface for SiD's rounds (2.5) | dave, g9 | posted on the board at 07:57 |
 
 Not Gen 9's: `sure.cpp` and `cells.cpp` (solver session), conditional claims inside the 8X engine (`DESIGN.md`
 section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefers), the labels and student
-(sidnet), the tree and the rounds (loop, x8). The other two thirds stay on the arena and the readers.
-
-Why a third and not more: the measured gains from SiD so far are counts of missed sure makes (32 of 1,520 tables,
-one-sided) and neutral choice rules; nothing has been played. Why not less: the floors are only as good as the
-weights, and against a diverse field the weights are Gen 9's.
+(sidnet), the tree and the rounds (loop, x8). The other two thirds of the day stay on the arena and the readers.
 
 ## 5. Order
 
 | Step | What | Needs | When |
 | --- | --- | --- | --- |
-| 1 | E9-24 on recorded positions | `cells.cpp`, Gen 8 feeds, the Gen 9 shell | Next week (after the review package) |
-| 2 | `X9` with tests | the 8X engine at its current commit | Next week |
+| 1 | E9-24 on recorded positions | `cells.cpp`, Gen 8 feeds, the Gen 9 shell | Today, about 11:00 UTC |
+| 2 | `X9` with tests | the 8X engine at its current commit | Today, about 15:00 UTC |
 | 3 | Conditional claims in 8X (`DESIGN.md` 6) | owner agreed with x8 | x8's call |
 | 4 | `X9` with conditional claims against the 8X bot it wraps, forks on, on a Gen 9 box | 2, 3 | After 3 |
-| 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Next week |
+| 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Today, evening |
 | 6 | SiD rounds in the arena (2.5) | SPEC steps 1 to 7 by their owners | When the first round exists |
 
 ## 6. Unknown
