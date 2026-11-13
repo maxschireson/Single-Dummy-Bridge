@@ -1,3 +1,8 @@
-# Round 2's rung on azure6 (its collection is paused for it), the same deals as jobs-azure5-r2.txt:
-#   l2b-pt   round 2's net in the rollouts and at the table (its own lead, first choices and reading of the play)
+# Round 2's rungs on azure6 (its collection is paused for them), against Gen 8 card play on the gate's deals from 500:
+#   l2b-pt   pure Stu with round 2's net in the rollouts and at the table (its own lead, first choices and reading of the
+#            play); 200 deals, as jobs-azure5-r2.txt's rungs; its control is l0b-pt
+#   l2b-n    round 2's net alone, 500 deals: the plainest read of what the net learned from the rollouts' values
+#   l0b-n    the control: v2 alone on the same 500 deals
 l2b-pt stu2-pt~8p-32-v41 131 500 200 8 --episodes
+l2b-n stu2-n~8p-32-v41 131 500 500 8 --episodes
+l0b-n stu0-n~8p-32-v41 131 500 500 8 --episodes

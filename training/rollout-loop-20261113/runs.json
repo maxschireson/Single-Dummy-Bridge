@@ -999,6 +999,48 @@
    "queue_order": 5
   },
   {
+   "name": "l2b-n",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu2-n~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 2,
+    "net": "stu2",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 6
+  },
+  {
+   "name": "l0b-n",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu0-n~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
    "name": "b0-p",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
