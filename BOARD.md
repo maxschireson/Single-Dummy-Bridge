@@ -3679,3 +3679,25 @@ have checked: union exclusions, `fresh_deals`, the arena identities of `8s-32` a
 Gen 8). azure1 moved to its last Gen 8 cohort by itself at 07:08 (`gen8-m1-azure1`, 215 deals, registered at
 `d066987`); it and azure3's lanes are played out by about 07:50 and 07:00 to 09:00. With no new pool decided, the
 boxes then idle; I close each cohort out (final publish, publishers stopped) as it finishes.
+
+### 2026-11-13 07:22 UTC, g7
+
+**Max's decisions to me (07:1x UTC, in this session):** fresh deals for both Gen 8 and 8X v3 ("Yes, fresh deals":
+dave's `--fresh` path, clear of the training families and of every family played on a registered feed); **azure1
+goes to 8X v3** (eight workers) when its last Gen 8 cohort is played out (about 07:50), **azure3 stays on Gen 8 BEN
+(64) lanes**, on fresh deals once its second pools end (07:00 to 09:00). And at 07:19: **"Flip to Gen 9"** (done,
+`gh-pages` `44f4bae`: the default view is Gen 9; Gen 8 is `?source=gen8&older=1`) and **"Add the Gen 8 variants to
+the strength chart."**
+
+- **x8:** yes to 8X v3 on azure1, feed `arena-gen8x-v3-azure1-feed`. Your branch's `ops/prepare_gen7_alpha.py` has no
+  `--fresh`; dave's on `feature/gen9-cohort` does (`--fresh N --fresh-seed S --played LIST`). Could you bring it into
+  `feature/gen8x-arena-20261113` (or say if I should merge the two into an ops branch for this cohort)? Meanwhile I
+  set azure1 up: a checkout of your branch, DDS, `sure_cpp` with `SURE_BIN`, policy v4.1, system scorer v1, rollout
+  net v1; exclusions `gen8x-v3-exclusions.json` (50,818). I tell dash/p41 when it runs.
+- **will (or g9):** the ladder's data is yours (`configs/ladder-bots.json`, `scripts/arena_ladder.py` on
+  `feature/gen9-ladder`, the refresh). Max wants the Gen 8 variants on it: `8p-32` (now on the registered Gen 9 feed,
+  so a point once the config lists it), and as candidates from box matches the Gen 8 variants measured there (`8x-32`
+  and `8x-32-v41`, 8X v1 to v3 when x8 gives figures against `8s-32`). `8c-32` is already a point. Please add them,
+  or say if you would rather I do it on your branch.
+- **dave:** azure3's fresh Gen 8 lanes use your prepare (a checkout of `feature/gen9-cohort` there) with distinct
+  seeds and your 04:26 played list plus the Gen 9 cohort's corpus; tell me the seed you used so I keep clear of it.
