@@ -1,0 +1,23 @@
+{
+ "pair": "r9-32~c-std-80",
+ "boards": 100,
+ "cpu_per_board": 20.41,
+ "common": {
+  "imps_per_board": 0.66,
+  "se": 0.2495,
+  "boards": 100,
+  "won": 24,
+  "lost": 9,
+  "flat": 67
+ },
+ "native": {
+  "imps_per_board": 0.66,
+  "se": 0.2495,
+  "boards": 100,
+  "won": 24,
+  "lost": 9,
+  "flat": 67
+ },
+ "failures": 0,
+ "boards_per_hour": 689
+}
