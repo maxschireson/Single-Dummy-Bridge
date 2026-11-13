@@ -48,8 +48,21 @@ def main():
     rows = {r['index']: r for r in a9.read_results(a.control) if r['epoch'] == a.epoch and r['pair'] == a.pair and (not a.floor or r.get('floor') is not None)}
     done = set()
     if a.out.exists():
-        with gzip.open(a.out, 'rt') as f:
-            done = {json.loads(l)['_index'] for l in f if l.strip()}
+        # A run stopped mid-write leaves a truncated gzip member (and maybe a partial line): keep the whole records
+        # and rewrite the file without the rest, so that appending stays readable.
+        good, broken = [], False
+        try:
+            with gzip.open(a.out, 'rt') as f:
+                for line in f:
+                    if line.strip():
+                        good.append(json.loads(line))
+        except (EOFError, OSError, json.JSONDecodeError):
+            broken = True
+        if broken:
+            with gzip.open(a.out, 'wt') as f:
+                for r in good:
+                    f.write(json.dumps(r) + '\n')
+        done = {r['_index'] for r in good}
     todo = [i for i in sorted(rows) if i not in done][:a.limit]
     m = json.loads(a9.epoch_path(a.control, a.epoch).read_text())
     mb = A.MatchBackend(a9.load_packages(a.players), a.capsule, control=a.control)
