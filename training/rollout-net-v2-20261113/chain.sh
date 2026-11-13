@@ -14,7 +14,7 @@ T=training/rollout-net-v2-20261113; W=${W:-$P/rnet2}; RUN=${RUN:-w768}; INIT=${I
 BRANCH=${BRANCH:-transfer/rollout-net-v2-20261113}; V1=$P/rnet1/eps
 SCORER=${SCORER:-$HOME/work/sdb-gen7/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz}
 V41=models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz
-FEEDS=('arena-gen6-*' 'arena-gen7-*' 'arena-gen71-*' 'arena-gen8-*' 'transfer/pre7-test-azure*-20261112')
+FEEDS=('arena-gen6-*' 'arena-gen7-*' 'arena-gen71-*' 'arena-gen8-*' 'arena-gen5rz*' 'transfer/pre7-test-azure*-20261112')
 # RESUME=1: a run stopped before training picks up its fetch, parts and set; what the fetch brings now (new feeds or
 # boards) is built as one more part and joined in.
 SHARDS=${SHARDS:-16}
@@ -68,9 +68,9 @@ PYS
 fi
 mkdir -p "$d"
 if [ -s "$W/data/eps_new.txt" ]; then          # resume: what the fetch just brought, as one more part
-  rm -rf "$d/sx" "$d/sx.npz"; mkdir -p "$d/sx"
-  while read -r f; do ln -s "$W/eps/$f" "$d/sx/$f"; done < "$W/data/eps_new.txt"
-  log "resume: $(wc -l < "$W/data/eps_new.txt") newly fetched episodes as part sx"
+  x=sx$(date -u +%H%M%S); mkdir -p "$d/$x"         # a new name each time: an earlier resume's part stays
+  while read -r f; do ln -s "$W/eps/$f" "$d/$x/$f"; done < "$W/data/eps_new.txt"
+  log "resume: $(wc -l < "$W/data/eps_new.txt") newly fetched episodes as part $x"
 fi
 for s in $(ls "$d" | grep -v npz); do
   [ -f "$d/$s.npz" ] && continue
