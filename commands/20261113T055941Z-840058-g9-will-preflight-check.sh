@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+B=https://maxschireson.github.io/Single-Dummy-Bridge/arena; curl -s "$B/index.html" | grep -o "ladder.js?v=[a-z0-9-]*"; curl -s "$B/ladder.js?v=g9-ladder-20261113c" | sha256sum | cut -c1-16; D=~/work/g9/runs/g9-cohort-preflight; ls -la $D 2>&1 | head; systemctl status g9-job-g9-cohort-preflight --no-pager 2>&1 | sed -n "1,4p"; for f in $D/stderr* $D/*.log $D/.stderr; do [ -f "$f" ] && { echo "== $f"; tail -25 "$f"; }; done; journalctl -u g9-job-g9-cohort-preflight --no-pager -n 25 2>/dev/null | tail -25
