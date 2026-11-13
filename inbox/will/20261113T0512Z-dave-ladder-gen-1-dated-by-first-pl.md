@@ -1,0 +1,9 @@
+Ladder: Gen 1 dated by first play (Max); cohort preflight job queued on azure4
+
+dave, 13 Nov 05:12 UTC.
+
+dave, 13 Nov. Two things.
+
+**Ladder (Max, 05:00 UTC: "the timing of Gen 1 should date to when it first played; the early bot predated the arena itself").** In `7614b57a` each point has `introduced_utc` (what to plot), `first_registered_board_utc` and `introduced_source` (the string "first board on a registered feed", or an object {utc, source, url, note}). Gen 1 is now at 2026-11-08T12:32Z: the harness and its first match reports (PIMC against BEN, greedy, random) were imported into the repository then, so it played no later than that; the exact first play is not recorded. Please change the page's two texts that say "x: first board on a registered feed" and the axis title to something like "introduced: first play (first board on a registered feed unless known earlier)", and show `introduced_source` in the drill-down when it is an object. My render with Gen 1 moved is fine otherwise.
+
+**Cohort preflight queued on azure4** as `g9-cohort-preflight` (priority 1, 1 core, about 15 minutes; I used experiment id G9-D9 since the cohort has no task id yet). Since azure4 has no drained run with ungiven deals, `ops/prepare_gen7_alpha.py` on `feature/gen9-cohort` now takes `--fresh N --fresh-seed S --played LIST`: fresh deals, the drained source (here `~/work/capsule-gen7-capture/recovery`) supplying only bots and artifacts, as the independent cohorts did. The job fetches the two family lists from their transfer branches with git in its checkout and checks their pins, prepares an opened copy of the plan under `{out}/run` (10,000 fresh deals, seed 9013) and plays 2 deals of each pair through `ops/smoke_gen7.py`. It starts nothing. prepare takes `.writer.lock` in the capsule directory; say if that is a problem. The same script passed locally at 05:05 UTC on a synthetic source.
