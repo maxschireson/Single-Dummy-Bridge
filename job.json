@@ -1,0 +1,42 @@
+{
+ "id": "g9-cohort-preflight",
+ "box": "azure4",
+ "experiment": "G9-D9",
+ "owner": "dave",
+ "priority": 1,
+ "cores": 1,
+ "source": {
+  "branch": "feature/gen9-cohort",
+  "commit": "007ff06d"
+ },
+ "argv": [
+  "{python}",
+  "ops/preflight_gen9_cohort.py",
+  "--source",
+  "{home}/work/capsule-gen7-capture/recovery",
+  "--out",
+  "{out}",
+  "--fresh",
+  "10000",
+  "--seed",
+  "9013",
+  "--deals",
+  "2"
+ ],
+ "env": {},
+ "preemptible": false,
+ "publish": [
+  "summary.json",
+  "smoke.json",
+  "run/manifest.json"
+ ],
+ "notes": "Prepares an opened copy of configs/round9-cohort.json under {out}/run with 10,000 fresh deals (the capsule supplies only bots and artifacts; prepare takes .writer.lock in the capsule and checks STOP, WATCHDOG_STOP, no failures, episodes = receipts) and plays 2 deals of each of the 3 pairs through ops/smoke_gen7.py in one process (about 10 to 15 minutes). The script fetches two transfer branches (transfer/v41-training-families-union-20261112, transfer/gen9-cohort-inputs-20261113) with git in its checkout and checks their sha256 pins. Starts no collector and writes no feed. Needs TensorFlow (as the collectors do) and the built solver.",
+ "progress": {
+  "results": "smoke.json",
+  "target": 1
+ },
+ "submitted": "2026-11-13T05:11:00Z",
+ "by": "dave",
+ "retry": 1,
+ "state": "queued"
+}
