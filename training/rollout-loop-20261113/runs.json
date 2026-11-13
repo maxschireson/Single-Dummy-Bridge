@@ -311,6 +311,69 @@
    "queue_order": 6
   },
   {
+   "name": "l1-stu1",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu1a~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 1,
+    "net": "stu1",
+    "rung": "stu"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
+   "name": "l1-p",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu1-p~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 1,
+    "net": "stu1",
+    "rung": "pure"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 8
+  },
+  {
+   "name": "l1-n",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu1-n~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 1,
+    "net": "stu1",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 9
+  },
+  {
    "name": "l0-r3",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
@@ -333,7 +396,7 @@
     200,
     500
    ],
-   "queue_order": 7
+   "queue_order": 10
   },
   {
    "name": "l0-v1-r3",
@@ -358,7 +421,7 @@
     200,
     500
    ],
-   "queue_order": 8
+   "queue_order": 11
   },
   {
    "name": "l0-r6",
@@ -383,7 +446,7 @@
     200,
     500
    ],
-   "queue_order": 9
+   "queue_order": 12
   },
   {
    "name": "l0-v1-r6",
@@ -408,7 +471,7 @@
     200,
     500
    ],
-   "queue_order": 10
+   "queue_order": 13
   },
   {
    "name": "l0-b50",
@@ -433,7 +496,7 @@
     200,
     500
    ],
-   "queue_order": 11
+   "queue_order": 14
   },
   {
    "name": "l0-v1-b50",
@@ -458,7 +521,7 @@
     200,
     500
    ],
-   "queue_order": 12
+   "queue_order": 15
   },
   {
    "name": "g0b-stu0",
@@ -479,7 +542,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 13
+   "queue_order": 16
   },
   {
    "name": "s0b",
@@ -503,7 +566,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 14
+   "queue_order": 17
   },
   {
    "name": "d0-p",
@@ -527,7 +590,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 15
+   "queue_order": 18
   },
   {
    "name": "d0-r3",
@@ -551,7 +614,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 16
+   "queue_order": 19
   },
   {
    "name": "c-n41-n4",
@@ -569,7 +632,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 17
+   "queue_order": 20
   },
   {
    "name": "c-r7-n41",
@@ -587,7 +650,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 18
+   "queue_order": 21
   },
   {
    "name": "c-r7x4-n41",
@@ -605,7 +668,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 19
+   "queue_order": 22
   },
   {
    "name": "c-r7-n4",
@@ -623,7 +686,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 20
+   "queue_order": 23
   },
   {
    "name": "c-r7x4-n4",
@@ -641,7 +704,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 21
+   "queue_order": 24
   },
   {
    "name": "c-r7-r7f4",
@@ -659,7 +722,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 22
+   "queue_order": 25
   }
  ]
 }

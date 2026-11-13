@@ -3,7 +3,7 @@
 **Work in progress, research only.** Kept by the loop session (`https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j`).
 This page is what is intended and why. What exists and how to run it: [README.md](README.md). What each run is:
 `runs.json`. Who decided what and when, and who holds which box: the board (`box/coordination`, `BOARD.md`, entries
-signed `loop`). Last revised 13 November 2026, 10:25 UTC.
+signed `loop`). Last revised 13 November 2026, 11:05 UTC.
 
 ## The aim
 
@@ -68,7 +68,27 @@ the rollout boundary over time", 09:24 UTC). He named the bot **Stu** (09:05).
   - Which card Stu plays where it departs from the net is not learned at this size: the exact-card share does not
     move. The gap head (trained on the rollouts' gaps from these rows) does not improve either.
   - Limits: Stu's rows alone, so what the net forgets about other bots is not measured here; one held-out set.
-- **The ladder and the gate:** `runs.json`; results on the boxes' transfer branches as they arrive.
+- **What a round-1 net keeps and forgets** (azure5, 10:57 UTC; `~/work/loop/r1`). 759 of Stu's boards (62,504
+  decisions) with as many rows again of the other bots, scored on 250 later boards of Stu's and on the plan session's
+  held-out boards of the other bots (`freshB.npz`):
+
+  | Net | Stu's card: log-loss, exact | `8s-32`'s card: log-loss, exact |
+  | --- | --- | --- |
+  | v2, Stu's vectors set to `8s-32`'s, nothing trained | 1.230, 64.3% | 0.458, 82.2% |
+  | The whole net, rate 3e-4 (epoch 1) | 0.886, 63.7% | 0.484, 81.1% |
+  | The whole net, rate 1e-4 (epoch 4) | 0.889, 64.0% | 0.478, 81.3% |
+  | The whole net, rate 5e-5 (epoch 4) | 0.900, 64.2% | 0.477, 81.5% |
+  | Only Stu's two vectors, rate 3e-3 (epoch 6) | 0.962, 63.3% | 0.458, 82.2% |
+  | **Only Stu's two vectors, rate 1e-2 (epoch 6): round 1's net** | 0.955, 63.3% | 0.458, 82.2% |
+
+  Training the whole net costs the other bots about a point of exact card at any rate tried, and they are the
+  opponents at the gate. Part of that loss is an artefact: some of `freshB.npz` was in v2's own training set (v2 scored
+  0.463 on `8s-32` on its true held-out boards), so the loss that is real is nearer 0.015 to 0.02 of log-loss. The two
+  vectors alone get four fifths of what the whole net learns of Stu and cannot change anything else.
+- **The ladder's first pass** (azure3, rows as of 10:42 UTC; against `8p-32-v41`, seed 131): Stu -0.65 +- 0.18 (200
+  deals); the same stages with v1 inside -0.40 +- 0.20 (200); **the pure bot (no double dummy anywhere) -0.55 +- 0.30
+  (200), which is +0.10 +- 0.37 against Stu deal by deal.** With v1 inside the pure bot stands at -0.88 +- 0.41 after
+  98 deals. Later figures: `runs.json` and the boxes' transfer branches, or the dashboard.
 
 ## What I expect, written before the results
 
@@ -90,20 +110,19 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 
 ## Round 1
 
-- **Cut.** Not at 6,000 boards as first planned: by the table, waiting buys about 0.02 of log-loss a doubling. Round 1
-  is cut as soon as its set and training chain are ready, with every board both boxes have then. The collection goes
-  on.
-- **Set.** Stu's rows (the two ids and the first runs' ids as one bot, `stu0`) with the rows of v2's own set (on
-  azure5 under the plan session's `~/work/plan/rnet2w/data`, read-only; to be confirmed with plan). A quick variant
-  first: Stu's rows with an equal number of v2's rows drawn at random, a few epochs at a low rate, scored on held-out
-  Stu boards and on v2's own held-out set to see what it forgets. Then the full joined set for an epoch or two
-  (about 25 minutes an epoch on 8 cores, by v2's own run).
-- **Net.** 768 wide, from v2's epoch 5, `--init-as stu0=8s-32`.
-- **Bots.** `stu1a`, `stu1b` and the five rungs with the round-1 net inside (`make_bots.py`, not written yet).
-- **Measure.** The gate on the deals of `l0-stu0` and `g0b-stu0`, paired with round 0's; the ladder's five rungs;
-  new against old beside them.
-- **Then.** Round 2's games are played by round 1's Stu unless it is behind round 0's at the gate by more than two
-  standard errors.
+- **Cut.** Not at 6,000 boards as first planned: by the learning curve, waiting buys about 0.02 of log-loss a
+  doubling. Round 1's set was cut at 10:29 UTC with the 1,009 boards azure5 had (759 trained on, 250 held out).
+- **Net.** Rollout net v2 with one bot added, `stu0`, whose two vectors start from `8s-32`'s and are the only weights
+  trained (`scripts/train_rollout_net.py --only-vectors stu0`; table above). `train-r1/` on azure5's transfer branch,
+  sha256 `a9ee66def78c...`. The chain that built the rows and the first variant: `round1.sh`.
+- **Bots.** `stu1a`, `stu1b` and their ladder (`make_bots.py`): round 0's bots with that net inside, told its own side
+  is `stu0` and Gen 8 card play is `8s-32`. Since every weight but Stu's vectors is v2's, round 1 differs from round 0
+  in one thing: what the rollouts' seats on Stu's own side do.
+- **Measure.** `l1-stu1`, `l1-p`, `l1-n`: Stu, the pure bot and the net alone with round 1's net, against Gen 8 card
+  play on the deals of round 0's rungs, compared deal by deal. New against old beside them, later.
+- **Then.** Which bot plays the collection from here depends on two comparisons now running: the pure bot against
+  Stu (1,000 deals on the two boxes by about 12:45 UTC), and round 1's net against round 0's inside each. Until then
+  azure5's collection is paused at 976 boards of `s0` (1,448 boards in all with `r0` and azure3's `s0b`).
 
 ## After round 1, in the order I expect to matter
 

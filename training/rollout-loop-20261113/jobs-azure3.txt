@@ -17,6 +17,11 @@ l0-v1-n stu0v1-n~8p-32-v41 131 0 200 8 --episodes
 # rungs: Stu and the pure bot to 500 deals here (azure5 plays deals 500 to 999 of the same two), then the same with v1.
 l0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes
 l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
+# Round 1's net (rollout net v2 with only Stu's two vectors trained, train-r1/ on azure5's branch) inside Stu, inside the
+# pure bot and alone, on the same deals.
+l1-stu1 stu1a~8p-32-v41 131 0 500 8 --episodes
+l1-p stu1-p~8p-32-v41 131 0 500 8 --episodes
+l1-n stu1-n~8p-32-v41 131 0 500 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
 l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
 # The middle rungs' first pass, then every rung to 500.
