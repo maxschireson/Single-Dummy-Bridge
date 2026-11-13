@@ -7,8 +7,24 @@
   "8p-32-v41"
  ],
  "bots": {
-  "8p-32-v41": {
-   "id": "8p-32-v41",
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+  },
+  "6-32": {
+   "id": "6-32",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -38,8 +54,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "gen8-proto",
-   "engine": "gen7",
+   "policy_role": "pimc-ties-only",
+   "engine": "gen6",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -56,63 +72,7 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "gen7_policy": "/home/bridgebots/work/loop/src/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
-   "gen7": {
-    "play_weight": 1.0,
-    "play_floor": 0.05,
-    "play_max_layouts": 1024,
-    "play_lead": true,
-    "tie_break": "net",
-    "search_from_trick": 1,
-    "net_sample": false,
-    "tree_audit": true,
-    "tree": [
-     {
-      "from_trick": 3,
-      "to_trick": 6,
-      "root_margin": 0.25,
-      "root_cards": 3,
-      "trust": 0.3,
-      "max_solves": 12000,
-      "tricks": 3,
-      "breadth": 3,
-      "mass": 0.98,
-      "layouts": 8,
-      "reply": "net",
-      "reply_power": 1.0,
-      "reply_gap": 99.0,
-      "own": "best",
-      "own_breadth": 0,
-      "reply_layouts": 8,
-      "reply_pool": 64,
-      "plain": 1,
-      "path": 0.5,
-      "spread": 0.0,
-      "path_solves": 3000
-     }
-    ],
-    "early_play_weight": 1.0,
-    "early_pool": 512,
-    "early_min_effective": 8.0
-   },
-   "table_opponent": "stu0-p",
-   "identity": "716333200627b1c3755a4ba9761eb9c8c9ca7b35607bb18de1925ab221522899"
-  },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
   },
   "stu0-p": {
    "id": "stu0-p",
@@ -235,7 +195,13 @@
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
-     "stu2-pv": 1.0
+     "stu2-pv": 1.0,
+     "stu3-p": 1.0,
+     "stu3-pr": 1.0,
+     "stu3-pa": 1.0,
+     "stu3-pb": 1.0,
+     "stu3-pra": 1.0,
+     "stu3-prb": 1.0
     }
    },
    "x8": {
@@ -303,7 +269,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ],
      "guard": true,
      "full": true
@@ -355,7 +327,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ]
     },
     "names": {
@@ -366,10 +344,10 @@
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "758399c229e8248eae416a896330a6d67e968e6456efa1de812a07605c11c706"
+   "identity": "fcd6134a31ec6c3f03e04c3357e6b56cd5915052b990b307efdb08d00c127750"
   },
-  "6-32": {
-   "id": "6-32",
+  "8p-32-v41": {
+   "id": "8p-32-v41",
    "samples": 32,
    "near_tie": 0.0,
    "exploration": 0.0,
@@ -399,8 +377,8 @@
     "ridge": 0.001,
     "representative": "medoid"
    },
-   "policy_role": "pimc-ties-only",
-   "engine": "gen6",
+   "policy_role": "gen8-proto",
+   "engine": "gen7",
    "lead_state_bidder": "artifacts/v5/bidder.keras",
    "gen6": {
     "lead_source": "lead_net",
@@ -417,7 +395,47 @@
    },
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
-   "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
+   "gen7_policy": "/home/bridgebots/work/loop/src/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
+   "gen7": {
+    "play_weight": 1.0,
+    "play_floor": 0.05,
+    "play_max_layouts": 1024,
+    "play_lead": true,
+    "tie_break": "net",
+    "search_from_trick": 1,
+    "net_sample": false,
+    "tree_audit": true,
+    "tree": [
+     {
+      "from_trick": 3,
+      "to_trick": 6,
+      "root_margin": 0.25,
+      "root_cards": 3,
+      "trust": 0.3,
+      "max_solves": 12000,
+      "tricks": 3,
+      "breadth": 3,
+      "mass": 0.98,
+      "layouts": 8,
+      "reply": "net",
+      "reply_power": 1.0,
+      "reply_gap": 99.0,
+      "own": "best",
+      "own_breadth": 0,
+      "reply_layouts": 8,
+      "reply_pool": 64,
+      "plain": 1,
+      "path": 0.5,
+      "spread": 0.0,
+      "path_solves": 3000
+     }
+    ],
+    "early_play_weight": 1.0,
+    "early_pool": 512,
+    "early_min_effective": 8.0
+   },
+   "table_opponent": "stu0-p",
+   "identity": "716333200627b1c3755a4ba9761eb9c8c9ca7b35607bb18de1925ab221522899"
   }
  },
  "pair_schedule": [
@@ -444,9 +462,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "ec4b75a1239567cd1e8bd057719d35b67fc73f55e70ce8536c0b3f59f4ae009d",
+ "identity": "02f56bd81e838643647eb09be233cd136000afc6739f01e0f26f8fe12b96d14f",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 0,
  "deals": 500,
- "source_commit": "6514196d6d95e7ef4fdf896b63148df20d4786aa"
+ "source_commit": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01"
 }

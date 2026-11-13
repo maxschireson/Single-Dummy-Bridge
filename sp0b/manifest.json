@@ -144,7 +144,13 @@
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
-     "stu2-pv": 1.0
+     "stu2-pv": 1.0,
+     "stu3-p": 1.0,
+     "stu3-pr": 1.0,
+     "stu3-pa": 1.0,
+     "stu3-pb": 1.0,
+     "stu3-pra": 1.0,
+     "stu3-prb": 1.0
     }
    },
    "x8": {
@@ -212,7 +218,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ],
      "guard": true,
      "full": true
@@ -264,7 +276,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ]
     },
     "names": {
@@ -275,7 +293,7 @@
     }
    },
    "table_opponent": "stu0-pb",
-   "identity": "fb8a1daa6ec8e3e2bbf88b5dd64fb98a9859876c4e0bb4e022897125dee6ddb8"
+   "identity": "20e4d2b0584a71b8002450a1bad593e82ee5fbaaaaa152e3a8edc39e5bea233a"
   },
   "stu0-pb": {
    "id": "stu0-pb",
@@ -398,7 +416,13 @@
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
-     "stu2-pv": 1.0
+     "stu2-pv": 1.0,
+     "stu3-p": 1.0,
+     "stu3-pr": 1.0,
+     "stu3-pa": 1.0,
+     "stu3-pb": 1.0,
+     "stu3-pra": 1.0,
+     "stu3-prb": 1.0
     }
    },
    "x8": {
@@ -466,7 +490,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ],
      "guard": true,
      "full": true
@@ -518,7 +548,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ]
     },
     "names": {
@@ -529,7 +565,7 @@
     }
    },
    "table_opponent": "stu0-pa",
-   "identity": "f183e63419184f2e817b1effe7736ac04756f36c99b4c960c9e3fbf8515d8eb7"
+   "identity": "71d807aedb4840cdbbbff496fc1f1783c1445ca75ea6ecce4f44a9b2050db3e9"
   },
   "6-32": {
    "id": "6-32",
@@ -608,9 +644,9 @@
  },
  "target": 1073741824,
  "one_room": true,
- "identity": "fcb82a8ecfd6d4cbc93c0e4a56c7d6959da2de6b5b72a2354913258f2e46298c",
+ "identity": "0bed0bc6110890a6e41f627434256a3cb28f0f320fbd052584bc68c77dff39a6",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 80000,
  "deals": 20000,
- "source_commit": "6514196d6d95e7ef4fdf896b63148df20d4786aa"
+ "source_commit": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01"
 }
