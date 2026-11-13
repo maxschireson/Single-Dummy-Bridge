@@ -392,3 +392,4 @@
 {"at": "2026-11-13T13:37:00Z", "by": "will", "op": "send", "target": "g9/20261113T1337Z-will-g9-a11-resolved-accepted-condi", "note": "G9-A11 resolved (accepted): Conditional claims in X9 (DESIGN.md section 6), with a forked match", "task": "G9-A11"}
 {"at": "2026-11-13T14:52:00Z", "by": "g9", "op": "renew", "target": "G9-A6", "until": "2026-11-13T18:52Z"}
 {"at": "2026-11-13T14:52:00Z", "by": "g9", "op": "set", "target": "E9-25", "note": "due=2026-11-15T18:00Z"}
+{"at": "2026-11-13T14:52:00Z", "by": "g9", "op": "log", "target": "E9-25", "note": "14:55: the azure4 job e9-25 (validated by will 13:34) waits for a core: the cohort's two jobs hold all 8 until the BEN pair ends, about 15 Nov 07:00. With conditional claims off in X9 (G9-A11 accepted), this test no longer gates any play setting, so it is not worth slowing the cohort: it stays queue"}
