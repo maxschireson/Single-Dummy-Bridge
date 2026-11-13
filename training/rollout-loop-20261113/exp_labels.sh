@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Two experiments on one box's own collection records, beside its collection (Max, 22:26 and 22:31 UTC on 13 November):
 #   bash training/rollout-loop-20261113/exp_labels.sh RUN[,RUN...]
-#  - label quality against volume: the rows rebuilt with the labels of a bot that had only the first 8, 16 or 32 of the
-#    recorded layouts of each rollout decision (gen7_build_dataset --rollout-layouts: each candidate's deficit over those
-#    layouts, and the card the policy learns is the one best over them); trained on the same tables as the full labels;
+#  - label quality against volume: the rows rebuilt with the labels of a bot that had only 8, 16 or 32 layouts for each
+#    rollout decision (gen7_build_dataset --rollout-layouts: each candidate's deficit over that many of the recorded
+#    layouts, drawn at random, and the card the policy learns is the one best over them); trained on the same tables;
 #  - tables against positions: every decision of half the tables against a random half of the decisions of all of them
 #    (the same number of rows);
 #  - and the learning curve on the same tables (a quarter, a half, all of them, full labels) to read both in tables.

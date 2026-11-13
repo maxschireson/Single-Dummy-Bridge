@@ -32,10 +32,11 @@ the difference of the candidates' means. Every card of a candidate's run of touc
 value. The row's other legal cards were not rolled out: their gap is -1, which a trainer must leave out of the gap
 loss, and has_gap is 1.
 
---rollout-layouts K[,K...] (with --rollout-gap): also, for each K, the labels a bot with only the first K of the recorded
-layouts would have had: `gap_kK` (each candidate's deficit over those layouts) and `card_kK` (the candidate best over
-them, the card played where that is the played card's candidate). Rows the per-layout results cannot shorten (no
-capture, or a candidate not played on all K layouts) keep the full labels; the summary counts them. For measuring how
+--rollout-layouts K[,K...] (with --rollout-gap): also, for each K, the labels a bot with only K layouts would have had:
+`gap_kK` (each candidate's deficit over K of the recorded layouts on which every candidate was played, drawn at random,
+nested across K) and `card_kK` (the candidate best over them, the card played where that is the played card's
+candidate). Rows the per-layout results cannot shorten (no capture, or fewer than K layouts on which every candidate was
+played: mostly late tricks with few layouts, where K binds nothing) keep the full labels; the summary counts them. For measuring how
 label quality trades against volume; training reads a variant through training/rollout-loop-20261113/label_variant.py.
 
 --alias OLD=NEW[,OLD=NEW...] renames bots before anything else reads their names (two ids of one bot, as a pair of
@@ -46,6 +47,7 @@ test when int(family[:8], 16) % 10 == 0, validation when it is 5, otherwise trai
 """
 import argparse
 import base64
+import zlib
 import gzip
 import json
 from multiprocessing import Pool
@@ -149,19 +151,24 @@ def rollout_gaps(note, declaring, target):
 
 
 def rollout_gaps_first(note, declaring, target, k):
-    """({card: deficit}, best card) for an 8X rollout decision as its first `k` recorded layouts alone measure it (the
-    same deficit as rollout_gaps, over those layouts); None where the record cannot say (no per-layout results, fewer
-    than k of them, or a candidate not played on all k)."""
+    """({card: deficit}, best card, best candidate's run) for an 8X rollout decision as `k` of its recorded layouts alone
+    measure it (the deficit of rollout_gaps over those layouts); None where the record cannot say (no per-layout results,
+    or fewer than k layouts on which every candidate was played). The record keeps the layouts heaviest first, not in
+    the order they were played (a random order), so the k are drawn at random from the layouts every candidate was
+    played on, the same random order for every k (the 8 are among the 16, the 16 among the 32), seeded by the record."""
     cap = note.get('cap') if note else None
     if not cap or note.get('mode') != 'rollout' or len(note.get('cards') or ()) < 2:
         return None
     rows_, m = cap['shape']
-    if rows_ < k:
+    t = np.frombuffer(base64.b64decode(cap['t']), np.int8).reshape(rows_, m).astype(np.int64)
+    complete = np.flatnonzero((t >= 0).all(axis=1))
+    if len(complete) < k:
         return None
-    t = np.frombuffer(base64.b64decode(cap['t']), np.int8).reshape(rows_, m).astype(np.int64)[:k]
-    f = np.frombuffer(base64.b64decode(cap['f']), np.uint8).reshape(rows_, m).astype(bool)[:k]
-    w = np.frombuffer(base64.b64decode(cap['w']), np.float32).astype(np.float64)[:k]
-    if (t < 0).any() or w.sum() <= 0:
+    pick = complete[np.random.default_rng(zlib.crc32(cap['t'].encode())).permutation(len(complete))[:k]]
+    f = np.frombuffer(base64.b64decode(cap['f']), np.uint8).reshape(rows_, m).astype(bool)[pick]
+    w = np.frombuffer(base64.b64decode(cap['w']), np.float32).astype(np.float64)[pick]
+    t = t[pick]
+    if w.sum() <= 0:
         return None
     final = np.where(f, np.maximum(t, target), t)
     worth = (final if declaring else -final).astype(np.float64)
