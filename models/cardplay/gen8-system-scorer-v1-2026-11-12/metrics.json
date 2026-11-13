@@ -1,0 +1,77 @@
+{
+ "steps": 20083,
+ "best_step": 14739,
+ "best_loss": 0.1418795883655548,
+ "minutes": 20.23,
+ "views": "1,0,0",
+ "lr": "2e-3,1e-4",
+ "only": [
+  "rules-precision"
+ ],
+ "seed": 0,
+ "init": {
+  "file": "/home/bridgebots/work/capsule-gen7-capture/recovery/artifacts/gen6/scorer.npz",
+  "sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73"
+ },
+ "generators": {
+  "rules-precision": "f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c",
+  "house-gen6": "5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff"
+ },
+ "train_deals": 60000,
+ "validation": [
+  {
+   "ns": "rules-precision",
+   "ew": "rules-precision",
+   "declared": {
+    "loss": 0.1430107057094574,
+    "true": 0.9181664791901012,
+    "random": 0.963817022872141,
+    "near": 0.9357705286839145,
+    "examples": 96012
+   },
+   "unknown": {
+    "loss": 1.3118572235107422,
+    "true": 0.5745219347581553,
+    "random": 0.9009811273590801,
+    "near": 0.8384514435695538,
+    "examples": 96012
+   }
+  },
+  {
+   "ns": "rules-precision",
+   "ew": "house-gen6",
+   "declared": {
+    "loss": 0.14193172752857208,
+    "true": 0.9092613423322085,
+    "random": 0.9627859017622797,
+    "near": 0.9338207724034495,
+    "examples": 96012
+   },
+   "unknown": {
+    "loss": 0.7278063893318176,
+    "true": 0.7426884139482565,
+    "random": 0.9361017372828396,
+    "near": 0.8920134983127109,
+    "examples": 96012
+   }
+  },
+  {
+   "ns": "house-gen6",
+   "ew": "rules-precision",
+   "declared": {
+    "loss": 0.14468397200107574,
+    "true": 0.902006751687922,
+    "random": 0.9629594898724682,
+    "near": 0.9318267066766691,
+    "examples": 95976
+   },
+   "unknown": {
+    "loss": 0.7092071771621704,
+    "true": 0.7484058514628658,
+    "random": 0.9364841210302576,
+    "near": 0.8911102775693923,
+    "examples": 95976
+   }
+  }
+ ]
+}

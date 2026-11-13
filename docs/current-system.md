@@ -1,77 +1,63 @@
 # Current system
 
-## Current collection instruction — 11 November 2026
+Snapshot of 12 November 2026 ~18:20 UTC, written at the Gen 7 → Gen 8 cleanup. It describes
+what is authorized, not whether a process is alive; check fresh heartbeats and feed heads.
 
-Max replaced all old-bot and all Gen6 medium matchups with **92.5% Gen6 fast self-play and 7.5% Gen6 fast versus BEN16**. [Current mix](../configs/gen6-active-mix.json) and [fast-only plan](../configs/round6-fast-selfplay.json) are authoritative. Keep Gen7 capture and 50% tie audits; BEN audits/gap forks stay disabled. Self-play has no strength IMP estimate. Preserve completed historical observations, with the short BEN32 comparison hidden from the dashboard.
-
-The ChatGPT producer has completed its drained, immutable-cohort cutover and verified actual self-play and BEN16 records. Other producer owners must apply this instruction through their own versioned transitions; consult fresh manifests and status rather than assuming fleet-wide deployment. The configuration snapshot below describes the preceding system.
-
-Checked 11 November 2026 against Gen6 source commit
-`b34a40fd7829ebeaaf96b86a424289e3f938a868`, incorporated into `main`
-by the repository cleanup. This is a configuration snapshot, not a claim that
-a process is alive now.
-
-## Source of truth
+## Generation in the arena: Gen 8
 
 | Question | Authority |
 | --- | --- |
-| What should new development start from? | `main` |
-| What should the primary Gen6 cohort play? | [round6-codex.json](../configs/round6-codex.json) |
-| What should other producers coordinate against? | [gen6-active-mix.json](../configs/gen6-active-mix.json) |
+| What is authorized? | Gen 8 ([notice](gen8_candidate_2026-11-12.md)): Max, 12 November 15:32 UTC, "Go ahead"; 15:33, every machine on Gen 7 work that is not on Gen 9 or another future project switches to the Gen 8 arena; 16:11, to the operator, the arena switches, with Gen 7.1 kept as the Gen 7 family's representative. Both plans are open; nothing is waiting behind them |
+| Which source do collectors run? | `792c4cb` (`feature/gen8-prototype-20261112`, the commit that opened the plans) on Azure and Codex; `c8a138f` (`ops/gen8-19bbdce5-20261112`) and `6776c28` (`codex/gen8-independent-20261112`), which are that commit plus one collector's own plan and preparation changes. All three merged into main at this cleanup |
+| Which plan? | [`round8-candidate.json`](../configs/round8-candidate.json) (the main mix); [`round8-candidate-ben.json`](../configs/round8-candidate-ben.json) on machines with BEN's servers; the 19bbdce5 and independent collectors use their own copies, [`round8-19bbdce5.json`](../configs/round8-19bbdce5.json) and [`round8-independent.json`](../configs/round8-independent.json) |
+| Which deals may a cohort play? | Never a deal family a bot's net was trained on (Max, 12 November 15:50 UTC, quoted in both plans). The plans refuse to be prepared without `--exclude-families`; the list in use is the 34,092 families of policy net v4.1's training set (`transfer/v41-training-families-union-20261112`) |
 | What did one run actually execute? | Its immutable manifest, actor/model hashes and frozen runtime |
-| Where are published scores? | [Arena dashboard](https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest), with pinned feed revisions |
-| Is a worker alive? | Fresh heartbeat, process/lock inspection and publisher status on its owning host |
+| Where are published scores? | [Arena](https://maxschireson.github.io/Single-Dummy-Bridge/arena/?source=latest), whose default view is Gen 8 over all collectors; only feeds in `gh-pages:arena/gen6-sources.json` are counted |
+| Who has which Azure box? | `box/coordination` (allocation table and log) and `fleet/azure` (`STATUS.md`) |
+| Where does new development start? | `main` |
 
-The older [architecture launch document](gen6_architecture_2026-11-11.md)
-explains the implementation but its initial “not launched” state and 32/64/256
-defaults are historical. [Recovery documentation](gen6-arena-recovery-20261111.md)
-and the active configuration supersede those deployment details.
+## Actors
 
-## Active actors
+| Actor | What it is |
+| --- | --- |
+| `8s-32` Gen 8 candidate (32) | `71s-32` with the play read from trick 1 at exponent 1.0, the opponents' plays scaled by who they are, and each side's calls read by the system it declares (system scorer v1). Bids with the house net |
+| `8c-32` Gen 8 candidate, Precision rule bidder (32) | The same bot bidding the project's rule system (`rules-precision`, r4) |
+| `71s-32` Gen 7.1 standard (32) | `6-32` with `engine: gen7`, policy net v4.1, layouts weighted by the play from trick 7, tree search at tricks 3–6. Unchanged from Gen 7.1 |
+| `5RZ32` Gen 5 (32), `1` Gen 1 | Frozen older actors |
+| `ben`, `ben64` | BEN at 16 and 64 samples (separate runtime) |
+| `6-32` Gen 6 fast | In the roster as the common-auction bidder; it plays no pair |
 
-| Actor | Early samples | Full compatible-layout listing begins | Late solve ceiling | Policy |
-| --- | ---: | ---: | ---: | --- |
-| `6-32` — Gen6 fast | 32 | Trick 7 | 256 | PIMC ties only |
-| `6-256` — Gen6 medium | 256 | Trick 6 | 256 | PIMC ties only |
+| Pair | Weight | Purpose |
+| --- | ---: | --- |
+| `8s-32~71s-32` | 2 | Generation comparison |
+| `8c-32~71s-32`, `8c-32~8s-32` | 1 each | The second bidding system, against a bot that is not told how to read it and against one that is |
+| `8s-32~5RZ32`, `8s-32~1` | 1 each | Older anchors, for diversity of opponents |
+| `8s-32~ben64`, `8s-32~ben` | 1 each | BEN anchors, on machines with BEN's servers |
 
-The automatic 64-sample middle phase is disabled in these active profiles.
-Both use the Gen6 candidate bidder, lead-belief net, hand-fit scorer and retained
-Gen5 policy. “Gen5 (32)” in this cohort is the frozen `5RZ32` actor, not plain Gen5.
+Common auctions use the Gen 6 bidder at all four seats; native auctions use each side's own
+system, and every table records the two systems (`systems:NS|EW` in `auction_source`). Details,
+settings and what was measured: [Gen 8 page](generations/gen8/README.md).
 
-| Match | Scheduled share |
-| --- | ---: |
-| Fast vs 5RZ32 | 40% |
-| Fast vs medium | 15% |
-| **Medium vs BEN16** | **15%** |
-| Fast vs Gen3 | 10% |
-| Fast vs Gen2 | 10% |
-| Fast vs Gen1 | 10% |
+## Still running from Gen 7
 
-Common auctions use the Gen6 bidder; native auctions use each partnership's bidder.
-Swapped partnerships and both conditions are retained. Short completed windows can
-differ from the scheduled proportions.
+At this snapshot the Gen 7.1 cohorts on Azure, Codex, 19bbdce5 and the independent collector
+were drained. No Gen 8 feed existed from the cloud, extra or ChatGPT producers; moving each is
+Max's instruction to that producer, relayed by the operator on `box/coordination`. Gen 7's
+scored results are closed: [Gen 7 results](generations/gen7/README.md#results).
 
-## Models and evidence
+## Not authorized or not on main
 
-- Bidder: [Gen6 candidate release](../models/bidding/gen6-candidate-2026-11-11/README.md).
-- Lead belief: [joint auction lead release](../models/cardplay/joint-auction-belief-lead-v0-2026-11-10/README.md).
-- Hand-fit scorer: [v0 release](../models/cardplay/hand-fit-scorer-v0-2026-11-11/README.md).
-- Policy: [Gen5 release](../models/cardplay/gen5-2026-11-10/README.md).
-- Exact deployed model hashes: [recovery document](gen6-arena-recovery-20261111.md) and frozen run artifacts.
+- Gen 9: work in progress on `feature/gen9` and the branches around it; not on main, not in the arena.
+- Self-play in the arena: Gen 8's plans have no self-play pair. Gen 7's phase 2 and
+  `round71-selfplay.json` were never opened.
+- Collector runtime changes that conflict with main (capture kept in self-play, feed-health
+  supervision, BEN auto-expansion): [backlog item 1](backlog.md).
+- Hand-fit scorer v1a: packaged on `research/hand-fit-scorer-v1a-20261111`; every bot uses v0,
+  the Gen 8 bots with the system scorer built on it.
+
+## Evidence rules
 
 Prediction validation, double-dummy proxy comparisons and paired played IMPs answer
-different questions. Preserve those distinctions and the evaluation population.
-The initial architecture note explicitly includes some evidence whose raw records
-were not pushed; do not upgrade those claims to reproduced repository results.
-
-## Publication and history
-
-Current producer feeds are `arena-gen6-codex-feed`,
-`arena-gen6-medium-ben-feed` and `arena-gen6-chatgpt-feed`.
-Compatible earlier records from `arena-gen6-independent-feed` may contribute to
-the aggregate. This does not imply its worker is still active.
-The 13 accidental fast-vs-BEN records have a separate archive and are excluded
-from dashboard scores, rates and timing; preserve them for provenance/training.
-
-See [operations](operations.md) for recovery and [branch inventory](branch-inventory.md)
-for older feeds and research.
+different questions. Keep the evaluation population with any number. Self-play has no
+strength estimate. Intervals on the dashboard are unadjusted for repeated looks. A board on a
+deal family a bot's net was trained on is not evidence about that bot.

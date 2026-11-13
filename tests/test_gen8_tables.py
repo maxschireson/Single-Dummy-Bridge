@@ -75,6 +75,28 @@ class TableSystemsTests(Fixture):
         self.assertGreater(differs[0], 8)       # North-South's own calls are read by 'toy'
         self.assertGreater(differs[1], 8)       # and so are those calls when East-West's hands are scored
 
+    def test_a_player_is_seated_at_one_table_after_another(self):
+        """The runner tells a player each table's systems (seat_table): the two rooms of a board can differ."""
+        plain, file = self.player(), self.system_file()
+        p = self.player(system_scorer=file, lead_systems=['house'])
+        board, game, before = played(3, 1)
+        o = game.observation()
+        base = [self.scores(plain, o, seat) for seat in range(4)]
+        self.assertFalse(p.lead_fits)                   # nothing declared: not the lead net's systems
+        p.net.shown.seats(o.auction, o.dealer, o.vulnerability)
+        p.seat_table(['toy', 'house'])
+        self.assertEqual(p.table_systems, ('toy', 'house'))
+        self.assertIs(p.net.shown.scorer, p.scorer)
+        self.assertEqual(p.net.shown.cache, {})         # readings made for the last table are dropped
+        self.assertFalse(p.lead_fits)
+        self.assertTrue(any(not np.allclose(self.scores(p, o, seat), base[seat], atol=1e-4) for seat in range(4)))
+        p.seat_table(['house', 'house'])
+        self.assertTrue(p.lead_fits)
+        for seat in range(4):                           # 'house' is not in the file: read as the shared table, the plain scorer's
+            np.testing.assert_allclose(self.scores(p, o, seat), base[seat], rtol=1e-5, atol=1e-5)
+        plain.seat_table(['toy', 'house'])              # a player without a system scorer is unchanged by it
+        self.assertIs(type(plain.scorer), FitScorer)
+
     def test_the_lead_net_serves_only_the_systems_it_was_trained_on(self):
         home = self.player(lead_systems=['house'], table_systems=['house', 'house'])
         away = self.player(lead_systems=['house'], table_systems=['toy', 'house'])
@@ -90,6 +112,51 @@ class TableSystemsTests(Fixture):
             self.assertEqual(away.source(o, View(o)), 'scorer')
             checked += 1
         self.assertGreater(checked, 3)
+
+
+class FakeNet:
+    """A bidding net that always wants to pass (the BEN-format interface gen5_arena.auction expects)."""
+
+    def predict(self, xs, lengths):
+        raw = np.full((1, 40), -5., np.float32)
+        raw[0, 2] = 5.
+        return raw, None
+
+
+class MixedAuctionTests(Fixture):
+    def test_a_net_and_a_rule_system_bid_the_same_board(self):
+        """gen5_arena.auction seats either kind of bidder and labels the board with the declared systems."""
+        from bridge_harness import gen5_arena, rule_bidder
+        g = match_module()
+        rules, net = rule_bidder.RuleSystemBidder(), FakeNet()
+        opened = 0
+        for i in range(40):
+            board = g.deal(77, i)
+            plain, _ = gen5_arena.auction(board, [net] * 4)
+            self.assertEqual(plain.auction_source, 'gen5-neural-only')          # nothing declared: as before Gen 8
+            self.assertEqual(list(plain.auction), ['PASS'] * 4)
+            bid, decisions = gen5_arena.auction(board, [rules, net, rules, net], ('rules-precision', 'house-gen6'))
+            self.assertEqual(bid.auction_source, 'systems:rules-precision|house-gen6')
+            self.assertTrue(all(d['call'] == 'PASS' for d in decisions if d['seat'] % 2 == 1))
+            opened += any(d['call'] != 'PASS' for d in decisions)
+            again, _ = gen5_arena.auction(board, [rules, net, rules, net], ('rules-precision', 'house-gen6'))
+            self.assertEqual(bid.auction, again.auction)
+        self.assertGreater(opened, 15)
+
+    def test_a_rule_system_is_told_whether_it_meets_itself(self):
+        from bridge_harness import gen5_arena, rule_bidder
+        seen = []
+
+        class Spy(rule_bidder.RuleSystemBidder):
+            def facing(self, same):
+                seen.append(same)
+                return super().facing(same)
+
+        g, spy = match_module(), Spy()
+        gen5_arena.auction(g.deal(77, 0), [spy] * 4, ('rules-precision', 'rules-precision'))
+        gen5_arena.auction(g.deal(77, 0), [spy, FakeNet(), spy, FakeNet()], ('rules-precision', 'house-gen6'))
+        gen5_arena.auction(g.deal(77, 0), [spy, FakeNet(), spy, FakeNet()])
+        self.assertEqual(seen, [True] * 4 + [False] * 2 + [False] * 2)
 
 
 class AuctionBookTests(Fixture):
@@ -108,11 +175,11 @@ class AuctionBookTests(Fixture):
             self.assertEqual(key, board.id)
             g.STATE['booked'] = (systems, calls)
             try:
-                bid, decisions = g.auction_any(board, [None] * 4)
+                bid, decisions = g.auction_booked(board, [None] * 4)
             finally:
                 g.STATE['booked'] = None
             self.assertEqual(list(bid.auction), auctions[i])
-            self.assertEqual(bid.auction_source, 'g8:' + '|'.join(systems))
+            self.assertEqual(bid.auction_source, 'systems:' + '|'.join(systems))
             self.assertEqual([d['seat'] for d in decisions], [(board.dealer + k) % 4 for k in range(len(calls))])
             if i == 1:
                 self.assertIsNone(bid.contract)

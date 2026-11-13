@@ -3,35 +3,36 @@
 ## Start and contribute
 
 - [Onboarding and local quick start](onboarding.md)
-- [Current system: authoritative configurations and actor identities](current-system.md)
+- [Current system: what is authorized and where the authorities are](current-system.md)
 - [Architecture: how a decision is made](architecture.md)
-- [Repository map: code, models, data and historical research](repository-map.md)
-- [Backlog: actual open work and historical PR dispositions](backlog.md)
-- [Branch inventory: every branch observed during cleanup](branch-inventory.md)
-- [Gen 8 system layer: systems as data and a system-aware scorer (work in progress, not final, not deployed)](gen8_systems.md)
-- [The 8X bot: rollouts on a rollout net with the winning-line logic (work in progress, not deployed)](x8_bot.md)
+- [Repository map: code, models, data and research](repository-map.md)
+- [Backlog: open work](backlog.md)
+- [Branch inventory](branch-inventory.md)
+- [The 8X bot: rollouts on a rollout net with the winning-line logic (in the arena as 8X v3 once a collector runs its plan)](x8_bot.md)
 - [Contribution workflow](../CONTRIBUTING.md)
 - [Agent entry point](../AGENTS.md)
+
+## Generations
+
+- [Index: one page per generation, with results](generations/README.md)
+- [Gen 8 (current)](generations/gen8/README.md): [notice](gen8_candidate_2026-11-12.md), [system layer](gen8_systems.md), [the independent collector's cohort](generations/gen8/independent-collector.md)
+- [Gen 7 and 7.1 (closed 12 November)](generations/gen7/README.md): [phase 1 notice](generations/gen7/gen7_candidate_2026-11-11.md), [self-play notice](generations/gen7/gen7_selfplay_2026-11-12.md), [Gen 7.1 notice](generations/gen7/gen71_2026-11-12.md), [alpha guide](generations/gen7/gen7_alpha_2026-11-11.md), [prototype notes](generations/gen7/gen7_prototype_2026-11-11.md)
+- [Gen 6 (closed 12 November)](generations/gen6/README.md)
+- [Gen 5 / 5R / 5RZ](generations/gen5/README.md)
+- [Generation cleanup procedure](generation-cleanup.md)
 
 ## Operate and interpret results
 
 - [Operations and recovery](operations.md)
-- [Gen6 recovery details](gen6-arena-recovery-20261111.md)
+- [boxctl: run commands on a collector box through GitHub](boxctl.md)
 - [Watchdog implementation/runbook](arena_watchdog.md)
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
-## Gen 7 (in development; not the adopted system)
-
-- [Gen 7 phase 1 (authorized 12 November): notice for the collectors, the match mix, the plans and the launch steps](gen7_candidate_2026-11-11.md)
-- [Gen 7 alpha: the arena bot, its settings, launch steps and what was checked](gen7_alpha_2026-11-11.md)
-- [Gen 7 prototype: the policy net, play weights and the measurements behind them](gen7_prototype_2026-11-11.md)
-
 ## Historical material
 
-The dated launch documents and design PDFs preserve what was believed or planned
-at their publication time. They are evidence, not current task queues.
-[Historical reading guide](archive/README.md) explains the major generations.
-
-The original harness README is retained as [baseline usage](archive/baseline-README.md).
-Its limitations apply to the original baseline, not to today's learned engine.
+Dated launch documents and design PDFs preserve what was believed or planned at the time.
+They are evidence, not task queues. The [historical reading guide](archive/README.md) covers
+Gens 1–4 and the early design documents (`SELFPLAY.md`, `SELF_IMPROVEMENT.md`,
+`TRAINING_PLAN.md`, the v4 design PDF). The original harness README is kept as
+[baseline usage](archive/baseline-README.md).

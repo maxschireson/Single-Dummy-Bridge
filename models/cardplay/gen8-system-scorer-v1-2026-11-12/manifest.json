@@ -1,0 +1,110 @@
+{
+ "schema": "chunked-model-artifact-v1",
+ "status": "Gen 8 candidate artifact: used by no arena bot until Max launches Gen 8",
+ "description": "System-aware hand-fit scorer v1: the Gen 6 hand-fit scorer (hand_fit_v0) with one more call table, for the project's rule system (rules-precision: rules r3 with judgement j1, \"r4\"). Undeclared and house auctions read exactly as the base scorer.",
+ "init_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "systems": "rules-precision",
+ "rules_precision_identity": "f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c",
+ "train_deals": "60000",
+ "steps": "20083",
+ "best_step": "14739",
+ "files": [
+  {
+   "output": "system_scorer_v1.npz",
+   "size_bytes": 9019688,
+   "sha256": "8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d",
+   "parts": [
+    {
+     "file": "system_scorer_v1.npz.part000",
+     "size_bytes": 524288,
+     "sha256": "2315ca948a7ccadcf21d9d17b401074266b2420a993be8e4752a07ac2e384e6a"
+    },
+    {
+     "file": "system_scorer_v1.npz.part001",
+     "size_bytes": 524288,
+     "sha256": "50f569c58303422d13ba014ab5a3805d20583948db614b831bfdb7527d57fbb1"
+    },
+    {
+     "file": "system_scorer_v1.npz.part002",
+     "size_bytes": 524288,
+     "sha256": "2bb4616ad6273f9e33ff5056495d1dc464de0fe9aeb031902e27897e953e9ddd"
+    },
+    {
+     "file": "system_scorer_v1.npz.part003",
+     "size_bytes": 524288,
+     "sha256": "d9df9c0f061daca3474e5c6a0fb019bc186d0ac4120044ef77c2731335a79f85"
+    },
+    {
+     "file": "system_scorer_v1.npz.part004",
+     "size_bytes": 524288,
+     "sha256": "3895be87dece5fab79c1142fc9cc9c600600d2e4cd8d2525c57a442e000e68f1"
+    },
+    {
+     "file": "system_scorer_v1.npz.part005",
+     "size_bytes": 524288,
+     "sha256": "5e7c3fb856971f1062a5f50b70c79464054db6baed7ec8aeefd9d51fc5e88854"
+    },
+    {
+     "file": "system_scorer_v1.npz.part006",
+     "size_bytes": 524288,
+     "sha256": "5715e34a3a0e34a9b7ae048a843a34223579c34d509f9984a20d7d1ffb3635ce"
+    },
+    {
+     "file": "system_scorer_v1.npz.part007",
+     "size_bytes": 524288,
+     "sha256": "ca524a7ca75fb8cb7447525650e8c94a4298ed70a34a023f11aa2c3735a7cd52"
+    },
+    {
+     "file": "system_scorer_v1.npz.part008",
+     "size_bytes": 524288,
+     "sha256": "96704b30514b7fb1cd31b32aa2edaa4d21fb20e543cf4fcb1bb2fa5b908f0060"
+    },
+    {
+     "file": "system_scorer_v1.npz.part009",
+     "size_bytes": 524288,
+     "sha256": "d4385de33e22afb3a05d95a1c41e456670f33001fef785574dc48b84639aecec"
+    },
+    {
+     "file": "system_scorer_v1.npz.part010",
+     "size_bytes": 524288,
+     "sha256": "8fdc5c1cdd820b5aa1bd5515935475b1a83f5f97b075be99a8d6002739fd01e2"
+    },
+    {
+     "file": "system_scorer_v1.npz.part011",
+     "size_bytes": 524288,
+     "sha256": "3697005f997db6e9d1de00bbfa7d7207df1539b99ba8fc96d507b03b2f405c56"
+    },
+    {
+     "file": "system_scorer_v1.npz.part012",
+     "size_bytes": 524288,
+     "sha256": "818934df743756f3749bdd57536b29923ddef687a1ce9d61ab409d6934aa9288"
+    },
+    {
+     "file": "system_scorer_v1.npz.part013",
+     "size_bytes": 524288,
+     "sha256": "71cfb63b09cec6c494b9aa37a6d7667e43c8840b4dc9a5114ef8d42ffe935a53"
+    },
+    {
+     "file": "system_scorer_v1.npz.part014",
+     "size_bytes": 524288,
+     "sha256": "4e4fa145e7af16f057f7206ec2bd02d794a6381165ed958a6409d0bd8f29517d"
+    },
+    {
+     "file": "system_scorer_v1.npz.part015",
+     "size_bytes": 524288,
+     "sha256": "406717b6ee164abb663ccbf6d3416a7eb52955ba98bf7bbae33bd2d8a14669dc"
+    },
+    {
+     "file": "system_scorer_v1.npz.part016",
+     "size_bytes": 524288,
+     "sha256": "d57f160b8e7203f5426ad9c0c363e7d5a08a70852fa447846f525ac98f4ee9ab"
+    },
+    {
+     "file": "system_scorer_v1.npz.part017",
+     "size_bytes": 106792,
+     "sha256": "d327619aa63c4c7104f3f552c572ed995e9e2b11526cee7c2af393b5e3f10df8"
+    }
+   ]
+  }
+ ]
+}

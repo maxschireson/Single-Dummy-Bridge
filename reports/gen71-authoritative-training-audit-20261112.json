@@ -1,0 +1,49 @@
+{
+  "original_gate": {
+    "n": 4276,
+    "mean": -0.08606173994387278,
+    "se": 0.04064610467815869,
+    "ci": [
+      -0.16574920272815108,
+      -0.006374277159594488
+    ],
+    "minimum_boards": 1000,
+    "eligible": false,
+    "method": "Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction"
+  },
+  "revised_gate": {
+    "n": 4276,
+    "mean": -0.08606173994387278,
+    "se": 0.04064610467815869,
+    "ci": [
+      -0.16574920272815108,
+      -0.006374277159594488
+    ],
+    "minimum_boards": 1000,
+    "eligible": false,
+    "method": "Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction"
+  },
+  "revised_errors": [],
+  "training_authority": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+  "audit": {
+    "source": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+    "blob_sha256": "4f50529634bca3432331e2a65accdc7889651d7d355f6077bd37baf10b77bdc1",
+    "families": 34029,
+    "previous": 32205,
+    "common": 32142,
+    "corpus_overlap": 0,
+    "completed_overlap": 0
+  },
+  "current_gate": {
+    "n": 4774,
+    "mean": -0.06744868035190615,
+    "se": 0.03797508157144025,
+    "ci": [
+      -0.1418973515811176,
+      0.006999990877305309
+    ],
+    "minimum_boards": 1000,
+    "eligible": false,
+    "method": "Nominal paired Student-t95%, family-deduplicated native/total IMPs; repeated monitoring, no sequential correction"
+  }
+}

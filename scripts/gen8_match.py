@@ -43,7 +43,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from dataclasses import replace  # noqa: E402
 from bridge_harness import gen5_arena  # noqa: E402
-from bridge_harness.bidding_env import CALL_ID, CALLS, BidObservation, deal_key, encode, legal_mask, normalize_bid, pack_inputs  # noqa: E402
+from bridge_harness.bidding_env import deal_key  # noqa: E402
 from bridge_harness.core import Board, auction_contract  # noqa: E402
 from bridge_harness.gen5_arena import run_board  # noqa: E402
 from bridge_harness.gen7 import player  # noqa: E402
@@ -51,6 +51,7 @@ from bridge_harness.system_bidders import NumpyPolicy, make_bidder  # noqa: E402
 from bridge_harness.training import digest  # noqa: E402
 
 VUL = ('None', 'NS', 'EW', 'Both')
+HOUSE = 'house-gen6'                # the registry id of the system the capsule's bidding net plays
 NO_FORKS = dict(probability=0., multiplier=1., max_depth=0, max_forks=0)
 STATE = {}
 
@@ -98,43 +99,20 @@ def build_manifest(source, bots_file, pair, seed):
     for key in ('independent_room_seeds', 'two_self_rooms'):
         if key in old:
             m[key] = old[key]
+    if any('system' in spec or 'system_scorer' in spec for spec in bots.values()):
+        # the system each bot declares for its own bidding (HOUSE unless its entry says otherwise); run_board tells the players
+        m['systems'] = {key: spec.get('system', HOUSE) for key, spec in bots.items()}
     m['identity'] = digest(m)
     return m
 
 
-def auction_any(board, bidders):
-    """gen5_arena.auction for either kind of bidder: a BEN-format net (predict) or a system_bidders bidder (call).
-    The board's auction_source names the system each side bid, so tables that differ only in that are told apart."""
-    calls, decisions = [], []
-    booked = STATE.get('booked')
-    if booked is not None:              # the table's auction was bid beforehand (--book)
-        systems, calls = booked
-        decisions = [dict(seat=(board.dealer + k) % 4, ply=k, call=c, behavior='book', behavior_probability=1.) for k, c in enumerate(calls)]
-        return replace(board, contract=auction_contract(board.dealer, list(calls)), auction=tuple(calls), opening_lead=None,
-                       auction_source='g8:' + '|'.join(systems)), decisions
-    for _ in range(320):
-        seat = (board.dealer + len(calls)) % 4
-        mask = legal_mask(board.dealer, calls)
-        b = bidders[seat]
-        if hasattr(b, 'predict'):
-            xs, lengths = pack_inputs([encode(BidObservation(board.hands[seat], seat, board.dealer, board.vulnerability, tuple(calls)))])
-            action = int(np.argmax(np.where(mask, b.predict(xs, lengths)[0][0], -np.inf)))
-        else:
-            action = int(b.call(board.hands[seat], seat, board.dealer, VUL.index(board.vulnerability), [CALL_ID[normalize_bid(c)] for c in calls]))
-            if not mask[action]:
-                action = CALL_ID['PASS']
-        decisions.append(dict(seat=seat, ply=len(calls), call=CALLS[action], behavior='greedy', behavior_probability=1.))
-        calls.append(CALLS[action])
-        try:
-            contract = auction_contract(board.dealer, calls)
-        except ValueError as e:
-            if str(e) != 'Incomplete auction':
-                raise
-            continue
-        systems = STATE.get('system_of', {})
-        source = 'g8:' + '|'.join(systems.get(id(bidders[s]), '?') for s in (0, 1))
-        return replace(board, contract=contract, auction=tuple(calls), opening_lead=None, auction_source=source), decisions
-    raise ValueError('Auction exceeded legal length bound')
+def auction_booked(board, bidders, systems=None):
+    """In place of gen5_arena.auction when the table's auction was bid beforehand (--book): the booked calls, with
+    the board labelled by the systems the book declares for North-South and East-West."""
+    systems, calls = STATE['booked']
+    decisions = [dict(seat=(board.dealer + k) % 4, ply=k, call=c, behavior='book', behavior_probability=1.) for k, c in enumerate(calls)]
+    return replace(board, contract=auction_contract(board.dealer, list(calls)), auction=tuple(calls), opening_lead=None,
+                   auction_source=gen5_arena.table_source(systems)), decisions
 
 
 def load_book(path):
@@ -147,16 +125,16 @@ def load_book(path):
 
 
 def start(source, manifest, book=None):
-    STATE.update(source=source, m=manifest, bidders={}, system_of={}, book=load_book(book)[1] if book else None, booked=None)
+    STATE.update(source=source, m=manifest, bidders={}, book=load_book(book)[1] if book else None, booked=None)
     loaded = {}
     for key, spec in manifest['bots'].items():
-        entry = spec.get('bidder')
+        entry = spec.get('bidder')                      # a system bidder (rules); otherwise the bot's own bidding net
         name = json.dumps(entry, sort_keys=True) if entry else str((Path(source) / spec['bidding']).resolve())
         if name not in loaded:
             loaded[name] = make_bidder(entry, ROOT) if entry else NumpyPolicy(name)
         STATE['bidders'][key] = loaded[name]
-        STATE['system_of'].setdefault(id(loaded[name]), spec.get('system', 'house'))
-    gen5_arena.auction = auction_any
+    if book:
+        gen5_arena.auction = auction_booked
 
 
 def summarise_actions(record, roles):
@@ -192,8 +170,7 @@ def play(index, seed, episodes):
         if key != board.id:
             raise ValueError(f'the auction book was made for other deals (board {index})')
         STATE['booked'] = (systems, calls)
-        for spec in m['bots'].values():
-            spec['table_systems'] = list(systems)
+        m = dict(m, table_systems=list(systems))        # the book's systems go with the directions, whoever sits there
     r = run_board(source, m, board.to_dict(), index, STATE['bidders'], player_factory=player)
     cpu = time.process_time() - started
     if episodes:

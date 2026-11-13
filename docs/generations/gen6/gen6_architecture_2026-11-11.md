@@ -1,6 +1,6 @@
 # Gen 6: new play architecture — how it fits together, and how to launch it
 
-> Historical launch-design snapshot. Gen6 has since launched. For the adopted fast/medium profiles, BEN allocation and deployment status sources, read [current system](current-system.md) and [recovery](gen6-arena-recovery-20261111.md). The algorithms below remain useful; the initial status and defaults are not the current deployment plan.
+> Historical launch-design snapshot. Gen6 has since launched. For the adopted fast/medium profiles, BEN allocation and deployment status sources, read [current system](../../current-system.md) and [recovery](gen6-arena-recovery-20261111.md). The algorithms below remain useful; the initial status and defaults are not the current deployment plan.
 
 Status, 11 November 2026: engine, tests, launch files and the three model releases are on this
 branch. `configs/round6.json` is closed (`launch_enabled: false`) until Max's match mix is put

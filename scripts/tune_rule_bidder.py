@@ -10,8 +10,8 @@ run capsule (--source) or the same rules in their plain natural form (--referenc
   python scripts/tune_rule_bidder.py tune    --source CAPSULE/recovery --deals 4000 --seed 301 --cache DIR \
       --test-deals 4000 --test-seed 302 --out configs/rule-systems/precision-tuned.json
 
-`measure` prints IMPs a board for the rule pair, how often it declares, and how often its contract goes
-three or more down. `tune` walks the numeric settings one at a time, keeps a change when the paired gain
+`measure` prints IMPs a board for the rule pair, how often it declares, how often its contract goes
+three or more down, and `rule_failures`: calls where a rule raised and the bidder passed instead (0 is expected). `tune` walks the numeric settings one at a time, keeps a change when the paired gain
 on the tuning deals is at least --keep standard errors, and reports the result on deals it never saw.
 The deals are a function of seed and index. Double-dummy tables are computed once and kept in --cache.
 """
@@ -45,6 +45,10 @@ STEPS = {           # setting -> the values tried around the current one, and it
     'nt_overcall_lo': (1, 14, 16), 'balance': (1, 1, 4), 'compete': (1, -1, 1), 'penalty': (1, 22, 28),
 }
 SWITCHES = ('two_diamonds', 'nt_five_major', 'jump_overcalls')
+EST_STEPS = {       # walked only when the settings name a trick estimate
+    'est_band': (1, 1, 5), 'est_weight': (2, 1, 10), 'est_nv': (2, 1, 9), 'est_v': (2, 1, 11), 'est_contest': (5, 5, 30),
+    'est_sigma': (3, 6, 18), 'est_reach': (1, 0, 2), 'est_double': (10, 10, 80), 'est_slam_band': (4, 0, 8), 'est_slam': (3, -4, 8),
+}
 
 
 def deal(seed, index):
@@ -137,7 +141,7 @@ def worker(conn, shard, of, source, reference):
             return
         seed, n, tables, settings, opponents = msg
         if settings not in bidders:
-            if len(bidders) > 400:
+            if len(bidders) > 6:                       # each keeps its own memory of auction states
                 bidders.clear()
             bidders[settings] = RuleSystemBidder(Settings(**json.loads(settings)), opponents=opponents)
         cand = bidders[settings]
@@ -147,11 +151,12 @@ def worker(conn, shard, of, source, reference):
             if (seed, i) not in data:
                 data[(seed, i)] = deal(seed, i)
             board = data[(seed, i)]
+            failed = cand.errors
             (_, ca), (_, cb) = auction(board, (seed, i), (cand, other)), auction(board, (seed, i), (other, cand))
             (sa, da), (sb, db) = table_score(board, ca, tables[i]), table_score(board, cb, tables[i])
             ours = [(c, d) for c, d, side in ((ca, da, 0), (cb, db, 1)) if c is not None and c.declarer % 2 == side]
             rows.append((i, imps(sa - sb), len(ours), sum(d >= 3 for _, d in ours), sum(c.level >= 6 for c, _ in ours),
-                         sum(c.level >= 6 and d == 0 for c, d in ours)))
+                         sum(c.level >= 6 and d == 0 for c, d in ours), cand.errors - failed))
         conn.send(rows)
 
 
@@ -187,7 +192,7 @@ def report(rows):
                 won=int((x > 0).sum()), lost=int((x < 0).sum()), flat=int((x == 0).sum()),
                 lost_10_or_more=round(float((x <= -10).mean()), 4), declared_per_board=round(float(declared / len(x)), 3),
                 three_down_share=round(float(rows[:, 3].sum() / max(declared, 1)), 4),
-                slams_bid=int(rows[:, 4].sum()), slams_made=int(rows[:, 5].sum()))
+                slams_bid=int(rows[:, 4].sum()), slams_made=int(rows[:, 5].sum()), rule_failures=int(rows[:, 6].sum()))
 
 
 def main():
@@ -204,6 +209,7 @@ def main():
     ap.add_argument('--workers', type=int, default=os.cpu_count())
     ap.add_argument('--keep', type=float, default=2.0, help='tune: keep a change that gains at least this many standard errors')
     ap.add_argument('--passes', type=int, default=2)
+    ap.add_argument('--only', help='tune: walk only the settings whose names start with this')
     ap.add_argument('--out', type=Path)
     args = ap.parse_args()
     if args.reference == 'house' and not args.source:
@@ -218,8 +224,11 @@ def main():
     if args.mode == 'tune':
         for sweep in range(args.passes):
             changed = False
-            trials = [(name, getattr(best, name) + d * step) for name, (step, lo, hi) in STEPS.items() for d in (-1, 1)
+            steps = dict(STEPS, **EST_STEPS) if best.estimate else STEPS
+            trials = [(name, getattr(best, name) + d * step) for name, (step, lo, hi) in steps.items() for d in (-1, 1)
                       if lo <= getattr(best, name) + d * step <= hi] + [(name, not getattr(best, name)) for name in SWITCHES]
+            if args.only:
+                trials = [t for t in trials if t[0].startswith(args.only)]
             for name, value in trials:
                 if getattr(best, name) == value:
                     continue

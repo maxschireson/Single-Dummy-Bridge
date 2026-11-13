@@ -1,0 +1,874 @@
+{
+ "generation": 7,
+ "computed_utc": "2026-11-12 19:20",
+ "rules": "dashboard counting rules; see module docstring",
+ "observations": 21063,
+ "counted_boards": 20531,
+ "pairs": {
+  "71s-32~71s-32": {
+   "boards": 818,
+   "self_play": true
+  },
+  "71s-32~7s-32": {
+   "boards": 5639,
+   "common": {
+    "n": 5639,
+    "mean": -0.059762369214399716,
+    "se": 0.035289447135746756,
+    "ci95": [
+     -0.12892968560046336,
+     0.00940494717166393
+    ],
+    "wins": 566,
+    "ties": 4535,
+    "losses": 538
+   },
+   "native": {
+    "n": 5639,
+    "mean": -0.059762369214399716,
+    "se": 0.035289447135746756,
+    "ci95": [
+     -0.12892968560046336,
+     0.00940494717166393
+    ],
+    "wins": 566,
+    "ties": 4535,
+    "losses": 538
+   },
+   "bidding": {
+    "n": 5639,
+    "mean": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "ties": 5639,
+    "losses": 0
+   }
+  },
+  "71s-32~6-32": {
+   "boards": 2234,
+   "common": {
+    "n": 2234,
+    "mean": 0.30214861235452106,
+    "se": 0.06382131528008707,
+    "ci95": [
+     0.17705883440555042,
+     0.4272383903034917
+    ],
+    "wins": 396,
+    "ties": 1626,
+    "losses": 212
+   },
+   "native": {
+    "n": 2234,
+    "mean": 0.30214861235452106,
+    "se": 0.06382131528008707,
+    "ci95": [
+     0.17705883440555042,
+     0.4272383903034917
+    ],
+    "wins": 396,
+    "ties": 1626,
+    "losses": 212
+   },
+   "bidding": {
+    "n": 2234,
+    "mean": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "ties": 2234,
+    "losses": 0
+   }
+  },
+  "71s-32~ben": {
+   "boards": 378,
+   "common": {
+    "n": 378,
+    "mean": -0.15873015873015872,
+    "se": 0.21472462251042948,
+    "ci95": [
+     -0.5795904188506005,
+     0.26213010139028303
+    ],
+    "wins": 101,
+    "ties": 204,
+    "losses": 73
+   },
+   "native": {
+    "n": 378,
+    "mean": 0.7248677248677249,
+    "se": 0.2880166725408508,
+    "ci95": [
+     0.16035504668765732,
+     1.2893804030477924
+    ],
+    "wins": 139,
+    "ties": 148,
+    "losses": 91
+   },
+   "bidding": {
+    "n": 378,
+    "mean": 0.8835978835978836,
+    "se": 0.24015393109514827,
+    "ci95": [
+     0.412896178651393,
+     1.3542995885443743
+    ],
+    "wins": 69,
+    "ties": 270,
+    "losses": 39
+   }
+  },
+  "71s-32~ben64": {
+   "boards": 4721,
+   "common": {
+    "n": 4721,
+    "mean": -0.002753653886888371,
+    "se": 0.05564833412411263,
+    "ci95": [
+     -0.11182438877014914,
+     0.10631708099637238
+    ],
+    "wins": 1186,
+    "ties": 2687,
+    "losses": 848
+   },
+   "native": {
+    "n": 4721,
+    "mean": 0.3202711289980936,
+    "se": 0.07041690399582705,
+    "ci95": [
+     0.1822539971662726,
+     0.45828826082991464
+    ],
+    "wins": 1516,
+    "ties": 2115,
+    "losses": 1090
+   },
+   "bidding": {
+    "n": 4721,
+    "mean": 0.323024782884982,
+    "se": 0.055432363008944344,
+    "ci95": [
+     0.21437735138745107,
+     0.4316722143825129
+    ],
+    "wins": 641,
+    "ties": 3586,
+    "losses": 494
+   }
+  },
+  "7s-32~7s-32": {
+   "boards": 552,
+   "self_play": true
+  },
+  "7s-32~6-32": {
+   "boards": 1593,
+   "common": {
+    "n": 1593,
+    "mean": 0.2843691148775895,
+    "se": 0.08069057270799634,
+    "ci95": [
+     0.12621559236991664,
+     0.4425226373852623
+    ],
+    "wins": 281,
+    "ties": 1155,
+    "losses": 157
+   },
+   "native": {
+    "n": 1593,
+    "mean": 0.2843691148775895,
+    "se": 0.08069057270799634,
+    "ci95": [
+     0.12621559236991664,
+     0.4425226373852623
+    ],
+    "wins": 281,
+    "ties": 1155,
+    "losses": 157
+   },
+   "bidding": {
+    "n": 1593,
+    "mean": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "ties": 1593,
+    "losses": 0
+   }
+  },
+  "7s-32~5RZ32": {
+   "boards": 1319,
+   "common": {
+    "n": 1319,
+    "mean": 1.139499620924943,
+    "se": 0.11414507658568034,
+    "ci95": [
+     0.9157752708170096,
+     1.3632239710328764
+    ],
+    "wins": 470,
+    "ties": 703,
+    "losses": 146
+   },
+   "native": {
+    "n": 1319,
+    "mean": 1.4071266110689917,
+    "se": 0.1329763670096177,
+    "ci95": [
+     1.146492931730141,
+     1.6677602904078423
+    ],
+    "wins": 543,
+    "ties": 593,
+    "losses": 183
+   },
+   "bidding": {
+    "n": 1319,
+    "mean": 0.2676269901440485,
+    "se": 0.09733603554100925,
+    "ci95": [
+     0.07684836048367039,
+     0.4584056198044266
+    ],
+    "wins": 140,
+    "ties": 1070,
+    "losses": 109
+   }
+  },
+  "7s-32~1": {
+   "boards": 1319,
+   "common": {
+    "n": 1319,
+    "mean": 2.23805913570887,
+    "se": 0.1248436546911826,
+    "ci95": [
+     1.9933655725141524,
+     2.482752698903588
+    ],
+    "wins": 666,
+    "ties": 534,
+    "losses": 119
+   },
+   "native": {
+    "n": 1319,
+    "mean": 2.2312357846853677,
+    "se": 0.14212659209896478,
+    "ci95": [
+     1.9526676641713967,
+     2.5098039051993384
+    ],
+    "wins": 692,
+    "ties": 456,
+    "losses": 171
+   },
+   "bidding": {
+    "n": 1319,
+    "mean": -0.006823351023502654,
+    "se": 0.09499848483766324,
+    "ci95": [
+     -0.1930203813053226,
+     0.1793736792583173
+    ],
+    "wins": 132,
+    "ties": 1060,
+    "losses": 127
+   }
+  },
+  "7s-32~ben": {
+   "boards": 1274,
+   "common": {
+    "n": 1274,
+    "mean": 0.09497645211930926,
+    "se": 0.11869693626254978,
+    "ci95": [
+     -0.13766954295528827,
+     0.3276224471939068
+    ],
+    "wins": 357,
+    "ties": 700,
+    "losses": 217
+   },
+   "native": {
+    "n": 1274,
+    "mean": 0.4827315541601256,
+    "se": 0.1461852602713036,
+    "ci95": [
+     0.1962084440283705,
+     0.7692546642918807
+    ],
+    "wins": 433,
+    "ties": 583,
+    "losses": 258
+   },
+   "bidding": {
+    "n": 1274,
+    "mean": 0.3877551020408163,
+    "se": 0.11067240446089648,
+    "ci95": [
+     0.17083718929745922,
+     0.6046730147841735
+    ],
+    "wins": 166,
+    "ties": 988,
+    "losses": 120
+   }
+  },
+  "7s-32~ben64": {
+   "boards": 684,
+   "common": {
+    "n": 684,
+    "mean": 0.06871345029239766,
+    "se": 0.1532358449944654,
+    "ci95": [
+     -0.23162880589675455,
+     0.3690557064815499
+    ],
+    "wins": 177,
+    "ties": 386,
+    "losses": 121
+   },
+   "native": {
+    "n": 684,
+    "mean": 0.5511695906432749,
+    "se": 0.1926976434398736,
+    "ci95": [
+     0.1734822095011226,
+     0.9288569717854271
+    ],
+    "wins": 240,
+    "ties": 292,
+    "losses": 152
+   },
+   "bidding": {
+    "n": 684,
+    "mean": 0.4824561403508772,
+    "se": 0.14886420711502263,
+    "ci95": [
+     0.19068229440543283,
+     0.7742299862963216
+    ],
+    "wins": 97,
+    "ties": 522,
+    "losses": 65
+   }
+  }
+ },
+ "sources": [
+  {
+   "key": "gen71codexcompare",
+   "name": "Gen 7.1 \u00b7 Codex policy comparison and Gen6",
+   "branch": "arena-gen7-1-compare-codex-20261112-feed",
+   "revision": "71a6dc2dbc8985175c476388115bc4f301e7452f",
+   "retired": true,
+   "records": 1974,
+   "snapshot_utc": "2026-11-12 16:30"
+  },
+  {
+   "key": "gen71independent",
+   "name": "Gen7.1 independent \u00b7 completed policy comparison and anchors",
+   "branch": "arena-gen71-independent-feed",
+   "revision": "cbddecbc290efc8e3ab6e088135675df1cec14e5",
+   "retired": true,
+   "records": 3293,
+   "snapshot_utc": "2026-11-12 17:45"
+  },
+  {
+   "key": "gen7independentselfplay",
+   "name": "Gen7 independent \u00b7 completed v4 self-play and anchors",
+   "branch": "arena-gen7-independent-selfplay-feed",
+   "revision": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d",
+   "retired": true,
+   "records": 420,
+   "snapshot_utc": "2026-11-12 06:03"
+  },
+  {
+   "key": "gen7codexselfplaycapture",
+   "name": "Gen 7.0 \u00b7 Codex completed self-play with gap capture",
+   "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+   "revision": "09950642e0d40dc68fecf511569bb72935ba7782",
+   "retired": true,
+   "records": 437,
+   "snapshot_utc": "2026-11-12 06:29"
+  },
+  {
+   "key": "gen7codexselfplay",
+   "name": "Gen 7 \u00b7 Codex initial self-play (capture incomplete)",
+   "branch": "arena-gen7-selfplay-codex-20261112-feed",
+   "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+   "retired": true,
+   "records": 32,
+   "snapshot_utc": "2026-11-12 04:36"
+  },
+  {
+   "key": "gen7independentphase1",
+   "name": "Gen7 independent \u00b7 completed five-pair phase1 cohort",
+   "branch": "arena-gen7-phase1-independent-feed",
+   "revision": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+   "retired": true,
+   "records": 387,
+   "snapshot_utc": "2026-11-12 04:49"
+  },
+  {
+   "key": "gen7codexphase1",
+   "name": "Gen 7 \u00b7 Codex completed phase 1 anchors",
+   "branch": "arena-gen7-phase1-codex-20261112-feed",
+   "revision": "dfe3233dec356e48da065702964892354e0db16c",
+   "retired": true,
+   "records": 564,
+   "snapshot_utc": "2026-11-12 04:28"
+  },
+  {
+   "key": "gen7azure1phase1",
+   "name": "Gen 7 \u00b7 azure1 phase 1 (non-BEN)",
+   "branch": "arena-gen7-phase1-azure1-feed",
+   "revision": "419d7e1009bb559b816adfc69a67b39d7ed55ebb",
+   "retired": false,
+   "records": 828,
+   "snapshot_utc": "2026-11-12 11:41"
+  },
+  {
+   "key": "gen7azure2phase1",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (non-BEN)",
+   "branch": "arena-gen7-phase1-azure2-feed",
+   "revision": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+   "retired": false,
+   "records": 608,
+   "snapshot_utc": "2026-11-12 03:48"
+  },
+  {
+   "key": "gen7azure3phase1",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (non-BEN)",
+   "branch": "arena-gen7-phase1-azure3-feed",
+   "revision": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+   "retired": false,
+   "records": 720,
+   "snapshot_utc": "2026-11-12 03:51"
+  },
+  {
+   "key": "gen7azure4phase1",
+   "name": "Gen 7 \u00b7 azure4 phase 1 (non-BEN)",
+   "branch": "arena-gen7-phase1-azure4-feed",
+   "revision": "60da78264c2f1dd7ec442ee17a37cd2432cfc929",
+   "retired": false,
+   "records": 829,
+   "snapshot_utc": "2026-11-12 19:18"
+  },
+  {
+   "key": "gen7azure2ben16l1",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 1)",
+   "branch": "arena-gen7-phase1-azure2-ben16-1-feed",
+   "revision": "07674c65f86efe1649c8dc6c81be7e2ab45c4e3d",
+   "retired": false,
+   "records": 148,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l2",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 2)",
+   "branch": "arena-gen7-phase1-azure2-ben16-2-feed",
+   "revision": "79bb5e848440907394137f219607c32647b14b97",
+   "retired": false,
+   "records": 149,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l3",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 3)",
+   "branch": "arena-gen7-phase1-azure2-ben16-3-feed",
+   "revision": "1f6f581aef379f44385deee7b0a9a5871f1a87ee",
+   "retired": false,
+   "records": 159,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l4",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 4)",
+   "branch": "arena-gen7-phase1-azure2-ben16-4-feed",
+   "revision": "dbff573e35d1c838b5c4641b7f58dcc417a50749",
+   "retired": false,
+   "records": 154,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l5",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 5)",
+   "branch": "arena-gen7-phase1-azure2-ben16-5-feed",
+   "revision": "f5ca8133c1f9be100959d8a312b004a0d354efd0",
+   "retired": false,
+   "records": 153,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l6",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 6)",
+   "branch": "arena-gen7-phase1-azure2-ben16-6-feed",
+   "revision": "58ed24ce1d0e2ff79988117b3e3010b7e84dc778",
+   "retired": false,
+   "records": 139,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l7",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 7)",
+   "branch": "arena-gen7-phase1-azure2-ben16-7-feed",
+   "revision": "65e22f8336c618ed276d05422aa8c0658a66bd44",
+   "retired": false,
+   "records": 151,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure2ben16l8",
+   "name": "Gen 7 \u00b7 azure2 phase 1 (BEN 16, lane 8)",
+   "branch": "arena-gen7-phase1-azure2-ben16-8-feed",
+   "revision": "650431ab87d8d78043edb3bec60949ee33c00d3b",
+   "retired": false,
+   "records": 142,
+   "snapshot_utc": "2026-11-12 06:01"
+  },
+  {
+   "key": "gen7azure3ben64l1",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 1)",
+   "branch": "arena-gen7-phase1-azure3-ben64-1-feed",
+   "revision": "1c9b8979bff94069748db8040fed28c82bbc55ef",
+   "retired": false,
+   "records": 79,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l2",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 2)",
+   "branch": "arena-gen7-phase1-azure3-ben64-2-feed",
+   "revision": "075d74f1d9070591bdbd75419ccc73c3f1c81283",
+   "retired": false,
+   "records": 75,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l3",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 3)",
+   "branch": "arena-gen7-phase1-azure3-ben64-3-feed",
+   "revision": "bed7024f4f3fd90deea200f756a38223929eb844",
+   "retired": false,
+   "records": 74,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l4",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 4)",
+   "branch": "arena-gen7-phase1-azure3-ben64-4-feed",
+   "revision": "755372135b6127ea21aa0ee64c3fe71ee4aeddf2",
+   "retired": false,
+   "records": 83,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l5",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 5)",
+   "branch": "arena-gen7-phase1-azure3-ben64-5-feed",
+   "revision": "823bc797c4855fadd6bb286167f93969e13b1e45",
+   "retired": false,
+   "records": 79,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l6",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 6)",
+   "branch": "arena-gen7-phase1-azure3-ben64-6-feed",
+   "revision": "a4c399365d3bf3931d424932589e372f35db1340",
+   "retired": false,
+   "records": 71,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l7",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 7)",
+   "branch": "arena-gen7-phase1-azure3-ben64-7-feed",
+   "revision": "62b082a31ce2c82927420438998f0d4b265eea81",
+   "retired": false,
+   "records": 71,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure3ben64l8",
+   "name": "Gen 7 \u00b7 azure3 phase 1 (BEN 64, lane 8)",
+   "branch": "arena-gen7-phase1-azure3-ben64-8-feed",
+   "revision": "0aaf87097a19f2b69226c511231178064d975761",
+   "retired": false,
+   "records": 74,
+   "snapshot_utc": "2026-11-12 06:02"
+  },
+  {
+   "key": "gen7azure2selfplay",
+   "name": "Gen 7 \u00b7 azure2 standard self-play and Gen 6 comparison",
+   "branch": "arena-gen7-phase1-selfplay-azure2-feed",
+   "revision": "87faa7ee2d92966512b0535b78f69198c81a87e0",
+   "retired": false,
+   "records": 11,
+   "snapshot_utc": "2026-11-12 06:08"
+  },
+  {
+   "key": "gen71azure1mix2",
+   "name": "Gen 7.1 \u00b7 azure1 (self-play and against Gen 7.0, second pool)",
+   "branch": "arena-gen7-1-mix2-azure1-feed",
+   "revision": "b417f16dfbbca25e0a759ed5402afa6579ac7acb",
+   "retired": true,
+   "records": 381,
+   "snapshot_utc": "2026-11-12 16:21"
+  },
+  {
+   "key": "gen71azure1mix",
+   "name": "Gen 7.1 \u00b7 azure1 (self-play and against Gen 7.0)",
+   "branch": "arena-gen7-1-mix-azure1-feed",
+   "revision": "486843d9494fe8826f45d2c23179baafa070dbf0",
+   "retired": false,
+   "records": 1256,
+   "snapshot_utc": "2026-11-12 14:02"
+  },
+  {
+   "key": "gen71azure3ben64g3",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 3, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-3-feed",
+   "revision": "dec43d30f8d15e4a0d9274d01b5d3f1fba6a43c8",
+   "retired": false,
+   "records": 185,
+   "snapshot_utc": "2026-11-12 15:41"
+  },
+  {
+   "key": "gen71azure3ben64g4",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 4, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-4-feed",
+   "revision": "e5078f5d51fb2de42e06fc36f6cc71b68c05b5cf",
+   "retired": false,
+   "records": 184,
+   "snapshot_utc": "2026-11-12 15:49"
+  },
+  {
+   "key": "gen71azure3ben64g1",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 1, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-1-feed",
+   "revision": "976822c654f72017a60eeda457a8b2ba87f8ef65",
+   "retired": false,
+   "records": 185,
+   "snapshot_utc": "2026-11-12 16:14"
+  },
+  {
+   "key": "gen71azure3ben64g2",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 2, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-2-feed",
+   "revision": "3dd1086351efe90f6ba3582f7d7b6a3575d7836b",
+   "retired": false,
+   "records": 185,
+   "snapshot_utc": "2026-11-12 16:10"
+  },
+  {
+   "key": "gen71azure3ben64g5",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 5, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-5-feed",
+   "revision": "3f03a751d999ba676359ee8e6240844be2a290d1",
+   "retired": false,
+   "records": 184,
+   "snapshot_utc": "2026-11-12 16:15"
+  },
+  {
+   "key": "gen71azure3ben64g6",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 6, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-6-feed",
+   "revision": "b7707f556212e9d14d98b0e9e9e336dd3d4a6436",
+   "retired": false,
+   "records": 172,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64g7",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 7, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-7-feed",
+   "revision": "f56bf95812291db53f464eea69a812c57c7724b2",
+   "retired": false,
+   "records": 184,
+   "snapshot_utc": "2026-11-12 16:22"
+  },
+  {
+   "key": "gen71azure3ben64g8",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 8, pool 2)",
+   "branch": "arena-gen7-1-fresh2-azure3-ben64-8-feed",
+   "revision": "b1ce784998959a34d85d228783a1269bfad4af17",
+   "retired": false,
+   "records": 167,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h1",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 1, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-1-feed",
+   "revision": "c14b37cdb0276a7e71212d135241f0300fdb835a",
+   "retired": true,
+   "records": 9,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h2",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 2, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-2-feed",
+   "revision": "06c45434db5b47388cb918c786d4b9386ec439ff",
+   "retired": true,
+   "records": 11,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h3",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 3, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-3-feed",
+   "revision": "106ce99d11e10ba1c056cbf68260398df24c0ccb",
+   "retired": true,
+   "records": 40,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h4",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 4, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-4-feed",
+   "revision": "5a41f09fe901b54198b8602d92c40cdc0424063d",
+   "retired": true,
+   "records": 37,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h5",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 5, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-5-feed",
+   "revision": "0c4ab5f5459d3d131cb2a9f1828c4de4c34882d2",
+   "retired": true,
+   "records": 7,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64h7",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 7, pool 3)",
+   "branch": "arena-gen7-1-fresh3-azure3-ben64-7-feed",
+   "revision": "80681d7804dd57bd66582c311c3cad0d9168fc0d",
+   "retired": true,
+   "records": 1,
+   "snapshot_utc": "2026-11-12 16:25"
+  },
+  {
+   "key": "gen71azure3ben64f1",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 1)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-1-feed",
+   "revision": "c7a4e5b79c7a7648bbda0c61557e52dd8f31c53e",
+   "retired": false,
+   "records": 366,
+   "snapshot_utc": "2026-11-12 13:03"
+  },
+  {
+   "key": "gen71azure3ben64f2",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 2)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-2-feed",
+   "revision": "0219e1b142d8a7211b60ef262c61b7c677848c64",
+   "retired": false,
+   "records": 366,
+   "snapshot_utc": "2026-11-12 12:56"
+  },
+  {
+   "key": "gen71azure3ben64f3",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 3)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-3-feed",
+   "revision": "79d1891b889c1222169178155c095d340621b261",
+   "retired": false,
+   "records": 372,
+   "snapshot_utc": "2026-11-12 12:41"
+  },
+  {
+   "key": "gen71azure3ben64f4",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 4)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-4-feed",
+   "revision": "e74503532ae896a406a5b8834ae2c23d6cebfad6",
+   "retired": false,
+   "records": 361,
+   "snapshot_utc": "2026-11-12 12:43"
+  },
+  {
+   "key": "gen71azure3ben64f5",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 5)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-5-feed",
+   "revision": "83df6942792e4bbe9e0ff0dd482745e8da0573c6",
+   "retired": false,
+   "records": 365,
+   "snapshot_utc": "2026-11-12 13:16"
+  },
+  {
+   "key": "gen71azure3ben64f6",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 6)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-6-feed",
+   "revision": "7536c10dc6a8b891317eb354c21722f9bcdb7b83",
+   "retired": false,
+   "records": 369,
+   "snapshot_utc": "2026-11-12 13:25"
+  },
+  {
+   "key": "gen71azure3ben64f7",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 7)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-7-feed",
+   "revision": "2f215568e813598eec7d72885dfd6a1cf513c429",
+   "retired": false,
+   "records": 369,
+   "snapshot_utc": "2026-11-12 13:09"
+  },
+  {
+   "key": "gen71azure3ben64f8",
+   "name": "Gen 7.1 \u00b7 azure3 (BEN 64, lane 8)",
+   "branch": "arena-gen7-1-fresh-azure3-ben64-8-feed",
+   "revision": "35b0ff330a4dc66f5dd4e2f58c6e0b2d00ca03e0",
+   "retired": false,
+   "records": 365,
+   "snapshot_utc": "2026-11-12 13:28"
+  },
+  {
+   "key": "gen71azure2vs70f",
+   "name": "Gen 7.1 \u00b7 azure2 against Gen 7.0, every board",
+   "branch": "arena-gen7-1-vs70-fresh-azure2-feed",
+   "revision": "67dd0edee1f790ff954ee2bb1565b51d80b2ba5b",
+   "retired": false,
+   "records": 745,
+   "snapshot_utc": "2026-11-12 08:13"
+  },
+  {
+   "key": "gen7extraselfplay",
+   "name": "Gen7 additional phase1 non-BEN",
+   "branch": "arena-gen7-phase1-extra-feed",
+   "revision": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
+   "retired": true,
+   "records": 37,
+   "snapshot_utc": "2026-11-12 04:28"
+  },
+  {
+   "key": "gen7cloudphase1",
+   "name": "Gen 7 \u00b7 cloud phase 1 (non-BEN)",
+   "branch": "arena-gen7-phase1-cloud-feed",
+   "revision": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+   "retired": true,
+   "records": 67,
+   "snapshot_utc": "2026-11-12 04:24"
+  },
+  {
+   "key": "gen71compare19bbdce5retired",
+   "name": "Gen 7.1 \u00b7 completed comparisons stream19bbdce5",
+   "branch": "arena-gen71-19bbdce5-20261112-feed",
+   "revision": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+   "retired": true,
+   "records": 2189,
+   "snapshot_utc": "2026-11-12 16:30"
+  }
+ ]
+}
