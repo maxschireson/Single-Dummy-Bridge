@@ -1,0 +1,30 @@
+2-card endings, seed 1: 300 every-shape, 300 subset, 254 in-trick positions; 10 s
+  --def all  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def ends mismatches with brute force: every 0, subset 0, in-trick 0
+  --def mid  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def two  mismatches with brute force: every 0, subset 0, in-trick 0
+  pooled_ref.py against brute force (every shape, and the true whole shape): 600 compared, 0 mismatches
+3-card endings, seed 2: 1500 every-shape, 1500 subset, 1230 in-trick positions; 99 s
+  --def all  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def ends mismatches with brute force: every 0, subset 0, in-trick 0
+  --def mid  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def two  mismatches with brute force: every 0, subset 0, in-trick 0
+  pooled_ref.py against brute force (every shape, and the true whole shape): 3000 compared, 0 mismatches
+4-card endings, seed 3: 40 every-shape, 40 subset, 35 in-trick positions; 31 s
+  --def all  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def ends mismatches with brute force: every 0, subset 0, in-trick 0
+  --def mid  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def two  mismatches with brute force: every 0, subset 0, in-trick 0
+114 positions
+--def all  equals the plain value in 114, the two-ends value in 0
+--def ends equals the plain value in 114, the two-ends value in 0
+--def mid  equals the plain value in 114, the two-ends value in 0
+--def two  equals the plain value in 0, the two-ends value in 114
+1450 positions, 7793 card answers: same 7793; sure_cpp yes where cells says no 0; cells yes where sure_cpp says no 0
+1405 positions, 6830 card answers: same 6830; sure_cpp yes where cells says no 0; cells yes where sure_cpp says no 0
+7-card recorded positions: 150; answers compared with --def all: outright 711, per shape 7808, joint 93; 9 s
+  --def ends differs: outright 0, per shape 0, joint 0
+  --def mid  differs: outright 0, per shape 0, joint 0
+6-card recorded positions: 150; answers compared with --def all: outright 655, per shape 6160, joint 91; 5 s
+  --def ends differs: outright 0, per shape 0, joint 0
+  --def mid  differs: outright 0, per shape 0, joint 0

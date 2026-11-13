@@ -1,0 +1,24 @@
+
+== 8 cards: 300 positions without an outright claim; 9.0 runs of unseen cards a position
+   certified probability (scorer weights): shape only 0.386 | best of the 3 cards my rule picks 0.472 (+0.086) | best of every run 0.494 (+0.108)
+   runs by class: {'middle': 1613, 'bottom': 555, 'top': 458, 'free': 68}
+   mean gain when a run of the class is named: {'middle': 0.0195, 'bottom': 0.0025, 'top': 0.039, 'free': 0.0032}
+   share of runs of the class that add 0.05 or more: {'middle': 0.086, 'bottom': 0.016, 'top': 0.151, 'free': 0.015}
+   positions where the best run adds 0.05 or more: 120 of 300; class of that run: {'middle': 68, 'top': 50, 'bottom': 1, 'free': 1}; its card a nine or lower: 7
+   of those, the 3-card rule misses it by more than 0.02 in 37
+   bottom runs: present in 281 positions; best one adds 0.05 or more in 9 (3.2%), 0.20 or more in 0; mean best gain 0.0049
+   free runs: present in 68 positions; best one adds 0.05 or more in 1 (1.5%), 0.20 or more in 1; mean best gain 0.0032
+   went down: 149; sure on the actual layout: shape level 6, with the best run named 8, with the best of the 3-card rule 8
+   cost in nodes, mean: shape level 943596; one run named 798760; every run 7172869
+
+== 7 cards: 300 positions without an outright claim; 8.1 runs of unseen cards a position
+   certified probability (scorer weights): shape only 0.359 | best of the 3 cards my rule picks 0.426 (+0.067) | best of every run 0.447 (+0.087)
+   runs by class: {'middle': 1347, 'bottom': 515, 'top': 477, 'free': 85}
+   mean gain when a run of the class is named: {'middle': 0.0194, 'bottom': 0.0017, 'top': 0.0314, 'free': 0.0035}
+   share of runs of the class that add 0.05 or more: {'middle': 0.084, 'bottom': 0.014, 'top': 0.128, 'free': 0.012}
+   positions where the best run adds 0.05 or more: 91 of 300; class of that run: {'middle': 49, 'top': 40, 'free': 1, 'bottom': 1}; its card a nine or lower: 6
+   of those, the 3-card rule misses it by more than 0.02 in 24
+   bottom runs: present in 277 positions; best one adds 0.05 or more in 7 (2.5%), 0.20 or more in 0; mean best gain 0.0032
+   free runs: present in 82 positions; best one adds 0.05 or more in 1 (1.2%), 0.20 or more in 1; mean best gain 0.0036
+   went down: 166; sure on the actual layout: shape level 5, with the best run named 6, with the best of the 3-card rule 6
+   cost in nodes, mean: shape level 142875; one run named 112714; every run 910729

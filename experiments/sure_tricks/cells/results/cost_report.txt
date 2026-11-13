@@ -1,0 +1,56 @@
+
+== 6 cards: 300 positions (0 capped)
+   nodes                                           median      mean      90th      99th | above a 4-card table (nodes + lookups):    median      mean      90th
+   outright question                                 1261      3192      8311     33166 |                                              221       529      1473
+   per-shape searches, every shape                   5367     13318     34064    104684 |                                             1689      3438      8650
+   per-shape searches, 99% of scorer weight          2664      7973     21798     82165 |                                              870      1922      4988
+   per-shape searches, 95% of scorer weight          2302      6526     17586     68538 |                                              711      1557      4134
+     one card only, every shape                      1466      4111      9703     58770
+     one card only, 99% of weight                     678      2496      6408     50570
+   joint step, best card                               13      1894      1494     54793 |                                               13       344       376
+   shapes: median 12, mean 13; for 99% of scorer weight: median 5, mean 7; for 95%: median 4, mean 5
+   legal runs: mean 4.3; all cards / one card, per-shape nodes: 3.2
+   without an outright claim (113): per-shape searches for 99% of weight: mean 10881 nodes, median 3620; joint mean 4705
+   time in this solver: per-shape searches 5 ms mean; whole position 0.0 s mean
+
+== 7 cards: 300 positions (0 capped)
+   nodes                                           median      mean      90th      99th | above a 4-card table (nodes + lookups):    median      mean      90th
+   outright question                                 4413     15344     49322    123343 |                                             1225      3911     12348
+   per-shape searches, every shape                  38246     87982    253383    713830 |                                            14506     29487     81752
+   per-shape searches, 99% of scorer weight         14501     42197    123528    406180 |                                             6035     13511     35661
+   per-shape searches, 95% of scorer weight         11471     33374     86381    347761 |                                             4427     10426     26164
+     one card only, every shape                      9639     28166     81390    309275
+     one card only, 99% of weight                    3614     13598     33911    140467
+   joint step, best card                               17     11155     20329    275849 |                                               17      3686      5588
+   shapes: median 19, mean 23; for 99% of scorer weight: median 8, mean 11; for 95%: median 6, mean 8
+   legal runs: mean 4.9; all cards / one card, per-shape nodes: 3.1
+   without an outright claim (145): per-shape searches for 99% of weight: mean 54591 nodes, median 15371; joint mean 21760
+   time in this solver: per-shape searches 19 ms mean; whole position 0.1 s mean
+
+== 8 cards: 300 positions (0 capped)
+   nodes                                           median      mean      90th      99th | above a 4-card table (nodes + lookups):    median      mean      90th
+   outright question                                20092     79517    209044   1074630 |                                             6476     28583     77512
+   per-shape searches, every shape                 197911    519225   1602892   4318120 |                                            94602    230720    655654
+   per-shape searches, 99% of scorer weight         77257    218087    586533   1909682 |                                            38301     88816    230923
+   per-shape searches, 95% of scorer weight         58184    166985    423172   1462087 |                                            28415     66273    170581
+     one card only, every shape                     48077    146788    479467   1052428
+     one card only, 99% of weight                   18737     62231    181418    615220
+   joint step, best card                               21    101672    186780   2422732 |                                               21     44489     90748
+   shapes: median 28, mean 38; for 99% of scorer weight: median 11, mean 16; for 95%: median 8, mean 12
+   legal runs: mean 5.5; all cards / one card, per-shape nodes: 3.5
+   without an outright claim (161): per-shape searches for 99% of weight: mean 290611 nodes, median 129949; joint mean 167655
+   time in this solver: per-shape searches 73 ms mean; whole position 0.2 s mean
+
+== 9 cards: 150 positions (0 capped)
+   nodes                                           median      mean      90th      99th | above a 4-card table (nodes + lookups):    median      mean      90th
+   outright question                                76418    291183    868625   2372890 |                                            31097    131777    333494
+   per-shape searches, every shape                1557366   3265431   8343410  26639720 |                                           733641   1797601   5153470
+   per-shape searches, 99% of scorer weight        460117   1480999   4002297  11702569 |                                           229586    746835   2358299
+   per-shape searches, 95% of scorer weight        325688   1054066   2956740   7628955 |                                           181515    508699   1615120
+     one card only, every shape                    419917    995265   2776518   5816547
+     one card only, 99% of weight                  120754    458449   1605684   4280134
+   joint step, best card                               40   1180103   2912921  18103110 |                                               40    603583   1623817
+   shapes: median 58, mean 59; for 99% of scorer weight: median 16, mean 22; for 95%: median 12, mean 16
+   legal runs: mean 6.0; all cards / one card, per-shape nodes: 3.3
+   without an outright claim (92): per-shape searches for 99% of weight: mean 1971545 nodes, median 851760; joint mean 1440275
+   time in this solver: per-shape searches 431 ms mean; whole position 0.9 s mean

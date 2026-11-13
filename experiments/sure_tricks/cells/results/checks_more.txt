@@ -1,0 +1,14 @@
+4-card endings, seed 31: 300 every-shape, 300 subset, 244 in-trick positions; 298 s
+  --def all  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def ends mismatches with brute force: every 0, subset 0, in-trick 0
+  --def mid  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def two  mismatches with brute force: every 0, subset 0, in-trick 0
+3-card endings, seed 32: 3000 every-shape, 3000 subset, 2490 in-trick positions; 204 s
+  --def all  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def ends mismatches with brute force: every 0, subset 0, in-trick 0
+  --def mid  mismatches with brute force: every 0, subset 0, in-trick 0
+  --def two  mismatches with brute force: every 0, subset 0, in-trick 0
+  pooled_ref.py against brute force (every shape, and the true whole shape): 6000 compared, 0 mismatches
+8-card recorded positions: 200; answers compared with --def all: outright 1068, per shape 12373, joint 126; 28 s
+  --def ends differs: outright 0, per shape 0, joint 0
+  --def mid  differs: outright 0, per shape 0, joint 0
