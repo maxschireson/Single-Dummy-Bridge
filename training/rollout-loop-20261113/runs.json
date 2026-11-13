@@ -193,6 +193,32 @@
     "rung": "pure"
    },
    "tables_a_board": 1,
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "sps0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "stu0-psa~stu0-psb",
+   "seed": 9001,
+   "first": 260000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "tables_a_board": 1,
    "queue_order": 3
   },
   {
@@ -218,7 +244,8 @@
     "rung": "pure-rl"
    },
    "tables_a_board": 1,
-   "queue_order": 4
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
   },
   {
    "name": "l0-stu0",
@@ -495,6 +522,32 @@
     "rung": "pure"
    },
    "tables_a_board": 1,
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "sps0b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "stu0-psa~stu0-psb",
+   "seed": 9001,
+   "first": 280000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "tables_a_board": 1,
    "queue_order": 12
   },
   {
@@ -520,7 +573,8 @@
     "rung": "pure-rl"
    },
    "tables_a_board": 1,
-   "queue_order": 13
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
   },
   {
    "name": "sp0c",
@@ -543,6 +597,32 @@
     "round": 0,
     "net": "v2",
     "rung": "pure"
+   },
+   "tables_a_board": 1,
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "sps0c",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "stu0-psa~stu0-psb",
+   "seed": 9001,
+   "first": 300000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
    },
    "tables_a_board": 1,
    "queue_order": 1
@@ -570,7 +650,8 @@
     "rung": "pure-rl"
    },
    "tables_a_board": 1,
-   "queue_order": 2
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
   },
   {
    "name": "l2b-p",
@@ -591,7 +672,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 5
+   "queue_order": 4
   },
   {
    "name": "l2b-pv",
@@ -612,7 +693,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 6
+   "queue_order": 5
   },
   {
    "name": "l0b-pt",
@@ -633,7 +714,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 3
+   "queue_order": 2
   },
   {
    "name": "l0b-pv",
@@ -654,7 +735,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 4
+   "queue_order": 3
   },
   {
    "name": "l2b-pt",
@@ -675,7 +756,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 5
+   "queue_order": 4
   },
   {
    "name": "l2b-n",
@@ -696,7 +777,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 6
+   "queue_order": 5
   },
   {
    "name": "l0b-n",
@@ -717,7 +798,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 7
+   "queue_order": 6
   },
   {
    "name": "l2b-ns",
@@ -738,7 +819,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 8
+   "queue_order": 7
   },
   {
    "name": "sp0d",
@@ -761,6 +842,32 @@
     "round": 0,
     "net": "v2",
     "rung": "pure"
+   },
+   "tables_a_board": 1,
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "sps0d",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "collection",
+   "pair": "stu0-psa~stu0-psb",
+   "seed": 9001,
+   "first": 320000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
    },
    "tables_a_board": 1,
    "queue_order": 1
@@ -788,7 +895,8 @@
     "rung": "pure-rl"
    },
    "tables_a_board": 1,
-   "queue_order": 2
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
   },
   {
    "name": "sp0e",
@@ -811,6 +919,32 @@
     "round": 0,
     "net": "v2",
     "rung": "pure"
+   },
+   "tables_a_board": 1,
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "sps0e",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "stu0-psa~stu0-psb",
+   "seed": 9001,
+   "first": 340000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
    },
    "tables_a_board": 1,
    "queue_order": 1
@@ -838,7 +972,8 @@
     "rung": "pure-rl"
    },
    "tables_a_board": 1,
-   "queue_order": 2
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
   },
   {
    "name": "l3a-n",
@@ -856,7 +991,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 7
+   "queue_order": 6
   },
   {
    "name": "l3-n",
@@ -877,7 +1012,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 8
+   "queue_order": 7
   },
   {
    "name": "l0c-n",
@@ -898,7 +1033,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 9
+   "queue_order": 8
   },
   {
    "name": "l3-p",
@@ -919,7 +1054,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 9
+   "queue_order": 8
   },
   {
    "name": "l0-r3",

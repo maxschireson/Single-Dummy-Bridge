@@ -15,4 +15,8 @@ l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 # worth having if it is real (about what the +0.23 +- 0.20 IMPs a board at 333 deals would be), and the bot keeps its
 # rung (stu0-pr); in the collection the other decisions need the volume more. Six workers on volume and two on leads
 # give about 890 tables an hour, some 130 of them with a value for every lead.
-sp0 stu0-pa~stu0-pb 9001 60000 20000 6 --episodes --one-room
+#stopped sp0 stu0-pa~stu0-pb 9001 60000 20000 6 --episodes --one-room
+# From round 3's cut (23:00 UTC on 13 November; Max, 22:19 UTC: "My instinct is to just go pure rollout"): pure rollout on
+# all eight workers: the opening lead rolled out on the settings of every other card (stu0-ps), one bot for round 4's
+# data, every table with a rated lead. The run before it is kept below as #stopped (chain.sh skips it; make_runs.py lists it).
+sps0 stu0-psa~stu0-psb 9001 260000 20000 8 --episodes --one-room

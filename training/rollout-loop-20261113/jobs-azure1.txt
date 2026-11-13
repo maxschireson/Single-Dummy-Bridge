@@ -2,4 +2,8 @@
 # ahead!", "And use azure 2."). Pure Stu against itself, one table a board, the same split as the other collecting
 # boxes: this file's run with the net's own lead on six workers (training deals from 220000), jobs-azure1b.txt's with the
 # lead rolled out on two (unit loop-collect-b).
-sp0e stu0-pa~stu0-pb 9001 220000 20000 6 --episodes --one-room
+#stopped sp0e stu0-pa~stu0-pb 9001 220000 20000 6 --episodes --one-room
+# From round 3's cut (23:00 UTC on 13 November; Max, 22:19 UTC: "My instinct is to just go pure rollout"): pure rollout on
+# all eight workers: the opening lead rolled out on the settings of every other card (stu0-ps), one bot for round 4's
+# data, every table with a rated lead. The run before it is kept below as #stopped (chain.sh skips it; make_runs.py lists it).
+sps0e stu0-psa~stu0-psb 9001 340000 20000 8 --episodes --one-room

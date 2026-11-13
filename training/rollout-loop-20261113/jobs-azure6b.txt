@@ -1,3 +1,4 @@
 # azure6's second collection chain (unit loop-collect-b; see jobs-azure6.txt): pure Stu with the opening lead rolled out
 # against itself, one table a board, on two workers. Training deals from 160,000.
-spr0c stu0-pra~stu0-prb 9001 160000 20000 2 --episodes --one-room
+#stopped spr0c stu0-pra~stu0-prb 9001 160000 20000 2 --episodes --one-room
+# From round 3's cut this chain plays nothing: the box's eight workers are on jobs-azure6.txt's pure-rollout run.

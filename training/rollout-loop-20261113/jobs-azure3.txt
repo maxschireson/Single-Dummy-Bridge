@@ -20,4 +20,8 @@ l1-n stu1-n~8p-32-v41 131 0 200 8 --episodes
 # rolled out on two (unit loop-collect-b). Why the collection and not more rungs: round 2's training shows what the
 # loop lacks is tables (1,814 moved nothing measurable on held-out boards), and the rungs left were tails of
 # comparisons already read (jobs-azure3-later.txt keeps them).
-sp0b stu0-pa~stu0-pb 9001 80000 20000 6 --episodes --one-room
+#stopped sp0b stu0-pa~stu0-pb 9001 80000 20000 6 --episodes --one-room
+# From round 3's cut (23:00 UTC on 13 November; Max, 22:19 UTC: "My instinct is to just go pure rollout"): pure rollout on
+# all eight workers: the opening lead rolled out on the settings of every other card (stu0-ps), one bot for round 4's
+# data, every table with a rated lead. The run before it is kept below as #stopped (chain.sh skips it; make_runs.py lists it).
+sps0b stu0-psa~stu0-psb 9001 280000 20000 8 --episodes --one-room
