@@ -574,7 +574,10 @@ def fit_command(args):
         if parent_pt:
             d, dse = contrast(F, players, p, parent_pt)
             vp = dict(parent=parent_pt, mean=round(d, 4), se=round(dse, 4))
-        point = dict(id=p, label=label, group=c.get('group', 'other'), parent=parent, introduced_utc=utc(intro.get(p)),
+        early = c.get('introduced') if p == b else None       # played before its first registered board (Max, 13 Nov 05:00)
+        point = dict(id=p, label=label, group=c.get('group', 'other'), parent=parent,
+                     introduced_utc=early['utc'] if early else utc(intro.get(p)), first_registered_board_utc=utc(intro.get(p)),
+                     introduced_source=early if early else 'first board on a registered feed',
                      boards=F['boards'][p], strength=round(s, 4), se=round(se, 4),
                      ci95=[round(s - 1.96 * se, 4), round(s + 1.96 * se, 4)], prior=prior,
                      prior_share=round(F['share'][p], 3), hollow=F['share'][p] > 0.5, timing=t,
@@ -622,6 +625,7 @@ def fit_command(args):
                      boards_fitted=len(res), collected_utc=meta['computed_utc'], registry_sha256=meta['registry_sha256']),
         notes=[
             f"Strength: IMPs a board against {labels.get(anchor, anchor)}, the anchor (fixed at 0). {cfg['anchor_note']}",
+            'Introduced: a bot\'s first board on a registered feed, unless it is known to have played earlier (introduced_source gives the evidence; Gen 1 predates the arena).',
             'Each side bids with its own bidder (the native condition): the whole bot. Common-auction boards are not used.',
             'Counting is the page\'s: records after a feed\'s snapshot, the hidden BEN (32) and the accidental cohorts are out; '
             'a feed\'s allowed pairs are respected; a deal family counts once per pair, earliest first; self-play carries no strength.',

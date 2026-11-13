@@ -1,6 +1,6 @@
 {
   "schema": "ladder-bots-v1",
-  "about": "The ladder's bots (scripts/arena_ladder.py, G9-D9): display label, colour group, parent, and the prior relative to the parent where an estimate from outside the registered feeds exists. A prior from the registered feeds themselves would count the same boards twice, so none is taken from them. 'estimate' is in IMPs a board from the bot's side against its parent; 'tricks': true marks a bench figure in tricks, converted at 3.8 IMPs a trick (E9-0) with 10% on the conversion. Bots without an estimate get the weak prior (SD 2 IMPs a board at the field mean).",
+  "about": "The ladder's bots (scripts/arena_ladder.py, G9-D9): display label, colour group, parent, and the prior relative to the parent where an estimate from outside the registered feeds exists. A prior from the registered feeds themselves would count the same boards twice, so none is taken from them. 'estimate' is in IMPs a board from the bot's side against its parent; 'tricks': true marks a bench figure in tricks, converted at 3.8 IMPs a trick (E9-0) with 10% on the conversion. Bots without an estimate get the weak prior (SD 2 IMPs a board at the field mean). 'introduced' overrides the ladder's x (the first board on a registered feed) where a bot is known to have played earlier, with its evidence.",
   "anchor": "ben64",
   "anchor_note": "BEN (64): an outside bot that does not change between generations, with boards against every generation from Gen 6 on.",
   "weak_prior_sd": 2.0,
@@ -10,7 +10,13 @@
     "1": {
       "label": "Gen 1",
       "group": "Gen 1-4",
-      "parent": null
+      "parent": null,
+      "introduced": {
+        "utc": "2026-11-08T12:32Z",
+        "source": "commit 63a4aa4b (8 Nov 12:32 UTC), 'Import bridge harness source, tests and compact reports': the harness with Gen 1's first match reports (PIMC against BEN, greedy and random players) already played",
+        "url": "https://github.com/maxschireson/Single-Dummy-Bridge/commit/63a4aa4b",
+        "note": "Gen 1 played before the arena and before this commit; the repository does not record when it first played, so this is the latest it can have been."
+      }
     },
     "2": {
       "label": "Gen 2",
