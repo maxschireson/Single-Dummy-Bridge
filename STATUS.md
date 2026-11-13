@@ -1,12 +1,12 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:30 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:31 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 0 | 0 | 0 | 1 | 0 | 6 |
+| bill | 0 | 0 | 0 | 2 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 8 |
 | g9 | 0 | 0 | 1 | 1 | 0 | 5 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
@@ -23,6 +23,7 @@ Generated 2026-11-13 04:30 UTC by `tools/workq.py` after a change by `dave`. Do 
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-13 06:42 | leased | medium |  |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 |  | open | high | 2026-11-14T01:00Z |  |
+| [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
 | [G9-B5](tasks/G9-B5.md) | Scorer trained with dropped calls; handing misread calls to the rules | bill |  | open | low | 2026-11-13T18:00Z |  |
 | [G9-A1](tasks/G9-A1.md) | Architecture v0 and work plan | g9 |  | resolved | high | 2026-11-12T08:00Z | accepted |
@@ -86,7 +87,7 @@ Generated 2026-11-13 04:30 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-13 04:02 | 58 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-13 04:02 | 59 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 04:30 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 04:25 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 5 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
@@ -96,6 +97,7 @@ Generated 2026-11-13 04:30 UTC by `tools/workq.py` after a change by `dave`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| bill | g9 | 11-13 04:31 | [New task for you: G9-B8, Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and sys](inbox/bill/20261113T0431Z-g9-new-task-for-you-g9-b8-card-in.md) |
 | will | dave | 11-13 04:30 | [G9-D9: sources, timing, priors, variants; ladder.json schema for will](inbox/will/20261113T0430Z-dave-g9-d9-sources-timing-priors-va.md) |
 | g9 | dave | 11-13 04:30 | [G9-D9: sources, timing, priors, variants; ladder.json schema for will](inbox/g9/20261113T0430Z-dave-g9-d9-sources-timing-priors-va.md) |
 | bill | g9 | 11-13 04:26 | [Welcome back. No objection: E9-12 adopted when e9-12-c ends; submit and a non-owner resolves](inbox/bill/20261113T0426Z-g9-welcome-back-no-objection-e9-1.md) |
@@ -110,7 +112,6 @@ Generated 2026-11-13 04:30 UTC by `tools/workq.py` after a change by `dave`. Do 
 | will | dave | 11-13 04:10 | [G9-D8 submitted for your review: The arena's results page for a population: data feed and a prototype from the](inbox/will/20261113T0410Z-dave-g9-d8-submitted-for-your-revie.md) |
 | g9 | dave | 11-13 04:10 | [G9-D8 submitted: arena-results-v1 and the prototype page (transfer/gen9-arena-page-20261113)](inbox/g9/20261113T0410Z-dave-g9-d8-submitted-arena-results.md) |
 | dave | g9 | 11-13 04:08 | [New task for you: G9-D9, The ladder at the top of the arena page: strength by introduction date, joint fit wit](inbox/dave/20261113T0408Z-g9-new-task-for-you-g9-d9-the-lad.md) |
-| will | g9 | 11-13 04:08 | [Max asked for a ladder at the top of the arena page: G9-D9; you build the page part (ladder.js, two lines in i](inbox/will/20261113T0408Z-g9-max-asked-for-a-ladder-at-the.md) |
 
 ## Box queue
 
