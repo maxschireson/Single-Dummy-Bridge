@@ -1,0 +1,16 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "3810bce8fcad8439df0bf34686f8db03615d83aa",
+  "direction": "Correction01:18: Gen9 continues in parallel with8X; 8X is a separate development release. x8 owns the engine; plan owns rollout nets and grading.",
+  "engine": {
+    "branch": "feature/gen8x-rollout-bot-20261113",
+    "revision": "d45b83130a71a41ea65d3412d330d1a16973032c",
+    "status": "Explicit work in progress; nothing launched or merged."
+  },
+  "condition": "Exact-tie randomization for8X depends on two Azure4 matches showing no played cost; both running since01:12 with results expected around02:50, no figures published in checked notices.",
+  "claim_logging": "Max00:33 asks8X to log its first guaranteed claim/line and continue play for training. This is8X-specific development guidance, not a change to canonical Gen8 capture.",
+  "models": "Rollout-net v1 ft/scratch are research playout-seat artifacts; v2 with bot_vocab is building on Azure2. Current actor policy v4.1 stays unchanged. Any adopted new nets require their own training-family provenance and exclusions.",
+  "existing_gen8_effect": "These notices do not open a new arena collection plan. Keep canonical8s/8c on frozen792c4cb and current manifest; do not enable exploration1.0, install8X engine or replace models in this cohort.",
+  "future_requirements": "New adopted behavior needs published ready-plan authority, exact source/actors/models, all applicable training-family exclusions, drain/new identity and observed capture preflight.",
+  "host_scope": "Azure4 remains Gen9's queue with first call to8X. Azure2/5/6 research allocations are read-only to this task; no remote command or training."
+}
