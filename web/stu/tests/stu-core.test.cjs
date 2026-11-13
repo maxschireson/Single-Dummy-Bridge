@@ -51,7 +51,7 @@ test('parseResults skips a line cut off by the publisher', () => {
 
 test('classify from the loop\'s runs.json', () => {
   const cl = name => C.classify({ name }, entries.get(name) || null, REG);
-  assert.deepEqual(cl('s0'), { role: 'collection', round: 0, net: 'v2', rung: 'stu', superseded: false, listed: true });
+  assert.deepEqual(cl('s0'), { role: 'collection', round: 0, net: 'v2', rung: 'stu', superseded: false, shelved: false, listed: true });
   assert.equal(cl('r0').superseded, true);
   const g = cl('g0-stu0');
   assert.equal(g.role, 'gate'); assert.equal(g.opponent, '8p-32-v41'); assert.equal(g.sign, 1); assert.equal(g.superseded, true);
@@ -67,8 +67,8 @@ test('classify from the loop\'s runs.json', () => {
 });
 
 test('every run the loop lists is understood', () => {
-  const roles = new Set(['collection', 'gate', 'ladder', 'data', 'control', 'excluded']);
-  for (const e of [...FX.runs_json.runs, ...FX.runs_json_1255.runs]) {
+  const roles = new Set(['collection', 'gate', 'ladder', 'data', 'control', 'ben', 'excluded']);
+  for (const e of [...FX.runs_json.runs, ...FX.runs_json_1255.runs, ...FX.runs_json_1816.runs]) {
     const c = C.classify({ name: e.name }, e, REG);
     assert.ok(roles.has(c.role), e.name + ' ' + c.role);
     if (['gate', 'ladder', 'data'].includes(c.role)) assert.ok(REG.rungs.some(r => r.key === c.rung), 'rung ' + c.rung + ' in the registry');
@@ -172,8 +172,10 @@ test('the registry: unique keys, one opponent, nets and rungs the page can colou
   assert.equal(new Set(REG.nets.map(n => n.key)).size, REG.nets.length);
   assert.equal(new Set(REG.rungs.map(r => r.key)).size, REG.rungs.length);
   assert.ok(REG.rungs.some(r => r.key === 'stu'));
-  for (const r of REG.rounds) assert.ok(REG.nets.some(n => n.key === r.net), r.label);
-  assert.ok(REG.nets.length <= 3, 'the page colours three nets (validated palette); fold older nets out or extend the palette check');
+  for (const r of REG.rounds) assert.ok(r.pending || REG.nets.some(n => n.key === r.net), r.label);
+  const slots = REG.nets.map(n => n.slot).filter(x => typeof x === 'number');
+  assert.ok(slots.length <= 3 && new Set(slots).size === slots.length && slots.every(x => [1, 2, 3].includes(x)),
+    'three validated colour slots, each used once; other nets draw as grey rings');
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.ok(html.includes("src=\"stu-core.js"));
 });
@@ -258,4 +260,77 @@ test('fusion ledger: pooled by net and rung, the opponent pooled across runs', (
   assert.equal(opp.classes.all.gave_up, want); assert.equal(opp.runs, 3);
   assert.equal(pure.classes.all.held, FX.ledger.runs['l0-p'].bots['stu0-p'].all.held);
   assert.equal(C.ledgerModel(null, runs, 'x'), null);
+});
+
+test('runs.log: jobs started together run side by side; a pause stops them', () => {
+  const log = [
+    '2026-11-13T17:10:29Z start sp0c stu0-pa~stu0-pb seed 9001 first 140000 deals 20000 workers 6 --one-room (source 6fede60)',
+    '2026-11-13T17:10:29Z start spr0c stu0-pra~stu0-prb seed 9001 first 160000 deals 20000 workers 2 --one-room (source 6fede60)',
+    '2026-11-13T17:35:26Z the collection is paused for jobs-azure6-r2s.txt',
+    '2026-11-13T17:35:26Z start l2b-ns stu2-ns~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a35dd0e)'].join('\n');
+  let r = C.parseRunsLog(log, 'azure6');
+  assert.deepEqual([r.sp0c.status, r.spr0c.status, r['l2b-ns'].status], ['not running', 'not running', 'running']);
+  r = C.parseRunsLog(log + '\n2026-11-13T17:48:54Z end l2b-ns: exit 0\n2026-11-13T17:48:54Z jobs-azure6-r2s.txt has ended; back to the collection\n' +
+    '2026-11-13T17:48:54Z start sp0c stu0-pa~stu0-pb seed 9001 first 140000 deals 20000 workers 6 --one-room (source a35dd0e)\n' +
+    '2026-11-13T17:48:54Z start spr0c stu0-pra~stu0-prb seed 9001 first 160000 deals 20000 workers 2 --one-room (source a35dd0e)\n', 'azure6');
+  assert.deepEqual([r.sp0c.status, r.spr0c.status, r['l2b-ns'].status], ['running', 'running', 'complete']);
+});
+
+test('against BEN: each bot minus Gen 8 by deal, beside its own result against Gen 8 on those deals', () => {
+  const E = new Map(FX.runs_json_1816.runs.map(e => [e.name, e]));
+  const g = C.classify({ name: 'b0-g8' }, E.get('b0-g8'), REG), p = C.classify({ name: 'b0-p' }, E.get('b0-p'), REG);
+  assert.deepEqual([g.role, g.gen8, g.opponent], ['ben', true, 'ben64']);
+  assert.deepEqual([p.role, p.gen8, p.net, p.rung, p.sign], ['ben', false, 'v2', 'pure', 1]);
+  const rows = FX.g0_stu0_rows.slice(0, 20).map((r, i) => ({ ...r, index: i, family: 'f' + i }));
+  const mk = (name, cls, d) => ({ key: 'azure3/' + name, box: 'azure3', name, pair: E.get(name).pair, seed: 131, first: 0, deals: 256, started: 1, status: 'complete', cls,
+    red: C.reduceRun(rows.map(r => ({ ...r, common: r.common + d }))) });
+  const lad = { ...mk('l0-p', C.classify({ name: 'l0-p' }, E.get('l0-p'), REG), -2) };
+  const M = C.buildModel(REG, [mk('b0-g8', g, 0), mk('b0-p', p, 1), lad], {}, FX.runs_json_1816);
+  const row = M.ben.find(b => b.key === 'v2|pure');
+  close(row.minus_gen8.mean, 1); assert.equal(row.h2h.n, 20);
+  close(row.h2h.mean, C.stats(rows.map(r => r.common - 2)).mean);
+  assert.equal(M.ben[0].key, 'gen8');
+});
+
+test('shelved runs: flagged, and their unplayed passes do not widen the ladder', () => {
+  const E = new Map(FX.runs_json_1816.runs.map(e => [e.name, e]));
+  assert.equal(C.classify({ name: 'l0-r3' }, E.get('l0-r3'), REG).shelved, true);
+  assert.equal(E.get('l0-n').deals, 200, 'the run list already gives the deals that will be played');
+  const cls = C.classify({ name: 'l0-r3' }, E.get('l0-r3'), REG);
+  const M = C.buildModel(REG, [{ key: 'a/l0-r3', box: 'azure3', name: 'l0-r3', pair: E.get('l0-r3').pair, seed: 131, first: 0, deals: 200, cls, status: 'queued', red: null }], {}, FX.runs_json_1816);
+  assert.equal(M.ladder['v2|r3'], undefined);
+});
+
+test('round change: against the latest earlier round that shares deals at the rung', () => {
+  const E = new Map(FX.runs_json_1816.runs.map(e => [e.name, e])), runs = [];
+  const add = (name, k, d) => { const e = E.get(name), cls = C.classify({ name }, e, REG);
+    runs.push({ key: name, box: e.box, name, pair: e.pair, seed: 131, first: e.first, deals: e.deals, started: 1, status: 'complete', cls,
+      red: C.reduceRun(FX.g0_stu0_rows.map((r, i) => ({ ...r, index: k + i, family: 'f' + (k + i), common: r.common + d }))) }); };
+  add('l0-p', 0, 0); add('l0b-p', 500, 0); add('l1-p', 0, 0.5); add('l2b-p', 500, 1);
+  const M = C.buildModel(REG, runs, {}, FX.runs_json_1816);
+  const r1 = M.rounds.find(r => r.round === 1), r2 = M.rounds.find(r => r.round === 2);
+  close(r1.change.pure.mean, 0.5); assert.equal(r1.change_vs.pure, 'Stu 0');
+  close(r2.change.pure.mean, 1); assert.equal(r2.change_vs.pure, 'Stu 0', 'round 1 never played deals 500 on');
+});
+
+test('phase scores on the round\'s own bot\'s rows, now and before', () => {
+  const m = JSON.parse(JSON.stringify(FX.metrics_v2));
+  m.validation.by_bot = { stup0: { n: 6219, nll: 0.99 } };
+  m.validation.by_bot_phase = { stup0: { lead: { nll: 2.07, regret: 0.067 }, 'tricks 1-4': { nll: 1.07, regret: 0.063 } } };
+  const before = { validation: { all: { n: 1, nll: 1 }, by_bot: { stup0: { n: 6219, nll: 1.06 } }, by_bot_phase: { stup0: { lead: { nll: 2.21, regret: 0.072 } } } } };
+  const out = C.netMetrics(m, {}, { stu1: before }, 'stup0');
+  assert.equal(out.focus_phase.lead.regret, 0.067); assert.equal(out.same_rows.stu1.focus_phase.lead.regret, 0.072);
+});
+
+test('leverage: each loop net against the latest earlier net that played the same deals', () => {
+  const E = new Map(FX.runs_json_1816.runs.map(e => [e.name, e])), runs = [];
+  const add = (name, k, d) => { const e = E.get(name), cls = C.classify({ name }, e, REG);
+    runs.push({ key: name, box: e.box, name, pair: e.pair, seed: 131, first: e.first, deals: e.deals, started: 1, status: 'complete', cls,
+      red: C.reduceRun(FX.g0_stu0_rows.map((r, i) => ({ ...r, index: k + i, family: 'f' + (k + i), common: r.common + d }))) }); };
+  add('l0-p', 0, 0); add('l0b-p', 500, 0); add('l1-p', 0, 0.5); add('l2b-p', 500, -0.25);
+  const M = C.buildModel(REG, runs, {}, FX.runs_json_1816);
+  const s2 = M.leverage.find(l => l.net === 'stu2'), s1 = M.leverage.find(l => l.net === 'stu1');
+  assert.equal(s2.previous, 'stu1'); assert.equal(s2.rungs.pure.vs, 'v2'); close(s2.rungs.pure.d.mean, -0.25);
+  assert.equal(s1.rungs.pure.vs, 'v2'); close(s1.rungs.pure.d.mean, 0.5);
+  assert.ok(!M.leverage.some(l => l.net === 'stu2s'), 'variants are not steps of the loop');
 });

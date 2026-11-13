@@ -72,18 +72,26 @@ function main() {
       meta[m[1]] = { name: m[1], box: b.box, pair, seed: man.seed ?? null, first: man.first ?? 0, deals: man.deals ?? null,
         sources: man.source_commit ? [man.source_commit.slice(0, 7)] : [], status: b.frozen ? 'complete' : 'unknown', started: null };
     }
-    // Runs the list names that have not started yet are shown as queued.
-    for (const e of runsList.runs.filter(e => e.box === b.box && !meta[e.name]))
-      meta[e.name] = { name: e.name, box: b.box, pair: e.pair, seed: e.seed, first: e.first, deals: e.deals, sources: [], status: 'queued', started: null };
+    // Runs the list names with no runs.log line: sharded runs (their folders hold the rows), and runs not started yet,
+    // shown as queued unless shelved (they will not be played).
+    for (const e of runsList.runs.filter(e => e.box === b.box && !meta[e.name])) {
+      const sharded = Array.isArray(e.folders) && e.folders.length;
+      if (e.shelved && !sharded && !files.has(e.name + '/results.jsonl')) continue;
+      meta[e.name] = { name: e.name, box: b.box, pair: e.pair, seed: e.seed, first: e.first, deals: e.deals, sources: [],
+        status: sharded ? 'complete' : 'queued', started: null, folders: sharded ? e.folders : null };
+    }
     for (const r of Object.values(meta)) {
       const entry = entries.get(`${b.box}/${r.name}`) || null;
       const cls = core.classify(r, entry, registry, ids);
       if (cls.role === 'excluded') continue;
       const dir = r.name + '/';
       let red = null, bad = 0;
-      if (files.has(dir + 'results.jsonl')) {
-        const parsed = core.parseResults(show(b.branch, dir + 'results.jsonl'));
+      const sources = r.folders ? r.folders.map(f => f + '/results.jsonl') : [dir + 'results.jsonl'];
+      const texts = sources.filter(f => files.has(f)).map(f => show(b.branch, f));
+      if (texts.length) {
+        const parsed = core.parseResults(texts.join('\n'));
         bad = parsed.bad; red = core.reduceRun(parsed.rows, { sign: cls.sign || 1, keepBoards: cls.role !== 'collection' });
+        if (r.folders && Number.isFinite(r.deals) && red.rows < r.deals) r.status = 'partial';
       }
       const summary = files.has(dir + 'summary.json') ? JSON.parse(show(b.branch, dir + 'summary.json')) : null;
       const episodes = files.has(dir + 'EPISODES.txt') ? parseInt(show(b.branch, dir + 'EPISODES.txt'), 10) || null : null;

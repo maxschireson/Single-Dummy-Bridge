@@ -2,8 +2,8 @@
 
 Live page: <https://maxschireson.github.io/Single-Dummy-Bridge/stu/> (deployed from this folder to `gh-pages:stu/`).
 
-**Status: work in progress (13 November 2026).** Round 0 is collecting with no board count waited for; the ladder is on
-its first pass (200 deals a rung, then 500); round 1's net is training on azure5.
+**Status: work in progress (13 November 2026).** Three boxes collect pure Stu's self-play overnight; rounds 1 and 2 are
+scored; round 3 trains at about 07:00 UTC on 14 November.
 
 Stu is the rollout loop's bot (`training/rollout-loop-20261113/` on `research/rollout-loop-20261113`): each round's net
 is trained on the previous Stu's games, and the next Stu plays with that net inside its rollouts. The arena page compares
@@ -15,12 +15,14 @@ into the numbers.
 
 | Section | What | Source |
 | --- | --- | --- |
+| Now running | Per box (azure3, azure5, azure6): the jobs in hand (side by side when started together), done, rate, time left for matches; the collection's tables by box and in all | `runs.log` (a pause line stops a box's collection), `<run>.log` progress lines |
 | Round by round | The collection (rate, boards by the bot that played them), and each round's own net alone, inside Stu's own stages and inside pure Stu (the main line from 11:25 UTC) against Gen 8 card play on every seed-131 deal played (0 to 1,999), with the change from the previous round paired by deal; the net's held-out log-loss (Stu's own rows from round 1); the decision mix and how often rollouts changed the net's card or lead | runs `collection`, `gate`, `ladder` (`registry.round_rungs`) |
 | The ladder | Every rung (where rollouts take over) by net, against Gen 8 card play on the deals its ladder runs plan (0 to 499, or 0 to 999 for Stu's own stages and pure Stu with v2); each rung minus its reference rung (`ref`: Stu's own stages, or pure Stu for the two lead variants), and each net minus the one before it, paired by deal | runs `ladder` |
 | The fusion ledger | Per bot (net and rung) and for Gen 8 card play pooled: declaring cards that gave up a held guarantee, defending cards that handed one over, by contract class | `ledger/ledger.json` on azure3's transfer branch (`fusion_ledger.py`) |
 | Leverage | For consecutive nets: the change in held-out log-loss and regret on the same rows, beside the change in IMPs at each rung. The `net` rung (the net alone, no search, no rollouts) is the unamplified measurement | trainer `metrics.json` (`compared`), ladder |
 | The nets | Held-out scores, the earlier nets on the same rows, training curves | trainer `metrics.json` |
 | Collections | Per run: boards, rate, failures, CPU, decision mix, the self-play IMPs check, a stall flag | runs `collection`, `<run>.log` |
+| Against BEN (64) | Each bot against BEN on seed 131 deals 0 to 255 (card play only), minus Gen 8 card play's result against BEN by deal, beside the bot's own result against Gen 8 on those deals | runs `ben` (eight `folders` each, one `results.jsonl` a folder) |
 | The leverage control | The 2 by 2 of the round README, and its split into "inside net matches the opponent" and "better net inside" | runs `control`, else the sandbox's 300 deals |
 | Health | Each box's heartbeat age, load, memory, disk; when its rows were last published | `box/<box>/status:heartbeat.json`, GitHub commits API |
 
@@ -50,8 +52,11 @@ families both cells played.
 
 ## Adding a round
 
-1. In `registry.json`: add the round (`round`, `label`, `net`, `cut`) and its net (`key` as `runs.json` names it,
-   `metrics`, `compare`). The page colours three nets with a validated palette; past three, drop the oldest from `nets`.
+1. In `registry.json`: add the round (`round`, `label`, `net`, `trained_on`, `main_rung`; `pending` until its net exists)
+   and its net (`key` as `runs.json` names it, `metrics`, `before` and `focus_bot` where the trainer wrote them,
+   `compare`). Colour: `slot` 1 to 3, each used once (validated against the page's surface with every pair
+   distinguishable); give a new net the slot of the oldest loop net and set that one to `"ref"` (a grey ring).
+   A variant of a round's net (`variant: true`) is shown with the nets but is not a step of the loop.
 2. The loop session adds the round's runs to its job files and `runs.json`; nothing else is needed here.
 3. `bash web/stu/publish.sh` rebuilds the snapshot and pushes `gh-pages:stu/`.
 
@@ -73,5 +78,8 @@ families both cells played.
 - Net scores compare across nets only on shared rows (the `compare` keys); the trainer reports no interval for them.
 - Boards an hour is each run's own average since it started (its log's progress line), not the last hour's rate.
 - The stall flag needs the page open, or reopened in the same browser, across 20 minutes.
+- No four colours from the palette pass the all-pairs check on this surface, so at most three nets are coloured.
+- A run counts as running when its last `runs.log` line is a start within 90 s of the box's latest start, with no
+  pause line after it; jobs started side by side by other means would show as not running.
 - "Rollouts changed the card" follows `scripts/x8_match.py`: rollout decisions whose card is not the table net's first
   choice, over rollout decisions.

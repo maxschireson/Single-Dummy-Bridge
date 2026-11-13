@@ -1,7 +1,7 @@
 {
   "schema": "stu-registry-v2",
   "title": "Stu: the rollout loop, generation by generation",
-  "updated": "2026-11-13T13:10Z",
+  "updated": "2026-11-13T18:45Z",
   "runs_list": {
     "branch": "research/rollout-loop-20261113",
     "path": "training/rollout-loop-20261113/runs.json"
@@ -20,6 +20,12 @@
       "box": "azure5",
       "branch": "transfer/rollout-loop-azure5-20261113",
       "status": "box/azure5/status"
+    },
+    {
+      "box": "azure6",
+      "branch": "transfer/rollout-loop-azure6-20261113",
+      "status": "box/azure6/status",
+      "note": "borrowed: the table session may stop it at once"
     },
     {
       "box": "sandbox",
@@ -41,7 +47,13 @@
     {
       "key": "net",
       "label": "Net alone",
-      "text": "The net alone: its first card at every trick; no search, no rollouts, no claims, no mixing (bots stu0-n, stu0v1-n; a net that takes names is told both sides are 8s-32)"
+      "text": "The net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"
+    },
+    {
+      "key": "net-s",
+      "label": "Net alone, trained longer",
+      "ref": "net",
+      "text": "The net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards; round 2: train-r2s, epoch 5)"
     },
     {
       "key": "stu",
@@ -51,17 +63,17 @@
     {
       "key": "b50",
       "label": "Blend 0.5",
-      "text": "Stu with the blend at tricks 3 to 6 at trust 0.5"
+      "text": "Stu with the blend at tricks 3 to 6 at trust 0.5 (shelved at 200 deals)"
     },
     {
       "key": "r6",
       "label": "Rollouts from 6",
-      "text": "Stu with rollouts alone from trick 6"
+      "text": "Stu with rollouts alone from trick 6 (shelved at 200 deals)"
     },
     {
       "key": "r3",
       "label": "Rollouts from 3",
-      "text": "Stu with rollouts alone from trick 3"
+      "text": "Stu with rollouts alone from trick 3 (shelved at 200 deals)"
     },
     {
       "key": "pure",
@@ -79,6 +91,18 @@
       "label": "Pure, rolled-out lead",
       "ref": "pure",
       "text": "Pure Stu with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on. The collection's bot from 12:43 UTC (spr0)"
+    },
+    {
+      "key": "pure-t",
+      "label": "Pure, net at the table",
+      "ref": "pure",
+      "text": "Pure Stu with the rollout net at the table as well (its lead, first choices and reading)"
+    },
+    {
+      "key": "pure-v",
+      "label": "Pure, value-head seats",
+      "ref": "pure",
+      "text": "Pure Stu, the rollouts' simulated seats playing by the net's value head (seat blend)"
     }
   ],
   "nets": [
@@ -92,7 +116,8 @@
       },
       "compare": {
         "v4.1": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz"
-      }
+      },
+      "slot": "ref"
     },
     {
       "key": "v2",
@@ -105,7 +130,8 @@
       "compare": {
         "v1": "/home/bridgebots/work/plan/rnet1/ft/policy.npz",
         "v4.1": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz"
-      }
+      },
+      "slot": 1
     },
     {
       "key": "stu1",
@@ -126,7 +152,42 @@
         }
       },
       "focus_bot": "stu0",
-      "note": "Held-out rows: 250 later boards of Stu's (bot stu0) joined to freshB.npz (the other bots). v2 on the same rows from metrics_before.json (nothing trained)."
+      "note": "Held-out rows: 250 later boards of Stu's (bot stu0) joined to freshB.npz (the other bots). v2 on the same rows from metrics_before.json (nothing trained).",
+      "slot": 2
+    },
+    {
+      "key": "stu2",
+      "label": "Stu 2's net",
+      "slot": 3,
+      "trained": "round 1's net trained on 1,814 tables of pure Stu's self-play (sp0, spr0; cut 15:48 UTC), pure Stu's rows named stup0, with as many replay rows; rate 1e-4, epoch 1 of 4",
+      "metrics": {
+        "branch": "transfer/rollout-loop-azure5-20261113",
+        "path": "train-r2/metrics.json"
+      },
+      "before": {
+        "stu1": {
+          "branch": "transfer/rollout-loop-azure5-20261113",
+          "path": "train-r2/metrics_before.json"
+        }
+      },
+      "compare": {
+        "v4.1": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
+        "v1": "models/cardplay/rollout-net-v1-20261113/policy_ft.npz"
+      },
+      "focus_bot": "stup0"
+    },
+    {
+      "key": "stu2s",
+      "label": "Stu 2's net, trained longer",
+      "slot": "ref",
+      "trained": "the same set as Stu 2's net, selected on pure Stu's held-out cards (--select stup0 --forget 0.02), epoch 5 of 6; a variant, not the round's net (its rung: net-s)",
+      "metrics": {
+        "branch": "transfer/rollout-loop-azure5-20261113",
+        "path": "train-r2s/metrics.json"
+      },
+      "compare": {},
+      "focus_bot": "stup0",
+      "variant": true
     }
   ],
   "rounds": [
@@ -137,7 +198,8 @@
       "cut": null,
       "started": "2026-11-13T08:43Z",
       "note": "x8's 8Z with rollout net v2 inside; the table net (the candidates' prior) is policy v4.1. Pure Stu is the main line from 11:25 UTC.",
-      "main_rung": "pure"
+      "main_rung": "pure",
+      "trained_on": "every Gen 6-8 arena episode (rollout net v2)"
     },
     {
       "round": 1,
@@ -145,7 +207,27 @@
       "net": "stu1",
       "cut": null,
       "note": "Round 1's net: v2 with Stu's two bot vectors trained on 759 of Stu 0's boards; every other weight is v2's (train-r1/README.md).",
-      "main_rung": "pure"
+      "main_rung": "pure",
+      "trained_on": "1,009 boards of Stu-as-is (cut 10:29 UTC); only Stu's two bot vectors trained"
+    },
+    {
+      "round": 2,
+      "label": "Stu 2",
+      "net": "stu2",
+      "cut": null,
+      "main_rung": "pure",
+      "trained_on": "1,814 tables of pure Stu (sp0, spr0; cut 15:48 UTC), from round 1's net",
+      "note": "Round 2's net in pure Stu changed nothing measurable in play; alone it is about +0.2 over v2 (the loop session's 17:22 and 17:57 entries). The collection stays pure Stu with v2."
+    },
+    {
+      "round": 3,
+      "label": "Stu 3",
+      "net": "stu3",
+      "cut": null,
+      "main_rung": "pure",
+      "trained_on": "the overnight collection on azure3, azure5 and azure6 (about 2,300 tables an hour); trains on azure5 at about 07:00 UTC on 14 November",
+      "note": "Not trained yet.",
+      "pending": true
     }
   ],
   "control": {
@@ -170,12 +252,14 @@
     "r7x-v0": "Rollouts on v0 (table net v4.1)",
     "r7f-v4": "Rollout bot wholly on v4",
     "r3-v41": "Rollouts from trick 3 on v4.1",
-    "8z-ft1": "8Z with rollout net v1"
+    "8z-ft1": "8Z with rollout net v1",
+    "ben64": "BEN (64)",
+    "ben": "BEN"
   },
   "cautions": [
     "Seed 131 is the gate's and the ladder's and is never trained on. Seed 9001 is round 0's training seed: a run on a training seed says nothing about strength on fresh deals once a net has been trained on it.",
     "New Stu against old Stu is not the gate. A net trained on a bot's games predicts that bot; in the control the inside net matching the opponent was worth +1.12 ± 0.16 IMPs a board by itself. The gate is the outside opponent.",
-    "Everything here is against one outside opponent, Gen 8 card play. Reference, same opponent and seed: x8's 8Z (the rung Stu with net v1) −0.38 ± 0.14 over 541 boards, with feature forks on.",
+    "Two outside opponents: Gen 8 card play (every rung, seed 131) and BEN (64) (four bots, deals 0 to 255, card play only). Reference, same opponent and seed: x8's 8Z (the rung Stu with net v1) −0.38 ± 0.14 over 541 boards, with feature forks on.",
     "Self-play IMPs are a check (one bot against itself), not strength. Data runs (a ladder bot against Stu on training deals) flatter Stu: a rollout bot is the opponent Stu's net models best.",
     "s0 and r0 (round 0's first collection, Stu's own stages) played most boards identically in both rooms (two ids of one bot shared the room seeds): 113 of 119 boards of s0 card for card. Their distinct tables are about half their boards. From 12:37 UTC the collection plays one table a board."
   ],
