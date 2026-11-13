@@ -10,3 +10,5 @@
 2026-11-13T20:51:05Z start sp0e stu0-pa~stu0-pb seed 9001 first 220000 deals 20000 workers 6 --episodes --one-room (source 57eb87c, nets bf16)
 2026-11-13T21:17:13Z end sp0e: exit 1
 2026-11-13T21:17:13Z job failed: sp0e stu0-pa~stu0-pb 9001 220000 20000 6 --episodes --one-room
+2026-11-13T21:31:03Z start sp0e stu0-pa~stu0-pb seed 9001 first 220000 deals 20000 workers 6 --episodes --one-room (source 474ed8b, nets bf16, --recycle 30)
+2026-11-13T21:31:03Z start spr0e stu0-pra~stu0-prb seed 9001 first 240000 deals 20000 workers 2 --episodes --one-room (source 474ed8b, nets bf16, --recycle 30)

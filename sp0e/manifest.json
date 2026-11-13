@@ -7,6 +7,22 @@
   "stu0-pb"
  ],
  "bots": {
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+  },
   "6-32": {
    "id": "6-32",
    "samples": 32,
@@ -179,7 +195,13 @@
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
-     "stu2-pv": 1.0
+     "stu2-pv": 1.0,
+     "stu3-p": 1.0,
+     "stu3-pr": 1.0,
+     "stu3-pa": 1.0,
+     "stu3-pb": 1.0,
+     "stu3-pra": 1.0,
+     "stu3-prb": 1.0
     }
    },
    "x8": {
@@ -247,7 +269,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ],
      "guard": true,
      "full": true
@@ -299,7 +327,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ]
     },
     "names": {
@@ -310,7 +344,7 @@
     }
    },
    "table_opponent": "stu0-pb",
-   "identity": "2d6a7aaed9a65816da08092abe66ad4fb84da122b5e29a4b1cf5b625e6be02a1"
+   "identity": "dcad121f5d56330e1c11f36521d3b319cacc95447b623a4f18e173d2036571a8"
   },
   "stu0-pb": {
    "id": "stu0-pb",
@@ -433,7 +467,13 @@
      "stu2-p": 1.0,
      "stu2-pr": 1.0,
      "stu2-pt": 1.0,
-     "stu2-pv": 1.0
+     "stu2-pv": 1.0,
+     "stu3-p": 1.0,
+     "stu3-pr": 1.0,
+     "stu3-pa": 1.0,
+     "stu3-pb": 1.0,
+     "stu3-pra": 1.0,
+     "stu3-prb": 1.0
     }
    },
    "x8": {
@@ -501,7 +541,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ],
      "guard": true,
      "full": true
@@ -553,7 +599,13 @@
       "stu2-p",
       "stu2-pr",
       "stu2-pt",
-      "stu2-pv"
+      "stu2-pv",
+      "stu3-p",
+      "stu3-pa",
+      "stu3-pb",
+      "stu3-pr",
+      "stu3-pra",
+      "stu3-prb"
      ]
     },
     "names": {
@@ -564,23 +616,7 @@
     }
    },
    "table_opponent": "stu0-pa",
-   "identity": "13aed2a0153fa6a7f6dbac740a8326ee97252c547b9086dd5fa5053ee2520397"
-  },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
+   "identity": "48f1be70107c54c25aacba4daea3715d7b1cc4dbef0d16cd5be2ee351743c469"
   }
  },
  "pair_schedule": [
@@ -608,9 +644,9 @@
  },
  "target": 1073741824,
  "one_room": true,
- "identity": "5f4de47dd58fa27e83903e0d5923a6d9d1ccbc8d20458fa634f0b3359f2a5b2e",
+ "identity": "35d651628b27fc19b520b599fbe5c696b2c5e47b5d7bbd23e27c312b1564dd36",
  "source": "/home/Bridgebots/work/loop/capsule/recovery",
  "first": 220000,
  "deals": 20000,
- "source_commit": "57eb87cb36364263f37cc3baa67be8711229faf3"
+ "source_commit": "474ed8bbfaa089d4eb9e08b4cb560bddffa58c01"
 }

@@ -18004,3 +18004,4 @@ Traceback (most recent call last):
   File "/usr/lib/python3.12/concurrent/futures/process.py", line 813, in submit
     raise BrokenProcessPool(self._broken)
 concurrent.futures.process.BrokenProcessPool: A child process terminated abruptly, the process pool is not usable anymore
+stu0-pa v stu0-pb: 17952 boards to play (2048 done), 6 workers
