@@ -102,10 +102,11 @@ exists.
 
 `DESIGN.md` section 8 leaves "we beat it if partner holds X" as a different game (two hands that cannot see each
 other). Partner's signals are how a defender learns whether partner holds X, so this is Gen 9's (sam's) question.
-First step, a bound and no new solver: on recorded defender decisions, split 8X's hand-over odds by partner's
-holding of each top or middle run (the cells' classes) and count the positions where some card leaves declarer
-without a guaranteed line in the cells where partner holds the run but not otherwise. That count is what perfect
-signalling of one card could unlock; E9-6's numbers say how much of it a declared scheme delivers.
+The bound (G9-S9, 13 Nov, `reports/gen9-defender-bound-2026-11-13`): at the first defender decision with 8 and with
+7 cards (4,577 recorded positions, 48 uniform layouts each), the defender's card changes whether declarer gets a
+guaranteed line in only 8.2% of positions. Knowing the whole layout would lower the hand-over probability by 0.004
+a position (0.051 where the choice matters); knowing one partner honour gets 77% of that, and lowers it by 0.10 or
+more in 0.7% of positions. So this piece gets low weight: no defender-side conditional-line solver now.
 
 ### 2.5 The arena for SiD's self-play loop
 
@@ -145,7 +146,7 @@ piece in a lead's own session (no sub-agents, Max, 07:48 UTC), all in the review
 | --- | --- | --- |
 | E9-24: calibration of floors by weight source | g9 | done 08:20 |
 | `X9`: the Gen 9 shell on the 8X engine, inert by default, with tests | g9 | done 08:30 (`feature/gen9-x9`, ed2806f) |
-| Defenders' conditional lines: the bound of 2.4 | sam, or g9 if sam is away | evening |
+| Defenders' conditional lines: the bound of 2.4 | g9 (sam away) | done 09:05 |
 | The arena interface for SiD's rounds (2.5) | dave, g9 | posted on the board at 07:57 |
 
 Not Gen 9's: `sure.cpp` and `cells.cpp` (solver session), conditional claims inside the 8X engine (`DESIGN.md`
@@ -160,7 +161,7 @@ section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefe
 | 2 | `X9` with tests | the 8X engine at its current commit | Done 08:30 UTC: `feature/gen9-x9` at ed2806f |
 | 3 | Conditional claims in 8X (`DESIGN.md` 6) | owner agreed with x8 | x8's call |
 | 4 | `X9` with conditional claims against the 8X bot it wraps, forks on, on a Gen 9 box | 2, 3 | After 3 |
-| 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Today, evening |
+| 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Done 09:05 UTC: little to unlock |
 | 6 | SiD rounds in the arena (2.5) | SPEC steps 1 to 7 by their owners | When the first round exists |
 
 ## 6. Unknown
@@ -169,7 +170,8 @@ section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefe
 - The cost of SiD at 8 cards (mean 117 ms, 99th percentile 1.1 s, one thread, no table) inside a Gen 9 bot that also
   runs the profile mixture; measured in step 4.
 - Whether conditional claims gain in play at all: nothing has been played.
-- Defenders' conditional lines beyond the bound.
+- Defenders' own guaranteed defeats (a solver for two hands that cannot see each other), and earlier decisions than
+  the bound covered.
 
 ## Tasks
 
