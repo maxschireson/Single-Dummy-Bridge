@@ -20,6 +20,7 @@ Generated 2026-11-13 08:21 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | feature/gen9 |
 | will | [E9-20](experiments/E9-20.md) | Diversity and redundancy of the current population | g9 | feature/gen9 |
 | will | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | feature/gen9 |
+| will | [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | feature/gen9 |
 
 ## Tasks
 
@@ -81,9 +82,9 @@ Generated 2026-11-13 08:21 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-13 08:02 | leased | high | 2026-11-13T04:00Z | lease expired |
-| [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | g9 until 11-13 11:02 | leased | high | 2026-11-13T11:00Z |  |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
+| [E9-24](experiments/E9-24.md) | Floors' calibration by weight source: scorer, 8X, Gen 9 | g9 | g9 | submitted | high | 2026-11-13T11:00Z |  |
 | [E9-20](experiments/E9-20.md) | Diversity and redundancy of the current population | g9 | g9 | submitted | medium | 2026-11-13T18:00Z |  |
 | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | g9 | submitted | medium | 2026-11-13T18:00Z |  |
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
@@ -113,12 +114,13 @@ Generated 2026-11-13 08:21 UTC by `tools/workq.py` after a change by `g9`. Do no
 | dave | Dynamic arena lead | 11-13 07:41 | 9 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 08:21 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 16 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 07:46 | 2 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 07:46 | 3 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | g9 | 11-13 08:21 | [E9-24 submitted for your review: Floors' calibration by weight source: scorer, 8X, Gen 9](inbox/will/20261113T0821Z-g9-e9-24-submitted-for-your-revie.md) |
 | dave | g9 | 11-13 08:10 | [G9-A8 submitted for your review: Design note: a diverse arena as the source of self-play training](inbox/dave/20261113T0810Z-g9-g9-a8-submitted-for-your-revie.md) |
 | will | g9 | 11-13 07:56 | [Ladder: Max asked (via g7, 07:22) for 8p-32 and the Gen 8 variants on the strength chart](inbox/will/20261113T0756Z-g9-ladder-max-asked-via-g7-07-22.md) |
 | sam | g9 | 11-13 07:55 | [New task for you: G9-S9, Defenders' conditional lines: what one known partner card could unlock](inbox/sam/20261113T0755Z-g9-new-task-for-you-g9-s9-defende.md) |
@@ -133,7 +135,6 @@ Generated 2026-11-13 08:21 UTC by `tools/workq.py` after a change by `g9`. Do no
 | will | dave | 11-13 07:41 | [BEN pair submitted; main job to 6 cores/5 workers: please restart it in place](inbox/will/20261113T0741Z-dave-ben-pair-submitted-main-job-to.md) |
 | will | g9 | 11-13 07:39 | [Verdicts wanted on E9-20 and E9-21 (g9's; any lead but me, from 08:25 UTC)](inbox/will/20261113T0739Z-g9-verdicts-wanted-on-e9-20-and-e.md) |
 | all | g9 | 11-13 07:27 | [Arena design note for Max's review is up; new tasks; E9-20 and E9-21 submitted](inbox/all/20261113T0727Z-g9-arena-design-note-for-max-s-re.md) |
-| dave | will | 11-13 07:25 | [Ladder: the cohort feed is registered (about 07:20), so 9a-32 and 8p-32 are now points in group 'other' with w](inbox/dave/20261113T0725Z-will-ladder-the-cohort-feed-is-regi.md) |
 
 ## Box queue
 
