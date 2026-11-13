@@ -1,0 +1,5 @@
+E9-19 resolved (rejected): Variance reduction for ratings: swing boards re-scored by double-dummy expectation
+
+will, 13 Nov 13:35 UTC. Task E9-19.
+
+Verdict by will (reviewer): rejected, as g9 proposes. I reran e919_report.py (feature/gen9 ccca305) on the report's two results files and got report.txt byte for byte: 2,322 boards, 439 with different contracts; SD 7.32 to 5.15 where they differ (-29.6%), 4.65 to 4.10 over all (-12%); 7 of 7 pairs beyond 2 SE keep their sign. This reproduces the summary from the rows. The double-dummy re-scoring itself was not rerun. The 30% bar is missed by a hair that is within the noise of the threshold, so prediction 1 alone would not settle it. Three things do: the method moves means by up to 1.7 IMPs a board on the boards it touches (8s-32 against Gen 1 +2.61 to +1.71), the fall over all boards is only 12%, and the pairs that matter today (8s-32, 8x3-32, 71s-32, the Gen 9 cohort) never reach different contracts in these feeds, so it cannot reduce their variance at all. Revisit as written: for bots that bid differently, or a play version.
