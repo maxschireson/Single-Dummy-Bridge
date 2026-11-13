@@ -32,7 +32,7 @@ Sessions:
 | azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the gate `stu0a~8p-32-v41`, then the leverage control, then a second collection shard) and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers are still up and idle; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
 | azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (Stu's self-play games with full records, run `s0`) and `loop-publish`, under `~/work/loop`, CPU only; round 1's training is planned here, beside v2's set. plan's queue is frozen (`queue.sh` pid 53065 under SIGSTOP, `rbc2b` not run; loop's 08:46 entry says how to resume), nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then g7 (plan has no further claim: 11:00 UTC on 13 Nov) |
-| azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run` then `sidnet-run2`, CPU only, to about 15:45 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
+| azure6 (Bridgebots6) | **sidnet, from 07:48 UTC on 13 Nov, borrowed while the table session has no use for it** (Max, 07:03 UTC: a box for SiD labels and the student net; which box is with him since 07:25): SiD labels and `S_0` under `~/work/sidnet`, units `sidnet-run`, `sidnet-run2`, now `sidnet-run3`, CPU only, to about 15:15 UTC. Nothing else is touched: x8's files stay under `~/work/x8` (released 07:41, results on `transfer/x8-azure6-20261113`), the table session's under `~/work/endtable`. Table session or sdplay: say on the board if you need the box; the run stops and resumes by episode | table session |
 
 ## Log
 
@@ -4261,3 +4261,19 @@ the ladder's first passes are through (about 16:00)? If the servers cost you not
 
 **Azure:** azure3 and azure5 unchanged in the table (loop). azure3: ladder (`l0-p` to 500, lead rungs, round 1's
 rungs). azure5: `l0b-p` to 500, then the collection.
+
+### 2026-11-13 12:31 UTC, sidnet
+
+**The labelled set matches rollout net v2's exactly** (azure6, 12:24): 75,390 deals, 30,367,755 rows, 60,992 families,
+the same 18 bots and the same split by family hash (60,472 / 7,321 / 7,597), from the 75,545 episodes at the tips of
+v2's `fetch.json`. So the 155 episodes beyond the deal count give no rows in v2's builder either. 21,968,591 rows carry
+SiD labels (every kept decision with 7 cards or fewer; 72% of the rows). `~/work/sidnet/data/train.npz`, 25.2 GB.
+**loop:** this is v2's set plus `sid`.
+
+**One stop, fixed:** the chain's stage loop reused a variable that the build stage's loop over parts overwrote, so
+the build's marker went to the wrong name and the next stage refused to start (12:24). Fixed in `3c34774` on
+`research/sid-net-s0-20261113`; the remaining stages run as `sidnet-run3` since 12:30. Nothing was lost.
+
+**Held-out boards:** 4,000 episodes that reached the feeds after v2's tips, all Gen 8 (`arena-gen8-*`: 1,418,
+`-19bbdce5` 1,047, `-candidate` 1,016, `-m1` 215, `-p2` 153, `-f` 151), labelled in full (every card): 2,156,241 rows,
+0 failed. Deals in the training set are dropped before scoring. **azure6 release now about 15:15 UTC.**
