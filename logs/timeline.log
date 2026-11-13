@@ -1,0 +1,31 @@
+2026-11-13T07:52:12Z start; source aa18728; stages: fetch label fetchB labelB
+2026-11-13T07:54:32Z fetch: 75545 episodes; {"finished_utc": "2026-11-13T07:54:32Z", "seconds": 140, "distinct_blobs": 75545, "new_blobs": 75545, "new_bytes": 13180784628}
+2026-11-13T11:05:59Z label: {"episodes": 75545, "rows": 21968591, "failed": 0, "seconds": 11485}
+2026-11-13T11:06:20Z fetchB: 4000 episodes; {"finished_utc": "2026-11-13T11:06:20Z", "seconds": 20, "new_blobs": 4000, "new_bytes": 1238419619}
+2026-11-13T11:29:27Z labelB: {"episodes": 4000, "rows": 2156241, "failed": 0, "seconds": 1387}
+2026-11-13T11:29:27Z end of stages: fetch label fetchB labelB
+2026-11-13T11:29:36Z start; source 2012e7a; stages: build buildB train e1 push
+2026-11-13T11:32:56Z built s00: {"episodes": 4721, "deals": 4711, "unique_families": 4626, "examples": 1892642, "train": 1503289, "validation": 193892, "test": 195461, "labelled": 1368993}
+2026-11-13T11:36:08Z built s01: {"episodes": 4722, "deals": 4712, "unique_families": 4618, "examples": 1887308, "train": 1496791, "validation": 193323, "test": 197194, "labelled": 1365607}
+2026-11-13T11:39:21Z built s02: {"episodes": 4721, "deals": 4711, "unique_families": 4636, "examples": 1895809, "train": 1512816, "validation": 197052, "test": 185941, "labelled": 1371546}
+2026-11-13T11:42:34Z built s03: {"episodes": 4722, "deals": 4712, "unique_families": 4645, "examples": 1909137, "train": 1526908, "validation": 178099, "test": 204130, "labelled": 1381249}
+2026-11-13T11:45:47Z built s04: {"episodes": 4721, "deals": 4718, "unique_families": 4648, "examples": 1861544, "train": 1483392, "validation": 183104, "test": 195048, "labelled": 1345578}
+2026-11-13T11:49:00Z built s05: {"episodes": 4722, "deals": 4709, "unique_families": 4619, "examples": 1918979, "train": 1524598, "validation": 203824, "test": 190557, "labelled": 1389591}
+2026-11-13T11:52:14Z built s06: {"episodes": 4721, "deals": 4711, "unique_families": 4635, "examples": 1892264, "train": 1534346, "validation": 170540, "test": 187378, "labelled": 1369137}
+2026-11-13T11:55:25Z built s07: {"episodes": 4722, "deals": 4712, "unique_families": 4653, "examples": 1891358, "train": 1540926, "validation": 172578, "test": 177854, "labelled": 1368443}
+2026-11-13T11:58:39Z built s08: {"episodes": 4722, "deals": 4716, "unique_families": 4640, "examples": 1905010, "train": 1539610, "validation": 172437, "test": 192963, "labelled": 1381488}
+2026-11-13T12:01:51Z built s09: {"episodes": 4721, "deals": 4714, "unique_families": 4646, "examples": 1888864, "train": 1523562, "validation": 178628, "test": 186674, "labelled": 1363467}
+2026-11-13T12:05:07Z built s10: {"episodes": 4722, "deals": 4711, "unique_families": 4639, "examples": 1916107, "train": 1524477, "validation": 182834, "test": 208796, "labelled": 1385317}
+2026-11-13T12:08:23Z built s11: {"episodes": 4721, "deals": 4705, "unique_families": 4641, "examples": 1911884, "train": 1545688, "validation": 168448, "test": 197748, "labelled": 1383094}
+2026-11-13T12:11:36Z built s12: {"episodes": 4722, "deals": 4714, "unique_families": 4639, "examples": 1919366, "train": 1547074, "validation": 179448, "test": 192844, "labelled": 1390823}
+2026-11-13T12:14:53Z built s13: {"episodes": 4721, "deals": 4712, "unique_families": 4636, "examples": 1920532, "train": 1528383, "validation": 201817, "test": 190332, "labelled": 1386230}
+2026-11-13T12:18:10Z built s14: {"episodes": 4722, "deals": 4709, "unique_families": 4631, "examples": 1880355, "train": 1520620, "validation": 177088, "test": 182647, "labelled": 1361238}
+2026-11-13T12:21:29Z built s15: {"episodes": 4722, "deals": 4713, "unique_families": 4627, "examples": 1876596, "train": 1501899, "validation": 191685, "test": 183012, "labelled": 1356790}
+2026-11-13T12:24:18Z set: {"parts": 16, "deals": 75390, "bots": ["1", "2", "3", "4b", "5-32", "5R192", "5R32", "5RZ192", "5RZ32", "6-256", "6-32", "71s-32", "7s-32", "8c-32", "8s-32", "ben", "ben32", "ben64"], "unique_families": 60992, "examples": 30367755, "deals_by_hash_split": [60472, 7321, 7597], "arrays": ["state", "order", "legal", "ctx", "auction", "shown", "gap", "owner", "meta", "deal", "sid"]}
+2026-11-13T12:24:21Z STOPPED: buildB needs labelB and build finished
+2026-11-13T12:29:58Z start; source 3c34774; stages: buildB train e1 push
+2026-11-13T12:33:58Z freshB: {"deals_in": 3997, "deals_kept": 2719, "dropped_as_seen": 1278, "examples": 2240497}
+2026-11-13T12:33:59Z freshB_val: {"deals": 600, "examples": 495688, "of_deals": 2719, "of_examples": 2240497}
+2026-11-13T12:34:00Z S_0 start from rollout_v2_w768_epoch5.npz (lr 2e-3, 5 epochs, width 768)
+2026-11-13T14:37:47Z S_0 done: {"done": "/home/bridgebots/work/sidnet/s0", "selected_epoch": 5, "validation": {"n": 495688, "searched": 395977, "nll": 0.553, "uniform_nll": 1.2756, "tie_nll": 0.781, "agree": 0.7678, "in_best": 0.9171, "regret": 0.0224, "regret_gap_head": 0.0206, "regret_random": 0.2062, "regret_lowest": 0.2229}, "parity": 9.1552734375e-05, "auction_use": {"real": {"nll": 0.553, "agree": 0.7678, "regret": 0.0224
+2026-11-13T14:41:52Z e1: E1: 1588530 labelled rows on 2719 held-out deals (816977 declaring, 771553 defending)

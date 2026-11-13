@@ -1,0 +1,27 @@
+{
+ "schema": "sid-labels-v1",
+ "cards": 7,
+ "targets": [
+  -1,
+  0,
+  1
+ ],
+ "w_src": "scorer",
+ "mass": 0.99,
+ "named": 0,
+ "full": false,
+ "solver": "experiments/sure_tricks/cells/cells.cpp",
+ "solver_flags": [
+  "--def",
+  "ends",
+  "--maxnodes",
+  "20000000"
+ ],
+ "solver_sha256": "38144413ef99ab3e9965d8cbb41a063cdcf495cf3eba19b82a98fb23791f3156",
+ "solver_source_sha256": "00a4d509dc3b58572f70894fa8ef54b6ad121839ee8b8fa2775cd1833b33bede",
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "must": "every run (declaring rows)",
+ "slots": 8,
+ "repo_commit": "aa187281edc380158bb28d0a3d9163d0444663fe",
+ "started_utc": "2026-11-13T07:54:32Z"
+}

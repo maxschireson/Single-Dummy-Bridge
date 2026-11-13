@@ -1,0 +1,144 @@
+{
+ "episodes": 75545,
+ "rows": 21968591,
+ "cost": {
+  "7 defender": {
+   "rows": 1240479,
+   "ms_a_row": 16.343,
+   "nodes_a_row": 25948.7
+  },
+  "7 declaring": {
+   "rows": 1315240,
+   "ms_a_row": 8.812,
+   "nodes_a_row": 37480.8
+  },
+  "6 defender": {
+   "rows": 1443790,
+   "ms_a_row": 9.032,
+   "nodes_a_row": 2670.4
+  },
+  "6 declaring": {
+   "rows": 1531348,
+   "ms_a_row": 1.437,
+   "nodes_a_row": 2258.5
+  },
+  "5 defender": {
+   "rows": 1660125,
+   "ms_a_row": 6.755,
+   "nodes_a_row": 428.6
+  },
+  "5 declaring": {
+   "rows": 1760171,
+   "ms_a_row": 1.1,
+   "nodes_a_row": 358.5
+  },
+  "4 defender": {
+   "rows": 1889430,
+   "ms_a_row": 5.067,
+   "nodes_a_row": 87.8
+  },
+  "4 declaring": {
+   "rows": 1998638,
+   "ms_a_row": 0.932,
+   "nodes_a_row": 79.5
+  },
+  "3 defender": {
+   "rows": 2104750,
+   "ms_a_row": 3.517,
+   "nodes_a_row": 21.0
+  },
+  "3 declaring": {
+   "rows": 2236916,
+   "ms_a_row": 0.774,
+   "nodes_a_row": 23.5
+  },
+  "2 defender": {
+   "rows": 2328479,
+   "ms_a_row": 2.053,
+   "nodes_a_row": 4.5
+  },
+  "2 declaring": {
+   "rows": 2459225,
+   "ms_a_row": 0.58,
+   "nodes_a_row": 7.7
+  }
+ },
+ "labels": {
+  "cert declaring -1": {
+   "one": 32524019,
+   "zero": 5646745,
+   "unasked": 2890281
+  },
+  "cert declaring +0": {
+   "one": 22870081,
+   "zero": 14454355,
+   "unasked": 3736609
+  },
+  "cert declaring +1": {
+   "one": 11819178,
+   "zero": 26300531,
+   "unasked": 2941336
+  },
+  "cert defender -1": {
+   "one": 31446243,
+   "zero": 4457001,
+   "unasked": 230042
+  },
+  "cert defender +0": {
+   "one": 24074401,
+   "zero": 11646147,
+   "unasked": 412738
+  },
+  "cert defender +1": {
+   "one": 13797184,
+   "zero": 21869747,
+   "unasked": 466355
+  },
+  "guar declaring -1": {
+   "one": 31452131,
+   "zero": 9608914,
+   "unasked": 0
+  },
+  "guar declaring +0": {
+   "one": 21498260,
+   "zero": 19562785,
+   "unasked": 0
+  },
+  "guar declaring +1": {
+   "one": 10800180,
+   "zero": 30260865,
+   "unasked": 0
+  },
+  "guar defender -1": {
+   "one": 30573636,
+   "zero": 5559650,
+   "unasked": 0
+  },
+  "guar defender +0": {
+   "one": 22886737,
+   "zero": 13246549,
+   "unasked": 0
+  },
+  "guar defender +1": {
+   "one": 12823235,
+   "zero": 23310051,
+   "unasked": 0
+  },
+  "single declaring -1": {
+   "one": 32582643,
+   "zero": 5588121,
+   "unasked": 2890281
+  },
+  "single declaring +0": {
+   "one": 22967938,
+   "zero": 14356498,
+   "unasked": 3736609
+  },
+  "single declaring +1": {
+   "one": 11900589,
+   "zero": 26219120,
+   "unasked": 2941336
+  }
+ },
+ "ms_a_row": 3.962
+}

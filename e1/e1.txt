@@ -1,0 +1,114 @@
+E1: 1588530 labelled rows on 2719 held-out deals (816977 declaring, 771553 defending)
+
+== /home/bridgebots/work/sidnet/s0/policy.npz
+head    role       cards target      entries  share 1  log-loss  base     Brier
+guar    declaring  all   one down    2993694    0.766    0.0964   0.5446  0.0288
+guar    declaring  all   contract    2993694    0.523    0.1009   0.6921  0.0297
+guar    declaring  all   overtrick   2993694    0.265    0.0683   0.5786  0.0198
+guar    declaring  7     one down     545000    0.666    0.1723   0.6368  0.0524
+guar    declaring  7     contract     545000    0.407    0.1627   0.6759  0.0491
+guar    declaring  7     overtrick    545000    0.184    0.1029   0.4774  0.0307
+guar    declaring  6     one down     566870    0.723    0.1370   0.5904  0.0413
+guar    declaring  6     contract     566870    0.470    0.1409   0.6914  0.0418
+guar    declaring  6     overtrick    566870    0.224    0.0957   0.5318  0.0282
+guar    declaring  5 or  one down    1881824    0.807    0.0622   0.4902  0.0181
+guar    declaring  5 or  contract    1881824    0.573    0.0710   0.6825  0.0204
+guar    declaring  5 or  overtrick   1881824    0.301    0.0500   0.6120  0.0142
+guar    defender   all   one down    2629634    0.842    0.1706   0.4356  0.0521
+guar    defender   all   contract    2629634    0.628    0.2489   0.6599  0.0795
+guar    defender   all   overtrick   2629634    0.353    0.2262   0.6492  0.0730
+guar    defender   7     one down     448098    0.785    0.2999   0.5199  0.0941
+guar    defender   7     contract     448098    0.544    0.4049   0.6892  0.1321
+guar    defender   7     overtrick    448098    0.284    0.3320   0.5965  0.1080
+guar    defender   6     one down     478744    0.823    0.2403   0.4669  0.0741
+guar    defender   6     contract     478744    0.598    0.3445   0.6737  0.1114
+guar    defender   6     overtrick    478744    0.326    0.3076   0.6314  0.1003
+guar    defender   5 or  one down    1702792    0.863    0.1169   0.3996  0.0349
+guar    defender   5 or  contract    1702792    0.659    0.1810   0.6419  0.0567
+guar    defender   5 or  overtrick   1702792    0.379    0.1754   0.6633  0.0560
+cert    declaring  all   one down    2993694    0.814    0.2262   0.4798  0.0448
+cert    declaring  all   contract    2993694    0.579    0.2652   0.6805  0.0613
+cert    declaring  all   overtrick   2993694    0.303    0.1876   0.6135  0.0479
+cert    declaring  7     one down     545000    0.783    0.2729   0.5229  0.0632
+cert    declaring  7     contract     545000    0.535    0.2962   0.6907  0.0794
+cert    declaring  7     overtrick    545000    0.264    0.2090   0.5771  0.0602
+cert    declaring  6     one down     566870    0.797    0.2780   0.5048  0.0567
+cert    declaring  6     contract     566870    0.554    0.3023   0.6873  0.0746
+cert    declaring  6     overtrick    566870    0.280    0.2046   0.5932  0.0562
+cert    declaring  5 or  one down    1881824    0.829    0.1970   0.4580  0.0359
+cert    declaring  5 or  contract    1881824    0.600    0.2451   0.6731  0.0520
+cert    declaring  5 or  overtrick   1881824    0.321    0.1763   0.6279  0.0418
+cert    defender   all   one down    2613033    0.873    0.1340   0.3815  0.0399
+cert    defender   all   contract    2600414    0.671    0.2239   0.6336  0.0708
+cert    defender   all   overtrick   2594176    0.386    0.2221   0.6671  0.0718
+cert    defender   7     one down     443734    0.859    0.2188   0.4067  0.0662
+cert    defender   7     contract     440258    0.647    0.3611   0.6493  0.1163
+cert    defender   7     overtrick    439132    0.360    0.3480   0.6536  0.1142
+cert    defender   6     one down     474442    0.870    0.1827   0.3862  0.0544
+cert    defender   6     contract     471419    0.664    0.3064   0.6383  0.0979
+cert    defender   6     overtrick    469991    0.377    0.3017   0.6625  0.0984
+cert    defender   5 or  one down    1694857    0.877    0.0981   0.3734  0.0289
+cert    defender   5 or  contract    1688737    0.679    0.1651   0.6277  0.0514
+cert    defender   5 or  overtrick   1685053    0.396    0.1671   0.6713  0.0533
+single  declaring  all   one down    2993694    0.817    0.2273   0.4755  0.0437
+single  declaring  all   contract    2993694    0.583    0.2631   0.6793  0.0608
+single  declaring  all   overtrick   2993694    0.306    0.1891   0.6160  0.0480
+single  declaring  7     one down     545000    0.791    0.2678   0.5128  0.0599
+single  declaring  7     contract     545000    0.545    0.2858   0.6891  0.0765
+single  declaring  7     overtrick    545000    0.271    0.2063   0.5845  0.0592
+single  declaring  6     one down     566870    0.802    0.2785   0.4981  0.0548
+single  declaring  6     contract     566870    0.559    0.2962   0.6861  0.0731
+single  declaring  6     overtrick    566870    0.285    0.2039   0.5979  0.0559
+single  declaring  5 or  one down    1881824    0.830    0.2002   0.4564  0.0357
+single  declaring  5 or  contract    1881824    0.601    0.2466   0.6726  0.0525
+single  declaring  5 or  overtrick   1881824    0.323    0.1797   0.6288  0.0423
+calibration, contract target: predicted band, entries, mean predicted, share 1
+  guar declaring: 0.0:1238253/0.01/0.01  0.1:77654/0.14/0.15  0.2:45746/0.25/0.24  0.3:35505/0.35/0.35  0.4:31635/0.45/0.45  0.5:30619/0.55/0.54  0.6:32915/0.65/0.64  0.7:41975/0.75/0.74  0.8:70154/0.86/0.85  0.9:1389238/0.99/0.99
+  guar defender: 0.0:584117/0.01/0.02  0.1:95193/0.15/0.20  0.2:84187/0.25/0.30  0.3:82638/0.35/0.39  0.4:84378/0.45/0.47  0.5:90811/0.55/0.56  0.6:103106/0.65/0.64  0.7:130656/0.75/0.73  0.8:192247/0.85/0.83  0.9:1182301/0.98/0.98
+  cert declaring: 0.0:939397/0.01/0.01  0.1:74480/0.15/0.15  0.2:50243/0.25/0.23  0.3:40349/0.35/0.30  0.4:37270/0.45/0.36  0.5:36964/0.55/0.42  0.6:39810/0.65/0.48  0.7:46798/0.75/0.54  0.8:63958/0.85/0.61  0.9:1664425/1.00/0.95
+  cert defender: 0.0:530471/0.01/0.01  0.1:66577/0.15/0.21  0.2:61553/0.25/0.32  0.3:62702/0.35/0.40  0.4:68492/0.45/0.48  0.5:77742/0.55/0.56  0.6:92481/0.65/0.64  0.7:122119/0.75/0.73  0.8:192493/0.85/0.83  0.9:1325784/0.98/0.98
+  single declaring: 0.0:934526/0.01/0.01  0.1:71787/0.15/0.15  0.2:48459/0.25/0.23  0.3:39357/0.35/0.30  0.4:35876/0.45/0.37  0.5:35992/0.55/0.42  0.6:38793/0.65/0.49  0.7:46340/0.75/0.55  0.8:65286/0.85/0.62  0.9:1677278/1.00/0.95
+declaring decisions: shortfall in exact floor from the best card (mean +- se by deal; share above 0.05), and on
+decisions whose two best cards differ by more than 0.05: share where the chooser names the best card
+target     cards  decisions  best floor | chooser: shortfall, >0.05 | ... || apart: decisions | chooser: best card named
+one down   all      816977  0.8719    | guar: 0.0037+-0.0002, 0.008 | cert: 0.0063+-0.0003, 0.012 | single: 0.0070+-0.0003, 0.012 | policy: 0.0039+-0.0002, 0.009 | played: 0.0018+-0.0001, 0.005 | random: 0.0480+-0.0010, 0.065 | || 109022 | guar: 0.942+-0.002 | cert: 0.917+-0.002 | single: 0.912+-0.003 | policy: 0.939+-0.002 | played: 0.962+-0.001 | random: 0.533+-0.002 |
+one down   7         99842  0.8586    | guar: 0.0084+-0.0005, 0.022 | cert: 0.0102+-0.0006, 0.024 | single: 0.0108+-0.0006, 0.025 | policy: 0.0077+-0.0004, 0.021 | played: 0.0042+-0.0002, 0.015 | random: 0.0719+-0.0016, 0.119 | || 21987 | guar: 0.911+-0.004 | cert: 0.901+-0.004 | single: 0.898+-0.004 | policy: 0.914+-0.004 | played: 0.942+-0.003 | random: 0.516+-0.004 |
+one down   6        114756  0.8664    | guar: 0.0069+-0.0004, 0.017 | cert: 0.0102+-0.0006, 0.021 | single: 0.0112+-0.0007, 0.022 | policy: 0.0064+-0.0004, 0.016 | played: 0.0036+-0.0002, 0.011 | random: 0.0675+-0.0017, 0.102 | || 23373 | guar: 0.922+-0.004 | cert: 0.900+-0.004 | single: 0.894+-0.004 | policy: 0.925+-0.004 | played: 0.947+-0.003 | random: 0.528+-0.004 |
+one down   5 or     602379  0.8751    | guar: 0.0023+-0.0001, 0.004 | cert: 0.0050+-0.0003, 0.008 | single: 0.0055+-0.0003, 0.008 | policy: 0.0028+-0.0002, 0.005 | played: 0.0011+-0.0001, 0.003 | random: 0.0403+-0.0010, 0.049 | || 63662 | guar: 0.960+-0.002 | cert: 0.928+-0.003 | single: 0.923+-0.003 | policy: 0.953+-0.002 | played: 0.975+-0.001 | random: 0.541+-0.003 |
+contract   all      816977  0.6664    | guar: 0.0054+-0.0002, 0.012 | cert: 0.0051+-0.0002, 0.012 | single: 0.0049+-0.0002, 0.011 | policy: 0.0055+-0.0002, 0.012 | played: 0.0025+-0.0001, 0.007 | random: 0.0732+-0.0013, 0.097 | || 156804 | guar: 0.940+-0.002 | cert: 0.943+-0.002 | single: 0.944+-0.002 | policy: 0.940+-0.002 | played: 0.963+-0.001 | random: 0.514+-0.002 |
+contract   7         99842  0.6370    | guar: 0.0112+-0.0005, 0.032 | cert: 0.0097+-0.0005, 0.028 | single: 0.0095+-0.0005, 0.028 | policy: 0.0097+-0.0004, 0.028 | played: 0.0057+-0.0003, 0.020 | random: 0.0990+-0.0019, 0.162 | || 28683 | guar: 0.901+-0.004 | cert: 0.912+-0.003 | single: 0.913+-0.003 | policy: 0.910+-0.003 | played: 0.936+-0.003 | random: 0.490+-0.004 |
+contract   6        114756  0.6526    | guar: 0.0100+-0.0005, 0.025 | cert: 0.0087+-0.0004, 0.022 | single: 0.0084+-0.0004, 0.021 | policy: 0.0090+-0.0005, 0.022 | played: 0.0042+-0.0002, 0.014 | random: 0.0969+-0.0019, 0.143 | || 31489 | guar: 0.917+-0.003 | cert: 0.926+-0.003 | single: 0.927+-0.003 | policy: 0.926+-0.003 | played: 0.952+-0.002 | random: 0.511+-0.004 |
+contract   5 or     602379  0.6739    | guar: 0.0035+-0.0002, 0.007 | cert: 0.0036+-0.0002, 0.007 | single: 0.0035+-0.0002, 0.007 | policy: 0.0041+-0.0002, 0.008 | played: 0.0016+-0.0001, 0.004 | random: 0.0644+-0.0013, 0.078 | || 96632 | guar: 0.958+-0.002 | cert: 0.957+-0.002 | single: 0.958+-0.002 | policy: 0.953+-0.002 | played: 0.975+-0.001 | random: 0.522+-0.002 |
+overtrick  all      816977  0.3800    | guar: 0.0046+-0.0002, 0.011 | cert: 0.0043+-0.0002, 0.010 | single: 0.0041+-0.0002, 0.010 | policy: 0.0047+-0.0002, 0.010 | played: 0.0021+-0.0001, 0.006 | random: 0.0639+-0.0014, 0.084 | || 131821 | guar: 0.936+-0.002 | cert: 0.941+-0.002 | single: 0.943+-0.002 | policy: 0.939+-0.002 | played: 0.964+-0.001 | random: 0.497+-0.002 |
+overtrick  7         99842  0.3493    | guar: 0.0096+-0.0005, 0.026 | cert: 0.0078+-0.0004, 0.023 | single: 0.0076+-0.0004, 0.022 | policy: 0.0078+-0.0004, 0.022 | played: 0.0041+-0.0002, 0.015 | random: 0.0811+-0.0020, 0.131 | || 22901 | guar: 0.896+-0.004 | cert: 0.909+-0.004 | single: 0.910+-0.004 | policy: 0.911+-0.003 | played: 0.941+-0.003 | random: 0.478+-0.005 |
+overtrick  6        114756  0.3657    | guar: 0.0091+-0.0005, 0.021 | cert: 0.0082+-0.0005, 0.019 | single: 0.0078+-0.0004, 0.018 | policy: 0.0083+-0.0005, 0.019 | played: 0.0044+-0.0003, 0.013 | random: 0.0832+-0.0021, 0.120 | || 25765 | guar: 0.911+-0.004 | cert: 0.917+-0.004 | single: 0.921+-0.003 | policy: 0.918+-0.004 | played: 0.946+-0.003 | random: 0.492+-0.004 |
+overtrick  5 or     602379  0.3878    | guar: 0.0029+-0.0002, 0.006 | cert: 0.0029+-0.0001, 0.006 | single: 0.0028+-0.0001, 0.006 | policy: 0.0035+-0.0002, 0.006 | played: 0.0013+-0.0001, 0.003 | random: 0.0574+-0.0014, 0.069 | || 83155 | guar: 0.955+-0.002 | cert: 0.957+-0.002 | single: 0.959+-0.002 | policy: 0.953+-0.002 | played: 0.976+-0.001 | random: 0.504+-0.003 |
+defender decisions at the contract where some card hands declarer a guaranteed line and some card does not:
+cards  decisions | chooser: share that does not hand it over
+all       50083 | guar: 0.900+-0.003 | cert: 0.893+-0.003 | policy: 0.873+-0.003 | played: 0.903+-0.003 | random: 0.593+-0.003 |
+7         11555 | guar: 0.892+-0.005 | cert: 0.881+-0.005 | policy: 0.863+-0.006 | played: 0.881+-0.005 | random: 0.626+-0.006 |
+6         11057 | guar: 0.893+-0.006 | cert: 0.890+-0.005 | policy: 0.867+-0.006 | played: 0.896+-0.005 | random: 0.619+-0.006 |
+5 or      27471 | guar: 0.907+-0.004 | cert: 0.899+-0.004 | policy: 0.879+-0.004 | played: 0.916+-0.004 | random: 0.568+-0.004 |
+
+== /home/bridgebots/work/sidnet/models/rollout_v2_w768_epoch5.npz  (no label heads: policy rows only)
+declaring decisions: shortfall in exact floor from the best card (mean +- se by deal; share above 0.05), and on
+decisions whose two best cards differ by more than 0.05: share where the chooser names the best card
+target     cards  decisions  best floor | chooser: shortfall, >0.05 | ... || apart: decisions | chooser: best card named
+one down   all      816977  0.8719    | policy: 0.0040+-0.0002, 0.009 | played: 0.0018+-0.0001, 0.005 | random: 0.0480+-0.0010, 0.065 | || 109022 | policy: 0.938+-0.002 | played: 0.962+-0.001 | random: 0.533+-0.002 |
+one down   7         99842  0.8586    | policy: 0.0075+-0.0004, 0.021 | played: 0.0042+-0.0002, 0.015 | random: 0.0719+-0.0016, 0.119 | || 21987 | policy: 0.914+-0.004 | played: 0.942+-0.003 | random: 0.516+-0.004 |
+one down   6        114756  0.8664    | policy: 0.0064+-0.0004, 0.017 | played: 0.0036+-0.0002, 0.011 | random: 0.0675+-0.0017, 0.102 | || 23373 | policy: 0.924+-0.004 | played: 0.947+-0.003 | random: 0.528+-0.004 |
+one down   5 or     602379  0.8751    | policy: 0.0030+-0.0002, 0.005 | played: 0.0011+-0.0001, 0.003 | random: 0.0403+-0.0010, 0.049 | || 63662 | policy: 0.951+-0.002 | played: 0.975+-0.001 | random: 0.541+-0.003 |
+contract   all      816977  0.6664    | policy: 0.0055+-0.0002, 0.012 | played: 0.0025+-0.0001, 0.007 | random: 0.0732+-0.0013, 0.097 | || 156804 | policy: 0.940+-0.002 | played: 0.963+-0.001 | random: 0.514+-0.002 |
+contract   7         99842  0.6370    | policy: 0.0101+-0.0005, 0.028 | played: 0.0057+-0.0003, 0.020 | random: 0.0990+-0.0019, 0.162 | || 28683 | policy: 0.910+-0.003 | played: 0.936+-0.003 | random: 0.490+-0.004 |
+contract   6        114756  0.6526    | policy: 0.0089+-0.0004, 0.022 | played: 0.0042+-0.0002, 0.014 | random: 0.0969+-0.0019, 0.143 | || 31489 | policy: 0.926+-0.003 | played: 0.952+-0.002 | random: 0.511+-0.004 |
+contract   5 or     602379  0.6739    | policy: 0.0042+-0.0002, 0.007 | played: 0.0016+-0.0001, 0.004 | random: 0.0644+-0.0013, 0.078 | || 96632 | policy: 0.954+-0.002 | played: 0.975+-0.001 | random: 0.522+-0.002 |
+overtrick  all      816977  0.3800    | policy: 0.0045+-0.0002, 0.010 | played: 0.0021+-0.0001, 0.006 | random: 0.0639+-0.0014, 0.084 | || 131821 | policy: 0.941+-0.002 | played: 0.964+-0.001 | random: 0.497+-0.002 |
+overtrick  7         99842  0.3493    | policy: 0.0077+-0.0004, 0.022 | played: 0.0041+-0.0002, 0.015 | random: 0.0811+-0.0020, 0.131 | || 22901 | policy: 0.913+-0.004 | played: 0.941+-0.003 | random: 0.478+-0.005 |
+overtrick  6        114756  0.3657    | policy: 0.0083+-0.0005, 0.019 | played: 0.0044+-0.0003, 0.013 | random: 0.0832+-0.0021, 0.120 | || 25765 | policy: 0.917+-0.004 | played: 0.946+-0.003 | random: 0.492+-0.004 |
+overtrick  5 or     602379  0.3878    | policy: 0.0032+-0.0002, 0.006 | played: 0.0013+-0.0001, 0.003 | random: 0.0574+-0.0014, 0.069 | || 83155 | policy: 0.956+-0.002 | played: 0.976+-0.001 | random: 0.504+-0.003 |
+defender decisions at the contract where some card hands declarer a guaranteed line and some card does not:
+cards  decisions | chooser: share that does not hand it over
+all       50083 | policy: 0.874+-0.003 | played: 0.903+-0.003 | random: 0.593+-0.003 |
+7         11555 | policy: 0.866+-0.006 | played: 0.881+-0.005 | random: 0.626+-0.006 |
+6         11057 | policy: 0.874+-0.006 | played: 0.896+-0.005 | random: 0.619+-0.006 |
+5 or      27471 | policy: 0.878+-0.004 | played: 0.916+-0.004 | random: 0.568+-0.004 |

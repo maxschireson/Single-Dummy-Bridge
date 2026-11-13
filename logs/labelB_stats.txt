@@ -1,0 +1,31 @@
+4000 episodes, 2156241 rows (539 an episode)
+cards role       rows   share  ms/row  nodes/row  core-s
+    7 defender   127987   5.9%   20.62      37119  2638.5
+    7 declaring  136107   6.3%   12.13      54681  1650.4
+    6 defender   146684   6.8%   10.83       4383  1588.6
+    6 declaring  155993   7.2%    1.79       4310   279.0
+    5 defender   165504   7.7%    7.89        795  1305.9
+    5 declaring  176056   8.2%    1.27        780   223.1
+    4 defender   184775   8.6%    5.89        177  1088.9
+    4 declaring  196066   9.1%    1.04        184   203.8
+    3 defender   202304   9.4%    4.08         43   825.2
+    3 declaring  214184   9.9%    0.85         55   182.6
+    2 defender   219579  10.2%    2.38          9   522.6
+    2 declaring  231002  10.7%    0.66         17   151.9
+all: 4.94 ms a row, 10660 core-seconds
+label  role      target   share 1  share 0  unasked   entries
+cert   declaring one down    81.1%    18.9%     0.0%   4067785
+cert   declaring contract    57.3%    42.7%     0.0%   4067785
+cert   declaring overtrick   29.5%    70.5%     0.0%   4067785
+cert   defender  one down    86.4%    13.0%     0.6%   3573425
+cert   defender  contract    65.8%    33.0%     1.2%   3573425
+cert   defender  overtrick   37.3%    61.3%     1.4%   3573425
+guar   declaring one down    76.1%    23.9%     0.0%   4067785
+guar   declaring contract    51.7%    48.3%     0.0%   4067785
+guar   declaring overtrick   25.8%    74.2%     0.0%   4067785
+guar   defender  one down    83.9%    16.1%     0.0%   3573425
+guar   defender  contract    62.4%    37.6%     0.0%   3573425
+guar   defender  overtrick   34.5%    65.5%     0.0%   3573425
+single declaring one down    81.3%    18.7%     0.0%   4067785
+single declaring contract    57.6%    42.4%     0.0%   4067785
+single declaring overtrick   29.9%    70.1%     0.0%   4067785

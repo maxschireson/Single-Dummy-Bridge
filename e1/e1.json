@@ -1,0 +1,3067 @@
+{
+ "data": "/home/bridgebots/work/sidnet/data/freshB.npz",
+ "deals": 2719,
+ "rows": 1588530,
+ "rows_declaring": 816977,
+ "evidence": "prediction against exact solver labels; nothing played",
+ "nets": {
+  "/home/bridgebots/work/sidnet/s0/policy.npz": {
+   "label_heads": true,
+   "policy_nll_played": {
+    "n": 1588530,
+    "mean": 0.48,
+    "se": 0.0027
+   },
+   "heads": {
+    "guar|declaring|all|one down": {
+     "n": 2993694,
+     "rate": 0.7656,
+     "nll": 0.0964,
+     "base_nll": 0.5446,
+     "brier": 0.0288
+    },
+    "guar|declaring|all|contract": {
+     "n": 2993694,
+     "rate": 0.5232,
+     "nll": 0.1009,
+     "base_nll": 0.6921,
+     "brier": 0.0297
+    },
+    "guar|declaring|all|overtrick": {
+     "n": 2993694,
+     "rate": 0.2653,
+     "nll": 0.0683,
+     "base_nll": 0.5786,
+     "brier": 0.0198
+    },
+    "guar|declaring|7|one down": {
+     "n": 545000,
+     "rate": 0.6663,
+     "nll": 0.1723,
+     "base_nll": 0.6368,
+     "brier": 0.0524
+    },
+    "guar|declaring|7|contract": {
+     "n": 545000,
+     "rate": 0.4074,
+     "nll": 0.1627,
+     "base_nll": 0.6759,
+     "brier": 0.0491
+    },
+    "guar|declaring|7|overtrick": {
+     "n": 545000,
+     "rate": 0.184,
+     "nll": 0.1029,
+     "base_nll": 0.4774,
+     "brier": 0.0307
+    },
+    "guar|declaring|6|one down": {
+     "n": 566870,
+     "rate": 0.7227,
+     "nll": 0.137,
+     "base_nll": 0.5904,
+     "brier": 0.0413
+    },
+    "guar|declaring|6|contract": {
+     "n": 566870,
+     "rate": 0.4704,
+     "nll": 0.1409,
+     "base_nll": 0.6914,
+     "brier": 0.0418
+    },
+    "guar|declaring|6|overtrick": {
+     "n": 566870,
+     "rate": 0.2239,
+     "nll": 0.0957,
+     "base_nll": 0.5318,
+     "brier": 0.0282
+    },
+    "guar|declaring|5 or fewer|one down": {
+     "n": 1881824,
+     "rate": 0.8073,
+     "nll": 0.0622,
+     "base_nll": 0.4902,
+     "brier": 0.0181
+    },
+    "guar|declaring|5 or fewer|contract": {
+     "n": 1881824,
+     "rate": 0.5727,
+     "nll": 0.071,
+     "base_nll": 0.6825,
+     "brier": 0.0204
+    },
+    "guar|declaring|5 or fewer|overtrick": {
+     "n": 1881824,
+     "rate": 0.3014,
+     "nll": 0.05,
+     "base_nll": 0.612,
+     "brier": 0.0142
+    },
+    "guar|defender|all|one down": {
+     "n": 2629634,
+     "rate": 0.8424,
+     "nll": 0.1706,
+     "base_nll": 0.4356,
+     "brier": 0.0521
+    },
+    "guar|defender|all|contract": {
+     "n": 2629634,
+     "rate": 0.6283,
+     "nll": 0.2489,
+     "base_nll": 0.6599,
+     "brier": 0.0795
+    },
+    "guar|defender|all|overtrick": {
+     "n": 2629634,
+     "rate": 0.3528,
+     "nll": 0.2262,
+     "base_nll": 0.6492,
+     "brier": 0.073
+    },
+    "guar|defender|7|one down": {
+     "n": 448098,
+     "rate": 0.7854,
+     "nll": 0.2999,
+     "base_nll": 0.5199,
+     "brier": 0.0941
+    },
+    "guar|defender|7|contract": {
+     "n": 448098,
+     "rate": 0.5444,
+     "nll": 0.4049,
+     "base_nll": 0.6892,
+     "brier": 0.1321
+    },
+    "guar|defender|7|overtrick": {
+     "n": 448098,
+     "rate": 0.2838,
+     "nll": 0.332,
+     "base_nll": 0.5965,
+     "brier": 0.108
+    },
+    "guar|defender|6|one down": {
+     "n": 478744,
+     "rate": 0.8229,
+     "nll": 0.2403,
+     "base_nll": 0.4669,
+     "brier": 0.0741
+    },
+    "guar|defender|6|contract": {
+     "n": 478744,
+     "rate": 0.5984,
+     "nll": 0.3445,
+     "base_nll": 0.6737,
+     "brier": 0.1114
+    },
+    "guar|defender|6|overtrick": {
+     "n": 478744,
+     "rate": 0.3261,
+     "nll": 0.3076,
+     "base_nll": 0.6314,
+     "brier": 0.1003
+    },
+    "guar|defender|5 or fewer|one down": {
+     "n": 1702792,
+     "rate": 0.8629,
+     "nll": 0.1169,
+     "base_nll": 0.3996,
+     "brier": 0.0349
+    },
+    "guar|defender|5 or fewer|contract": {
+     "n": 1702792,
+     "rate": 0.6587,
+     "nll": 0.181,
+     "base_nll": 0.6419,
+     "brier": 0.0567
+    },
+    "guar|defender|5 or fewer|overtrick": {
+     "n": 1702792,
+     "rate": 0.3785,
+     "nll": 0.1754,
+     "base_nll": 0.6633,
+     "brier": 0.056
+    },
+    "cert|declaring|all|one down": {
+     "n": 2993694,
+     "rate": 0.8144,
+     "nll": 0.2262,
+     "base_nll": 0.4798,
+     "brier": 0.0448
+    },
+    "cert|declaring|all|contract": {
+     "n": 2993694,
+     "rate": 0.5792,
+     "nll": 0.2652,
+     "base_nll": 0.6805,
+     "brier": 0.0613
+    },
+    "cert|declaring|all|overtrick": {
+     "n": 2993694,
+     "rate": 0.3031,
+     "nll": 0.1876,
+     "base_nll": 0.6135,
+     "brier": 0.0479
+    },
+    "cert|declaring|7|one down": {
+     "n": 545000,
+     "rate": 0.7831,
+     "nll": 0.2729,
+     "base_nll": 0.5229,
+     "brier": 0.0632
+    },
+    "cert|declaring|7|contract": {
+     "n": 545000,
+     "rate": 0.5351,
+     "nll": 0.2962,
+     "base_nll": 0.6907,
+     "brier": 0.0794
+    },
+    "cert|declaring|7|overtrick": {
+     "n": 545000,
+     "rate": 0.2639,
+     "nll": 0.209,
+     "base_nll": 0.5771,
+     "brier": 0.0602
+    },
+    "cert|declaring|6|one down": {
+     "n": 566870,
+     "rate": 0.7968,
+     "nll": 0.278,
+     "base_nll": 0.5048,
+     "brier": 0.0567
+    },
+    "cert|declaring|6|contract": {
+     "n": 566870,
+     "rate": 0.5538,
+     "nll": 0.3023,
+     "base_nll": 0.6873,
+     "brier": 0.0746
+    },
+    "cert|declaring|6|overtrick": {
+     "n": 566870,
+     "rate": 0.2803,
+     "nll": 0.2046,
+     "base_nll": 0.5932,
+     "brier": 0.0562
+    },
+    "cert|declaring|5 or fewer|one down": {
+     "n": 1881824,
+     "rate": 0.8287,
+     "nll": 0.197,
+     "base_nll": 0.458,
+     "brier": 0.0359
+    },
+    "cert|declaring|5 or fewer|contract": {
+     "n": 1881824,
+     "rate": 0.5997,
+     "nll": 0.2451,
+     "base_nll": 0.6731,
+     "brier": 0.052
+    },
+    "cert|declaring|5 or fewer|overtrick": {
+     "n": 1881824,
+     "rate": 0.3213,
+     "nll": 0.1763,
+     "base_nll": 0.6279,
+     "brier": 0.0418
+    },
+    "cert|defender|all|one down": {
+     "n": 2613033,
+     "rate": 0.8725,
+     "nll": 0.134,
+     "base_nll": 0.3815,
+     "brier": 0.0399
+    },
+    "cert|defender|all|contract": {
+     "n": 2600414,
+     "rate": 0.6708,
+     "nll": 0.2239,
+     "base_nll": 0.6336,
+     "brier": 0.0708
+    },
+    "cert|defender|all|overtrick": {
+     "n": 2594176,
+     "rate": 0.3864,
+     "nll": 0.2221,
+     "base_nll": 0.6671,
+     "brier": 0.0718
+    },
+    "cert|defender|7|one down": {
+     "n": 443734,
+     "rate": 0.8591,
+     "nll": 0.2188,
+     "base_nll": 0.4067,
+     "brier": 0.0662
+    },
+    "cert|defender|7|contract": {
+     "n": 440258,
+     "rate": 0.6469,
+     "nll": 0.3611,
+     "base_nll": 0.6493,
+     "brier": 0.1163
+    },
+    "cert|defender|7|overtrick": {
+     "n": 439132,
+     "rate": 0.3603,
+     "nll": 0.348,
+     "base_nll": 0.6536,
+     "brier": 0.1142
+    },
+    "cert|defender|6|one down": {
+     "n": 474442,
+     "rate": 0.8701,
+     "nll": 0.1827,
+     "base_nll": 0.3862,
+     "brier": 0.0544
+    },
+    "cert|defender|6|contract": {
+     "n": 471419,
+     "rate": 0.6641,
+     "nll": 0.3064,
+     "base_nll": 0.6383,
+     "brier": 0.0979
+    },
+    "cert|defender|6|overtrick": {
+     "n": 469991,
+     "rate": 0.3769,
+     "nll": 0.3017,
+     "base_nll": 0.6625,
+     "brier": 0.0984
+    },
+    "cert|defender|5 or fewer|one down": {
+     "n": 1694857,
+     "rate": 0.8767,
+     "nll": 0.0981,
+     "base_nll": 0.3734,
+     "brier": 0.0289
+    },
+    "cert|defender|5 or fewer|contract": {
+     "n": 1688737,
+     "rate": 0.679,
+     "nll": 0.1651,
+     "base_nll": 0.6277,
+     "brier": 0.0514
+    },
+    "cert|defender|5 or fewer|overtrick": {
+     "n": 1685053,
+     "rate": 0.3959,
+     "nll": 0.1671,
+     "base_nll": 0.6713,
+     "brier": 0.0533
+    },
+    "single|declaring|all|one down": {
+     "n": 2993694,
+     "rate": 0.8173,
+     "nll": 0.2273,
+     "base_nll": 0.4755,
+     "brier": 0.0437
+    },
+    "single|declaring|all|contract": {
+     "n": 2993694,
+     "rate": 0.5829,
+     "nll": 0.2631,
+     "base_nll": 0.6793,
+     "brier": 0.0608
+    },
+    "single|declaring|all|overtrick": {
+     "n": 2993694,
+     "rate": 0.3062,
+     "nll": 0.1891,
+     "base_nll": 0.616,
+     "brier": 0.048
+    },
+    "single|declaring|7|one down": {
+     "n": 545000,
+     "rate": 0.7909,
+     "nll": 0.2678,
+     "base_nll": 0.5128,
+     "brier": 0.0599
+    },
+    "single|declaring|7|contract": {
+     "n": 545000,
+     "rate": 0.545,
+     "nll": 0.2858,
+     "base_nll": 0.6891,
+     "brier": 0.0765
+    },
+    "single|declaring|7|overtrick": {
+     "n": 545000,
+     "rate": 0.2712,
+     "nll": 0.2063,
+     "base_nll": 0.5845,
+     "brier": 0.0592
+    },
+    "single|declaring|6|one down": {
+     "n": 566870,
+     "rate": 0.8016,
+     "nll": 0.2785,
+     "base_nll": 0.4981,
+     "brier": 0.0548
+    },
+    "single|declaring|6|contract": {
+     "n": 566870,
+     "rate": 0.5594,
+     "nll": 0.2962,
+     "base_nll": 0.6861,
+     "brier": 0.0731
+    },
+    "single|declaring|6|overtrick": {
+     "n": 566870,
+     "rate": 0.2854,
+     "nll": 0.2039,
+     "base_nll": 0.5979,
+     "brier": 0.0559
+    },
+    "single|declaring|5 or fewer|one down": {
+     "n": 1881824,
+     "rate": 0.8297,
+     "nll": 0.2002,
+     "base_nll": 0.4564,
+     "brier": 0.0357
+    },
+    "single|declaring|5 or fewer|contract": {
+     "n": 1881824,
+     "rate": 0.601,
+     "nll": 0.2466,
+     "base_nll": 0.6726,
+     "brier": 0.0525
+    },
+    "single|declaring|5 or fewer|overtrick": {
+     "n": 1881824,
+     "rate": 0.3226,
+     "nll": 0.1797,
+     "base_nll": 0.6288,
+     "brier": 0.0423
+    }
+   },
+   "calibration_contract": {
+    "guar|declaring": [
+     [
+      0.0,
+      1238253,
+      0.0086,
+      0.0095
+     ],
+     [
+      0.1,
+      77654,
+      0.1445,
+      0.1491
+     ],
+     [
+      0.2,
+      45746,
+      0.2468,
+      0.2419
+     ],
+     [
+      0.3,
+      35505,
+      0.3484,
+      0.3521
+     ],
+     [
+      0.4,
+      31635,
+      0.4501,
+      0.4487
+     ],
+     [
+      0.5,
+      30619,
+      0.5499,
+      0.5352
+     ],
+     [
+      0.6,
+      32915,
+      0.651,
+      0.6426
+     ],
+     [
+      0.7,
+      41975,
+      0.7529,
+      0.7424
+     ],
+     [
+      0.8,
+      70154,
+      0.8558,
+      0.8516
+     ],
+     [
+      0.9,
+      1389238,
+      0.9922,
+      0.9911
+     ]
+    ],
+    "guar|defender": [
+     [
+      0.0,
+      584117,
+      0.0111,
+      0.0172
+     ],
+     [
+      0.1,
+      95193,
+      0.1484,
+      0.2001
+     ],
+     [
+      0.2,
+      84187,
+      0.2494,
+      0.3046
+     ],
+     [
+      0.3,
+      82638,
+      0.3499,
+      0.3949
+     ],
+     [
+      0.4,
+      84378,
+      0.4506,
+      0.4738
+     ],
+     [
+      0.5,
+      90811,
+      0.5506,
+      0.5552
+     ],
+     [
+      0.6,
+      103106,
+      0.6516,
+      0.6368
+     ],
+     [
+      0.7,
+      130656,
+      0.7524,
+      0.7291
+     ],
+     [
+      0.8,
+      192247,
+      0.8545,
+      0.8273
+     ],
+     [
+      0.9,
+      1182301,
+      0.9821,
+      0.9764
+     ]
+    ],
+    "cert|declaring": [
+     [
+      0.0,
+      939397,
+      0.0092,
+      0.0108
+     ],
+     [
+      0.1,
+      74480,
+      0.1455,
+      0.1501
+     ],
+     [
+      0.2,
+      50243,
+      0.2473,
+      0.2328
+     ],
+     [
+      0.3,
+      40349,
+      0.3489,
+      0.3042
+     ],
+     [
+      0.4,
+      37270,
+      0.4497,
+      0.3646
+     ],
+     [
+      0.5,
+      36964,
+      0.55,
+      0.4201
+     ],
+     [
+      0.6,
+      39810,
+      0.6509,
+      0.4797
+     ],
+     [
+      0.7,
+      46798,
+      0.7517,
+      0.5415
+     ],
+     [
+      0.8,
+      63958,
+      0.8539,
+      0.6117
+     ],
+     [
+      0.9,
+      1664425,
+      0.9952,
+      0.9469
+     ]
+    ],
+    "cert|defender": [
+     [
+      0.0,
+      530471,
+      0.0081,
+      0.0132
+     ],
+     [
+      0.1,
+      66577,
+      0.1488,
+      0.2064
+     ],
+     [
+      0.2,
+      61553,
+      0.2501,
+      0.3167
+     ],
+     [
+      0.3,
+      62702,
+      0.3507,
+      0.4002
+     ],
+     [
+      0.4,
+      68492,
+      0.4508,
+      0.4846
+     ],
+     [
+      0.5,
+      77742,
+      0.551,
+      0.5599
+     ],
+     [
+      0.6,
+      92481,
+      0.6515,
+      0.6396
+     ],
+     [
+      0.7,
+      122119,
+      0.753,
+      0.7292
+     ],
+     [
+      0.8,
+      192493,
+      0.8548,
+      0.8261
+     ],
+     [
+      0.9,
+      1325784,
+      0.9829,
+      0.977
+     ]
+    ],
+    "single|declaring": [
+     [
+      0.0,
+      934526,
+      0.0087,
+      0.0108
+     ],
+     [
+      0.1,
+      71787,
+      0.1455,
+      0.1484
+     ],
+     [
+      0.2,
+      48459,
+      0.2475,
+      0.2346
+     ],
+     [
+      0.3,
+      39357,
+      0.3492,
+      0.303
+     ],
+     [
+      0.4,
+      35876,
+      0.4495,
+      0.3672
+     ],
+     [
+      0.5,
+      35992,
+      0.5501,
+      0.4183
+     ],
+     [
+      0.6,
+      38793,
+      0.6515,
+      0.4863
+     ],
+     [
+      0.7,
+      46340,
+      0.7518,
+      0.5463
+     ],
+     [
+      0.8,
+      65286,
+      0.8542,
+      0.616
+     ],
+     [
+      0.9,
+      1677278,
+      0.9952,
+      0.947
+     ]
+    ]
+   },
+   "declaring_decisions": {
+    "one down|all": {
+     "decisions": 816977,
+     "best_floor": {
+      "n": 816977,
+      "mean": 0.8719,
+      "se": 0.0046
+     },
+     "apart": 109022,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0037,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0083,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9417,
+        "se": 0.002
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0063,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0117,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9169,
+        "se": 0.0024
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.007,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0124,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9117,
+        "se": 0.0026
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0039,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0086,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9394,
+        "se": 0.0018
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0018,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0054,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9624,
+        "se": 0.0014
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.048,
+        "se": 0.001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0653,
+        "se": 0.0013
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.5334,
+        "se": 0.0024
+       }
+      }
+     }
+    },
+    "one down|7": {
+     "decisions": 99842,
+     "best_floor": {
+      "n": 99842,
+      "mean": 0.8586,
+      "se": 0.0047
+     },
+     "apart": 21987,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0084,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0221,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.9113,
+        "se": 0.004
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0102,
+        "se": 0.0006
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0243,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.9013,
+        "se": 0.0039
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0108,
+        "se": 0.0006
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.025,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.898,
+        "se": 0.004
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0077,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0211,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.9142,
+        "se": 0.0036
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0042,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0145,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.9415,
+        "se": 0.0028
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0719,
+        "se": 0.0016
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.1192,
+        "se": 0.0025
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.5163,
+        "se": 0.0043
+       }
+      }
+     }
+    },
+    "one down|6": {
+     "decisions": 114756,
+     "best_floor": {
+      "n": 114756,
+      "mean": 0.8664,
+      "se": 0.0046
+     },
+     "apart": 23373,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0069,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0171,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.9218,
+        "se": 0.0038
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0102,
+        "se": 0.0006
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0214,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.8999,
+        "se": 0.0041
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0112,
+        "se": 0.0007
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0225,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.8939,
+        "se": 0.0044
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0064,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0163,
+        "se": 0.0008
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.9248,
+        "se": 0.0035
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0036,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0115,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.9468,
+        "se": 0.0029
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0675,
+        "se": 0.0017
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.1024,
+        "se": 0.0023
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.5278,
+        "se": 0.0044
+       }
+      }
+     }
+    },
+    "one down|5 or fewer": {
+     "decisions": 602379,
+     "best_floor": {
+      "n": 602379,
+      "mean": 0.8751,
+      "se": 0.0047
+     },
+     "apart": 63662,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0023,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0044,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.9595,
+        "se": 0.0019
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.005,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0077,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.9285,
+        "se": 0.0029
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0055,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0083,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.923,
+        "se": 0.0031
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0028,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0051,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.9534,
+        "se": 0.002
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0011,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0027,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.9753,
+        "se": 0.0014
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0403,
+        "se": 0.001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0492,
+        "se": 0.0012
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.5414,
+        "se": 0.0028
+       }
+      }
+     }
+    },
+    "contract|all": {
+     "decisions": 816977,
+     "best_floor": {
+      "n": 816977,
+      "mean": 0.6664,
+      "se": 0.0071
+     },
+     "apart": 156804,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0054,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0124,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9396,
+        "se": 0.0018
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0051,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0116,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9428,
+        "se": 0.0016
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0049,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0114,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9436,
+        "se": 0.0015
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0055,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0121,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9401,
+        "se": 0.0016
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0025,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0075,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9634,
+        "se": 0.0012
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0732,
+        "se": 0.0013
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0972,
+        "se": 0.0016
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.5138,
+        "se": 0.0022
+       }
+      }
+     }
+    },
+    "contract|7": {
+     "decisions": 99842,
+     "best_floor": {
+      "n": 99842,
+      "mean": 0.637,
+      "se": 0.007
+     },
+     "apart": 28683,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0112,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0316,
+        "se": 0.0012
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.901,
+        "se": 0.0035
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0097,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0276,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.9125,
+        "se": 0.0033
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0095,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0276,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.9126,
+        "se": 0.0032
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0097,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.028,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.9105,
+        "se": 0.0032
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0057,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0204,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.9364,
+        "se": 0.0028
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.099,
+        "se": 0.0019
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.1622,
+        "se": 0.0028
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.4898,
+        "se": 0.004
+       }
+      }
+     }
+    },
+    "contract|6": {
+     "decisions": 114756,
+     "best_floor": {
+      "n": 114756,
+      "mean": 0.6526,
+      "se": 0.007
+     },
+     "apart": 31489,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.01,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0248,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.9173,
+        "se": 0.0033
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0087,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0217,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.9258,
+        "se": 0.0029
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0084,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0214,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.927,
+        "se": 0.0029
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.009,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0217,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.9263,
+        "se": 0.003
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0042,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0144,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.9519,
+        "se": 0.0023
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0969,
+        "se": 0.0019
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.1429,
+        "se": 0.0026
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.5107,
+        "se": 0.0039
+       }
+      }
+     }
+    },
+    "contract|5 or fewer": {
+     "decisions": 602379,
+     "best_floor": {
+      "n": 602379,
+      "mean": 0.6739,
+      "se": 0.0072
+     },
+     "apart": 96632,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0035,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0068,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9583,
+        "se": 0.0017
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0036,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.007,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9574,
+        "se": 0.0016
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0035,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0068,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9582,
+        "se": 0.0016
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0041,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0076,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9534,
+        "se": 0.0016
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0016,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0041,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9751,
+        "se": 0.0012
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0644,
+        "se": 0.0013
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0777,
+        "se": 0.0015
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.5219,
+        "se": 0.0024
+       }
+      }
+     }
+    },
+    "overtrick|all": {
+     "decisions": 816977,
+     "best_floor": {
+      "n": 816977,
+      "mean": 0.38,
+      "se": 0.0075
+     },
+     "apart": 131821,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0046,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0108,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9362,
+        "se": 0.0019
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0043,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.01,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9408,
+        "se": 0.0017
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0041,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0096,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9429,
+        "se": 0.0017
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0047,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0103,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9391,
+        "se": 0.0018
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0021,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0062,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9639,
+        "se": 0.0013
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0639,
+        "se": 0.0014
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0839,
+        "se": 0.0017
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.4975,
+        "se": 0.0024
+       }
+      }
+     }
+    },
+    "overtrick|7": {
+     "decisions": 99842,
+     "best_floor": {
+      "n": 99842,
+      "mean": 0.3493,
+      "se": 0.0071
+     },
+     "apart": 22901,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0096,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0264,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.8957,
+        "se": 0.0038
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0078,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0228,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.9086,
+        "se": 0.0036
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0076,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0222,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.9104,
+        "se": 0.0036
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0078,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0225,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.9109,
+        "se": 0.0034
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0041,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0152,
+        "se": 0.0008
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.9411,
+        "se": 0.003
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0811,
+        "se": 0.002
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.131,
+        "se": 0.0029
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.4781,
+        "se": 0.0046
+       }
+      }
+     }
+    },
+    "overtrick|6": {
+     "decisions": 114756,
+     "best_floor": {
+      "n": 114756,
+      "mean": 0.3657,
+      "se": 0.0074
+     },
+     "apart": 25765,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0091,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0211,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9108,
+        "se": 0.0039
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0082,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0194,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9174,
+        "se": 0.0035
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0078,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0185,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9212,
+        "se": 0.0034
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0083,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0195,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9176,
+        "se": 0.0035
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0044,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0127,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9461,
+        "se": 0.0029
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0832,
+        "se": 0.0021
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.1201,
+        "se": 0.0027
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.4924,
+        "se": 0.0043
+       }
+      }
+     }
+    },
+    "overtrick|5 or fewer": {
+     "decisions": 602379,
+     "best_floor": {
+      "n": 602379,
+      "mean": 0.3878,
+      "se": 0.0077
+     },
+     "apart": 83155,
+     "choosers": {
+      "guar": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0029,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0063,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.9553,
+        "se": 0.0019
+       }
+      },
+      "cert": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0029,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0061,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.9569,
+        "se": 0.0018
+       }
+      },
+      "single": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0028,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0058,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.9586,
+        "se": 0.0017
+       }
+      },
+      "policy": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0035,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0065,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.9534,
+        "se": 0.0018
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0013,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0034,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.9757,
+        "se": 0.0012
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0574,
+        "se": 0.0014
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0692,
+        "se": 0.0016
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.5045,
+        "se": 0.0026
+       }
+      }
+     }
+    }
+   },
+   "defender_handover_decisions": {
+    "all": {
+     "decisions": 50083,
+     "choosers": {
+      "guar": {
+       "n": 50083,
+       "mean": 0.9003,
+       "se": 0.0031
+      },
+      "cert": {
+       "n": 50083,
+       "mean": 0.8927,
+       "se": 0.0032
+      },
+      "policy": {
+       "n": 50083,
+       "mean": 0.8728,
+       "se": 0.0034
+      },
+      "played": {
+       "n": 50083,
+       "mean": 0.9032,
+       "se": 0.003
+      },
+      "random": {
+       "n": 50083,
+       "mean": 0.5926,
+       "se": 0.0031
+      }
+     }
+    },
+    "7": {
+     "decisions": 11555,
+     "choosers": {
+      "guar": {
+       "n": 11555,
+       "mean": 0.8919,
+       "se": 0.005
+      },
+      "cert": {
+       "n": 11555,
+       "mean": 0.881,
+       "se": 0.0054
+      },
+      "policy": {
+       "n": 11555,
+       "mean": 0.8627,
+       "se": 0.0057
+      },
+      "played": {
+       "n": 11555,
+       "mean": 0.8808,
+       "se": 0.0054
+      },
+      "random": {
+       "n": 11555,
+       "mean": 0.6257,
+       "se": 0.0056
+      }
+     }
+    },
+    "6": {
+     "decisions": 11057,
+     "choosers": {
+      "guar": {
+       "n": 11057,
+       "mean": 0.8929,
+       "se": 0.0056
+      },
+      "cert": {
+       "n": 11057,
+       "mean": 0.8903,
+       "se": 0.0055
+      },
+      "policy": {
+       "n": 11057,
+       "mean": 0.8669,
+       "se": 0.0063
+      },
+      "played": {
+       "n": 11057,
+       "mean": 0.8956,
+       "se": 0.0055
+      },
+      "random": {
+       "n": 11057,
+       "mean": 0.6187,
+       "se": 0.0058
+      }
+     }
+    },
+    "5 or fewer": {
+     "decisions": 27471,
+     "choosers": {
+      "guar": {
+       "n": 27471,
+       "mean": 0.9068,
+       "se": 0.0039
+      },
+      "cert": {
+       "n": 27471,
+       "mean": 0.8987,
+       "se": 0.0041
+      },
+      "policy": {
+       "n": 27471,
+       "mean": 0.8795,
+       "se": 0.0043
+      },
+      "played": {
+       "n": 27471,
+       "mean": 0.9157,
+       "se": 0.0037
+      },
+      "random": {
+       "n": 27471,
+       "mean": 0.5682,
+       "se": 0.0037
+      }
+     }
+    }
+   }
+  },
+  "/home/bridgebots/work/sidnet/models/rollout_v2_w768_epoch5.npz": {
+   "label_heads": false,
+   "policy_nll_played": {
+    "n": 1588530,
+    "mean": 0.4565,
+    "se": 0.0028
+   },
+   "declaring_decisions": {
+    "one down|all": {
+     "decisions": 816977,
+     "best_floor": {
+      "n": 816977,
+      "mean": 0.8719,
+      "se": 0.0046
+     },
+     "apart": 109022,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.004,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0088,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9378,
+        "se": 0.0018
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0018,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0054,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.9624,
+        "se": 0.0014
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.048,
+        "se": 0.001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0653,
+        "se": 0.0013
+       },
+       "best_named_when_apart": {
+        "n": 109022,
+        "mean": 0.5334,
+        "se": 0.0024
+       }
+      }
+     }
+    },
+    "one down|7": {
+     "decisions": 99842,
+     "best_floor": {
+      "n": 99842,
+      "mean": 0.8586,
+      "se": 0.0047
+     },
+     "apart": 21987,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0075,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.021,
+        "se": 0.001
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.9145,
+        "se": 0.0035
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0042,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0145,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.9415,
+        "se": 0.0028
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0719,
+        "se": 0.0016
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.1192,
+        "se": 0.0025
+       },
+       "best_named_when_apart": {
+        "n": 21987,
+        "mean": 0.5163,
+        "se": 0.0043
+       }
+      }
+     }
+    },
+    "one down|6": {
+     "decisions": 114756,
+     "best_floor": {
+      "n": 114756,
+      "mean": 0.8664,
+      "se": 0.0046
+     },
+     "apart": 23373,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0064,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0165,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.9239,
+        "se": 0.0036
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0036,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0115,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.9468,
+        "se": 0.0029
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0675,
+        "se": 0.0017
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.1024,
+        "se": 0.0023
+       },
+       "best_named_when_apart": {
+        "n": 23373,
+        "mean": 0.5278,
+        "se": 0.0044
+       }
+      }
+     }
+    },
+    "one down|5 or fewer": {
+     "decisions": 602379,
+     "best_floor": {
+      "n": 602379,
+      "mean": 0.8751,
+      "se": 0.0047
+     },
+     "apart": 63662,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.003,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0054,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.951,
+        "se": 0.002
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0011,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0027,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.9753,
+        "se": 0.0014
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0403,
+        "se": 0.001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0492,
+        "se": 0.0012
+       },
+       "best_named_when_apart": {
+        "n": 63662,
+        "mean": 0.5414,
+        "se": 0.0028
+       }
+      }
+     }
+    },
+    "contract|all": {
+     "decisions": 816977,
+     "best_floor": {
+      "n": 816977,
+      "mean": 0.6664,
+      "se": 0.0071
+     },
+     "apart": 156804,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0055,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0121,
+        "se": 0.0004
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9401,
+        "se": 0.0016
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0025,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0075,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.9634,
+        "se": 0.0012
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0732,
+        "se": 0.0013
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0972,
+        "se": 0.0016
+       },
+       "best_named_when_apart": {
+        "n": 156804,
+        "mean": 0.5138,
+        "se": 0.0022
+       }
+      }
+     }
+    },
+    "contract|7": {
+     "decisions": 99842,
+     "best_floor": {
+      "n": 99842,
+      "mean": 0.637,
+      "se": 0.007
+     },
+     "apart": 28683,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0101,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0283,
+        "se": 0.0011
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.9097,
+        "se": 0.0033
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0057,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0204,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.9364,
+        "se": 0.0028
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.099,
+        "se": 0.0019
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.1622,
+        "se": 0.0028
+       },
+       "best_named_when_apart": {
+        "n": 28683,
+        "mean": 0.4898,
+        "se": 0.004
+       }
+      }
+     }
+    },
+    "contract|6": {
+     "decisions": 114756,
+     "best_floor": {
+      "n": 114756,
+      "mean": 0.6526,
+      "se": 0.007
+     },
+     "apart": 31489,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0089,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0216,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.9258,
+        "se": 0.0028
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0042,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0144,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.9519,
+        "se": 0.0023
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0969,
+        "se": 0.0019
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.1429,
+        "se": 0.0026
+       },
+       "best_named_when_apart": {
+        "n": 31489,
+        "mean": 0.5107,
+        "se": 0.0039
+       }
+      }
+     }
+    },
+    "contract|5 or fewer": {
+     "decisions": 602379,
+     "best_floor": {
+      "n": 602379,
+      "mean": 0.6739,
+      "se": 0.0072
+     },
+     "apart": 96632,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0042,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0075,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9538,
+        "se": 0.0017
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0016,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0041,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.9751,
+        "se": 0.0012
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0644,
+        "se": 0.0013
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0777,
+        "se": 0.0015
+       },
+       "best_named_when_apart": {
+        "n": 96632,
+        "mean": 0.5219,
+        "se": 0.0024
+       }
+      }
+     }
+    },
+    "overtrick|all": {
+     "decisions": 816977,
+     "best_floor": {
+      "n": 816977,
+      "mean": 0.38,
+      "se": 0.0075
+     },
+     "apart": 131821,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0045,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.01,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9411,
+        "se": 0.0017
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0021,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0062,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.9639,
+        "se": 0.0013
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 816977,
+        "mean": 0.0639,
+        "se": 0.0014
+       },
+       "above_005": {
+        "n": 816977,
+        "mean": 0.0839,
+        "se": 0.0017
+       },
+       "best_named_when_apart": {
+        "n": 131821,
+        "mean": 0.4975,
+        "se": 0.0024
+       }
+      }
+     }
+    },
+    "overtrick|7": {
+     "decisions": 99842,
+     "best_floor": {
+      "n": 99842,
+      "mean": 0.3493,
+      "se": 0.0071
+     },
+     "apart": 22901,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0077,
+        "se": 0.0004
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.022,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.9133,
+        "se": 0.0035
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0041,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.0152,
+        "se": 0.0008
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.9411,
+        "se": 0.003
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 99842,
+        "mean": 0.0811,
+        "se": 0.002
+       },
+       "above_005": {
+        "n": 99842,
+        "mean": 0.131,
+        "se": 0.0029
+       },
+       "best_named_when_apart": {
+        "n": 22901,
+        "mean": 0.4781,
+        "se": 0.0046
+       }
+      }
+     }
+    },
+    "overtrick|6": {
+     "decisions": 114756,
+     "best_floor": {
+      "n": 114756,
+      "mean": 0.3657,
+      "se": 0.0074
+     },
+     "apart": 25765,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0083,
+        "se": 0.0005
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0195,
+        "se": 0.0009
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9174,
+        "se": 0.0035
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0044,
+        "se": 0.0003
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.0127,
+        "se": 0.0007
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.9461,
+        "se": 0.0029
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 114756,
+        "mean": 0.0832,
+        "se": 0.0021
+       },
+       "above_005": {
+        "n": 114756,
+        "mean": 0.1201,
+        "se": 0.0027
+       },
+       "best_named_when_apart": {
+        "n": 25765,
+        "mean": 0.4924,
+        "se": 0.0043
+       }
+      }
+     }
+    },
+    "overtrick|5 or fewer": {
+     "decisions": 602379,
+     "best_floor": {
+      "n": 602379,
+      "mean": 0.3878,
+      "se": 0.0077
+     },
+     "apart": 83155,
+     "choosers": {
+      "policy": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0032,
+        "se": 0.0002
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0062,
+        "se": 0.0003
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.956,
+        "se": 0.0018
+       }
+      },
+      "played": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0013,
+        "se": 0.0001
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0034,
+        "se": 0.0002
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.9757,
+        "se": 0.0012
+       }
+      },
+      "random": {
+       "shortfall": {
+        "n": 602379,
+        "mean": 0.0574,
+        "se": 0.0014
+       },
+       "above_005": {
+        "n": 602379,
+        "mean": 0.0692,
+        "se": 0.0016
+       },
+       "best_named_when_apart": {
+        "n": 83155,
+        "mean": 0.5045,
+        "se": 0.0026
+       }
+      }
+     }
+    }
+   },
+   "defender_handover_decisions": {
+    "all": {
+     "decisions": 50083,
+     "choosers": {
+      "policy": {
+       "n": 50083,
+       "mean": 0.8742,
+       "se": 0.0033
+      },
+      "played": {
+       "n": 50083,
+       "mean": 0.9032,
+       "se": 0.003
+      },
+      "random": {
+       "n": 50083,
+       "mean": 0.5926,
+       "se": 0.0031
+      }
+     }
+    },
+    "7": {
+     "decisions": 11555,
+     "choosers": {
+      "policy": {
+       "n": 11555,
+       "mean": 0.8662,
+       "se": 0.0057
+      },
+      "played": {
+       "n": 11555,
+       "mean": 0.8808,
+       "se": 0.0054
+      },
+      "random": {
+       "n": 11555,
+       "mean": 0.6257,
+       "se": 0.0056
+      }
+     }
+    },
+    "6": {
+     "decisions": 11057,
+     "choosers": {
+      "policy": {
+       "n": 11057,
+       "mean": 0.8739,
+       "se": 0.006
+      },
+      "played": {
+       "n": 11057,
+       "mean": 0.8956,
+       "se": 0.0055
+      },
+      "random": {
+       "n": 11057,
+       "mean": 0.6187,
+       "se": 0.0058
+      }
+     }
+    },
+    "5 or fewer": {
+     "decisions": 27471,
+     "choosers": {
+      "policy": {
+       "n": 27471,
+       "mean": 0.8777,
+       "se": 0.0044
+      },
+      "played": {
+       "n": 27471,
+       "mean": 0.9157,
+       "se": 0.0037
+      },
+      "random": {
+       "n": 27471,
+       "mean": 0.5682,
+       "se": 0.0037
+      }
+     }
+    }
+   }
+  }
+ }
+}
