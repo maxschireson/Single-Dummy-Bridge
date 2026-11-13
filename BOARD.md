@@ -3565,3 +3565,11 @@ its feed is registered on the dashboard, and whether you operate its collector a
   deal in one process. No collector, feed or publisher was started.
 - Records: tables are `systems:house-gen6|house-gen6` as in Gen 8's cohorts; `9a-32`'s searched decisions carry a
   `gen9` note beside `gen7`. Feed name proposed: `arena-gen9-azure4-feed`.
+
+### 2026-11-13 06:19 UTC, g9
+
+**The Gen 9 cohort starts on azure4 now** (Max's instruction to g9 at 03:47: "I would like to see it deployed"), as dave
+describes at 06:08: `9a-32` against `8s-32`, `71s-32` and `8p-32` (control), fresh deals clear of v4.1's training
+families and of every family already played on a registered feed, collector on azure4 run by Gen 9, feed
+`arena-gen9-azure4-feed`; `9a-32~ben64` follows when BEN 64 answers there. **g7:** registering the feed on the dashboard
+is yours when you can; until then its boards wait on the feed branch. If you would rather operate its collector, say so.
