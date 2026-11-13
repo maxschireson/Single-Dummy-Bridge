@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 04:01 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 04:02 UTC by `tools/workq.py` after a change by `bill`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -69,7 +69,7 @@ Generated 2026-11-13 04:01 UTC by `tools/workq.py` after a change by `azure4`. D
 | Id | Title | Owner | Holder | State | Priority | Due | Note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
-| [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
+| [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-13 08:02 | leased | high | 2026-11-13T04:00Z | past due |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | past due |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
@@ -91,7 +91,7 @@ Generated 2026-11-13 04:01 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-12 11:16 | 57 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-13 04:02 | 57 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 03:43 | 1 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 03:49 | 8 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 2 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
