@@ -978,76 +978,151 @@
     }
    }
   },
-  "b0-stu0": {
-   "boards": 147,
+  "b0-pr": {
+   "boards": 56,
    "bots": {
     "ben64": {
      "game": {
-      "tables": 178,
-      "decl_decisions": 710,
-      "held": 531,
-      "gave_up": 4,
+      "tables": 70,
+      "decl_decisions": 269,
+      "held": 200,
+      "gave_up": 0,
       "decl_unknown": 0,
-      "def_decisions": 648,
-      "choice": 43,
-      "handed": 1,
+      "def_decisions": 239,
+      "choice": 17,
+      "handed": 0,
       "def_unknown": 0
      },
      "part": {
-      "tables": 114,
-      "decl_decisions": 477,
-      "held": 257,
-      "gave_up": 3,
+      "tables": 42,
+      "decl_decisions": 178,
+      "held": 92,
+      "gave_up": 1,
       "decl_unknown": 0,
-      "def_decisions": 430,
-      "choice": 54,
-      "handed": 8,
+      "def_decisions": 159,
+      "choice": 15,
+      "handed": 0,
       "def_unknown": 0
      },
      "all": {
-      "tables": 292,
-      "decl_decisions": 1187,
-      "held": 788,
-      "gave_up": 7,
+      "tables": 112,
+      "decl_decisions": 447,
+      "held": 292,
+      "gave_up": 1,
       "decl_unknown": 0,
-      "def_decisions": 1078,
-      "choice": 97,
-      "handed": 9,
+      "def_decisions": 398,
+      "choice": 32,
+      "handed": 0,
+      "def_unknown": 0
+     }
+    },
+    "stu0-pr": {
+     "game": {
+      "tables": 70,
+      "decl_decisions": 271,
+      "held": 205,
+      "gave_up": 0,
+      "decl_unknown": 0,
+      "def_decisions": 236,
+      "choice": 12,
+      "handed": 0,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 42,
+      "decl_decisions": 180,
+      "held": 91,
+      "gave_up": 1,
+      "decl_unknown": 0,
+      "def_decisions": 166,
+      "choice": 15,
+      "handed": 1,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 112,
+      "decl_decisions": 451,
+      "held": 296,
+      "gave_up": 1,
+      "decl_unknown": 0,
+      "def_decisions": 402,
+      "choice": 27,
+      "handed": 1,
+      "def_unknown": 0
+     }
+    }
+   }
+  },
+  "b0-stu0": {
+   "boards": 256,
+   "bots": {
+    "ben64": {
+     "game": {
+      "tables": 314,
+      "decl_decisions": 1270,
+      "held": 933,
+      "gave_up": 6,
+      "decl_unknown": 0,
+      "def_decisions": 1122,
+      "choice": 87,
+      "handed": 6,
+      "def_unknown": 0
+     },
+     "part": {
+      "tables": 196,
+      "decl_decisions": 838,
+      "held": 491,
+      "gave_up": 5,
+      "decl_unknown": 0,
+      "def_decisions": 772,
+      "choice": 94,
+      "handed": 12,
+      "def_unknown": 0
+     },
+     "all": {
+      "tables": 510,
+      "decl_decisions": 2108,
+      "held": 1424,
+      "gave_up": 11,
+      "decl_unknown": 0,
+      "def_decisions": 1894,
+      "choice": 181,
+      "handed": 18,
       "def_unknown": 0
      }
     },
     "stu0a": {
      "game": {
-      "tables": 178,
-      "decl_decisions": 728,
-      "held": 575,
+      "tables": 314,
+      "decl_decisions": 1279,
+      "held": 993,
       "gave_up": 0,
       "decl_unknown": 0,
-      "def_decisions": 629,
-      "choice": 35,
-      "handed": 3,
+      "def_decisions": 1141,
+      "choice": 93,
+      "handed": 10,
       "def_unknown": 0
      },
      "part": {
-      "tables": 114,
-      "decl_decisions": 457,
-      "held": 255,
-      "gave_up": 1,
+      "tables": 196,
+      "decl_decisions": 809,
+      "held": 454,
+      "gave_up": 5,
       "decl_unknown": 0,
-      "def_decisions": 441,
-      "choice": 49,
-      "handed": 5,
+      "def_decisions": 773,
+      "choice": 70,
+      "handed": 6,
       "def_unknown": 0
      },
      "all": {
-      "tables": 292,
-      "decl_decisions": 1185,
-      "held": 830,
-      "gave_up": 1,
+      "tables": 510,
+      "decl_decisions": 2088,
+      "held": 1447,
+      "gave_up": 5,
       "decl_unknown": 0,
-      "def_decisions": 1070,
-      "choice": 84,
-      "handed": 8,
+      "def_decisions": 1914,
+      "choice": 163,
+      "handed": 16,
       "def_unknown": 0
      }
     }
