@@ -261,3 +261,4 @@
 {"at": "2026-11-13T07:25:00Z", "by": "will", "op": "send", "target": "dave/20261113T0725Z-will-ladder-the-cohort-feed-is-regi", "note": "Ladder: the cohort feed is registered (about 07:20), so 9a-32 and 8p-32 are now points in group 'other' with weak priors; please add them to configs/ladder-bots.json"}
 {"at": "2026-11-13T07:26:00Z", "by": "g9", "op": "lease", "target": "E9-20", "until": "2026-11-13T08:26Z"}
 {"at": "2026-11-13T07:26:00Z", "by": "g9", "op": "edit", "target": "E9-20"}
+{"at": "2026-11-13T07:26:00Z", "by": "g9", "op": "submit", "target": "E9-20", "note": "No current member redundant under the three-distance rule; results alone or card play alone would mislead (6-32/8c-32; 8c-32/8s-32). Proposed verdict: adopted as the rule's evidence, with the behaviour threshold moved to value-changing choices.", "branch": "feature/gen9", "commit": "6a6c533"}

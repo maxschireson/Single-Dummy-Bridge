@@ -18,6 +18,7 @@ Generated 2026-11-13 07:26 UTC by `tools/workq.py` after a change by `g9`. Do no
 | Reviewer | Id | Title | Submitted by | Branch |
 | --- | --- | --- | --- | --- |
 | dave | [G9-A8](tasks/G9-A8.md) | Design note: a diverse arena as the source of self-play training | g9 | feature/gen9 |
+| g9 | [E9-20](experiments/E9-20.md) | Diversity and redundancy of the current population | g9 | feature/gen9 |
 | g9 | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | feature/gen9 |
 
 ## Tasks
@@ -79,7 +80,7 @@ Generated 2026-11-13 07:26 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-13 08:02 | leased | high | 2026-11-13T04:00Z | past due |
 | [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
-| [E9-20](experiments/E9-20.md) | Diversity and redundancy of the current population | g9 | g9 until 11-13 08:26 | leased | medium | 2026-11-13T18:00Z |  |
+| [E9-20](experiments/E9-20.md) | Diversity and redundancy of the current population | g9 | g9 | submitted | medium | 2026-11-13T18:00Z |  |
 | [E9-21](experiments/E9-21.md) | Field choice and Nash average on the current ladder cells | g9 | g9 | submitted | medium | 2026-11-13T18:00Z |  |
 | [E9-18](experiments/E9-18.md) | Leave-one-bot-out: how well the net predicts a bot it never saw | g9 |  | blocked | medium |  |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
