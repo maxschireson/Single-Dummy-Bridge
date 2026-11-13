@@ -3,6 +3,16 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen9azure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen 9 · azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
+      "branch": "arena-gen9-azure4-feed",
+      "cohort": "75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078"
+    },
+    {
       "key": "gen8independent",
       "group": "gen8",
       "generation": 8,
@@ -1676,6 +1686,12 @@
     "authority": "Max, 2026-11-12 15:32 UTC: Go ahead (Gen 8); 15:33: machines on Gen 7 work switch to the Gen 8 arena; 15:50: never a board in a family the bot was trained on; 16:11, to the operator: switch the arena to Gen 8.",
     "source": "feature/gen8-prototype-20261112 at 792c4cb; notice docs/gen8_candidate_2026-11-12.md there",
     "feeds": "azure1 and azure6: configs/round8-candidate.json, eight workers each. azure3: configs/round8-candidate-ben.json reduced to 8s-32~ben64, eight lanes. Every cohort leaves out the families policy v4.1 was trained on (the union of the two lists, 34,092, sha256 0b8ac2b7...).",
+    "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
+  },
+  "gen9_azure": {
+    "authority": "Max, 2026-11-13 07:00 UTC (in chat): make sure the Gen 9 boards on the Azure boxes make it into the arena.",
+    "feeds": "azure4: arena-gen9-azure4-feed, manifest 75b73937..., 9a-32 against 8s-32, 71s-32 and 8p-32, eight workers, target 10,000.",
+    "default_view": "Gen 9 is selectable (?source=gen9&older=1); the default view stays Gen 8 until Max says otherwise.",
     "session": "https://claude.ai/code/session_01N2EvxEiuqLC6xtt2hftSWZ"
   }
 }

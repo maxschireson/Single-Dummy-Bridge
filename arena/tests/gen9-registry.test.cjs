@@ -6,7 +6,8 @@ const gen9={key:'gen9test',group:'gen9',generation:9,variant:'9',environment:'az
 R.applyRegistry({...registry,sources:[...registry.sources,gen9]});
 assert.equal(R.latestScope,'gen8','a Gen 9 source does not move the default view');
 assert.equal(R.latestSource.group,'gen8');
-assert.ok(R.pickSources('gen9').length===1&&R.pickSources('gen9')[0].key==='gen9test','the Gen 9 rollup holds the Gen 9 sources');
+assert.deepEqual(R.pickSources('gen9').map(s=>s.key).sort(),[...registry.sources.filter(s=>s.group==='gen9').map(s=>s.key),'gen9test'].sort(),'the Gen 9 rollup holds the Gen 9 sources');
+assert.ok(registry.sources.some(s=>s.key==='gen9azure4'&&s.branch==='arena-gen9-azure4-feed'),'the azure4 Gen 9 cohort is registered');
 assert.ok(!R.pickSources('latest').some(s=>s.group==='gen9'),'the default (Gen 8) rollup holds no Gen 9 source');
 assert.equal(R.names.gen9,'Gen 9 · all collectors');
 assert.deepEqual(R.resolveSelection('?source=gen9&older=1'),{selected:'gen9',older:true},'selectable like the other non-default rollups');
