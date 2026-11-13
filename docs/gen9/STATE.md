@@ -63,6 +63,14 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
   IMPs a board (the objective); won/lost or capped margins are candidates for a faster screen; a double-dummy luck
   adjustment of the large swings is to be tested.
 
+- **13 Nov 02:45 UTC.** Leakage, box (E9-16 part 2): `8r-32` (random among exactly equal cards) against `8p-32`
+  +0.014 +- 0.126 IMPs a board (no played cost; condition for 8X's default met, posted for x8); against a reader at
+  factor 0.25 +0.306 +- 0.125, so scaling a reader down against a randomizer costs it 0.29 +- 0.15 (read by class
+  instead). Arrival run (G9-D6, accepted): `9a-32` minus `8p-32` against a guest with declared upside-down carding
+  +0.479 +- 0.131, nearly all from reading its cards; guest-b's native cost -0.347 +- 0.160 unexplained (dave). E9-0
+  adopted (bench predicts play). E9-17 inconclusive. E9-11 rejected on the bench (sam). The 8X engine belongs to the
+  `x8` session (`feature/gen8x-rollout-bot-20261113`), not plan; Gen 9's offer was redirected to x8 (board, 02:45).
+
 ## Decided
 
 - The player model, the mixture over profiles and the rule for mixing kinds of profile row: `docs/gen9/architecture.md`
