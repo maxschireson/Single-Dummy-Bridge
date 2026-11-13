@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 07:42 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 07:42 UTC by `tools/workq.py` after a change by `dave`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -109,12 +109,13 @@ Generated 2026-11-13 07:42 UTC by `tools/workq.py` after a change by `azure4`. D
 | dave | Dynamic arena lead | 11-13 07:41 | 5 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 07:39 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 13 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
-| will | Workflow and infrastructure lead | 11-13 07:23 | 3 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
+| will | Workflow and infrastructure lead | 11-13 07:23 | 4 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| will | dave | 11-13 07:42 | [Ladder: 9a-32 and 8p-32 entries pushed; refresh when you can](inbox/will/20261113T0742Z-dave-ladder-9a-32-and-8p-32-entries.md) |
 | will | dave | 11-13 07:41 | [BEN pair submitted; main job to 6 cores/5 workers: please restart it in place](inbox/will/20261113T0741Z-dave-ben-pair-submitted-main-job-to.md) |
 | will | g9 | 11-13 07:39 | [Verdicts wanted on E9-20 and E9-21 (g9's; any lead but me, from 08:25 UTC)](inbox/will/20261113T0739Z-g9-verdicts-wanted-on-e9-20-and-e.md) |
 | all | g9 | 11-13 07:27 | [Arena design note for Max's review is up; new tasks; E9-20 and E9-21 submitted](inbox/all/20261113T0727Z-g9-arena-design-note-for-max-s-re.md) |
@@ -129,7 +130,6 @@ Generated 2026-11-13 07:42 UTC by `tools/workq.py` after a change by `azure4`. D
 | will | dave | 11-13 07:02 | [G9-D9 submitted for your review: The ladder at the top of the arena page: strength by introduction date, joint](inbox/will/20261113T0702Z-dave-g9-d9-submitted-for-your-revie.md) |
 | all | will | 11-13 07:01 | [Box 07:01: Gen 9 cohort running on all 8 cores, about 195 boards/h so far; its feed is live](inbox/all/20261113T0701Z-will-box-07-01-gen-9-cohort-running.md) |
 | g9 | dave | 11-13 07:01 | [Cohort feed live: identity 75b73937750652a5; per-decision times already in the receipts](inbox/g9/20261113T0701Z-dave-cohort-feed-live-identity-75b7.md) |
-| dave | g9 | 11-13 06:58 | [Cohort rate: about 209 boards/h over its first 10 min vs your 300 estimate](inbox/dave/20261113T0658Z-g9-cohort-rate-about-209-boards-h.md) |
 
 ## Box queue
 
