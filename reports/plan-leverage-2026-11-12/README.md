@@ -2,7 +2,7 @@
 
 Research report, branch `research/plan-leverage-20261112` (and the same commits on the Gen 8 prototype as
 `research/plan-leverage-g8-20261112`, which also holds the match wrapper and bot settings). Nothing here is launched or
-merged. Work in progress: the items marked *pending* are still running as this is written (13 November, 11:00 UTC).
+merged. Final: every run had ended by 15:12 UTC on 13 November.
 
 **Correction, 16:40 UTC.** Until then every "tricks a side" figure divided a total by the tables that had a sampled
 pair in the trick range, not by the tables read. A table with no such pair adds nothing to the total and still
@@ -504,9 +504,10 @@ that commit, 1 of 151,241 real positions changed): no effect at this resolution,
 further claims work. A test that forks only the changed decisions is specified for x8 in [claim-fork-test.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/research/plan-leverage-g8-20261112/reports/plan-leverage-2026-11-12/claim-fork-test.md).
 
 `match2`: `pr75x-32-v41` (the late rule, and from trick 5 on 12 layouts at trust 0.5, its tree stopping after
-trick 4) against `7s-32-v41` on `match1`'s deals, 205 CPU seconds a board (paused three times for the rollout nets).
-At 941 of 1,600 boards (11:00 UTC): +0.294 +- 0.078 IMPs a board; paired with `match1` by deal **+0.123 +- 0.076**.
-*Pending* (azure2; about 7 hours left).
+trick 4) against `7s-32-v41` on `match1`'s deals, 200 CPU seconds a board (paused three times for the rollout nets).
+1,600 boards: +0.224 +- 0.059 IMPs a board; paired with `match1` by deal **+0.049 +- 0.058** (same result on 88% of
+the deals). The bot simulating itself from trick 5 adds nothing measurable to the late rule, at 2.6 times its CPU. At
+941 boards it had stood at +0.123 +- 0.076.
 
 ## 7. What a better net buys
 
@@ -550,8 +551,8 @@ playouts add beyond double dummy that the net's correction explains: v4.1 top ca
    level cards would drop exactly the commitments the playouts earn most on (section 1).
 2. **Stop expecting the tree at tricks 3 to 6 to carry a better net.** About 0.10 tricks a side is there in all; the
    tree collects 0.01 to 0.03; what limits it is how well the net reproduces the bots, and the last 2.3-fold of data
-   moved that by two points. `match2` (the bot simulating itself from trick 5, 205 CPU seconds a board) stands at
-   +0.123 +- 0.076 IMPs a board over the late rule alone after 941 of 1,600 deals: possibly more, at 2.6 times the CPU.
+   moved that by two points. Brute force does not collect it either: the bot simulating itself from trick 5
+   (`match2`, 200 CPU seconds a board) adds +0.049 +- 0.058 IMPs a board to the late rule alone, at 2.6 times the CPU.
    For the simulator itself, rollout net v2 tracks the real playouts better than v4.1 (40% against 18 to 32%,
    section 7); 8X (x8) takes it as its rollout net.
 3. **Train on the teacher only if the late rule is adopted.** Its consultations are playout means for up to three
