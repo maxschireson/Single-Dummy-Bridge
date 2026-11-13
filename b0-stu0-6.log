@@ -1,1 +1,3 @@
 stu0a v ben64: 32 boards to play (0 done), 1 workers
+32 boards: -0.625 +- 0.747 IMPs/board for stu0a; 49 boards/hour; 0 failed
+{"pair": "stu0a~ben64", "boards": 32, "cpu_per_board": 31.58, "common": {"imps_per_board": -0.625, "se": 0.747, "boards": 32, "won": 11, "lost": 6, "flat": 15}, "native": {"imps_per_board": -0.625, "se": 0.747, "boards": 32, "won": 11, "lost": 6, "flat": 15}}
