@@ -70,7 +70,7 @@ Generated 2026-11-13 00:14 UTC by `tools/workq.py` after a change by `sam`. Do n
 | [E9-0](experiments/E9-0.md) | What a nat of reading is worth: IMPs against log weight of the true layout | g9 | g9 until 11-13 03:16 | leased | high | 2026-11-13T06:00Z |  |
 | [E9-11](experiments/E9-11.md) | What replaying the house bidder is worth at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-12T20:00Z | lease expired, may be taken over |
 | [E9-12](experiments/E9-12.md) | Reading a foreign system by its card, at the table | bill | bill until 11-12 15:16 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
-| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 01:08 | leased | high | 2026-11-13T04:00Z |  |
+| [E9-4](experiments/E9-4.md) | Reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z |  |
 | [E9-6](experiments/E9-6.md) | What agreed signals are worth to the house pair | sam | sam until 11-13 01:08 | leased | high | 2026-11-13T10:00Z |  |
 | [E9-17](experiments/E9-17.md) | The convention-card reader against fixed carding rules (t-high, t-low, t-random) | dave | dave | submitted | medium | 2026-11-13T12:00Z |  |
 | [E9-16](experiments/E9-16.md) | Leakage: what our plays and calls tell a reader, and what hiding it costs | g9 |  | open | high | 2026-11-13T14:00Z |  |
