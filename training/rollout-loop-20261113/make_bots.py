@@ -18,6 +18,11 @@ deals, which are never trained on.
   stu0-r3           rollouts alone from trick 3 (the search at tricks 1 to 2 only)
   stu0-p            pure: the net's own opening lead, rollouts alone from the second card on; no double dummy anywhere.
                     The claims stay (the exact single-dummy solver).
+Pure Stu as the main line (Max, 11:25 UTC: "Should we just do pure Stu (with single dummy guarantee)?"; 11:27: "I don't
+mind a different lead"):
+  stu0-pa, stu0-pb  stu0-p under two ids, so that it can play itself (the collection `sp0`)
+  stu0-pl           stu0-p with the searched opening lead Stu-as-is and Gen 8 play, in place of the net's own lead. The
+                    gap between stu0-pl and stu0-p on the same deals is what the net's lead costs.
 The same five bots with rollout net v1 (ft) inside (Max, 09:27 UTC: "We should measure v1 rungs too"). v1 takes no bot
 names. stu0v1 is x8's 8z-ft1 with the loop's records and lists.
   stu0v1, stu0v1-b50, stu0v1-r6, stu0v1-r3, stu0v1-p
@@ -53,7 +58,7 @@ STU = ['stu0a', 'stu0b']
 RUNGS = ['-b50', '-r6', '-r3', '-p']
 STU1 = ['stu1a', 'stu1b']
 FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r in RUNGS]
-          + STU1 + ['stu1' + r for r in RUNGS])                 # every bot that claims and mixes as Stu does
+          + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl'])    # every bot that claims and mixes as Stu does
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 NAMES1 = {'self': 'stu0', '*': 'stu0', '8p-32-v41': '8s-32'}
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
@@ -93,6 +98,12 @@ def main():
     bots['stu0-r3'] = rung('rollouts alone from trick 3', [dict(rollout, from_trick=3)])
     bots['stu0-p'] = rung("pure: the net's opening lead, rollouts alone from the second card on, no double dummy", [dict(rollout, from_trick=1)],
                           search_from=14)
+    for twin in ('stu0-pa', 'stu0-pb'):                        # pure Stu under two ids, for self-play
+        bots[twin] = copy.deepcopy(bots['stu0-p'])
+    bots['stu0-pl'] = copy.deepcopy(bots['stu0-p'])
+    bots['stu0-pl']['label'] = ('Stu round 0 ladder: pure with a searched opening lead (the search decides the lead as in Stu-as-is; rollouts '
+                                'alone from the second card on)')
+    bots['stu0-pl']['gen7']['search_from_trick'] = 1            # the lead cannot be rolled out (three hands hidden), so it falls to the search
     for name in ['stu0' + r for r in RUNGS]:                    # the same rungs with rollout net v1 (ft), which takes no names
         b = copy.deepcopy(bots[name])
         b['label'] = b['label'].replace('Stu round 0 ladder: ', 'Stu round 0 ladder, rollout net v1 (ft) inside: ')

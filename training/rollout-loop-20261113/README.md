@@ -98,6 +98,7 @@ that differ from it only in where rollouts take over, and each plays Gen 8 card 
 | `stu0-r3` | search | rollouts alone from trick 3 | |
 | `stu0-p` | the net's lead; rollouts alone from the second card on | | no double dummy anywhere; the claims stay |
 | `stu0-n` | the net alone: its first card at every trick | | no search, no rollouts, no claims (asked by the dashboard session for Max) |
+| `stu0-pl` | the search's lead; rollouts alone from the second card on | | `stu0-p` with a searched lead: the gap is what the net's lead costs (Max, 11:27 UTC) |
 
 - The same bots are also measured with rollout net v1 (ft) inside (`stu0v1`, `stu0v1-b50`, `stu0v1-r6`,
   `stu0v1-r3`, `stu0v1-p`, `stu0v1-n`; Max, 09:27 UTC: "We should measure v1 rungs too"). `stu0v1` is x8's `8z-ft1` with the

@@ -3,7 +3,7 @@
 **Work in progress, research only.** Kept by the loop session (`https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j`).
 This page is what is intended and why. What exists and how to run it: [README.md](README.md). What each run is:
 `runs.json`. Who decided what and when, and who holds which box: the board (`box/coordination`, `BOARD.md`, entries
-signed `loop`). Last revised 13 November 2026, 11:05 UTC.
+signed `loop`). Last revised 13 November 2026, 11:40 UTC.
 
 ## The aim
 
@@ -25,6 +25,32 @@ the rollout boundary over time", 09:24 UTC). He named the bot **Stu** (09:05).
 | 09:27 | "We should measure v1 rungs too" | Every rung also with rollout net v1 inside, once |
 | 09:30 | "another chat will create a dashboard to monitor the process" | `DASHBOARD.md`, `runs.json` |
 | 09:38 | "ETA for initial calibration results?" | The ladder's first pass (200 deals a rung) ran at once on azure3 instead of at the cut |
+| 11:10 | "The rollout should supply that? Choosing moves with more known cards." (on who models expert opponents; 11:16: "not more of the layout, just the future") | The simulated seats are the net, and the net is to learn from the rollouts' choices: that is the loop's own answer, and its value targets are how (below) |
+| 11:16 | "v8 is trained to have strategy fusion errors. As we extinguish those, it may not be all up and to the right" | IMPs against Gen 8 are not the only yardstick: a count against the exact single-dummy solver is added (below) |
+| 11:25 | "Should we just do pure Stu (with single dummy guarantee)?" | Pure Stu becomes the main line and plays the collection, from the 1,000-deal comparison at about 12:35 UTC unless it is more than about half an IMP behind Stu-as-is |
+| 11:27 | "I don't mind a different lead I think. Leading is different than every other trick at bridge - you don't see the dummy." | The lead is the net's own card or the search's, whichever measures better (`stu0-pl` against `stu0-p`); rollouts at the lead are not asked of the engine |
+
+## Stu from here: pure
+
+**Pure Stu** is the bot `stu0-p`: the net's own opening lead; from the second card of trick 1 every card by rollouts
+alone, each seat played from its own view; no double-dummy search at any trick; the exact single-dummy claims as
+before (a card that wins every remaining trick, in any contract; a declarer's guaranteed contract kept in games, slams
+and doubled contracts; defenders avoiding handing one over). "Stu-as-is" (`stu0a`: search at the lead and tricks 1 to
+2, the search blended with rollouts at tricks 3 to 6, rollouts alone from trick 7) stays as a rung.
+
+Why now: on the ladder's first 200 deals it is +0.10 +- 0.37 against Stu-as-is deal by deal (both near -0.55 against
+Gen 8 card play); every card after the lead is rollout-made, so a change in the net reaches every trick and every
+board gives about twice the rollout decisions to learn from (35 a side against 16); and its games hold no card chosen
+by the search, so the net is no longer trained on new strategy-fusion play. The comparison at 1,000 deals lands at
+about 12:35 UTC; pure Stu's games (`sp0`, `sp0b`) start then.
+
+**Two yardsticks, because of fusion.** Against Gen 8, removing fusion from Stu does two things at once: Stu's own
+cards improve where fusion cost tricks, and Stu's simulated opponents stop making Gen 8's fusion mistakes and so
+predict Gen 8 less well. The gate nets the two and need not rise. Two of the usual scores are biased the same way: the
+nets' "tricks given up" is the double-dummy search's value on every search bot's rows, and v2 and v4.1 learned their
+cards from search bots. So beside IMPs against Gen 8: in the last seven tricks, for every bot in the ladder's records
+(Gen 8 included), how often its card gives up a contract the exact single-dummy solver says it had guaranteed, and how
+often a defender's card hands declarer one (`fusion_ledger.py`, not written yet).
 
 ## A round
 
@@ -120,19 +146,19 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   in one thing: what the rollouts' seats on Stu's own side do.
 - **Measure.** `l1-stu1`, `l1-p`, `l1-n`: Stu, the pure bot and the net alone with round 1's net, against Gen 8 card
   play on the deals of round 0's rungs, compared deal by deal. New against old beside them, later.
-- **Then.** Which bot plays the collection from here depends on two comparisons now running: the pure bot against
-  Stu (1,000 deals on the two boxes by about 12:45 UTC), and round 1's net against round 0's inside each. Until then
-  azure5's collection is paused at 976 boards of `s0` (1,448 boards in all with `r0` and azure3's `s0b`).
+- **Then.** The collection is pure Stu's from about 12:35 UTC (above). Whether its rollouts use round 1's net or
+  round 0's follows from `l1-p` against `l0-p`. Stu-as-is has 1,448 boards on the two boxes (`r0`, `s0`, `s0b`); its
+  collection is not resumed.
 
 ## After round 1, in the order I expect to matter
 
 1. **Put the rollout values to use in play.** First in the simulated seats: the engine can already let a seat's card
    depend on the net's gap head (`seat: blend`), and for a seat told it is Stu that head would carry Stu's rollout
    values. Measured as a rung. Later as the value at the end of a shortened rollout, which needs engine work.
-2. **Move the boundary** when the ladder says so. Proposed rule, Max's to set: a rung becomes Stu when it is not behind
-   the current Stu by more than one standard error on at least 1,000 deals compared deal by deal.
-3. **Rollout-made decisions at early tricks** in the training set (`d0-p`, `d0-r3`: the pure bot and rollouts from
-   trick 3 against Stu on training deals). Without them the net's early play still comes from the search.
+2. **The boundary** is at the first card after the lead (pure Stu, above). What is left of it is the lead: the net's
+   own or the search's, by `stu0-pl` against `stu0-p`.
+3. **A net that knows pure Stu:** its own name in the net (as `stu0` is Stu-as-is's), trained on its games, the two
+   vectors first; then the rollout values at every trick, which only its games have.
 4. **The IMP objective** as a second bot and a second target from the same records (Max: "eventually I will do both").
 5. **One net with the line finder's labels:** the sidnet session's `S_0` heads joined to this net, and the
    conditional claims (g9's X9) in Stu's rollouts.
@@ -152,9 +178,11 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 
 ## Open, for Max
 
-- The rule for moving the boundary (proposal above).
+- The bar for pure Stu at the 1,000-deal comparison: my default is to go ahead unless it is more than about half an
+  IMP behind Stu-as-is.
 - The opponent mix in the collection and when BEN joins the gate.
-- Whether round 1 should wait for anything I have not thought of. My default is to run it today.
+- A yardstick that rewards modelling good play, not Gen 8's habits: the single-dummy count is one; a second outside
+  opponent or strong people on the play server would be another.
 
 ## Where things are
 

@@ -17,14 +17,17 @@ BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transf
             'sandbox': 'transfer/rollout-loop-sandbox-20261113'}
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
-RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-n': 'net'}
+RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
+        '-n': 'net'}
 RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7",
              'b50': 'the blend at tricks 3 to 6 at trust 0.5', 'r6': 'rollouts alone from trick 6', 'r3': 'rollouts alone from trick 3',
              'pure': "the net's opening lead, rollouts alone from the second card on; no double dummy",
+             'pure-sl': 'pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on',
              'net': "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"}
 # Round 0's collection is not waited on any more (PLAN.md): round 1 is cut when its training chain is ready.
-ROUNDS = {'0': dict(collection_cut_boards=None, note="No board count is waited for. Round 1's set is cut when its training chain is ready "
-                                                       '(13 November); the collection goes on for the later rounds.')}
+ROUNDS = {'0': dict(collection_cut_boards=None, note="No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November "
+                                                       '(1,009 boards of Stu-as-is). From about 12:35 UTC the collection is pure Stu playing '
+                                                       "itself (run sp0; a collection run's first_bot.rung says which bot plays it).")}
 # runs that are not in a job file any more
 STATIC = [
     dict(name='r0', box='azure5', pair='z0a-v2~z0b-v2', seed=9001, first=0, deals=20000, records=True,
@@ -40,7 +43,7 @@ def bot(name):
     """What a bot id says: Stu-family ids are stu<round>[v1][a|b|-rung]; z0a-v2 and z0b-v2 were round 0's first ids."""
     if name in ('z0a-v2', 'z0b-v2'):
         return dict(family='stu', round=0, net='v2', rung='stu')
-    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-p|-n)?', name)
+    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pa|-pb|-pl|-p|-n)?', name)
     if m:
         return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
                     rung=RUNG[m.group(3) or ''])

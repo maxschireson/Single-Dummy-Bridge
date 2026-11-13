@@ -16,12 +16,13 @@
   "r6": "rollouts alone from trick 6",
   "r3": "rollouts alone from trick 3",
   "pure": "the net's opening lead, rollouts alone from the second card on; no double dummy",
+  "pure-sl": "pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on",
   "net": "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"
  },
  "rounds": {
   "0": {
    "collection_cut_boards": null,
-   "note": "No board count is waited for. Round 1's set is cut when its training chain is ready (13 November); the collection goes on for the later rounds."
+   "note": "No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November (1,009 boards of Stu-as-is). From about 12:35 UTC the collection is pure Stu playing itself (run sp0; a collection run's first_bot.rung says which bot plays it)."
   }
  },
  "runs": [
@@ -137,6 +138,30 @@
    "queue_order": 2
   },
   {
+   "name": "sp0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "stu0-pa~stu0-pb",
+   "seed": 9001,
+   "first": 60000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure"
+   },
+   "queue_order": 3
+  },
+  {
    "name": "s0",
    "box": "azure5",
    "branch": "transfer/rollout-loop-azure5-20261113",
@@ -158,7 +183,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 3
+   "queue_order": 4
   },
   {
    "name": "l0-stu0",
@@ -374,6 +399,27 @@
    "queue_order": 9
   },
   {
+   "name": "l0-pl",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu0-pl~8p-32-v41",
+   "seed": 131,
+   "first": 0,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-sl"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 10
+  },
+  {
    "name": "l0-r3",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
@@ -396,7 +442,7 @@
     200,
     500
    ],
-   "queue_order": 10
+   "queue_order": 11
   },
   {
    "name": "l0-v1-r3",
@@ -421,7 +467,7 @@
     200,
     500
    ],
-   "queue_order": 11
+   "queue_order": 12
   },
   {
    "name": "l0-r6",
@@ -446,7 +492,7 @@
     200,
     500
    ],
-   "queue_order": 12
+   "queue_order": 13
   },
   {
    "name": "l0-v1-r6",
@@ -471,7 +517,7 @@
     200,
     500
    ],
-   "queue_order": 13
+   "queue_order": 14
   },
   {
    "name": "l0-b50",
@@ -496,7 +542,7 @@
     200,
     500
    ],
-   "queue_order": 14
+   "queue_order": 15
   },
   {
    "name": "l0-v1-b50",
@@ -521,7 +567,7 @@
     200,
     500
    ],
-   "queue_order": 15
+   "queue_order": 16
   },
   {
    "name": "g0b-stu0",
@@ -542,31 +588,31 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 16
+   "queue_order": 17
   },
   {
-   "name": "s0b",
+   "name": "sp0b",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
    "role": "collection",
-   "pair": "stu0a~stu0b",
+   "pair": "stu0-pa~stu0-pb",
    "seed": 9001,
-   "first": 20000,
+   "first": 80000,
    "deals": 20000,
    "records": true,
    "first_bot": {
     "family": "stu",
     "round": 0,
     "net": "v2",
-    "rung": "stu"
+    "rung": "pure"
    },
    "second_bot": {
     "family": "stu",
     "round": 0,
     "net": "v2",
-    "rung": "stu"
+    "rung": "pure"
    },
-   "queue_order": 17
+   "queue_order": 18
   },
   {
    "name": "d0-p",
@@ -590,7 +636,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 18
+   "queue_order": 19
   },
   {
    "name": "d0-r3",
@@ -614,7 +660,7 @@
     "net": "v2",
     "rung": "stu"
    },
-   "queue_order": 19
+   "queue_order": 20
   },
   {
    "name": "c-n41-n4",
@@ -632,7 +678,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 20
+   "queue_order": 21
   },
   {
    "name": "c-r7-n41",
@@ -650,7 +696,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 21
+   "queue_order": 22
   },
   {
    "name": "c-r7x4-n41",
@@ -668,7 +714,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 22
+   "queue_order": 23
   },
   {
    "name": "c-r7-n4",
@@ -686,7 +732,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 23
+   "queue_order": 24
   },
   {
    "name": "c-r7x4-n4",
@@ -704,7 +750,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 24
+   "queue_order": 25
   },
   {
    "name": "c-r7-r7f4",
@@ -722,7 +768,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 25
+   "queue_order": 26
   }
  ]
 }

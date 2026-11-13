@@ -2,9 +2,13 @@
 # Seed 131 is the gate's and the ladder's: its deals are never trained on. Seed 9001 is round 0's training seed.
 #
 # The ladder's deciding comparison, deals 500 to 999 (azure3 plays deals 0 to 499 as l0-stu0 and l0-p): Stu and the pure
-# bot against Gen 8 card play. The collection waits for it: which bot should play the collection depends on it.
+# bot against Gen 8 card play.
 l0b-stu0 stu0a~8p-32-v41 131 500 500 8 --episodes
 l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
-# Round 0's collection: self-play with the full records. (Run r0, deals under 1,000, was the same bot under the ids
-# z0a-v2~z0b-v2.)
+# The collection from here on: pure Stu against itself (Max, 11:25 UTC), full records, training deals from 60,000.
+# It starts when the comparison above ends; the loop session stops it if that comparison shows the pure bot more than
+# about half an IMP behind (PLAN.md).
+sp0 stu0-pa~stu0-pb 9001 60000 20000 8 --episodes
+# Stu-as-is against itself (976 boards so far; run r0, deals under 1,000, was the same bot under the ids z0a-v2~z0b-v2).
+# Reached only if the pure collection is stopped.
 s0 stu0a~stu0b 9001 1000 19000 8 --episodes
