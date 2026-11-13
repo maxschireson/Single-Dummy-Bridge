@@ -1,12 +1,10 @@
 # Gen 9: state at Thu 12 Nov 23:25 UTC (hand-over note)
 
-> **13 Nov 00:16 UTC: Gen 9 is postponed in favor of 8X (Max, 00:04).** 8X is the plan session's loop (a rollout net
-> trained on Gen 7+ play; a bot with single-dummy winning-line logic to about trick 10 and full rollouts on that net,
-> PIMC only when needed, inside-rollout data captured; play, retrain, repeat; a diverse population). The plan session
-> owns the engine. Gen 9's pieces are offered to it (board, 00:14): opponent models inside the rollouts and in the
-> reading, the loop's harness (registry, epochs, ratings, promotion test), bench grading, the job queue, and
-> randomizing among exactly equal cards. No new Gen 9 experiments; the Friday review package (G9-A6) is on hold.
-> azure4: the arrival run, then `e9-0-n02`, `e9-0-n02e`, `e9-16-r-v-p`, `e9-16-r-v-x`, then released on the board.
+> **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
+> more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
+> it needs from us. Gen 9's centre is now managing a highly diverse arena as the environment for self-play training.
+> azure4 stays with Gen 9's queue. Gen 9's pieces are offered to 8X (board, 00:14), optional. 8X randomizes among
+> exactly equal cards if the two leakage matches show no played cost (Max agreed, 00:28).
 
 Written by g9 for whoever picks this up (a later g9 session, a helper, or Max). Everything here is on `feature/gen9`
 or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experiments/E9-*.md`; tasks are
