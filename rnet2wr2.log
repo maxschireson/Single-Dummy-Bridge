@@ -8,3 +8,6 @@
 2026-11-13T02:32:22Z set: {"parts": 18, "deals": 75409, "bots": ["1", "2", "3", "4b", "5-32", "5R192", "5R32", "5RZ192", "5RZ32", "6-256", "6-32", "71s-32", "7s-32", "8c-32", "8s-32", "ben", "ben32", "ben64"], "unique_families": 61003, "examples": 30381099, "deals_by_hash_split": [60487, 7322, 7600]}
 2026-11-13T02:32:55Z freshB: {"deals_in": 247, "deals_kept": 144, "dropped_as_seen": 103, "examples": 123142}
 2026-11-13T02:32:55Z warm start from /home/bridgebots/work/plan/nets/w768e5_epoch5.npz (lr 5e-4, 3 epochs)
+2026-11-13T03:51:24Z warm done: {"done": "/home/bridgebots/work/plan/rnet2w/warm", "selected_epoch": 3, "validation": {"n": 123142, "searched": 100592, "nll": 0.524, "uniform_nll": 1.2695, "tie_nll": 0.7885, "agree": 0.7838, "in_best": 0.923, "regret": 0.0221, "regret_gap_head": 0.0194, "regret_random": 0.2075, "regret_lowest": 0.2281}, "parity": 6.67572021484375e-06, "auction_use": {"real": {"nll": 0.524, "agree": 0.7838, "regr
+remote: 
+2026-11-13T03:51:27Z pushed to transfer/rollout-net-v2w-20261113; end

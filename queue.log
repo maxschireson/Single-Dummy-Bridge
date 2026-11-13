@@ -44,3 +44,5 @@
 2026-11-13T02:18:46Z end rnet2wr: exit 143
 2026-11-13T02:18:46Z source now 7caad4f Rollout net v2 chain: the Gen 5RZ feeds (arena-gen5rz*, Max 02:15); each
 2026-11-13T02:18:46Z start rnet2wr2 (source 7caad4f): RESUME=1 W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/hand_fit_v0.npz BRANCH=transfer/rollout-net-v2w-20261113 CMP_NETS="$P/nets/rnet1/ft.npz $P/nets/rnet1/scratch.npz" bash training/rollout-net-v2-20261113/chain.sh
+2026-11-13T03:51:27Z end rnet2wr2: exit 0
+2026-11-13T03:51:27Z start seat1 (source 7caad4f): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets "$NETS,ft=$P/nets/rnet1/ft.npz,scr=$P/nets/rnet1/scratch.npz" --sims "v41:top;ft:top;scr:top;ft:blend" --from-trick 3 --to-trick 6 --files 1000 --seed 1 --layouts 512 --max-gap 0.25 --workers 8 --out $R.json
