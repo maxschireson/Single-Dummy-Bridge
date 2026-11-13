@@ -1,0 +1,60 @@
+{
+  "schema": "stu-registry-v1",
+  "title": "Stu: the rollout loop, generation by generation",
+  "updated": "2026-11-13T09:45Z",
+  "branches": [
+    {"box": "azure3", "branch": "transfer/rollout-loop-azure3-20261113"},
+    {"box": "azure5", "branch": "transfer/rollout-loop-azure5-20261113"},
+    {"box": "sandbox", "branch": "transfer/rollout-loop-sandbox-20261113", "frozen": true}
+  ],
+  "validation": {
+    "seed": 131,
+    "note": "Fixed validation deals: seed 131, deal index from 0, the common bidder (both tables play the same contract, so the IMPs are card play). The same deals every round, so rounds and roles pair deal by deal. Collections never use seed 131.",
+    "opponents": [
+      {"id": "8p-32-v41", "label": "Gen 8 card play", "detail": "8p-32 with policy v4.1: the Gen 8 prototype's search. Not trained on Stu's games.", "primary": true},
+      {"id": "ben64", "label": "BEN (64)", "detail": "BEN's card play, 64 samples. Not trained on Stu's games."}
+    ]
+  },
+  "roles": [
+    {"key": "net", "label": "Net alone", "short": "Net", "description": "The round's net plays its top card at every trick: no search, no rollouts, no claims. The unamplified player; the loop is alive if this rises."},
+    {"key": "roll", "label": "Net + rollouts", "short": "Rollouts", "description": "The net's top card through trick 6; from trick 7, rollouts on the same net (up to 4 candidates, up to 128 layouts, the net choosing every simulated card). No search, no claims. Amplification by rollouts alone."},
+    {"key": "stu", "label": "Stu", "short": "Stu", "description": "The bot as it plays the loop (x8's 8Z settings): tricks 1-2 the Gen 8 search, 3-6 the search blended with rollouts, 7-13 rollouts alone, claims, declarer mixing. The round's net is the rollout net."}
+  ],
+  "generations": [
+    {
+      "round": "v4.1",
+      "kind": "reference",
+      "label": "Policy v4.1 (reference)",
+      "note": "The Gen 7-8 policy net the teachers used, for scale. Not a round of the loop.",
+      "bots": {"net": ["n-v41"], "roll": ["r7-v41"]},
+      "net": {"label": "Gen 7 policy v4.1", "file": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz"}
+    },
+    {
+      "round": 0,
+      "label": "Stu 0",
+      "started": "2026-11-13T08:43Z",
+      "note": "Rollout net v2 inside x8's 8Z. Table net (candidates' prior, tricks 1-6) is policy v4.1. Every simulated seat is told both sides are 8s-32. Records keep every layout's result for every candidate from 09:09 UTC.",
+      "bots": {"stu": ["stu0a", "stu0b"], "net": ["n-stu0"], "roll": ["r7-stu0"]},
+      "aliases": {"z0a-v2": "stu0a", "z0b-v2": "stu0b"},
+      "net": {
+        "label": "Rollout net v2 (768 wide, epoch 5)",
+        "file": "models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz",
+        "trained_from": "random weights, v4.1's recipe, 5 epochs",
+        "data": "every Gen 6-8 arena episode (about 66,000), every bot's decisions, with a vector for each side's bot",
+        "metrics": {"branch": "transfer/rollout-net-v2-20261113", "path": "runs/w768/metrics.json"},
+        "previous_compare": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
+        "previous_label": "policy v4.1 on the same rows"
+      },
+      "source": "research/rollout-loop-20261113"
+    }
+  ],
+  "labels": {
+    "stu0a": "Stu 0", "stu0b": "Stu 0 (second id)", "z0a-v2": "Stu 0 (first id, before the rename)", "z0b-v2": "Stu 0 (second id, before the rename)",
+    "n-stu0": "Rollout net v2 alone", "r7-stu0": "Rollout net v2 + rollouts from trick 7",
+    "8p-32-v41": "Gen 8 card play (8p-32, v4.1)", "ben64": "BEN (64)",
+    "n-v41": "Policy v4.1 alone", "n-v4": "Policy v4 alone",
+    "r7-v41": "Rollouts from trick 7 on v4.1", "r7x-v4": "Rollouts on v4 (table net v4.1)", "r7x-v0": "Rollouts on v0 (table net v4.1)",
+    "r7f-v4": "Rollout bot wholly on v4", "r3-v41": "Rollouts from trick 3 on v4.1", "8z-ft1": "8Z with rollout net v1"
+  },
+  "exclude_runs": ["pf-*", "t-*", "smoke*"]
+}
