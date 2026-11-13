@@ -13,6 +13,7 @@ population that players join and leave.
 | [Work plan](workplan.md) | Areas, tasks, checkpoints, team size |
 | [Arena statistics](arena-statistics.md) | Rating table, field score, admission, the promotion test |
 | [The ladder](ladder.md) | Every registered bot's strength by introduction date, with bench priors and time per decision (G9-D9) |
+| [The arena as a population](population-page.md) | Page prototype: cells heat map, members by role, the champion, boards by role (G9-D10) |
 | Area design notes | `bidding.md`, `signals.md`, `arena.md`, `workflow.md`, added by the area leads at checkpoint 1 |
 
 **Tests.** `python3 scripts/run_tests.py --prepare` builds DDS, installs what is missing, restores

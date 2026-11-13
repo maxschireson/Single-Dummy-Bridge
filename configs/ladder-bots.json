@@ -1,6 +1,6 @@
 {
   "schema": "ladder-bots-v1",
-  "about": "The ladder's bots (scripts/arena_ladder.py, G9-D9): display label, colour group, parent, and the prior relative to the parent where an estimate from outside the registered feeds exists. A prior from the registered feeds themselves would count the same boards twice, so none is taken from them. 'estimate' is in IMPs a board from the bot's side against its parent; 'tricks': true marks a bench figure in tricks, converted at 3.8 IMPs a trick (E9-0) with 10% on the conversion. Bots without an estimate get the weak prior (SD 2 IMPs a board at the field mean). 'introduced' overrides the ladder's x (the first board on a registered feed) where a bot is known to have played earlier, with its evidence.",
+  "about": "The ladder's bots (scripts/arena_ladder.py, G9-D9): display label, colour group, parent, and the prior relative to the parent where an estimate from outside the registered feeds exists. A prior from the registered feeds themselves would count the same boards twice, so none is taken from them. 'estimate' is in IMPs a board from the bot's side against its parent; 'tricks': true marks a bench figure in tricks, converted at 3.8 IMPs a trick (E9-0) with 10% on the conversion. Bots without an estimate get the weak prior (SD 2 IMPs a board at the field mean). 'introduced' overrides the ladder's x (the first board on a registered feed) where a bot is known to have played earlier, with its evidence. 'role' is the bot's role in the population (docs/gen9/arena-selfplay.md section 2): champion, candidate, control, past champion, league, outside panel.",
   "anchor": "ben64",
   "anchor_note": "BEN (64): an outside bot that does not change between generations, with boards against every generation from Gen 6 on.",
   "weak_prior_sd": 2.0,
@@ -16,74 +16,88 @@
         "source": "commit 63a4aa4b (8 Nov 12:32 UTC), 'Import bridge harness source, tests and compact reports': the harness with Gen 1's first match reports (PIMC against BEN, greedy and random players) already played",
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/commit/63a4aa4b",
         "note": "Gen 1 played before the arena and before this commit; the repository does not record when it first played, so this is the latest it can have been."
-      }
+      },
+      "role": "past champion"
     },
     "2": {
       "label": "Gen 2",
       "group": "Gen 1-4",
-      "parent": "1"
+      "parent": "1",
+      "role": "past champion"
     },
     "3": {
       "label": "Gen 3",
       "group": "Gen 1-4",
-      "parent": "2"
+      "parent": "2",
+      "role": "past champion"
     },
     "4": {
       "label": "Gen 4",
       "group": "Gen 1-4",
-      "parent": "3"
+      "parent": "3",
+      "role": "past champion"
     },
     "4p": {
       "label": "Gen 4p",
       "group": "Gen 1-4",
       "parent": "3",
-      "note": "v4 policy on the v3 belief"
+      "note": "v4 policy on the v3 belief",
+      "role": "league"
     },
     "4b": {
       "label": "Gen 4b",
       "group": "Gen 1-4",
       "parent": "3",
-      "note": "v3 policy on the v4 belief"
+      "note": "v3 policy on the v4 belief",
+      "role": "league"
     },
     "5-32": {
       "label": "Gen 5 (32)",
       "group": "Gen 5",
-      "parent": "4"
+      "parent": "4",
+      "role": "past champion"
     },
     "5": {
       "label": "Gen 5 (192)",
       "group": "Gen 5",
-      "parent": "5-32"
+      "parent": "5-32",
+      "role": "league"
     },
     "5R32": {
       "label": "Gen 5R (32)",
       "group": "Gen 5",
-      "parent": "5-32"
+      "parent": "5-32",
+      "role": "past champion"
     },
     "5R192": {
       "label": "Gen 5R (192)",
       "group": "Gen 5",
-      "parent": "5R32"
+      "parent": "5R32",
+      "role": "league"
     },
     "5RZ32": {
       "label": "Gen 5RZ (32)",
       "group": "Gen 5",
-      "parent": "5R32"
+      "parent": "5R32",
+      "role": "past champion"
     },
     "5RZ192": {
       "label": "Gen 5RZ (192)",
       "group": "Gen 5",
-      "parent": "5RZ32"
+      "parent": "5RZ32",
+      "role": "league"
     },
     "6-32": {
       "label": "Gen 6 fast (32)",
       "group": "Gen 6",
-      "parent": "5RZ32"
+      "parent": "5RZ32",
+      "role": "past champion"
     },
     "6-256": {
       "label": "Gen 6 medium (256)",
       "group": "Gen 6",
-      "parent": "6-32"
+      "parent": "6-32",
+      "role": "league"
     },
     "7s-32": {
       "label": "Gen 7 standard (32)",
@@ -96,7 +110,8 @@
         "source": "box match 7s-32 against 6-32 (Gen 8 session; p41's check of the rows, box/coordination BOARD.md, 12 Nov 15:10 UTC)",
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
         "note": "Box deals, not a registered feed. Which of 7s-32's two tree settings the box ran is not stated on the board."
-      }
+      },
+      "role": "past champion"
     },
     "71s-32": {
       "label": "Gen 7.1 standard (32)",
@@ -109,7 +124,8 @@
         "source": "box match 7s-32 with policy v4.1 against with v4, two boxes on different deals (p41's check, box/coordination BOARD.md, 12 Nov 15:10 UTC)",
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
         "note": "71s-32's published spec differs from 7s-32's only in the policy net (v4.1)."
-      }
+      },
+      "role": "past champion"
     },
     "8s-32": {
       "label": "Gen 8 candidate (32)",
@@ -122,22 +138,26 @@
         "source": "box match 8p-32 against 7s-32, both with policy v4.1 (p41's check, box/coordination BOARD.md, 12 Nov 15:10 UTC)",
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md",
         "note": "Not 8s-32 itself: p41 notes the candidate plays board for board as 8p-32-v41 on house tables; it adds the opponent table and the system scorer, which act only against other systems (BEN, rule bidders)."
-      }
+      },
+      "role": "champion"
     },
     "8c-32": {
       "label": "Gen 8, Precision rule bidder (32)",
       "group": "Gen 8",
-      "parent": "8s-32"
+      "parent": "8s-32",
+      "role": "league"
     },
     "ben": {
       "label": "BEN (16)",
       "group": "BEN",
-      "parent": null
+      "parent": null,
+      "role": "outside panel"
     },
     "ben64": {
       "label": "BEN (64)",
       "group": "BEN",
-      "parent": "ben"
+      "parent": "ben",
+      "role": "outside panel"
     },
     "9a-32": {
       "label": "Gen 9 candidate, player models (32)",
@@ -152,7 +172,8 @@
         "note": "Not the cohort's configuration: in the arrival run both bots used policy v4 and 9a-32 had no exploration; the cohort's 9a-32 has v4.1 and exploration 1.0. 8p-32 stands in for 8s-32, which plays as 8p-32-v41 against house bots."
       },
       "edge": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The ladder's field holds no guest that declares carding, so its point here measures it against house bots and BEN; its prior is the arrival head-to-head figure.",
-      "edge_url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112"
+      "edge_url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112",
+      "role": "candidate"
     },
     "8p-32": {
       "label": "Gen 8 prototype, Gen 9 control (32)",
@@ -165,7 +186,8 @@
         "source": "g8, quoted in G9-D9's task log (g9, 13 Nov 04:17 UTC): 8s-32 and 8p-32 'the same within 0.05 +- 0.04'",
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md",
         "note": "8p-32 is 8s-32 without the opponent table, the system scorer and the lead-system list; against house bots they play alike by design. The source gives no signed figure, so the prior is centred at 0 with SD 0.05."
-      }
+      },
+      "role": "control"
     }
   },
   "candidates": {

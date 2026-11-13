@@ -427,6 +427,136 @@ def utc(t):
     return time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime(t)) if t else None
 
 
+# ---- the population (G9-D10) ------------------------------------------------------------------------
+
+def nash(A):
+    """A maximum-entropy equilibrium of the symmetric zero-sum game with payoff A (antisymmetric): p >= 0, sum 1,
+    p'A >= 0 against every pure strategy. On the point estimates; None if no solver converges."""
+    from scipy.optimize import linprog, minimize
+    n = len(A)
+    lp = linprog(np.zeros(n), A_ub=-A.T, b_ub=np.zeros(n), A_eq=np.ones((1, n)), b_eq=[1], bounds=[(0, 1)] * n, method='highs')
+    if not lp.success:
+        return None
+    p0 = np.clip(lp.x, 1e-9, 1)
+    res = minimize(lambda p: float(np.sum(p * np.log(np.clip(p, 1e-12, 1)))), p0, method='SLSQP', bounds=[(0, 1)] * n,
+                   constraints=[dict(type='eq', fun=lambda p: p.sum() - 1), dict(type='ineq', fun=lambda p: A.T @ p + 1e-9)],
+                   options=dict(maxiter=500, ftol=1e-12))
+    p = res.x if res.success and np.all(A.T @ res.x >= -1e-6) else lp.x
+    p = np.where(p < 1e-6, 0, p)
+    return p / p.sum()
+
+
+def population_doc(F, players, pri, weak, anchor, cfg, point_of, rows, pid, field_note):
+    """Cells for every pair (the pair's own result and the model's prediction from the other pairs, by precision), the
+    out-of-line test per played pair, field score, Nash average and worst cell per member, the champion against the
+    panel by day, and boards by opponent role by day."""
+    pairs, s, C, t2 = F['pairs'], F['s'], F['C'], F['t2']
+    k = {p: n for n, p in enumerate(players)}
+
+    def a(i, j):
+        v = np.zeros(len(players)); v[k[i]] += 1; v[k[j]] -= 1
+        return v
+    direct, prow = {}, []
+    for q in pairs:
+        rest = [x for x in pairs if x is not q]
+        try:
+            s0, C0, _, _ = bayes_fit(rest, players, anchor, pri, weak, t2=t2)
+            v = a(q.i, q.j)
+            pred, var = float(v @ s0), float(v @ C0 @ v)
+        except np.linalg.LinAlgError:
+            pred, var = 0.0, float('inf')
+        z = (q.mean - pred) / math.sqrt(q.se2() + var + t2)
+        p = 2 * (1 - 0.5 * (1 + math.erf(abs(z) / math.sqrt(2))))
+        wd, wm = 1 / q.se2(), 1 / (var + t2)
+        cell = (wd * q.mean + wm * pred) / (wd + wm)
+        direct[(q.i, q.j)] = (cell, 1 / (wd + wm), q)
+        prow.append(dict(pair=f'{q.i}~{q.j}', boards=q.n, mean=round(q.mean, 4), se=round(math.sqrt(q.se2()), 4),
+                         predicted=round(pred, 4), predicted_se=round(math.sqrt(var), 4) if var < 1e9 else None,
+                         z=round(z, 3), p=p, testable=var < 1.0))
+    tested = [r for r in prow if r['testable']]
+    order = sorted(range(len(tested)), key=lambda n: tested[n]['p'])
+    run = 0.0
+    for rank, n in enumerate(order):
+        run = max(run, min(1.0, (len(tested) - rank) * tested[n]['p']))
+        tested[n]['p_holm'] = round(run, 5); tested[n]['out_of_line'] = run < 0.05
+    for r in prow:
+        r['p'] = round(r['p'], 5); r.setdefault('p_holm', None); r.setdefault('out_of_line', None)
+    prow.sort(key=lambda r: -r['boards'])
+    cells = {}
+    for i in players:
+        for j in players:
+            if i == j:
+                continue
+            if (i, j) in direct:
+                c, vc, _ = direct[(i, j)]
+            elif (j, i) in direct:
+                c, vc, _ = direct[(j, i)]; c = -c
+            else:
+                v = a(i, j); c, vc = float(v @ s), float(v @ C @ v) + t2
+            cells[(i, j)] = (c, math.sqrt(vc))
+    A = np.array([[cells[(i, j)][0] if i != j else 0.0 for j in players] for i in players])
+    eq = nash(A)
+    members = []
+    for i in players:
+        others = [j for j in players if j != i]
+        F_i = sum(cells[(i, j)][0] for j in others) / len(others)
+        worst = min(others, key=lambda j: cells[(i, j)][0] + 1.96 * cells[(i, j)][1])
+        row = dict(id=i, role=cfg['bots'].get(i.split('#')[0], {}).get('role', 'league' if '#' in i else 'other'),
+                   field_score=round(F_i, 4), worst=dict(opponent=worst, cell=round(cells[(i, worst)][0], 4), se=round(cells[(i, worst)][1], 4)),
+                   nash_average=None if eq is None else round(float(sum(eq[k[j]] * cells[(i, j)][0] for j in others)), 4))
+        members.append(row)
+    champion = next((p for p in players if cfg['bots'].get(p, {}).get('role') == 'champion'), None)
+    panel = [p for p in players if cfg['bots'].get(p, {}).get('role') == 'outside panel']
+    role_of = {p: cfg['bots'].get(p.split('#')[0], {}).get('role', 'other') for p in players}
+    by_day, mix = {}, {}
+    for r in rows:
+        if not kept(r) or not r['native_ok'] or r['native'] is None:
+            continue
+        x, y = members_of = members_pair(r['pair'])
+        i, j = pid(r['source'], x), pid(r['source'], y)
+        t = int(r['completed_epoch']) // BIN * BIN                 # three-hour bins: the registered feeds have no epochs
+        day = time.strftime('%Y-%m-%dT%H:00Z', time.gmtime(t))
+        if champion in (i, j):
+            other = j if i == champion else i
+            role = 'self-play' if i == j else role_of.get(other, 'other')
+            mix.setdefault(day, {}).setdefault(role, 0)
+            mix[day][role] += 1
+            if other in panel and i != j:
+                v = r['native'] if i == champion else -r['native']
+                by_day.setdefault(other, {}).setdefault(day, []).append(v)
+    panel_days = {}
+    for opp, days in by_day.items():
+        cum = []
+        xs = []
+        for day in sorted(days):
+            xs += days[day]
+            n = len(xs); m = sum(xs) / n
+            sd = math.sqrt(sum((v - m) ** 2 for v in xs) / (n - 1)) if n > 1 else None
+            cum.append(dict(bin=day, boards=n, mean=round(m, 4), se=round(sd / math.sqrt(n), 4) if sd else None))
+        panel_days[opp] = cum
+    return dict(schema='arena-population-v1', computed_utc=time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime()), anchor=anchor,
+                condition='native', unit='IMPs a board', t2=round(t2, 5), players=list(players),
+                roles=role_of, champion=champion, panel=panel,
+                cells=[dict(player=i, opponent=j, cell=round(c, 4), se=round(se, 4), played=(i, j) in direct or (j, i) in direct)
+                       for (i, j), (c, se) in sorted(cells.items())],
+                pairs=prow, members=members,
+                nash=None if eq is None else {p: round(float(eq[k[p]]), 4) for p in players if eq[k[p]] > 0},
+                champion_against_panel=panel_days, champion_boards_by_role=mix,
+                notes=[field_note,
+                       'Cells: a played pair\'s own mean and the model\'s prediction from every other pair, weighted by precision; an unplayed pair is the model\'s prediction (with the pair-effect variance).',
+                       'Out of line: the pair\'s own mean against its leave-one-out prediction, Holm-adjusted over the pairs with an independent prediction (leave-one-out SE under 1 IMP).',
+                       'Nash average: each member\'s expected cell against a maximum-entropy equilibrium of the cells matrix (point estimates; Balduzzi et al. 2018). In a nearly transitive population it is the cell against the strongest member.',
+                       'Champion boards by role: native boards the champion played in each three-hour bin (UTC), by the opponent\'s role (self-play has no native condition, so it is not counted); the registered feeds have no epochs, so time bins stand in for them. The champion against the panel is cumulative over the same bins.',
+                       'Exploitability report per champion version: not measured yet (E9-23).'])
+
+
+BIN = 3 * 3600
+
+
+def members_pair(pair):
+    return members(pair)
+
+
 def fit_command(args):
     with gzip.open(args.rows, 'rt') as f:
         rows = [json.loads(line) for line in f]
@@ -652,6 +782,15 @@ def fit_command(args):
         points=points, candidates=candidates)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(doc, indent=1) + '\n')
+    if getattr(args, 'population', None):
+        pop = population_doc(F, players, pri, weak, anchor, cfg, None, rows, pid,
+                             'Field score: the mean cell against every other member, equally weighted (provisional: Max sets the field, arena-selfplay.md 10.1).')
+        pop['labels'] = {p['id']: p['label'] for p in points}
+        pop['groups'] = {p['id']: p['group'] for p in points}
+        pop['strength'] = {p['id']: dict(strength=p['strength'], se=p['se'], boards=p['boards']) for p in points}
+        args.population.write_text(json.dumps(pop, indent=1) + '\n')
+        print(f"population: {len(pop['players'])} members, {sum(1 for r in pop['pairs'] if r['out_of_line'])} pairs out of line, "
+              f"equilibrium {pop['nash']} -> {args.population}")
     print(f"{len(points)} points, {len(candidates)} candidates, {len(res):,} boards, t2 {F['t2']:.4f}; split variants: {split} -> {args.out}")
 
 
@@ -668,6 +807,7 @@ def main():
     f.add_argument('--impacts', type=Path, default=ROOT / 'configs' / 'ladder-feature-impacts.json')
     f.add_argument('--arrival', type=Path, help='an arena9 control directory with the 9a-32 candidate\'s results')
     f.add_argument('--out', type=Path, required=True)
+    f.add_argument('--population', type=Path, help='also write the population file (arena-population-v1, G9-D10)')
     args = ap.parse_args()
     if args.cmd == 'collect':
         collect(args)

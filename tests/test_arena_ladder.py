@@ -106,5 +106,22 @@ class Features(unittest.TestCase):
         self.assertEqual(L.fingerprint(None), 'unpublished')
 
 
+
+class Population(unittest.TestCase):
+    def test_equilibrium_of_a_transitive_population_is_the_strongest(self):
+        import numpy as np
+        s = np.array([0.5, 0.0, -0.3])
+        A = s[:, None] - s[None, :]
+        p = L.nash(A)
+        self.assertAlmostEqual(float(p[0]), 1.0, places=5)
+
+    def test_equilibrium_of_a_cycle_is_mixed(self):
+        import numpy as np
+        A = np.array([[0, 1, -1], [-1, 0, 1], [1, -1, 0]], float)      # rock, paper, scissors
+        p = L.nash(A)
+        for x in p:
+            self.assertAlmostEqual(float(x), 1 / 3, places=3)
+
+
 if __name__ == '__main__':
     unittest.main()
