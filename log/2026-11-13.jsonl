@@ -266,3 +266,4 @@
 {"at": "2026-11-13T07:39:00Z", "by": "g9", "op": "set", "target": "E9-20", "note": "reviewer=will"}
 {"at": "2026-11-13T07:39:00Z", "by": "g9", "op": "set", "target": "E9-21", "note": "reviewer=will"}
 {"at": "2026-11-13T07:39:00Z", "by": "g9", "op": "send", "target": "will/20261113T0739Z-g9-verdicts-wanted-on-e9-20-and-e", "note": "Verdicts wanted on E9-20 and E9-21 (g9's; any lead but me, from 08:25 UTC)"}
+{"at": "2026-11-13T07:40:00Z", "by": "g9", "op": "log", "target": "G9-B8", "note": "13 Nov 07:50 UTC, g9: both samples are flattened PDFs: no form fields (pypdf: 0 AcroForm fields), text layer present (ACBL page 6,182 characters, WBF page 1 3,341). So the PDF route for cards like these is the text layer with positions matched to each card layout's labels (ACBL current, ACBL older, "}
