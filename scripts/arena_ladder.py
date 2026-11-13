@@ -214,9 +214,13 @@ FEATURES = [
     ('gen6.mid_samples', 'mid-play samples'),
     ('gen6.list_', 'deal list (exhaustive layouts) settings'),
     ('gen6', 'Gen 6 search settings'),
+    ('gen9.models', 'player models of each opponent'),
+    ('gen9.bidding_reader', 'auction reading by declared card'),
+    ('gen9.replay_reader', 'auction reading by replaying the house bidder'),
+    ('gen9', 'Gen 9 player-model settings'),
     ('samples', 'layouts sampled a decision'),
     ('near_tie', 'near-tie margin (policy breaks near-ties)'),
-    ('exploration', 'exploration'),
+    ('exploration', 'random among exactly equal-best cards (exploration)'),
     ('belief_kind', 'belief kind'),
     ('policy_role', 'role of the policy net'),
     ('engine', 'search engine generation'),
@@ -586,6 +590,8 @@ def fit_command(args):
                      if p == b else [v for v in variant_rows.get(b, []) if v['id'] == p],
                      features=features(rep_settings(p), rep_settings(parent) if parent else None, impacts),
                      candidate=False)
+        if c.get('edge') and p == b:                   # where a bot's measured edge comes from, when the ladder's field cannot show it
+            point['edge'] = dict(text=c['edge'], url=c.get('edge_url'))
         if p == anchor:
             point['anchor'] = True
         points.append(point)

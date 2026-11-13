@@ -106,7 +106,8 @@
   {
    "id": "tie-break-own",
    "features": [
-    "tie-break rule"
+    "tie-break rule",
+    "random among exactly equal-best cards (exploration)"
    ],
    "compares": "8r-32 (a random one of its exactly equal-best cards) against 8p-32 (net tie-break), 8p-32 reading it at full weight",
    "mean": 0.014,
@@ -147,7 +148,10 @@
   {
    "id": "player-model",
    "features": [
-    "player model"
+    "player model",
+    "player models of each opponent",
+    "auction reading by declared card",
+    "auction reading by replaying the house bidder"
    ],
    "compares": "9a-32 against 8p-32, each playing guest-a, a guest that declares upside-down carding and follows it four times in five",
    "mean": 0.479,

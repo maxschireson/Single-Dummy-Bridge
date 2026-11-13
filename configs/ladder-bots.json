@@ -138,46 +138,35 @@
       "label": "BEN (64)",
       "group": "BEN",
       "parent": "ben"
+    },
+    "9a-32": {
+      "label": "Gen 9 candidate, player models (32)",
+      "group": "Gen 9",
+      "parent": "8s-32",
+      "prior": {
+        "estimate": 0.187,
+        "se": 0.127,
+        "boards": 669,
+        "source": "Gen 9 arrival run (transfer/gen9-d6-arrival-azure4-20261112): 9a-32 against 8p-32 head to head, native boards, a family once",
+        "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112",
+        "note": "Not the cohort's configuration: in the arrival run both bots used policy v4 and 9a-32 had no exploration; the cohort's 9a-32 has v4.1 and exploration 1.0. 8p-32 stands in for 8s-32, which plays as 8p-32-v41 against house bots."
+      },
+      "edge": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The registered feeds hold no guest that declares carding, so the ladder places it by the head-to-head figure.",
+      "edge_url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112"
+    },
+    "8p-32": {
+      "label": "Gen 8 prototype, Gen 9 control (32)",
+      "group": "Gen 8",
+      "parent": "8s-32",
+      "prior": {
+        "estimate": 0.0,
+        "se": 0.05,
+        "boards": null,
+        "source": "g8, quoted in G9-D9's task log (g9, 13 Nov 04:17 UTC): 8s-32 and 8p-32 'the same within 0.05 +- 0.04'",
+        "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md",
+        "note": "8p-32 is 8s-32 without the opponent table, the system scorer and the lead-system list; against house bots they play alike by design. The source gives no signed figure, so the prior is centred at 0 with SD 0.05."
+      }
     }
   },
-  "candidates": {
-    "9a-32": {
-      "label": "9a-32 (Gen 9 arrival run)",
-      "group": "Gen 9 candidate",
-      "parent": "8s-32",
-      "source": "Gen 9 arrival run (transfer/gen9-d6-arrival-azure4-20261112): 9a-32 against 8p-32, direct native boards, a deal family once (scripts/arena_ladder.py arrival_estimate on its control directory)",
-      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112",
-      "note": "Measured against 8p-32 in the arrival run, both on policy v4, and placed on 8s-32 (v4.1): 8s-32 plays as 8p-32-v41 against house bots, and the v4 to v4.1 swap inside 8p-32 measured -0.036 +- 0.080 (box/coordination BOARD.md). Not a registered feed.",
-      "vs": "8p-32",
-      "estimate": 0.1868,
-      "se": 0.127,
-      "boards": 669,
-      "introduced_utc": "2026-11-12T15:30Z",
-      "edge": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The registered feeds hold no guest that declares carding, so the ladder places it by the head-to-head figure.",
-      "edge_url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112",
-      "features": [
-        {
-          "feature": "player model",
-          "value": "each partnership read through its model: a declared carding card read with learned honesty, the auction read by its declared card or by replaying the house bidder, experience",
-          "impacts": [
-            "player-model"
-          ]
-        },
-        {
-          "feature": "tie-break rule",
-          "value": "none in the arrival run; exploration 1.0 (random among exactly equal-best cards) in the planned cohort",
-          "impacts": [
-            "tie-break-own"
-          ]
-        },
-        {
-          "feature": "card policy net version",
-          "value": "v4 in the arrival run (8s-32 has v4.1)",
-          "impacts": [
-            "policy-v41-in-bot"
-          ]
-        }
-      ]
-    }
-  }
+  "candidates": {}
 }
