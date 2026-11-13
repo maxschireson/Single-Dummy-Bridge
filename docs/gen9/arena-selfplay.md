@@ -192,6 +192,14 @@ which only the play version can reach: a correction at the trick where the two t
 bench's machinery (layouts and stored solves per decision). In common auctions (E9-0's matches) every swing is of
 that kind.
 
+Measured (E9-19, 13 Nov, `reports/gen9-e9-19-2026-11-13`). Today's house bots all bid with the same net, so the two
+tables of the Gen 9 cohort, and of every pair among `8s-32`, `8x3-32` and `71s-32`, never reach different contracts:
+those comparisons are card play only. Contracts differ only against an older generation or a foreign system. On
+2,322 native boards of two Gen 8 feeds (439 with different contracts), the cheap version cut the SD of those boards by
+29.6% (23% against `8c-32`, 38% against Gen 1 and Gen 5) and of all boards by 12%, but moved means by up to 1.7 IMPs a
+board on the boards it touched, since double-dummy play replaces the pairs' real play there. It is not proposed as a
+screen (the registered bar was 30%); the play version is the one that would matter for the cohort.
+
 ## 6. Exploiters, leakage and declared understandings
 
 **6.1 An exploitability report per champion version**, on the bench (offline, in double-dummy tricks on stored
