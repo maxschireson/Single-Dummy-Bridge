@@ -95,7 +95,7 @@ Generated 2026-11-13 07:06 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 68 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 07:01 | 5 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 06:54 | 1 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 06:54 | 0 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 11 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-13 06:58 | 1 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
