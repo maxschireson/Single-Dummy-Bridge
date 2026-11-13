@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-11-13T02:34:52.752240Z",
+  "revision": "58c260bbfb1bc702a7b2a21b3772fbaaf12aef92",
+  "published_completed": 1068,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "poll_start": "2026-11-13T02:28:57Z",
+  "next_comment_scan_since": "2026-11-13T02:28:57Z",
+  "remote_ref_verified": true,
+  "all_paths_exact": true,
+  "watch_blob": "3902edcbf9575b5078ba4126a1e95135891ed051",
+  "paths": {
+    "recovery/operations/instruction-watch.json": "dda058c156788a444190008a66deeb492224bea4e5e14b188848ff51c28dfcf6",
+    "recovery/operations/stream.json": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+    "recovery/operations/supervise_gen8.py": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+    "recovery/manifest.json": "cc1fd53557009bede112bd361fc63e158d893b8fdf42b278b86222c36f17d8d0",
+    "recovery/artifacts/validation/evaluation-exclusions.json": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261113T022857Z/github-scan.json": "e6c9a543ce5be90ddde30df2ac9ab5fa32a9becc83a3afcb768ab22543cc9d36",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261113T022857Z/health-before.json": "a30fa7e1a277abe74751b2e01abbccd71e498178d20491c35ea11529c6aca4fa",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261113T022857Z/health-after.json": "b607ad82e11ecfe68a250ed5d30ee471cb633e0ba28e2411a9d1759e41ec4d72",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261113T022857Z/commit-comments.json": "da1df50201bec97398754afacdae997f53c6332bb38fded7c7fef341d29943e9",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261113T022857Z/automation-state.json": "f8f4453839e0d07f4e7ce4437625fa72815ebd0488fe3d18e9cc08696b7b4f46",
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261113T022857Z/future-8x-review.json": "578d5a0ef48433c8dc39bd3b9d52c32454bb10f4ae4a761b3158cb6941a7ffec"
+  },
+  "no_collection_behavior_change": true,
+  "no_shared_ui_or_other_producer_write": true,
+  "future8X_conditions_recorded_no_adoption": true
+}
