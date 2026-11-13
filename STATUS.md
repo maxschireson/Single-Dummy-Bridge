@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 02:28 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-13 02:33 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -119,14 +119,12 @@ Generated 2026-11-13 02:28 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 02:28 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-13 02:33 UTC; idle 0.0 core-hours since 11-12 15:03 UTC, 0.0 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| e9-16-r-v-p | E9-16 | g9 | 2 | 4 | running | 743 of 800 | 600.0 | 11-13 02:34 | `transfer/gen9-e9-16-r-v-p-azure4-20261113@01e216475` |
-| e9-16-r-v-x | E9-16 | g9 | 2 | 4 | running | 743 of 800 | 594.0 | 11-13 02:34 | `transfer/gen9-e9-16-r-v-x-azure4-20261113@012c8cca9` |
-| e9-12-c | E9-12 | bill | 3 | 4 | waiting | 0 of 1,200 |  |  |  |
-| e9-12-u | E9-12 | bill | 3 | 4 | waiting | 0 of 600 |  |  |  |
+| e9-12-c | E9-12 | bill | 3 | 4 | running | 0 of 1,200 |  |  |  |
+| e9-12-u | E9-12 | bill | 3 | 4 | running | 0 of 600 |  |  |  |
 | e9-12-x | E9-12 | bill | 3 | 4 | waiting | 0 of 1,200 |  |  |  |
 | e9-4-8x | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
 | e9-4-r9 | E9-4 | sam | 4 | 4 | waiting | 0 of 1,600 |  |  |  |
@@ -135,6 +133,8 @@ Generated 2026-11-13 02:28 UTC by `tools/workq.py` after a change by `azure4`. D
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |
 | e9-0-n02e | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 574.9 | 11-13 01:12 | `transfer/gen9-e9-0-n02e-azure4-20261112@7f3f8e088` |
+| e9-16-r-v-p | E9-16 | g9 | 2 | 4 | done | 800 of 800 | 614.1 | 11-13 02:33 | `transfer/gen9-e9-16-r-v-p-azure4-20261113@2f6912665` |
+| e9-16-r-v-x | E9-16 | g9 | 2 | 4 | done | 800 of 800 | 608.1 | 11-13 02:33 | `transfer/gen9-e9-16-r-v-x-azure4-20261113@a1f1e9235` |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 55 |  |  |  |
