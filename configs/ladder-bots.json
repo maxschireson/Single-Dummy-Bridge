@@ -166,6 +166,12 @@
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/tasks/G9-D9.md",
         "note": "8p-32 is 8s-32 without the opponent table, the system scorer and the lead-system list; against house bots they play alike by design. The source gives no signed figure, so the prior is centred at 0 with SD 0.05."
       }
+    },
+    "8x3-32": {
+      "label": "8X v3 (32)",
+      "group": "Gen 8",
+      "parent": "8s-32",
+      "note": "x8's 8X v3 in the arena (registered feed, first board 13 Nov 08:23 UTC). Weak prior: x8's box figure for 8x3-ft1 (+0.08 +- 0.08 against 8p-32-v41, common auctions) is not taken as its prior until someone confirms 8x3-ft1 and 8x3-32 are the same settings."
     }
   },
   "candidates": {
