@@ -97,7 +97,7 @@ def feature_forks(record):
 def summarise_actions(record, roles):
     out = _summarise(record, roles)
     for r in roles:
-        out[r]['x8'] = dict(rollout=0, blend=0, search=0, consulted=0, moved=0, guaranteed=0, guarantee_moved=0, odds=0, odds_split=0,
+        out[r]['x8'] = dict(rollout=0, blend=0, search=0, claim=0, consulted=0, moved=0, guaranteed=0, guarantee_moved=0, odds=0, odds_split=0,
                             mixed=0, rollouts=0, net_rows=0, asked=0, floored=0., ended=0, forks=0, seconds=0.)
     for table in record.values():
         for t in table['tables'][:1]:

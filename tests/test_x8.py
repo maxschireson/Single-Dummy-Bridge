@@ -714,6 +714,40 @@ class ClaimTests(Fixture8):
         self.assertGreater(named, 5)
         self.assertEqual(named, changed)
 
+    def test_claims_play_a_card_that_takes_every_trick_and_rollouts_name_gen8s_card(self):
+        class Reference:
+            def choose(self, o, details, rng):
+                return o.legal[0], {}
+        x8 = dict(stages=[dict(from_trick=5, to_trick=13, mode='rollout', layouts=12, first=4, seat='draw')],
+                  claims=dict(cards=8, full=True, defender=0, leaf=4, contracts='all'), capture=dict(level=0, audit_search=True))
+        p = self.make8(x8, gen7=self.GEN8, list_solve=16)
+        p.reference = Reference()
+        plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
+        check = x8_claims.Finder(BIN)
+        claims = named = 0
+        try:
+            for seed in range(5):
+                board = next(generate(1, 970 + seed))
+                for room in (0, 1):
+                    for a, o in self.views(board, self.table(p, board, room)):
+                        note = a.get('x8')
+                        if a['player'] != 'x' or not note:
+                            continue
+                        if note['mode'] == 'claim':
+                            state, sure = check.root(o, need=len(o.known_hands[o.actor]))
+                            self.assertEqual(state, 'guaranteed')
+                            self.assertTrue(sure[card(a['card'])])
+                            claims += 1
+                        if 'reference_card' in a:
+                            want = plain.choose(o, decision_rng(5, board.id, 'x', o)).card
+                            self.assertEqual(card(a['reference_card']), want)
+                            self.assertNotEqual(card(a['reference_card']), card(a['card']))
+                            named += 1
+        finally:
+            check.close()
+        self.assertGreater(claims, 5)
+        self.assertGreater(named, 5)
+
     GEN8 = PlayerTests.GEN8
 
 

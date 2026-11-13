@@ -34,6 +34,7 @@ The winning-line logic (spec['x8']['claims'], x8_claims.py), with `cards` or few
   defender    for each candidate and each of the `defender` likeliest layouts: would declarer, from its own view in
               that layout, then hold a guaranteed line? The weighted share is the card's hand-over odds. Among cards
               within `odds_margin` of the best value the lowest odds win.
+  claims      with `full`: where a card guarantees every trick left, the declaring side plays it, in any contract and mode.
   in rollouts a side that is treated as keeping a guaranteed contract (this bot's own side when it declares; the
               other side when its bot id is listed in `opponents`) has its rollouts floored at the contract from
               the point the guarantee exists: after a guaranteeing root card, after a hand-over, and at the start
@@ -59,6 +60,7 @@ Capture (spec['x8']['capture'], x8_capture.py): every decision records its candi
 With every stage 'search', no claims and no mix the player is Gen7Player with the spec's settings, card for card
 (tested).
 """
+import copy
 from dataclasses import asdict, dataclass, field, fields
 import math
 from pathlib import Path
@@ -129,6 +131,8 @@ class ClaimUse:
                                 # partscores too). Max, 13 Nov 01:42 UTC: act on claims outside undoubled partscores
     guard: bool = False         # a defender's searched card (no rollouts): among cards the search rates within `odds_margin` of it, the
                                 # one that hands declarer a guarantee in the fewest layouts; the searched card kept when tied
+    full: bool = False          # a claim: where some card guarantees every trick left from the declaring side's view, it is played (the
+                                # net's likeliest of them), in any contract and any mode, with no search or rollouts
     leaf: int = 6               # rollouts ask the claim finder at the start of tricks with this many cards or fewer; 0 = never
     leaf_ms: int = 300          # time allowed for one such round of questions
     own: bool = True            # this bot's own side, declaring, is rolled out as keeping a guaranteed contract
@@ -152,14 +156,16 @@ class CaptureUse:
     fork_power: float = .5      # the forced card is drawn from the net's probabilities raised to this
     audit: str = 'features'     # the reference card an audited bot names for the collector's forks: 'features' = the card plain Gen 8
                                 # would have played, only where an 8X feature changed the card; 'gen7' = as Gen7Player names it
-    audit_features: tuple = ('rollout', 'blend', 'guarantee', 'odds', 'guard')     # features whose changes are forked ('mix' too to
-                                # measure mixing: its changes are mostly between touching cards)
+    audit_features: tuple = ('rollout', 'blend', 'guarantee', 'odds', 'guard', 'claim')     # features whose changes are forked ('mix'
+                                # too to measure mixing: its changes are mostly between touching cards)
+    audit_search: bool = False  # rollout decisions: also run the plain Gen 8 search, so the forks' reference is Gen 8's card (else the
+                                # net's likeliest card). Costs one search a rollout decision, for audited bots only
 
     def __post_init__(self):
         object.__setattr__(self, 'audit_features', tuple(self.audit_features))
         if self.level not in (0, 1, 2) or not (0 <= self.forks <= 512 and 1 <= self.layouts <= 4096 and 0 <= self.fork_power <= 4) \
                 or self.audit not in ('features', 'gen7') \
-                or not set(self.audit_features) <= {'rollout', 'blend', 'guarantee', 'odds', 'guard', 'mix'}:
+                or not set(self.audit_features) <= {'rollout', 'blend', 'guarantee', 'odds', 'guard', 'mix', 'claim'}:
             raise ValueError('Invalid 8X capture settings')
 
 
@@ -276,7 +282,7 @@ class X8Player(Gen7Player):
         self.rollout_name = Path(spec.get('rollout_policy') or spec['gen7_policy']).name
         self.other_nets = [PolicyNet(root / o['policy'], self.scorer) for o in c.others]
         self.other_share = np.array([o['share'] for o in c.others])
-        self.finder = x8_claims.shared(c.claims.binary or None) if c.claims.cards or c.claims.guard else None
+        self.finder = x8_claims.shared(c.claims.binary or None) if c.claims.cards or c.claims.guard or c.claims.full else None
         if self.finder is not None:
             self.finder.each = c.claims.each_ms / 1000
         self.live = None            # the stage of the decision in hand
@@ -868,17 +874,39 @@ class X8Player(Gen7Player):
             details.update(reference_card=symbol(likeliest), expected_gain_imps=None, prediction_units='mix-against-the-net')
         return Decision(chosen, details)
 
+    def claim_card(self, o):
+        """With claims.full, the declaring side to play and a card that guarantees every trick left from its own view: the
+        net's likeliest such card. Otherwise None."""
+        c = self.x8.claims
+        if not c.full or self.finder is None or o.controller % 2 != o.contract.declarer % 2 or o.known_hands[o.contract.dummy] is None:
+            return None
+        left = len(o.known_hands[o.actor])
+        if left > max(c.cards, 1) or len(o.legal) < 2:
+            return None
+        state, sure = self.finder.root(o, need=left)
+        if state != 'guaranteed':
+            return None
+        logp = self.net.log_policy([o])[0]
+        return max((x for x in o.legal if sure[x]), key=lambda x: (float(logp[x]), -x))
+
     # ---- one decision ----------------------------------------------------------------------
     def choose(self, o, rng):
         self.live, self.claim, self.x8_note, self.raw, self.tie_state = None, None, None, None, None
+        self.start_state = rng.getstate()
         if len(o.legal) < 2:
             return super().choose(o, rng)
+        claimed = self.claim_card(o)
+        if claimed is not None:
+            note = dict(v=1, mode='claim', trick=len(o.history) // 4 + 1, chosen=symbol(claimed))
+            result = Decision(claimed, dict(samples=0, dds_calls=0, behavior_probabilities={symbol(x): float(x == claimed) for x in o.legal},
+                                            selected_probability=1., gen7=asdict(self.g7), x8=note))
+            return self.audited(o, result)
         self.live = self.x8_stage(o)
         self.claim = self.root_claim(o)
         if self.live is not None and self.live.mode == 'rollout':
             result = self.rollout_decision(o, rng, self.live)
             if result is not None:
-                return result
+                return self.audited(o, result)
             self.live = None                                # no layouts of the kind rollouts need: the search decides
         result = super().choose(o, rng)
         if self.x8_note is not None:
@@ -896,10 +924,19 @@ class X8Player(Gen7Player):
         stream.setstate(self.tie_state)
         return Gen7Player.break_ties(self, o, stream, self.raw).card
 
+    def gen8_card(self, o):
+        """The card this spec's search would play as a plain Gen7Player (no 8X feature), from the same random stream."""
+        if getattr(self, 'plain_player', None) is None:
+            self.plain_player = copy.copy(self)
+            self.plain_player.__class__ = Gen7Player
+        stream = random.Random()
+        stream.setstate(self.start_state)
+        return Gen7Player.choose(self.plain_player, o, stream).card
+
     def features(self, o, result):
         """The 8X features that acted on this decision."""
         note = result.details.get('x8') or {}
-        out = ['rollout'] if note.get('mode') == 'rollout' else []
+        out = {'rollout': ['rollout'], 'claim': ['claim']}.get(note.get('mode'), [])
         if note.get('mode') == 'blend' and note.get('blend_moved'):
             out.append('blend')
         if note.get('claim') == 'guaranteed' and (note.get('narrowed') or note.get('moved')):
@@ -922,8 +959,11 @@ class X8Player(Gen7Player):
         for key in ('reference_card', 'expected_gain_imps', 'prediction_units'):
             d.pop(key, None)
         note = d.get('x8')
-        if note and note.get('mode') == 'rollout':          # no search ran: the reference is the net's likeliest allowed card
-            plain = card(note['reference']) if note.get('reference') else None
+        if note and note.get('mode') in ('rollout', 'claim'):   # no search ran
+            if self.x8.capture.audit_search or note['mode'] == 'claim':
+                plain = self.gen8_card(o)                   # what plain Gen 8 would play here, searched now for the audit
+            else:
+                plain = card(note['reference']) if note.get('reference') else None
         else:
             plain = self.plain_card(o)
         fired = self.features(o, result)

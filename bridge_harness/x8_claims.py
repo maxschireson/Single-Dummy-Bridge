@@ -71,11 +71,12 @@ def show_outs(o):
     return voids
 
 
-def root_line(o):
-    """(state, line): the declaring side to play with dummy down. state is 'made' (the contract's tricks are in),
-    'lost' (too few tricks are left), or 'ask' with the line that asks which cards guarantee the contract."""
+def root_line(o, need=None):
+    """(state, line): the declaring side to play with dummy down. state is 'made' (the tricks asked for are in),
+    'lost' (too few tricks are left), or 'ask' with the line that asks which cards guarantee them. `need` is the
+    tricks still wanted from now on; by default what the contract still needs."""
     c = o.contract
-    need = c.level + 6 - o.declarer_tricks
+    need = c.level + 6 - o.declarer_tricks if need is None else need
     left = len(o.known_hands[o.actor])
     if need <= 0:
         return 'made', None
@@ -270,10 +271,11 @@ class Finder:
                     timeouts=self.cards.timeouts + self.values.timeouts, remembered=self.cards.hits + self.values.hits)
 
     # ---- the declaring side to play -------------------------------------------------------
-    def root(self, o):
+    def root(self, o, need=None):
         """(state, {legal card: guarantees the contract}): state is 'made', 'lost', 'guaranteed' (some card guarantees
-        it), 'open' (none does) or 'unknown' (no answer in time). The mapping is empty unless 'guaranteed'/'open'."""
-        state, text = root_line(o)
+        it), 'open' (none does) or 'unknown' (no answer in time). The mapping is empty unless 'guaranteed'/'open'.
+        With `need`, the question is that many more tricks instead of the contract (need = cards left: a claim)."""
+        state, text = root_line(o, need)
         if state != 'ask':
             return state, {}
         answer = self.cards.ask([text], allowance=self.each, each=self.each)[0]
