@@ -151,7 +151,7 @@
         "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-d6-arrival-azure4-20261112",
         "note": "Not the cohort's configuration: in the arrival run both bots used policy v4 and 9a-32 had no exploration; the cohort's 9a-32 has v4.1 and exploration 1.0. 8p-32 stands in for 8s-32, which plays as 8p-32-v41 against house bots."
       },
-      "edge": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The registered feeds hold no guest that declares carding, so the ladder places it by the head-to-head figure.",
+      "edge": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The ladder's field holds no guest that declares carding, so its point here measures it against house bots and BEN; its prior is the arrival head-to-head figure.",
       "edge_url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112"
     },
     "8p-32": {

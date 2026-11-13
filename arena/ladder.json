@@ -1,6 +1,6 @@
 {
  "schema": "arena-ladder-v1",
- "computed_utc": "2026-11-13T07:42Z",
+ "computed_utc": "2026-11-13T08:36Z",
  "anchor": "ben64",
  "condition": "native",
  "unit": "IMPs a board",
@@ -2433,7 +2433,7 @@
    ],
    "candidate": false,
    "edge": {
-    "text": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The registered feeds hold no guest that declares carding, so the ladder places it by the head-to-head figure.",
+    "text": "Its edge is against players who declare their carding: +0.48 +- 0.13 IMPs a board over 8p-32 when each plays a guest that declares upside-down carding and follows it four times in five (Gen 9 arrival run, G9-D6, 1,200 boards). Against house bots and BEN it is meant to play as Gen 8 does; head to head with 8p-32 in the arrival run it was +0.19 +- 0.13 (669 boards), not distinguishable from zero. The ladder's field holds no guest that declares carding, so its point here measures it against house bots and BEN; its prior is the arrival head-to-head figure.",
     "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/gen9-arrival-20261112"
    }
   },
@@ -2597,5 +2597,176 @@
    "candidate": false
   }
  ],
- "candidates": []
+ "candidates": [
+  {
+   "id": "8x3-ft1",
+   "label": "8X v3 (8x3-ft1, box match)",
+   "group": "Gen 8 variant (box match)",
+   "parent": "8s-32",
+   "introduced_utc": null,
+   "boards": 1011,
+   "strength": 0.7495,
+   "se": 0.1137,
+   "ci95": [
+    0.5266,
+    0.9724
+   ],
+   "prior": null,
+   "prior_share": null,
+   "hollow": false,
+   "timing": null,
+   "point_label": "8X v3 (8x3-ft1, box match)",
+   "estimate": {
+    "vs": "8p-32-v41",
+    "placed_on": "8s-32",
+    "mean": 0.08,
+    "se": 0.08,
+    "boards": 1011,
+    "source": "x8's box matches on azure6 (board entry 13 Nov 07:45 UTC), rows on transfer/x8-azure6-20261113; bots in configs/x8-bots.json on feature/gen8x-rollout-bot-20261113",
+    "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/x8-azure6-20261113",
+    "note": "Measured by x8 against 8p-32-v41 (Gen 8's search, the same as 8s-32), seed 131, in common auctions (both tables bid with one bidder: card play only), and placed on 8s-32. The ladder's points are native auctions. Not a registered feed.",
+    "edge": null,
+    "edge_url": null
+   },
+   "features": [],
+   "variants": [],
+   "candidate": true
+  },
+  {
+   "id": "8x1-ft1",
+   "label": "8X uniform mixing (8x1-ft1, box match)",
+   "group": "Gen 8 variant (box match)",
+   "parent": "8s-32",
+   "introduced_utc": null,
+   "boards": 522,
+   "strength": 0.9695,
+   "se": 0.1704,
+   "ci95": [
+    0.6356,
+    1.3034
+   ],
+   "prior": null,
+   "prior_share": null,
+   "hollow": false,
+   "timing": null,
+   "point_label": "8X uniform mixing (8x1-ft1, box match)",
+   "estimate": {
+    "vs": "8p-32-v41",
+    "placed_on": "8s-32",
+    "mean": 0.3,
+    "se": 0.15,
+    "boards": 522,
+    "source": "x8's box matches on azure6 (board entry 13 Nov 07:45 UTC), rows on transfer/x8-azure6-20261113; bots in configs/x8-bots.json on feature/gen8x-rollout-bot-20261113",
+    "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/x8-azure6-20261113",
+    "note": "Measured by x8 against 8p-32-v41 (Gen 8's search, the same as 8s-32), seed 131, in common auctions (both tables bid with one bidder: card play only), and placed on 8s-32. The ladder's points are native auctions. Not a registered feed.",
+    "edge": null,
+    "edge_url": null
+   },
+   "features": [],
+   "variants": [],
+   "candidate": true
+  },
+  {
+   "id": "8x2-ft1",
+   "label": "8X v2 (8x2-ft1, box match)",
+   "group": "Gen 8 variant (box match)",
+   "parent": "8s-32",
+   "introduced_utc": null,
+   "boards": 550,
+   "strength": 0.5195,
+   "se": 0.1447,
+   "ci95": [
+    0.2359,
+    0.8031
+   ],
+   "prior": null,
+   "prior_share": null,
+   "hollow": false,
+   "timing": null,
+   "point_label": "8X v2 (8x2-ft1, box match)",
+   "estimate": {
+    "vs": "8p-32-v41",
+    "placed_on": "8s-32",
+    "mean": -0.15,
+    "se": 0.12,
+    "boards": 550,
+    "source": "x8's box matches on azure6 (board entry 13 Nov 07:45 UTC), rows on transfer/x8-azure6-20261113; bots in configs/x8-bots.json on feature/gen8x-rollout-bot-20261113",
+    "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/x8-azure6-20261113",
+    "note": "Measured by x8 against 8p-32-v41 (Gen 8's search, the same as 8s-32), seed 131, in common auctions (both tables bid with one bidder: card play only), and placed on 8s-32. The ladder's points are native auctions. Not a registered feed.",
+    "edge": null,
+    "edge_url": null
+   },
+   "features": [],
+   "variants": [],
+   "candidate": true
+  },
+  {
+   "id": "8xr0-ft1",
+   "label": "original 8X (8xr0-ft1, box match)",
+   "group": "Gen 8 variant (box match)",
+   "parent": "8s-32",
+   "introduced_utc": null,
+   "boards": 246,
+   "strength": 0.5995,
+   "se": 0.1616,
+   "ci95": [
+    0.2827,
+    0.9163
+   ],
+   "prior": null,
+   "prior_share": null,
+   "hollow": false,
+   "timing": null,
+   "point_label": "original 8X (8xr0-ft1, box match)",
+   "estimate": {
+    "vs": "8p-32-v41",
+    "placed_on": "8s-32",
+    "mean": -0.07,
+    "se": 0.14,
+    "boards": 246,
+    "source": "x8's box matches on azure6 (board entry 13 Nov 07:45 UTC), rows on transfer/x8-azure6-20261113; bots in configs/x8-bots.json on feature/gen8x-rollout-bot-20261113",
+    "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/x8-azure6-20261113",
+    "note": "Measured by x8 against 8p-32-v41 (Gen 8's search, the same as 8s-32), seed 131, in common auctions (both tables bid with one bidder: card play only), and placed on 8s-32. The ladder's points are native auctions. Not a registered feed.",
+    "edge": null,
+    "edge_url": null
+   },
+   "features": [],
+   "variants": [],
+   "candidate": true
+  },
+  {
+   "id": "8z-ft1",
+   "label": "8Z (8z-ft1, box match)",
+   "group": "Gen 8 variant (box match)",
+   "parent": "8s-32",
+   "introduced_utc": null,
+   "boards": 541,
+   "strength": 0.2895,
+   "se": 0.1616,
+   "ci95": [
+    -0.0273,
+    0.6063
+   ],
+   "prior": null,
+   "prior_share": null,
+   "hollow": false,
+   "timing": null,
+   "point_label": "8Z (8z-ft1, box match)",
+   "estimate": {
+    "vs": "8p-32-v41",
+    "placed_on": "8s-32",
+    "mean": -0.38,
+    "se": 0.14,
+    "boards": 541,
+    "source": "x8's box matches on azure6 (board entry 13 Nov 07:45 UTC), rows on transfer/x8-azure6-20261113; bots in configs/x8-bots.json on feature/gen8x-rollout-bot-20261113",
+    "url": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/x8-azure6-20261113",
+    "note": "Measured by x8 against 8p-32-v41 (Gen 8's search, the same as 8s-32), seed 131, in common auctions (both tables bid with one bidder: card play only), and placed on 8s-32. The ladder's points are native auctions. Not a registered feed.",
+    "edge": null,
+    "edge_url": null
+   },
+   "features": [],
+   "variants": [],
+   "candidate": true
+  }
+ ]
 }
