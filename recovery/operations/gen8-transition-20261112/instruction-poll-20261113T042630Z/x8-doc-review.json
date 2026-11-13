@@ -1,0 +1,161 @@
+{
+  "revision": "5ec36f16e5f7ca833b3aa524b33fe6a78f15c60a",
+  "path": "docs/x8_bot.md",
+  "blob": "209f812370c905391d3a4277e2092dc54f0529af",
+  "opening": [
+    "# The 8X bot (work in progress, not deployed)",
+    "",
+    "Branch `feature/gen8x-rollout-bot-20261113`. Engine `gen8x`, `bridge_harness/x8_player.py`. Nothing here is",
+    "launched, merged or adopted. Session `x8` on the coordination board.",
+    "",
+    "## What it is for"
+  ],
+  "config_inventory": [
+    {
+      "path": "configs/ben-gen5-16.conf",
+      "sha": "09e27edd321fd60dfe6ddbde6007d908efc562ad",
+      "type": "file"
+    },
+    {
+      "path": "configs/ben-gen5-16.provenance.json",
+      "sha": "5c9d7c4874ee4f755d82ded95d5abce73c17619a",
+      "type": "file"
+    },
+    {
+      "path": "configs/ben-gen6-64.conf",
+      "sha": "1439d78e88a0cc41f07cab6e9c55bad886df3efd",
+      "type": "file"
+    },
+    {
+      "path": "configs/ben-round5-32.conf",
+      "sha": "b0ea178bb286d38495bf5eeb67644f49ac1558b4",
+      "type": "file"
+    },
+    {
+      "path": "configs/ben-round5-32.provenance.json",
+      "sha": "b70fb4a301c80f850c8a361134595330663ffda2",
+      "type": "file"
+    },
+    {
+      "path": "configs/ben-round5-runtime-requirements.txt",
+      "sha": "e9aa03a5d281c4e930d44c08d5a31b33c71eb92c",
+      "type": "file"
+    },
+    {
+      "path": "configs/bidding_dds.json",
+      "sha": "dd9c2d44e48323e1d0a466249a830891ae72dcef",
+      "type": "file"
+    },
+    {
+      "path": "configs/gen6-active-mix.json",
+      "sha": "433066756b8764d7dfe4df2754058d7c3e985649",
+      "type": "file"
+    },
+    {
+      "path": "configs/gen7-candidate-mix.json",
+      "sha": "7baad1d22e9b9037c589478963ef0af7d3c1d29c",
+      "type": "file"
+    },
+    {
+      "path": "configs/gen8-proto-bots.json",
+      "sha": "9be7e22b2dc0325888fb53ab400f2618236a287c",
+      "type": "file"
+    },
+    {
+      "path": "configs/plan-bots.json",
+      "sha": "65722fbfca0cf4c6658ac25723962bf78558cf81",
+      "type": "file"
+    },
+    {
+      "path": "configs/round5.json",
+      "sha": "e91d032dfde43b67609664cd805a04f20a657c38",
+      "type": "file"
+    },
+    {
+      "path": "configs/round5r.json",
+      "sha": "c92c0a43a8f4ec16419117be5c6cf5f2dcca3a45",
+      "type": "file"
+    },
+    {
+      "path": "configs/round5rz-ben.json",
+      "sha": "0a09d226b5788e45d9657789503b17322d147b91",
+      "type": "file"
+    },
+    {
+      "path": "configs/round5rz.json",
+      "sha": "7b673142d299499e5860a4b3da049165ee4cdf41",
+      "type": "file"
+    },
+    {
+      "path": "configs/round6-ben64-followups.json",
+      "sha": "e0ec0b5d0b38edbe3c5e4547768704ae0f55c22d",
+      "type": "file"
+    },
+    {
+      "path": "configs/round6-codex.json",
+      "sha": "3cbc82526ef385564810cd4e7729f3fa6b097250",
+      "type": "file"
+    },
+    {
+      "path": "configs/round6-cutover.json",
+      "sha": "80f858567590aa45af2acb8a40fa9c59085ba4a4",
+      "type": "file"
+    },
+    {
+      "path": "configs/round6-fast-selfplay.json",
+      "sha": "8a0e0d2e95ce93764c38b9ee433073d3f550f59f",
+      "type": "file"
+    },
+    {
+      "path": "configs/round6-independent.json",
+      "sha": "6b9203753fb6efe3196d54d4167831e10560dd32",
+      "type": "file"
+    },
+    {
+      "path": "configs/round6.json",
+      "sha": "9df0c6848adae11ba93e184efe42d790915b2677",
+      "type": "file"
+    },
+    {
+      "path": "configs/round7-alpha.json",
+      "sha": "038d866a6c6c98950a4313bf7ddbc17ccbb96425",
+      "type": "file"
+    },
+    {
+      "path": "configs/round7-candidate-phase1-ben.json",
+      "sha": "763039c42bad604fa8b7d3ac637e3de440ccc002",
+      "type": "file"
+    },
+    {
+      "path": "configs/round7-candidate-phase1-nonben.json",
+      "sha": "457dddcd730d91a8d502068726011ade454dafaf",
+      "type": "file"
+    },
+    {
+      "path": "configs/round7-candidate-phase1.json",
+      "sha": "d6827a7caeaf154706b1863e4c5ffa58b2c97a32",
+      "type": "file"
+    },
+    {
+      "path": "configs/round7-candidate-phase2.json",
+      "sha": "e46dbbcf3999d77be30aac58cc28e2713eb4d7af",
+      "type": "file"
+    },
+    {
+      "path": "configs/self_improvement.json",
+      "sha": "0af5f525739f2fa35d4fa71fab2301f0d48cfe76",
+      "type": "file"
+    },
+    {
+      "path": "configs/systems",
+      "sha": "920f96bb46f4cb07ff65cdc265926d0c16bd9b9d",
+      "type": "dir"
+    },
+    {
+      "path": "configs/x8-bots.json",
+      "sha": "86e36618cebccc57d1271c68c7d98e269c4ef1c1",
+      "type": "file"
+    }
+  ],
+  "adoption_status": "work_in_progress_not_deployed_no_open_arena_plan"
+}

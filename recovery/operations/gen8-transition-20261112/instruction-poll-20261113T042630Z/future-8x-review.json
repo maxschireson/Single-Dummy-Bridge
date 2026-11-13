@@ -1,0 +1,22 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "225a8d3a003927bc200d4597ae277194fb2f3e23",
+  "direction": "8X remains a separate development candidate with host-specific matches; current Gen8 collection remains unchanged.",
+  "engine": {
+    "branch": "feature/gen8x-rollout-bot-20261113",
+    "revision": "5ec36f16e5f7ca833b3aa524b33fe6a78f15c60a",
+    "documentation_blob": "209f812370c905391d3a4277e2092dc54f0529af",
+    "status": "Documentation explicitly work in progress/not deployed; configs inventory has x8-bots.json but no opened8X arena plan."
+  },
+  "condition_met": true,
+  "condition": {
+    "authority": "Max00:28 conditional agreement; g9 BOARD02:45 at e391410 reports condition met.",
+    "finding": "800 boards8r versus8p +0.014 +/-0.126IMP/board, no detectable played cost; retain prior finding.",
+    "reading": "Read randomizing opponents by exact-equal card class summed net probability, including rollout seats; whole-play scaling down discarded."
+  },
+  "new_development": "Max04:12 to x8: add full claims and equal-card mixing and match8X againstGen8. Branch5ec36f1 adds8x1-ft1 and capture.mix_share. This is an8X experiment, not a change to canonical8s/8c cohort.",
+  "models": "New rollout-net-v2w transfer release5e4909a exists. No model swap here. Any future adopted nets require complete training-family provenance and exclusion lists.",
+  "existing_gen8_effect": "Keep canonical8s/8c, frozen792c4cb, manifestcd98, current2:1:1:1:1 mix, three normal workers and zeroBEN. Do not change old science to match new research.",
+  "future_requirements": "Applicable published arena opening, exact actors/models/source, drain/new identity, all released-model training exclusions, required fresh-pool corpus-overlap proof and observed-capture preflight.",
+  "host_scope": "No remote-host, queue or peer producer command; no research training or promotion by this task."
+}
