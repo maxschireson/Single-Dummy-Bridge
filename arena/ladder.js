@@ -227,7 +227,7 @@
       ['Boards', int(p.boards)],
       ['Introduced', p.candidate ? 'candidate: not on a registered feed' + (p.introduced_utc ? ` (in the arrival run from ${when(p.introduced_utc)} UTC)` : '')
         : when(p.introduced_utc) + ' UTC' + (p.first_registered_board_utc && p.first_registered_board_utc !== p.introduced_utc ? ` · first board on a registered feed ${when(p.first_registered_board_utc)} UTC` : '')],
-      p.introduced_source ? ['Introduction evidence', link(p.introduced_source.source + (p.introduced_source.note ? ' ' + p.introduced_source.note : ''), p.introduced_source.url)] : null,
+      p.introduced_source && typeof p.introduced_source === 'object' ? ['Introduction evidence', link(p.introduced_source.source + (p.introduced_source.note ? ' ' + p.introduced_source.note : ''), p.introduced_source.url)] : null,
       p.prior ? ['Prior', `${p.prior.kind}${p.prior.mean !== null && p.prior.mean !== undefined ? ', mean ' + signed(p.prior.mean) : ''}${p.prior.sd ? ', SD ' + num(p.prior.sd) : ''}${p.prior.source ? ' · ' + p.prior.source : ''}` +
         (p.prior_share !== null && p.prior_share !== undefined ? ` · ${Math.round(100 * p.prior_share)}% of the information` : '')] : null,
       p.timing ? ['Time per decision', `${num(p.timing.seconds_per_choice, 3)} s with a choice (${int(p.timing.decisions_with_choice)} decisions, ${int(p.timing.forced_decisions)} forced)` +
