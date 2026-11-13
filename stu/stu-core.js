@@ -50,6 +50,7 @@
   //   2026-11-13T09:40:00Z end g0-stu0: exit 0
   const START = /^(\S+) start (\S+) (\S+) seed (\d+) first (\d+) deals (\d+) workers (\d+)\s*(.*?)\s*\(source ([0-9a-f]+)\)\s*$/;
   const END = /^(\S+) end (\S+): exit (\d+)/;
+  const PAUSE = /^(\S+) the collection is paused/;
   const epoch = t => { const x = Date.parse(t); return Number.isFinite(x) ? x / 1000 : null; };
   function parseRunsLog(text, box) {
     const runs = {}, events = [];
@@ -60,25 +61,30 @@
         const r = runs[name] ||= { name, box, sources: [], starts: [], ends: [] };
         Object.assign(r, { pair, seed: +seed, first: +first, deals: +deals, workers: +workers, options: options || '' });
         if (!r.sources.includes(source)) r.sources.push(source);
-        r.starts.push(epoch(t)); events.push({ t: epoch(t), name, kind: 'start' });
+        r.starts.push(epoch(t)); events.push({ t: epoch(t), name, kind: 'start', i: events.length });
         continue;
       }
       m = END.exec(line.trim());
       if (m && runs[m[2]]) {
         runs[m[2]].ends.push({ t: epoch(m[1]), exit: +m[3] });
-        events.push({ t: epoch(m[1]), name: m[2], kind: 'end', exit: +m[3] });
+        events.push({ t: epoch(m[1]), name: m[2], kind: 'end', exit: +m[3], i: events.length });
+        continue;
       }
+      m = PAUSE.exec(line.trim());
+      if (m) events.push({ t: epoch(m[1]), kind: 'pause', i: events.length });
     }
-    // A box runs its jobs one after another: a run whose last event is a start is running only if no other run
-    // started after it on that box; otherwise it was set aside (stopped by hand, or the chain moved on).
+    // A box runs one job at a time, or a few side by side started together (the collection's two runs). A run whose
+    // last event is a start is running if it started within 90 s of the box's latest start and no pause came after it;
+    // otherwise it was set aside (stopped by hand, paused for another job, or the chain moved on).
     const latestStart = events.filter(e => e.kind === 'start').reduce((a, e) => (!a || e.t >= a.t ? e : a), null);
     for (const r of Object.values(runs)) {
       const last = events.filter(e => e.name === r.name).at(-1);
       r.started = r.starts[0] ?? null;
       r.last_event = last ? last.t : null;
+      const paused = last && events.some(e => e.kind === 'pause' && e.i > last.i);   // a pause logged after the run's start
       if (!last) r.status = 'unknown';
       else if (last.kind === 'end') { r.status = last.exit === 0 ? 'complete' : 'stopped'; r.exit = last.exit; }
-      else r.status = latestStart && latestStart.name === r.name ? 'running' : 'not running';
+      else r.status = latestStart && !paused && latestStart.t - last.t <= 90 ? 'running' : 'not running';
     }
     return runs;
   }
@@ -131,15 +137,20 @@
     const [a, b] = String(entry.pair || run.pair || '').split('~');
     const role = entry.role, fb = entry.first_bot || {}, sb = entry.second_bot || {};
     if (role === 'preflight') return { role: 'excluded' };
-    const superseded = entry.queue_order == null;
-    if (role === 'collection') return { role, round: fb.round, net: fb.net, rung: fb.rung, superseded, listed: true };
+    const superseded = entry.queue_order == null, shelved = !!entry.shelved;
+    if (role === 'ben') {
+      const stu = fb.family === 'stu' ? fb : sb.family === 'stu' ? sb : null, first = fb.family === 'stu' || !stu;
+      return { role, round: stu?.round ?? null, net: stu?.net ?? null, rung: stu?.rung ?? null, gen8: !stu,
+        opponent: first ? b : a, sign: first ? 1 : -1, superseded, shelved, listed: true };
+    }
+    if (role === 'collection') return { role, round: fb.round, net: fb.net, rung: fb.rung, superseded, shelved, listed: true };
     if (role === 'gate' || role === 'ladder' || role === 'data') {
       const stuFirst = fb.family === 'stu';
       const bot = stuFirst ? fb : sb;
       return { role, round: bot.round, net: bot.net, rung: bot.rung, opponent: stuFirst ? b : a, sign: stuFirst ? 1 : -1,
-        superseded, listed: true };
+        superseded, shelved, listed: true };
     }
-    return { role: role || 'other', superseded, listed: true };
+    return { role: role || 'other', superseded, shelved, listed: true };
   }
 
   // ---- one run's rows, reduced ----------------------------------------------------------------------------------
@@ -202,6 +213,7 @@
   // ---- net scores from a trainer's metrics.json (scripts/train_rollout_net.py) ----------------------------------
   const pick = g => g ? Object.fromEntries(['n', 'nll', 'uniform_nll', 'agree', 'in_best', 'regret', 'rated_pick', 'regret_gap_head']
     .filter(k => g[k] !== undefined && g[k] !== null).map(k => [k, g[k]])) : null;
+  const phases = g => g ? Object.fromEntries(Object.entries(g).map(([k, x]) => [k, pick(x)])) : null;
   // compare: {netKey: key under metrics.compared}, the other nets the trainer scored on this net's held-out rows.
   // before: {netKey: a metrics.json of the same rows scored by that net}, for an earlier net that `compared` reads
   // wrongly (round 1's v2 under `compared` reads Stu as an unknown bot; metrics_before.json tells it Stu is 8s-32).
@@ -214,18 +226,20 @@
     const same = {};
     for (const [net, key] of Object.entries(compare || {})) {
       const c = m.compared?.[key];
-      if (c) same[net] = { all: pick(c.all), late: pick(c.from_trick_7), focus: focus ? pick(c.by_bot?.[focus]) : null };
+      if (c) same[net] = { all: pick(c.all), late: pick(c.from_trick_7), focus: focus ? pick(c.by_bot?.[focus]) : null,
+        focus_phase: focus ? phases(c.by_bot_phase?.[focus]) : null };
     }
     for (const [net, b] of Object.entries(before || {})) {
       const bv = b?.validation;
-      if (bv) same[net] = { all: pick(bv.all), late: pick(bv.from_trick_7), focus: focus ? pick(bv.by_bot?.[focus]) : null, before: true };
+      if (bv) same[net] = { all: pick(bv.all), late: pick(bv.from_trick_7), focus: focus ? pick(bv.by_bot?.[focus]) : null,
+        focus_phase: focus ? phases(bv.by_bot_phase?.[focus]) : null, before: true };
     }
     return {
       width: m.width ?? null, epochs: m.epochs ?? null, selected_epoch: m.selected_epoch ?? null, parameters: m.parameters ?? null,
       train_examples: m.train_examples ?? null, train_deals: m.train_deals ?? null, init: m.init ?? null, val_data: m.val_data ?? null,
       lr: m.lr ?? null, seconds: m.seconds ?? null,
       all: pick(v.all), late: pick(v.from_trick_7), declaring: pick(v.declaring), defending: pick(v.defending), by_bot: byBot,
-      focus_bot: focus, focus: focus ? byBot[focus] || null : null,
+      focus_bot: focus, focus: focus ? byBot[focus] || null : null, focus_phase: focus ? phases(v.by_bot_phase?.[focus]) : null,
       history: (m.history || []).map(h => ({ epoch: h.epoch, train_ce: h.train_ce ?? null, nll: h.val?.nll ?? null,
         agree: h.val?.agree ?? null, regret: h.val?.regret ?? null })),
       same_rows: same,
@@ -303,7 +317,7 @@
     // boards of a gate run or a superseded run with the same bot count inside that range.
     const ladder = {};
     for (const [k, rs] of Object.entries(groups)) {
-      const ranges = rs.filter(r => r.cls.role === 'ladder' && !r.cls.superseded && Number.isFinite(r.first) && Number.isFinite(r.deals)).map(r => [r.first, r.first + r.deals]);
+      const ranges = rs.filter(r => r.cls.role === 'ladder' && !r.cls.superseded && !r.cls.shelved && Number.isFinite(r.first) && Number.isFinite(r.deals)).map(r => [r.first, r.first + r.deals]);
       if (!ranges.length) continue;
       const inside = i => ranges.some(([a, b]) => i >= a && i < b);
       const size = new Set(ranges.flatMap(([a, b]) => Array.from({ length: b - a }, (_, x) => a + x))).size;
@@ -312,6 +326,15 @@
     const seenNets = Object.keys(ladder).map(k => k.split('|')[0]), seenRungs = Object.keys(ladder).map(k => k.split('|')[1]);
     const nets = [...netOrder.filter(n => seenNets.includes(n)), ...[...new Set(seenNets)].filter(n => !netOrder.includes(n))];
     const rungs = [...rungOrder, ...[...new Set(seenRungs)].filter(g => !rungOrder.includes(g))];
+    // Leverage: each loop net (variants left out) against the latest earlier net with at least 20 shared deals at a rung.
+    const loopNets = (registry.nets || []).filter(n => !n.variant).map(n => n.key);
+    const leverage = loopNets.slice(1).map((k, i) => {
+      const prevNets = loopNets.slice(0, i + 1).reverse(), byRung = {};
+      for (const g of [...rungOrder, ...[...new Set(seenRungs)].filter(x => !rungOrder.includes(x))]) {
+        for (const e of prevNets) { const d = paired(ladder[`${k}|${g}`], ladder[`${e}|${g}`]); if (d && d.n >= 20) { byRung[g] = { d, vs: e }; break; } }
+      }
+      return { net: k, previous: loopNets[i], rungs: byRung };
+    });
     const vsRef = {}, vsNet = {};
     for (const n of nets) for (const g of rungs) if (g !== refOf(g)) vsRef[`${n}|${g}`] = paired(ladder[`${n}|${g}`], ladder[`${n}|${refOf(g)}`]);
     for (let i = 1; i < nets.length; i++) for (const g of rungs)
@@ -335,13 +358,23 @@
         cells[rung] = rs ? cellOf(rs, { keep: b => b[1] < gateDeals, deals: gateDeals }) : null;
       }
       const prev = rounds.at(-1);
-      const change = prev ? Object.fromEntries(roundRungs.map(rung => [rung, paired(cells[rung], prev.cells[rung])])) : null;
+      // The change at each rung: against the latest earlier round with at least 20 deals in common at that rung (round 2's
+      // rungs play deals 500 to 699, which round 1's did not, so its change is against Stu 0).
+      const change = prev ? {} : null, changeVs = {};
+      if (prev) for (const rung of roundRungs) {
+        change[rung] = null;
+        for (const e of rounds.slice().reverse()) {
+          const d = paired(cells[rung], e.cells[rung]);
+          if (d && d.n >= 20) { change[rung] = d; changeVs[rung] = e.label; break; }
+        }
+      }
       const x8 = coll.reduce((acc, r) => addX8(acc, r.red), null);
       const cpuN = coll.reduce((a, r) => a + (r.red?.cpu_n || 0), 0);
       const byRung = {};
       for (const r of coll) { const k = r.cls.rung || '?'; byRung[k] = (byRung[k] || 0) + done(r); }
       rounds.push({
         round: g.round, label: g.label, net: g.net, note: listed?.note || g.note || null, started: g.started || null, main_rung: g.main_rung || null,
+        trained_on: g.trained_on || null, change_vs: changeVs,
         collection: { runs: coll.map(r => r.key), boards, by_rung: byRung, cut, rate: running.length ? rate : null,
           eta_hours: cut && rate > 0 && boards < cut ? (cut - boards) / rate : null,
           failed: coll.reduce((n, r) => n + (r.progress?.failed || 0), 0),
@@ -376,8 +409,39 @@
       split = { matched: stats(d1), mismatched: stats(d2), quality: stats(d1.map((x, i) => (x + d2[i]) / 2)), exact: stats(d1.map((x, i) => (x - d2[i]) / 2)) };
     }
     const controlPairs = new Set(Object.values(C2.cells || {}));
+
+    // Against BEN: each bot's result against BEN, minus Gen 8 card play's against BEN on the same deals, beside the bot's
+    // own result against Gen 8 on those deals (the ladder's rows).
+    const benRuns = byRole('ben').filter(r => r.red?.n);
+    const benG8 = benRuns.filter(r => r.cls.gen8), g8cell = benG8.length ? cellOf(benG8) : null;
+    const benRows = [];
+    if (g8cell) benRows.push({ key: 'gen8', label: null, net: null, rung: null, cell: g8cell, minus_gen8: null, h2h: null });
+    const benBots = {};
+    for (const r of benRuns.filter(r => !r.cls.gen8)) (benBots[`${r.cls.net}|${r.cls.rung}`] ||= []).push(r);
+    for (const [k, rs] of Object.entries(benBots)) {
+      const c = cellOf(rs), [net, rung] = k.split('|'), deals = new Set(c.boards.map(b => b[0]));
+      const h = groups[k] ? stats(mergeBoards(groups[k], b => deals.has(b[0])).boards.map(b => b[2])) : null;
+      benRows.push({ key: k, net, rung, cell: c, minus_gen8: paired(c, g8cell), h2h: h && h.n ? h : null });
+    }
+
+    // What each box is doing now, and the collection's totals by box.
+    const boxes = {};
+    for (const r of runs.filter(r => r.box !== 'sandbox')) {
+      const b = boxes[r.box] ||= { box: r.box, running: [], coll_rows: 0, coll_rate: 0, coll_running: 0 };
+      const done = Math.max(r.red?.rows || 0, r.episodes || 0, r.progress?.boards || 0);
+      if (r.cls.role === 'collection') { b.coll_rows += done; if (r.status === 'running') { b.coll_rate += r.progress?.per_hour || 0; b.coll_running++; } }
+      if (r.status === 'running') {
+        const rate = r.progress?.per_hour || null, left = Number.isFinite(r.deals) ? Math.max(0, r.deals - done) : null;
+        b.running.push({ key: r.key, name: r.name, role: r.cls.role, net: r.cls.net, rung: r.cls.rung, pair: r.pair, done, deals: r.deals,
+          rate, eta_hours: r.cls.role !== 'collection' && rate && left != null ? left / rate : null, failed: r.progress?.failed ?? null });
+      }
+    }
+    const boxList = Object.values(boxes).sort((a, b) => a.box.localeCompare(b.box));
+    const now = { boxes: boxList, coll_rows: boxList.reduce((a, b) => a + b.coll_rows, 0), coll_rate: boxList.reduce((a, b) => a + b.coll_rate, 0) };
+
     return {
-      rounds, round_rungs: roundRungs, nets: netRows, ladder_nets: nets, rungs, ladder, vs_ref: vsRef, ref_of: Object.fromEntries(rungs.map(g => [g, refOf(g)])), vs_net: vsNet,
+      now, ben: benRows,
+      rounds, round_rungs: roundRungs, nets: netRows, leverage, ladder_nets: nets, rungs, ladder, vs_ref: vsRef, ref_of: Object.fromEntries(rungs.map(g => [g, refOf(g)])), vs_net: vsNet,
       control: { cells, split, generation: paired(cells.F41_F4, cells.N41_N4) },
       data: byRole('data'), ledger: ledgerModel(ledger, runs, primary),
       others: runs.filter(r => (r.cls.role === 'other' || r.cls.role === 'control') && !controlPairs.has(r.pair) && r.red?.n),
