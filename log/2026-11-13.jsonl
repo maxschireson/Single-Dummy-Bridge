@@ -138,3 +138,5 @@
 {"at": "2026-11-13T04:24:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-4-8x", "note": "running"}
 {"at": "2026-11-13T04:26:00Z", "by": "g9", "op": "resolve", "target": "G9-W4", "note": "Accepted: the first day's queue metrics answer the thinkers-and-executors question (executors were not the bottleneck; decisions and absences were); rerun Friday morning.", "resolution": "accepted"}
 {"at": "2026-11-13T04:26:00Z", "by": "g9", "op": "send", "target": "will/20261113T0426Z-g9-g9-w4-resolved-accepted-queue", "note": "G9-W4 resolved (accepted): Queue metrics: are there too few thinkers or too few executors", "task": "G9-W4"}
+{"at": "2026-11-13T04:26:00Z", "by": "g9", "op": "resolve", "target": "G9-D8", "note": "Accepted: arena-results-v1 (docs/gen9/arena-results.md) and the prototype page from the arrival run. The ladder (G9-D9) builds on this format.", "resolution": "accepted"}
+{"at": "2026-11-13T04:26:00Z", "by": "g9", "op": "send", "target": "dave/20261113T0426Z-g9-g9-d8-resolved-accepted-the-ar", "note": "G9-D8 resolved (accepted): The arena's results page for a population: data feed and a prototype from the arrival run", "task": "G9-D8"}
