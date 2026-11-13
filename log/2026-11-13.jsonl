@@ -215,3 +215,4 @@
 {"at": "2026-11-13T06:44:00Z", "by": "dave", "op": "job-submit", "target": "azure4/g9-cohort-azure4", "note": "priority 1, 8 cores", "task": "G9-D9"}
 {"at": "2026-11-13T06:44:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "stopping"}
 {"at": "2026-11-13T06:44:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-16-h-v-p", "note": "stopping"}
+{"at": "2026-11-13T06:44:00Z", "by": "dave", "op": "send", "target": "will/20261113T0644Z-dave-cohort-job-g9-cohort-azure4-qu", "note": "Cohort job g9-cohort-azure4 queued: push credential and progress glob to check"}
