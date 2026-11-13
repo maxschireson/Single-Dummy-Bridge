@@ -144,10 +144,16 @@ folders (`b0-p-1` to `b0-p-8`) on azure3's transfer branch.
 
 | | Deals | IMPs a board |
 | --- | --- | --- |
+| Gen 8 card play against BEN (64) | 256 | +0.09 +- 0.27 |
 | Pure Stu against BEN (64) | 256 | -0.27 +- 0.28 |
-| Pure Stu against Gen 8 card play, the same deals | 256 | -0.91 +- 0.28 |
+| Pure Stu minus Gen 8 card play, each against BEN (64), by deal | 256 | -0.36 +- 0.31 |
+| Pure Stu against Gen 8 card play head to head, the same deals | 256 | -0.91 +- 0.28 |
 
-Gen 8 card play, Stu's own stages and the rolled-lead bot against BEN (64) follow (about 16:10, 16:55 and 17:45 UTC).
+Measured against BEN, pure Stu is no further behind Gen 8 than head to head (Max had expected it to do less well
+against BEN). Stu's own stages and the rolled-lead bot against BEN (64) follow (about 16:50 and 17:45 UTC).
+
+On BEN's own cards the fusion ledger counts 11 guaranteed contracts given up in 2,405 decisions holding one (0.46%);
+Gen 8 card play in the same matches 11 in 945 (1.16%).
 
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
 

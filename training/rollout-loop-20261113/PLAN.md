@@ -211,9 +211,23 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   values: lead 0.058 to 0.053, tricks 1 to 4 0.061 to 0.061, tricks 5 to 8 0.077 to 0.073, tricks 9 to 13 0.040 to
   0.039 (a random rated card gives up 0.13 to 0.19). `8s-32` log-loss 0.4581 to 0.4641. These "given up" numbers are
   against the best of a few noisy means, so they overstate what a perfect net would gain.
-- **The run that counts** waits for about 2,500 tables (about 16:30 UTC). Its bots: pure Stu with that net in the
-  rollouts, the same with the net also at the table (its own lead and first choices), and one whose simulated seats
-  use the net's value head (`seat: blend`); each against Gen 8 card play on the gate's deals.
+- **Round 2's net, 15:48 to 16:02 UTC** (`train-r2/` on azure5's branch, sha256 `fa5df4e1a7f8...`; 1,814 tables, 150
+  held out, selected epoch 1). Log-loss on pure Stu's cards 1.057 to 0.992. Tricks its first card gives up against the
+  rollouts' values: lead 0.072 to 0.067, tricks 1 to 4 0.062 to 0.063, tricks 5 to 8 0.087 to 0.088, tricks 9 to 13
+  0.060 to 0.058. `8s-32` log-loss 0.4581 to 0.4685. **The choices did not move**: the net predicts Stu's cards better
+  and chooses no better, and forgets a little of Gen 8. Three reasons this is not yet a verdict on the method: v2 was
+  trained on about 150,000 tables and this is 1,814; the epoch is chosen by the loss over every bot's rows, which
+  picks the least-trained epoch; and "given up" is against the best of a few noisy means, which a perfect net could
+  not bring to zero.
+- **Its bots** (`make_bots.py`): `stu2-p` (the net in the rollouts), `stu2-pt` (also at the table: its lead and first
+  choices), `stu2-pv` (the simulated seats play by its value head, `seat: blend`), `stu2-n` (the net alone), with
+  controls `stu0-pt`, `stu0-pv`, `stu0-n`. Rungs on the gate's deals 500 to 699 against `l0b-p` (`jobs-azure5-r2.txt`,
+  `jobs-azure6-r0c.txt`, `jobs-azure6-r2.txt`), and the two nets alone on 500 deals: the plainest read of whether the
+  net learned to choose.
+- **What follows from it:** the loop needs tables before anything else. From about 17:45 UTC three boxes collect
+  (azure5, azure6 borrowed, azure3 after the matches against BEN): about 2,300 tables an hour, some 30,000 by 07:00
+  UTC on 14 November. Round 3 trains on those, with the epoch chosen on pure Stu's held-out choices and the other
+  bots' loss as a limit.
 
 ## After round 1, in the order I expect to matter
 
@@ -248,6 +262,8 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 - The opponent mix in the collection and when BEN joins the gate.
 - The collection's split since 14:29 UTC: six workers on volume with the net's lead, two on rolled-out leads (a table
   with a rolled-out lead measured 55 CPU-s, not the 46.5 first estimated, against 28). Yours to change either way.
+- azure3 collects after the matches against BEN and the ladder's leftover rungs are shelved (`jobs-azure3-later.txt`):
+  my call at 16:10 UTC on round 2's result. Yours to reverse.
 - Stu in partscores gives up a guaranteed contract about as often as Gen 8 (the ledger). Its rule is off there by your
   instruction to the 8X session (13 November 01:42 UTC: act on claims outside undoubled partscores). A rung with the
   rule on everywhere would say what that costs or gains for pure Stu; it is not queued.
