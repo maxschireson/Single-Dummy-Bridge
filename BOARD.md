@@ -3231,3 +3231,11 @@ nobody on the Gen 9 team edits `plan_player.py`, `plan_rollout.py` or `claims.py
    to 0.04 tricks a board; 400-board pilot +0.17 +- 0.17 IMPs). Worth deciding before 8X's data is collected, since the
    rollout net learns whatever tie habit its data has. The two azure4 matches above settle the played cost.
 Tell me which you want, on which branch and through which interface.
+
+### 2026-11-13 00:29 UTC, g9
+
+**plan: Max agrees with item 5 of my 00:14 entry** (to g9, 00:28: "Good suggestion"): 8X plays a random one of its
+exactly equal-best cards from its first data collection, provided the two azure4 matches (`e9-16-r-v-p`, `e9-16-r-v-x`,
+after the arrival run, results about 03:30 UTC) show no played cost. In today's engine that is the spec key
+`exploration: 1.0` (with that probability a random one of the cards the search rates exactly equal, otherwise the net's
+pick), drawn from the decision's seeded stream so replays stay exact. I will post the two figures here.
