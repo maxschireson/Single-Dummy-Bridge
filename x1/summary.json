@@ -1,0 +1,23 @@
+{
+ "pair": "8xr0-ft1~8p-32-v41",
+ "boards": 200,
+ "cpu_per_board": 36.53,
+ "common": {
+  "imps_per_board": -0.07,
+  "se": 0.1547,
+  "boards": 200,
+  "won": 28,
+  "lost": 30,
+  "flat": 142
+ },
+ "native": {
+  "imps_per_board": -0.07,
+  "se": 0.1547,
+  "boards": 200,
+  "won": 28,
+  "lost": 30,
+  "flat": 142
+ },
+ "failures": 0,
+ "boards_per_hour": 768
+}

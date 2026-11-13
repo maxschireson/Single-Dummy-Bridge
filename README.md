@@ -1,0 +1,6 @@
+# 8X matches on azure6 (x8 session)
+
+**Research data, not an arena cohort and not a feed; never merge.** Matches of the 8X bot (engine gen8x, branch
+feature/gen8x-rollout-bot-20261113; each match's manifest.json names its source commit), run by scripts/x8_match.py
+--feature-forks. results.jsonl: one row a board; search.x8_forks: the feature forks; forks-*.txt: scripts/x8_forks.py.
+z3: 8z-ft1 against 8p-32-v41; z4: 8z-ft1 against 7s-32-v41 (Gen 7.1); z5: 8z-v41 against 8p-32-v41 (paired with z3: the rollout net). Seed 131. z1, z2: the same as z3, z5 before 5c77d79 (stopped early). x6: 8x3-ft1 (8X v3: Gen 8 through trick 6 with its tree, the blend from trick 7 in games only, the claim, mixing as v2; 1a779a9) against 8p-32-v41, seed 131. z3, z5 stopped at 05:3x. x5: 8x2-ft1 (8X v2: the claim, and declarer and defenders mixing equal cards in proportion to p ** power, 2 and 3; 0bcdbc2) against 8p-32-v41, seed 131. x4: 8x1-ft1 (the same with uniform mixing, 5ec36f1; stopped at 77 boards, resumed at 06:1x from 0bcdbc2, same draws; x5 stopped then at 540). z4 paused at 04:24. x3: 8xr0-ft1 (8X, the blend) against 8p-32-v41 on the same deals (seed 131), paired with z3. x1: 8xr0-ft1 at bb85066 on the same deals (paused at 246 boards; x3 replaces it at 5c77d79, whose random stream differs).

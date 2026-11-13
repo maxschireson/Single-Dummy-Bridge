@@ -1,0 +1,30 @@
+2026-11-13T02:28:52Z start x1 (8xr0-ft1~8p-32-v41) source bb85066
+2026-11-13T02:48:12Z x1 paused at 246 boards (8Z first, Max 02:41)
+2026-11-13T02:48:13Z start z1 (8z-ft1~8p-32-v41) source 0a8f55f
+2026-11-13T02:48:13Z start z2 (8z-v41~8p-32-v41) source 0a8f55f
+2026-11-13T03:08:48Z z1 stopped at 130 boards (restart with 5c77d79, Max 03:05)
+2026-11-13T03:08:48Z z2 stopped at 131 boards (restart with 5c77d79, Max 03:05)
+2026-11-13T03:08:49Z start z3 (8z-ft1~8p-32-v41, 3 workers) source 5c77d79
+2026-11-13T03:08:49Z start z4 (8z-ft1~7s-32-v41, 3 workers) source 5c77d79
+2026-11-13T03:08:49Z start z5 (8z-v41~8p-32-v41, 2 workers) source 5c77d79
+2026-11-13T04:07:05Z z3 paused at 264 boards to rebalance (x3 added, Max 04:03)
+2026-11-13T04:07:05Z z4 paused at 290 boards to rebalance (x3 added, Max 04:03)
+2026-11-13T04:07:05Z z5 paused at 180 boards to rebalance (x3 added, Max 04:03)
+2026-11-13T04:07:05Z start z3 (8z-ft1~8p-32-v41, 2 workers) source 5c77d79
+2026-11-13T04:07:05Z start z4 (8z-ft1~7s-32-v41, 2 workers) source 5c77d79
+2026-11-13T04:07:05Z start z5 (8z-v41~8p-32-v41, 2 workers) source 5c77d79
+2026-11-13T04:07:05Z start x3 (8xr0-ft1~8p-32-v41, 2 workers) source 5c77d79
+2026-11-13T04:24:26Z end x3: exit 0
+2026-11-13T04:24:26Z end z4: exit 0
+2026-11-13T04:24:30Z x3 stopped at 53 boards (x4 takes its workers, Max 04:12)
+2026-11-13T04:24:30Z z4 stopped at 345 boards (x4 takes its workers, Max 04:12)
+2026-11-13T04:24:30Z start x4 (8x1-ft1~8p-32-v41, 4 workers) source 5ec36f1
+2026-11-13T04:40:53Z x4 stopped at 77 boards (x5 replaces it: mixing tempered by the net, Max 04:33)
+2026-11-13T04:40:53Z start x5 (8x2-ft1~8p-32-v41, 4 workers) source 0bcdbc2
+2026-11-13T05:38:38Z z3 stopped at 541 boards (8X v3 takes its workers, Max 05:3x)
+2026-11-13T05:38:38Z z5 stopped at 453 boards (8X v3 takes its workers, Max 05:3x)
+2026-11-13T05:38:39Z start x6 (8x3-ft1~8p-32-v41, 4 workers) source 1a779a9
+2026-11-13T06:08:20Z x5 stopped at 550 boards; x4 resumes on its workers from src2 0bcdbc2 (same draws at power 0), Max 06:05
+2026-11-13T06:08:21Z start x4 (8x1-ft1~8p-32-v41, resumed, 4 workers) source 0bcdbc2
+2026-11-13T07:38:05Z x6 stopped at 1011 boards: azure6 back to the table session at 08:00 (allocation)
+2026-11-13T07:38:05Z x4 stopped at 522 boards: azure6 back to the table session at 08:00 (allocation)

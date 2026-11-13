@@ -1,0 +1,58 @@
+541 boards, 5123 feature forks
+  all                                forks  5123 (better 258, worse 284): +0.009 +- 0.034 IMPs a fork; +0.0850 +- 0.3252 a board
+    partscore                        forks  1884 (better 91, worse 137): -0.061 +- 0.034 IMPs a fork; -0.2126 +- 0.1203 a board
+    game                             forks  2807 (better 142, worse 120): +0.063 +- 0.053 IMPs a fork; +0.3272 +- 0.2727 a board
+    doubled                          forks   432 (better 25, worse 27): -0.037 +- 0.163 IMPs a fork; -0.0296 +- 0.1290 a board
+    trick 3                          forks   219 (better 35, worse 20): +0.110 +- 0.182 IMPs a fork; +0.0444 +- 0.0733 a board
+    trick 4                          forks   264 (better 22, worse 40): -0.011 +- 0.136 IMPs a fork; -0.0055 +- 0.0664 a board
+    trick 5                          forks   346 (better 37, worse 34): +0.055 +- 0.106 IMPs a fork; +0.0351 +- 0.0676 a board
+    trick 6                          forks   358 (better 32, worse 20): +0.078 +- 0.158 IMPs a fork; +0.0518 +- 0.1043 a board
+    trick 7                          forks   864 (better 65, worse 76): +0.032 +- 0.074 IMPs a fork; +0.0518 +- 0.1189 a board
+    trick 8                          forks   812 (better 42, worse 47): -0.025 +- 0.066 IMPs a fork; -0.0370 +- 0.0984 a board
+    trick 9                          forks   742 (better 16, worse 24): -0.018 +- 0.049 IMPs a fork; -0.0240 +- 0.0675 a board
+    trick 10                         forks   629 (better 3, worse 16): -0.040 +- 0.018 IMPs a fork; -0.0462 +- 0.0204 a board
+    trick 11                         forks   527 (better 3, worse 6): +0.009 +- 0.035 IMPs a fork; +0.0092 +- 0.0342 a board
+    trick 12                         forks   362 (better 3, worse 1): +0.008 +- 0.007 IMPs a fork; +0.0055 +- 0.0049 a board
+  with blend                         forks  1019 (better 120, worse 112): +0.049 +- 0.096 IMPs a fork; +0.0924 +- 0.1804 a board
+    partscore                        forks   354 (better 45, worse 46): -0.011 +- 0.103 IMPs a fork; -0.0074 +- 0.0673 a board
+    game                             forks   569 (better 66, worse 57): +0.130 +- 0.143 IMPs a fork; +0.1368 +- 0.1499 a board
+    doubled                          forks    96 (better 9, worse 9): -0.208 +- 0.415 IMPs a fork; -0.0370 +- 0.0743 a board
+    tricks 1-3                       forks   219 (better 35, worse 20): +0.110 +- 0.182 IMPs a fork; +0.0444 +- 0.0733 a board
+    tricks 4-6                       forks   800 (better 85, worse 92): +0.033 +- 0.102 IMPs a fork; +0.0481 +- 0.1514 a board
+  with claim                         forks  1229 (better 7, worse 0): +0.021 +- 0.014 IMPs a fork; +0.0481 +- 0.0323 a board
+    partscore                        forks   308 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+    game                             forks   841 (better 7, worse 0): +0.031 +- 0.021 IMPs a fork; +0.0481 +- 0.0323 a board
+    doubled                          forks    80 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+    tricks 4-6                       forks   128 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+    tricks 7-9                       forks   394 (better 1, worse 0): +0.008 +- 0.008 IMPs a fork; +0.0055 +- 0.0055 a board
+    tricks 10-13                     forks   707 (better 6, worse 0): +0.033 +- 0.024 IMPs a fork; +0.0425 +- 0.0318 a board
+  with guarantee                     forks   111 (better 13, worse 13): +0.342 +- 0.230 IMPs a fork; +0.0702 +- 0.0481 a board
+    game                             forks   103 (better 12, worse 10): +0.320 +- 0.200 IMPs a fork; +0.0610 +- 0.0386 a board
+    doubled                          forks     8 (better 1, worse 3): +0.625 +- 2.042 IMPs a fork; +0.0092 +- 0.0287 a board
+    tricks 4-6                       forks    58 (better 9, worse 6): +0.259 +- 0.249 IMPs a fork; +0.0277 +- 0.0275 a board
+    tricks 7-9                       forks    45 (better 4, worse 5): +0.578 +- 0.462 IMPs a fork; +0.0481 +- 0.0382 a board
+    tricks 10-13                     forks     8 (better 0, worse 2): -0.375 +- 0.263 IMPs a fork; -0.0055 +- 0.0041 a board
+  with guard                         forks     2 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+    game                             forks     2 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+    tricks 4-6                       forks     2 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+  with mix                           forks  1167 (better 62, worse 56): +0.051 +- 0.050 IMPs a fork; +0.1109 +- 0.1076 a board
+    partscore                        forks   498 (better 24, worse 22): +0.010 +- 0.046 IMPs a fork; +0.0092 +- 0.0423 a board
+    game                             forks   547 (better 32, worse 26): +0.143 +- 0.077 IMPs a fork; +0.1442 +- 0.0773 a board
+    doubled                          forks   122 (better 6, worse 8): -0.189 +- 0.275 IMPs a fork; -0.0425 +- 0.0616 a board
+    tricks 1-3                       forks    69 (better 10, worse 8): -0.043 +- 0.292 IMPs a fork; -0.0055 +- 0.0370 a board
+    tricks 4-6                       forks   241 (better 31, worse 25): +0.286 +- 0.166 IMPs a fork; +0.1275 +- 0.0741 a board
+    tricks 7-9                       forks   454 (better 21, worse 21): -0.004 +- 0.071 IMPs a fork; -0.0037 +- 0.0600 a board
+    tricks 10-13                     forks   403 (better 0, worse 2): -0.010 +- 0.007 IMPs a fork; -0.0074 +- 0.0052 a board
+  with odds                          forks    90 (better 7, worse 4): -0.022 +- 0.308 IMPs a fork; -0.0037 +- 0.0509 a board
+    game                             forks    87 (better 5, worse 4): -0.230 +- 0.274 IMPs a fork; -0.0370 +- 0.0438 a board
+    doubled                          forks     3 (better 2, worse 0): +6.000 +- 3.786 IMPs a fork; +0.0333 +- 0.0257 a board
+    tricks 4-6                       forks    29 (better 4, worse 2): -0.103 +- 0.715 IMPs a fork; -0.0055 +- 0.0377 a board
+    tricks 7-9                       forks    48 (better 3, worse 2): +0.021 +- 0.389 IMPs a fork; +0.0018 +- 0.0342 a board
+    tricks 10-13                     forks    13 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board
+  with rollout                       forks  2835 (better 125, worse 170): -0.017 +- 0.040 IMPs a fork; -0.0887 +- 0.2072 a board
+    partscore                        forks  1222 (better 46, worse 91): -0.091 +- 0.037 IMPs a fork; -0.2052 +- 0.0863 a board
+    game                             forks  1358 (better 64, worse 61): +0.054 +- 0.067 IMPs a fork; +0.1349 +- 0.1669 a board
+    doubled                          forks   255 (better 15, worse 18): -0.039 +- 0.186 IMPs a fork; -0.0185 +- 0.0867 a board
+    tricks 7-9                       forks  2024 (better 122, worse 147): -0.004 +- 0.054 IMPs a fork; -0.0148 +- 0.2026 a board
+    tricks 10-13                     forks   811 (better 3, worse 23): -0.049 +- 0.018 IMPs a fork; -0.0739 +- 0.0276 a board
+  all, 5 largest swings left out     forks  5118 (better 256, worse 281): +0.011 +- 0.034 IMPs a fork; +0.1054 +- 0.3174 a board

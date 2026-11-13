@@ -1,0 +1,23 @@
+{
+ "pair": "8z-ft1~8p-32-v41",
+ "boards": 100,
+ "cpu_per_board": 36.55,
+ "common": {
+  "imps_per_board": -0.44,
+  "se": 0.2443,
+  "boards": 100,
+  "won": 9,
+  "lost": 21,
+  "flat": 70
+ },
+ "native": {
+  "imps_per_board": -0.44,
+  "se": 0.2443,
+  "boards": 100,
+  "won": 9,
+  "lost": 21,
+  "flat": 70
+ },
+ "failures": 0,
+ "boards_per_hour": 385
+}
