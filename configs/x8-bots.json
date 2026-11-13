@@ -149,11 +149,11 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   }
  },
@@ -217,7 +217,7 @@
  },
  "8xr0-v41": {
   "base": "6-32",
-  "label": "8X v0 (placeholder rollout net: policy v4.1). Gen 8 search at tricks 1 to 2; tricks 3 to 6 that search blended with rollouts on 256 fresh layouts at trust 0.25; from trick 7 rollouts alone on up to 128 layouts; winning-line logic to 10 cards; declarer plays a random one of equal cards; inside-rollout forks recorded",
+  "label": "8X v0 (placeholder rollout net: policy v4.1), set by the calibration of 13 Nov: the Gen 8 search at tricks 1 to 2; from trick 3 that search blended with rollouts (sampled seats) on 256 fresh layouts at trust 0.25 (rollouts alone lost 0.16 to 0.27 tricks a side at tricks 7 to 12 with v4.1); winning-line logic to 10 cards; declarer mixes; forks recorded",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
@@ -254,34 +254,24 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
   "x8": {
    "stages": [
     {
      "from_trick": 3,
-     "to_trick": 6,
+     "to_trick": 13,
      "mode": "blend",
      "trust": 0.25,
      "layouts": 256,
      "cards": 3,
-     "margin": 0.25
-    },
-    {
-     "from_trick": 7,
-     "to_trick": 13,
-     "mode": "rollout",
-     "layouts": 128,
-     "first": 32,
-     "cards": 4,
-     "prior": 0.02,
-     "race": 2.5,
-     "slack": 0.05
+     "margin": 0.25,
+     "seat": "draw"
     }
    ],
    "claims": {
@@ -296,10 +286,10 @@
     "opponents": [
      "8xr0-v41",
      "8xr0n-v41",
-     "8xb0-v41",
+     "8xr7-v41",
+     "8xl0-v41",
      "8xc0-v41",
      "8xm0-v41",
-     "8xl0-v41",
      "8xs0-v41"
     ]
    },
@@ -308,7 +298,14 @@
     "forks": 8
    },
    "mix": {
-    "declarer": true
+    "declarer": true,
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
+    ]
    }
   }
  },
@@ -351,34 +348,24 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
   "x8": {
    "stages": [
     {
      "from_trick": 3,
-     "to_trick": 6,
+     "to_trick": 13,
      "mode": "blend",
      "trust": 0.25,
      "layouts": 256,
      "cards": 3,
-     "margin": 0.25
-    },
-    {
-     "from_trick": 7,
-     "to_trick": 13,
-     "mode": "rollout",
-     "layouts": 128,
-     "first": 32,
-     "cards": 4,
-     "prior": 0.02,
-     "race": 2.5,
-     "slack": 0.05
+     "margin": 0.25,
+     "seat": "draw"
     }
    ],
    "capture": {
@@ -386,13 +373,20 @@
     "forks": 8
    },
    "mix": {
-    "declarer": true
+    "declarer": true,
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
+    ]
    }
   }
  },
- "8xb0-v41": {
+ "8xr7-v41": {
   "base": "6-32",
-  "label": "As 8xr0-v41 with the blend (trust 0.25) at every trick from 3: no stage on rollouts alone",
+  "label": "8X with rollouts alone from trick 7 (up to 4 candidates, 128 layouts, race from 32) and the blend at tricks 3 to 6: the first v0 layout, before the calibration; for testing rollout nets",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz",
@@ -429,23 +423,34 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
   "x8": {
    "stages": [
     {
      "from_trick": 3,
-     "to_trick": 13,
+     "to_trick": 6,
      "mode": "blend",
      "trust": 0.25,
      "layouts": 256,
      "cards": 3,
      "margin": 0.25
+    },
+    {
+     "from_trick": 7,
+     "to_trick": 13,
+     "mode": "rollout",
+     "layouts": 128,
+     "first": 32,
+     "cards": 4,
+     "prior": 0.02,
+     "race": 2.5,
+     "slack": 0.05
     }
    ],
    "claims": {
@@ -460,10 +465,10 @@
     "opponents": [
      "8xr0-v41",
      "8xr0n-v41",
-     "8xb0-v41",
+     "8xr7-v41",
+     "8xl0-v41",
      "8xc0-v41",
      "8xm0-v41",
-     "8xl0-v41",
      "8xs0-v41"
     ]
    },
@@ -472,7 +477,14 @@
     "forks": 8
    },
    "mix": {
-    "declarer": true
+    "declarer": true,
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
+    ]
    }
   }
  },
@@ -515,11 +527,11 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
   "x8": {
@@ -548,10 +560,10 @@
     "opponents": [
      "8xr0-v41",
      "8xr0n-v41",
-     "8xb0-v41",
+     "8xr7-v41",
+     "8xl0-v41",
      "8xc0-v41",
      "8xm0-v41",
-     "8xl0-v41",
      "8xs0-v41"
     ]
    },
@@ -560,7 +572,14 @@
     "forks": 8
    },
    "mix": {
-    "declarer": true
+    "declarer": true,
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
+    ]
    }
   }
  },
@@ -628,11 +647,11 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
   "x8": {
@@ -648,11 +667,20 @@
     "opponents": [
      "8xr0-v41",
      "8xr0n-v41",
-     "8xb0-v41",
+     "8xr7-v41",
+     "8xl0-v41",
      "8xc0-v41",
      "8xm0-v41",
-     "8xl0-v41",
      "8xs0-v41"
+    ]
+   },
+   "mix": {
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
     ]
    }
   }
@@ -721,16 +749,23 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
   "x8": {
    "mix": {
-    "declarer": true
+    "declarer": true,
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
+    ]
    }
   }
  },
@@ -798,13 +833,23 @@
     "8n-32-v41": 1.0,
     "8xr0-v41": 1.0,
     "8xr0n-v41": 1.0,
-    "8xb0-v41": 1.0,
     "8xc0-v41": 1.0,
     "8xm0-v41": 1.0,
     "8xl0-v41": 1.0,
-    "8xs0-v41": 1.0
+    "8xs0-v41": 1.0,
+    "8xr7-v41": 1.0
    }
   },
-  "x8": {}
+  "x8": {
+   "mix": {
+    "read_declarer": [
+     "8xr0-v41",
+     "8xr0n-v41",
+     "8xr7-v41",
+     "8xl0-v41",
+     "8xm0-v41"
+    ]
+   }
+  }
  }
 }

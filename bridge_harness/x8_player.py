@@ -42,11 +42,16 @@ The winning-line logic (spec['x8']['claims'], x8_claims.py), with `cards` or few
 
 Being hard to read (spec['x8']['mix']): a seat that mixes plays any of its equal cards alike, where equal means
 the cards the decision leaves eligible (touching cards, and cards rated exactly level), in place of the net's
-likeliest of them. `declarer` switches it for the declaring side, whose cards nobody on its own side reads.
-`defender` switches it for a defender, whose partner reads the same cards: until the partner's reading treats a
-mixing seat's equal cards as equally likely (not built yet; Gen7Player.play_log_likelihood reads every seat as
-the net plays), a mixing defender misleads partner as much as declarer. The record's behavior_probabilities are
-the probabilities really used.
+likeliest of them. `declarer` switches it for the declaring side, whose cards nobody on its own side reads;
+`defender` for a defender, whose partner reads the same cards. The record's behavior_probabilities are the
+probabilities really used.
+
+Reading a mixer (`read_declarer`, `read_defender`: opponent ids; partner when `defender` is on): where the play is
+read (the deal list's weights, and the early pool), a mixer's card counts as its run of touching cards, each card
+of the run equally likely: the probability of the card played in a layout is the net's probability of the whole
+run divided by the run's length, the run taken in the hand that played the card as that layout has it. So which
+card of a run was played says nothing, and how long the run is still does. Cards rated exactly level but not
+touching are not pooled: telling them needs the mixer's own search.
 
 Capture (spec['x8']['capture'], x8_capture.py): every decision records its candidates and their values; from level
 1 also inside-rollout forks, from level 2 the layouts and per-layout results.
@@ -65,9 +70,9 @@ import numpy as np
 from . import x8_capture, x8_claims
 from .core import IMP_LIMITS, card, score, symbol, vulnerable
 from .gen6 import Classes, View, _effective, _merge, spaced, systematic
-from .gen7 import Gen7Player, hidden_plays, utilities
+from .gen7 import BIT, Gen7Player, hidden_plays, utilities
 from .gen7 import player as gen7_player
-from .gen7_net import PolicyNet
+from .gen7_net import INPUTS, PolicyNet
 from .players import Decision
 from .x8_rollout import Seats, evaluate
 
@@ -148,8 +153,12 @@ class MixUse:
     declarer: bool = False      # the declaring side plays a random one of its equal cards (nobody on its side reads them)
     defender: bool = False      # a defender does (its partner reads those cards too: see the module note on reading)
     near: float = 0.            # rollout stages: candidates within this of the best value count as equal
+    read_declarer: tuple = ()   # opponent bot ids ('*' = any) whose declaring side mixes: their cards are read as a mixer's
+    read_defender: tuple = ()   # the same for opponents' defenders. Partner is read as a mixer when `defender` is on
 
     def __post_init__(self):
+        object.__setattr__(self, 'read_declarer', tuple(self.read_declarer))
+        object.__setattr__(self, 'read_defender', tuple(self.read_defender))
         if not 0 <= self.near <= 13:
             raise ValueError('Invalid 8X mix settings')
 
@@ -189,7 +198,8 @@ def resolved(block):
     """spec['x8'] with every setting written out, defaults included: what a manifest should pin."""
     c = x8_settings(block)
     return dict(stages=[asdict(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
-                capture=asdict(c.capture), mix=asdict(c.mix), others=[dict(o) for o in c.others])
+                capture=asdict(c.capture), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
+                others=[dict(o) for o in c.others])
 
 
 def touching(o):
@@ -262,6 +272,85 @@ class X8Player(Gen7Player):
         if self.finder is None:
             return False
         return c.own if declaring else ('*' in c.opponents or self.opponent_id in c.opponents)
+
+    # ---- reading a seat that mixes ---------------------------------------------------------
+    def mixers(self, o):
+        """The seats whose past cards this bot reads as a mixer's (see the module note)."""
+        m, c = self.x8.mix, o.contract
+        listed = lambda ids: '*' in ids or self.opponent_id in ids
+        if o.controller % 2 == c.declarer % 2:
+            return {(c.declarer + 1) % 4, (c.declarer + 3) % 4} if listed(m.read_defender) else set()
+        out = {(o.controller + 2) % 4} if m.defender else set()
+        if listed(m.read_declarer):
+            out.add(c.declarer)
+        return out
+
+    def play_log_probabilities(self, o, view, assign, plays=None):
+        plays = hidden_plays(o, self.g7.play_lead) if plays is None else plays
+        mixers = self.mixers(o)
+        if not any(chooser in mixers for _, _, chooser in plays):
+            return super().play_log_probabilities(o, view, assign, plays)
+        logp, options = np.zeros((len(plays), len(assign))), np.ones((len(plays), len(assign)), np.int64)
+        plain = [k for k, (_, _, chooser) in enumerate(plays) if chooser not in mixers]
+        if plain:
+            lp, op = super().play_log_probabilities(o, view, assign, [plays[k] for k in plain])
+            logp[plain], options[plain] = lp, op
+        for k, (i, seat, chooser) in enumerate(plays):
+            if chooser in mixers:
+                logp[k], options[k] = self.pooled_play(o, view, assign, i, seat, chooser)
+        return logp, options
+
+    def pooled_play(self, o, view, assign, i, seat, chooser):
+        """([layouts] log of the net's probability of play i's run divided by the run's length, [layouts] legal cards)."""
+        c = o.contract
+        ident = (o.auction, o.dealer, o.vulnerability, c, o.original_hand(c.dummy))
+        if getattr(self, 'mix_cache', (None,))[0] != ident:
+            self.mix_cache = (ident, {})
+        cache = self.mix_cache[1]
+        played = o.history[i][1]
+        held = self.held_then(o, view, assign, i, chooser)
+        masks = held.astype(np.uint64) @ BIT
+        prefix = tuple(o.history[:i + 1])
+        keys, values, counts = cache[i][1:] if i in cache and cache[i][0] == prefix else \
+            (np.zeros(0, np.uint64), np.zeros(0), np.zeros(0, np.int64))
+        where = np.searchsorted(keys, masks).clip(max=max(0, len(keys) - 1))
+        known = keys[where] == masks if len(keys) else np.zeros(len(masks), bool)
+        logp, options = np.zeros(len(assign)), np.ones(len(assign), np.int64)
+        logp[known], options[known] = values[where[known]], counts[where[known]]
+        if not known.all():
+            batch = self.play_arrays(o, i, seat, chooser, held[~known])
+            legal = np.asarray(batch['legal'])
+            count = legal.sum(axis=1)
+            fresh = np.zeros(len(count))
+            choice = count > 1
+            if choice.any():
+                full = self.net.log_policy_arrays({key: batch[key][choice] for key in INPUTS}).astype(np.float64)
+                self.net_rows += int(choice.sum())
+                if seat == chooser:
+                    hand = held[~known][choice]
+                else:                                       # dummy's card: dummy's hand then, the same in every layout
+                    hand = np.zeros((int(choice.sum()), 52), bool)
+                    hand[:, list(o.original_hand(seat))] = True
+                    hand[:, [x for s, x in o.history[:i] if s == seat]] = False
+                dead = np.zeros(52, bool)
+                dead[[x for _, x in o.history[:i - i % 4]]] = True
+                run = np.zeros_like(hand)
+                run[:, played] = True
+                for step in (1, -1):
+                    active = np.ones(len(hand), bool)
+                    y = played + step
+                    while 0 <= y < 52 and y // 13 == played // 13:
+                        ok = active & (hand[:, y] | dead[y])
+                        run[:, y] = ok & hand[:, y]
+                        active = ok
+                        y += step
+                p = np.exp(full) * run
+                fresh[choice] = np.log(np.maximum(p.sum(axis=1), 1e-30)) - np.log(run.sum(axis=1))
+            logp[~known], options[~known] = fresh, count
+            keys, values, counts = np.concatenate([keys, masks[~known]]), np.concatenate([values, fresh]), np.concatenate([counts, count])
+            order = np.argsort(keys)
+            cache[i] = (prefix, keys[order], values[order], counts[order])
+        return logp, options
 
     # ---- which stage, which claim ----------------------------------------------------------
     def x8_stage(self, o):

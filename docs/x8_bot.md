@@ -1,0 +1,171 @@
+# The 8X bot (work in progress, not deployed)
+
+Branch `feature/gen8x-rollout-bot-20261113`. Engine `gen8x`, `bridge_harness/x8_player.py`. Nothing here is
+launched, merged or adopted. Session `x8` on the coordination board.
+
+## What it is for
+
+Max's plan of 12 November 2026 (23:40 UTC, the plan-leverage chat):
+
+1. a rollout net trained on all the matches from Gen 7 on (the plan session builds it:
+   `training/rollout-net-v1-20261113`);
+2. an 8X bot that uses the single-dummy winning-line logic out to ten tricks (declarer does not give away a made
+   contract; a defender minimises the odds of handing declarer a claim), rolls out on the rollout net as broadly as
+   calibration tests allow, uses PIMC only where it must, and records inside-rollout data;
+3. let it play, retrain the rollout net on the results, repeat, always with a varied population.
+
+Later the same night: rollouts need not run to trick 13, nor start at trick 1, where other methods test better;
+prune candidates that look bad, without merging transpositions (the order of play is information); play randomly
+among equal cards so the bot is hard to read.
+
+This page is the bot of step 2. Until the rollout net exists, policy net v4.1 stands in for it.
+
+## One decision
+
+The trick decides the mode (`x8.stages`; tricks in no stage, and the opening lead, use the search):
+
+| Mode | What decides the card |
+| --- | --- |
+| `search` | the Gen 8 search as the spec's `gen6` and `gen7` blocks describe it: layouts from the auction (hand-fit scorer) and the play (the net's reading from trick 1), double dummy, the net among level cards; the spec's Gen 7 tree if it has one |
+| `blend` | that search, then its near-best cards (within `margin`, at most `cards`) are rolled out and valued at (1 - `trust`) x the search's estimate + `trust` x the rollouts' mean. `layouts` above 0: fresh layouts drawn as the search draws its own; 0: the solved layouts |
+| `rollout` | no double dummy. Candidates are the runs of touching cards the net gives at least `prior` of its probability (the two likeliest always), at most `cards`. All are rolled out on the first `first` layouts; the field doubles, and a card behind the leader by more than `race` paired standard errors plus `slack` gets no more rollouts. The value is the weighted mean of the rollouts |
+
+A rollout (`bridge_harness/x8_rollout.py`) is one candidate card in one layout, then every later card of all four
+seats from the rollout net, each seat seeing only its own view; all (card, layout) pairs advance in one batch. It
+runs to trick 13, or `horizon` tricks and then double dummy. Each seat plays the net's most probable card
+(`seat: top`), a card drawn from its probabilities (`draw`, `power`), or the net's card corrected by its gap head
+(`blend`). Rows are never merged: two rows that reach the same cards by different orders are different positions,
+because the order is part of what each seat has seen and the net reads it.
+
+`objective: imps` makes a rollout stage choose by the swing in IMPs against the card with the best mean tricks,
+layout by layout, in place of mean tricks.
+
+## The winning-line logic
+
+`bridge_harness/x8_claims.py`; the solver is `sure_cpp` from `experiments/sure_tricks/sure.cpp` on
+`research/sure-trick-table-20261112` (the pooled-defender game: what the declaring side can guarantee against
+every split of the cards it cannot see and every defence, given hand sizes and show-outs). Settings `x8.claims`,
+active with `cards` or fewer cards in hand:
+
+- **Declarer.** If some card guarantees the contract from the declaring side's own view, only such cards are
+  candidates, in every mode.
+- **Defender.** For each candidate and each of the `defender` likeliest layouts: would declarer, from its own view
+  in that layout once the card is played, hold a guaranteed line? The weighted share is the card's hand-over odds;
+  among cards within `odds_margin` of the best value the lowest odds win.
+- **Inside rollouts.** For a side treated as keeping a guaranteed contract (this bot's side when it declares, `own`;
+  opponents listed in `opponents`), the claim finder is asked at the start of each trick with `leaf` or fewer cards.
+  Where the contract is guaranteed the row's result is floored at the contract and the rollout plays on, so the
+  overtricks and undertricks it finds still count; where every trick left is guaranteed the row ends.
+
+The plan session's `prc` bot (`match4`) had the simulated declarer play only the claim finder's card once the
+contract was settled, and lost most of its gain (-0.092 +- 0.042 IMPs a board paired against `match1`). Here the
+rollout's play is never replaced; only its result is floored.
+
+Each question has a time allowance (`defender_ms`, `leaf_ms`, `each_ms`); a question that outlasts it is
+abandoned and the answer is "not known", which never moves a card.
+
+## Being hard to read
+
+`x8.mix`. `declarer` / `defender`: that side plays any of its equal cards alike (equal = the cards the decision
+leaves eligible: touching cards and cards rated exactly level). The spec's `exploration: 1.0` does the same for every
+seat. `read_declarer` / `read_defender` list the opponents whose side mixes (and partner is read so when `defender`
+is on): their cards are read as their run of touching cards, each card of the run equally likely, so which card of
+a run was played carries no information and how long the run is still does. Cards rated level but not touching
+are not pooled; telling them apart needs the mixer's own search.
+
+A mixing defender misleads a partner that reads it as the net plays, so the v0 bots mix as declarer only. The Gen
+9 lead's two azure4 matches (`e9-16-r-v-p`, `e9-16-r-v-x`) measure what mixing costs in play.
+
+## The record
+
+Every 8X decision writes an `x8` note into the action (`bridge_harness/x8_capture.py`): mode, candidates and their
+runs, the net's prior, values, rollout means, layouts each candidate got, the race's rounds, hand-over odds, the
+claim verdict, timings. `x8.capture.level`:
+
+- 1 (default): inside-rollout forks. At a random later turn of a few rollouts the net's card and another legal card
+  that does a different job (not a touching card) are both played out by the net. Each fork carries its layout, root
+  card and line, so the seat's view at the fork can be rebuilt (`x8_capture.fork_view`) and the pair used as a
+  training example at a position the real game never reached. `forks` per decision, default 8: about 160 a board.
+- 2: also the layouts (as codes over the unseen cards) with their weights and every card's result in each.
+
+## Bots
+
+`configs/x8-bots.json`. Policy v4.1 is both the table net (`gen7_policy`) and the rollout net (`rollout_policy`).
+
+| Bot | What |
+| --- | --- |
+| `8xr0-v41` | v0, as set by the calibration below: the Gen 8 search at tricks 1 to 2; from trick 3 that search blended with rollouts (sampled seats) on 256 fresh layouts at trust 0.25 for up to 3 candidates within 0.25 of its best; winning-line logic to 10 cards; declarer mixes; forks recorded |
+| `8xr0n-v41` | `8xr0-v41` without the winning-line logic |
+| `8xr7-v41` | the first v0 layout: blend at tricks 3 to 6, rollouts alone from trick 7 (up to 4 candidates, 128 layouts, race from 32); for testing rollout nets |
+| `8xl0-v41` | rollouts alone from trick 3 |
+| `8xc0-v41` | `8x-32-v41` with only the declarer's guarantee |
+| `8xm0-v41` | `8x-32-v41` with only the declarer's mixing |
+| `8xs0-v41` | `8x-32-v41` through this engine with nothing on: plays `8x-32-v41`'s game card for card |
+
+## Calibration
+
+Scored as the plan session scores look-ahead (`reports/plan-leverage-2026-11-12`, units and method): on gap-fork pairs
+of 1,561 fresh Gen 6 self-play boards, a rule plays the forced card B when its estimate of A - B is negative, and is
+scored by the ceiling, the real Gen 6 bots playing on from both cards on 16 to 30 of the decider's layouts
+(`ceilT712`, `ceilT712b`). Tricks gained over the bot's card, a side at one table; errors take deals as the unit.
+
+Tricks 3 to 6 (plan session, section 2): v4.1 rollouts on 512 layouts gain +0.025 +- 0.015 at trust 0.25 and lose at
+trust above 0.5.
+
+Tricks 7 to 12, this session (2,990 pairs, 1,378 deals, about 119 layouts a pair; `scripts/x8_bench.py` and
+`scripts/plan_bench.py` with seed 1, `scripts/plan_headroom.py --sims`):
+
+| Rollout net, seats | Rollouts alone | 0.5 search + 0.5 rollouts | 0.75 search + 0.25 rollouts | Share of the correction in real results |
+| --- | --- | --- | --- | --- |
+| v4.1, top card | -0.274 +- 0.058 | -0.030 +- 0.019 | +0.010 +- 0.011 | 0.106 |
+| v4.1, sampled, 4 a layout | -0.159 +- 0.031 | -0.012 +- 0.017 | +0.013 +- 0.007 | 0.146 |
+| v4.1, top card, claim floors (`xc`) | -0.189 +- 0.038 | -0.017 +- 0.018 | +0.012 +- 0.011 | 0.126 |
+
+So with v4.1 as the rollout net, rollouts cannot choose cards on their own late in the hand, and v0 blends at trust
+0.25 from trick 3. The claim floors change 37% of the pairs' rollout values and take a third of the loss of rollouts
+alone away; they do not change the blend. The same test, on the same pairs, is the gate for a rollout net:
+`rollouts alone` moving to zero or above is what would let the bot roll out more.
+
+The ceiling is Gen 6 playing on, while the 8X bot plays among Gen 7 and Gen 8 bots; a net trained on Gen 7+ play is
+scored here against Gen 6's play.
+
+## Running
+
+```
+python scripts/build_dds.py
+g++ -O2 -march=native -std=c++17 -o sure_cpp sure.cpp      # experiments/sure_tricks on research/sure-trick-table-20261112
+pip install h5py                                            # the capsule's bidder
+SURE_BIN=$PWD/sure_cpp python scripts/x8_match.py --source CAPSULE/recovery --bots configs/x8-bots.json \
+    --pair 8xr0-v41~8p-32-v41 --deals 1600 --seed 141 --workers 8 --out DIR [--episodes]
+```
+
+`CAPSULE/recovery` is the capture capsule's run folder (manifest and artifacts), as for `scripts/gen8_match.py`.
+Rows of `results.jsonl` carry per-role counts of what the 8X decisions did (`search.<role>.x8`).
+
+`scripts/x8_bench.py` is `scripts/plan_bench.py` with the 8X rollouts as simulated seats (`xt`: plain; `xc`: with
+the claim floors), for `scripts/plan_headroom.py --sims`.
+
+## Tested
+
+`tests/test_x8.py` (with `SURE_BIN` set; the claim tests skip without it):
+
+- the batched rollouts take exactly what plan_rollout's card-by-card playouts take; a horizon stops and solves
+- forks replay to their seat, the net's card and the forced card, and to the recorded results
+- layouts and results round-trip through the record
+- with nothing switched on the engine plays Gen7Player's game card for card (and `8xs0-v41` played `8x-32-v41`'s
+  game on 4 boards with the real nets)
+- the three claim questions agree with the first claim wrapper (`claims.py`) and with the game; a hand-over is
+  exactly a position where declarer's next decision is guaranteed
+- a declarer holding a guarantee keeps it and makes; rollouts end where every trick is claimed
+- the mixer reading equals a direct per-layout computation
+- the solver process wrapper abandons a slow question and recovers
+
+## Not done, and limits
+
+- Calibration of rollout net v1 (`transfer/rollout-net-v1-20261113`) on the same pairs: running.
+- No played result yet. With v4.1 as the rollout net there is no reason to expect a gain over Gen 8.
+- Branching inside rollouts (the net's top two or three cards at chosen turns, opponents averaged, own side
+  maximised per information state) is not built: each rollout is a single line.
+- Other-side nets inside rollouts are by share of layouts (`x8.others`), not yet by who the opponent is.
+- The time allowances make a claim answer depend on machine speed when a question nears its limit, so two runs
+  of the same board can differ there. The limits are well above the measured times (median well under 10 ms).

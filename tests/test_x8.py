@@ -72,7 +72,7 @@ class SettingsTests(unittest.TestCase):
         r = resolved(None)
         self.assertEqual(r['stages'], [])
         self.assertEqual(r['claims']['cards'], 0)
-        self.assertEqual(r['mix'], dict(declarer=False, defender=False, near=0.))
+        self.assertEqual(r['mix'], dict(declarer=False, defender=False, near=0., read_declarer=[], read_defender=[]))
         full = resolved(dict(stages=[dict(from_trick=3, to_trick=6, mode='blend', trust=.25)], claims=dict(cards=10, opponents=['a'])))
         self.assertEqual(full['stages'][0]['layouts'], 128)
         self.assertEqual(full['claims']['opponents'], ['a'])
@@ -345,6 +345,53 @@ class PlayerTests(Fixture8):
                     else:
                         plain += 1
         self.assertGreater(mixed, 5)
+
+    def test_a_mixers_card_is_read_as_its_run_of_touching_cards(self):
+        """For every hidden chooser's play, the pooled probability in a layout is the net's probability of the run of
+        touching cards (taken in the hand that played, as that layout has it) divided by the run's length, computed
+        here from each layout's own Observation; and with no mixer listed the reading is Gen7Player's."""
+        from bridge_harness.gen7 import hidden_plays, past_view
+        plain = self.make(Gen7Player, gen7=self.GEN8, list_solve=16)
+        quiet = self.make8({}, gen7=self.GEN8, list_solve=16)
+        mixing = self.make8(dict(mix=dict(read_declarer=['*'], read_defender=['*'], defender=True)), gen7=self.GEN8, list_solve=16)
+        checked = pooled = 0
+        for seed in range(8):
+            _, o, world = spot(seed, 14 + 3 * seed)
+            view = View(o)
+            assign = view.uniform(6, np.random.default_rng(seed))
+            assign[0] = np.array([view.hidden.index(next(s for s in view.hidden if c in world[s])) for c in view.unseen])
+            np.testing.assert_allclose(quiet.play_log_likelihood(o, view, assign), plain.play_log_likelihood(o, view, assign))
+            plays = hidden_plays(o)
+            logp, options = mixing.play_log_probabilities(o, view, assign, plays)
+            mixers = mixing.mixers(o)
+            for k, (i, seat, chooser) in enumerate(plays):
+                for row in range(len(assign)):
+                    held = mixing.held_then(o, view, assign[row:row + 1], i, chooser)[0]
+                    hand = set(np.flatnonzero(held)) if seat == chooser else set(o.original_hand(seat)) - {x for s, x in o.history[:i] if s == seat}
+                    v = past_view(o, i, sorted(np.flatnonzero(held)))
+                    if len(v.legal) < 2:
+                        self.assertEqual(logp[k, row], 0.)
+                        continue
+                    lp = mixing.net.log_policy([v])[0].astype(np.float64)
+                    x = o.history[i][1]
+                    if chooser in mixers:
+                        dead = {y for _, y in o.history[:i - i % 4]}
+                        run = {x}
+                        for step in (1, -1):
+                            y = x + step
+                            while 0 <= y < 52 and y // 13 == x // 13 and (y in hand or y in dead):
+                                if y in hand:
+                                    run.add(y)
+                                y += step
+                        want = np.log(sum(np.exp(lp[y]) for y in run)) - np.log(len(run))
+                        pooled += len(run) > 1
+                    else:
+                        want = lp[x]
+                    self.assertAlmostEqual(logp[k, row], want, places=4, msg=f'seed {seed} play {i}')
+                    self.assertEqual(options[k, row], len(v.legal))
+                    checked += 1
+        self.assertGreater(checked, 200)
+        self.assertGreater(pooled, 20)
 
     def test_factory(self):
         self.assertIs(type(self.make8({})), X8Player)

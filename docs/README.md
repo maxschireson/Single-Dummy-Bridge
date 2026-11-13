@@ -9,6 +9,7 @@
 - [Backlog: actual open work and historical PR dispositions](backlog.md)
 - [Branch inventory: every branch observed during cleanup](branch-inventory.md)
 - [Gen 8 system layer: systems as data and a system-aware scorer (work in progress, not final, not deployed)](gen8_systems.md)
+- [The 8X bot: rollouts on a rollout net with the winning-line logic (work in progress, not deployed)](x8_bot.md)
 - [Contribution workflow](../CONTRIBUTING.md)
 - [Agent entry point](../AGENTS.md)
 
