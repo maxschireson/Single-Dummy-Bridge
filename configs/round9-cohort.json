@@ -2,16 +2,13 @@
  "schema": "gen7-alpha-plan-v1",
  "campaign": "gen9-cohort-20261113",
  "title": "Gen 9 cohort · 9a-32 against Gen 8, Gen 7.1 and its control",
- "launch_enabled": false,
- "pending": [
-  "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
-  "preflight on azure4 (ops/smoke_gen7.py) clean",
-  "feed registration route from g7 (board, g9 03:53 UTC)"
- ],
+ "launch_enabled": true,
+ "pending": [],
  "exclude_training_families": true,
  "notes": [
   "Gen 9 cohort, prepared by dave (G9, 13 Nov 2026) the way Gen 8's were (docs/gen8_candidate_2026-11-12.md, Launch steps). Max, 13 Nov 03:47 UTC (to g9): \"You have done great work so far and I would like to see it deployed. Can we accelerate?\" g9, 03:49 UTC: the cohort is 9a-32 against 8s-32, ben64 and 71s-32, with 8p-32 as its control, on fresh deals.",
-  "6-32 is in the roster as the common bidder only; it is in no pair."
+  "6-32 is in the roster as the common bidder only; it is in no pair.",
+  "Opened 13 Nov 2026 by dave on g9's go (team/gen9, 06:16 UTC: \"Go for the Gen 9 cohort on azure4 now (Max's go is his 03:47 message)\"), Max's words to g9 at 03:47 UTC: \"You have done great work so far and I would like to see it deployed. Can we accelerate?\" Preflight on azure4 passed at 06:02 UTC (transfer/gen9-g9-cohort-preflight-azure4-20261113). Collector run by Gen 9 on azure4; feed arena-gen9-azure4-feed, registered on the dashboard by g7 (board, 06:32 UTC)."
  ],
  "model_note": "Gen 9 (9a-32) is the Gen 8 prototype (8p-32: Gen 7.1 standard with the play read from trick 1 at exponent 1.0, policy v4.1) reading each partnership through a player model: house bots are modelled as the house system, so the auction is read by replaying the house bidder after the opening lead; BEN and anyone without a model are read exactly as 8p-32 reads them. It plays a random one of its exactly equal-best cards (exploration 1.0). No experience is carried: the models are what each side declares. 8p-32 is the control. 8s-32 and 71s-32 are the arena's Gen 8 and Gen 7.1 (same identities). docs/gen9/cohort.md.",
  "interpretation": "Gen 9 against the arena's Gen 8 (8s-32) and Gen 7.1 (71s-32), and against its control 8p-32, on deals no cohort has played and outside policy v4.1's training families. Common and native auctions are separate conditions; identical auctions reuse physical games. Intervals are descriptive and unadjusted for repeated monitoring.",
@@ -55,7 +52,7 @@
  "gen7_bots": {
   "9a-32": {
    "base": "6-32",
-   "label": "Gen 9 (32): 8p-32 reading each partnership through its player model, random among exactly equal-best cards",
+   "label": "Gen 9 candidate, player models (32)",
    "engine": "gen9",
    "policy": "gen7_policy_v41",
    "gen7": {
@@ -136,7 +133,7 @@
   },
   "8p-32": {
    "base": "6-32",
-   "label": "Gen 8 prototype (32), the control: 9a-32 without its player model and without exploration",
+   "label": "Gen 8 prototype, Gen 9 control (32)",
    "policy": "gen7_policy_v41",
    "gen7": {
     "play_weight": 1.0,

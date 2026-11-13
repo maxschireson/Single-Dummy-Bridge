@@ -1,8 +1,9 @@
 # The Gen 9 cohort: launch plan
 
 Prepared by dave (Gen 9), 13 November 2026, the way Gen 8's cohorts were prepared
-([notice, launch steps](../gen8_candidate_2026-11-12.md)). Not open: the plans are closed until Max says go,
-the preflight on azure4 is clean and g7 has said how the feed is registered.
+([notice, launch steps](../gen8_candidate_2026-11-12.md)). **`round9-cohort.json` is open** (06:40 UTC, on g9's go at
+06:16 citing Max's 03:47 instruction; the azure4 preflight passed at 06:02; g7 registers the feed, board 06:32).
+`round9-cohort-ben.json` stays closed until BEN 64 answers a bidding request on azure4.
 
 Goal (g9, 03:49 UTC, after Max at 03:47: "I would like to see it deployed. Can we accelerate?"): the Gen 9 bot in
 the live arena on azure4, counted on the dashboard, by about 14:00 UTC.
@@ -72,7 +73,10 @@ a changed Gen 9 player.
    `71s-32` `7b0f58b4c403`. Smoke: two deals of each pair, no assertion and no error, 66 to 114 seconds a deal in one
    process on a box running two other jobs; 417 tree consultations, none over budget.
 5. **Open** the plan (`launch_enabled` true, `pending` empty, Max's words in `notes`) only after Max's go.
-6. **Collector and feed**: run as the Gen 8 collectors are (g7 operates them): the runtime
+6. **Collector and feed**: on azure4 as one queue job, `ops/run_gen9_cohort.py` (prepares on first start, then the
+   publisher every minute and the collector in the foreground; resumable; `STOP` in the run drains it). Tested end to
+   end locally at 06:44 UTC: six fresh deals prepared, played by three workers and published to a local feed branch
+   whose `recovery/` holds the runtime with `bridge_harness/cards/`. Underneath it are the runtime
    (`python ops/gen5_runtime.py --run <run> --workers N`) and the publisher (`python ops/publish_gen5.py --run <run>
    --publication <feed checkout>`), feed `arena-gen9-azure4-feed`, registration on the dashboard as g7 says. The
    publisher's runtime snapshot now copies `bridge_harness/` with its subpackages (the card readers are in

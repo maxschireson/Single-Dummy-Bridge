@@ -15,11 +15,12 @@ ARENA = {'8s-32': '269fdf1854f474f4ec19429bba453ce810d68681ed55c8118897b6d9f25b5
 
 
 class Plans(unittest.TestCase):
-    def test_plans_load_closed_and_declare_systems(self):
+    def test_plans_load_and_declare_systems(self):
+        P.load_plan(ROOT / 'configs/round9-cohort.json')         # opened on g9's go, 13 Nov 06:16 UTC
+        with self.assertRaises(ValueError):                      # the BEN plan waits for BEN 64 on azure4
+            P.load_plan(ROOT / 'configs/round9-cohort-ben.json')
         for name in ('round9-cohort.json', 'round9-cohort-ben.json'):
             path = ROOT / 'configs' / name
-            with self.assertRaises(ValueError):                 # not open until Max says go and the preflight is clean
-                P.load_plan(path)
             plan = P.load_plan(path, require_ready=False)
             P.check_systems(plan)
             self.assertTrue(plan['exclude_training_families'])
