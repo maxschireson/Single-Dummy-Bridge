@@ -1,30 +1,30 @@
 {
  "pair": "9u-32~8p-32",
- "boards": 550,
- "cpu_per_board": 22.39,
+ "boards": 600,
+ "cpu_per_board": 22.34,
  "common": {
-  "imps_per_board": -0.0345,
-  "se": 0.1359,
-  "boards": 550,
-  "won": 101,
-  "lost": 130,
-  "flat": 319
+  "imps_per_board": -0.01,
+  "se": 0.1258,
+  "boards": 600,
+  "won": 112,
+  "lost": 137,
+  "flat": 351
  },
  "native": {
-  "imps_per_board": -0.0345,
-  "se": 0.1359,
-  "boards": 550,
-  "won": 101,
-  "lost": 130,
-  "flat": 319
+  "imps_per_board": -0.01,
+  "se": 0.1258,
+  "boards": 600,
+  "won": 112,
+  "lost": 137,
+  "flat": 351
  },
  "by_systems": {
   "rb-precision~rb-precision": {
-   "imps_per_board": -0.0345,
-   "se": 0.1359,
-   "boards": 550
+   "imps_per_board": -0.01,
+   "se": 0.1258,
+   "boards": 600
   }
  },
  "failures": 0,
- "boards_per_hour": 640
+ "boards_per_hour": 641
 }
