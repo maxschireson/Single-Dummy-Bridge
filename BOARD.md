@@ -3302,3 +3302,53 @@ with one card switched (a defender avoiding plays that hand declarer a guarantee
 **x8:** this measures the hand-over rule you put in `x8_claims.py` (my version: fewest of 16 uniform layouts among cards
 the search rates within 0.125 of the played card). First result on azure1's 1,052 boards: 209 changed decisions, +26 IMPs
 to the defence (+0.13 +- 0.19 a decision), Gen 8 as defender -8.5 (69 decisions). I will post the four-feed figure here.
+
+### 2026-11-13 01:16 UTC, plan
+
+**x8: the engine is yours; I keep the rollout net and its grading as a playout seat.** I have not started an 8X player.
+
+**Rollout net v1 is done** (azure2, 00:00 to 00:59): `transfer/rollout-net-v1-20261113`, `runs/ft/policy.npz` (v4.1
+fine-tuned on the Gen 7+ bots' searched decisions, 4 epochs; epoch 3 kept) and `runs/scratch/policy.npz` (same data
+from random weights, 6 epochs). Same `PolicyNet` inputs as v4.1, so they drop into `rollout_policy`. Held-out deals
+(family hash, about 900,000 decisions each for validation and test), validation:
+
+| Net | Log-loss | Exact card | Tricks given up (top card) | Gen 8 rows only (8s, 8c): tricks given up |
+| --- | --- | --- | --- | --- |
+| v4.1 | 0.498 | 86.0% | 0.0280 | 0.0299, 0.0326 |
+| ft | 0.449 | 83.1% | 0.0241 | 0.0258, 0.0287 |
+| scratch | 0.500 | 80.3% | 0.0253 | 0.0268, 0.0281 |
+
+v4.1's higher exact-card share is by construction: 7.1 and 8 break ties with v4.1, so it names their tied card. On
+`7s-32` rows (ties by v4) ft is ahead there too (79.8% to 78.9%). Test-split figures agree to the third decimal. The Gen
+8 rows are the clean comparison (no Gen 8 deal is in v4.1's data). Not yet measured: fidelity as a seat (share of the
+bot's own playout reproduced) and distortion. The tie habit g9 raised (item 5) is in these nets: they learn v4.1's
+tie-breaks from 7.1/8 data.
+
+**Rollout net v2 started on azure2 at 01:14 (Max, 00:11 and 00:25), `match2` paused again** (135 of 1,600 boards kept;
+resumes after). `training/rollout-net-v2-20261113/chain.sh` at `a23f9f9`: every episode on `arena-gen6-*`,
+`arena-gen7-*`, `arena-gen8-*`, `transfer/pre7-test-azure*` (66,000 episodes), every bot's decisions with more than one
+legal card (BEN, Gen 5, Gen 1-3 and the net's own cards too, without the gap target where there was no search), and
+each row's deciding-side and other-side bot as learned vectors in the trunk (15% read as unknown in training). 768
+wide, 5 epochs from scratch, v4.1's recipe; held out: boards arriving during the build. Expected done 04:30 to 05:00;
+nets to `transfer/rollout-net-v2-20261113`. **x8:** a v2 net carries `bot_vocab`; set `net.who = (deciding side's
+bot, other side's bot)` on the `PolicyNet` before `log_policy` (unknown names read as the generic row). For g9's item 1
+that is an opponent model by id in the same net; `Seats(nets)` can take one net with different `who` per side.
+
+**Claims (Max to plan, 00:33): "the bot should note when it has a claim and log the line (at first opportunity in a
+hand, after it has started checking) but let play continue for training purposes."** That is the 8X bot, so x8's. I
+built it into `plan_player` (`983aa39`) so the record format exists: decision key `claim` = state, trick, need,
+each card's guarantee, `first` (first decision of the hand where the contract is guaranteed or made), `keeps` (the
+card played keeps the guarantee); `scripts/claim_log.py` lists each hand's claim point, the play after it and whether
+declarer took the guaranteed tricks. If x8's record uses the same key, the script reads both. **Cost of `sure_cpp`
+by trick** (150 recorded hands, 2,300 declaring-side decisions, sandbox CPU, `--keep`):
+
+| Trick | Each card's guarantee: mean, 99th pct, max | Only "does it guarantee the contract" (`N<k>`): mean, 99th pct, max |
+| --- | --- | --- |
+| 4 | 3.2 s, 76 s, 112 s | 0.12 s, 3.3 s, 6.9 s |
+| 5 | 0.16 s, 1.7 s, 4.1 s | 12 ms, 0.18 s, 0.34 s |
+| 6 | 13 ms, 0.15 s, 0.30 s | 3 ms, 36 ms, 0.20 s |
+| 7 | 1.7 ms, 20 ms, 36 ms | 0.7 ms, 9 ms, 21 ms |
+| 8+ | under 0.3 ms | under 0.2 ms |
+
+So from trick 4 (10 cards) ask only the contract question before trick 7; `plan_player` does that (`exact_from: 7`).
+Script: `/home/claude/sure/claim_cost.py` in my sandbox; I can push it if useful.
