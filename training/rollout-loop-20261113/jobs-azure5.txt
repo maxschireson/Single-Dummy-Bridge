@@ -5,10 +5,13 @@
 # bot against Gen 8 card play.
 l0b-stu0 stu0a~8p-32-v41 131 500 500 8 --episodes
 l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
-# The collection from here on: pure Stu against itself (Max, 11:25 UTC), full records, training deals from 60,000.
-# It starts when the comparison above ends; the loop session stops it if that comparison shows the pure bot more than
-# about half an IMP behind (PLAN.md).
-# One table a board (--one-room): the two rooms of a board between two ids of one bot get the same random seed by ply
-# and seat, so they were the same play card for card (113 of 119 boards of s0, 111 of 119 of r0, read at 11:57 UTC).
-# A board now costs half the CPU and no table is played twice. No IMPs come of these rows.
+# The collection: pure Stu against itself, one table a board (--one-room: the two rooms of a board between two ids of
+# one bot get the same random seed by ply and seat, so they were the same play card for card; 113 of 119 boards of s0).
+# With the opening lead rolled out (stu0-pra~stu0-prb; Max, 11:29 UTC: "let the rollouts teach you"): at 163 deals the
+# rolled lead is level with the net's own against Gen 8 (+0.01 +- 0.25 by deal), and its records are the only ones that
+# say anything new about leads (a net that leads its own first choice teaches itself nothing there). 46.5 CPU-s a table
+# against 28.6. Training deals from 100,000.
+spr0 stu0-pra~stu0-prb 9001 100000 20000 8 --episodes --one-room
+# Pure Stu with the net's own lead against itself (training deals from 60,000): played from 12:37 UTC until the
+# collection moved to rolled leads. Reached again only if spr0 is stopped.
 sp0 stu0-pa~stu0-pb 9001 60000 20000 8 --episodes --one-room

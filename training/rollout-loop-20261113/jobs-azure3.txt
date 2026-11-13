@@ -24,12 +24,16 @@ l0-p stu0-p~8p-32-v41 131 0 500 8 --episodes
 l0-pr stu0-pr~8p-32-v41 131 0 200 8 --episodes
 l0-pl stu0-pl~8p-32-v41 131 0 200 8 --episodes
 # Round 1's net (rollout net v2 with only Stu's two vectors trained, train-r1/ on azure5's branch) inside Stu, inside the
-# pure bot and alone, on the same deals.
+# pure bot and alone, on the same deals: a first pass of 200 deals each.
+l1-stu1 stu1a~8p-32-v41 131 0 200 8 --episodes
+l1-p stu1-p~8p-32-v41 131 0 200 8 --episodes
+l1-n stu1-n~8p-32-v41 131 0 200 8 --episodes
+# The lead rungs to 500 deals (at 163 the rolled lead was level with the net's: +0.01 +- 0.25 by deal), then round 1's.
+l0-pr stu0-pr~8p-32-v41 131 0 500 8 --episodes
+l0-pl stu0-pl~8p-32-v41 131 0 500 8 --episodes
 l1-stu1 stu1a~8p-32-v41 131 0 500 8 --episodes
 l1-p stu1-p~8p-32-v41 131 0 500 8 --episodes
 l1-n stu1-n~8p-32-v41 131 0 500 8 --episodes
-l0-pr stu0-pr~8p-32-v41 131 0 500 8 --episodes
-l0-pl stu0-pl~8p-32-v41 131 0 500 8 --episodes
 l0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes
 l0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes
 # The middle rungs' first pass, then every rung to 500.
@@ -50,9 +54,9 @@ l0-v1-b50 stu0v1-b50~8p-32-v41 131 0 500 8 --episodes
 # The gate's baseline, the rest of its deals. (Folder g0-stu0 holds 58 boards under deal 500 from before the reorder;
 # azure5's l0b-stu0 covers deals 500 to 999.)
 g0b-stu0 stu0a~8p-32-v41 131 1000 1000 8
-# The collection: pure Stu against itself, training deals from 80,000 (azure5 plays 60,000 on). One table a board
-# (see jobs-azure5.txt).
-sp0b stu0-pa~stu0-pb 9001 80000 20000 8 --episodes --one-room
+# The collection: pure Stu with rolled-out leads against itself, one table a board, training deals from 120,000 (azure5
+# plays 100,000 on; see jobs-azure5.txt).
+spr0b stu0-pra~stu0-prb 9001 120000 20000 8 --episodes --one-room
 # Rollout-made decisions at early tricks, for a later round's set: the pure bot and rollouts from trick 3 against Stu,
 # on training deals of their own.
 d0-p stu0-p~stu0a 9001 40000 1000 8 --episodes

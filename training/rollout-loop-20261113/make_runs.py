@@ -28,9 +28,10 @@ RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, ble
              'net': "the net alone: its first card at every trick; no search, no rollouts, no claims, no mixing"}
 # Round 0's collection is not waited on any more (PLAN.md): round 1 is cut when its training chain is ready.
 ROUNDS = {'0': dict(collection_cut_boards=None, note="No board count is waited for. Round 1's set was cut at 10:29 UTC on 13 November "
-                                                       '(1,009 boards of Stu-as-is). From about 12:30 UTC the collection is pure Stu playing '
-                                                       "itself, one table a board (run sp0; a collection run's first_bot.rung says which bot "
-                                                       'plays it, and tables_a_board 1 that its rows carry no IMPs).')}
+                                                       '(1,009 boards of Stu-as-is). Since 12:37 UTC the collection is pure Stu playing '
+                                                       "itself, one table a board (runs sp0, then spr0 with rolled-out leads; a collection "
+                                                       "run's first_bot.rung says which bot plays it, and tables_a_board 1 that its rows "
+                                                       'carry no IMPs).')}
 # runs that are not in a job file any more
 STATIC = [
     dict(name='r0', box='azure5', pair='z0a-v2~z0b-v2', seed=9001, first=0, deals=20000, records=True,
