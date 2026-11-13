@@ -10,7 +10,140 @@
       100,
       29
     ],
-    "complete": true
+    "complete": true,
+    "new_branches": [],
+    "changed_branches": [
+      {
+        "name": "arena-gen6-chatgpt-feed",
+        "before": "a2005c2fa2b82d2e49a0574187464aa4d6e2260b",
+        "after": "ee287fb3d1bb62e326155486964e48a8c8016aec"
+      },
+      {
+        "name": "arena-gen7-phase1-azure4-feed",
+        "before": "17ea772de19d9973edcbccd4a09d3414aa218f2c",
+        "after": "b575fad108f057c2fd877b95e9a4a9bfba1ef02b"
+      },
+      {
+        "name": "arena-gen8-19bbdce5-20261112-feed",
+        "before": "2ee20f7714c406fdd750ba3e3911c6cbe413fe14",
+        "after": "2fa210fab671b6244e16805ce58022a1072f9523"
+      },
+      {
+        "name": "arena-gen8-candidate-codex-20261112-feed",
+        "before": "3f9a0f2fc8db390401ff5847040cc01230e739b7",
+        "after": "7bb428a7a4aaa49220583a7082f7d68d9b6c1cd5"
+      },
+      {
+        "name": "arena-gen8-independent-feed",
+        "before": "fd796dde8c6fd34578e62d9b469c9370e3ba72d1",
+        "after": "fdae15c9d3305991d5feefe6cf0dda7dc9d50802"
+      },
+      {
+        "name": "arena-gen8-x3-azure1-feed",
+        "before": "963e208e2cea82a7ceb93a1f7ba9708f5e550d39",
+        "after": "240c07bdfd61717cffb045f5168527f79598ed0c"
+      },
+      {
+        "name": "arena-gen9-azure4-ben64-feed",
+        "before": "571ed4a01e908542ea4292678df37a8276ce2dd9",
+        "after": "22f0eb3e2624031a18fd8add858b04aae328f093"
+      },
+      {
+        "name": "arena-gen9-azure4-feed",
+        "before": "69e177a43834a9c5787466ec503ea8c842d88d17",
+        "after": "966ae3e9607b10a5a584b9f17386edf414131065"
+      },
+      {
+        "name": "box/azure1/status",
+        "before": "fe49cc44ddb1354cfceac39b13ef9c87c7f3b2d9",
+        "after": "8627cd51f38640a621abd5f7349652146c64cbb6"
+      },
+      {
+        "name": "box/azure2/status",
+        "before": "40f5ca9c991d0561a2effab863f83003a2eef055",
+        "after": "fd893a01e4f173ca6fe8b6f7354052c8342bb6a3"
+      },
+      {
+        "name": "box/azure3/control",
+        "before": "387133bd04d9e3c4ac092abe535a4f6682fd847f",
+        "after": "161cdbc201f009407dae066219573e79c3448ac5"
+      },
+      {
+        "name": "box/azure3/status",
+        "before": "79e226ae3f93c515f39d461dfee63a1ff2d6dca7",
+        "after": "2f3cd79811c7079fce6dfaf1234e889a27cc9cf0"
+      },
+      {
+        "name": "box/azure4/control",
+        "before": "4cd888ddf960b28f81ddc212e939ce3c3948acf2",
+        "after": "12a79de55b09c83c46b4d45f5e90c5d3455f604c"
+      },
+      {
+        "name": "box/azure4/status",
+        "before": "dd885c5cb6ffc4142fb7c5d6336fd15c2f05ecd0",
+        "after": "66a8766d37b172f4f8ff6615daef6b9076eb250c"
+      },
+      {
+        "name": "box/azure5/control",
+        "before": "904a6a2333549861bc0ee4253cb5ca0d61bf5d86",
+        "after": "47aa7c2ea8703fdd1e33ddb7d298ae0968f00793"
+      },
+      {
+        "name": "box/azure5/status",
+        "before": "95b1e88bb6bc697c46d993fa775c4285a13eb985",
+        "after": "f11de4d52a88b5d41507216619976f79e7e66927"
+      },
+      {
+        "name": "box/azure6/status",
+        "before": "8b2c904918dee17d513ea16e599a2d42363d20cd",
+        "after": "70bdffa13cc8225b94eb9370786157a12899b662"
+      },
+      {
+        "name": "box/coordination",
+        "before": "8c045061915e0beef30ec27b23443ef1bf96eb97",
+        "after": "eb9451c8a8a72543f61abb6d0bf2257ddf5fa23d"
+      },
+      {
+        "name": "gh-pages",
+        "before": "cbbb4e1e11431a7655fdf73303c78a750fbba364",
+        "after": "0296e9725862ecb7037ebf14bfca9a88cb7bc9cf"
+      },
+      {
+        "name": "research/rollout-loop-20261113",
+        "before": "961bcf850d7492bc8933312127b85b2db1768546",
+        "after": "537f6415c8b6b2045977339d617e3a808fc740b1"
+      },
+      {
+        "name": "team/gen9",
+        "before": "55157758d19943f43701f7c39e70b4e4f9aa15a1",
+        "after": "f81cfd3b24ee0463070625dde92c596b8d8a11c5"
+      },
+      {
+        "name": "transfer/gen9-g9-cohort-azure4-azure4-20261113",
+        "before": "c2910c79b556a86615258f012b16684f881d8822",
+        "after": "e95b6ebdf625b8d9b7ff89b0ada4f7b8e0a40119"
+      },
+      {
+        "name": "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113",
+        "before": "3cfbe186bf696cd367c15274323c709a50d784b3",
+        "after": "efeb5155df5031fbb140c7bf323f12968119cde7"
+      },
+      {
+        "name": "transfer/plan-leverage-azure2-20261112",
+        "before": "13386741610e5ba3e35e45145271e18621499d16",
+        "after": "f1b9d84d6fd498801175eb5d5c6f9199bb30ae49"
+      },
+      {
+        "name": "transfer/rollout-loop-azure3-20261113",
+        "before": "b4df493115fdf691419d9f4c2b58fea4e7447ece",
+        "after": "4bcb2bc2549a4076a6e5a271df89a4a73bec634a"
+      },
+      {
+        "name": "transfer/rollout-loop-azure5-20261113",
+        "before": "9e4eb46a16dbb30e01758b3777736db75d41bba9",
+        "after": "b147b8faa4fa550cbdb23065b152f54ee23b7f1d"
+      }
+    ]
   },
   "refs": {
     "archive/gen6-fast-ben-20261111": "802f69ad6e1416a5a7200d5e6c29f8beca2a8275",
@@ -529,7 +662,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7.1 · Codex policy comparison and Gen6",
+        "name": "Gen 7.1 \u00b7 Codex policy comparison and Gen6",
         "branch": "arena-gen7-1-compare-codex-20261112-feed",
         "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
         "retired": true,
@@ -541,7 +674,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7.0 · Codex completed self-play with gap capture",
+        "name": "Gen 7.0 \u00b7 Codex completed self-play with gap capture",
         "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
         "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
         "retired": true,
@@ -553,7 +686,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7 · Codex initial self-play (capture incomplete)",
+        "name": "Gen 7 \u00b7 Codex initial self-play (capture incomplete)",
         "branch": "arena-gen7-selfplay-codex-20261112-feed",
         "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
         "retired": true,
@@ -565,7 +698,7 @@
         "generation": 7,
         "variant": "7",
         "environment": "codex",
-        "name": "Gen 7 · Codex completed phase 1 anchors",
+        "name": "Gen 7 \u00b7 Codex completed phase 1 anchors",
         "branch": "arena-gen7-phase1-codex-20261112-feed",
         "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
         "retired": true,
@@ -577,7 +710,7 @@
         "generation": 6,
         "variant": "6",
         "environment": "codex",
-        "name": "Gen 6 · completed Codex fast self-play",
+        "name": "Gen 6 \u00b7 completed Codex fast self-play",
         "branch": "arena-gen6-fast-selfplay-codex-20261111",
         "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
         "retired": true,
@@ -589,7 +722,7 @@
         "generation": 8,
         "variant": "8",
         "environment": "codex",
-        "name": "Gen8 · Codex main mix (standard and Precision)",
+        "name": "Gen8 \u00b7 Codex main mix (standard and Precision)",
         "branch": "arena-gen8-candidate-codex-20261112-feed",
         "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
       }
@@ -636,12 +769,12 @@
   "generation_cleanup": {
     "pr": {
       "number": 32,
-      "title": "Gen 7 → Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
+      "title": "Gen 7 \u2192 Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
       "state": "open",
       "draft": false,
       "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
       "updated_at": "2026-11-12T19:30:53Z",
-      "body": "The generation cleanup of `docs/generation-cleanup.md`, run because Gen 8 was authorized on 12 November 2026 (Max, 15:32 UTC) and has been collecting since 16:30 UTC. It closes out Gen 7 and brings the deployed Gen 8 source onto main. It changes documentation, indexes and adopted source. It touches no running collector, frozen run, manifest, feed or `gh-pages`.\n\ng7, the arena's operator, read Gen 7's page at 18:58 UTC and its corrections are in. It is Max's to merge. **Merge with a merge commit**, so the adopted commits stay identifiable.\n\n## Adopted source\n\nMain is an ancestor of all of it. Everything merged without a conflict in code; the one conflict was in `reports/README.md`, an index, where both sides' links are kept.\n\n| What | Commit | Branch |\n| --- | --- | --- |\n| Gen 8 as Azure and Codex run it | `792c4cb`, plus two page-only commits (`99139a8`, `6950784`) | `feature/gen8-prototype-20261112` |\n| Gen 8, the 19bbdce5 collector's source: its plan and `prepare --restore-actors` | `c8a138f` | `ops/gen8-19bbdce5-20261112` |\n| Gen 8, the independent collector's source: its plan with the BEN pairs, exporter and publisher changes; its cutover report | `6776c28`, `1b4ded5` | `codex/gen8-independent-20261112` |\n| The Gen 7 self-play regime and the Gen 7.1 notice | `5099000` | `feature/gen7-selfplay-20261112` |\n| Gen 7.1's `--exclude-families`, promotion gate tool and training-family audit | `b09c865` | `codex/gen71-independent-20261112` |\n\nThe three Gen 8 commits are what the live feeds' `recovery/environment.json` name.\n\n## Gen 7 closed\n\n- `docs/generations/gen7/README.md`: the bot, what each collector ran, the day's timeline, results, what it handed to Gen 8, what was and was not merged, documents and feeds.\n- Results: `scripts/generation_results.py --generation 7` over the 60 registered Gen 7 sources at 19:20 UTC, 22,021 counted boards. Gen 7.1 against 7.0: 5,639 boards, −0.06 (95% interval −0.13 to +0.01). The rule set for moving to 7.1 self-play (1,000 boards and a 95% lead for 7.1) was not met. Report in `reports/gen7-closeout-2026-11-12/`.\n- The pre-arena test has its own row: its bot was not the launched `7s-32` (tree trust 0.25 against 0.3). Gen 7.0 against Gen 6 in the arena is 1,593 boards at +0.28; the test is 1,637 boards at +0.25.\n- Gen 7's dated notices moved into `docs/generations/gen7/` with `git mv`; links repaired. A pointer stays at `docs/gen7_prototype_2026-11-11.md` because the policy net release notes link there and release folders are not edited.\n- The two sets drained at the switch to Gen 8 (`arena-gen7-1-mix2-azure1-feed`, 381 boards, and six `fresh3` BEN lanes, 105) were registered by the operator during the cleanup and are counted.\n\n## Gen 8 current\n\n- `docs/generations/gen8/README.md` (new), `README.md`, `docs/current-system.md`, `docs/generations/README.md`, `docs/README.md`, `docs/repository-map.md`, `docs/branch-inventory.md` (regenerated: 271 branches), `reports/README.md`.\n- `docs/backlog.md`: items 2, 3 and 6 closed (dispositions on Gen 7's page); 11, 13 and 14 opened (12 was opened and closed within the cleanup). Item 11 matters before the next net is trained on arena records: Gen 8's tables are not all house against house, and a training reader must bind each table's systems.\n- `scripts/generation_results.py`: its actor order brought up to the dashboard's (`8s-32`, `8c-32`, `71s-32` in front); without that it fails on any Gen 7.1 pair. New `--only` and `--skip` pool a subset of the sources.\n\n## Not merged\n\nEach conflicts with main; listed in backlog item 1 with the conflicting files: PR #15 (`fix/gen7-selfplay-capture-codex-20261112`), PR #13 (`fix/gen6-feed-health-20261111`), `ops/gen7-fast-selfplay-cloud-20261111`, `codex/gen7-independent-selfplay-20261112`, `ops/gen71-19bbdce5-20261112`. The Gen 6 runtime branches were not tried. Gen 9 (`feature/gen9` and the branches around it) stays on its branches.\n\n## Tested\n\n- Full suite at the head of this branch, with the native DDS library and TensorFlow: 336 passed, 1 skipped. The same count after the source merges alone.\n- `PYTHONPATH=tests:. python -m unittest test_system.CoreTests`: 11 tests, OK.\n- Relative links and in-repo anchors in every tracked `.md` outside `vendor/`: none broken except seven that were already broken inside model release folders (backlog item 8).\n- `scripts/generation_results.py`: generation 7 run twice over the 60 sources with the same counts (19:20 and 19:23 UTC); generation 6 run once, and the scored rows of Gen 6's closed table come out as published, except that `6-32` against BEN (16) has 26 more boards from sources that kept publishing after that closeout.\n\n## Not tested, and one thing not settled\n\n- The 19bbdce5 and independent collectors were told on the coordination board at 18:20 UTC that their deployed commits are in this PR and asked to say if they would rather stay out; neither had answered when this was marked ready.\n\n- No collector was run from this branch. Each of the three Gen 8 sources is running in the arena on its own; their union has passed the test suite only. A collector that moves to main should prepare and preflight as for any new source.\n- BEN: no server here.\n- The Gen 6 runtime branches against main.\n\nhttps://claude.ai/code/session_01N2EvxEA6NwcnXPZb3BY1s9\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+      "body": "The generation cleanup of `docs/generation-cleanup.md`, run because Gen 8 was authorized on 12 November 2026 (Max, 15:32 UTC) and has been collecting since 16:30 UTC. It closes out Gen 7 and brings the deployed Gen 8 source onto main. It changes documentation, indexes and adopted source. It touches no running collector, frozen run, manifest, feed or `gh-pages`.\n\ng7, the arena's operator, read Gen 7's page at 18:58 UTC and its corrections are in. It is Max's to merge. **Merge with a merge commit**, so the adopted commits stay identifiable.\n\n## Adopted source\n\nMain is an ancestor of all of it. Everything merged without a conflict in code; the one conflict was in `reports/README.md`, an index, where both sides' links are kept.\n\n| What | Commit | Branch |\n| --- | --- | --- |\n| Gen 8 as Azure and Codex run it | `792c4cb`, plus two page-only commits (`99139a8`, `6950784`) | `feature/gen8-prototype-20261112` |\n| Gen 8, the 19bbdce5 collector's source: its plan and `prepare --restore-actors` | `c8a138f` | `ops/gen8-19bbdce5-20261112` |\n| Gen 8, the independent collector's source: its plan with the BEN pairs, exporter and publisher changes; its cutover report | `6776c28`, `1b4ded5` | `codex/gen8-independent-20261112` |\n| The Gen 7 self-play regime and the Gen 7.1 notice | `5099000` | `feature/gen7-selfplay-20261112` |\n| Gen 7.1's `--exclude-families`, promotion gate tool and training-family audit | `b09c865` | `codex/gen71-independent-20261112` |\n\nThe three Gen 8 commits are what the live feeds' `recovery/environment.json` name.\n\n## Gen 7 closed\n\n- `docs/generations/gen7/README.md`: the bot, what each collector ran, the day's timeline, results, what it handed to Gen 8, what was and was not merged, documents and feeds.\n- Results: `scripts/generation_results.py --generation 7` over the 60 registered Gen 7 sources at 19:20 UTC, 22,021 counted boards. Gen 7.1 against 7.0: 5,639 boards, \u22120.06 (95% interval \u22120.13 to +0.01). The rule set for moving to 7.1 self-play (1,000 boards and a 95% lead for 7.1) was not met. Report in `reports/gen7-closeout-2026-11-12/`.\n- The pre-arena test has its own row: its bot was not the launched `7s-32` (tree trust 0.25 against 0.3). Gen 7.0 against Gen 6 in the arena is 1,593 boards at +0.28; the test is 1,637 boards at +0.25.\n- Gen 7's dated notices moved into `docs/generations/gen7/` with `git mv`; links repaired. A pointer stays at `docs/gen7_prototype_2026-11-11.md` because the policy net release notes link there and release folders are not edited.\n- The two sets drained at the switch to Gen 8 (`arena-gen7-1-mix2-azure1-feed`, 381 boards, and six `fresh3` BEN lanes, 105) were registered by the operator during the cleanup and are counted.\n\n## Gen 8 current\n\n- `docs/generations/gen8/README.md` (new), `README.md`, `docs/current-system.md`, `docs/generations/README.md`, `docs/README.md`, `docs/repository-map.md`, `docs/branch-inventory.md` (regenerated: 271 branches), `reports/README.md`.\n- `docs/backlog.md`: items 2, 3 and 6 closed (dispositions on Gen 7's page); 11, 13 and 14 opened (12 was opened and closed within the cleanup). Item 11 matters before the next net is trained on arena records: Gen 8's tables are not all house against house, and a training reader must bind each table's systems.\n- `scripts/generation_results.py`: its actor order brought up to the dashboard's (`8s-32`, `8c-32`, `71s-32` in front); without that it fails on any Gen 7.1 pair. New `--only` and `--skip` pool a subset of the sources.\n\n## Not merged\n\nEach conflicts with main; listed in backlog item 1 with the conflicting files: PR #15 (`fix/gen7-selfplay-capture-codex-20261112`), PR #13 (`fix/gen6-feed-health-20261111`), `ops/gen7-fast-selfplay-cloud-20261111`, `codex/gen7-independent-selfplay-20261112`, `ops/gen71-19bbdce5-20261112`. The Gen 6 runtime branches were not tried. Gen 9 (`feature/gen9` and the branches around it) stays on its branches.\n\n## Tested\n\n- Full suite at the head of this branch, with the native DDS library and TensorFlow: 336 passed, 1 skipped. The same count after the source merges alone.\n- `PYTHONPATH=tests:. python -m unittest test_system.CoreTests`: 11 tests, OK.\n- Relative links and in-repo anchors in every tracked `.md` outside `vendor/`: none broken except seven that were already broken inside model release folders (backlog item 8).\n- `scripts/generation_results.py`: generation 7 run twice over the 60 sources with the same counts (19:20 and 19:23 UTC); generation 6 run once, and the scored rows of Gen 6's closed table come out as published, except that `6-32` against BEN (16) has 26 more boards from sources that kept publishing after that closeout.\n\n## Not tested, and one thing not settled\n\n- The 19bbdce5 and independent collectors were told on the coordination board at 18:20 UTC that their deployed commits are in this PR and asked to say if they would rather stay out; neither had answered when this was marked ready.\n\n- No collector was run from this branch. Each of the three Gen 8 sources is running in the arena on its own; their union has passed the test suite only. A collector that moves to main should prepare and preflight as for any new source.\n- BEN: no server here.\n- The Gen 6 runtime branches against main.\n\nhttps://claude.ai/code/session_01N2EvxEA6NwcnXPZb3BY1s9\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
     },
     "disposition": "PR32 remains open and unmerged; generation cleanup is coordinated by g7 and g8."
   },
