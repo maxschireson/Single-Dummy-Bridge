@@ -1,0 +1,47 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "5455bb08075d4b7def0c23e8c8eb7825f63e1ec4",
+  "authority": "Max06:40 asks8Xv3 in arena; Max07:1x to g7 assigns Azure1 after its lastGen8 cohort. Azure3 retains Gen8BEN. These are host-specific lane allocations.",
+  "arena_source": {
+    "branch": "feature/gen8x-arena-20261113",
+    "revision": "3335d99c0f9e3ffe4f7eba8438301813a7d58810",
+    "plan": "configs/round8x-v3.json",
+    "plan_blob": "2c4c4e3e334be01054c2d55d8c5a6d2e8a9fd640",
+    "launch_enabled": true,
+    "pending": [],
+    "pair_weights": {
+      "8x3-32~8s-32": 2,
+      "8x3-32~71s-32": 1,
+      "8x3-32~5RZ32": 1,
+      "8x3-32~1": 1
+    },
+    "notes": [
+      "Authorized by Max, 13 November 2026, 06:40 UTC: \"Let's put 8X v3 into the mix on the arena and see what happens over time.\" 06:4x UTC, asked where it should run: lanes on g7's arena boxes (azure1, azure3), started by g7, the arena's operator.",
+      "docs/x8_bot.md is the 8X page: what 8X v3 is, what was measured against Gen 8 (8p-32-v41, the same search as 8s-32 here) and on how many boards.",
+      "Deals. No bot plays a board in a family one of its nets was trained on (Max, 12 November 15:50 UTC). 8X v3 plays with policy v4.1 and rollout net v1, so prepare with the union of both training sets: transfer/rollout-net-v1-training-families-20261113, gen8x-v3-exclusions.json (50,818 families: v4.1's 34,092 and v1's 21,509, 4,783 in both).",
+      "The Gen 8 and Gen 7.1 bots are the round8-candidate.json entries unchanged, so they are the same actors (identities) as in the Gen 8 cohorts. They read 8X v3's plays at the table's default for an unknown bot (0.3); 8X v3 reads its opponents as Gen 8 does."
+    ]
+  },
+  "engine_source": {
+    "branch": "feature/gen8x-rollout-bot-20261113",
+    "revision": "1a779a9e67caef3d362015e621d0de18b5c6553c",
+    "documentation_blob": "209f812370c905391d3a4277e2092dc54f0529af"
+  },
+  "status": "8Xv3 has scoped arena authority and an opened plan for g7's Azure lanes. Older WIP documentation is superseded for that authorized allocation. It does not direct this independentCodex producer to switch.",
+  "condition_met": true,
+  "training_exclusions": {
+    "branch": "transfer/rollout-net-v1-training-families-20261113",
+    "revision": "6034eecc750c71788ae10163c55c38c335c7d1e1",
+    "path": "gen8x-v3-exclusions.json",
+    "git_blob": "d91c6a5be3cbcb00818de189422d9b68f7f27800",
+    "sha256": "72fafc4cce9ed62e6427b021103533e62e1bdfedc6acc96bf01c81186a88ee7a",
+    "families": 50818,
+    "v41_families": 34092,
+    "rollout_v1_families": 21509,
+    "overlap": 4783,
+    "readme_blob": "fdf0a9944c3114e8f26f68e53c50b89cb55099a5"
+  },
+  "preparation": "g7 asks x8 to bring dave's fresh-deal path into arena branch; requiresDDS, fixedsure_cpp/SURE_BIN, v4.1/scorer/rolloutv1. These commands belong to Azure1 owner; none executed here.",
+  "owned_stream_effect": "No actor/model/source/claim/mixing/guard/corpus change. Keep current canonical8s/8c source792c4cb/manifestcd98.",
+  "future_requirements": "User's complete released-model training exclusions for any new owned cohort; do not assume currentv41 or v1 union covers other releasednets. Preserve existing frozen list/proof; fresh pools require authorized seed/inventory audit and capture preflight."
+}

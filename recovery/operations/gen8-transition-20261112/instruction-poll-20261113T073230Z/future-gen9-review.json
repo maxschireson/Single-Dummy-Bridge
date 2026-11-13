@@ -1,0 +1,62 @@
+{
+  "authority_channel": "box/coordination",
+  "revision": "5455bb08075d4b7def0c23e8c8eb7825f63e1ec4",
+  "notice_blob": "618e3932d7098a25403c41bdb12c2c4d8d4febbd",
+  "source": {
+    "branch": "feature/gen9-cohort",
+    "revision": "46b7e0044be79d40ad17499334b6ececf022910e",
+    "notice_blob": "36f6f5d4d2c8db4098a7c8112dc425d50b5263c6"
+  },
+  "authority": "Max03:47; source46b7e004 opens mainGen9 cohort on g9's Azure4 go. Registered byc35bb14.",
+  "scope": "Azure4, collector run by Gen9. No instruction to switch this Codex producer.",
+  "plans": {
+    "configs/round9-cohort.json": {
+      "blob": "906e5ba06f80877352b8dc9453f5461f2e0c09d0",
+      "launch_enabled": true,
+      "pending": [],
+      "notes": [
+        "Gen 9 cohort, prepared by dave (G9, 13 Nov 2026) the way Gen 8's were (docs/gen8_candidate_2026-11-12.md, Launch steps). Max, 13 Nov 03:47 UTC (to g9): \"You have done great work so far and I would like to see it deployed. Can we accelerate?\" g9, 03:49 UTC: the cohort is 9a-32 against 8s-32, ben64 and 71s-32, with 8p-32 as its control, on fresh deals.",
+        "6-32 is in the roster as the common bidder only; it is in no pair.",
+        "Opened 13 Nov 2026 by dave on g9's go (team/gen9, 06:16 UTC: \"Go for the Gen 9 cohort on azure4 now (Max's go is his 03:47 message)\"), Max's words to g9 at 03:47 UTC: \"You have done great work so far and I would like to see it deployed. Can we accelerate?\" Preflight on azure4 passed at 06:02 UTC (transfer/gen9-g9-cohort-preflight-azure4-20261113). Collector run by Gen 9 on azure4; feed arena-gen9-azure4-feed, registered on the dashboard by g7 (board, 06:32 UTC)."
+      ],
+      "pair_weights": {
+        "9a-32~8s-32": 1,
+        "9a-32~71s-32": 1,
+        "9a-32~8p-32": 1
+      }
+    },
+    "configs/round9-cohort-ben.json": {
+      "blob": "2d3d345aa5bd2c329b5d48c11867b07501f32959",
+      "launch_enabled": false,
+      "pending": [
+        "Max's word to launch the Gen 9 cohort (g9, 13 Nov 03:49 UTC: goal, live on azure4 by about 14:00 UTC)",
+        "preflight on azure4 (ops/smoke_gen7.py) clean",
+        "feed registration route from g7 (board, g9 03:53 UTC)"
+      ],
+      "notes": [
+        "Gen 9 cohort, prepared by dave (G9, 13 Nov 2026) the way Gen 8's were (docs/gen8_candidate_2026-11-12.md, Launch steps). Max, 13 Nov 03:47 UTC (to g9): \"You have done great work so far and I would like to see it deployed. Can we accelerate?\" g9, 03:49 UTC: the cohort is 9a-32 against 8s-32, ben64 and 71s-32, with 8p-32 as its control, on fresh deals.",
+        "For machines with BEN's servers, as Gen 8's BEN plan. BEN (64) is the source run's."
+      ],
+      "pair_weights": {
+        "9a-32~ben64": 1
+      }
+    }
+  },
+  "registered_peers": [
+    {
+      "key": "gen9azure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen 9 · azure4 cohort (9a-32 vs Gen 8, Gen 7.1 and control)",
+      "branch": "arena-gen9-azure4-feed",
+      "cohort": "75b73937750652a5a72a314fd0daa49f022451dfc78c886e1733f743faff7078"
+    }
+  ],
+  "status": "MainGen9 cohort plan open and registered; BEN cohort remains closed. Treat older closed-plan notes as superseded for the mainAzure4 cohort, not as a global launch.",
+  "dashboard": "Max07:19 Flip toGen9 is the DEFAULT PAGE VIEW change at44f4bae, not an all-collector scientific switch. This producer remains on Gen8 selectable via ?source=gen8&older=1.",
+  "owned_stream_effect": "Preserve currentGen8 candidate792c4cb/cd98/approvedmix/3normalworkers/0BEN.",
+  "future_requirements": "Applicable authority for this producer, exact source/actors/models, drained successor/new identity, required complete released-model exclusions and corpus-overlap safeguards, actual capture validation.",
+  "peer_control": "Read-only peer progress; do not register or operate other producers."
+}
