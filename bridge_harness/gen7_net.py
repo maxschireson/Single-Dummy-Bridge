@@ -15,6 +15,15 @@ The net (see scripts/train_gen7_policy.py) has four heads:
   gap      the search's estimated tricks given up by each legal card, relative to its best
   owner    which hidden seat holds each unseen card
   tricks   final tricks for the actor's side
+
+A student of the exact line finder (experiments/sid_loop/SPEC.md, Part B; scripts/train_rollout_net.py with a set
+that carries `sid`) has more outputs, present when the weights `wd1s` and `wk14` are:
+  guar, cert, single   [n, 52, 3] logits per card and target (one down, the contract, an overtrick). For the declaring
+                       side: the card guarantees the target outright / the true layout is in the card's certified
+                       set / the card wins the true layout's shape taken alone. For a defender, guar and cert say the
+                       same of the declaring side once the card is played (single is not trained there).
+  tricks14             [n, 14] logits for the actor's side's final tricks, 0 to 13
+A net without those weights behaves as before.
 """
 import numpy as np
 
@@ -156,6 +165,7 @@ def encode(o, shown=None):
 
 
 INPUTS = ('state', 'order', 'legal', 'ctx', 'auction', 'shown')
+SID_HEADS = ('guar', 'cert', 'single')      # the per-card outputs of a line-finder student, in the order of `wd1s`
 BANK_KEYS = ('bank_length', 'bank_hon', 'bank_log_weight')
 WHO = ('bot_own', 'bot_other')     # optional inputs of rollout nets: the bots' rows in the net's `bot_vocab`
 
@@ -196,6 +206,7 @@ def forward(params, batch, xp=np, kind=None):
     cards, g = features(batch, xp)
     n = cards.shape[0]
     kind = int(np.asarray(params['kind'])) if kind is None else kind
+    more = {}
     if kind == 0:                                                               # flat MLP
         h = xp.concatenate([cards.reshape(n, -1), g], axis=1)
         for i in range(3):
@@ -224,9 +235,14 @@ def forward(params, batch, xp=np, kind=None):
         out = (d @ params['wd1'] + params['bd1']).reshape(n, 4, 13, 5)
         policy, gap, owner = out[..., 0].reshape(n, 52), out[..., 1].reshape(n, 52), out[..., 2:].reshape(n, 52, 3)
         tricks = (h @ params['wk'] + params['bk'])[:, 0]
+        if 'wd1s' in params:                # a student of the line finder: three labels a card, three targets each
+            sid = (d @ params['wd1s'] + params['bd1s']).reshape(n, 4, 13, len(SID_HEADS), 3)
+            more = {k: sid[..., i, :].reshape(n, 52, 3) for i, k in enumerate(SID_HEADS)}
+        if 'wk14' in params:
+            more['tricks14'] = h @ params['wk14'] + params['bk14']
     legal = xp.asarray(batch['legal'])
     policy = xp.where(legal, policy, -1e9)
-    return dict(policy=policy, gap=gap, owner=owner, tricks=tricks)
+    return dict(policy=policy, gap=gap, owner=owner, tricks=tricks, **more)
 
 
 def log_softmax(x):

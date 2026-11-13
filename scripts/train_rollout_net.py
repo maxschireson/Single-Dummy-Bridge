@@ -14,7 +14,14 @@ What differs from scripts/train_gen7_policy.py (the v4.1 run's trainer, copied w
   policy, owner and tricks heads but not the gap head, and are left out of the regret scores.
 - Scores also by bot (the deciding side's), from trick 7 on, and with both ids blanked (`who_use`); --compare
   scores other nets on the same held-out rows. Held-out sets are matched to the training set's bots by name.
-- --init loads every weight of the given net that this net has; the bot vectors may be missing (they stay zero).
+- --init loads every weight of the given net that this net has; the bot vectors may be missing (they stay zero),
+  and a net with another list of bots gives each bot's vectors by name.
+- A set built with --labels (scripts/gen7_build_dataset.py; it carries `sid`) trains a student of the exact line
+  finder (experiments/sid_loop/SPEC.md, Part B): per card and target the outputs guar, cert and single, and
+  tricks14 from the trunk (bridge_harness.gen7_net.forward). Their losses are binary cross-entropy averaged over
+  the labelled (row, legal card, target) entries, and cross-entropy on the final tricks, each added with
+  --sid-weight (1.0). Rows without labels train the other heads only. The new weights may be missing from --init
+  (they start random). Held-out scores of the label heads are printed every epoch (`sid`). Not with --augment.
 
 Options as in train_gen7_policy.py:
   python scripts/train_rollout_net.py --data data.npz --out run_dir [--kind suit|mlp] [--epochs 8]
@@ -52,7 +59,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from bridge_harness.gen7_net import BANK_KEYS, CARD_FEATURES, INPUTS, N_GLOBAL, SEAT_SHOWN, SUIT_INPUT, forward
+from bridge_harness.gen7_net import BANK_KEYS, CARD_FEATURES, INPUTS, N_GLOBAL, SEAT_SHOWN, SID_HEADS, SUIT_INPUT, forward
 
 KINDS = {'mlp': 0, 'suit': 1}
 PHASES = ('lead', 'tricks 1-4', 'tricks 5-8', 'tricks 9-13')
@@ -68,7 +75,23 @@ def match_bots(meta, names, vocab):
     meta = meta.copy()
     meta[:, 8], meta[:, 9] = table[meta[:, 8]], table[meta[:, 9]]
     return meta
-PACKED = ('state', 'order', 'legal', 'auction', 'owner')        # small whole numbers: held in memory at a few bits each
+PACKED = ('state', 'order', 'legal', 'auction', 'owner', 'sid')  # small whole numbers: held in memory at a few bits each
+SID_KINDS = ('guar', 'single', 'cert')          # the order of the label kinds in a set's `sid` (scripts/gen7_build_dataset.py)
+SID_SLOTS = 8
+SID_NEW = ('wd1s', 'bd1s', 'wk14', 'bk14')      # weights a net started with --init may lack
+
+
+def sid_labels(sid, legal):
+    """{'sid_guar', 'sid_single', 'sid_cert'}: [n, 52, 3] int8 from a set's `sid` rows [n, 72] and the legal mask; -1 where
+    there is no label. A row's label slots are its legal cards in rising order."""
+    n = len(sid)
+    lab = np.asarray(sid).reshape(n, len(SID_KINDS), SID_SLOTS, 3)
+    legal = np.asarray(legal).astype(bool)
+    slot = np.cumsum(legal, axis=1) - 1
+    ok = legal & (slot < SID_SLOTS)
+    index = np.clip(slot, 0, SID_SLOTS - 1)[:, :, None]
+    return {'sid_' + k: np.where(ok[:, :, None], np.take_along_axis(lab[:, i], index, axis=1), -1).astype(np.int8)
+            for i, k in enumerate(SID_KINDS)}
 
 
 def stored_arrays(path):
@@ -160,11 +183,13 @@ def relabel(b, perm, auction='permute'):
     return out
 
 
-def init(kind, rng, width, bots=0):
+def init(kind, rng, width, bots=0, sid=False):
     def dense(a, b):
         return (rng.standard_normal((a, b)) * np.sqrt(2. / a)).astype(np.float32), np.zeros(b, np.float32)
     g = N_GLOBAL
     p = {}
+    if sid and kind == 0:
+        raise SystemExit('the label heads need --kind suit')
     if kind == 0:
         sizes = [52 * CARD_FEATURES + g, width, width, width // 2]
         for i in range(3):
@@ -179,6 +204,9 @@ def init(kind, rng, width, bots=0):
         p['wd0'], p['bd0'] = dense(e + 3 * t // 4 + 4, 2 * e)
         p['wd1'], p['bd1'] = dense(2 * e, 65)
         p['wk'], p['bk'] = dense(3 * t // 4, 1)
+        if sid:                             # after every other draw, so a net without them starts from the same weights
+            p['wd1s'], p['bd1s'] = dense(2 * e, 13 * len(SID_HEADS) * 3)
+            p['wk14'], p['bk14'] = dense(3 * t // 4, 14)
     if bots:
         p['emb_own'], p['emb_other'] = np.zeros((bots, t), np.float32), np.zeros((bots, t), np.float32)
     return p
@@ -232,6 +260,43 @@ def evaluate(predict, data, index, batch=4096, blank=False):
                 by_bot={str(names[b]) if names is not None else str(b): summary(meta[:, 8] == b) for b in np.unique(meta[:, 8])})
 
 
+def evaluate_sid(predict_sid, data, index, batch=4096):
+    """Held-out scores of the label heads: per head and target, log-loss and Brier score over the labelled entries, the
+    log-loss of the entries' own base rate, and the same for the contract target on rows of the declaring side and of
+    the defenders with exactly 7 cards (ply 24 to 27). tricks14: log-loss of the final tricks."""
+    sums = {}
+    t14 = [0., 0]
+    for i in range(0, len(index), batch):
+        rows = index[i:i + batch]
+        b = with_ids({k: data[k][rows] for k in INPUTS}, data['meta'][rows])
+        out = [np.asarray(x) for x in predict_sid(b)]
+        probs = dict(zip(SID_HEADS, out[:len(SID_HEADS)]))
+        logp14 = out[len(SID_HEADS)]
+        meta = data['meta'][rows]
+        t14[0] += float(-logp14[np.arange(len(rows)), np.clip(meta[:, 1], 0, 13)].sum())
+        t14[1] += len(rows)
+        labels = sid_labels(data['sid'][rows], b['legal'])
+        declaring = meta[:, 6] < 2
+        seven = (meta[:, 3] >= 24) & (meta[:, 3] < 28)
+        for k in SID_HEADS:
+            y, p = labels['sid_' + k], np.clip(probs[k].astype(np.float64), 1e-7, 1 - 1e-7)
+            for name, rmask, tsel in (('all', np.ones(len(rows), bool), slice(None)), ('contract', np.ones(len(rows), bool), slice(1, 2)),
+                                      ('contract_7_declaring', seven & declaring, slice(1, 2)), ('contract_7_defending', seven & ~declaring, slice(1, 2))):
+                yy, pp = y[rmask][:, :, tsel], p[rmask][:, :, tsel]
+                m = yy >= 0
+                e = sums.setdefault((k, name), np.zeros(4))
+                e += [m.sum(), yy[m].sum(), -(np.where(yy == 1, np.log(pp), np.log(1 - pp)) * m).sum(), (((pp - yy) ** 2) * m).sum()]
+    out = {}
+    for (k, name), (n, ones, nll, brier) in sums.items():
+        if n:
+            rate = min(max(ones / n, 1e-7), 1 - 1e-7)
+            out.setdefault(k, {})[name] = dict(n=int(n), rate=round(float(ones / n), 4), nll=round(float(nll / n), 4),
+                                               base_nll=round(float(-(rate * np.log(rate) + (1 - rate) * np.log(1 - rate))), 4),
+                                               brier=round(float(brier / n), 4))
+    out['tricks14_nll'] = round(t14[0] / max(t14[1], 1), 4)
+    return out
+
+
 def temperature(predict, data, index, batch=4096):
     """The softmax temperature that minimizes the held-out log-loss of the card played, and that log-loss (a net
     used to draw cards in playouts should be calibrated; v4.1's 768-wide run wanted 1.2 at its last epoch)."""
@@ -274,13 +339,17 @@ def main():
     p.add_argument('--init', type=Path, help='start from the weights of this net (same kind and width; bot vectors may be missing)')
     p.add_argument('--id-dropout', type=float, default=.15, help='share of training rows whose each bot id is read as unknown')
     p.add_argument('--compare', type=Path, action='append', default=[], help='also score this net on the same held-out rows')
+    p.add_argument('--sid-weight', type=float, default=1., help='weight of each label-head loss (guar, cert, single, tricks14) when the set has labels')
     a = p.parse_args()
     if a.all_train and not a.val_data:
         p.error('--all-train needs --val-data: with no deal held back there is nothing to score an epoch on')
     a.out.mkdir(parents=True, exist_ok=True)
     kind = KINDS[a.kind]
     z = stored_arrays(a.data)
-    data = {k: Packed(z[k]) if k in PACKED else np.array(z[k]) for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal')}
+    sid = 'sid' in z
+    if sid and a.augment != 'none':
+        p.error('a set with labels cannot be trained with --augment')
+    data = {k: Packed(z[k]) if k in PACKED else np.array(z[k]) for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal', *(('sid',) if sid else ()))}
     bank = {k: np.array(z[k]) for k in BANK_KEYS}
     split = np.array(z['deal_split'])
     vocab = [str(x) for x in z['bot_names']]
@@ -296,7 +365,9 @@ def main():
     train = np.flatnonzero(np.isin(data['deal'], keep) & np.isin(data['meta'][:, 2], kinds))
     if a.val_data:
         with np.load(a.val_data) as zv:
-            vdata = {k: np.array(zv[k]) for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal')}
+            if sid and 'sid' not in zv.files:
+                raise SystemExit(f'{a.val_data} has no labels (`sid`) and the training set has')
+            vdata = {k: np.array(zv[k]) for k in (*INPUTS, 'gap', 'owner', 'meta', 'deal', *(('sid',) if sid else ()))}
             vdata['meta'] = match_bots(vdata['meta'], zv['bot_names'], vocab)
         vdata['bot_names'] = data['bot_names']
         val = np.arange(len(vdata['deal']))
@@ -306,13 +377,24 @@ def main():
     print(f"{len(keep)} training deals, {len(train)} training examples, {len(val)} held-out examples"
           + (f" from {a.val_data.name} ({len(np.unique(vdata['deal']))} deals)" if a.val_data else ''), file=sys.stderr, flush=True)
     rng = np.random.default_rng(a.seed)
-    start = init(kind, rng, a.width, len(vocab))
+    start = init(kind, rng, a.width, len(vocab), sid)
     if a.init:
         with np.load(a.init) as f:
-            if int(f['kind']) != kind or any((k not in f.files and not k.startswith('emb_')) or (k in f.files and f[k].shape != v.shape)
-                                             for k, v in start.items()):
-                raise SystemExit(f'{a.init} is not a net of kind {a.kind} and width {a.width} (or its bots differ)')
-            start = {k: f[k].astype(np.float32) if k in f.files else v for k, v in start.items()}
+            loaded = {k: f[k].astype(np.float32) for k in f.files if k in start}
+            theirs = [str(x) for x in f['bot_vocab']] if 'bot_vocab' in f.files else None
+            same_kind = int(f['kind']) == kind
+        if theirs is not None and theirs != vocab:              # the bot vectors by name; a bot the net lacks starts at zero
+            for k in ('emb_own', 'emb_other'):
+                if k in loaded:
+                    table = np.zeros_like(start[k])
+                    for i, name in enumerate(vocab):
+                        if name in theirs:
+                            table[i] = loaded[k][theirs.index(name)]
+                    loaded[k] = table
+        if not same_kind or any((k not in loaded and not k.startswith('emb_') and k not in SID_NEW) or (k in loaded and loaded[k].shape != v.shape)
+                                for k, v in start.items()):
+            raise SystemExit(f'{a.init} is not a net of kind {a.kind} and width {a.width}')
+        start = {k: loaded.get(k, v) for k, v in start.items()}
     params = {k: jnp.asarray(v) for k, v in start.items()}
     steps = a.epochs * (len(train) // a.batch)
     schedule = optax.warmup_cosine_decay_schedule(0., a.lr, min(500, steps // 10), steps, a.lr / 50)
@@ -333,7 +415,16 @@ def main():
         picked = jnp.take_along_axis(owner_logp, jnp.clip(b['owner'], 0, 2).astype(jnp.int32)[..., None], axis=2)[..., 0]
         owner = -(picked * ~seen).sum() / jnp.maximum((~seen).sum(), 1)
         tricks = ((out['tricks'] - b['tricks'] / 13.) ** 2).mean()
-        return ce + 2. * gap + .5 * owner + tricks, (ce, gap, owner, tricks)
+        loss = ce + 2. * gap + .5 * owner + tricks
+        if not sid:
+            return loss, (ce, gap, owner, tricks)
+        heads = []
+        for k in SID_HEADS:                 # binary cross-entropy over the labelled (row, legal card, target) entries
+            y = b['sid_' + k].astype(jnp.float32)
+            m = (y >= 0).astype(jnp.float32)
+            heads.append((optax.sigmoid_binary_cross_entropy(out[k], jnp.clip(y, 0., 1.)) * m).sum() / jnp.maximum(m.sum(), 1.))
+        t14 = optax.softmax_cross_entropy_with_integer_labels(out['tricks14'], jnp.clip(b['tricks'], 0, 13).astype(jnp.int32)).mean()
+        return loss + a.sid_weight * (sum(heads) + t14), (ce, gap, owner, tricks, *heads, t14)
 
     @jax.jit
     def step(params, state, b):
@@ -346,8 +437,15 @@ def main():
         out = forward(params, b, jnp, kind)
         return jax.nn.log_softmax(out['policy']), out['gap']
 
+    @jax.jit
+    def predict_sid(params, b):
+        out = forward(params, b, jnp, kind)
+        return (*[jax.nn.sigmoid(out[k]) for k in SID_HEADS], jax.nn.log_softmax(out['tricks14']))
+
     def batch_of(rows):
         b = {k: data[k][rows] for k in (*INPUTS, 'gap', 'owner')}
+        if sid:
+            b.update(sid_labels(data['sid'][rows], b['legal']))
         meta = data['meta'][rows]
         b['card'] = meta[:, 0]
         b['tricks'] = meta[:, 1].astype(np.float32)
@@ -364,7 +462,7 @@ def main():
     history, best, started = [], None, time.time()
     for epoch in range(a.epochs):
         order = rng.permutation(train)
-        total = np.zeros(4)
+        total = np.zeros(4 + (len(SID_HEADS) + 1 if sid else 0))
         count = 0
         for i in range(0, len(order) - a.batch + 1, a.batch):
             params, state, loss, parts = step(params, state, batch_of(order[i:i + a.batch]))
@@ -376,6 +474,9 @@ def main():
         row = dict(epoch=epoch + 1, seconds=round(time.time() - started), train_ce=round(total[0] / count, 4),
                    train_gap=round(total[1] / count, 4), train_owner=round(total[2] / count, 4), val=v['all'],
                    temperature=temperature(lambda b: predict(params, b), vdata, val))
+        if sid:
+            row['train_sid'] = {k: round(total[4 + i] / count, 4) for i, k in enumerate((*SID_HEADS, 'tricks14'))}
+            row['sid'] = evaluate_sid(lambda b: predict_sid(params, b), vdata, val)
         history.append(row)
         print(json.dumps(row), flush=True)
         if a.save_epochs:                   # every epoch's weights, so an epoch can be chosen by another measure
@@ -394,6 +495,9 @@ def main():
     jax_out = np.asarray(forward(final, b, jnp, kind)['policy'])
     numpy_out = forward(exported, b)['policy']
     parity = float(np.abs(np.where(b['legal'], jax_out - numpy_out, 0.)).max())
+    if sid:
+        j, q = forward(final, b, jnp, kind), forward(exported, b)
+        parity = max(parity, *[float(np.abs(np.asarray(j[k]) - q[k]).max()) for k in (*SID_HEADS, 'tricks14')])
     # Does the net use the auction? The same held-out positions with the auction inputs blanked, and with
     # another position's auction in their place. A net that reads the auction must score worse on both.
     held = {k: vdata[k][val] for k in (*INPUTS, 'gap', 'meta')}
@@ -417,7 +521,7 @@ def main():
             other = {k: jnp.asarray(w[k]) for k in w.files if k not in BANK_KEYS + ('kind', 'bot_vocab')}
             if 'bot_vocab' in w.files:              # another rollout net: its own numbering of the bots
                 theirs = [str(x) for x in w['bot_vocab']]
-                held_other = dict(vdata, meta=match_bots(vdata['meta'], vocab, theirs))
+                held_other = dict(vdata, meta=match_bots(vdata['meta'], vocab, theirs), bot_names=np.array(theirs))      # by_bot names its rows
             else:
                 held_other = vdata
         compared[str(path)] = evaluate(lambda b: predict(other, b), held_other, val)
@@ -429,7 +533,10 @@ def main():
                    init=str(a.init) if a.init else None, lr=a.lr, batch=a.batch,
                    validation=evaluate(lambda b: predict(final, b), vdata, val),
                    test=evaluate(lambda b: predict(final, b), data, test) if a.fraction == 1. and len(test) else None,
-                   auction_use=auction_use, numpy_parity_max_abs_logit=parity, seconds=round(time.time() - started), history=history)
+                   auction_use=auction_use, numpy_parity_max_abs_logit=parity, seconds=round(time.time() - started), history=history,
+                   sid_weight=a.sid_weight if sid else None,
+                   sid=evaluate_sid(lambda b: predict_sid(final, b), vdata, val) if sid else None,
+                   train_labelled=int((data['sid'][train[:200000]] >= 0).any(axis=1).mean() * len(train)) if sid else None)
     (a.out / 'metrics.json').write_text(json.dumps(metrics, indent=1))
     print(json.dumps(dict(done=str(a.out), selected_epoch=best[1], validation=metrics['validation']['all'], parity=parity,
                           auction_use={k: v['all'] for k, v in auction_use.items()},

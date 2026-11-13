@@ -8,13 +8,14 @@
 #   buildB     the held-out set, deals of the training set dropped
 #   train      S_0: rollout net v2 plus the label heads, --init from v2, v2's recipe
 #   e1         student against solver on the held-out boards
+#   push       nets, scores, logs, manifests and the labels to transfer/sid-net-s0-20261113
 #   STAGES="fetch label" bash training/sid-net-s0-20261113/chain.sh      (from the repository root; default: all)
 # Every stage leaves a marker in $W/done and is skipped when it is there; a stopped label stage resumes by episode.
 set -uo pipefail
 W=${W:-$HOME/work/sidnet}; PY=${PY:-$HOME/work/venv/bin/python}; T=training/sid-net-s0-20261113; V2T=training/rollout-net-v2-20261113
 SCORER=${SCORER:-$W/models/hand_fit_v0.npz}; CELLS=${CELLS:-$W/bin/cells}; V2=${V2:-$W/models/rollout_v2_w768_epoch5.npz}
 CARDS=${CARDS:-7}; WORKERS=${WORKERS:-8}; LIMITB=${LIMITB:-4000}; SHARDS=${SHARDS:-16}; WIDTH=${WIDTH:-768}; EPOCHS=${EPOCHS:-5}; LR=${LR:-2e-3}
-STAGES=${STAGES:-fetch label fetchB labelB build buildB train e1}
+STAGES=${STAGES:-fetch label fetchB labelB build buildB train e1 push}
 FEEDS=('arena-gen6-*' 'arena-gen7-*' 'arena-gen71-*' 'arena-gen8-*' 'arena-gen5rz*' 'transfer/pre7-test-azure*-20261112')
 mkdir -p "$W/logs" "$W/data" "$W/done"
 log() { echo "$(date -u +%FT%TZ) $*" | tee -a "$W/logs/timeline.log"; }
@@ -43,7 +44,7 @@ if want labelB; then
     --cards "$CARDS" --workers "$WORKERS" --full >> "$W/logs/labelB.log" 2>&1 || stop "label B failed: $(tail -2 "$W/logs/labelB.log")"
   log "labelB: $(tail -1 "$W/logs/labelB.log")"; touch "$W/done/labelB"
 fi
-for s in build buildB train e1; do
+for s in build buildB train e1 push; do
   if want $s; then
     [ -f $T/stage-$s.sh ] || stop "stage $s is not written yet at this source"
     . $T/stage-$s.sh || stop "stage $s failed"
