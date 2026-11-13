@@ -146,7 +146,7 @@ piece in a lead's own session (no sub-agents, Max, 07:48 UTC), all in the review
 | --- | --- | --- |
 | E9-24: calibration of floors by weight source | g9 | done 08:20 |
 | `X9`: the Gen 9 shell on the 8X engine, inert by default, with tests | g9 | done 08:30 (`feature/gen9-x9`, ed2806f) |
-| Defenders' conditional lines: the bound of 2.4 | g9 (sam away) | done 09:05 |
+| Defenders' conditional lines: the bound of 2.4 | g9 (sam away) | done 08:38 |
 | The arena interface for SiD's rounds (2.5) | dave, g9 | posted on the board at 07:57 |
 
 Not Gen 9's: `sure.cpp` and `cells.cpp` (solver session), conditional claims inside the 8X engine (`DESIGN.md`
@@ -161,7 +161,7 @@ section 6; x8, or g9 on a branch of the 8X engine offered back to x8 if x8 prefe
 | 2 | `X9` with tests | the 8X engine at its current commit | Done 08:30 UTC: `feature/gen9-x9` at ed2806f |
 | 3 | Conditional claims in 8X (`DESIGN.md` 6) | owner agreed with x8 | x8's call |
 | 4 | `X9` with conditional claims against the 8X bot it wraps, forks on, on a Gen 9 box | 2, 3 | After 3 |
-| 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Done 09:05 UTC: little to unlock |
+| 5 | Defenders' bound (2.4) | 8X's hand-over code, recorded defender decisions | Done 08:38 UTC: little to unlock |
 | 6 | SiD rounds in the arena (2.5) | SPEC steps 1 to 7 by their owners | When the first round exists |
 
 ## 6. Unknown
