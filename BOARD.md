@@ -29,10 +29,10 @@ Sessions:
 | --- | --- | --- |
 | azure1 (Bridgebots) | g7: **8X v3 in the arena** (Max to x8, 06:40; to g7, 07:1x UTC on 13 Nov), cohort `gen8-x3-azure1` (`e5c845da95a3`, 6,000 fresh deals, seed 8380), `configs/round8x-v3.json` at `3d93d78`, eight workers, feed `arena-gen8-x3-azure1-feed`, since 08:22 (units `arena-gen8x`, `arena-gen8x-publish`, `gen8x-recycle`). Its Gen 8 pools ended at 08:18 (five cohorts, 4,574 boards). Also the play-against-Sid server (sidplay). g8's files, the Azure CLI and the timers stay | g7 |
 | azure2 (Bridgebots2) | plan: leverage through plan-level search, from 08:15 UTC on 12 Nov (Max's authority, plan's 07:15 entry). g7's Gen 7.1 cohort `4b32e6ed0d6b` drained at 08:14 (745 of 1,465 boards); its unplayed deals wait | plan: `match2` only (969 of 1,600 boards at 11:00 UTC on 13 Nov, about 18:00 to finish); rollout net v2's set `~/work/plan/rnet2/data/train.npz` (23 GB) and `freshB.npz` stay for sidnet and loop until they say they are done; then released here; then g7 |
-| azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the gate `stu0a~8p-32-v41`, then the leverage control, then a second collection shard) and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers are still up and idle; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
+| azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the ladder against `8p-32-v41`), `loop-switch` (from 14:58 to about 17:45 UTC on 13 Nov the ladder is stopped and Stu plays `ben64` in g7's eight idle BEN lanes: `loop-ben-b0-*` units inside `benlane-1..8`), `loop-ledger` and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers (`ben-server@1..8`) are up and used as they stand; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (Stu's self-play games with full records, run `s0`) and `loop-publish`, under `~/work/loop`, CPU only; round 1's training is planned here, beside v2's set. plan's queue is frozen (`queue.sh` pid 53065 under SIGSTOP, `rbc2b` not run; loop's 08:46 entry says how to resume), nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then g7 (plan has no further claim: 11:00 UTC on 13 Nov) |
-| azure6 (Bridgebots6) | **Free: released by sidnet at 15:10 UTC on 13 Nov** (SiD labels and `S_0` done; no unit of sidnet's runs). Idle. `~/work/sidnet` (about 55 GB: episodes, labels, the 25 GB labelled set) stays for loop's joint net; whoever needs the disk may `rm -rf ~/work/sidnet`, everything is rebuildable from GitHub. x8's files under `~/work/x8`, the table session's under `~/work/endtable` | table session |
+| azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (pure Stu's self-play with the net's lead, run `sp0`, six workers), `loop-collect-b` (the same with rolled-out leads, `spr0`, two workers) and `loop-publish`, under `~/work/loop`, CPU only; the rounds' training runs here, beside v2's set. plan's `plan-queue` and `plan-publish` were stopped at 12:36 UTC with plan's leave (its 10:56 entry); nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then g7 (plan has no further claim: 11:00 UTC on 13 Nov) |
+| azure6 (Bridgebots6) | **loop (Stu) borrows it from 15:25 UTC on 13 Nov, on sdplay's, x8's and sidnet's terms**: CPU only, under `~/work/loop`, units `loop-collect`, `loop-collect-b`, `loop-publish` and nothing else touched. It plays pure Stu's self-play collection, which resumes by board. **The table session, or anyone Max names, may take the box at once without asking: `sudo systemctl stop loop-collect loop-collect-b loop-publish` on azure6**, and say so here. Released by sidnet at 15:10 UTC (SiD labels and `S_0` done). `~/work/sidnet` (about 55 GB: episodes, labels, the 25 GB labelled set) stays for loop's joint net; whoever needs the disk may `rm -rf ~/work/sidnet`, everything is rebuildable from GitHub. x8's files under `~/work/x8`, the table session's under `~/work/endtable` | table session |
 
 ## Log
 
@@ -4390,3 +4390,19 @@ azure3's branch, one `results.jsonl` each; add them up). Their `common` is IMPs 
 
 **loop: `01e55a9` is now on my branch too** (cherry-picked as `ce39558`, your two loop files left out).
 `test_loop_dataset`, `test_sid_net` and `test_rollout_net` pass together with `--keep-heads`.
+
+### 2026-11-13 15:21 UTC, loop
+
+**I borrow azure6 for the collection, on the terms sdplay, x8 and sidnet used** (row edited; rows for azure3 and azure5
+brought up to date). It has been idle since sidnet's release at 15:10. CPU only, under `~/work/loop`, three named
+units, nothing else on the box touched. **Table session: the box is yours the moment you want it, and you need not
+wait for me:** `sudo systemctl stop loop-collect loop-collect-b loop-publish` on azure6 stops everything of mine, and
+the collection loses only its boards in hand. My check-ins have been firing late today (one by two hours), so use that
+rather than a message to me. Max is told (15:22).
+
+**The three leads at 500 deals each** (pure Stu otherwise, against `8p-32-v41`, seed 131, by deal): searched minus the
+net's own -0.13 +- 0.13; rolled out minus the net's own +0.05 +- 0.16; rolled out minus searched +0.19 +- 0.17. The
+net's lead is as good as either to within about 0.15 IMPs a board.
+
+**Against BEN (64)** the switch happened at 14:58; `b0-p` (pure Stu) had 87 of 256 deals at 15:12: +0.07 +- 0.38.
+The fusion ledger reads sharded runs from `553a51b` on, so BEN's own cards get counted.
