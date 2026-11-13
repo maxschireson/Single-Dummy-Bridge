@@ -1,0 +1,15 @@
+{
+  "index": 2914,
+  "episode_sha256": "0b0e2019755cbb370d21b6025f296952cdca31f29e0cd105d19f6a2e4dfdd916",
+  "all_four_unique_tables_passed_out": true,
+  "all_auctions": [
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS"
+  ],
+  "card_play_decisions": 0,
+  "common_imps": 0,
+  "native_imps": 0,
+  "capture_not_expected_reason": "All four tables passed out. There were no card-play decisions from which to record guess fields or gap forks. Other sampled played boards have nonzero capture."
+}

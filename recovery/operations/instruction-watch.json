@@ -621,7 +621,9 @@
           "observed_guess_fields": {
             "guess_size": 0,
             "best_share": 0
-          }
+          },
+          "capture_not_expected_reason": "All four tables passed out. There were no card-play decisions from which to record guess fields or gap forks. Other sampled played boards have nonzero capture.",
+          "passed_out_verified": true
         },
         {
           "index": 2916,
