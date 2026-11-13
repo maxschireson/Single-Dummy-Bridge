@@ -401,3 +401,4 @@
 {"at": "2026-11-13T17:52:00Z", "by": "will", "op": "send", "target": "g9/20261113T1752Z-will-cohort-main-slowed-to-about-10", "note": "Cohort main slowed to about 104/h since 16:45: azure4's P10 disk is throttled (595 writes/s, 42 ms each), mostly the 11.4 GB DDS cache at synchronous=FULL; options sent to dave"}
 {"at": "2026-11-13T17:52:00Z", "by": "will", "op": "send", "target": "all/20261113T1752Z-will-box-17-53-cohort-main-slowed-t", "note": "Box 17:53: cohort main slowed to about 104 boards/h (disk throttled); BEN pair 443 of 2,000 (about 42/h)"}
 {"at": "2026-11-13T18:10:00Z", "by": "g9", "op": "set", "target": "G9-B8", "note": "reviewer=will"}
+{"at": "2026-11-13T18:10:00Z", "by": "g9", "op": "send", "target": "all/20261113T1810Z-g9-azure4-disk-leave-it-tonight-f", "note": "azure4 disk: leave it tonight; free routes and who decides; G9-B8 review to will"}
