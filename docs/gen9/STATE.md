@@ -1,4 +1,4 @@
-# Gen 9: state at Thu 12 Nov 23:25 UTC (hand-over note)
+# Gen 9: state at Fri 13 Nov 07:45 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -17,16 +17,35 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
 
 ## Running
 
-- **azure4** (given by g8 at 14:59; no other box, no instance added): will's job queue (`tools/boxq.py`, deploy and
-  update scripts on `team/gen9`). `tools/q jobs` shows it.
-  - `d6-arrival` (dave, priority 1, all 8 cores): the arrival run. 5,117 of 6,200 boards at 23:15; ends about 00:45 to
-    01:05 UTC. Failed once at 17:53 (rule bidder on an opponent's 3NT opening), fixed at 698679e on
-    `feature/gen9-arena-arrival`, resumed on will's release at 18:55. Results on
-    `transfer/gen9-d6-arrival-azure4-20261112`. Dave writes the page (items 1 to 6 of task G9-D6, beside the
-    predictions registered there before the run).
-  - Then, in order: `e9-0-n02` and `e9-0-n02e` (paused at about 600 of 800), `e9-0-n04`, `e9-16-r-v-p`,
-    `e9-16-r-v-x` (priority 2); `e9-12-c`, `e9-12-u`, `e9-12-x` (bill's, priority 3); then priority 5 and 6 slices.
-- **Sandboxes:** dave E9-17 (t-random, ends about 01:30); sam E9-6 bench (done 22:16).
+- **azure4** (Gen 9's only box; no instance added): will's job queue (`tools/boxq.py`); `tools/q jobs` shows it.
+  - `g9-cohort-azure4` (dave, priority 1, all 8 cores, since 06:44 UTC): the Gen 9 cohort, `configs/round9-cohort.json`
+    on `feature/gen9-cohort` (46b7e004): `9a-32` against `8s-32`, `71s-32` and `8p-32` (the control) on 10,000 fresh
+    deals (seed 9013), cohort identity 75b73937750652a5. About 200 boards an hour (180 at 07:38), so about 3,500 by the
+    review and all 10,000 on 15 Nov. Feed `arena-gen9-azure4-feed`, registered on the page by g7 as generation 9
+    (`gen9azure4`); the page's default view stays Gen 8 until Max says otherwise. `9a-32` takes 0.354 s per card
+    decision with a choice against `8p-32`'s 0.376 on the same box.
+  - `9a-32~ben64`: not started; it needs cores from the cohort (dave's plan: 5 workers plus a BEN job, through will's
+    `gen9_ben_lanes serve`).
+  - Paused until the cohort ends: `e9-0-n04` (281 of 800), `e9-16-h-v-p` (269 of 800), both g9's.
+- **The ladder** (G9-D9, dave and will, accepted 07:24): `arena/ladder.json` and `ladder.js` at the top of the arena page,
+  refreshed hourly; the cohort's points appear as its boards come in.
+
+## 13 November (with where they are)
+
+- **Arena design note for the review**: `docs/gen9/arena-selfplay.md` (G9-A8, dave reviewing). Roles in the
+  population, three diversity distances and a redundancy rule, training opponents by what the champion still has to
+  learn, ratings in a diverse field, exploiters and leakage, the nets' view of a newcomer, page additions, five decisions
+  for Max, tasks E9-18 to E9-23, G9-B9, G9-S8, G9-D10.
+- **E9-21** (submitted; will to give the verdict): on the ladder's 22 points the field moves the levels, not the order;
+  the equilibrium is `8s-32` alone; the Nash average's errors are about the field scores'. `reports/gen9-arena-field-2026-11-13`.
+- **E9-20** (submitted; will): no current member is redundant. By results alone `6-32` and `8c-32` look alike; by card
+  play alone `8c-32` and `8s-32` never chose differently in 25,953 paired decisions (they differ only in bidding, 0.79
+  IMPs a board natively). `reports/gen9-arena-diversity-2026-11-13`.
+- **E9-19** (open): on 64,790 native boards, boards where the two tables' contracts differ carry 30% of house pairs'
+  variance (55% with BEN), so re-scoring contracts can cut the SD by at most 16% (33%); most of the variance is card
+  play in the same contract.
+- **E9-12 interim** (bill, 04:02): `9c-32` (reads the foreign system by its card) against `8p-32` +0.375 +- 0.092 IMPs a
+  board over 902 boards; `9x-32` (rule replay) +0.410 +- 0.157 over 295; `9u-32` (reads no auction) -0.010 +- 0.126.
 
 ## Results of 12 November (with where they are)
 
@@ -82,9 +101,10 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 
 ## Waiting
 
-- **bill has been silent since 11:16 UTC** (leases expired). His open items: E9-11 (verdict from the bench), E9-12
-  (box jobs queued), E9-13, G9-B5. sam or will may take E9-11's bench verdict.
-- PR #29 (arrival source into `feature/gen9`) after the run; PR #30 also carries unreviewed `signals-v2` (g9's call).
-- E9-16 part 1d (which kinds of close decision, if any, are worth randomizing) and the box matches `e9-16-*`.
-- Decision issues for Max: #23 (sub-agents), #24 (smallest promotable lead).
-- G9-A5 base swap when Gen 8 lands on main; G9-A6 review package.
+- **bill**: last seen 04:02 UTC. E9-12 (submit when the jobs are final), G9-B8 card intake (Max's request; asked at
+  07:19 whether he starts it; if no answer by 09:30 UTC g9 takes the fillable-PDF part), G9-B9, E9-13, G9-B5.
+- **sam**: last seen 00:19 UTC. E9-4 and E9-6 leases expired; G9-S8 new.
+- Verdicts on E9-20 and E9-21 (will, from 08:25 UTC).
+- E9-18 blocked on Max (a training box). E9-22 and E9-23 after the review package (their plumbing takes hours).
+- Decision issues for Max: #23 (sub-agents), #24 (smallest promotable lead); the note's section 10.
+- G9-A5 base swap when Gen 8 lands on main; G9-A6 review package (g9, from 13:00 UTC).
