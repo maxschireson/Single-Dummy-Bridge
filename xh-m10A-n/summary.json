@@ -1,0 +1,23 @@
+{
+ "pair": "stum10A-n~stum10-n",
+ "boards": 1100,
+ "cpu_per_board": 0.67,
+ "common": {
+  "imps_per_board": 0.1809,
+  "se": 0.1067,
+  "boards": 1100,
+  "won": 214,
+  "lost": 182,
+  "flat": 704
+ },
+ "native": {
+  "imps_per_board": 0.1809,
+  "se": 0.1067,
+  "boards": 1100,
+  "won": 214,
+  "lost": 182,
+  "flat": 704
+ },
+ "failures": 0,
+ "boards_per_hour": 13966
+}
