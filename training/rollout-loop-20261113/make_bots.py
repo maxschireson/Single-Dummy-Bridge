@@ -86,7 +86,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
-             'stu3-p2', 'stu3-pg', 'stu0-p2'])   # every bot that claims and mixes as Stu does
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -258,6 +258,29 @@ def main():
     bots['stu3-p2'] = seats('stu3-ps', 'the simulated seats draw from the probabilities squared (power 2)', power=2.)
     bots['stu3-pg'] = seats('stu3-ps', "the simulated seats play the net's most probable card (seat top)", seat='top')
     bots['stu0-p2'] = seats('stu0-ps', 'the simulated seats draw from the probabilities squared (power 2)', power=2.)
+    # Seats by side, and a bot told nothing about its opponent (Max, 03:12 to 03:28 UTC on 14 November: we may read
+    # opponents' cards better than will carry to play against people; build the randomization in; defenders' equal
+    # cards random for now).
+    #   -px   the seats split: its own side drawn among the cards at least half as likely as the likeliest (what a bot
+    #         knows of its own partnership's play), the other side among those at least a quarter as likely
+    #   -pu   blind: stu3-p told nothing about who sits against it. The simulated opponents are the net's unknown player
+    #         and are told nothing about this bot; their played cards are read at the weight of an opponent never met
+    #         (0.3) and as cards of a side that may play any of its equal cards (`read_declarer`, `read_defender` '*')
+    #   -pux  blind, the seats split, and its own defenders play a random one of their equal cards (partner reads them so)
+    SPLIT = dict(seat='draw', cut=.5, seat_other='draw', power_other=1., cut_other=.25)
+    bots['stu3-px'] = seats('stu3-ps', "its own side's simulated seats drawn among the cards at least half as likely as the likeliest, "
+                                       "the other side's among those at least a quarter as likely", **SPLIT)
+    def blind(base, label):
+        b = copy.deepcopy(bots[base])
+        b['x8']['blind'] = True
+        b['x8']['names'] = {'self': b['x8']['names']['self'], '*': '', 'they_see': ''}
+        b['x8']['mix'] = dict(b['x8']['mix'], read_declarer=['*'], read_defender=['*'])
+        b['label'] = b['label'] + '; ' + label
+        return b
+    bots['stu3-pu'] = blind('stu3-p', 'BLIND: told nothing about who sits against it')
+    bots['stu3-pux'] = blind('stu3-p', 'BLIND, the simulated seats split by side, its defenders playing a random one of their equal cards')
+    bots['stu3-pux']['x8']['stages'] = [dict(st, **SPLIT) for st in bots['stu3-pux']['x8']['stages']]
+    bots['stu3-pux']['x8']['mix']['defender'] = True
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])

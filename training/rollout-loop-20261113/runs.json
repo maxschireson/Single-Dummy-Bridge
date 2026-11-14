@@ -25,6 +25,9 @@
   "pure-rs-t": "pure-rs with the round's net at the table too (candidates, reading the play) in place of policy v4.1",
   "pure-rs-p2": "pure-rs, the simulated seats drawing from the probabilities squared (power 2)",
   "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
+  "pure-rs-split": "pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as the likeliest, the other side among those at least a quarter as likely",
+  "pure-blind": "pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown player, their cards read at the weight of an opponent never met and as a side that may play any equal card",
+  "pure-blind-split": "pure, told nothing about who sits against it, the simulated seats split by side, its defenders playing a random one of their equal cards",
   "net-d": "the net alone, every card drawn from its probabilities (as a simulated seat of the rollouts draws)",
   "net-s": "the net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards within a limit on forgetting)",
   "pure-t": "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
@@ -1524,6 +1527,72 @@
     "rung": "pure-rs"
    },
    "queue_order": 13
+  },
+  {
+   "name": "l3-pu",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu3-pu~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 12
+  },
+  {
+   "name": "l3-pux",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu3-pux~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-split"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 13
+  },
+  {
+   "name": "h3-px",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-px~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-split"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 5
   },
   {
    "name": "l0-r3",
