@@ -1,0 +1,30 @@
+{
+  "poll_start": "2026-11-14T03:26:27Z",
+  "new_branches": [
+    {
+      "branch": "arena-gen9-genx-stu-azure4-feed",
+      "revision": "4bceca963153b6dc8f77a701c26f3899fc914e07",
+      "kind": "Registered authorized Gen9/GenX arena producer on Azure4",
+      "registration_key": "gen9genxstuazure4",
+      "manifest": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+      "eligible_for_current_own_gate": false
+    },
+    {
+      "branch": "transfer/gen9-e9-25-azure4-20261114",
+      "revision": "022d3126d453d24816d4d6d023c87ebe2513dba8",
+      "kind": "Unrelated E9-25 research transfer; 0/750 failed, not an arena feed; preserve without intervention.",
+      "readme_blob": "365a157fe8247e4b1ab8c03cd764d202139cb700",
+      "readme": "# e9-25 on azure4\n\nResults of box job `e9-25` (E9-25, owner g9), published by tools/boxq.py on team/gen9. Source `feature/gen9` at `9bb9aed`. A transfer branch: never merged into source.\n\nLast published 2026-11-14T02:49:29Z: 0 of 750 boards, state failed.\n"
+    },
+    {
+      "branch": "transfer/gen9-g9-genx-stu-azure4-azure4-20261114",
+      "revision": "cf4c53b8f400f689c9405e3c8d4d2f3a30b6c565",
+      "kind": "Task transfer for the same registered GenX cohort, not an additional independent producer or board count; never merge.",
+      "readme_blob": "fdabd4fb7fb05207bf4ed0ba4c59cca3271c6e01",
+      "readme": "# g9-genx-stu-azure4 on azure4\n\nResults of box job `g9-genx-stu-azure4` (no experiment, owner will), published by tools/boxq.py on team/gen9. Source `feature/gen9-genx-stu` at `9bba86b6`. A transfer branch: never merged into source.\n\nLast published 2026-11-14T03:16:56Z: 28 of 4000 boards, state running.\n"
+    }
+  ],
+  "all_reviewed": true,
+  "owned_stream_changed": false,
+  "other_producers_mutated": false
+}

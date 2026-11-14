@@ -1,0 +1,91 @@
+{
+  "poll_start": "2026-11-14T03:26:27Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "fc8202fc96158f249b5ff14b3d0a2e959dbb5c7f",
+  "commits": [
+    {
+      "sha": "fc8202fc96158f249b5ff14b3d0a2e959dbb5c7f",
+      "date": "2026-11-14T03:06:46Z",
+      "message": "Stu: how the simulated seats take their cards. Sharpened-draw and top-card rollout bots (stu3-p2, stu3-pg, stu0-p2), the nets alone with every card drawn (stu3-nd, stu0-nd), their head-to-head jobs; rungs.sh knows azure3's first chain\n\ndraw_regret.py on round 3's test rows: a card drawn from round 3's net told it is Stu gives up 0.0791 tricks against 0.0731\nfor v2 told it is Gen 8 (+0.0060 +- 0.0006, and 4.3% against 1.4% of draws are cards the rollouts never rated), though its\nmost probable card gives up less (0.0608 against 0.0631). Told it is Gen 8, round 3's net draws as v2 does (-0.0002 +- 0.0003).\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "4e9ee6010d25f3709e6962f5c953b0a1cc9d433a",
+      "date": "2026-11-14T03:01:15Z",
+      "message": "Stu: draw_regret.py, what a simulated seat gives up when it draws its card from a net (as the rollouts' seats do) against playing the net's top card\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "5414b8a6791e6849f3d5c423eabf2b5e3567e7c5",
+      "date": "2026-11-14T02:46:37Z",
+      "message": "Stu: Gen 8 card play's self-play records on azure1 (g8a~g8b, sg8e; rows read as 8s-32); Gen 8's cost corrected (6 CPU-s a table side, not 2)\n\nMax, 02:43 UTC: only as much self-play as tells where we are; external data until the rollouts' lift pays for the slower generation.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "bb9919848b9b45c5d05c00306fabc9077c6eedff",
+      "date": "2026-11-14T02:41:00Z",
+      "message": "Stu PLAN: the powered tests, Max's reading and data plan, the experiments on it\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "28b5b06c236da5d7d54e9c34a6b9d40ad7985e06",
+      "date": "2026-11-14T02:39:04Z",
+      "message": "Stu: SiD (rollout) Stu R3 with round 3's net at the table too (stu3-pst), head to head against SiD (rollout) Stu R0 on 2,000 boards (azure6, azure2)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "3dc875b3342671cfa8f1e95ea19c4d065ea7fbd1",
+      "date": "2026-11-14T02:28:59Z",
+      "message": "exp_strong.sh: both nets at 512 and 768 wide (Max, 02:28 UTC: the smaller set may want a narrower net)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "3da2feb557a1a293f9dd2d95c648311303aa703b",
+      "date": "2026-11-14T02:28:35Z",
+      "message": "Stu experiment (Max, 02:26 UTC): a net from Gen 8 card play's rows only against one from as many rows in v2's mix (exp_strong.sh, sample_set.py --bots), their bots and head-to-head jobs\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Max-directed Stu data and measurement work, including Azure1 Gen8-cardplay self-play, strong-data training and sampled-seat experiments.",
+  "disposition": "Max02:21/02:31/02:43 directs the Stu loop to test stronger/external data before expanding rollout self-play; its Azure1 sg8e/g8a~g8b data job is on the research loop branch. It does not open self-play for this canonical Gen8 collector or replace configs/round8-candidate.json. No new model, sampled-seat settings, dataset/training run, target or promotion predicate adopted here.",
+  "evidence": [
+    {
+      "sha": "5414b8a6791e6849f3d5c423eabf2b5e3567e7c5",
+      "message": "Stu: Gen 8 card play's self-play records on azure1 (g8a~g8b, sg8e; rows read as 8s-32); Gen 8's cost corrected (6 CPU-s a table side, not 2)\n\nMax, 02:43 UTC: only as much self-play as tells where we are; external data until the rollouts' lift pays for the slower generation.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        {
+          "path": "configs/loop-bots.json"
+        },
+        {
+          "path": "training/rollout-loop-20261113/PLAN.md",
+          "patch": "@@ -284,8 +284,9 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel\n - **Running on it:** `exp_strong.sh` (a net from Gen 8 card play's rows of v2's set only, 3.67 million, against one from\n   as many rows in v2's mix, each from scratch at 512 and 768 wide; then head to head alone and inside the rollouts), and\n   the table net (`stu3-pst`, round 3's net inside and at the table, against SiD (rollout) Stu R0 on 2,000 boards).\n-  Gen 8's data costs about 2 CPU-s a table side against SiD's 9, and the arena's feeds already hold about 25,000 Gen 8\n-  and 9 episodes newer than v2's set.\n+  Gen 8's data costs about 6 CPU-s a table side (fp32) against SiD (rollout)'s 9 (bf16) to 12 (fp32), so its self-play\n+  makes about 1.5 to 2 times the tables a box-hour; the arena's feeds already hold about 25,000 Gen 8 and 9 episodes\n+  newer than v2's set. From 02:50 UTC azure1 makes Gen 8's self-play records (`sg8e`, `g8a~g8b`).\n \n ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)\n "
+        },
+        {
+          "path": "training/rollout-loop-20261113/README.md",
+          "patch": "@@ -261,8 +261,10 @@ other setting as the lane's BEN (64). Deals 0 to 255, card play only:\n | Gen 8 against BEN (200) | -0.11 +- 0.27; by deal minus Gen 8 against BEN (64), -0.22 +- 0.21 | 28.4 min |\n | Gen 8 against BEN (64) | +0.09 +- 0.27 | 27.0 min |\n \n-From the three clocks: BEN (64) about 23 s a table side, BEN (200) about 24.5, Gen 8 about 2. BEN's time is mostly\n-fixed a card (sampling 5,000 boards, its networks), so 200 samples cost about 7% of BEN's time. From round 4's\n+Gen 8's own process time is 12.2 CPU-s a board against BEN (64) and 13.2 against BEN (200) (about 6 a table side), so\n+of the wall clock BEN (64) takes about 19 s a table side and BEN (200) about 20: BEN's time is mostly fixed a card\n+(sampling 5,000 boards, its networks), and 200 samples cost about 5% of it. (A first reading at 01:40 UTC that put Gen\n+8 at 2 s a table side was wrong: it solved the three clocks without Gen 8's measured time.) From round 4's\n measurements on, BEN means BEN (200).\n \n ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)"
+        },
+        {
+          "path": "training/rollout-loop-20261113/alias.txt"
+        },
+        {
+          "path": "training/rollout-loop-20261113/jobs-azure1.txt"
+        },
+        {
+          "path": "training/rollout-loop-20261113/make_bots.py"
+        },
+        {
+          "path": "training/rollout-loop-20261113/make_runs.py"
+        },
+        {
+          "path": "training/rollout-loop-20261113/runs.json"
+        }
+      ]
+    },
+    {
+      "sha": "bb9919848b9b45c5d05c00306fabc9077c6eedff",
+      "message": "Stu PLAN: the powered tests, Max's reading and data plan, the experiments on it\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        {
+          "path": "training/rollout-loop-20261113/PLAN.md",
+          "patch": "@@ -271,6 +271,22 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel\n   nets alone now meet each other head to head on 4,000 new gate-seed deals (`jobs-azure5-h3.txt`: round 3 against v2,\n   round 3 against round 2), about +-0.05. Flat there, and the rule applies: the next lever is the rollouts' values.\n \n+- **The powered tests (00:20 to 02:40 UTC on 14 November), head to head on new gate-seed deals:** SiD (net) Stu R3\n+  against SiD (net) Stu R0 +0.40 +- 0.07 and against SiD (net) Stu R2 +0.19 +- 0.06 (4,000 deals each); against SiD\n+  (net) v4.1, the table net of every SiD (rollout) bot, +1.36 +- 0.07. But SiD (rollout) Stu R3 against SiD (rollout)\n+  Stu R0: -0.13 +- 0.09 (2,000 boards). Indicator 2 rises; indicator 3 does not.\n+- **Max's reading (02:21 UTC):** the loop's tables taught the net Stu's habits, a weaker player than the search bots v2\n+  learned from, so the simulated seats imagine weaker play. The sandbox control fits it: a net that imitates the search\n+  bots better lifts the rollout bot (v4.1 against v4, +1.18 alone: +0.29 +- 0.15 inside, +0.79 +- 0.27 as the whole\n+  bot). **His plan (02:31 UTC):** generate the best data the strongest bots can make, add its volume to Stu's net, and\n+  ramp Stu's own rollout data in (or build a lot of it and restart) once a net that imitates the rollouts beats one\n+  that imitates the other bots inside the rollouts.\n+- **Running on it:** `exp_strong.sh` (a net from Gen 8 card play's rows of v2's set only, 3.67 million, against one from\n+  as many rows in v2's mix, each from scratch at 512 and 768 wide; then head to head alone and inside the rollouts), and\n+  the table net (`stu3-pst`, round 3's net inside and at the table, against SiD (rollout) Stu R0 on 2,000 boards).\n+  Gen 8's data costs about 2 CPU-s a table side against SiD's 9, and the arena's feeds already hold about 25,000 Gen 8\n+  and 9 episodes newer than v2's set.\n+\n ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)\n \n Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the"
+        }
+      ]
+    }
+  ],
+  "plan_blob": "2b18c496a979be80fd732f99bb9a29092d6281eb",
+  "future_exclusions": "Keep complete pinned all-released-model training-family and source-corpus exclusions for any future new owned cohort. Current frozen v4.1 union/proof remain unchanged."
+}
