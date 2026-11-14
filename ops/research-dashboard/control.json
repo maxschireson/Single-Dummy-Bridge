@@ -1,6 +1,6 @@
 {
   "schema": "stu-research-control-v1",
-  "updated": "2026-11-14T21:49:14.371Z",
+  "updated": "2026-11-14T21:51:01.186Z",
   "coordinator": "codex-research-traffic",
   "issue": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44",
   "streams": [
@@ -9,8 +9,8 @@
       "name": "Rollout optimization",
       "owner": "codex-rollout",
       "state": "Mixed: running / paused",
-      "summary": "Azure2 reader screen completed 512 boards: +0.1152 ±0.1665 IMP/board (1SE), inconclusive. Azure6 old depth arms remain paused; corrected-source acceptance and independent review remain open.",
-      "next": "Resolve broader BF16 fixture failures; pass actual-model acceptance and independent review before a fresh depth identity.",
+      "summary": "Azure2 reader512 remains inconclusive. Corrected d82f9a7 passed native/BF16 acceptance; owner reopened fresh 16-board correctness-only smokes. Old depth evidence remains invalid; independent B review outstanding.",
+      "next": "Review new acceptance and correctness outputs before any larger screen; retain old invalid evidence.",
       "links": [
         {
           "label": "Experiments #38",
@@ -73,10 +73,10 @@
       "stream": "rollout",
       "title": "Repair recursive / selective policy consistency",
       "owner": "codex-rollout",
-      "status": "working",
-      "detail": "Corrected d82f9a7 passes 25 new regressions locally and on Azure BF16. Initial acceptance bundle exited 1 after three broader runtime fixture failures, before native_acceptance; follow-up underway. Old depth arms intentionally paused, not stalled.",
-      "next": "Publish actual R4c BF16/null/zero and FP32-fixture results; independent B review, then fresh run identity",
-      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44#issuecomment-6884656387"
+      "status": "review",
+      "detail": "Native acceptance passed at reported21:46:04 UTC: 25 BF16 regressions, 34/34 original FP32/native tests; native.json confirms null/zero parity on four views plus one child call. Owner reopened only fresh rx2 correctness smokes. Initial fixture failures preserved; independent review still open.",
+      "next": "Helper B re-review on #43; no automatic larger screen or strength inference",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/43#issuecomment-6884699372"
     },
     {
       "id": "R-mechanism",
@@ -104,7 +104,7 @@
       "title": "Harvest fork pairs; test learning frontier",
       "owner": "codex-stu-harvest",
       "status": "working",
-      "detail": "Extractor/reliability and H03–H05 design assigned; #41 supplies selector interface.",
+      "detail": "H02 extractor/H03–H04 remain harvest. Loop reports bounded H05 reliability run; explicit release/acceptance with harvest not yet recorded. #41 interface acknowledgement remains open.",
       "next": "First extraction/reliability checkpoint and interface acknowledgement",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37"
     },
@@ -123,10 +123,10 @@
       "stream": "performance",
       "title": "Reuse prepared row chunks",
       "owner": "codex-stu-efficiency",
-      "status": "waiting",
-      "detail": "Efficiency retains ownership. P04 sandbox acceptance dependency is now resolved; next cache implementation/reuse checkpoint requested, no completed cache claim.",
-      "next": "Advance P03 and publish first verified reuse/checkpoint",
-      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
+      "status": "working",
+      "detail": "Draft PR45: per-record cached build reproduces all83 fixture rows; reuse/invalidation/failure tests pass. Full/tail and R4c parity still open; needs exact12701 local payloads/row artifacts plus SHA-family mapping or reconstructible baseline.",
+      "next": "Loop provides pinned parity inputs; efficiency continues shard/audit tooling",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/45"
     },
     {
       "id": "P01",
@@ -153,10 +153,20 @@
       "stream": "model",
       "title": "Freeze a common validation anchor",
       "owner": "perf (proposal / build), loop (recipe)",
-      "status": "review",
-      "detail": "Perf proposed a family-disjoint anchor and lifecycle comparison matrix. v2 and width-run logged validation populations differ.",
-      "next": "Loop agrees size/mix and publishes Stu test rows; freeze manifest before cross-net scoring",
+      "status": "working",
+      "detail": "Loop approved1500 arena+300 Stu deals, bot tables only; Stu separately and pooled; keep freshB as V(width). Exclude seed131/squeeze/USBC/juniors. Stu test file+SHA published; manifest and future-training exclusion enforcement not yet verified.",
+      "next": "Perf freezes family-disjoint manifest and drafts family check; loop integrates fail-on-overlap from round5",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+    },
+    {
+      "id": "H05",
+      "stream": "model",
+      "title": "Independent-panel label reliability",
+      "owner": "harvest (assigned); loop (reported run)",
+      "status": "running",
+      "detail": "Loop reports loop-pairs on Azure5,2500 sp3s then2500 sp0 pairs, ~0.5 box-hour. Initial40-pair smoke:62% zero labels,55% tricks10–12/<32 layouts,correlation.40; too small/no uncertainty supplied. pairs-sp3s.jsonl published; report-sp3s.txt empty at check. BOARD labels21:55 ahead of ~21:51 observation.",
+      "next": "Confirm H05 release/acceptance and publish stratified report ~22:20 UTC; no duplicate run",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/rollout-loop-azure5-20261113/h05"
     }
   ],
   "handoffs": [
@@ -175,7 +185,7 @@
       "from": "loop",
       "to": "perf",
       "state": "partial",
-      "detail": "freshB.npz/SHA256, v2_trained_rows_seed7.npz/SHA file, epoch weights and unit memory/threads delivered on width transfer paths. Perf acceptance pending; v2 original held-out and round4 stu_test not verified delivered. FreshB SHA256 0b39e6a72d841f538f8ee79b52828f9acef913f3fea8c5c0013afcefd9fb9171.",
+      "detail": "freshB.npz/SHA256, v2_trained_rows_seed7.npz/SHA file, epoch weights and unit memory/threads delivered on width transfer paths. Perf acceptance pending; v2 original held-out and round4 stu_test not verified delivered. FreshB SHA256 0b39e6a72d841f538f8ee79b52828f9acef913f3fea8c5c0013afcefd9fb9171. Round4 stu_test.npz + SHA file now verified listed (12419 rows/300deals per loop); V1 approved. Only v2 original held-out remains unverified, plus perf acknowledgement.",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
     },
     {
@@ -195,6 +205,15 @@
       "state": "requested",
       "detail": "Confirm #41 selector interface in #37; keep search allocation and label value as separate endpoints.",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/41"
+    },
+    {
+      "id": "h05-scope",
+      "title": "Reconcile H05 reliability ownership",
+      "from": "harvest",
+      "to": "loop",
+      "state": "requested",
+      "detail": "Loop reports run under Max's keep-moving instruction; explicit harvest release/loop acceptance requested. H02/H03/H04 stay harvest. Shared Azure5 CPU overlap must be annotated for P10.",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6884732942"
     }
   ],
   "boxes": [
@@ -225,14 +244,14 @@
     {
       "box": "Azure5",
       "owner": "loop",
-      "work": "Width 1536 training",
-      "next": "Epoch2 published; continue each epoch and memory telemetry"
+      "work": "Width1536 plus loop-reported H05 reliability",
+      "next": "Annotate overlapping CPU work; reconcile H05 handoff"
     },
     {
       "box": "Azure6",
       "owner": "codex-rollout",
-      "work": "Old batch intentionally paused",
-      "next": "Correctness gate then new run"
+      "work": "Old batch paused; fresh correctness-only smokes",
+      "next": "Independent review; no larger strength screen yet"
     },
     {
       "box": "Azure7",
