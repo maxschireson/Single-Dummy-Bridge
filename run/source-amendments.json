@@ -1,0 +1,13 @@
+[
+ {
+  "source_sha256": "3f3c01afe8b6c003d471c0cffac95dfa0c47d63c7c29473eb0b4cdba21c160e0",
+  "commit": "9b2e7ad0",
+  "branch": "feature/gen9-cohort-amend",
+  "pinned_commit": "46b7e004",
+  "reason": "The DDS position cache may sync NORMAL instead of FULL (BRIDGE_DDS_CACHE_SYNC, bridge_harness/dds_cache.py, 9bba86b6), to lift the disk throttle on azure4; plus check_source, which reads this file (bridge_harness/mixed_arena.py). Cards and results are unchanged: the cache returns the same solver results, and a lost entry is solved again.",
+  "authority": "Max, 14 Nov 2026 09:17 UTC: \"Fix it so that it can run with changed code. Producing the boards is more important.\" g9, 08:11 UTC: cohort cache go.",
+  "by": "will (Gen 9)",
+  "at": "2026-11-14T09:24Z",
+  "receipts_before": 3617
+ }
+]
