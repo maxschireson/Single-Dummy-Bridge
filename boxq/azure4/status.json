@@ -497,12 +497,12 @@
    "experiment": "G9-D9",
    "boards": 3617,
    "target": 10000,
-   "restarts": 1,
+   "restarts": 2,
    "submitted": "2026-11-13T06:44:00Z",
    "priority": 1,
    "cores": 4,
    "started": "2026-11-13T06:45:19Z",
-   "resumed": "2026-11-14T09:07:20Z",
+   "resumed": "2026-11-14T09:07:52Z",
    "source": "/home/bridgebots/work/g9/src/7e0edac7",
    "rate_per_hour": 0.0,
    "eta": null,
@@ -511,7 +511,7 @@
    "short": false,
    "retry_seen": 3,
    "last_exit": 1,
-   "ended": "2026-11-14T09:07:20Z"
+   "ended": "2026-11-14T09:07:52Z"
   },
   "g9-cohort-ben64-azure4": {
    "state": "running",
@@ -526,8 +526,8 @@
    "started": "2026-11-13T07:41:58Z",
    "resumed": "2026-11-13T07:41:58Z",
    "source": "/home/bridgebots/work/g9/src/989a4931",
-   "rate_per_hour": 44.4,
-   "eta": "2026-11-15T05:15:35Z",
+   "rate_per_hour": 44.3,
+   "eta": "2026-11-15T05:17:28Z",
    "published_at": "2026-11-14T09:00:34Z",
    "published": "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@c69294320"
   },
@@ -565,14 +565,14 @@
    "started": "2026-11-14T02:45:11Z",
    "resumed": "2026-11-14T02:45:11Z",
    "source": "/home/bridgebots/work/g9/src/9bba86b6",
-   "rate_per_hour": 56.5,
-   "eta": "2026-11-17T01:53:54Z",
+   "rate_per_hour": 52.4,
+   "eta": "2026-11-17T06:58:05Z",
    "published_at": "2026-11-14T09:00:01Z",
    "published": "transfer/gen9-g9-genx-stu-azure4-azure4-20261114@8dcda8091"
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-14T09:07:20Z",
+ "updated": "2026-11-14T09:07:52Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
