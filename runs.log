@@ -46,3 +46,18 @@
 2026-11-14T05:38:15Z start b0-pst200b-6 stu0-pst~ben200 seed 131 first 416 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
 2026-11-14T05:38:15Z start b0-pst200b-7 stu0-pst~ben200 seed 131 first 448 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
 2026-11-14T05:38:15Z start b0-pst200b-8 stu0-pst~ben200 seed 131 first 480 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T06:15:28Z end b0-pst200b-2: exit 0
+2026-11-14T06:16:25Z end b0-pst200b-4: exit 0
+2026-11-14T06:16:28Z end b0-pst200b-8: exit 0
+2026-11-14T06:16:35Z end b0-pst200b-6: exit 0
+2026-11-14T06:17:04Z end b0-pst200b-5: exit 0
+2026-11-14T06:17:14Z end b0-pst200b-7: exit 0
+2026-11-14T06:17:27Z end b0-pst200b-3: exit 0
+2026-11-14T06:17:57Z end b0-pst200b-1: exit 0
+2026-11-14T06:18:08Z jobs-azure1-ben.txt has ended; BEN (200) servers stopped; back to the collection
+2026-11-14T06:18:08Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source ba98377, nets fp32)
+2026-11-14T06:18:08Z the collection is paused for jobs-azure1-styles.txt
+2026-11-14T06:18:08Z start h3-pi stu3-psti~stu3-pst seed 131 first 17000 deals 500 workers 8 --episodes (source ba98377, nets fp32)
+2026-11-14T06:18:09Z end h3-pi: exit 0
+2026-11-14T06:18:09Z jobs-azure1-styles.txt has ended; back to the collection
+2026-11-14T06:18:09Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source ba98377, nets fp32)

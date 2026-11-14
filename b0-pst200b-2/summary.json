@@ -1,0 +1,23 @@
+{
+ "pair": "stu0-pst~ben200",
+ "boards": 32,
+ "cpu_per_board": 25.58,
+ "common": {
+  "imps_per_board": -1.6875,
+  "se": 0.8,
+  "boards": 32,
+  "won": 7,
+  "lost": 11,
+  "flat": 14
+ },
+ "native": {
+  "imps_per_board": -1.6875,
+  "se": 0.8,
+  "boards": 32,
+  "won": 7,
+  "lost": 11,
+  "flat": 14
+ },
+ "failures": 0,
+ "boards_per_hour": 52
+}
