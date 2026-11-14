@@ -1,0 +1,18 @@
+data in memory 2.96 GB, 6366157 examples
+80542 training deals, 6366157 training examples, 135543 held-out examples from val.npz (444 deals)
+{"epoch": 0, "val": {"n": 135543, "searched": 110242, "nll": 0.5588, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7705, "in_best": 0.8972, "rated_pick": 0.9996, "regret": 0.0253, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "select": {"bot": "stup0", "key": "nll", "value": 1.0505, "rest_nll": 0.5093}}
+epoch 1 step 2000 of 24867, 21 s
+epoch 1 step 4000 of 24867, 39 s
+epoch 1 step 6000 of 24867, 57 s
+epoch 1 step 8000 of 24867, 75 s
+epoch 1 step 10000 of 24867, 92 s
+epoch 1 step 12000 of 24867, 110 s
+epoch 1 step 14000 of 24867, 128 s
+epoch 1 step 16000 of 24867, 146 s
+epoch 1 step 18000 of 24867, 164 s
+epoch 1 step 20000 of 24867, 182 s
+epoch 1 step 22000 of 24867, 200 s
+epoch 1 step 24000 of 24867, 218 s
+{"epoch": 1, "seconds": 228, "train_ce": 0.8627, "train_gap": 0.0329, "train_owner": 0.5883, "val": {"n": 135543, "searched": 110242, "nll": 0.5588, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7705, "in_best": 0.8972, "rated_pick": 0.9996, "regret": 0.0253, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "temperature": {"t": 1.08, "nll": 0.5576, "nll_at_1": 0.5588}}
+{"epoch": 1, "select": {"bot": "stup0", "key": "nll", "value": 1.0505, "rest_nll": 0.5093, "within": true}}
+{"done": "/home/bridgebots/work/loop/r4c/before", "selected_epoch": 0, "validation": {"n": 135543, "searched": 110242, "nll": 0.5588, "uniform_nll": 1.2813, "tie_nll": 0.751, "agree": 0.7705, "in_best": 0.8972, "rated_pick": 0.9996, "regret": 0.0253, "regret_gap_head": 0.0233, "regret_random": 0.2032, "regret_lowest": 0.2233}, "parity": 4.76837158203125e-06, "auction_use": {"real": {"nll": 0.5588, "agree": 0.7705, "regret": 0.0253}, "blank": {"nll": 6.3886, "agree": 0.587, "regret": 0.0987}, "another_deals": {"nll": 0.5922, "agree": 0.7573, "regret": 0.0302}, "blank_calls_only": {"nll": 0.5592, "agree": 0.7695, "regret": 0.0256}, "blank_shown_only": {"nll": 5.3475, "agree": 0.5986, "regret": 0.0948}}, "auction_use_lead": {"real": {"nll": 1.5051, "agree": 0.5109, "regret": 0.0526}, "blank": {"nll": 16.5257, "agree": 0.2822, "regret": 0.1597}, "another_deals": {"nll": 1.9163, "agree": 0.4125, "regret": 0.0998}, "blank_calls_only": {"nll": 1.5076, "agree": 0.5045, "regret": 0.056}, "blank_shown_only": {"nll": 14.9086, "agree": 0.2644, "regret": 0.1562}}}
