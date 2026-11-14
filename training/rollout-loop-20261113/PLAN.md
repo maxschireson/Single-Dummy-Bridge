@@ -271,6 +271,22 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   nets alone now meet each other head to head on 4,000 new gate-seed deals (`jobs-azure5-h3.txt`: round 3 against v2,
   round 3 against round 2), about +-0.05. Flat there, and the rule applies: the next lever is the rollouts' values.
 
+- **The powered tests (00:20 to 02:40 UTC on 14 November), head to head on new gate-seed deals:** SiD (net) Stu R3
+  against SiD (net) Stu R0 +0.40 +- 0.07 and against SiD (net) Stu R2 +0.19 +- 0.06 (4,000 deals each); against SiD
+  (net) v4.1, the table net of every SiD (rollout) bot, +1.36 +- 0.07. But SiD (rollout) Stu R3 against SiD (rollout)
+  Stu R0: -0.13 +- 0.09 (2,000 boards). Indicator 2 rises; indicator 3 does not.
+- **Max's reading (02:21 UTC):** the loop's tables taught the net Stu's habits, a weaker player than the search bots v2
+  learned from, so the simulated seats imagine weaker play. The sandbox control fits it: a net that imitates the search
+  bots better lifts the rollout bot (v4.1 against v4, +1.18 alone: +0.29 +- 0.15 inside, +0.79 +- 0.27 as the whole
+  bot). **His plan (02:31 UTC):** generate the best data the strongest bots can make, add its volume to Stu's net, and
+  ramp Stu's own rollout data in (or build a lot of it and restart) once a net that imitates the rollouts beats one
+  that imitates the other bots inside the rollouts.
+- **Running on it:** `exp_strong.sh` (a net from Gen 8 card play's rows of v2's set only, 3.67 million, against one from
+  as many rows in v2's mix, each from scratch at 512 and 768 wide; then head to head alone and inside the rollouts), and
+  the table net (`stu3-pst`, round 3's net inside and at the table, against SiD (rollout) Stu R0 on 2,000 boards).
+  Gen 8's data costs about 2 CPU-s a table side against SiD's 9, and the arena's feeds already hold about 25,000 Gen 8
+  and 9 episodes newer than v2's set.
+
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
 Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the
