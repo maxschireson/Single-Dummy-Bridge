@@ -1,1 +1,3 @@
 rx-reader v rx-control: 16 boards to play (0 done), 4 workers
+16 boards: 0.4375 +- 0.2882 IMPs/board for rx-reader; 420 boards/hour; 0 failed
+{"pair": "rx-reader~rx-control", "boards": 16, "cpu_per_board": 29.21, "common": {"imps_per_board": 0.4375, "se": 0.2882, "boards": 16, "won": 4, "lost": 1, "flat": 11}, "native": {"imps_per_board": 0.4375, "se": 0.2882, "boards": 16, "won": 4, "lost": 1, "flat": 11}}

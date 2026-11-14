@@ -1,5 +1,30 @@
 {
-  "updated": "2026-11-14T20:53:34Z",
+  "updated": "2026-11-14T20:55:35Z",
   "purpose": "development-only; no adoption decision",
-  "runs": []
+  "runs": [
+    {
+      "name": "smoke-reader",
+      "pair": "rx-reader~rx-control",
+      "boards": 16,
+      "cpu_per_board": 29.21,
+      "common": {
+        "imps_per_board": 0.4375,
+        "se": 0.2882,
+        "boards": 16,
+        "won": 4,
+        "lost": 1,
+        "flat": 11
+      },
+      "native": {
+        "imps_per_board": 0.4375,
+        "se": 0.2882,
+        "boards": 16,
+        "won": 4,
+        "lost": 1,
+        "flat": 11
+      },
+      "failures": 0,
+      "boards_per_hour": 420
+    }
+  ]
 }
