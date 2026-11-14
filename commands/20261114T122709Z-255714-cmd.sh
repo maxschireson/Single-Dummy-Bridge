@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep MATCH $W/human.log | tail -n +19 | cut -c1-200; tail -n 1 $W/runs.log | cut -c1-150; tail -n 3 $W/r4arena/arena.log | cut -c1-200; systemctl is-active loop-arena; ls $W/r4arena/eps | wc -l; ls $W/r4arena/odd | wc -l; echo "xh-hf-p $(wc -l < $W/runs/xh-hf-p/results.jsonl)"; date -u +%T
