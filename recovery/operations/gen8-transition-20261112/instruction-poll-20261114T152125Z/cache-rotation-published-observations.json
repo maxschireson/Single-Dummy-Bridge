@@ -1,0 +1,88 @@
+{
+  "before_revision": "6bbfbacf67c0c586e55abfec56242425c9ad6e98",
+  "after_revision": "201cc46313794482c3967a82a04992892bcdd7eb",
+  "states": {
+    "6bbfbacf67c0c586e55abfec56242425c9ad6e98": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 5047,
+      "target": 18283,
+      "contiguous": 5045,
+      "by_pair": {
+        "8s-32~1": 842,
+        "8c-32~71s-32": 841,
+        "8c-32~8s-32": 840,
+        "8s-32~71s-32": 1682,
+        "8s-32~5RZ32": 842
+      },
+      "root_games": 16824,
+      "tables": 207323,
+      "failures": 0,
+      "epoch": 1794667087.6238823,
+      "complete": false
+    },
+    "201cc46313794482c3967a82a04992892bcdd7eb": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 5051,
+      "target": 18283,
+      "contiguous": 5051,
+      "by_pair": {
+        "8s-32~1": 842,
+        "8c-32~71s-32": 841,
+        "8c-32~8s-32": 842,
+        "8s-32~71s-32": 1684,
+        "8s-32~5RZ32": 842
+      },
+      "root_games": 16836,
+      "tables": 207496,
+      "failures": 0,
+      "epoch": 1794667163.2424202,
+      "complete": false
+    }
+  },
+  "heartbeats": {
+    "6bbfbacf67c0c586e55abfec56242425c9ad6e98": {
+      "epoch": 1794667087.3399425,
+      "completed": 5047,
+      "in_flight": [
+        5045,
+        5046,
+        5049
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794654029.5559945,
+      "stopping": false
+    },
+    "201cc46313794482c3967a82a04992892bcdd7eb": {
+      "epoch": 1794667147.1457157,
+      "completed": 5051,
+      "in_flight": [
+        5050
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794654029.5559945,
+      "stopping": true
+    }
+  },
+  "exact_draining_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "final_state_contiguous": 5051,
+  "final_receipt_markers": 5051,
+  "heartbeat_note": "The FINAL drained heartbeat retains last in-flight index5050. Drain is established by the exited old owner/free writer under the unchanged exact-token guard, contiguous5051 committed receipts and published count. A later snapshot has the new collector heartbeat; no heartbeat was rewritten.",
+  "resumed_revision": "cc0e1c44fc9a3b4eb57590a0ca89a9d89cbb2a6d",
+  "resumed_heartbeat": {
+    "epoch": 1794667232.1755252,
+    "completed": 5052,
+    "in_flight": [
+      5051,
+      5053,
+      5054
+    ],
+    "workers": 3,
+    "ben_workers": 0,
+    "started_epoch": 1794667169.784286,
+    "stopping": false
+  },
+  "old_collector_exited": true,
+  "current_writer_owner": 292481
+}
