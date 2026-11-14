@@ -309,6 +309,13 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 | 09:39 | "If we aren't sure we can do a R4a and an R4b" | round 4 in two nets: `stu4` with every human table, `stu4c` without |
 | 09:37 | the USBC analysis waits until this and round 4 are driven | the claims-played-out rescoring is paused at 99 of 270 sessions |
 | 15:39 | "If there is not a clear gain from the human boards that makes it through, I would rather not use them" | `stu4c` is round 4's net unless `stu4` leads it by more than two SEs inside the bot (`h4c-pst`, or the gate's first 512 deals each); then the gate's time goes to `stu4c` alone |
+| 15:50 | "I kinda like the idea of being trained only on bots" | `stu4c` is round 4's net |
+| 17:11 | "Should we experiment with different rollout mechanisms?" | `bench/value_check.py` (the values are optimistic for the side deciding), `bench/seat_variants.py` |
+| 17:27 to 17:42 | "Maybe we should be doing bigger rounds between 'in the bot' tests. Too much time testing relative to learning"; the long test "every few releases"; "cut releases less often - tripling?" | rounds judged on the offline test and the nets-alone match; the BEN gate for a change of mechanism or a release; the next cut at about three times the loop's tables |
+| 17:34, 17:57 | "I think we should likely adopt"; "New collections should flip" | `stu4c` in the one-net self-play (`sp4t`, `sp4tb`); the gate stopped at 698 deals |
+| 17:57 | "We should continue collecting gen (whichever)"; "If it's by rows we should make sure we have full rows. Do we have enough disk or can we reorganize the process?" | Gen 8's self-play on azure1 and azure3; rows compressed and unmerged (disk is not the limit, the trainer's memory is); the arena's fork records give 2.7 times the rows a CPU-second |
+| 18:02 | "we can reconfigure our mix of azure boxes if we need more memory or disk" | proposed, not done: azure5 to 16 cores and 128 GB; held until the width test says whether a larger net pays |
+| 17:43 | "Do we need a wider net?" | the pool-trained net has no gap between trained-on and held-out rows; the width test (1,536 wide on the pool) on azure5 |
 
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 

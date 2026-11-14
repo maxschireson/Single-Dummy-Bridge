@@ -448,6 +448,52 @@ The engine's stage already has the settings to test it (`seat` top or draw, `pow
 `power_other`, `cut_other` for the side not deciding); at the table the two tried (top card, power 2) were within
 +-0.17 of the plain draw over 1,000 deals each, which cannot see 0.1.
 
+## Round 4 adopted; the gate, the rows and the net's size (14 November, 17:27 to 18:45 UTC)
+
+**Adopted without the full gate** (Max, 17:27: "Too much time testing relative to learning"; 17:34: "I think we should likely
+adopt. I also don't know if it's even worth the long test; maybe we only do that every few releases?"; 17:57: "New collections
+should flip"). stu4c plays the one-net self-play on azure2 (`sp4t`, from 17:41) and azure6 (`sp4tb`, 17:43). The BEN gate was
+stopped at 698 deals of stu4c: on its first 512, +0.01 +- 0.17 against BEN and +0.10 +- 0.20 by deal against round 3 (it read
++0.36 at 306 deals and +0.17 at 466). A full gate (2,048 deals, 5.3 hours of a box) resolves 0.10; a round moves the net alone
+by about 0.1 and the bot by a quarter of that, so rounds are judged on the offline test and the nets-alone match, and the gate
+is kept for a change of mechanism or a release.
+
+**The exponent, counted on the pool.** The 0.37 of the Gen 7 series is per doubling of everything the net trains on. The pool
+before the loop is 30.4M rows; round 3 added 1.15M, round 4 another 3.6M (1.26M of Stu's, 0.65M of Gen 8's self-play, 1.7M of
+the arena's): +11.6% from round 3 to round 4 (+4.0% counting Stu's rows alone), for which 0.37 predicts a fall of 4.0% (1.4%)
+in tricks given up; measured 1.8% and 2.4%. A Stu table counts by its rows (about 41), the low line of the three guessed
+before round 3. (I first divided by the growth of Stu's tables and reported an exponent of 0.02 to 0.03: the wrong
+denominator.)
+
+**Rows a CPU-second** (250 arena records and 150 of each self-play, from the records' own CPU):
+
+| Records | Tables a record | Rows a record | CPU-s a record | Rows a CPU-s |
+| --- | --- | --- | --- | --- |
+| the arena's (Gen 8 and 9, two auctions, audit and gap forks) | 36.3 (3.1 root, 33.2 forks) | 764 | 85 | 9.0 |
+| Gen 8's self-play here (`sg8t`, one table, no forks) | 1 | 41 | 12.5 | 3.3 |
+| Stu's self-play (`sp3s`) | 1 | 36 | 17.2 | 2.1 |
+
+The arena's collector (gap forks) is not in this branch's runner. Round 4 used 1.7M of the 17.6M arena rows on hand. On disk a
+row is 756 bytes as the sets are written (the pool file is 23 GB, and each net had a merged copy), 51 bytes compressed (the
+published blocks); in the trainer's memory 465 bytes. azure1 stood idle from 17:15 to 18:09 (its job list had ended).
+
+**The net's size is the limit at the pool's size** (Max, 17:43: "Do we need a wider net?"). Rollout net v2 (768 wide, 1.74M
+parameters, 5 epochs on the pool) scored on 400,646 rows it was trained on and on the held-out deals (`freshB`, 123,142 rows):
+
+| Bot | Log-loss: trained-on, held-out | Exact card | Tricks given up |
+| --- | --- | --- | --- |
+| 71s-32 | 0.4339, 0.4552 | 0.8267, 0.8194 | 0.0182, 0.0196 |
+| 8s-32 | 0.4380, 0.4581 | 0.8289, 0.8216 | 0.0218, 0.0223 |
+| 8c-32 | 0.4427, 0.4418 | 0.8291, 0.8270 | 0.0229, 0.0210 |
+| 5RZ32 | 0.5575, 0.5682 | 0.7704, 0.7602 | |
+| 1 | 1.0015, 1.0048 | 0.4816, 0.4809 | |
+
+It does as badly on the rows it has seen as on rows it has not, so more rows of this kind can close only that small gap. At
+3.7M rows the same net was far from it (`exp-strong`, 768 wide: training loss 0.36 against 0.79 held out; 512 against 768 wide
+there: tricks given up 0.0312 against 0.0305). What it does not show is that a larger net does better: what is left may be
+noise in the labels. **The width test** (`loop-width` on azure5 from 18:37 UTC, its Gen 8 collection paused): v2's recipe at
+1,536 wide (four times the parameters) on the pool's rows, scored on the same held-out deals; 47 minutes an epoch.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
