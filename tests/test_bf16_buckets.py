@@ -69,7 +69,31 @@ def test_fast_features_equal_generic():
             assert x.dtype == y.dtype and x.shape == y.shape and np.array_equal(x, y)
 
 
+def _legal(n, rng):
+    legal = np.zeros((n, 52), bool)
+    for i in range(n):
+        suits = [rng.integers(4)] if rng.random() < .55 else list(rng.choice(4, size=rng.integers(2, 5), replace=False))
+        for s in suits:
+            legal[i, s * 13 + rng.choice(13, size=int(rng.integers(1, 5)), replace=False)] = True
+    return legal
+
+
+def test_policy_from_legal_suits_only():
+    rng = np.random.default_rng(6)
+    p = _params(rng)
+    f = g.Bf16Forward(p, torch) if torch is not None else None
+    for n in (1, 2, 3, 9, 40, 131, 300):
+        b = _batch(n, rng)
+        b['legal'] = legal = _legal(n, rng)
+        full, part = g.log_softmax(g.forward(p, b)['policy']), g.log_softmax(g.forward_policy(p, b))
+        assert np.array_equal(full[legal], part[legal])
+        assert (part[~legal] < -1e8).all()
+        if f is not None:
+            assert np.array_equal(g.log_softmax(f(b)['policy'])[legal], g.log_softmax(f.policy(b))[legal])
+
+
 if __name__ == '__main__':
+    test_policy_from_legal_suits_only()
     test_fast_features_equal_generic()
     test_bucket_sizes()
     test_padded_equals_unpadded()

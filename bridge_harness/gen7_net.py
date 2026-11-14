@@ -285,6 +285,43 @@ def forward(params, batch, xp=np, kind=None):
     return dict(policy=policy, gap=gap, owner=owner, tricks=tricks, **more)
 
 
+POLICY_SUITS = os.environ.get('BRIDGE_POLICY_SUITS', '1') != '0'
+
+
+def forward_policy(params, batch):
+    """`forward(params, batch)['policy']` with the decoder run only for the suits that hold a legal card, and only its
+    policy column: the same numbers for every legal card (tests/test_bf16_buckets.py). About half the rollouts' rows
+    follow suit, so three of their four suit decodings are skipped. Flat nets and line-finder students take `forward`."""
+    if not POLICY_SUITS or int(np.asarray(params['kind'])) == 0 or 'wd1s' in params or 'wk14' in params:
+        return forward(params, batch)['policy']
+    cards, g = features(batch)
+    n = cards.shape[0]
+    shown = np.asarray(batch['shown']).astype(np.float32).reshape(n, 4, SEAT_SHOWN)[:, :, :SUIT_SHOWN * 4]
+    about_suit = np.transpose(shown.reshape(n, 4, SUIT_SHOWN, 4), (0, 3, 1, 2)).reshape(n, 4, 4 * SUIT_SHOWN)
+    s = np.concatenate([cards.reshape(n, 4, 13 * CARD_FEATURES), about_suit], axis=2)
+    s = relu(dense(s, params['ws0']) + params['bs0'])
+    s = relu(dense(s, params['ws1']) + params['bs1'])
+    h = np.concatenate([s.reshape(n, -1), g], axis=1)
+    h = h @ params['wt0'] + params['bt0']
+    if 'emb_own' in params:
+        for key in ('own', 'other'):
+            ids = batch.get('bot_' + key)
+            h = h + params['emb_' + key][np.zeros(n, np.int32) if ids is None else np.asarray(ids).astype(np.int32)]
+    h = relu(h)
+    h = relu(h @ params['wt1'] + params['bt1'])
+    e, t, wd0 = s.shape[2], h.shape[1], params['wd0']
+    legal = np.asarray(batch['legal'])
+    r, q = np.nonzero(legal.reshape(n, 4, 13).any(axis=2))
+    pairs = len(r)
+    if pairs < 4:       # BLAS takes a vector product for one row, which sums in another order: keep to matrix products
+        r, q = pad_rows(r, 4), pad_rows(q, 4)
+    d = s[r, q] @ wd0[:e] + (h @ wd0[e:e + t])[r] + wd0[e + t:e + t + 4][q]
+    d = relu(d + params['bd0'])
+    policy = np.full((n, 4, 13), -1e9, np.float32)
+    policy[r[:pairs], q[:pairs]] = (d @ np.ascontiguousarray(params['wd1'][:, 0::5]) + params['bd1'][0::5])[:pairs]
+    return np.where(legal, policy.reshape(n, 52), -1e9)
+
+
 def log_softmax(x):
     x = x - x.max(axis=1, keepdims=True)
     return x - np.log(np.exp(x).sum(axis=1, keepdims=True))
@@ -349,6 +386,50 @@ class Bf16Forward:
         out = self._call({k: pad_rows(v, m) for k, v in batch.items()})
         return {k: v[:n] for k, v in out.items()}
 
+    def policy(self, batch):
+        """Policy logits only, decoding only the suits that hold a legal card (as `forward_policy`), padded like
+        `__call__`; the pairs of rows and suits decoded are padded to the same sizes."""
+        n = len(batch['state'])
+        m = bucket(n) if BUCKETS_ON else n
+        return self._policy(batch if m == n else {k: pad_rows(v, m) for k, v in batch.items()})[:n]
+
+    def _policy(self, batch):
+        torch, T = self.torch, self.t
+        if 'wd1p' not in T:
+            T['wd1p'], T['bd1p'] = T['wd1'][:, 0::5].contiguous(), T['bd1'][0::5].contiguous()
+        cards, g = features(batch)
+        n = cards.shape[0]
+        shown = np.asarray(batch['shown']).astype(np.float32).reshape(n, 4, SEAT_SHOWN)[:, :, :SUIT_SHOWN * 4]
+        about = np.transpose(shown.reshape(n, 4, SUIT_SHOWN, 4), (0, 3, 1, 2)).reshape(n, 4, 4 * SUIT_SHOWN)
+        x = np.concatenate([cards.reshape(n, 4, 13 * CARD_FEATURES), about], axis=2).reshape(n * 4, -1)
+        legal = np.asarray(batch['legal'])
+        r, q = np.nonzero(legal.reshape(n, 4, 13).any(axis=2))
+        pairs = len(r)
+        policy = np.full((n, 4, 13), -1e9, np.float32)
+        if not pairs:
+            return policy.reshape(n, 52)
+        m = bucket(pairs) if BUCKETS_ON else pairs
+        rr, qq = pad_rows(r, m), pad_rows(q, m)
+        with torch.inference_mode():
+            s = torch.from_numpy(np.ascontiguousarray(x)).to(torch.bfloat16)
+            s = torch.relu(s @ T['ws0'] + T['bs0'])
+            s = torch.relu(s @ T['ws1'] + T['bs1'])
+            e = s.shape[1]
+            h = torch.cat([s.reshape(n, 4 * e), torch.from_numpy(np.ascontiguousarray(g)).to(torch.bfloat16)], dim=1) @ T['wt0'] + T['bt0']
+            if 'emb_own' in T:
+                for key in ('own', 'other'):
+                    ids = batch.get('bot_' + key)
+                    h = h + T['emb_' + key][torch.zeros(n, dtype=torch.long) if ids is None else torch.from_numpy(np.asarray(ids).astype(np.int64))]
+            h = torch.relu(h)
+            h = torch.relu(h @ T['wt1'] + T['bt1'])
+            t, wd0 = h.shape[1], T['wd0']
+            ir, iq = torch.from_numpy(rr.astype(np.int64)), torch.from_numpy(qq.astype(np.int64))
+            d = s.reshape(n, 4, e)[ir, iq] @ wd0[:e] + (h @ wd0[e:e + t])[ir] + wd0[e + t:e + t + 4][iq] + T['bd0']
+            d = torch.relu(d)
+            out = (d @ T['wd1p'] + T['bd1p']).float().numpy()[:pairs]
+        policy[r, q] = out
+        return np.where(legal, policy.reshape(n, 52), -1e9)
+
     def _call(self, batch):
         torch, T = self.torch, self.t
         cards, g = features(batch)
@@ -393,6 +474,11 @@ class PolicyNet:
         # BRIDGE_NET_BF16=1: the forward pass in bf16 where it can be (Bf16Forward); otherwise, and by default, fp32 NumPy
         fast = Bf16Forward.make(self.params) if os.environ.get('BRIDGE_NET_BF16') == '1' else None
         self.run = fast if fast is not None else (lambda batch: forward(self.params, batch))
+        # policy logits alone (log_policy_arrays): only the suits holding a legal card are decoded (BRIDGE_POLICY_SUITS=0: all)
+        if not POLICY_SUITS:
+            self.run_policy = lambda batch: self.run(batch)['policy']
+        else:
+            self.run_policy = fast.policy if fast is not None else (lambda batch: forward_policy(self.params, batch))
         self.precision = 'bf16' if fast is not None else 'fp32'
 
     def bot_id(self, name):
@@ -413,7 +499,7 @@ class PolicyNet:
         batch = batch if 'bot_own' in batch else self.tag(batch, n)
         out = np.empty((n, 52), np.float32)
         for i in range(0, n, chunk):
-            out[i:i + chunk] = log_softmax(self.run({k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch})['policy'])
+            out[i:i + chunk] = log_softmax(self.run_policy({k: batch[k][i:i + chunk] for k in INPUTS + WHO if k in batch}))
         return out
 
     def policy_and_gap_arrays(self, batch, chunk=4096):
