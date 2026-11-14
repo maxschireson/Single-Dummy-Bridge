@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 02:48 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 02:49 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -137,14 +137,13 @@ Generated 2026-11-14 02:48 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 5 of 8 cores busy, reported 11-14 02:48 UTC; idle 2.9 core-hours since 11-12 15:03 UTC, 2.9 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-14 02:49 UTC; idle 2.9 core-hours since 11-12 15:03 UTC, 2.9 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 847 of 2,000 | 42.4 | 11-15 05:58 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@979fcf0e0` |
-| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 2 of 4,000 | 31.9 | 11-19 08:18 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@abe38d1f4` |
-| e9-25 | E9-25 | g9 | 3 | 1 | running | 0 of 750 |  |  | `transfer/gen9-e9-25-azure4-20261114@04195ce3c` |
-| e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 848 of 2,000 | 44.4 | 11-15 04:45 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@979fcf0e0` |
+| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 2 of 4,000 | 27.9 | 11-20 02:05 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@abe38d1f4` |
+| e9-0-n04 | E9-0 | g9 | 5 | 4 | running | 284 of 800 |  |  | `transfer/gen9-e9-0-n04-azure4-20261113@d251969d6` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | done (short) | 3,047 of 10,000 | 106.4 | 11-16 20:08 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@c46ca03a1` |
@@ -156,6 +155,7 @@ Generated 2026-11-14 02:48 UTC by `tools/workq.py` after a change by `azure4`. D
 | e9-12-c | E9-12 | bill | 3 | 4 | done | 1,200 of 1,200 | 655.6 | 11-13 04:23 | `transfer/gen9-e9-12-c-azure4-20261113@75b705ad1` |
 | e9-12-u | E9-12 | bill | 3 | 4 | done | 600 of 600 | 646.7 | 11-13 03:30 | `transfer/gen9-e9-12-u-azure4-20261113@0d10dd200` |
 | e9-12-x | E9-12 | bill | 3 | 4 | done | 1,200 of 1,200 | 575.5 | 11-13 05:35 | `transfer/gen9-e9-12-x-azure4-20261113@2f897250b` |
+| e9-25 | E9-25 | g9 | 3 | 1 | failed | 0 of 750 |  |  | `transfer/gen9-e9-25-azure4-20261114@022d3126d` |
 | e9-10-8x-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | e9-10-r9b-ben16 | E9-10 | sam | 3 | 4 | cancelled | 0 of 1,600 |  |  |  |
 | g9-x2-ben16 | G9-X2 | sam | 3 | 4 | cancelled | 0 of 55 |  |  |  |
