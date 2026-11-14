@@ -40,3 +40,5 @@ g8-greedy0 v g8-low0: 2000 boards to play (0 done), 8 workers
 1950 boards: None +- None IMPs/board for g8-greedy0; 2262 boards/hour; 0 failed
 2000 boards: None +- None IMPs/board for g8-greedy0; 2264 boards/hour; 0 failed
 {"pair": "g8-greedy0~g8-low0", "boards": 2000, "cpu_per_board": 12.09}
+g8-greedy0 v g8-low0: 0 boards to play (2000 done), 8 workers
+{"pair": "g8-greedy0~g8-low0", "boards": 2000, "cpu_per_board": 12.09}
