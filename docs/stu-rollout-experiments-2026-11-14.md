@@ -2,11 +2,60 @@
 
 14 November 2026. Owner: codex-rollout. Max authorized local smoke tests and
 reassigning one existing Azure collector to these experiments. Azure6 is reserved;
-azure5's width training and perf's Azure7 allocation remain with their owners.
+Azure2 is also authorized for independent reader/guarantee screens. Other boxes remain with their current owners.
 This is the runnable appendix to the integrated recommendations in
 [PR #35](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35), not a separate
 competing training plan. Harvesting work H01–H06 stays in
 [PR #37](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37).
+
+## Review correction, 14 November 21:40 UTC
+
+PRs [#41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41) and
+[#43](https://github.com/maxschireson/Single-Dummy-Bridge/pull/43) found genuine
+prototype errors. Azure6's `7c79acf` batch stopped at 21:23:14 UTC. Its recursive
+and selective scores are **not valid evidence** and must not be extended or pooled
+with corrected runs. Original results/episodes remain untouched; REVIEW_PAUSE.json
+records the stop and inventory. Azure2's independent reader/guarantee screens may
+continue as development diagnostics under B's disclosed cost/cache limitations.
+
+The v2 correction uses fresh `rx2-*` identities and fresh output directories:
+
+- Group by child Observation, apply every cached action before eligibility/budget,
+  remove hidden-layout path gating, and continue checking cache hits at the cap.
+  Rejected confident positions cannot block later uncertain positions. Count
+  replacements of the actual sampled action, including cache applications; keep
+  the argmax comparison as a separate counter.
+- A fresh-only driver refuses **any nonempty output directory** before writing.
+  It never invokes the inherited resume/retry loop. Each first attempt has a durable
+  running/complete/failed ledger; no automatic retries; stop subsequent chunks on
+  failure while retaining completed work from the current chunk.
+- Native claim solvers belong to individual actors, reset between actual rooms;
+  each child decision starts cold. Child and parent solvers never share caches.
+  Native wall-clock timeouts can still vary with OS scheduling; record them and
+  measure sensitivity before attributing small score changes.
+- Record per-actor inclusive action wall time, worker CPU, native solver CPU,
+  calls/cache hits/timeouts, actual policy precision, and recursive work. Child
+  costs are already inside the parent action totals. Board attempts also include
+  reaped external-process CPU and failed-attempt time. Native live CPU snapshots
+  have Linux clock-tick resolution; initialization and final cleanup are included
+  in whole-attempt cost, with actor initialization reported separately.
+- Validate engine digest before model loading; pin imported source, implementation,
+  model, DDS and native solver hashes plus precision environment in each manifest.
+
+Local acceptance: **25 tests pass** (A's three unchanged assertions; B's nine
+boundary checks with expected-failure markers removed and the first-rejection
+witness converted to a desired-behavior regression; nine corrected-driver tests;
+four original smokes). B's original inherited-driver evidence remains in #43.
+Real R4c/BF16/native-SURE acceptance is a separate required gate before v2 smoke.
+The v2 batch launcher is **16-board correctness smokes only**, at indices 2000–2015,
+seed 2026111401. It does not automatically launch 128-board strength screens.
+
+A's random-versus-S1 selector, matched windows/candidate quotas and calibrated
+cost controls are the next experiment; the simple earliest/gap gates below remain
+mechanism diagnostics, not the final allocator. A owns a pure selector follow-up;
+B independently reviews this corrected implementation. Use per-actor measured cost,
+not nominal 4×8 work or whole-match Python CPU, to calibrate later comparisons.
+The original six-hour box budgets are not reset by this correction.
 
 ## Why study the search mechanism
 
@@ -120,7 +169,7 @@ python scripts/stu_rollout_experiments/make_config.py \
   --bots /path/to/pinned/stu/configs/loop-bots.json --out /new/run/bots.json
 STU_RUNTIME=/path/to/pinned/stu python scripts/stu_rollout_experiments/match.py \
   --source /path/to/capsule/recovery --bots /new/run/bots.json \
-  --pair rx-recursive32~rx-control --seed 2026111401 --first 0 \
+  --pair rx2-recursive32~rx2-control --seed 2026111401 --first 2000 \
   --deals 16 --workers 4 --recycle 4 --common-only --episodes --out /new/run/recursive-smoke
 ```
 
