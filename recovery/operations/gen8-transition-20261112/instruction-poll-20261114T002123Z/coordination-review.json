@@ -1,0 +1,11 @@
+{
+  "poll_start": "2026-11-14T00:21:23Z",
+  "revision": "513f38b9e5d318230f938e3d148b8b40e3899503",
+  "blob": "5d4f6c88f99641289c6f0c7ec93eda2f0cea4f60",
+  "new_entries_since_prior_poll": 0,
+  "latest_entry": "2026-11-13T23:10:00Z loop",
+  "notice_commit": "513f38b9e5d318230f938e3d148b8b40e3899503",
+  "scope": "Unchanged Stu round 3 and pure rollout on five Azure boxes; conditional process-pool memory guidance for bf16 users; label and budget research on Azure6 and Azure2.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 by g7 explicitly continues arena collection at Codex primary, 19bbdce5 and the independent collector; Gen9 on Azure4, Stu on five other Azure boxes.",
+  "disposition": "This collector retains the frozen Gen8 source, with no bf16 implementation or Stu runtime. No Stu worker recycling, pure rollout, training, model/source adoption, BEN200 installation, host/peer commands or scientific settings change. Its approved DDS-only cache guard operated normally and is independently diagnosed in this poll."
+}

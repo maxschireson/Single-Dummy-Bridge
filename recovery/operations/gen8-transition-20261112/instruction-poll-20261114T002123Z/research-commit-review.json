@@ -1,0 +1,37 @@
+{
+  "poll_start": "2026-11-14T00:21:23Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "59fdfd752763197a4b7e7f9bac518d09bf94b1c0",
+  "commits": [
+    {
+      "sha": "59fdfd752763197a4b7e7f9bac518d09bf94b1c0",
+      "date": "2026-11-14T00:21:10Z",
+      "message": "Stu round 3: the nets alone head to head on 4,000 new gate-seed deals (round 3 against v2 and against round 2)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "b94c6d199845c0950bde07f24d892715bcd44095",
+      "date": "2026-11-13T23:54:07Z",
+      "message": "Stu README: round 3's indicator 1 on its test set; the label-quality, tables-against-positions and rollout-budget results\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "3cb03efcf575f71363c6f80a53856874d10b6f5a",
+      "date": "2026-11-13T23:38:08Z",
+      "message": "Stu: BEN at its upstream play sampling (ben200: servers beside BEN (64)'s lanes, ben_session.sh), round 3's BEN jobs (b3-p; ben200 against ben64; Gen 8 against ben200)\n\nMax, 23:31 UTC: BEN's default (200 samples) as the more principled and credible baseline; analyze and say when to switch.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu's BEN comparison, round3 model results and new gate-seed research deals",
+  "disposition": "Max23:31 asks Stu to analyze upstream BEN200 as a more principled baseline and say when to switch. The implementation is in configs/loop-bots.json, Stu BEN scripts and Azure3 research jobs. It does not alter canonical Gen8 plans or authorize a BEN change here; this producer runs zero BEN. Round3 held-out indicators and 4000-deal model comparisons are research, not an adopted policy/scorer or a new collection/promotion/stop predicate for this cohort.",
+  "ben_commit": {
+    "sha": "3cb03efcf575f71363c6f80a53856874d10b6f5a",
+    "files": [
+      "configs/loop-bots.json",
+      "training/rollout-loop-20261113/ben.sh",
+      "training/rollout-loop-20261113/ben_session.sh",
+      "training/rollout-loop-20261113/jobs-azure3-ben3.txt",
+      "training/rollout-loop-20261113/make_bots.py",
+      "training/rollout-loop-20261113/runs.json"
+    ]
+  },
+  "training_exclusions_for_future_cohorts": "Any future new owned cohort still needs complete pinned training-family membership for all released models, including subsequent Stu nets, plus all prior corpus safeguards. Do not rewrite this existing v4.1 exclusion union, manifest or audit."
+}
