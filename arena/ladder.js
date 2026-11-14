@@ -20,8 +20,14 @@
   // categorical slots in fixed order (dark steps of the reference palette, validated against this page's #192333:
   // adjacent CVD dE >= 8.4, normal-vision >= 19.3, all >= 3:1); every point is also direct-labelled and tabled
   const SLOTS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
-  const ORDER = ['Gen 1-4', 'Gen 5', 'Gen 6', 'Gen 7', 'Gen 7.1', 'Gen 8', 'BEN', 'Gen 9', 'Gen 9 candidate'];
-  const SLOT_OF = { 'Gen 9': 7, 'Gen 9 candidate': 7, 'Gen 8 variant (box match)': 5 };   // a candidate wears its generation's colour (dashed)
+  // Eight hues and nine groups since Gen X Stu (14 Nov): Gen 1-4 and Gen 5 are shown as one group, Gen 1-5, in Gen 5's
+  // hue, and Gen X Stu takes the first hue (Gen 1-4's). Its points sit beside Gen 9's and Gen 8's, which the first hue
+  // separates from (normal dE >= 26, CVD >= 15.9 on this surface); the second hue was 7.1 from Gen 9's. Every other group
+  // keeps its hue. A candidate wears its generation's hue (dashed).
+  const FOLD = { 'Gen 1-4': 'Gen 1-5', 'Gen 5': 'Gen 1-5' };
+  const ORDER = ['Gen 1-5', 'Gen 6', 'Gen 7', 'Gen 7.1', 'Gen 8', 'BEN', 'Gen 9', 'Gen X Stu', 'Gen 9 candidate'];
+  const SLOT_OF = { 'Gen X Stu': 0, 'Gen 1-5': 1, 'Gen 6': 2, 'Gen 7': 3, 'Gen 7.1': 4, 'Gen 8': 5, 'BEN': 6, 'Gen 9': 7,
+                    'Gen 9 candidate': 7, 'Gen 8 variant (box match)': 5 };
   const OTHER = '#8b9bb0';                                   // a group the page does not know: neutral, never a slot
   const SURFACE = '#192333', GRID = '#2a394f', AXIS = '#3a4d68', MUTED = '#acbbcf', TEXT = '#e9eff8';
   let data = null, selected = null;
@@ -47,7 +53,7 @@
   const when = s => { if (!s) return '—'; const d = new Date(s.replace(/Z?$/, 'Z')); return isNaN(d) ? String(s) : d.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' }).replace(',', ''); };
   const safeUrl = u => (typeof u === 'string' && /^https?:\/\//.test(u)) ? u : null;
   const link = (text, url) => { const u = safeUrl(url); const s = el('span', {}, text + ' '); if (u) s.append(el('a', { href: u, target: '_blank', rel: 'noopener' }, 'source')); return s; };
-  const colour = g => g in SLOT_OF ? SLOTS[SLOT_OF[g]] : (ORDER.indexOf(g) >= 0 ? SLOTS[ORDER.indexOf(g)] : OTHER);
+  const colour = g => g in SLOT_OF ? SLOTS[SLOT_OF[g]] : OTHER;
   const timeOf = p => p.introduced_utc ? Date.parse(p.introduced_utc.replace(/Z?$/, 'Z')) : null;
   const seconds = p => p.timing && Number.isFinite(p.timing.seconds_per_choice) ? p.timing.seconds_per_choice : null;
   const variantWords = p => {
@@ -364,6 +370,7 @@
       if (d.schema !== 'arena-ladder-v1' || !Array.isArray(d.points)) throw new Error('unexpected ladder.json');
       const registered = new Set(d.points.map(p => p.id));   // once a candidate plays on a registered feed, its measured point replaces it
       d.candidates = (d.candidates || []).filter(c => !registered.has(c.id));
+      for (const p of [...d.points, ...d.candidates]) if (p.group in FOLD) p.group = FOLD[p.group];
       if (!data || d.computed_utc !== data.computed_utc) { data = d; build(); }
     } catch (e) {
       if (!data) root.hidden = true;           // nothing to show: the rest of the page is unaffected

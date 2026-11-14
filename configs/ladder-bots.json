@@ -172,6 +172,12 @@
       "group": "Gen 8",
       "parent": "8s-32",
       "note": "x8's 8X v3 in the arena (registered feed, first board 13 Nov 08:23 UTC). Weak prior: x8's box figure for 8x3-ft1 (+0.08 +- 0.08 against 8p-32-v41, common auctions) is not taken as its prior until someone confirms 8x3-ft1 and 8x3-32 are the same settings."
+    },
+    "stu3-ps": {
+      "label": "Gen X Stu (round 3)",
+      "group": "Gen X Stu",
+      "parent": "8s-32",
+      "note": "The loop session's pure Stu (stu3-ps: rollouts on Stu's round 3 net at every card, no double-dummy search), in the arena as Gen X Stu on Gen 9's collector (configs/round9-genx-stu.json on feature/gen9-genx-stu; Max, 14 Nov 00:49 UTC: \"We will call it Gen X Stu\"). Weak prior around its parent: the loop's box figures (pure Stu with net v2 -0.65 +- 0.14 against Gen 8 card play, 1,000 deals; round 3's net -0.09 +- 0.19 relative to that, 500 deals; box/coordination BOARD.md, loop, 14 Nov 00:55 UTC) are a different bot and opponent id, not taken as its prior."
     }
   },
   "candidates": {
