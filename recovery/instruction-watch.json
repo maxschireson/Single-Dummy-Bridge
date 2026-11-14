@@ -134,15 +134,15 @@
     "previous_collector_pid": 262634,
     "verified_resume_completed": 5495
   },
-  "checked_epoch": 1794673627.2146587,
-  "coordination_blob": "38f5f8b38117f5ce5ac05cf1e906204996e27ff4",
+  "checked_epoch": 1794677632.7981014,
+  "coordination_blob": "571b7e0216775ed6070cec186907fd7c6ef4d52c",
   "coordination_handoff": {
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "path": "box/coordination:BOARD.md",
     "purpose": "Feed branch and final Gen7.1 count posted as explicitly requested by the operator16:24 instruction"
   },
-  "coordination_revision": "2a1aad94eab9ddc75dc921166f52cf5af7a0caa9",
+  "coordination_revision": "7742771e21c985d6d11cda18183db3ff54c628e5",
   "coordination_snapshot_unchanged": false,
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
   "family_accounting": {
@@ -167,7 +167,7 @@
     "total": 25000,
     "training_overlap": 0
   },
-  "free_bytes": 17851248640,
+  "free_bytes": 16973058048,
   "future_cohort_requirements": [
     "Exclude released-policy training-family union or later authorized exclusions.",
     "Block new seeded pools against every published corpus; do not take over or reassign another producer's families.",
@@ -190,25 +190,33 @@
     "authority": "Max to Gen9 2026-11-14 00:48/00:49/01:00 UTC; board notices and opened plan",
     "blob": "27fa4742e11081e4f34830d213af5d77945a7297",
     "branch": "feature/gen9-genx-stu",
-    "deployment_status": "Live since 2026-11-14 02:45 UTC on Azure4, two workers; registered by will",
+    "deployment_status": "Original round3 run ended at719; retired and pinned in Arena registry",
     "disposition": "Adopted separate-producer deployment. No general collector migration or instruction changing 19bbdce5.",
-    "latest_change": "57d0855 adds an opened round4c plan and released Stu control net after merge558de57 of the loop's newer code at4488e91d. Explicit scope remains will/Gen9 on Azure4; no general collector migration. Existing round3 plan blob unchanged.",
+    "latest_change": "Round4c deployed by will/Gen9 on Azure4 at16:22UTC Nov14 and registered separately; round3 retired at719. Source57d0855 and previously reviewed opened round4c plan unchanged. No instruction changing19bbdce5.",
     "launch_enabled": true,
     "manifest": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
     "path": "configs/round9-genx-stu.json",
     "registry_key": "gen9genxstuazure4",
+    "retirement": {
+      "completed": 719,
+      "registry_key": "gen9genxstuazure4",
+      "revision": "d959fd318ddc68d9932516613ae83c92a5b0a44c"
+    },
     "revision": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
     "scope": "Explicitly will/Gen9 on Azure4; 4,000 fresh deals, seed9019, separate feed arena-gen9-genx-stu-azure4-feed",
     "successor": {
       "blob": "b0fb4004ab450246274fc6bc6e1cd12deb2860e1",
-      "disposition": "Do not adopt code, model, settings, host assignment or family exclusions in 19bbdce5.",
+      "branch": "arena-gen9-genx-stu4c-azure4-feed",
+      "disposition": "Adopted separate-producer successor. Do not adopt code, model, settings, host assignment or family exclusions in19bbdce5.",
       "launch_enabled": true,
+      "manifest": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a",
       "model_manifest_blob": "991bc22dee9272452817a5fbfeb36450f5b61ce9",
       "path": "configs/round9-genx-stu-r4c.json",
       "policy_sha256": "e4b689c87db2f56b98221a491757dbf348ddaea066e016f06a9331fc671197f2",
+      "registry_key": "gen9genxstu4cazure4",
       "scope": "Prepared and run by will/Gen9 on Azure4; stu4c-put, 2:1:1 against8s-32/9a-32/71s-32, fresh seed9021, separate run/feed from round3",
       "source_revision": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
-      "status": "Opened owner-specific plan; registry has not added its successor at this checked revision"
+      "status": "Live since2026-11-14T16:22Z on Azure4, two workers; registered by will"
     }
   },
   "handled_instructions": [
@@ -248,12 +256,12 @@
   "health": {
     "heartbeat.json": {
       "ben_workers": 1,
-      "completed": 5613,
-      "epoch": 1794673621.3242762,
+      "completed": 5743,
+      "epoch": 1794677629.8452573,
       "in_flight": [
-        5611,
-        5614,
-        5615
+        5741,
+        5742,
+        5745
       ],
       "started_epoch": 1794667053.561952,
       "stopping": false,
@@ -268,26 +276,26 @@
       "pid": 79982
     },
     "publisher-status.json": {
-      "completed": 5613,
-      "epoch": 1794673606.0725708,
+      "completed": 5742,
+      "epoch": 1794677582.6208146,
       "status": "published"
     },
     "state.json": {
       "by_pair": {
-        "8c-32~71s-32": 935,
-        "8c-32~8s-32": 936,
-        "8s-32~1": 936,
-        "8s-32~5RZ32": 935,
-        "8s-32~71s-32": 1872
+        "8c-32~71s-32": 957,
+        "8c-32~8s-32": 956,
+        "8s-32~1": 957,
+        "8s-32~5RZ32": 958,
+        "8s-32~71s-32": 1915
       },
       "complete": false,
-      "completed": 5614,
-      "contiguous": 5614,
-      "epoch": 1794673621.7456203,
+      "completed": 5743,
+      "contiguous": 5741,
+      "epoch": 1794677619.84433,
       "failures": 0,
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "root_games": 18712,
-      "tables": 231799,
+      "root_games": 19142,
+      "tables": 237095,
       "target": 16036
     },
     "watchdog-process.json": {
@@ -297,15 +305,15 @@
     "watchdog-status.json": {
       "ben": "ready",
       "collector": "running",
-      "epoch": 1794673590.0767422,
+      "epoch": 1794677610.4287267,
       "publisher": "running"
     }
   },
-  "heartbeat_age": 5.890382528305054,
+  "heartbeat_age": 2.9528441429138184,
   "historical_gen71_revision": "50990002b64833073b04e1bad025241109033ad3",
   "historical_gen71_snapshot_unchanged": true,
   "historical_provenance": "recovery/history-index.json",
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T15:25:24Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T16:27:07Z",
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "main_snapshot_unchanged": true,
   "new_applicable_instructions": [],
@@ -313,24 +321,20 @@
   "notification": "suppressed_no_material_change",
   "observed_notices": [
     {
-      "disposition": "Azure4 OS disk tier changed through Azure1 managed identity under explicit host-owner authority; no instruction or action for this cloud stream.",
-      "epoch_utc": "2026-11-14T15:26:00Z",
+      "disposition": "Will/Gen9 confirms GenXStuR4c live since16:22UTC on Azure4's two cores; round3 retired719; each later round needs its own id/run. Host-specific successor, not19bbdce5.",
+      "epoch_utc": "2026-11-14T16:35:00Z",
       "source": "box/coordination BOARD.md"
     },
     {
-      "disposition": "Azure1 sidplay app updating to PR33/StuR4c; host-specific public app service only.",
-      "epoch_utc": "2026-11-14T15:47:00Z",
+      "branch": "research/gen8-layout-budget-20261114",
+      "disposition": "Sandbox layout-budget benchmark at16/64/128/256 layouts, explicitly no bot or collection changes. Unadopted research; current released32-layout actors remain frozen.",
+      "epoch_utc": "2026-11-14T17:10:00Z",
       "source": "box/coordination BOARD.md"
     },
     {
-      "disposition": "Azure1 sidplay update completed and smoke board passed; public app, no collector migration.",
-      "epoch_utc": "2026-11-14T15:51:00Z",
+      "disposition": "Azure1 sidplay public app updated toPR33 e7f61d7 with auction-aware analysis; no change to loop or this cloud collector.",
+      "epoch_utc": "2026-11-14T17:28:00Z",
       "source": "box/coordination BOARD.md"
-    },
-    {
-      "disposition": "New opened GenXStuR4c successor plan explicitly prepared/run by will on Azure4, with separate model/run/feed. Earlier round3 plan unchanged. No adoption in this owned Gen8 stream.",
-      "revision": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
-      "source": "feature/gen9-genx-stu configs/round9-genx-stu-r4c.json"
     }
   ],
   "operational_branch": "feature/gen8-prototype-20261112",
@@ -354,7 +358,7 @@
     "physical_root_tables": 36,
     "tree_consultations": 705
   },
-  "previous_checked_epoch": 1794669924.7826633,
+  "previous_checked_epoch": 1794673627.2146587,
   "processes": {
     "process.json": {
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 ",
@@ -369,13 +373,13 @@
       "pid": 79983
     }
   },
-  "publisher_age": 21.142087936401367,
-  "registry_blob": "5255da6a2bdf7d15ce0a52169f214eaa20055414",
+  "publisher_age": 50.177286863327026,
+  "registry_blob": "3e289c39830e8a7beab36b12465e34171dde5ca9",
   "registry_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c",
-  "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
+  "registry_disposition": "Only other producer GenXStuAzure4 changed: round3 retired719 atd959fd31; separately registered round4c atmanifest17d6186e. All three owned source entries and owned collector update are unchanged and verified.",
   "registry_key": "gen6selfplay19bbdce5",
-  "registry_revision": "92d9a7ec858ef36fa54869c1c9d896c674335fd7",
-  "result": "No applicable instruction changed. Main and adopted Gen8 notices/plan, earlier Gen7.1 notices and cleanup remain pinned. New coordination notices are Azure4 disk and Azure1 public sidplay host work. GenXStu branch adds an opened round4c successor explicitly owned by will on Azure4; its loop research/code/model changes and PR33 public-app deployment do not authorize migration of19bbdce5. The prior explicit instruction to continue19bbdce5 remains handled. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks. No runtime changes, failure clearing or operator restart.",
+  "registry_revision": "e3c410eba19d6e2e1a35f9f5b82ab3e72d72f85c",
+  "result": "No applicable instruction changed. Main and adopted Gen8 notices/plan, earlier Gen7.1 notices, cleanup and known deployment source references remain pinned. New coordination/registry changes are the GenXStuAzure4 round4c successor, unadopted Gen8 layout-budget research and Azure1 sidplay post-hand analysis; none authorizes migration of19bbdce5. The prior explicit instruction to continue19bbdce5 remains handled. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks. No runtime changes, failure clearing or operator restart.",
   "retired_processes": [],
   "reviewed_discussions": [
     {
@@ -384,8 +388,8 @@
       "number": 22
     },
     {
-      "disposition": "Public sidplay app and Azure1 deployment only; StuR4c is its Sid model, no general-arena collector change",
-      "head": "29c4cc008948aa8b1fa14bc20635207b219bfc5a",
+      "disposition": "New auction-aware post-hand analysis in public sidplay app on Azure1 only; no general-arena collector change",
+      "head": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74",
       "inline_comments": 0,
       "new_comments": 0,
       "number": 33,
@@ -455,6 +459,6 @@
     }
   },
   "unresolved_failures": [],
-  "watchdog_age": 37.137916564941406,
+  "watchdog_age": 22.369374752044678,
   "writer_and_watchdog_locks": "held"
 }
