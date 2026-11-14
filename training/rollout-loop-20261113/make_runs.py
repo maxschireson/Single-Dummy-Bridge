@@ -68,6 +68,8 @@ def bot(name):
     """What a bot id says: Stu-family ids are stu<round>[v1][a|b|-rung]; z0a-v2 and z0b-v2 were round 0's first ids."""
     if name in ('z0a-v2', 'z0b-v2'):
         return dict(family='stu', round=0, net='v2', rung='stu')
+    if name == 'stuv41-ps':
+        return dict(family='stu', round=0, net='v4.1', rung='pure-rs')
     m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-pst|-ps|-p2|-pg|-px|-pux|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
     if m:
         return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
@@ -100,7 +102,7 @@ def main():
                       ('azure5', 'jobs-azure5-r3a.txt'), ('azure5', 'jobs-azure5-r3.txt'), ('azure1', 'jobs-azure1-r3.txt'), ('azure5', 'jobs-azure5-h3.txt'), ('azure6', 'jobs-azure6-h3p.txt'), ('azure2', 'jobs-azure2-h3p.txt'), ('azure6', 'jobs-azure6-h3t.txt'), ('azure5', 'jobs-azure5-hs.txt'), ('azure6', 'jobs-azure6-hs.txt'), ('azure2', 'jobs-azure2-hs.txt'), ('azure6', 'jobs-azure6-h3pt.txt'), ('azure2', 'jobs-azure2-h3pt.txt'),
                       ('azure1', 'jobs-azure1-hd.txt'), ('azure5', 'jobs-azure5-hd.txt'), ('azure3', 'jobs-azure3-hd.txt'),
                       ('azure6', 'jobs-azure6-blind.txt'), ('azure2', 'jobs-azure2-split.txt'),
-                      ('azure1', 'jobs-azure1-styles.txt'), ('azure5', 'jobs-azure5-styles.txt'), ('azure3', 'jobs-azure3-styles.txt'),
+                      ('azure1', 'jobs-azure1-styles.txt'), ('azure5', 'jobs-azure5-v41-styles.txt'), ('azure3', 'jobs-azure3-v41-styles.txt'),
                       ('azure6', 'jobs-azure6-mix.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')

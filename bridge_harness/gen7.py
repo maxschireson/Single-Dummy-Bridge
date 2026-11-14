@@ -518,12 +518,16 @@ class Gen7Player(Gen6Player):
 
     def styled(self, o, rng, result):
         """The search's decision with its eligible cards (those within `near_tie` of the best) cut down to the ones the
-        bot's style prefers (bridge_harness/style.py). The tie-break then chooses among them as it would among all."""
+        bot's style prefers (bridge_harness/style.py); the tie-break then chooses among them as it would among all. For
+        the style's random share of these decisions it is one of the eligible cards at random instead."""
         d = result.details
         eligible = sorted(card(k) for k, p in d.get('behavior_probabilities', {}).items() if p > 0)
         if len(eligible) < 2 or 'estimates' not in d:
             return result
-        kept = styles.choose(o, eligible, self.g7.style, rng.random())
+        if rng.random() < float(self.g7.style.get('random', 0.)):
+            kept = [rng.choice(eligible)]
+        else:
+            kept = styles.choose(o, eligible, self.g7.style, 1.)
         if len(kept) == len(eligible):
             return result
         choice = result.card if result.card in kept else kept[0]

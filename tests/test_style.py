@@ -106,6 +106,17 @@ class HookTests(Fixture8):
                 moved += got['high'] != got['plain']
         self.assertGreater(moved, 0)
 
+    def test_a_search_bot_plays_any_near_tie_for_the_random_share_of_its_decisions(self):
+        """With a random share of 1 and every legal card within the margin, the card is one of the legal cards at random:
+        over many draws more than one of them is played, whatever the style says."""
+        p = self.make(gen7=dict(style=dict(high=1., random=1.)))
+        p.near_tie = 99.
+        _, game, before = played(1, 20)
+        o = next(o for o, _ in before[4:] if len({x % 13 for x in o.legal}) > 2)
+        got = {p.choose(o, random.Random(seed)).card for seed in range(40)}
+        self.assertTrue(got <= set(o.legal))
+        self.assertGreater(len(got), 1)
+
     def test_a_rollout_bot_with_a_style_keeps_the_candidates_its_style_prefers(self):
         """With every candidate within the margin, a `high` rollout bot plays from the candidate with the highest card and
         a low one from the candidate with the lowest."""

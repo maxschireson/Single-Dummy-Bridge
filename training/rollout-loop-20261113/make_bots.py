@@ -86,7 +86,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
-             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm'])   # every bot that claims and mixes as Stu does
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -302,7 +302,8 @@ def main():
     # Personalities of Gen 8 card play (bridge_harness/style.py; Max, 03:35 to 03:50 UTC on 14 November: more variability
     # in the opponent population, mostly directed, a variety of styles, about a quarter of an IMP a board on average).
     # Each is Gen 8 card play that keeps, of the cards its search rates within `near_tie` of the best, the ones its
-    # style prefers (15% of the time any of them); its net then chooses among those, as Gen 8's does among exact ties.
+    # style prefers; its net then chooses among those, as Gen 8's does among exact ties. For 15% of those decisions it is one
+    # of the cards within the margin at random instead.
     # The margin is the dose: g8-<style> at 0.1 tricks, g8-<style>0 at 0 (among exactly tied cards only).
     STYLES = {'greedy': dict(tempo=1.), 'patient': dict(tempo=-1.), 'active': dict(active=1.), 'passive': dict(active=-1.),
               'high': dict(high=1.), 'low': dict(high=-1.)}
@@ -314,7 +315,7 @@ def main():
             b['near_tie'] = margin
             b['gen7'] = dict(b['gen7'], style=dict(style, random=.15))
             b['label'] = (f'Gen 8 card play with a style: {name} ({TEXT[name]}) among the cards within {margin} tricks of its best, '
-                          'any of them 15% of the time')
+                          'a random one of them 15% of the time')
             bots[f'g8-{name}{tag}'] = b
     # SiD's own randomization (Max, 03:45 UTC: "we need to randomize ourselves a bit too or our similar opponents with big
     # nets will read us on defense too much. Maybe we can spend a quarter imp"): a random one of the candidates within 0.05
@@ -323,6 +324,11 @@ def main():
     bots['stu3-pm'] = copy.deepcopy(bots['stu3-ps'])
     bots['stu3-pm']['x8']['mix'] = dict(bots['stu3-pm']['x8']['mix'], near=.05, defender=True)
     bots['stu3-pm']['label'] = bots['stu3-pm']['label'] + '; plays a random one of its candidates within 0.05 tricks of the best, defending too'
+    # Policy v4.1, the table net, playing the simulated seats as well, in place of a rollout net (Max, 04:07 UTC on 14
+    # November: "And R3 vs 4.1 running the rollouts?"): the reference bot in every other respect. v4.1 takes no bot names.
+    bots['stuv41-ps'] = dict(copy.deepcopy(bots['stu0-ps']), rollout_policy=V41)
+    del bots['stuv41-ps']['x8']['names']
+    bots['stuv41-ps']['label'] = bots['stu0-ps']['label'].replace('Stu round 0 ladder: ', 'Policy v4.1 inside the rollouts (and at the table): ')
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 
