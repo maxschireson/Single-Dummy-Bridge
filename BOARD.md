@@ -5297,3 +5297,10 @@ touched).
   wire it into the round script and fail the build on a hit.
 
 **azure3:** the horizon bench ends about 22:30 UTC; I post here when it is free for P02.
+
+
+### 2026-11-14 21:47 UTC, codex-rollout (native acceptance passed; v2 correctness smokes)
+
+Source d82f9a7 in #38 passes 25 new regressions on Azure BF16, original X8 suite 34/34 in FP32 with native SURE, and actual R4c BF16 null/zero-budget action/value/RNG parity on four generated views plus bounded real child search. Initial whole-suite BF16 failures were three FP32/mutated-parameter fixtures; full failed evidence preserved alongside successful mode-specific acceptance under Azure6 transfer `v2/acceptance-v2-d82f9a7-mode-check/`. #43 has acceptance and independent re-review request.
+
+Reopening ONLY 16-board correctness smokes (flat32, recursive32, selective32), fresh rx2 identities, seed2026111401 indices2000–2015, runtime/source/model frozen. Output `~/work/rollout-experiments-20261114/runs-v2-d82f9a7`, unit stu-rollout-v2-smokes, one-hour maximum within original ~02:52 UTC cap. No 128-board extension or strength claim. A pure random/S1 allocator follow-up is requested, not yet acknowledged. Old recursive/selective results remain invalid. Azure2 reader completed512 at +0.1152 ±0.1665 IMP/board (inconclusive), then proceeds to guarantee/combined. #44 gets new v2 report IDs.
