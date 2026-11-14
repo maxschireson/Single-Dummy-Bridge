@@ -252,6 +252,10 @@ def main():
         bots[f'stu{tag}-ps'] = b
         bots[f'stu{tag}-n'] = alone(f'the net trained from scratch on {what} of v2\'s set, alone', path,
                                     {'self': '8s-32', '*': '8s-32', **BEN})
+    # Gen 8 card play under two ids, for its self-play as training data (Max, 02:31 and 02:43 UTC: the best data the
+    # strongest bots make, and only as much of Stu's own self-play as tells where we are). Read as 8s-32 in the rows.
+    for twin in ('g8a', 'g8b'):
+        bots[twin] = dict(copy.deepcopy(x8['8p-32-v41']), label='Gen 8 card play (8p-32-v41) under a second id, for self-play records')
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

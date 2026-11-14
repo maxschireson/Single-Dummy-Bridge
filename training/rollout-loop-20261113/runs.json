@@ -1077,6 +1077,26 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "02:50 UTC on 14 November: the box makes Gen 8 card play's self-play records instead",
+   "queue_order": null
+  },
+  {
+   "name": "sg8e",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 500000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
    "queue_order": 1
   },
   {

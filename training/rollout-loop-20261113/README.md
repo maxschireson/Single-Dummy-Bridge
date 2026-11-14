@@ -261,8 +261,10 @@ other setting as the lane's BEN (64). Deals 0 to 255, card play only:
 | Gen 8 against BEN (200) | -0.11 +- 0.27; by deal minus Gen 8 against BEN (64), -0.22 +- 0.21 | 28.4 min |
 | Gen 8 against BEN (64) | +0.09 +- 0.27 | 27.0 min |
 
-From the three clocks: BEN (64) about 23 s a table side, BEN (200) about 24.5, Gen 8 about 2. BEN's time is mostly
-fixed a card (sampling 5,000 boards, its networks), so 200 samples cost about 7% of BEN's time. From round 4's
+Gen 8's own process time is 12.2 CPU-s a board against BEN (64) and 13.2 against BEN (200) (about 6 a table side), so
+of the wall clock BEN (64) takes about 19 s a table side and BEN (200) about 20: BEN's time is mostly fixed a card
+(sampling 5,000 boards, its networks), and 200 samples cost about 5% of it. (A first reading at 01:40 UTC that put Gen
+8 at 2 s a table side was wrong: it solved the three clocks without Gen 8's measured time.) From round 4's
 measurements on, BEN means BEN (200).
 
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)

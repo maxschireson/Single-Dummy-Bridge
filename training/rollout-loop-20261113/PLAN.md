@@ -284,8 +284,9 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 - **Running on it:** `exp_strong.sh` (a net from Gen 8 card play's rows of v2's set only, 3.67 million, against one from
   as many rows in v2's mix, each from scratch at 512 and 768 wide; then head to head alone and inside the rollouts), and
   the table net (`stu3-pst`, round 3's net inside and at the table, against SiD (rollout) Stu R0 on 2,000 boards).
-  Gen 8's data costs about 2 CPU-s a table side against SiD's 9, and the arena's feeds already hold about 25,000 Gen 8
-  and 9 episodes newer than v2's set.
+  Gen 8's data costs about 6 CPU-s a table side (fp32) against SiD (rollout)'s 9 (bf16) to 12 (fp32), so its self-play
+  makes about 1.5 to 2 times the tables a box-hour; the arena's feeds already hold about 25,000 Gen 8 and 9 episodes
+  newer than v2's set. From 02:50 UTC azure1 makes Gen 8's self-play records (`sg8e`, `g8a~g8b`).
 
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
