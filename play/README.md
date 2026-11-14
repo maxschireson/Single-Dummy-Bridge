@@ -1,50 +1,89 @@
-# Play against Sid
+# Play with Sid
 
-A web server where people play bridge against Sid. Sid is not any of the project's current bots: it does not exist
-yet, and this server is ready for it. Until it does, a stand-in plays Sid's seats: `8s-32`, Gen 8 standard. The
-page says so, and names the stand-in, whenever the installed bundle is marked `stand_in`. Guests can play
-straight away: they sit South and Sid takes the other three seats. Account holders can also bring a partner: the
-two of them play North–South against two Sids. Each finished board shows the score and the IMPs against a "Sid
-table", where Sid plays the same deal at all four seats. Accounts keep every board with its auction and play.
-There are no matches or events.
+A web server where people play bridge with and against Sid. Sid is not any of the project's current bots: it does
+not exist yet, and this server is ready for it. Until it does, a stand-in plays Sid's seats: `8s-32`, Gen 8 standard.
+The page says so, and names the stand-in, whenever the installed bundle is marked `stand_in`.
+
+You just show up: you sit South, Sid is your partner North, and two more Sids sit East–West. After each board:
+
+- **Analysis** of your play: where tricks were lost double dummy and why, when you had a line that guaranteed the
+  contract against any layout, and which card gave it away (as a defender: which card handed declarer a guaranteed
+  line). See [The analysis](#the-analysis).
+- **Sid in your seat**: Sid plays the same deal at all four seats (the "Sid table"). You see its auction, play, result
+  and the same analysis, and your IMPs against it.
+- **History** for your browser session (a cookie): step back and forth through your deals, and **play any deal again**
+  at a new table. Deals played again are marked and kept out of the IMP totals; Sid's table is reused from the first
+  time.
+- **Sign up** gives you a username and password (suggested; both can be changed). The browser's boards move into the
+  account, which you can then review from any device. There is no email and no password reset.
+
+There are no partner tables, matches or events.
 
 ## How a table works
 
-- **Seats.** Humans always sit North–South. A solo player is South. At a partner table the host is South and the
-  invited partner North.
-- **Boards.** Random deals; dealer and vulnerability follow the standard 16-board cycle.
-- **Declaring.** When North–South win the contract, the human side declares. At a partner table, the human at the
-  declarer's seat plays both hands. Solo, the human plays both hands even when Sid-North won the auction, as on
-  BBO robot tables. A human dummy sees only their own hand.
+- **Seats.** The person sits South; Sid sits North, East and West.
+- **Boards.** Random deals; dealer and vulnerability follow the standard 16-board cycle. A deal played again keeps its
+  board number, dealer and vulnerability.
+- **Declaring.** When North–South win the contract, the person plays both hands, even when Sid-North won the auction,
+  as on BBO robot tables.
 - **Claims.** Declarer can claim any number of the remaining tricks at any time. The claim is accepted when
   declarer's side can take that many double dummy from the current position (as BBO robots judge claims). A refusal
   does not say how many tricks were there, since that would reveal the hidden hands.
 - **Scoring.** The score is North–South's. After each board a background worker plays the deal with Sid at all
   four seats (Sid's own auction, Sid's play). IMPs = IMP(your score − Sid table score). So a plus means the humans
   did better than Sid would have in their seats.
-- **Sid's systems.** A solo table declares Sid's system (`house-gen6` for `8s-32`) for North–South, because the
-  human bids with Sid. A human pair declares nothing. East–West declare Sid's system. Sid makes no alerts and
-  gives no explanations.
+- **Sid's systems.** Both sides declare Sid's system (`house-gen6` for `8s-32`), since the person bids with Sid. Sid
+  makes no alerts and gives no explanations.
 - **Guests.** A guest's boards are tied to a browser cookie. On sign-up or sign-in in that browser they move to the
   account, and so does an open table.
+
+## The analysis
+
+`sidplay/analysis.py`, run in its own worker process (no models) after each board, once for the person's table and
+once for Sid's table, from South's chair ("you", or "Sid in your seat"; dummy's cards count as declarer's).
+
+- **Double dummy, every card** (DDS from the bundle's source): the value of each legal card at each card of the play.
+  A card that is not double-dummy best costs its side the difference. Your losses are listed with the better cards;
+  losses by the other seats are counted (partner's, and tricks the other side gave back).
+- **Guarantees** (the pooled-defender sure-trick search, `native/sure.cpp`, vendored from
+  `experiments/sure_tricks/sure.cpp` at `2e6ed6d` on `research/sure-trick-table-20261112`): what the declaring side can
+  guarantee against every split of the unseen cards, knowing hand sizes and show-outs. Nothing is sampled; the auction
+  is not used. At the declaring side's decisions: did a line guarantee the contract, and did the card played keep it
+  ("gave away the guaranteed contract"), and with 10 or fewer cards left, the exact number of guaranteed tricks
+  ("dropped the guaranteed tricks from 8 to 5"). At a defender's decisions: declarer's guarantee after each card the
+  defender could have played ("handed declarer a guaranteed making line"; "raised declarer's guaranteed tricks").
+  A guaranteed contract can be given away with no double-dummy loss (the test deal A6 in that directory).
+- **Why a double-dummy loss happened.** If the card gave up a guarantee, that is the reason. Otherwise the analysis
+  tries every exchange of two cards between the hands the player could not see that is consistent with the
+  show-outs so far, and reports the card whose position decided it ("It turned on the ♦Q: with it in East's hand
+  instead of West's, this card would have been right"), or that no single exchange makes the card right.
+- **Cost and limits.** Exact guaranteed tricks from 10 cards left in the mover's hand; from 11 to 13 cards only the
+  contract question, 1.5 s per question, for the person's play only (Sid's table: from 10 cards); at most 40 s of sure-trick search and 20 s of exchanges per board, cheapest
+  decisions first. A question that runs out of time leaves that decision "not analysed" and the page says how many.
+  Measured on random deals in a 2-core sandbox: 5 to 16 s for a whole analysis. A defender's own guarantee to beat
+  the contract (two defenders with hidden hands) is not computed.
+- Analyses are stored with the board. A board without one (from before this version, or cut off by a restart) gets
+  it when its page is opened.
 
 ## The information boundary
 
 The server holds the deal; a browser only gets what its seat may see (`Table.view`). That means its own hand, dummy
 after the opening lead, declarer's hand when this human plays it, and every hand once the board is over. A bot gets
 the same `Observation` the game gives the seat controlling the card, and the bidder gets one hand and the calls.
-The full deal reaches a worker only in two places: the claim check (the referee, not a player) and Sid's own table,
-where every seat is Sid. The tests and `smoke.py` check each response for a hand the viewer should not have.
+The full deal reaches a worker only in three places: the claim check (the referee, not a player), Sid's own table,
+where every seat is Sid, and the analysis of a finished board. The tests and `smoke.py` check each response for a hand the viewer should not have.
 
 ## Pieces
 
 | File | Role |
 | --- | --- |
 | `sidplay/app.py` | FastAPI: the page, accounts, tables (long-polled), history |
-| `sidplay/tables.py` | Seating, auction and play, Sid's turns, claims, per-viewer views |
+| `sidplay/tables.py` | Seating, auction and play, Sid's turns, claims, replays, analyses, per-viewer views |
 | `sidplay/engine.py` | Runs in worker processes: loads the bundle, bids, plays, checks claims, plays Sid's table |
-| `sidplay/pool.py` | Interactive and background worker pools |
-| `sidplay/store.py` | SQLite: users (scrypt hashes), sessions, boards, participants |
+| `sidplay/analysis.py` | Runs in the analysis process: double dummy, sure tricks and exchanges for a finished board |
+| `native/sure.cpp` | The sure-trick search (vendored; `install.sh` builds `native/sure_cpp`) |
+| `sidplay/pool.py` | Interactive, background and analysis worker pools |
+| `sidplay/store.py` | SQLite: users (scrypt hashes), sessions, boards with their analyses, participants |
 | `sidplay/fake_engine.py` | A stand-in bot with no models, for tests and interface work |
 | `sidplay/static/` | The page (vanilla JS, self-hosted OFL fonts) |
 | `bundle.py` | Builds a Sid bundle: a bot spec, its artifacts checked by sha256, and the source that runs it |
@@ -96,9 +135,13 @@ git clone --depth 1 --branch feature/gen8-prototype-20261112 https://github.com/
 python play/bundle.py from-models --recipe play/bundles/8s-32.json --source /tmp/sdb-gen8 --out /tmp/bundle-8s32 --allow-commit
 SIDPLAY_BUNDLE=/tmp/bundle-8s32 SIDPLAY_DATA=/tmp/sidplay SIDPLAY_WORKERS=1 uvicorn sidplay.app:app --app-dir play --port 8090
 
-# Tests (stand-in bot) and a smoke run against a live server
+# The analyses need DDS in the source checkout and the sure-trick binary
+python scripts/build_dds.py
+g++ -O2 -std=c++17 -o play/native/sure_cpp play/native/sure.cpp
+
+# Tests (stand-in bot; the analysis tests skip without DDS or sure_cpp) and a smoke run against a live server
 cd play && python -m pytest tests -q
-python play/smoke.py http://127.0.0.1:8090 --boards 2 --sid
+python play/smoke.py http://127.0.0.1:8090 --boards 2 --sid --analysis
 ```
 
 `--allow-commit` is needed above only because the branch head is two documentation-only commits past `792c4cb`.
@@ -143,8 +186,11 @@ sudo sqlite3 /var/lib/sidplay/sidplay.sqlite '.backup /tmp/sidplay-backup.sqlite
 | `SIDPLAY_BACKGROUND_NICE` | 10 | Added to the service's niceness for the background processes |
 | `SIDPLAY_MAX_TABLES` | 12 | Open tables at once, everyone together |
 | `SIDPLAY_IDLE_MINUTES` | 30 | A table with no human action this long closes |
-| `SIDPLAY_INVITE_MINUTES` | 60 | An unanswered partner invitation expires |
 | `SIDPLAY_SID_TABLES` | 1 | Play Sid's own table on each deal (0: no IMP comparison) |
+| `SIDPLAY_ANALYSIS` | 1 | Analyse each finished board (yours and Sid's table) |
+| `SIDPLAY_ANALYSIS_WORKERS` | 1 | Analysis processes (no models: about 0.1 GB each) |
+| `SIDPLAY_SURE_CARDS`, `SIDPLAY_SURE_NEED_CARDS` | 10, 13 | Exact guaranteed tricks up to this many cards left; the contract question up to the second |
+| `SIDPLAY_SURE_BUDGET`, `SIDPLAY_SWAP_BUDGET` | 40, 20 | Seconds per analysis for the sure-trick search and for the exchanges |
 | `SIDPLAY_PACE`, `SIDPLAY_TRICK_PAUSE` | 0.5, 1.2 | Seconds between bot cards, and after a finished trick |
 | `SIDPLAY_SECURE_COOKIES` | 0 | 1 behind HTTPS |
 
@@ -153,6 +199,8 @@ sudo sqlite3 /var/lib/sidplay/sidplay.sqlite '.backup /tmp/sidplay-backup.sqlite
 - Live tables are held in memory: a restart ends them. Finished boards and Sid tables are in SQLite.
 - No password reset and no email. Lost passwords mean a new account.
 - No undo, no alerts or explanations, no chat, no claims by defenders.
+- The analysis judges single-dummy play by guarantees (hand sizes and show-outs only) and double dummy by the real
+  layout; neither reads the auction. Odds between lines that guarantee nothing are not computed.
 - Abuse limits are basic: per-IP limits on sign-ups, sign-ins and new tables, one open table per person, a global
   table cap.
 - Every board is stored with the full deal, auction, play and the bot's identity. Human-against-Sid boards could

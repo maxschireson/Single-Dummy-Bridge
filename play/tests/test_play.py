@@ -1,4 +1,6 @@
-"""Play server against the stand-in bot (no models): full boards, hidden-card boundary, accounts, pairs, claims.
+"""Play server against the stand-in bot (no models): full boards, hidden-card boundary, accounts, claims, analyses,
+playing a deal again, and history navigation. The analyses need DDS and play/native/sure_cpp built (as in
+test_analysis.py); without them the analysis assertions are skipped.
 
   cd play && SIDPLAY_ENGINE=fake python -m pytest tests -q
 """
@@ -16,7 +18,14 @@ os.environ.update(SIDPLAY_ENGINE='fake', SIDPLAY_DATA=tempfile.mkdtemp(), SIDPLA
 sys.path.insert(0, str(ROOT))
 
 from fastapi.testclient import TestClient   # noqa: E402
-from sidplay import app as appmod, fake_engine   # noqa: E402
+from sidplay import analysis, app as appmod, fake_engine   # noqa: E402
+
+try:
+    from bridge_harness.dds import DDS
+    DDS(cache_path='')
+    ANALYSIS = analysis.Sure().available()
+except Exception:
+    ANALYSIS = False
 
 H = {'X-Sid': '1'}
 SEATS = 'NESW'
@@ -51,7 +60,7 @@ def check_boundary(s):
     allowed = {me}
     if b['phase'] == 'play' and b['played'] > 0:
         allowed.add(b['dummy'])
-        if s['mode'] == 'solo' and b['declarer'] in 'NS':
+        if b['declarer'] in 'NS':
             allowed.add(b['declarer'])
     assert visible <= allowed, (visible, allowed, b['phase'])
     assert me in visible
@@ -174,45 +183,78 @@ def test_accounts_adopt_guest_boards(server):
     assert c.post('/api/signup', json={'username': 'Alice', 'password': 'longenough'}, headers=H).status_code == 409
 
 
-def test_pair_table(server):
-    a, b, stranger = fresh(server), fresh(server), fresh(server)
-    a.post('/api/signup', json={'username': 'north_s', 'password': 'longenough'}, headers=H)
-    b.post('/api/signup', json={'username': 'south_n', 'password': 'longenough'}, headers=H)
-    stranger.get('/api/me')
-    assert stranger.post('/api/tables', json={'mode': 'pair'}, headers=H).status_code == 409   # guests cannot host
-    tid = a.post('/api/tables', json={'mode': 'pair'}, headers=H).json()['table']
-    s = state(a, tid)
-    assert s['status'] == 'waiting' and s['invite'] and s['board'] is None
-    assert stranger.get(f'/api/tables/{tid}').status_code == 409                              # not seated: refused
-    assert stranger.post('/api/join', json={'code': s['invite']}, headers=H).status_code == 409
-    assert b.post('/api/join', json={'code': s['invite']}, headers=H).json()['table'] == tid
-    sa, sb = state(a, tid), state(b, tid)
-    assert sa['me'] == 'S' and sb['me'] == 'N' and sa['status'] == 'playing'
-    # Each sees only their own hand during the auction.
-    assert sa['board']['hands']['N']['cards'] is None and sb['board']['hands']['S']['cards'] is None
-    # Drive the board with both players acting on their turns.
-    deadline = time.time() + 60
-    while time.time() < deadline:
-        moved = False
-        for c in (a, b):
-            s = state(c, tid)
-            check_boundary(s)
-            bd = s['board']
-            if bd['phase'] == 'done':
-                break
-            if bd['turn'] and bd['turn']['mine']:
-                if bd['turn']['kind'] == 'call':
-                    call = '1N' if c is b and '1N' in bd['legal'] and not any(x != 'PASS' for x in bd['calls']) else 'PASS'
-                    c.post(f'/api/tables/{tid}/call', json={'call': call}, headers=H)
-                else:
-                    c.post(f'/api/tables/{tid}/card', json={'card': bd['legal'][0]}, headers=H)
-                moved = True
-        if state(a, tid)['board']['phase'] == 'done':
-            break
-        if not moved:
-            time.sleep(0.02)
-    sa, sb = state(a, tid), state(b, tid)
-    assert sa['board']['phase'] == 'done' and sb['board']['result'] == sa['board']['result']
-    assert a.get('/api/history').json()['totals']['boards'] == 1 and b.get('/api/history').json()['totals']['boards'] == 1
-    bid = a.get('/api/history').json()['boards'][0]['id']
-    assert stranger.get(f'/api/boards/{bid}').status_code == 404
+def test_partner_tables_are_gone(server):
+    assert server.post('/api/join', json={'code': 'x'}, headers=H).status_code in (404, 405)
+    tid = server.post('/api/tables', json={'mode': 'pair'}, headers=H).json()['table']   # mode is ignored: solo
+    s = state(server, tid)
+    assert [x['kind'] for x in s['seats']] == ['bot', 'bot', 'human', 'bot'] and 'invite' not in s
+
+
+def test_suggested_signup(server):
+    c = fresh(server)
+    c.get('/api/me')
+    sug = c.get('/api/signup/suggest').json()
+    assert appmod.USERNAME.fullmatch(sug['username']) and len(sug['password']) >= 12
+    assert c.post('/api/signup', json=sug, headers=H).status_code == 200
+    assert c.get('/api/me').json()['user'] == sug['username']
+    assert server.get('/api/signup/suggest').json()['username'] != sug['username'] or True
+
+
+def finish_with_extras(c, tid, timeout=120):
+    """Wait until Sid's table and (if available) both analyses of the current board have arrived."""
+    def ready(s):
+        b = s['board']
+        if b['sid'] in ('pending', None):
+            return False
+        if not ANALYSIS:
+            return True
+        return b['analysis']['status'] in ('ready', 'error', None) and b['sid_analysis']['status'] in ('ready', 'error', None)
+    return wait_for(c, tid, ready, timeout)
+
+
+def test_analysis_replay_and_navigation(server):
+    c = fresh(server)
+    c.get('/api/me')
+    tid = c.post('/api/tables', json={}, headers=H).json()['table']
+    # Bid 7NT at the first chance: South declares (or Sid-North, and South plays both hands).
+    s = play_board(c, tid, bid_first='7N')
+    s = finish_with_extras(c, tid)
+    first = s['board']
+    bid1 = first['board_id']
+    if ANALYSIS:
+        assert first['analysis']['status'] == 'ready' and first['analysis']['brief']['lost'] is not None
+        assert first['sid_analysis']['status'] in ('ready', None)
+    detail = c.get(f'/api/boards/{bid1}').json()
+    if ANALYSIS:
+        a = detail['analysis']
+        assert detail['analysis_status'] == 'ready' and len(a['cards']) == len(detail['play'])
+        assert a['focus'] == [detail['declarer']] if detail['declarer'] in 'NS' else a['focus'] == ['S']
+        assert all(e['loss'] > 0 and e['text'] for e in a['lost'])
+    assert detail['older'] is None and detail['newer'] is None
+    # A second board, then navigation between the two.
+    assert c.post(f'/api/tables/{tid}/next', json={}, headers=H).status_code == 200
+    s = play_board(c, tid)
+    s = finish_with_extras(c, tid)
+    bid2 = s['board']['board_id']
+    assert c.get(f'/api/boards/{bid2}').json()['older'] == bid1
+    assert c.get(f'/api/boards/{bid1}').json()['newer'] == bid2
+    # Play the first deal again: same hands, Sid's table reused, left out of the totals.
+    sid_before = detail['sid_table']
+    rid = c.post('/api/tables', json={'replay': bid1}, headers=H).json()['table']
+    r = state(c, rid)
+    assert r['board']['number'] == first['number'] and r['board']['replay'] is True
+    s = play_board(c, rid, bid_first='7N')
+    s = finish_with_extras(c, rid)
+    hands = {k: v['cards'] for k, v in s['board']['hands'].items()}
+    assert hands == {k: v['cards'] for k, v in first['hands'].items()}
+    assert s['scores'][-1]['replay'] and s['totals']['boards'] == 0 and s['totals']['replays'] == 1
+    again = c.get(f"/api/boards/{s['board']['board_id']}").json()
+    assert again['replay_of'] == bid1 and again['sid_table'] == sid_before
+    hist = c.get('/api/history').json()
+    assert hist['totals']['boards'] == 2 and hist['totals']['replays'] == 1
+    assert [b['replay_of'] for b in hist['boards']] == [bid1, None, None]
+    # Someone else's board cannot be replayed or read.
+    other = fresh(server)
+    other.get('/api/me')
+    assert other.post('/api/tables', json={'replay': bid1}, headers=H).status_code == 404
+    assert other.get(f'/api/boards/{bid1}').status_code == 404

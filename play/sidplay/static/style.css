@@ -291,6 +291,58 @@ table { border-collapse: collapse; width: 100%; }
 .colophon { padding: 1rem clamp(1rem, 3vw, 2rem) 1.5rem; font-size: .85rem; color: var(--ink-soft); border-top: 1px solid var(--rule); }
 .colophon p { max-width: 90ch; margin: 0; }
 
+/* ---- after the board: briefs, review, analysis -------------------------------------- */
+.tag { display: inline-block; font-size: .85rem; font-weight: 700; color: var(--ink-soft); background: var(--plastic); border-radius: 4px; padding: .1rem .45rem; margin: 0 0 .6rem; }
+h1 .tag { vertical-align: middle; margin: 0 0 0 .5rem; font-size: .9rem; }
+.again { color: var(--ink-soft); }
+.result .buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.result .buttons .btn + .btn { margin-left: 0; }
+.brief { border-top: 1px solid var(--rule); padding-top: .6rem; margin-top: .6rem; }
+.brief p { margin: 0 0 .3rem; }
+.brief ul { margin: 0 0 .2rem; padding-left: 1.2rem; font-size: .95rem; }
+.boardnav { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin-bottom: 1rem; }
+.boardnav .btn + .btn { margin-left: 0; }
+.btn.disabled { opacity: .35; cursor: default; }
+details.panel > summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: .5rem; }
+details.panel > summary::-webkit-details-marker { display: none; }
+details.panel > summary::before { content: '\25B8'; color: var(--ink-soft); }
+details.panel[open] > summary::before { content: '\25BE'; }
+details.panel > summary h2 { display: inline; margin: 0; font-size: 1.15rem; }
+.analysis { margin-top: .6rem; }
+.analysis h3 { margin: 1.1rem 0 .4rem; }
+.analysis ul.events, .analysis ol.lost { margin: 0; padding-left: 1.3rem; }
+.analysis li { margin-bottom: .45rem; max-width: 80ch; }
+.analysis .ev-gave_away, .analysis .ev-handed_contract { font-weight: 700; }
+.analysis .why { color: var(--ink-soft); }
+.analysis details { margin-top: .8rem; }
+.analysis details summary { cursor: pointer; }
+.small { font-size: .82rem; }
+.legend { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; font-size: .85rem; color: var(--ink-soft); margin: .4rem 0 .2rem; }
+.legend .key { display: inline-block; width: 16px; height: 0; vertical-align: middle; margin-right: .35rem; border-top: 2px solid; }
+.legend .key.dd { border-color: #2a78d6; }
+.legend .key.sure { border-color: #eb6834; }
+.legend .key.tri { width: 0; height: 0; border-top: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; }
+.legend .key.tri.lost { border-top: 9px solid #d03b3b; }
+.legend .key.tri.partner { border-top: 9px solid #898781; }
+.legend .key.tri.gift { border-bottom: 9px solid #0ca30c; }
+.chartwrap { position: relative; }
+.chart { width: 100%; height: auto; display: block; background: #fcfcfb; border-radius: 6px; touch-action: pan-y; }
+.chart .grid { stroke: #e1e0d9; stroke-width: 1; }
+.chart .tick { font: 11px var(--body); fill: #898781; font-variant-numeric: tabular-nums; }
+.chart .tick.strong { fill: var(--ink-soft); font-weight: 700; }
+.chart .target { stroke: #52514e; stroke-width: 1; }
+.chart .dd { fill: none; stroke: #2a78d6; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .sure { fill: none; stroke: #eb6834; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .sure-dot { fill: #eb6834; stroke: #fcfcfb; stroke-width: 2; }
+.chart .mark-lost { fill: #d03b3b; stroke: #fcfcfb; stroke-width: 2; }
+.chart .mark-partner { fill: #898781; stroke: #fcfcfb; stroke-width: 2; }
+.chart .mark-gift { fill: #0ca30c; stroke: #fcfcfb; stroke-width: 2; }
+.chart .cross { stroke: #898781; stroke-width: 1; }
+.tip { position: absolute; top: 6px; min-width: 170px; background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,.18); padding: .4rem .6rem; font-size: .85rem; pointer-events: none; }
+.plays td.lost { background: #F9DEDC; }
+.plays td.gave { background: #DDF2DD; }
+.plays td.sure { box-shadow: inset 0 0 0 2px #eb6834; }
+
 @media (max-width: 900px) {
   .room { grid-template-columns: minmax(0, 1fr); }
   .replay-grid { grid-template-columns: minmax(0, 1fr); }
@@ -306,5 +358,11 @@ table { border-collapse: collapse; width: 100%; }
   .hand.hidden .backs { min-height: 0; }
   .hand.hidden .stack { width: 18px; height: 26px; }
   .rank { min-width: 1.6rem; font-size: 1.15rem; }
-  .diagram .dupboard { --size: 90px; }
+  .diagram { gap: .4rem .4rem; }
+  .diagram .dupboard { --size: 64px; }
+  .diagram .hand { padding: .3rem .4rem .35rem; }
+  .diagram .hand .row { flex-wrap: nowrap; min-height: 22px; }
+  .diagram .rank { min-width: 0; padding: .1rem .07rem; font-size: .92rem; }
+  .diagram .hand .row .sym { width: 1rem; font-size: .95rem; }
+  .diagram .hand .who { font-size: .78rem; }
 }

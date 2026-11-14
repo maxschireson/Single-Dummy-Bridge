@@ -1,4 +1,4 @@
-"""HTTP: the page, accounts, tables (long-polled), history.
+"""HTTP: the page, accounts, tables (long-polled), history and analyses.
 
   SIDPLAY_BUNDLE=/path/to/bundle uvicorn sidplay.app:app --app-dir play --host 127.0.0.1 --port 8090
   SIDPLAY_ENGINE=fake uvicorn sidplay.app:app --app-dir play        # no models: a stand-in bot
@@ -63,7 +63,7 @@ async def lifespan(app):
     bots = Bots(CONFIG)
     registry = Registry(CONFIG, store, bots)
     STATE.update(store=store, bots=bots, registry=registry, started=time.time(),
-                 signup=Limiter(5, 3600), login=Limiter(20, 900), create=Limiter(60, 3600))
+                 signup=Limiter(5, 3600), login=Limiter(20, 900), create=Limiter(60, 3600), suggest=Limiter(60, 3600))
     log.info('Starting %s workers for %s', CONFIG.interactive_workers + CONFIG.background_workers, CONFIG.bot_label)
     STATE['workers'] = await bots.warm()
     log.info('Workers ready: %s', STATE['workers'])
@@ -157,7 +157,7 @@ app.mount('/static', StaticFiles(directory=STATIC), name='static')
 async def health():
     bots, reg = STATE['bots'], STATE['registry']
     return dict(ok=True, bot=CONFIG.bot, label=CONFIG.bot_label, stand_in=CONFIG.bot_stand_in, engine=CONFIG.engine, open_tables=reg.open_count(),
-                busy=bots.busy, decisions=bots.decisions, uptime=int(time.time() - STATE['started']))
+                busy=bots.busy, decisions=bots.decisions, analysis=CONFIG.analysis, uptime=int(time.time() - STATE['started']))
 
 
 # ---- accounts ------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ async def me(request: Request, response: Response):
     t = STATE['registry'].current(v)
     return dict(user=v.name, table=t.id if t else None,
                 bot=dict(label=CONFIG.bot_label, system=CONFIG.bot_system, stand_in=CONFIG.bot_stand_in),
-                sid_tables=CONFIG.sid_tables)
+                sid_tables=CONFIG.sid_tables, analysis=CONFIG.analysis)
 
 
 def start_session(response, request, user_id, old):
@@ -175,6 +175,29 @@ def start_session(response, request, user_id, old):
     set_cookie(response, SESSION_COOKIE, store.new_session(user_id), SESSION_AGE)
     store.adopt_anonymous(old.anon, user_id)
     STATE['registry'].adopt(old, Viewer(user_id, None, store.username(user_id)))
+
+
+WORDS = ('finesse', 'squeeze', 'endplay', 'ruff', 'trump', 'slam', 'grand', 'double', 'redouble', 'overtrick', 'duck',
+         'coup', 'tenace', 'singleton', 'void', 'dummy', 'lead', 'cuebid', 'sacrifice', 'safety', 'crossruff', 'stopper')
+
+
+def suggest_name(store):
+    rng = secrets.SystemRandom()
+    for _ in range(50):
+        name = f'{rng.choice(WORDS)}-{rng.randrange(100, 1000)}'
+        if store.username_free(name):
+            return name
+    return f'player-{secrets.token_hex(4)}'
+
+
+@app.get('/api/signup/suggest')
+async def signup_suggest(request: Request):
+    """A free username and a fresh password, which the sign-up form shows and the person may change."""
+    if not STATE['suggest'].allow(client_ip(request)):
+        raise HTTPException(429, 'Too many requests. Try later.')
+    alphabet = 'abcdefghijkmnpqrstuvwxyz23456789'
+    password = '-'.join(''.join(secrets.choice(alphabet) for _ in range(4)) for _ in range(3))
+    return dict(username=suggest_name(STATE['store']), password=password)
 
 
 @app.post('/api/signup')
@@ -222,14 +245,14 @@ async def create_table(request: Request, response: Response):
     if not STATE['create'].allow(client_ip(request)):
         raise HTTPException(429, 'Too many new tables from here. Try later.')
     reg = STATE['registry']
-    t = reg.create_pair(v) if data.get('mode') == 'pair' else reg.create_solo(v)
-    return dict(table=t.id)
-
-
-@app.post('/api/join')
-async def join(request: Request):
-    data = await body(request)
-    t = STATE['registry'].join(viewer(request), str(data.get('code', '')))
+    replay = None
+    if data.get('replay') is not None:
+        if not isinstance(data['replay'], int) or isinstance(data['replay'], bool):
+            raise HTTPException(400, 'Which board?')
+        replay = STATE['store'].replay_source(data['replay'], v.user_id, v.anon)
+        if replay is None:
+            raise HTTPException(404, 'No such board in your history.')
+    t = reg.create_solo(v, replay=replay)
     return dict(table=t.id)
 
 
@@ -293,9 +316,13 @@ async def history(request: Request, offset: int = 0):
 @app.get('/api/boards/{board_id}')
 async def board(board_id: int, request: Request):
     v = viewer(request)
-    b = STATE['store'].board(board_id, v.user_id, v.anon)
+    store = STATE['store']
+    b = store.board(board_id, v.user_id, v.anon)
     if b is None:
         raise HTTPException(404, 'No such board in your history.')
     for s in b['seats']:
         s.pop('user_id', None)
+    b['older'], b['newer'] = store.neighbours(board_id, v.user_id, v.anon)
+    status = STATE['registry'].analysis_status(b)
+    b['analysis_status'], b['sid_analysis_status'] = status['analysis'], status['sid_analysis']
     return b

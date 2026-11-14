@@ -23,8 +23,10 @@ class Config:
     background_nice: int
     max_tables: int         # open tables at once, all users together
     idle_minutes: float     # a table with no human action for this long is closed
-    invite_minutes: float   # a partner table nobody joined is closed after this long
     sid_tables: bool        # play Sid's own table on every deal for the IMP comparison
+    analysis: bool          # analyse each finished board (yours and Sid's table): double dummy and sure tricks
+    analysis_workers: int   # processes for the analysis (no models loaded)
+    analysis_limits: dict   # overrides for sidplay.analysis.DEFAULTS
     pace: float             # seconds between bot cards, so people can follow
     trick_pause: float      # seconds a finished trick stays before a bot leads to the next
     secure_cookies: bool
@@ -54,8 +56,11 @@ class Config:
             background_nice=_int('SIDPLAY_BACKGROUND_NICE', 10),
             max_tables=_int('SIDPLAY_MAX_TABLES', 12),
             idle_minutes=_float('SIDPLAY_IDLE_MINUTES', 30),
-            invite_minutes=_float('SIDPLAY_INVITE_MINUTES', 60),
             sid_tables=os.environ.get('SIDPLAY_SID_TABLES', '1') == '1',
+            analysis=os.environ.get('SIDPLAY_ANALYSIS', '1') == '1',
+            analysis_workers=_int('SIDPLAY_ANALYSIS_WORKERS', 1),
+            analysis_limits={k: float(os.environ[f'SIDPLAY_{k.upper()}']) for k in
+                             ('sure_cards', 'sure_need_cards', 'sure_budget', 'swap_budget') if os.environ.get(f'SIDPLAY_{k.upper()}')},
             pace=_float('SIDPLAY_PACE', 0.5),
             trick_pause=_float('SIDPLAY_TRICK_PAUSE', 1.2),
             secure_cookies=os.environ.get('SIDPLAY_SECURE_COOKIES', '0') == '1',

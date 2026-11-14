@@ -1,13 +1,16 @@
-"""Live tables: seating, the auction and the play, Sid's turns, claims, and what each viewer may see.
+"""Live tables: seating, the auction and the play, Sid's turns, claims, the analyses, and what each viewer may see.
 
-Seats are N=0, E=1, S=2, W=3. Humans always sit North-South: a solo player at South with Sid at the other three
-seats, or two account holders at North and South against Sid East-West. When North-South win the contract the
-human side declares: in a pair the human at the declarer's seat plays both hands; solo, the human plays both
-hands even when Sid-North won the auction (as robot tables on BBO do).
+Seats are N=0, E=1, S=2, W=3. One person sits South; Sid takes North (the partner) and East-West. When North-South
+win the contract the person declares and plays both hands, even when Sid-North won the auction (as robot tables on
+BBO do).
+
+After each board two analyses run in the analysis pool: the person's play, and Sid's own table on the same deal (Sid at
+all four seats), whose South is "Sid in your seat". A board can be played again from the person's history: the same
+deal, dealer and vulnerability at a new table; Sid's table and its analysis are reused from the first time.
 
 Hidden information: `view` sends a viewer only the hands that viewer may see. A bot gets only the Observation
-the game gives the seat controlling the card. The full deal leaves this module only to the claim referee and to
-Sid's own table, and to viewers once the board is over.
+the game gives the seat controlling the card. The full deal leaves this module only to the claim referee, to Sid's
+own table and to the analyses, and to viewers once the board is over.
 """
 import asyncio
 from dataclasses import dataclass
@@ -18,6 +21,9 @@ import time
 
 from .rules import (SEATS, Board, Contract, Game, auction_state, board_meta, contract_text, imps, legal_calls, new_deal,
                     parse_call, result_text, score, symbol, vulnerable, winner, card as parse_card)
+
+HUMAN_NAMES = {0: 'Sid (North)', 1: 'Sid (East)', 2: 'You', 3: 'Sid (West)'}
+SID_NAMES = {0: 'Sid North', 1: 'Sid East', 2: 'Sid South', 3: 'Sid West'}
 
 log = logging.getLogger('sidplay.tables')
 HUMAN, BOT = 'human', 'bot'
@@ -54,8 +60,9 @@ class TableError(Exception):
 
 
 class BoardState:
-    def __init__(self, number, hands):
+    def __init__(self, number, hands, replay=None):
         self.number = number
+        self.replay = replay         # a deal played again: dict(id, sid_table, sid_analysis) of the first time
         self.dealer, self.vul = board_meta(number)
         self.hands = hands
         self.calls = []
@@ -68,17 +75,21 @@ class BoardState:
         self.result = None
         self.db_id = None
         self.sid = None              # Sid's own table: None, 'pending', a record, or 'error'
+        self.analysis = None         # None, 'pending', 'ready' or 'error'; the analysis itself is in the store
+        self.sid_analysis = None
+        self.brief = None            # a few lines of the person's analysis for the result panel
+        self.sid_brief = None
         self.error = None
 
 
 class Table:
-    def __init__(self, registry, mode, seats, invite=None):
+    def __init__(self, registry, seats, replay=None):
         self.registry = registry
         self.id = secrets.token_urlsafe(9)
-        self.mode = mode
+        self.mode = 'solo'
         self.seats = seats
-        self.invite = invite
-        self.status = 'waiting' if any(s is None for s in seats) else 'playing'
+        self.status = 'playing'
+        self.replay = replay         # the first board of this table is this deal again
         self.board = None
         self.number = 0
         self.scores = []
@@ -125,9 +136,9 @@ class Table:
         return None
 
     def systems(self):
-        """Declared systems (NS, EW). A solo player bids Sid's system with Sid; a human pair declares nothing."""
+        """Declared systems (NS, EW). The person bids Sid's system with Sid."""
         own = self.config.bot_system
-        return (own if self.mode == 'solo' else None, own)
+        return (own, own)
 
     def bot_kind(self, seat):
         """Which of the worker's two Sid instances plays this seat: the one facing humans, or the one facing Sid."""
@@ -138,9 +149,7 @@ class Table:
     def declaring_controller(self):
         """The seat whose owner plays declarer's and dummy's cards."""
         c = self.board.contract
-        if c.declarer % 2 == 0 and self.mode == 'solo':
-            return 2
-        return c.declarer
+        return 2 if c.declarer % 2 == 0 else c.declarer
 
     def card_owner(self, actor):
         c = self.board.contract
@@ -161,8 +170,13 @@ class Table:
 
     # ---- the board -----------------------------------------------------------------------
     def start_board(self):
-        self.number += 1
-        self.board = BoardState(self.number, new_deal())
+        if self.replay is not None:
+            r, self.replay = self.replay, None
+            self.number = r['number']
+            self.board = BoardState(r['number'], r['hands'], replay=r)
+        else:
+            self.number += 1
+            self.board = BoardState(self.number, new_deal())
         self.bump()
         self.kick()
 
@@ -202,15 +216,40 @@ class Table:
                       tricks=tricks, claimed=b.claimed, ns_score=ns,
                       play=[[SEATS[s], symbol(x)] for s, x in b.game.history] if b.game else [],
                       seats=[dict(kind=s.kind, name=s.name, user_id=s.user_id) for s in self.seats],
-                      bot=self.config.bot, bot_identity=self.config.bot_identity)
+                      bot=self.config.bot, bot_identity=self.config.bot_identity,
+                      replay_of=b.replay['id'] if b.replay else None)
         try:
             b.db_id = self.registry.store.save_board(record, [(SEATS[i], s.user_id, s.anon) for i, s in self.humans()])
         except Exception:
             log.exception('Could not save board %s-%s', self.id, b.number)
-        self.scores.append(dict(number=b.number, **b.result, sid=None, imps=None, board_id=b.db_id))
-        if self.config.sid_tables:
+        self.scores.append(dict(number=b.number, **b.result, sid=None, imps=None, board_id=b.db_id, replay=bool(b.replay)))
+        if self.config.analysis and c is not None and b.game.history:
+            b.analysis = 'pending'
+            self.spawn(self.analyse(b, 'analysis', b.hands, c.text(), c.declarer, list(b.game.history), HUMAN_NAMES))
+        if b.replay and b.replay.get('sid_table'):
+            self.spawn(self.sid_table_done(b, self.scores[-1], b.replay['sid_table'], b.replay.get('sid_analysis')))
+        elif self.config.sid_tables:
             b.sid = 'pending'
             self.spawn(self.play_sid_table(b, self.scores[-1]))
+
+    async def analyse(self, b, which, hands, contract, declarer, play, names):
+        """Run one analysis in the analysis pool (stored by the registry). which: 'analysis' or 'sid_analysis'."""
+        result = await self.registry.run_analysis(b.db_id, which, hands, contract, declarer, play, names)
+        if result is None:
+            setattr(b, which, 'error')
+            self.bump()
+            return
+        self.set_analysis(b, which, result, store=False)
+
+    def set_analysis(self, b, which, result, store=True):
+        setattr(b, which, 'ready')
+        setattr(b, 'brief' if which == 'analysis' else 'sid_brief', brief(result))
+        if store and b.db_id is not None:
+            try:
+                self.registry.store.set_analysis(b.db_id, which, result)
+            except Exception:
+                log.exception('Could not save %s for board %s', which, b.db_id)
+        self.bump()
 
     async def play_sid_table(self, b, row):
         try:
@@ -221,6 +260,10 @@ class Table:
             b.sid = 'error'
             self.bump()
             return
+        await self.sid_table_done(b, row, sid, None)
+
+    async def sid_table_done(self, b, row, sid, analysis):
+        """Sid's own table on this deal is known (played now, or reused for a deal played again)."""
         b.sid = sid
         sid_view = dict(contract=sid['contract'], declarer=sid['declarer'], tricks=sid['tricks'], ns_score=sid['ns_score'],
                         calls=sid['calls'])
@@ -235,6 +278,13 @@ class Table:
             except Exception:
                 log.exception('Could not save Sid table for board %s', b.db_id)
         self.bump()
+        if analysis:
+            self.set_analysis(b, 'sid_analysis', analysis)
+        elif self.config.analysis and sid['contract'] and sid['play']:
+            b.sid_analysis = 'pending'
+            self.bump()
+            play = [(SEATS.index(seat), parse_card(c)) for seat, c in sid['play']]
+            await self.analyse(b, 'sid_analysis', b.hands, sid['contract'], SEATS.index(sid['declarer']), play, SID_NAMES)
 
     # ---- Sid's turns ---------------------------------------------------------------------
     def kick(self):
@@ -339,7 +389,7 @@ class Table:
             if self.seat_of(viewer) is None:
                 raise TableError('You are not at this table.')
             if self.status != 'playing':
-                raise TableError('Waiting for your partner.')
+                raise TableError('This table has closed.')
             if self.board is not None and self.board.phase != 'done' and not self.board.error:
                 raise TableError('Finish this board first.')
             self.last_action = time.time()
@@ -370,13 +420,12 @@ class Table:
         me = self.seat_of(viewer)
         if me is None:
             raise TableError('You are not at this table.')
+        counted = [r for r in self.scores if not r.get('replay')]
         out = dict(id=self.id, mode=self.mode, status=self.status, version=self.version, me=SEATS[me],
-                   seats=[dict(seat=SEATS[i], kind=s.kind if s else 'empty', name=(s.name if s else 'waiting for partner'))
-                          for i, s in enumerate(self.seats)],
-                   invite=self.invite if self.status == 'waiting' else None,
+                   seats=[dict(seat=SEATS[i], kind=s.kind, name=s.name) for i, s in enumerate(self.seats)],
                    bot=dict(label=self.config.bot_label, system=self.config.bot_system, stand_in=self.config.bot_stand_in), scores=self.scores,
-                   totals=dict(boards=len(self.scores), imps=sum(r['imps'] or 0 for r in self.scores),
-                               compared=sum(r['imps'] is not None for r in self.scores)),
+                   totals=dict(boards=len(counted), imps=sum(r['imps'] or 0 for r in counted),
+                               compared=sum(r['imps'] is not None for r in counted), replays=len(self.scores) - len(counted)),
                    closed_reason=getattr(self, 'closed_reason', None))
         b = self.board
         if b is None:
@@ -404,6 +453,7 @@ class Table:
             if mine:
                 legal = legal_calls(b.dealer, b.calls) if kind == 'call' else [symbol(x) for x in g.observation().legal]
         board = dict(number=b.number, dealer=SEATS[b.dealer], vul=b.vul, phase=b.phase, calls=list(b.calls), hands=hands,
+                     replay=bool(b.replay),
                      contract=contract_text(b.contract) if b.contract else None,
                      declarer=SEATS[b.contract.declarer] if b.contract else None,
                      dummy=SEATS[b.contract.dummy] if b.contract else None,
@@ -425,8 +475,23 @@ class Table:
                 self.scores[-1]['sid'] if b.sid else None)
             board['imps'] = self.scores[-1]['imps'] if self.scores else None
             board['board_id'] = b.db_id
+            board['analysis'] = dict(status=b.analysis, brief=b.brief)
+            board['sid_analysis'] = dict(status=b.sid_analysis, brief=b.sid_brief)
         out['board'] = board
         return out
+
+
+def brief(a):
+    """A few lines of an analysis for the result panel: the trick count and the main events."""
+    if not a:
+        return None
+    sm = a.get('summary') or {}
+    order = {'gave_away': 0, 'handed_contract': 0, 'had_guarantee': 1, 'sure_trick': 2, 'handed_trick': 2, 'regained': 3}
+    events = a.get('events', [])
+    top = sorted(sorted(events, key=lambda e: (order.get(e['kind'], 9), e['n']))[:3], key=lambda e: e['n'])
+    return dict(lost=sm.get('lost'), partner_lost=sm.get('partner_lost'), gifts=sm.get('gifts'),
+                side_start=sm.get('side_start'), side_end=sm.get('side_end'), declaring=a.get('focus_declares'),
+                events=[e['text'] for e in top], more=max(0, len(events) - 3))
 
 
 class Registry:
@@ -434,7 +499,61 @@ class Registry:
         self.config, self.store, self.bots = config, store, bots
         self.tables = {}
         self.owner = {}           # viewer key -> table id (one open table each)
-        self.invites = {}         # invite code -> table id
+        self.analysing = set()    # (board id, which) running now
+        self.failed = {}          # (board id, which) -> when it last failed
+        self.tasks = set()
+
+    # ---- analyses -------------------------------------------------------------------------
+    async def run_analysis(self, board_id, which, hands, contract, declarer, play, names):
+        """One analysis in the analysis pool; stored when the board is saved. None if it failed."""
+        key = (board_id, which)
+        self.analysing.add(key)
+        try:
+            # Sid's table gets the sure-trick search from 10 cards only; the contract question at 11 to 13 cards is for
+            # the person's play (Max, 14 Nov).
+            limits = None if which == 'analysis' else dict(sure_need_cards=self.config.analysis_limits.get('sure_cards', 10))
+            result = await self.bots.analyse([list(h) for h in hands], contract, declarer, [list(p) for p in play], [2], names,
+                                             limits)
+        except Exception:
+            log.exception('Analysis %s of board %s failed', which, board_id)
+            self.failed[key] = time.time()
+            return None
+        finally:
+            self.analysing.discard(key)
+        if board_id is not None:
+            try:
+                self.store.set_analysis(board_id, which, result)
+            except Exception:
+                log.exception('Could not save %s for board %s', which, board_id)
+        return result
+
+    def analysis_status(self, d):
+        """For a stored board (Store.board): the state of both analyses, starting any that is missing (a board from
+        before analyses existed, or one whose analysis a restart cut off)."""
+        out = {}
+        jobs = {'analysis': (d['contract'], d['declarer'], d['play'], HUMAN_NAMES)}
+        sid = d.get('sid_table') or {}
+        jobs['sid_analysis'] = (sid.get('contract'), sid.get('declarer'), sid.get('play'), SID_NAMES)
+        for which, (contract, declarer, play, names) in jobs.items():
+            key = (d['id'], which)
+            if d.get(which):
+                out[which] = 'ready'
+            elif not self.config.analysis or not contract or not play:
+                out[which] = None
+            elif key in self.analysing or any(t.board and t.board.db_id == d['id'] and getattr(t.board, which) == 'pending'
+                                              for t in self.tables.values()):
+                out[which] = 'pending'
+            elif time.time() - self.failed.get(key, 0) < 600:
+                out[which] = 'error'
+            else:
+                hands = [[parse_card(c) for c in h] for h in d['hands']]
+                moves = [(SEATS.index(seat), parse_card(c)) for seat, c in play]
+                self.analysing.add(key)            # before the task starts, so a second request does not start another
+                task = asyncio.ensure_future(self.run_analysis(d['id'], which, hands, contract, SEATS.index(declarer), moves, names))
+                self.tasks.add(task)
+                task.add_done_callback(self.tasks.discard)
+                out[which] = 'pending'
+        return out
 
     def open_count(self):
         return sum(t.status != 'closed' for t in self.tables.values())
@@ -462,47 +581,17 @@ class Registry:
     def human_seat(self, viewer):
         return Seat(HUMAN, viewer.user_id, viewer.anon if viewer.user_id is None else None, viewer.name or 'Guest')
 
-    def create_solo(self, viewer):
+    def create_solo(self, viewer, replay=None):
+        """A new table: the person South, Sid at the other seats. replay: a deal from the person's history to play
+        again first (dict from Store.replay_source)."""
+        if replay is not None:
+            replay = dict(replay, hands=tuple(tuple(sorted(parse_card(c) for c in h)) for h in replay['hands']))
         self._release(viewer)
         self._capacity()
         seats = [Seat(BOT), Seat(BOT), self.human_seat(viewer), Seat(BOT)]
-        t = Table(self, 'solo', seats)
+        t = Table(self, seats, replay=replay)
         self.tables[t.id] = t
         self.owner[viewer.key] = t.id
-        t.start_board()
-        return t
-
-    def create_pair(self, viewer):
-        if viewer.user_id is None:
-            raise TableError('Sign in to play with a partner.')
-        self._release(viewer)
-        self._capacity()
-        code = secrets.token_urlsafe(8)
-        seats = [None, Seat(BOT), self.human_seat(viewer), Seat(BOT)]
-        t = Table(self, 'pair', seats, invite=code)
-        self.tables[t.id] = t
-        self.owner[viewer.key] = t.id
-        self.invites[code] = t.id
-        return t
-
-    def join(self, viewer, code):
-        if viewer.user_id is None:
-            raise TableError('Sign in to join your partner.')
-        tid = self.invites.get(code)
-        t = self.tables.get(tid) if tid else None
-        if t is None or t.status == 'closed':
-            raise TableError('That invitation has expired.')
-        if t.seat_of(viewer) is not None:
-            return t
-        if t.status != 'waiting':
-            raise TableError('That table is full.')
-        self._release(viewer)
-        t.seats[0] = self.human_seat(viewer)
-        t.status = 'playing'
-        t.invite = None
-        self.invites.pop(code, None)
-        self.owner[viewer.key] = t.id
-        t.last_action = time.time()
         t.start_board()
         return t
 
@@ -524,8 +613,6 @@ class Registry:
         t.close(reason)
         for k in [k for k, v in self.owner.items() if v == t.id]:
             del self.owner[k]
-        for k in [k for k, v in self.invites.items() if v == t.id]:
-            del self.invites[k]
 
     def leave(self, viewer, table_id):
         t = self.get(table_id)
@@ -537,9 +624,7 @@ class Registry:
         """Close idle tables; forget closed ones after a while (their viewers have been told)."""
         now = now or time.time()
         for t in list(self.tables.values()):
-            if t.status == 'waiting' and now - t.created > 60 * self.config.invite_minutes:
-                self.close(t, 'expired')
-            elif t.status == 'playing' and now - t.last_action > 60 * self.config.idle_minutes and t.thinking is None:
+            if t.status == 'playing' and now - t.last_action > 60 * self.config.idle_minutes and t.thinking is None:
                 self.close(t, 'idle')
             if t.status == 'closed' and now - t.last_action > 3600 and not t.tasks:
                 del self.tables[t.id]

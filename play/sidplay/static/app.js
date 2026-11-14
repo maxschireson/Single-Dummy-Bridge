@@ -1,5 +1,7 @@
 'use strict';
-/* Sid: play bridge against the bot. One page, hash routes, the table long-polled from /api/tables/<id>. */
+/* Sid: play bridge with and against the bot. One page, hash routes, the table long-polled from /api/tables/<id>.
+   After each board: the analysis of your play and of Sid's in your seat, history with older/newer navigation, and
+   playing any deal again. */
 
 const SEATS = ['N', 'E', 'S', 'W'];
 const SEAT_NAME = { N: 'North', E: 'East', S: 'South', W: 'West' };
@@ -32,6 +34,8 @@ function h(tag, attrs, ...kids) {
   return el;
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+/* Replace the page content; null, undefined and false children are skipped (replaceChildren would print them). */
+function put(...kids) { $main.replaceChildren(...kids.flat(Infinity).filter(k => k !== null && k !== undefined && k !== false)); }
 
 async function api(method, path, body) {
   const opts = { method, credentials: 'same-origin', headers: {} };
@@ -180,51 +184,46 @@ async function route() {
     if (parts[0] === 'history') return renderHistory();
     if (parts[0] === 'board' && parts[1]) return renderReplay(parts[1]);
     if (parts[0] === 'login' || parts[0] === 'signup') return renderAuth(parts[0], params.get('next'));
-    if (parts[0] === 'join' && parts[1]) return renderJoin(parts[1]);
     return renderLobby();
   } catch (e) {
-    $main.replaceChildren(h('p', { class: 'notice bad' }, e.message));
+    put(h('p', { class: 'notice bad' }, e.message));
   }
 }
 
 /* ---- lobby ------------------------------------------------------------------------- */
-async function newTable(mode) {
+async function newTable(replay) {
   try {
-    const r = await api('POST', '/api/tables', { mode });
+    const r = await api('POST', '/api/tables', replay ? { replay } : {});
     await refreshMe();
     location.hash = `#/table/${r.table}`;
-  } catch (e) {
-    if (e.status === 409 && mode === 'pair' && !app.me.user) location.hash = '#/login?next=pair';
-    else toast(e.message);
-  }
+  } catch (e) { toast(e.message); }
 }
 
 function renderLobby() {
   const open = app.me && app.me.table;
   const actions = open
     ? [h('a', { class: 'btn', href: `#/table/${app.me.table}` }, 'Return to your table'),
-       h('button', { class: 'btn secondary', onclick: () => newTable('solo') }, 'Start a new table')]
-    : [h('button', { class: 'btn', onclick: () => newTable('solo') }, 'Play now'),
-       h('button', { class: 'btn secondary', onclick: () => newTable('pair') }, 'Play with a partner')];
-  $main.replaceChildren(
+       h('button', { class: 'btn secondary', onclick: () => newTable() }, 'Start a new table')]
+    : [h('button', { class: 'btn', onclick: () => newTable() }, 'Play now')];
+  put(
     h('section', { class: 'lobby' },
       dupboard({ number: 1, dealer: 'N', vul: 'None', me: 'S' }),
       h('div', {},
-        h('h1', {}, 'Play bridge against Sid'),
-        h('p', {}, 'Sid is a bridge program in development. Sit South and Sid takes the other three seats, or bring a partner and the two of you play North–South against two Sids.'),
-        app.me && app.me.bot.stand_in ? h('p', { class: 'notice' }, `Sid itself is not released yet. Until it is, its seats are played by ${app.me.bot.label}, the project\u2019s current arena bot.`) : null,
+        h('h1', {}, 'Play bridge with Sid'),
+        h('p', {}, 'Sid is a bridge program in development. You sit South with Sid as your partner, against two more Sids. No account needed.'),
+        app.me && app.me.bot.stand_in ? h('p', { class: 'notice' }, `Sid itself is not released yet. Until it is, its seats are played by ${app.me.bot.label}, the project’s current arena bot.`) : null,
         h('div', { class: 'actions' }, actions),
-        app.me && !app.me.user ? h('p', { class: 'muted' }, 'No account needed to play alone. ',
-          h('a', { href: '#/signup' }, 'Sign up'), ' to play with a partner and keep your history.') : null)),
+        app.me && !app.me.user ? h('p', { class: 'muted' }, 'Your boards stay with this browser. ',
+          h('a', { href: '#/signup' }, 'Sign up'), ' for a username and password, and review them from anywhere.') : null)),
     h('section', { class: 'notes' },
-      h('div', {}, h('h2', {}, 'How each board is scored'),
+      h('div', {}, h('h2', {}, 'After each board'),
+        h('p', {}, 'See where tricks were lost and why: double dummy card by card, and the sure-trick test, which shows when you had a line that guaranteed the contract against any layout, and which card gave it away.')),
+      h('div', {}, h('h2', {}, 'Sid in your seat'),
         h('p', {}, app.me && app.me.sid_tables
-          ? 'After you finish a board, Sid plays the same deal at all four seats. Your score against that table is your IMPs for the board, so a plus means you did better than Sid would have in your chair.'
+          ? 'Sid also plays each deal at all four seats. You see its auction, its play and its analysis, and your IMPs against it.'
           : 'Each board shows the contract, the tricks and your score.')),
-      h('div', {}, h('h2', {}, 'Declaring and claims'),
-        h('p', {}, 'When your side wins the contract, you declare and play dummy too. You can claim any time as declarer; Sid accepts a claim if it holds against any defence.')),
       h('div', {}, h('h2', {}, 'Your history'),
-        h('p', {}, 'Every finished board is kept with its auction and play. Boards you play as a guest stay with this browser, and move to your account when you sign up.'))));
+        h('p', {}, 'Step back through every deal you have played, and play any of them again. Deals played again are marked and kept out of your IMP totals.'))));
 }
 
 /* ---- the table --------------------------------------------------------------------- */
@@ -232,7 +231,7 @@ async function startTable(id) {
   const token = app.pollToken;
   app.tableId = id;
   app.version = -1;
-  $main.replaceChildren(h('p', { class: 'muted' }, 'Opening the table…'));
+  put(h('p', { class: 'muted' }, 'Opening the table…'));
   while (app.pollToken === token) {
     try {
       const v = await api('GET', `/api/tables/${id}?since=${app.version}`);
@@ -244,7 +243,7 @@ async function startTable(id) {
     } catch (e) {
       if (app.pollToken !== token) return;
       if (e.status === 409 || e.status === 404) {
-        $main.replaceChildren(h('p', { class: 'notice bad' }, e.message), h('a', { class: 'btn', href: '#/' }, 'Back to the lobby'));
+        put(h('p', { class: 'notice bad' }, e.message), h('a', { class: 'btn', href: '#/' }, 'Back to the lobby'));
         refreshMe();
         return;
       }
@@ -331,6 +330,19 @@ function claimBar(b) {
     h('button', { class: 'btn secondary', onclick: () => act('claim', { tricks: Number(input.value) }) }, 'Claim'));
 }
 
+function briefEl(label, a) {
+  if (!a || !a.status) return null;
+  if (a.status === 'pending') return h('p', { class: 'muted' }, `${label}: analysing…`);
+  if (a.status === 'error' || !a.brief) return h('p', { class: 'muted' }, `${label}: the analysis did not finish.`);
+  const b = a.brief;
+  const own = label === 'Your play' ? 'you' : 'Sid';
+  const head = b.side_end !== null && b.side_end !== undefined
+    ? `double dummy your side could take ${b.side_start} from the opening lead and took ${b.side_end}; ${own} lost ${b.lost}.`
+    : `${own} lost ${b.lost} trick${b.lost === 1 ? '' : 's'} double dummy in the cards played.`;
+  return h('div', { class: 'brief' }, h('p', {}, h('b', {}, `${label}: `), head),
+    b.events.length ? h('ul', {}, b.events.map(t => h('li', {}, t))) : null);
+}
+
 function resultPanel(v) {
   const b = v.board, r = b.result;
   const score = r.ns_score;
@@ -345,22 +357,25 @@ function resultPanel(v) {
   else if (b.sid === 'error') sid = h('p', { class: 'muted' }, 'Sid’s own table could not be played on this deal.');
   else if (b.sid) {
     sid = h('div', { class: 'lines' },
-      h('span', { class: 'muted' }, 'Sid’s table'),
+      h('span', { class: 'muted' }, 'Sid in your seat'),
       h('span', {}, contractEl(b.sid.contract, b.sid.declarer),
         b.sid.tricks !== null && b.sid.tricks !== undefined ? `, ${b.sid.tricks} trick${b.sid.tricks === 1 ? '' : 's'} (${b.sid.result})` : '', `: ${signed(b.sid.ns_score)}`),
       h('span', { class: 'muted' }, 'Sid bid'), h('span', {}, b.sid.calls.map((c, i) => [i ? ' ' : '', callEl(c)])));
   }
   return h('div', { class: 'result' },
+    b.replay ? h('p', { class: 'tag' }, 'Played again: not counted in your totals') : null,
     h('div', { class: 'lines' }, lines), sid,
     b.imps !== null && b.imps !== undefined ? h('p', {}, h('span', { class: 'muted' }, 'IMPs on this board '), h('span', { class: 'imps' }, impsEl(b.imps))) : null,
-    h('div', {},
+    briefEl('Your play', b.analysis), briefEl('Sid in your seat', b.sid_analysis),
+    h('div', { class: 'buttons' },
       h('button', { class: 'btn', onclick: () => act('next') }, 'Next board'),
-      b.board_id ? h('a', { class: 'btn secondary', href: `#/board/${b.board_id}` }, 'Review this board') : null));
+      b.board_id ? h('a', { class: 'btn secondary', href: `#/board/${b.board_id}` }, 'Review and analysis') : null,
+      b.board_id ? h('button', { class: 'btn secondary', onclick: () => newTable(b.board_id) }, 'Play it again') : null));
 }
 
 function travellerPanel(v) {
   const rows = v.scores.slice().reverse().map(r => h('tr', {},
-    h('td', {}, r.board_id ? h('a', { href: `#/board/${r.board_id}` }, r.number) : r.number),
+    h('td', {}, r.board_id ? h('a', { href: `#/board/${r.board_id}` }, r.number) : r.number, r.replay ? h('span', { class: 'again', title: 'Played again' }, ' ↻') : null),
     h('td', {}, shortContract(r.contract, r.declarer, r.tricks === null ? '' : r.result)),
     h('td', { class: 'num' }, signed(r.ns_score)),
     h('td', {}, r.sid ? shortContract(r.sid.contract, r.sid.declarer, r.sid.result || '') : h('span', { class: 'muted' }, '…')),
@@ -369,32 +384,21 @@ function travellerPanel(v) {
     v.scores.length ? h('table', { class: 'traveller' },
       h('thead', {}, h('tr', {}, h('th', {}, 'Bd'), h('th', {}, 'You'), h('th', { class: 'num' }, 'Score'), h('th', {}, 'Sid'), h('th', { class: 'num' }, 'IMPs'))),
       h('tbody', {}, rows),
-      h('tfoot', {}, h('tr', {}, h('td', { colspan: 4 }, `${v.totals.boards} board${v.totals.boards === 1 ? '' : 's'}`),
+      h('tfoot', {}, h('tr', {}, h('td', { colspan: 4 }, `${v.totals.boards} board${v.totals.boards === 1 ? '' : 's'}`,
+          v.totals.replays ? ` (+${v.totals.replays} played again)` : ''),
         h('td', { class: 'num' }, impsEl(v.totals.compared ? v.totals.imps : null)))))
       : h('p', { class: 'muted' }, 'Finished boards appear here.'));
 }
 
 function renderTable(v) {
   if (v.status === 'closed') {
-    const why = { idle: 'This table closed after a long pause.', expired: 'Nobody joined this table in time.' }[v.closed_reason] || 'This table has closed.';
-    $main.replaceChildren(h('p', { class: 'notice' }, why), h('a', { class: 'btn', href: '#/' }, 'Back to the lobby'));
+    const why = { idle: 'This table closed after a long pause.' }[v.closed_reason] || 'This table has closed.';
+    put(h('p', { class: 'notice' }, why), h('a', { class: 'btn', href: '#/' }, 'Back to the lobby'));
     refreshMe();
     return;
   }
-  if (v.status === 'waiting') {
-    const link = `${location.origin}/#/join/${v.invite}`;
-    const input = h('input', { value: link, readonly: true, 'aria-label': 'Invitation link' });
-    $main.replaceChildren(h('h1', {}, 'Waiting for your partner'),
-      h('p', {}, 'Send this link to your partner. They sign in (or sign up), open it, and the first board is dealt. You sit South, your partner North.'),
-      h('div', { class: 'invite' }, input,
-        h('button', { class: 'btn', onclick: async () => {
-          try { await navigator.clipboard.writeText(link); toast('Link copied.'); } catch (e) { input.select(); }
-        } }, 'Copy link')),
-      h('button', { class: 'btn secondary', onclick: leaveTable }, 'Cancel'));
-    return;
-  }
   const b = v.board;
-  if (!b) { $main.replaceChildren(h('p', { class: 'muted' }, 'Dealing…')); return; }
+  if (!b) { put(h('p', { class: 'muted' }, 'Dealing…')); return; }
   const p = positions(v.me);
   const center = h('div', { class: 'center' }, dupboard({ number: b.number, dealer: b.dealer, vul: b.vul, me: v.me, trick: b.trick, last: b.last_trick }));
   const felt = h('div', { class: 'felt' },
@@ -427,7 +431,7 @@ function renderTable(v) {
     travellerPanel(v),
     h('p', {}, h('button', { class: 'linklike', onclick: leaveTable }, 'Leave this table')));
 
-  $main.replaceChildren(h('div', { class: 'room' }, h('section', {}, status, felt, h('div', { class: 'actionbar' }, bar)), side));
+  put(h('div', { class: 'room' }, h('section', {}, status, felt, h('div', { class: 'actionbar' }, bar)), side));
 }
 
 function seatLabel(v, seat) {
@@ -443,7 +447,7 @@ async function leaveTable() {
   location.hash = '#/';
 }
 
-/* ---- history and replays ----------------------------------------------------------- */
+/* ---- history ------------------------------------------------------------------------ */
 async function renderHistory() {
   const token = app.pollToken;
   const data = await api('GET', '/api/history');
@@ -452,25 +456,29 @@ async function renderHistory() {
   const avg = t.compared ? (t.imps / t.compared).toFixed(2) : null;
   const rows = data.boards.map(r => h('tr', {},
     h('td', {}, new Date(r.finished * 1000).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })),
-    h('td', {}, h('a', { href: `#/board/${r.id}` }, r.number)),
+    h('td', {}, h('a', { href: `#/board/${r.id}` }, r.number), r.replay_of ? h('span', { class: 'again', title: 'Played again' }, ' ↻') : null),
     h('td', {}, shortContract(r.contract, r.declarer, r.contract ? resultText(r.contract, r.tricks) : '')),
     h('td', { class: 'num' }, signed(r.ns_score)),
     h('td', {}, r.sid_contract !== undefined && r.imps !== null ? shortContract(r.sid_contract, r.sid_declarer, r.sid_contract ? resultText(r.sid_contract, r.sid_tricks) : '') : h('span', { class: 'muted' }, '—')),
-    h('td', { class: 'num' }, r.imps === null ? h('span', { class: 'muted' }, '—') : impsEl(r.imps))));
-  $main.replaceChildren(
+    h('td', { class: 'num' }, r.imps === null ? h('span', { class: 'muted' }, '—') : impsEl(r.imps)),
+    h('td', { class: 'num' }, r.lost === null || r.lost === undefined ? h('span', { class: 'muted' }, '—') : r.lost)));
+  put(
     h('h1', {}, data.user ? `${data.user}’s boards` : 'Boards from this browser'),
-    data.user ? null : h('p', { class: 'muted' }, h('a', { href: '#/signup' }, 'Sign up'), ' to keep these boards in an account and see them on any device.'),
+    data.user ? null : h('p', { class: 'muted' }, h('a', { href: '#/signup' }, 'Sign up'), ' for a username and password, so these boards are yours on any device.'),
     h('div', { class: 'summary' },
       h('div', {}, h('b', {}, t.boards), 'boards played'),
-      h('div', {}, h('b', {}, t.compared ? signed(t.imps) : '—'), 'IMPs against Sid’s table'),
+      h('div', {}, h('b', {}, t.compared ? signed(t.imps) : '—'), 'IMPs against Sid in your seat'),
       h('div', {}, h('b', {}, avg !== null ? (avg > 0 ? `+${avg}` : avg) : '—'), 'IMPs a board')),
+    t.replays ? h('p', { class: 'muted' }, `${t.replays} deal${t.replays === 1 ? '' : 's'} played again (↻) not counted above.`) : null,
     data.boards.length ? h('table', { class: 'traveller history-table' },
-      h('thead', {}, h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Bd'), h('th', {}, 'You'), h('th', { class: 'num' }, 'Score'), h('th', {}, 'Sid'), h('th', { class: 'num' }, 'IMPs'))),
+      h('thead', {}, h('tr', {}, h('th', {}, 'Date'), h('th', {}, 'Bd'), h('th', {}, 'You'), h('th', { class: 'num' }, 'Score'),
+        h('th', {}, 'Sid'), h('th', { class: 'num' }, 'IMPs'), h('th', { class: 'num', title: 'Tricks you lost, double dummy' }, 'Lost'))),
       h('tbody', {}, rows))
       : h('p', {}, 'No boards yet. ', h('a', { href: '#/' }, 'Play one'), '.'));
 }
 
-function staticHand(cards, label) {
+/* ---- one board: review and analysis ------------------------------------------------- */
+function staticHand(cards, label, marks) {
   return h('div', { class: 'hand' }, h('div', { class: 'who' }, h('b', {}, label)),
     SUITS.map(s => {
       const these = cards.filter(c => c[0] === s);
@@ -479,29 +487,186 @@ function staticHand(cards, label) {
     }));
 }
 
-async function renderReplay(id) {
+function cardText(code) { return h('span', { class: `s-${code[0]}` }, SYM[code[0]], rankText(code[1])); }
+function betterEl(cards) {
+  const shown = cards.slice(0, 6);
+  return [shown.map((c, i) => [i ? ', ' : '', cardText(c)]), cards.length > 6 ? ` and ${cards.length - 6} more` : ''];
+}
+
+function playTable(play, contract, analysis) {
+  const strain = contract ? contract.replace(/X/g, '')[1] : null;
+  const marks = {};
+  if (analysis) for (const r of analysis.cards) if (r.loss) marks[r.n] = r.focus ? 'lost' : 'gave';
+  if (analysis) for (const e of analysis.events) if (['gave_away', 'handed_contract', 'sure_trick', 'handed_trick'].includes(e.kind)) marks[e.n] = (marks[e.n] ? marks[e.n] + ' ' : '') + 'sure';
+  const tricks = [];
+  for (let i = 0; i < play.length; i += 4) tricks.push(play.slice(i, i + 4).map((x, k) => [x[0], x[1], i + k + 1]));
+  const cols = ['W', 'N', 'E', 'S'];
+  return h('table', { class: 'traveller plays' },
+    h('thead', {}, h('tr', {}, h('th', {}, 'Trick'), cols.map(s => h('th', {}, SEAT_NAME[s])))),
+    h('tbody', {}, tricks.map((t, i) => {
+      const win = t.length === 4 ? trickWinner(t, strain) : null;
+      return h('tr', {}, h('td', {}, i + 1), cols.map(seat => {
+        const c = t.find(x => x[0] === seat);
+        const cls = [c && t[0][0] === seat ? 'lead' : '', seat === win ? 'won' : '', c && marks[c[2]] ? marks[c[2]] : ''].join(' ');
+        return h('td', { class: cls }, c ? cardEl(c[1]) : '');
+      }));
+    })));
+}
+
+function chartEl(a) {
+  /* Tricks for the analysed side, card by card: double-dummy (step line), guaranteed by the sure-trick search
+     (declaring side, exact values only), the contract's line, and the cards that changed the double-dummy count. */
+  const cards = a.cards;
+  if (!cards.length) return null;
+  const decl = a.focus_declares;
+  const side = v => decl ? v : 13 - v;
+  const dd = cards.map(r => side(r.dd));
+  const declSide = SEATS.indexOf(a.declarer) % 2;
+  const byDecl = r => SEATS.indexOf(r.seat) % 2 === declSide;
+  const last = cards[cards.length - 1];
+  const after = side(a.tricks !== null && a.tricks !== undefined ? a.tricks : (byDecl(last) ? last.dd - last.loss : last.dd + last.loss));
+  const target = decl ? a.need : 14 - a.need;
+  const sure = cards.map(r => (decl && r.sure && r.sure.mode === 'tricks' && !r.sure.unknown) ? r.sure.guaranteed : null);
+  const vals = dd.concat([after, target], sure.filter(x => x !== null));
+  const lo = Math.max(0, Math.min(...vals) - 1), hi = Math.min(13, Math.max(...vals) + 1);
+  const W = Math.max(330, Math.min(640, (window.innerWidth || 640) - 60)), H = W < 500 ? 190 : 210, L = 30, R = 10, T = 12, B = 28;
+  const n = cards.length;
+  const x = i => L + (W - L - R) * i / n;
+  const y = v => T + (H - T - B) * (hi - v) / Math.max(1, hi - lo);
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (text !== undefined) e.textContent = text; return e; };
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart', role: 'img',
+    'aria-label': `${decl ? 'Declaring' : 'Defending'} side tricks card by card: double dummy ${dd[0]} at the opening lead, ${after} at the end; ${decl ? 'needed' : 'needed to beat it'} ${target}.` });
+  for (let v = lo; v <= hi; v++) {
+    svg.append(el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), class: 'grid' }));
+    svg.append(el('text', { x: L - 8, y: y(v) + 4, class: 'tick', 'text-anchor': 'end' }, v));
+  }
+  for (let t = 0; t < 13 && 4 * t < n; t += 2) svg.append(el('text', { x: x(4 * t) + 2, y: H - B + 16, class: 'tick' }, `T${t + 1}`));
+  svg.append(el('line', { x1: L, x2: W - R, y1: y(target), y2: y(target), class: 'target' }));
+  svg.append(el('text', { x: W - R, y: y(target) - 5, class: 'tick strong', 'text-anchor': 'end' }, decl ? `${target} to make` : `${target} to beat it`));
+  // double dummy: value before card i holds over [i, i+1)
+  let d = `M${x(0)},${y(dd[0])}`;
+  for (let i = 1; i < n; i++) d += `H${x(i)}V${y(dd[i])}`;
+  d += `H${x(n)}V${y(after)}`;
+  svg.append(el('path', { d, class: 'dd' }));
+  // guaranteed: points at analysed decisions, joined where consecutive decisions were analysed
+  let g = '', open = false;
+  sure.forEach((v, i) => { if (v === null) { open = false; return; } g += `${open ? 'L' : 'M'}${x(i + 0.5)},${y(v)}`; open = true; });
+  if (g) svg.append(el('path', { d: g, class: 'sure' }));
+  sure.forEach((v, i) => { if (v !== null) svg.append(el('circle', { cx: x(i + 0.5), cy: y(v), r: 4, class: 'sure-dot' })); });
+  // cards that changed the double-dummy count
+  cards.forEach((r, i) => {
+    if (!r.loss) return;
+    const own = r.focus, partner = !own && byDecl(r) === decl;
+    const cx = x(i + 0.5), cy = y(i + 1 < n ? dd[i + 1] : after);
+    const up = !own && !partner;
+    svg.append(el('path', { d: up ? `M${cx},${cy - 6}l5,9h-10z` : `M${cx},${cy + 6}l5,-9h-10z`, class: own ? 'mark-lost' : partner ? 'mark-partner' : 'mark-gift' }));
+  });
+  // hover: crosshair and one readout
+  const cross = el('line', { y1: T, y2: H - B, class: 'cross', visibility: 'hidden' });
+  svg.append(cross);
+  const hit = el('rect', { x: L, y: T, width: W - L - R, height: H - T - B, fill: 'transparent' });
+  svg.append(hit);
+  const tip = h('div', { class: 'tip', hidden: true });
+  const wrap = h('div', { class: 'chartwrap' }, svg, tip);
+  const show = evt => {
+    const box = svg.getBoundingClientRect();
+    const px = (evt.clientX - box.left) * W / box.width;
+    const i = Math.max(0, Math.min(n - 1, Math.floor((px - L) / (W - L - R) * n)));
+    const r = cards[i];
+    cross.setAttribute('x1', x(i + 0.5)); cross.setAttribute('x2', x(i + 0.5)); cross.setAttribute('visibility', 'visible');
+    tip.replaceChildren(
+      h('div', {}, h('b', {}, `Trick ${r.trick}`), ` ${SEAT_NAME[r.seat]} `, cardText(r.card)),
+      h('div', {}, h('b', {}, dd[i]), ' double dummy before it', r.loss ? h('span', {}, ', ', h('b', {}, `${r.loss}`), ` lost by ${r.focus ? (a.who || 'you') : SEAT_NAME[r.by]}`) : null),
+      sure[i] !== null ? h('div', {}, h('b', {}, sure[i]), ' guaranteed before it') : null);
+    tip.hidden = false;
+    const left = (x(i + 0.5) / W) * box.width;
+    tip.style.left = `${Math.min(box.width - 190, Math.max(0, left + 10))}px`;
+  };
+  hit.addEventListener('pointermove', show);
+  hit.addEventListener('pointerleave', () => { tip.hidden = true; cross.setAttribute('visibility', 'hidden'); });
+  const legend = h('div', { class: 'legend' },
+    h('span', {}, h('i', { class: 'key dd' }), 'Double-dummy tricks'),
+    decl && sure.some(v => v !== null) ? h('span', {}, h('i', { class: 'key sure' }), `Guaranteed (from ${a.engines.sure_cards} cards left)`) : null,
+    h('span', {}, h('i', { class: 'key tri lost' }), `Lost by ${a.who || 'you'}`),
+    decl ? null : h('span', {}, h('i', { class: 'key tri partner' }), 'Lost by partner'),
+    h('span', {}, h('i', { class: 'key tri gift' }), decl ? 'Given back by the defence' : 'Given back by declarer'));
+  return h('div', {}, legend, wrap);
+}
+
+function analysisEl(a, status, who) {
+  const label = who === 'you' ? 'You' : 'Sid';
+  if (status === 'pending') return h('p', { class: 'muted' }, 'Analysing this play… (usually under a minute)');
+  if (status === 'error') return h('p', { class: 'muted' }, 'The analysis did not finish. Reload the page in a few minutes to try again.');
+  if (!a) return h('p', { class: 'muted' }, 'Nothing to analyse (passed out).');
+  a.who = who === 'you' ? 'you' : 'Sid';
+  const sm = a.summary || {};
+  const decl = a.focus_declares;
+  const others = decl ? 'the defence' : 'declarer';
+  const parts = [];
+  if (sm.side_end !== null && sm.side_end !== undefined) parts.push(`Double dummy, ${decl ? 'your side as declarer' : 'your side on defence'} could take ${sm.side_start} trick${sm.side_start === 1 ? '' : 's'} from the opening lead and took ${sm.side_end}.`);
+  else parts.push('The board ended on a claim; this covers the cards played.');
+  const counts = [`${label} lost ${sm.lost}`];
+  if (!decl) counts.push(`partner lost ${sm.partner_lost}`);
+  counts.push(`${others} gave back ${sm.gifts}`);
+  parts.push(counts.join(', ') + '.');
+  const eng = a.engines || {};
+  const lost = a.lost || [], given = a.given || [], events = a.events || [];
+  return h('div', { class: 'analysis' },
+    h('p', {}, parts.join(' ')),
+    chartEl(a),
+    h('h3', {}, 'Guarantees'),
+    events.length ? h('ul', { class: 'events' }, events.map(e => h('li', { class: `ev ev-${e.kind}` }, e.text)))
+      : h('p', { class: 'muted' }, decl ? 'No line guaranteed the contract at any analysed point, and no sure trick was let go.' : 'No card handed declarer anything sure that another card would have withheld.'),
+    h('h3', {}, `Where ${who === 'you' ? 'you' : 'Sid'} lost tricks`),
+    lost.length ? h('ol', { class: 'lost' }, lost.map(e => h('li', {},
+      h('div', {}, h('b', {}, `Trick ${e.trick}: `), cardText(e.card), ` cost ${e.loss} trick${e.loss === 1 ? '' : 's'}`, h('span', { class: 'muted' }, ` (double dummy ${e.dd_before} → ${e.dd_after} for declarer). Better: `), betterEl(e.better)),
+      h('div', { class: 'why' }, e.text)))) : h('p', { class: 'muted' }, 'None, double dummy.'),
+    given.length ? h('details', {}, h('summary', {}, `Tricks lost by the other seats (${given.reduce((t, e) => t + e.loss, 0)})`),
+      h('ul', {}, given.map(e => h('li', {}, `Trick ${e.trick}: ${e.by} `, cardText(e.card), ` cost ${e.loss}. Better: `, betterEl(e.better))))) : null,
+    h('p', { class: 'muted small' },
+      `Double dummy: every card, all hands known. Guarantees: the sure-trick search from the declaring side’s view (hand sizes and show-outs; the auction is not used), exact from ${eng.sure_cards} cards left, the contract question only above that; ${eng.sure_decisions} decisions analysed${eng.sure_unknown ? `, ${eng.sure_unknown} not finished in time` : ''}${eng.sure_skipped && eng.sure_skipped.budget ? `, ${eng.sure_skipped.budget} skipped for time` : ''}. “It turned on”: exchanges of one unseen card between the hidden hands, consistent with the play, that make the card right.`));
+}
+
+function tableSide(title, calls, dealer, vul, contract, declarer, tricks, score) {
+  return h('div', { class: 'panel' }, h('h2', {}, title),
+    h('div', { class: 'result', style: 'margin:0;padding:0' }, h('div', { class: 'lines' },
+      h('span', { class: 'muted' }, 'Contract'), contractEl(contract ? contract.replace(/^([1-7])N/, '$1NT') : null, declarer),
+      h('span', { class: 'muted' }, 'Tricks'), h('span', {}, tricks === null || tricks === undefined ? '—' : `${tricks} (${resultText(contract, tricks)})`),
+      h('span', { class: 'muted' }, 'Score'), h('b', {}, signed(score)))),
+    auctionTable(calls, dealer, vul, false));
+}
+
+async function renderReplay(id, shown) {
   const token = app.pollToken;
   const d = await api('GET', `/api/boards/${id}`);
   if (token !== app.pollToken) return;
+  const key = `${d.analysis_status}/${d.sid_analysis_status}`;
+  if (shown === key) {                     // a poll with nothing new: leave the page (and what is open) alone
+    await sleep(3000);
+    if (token === app.pollToken) renderReplay(id, key);
+    return;
+  }
+  if (shown === undefined) app.sidOpen = false;
   const order = (a, b) => SUITS.indexOf(a[0]) - SUITS.indexOf(b[0]) || RANKS.indexOf(b[1]) - RANKS.indexOf(a[1]);
   const names = d.seats.map((s, i) => `${s.kind === 'bot' ? 'Sid' : SEATS[i] === d.my_seat ? 'You' : s.name}, ${SEAT_NAME[SEATS[i]]}`);
   const hands = d.hands.map(hd => hd.slice().sort(order));
-  const strain = d.contract ? d.contract.replace(/X/g, '')[1] : null;
-  const tricks = [];
-  for (let i = 0; i < d.play.length; i += 4) tricks.push(d.play.slice(i, i + 4));
-  const cols = ['W', 'N', 'E', 'S'];
-  const playRows = tricks.map((t, i) => {
-    const win = t.length === 4 ? trickWinner(t, strain) : null;
-    return h('tr', {}, h('td', {}, i + 1), cols.map(seat => {
-      const c = t.find(x => x[0] === seat);
-      return h('td', { class: `${c && t[0][0] === seat ? 'lead' : ''} ${seat === win ? 'won' : ''}` }, c ? cardEl(c[1]) : '');
-    }));
-  });
-  const contractStr = d.contract ? d.contract.replace(/^([1-7])N/, '$1NT') : null;
   const sid = d.sid_table;
-  $main.replaceChildren(
-    h('p', {}, h('a', { href: '#/history' }, 'All boards')),
-    h('h1', {}, `Board ${d.number}`),
+  const nav = h('div', { class: 'boardnav' },
+    d.older ? h('a', { class: 'btn secondary', href: `#/board/${d.older}` }, '← Older') : h('span', { class: 'btn secondary disabled', 'aria-disabled': 'true' }, '← Older'),
+    h('a', { href: '#/history' }, 'All boards'),
+    d.newer ? h('a', { class: 'btn secondary', href: `#/board/${d.newer}` }, 'Newer →') : h('span', { class: 'btn secondary disabled', 'aria-disabled': 'true' }, 'Newer →'),
+    h('button', { class: 'btn', onclick: () => newTable(d.id) }, 'Play this deal again'));
+  const yours = h('details', { class: 'panel', open: true }, h('summary', {}, h('h2', {}, 'Your play')),
+    analysisEl(d.analysis, d.analysis_status, 'you'),
+    d.play.length ? h('div', {}, h('h3', {}, 'The play'), playTable(d.play, d.contract, d.analysis),
+      h('p', { class: 'muted small' }, 'Underlined: the lead. Shaded: the card that won the trick. Red: a card that cost your side a trick double dummy; green: one that cost the other side; orange outline: a guarantee given away.')) : null);
+  const sids = sid ? h('details', { class: 'panel', open: app.sidOpen, ontoggle: e => { app.sidOpen = e.target.open; } }, h('summary', {}, h('h2', {}, 'Sid in your seat')),
+    analysisEl(d.sid_analysis, d.sid_analysis_status, 'sid'),
+    sid.play && sid.play.length ? h('div', {}, h('h3', {}, 'Sid’s play'), playTable(sid.play, sid.contract, d.sid_analysis)) : null) : null;
+  put(
+    nav,
+    h('h1', {}, `Board ${d.number}`, d.replay_of ? h('span', { class: 'tag' }, ' played again') : null),
     h('p', { class: 'muted' }, `${new Date(d.finished * 1000).toLocaleString()}. Dealer ${SEAT_NAME[d.dealer]}. ${vulText(d.vulnerability)}.`),
     h('div', { class: 'replay-grid' },
       h('div', {},
@@ -510,67 +675,51 @@ async function renderReplay(id) {
           h('div', { class: 's' }, staticHand(hands[2], names[2])), h('div', { class: 'w' }, staticHand(hands[3], names[3])),
           h('div', { class: 'c' }, dupboard({ number: d.number, dealer: d.dealer, vul: d.vulnerability, me: 'S' })))),
       h('div', {},
-        h('div', { class: 'panel' }, h('h2', {}, 'Auction'), auctionTable(d.calls, d.dealer, d.vulnerability, false)),
-        h('div', { class: 'panel' }, h('h2', {}, 'Result'),
-          h('div', { class: 'result', style: 'margin:0;padding:0' }, h('div', { class: 'lines' },
-            h('span', { class: 'muted' }, 'Contract'), contractEl(contractStr, d.declarer),
-            h('span', { class: 'muted' }, 'Tricks'), h('span', {}, d.tricks === null ? '—' : `${d.tricks} (${resultText(d.contract, d.tricks)})${d.claimed !== null ? ', claimed' : ''}`),
-            h('span', { class: 'muted' }, 'Your score'), h('b', {}, signed(d.ns_score)),
-            sid ? [h('span', { class: 'muted' }, 'Sid’s table'),
-              h('span', {}, contractEl(sid.contract ? sid.contract.replace(/^([1-7])N/, '$1NT') : null, sid.declarer),
-                sid.tricks !== null ? `, ${sid.tricks} tricks` : '', `: ${signed(sid.ns_score)}`),
-              h('span', { class: 'muted' }, 'Sid bid'), h('span', {}, sid.calls.map((c, i) => [i ? ' ' : '', callEl(c)])),
-              h('span', { class: 'muted' }, 'IMPs'), h('b', {}, impsEl(d.imps))] : null))))),
-    d.play.length ? h('div', { class: 'panel' }, h('h2', {}, 'Play'),
-      h('table', { class: 'traveller plays' },
-        h('thead', {}, h('tr', {}, h('th', {}, 'Trick'), cols.map(s => h('th', {}, SEAT_NAME[s])))),
-        h('tbody', {}, playRows)),
-      h('p', { class: 'muted', style: 'margin-top:.5rem' }, 'Underlined: the lead. Highlighted: the card that won the trick.')) : null);
+        tableSide('Your table', d.calls, d.dealer, d.vulnerability, d.contract, d.declarer, d.tricks, d.ns_score),
+        sid ? tableSide('Sid in your seat', sid.calls, d.dealer, d.vulnerability, sid.contract, sid.declarer, sid.tricks, sid.ns_score)
+          : h('p', { class: 'muted' }, 'Sid’s own table was not played on this deal.'),
+        d.imps !== null && d.imps !== undefined ? h('p', {}, h('span', { class: 'muted' }, 'IMPs against Sid in your seat '), h('span', { class: 'imps' }, impsEl(d.imps)),
+          d.replay_of ? h('span', { class: 'muted' }, ' (played again: not counted)') : null) : null)),
+    yours, sids);
+  if (d.analysis_status === 'pending' || d.sid_analysis_status === 'pending') {
+    await sleep(3000);
+    if (token === app.pollToken) renderReplay(id, key);
+  }
 }
 
-/* ---- accounts and invitations ------------------------------------------------------ */
-function renderAuth(mode, next) {
+/* ---- accounts --------------------------------------------------------------------- */
+async function renderAuth(mode, next) {
   const signup = mode === 'signup';
-  const user = h('input', { name: 'username', autocomplete: 'username', required: true, minlength: 3, maxlength: 20 });
-  const pass = h('input', { name: 'password', type: 'password', autocomplete: signup ? 'new-password' : 'current-password', required: true, minlength: signup ? 8 : 1 });
+  const user = h('input', { name: 'username', autocomplete: 'username', required: true, minlength: 3, maxlength: 20, id: 'u' });
+  const pass = h('input', { name: 'password', type: signup ? 'text' : 'password', autocomplete: signup ? 'new-password' : 'current-password', required: true, minlength: signup ? 8 : 1, id: 'p', spellcheck: 'false' });
   const form = h('form', { class: 'form', onsubmit: async e => {
     e.preventDefault();
     try {
       await api('POST', `/api/${mode}`, { username: user.value, password: pass.value });
       await refreshMe();
-      if (next === 'pair') return newTable('pair');
-      if (next && next.startsWith('join-')) { location.hash = `#/join/${next.slice(5)}`; return; }
-      location.hash = '#/';
+      location.hash = next === 'history' ? '#/history' : '#/';
     } catch (err) { toast(err.message); }
   } },
-  h('h1', {}, signup ? 'Create an account' : 'Sign in'),
-  h('p', { class: 'muted' }, signup ? 'An account keeps your boards and lets you bring a partner. No email needed.' : 'Welcome back.'),
-  h('label', { for: 'u' }, 'Username'), Object.assign(user, { id: 'u' }),
+  h('h1', {}, signup ? 'Sign up' : 'Sign in'),
+  h('p', { class: 'muted' }, signup ? 'Here is a username and password for you. Change either if you like, and keep them somewhere safe: there is no email and no password reset. Boards you played in this browser move into the account.' : 'Welcome back.'),
+  h('label', { for: 'u' }, 'Username'), user,
   signup ? h('div', { class: 'hint' }, '3 to 20 letters, digits, - or _.') : null,
-  h('label', { for: 'p' }, 'Password'), Object.assign(pass, { id: 'p' }),
-  signup ? h('div', { class: 'hint' }, 'At least 8 characters. There is no password reset, so keep it somewhere safe.') : null,
+  h('label', { for: 'p' }, 'Password'), pass,
+  signup ? h('div', { class: 'hint' }, 'At least 8 characters.', ' ', h('button', { type: 'button', class: 'linklike', onclick: async () => {
+    try { await navigator.clipboard.writeText(`${user.value} ${pass.value}`); toast('Username and password copied.'); } catch (e) { pass.select(); }
+  } }, 'Copy both')) : null,
   h('button', { class: 'btn', type: 'submit' }, signup ? 'Create account' : 'Sign in'),
   h('p', { style: 'margin-top:1rem' }, signup ? 'Have an account? ' : 'New here? ',
-    h('a', { href: `#/${signup ? 'login' : 'signup'}${next ? `?next=${encodeURIComponent(next)}` : ''}` }, signup ? 'Sign in' : 'Create an account')));
-  $main.replaceChildren(form);
+    h('a', { href: `#/${signup ? 'login' : 'signup'}${next ? `?next=${encodeURIComponent(next)}` : ''}` }, signup ? 'Sign in' : 'Sign up')));
+  put(form);
+  if (signup) {
+    try {
+      const sug = await api('GET', '/api/signup/suggest');
+      if (!user.value) user.value = sug.username;
+      if (!pass.value) pass.value = sug.password;
+    } catch (e) { /* the person types their own */ }
+  }
   user.focus();
-}
-
-async function renderJoin(code) {
-  if (!app.me.user) {
-    $main.replaceChildren(h('h1', {}, 'Join your partner'),
-      h('p', {}, 'Sign in or create a free account to take the North seat.'),
-      h('a', { class: 'btn', href: `#/login?next=join-${encodeURIComponent(code)}` }, 'Sign in'),
-      h('a', { class: 'btn secondary', href: `#/signup?next=join-${encodeURIComponent(code)}` }, 'Create an account'));
-    return;
-  }
-  try {
-    const r = await api('POST', '/api/join', { code });
-    await refreshMe();
-    location.hash = `#/table/${r.table}`;
-  } catch (e) {
-    $main.replaceChildren(h('p', { class: 'notice bad' }, e.message), h('a', { class: 'btn', href: '#/' }, 'Back to the lobby'));
-  }
 }
 
 window.addEventListener('hashchange', route);

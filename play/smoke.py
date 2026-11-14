@@ -3,8 +3,8 @@
   python play/smoke.py http://127.0.0.1:8090 --boards 2
 
 The player passes throughout (bidding 3NT once if it gets the chance, so some boards are declared) and plays its
-first legal card. It checks that no hidden hand is ever sent, that each board ends with a result, and (with
---sid) that Sid's own table and the IMPs arrive. Exit status 0 on success.
+first legal card. It checks that no hidden hand is ever sent, that each board ends with a result, (with --sid) that
+Sid's own table and the IMPs arrive, and (with --analysis) that both analyses arrive. Exit status 0 on success.
 """
 import argparse
 import http.cookiejar
@@ -69,12 +69,13 @@ def main():
     p.add_argument('base')
     p.add_argument('--boards', type=int, default=1)
     p.add_argument('--sid', action='store_true', help="also wait for Sid's own table and the IMPs")
+    p.add_argument('--analysis', action='store_true', help='also wait for the analyses of your play and of Sid in your seat')
     p.add_argument('--timeout', type=float, default=600)
     a = p.parse_args()
     c = Client(a.base)
     print(json.dumps(c.call('GET', '/api/health')))
     c.call('GET', '/api/me')
-    tid = c.call('POST', '/api/tables', {'mode': 'solo'})['table']
+    tid = c.call('POST', '/api/tables', {})['table']
     for n in range(a.boards):
         t0 = time.time()
         s = play_board(c, tid, a.timeout)
@@ -87,6 +88,20 @@ def main():
             assert s['board']['sid'] not in ('pending', 'error', None), f'Sid table: {s["board"]["sid"]}'
             line.update(sid=s['board']['sid']['contract'], sid_score=s['board']['sid']['ns_score'], imps=s['board']['imps'],
                         with_sid_seconds=round(time.time() - t0, 1))
+        if a.analysis and s['board'].get('board_id'):
+            bid = s['board']['board_id']
+            while True:
+                d = c.call('GET', f'/api/boards/{bid}')
+                if 'pending' not in (d['analysis_status'], d['sid_analysis_status']) or time.time() - t0 > a.timeout:
+                    break
+                time.sleep(3)
+            assert d['analysis_status'] in ('ready', None) and d['sid_analysis_status'] in ('ready', None), \
+                f"analyses: {d['analysis_status']}, {d['sid_analysis_status']}"
+            an = d['analysis'] or {}
+            line.update(lost=(an.get('summary') or {}).get('lost'), events=len(an.get('events', [])),
+                        analysis_seconds=(an.get('engines') or {}).get('seconds'),
+                        sid_analysis_seconds=((d['sid_analysis'] or {}).get('engines') or {}).get('seconds'),
+                        with_analysis_seconds=round(time.time() - t0, 1))
         print(json.dumps(line), flush=True)
         if n + 1 < a.boards:
             c.call('POST', f'/api/tables/{tid}/next')
