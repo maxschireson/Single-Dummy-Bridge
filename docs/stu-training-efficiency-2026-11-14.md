@@ -61,24 +61,41 @@ held-out full-bot IMP improvement per labeling/training hour. These are differen
 measurements; a difficult or uncertain position is not automatically valuable for
 either. A single imagined-layout fork is not a strong posterior-search label.
 
-**Execution checkpoint — 21:03 UTC:** Max authorized a second collection box and
-assigned two helpers ([handoff #39](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39)):
-A allocation/frontier design, B independent correctness review. Four new tests pass
-locally and on both boxes; existing local X8 suite passes 34 tests, 7 native-claim
-skips. **Azure6 and azure2 are both now running isolated experiments**, each initially
-capped at six hours. Collection drained cleanly: 2,551 sp4tb rows/episodes on azure6,
-4,000 sp4t rows/episodes on azure2, all preserved; original publishing/row export remain alive.
+**Execution checkpoint — 21:42 UTC:** Max authorized Azure6 and Azure2, initially
+six hours each, and assigned helpers A/B through [#39](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39).
+A's [#41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41) and B's
+[#43](https://github.com/maxschireson/Single-Dummy-Bridge/pull/43) exposed genuine
+cache/scheduling/counting and experimental-accounting defects in the first depth
+prototype. **Azure6's old batch stopped at 21:23:14; its recursive/selective scores
+are invalid for inference.** Preserved results are not overwritten or pooled.
 
-Azure6 runs five 16-board smokes then five 128-board screens. Azure2 runs a 32-board
-sham control then reader/guarantee/combined 512-board arms on separate indices.
-The first reader/guarantee/flat32 smokes completed without failures; these tiny
-samples establish no strength gain. [Azure6 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure6-20261114)
-and [azure2 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure2-20261114)
-preserve manifests, provenance, summaries, records and episode locations. Main-based
-#38 pins the driver and imports a separate frozen runtime. New evaluation seed
-2026111401 families and all descendants are excluded from training; seed 131 and
-the squeeze suite remain excluded. Max requested early indications; bounded hourly
-reviews are scheduled, with tiny-sample uncertainty stated explicitly.
+Corrected source `d82f9a7` in #38 passes 25 local regression tests. It groups by
+child Observation, removes private-layout path gating, applies cached moves before
+budget/eligibility, and counts actual sampled-action replacements. A fresh-only
+driver rejects nonempty output directories, retains a first-attempt failure ledger
+without automatic retry, isolates claim solvers per actor/room/child decision, and
+records per-actor inclusive wall/worker/native CPU, cache/timeouts and actual
+precision. Old whole-match Python CPU excludes native solver work and is not an
+equal-time measure. Real R4c/BF16/native-SURE acceptance is queued on Azure6 before
+fresh `rx2-*` correctness smokes; no larger depth screen automatically follows.
+
+A is implementing the matched random-versus-S1 allocation control with common
+window/candidate quotas. B independently re-reviews the corrected source.
+Azure2's separate sham/reader/guarantee/combined mechanism screens continue as
+development diagnostics; reader at 450 boards is +0.073 ±0.182 IMP/board, inconclusive.
+The 32-board sham is all ties. No adoption claim is made.
+
+[Azure6 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure6-20261114)
+and [Azure2 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure2-20261114)
+retain manifests, provenance, summaries, records and episode locations; v2 acceptance
+will be under Azure6's `v2/`. Collections drained cleanly (2,551 Azure6 and 4,000
+Azure2 rows/episodes preserved); publishing/row export stayed alive. Frozen runtime
+and R4c model remain separate from main-based #38. The original six-hour deadlines
+remain approximately 02:52 and 02:59 UTC; fixes do not reset the budget.
+
+Evaluation seed2026111401 families and descendants, seed131 and the squeeze suite
+remain excluded from training; generated native-acceptance seeds2026111401–1404
+are also excluded. Cross-stream dashboard/traffic coordination is [#44](https://github.com/maxschireson/Single-Dummy-Bridge/issues/44).
 
 ## Evidence and its limits
 
