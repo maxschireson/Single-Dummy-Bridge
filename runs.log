@@ -118,3 +118,8 @@
 2026-11-14T19:54:48Z start sg8u3 g8-high0~g8-low0 seed 9001 first 804000 deals 2000 workers 8 --episodes --one-room (source 352c72b, nets fp32)
 2026-11-14T20:46:52Z end sg8u3: exit 0
 2026-11-14T20:46:52Z start sg8u4 g8-greedy0~g8-low0 seed 9001 first 806000 deals 2000 workers 8 --episodes --one-room (source 352c72b, nets fp32)
+2026-11-14T20:52:39Z the collection stops for the width study (1,024 wide; Max, 20:49 UTC)
+2026-11-14T20:52:39Z copying the pool's rows from azure5 (train.npz, freshB.npz)
+/home/Bridgebots/work/plan/rnet2w/data/train.npz: OK
+/home/Bridgebots/work/plan/rnet2w/data/freshB.npz: OK
+2026-11-14T20:54:40Z width study: v2's recipe, 1,024 wide, 5 epochs on the pool (exp-width/w1024)
