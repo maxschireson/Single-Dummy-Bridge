@@ -1,0 +1,13 @@
+{
+ "release": "stu-net-r4c-20261113",
+ "files": {
+  "policy": "e4b689c87db2f56b98221a491757dbf348ddaea066e016f06a9331fc671197f2"
+ },
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "scorer_note": "hand-fit scorer v0 (models/cardplay/hand-fit-scorer-v0-2026-11-11): the loop builds its rows with it (training/rollout-loop-20261113 round*.sh, rows*.sh: SCORER=.../hand_fit_v0.npz)",
+ "trained_on": {
+  "start": "round 1's net, 4 epochs at 1e-4 (training/rollout-loop-20261113/README.md, 'Round 4 as trained', a42fe6c1)",
+  "rows": "the arena sample (2,600 records), the loop's own records, the other boxes' row files and replay rows of v2's deals; the control net has no human tables"
+ },
+ "made_by": "loop session, transfer/rollout-loop-azure5-20261113 train-r4c/policy.npz"
+}
