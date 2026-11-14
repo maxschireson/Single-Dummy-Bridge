@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep MATCH $W/human.log | cut -c1-200; grep "stage\|failed\|net m\|net s" $W/human.log | tail -6 | cut -c1-260; for t in m10 m10h m10h4; do grep -o "\"epoch\": [0-9], \"seconds\": [0-9]*" $W/exp-human/$t.log 2>/dev/null | tail -1; done; tail -n 2 $W/runs.log | cut -c1-160; uptime; date -u +%T
