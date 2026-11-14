@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 08:43 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 08:48 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -139,13 +139,13 @@ Generated 2026-11-14 08:43 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-14 08:43 UTC; idle 2.9 core-hours since 11-12 15:03 UTC, 2.9 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-14 08:48 UTC; idle 2.9 core-hours since 11-12 15:03 UTC, 2.9 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 3,586 of 10,000 | 83.2 | 11-17 13:51 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@51f299917` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 1,087 of 2,000 | 44.6 | 11-15 05:11 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@8e071c486` |
-| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 318 of 4,000 | 54.8 | 11-17 03:57 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@94960394c` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 3,595 of 10,000 | 87.3 | 11-17 10:12 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@51f299917` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 1,091 of 2,000 | 46.7 | 11-15 04:17 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@8e071c486` |
+| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 322 of 4,000 | 52.8 | 11-17 06:31 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@94960394c` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 337 of 800 | 559.5 |  | `transfer/gen9-e9-0-n04-azure4-20261113@d251969d6` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | e9-25 | E9-25 | g9 | 3 | 1 | waiting | 0 of 750 |  |  | `transfer/gen9-e9-25-azure4-20261114@022d3126d` |
