@@ -3,3 +3,5 @@ stum10h4-pst v stum10-pst: 250 boards to play (0 done), 8 workers
 100 boards: 0.17 +- 0.4107 IMPs/board for stum10h4-pst; 275 boards/hour; 0 failed
 150 boards: 0.3733 +- 0.3454 IMPs/board for stum10h4-pst; 252 boards/hour; 0 failed
 200 boards: 0.11 +- 0.3091 IMPs/board for stum10h4-pst; 242 boards/hour; 0 failed
+250 boards: 0.224 +- 0.2661 IMPs/board for stum10h4-pst; 228 boards/hour; 0 failed
+{"pair": "stum10h4-pst~stum10-pst", "boards": 250, "cpu_per_board": 54.58, "common": {"imps_per_board": 0.224, "se": 0.2661, "boards": 250, "won": 55, "lost": 58, "flat": 137}, "native": {"imps_per_board": 0.224, "se": 0.2661, "boards": 250, "won": 55, "lost": 58, "flat": 137}}

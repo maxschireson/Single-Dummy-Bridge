@@ -1,0 +1,23 @@
+{
+ "pair": "stuhs-pst~stubs-pst",
+ "boards": 50,
+ "cpu_per_board": 22.71,
+ "common": {
+  "imps_per_board": -0.28,
+  "se": 0.6528,
+  "boards": 50,
+  "won": 13,
+  "lost": 15,
+  "flat": 22
+ },
+ "native": {
+  "imps_per_board": -0.28,
+  "se": 0.6528,
+  "boards": 50,
+  "won": 13,
+  "lost": 15,
+  "flat": 22
+ },
+ "failures": 0,
+ "boards_per_hour": 507
+}

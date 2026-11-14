@@ -1,23 +1,23 @@
 {
  "pair": "stum10A-n~stum10-n",
- "boards": 3500,
- "cpu_per_board": 0.66,
+ "boards": 4000,
+ "cpu_per_board": 0.65,
  "common": {
-  "imps_per_board": 0.2491,
-  "se": 0.0607,
-  "boards": 3500,
-  "won": 729,
-  "lost": 562,
-  "flat": 2209
+  "imps_per_board": 0.2352,
+  "se": 0.057,
+  "boards": 4000,
+  "won": 832,
+  "lost": 655,
+  "flat": 2513
  },
  "native": {
-  "imps_per_board": 0.2491,
-  "se": 0.0607,
-  "boards": 3500,
-  "won": 729,
-  "lost": 562,
-  "flat": 2209
+  "imps_per_board": 0.2352,
+  "se": 0.057,
+  "boards": 4000,
+  "won": 832,
+  "lost": 655,
+  "flat": 2513
  },
  "failures": 0,
- "boards_per_hour": 14240
+ "boards_per_hour": 14930
 }
