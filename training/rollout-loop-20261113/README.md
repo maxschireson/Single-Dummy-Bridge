@@ -377,6 +377,22 @@ should be, a unit of its own: the arena's rows from a sample of the records (500
 about 1.5 million rows), a third as many replay rows (arena and replay together about the loop's rows, the share other
 bots' rows had in round 3), each net's big files removed when it is done, nothing started under 14 GB of free disk.
 
+**Round 4 as trained (14:09 to 15:16 UTC)**: the arena sample 2,600 records, 1,719,627 rows; 12,101 own records (498,784
+rows; 300 held out, 300 for the test); 68 row files from the other boxes; 1,591,633 replay rows (3,972 of v2's deals); the
+human tables drawing no replay. Training set 102,811 deals, 6,996,453 rows; round 1's net, 4 epochs at 1e-4, about 25
+minutes a net. `stu4` sha256 edc5d6cf..., `stu4c` e4b689c8...
+
+| Offline, tricks the first card gives up a decision (paired, SE by deal) | All | Tricks 9-13 |
+| --- | --- | --- |
+| Round 3's net -> stu4, round 4's test set (300 deals, 9,522 rows) | -0.0012 +- 0.0008 | -0.0043 +- 0.0021 |
+| Round 3's net -> stu4c, the same | -0.0015 +- 0.0008 | -0.0042 +- 0.0022 |
+| stu4c -> stu4, the same | +0.0003 +- 0.0006 | -0.0001 +- 0.0016 |
+| stu4c -> stu4, the one-net SiD's held-out rows (998 deals, 32,596 rows) | **-0.0010 +- 0.0003** | -0.0013 +- 0.0008 |
+
+Together the two test sets give stu4 about -0.0007 +- 0.0003 a decision over the control (about 0.03 tricks a board),
+smaller than the -0.0013 to -0.0017 of the small version, where the human rows were a larger share. Round 3's blind
+baseline against BEN (200) finished at -0.09 +- 0.09 (2,047 deals); round 4's gate began on azure3 at 14:55 UTC.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
