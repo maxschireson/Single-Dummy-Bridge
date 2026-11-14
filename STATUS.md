@@ -141,8 +141,8 @@ Generated 2026-11-14 02:48 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 846 of 2,000 | 42.5 | 11-15 05:56 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@979fcf0e0` |
-| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 2 of 4,000 | 37.5 | 11-18 13:25 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@abe38d1f4` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 847 of 2,000 | 42.4 | 11-15 05:58 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@979fcf0e0` |
+| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 2 of 4,000 | 31.9 | 11-19 08:18 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@abe38d1f4` |
 | e9-25 | E9-25 | g9 | 3 | 1 | running | 0 of 750 |  |  | `transfer/gen9-e9-25-azure4-20261114@04195ce3c` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
