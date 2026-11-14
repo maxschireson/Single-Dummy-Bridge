@@ -330,7 +330,11 @@ one-net SiD's self-play (32,596 rated decisions), paired, the standard error clu
 | | 22,269 (every table, auctions as bid) | **+0.24 +- 0.06** (4,000) | -0.0016 +- 0.0005 |
 | | 22,269, the unfamiliar auctions blanked | +0.23 +- 0.06 (4,000) | 0.0660 against 0.0676 |
 | From scratch on those 10,000 boards (512 wide), with the 1,556 | against without | +0.21 +- 0.11 (2,000) | -0.0014 +- 0.0009 |
-| Inside the one-net rollout bot: the 10,000-board net with the 1,556 four times over | against without | +0.22 +- 0.27 (250) | |
+| From scratch at full size (512 wide, 6 epochs): every human table (22,269; 630,296 rows) | against as many pure-Stu boards (920,187 rows) | -0.03 +- 0.11 (2,000) | 0.0754 against 0.0787 |
+| The same, both sets together, playing as SiD | against the pure-Stu boards alone | **+0.79 +- 0.08** (4,000) | 0.0730 against 0.0787 |
+| Inside the one-net rollout bot (250 deals each): the 10,000-board net with the 1,556 four times over | against without | +0.22 +- 0.27 | |
+| Inside it: round 3's net fine-tuned on the human boards | against on SiD boards | +0.27 +- 0.28 | |
+| Inside it: the from-scratch net of the human boards (1,556) | against the SiD boards' | -0.01 +- 0.32 | |
 
 - **The human boards are the better teacher board for board**, by nearly an IMP a deal from scratch, although a human board
   carries fewer decisions (29 against 41: experts claim earlier) and no values.
@@ -340,8 +344,16 @@ one-net SiD's self-play (32,596 rated decisions), paired, the standard error clu
   28,000-board net does (difference 0.0000 +- 0.0005).
 - **Unfamiliar auctions cost nothing**: every table as bid and every table with the unfamiliar auctions blanked play the
   same (+0.24, +0.23), so the 18,428 tables our bidder would not have bid that way are as usable as the others.
-- **Inside the rollout bot it is not measured**: 250 deals give +-0.27, and an effect of 0.1 to 0.2 needs several thousand.
+- **At full size the two teachers are equal board for board** (-0.03 +- 0.11), and together they beat Stu's boards alone by
+  +0.79 (part of that is twice the data: there was no second 22,000 pure-Stu boards on azure5 to tell the two apart). The
+  22,269 human tables are 3,569 deals, about six tables each. As data they are worth about what 22,000 self-play tables
+  are, which is about 18 box-hours of the one-net bot.
+- **Inside the rollout bot it does not show**: three matches of 250 deals, +0.22, +0.27 and -0.01, each +-0.3. The last
+  is the pair that differs by +0.94 alone: a net nearly an IMP better alone made no visible difference inside the
+  rollouts. A better net alone is not yet a better bot; an effect of 0.1 to 0.2 inside needs several thousand deals.
   That is the BEN gate's job (round 4 below).
+- Not finished: every table against the familiar tables only, directly (`xh-m10A-F`, stopped at 1,134 deals for round 4's
+  cut), and blanked against as bid directly (`xh-m10B-A`, not started); two more rollout pairs (`xh-s10h-p`, `xh-m10h-p`).
 - Void: `xh-s10h-n` (its two nets were kept at different epochs; replayed as `xh-s10h-n6`). A from-scratch net's epoch is
   not chosen by its log-loss on the one-net bot's rows: that rises while the tricks given up fall (the rows' defenders
   mix their equal cards), so the last epoch is kept.
