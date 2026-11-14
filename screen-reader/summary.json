@@ -1,0 +1,23 @@
+{
+ "pair": "rx-reader~rx-control",
+ "boards": 50,
+ "cpu_per_board": 31.41,
+ "common": {
+  "imps_per_board": -0.34,
+  "se": 0.5019,
+  "boards": 50,
+  "won": 7,
+  "lost": 8,
+  "flat": 35
+ },
+ "native": {
+  "imps_per_board": -0.34,
+  "se": 0.5019,
+  "boards": 50,
+  "won": 7,
+  "lost": 8,
+  "flat": 35
+ },
+ "failures": 0,
+ "boards_per_hour": 386
+}
