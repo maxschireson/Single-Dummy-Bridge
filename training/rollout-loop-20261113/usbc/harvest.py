@@ -138,15 +138,20 @@ def main():
     p.add_argument('--since', default='2021-01')
     p.add_argument('--pause', type=float, default=0.25)
     p.add_argument('--limit', type=int, default=0)
+    p.add_argument('--part', default='0/1', help='K/N: this box takes the sessions whose place in the sorted list is K modulo N')
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     c = Client(a.pause)
     found = sessions(c, a.since)
+    (a.out / 'sessions.json').write_text(json.dumps(found, indent=1))
     index_path = a.out / 'index.json'
     index = json.loads(index_path.read_text()) if index_path.exists() else {}
     print(f'{time.strftime("%FT%TZ", time.gmtime())} sessions found: {len(found)}', flush=True)
     done = 0
-    for sid, meta in sorted(found.items()):
+    k, nparts = (int(x) for x in a.part.split('/'))
+    for i, (sid, meta) in enumerate(sorted(found.items())):
+        if i % nparts != k:
+            continue
         path = a.out / f'{sid}.json.gz'
         if path.exists():
             continue
