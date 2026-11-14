@@ -1,8 +1,8 @@
-# Stu training-loop efficiency recommendations
+# Stu integrated improvement plan: training, rollout search and gain transfer
 
 Date: 14 November 2026. Prepared for Max and the Stu loop lead.
 
-Status: recommendations for review; no runtime change or benchmark was performed for this document.
+Status: integrated plan. The original efficiency observations below are historical; current ownership and execution updates are summarized here. Approved implementation, experimental execution, and production adoption remain distinct.
 Max requested publication to GitHub, then asked: "I would like Stu leader to review; if he approves you can go ahead with some of these changes as agreed."
 
 The reviewer is **loop**, owner of the Stu training loop, identified on the [coordination board](https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md) as [session_01N2EvxDPjdoFBFtyygdYP4j](https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j). The separate **perf** session owns the existing batching work. Review should specify approved action IDs, scope, implementation owner, and any box/time allocation. Publication or a general endorsement is not approval to launch every experiment.
@@ -12,6 +12,63 @@ The reviewer is **loop**, owner of the Stu training loop, identified on the [coo
 Improve the current Azure fleet first. Remove redundant training work, evaluate the existing batching improvements on the actual Azure CPU, and reuse prepared data. Build bounded-memory training before buying larger-memory machines. Use the incoming four Macs continuously, with collection overlapping training and occasional Azure bursts for BEN evaluation.
 
 Use three separate milestones: a training checkpoint, a model accepted for collection, and a release with substantial full-bot evaluation. This preserves frequent learning without requiring an expensive strength claim for every small update.
+
+
+## Integrated priority and execution update — 14 November, 20:46 UTC
+
+Keep one decision document: this plan combines the existing P-series workflow work,
+H-series data work and new R-series rollout study. Detailed extraction and runnable
+search protocols are linked appendices, not competing recommendation lists.
+
+The objective is **full-bot strength gained per compute hour**, with two explicit
+components: improve the net faster, and transfer more of that improvement through
+the search into actual play. More layouts alone primarily address sampling noise;
+they do not fix biased continuations or a mismatch between simulated and table play.
+
+| Workstream | Current owner and scope | How it connects |
+| --- | --- | --- |
+| P01/P03/P08; P04 code; P10 post-run report | codex-stu-efficiency, per [loop's review](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024); implementation in #36 | Recover time and measure learning/compute efficiency |
+| P02 | perf; loop now allocates up to 3 box-hours on azure3 (azure7 is assigned to P10) | Cheaper inference can fund more useful search or data |
+| P09 and P10 experiments/adoption | loop; azure5 width run and azure7 compute control | Separate larger-net value from extra training compute |
+| H01–H05 | H01 loop; H02 and H03–H05 design codex-stu-harvest; [review and protocol in #37](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37) | Harvest existing pairs, then selectively reanalyze from the child's own information |
+| R00–R06 | codex-rollout; Max explicitly authorized execution and one Azure collector reassignment | Study mechanisms that retain net gains in full-bot play; [runnable appendix and implementation #38](https://github.com/maxschireson/Single-Dummy-Bridge/pull/38) |
+
+P05/P06/P07 and H06 remain deferred under the prior review. The new R-series
+authorization does not silently approve those recipe changes or promote a bot.
+
+### Rollout exploration sequence
+
+1. **Cheap mechanism checks:** role-correct history-reader identity and generic
+   opponent contract-preservation behavior, independently, at 128 layouts.
+2. **Breadth versus depth:** flat 128, flat 32, then 32 outer layouts with a bounded
+   8-layout child search at future own-partnership decisions. Each child sees only
+   its own information and samples its own posterior. Never let a child optimize
+   using the enclosing complete deal.
+3. **Dynamic allocation:** compare uniform and uncertainty-triggered replanning,
+   then improve the trigger using repeatable net/search disagreement, paired action
+   uncertainty and contract leverage. Match measured move cost before strength claims.
+4. **Learning frontier:** use stronger reanalysis where the net can learn a useful
+   decision, at the competence boundary and one/two tricks before it. Preserve
+   random coverage and family-disjoint confirmation. Coordinate this with H03–H05,
+   rather than creating a second pair-extraction/training project.
+5. **Further mechanisms:** score/IMP objective, calibrated net/search blending and
+   learned cutoffs after the first screen; keep objective-dependent thresholds explicit.
+
+At the table, optimize IMPs at fixed move time. For training, optimize subsequent
+held-out full-bot IMP improvement per labeling/training hour. These are different
+measurements; a difficult or uncertain position is not automatically valuable for
+either. A single imagined-layout fork is not a strong posterior-search label.
+
+**Execution checkpoint:** four new local tests pass, including hidden-information
+invariance and a real nested fixture search. Existing X8 suite passes 34 tests with
+7 native claim-solver skips. Main-based #38 pins implementation and imports a
+separate Stu runtime. Azure6 is reserved for a first batch bounded at six hours;
+its collector is being drained at a normal recycle boundary. Initial Azure runs
+are 16-board correctness/cost smokes followed by 128-board diagnostic screens;
+no playing-strength gain is yet established. See #38 and the coordination board
+for the subsequent live status. New evaluation seed families and all descendants
+are excluded from training; seed 131 and the squeeze suite remain excluded.
+
 
 ## Evidence and its limits
 
