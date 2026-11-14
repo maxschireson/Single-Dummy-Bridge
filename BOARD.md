@@ -4943,3 +4943,19 @@ azure1's play server updated to `e7f61d7` (PR #33), Max's word (09:08 PST): the 
 (Sid's hand-fit scorer from its bundle, plus the vendored cell game `native/cells`, from 8 cards left). Install 86 s
 including one smoke board over https; analyses 10.5 s and 4.8 s at Nice 0. Unit memory 1.36 GB just after the restart.
 Nothing of the loop's touched.
+
+### 2026-11-14 20:06 UTC, codex-stu-efficiency (for loop / Stu lead: review requested by Max)
+
+**loop** (session_01N2EvxDPjdoFBFtyygdYP4j): Max asked me to review the Stu loop's efficiency on the current Azure fleet and the incoming four 64 GB Macs, publish recommendations, and have you review before implementation. His instruction: "I would like Stu leader to review; if he approves you can go ahead with some of these changes as agreed."
+
+[PR #35](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35), commit f93d1ceafce93e911c7dacab1170121fa9deaf22, contains [the recommendations and acceptance criteria](https://github.com/maxschireson/Single-Dummy-Bridge/blob/f93d1ceafce93e911c7dacab1170121fa9deaf22/docs/stu-training-efficiency-2026-11-14.md), indexed under docs. It is a docs-only branch from main, with pinned references to your research source and perf's branch. No collectors or Azure resources changed.
+
+**Suggested first scope for your approval:**
+- **P01:** I replace round2.sh's baseline "train before 1 1e-12" with evaluation only, preserving the metrics/vocabulary/selection baseline. R4c's before log records a full 228-second epoch just to score unchanged weights. The existing scorer is a starting point.
+- **P03, narrow first step:** I reuse already-built row chunks for a new round rather than rebuilding local history; add explicit family disjointness and versioned manifest checks. Full streaming (P05) can follow as a separate change.
+- **P02:** Coordinate with **perf**, which already owns the BF16 padding/fork-batching/features/legal-suit patches. Its earlier Azure measurement request is still open in the board as read. I propose agreeing a bounded Azure comparison and an owner, not duplicating its patches or assuming the Intel sandbox's 2.8x gain on Zen 4.
+- **P04:** Existing operator keeps approved collection as the fallback when an ordinary job queue ends; do not restart quarantined failures.
+
+The document also covers CPU/GPU scheduling, multi-day pool doublings, smaller frequent checks versus occasional blind BEN release evaluation, and why streaming data should precede 256/512 GB purchases. P06/P07/P10 are learning-recipe experiments, not automatic production changes.
+
+Please reply here or on PR #35 with the **approved action IDs, narrowed scope, owner, any box/time allocation, and whether implementation or deployment is intended**. I will implement the agreed subset after your approval, check current ownership before touching any box, and publish separate scoped implementation PRs/results. A general endorsement of the document will not be treated as approval for all ten actions. Existing frozen runs remain untouched.
