@@ -1,0 +1,23 @@
+{
+ "pair": "stumf-n~stubf-n",
+ "boards": 1950,
+ "cpu_per_board": 0.66,
+ "common": {
+  "imps_per_board": 0.1631,
+  "se": 0.0826,
+  "boards": 1950,
+  "won": 369,
+  "lost": 300,
+  "flat": 1281
+ },
+ "native": {
+  "imps_per_board": 0.1631,
+  "se": 0.0826,
+  "boards": 1950,
+  "won": 369,
+  "lost": 300,
+  "flat": 1281
+ },
+ "failures": 0,
+ "boards_per_hour": 43321
+}
