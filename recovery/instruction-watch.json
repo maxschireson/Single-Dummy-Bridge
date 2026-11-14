@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794615960.4017549,
+  "checked_epoch": 1794619885.6917357,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -24,8 +24,8 @@
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "authority_path": "docs/gen8_candidate_2026-11-12.md",
   "authority_blob": "cadcc0e74cd216811ac547f71223856ca86a2981",
-  "coordination_revision": "513f38b9e5d318230f938e3d148b8b40e3899503",
-  "coordination_blob": "5d4f6c88f99641289c6f0c7ec93eda2f0cea4f60",
+  "coordination_revision": "ca6c94d8aa384c982a6804bfb0d6f39ac41d13dc",
+  "coordination_blob": "de381b1f075fe8f8f4416ed3121d321911c03fa3",
   "registry_blob": "f3bcd2ce37136d4f19045fb848931aafd0f37a6f",
   "source_base": "792c4cb3f647ec71273f0cc57d95be1d0a0a5954",
   "source_commit": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -112,29 +112,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 3700,
+      "completed": 3831,
       "target": 16036,
-      "contiguous": 3699,
+      "contiguous": 3831,
       "by_pair": {
-        "8s-32~71s-32": 1234,
-        "8s-32~1": 616,
-        "8s-32~5RZ32": 617,
-        "8c-32~8s-32": 616,
-        "8c-32~71s-32": 617
+        "8s-32~71s-32": 1277,
+        "8s-32~1": 638,
+        "8s-32~5RZ32": 639,
+        "8c-32~8s-32": 638,
+        "8c-32~71s-32": 639
       },
-      "root_games": 12332,
-      "tables": 152881,
+      "root_games": 12770,
+      "tables": 158273,
       "failures": 0,
-      "epoch": 1794615950.6159794,
+      "epoch": 1794619872.7050583,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794615950.250032,
-      "completed": 3699,
+      "epoch": 1794619882.7057946,
+      "completed": 3831,
       "in_flight": [
-        3699,
-        3700,
-        3701
+        3831,
+        3832,
+        3833
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -142,15 +142,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794615939.0413096,
+      "epoch": 1794619839.3345227,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794615931.1007593,
+      "epoch": 1794619835.444309,
       "status": "published",
-      "completed": 3699
+      "completed": 3828
     },
     "process.json": {
       "pid": 182297,
@@ -167,7 +167,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known successor deployment references are unchanged; no PR update or new relevant comment. The prior explicit operator instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, cleanup and known Gen9/8X deployment references remain unchanged. Newly reviewed opened Gen X Stu plan at43d555eb is explicitly an Azure4 cohort owned by will under Max's direction to Gen9, not a general migration. The prior explicit operator instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -180,17 +180,23 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-13T23:29:09Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T00:26:00Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 development queue only; no new comments or collector deployment instruction",
+      "disposition": "Gen9 development queue reports its queued Gen X Stu cohort on Azure4; no new comments or instruction for this cloud collector",
       "new_comments": 0
     }
   ],
-  "observed_notices": [],
+  "observed_notices": [
+    {
+      "notice": "loop 2026-11-14 00:55 UTC; will 00:51/00:52/01:30 UTC",
+      "classification": "Adopted Gen X Stu round-3 comparison prepared by will for Azure4 under Max's explicit direction to Gen9",
+      "action": "Scoped deployment to Gen9's Azure4 host and cohort. No general-arena collector migration or instruction for 19bbdce5. Keep this stream's immutable Gen8 source, actors, plan and training exclusions; no unrelated model restoration, queue work or promotion."
+    }
+  ],
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
-  "previous_checked_epoch": 1794612549.5982726,
+  "previous_checked_epoch": 1794615960.4017549,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -211,11 +217,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 10.15172290802002,
-  "publisher_age": 29.300995588302612,
-  "free_bytes": 19271106560,
+  "heartbeat_age": 2.985941171646118,
+  "publisher_age": 50.24742674827576,
+  "free_bytes": 18425688064,
   "new_applicable_instructions": [],
-  "registry_revision": "bd7b4973e49f24057799981954571e3f7683bd09",
+  "registry_revision": "a36e0f06f2a3e5a6923556a8cc1fb85af87d8492",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -326,7 +332,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 21.360445261001587,
+  "watchdog_age": 46.35721302032471,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
@@ -357,5 +363,15 @@
       "disposition": "Research branch only; bf16 changes some first-card choices. Any authorized adoption requires draining and a separate immutable validated successor."
     }
   },
-  "coordination_snapshot_unchanged": true
+  "coordination_snapshot_unchanged": false,
+  "genx_stu_notice_review": {
+    "branch": "feature/gen9-genx-stu",
+    "revision": "43d555eb48be2d80405a5bea86b464bf9d864b19",
+    "path": "configs/round9-genx-stu.json",
+    "blob": "27fa4742e11081e4f34830d213af5d77945a7297",
+    "launch_enabled": true,
+    "scope": "Plan explicitly prepared and run by will (Gen9) on Azure4; queued 4,000 fresh deals, seed9019, feed arena-gen9-genx-stu-azure4-feed",
+    "authority": "Max to Gen9 2026-11-14 00:48/00:49/01:00 UTC; board notices and opened plan",
+    "disposition": "Authorized separate producer deployment, not adopted into this cloud stream. New model/runner and system-scorer merge fix do not apply to current frozen release."
+  }
 }
