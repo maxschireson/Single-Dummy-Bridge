@@ -106,6 +106,24 @@ class HookTests(Fixture8):
                 moved += got['high'] != got['plain']
         self.assertGreater(moved, 0)
 
+    def test_a_table_persona_overrides_the_spec_style_for_its_seat_only(self):
+        """`table_styles` (persona.py, set per table): the seat listed plays its persona's style; other seats the spec's."""
+        p, high = self.make(gen7=dict(style=dict(high=-1.))), self.make(gen7=dict(style=dict(high=1.)))
+        for q in (p, high):
+            q.near_tie = 99.
+        checked = 0
+        for seed in range(4):
+            _, game, before = played(seed, 20)
+            for o, _ in before[4:]:
+                if len({x % 13 for x in o.legal}) < 2:
+                    continue
+                p.table_styles = {o.controller: {'play': dict(high=1., random=0.), 'near': 0.}}
+                self.assertEqual(p.choose(o, random.Random(seed)).card, high.choose(o, random.Random(seed)).card)
+                p.table_styles = {(o.controller + 1) % 4: {'play': dict(high=1., random=0.), 'near': 0.}}
+                self.assertEqual(p.choose(o, random.Random(seed)).card % 13, min(x % 13 for x in o.legal))
+                checked += 1
+        self.assertGreater(checked, 5)
+
     def test_a_search_bot_plays_any_near_tie_for_the_random_share_of_its_decisions(self):
         """With a random share of 1 and every legal card within the margin, the card is one of the legal cards at random:
         over many draws more than one of them is played, whatever the style says."""

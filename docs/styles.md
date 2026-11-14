@@ -64,6 +64,38 @@ loop's self-play uses it.
 as unstyled, so for now no partner uses its knowledge and no opponent its disclosure. Reading a styled bidder means
 weighting the layouts a reader samples by `distribution` under the view's style against the plain bidder's choice.
 
+## Variable personalities and identifiers
+
+Max, 21:14 UTC on 14 November: "Update Sid to randomize personalities. Partnership personalities should be independent,
+but somewhat correlated - .5 ... SidVariable can be an identifier, and when playing against variable personality bots
+the system should by default use their identifier. This should balance trying to make informed inferences with
+information leakage. It can ask their partner for estimated styles, and can act on the (to be publicly known) level of
+variability and disclosure. We should update gen 8/9 to also uptake this personality capability."
+
+- **Partnerships** (`persona.draw_partnership`, `persona.seats`): each latent draw of a persona is correlated 0.5 with
+  the matching draw of its partner's; opposing partnerships are independent; the correlation across dimensions is drawn
+  once per partnership. Each persona alone is distributed as `persona.draw` gives it.
+- **Identifiers**: a variable population has one bot id (`SidVariable`, `Gen8Variable`; `persona.KNOWN`, plus a match's
+  own `variable_ids`). Every other bot meets it by that id, never by its persona; a blind 8X bot is still told it
+  (`x8.read_variable`, default on), since it gives away only the population. What anyone may know about the population
+  is `persona.public(identifier)`. What the partner says when asked is `persona.view(p, 'opponent')`
+  (`persona.describe(p, 'opponent')` in words); the partner itself reads `view(p, 'partner')`.
+- **At the table**: `Gen7Player.table_styles` / `X8Player.table_styles`, `{seat: {'play': style, 'near': margin}}`, set
+  per table. A Gen 8 search seat chooses among the cards within the spec's `near_tie` (0 for `Gen8Variable`: exact
+  ties); an 8X seat among its rollout candidates within `near` (`persona.PLAY_NEAR_X8`, 0.05 tricks, not calibrated; the
+  loop's note on `stu3-pm` puts a uniform choice within 0.05 at up to 0.09 tricks a board by the rollouts' own values,
+  an overstatement). A persona's random share takes one of them at random. Seats without a persona play as before.
+- **Gen 8 and 8X in matches** (`scripts/gen8_match.py`): a bot whose spec has `"persona": {"variable": true}` (optional
+  dials: `bid_near`, `bid_scale`, `bid_random`, `play_random`, `play_near`) gets, on every board, an independent
+  partnership on each side drawn from (seed, board, bot id): its seats' play styles through `table_styles` and its
+  bidding styles through its bidder (`VariableBidder`). The record keeps them under `personas` (true styles, knowledge,
+  disclosure). `configs/loop-bots.json` (from `make_bots.py`) has `SidVariable` (stu4c-put with a persona; it floors
+  its own kind's guaranteed contracts) and `Gen8Variable` (8p-32-v41 at margin 0 with a persona).
+- **Gen 9** (`feature/gen9`, g9's branch): its player is built on Gen7Player, so it takes `table_styles` once its base
+  has `style.py`, `persona.py` and this Gen7Player; its PlayerModel is where a reader would use a disclosure.
+- **Not built**: readers acting on the disclosures. Today a reader uses the identifier (its settings keyed by it, the
+  `'*'` value where it has none) and nothing else of a persona.
+
 ## Dose
 
 `scripts/bid_style_cost.py`: each deal bid twice by the Gen 6 bidder (the one SiD (rollout) Stu bids with), plain at

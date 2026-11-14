@@ -121,3 +121,37 @@ def test_persona_dials():
     assert v['bid_style']['aggressive'] == pytest.approx(ps[0]['bid_style']['aggressive'] * ps[0]['knowledge']['aggressive'])
     assert v['bid_style']['near'] == ps[0]['bid_style']['near']
     assert isinstance(P.disclosure_text(ps[0]), str)
+
+
+def test_partnerships():
+    rng = random.Random(11)
+    pairs = [P.draw_partnership(rng) for _ in range(4000)]
+    for a, b in pairs[:50]:
+        assert a['correlation'] == b['correlation']                 # one correlation across dimensions per partnership
+        assert a['bid_style']['near'] == b['bid_style']['near'] == 6.0
+    # partners' matching draws: latent correlation 0.5, so the uniform weights' correlation is 6/pi asin(1/4) = 0.483
+    for key, d in (('play_style', 'tempo'), ('bid_style', 'aggressive'), ('knowledge', 'high')):
+        x = [a[key][d] for a, _ in pairs]
+        y = [b[key][d] for _, b in pairs]
+        assert 0.40 < float(np.corrcoef(x, y)[0, 1]) < 0.56, (key, d)
+    # each persona alone is distributed as before: weights uniform on [-1, 1] (play) and [-3, 3] (bidding)
+    t = [a['play_style']['tempo'] for a, _ in pairs]
+    assert abs(statistics.mean(t)) < 0.04 and 0.30 < statistics.pvariance(t) < 0.37        # uniform: 1/3
+    ag = [b['bid_style']['aggressive'] for _, b in pairs]
+    assert min(ag) >= -3 and max(ag) <= 3 and 2.7 < statistics.pvariance(ag) < 3.3          # uniform on +-3: 3
+    # opposing partnerships are independent
+    s = [P.seats(rng) for _ in range(3000)]
+    x = [q[0]['play_style']['tempo'] for q in s]
+    y = [q[1]['play_style']['tempo'] for q in s]
+    z = [q[2]['play_style']['tempo'] for q in s]
+    assert abs(float(np.corrcoef(x, y)[0, 1])) < 0.06 and float(np.corrcoef(x, z)[0, 1]) > 0.40
+
+
+def test_identifier_and_public():
+    assert P.is_variable('SidVariable') and not P.is_variable('stu4c-put') and not P.is_variable(None)
+    assert P.is_variable('g8-variable', extra=['g8-variable'])
+    pub = P.public()
+    assert pub['identifier'] == 'SidVariable' and pub['partner_correlation'] == 0.5 and pub['bid']['near'] == 6.0
+    p = P.draw(random.Random(5))
+    assert isinstance(P.describe(p, 'partner'), str) and isinstance(P.describe(p, 'full'), str)
+    assert P.disclosure_text(p) == P.describe(p, 'opponent')

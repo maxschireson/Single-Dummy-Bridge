@@ -18,9 +18,22 @@ little), plus a random share; `play_style` is a bridge_harness/style.py style, `
 style. Doses (the margins that set what a style costs) are given by the caller: the play margin belongs to the player
 spec (`near_tie`, `mix.near`), the bidding margin is the bid style's `near`.
 
-What is built: drawing personas, the views a partner and an opponent should read with (`view`), and disclosure text.
-What is not: the readers using those views. The belief nets, the hand-fit scorer and the rollouts' opponent models read
-every bot as unstyled; `bid_style.distribution` gives the exact call probabilities a reader needs to do otherwise.
+Partnerships (Max, 21:14 UTC on 14 November): "Partnership personalities should be independent, but somewhat
+correlated": every latent draw of a persona (its weights, random shares, knowledge and disclosure) is correlated 0.5
+with the matching draw of its partner's (`draw_partnership`). Opposing partnerships are independent. The correlation
+across dimensions is drawn once per partnership.
+
+Identifiers (same message): a population of variable-personality bots has one identifier, `SidVariable` for Sid's.
+"When playing against variable personality bots the system should by default use their identifier": a reader is told
+the identifier, never the persona, so it can read the population (whose variability and disclosure rules are public:
+`public`) without learning any one persona from its name. "It can ask their partner for estimated styles": the
+opponents' view (`view(persona, 'opponent')`, in words `describe(persona, 'opponent')`) is what the partner says.
+
+What is built: drawing personas and partnerships, the public description, the views and their text, and the hooks that
+play a persona at a table (Gen7Player and X8Player `table_styles`; the match runner and the play server set them).
+What is not: readers that act on the views. The belief nets, the hand-fit scorer and the rollouts' opponent models read
+a variable bot by its identifier and otherwise as unstyled; `bid_style.distribution` gives the exact call probabilities
+a reader needs to do more.
 """
 from __future__ import annotations
 
@@ -60,28 +73,93 @@ def _equicorrelated(rng, n, rho):
     return [math.sqrt(t) * cx + math.sqrt(1 - t) * y for cx, y in zip(centred, ys)]
 
 
-def draw(rng=None, bid_near=6.0, bid_random=(0.05, 0.20), play_random=(0.05, 0.20), dimensions=DIMENSIONS,
-         bid_scale=3.0):
-    """One persona. rng: random.Random; bid_near: the bidding style's margin, a number or a (low, high) range drawn
-    uniformly per persona; bid_scale: the bidding weights are uniform on [-bid_scale, bid_scale] (play weights on
-    [-1, 1]); *_random: ranges for the random shares. bid_near and bid_scale together are the bidding dose: the
-    defaults (6, 3) cost a mixed population 0.24 +- 0.03 IMP a board, double dummy (reports/bid_style_cost_2026-11-14.md)."""
-    rng = rng or random.Random()
-    rho = rng.triangular(-0.2, 0.8, 0.6)
-    n = len(dimensions)
-    zk = _equicorrelated(rng, n, rho)
-    zr = _equicorrelated(rng, n, rho)
+PARTNER_RHO = 0.5           # latent correlation between partners' matching draws (Max, 21:14 UTC on 14 November)
+PLAY_NEAR_X8 = 0.05         # an 8X (rollout) bot's margin for its play style, in the rollouts' tricks: inside their standard
+                            # error, so close to free; not calibrated. A Gen 8 search bot uses its spec's `near_tie`
+DEFAULTS = dict(bid_near=6.0, bid_scale=3.0, bid_random=(0.05, 0.20), play_random=(0.05, 0.20))
+KNOWN = ('SidVariable', 'Gen8Variable')     # identifiers of variable-personality populations every reader knows as such
+
+
+def _u(z, lo, hi):
+    return lo + (hi - lo) * _phi(z)
+
+
+def _one(dimensions, rho, zk, zr, zw, zx, bid_near, bid_scale, bid_random, play_random):
     knowledge = {d: round(0.8 * _phi(z), 3) for d, z in zip(dimensions, zk)}
     ratio = {d: _triangular_ppf(_phi(z), 0., 0.75, 1.5) for d, z in zip(dimensions, zr)}
     disclosure = {d: round(knowledge[d] * ratio[d], 3) for d in dimensions}
-    weights = {d: round(rng.uniform(-1, 1), 3) for d in dimensions}
-    play = {d: weights[d] for d in PLAY if d in weights}
-    play['random'] = round(rng.uniform(*play_random), 3)
+    weights = {d: 2 * _phi(z) - 1 for d, z in zip(dimensions, zw)}           # uniform on [-1, 1]
+    play = {d: round(weights[d], 3) for d in PLAY if d in weights}
+    play['random'] = round(_u(zx[0], *play_random), 3)
     bid = {d: round(weights[d] * bid_scale, 3) for d in BID if d in weights}
-    near = rng.uniform(*bid_near) if isinstance(bid_near, (tuple, list)) else float(bid_near)
-    bid.update(random=round(rng.uniform(*bid_random), 3), near=round(near, 3))
+    near = _u(zx[2], *bid_near) if isinstance(bid_near, (tuple, list)) else float(bid_near)
+    bid.update(random=round(_u(zx[1], *bid_random), 3), near=round(near, 3))
     return dict(play_style=play_styles.check(play), bid_style=bid_style.check(bid), knowledge=knowledge,
                 disclosure=disclosure, correlation=round(rho, 3))
+
+
+def draw_partnership(rng=None, partner_rho=PARTNER_RHO, dimensions=DIMENSIONS, **dials):
+    """Two personas for the two players of one partnership: each latent normal of one is correlated `partner_rho` with
+    the matching one of the other (so each persona alone is distributed as `draw` gives it). The correlation across
+    dimensions (knowledge, disclosure) is drawn once for the partnership. dials: as `draw`."""
+    rng = rng or random.Random()
+    dials = dict(DEFAULTS, **dials)
+    rho = rng.triangular(-0.2, 0.8, 0.6)
+    n = len(dimensions)
+    c = math.sqrt(1 - partner_rho ** 2)
+
+    def pair(make):
+        a, w = make(), make()
+        return a, [partner_rho * x + c * y for x, y in zip(a, w)]
+
+    zk = pair(lambda: _equicorrelated(rng, n, rho))
+    zr = pair(lambda: _equicorrelated(rng, n, rho))
+    zw = pair(lambda: [rng.gauss(0, 1) for _ in range(n)])
+    zx = pair(lambda: [rng.gauss(0, 1) for _ in range(3)])                  # play random, bid random, bid margin
+    return [_one(dimensions, rho, zk[i], zr[i], zw[i], zx[i], **dials) for i in (0, 1)]
+
+
+def draw(rng=None, dimensions=DIMENSIONS, **dials):
+    """One persona. rng: random.Random. dials: bid_near, the bidding style's margin, a number or a (low, high) range
+    drawn per persona; bid_scale, the bidding weights uniform on [-bid_scale, bid_scale] (play weights on [-1, 1]);
+    bid_random, play_random: ranges for the random shares. bid_near and bid_scale together are the bidding dose: the
+    defaults (6, 3) cost a mixed population 0.24 +- 0.03 IMP a board, double dummy (reports/bid_style_cost_2026-11-14.md)."""
+    return draw_partnership(rng, dimensions=dimensions, **dials)[0]
+
+
+def seats(rng=None, sides=(0, 1), **dials):
+    """{seat: persona} for an independent partnership on each side listed (0: North-South, seats 0 and 2; 1: East-West)."""
+    rng = rng or random.Random()
+    out = {}
+    for side in sides:
+        a, b = draw_partnership(rng, **dials)
+        out[side], out[side + 2] = a, b
+    return out
+
+
+def is_variable(bot_id, extra=()):
+    """Is this a variable-personality population's identifier (the known ones, or `extra`, e.g. a match's own)?"""
+    return bot_id is not None and (bot_id in KNOWN or bot_id in tuple(extra))
+
+
+def public(identifier='SidVariable', **dials):
+    """What anyone may know about a variable-personality population (Max: "the (to be publicly known) level of
+    variability and disclosure"): how its personas are drawn, never any one persona."""
+    d = dict(DEFAULTS, **dials)
+    return dict(
+        identifier=identifier,
+        play=dict(dimensions=list(PLAY), weights='uniform on [-1, 1] per dimension', random=list(d['play_random']),
+                  margin=f"among cards within the bot's margin of its best ({PLAY_NEAR_X8} tricks for a rollout bot; "
+                         "exact ties for a search bot at near_tie 0)"),
+        bid=dict(dimensions=list(BID), weights=f"uniform on [-{d['bid_scale']:g}, {d['bid_scale']:g}] per dimension",
+                 random=list(d['bid_random']), near=d['bid_near'],
+                 rule='among calls the bidder rates at least exp(-near) of its best, the highest log p + a_eff * action'),
+        knowledge='0.8 * Phi(z) per dimension: 0 to 80%, what the partner knows of each weight',
+        disclosure="knowledge * r per dimension, r triangular on [0, 1.5] with mode 0.75: what the opponents are told",
+        dimension_correlation='triangular on [-0.2, 0.8], mode 0.6, drawn per partnership (latent normals of knowledge, of r)',
+        partner_correlation=PARTNER_RHO,
+        opponents='independent partnerships',
+        cost='bidding: about 0.24 IMP a board across the population, double dummy; play: margins inside the search noise')
 
 
 def view(persona, who):
@@ -102,14 +180,22 @@ WORDS = {
 }
 
 
-def disclosure_text(persona):
-    """What the opponents are told, in words: each dimension at its disclosed strength (weight times disclosure)."""
+def describe(persona, who='opponent'):
+    """A persona in words, each dimension at the strength `who` reads it: 'opponent' (what the partner says: weight
+    times disclosure), 'partner' (weight times knowledge) or 'full' (the weight itself)."""
+    shares = {'opponent': persona['disclosure'], 'partner': persona['knowledge']}.get(who)
     out = []
     for d in DIMENSIONS:
         style = persona['bid_style'] if d in BID else persona['play_style']
-        w = float(style.get(d, 0.)) * persona['disclosure'].get(d, 0.)
+        scale = (float(style.get(d, 0.)) / 3 if d in BID else float(style.get(d, 0.)))     # bidding weights run to +-3
+        w = scale * (1. if shares is None else shares.get(d, 0.))
         if abs(w) < 0.15:
             continue
         degree = 'slightly' if abs(w) < 0.4 else 'often' if abs(w) < 0.8 else 'strongly'
         out.append(f'{degree} {WORDS[d][0 if w > 0 else 1]}')
     return '; '.join(out) or 'nothing beyond the system'
+
+
+def disclosure_text(persona):
+    """What the opponents are told, in words: each dimension at its disclosed strength (weight times disclosure)."""
+    return describe(persona, 'opponent')

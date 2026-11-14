@@ -293,6 +293,23 @@ class RolloutTests(Fixture8):
         self.assertEqual(o.contract.declarer in told.mixers(o), o.controller % 2 != o.contract.declarer % 2)
         self.assertNotIn(o.contract.declarer, blind.mixers(o))
 
+    def test_a_blind_bot_is_told_a_variable_populations_identifier(self):
+        """A variable-personality population's identifier names no persona, so a blind bot is told it (persona.KNOWN or the
+        spec's `variable_ids`), unless `read_variable` is off."""
+        blind = self.make8(x8=dict(blind=True))
+        for who, seen in (('SidVariable', 'SidVariable'), ('stu4c-put', None), (None, None)):
+            blind.meet(who)
+            self.assertEqual(blind.opponent_id, seen)
+        off = self.make8(x8=dict(blind=True, read_variable=False))
+        off.meet('SidVariable')
+        self.assertIsNone(off.opponent_id)
+        self.assertEqual(resolved(dict(read_variable=False)).get('read_variable'), False)
+        self.assertNotIn('read_variable', resolved({}))
+        own = self.make8(x8=dict(blind=True))
+        own.spec['variable_ids'] = ['g8-variable']
+        own.meet('g8-variable')
+        self.assertEqual(own.opponent_id, 'g8-variable')
+
     def test_forks_replay_to_their_seat_and_their_results(self):
         p = self.make()
         seen = 0
@@ -443,6 +460,31 @@ class PlayerTests(Fixture8):
                 self.assertNotIn('cap', note)
                 seen += 1
         self.assertGreater(seen, 4)
+
+    def test_a_persona_seat_chooses_by_its_style_within_its_margin(self):
+        """`table_styles`: a seat's persona at this table picks among the candidates within its margin by its style; seats
+        without one, and the bot without any, play as before."""
+        x8 = dict(stages=[dict(from_trick=8, to_trick=13, mode='rollout', layouts=12, first=4)])
+        plain, styled = self.make8(x8, gen7=self.GEN8, list_solve=16), self.make8(x8, gen7=self.GEN8, list_solve=16)
+        styled.table_styles = {s: {'play': {'high': 1., 'random': 0.}, 'near': 0.6} for s in range(4)}
+        moved = narrowed = 0
+        for seed in (2, 3, 4):
+            board = next(generate(1, 700 + seed))
+            for room in (0, 1):
+                a_plain = self.table(plain, board, room)['actions']
+                a_styled = self.table(styled, board, room)['actions']
+                for a in a_plain:
+                    self.assertNotIn('styled', a.get('x8', {}))
+                for a in a_styled:
+                    note = a.get('x8') or {}
+                    if 'styled' in note:
+                        narrowed += 1
+                        values = [note['value'][note['cards'].index(c)] for c in note['styled']]
+                        self.assertLessEqual(max(values) - min(values), 0.6 + 1e-6)      # the near-equal set, within the margin
+                        self.assertIn(a['card'], [x for c in note['styled'] for x in note['runs'][note['cards'].index(c)]])
+                moved += [x['card'] for x in a_plain] != [x['card'] for x in a_styled]
+        self.assertGreater(narrowed, 0)
+        self.assertGreater(moved, 0)
 
     def test_a_mixing_declarer_plays_its_equal_cards_alike_and_a_defender_does_not(self):
         x8 = dict(stages=[dict(from_trick=8, to_trick=13, mode='rollout', layouts=12, first=4)], mix=dict(declarer=True))

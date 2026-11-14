@@ -448,6 +448,23 @@ def main():
     bots['r7x-v0'] = roll("Control: r7-v41 with policy v0 playing the simulated seats (table card and prior stay v4.1)", inside=V0)
     bots['r7f-v4'] = roll("Control: the rollout bot built wholly on policy v4 (table card, prior and simulated seats)", table=V4, inside=V4)
     bots['r3-v41'] = roll("Control: policy v4.1's top card at the lead and tricks 1 to 2, rollouts alone on v4.1 from trick 3", first=3)
+    # Variable personalities (Max, 21:14 UTC on 14 November: "Update Sid to randomize personalities"; "SidVariable can be an
+    # identifier"; "update gen 8/9 to also uptake this personality capability"): a persona per table and seat
+    # (bridge_harness/persona.py: play style, bidding style, partner's knowledge, disclosure; partners correlated 0.5), drawn
+    # per board by scripts/gen8_match.py. Every other bot is told the identifier, never the persona (a blind 8X bot too:
+    # x8 read_variable). SidVariable is the gate's R4c bot; it keeps guaranteed contracts, so it floors its own kind's.
+    sid = copy.deepcopy(bots['stu4c-put'])
+    sid['persona'] = {'variable': True}
+    sid['x8']['claims']['opponents'] = sorted(set(sid['x8']['claims']['opponents']) | {'SidVariable'})
+    sid['label'] = ('SidVariable: stu4c-put (SiD (rollout) Stu R4c) with a persona per table and seat (play style among its candidates '
+                    'within 0.05 tricks; bidding style at near 6, weights +-3), read by others by this identifier only')
+    bots['SidVariable'] = sid
+    g8 = copy.deepcopy(x8['8p-32-v41'])
+    g8['near_tie'] = 0.
+    g8['persona'] = {'variable': True}
+    g8['label'] = ('Gen8Variable: Gen 8 card play (8p-32-v41) with a persona per table and seat (play style among exactly tied cards; '
+                   'bidding style at near 6, weights +-3), read by others by this identifier only')
+    bots['Gen8Variable'] = g8
     out = ROOT / 'configs/loop-bots.json'
     out.write_text(json.dumps(bots, indent=1) + '\n')
     print(out, sorted(bots))
