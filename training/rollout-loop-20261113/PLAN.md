@@ -260,6 +260,17 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   the same tables, all scored on the test split of every published block. Then, for play, the rollout budget swept on
   replayed decisions (tricks given up against CPU), confirmed by a match.
 
+- **Round 3's net (23:29 UTC, `train-r3/`, sha256 `a8cf8a94ebcf...`), about 28,000 tables.** Indicator 1 on the test
+  set (300 tables that make no choice), start to round 3: tricks 1 to 4 -0.0057 +- 0.0014, 5 to 8 -0.0023 +- 0.0021, 9
+  to 13 +0.0019 +- 0.0030, all -0.0025 +- 0.0012; round 2's net to round 3's, all -0.0013 +- 0.0011. Indicator 2, alone
+  against Gen 8 on deals 0 to 999: minus v2 alone +0.18 +- 0.14 (1,000), minus round 2's net -0.14 +- 0.18 (500).
+  Indicator 3, pure Stu with round 3's net minus with v2, deals 500 to 999: -0.09 +- 0.19 (500). Indicator 4, the same
+  against BEN (64): +0.21 +- 0.22 (255). Guard rail: Gen 8's log-loss 0.458 to 0.473.
+- **Reading it:** by the letter of the rules below, "1 falls and 2 does not". But the rules did not reckon with power:
+  0.0013 tricks a decision over round 2 is about 0.07 tricks a board, some 0.1 IMPs, against +-0.14 to 0.19. So the
+  nets alone now meet each other head to head on 4,000 new gate-seed deals (`jobs-azure5-h3.txt`: round 3 against v2,
+  round 3 against round 2), about +-0.05. Flat there, and the rule applies: the next lever is the rollouts' values.
+
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
 Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the
