@@ -1,0 +1,109 @@
+{
+  "type": "authorized_disposable_dds_cache_rotation",
+  "journal": {
+    "epoch": 1794680399.7172368,
+    "completed": 5432,
+    "previous_bytes": 2148282368
+  },
+  "old_collector_pid": 292481,
+  "new_collector_pid": 314336,
+  "old_collector_exited": true,
+  "supervisor_pid_unchanged": true,
+  "publisher_pid_unchanged": true,
+  "guard_sha256": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+  "guard_exact_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "pre_rotation_revision": "7c3df5b2affb448ff51507fec337993ec85c9a67",
+  "post_rotation_revision": "0e9ce997bbc978c03dde7452aa40f0dbdb4ee75d",
+  "drain_completed": 5432,
+  "drain_contiguous": 5432,
+  "drain_established": "The unchanged supervisor writes this journal only after the old collector exits and the writer lock is free. The final-count publication has the exact STOP token and stopping heartbeat, with all5432 contiguous receipt markers. The earlier active snapshot has a copy-retained STOP token, not evidence of a fresh stop; the unchanged guard journal is written only after exit/free writer. The new collector owns the writer lock.",
+  "pre_rotation_records_verified": 10858,
+  "drain_snapshot_records_verified": 10864,
+  "frozen_scientific_files_verified": 777,
+  "all_current_receipt_episode_pairs_verified": 5442,
+  "post_rotation_samples": [
+    {
+      "index": 5432,
+      "pair": "8s-32~71s-32",
+      "gap_forks": 10,
+      "observed_fields": {
+        "guess_size": 1371,
+        "best_share": 7513
+      },
+      "episode_sha256": "b0a7fd712af0f6d7d02f49297b83e295d4abf351da63d50a3e37ed770f27f61e",
+      "receipt_hash_verified": true,
+      "replay_score_and_actor_identity_verified": true,
+      "table_systems": {
+        "table-0": {
+          "NS": "house-gen6",
+          "EW": "house-gen6"
+        },
+        "table-1": {
+          "NS": "house-gen6",
+          "EW": "house-gen6"
+        }
+      }
+    },
+    {
+      "index": 5433,
+      "pair": "8s-32~1",
+      "gap_forks": 17,
+      "observed_fields": {
+        "guess_size": 475,
+        "best_share": 2105
+      },
+      "episode_sha256": "6245e4a7d33cae4e12412f5f9621301e6b74479aa4585631f3c05f4fdc8a37fc",
+      "receipt_hash_verified": true,
+      "replay_score_and_actor_identity_verified": true,
+      "table_systems": {
+        "table-0": {
+          "NS": "house-gen6",
+          "EW": "house-gen6"
+        },
+        "table-1": {
+          "NS": "house-gen6",
+          "EW": "house-gen6"
+        },
+        "table-2": {
+          "NS": "house-gen6",
+          "EW": "house-dds40k"
+        },
+        "table-3": {
+          "NS": "house-dds40k",
+          "EW": "house-gen6"
+        }
+      }
+    },
+    {
+      "index": 5434,
+      "pair": "8s-32~71s-32",
+      "gap_forks": 11,
+      "observed_fields": {
+        "guess_size": 903,
+        "best_share": 4409
+      },
+      "episode_sha256": "3ce7a17272f0c34756d975da990053ea2e4d496d707f7cf4ae4f0cee8d3bff35",
+      "receipt_hash_verified": true,
+      "replay_score_and_actor_identity_verified": true,
+      "table_systems": {
+        "table-0": {
+          "NS": "house-gen6",
+          "EW": "house-gen6"
+        },
+        "table-1": {
+          "NS": "house-gen6",
+          "EW": "house-gen6"
+        }
+      }
+    }
+  ],
+  "preserved_failures": true,
+  "failures_cleared": false,
+  "manual_restart": false,
+  "scientific_behavior_changed": false,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "journal_byte_count_note": "Journal bytes are sampled after drain, not at peak.",
+  "recovery_stop_note": "The copy-only publisher retains earlier recovery STOP bytes. Current RUN/STOP is absent and the fresh heartbeat and owner establish running state.",
+  "verified_epoch": 1794680799.995504,
+  "requires_attention": false
+}
