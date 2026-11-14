@@ -26,13 +26,14 @@ for p in CASE.iterdir():
     if p.is_file() and p.name not in ['publication-proof.json','github-watch-readback.json']:
         paths['recovery/operations/'+str(p.relative_to(CONTROL))]=p
 capture=json.loads((CASE/'live-capture-sample.json').read_text())
-for row in capture['samples']:
+rotation=json.loads((CASE/'cache-rotation-diagnosis.json').read_text())
+for row in capture['samples']+rotation['post_rotation_samples']:
     idx=row['index']
     for folder,suffix in [('receipts','.json'),('episodes','.json.gz')]:
         name=f'{idx:06d}'+suffix
         paths['recovery/'+folder+'/'+name]=RUN/folder/name
 
-for attempt in range(1,16):
+for attempt in range(1,21):
     try:
         status=json.loads((RUN/'publisher-status.json').read_text())
         assert status['status']=='published'
@@ -61,7 +62,7 @@ for attempt in range(1,16):
         print(json.dumps(dict(exact_byte_files=len(exact))),flush=True)
         break
     except (AssertionError,subprocess.CalledProcessError) as exc:
-        if attempt==15:
+        if attempt==20:
             raise
         print(json.dumps(dict(attempt=attempt,waiting_for_existing_publisher=str(exc))),flush=True)
         time.sleep(5)

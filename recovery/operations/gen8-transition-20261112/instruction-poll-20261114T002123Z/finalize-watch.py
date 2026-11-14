@@ -30,7 +30,13 @@ assert scan['pages']['owned_entries']==w['registry_review']['owned_entries']
 oldcase=Path(w['scan_evidence_path']).parent
 oldscan=read(oldcase/'github-scan.json')
 assert scan['versioned_plans']==oldscan['versioned_plans']
-assert h['same_pids_as_previous_poll'] and h['cache_rotation_already_diagnosed']
+rotation=read(CASE/'cache-rotation-diagnosis.json')
+assert h['same_pids_as_initial_check'] and h['cache_rotation_diagnosed_in_this_poll']
+assert rotation['journal']==h['cache_rotation']
+assert rotation['new_collector_pid']==h['pids']['collector']
+assert rotation['old_collector_pid']==w['health']['pids']['collector']
+assert rotation['supervisor_pid_unchanged'] and rotation['publisher_pid_unchanged']
+assert not rotation['requires_attention'] and not rotation['manual_restart'] and not rotation['failures_cleared']
 assert len(h['all_lineage_locks'])==18
 assert not scan['comments']['issue_comments'] and not scan['comments']['review_comments']
 assert not read(CASE/'commit-comments.json')['comments']
@@ -43,7 +49,7 @@ w['completed_at']=datetime.datetime.now(datetime.timezone.utc).isoformat().repla
 w['comments_since']=scan['comments_since']
 w['next_comment_scan_since']=start
 w['result']=scan['result']
-w['collection_action']='Continue current immutable Gen8 collection; no restart, drain, source/settings/model/worker change, training, promotion, registry or shared UI mutation.'
+w['collection_action']='Verified the existing supervisor DDS-cache rotation at 3495 deals (176773 exited; current collector 200165). Continue the same immutable Gen8 cohort with preserved records. No manual restart, failure clearance, source/settings/model/worker change, training, promotion, registry or shared UI mutation.'
 w['notification']='quiet: no current applicable collection instruction changed and no new blocker or completion'
 w['instruction_changes']=[]
 w['watched_source_refs']=newrefs
@@ -65,7 +71,7 @@ w['source_file_revisions']={'ref':newrefs['feature/gen8-prototype-20261112'],'pa
 w['poll_checkpoint_note']='Comments scan is anchored to poll START, not finish. Current watch/recovery publication is independently verified after the existing publisher captures these exact bytes; proof is in this case.'
 w['completion_status']={'completed':h['state']['completed'],'target':s['target'],'complete':False,'source_budget_only':True,'gen71_comparison_gate_enabled':False,'selfplay_launch_enabled':False}
 w['stu_scope_review']['latest_poll_review']={'poll_start':start,'revision':research['revision'],'commits':research['commits'],'scope':research['scope'],'disposition':research['disposition'],'applied':False,'evidence':str(CASE/'research-commit-review.json')}
-w['latest_scope_review']={'revision':scan['coordination']['revision'],'blob':scan['coordination']['blob'],'entry':scan['coordination']['latest_entry'],'scope':scan['coordination']['scope'],'disposition':scan['coordination']['disposition'],'continuing_authority':scan['coordination']['continuing_general_authority'],'current_effect':'Continue immutable Gen8 source792c4cb, manifestcd98, five-pair main mix, three normal workers, zero BEN and source budget18283. Preserve FP32 source, existing cache semantics, all retired cohorts and the disabled legacy gates.'}
+w['latest_scope_review']={'revision':scan['coordination']['revision'],'blob':scan['coordination']['blob'],'entry':scan['coordination']['latest_entry'],'scope':scan['coordination']['scope'],'disposition':scan['coordination']['disposition'],'continuing_authority':scan['coordination']['continuing_general_authority'],'current_effect':'Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18283. Preserve FP32 source, existing DDS cache semantics, all retired cohorts and disabled legacy gates. New Stu BEN200 and round3 work is not an instruction to switch this collector.'}
 w['performance_proposal_review']['research_revision']=research['revision']
 w['performance_proposal_review']['applied']=False
 w['performance_proposal_review']['latest_poll_review']={'number':34,'head':scan['performance_proposal']['head'],'state':scan['performance_proposal']['state'],'merged':scan['performance_proposal']['merged'],'reviews':[],'frozen_source_retained':True,'conditional_bf16_guidance_applies':False,'current_runtime_has_no_bf16_path':True}
@@ -76,6 +82,12 @@ for b in w['blockers']:
         b.update(last_checked_revision=scan['pages']['revision'],last_checked_blob=scan['pages']['replay_blob'],already_notified_previous_poll=True,repeat_notification=False,approval_received=False)
 pr=read(oldcase/'publication-proof.json')
 w['recovery_validation'].update(current_publication=h['publisher'],latest_poll_checkpoint=str(CASE),preceding_checkpoint=str(oldcase/'publication-proof.json'),verified_revision=pr['revision'],watch_blob=pr['watch_blob'],final_watch_copy_to_verify_separately=True)
+rotation_summary={**rotation['journal'],'new_collector_pid':rotation['new_collector_pid'],'previous_collector_pid':rotation['old_collector_pid'],'diagnosed':True,'evidence':str(CASE/'cache-rotation-diagnosis.json'),'requires_attention':False}
+w['last_diagnosed_cache_rotation']=rotation_summary
+if not any(isinstance(x,dict) and x.get('epoch')==rotation_summary['epoch'] for x in w['cache_rotation_history']):
+    w['cache_rotation_history'].append(rotation_summary)
+w['observed_operational_events'].append({'type':'authorized_disposable_dds_cache_rotation','poll_start':start,'completed':rotation['drain_completed'],'old_pid':rotation['old_collector_pid'],'new_pid':rotation['new_collector_pid'],'diagnosed':True,'manual_restart':False,'requires_attention':False,'evidence':str(CASE/'cache-rotation-diagnosis.json')})
+w['operational_guard_review']['latest_cache_rotation_review']={'poll_start':start,'completed':rotation['drain_completed'],'guard_sha256':rotation['guard_sha256'],'pre_rotation_records_verified':rotation['pre_rotation_records_verified'],'drain_snapshot_records_verified':rotation['drain_snapshot_records_verified'],'frozen_scientific_files_verified':rotation['frozen_scientific_files_verified'],'all_current_receipt_episode_pairs_verified':rotation['all_current_receipt_episode_pairs_verified'],'post_rotation_replay_and_capture_verified':True,'evidence':str(CASE/'cache-rotation-diagnosis.json'),'failures_cleared':False,'manual_restart':False}
 p=C/'instruction-watch.json.tmp'
 p.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n')
 os.replace(p,C/'instruction-watch.json')
