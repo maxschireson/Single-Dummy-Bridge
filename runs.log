@@ -28,3 +28,16 @@
 2026-11-14T04:18:17Z start l3-pst stu3-pst~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source ea20975, nets fp32)
 2026-11-14T04:54:52Z end l3-pst: exit 0
 2026-11-14T04:54:52Z start l3-ps stu3-ps~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source ea20975, nets fp32)
+2026-11-14T05:28:39Z end l3-ps: exit 0
+2026-11-14T05:28:39Z start l3-put stu3-put~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source ea20975, nets fp32)
+2026-11-14T05:28:56Z azure2 joins the gate: jobs-azure2-ben.txt, then the rest of jobs-azure2-onenet.txt
+2026-11-14T05:28:56Z the collection is paused for jobs-azure2-ben.txt
+2026-11-14T05:29:13Z BEN (200) servers listening: 8 of 8
+2026-11-14T05:29:13Z start b3-pst200d-1 stu3-pst~ben200 seed 131 first 1024 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-2 stu3-pst~ben200 seed 131 first 1056 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-3 stu3-pst~ben200 seed 131 first 1088 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-4 stu3-pst~ben200 seed 131 first 1120 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-5 stu3-pst~ben200 seed 131 first 1152 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-6 stu3-pst~ben200 seed 131 first 1184 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-7 stu3-pst~ben200 seed 131 first 1216 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T05:29:13Z start b3-pst200d-8 stu3-pst~ben200 seed 131 first 1248 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
