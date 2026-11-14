@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 3 $W/runs.log | cut -c1-170; for r in bu3-pst200a bu3-pst200b bu3-pst200c bu3-pst200d bu3-pst200e; do printf "%s: %s | " $r "$(cat $W/runs/$r-[1-8]/results.jsonl 2>/dev/null | wc -l)"; done; echo; systemctl is-active loop-bensession; date -u +%T
