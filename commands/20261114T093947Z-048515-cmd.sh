@@ -1,0 +1,1 @@
+date -u +%T; systemctl list-units "loop-*" --no-pager --plain 2>/dev/null | grep -E "running|activating" | cut -c1-150; tail -4 ~/work/loop/runs.log; uptime; ls ~/work/loop/pub | head -40; ls ~/work/plan/rnet2w/data/ 2>/dev/null | head; cd ~/work/loop/src && git log -1 --oneline && git status --short | head -5
