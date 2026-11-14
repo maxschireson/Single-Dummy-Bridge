@@ -534,7 +534,35 @@ took the run on to keep the thread moving, the design is H05's in #37). A pair i
 one rollout: the simulated seat's card and a forced other card, each played out once by the net. The bench rebuilds the
 fork seat's own view, draws up to 128 fresh layouts from that seat's information with the bot's own reader, plays both
 cards on each with the same net and seats (no claims inside, as recorded), and compares the recorded label (the trick
-difference, for the side to play) with the panel's mean. 2,500 pairs from sp3s and 2,500 from sp0; results below when in.
+difference, for the side to play) with the panel's mean. 2,500 pairs from sp3s and 2,500 from sp0 (they agree closely; rows and reports in `pub/h05/` on
+transfer/rollout-loop-azure5-20261113). For the side to play at the fork, by the trick of the fork:
+
+| Fork at tricks | Share of pairs | Single label 0 | Same sign | Corr. | Reliability | Mean single, panel | Panel over 2 SE from 0 | CPU-s to relabel |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1-2 | 1.8% | 0.38 | 0.52 | 0.41 | 0.07 | +0.00, +0.10 | 0.24 | 1.85 |
+| 3-4 | 7.9% | 0.44 | 0.62 | 0.29 | 0.09 | +0.14, +0.15 | 0.35 | 1.27 |
+| 5-6 | 13.2% | 0.54 | 0.71 | 0.46 | 0.18 | +0.18, +0.16 | 0.33 | 1.00 |
+| 7-8 | 19.9% | 0.58 | 0.70 | 0.44 | 0.28 | +0.16, +0.17 | 0.32 | 0.88 |
+| 9-10 | 23.9% | 0.63 | 0.79 | 0.63 | 0.63 | +0.21, +0.24 | 0.32 | 0.59 |
+| 11-13 | 33.3% | 0.75 | 0.91 | 0.80 | 0.87 | +0.21, +0.21 | 0.22 | 0.48 |
+| all | 5,000 | 0.63 | 0.75 | 0.54 | 0.39 | +0.19, +0.20 | 0.29 | 0.74 |
+
+Reliability is the share of one pair's label variance that is the panel's signal (the panel's variance less its noise,
+over the single label's variance). Same sign counts pairs whose single label is not 0. Late in the hand the panel uses
+nearly every layout the seat allows while its noise is still subtracted as if sampled, so reliability there is if anything
+understated. The bench measures the label's noise from one layout and one playout, with the same net; it does not test
+whether the net's playouts are right (the value check above: they are optimistic for the side deciding).
+
+What it says:
+- One pair is a weak label before trick 9 (reliability 0.07 to 0.28) and a good one after (0.63, 0.87). 57% of the
+  pairs are at tricks 9-13; 10% at tricks 1-4.
+- In 71% of pairs the panel does not separate the two cards by 2 SE: from the seat's information they are equal or close.
+- On average the single label is unbiased (+0.19 against +0.20 tricks for the chosen card); per-trick means agree within
+  noise. The fork seat's layouts in the record came from the root decider's draw, and no gross conditioning bias shows.
+- Relabeling a pair with a panel costs 0.5 to 1.9 CPU-s and yields two cards' values at one position; Stu's self-play
+  yields 2.1 full rows a CPU-s, each over every candidate card. Relabeling is not a cheaper source than collecting.
+- Whether raw pairs help training is untested: that needs H02's extractor and a trainer target for a two-card label (H03).
+
 
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
