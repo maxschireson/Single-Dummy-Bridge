@@ -1,0 +1,41 @@
+{
+  "poll_start": "2026-11-14T08:25:33Z",
+  "registered": true,
+  "adopted_by_this_stream": false,
+  "registration": {
+    "revision": "3bd2760b43cf339076be4d5551af1826ac40d62c",
+    "blob": "5255da6a2bdf7d15ce0a52169f214eaa20055414",
+    "entry": {
+      "key": "gen9genxstuazure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen X Stu · azure4 (stu3-ps against Gen 8, Gen 9 and Gen 7.1)",
+      "branch": "arena-gen9-genx-stu-azure4-feed",
+      "cohort": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091"
+    }
+  },
+  "feed_revision": "53a061759046f8f5a27cbbe62e50823810566609",
+  "current_branch_revision": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+  "state": {
+    "manifest_identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+    "completed": 303,
+    "target": 4000,
+    "contiguous": 302,
+    "by_pair": {
+      "stu3-ps~8s-32": 152,
+      "stu3-ps~71s-32": 75,
+      "stu3-ps~9a-32": 76
+    },
+    "root_games": 606,
+    "tables": 10821,
+    "failures": 0,
+    "epoch": 1794644739.333139,
+    "complete": false,
+    "blob": "5d5e0118ac267d7432f651b78d1d596895f4c1e8"
+  },
+  "source_provenance": "Pinned GenX peer source/plan/actor unchanged; fresh state is a dated read-only checkpoint.",
+  "scope": "Existing scoped GenX/Azure4 R3 cohort; current USBC tests and Gen9 maintenance do not replace its pinned actor or any owned actor.",
+  "peer_commands_executed": false
+}

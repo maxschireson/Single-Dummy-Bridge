@@ -1,0 +1,184 @@
+{
+  "poll_start": "2026-11-14T08:25:33Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "cf390dad7acfd554d9cdb146872ab89f77fba1d5",
+  "commits": [
+    {
+      "sha": "cf390dad7acfd554d9cdb146872ab89f77fba1d5",
+      "date": "2026-11-14T08:05:09Z",
+      "message": "USBC analyze: players matched across events by name\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "3c682d10696efdfa23cf5b7062e0b2ef82ba0301",
+      "date": "2026-11-14T08:04:40Z",
+      "message": "USBC analyze.py: tricks lost by category, year and stage; per player raw, against the field and against the position's danger; split-half and across-event checks\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "d413970f8fac21f1ae86266c9a5793fe5de73f8a",
+      "date": "2026-11-14T08:01:27Z",
+      "message": "USBC lost_tricks: each card's double-dummy cost in IMPs and whether it changed make or set (Max: risky leads and safety plays at IMPs)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "da6ec57afbe5a754f2e717766a22d4e98ff6866a",
+      "date": "2026-11-14T07:59:47Z",
+      "message": "USBC harvest: --screens, vugraph screens given by hand; the 2025 Open, Mixed and Senior USBC screens from USBF's bracket sheets\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "d7cf8f95bca834acf5292777fb58e5ee9516423b",
+      "date": "2026-11-14T07:45:27Z",
+      "message": "USBC harvest: crawl USBF's 2022 to 2026 tournament pages for the vugraph screens the archive list leaves out; --discover-only\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "12266223f404a939dc7541f8ddfb86e2ae82efb9",
+      "date": "2026-11-14T07:33:48Z",
+      "message": "gen8_match --deals-file (given deals in place of the seed's); USBC make_tests.py: the USBC deals and human auctions as bot tests, each auction scored for fit under the common bidder\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "1e273be2ef3f34a6dfa0daed5f76c1a9c557bdea",
+      "date": "2026-11-14T07:30:16Z",
+      "message": "USBC lost_tricks: one output file a session, written once (the publisher pushes small files)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "ead62af1f3f12ec8b9402770ca49117870cdb34c",
+      "date": "2026-11-14T07:28:49Z",
+      "message": "USBC lost_tricks: the room is set once\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "97c02489d7486adbfcfec56ebe4af98e180bca2a",
+      "date": "2026-11-14T07:27:17Z",
+      "message": "USBC test data: lost_tricks.py, every human card scored against double dummy, with how dangerous each position was\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "USBC test-only human-card scoring, risk-normalized reporting and fixed-deal tests; Gen9/Azure4 DDS cache and BEN-loader maintenance are scoped separately.",
+  "disposition": "Max07:12 normalizes human tricks lost by position danger; Max07:22 requests USBC auctions close to the bots' common bidding; Max07:51 adds IMP cost and make/set effects. These extend explicitly TEST ONLY, NEVER TRAINED ON research. Do not harvest/import USBC, train, or use --deals-file here. Canonical Gen8 source, plans and actors remain unchanged. Gen9's new DDS sync branch applies only to its Azure4 job; do not adopt NORMAL sync, its workers, altered source hashes or BEN-loader fix in this frozen producer.",
+  "evidence": [
+    {
+      "sha": "cf390dad7acfd554d9cdb146872ab89f77fba1d5",
+      "message": "USBC analyze: players matched across events by name\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "3c682d10696efdfa23cf5b7062e0b2ef82ba0301"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/analyze.py"
+      ]
+    },
+    {
+      "sha": "3c682d10696efdfa23cf5b7062e0b2ef82ba0301",
+      "message": "USBC analyze.py: tricks lost by category, year and stage; per player raw, against the field and against the position's danger; split-half and across-event checks\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "d413970f8fac21f1ae86266c9a5793fe5de73f8a"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/analyze.py"
+      ]
+    },
+    {
+      "sha": "d413970f8fac21f1ae86266c9a5793fe5de73f8a",
+      "message": "USBC lost_tricks: each card's double-dummy cost in IMPs and whether it changed make or set (Max: risky leads and safety plays at IMPs)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "da6ec57afbe5a754f2e717766a22d4e98ff6866a"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/lost_tricks.py"
+      ]
+    },
+    {
+      "sha": "da6ec57afbe5a754f2e717766a22d4e98ff6866a",
+      "message": "USBC harvest: --screens, vugraph screens given by hand; the 2025 Open, Mixed and Senior USBC screens from USBF's bracket sheets\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "d7cf8f95bca834acf5292777fb58e5ee9516423b"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/harvest.py",
+        "training/rollout-loop-20261113/usbc/screens-2025.txt"
+      ]
+    },
+    {
+      "sha": "d7cf8f95bca834acf5292777fb58e5ee9516423b",
+      "message": "USBC harvest: crawl USBF's 2022 to 2026 tournament pages for the vugraph screens the archive list leaves out; --discover-only\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "12266223f404a939dc7541f8ddfb86e2ae82efb9"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/harvest.py"
+      ]
+    },
+    {
+      "sha": "12266223f404a939dc7541f8ddfb86e2ae82efb9",
+      "message": "gen8_match --deals-file (given deals in place of the seed's); USBC make_tests.py: the USBC deals and human auctions as bot tests, each auction scored for fit under the common bidder\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "1e273be2ef3f34a6dfa0daed5f76c1a9c557bdea"
+      ],
+      "files": [
+        "scripts/gen8_match.py",
+        "training/rollout-loop-20261113/usbc/make_tests.py"
+      ]
+    },
+    {
+      "sha": "1e273be2ef3f34a6dfa0daed5f76c1a9c557bdea",
+      "message": "USBC lost_tricks: one output file a session, written once (the publisher pushes small files)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "ead62af1f3f12ec8b9402770ca49117870cdb34c"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/lost_tricks.py"
+      ]
+    },
+    {
+      "sha": "ead62af1f3f12ec8b9402770ca49117870cdb34c",
+      "message": "USBC lost_tricks: the room is set once\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "97c02489d7486adbfcfec56ebe4af98e180bca2a"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/lost_tricks.py"
+      ]
+    },
+    {
+      "sha": "97c02489d7486adbfcfec56ebe4af98e180bca2a",
+      "message": "USBC test data: lost_tricks.py, every human card scored against double dummy, with how dangerous each position was\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "233093851269b409f9ebe1abbd517ca63534d475"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/lost_tricks.py"
+      ]
+    },
+    {
+      "sha": "6bd054ef85d89d01c57728fd1aa4f4c6f7d3b25b",
+      "message": "Gen 9 state at 14 Nov 08:20 UTC: one box, cohort trimmed for Gen X Stu, cache sync change queued, E9-25 fixed and retried\n\nOvernight (from will's messages): Max gave Gen 9 one Azure box, added Gen X Stu to the arena and had the cohort\ntrimmed to 4 workers; azure4's disk is throttled again. g9 replaced the cohort's spec with the DDS cache's NORMAL\nsync (7e0edac7, pending will's drain and retry), fixed the BEN loader that failed E9-25 (adae5fbb) and retried it,\ntrimmed G9-B8 to its first version (rest in G9-B10) and resubmitted it.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew",
+      "parents": [
+        "adae5fbb5db79f95ee10de1ff2fcaa13e2587198"
+      ],
+      "files": [
+        "docs/gen9/STATE.md"
+      ]
+    },
+    {
+      "sha": "adae5fbb5db79f95ee10de1ff2fcaa13e2587198",
+      "message": "BenLstmBidder reads BEN's own bidding nets: output layer under layers/time_distributed/layer as well as layers/dense\n\nE9-25's first box run failed loading BEN's GIB-BBO-8742 net (KeyError layers/dense/vars/0). BEN's TF2 bidders have\nthe house bidders' architecture and settings (193 inputs, three 256-unit LSTMs, batch-norm epsilon 0.001, a 40-way\nsoftmax Dense) but wrap the Dense in TimeDistributed, which Keras saves under another path. The loader now takes\neither path and names the file when it finds neither. House bidders load as before (layers/dense comes first).\n\nChecked with BEN's file fetched from its public repository (SHA-256 b0dff3df..., the pinned one; not stored here):\non 2,000 random deals BEN's net opens 1NT only on 15 to 17 points, passes as dealer only with 11 or fewer, and opens\nas the house bidder does on 99.2% of deals; E9-25's study ran on 3 positions with the BEN replay. Test with\nsynthetic weights in both layouts; the bidder tests (56 passed, 5 skipped) pass.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew",
+      "parents": [
+        "a1301590e3bca6119391cdd837501ce623a44dd4"
+      ],
+      "files": [
+        "bridge_harness/system_bidders.py",
+        "experiments/e9_25/README.md",
+        "tests/test_ben_lstm_layout.py"
+      ]
+    },
+    {
+      "sha": "7e0edac702d32e999ba969a9bbda9ec00d3a64b0",
+      "message": "DDS position cache: BRIDGE_DDS_CACHE_SYNC=NORMAL lowers SQLite's sync level for one run (default FULL)\n\nFor Gen X Stu's run on azure4, which shares one Premium P10 disk with the Gen 9 cohort. At 01:33 UTC the box\nshowed 25-41% CPU idle, 4-17% iowait and 598 writes/s at 17 ms, with 166 flushes/s. Most of the writes are\nthe cohort's DDS-cache inserts, synced FULL. With WAL, NORMAL syncs at checkpoints only: a power loss can drop\nthe last entries, which are then solved again, and the file is never corrupted. Cards and results do not\nchange. Unset, the cache syncs FULL as before. Any other value is refused.\n\ntests/test_dds_cache_sync.py: FULL by default, NORMAL when asked, OFF refused. tests/test_dds_cache.py passes.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH\n(cherry picked from commit 9bba86b6eaba468f724a9917ae821cc196f082d1)",
+      "parents": [
+        "46b7e0044be79d40ad17499334b6ececf022910e"
+      ],
+      "files": [
+        "bridge_harness/dds_cache.py",
+        "tests/test_dds_cache_sync.py"
+      ]
+    }
+  ],
+  "research_plan_blob": "ff27cd3668e90d4e86544e420911254df9b36eec",
+  "future_exclusions": "Any future new owned cohort requires complete pinned exclusions for ALL released-model training families and existing corpus safeguards. Preserve current immutable v4.1 exclusions and original proofs; keep test-only datasets held out."
+}
