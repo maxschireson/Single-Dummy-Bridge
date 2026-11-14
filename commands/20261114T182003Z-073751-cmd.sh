@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 5 $W/runs.log | cut -c1-200; echo ---; grep -v Warning $W/pub/exp/seat-bu3.err | tail -n 12 | cut -c1-240; echo ---; wc -l $W/pub/exp/seat-bu3.jsonl; head -c 600 $W/pub/exp/seat-bu3.txt; systemctl list-units --plain --no-legend "loop-*" | awk "{print \$1, \$4}" | tr "\n" ";"; echo; uptime | cut -c1-75
