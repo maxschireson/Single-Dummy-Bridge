@@ -66,7 +66,8 @@ STATIC = [
 ]
 
 
-MOVE_NOTE = "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)"
+MOVE_NOTE = ("05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style "
+             "matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3")
 MOVED = {n: MOVE_NOTE for n in ('s8-greedy', 's8-patient', 's8-greedy0', 's8-high', 's8-low', 's8-active', 's8-passive', 's8-passive0',
                                 'h41-p', 'h41-pb', 'h3-pm', 'l3-put', 'l3-pstb', 'l3-psb')}
 MOVED['h3-px'] = "05:30 UTC on 14 November: dropped (sharper seats did nothing: h3-p2, h3-pg)"

@@ -259,6 +259,150 @@
    "queue_order": null
   },
   {
+   "name": "s8-greedy",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 3
+  },
+  {
+   "name": "s8-patient",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-patient~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 4
+  },
+  {
+   "name": "s8-active",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-active~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 5
+  },
+  {
+   "name": "s8-passive",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 6
+  },
+  {
+   "name": "s8-high",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-high~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
+   "name": "s8-low",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-low~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 8
+  },
+  {
+   "name": "s8-greedy0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 9
+  },
+  {
+   "name": "s8-passive0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 10
+  },
+  {
    "name": "sg8f",
    "box": "azure5",
    "branch": "transfer/rollout-loop-azure5-20261113",
@@ -275,7 +419,7 @@
     "family": "other"
    },
    "tables_a_board": 1,
-   "queue_order": 3
+   "queue_order": 11
   },
   {
    "name": "spr0",
@@ -732,7 +876,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -751,7 +895,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -770,7 +914,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -789,7 +933,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -808,7 +952,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -827,7 +971,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -846,7 +990,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -865,7 +1009,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -1153,7 +1297,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 4
+   "queue_order": 12
   },
   {
    "name": "l2b-pv",
@@ -1174,7 +1318,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 5
+   "queue_order": 13
   },
   {
    "name": "l0b-pt",
@@ -1590,7 +1734,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 6
+   "queue_order": 14
   },
   {
    "name": "l3-n",
@@ -1611,7 +1755,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 7
+   "queue_order": 15
   },
   {
    "name": "l0c-n",
@@ -1632,7 +1776,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 8
+   "queue_order": 16
   },
   {
    "name": "l3-p",
@@ -1677,7 +1821,7 @@
     "net": "v2",
     "rung": "net"
    },
-   "queue_order": 9
+   "queue_order": 17
   },
   {
    "name": "h32-n",
@@ -1701,7 +1845,7 @@
     "net": "stu2",
     "rung": "net"
    },
-   "queue_order": 10
+   "queue_order": 18
   },
   {
    "name": "h3-p",
@@ -1788,7 +1932,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 11
+   "queue_order": 19
   },
   {
    "name": "hs-p",
@@ -1944,7 +2088,7 @@
     "net": "v2",
     "rung": "pure-rs"
    },
-   "queue_order": 12
+   "queue_order": 20
   },
   {
    "name": "h0-p2",
@@ -2087,7 +2231,7 @@
     "net": "stu3",
     "rung": "pure-rs-t"
    },
-   "queue_order": 13
+   "queue_order": 21
   },
   {
    "name": "h3-pm",
@@ -2111,7 +2255,7 @@
     "net": "stu3",
     "rung": "pure-rs"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -2175,7 +2319,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -2197,7 +2341,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -2219,7 +2363,7 @@
    "second_bot": {
     "family": "other"
    },
-   "stopped": "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)",
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
    "queue_order": null
   },
   {
@@ -2451,7 +2595,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 14
+   "queue_order": 22
   },
   {
    "name": "b0-pst200b",

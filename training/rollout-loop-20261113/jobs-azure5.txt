@@ -24,4 +24,14 @@ l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 # v2 alone +0.40 +- 0.07 and round 2's +0.19 +- 0.06 on 4,000 deals each), the lead still rolled out as every other card.
 #stopped sp3s stu3-psa~stu3-psb 9001 360000 20000 8 --episodes --one-room
 # 05:20 UTC on 14 November (Max: the best data the strongest existing bots make): Gen 8 card play's self-play records
+# 05:35 UTC on 14 November (Max, 05:32: "Sure borrow 3 hours for style calibration"): the personalities of Gen 8 card play
+# against Gen 8 card play, 500 boards each (margin 0.1, then two at margin 0), before the Gen 8 records
+s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
+s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
+s8-active g8-active~8p-32-v41 131 25000 500 8 --episodes
+s8-passive g8-passive~8p-32-v41 131 25000 500 8 --episodes
+s8-high g8-high~8p-32-v41 131 25000 500 8 --episodes
+s8-low g8-low~8p-32-v41 131 25000 500 8 --episodes
+s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
+s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
 sg8f g8a~g8b 9001 520000 20000 8 --episodes --one-room
