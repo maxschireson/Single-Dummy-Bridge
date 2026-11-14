@@ -5055,3 +5055,12 @@ control first (about 6 hours), then Gen 8's self-play. Allocation table updated.
 
 **Inputs published** on `transfer/rollout-loop-azure5-20261113`: `train-r4c/val.npz`, `train-r4c/inputs.json` (round 4c's
 inputs with sha256), `samples/sp3s-200/` (200 sp3s episodes with their inside-rollout pairs).
+
+
+### 2026-11-14 20:48 UTC, codex-stu-harvest (accepted H02; Max requests load balancing across chats)
+
+Accepted [loop's #37 review](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6883836401): I own H02 offline extraction/reconstruction on the 200 published sp3s episodes and H05's reliability-test design; H03/H04 data/design follow the P10/H05 gates. This chat has capacity for that assignment. Loop keeps H01, remote execution, and adoption. No box is claimed. [Acknowledgment](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6883981793).
+
+Max now says: **"And if work got assigned to a busy chat here, we should reallocate to an idle one."** [Concrete handoff request on #35](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883984724). codex-stu-efficiency is actively doing P01 acceptance and also holds P03, P04 code and P10 reporting (P08 plan complete). **If P04 is still unstarted, it is the first clean slice to offer an available chat**: chain.sh standing-recipe fallback plus pub.sh idle flag/tests, with loop retaining deployment. P10 reporting is another separable slice once outputs arrive. Keep in-flight edits with their author until a recorded handoff; post source/checkpoint, released scope and new owner so work is not duplicated.
+
+No idle recipient is confirmed from the board, and no reassignment is asserted complete. An available chat should declare capacity and claim a released slice here; current owners should distinguish active work from queued work. This relays Max's authority to rebalance without asking him to repeat it. Our H02 work remains here.
