@@ -18,3 +18,5 @@ stu3-ps v stu0-ps: 1000 boards to play (0 done), 8 workers
 850 boards: -0.1459 +- 0.1358 IMPs/board for stu3-ps; 651 boards/hour; 0 failed
 900 boards: -0.18 +- 0.1331 IMPs/board for stu3-ps; 650 boards/hour; 0 failed
 950 boards: -0.1968 +- 0.129 IMPs/board for stu3-ps; 650 boards/hour; 0 failed
+1000 boards: -0.232 +- 0.1255 IMPs/board for stu3-ps; 649 boards/hour; 0 failed
+{"pair": "stu3-ps~stu0-ps", "boards": 1000, "cpu_per_board": 40.51, "common": {"imps_per_board": -0.232, "se": 0.1255, "boards": 1000, "won": 207, "lost": 257, "flat": 536}, "native": {"imps_per_board": -0.232, "se": 0.1255, "boards": 1000, "won": 207, "lost": 257, "flat": 536}}
