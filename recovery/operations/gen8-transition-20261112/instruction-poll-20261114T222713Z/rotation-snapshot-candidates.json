@@ -1,0 +1,152 @@
+{
+  "journal": {
+    "epoch": 1794692979.14056,
+    "completed": 5820,
+    "previous_bytes": 2153832448
+  },
+  "snapshots": [
+    {
+      "revision": "41bc1d8ee36b07b485f89bad5a4f44d942b19cbd",
+      "state": {
+        "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "completed": 5817,
+        "target": 18283,
+        "contiguous": 5817,
+        "by_pair": {
+          "8s-32~1": 970,
+          "8c-32~71s-32": 969,
+          "8c-32~8s-32": 969,
+          "8s-32~71s-32": 1939,
+          "8s-32~5RZ32": 970
+        },
+        "root_games": 19390,
+        "tables": 238715,
+        "failures": 0,
+        "epoch": 1794692863.1656876,
+        "complete": false
+      },
+      "heartbeat": {
+        "epoch": 1794692861.6303782,
+        "completed": 5817,
+        "in_flight": [
+          5817,
+          5818,
+          5819
+        ],
+        "workers": 3,
+        "ben_workers": 0,
+        "started_epoch": 1794680410.3713164,
+        "stopping": false
+      },
+      "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+      "data_completed": 5817
+    },
+    {
+      "revision": "16f5c29d1d36c750e38508eea7d3c1f25e83f371",
+      "state": {
+        "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "completed": 5818,
+        "target": 18283,
+        "contiguous": 5817,
+        "by_pair": {
+          "8s-32~1": 970,
+          "8c-32~71s-32": 969,
+          "8c-32~8s-32": 969,
+          "8s-32~71s-32": 1940,
+          "8s-32~5RZ32": 970
+        },
+        "root_games": 19392,
+        "tables": 238729,
+        "failures": 0,
+        "epoch": 1794692935.5220964,
+        "complete": false
+      },
+      "heartbeat": {
+        "epoch": 1794692934.1218946,
+        "completed": 5818,
+        "in_flight": [
+          5817,
+          5819
+        ],
+        "workers": 3,
+        "ben_workers": 0,
+        "started_epoch": 1794680410.3713164,
+        "stopping": true
+      },
+      "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+      "data_completed": 5818
+    },
+    {
+      "revision": "87b99decbb98f9e08f803c249e2944ae49ebe3c9",
+      "state": {
+        "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "completed": 5820,
+        "target": 18283,
+        "contiguous": 5820,
+        "by_pair": {
+          "8s-32~1": 970,
+          "8c-32~71s-32": 970,
+          "8c-32~8s-32": 970,
+          "8s-32~71s-32": 1940,
+          "8s-32~5RZ32": 970
+        },
+        "root_games": 19400,
+        "tables": 238798,
+        "failures": 0,
+        "epoch": 1794693009.2528934,
+        "complete": false
+      },
+      "heartbeat": {
+        "epoch": 1794693001.9676726,
+        "completed": 5820,
+        "in_flight": [
+          5820,
+          5821,
+          5822
+        ],
+        "workers": 3,
+        "ben_workers": 0,
+        "started_epoch": 1794692991.7739143,
+        "stopping": false
+      },
+      "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+      "data_completed": 5820
+    },
+    {
+      "revision": "766e459d30985c6d4148ed6486aa7eaa45ae07fc",
+      "state": {
+        "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "completed": 5822,
+        "target": 18283,
+        "contiguous": 5821,
+        "by_pair": {
+          "8s-32~1": 970,
+          "8c-32~71s-32": 970,
+          "8c-32~8s-32": 970,
+          "8s-32~71s-32": 1942,
+          "8s-32~5RZ32": 970
+        },
+        "root_games": 19404,
+        "tables": 238850,
+        "failures": 0,
+        "epoch": 1794693087.452819,
+        "complete": false
+      },
+      "heartbeat": {
+        "epoch": 1794693084.918188,
+        "completed": 5822,
+        "in_flight": [
+          5821,
+          5823,
+          5824
+        ],
+        "workers": 3,
+        "ben_workers": 0,
+        "started_epoch": 1794692991.7739143,
+        "stopping": false
+      },
+      "STOP": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+      "data_completed": 5822
+    }
+  ]
+}
