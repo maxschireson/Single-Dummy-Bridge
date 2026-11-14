@@ -1,1 +1,3 @@
 stu3-ps v ben200: 32 boards to play (0 done), 1 workers
+32 boards: 0.0 +- 0.512 IMPs/board for stu3-ps; 50 boards/hour; 0 failed
+{"pair": "stu3-ps~ben200", "boards": 32, "cpu_per_board": 27.22, "common": {"imps_per_board": 0.0, "se": 0.512, "boards": 32, "won": 10, "lost": 8, "flat": 14}, "native": {"imps_per_board": 0.0, "se": 0.512, "boards": 32, "won": 10, "lost": 8, "flat": 14}}
