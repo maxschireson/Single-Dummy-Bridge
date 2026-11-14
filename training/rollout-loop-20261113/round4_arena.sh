@@ -37,9 +37,14 @@ done < "$OUT/new.txt"
 "$PY" - "$OUT" "$LOOP_BOARDS" "$SHARE" <<'PY' | tee -a "$OUT/arena.log"
 import glob, gzip, json, os, random, sys
 out, loop, share = sys.argv[1], int(sys.argv[2]), float(sys.argv[3])
-ben, other = [], 0
+ben, other, odd = [], 0, 0
+os.makedirs(f'{out}/odd', exist_ok=True)
 for f in sorted(glob.glob(f'{out}/eps/*.json.gz')):
     d = json.load(gzip.open(f, 'rt'))
+    if not isinstance(d, dict) or 'unique_tables' not in d:     # a feed's file that is no record of a board (a list, an index): aside
+        os.replace(f, f'{out}/odd/' + os.path.basename(f))
+        odd += 1
+        continue
     if any('ben' in str(d.get(k, '')).lower() for k in ('candidate', 'opponent')):
         ben.append(f)
     else:
@@ -49,6 +54,8 @@ random.Random(4).shuffle(ben)
 for f in ben[keep:]:
     os.replace(f, f'{out}/ben/' + os.path.basename(f))
 print(f'records without BEN {other}; with BEN {len(ben)}, kept {keep} (share {share} of {other + loop + keep} new boards with the loop\'s {loop})')
+if odd:
+    print(f'{odd} files that are no board records set aside (odd/)')
 PY
 [ "${SKIP_BUILD:-0}" = 1 ] && { say "SKIP_BUILD: records selected, no rows built"; exit 0; }
 ALIAS="$(cat "$HERE/alias.txt"),8p-32=8s-32,stu3-ps=stup0"
