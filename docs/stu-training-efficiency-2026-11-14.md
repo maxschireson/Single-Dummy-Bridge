@@ -61,7 +61,22 @@ held-out full-bot IMP improvement per labeling/training hour. These are differen
 measurements; a difficult or uncertain position is not automatically valuable for
 either. A single imagined-layout fork is not a strong posterior-search label.
 
-**Execution checkpoint — 21:49 UTC:** Max authorized Azure6 and Azure2, initially
+### Current rollout decisions — 22:20 UTC
+
+Max has explicitly requested larger recursion tests despite the extra cost, against **both R4c128 and BEN**. Measure the strength/time curve before discarding expensive search. Equal-time comparisons remain necessary for deployment choices; they are not a reason to skip the unconstrained strength experiment.
+
+- Azure6: corrected d82f9a7 engine,8workers,512 fresh paired families against R4c128, followed by flat32 on the same families (seed2026111401,indices6000–6511). At22:18:32,62 completed boards gave **−0.0323 ±0.4953 IMP/board**, with recursion at2.18× the control's action wall time. Zero failed attempts. This is an interim development estimate, not a positive result.
+- The corrected16-board smoke had recursion minus flat32 **+1.5625 ±1.2648**, at about4.17× flat32's time. The2.31× figure used **R4c128** as its timing denominator; it does not describe the flat32 comparison. This tiny panel cannot establish a large effect.
+- Azure2: finish guarantee512 unchanged, defer combined, then dedicated BEN64 lanes. Source4951fb0 adds endpoint isolation and explicit external-server CPU scope;27tests pass locally and AzureBF16. Runner is active waiting for clean handoff.8-board pilots precede256 fresh matched families in alternating32-board flat128/recursive32 blocks against identical BEN settings and common bidding. No BEN score exists yet.
+- Initial box deadlines remain ~02:52/02:59UTC. Third-box capacity is requested from the next released slot in#44, without interrupting existing assignments. No new production actor or training recipe is promoted.
+
+**Opponent information roadmap.** Max's explanation is plausible: generic continuation behavior may discard useful distinctions learned by the net. It is not yet established as the cause of lost full-bot gain. PR42 adds randomized populations and public identity/disclosure hooks; randomization itself does not train the missing population embedding or make the history reader consume disclosed style. Its variable identifiers still need an explicit neural-vocabulary mapping; unknown identifiers otherwise fall back to the generic embedding. Loop reports identity dropout was zero after v2, so that unknown embedding was not refreshed in later rounds, although shared network weights were.
+
+Build one integrated experiment with loop/sidplay: current generic fallback; generic fallback retrained on diversified styles; trained population conditioning; and public-disclosure/history-conditioned style. Hold out styles/populations as well as deal families. Retain legally available population information and sample a latent persona consistently through a trajectory (including partnership correlation); do not reveal an opponent's private sampled persona or enclosing hidden layout to a child. Compare these at fixed search and then old/new net × flat/recursive search to measure transfer. Freeze current search panels before introducing identity/style changes.
+
+**Learning frontier update.** Loop's H05 reports reliability of single-layout pair labels rising from0.07/0.09 at tricks1–2/3–4 to0.63/0.87 at tricks9–10/11–13. This supports measuring label quality explicitly: an early difficult decision can be valuable for search while its single-layout training label is mostly noise. Use uncertainty/random allocation controls and posterior-panel reanalysis in H03/H04; preserve raw labels and separate label reliability from inferred search value. H02/H03 ownership remains in#37.
+
+**Historical execution checkpoint — 21:49 UTC:** Max authorized Azure6 and Azure2, initially
 six hours each, and assigned helpers A/B through [#39](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39).
 A's [#41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41) and B's
 [#43](https://github.com/maxschireson/Single-Dummy-Bridge/pull/43) exposed genuine
