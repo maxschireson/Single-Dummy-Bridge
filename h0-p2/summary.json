@@ -1,23 +1,23 @@
 {
  "pair": "stu0-p2~stu0-ps",
- "boards": 150,
- "cpu_per_board": 45.42,
+ "boards": 250,
+ "cpu_per_board": 46.17,
  "common": {
-  "imps_per_board": -0.36,
-  "se": 0.2589,
-  "boards": 150,
-  "won": 29,
-  "lost": 34,
-  "flat": 87
+  "imps_per_board": -0.408,
+  "se": 0.2038,
+  "boards": 250,
+  "won": 49,
+  "lost": 60,
+  "flat": 141
  },
  "native": {
-  "imps_per_board": -0.36,
-  "se": 0.2589,
-  "boards": 150,
-  "won": 29,
-  "lost": 34,
-  "flat": 87
+  "imps_per_board": -0.408,
+  "se": 0.2038,
+  "boards": 250,
+  "won": 49,
+  "lost": 60,
+  "flat": 141
  },
  "failures": 0,
- "boards_per_hour": 571
+ "boards_per_hour": 563
 }
