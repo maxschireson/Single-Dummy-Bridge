@@ -214,6 +214,12 @@ class Gen7Player(Gen6Player):
         super().__init__(spec, root, reference)
         self.g7, self.stages = gen7_settings(spec.get('gen7'))
         self.net = PolicyNet(Path(root) / spec['gen7_policy'], self.scorer)
+        # A table's personas (bridge_harness/persona.py), by seat: {seat: {'play': style, 'near': margin}} for the seats
+        # this bot plays with a persona at this table (the match runner and the play server set it per table). A seat not
+        # listed plays the spec's own `gen7.style`. `told`: {seat: view} what this bot was told of the other seats'
+        # styles (its partner's knowledge, the opponents' disclosure); kept for readers, read by none yet.
+        self.table_styles = {int(k): v for k, v in (spec.get('table_styles') or {}).items()}
+        self.told = {int(k): v for k, v in (spec.get('told') or {}).items()}
         self.meet(spec.get('table_opponent'))
         self.play_cache = (None, {})
         self.net_rows = 0
@@ -516,18 +522,24 @@ class Gen7Player(Gen6Player):
                                      behavior_probabilities={symbol(x): p for x, p in probs.items()}, selected_probability=probs[chosen],
                                      selected_pimc_gap=d['estimates'][symbol(chosen)]['gap_to_best']))
 
-    def styled(self, o, rng, result):
+    def seat_style(self, o):
+        """The play style of the seat deciding: its persona at this table (`table_styles`), else the spec's `gen7.style`."""
+        t = self.table_styles.get(o.controller)
+        return t['play'] if t else self.g7.style
+
+    def styled(self, o, rng, result, style=None):
         """The search's decision with its eligible cards (those within `near_tie` of the best) cut down to the ones the
         bot's style prefers (bridge_harness/style.py); the tie-break then chooses among them as it would among all. For
         the style's random share of these decisions it is one of the eligible cards at random instead."""
+        style = style or self.g7.style
         d = result.details
         eligible = sorted(card(k) for k, p in d.get('behavior_probabilities', {}).items() if p > 0)
         if len(eligible) < 2 or 'estimates' not in d:
             return result
-        if rng.random() < float(self.g7.style.get('random', 0.)):
+        if rng.random() < float(style.get('random', 0.)):
             kept = [rng.choice(eligible)]
         else:
-            kept = styles.choose(o, eligible, self.g7.style, 1.)
+            kept = styles.choose(o, eligible, style, 1.)
         if len(kept) == len(eligible):
             return result
         choice = result.card if result.card in kept else kept[0]
@@ -537,8 +549,9 @@ class Gen7Player(Gen6Player):
 
     def break_ties(self, o, rng, result):
         """Gen6Player.break_ties with the Gen7 net's log-probability in place of the Gen5 net's prediction."""
-        if self.g7.style:
-            result = self.styled(o, rng, result)
+        style = self.seat_style(o)
+        if style:
+            result = self.styled(o, rng, result, style)
         if self.g7.tie_break in ('low', 'high', 'random'):
             return self.rule_ties(o, rng, result)
         if self.g7.tie_break != 'net':

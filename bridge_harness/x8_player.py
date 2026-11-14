@@ -99,6 +99,7 @@ from .gen7 import player as gen7_player
 from .gen7_net import INPUTS, PolicyNet
 from .players import Decision
 from .x8_rollout import Seats, evaluate
+from . import persona as personas
 from . import style as styles
 
 ENGINE = 'gen8x'
@@ -246,6 +247,9 @@ class X8Config:
                                 # reading weight of its cards, whether it mixes, whether it keeps guaranteed contracts) takes its
                                 # '*' value, as for an opponent never met. `names` may also hold 'they_see': the name the
                                 # simulated opponents are told for this bot ('' = nothing); without it they are told `self`
+    read_variable: bool = True  # a blind bot is still told a variable-personality population's identifier (persona.KNOWN, or the
+                                # spec's `variable_ids`): the identifier gives away the population, whose description is public,
+                                # never a persona (Max, 21:14 UTC on 14 November: "by default use their identifier")
 
 
 STAGE_ADDED = dict(cut=0., seat_other='', power_other=0., cut_other=0.)     # settings added on 14 November: pinned only where set
@@ -257,7 +261,7 @@ LEAD_DEFAULTS = dict(mode='rollout', from_trick=1, to_trick=1, layouts=512, card
 def x8_settings(block):
     """spec['x8'] -> X8Config. No trick may belong to two stages."""
     block = dict(block or {})
-    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names', 'lead', 'blind'}
+    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names', 'lead', 'blind', 'read_variable'}
     if unknown:
         raise ValueError(f'Unknown 8X settings: {sorted(unknown)}')
     try:
@@ -284,9 +288,10 @@ def x8_settings(block):
     if lead is not None and (lead.mode != 'rollout' or (lead.from_trick, lead.to_trick) != (1, 1) or isinstance(lead_capture, bool)
                              or not isinstance(lead_capture, int) or not 0 <= lead_capture <= 4096):
         raise ValueError('The 8X lead block is a rollout stage (no tricks to name) and a capture count')
-    if not isinstance(block.get('blind', False), bool):
-        raise ValueError('8X blind is true or false')
-    return X8Config(stages, claims, capture, mix, others, names, lead, lead_capture, block.get('blind', False))
+    if not isinstance(block.get('blind', False), bool) or not isinstance(block.get('read_variable', True), bool):
+        raise ValueError('8X blind and read_variable are true or false')
+    return X8Config(stages, claims, capture, mix, others, names, lead, lead_capture, block.get('blind', False),
+                    block.get('read_variable', True))
 
 
 def resolved(block):
@@ -302,6 +307,8 @@ def resolved(block):
         out['lead'] = dict(pinned(c.lead), capture=c.lead_capture)
     if c.blind:
         out['blind'] = True
+    if not c.read_variable:
+        out['read_variable'] = False
     return out
 
 
@@ -371,8 +378,10 @@ class X8Player(Gen7Player):
         self.x8_note = None
 
     def meet(self, opponent_id):
-        if self.x8.blind:                                   # told nothing about who sits against it: every setting keyed by the
-            opponent_id = None                              # opponent's id falls to its '*' value
+        variable = self.x8.read_variable and personas.is_variable(opponent_id, self.spec.get('variable_ids', ()))
+        if self.x8.blind and not variable:                  # told nothing about who sits against it: every setting keyed by the
+            opponent_id = None                              # opponent's id falls to its '*' value (a variable population's
+                                                            # identifier excepted: it names no persona)
         super().meet(opponent_id)
         self.opponent_id = opponent_id
         if getattr(self.net, 'vocab', None):                # a table net that takes who is playing (a rollout net as `gen7_policy`)
@@ -858,8 +867,18 @@ class X8Player(Gen7Player):
         else:
             winners = [0]
             note.update(value=[0.], roll=[None], n=[0], alive=[0], seconds=dict(layouts=round(layout_seconds, 4)))
-        if self.x8.mix.style and len(winners) > 1:          # a personality: of its near-equal candidates, the ones its style prefers
-            kept = set(styles.choose(o, [reps[j] for j in winners], self.x8.mix.style, float(nrng.random())))
+        seat = self.table_styles.get(o.controller)          # this table's persona for the seat deciding (persona.py), if any
+        if seat and got is not None and seat.get('near', 0.) > 0:      # its near-equal candidates: within its own margin
+            top = max(value[j] for j in winners)
+            least = min(odds[k] for k in winners) if odds is not None else None
+            winners = [j for j in got['alive'] if top - value[j] <= seat['near'] + 1e-9 and (odds is None or odds[j] <= least + 1e-9)]
+        style = seat['play'] if seat else self.x8.mix.style
+        if style and len(winners) > 1:                      # a personality: of its near-equal candidates, the ones its style prefers
+            ticket = float(nrng.random())
+            if seat and ticket < float(style.get('random', 0.)):    # a persona's random share: one of them at random, mixing or not
+                kept = {reps[winners[int(nrng.integers(len(winners)))]]}
+            else:
+                kept = set(styles.choose(o, [reps[j] for j in winners], style, 1. if seat else ticket))
             note['styled'] = [symbol(reps[j]) for j in winners]
             winners = [j for j in winners if reps[j] in kept]
         eligible = [x for j in winners for x in runs[j]]
