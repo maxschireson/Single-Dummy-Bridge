@@ -17,8 +17,10 @@ Normalized:
 Checks: split-half reliability (each player's boards split by deal; the two halves' player means correlated across
 players, then Spearman-Brown) and, for players in two events or more, how well one event's score predicts another's.
 """
-import argparse, collections, glob, gzip, json, math, re
+import argparse, collections, glob, gzip, json, math, re, sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 import numpy as np
 
@@ -63,6 +65,31 @@ def name_2025(r):
     return f"{SCREENS_2025[screen]} {r.get('tname') or ''}".strip()
 
 
+VUL16 = ['None', 'NS', 'EW', 'Both', 'NS', 'EW', 'Both', 'None', 'EW', 'Both', 'None', 'NS', 'Both', 'None', 'NS', 'EW']
+
+
+def fix_claim(r):
+    """Files scored before 14 Nov 09:20 UTC read a defender's claim count as the defenders' total; it is declarer's. Rebuild the
+    claim's decision from the stored double-dummy total (vulnerability from the board number). Mid-trick claims stay unscored
+    in those files."""
+    c = r.get('claim')
+    if not c or 'note' in c or 'mid_trick' in c:
+        return r
+    from bridge_harness.core import Contract, imps, score, vulnerable
+    r['decisions'] = [d for d in r['decisions'] if d[2] not in ('CD', 'CF')]
+    dd, got = c['dd_declarer'], c['claimed']
+    c['declarer_after'] = got
+    if dd != got:
+        s, dec = r['contract'], 'NESW'.index(r['dec'])
+        contract = Contract(int(s[0]), s[1], dec, {'D': 1, 'R': 2}.get(s[2:3], 0))
+        dvul = vulnerable(VUL16[(int(r['board']) - 1) % 16], dec)
+        imp = abs(imps(score(contract, dd, dvul) - score(contract, got, dvul)))
+        turned = int((dd >= int(s[0]) + 6) != (got >= int(s[0]) + 6))
+        trick = max([d[0] for d in r['decisions']] + [1])
+        r['decisions'].append([trick, c['dir'], 'CD' if dd > got else 'CF', abs(dd - got), None, None, None, imp, turned])
+    return r
+
+
 def load(dirs):
     tables = []
     for d in dirs:
@@ -71,6 +98,7 @@ def load(dirs):
                 r = json.loads(line)
                 if 'error' in r or not r.get('decisions'):
                     continue
+                fix_claim(r)
                 if name_2025(r):
                     r['event'], r['text'], r['start'] = name_2025(r), name_2025(r) + ' USBC 2025', r.get('start') or '2025-04-01'
                 r['year'] = (r.get('start') or '????')[:4]

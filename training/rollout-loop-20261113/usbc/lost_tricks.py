@@ -114,21 +114,22 @@ def one_table(sid, meta, board_hands, t, vul='None'):
     out = dict(sid=sid, board=t['board'], deal=hashlib.sha1(json.dumps([sorted(h) for h in hands]).encode()).hexdigest()[:16],
                room=full.get('room'), contract=f"{level}{end['suit']}{end.get('mod') or ''}", dec=SEATS[dec],
                names=names, pids=pids, tricks_played=len(history) // 4, decisions=rows, **facts(meta, full))
-    if claim is not None and left > 0 and not trick:
-        values, _ = _DDS.solve([tuple(sorted(h)) for h in held], trump, leader, [])
-        to_move = max(values.values())                          # the side on lead's tricks from here, double dummy
-        dd_dec = won + (to_move if leader % 2 == dec % 2 else left - to_move)
-        claimer_dec = SEATS.index(claim['dir']) % 2 == dec % 2
-        claimed = int(claim['tcount'])                          # the claimer's side's total (USBC records: declarer's total)
-        claim_dec = claimed if claimer_dec else 13 - claimed
+    if claim is not None and left > 0:
+        # a claim, between tricks or mid-trick: the double-dummy total from here, for the side to move, over its legal cards
+        mover = (leader + len(trick)) % 4
+        values, _ = _DDS.solve([tuple(sorted(h)) for h in held], trump, leader, list(trick))
+        hand = held[mover]
+        legal = [y for y in hand if trick and y // 13 == trick[0][1] // 13] or sorted(hand)
+        to_move = max(values[y] for y in legal)                 # the mover's side's tricks from here (this trick included)
+        dd_dec = won + (to_move if mover % 2 == dec % 2 else left - to_move)
+        claimed = int(claim['tcount'])                          # declarer's total, whoever claims (527 of 534 defender claims
+        claim_dec = claimed                                     # match double dummy read this way; fixed 14 Nov, 09:20 UTC)
         diff = dd_dec - claim_dec                               # > 0: declarer's side ends with fewer than double dummy
-        out['claim'] = dict(dir=claim['dir'], claimed=claimed, dd_declarer=dd_dec, declarer_after=claim_dec)
+        out['claim'] = dict(dir=claim['dir'], claimed=claimed, dd_declarer=dd_dec, declarer_after=claim_dec, mid_trick=bool(trick))
         if diff:
             imp = abs(imps(score(contract, dd_dec, dvul) - score(contract, claim_dec, dvul)))
             turned = int((dd_dec >= target) != (claim_dec >= target))
             out['decisions'].append([len(history) // 4 + 1, claim['dir'], 'CD' if diff > 0 else 'CF', abs(diff), None, None, None, imp, turned])
-    elif claim is not None:
-        out['claim'] = dict(dir=claim['dir'], claimed=int(claim['tcount']), note='claimed in mid-trick: not scored')
     return out
 
 
