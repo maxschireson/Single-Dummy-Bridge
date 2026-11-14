@@ -150,7 +150,10 @@ def report(rows):
     line('all', rows)
     for side in (True, False):
         line('declaring side' if side else 'defending side', [r for r in rows if r['declaring'] == side])
-    for lo, hi in ((1, 2), (3, 4), (5, 6), (7, 8), (9, 13)):
+    line('32+ layouts drawn', [r for r in rows if r['layouts'] >= 32])
+    line('under 32 layouts', [r for r in rows if r['layouts'] < 32])
+    line('single label not 0', [r for r in rows if r['single'] != 0])
+    for lo, hi in ((1, 2), (3, 4), (5, 6), (7, 8), (9, 10), (11, 13)):
         line(f'fork at tricks {lo}-{hi}', [r for r in rows if lo <= r['trick'] <= hi])
 
 
