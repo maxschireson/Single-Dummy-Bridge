@@ -3,14 +3,26 @@
   "phase": "fast-selfplay-and-ben16",
   "sources": [
     {
+      "key": "gen9genxstu4cazure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen X Stu (round 4c) · azure4 (stu4c-put against Gen 8, Gen 9 and Gen 7.1)",
+      "branch": "arena-gen9-genx-stu4c-azure4-feed",
+      "cohort": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a"
+    },
+    {
       "key": "gen9genxstuazure4",
       "group": "gen9",
       "generation": 9,
       "variant": "9",
       "environment": "azure",
-      "name": "Gen X Stu · azure4 (stu3-ps against Gen 8, Gen 9 and Gen 7.1)",
+      "name": "Gen X Stu (round 3) · azure4 (stu3-ps against Gen 8, Gen 9 and Gen 7.1), ended at 719",
       "branch": "arena-gen9-genx-stu-azure4-feed",
-      "cohort": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091"
+      "cohort": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+      "retired": true,
+      "revision": "d959fd318ddc68d9932516613ae83c92a5b0a44c"
     },
     {
       "key": "gen9azure4ben64",
@@ -1808,6 +1820,7 @@
     "authority": "Max, 2026-11-14 00:48 UTC: the Stu team's latest bot into the arena; 00:49: \"We will call it Gen X Stu\"; 01:00: \"Put it into the mix at whatever level you want\"; 02:35: trim the Gen 9 cohort for it.",
     "feeds": "azure4: arena-gen9-genx-stu-azure4-feed, manifest 66563aba..., stu3-ps (the loop's pure Stu, round 3's rollout net) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9019), two workers. configs/round9-genx-stu.json on feature/gen9-genx-stu at 9bba86b6; job boxq/azure4/g9-genx-stu-azure4.json on team/gen9.",
     "registered_by": "will (Gen 9), 2026-11-14 02:5x UTC",
-    "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+    "round4c": "From 14 Nov 16:22 UTC: arena-gen9-genx-stu4c-azure4-feed, manifest 17d6186e..., stu4c-put (round 4's control net at the table and in the rollouts, blind) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9021), two workers. configs/round9-genx-stu-r4c.json on feature/gen9-genx-stu at 57d0855f. Round 3's feed ended at 719 boards (revision d959fd31) and is archived. Max, 14 Nov: 'I will have an iteration before long'; to the play server, 'use r4c until further notice'."
   }
 }
