@@ -55,3 +55,4 @@
 {"at": "2026-11-14T09:03:00Z", "by": "will", "op": "send", "target": "g9/20261114T0903Z-will-g9-b8-resolved-accepted-card-i", "note": "G9-B8 resolved (accepted): Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor", "task": "G9-B8"}
 {"at": "2026-11-14T09:04:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "done"}
 {"at": "2026-11-14T09:04:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-25", "note": "running"}
+{"at": "2026-11-14T09:05:00Z", "by": "will", "op": "job-retry", "target": "azure4/g9-cohort-azure4", "note": "retry 3: after the 09:01 drain, on g9's word (08:11): source feature/gen9-cohort-sync 7e0edac7, BRIDGE_DDS_CACHE_SYNC=NORMAL", "task": "G9-D9"}
