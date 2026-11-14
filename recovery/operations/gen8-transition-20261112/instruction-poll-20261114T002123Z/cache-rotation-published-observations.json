@@ -1,0 +1,74 @@
+{
+  "before_revision": "b65cbfd68785a721a4d9e1df0a00690eb691b005",
+  "after_revision": "071e0a0799642dcdff6b027e2b3fda7fb7b3d6d4",
+  "states": {
+    "b65cbfd68785a721a4d9e1df0a00690eb691b005": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3494,
+      "target": 18283,
+      "contiguous": 3494,
+      "by_pair": {
+        "8s-32~1": 583,
+        "8c-32~71s-32": 582,
+        "8c-32~8s-32": 582,
+        "8s-32~71s-32": 1165,
+        "8s-32~5RZ32": 582
+      },
+      "root_games": 11646,
+      "tables": 143291,
+      "failures": 0,
+      "epoch": 1794614444.3352451,
+      "complete": false
+    },
+    "071e0a0799642dcdff6b027e2b3fda7fb7b3d6d4": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3495,
+      "target": 18283,
+      "contiguous": 3495,
+      "by_pair": {
+        "8s-32~1": 583,
+        "8c-32~71s-32": 583,
+        "8c-32~8s-32": 582,
+        "8s-32~71s-32": 1165,
+        "8s-32~5RZ32": 582
+      },
+      "root_games": 11650,
+      "tables": 143339,
+      "failures": 0,
+      "epoch": 1794614513.5431476,
+      "complete": false
+    }
+  },
+  "heartbeats": {
+    "b65cbfd68785a721a4d9e1df0a00690eb691b005": {
+      "epoch": 1794614439.7843792,
+      "completed": 3494,
+      "in_flight": [
+        3494
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794600802.1834977,
+      "stopping": true
+    },
+    "071e0a0799642dcdff6b027e2b3fda7fb7b3d6d4": {
+      "epoch": 1794614511.7738135,
+      "completed": 3495,
+      "in_flight": [
+        3495,
+        3496,
+        3497
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794614471.5096643,
+      "stopping": false
+    }
+  },
+  "exact_draining_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "final_state_contiguous": 3495,
+  "final_receipt_markers": 3495,
+  "heartbeat_note": "The draining snapshot retains the final in-flight index. The 3495 snapshot already has the newly started collector heartbeat. Neither heartbeat was rewritten to imply a different lifecycle.",
+  "old_collector_exited": true,
+  "current_writer_owner": 200165
+}
