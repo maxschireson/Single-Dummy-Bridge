@@ -1,0 +1,163 @@
+{
+  "poll_start": "2026-11-14T16:28:57Z",
+  "total": 346,
+  "new_branches": {
+    "arena-gen9-genx-stu4c-azure4-feed": "8b4672a1405ae192ca46448ac9c5bca2486b545c",
+    "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": "1a7e21a313fc64a9672e7a6f0b1eb68af8a97aac"
+  },
+  "removed_branches": [],
+  "changed_refs": {
+    "arena-gen6-chatgpt-feed": {
+      "before": "e59c0ecf4fb5e403a3e49ea9f117e6871b7b41b8",
+      "after": "a634eccb99e3aa8444db2aea97cb3402d99de6e4"
+    },
+    "arena-gen8-19bbdce5-20261112-feed": {
+      "before": "5c282c2a8ebf2bf1ddba6fb126de6c6c0faf1b0c",
+      "after": "f2ec6762de2ed9718b9fc9b13c4c14176380ef6a"
+    },
+    "arena-gen8-candidate-codex-20261112-feed": {
+      "before": "13fdf95f2029fe28df8d6be8ecc90abd477a636a",
+      "after": "94990f4fbfbb593273117e3e4cd520c50a40ae97"
+    },
+    "arena-gen8-independent-feed": {
+      "before": "c47d0bbdc68a28d3c9e78006814bc3f6a97eb9f1",
+      "after": "4830813e10247bcbccd5e08cfe21c45ddc94d8aa"
+    },
+    "arena-gen9-azure4-ben64-feed": {
+      "before": "24e5f861c0ab55e5a44dfd73544d2dd1ddb8b4f9",
+      "after": "d0cb26b6518d53579552b7834c37e35584273ced"
+    },
+    "arena-gen9-azure4-feed": {
+      "before": "f40d93e8f8f2c7de0caae54d6ba24b60c912740c",
+      "after": "78a47146fadcd382b93fc055eb53323bdbd229d7"
+    },
+    "arena-gen9-genx-stu-azure4-feed": {
+      "before": "635729fe9d052d4961a5ba74f85d28f88488e9a0",
+      "after": "d959fd318ddc68d9932516613ae83c92a5b0a44c"
+    },
+    "box/azure1/control": {
+      "before": "9ba243b35ce86b1257d5dfca145a06e2471f0cfe",
+      "after": "beced406b168cc6fa0a0a01d6e967ce1a04704e8"
+    },
+    "box/azure1/status": {
+      "before": "7e2f86e9a32ead2a41b6cb30608b5f5db86bb2b9",
+      "after": "0f970c32ff06ed31d5fae3e41d3fed1404faa204"
+    },
+    "box/azure2/status": {
+      "before": "7cd2c5328b7bd5faf19bd86529d99187f5498609",
+      "after": "9b6a9c996eeb156b9ddf42afb574bb8269f32d39"
+    },
+    "box/azure3/control": {
+      "before": "edb2902067c8167ebff8a0ddbaa11b671ffdd5c5",
+      "after": "405eaac386f70c38881b253e5174129a36e2112c"
+    },
+    "box/azure3/status": {
+      "before": "f9b3fa93308bc2569878b558b3264ff5a38089e5",
+      "after": "8a986528dcb1f9cb0005ef36aaf5ccd7a6ca412d"
+    },
+    "box/azure4/control": {
+      "before": "3fbd3371728265ad65de79a62a27a9f748b44a68",
+      "after": "c43bc9bc591d94f4f860836e202313489864a369"
+    },
+    "box/azure4/status": {
+      "before": "9749b724aff3cd4895b385a025c3bc1eed9adb02",
+      "after": "15da530a90ad58b97b5ceebf3478153c1e9eb8c3"
+    },
+    "box/azure5/control": {
+      "before": "6edda62381d46fd8be4d5c8d9b24fd701a45850f",
+      "after": "7414b2d4a6e9dce582d1278c80455fb404605d13"
+    },
+    "box/azure5/status": {
+      "before": "aca51eae07d20037ae0c98b0a0fb52aec610c444",
+      "after": "f1cf85799d1876cefbdd170fbef8f8fb5a1ab8d9"
+    },
+    "box/azure6/status": {
+      "before": "3a925a3fdbe2aeef88f8607d3c0e9b41013ef40e",
+      "after": "69f1a374543dd2e728692018534080c873e5d9a5"
+    },
+    "box/coordination": {
+      "before": "783d75fe7358955d3ec72b31b66dd2cd38f47aa5",
+      "after": "397d5a39437e87f60e94d0d218da526d9317e085"
+    },
+    "feature/gen9-genx-stu": {
+      "before": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+      "after": "57d0855fb61d841e1308187d3737a3fe0338f3f4"
+    },
+    "feature/gen9-ladder": {
+      "before": "7a6b01f05923c906785a6249602931152e1d9d27",
+      "after": "e0c1e9dcf31905a836f969e40d7698d47ddf7ac8"
+    },
+    "feature/sid-play-20261113": {
+      "before": "208403c13e1e80e4ca07f404b750b144bb3e860f",
+      "after": "29c4cc008948aa8b1fa14bc20635207b219bfc5a"
+    },
+    "gh-pages": {
+      "before": "219c9dbcfd90ee6330924ad0107c630f02e317e2",
+      "after": "cd55e79acaf4e4ce30e53e3a009eddca3d28bfc5"
+    },
+    "mail/coord": {
+      "before": "b6953496632c63e8bd9780cae85bb0d472434efe",
+      "after": "4c391e50450f3a06acd5239bc8c3346a4a77ea43"
+    },
+    "research/rollout-loop-20261113": {
+      "before": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+      "after": "4488e91d3d840804a7e5a2b49a7eb4449e8626b1"
+    },
+    "team/gen9": {
+      "before": "68fe3275b42e596a57fac83d8f0b9773bcd8f130",
+      "after": "0c165dcf72e078ce68b812ce527150bb4d8afa46"
+    },
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+      "before": "2cc72a63e72f7aa2664bab47c95ad17ff08455b8",
+      "after": "6fa71f5e72176dda24112f765f1e4a276ce4a51f"
+    },
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+      "before": "f079f7593c20a996764b183f5438d9e1eae649b9",
+      "after": "ec8cdaf39ce7d4d524c82f953b6aee31639e46fa"
+    },
+    "transfer/gen9-g9-genx-stu-azure4-azure4-20261114": {
+      "before": "37c4b907139f76b3bc8fa6bcb8ed13121afc4e68",
+      "after": "03da2c837a739e7d3c76bfd70560f29218e5651f"
+    },
+    "transfer/rollout-loop-azure1-20261113": {
+      "before": "50f7c1c41b28aa08ef996f427db60eabe996de9d",
+      "after": "4a471e270a26e92dd352f32702c54b46fdeb9b0d"
+    },
+    "transfer/rollout-loop-azure2-20261113": {
+      "before": "81ae2e884c5b4d761dace287822bf013d4335d16",
+      "after": "8d7a406f8504697169516343bab3665a78f42d67"
+    },
+    "transfer/rollout-loop-azure3-20261113": {
+      "before": "5b7408c932c1b41ba75fa211aba3be9074ea572b",
+      "after": "b27bbdb34f1cbc1b3a0cc40263b541c65fe54c8e"
+    },
+    "transfer/rollout-loop-azure5-20261113": {
+      "before": "3870f221c3fa67f72f599a613f7218a5dfef07df",
+      "after": "797c319892d216fbe85c128b7af21d53717da30f"
+    },
+    "transfer/rollout-loop-azure6-20261113": {
+      "before": "5760d014f3f295e3bcb0238b10bf272adcfb11a0",
+      "after": "017f50921f3958fcd42ddb1db9f8cb988f86eb8c"
+    }
+  },
+  "complete": true,
+  "reviewed_new_branches": [
+    {
+      "branch": "arena-gen9-genx-stu4c-azure4-feed",
+      "revision": "8b4672a1405ae192ca46448ac9c5bca2486b545c",
+      "kind": "Registered Will/Azure4 GenX R4c successor, new identity; read-only here",
+      "key": "gen9genxstu4cazure4",
+      "manifest": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a",
+      "applied": false,
+      "evidence": "genx-stu-peer-review.json"
+    },
+    {
+      "branch": "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114",
+      "revision": "1a7e21a313fc64a9672e7a6f0b1eb68af8a97aac",
+      "kind": "Transfer mirror of the same R4c job; no independent-board count, never merge",
+      "readme_blob": "15088c33806eeaad98258eb82fc43ad6fab075f6",
+      "applied": false,
+      "evidence": "genx-stu-peer-review.json"
+    }
+  ]
+}

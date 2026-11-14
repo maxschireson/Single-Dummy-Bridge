@@ -1,0 +1,144 @@
+{
+  "poll_start": "2026-11-14T16:28:57Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "4488e91d3d840804a7e5a2b49a7eb4449e8626b1",
+  "commits": [
+    {
+      "sha": "4488e91d3d840804a7e5a2b49a7eb4449e8626b1",
+      "date": "2026-11-14T15:57:56Z",
+      "message": "players.py: --ref CATEGORY yardstick (e.g. the average Open player), --only-ref scores named players on that category's boards\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "f8cb58b63cfba59524bd6e9539e2f4e2584594e6",
+      "date": "2026-11-14T15:45:40Z",
+      "message": "Plan: Max's rule for the human tables (no clear gain inside the bot, no human tables)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Max15:39 human-table preference and USBC reporting; scoped Azure4/Play-server R4c adoption.",
+  "disposition": "Max15:39 prefers no human tables without clear gain inside the rollout bot: stu4c is the default unless stu4 leads by more than twoSEs inside the bot (h4c-pst or first512 gate deals each). This governs Stu training/gating, not this arena producer. Sidplay use-r4c-until-further-notice governs its server; Will starts a new Azure4 R4c identity/feed and retires R3 at719. No general collector transition is issued, canonical Gen8 main source/actors/plans unchanged. Record full R4c net pin and scoped adoption there without local download/source/model/training/self-play/gate change. Future owned cohorts require complete pinned ALL-released-model training-family membership; different seeds and peer partial exclusions are not sufficient proof. Preserve current immutable list/proofs.",
+  "evidence": [
+    {
+      "sha": "4488e91d3d840804a7e5a2b49a7eb4449e8626b1",
+      "message": "players.py: --ref CATEGORY yardstick (e.g. the average Open player), --only-ref scores named players on that category's boards\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "f8cb58b63cfba59524bd6e9539e2f4e2584594e6"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/players.py"
+      ]
+    },
+    {
+      "sha": "f8cb58b63cfba59524bd6e9539e2f4e2584594e6",
+      "message": "Plan: Max's rule for the human tables (no clear gain inside the bot, no human tables)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "a42fe6c1f9f66c17a8889e66a9d2542b60b32646"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/PLAN.md"
+      ]
+    },
+    {
+      "sha": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "message": "Gen X Stu (round 4c) arena plan and its net's release folder\n\nMax, 14 Nov: \"I will have an iteration before long\" (08:08 UTC); to the play server, \"use r4c until further\nnotice\" (board, sidplay, 15:47 UTC).\n\n- configs/round9-genx-stu-r4c.json: stu4c-put (the loop's bot at 4488e91d: round 4's control net as its\n  table net and in its rollouts, pure Stu, blind), gen7 and x8 blocks unchanged. It plays 8s-32 (weight 2),\n  9a-32 (1) and 71s-32 (1), with 6-32 as the common bidder. The opponents are round9-cohort.json's entries\n  unchanged: prepared, 9a-32 38b76a8b1542, 8s-32 269fdf1854f4, 71s-32 7b0f58b4c403, 6-32 153867b49e31. Fresh\n  deals with seed 9021.\n- models/cardplay/stu-net-r4c-20261113: restore.py fetches train-r4c/policy.npz from\n  transfer/rollout-loop-azure5-20261113, pinned by sha256 e4b689c8...; manifest.json names hand-fit scorer v0.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "558de57964a167b50c19e702a4a86070f1b9f481"
+      ],
+      "files": [
+        "configs/round9-genx-stu-r4c.json",
+        "models/cardplay/stu-net-r4c-20261113/README.md",
+        "models/cardplay/stu-net-r4c-20261113/manifest.json",
+        "models/cardplay/stu-net-r4c-20261113/restore.py"
+      ]
+    },
+    {
+      "sha": "558de57964a167b50c19e702a4a86070f1b9f481",
+      "message": "Merge the loop's latest (research/rollout-loop-20261113 at 4488e91d) for Gen X Stu's round 4c\n\nRound 4's bots (stu4c-put, with x8.blind) need the loop's newer x8_player and x8_rollout; gen7 gains an\noptional `style` that resolved() drops when empty, so the arena's existing bots keep their identities.\n\nConflict in scripts/gen8_match.py start(): the loop's deal files (deals=) kept, with the arena line's bidders\n(no system_of).\n\nTests: test_gen8_tables, test_gen8_launch, test_x8, test_x8_lead, test_gen9_cohort, test_dds_cache_sync pass.\nTwo test_gen7_launch tests fail, because the shipped plans do not spell out the new `style` setting; that is\nthe loop's change, not this merge.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "9bba86b6eaba468f724a9917ae821cc196f082d1",
+        "4488e91d3d840804a7e5a2b49a7eb4449e8626b1"
+      ],
+      "files": [
+        "bridge_harness/gen7.py",
+        "bridge_harness/style.py",
+        "bridge_harness/x8_player.py",
+        "bridge_harness/x8_rollout.py",
+        "configs/loop-bots.json",
+        "scripts/gen8_match.py",
+        "tests/squeeze_endings.json",
+        "tests/test_squeeze_endings.py",
+        "tests/test_style.py",
+        "tests/test_x8.py",
+        "training/rollout-loop-20261113/PLAN.md",
+        "training/rollout-loop-20261113/README.md",
+        "training/rollout-loop-20261113/alias.txt",
+        "training/rollout-loop-20261113/ben/ben-64-lane.conf",
+        "training/rollout-loop-20261113/ben/files.sha256",
+        "training/rollout-loop-20261113/ben/manifest.json",
+        "training/rollout-loop-20261113/ben/requirements.txt",
+        "training/rollout-loop-20261113/ben_install.sh",
+        "training/rollout-loop-20261113/ben_session.sh",
+        "training/rollout-loop-20261113/bench/dd_ledger.py",
+        "training/rollout-loop-20261113/bench/mix_budget.py",
+        "training/rollout-loop-20261113/bench/oracle_layout.py",
+        "training/rollout-loop-20261113/draw_regret.py",
+        "training/rollout-loop-20261113/exp_human.sh",
+        "training/rollout-loop-20261113/exp_strong.sh",
+        "training/rollout-loop-20261113/fetch_rows.sh",
+        "training/rollout-loop-20261113/jobs-azure1-ben.txt",
+        "training/rollout-loop-20261113/jobs-azure1-hd.txt",
+        "training/rollout-loop-20261113/jobs-azure1-styles.txt",
+        "training/rollout-loop-20261113/jobs-azure1.txt",
+        "training/rollout-loop-20261113/jobs-azure2-ben.txt",
+        "training/rollout-loop-20261113/jobs-azure2-h3pt.txt",
+        "training/rollout-loop-20261113/jobs-azure2-hs.txt",
+        "training/rollout-loop-20261113/jobs-azure2-onenet.txt",
+        "training/rollout-loop-20261113/jobs-azure2-split.txt",
+        "training/rollout-loop-20261113/jobs-azure2.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben4.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben5.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben6.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben7.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben8.txt",
+        "training/rollout-loop-20261113/jobs-azure3-hd.txt",
+        "training/rollout-loop-20261113/jobs-azure3.txt",
+        "training/rollout-loop-20261113/jobs-azure5-ben.txt",
+        "training/rollout-loop-20261113/jobs-azure5-hd.txt",
+        "training/rollout-loop-20261113/jobs-azure5-hs.txt",
+        "training/rollout-loop-20261113/jobs-azure5-human.txt",
+        "training/rollout-loop-20261113/jobs-azure5-r4.txt",
+        "training/rollout-loop-20261113/jobs-azure5-v41-styles.txt",
+        "training/rollout-loop-20261113/jobs-azure5.txt",
+        "training/rollout-loop-20261113/jobs-azure6-ben.txt",
+        "training/rollout-loop-20261113/jobs-azure6-blind.txt",
+        "training/rollout-loop-20261113/jobs-azure6-h3pt.txt",
+        "training/rollout-loop-20261113/jobs-azure6-h3t.txt",
+        "training/rollout-loop-20261113/jobs-azure6-hs.txt",
+        "training/rollout-loop-20261113/jobs-azure6-mix.txt",
+        "training/rollout-loop-20261113/jobs-azure6.txt",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/round2.sh",
+        "training/rollout-loop-20261113/round4.sh",
+        "training/rollout-loop-20261113/round4_arena.sh",
+        "training/rollout-loop-20261113/rungs.sh",
+        "training/rollout-loop-20261113/runs.json",
+        "training/rollout-loop-20261113/sample_set.py",
+        "training/rollout-loop-20261113/usbc/analyze.py",
+        "training/rollout-loop-20261113/usbc/bot_lost_tricks.py",
+        "training/rollout-loop-20261113/usbc/harvest.py",
+        "training/rollout-loop-20261113/usbc/human_episodes.py",
+        "training/rollout-loop-20261113/usbc/human_sets.py",
+        "training/rollout-loop-20261113/usbc/lost_tricks.py",
+        "training/rollout-loop-20261113/usbc/make_tests.py",
+        "training/rollout-loop-20261113/usbc/norm_avg.py",
+        "training/rollout-loop-20261113/usbc/players.py",
+        "training/rollout-loop-20261113/usbc/pooled_phase.py",
+        "training/rollout-loop-20261113/usbc/screens-2025.txt"
+      ]
+    }
+  ],
+  "research_plan_blob": "0b521dcd4697907c212ce082bf4bdf1eddb79c6d",
+  "research_plan_status": "Work in progress, research only; peer R4c separately adopted on Azure4.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}

@@ -1,0 +1,10 @@
+{
+  "poll_start": "2026-11-14T16:28:57Z",
+  "branch": "perf/stu-20261114",
+  "revision": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
+  "applied": false,
+  "rechecked_unchanged": true,
+  "scope": "Existing sandbox proposals to loop; no new branch commits or collection authority.",
+  "claims": "Retained caveats: fork batching changes draws against old mode0; BF16 changes cards; matrix-size/kernel equivalence needs host checks. Gen8 sg8 profile belongs to Stu self-play.",
+  "disposition": "No source/BRIDGE_* switch, BF16, fork/features/suit optimization, benchmark, BEN or self-play change here."
+}

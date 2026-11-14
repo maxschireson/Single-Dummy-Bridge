@@ -1,0 +1,35 @@
+{
+  "poll_start": "2026-11-14T16:28:57Z",
+  "revision": "397d5a39437e87f60e94d0d218da526d9317e085",
+  "blob": "fff123c33feea776896689926ca112d0fb3106f1",
+  "new_entries_since_prior_poll": 4,
+  "latest_entry": "2026-11-14T16:35:00Z will (Gen9), published in commit16:26:36Z",
+  "scope": "Azure4 disk tier change, azure1 sidplay R4c deployment and Will's Azure4 GenX R4c successor. No new general collection-worker/owned-producer switch.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
+  "disposition": "Read-only peer adoption: GenX R4c replaces R3 on Will's two Azure4 cores; R3 retired719. Sidplay use-r4c-until-further-notice is addressed to the play server. No local adoption, cloud/queue/host command, source/model/corpus/worker/guard change or registry edit. Continue frozen Gen8 main mix, three normal/zero BEN, budget18283 and disabled legacy gates.",
+  "board_commits": [
+    {
+      "sha": "397d5a39437e87f60e94d0d218da526d9317e085",
+      "date": "2026-11-14T16:26:36Z",
+      "message": "will (Gen 9): loop's round 4c is Gen X Stu in the arena since 16:22 UTC\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    },
+    {
+      "sha": "2a1aad94eab9ddc75dc921166f52cf5af7a0caa9",
+      "date": "2026-11-14T15:51:50Z",
+      "message": "sidplay: azure1 updated, smoke board passed\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    },
+    {
+      "sha": "0ce6af66f136463249222e127e9b77ca19fbb72a",
+      "date": "2026-11-14T15:47:16Z",
+      "message": "sidplay: update on azure1 (analysis; Sid = SiD (rollout) Stu R4c), Max's word\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    },
+    {
+      "sha": "52c39e8e6de06a02d1d35eb327225be9569af67a",
+      "date": "2026-11-14T15:25:33Z",
+      "message": "will (Gen 9): azure4's disk to P30 through azure1's identity (Max's word); one az command on azure1\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    }
+  ],
+  "human_training_evidence": "human-training-scope-review.json",
+  "research_evidence": "research-commit-review.json",
+  "peer_evidence": "genx-stu-peer-review.json"
+}
