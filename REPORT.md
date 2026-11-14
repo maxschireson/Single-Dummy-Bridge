@@ -10,7 +10,7 @@ Development-only; these small samples do not establish strength.
 | --- | ---: | ---: | ---: | ---: |
 | smoke-flat32 | 16 | -2.0 ± 0.9129 | 23.86 | 0 |
 | smoke-recursive32 | 16 | -0.4375 ± 0.8707 | 51.52 | 0 |
-| smoke-selective32 | 5 | 0.4 ± 0.2449 | 49.97 | 0 |
+| smoke-selective32 | 10 | -1.4 ± 1.1944 | 50.1 | 0 |
 
 ## smoke-flat32 actor costs
 
@@ -30,5 +30,5 @@ Development-only; these small samples do not establish strength.
 
 | Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| rx2-selective32 | 175.33 | 172.10 | 3.20 | 590.0 | 0.0 |
-| rx2-control | 74.16 | 72.66 | 1.53 | 0 | 0.0 |
+| rx2-selective32 | 362.93 | 351.36 | 11.61 | 1231.0 | 2.0 |
+| rx2-control | 148.56 | 143.88 | 4.82 | 0 | 0.0 |
