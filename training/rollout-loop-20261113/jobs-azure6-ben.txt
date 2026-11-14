@@ -1,0 +1,7 @@
+# The gate on more boxes (Max, 04:30 UTC on 14 November: "We should run more Ben compare deals"). azure6 and azure2 have
+# BEN at azure3's commit, models, packages and lane config (ben_install.sh: PASS), so they play the one-net bot and its
+# two-net control against BEN (200) on new deals, each box one arm of each block so that a difference between boxes cancels:
+#   deals 1,024 to 1,279: the control here (b3-ps200d), the one-net bot on azure2 (b3-pst200d)
+#   deals 1,280 to 1,535: the one-net bot here (b3-pst200e), the control on azure2 (b3-ps200e)
+b3-ps200d stu3-ps~ben200 131 1024 256 8 --episodes
+b3-pst200e stu3-pst~ben200 131 1280 256 8 --episodes

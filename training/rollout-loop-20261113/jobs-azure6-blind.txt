@@ -1,0 +1,7 @@
+# What knowing the opponent is worth (Max, 03:12 UTC on 14 November: "we are unrealistically good at reading cards of
+# our opponents in a way that won't transfer to play against humans"). Against Gen 8 card play on the gate's deals 500 to
+# 999, by deal against l3-p (SiD (rollout, net lead) Stu R3 TOLD it plays Gen 8: -0.89 +- 0.17):
+#   l3-pu    the same bot blind: told nothing about who sits against it
+#   l3-pux   blind, the simulated seats split by side, its defenders playing a random one of their equal cards
+l3-pu stu3-pu~8p-32-v41 131 500 500 8 --episodes
+l3-pux stu3-pux~8p-32-v41 131 500 500 8 --episodes

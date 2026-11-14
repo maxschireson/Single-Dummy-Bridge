@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """A random sample of whole deals of a built set, as a small set of its own.
 
-  python training/rollout-loop-20261113/sample_set.py BIG.npz OUT.npz --rows N [--seed 0]
+  python training/rollout-loop-20261113/sample_set.py BIG.npz OUT.npz --rows N [--seed 0] [--bots NAME[,NAME...]]
 
 Round 1 trains on Stu's rows together with rows of the bots the net already knows, so that it keeps its model of
 them. This draws those rows: deals of BIG at random, without replacement, until they hold at least N rows. Every row
 of a drawn deal is kept, in BIG's order, with the deals renumbered; the bots' names and every other array are BIG's.
+--bots keeps only the rows those bots decided (the deciding side's bot, meta column 8), from the drawn deals that have
+any; deals are drawn until those rows reach N (all of them when N is larger than they come to).
 BIG is read through memory maps (it must be stored uncompressed, as scripts/gen7_build_dataset.py and merge_sets.py
 write it), so a 23 GB set costs the memory of its `deal` column and of the sample.
 """
@@ -27,17 +29,24 @@ def main():
     p.add_argument('out', type=Path)
     p.add_argument('--rows', type=int, required=True)
     p.add_argument('--seed', type=int, default=0)
+    p.add_argument('--bots', default='')
     a = p.parse_args()
     spec = importlib.util.spec_from_file_location('train_rollout_net', ROOT / 'scripts' / 'train_rollout_net.py')
     trainer = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(trainer)
     z = trainer.stored_arrays(a.big)
     deal = np.asarray(z['deal'])
-    count = np.bincount(deal, minlength=len(z['family']))
+    keep = np.ones(len(deal), bool)
+    if a.bots:
+        names = [str(x) for x in z['bot_names']]
+        wanted = [names.index(b) for b in a.bots.split(',')]
+        keep = np.isin(np.asarray(z['meta'][:, 8]), wanted)
+    count = np.bincount(deal[keep], minlength=len(z['family']))
     order = np.random.default_rng(a.seed).permutation(len(count))
     k = int(np.searchsorted(np.cumsum(count[order]), a.rows)) + 1
     chosen = np.sort(order[:k])
-    rows = np.flatnonzero(np.isin(deal, chosen))
+    chosen = chosen[count[chosen] > 0]
+    rows = np.flatnonzero(np.isin(deal, chosen) & keep)
     index = np.full(len(count), -1, np.int64)
     index[chosen] = np.arange(len(chosen))
     out = {name: np.asarray(z[name][rows]) for name in ROWS}

@@ -27,4 +27,26 @@ l1-n stu1-n~8p-32-v41 131 0 200 8 --episodes
 #stopped sps0b stu0-psa~stu0-psb 9001 280000 20000 8 --episodes --one-room
 # From 00:45 UTC on 14 November: round 3's net in the rollouts (stu3-psa~stu3-psb; head to head round 3's net alone beat
 # v2 alone +0.40 +- 0.07 and round 2's +0.19 +- 0.06 on 4,000 deals each), the lead still rolled out as every other card.
-sp3sb stu3-psa~stu3-psb 9001 380000 20000 8 --episodes --one-room
+#stopped sp3sb stu3-psa~stu3-psb 9001 380000 20000 8 --episodes --one-room
+# 05:20 UTC on 14 November (Max: the best data the strongest existing bots make): Gen 8 card play's self-play records
+#stopped sg8i g8a~g8b 9001 580000 20000 8 --episodes --one-room
+# 05:30 UTC on 14 November: azure3 is the test box (Max, 05:24). After its BEN session (jobs-azure3-ben5.txt), the tests
+# moved here from the other boxes, most needed first, then Gen 8 card play's self-play records while it has nothing to test.
+#   the one-net bot against Gen 8 card play: told nothing about its opponent (l3-put), and 500 more deals with its control
+l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
+l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
+l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
+#   the personalities of Gen 8 card play against Gen 8 card play (margin 0.1 first, then two at margin 0)
+#stopped s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-active g8-active~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-passive g8-passive~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-high g8-high~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-low g8-low~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
+#   what SiD's own randomization costs; policy v4.1 inside (both against the reference, head to head)
+h3-pm stu3-pm~stu3-ps 131 5000 1000 8
+h41-p stuv41-ps~stu0-ps 131 5000 500 8
+h41-pb stuv41-ps~stu0-ps 131 5500 500 8
+sg8j g8a~g8b 9001 640000 20000 8 --episodes --one-room

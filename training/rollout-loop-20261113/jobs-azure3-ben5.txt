@@ -1,0 +1,15 @@
+# The gate is BEN (Max, 04:22 and 04:23 UTC on 14 November: "let's see how one bot does against Ben"; "our randomization
+# will mitigate to some extent, but the gate should be on Ben"). Played by ben_session.sh on azure3's lanes, card play only,
+# about 37 minutes for 256 boards. The one-net bot (round 3's net inside and at the table) and, on new deals, its two-net
+# control (policy v4.1 at the table), so the two compare deal by deal on 1,024 boards:
+#   b3-pst200            one net, deals 0 to 255: by deal against b3-ps200, b0-ps200 and bg-200 (played at 01:53 to 03:12 UTC)
+#   b3-pst200b, b3-ps200b   one net and its control, deals 256 to 511
+#   b3-pst200c, b3-ps200c   one net and its control, deals 512 to 1,023
+# Then, Max, 04:17 UTC ("We should test with 4.1 everywhere vs Ben, but let's settle the other issues first"):
+#   b41-ps200            SiD (rollout) with policy v4.1 at the table and playing the simulated seats, deals 0 to 255
+b3-pst200 stu3-pst~ben200 131 0 256 8 --episodes
+b3-pst200b stu3-pst~ben200 131 256 256 8 --episodes
+b3-ps200b stu3-ps~ben200 131 256 256 8 --episodes
+b3-pst200c stu3-pst~ben200 131 512 512 8 --episodes
+b3-ps200c stu3-ps~ben200 131 512 512 8 --episodes
+b41-ps200 stuv41-ps~ben200 131 0 256 8 --episodes

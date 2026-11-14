@@ -9,4 +9,25 @@
 #stopped sps0e stu0-psa~stu0-psb 9001 340000 20000 8 --episodes --one-room
 # From 00:45 UTC on 14 November: round 3's net in the rollouts (stu3-psa~stu3-psb; head to head round 3's net alone beat
 # v2 alone +0.40 +- 0.07 and round 2's +0.19 +- 0.06 on 4,000 deals each), the lead still rolled out as every other card.
-sp3se stu3-psa~stu3-psb 9001 440000 20000 8 --episodes --one-room
+#stopped sp3se stu3-psa~stu3-psb 9001 440000 20000 8 --episodes --one-room
+# From 02:50 UTC on 14 November (Max, 02:43 UTC: "we should only be doing enough self play to see where we are"; the
+# better teacher for now is the strongest existing bot): Gen 8 card play's self-play with full records, one table a
+# board, its rows read as 8s-32, training deals from 500,000. In fp32 (not an sp* run).
+#stopped sg8e g8a~g8b 9001 500000 20000 8 --episodes --one-room
+# 05:40 UTC on 14 November (Max, 05:37: "The sooner we begin injecting a little noise into the training data the better.
+# Does Gen 8 have it / if not can we add"). It had none (near_tie 0, no exploration: among exactly tied cards its net's
+# favourite). From here its self-play records are played by its personalities at margin 0: among exactly tied cards the one
+# its style prefers, a random one 15% of the time; nothing its own search rates lower. Two personalities a table, six pairs in
+# turn, 2,000 tables a pair; the rows read every one as 8s-32. Doses above 0 follow the style calibration.
+sg8s1 g8-greedy0~g8-passive0 9001 700000 2000 8 --episodes --one-room
+sg8s2 g8-patient0~g8-active0 9001 702000 2000 8 --episodes --one-room
+sg8s3 g8-high0~g8-low0 9001 704000 2000 8 --episodes --one-room
+sg8s4 g8-greedy0~g8-low0 9001 706000 2000 8 --episodes --one-room
+sg8s5 g8-patient0~g8-high0 9001 708000 2000 8 --episodes --one-room
+sg8s6 g8-active0~g8-passive0 9001 710000 2000 8 --episodes --one-room
+sg8s7 g8-greedy0~g8-passive0 9001 712000 2000 8 --episodes --one-room
+sg8s8 g8-patient0~g8-active0 9001 714000 2000 8 --episodes --one-room
+sg8s9 g8-high0~g8-low0 9001 716000 2000 8 --episodes --one-room
+sg8s10 g8-greedy0~g8-low0 9001 718000 2000 8 --episodes --one-room
+sg8s11 g8-patient0~g8-high0 9001 720000 2000 8 --episodes --one-room
+sg8s12 g8-active0~g8-passive0 9001 722000 2000 8 --episodes --one-room

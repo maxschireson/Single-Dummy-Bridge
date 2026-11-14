@@ -51,6 +51,7 @@ from .gen6 import player as gen6_player
 from .gen7_net import INPUTS, PolicyNet
 from .gen7_tree import OverBudget, Tree, TreeConfig, stake as trick_stake
 from .players import Decision
+from . import style as styles
 
 ENGINE = 'gen7'
 BIT = np.uint64(1) << np.arange(52, dtype=np.uint64)
@@ -76,6 +77,9 @@ class Gen7Config:
     opponent_play_weight: dict = field(default_factory=dict)    # by opponent bot id ('*' = any other): a factor on the reading of
                                     # the opponents' plays, at every trick. 1 = read them as the house bots' (the default), 0 = ignore
                                     # them. Partner's plays always count in full. The opponent is the spec's `table_opponent`.
+    style: dict = field(default_factory=dict)       # a personality (bridge_harness/style.py): among the cards the search rates within
+                                    # the spec's `near_tie` of its best, the ones this style prefers ({'tempo' | 'active' | 'high':
+                                    # weight, 'random': share}); the tie-break then chooses among those. {} = none
 
     def __post_init__(self):
         if self.tie_break not in ('net', 'gen5', 'low', 'high', 'random') or not 0 <= self.play_weight <= 4 or not 0 <= self.play_floor < 1 \
@@ -84,6 +88,7 @@ class Gen7Config:
                 or not isinstance(self.opponent_play_weight, dict) \
                 or not all(isinstance(v, (int, float)) and not isinstance(v, bool) and 0 <= v <= 4 for v in self.opponent_play_weight.values()):
             raise ValueError('Invalid Gen7 settings')
+        styles.check(self.style)
 
 
 @dataclass(frozen=True)
@@ -146,6 +151,8 @@ def resolved(block):
         out = {k: v for k, v in out.items() if not k.startswith('early_')}
     if not config.opponent_play_weight:
         out.pop('opponent_play_weight')
+    if not config.style:
+        out.pop('style')
     if stages:
         out['tree'] = [dict({k: getattr(s, k) for k in USE_KEYS}, **asdict(s.search)) for s in stages]
     return out
@@ -518,8 +525,29 @@ class Gen7Player(Gen6Player):
                                      behavior_probabilities={symbol(x): p for x, p in probs.items()}, selected_probability=probs[chosen],
                                      selected_pimc_gap=d['estimates'][symbol(chosen)]['gap_to_best']))
 
+    def styled(self, o, rng, result):
+        """The search's decision with its eligible cards (those within `near_tie` of the best) cut down to the ones the
+        bot's style prefers (bridge_harness/style.py); the tie-break then chooses among them as it would among all. For
+        the style's random share of these decisions it is one of the eligible cards at random instead."""
+        d = result.details
+        eligible = sorted(card(k) for k, p in d.get('behavior_probabilities', {}).items() if p > 0)
+        if len(eligible) < 2 or 'estimates' not in d:
+            return result
+        if rng.random() < float(self.g7.style.get('random', 0.)):
+            kept = [rng.choice(eligible)]
+        else:
+            kept = styles.choose(o, eligible, self.g7.style, 1.)
+        if len(kept) == len(eligible):
+            return result
+        choice = result.card if result.card in kept else kept[0]
+        return Decision(choice, dict(d, behavior_probabilities={symbol(x): (1 / len(kept) if x in kept else 0.) for x in o.legal},
+                                     selected_probability=1 / len(kept), selected_pimc_gap=d['estimates'][symbol(choice)]['gap_to_best'],
+                                     styled=[symbol(x) for x in eligible]))
+
     def break_ties(self, o, rng, result):
         """Gen6Player.break_ties with the Gen7 net's log-probability in place of the Gen5 net's prediction."""
+        if self.g7.style:
+            result = self.styled(o, rng, result)
         if self.g7.tie_break in ('low', 'high', 'random'):
             return self.rule_ties(o, rng, result)
         if self.g7.tie_break != 'net':

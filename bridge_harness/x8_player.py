@@ -99,6 +99,7 @@ from .gen7 import player as gen7_player
 from .gen7_net import INPUTS, PolicyNet
 from .players import Decision
 from .x8_rollout import Seats, evaluate
+from . import style as styles
 
 ENGINE = 'gen8x'
 LIMITS = np.array(IMP_LIMITS)
@@ -120,6 +121,10 @@ class Stage:
     horizon: int = 0            # 0 = roll out to the end; k = k tricks, then double dummy
     seat: str = 'top'           # the simulated seat: 'top' | 'draw' | 'blend' (x8_rollout.Seats)
     power: float = 1.           # 'draw': the exponent on the net's probabilities
+    cut: float = 0.             # 'draw': a card under this share of the likeliest card's probability is never drawn
+    seat_other: str = ''        # the seats of the side that is not deciding, where they are to differ: 'top' | 'draw' | 'blend'; '' = as `seat`
+    power_other: float = 0.     # with seat_other: their exponent; 0 = `power`
+    cut_other: float = 0.       # with seat_other: their cut
     objective: str = 'tricks'   # rollout: 'tricks' | 'imps' (the swing against the card with the best mean tricks, layout by layout)
     contracts: str = 'all'      # 'all' | 'games': only in games, slams and doubled contracts; in undoubled partscores the trick is
                                 # played as with no stage (the plain search). Max, 13 Nov 05:30, after partscore forks lost in every match
@@ -133,7 +138,9 @@ class Stage:
                 or not (1 <= self.from_trick <= self.to_trick <= 13) \
                 or not (0 <= self.trust <= 4 and 0 <= self.layouts <= 4096 and 1 <= self.first <= 4096 and 2 <= self.cards <= 13
                         and 0 <= self.prior < 1 and 0 <= self.margin <= 13 and 0 <= self.race <= 100 and 0 <= self.slack <= 13
-                        and 0 <= self.horizon <= 13 and 0 < self.power <= 8):
+                        and 0 <= self.horizon <= 13 and 0 < self.power <= 8) \
+                or self.seat_other not in ('', 'top', 'draw', 'blend') \
+                or not (0 <= self.power_other <= 8 and 0 <= self.cut < 1 and 0 <= self.cut_other < 1):
             raise ValueError('Invalid 8X stage settings')
         if self.mode == 'rollout' and self.layouts < 1:
             raise ValueError('An 8X rollout stage needs layouts')
@@ -213,9 +220,13 @@ class MixUse:
                                 # see the module note). 0 = all alike; large = the net's favourite. A seat read as a mixer is read
                                 # with the power of its role here (the bots it is used against share these settings)
 
+    style: dict = field(default_factory=dict)   # a personality (bridge_harness/style.py): among a mixing seat's near-equal
+                                # candidates (`near`), the ones this style prefers; the mix then chooses among those. {} = none
+
     def __post_init__(self):
         object.__setattr__(self, 'read_declarer', tuple(self.read_declarer))
         object.__setattr__(self, 'read_defender', tuple(self.read_defender))
+        object.__setattr__(self, 'style', styles.check(self.style))
         if not 0 <= self.near <= 13 or not 0 <= self.declarer_power <= 64 or not 0 <= self.defender_power <= 64:
             raise ValueError('Invalid 8X mix settings')
 
@@ -231,6 +242,13 @@ class X8Config:
                                 # this bot ('self') and for each opponent bot id ('*' = any other); unlisted opponents are unknown
     lead: object = None         # a rollout Stage for the opening lead (see the module note), or None: the search's or the net's lead
     lead_capture: int = 0       # level 2 records of that decision keep at most this many layouts; 0 = capture.layouts
+    blind: bool = False         # told nothing about who sits against it: every setting keyed by the opponent's bot id (names, the
+                                # reading weight of its cards, whether it mixes, whether it keeps guaranteed contracts) takes its
+                                # '*' value, as for an opponent never met. `names` may also hold 'they_see': the name the
+                                # simulated opponents are told for this bot ('' = nothing); without it they are told `self`
+
+
+STAGE_ADDED = dict(cut=0., seat_other='', power_other=0., cut_other=0.)     # settings added on 14 November: pinned only where set
 
 
 LEAD_DEFAULTS = dict(mode='rollout', from_trick=1, to_trick=1, layouts=512, cards=13, prior=0., race=0.)
@@ -239,7 +257,7 @@ LEAD_DEFAULTS = dict(mode='rollout', from_trick=1, to_trick=1, layouts=512, card
 def x8_settings(block):
     """spec['x8'] -> X8Config. No trick may belong to two stages."""
     block = dict(block or {})
-    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names', 'lead'}
+    unknown = set(block) - {'stages', 'claims', 'capture', 'mix', 'others', 'names', 'lead', 'blind'}
     if unknown:
         raise ValueError(f'Unknown 8X settings: {sorted(unknown)}')
     try:
@@ -266,17 +284,24 @@ def x8_settings(block):
     if lead is not None and (lead.mode != 'rollout' or (lead.from_trick, lead.to_trick) != (1, 1) or isinstance(lead_capture, bool)
                              or not isinstance(lead_capture, int) or not 0 <= lead_capture <= 4096):
         raise ValueError('The 8X lead block is a rollout stage (no tricks to name) and a capture count')
-    return X8Config(stages, claims, capture, mix, others, names, lead, lead_capture)
+    if not isinstance(block.get('blind', False), bool):
+        raise ValueError('8X blind is true or false')
+    return X8Config(stages, claims, capture, mix, others, names, lead, lead_capture, block.get('blind', False))
 
 
 def resolved(block):
     """spec['x8'] with every setting written out, defaults included: what a manifest should pin."""
     c = x8_settings(block)
-    out = dict(stages=[asdict(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
-               capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
+    pinned = lambda s: {k: v for k, v in asdict(s).items() if k not in STAGE_ADDED or v != STAGE_ADDED[k]}
+    out = dict(stages=[pinned(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
+               capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)),
+               mix={k: v for k, v in dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)).items()
+                    if k != 'style' or v},
                others=[dict(o) for o in c.others], names=dict(c.names))
     if c.lead is not None:                                  # written only where set: a bot without it pins what it always pinned
-        out['lead'] = dict(asdict(c.lead), capture=c.lead_capture)
+        out['lead'] = dict(pinned(c.lead), capture=c.lead_capture)
+    if c.blind:
+        out['blind'] = True
     return out
 
 
@@ -346,6 +371,8 @@ class X8Player(Gen7Player):
         self.x8_note = None
 
     def meet(self, opponent_id):
+        if self.x8.blind:                                   # told nothing about who sits against it: every setting keyed by the
+            opponent_id = None                              # opponent's id falls to its '*' value
         super().meet(opponent_id)
         self.opponent_id = opponent_id
         if getattr(self.net, 'vocab', None):                # a table net that takes who is playing (a rollout net as `gen7_policy`)
@@ -646,7 +673,9 @@ class X8Player(Gen7Player):
         inside = self.aware(declaring) and claims.leaf > 0
         names = self.x8.names
         who = (names.get('self', ''), names.get(self.opponent_id or '', names.get('*', '')))
-        seats = Seats([self.rollout_net, *self.other_nets], stage.seat, stage.power, seed=int(rng.integers(1 << 62)), who=who).start(o)
+        other = dict(mode=stage.seat_other, power=stage.power_other or stage.power, cut=stage.cut_other) if stage.seat_other else None
+        seats = Seats([self.rollout_net, *self.other_nets], stage.seat, stage.power, seed=int(rng.integers(1 << 62)), who=who,
+                      seen=names.get('they_see'), cut=stage.cut, other=other).start(o)
         other = None
         if self.other_nets:
             other = np.searchsorted(np.cumsum(self.other_share), rng.random(n_w), side='right') + 1
@@ -829,6 +858,10 @@ class X8Player(Gen7Player):
         else:
             winners = [0]
             note.update(value=[0.], roll=[None], n=[0], alive=[0], seconds=dict(layouts=round(layout_seconds, 4)))
+        if self.x8.mix.style and len(winners) > 1:          # a personality: of its near-equal candidates, the ones its style prefers
+            kept = set(styles.choose(o, [reps[j] for j in winners], self.x8.mix.style, float(nrng.random())))
+            note['styled'] = [symbol(reps[j]) for j in winners]
+            winners = [j for j in winners if reps[j] in kept]
         eligible = [x for j in winners for x in runs[j]]
         fork = random.Random()                              # the pick's draws come from a copy, as the tree's do
         fork.setstate(rng.getstate())

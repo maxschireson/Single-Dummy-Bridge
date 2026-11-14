@@ -1,0 +1,9 @@
+# How the simulated seats take their cards (draw_regret.py, 03:05 UTC on 14 November): the rollouts' seats draw from the
+# net, and round 3's net told it is Stu draws worse cards than v2 told it is Gen 8, though its top card is better.
+#   hd-n    the nets alone as the rollouts use them, every card DRAWN: round 3's net (as Stu) against v2 (as Gen 8),
+#           head to head, gate seed deals 19,000 to 20,999 (played top card, round 3's net wins +0.40 +- 0.07: h3-n)
+#   h3-p2   SiD (rollout) Stu R3 with the draw sharpened (power 2) against the reference SiD (rollout) Stu R0, on the
+#           deals of h3-p (5,000 to 5,999), so the two are paired by deal
+# azure5 plays the same with top-card seats (jobs-azure5-hd.txt), azure3 the reference's net sharpened (jobs-azure3-hd.txt).
+hd-n stu3-nd~stu0-nd 131 19000 2000 8
+h3-p2 stu3-p2~stu0-ps 131 5000 1000 8

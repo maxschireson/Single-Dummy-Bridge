@@ -1,0 +1,6 @@
+# The test box measures BEN through the release (Max, 05:30 UTC on 14 November: "keep one box doing tests to get more precise
+# Ben measures by the end of a release"). The one-net SiD Stu R3 (round 3's net inside and at the table) against BEN (200)
+# on deals 1,536 to 2,559, after deals 0 to 1,535 (b3-pst200 to b3-pst200e on azure3, azure2 and azure6): at round 4's cut
+# round 4's bot plays the same 2,560 deals on the boxes with BEN, so the two compare deal by deal. ben_session.sh.
+#stopped b3-pst200f stu3-pst~ben200 131 1536 512 8 --episodes
+#stopped b3-pst200g stu3-pst~ben200 131 2048 512 8 --episodes

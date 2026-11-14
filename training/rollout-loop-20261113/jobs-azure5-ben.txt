@@ -1,0 +1,5 @@
+# Max, 05:14 UTC on 14 November: "In the one-net comparison do we know if one net R3 improves over earlier one net versions
+# against Ben?" The one-net bot with round 0's net (stu0-pst: rollout net v2 inside and at the table) against BEN (200), on
+# the deals the one-net bot with round 3's net plays (b3-pst200 deals 0 to 255, b3-pst200b 256 to 511 on azure3), so the two
+# compare deal by deal. Half here, half on the other box; ben_session.sh.
+b0-pst200 stu0-pst~ben200 131 0 256 8 --episodes

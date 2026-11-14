@@ -85,7 +85,12 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
-          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb'])   # every bot that claims and mixes as Stu does
+          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti', 'stu0-pst', 'stu3-psta', 'stu3-pstb', 'stu3-psu', 'stu3-putb',
+             'stuhf-pst', 'stubf-pst', 'stumf-pst', 'stuhs-pst', 'stubs-pst',
+             'stum10-pst', 'stum10h-pst', 'stum10h4-pst', 'stus10-pst', 'stus10h-pst',
+             'stum10F-pst', 'stum10A-pst', 'stum10B-pst', 'stuhA-pst', 'stubA-pst', 'stusAh-pst',
+             'stu4-pst', 'stu4-put', 'stu4-psta', 'stu4-pstb', 'stu4-putb', 'stu4c-pst', 'stu4c-put'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -96,6 +101,11 @@ NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
 R2S = 'models/cardplay/stu-net-r2s-20261113/policy.npz'        # train-r2s/policy.npz on the same branch
 R3A = 'models/cardplay/stu-net-r3a-20261113/policy.npz'        # train-r3a/policy.npz on the same branch: the interim round
 R3 = 'models/cardplay/stu-net-r3-20261113/policy.npz'          # train-r3/policy.npz on the same branch
+R4 = 'models/cardplay/stu-net-r4-20261113/policy.npz'          # train-r4/policy.npz: round 4, with the USBC's human tables
+R4C = 'models/cardplay/stu-net-r4c-20261113/policy.npz'        # train-r4c/policy.npz: round 4's control, without them
+HUMAN = 'models/cardplay/stu-exp-human-20261114'               # exp_human.sh: hf, bf, mf, hs, bs .npz
+STRONG = 'models/cardplay/stu-exp-strong-20261114/strong.npz'  # exp_strong.sh: from Gen 8 card play's rows of v2's set only
+MIX = 'models/cardplay/stu-exp-strong-20261114/mix.npz'        # exp_strong.sh: as many rows of v2's set, bots in its proportions
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
@@ -237,6 +247,181 @@ def main():
     # min_sample_hands_play 20 (lorserker/ben's values), every other setting as BEN (64)'s lanes.
     bots['ben200'] = {'base': 'ben64', 'url': 'http://127.0.0.1:8090', 'samples': 200, 'config': '~/work/loop/ben/ben-200.conf',
                       'label': 'BEN at its upstream play sampling (200 layouts, at least 20), otherwise as BEN (64)'}
+    # SiD (rollout) Stu R3 with round 3's net at the table too (candidate priors, reading the play) in place of policy v4.1:
+    # alone, round 3's net beats v4.1 +1.36 +- 0.07 head to head (h3-nv41).
+    bots['stu3-pst'] = dict(copy.deepcopy(bots['stu3-ps']), gen7_policy=R3)
+    bots['stu3-pst']['label'] = ("Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the "
+                                 'opening lead from rollouts on the settings of every other card')
+    # How the simulated seats take their cards (03:05 UTC on 14 November, draw_regret.py): the seats DRAW from the net, and a
+    # card drawn from round 3's net told it is Stu gives up more than one drawn from v2 told it is Gen 8 (its probabilities
+    # are flatter: 0.94 nats against 0.55), though its most probable card gives up less. -p2: the draw sharpened (the
+    # probabilities squared, `power` 2); -pg: the most probable card (`seat: top`). The lead is rolled out the same way.
+    def seats(base, label, **change):
+        b = copy.deepcopy(bots[base])
+        b['x8']['stages'] = [dict(st, **change) for st in b['x8']['stages']]
+        b['x8']['lead'] = dict(b['x8']['lead'], **change)
+        b['label'] = b['label'] + '; ' + label
+        return b
+    bots['stu3-p2'] = seats('stu3-ps', 'the simulated seats draw from the probabilities squared (power 2)', power=2.)
+    bots['stu3-pg'] = seats('stu3-ps', "the simulated seats play the net's most probable card (seat top)", seat='top')
+    bots['stu0-p2'] = seats('stu0-ps', 'the simulated seats draw from the probabilities squared (power 2)', power=2.)
+    # Seats by side, and a bot told nothing about its opponent (Max, 03:12 to 03:28 UTC on 14 November: we may read
+    # opponents' cards better than will carry to play against people; build the randomization in; defenders' equal
+    # cards random for now).
+    #   -px   the seats split: its own side drawn among the cards at least half as likely as the likeliest (what a bot
+    #         knows of its own partnership's play), the other side among those at least a quarter as likely
+    #   -pu   blind: stu3-p told nothing about who sits against it. The simulated opponents are the net's unknown player
+    #         and are told nothing about this bot; their played cards are read at the weight of an opponent never met
+    #         (0.3) and as cards of a side that may play any of its equal cards (`read_declarer`, `read_defender` '*')
+    #   -pux  blind, the seats split, and its own defenders play a random one of their equal cards (partner reads them so)
+    SPLIT = dict(seat='draw', cut=.5, seat_other='draw', power_other=1., cut_other=.25)
+    bots['stu3-px'] = seats('stu3-ps', "its own side's simulated seats drawn among the cards at least half as likely as the likeliest, "
+                                       "the other side's among those at least a quarter as likely", **SPLIT)
+    def blind(base, label):
+        b = copy.deepcopy(bots[base])
+        b['x8']['blind'] = True
+        b['x8']['names'] = {'self': b['x8']['names']['self'], '*': '', 'they_see': ''}
+        b['x8']['mix'] = dict(b['x8']['mix'], read_declarer=['*'], read_defender=['*'])
+        b['label'] = b['label'] + '; ' + label
+        return b
+    bots['stu3-pu'] = blind('stu3-p', 'BLIND: told nothing about who sits against it')
+    bots['stu3-pux'] = blind('stu3-p', 'BLIND, the simulated seats split by side, its defenders playing a random one of their equal cards')
+    bots['stu3-pux']['x8']['stages'] = [dict(st, **SPLIT) for st in bots['stu3-pux']['x8']['stages']]
+    bots['stu3-pux']['x8']['mix']['defender'] = True
+    # One net, blind (04:20 UTC on 14 November): round 3's net inside and at the table beat the reference +0.16 +- 0.09
+    # (h3-pt, h3-ptb) where the same net inside only stood at -0.13 +- 0.09. At the table the net reads the opponents'
+    # cards, and it was trained on the reference bot's own games, so some of that may be knowledge of this opponent. -put
+    # is stu3-pst told nothing about who sits against it.
+    bots['stu3-put'] = blind('stu3-pst', 'BLIND: told nothing about who sits against it')
+    # Max, 04:28 UTC on 14 November: "Should it really be Stu + rollouts + don't go down in a cold game or slam? Is it
+    # already if not we should try that." It is where the contract is certain (the winning-line logic, 10 cards or fewer,
+    # games, slams and doubled contracts). Where it is only likely the rollouts choose by mean tricks, so a card that risks
+    # the contract for an overtrick can win. -psti: the one-net bot with the rollouts choosing by IMPs (the stage's
+    # `objective`: each card's swing in IMPs, layout by layout, against the card with the best mean tricks), the lead too.
+    bots['stu3-psti'] = seats('stu3-pst', 'the rollouts choose by IMPs in place of mean tricks', objective='imps')
+    # Max, 05:14 UTC on 14 November: "In the one-net comparison do we know if one net R3 improves over earlier one net
+    # versions against Ben?" Not measured: -pst for round 0, rollout net v2 inside and at the table (told what it is told
+    # inside: every seat 8s-32, BEN as BEN), the lead rolled out as stu0-ps. Against BEN (200) on the deals of b3-pst200.
+    bots['stu0-pst'] = dict(copy.deepcopy(bots['stu0-ps']), gen7_policy=V2)
+    bots['stu0-pst']['label'] = bots['stu0-ps']['label'].replace('Stu round 0 ladder: ', 'Stu round 0 ladder, rollout net v2 inside and at the table: ')
+    # The one-net bot under two ids, for its self-play as training data (Max, 05:24 UTC on 14 November: two boxes of Gen 8
+    # self-play, two of Stu's, one for tests; 05:10: "Simpler to have one not two").
+    # Max, 05:37 UTC: "The sooner we begin injecting a little noise into the training data the better": its defenders, as its
+    # declarer already does, play a random one of their equal cards (touching cards), which costs nothing.
+    for twin in ('stu3-psta', 'stu3-pstb'):
+        bots[twin] = copy.deepcopy(bots['stu3-pst'])
+        bots[twin]['x8']['mix'] = dict(bots[twin]['x8']['mix'], defender=True)
+        bots[twin]['label'] = bots['stu3-pst']['label'] + "; its defenders too play a random one of their equal cards (under a second id, for self-play records)"
+    # Max, 06:22 UTC on 14 November: "We should only grade the bot on 'blind' opponents". The two-net bot of the gate, blind
+    # (stu3-pu is the net-lead bot, blind); with stu3-put (the one-net bot, blind) it is graded on BEN (200).
+    bots['stu3-psu'] = blind('stu3-ps', 'BLIND: told nothing about who sits against it')
+    # The USBC's deals (Max, 07:20 to 07:36 UTC on 14 November): every bot old and new plays them, in the humans' contracts where
+    # the auction fits our bidding and in self-play on its own auctions. Self-play needs two ids a bot: the twins below (the
+    # same bot under a second id). SiD's twins: stu3-psta/-pstb (told they face Stu: known), stu3-put/-putb (blind).
+    for cid in ('1', '4b', '5RZ32', '6-32'):
+        bots[f'{cid}-tw'] = {'base': cid, 'label': f'{cid} under a second id, for self-play on the USBC deals'}
+    for xid in ('7s-32-v41',):
+        bots[xid] = copy.deepcopy(x8[xid])
+        bots[f'{xid}-tw'] = dict(copy.deepcopy(x8[xid]), label=f'{xid} under a second id, for self-play on the USBC deals')
+    bots['stu3-putb'] = copy.deepcopy(bots['stu3-put'])
+    bots['stu3-putb']['label'] = bots['stu3-put']['label'] + ' (under a second id, for blind self-play)'
+    # Max, 09:25 to 09:39 UTC on 14 November: should the USBC's adult boards (2021 to 2023, one table a deal with an auction
+    # our bidder knows; usbc/human_episodes.py) go into round 4? A net trained on the experts' cards against one trained on as
+    # many of the one-net SiD's self-play boards, each fine-tuned from round 3's net and each from scratch, alone and inside
+    # the one-net rollout bot (exp_human.sh). hf/hs: the human boards (the net is told every seat is usbc); bf/bs: the bot
+    # boards (every seat stup0); mf: both together, playing as stup0, which is how round 4 would use the human boards.
+    for tag, own, what in (('hf', 'usbc', "round 3's net fine-tuned on the USBC's human boards"),
+                           ('bf', 'stup0', "round 3's net fine-tuned on as many SiD self-play boards"),
+                           ('mf', 'stup0', "round 3's net fine-tuned on the human boards and the SiD boards together, playing as SiD"),
+                           ('hs', 'usbc', "a net trained from scratch on the USBC's human boards"),
+                           ('bs', 'stup0', 'a net trained from scratch on as many SiD self-play boards'),
+                           # Max, 09:43 UTC: the human boards with a medium set of other boards, and with more weight
+                           ('m10', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards"),
+                           ('m10h', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and the human boards"),
+                           ('m10h4', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and the human boards four times over"),
+                           ('s10', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards'),
+                           ('s10h', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards and the human boards'),
+                           # every expert table of those events, not one a deal (10:26 UTC, after the first part's result)
+                           ('m10F', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and every human table with a familiar auction"),
+                           ('m10A', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and every human table, auctions as bid"),
+                           ('m10B', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and every human table, the unfamiliar auctions blanked"),
+                           ('hA', 'usbc', 'a net trained from scratch on every human table'),
+                           ('bA', 'stup0', 'a net trained from scratch on as many pure-Stu boards as there are human tables'),
+                           ('sAh', 'stup0', 'a net trained from scratch on those pure-Stu boards and every human table')):
+        path = f'{HUMAN}/{tag}.npz'
+        names = {'self': own, '*': own}
+        bots[f'stu{tag}-n'] = alone(f'{what}, alone: its first card at every trick, no search, no rollouts, no claims', path, names)
+        bots[f'stu{tag}-n']['label'] = bots[f'stu{tag}-n']['label'].replace('Stu round 0 ladder: ', 'Human-boards experiment: ')
+        b = dict(copy.deepcopy(bots['stu3-pst']), rollout_policy=path, gen7_policy=path)
+        b['x8']['names'] = dict(names)
+        b['label'] = f'Human-boards experiment: the one-net SiD (rollouts on the settings of stu3-pst) with {what} inside and at the table'
+        bots[f'stu{tag}-pst'] = b
+    # Round 4 (cut about 13:00 UTC on 14 November), one net at the table and in the rollouts, in two nets (Max, 09:39 UTC: "If
+    # we aren't sure we can do a R4a and an R4b"): stu4 with every USBC human table of 2021 to 2023 in its training (the
+    # experiment above: they help the net alone at every dose), stu4c the control without them. -put: blind, the gate's bot.
+    for tag, path, what in (('4', R4, "round 4's net (with the USBC's human tables)"), ('4c', R4C, "round 4's control net (without the human tables)")):
+        b = dict(copy.deepcopy(bots['stu3-pst']), rollout_policy=path, gen7_policy=path)
+        b['label'] = (f"Stu round 4 ladder ({what} inside and at the table, its own side read as stup0): pure with the opening lead from "
+                      'rollouts on the settings of every other card')
+        bots[f'stu{tag}-pst'] = b
+        bots[f'stu{tag}-put'] = blind(f'stu{tag}-pst', 'BLIND: told nothing about who sits against it')
+        bots[f'stu{tag}-n'] = alone(f'{what} alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims',
+                                    path, dict(NAMES2))
+        bots[f'stu{tag}-n']['label'] = bots[f'stu{tag}-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 4 ladder: ')
+    for twin in ('stu4-psta', 'stu4-pstb'):                    # the one-net bot under two ids for its self-play, defenders mixing
+        bots[twin] = copy.deepcopy(bots['stu4-pst'])
+        bots[twin]['x8']['mix'] = dict(bots[twin]['x8']['mix'], defender=True)
+        bots[twin]['label'] = bots['stu4-pst']['label'] + "; its defenders too play a random one of their equal cards (under a second id, for self-play records)"
+    bots['stu4-putb'] = copy.deepcopy(bots['stu4-put'])
+    bots['stu4-putb']['label'] = bots['stu4-put']['label'] + ' (under a second id, for blind self-play)'
+    # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
+    for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
+        b = copy.deepcopy(bots[base])
+        b['gen7']['net_sample'] = True
+        b['label'] = b['label'] + '; every card DRAWN from its probabilities, as a simulated seat of the rollouts'
+        bots[name] = b
+    # Max, 02:26 UTC on 14 November: a net from the strongest bots' data against one from the present mix, the same size
+    # (exp_strong.sh). Both read every side as Gen 8 card play (8s-32), as v2 does in SiD (rollout) Stu R0.
+    for tag, path, what in (('S', STRONG, "Gen 8 card play's rows only"), ('M', MIX, "as many rows in v2's mix of bots")):
+        b = dict(copy.deepcopy(bots['stu0-ps']), rollout_policy=path)
+        b['label'] = f'Strong-data experiment: SiD (rollout) with a net trained from scratch on {what} of v2\'s set'
+        bots[f'stu{tag}-ps'] = b
+        bots[f'stu{tag}-n'] = alone(f'the net trained from scratch on {what} of v2\'s set, alone', path,
+                                    {'self': '8s-32', '*': '8s-32', **BEN})
+    # Gen 8 card play under two ids, for its self-play as training data (Max, 02:31 and 02:43 UTC: the best data the
+    # strongest bots make, and only as much of Stu's own self-play as tells where we are). Read as 8s-32 in the rows.
+    for twin in ('g8a', 'g8b'):
+        bots[twin] = dict(copy.deepcopy(x8['8p-32-v41']), label='Gen 8 card play (8p-32-v41) under a second id, for self-play records')
+    # Personalities of Gen 8 card play (bridge_harness/style.py; Max, 03:35 to 03:50 UTC on 14 November: more variability
+    # in the opponent population, mostly directed, a variety of styles, about a quarter of an IMP a board on average).
+    # Each is Gen 8 card play that keeps, of the cards its search rates within `near_tie` of the best, the ones its
+    # style prefers; its net then chooses among those, as Gen 8's does among exact ties. For 15% of those decisions it is one
+    # of the cards within the margin at random instead.
+    # The margin is the dose: g8-<style> at 0.1 tricks, g8-<style>0 at 0 (among exactly tied cards only).
+    STYLES = {'greedy': dict(tempo=1.), 'patient': dict(tempo=-1.), 'active': dict(active=1.), 'passive': dict(active=-1.),
+              'high': dict(high=1.), 'low': dict(high=-1.)}
+    TEXT = {'greedy': 'takes its tricks now', 'patient': 'ducks and waits', 'active': 'switches and leads from honours', 'passive': 'leads safely',
+            'high': 'plays high cards freely', 'low': 'keeps its high cards'}
+    for name, style in STYLES.items():
+        for tag, margin in (('', .1), ('0', 0.)):
+            b = copy.deepcopy(x8['8p-32-v41'])
+            b['near_tie'] = margin
+            b['gen7'] = dict(b['gen7'], style=dict(style, random=.15))
+            b['label'] = (f'Gen 8 card play with a style: {name} ({TEXT[name]}) among the cards within {margin} tricks of its best, '
+                          'a random one of them 15% of the time')
+            bots[f'g8-{name}{tag}'] = b
+    # SiD's own randomization (Max, 03:45 UTC: "we need to randomize ourselves a bit too or our similar opponents with big
+    # nets will read us on defense too much. Maybe we can spend a quarter imp"): a random one of the candidates within 0.05
+    # tricks of its best, declaring and defending. By its own rollout values that gives up 0.09 tricks a board
+    # (bench/mix_budget.py on l3-p; 0.21 at 0.08), which overstates the real cost.
+    bots['stu3-pm'] = copy.deepcopy(bots['stu3-ps'])
+    bots['stu3-pm']['x8']['mix'] = dict(bots['stu3-pm']['x8']['mix'], near=.05, defender=True)
+    bots['stu3-pm']['label'] = bots['stu3-pm']['label'] + '; plays a random one of its candidates within 0.05 tricks of the best, defending too'
+    # Policy v4.1, the table net, playing the simulated seats as well, in place of a rollout net (Max, 04:07 UTC on 14
+    # November: "And R3 vs 4.1 running the rollouts?"): the reference bot in every other respect. v4.1 takes no bot names.
+    bots['stuv41-ps'] = dict(copy.deepcopy(bots['stu0-ps']), rollout_policy=V41)
+    del bots['stuv41-ps']['x8']['names']
+    bots['stuv41-ps']['label'] = bots['stu0-ps']['label'].replace('Stu round 0 ladder: ', 'Policy v4.1 inside the rollouts (and at the table): ')
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

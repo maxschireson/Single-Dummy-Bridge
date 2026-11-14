@@ -22,4 +22,33 @@ l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 #stopped sps0 stu0-psa~stu0-psb 9001 260000 20000 8 --episodes --one-room
 # From 00:45 UTC on 14 November: round 3's net in the rollouts (stu3-psa~stu3-psb; head to head round 3's net alone beat
 # v2 alone +0.40 +- 0.07 and round 2's +0.19 +- 0.06 on 4,000 deals each), the lead still rolled out as every other card.
-sp3s stu3-psa~stu3-psb 9001 360000 20000 8 --episodes --one-room
+#stopped sp3s stu3-psa~stu3-psb 9001 360000 20000 8 --episodes --one-room
+# 05:20 UTC on 14 November (Max: the best data the strongest existing bots make): Gen 8 card play's self-play records
+# 05:35 UTC on 14 November (Max, 05:32: "Sure borrow 3 hours for style calibration"): the personalities of Gen 8 card play
+# against Gen 8 card play, 500 boards each (margin 0.1, then two at margin 0), before the Gen 8 records
+s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
+s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
+s8-active g8-active~8p-32-v41 131 25000 500 8 --episodes
+s8-passive g8-passive~8p-32-v41 131 25000 500 8 --episodes
+s8-high g8-high~8p-32-v41 131 25000 500 8 --episodes
+s8-low g8-low~8p-32-v41 131 25000 500 8 --episodes
+s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
+s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
+#stopped sg8f g8a~g8b 9001 520000 20000 8 --episodes --one-room
+# 05:40 UTC on 14 November (Max, 05:37: "The sooner we begin injecting a little noise into the training data the better.
+# Does Gen 8 have it / if not can we add"). It had none (near_tie 0, no exploration: among exactly tied cards its net's
+# favourite). From here its self-play records are played by its personalities at margin 0: among exactly tied cards the one
+# its style prefers, a random one 15% of the time; nothing its own search rates lower. Two personalities a table, six pairs in
+# turn, 2,000 tables a pair; the rows read every one as 8s-32. Doses above 0 follow the style calibration.
+sg8t1 g8-greedy0~g8-passive0 9001 730000 2000 8 --episodes --one-room
+sg8t2 g8-patient0~g8-active0 9001 732000 2000 8 --episodes --one-room
+sg8t3 g8-high0~g8-low0 9001 734000 2000 8 --episodes --one-room
+sg8t4 g8-greedy0~g8-low0 9001 736000 2000 8 --episodes --one-room
+sg8t5 g8-patient0~g8-high0 9001 738000 2000 8 --episodes --one-room
+sg8t6 g8-active0~g8-passive0 9001 740000 2000 8 --episodes --one-room
+sg8t7 g8-greedy0~g8-passive0 9001 742000 2000 8 --episodes --one-room
+sg8t8 g8-patient0~g8-active0 9001 744000 2000 8 --episodes --one-room
+sg8t9 g8-high0~g8-low0 9001 746000 2000 8 --episodes --one-room
+sg8t10 g8-greedy0~g8-low0 9001 748000 2000 8 --episodes --one-room
+sg8t11 g8-patient0~g8-high0 9001 750000 2000 8 --episodes --one-room
+sg8t12 g8-active0~g8-passive0 9001 752000 2000 8 --episodes --one-room

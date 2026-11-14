@@ -1,0 +1,7 @@
+# Against BEN (200) from here on (Max, 01:43 UTC on 14 November: "Ok switch!"): the new baselines, played by
+# ben_session.sh (chain.sh jobs-azure3-ben4.txt ben.sh) on azure3's lanes, deals 0 to 255, card play only.
+#   b0-ps200   SiD (rollout) Stu R0 against BEN (200): the reference for indicator 4 from round 4 on
+#   b3-ps200   SiD (rollout) Stu R3 against BEN (200): round 3's indicator 4 on the new footing
+# Gen 8 against BEN (200) is bg-200 (jobs-azure3-ben3.txt).
+b0-ps200 stu0-ps~ben200 131 0 256 8 --episodes
+b3-ps200 stu3-ps~ben200 131 0 256 8 --episodes

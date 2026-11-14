@@ -9,6 +9,21 @@ session's `gen7_net.py`, the sidnet session's label heads and trainer).
 
 The plan is in [PLAN.md](PLAN.md). This page is what exists.
 
+## Names (Max, 01:26 UTC on 14 November)
+
+**SiD** is any bot with no double dummy in its play; then its flavor; then the net inside its rollouts (the table net is
+policy v4.1 unless said). The loop's nets are **Stu R0** (rollout net v2, where the loop started), **R1** (v2 with
+Stu's own vectors), **R2**, **R3a** (interim), **R3**. Earlier sections keep the ids they were written with.
+
+| Name | What it is | Ids |
+| --- | --- | --- |
+| SiD (rollout) Stu R3 | every card from rollouts, the lead included (at most 4 candidates, 32 then up to 128 layouts with the race), round 3's net inside: the collection since 00:45 UTC on 14 November | `stu3-ps` (`stu3-psa~stu3-psb`) |
+| SiD (rollout) Stu R0 | the same with v2 inside: the collection from 22:53 to 00:45 UTC | `stu0-ps` |
+| SiD (rollout, net lead) Stu R0, R2, R3 | rollouts from the second card on, the lead from the table net ("pure Stu") | `stu0-p`, `stu2-p`, `stu3-p` |
+| SiD (rollout, 512 lead) Stu R0 | every lead card on 512 layouts of the three hidden hands | `stu0-pr` |
+| SiD (net) Stu R0, R2, R3 | the net's own first card at every trick, nothing else | `stu0-n`, `stu2-n`, `stu3-n` |
+| Stu-as-is, Gen 8 card play (not SiD) | both use double-dummy search | `stu0a`, `8p-32-v41` |
+
 ## The loop
 
 1. **Play.** The rollout bot plays itself; every decision's record keeps the rollout means of its candidate cards.
@@ -221,6 +236,180 @@ rollout of every legal card: at 128 layouts and 4 candidates pure Stu gives up 0
 layouts +0.001 +- 0.002 (0.83 s a decision against 0.35), 256 +0.002 +- 0.002, 6 candidates -0.0001 +- 0.0013, no race
 +0.001 +- 0.002, 64 layouts +0.003 +- 0.002 (0.26 s), 32 layouts +0.007 +- 0.003. The budget is saturated at 128. The
 reference rates by the same rollouts, so this is the noise part of the budget's cost, not whether the values are right.
+
+## Round 3 at the table (00:00 to 02:20 UTC on 14 November)
+
+| Test | Result (IMPs a board) |
+| --- | --- |
+| SiD (net) Stu R3 against Gen 8, by deal minus SiD (net) Stu R0, deals 0-999 | +0.18 +- 0.14 (1,000) |
+| the same, minus SiD (net) Stu R2, deals 500-999 | -0.14 +- 0.18 (500) |
+| **SiD (net) Stu R3 head to head against SiD (net) Stu R0**, gate seed deals 1,000-4,999 (`h3-n`) | **+0.40 +- 0.07 (4,000)** |
+| **SiD (net) Stu R3 head to head against SiD (net) Stu R2**, the same deals (`h32-n`) | **+0.19 +- 0.06 (4,000)** |
+| SiD (rollout, net lead) Stu R3 against Gen 8, minus Stu R0's, deals 500-999 (`l3-p` against `l0b-p`) | -0.09 +- 0.19 (500) |
+| SiD (rollout, net lead) Stu R3 against BEN (64), minus Stu R0's, deals 0-255 (`b3-p` against `b0-p`) | +0.21 +- 0.22 (256) |
+| SiD (rollout) Stu R3 head to head against SiD (rollout) Stu R0, gate seed deals 5,000-6,999 (`h3-p`, `h3-pb`) | see PLAN.md |
+
+## Round 3 inside the rollouts, diagnosed (02:30 to 05:45 UTC on 14 November)
+
+The net got better alone (head to head R3 against R0 +0.40 +- 0.07) and not inside the rollouts (-0.13 +- 0.09). What
+was tried, IMPs a board, +- standard error (boards); "reference" is SiD (rollout) Stu R0 (`stu0-ps`):
+
+| Test | Result |
+| --- | --- |
+| The seats draw from the net: R3 told it is Stu is flatter (0.94 nats against 0.55), its drawn card gives up more (`draw_regret.py`) | top card 0.0608 against R0's 0.0631; drawn 0.0791 against 0.0731 tricks a decision |
+| R3 inside, the draw sharpened (power 2), by deal minus plain draw (`h3-p2`) | +0.05 +- 0.17 (1,000) |
+| R3 inside, the seats play the top card, by deal minus plain draw (`h3-pg`) | -0.01 +- 0.17 (1,000) |
+| R3 inside **and at the table** (one net, `stu3-pst`), head to head against the reference (`h3-pt`, `h3-ptb`) | **+0.16 +- 0.09 (2,000)** |
+| the one-net bot against Gen 8, by deal minus R3 inside only (`l3-pst` against `l3-p`) | +0.12 +- 0.23 (500) |
+| the one-net bot against BEN (200), by deal minus R3 inside only (`b3-pst200` against `b3-ps200`), partial | -0.17 +- 0.35 (237) |
+| R3 inside, blind (told nothing about its opponent), against Gen 8, by deal minus `l3-p` (`l3-pu`) | -0.09 +- 0.20 (500) |
+| A net from Gen 8's rows only against one from as many rows of v2's mix (top card on Stu's rows; `exp_strong.sh`) | STRONG 0.0716, MIX 0.0746 at 512 wide; full v2 0.0631: volume with bot ids beats subsetting |
+
+Sharper seats do nothing. One net helps against its own family; against outside opponents it is not yet shown (the
+1,024-board BEN pair and the Gen 8 pair are queued). The worry (Max): a net at the table that was trained on an
+opponent's games reads that opponent's cards, which is knowledge of the opponent, not strength.
+
+**Where the tricks go** (`bench/dd_ledger.py`: every card rated by double dummy on the deal as it lay; hindsight, which
+flatters Gen 8; SiD (rollout, net lead) Stu R3 and Gen 8 against each other, `l3-p`, 994 tables each):
+
+| Tricks given up a table | SiD | Gen 8 |
+| --- | --- | --- |
+| opening lead | 0.120 | 0.103 |
+| declaring, tricks 1-4 / 5-8 / 9-13 | 0.153 / 0.100 / 0.022 | 0.106 / 0.099 / 0.031 |
+| defending, tricks 1-4 / 5-8 / 9-13 | 0.136 / 0.093 / 0.024 | 0.111 / 0.055 / 0.013 |
+| cards that turn the contract, a 100 tables | 17.5 | 13.5 |
+
+SiD's tricks go early and in defence; of them 0.479 a table were a candidate the rollouts rated lower, 0.048 a card the
+net's prior left out. Against BEN (200) the same split holds for SiD R0, R3 and the one-net bot.
+
+**BEN (200) baselines**, deals 0-255: SiD (rollout) Stu R0 -0.13 +- 0.24, R3 -0.04 +- 0.26, Gen 8 -0.16 +- 0.26 (R3 minus
+R0 by deal +0.09 +- 0.29). **The gate is BEN (200)** (Max, 04:23 UTC); matches against our own bots and Gen 8 are diagnostics.
+BEN is installed on azure2 and azure6 as on azure3 (`ben_install.sh`, checked against `ben/manifest.json`).
+
+**BEN in the training data:** in round 3's set BEN is at the table in 528 of 30,816 deals (1.7%; 2.8% of rows, half of
+them BEN's own cards), all from the replayed pre-loop set (17.8% of its deals). The loop's own collections have none.
+
+**The guarantee and Pavlicek's fifty trump strip squeezes** (`tests/test_squeeze_endings.py`; test positions only, never
+trained on): double dummy agrees with his count and lead in all fifty. As drawn, five are certain from declarer's view;
+the rest depend on which defender holds cards of a suit both still hold, which no show-out settles. In the 25 versions
+where show-outs fix every card (20 of the 50 techniques) the logic finds his count every time, each lead rated as
+double dummy rates it.
+
+**Noise in the data from 05:40 UTC** (Max, 05:37): Gen 8 had none (`near_tie` 0, its net's favourite among exact ties).
+Its self-play is now played by its personalities at margin 0 (`bridge_harness/style.py`: among exactly tied cards the one
+the style prefers, a random one 15% of the time), six pairs in turn; Stu's self-play twins mix their defenders' equal cards.
+
+**Boxes from about 06:15 UTC** (Max, 05:24 and 05:30): azure1 and azure5 Gen 8's self-play (azure5 after about 3 hours of
+style calibration), azure2 and azure6 the one-net Stu R3's self-play, azure3 the test box (BEN through the release, then
+the other tests). Round 4 is cut after about 6 hours of collection (about 43,000 tables), with the arena's Gen 8 and Gen 9
+feeds (about 21,500 boards without BEN), and gated on BEN (200) on the 2,560 deals the one-net Stu R3 has played there.
+
+## Human boards as training data (`exp_human.sh`, `usbc/human_episodes.py`, `usbc/human_sets.py`; Max, 09:25 to 09:45 UTC on 14 November)
+
+Max: "Take the adult boards. Train a net on them. Have it play, net only, against a net trained on the same number of bot
+boards"; then "fine tuned model and from scratch", "rollouts on both", the human boards "with a medium set of other
+boards", "with higher weights"; "this is the big question". azure5 was lent to it from 09:50 UTC (its Gen 8 collection
+paused). The boards are the adult USBCs (Open, Senior, Mixed, Women's) of 2021 to 2023 from the vugraph records; the
+target is the card the expert played (no rollout values); the net knows them as a bot of its own, `usbc`. **The 2025
+USBCs and every junior event stay test data**, and a net trained on these tables can be benchmarked on nothing else of the
+USBCs. A familiar auction is one whose every call the common bidder gives at least 0.05: 3,841 of the 22,269 usable
+tables (17%), on 1,556 of the 3,569 deals.
+
+Matches are the nets alone (first card, no rollouts) on the gate's seed from deal 30000, IMPs a deal for the first net,
+by deal. "Offline" is the tricks the net's first card gives up against the rollouts' values on 998 held-out boards of the
+one-net SiD's self-play (32,596 rated decisions), paired, the standard error clustered by deal (`regret_pairs.py`).
+
+| Question | Nets | Match | Offline |
+| --- | --- | --- | --- |
+| Teacher against teacher, 1,556 boards each, from scratch (256 wide) | human boards against SiD self-play boards | **+0.94 +- 0.09** (4,000) | 0.101 against 0.106 |
+| The same, round 3's net fine-tuned (4 epochs at 1e-4) | human against SiD boards | +0.14 +- 0.05 (8,000) | 0.0645 both (round 3's net 0.0659) |
+| Both together, playing as SiD | against SiD boards alone | +0.08 +- 0.04 (8,000) | -0.0006 +- 0.0005 |
+| Round 4 in small: round 1's net tuned as a round is on 10,000 pure-Stu boards (0.0676 offline), with human tables added | 1,556 (one familiar table a deal) | +0.08 +- 0.04 (6,000) | -0.0013 +- 0.0003 |
+| | those four times over | +0.20 +- 0.05 (6,000) | -0.0017 +- 0.0004 |
+| | 3,841 (every familiar table) | +0.17 +- 0.05 (4,000) | -0.0015 +- 0.0004 |
+| | 22,269 (every table, auctions as bid) | **+0.24 +- 0.06** (4,000) | -0.0016 +- 0.0005 |
+| | 22,269, the unfamiliar auctions blanked | +0.23 +- 0.06 (4,000) | 0.0660 against 0.0676 |
+| From scratch on those 10,000 boards (512 wide), with the 1,556 | against without | +0.21 +- 0.11 (2,000) | -0.0014 +- 0.0009 |
+| From scratch at full size (512 wide, 6 epochs): every human table (22,269; 630,296 rows) | against as many pure-Stu boards (920,187 rows) | -0.03 +- 0.11 (2,000) | 0.0754 against 0.0787 |
+| The same, both sets together, playing as SiD | against the pure-Stu boards alone | **+0.79 +- 0.08** (4,000) | 0.0730 against 0.0787 |
+| The same, both sets together | against the human tables alone (Max, 14:31 UTC: do bot boards add to the human ones?) | **+0.71 +- 0.08** (4,000) | 0.0730 against 0.0754 |
+| Inside the one-net rollout bot (250 deals each): the 10,000-board net with the 1,556 four times over | against without | +0.22 +- 0.27 | |
+| Inside it: round 3's net fine-tuned on the human boards | against on SiD boards | +0.27 +- 0.28 | |
+| Inside it: the from-scratch net of the human boards (1,556) | against the SiD boards' | -0.01 +- 0.32 | |
+
+- **The human boards are the better teacher board for board**, by nearly an IMP a deal from scratch, although a human board
+  carries fewer decisions (29 against 41: experts claim earlier) and no values.
+- **Added to SiD's own boards they help at every dose, and more of them helps more** in the matches (+0.08, +0.17, +0.20,
+  +0.24). Offline the gain is there at the smallest dose and does not grow clearly (-0.0013 to -0.0017 a decision, about
+  0.05 tricks a board; the opening lead gains most). The 10,000-board net with human tables scores what round 3's
+  28,000-board net does (difference 0.0000 +- 0.0005).
+- **Unfamiliar auctions cost nothing**: every table as bid and every table with the unfamiliar auctions blanked play the
+  same (+0.24, +0.23), so the 18,428 tables our bidder would not have bid that way are as usable as the others.
+- **At full size the two teachers are equal board for board** (-0.03 +- 0.11), and together they beat Stu's boards alone by
+  +0.79, and beat the human tables alone by +0.71: at this size each set adds about as much to the other, so most of
+  the gain is twice the data, and Stu's boards still add on top of the human ones. (This is from scratch at 44,000
+  tables; it does not say how much more bot boards add at round 4's 103,000 deals on top of round 3's net.) The
+  22,269 human tables are 3,569 deals, about six tables each. As data they are worth about what 22,000 self-play tables
+  are, which is about 18 box-hours of the one-net bot.
+- **Inside the rollout bot it does not show**: three matches of 250 deals, +0.22, +0.27 and -0.01, each +-0.3. The last
+  is the pair that differs by +0.94 alone: a net nearly an IMP better alone made no visible difference inside the
+  rollouts. A better net alone is not yet a better bot; an effect of 0.1 to 0.2 inside needs several thousand deals.
+  That is the BEN gate's job (round 4 below).
+- Not finished: every table against the familiar tables only, directly (`xh-m10A-F`, stopped at 1,134 deals for round 4's
+  cut), and blanked against as bid directly (`xh-m10B-A`, not started); two more rollout pairs (`xh-s10h-p`, `xh-m10h-p`).
+- Void: `xh-s10h-n` (its two nets were kept at different epochs; replayed as `xh-s10h-n6`). A from-scratch net's epoch is
+  not chosen by its log-loss on the one-net bot's rows: that rises while the tricks given up fall (the rows' defenders
+  mix their equal cards), so the last epoch is kept.
+
+**Round 4 is therefore cut in two nets** (Max, 09:39: "If we aren't sure we can do a R4a and an R4b"): `stu4`, the round as
+planned plus every human table (as bid; they draw no replay rows, `round2.sh` NOREPLAY, so both nets train beside the same
+replay), and `stu4c`, the control without them. Both are gated blind on BEN (200) in turns on the same deals
+(`jobs-azure3-ben8.txt`), after a nets-alone match between them (`jobs-azure5-r4.txt`).
+
+**The cut (12:41 to 12:56 UTC on 14 November)**: 46,494 loop tables since round 3's cut (the one-net SiD's self-play 15,768,
+pure Stu with round 3's net 7,192, pure Stu on rollouts alone 7,641, Gen 8's self-play 15,893), with round 3's 28,000
+about 3.1 million rows; and 23,067 arena records not in v2's set (1,157 with BEN, 1.7% of the round's new boards).
+**The first try at the training failed in its sizing** (`loop-201`, 12:50 UTC): an arena record carries about 600 rows
+(root and fork tables, both rooms), so the arena came to about 14 million rows against the loop's 3.1 million; with as
+many replay rows again the set would have been about 30 million rows, more than azure5's free disk (26 GB) and two hours a
+net. It was also sent as one long command, which holds the box's queue until it ends. `round4.sh` is the round as it
+should be, a unit of its own: the arena's rows from a sample of the records (500 of the BEN feed, 2,100 of the others,
+about 1.5 million rows), a third as many replay rows (arena and replay together about the loop's rows, the share other
+bots' rows had in round 3), each net's big files removed when it is done, nothing started under 14 GB of free disk.
+
+**Round 4 as trained (14:09 to 15:16 UTC)**: the arena sample 2,600 records, 1,719,627 rows; 12,101 own records (498,784
+rows; 300 held out, 300 for the test); 68 row files from the other boxes; 1,591,633 replay rows (3,972 of v2's deals); the
+human tables drawing no replay. Training set 102,811 deals, 6,996,453 rows; round 1's net, 4 epochs at 1e-4, about 25
+minutes a net. `stu4` sha256 edc5d6cf..., `stu4c` e4b689c8...
+
+| Offline, tricks the first card gives up a decision (paired, SE by deal) | All | Tricks 9-13 |
+| --- | --- | --- |
+| Round 3's net -> stu4, round 4's test set (300 deals, 9,522 rows) | -0.0012 +- 0.0008 | -0.0043 +- 0.0021 |
+| Round 3's net -> stu4c, the same | -0.0015 +- 0.0008 | -0.0042 +- 0.0022 |
+| stu4c -> stu4, the same | +0.0003 +- 0.0006 | -0.0001 +- 0.0016 |
+| stu4c -> stu4, the one-net SiD's held-out rows (998 deals, 32,596 rows) | **-0.0010 +- 0.0003** | -0.0013 +- 0.0008 |
+
+Together the two test sets give stu4 about -0.0007 +- 0.0003 a decision over the control (about 0.03 tricks a board),
+smaller than the -0.0013 to -0.0017 of the small version, where the human rows were a larger share. Round 3's blind
+baseline against BEN (200) finished at -0.09 +- 0.09 (2,047 deals); round 4's gate began on azure3 at 14:55 UTC.
+
+## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
+
+lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
+Eight more servers on azure3's lanes (port 8090) with those two lines and min_sample_hands_play_bad 20 changed, every
+other setting as the lane's BEN (64). Deals 0 to 255, card play only:
+
+| | IMPs a board | Wall clock a lane, 32 boards |
+| --- | --- | --- |
+| BEN (200) against BEN (64), for BEN (200) | +0.07 +- 0.14 | 50 min |
+| Gen 8 against BEN (200) | -0.11 +- 0.27; by deal minus Gen 8 against BEN (64), -0.22 +- 0.21 | 28.4 min |
+| Gen 8 against BEN (64) | +0.09 +- 0.27 | 27.0 min |
+
+Gen 8's own process time is 12.2 CPU-s a board against BEN (64) and 13.2 against BEN (200) (about 6 a table side), so
+of the wall clock BEN (64) takes about 19 s a table side and BEN (200) about 20: BEN's time is mostly fixed a card
+(sampling 5,000 boards, its networks), and 200 samples cost about 5% of it. (A first reading at 01:40 UTC that put Gen
+8 at 2 s a table side was wrong: it solved the three clocks without Gen 8's measured time.) From round 4's
+measurements on, BEN means BEN (200).
 
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
 

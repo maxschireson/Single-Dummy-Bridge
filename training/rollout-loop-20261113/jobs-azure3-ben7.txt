@@ -1,0 +1,13 @@
+# The gate, blind (Max, 06:22 UTC on 14 November: "We should only grade the bot on 'blind' opponents"): the bot is told nothing
+# about who sits against it (no name to its net, BEN's cards read at the weight of an opponent never met). In place of the
+# non-blind blocks of jobs-azure3-ben5.txt and -ben6.txt, which stopped here. ben_session.sh on azure3's lanes.
+#   the one-net bot blind (stu3-put) and the two-net bot blind (stu3-psu), the same deals, in turns of 256
+bu3-pst200a stu3-put~ben200 131 0 256 8 --episodes
+bu3-ps200a stu3-psu~ben200 131 0 256 8 --episodes
+bu3-pst200b stu3-put~ben200 131 256 256 8 --episodes
+bu3-ps200b stu3-psu~ben200 131 256 256 8 --episodes
+bu3-pst200c stu3-put~ben200 131 512 512 8 --episodes
+bu3-ps200c stu3-psu~ben200 131 512 512 8 --episodes
+#   then the one-net bot blind on more deals until round 4's cut: round 4's bot, blind, plays the same deals
+bu3-pst200d stu3-put~ben200 131 1024 512 8 --episodes
+bu3-pst200e stu3-put~ben200 131 1536 512 8 --episodes

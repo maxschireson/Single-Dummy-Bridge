@@ -79,6 +79,22 @@ class SettingsTests(unittest.TestCase):
         self.assertEqual(full['claims']['opponents'], ['a'])
         json.dumps(full)
 
+    def test_later_settings_are_pinned_only_where_set(self):
+        """The seat settings of 14 November (cut, seat_other, power_other, cut_other) and `blind` are written into a
+        manifest only where a bot sets them, so a bot without them pins what it always pinned."""
+        old = resolved(dict(stages=[dict(mode='rollout', from_trick=1, seat='draw')], lead=dict(layouts=128)))
+        for block in (old['stages'][0], old['lead']):
+            self.assertFalse({'cut', 'seat_other', 'power_other', 'cut_other'} & set(block))
+        self.assertNotIn('blind', old)
+        new = resolved(dict(stages=[dict(mode='rollout', from_trick=1, seat='top', seat_other='draw', cut_other=.25)], blind=True,
+                            names={'self': 'a', '*': '', 'they_see': ''}))
+        self.assertEqual((new['stages'][0]['seat_other'], new['stages'][0]['cut_other'], new['blind']), ('draw', .25, True))
+        self.assertNotIn('cut', new['stages'][0])
+        self.assertEqual(new['names']['they_see'], '')
+        for bad in (dict(stages=[dict(seat_other='deep')]), dict(stages=[dict(cut=1.)]), dict(stages=[dict(cut_other=-.1)]), dict(blind=1)):
+            with self.assertRaises(ValueError):
+                resolved(bad)
+
     def test_bad_settings_are_refused(self):
         for block in (dict(stages=[dict(mode='deep')]), dict(stages=[dict(from_trick=5, to_trick=4)]), dict(stages=[dict(nonsense=1)]),
                       dict(stages=[dict(from_trick=3, to_trick=6), dict(from_trick=6, to_trick=9)]), dict(claims=dict(cards=14)),
@@ -212,6 +228,70 @@ class RolloutTests(Fixture8):
                         told += len(free)
                     rows.play(got)
         self.assertGreater(told, 100)
+
+    def test_the_other_side_can_take_its_cards_another_way(self):
+        """`other`: the deciding side's seats play by the seats' own settings, the other side's by `other`; a `cut` keeps a
+        draw among the cards at least that share as likely as the likeliest; `seen` is what the other side is told about
+        the deciding side's bot. With neither `other` nor a cut the cards are what they always were."""
+        from bridge_harness.gen7_net import PolicyNet, forward, log_softmax
+        from bridge_harness.plan_rollout import inputs
+        p = self.make()
+        with np.load(self.root / 'gen7.npz') as z:
+            params = {k: z[k] for k in z.files}
+        width = params['bt0'].shape[0]
+        r = np.random.default_rng(4)
+        params.update(emb_own=(2 * r.standard_normal((3, width))).astype(np.float32), emb_other=(2 * r.standard_normal((3, width))).astype(np.float32),
+                      bot_vocab=np.array(['?', 'me', 'them']))
+        np.savez(self.root / 'who2.npz', **params)
+        net = PolicyNet(self.root / 'who2.npz', p.scorer)
+        own_rows = other_rows = off_top = 0
+        for seed in range(6):
+            _, o, world = spot(seed, 9 + 4 * seed)
+            rng = random.Random(seed)
+            worlds = [world] + [shuffled(o, world, rng) for _ in range(5)]
+            plain, split = Seats([net], 'draw', seed=seed, who=('me', 'them')).start(o), \
+                Seats([net], 'top', seed=seed, who=('me', 'them'), seen='nobody', other=dict(mode='draw', cut=.5)).start(o)
+            same = Seats([net], 'draw', seed=seed, who=('me', 'them'), other=None, cut=0.).start(o)
+            rows = Rows(o, worlds)
+            rows.play(np.full(rows.n, o.legal[0]))
+            while not rows.done:
+                first, free, _ = plain.cards(rows)
+                np.testing.assert_array_equal(first, same.cards(rows)[0])       # the same seed, the same draws: nothing moved
+                got, free2, logp = split.cards(rows)
+                np.testing.assert_array_equal(free, free2)
+                if len(free):
+                    b = {k: v[free] for k, v in inputs(rows, split.publics[0]).items()}
+                    mine = rows.controller()[free] % 2 == o.controller % 2
+                    b['bot_own'] = np.where(mine, 1, 2)
+                    b['bot_other'] = np.where(mine, 2, 0)                        # the other side is told nothing about this bot
+                    want = log_softmax(forward(net.params, b)['policy'])
+                    np.testing.assert_allclose(logp, want, rtol=1e-5, atol=1e-5)
+                    legal = rows.legal()[free]
+                    top = np.where(legal, want, -np.inf).argmax(axis=1)
+                    np.testing.assert_array_equal(got[free][mine], top[mine])   # its own side: the likeliest card
+                    pick = want[np.arange(len(free)), got[free]]
+                    self.assertTrue(legal[np.arange(len(free)), got[free]].all())
+                    self.assertTrue((np.exp(pick[~mine]) >= .5 * np.exp(want.max(axis=1)[~mine]) - 1e-6).all())    # the others: drawn, within the cut
+                    own_rows += int(mine.sum()); other_rows += int((~mine).sum()); off_top += int((got[free][~mine] != top[~mine]).sum())
+                rows.play(first)
+        self.assertGreater(own_rows, 50)
+        self.assertGreater(other_rows, 50)
+        self.assertGreater(off_top, 0)              # the other side's cards are drawn: not always its likeliest
+
+    def test_a_blind_bot_is_told_nothing_about_its_opponent(self):
+        """`blind`: whoever sits against the bot, every setting keyed by the opponent's id takes its '*' value."""
+        settings = dict(names={'self': 'me', 'known': 'them', '*': ''}, mix=dict(read_declarer=['known']), claims=dict(opponents=['known']))
+        weights = dict(opponent_play_weight={'known': 1., '*': .3})
+        told, blind = self.make8(x8=settings, gen7=weights), self.make8(x8=dict(settings, blind=True), gen7=weights)
+        for p in (told, blind):
+            p.meet('known')
+        self.assertEqual((told.opponent_id, told.opponent_factor), ('known', 1.))
+        self.assertEqual((blind.opponent_id, blind.opponent_factor), (None, .3))
+        _, o, _ = spot(1, 9)
+        if o.controller % 2 == o.contract.declarer % 2:      # a defender's view: the declarer is the opponent whose cards are read
+            _, o, _ = spot(1, 10)
+        self.assertEqual(o.contract.declarer in told.mixers(o), o.controller % 2 != o.contract.declarer % 2)
+        self.assertNotIn(o.contract.declarer, blind.mixers(o))
 
     def test_forks_replay_to_their_seat_and_their_results(self):
         p = self.make()

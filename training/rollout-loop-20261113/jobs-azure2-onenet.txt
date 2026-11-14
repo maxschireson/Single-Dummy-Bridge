@@ -1,0 +1,14 @@
+# One net against an opponent outside the family (04:20 UTC on 14 November). Round 3's net inside AND at the table beat the
+# reference bot +0.16 +- 0.09 head to head (h3-pt, h3-ptb); the same net inside only stood at -0.13 +- 0.09 (h3-p, h3-pb).
+# The reference is the bot whose games the net was trained on, so the check is Gen 8 card play, gate seed, the deals of
+# l3-p (500 to 999) and 500 more:
+#   l3-pst, l3-pstb   SiD (rollout) Stu R3 with round 3's net at the table too
+#   l3-ps, l3-psb     the control: the same bot with policy v4.1 at the table
+#   l3-put            l3-pst told nothing about who sits against it (blind)
+# Then the split-seat test this box was to play (h3-px), which the first sharpened-seat results make less likely to matter.
+l3-pst stu3-pst~8p-32-v41 131 500 500 8 --episodes
+l3-ps stu3-ps~8p-32-v41 131 500 500 8 --episodes
+#stopped l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
+#stopped l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
+#stopped l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
+#stopped h3-px stu3-px~stu0-ps 131 5000 1000 8

@@ -271,6 +271,45 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   nets alone now meet each other head to head on 4,000 new gate-seed deals (`jobs-azure5-h3.txt`: round 3 against v2,
   round 3 against round 2), about +-0.05. Flat there, and the rule applies: the next lever is the rollouts' values.
 
+- **The powered tests (00:20 to 02:40 UTC on 14 November), head to head on new gate-seed deals:** SiD (net) Stu R3
+  against SiD (net) Stu R0 +0.40 +- 0.07 and against SiD (net) Stu R2 +0.19 +- 0.06 (4,000 deals each); against SiD
+  (net) v4.1, the table net of every SiD (rollout) bot, +1.36 +- 0.07. But SiD (rollout) Stu R3 against SiD (rollout)
+  Stu R0: -0.13 +- 0.09 (2,000 boards). Indicator 2 rises; indicator 3 does not.
+- **Max's reading (02:21 UTC):** the loop's tables taught the net Stu's habits, a weaker player than the search bots v2
+  learned from, so the simulated seats imagine weaker play. The sandbox control fits it: a net that imitates the search
+  bots better lifts the rollout bot (v4.1 against v4, +1.18 alone: +0.29 +- 0.15 inside, +0.79 +- 0.27 as the whole
+  bot). **His plan (02:31 UTC):** generate the best data the strongest bots can make, add its volume to Stu's net, and
+  ramp Stu's own rollout data in (or build a lot of it and restart) once a net that imitates the rollouts beats one
+  that imitates the other bots inside the rollouts.
+- **Running on it:** `exp_strong.sh` (a net from Gen 8 card play's rows of v2's set only, 3.67 million, against one from
+  as many rows in v2's mix, each from scratch at 512 and 768 wide; then head to head alone and inside the rollouts), and
+  the table net (`stu3-pst`, round 3's net inside and at the table, against SiD (rollout) Stu R0 on 2,000 boards).
+  Gen 8's data costs about 6 CPU-s a table side (fp32) against SiD (rollout)'s 9 (bf16) to 12 (fp32), so its self-play
+  makes about 1.5 to 2 times the tables a box-hour; the arena's feeds already hold about 25,000 Gen 8 and 9 episodes
+  newer than v2's set. From 02:50 UTC azure1 makes Gen 8's self-play records (`sg8e`, `g8a~g8b`).
+
+## Max's decisions, 14 November (UTC), from 02:30
+
+| When | His words | What follows |
+| --- | --- | --- |
+| 02:43 | "we should only be doing enough self play to see where we are" | Gen 8's self-play as data; Stu's own only as much as tells where we are |
+| 03:35 to 03:50 | personalities, "mostly directed... a bit of random", "Average in a mixed pop. Half an imp... was too much" | `style.py`; doses set for about a quarter IMP a board across the population |
+| 04:02 to 04:10 | partners' knowledge and disclosure random (knowledge 0 to 80%, disclosure usually 75% of it, 0 to 150%), per dimension, correlated (centred 0.6, -0.2 to 0.8) | the population's dials (not built yet) |
+| 04:10 | "Simpler to have one not two" | one net at the table and in the rollouts (`stu3-pst`) |
+| 04:17 | "test with 4.1 everywhere vs Ben, but let's settle the other issues first" | `b41-ps200` last in azure3's BEN queue |
+| 04:23 | "the gate should be on Ben" | the verdict on a bot is its by-deal difference on BEN (200) |
+| 04:28 | "don't go down in a cold game or slam" | the IMP objective (`stu3-psti`, `h3-pi`); the guarantee already covers certain contracts |
+| 04:30 | BEN's share of training "low" | BEN tables out of the arena feeds; out of the replay from round 4 |
+| 04:34 | Pavlicek's trump strip squeezes, "do not train the net on them" | `tests/test_squeeze_endings.py` |
+| 05:24 to 05:32 | two boxes of each self-play, one for tests; go longer before the release; one box measuring BEN through it; borrow 3 hours for styles | box roles above; round 4 at about 6 hours |
+| 05:31 | arena boards from Gen 9 | the feeds go into round 4 without BEN |
+| 05:37 | noise in the data now | Gen 8's personalities at margin 0 in its self-play |
+| 06:22 | "We should only grade the bot on 'blind' opponents"; BEN's share "about the same" | the gate is blind (`stu3-put`); BEN at round 3's share |
+| 09:25 to 09:45 | train a net on the USBC's adult boards against one on as many bot boards; "you can take a machine"; "this is the big question" | `exp_human.sh` on azure5: the human tables help at every dose (README) |
+| 09:39 | "If we aren't sure we can do a R4a and an R4b" | round 4 in two nets: `stu4` with every human table, `stu4c` without |
+| 09:37 | the USBC analysis waits until this and round 4 are driven | the claims-played-out rescoring is paused at 99 of 270 sessions |
+| 15:39 | "If there is not a clear gain from the human boards that makes it through, I would rather not use them" | `stu4c` is round 4's net unless `stu4` leads it by more than two SEs inside the bot (`h4c-pst`, or the gate's first 512 deals each); then the gate's time goes to `stu4c` alone |
+
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
 Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the

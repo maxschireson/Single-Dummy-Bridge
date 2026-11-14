@@ -1,0 +1,8 @@
+# Round 4's two nets on azure5 once trained (rungs.sh pauses the collection for it): stu4 has the USBC's human tables in its
+# training, stu4c is the control without them. Alone, against each other and each against round 3's net, on the gate's seed
+# from deal 30000 (the human-boards experiment's deals: in no collection and no gate block); then inside the one-net bot,
+# each told it faces Stu, on 500 deals from 36000.
+h4c-n stu4-n~stu4c-n 131 30000 8000 8
+h43-n stu4-n~stu3-n 131 30000 4000 8
+h4c3-n stu4c-n~stu3-n 131 30000 4000 8
+h4c-pst stu4-pst~stu4c-pst 131 36000 500 8 --episodes

@@ -22,6 +22,17 @@
   "pure-sl": "pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on",
   "pure-rl": "pure with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on",
   "pure-rs": "pure with the opening lead from rollouts on the settings of every other card (at most 4 candidates by the net's prior, 32 then up to 128 layouts with the race); rollouts alone from the second card on",
+  "pure-rs-t": "pure-rs with the round's net at the table too (candidates, reading the play) in place of policy v4.1",
+  "pure-rs-p2": "pure-rs, the simulated seats drawing from the probabilities squared (power 2)",
+  "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
+  "pure-rs-split": "pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as the likeliest, the other side among those at least a quarter as likely",
+  "pure-rs-t-imps": "pure-rs-t with the rollouts choosing by IMPs in place of mean tricks",
+  "pure-blind-rs": "pure-rs, told nothing about who sits against it",
+  "pure-blind-t": "pure-rs-t (the round's net at the table too), told nothing about who sits against it",
+  "pure-rs-mix": "pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too",
+  "pure-blind": "pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown player, their cards read at the weight of an opponent never met and as a side that may play any equal card",
+  "pure-blind-split": "pure, told nothing about who sits against it, the simulated seats split by side, its defenders playing a random one of their equal cards",
+  "net-d": "the net alone, every card drawn from its probabilities (as a simulated seat of the rollouts draws)",
   "net-s": "the net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards within a limit on forgetting)",
   "pure-t": "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
   "pure-v": "pure, the rollouts' simulated seats playing by the net's value head (seat blend) in place of a draw from its probabilities",
@@ -245,7 +256,400 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "s8-greedy",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
    "queue_order": 3
+  },
+  {
+   "name": "s8-patient",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-patient~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 4
+  },
+  {
+   "name": "s8-active",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-active~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 5
+  },
+  {
+   "name": "s8-passive",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 6
+  },
+  {
+   "name": "s8-high",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-high~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
+   "name": "s8-low",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-low~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 8
+  },
+  {
+   "name": "s8-greedy0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 9
+  },
+  {
+   "name": "s8-passive0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 10
+  },
+  {
+   "name": "sg8f",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 520000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:40 UTC on 14 November: Gen 8's self-play records from here are played by its personalities (sg8s, sg8t)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8t1",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 730000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 11
+  },
+  {
+   "name": "sg8t2",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 732000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 12
+  },
+  {
+   "name": "sg8t3",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 734000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 13
+  },
+  {
+   "name": "sg8t4",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 736000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 14
+  },
+  {
+   "name": "sg8t5",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 738000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 15
+  },
+  {
+   "name": "sg8t6",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 740000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 16
+  },
+  {
+   "name": "sg8t7",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 742000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 17
+  },
+  {
+   "name": "sg8t8",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 744000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 18
+  },
+  {
+   "name": "sg8t9",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 746000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 19
+  },
+  {
+   "name": "sg8t10",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 748000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 20
+  },
+  {
+   "name": "sg8t11",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 750000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 21
+  },
+  {
+   "name": "sg8t12",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 752000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 22
   },
   {
    "name": "spr0",
@@ -600,7 +1004,334 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8i",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 580000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:30 UTC on 14 November: azure3 is the test box; Gen 8 records only when its tests are done (sg8j)",
+   "queue_order": null
+  },
+  {
+   "name": "l3-put",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu3-put~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
    "queue_order": 12
+  },
+  {
+   "name": "l3-pstb",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu3-pst~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 13
+  },
+  {
+   "name": "l3-psb",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ladder",
+   "pair": "stu3-ps~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 14
+  },
+  {
+   "name": "s8-greedy",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-greedy~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-patient",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-patient~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-active",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-active~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-passive",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-passive~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-high",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-high~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-low",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-low~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-greedy0",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "s8-passive0",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-passive0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "h3-pm",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pm~stu3-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-mix"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "queue_order": 15
+  },
+  {
+   "name": "h41-p",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "head-to-head",
+   "pair": "stuv41-ps~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v4.1",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 16
+  },
+  {
+   "name": "h41-pb",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "head-to-head",
+   "pair": "stuv41-ps~stu0-ps",
+   "seed": 131,
+   "first": 5500,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v4.1",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 17
+  },
+  {
+   "name": "sg8j",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 640000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 18
   },
   {
    "name": "spr0b",
@@ -703,6 +1434,52 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8g",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 540000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:30 UTC on 14 November: the box makes the one-net Stu R3's self-play records instead",
+   "queue_order": null
+  },
+  {
+   "name": "sp3tb",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "stu3-psta~stu3-pstb",
+   "seed": 9001,
+   "first": 620000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "tables_a_board": 1,
    "queue_order": 1
   },
   {
@@ -750,7 +1527,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 4
+   "queue_order": 23
   },
   {
    "name": "l2b-pv",
@@ -771,7 +1548,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 5
+   "queue_order": 24
   },
   {
    "name": "l0b-pt",
@@ -974,6 +1751,52 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8h",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 560000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:30 UTC on 14 November: the box makes the one-net Stu R3's self-play records instead",
+   "queue_order": null
+  },
+  {
+   "name": "sp3t",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "collection",
+   "pair": "stu3-psta~stu3-pstb",
+   "seed": 9001,
+   "first": 600000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "tables_a_board": 1,
    "queue_order": 1
   },
   {
@@ -1077,7 +1900,256 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "02:50 UTC on 14 November: the box makes Gen 8 card play's self-play records instead",
+   "queue_order": null
+  },
+  {
+   "name": "sg8e",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 500000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:40 UTC on 14 November: Gen 8's self-play records from here are played by its personalities (sg8s, sg8t)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8s1",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 700000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
    "queue_order": 1
+  },
+  {
+   "name": "sg8s2",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 702000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 2
+  },
+  {
+   "name": "sg8s3",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 704000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 3
+  },
+  {
+   "name": "sg8s4",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 706000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 4
+  },
+  {
+   "name": "sg8s5",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 708000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 5
+  },
+  {
+   "name": "sg8s6",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 710000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 6
+  },
+  {
+   "name": "sg8s7",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 712000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 7
+  },
+  {
+   "name": "sg8s8",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 714000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 8
+  },
+  {
+   "name": "sg8s9",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 716000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 9
+  },
+  {
+   "name": "sg8s10",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 718000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 10
+  },
+  {
+   "name": "sg8s11",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 720000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 11
+  },
+  {
+   "name": "sg8s12",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 722000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 12
   },
   {
    "name": "spr0e",
@@ -1121,7 +2193,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 6
+   "queue_order": 25
   },
   {
    "name": "l3-n",
@@ -1142,7 +2214,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 7
+   "queue_order": 26
   },
   {
    "name": "l0c-n",
@@ -1163,7 +2235,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 8
+   "queue_order": 27
   },
   {
    "name": "l3-p",
@@ -1184,7 +2256,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 2
+   "queue_order": 13
   },
   {
    "name": "h3-n",
@@ -1208,7 +2280,7 @@
     "net": "v2",
     "rung": "net"
    },
-   "queue_order": 9
+   "queue_order": 28
   },
   {
    "name": "h32-n",
@@ -1232,7 +2304,7 @@
     "net": "stu2",
     "rung": "net"
    },
-   "queue_order": 10
+   "queue_order": 29
   },
   {
    "name": "h3-p",
@@ -1281,6 +2353,1609 @@
     "rung": "pure-rs"
    },
    "queue_order": 2
+  },
+  {
+   "name": "h3-nv41",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-n~n-v41",
+   "seed": 131,
+   "first": 7000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 9
+  },
+  {
+   "name": "hs-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stuS-n~stuM-n",
+   "seed": 131,
+   "first": 11000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 30
+  },
+  {
+   "name": "hs-p",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "head-to-head",
+   "pair": "stuS-ps~stuM-ps",
+   "seed": 131,
+   "first": 15000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 10
+  },
+  {
+   "name": "hs-pb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "head-to-head",
+   "pair": "stuS-ps~stuM-ps",
+   "seed": 131,
+   "first": 16000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 3
+  },
+  {
+   "name": "h3-pt",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pst~stu0-ps",
+   "seed": 131,
+   "first": 17000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 11
+  },
+  {
+   "name": "h3-ptb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pst~stu0-ps",
+   "seed": 131,
+   "first": 18000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 4
+  },
+  {
+   "name": "hd-n",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-nd~stu0-nd",
+   "seed": 131,
+   "first": 19000,
+   "deals": 2000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "net-d"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "net-d"
+   },
+   "queue_order": 14
+  },
+  {
+   "name": "h3-p2",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-p2~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-p2"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 15
+  },
+  {
+   "name": "h3-pg",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pg~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-top"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 31
+  },
+  {
+   "name": "h0-p2",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "head-to-head",
+   "pair": "stu0-p2~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs-p2"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 19
+  },
+  {
+   "name": "l3-pu",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu3-pu~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 12
+  },
+  {
+   "name": "l3-pux",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "ladder",
+   "pair": "stu3-pux~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-split"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 13
+  },
+  {
+   "name": "h3-px",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-px~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-split"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "stopped": "05:30 UTC on 14 November: dropped (sharper seats did nothing: h3-p2, h3-pg)",
+   "passes": [
+    1000,
+    1000
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "h3-pi",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-psti~stu3-pst",
+   "seed": 131,
+   "first": 17000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t-imps"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "queue_order": 16
+  },
+  {
+   "name": "h3-pib",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-psti~stu3-pst",
+   "seed": 131,
+   "first": 17500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t-imps"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "queue_order": 32
+  },
+  {
+   "name": "h3-pm",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pm~stu3-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-mix"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "l3-pst",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-pst~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 5
+  },
+  {
+   "name": "l3-ps",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-ps~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 6
+  },
+  {
+   "name": "l3-put",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-put~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "l3-pstb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-pst~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "l3-psb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-ps~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3",
+   "queue_order": null
+  },
+  {
+   "name": "b3-pst200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 20
+  },
+  {
+   "name": "b3-pst200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 21
+  },
+  {
+   "name": "b3-ps200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-ps~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 22
+  },
+  {
+   "name": "b3-pst200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 23
+  },
+  {
+   "name": "b3-ps200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-ps~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 24
+  },
+  {
+   "name": "b41-ps200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stuv41-ps~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v4.1",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 25
+  },
+  {
+   "name": "b3-ps200d",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "other",
+   "pair": "stu3-ps~ben200",
+   "seed": 131,
+   "first": 1024,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 14
+  },
+  {
+   "name": "b3-pst200e",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 1280,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 15
+  },
+  {
+   "name": "b3-pst200d",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 1024,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
+   "name": "b3-ps200e",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "other",
+   "pair": "stu3-ps~ben200",
+   "seed": 131,
+   "first": 1280,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 8
+  },
+  {
+   "name": "b0-pst200",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stu0-pst~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 33
+  },
+  {
+   "name": "b0-pst200b",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "other",
+   "pair": "stu0-pst~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 17
+  },
+  {
+   "name": "b3-pst200f",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 1536,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "b3-pst200g",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 2048,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "bu3-pst200a",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 26
+  },
+  {
+   "name": "bu3-ps200a",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-psu~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 27
+  },
+  {
+   "name": "bu3-pst200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 28
+  },
+  {
+   "name": "bu3-ps200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-psu~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 29
+  },
+  {
+   "name": "bu3-pst200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 30
+  },
+  {
+   "name": "bu3-ps200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-psu~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 31
+  },
+  {
+   "name": "bu3-pst200d",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 1024,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 32
+  },
+  {
+   "name": "bu3-pst200e",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 1536,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 33
+  },
+  {
+   "name": "xh-hf-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stuhf-n~stubf-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 8000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    2000,
+    8000
+   ],
+   "queue_order": 34
+  },
+  {
+   "name": "xh-mf-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stumf-n~stubf-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 8000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    2000,
+    8000
+   ],
+   "queue_order": 35
+  },
+  {
+   "name": "xh-hs-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stuhs-n~stubs-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    2000,
+    4000
+   ],
+   "queue_order": 36
+  },
+  {
+   "name": "xh-m10h-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10h-n~stum10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 6000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    2000,
+    6000
+   ],
+   "queue_order": 37
+  },
+  {
+   "name": "xh-m10h4-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10h4-n~stum10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 6000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "passes": [
+    2000,
+    6000
+   ],
+   "queue_order": 38
+  },
+  {
+   "name": "xh-s10h-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stus10h-n~stus10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 2000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 39
+  },
+  {
+   "name": "xh-s10h-n6",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stus10h-n~stus10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 2000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 40
+  },
+  {
+   "name": "xh-m10F-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10F-n~stum10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 41
+  },
+  {
+   "name": "xh-m10A-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10A-n~stum10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 42
+  },
+  {
+   "name": "xh-m10B-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10B-n~stum10-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 43
+  },
+  {
+   "name": "xh-hA-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stuhA-n~stubA-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 2000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 44
+  },
+  {
+   "name": "xh-sAh-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stusAh-n~stubA-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 45
+  },
+  {
+   "name": "xh-m10A-F",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10A-n~stum10F-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 46
+  },
+  {
+   "name": "xh-m10B-A",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10B-n~stum10A-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 47
+  },
+  {
+   "name": "xh-m10h4-p",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10h4-pst~stum10-pst",
+   "seed": 131,
+   "first": 30000,
+   "deals": 250,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 48
+  },
+  {
+   "name": "xh-hs-p",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stuhs-pst~stubs-pst",
+   "seed": 131,
+   "first": 30000,
+   "deals": 250,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 49
+  },
+  {
+   "name": "xh-hf-p",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stuhf-pst~stubf-pst",
+   "seed": 131,
+   "first": 30000,
+   "deals": 250,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 50
+  },
+  {
+   "name": "xh-s10h-p",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stus10h-pst~stus10-pst",
+   "seed": 131,
+   "first": 30000,
+   "deals": 250,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 51
+  },
+  {
+   "name": "xh-m10h-p",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "other",
+   "pair": "stum10h-pst~stum10-pst",
+   "seed": 131,
+   "first": 30000,
+   "deals": 250,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 52
+  },
+  {
+   "name": "h4c-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu4-n~stu4c-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 8000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "net"
+   },
+   "queue_order": 53
+  },
+  {
+   "name": "h43-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu4-n~stu3-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "net"
+   },
+   "queue_order": 54
+  },
+  {
+   "name": "h4c3-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu4c-n~stu3-n",
+   "seed": 131,
+   "first": 30000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "net"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "net"
+   },
+   "queue_order": 55
+  },
+  {
+   "name": "h4c-pst",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu4-pst~stu4c-pst",
+   "seed": 131,
+   "first": 36000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-rs-t"
+   },
+   "queue_order": 56
+  },
+  {
+   "name": "bu4-pst200a",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4-put~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 34
+  },
+  {
+   "name": "bu4-pst200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4-put~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 35
+  },
+  {
+   "name": "bu4c-pst200a",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4c-put~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 36
+  },
+  {
+   "name": "bu4c-pst200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4c-put~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 37
+  },
+  {
+   "name": "bu4-pst200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4-put~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 38
+  },
+  {
+   "name": "bu4c-pst200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4c-put~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 39
+  },
+  {
+   "name": "bu4-pst200d",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4-put~ben200",
+   "seed": 131,
+   "first": 1024,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 40
+  },
+  {
+   "name": "bu4c-pst200d",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4c-put~ben200",
+   "seed": 131,
+   "first": 1024,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 41
+  },
+  {
+   "name": "bu4-pst200e",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4-put~ben200",
+   "seed": 131,
+   "first": 1536,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 42
+  },
+  {
+   "name": "bu4c-pst200e",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu4c-put~ben200",
+   "seed": 131,
+   "first": 1536,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 43
   },
   {
    "name": "l0-r3",
@@ -1830,6 +4505,70 @@
     "bg-200-6",
     "bg-200-7",
     "bg-200-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "b0-ps200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu0-ps~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b0-ps200-1",
+    "b0-ps200-2",
+    "b0-ps200-3",
+    "b0-ps200-4",
+    "b0-ps200-5",
+    "b0-ps200-6",
+    "b0-ps200-7",
+    "b0-ps200-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "b3-ps200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu3-ps~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b3-ps200-1",
+    "b3-ps200-2",
+    "b3-ps200-3",
+    "b3-ps200-4",
+    "b3-ps200-5",
+    "b3-ps200-6",
+    "b3-ps200-7",
+    "b3-ps200-8"
    ],
    "queue_order": null
   }

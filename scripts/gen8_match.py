@@ -115,6 +115,20 @@ def auction_booked(board, bidders, systems=None):
                    auction_source=gen5_arena.table_source(systems)), decisions
 
 
+def load_deals(path):
+    """index -> Board from a deal file (gzip JSON: {first, deals: [{hands: [[card, ...] x 4 by seat N E S W], dealer: 0..3,
+    vul: 'None'|'NS'|'EW'|'Both', name}]}), for playing given deals (the USBC's, say) in place of (seed, index)'s."""
+    with gzip.open(path, 'rt') as f:
+        d = json.load(f)
+    out = {}
+    for k, x in enumerate(d['deals']):
+        hands = tuple(tuple(sorted(int(c) for c in h)) for h in x['hands'])
+        if sorted(c for h in hands for c in h) != list(range(52)):
+            raise ValueError(f'deal {k} of {path} is not a deal')
+        out[d.get('first', 0) + k] = Board(deal_key(hands), hands, None, int(x['dealer']), x['vul'])
+    return out
+
+
 def load_book(path):
     """index -> (deal key, (NS system, EW system), calls) from a book: gzip JSON with seed, first, tables (a list of
     [NS system, EW system]), keys (deal ids), table_of (index into tables per deal) and auctions (calls per deal)."""
@@ -124,8 +138,9 @@ def load_book(path):
                           for k, (key, t, calls) in enumerate(zip(book['keys'], book['table_of'], book['auctions']))}
 
 
-def start(source, manifest, book=None):
-    STATE.update(source=source, m=manifest, bidders={}, book=load_book(book)[1] if book else None, booked=None)
+def start(source, manifest, book=None, deals=None):
+    STATE.update(source=source, m=manifest, bidders={}, book=load_book(book)[1] if book else None, booked=None,
+                 deals=load_deals(deals) if deals else None)
     loaded = {}
     for key, spec in manifest['bots'].items():
         if manifest.get('common_only'):         # card play only: every bot bids as the common bidder
@@ -166,7 +181,7 @@ def summarise_actions(record, roles):
 def play(index, seed, episodes):
     m, source = STATE['m'], STATE['source']
     started = time.process_time()
-    board, systems = deal(seed, index), None
+    board, systems = (STATE['deals'][index] if STATE.get('deals') is not None else deal(seed, index)), None
     if STATE['book'] is not None:       # this board's table: who declared what, and the auction they bid
         key, systems, calls = STATE['book'][index]
         if key != board.id:
@@ -227,6 +242,8 @@ def main():
                                                                "the common one and no bot's own bidder is loaded (BEN's is not one this script loads)")
     ap.add_argument('--recycle', type=int, default=0, help='play the boards in rounds of RECYCLE a worker, each round with fresh worker '
                                                            'processes, so that what a worker holds on to does not grow without end; 0 = one pool')
+    ap.add_argument('--deals-file', help='play the deals of this file (see load_deals) in place of the seed\'s; --seed still names the '
+                                         'run, and the deals of indices FIRST to FIRST + DEALS - 1 are played')
     ap.add_argument('--book', help='auctions bid beforehand, with each table\'s declared systems (see load_book for the format); '
                                    'both rooms of a board then play the same auction')
     args = ap.parse_args()
@@ -247,7 +264,7 @@ def main():
     if args.episodes:
         episodes = args.out / 'episodes'
         episodes.mkdir(exist_ok=True)
-    (args.out / 'manifest.json').write_text(json.dumps(dict(m, source=str(source), first=args.first, deals=args.deals,
+    (args.out / 'manifest.json').write_text(json.dumps(dict(m, source=str(source), first=args.first, deals=args.deals, deals_file=args.deals_file, book=args.book,
                                                              source_commit=os.popen(f'git -C {ROOT} rev-parse HEAD 2>/dev/null').read().strip()), indent=1))
     results = args.out / 'results.jsonl'
     rows = [json.loads(line) for line in results.read_text().splitlines()] if results.exists() else []
@@ -261,7 +278,7 @@ def main():
             failed = []
             size = args.recycle * args.workers if args.recycle > 0 else max(len(pending), 1)
             for lo in range(0, len(pending), size):     # a fresh pool for each round of boards (one round unless --recycle)
-                with ProcessPoolExecutor(args.workers, initializer=start, initargs=(str(source), m, args.book)) as pool:
+                with ProcessPoolExecutor(args.workers, initializer=start, initargs=(str(source), m, args.book, args.deals_file)) as pool:
                     jobs = {pool.submit(play, i, args.seed, str(episodes) if episodes else None): i for i in pending[lo:lo + size]}
                     for job in as_completed(jobs):
                         try:

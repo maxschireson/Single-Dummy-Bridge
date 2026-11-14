@@ -19,7 +19,7 @@ BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transf
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
-        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
+        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pst': 'pure-rs-t', '-p2': 'pure-rs-p2', '-pg': 'pure-rs-top', '-nd': 'net-d', '-px': 'pure-rs-split', '-pu': 'pure-blind', '-pux': 'pure-blind-split', '-pm': 'pure-rs-mix', '-put': 'pure-blind-t', '-psu': 'pure-blind-rs', '-psti': 'pure-rs-t-imps', '-psta': 'pure-rs-t', '-pstb': 'pure-rs-t', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
 RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7",
              'b50': 'the blend at tricks 3 to 6 at trust 0.5', 'r6': 'rollouts alone from trick 6', 'r3': 'rollouts alone from trick 3',
              'pure': "the net's opening lead, rollouts alone from the second card on; no double dummy",
@@ -28,6 +28,20 @@ RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, ble
                          'dropped; rollouts alone from the second card on'),
              'pure-rs': ("pure with the opening lead from rollouts on the settings of every other card (at most 4 candidates by the net's "
                          'prior, 32 then up to 128 layouts with the race); rollouts alone from the second card on'),
+             'pure-rs-t': "pure-rs with the round's net at the table too (candidates, reading the play) in place of policy v4.1",
+             'pure-rs-p2': 'pure-rs, the simulated seats drawing from the probabilities squared (power 2)',
+             'pure-rs-top': "pure-rs, the simulated seats playing the net's most probable card",
+             'pure-rs-split': ("pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as "
+                               "the likeliest, the other side among those at least a quarter as likely"),
+             'pure-rs-t-imps': 'pure-rs-t with the rollouts choosing by IMPs in place of mean tricks',
+             'pure-blind-rs': 'pure-rs, told nothing about who sits against it',
+             'pure-blind-t': "pure-rs-t (the round's net at the table too), told nothing about who sits against it",
+             'pure-rs-mix': 'pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too',
+             'pure-blind': ("pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown "
+                            'player, their cards read at the weight of an opponent never met and as a side that may play any equal card'),
+             'pure-blind-split': ('pure, told nothing about who sits against it, the simulated seats split by side, its defenders '
+                                  'playing a random one of their equal cards'),
+             'net-d': "the net alone, every card drawn from its probabilities (as a simulated seat of the rollouts draws)",
              'net-s': "the net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards within a limit on forgetting)",
              'pure-t': "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
              'pure-v': "pure, the rollouts' simulated seats playing by the net's value head (seat blend) in place of a draw from its probabilities",
@@ -53,13 +67,26 @@ STATIC = [
 ]
 
 
+MOVE_NOTE = ("05:30 UTC on 14 November: taken off this box's queue (Max: two boxes of each self-play, one for tests); the style "
+             "matches play on azure5 (Max, 05:32: borrow 3 hours), the rest on azure3")
+MOVED = {n: MOVE_NOTE for n in ('s8-greedy', 's8-patient', 's8-greedy0', 's8-high', 's8-low', 's8-active', 's8-passive', 's8-passive0',
+                                'h41-p', 'h41-pb', 'h3-pm', 'l3-put', 'l3-pstb', 'l3-psb')}
+MOVED['h3-px'] = "05:30 UTC on 14 November: dropped (sharper seats did nothing: h3-p2, h3-pg)"
+MOVED['sg8h'] = MOVED['sg8g'] = "05:30 UTC on 14 November: the box makes the one-net Stu R3's self-play records instead"
+MOVED['sg8e'] = MOVED['sg8f'] = "05:40 UTC on 14 November: Gen 8's self-play records from here are played by its personalities (sg8s, sg8t)"
+MOVED['sg8i'] = "05:30 UTC on 14 November: azure3 is the test box; Gen 8 records only when its tests are done (sg8j)"
+
+
 def bot(name):
     """What a bot id says: Stu-family ids are stu<round>[v1][a|b|-rung]; z0a-v2 and z0b-v2 were round 0's first ids."""
     if name in ('z0a-v2', 'z0b-v2'):
         return dict(family='stu', round=0, net='v2', rung='stu')
-    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-ps|-pa|-pb|-pl|-pt|-pv|-p|-ns|-n)?', name)
+    if name == 'stuv41-ps':
+        return dict(family='stu', round=0, net='v4.1', rung='pure-rs')
+    m = re.fullmatch(r'stu(\d+)(v1|c)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-psta|-pstb|-pst|-ps|-p2|-pg|-px|-pux|-put|-psu|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
     if m:
-        return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
+        return dict(family='stu', round=int(m.group(1)),      # c: a round's control net (round 4: without the USBC's human tables)
+                    net='v1' if m.group(2) == 'v1' else f'stu{m.group(1)}c' if m.group(2) == 'c' else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
                     rung=RUNG[m.group(3) or ''])
     return dict(family='other')
 
@@ -86,7 +113,14 @@ def main():
                       ('azure6', 'jobs-azure6.txt'), ('azure6', 'jobs-azure6b.txt'), ('azure5', 'jobs-azure5-r2.txt'),
                       ('azure6', 'jobs-azure6-r0c.txt'), ('azure6', 'jobs-azure6-r2.txt'), ('azure6', 'jobs-azure6-r2s.txt'),
                       ('azure2', 'jobs-azure2.txt'), ('azure2', 'jobs-azure2b.txt'), ('azure1', 'jobs-azure1.txt'), ('azure1', 'jobs-azure1b.txt'),
-                      ('azure5', 'jobs-azure5-r3a.txt'), ('azure5', 'jobs-azure5-r3.txt'), ('azure1', 'jobs-azure1-r3.txt'), ('azure5', 'jobs-azure5-h3.txt'), ('azure6', 'jobs-azure6-h3p.txt'), ('azure2', 'jobs-azure2-h3p.txt')):
+                      ('azure5', 'jobs-azure5-r3a.txt'), ('azure5', 'jobs-azure5-r3.txt'), ('azure1', 'jobs-azure1-r3.txt'), ('azure5', 'jobs-azure5-h3.txt'), ('azure6', 'jobs-azure6-h3p.txt'), ('azure2', 'jobs-azure2-h3p.txt'), ('azure6', 'jobs-azure6-h3t.txt'), ('azure5', 'jobs-azure5-hs.txt'), ('azure6', 'jobs-azure6-hs.txt'), ('azure2', 'jobs-azure2-hs.txt'), ('azure6', 'jobs-azure6-h3pt.txt'), ('azure2', 'jobs-azure2-h3pt.txt'),
+                      ('azure1', 'jobs-azure1-hd.txt'), ('azure5', 'jobs-azure5-hd.txt'), ('azure3', 'jobs-azure3-hd.txt'),
+                      ('azure6', 'jobs-azure6-blind.txt'), ('azure2', 'jobs-azure2-split.txt'),
+                      ('azure1', 'jobs-azure1-styles.txt'), ('azure5', 'jobs-azure5-v41-styles.txt'),
+                      ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt'),
+                      ('azure6', 'jobs-azure6-ben.txt'), ('azure2', 'jobs-azure2-ben.txt'),
+                      ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt'), ('azure3', 'jobs-azure3-ben7.txt'),
+                      ('azure5', 'jobs-azure5-human.txt'), ('azure5', 'jobs-azure5-r4.txt'), ('azure3', 'jobs-azure3-ben8.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run
@@ -102,9 +136,14 @@ def main():
             runs.append(run(name, box, pair, seed, first, deals, '--episodes' in options))
             if '--one-room' in options:             # one table a board, no IMPs (a collection run between two ids of one bot)
                 runs[-1]['tables_a_board'] = 1
-            if stopped:
+            if stopped and name in MOVED:
+                runs[-1]['stopped'] = MOVED[name]
+            elif stopped:
                 runs[-1]['stopped'] = ("at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)"
-                                       if not name.startswith('sps') else "at 00:45 UTC on 14 November, for round 3's net in the rollouts")
+                                       if not name.startswith(('sps', 'sp3')) else "at 00:45 UTC on 14 November, for round 3's net in the rollouts"
+                                       if name.startswith('sps') else "02:50 UTC on 14 November: the box makes Gen 8 card play's self-play records instead"
+                                       if name == 'sp3se' else "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot "
+                                       "is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)")
     for line in (HERE / 'jobs-azure3-later.txt').read_text().splitlines():      # taken out of the queue: listed, marked, not run
         if not line.strip() or line.startswith('#'):
             continue
@@ -115,7 +154,7 @@ def main():
             continue
         runs.append(run(name, 'azure3', pair, seed, first, deals, '--episodes' in options))
         runs[-1]['shelved'] = True
-    for line in [x for f in ('jobs-azure3-ben.txt', 'jobs-azure3-ben3.txt') for x in (HERE / f).read_text().splitlines()]:    # against BEN: a shard a lane, folders NAME-1..NAME-<lanes>
+    for line in [x for f in ('jobs-azure3-ben.txt', 'jobs-azure3-ben3.txt', 'jobs-azure3-ben4.txt') for x in (HERE / f).read_text().splitlines()]:    # against BEN: a shard a lane, folders NAME-1..NAME-<lanes>
         if not line.strip() or line.startswith('#'):
             continue
         name, pair, seed, first, deals, lanes, *options = line.split()
