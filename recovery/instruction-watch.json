@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794641097.377479,
+  "checked_epoch": 1794644851.3708222,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -112,49 +112,49 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 4547,
+      "completed": 4672,
       "target": 16036,
-      "contiguous": 4547,
+      "contiguous": 4669,
       "by_pair": {
-        "8s-32~71s-32": 1516,
-        "8s-32~1": 758,
-        "8s-32~5RZ32": 758,
-        "8c-32~8s-32": 757,
-        "8c-32~71s-32": 758
+        "8s-32~71s-32": 1558,
+        "8s-32~1": 779,
+        "8s-32~5RZ32": 779,
+        "8c-32~8s-32": 778,
+        "8c-32~71s-32": 778
       },
-      "root_games": 15156,
-      "tables": 187569,
+      "root_games": 15572,
+      "tables": 192809,
       "failures": 0,
-      "epoch": 1794641057.1605918,
+      "epoch": 1794644848.3864064,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794641097.16744,
-      "completed": 4547,
+      "epoch": 1794644848.083931,
+      "completed": 4671,
       "in_flight": [
-        4547,
-        4548,
-        4549
+        4669,
+        4672,
+        4673
       ],
       "workers": 4,
       "ben_workers": 1,
-      "started_epoch": 1794632042.4034371,
+      "started_epoch": 1794643692.6405938,
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794641040.1523683,
+      "epoch": 1794644829.2872133,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794641056.6648297,
+      "epoch": 1794644812.3631217,
       "status": "published",
-      "completed": 4546
+      "completed": 4670
     },
     "process.json": {
-      "pid": 221720,
-      "epoch": 1794632039.3972106
+      "pid": 241958,
+      "epoch": 1794643689.1717107
     },
     "watchdog-process.json": {
       "pid": 79983,
@@ -167,7 +167,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/Gen X Stu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/Gen X Stu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusions verified. Existing watchdog completed planned derived DDS-cache rotation after draining at 4634 families; fresh collector progress, publisher and held ownership locks are healthy with no failures.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -180,7 +180,7 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T06:24:24Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T07:24:57Z",
   "reviewed_discussions": [
     {
       "number": 22,
@@ -190,12 +190,12 @@
   ],
   "observed_notices": [],
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
-  "previous_checked_epoch": 1794637464.8041093,
+  "previous_checked_epoch": 1794641097.377479,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
     "process.json": {
-      "pid": 221720,
+      "pid": 241958,
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 "
     },
     "watchdog-process.json": {
@@ -211,11 +211,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 0.2100391387939453,
-  "publisher_age": 40.71264934539795,
-  "free_bytes": 18073317376,
+  "heartbeat_age": 3.286891222000122,
+  "publisher_age": 39.00770044326782,
+  "free_bytes": 19621027840,
   "new_applicable_instructions": [],
-  "registry_revision": "17f532f1297c1ee9028f59b181b7a66464b83d5d",
+  "registry_revision": "3bd2760b43cf339076be4d5551af1826ac40d62c",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -226,12 +226,12 @@
   "normal_workers_active": 3,
   "ben_workers_active": 0,
   "cache_rotation_review": {
-    "epoch": 1794632039.247651,
-    "previous_bytes": 2153545728,
-    "completed": 4240,
-    "previous_collector_pid": 201787,
-    "current_collector_pid": 221720,
-    "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 4240 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
+    "epoch": 1794643689.0151436,
+    "previous_bytes": 2160185344,
+    "completed": 4634,
+    "previous_collector_pid": 221720,
+    "current_collector_pid": 241958,
+    "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 4634 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
   },
   "cache_rotation_history": [
     {
@@ -321,6 +321,14 @@
       "previous_collector_pid": 201787,
       "current_collector_pid": 221720,
       "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 4240 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
+    },
+    {
+      "epoch": 1794643689.0151436,
+      "previous_bytes": 2160185344,
+      "completed": 4634,
+      "previous_collector_pid": 221720,
+      "current_collector_pid": 241958,
+      "disposition": "Existing frozen watchdog's planned DDS-cache rotation at 4634 after graceful writer drain. Frozen generation and artifacts verified; resumed collector, held writer lock, watchdog and publisher healthy with fresh progress. No failures or operator restart."
     }
   ],
   "successor_notice_review": {
@@ -342,7 +350,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 57.22511076927185,
+  "watchdog_age": 22.083608865737915,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
