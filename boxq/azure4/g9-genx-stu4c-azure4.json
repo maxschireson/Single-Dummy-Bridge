@@ -1,0 +1,34 @@
+{
+ "id": "g9-genx-stu4c-azure4",
+ "box": "azure4",
+ "owner": "will",
+ "priority": 2,
+ "cores": 2,
+ "source": {
+  "branch": "feature/gen9-genx-stu",
+  "commit": "57d0855f"
+ },
+ "argv": [
+  "bash",
+  "-c",
+  "set -e; mkdir -p {out}/bin; [ -x {out}/bin/sure_cpp ] || g++ -O2 -march=native -std=c++17 -o {out}/bin/sure_cpp experiments/sure_tricks/sure.cpp; export SURE_BIN={out}/bin/sure_cpp OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1; exec {python} ops/run_gen9_cohort.py --run {out}/run --publication {out}/publication --feed arena-gen9-genx-stu4c-azure4-feed --source {home}/work/capsule-gen7-capture/recovery --plan configs/round9-genx-stu-r4c.json --fresh 4000 --seed 9021 --workers 2 --exclusions gen8x-v3-exclusions.json"
+ ],
+ "env": {
+  "BRIDGE_FEED_REMOTE": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
+  "GIT_SSH_COMMAND": "ssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20",
+  "BRIDGE_DDS_CACHE_SYNC": "NORMAL"
+ },
+ "progress": {
+  "results": "run/receipts/*.json",
+  "target": 4000,
+  "count": "files"
+ },
+ "preemptible": false,
+ "publish": [
+  "run/state.json",
+  "run/manifest.json"
+ ],
+ "notes": "Gen X Stu, round 4c (Max, 14 Nov: 'I will have an iteration before long', 08:08 UTC; to the play server, 'use r4c until further notice'). configs/round9-genx-stu-r4c.json on feature/gen9-genx-stu: stu4c-put (the loop's round 4 control net as table net and in rollouts, pure Stu, blind) against 8s-32 (2), 9a-32 (1) and 71s-32 (1), the cohort's actors. 4,000 fresh deals (seed 9021), excluding v4.1's and rollout net v1's training families, the source corpus and the families played on registered feeds. It takes the 2 cores of g9-genx-stu-azure4 (round 3), which is drained. Builds the claim solver into {out}/bin once; one BLAS thread a worker; DDS cache syncs NORMAL. Publishes every minute to arena-gen9-genx-stu4c-azure4-feed. Resumable; STOP in {out}/run drains it. Smoke test off the box: 8 boards, 0 failures, about 150 CPU-s a board.",
+ "submitted": "2026-11-14T16:19:00Z",
+ "by": "will"
+}
