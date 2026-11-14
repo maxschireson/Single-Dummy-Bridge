@@ -1,0 +1,89 @@
+{
+  "poll_start": "2026-11-14T04:22:40Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "ca4c1ef3529645d1bce0e2dd0f4ad95fe6c172d2",
+  "commits": [
+    {
+      "sha": "ca4c1ef3529645d1bce0e2dd0f4ad95fe6c172d2",
+      "date": "2026-11-14T04:22:08Z",
+      "message": "Stu: the style calibration keeps its tables (--episodes), for reading how well a bot places a styled player's cards\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "1a3f3ba1d9ca2877962fd271d4dd4e29d351bf63",
+      "date": "2026-11-14T04:19:20Z",
+      "message": "Stu: the style calibration first on azure5 and azure3, policy v4.1 inside after it; v4.1 everywhere against BEN (200) after the one-net match (Max, 04:17 UTC)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "ea20975741719616c3527e116733e2c3ce4bfd28",
+      "date": "2026-11-14T04:17:31Z",
+      "message": "Stu: the one-net result's outside checks. A blind one-net bot (stu3-put); the one-net bot, its control and the blind one against Gen 8 on azure2 (jobs-azure2-onenet.txt), against BEN (200) on azure3 (jobs-azure3-ben5.txt)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "38b19d29a7d9933ba2716c545baf1f6044122edc",
+      "date": "2026-11-14T04:10:26Z",
+      "message": "Stu: a search bot's random share is one of its near ties at random; policy v4.1 inside the rollouts (stuv41-ps) against the reference, ahead of the style calibration on azure5 and azure3\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "c4d4d40d41ddf511cf9d60c1f241fa2ed47ab73f",
+      "date": "2026-11-14T03:58:33Z",
+      "message": "Stu: personalities of Gen 8 card play (g8-greedy, -patient, -active, -passive, -high, -low at margins 0.1 and 0) and their first calibration; SiD's own randomization (stu3-pm) and its cost test\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "45e93dfb6d55fb0ec7a4260dedcaa18b52845cd3",
+      "date": "2026-11-14T03:56:09Z",
+      "message": "Stu bench: mix_budget.py, what playing a random one of its near-equal candidates would cost a rollout bot by its own values\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "d49308b43de60706f5b9a8b6c7ef36626c5b863d",
+      "date": "2026-11-14T03:54:55Z",
+      "message": "Styles of card play: a directed preference among the cards a bot rates as close (bridge_harness/style.py)\n\nMax, 03:35 to 03:46 UTC on 14 November: more variability in the opponent population, mostly directed (a variety of styles),\na little of it random; the exact dimensions do not matter, only that a bot is not read beyond bridge logic. A style is\n{'tempo' | 'active' | 'high': weight, 'random': share}: tempo (take the trick now / cash a winner, against duck and wait),\nactive (a new suit, a lead from under an honour, against the safe continuation), high (rank). gen7 `style`: a search bot\nkeeps, of the cards within its `near_tie`, the ones its style prefers, and its tie-break chooses among those. x8\n`mix.style`: the same for a rollout bot's near-equal candidates (`mix.near`). Bots without a style are unchanged and pin\nwhat they pinned.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "b2937074b08f639de3a0e58ba8bd8f10502405c0",
+      "date": "2026-11-14T03:32:05Z",
+      "message": "Stu: split-seat, blind and blind-split bots (stu3-px, stu3-pu, stu3-pux) and their jobs\n\nMax, 03:12 to 03:28 UTC on 14 November. -px: its own side's simulated seats drawn among the cards at least half as likely as\nthe likeliest, the other side's among those at least a quarter as likely. -pu: told nothing about who sits against it (the\nsimulated opponents are the net's unknown player and are told nothing about this bot; their cards read at the weight of an\nopponent never met and as a side that may play any equal card). -pux: both, and its defenders play a random one of their\nequal cards (\"For now random\").\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "f1beea1d2432ac4b0da55b10522758a9c230e7bb",
+      "date": "2026-11-14T03:28:00Z",
+      "message": "8X seats by side, a cut on drawn cards, what the other side is told, and a blind switch\n\nMax, 03:12 to 03:21 UTC on 14 November: we may read opponents' cards better than will carry to play against people; build the\nrandomization in. x8_rollout.Seats: `other` (the seats of the side that is not deciding take their cards by their own mode,\npower and cut), `cut` (a drawn card is at least that share as likely as the likeliest), `seen` (the name the other side is\ntold for the deciding side's bot). Stage: cut, seat_other, power_other, cut_other. x8 `blind`: every setting keyed by the\nopponent's id takes its '*' value; names 'they_see'. With none of these set the cards and the pinned settings are unchanged.\ndraw_regret.py: draws with a cut.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Max-directed Stu opponent-style, blind/split-seat, randomization, calibration and one-net/BEN200 research jobs on Azure2/3/5.",
+  "disposition": "New style fields, cut/power modes and blind/name settings are opt-in research behavior. Commit notes explicitly retain unchanged pins for bots without them. The canonical owned plan/source has not adopted them; changes here would require new authority, a drained successor/new identity, complete exclusions and actual capture validation. Max04:17 schedules Stu's style calibration and later policy-v4.1/BEN200 measurements on those boxes; no local queue or model change.",
+  "evidence": [
+    {
+      "sha": "d49308b43de60706f5b9a8b6c7ef36626c5b863d",
+      "message": "Styles of card play: a directed preference among the cards a bot rates as close (bridge_harness/style.py)\n\nMax, 03:35 to 03:46 UTC on 14 November: more variability in the opponent population, mostly directed (a variety of styles),\na little of it random; the exact dimensions do not matter, only that a bot is not read beyond bridge logic. A style is\n{'tempo' | 'active' | 'high': weight, 'random': share}: tempo (take the trick now / cash a winner, against duck and wait),\nactive (a new suit, a lead from under an honour, against the safe continuation), high (rank). gen7 `style`: a search bot\nkeeps, of the cards within its `near_tie`, the ones its style prefers, and its tie-break chooses among those. x8\n`mix.style`: the same for a rollout bot's near-equal candidates (`mix.near`). Bots without a style are unchanged and pin\nwhat they pinned.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "bridge_harness/gen7.py",
+        "bridge_harness/style.py",
+        "bridge_harness/x8_player.py",
+        "tests/test_style.py"
+      ]
+    },
+    {
+      "sha": "f1beea1d2432ac4b0da55b10522758a9c230e7bb",
+      "message": "8X seats by side, a cut on drawn cards, what the other side is told, and a blind switch\n\nMax, 03:12 to 03:21 UTC on 14 November: we may read opponents' cards better than will carry to play against people; build the\nrandomization in. x8_rollout.Seats: `other` (the seats of the side that is not deciding take their cards by their own mode,\npower and cut), `cut` (a drawn card is at least that share as likely as the likeliest), `seen` (the name the other side is\ntold for the deciding side's bot). Stage: cut, seat_other, power_other, cut_other. x8 `blind`: every setting keyed by the\nopponent's id takes its '*' value; names 'they_see'. With none of these set the cards and the pinned settings are unchanged.\ndraw_regret.py: draws with a cut.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "bridge_harness/x8_player.py",
+        "bridge_harness/x8_rollout.py",
+        "tests/test_x8.py",
+        "training/rollout-loop-20261113/draw_regret.py"
+      ]
+    },
+    {
+      "sha": "1a3f3ba1d9ca2877962fd271d4dd4e29d351bf63",
+      "message": "Stu: the style calibration first on azure5 and azure3, policy v4.1 inside after it; v4.1 everywhere against BEN (200) after the one-net match (Max, 04:17 UTC)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "training/rollout-loop-20261113/jobs-azure3-ben5.txt",
+        "training/rollout-loop-20261113/jobs-azure3-v41-styles.txt",
+        "training/rollout-loop-20261113/jobs-azure5-v41-styles.txt",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "2b18c496a979be80fd732f99bb9a29092d6281eb",
+  "future_exclusions": "Any later new owned cohort must exclude all released-model training families by complete pinned evidence and meet existing corpus safeguards. Current immutable v4.1 list and audit remain unchanged."
+}
