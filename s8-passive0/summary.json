@@ -1,0 +1,23 @@
+{
+ "pair": "g8-passive0~8p-32-v41",
+ "boards": 150,
+ "cpu_per_board": 19.35,
+ "common": {
+  "imps_per_board": -0.22,
+  "se": 0.2284,
+  "boards": 150,
+  "won": 16,
+  "lost": 14,
+  "flat": 120
+ },
+ "native": {
+  "imps_per_board": -0.22,
+  "se": 0.2284,
+  "boards": 150,
+  "won": 16,
+  "lost": 14,
+  "flat": 120
+ },
+ "failures": 0,
+ "boards_per_hour": 1451
+}
