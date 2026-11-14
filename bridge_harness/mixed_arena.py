@@ -8,9 +8,12 @@ unmatched historical score. Only complete replay-checked deals are committed.
 from collections import Counter
 from copy import deepcopy
 from dataclasses import replace
+import json
 import math
 from pathlib import Path
 import random
+import re
+import sys
 import time
 
 import numpy as np
@@ -116,10 +119,35 @@ def split(family):
     return 'validation' if int(family[:8], 16) % 5 == 0 else 'train'
 
 
+AMENDMENTS = 'source-amendments.json'
+
+
+def check_source(root, manifest, current=None):
+    """The harness source the run was prepared with, or one its folder accepts in source-amendments.json: a JSON list
+    of entries, each naming the source_sha256 it accepts and why (reason; commit, by and at as wanted). A run whose
+    bots, deals, corpus and runtime files are unchanged can then go on in its folder after a change to the harness
+    code that leaves its play alone (Max, 14 Nov 2026 09:17 UTC: "Fix it so that it can run with changed code.
+    Producing the boards is more important"). The file stays in the run folder as the record. Returns the accepting
+    entry, or None for the pinned source; any other source is refused, naming its hash."""
+    current = current or source_hash()
+    if current == manifest['source_sha256']:
+        return None
+    path = Path(root) / AMENDMENTS
+    entries = json.loads(path.read_text()) if path.exists() else []
+    if not isinstance(entries, list) or not all(isinstance(e, dict) and re.fullmatch('[0-9a-f]{64}', str(e.get('source_sha256', '')))
+                                                and isinstance(e.get('reason'), str) and e['reason'] for e in entries):
+        raise ValueError(f'{AMENDMENTS} is a list of entries with a source_sha256 and a reason')
+    for e in entries:
+        if e['source_sha256'] == current:
+            print(f'source {current[:12]} accepted by {AMENDMENTS} (pinned {manifest["source_sha256"][:12]}): {e["reason"]}', file=sys.stderr, flush=True)
+            return e
+    raise ValueError(f'Pinned generation source changed: source {current} is neither the pin nor listed in {AMENDMENTS}')
+
+
 def verify_generation(root, manifest):
     if digest({k:v for k,v in manifest.items() if k != 'identity'}) != manifest['identity']:
         raise ValueError('Generation manifest changed')
-    if source_hash() != manifest['source_sha256']: raise ValueError('Pinned generation source changed')
+    check_source(root, manifest)
     for file, expected in manifest.get('runtime_sha256', {}).items():
         if sha(Path(__file__).resolve().parents[1]/file) != expected: raise ValueError('Pinned arena runtime changed')
     for spec in manifest['bots'].values():
