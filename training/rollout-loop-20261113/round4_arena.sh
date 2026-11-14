@@ -9,7 +9,8 @@
 # 3. Builds rows as rows.sh does (policy-only, the search's or the rollouts' values, alias.txt), with the arena's ids read
 #    so: 8p-32 as 8s-32 (Gen 8 card play), stu3-ps as stup0 (Stu); 9a-32 (Gen 9) and 8x3-32 (an 8X variant) keep their own
 #    ids, which round2.sh starts from 8s-32's vectors (INIT_AS).
-# Writes OUT_DIR/arena.npz and OUT_DIR/arena.log (SKIP_BUILD=1: steps 1 and 2 only). Seed 131's deals (the gate's) are not in any arena feed.
+# Writes OUT_DIR/arena.npz and OUT_DIR/arena.log (SKIP_BUILD=1: steps 1 and 2 only; SKIP_SELECT=1: step 3 only, on the
+# records an earlier run selected; SAMPLE=B,N: step 3 on a random sample of them, see below). Seed 131's deals (the gate's) are not in any arena feed.
 set -euo pipefail
 OUT=$1; LOOP_BOARDS=${2:-0}; SHARE=${SHARE:-0.017}; WORKERS=${WORKERS:-6}
 W=$HOME/work/loop; PY=$W/venv/bin/python; HERE=$(cd "$(dirname "$0")" && pwd); V2=$HOME/work/plan/rnet2w
@@ -19,6 +20,7 @@ FEEDS=${FEEDS:-"arena-gen9-azure4-feed arena-gen9-azure4-ben64-feed arena-gen9-g
 SCORER=models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz
 mkdir -p "$OUT/eps" "$OUT/ben"; G=$W/in/arena-git; [ -d "$G/.git" ] || git init -q "$G"
 say() { echo "$(date -u +%FT%TZ) $*" | tee -a "$OUT/arena.log"; }
+if [ "${SKIP_SELECT:-0}" != 1 ]; then      # SKIP_SELECT=1: the records in OUT/eps as an earlier run selected them
 ( ls "$V2/eps"; ls "$V2/epsB" ) 2>/dev/null | sed 's/\.json\.gz$//' | sort -u > "$OUT/v2.txt"
 say "v2's episodes: $(wc -l < "$OUT/v2.txt")"
 : > "$OUT/list.txt"
@@ -57,10 +59,39 @@ print(f'records without BEN {other}; with BEN {len(ben)}, kept {keep} (share {sh
 if odd:
     print(f'{odd} files that are no board records set aside (odd/)')
 PY
+fi
 [ "${SKIP_BUILD:-0}" = 1 ] && { say "SKIP_BUILD: records selected, no rows built"; exit 0; }
 ALIAS="$(cat "$HERE/alias.txt"),8p-32=8s-32,stu3-ps=stup0"
 cd "$HERE/../.."
-nice -n 10 "$PY" scripts/gen7_build_dataset.py --episodes "$OUT/eps" --scorer "$SCORER" --out "$OUT/arena.npz" --workers "$WORKERS" --policy-only \
+# SAMPLE=B,N: rows of B records of the BEN feed and N of the others, drawn at random (seed 5), in place of every record. An
+# arena record carries about 600 rows (root and fork tables, both rooms): the 23,000 selected on 14 November come to about
+# 14 million rows, four times the loop's own, more than a round's training set or azure5's memory holds (the build of
+# 12:17 to 13:45 UTC). OUT/eps keeps every selected record for later rounds.
+EPS=$OUT/eps
+if [ -n "${SAMPLE:-}" ]; then
+  rm -rf "$OUT/eps_sample"; mkdir -p "$OUT/eps_sample"
+  "$PY" - "$OUT" "$SAMPLE" <<'PY' | tee -a "$OUT/arena.log"
+import os, random, sys
+out = sys.argv[1]
+n_ben, n_other = (int(x) for x in sys.argv[2].split(','))
+have = {f[:-len('.json.gz')] for f in os.listdir(f'{out}/eps')}
+ben, other, seen = [], [], set()
+for line in open(f'{out}/new.txt'):
+    blob, feed = line.split()
+    if blob in have and blob not in seen:
+        seen.add(blob)
+        (ben if 'ben' in feed else other).append(blob)
+rng = random.Random(5)
+rng.shuffle(ben)
+rng.shuffle(other)
+for b in ben[:n_ben] + other[:n_other]:
+    os.link(f'{out}/eps/{b}.json.gz', f'{out}/eps_sample/{b}.json.gz')
+print(f'sample: {min(n_ben, len(ben))} of {len(ben)} records of the BEN feed, {min(n_other, len(other))} of {len(other)} of the others')
+PY
+  EPS=$OUT/eps_sample
+fi
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1      # one thread a worker: the workers are the parallelism
+nice -n 10 "$PY" scripts/gen7_build_dataset.py --episodes "$EPS" --scorer "$SCORER" --out "$OUT/arena.npz" --workers "$WORKERS" --policy-only \
   --rollout-gap --alias "$ALIAS" 2>&1 | tail -n 1 | tee -a "$OUT/arena.log"
 "$PY" - "$OUT/arena.npz" <<'PY' | tee -a "$OUT/arena.log"
 import sys, numpy as np
