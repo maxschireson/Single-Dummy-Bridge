@@ -10,8 +10,11 @@ decisions). With it, how dangerous the position was, for normalizing across boar
   `rand`  the mean loss of a legal card chosen at random,  `max`  the most a card could lose,  `crit`  some card loses.
 A claim is one more decision: the claimed total against the double-dummy total at that point. A shortfall is the
 claimer's loss; an excess (a generous claim accepted) is the other side's, split between its two players.
-One file a session (OUT_DIR/<session>.lt.json.gz), one row per table: its facts and its decisions [trick, seat, role, loss, rand, max, legal]; role is L (opening
-lead), D (declarer, own or dummy's card), F (defender), CD/CF (a claim's shortfall/excess, declaring/defending side).
+One file a session (OUT_DIR/<session>.lt2.json.gz), one row per table: its facts and its decisions
+[trick, seat, role, loss, rand, max, legal, imp, turned]; role is L (opening lead), D (declarer, own or dummy's card), F
+(defender), CD/CF (a claim's shortfall/excess, declaring/defending side). Max, 07:51 UTC: at IMPs a risky lead or a safety
+play can be right while losing a trick double dummy, so with the tricks: `imp`, the card's double-dummy cost in IMPs at the
+contract and vulnerability (an overtrick about 1, a contract many), and `turned`, 1 where the card changed make or set.
 """
 import argparse, glob, gzip, hashlib, json, os, sys
 from multiprocessing import Pool
@@ -19,7 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
-from bridge_harness.core import winner                     # noqa: E402
+from bridge_harness.core import Contract, imps, score, vulnerable, winner     # noqa: E402
 
 SEATS = 'NESW'
 SUITS = 'SHDC'
@@ -47,7 +50,10 @@ def facts(meta, full):
                 tname=full.get('tname'), text=text)
 
 
-def one_table(sid, meta, board_hands, t):
+VULS = {'NONE': 'None', 'NORTH_SOUTH': 'NS', 'EAST_WEST': 'EW', 'BOTH': 'Both', 'ALL': 'Both'}
+
+
+def one_table(sid, meta, board_hands, t, vul='None'):
     global _DDS
     if _DDS is None:
         from bridge_harness.dds import DDS
@@ -64,6 +70,9 @@ def one_table(sid, meta, board_hands, t):
     dec = SEATS.index(end['dec'])
     trump = STRAIN[end['suit']]
     level = int(end['level'])
+    contract = Contract(level, end['suit'], dec, {'D': 1, 'X': 1, 'R': 2, 'XX': 2}.get(end.get('mod') or '', 0))
+    dvul = vulnerable(vul, dec)
+    target = level + 6
     names = {s: (full.get('ps', {}).get(s) or {}).get('name') for s in SEATS}
     pids = {s: (full.get('ps', {}).get(s) or {}).get('playerId') for s in SEATS}
     held = [set(h) for h in hands]
@@ -86,7 +95,14 @@ def one_table(sid, meta, board_hands, t):
                 losses = [best - values[y] for y in legal]
                 declaring = seat % 2 == dec % 2
                 role = 'L' if not history else 'D' if declaring else 'F'
-                rows.append([len(history) // 4 + 1, SEATS[seat], role, best - values[x], round(sum(losses) / len(losses), 3), max(losses), len(legal)])
+                remaining = 13 - len(history) // 4
+                final = lambda v: won + (v if declaring else remaining - v)          # declarer's tricks at the end, double dummy
+                worth = lambda v: score(contract, final(v), dvul) * (1 if declaring else -1)   # to the side deciding
+                imp = imps(worth(best) - worth(values[x]))                         # the card's cost in IMPs, double dummy
+                made_best, made_got = final(best) >= target, final(values[x]) >= target
+                turned = int(made_best != made_got)                                # the card changed make or set
+                rows.append([len(history) // 4 + 1, SEATS[seat], role, best - values[x], round(sum(losses) / len(losses), 3), max(losses), len(legal),
+                             imp, turned])
             hand.discard(x)
             trick.append((seat, x))
             history.append((seat, x))
@@ -108,7 +124,9 @@ def one_table(sid, meta, board_hands, t):
         diff = dd_dec - claim_dec                               # > 0: declarer's side ends with fewer than double dummy
         out['claim'] = dict(dir=claim['dir'], claimed=claimed, dd_declarer=dd_dec, declarer_after=claim_dec)
         if diff:
-            out['decisions'].append([len(history) // 4 + 1, claim['dir'], 'CD' if diff > 0 else 'CF', abs(diff), None, None, None])
+            imp = abs(imps(score(contract, dd_dec, dvul) - score(contract, claim_dec, dvul)))
+            turned = int((dd_dec >= target) != (claim_dec >= target))
+            out['decisions'].append([len(history) // 4 + 1, claim['dir'], 'CD' if diff > 0 else 'CF', abs(diff), None, None, None, imp, turned])
     elif claim is not None:
         out['claim'] = dict(dir=claim['dir'], claimed=int(claim['tcount']), note='claimed in mid-trick: not scored')
     return out
@@ -117,10 +135,11 @@ def one_table(sid, meta, board_hands, t):
 def one_file(path):
     d = json.load(gzip.open(path, 'rt'))
     hands = {b['boardNumber']: {k[0]: ', '.join(v) for k, v in b['hands'].items()} for b in d.get('boards', [])}
+    vuls = {b['boardNumber']: VULS.get(str(b.get('vulnerability', 'NONE')).upper(), 'None') for b in d.get('boards', [])}
     out = []
     for t in d.get('tables', []):
         try:
-            r = one_table(d['miniSessionId'], d.get('meta') or {}, hands.get(t['board']), t)
+            r = one_table(d['miniSessionId'], d.get('meta') or {}, hands.get(t['board']), t, vuls.get(t['board'], 'None'))
         except Exception as e:                                  # one odd record must not end the run
             r = dict(sid=d['miniSessionId'], board=t.get('board'), error=f'{type(e).__name__}: {e}'[:200])
         if r:
@@ -136,10 +155,10 @@ def main():
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     files = [f for f in sorted(glob.glob(str(a.records / 'usbc_*.json.gz')))
-             if not (a.out / os.path.basename(f).replace('.json.gz', '.lt.json.gz')).exists()]
+             if not (a.out / os.path.basename(f).replace('.json.gz', '.lt2.json.gz')).exists()]
     with Pool(a.workers) as pool:
         for name, rows in pool.imap_unordered(one_file, files):
-            path = a.out / name.replace('.json.gz', '.lt.json.gz')
+            path = a.out / name.replace('.json.gz', '.lt2.json.gz')
             with gzip.open(str(path) + '.tmp', 'wt') as f:
                 for r in rows:
                     f.write(json.dumps(r, separators=(',', ':')) + '\n')
