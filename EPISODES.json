@@ -1,10 +1,14 @@
 {
+  "mechanism-guarantee": {
+    "count": 8,
+    "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/mechanism-guarantee/episodes"
+  },
   "mechanism-sham": {
     "count": 32,
     "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/mechanism-sham/episodes"
   },
   "mechanism-reader": {
-    "count": 495,
+    "count": 512,
     "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/mechanism-reader/episodes"
   }
 }
