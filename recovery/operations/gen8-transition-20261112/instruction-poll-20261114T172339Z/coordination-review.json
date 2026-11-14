@@ -1,0 +1,21 @@
+{
+  "poll_start": "2026-11-14T17:23:39Z",
+  "revision": "41be13181dfbd2c0abb5e5f94a122da274e3a03f",
+  "blob": "a44022ba0e78b96c6bd1e33627105085fa29575a",
+  "new_entries_since_prior_poll": 1,
+  "latest_entry": "2026-11-14T17:10:00Z stu-dash, published17:09:17Z",
+  "scope": "Max09:58 question about Gen8 layout budget answered by a sandbox benchmark; no deployed-bot or collection change.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
+  "disposition": "The notice explicitly says No change to any bot or collection. Keep the authoritative frozen Gen8 source, actors, early pool512 and approved pair budgets; do not import benchmark self-play or alter science. Stu4c selection and Gen9 status are separately scoped research/peer operations.",
+  "board_commits": [
+    {
+      "sha": "41be13181dfbd2c0abb5e5f94a122da274e3a03f",
+      "date": "2026-11-14T17:09:17Z",
+      "message": "stu-dash: Gen 8 layout budget bench\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDB9qVSDCt5YRoesD7"
+    }
+  ],
+  "human_training_evidence": "human-training-scope-review.json",
+  "research_evidence": "research-commit-review.json",
+  "peer_evidence": "genx-stu-peer-review.json",
+  "layout_budget_evidence": "layout-budget-scope-review.json"
+}

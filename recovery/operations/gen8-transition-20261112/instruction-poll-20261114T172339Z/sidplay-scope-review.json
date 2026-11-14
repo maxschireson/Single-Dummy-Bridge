@@ -1,0 +1,17 @@
+{
+  "poll_start": "2026-11-14T17:23:39Z",
+  "pr33": {
+    "number": 33,
+    "title": "play/: play bridge with Sid: analysis, Sid in your seat, history, replays; Sid = SiD (rollout) Stu R4c",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T15:46:35Z",
+    "head": "29c4cc008948aa8b1fa14bc20635207b219bfc5a",
+    "base": "main",
+    "draft": false
+  },
+  "reviews": [],
+  "scope": "Max's solo/analysis/replay and use-R4c instructions address the play-server session on azure1, not the collection producer. PR remains open/unmerged.",
+  "deployed_or_tested_here": false,
+  "commands_on_azure1": false
+}

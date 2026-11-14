@@ -1,0 +1,22 @@
+{
+  "poll_start": "2026-11-14T17:23:39Z",
+  "branch": "mail/coord",
+  "revision": "7e889235229d0e598ae6c25dd057980719552294",
+  "readme_blob": "6b47b9ee54a345d5013a1dfaf2d0780f135b9549",
+  "status_blob": "8adfde9fd15e337d2544d2f1ca84637ccbcef25f",
+  "status": {
+    "version": "1.0",
+    "box": "azure1",
+    "state": "waiting for the mailbox secret",
+    "last_cycle": "2026-11-14T16:43:29Z",
+    "last_error": null,
+    "time": "2026-11-14T16:43:29Z",
+    "sent_total": 0,
+    "last_uid": 0
+  },
+  "scope": "Perf mailbox channel; only README and non-sensitive status read.",
+  "collection_authority": false,
+  "certificates_or_secrets_read": false,
+  "messages_sent": false,
+  "service_commands_executed": false
+}
