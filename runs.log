@@ -197,3 +197,5 @@
 2026-11-14T06:34:28Z start s8-greedy g8-greedy~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)
 2026-11-14T06:56:47Z end s8-greedy: exit 0
 2026-11-14T06:56:47Z start s8-patient g8-patient~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)
+2026-11-14T07:18:43Z end s8-patient: exit 0
+2026-11-14T07:18:43Z start s8-active g8-active~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)
