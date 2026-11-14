@@ -4,6 +4,6 @@ Development-only; these small samples do not establish strength.
 
 | Run | Boards | IMP/board ± SE | CPU s/board | Failures |
 | --- | ---: | ---: | ---: | ---: |
-| mechanism-guarantee | 50 | 1.38 ± 0.5502 | 34.85 | 0 |
+| mechanism-guarantee | 100 | 1.05 ± 0.3726 | 34.21 | 0 |
 | mechanism-reader | 512 | 0.1152 ± 0.1665 | 33.71 | 0 |
 | mechanism-sham | 32 | 0.0 ± 0.0 | 32.86 | 0 |
