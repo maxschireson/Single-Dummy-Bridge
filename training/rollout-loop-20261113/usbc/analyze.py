@@ -73,7 +73,7 @@ def fix_claim(r):
     claim's decision from the stored double-dummy total (vulnerability from the board number). Mid-trick claims stay unscored
     in those files."""
     c = r.get('claim')
-    if not c or 'note' in c or 'mid_trick' in c:
+    if not c or 'note' in c or 'mid_trick' in c or 'played_out' in c:
         return r
     from bridge_harness.core import Contract, imps, score, vulnerable
     r['decisions'] = [d for d in r['decisions'] if d[2] not in ('CD', 'CF')]
@@ -93,7 +93,10 @@ def fix_claim(r):
 def load(dirs):
     tables = []
     for d in dirs:
-        for f in sorted(glob.glob(str(Path(d) / '*.lt2.json.gz'))):
+        files = {}
+        for f in sorted(glob.glob(str(Path(d) / '*.lt2.json.gz'))) + sorted(glob.glob(str(Path(d) / '*.lt3.json.gz'))):
+            files[Path(f).name.split('.lt')[0]] = f              # a session's lt3 (claims played out) replaces its lt2
+        for f in files.values():
             for line in gzip.open(f, 'rt'):
                 r = json.loads(line)
                 if 'error' in r or not r.get('decisions'):

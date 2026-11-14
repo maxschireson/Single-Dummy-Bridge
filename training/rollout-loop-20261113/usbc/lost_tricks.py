@@ -130,6 +130,33 @@ def one_table(sid, meta, board_hands, t, vul='None'):
             imp = abs(imps(score(contract, dd_dec, dvul) - score(contract, claim_dec, dvul)))
             turned = int((dd_dec >= target) != (claim_dec >= target))
             out['decisions'].append([len(history) // 4 + 1, claim['dir'], 'CD' if diff > 0 else 'CF', abs(diff), None, None, None, imp, turned])
+        # Max, 09:10 UTC 14 Nov: a claim counts as the remaining cards played without error by all four players. Play them
+        # out along a double-dummy line (each player's lowest best card), adding each card's danger at no loss; a wrong
+        # claim keeps its own row above. These rows end with 'claim'.
+        n = 0
+        while any(held):
+            mover = (leader + len(trick)) % 4
+            hand = held[mover]
+            legal = [y for y in hand if trick and y // 13 == trick[0][1] // 13] or sorted(hand)
+            if len(legal) > 1:
+                values, _ = _DDS.solve([tuple(sorted(h)) for h in held], trump, leader, list(trick))
+                best = max(values[y] for y in legal)
+                losses = [best - values[y] for y in legal]
+                x = min((y for y in legal if values[y] == best), key=lambda y: (y % 13, y // 13))
+                role = 'L' if not history else 'D' if mover % 2 == dec % 2 else 'F'
+                out['decisions'].append([len(history) // 4 + 1, SEATS[mover], role, 0, round(sum(losses) / len(losses), 3), max(losses),
+                                         len(legal), 0, 0, 'claim'])
+                n += 1
+            else:
+                x = legal[0]
+            hand.discard(x)
+            trick.append((mover, x))
+            history.append((mover, x))
+            if len(trick) == 4:
+                leader = winner(trick, trump)
+                won += leader % 2 == dec % 2
+                trick = []
+        out['claim']['played_out'] = n
     return out
 
 
@@ -153,13 +180,14 @@ def main():
     p.add_argument('records', type=Path)
     p.add_argument('out', type=Path, help='a folder: one OUT/<session>.lt.json.gz a session, written once')
     p.add_argument('--workers', type=int, default=2)
+    p.add_argument('--suffix', default='lt3', help='lt3: claims played out (14 Nov); lt2: the first scoring')
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     files = [f for f in sorted(glob.glob(str(a.records / 'usbc_*.json.gz')))
-             if not (a.out / os.path.basename(f).replace('.json.gz', '.lt2.json.gz')).exists()]
+             if not (a.out / os.path.basename(f).replace('.json.gz', f'.{a.suffix}.json.gz')).exists()]
     with Pool(a.workers) as pool:
         for name, rows in pool.imap_unordered(one_file, files):
-            path = a.out / name.replace('.json.gz', '.lt2.json.gz')
+            path = a.out / name.replace('.json.gz', f'.{a.suffix}.json.gz')
             with gzip.open(str(path) + '.tmp', 'wt') as f:
                 for r in rows:
                     f.write(json.dumps(r, separators=(',', ':')) + '\n')
