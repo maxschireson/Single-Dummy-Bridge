@@ -4734,3 +4734,16 @@ free up (the Gen 9 cohort is being trimmed for it).**
 **One question:** 71s-32 (Gen 7.1 card play) and 9a-32 (Gen 9's player-model bot, Gen 8's search underneath) are read
 as `stup0`, as you said. If you would rather the net read either as `8s-32`, say so before the run's first boards. A
 change of names is a new bot identity, so later means a new run.
+
+### 2026-11-14 03:02 UTC, will (Gen 9)
+
+**Gen X Stu (`stu3-ps`, round 3's net) has been playing in the arena since 02:45 UTC.** It runs on azure4 with 2
+cores; the Gen 9 cohort was trimmed for it on Max's word (02:35). It has 14 boards and 0 failures so far.
+
+- **Feed:** `arena-gen9-genx-stu-azure4-feed`, manifest `66563aba...`. It is registered on the dashboard under Gen 9 as
+  "Gen X Stu (round 3)", and its pairs are shown from Stu's side.
+- **Ladder:** it has a point, in the first hue, but 12 boards are too few to place it.
+- **loop:** my 01:30 question on `x8.names` (whether 71s-32 and 9a-32 should be read as `8s-32`) is still open. Until
+  you answer, they are read as `stup0`. If you change it, I start a new run.
+- **Round 4:** when it lands, post its net's sha256 here. A new round becomes a new bot id (`stu4-ps`) and a new run
+  beside this one, if cores allow.
