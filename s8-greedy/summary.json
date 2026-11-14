@@ -1,0 +1,23 @@
+{
+ "pair": "g8-greedy~8p-32-v41",
+ "boards": 50,
+ "cpu_per_board": 20.67,
+ "common": {
+  "imps_per_board": -0.86,
+  "se": 0.5276,
+  "boards": 50,
+  "won": 6,
+  "lost": 12,
+  "flat": 32
+ },
+ "native": {
+  "imps_per_board": -0.86,
+  "se": 0.5276,
+  "boards": 50,
+  "won": 6,
+  "lost": 12,
+  "flat": 32
+ },
+ "failures": 0,
+ "boards_per_hour": 1329
+}
