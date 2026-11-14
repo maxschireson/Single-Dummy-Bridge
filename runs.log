@@ -152,3 +152,21 @@
 2026-11-14T04:38:10Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source fc8202f, nets bf16, --recycle 20)
 2026-11-14T04:38:55Z the collection is paused for jobs-azure5-v41-styles.txt
 2026-11-14T04:38:55Z start h3-pib stu3-psti~stu3-pst seed 131 first 17500 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)
+2026-11-14T05:31:35Z end h3-pib: exit 0
+2026-11-14T05:31:35Z jobs-azure5-v41-styles.txt has ended; back to the collection
+2026-11-14T05:31:35Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)
+2026-11-14T05:31:35Z end l0b-stu0: exit 0
+2026-11-14T05:31:35Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)
+2026-11-14T05:31:35Z end l0b-p: exit 0
+2026-11-14T05:31:35Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source 68fb9ca, nets bf16, --recycle 20)
+2026-11-14T05:31:41Z azure5 joins the gate: jobs-azure5-ben.txt, then jobs-azure5-v41-styles.txt
+2026-11-14T05:32:46Z the collection is paused for jobs-azure5-ben.txt
+2026-11-14T05:33:02Z BEN (200) servers listening: 8 of 8
+2026-11-14T05:33:02Z start b0-pst200-1 stu0-pst~ben200 seed 131 first 0 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-2 stu0-pst~ben200 seed 131 first 32 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-3 stu0-pst~ben200 seed 131 first 64 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-4 stu0-pst~ben200 seed 131 first 96 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-5 stu0-pst~ben200 seed 131 first 128 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-6 stu0-pst~ben200 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-7 stu0-pst~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:33:02Z start b0-pst200-8 stu0-pst~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
