@@ -1,0 +1,93 @@
+{
+  "poll_start": "2026-11-14T05:28:47Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "f2d5bd24ff7b21f4873138ec72246aff9e88d98b",
+  "commits": [
+    {
+      "sha": "f2d5bd24ff7b21f4873138ec72246aff9e88d98b",
+      "date": "2026-11-14T05:28:22Z",
+      "message": "Stu: two boxes of Gen 8 self-play (azure1, azure5), two of the one-net Stu R3's (azure2 sp3t, azure6 sp3tb; twins stu3-psta/-pstb), azure3 the test box with the moved tests and Gen 8 records after them (Max, 05:24 UTC)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "fe01dae3c7b76905269c0b9378560a15385076bc",
+      "date": "2026-11-14T05:21:41Z",
+      "message": "Stu: the collections restart on Gen 8 card play's self-play (sg8f to sg8i) in place of round 3's two-net self-play, until round 4's bot is chosen\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "ba98377a97536e1324546da77831c2e9d86816ab",
+      "date": "2026-11-14T05:15:43Z",
+      "message": "Stu: the one-net bot with round 0's net (stu0-pst) against BEN (200) on the one-net R3 deals (Max, 05:14 UTC); bench/oracle_layout.py, a rollout bot's card when its layouts are the deal as it lay\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "bb0affe370551137830009e4adda4b22380d6ec1",
+      "date": "2026-11-14T05:04:55Z",
+      "message": "Stu bench: dd_ledger.py splits a rollout bot's given-up tricks by where the best card stood (not a candidate, a candidate rated lower, no rollout)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "0943cc40d1e410daf5c4b523ccd23641f4a0be95",
+      "date": "2026-11-14T05:01:44Z",
+      "message": "Stu bench: dd_ledger.py, where the tricks go by double dummy on the deal as it lay (by bot, by role, by trick; cards that turn the contract)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "4ebd47ecbdd37d5823780fe47d14a4e57c6836f1",
+      "date": "2026-11-14T04:57:48Z",
+      "message": "Tests: Pavlicek's fifty trump strip squeeze endings against the winning-line logic (Max, 04:34 UTC on 14 November). Double dummy agrees with his count and lead in all fifty; as drawn five are certain from declarer's view; in the 25 versions where show-outs fix every card the logic finds his count every time. Test positions only, never training data\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "a0bc029c0fa105f1fc1ac1d5820003b7a68b52b6",
+      "date": "2026-11-14T04:41:14Z",
+      "message": "Stu: the gate on azure6 and azure2 as well (both have BEN as azure3 does); ben_session.sh keeps to azure3's lane config on a box whose lanes are another round's\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "2d760dbdfe2a59ff2b3416a492339133072b3ab4",
+      "date": "2026-11-14T04:38:12Z",
+      "message": "Stu: BEN on more boxes for the gate (Max, 04:30 UTC: more BEN compare deals). ben_install.sh puts BEN where azure3 has it and checks it against azure3's install (ben/manifest.json, its lane config, packages and model hashes); ben_session.sh takes the box\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "68fb9cae74ae55404505aec34336d814248fe7c2",
+      "date": "2026-11-14T04:29:59Z",
+      "message": "Stu: the one-net bot with its rollouts choosing by IMPs (stu3-psti) against the same bot choosing by mean tricks, first on azure1 and azure5 (Max, 04:28 UTC)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "3caab93c6d1b13a50b0b5870fc695f9e1aaae922",
+      "date": "2026-11-14T04:25:32Z",
+      "message": "Stu: the gate is BEN (Max, 04:22 UTC). The one-net bot against BEN (200) on 1,024 deals with its two-net control on the new ones (jobs-azure3-ben5.txt); azure3's style matches go to azure1, the v4.1 match to azure5\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Max-directed Stu five-box training/measurement jobs: Gen8-cardplay and one-net-R3 self-play allocations, BEN200 gates/comparisons, IMP/oracle/DD diagnostics and claim test positions.",
+  "disposition": "Max05:24 allocates Azure1/5 to Gen8 self-play, Azure2/6 to one-net Stu R3 and Azure3 to tests/Gen8 records afterward. The files changed are Stu loop configs/jobs/runs, not canonical round8-candidate.json. Max04:22 BEN gate and added BEN installs target Stu measurements on named boxes, not this no-BEN source-budget collector. No local self-play, model promotion/training, benchmark, one-net/IMP setting, stop predicate or host control adopted. Pavlicek endings are test positions only, never an addition to this immutable corpus.",
+  "evidence": [
+    {
+      "sha": "f2d5bd24ff7b21f4873138ec72246aff9e88d98b",
+      "message": "Stu: two boxes of Gen 8 self-play (azure1, azure5), two of the one-net Stu R3's (azure2 sp3t, azure6 sp3tb; twins stu3-psta/-pstb), azure3 the test box with the moved tests and Gen 8 records after them (Max, 05:24 UTC)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/alias.txt",
+        "training/rollout-loop-20261113/jobs-azure2-onenet.txt",
+        "training/rollout-loop-20261113/jobs-azure2-split.txt",
+        "training/rollout-loop-20261113/jobs-azure2.txt",
+        "training/rollout-loop-20261113/jobs-azure3.txt",
+        "training/rollout-loop-20261113/jobs-azure6-mix.txt",
+        "training/rollout-loop-20261113/jobs-azure6.txt",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    },
+    {
+      "sha": "3caab93c6d1b13a50b0b5870fc695f9e1aaae922",
+      "message": "Stu: the gate is BEN (Max, 04:22 UTC). The one-net bot against BEN (200) on 1,024 deals with its two-net control on the new ones (jobs-azure3-ben5.txt); azure3's style matches go to azure1, the v4.1 match to azure5\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "training/rollout-loop-20261113/jobs-azure1-styles.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben5.txt",
+        "training/rollout-loop-20261113/jobs-azure3-v41-styles.txt",
+        "training/rollout-loop-20261113/jobs-azure5-v41-styles.txt",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "2b18c496a979be80fd732f99bb9a29092d6281eb",
+  "future_exclusions": "Any later new owned cohort requires complete pinned exclusions for all released-model training families and existing source-corpus safeguards. Preserve current immutable v4.1 list/audit."
+}

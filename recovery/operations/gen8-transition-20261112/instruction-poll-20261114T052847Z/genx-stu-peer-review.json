@@ -1,0 +1,47 @@
+{
+  "poll_start": "2026-11-14T05:28:47Z",
+  "registered": true,
+  "adopted_by_this_stream": false,
+  "registration": {
+    "revision": "5104d39de5333af0dd7512c1f986198c3e4b7d8d",
+    "blob": "5255da6a2bdf7d15ce0a52169f214eaa20055414",
+    "entry": {
+      "key": "gen9genxstuazure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen X Stu · azure4 (stu3-ps against Gen 8, Gen 9 and Gen 7.1)",
+      "branch": "arena-gen9-genx-stu-azure4-feed",
+      "cohort": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091"
+    },
+    "authority": {
+      "authority": "Max, 2026-11-14 00:48 UTC: the Stu team's latest bot into the arena; 00:49: \"We will call it Gen X Stu\"; 01:00: \"Put it into the mix at whatever level you want\"; 02:35: trim the Gen 9 cohort for it.",
+      "feeds": "azure4: arena-gen9-genx-stu-azure4-feed, manifest 66563aba..., stu3-ps (the loop's pure Stu, round 3's rollout net) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9019), two workers. configs/round9-genx-stu.json on feature/gen9-genx-stu at 9bba86b6; job boxq/azure4/g9-genx-stu-azure4.json on team/gen9.",
+      "registered_by": "will (Gen 9), 2026-11-14 02:5x UTC",
+      "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    }
+  },
+  "feed_revision": "030704cbb35a34755ecfebef146fff2e6fec25c9",
+  "current_branch_revision": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+  "state": {
+    "manifest_identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+    "completed": 149,
+    "target": 4000,
+    "contiguous": 149,
+    "by_pair": {
+      "stu3-ps~8s-32": 75,
+      "stu3-ps~71s-32": 37,
+      "stu3-ps~9a-32": 37
+    },
+    "root_games": 298,
+    "tables": 5233,
+    "failures": 0,
+    "epoch": 1794634103.0186396,
+    "complete": false,
+    "blob": "1c5fd0250630e76dbf78e6ed9fc8c8a95231991d"
+  },
+  "source_provenance": "Frozen GenX manifest/source verified in preceding checks; registration, plan blob and source branch remain unchanged. Read-only current state snapshot.",
+  "scope": "Existing registered GenX/Azure4 cohort, unchanged R3 actor. Stu's five-box collection changes and BEN gate do not replace this peer's pinned actor or any owned Gen8 actor.",
+  "peer_commands_executed": false
+}
