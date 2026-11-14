@@ -363,6 +363,17 @@ planned plus every human table (as bid; they draw no replay rows, `round2.sh` NO
 replay), and `stu4c`, the control without them. Both are gated blind on BEN (200) in turns on the same deals
 (`jobs-azure3-ben8.txt`), after a nets-alone match between them (`jobs-azure5-r4.txt`).
 
+**The cut (12:41 to 12:56 UTC on 14 November)**: 46,494 loop tables since round 3's cut (the one-net SiD's self-play 15,768,
+pure Stu with round 3's net 7,192, pure Stu on rollouts alone 7,641, Gen 8's self-play 15,893), with round 3's 28,000
+about 3.1 million rows; and 23,067 arena records not in v2's set (1,157 with BEN, 1.7% of the round's new boards).
+**The first try at the training failed in its sizing** (`loop-201`, 12:50 UTC): an arena record carries about 600 rows
+(root and fork tables, both rooms), so the arena came to about 14 million rows against the loop's 3.1 million; with as
+many replay rows again the set would have been about 30 million rows, more than azure5's free disk (26 GB) and two hours a
+net. It was also sent as one long command, which holds the box's queue until it ends. `round4.sh` is the round as it
+should be, a unit of its own: the arena's rows from a sample of the records (500 of the BEN feed, 2,100 of the others,
+about 1.5 million rows), a third as many replay rows (arena and replay together about the loop's rows, the share other
+bots' rows had in round 3), each net's big files removed when it is done, nothing started under 14 GB of free disk.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
