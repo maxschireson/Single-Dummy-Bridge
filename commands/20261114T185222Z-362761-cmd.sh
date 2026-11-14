@@ -1,0 +1,1 @@
+W=$HOME/work/loop; cd $W/src; cp $W/pub/exp/seat-bu3.jsonl /tmp/seat-part.jsonl; nice -n 10 $W/venv/bin/python training/rollout-loop-20261113/bench/seat_variants.py x --report /tmp/seat-part.jsonl 2>&1 | grep -v Warning | cut -c1-200
