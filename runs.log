@@ -841,3 +841,5 @@
 2026-11-14T18:16:39Z start sg8v1 g8-greedy0~g8-passive0 seed 9001 first 880000 deals 2000 workers 8 --episodes --one-room (source 7768d38, nets fp32)
 2026-11-14T18:21:59Z the collection waits for the seat bench (fixed, source 42caf93)
 2026-11-14T18:21:59Z seat bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)
+2026-11-14T19:37:48Z seat bench ended: exit 0; 7872 decisions
+2026-11-14T19:37:48Z start sg8v1 g8-greedy0~g8-passive0 seed 9001 first 880000 deals 2000 workers 8 --episodes --one-room (source 42caf93, nets fp32)

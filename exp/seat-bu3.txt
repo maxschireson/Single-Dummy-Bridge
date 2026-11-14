@@ -1,0 +1,52 @@
+2047 boards of bu3-pst200a-1, bu3-pst200a-2, bu3-pst200a-3 ...; the candidate's rollout decisions, one in 8
+7872 decisions on 3660 tables; CPU a decision, every setting: 4.44 s
+
+all: 7872 decisions. Recorded card gives up 0.0312 tricks a decision by double dummy
+  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw
+  draw (as played)         |   +0.085 +- 0.012 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0283   +0.0000 +- 0.0000
+  draw, other seed         |   +0.085 +- 0.012 |    +0.0067 +- 0.0031 |  +0.0000 +- 0.0007 |      37.8% |      0.0281   -0.0003 +- 0.0014
+  top card                 |   +0.083 +- 0.012 |    +0.0014 +- 0.0046 |  -0.0001 +- 0.0009 |      32.3% |      0.0293   +0.0010 +- 0.0017
+  draw, power 2            |   +0.085 +- 0.012 |    -0.0040 +- 0.0033 |  -0.0017 +- 0.0007 |      29.3% |      0.0279   -0.0004 +- 0.0014
+  draw, cut 0.25           |   +0.086 +- 0.012 |    -0.0049 +- 0.0029 |  -0.0013 +- 0.0006 |      29.1% |      0.0288   +0.0005 +- 0.0016
+  others top, own drawn    |   -0.028 +- 0.012 |    -0.0075 +- 0.0055 |  -0.0032 +- 0.0009 |      30.9% |      0.0295   +0.0011 +- 0.0015
+  own top, others drawn    |   +0.197 +- 0.012 |    +0.0466 +- 0.0056 |  +0.0053 +- 0.0009 |      30.8% |      0.0287   +0.0004 +- 0.0016
+
+declaring: 3689 decisions. Recorded card gives up 0.0358 tricks a decision by double dummy
+  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw
+  draw (as played)         |   +0.042 +- 0.017 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0323   +0.0000 +- 0.0000
+  draw, other seed         |   +0.040 +- 0.017 |    +0.0072 +- 0.0033 |  +0.0005 +- 0.0008 |      44.6% |      0.0339   +0.0016 +- 0.0023
+  top card                 |   +0.045 +- 0.017 |    +0.0070 +- 0.0076 |  +0.0005 +- 0.0013 |      33.7% |      0.0350   +0.0027 +- 0.0028
+  draw, power 2            |   +0.045 +- 0.017 |    -0.0045 +- 0.0052 |  -0.0016 +- 0.0008 |      29.4% |      0.0317   -0.0005 +- 0.0022
+  draw, cut 0.25           |   +0.050 +- 0.017 |    -0.0035 +- 0.0042 |  -0.0007 +- 0.0007 |      28.8% |      0.0317   -0.0005 +- 0.0025
+  others top, own drawn    |   -0.077 +- 0.017 |    +0.0066 +- 0.0082 |  -0.0018 +- 0.0014 |      30.6% |      0.0347   +0.0024 +- 0.0023
+  own top, others drawn    |   +0.165 +- 0.017 |    +0.0417 +- 0.0084 |  +0.0054 +- 0.0011 |      31.6% |      0.0314   -0.0008 +- 0.0024
+
+defending: 4183 decisions. Recorded card gives up 0.0273 tricks a decision by double dummy
+  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw
+  draw (as played)         |   +0.122 +- 0.016 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0249   +0.0000 +- 0.0000
+  draw, other seed         |   +0.124 +- 0.016 |    +0.0062 +- 0.0050 |  -0.0004 +- 0.0010 |      31.8% |      0.0230   -0.0019 +- 0.0018
+  top card                 |   +0.116 +- 0.016 |    -0.0036 +- 0.0056 |  -0.0006 +- 0.0013 |      31.1% |      0.0244   -0.0005 +- 0.0021
+  draw, power 2            |   +0.120 +- 0.016 |    -0.0036 +- 0.0042 |  -0.0017 +- 0.0010 |      29.3% |      0.0246   -0.0002 +- 0.0019
+  draw, cut 0.25           |   +0.119 +- 0.016 |    -0.0061 +- 0.0041 |  -0.0018 +- 0.0009 |      29.4% |      0.0263   +0.0014 +- 0.0019
+  others top, own drawn    |   +0.016 +- 0.016 |    -0.0199 +- 0.0074 |  -0.0045 +- 0.0013 |      31.3% |      0.0249   +0.0000 +- 0.0020
+  own top, others drawn    |   +0.225 +- 0.016 |    +0.0508 +- 0.0075 |  +0.0052 +- 0.0013 |      30.0% |      0.0263   +0.0014 +- 0.0022
+
+tricks 1-4: 3092 decisions. Recorded card gives up 0.0462 tricks a decision by double dummy
+  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw
+  draw (as played)         |   +0.070 +- 0.020 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0424   +0.0000 +- 0.0000
+  draw, other seed         |   +0.068 +- 0.020 |    +0.0012 +- 0.0041 |  -0.0008 +- 0.0006 |      43.2% |      0.0414   -0.0010 +- 0.0026
+  top card                 |   +0.069 +- 0.020 |    -0.0020 +- 0.0083 |  -0.0015 +- 0.0012 |      38.3% |      0.0414   -0.0010 +- 0.0031
+  draw, power 2            |   +0.068 +- 0.020 |    -0.0085 +- 0.0052 |  -0.0031 +- 0.0008 |      35.9% |      0.0430   +0.0006 +- 0.0027
+  draw, cut 0.25           |   +0.070 +- 0.020 |    -0.0113 +- 0.0048 |  -0.0022 +- 0.0008 |      36.4% |      0.0417   -0.0006 +- 0.0031
+  others top, own drawn    |   -0.121 +- 0.020 |    +0.0033 +- 0.0109 |  -0.0026 +- 0.0015 |      36.4% |      0.0433   +0.0010 +- 0.0028
+  own top, others drawn    |   +0.260 +- 0.020 |    +0.0745 +- 0.0112 |  +0.0072 +- 0.0014 |      37.5% |      0.0430   +0.0006 +- 0.0030
+
+tricks 5-13: 4780 decisions. Recorded card gives up 0.0215 tricks a decision by double dummy
+  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw
+  draw (as played)         |   +0.094 +- 0.011 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0192   +0.0000 +- 0.0000
+  draw, other seed         |   +0.096 +- 0.011 |    +0.0103 +- 0.0044 |  +0.0006 +- 0.0010 |      34.3% |      0.0195   +0.0002 +- 0.0017
+  top card                 |   +0.092 +- 0.011 |    +0.0035 +- 0.0049 |  +0.0009 +- 0.0012 |      28.5% |      0.0215   +0.0023 +- 0.0020
+  draw, power 2            |   +0.095 +- 0.011 |    -0.0011 +- 0.0038 |  -0.0007 +- 0.0009 |      25.1% |      0.0182   -0.0010 +- 0.0016
+  draw, cut 0.25           |   +0.097 +- 0.011 |    -0.0007 +- 0.0034 |  -0.0007 +- 0.0008 |      24.4% |      0.0205   +0.0013 +- 0.0016
+  others top, own drawn    |   +0.032 +- 0.011 |    -0.0145 +- 0.0046 |  -0.0036 +- 0.0011 |      27.4% |      0.0205   +0.0013 +- 0.0017
+  own top, others drawn    |   +0.156 +- 0.011 |    +0.0285 +- 0.0045 |  +0.0041 +- 0.0010 |      26.4% |      0.0195   +0.0002 +- 0.0018
