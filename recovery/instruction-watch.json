@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794637464.8041093,
+  "checked_epoch": 1794641097.377479,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -112,29 +112,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 4423,
+      "completed": 4547,
       "target": 16036,
-      "contiguous": 4423,
+      "contiguous": 4547,
       "by_pair": {
-        "8s-32~71s-32": 1474,
-        "8s-32~1": 737,
-        "8s-32~5RZ32": 738,
-        "8c-32~8s-32": 737,
-        "8c-32~71s-32": 737
+        "8s-32~71s-32": 1516,
+        "8s-32~1": 758,
+        "8s-32~5RZ32": 758,
+        "8c-32~8s-32": 757,
+        "8c-32~71s-32": 758
       },
-      "root_games": 14744,
-      "tables": 182521,
+      "root_games": 15156,
+      "tables": 187569,
       "failures": 0,
-      "epoch": 1794637445.5807645,
+      "epoch": 1794641057.1605918,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794637455.5814004,
-      "completed": 4423,
+      "epoch": 1794641097.16744,
+      "completed": 4547,
       "in_flight": [
-        4423,
-        4424,
-        4425
+        4547,
+        4548,
+        4549
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -142,15 +142,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794637439.86416,
+      "epoch": 1794641040.1523683,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794637419.3075674,
+      "epoch": 1794641056.6648297,
       "status": "published",
-      "completed": 4421
+      "completed": 4546
     },
     "process.json": {
       "pid": 221720,
@@ -167,7 +167,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/Gen X Stu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/Gen X Stu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue 19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -180,7 +180,7 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T05:25:14Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T06:24:24Z",
   "reviewed_discussions": [
     {
       "number": 22,
@@ -190,7 +190,7 @@
   ],
   "observed_notices": [],
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
-  "previous_checked_epoch": 1794633914.1876376,
+  "previous_checked_epoch": 1794637464.8041093,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -211,11 +211,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 9.222708940505981,
-  "publisher_age": 45.49654197692871,
-  "free_bytes": 18872303616,
+  "heartbeat_age": 0.2100391387939453,
+  "publisher_age": 40.71264934539795,
+  "free_bytes": 18073317376,
   "new_applicable_instructions": [],
-  "registry_revision": "c14910f1100a4caf33e992c1e3c0374ee0c117a8",
+  "registry_revision": "17f532f1297c1ee9028f59b181b7a66464b83d5d",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -342,7 +342,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 24.93994927406311,
+  "watchdog_age": 57.22511076927185,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
