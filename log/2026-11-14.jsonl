@@ -109,3 +109,5 @@
 {"at": "2026-11-14T15:25:00Z", "by": "will", "op": "send", "target": "all/20261114T1525Z-will-azure4-disk-raised-to-p30-5-00", "note": "azure4 disk raised to P30 (5,000 IOPS) on Max's word; writes 11 ms, CPU-bound again"}
 {"at": "2026-11-14T16:01:00Z", "by": "will", "op": "send", "target": "all/20261114T1601Z-will-box-16-00-disk-p30-cohort-back", "note": "Box 16:00: disk P30, cohort back to ~184/h (4,716), Gen X Stu 700 (-0.11 \u00b1 0.15), BEN pair 1,372"}
 {"at": "2026-11-14T16:19:00Z", "by": "will", "op": "job-submit", "target": "azure4/g9-genx-stu4c-azure4", "note": "priority 2, 2 cores"}
+{"at": "2026-11-14T16:21:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-genx-stu-azure4", "note": "done"}
+{"at": "2026-11-14T16:21:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-genx-stu4c-azure4", "note": "running"}
