@@ -2204,6 +2204,690 @@
    "queue_order": 12
   },
   {
+   "name": "sg8u1",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 800000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 13
+  },
+  {
+   "name": "sg8u2",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 802000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 14
+  },
+  {
+   "name": "sg8u3",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 804000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 15
+  },
+  {
+   "name": "sg8u4",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 806000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 16
+  },
+  {
+   "name": "sg8u5",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 808000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 17
+  },
+  {
+   "name": "sg8u6",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 810000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 18
+  },
+  {
+   "name": "sg8u7",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 812000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 19
+  },
+  {
+   "name": "sg8u8",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 814000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 20
+  },
+  {
+   "name": "sg8u9",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 816000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 21
+  },
+  {
+   "name": "sg8u10",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 818000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 22
+  },
+  {
+   "name": "sg8u11",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 820000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 23
+  },
+  {
+   "name": "sg8u12",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 822000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 24
+  },
+  {
+   "name": "sg8u13",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 824000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 25
+  },
+  {
+   "name": "sg8u14",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 826000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 26
+  },
+  {
+   "name": "sg8u15",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 828000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 27
+  },
+  {
+   "name": "sg8u16",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 830000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 28
+  },
+  {
+   "name": "sg8u17",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 832000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 29
+  },
+  {
+   "name": "sg8u18",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 834000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 30
+  },
+  {
+   "name": "sg8u19",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 836000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 31
+  },
+  {
+   "name": "sg8u20",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 838000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 32
+  },
+  {
+   "name": "sg8u21",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 840000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 33
+  },
+  {
+   "name": "sg8u22",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 842000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 34
+  },
+  {
+   "name": "sg8u23",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 844000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 35
+  },
+  {
+   "name": "sg8u24",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 846000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 36
+  },
+  {
+   "name": "sg8u25",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 848000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 37
+  },
+  {
+   "name": "sg8u26",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 850000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 38
+  },
+  {
+   "name": "sg8u27",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 852000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 39
+  },
+  {
+   "name": "sg8u28",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 854000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 40
+  },
+  {
+   "name": "sg8u29",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 856000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 41
+  },
+  {
+   "name": "sg8u30",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 858000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 42
+  },
+  {
+   "name": "sg8u31",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-passive0",
+   "seed": 9001,
+   "first": 860000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 43
+  },
+  {
+   "name": "sg8u32",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-active0",
+   "seed": 9001,
+   "first": 862000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 44
+  },
+  {
+   "name": "sg8u33",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-high0~g8-low0",
+   "seed": 9001,
+   "first": 864000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 45
+  },
+  {
+   "name": "sg8u34",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~g8-low0",
+   "seed": 9001,
+   "first": 866000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 46
+  },
+  {
+   "name": "sg8u35",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient0~g8-high0",
+   "seed": 9001,
+   "first": 868000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 47
+  },
+  {
+   "name": "sg8u36",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-active0~g8-passive0",
+   "seed": 9001,
+   "first": 870000,
+   "deals": 2000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
+   "queue_order": 48
+  },
+  {
    "name": "spr0e",
    "box": "azure1",
    "branch": "transfer/rollout-loop-azure1-20261113",
@@ -2308,7 +2992,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 13
+   "queue_order": 49
   },
   {
    "name": "h3-n",
@@ -2551,7 +3235,7 @@
     "net": "v2",
     "rung": "net-d"
    },
-   "queue_order": 14
+   "queue_order": 50
   },
   {
    "name": "h3-p2",
@@ -2575,7 +3259,7 @@
     "net": "v2",
     "rung": "pure-rs"
    },
-   "queue_order": 15
+   "queue_order": 51
   },
   {
    "name": "h3-pg",
@@ -2718,7 +3402,7 @@
     "net": "stu3",
     "rung": "pure-rs-t"
    },
-   "queue_order": 16
+   "queue_order": 52
   },
   {
    "name": "h3-pib",
@@ -3127,7 +3811,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 17
+   "queue_order": 53
   },
   {
    "name": "b3-pst200f",

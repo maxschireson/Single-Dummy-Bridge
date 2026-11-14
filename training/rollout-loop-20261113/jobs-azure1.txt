@@ -31,3 +31,42 @@ sg8s9 g8-high0~g8-low0 9001 716000 2000 8 --episodes --one-room
 sg8s10 g8-greedy0~g8-low0 9001 718000 2000 8 --episodes --one-room
 sg8s11 g8-patient0~g8-high0 9001 720000 2000 8 --episodes --one-room
 sg8s12 g8-active0~g8-passive0 9001 722000 2000 8 --episodes --one-room
+# 18:15 UTC on 14 November: the twelve runs above ended at 17:15 and the box stood idle for an hour (the list was finite: my miss).
+# Max, 17:57: "We should continue collecting gen (whichever)". The same six pairs go on, on deals 800,000 to 871,999 (about 32 hours),
+# until the box moves to records with fork tables (the arena's kind: about 764 rows a record against 41 here).
+sg8u1 g8-greedy0~g8-passive0 9001 800000 2000 8 --episodes --one-room
+sg8u2 g8-patient0~g8-active0 9001 802000 2000 8 --episodes --one-room
+sg8u3 g8-high0~g8-low0 9001 804000 2000 8 --episodes --one-room
+sg8u4 g8-greedy0~g8-low0 9001 806000 2000 8 --episodes --one-room
+sg8u5 g8-patient0~g8-high0 9001 808000 2000 8 --episodes --one-room
+sg8u6 g8-active0~g8-passive0 9001 810000 2000 8 --episodes --one-room
+sg8u7 g8-greedy0~g8-passive0 9001 812000 2000 8 --episodes --one-room
+sg8u8 g8-patient0~g8-active0 9001 814000 2000 8 --episodes --one-room
+sg8u9 g8-high0~g8-low0 9001 816000 2000 8 --episodes --one-room
+sg8u10 g8-greedy0~g8-low0 9001 818000 2000 8 --episodes --one-room
+sg8u11 g8-patient0~g8-high0 9001 820000 2000 8 --episodes --one-room
+sg8u12 g8-active0~g8-passive0 9001 822000 2000 8 --episodes --one-room
+sg8u13 g8-greedy0~g8-passive0 9001 824000 2000 8 --episodes --one-room
+sg8u14 g8-patient0~g8-active0 9001 826000 2000 8 --episodes --one-room
+sg8u15 g8-high0~g8-low0 9001 828000 2000 8 --episodes --one-room
+sg8u16 g8-greedy0~g8-low0 9001 830000 2000 8 --episodes --one-room
+sg8u17 g8-patient0~g8-high0 9001 832000 2000 8 --episodes --one-room
+sg8u18 g8-active0~g8-passive0 9001 834000 2000 8 --episodes --one-room
+sg8u19 g8-greedy0~g8-passive0 9001 836000 2000 8 --episodes --one-room
+sg8u20 g8-patient0~g8-active0 9001 838000 2000 8 --episodes --one-room
+sg8u21 g8-high0~g8-low0 9001 840000 2000 8 --episodes --one-room
+sg8u22 g8-greedy0~g8-low0 9001 842000 2000 8 --episodes --one-room
+sg8u23 g8-patient0~g8-high0 9001 844000 2000 8 --episodes --one-room
+sg8u24 g8-active0~g8-passive0 9001 846000 2000 8 --episodes --one-room
+sg8u25 g8-greedy0~g8-passive0 9001 848000 2000 8 --episodes --one-room
+sg8u26 g8-patient0~g8-active0 9001 850000 2000 8 --episodes --one-room
+sg8u27 g8-high0~g8-low0 9001 852000 2000 8 --episodes --one-room
+sg8u28 g8-greedy0~g8-low0 9001 854000 2000 8 --episodes --one-room
+sg8u29 g8-patient0~g8-high0 9001 856000 2000 8 --episodes --one-room
+sg8u30 g8-active0~g8-passive0 9001 858000 2000 8 --episodes --one-room
+sg8u31 g8-greedy0~g8-passive0 9001 860000 2000 8 --episodes --one-room
+sg8u32 g8-patient0~g8-active0 9001 862000 2000 8 --episodes --one-room
+sg8u33 g8-high0~g8-low0 9001 864000 2000 8 --episodes --one-room
+sg8u34 g8-greedy0~g8-low0 9001 866000 2000 8 --episodes --one-room
+sg8u35 g8-patient0~g8-high0 9001 868000 2000 8 --episodes --one-room
+sg8u36 g8-active0~g8-passive0 9001 870000 2000 8 --episodes --one-room
