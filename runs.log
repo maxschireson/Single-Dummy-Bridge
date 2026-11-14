@@ -19,3 +19,5 @@
 2026-11-14T00:09:51Z end l3-p: exit 0
 2026-11-14T00:09:51Z jobs-azure1-r3.txt has ended; back to the collection
 2026-11-14T00:09:51Z start sps0e stu0-psa~stu0-psb seed 9001 first 340000 deals 20000 workers 8 --episodes --one-room (source 52033bc, nets bf16, --recycle 20)
+2026-11-14T00:45:08Z sps0e stopped: the collection moves to sp3se (round 3's net in the rollouts)
+2026-11-14T00:45:08Z start sp3se stu3-psa~stu3-psb seed 9001 first 440000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets bf16, --recycle 20)
