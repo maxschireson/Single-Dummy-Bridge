@@ -6,7 +6,7 @@
  "cores": 2,
  "source": {
   "branch": "feature/gen9-genx-stu",
-  "commit": "43d555eb"
+  "commit": "9bba86b6"
  },
  "argv": [
   "bash",
@@ -15,7 +15,8 @@
  ],
  "env": {
   "BRIDGE_FEED_REMOTE": "git@github.com:maxschireson/Single-Dummy-Bridge.git",
-  "GIT_SSH_COMMAND": "ssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20"
+  "GIT_SSH_COMMAND": "ssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20",
+  "BRIDGE_DDS_CACHE_SYNC": "NORMAL"
  },
  "progress": {
   "results": "run/receipts/*.json",
@@ -27,7 +28,7 @@
   "run/state.json",
   "run/manifest.json"
  ],
- "notes": "Gen X Stu in the arena (Max, 14 Nov 00:48-01:00 UTC: the Stu team's latest bot into the arena, called Gen X Stu, 'at whatever level you want'). configs/round9-genx-stu.json on feature/gen9-genx-stu: stu3-ps (the loop's pure Stu with round 3's rollout net) against 8s-32 (2), 9a-32 (1) and 71s-32 (1), the cohort's entries and identities. 4,000 fresh deals (seed 9019), excluding v4.1's and rollout net v1's training families, the source corpus and the families played on registered feeds. Builds the claim solver (experiments/sure_tricks/sure.cpp) into {out}/bin once; one BLAS thread a worker, as the loop runs Stu. Publishes every minute to arena-gen9-genx-stu-azure4-feed as the cohort does. Smoke test off the box: 8 boards, 0 failures, about 150 CPU-s a board with the arena's audit forks (2 workers: roughly 45-60 boards an hour). Resumable; STOP in {out}/run drains it.",
+ "notes": "Gen X Stu in the arena (Max, 14 Nov 00:48-01:00 UTC: the Stu team's latest bot into the arena, called Gen X Stu, 'at whatever level you want'). configs/round9-genx-stu.json on feature/gen9-genx-stu: stu3-ps (the loop's pure Stu with round 3's rollout net) against 8s-32 (2), 9a-32 (1) and 71s-32 (1), the cohort's entries and identities. 4,000 fresh deals (seed 9019), excluding v4.1's and rollout net v1's training families, the source corpus and the families played on registered feeds. Builds the claim solver (experiments/sure_tricks/sure.cpp) into {out}/bin once; one BLAS thread a worker, as the loop runs Stu. Its DDS cache syncs NORMAL, not FULL (BRIDGE_DDS_CACHE_SYNC, 9bba86b6), so it adds few flushes to the disk the cohort shares; results are unchanged. Publishes every minute to arena-gen9-genx-stu-azure4-feed as the cohort does. Smoke test off the box: 8 boards, 0 failures, about 150 CPU-s a board with the arena's audit forks (2 workers: roughly 45-60 boards an hour). Resumable; STOP in {out}/run drains it.",
  "submitted": "2026-11-14T01:28:00Z",
  "by": "will"
 }
