@@ -9,7 +9,7 @@
 # 3. Builds rows as rows.sh does (policy-only, the search's or the rollouts' values, alias.txt), with the arena's ids read
 #    so: 8p-32 as 8s-32 (Gen 8 card play), stu3-ps as stup0 (Stu); 9a-32 (Gen 9) and 8x3-32 (an 8X variant) keep their own
 #    ids, which round2.sh starts from 8s-32's vectors (INIT_AS).
-# Writes OUT_DIR/arena.npz and OUT_DIR/arena.log. Seed 131's deals (the gate's) are not in any arena feed.
+# Writes OUT_DIR/arena.npz and OUT_DIR/arena.log (SKIP_BUILD=1: steps 1 and 2 only). Seed 131's deals (the gate's) are not in any arena feed.
 set -euo pipefail
 OUT=$1; LOOP_BOARDS=${2:-0}; SHARE=${SHARE:-0.017}; WORKERS=${WORKERS:-6}
 W=$HOME/work/loop; PY=$W/venv/bin/python; HERE=$(cd "$(dirname "$0")" && pwd); V2=$HOME/work/plan/rnet2w
@@ -49,6 +49,7 @@ for f in ben[keep:]:
     os.replace(f, f'{out}/ben/' + os.path.basename(f))
 print(f'records without BEN {other}; with BEN {len(ben)}, kept {keep} (share {share} of {other + loop + keep} new boards with the loop\'s {loop})')
 PY
+[ "${SKIP_BUILD:-0}" = 1 ] && { say "SKIP_BUILD: records selected, no rows built"; exit 0; }
 ALIAS="$(cat "$HERE/alias.txt"),8p-32=8s-32,stu3-ps=stup0"
 cd "$HERE/../.."
 nice -n 10 "$PY" scripts/gen7_build_dataset.py --episodes "$OUT/eps" --scorer "$SCORER" --out "$OUT/arena.npz" --workers "$WORKERS" --policy-only \
