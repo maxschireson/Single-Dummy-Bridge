@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 172.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:04:44Z",
+ "id": "20261114T190124Z-590590-cmd",
+ "output_bytes": 1284,
+ "output_tail": "2026-11-14T17:43:11Z start sp4tb stu4c-psta~stu4c-pstb seed 9001 first 780000 deals 20000 workers 8 --episodes --one-room (source 30e30af, n\nsp3tb: 14265 records | sp4tb: 1591 records | \n2026-11-14T19:02:29Z cut sp3sc 400000-400449: 450 boards, {\"episodes\": 450, \"deals\": 449, \"unique_families\": 449, \"examples\": 18551, \"train\": 14513, \"validation\": 2087, \"test\": 1, 952 KB\n2026-11-14T19:02:48Z cut sp3tb 634000-634264: 265 boards, {\"episodes\": 265, \"deals\": 265, \"unique_families\": 265, \"examples\": 10910, \"train\": 9267, \"validation\": 699, \"test\": 944, 568 KB\n2026-11-14T19:03:29Z cut sp4tb 781000-781587: 588 boards, {\"episodes\": 588, \"deals\": 587, \"unique_families\": 587, \"examples\": 24113, \"train\": 20015, \"validation\": 1795, \"test\": 2, 1236 KB\npublisher last commit 2026-11-14 19:03:30 +0000\nunpushed files: 0\n-rw-r--r--  1 bridgebots bridgebots  971237 Nov 14 19:02 sp3sc-400000-400449.npz\n-rw-r--r--  1 bridgebots bridgebots  579292 Nov 14 19:02 sp3tb-634000-634264.npz\n-rw-r--r--  1 bridgebots bridgebots 1263947 Nov 14 19:03 sp4tb-781000-781587.npz\n-rw-r--r--  1 bridgebots bridgebots  445414 Nov 13 23:01 spr0c-161000-161198.npz\n-rw-r--r--  1 bridgebots bridgebots 2461179 Nov 14 12:55 sps0c-301000-302162.npz\n22\n/dev/root       123G   65G   59G  53% /\n2026-11-14T19:04:44Z\n",
+ "received": "2026-11-14T19:01:51Z",
+ "script_sha256": "4269a899907e609306999bbf2a6316609bb25e2bb847b4b029a3c7bc45b21c94",
+ "started": "2026-11-14T19:01:51Z",
+ "timed_out": false,
+ "timeout_s": 1200
+}

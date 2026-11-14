@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:30:52Z",
+ "id": "20261112T143030Z-731605-g8-51-third-party",
+ "output_bytes": 200,
+ "output_tail": "queue active, position 26 of 30\nf1-8a-v-8p-house 8a-32-v41~8p-32-v41 0 100 96\nf2-8x-v-8p-v41 8x-32-v41~8p-32-v41 0 100 96\ng3-7s41-v-6 7s-32-v41~6-32 0 800 73\nc1-8c-v-7s 8c-32-v41~7s-32-v41 400 800 95\n",
+ "received": "2026-11-12T14:30:52Z",
+ "script_sha256": "f78fd2f29eb8df97b46b6eae90036651b935451ce16d84d74ac104f272d0278a",
+ "started": "2026-11-12T14:30:52Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

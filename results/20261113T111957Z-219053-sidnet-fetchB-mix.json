@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:20:05Z",
+ "id": "20261113T111957Z-219053-sidnet-fetchB-mix",
+ "output_bytes": 194,
+ "output_tail": "branches with new episodes: 12 total 4000\n{'arena-gen8': 1418, 'arena-gen8-19bbdce5-202611': 1047, 'arena-gen8-candidate': 1016, 'arena-gen8-m1': 215, 'arena-gen8-p2': 153, 'arena-gen8-f': 151}\n",
+ "received": "2026-11-13T11:20:04Z",
+ "script_sha256": "991316cf849fcf260706664b819ced5138080d8d22e773eaf51faa0b797e4174",
+ "started": "2026-11-13T11:20:04Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

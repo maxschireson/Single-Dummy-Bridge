@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:29:23Z",
+ "id": "20261113T052909Z-220874-x8-read9",
+ "output_bytes": 2554,
+ "output_tail": "z3 511 -0.421 +- 0.145 cpu 39.0\nz5 428 -0.542 +- 0.155 cpu 38.6\nx5 304 -0.010 +- 0.171 cpu 37.6\nx4 77 +0.597 +- 0.288 cpu 49.0\nx3 53 +0.151 +- 0.247 cpu 38.2\nz3 - z5 paired 428 -0.012 +- 0.149\nx5 - z3 paired 304 +0.484 +- 0.227\nx5 - z5 paired 304 +0.375 +- 0.222\nx4 - z3 paired 77 +0.649 +- 0.387\n  with guarantee                     forks    38 (better 4, worse 3): +0.342 +- 0.320 IMPs a fork; +0.0433 +- 0.0412 a board\n    game                             forks    35 (better 4, worse 3): +0.371 +- 0.348 IMPs a fork; +0.0433 +- 0.0412 a board\n    doubled                          forks     3 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    tricks 4-6                       forks    28 (better 2, worse 1): +0.071 +- 0.090 IMPs a fork; +0.0067 +- 0.0082 a board\n    tricks 7-9                       forks     9 (better 2, worse 1): +1.333 +- 1.344 IMPs a fork; +0.0400 +- 0.0403 a board\n    tricks 10-13                     forks     1 (better 0, worse 1): -1.000 +- 0.000 IMPs a fork; -0.0033 +- 0.0033 a board\n  with guard                         forks     3 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    game                             forks     3 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    tricks 4-6                       forks     1 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n--\n  with odds                          forks    47 (better 1, worse 1): +0.043 +- 0.336 IMPs a fork; +0.0067 +- 0.0522 a board\n    game                             forks    44 (better 1, worse 1): +0.045 +- 0.359 IMPs a fork; +0.0067 +- 0.0522 a board\n    doubled                          forks     3 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    tricks 4-6                       forks    11 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    tricks 7-9                       forks    31 (better 1, worse 1): +0.065 +- 0.512 IMPs a fork; +0.0067 +- 0.0522 a board\n    tricks 10-13                     forks     5 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n  all, 5 largest swings left out     forks  1483 (better 65, worse 68): +0.032 +- 0.053 IMPs a fork; +0.1600 +- 0.2624 a board\n    tricks 10-13                     forks     5 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n  all, 5 largest swings left out     forks  1483 (better 65, worse 68): +0.032 +- 0.053 IMPs a fork; +0.1600 +- 0.2624 a board\n",
+ "received": "2026-11-13T05:29:23Z",
+ "script_sha256": "92fcd5dceb4f5a85618282848b6ed6816888f97712485251351ebb5753679f64",
+ "started": "2026-11-13T05:29:23Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

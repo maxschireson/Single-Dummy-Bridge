@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 2400.9,
+ "exit_code": -15,
+ "finished": "2026-11-12T15:57:43Z",
+ "id": "20261112T151726Z-259932-g8-53-preflight2",
+ "output_bytes": 2260,
+ "output_tail": "9019688 models/cardplay/gen8-system-scorer-v1-2026-11-12/system_scorer_v1.npz\n== the closed plan is refused\nValueError: Gen7 alpha plan is not ready: settle every `pending` item, empty the list and enable launch\n== prepare (478e937)\n{\"identity\": \"7d8e8ad2af39bbe81c0b3b0aa99e00aae1538ca6cdb2ff658f11b1de8624c3b6\", \"target\": 351, \"shard\": {\"index\": 63, \"of\": 64}, \"allocation\": {\"8s-32~71s-32\": 2, \"8c-32~71s-32\": 1, \"8c-32~8s-32\": 1, \"8s-32~5RZ32\": 1, \"8s-32~1\": 1}, \"policy\": {\"bots\": [\"71s-32\", \"8c-32\", \"8s-32\"], \"policies\": {\"71s\nroster ['8s-32', '8c-32', '71s-32', '6-32', '5RZ32', '1'] | pairs {'8s-32~71s-32': 2, '8c-32~71s-32': 1, '8c-32~8s-32': 1, '8s-32~5RZ32': 1, '8s-32~1': 1} | deals 351\nsystems {'8s-32': 'house-gen6', '8c-32': 'rules-precision', '71s-32': 'house-gen6', '6-32': 'house-gen6', '5RZ32': 'house-gen5', '1': 'house-dds40k'}\ngen8 {\"rule_bidders\": {\"8c-32\": \"f50e95de93ac0dbeef213be965d966c75693932b1f039128d46b752321e6164c\"}, \"system_scorer\": {\"release\": \"models/cardplay/gen8-system-scorer-v1-2026-11-12\", \"sha256\": \"8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d\"}}\n8s-32 engine gen7 | identity 269fdf1854f4 | bidder - | lead_systems ['house-gen6', 'house-gen5', 'house-dds40k', 'ben-gib-bbo-8742']\n8c-32 engine gen7 | identity f60c9782f5c8 | bidder f50e95de93ac | lead_systems ['house-gen6', 'house-gen5', 'house-dds40k', 'ben-gib-bbo-8742']\n71s-32 engine gen7 | identity 7b0f58b4c403 | bidder - | lead_systems None\n6-32 engine gen6 | identity 153867b49e31 | bidder - | lead_systems None\n5RZ32 engine None | identity 54591b0880b1 | bidder - | lead_systems None\n1 engine None | identity 5ba471c0a612 | bidder - | lead_systems None\n== the BEN lane: prepare only (a BEN board needs BEN's server)\n{\"identity\": \"48f5fce7cf2858e2f9669c0cbe34a66dbc269651f709ab88e82d2d4f16ac93d2\", \"target\": 351, \"shard\": {\"index\": 62, \"of\": 64}, \"allocation\": {\"8s-32~ben64\": 1, \"8s-32~ben\": 1}, \"policy\": {\"bots\": [\"8s-32\"], \"policies\": {\"8s-32\": {\"artifact\": \"gen7_policy_v4\nBEN lane roster ['8s-32', 'ben64', 'ben'] | pairs {'8s-32~ben64': 1, '8s-32~ben': 1} | deals 351 | systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742', 'ben': 'ben-gib-bbo-8742', '6-32': 'house-gen6'}\nBEN lane 8s-32 identity 269fdf1854f4\n== preflight\n",
+ "received": "2026-11-12T15:17:42Z",
+ "script_sha256": "61542a6fda0ad3796a5af6ecd0e8108f9b5ad814e0e02fb8920b4d85457cdf82",
+ "started": "2026-11-12T15:17:42Z",
+ "timed_out": true,
+ "timeout_s": 2400
+}

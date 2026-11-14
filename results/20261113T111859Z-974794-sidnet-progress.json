@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:19:32Z",
+ "id": "20261113T111859Z-974794-sidnet-progress",
+ "output_bytes": 1021,
+ "output_tail": "2026-11-13T07:52:12Z start; source aa18728; stages: fetch label fetchB labelB\n2026-11-13T07:54:32Z fetch: 75545 episodes; {\"finished_utc\": \"2026-11-13T07:54:32Z\", \"seconds\": 140, \"distinct_blobs\": 75545, \"new_blobs\": 75545, \"new_bytes\": 13180784628}\n2026-11-13T11:05:59Z label: {\"episodes\": 75545, \"rows\": 21968591, \"failed\": 0, \"seconds\": 11485}\n2026-11-13T11:06:20Z fetchB: 4000 episodes; {\"finished_utc\": \"2026-11-13T11:06:20Z\", \"seconds\": 20, \"new_blobs\": 4000, \"new_bytes\": 1238419619}\nlabel: {\"episodes\": 75545, \"rows\": 21968591, \"failed\": 0, \"seconds\": 11485}\nfetchB: {\"finished_utc\": \"2026-11-13T11:06:20Z\", \"seconds\": 20, \"new_blobs\": 4000, \"new_bytes\": 1238419619}\nlabelB: 2200 of 4000 episodes, 1193884 rows, 0 failed, 768 s, 5.15 core-ms a row, about 10 min left\nlabels errors: 0; sidecars 75545\nlabelsB errors: 0; sidecars 2270\n\"full\": true\nunits: active active \nload average: 12.43, 12.65, 12.27\nMem:              31           2           5           0          23  \n/dev/root       123G   28G   96G  23% /\n",
+ "received": "2026-11-13T11:19:31Z",
+ "script_sha256": "e4454a6e8dd1c7b5b3b75e500222f5495cdf5717557a8f1a9b4b1c1e79e9ad46",
+ "started": "2026-11-13T11:19:31Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

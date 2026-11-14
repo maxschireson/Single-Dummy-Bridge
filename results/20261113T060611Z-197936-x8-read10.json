@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:06:41Z",
+ "id": "20261113T060611Z-197936-x8-read10",
+ "output_bytes": 785,
+ "output_tail": "x1 246 -0.073 +- 0.139 cpu 36.7 max index 245\nx3 53 +0.151 +- 0.247 cpu 38.2 max index 52\nx4 77 +0.597 +- 0.288 cpu 49.0 max index 76\nx5 540 -0.159 +- 0.126 cpu 37.5 max index 539\nx6 241 +0.071 +- 0.183 cpu 27.4 max index 240\nz3 541 -0.383 +- 0.139 cpu 38.9 max index 540\nz5 453 -0.512 +- 0.149 cpu 38.9 max index 452\nx4 - x5 paired 77 +0.649 +- 0.480  (x4 +0.597, x5 -0.052)\nx1 - x5 paired 246 -0.126 +- 0.216  (x1 -0.073, x5 +0.053)\nx3 - x5 paired 53 +0.189 +- 0.305  (x3 +0.151, x5 -0.038)\nx6 - x5 paired 241 +0.017 +- 0.190  (x6 +0.071, x5 +0.054)\nx1 - x4 paired 77 -0.571 +- 0.327  (x1 +0.026, x4 +0.597)\nx3 - x4 paired 53 -0.434 +- 0.404  (x3 +0.151, x4 +0.585)\nx6 - x4 paired 77 -0.662 +- 0.494  (x6 -0.065, x4 +0.597)\nx5 - z3 paired 540 +0.224 +- 0.184  (x5 -0.159, z3 -0.383)\n",
+ "received": "2026-11-13T06:06:41Z",
+ "script_sha256": "ea9de25be268efcf7dcb03cf72add8577d97b71e05867ab6f602bc9a218e4e1e",
+ "started": "2026-11-13T06:06:41Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

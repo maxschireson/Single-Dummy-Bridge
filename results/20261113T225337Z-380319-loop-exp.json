@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 2,
+ "finished": "2026-11-13T23:01:40Z",
+ "id": "20261113T225337Z-380319-loop-exp",
+ "output_bytes": 152,
+ "output_tail": "second checkout 1a40de0\nls: cannot access '/home/bridgebots/work/loop/src-lc/models/cardplay/stu-net-r1-20261113/policy.npz': No such file or directory\n",
+ "received": "2026-11-13T23:01:40Z",
+ "script_sha256": "4cb08c98cae7ed485c96368c7d1dc1eae6053245dd77eda26f614bf9fe8c140c",
+ "started": "2026-11-13T23:01:40Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

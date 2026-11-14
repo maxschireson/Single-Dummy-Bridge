@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 32.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:06:48Z",
+ "id": "20261113T230556Z-432232-loop-exp",
+ "output_bytes": 309,
+ "output_tail": "second checkout 1a40de0\nround 1's net in place, sha256 a9ee66def78cea60\nRunning as unit: loop-exp.service; invocation ID: 794fb9fc1cf941138a10f9304ece9972\nactive active active active 2026-11-13T23:06:18Z start; source 1a40de0; runs sp0c,spr0c; threads 4\n2026-11-13T23:06:30Z 6382 records\n2026-11-13T23:06:48Z\n",
+ "received": "2026-11-13T23:06:16Z",
+ "script_sha256": "df9a7f7ae08b14ab4a4c4a47f712bc5e894b39deed63515db549ab2d9e6e006b",
+ "started": "2026-11-13T23:06:16Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:04:23Z",
+ "id": "20261113T040359Z-672042-x8-cores",
+ "output_bytes": 2506,
+ "output_tail": "8\n               total        used        free      shared  buff/cache   available\nMem:              31           7          16           0           7          23\n 04:04:23 up 1 day, 5 min,  0 user,  load average: 8.23, 8.20, 8.19\n{\n \"schema\": \"gen5-arena-manifest-v1\",\n \"campaign\": \"gen8-proto\",\n \"seed\": 131,\n \"roster\": [\n  \"8xr0-ft1\",\n  \"8p-32-v41\"\n ],\n \"bots\": {\n  \"8xr0-ft1\": {\n   \"id\": \"8xr0-ft1\",\n   \"samples\": 32,\n   \"near_tie\": 0.0,\n   \"exploration\": 0.0,\n   \"belief_kind\": \"public\",\n   \"artifact_sha256\": {\n    \"belief\": \"99330ad3b1387a6fd8d78b297b3d1c915dbb67f5e9e624c871b997c0352fd37a\",\n    \"policy\": \"03e70a6f6021c8bed471dc9de53f462b0e991320ff4ad7734bcc20f54c5aff18\",\n    \"bidding\": \"5b7ea2558581df39d6517f86f459000ed1ef3a2fb1e8120563c70b343b95e7ff\",\n    \"lead_state_bidder\": \"9ee52f3baa79c837001e0cb515c61a9a179cb1bf6\n246\n5c77d79\n  69415       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69416       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69417       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69455       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69456       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69457       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69458       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69459       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69466       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69469       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n  69472       55:34 /home/bridgebots/work/venv/bin/python scripts/x8_match.py --feature-forks --source /home/bridgebots/work/capsule-gen7-capture/reco\n",
+ "received": "2026-11-13T04:04:23Z",
+ "script_sha256": "e0c7ad587405fbad55bdb2cffce678d410343ea2c9d452d3e0396686ed6108f3",
+ "started": "2026-11-13T04:04:23Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

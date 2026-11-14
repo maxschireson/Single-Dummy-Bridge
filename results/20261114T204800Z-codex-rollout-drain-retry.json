@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:41:53Z",
+ "id": "20261114T204800Z-codex-rollout-drain-retry",
+ "output_bytes": 98,
+ "output_tail": "Running as unit: stu-rollout-drain-retry.service; invocation ID: 3e88d23a62b042478c930d2ff210c78c\n",
+ "received": "2026-11-14T20:41:53Z",
+ "script_sha256": "65d794f1b1c8b0f770134463b5fc5036ac27b5553f50e8aa4a45ace3d3ed5006",
+ "started": "2026-11-14T20:41:53Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

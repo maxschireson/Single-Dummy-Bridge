@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:35:11Z",
+ "id": "20261114T204510Z-codex-rollout-drain",
+ "output_bytes": 124,
+ "output_tail": "Running as unit: stu-rollout-drain.service; invocation ID: 92183716d1744dd1b6e49fe7e60ee338\nMainPID=6450\nActiveState=active\n",
+ "received": "2026-11-14T20:35:11Z",
+ "script_sha256": "6dc2f3e7fcbe50a005fe8d31eb957374c1a2b85cf303f2c3c74bb257fca53489",
+ "started": "2026-11-14T20:35:11Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

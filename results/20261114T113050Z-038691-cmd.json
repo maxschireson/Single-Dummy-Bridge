@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:31:11Z",
+ "id": "20261114T113050Z-038691-cmd",
+ "output_bytes": 375,
+ "output_tail": "sp0c:5183 sp3sc:450 sp3tb:6654 spr0c:1199 sps0c:2163 \n      4 sp0c       6 sp3tb       1 spr0c       1 sps0c \ncut.log sp0c-144000-145173.npz spr0c-161000-161198.npz \n69b94df\nloop-collect.service loop-publish.service loop-rows.service 2026-11-14T06:11:34Z start sp3tb stu3-psta~stu3-pstb seed 9001 first 620000 deals 20000 workers 8 --episodes --one-room (source 69b94df, net\n",
+ "received": "2026-11-14T11:31:11Z",
+ "script_sha256": "af49e1d9d5b40172348b2971f6b3e54b59e2b0d485d5569ee26bbb9c4acb4854",
+ "started": "2026-11-14T11:31:11Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

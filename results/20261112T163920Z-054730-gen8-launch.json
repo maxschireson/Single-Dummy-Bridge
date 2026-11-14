@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 25.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:40:15Z",
+ "id": "20261112T163920Z-054730-gen8-launch",
+ "output_bytes": 497,
+ "output_tail": "go8: active (mode claim7)\n16:39:50 == build and test (the box keeps doing what it does)\n16:39:52 checkout: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954 Gen 8 is authorized: both plans opened on Max's word; the notice; no \nsha256sum: /home/bridgebots/work/sdb-gen7-arena/bridge_harness/libbridge_dds.so: No such file or directory\n16:40:01 v4.1 cb3fcfd5c5587373; system scorer 8f2c2f58be8e75c0; dds library 487079b1e4df1b4a (phase 1 checkout: )\n16:40:14 tests test_gen8*.py: Ran 24 tests in 12.718s OK \n",
+ "received": "2026-11-12T16:39:49Z",
+ "script_sha256": "31750f1396196db1f77567357dab14a536662d0cee8517cce203abd27e559bdc",
+ "started": "2026-11-12T16:39:49Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T19:16:56Z",
+ "id": "20261112T191634Z-314602-endtable-status",
+ "output_bytes": 907,
+ "output_tail": "19:16:56 endtable-k4: active; load 8.08 4.44 1.97; memory available 31075 MB; disk free  115G\nk=4: 64/1778 chunks (64 this run, 85 s, 2.53 core-us per entry)\nk=4: 128/1778 chunks (128 this run, 166 s, 2.47 core-us per entry)\ntotal 274504\ndrwxr-xr-x 2 bridgebots bridgebots       4096 Nov 12 19:13 .\ndrwxr-xr-x 5 bridgebots bridgebots       4096 Nov 12 19:13 ..\n-rw-r--r-- 1 bridgebots bridgebots       4211 Nov 12 19:13 k1.et\n-rw-r--r-- 1 bridgebots bridgebots      46219 Nov 12 19:13 k2.et\n-rw-r--r-- 1 bridgebots bridgebots   10483035 Nov 12 19:13 k3.et\n-rw-r--r-- 1 bridgebots bridgebots 2796534231 Nov 12 19:16 k4.et.part\n-rw-r--r-- 1 bridgebots bridgebots        715 Nov 12 19:16 k4.et.part.chunks\n8\nModel name:                              AMD EPYC 9V74 80-Core Processor\nThread(s) per core:                      1\nCore(s) per socket:                      8\nSocket(s):                               1\n",
+ "received": "2026-11-12T19:16:56Z",
+ "script_sha256": "f4d3ef1cf94714e7e2af96cdf5fca56493eca3b976e8da2345284cddd194b711",
+ "started": "2026-11-12T19:16:56Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

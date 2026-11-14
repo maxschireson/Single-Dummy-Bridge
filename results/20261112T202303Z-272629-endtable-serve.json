@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 3.9,
+ "exit_code": 0,
+ "finished": "2026-11-12T20:23:22Z",
+ "id": "20261112T202303Z-272629-endtable-serve",
+ "output_bytes": 415,
+ "output_tail": "be646285f1b1cfc819164d51a20c0f2200f2270bb5acd7b6a7d4e77c3b5e7dd6  k1.et\nf5733f22a4c97af868ac1037f55d1b351cb71a9ac2e488ad36b9227c12e94aee  k2.et\ncfafa36d8f07976312c0ac2b4912c1f961f4221d1b388c85f781ce3b0c83c74d  k3.et\n4f455627f5c12f60ea90fe23ed65c57edc139f77cb8ea58b8bac99d6815f4f02  k4.et\nRunning as unit: endtable-serve.service; invocation ID: 0ca01911eb3e4f6ea440c6df01fd90ad\nactive\nlocal fetch of SHA256SUMS: 200\n",
+ "received": "2026-11-12T20:23:18Z",
+ "script_sha256": "dd85585938363c3ca9023619381d95fa98289bafa3585589966666fdcd9d199a",
+ "started": "2026-11-12T20:23:18Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

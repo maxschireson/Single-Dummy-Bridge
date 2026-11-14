@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 91.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:43:13Z",
+ "id": "20261114T044117Z-352189-loop-128-ben6",
+ "output_bytes": 743,
+ "output_tail": "2026-11-14T04:43:07Z tree hash matches azure3's\n2026-11-14T04:43:08Z the 16 models and libdds.so match azure3's\n2026-11-14T04:43:08Z config matches azure3's lane config\n2026-11-14T04:43:08Z installed packages match azure3's\n2026-11-14T04:43:08Z python Python 3.12.3 (azure3: 3.12.3); disk free   60G\n2026-11-14T04:43:08Z BEN install: PASS\nRunning as unit: loop-next.service; invocation ID: 5666e6ae81f54d5eb6d7996b978bb33c\nunits: rungs inactive rungs2 active rungs3 active next active\n2026-11-14T04:19:33Z the collection is paused for jobs-azure6-blind.txt\n2026-11-14T04:19:33Z start l3-pu stu3-pu~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source b293707, nets fp32)\nl3-pu boards: 352\n1.env 2.env 3.env 2026-11-14T04:43:13Z\n",
+ "received": "2026-11-14T04:41:41Z",
+ "script_sha256": "2ad02bfc357651288a58e22d883bec47360e2e986e9c0b2a3d62a27a26c70a1d",
+ "started": "2026-11-14T04:41:41Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

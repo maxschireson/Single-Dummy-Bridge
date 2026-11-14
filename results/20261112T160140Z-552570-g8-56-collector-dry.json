@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 513.9,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:37:43Z",
+ "id": "20261112T160140Z-552570-g8-56-collector-dry",
+ "output_bytes": 2277,
+ "output_tail": "collector: 26 boards in 510s; failures: \n{\"completed\": 23, \"index\": 24, \"pair\": \"8s-32~1\", \"common\": 1, \"native\": 1}\n{\"completed\": 24, \"index\": 18, \"pair\": \"8c-32~71s-32\", \"common\": -1, \"native\": -11}\n{\"completed\": 25, \"index\": 20, \"pair\": \"8c-32~8s-32\", \"common\": 0, \"native\": 13}\n{\"completed\": 26, \"index\": 25, \"pair\": \"8c-32~8s-32\", \"common\": 0, \"native\": 10}\n   8c-32~71s-32: 4 boards, common IMPs [-1, 0, 0, 0], own [-11, 2, -13, 11], tables [67, 57, 65, 57]\n   8c-32~8s-32: 5 boards, common IMPs [0, 0, 0, 0, 0], own [-2, 11, 13, 0, 10], tables [57, 54, 56, 44, 55]\n   8s-32~1: 5 boards, common IMPs [0, 12, 2, 1, 14], own [0, 12, 0, 1, 0], tables [43, 57, 57, 62, 54]\n   8s-32~5RZ32: 4 boards, common IMPs [0, 2, 1, 1], own [0, 2, 1, 1], tables [64, 47, 54, 47]\n   8s-32~71s-32: 8 boards, common IMPs [0, 0, -12, 0, 0, 0, -7, 5], own [0, 0, -12, 0, 0, 0, -7, 5], tables [33, 24, 17, 30, 23, 30, 36, 36]\n   auction sources of the tables played: {'systems:house-gen6|house-gen6': 52, 'systems:house-gen6|house-dds40k': 5, 'systems:house-dds40k|house-gen6': 5, 'systems:rules-precision|house-gen6': 9, 'systems:house-gen6|rules-precision': 9, 'systems:house-gen6|house-gen5': 4, 'systems:house-gen5|house-gen6': 4}\n{\"completed\": 26, \"tables\": 52, \"rate\": {\"pairs\": 17, \"per_hour\": 204.0, \"full_window\": true}, \"files\": 7, \"output\": \"/home/bridgebots/work/g8/runs/cand-dry3-export\"}\nexport: completed 26 | top keys ['allocation', 'campaign', 'collection', 'completed', 'configured_workers', 'contiguous', 'curves', 'decision_timing', 'difference_definition', 'difference_views', 'failures', 'feed', 'generated_epoch', 'interpretation']\n   labels: {'8s-32': 'Gen 8 candidate (32)', '8c-32': 'Gen 8 candidate, Precision rule bidder (32)', '71s-32': 'Gen 7.1 standard (32)', '5RZ32': 'Gen 5 (32)', '1': 'Gen 1'}\n   files: ['arena/data.json', 'arena/manifest.json', 'arena/replays/catalog.json', 'arena/replays/data/f141fd3dd67c5787515a8200fe431754a82c90f5fec658e4b922a792c5f3fa0f/boards-00000.json', 'arena/replays/data/f141fd3dd67c5787515a8200fe431754a82c90f5fec658e4b922a792c5f3fa0f/index-00000-2379fb218418e5f39c02bb841115b8bb2798f0d08e71a3b3946b94ab6e4c39c0.json', 'arena/replays/data/f141fd3dd67c5787515a8200fe431754a82c90f5fec658e4b922a792c5f3fa0f/index-00000.json'] ...\n",
+ "received": "2026-11-12T16:29:09Z",
+ "script_sha256": "7206a52546c7e946abeaf0ec2bcd6b3cffa77c100d73f81fbc116deda17376b6",
+ "started": "2026-11-12T16:29:09Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

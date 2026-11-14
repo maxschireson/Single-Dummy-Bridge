@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 50.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:30:48Z",
+ "id": "20261113T122946Z-372676-sidnet-resume",
+ "output_bytes": 773,
+ "output_tail": "source 3c34774 S_0 chain: the stage loop's variable was overwritten by stage-build's \nbuild fetch fetchB label labelB \nRunning as unit: sidnet-run3.service; invocation ID: bd9fb9c8878843f892fdf349b42624f2\nactive\n2026-11-13T12:21:29Z built s15: {\"episodes\": 4722, \"deals\": 4713, \"unique_families\": 4627, \"examples\": 1876596, \"train\": 1501899, \"validation\": 191685, \"test\": 183012, \"labelled\": 1356790}\n2026-11-13T12:24:18Z set: {\"parts\": 16, \"deals\": 75390, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \n2026-11-13T12:24:21Z STOPPED: buildB needs labelB and build finished\n2026-11-13T12:29:58Z start; source 3c34774; stages: buildB train e1 push\n500 episodes 369753 examples\n",
+ "received": "2026-11-13T12:29:58Z",
+ "script_sha256": "c0314edaa734766bd89d29c0fe9b27de04fe666d672e5609948b5dfaa455ee9c",
+ "started": "2026-11-13T12:29:58Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

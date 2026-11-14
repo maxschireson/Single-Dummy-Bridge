@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T17:50:35Z",
+ "id": "20261112T175027Z-334284-runs",
+ "output_bytes": 134,
+ "output_tail": "gen71-claim7-azure6 | c0d3dbf5dd29 | 2813 | 0 | STOP | WD | 0 |  | \ngen8-azure6 | 08b8e638202a | 1484 | 303 | - | - | 0 | 0b8ac2b7 | \n",
+ "received": "2026-11-12T17:50:35Z",
+ "script_sha256": "e1372a92db66f081d90e74ec6537888c46e3b515eb3a8a43390e542a0ce166d1",
+ "started": "2026-11-12T17:50:35Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

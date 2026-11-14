@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T22:10:19Z",
+ "id": "20261114T221100Z-codex-rollout-r4c512",
+ "output_bytes": 329,
+ "output_tail": "Running as unit: stu-rollout-r4c512.service; invocation ID: 147ee69bc98f40b88ab78874f69980a7\nRunning as unit: stu-rollout-r4c512-publish.service; invocation ID: 1606df48c3284fa0b6fbe26c3ea142bb\nMainPID=22789\nId=stu-rollout-r4c512.service\nActiveState=active\n\nMainPID=22793\nId=stu-rollout-r4c512-publish.service\nActiveState=active\n",
+ "received": "2026-11-14T22:10:19Z",
+ "script_sha256": "38099db039843bd674b23a5360401c0ef71ee588571d3f5cc35182cad9d16e13",
+ "started": "2026-11-14T22:10:19Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

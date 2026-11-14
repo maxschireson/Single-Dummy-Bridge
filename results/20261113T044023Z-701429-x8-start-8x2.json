@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 4.3,
+ "exit_code": 1,
+ "finished": "2026-11-13T04:40:53Z",
+ "id": "20261113T044023Z-701429-x8-start-8x2",
+ "output_bytes": 469,
+ "output_tail": "src2 0bcdbc2 8X v2 (8x2-ft1): mix equal cards only where the net has no clear preference\n6:echo \"$(date -u +%FT%TZ) start x5 (8x2-ft1~8p-32-v41, 4 workers) source $(git rev-parse --short HEAD)\" >> \"$W/queue.log\"\n8:  --pair 8x2-ft1~8p-32-v41 --deals 1600 --seed 131 --workers 4 --out \"$W/runs/x5\" >> \"$W/runs/x5.log\" 2>&1\n9:echo \"$(date -u +%FT%TZ) end x5: exit $?\" >> \"$W/queue.log\"\nRunning as unit: x8-queue6.service; invocation ID: c2e3feccb3584acd83304d66035fde15\n0\n",
+ "received": "2026-11-13T04:40:49Z",
+ "script_sha256": "19de0e59dc31e4634b8863d50cad00000d8b5547eff47661fb123768c1ccea40",
+ "started": "2026-11-13T04:40:49Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

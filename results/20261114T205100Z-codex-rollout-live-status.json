@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:47:34Z",
+ "id": "20261114T205100Z-codex-rollout-live-status",
+ "output_bytes": 905,
+ "output_tail": "{\n  \"parent\": 1585,\n  \"unit_main\": 1563,\n  \"started\": \"2026-11-14T20:41:53Z\",\n  \"status\": \"waiting-for-recycle-boundary\"\n}MainPID=1563\nId=loop-collect.service\nActiveState=active\n\nMainPID=1560\nId=loop-publish.service\nActiveState=active\n\nMainPID=1568\nId=loop-rows.service\nActiveState=active\n\nMainPID=7931\nId=stu-rollout-experiments.service\nActiveState=active\nNov 14 20:41:53 Bridgebots6 systemd[1]: Started stu-rollout-drain-retry.service - /home/bridgebots/work/loop/venv/bin/python /home/bridgebots/work/rollout-experiments-20261114/drain.py.\nNov 14 20:45:30 Bridgebots6 systemd[1]: Started stu-rollout-experiments.service - /usr/bin/bash /home/bridgebots/work/rollout-experiments-20261114/run.sh.\n               total        used        free      shared  buff/cache   available\nMem:           32086       15623       15644           4        1226       16462\nSwap:              0           0           0\n",
+ "received": "2026-11-14T20:47:33Z",
+ "script_sha256": "90dc7659f587d934bbd602ba70f1856ab19274edd697df14cb9da99848c230c3",
+ "started": "2026-11-14T20:47:33Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

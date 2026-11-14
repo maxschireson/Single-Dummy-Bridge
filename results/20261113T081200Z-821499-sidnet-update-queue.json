@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 18.8,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:12:44Z",
+ "id": "20261113T081200Z-821499-sidnet-update-queue",
+ "output_bytes": 345,
+ "output_tail": "source 2012e7a S_0 chain: stages wait for the stage before; the trainer scores each e\njax 0.12.0.1 optax 0.2.9\nRunning as unit: sidnet-run2.service; invocation ID: 617f50786be54b04a44eb150f1306d34\nactive active \n7200 of 75545 episodes, 2081593 rows, 0 failed, 1085 s, 4.17 core-ms a row, about 172 min left\n7243\nload average: 12.36, 11.75, 9.58\n",
+ "received": "2026-11-13T08:12:25Z",
+ "script_sha256": "3966400002ebfd6c13b6df8d05ae47e69b58a9bdada994831704b6d03934242a",
+ "started": "2026-11-13T08:12:25Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

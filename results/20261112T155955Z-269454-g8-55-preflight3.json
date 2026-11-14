@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 1700.1,
+ "exit_code": -15,
+ "finished": "2026-11-12T16:28:37Z",
+ "id": "20261112T155955Z-269454-g8-55-preflight3",
+ "output_bytes": 1307,
+ "output_tail": "match queue: inactive; c1 rows: 157; load: 8.21 8.69 8.89\ntraining families in the list: 34029\n== the open plans without a list are refused\nValueError: This plan's bots carry a released net: prepare it with --exclude-families, the list of the deal families that net was trained on\n== prepare (792c4cb), families left out\n{\"identity\": \"f141fd3dd67c5787515a8200fe431754a82c90f5fec658e4b922a792c5f3fa0f\", \"target\": 184, \"shard\": {\"index\": 63, \"of\": 64}, \"allocation\": {\"8s-32~71s-32\": 2, \"8c-32~71s-32\": 1, \"8c-32~8s-32\": 1,\n{\"identity\": \"ead75dade390bbdf9284b44ec9f74b0000868a0ece0551f68d590c01e5c43260\", \"target\": 184, \"shard\": {\"index\": 62, \"of\": 64}, \"allocation\": {\"8s-32~ben64\": \ncand-dry3 | cohort f141fd3dd67c | deals 184 | pairs {'8s-32~71s-32': 2, '8c-32~71s-32': 1, '8c-32~8s-32': 1, '8s-32~5RZ32': 1, '8s-32~1': 1} | exclusions {'sha256': '206e79bf480b', 'families': 34029}\n    {'8s-32': '269fdf1854f4', '8c-32': 'f60c9782f5c8', '71s-32': '7b0f58b4c403', '6-32': '153867b49e31', '5RZ32': '54591b0880b1', '1': '5ba471c0a612'}\ncand-ben-dry3 | cohort ead75dade390 | deals 184 | pairs {'8s-32~ben64': 1, '8s-32~ben': 1} | exclusions {'sha256': '206e79bf480b', 'families': 34029}\n    {'8s-32': '269fdf1854f4', 'ben64': '5ef56f915ce8', 'ben': 'ef98d53559f2'}\n== play (six deals, nothing else on the box)\n",
+ "received": "2026-11-12T16:00:17Z",
+ "script_sha256": "16070a0d9646d31bf4a13d88507be9c0ca397e8ac362203848e8e450f48975bd",
+ "started": "2026-11-12T16:00:17Z",
+ "timed_out": true,
+ "timeout_s": 1700
+}

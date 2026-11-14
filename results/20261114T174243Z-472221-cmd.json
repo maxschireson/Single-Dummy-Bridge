@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 75.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:44:11Z",
+ "id": "20261114T174243Z-472221-cmd",
+ "output_bytes": 1014,
+ "output_tail": "loop-collect.service running loop-publish.service running loop-rows.service running \n2026-11-14T06:11:34Z azure6's role from here (Max, 05:24 UTC): the one-net Stu R3's self-play (jobs-azure6.txt, source 69b94df); its other queued test\n2026-11-14T06:11:34Z start sp3tb stu3-psta~stu3-pstb seed 9001 first 620000 deals 20000 workers 8 --episodes --one-room (source 69b94df, nets bf16, --\nsource 30e30af\nround 4c's net in place, sha256 e4b689c87db2f56b\nsp4tb stu4c-psta~stu4c-pstb 9001 780000 20000 8 --episodes --one-room\nRunning as unit: loop-collect.service; invocation ID: eaa638c9e24249ddabaa1367a8627922\nRunning as unit: loop-collect-b.service; invocation ID: 31ddd246b1084d3887e54e66cbea820c\nactive 2026-11-14T17:43:11Z round 4's net (stu4c) takes over the one-net self-play (source 30e30af; Max, 17:34 UTC: likely adopt)\n2026-11-14T17:43:11Z start sp4tb stu4c-psta~stu4c-pstb seed 9001 first 780000 deals 20000 workers 8 --episodes --one-room (source 30e30af, nets bf16, --recycle 20)\n9\n2026-11-14T17:44:11Z\n",
+ "received": "2026-11-14T17:42:56Z",
+ "script_sha256": "acaa749d3d233464dc47bf4645b05b46eee8cbcd5a297ec98c37f67708858bf4",
+ "started": "2026-11-14T17:42:56Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 90.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:30:22Z",
+ "id": "20261113T022821Z-176380-x8-02-start",
+ "output_bytes": 477,
+ "output_tail": "Running as unit: x8-queue.service; invocation ID: 4df93f49496041aaa6fab5f0fe5d0e98\nRunning as unit: x8-publish.service; invocation ID: 2a5fd60aa6dc4c31a5018c602dc48f74\nactive\nactive\n2026-11-13T02:28:52Z start x1 (8xr0-ft1~8p-32-v41) source bb85066\n8xr0-ft1 v 8p-32-v41: 1600 boards to play (0 done), 8 workers\n 02:30:22 up 22:31,  0 user,  load average: 6.42, 2.40, 0.99\nNov 13 02:28:52 Bridgebots6 systemd[1]: Started x8-publish.service - /home/bridgebots/work/x8/publish.sh.\n",
+ "received": "2026-11-13T02:28:52Z",
+ "script_sha256": "38537c430023af7af57d5f3feb9b905b466be8af214fc0c74635d8cb0975aa11",
+ "started": "2026-11-13T02:28:52Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

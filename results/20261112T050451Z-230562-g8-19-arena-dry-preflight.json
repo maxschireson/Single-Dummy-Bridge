@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 143.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:07:26Z",
+ "id": "20261112T050451Z-230562-g8-19-arena-dry-preflight",
+ "output_bytes": 466,
+ "output_tail": "tensorflow 2.21.0\n== preflight\n   \"seconds\": 41.488752447996376,\n   \"layouts\": 7290,\n   \"max_seconds\": 1.7628835740006252,\n   \"mean_seconds\": 0.17806331522745225,\n   \"mean_layouts\": 31.28755364806867\n  },\n  \"deal_list\": {\n   \"decisions\": 520,\n   \"seconds\": 22.29508666299762,\n   \"layouts\": 22018,\n   \"max_seconds\": 0.703538184000081,\n   \"mean_seconds\": 0.0428751666596108,\n   \"mean_layouts\": 42.34230769230769\n  }\n }\n}\n/home/bridgebots/work/g8/runs/arena-dry-smoke \n",
+ "received": "2026-11-12T05:05:03Z",
+ "script_sha256": "caa639a11aabaf55c22919f16cb414e0f8af3edd70700c1e028743f1e5766306",
+ "started": "2026-11-12T05:05:03Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

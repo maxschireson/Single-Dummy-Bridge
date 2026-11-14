@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:23:14Z",
+ "id": "20261114T212300Z-codex-rollout-pause-reviewed",
+ "output_bytes": 1073,
+ "output_tail": "MainPID=7931\nExecStart={ path=/usr/bin/bash ; argv[]=/usr/bin/bash /home/bridgebots/work/rollout-experiments-20261114/run.sh ; ignore_errors=no ; start_time=[Sat 2026-11-14 20:45:30 UTC] ; stop_time=[n/a] ; pid=7931 ; code=(null) ; status=0/0 }\nActiveState=active\n{\"stopped\": \"2026-11-14T21:23:14Z\", \"reason\": \"PR41/43 cache/scheduling inconsistency; old recursive/selective results diagnostic only; no extension or adoption\", \"interrupted_boards\": \"possible; preserve episodes and logs; do not treat partial screen as complete\", \"runs\": {\"smoke-guarantee\": {\"rows\": 16, \"episodes\": 16}, \"smoke-flat32\": {\"rows\": 16, \"episodes\": 16}, \"smoke-reader\": {\"rows\": 16, \"episodes\": 16}, \"smoke-recursive32\": {\"rows\": 16, \"episodes\": 16}, \"smoke-selective32\": {\"rows\": 16, \"episodes\": 16}, \"screen-reader\": {\"rows\": 117, \"episodes\": 117}}}\nMainPID=0\nId=stu-rollout-experiments.service\nActiveState=inactive\n\nMainPID=7936\nId=stu-rollout-publish.service\nActiveState=active\n\nMainPID=1560\nId=loop-publish.service\nActiveState=active\n\nMainPID=1568\nId=loop-rows.service\nActiveState=active\n",
+ "received": "2026-11-14T21:23:14Z",
+ "script_sha256": "335a1542e8561b8b29c95285150fab861a5ad41ab3c28f4114bf588cf3ea24be",
+ "started": "2026-11-14T21:23:14Z",
+ "timed_out": false,
+ "timeout_s": 90
+}

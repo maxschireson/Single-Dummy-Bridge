@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 1.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:49:34Z",
+ "id": "20261113T074903Z-044833-sidnet-look",
+ "output_bytes": 1511,
+ "output_tail": "user bridgebots home /home/bridgebots\n8\nMem:              31           1          22           0           7          30\n/dev/root       123G   13G  111G  10% /\n/home/bridgebots/work/capsule-gen7-capture /home/bridgebots/work/endtable /home/bridgebots/work/g8 /home/bridgebots/work/gen8 /home/bridgebots/work/publication /home/bridgebots/work/runs /home/bridgebots/work/sdb-gen8 /home/bridgebots/work/sdplay /home/bridgebots/work/sources /home/bridgebots/work/venv /home/bridgebots/work/x8 \n204M\t/home/bridgebots/work/sdb-gen8\n211M\t/home/bridgebots/work/sources\n380M\t/home/bridgebots/work/capsule-gen7-capture\n435M\t/home/bridgebots/work/publication\n737M\t/home/bridgebots/work/x8\n1.7G\t/home/bridgebots/work/venv\n2.0G\t/home/bridgebots/work/g8\n2.9G\t/home/bridgebots/work/endtable\n== /home/bridgebots/work/venv/bin/python: 3.12.3 2.5.4\n== /home/bridgebots/work/g8/venv/bin/python: /home/bridgebots/.boxctl/scripts/20261113T074903Z-044833-sidnet-look.sh: line 2: /home/bridgebots/work/g8/venv/bin/python: No such file or directory\n== python3: ModuleNotFoundError: No module named 'numpy'\nvenv module ok\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\ngit version 2.43.0\n  boxctl.service              loaded active running boxctl agent: runs commands queued on GitHub (box azure6)\n  walinuxagent.service        loaded active running Azure Linux Agent\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\nsudo ok\n",
+ "received": "2026-11-13T07:49:32Z",
+ "script_sha256": "98b6e65eee71a80774d9973f443216901efaab2de551757e23ec92ab36d3dad9",
+ "started": "2026-11-13T07:49:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 5.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:44:58Z",
+ "id": "20261112T064429Z-624828-g8-27-probes",
+ "output_bytes": 835,
+ "output_tail": "needrestart: list only\nazure6: queue active, position 16, restarted now: no\n    16\tc2-7s-v41-v-v4-azure6 7s-32-v41~7s-32 1600 1600 81\n    17\tc2-8p-v41-v-v4 8p-32-v41~8p-32 0 1600 81\n    18\t@source 3d9e1f7f5a27ba265dd7e8f0e25391c7d7727c05\n    19\tl1-8n-v4-v-v0 8n-32~8n-32-v0 0 600 83\n    20\tl1-8m-v4-v-v0 8m-32~8m-32-v0 0 600 83\n    21\tl1-8w-v4-v-v0 8w-32~8w-32-v0 0 600 83\n    22\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    23\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\nupgrade timer, last ran: ago apt-daily-upgrade.timer apt-daily-upgrade.service\nqueue unit stops since midnight: 4\n2026-11-12T05:35:50Z start c2-7s-v41-v-v4-azure6: 7s-32-v41~7s-32 deals 1600+1600 seed 81  (source 3f42637)\n2026-11-12T06:41:46Z end c2-7s-v41-v-v4-azure6: exit 0\n2026-11-12T06:41:46Z start c2-8p-v41-v-v4: 8p-32-v41~8p-32 deals 0+1600 seed 81  (source 3f42637)\n",
+ "received": "2026-11-12T06:44:52Z",
+ "script_sha256": "498a19eaf3ec67cef55614afff78d987fc285e498c004807e0e241fb6ee617d1",
+ "started": "2026-11-12T06:44:52Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

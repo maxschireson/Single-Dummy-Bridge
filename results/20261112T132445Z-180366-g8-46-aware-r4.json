@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 66.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:25:58Z",
+ "id": "20261112T132445Z-180366-g8-46-aware-r4",
+ "output_bytes": 1119,
+ "output_tail": "scorer sha256 8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d\n/home/bridgebots/work/g8/sys/v2-scorer.npz: sha256 8f2c2f58be8e75c0dbd8a22a91b01e12a5555b06d68511be26b8f0bde8758f1d; kept the state at step 14739 of 20083\nvalidation loss by table (lower is better); \"wrong\" declares another system on purpose:\n           rules-precision vs rules-precision          declared 0.1430  unknown 1.3119\n           rules-precision vs house-gen6               declared 0.1419  unknown 0.7278\n                house-gen6 vs rules-precision          declared 0.1447  unknown 0.7092\nexit 0\n1000 deals, 3 table kinds, 1 passed out, mean length 9.6 calls, 4s -> /home/bridgebots/work/g8/books/aw-r4-91-0.json.gz\nqueue active, position 24 of 26\n2026-11-12T10:34:00Z end n1-8n-v-8p: exit 0\n2026-11-12T13:25:05Z source now 6638547 Rule bidder r4: r3's rules with judgement from a trick estimate, frozen \n2026-11-12T13:25:05Z start a1-8a-v-8p-r4: 8a-32-v41~8p-32-v41 deals 0+1000 seed 91 --book /home/bridgebots/work/g8/books/aw-r4-91-0.json.gz (source 6638547)\n8a-32-v41 v 8p-32-v41: 1000 boards to play (0 done), 8 workers\n",
+ "received": "2026-11-12T13:24:51Z",
+ "script_sha256": "acd60b1304b9abe426348b5036a481b17f430b8b04c955c28da479eb1ded3731",
+ "started": "2026-11-12T13:24:51Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

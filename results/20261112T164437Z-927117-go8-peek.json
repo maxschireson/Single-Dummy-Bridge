@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:44:50Z",
+ "id": "20261112T164437Z-927117-go8-peek",
+ "output_bytes": 1625,
+ "output_tail": "16:44:50\n16:39:50 load 0.38 2.61 2.98; memory available 31161 MB; units g8-*: g8-publish.service=active/running g8-tune-all.service=failed/failed \n16:39:50 == build and test (the box keeps doing what it does)\n16:39:52 checkout: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954 Gen 8 is authorized: both plans opened on Max's word; the notice; no \nsha256sum: /home/bridgebots/work/sdb-gen7-arena/bridge_harness/libbridge_dds.so: No such file or directory\n16:40:01 v4.1 cb3fcfd5c5587373; system scorer 8f2c2f58be8e75c0; dds library 487079b1e4df1b4a (phase 1 checkout: )\n16:40:14 tests test_gen8*.py: Ran 24 tests in 12.718s OK \n16:40:15 tests test_gen71*.py: Ran 7 tests in 0.172s OK \n16:40:41 tests test_rule_bidder.py: Ran 13 tests in 25.718s OK \n16:41:20 tests test_bidding_systems.py: Ran 28 tests in 38.728s OK \n16:41:20 tests took 79s\nclaim cohort c0d3dbf5dd29: shard 7/8 of capsule a76a39f13d9d, 2813 deals, disjoint from shards 0 to 6\n16:41:22 == prepare\ncohort 08b8e638202a: 1484 deals taken over from cohort c0d3dbf5dd29 (0 of its 2813 were played, 1329 unplayed deals from training families left out); pairs {'8s-32~71s-32': 2, '8c-32~71s-32': 1, '8c-32~8s-32': 1, '8s-32~5RZ32': 1, '8s-32~1': 1}; bots {'8s-32':\n16:41:23 == preflight\ngo8=active arena-gen8=inactive arena-gen8-publish=inactive gen8-recycle=inactive \ngen8-azure6 \n%CPU ELAPSED COMMAND\n87.0     206 /home/bridgebots/work/venv/bin/python ops/smoke_gen7.py --run /home/bridgebots/work/runs/gen8-azure6 --out /home/bridgebots/work/runs/gen8-azure6/p\n 0.0   45962 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers\n 0.0   45977 [rcu_sched]\n",
+ "received": "2026-11-12T16:44:50Z",
+ "script_sha256": "39d316248ec2015a30802aa727f4b54cfb26646265f9340516d094a239f176ea",
+ "started": "2026-11-12T16:44:50Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

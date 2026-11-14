@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T21:49:03Z",
+ "id": "20261113T214848Z-749335-loop-health",
+ "output_bytes": 437,
+ "output_tail": "sp0c 4067 tables | last 60 min 1036 | last 20 min 355\nspr0c 906 tables | last 60 min 269 | last 20 min 87\nactive active inactive load average: 22.33, 14.83, 11.42\n2026-11-13T21:49:03Z\nMem:           32086       18058       13545           4         877       14027\n 2449 MB up   561s; 2371 MB up   561s; 2364 MB up   561s; 2360 MB up   561s; 2355 MB up   561s; 2290 MB up   561s; 1840 MB up   306s; 1809 MB up   306s;   65 MB up  1134s;\n",
+ "received": "2026-11-13T21:49:03Z",
+ "script_sha256": "fc22e0328cdfff754a806c5fce34c38b35f97ced1dc8eb370fc91665a1d16d2e",
+ "started": "2026-11-13T21:49:03Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

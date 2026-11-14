@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 92.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:28:24Z",
+ "id": "20261112T112640Z-665814-g8-33-scorer",
+ "output_bytes": 159,
+ "output_tail": "checked out 5b007c3\nscorer unit: active\nrules-precision (NS) vs rules-precision (EW): 24000 deals in 63s; positive share: random hands 0.221, near hands 0.364\n",
+ "received": "2026-11-12T11:26:52Z",
+ "script_sha256": "5316816d4e6a358b972ca0df1ab4bd471b4b81b96abe7d56f2de9be7a1fdca36",
+ "started": "2026-11-12T11:26:52Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

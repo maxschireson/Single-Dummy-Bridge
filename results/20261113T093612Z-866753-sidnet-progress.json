@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:36:39Z",
+ "id": "20261113T093612Z-866753-sidnet-progress",
+ "output_bytes": 537,
+ "output_tail": "2026-11-13T07:52:12Z start; source aa18728; stages: fetch label fetchB labelB\n2026-11-13T07:54:32Z fetch: 75545 episodes; {\"finished_utc\": \"2026-11-13T07:54:32Z\", \"seconds\": 140, \"distinct_blobs\": 75545, \"new_blobs\": 75545, \"new_bytes\": 13180784628}\nlabel: 40200 of 75545 episodes, 11688248 rows, 0 failed, 6106 s, 4.18 core-ms a row, about 89 min left\nlabels errors: 0\nunits: active active \nload average: 11.36, 11.37, 11.52\nMem:              31           2           7           0          22  \n/dev/root       123G   26G   98G  21% /\n",
+ "received": "2026-11-13T09:36:39Z",
+ "script_sha256": "3855ebcac9b6e7bd860e54491ad2363569fcaf20adcfafce75e30da7a6f6c5c9",
+ "started": "2026-11-13T09:36:39Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

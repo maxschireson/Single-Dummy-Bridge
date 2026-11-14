@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:22:04Z",
+ "id": "20261113T172135Z-105880-loop-status",
+ "output_bytes": 767,
+ "output_tail": "active active inactive active active inactive inactive inactive inactive (collect collect-b chain publish rows rungs rungs2 switch after-ben)\nsp0c 384 tables\nspr0c 72 tables\n2026-11-13T17:10:29Z end l0b-n: exit 0\n2026-11-13T17:10:29Z jobs-azure6-r2.txt has ended; back to the collection\n2026-11-13T17:10:29Z start sp0c stu0-pa~stu0-pb seed 9001 first 140000 deals 20000 workers 6 --episodes --one-room (source 6fede60)\n2026-11-13T17:10:29Z start spr0c stu0-pra~stu0-prb seed 9001 first 160000 deals 20000 workers 2 --episodes --one-room (source 6fede60)\ntotal 8\ndrwxr-xr-x  2 bridgebots bridgebots 4096 Nov 13 15:29 .\ndrwxr-xr-x 11 bridgebots bridgebots 4096 Nov 13 17:04 ..\nload average: 8.42, 8.33, 8.20\n/dev/root       123G   56G   68G  46% /\n2026-11-13T17:22:04Z\n",
+ "received": "2026-11-13T17:22:04Z",
+ "script_sha256": "2439433d24bf9368993f6b1ac5dcbbdf6eb15cf35ce7632e918846cd67ce76d9",
+ "started": "2026-11-13T17:22:04Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

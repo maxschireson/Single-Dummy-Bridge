@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 57.5,
+ "exit_code": 1,
+ "finished": "2026-11-13T02:25:48Z",
+ "id": "20261113T022419Z-602471-x8-01-setup",
+ "output_bytes": 1480,
+ "output_tail": "source bb85066 8X: bots with rollout net v1 (8xr0-ft1, 8xr7-ft1); restore script for the net (kept on its transfer branc\n{\"left\": 3, \"value\": 1, \"seconds\": 0.0000116, \"search_seconds\": 0.0000116, \"nodes_above\": 59, \"probes\": 0}\n/home/bridgebots/work/x8/src/bridge_harness/libbridge_dds.so\n}\n}\npolicy_scratch.npz ok\n/home/bridgebots/work/x8/src/models/cardplay/gen5-2026-11-10/policy.npz\n4 boards: 0.0 +- 0.0 IMPs/board for 8xr0-ft1; 331 boards/hour; 0 failed\n{\"pair\": \"8xr0-ft1~8p-32-v41\", \"boards\": 4, \"cpu_per_board\": 30.64, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\": 4}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\": 4}}\n4 boards, 21 feature forks\n  all                                forks    21 (better 1, worse 1): +0.429 +- 0.448 IMPs a fork; +2.2500 +- 2.2500 a board\n    partscore                        forks     3 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\nTraceback (most recent call last):\n  File \"/home/bridgebots/work/x8/src/scripts/x8_forks.py\", line 71, in <module>\n    main()\n  File \"/home/bridgebots/work/x8/src/scripts/x8_forks.py\", line 60, in main\n    line(f'  {cls}', [f for f in forks if f[2] == cls])\n  File \"/home/bridgebots/work/x8/src/scripts/x8_forks.py\", line 55, in line\n    print(f'  {name:34s} forks {len(sub):5d} (better {won}, worse {lost}): {got[0]:+.3f} +- {got[1]:.3f} IMPs a fork; '\nBrokenPipeError: [Errno 32] Broken pipe\n",
+ "received": "2026-11-13T02:24:51Z",
+ "script_sha256": "7516ba70a0ecfffe81ae78b8bcd5d72bd6fbeb646a1ec22f394c469244d0170b",
+ "started": "2026-11-13T02:24:51Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

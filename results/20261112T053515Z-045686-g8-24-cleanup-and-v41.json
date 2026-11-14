@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 25.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:36:12Z",
+ "id": "20261112T053515Z-045686-g8-24-cleanup-and-v41",
+ "output_bytes": 666,
+ "output_tail": "    11\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    12\tg2-7s-v-trandom 7s-32~t-random 0 600 72\n    13\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\n    14\t@source c03498c77184eb987d294c635b52b27bcfae028d\n    15\t@source 3f4263763010ef1ae759f93cf998c7473337ef4d\n    16\tc2-7s-v41-v-v4-azure6 7s-32-v41~7s-32 1600 1600 81\n    17\tc2-8p-v41-v-v4 8p-32-v41~8p-32 0 1600 81\n    18\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    19\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\nposition 15\n2026-11-12T05:35:50Z source now 3f42637 Gen 8 prototype: no outside bidding engine (Max, 12 November 2026)\n2026-11-12T05:35:50Z start c2-7s-v41-v-v4-azure6: 7s-32-v41~7s-32 deals 1600+1600 seed 81  (source 3f42637)\n",
+ "received": "2026-11-12T05:35:47Z",
+ "script_sha256": "170ff00acfe179bf9e2844a79c2547130a714f129ac48ac001f501045f4c6ae4",
+ "started": "2026-11-12T05:35:47Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

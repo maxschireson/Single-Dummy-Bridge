@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 40.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:04:59Z",
+ "id": "20261114T200348Z-636252-cmd",
+ "output_bytes": 506,
+ "output_tail": " 20:04:19 up 6 min,  0 user,  load average: 0.06, 0.08, 0.02\nsource 30e30af\nRunning as unit: loop-publish.service; invocation ID: 93db0e301cf44936b1b24ed3c9a7a197\nRunning as unit: loop-collect.service; invocation ID: 1c28acb8bd8b4fb3bbcd4f0fc704398a\nRunning as unit: loop-rows.service; invocation ID: f81b8980359f442cb4c52c4fa2d24471\nactive active active 2026-11-14T20:04:19Z start sp4tb stu4c-psta~stu4c-pstb seed 9001 first 780000 deals 20000 workers 8 --episodes --one-room (source 30e30af, nets bf16, \n",
+ "received": "2026-11-14T20:04:19Z",
+ "script_sha256": "064e7c7c9d8699584bde002420455d42bd385e290ac0029ca58233057bd7bd0c",
+ "started": "2026-11-14T20:04:19Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 1.8,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:37:45Z",
+ "id": "20261112T162154Z-564884-look",
+ "output_bytes": 466,
+ "output_tail": "16:37:44\nload 2.56 3.92 3.40; memory available 31069 MB; disk free 116G\nunits: g8-publish.service=active/running g8-tune-all.service=failed/failed \ntop:  0.0   45535 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers| 0.0   45550 [rcu_sched]| 0.0   45360 /usr/lib/linux-tools/7.0.0-1017-azure/hv_kvp_daemon -n|\ncapsule-gen7-capture g8 venv \ncapsule a76a39f13d9d STOP y WATCHDOG_STOP y receipts 725\nvenv: 2.21.0 2.5.4\n$nrconf{restart} = 'l';\n8\n",
+ "received": "2026-11-12T16:37:44Z",
+ "script_sha256": "73551f4fffd64353b1b8f744687069cddb19f1d207d9fea65d81ae275b11c61d",
+ "started": "2026-11-12T16:37:44Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

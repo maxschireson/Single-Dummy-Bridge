@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 45.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:14:23Z",
+ "id": "20261112T121314Z-092484-g8-38-tune-all",
+ "output_bytes": 108,
+ "output_tail": "tune unit: failed; \n    raise self._value\nRuntimeError: DDS is not built. Run: python3 scripts/build_dds.py\n",
+ "received": "2026-11-12T12:13:37Z",
+ "script_sha256": "d30a66d5afd2acaf0e4ce7d491f618e9d9570d86000e9d096ce6567a56f57e48",
+ "started": "2026-11-12T12:13:37Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

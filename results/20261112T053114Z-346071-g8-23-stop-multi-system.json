@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 21.3,
+ "exit_code": 1,
+ "finished": "2026-11-12T05:31:43Z",
+ "id": "20261112T053114Z-346071-g8-23-stop-multi-system",
+ "output_bytes": 676,
+ "output_tail": "results branch: 1 commit(s); folders: check/ g2-7s-v-trandom/ k-1/ k-5rz/ k-6/ k-7s/ k-thigh/ k-tlow/ k-trandom/ \nqueue position 14:\n    11\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    12\tg2-7s-v-trandom 7s-32~t-random 0 600 72\n    13\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\n    14\t@source c03498c77184eb987d294c635b52b27bcfae028d\n    15\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    16\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\n2026-11-12T05:11:55Z start e4-8y-v-8p: 8y-32~8p-32 deals 0+2880 seed 91 --book configs/gen8-books/mix91-2880.json.gz (source c03498c)\n2026-11-12T05:31:22Z start g2-8x-v-trandom: 8x-32~t-random deals 0+600 seed 72  (source c03498c)\npublisher: active; queue: active\n0\n",
+ "received": "2026-11-12T05:31:22Z",
+ "script_sha256": "8ab8f063b62fe45e5bfa694962a273f963738a1860329d8f80a71ae611d9d1df",
+ "started": "2026-11-12T05:31:22Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

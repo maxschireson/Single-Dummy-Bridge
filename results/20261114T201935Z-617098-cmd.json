@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:19:50Z",
+ "id": "20261114T201935Z-617098-cmd",
+ "output_bytes": 164,
+ "output_tail": "9aad4a4cfc7df122\n#!/usr/bin/env bash\n# Install or update the boxctl agent on this machine (Ubuntu/Debian with systemd).\n#\n#   bash install.sh <commit> [box-name]\n#\n",
+ "received": "2026-11-14T20:19:50Z",
+ "script_sha256": "80e329567192d40abff5e11894bea06d4e98f50593743e797679f4a5921201ab",
+ "started": "2026-11-14T20:19:50Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

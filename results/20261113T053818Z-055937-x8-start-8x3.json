@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 124.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:40:39Z",
+ "id": "20261113T053818Z-055937-x8-start-8x3",
+ "output_bytes": 1031,
+ "output_tail": "src3 1a779a9 8X v3 (8x3-ft1): Gen 8 through trick 6, the blend from trick 7 in games only\n3:W=$HOME/work/x8; S2=$W/src3; PY=$HOME/work/venv/bin/python\n6:echo \"$(date -u +%FT%TZ) start x6 (8x3-ft1~8p-32-v41, 4 workers) source $(git rev-parse --short HEAD)\" >> \"$W/queue.log\"\n8:  --pair 8x3-ft1~8p-32-v41 --deals 1600 --seed 131 --workers 4 --out \"$W/runs/x6\" >> \"$W/runs/x6.log\" 2>&1\n9:echo \"$(date -u +%FT%TZ) end x6: exit $?\" >> \"$W/queue.log\"\nRunning as unit: x8-queue7.service; invocation ID: b1c87e9669af402887a9e21019c6548c\n1\nactive\nactive\nactive\n2026-11-13T04:40:53Z start x5 (8x2-ft1~8p-32-v41, 4 workers) source 0bcdbc2\n2026-11-13T05:38:38Z z3 stopped at 541 boards (8X v3 takes its workers, Max 05:3x)\n2026-11-13T05:38:38Z z5 stopped at 453 boards (8X v3 takes its workers, Max 05:3x)\n2026-11-13T05:38:39Z start x6 (8x3-ft1~8p-32-v41, 4 workers) source 1a779a9\n8x3-ft1 v 8p-32-v41: 1600 boards to play (0 done), 4 workers\n      5 runs/x5\n      5 runs/x6\n 05:40:39 up 1 day,  1:42,  0 user,  load average: 8.05, 8.12, 8.16\n",
+ "received": "2026-11-13T05:38:34Z",
+ "script_sha256": "824c69f1fad08d9e505388d7659c9b361148e42067c5032fecb71a5dc3ae2be1",
+ "started": "2026-11-13T05:38:34Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

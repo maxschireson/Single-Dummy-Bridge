@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:08:24Z",
+ "id": "20261112T180750Z-643500-drain8",
+ "output_bytes": 78,
+ "output_tail": "drain8: active\n18:08:05 draining gen8-azure6 to free the box (Max, 18:07 UTC)\n",
+ "received": "2026-11-12T18:08:04Z",
+ "script_sha256": "c058bd4428f55611acf93327735e537e70e6a50ea813bffda986f5b25d2b2608",
+ "started": "2026-11-12T18:08:04Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

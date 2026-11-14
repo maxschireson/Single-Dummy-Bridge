@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:37:02Z",
+ "id": "20261112T123647Z-913877-g8-40-peek",
+ "output_bytes": 2383,
+ "output_tail": "== /home/bridgebots/work/g8/est/tune-all.log\ndouble-dummy tables for 12000 deals of seed 503: 369s\nstart: {\"boards\": 12000, \"imps_per_board\": -1.029, \"se\": 0.05, \"won\": 2601, \"lost\": 4111, \"flat\": 5288, \"lost_10_or_more\": 0.1027, \"declared_per_board\": 0.954, \"three_down_share\": 0.0467, \"slams_bid\": 231, \"slams_made\": 155, \"rule\n  club_min 16 -> 15: +0.012 +- 0.017\n  club_min 16 -> 17: -0.083 +- 0.017\n  open_min 11 -> 10: +0.004 +- 0.023\n  open_min 11 -> 12: -0.028 +- 0.024\n  open_light 1 -> 0: +0.006 +- 0.018\n  open_light 1 -> 2: -0.014 +- 0.016\n  limited_max 15 -> 14: -0.069 +- 0.014\n  limited_max 15 -> 16: -0.016 +- 0.010\n  nt_lo 14 -> 13: +0.000 +- 0.012\n  nt_lo 14 -> 15: -0.013 +- 0.010\n  nt_hi 16 -> 15: -0.001 +- 0.005\n  nt_hi 16 -> 17: -0.006 +- 0.005\n  weak_lo 5 -> 4: +0.016 +- 0.006  kept\n  weak_lo 4 -> 6: -0.028 +- 0.010\n  weak_hi 10 -> 9: +0.005 +- 0.005\n  weak_hi 10 -> 11: -0.003 +- 0.007\n  weak_quality 2 -> 1: +0.028 +- 0.007  kept\n  weak_quality 1 -> 3: -0.066 +- 0.013\n  preempt_len 7 -> 6: +0.063 +- 0.019  kept\n  preempt_len 6 -> 8: -0.092 +- 0.022\n  neg_max 7 -> 6: -0.006 +- 0.011\n  neg_max 7 -> 8: -0.007 +- 0.011\n  resp_min 6 -> 5: -0.007 +- 0.012\n  resp_min 6 -> 7: -0.010 +- 0.012\n  two_over_one 11 -> 10: -0.006 +- 0.006\n  two_over_one 11 -> 12: -0.008 +- 0.007\n  game 25 -> 24: -0.033 +- 0.020\n  game 25 -> 26: -0.025 +- 0.019\n  game_minor 28 -> 27: +0.012 +- 0.005  kept\n  game_minor 27 -> 29: -0.025 +- 0.006\n  slam 32 -> 31: +0.010 +- 0.013\n  slam 32 -> 33: -0.022 +- 0.010\n  invite_width 2 -> 1: +0.018 +- 0.009\n  invite_width 2 -> 3: -0.026 +- 0.007\n  overcall_min1 7 -> 6: -0.002 +- 0.007\n  overcall_min1 7 -> 8: +0.007 +- 0.010\n  overcall_min2 11 -> 10: -0.000 +- 0.009\n  overcall_min2 11 -> 12: -0.018 +- 0.009\n  overcall_quality 1 -> 2: -0.020 +- 0.012\n  takeout_min 12 -> 11: -0.021 +- 0.008\n  takeout_min 12 -> 13: +0.001 +- 0.009\n  nt_overcall_lo 15 -> 14: -0.010 +- 0.006\n  nt_overcall_lo 15 -> 16: -0.007 +- 0.006\n  balance 3 -> 2: -0.005 +- 0.008\n  balance 3 -> 4: -0.029 +- 0.007\n  compete 0 -> -1: -0.007 +- 0.006\n  compete 0 -> 1: -0.096 +- 0.016\n  penalty 25 -> 24: +0.015 +- 0.006  kept\n  penalty 24 -> 26: -0.028 +- 0.008\n  est_band 2 -> 1: +0.003 +- 0.008\n  est_band 2 -> 3: +0.002 +- 0.003\n  est_weight 5 -> 3: +0.007 +- 0.012\n  est_weight 5 -> 7: -0.010 +- 0.011\n  est_nv 3 -> 1: -0.015 +- 0.007\ninactive failed inactive ",
+ "received": "2026-11-12T12:37:02Z",
+ "script_sha256": "d22cfa77ee6df3fa3866c3eabbeb44662639bd1f69be51ea69b710dbc00fa46f",
+ "started": "2026-11-12T12:37:02Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

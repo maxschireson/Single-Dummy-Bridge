@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 3.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T05:30:23Z",
+ "id": "20261114T053014Z-519686-loop-137-roles",
+ "output_bytes": 207,
+ "output_tail": "Running as unit: loop-switch.service; invocation ID: 783e99e889ed4c68a0a5ebc1872b052e\nswitch: active | next: active | bensession: inactive\n1\n2026-11-14T05:29:26Z end b3-ps200d-7: exit 0\n2026-11-14T05:30:23Z\n",
+ "received": "2026-11-14T05:30:20Z",
+ "script_sha256": "aa5db0bebc0ade45d5ee98f596dd73159ad48005d987383702532ad3b8644bcb",
+ "started": "2026-11-14T05:30:20Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

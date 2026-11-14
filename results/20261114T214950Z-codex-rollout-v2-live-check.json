@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:49:39Z",
+ "id": "20261114T214950Z-codex-rollout-v2-live-check",
+ "output_bytes": 1106,
+ "output_tail": "MainPID=15390\nId=stu-rollout-v2-smokes.service\nActiveState=active\n\nMainPID=15398\nId=stu-rollout-v2-publish.service\nActiveState=active\nsmoke-flat32.log {\"boards\": 1, \"common\": null, \"failure\": null}\n{\"boards\": 2, \"common\": {\"imps_per_board\": -1.5, \"se\": 2.5, \"boards\": 2, \"won\": 1, \"lost\": 1, \"flat\": 0}, \"failure\": null}\n{\"boards\": 3, \"common\": {\"imps_per_board\": -0.3333, \"se\": 1.8559, \"boards\": 3, \"won\": 2, \"lost\": 1, \"flat\": 0}, \"failure\": null}\n{\"boards\": 4, \"common\": {\"imps_per_board\": 0.25, \"se\": 1.4361, \"boards\": 4, \"won\": 3, \"lost\": 1, \"flat\": 0}, \"failure\": null}\n{\"boards\": 5, \"common\": {\"imps_per_board\": -1.8, \"se\": 2.3324, \"boards\": 5, \"won\": 3, \"lost\": 2, \"flat\": 0}, \"failure\": null}\n{\"boards\": 6, \"common\": {\"imps_per_board\": -1.5, \"se\": 1.9279, \"boards\": 6, \"won\": 3, \"lost\": 2, \"flat\": 1}, \"failure\": null}\n{\"boards\": 7, \"common\": {\"imps_per_board\": -1.4286, \"se\": 1.6309, \"boards\": 7, \"won\": 3, \"lost\": 3, \"flat\": 1}, \"failure\": null}\n{\"boards\": 8, \"common\": {\"imps_per_board\": -1.5, \"se\": 1.4142, \"boards\": 8, \"won\": 3, \"lost\": 4, \"flat\": 1}, \"failure\": null}\n\nsmoke-flat32 8 0 None\n",
+ "received": "2026-11-14T21:49:39Z",
+ "script_sha256": "eed3c42456a3cd267572e589be4c0ebd3df33fa4c7fe41abade97e1063e05692",
+ "started": "2026-11-14T21:49:39Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

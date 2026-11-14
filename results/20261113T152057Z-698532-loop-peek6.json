@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T15:21:04Z",
+ "id": "20261113T152057Z-698532-loop-peek6",
+ "output_bytes": 1171,
+ "output_tail": "8\nMem:              31           0          14           0          16          30\n/dev/root       123G   55G   69G  45% /\nload average: 0.07, 0.17, 0.72\ncapsule-gen7-capture endtable g8 gen8 publication runs sdb-gen8 sdplay sidnet sources venv x8 \n  boxctl.service              loaded active running boxctl agent: runs commands queued on GitHub (box azure6)\n  fwupd.service               loaded active running Firmware update daemon\n/home/bridgebots/work/capsule-gen7-capture/recovery/manifest.json\n/home/bridgebots/work/publication/gen8-azure6/recovery/manifest.json\n/home/bridgebots/work/sidnet/bin/sure_cpp\n/home/bridgebots/work/x8/bin/sure_cpp\n/home/bridgebots/work/venv/bin/python\nbin box-setup.sh data done e1 eps epsB git labels labelsB logs models pub pylib s0 src \n/home/bridgebots/work/capsule-gen7-capture: arena recovery \n%CPU ELAPSED CMD\n 0.0  127336 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers\n 0.0   11461 [kworker/4:0-events]\n 0.0  127160 /usr/lib/linux-tools/7.0.0-1017-azure/hv_kvp_daemon -n\n 0.0  127339 /usr/sbin/chronyd -F 1\nPython 3.12.3\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\n/home/bridgebots/.ssh/boxctl_github\n",
+ "received": "2026-11-13T15:21:04Z",
+ "script_sha256": "5561f075f90d90074f8badfb0ec0feb89a9f0347e8b78d9568b1685428835531",
+ "started": "2026-11-13T15:21:04Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

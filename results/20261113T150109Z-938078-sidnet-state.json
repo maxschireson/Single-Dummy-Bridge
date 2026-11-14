@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T15:01:19Z",
+ "id": "20261113T150109Z-938078-sidnet-state",
+ "output_bytes": 1699,
+ "output_tail": "2026-11-13T12:29:58Z start; source 3c34774; stages: buildB train e1 push\n2026-11-13T12:33:58Z freshB: {\"deals_in\": 3997, \"deals_kept\": 2719, \"dropped_as_seen\": 1278, \"examples\": 2240497}\n2026-11-13T12:33:59Z freshB_val: {\"deals\": 600, \"examples\": 495688, \"of_deals\": 2719, \"of_examples\": 2240497}\n2026-11-13T12:34:00Z S_0 start from rollout_v2_w768_epoch5.npz (lr 2e-3, 5 epochs, width 768)\n2026-11-13T14:37:47Z S_0 done: {\"done\": \"/home/bridgebots/work/sidnet/s0\", \"selected_epoch\": 5, \"validation\": {\"n\": 495688, \"searched\": 395977, \"nll\": 0.553, \"uniform_nll\": 1.2756, \"tie_nll\": 0.781, \"agree\": 0.7678, \"in_best\": 0.9171, \"regret\": 0.0224, \"regret_gap_head\": 0.0206, \"regret_random\": 0.2\n2026-11-13T14:41:52Z e1: E1: 1588530 labelled rows on 2719 held-out deals (816977 declaring, 771553 defending)\n2026-11-13T14:46:46Z pushed to transfer/sid-net-s0-20261113: 729M\n2026-11-13T14:46:46Z end of stages: buildB train e1 push\n--- s0.err tail\nepoch 5 step 54000 of 59312, 6967 s\nepoch 5 step 56000 of 59312, 7013 s\nepoch 5 step 58000 of 59312, 7059 s\n--- s0.out lines: 6\n \n4096 .\n4096 ..\n25801 metrics.json\n7221136 policy.npz\n7221136 policy_epoch1.npz\n7221136 policy_epoch2.npz\n7221136 policy_epoch3.npz\n7221136 policy_epoch4.npz\n7221136 policy_epoch5.npz\ne1.json\ne1.txt\n7         11555 | policy: 0.866+-0.006 | played: 0.881+-0.005 | random: 0.626+-0.006 |\n6         11057 | policy: 0.874+-0.006 | played: 0.896+-0.005 | random: 0.619+-0.006 |\n5 or      27471 | policy: 0.878+-0.004 | played: 0.916+-0.004 | random: 0.568+-0.004 |\nunits: inactive\nMem:              31           0          14           0          16          30\nload average: 0.19, 0.27, 1.80\n/dev/root       123G   55G   69G  45% /\n",
+ "received": "2026-11-13T15:01:19Z",
+ "script_sha256": "915a837f8ceb47950caa94c6bbc8fd28c1678d7504910e72e4204566739b7ea3",
+ "started": "2026-11-13T15:01:19Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

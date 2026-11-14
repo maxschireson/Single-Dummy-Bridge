@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 90.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:52:14Z",
+ "id": "20261112T045026Z-820065-g8-17-queue-v2",
+ "output_bytes": 1515,
+ "output_tail": "before: position 11 of 13 lines\n2026-11-12T04:49:15Z end @source: exit 0\n2026-11-12T04:49:15Z start g2-8x-v-trandom: 8x-32~t-random deals 0+600 seed 72  (source b6ad822)\n2026-11-12T04:49:15Z end g2-8x-v-trandom: exit 0\n2026-11-12T04:49:15Z start g2-7s-v-trandom: 7s-32~t-random deals 0+600 seed 72  (source b6ad822)\n     9\te4-8y-v-8p 8y-32~8p-32 0 2880 91 --book configs/gen8-books/mix91-2880.json.gz\n    10\t@source c03498c77184eb987d294c635b52b27bcfae028d\n    11\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    12\tg2-7s-v-trandom 7s-32~t-random 0 600 72\n    13\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\n    14\t@source c03498c77184eb987d294c635b52b27bcfae028d\n    15\te4-8y-v-8p 8y-32~8p-32 0 2880 91 --book configs/gen8-books/mix91-2880.json.gz\n    16\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    17\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\nposition 11\n2026-11-12T04:49:15Z start g2-8x-v-trandom: 8x-32~t-random deals 0+600 seed 72  (source b6ad822)\n2026-11-12T04:49:15Z end g2-8x-v-trandom: exit 0\n2026-11-12T04:49:15Z start g2-7s-v-trandom: 7s-32~t-random deals 0+600 seed 72  (source b6ad822)\n2026-11-12T04:50:44Z start g2-7s-v-trandom: 7s-32~t-random deals 0+600 seed 72  (source b6ad822)\n@source.log check e4-8y-v-8p.log g2-7s-v-trandom g2-7s-v-trandom.log g2-8x-v-trandom.log k-1 k-1.info.log k-1.log k-5rz k-5rz.info.log k-5rz.log k-6 k-6.info.log k-6.log k-7s k-7s.info.log k-7s.log k-thigh k-thigh.info.log k-thigh.log k-tlow k-tlow.info.log k-tlow.log k-trandom k-trandom.info.log k-trandom.log \nload average: 7.80, 5.24, 5.53\n",
+ "received": "2026-11-12T04:50:44Z",
+ "script_sha256": "20a0835d9fbdb61a8654fa41ad92f9a814019864e5c9d43bf8805a437118089d",
+ "started": "2026-11-12T04:50:44Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:27:32Z",
+ "id": "20261113T042717Z-459977-x8-read7",
+ "output_bytes": 200,
+ "output_tail": "z3 325 -0.575 +- 0.172 cpu 38.8\nz4 345 -0.258 +- 0.205 cpu 35.6\nz5 236 -0.432 +- 0.181 cpu 39.0\nx3 53 +0.151 +- 0.247 cpu 38.2\nz3-z5 paired on 236: -0.059 +- 0.187\nx3-z3 paired on 53: +0.094 +- 0.311\n",
+ "received": "2026-11-13T04:27:32Z",
+ "script_sha256": "eed8b5439734d118823e359ea3a7e013b6fdd26aceb45aa9e4043b10b1668635",
+ "started": "2026-11-13T04:27:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:29:32Z",
+ "id": "20261114T202930Z-codex-rollout-inspect",
+ "output_bytes": 2506,
+ "output_tail": "2026-11-14T20:29:32Z\nMainPID=1563\nExecStart={ path=/usr/bin/bash ; argv[]=/usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/chain.sh /home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure6.txt ; ignore_errors=no ; start_time=[Sat 2026-11-14 20:04:19 UTC] ; stop_time=[n/a] ; pid=1563 ; code=(null) ; status=0/0 }\nControlGroup=/system.slice/loop-collect.service\nId=loop-collect.service\nActiveState=active\nSubState=running\n\nMainPID=0\nControlGroup=\nId=loop-collect-b.service\nActiveState=inactive\nSubState=dead\n\nMainPID=1560\nExecStart={ path=/usr/bin/bash ; argv[]=/usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure6 ; ignore_errors=no ; start_time=[Sat 2026-11-14 20:04:19 UTC] ; stop_time=[n/a] ; pid=1560 ; code=(null) ; status=0/0 }\nControlGroup=/system.slice/loop-publish.service\nId=loop-publish.service\nActiveState=active\nSubState=running\n\nMainPID=1568\nExecStart={ path=/usr/bin/bash ; argv[]=/usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/rows.sh sp3sc sp3tb sp4tb ; ignore_errors=no ; start_time=[Sat 2026-11-14 20:04:19 UTC] ; stop_time=[n/a] ; pid=1568 ; code=(null) ; status=0/0 }\nControlGroup=/system.slice/loop-rows.service\nId=loop-rows.service\nActiveState=active\nSubState=running\n/home/bridgebots/.boxctl/scripts/20261114T202930Z-codex-rollout-inspect.sh: line 5: rg: command not found\n30e30af88ea196b8189ff39491c83cf531797868\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/root       123G   65G   59G  53% /\n               total        used        free      shared  buff/cache   available\nMem:           32086       14138       17250           4        1104       17947\nSwap:              0           0           0\nb3-ps200d-1\nb3-ps200d-1.log\nb3-ps200d-2\nb3-ps200d-2.log\nb3-ps200d-3\nb3-ps200d-3.log\nb3-ps200d-4\nb3-ps200d-4.log\nb3-ps200d-5\nb3-ps200d-5.log\nb3-ps200d-6\nb3-ps200d-6.log\nb3-ps200d-7\nb3-ps200d-7.log\nb3-ps200d-8\nb3-ps200d-8.log\nb3-pst200e-1\nb3-pst200e-1.log\nb3-pst200e-2\nb3-pst200e-2.log\nb3-pst200e-3\nb3-pst200e-3.log\nb3-pst200e-4\nb3-pst200e-4.log\nb3-pst200e-5\nb3-pst200e-5.log\nb3-pst200e-6\nb3-pst200e-6.log\nb3-pst200e-7\nb3-pst200e-7.log\nb3-pst200e-8\nb3-pst200e-8.log\nh3-nv41\nh3-nv41.log\nh3-p\nh3-p.log\nh3-pm\nh3-pm.log\nh3-pt\nh3-pt.log\nl0b-n\nl0b-n.log\nl0b-pt\nl0b-pt.log\nl0b-pv\nl0b-pv.log\nl2b-n\nl2b-n.log\nl2b-ns\nl2b-ns.log\nl2b-pt\nl2b-pt.log\nl3-pu\nl3-pu.log\nl3-pux\nl3-pux.log\nsp0c\nsp0c.log\nsp3sc\nsp3sc.log\nsp3tb\nsp3tb.log\nsp4tb\nsp4tb.log\nspr0c\nspr0c.log\nsps0c\nsps0c.log\n",
+ "received": "2026-11-14T20:29:32Z",
+ "script_sha256": "d3046d5fa20aa59a466ed1ec93fdfe3fc2b113714d0d980b0c2759e1a125ff9a",
+ "started": "2026-11-14T20:29:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

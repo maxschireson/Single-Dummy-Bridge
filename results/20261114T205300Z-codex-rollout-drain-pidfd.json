@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:50:40Z",
+ "id": "20261114T205300Z-codex-rollout-drain-pidfd",
+ "output_bytes": 98,
+ "output_tail": "Running as unit: stu-rollout-drain-event.service; invocation ID: 4bfc367449904282b2d105d6f77c7085\n",
+ "received": "2026-11-14T20:50:40Z",
+ "script_sha256": "c5870ebc160ef602c3f3e946ef6d4129fc3e1c3067f53294eb26c83cb1207d10",
+ "started": "2026-11-14T20:50:40Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

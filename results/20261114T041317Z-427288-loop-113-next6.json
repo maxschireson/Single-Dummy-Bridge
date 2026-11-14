@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:13:37Z",
+ "id": "20261114T041317Z-427288-loop-113-next6",
+ "output_bytes": 447,
+ "output_tail": "Running as unit: loop-rungs3.service; invocation ID: 6e18215c88e4415e81a864b5118fd97f\nloop-rungs: active; loop-rungs2: active; loop-rungs3: active\n2026-11-14T02:39:16Z the collection is paused for jobs-azure6-h3pt.txt\n2026-11-14T02:39:16Z start h3-pt stu3-pst~stu0-ps seed 131 first 17000 deals 1000 workers 8  (source 28b5b06, nets fp32)\nh3-pt boards 949: +0.23 +- 0.13 IMPs a board for the first-named bot\nl3-pu not started\n2026-11-14T04:13:37Z\n",
+ "received": "2026-11-14T04:13:32Z",
+ "script_sha256": "8901d9686a3fa260890d0e61e4b761ff859ae0b50889025c68a8aaecd024e607",
+ "started": "2026-11-14T04:13:32Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

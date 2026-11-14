@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T20:21:46Z",
+ "id": "20261112T202141Z-761443-net-ip",
+ "output_bytes": 429,
+ "output_tail": "host Bridgebots6 ip 172.16.0.9  gw 172.16.0.1\ndrwxr-xr-x 2 bridgebots bridgebots       4096 Nov 12 19:47 .\ndrwxr-xr-x 5 bridgebots bridgebots       4096 Nov 12 19:13 ..\n-rw-r--r-- 1 bridgebots bridgebots       4211 Nov 12 19:13 k1.et\n-rw-r--r-- 1 bridgebots bridgebots      46219 Nov 12 19:13 k2.et\n-rw-r--r-- 1 bridgebots bridgebots   10483035 Nov 12 19:13 k3.et\n-rw-r--r-- 1 bridgebots bridgebots 2796534231 Nov 12 19:47 k4.et\n",
+ "received": "2026-11-12T20:21:46Z",
+ "script_sha256": "c9f068e5bae167772f1a375d5c5ef992aafc6e3d01af47a1f9e507e3049abc28",
+ "started": "2026-11-12T20:21:46Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

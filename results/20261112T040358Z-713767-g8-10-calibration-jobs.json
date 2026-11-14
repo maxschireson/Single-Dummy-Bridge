@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 50.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:05:22Z",
+ "id": "20261112T040358Z-713767-g8-10-calibration-jobs",
+ "output_bytes": 176,
+ "output_tail": "2026-11-12T04:04:42Z start k-7s: 8s-32~7s-32 deals 0+96 seed 71 --episodes (source b6ad822)\n8s-32 v 7s-32: 96 boards to play (0 done), 8 workers\nload average: 3.78, 1.27, 0.48\n",
+ "received": "2026-11-12T04:04:32Z",
+ "script_sha256": "208711bfde9fe1abea0e49da3e86e17f802a46e160eb88d98fe306b71a1fdc3b",
+ "started": "2026-11-12T04:04:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

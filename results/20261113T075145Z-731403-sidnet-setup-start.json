@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 51.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:52:58Z",
+ "id": "20261113T075145Z-731403-sidnet-setup-start",
+ "output_bytes": 864,
+ "output_tail": "source aa18728 SiD labels (SPEC Part A): the label builder, its checks, the v2-tips fetch and t\nsure_cpp check (must be value 0): {\"left\": 3, \"value\": 0, \"seconds\": 0.000\nscorer sha256 56e6444079d1451a (56e6444079d1451a expected)\nv2 net sha256 8f87aa8f52ae2c11, 7007684 bytes\nnumpy 2.5.4\n8\n/dev/root       123G   13G  111G  10% /\nRunning as unit: sidnet-run.service; invocation ID: 255974412cd84cd9ab8645c4405daaeb\n\u25cf sidnet-run.service - /usr/bin/bash training/sid-net-s0-20261113/chain.sh\n     Loaded: loaded (/run/systemd/transient/sidnet-run.service; transient)\n  Transient: yes\n     Active: active (running) since Fri 2026-11-13 07:52:12 UTC; 45s ago\n   Main PID: 87160 (bash)\n      Tasks: 32 (limit: 35468)\n2026-11-13T07:52:12Z start; source aa18728; stages: fetch label fetchB labelB\n28400 of 75545 blobs, 4.51 GB, 45 s\n28800 of 75545 blobs, 4.58 GB, 45 s\n",
+ "received": "2026-11-13T07:52:07Z",
+ "script_sha256": "11b447065474ad94728db27767fb36e335b1f993511d24e7cfc0aaf75bddc8f4",
+ "started": "2026-11-13T07:52:07Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

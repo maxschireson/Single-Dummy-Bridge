@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 45.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:29:50Z",
+ "id": "20261112T142839Z-634790-g8-50-flat-checks",
+ "output_bytes": 664,
+ "output_tail": "queue active, position 26 of 29\n    25\ta1-8a-v-8p-r4 8a-32-v41~8p-32-v41 0 1000 91 --book /home/bridgebots/work/g8/books/aw-r4-91-0.json.gz\n    26\t@source 663854708d4b27c402a215cea4b63028a0780a3a\n    27\tf1-8a-v-8p-house 8a-32-v41~8p-32-v41 0 100 96\n    28\tf2-8x-v-8p-v41 8x-32-v41~8p-32-v41 0 100 96\n    29\tc1-8c-v-7s 8c-32-v41~7s-32-v41 400 800 95\n2026-11-12T14:21:51Z start c1-8c-v-7s: 8c-32-v41~7s-32-v41 deals 400+800 seed 95  (source 6638547)\n2026-11-12T14:29:06Z source now 6638547 Rule bidder r4: r3's rules with judgement from a trick estimate, frozen \n2026-11-12T14:29:06Z start f1-8a-v-8p-house: 8a-32-v41~8p-32-v41 deals 0+100 seed 96  (source 6638547)\n",
+ "received": "2026-11-12T14:29:05Z",
+ "script_sha256": "0b6ccfb3d7f25ef591e68e479ec6b90df6bad2b6880ad32211e5a92c09116fcc",
+ "started": "2026-11-12T14:29:05Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

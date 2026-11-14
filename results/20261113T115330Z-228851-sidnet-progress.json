@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:53:46Z",
+ "id": "20261113T115330Z-228851-sidnet-progress",
+ "output_bytes": 1465,
+ "output_tail": "2026-11-13T11:36:08Z built s01: {\"episodes\": 4722, \"deals\": 4712, \"unique_families\": 4618, \"examples\": 1887308, \"train\": 1496791, \"validation\": 193323, \"test\": 197194, \"labelled\": 1365607}\n2026-11-13T11:39:21Z built s02: {\"episodes\": 4721, \"deals\": 4711, \"unique_families\": 4636, \"examples\": 1895809, \"train\": 1512816, \"validation\": 197052, \"test\": 185941, \"labelled\": 1371546}\n2026-11-13T11:42:34Z built s03: {\"episodes\": 4722, \"deals\": 4712, \"unique_families\": 4645, \"examples\": 1909137, \"train\": 1526908, \"validation\": 178099, \"test\": 204130, \"labelled\": 1381249}\n2026-11-13T11:45:47Z built s04: {\"episodes\": 4721, \"deals\": 4718, \"unique_families\": 4648, \"examples\": 1861544, \"train\": 1483392, \"validation\": 183104, \"test\": 195048, \"labelled\": 1345578}\n2026-11-13T11:49:00Z built s05: {\"episodes\": 4722, \"deals\": 4709, \"unique_families\": 4619, \"examples\": 1918979, \"train\": 1524598, \"validation\": 203824, \"test\": 190557, \"labelled\": 1389591}\n2026-11-13T11:52:14Z built s06: {\"episodes\": 4721, \"deals\": 4711, \"unique_families\": 4635, \"examples\": 1892264, \"train\": 1534346, \"validation\": 170540, \"test\": 187378, \"labelled\": 1369137}\nlabelB: {\"episodes\": 4000, \"rows\": 2156241, \"failed\": 0, \"seconds\": 1387}\nbuild: 2000 episodes 806170 examples\nlabelsB errors: 0; sidecars 4000\nshard files built: 7\nunits: inactive active \nload average: 8.29, 8.16, 8.95\nMem:              31           2           3           0          25  \n/dev/root       123G   38G   86G  31% /\n",
+ "received": "2026-11-13T11:53:46Z",
+ "script_sha256": "de7c366fc7de4e5c36e67f1164bb08c0e95b916bb49a0745222a3d17108f3b01",
+ "started": "2026-11-13T11:53:46Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

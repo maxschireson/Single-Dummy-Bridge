@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T22:39:45Z",
+ "id": "20261113T223930Z-622993-loop-kwhy",
+ "output_bytes": 1072,
+ "output_tail": "56 ('rows', 0, 'complete rows', 0)\n36 ('rows', 128, 'complete rows', 64)\n27 ('rows', 120, 'complete rows', 64)\n19 ('rows', 120, 'complete rows', 0)\n19 ('rows', 96, 'complete rows', 64)\n17 ('rows', 8, 'complete rows', 8)\n16 ('rows', 64, 'complete rows', 64)\n15 ('rows', 56, 'complete rows', 56)\n14 ('rows', 40, 'complete rows', 40)\n13 ('rows', 128, 'complete rows', 0)\n13 ('rows', 80, 'complete rows', 64)\n12 ('rows', 16, 'complete rows', 16)\n11 ('rows', 24, 'complete rows', 24)\n11 ('rows', 88, 'complete rows', 64)\n{'rows': 128, 'cands': 2, 'layouts': 128, 'n': [128, 128], 'first_missing': 128, 'ply': 1}\n{'rows': 126, 'cands': 2, 'layouts': 126, 'n': [126, 126], 'first_missing': 126, 'ply': 2}\n{'rows': 128, 'cands': 2, 'layouts': 128, 'n': [128, 128], 'first_missing': 128, 'ply': 3}\n{'rows': 128, 'cands': 4, 'layouts': 128, 'n': [128, 128, 128, 128], 'first_missing': 128, 'ply': 4}\n{'rows': 128, 'cands': 2, 'layouts': 128, 'n': [128, 128], 'first_missing': 128, 'ply': 5}\n{'rows': 119, 'cands': 2, 'layouts': 119, 'n': [119, 119], 'first_missing': 119, 'ply': 6}\n",
+ "received": "2026-11-13T22:39:44Z",
+ "script_sha256": "d5ddb2dd555b7e0d13b52a499fca8c4b9c849dab9f11863c2eb1a813d9c6de49",
+ "started": "2026-11-13T22:39:44Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

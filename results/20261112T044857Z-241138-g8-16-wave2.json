@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:49:12Z",
+ "id": "20261112T044857Z-241138-g8-16-wave2",
+ "output_bytes": 829,
+ "output_tail": "     1\tk-7s 8s-32~7s-32 0 96 71 --episodes\n     2\tk-6 8s-32~6-32 0 96 71 --episodes\n     3\tk-5rz 8s-32~5RZ32 0 96 71 --episodes\n     4\tk-1 8s-32~1 0 96 71 --episodes\n     5\tk-thigh 8s-32~t-high 0 96 71 --episodes\n     6\tk-tlow 8s-32~t-low 0 96 71 --episodes\n     7\tk-trandom 8s-32~t-random 0 96 71 --episodes\n     8\t@source 9f13a09304bc5bf9e45321da1515195847620f86\n     9\te4-8y-v-8p 8y-32~8p-32 0 2880 91 --book configs/gen8-books/mix91-2880.json.gz\n    10\t@source c03498c77184eb987d294c635b52b27bcfae028d\n    11\tg2-8x-v-trandom 8x-32~t-random 0 600 72\n    12\tg2-7s-v-trandom 7s-32~t-random 0 600 72\n    13\tn1-8n-v-8p 8n-32~8p-32 0 2000 84\nposition 9\n2026-11-12T04:46:00Z start e4-8y-v-8p: 8y-32~8p-32 deals 0+2880 seed 91 --book configs/gen8-books/mix91-2880.json.gz (source b6ad822)\n2026-11-12T04:46:00Z end e4-8y-v-8p: exit 0\n",
+ "received": "2026-11-12T04:49:12Z",
+ "script_sha256": "a82d9bce7b2bf588e46865bf452df1e3c94bb473efafcd863f54ae5771d24697",
+ "started": "2026-11-12T04:49:12Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

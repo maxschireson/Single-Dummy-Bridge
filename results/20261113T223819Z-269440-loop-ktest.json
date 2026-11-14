@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 1,
+ "finished": "2026-11-13T22:38:34Z",
+ "id": "20261113T223819Z-269440-loop-ktest",
+ "output_bytes": 232,
+ "output_tail": "fatal: cannot change to '/home/bridgebots/work/loop/src-lc': No such file or directory\n/home/bridgebots/.boxctl/scripts/20261113T223819Z-269440-loop-ktest.sh: line 7: cd: /home/bridgebots/work/loop/src-lc: No such file or directory\n",
+ "received": "2026-11-13T22:38:34Z",
+ "script_sha256": "4f545b2f0aea7ee19c6ad440fe4aac1424ccaacb97dd57d0cbbddf4723dc5b2f",
+ "started": "2026-11-13T22:38:34Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

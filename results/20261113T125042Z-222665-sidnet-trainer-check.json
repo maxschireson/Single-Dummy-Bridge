@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:51:09Z",
+ "id": "20261113T125042Z-222665-sidnet-trainer-check",
+ "output_bytes": 1213,
+ "output_tail": "2026-11-13T12:24:21Z STOPPED: buildB needs labelB and build finished\n2026-11-13T12:29:58Z start; source 3c34774; stages: buildB train e1 push\n2026-11-13T12:33:58Z freshB: {\"deals_in\": 3997, \"deals_kept\": 2719, \"dropped_as_seen\": 1278, \"examples\": 2240497}\n2026-11-13T12:33:59Z freshB_val: {\"deals\": 600, \"examples\": 495688, \"of_deals\": 2719, \"of_examples\": 2240497}\n2026-11-13T12:34:00Z S_0 start from rollout_v2_w768_epoch5.npz (lr 2e-3, 5 epochs, width 768)\n--- s0.err\nepoch 1 step 26000 of 59312, 598 s\nepoch 1 step 28000 of 59312, 644 s\nepoch 1 step 30000 of 59312, 690 s\nepoch 1 step 32000 of 59312, 735 s\nepoch 1 step 34000 of 59312, 781 s\nepoch 1 step 36000 of 59312, 827 s\n--- s0.out\nunits: active\nMem:              31          16           0           0          14          14\nload average: 7.06, 6.47, 5.87\n/dev/root       123G   54G   70G  44% /\n[30714.697406] Out of memory: Killed process 30885 (python) total-vm:4420404kB, anon-rss:4089024kB, file-rss:2840kB, shmem-rss:0kB, UID:1000 pgtables:8172kB oom_score_adj:0\n    PID ELAPSED   RSS %CPU CMD\n 104389    1029 16864540 493 /home/bridgebots/work/venv/bin/python scripts/train_rollout_net.py --data /home/bridgebots/work/sidnet/data/train.npz --a\n",
+ "received": "2026-11-13T12:51:09Z",
+ "script_sha256": "374f4f8e2f0394814e855baf2617986039283d5fbcb546961187d2de9532fd30",
+ "started": "2026-11-13T12:51:09Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

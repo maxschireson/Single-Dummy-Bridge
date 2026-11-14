@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 5.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:38:06Z",
+ "id": "20261113T073751Z-479083-x8-final",
+ "output_bytes": 1711,
+ "output_tail": "x1 246 -0.073 +- 0.139 cpu 36.7\nx4 522 +0.295 +- 0.148 cpu 47.6\nx5 550 -0.147 +- 0.124 cpu 37.4\nx6 1011 +0.077 +- 0.082 cpu 28.0\nx4 - x5 paired 522 +0.433 +- 0.204\nx6 - x5 paired 550 +0.136 +- 0.118\nx4 - x6 paired 522 +0.303 +- 0.195\nx6 - x1 paired 246 +0.142 +- 0.222\n== x6\n  all                                forks  2610 (better 79, worse 88): +0.039 +- 0.034 IMPs a fork; +0.1009 +- 0.0888 a board\n  with blend                         forks  1223 (better 32, worse 23): +0.046 +- 0.041 IMPs a fork; +0.0554 +- 0.0491 a board\n--\n  with claim                         forks   527 (better 1, worse 0): +0.002 +- 0.002 IMPs a fork; +0.0010 +- 0.0010 a board\n--\n  with guarantee                     forks   113 (better 9, worse 28): +0.381 +- 0.317 IMPs a fork; +0.0425 +- 0.0356 a board\n--\n  with mix                           forks   776 (better 35, worse 35): +0.021 +- 0.064 IMPs a fork; +0.0158 +- 0.0494 a board\n== x4\n  all                                forks  5245 (better 241, worse 224): +0.006 +- 0.040 IMPs a fork; +0.0613 +- 0.3992 a board\n  with blend                         forks  2279 (better 121, worse 132): -0.029 +- 0.065 IMPs a fork; -0.1245 +- 0.2851 a board\n--\n  with claim                         forks  1209 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n--\n  with guarantee                     forks    84 (better 7, worse 9): +0.190 +- 0.186 IMPs a fork; +0.0307 +- 0.0302 a board\n--\n  with mix                           forks  2802 (better 169, worse 145): +0.029 +- 0.054 IMPs a fork; +0.1533 +- 0.2908 a board\n    doubled                          forks   137 (better 1, worse 1): +0.007 +- 0.120 IMPs a fork; +0.0010 +- 0.0161 a board\ninactive\ninactive\n",
+ "received": "2026-11-13T07:38:00Z",
+ "script_sha256": "b24e828a671b2f0d00168f0e1346277bd5ebd7558e31b032c7bb9d59f6aba1e1",
+ "started": "2026-11-13T07:38:00Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

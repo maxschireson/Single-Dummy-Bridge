@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T19:48:03Z",
+ "id": "20261112T194733Z-963765-endtable-status",
+ "output_bytes": 1254,
+ "output_tail": "19:48:03 endtable-k4: inactive; load 5.60 7.51 7.14; memory available 31104 MB; disk free  112G\nk=4: 1728/1778 chunks (1728 this run, 1993 s, 2.20 core-us per entry)\nk=4: 1778/1778 chunks (1778 this run, 2068 s, 2.22 core-us per entry)\n{\"k\": 4, \"file\": \"/home/bridgebots/work/endtable/tables/k4.et\", \"entries\": 7457413672, \"entries_computed\": 7457413672, \"chunks\": 1778, \"chunks_resumed\": 0, \"threads\": 8, \"plain\": true, \"index_seconds\": 0.139, \"build_seconds\": 2067.9, \"cpu_seconds\": 16463.3, \"core_us_per_entry\": 2.218, \"nodes_per_entry\": 33.46, \"leaves_per_entry\": 32.80, \"sha256\": \"ec792f75087aada01bd46062bab57d44ce92ee6fe0c9d1c8c0795432a62bbd9d\"}\ntotal 2741300\ndrwxr-xr-x 2 bridgebots bridgebots       4096 Nov 12 19:47 .\ndrwxr-xr-x 5 bridgebots bridgebots       4096 Nov 12 19:13 ..\n-rw-r--r-- 1 bridgebots bridgebots       4211 Nov 12 19:13 k1.et\n-rw-r--r-- 1 bridgebots bridgebots      46219 Nov 12 19:13 k2.et\n-rw-r--r-- 1 bridgebots bridgebots   10483035 Nov 12 19:13 k3.et\n-rw-r--r-- 1 bridgebots bridgebots 2796534231 Nov 12 19:47 k4.et\n8\nModel name:                              AMD EPYC 9V74 80-Core Processor\nThread(s) per core:                      1\nCore(s) per socket:                      8\nSocket(s):                               1\n",
+ "received": "2026-11-12T19:48:03Z",
+ "script_sha256": "f4d3ef1cf94714e7e2af96cdf5fca56493eca3b976e8da2345284cddd194b711",
+ "started": "2026-11-12T19:48:03Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

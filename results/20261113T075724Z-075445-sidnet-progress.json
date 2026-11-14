@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:57:35Z",
+ "id": "20261113T075724Z-075445-sidnet-progress",
+ "output_bytes": 723,
+ "output_tail": "2026-11-13T07:52:12Z start; source aa18728; stages: fetch label fetchB labelB\n2026-11-13T07:54:32Z fetch: 75545 episodes; {\"finished_utc\": \"2026-11-13T07:54:32Z\", \"seconds\": 140, \"distinct_blobs\": 75545, \"new_blobs\": 75545, \"new_bytes\": 13180784628}\n600 of 75545 episodes, 171939 rows, 0 failed, 93 s, 4.32 core-ms a row, about 193 min left\n800 of 75545 episodes, 233936 rows, 0 failed, 125 s, 4.27 core-ms a row, about 194 min left\n1000 of 75545 episodes, 294232 rows, 0 failed, 156 s, 4.24 core-ms a row, about 194 min left\n1163\n0\nload average: 11.05, 7.42, 5.55\nMem:              31           2           8           0          21          28\n13G\t/home/bridgebots/work/sidnet/eps 12M\t/home/bridgebots/work/sidnet/labels ",
+ "received": "2026-11-13T07:57:34Z",
+ "script_sha256": "777f5b75cdf3a52de689b38848b619e4b18f12e278801288e8faba5765e16266",
+ "started": "2026-11-13T07:57:34Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

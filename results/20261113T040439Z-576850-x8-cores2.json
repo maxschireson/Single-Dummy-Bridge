@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:04:55Z",
+ "id": "20261113T040439Z-576850-x8-cores2",
+ "output_bytes": 493,
+ "output_tail": "8\n               total        used        free      shared  buff/cache   available\nMem:              31           7          16           0           7          23\n 04:04:55 up 1 day, 6 min,  0 user,  load average: 8.19, 8.20, 8.18\n\"source\": \"/home/bridgebots/work/capsule-gen7-capture/recovery\"\n\"source_commit\": \"bb8506640cc5b3dc0dcc802ef224d5d74aaa7158\"\n246\n2026-11-13T02:28:52Z start x1 (8xr0-ft1~8p-32-v41) source bb85066\n2026-11-13T02:48:12Z x1 paused at 246 boards (8Z first, Max 02:41)\n",
+ "received": "2026-11-13T04:04:55Z",
+ "script_sha256": "05c6c41e014e65b4597c005a63e052b1364dd118595b546688bba6dbc1449499",
+ "started": "2026-11-13T04:04:55Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

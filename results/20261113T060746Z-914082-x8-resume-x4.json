@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 94.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:09:51Z",
+ "id": "20261113T060746Z-914082-x8-resume-x4",
+ "output_bytes": 918,
+ "output_tail": "3:W=$HOME/work/x8; S2=$W/src2; PY=$HOME/work/venv/bin/python\n6:echo \"$(date -u +%FT%TZ) start x4 (8x1-ft1~8p-32-v41, resumed, 4 workers) source $(git rev-parse --short HEAD)\" >> \"$W/queue.log\"\n8:  --pair 8x1-ft1~8p-32-v41 --deals 1600 --seed 131 --workers 4 --out \"$W/runs/x4\" >> \"$W/runs/x4.log\" 2>&1\n9:echo \"$(date -u +%FT%TZ) end x4: exit $?\" >> \"$W/queue.log\"\nRunning as unit: x8-queue8.service; invocation ID: ba22e3f07822400f9f5ee221ed7b1d36\nactive\nactive\nactive\n2026-11-13T05:38:39Z start x6 (8x3-ft1~8p-32-v41, 4 workers) source 1a779a9\n2026-11-13T06:08:20Z x5 stopped at 550 boards; x4 resumes on its workers from src2 0bcdbc2 (same draws at power 0), Max 06:05\n2026-11-13T06:08:21Z start x4 (8x1-ft1~8p-32-v41, resumed, 4 workers) source 0bcdbc2\n8x1-ft1 v 8p-32-v41: 1523 boards to play (77 done), 4 workers\n      5 runs/x4\n      5 runs/x6\n 06:09:51 up 1 day,  2:11,  0 user,  load average: 8.30, 8.23, 8.21\n",
+ "received": "2026-11-13T06:08:16Z",
+ "script_sha256": "0705ca8240c24807211eaaf5ef739cefe8d60c3d0c7660e548245373aa695acb",
+ "started": "2026-11-13T06:08:16Z",
+ "timed_out": false,
+ "timeout_s": 400
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 103.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:46:04Z",
+ "id": "20261114T214400Z-codex-rollout-native-v2-mode-check",
+ "output_bytes": 793,
+ "output_tail": "{\n  \"status\": \"passed\",\n  \"parity\": [\n    {\n      \"seed\": 2026111401,\n      \"plies\": 16,\n      \"null_zero_parity\": true,\n      \"card\": 36\n    },\n    {\n      \"seed\": 2026111402,\n      \"plies\": 28,\n      \"null_zero_parity\": true,\n      \"card\": 36\n    },\n    {\n      \"seed\": 2026111403,\n      \"plies\": 40,\n      \"null_zero_parity\": true,\n      \"card\": 46\n    },\n    {\n      \"seed\": 2026111404,\n      \"plies\": 24,\n      \"null_zero_parity\": true,\n      \"card\": 38\n    }\n  ],\n  \"child_calls\": 1,\n  \"precision\": \"bf16\",\n  \"manifest_identity\": \"5ba2ec42cb5ad8539dc8e97068280d9565bf22afbf8a795a4e4b6ff1a3e282f0\",\n  \"purpose\": \"correctness only; generated-view seeds above also excluded from training\"\n}\n----------------------------------------------------------------------\nRan 34 tests in 92.939s\n\nOK\n",
+ "received": "2026-11-14T21:44:20Z",
+ "script_sha256": "66fb14f73ab9093c94e15c9762c95e31b231e457f2b59aace771c53fad04ceb3",
+ "started": "2026-11-14T21:44:20Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

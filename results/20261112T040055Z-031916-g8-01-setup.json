@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 40.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:02:56Z",
+ "id": "20261112T040055Z-031916-g8-01-setup",
+ "output_bytes": 527,
+ "output_tail": "checkout: b6ad822 Gen 8 prototype: bidders of either kind at one table, EPBot adapter (WIP)\npolicy files: 4\ndds library: 1266008 bytes\nh5py 3.16.0 numpy 2.5.4\n/home/bridgebots/work/capsule-gen7-capture/recovery/manifest.json\n\n/home/bridgebots/work/capsule-gen7-capture/recovery/artifacts:\nboard 1 failed: OperationalError: database is locked\n1 boards: None +- None IMPs/board for 8s-32; 122 boards/hour; 1 failed\n{\"pair\": \"8s-32~7s-32\", \"boards\": 1, \"cpu_per_board\": 24.39}\nsetup done on azure6: load average: 1.29, 0.50, 0.19\n",
+ "received": "2026-11-12T04:02:15Z",
+ "script_sha256": "efa48d63e1b92eace35dd4d99f1ea890d9e89e0a0c58434c663e0d815a0ec8f9",
+ "started": "2026-11-12T04:02:15Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

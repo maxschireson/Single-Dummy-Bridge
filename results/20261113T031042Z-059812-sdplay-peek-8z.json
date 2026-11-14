@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T03:10:50Z",
+ "id": "20261113T031042Z-059812-sdplay-peek-8z",
+ "output_bytes": 239,
+ "output_tail": "['/home/bridgebots/work/x8/runs/z1/results.jsonl', '/home/bridgebots/work/x8/runs/z2/results.jsonl']\nz1 boards 130 IMPs/board -0.546 +- 0.210\nz2 boards 131 IMPs/board -0.611 +- 0.236\nz1 - z2 paired on 130 deals: +0.054 +- 0.242 IMPs/board\n",
+ "received": "2026-11-13T03:10:50Z",
+ "script_sha256": "425c1d39e30ac61425b4febc4a8859c3abe3273210c21e590e7febc48271fd8f",
+ "started": "2026-11-13T03:10:50Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

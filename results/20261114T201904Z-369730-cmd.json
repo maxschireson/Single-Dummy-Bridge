@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:19:17Z",
+ "id": "20261114T201904Z-369730-cmd",
+ "output_bytes": 196,
+ "output_tail": "ExecStart=/usr/bin/python3 /home/bridgebots/.boxctl/agent.py --config /home/bridgebots/.boxctl/config.json\nEnvironment=PYTHONUNBUFFERED=1\n/home/bridgebots/boxctl-install.sh\nboxctl-install.sh\nwork\n",
+ "received": "2026-11-14T20:19:17Z",
+ "script_sha256": "5c790a655a26d2070798e948e89a75436f1c877fbb22fad7dc2e7131658c4e3c",
+ "started": "2026-11-14T20:19:17Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

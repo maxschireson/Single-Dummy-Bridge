@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:23:19Z",
+ "id": "20261113T022253Z-715426-x8-look",
+ "output_bytes": 1281,
+ "output_tail": "capsule-gen7-capture\nendtable\ng8\ngen8\npublication\nruns\nsdb-gen8\nsdplay\nsources\nvenv\n/home/bridgebots/work/capsule-gen7-capture/\n/home/bridgebots/work/endtable/\n/home/bridgebots/work/g8/\n/home/bridgebots/work/gen8/\n/home/bridgebots/work/publication/\n/home/bridgebots/work/runs/\n/home/bridgebots/work/sdb-gen8/\n/home/bridgebots/work/sdplay/\n/home/bridgebots/work/sources/\n/home/bridgebots/work/venv/\nActivate.ps1\nactivate\nactivate.csh\nactivate.fish\nf2py\n3.12.3 2.5.4 3.14.0\nSTOP\nWATCHDOG_STOP\nartifacts\nassets\nben-preflight.json\ncorpus.jsonl\nepisodes\nheartbeat.json\nlaunch.json\nmanifest.json\n/home/bridgebots/work/capsule-gen7-capture/recovery/manifest.json\n/usr/bin/g++\n/usr/bin/make\n8\n/dev/root       123G   12G  112G  10% /\nSHA256SUMS\nk1.et\nk2.et\nk3.et\nk4.et\n  UNIT                        LOAD   ACTIVE SUB     DESCRIPTION\n  boxctl.service              loaded active running boxctl agent: runs commands queued on GitHub (box azure6)\n  fwupd.service               loaded active running Firmware update daemon\n\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\n        SUB    \u2192 The low-level unit activation state, values depend on unit type.\n\n22 loaded units listed.\n",
+ "received": "2026-11-13T02:23:18Z",
+ "script_sha256": "dffca0e0c1e35bf6ada6e226fb5bff4c1fabc1becbc7f8573d6e80ea14c1be7a",
+ "started": "2026-11-13T02:23:18Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 6.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T22:39:12Z",
+ "id": "20261113T223850Z-933487-loop-ktest",
+ "output_bytes": 591,
+ "output_tail": "{\"episodes\": 12, \"deals\": 12, \"unique_families\": 12, \"examples\": 493, \"train\": 369, \"validation\": 81, \"test\": 43, \"rows_with_unrated_cards\": 200, \"k8\": {\"card_changed\": 56, \"kept_full\": 137}, \"k16\": {\"card_changed\": 45, \"kept_full\": 158}, \"k32\": {\"card_changed\": 42, \"kept_full\": 183}}\nrows 493 rated rows 379\nk=8: card changed 56, kept full 137, mean |gap diff| a row 0.235, rated cards same set 1.000\nk=16: card changed 45, kept full 158, mean |gap diff| a row 0.144, rated cards same set 1.000\nk=32: card changed 42, kept full 183, mean |gap diff| a row 0.092, rated cards same set 1.000\n",
+ "received": "2026-11-13T22:39:06Z",
+ "script_sha256": "3d0c945531dc13db54399e017c0998d5f583dc180812769de539a58a3d78ddd8",
+ "started": "2026-11-13T22:39:06Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

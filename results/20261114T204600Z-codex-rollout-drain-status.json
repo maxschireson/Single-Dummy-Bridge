@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 1,
+ "finished": "2026-11-14T20:39:17Z",
+ "id": "20261114T204600Z-codex-rollout-drain-status",
+ "output_bytes": 101,
+ "output_tail": "cat: /home/bridgebots/work/rollout-experiments-20261114/drain-status.json: No such file or directory\n",
+ "received": "2026-11-14T20:39:17Z",
+ "script_sha256": "25bb7aa1fecfb56e912b0ddf2393d738929c4aff370ec0f17f9d3abfd2e57f2b",
+ "started": "2026-11-14T20:39:17Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

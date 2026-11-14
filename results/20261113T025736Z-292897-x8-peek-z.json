@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:58:02Z",
+ "id": "20261113T025736Z-292897-x8-peek-z",
+ "output_bytes": 220,
+ "output_tail": "z1 boards 62 IMPs/board -0.306 +- 0.274 cpu/board 37.0 per board: rollout decisions 15.5 claims 4.9 forks 8.0\nz2 boards 62 IMPs/board -0.306 +- 0.415 cpu/board 36.1 per board: rollout decisions 15.3 claims 4.9 forks 7.6\n",
+ "received": "2026-11-13T02:58:02Z",
+ "script_sha256": "98e1fc0938baf0297215f1e3568288bca990d3a7b43de85d113e60b9c9a7c6b5",
+ "started": "2026-11-13T02:58:02Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 7.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T16:06:04Z",
+ "id": "20261113T160551Z-258198-loop-rungs6",
+ "output_bytes": 747,
+ "output_tail": " training/rollout-loop-20261113/get_net.sh         | 14 ++++++\n training/rollout-loop-20261113/jobs-azure6-r2.txt |  9 +++-\n training/rollout-loop-20261113/runs.json          | 42 ++++++++++++++++\n 4 files changed, 103 insertions(+), 23 deletions(-)\nsource 6fede60\nround 2's net in place, sha256 fa5df4e1a7f866a2\nRunning as unit: loop-rungs2.service; invocation ID: aa40f9a605c8457c918d1a6273a8aac6\nactive active active active \n2026-11-13T15:45:43Z start l0b-pt stu0-pt~8p-32-v41 seed 131 first 500 deals 200 workers 8 --episodes (source 8e06911)\n2026-11-13T16:05:28Z end l0b-pt: exit 0\n2026-11-13T16:05:28Z start l0b-pv stu0-pv~8p-32-v41 seed 131 first 500 deals 200 workers 8 --episodes (source 8e06911)\nl0b-pt 200\nl0b-pv 2\n2026-11-13T16:06:04Z\n",
+ "received": "2026-11-13T16:05:56Z",
+ "script_sha256": "f69cd8e0273193e9f67593b11ae3b3e51db268fc02f183980ded9ba9027a42af",
+ "started": "2026-11-13T16:05:56Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

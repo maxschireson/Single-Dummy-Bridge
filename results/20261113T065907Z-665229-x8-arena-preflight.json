@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 2.2,
+ "exit_code": 1,
+ "finished": "2026-11-13T06:59:22Z",
+ "id": "20261113T065907Z-665229-x8-arena-preflight",
+ "output_bytes": 284,
+ "output_tail": "src4 6b99997 8X v3 arena plan (configs/round8x-v3.json); plans may carry 8X bots\nrestored system_scorer_v1.npz\npolicy_scratch.npz ok\n72fafc4cce9ed62e6427b021103533e62e1bdfedc6acc96bf01c81186a88ee7a  /home/bridgebots/work/x8/prep/gen8x-v3-exclusions.json\npreflight source b4ef38a00fd8\n",
+ "received": "2026-11-13T06:59:20Z",
+ "script_sha256": "88f969c4d52ff7e91789567b4b659baf4114396256e65898e8dc4440d724f707",
+ "started": "2026-11-13T06:59:20Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

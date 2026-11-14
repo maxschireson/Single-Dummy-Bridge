@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:27:03Z",
+ "id": "20261113T082655Z-812405-sidnet-progress",
+ "output_bytes": 227,
+ "output_tail": "12800 of 75545 episodes, 3716766 rows, 0 failed, 1937 s, 4.17 core-ms a row, about 158 min left\n0\nactive active load average: 11.62, 11.78, 10.99\nMem:              31           2           7           0          21          28\n",
+ "received": "2026-11-13T08:27:03Z",
+ "script_sha256": "f8b7d998bdfe17498e583357c6129f68b7c46161e1cc9e8c4cea3fdc30c16859",
+ "started": "2026-11-13T08:27:03Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

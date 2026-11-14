@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 65.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:08:05Z",
+ "id": "20261113T040654Z-209498-x8-add-8x",
+ "output_bytes": 1254,
+ "output_tail": "Running as unit: x8-queue4.service; invocation ID: 118516b22269445081066660820d70db\n14:--feature-forks. results.jsonl: one row a board; search.x8_forks: the feature forks; forks-*.txt: scripts/x8_forks.py.\n15:z3: 8z-ft1 against 8p-32-v41; z4: 8z-ft1 against 7s-32-v41 (Gen 7.1); z5: 8z-v41 against 8p-32-v41 (paired with z3: the rollout net). Seed 131. z1, z2: the same as z3, z5 before 5c77d79 (stopped early). x3: 8xr0-ft1 (8X, the blend) against 8p-32-v41 on the same deals (seed 131), paired with z3. x1: 8xr0-ft1 at bb85066, seed 141 (paused at 246 boards, superseded by x3).\n18:  for r in \"$W\"/runs/x* \"$W\"/runs/z*; do\n22:    (cd \"$S\" && \"$PY\" \"$W/bin/x8_forks.py\" \"$r\") > \"forks-$n.txt\" 2>&1 || true\nactive\nactive\n2026-11-13T04:07:05Z z4 paused at 290 boards to rebalance (x3 added, Max 04:03)\n2026-11-13T04:07:05Z z5 paused at 180 boards to rebalance (x3 added, Max 04:03)\n2026-11-13T04:07:05Z start z3 (8z-ft1~8p-32-v41, 2 workers) source 5c77d79\n2026-11-13T04:07:05Z start z4 (8z-ft1~7s-32-v41, 2 workers) source 5c77d79\n2026-11-13T04:07:05Z start z5 (8z-v41~8p-32-v41, 2 workers) source 5c77d79\n2026-11-13T04:07:05Z start x3 (8xr0-ft1~8p-32-v41, 2 workers) source 5c77d79\n12\n 04:08:05 up 1 day, 9 min,  0 user,  load average: 8.30, 8.23, 8.19\n",
+ "received": "2026-11-13T04:07:00Z",
+ "script_sha256": "a259f0637c58ee5bbebf4d9fc361afd17927cd84c231c4ec3bab8b9c4e09f21d",
+ "started": "2026-11-13T04:07:00Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

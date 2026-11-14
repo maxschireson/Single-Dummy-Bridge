@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.5,
+ "exit_code": 1,
+ "finished": "2026-11-13T03:18:30Z",
+ "id": "20261113T031807Z-358767-x8-peek-z3",
+ "output_bytes": 334,
+ "output_tail": "z3 8z-ft1 v 8p-32-v41 boards 40 IMPs/board +0.175 +- 0.527 cpu 40.8 forks 390 changed 49 fork IMPs 4\nz4 8z-ft1 v 7s-32-v41 boards 47 IMPs/board -0.298 +- 0.495 cpu 35.7 forks 446 changed 48 fork IMPs -68\nz5 8z-v41 v 8p-32-v41 boards 28 IMPs/board -0.679 +- 0.547 cpu 39.6 forks 281 changed 31 fork IMPs -21\nz3.log:0\nz4.log:0\nz5.log:0\n",
+ "received": "2026-11-13T03:18:29Z",
+ "script_sha256": "85a188f5fa24054090cbbd36e93829169d3fddb7e351631e15c1c653f071ded9",
+ "started": "2026-11-13T03:18:29Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

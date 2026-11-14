@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 343.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T21:07:09Z",
+ "id": "20261113T210052Z-836292-loop-cut",
+ "output_bytes": 472,
+ "output_tail": "source 6514196\n2026-11-13T21:02:39Z cut sp0c 143000-143196: 197 boards, {\"episodes\": 197, \"deals\": 195, \"unique_families\": 195, \"examples\": 8061, \"train\": 6321, \"validation\": 785, \"test\": 955,, 424 KB\n2026-11-13T21:07:09Z cut spr0c 160000-160695: 696 boards, {\"episodes\": 696, \"deals\": 693, \"unique_families\": 693, \"examples\": 28593, \"train\": 22492, \"validation\": 2812, \"test\": 3, 1460 KB\nsp0c 3281 tables\nspr0c 721 tables\nactive active active active 2026-11-13T21:07:09Z\n",
+ "received": "2026-11-13T21:01:25Z",
+ "script_sha256": "8229da43dd4d957a48f297eea38663bf90ba11b2bc52c449ea3576884f0e2b95",
+ "started": "2026-11-13T21:01:25Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

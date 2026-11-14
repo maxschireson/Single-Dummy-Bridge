@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 5.6,
+ "exit_code": 1,
+ "finished": "2026-11-12T05:02:30Z",
+ "id": "20261112T050205Z-082284-g8-18-arena-dry",
+ "output_bytes": 1301,
+ "output_tail": "== prepare (ce28246)\n{\"identity\": \"25eb4f1cd155539fe60a477ac1dd7faa114466325892eb614b8c7c38fc3d2c3c\", \"target\": 351, \"shard\": {\"index\": 63, \"of\": 64}, \"allocation\": {\"8x-32~7s-32\": 1, \"8x-32~6-32\": 1}, \"policy\": {\"bots\": [\"7s-32\", \"8x-32\"], \"policy_release\": \"models/cardplay/gen7-policy-v4-2026-11-11\", \"policy_sha256\": \nroster ['8x-32', '7s-32', '6-32'] | pairs {'8x-32~7s-32': 1, '8x-32~6-32': 1} | deals 351\n8x-32 engine gen7 | identity 5ea37eb712e6 | gen7 settings: {'play_weight': 1.0, 'early_play_weight': 1.0, 'early_pool': 512, 'early_min_effective': 8.0, 'opponent_play_weight': {'7s-32': 1.0, '7f-32': 1.0, '8s-32': 1.0, '8p-32': 1.0, '8x-32': 1.0, '8y-32': 1.0, '8n-32': 1.0, '6-32': 1.0, '5RZ32': 1.0, '1': 0.2, 't-high': 0.2, 't-low': 0.5, 't-random': 0.25, '*': 0.3}}\n== preflight\nTraceback (most recent call last):\n  File \"/home/bridgebots/work/g8/src-dry/ops/smoke_gen7.py\", line 156, in <module>\n    r = smoke(a.run, a.out, a.deals, a.start)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/g8/src-dry/ops/smoke_gen7.py\", line 75, in smoke\n    gen5_runtime.initialize_worker(str(run))\n  File \"/home/bridgebots/work/g8/src-dry/ops/gen5_runtime.py\", line 28, in initialize_worker\n    import tensorflow as tf\nModuleNotFoundError: No module named 'tensorflow'\n",
+ "received": "2026-11-12T05:02:24Z",
+ "script_sha256": "085ea75e544f61c30684bf20336a9584bdacb6889c54c89d5e906451e259ce34",
+ "started": "2026-11-12T05:02:24Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

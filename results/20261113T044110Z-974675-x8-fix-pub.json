@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 90.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:42:55Z",
+ "id": "20261113T044110Z-974675-x8-fix-pub",
+ "output_bytes": 454,
+ "output_tail": "1\nactive\nactive\nactive\n2026-11-13T04:24:30Z start x4 (8x1-ft1~8p-32-v41, 4 workers) source 5ec36f1\n2026-11-13T04:40:53Z x4 stopped at 77 boards (x5 replaces it: mixing tempered by the net, Max 04:33)\n2026-11-13T04:40:53Z start x5 (8x2-ft1~8p-32-v41, 4 workers) source 0bcdbc2\n8x2-ft1 v 8p-32-v41: 1600 boards to play (0 done), 4 workers\n      5 runs/x5\n      3 runs/z3\n      3 runs/z5\n 04:42:55 up 1 day, 44 min,  0 user,  load average: 8.07, 8.15, 8.18\n",
+ "received": "2026-11-13T04:41:25Z",
+ "script_sha256": "0d455c20664b2296d534ef6d55e025919b365a4c23b7bbe7c542a44f8d74dc53",
+ "started": "2026-11-13T04:41:25Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

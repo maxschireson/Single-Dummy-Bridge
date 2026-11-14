@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 3.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:35:55Z",
+ "id": "20261114T063519Z-737815-loop-146-rows6",
+ "output_bytes": 141,
+ "output_tail": "Running as unit: loop-rows.service; invocation ID: 23a90f3eb4594a53bb734d7cc555fe12\nactive\nsp3tb 527 tables since 06:11\n2026-11-14T06:35:55Z\n",
+ "received": "2026-11-14T06:35:52Z",
+ "script_sha256": "38e33086b7467eb51f5cd2ff7610d04b0c2fc7fe6d360a6a5ce1ee9daf2b5979",
+ "started": "2026-11-14T06:35:52Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

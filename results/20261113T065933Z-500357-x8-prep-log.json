@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:59:54Z",
+ "id": "20261113T065933Z-500357-x8-prep-log",
+ "output_bytes": 582,
+ "output_tail": "Traceback (most recent call last):\n  File \"/home/bridgebots/work/x8/src4/ops/prepare_gen7_alpha.py\", line 495, in <module>\n    m = prepare(a.run, a.source, a.plan, parse_shard(a.shard) if a.shard else None, a.actor_source, a.exclude_families, a.restore_actors)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/x8/src4/ops/prepare_gen7_alpha.py\", line 346, in prepare\n    raise ValueError('Wrong source receipt identity')\nValueError: Wrong source receipt identity\n",
+ "received": "2026-11-13T06:59:54Z",
+ "script_sha256": "6ca0b68c0b523c227d06abeaa392942ab5302c3cbd7e4b755d37e55b5602f191",
+ "started": "2026-11-13T06:59:54Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

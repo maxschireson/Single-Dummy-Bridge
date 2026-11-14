@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 42.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:36:06Z",
+ "id": "20261113T173506Z-793726-loop-ns6",
+ "output_bytes": 474,
+ "output_tail": "source a35dd0e\nround 2s's net in place, sha256 aca020142a5aec30\nsp0c 546 tables\nspr0c 102 tables\nRunning as unit: loop-rungs.service; invocation ID: d498bd876f6d46b49e399ddb818a635f\nactive active active \n2026-11-13T17:35:26Z the collection is paused for jobs-azure6-r2s.txt\n2026-11-13T17:35:26Z start l2b-ns stu2-ns~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a35dd0e)\nstu2-ns v 8p-32-v41: 500 boards to play (0 done), 8 workers\n2026-11-13T17:36:06Z\n",
+ "received": "2026-11-13T17:35:23Z",
+ "script_sha256": "680d1cec49f33e30545a410d37b8f66ea244de92f1b770d1c85c511a1e7b3313",
+ "started": "2026-11-13T17:35:23Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

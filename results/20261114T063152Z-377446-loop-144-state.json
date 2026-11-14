@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 1,
+ "finished": "2026-11-14T06:32:17Z",
+ "id": "20261114T063152Z-377446-loop-144-state",
+ "output_bytes": 720,
+ "output_tail": "2026-11-14T04:18:36Z jobs-azure6-h3pt.txt has ended; back to the collection\n2026-11-14T04:53:30Z azure6 joins the gate: l3-pux stopped at 0 boards; jobs-azure6-ben.txt, then jobs-azure6-mix.txt\n2026-11-14T06:11:00Z jobs-azure6-ben.txt has ended; BEN (200) servers stopped; back to the collection\n2026-11-14T06:11:34Z azure6's role from here (Max, 05:24 UTC): the one-net Stu R3's self-play (jobs-azure6.txt, source 69b94df); its other queued tests are on azure3 or d\n2026-11-14T06:11:34Z start sp3tb stu3-psta~stu3-pstb seed 9001 first 620000 deals 20000 workers 8 --episodes --one-room (source 69b94df, nets bf16, --recycle 20)\nunits: loop-collect loop-rows \nsource 69b94df | rows unit: rows.sh sp3sc \nsp3tb 450 tables\n",
+ "received": "2026-11-14T06:32:17Z",
+ "script_sha256": "bb256dda6ea83c036f6e70ce50bbbe9e91f7d4e5862c3ebb00e7c7fd84fbe73b",
+ "started": "2026-11-14T06:32:17Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

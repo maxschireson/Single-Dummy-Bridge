@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:12:59Z",
+ "id": "20261112T181250Z-184196-drain-peek",
+ "output_bytes": 354,
+ "output_tail": "18:12:59\n18:08:05 draining gen8-azure6 to free the box (Max, 18:07 UTC)\n18:12:16 finished gen8-azure6 at 410 of 1484 boards, all published; units: arena-gen8=inactive arena-gen8-publish=inactive gen8-recycle=inactive next8=inactive prepnext8=inactive \n18:12:16 load 0.59 4.88 7.09; memory available 31149 MB; disk free 115G\n18:12:16 DONE\ndrain8 inactive\n",
+ "received": "2026-11-12T18:12:59Z",
+ "script_sha256": "a3e8c8c25d18ce6254763cdcbe2a4a12daebce47b50498c0e2a301945785efb0",
+ "started": "2026-11-12T18:12:59Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

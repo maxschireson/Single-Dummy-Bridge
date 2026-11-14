@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T19:17:28Z",
+ "id": "20261112T191720Z-434249-endtable-pycheck",
+ "output_bytes": 104,
+ "output_tail": "== python3: Python 3.12.3\nimports ok\n== /home/bridgebots/work/venv/bin/python: Python 3.12.3\nimports ok\n",
+ "received": "2026-11-12T19:17:28Z",
+ "script_sha256": "5fd4a960ef0ea1e8cbbb053252d51f5264f53155e3ccb9840fa90052c4e7e5bd",
+ "started": "2026-11-12T19:17:28Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 100.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:49:53Z",
+ "id": "20261113T024748Z-678794-x8-03-8z",
+ "output_bytes": 540,
+ "output_tail": "Running as unit: x8-queue2.service; invocation ID: 75e5944eb122404abb13596595606486\nactive\nactive\n2026-11-13T02:28:52Z start x1 (8xr0-ft1~8p-32-v41) source bb85066\n2026-11-13T02:48:12Z x1 paused at 246 boards (8Z first, Max 02:41)\n2026-11-13T02:48:13Z start z1 (8z-ft1~8p-32-v41) source 0a8f55f\n2026-11-13T02:48:13Z start z2 (8z-v41~8p-32-v41) source 0a8f55f\n8z-ft1 v 8p-32-v41: 1600 boards to play (0 done), 4 workers\n8z-v41 v 8p-32-v41: 1600 boards to play (0 done), 4 workers\n 02:49:53 up 22:51,  0 user,  load average: 8.27, 8.11, 6.20\n",
+ "received": "2026-11-13T02:48:12Z",
+ "script_sha256": "f4a567dc2f34184c8507d12ecde9276839883f0da5ca831755f7501e3d9ae432",
+ "started": "2026-11-13T02:48:12Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

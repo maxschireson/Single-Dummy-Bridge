@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:05:57Z",
+ "id": "20261113T040530Z-669708-x8-pubread",
+ "output_bytes": 2343,
+ "output_tail": "#!/bin/bash\n# copy logs, match folders (results.jsonl, summary.json, manifest.json) and pooled forks to the transfer branch, every 10 minutes\nset -uo pipefail\nW=$HOME/work/x8; S=$W/src; PY=$HOME/work/venv/bin/python; B=transfer/x8-azure6-20261113; P=$W/publish\nread -r REPO KEY < <(\"$PY\" -c \"import json,os; c=json.load(open(os.path.expanduser('~/.boxctl/config.json'))); print(c['repo'], os.path.expanduser(c.get('ssh_key','')))\")\nexport GIT_SSH_COMMAND=\"ssh -i $KEY -o IdentitiesOnly=yes -o BatchMode=yes\"\nwhile true; do\n  rm -rf \"$P\"; mkdir -p \"$P\"; cd \"$P\"; git init -q; git checkout -q -b \"$B\"\n  cat > README.md <<R\n# 8X matches on azure6 (x8 session)\n\n**Research data, not an arena cohort and not a feed; never merge.** Matches of the 8X bot (engine gen8x, branch\nfeature/gen8x-rollout-bot-20261113; each match's manifest.json names its source commit), run by scripts/x8_match.py\n--feature-forks. results.jsonl: one row a board; search.x8_forks: the feature forks; forks-*.txt: scripts/x8_forks.py.\nz3: 8z-ft1 against 8p-32-v41; z4: 8z-ft1 against 7s-32-v41 (Gen 7.1); z5: 8z-v41 against 8p-32-v41 (paired with z3: the rollout net). Seed 131. z1, z2: the same as z3, z5 before 5c77d79 (stopped early). x1: 8xr0-ft1 (blend) against 8p-32-v41.\nR\n  cp \"$W/queue.log\" . 2>/dev/null || true\n  for r in \"$W\"/runs/x*; do\n    [ -d \"$r\" ] || continue; n=$(basename \"$r\"); mkdir -p \"$n\"\n    cp \"$r\"/results.jsonl \"$r\"/summary.json \"$r\"/manifest.json \"$n\"/ 2>/dev/null || true\n    cp \"$W/runs/$n.log\" . 2>/dev/null || true\n    (cd \"$S\" && \"$PY\" scripts/x8_forks.py \"$r\") > \"forks-$n.txt\" 2>&1 || true\n  done\n  git add -A; git -c user.name=x8-azure6 -c user.email=noreply@anthropic.com commit -q -m \"x8 azure6 results $(date -u +%FT%TZ)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCQ6vgu8n15HtXEr6u\"\n  git push -q -f \"$REPO\" \"HEAD:refs/heads/$B\" 2>&1 | grep -v \"^remote:\" | tail -2\n  cd \"$W\"; sleep 600\ndone\n# /run/systemd/transient/x8-publish.service\n# This is a transient unit file, created programmatically via the systemd API. Do not edit.\n[Unit]\nDescription=/home/bridgebots/work/x8/publish.sh\n\n[Service]\nRestart=on-failure\nUser=bridgebots\nWorkingDirectory=/home/bridgebots/work/x8\nEnvironment=\"HOME=/home/bridgebots\"\nExecStart=\nExecStart=\"/home/bridgebots/work/x8/publish.sh\"\n",
+ "received": "2026-11-13T04:05:57Z",
+ "script_sha256": "30ce2883f25cb542952f6854e75dbceb02ce7ac5decb17b93b54567caf6cf183",
+ "started": "2026-11-13T04:05:57Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

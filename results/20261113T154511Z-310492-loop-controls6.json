@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 50.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T15:46:33Z",
+ "id": "20261113T154511Z-310492-loop-controls6",
+ "output_bytes": 424,
+ "output_tail": "sp0c 248 tables\nspr0c 48 tables\nsource 8e06911\nRunning as unit: loop-rungs.service; invocation ID: 356a63b0d8c741a2a14285cf7a06cf9d\nactive active active \n2026-11-13T15:45:43Z the collection is paused for jobs-azure6-r0c.txt\n2026-11-13T15:45:43Z start l0b-pt stu0-pt~8p-32-v41 seed 131 first 500 deals 200 workers 8 --episodes (source 8e06911)\nstu0-pt v 8p-32-v41: 200 boards to play (0 done), 8 workers\n2026-11-13T15:46:33Z\n",
+ "received": "2026-11-13T15:45:43Z",
+ "script_sha256": "99fd62968b704150ec7e9f99b1d85af0d6f46e2835f0d483ca2e3ff9e98d8b26",
+ "started": "2026-11-13T15:45:43Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

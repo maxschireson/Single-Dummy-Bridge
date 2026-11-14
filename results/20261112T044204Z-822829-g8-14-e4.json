@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 100.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:47:40Z",
+ "id": "20261112T044204Z-822829-g8-14-e4",
+ "output_bytes": 387,
+ "output_tail": "1\n2026-11-12T04:46:00Z end @source: exit 0\n2026-11-12T04:46:00Z start e4-8y-v-8p: 8y-32~8p-32 deals 0+2880 seed 91 --book configs/gen8-books/mix91-2880.json.gz (source b6ad822)\n2026-11-12T04:46:00Z end e4-8y-v-8p: exit 0\n                     --out OUT [--episodes]\ngen8_match.py: error: unrecognized arguments: --book configs/gen8-books/mix91-2880.json.gz\nload average: 0.46, 3.76, 5.47\n",
+ "received": "2026-11-12T04:46:00Z",
+ "script_sha256": "249f6ab5940791e69247580b04a558da3f4fa9d91056979773c57fadf11ce26b",
+ "started": "2026-11-12T04:46:00Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

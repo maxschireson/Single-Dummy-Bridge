@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:28:25Z",
+ "id": "20261113T122813Z-643537-sidnet-progress",
+ "output_bytes": 1469,
+ "output_tail": "2026-11-13T12:11:36Z built s12: {\"episodes\": 4722, \"deals\": 4714, \"unique_families\": 4639, \"examples\": 1919366, \"train\": 1547074, \"validation\": 179448, \"test\": 192844, \"labelled\": 1390823}\n2026-11-13T12:14:53Z built s13: {\"episodes\": 4721, \"deals\": 4712, \"unique_families\": 4636, \"examples\": 1920532, \"train\": 1528383, \"validation\": 201817, \"test\": 190332, \"labelled\": 1386230}\n2026-11-13T12:18:10Z built s14: {\"episodes\": 4722, \"deals\": 4709, \"unique_families\": 4631, \"examples\": 1880355, \"train\": 1520620, \"validation\": 177088, \"test\": 182647, \"labelled\": 1361238}\n2026-11-13T12:21:29Z built s15: {\"episodes\": 4722, \"deals\": 4713, \"unique_families\": 4627, \"examples\": 1876596, \"train\": 1501899, \"validation\": 191685, \"test\": 183012, \"labelled\": 1356790}\n2026-11-13T12:24:18Z set: {\"parts\": 16, \"deals\": 75390, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \"ben64\"], \"unique_families\": 60992, \"examples\": 30367755, \"deals_by_hash_split\": [60472, 7321, 7597], \"arrays\": [\"state\", \"order\", \"legal\", \"ctx\", \"auction\", \"shown\", \"gap\", \"owner\", \"meta\", \"deal\", \"sid\"]}\n2026-11-13T12:24:21Z STOPPED: buildB needs labelB and build finished\nshard files: 0\n25163931248 /home/bridgebots/work/sidnet/data/train.npz\nunits: failed\nload average: 0.26, 2.64, 5.64\nMem:              31           0          12           0          18          30\n/dev/root       123G   51G   73G  42% /\n",
+ "received": "2026-11-13T12:28:25Z",
+ "script_sha256": "51c0c051ff39f05f66ec11e5444d16cc8e14d8fd7448689f3286b8b45a3dc147",
+ "started": "2026-11-13T12:28:25Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

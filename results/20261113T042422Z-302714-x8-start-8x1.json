@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 154.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:27:00Z",
+ "id": "20261113T042422Z-302714-x8-start-8x1",
+ "output_bytes": 670,
+ "output_tail": "src2 5ec36f1 8X v1 (8x1-ft1): 8Z's claim and defender mixing; capture.mix_share\nRunning as unit: x8-queue5.service; invocation ID: a92feaae37294fbdb3c6daa0fd5b60c8\nactive\nactive\nactive\n2026-11-13T04:24:26Z end x3: exit 0\n2026-11-13T04:24:26Z end z4: exit 0\n2026-11-13T04:24:30Z x3 stopped at 53 boards (x4 takes its workers, Max 04:12)\n2026-11-13T04:24:30Z z4 stopped at 345 boards (x4 takes its workers, Max 04:12)\n2026-11-13T04:24:30Z start x4 (8x1-ft1~8p-32-v41, 4 workers) source 5ec36f1\n8x1-ft1 v 8p-32-v41: 1600 boards to play (0 done), 4 workers\n      5 runs/x4\n      3 runs/z3\n      3 runs/z5\n 04:27:00 up 1 day, 28 min,  0 user,  load average: 8.20, 8.27, 8.24\n",
+ "received": "2026-11-13T04:24:26Z",
+ "script_sha256": "39a058fa2f419d82007ef59da1fe985c37fd487bc901a99b37ed5a9054ac1bd2",
+ "started": "2026-11-13T04:24:26Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

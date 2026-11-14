@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:34:27Z",
+ "id": "20261113T023410Z-132969-x8-peek",
+ "output_bytes": 2435,
+ "output_tail": "66\n50 boards: -0.04 +- 0.0988 IMPs/board for 8xr0-ft1; 712 boards/hour; 0 failed\nboards 66 IMPs/board -0.076 +- 0.198 won 8 lost 13 cpu/board 36.5\n66 boards, 337 feature forks\n  all                                forks   337 (better 21, worse 16): +0.000 +- 0.089 IMPs a fork; +0.0000 +- 0.4560 a board\n    partscore                        forks    92 (better 7, worse 2): +0.033 +- 0.051 IMPs a fork; +0.0455 +- 0.0697 a board\n    game                             forks   230 (better 14, worse 12): +0.091 +- 0.074 IMPs a fork; +0.3182 +- 0.2592 a board\n    doubled                          forks    15 (better 0, worse 2): -1.600 +- 0.000 IMPs a fork; -0.3636 +- 0.3636 a board\n  with blend                         forks   272 (better 20, worse 13): +0.007 +- 0.111 IMPs a fork; +0.0303 +- 0.4549 a board\n    partscore                        forks    92 (better 7, worse 2): +0.033 +- 0.051 IMPs a fork; +0.0455 +- 0.0697 a board\n    game                             forks   166 (better 13, worse 9): +0.139 +- 0.101 IMPs a fork; +0.3485 +- 0.2568 a board\n    doubled                          forks    14 (better 0, worse 2): -1.714 +- 0.000 IMPs a fork; -0.3636 +- 0.3636 a board\n  with guarantee                     forks    90 (better 5, worse 6): +0.111 +- 0.144 IMPs a fork; +0.1515 +- 0.1946 a board\n    game                             forks    90 (better 5, worse 6): +0.111 +- 0.144 IMPs a fork; +0.1515 +- 0.1946 a board\n  with mix                           forks   114 (better 3, worse 8): -0.237 +- 0.205 IMPs a fork; -0.4091 +- 0.3664 a board\n    partscore                        forks    18 (better 0, worse 1): -0.056 +- 0.048 IMPs a fork; -0.0152 +- 0.0152 a board\n    game                             forks    90 (better 3, worse 5): -0.022 +- 0.035 IMPs a fork; -0.0303 +- 0.0481 a board\n    doubled                          forks     6 (better 0, worse 2): -4.000 +- 0.000 IMPs a fork; -0.3636 +- 0.3636 a board\n  with odds                          forks     8 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    game                             forks     7 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n    doubled                          forks     1 (better 0, worse 0): +0.000 +- 0.000 IMPs a fork; +0.0000 +- 0.0000 a board\n  all, 5 largest swings left out     forks   332 (better 19, worse 13): +0.015 +- 0.031 IMPs a fork; +0.0758 +- 0.1547 a board\n",
+ "received": "2026-11-13T02:34:26Z",
+ "script_sha256": "da5eacfc9666a466cb3cdbd2a29b137f3f36ac72462c3faa97f329ef9613dc5d",
+ "started": "2026-11-13T02:34:26Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

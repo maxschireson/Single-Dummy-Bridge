@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T03:36:20Z",
+ "id": "20261113T033613Z-722880-x8-peek-pair",
+ "output_bytes": 102,
+ "output_tail": "z3 127 -0.244 +- 0.207\nz4 140 -0.371 +- 0.294\nz5 86 -0.256 +- 0.273\nz3 - z5 paired 86 +0.186 +- 0.345\n",
+ "received": "2026-11-13T03:36:19Z",
+ "script_sha256": "c6cb1de692c202af957d97f9cf17054a63f1d96278240370a30c003641dc9e59",
+ "started": "2026-11-13T03:36:19Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

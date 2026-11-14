@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:24:18Z",
+ "id": "20261112T122410Z-964364-g8-40-peek",
+ "output_bytes": 983,
+ "output_tail": "== /home/bridgebots/work/g8/est/tune-all.log\ndouble-dummy tables for 12000 deals of seed 503: 369s\nstart: {\"boards\": 12000, \"imps_per_board\": -1.029, \"se\": 0.05, \"won\": 2601, \"lost\": 4111, \"flat\": 5288, \"lost_10_or_more\": 0.1027, \"declared_per_board\": 0.954, \"three_down_share\": 0.0467, \"slams_bid\": 231, \"slams_made\": 155, \"rule\n  club_min 16 -> 15: +0.012 +- 0.017\n  club_min 16 -> 17: -0.083 +- 0.017\n  open_min 11 -> 10: +0.004 +- 0.023\n  open_min 11 -> 12: -0.028 +- 0.024\n  open_light 1 -> 0: +0.006 +- 0.018\n  open_light 1 -> 2: -0.014 +- 0.016\n  limited_max 15 -> 14: -0.069 +- 0.014\n  limited_max 15 -> 16: -0.016 +- 0.010\n  nt_lo 14 -> 13: +0.000 +- 0.012\n  nt_lo 14 -> 15: -0.013 +- 0.010\n  nt_hi 16 -> 15: -0.001 +- 0.005\n  nt_hi 16 -> 17: -0.006 +- 0.005\n  weak_lo 5 -> 4: +0.016 +- 0.006  kept\n  weak_lo 4 -> 6: -0.028 +- 0.010\n  weak_hi 10 -> 9: +0.005 +- 0.005\n  weak_hi 10 -> 11: -0.003 +- 0.007\n  weak_quality 2 -> 1: +0.028 +- 0.007  kept\ninactive active inactive ",
+ "received": "2026-11-12T12:24:18Z",
+ "script_sha256": "d22cfa77ee6df3fa3866c3eabbeb44662639bd1f69be51ea69b710dbc00fa46f",
+ "started": "2026-11-12T12:24:18Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

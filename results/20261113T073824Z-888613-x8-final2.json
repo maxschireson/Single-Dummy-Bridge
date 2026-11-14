@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:38:37Z",
+ "id": "20261113T073824Z-888613-x8-final2",
+ "output_bytes": 297,
+ "output_tail": "x1 246 -0.073 +- 0.139 cpu 36.7\nx4 522 +0.295 +- 0.148 cpu 47.6\nx5 550 -0.147 +- 0.124 cpu 37.4\nx6 1011 +0.077 +- 0.082 cpu 28.0\nx4 - x5 paired 522 +0.433 +- 0.204\nx6 - x5 paired 550 +0.136 +- 0.118\nx4 - x6 paired 522 +0.303 +- 0.195\n1011 boards, 2610 feature forks\n522 boards, 5245 feature forks\n",
+ "received": "2026-11-13T07:38:37Z",
+ "script_sha256": "b2cced59d9530469ea3972c917cb4ef02636ef57249318c19901912b2f896a91",
+ "started": "2026-11-13T07:38:37Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

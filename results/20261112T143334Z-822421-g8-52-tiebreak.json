@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure6",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:33:56Z",
+ "id": "20261112T143334Z-822421-g8-52-tiebreak",
+ "output_bytes": 463,
+ "output_tail": "queue active, position 26 of 32\nf2-8x-v-8p-v41 8x-32-v41~8p-32-v41 0 100 96\ng3-7s41-v-6 7s-32-v41~6-32 0 800 73\n@source d5f1b662b21c299c413a6007865e793e146c181b\nh1-8p41-v-7g41 8p-32-v41~7g-32-v41 0 800 81\nc1-8c-v-7s 8c-32-v41~7s-32-v41 400 800 95\n2026-11-12T14:29:06Z source now 6638547 Rule bidder r4: r3's rules with judgement from a trick estimate, frozen \n2026-11-12T14:29:06Z start f1-8a-v-8p-house: 8a-32-v41~8p-32-v41 deals 0+100 seed 96  (source 6638547)\n",
+ "received": "2026-11-12T14:33:55Z",
+ "script_sha256": "401a5326fb8a0ae4ca12c79584ce34a9a0fc2e270c21540dcd6fd175f50be451",
+ "started": "2026-11-12T14:33:55Z",
+ "timed_out": false,
+ "timeout_s": 60
+}
