@@ -27,3 +27,6 @@
 2026-11-14T03:07:21Z start hd-n stu3-nd~stu0-nd seed 131 first 19000 deals 2000 workers 8  (source fc8202f, nets fp32)
 2026-11-14T03:10:11Z end hd-n: exit 0
 2026-11-14T03:10:11Z start h3-p2 stu3-p2~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source fc8202f, nets fp32)
+2026-11-14T04:43:28Z end h3-p2: exit 0
+2026-11-14T04:43:28Z jobs-azure1-hd.txt has ended; back to the collection
+2026-11-14T04:43:28Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source fc8202f, nets fp32)
