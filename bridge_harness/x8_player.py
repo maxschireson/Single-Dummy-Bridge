@@ -99,6 +99,7 @@ from .gen7 import player as gen7_player
 from .gen7_net import INPUTS, PolicyNet
 from .players import Decision
 from .x8_rollout import Seats, evaluate
+from . import style as styles
 
 ENGINE = 'gen8x'
 LIMITS = np.array(IMP_LIMITS)
@@ -219,9 +220,13 @@ class MixUse:
                                 # see the module note). 0 = all alike; large = the net's favourite. A seat read as a mixer is read
                                 # with the power of its role here (the bots it is used against share these settings)
 
+    style: dict = field(default_factory=dict)   # a personality (bridge_harness/style.py): among a mixing seat's near-equal
+                                # candidates (`near`), the ones this style prefers; the mix then chooses among those. {} = none
+
     def __post_init__(self):
         object.__setattr__(self, 'read_declarer', tuple(self.read_declarer))
         object.__setattr__(self, 'read_defender', tuple(self.read_defender))
+        object.__setattr__(self, 'style', styles.check(self.style))
         if not 0 <= self.near <= 13 or not 0 <= self.declarer_power <= 64 or not 0 <= self.defender_power <= 64:
             raise ValueError('Invalid 8X mix settings')
 
@@ -289,7 +294,9 @@ def resolved(block):
     c = x8_settings(block)
     pinned = lambda s: {k: v for k, v in asdict(s).items() if k not in STAGE_ADDED or v != STAGE_ADDED[k]}
     out = dict(stages=[pinned(s) for s in c.stages], claims=dict(asdict(c.claims), opponents=list(c.claims.opponents)),
-               capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)), mix=dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)),
+               capture=dict(asdict(c.capture), audit_features=list(c.capture.audit_features)),
+               mix={k: v for k, v in dict(asdict(c.mix), read_declarer=list(c.mix.read_declarer), read_defender=list(c.mix.read_defender)).items()
+                    if k != 'style' or v},
                others=[dict(o) for o in c.others], names=dict(c.names))
     if c.lead is not None:                                  # written only where set: a bot without it pins what it always pinned
         out['lead'] = dict(pinned(c.lead), capture=c.lead_capture)
@@ -851,6 +858,10 @@ class X8Player(Gen7Player):
         else:
             winners = [0]
             note.update(value=[0.], roll=[None], n=[0], alive=[0], seconds=dict(layouts=round(layout_seconds, 4)))
+        if self.x8.mix.style and len(winners) > 1:          # a personality: of its near-equal candidates, the ones its style prefers
+            kept = set(styles.choose(o, [reps[j] for j in winners], self.x8.mix.style, float(nrng.random())))
+            note['styled'] = [symbol(reps[j]) for j in winners]
+            winners = [j for j in winners if reps[j] in kept]
         eligible = [x for j in winners for x in runs[j]]
         fork = random.Random()                              # the pick's draws come from a copy, as the tree's do
         fork.setstate(rng.getstate())
