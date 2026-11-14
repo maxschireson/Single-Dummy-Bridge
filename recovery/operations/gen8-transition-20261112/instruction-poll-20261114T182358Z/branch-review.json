@@ -1,0 +1,138 @@
+{
+  "poll_start": "2026-11-14T18:23:58Z",
+  "total": 347,
+  "new_branches": {},
+  "removed_branches": [],
+  "changed_refs": {
+    "arena-gen8-19bbdce5-20261112-feed": {
+      "before": "8e23f40f136f095aebdf21ae94222553e400b181",
+      "after": "6e32047492430a3768e1b94b1ae01f6d8955964e"
+    },
+    "arena-gen8-candidate-codex-20261112-feed": {
+      "before": "4315799147b62774ea974f7e602b15125ff4a9bf",
+      "after": "1b5fbf7a26ce15ef97128212792c194796a1f759"
+    },
+    "arena-gen8-independent-feed": {
+      "before": "4f2d52f8c95f07b87837430898f616a61d5e93bd",
+      "after": "49ed6c23197e3d8999e7e554c44f4928f0d01a50"
+    },
+    "arena-gen9-azure4-ben64-feed": {
+      "before": "4425abf0cbd0a77547e91cd8fdaf97e025ad726d",
+      "after": "228ad92d79cc7338e98907eb6771d2e00b552f46"
+    },
+    "arena-gen9-azure4-feed": {
+      "before": "3baf78b50b1f1d84b25eb665d78bb04639c7e193",
+      "after": "cabf641649a99594c7264e1fc744235b35da60d2"
+    },
+    "arena-gen9-genx-stu4c-azure4-feed": {
+      "before": "36065281f84a1bf706083cd5402b8dbd1a1cfd76",
+      "after": "4222711125d8f8bbbb0c3188f62777803d3afbab"
+    },
+    "box/azure1/control": {
+      "before": "beced406b168cc6fa0a0a01d6e967ce1a04704e8",
+      "after": "276a9d33949e105a3af225b59d9edd738a7e8ca2"
+    },
+    "box/azure1/status": {
+      "before": "d73cc8765d3b3f2aa84cc6389f5d25f378d85a6d",
+      "after": "92c4081b1534e7f12e90ae4950d3ef65e517471f"
+    },
+    "box/azure2/control": {
+      "before": "5cecd6a3bfc818bdba7bf801c7c1dc0e0f406cd7",
+      "after": "f469a5157d02fcf938dc59df941ad59cce592fb1"
+    },
+    "box/azure2/status": {
+      "before": "435245b3dbbd829868e395740767cc06c305216b",
+      "after": "5b4e8cca697283d191a6e4d83276ac9e34c33b13"
+    },
+    "box/azure3/control": {
+      "before": "6cff0b219e3e6836fa58ac3e9a5f44db6ea2db44",
+      "after": "f5cba4f10dab48758c885fcb822c5fce3445a533"
+    },
+    "box/azure3/status": {
+      "before": "e0d23b3f1e4150c752eefb0ff75c8699363b95f1",
+      "after": "9933a4adc30acccb9a69bd0f35b070ed6ae88529"
+    },
+    "box/azure4/control": {
+      "before": "64325549ef056540a74a88b7baac079f1039146a",
+      "after": "a12817daa59d810124472e35b1f0b92ee42f3270"
+    },
+    "box/azure4/status": {
+      "before": "7a71302e10e9cb219ace82b8eeb46cca121c167c",
+      "after": "e7202d08ac79d91513d10f26f36a5a9c542f3121"
+    },
+    "box/azure5/control": {
+      "before": "f110f82d6c38bcdf743dd93fdfecc7bb060fe613",
+      "after": "c0c002792cbcdfd5937406c4aa908938508e9d6b"
+    },
+    "box/azure5/status": {
+      "before": "a8be9a5347ddef7539c989e3c51708006378e229",
+      "after": "952e27bf203124aaabcbccc2ddc0b2e05e81a1b7"
+    },
+    "box/azure6/control": {
+      "before": "160dffb9a98261bd2d2b53fe31ae8fddf5455035",
+      "after": "b28d289d15a05d26b31fbba7a4ab7cd9f50ef22c"
+    },
+    "box/azure6/status": {
+      "before": "ec6872a8aad5556af14a6533e43b051af1210cb7",
+      "after": "57fb59d54c26dfbeb42d76aff3dd752631f3d006"
+    },
+    "box/coordination": {
+      "before": "41be13181dfbd2c0abb5e5f94a122da274e3a03f",
+      "after": "7742771e21c985d6d11cda18183db3ff54c628e5"
+    },
+    "feature/sid-play-20261113": {
+      "before": "29c4cc008948aa8b1fa14bc20635207b219bfc5a",
+      "after": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74"
+    },
+    "gh-pages": {
+      "before": "e3c410eba19d6e2e1a35f9f5b82ab3e72d72f85c",
+      "after": "49b58a126db04cf9ef64080a49e39932b7430b6b"
+    },
+    "mail/coord": {
+      "before": "7e889235229d0e598ae6c25dd057980719552294",
+      "after": "8043f87a8348781f277acc17e3be5370fe975c5f"
+    },
+    "research/rollout-loop-20261113": {
+      "before": "540e15964750ae8535c2839154d4ddaae01aa516",
+      "after": "42caf9330677d86cad1be452c80ae35316f6b738"
+    },
+    "team/gen9": {
+      "before": "322240e21bc248282ef1aabf86c033142e3b6622",
+      "after": "c21b9053a4e2ede3f0bdae602540143ec4e7e6d6"
+    },
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+      "before": "c87310daa4362c6e926491acabee395cce2a147f",
+      "after": "db5851f48ad2343923194edbbb2419e53e12f499"
+    },
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+      "before": "51c26cbf46e09b4f22df04749eb9f4f7e65b1777",
+      "after": "932282a87e0303fa87f41ef44349288c120de334"
+    },
+    "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": {
+      "before": "933cc89b45b91182a235229566a34e817caefecb",
+      "after": "867f0a0b7b24fc9e5dbd5ed26313d6e95b057a84"
+    },
+    "transfer/rollout-loop-azure1-20261113": {
+      "before": "b6cebfcc74c3d94d0178949d3a1a32e3c574c98c",
+      "after": "9f3968eb46248d33dcd1eb4172522cf6813f6c4a"
+    },
+    "transfer/rollout-loop-azure2-20261113": {
+      "before": "d23c05db76df0dc39952ecffb8af0ae97c960332",
+      "after": "8a53a5374854d59998a6a7dfbf66f4fd3f627b03"
+    },
+    "transfer/rollout-loop-azure3-20261113": {
+      "before": "7fd003f812ae97afe40461f5e2e8079c3b361d20",
+      "after": "d626a4ce1b14504cd31b09ad2fc86ff33e0e19ec"
+    },
+    "transfer/rollout-loop-azure5-20261113": {
+      "before": "77fb96135c0bbd8d8218223f2b2440b4fb66e34f",
+      "after": "e8b040218f7122562fcf40699cc251b8652c2e7d"
+    },
+    "transfer/rollout-loop-azure6-20261113": {
+      "before": "59f68d75e22ea44cd85c0acc6c00f2965961c710",
+      "after": "404bf6ce03e186f75e12be8336e6c8aafdd819ee"
+    }
+  },
+  "complete": true,
+  "reviewed_new_branches": []
+}

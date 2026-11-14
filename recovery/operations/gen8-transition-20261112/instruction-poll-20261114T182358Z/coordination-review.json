@@ -1,0 +1,21 @@
+{
+  "poll_start": "2026-11-14T18:23:58Z",
+  "revision": "7742771e21c985d6d11cda18183db3ff54c628e5",
+  "blob": "571b7e0216775ed6070cec186907fd7c6ef4d52c",
+  "new_entries_since_prior_poll": 1,
+  "latest_entry": "2026-11-14T17:28:00Z sidplay",
+  "scope": "Public play-server post-hand analysis reads the auction; deployment on azure1 only.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
+  "disposition": "The new board entry and PR33 concern sidplay on azure1. Current general authority continues owned Gen8 collection. Stu Azure1/2/3/6 collection schedules and rollout benches are scoped to the loop workflow, with no general collector transition or owned self-play opening. Retain frozen source/actors/plan, approved five-pair mix and three normal/zero BEN.",
+  "board_commits": [
+    {
+      "sha": "7742771e21c985d6d11cda18183db3ff54c628e5",
+      "date": "2026-11-14T17:28:15Z",
+      "message": "sidplay: azure1 at e7f61d7 (analysis reads the auction)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    }
+  ],
+  "human_training_evidence": "human-training-scope-review.json",
+  "research_evidence": "research-commit-review.json",
+  "peer_evidence": "genx-stu-peer-review.json",
+  "layout_budget_evidence": "layout-budget-scope-review.json"
+}

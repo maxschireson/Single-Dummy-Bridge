@@ -1,0 +1,158 @@
+{
+  "poll_start": "2026-11-14T18:23:58Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "42caf9330677d86cad1be452c80ae35316f6b738",
+  "commits": [
+    {
+      "sha": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "date": "2026-11-14T18:21:35Z",
+      "message": "bench/seat_variants.py: no audit in the replayed decisions; the kept layouts are keyed by the position\n\nThe audit's shadow player (a copy made at its first use) carried the kept layouts of that decision to every later one:\n'A layout does not fit the play so far' after 72 decisions on azure3.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "7768d383ac104aa8f3feedcf98d582b111554906",
+      "date": "2026-11-14T18:14:17Z",
+      "message": "azure3: the queued tests dropped, Gen 8's self-play in their place (jobs-azure3-gen.txt, sg8v1 to sg8v36)\n\nMax, 17:27 UTC on 14 November: \"Too much time testing relative to learning\"; 17:57: \"We should continue collecting gen\n(whichever)\". The BEN gate stops at 650 deals of stu4c (adopted); azure3 collects Gen 8's self-play so that azure5,\nwhich holds the pool's rows, can train.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "352c72b26f89e4f246e60fae0014c3c6613bb900",
+      "date": "2026-11-14T18:08:17Z",
+      "message": "azure1: Gen 8's self-play goes on (sg8u1 to sg8u36, deals 800,000 to 871,999)\n\nIts twelve runs ended at 17:15 UTC and the box stood idle for an hour: the list was finite. Max, 17:57 UTC: \"We should\ncontinue collecting gen (whichever)\".\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "30e30af88ea196b8189ff39491c83cf531797868",
+      "date": "2026-11-14T17:38:17Z",
+      "message": "Round 4's net adopted for the one-net self-play: stu4c twins, sp4t (azure2) and sp4tb (azure6); seat_variants control\n\nstu4c-psta/-pstb (round 4's net, trained only on bots; defenders mixing, as stu3's twins) replace stu3's in the two\ncollections, on seed 9001 deals 760,000 and 780,000 (Max, 17:34 UTC: 'likely adopt'). Existing bots change only by the\ntwo new ids in their opponent lists. bench/seat_variants.py plays the plain draw twice with other rollout draws, so the\nnoise floor of 'other card' and of the double-dummy column is measured.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "09a90b75fdf8c7c5cd09aa742cb44be148d0aebb",
+      "date": "2026-11-14T17:33:29Z",
+      "message": "bench/seat_variants.py: recorded rollout decisions played again with the simulated seats set other ways\n\nOn the same layouts (drawn once a decision), every candidate on every layout: the plain draw as played, the top card,\na sharpened draw, a cut on unlikely cards, and the two sides set differently. Scored by the values' error against the\ntable's result for the card that was played (level, squared error, Brier) and by the cards chosen (double dummy on the\ndeal as it lay, hindsight). Rows are kept so the report can be reprinted.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "2e6708f27c95ed05e2cdf71f241c93b26944ffc1",
+      "date": "2026-11-14T17:30:31Z",
+      "message": "bench/value_check.py: the rollouts' values against the table's result; they are optimistic for the side deciding\n\nFor every recorded rollout decision: declarer's tricks the rollouts expected with the card played, and the contract's\nchance, against the table's result; by role, stage and how clear the choice was; a calibration table. Read-only, numpy\nonly. On the gate's records (R3 blind against BEN, 2,039 deals): declaring +0.07, defending -0.18, the lead -0.15 tricks;\nthe same in self-play and with every round's net; larger for clear choices than close ones. The morning's oracle-layout\nresult (half of the early double-dummy loss remains when the layouts are the deal) is recorded with it.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu collection versus testing allocation on named Azure hosts, Stu4c twins, rollout calibration/seat-variant replay, and sidplay auction-aware analysis.",
+  "disposition": "Continue owned Gen8 collecting under the current frozen identity and approved mix. Stu continues Gen8 self-play on Azure1/3 and adopts Stu4c twins on Azure2/6; its BEN gate ends at650 on a resource/training decision, not an owned gate or completion. Calibration and seat variants are research; its kept-layout audit bug is in the replay bench only. PR33 and new board notice deploy auction-aware post-hand analysis to the public play server only. No local source/model/settings/corpus/worker/guard change, training, BEN, promotion, self-play opening or peer command.",
+  "evidence": [
+    {
+      "sha": "7742771e21c985d6d11cda18183db3ff54c628e5",
+      "message": "sidplay: azure1 at e7f61d7 (analysis reads the auction)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk",
+      "parents": [
+        "41be13181dfbd2c0abb5e5f94a122da274e3a03f"
+      ],
+      "files": [
+        "BOARD.md"
+      ]
+    },
+    {
+      "sha": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "message": "bench/seat_variants.py: no audit in the replayed decisions; the kept layouts are keyed by the position\n\nThe audit's shadow player (a copy made at its first use) carried the kept layouts of that decision to every later one:\n'A layout does not fit the play so far' after 72 decisions on azure3.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "7768d383ac104aa8f3feedcf98d582b111554906"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/bench/seat_variants.py"
+      ]
+    },
+    {
+      "sha": "7768d383ac104aa8f3feedcf98d582b111554906",
+      "message": "azure3: the queued tests dropped, Gen 8's self-play in their place (jobs-azure3-gen.txt, sg8v1 to sg8v36)\n\nMax, 17:27 UTC on 14 November: \"Too much time testing relative to learning\"; 17:57: \"We should continue collecting gen\n(whichever)\". The BEN gate stops at 650 deals of stu4c (adopted); azure3 collects Gen 8's self-play so that azure5,\nwhich holds the pool's rows, can train.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "352c72b26f89e4f246e60fae0014c3c6613bb900"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/jobs-azure3-gen.txt",
+        "training/rollout-loop-20261113/jobs-azure3.txt",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    },
+    {
+      "sha": "352c72b26f89e4f246e60fae0014c3c6613bb900",
+      "message": "azure1: Gen 8's self-play goes on (sg8u1 to sg8u36, deals 800,000 to 871,999)\n\nIts twelve runs ended at 17:15 UTC and the box stood idle for an hour: the list was finite. Max, 17:57 UTC: \"We should\ncontinue collecting gen (whichever)\".\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "30e30af88ea196b8189ff39491c83cf531797868"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/jobs-azure1.txt",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    },
+    {
+      "sha": "30e30af88ea196b8189ff39491c83cf531797868",
+      "message": "Round 4's net adopted for the one-net self-play: stu4c twins, sp4t (azure2) and sp4tb (azure6); seat_variants control\n\nstu4c-psta/-pstb (round 4's net, trained only on bots; defenders mixing, as stu3's twins) replace stu3's in the two\ncollections, on seed 9001 deals 760,000 and 780,000 (Max, 17:34 UTC: 'likely adopt'). Existing bots change only by the\ntwo new ids in their opponent lists. bench/seat_variants.py plays the plain draw twice with other rollout draws, so the\nnoise floor of 'other card' and of the double-dummy column is measured.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "09a90b75fdf8c7c5cd09aa742cb44be148d0aebb"
+      ],
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/bench/seat_variants.py",
+        "training/rollout-loop-20261113/jobs-azure2.txt",
+        "training/rollout-loop-20261113/jobs-azure6.txt",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    },
+    {
+      "sha": "09a90b75fdf8c7c5cd09aa742cb44be148d0aebb",
+      "message": "bench/seat_variants.py: recorded rollout decisions played again with the simulated seats set other ways\n\nOn the same layouts (drawn once a decision), every candidate on every layout: the plain draw as played, the top card,\na sharpened draw, a cut on unlikely cards, and the two sides set differently. Scored by the values' error against the\ntable's result for the card that was played (level, squared error, Brier) and by the cards chosen (double dummy on the\ndeal as it lay, hindsight). Rows are kept so the report can be reprinted.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "2e6708f27c95ed05e2cdf71f241c93b26944ffc1"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/bench/seat_variants.py"
+      ]
+    },
+    {
+      "sha": "2e6708f27c95ed05e2cdf71f241c93b26944ffc1",
+      "message": "bench/value_check.py: the rollouts' values against the table's result; they are optimistic for the side deciding\n\nFor every recorded rollout decision: declarer's tricks the rollouts expected with the card played, and the contract's\nchance, against the table's result; by role, stage and how clear the choice was; a calibration table. Read-only, numpy\nonly. On the gate's records (R3 blind against BEN, 2,039 deals): declaring +0.07, defending -0.18, the lead -0.15 tricks;\nthe same in self-play and with every round's net; larger for clear choices than close ones. The morning's oracle-layout\nresult (half of the early double-dummy loss remains when the layouts are the deal) is recorded with it.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "540e15964750ae8535c2839154d4ddaae01aa516"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/README.md",
+        "training/rollout-loop-20261113/bench/value_check.py"
+      ]
+    },
+    {
+      "sha": "49b58a126db04cf9ef64080a49e39932b7430b6b",
+      "message": "Arena ladder: refresh (2026-11-14T18:00Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "e3c410eba19d6e2e1a35f9f5b82ab3e72d72f85c"
+      ],
+      "files": [
+        "arena/ladder.json"
+      ]
+    },
+    {
+      "sha": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74",
+      "message": "play/: the analysis reads the auction (Sid's hand-fit scorer + the cell game)\n\nMax, 14 Nov 09:08 PST: 'The engines should read the auction.' At the person's decisions with 8 cards or fewer, the\nauction weight that ONE line provably wins (cells: East's suit lengths and the holders of up to two honour runs), for\nthe best card and the card played; as a defender, declarer's figure after each alternative. Floors only (proven lower\nbounds). Exchanges in the 'why' are those the auction allows, with where the auction put the deciding card.\ncells.cpp, celllib.py and pipeline.py vendored from research/conditional-claims-20261113. R4c bids deterministically\n(argmax; no randomisation), so Sid's calls are read as precisely as its scorer fits them.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk",
+      "parents": [
+        "29c4cc008948aa8b1fa14bc20635207b219bfc5a"
+      ],
+      "files": [
+        "play/README.md",
+        "play/deploy/install.sh",
+        "play/native/.gitignore",
+        "play/native/cells.cpp",
+        "play/sidplay/analysis.py",
+        "play/sidplay/auction.py",
+        "play/sidplay/cells.py",
+        "play/sidplay/config.py",
+        "play/sidplay/pool.py",
+        "play/sidplay/static/app.js",
+        "play/sidplay/static/index.html",
+        "play/sidplay/tables.py",
+        "play/tests/test_analysis.py"
+      ]
+    }
+  ],
+  "research_plan_blob": "0b521dcd4697907c212ce082bf4bdf1eddb79c6d",
+  "research_plan_status": "Work in progress, research only; scoped Stu collection schedule changed, no general arena collector migration.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
