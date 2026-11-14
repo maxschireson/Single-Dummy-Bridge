@@ -63,18 +63,42 @@ def speed(p, data, index, rows=512, reps=6):
     return round(reps * len(index[:rows]) / (time.perf_counter() - t))
 
 
+def deal_sums(predict, data, index, batch=4096):
+    """Per deal: sum and count of regret on rated searched rows (as `evaluate` scores it), sum and count of log-loss."""
+    deal = np.asarray(data['deal'])[index]
+    deals, inv = np.unique(deal, return_inverse=True)
+    reg_s, reg_n, nll_s, nll_n = (np.zeros(len(deals)) for _ in range(4))
+    for i in range(0, len(index), batch):
+        rows = index[i:i + batch]
+        logp = np.asarray(predict(T.with_ids({k: data[k][rows] for k in INPUTS}, data['meta'][rows]))[0])
+        meta, legal = data['meta'][rows], np.asarray(data['legal'][rows]).astype(bool)
+        gap = np.asarray(data['gap'][rows]).astype(np.float32)
+        r = np.arange(len(rows))
+        pick = logp.argmax(1)
+        rated = legal & (gap >= 0)
+        ok = rated[r, pick] & (meta[:, 10] == 1)
+        j = inv[i:i + batch]
+        np.add.at(reg_s, j[ok], gap[r, pick][ok])
+        np.add.at(reg_n, j[ok], 1)
+        np.add.at(nll_s, j, -logp[r, meta[:, 0]])
+        np.add.at(nll_n, j, 1)
+    return dict(reg_s=reg_s, reg_n=reg_n, nll_s=nll_s, nll_n=nll_n)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--data', type=Path, required=True)
     ap.add_argument('--net', action='append', required=True, help='NAME=path/policy.npz')
     ap.add_argument('--rows', type=int, default=0, help='score only the first N rows (0: all)')
     ap.add_argument('--out', type=Path)
+    ap.add_argument('--per-deal', type=Path, help='also save per-deal sums (regret on rated searched rows, log-loss) for paired SEs')
     a = ap.parse_args()
     data = dict(T.stored_arrays(a.data))
     names = [str(x) for x in data['bot_names']] if 'bot_names' in data else None
     n = len(data['meta'])
     index = np.arange(n if not a.rows else min(n, a.rows))
     report = dict(data=str(a.data), data_sha256=sha(a.data), rows=int(len(index)), nets={})
+    per_deal = {}
     for spec in a.net:
         name, _, path = spec.partition('=')
         p, vocab, kind, params = load_net(path)
@@ -85,6 +109,8 @@ def main():
         predict = lambda b, p=p, kind=kind: (lambda o: (log_softmax(np.asarray(o['policy'])), np.asarray(o['gap'])))(forward(p, b, np, kind))
         t = time.perf_counter()
         v = T.evaluate(predict, d, index)
+        if a.per_deal:
+            per_deal[name] = deal_sums(predict, d, index)
         report['nets'][name] = dict(path=path, sha256=sha(path), parameters=params, kind=kind,
                                     width=int(p['wt0'].shape[1]) if 'wt0' in p else None,
                                     eval_seconds=round(time.perf_counter() - t, 1),
@@ -94,6 +120,9 @@ def main():
               f"phases {[v['by_phase'][k]['regret'] for k in v['by_phase']]}", flush=True)
     if a.out:
         a.out.write_text(json.dumps(report, indent=1))
+    if a.per_deal:
+        np.savez(a.per_deal, deals=np.unique(np.asarray(data['deal'])[index]),
+                 **{f'{k}__{m}': v[m] for k, v in per_deal.items() for m in v})
 
 
 if __name__ == '__main__':
