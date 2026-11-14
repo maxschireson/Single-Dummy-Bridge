@@ -1,2 +1,12 @@
 g8-high0 v g8-low0: 2000 boards to play (0 done), 8 workers
 50 boards: None +- None IMPs/board for g8-high0; 2500 boards/hour; 0 failed
+100 boards: None +- None IMPs/board for g8-high0; 2237 boards/hour; 0 failed
+150 boards: None +- None IMPs/board for g8-high0; 1827 boards/hour; 0 failed
+200 boards: None +- None IMPs/board for g8-high0; 1950 boards/hour; 0 failed
+250 boards: None +- None IMPs/board for g8-high0; 1998 boards/hour; 0 failed
+/home/Bridgebots/work/loop/src/bridge_harness/gen6_nets.py:77: RuntimeWarning: overflow encountered in exp
+  return 1.0 / (1.0 + np.exp(-z))
+300 boards: None +- None IMPs/board for g8-high0; 2059 boards/hour; 0 failed
+350 boards: None +- None IMPs/board for g8-high0; 2097 boards/hour; 0 failed
+400 boards: None +- None IMPs/board for g8-high0; 2155 boards/hour; 0 failed
+450 boards: None +- None IMPs/board for g8-high0; 2204 boards/hour; 0 failed
