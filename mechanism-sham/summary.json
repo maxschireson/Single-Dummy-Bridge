@@ -1,0 +1,23 @@
+{
+ "pair": "rx-sham~rx-control",
+ "boards": 32,
+ "cpu_per_board": 32.86,
+ "common": {
+  "imps_per_board": 0.0,
+  "se": 0.0,
+  "boards": 32,
+  "won": 0,
+  "lost": 0,
+  "flat": 32
+ },
+ "native": {
+  "imps_per_board": 0.0,
+  "se": 0.0,
+  "boards": 32,
+  "won": 0,
+  "lost": 0,
+  "flat": 32
+ },
+ "failures": 0,
+ "boards_per_hour": 770
+}
