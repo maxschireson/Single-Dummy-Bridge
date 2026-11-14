@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 2 $W/r4arena/arena.log | cut -c1-220; systemctl is-active loop-arena; pgrep -u "$USER" -fc gen7_build_dataset; grep MATCH $W/human.log | tail -n 1 | cut -c1-200; echo "xh-hf-p $(wc -l < $W/runs/xh-hf-p/results.jsonl)"; tail -n 1 $W/runs.log | cut -c1-140; date -u +%T
