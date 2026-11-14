@@ -9,6 +9,21 @@ session's `gen7_net.py`, the sidnet session's label heads and trainer).
 
 The plan is in [PLAN.md](PLAN.md). This page is what exists.
 
+## Names (Max, 01:26 UTC on 14 November)
+
+**SiD** is any bot with no double dummy in its play; then its flavor; then the net inside its rollouts (the table net is
+policy v4.1 unless said). The loop's nets are **Stu R0** (rollout net v2, where the loop started), **R1** (v2 with
+Stu's own vectors), **R2**, **R3a** (interim), **R3**. Earlier sections keep the ids they were written with.
+
+| Name | What it is | Ids |
+| --- | --- | --- |
+| SiD (rollout) Stu R3 | every card from rollouts, the lead included (at most 4 candidates, 32 then up to 128 layouts with the race), round 3's net inside: the collection since 00:45 UTC on 14 November | `stu3-ps` (`stu3-psa~stu3-psb`) |
+| SiD (rollout) Stu R0 | the same with v2 inside: the collection from 22:53 to 00:45 UTC | `stu0-ps` |
+| SiD (rollout, net lead) Stu R0, R2, R3 | rollouts from the second card on, the lead from the table net ("pure Stu") | `stu0-p`, `stu2-p`, `stu3-p` |
+| SiD (rollout, 512 lead) Stu R0 | every lead card on 512 layouts of the three hidden hands | `stu0-pr` |
+| SiD (net) Stu R0, R2, R3 | the net's own first card at every trick, nothing else | `stu0-n`, `stu2-n`, `stu3-n` |
+| Stu-as-is, Gen 8 card play (not SiD) | both use double-dummy search | `stu0a`, `8p-32-v41` |
+
 ## The loop
 
 1. **Play.** The rollout bot plays itself; every decision's record keeps the rollout means of its candidate cards.
@@ -221,6 +236,34 @@ rollout of every legal card: at 128 layouts and 4 candidates pure Stu gives up 0
 layouts +0.001 +- 0.002 (0.83 s a decision against 0.35), 256 +0.002 +- 0.002, 6 candidates -0.0001 +- 0.0013, no race
 +0.001 +- 0.002, 64 layouts +0.003 +- 0.002 (0.26 s), 32 layouts +0.007 +- 0.003. The budget is saturated at 128. The
 reference rates by the same rollouts, so this is the noise part of the budget's cost, not whether the values are right.
+
+## Round 3 at the table (00:00 to 02:20 UTC on 14 November)
+
+| Test | Result (IMPs a board) |
+| --- | --- |
+| SiD (net) Stu R3 against Gen 8, by deal minus SiD (net) Stu R0, deals 0-999 | +0.18 +- 0.14 (1,000) |
+| the same, minus SiD (net) Stu R2, deals 500-999 | -0.14 +- 0.18 (500) |
+| **SiD (net) Stu R3 head to head against SiD (net) Stu R0**, gate seed deals 1,000-4,999 (`h3-n`) | **+0.40 +- 0.07 (4,000)** |
+| **SiD (net) Stu R3 head to head against SiD (net) Stu R2**, the same deals (`h32-n`) | **+0.19 +- 0.06 (4,000)** |
+| SiD (rollout, net lead) Stu R3 against Gen 8, minus Stu R0's, deals 500-999 (`l3-p` against `l0b-p`) | -0.09 +- 0.19 (500) |
+| SiD (rollout, net lead) Stu R3 against BEN (64), minus Stu R0's, deals 0-255 (`b3-p` against `b0-p`) | +0.21 +- 0.22 (256) |
+| SiD (rollout) Stu R3 head to head against SiD (rollout) Stu R0, gate seed deals 5,000-6,999 (`h3-p`, `h3-pb`) | see PLAN.md |
+
+## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
+
+lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
+Eight more servers on azure3's lanes (port 8090) with those two lines and min_sample_hands_play_bad 20 changed, every
+other setting as the lane's BEN (64). Deals 0 to 255, card play only:
+
+| | IMPs a board | Wall clock a lane, 32 boards |
+| --- | --- | --- |
+| BEN (200) against BEN (64), for BEN (200) | +0.07 +- 0.14 | 50 min |
+| Gen 8 against BEN (200) | -0.11 +- 0.27; by deal minus Gen 8 against BEN (64), -0.22 +- 0.21 | 28.4 min |
+| Gen 8 against BEN (64) | +0.09 +- 0.27 | 27.0 min |
+
+From the three clocks: BEN (64) about 23 s a table side, BEN (200) about 24.5, Gen 8 about 2. BEN's time is mostly
+fixed a card (sampling 5,000 boards, its networks), so 200 samples cost about 7% of BEN's time. From round 4's
+measurements on, BEN means BEN (200).
 
 ## The fusion ledger (`fusion_ledger.py`; Max, 11:16 UTC)
 
