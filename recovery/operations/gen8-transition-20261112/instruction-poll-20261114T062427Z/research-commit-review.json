@@ -1,0 +1,51 @@
+{
+  "poll_start": "2026-11-14T06:24:27Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "37f1c902093a2db6791aea8b0d647e5e48b45fe1",
+  "commits": [
+    {
+      "sha": "37f1c902093a2db6791aea8b0d647e5e48b45fe1",
+      "date": "2026-11-14T05:47:26Z",
+      "message": "Stu: tonight's findings (round 3 inside diagnosed, one net, where the tricks go, BEN baselines and share, squeeze tests, noise, box roles) and Max's decisions in README and PLAN\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "69b94dfc5295b9e803448bf0a276237a401896ae",
+      "date": "2026-11-14T05:43:38Z",
+      "message": "Stu: a little noise in the training data now (Max, 05:37 UTC). Gen 8's self-play records played by its personalities at margin 0 (exact ties only), six pairs in turn (sg8s on azure1, sg8t on azure5); the one-net Stu's self-play twins mix their defenders' equal cards too\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "ab50d697f89dee925a76fc4ead47e82dd3d9e535",
+      "date": "2026-11-14T05:33:37Z",
+      "message": "Stu: the style matches in azure5's queue before its Gen 8 records (the last commit only took them off azure3's)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "b92ea1c73209ed7e1685e2df04406a179e28f607",
+      "date": "2026-11-14T05:32:43Z",
+      "message": "Stu: the style calibration on azure5 for about 3 hours before its Gen 8 records (Max, 05:32 UTC)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "fb1dbbefd4409b63be9428e3258e4168c25ab530",
+      "date": "2026-11-14T05:31:44Z",
+      "message": "Stu: the test box extends the one-net Stu R3 against BEN (200) to 2,560 deals before round 4's cut (jobs-azure3-ben6.txt; Max, 05:30 UTC)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Max-directed Stu findings, training-data noise/personality jobs, style calibration and BEN200 comparison extension on named Azure boxes.",
+  "disposition": "Max05:37 adds noise to Stu training data: Gen8 personalities at margin0 in self-play on Azure1/5 and randomized equal defender cards in one-net twins. Stu's five-box roles, BEN gate/2560-deal comparison, exclusion of BEN from its training replay, and never-training-on-squeeze-tests are its training/test workflow. No canonical round8-candidate change or all-collector transition was published. Current owned actors, existing tie audits, gap/guess capture, corpus, source, models and source-budget stop remain frozen; no training, self-play or promotion here.",
+  "evidence": {
+    "sha": "37f1c902093a2db6791aea8b0d647e5e48b45fe1",
+    "message": "Stu: tonight's findings (round 3 inside diagnosed, one net, where the tricks go, BEN baselines and share, squeeze tests, noise, box roles) and Max's decisions in README and PLAN\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+    "files": [
+      {
+        "path": "training/rollout-loop-20261113/PLAN.md",
+        "patch": "@@ -288,6 +288,23 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel\n   makes about 1.5 to 2 times the tables a box-hour; the arena's feeds already hold about 25,000 Gen 8 and 9 episodes\n   newer than v2's set. From 02:50 UTC azure1 makes Gen 8's self-play records (`sg8e`, `g8a~g8b`).\n \n+## Max's decisions, 14 November (UTC), from 02:30\n+\n+| When | His words | What follows |\n+| --- | --- | --- |\n+| 02:43 | \"we should only be doing enough self play to see where we are\" | Gen 8's self-play as data; Stu's own only as much as tells where we are |\n+| 03:35 to 03:50 | personalities, \"mostly directed... a bit of random\", \"Average in a mixed pop. Half an imp... was too much\" | `style.py`; doses set for about a quarter IMP a board across the population |\n+| 04:02 to 04:10 | partners' knowledge and disclosure random (knowledge 0 to 80%, disclosure usually 75% of it, 0 to 150%), per dimension, correlated (centred 0.6, -0.2 to 0.8) | the population's dials (not built yet) |\n+| 04:10 | \"Simpler to have one not two\" | one net at the table and in the rollouts (`stu3-pst`) |\n+| 04:17 | \"test with 4.1 everywhere vs Ben, but let's settle the other issues first\" | `b41-ps200` last in azure3's BEN queue |\n+| 04:23 | \"the gate should be on Ben\" | the verdict on a bot is its by-deal difference on BEN (200) |\n+| 04:28 | \"don't go down in a cold game or slam\" | the IMP objective (`stu3-psti`, `h3-pi`); the guarantee already covers certain contracts |\n+| 04:30 | BEN's share of training \"low\" | BEN tables out of the arena feeds; out of the replay from round 4 |\n+| 04:34 | Pavlicek's trump strip squeezes, \"do not train the net on them\" | `tests/test_squeeze_endings.py` |\n+| 05:24 to 05:32 | two boxes of each self-play, one for tests; go longer before the release; one box measuring BEN through it; borrow 3 hours for styles | box roles above; round 4 at about 6 hours |\n+| 05:31 | arena boards from Gen 9 | the feeds go into round 4 without BEN |\n+| 05:37 | noise in the data now | Gen 8's personalities at margin 0 in its self-play |\n+\n ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)\n \n Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the"
+      },
+      {
+        "path": "training/rollout-loop-20261113/README.md"
+      }
+    ]
+  },
+  "plan_blob": "ff27cd3668e90d4e86544e420911254df9b36eec",
+  "readme_blob": "a98a8e70b46fa69264d7a84f52e6a8070f2a87d7",
+  "future_exclusions": "Any later new owned cohort still needs complete pinned all-released-model family exclusions and existing corpus safeguards. Preserve current original list, manifest and proof."
+}
