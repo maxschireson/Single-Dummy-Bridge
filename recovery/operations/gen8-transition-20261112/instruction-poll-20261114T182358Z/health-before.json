@@ -1,0 +1,240 @@
+{
+  "epoch": 1794680673.0826187,
+  "poll_start": "2026-11-14T18:23:58Z",
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "heartbeat": {
+    "epoch": 1794680666.5792136,
+    "completed": 5438,
+    "in_flight": [
+      5437,
+      5439,
+      5440
+    ],
+    "workers": 4,
+    "ben_workers": 1,
+    "started_epoch": 1794680410.3713164,
+    "stopping": false
+  },
+  "state": {
+    "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "completed": 5438,
+    "target": 18283,
+    "contiguous": 5437,
+    "by_pair": {
+      "8s-32~1": 907,
+      "8c-32~71s-32": 906,
+      "8c-32~8s-32": 906,
+      "8s-32~71s-32": 1813,
+      "8s-32~5RZ32": 906
+    },
+    "root_games": 18126,
+    "tables": 223311,
+    "failures": 0,
+    "epoch": 1794680616.534324,
+    "complete": false
+  },
+  "supervisor": {
+    "epoch": 1794680670.210355,
+    "completed": 5438,
+    "target": 18283,
+    "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+    "workers": 3,
+    "ben_workers": 0,
+    "failures": 0,
+    "collector": "running",
+    "publisher": "running",
+    "gen71_comparison_gate_enabled": false,
+    "collector_pid": 314336,
+    "publisher_pid": 68688
+  },
+  "publisher": {
+    "status": "published",
+    "epoch": 1794680641.107841,
+    "completed": 5438,
+    "commit": "1b5fbf7a26ce15ef97128212792c194796a1f759",
+    "branch": "arena-gen8-candidate-codex-20261112-feed"
+  },
+  "pids": {
+    "collector": 314336,
+    "supervisor": 68686,
+    "publisher": 68688
+  },
+  "pid_alive": {
+    "collector": true,
+    "supervisor": true,
+    "publisher": true
+  },
+  "all_lineage_locks": {
+    "/workspace/work/gen6-fast-selfplay-stream/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen6-fast-selfplay-stream/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen6-fast-selfplay-stream/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.writer.lock": {
+      "held": true,
+      "owner_pid": 314336,
+      "current": true
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.watchdog.lock": {
+      "held": true,
+      "owner_pid": 68686,
+      "current": true
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.publisher.lock": {
+      "held": true,
+      "owner_pid": 68688,
+      "current": true
+    }
+  },
+  "collector_children": [
+    {
+      "pid": 314451,
+      "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.resource_tracker import main;main(8) "
+    },
+    {
+      "pid": 314452,
+      "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-fork "
+    },
+    {
+      "pid": 314455,
+      "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --multiprocessing-fork "
+    },
+    {
+      "pid": 314456,
+      "command": "/workspace/work/arena-venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) --multiprocessing-fork "
+    }
+  ],
+  "actual_normal_worker_children": 3,
+  "ben_jobs": 0,
+  "raw_heartbeat_idle_ben_executor_is_not_a_job": true,
+  "failure_files": [],
+  "resolved_failure_files": [],
+  "supervisor_failure_exists": false,
+  "stop_files": {},
+  "memory_current": 7624069120,
+  "memory_limit": "17179869184",
+  "disk_free_bytes": 13026467840,
+  "dds_cache_bytes": 56026968,
+  "cache_rotation": {
+    "epoch": 1794680399.7172368,
+    "completed": 5432,
+    "previous_bytes": 2148282368
+  },
+  "cache_rotation_already_diagnosed": false,
+  "same_pids_as_previous_poll": false,
+  "scientific_hashes_verified": true,
+  "heartbeat_age_seconds": 6.5034050941467285,
+  "publisher_age_seconds": 31.974777698516846,
+  "live_capture_sample": {
+    "samples": [
+      {
+        "index": 5436,
+        "pair": "8s-32~1",
+        "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "episode_sha256": "fd9a318ac7b2293c64de3fb2c4a6d36811ac718241be69f60e68f58435ef4445",
+        "receipt_hash_verified": true,
+        "gap_forks": 14,
+        "observed_guess_fields": {
+          "guess_size": 1584,
+          "best_share": 7716
+        }
+      },
+      {
+        "index": 5435,
+        "pair": "8c-32~71s-32",
+        "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "episode_sha256": "eea10ef2b85aa3a6f3b571d73038022cf0ad2bc296d23c98ec748d96f4b3d46e",
+        "receipt_hash_verified": true,
+        "gap_forks": 24,
+        "observed_guess_fields": {
+          "guess_size": 1704,
+          "best_share": 7912
+        }
+      },
+      {
+        "index": 5438,
+        "pair": "8s-32~71s-32",
+        "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+        "episode_sha256": "e786d06c31433353967d54e8a75fe734f9af41833446e22988dcf3dc69729892",
+        "receipt_hash_verified": true,
+        "gap_forks": 12,
+        "observed_guess_fields": {
+          "guess_size": 1291,
+          "best_share": 7186
+        }
+      }
+    ],
+    "actual_capture_observed": true,
+    "new_launch_or_setting_change": false
+  }
+}
