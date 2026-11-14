@@ -1,0 +1,75 @@
+{
+  "pair": "rx2-recursive32~rx-ben64",
+  "boards": 7,
+  "cpu_per_board": 47.37,
+  "common": {
+    "imps_per_board": -1.5714,
+    "se": 0.9724,
+    "boards": 7,
+    "won": 0,
+    "lost": 3,
+    "flat": 4
+  },
+  "native": {
+    "imps_per_board": -1.5714,
+    "se": 0.9724,
+    "boards": 7,
+    "won": 0,
+    "lost": 3,
+    "flat": 4
+  },
+  "failures": 0,
+  "unfinished": 8,
+  "attempts": 15,
+  "interpretation": "development only; not a strength or equal-time decision",
+  "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
+  "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
+  "attempt_work": {
+    "wall_seconds": 600.1438268979837,
+    "worker_cpu_seconds": 331.902206224,
+    "solver_cpu_seconds": 7.9031709999999995,
+    "inclusive_cpu_seconds": 339.805377224
+  },
+  "actors": {
+    "rx2-recursive32": {
+      "work": {
+        "solver_cpu_seconds": 7.735250000000001,
+        "solver_wall_seconds": 8.348272600123892,
+        "solver_calls": 21158.0,
+        "solver_hits": 966.0,
+        "solver_timeouts": 0.0,
+        "wall_seconds": 332.93815322607406,
+        "worker_cpu_seconds": 322.586747429,
+        "inclusive_cpu_seconds": 330.321997429,
+        "initialization_seconds": 8.387525768019259
+      },
+      "recursive": {
+        "opportunities": 203114.0,
+        "calls": 946.0,
+        "cache_hits": 0.0,
+        "changed": 1824.0,
+        "net_rows": 266264.0,
+        "child_wall_seconds": 229.90149701136397,
+        "argmax_different": 1531.0,
+        "applied_rows": 3769.0,
+        "budget_rejected": 38030.0
+      },
+      "precisions": [
+        [
+          "bf16",
+          "bf16"
+        ]
+      ]
+    },
+    "rx-ben64": {
+      "work": {
+        "wall_seconds": 258.211901473318,
+        "worker_cpu_seconds": 0.3234682059999894,
+        "external_server_cpu_measured": 0.0
+      },
+      "recursive": {},
+      "precisions": []
+    }
+  },
+  "driver_failure": null
+}
