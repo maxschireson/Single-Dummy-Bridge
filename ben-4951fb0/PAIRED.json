@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T22:38:19Z",
+  "updated": "2026-11-14T22:39:20Z",
   "families": 32,
   "recursive_minus_flat": {
     "boards": 32,
@@ -8,9 +8,9 @@
   },
   "arms": {
     "flat128": {
-      "boards": 35,
-      "imps_per_board": -0.17142857142857143,
-      "se": 0.6951037819686229
+      "boards": 44,
+      "imps_per_board": 0.06818181818181818,
+      "se": 0.6282612396748063
     },
     "recursive32": {
       "boards": 32,
