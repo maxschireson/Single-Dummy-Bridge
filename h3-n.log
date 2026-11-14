@@ -66,3 +66,17 @@ stu3-n v stu0-n: 4000 boards to play (0 done), 8 workers
 3250 boards: 0.3914 +- 0.0729 IMPs/board for stu3-n; 43624 boards/hour; 0 failed
 3300 boards: 0.3864 +- 0.0723 IMPs/board for stu3-n; 43634 boards/hour; 0 failed
 3350 boards: 0.4024 +- 0.072 IMPs/board for stu3-n; 43642 boards/hour; 0 failed
+3400 boards: 0.4153 +- 0.0716 IMPs/board for stu3-n; 43650 boards/hour; 0 failed
+3450 boards: 0.4159 +- 0.0713 IMPs/board for stu3-n; 43671 boards/hour; 0 failed
+3500 boards: 0.4237 +- 0.0707 IMPs/board for stu3-n; 43697 boards/hour; 0 failed
+3550 boards: 0.4192 +- 0.0703 IMPs/board for stu3-n; 43694 boards/hour; 0 failed
+3600 boards: 0.4106 +- 0.0699 IMPs/board for stu3-n; 43700 boards/hour; 0 failed
+3650 boards: 0.4205 +- 0.0695 IMPs/board for stu3-n; 43713 boards/hour; 0 failed
+3700 boards: 0.4235 +- 0.069 IMPs/board for stu3-n; 43725 boards/hour; 0 failed
+3750 boards: 0.4253 +- 0.0687 IMPs/board for stu3-n; 43713 boards/hour; 0 failed
+3800 boards: 0.4295 +- 0.0682 IMPs/board for stu3-n; 43732 boards/hour; 0 failed
+3850 boards: 0.4151 +- 0.0679 IMPs/board for stu3-n; 43746 boards/hour; 0 failed
+3900 boards: 0.3995 +- 0.0675 IMPs/board for stu3-n; 43744 boards/hour; 0 failed
+3950 boards: 0.3959 +- 0.067 IMPs/board for stu3-n; 43740 boards/hour; 0 failed
+4000 boards: 0.397 +- 0.0668 IMPs/board for stu3-n; 43747 boards/hour; 0 failed
+{"pair": "stu3-n~stu0-n", "boards": 4000, "cpu_per_board": 0.66, "common": {"imps_per_board": 0.397, "se": 0.0668, "boards": 4000, "won": 978, "lost": 755, "flat": 2267}, "native": {"imps_per_board": 0.397, "se": 0.0668, "boards": 4000, "won": 978, "lost": 755, "flat": 2267}}
