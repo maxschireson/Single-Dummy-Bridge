@@ -57,7 +57,7 @@
     "arena-gen5rz-ben-feed": "a559ccb59e9d3ff09d8c759c016534b4efcef254",
     "arena-gen5rz-feed": "03fd90e694d02ba139559fc323e63e384da9e969",
     "arena-gen6-ben-expansion-feed": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
-    "arena-gen6-chatgpt-feed": "3b9dfdd036d00e4efa559a24dd3fb99cc1aaf4ee",
+    "arena-gen6-chatgpt-feed": "773723b7c15e8ac555e078c8d1635e93ea642748",
     "arena-gen6-codex-ben-followups-feed": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
     "arena-gen6-codex-ben-gate": "32d459d5513005f3c032a04fb6c785d4a0db4d6f",
     "arena-gen6-codex-feed": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
@@ -141,7 +141,7 @@
     "arena-gen7-pre7-azure4-feed": "2968b84979c87ccb4102d164013e62ce2cf60c07",
     "arena-gen7-selfplay-capture-codex-20261112-feed": "09950642e0d40dc68fecf511569bb72935ba7782",
     "arena-gen7-selfplay-codex-20261112-feed": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
-    "arena-gen8-19bbdce5-20261112-feed": "bf0402bbfe3107652f8b6e6883badb682db050d1",
+    "arena-gen8-19bbdce5-20261112-feed": "059a7bb7b35ff6f0b48fa736f70fd8ef55460707",
     "arena-gen8-azure1-feed": "210f7b205ad822b88a82cc482af3f6952f1b41b5",
     "arena-gen8-azure3-ben64-1-feed": "de640549c40531b5f235b5480a2213c135b690ca",
     "arena-gen8-azure3-ben64-2-feed": "fdee44ee8b5e3dbcf317a3ba2f30fc88a3e718b1",
@@ -152,7 +152,7 @@
     "arena-gen8-azure3-ben64-7-feed": "0e72cf1b5888920eb69d5741cdb885902c3f0b92",
     "arena-gen8-azure3-ben64-8-feed": "846404c8a0de86a8d279748d2b7c7999e7846d95",
     "arena-gen8-azure6-feed": "3b68c77537a88932817f352b23bc032966a33800",
-    "arena-gen8-candidate-codex-20261112-feed": "d58557e75298a7120aca44db446176aba4a63858",
+    "arena-gen8-candidate-codex-20261112-feed": "4c9458ee30cc6338c503f95871369c82a6c67088",
     "arena-gen8-f-azure3-ben64-1-feed": "70af3d4ffa918c6156e556e07826803165052771",
     "arena-gen8-f-azure3-ben64-2-feed": "0c2d19bd46baf6cf9f1b47bb2f636ba0325ab85e",
     "arena-gen8-f-azure3-ben64-3-feed": "91c75e8829d3b596739df445840325b7b63c81a7",
@@ -160,7 +160,7 @@
     "arena-gen8-f-azure3-ben64-5-feed": "74e31aaddecdecd3c71cda957e5633ccad66aacd",
     "arena-gen8-f-azure3-ben64-7-feed": "352bfad7dd1ecc56ffe589214bb123158827971a",
     "arena-gen8-f-azure3-ben64-8-feed": "7159a5191b84fa386bcee8e8c97de2706a006fd4",
-    "arena-gen8-independent-feed": "9a591bc7b9c27faeafc0ef4c9d812a5188844d49",
+    "arena-gen8-independent-feed": "12754b894315eb215940a71020700a14c5be72ce",
     "arena-gen8-m1-azure1-feed": "230222ced59d36761501ca6e94a83f474948ec5a",
     "arena-gen8-p2-azure3-ben64-1-feed": "460aec92e15f061abb7886250d272d9de8cd2581",
     "arena-gen8-p2-azure3-ben64-2-feed": "836c37d38dc6464d351a763808bd136c590e2134",
@@ -174,26 +174,26 @@
     "arena-gen8-s3-azure1-feed": "934d62ee9d89a48dc388c9e94b8bcbd13bccd00d",
     "arena-gen8-s7-azure1-feed": "9c7562342965d32bdea73f1b30f0473d3a2fb436",
     "arena-gen8-x3-azure1-feed": "cda098fcfd890886c379e21813546ff07b9daea2",
-    "arena-gen9-azure4-ben64-feed": "1c67272afead6f7d761c60da8910881be90b0ee1",
-    "arena-gen9-azure4-feed": "94478a8e7f6aac7059b3fa86ccefb478d437e066",
-    "arena-gen9-genx-stu-azure4-feed": "c320b58b3a34e54e10cc3c544c87a0639dd5340e",
+    "arena-gen9-azure4-ben64-feed": "8b565b0f036f3eceec214150911a244aa9370467",
+    "arena-gen9-azure4-feed": "bdcd1ad996edd0d7c1f9bc436d20c791a08d88d9",
+    "arena-gen9-genx-stu-azure4-feed": "8a27334cb814fcc787caee59895544f5a8cee070",
     "arena-gen71-19bbdce5-20261112-feed": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
     "arena-gen71-independent-feed": "cbddecbc290efc8e3ab6e088135675df1cec14e5",
     "arena-local-feed": "7201f5a2e5b8f4ca6e03bc6769633b48ca39590e",
     "arena-primary-components-feed": "f11ab55e16787069dfd5c25cf539592c85b7c699",
     "arena-recovery-feed": "599abfc69b17d1e6e4c4c5e5c505d241d2120bbf",
-    "box/azure1/control": "da11ff1324817b8f7e3f1b532402425c0b94200c",
-    "box/azure1/status": "b4f331c964621fef105512283147678cbe4ec660",
-    "box/azure2/control": "bec35aff5ccdacd91ba5680b8d87b9f7bc485bb6",
-    "box/azure2/status": "b56fc45c4ea1996cddaae79fe311388705043bf5",
-    "box/azure3/control": "588eb7a697739ab7ef089081f8c4671b91b5a4f8",
-    "box/azure3/status": "fd7c4dcc1d1053824ce7ae9cec7c78b4f990ed0d",
-    "box/azure4/control": "ea6af47709c4aef01c91b348891643a129e334e7",
-    "box/azure4/status": "08317de881b5967481cf4503dcec42ff3d665465",
-    "box/azure5/control": "001a5edd563d3c632b41ec99834d1edd5c06ac83",
-    "box/azure5/status": "10c7ef1ff2ab5eff6fc8edc8681db3c8c40c1721",
-    "box/azure6/control": "fb62a53a270d7e3c9a790a5c1b91e888ed4d4e98",
-    "box/azure6/status": "6e4d3105101e466591d6e6acffa742ec4724804f",
+    "box/azure1/control": "51bca0e411fcce170adba911f6b32f73e77b4ea9",
+    "box/azure1/status": "b7c8215b3669b41f178c962aa0d651e60d04cbf5",
+    "box/azure2/control": "5cecd6a3bfc818bdba7bf801c7c1dc0e0f406cd7",
+    "box/azure2/status": "ed190594f2aeaba247ca12839ec67f625fb42885",
+    "box/azure3/control": "75e66bf4f0d1798123bf351ac1f7413ed90303de",
+    "box/azure3/status": "669dabb99ab6f89e0bbd6af138bc2690e4119359",
+    "box/azure4/control": "729275947e050673c794ae153ef54b77c37f91e9",
+    "box/azure4/status": "5ebefc156b302187368c6292c1990e0d2446de15",
+    "box/azure5/control": "374f94b21f26ecdbbedc05580b943867b0883576",
+    "box/azure5/status": "78d682fe3379da5999c3293116252f1781e5bb5b",
+    "box/azure6/control": "160dffb9a98261bd2d2b53fe31ae8fddf5455035",
+    "box/azure6/status": "fc67c3364cc8114ba1f05ee892c6eec01e152eb3",
     "box/coordination": "783d75fe7358955d3ec72b31b66dd2cd38f47aa5",
     "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
     "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
@@ -267,8 +267,8 @@
     "fix/gen7-forward-gemm-20261113": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
     "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
     "fleet/azure": "4b3594bcf323870fb6208e0cb5115a04829d3dc2",
-    "gh-pages": "9e41d7f2f77366b889fe22578718efb818050628",
-    "mail/coord": "92ffb845c34dbe96a0b436abf13a294ce99219b9",
+    "gh-pages": "04968b41ec0e5008a16f91941e1ca6b0a3f923f0",
+    "mail/coord": "0aed57e90b532cbe9aaa4b47ceeca0c3c7b4bb4f",
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
     "ops/gen8-19bbdce5-20261112": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
@@ -312,7 +312,7 @@
     "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
     "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
     "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
-    "research/rollout-loop-20261113": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+    "research/rollout-loop-20261113": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
     "research/self-improvement-loop": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
     "research/selfplay-training-2026-11-08": "8f536af62d3f7e2dd2484139483795312177ced6",
     "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
@@ -321,7 +321,7 @@
     "research/sure-trick-table-20261112": "2e6ed6db12cba4110f43c29a70823a992c296ea1",
     "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
     "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
-    "team/gen9": "17dc04202d4f5afd3570fce07034dc05c0d70c15",
+    "team/gen9": "faf4e36f0b7d3fcffbf020b4aa92435bc5f6834a",
     "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
     "transfer/conditional-claims-raw-20261113": "9209fc9ac3e63a8f89d9e555ebe83e91005a070f",
     "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
@@ -364,10 +364,10 @@
     "transfer/gen9-e9-16-r-v-p-azure4-20261113": "2f6912665206413a3b3fc8ba23450cf3e689e6ff",
     "transfer/gen9-e9-16-r-v-x-azure4-20261113": "a1f1e9235675e1fb43aa816298775f25eaf604b2",
     "transfer/gen9-e9-25-azure4-20261114": "c3033825438a2b432e58f7d2a0548aa7600f92eb",
-    "transfer/gen9-g9-cohort-azure4-azure4-20261113": "8e68049cc56ea8873ea242cad096b214d6785f55",
-    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": "4c286bd9dca8e3bcf1c3fda0ee2f808bc25b3278",
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": "9c61c3b99e6d6e4980825003151960b675460bd1",
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": "bd7be2ed6bf67197c32d4741388c1adaba966fdf",
     "transfer/gen9-g9-cohort-preflight-azure4-20261113": "5e8242331cee1c78d0963a969a440a2c89531bae",
-    "transfer/gen9-g9-genx-stu-azure4-azure4-20261114": "2f6a40b5152564d1b84528c91d73ab4cc0acfffc",
+    "transfer/gen9-g9-genx-stu-azure4-azure4-20261114": "8530594ae2b932ebc3844bdd2af3c83fc5e6b511",
     "transfer/gen71-settings-azure1-20261112": "f119ca8a01ee5711c86f1f3c7d59f44171199b3c",
     "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
     "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
@@ -377,11 +377,11 @@
     "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
     "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
     "transfer/pre7-test-azure4-20261112": "159bd50e593e51afbceecf25b963db245609b6d4",
-    "transfer/rollout-loop-azure1-20261113": "2583b39a1a12c6fb33cb710ba5a8b12e2456c7c7",
-    "transfer/rollout-loop-azure2-20261113": "281c65ea4fec6ba42bee6b51f9a268f14601e386",
-    "transfer/rollout-loop-azure3-20261113": "05958738f52282fa0d0ef0c55c7ec1a6e67855ea",
-    "transfer/rollout-loop-azure5-20261113": "7488ab68f9e772854dbaa90946ff6754c5421d05",
-    "transfer/rollout-loop-azure6-20261113": "791c11a81aeb980fa4faea3390ab2e8373dee9dd",
+    "transfer/rollout-loop-azure1-20261113": "03c6325c98900ad0b526bda9fcea5aabc8472247",
+    "transfer/rollout-loop-azure2-20261113": "063480f11a7beb85e7386628a8ea8cf76c9f8a74",
+    "transfer/rollout-loop-azure3-20261113": "1e28487833f5c455c4868208d0afc9d5b19d6cc7",
+    "transfer/rollout-loop-azure5-20261113": "7871ece0292a37605903aeae6dc53867470985ac",
+    "transfer/rollout-loop-azure6-20261113": "1eec8fece583f3ecdf9d22a4415fc35be415b102",
     "transfer/rollout-loop-sandbox-20261113": "f101792f0f9fbbe06a9c6a6a2cf85e798ab51ccc",
     "transfer/rollout-net-v1-20261113": "3bd74d0470e6bcb385b31977ac8d77a026895fdf",
     "transfer/rollout-net-v1-training-families-20261113": "6034eecc750c71788ae10163c55c38c335c7d1e1",
@@ -398,12 +398,12 @@
       "number": 22,
       "title": "Gen 9 queue",
       "state": "open",
-      "updated_at": "2026-11-14T12:00:25Z",
-      "body": "<!-- workq -->\n**Gen 9 queue**, Sat 14 Nov 12:00 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 17 h)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 · dave: G9-D10 · sam: E9-4, E9-6, G9-S4, G9-S7 · will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 4,066/10,000, 166/h, ETA 23:39 · g9-cohort-ben64-azure4 running 1,227/2,000, 47/h, ETA 04:33 · g9-genx-stu-azure4 running 496/4,000, 53/h, ETA 06:24 · e9-0-n04 paused 387/800 · e9-16-h-v-p paused 269/800\n**Resolved today**: 2. **Open, not started**: 10.\n**Next checkpoint**: none listed\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+      "updated_at": "2026-11-14T13:00:24Z",
+      "body": "<!-- workq -->\n**Gen 9 queue**, Sat 14 Nov 13:00 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 18 h)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 · dave: G9-D10 · sam: E9-4, E9-6, G9-S4, G9-S7 · will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 4,241/10,000, 178/h, ETA 21:13 · g9-cohort-ben64-azure4 running 1,270/2,000, 47/h, ETA 04:35 · g9-genx-stu-azure4 running 547/4,000, 55/h, ETA 04:00 · e9-0-n04 paused 387/800 · e9-16-h-v-p paused 269/800\n**Resolved today**: 2. **Open, not started**: 10.\n**Next checkpoint**: none listed\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
       "scope": "Gen9/Azure4 queue; read-only"
     }
   ],
-  "comments_since": "2026-11-14T11:25:21Z",
+  "comments_since": "2026-11-14T12:30:24Z",
   "new_issue_comments": [],
   "new_review_comments": [],
   "instruction": "Continue authoritative Gen8 main mix from frozen792c4cb, five approved pairs2/1/1/1/1,3normal workers0BEN, canonical actors and mandatory34092-family exclusion union. Old Gen7.1 CI and Gen7.0 pair-target stop predicates are disabled; no selfplay scheduled. Preserve all history and science. Own producer only.",
@@ -442,23 +442,23 @@
     "registry_commit": "4c544a135532121cea1b500842c25c391136ae63",
     "publication_verified": true
   },
-  "research_disposition": "Max09:39 authorizes Stu R4a/R4b: stu4 with every adult2021-23 human table and stu4c without, using the same replay; blind BEN200 gates alternate on the same deals after a nets-alone match. The updated PLAN remains explicitly work in progress, research only. round4_arena.sh refetches moving shallow refs and sets non-board gz files aside for its own training importer. No local training, data import, BEN job/gate, source change, self-play opening, model promotion or producer repair is authorized/needed. GenX/Azure4 stays pinnedR3. Any future new cohort excludes complete pinned training-family membership of ALL released models, including both round4 variants human/bot/arena/replay sets if released; keep current original list/proofs unchanged.",
+  "research_disposition": "Stu4 plays its first512 BEN-gate deals before stu4c because the control trains second; only Stu Azure3 jobs/runs change. Updated human-experiment README reports full-size/mixed-net results and uncertain rollout translation;22269 tables represent3569 deals and are not independent arena boards. Neither result nor scheduling adopts Stu4/stu4c as this producer's actor or changes its disabled gate. Keep strict frozen792c4cb Gen8, original exclusions/corpus and three normal workers. No local BEN, training, model promotion, self-play, source/settings change or peer operation. Future new cohorts exclude complete training-family membership of ALL released models; preserve the current immutable list/proofs.",
   "notification": "quiet: no current applicable collection instruction changed and no new blocker or completion",
-  "checked_epoch": 1794659424.0,
-  "checked_at": "2026-11-14T12:30:24Z",
-  "next_check": "2026-11-14T13:25:53+00:00",
+  "checked_epoch": 1794662628.0,
+  "checked_at": "2026-11-14T13:23:48Z",
+  "next_check": "2026-11-14T14:25:53+00:00",
   "stream_manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
   "health": {
-    "epoch": 1794659690.681046,
-    "poll_start": "2026-11-14T12:30:24Z",
+    "epoch": 1794662837.8060372,
+    "poll_start": "2026-11-14T13:23:48Z",
     "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
     "heartbeat": {
-      "epoch": 1794659686.88654,
-      "completed": 4827,
+      "epoch": 1794662836.192904,
+      "completed": 4921,
       "in_flight": [
-        4827,
-        4828,
-        4829
+        4921,
+        4922,
+        4923
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -467,25 +467,25 @@
     },
     "state": {
       "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-      "completed": 4827,
+      "completed": 4921,
       "target": 18283,
-      "contiguous": 4827,
+      "contiguous": 4921,
       "by_pair": {
-        "8s-32~1": 804,
-        "8c-32~71s-32": 805,
-        "8c-32~8s-32": 804,
-        "8s-32~71s-32": 1609,
-        "8s-32~5RZ32": 805
+        "8s-32~1": 820,
+        "8c-32~71s-32": 820,
+        "8c-32~8s-32": 820,
+        "8s-32~71s-32": 1640,
+        "8s-32~5RZ32": 821
       },
-      "root_games": 16090,
-      "tables": 198397,
+      "root_games": 16404,
+      "tables": 202166,
       "failures": 0,
-      "epoch": 1794659656.8823876,
+      "epoch": 1794662776.15696,
       "complete": false
     },
     "supervisor": {
-      "epoch": 1794659682.926256,
-      "completed": 4827,
+      "epoch": 1794662834.9692533,
+      "completed": 4921,
       "target": 18283,
       "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
       "workers": 3,
@@ -499,9 +499,9 @@
     },
     "publisher": {
       "status": "published",
-      "epoch": 1794659625.6158946,
-      "completed": 4824,
-      "commit": "1ab6303908f1720c74f69a7a02f4d0dee4ea9cdf",
+      "epoch": 1794662769.9483166,
+      "completed": 4919,
+      "commit": "7089e3f0c3d7e886b9a46dbcc398a907b48c33b4",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
     "pids": {
@@ -631,10 +631,10 @@
     "resolved_failure_files": [],
     "supervisor_failure_exists": false,
     "stop_files": {},
-    "memory_current": 7577030656,
+    "memory_current": 7491874816,
     "memory_limit": "17179869184",
-    "disk_free_bytes": 13026062336,
-    "dds_cache_bytes": 910852160,
+    "disk_free_bytes": 12382879744,
+    "dds_cache_bytes": 1426239696,
     "cache_rotation": {
       "epoch": 1794654019.0295625,
       "completed": 4665,
@@ -643,44 +643,44 @@
     "cache_rotation_already_diagnosed": true,
     "same_pids_as_previous_poll": true,
     "scientific_hashes_verified": true,
-    "heartbeat_age_seconds": 3.794506072998047,
-    "publisher_age_seconds": 65.06515145301819,
+    "heartbeat_age_seconds": 1.613133192062378,
+    "publisher_age_seconds": 67.85772061347961,
     "live_capture_sample": {
       "samples": [
         {
-          "index": 4824,
-          "pair": "8c-32~71s-32",
+          "index": 4918,
+          "pair": "8s-32~5RZ32",
           "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-          "episode_sha256": "6e167428ac6cd733ae834a461d806528ee6c46b170a4feef3a0917612f3a1025",
+          "episode_sha256": "e472436ab12759d6ada9936b17b327a961d66c1b35e8ebe7927f21c1d3e0ef89",
           "receipt_hash_verified": true,
           "gap_forks": 17,
           "observed_guess_fields": {
-            "guess_size": 2453,
-            "best_share": 12256
+            "guess_size": 854,
+            "best_share": 3810
           }
         },
         {
-          "index": 4826,
+          "index": 4920,
           "pair": "8s-32~5RZ32",
           "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-          "episode_sha256": "e85f0a2769c1e9124d819f1163b05c01c6fb3ae7f71066dd4401d902da68f8d7",
+          "episode_sha256": "e586af9bab45af00106c925c83e4e329700764956f3584a2e37b3d6b9b1bb207",
           "receipt_hash_verified": true,
           "gap_forks": 21,
           "observed_guess_fields": {
-            "guess_size": 779,
-            "best_share": 3494
+            "guess_size": 1147,
+            "best_share": 5554
           }
         },
         {
-          "index": 4825,
+          "index": 4919,
           "pair": "8s-32~71s-32",
           "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
-          "episode_sha256": "08d6775147a1e4b890ca26c78a7d5176c0ea86e92d4bc22499030b96e192a810",
+          "episode_sha256": "4b1867d15186a745b9c50050c29575408d86d22a0e5cbbf74bd3d1701d108d59",
           "receipt_hash_verified": true,
-          "gap_forks": 12,
+          "gap_forks": 8,
           "observed_guess_fields": {
-            "guess_size": 800,
-            "best_share": 3723
+            "guess_size": 1381,
+            "best_share": 7259
           }
         }
       ],
@@ -689,8 +689,8 @@
     }
   },
   "previous_check": {
-    "checked_at": "2026-11-14T11:25:21Z",
-    "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T112521Z/github-scan.json"
+    "checked_at": "2026-11-14T12:30:24Z",
+    "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/github-scan.json"
   },
   "reviewed_source_changes": [
     {
@@ -934,8 +934,8 @@
       "disposition": "Reviewed coordination/fleet/registered collector instructions where relevant; research/host-specific progress is not adopted."
     }
   ],
-  "completed_at": "2026-11-14T12:34:52.951243Z",
-  "next_comment_scan_since": "2026-11-14T12:30:24Z",
+  "completed_at": "2026-11-14T13:27:20.124951Z",
+  "next_comment_scan_since": "2026-11-14T13:23:48Z",
   "poll_checkpoint_note": "Comments scan anchored to poll START, not finish. Verify exact final watch/recovery bytes through the existing publisher; pinned proof saved separately in this case.",
   "candidate_notice": {
     "path": "docs/gen8_candidate_2026-11-12.md",
@@ -1358,8 +1358,8 @@
     "is_enabled": true,
     "is_self_owned_automation": true,
     "default_timezone": "Europe/Lisbon",
-    "next_run_time": "2026-11-14T13:25:53+00:00",
-    "last_run_time": "2026-11-14T12:30:19.948029+00:00",
+    "next_run_time": "2026-11-14T14:25:53+00:00",
+    "last_run_time": "2026-11-14T13:23:43.337057+00:00",
     "updated_at": "2026-11-14T07:24:35.257656+00:00",
     "environment_selection": "inherited",
     "environments": [
@@ -1370,7 +1370,7 @@
     ],
     "changed_this_poll": false,
     "schedule_preserved": true,
-    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/automation-state.json"
+    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/automation-state.json"
   },
   "dashboard_registration": {
     "commit": "d9eddb68dc79395a7f56504b8055b92b0822447b",
@@ -1382,21 +1382,21 @@
     "status": "verified_pinned_publication",
     "current_publication": {
       "status": "published",
-      "epoch": 1794659625.6158946,
-      "completed": 4824,
-      "commit": "1ab6303908f1720c74f69a7a02f4d0dee4ea9cdf",
+      "epoch": 1794662769.9483166,
+      "completed": 4919,
+      "commit": "7089e3f0c3d7e886b9a46dbcc398a907b48c33b4",
       "branch": "arena-gen8-candidate-codex-20261112-feed"
     },
     "retired1974pairs_and_science_reverified": true,
     "new_preflight_and_live_capture_verified": true,
     "all18283families_recomputed_no_training_or_ancestor_overlap": true,
-    "verified_revision": "750ad18ac64a023367711b578c61e05c96c380d8",
-    "watch_blob": "d7d5293ba4aca302e5afc1953a3d8ef35a573e3a",
+    "verified_revision": "544162d3594fdef0ff4dc17ef6bd2627cd69f0f8",
+    "watch_blob": "53a61321f63e4f3f03b590600d18bbb1339b1005",
     "verification": "Exact local bytes matched committed recovery for watch, current stream, operational journal, supervisor, manifest, exclusion list, capture/preflight/production validation and source-family audit; GitHub contents readback matched watch blob; remote ref independently verified.",
     "checkpoint_note": "The preceding checkpoint was verified. Current watch and recovery bytes are verified after normal publisher capture; proof is saved in this case.",
-    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z",
+    "latest_poll_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z",
     "final_watch_copy_to_verify_separately": true,
-    "preceding_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T112521Z/publication-proof.json",
+    "preceding_checkpoint": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/publication-proof.json",
     "initial_transition_publication": {
       "status": "published",
       "epoch": 1794504287.520619,
@@ -1411,7 +1411,7 @@
     "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
     "disposition": "Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18,283. Keep original runtime/model/scorer/cache semantics; do not adopt bf16, int8 or unmerged forward-pass changes. No self-play or retired comparison predicate.",
     "latest_source_amendment_scope_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "revision": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
       "authority_quote": "Max09:17 Nov14 to Will, fixing the refused Gen9/Azure4 cache-source restart.",
       "context": "Unchanged9b2e7ad source-amendment branch. New Gen9 STATE report says Azure4 resumed09:24 with NORMAL sync; scoped peer status, no canonical Gen8 adoption.",
@@ -1448,8 +1448,8 @@
     "new_entries_since_prior_poll": 0,
     "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
     "latest_entry": "2026-11-14T10:30:00Z perf (for loop)",
-    "disposition": "Continue strict frozen Gen8 main mix, three normal/zero BEN, source budget18283 and disabled legacy gates. No new rotation this poll; previously verified4665 event remains history. Stu round4 training and importer fixes are scoped research, not a collector switch or producer-side repair.",
-    "poll_start": "2026-11-14T12:30:24Z",
+    "disposition": "Continue frozen Gen8 main mix, three normal/zero BEN, source budget18283 and disabled legacy gates. Stu round4 first512 BEN gate schedule and human-experiment results are scoped training work or dated reports, not a collector switch. No new rotation this poll.",
+    "poll_start": "2026-11-14T13:23:48Z",
     "notice_commit": "513f38b9e5d318230f938e3d148b8b40e3899503",
     "notice_patch": [
       {
@@ -1882,9 +1882,9 @@
     "tests_sha256": "41172332a6a054098776dac95cfbdc1ecf2e6d1ce017aa5b3739302ba4386b6c"
   },
   "comment_scan": {
-    "poll_start": "2026-11-14T12:30:24Z",
-    "comments_since": "2026-11-14T11:25:21Z",
-    "next_comment_scan_since": "2026-11-14T12:30:24Z",
+    "poll_start": "2026-11-14T13:23:48Z",
+    "comments_since": "2026-11-14T12:30:24Z",
+    "next_comment_scan_since": "2026-11-14T13:23:48Z",
     "new_issue_comments": [],
     "new_review_comments": [],
     "new_review_submissions": [],
@@ -3447,7 +3447,7 @@
     }
   ],
   "registry_review": {
-    "revision": "9e41d7f2f77366b889fe22578718efb818050628",
+    "revision": "04968b41ec0e5008a16f91941e1ca6b0a3f923f0",
     "blob": "5255da6a2bdf7d15ce0a52169f214eaa20055414",
     "owned_entries": [
       {
@@ -3523,7 +3523,7 @@
     ],
     "disposition": "All six owned entries and retired pins unchanged; no registry edit."
   },
-  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/github-scan.json",
+  "scan_evidence_path": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/github-scan.json",
   "interrupted_check": {
     "poll_start": "2026-11-12T14:27:45Z",
     "actions_completed": "Validated operational reload and resumed capture before interruption; registry/automation/watch finalization resumed in15:29poll. No collection failure or unexpected process restart.",
@@ -3532,7 +3532,7 @@
     "receipt_and_episode_prefix_preserved": true
   },
   "completion_status": {
-    "completed": 4827,
+    "completed": 4921,
     "target": 18283,
     "complete": false,
     "source_budget_only": true,
@@ -3746,7 +3746,7 @@
       "scope_limit_source": "User: Update ONLY this stream's feed/registry entries.",
       "reason_authorization_required": "This fix changes shared gh-pages replay UI for every producer, outside the explicit producer-only publication scope.",
       "notification_policy": "Notify user once for shared replay blocker and concrete publish approval; continue collection and routine instruction checks without restarting.",
-      "last_checked_revision": "9e41d7f2f77366b889fe22578718efb818050628",
+      "last_checked_revision": "04968b41ec0e5008a16f91941e1ca6b0a3f923f0",
       "last_checked_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
       "already_notified_previous_poll": true,
       "repeat_notification": false,
@@ -3780,7 +3780,7 @@
     "index_blob": "bea11586eab70fbcbcce565a9778925c3ed09c3c",
     "replay_catalog_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
     "latest_poll_review": {
-      "revision": "9e41d7f2f77366b889fe22578718efb818050628",
+      "revision": "04968b41ec0e5008a16f91941e1ca6b0a3f923f0",
       "index_blob": "5669dc5ce4cf9069ce7d6b5f4da3fc9342947d30",
       "replay_blob": "f946fe6078257793f56adc9be5bee7494dbdc2a4",
       "shared_ui_mutated": false,
@@ -4208,17 +4208,17 @@
       "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T012736Z/genx-stu-peer-review.json"
     },
     "latest_genx_operational_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "registered": true,
       "registration_key": "gen9genxstuazure4",
-      "feed_revision": "c320b58b3a34e54e10cc3c544c87a0639dd5340e",
+      "feed_revision": "8a27334cb814fcc787caee59895544f5a8cee070",
       "manifest": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
       "source_commit": "9bba86b6eaba468f724a9917ae821cc196f082d1",
-      "completed": 523,
+      "completed": 570,
       "target": 4000,
       "failures": 0,
       "adopted_by_this_stream": false,
-      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/genx-stu-peer-review.json"
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/genx-stu-peer-review.json"
     }
   },
   "solver_scope_review": {
@@ -4245,12 +4245,12 @@
       "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T082533Z/branch-review.json"
     },
     "latest_peer_source_amendment_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "revision": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
       "applied": false,
       "current_source_strict_guard_retained": true,
       "local_amendments_file_exists": false,
-      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/source-amendment-scope-review.json"
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/source-amendment-scope-review.json"
     }
   },
   "research_merge_review": "PR29 and30 merged into Gen9 development; main and deployedGen8 source unchanged. PR33 is separate Azure1 playserver, no collector instructions for this producer.",
@@ -4342,39 +4342,29 @@
     "current_effect": "Do not change this stream's 18283 source budget, introduce Stu's gate/cut, adopt new nets, train, or publish another dashboard. Keep frozen Gen8 science and owned feed.",
     "shared_pages": "Stu dashboard is published only under gh-pages:stu/ by its owner. Its superseded-run dedup rule does not alter this cohort's records or disabled gates.",
     "latest_poll_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
-      "revision": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+      "poll_start": "2026-11-14T13:23:48Z",
+      "revision": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
       "commits": [
         {
-          "sha": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
-          "date": "2026-11-14T12:17:06Z",
-          "message": "round4_arena.sh: a feed's file that is no board record is set aside\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+          "sha": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
+          "date": "2026-11-14T12:50:58Z",
+          "message": "README: the human-boards experiment's full-size and rollout results\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
         },
         {
-          "sha": "c7d78f1e9f9a5c42486a6d8ce3d6260324565026",
-          "date": "2026-11-14T12:04:56Z",
-          "message": "round4_arena.sh: refetch a feed that has moved on (a depth-1 ref is no fast-forward)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
-        },
-        {
-          "sha": "76972f2b0e9298c25c085ee1e99392f0acc80050",
-          "date": "2026-11-14T11:52:55Z",
-          "message": "The human-boards experiment's results so far and round 4 in two nets (README, PLAN); round2.sh NOREPLAY\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
-        },
-        {
-          "sha": "7dc5823c5f5543e7f101ec3f5509c2a252b1a05f",
-          "date": "2026-11-14T11:46:19Z",
-          "message": "Round 4 in two nets: stu4 (with the USBC's human tables) and stu4c (the control), their bots, the nets-alone matches and the blind BEN gate in turns; the human-boards experiment's matches listed\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+          "sha": "2dde3490d3e4a9518e4be550d784c951ad1a235f",
+          "date": "2026-11-14T12:33:56Z",
+          "message": "Round 4's gate: stu4 plays the first 512 deals before the control's turn (the control is trained second)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
         }
       ],
-      "scope": "Stu round4 two-net training/gate plan and arena-training importer repairs; WIP research-only PLAN.",
-      "disposition": "Max09:39 authorizes Stu R4a/R4b: stu4 with every adult2021-23 human table and stu4c without, using the same replay; blind BEN200 gates alternate on the same deals after a nets-alone match. The updated PLAN remains explicitly work in progress, research only. round4_arena.sh refetches moving shallow refs and sets non-board gz files aside for its own training importer. No local training, data import, BEN job/gate, source change, self-play opening, model promotion or producer repair is authorized/needed. GenX/Azure4 stays pinnedR3. Any future new cohort excludes complete pinned training-family membership of ALL released models, including both round4 variants human/bot/arena/replay sets if released; keep current original list/proofs unchanged.",
+      "scope": "Stu round4 gate ordering and dated full-size human-training experiment results.",
+      "disposition": "Stu4 plays its first512 BEN-gate deals before stu4c because the control trains second; only Stu Azure3 jobs/runs change. Updated human-experiment README reports full-size/mixed-net results and uncertain rollout translation;22269 tables represent3569 deals and are not independent arena boards. Neither result nor scheduling adopts Stu4/stu4c as this producer's actor or changes its disabled gate. Keep strict frozen792c4cb Gen8, original exclusions/corpus and three normal workers. No local BEN, training, model promotion, self-play, source/settings change or peer operation. Future new cohorts exclude complete training-family membership of ALL released models; preserve the current immutable list/proofs.",
       "applied": false,
-      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/research-commit-review.json"
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/research-commit-review.json"
     },
     "latest_human_training_scope_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "authority": "Max09:25-09:45 Nov14 to Stu/loop; second part cites Max09:43 medium set of other boards.",
-      "research_revision": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+      "research_revision": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
       "feed": "feed/usbc-human-all-20261114",
       "feed_revision": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
       "readme_blob": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930",
@@ -4387,25 +4377,33 @@
       "datasets_or_models_downloaded": false,
       "local_training": false,
       "local_corpus_changed": false,
-      "disposition": "Max09:39 authorizes Stu R4a/R4b: stu4 with every adult2021-23 human table and stu4c without, using the same replay; blind BEN200 gates alternate on the same deals after a nets-alone match. The updated PLAN remains explicitly work in progress, research only. round4_arena.sh refetches moving shallow refs and sets non-board gz files aside for its own training importer. No local training, data import, BEN job/gate, source change, self-play opening, model promotion or producer repair is authorized/needed. GenX/Azure4 stays pinnedR3. Any future new cohort excludes complete pinned training-family membership of ALL released models, including both round4 variants human/bot/arena/replay sets if released; keep current original list/proofs unchanged.",
+      "disposition": "Stu4 plays its first512 BEN-gate deals before stu4c because the control trains second; only Stu Azure3 jobs/runs change. Updated human-experiment README reports full-size/mixed-net results and uncertain rollout translation;22269 tables represent3569 deals and are not independent arena boards. Neither result nor scheduling adopts Stu4/stu4c as this producer's actor or changes its disabled gate. Keep strict frozen792c4cb Gen8, original exclusions/corpus and three normal workers. No local BEN, training, model promotion, self-play, source/settings change or peer operation. Future new cohorts exclude complete training-family membership of ALL released models; preserve the current immutable list/proofs.",
       "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
       "round4_plan": {
         "with_humans": "stu4",
         "control": "stu4c",
         "same_replay": true,
         "human_rows_draw_replay": false,
-        "gate": "Blind BEN200 in turns, same deals; nets-alone match first",
+        "gate": "Stu4 first512 blind BEN200 deals before control turn; control trains second. Scoped to Stu Azure3 gate.",
         "scope": "Stu/Azure jobs only; no local adoption"
-      }
+      },
+      "latest_results_scope": "Dated full-size net/mixed-set results; rollout matches250deals each are inconclusive.22269tables/3569deals are not22269independent boards or a full canonical family-membership proof."
     },
     "latest_versioned_research_plan_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
-      "revision": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+      "poll_start": "2026-11-14T13:23:48Z",
+      "revision": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
       "blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
       "status": "Work in progress, research only.",
       "scope": "Stu4/stu4c training and blind BEN200 alternation; importer fixes. WIP research only, no local adoption.",
       "applied": false,
-      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/research-commit-review.json"
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/research-commit-review.json"
+    },
+    "latest_gate_order_review": {
+      "poll_start": "2026-11-14T13:23:48Z",
+      "revision": "2dde3490d3e4a9518e4be550d784c951ad1a235f",
+      "scope": "Stu4 first512 blind BEN-gate deals before control turn; control trains second. Stu Azure3 only.",
+      "applied": false,
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/research-commit-review.json"
     }
   },
   "latest_scope_review": {
@@ -4413,9 +4411,9 @@
     "blob": "b0e4d289b3b2a9645d5721b6c3c3f18b39b56c71",
     "entry": "2026-11-14T10:30:00Z perf (for loop)",
     "scope": "Authority board unchanged; latest notices remain Stu/perf proposals addressed to loop.",
-    "disposition": "Continue strict frozen Gen8 main mix, three normal/zero BEN, source budget18283 and disabled legacy gates. No new rotation this poll; previously verified4665 event remains history. Stu round4 training and importer fixes are scoped research, not a collector switch or producer-side repair.",
+    "disposition": "Continue frozen Gen8 main mix, three normal/zero BEN, source budget18283 and disabled legacy gates. Stu round4 first512 BEN gate schedule and human-experiment results are scoped training work or dated reports, not a collector switch. No new rotation this poll.",
     "continuing_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
-    "current_effect": "Continue strict frozen Gen8 source792c4cb, manifestcd98, approved five-pair mix, three normal/zero BEN, target18283, immutable34092-family exclusions and disabled legacy gates. No new authority-board instruction. Stu4 (all adult2021-23 human tables) and stu4c (control) train/gate in the Stu workflow; importer moving-ref/non-board-file fixes are consumer-side research, not producer repairs. No local source/settings/models/corpus change, training, BEN job, self-play or promotion.2025 USBC and all juniors remain tests; future cohorts exclude complete all-released-model training-family membership."
+    "current_effect": "Continue strict frozen Gen8 source792c4cb, manifestcd98, approved five-pair mix, three normal/zero BEN, target18283, original34092-family exclusions and disabled legacy gates. Canonical plans/actors and authority board unchanged. Stu4 first512 BEN-gate order is a scoped Azure training schedule, not an owned gate or actor transition. Human full-size/rollout results are dated research;22269tables/3569deals are not22269 independent boards. No local training, import, model promotion, self-play, source/settings/corpus change, amendment or peer operation.2025 USBC and all juniors remain tests; future cohorts exclude complete all-released-model training-family membership."
   },
   "selfplay_alias_review": {
     "revision": "6c447e6921220477de7e00c3cef1816fea07e430",
@@ -4502,12 +4500,12 @@
     "requires_attention": false,
     "manual_restart": false,
     "latest_poll_recheck": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "current_publisher": {
         "status": "published",
-        "epoch": 1794659625.6158946,
-        "completed": 4824,
-        "commit": "1ab6303908f1720c74f69a7a02f4d0dee4ea9cdf",
+        "epoch": 1794662769.9483166,
+        "completed": 4919,
+        "commit": "7089e3f0c3d7e886b9a46dbcc398a907b48c33b4",
         "branch": "arena-gen8-candidate-codex-20261112-feed"
       },
       "disposition": "Earlier retry and its unconfirmed cause preserved. Current publication fresh; no manual restart, push or configuration change."
@@ -4566,7 +4564,7 @@
       "current_runtime_has_no_bf16_path": true
     },
     "latest_stu_bf16_bucket_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "branch": "perf/stu-20261114",
       "revision": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
       "applied": false,
@@ -4576,7 +4574,7 @@
       "disposition": "No source/BRIDGE_* switch, BF16, fork/features/suit optimization, benchmark, BEN or self-play change here."
     },
     "latest_stu_performance_scope_review": {
-      "poll_start": "2026-11-14T12:30:24Z",
+      "poll_start": "2026-11-14T13:23:48Z",
       "branch": "perf/stu-20261114",
       "revision": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
       "applied": false,
@@ -4587,7 +4585,7 @@
     }
   },
   "genx_stu_peer_review": {
-    "poll_start": "2026-11-14T12:30:24Z",
+    "poll_start": "2026-11-14T13:23:48Z",
     "branch": "feature/gen9-genx-stu",
     "revision": "43d555eb48be2d80405a5bea86b464bf9d864b19",
     "plan": {
@@ -4632,7 +4630,7 @@
     "registry_mutated": false,
     "other_producer_commands": false,
     "current_branch_revision": "9bba86b6eaba468f724a9917ae821cc196f082d1",
-    "queued_status": "Registered and running on Azure4; dated pinned snapshot 523/4000, zero failures. Read-only; no peer operation.",
+    "queued_status": "Registered and running on Azure4; dated pinned snapshot 570/4000, zero failures. Read-only; no peer operation.",
     "source_review": {
       "commit": "9bba86b6eaba468f724a9917ae821cc196f082d1",
       "message": "DDS position cache: BRIDGE_DDS_CACHE_SYNC=NORMAL lowers SQLite's sync level for one run (default FULL)\n\nFor Gen X Stu's run on azure4, which shares one Premium P10 disk with the Gen 9 cohort. At 01:33 UTC the box\nshowed 25-41% CPU idle, 4-17% iowait and 598 writes/s at 17 ms, with 166 flushes/s. Most of the writes are\nthe cohort's DDS-cache inserts, synced FULL. With WAL, NORMAL syncs at checkpoints only: a power loss can drop\nthe last entries, which are then solved again, and the file is never corrupted. Cards and results do not\nchange. Unset, the cache syncs FULL as before. Any other value is refused.\n\ntests/test_dds_cache_sync.py: FULL by default, NORMAL when asked, OFF refused. tests/test_dds_cache.py passes.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
@@ -4653,7 +4651,7 @@
     "peer_commands_executed": false,
     "registered": true,
     "registration": {
-      "revision": "9e41d7f2f77366b889fe22578718efb818050628",
+      "revision": "04968b41ec0e5008a16f91941e1ca6b0a3f923f0",
       "blob": "5255da6a2bdf7d15ce0a52169f214eaa20055414",
       "entry": {
         "key": "gen9genxstuazure4",
@@ -4672,7 +4670,7 @@
         "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
       }
     },
-    "feed_revision": "c320b58b3a34e54e10cc3c544c87a0639dd5340e",
+    "feed_revision": "8a27334cb814fcc787caee59895544f5a8cee070",
     "manifest": {
       "identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
       "source_commit": "9bba86b6eaba468f724a9917ae821cc196f082d1",
@@ -4699,24 +4697,24 @@
     },
     "state": {
       "manifest_identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
-      "completed": 523,
+      "completed": 570,
       "target": 4000,
-      "contiguous": 523,
+      "contiguous": 570,
       "by_pair": {
-        "stu3-ps~8s-32": 262,
-        "stu3-ps~71s-32": 130,
-        "stu3-ps~9a-32": 131
+        "stu3-ps~8s-32": 285,
+        "stu3-ps~71s-32": 142,
+        "stu3-ps~9a-32": 143
       },
-      "root_games": 1046,
-      "tables": 18614,
+      "root_games": 1140,
+      "tables": 20250,
       "failures": 0,
-      "epoch": 1794659390.3447099,
+      "epoch": 1794662582.6977992,
       "complete": false,
-      "blob": "aebf9320acf7415ee1dfff141bd93568c74430ad"
+      "blob": "f9643f3ba75cc32c062f02850c54ca1f4a39dd81"
     },
     "environment_file_absent": true,
     "source_provenance": "Pinned GenX R3 source/plan/actor unchanged; state is a dated read-only checkpoint.",
-    "scope": "Existing GenX/Azure4 pinnedR3 cohort. Stu4/stu4c research and importer fixes do not replace its actor or any owned actor.",
+    "scope": "Existing GenX/Azure4 pinnedR3 cohort. New Stu4 gate ordering/results do not replace any owned actor.",
     "names_and_rounds": "Will retains current names mapping until loop answers; any mapping change or round4 is a new identity/run. No local actor mapping or net change.",
     "operational_controls": "Peer optional SQLite sync and bf16/scorer source changes remain unapplied here. Keep this producer's original exact-token DDS cache rotation and disk guard.",
     "peer_status": "registered_running"
@@ -4833,22 +4831,28 @@
         "branches": [],
         "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/branch-review.json",
         "owned_stream_changed": false
+      },
+      {
+        "poll_start": "2026-11-14T13:23:48Z",
+        "branches": [],
+        "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/branch-review.json",
+        "owned_stream_changed": false
       }
     ]
   },
   "latest_mail_channel_review": {
-    "poll_start": "2026-11-14T12:30:24Z",
+    "poll_start": "2026-11-14T13:23:48Z",
     "branch": "mail/coord",
-    "revision": "92ffb845c34dbe96a0b436abf13a294ce99219b9",
+    "revision": "0aed57e90b532cbe9aaa4b47ceeca0c3c7b4bb4f",
     "readme_blob": "6b47b9ee54a345d5013a1dfaf2d0780f135b9549",
-    "status_blob": "0255e05862657411db5ebae6d289a3a11ce7acba",
+    "status_blob": "fbd9266443fd3ea6708f6b49a33967f118d919d7",
     "status": {
       "version": "1.0",
       "box": "azure1",
       "state": "waiting for the mailbox secret",
-      "last_cycle": "2026-11-14T11:38:29Z",
+      "last_cycle": "2026-11-14T12:39:29Z",
       "last_error": null,
-      "time": "2026-11-14T11:38:29Z",
+      "time": "2026-11-14T12:39:29Z",
       "sent_total": 0,
       "last_uid": 0
     },
@@ -4859,9 +4863,9 @@
     "service_commands_executed": false
   },
   "latest_human_training_scope_review": {
-    "poll_start": "2026-11-14T12:30:24Z",
+    "poll_start": "2026-11-14T13:23:48Z",
     "authority": "Max09:25-09:45 Nov14 to Stu/loop; second part cites Max09:43 medium set of other boards.",
-    "research_revision": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+    "research_revision": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
     "feed": "feed/usbc-human-all-20261114",
     "feed_revision": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
     "readme_blob": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930",
@@ -4874,20 +4878,21 @@
     "datasets_or_models_downloaded": false,
     "local_training": false,
     "local_corpus_changed": false,
-    "disposition": "Max09:39 authorizes Stu R4a/R4b: stu4 with every adult2021-23 human table and stu4c without, using the same replay; blind BEN200 gates alternate on the same deals after a nets-alone match. The updated PLAN remains explicitly work in progress, research only. round4_arena.sh refetches moving shallow refs and sets non-board gz files aside for its own training importer. No local training, data import, BEN job/gate, source change, self-play opening, model promotion or producer repair is authorized/needed. GenX/Azure4 stays pinnedR3. Any future new cohort excludes complete pinned training-family membership of ALL released models, including both round4 variants human/bot/arena/replay sets if released; keep current original list/proofs unchanged.",
+    "disposition": "Stu4 plays its first512 BEN-gate deals before stu4c because the control trains second; only Stu Azure3 jobs/runs change. Updated human-experiment README reports full-size/mixed-net results and uncertain rollout translation;22269 tables represent3569 deals and are not independent arena boards. Neither result nor scheduling adopts Stu4/stu4c as this producer's actor or changes its disabled gate. Keep strict frozen792c4cb Gen8, original exclusions/corpus and three normal workers. No local BEN, training, model promotion, self-play, source/settings change or peer operation. Future new cohorts exclude complete training-family membership of ALL released models; preserve the current immutable list/proofs.",
     "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
     "round4_plan": {
       "with_humans": "stu4",
       "control": "stu4c",
       "same_replay": true,
       "human_rows_draw_replay": false,
-      "gate": "Blind BEN200 in turns, same deals; nets-alone match first",
+      "gate": "Stu4 first512 blind BEN200 deals before control turn; control trains second. Scoped to Stu Azure3 gate.",
       "scope": "Stu/Azure jobs only; no local adoption"
-    }
+    },
+    "latest_results_scope": "Dated full-size net/mixed-set results; rollout matches250deals each are inconclusive.22269tables/3569deals are not22269independent boards or a full canonical family-membership proof."
   },
   "future_training_exclusion_scope": {
-    "poll_start": "2026-11-14T12:30:24Z",
+    "poll_start": "2026-11-14T13:23:48Z",
     "requirement": "Any future new cohort excludes complete pinned training-family membership of ALL released models, including human/bot/replay experiment families if released. Current frozen list/proofs remain unchanged; seed or row counts are not membership evidence.",
-    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T123024Z/human-training-scope-review.json"
+    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T132348Z/human-training-scope-review.json"
   }
 }
