@@ -71,3 +71,5 @@
 2026-11-14T09:16:55Z start sg8s4 g8-greedy0~g8-low0 seed 9001 first 706000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)
 2026-11-14T10:09:52Z end sg8s4: exit 0
 2026-11-14T10:09:52Z start sg8s5 g8-patient0~g8-high0 seed 9001 first 708000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)
+2026-11-14T11:02:20Z end sg8s5: exit 0
+2026-11-14T11:02:20Z start sg8s6 g8-active0~g8-passive0 seed 9001 first 710000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)
