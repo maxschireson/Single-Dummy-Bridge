@@ -4,11 +4,15 @@
     "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/smoke-guarantee/episodes"
   },
   "smoke-flat32": {
-    "count": 2,
+    "count": 16,
     "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/smoke-flat32/episodes"
   },
   "smoke-reader": {
     "count": 16,
     "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/smoke-reader/episodes"
+  },
+  "smoke-recursive32": {
+    "count": 1,
+    "path": "/home/bridgebots/work/rollout-experiments-20261114/runs/smoke-recursive32/episodes"
   }
 }

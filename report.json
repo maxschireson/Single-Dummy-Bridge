@@ -1,7 +1,31 @@
 {
-  "updated": "2026-11-14T20:57:36Z",
+  "updated": "2026-11-14T20:59:37Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
+    {
+      "name": "smoke-flat32",
+      "pair": "rx-flat32~rx-control",
+      "boards": 16,
+      "cpu_per_board": 22.63,
+      "common": {
+        "imps_per_board": -1.5625,
+        "se": 1.0082,
+        "boards": 16,
+        "won": 2,
+        "lost": 3,
+        "flat": 11
+      },
+      "native": {
+        "imps_per_board": -1.5625,
+        "se": 1.0082,
+        "boards": 16,
+        "won": 2,
+        "lost": 3,
+        "flat": 11
+      },
+      "failures": 0,
+      "boards_per_hour": 560
+    },
     {
       "name": "smoke-guarantee",
       "pair": "rx-guarantee~rx-control",
