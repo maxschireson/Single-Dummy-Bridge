@@ -54,3 +54,16 @@
 2026-11-14T04:18:36Z start sp3sc stu3-psa~stu3-psb seed 9001 first 400000 deals 20000 workers 8 --episodes --one-room (source 28b5b06, nets bf16, --recycle 20)
 2026-11-14T04:19:33Z the collection is paused for jobs-azure6-blind.txt
 2026-11-14T04:19:33Z start l3-pu stu3-pu~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source b293707, nets fp32)
+2026-11-14T04:53:20Z end l3-pu: exit 0
+2026-11-14T04:53:20Z start l3-pux stu3-pux~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source b293707, nets fp32)
+2026-11-14T04:53:30Z azure6 joins the gate: l3-pux stopped at 0 boards; jobs-azure6-ben.txt, then jobs-azure6-mix.txt
+2026-11-14T04:53:30Z the collection is paused for jobs-azure6-ben.txt
+2026-11-14T04:53:46Z BEN (200) servers listening: 8 of 8
+2026-11-14T04:53:46Z start b3-ps200d-1 stu3-ps~ben200 seed 131 first 1024 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-2 stu3-ps~ben200 seed 131 first 1056 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-3 stu3-ps~ben200 seed 131 first 1088 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-4 stu3-ps~ben200 seed 131 first 1120 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-5 stu3-ps~ben200 seed 131 first 1152 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-6 stu3-ps~ben200 seed 131 first 1184 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-7 stu3-ps~ben200 seed 131 first 1216 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T04:53:46Z start b3-ps200d-8 stu3-ps~ben200 seed 131 first 1248 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
