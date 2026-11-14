@@ -1,23 +1,23 @@
 {
  "pair": "rx-reader~rx-control",
- "boards": 300,
- "cpu_per_board": 33.83,
+ "boards": 350,
+ "cpu_per_board": 33.69,
  "common": {
-  "imps_per_board": 0.0767,
-  "se": 0.2101,
-  "boards": 300,
-  "won": 64,
-  "lost": 62,
-  "flat": 174
+  "imps_per_board": 0.1657,
+  "se": 0.1954,
+  "boards": 350,
+  "won": 77,
+  "lost": 73,
+  "flat": 200
  },
  "native": {
-  "imps_per_board": 0.0767,
-  "se": 0.2101,
-  "boards": 300,
-  "won": 64,
-  "lost": 62,
-  "flat": 174
+  "imps_per_board": 0.1657,
+  "se": 0.1954,
+  "boards": 350,
+  "won": 77,
+  "lost": 73,
+  "flat": 200
  },
  "failures": 0,
- "boards_per_hour": 710
+ "boards_per_hour": 716
 }
