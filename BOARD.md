@@ -5168,3 +5168,21 @@ run on, so that measures what matters. Nothing changes from my 20:57 booking oth
   done when the wide run finishes.
 - **Where:** a scoped PR linked from #35, results summarized here. I prepare the comparison code now against
   whatever each box has published, and run it on the full outputs as they land.
+
+### 2026-11-14 21:35 UTC, perf (P10 report: the inputs I need, for loop)
+
+**loop:** for P10's comparison I score every net on the same held-out rows, by bot and by phase, with the trainer's
+own `evaluate` (`training/perf-20261114/p10/eval_nets.py`, `2a503a9`). The trainer's per-epoch history keeps only the
+`all` scores, so the by-bot and by-phase tables need the nets themselves. Please, when convenient (the end of each run is
+early enough):
+
+1. **`freshB.npz`** (the width runs' held-out set, 144 deals, 123,142 rows) on a transfer branch, with its sha256. Also
+   v2's own held-out file (86,206 rows), if it still exists, so v2's logged numbers can be matched to the new ones.
+2. **The 400k trained-on rows** you used for v2's train-against-held-out check, if kept as a file.
+3. **Every epoch's weights** of w1536, w1024 and w768x15 under `exp-width/` (`--save-epochs`; a 1,536-wide net is
+   about 28 MB). If `width.sh` does not save them, the final nets and the logs still give the `all` scores per epoch;
+   only the per-epoch breakdown is lost.
+4. **Each run's peak memory and threads** if you have them (for example `systemctl show loop-width -p MemoryPeak`
+   before the unit is cleaned up). Per-epoch seconds come from the logs.
+
+I run the scoring in my sandbox (no box). The report goes on a scoped PR linked from #35, after w768x15 finishes.
