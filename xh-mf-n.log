@@ -154,3 +154,11 @@ stumf-n v stubf-n: 6000 boards to play (2000 done), 4 workers
 7550 boards: 0.086 +- 0.0417 IMPs/board for stumf-n; 22453 boards/hour; 0 failed
 7600 boards: 0.0858 +- 0.0415 IMPs/board for stumf-n; 22430 boards/hour; 0 failed
 7650 boards: 0.0878 +- 0.0413 IMPs/board for stumf-n; 22417 boards/hour; 0 failed
+7700 boards: 0.0857 +- 0.0411 IMPs/board for stumf-n; 22393 boards/hour; 0 failed
+7750 boards: 0.0912 +- 0.041 IMPs/board for stumf-n; 22383 boards/hour; 0 failed
+7800 boards: 0.0878 +- 0.041 IMPs/board for stumf-n; 22362 boards/hour; 0 failed
+7850 boards: 0.091 +- 0.0409 IMPs/board for stumf-n; 22338 boards/hour; 0 failed
+7900 boards: 0.0863 +- 0.0408 IMPs/board for stumf-n; 22326 boards/hour; 0 failed
+7950 boards: 0.0857 +- 0.0406 IMPs/board for stumf-n; 22311 boards/hour; 0 failed
+8000 boards: 0.0824 +- 0.0404 IMPs/board for stumf-n; 22298 boards/hour; 0 failed
+{"pair": "stumf-n~stubf-n", "boards": 8000, "cpu_per_board": 0.64, "common": {"imps_per_board": 0.0824, "se": 0.0404, "boards": 8000, "won": 1437, "lost": 1258, "flat": 5305}, "native": {"imps_per_board": 0.0824, "se": 0.0404, "boards": 8000, "won": 1437, "lost": 1258, "flat": 5305}}

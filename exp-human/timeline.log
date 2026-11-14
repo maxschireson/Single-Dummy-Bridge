@@ -43,3 +43,6 @@ m10h   865115    | 1: 1.2114/0.5054/0.0675 2: 1.2193/0.5079/0.0668 3: 1.2354/0.5
 m10h4  999953    | 1: 1.1944/0.5082/0.0663 2: 1.2063/0.5081/0.0661 3: 1.2210/0.5085/0.0658 4: 1.2245/0.5082/0.0658 (kept 1; held-out set stu_eval.npz) | 1.2976/0.5125/0.0659
 mf     87595     | 1: 1.0718/0.5109/0.0644 2: 1.0685/0.5134/0.0639 3: 1.0685/0.5134/0.0638 4: 1.0682/0.5135/0.0638 (kept 4; held-out set stu_eval.npz) | 1.2976/0.5125/0.0659
 2026-11-14T10:13:32Z done: mini
+2026-11-14T10:25:04Z stage scratch; source b4e1eae; threads 8
+/home/bridgebots/work/loop/exp-human/s10h.npz: 454954 rows of 11477 deals (train 9227, validation 1183, test 1067); rows by bot {'stup0': 410008, 'usbc': 44946}; with the rollouts' values 70%
+2026-11-14T10:26:58Z net s10: sha256 8c4274e5d6ce355e
