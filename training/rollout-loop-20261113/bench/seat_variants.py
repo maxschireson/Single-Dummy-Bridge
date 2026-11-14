@@ -53,6 +53,18 @@ VARIANTS = (
     ('others top, own drawn', dict(seat_other='top')),
     ('own top, others drawn', dict(seat='top', seat_other='draw', power_other=1.)),
 )
+# --set horizon: the rollout's recipe rather than its seats (Max, 20:49 UTC: "The training process recipe and the rollout recipe
+# seem more impactful than a bit more data"). A horizon plays that many tricks with the net and then solves the imagined
+# layout double dummy (single-dummy play on the sampled layouts, as Gen 8's search does at every trick).
+SETS = dict(seats=VARIANTS, horizon=(
+    ('draw (as played)', dict()),
+    ('draw, other seed', dict()),
+    ('horizon 1, then DD', dict(horizon=1)),
+    ('horizon 2, then DD', dict(horizon=2)),
+    ('horizon 4, then DD', dict(horizon=4)),
+    ('6 candidates', dict(cards=6)),
+    ('by IMPs', dict(objective='imps')),
+))
 STATE = {}
 
 
@@ -69,7 +81,9 @@ class Replay(x8_player.X8Player):
         return out
 
 
-def start(run, source, role):
+def start(run, source, role, which='seats'):
+    global VARIANTS
+    VARIANTS = SETS[which]
     from bridge_harness.dds import DDS
     m = json.loads((Path(run) / 'manifest.json').read_text())
     a, b = m['roster'][:2]
@@ -191,16 +205,19 @@ def main():
     ap.add_argument('--every', type=int, default=3, help='one decision in this many (by a hash of the position)')
     ap.add_argument('--lead', action='store_true', help='the opening lead too')
     ap.add_argument('--workers', type=int, default=2)
+    ap.add_argument('--set', default='seats', choices=sorted(SETS), help='which settings: the simulated seats, or the rollout\'s horizon and the like')
     ap.add_argument('--out', type=Path, help='the rows, a decision a line (appended to as boards finish)')
     ap.add_argument('--report', type=Path, nargs='+', help='print the report of rows files written earlier, and stop')
     a = ap.parse_args()
+    global VARIANTS
+    VARIANTS = SETS[a.set]
     if a.report:
         report([json.loads(line) for f in a.report for line in open(f) if line.strip()])
         return
     files = [f for run in a.runs for f in sorted(glob.glob(str(run / 'episodes' / '*.json.gz')))[:a.boards]]
     rows = []
     out = open(a.out, 'a') if a.out else None
-    with Pool(a.workers, initializer=start, initargs=(str(a.runs[0]), a.source, a.bot)) as pool:
+    with Pool(a.workers, initializer=start, initargs=(str(a.runs[0]), a.source, a.bot, a.set)) as pool:
         for part in pool.imap_unordered(one_file, [(f, a.every, a.lead) for f in files], chunksize=1):
             rows += part
             if out:
