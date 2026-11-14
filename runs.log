@@ -32,3 +32,17 @@
 2026-11-14T04:43:28Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source fc8202f, nets fp32)
 2026-11-14T04:44:28Z the collection is paused for jobs-azure1-styles.txt
 2026-11-14T04:44:28Z start h3-pi stu3-psti~stu3-pst seed 131 first 17000 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)
+2026-11-14T05:36:48Z end h3-pi: exit 0
+2026-11-14T05:36:48Z jobs-azure1-styles.txt has ended; back to the collection
+2026-11-14T05:36:48Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source 68fb9ca, nets fp32)
+2026-11-14T05:37:01Z azure1 joins the gate: jobs-azure1-ben.txt, then jobs-azure1-styles.txt
+2026-11-14T05:37:58Z the collection is paused for jobs-azure1-ben.txt
+2026-11-14T05:38:14Z BEN (200) servers listening: 8 of 8
+2026-11-14T05:38:14Z start b0-pst200b-1 stu0-pst~ben200 seed 131 first 256 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-2 stu0-pst~ben200 seed 131 first 288 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-3 stu0-pst~ben200 seed 131 first 320 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-4 stu0-pst~ben200 seed 131 first 352 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-5 stu0-pst~ben200 seed 131 first 384 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-6 stu0-pst~ben200 seed 131 first 416 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-7 stu0-pst~ben200 seed 131 first 448 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)
+2026-11-14T05:38:15Z start b0-pst200b-8 stu0-pst~ben200 seed 131 first 480 deals 32 workers 1 --common-only --episodes (source ba98377, nets fp32)

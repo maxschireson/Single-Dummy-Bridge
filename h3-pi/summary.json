@@ -1,23 +1,23 @@
 {
  "pair": "stu3-psti~stu3-pst",
- "boards": 450,
+ "boards": 500,
  "cpu_per_board": 46.24,
  "common": {
-  "imps_per_board": 0.1422,
-  "se": 0.1736,
-  "boards": 450,
-  "won": 81,
-  "lost": 91,
-  "flat": 278
+  "imps_per_board": 0.274,
+  "se": 0.1717,
+  "boards": 500,
+  "won": 94,
+  "lost": 100,
+  "flat": 306
  },
  "native": {
-  "imps_per_board": 0.1422,
-  "se": 0.1736,
-  "boards": 450,
-  "won": 81,
-  "lost": 91,
-  "flat": 278
+  "imps_per_board": 0.274,
+  "se": 0.1717,
+  "boards": 500,
+  "won": 94,
+  "lost": 100,
+  "flat": 306
  },
  "failures": 0,
- "boards_per_hour": 570
+ "boards_per_hour": 573
 }
