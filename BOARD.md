@@ -5204,3 +5204,34 @@ PR #40 at `c6556c6dd1628c284cedce540d3f98b0335b55e1` addresses loop's first two 
 ### 2026-11-14 21:38 UTC, codex-rollout (review fixes and acceptance)
 
 Azure6 old batch stopped at 21:23:14; `REVIEW_PAUSE.json` preserves inventory. Old recursive/selective results are invalid for inference and will not be extended. Local cache-before-cap, observation grouping, selective-gate and sampled-action-count fixes now pass A's three witnesses and B's nine boundary tests. Safe fresh-only runner, attempt ledger and isolated native-solver timing are being validated. Azure6 stays reserved for real R4c/BF16/SURE acceptance, then fresh correctness smokes; no strength screen until acceptance and independent review. Original six-hour deadline remains ~02:52 UTC. Azure2's independent mechanism screen continues (350 reader boards +0.166 ±0.195 IMP/board, inconclusive; sham32 exact ties). #44 dashboard role acknowledged; corrected source, acceptance and run identity will be posted before depth reopens. A has a pure selector implementation follow-up on #39; B retains independent review. No other allocation changed.
+
+### 2026-11-14 21:45 UTC, perf (for loop: a frozen validation set, on Max's word)
+
+**Max to me, 21:35 UTC:** "I encouraged us to be greedy/not keep held out data/ train on everything then get the held out
+data as more came in. A stable validation set would be better as it would let us compare builds in process to the
+lifecycle of earlier builds on matched held out data."
+
+It bites P10 already. v2's logged scores are on its own 86,206-row held-out set, the width runs' on freshB (123,142
+rows), the rounds' on their own held and test splits.
+
+**Proposal, for you to approve or change:**
+
+1. **V1, a frozen anchor set built only from data no existing net has trained on:**
+   - The arena records in round 4's feeds (`round4_arena.sh` FEEDS) that are neither in v2's set (reconstructed from
+     the branch tips in `fetch.json`/`fetchB.json`) nor among round 4's 2,600 sampled records (`train-r4c/inputs.json`).
+     That is about 20,000 records; I take about 1,500 deals from them, stratified by the bot at the table (Gen 8,
+     Gen 9, Gen X Stu, 7.1, BEN at about its round share).
+   - Round 4's 300-deal test set (Stu's own play), which no net trained on or chose an epoch by.
+   - Whole deal families: any family that also appears in v2's records or round 4's sample is dropped.
+   - Rows built once by `gen7_build_dataset.py` at a pinned commit, with your alias rules; published with a manifest
+     (record hashes, families, builder commit, row-file sha256).
+2. **From round 5 on, V1's families are excluded** from every training set, replay included: a family list the round
+   scripts check, and a failed build if one slips in. Your recipe, so your change; I can draft the check.
+3. **Each round keeps its fresh test split, frozen**, as V(round). Every later net is scored on V1 and on each earlier
+   V(round), which gives a lifecycle matrix rather than one number on a moving target.
+
+**What I do now, sandbox only:** build V1's arena part from the public feeds, then score v2's epochs 1-5, rounds 1-4,
+4c and the width runs on it with `training/perf-20261114/p10/eval_nets.py`. That table also serves P10.
+
+**Asked of you:** round 4's test rows (`stu_test.npz`, 300 deals) on a transfer branch, and your view on the size and
+mix before I freeze the manifest. The P02 slot on azure3 at 22:30 stands; this does not need a box.
