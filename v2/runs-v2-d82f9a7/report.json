@@ -1,51 +1,51 @@
 {
-  "updated": "2026-11-14T21:49:39Z",
+  "updated": "2026-11-14T21:50:40Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
     {
       "name": "smoke-flat32",
       "pair": "rx2-flat32~rx2-control",
-      "boards": 8,
-      "cpu_per_board": 23.88,
+      "boards": 16,
+      "cpu_per_board": 23.86,
       "common": {
-        "imps_per_board": -1.5,
-        "se": 1.4142,
-        "boards": 8,
+        "imps_per_board": -2.0,
+        "se": 0.9129,
+        "boards": 16,
         "won": 3,
-        "lost": 4,
-        "flat": 1
+        "lost": 9,
+        "flat": 4
       },
       "native": {
-        "imps_per_board": -1.5,
-        "se": 1.4142,
-        "boards": 8,
+        "imps_per_board": -2.0,
+        "se": 0.9129,
+        "boards": 16,
         "won": 3,
-        "lost": 4,
-        "flat": 1
+        "lost": 9,
+        "flat": 4
       },
       "failures": 0,
-      "unfinished": 4,
-      "attempts": 12,
+      "unfinished": 0,
+      "attempts": 16,
       "interpretation": "development only; not a strength or equal-time decision",
       "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
       "attempt_work": {
-        "wall_seconds": 197.35197984200113,
-        "worker_cpu_seconds": 191.345141865,
-        "solver_cpu_seconds": 6.458505000000001,
-        "inclusive_cpu_seconds": 197.803646865
+        "wall_seconds": 396.9959968840012,
+        "worker_cpu_seconds": 382.35996965699997,
+        "solver_cpu_seconds": 15.569527,
+        "inclusive_cpu_seconds": 397.92949665699996
       },
       "actors": {
         "rx2-flat32": {
           "work": {
-            "solver_cpu_seconds": 1.83,
-            "solver_wall_seconds": 2.0458589660211146,
-            "solver_calls": 15696.0,
-            "solver_hits": 788.0,
+            "solver_cpu_seconds": 4.42,
+            "solver_wall_seconds": 4.851209028031008,
+            "solver_calls": 34286.0,
+            "solver_hits": 1693.0,
             "solver_timeouts": 0.0,
-            "wall_seconds": 69.23104933799459,
-            "worker_cpu_seconds": 67.32227894900001,
-            "inclusive_cpu_seconds": 69.152278949,
-            "initialization_seconds": 4.708865261000938
+            "wall_seconds": 141.78082805300164,
+            "worker_cpu_seconds": 137.23130203500017,
+            "inclusive_cpu_seconds": 141.65130203500016,
+            "initialization_seconds": 4.994819794002979
           },
           "recursive": {},
           "precisions": [
@@ -57,15 +57,15 @@
         },
         "rx2-control": {
           "work": {
-            "solver_cpu_seconds": 4.2700000000000005,
-            "solver_wall_seconds": 4.5604726910087265,
-            "solver_calls": 50240.0,
-            "solver_hits": 5057.0,
+            "solver_cpu_seconds": 10.450000000000001,
+            "solver_wall_seconds": 11.021835102996192,
+            "solver_calls": 97326.0,
+            "solver_hits": 11235.0,
             "solver_timeouts": 0.0,
-            "wall_seconds": 122.3936254830005,
-            "worker_cpu_seconds": 118.26981515799997,
-            "inclusive_cpu_seconds": 122.53981515799997,
-            "initialization_seconds": 0.3532492710000952
+            "wall_seconds": 248.22746650199406,
+            "worker_cpu_seconds": 238.07044008899996,
+            "inclusive_cpu_seconds": 248.52044008899998,
+            "initialization_seconds": 0.6858253360023809
           },
           "recursive": {},
           "precisions": [

@@ -8,11 +8,11 @@ Development-only; these small samples do not establish strength.
 
 | Run | Boards | IMP/board ± SE | Python CPU s/board (solver excluded) | Failures |
 | --- | ---: | ---: | ---: | ---: |
-| smoke-flat32 | 8 | -1.5 ± 1.4142 | 23.88 | 0 |
+| smoke-flat32 | 16 | -2.0 ± 0.9129 | 23.86 | 0 |
 
 ## smoke-flat32 actor costs
 
 | Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| rx2-flat32 | 69.23 | 67.32 | 1.83 | 0 | 0.0 |
-| rx2-control | 122.39 | 118.27 | 4.27 | 0 | 0.0 |
+| rx2-flat32 | 141.78 | 137.23 | 4.42 | 0 | 0.0 |
+| rx2-control | 248.23 | 238.07 | 10.45 | 0 | 0.0 |
