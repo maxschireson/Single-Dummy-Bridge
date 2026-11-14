@@ -1,0 +1,1 @@
+systemctl cat boxctl | grep -E "ExecStart|Environment" | cut -c1-200; ls ~/boxctl* -d 2>/dev/null; cat ~/boxctl/VERSION 2>/dev/null; git -C ~/boxctl log -1 --format="%h %ci" 2>/dev/null; ls ~ | head -20
