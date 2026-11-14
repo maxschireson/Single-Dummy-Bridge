@@ -41,14 +41,18 @@ def locked(path):
 
 def recipe(path):
     r = json.loads(path.read_text())
-    required = {'box', 'pair', 'seed', 'workers', 'deals', 'options', 'name_prefix'}
+    required = {'box', 'seed', 'workers', 'deals', 'options', 'name_prefix'}
+    if ('pair' in r) == ('pairs' in r):
+        raise ValueError('provide exactly one of pair or pairs')
+    required.add('pair' if 'pair' in r else 'pairs')
     if set(r) != required:
         raise ValueError('recipe must contain exactly ' + ', '.join(sorted(required)))
-    if type(r['box']) is not int or not 1 <= r['box'] <= 99:
-        raise ValueError('box must be an integer 1..99')
+    if type(r['box']) is not int or not 1 <= r['box'] <= 7:
+        raise ValueError('box must be an integer 1..7')
     if r['seed'] != 9001 or type(r['seed']) is not int:
         raise ValueError('standing collection seed must be 9001')
-    if not isinstance(r['pair'], str) or not re.fullmatch(r'[A-Za-z0-9_.-]+~[A-Za-z0-9_.-]+', r['pair']):
+    pairs = r.get('pairs', [r.get('pair')])
+    if not isinstance(pairs, list) or not pairs or any(not isinstance(pair, str) or not re.fullmatch(r'[A-Za-z0-9_.-]+~[A-Za-z0-9_.-]+', pair) for pair in pairs):
         raise ValueError('invalid pair')
     if not isinstance(r['name_prefix'], str) or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,39}', r['name_prefix']):
         raise ValueError('invalid name_prefix')
@@ -93,9 +97,12 @@ def run(recipe_path, work, runner, max_jobs=None):
             if (work / 'runs' / name).exists():
                 raise RuntimeError('existing run identity: refusing to resume or overwrite')
             digest = hashlib.sha256(json.dumps(r, sort_keys=True).encode()).hexdigest()
-            state.update(next=start + r['deals'], status='reserved', name=name, first=start, deals=r['deals'], recipe_sha256=digest, recipe=r)
+            pairs = r.get('pairs', [r.get('pair')])
+            job = state.get('jobs_reserved', 0)
+            pair = pairs[job % len(pairs)]
+            state.update(jobs_reserved=job+1, pair=pair, next=start + r['deals'], status='reserved', name=name, first=start, deals=r['deals'], recipe_sha256=digest, recipe=r)
             atomic_json(state_path, state)
-            cmd = ['bash', str(runner), name, r['pair'], '9001', str(start), str(r['deals']), str(r['workers']), *r['options']]
+            cmd = ['bash', str(runner), name, pair, '9001', str(start), str(r['deals']), str(r['workers']), *r['options']]
             # Interrupted/reserved state is deliberately sticky across restarts.
             result = subprocess.run(cmd, check=False)
             state.update(status='complete' if result.returncode == 0 else 'failed', returncode=result.returncode)
@@ -106,6 +113,13 @@ def run(recipe_path, work, runner, max_jobs=None):
     return 0
 
 
+def busy_token(token):
+    path = Path(os.fsdecode(token))
+    return (path.name in ('x8_match.py', 'train_rollout_net.py')
+            or tuple(path.parts[-2:]) == ('bench', 'seat_variants.py')
+            or 'stu_rollout_experiments' in path.parts and path.suffix == '.py')
+
+
 def match_count(proc=Path('/proc')):
     count, unknown = 0, False
     for entry in proc.iterdir():
@@ -113,7 +127,7 @@ def match_count(proc=Path('/proc')):
             continue
         try:
             argv = (entry / 'cmdline').read_bytes().split(b'\0')
-            if any(Path(os.fsdecode(x)).name == 'x8_match.py' for x in argv if x):
+            if any(busy_token(x) for x in argv if x):
                 count += 1
         except FileNotFoundError:
             pass  # process exited during snapshot
@@ -135,12 +149,34 @@ def heartbeat_value(previous, active, now, boot):
                 observation='unknown' if active is None else 'observed')
 
 
+def busy_count(work):
+    if (work / 'BUSY').exists():
+        return 1, 'operator BUSY marker'
+    count = match_count()
+    if count:
+        return count, 'allowlisted process'
+    try:
+        result = subprocess.run(['systemctl', 'show', 'perf-ab.service', '--property=ActiveState', '--value'],
+                                capture_output=True, text=True, timeout=5, check=False)
+        state = result.stdout.strip()
+        if result.returncode == 0 and state in ('active', 'activating', 'reloading', 'deactivating'):
+            return 1, 'perf-ab.service'
+        if result.returncode != 0 or state not in ('inactive', 'failed'):
+            return None, 'unit observation unavailable'
+    except (OSError, subprocess.TimeoutExpired):
+        return None, 'unit observation unavailable'
+    return count, 'process and unit snapshot'
+
+
 def heartbeat(work):
     with locked(work / 'standing-heartbeat.lock'):
         path = work / 'pub' / 'collection-heartbeat.json'
         old = json.loads(path.read_text()) if path.exists() else {}
         boot = Path('/proc/sys/kernel/random/boot_id').read_text().strip()
-        value = heartbeat_value(old, match_count(), time.monotonic(), boot)
+        count, reason = busy_count(work)
+        value = heartbeat_value(old, count, time.monotonic(), boot)
+        value['busy_reason'] = reason
+        value['busy_activities'] = value.pop('match_processes')
         atomic_json(path, value)
         return 2 if value['idle_over_15m'] else 0
 
