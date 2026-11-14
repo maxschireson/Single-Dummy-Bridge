@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 6 $W/runs.log | cut -c1-170; for r in $W/runs/bu3-*; do [ -e $r/results.jsonl ] && echo "$(basename $r) $(wc -l < $r/results.jsonl)"; done | tr "\n" " "; echo; systemctl list-units "loop-*" --no-pager --plain 2>/dev/null | grep running | awk "{print \$1}" | tr "\n" " "; date -u +%T
