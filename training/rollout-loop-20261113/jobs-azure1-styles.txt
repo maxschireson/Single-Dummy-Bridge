@@ -1,10 +1,4 @@
-# Personalities of Gen 8 card play, first calibration (Max, 03:35 to 03:50 UTC on 14 November): each against Gen 8 card play
-# itself, head to head, gate seed deals 25,000 to 25,499: what the style costs. g8-<style>: among the cards within 0.1
-# tricks of its best; g8-<style>0: among exactly tied cards only. The margins are then set so the population gives up
-# about a quarter of an IMP a board on average. The collection pauses for it (rungs.sh).
-s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
-s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
-s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
-# From azure3, which plays the gate against BEN instead (04:25 UTC):
-s8-high g8-high~8p-32-v41 131 25000 500 8 --episodes
-s8-low g8-low~8p-32-v41 131 25000 500 8 --episodes
+# First (Max, 04:28 UTC on 14 November: "don't go down in a cold game or slam ... if not we should try that"): the one-net
+# bot with its rollouts choosing by IMPs, against the same bot choosing by mean tricks, head to head, gate seed deals
+# 17,000 to 17,999 (those of h3-pt), half on azure1 and half on azure5.
+h3-pi stu3-psti~stu3-pst 131 17000 500 8 --episodes

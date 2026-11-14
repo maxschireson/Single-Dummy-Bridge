@@ -86,7 +86,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
-             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put'])   # every bot that claims and mixes as Stu does
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -286,6 +286,12 @@ def main():
     # cards, and it was trained on the reference bot's own games, so some of that may be knowledge of this opponent. -put
     # is stu3-pst told nothing about who sits against it.
     bots['stu3-put'] = blind('stu3-pst', 'BLIND: told nothing about who sits against it')
+    # Max, 04:28 UTC on 14 November: "Should it really be Stu + rollouts + don't go down in a cold game or slam? Is it
+    # already if not we should try that." It is where the contract is certain (the winning-line logic, 10 cards or fewer,
+    # games, slams and doubled contracts). Where it is only likely the rollouts choose by mean tricks, so a card that risks
+    # the contract for an overtrick can win. -psti: the one-net bot with the rollouts choosing by IMPs (the stage's
+    # `objective`: each card's swing in IMPs, layout by layout, against the card with the best mean tricks), the lead too.
+    bots['stu3-psti'] = seats('stu3-pst', 'the rollouts choose by IMPs in place of mean tricks', objective='imps')
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])

@@ -26,6 +26,7 @@
   "pure-rs-p2": "pure-rs, the simulated seats drawing from the probabilities squared (power 2)",
   "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
   "pure-rs-split": "pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as the likeliest, the other side among those at least a quarter as likely",
+  "pure-rs-t-imps": "pure-rs-t with the rollouts choosing by IMPs in place of mean tricks",
   "pure-blind-t": "pure-rs-t (the round's net at the table too), told nothing about who sits against it",
   "pure-rs-mix": "pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too",
   "pure-blind": "pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown player, their cards read at the weight of an opponent never met and as a side that may play any equal card",
@@ -1601,196 +1602,52 @@
    "queue_order": 5
   },
   {
-   "name": "s8-greedy",
+   "name": "h3-pi",
    "box": "azure1",
    "branch": "transfer/rollout-loop-azure1-20261113",
-   "role": "collection",
-   "pair": "g8-greedy~8p-32-v41",
+   "role": "head-to-head",
+   "pair": "stu3-psti~stu3-pst",
    "seed": 131,
-   "first": 25000,
+   "first": 17000,
    "deals": 500,
    "records": true,
    "first_bot": {
-    "family": "other"
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t-imps"
    },
    "second_bot": {
-    "family": "other"
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
    },
    "queue_order": 5
   },
   {
-   "name": "s8-patient",
-   "box": "azure1",
-   "branch": "transfer/rollout-loop-azure1-20261113",
-   "role": "collection",
-   "pair": "g8-patient~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 6
-  },
-  {
-   "name": "s8-greedy0",
-   "box": "azure1",
-   "branch": "transfer/rollout-loop-azure1-20261113",
-   "role": "collection",
-   "pair": "g8-greedy0~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 7
-  },
-  {
-   "name": "s8-high",
-   "box": "azure1",
-   "branch": "transfer/rollout-loop-azure1-20261113",
-   "role": "collection",
-   "pair": "g8-high~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 8
-  },
-  {
-   "name": "s8-low",
-   "box": "azure1",
-   "branch": "transfer/rollout-loop-azure1-20261113",
-   "role": "collection",
-   "pair": "g8-low~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 9
-  },
-  {
-   "name": "s8-active",
+   "name": "h3-pib",
    "box": "azure5",
    "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "collection",
-   "pair": "g8-active~8p-32-v41",
+   "role": "head-to-head",
+   "pair": "stu3-psti~stu3-pst",
    "seed": 131,
-   "first": 25000,
+   "first": 17500,
    "deals": 500,
    "records": true,
    "first_bot": {
-    "family": "other"
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t-imps"
    },
    "second_bot": {
-    "family": "other"
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
    },
    "queue_order": 13
-  },
-  {
-   "name": "s8-passive",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "collection",
-   "pair": "g8-passive~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 14
-  },
-  {
-   "name": "s8-passive0",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "collection",
-   "pair": "g8-passive0~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": true,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 15
-  },
-  {
-   "name": "h41-p",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "head-to-head",
-   "pair": "stuv41-ps~stu0-ps",
-   "seed": 131,
-   "first": 5000,
-   "deals": 500,
-   "records": false,
-   "first_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v4.1",
-    "rung": "pure-rs"
-   },
-   "second_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "pure-rs"
-   },
-   "queue_order": 16
-  },
-  {
-   "name": "h41-pb",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "head-to-head",
-   "pair": "stuv41-ps~stu0-ps",
-   "seed": 131,
-   "first": 5500,
-   "deals": 500,
-   "records": false,
-   "first_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v4.1",
-    "rung": "pure-rs"
-   },
-   "second_bot": {
-    "family": "stu",
-    "round": 0,
-    "net": "v2",
-    "rung": "pure-rs"
-   },
-   "queue_order": 17
   },
   {
    "name": "h3-pm",
