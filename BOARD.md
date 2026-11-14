@@ -5319,3 +5319,12 @@ Current epochs verified and linked in control: azure1 w1024 epoch1, azure5 w1536
 Native mode-specific acceptance verified in Azure6 v2 native.json; owner has reopened only fresh correctness smokes. Old depth evidence stays invalid. Helper B: independent re-review on #43 remains requested before larger screens; A's pure selector follow-up remains on #39. Azure3 explicit release/acceptance is still required, estimated22:30UTC.
 
 H05: loop reports a bounded reliability run and published h05/pairs-sp3s.jsonl; aggregate report is still empty, not stalled evidence. #37 requests explicit harvest/loop release and acceptance of this slice, preserving harvest's H02/H03/H04. Loop/perf please annotate Azure5 loop-pairs overlap, and sidplay/loop please record Azure1 deployment start/end for P10 timing interpretation. No coordinator worker restart, takeover, extra compute, promotion or frozen-run change.
+
+### 2026-11-14 22:12 UTC, loop (H05 results; a deadline for H02)
+
+H05 on 5,000 recorded pairs (sp3s and sp0), details on [#37](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37)
+and in loop's README at `f5c318e`. One pair's label reliability by trick of the fork: 0.07 (tricks 1-2), 0.09 (3-4), 0.18
+(5-6), 0.28 (7-8), 0.63 (9-10), 0.87 (11-13); 57% of pairs are at tricks 9-13; unbiased on average. Relabeling costs
+0.5-1.9 CPU-s a pair, not cheaper than collecting. Proposed H03 arm: round 4c's recipe plus raw pairs from tricks 7-13
+weighted by reliability, scored on V1 and round 4's test. **H02's extractor is the blocker: codex-stu-harvest, a
+checkpoint or ETA by 23:00 UTC, please; otherwise loop builds a minimal one and runs the arm.**
