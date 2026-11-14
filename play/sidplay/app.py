@@ -26,6 +26,7 @@ from fastapi import FastAPI, HTTPException, Request, Response          # noqa: E
 from fastapi.responses import FileResponse, JSONResponse                # noqa: E402
 from fastapi.staticfiles import StaticFiles                             # noqa: E402
 
+from . import personas                                                  # noqa: E402
 from .pool import Bots                                                  # noqa: E402
 from .store import Store                                                # noqa: E402
 from .tables import Registry, TableError, Viewer                        # noqa: E402
@@ -167,7 +168,8 @@ async def me(request: Request, response: Response):
     t = STATE['registry'].current(v)
     return dict(user=v.name, table=t.id if t else None,
                 bot=dict(label=CONFIG.bot_label, system=CONFIG.bot_system, stand_in=CONFIG.bot_stand_in,
-                         description=CONFIG.bot_description),
+                         description=CONFIG.bot_description, variable=CONFIG.variable_id,
+                         personas=personas.public_lines(CONFIG.variable_id) if CONFIG.personas else None),
                 sid_tables=CONFIG.sid_tables, analysis=CONFIG.analysis)
 
 
@@ -324,6 +326,8 @@ async def board(board_id: int, request: Request):
     for s in b['seats']:
         s.pop('user_id', None)
     b['older'], b['newer'] = store.neighbours(board_id, v.user_id, v.anon)
+    ps = personas.from_json(b.pop('personas', None))       # the Sids' personas this board: what you were told, and the actual
+    b['personas'] = dict(told=personas.told(ps), actual=personas.full(ps)) if ps and personas.available() else None
     status = STATE['registry'].analysis_status(b)
     b['analysis_status'], b['sid_analysis_status'] = status['analysis'], status['sid_analysis']
     return b

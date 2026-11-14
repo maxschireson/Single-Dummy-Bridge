@@ -366,3 +366,8 @@ details.panel > summary h2 { display: inline; margin: 0; font-size: 1.15rem; }
   .diagram .hand .row .sym { width: 1rem; font-size: .95rem; }
   .diagram .hand .who { font-size: .78rem; }
 }
+
+.styles p { margin: .35em 0; }
+.styles h3 { margin: .6em 0 .2em; font-size: 1em; }
+details.rules { margin-top: .5em; }
+details.rules summary { cursor: pointer; color: var(--ink-soft); }

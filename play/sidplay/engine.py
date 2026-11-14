@@ -7,15 +7,19 @@ The Sid contract
 A bundle names an entry point, `bundle.json["entry"] = "module:callable"` (default `sidplay.engine:ArenaSid`),
 importable from the bundle's source checkout. `callable(bundle_dir: Path, meta: dict)` returns an object with
 
-    bid(hand, seat, dealer, vulnerability, calls) -> str
+    bid(hand, seat, dealer, vulnerability, calls, style=None) -> str
         hand: 13 card ints (0-51, bridge_harness.core order); seat, dealer: 0-3 for N E S W;
         vulnerability: 'None' | 'NS' | 'EW' | 'Both'; calls: the calls so far ('PASS', 'X', 'XX', '1C' .. '7N').
+        style: the seat's bidding style this board (a persona's, bridge_harness/bid_style.py) or None.
         Returns the next call in the same notation.
-    play(observation, facing, systems, rng) -> int
+    play(observation, facing, systems, rng, style=None) -> int
         observation: bridge_harness.core.Observation for the seat that controls the card (its own hand, dummy
         after the lead, the auction, the play so far; nothing hidden). facing: 'human' or 'sid', who the
         opponents are. systems: (NS, EW) declared system ids or None. rng: a seeded random.Random.
+        style: the controlling seat's play style this board ({'play': style, 'near': margin}) or None.
         Returns a card in observation.legal.
+    The callable may take a keyword `variable_id`: the identifier its other Sids have (personas on), which it then
+    meets them by (bridge_harness/persona.py).
 
 The object is built once per process and called for many tables in turn, so it must not keep table state between
 calls that its arguments do not determine. The server checks every call and card for legality. ArenaSid below is
@@ -46,8 +50,12 @@ class ArenaSid:
     `opponent_play_weight` '*' factor) and one facing Sid. Before each card the table's declared systems are bound
     (`seat_table`), so tables can interleave in one process."""
 
-    def __init__(self, bundle, meta):
-        bundle, spec = Path(bundle), meta['spec']
+    def __init__(self, bundle, meta, variable_id=None):
+        bundle, spec = Path(bundle), json.loads(json.dumps(meta['spec']))
+        if variable_id:         # the other Sids are this engine with personas: a guaranteed contract is still kept, so their
+            claims = (spec.get('x8') or {}).get('claims') or {}         # rollouts may be floored there as for its own kind
+            if isinstance(claims.get('opponents'), list) and variable_id not in claims['opponents']:
+                claims['opponents'].append(variable_id)
         self.spec = spec
         self.style_salt = random.SystemRandom().getrandbits(32)     # a bidding style's random share is not replayable
         try:
@@ -71,11 +79,11 @@ class ArenaSid:
         self.players = {}
         for facing in ('human', 'sid'):
             p = factory(spec, str(bundle))
-            if hasattr(p, 'meet'):
-                p.meet('human' if facing == 'human' else meta['bot'])
+            if hasattr(p, 'meet'):         # the other Sids by their identifier when they are variable (never by persona)
+                p.meet('human' if facing == 'human' else variable_id or meta['bot'])
             self.players[facing] = p
 
-    def bid(self, hand, seat, dealer, vulnerability, calls):
+    def bid(self, hand, seat, dealer, vulnerability, calls, style=None):
         import numpy as np
         from bridge_harness.bidding_env import CALLS, BidObservation, encode, legal_mask, pack_inputs
         mask = legal_mask(dealer, list(calls))
@@ -83,8 +91,8 @@ class ArenaSid:
             x = encode(BidObservation(tuple(hand), seat, dealer, vulnerability, tuple(calls)))
             xs, lengths = pack_inputs([x])
             raw, _ = self.bidder.predict(xs, lengths)
-            style = self.spec.get('bid_style')
-            if style:           # a bidding style (bridge_harness/bid_style.py, where the bundle's source has it)
+            style = style or self.spec.get('bid_style')
+            if style:           # a bidding style (a persona's this board, or the spec's): bridge_harness/bid_style.py
                 from bridge_harness import bid_style
                 u = random.Random(hash((tuple(sorted(hand)), seat, dealer, len(calls), 7919)) ^ self.style_salt)
                 return CALLS[bid_style.choose(raw[0], mask, tuple(hand), style, u.random(), u.random())]
@@ -95,14 +103,20 @@ class ArenaSid:
                                       [CALL_ID[normalize_bid(c)] for c in calls]))
         return CALLS[action] if mask[action] else 'PASS'
 
-    def play(self, observation, facing, systems, rng):
+    def play(self, observation, facing, systems, rng, style=None):
         p = self.players[facing]
         if hasattr(p, 'seat_table'):
             p.seat_table(systems)
-        return p.choose(observation, rng).card
+        if style is None:
+            return p.choose(observation, rng).card
+        p.table_styles = {observation.controller: style}      # the persona of the seat deciding, for this card only
+        try:
+            return p.choose(observation, rng).card
+        finally:
+            p.table_styles = {}
 
 
-def init_worker(bundle_dir, nice=0):
+def init_worker(bundle_dir, nice=0, variable_id=None):
     if nice:
         os.nice(nice)
     os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL', '2')
@@ -117,7 +131,8 @@ def init_worker(bundle_dir, nice=0):
     if source not in sys.path:
         sys.path.insert(0, source)
     module, name = (meta.get('entry') or DEFAULT_ENTRY).split(':')
-    _S.update(meta=meta, sid=getattr(importlib.import_module(module), name)(bundle, meta))
+    make = getattr(importlib.import_module(module), name)
+    _S.update(meta=meta, sid=make(bundle, meta, variable_id=variable_id) if variable_id else make(bundle, meta))
 
 
 def info():
@@ -136,15 +151,20 @@ def _legal_call(dealer, calls, call):
     return call
 
 
-def bid(hand, seat, dealer, vulnerability, calls):
+def bid(hand, seat, dealer, vulnerability, calls, style=None):
     started = time.perf_counter()
-    call = _legal_call(dealer, calls, _S['sid'].bid(tuple(hand), seat, dealer, vulnerability, list(calls)))
+    sid = _S['sid']
+    made = sid.bid(tuple(hand), seat, dealer, vulnerability, list(calls), style) if style else \
+        sid.bid(tuple(hand), seat, dealer, vulnerability, list(calls))
+    call = _legal_call(dealer, calls, made)
     return call, time.perf_counter() - started
 
 
-def play(observation, facing, systems, seed):
+def play(observation, facing, systems, seed, style=None):
     started = time.perf_counter()
-    card = _S['sid'].play(observation, facing, systems, random.Random(seed))
+    sid = _S['sid']
+    card = sid.play(observation, facing, systems, random.Random(seed), style) if style else \
+        sid.play(observation, facing, systems, random.Random(seed))
     if card not in observation.legal:
         raise RuntimeError('Bot chose an illegal card')
     return card, time.perf_counter() - started
@@ -162,14 +182,16 @@ def side_tricks(hands, trump, leader, trick, side):
     return best if on_move % 2 == side else remaining - best
 
 
-def sid_table(hands, dealer, vulnerability, board_id, seed, systems):
-    """Sid at all four seats on this deal: the auction, then the play. Returns the record."""
+def sid_table(hands, dealer, vulnerability, board_id, seed, systems, personas=None):
+    """Sid at all four seats on this deal: the auction, then the play. Returns the record. personas: {seat: persona}
+    for the seats that had one at the person's table (the same Sids); the seat without one plays plain Sid."""
+    from sidplay import personas as P
     from bridge_harness.core import SEATS, Board, Game, auction_contract, symbol
     started = time.perf_counter()
     calls = []
     while True:
         seat = (dealer + len(calls)) % 4
-        calls.append(bid(hands[seat], seat, dealer, vulnerability, calls)[0])
+        calls.append(bid(hands[seat], seat, dealer, vulnerability, calls, P.bid_style(personas, seat))[0])
         try:
             contract = auction_contract(dealer, calls)
             break
@@ -184,7 +206,8 @@ def sid_table(hands, dealer, vulnerability, board_id, seed, systems):
     game = Game(board)
     rng = random.Random(seed)
     while not game.done:
-        game.play(play(game.observation(), 'sid', systems, rng.getrandbits(64))[0])
+        o = game.observation()
+        game.play(play(o, 'sid', systems, rng.getrandbits(64), P.play_style(personas, o.controller))[0])
     return dict(calls=calls, contract=contract.text(), declarer=SEATS[contract.declarer], tricks=game.declarer_tricks,
                 ns_score=game.ns_score(), play=[[SEATS[s], symbol(c)] for s, c in game.history],
                 seconds=time.perf_counter() - started)

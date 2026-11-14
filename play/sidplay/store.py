@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS boards (
   imps INTEGER,
   analysis TEXT,
   sid_analysis TEXT,
-  replay_of INTEGER
+  replay_of INTEGER,
+  personas TEXT
 );
 CREATE TABLE IF NOT EXISTS participants (
   board_id INTEGER NOT NULL REFERENCES boards(id) ON DELETE CASCADE,
@@ -59,7 +60,8 @@ CREATE INDEX IF NOT EXISTS participants_anon ON participants(anon_hash);
 """
 
 # Columns added after the first release; an older file gets them on open.
-ADDED_COLUMNS = (('boards', 'analysis', 'TEXT'), ('boards', 'sid_analysis', 'TEXT'), ('boards', 'replay_of', 'INTEGER'))
+ADDED_COLUMNS = (('boards', 'analysis', 'TEXT'), ('boards', 'sid_analysis', 'TEXT'), ('boards', 'replay_of', 'INTEGER'),
+                 ('boards', 'personas', 'TEXT'))
 
 SCRYPT = dict(n=2 ** 14, r=8, p=1)
 
@@ -150,8 +152,10 @@ class Store:
     def save_board(self, record, participants):
         """record: dict of board columns. participants: [(seat, user_id or None, anon_token or None)]."""
         cols = ('table_id', 'mode', 'number', 'started', 'finished', 'dealer', 'vulnerability', 'hands', 'calls',
-                'contract', 'declarer', 'tricks', 'claimed', 'ns_score', 'play', 'seats', 'bot', 'bot_identity', 'replay_of')
-        values = [json.dumps(record[c]) if c in ('hands', 'calls', 'play', 'seats') else record.get(c) for c in cols]
+                'contract', 'declarer', 'tricks', 'claimed', 'ns_score', 'play', 'seats', 'bot', 'bot_identity', 'replay_of',
+                'personas')
+        values = [json.dumps(record[c]) if c in ('hands', 'calls', 'play', 'seats') else
+                  (json.dumps(record[c]) if record.get(c) else None) if c == 'personas' else record.get(c) for c in cols]
         cur = self.db.execute(f'INSERT INTO boards({",".join(cols)}) VALUES ({",".join("?" * len(cols))})', values)
         for seat, user_id, anon in participants:
             self.db.execute('INSERT INTO participants VALUES (?,?,?,?)',
@@ -173,7 +177,7 @@ class Store:
         if b is None:
             return None
         return dict(id=b['replay_of'] or b['id'], number=b['number'], hands=b['hands'], sid_table=b['sid_table'],
-                    sid_analysis=b['sid_analysis'])
+                    sid_analysis=b['sid_analysis'], personas=b['personas'])
 
     def _owner(self, user_id, anon_token):
         if user_id:
@@ -211,7 +215,7 @@ class Store:
         if r is None:
             return None
         d = dict(r)
-        for k in ('hands', 'calls', 'play', 'seats', 'sid_table', 'analysis', 'sid_analysis'):
+        for k in ('hands', 'calls', 'play', 'seats', 'sid_table', 'analysis', 'sid_analysis', 'personas'):
             d[k] = json.loads(d[k]) if d[k] else None
         return d
 

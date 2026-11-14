@@ -36,6 +36,17 @@ There are no partner tables, matches or events.
 - **Scoring.** The score is North–South's. After each board a background worker plays the deal with Sid at all
   four seats (Sid's own auction, Sid's play). IMPs = IMP(your score − Sid table score). So a plus means the humans
   did better than Sid would have in their seats.
+- **Personalities** (`sidplay/personas.py`; Max, 21:14 UTC on 14 Nov: "Update Sid to randomize personalities").
+  Each board the three Sids get personas from the source's `bridge_harness/persona.py`: a card-play style (tempo,
+  active, high) chosen among the cards Sid rates within 0.05 tricks of its best, a bidding style (aggressive, shape)
+  among the calls it rates at least e^-6 as likely as its best, and random shares. North gets its own; East and West
+  are a partnership (each draw correlated 0.5 with the partner's). The page tells the person North's styles at the
+  strength its partner knows them (0 to 80% of each) and East–West's as their partner describes them (usually 75% of
+  what it knows), and the actual styles after the board; the rules for drawing them are on the page. The Sids meet
+  each other as `SidVariable`, never by persona, and treat a `SidVariable` as keeping a guaranteed contract. Sid's own
+  table plays the same North, East and West with a plain South. A deal played again keeps its personas. Cost: about
+  0.24 IMP a board in the bidding (double dummy, 12,000 deals); the play margin is not calibrated. `SIDPLAY_PERSONAS=0`
+  turns them off; a source without `persona.py` plays plain Sid.
 - **Sid's systems.** Both sides declare Sid's system (`house-gen6` for `8s-32`), since the person bids with Sid. Sid
   makes no alerts and gives no explanations.
 - **Guests.** A guest's boards are tied to a browser cookie. On sign-up or sign-in in that browser they move to the
@@ -113,7 +124,8 @@ where every seat is Sid, and the analysis of a finished board. The tests and `sm
 | `deploy/` | `install.sh`, `sidplay.service`, `sidplay.env`, `expose.sh`, `caddy.sh` |
 
 **The bundle is what makes Sid swappable.** The server does not name a generation. It loads one bundle: the bot's
-spec, its artifacts, a source checkout at the commit the bot was frozen with (`stu4c-put` and `stu4-put`: `a42fe6c` on
+spec, its artifacts, a source checkout at the commit the bot was frozen with (`stu4c-put`: `109a21c` on
+`feature/bid-style-20261114`, which is `a42fe6c`'s engine plus the persona code; `stu4-put`: `a42fe6c` on
 `research/rollout-loop-20261113`; `8s-32`: `792c4cb` on `feature/gen8-prototype-20261112`), an entry point, the
 `stand_in` flag and a one-line description for the page. A recipe may list `restore` commands for models not kept in
 git (`stu4c-put`: the loop's `get_net.sh 4c <sha256>` fetches `train-r4c/policy.npz` from
@@ -183,7 +195,7 @@ moved on with no change to play).
 All through [boxctl](../docs/boxctl.md); nothing needs SSH.
 
 1. **Install** on the host box (listens on 127.0.0.1:8090 only):
-   `bash play/deploy/install.sh <app commit> a42fe6c1f9f66c17a8889e66a9d2542b60b32646 stu4c-put.json`.
+   `bash play/deploy/install.sh <app commit> 109a21c74730749bb6c6bfe16cac78bf04120bd9 stu4c-put.json`.
    It creates the unprivileged `sidplay` user and puts code, venv and bundle under `/opt/sidplay` (root-owned) and
    data in `/var/lib/sidplay`. Then it installs and starts `sidplay.service` and waits for `/api/health`. The bundle is built
    from the model releases in the source checkout, not copied from any arena run directory.
@@ -233,7 +245,10 @@ sudo sqlite3 /var/lib/sidplay/sidplay.sqlite '.backup /tmp/sidplay-backup.sqlite
 - No password reset and no email. Lost passwords mean a new account.
 - No undo, no alerts or explanations, no chat, no claims by defenders.
 - Guarantees are against any layout (hand sizes and show-outs only); the chances read the auction (Sid's scorer) but
-  not the play beyond show-outs, and only from 8 cards left.
+  not the play beyond show-outs, and only from 8 cards left. The scorer reads every bidder as unstyled: it does not
+  use the personas, nor does any Sid use what it was told of another's style beyond the identifier.
+- The persona play margin (0.05 tricks) is not calibrated, and the cost of a whole persona (bidding and play together)
+  at the table is not measured.
 - Abuse limits are basic: per-IP limits on sign-ups, sign-ins and new tables, one open table per person, a global
   table cap.
 - Every board is stored with the full deal, auction, play and the bot's identity. Human-against-Sid boards could

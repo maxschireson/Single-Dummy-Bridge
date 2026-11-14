@@ -4,8 +4,9 @@
 #   bash install.sh APP_COMMIT SOURCE_COMMIT [RECIPE]
 #
 #   APP_COMMIT     full sha of the commit carrying play/ (this server)
-#   SOURCE_COMMIT  full sha of the source the bot was frozen with (the recipe's provenance.source_commit; stu4c-put, stu4-put:
-#                  a42fe6c1f9f66c17a8889e66a9d2542b60b32646, 8s-32: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954)
+#   SOURCE_COMMIT  full sha of the source the bot was frozen with (the recipe's provenance.source_commit; stu4c-put:
+#                  109a21c74730749bb6c6bfe16cac78bf04120bd9 (with personas), stu4-put: a42fe6c1f9f66c17a8889e66a9d2542b60b32646,
+#                  8s-32: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954)
 #   RECIPE         bot recipe under play/bundles/ (default stu4c-put.json)
 #
 # Layout: /opt/sidplay/{app-<sha>,source-<sha>,bundles/<bot>-<sha>,venv} owned by root; symlinks app, source, bundle;

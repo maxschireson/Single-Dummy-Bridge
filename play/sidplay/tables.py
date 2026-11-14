@@ -5,7 +5,11 @@ win the contract the person declares and plays both hands, even when Sid-North w
 BBO do).
 
 After each board two analyses run in the analysis pool: the person's play, and Sid's own table on the same deal (Sid at
-all four seats), whose South is "Sid in your seat". A board can be played again from the person's history: the same
+all four seats), whose South is "Sid in your seat".
+
+Personas (sidplay/personas.py): each board the three Sids get personalities, North its own and East-West a partnership.
+The person sees North's as its partner knows it and East-West's as their partner describes them; the actual ones after
+the board. Sid's own table plays the same North, East and West, and a plain Sid in South. A board can be played again from the person's history: the same
 deal, dealer and vulnerability at a new table; Sid's table and its analysis are reused from the first time.
 
 Hidden information: `view` sends a viewer only the hands that viewer may see. A bot gets only the Observation
@@ -19,6 +23,7 @@ import random
 import secrets
 import time
 
+from . import personas as P
 from .rules import (SEATS, Board, Contract, Game, auction_state, board_meta, contract_text, imps, legal_calls, new_deal,
                     parse_call, result_text, score, symbol, vulnerable, winner, card as parse_card)
 
@@ -80,6 +85,7 @@ class BoardState:
         self.brief = None            # a few lines of the person's analysis for the result panel
         self.sid_brief = None
         self.error = None
+        self.personas = None         # {seat: persona} for the Sids this board (sidplay/personas.py), or None
 
 
 class Table:
@@ -174,9 +180,12 @@ class Table:
             r, self.replay = self.replay, None
             self.number = r['number']
             self.board = BoardState(r['number'], r['hands'], replay=r)
+            self.board.personas = P.from_json(r.get('personas'))      # the same Sids as the first time
         else:
             self.number += 1
             self.board = BoardState(self.number, new_deal())
+            if self.config.personas:
+                self.board.personas = P.draw(random.Random(self.rng.getrandbits(64)))
         self.bump()
         self.kick()
 
@@ -217,7 +226,7 @@ class Table:
                       play=[[SEATS[s], symbol(x)] for s, x in b.game.history] if b.game else [],
                       seats=[dict(kind=s.kind, name=s.name, user_id=s.user_id) for s in self.seats],
                       bot=self.config.bot, bot_identity=self.config.bot_identity,
-                      replay_of=b.replay['id'] if b.replay else None)
+                      replay_of=b.replay['id'] if b.replay else None, personas=P.to_json(b.personas))
         try:
             b.db_id = self.registry.store.save_board(record, [(SEATS[i], s.user_id, s.anon) for i, s in self.humans()])
         except Exception:
@@ -255,7 +264,8 @@ class Table:
     async def play_sid_table(self, b, row):
         try:
             sid = await self.registry.bots.sid_table(b.hands, b.dealer, b.vul, f'{self.id}-{b.number}-sid',
-                                                     self.rng.getrandbits(64), (self.config.bot_system, self.config.bot_system))
+                                                     self.rng.getrandbits(64), (self.config.bot_system, self.config.bot_system),
+                                                     b.personas)
         except Exception:
             log.exception('Sid table failed on %s-%s', self.id, b.number)
             b.sid = 'error'
@@ -305,9 +315,11 @@ class Table:
                     pause = self.config.trick_pause
                 seed = self.rng.getrandbits(64)
                 if kind == 'call':
-                    job = self.registry.bots.bid(b.hands[actor], actor, b.dealer, b.vul, list(b.calls))
+                    job = self.registry.bots.bid(b.hands[actor], actor, b.dealer, b.vul, list(b.calls),
+                                                 P.bid_style(b.personas, actor))
                 else:
-                    job = self.registry.bots.play(b.game.observation(), self.bot_kind(controller), self.systems(), seed)
+                    job = self.registry.bots.play(b.game.observation(), self.bot_kind(controller), self.systems(), seed,
+                                                  P.play_style(b.personas, controller))
                 job = asyncio.ensure_future(job)
                 self.thinking = SEATS[actor]
                 self.bump()
@@ -425,7 +437,8 @@ class Table:
         counted = [r for r in self.scores if not r.get('replay')]
         out = dict(id=self.id, mode=self.mode, status=self.status, version=self.version, me=SEATS[me],
                    seats=[dict(seat=SEATS[i], kind=s.kind, name=s.name) for i, s in enumerate(self.seats)],
-                   bot=dict(label=self.config.bot_label, system=self.config.bot_system, stand_in=self.config.bot_stand_in), scores=self.scores,
+                   bot=dict(label=self.config.bot_label, system=self.config.bot_system, stand_in=self.config.bot_stand_in,
+                            variable=self.config.variable_id), scores=self.scores,
                    totals=dict(boards=len(counted), imps=sum(r['imps'] or 0 for r in counted),
                                compared=sum(r['imps'] is not None for r in counted), replays=len(self.scores) - len(counted)),
                    closed_reason=getattr(self, 'closed_reason', None))
@@ -460,6 +473,8 @@ class Table:
                      declarer=SEATS[b.contract.declarer] if b.contract else None,
                      dummy=SEATS[b.contract.dummy] if b.contract else None,
                      turn=turn, legal=legal, thinking=self.thinking, claim=b.claim, error=b.error,
+                     personas=dict(told=P.told(b.personas), actual=P.full(b.personas) if b.phase == 'done' else None)
+                     if b.personas else None,
                      can_claim=bool(b.phase == 'play' and self.seats[self.declaring_controller()].matches(viewer)))
         if g is not None:
             board.update(trick=[[SEATS[s], symbol(x)] for s, x in g.trick], leader=SEATS[g.leader],

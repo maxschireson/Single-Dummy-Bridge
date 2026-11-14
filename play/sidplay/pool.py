@@ -39,7 +39,7 @@ class Bots:
             return ProcessPoolExecutor(max_workers=workers, mp_context=mp.get_context('spawn'),
                                        initializer=analysis.init_worker, initargs=(c.source, nice))
         return ProcessPoolExecutor(max_workers=workers, mp_context=mp.get_context('spawn'),
-                                   initializer=self.module.init_worker, initargs=(str(c.bundle), nice))
+                                   initializer=self.module.init_worker, initargs=(str(c.bundle), nice, c.variable_id))
 
     def pool(self, kind):
         if kind not in self.pools:
@@ -72,19 +72,21 @@ class Bots:
                 raise x
         return infos
 
-    async def bid(self, hand, seat, dealer, vul, calls):
+    async def bid(self, hand, seat, dealer, vul, calls, style=None):
+        """style: the seat's bidding style this board (its persona's), or None."""
         self.decisions += 1
-        return await self._run('interactive', self.module.bid, hand, seat, dealer, vul, calls)
+        return await self._run('interactive', self.module.bid, hand, seat, dealer, vul, calls, style)
 
-    async def play(self, observation, kind, systems, seed):
+    async def play(self, observation, kind, systems, seed, style=None):
+        """style: the controlling seat's play style this board ({'play', 'near'}), or None."""
         self.decisions += 1
-        return await self._run('interactive', self.module.play, observation, kind, systems, seed)
+        return await self._run('interactive', self.module.play, observation, kind, systems, seed, style)
 
     async def side_tricks(self, hands, trump, leader, trick, side):
         return await self._run('interactive', self.module.side_tricks, hands, trump, leader, trick, side)
 
-    async def sid_table(self, hands, dealer, vul, board_id, seed, systems):
-        return await self._run('background', self.module.sid_table, hands, dealer, vul, board_id, seed, systems)
+    async def sid_table(self, hands, dealer, vul, board_id, seed, systems, personas=None):
+        return await self._run('background', self.module.sid_table, hands, dealer, vul, board_id, seed, systems, personas)
 
     async def analyse(self, hands, contract, declarer, play, focus, names, limits=None, auction=None):
         """auction: dict(calls, dealer, vul), read with the bundle's hand-fit scorer when there is one."""

@@ -49,6 +49,8 @@ class Config:
     bot_stand_in: bool      # the installed bot is standing in until Sid itself exists
     bot_description: str | None
     source: str | None      # path of the source checkout providing bridge_harness
+    personas: bool          # each board the Sids get personas (sidplay/personas.py), where the source has them
+    variable_id: str | None # the identifier every Sid has when personas are on ('SidVariable'); None when off
 
     @classmethod
     def from_env(cls):
@@ -86,4 +88,16 @@ class Config:
             bot_stand_in=bool(meta.get('stand_in', engine == 'fake')),
             bot_description=meta.get('description'),
             source=source,
+            personas=os.environ.get('SIDPLAY_PERSONAS', '1') == '1',
+            variable_id=None,
         )
+
+    def __post_init__(self):
+        """Personas need the source's bridge_harness/persona.py; without it the server plays plain Sid."""
+        if self.personas:
+            import sys
+            if self.source and self.source not in sys.path:
+                sys.path.insert(0, self.source)
+            from . import personas
+            self.personas = personas.available()
+        self.variable_id = os.environ.get('SIDPLAY_VARIABLE_ID', 'SidVariable') if self.personas else None

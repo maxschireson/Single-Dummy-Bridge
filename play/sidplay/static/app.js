@@ -199,6 +199,34 @@ async function newTable(replay) {
   } catch (e) { toast(e.message); }
 }
 
+/* ---- personalities (sidplay/personas.py) ------------------------------------------- */
+function personaRules() {
+  const lines = app.me && app.me.bot.personas;
+  if (!lines) return null;
+  return h('details', { class: 'rules' }, h('summary', {}, 'How each Sid’s personality is drawn'),
+    lines.map(t => h('p', { class: 'small' }, t)));
+}
+
+function weights(style) {
+  return Object.entries(style).filter(([k]) => k !== 'random' && k !== 'near').map(([k, v]) => `${k} ${v > 0 ? '+' : ''}${v}`).join(', ');
+}
+
+function stylesPanel(p, tag) {
+  if (!p) return null;
+  const t = p.told || {};
+  const actual = p.actual;
+  return h(tag || 'div', { class: 'panel styles' }, h('h2', {}, 'Styles this board'),
+    h('p', {}, h('span', { class: 'muted' }, 'North, your partner, as you know it: '), t.N),
+    h('p', {}, h('span', { class: 'muted' }, 'East and West, as their partner describes them: '),
+      'East ', t.E, '. West ', t.W, '.'),
+    actual ? h('div', {}, h('h3', {}, 'Their actual styles'),
+      ['N', 'E', 'W'].map(s => h('p', {}, h('b', {}, SEAT_NAME[s]), ': ', actual[s].text,
+        h('span', { class: 'muted small' }, ` (play ${weights(actual[s].play)}, random ${Math.round(actual[s].play.random * 100)}%; `,
+          `bidding ${weights(actual[s].bid)}, random ${Math.round(actual[s].bid.random * 100)}%)`))),
+      h('p', { class: 'muted small' }, 'Each board draws new personalities, so these say nothing about the next one.')) : null,
+    personaRules());
+}
+
 function renderLobby() {
   const open = app.me && app.me.table;
   const actions = open
@@ -211,6 +239,7 @@ function renderLobby() {
       h('div', {},
         h('h1', {}, 'Play bridge with Sid'),
         h('p', {}, 'Sid is a bridge program in development. You sit South with Sid as your partner, against two more Sids. No account needed.'),
+        app.me && app.me.bot.personas ? h('p', {}, 'Each board every Sid gets its own personality in the bidding and the play. You are told your partner’s, as a partner knows it, and what the opponents’ partner says about theirs.') : null,
         app.me && app.me.bot.stand_in ? h('p', { class: 'notice' }, `Sid itself is not released yet. Until it is, its seats are played by ${app.me.bot.label}, the project’s current arena bot.`) : null,
         h('div', { class: 'actions' }, actions),
         app.me && !app.me.user ? h('p', { class: 'muted' }, 'Your boards stay with this browser. ',
@@ -428,6 +457,7 @@ function renderTable(v) {
 
   const side = h('aside', {},
     h('div', { class: 'panel' }, h('h2', {}, 'Auction'), auctionTable(b.calls, b.dealer, b.vul, b.phase === 'auction')),
+    stylesPanel(b.personas),
     travellerPanel(v),
     h('p', {}, h('button', { class: 'linklike', onclick: leaveTable }, 'Leave this table')));
 
@@ -680,6 +710,7 @@ async function renderReplay(id, shown) {
           : h('p', { class: 'muted' }, 'Sid’s own table was not played on this deal.'),
         d.imps !== null && d.imps !== undefined ? h('p', {}, h('span', { class: 'muted' }, 'IMPs against Sid in your seat '), h('span', { class: 'imps' }, impsEl(d.imps)),
           d.replay_of ? h('span', { class: 'muted' }, ' (played again: not counted)') : null) : null)),
+    d.personas ? stylesPanel(d.personas) : null,
     yours, sids);
   if (d.analysis_status === 'pending' || d.sid_analysis_status === 'pending') {
     await sleep(3000);

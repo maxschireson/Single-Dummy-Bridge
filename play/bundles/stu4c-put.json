@@ -11,10 +11,12 @@
  ],
  "provenance": {
   "source_repository": "https://github.com/maxschireson/Single-Dummy-Bridge",
-  "source_branch": "research/rollout-loop-20261113",
-  "source_commit": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+  "source_branch": "feature/bid-style-20261114",
+  "source_commit": "109a21c74730749bb6c6bfe16cac78bf04120bd9",
   "loop_label": "Stu round 4 ladder (round 4's control net (without the human tables) inside and at the table, its own side read as stup0): pure with the opening lead from rollouts on the settings of every other card; BLIND: told nothing about who sits against it",
-  "note": "configs/loop-bots.json[\"stu4c-put\"] at a42fe6c (the R4 gate\u2019s blind bot: round 4\u2019s control net, without the human tables, inside the rollouts and at the table, told nothing about its opponents), resolved on its base 6-32 as scripts/gen8_match.build_manifest does; the base fields come from the prepared Gen X Stu manifest (transfer/gen9-g9-genx-stu-azure4-azure4-20261114, run/manifest.json, bots[\"stu3-ps\"] less its loop overrides). The net: train-r4c/policy.npz on transfer/rollout-loop-azure5-20261113, fetched by restore. Max, 14 Nov 07:40 PST: \"use r4c until further notice\"."
+  "note": "configs/loop-bots.json[\"stu4c-put\"] at a42fe6c (the R4 gate\u2019s blind bot: round 4\u2019s control net, without the human tables, inside the rollouts and at the table, told nothing about its opponents), resolved on its base 6-32 as scripts/gen8_match.build_manifest does; the base fields come from the prepared Gen X Stu manifest (transfer/gen9-g9-genx-stu-azure4-azure4-20261114, run/manifest.json, bots[\"stu3-ps\"] less its loop overrides). The net: train-r4c/policy.npz on transfer/rollout-loop-azure5-20261113, fetched by restore. Max, 14 Nov 07:40 PST: \"use r4c until further notice\".",
+  "previous_source_commit": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+  "source_note": "Max, 21:14 UTC on 14 Nov: \"Update Sid to randomize personalities\". The source moved from a42fe6c to the persona branch (PR 42 on research/rollout-loop-20261113): bridge_harness/ is unchanged from a42fe6c except persona.py, bid_style.py and the per-seat persona hooks in Gen7Player and X8Player, which are inert for a seat without a persona (tests: test_style.py, test_x8.py), and X8Player.meet, which tells a blind bot a variable population's identifier (SidVariable). The spec is unchanged."
  },
  "spec": {
   "samples": 32,
