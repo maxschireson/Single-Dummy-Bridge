@@ -1,0 +1,23 @@
+{
+ "pair": "stu3-psti~stu3-pst",
+ "boards": 50,
+ "cpu_per_board": 45.19,
+ "common": {
+  "imps_per_board": 0.44,
+  "se": 0.3638,
+  "boards": 50,
+  "won": 9,
+  "lost": 4,
+  "flat": 37
+ },
+ "native": {
+  "imps_per_board": 0.44,
+  "se": 0.3638,
+  "boards": 50,
+  "won": 9,
+  "lost": 4,
+  "flat": 37
+ },
+ "failures": 0,
+ "boards_per_hour": 547
+}
