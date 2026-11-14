@@ -1,57 +1,57 @@
 {
   "pair": "rx2-recursive32-c1~rx2-control",
-  "boards": 12,
-  "cpu_per_board": 33.96,
+  "boards": 16,
+  "cpu_per_board": 33.95,
   "common": {
-    "imps_per_board": -1.8333,
-    "se": 1.2603,
-    "boards": 12,
+    "imps_per_board": -2.4375,
+    "se": 1.1104,
+    "boards": 16,
     "won": 4,
-    "lost": 3,
-    "flat": 5
+    "lost": 6,
+    "flat": 6
   },
   "native": {
-    "imps_per_board": -1.8333,
-    "se": 1.2603,
-    "boards": 12,
+    "imps_per_board": -2.4375,
+    "se": 1.1104,
+    "boards": 16,
     "won": 4,
-    "lost": 3,
-    "flat": 5
+    "lost": 6,
+    "flat": 6
   },
   "failures": 0,
-  "unfinished": 4,
+  "unfinished": 0,
   "attempts": 16,
   "interpretation": "development only; not a strength or equal-time decision",
   "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
   "attempt_work": {
-    "wall_seconds": 419.5497520420022,
-    "worker_cpu_seconds": 408.051291766,
-    "solver_cpu_seconds": 12.24143,
-    "inclusive_cpu_seconds": 420.292721766
+    "wall_seconds": 563.0012392320023,
+    "worker_cpu_seconds": 543.7951131909999,
+    "solver_cpu_seconds": 20.251587,
+    "inclusive_cpu_seconds": 564.046700191
   },
   "actors": {
     "rx2-recursive32-c1": {
       "work": {
-        "solver_cpu_seconds": 5.668773999999999,
-        "solver_wall_seconds": 5.9336514879851165,
-        "solver_calls": 33410.0,
-        "solver_hits": 1760.0,
+        "solver_cpu_seconds": 8.39396,
+        "solver_wall_seconds": 8.76781544199548,
+        "solver_calls": 45264.0,
+        "solver_hits": 2356.0,
         "solver_timeouts": 0.0,
-        "wall_seconds": 230.28350354498798,
-        "worker_cpu_seconds": 224.5246239120001,
-        "inclusive_cpu_seconds": 230.19339791200008,
-        "initialization_seconds": 4.822087162998287
+        "wall_seconds": 305.8453678839933,
+        "worker_cpu_seconds": 297.31199994200017,
+        "inclusive_cpu_seconds": 305.70595994200016,
+        "initialization_seconds": 4.960546646998409
       },
       "recursive": {
-        "opportunities": 343623.0,
-        "calls": 409.0,
+        "opportunities": 463266.0,
+        "calls": 548.0,
         "cache_hits": 7.0,
-        "changed": 1284.0,
-        "net_rows": 115647.0,
-        "child_wall_seconds": 92.54024346400001,
-        "argmax_different": 1040.0,
-        "applied_rows": 2327.0,
-        "budget_rejected": 65852.0
+        "changed": 1700.0,
+        "net_rows": 152976.0,
+        "child_wall_seconds": 122.14793455900144,
+        "argmax_different": 1390.0,
+        "applied_rows": 3213.0,
+        "budget_rejected": 89644.0
       },
       "precisions": [
         [
@@ -62,15 +62,15 @@
     },
     "rx2-control": {
       "work": {
-        "solver_cpu_seconds": 5.99,
-        "solver_wall_seconds": 6.415671146018212,
-        "solver_calls": 68619.0,
-        "solver_hits": 8540.0,
+        "solver_cpu_seconds": 11.07,
+        "solver_wall_seconds": 11.630115813034536,
+        "solver_calls": 94673.0,
+        "solver_hits": 11693.0,
         "solver_timeouts": 0.0,
-        "wall_seconds": 182.89208361199508,
-        "worker_cpu_seconds": 177.08514127099994,
-        "inclusive_cpu_seconds": 183.0751412709999,
-        "initialization_seconds": 0.5138766009995379
+        "wall_seconds": 250.16402953299894,
+        "worker_cpu_seconds": 239.39766595599997,
+        "inclusive_cpu_seconds": 250.46766595599993,
+        "initialization_seconds": 0.6654974160001075
       },
       "recursive": {},
       "precisions": [
