@@ -61,10 +61,11 @@ class Replay(x8_player.X8Player):
     token, kept = None, None
 
     def read_layouts(self, o, view, source, rng, n):
-        if self.kept is not None and self.kept[0] == self.token:
+        key = (self.token, len(o.history), n)
+        if self.kept is not None and self.kept[0] == key:
             return self.kept[1]
         out = super().read_layouts(o, view, source, rng, n)
-        self.kept = (self.token, out)
+        self.kept = (key, out)
         return out
 
 
@@ -75,6 +76,7 @@ def start(run, source, role):
     me, other = (a, b) if role == 'candidate' else (b, a)
     p = Replay(m['bots'][me], source, m['bots'][m['audit_references'][me]])
     p.meet(other)
+    p.reference = None          # no audit: it would play the decision once more with the claims off, on a copy of this player
     base = p.x8
     configs = []
     for _, change in VARIANTS:
