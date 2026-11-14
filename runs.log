@@ -37,3 +37,5 @@
 2026-11-13T22:53:38Z start sps0c stu0-psa~stu0-psb seed 9001 first 300000 deals 20000 workers 8 --episodes --one-room (source 1a40de0, nets bf16, --recycle 20)
 2026-11-14T00:43:16Z sps0c stopped: the collection moves to sp3sc (round 3's net in the rollouts)
 2026-11-14T00:43:16Z start sp3sc stu3-psa~stu3-psb seed 9001 first 400000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets bf16, --recycle 20)
+2026-11-14T00:47:11Z the collection is paused for jobs-azure6-h3p.txt
+2026-11-14T00:47:11Z start h3-p stu3-ps~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source 545893b, nets fp32)
