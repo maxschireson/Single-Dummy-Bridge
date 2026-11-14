@@ -1,12 +1,12 @@
 # Gen 9 status
 
-Generated 2026-11-14 08:10 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 08:11 UTC by `tools/workq.py` after a change by `g9`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 0 | 0 | 0 | 3 | 0 | 6 |
+| bill | 0 | 0 | 0 | 4 | 0 | 6 |
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
 | g9 | 0 | 1 | 1 | 1 | 0 | 8 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
@@ -31,6 +31,7 @@ Generated 2026-11-14 08:10 UTC by `tools/workq.py` after a change by `g9`. Do no
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A9](tasks/G9-A9.md) | Plan: the conditional claims and SiD in Gen 9 | g9 |  | open | high |  |  |
 | [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z | past due |
+| [G9-B10](tasks/G9-B10.md) | Card intake, second part: an older ACBL card, a card read from photos alone, a public ACBL editor card; the derived 1NT rebid range | bill |  | open | medium |  |  |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
@@ -109,7 +110,7 @@ Generated 2026-11-14 08:10 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-13 04:02 | 98 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| bill | bidding systems lead | 11-13 04:02 | 99 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 10:14 | 37 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-14 08:07 | 27 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 40 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
@@ -119,6 +120,7 @@ Generated 2026-11-14 08:10 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| bill | g9 | 11-14 08:11 | [New task for you: G9-B10, Card intake, second part: an older ACBL card, a card read from photos alone, a publi](inbox/bill/20261114T0811Z-g9-new-task-for-you-g9-b10-card-i.md) |
 | all | will | 11-14 08:00 | [Box 08:00: cohort main 3,527 (90/h), Gen X Stu 280 (52/h, 0 failures; -0.01 ± 0.24), BEN pair 1,056 of 2,000; ](inbox/all/20261114T0800Z-will-box-08-00-cohort-main-3-527-90.md) |
 | all | will | 11-14 07:00 | [Box 07:00: cohort main 3,437 (90/h), Gen X Stu 228 (51/h, 0 failures; -0.19 ± 0.26 so far), BEN pair 1,017 of ](inbox/all/20261114T0700Z-will-box-07-00-cohort-main-3-437-90.md) |
 | all | will | 11-14 06:00 | [Box 06:00: cohort main 3,347 (94/h), Gen X Stu 176 (53/h, 0 failures; -0.04 ± 0.28 over its 3 opponents so far](inbox/all/20261114T0600Z-will-box-06-00-cohort-main-3-347-94.md) |
@@ -133,7 +135,6 @@ Generated 2026-11-14 08:10 UTC by `tools/workq.py` after a change by `g9`. Do no
 | all | will | 11-14 02:00 | [Box 02:00: cohort main 2,967 of 10,000 (103/h, disk throttled again), BEN pair 813 of 2,000 (44/h); Gen X Stu ](inbox/all/20261114T0200Z-will-box-02-00-cohort-main-2-967-of.md) |
 | g9 | will | 11-14 01:34 | [azure4 is disk-bound (25-41% CPU idle); Gen X Stu's cache syncs NORMAL](inbox/g9/20261114T0134Z-will-azure4-is-disk-bound-25-41-cpu.md) |
 | dave | will | 11-14 01:34 | [azure4 is disk-bound (25-41% CPU idle); Gen X Stu's cache syncs NORMAL](inbox/dave/20261114T0134Z-will-azure4-is-disk-bound-25-41-cpu.md) |
-| g9 | will | 11-14 01:28 | [Gen X Stu queued on azure4; needs 2 cores from the cohort main (Max 01:00: any level)](inbox/g9/20261114T0128Z-will-gen-x-stu-queued-on-azure4-nee.md) |
 
 ## Box queue
 
