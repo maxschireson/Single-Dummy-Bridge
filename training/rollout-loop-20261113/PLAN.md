@@ -316,6 +316,8 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 | 17:57 | "We should continue collecting gen (whichever)"; "If it's by rows we should make sure we have full rows. Do we have enough disk or can we reorganize the process?" | Gen 8's self-play on azure1 and azure3; rows compressed and unmerged (disk is not the limit, the trainer's memory is); the arena's fork records give 2.7 times the rows a CPU-second |
 | 18:02 | "we can reconfigure our mix of azure boxes if we need more memory or disk" | proposed, not done: azure5 to 16 cores and 128 GB; held until the width test says whether a larger net pays |
 | 17:43 | "Do we need a wider net?" | the pool-trained net has no gap between trained-on and held-out rows; the width test (1,536 wide on the pool) on azure5 |
+| 18:53 to 19:52 | two boxes for one larger within the quota; "Go!"; quota raised to 64, "allocate a 7th box / larger"; "Go B" | azure5 resized to Standard_F16as_v6 (16 cores, 64 GB; the width test restarted there at 19:59 UTC); azure6 stopped and started again (a deallocated box still counts against the quota, so the first resize failed); a seventh box, Bridgebots7 (Standard_F8as_v6), to collect |
+| 20:02 | review the efficiency proposals (PR 35, P01 to P10) and tell the proposer | approved P01, P02 (bounded: 3 box-hours on Bridgebots7 before it collects), narrow P03, P04, P08 (plan only), P09 (in effect), P10 (started); deferred P05, P06, P07 (PR 35 comment) |
 
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 

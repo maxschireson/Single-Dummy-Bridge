@@ -482,7 +482,7 @@ Level after one epoch of five, with the rate still high.
 adopt. I also don't know if it's even worth the long test; maybe we only do that every few releases?"; 17:57: "New collections
 should flip"). stu4c plays the one-net self-play on azure2 (`sp4t`, from 17:41) and azure6 (`sp4tb`, 17:43). The BEN gate was
 stopped at 698 deals of stu4c: on its first 512, +0.01 +- 0.17 against BEN and +0.10 +- 0.20 by deal against round 3 (it read
-+0.36 at 306 deals and +0.17 at 466). A full gate (2,048 deals, 5.3 hours of a box) resolves 0.10; a round moves the net alone
++0.36 at 306 deals and +0.17 at 466). A full gate (2,048 deals, 5.3 hours of a box) has a paired standard error of about 0.10, so a 95% interval of about +-0.2 (at 512 deals the paired SE was 0.200 against 0.174 and 0.177 for the two absolute scores: pairing helps little against BEN); a round moves the net alone
 by about 0.1 and the bot by a quarter of that, so rounds are judged on the offline test and the nets-alone match, and the gate
 is kept for a change of mechanism or a release.
 
