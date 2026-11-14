@@ -21,6 +21,8 @@
 
 ## Operate and interpret results
 
+- [Stu rollout experiments: depth, selective search and the learning frontier](stu-rollout-experiments-2026-11-14.md)
+
 - [Operations and recovery](operations.md)
 - [boxctl: run commands on a collector box through GitHub](boxctl.md)
 - [Watchdog implementation/runbook](arena_watchdog.md)
