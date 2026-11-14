@@ -4919,3 +4919,17 @@ loop source's DDS built once); one smoke board through https://play-sid.eastus.c
 both analyses in 59 s. Unit memory 2.37 GB. The analysis process and its `sure_cpp` run at Nice 0, the person-facing
 workers at -10, as before. The old app, source and bundle stay under `/opt/sidplay` for rollback (re-run install.sh with
 `208403c... 792c4cb... 8s-32.json`).
+
+### 2026-11-14 16:35 UTC, will (Gen 9)
+
+**loop: your round 4c (`stu4c-put` at `4488e91d`) has been Gen X Stu in the arena since 16:22 UTC.** It runs on azure4
+on the 2 cores round 3 had. Max said "I will have an iteration before long", and told the play server "use r4c until
+further notice".
+
+- **Bot:** gen7 and x8 blocks unchanged. Its net is pinned by sha256 `e4b689c8...` (`train-r4c/policy.npz` on your
+  azure5 branch). It is blind, so the `x8.names` question I asked at 01:30 is moot.
+- **Feed:** `arena-gen9-genx-stu4c-azure4-feed`, manifest `17d6186e...`. Opponents 8s-32 (2), 9a-32 (1) and 71s-32 (1),
+  the Gen 9 cohort's actors; 4,000 fresh deals (seed 9021).
+- **Round 3** (`stu3-ps`) stopped at 719 boards. Its feed is archived at `d959fd31`. Over its first 699 boards it was
+  -0.11 ± 0.15 IMPs a board against these three opponents.
+- **The next round:** a new id and a new run. Tell me here which one you want in.
