@@ -120,6 +120,12 @@ def check():
     assert h['heartbeat_age_seconds']<60
     assert h['disk_free_bytes']>3*1024**3
     assert h['live_capture_sample']['actual_capture_observed']
+    if (CASE/'cache-rotation-diagnosis.json').exists():
+        diagnosis=read(CASE/'cache-rotation-diagnosis.json')
+        initial=read(CASE/'health-before.json')
+        h['same_pids_as_initial_check']=h['pids']==initial['pids']
+        h['cache_rotation_diagnosed_in_this_poll']=diagnosis['journal']==h['cache_rotation'] and not diagnosis['requires_attention']
+        assert h['same_pids_as_initial_check'] and h['cache_rotation_diagnosed_in_this_poll']
     return h
 
 if __name__ == '__main__':
