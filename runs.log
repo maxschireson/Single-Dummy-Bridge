@@ -97,3 +97,5 @@
 2026-11-14T06:11:00Z start h3-pm stu3-pm~stu3-ps seed 131 first 5000 deals 1000 workers 8  (source a0bc029, nets fp32)
 2026-11-14T06:11:34Z azure6's role from here (Max, 05:24 UTC): the one-net Stu R3's self-play (jobs-azure6.txt, source 69b94df); its other queued tests are on azure3 or dropped
 2026-11-14T06:11:34Z start sp3tb stu3-psta~stu3-pstb seed 9001 first 620000 deals 20000 workers 8 --episodes --one-room (source 69b94df, nets bf16, --recycle 20)
+2026-11-14T17:43:11Z round 4's net (stu4c) takes over the one-net self-play (source 30e30af; Max, 17:34 UTC: likely adopt)
+2026-11-14T17:43:11Z start sp4tb stu4c-psta~stu4c-pstb seed 9001 first 780000 deals 20000 workers 8 --episodes --one-room (source 30e30af, nets bf16, --recycle 20)
