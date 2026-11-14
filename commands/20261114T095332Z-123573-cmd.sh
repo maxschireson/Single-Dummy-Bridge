@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep -v "^{" $W/human.log | tail -n 25 | cut -c1-400; tail -n 2 $W/runs.log | cut -c1-200; ls $W/runs/xh-hf-n 2>/dev/null; wc -l $W/runs/xh-*/results.jsonl 2>/dev/null | tail -3; date -u +%T
