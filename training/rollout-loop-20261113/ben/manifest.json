@@ -1,0 +1,13 @@
+{
+  "what": "BEN as the arena runs it on azure3 (the lanes' BEN (64) config), read from that box at 04:36 UTC on 14 November 2026, for installing the same BEN on other boxes (ben_install.sh)",
+  "repository": "https://github.com/lorserker/ben",
+  "commit": "9b5f43104aeac713a80b73513f2f2d6daf9f8769",
+  "tree_sha256": "ef4b34f4a664ea8b55701064ed0a313a70d6900b3b2bf59987720a95f404cb5d",
+  "tree_sha256_of": "git ls-files -z src bin models/TF2models | xargs -0 sha256sum | sha256sum (359 files)",
+  "lane_config": "ben-64-lane.conf",
+  "lane_config_sha256": "6586bb6492f1c43526ca547407afe00b30adb166e5242ecb44a51772ddfc2ac2",
+  "requirements": "requirements.txt",
+  "pip_freeze_sorted_sha256": "00877fcd3a99a9be5ca7e23c2d5c6ad711b3c91a7b7bc9e81bf7c6b213d24101",
+  "python": "3.12.3",
+  "files": "files.sha256 (the 16 models the config names, and bin/libdds.so)"
+}
