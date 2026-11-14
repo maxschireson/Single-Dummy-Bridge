@@ -27,6 +27,10 @@
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
+## Research proposals for review
+
+- [Stu rollout harvesting and frontier curriculum](stu-rollout-harvesting-2026-11-14.md): existing internal-pair evidence, extraction and label requirements, controlled experiments, and H01–H06 decisions for the Stu lead.
+
 ## Historical material
 
 Dated launch documents and design PDFs preserve what was believed or planned at the time.
