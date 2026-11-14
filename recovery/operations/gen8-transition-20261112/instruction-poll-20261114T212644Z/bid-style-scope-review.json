@@ -1,0 +1,19 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "pr42": {
+    "number": 42,
+    "title": "Bidding styles (aggressive, shape) and personas with knowledge/disclosure dials",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:20:30Z",
+    "head": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+    "base": "research/rollout-loop-20261113",
+    "draft": false
+  },
+  "guide_blob": "5c1da4e7e78d42d8c95345ef402692c197dd5c24",
+  "approval_comment_id": 6884372234,
+  "status": "Approved for next loop source update; PR targets research branch and remains unmerged.",
+  "existing_actors": "No loop/site spec sets bid_style; existing argmax unchanged per review. Styled common-only bidder identity needs future explicit binding; not a current owned issue.",
+  "owned_source_or_bidding_changed": false,
+  "applied": false
+}

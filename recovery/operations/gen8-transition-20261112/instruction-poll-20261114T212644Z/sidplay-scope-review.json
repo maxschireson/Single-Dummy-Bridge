@@ -1,0 +1,25 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "pr33": {
+    "number": 33,
+    "title": "play/: play bridge with Sid: analysis, Sid in your seat, history, replays; Sid = SiD (rollout) Stu R4c",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T19:50:32Z",
+    "head": "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794",
+    "base": "main",
+    "draft": false
+  },
+  "reviews": [],
+  "scope": "PR33 open/unmerged at d28a44d: optional bundle bid_style adapter, inert unless spec sets one; installed Sid still argmax per commit. Public-server scope, no owned bidder/auction changes.",
+  "deployed_or_tested_here": false,
+  "commands_on_azure1": false,
+  "commits": [
+    {
+      "sha": "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794",
+      "date": "2026-11-14T19:50:20Z",
+      "message": "play: honour a bundle's bid_style (inert unless the spec sets one)\n\nWhen the bundle spec carries a bid_style (bridge_harness/bid_style.py in the\nbundle's source), Sid's bidder chooses among close calls by that style, with\na per-process salt so its random share is not replayable. No installed\nbundle sets one; the site's Sid still bids argmax.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    }
+  ],
+  "rechecked_unchanged": true
+}

@@ -1,0 +1,86 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "revision": "9e480765ddee4953499629fa0c4a16515a582064",
+  "blob": "b4a3844a1e45395919b3c900c85520270a153121",
+  "new_entries_since_prior_poll": 14,
+  "latest_entry": "2026-11-14T21:35:00Z perf, published21:20:31Z",
+  "scope": "Stu owner handoffs, Azure2/Azure6 experiment transitions, P02 moved to Azure3 after release, P10 inputs; Azure-only no-collection status and separate experiment pause.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
+  "disposition": "All named Azure hosts are occupied by Stu training/bench/experiments; that does not direct this independent producer to stop. Current general authority keeps frozen Gen8 collecting. Recursive/selective7c79acf is void for promotion and paused by its coordinator; own runtime does not adopt that driver. P/H implementation, fallback namespace and styles are scoped to named owners, not primary collection changes.",
+  "board_commits": [
+    {
+      "sha": "9e480765ddee4953499629fa0c4a16515a582064",
+      "date": "2026-11-14T21:20:31Z",
+      "message": "perf: P10 report inputs requested (held-out set, epoch weights, memory)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "04071730d38061ac36b2970ab3e1244e5b25b8ca",
+      "date": "2026-11-14T21:18:13Z",
+      "message": "perf: P02 on azure3 from about 22:30 (option a); P10 post-run reporting taken\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "225e9ff3993b3fffc279f96d531d2386e4357152",
+      "date": "2026-11-14T21:04:55Z",
+      "message": "loop: azure3 double-booked (P02's slot moves); the rollout-recipe bench; boxes now\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "1f2f5e7a115071a3c7430b7684f53cfcd9faa3b0",
+      "date": "2026-11-14T21:02:09Z",
+      "message": "Record second clean rollout box handoff and active experiment lanes"
+    },
+    {
+      "sha": "5f9b16f54e57f671e2d553be2faa6847e753e774",
+      "date": "2026-11-14T20:57:09Z",
+      "message": "Transfer P10 reporting to available perf owner"
+    },
+    {
+      "sha": "8d215f23965ef18e9f88495c186e1777442f1012",
+      "date": "2026-11-14T20:57:05Z",
+      "message": "Record clean azure6 rollout experiment handoff and helper assignments"
+    },
+    {
+      "sha": "ad408cdc53f3c4e8d39f77f8689e3cd904aab869",
+      "date": "2026-11-14T20:56:36Z",
+      "message": "Deliver tested P04 fallback implementation for operator review"
+    },
+    {
+      "sha": "d90b357820507de75d8ad45a87dd744c60b703f2",
+      "date": "2026-11-14T20:56:12Z",
+      "message": "perf: booking azure3 for P02 (0cadfa3); capacity for P10 reporting if released\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "b928c27fc43e03c92e4defe9e3e05ed70d8b4459",
+      "date": "2026-11-14T20:52:55Z",
+      "message": "Reserve second rollout experiment box on Max authority and integrate R ownership"
+    },
+    {
+      "sha": "d5a8e60c9bfb29f8efd67dba1e4a05d68076b954",
+      "date": "2026-11-14T20:51:24Z",
+      "message": "Claim active P04 implementation and clarify queued ownership"
+    },
+    {
+      "sha": "b2b70b291163b4b6ac6480c372f9bca7e21c644d",
+      "date": "2026-11-14T20:50:21Z",
+      "message": "Record P01 R4c acceptance completion"
+    },
+    {
+      "sha": "017dbb68bcb72ba2f3fc0eebb92b858d18f1b70f",
+      "date": "2026-11-14T20:48:35Z",
+      "message": "coord: accept harvest work and relay Max's chat load-balancing request"
+    },
+    {
+      "sha": "2a4eaf0433895921acf720a4669aa308fa2f7b26",
+      "date": "2026-11-14T20:36:28Z",
+      "message": "loop: boxes (azure5 16 cores, azure7 new) and owners of the approved efficiency work"
+    },
+    {
+      "sha": "1f96cefc6280d941eb3521681e85784529729b06",
+      "date": "2026-11-14T20:32:54Z",
+      "message": "perf: P02 accepted; Zen 4 measurement plan and harness for Bridgebots7 (1d1306b)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ],
+  "human_training_evidence": "human-training-scope-review.json",
+  "research_evidence": "research-commit-review.json",
+  "peer_evidence": "genx-stu-peer-review.json",
+  "layout_budget_evidence": "layout-budget-scope-review.json"
+}

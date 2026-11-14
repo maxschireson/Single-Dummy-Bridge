@@ -1,0 +1,90 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "authority": "Max quoted in box/coordination20:29: reassign one Azure box for rollout experiments, make a plan and proceed.",
+  "owner": "codex-rollout track, distinct from this producer and P01/P03/perf/harvest.",
+  "allocation": "Azure6 and Azure2, six-hour first budgets under separate Max authority; both collected Stu R4c, not this independent Gen8 arena producer.",
+  "scope": "R01 identity-routing/guarantee behavior, R02 ranking/IMP objective, R03 continuation/value cutoff; hold128layouts initially. Fresh experimental seeds/descendants withheld from training, seed131/squeeze tests excluded.",
+  "production_adoption": "Loop retains promotion after equal-time/interaction checks. No report or helper assignment adopts source or changes primary.",
+  "owned_producer_source_or_layout_budget_changed": false,
+  "remote_commands_executed": false,
+  "applied": false,
+  "pr38": {
+    "number": 38,
+    "title": "Study Stu rollout gain transfer and selective information-set replanning",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:20:29Z",
+    "head": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+    "base": "main",
+    "draft": true
+  },
+  "helper_A_pr": {
+    "number": 41,
+    "title": "Design Stu allocation/frontier selectors and equal-compute gain-transfer tests",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:20:27Z",
+    "head": "f2c865707193b910ef7a5ee617be5a014faaca64",
+    "base": "main",
+    "draft": false
+  },
+  "helper_B_pr": {
+    "number": 43,
+    "title": "Stu helper B: recursive-search correctness review and adversarial tests",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:20:28Z",
+    "head": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+    "base": "main",
+    "draft": false
+  },
+  "observed_peer_drains": {
+    "azure6": {
+      "at": "2026-11-14T20:52:21Z",
+      "preserved_rows_episodes": 2551
+    },
+    "azure2": {
+      "at": "2026-11-14T20:59:04Z",
+      "preserved_rows_episodes": 4000
+    }
+  },
+  "current_review_decision": {
+    "old_source": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+    "decision": "No-go for interpreting/extending recursive/selective arms; void for promotion; coordinator accepts and pauses Azure6.",
+    "pause": {
+      "stopped": "2026-11-14T21:23:14Z",
+      "reason": "PR41/43 cache/scheduling inconsistency; old recursive/selective results diagnostic only; no extension or adoption",
+      "interrupted_boards": "possible; preserve episodes and logs; do not treat partial screen as complete",
+      "runs": {
+        "smoke-guarantee": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-flat32": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-reader": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-recursive32": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-selective32": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "screen-reader": {
+          "rows": 117,
+          "episodes": 117
+        }
+      }
+    },
+    "scope": "Equal-observation cache/scheduling defects plus unsafe experiment resume; no direct hidden-input leak established. Flat/reader/guarantee development screens not implicated by these recursive defects.",
+    "required_acceptance": "New immutable run/source identity, strict scheduling/resume reproductions and real R4c/BF16/native-SURE parity; inclusive per-actor/solver timing, exposure/attempt ledger.",
+    "primary_stop_required": false
+  },
+  "actual_publication_scope": "Transfer reports are development-only, not arena strength/completion evidence; published row count and review-pause inventory are distinct dated cuts."
+}

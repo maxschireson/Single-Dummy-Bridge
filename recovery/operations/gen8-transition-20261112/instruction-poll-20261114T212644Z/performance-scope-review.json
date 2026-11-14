@@ -1,0 +1,27 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "branch": "perf/stu-20261114",
+  "revision": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+  "applied": false,
+  "rechecked_unchanged": false,
+  "scope": "P02 harness and P10 held-out scoring/report source; P02 now waits Azure3 release, reporting owned by perf. No benchmark or performance switch here.",
+  "claims": "Retained caveats: fork batching changes draws against old mode0; BF16 changes cards; matrix-size/kernel equivalence needs host checks. Gen8 sg8 profile belongs to Stu self-play.",
+  "disposition": "Retain strict frozen792c4cb and existing DDS2GiB/disk3GiB controls. Fork batching changes trajectories relative to old mode0; BF16 changes cards; matrix/kernel shape equivalence requires host checks. No BRIDGE_* switch, BEN, worker or cache change here.",
+  "commits": [
+    {
+      "sha": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+      "date": "2026-11-14T21:20:27Z",
+      "message": "P10: eval_nets.py, every net scored on the same held-out rows by bot and phase with the trainer's evaluate\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "0cadfa3e45699de4fa921210a3b8f0b769b25558",
+      "date": "2026-11-14T20:56:00Z",
+      "message": "P02 harness: single-patch unpadded-bf16 configs at 60% of the boards (time and memory on azure3)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "1d1306b9ee5db17a9120cd8078ddbda381b74499",
+      "date": "2026-11-14T20:32:39Z",
+      "message": "P02: Zen 4 measurement harness (setup.sh, run_ab.py) for the four perf patches, Stu and Gen 8 self-play\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ]
+}

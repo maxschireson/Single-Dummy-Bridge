@@ -1,0 +1,216 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "total": 360,
+  "new_branches": {
+    "docs/stu-search-allocation-review-20261114": "f2c865707193b910ef7a5ee617be5a014faaca64",
+    "feature/bid-style-20261114": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+    "feature/stu-standing-fallback-20261114": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+    "research/stu-rollout-experiments-20261114": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+    "research/stu-rollout-review-b-20261114": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+    "transfer/stu-rollout-experiments-azure2-20261114": "5961d6dfbaec921c8baf282359f8c5cefc7b7b58",
+    "transfer/stu-rollout-experiments-azure6-20261114": "ff08dd5bdb0e311ae53b731fa7390a13469589e0"
+  },
+  "removed_branches": [],
+  "changed_refs": {
+    "arena-gen6-chatgpt-feed": {
+      "before": "0d4de18661af263fcf713e1c840e2b74da2d428f",
+      "after": "1769acd11480cd54dd9a7b264f32bed5be62214a"
+    },
+    "arena-gen8-19bbdce5-20261112-feed": {
+      "before": "a7dfe063e5ce56836e01bddcffe7e2a312c1fa3a",
+      "after": "1236aa7e8145da408dd84616dd8e352573fe477c"
+    },
+    "arena-gen8-candidate-codex-20261112-feed": {
+      "before": "878aeb559ef49430be453dfe2284fe7d3f62d15a",
+      "after": "287296f256ec9e974f8f0659c30cceac2820ca1a"
+    },
+    "arena-gen8-independent-feed": {
+      "before": "9e3d94789d098e5615713b544643048bfe48e620",
+      "after": "7692f5f5b2585b46cc1e045a4aace1fa46f56204"
+    },
+    "arena-gen9-azure4-ben64-feed": {
+      "before": "4f5c3f1a1dff51a781dc1f230f87ab6ef7244654",
+      "after": "e7776e694399ac9a0d99deb076205d73df112007"
+    },
+    "arena-gen9-azure4-feed": {
+      "before": "860f9c8f945b28f0adc1b6f2dff64cd55d267de1",
+      "after": "d920f587bb5ab467a70e19b795eb31fb4ae891b8"
+    },
+    "arena-gen9-genx-stu4c-azure4-feed": {
+      "before": "0e84e0d5840c7744416a68ff2ed84f6ff02151cd",
+      "after": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c"
+    },
+    "box/azure1/control": {
+      "before": "e622e667a2695138a5dcb44e72b0a7c498b28956",
+      "after": "5573d5338938e2350eb67ff346bd7e0f8f71ac45"
+    },
+    "box/azure1/status": {
+      "before": "863cc266134ef04e353a6031f7424455d3e113d3",
+      "after": "3aa59c7aa924c3e96b4a9d540d6db21e7b3c7d1f"
+    },
+    "box/azure2/control": {
+      "before": "0fa50181e351c9e494f2ceea91d0e8346492d236",
+      "after": "8470b43070e39cfdb6f2b2e3211aa7c60a89339c"
+    },
+    "box/azure2/status": {
+      "before": "4d3a1db566949a5222cb56bf78ec6bed80157bdb",
+      "after": "07dee317fcd94a70eba5d571ca07c1769303a464"
+    },
+    "box/azure3/control": {
+      "before": "0414f187c927720e84d54752acccb811e19931fa",
+      "after": "0f4669afe292fe42f12e1bff982b6fe7c098c4bf"
+    },
+    "box/azure3/status": {
+      "before": "be5846f32a9fc2bdd28cdd9ac80f4c0640c1ab2f",
+      "after": "6a11c4f6b82241525a4a9314b64d95664c8dce94"
+    },
+    "box/azure4/control": {
+      "before": "ed0689fff649dded1c1fce54a4569aaf928f7af4",
+      "after": "4a2b469e8d5d6d68ec678d59c4bff2e0eb4d9110"
+    },
+    "box/azure4/status": {
+      "before": "f11922a174636df0a9f49611e03c28617f7f4dd4",
+      "after": "b29021c812132564c8cd360c1084b208cea834c6"
+    },
+    "box/azure5/control": {
+      "before": "069a6e251161f79398e52908038b64e23193a359",
+      "after": "73f2966c401d2236635498781b85132607a4446d"
+    },
+    "box/azure5/status": {
+      "before": "ced9bb339fdaf2aeb39daf93483d45c806d43f09",
+      "after": "0f822fc98975094b084f1b563c27f46dc511694c"
+    },
+    "box/azure6/control": {
+      "before": "a9d21146b3b39b24cff49f5cbf7d45285944cfec",
+      "after": "8bf3f7e0838b9b7fd92b88c7666eabd8cdd0949d"
+    },
+    "box/azure6/status": {
+      "before": "a5987212f87071735ba8c424e43d67933e1611b3",
+      "after": "1ad21eb610aa02fcae0a7db9ab7e6b64b75531fc"
+    },
+    "box/azure7/control": {
+      "before": "827edf14eebc4bdaaed73b70536eff2236f277d4",
+      "after": "f15a3a8cb9af2fb4eff5efc42ebc25af6d8eebcf"
+    },
+    "box/azure7/status": {
+      "before": "dfd184bdd6f66b17ce5f10850d361b67268a0032",
+      "after": "e823dfb884832bc2682733a86386eeadfea359d1"
+    },
+    "box/coordination": {
+      "before": "b9dc3599b211d99669c8ac4f93e3733d6df2f58b",
+      "after": "9e480765ddee4953499629fa0c4a16515a582064"
+    },
+    "docs/stu-training-efficiency-20261114": {
+      "before": "f93d1ceafce93e911c7dacab1170121fa9deaf22",
+      "after": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd"
+    },
+    "gh-pages": {
+      "before": "39a480b72197110990f88077a3285db6076e3cf7",
+      "after": "a3affd42e98e94f7899649942e61edee1ed5f3d7"
+    },
+    "mail/coord": {
+      "before": "0a2d18e496297e4da3cbeb8bb587e1e23faa015e",
+      "after": "e0cd9ec94a9221b2d1d91d2c124c07c9c3514f47"
+    },
+    "perf/stu-20261114": {
+      "before": "4105021aa98034b3c6cb434e37efc650e4eaf936",
+      "after": "2a503a94de8c7442e34c835a5391422dfc698bdc"
+    },
+    "perf/stu-efficiency-handoff-20261114": {
+      "before": "132177d0cf5d5d5b7f14a79ec3b8f61c01aac9b7",
+      "after": "6d9901dcc7d69a3da9174afb315cc13523897d30"
+    },
+    "research/rollout-loop-20261113": {
+      "before": "5f887f18ddd6988ac40083a0f7ba2a3a60a02178",
+      "after": "5ab40eede958f9d46112ad44ec381ac3caa18f64"
+    },
+    "team/gen9": {
+      "before": "26a10ad0758245172eb70d872103861e335db034",
+      "after": "8ed4b23e5527f8137c385091a184a8fdbf216458"
+    },
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+      "before": "e341e9d6a4402bd69128701357d613e3f47a82f9",
+      "after": "c15411e20f52676017c1ea3e6f805dbeb8579d23"
+    },
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+      "before": "830e6b65166d19d775ceec62982180f1b8455ee6",
+      "after": "15ef505f4c472a131c5bd30175617b552f7d1795"
+    },
+    "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": {
+      "before": "dd0386519811423ff45a26e19b6c3d4ab2b007cf",
+      "after": "77750fe6c29c355a8aa6e6229a2449d5ceefd705"
+    },
+    "transfer/rollout-loop-azure1-20261113": {
+      "before": "9c9f28bfe1c403394e87e654341f1eebfeaf1cf0",
+      "after": "5ad575017e3e1ed37d27e50e732e4cc382b6b2a9"
+    },
+    "transfer/rollout-loop-azure2-20261113": {
+      "before": "341ade451641c1dd011c86b56534eecbf05a8573",
+      "after": "6ccc9d99a5e28da149b7c71db5df2622a8c22d42"
+    },
+    "transfer/rollout-loop-azure3-20261113": {
+      "before": "e9cdc738f5db9ce77a61b1abbd9a4cda02682a9d",
+      "after": "6dbfe747ae533a7ae16e60695c7ea01f4a09d1b5"
+    },
+    "transfer/rollout-loop-azure6-20261113": {
+      "before": "fc0d448e8545b7b638ad01d2308ea455770843b8",
+      "after": "7ca8a162d329adb5e087cbdd874a7319011066df"
+    },
+    "transfer/rollout-loop-azure7-20261113": {
+      "before": "55d4759934d51134b293ddc7c761ce22e7cfb387",
+      "after": "094b3c3a1c19ce477f876f57c07afb5099920be4"
+    }
+  },
+  "complete": true,
+  "reviewed_new_branches": [
+    {
+      "branch": "docs/stu-search-allocation-review-20261114",
+      "revision": "f2c865707193b910ef7a5ee617be5a014faaca64",
+      "kind": "Separate rollout experiment implementation/review/selector; old recursive/selective source not adopted",
+      "applied": false,
+      "evidence": "rollout-experiment-scope-review.json"
+    },
+    {
+      "branch": "feature/bid-style-20261114",
+      "revision": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+      "kind": "Scoped optional bidding/persona source, existing owned frozen source unchanged",
+      "applied": false,
+      "evidence": "bid-style-scope-review.json"
+    },
+    {
+      "branch": "feature/stu-standing-fallback-20261114",
+      "revision": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+      "kind": "Opt-in Stu standing-fallback implementation, pending review fixes/deployment by Loop",
+      "applied": false,
+      "evidence": "stu-efficiency-scope-review.json"
+    },
+    {
+      "branch": "research/stu-rollout-experiments-20261114",
+      "revision": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+      "kind": "Separate rollout experiment implementation/review/selector; old recursive/selective source not adopted",
+      "applied": false,
+      "evidence": "rollout-experiment-scope-review.json"
+    },
+    {
+      "branch": "research/stu-rollout-review-b-20261114",
+      "revision": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+      "kind": "Separate rollout experiment implementation/review/selector; old recursive/selective source not adopted",
+      "applied": false,
+      "evidence": "rollout-experiment-scope-review.json"
+    },
+    {
+      "branch": "transfer/stu-rollout-experiments-azure2-20261114",
+      "revision": "5961d6dfbaec921c8baf282359f8c5cefc7b7b58",
+      "kind": "Separate experiment transfer, development diagnostics only; no independent arena-board count",
+      "applied": false,
+      "evidence": "rollout-experiment-scope-review.json"
+    },
+    {
+      "branch": "transfer/stu-rollout-experiments-azure6-20261114",
+      "revision": "ff08dd5bdb0e311ae53b731fa7390a13469589e0",
+      "kind": "Separate experiment transfer, development diagnostics only; no independent arena-board count",
+      "applied": false,
+      "evidence": "rollout-experiment-scope-review.json"
+    }
+  ]
+}

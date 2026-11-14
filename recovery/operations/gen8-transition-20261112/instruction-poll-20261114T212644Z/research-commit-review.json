@@ -1,0 +1,102 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+  "commits": [
+    {
+      "sha": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "date": "2026-11-14T20:50:17Z",
+      "message": "bench/seat_variants.py --set horizon: the rollout's recipe (net tricks then double dummy on the layout, more candidates, by IMPs)\n\nMax, 20:49 UTC: \"The training process recipe and the rollout recipe seem more impactful than a bit more data.\"\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu horizon bench and P/H owner/acceptance updates; independent rollout correctness pause, standing fallback and optional bid-style review.",
+  "disposition": "Keep the owned immutable Gen8 arena cohort collecting. Pauses/no-go findings concern the separate7c79acf recursive/selective experiment driver; strict frozen primary source/manifests/guards remain verified. P01 acceptance passed but integration stays with Loop; P04 still requires review fixes and opt-in Azure recipes. H01/H02/H05 are scoped approvals, H03/H04 deferred gates and H06 deferred. P10 reporting transferred to perf; no source/model/budget/fork/worker/cache/guard change here, no training, promotion, self-play or peer operation.",
+  "evidence": [
+    {
+      "sha": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "message": "bench/seat_variants.py --set horizon: the rollout's recipe (net tricks then double dummy on the layout, more candidates, by IMPs)\n\nMax, 20:49 UTC: \"The training process recipe and the rollout recipe seem more impactful than a bit more data.\"\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "5f887f18ddd6988ac40083a0f7ba2a3a60a02178"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/bench/seat_variants.py"
+      ]
+    },
+    {
+      "sha": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+      "message": "P10: eval_nets.py, every net scored on the same held-out rows by bot and phase with the trainer's evaluate\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "0cadfa3e45699de4fa921210a3b8f0b769b25558"
+      ],
+      "files": [
+        "training/perf-20261114/p10/eval_nets.py"
+      ]
+    },
+    {
+      "sha": "0cadfa3e45699de4fa921210a3b8f0b769b25558",
+      "message": "P02 harness: single-patch unpadded-bf16 configs at 60% of the boards (time and memory on azure3)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "1d1306b9ee5db17a9120cd8078ddbda381b74499"
+      ],
+      "files": [
+        "training/perf-20261114/zen4/run_ab.py"
+      ]
+    },
+    {
+      "sha": "1d1306b9ee5db17a9120cd8078ddbda381b74499",
+      "message": "P02: Zen 4 measurement harness (setup.sh, run_ab.py) for the four perf patches, Stu and Gen 8 self-play\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "4105021aa98034b3c6cb434e37efc650e4eaf936"
+      ],
+      "files": [
+        "training/perf-20261114/zen4/README.md",
+        "training/perf-20261114/zen4/run_ab.py",
+        "training/perf-20261114/zen4/setup.sh"
+      ]
+    },
+    {
+      "sha": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "message": "Record two running experiment boxes, helper tracks and gain-transfer confirmation",
+      "parents": [
+        "8f1d47d21d52374496530671ac89dace48f7c5f9"
+      ],
+      "files": [
+        "docs/stu-training-efficiency-2026-11-14.md"
+      ]
+    },
+    {
+      "sha": "8f1d47d21d52374496530671ac89dace48f7c5f9",
+      "message": "Integrate authorized rollout and frontier study with existing Stu efficiency plan",
+      "parents": [
+        "f93d1ceafce93e911c7dacab1170121fa9deaf22"
+      ],
+      "files": [
+        "docs/stu-training-efficiency-2026-11-14.md"
+      ]
+    },
+    {
+      "sha": "6d9901dcc7d69a3da9174afb315cc13523897d30",
+      "message": "Mark real R4c acceptance passed and refresh assigned work",
+      "parents": [
+        "2e1596d11b72bf102469c2e3a8a102a12f648add"
+      ],
+      "files": [
+        "docs/stu-efficiency/README.md"
+      ]
+    },
+    {
+      "sha": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "message": "Arena ladder: refresh (2026-11-14T20:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "39a480b72197110990f88077a3285db6076e3cf7"
+      ],
+      "files": [
+        "arena/ladder.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "531e445bb156b87300c44ea765acf2446c908254",
+  "research_plan_status": "WIP research plan; scoped Stu approvals and experiments current, no general primary migration.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
