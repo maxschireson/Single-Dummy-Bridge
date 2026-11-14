@@ -1,7 +1,31 @@
 {
-  "updated": "2026-11-14T21:46:37Z",
+  "updated": "2026-11-14T21:48:38Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
+    {
+      "name": "mechanism-guarantee",
+      "pair": "rx-guarantee~rx-control",
+      "boards": 50,
+      "cpu_per_board": 34.85,
+      "common": {
+        "imps_per_board": 1.38,
+        "se": 0.5502,
+        "boards": 50,
+        "won": 14,
+        "lost": 5,
+        "flat": 31
+      },
+      "native": {
+        "imps_per_board": 1.38,
+        "se": 0.5502,
+        "boards": 50,
+        "won": 14,
+        "lost": 5,
+        "flat": 31
+      },
+      "failures": 0,
+      "boards_per_hour": 717
+    },
     {
       "name": "mechanism-reader",
       "pair": "rx-reader~rx-control",
