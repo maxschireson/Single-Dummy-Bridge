@@ -1,0 +1,276 @@
+{
+  "schema": "stu-research-control-v1",
+  "updated": "2026-11-14T21:28:56Z",
+  "coordinator": "codex-research-traffic",
+  "issue": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44",
+  "streams": [
+    {
+      "id": "rollout",
+      "name": "Rollout optimization",
+      "owner": "codex-rollout",
+      "state": "Mixed: running / paused",
+      "summary": "Azure2 reader and guarantee screens continue. Azure6's old recursive/selective batch is paused for correctness fixes.",
+      "next": "Pass strict A/B regression checks and real-model acceptance; launch corrected depth arms with a new identity.",
+      "links": [
+        {
+          "label": "Experiments #38",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38"
+        },
+        {
+          "label": "Coordination #39",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39"
+        },
+        {
+          "label": "Allocation #41",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/41"
+        },
+        {
+          "label": "Validity #43",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/43"
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "name": "Model recipes & learning",
+      "owner": "loop · perf · codex-stu-harvest",
+      "state": "Training / analysis",
+      "summary": "Width 1024 on Azure1, width 1536 on Azure5, and width 768 × 15 epochs on Azure7 are reported training. H02 extracts existing rollout pairs.",
+      "next": "Publish every epoch and freshB inputs; perf compares equal epochs and measured compute. Harvest owner evaluates frontier labels.",
+      "links": [
+        {
+          "label": "Integrated plan #35",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
+        },
+        {
+          "label": "Harvesting #37",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37"
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Performance optimization",
+      "owner": "perf · codex-stu-efficiency",
+      "state": "Implementation / queued",
+      "summary": "P01 baseline acceptance passed; P04 fallback code delivered; P03 row reuse in progress. P02 benchmark waits for Azure3 release.",
+      "next": "Loop integrates P01/P04 at a safe boundary; perf starts P02 after explicit Azure3 handoff.",
+      "links": [
+        {
+          "label": "Baseline #36",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/36"
+        },
+        {
+          "label": "Fallback #40",
+          "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/40"
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "R-fix",
+      "stream": "rollout",
+      "title": "Repair recursive / selective policy consistency",
+      "owner": "codex-rollout",
+      "status": "blocked",
+      "detail": "Old arms paused. New acceptance and run identity required before interpreting results.",
+      "next": "Publish strict tests + real R4c/native-SURE checks",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884403002"
+    },
+    {
+      "id": "R-mechanism",
+      "stream": "rollout",
+      "title": "Reader / guarantee mechanism screens",
+      "owner": "codex-rollout",
+      "status": "running",
+      "detail": "Azure2; 512-board arms. Live report below. Development evidence only.",
+      "next": "Complete paired arms and report uncertainty / inclusive costs",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38"
+    },
+    {
+      "id": "P10",
+      "stream": "model",
+      "title": "Width × training-compute comparison",
+      "owner": "perf (report), loop (runs)",
+      "status": "running",
+      "detail": "1024 / 1536 wide, 768 × 15 control. Control ETA about Nov 15 02:30 UTC; estimate, not a deadline.",
+      "next": "Publish held-out rows, epoch weights and peak memory",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
+    },
+    {
+      "id": "H02",
+      "stream": "model",
+      "title": "Harvest fork pairs; test learning frontier",
+      "owner": "codex-stu-harvest",
+      "status": "working",
+      "detail": "Extractor/reliability and H03–H05 design assigned; #41 supplies selector interface.",
+      "next": "First extraction/reliability checkpoint and interface acknowledgement",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37"
+    },
+    {
+      "id": "P02",
+      "stream": "performance",
+      "title": "Measured Azure performance benchmark",
+      "owner": "perf",
+      "status": "waiting",
+      "detail": "Azure3 after loop's horizon bench; estimated release Nov 14 22:30 UTC, then ~1h40m benchmark.",
+      "next": "Explicit “azure3 free” → acknowledgement → start → return",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+    },
+    {
+      "id": "P03",
+      "stream": "performance",
+      "title": "Reuse prepared row chunks",
+      "owner": "codex-stu-efficiency",
+      "status": "working",
+      "detail": "Manifest received; content/family validation and implementation remain.",
+      "next": "Report first verified cache reuse and next checkpoint",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
+    },
+    {
+      "id": "P01",
+      "stream": "performance",
+      "title": "Evaluation-only epoch-zero baseline",
+      "owner": "loop (integration)",
+      "status": "review",
+      "detail": "Real-data acceptance passed on 135,543 rows / 444 deals. Deployment not verified.",
+      "next": "Apply at next cut and verify both paths",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/36"
+    },
+    {
+      "id": "P04",
+      "stream": "performance",
+      "title": "Standing fallback & idle alerts",
+      "owner": "loop (integration)",
+      "status": "review",
+      "detail": "11 tests passed. Disabled until recipe/namespace/ownership configured.",
+      "next": "Reserve disjoint seed/index bands; select safe fallback recipe",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/40"
+    }
+  ],
+  "handoffs": [
+    {
+      "id": "epoch-feed",
+      "title": "Publish every epoch",
+      "from": "loop",
+      "to": "dashboard + perf",
+      "state": "requested",
+      "detail": "Current width logs and timestamped metrics are missing from active transfer outputs. Requested in #44; awaiting acknowledgement.",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44"
+    },
+    {
+      "id": "p10-data",
+      "title": "Release shared evaluation inputs",
+      "from": "loop",
+      "to": "perf",
+      "state": "waiting",
+      "detail": "freshB with SHA256, saved epoch weights, peak memory and threads. Needed for comparable by-bot / by-phase scoring.",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+    },
+    {
+      "id": "azure3",
+      "title": "Azure3 horizon bench → P02",
+      "from": "loop",
+      "to": "perf",
+      "state": "waiting",
+      "detail": "Slot accepted by perf; explicit release still needed. Estimated 14:30 Pacific.",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
+    },
+    {
+      "id": "frontier",
+      "title": "Allocation design → label experiment",
+      "from": "helper A",
+      "to": "codex-stu-harvest",
+      "state": "requested",
+      "detail": "Confirm #41 selector interface in #37; keep search allocation and label value as separate endpoints.",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/41"
+    }
+  ],
+  "boxes": [
+    {
+      "box": "Azure1",
+      "owner": "loop",
+      "work": "Width 1024 training",
+      "next": "Publish epoch metrics"
+    },
+    {
+      "box": "Azure2",
+      "owner": "codex-rollout",
+      "work": "Mechanism screens",
+      "next": "Review at six-hour budget cap"
+    },
+    {
+      "box": "Azure3",
+      "owner": "loop → perf",
+      "work": "Horizon bench; P02 next",
+      "next": "Explicit release before P02 starts"
+    },
+    {
+      "box": "Azure4",
+      "owner": "Gen 9",
+      "work": "Separate Gen 9 allocation",
+      "next": "Outside this coordinator's execution scope"
+    },
+    {
+      "box": "Azure5",
+      "owner": "loop",
+      "work": "Width 1536 training",
+      "next": "Publish epoch metrics"
+    },
+    {
+      "box": "Azure6",
+      "owner": "codex-rollout",
+      "work": "Old batch intentionally paused",
+      "next": "Correctness gate then new run"
+    },
+    {
+      "box": "Azure7",
+      "owner": "loop",
+      "work": "Width 768 × 15 epochs",
+      "next": "Equal-compute control, then perf report"
+    }
+  ],
+  "rollout_sources": [
+    {
+      "box": "Azure2",
+      "branch": "transfer/stu-rollout-experiments-azure2-20261114",
+      "path": "report.json"
+    },
+    {
+      "box": "Azure6",
+      "branch": "transfer/stu-rollout-experiments-azure6-20261114",
+      "path": "report.json"
+    }
+  ],
+  "epoch_sources": [
+    {
+      "label": "Width 1536 · stopped 8-core attempt",
+      "box": "Azure5",
+      "branch": "transfer/rollout-loop-azure5-20261113",
+      "path": "exp-width/w1536-8core-epoch1.log",
+      "historical": true,
+      "target": 5
+    }
+  ],
+  "width_boxes": [
+    {
+      "box": "Azure1",
+      "branch": "transfer/rollout-loop-azure1-20261113",
+      "label": "Width 1024",
+      "target": 5
+    },
+    {
+      "box": "Azure5",
+      "branch": "transfer/rollout-loop-azure5-20261113",
+      "label": "Width 1536",
+      "target": 5
+    },
+    {
+      "box": "Azure7",
+      "branch": "transfer/rollout-loop-azure7-20261113",
+      "label": "Width 768 × 15",
+      "target": 15
+    }
+  ]
+}
