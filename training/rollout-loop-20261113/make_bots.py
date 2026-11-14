@@ -85,7 +85,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
-          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps'])   # every bot that claims and mixes as Stu does
+          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -239,6 +239,11 @@ def main():
     # min_sample_hands_play 20 (lorserker/ben's values), every other setting as BEN (64)'s lanes.
     bots['ben200'] = {'base': 'ben64', 'url': 'http://127.0.0.1:8090', 'samples': 200, 'config': '~/work/loop/ben/ben-200.conf',
                       'label': 'BEN at its upstream play sampling (200 layouts, at least 20), otherwise as BEN (64)'}
+    # SiD (rollout) Stu R3 with round 3's net at the table too (candidate priors, reading the play) in place of policy v4.1:
+    # alone, round 3's net beats v4.1 +1.36 +- 0.07 head to head (h3-nv41).
+    bots['stu3-pst'] = dict(copy.deepcopy(bots['stu3-ps']), gen7_policy=R3)
+    bots['stu3-pst']['label'] = ("Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the "
+                                 'opening lead from rollouts on the settings of every other card')
     # Max, 02:26 UTC on 14 November: a net from the strongest bots' data against one from the present mix, the same size
     # (exp_strong.sh). Both read every side as Gen 8 card play (8s-32), as v2 does in SiD (rollout) Stu R0.
     for tag, path, what in (('S', STRONG, "Gen 8 card play's rows only"), ('M', MIX, "as many rows in v2's mix of bots")):

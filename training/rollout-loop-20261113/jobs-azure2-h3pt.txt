@@ -1,0 +1,4 @@
+# The table net (h3-nv41: round 3's net alone beats policy v4.1 alone +1.36 +- 0.07): SiD (rollout) Stu R3 with round 3's
+# net at the table too, against SiD (rollout) Stu R0 (the h3-p reference), head to head, gate seed deals 18000 to 18999
+# here (the other 1,000 on azure6). The collection pauses for it (rungs.sh).
+h3-ptb stu3-pst~stu0-ps 131 18000 1000 8
