@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure7",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:23:52Z",
+ "id": "20261114T212322Z-685556-cmd",
+ "output_bytes": 325,
+ "output_tail": "w768x15 epoch 1 sec 886 train_ce 0.6715 | nll 0.5773 exact 0.7614 tricks 0.0283 gap-head 0.0264\nw768x15 epoch 2 sec 1778 train_ce 0.6177 | nll 0.5619 exact 0.7674 tricks 0.0251 gap-head 0.0248\nw768x15 epoch 3 sec 2670 train_ce 0.6061 | nll 0.5625 exact 0.7674 tricks 0.0238 gap-head 0.025\nepoch 4 step 14000 of 59338, 2888 s\n",
+ "received": "2026-11-14T21:23:52Z",
+ "script_sha256": "10e1659bd4c61451afd8fb9f48a18a5d8ff16513e9711458acc156912c7d7e9a",
+ "started": "2026-11-14T21:23:52Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

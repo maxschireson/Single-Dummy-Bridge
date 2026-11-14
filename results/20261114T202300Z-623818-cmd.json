@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure7",
+ "duration_s": 111.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:24:58Z",
+ "id": "20261114T202300Z-623818-cmd",
+ "output_bytes": 2109,
+ "output_tail": "debconf: unable to initialize frontend: Dialog\ndebconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)\ndebconf: falling back to frontend: Readline\ndebconf: unable to initialize frontend: Readline\ndebconf: (This frontend requires a controlling tty.)\ndebconf: falling back to frontend: Teletype\ndpkg-preconfigure: unable to re-open stdin: \ndebconf: unable to initialize frontend: Dialog\ndebconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)\ndebconf: falling back to frontend: Readline\ndebconf: unable to initialize frontend: Readline\ndebconf: (This frontend requires a controlling tty.)\ndebconf: falling back to frontend: Teletype\n\nRunning kernel seems to be up-to-date.\n\nRestarting services...\n systemctl restart chrony.service cron.service multipathd.service packagekit.service polkit.service rsyslog.service ssh.service systemd-journald.service systemd-networkd.service systemd-resolved.service systemd-udevd.service udisks2.service walinuxagent.service\n\nService restarts being deferred:\n systemctl restart ModemManager.service\n systemctl restart boxctl.service\n /etc/needrestart/restart.d/dbus.service\n systemctl restart getty@tty1.service\n systemctl restart networkd-dispatcher.service\n systemctl restart serial-getty@ttyS0.service\n systemctl restart systemd-logind.service\n systemctl restart unattended-upgrades.service\n\nNo containers need to be restarted.\n\nNo user sessions are running outdated binaries.\n\nNo VM guests are running outdated hypervisor (qemu) binaries on this host.\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\ncapsule 8833c62\nnumpy 2.5.4 jax 0.12.0.1 optax 0.2.9\nsource 5addd82\nsure_cpp built\n/home/bridgebots/work/loop/src/bridge_harness/libbridge_dds.so\n8f87aa8f52ae2c119408\nround 4c's net in place, sha256 e4b689c87db2f56b\n2f8f6b792ac874f1\n{\"pair\": \"g8-greedy0~g8-passive0\", \"boards\": 4, \"cpu_per_board\": 11.92}\n4\n1\nMem:              31           0          28           0           2          30\n/dev/root       123G  4.0G  119G   4% /\n2026-11-14T20:24:58Z\n",
+ "received": "2026-11-14T20:23:07Z",
+ "script_sha256": "1c0f5ca986e50d1d2e90f2fe265bda55eddc8754eb109102e13b5f4f77788b1b",
+ "started": "2026-11-14T20:23:07Z",
+ "timed_out": false,
+ "timeout_s": 3000
+}

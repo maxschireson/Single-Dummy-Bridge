@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure7",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:35:34Z",
+ "id": "20261114T213524Z-509640-cmd",
+ "output_bytes": 145,
+ "output_tail": "Running as unit: loop-widthpub.service; invocation ID: 5d8107ae21774f34bbf14899692faa1a\ntotals: files 0 | pairs 0 | rollout decisions 0\n21:35:34\n",
+ "received": "2026-11-14T21:35:34Z",
+ "script_sha256": "d6aca81eeceaf11812f2e6ad8cbeba14009c3d44bfa80776f60ebf6e75f32c39",
+ "started": "2026-11-14T21:35:34Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

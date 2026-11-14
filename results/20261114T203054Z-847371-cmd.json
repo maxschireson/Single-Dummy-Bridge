@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure7",
+ "duration_s": 240.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:35:05Z",
+ "id": "20261114T203054Z-847371-cmd",
+ "output_bytes": 777,
+ "output_tail": "source 5f887f1\nBridgebots5 resolves on the private network: no\nRunning as unit: loop-publish.service; invocation ID: 9b3595f6726a4e30ac4ee85b069f8812\nRunning as unit: loop-pool.service; invocation ID: abc84085ea0a423cb0b61f9bf24c61a0\nactive active 2026-11-14T20:31:05Z copying the pool's rows from azure5 (train.npz, freshB.npz)\n/home/bridgebots/work/plan/rnet2w/data/train.npz: OK\n/home/bridgebots/work/plan/rnet2w/data/freshB.npz: OK\n2026-11-14T20:33:03Z width study, compute control: v2's recipe, 768 wide, 15 epochs on the pool (exp-width/w768x15)\ndrwxr-xr-x 3 bridgebots bridgebots        4096 Nov 14 20:31 ..\n-rw-r--r-- 1 bridgebots bridgebots    93186388 Nov 14 20:31 freshB.npz\n-rw-r--r-- 1 bridgebots bridgebots 22987545569 Nov 14 20:32 train.npz\n2026-11-14T20:35:05Z\n",
+ "received": "2026-11-14T20:31:05Z",
+ "script_sha256": "59aff7135ac62e4086ec05e2996e782d6a0b77f3c752b27f2e35f7ec491fff6a",
+ "started": "2026-11-14T20:31:05Z",
+ "timed_out": false,
+ "timeout_s": 420
+}
