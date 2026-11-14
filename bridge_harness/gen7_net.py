@@ -167,6 +167,7 @@ def encode(o, shown=None):
 
 
 INPUTS = ('state', 'order', 'legal', 'ctx', 'auction', 'shown')
+FAST_FEATURES = os.environ.get('BRIDGE_FAST_FEATURES', '1') != '0'
 SID_HEADS = ('guar', 'cert', 'single')      # the per-card outputs of a line-finder student, in the order of `wd1s`
 BANK_KEYS = ('bank_length', 'bank_hon', 'bank_log_weight')
 WHO = ('bot_own', 'bot_other')     # optional inputs of rollout nets: the bots' rows in the net's `bot_vocab`
@@ -176,11 +177,39 @@ def stack(rows):
     return {k: np.stack([r[k] for r in rows]) for k in INPUTS}
 
 
+_LED = np.zeros(256, bool)
+_LED[1::4] = True            # play order k (1-based) leads a trick when k - 1 is a multiple of 4
+
+
+def _features_np(batch):
+    """`features` for NumPy inputs, written into one array (one scatter for the state one-hot in place of a [n, 52, 11]
+    comparison and a concatenation): the same numbers, about 2.5x faster at 512 rows (tests/test_bf16_buckets.py)."""
+    state, order_u = np.asarray(batch['state']), np.asarray(batch['order'])
+    n = state.shape[0]
+    out = np.zeros((n * 52, CARD_FEATURES), np.float32)
+    out[np.arange(n * 52), state.reshape(-1).astype(np.int64)] = 1.
+    out[:, N_STATE] = (order_u.astype(np.float32) / 52.).reshape(-1)
+    led = _LED[order_u]
+    out[:, N_STATE + 1] = led.reshape(-1)
+    out[:, N_STATE + 2] = np.asarray(batch['legal']).reshape(-1)
+    ctx = np.asarray(batch['ctx']).astype(np.float32)
+    cards = out.reshape(n, 4, 13, CARD_FEATURES)
+    cards[:, :, :, N_STATE + 3] = ctx[:, :4, None]
+    lead_now = (state >= 7) & led
+    cards[:, :, :, N_STATE + 4] = lead_now.reshape(n, 4, 13).sum(axis=2, dtype=np.float32)[:, :, None]
+    globals_ = np.concatenate([ctx, np.asarray(batch['auction']).astype(np.float32),
+                               np.asarray(batch['shown']).astype(np.float32)], axis=1)
+    return cards, globals_
+
+
 def features(batch, xp=np):
     """Per-card features [n, 4 suits, 13 ranks, CARD_FEATURES] and the global vector [n, N_GLOBAL].
 
-    Written against the array module, so training (jax.numpy) and play (numpy) share it.
+    Written against the array module, so training (jax.numpy) and play (numpy) share it. NumPy takes `_features_np`,
+    which gives the same numbers faster (BRIDGE_FAST_FEATURES=0: the generic path).
     """
+    if xp is np and FAST_FEATURES:
+        return _features_np(batch)
     state = xp.asarray(batch['state']).astype(xp.int32)
     order = xp.asarray(batch['order']).astype(xp.float32)
     legal = xp.asarray(batch['legal']).astype(xp.float32)

@@ -67,6 +67,17 @@ cards.
 
 Together, in the sandbox: bf16 as the boxes run it 26.0 CPU-s a board, padded and batched 9.4 (2.8x); fp32 20.3 to 18.3.
 
+## 3. Faster NumPy feature building (done: `gen7_net._features_np`)
+
+`gen7_net.features` built the per-card one-hot by comparing a [n, 52, 11] array and concatenating six pieces. Writing
+everything into one array with a scatter gives the same numbers (`tests/test_bf16_buckets.py`) 2.3-2.8x faster (1.66
+to 0.71 ms at 512 rows). It was 9% of a bf16 table: self-play, the same 6 boards, bf16 padded and forks batched,
+10.03 and 10.49 against 9.35 and 9.66 CPU-s a board (two runs each). Training (JAX) keeps the generic path;
+`BRIDGE_FAST_FEATURES=0` restores it for NumPy too.
+
+**Run-to-run differences.** Twice now a board played identical code differently from about card 10. The claim
+solver's time limits (`leaf_ms`, `defender_ms`) are the likely cause; card-for-card checks need two runs of each side.
+
 ## Proposed next
 
 - **The hand-fit scorer's first layer as table lookups.** Its input is one-hot per suit, so `x @ Wh` is a sum of

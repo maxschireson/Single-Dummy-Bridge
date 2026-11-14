@@ -54,7 +54,23 @@ def test_padded_equals_unpadded():
             assert np.array_equal(padded[k], plain[k]), (n, k, float(np.abs(padded[k] - plain[k]).max()))
 
 
+def test_fast_features_equal_generic():
+    rng = np.random.default_rng(4)
+    for n in (1, 5, 64, 300):
+        b = _batch(n, rng)
+        b['order'] = rng.integers(0, 53, (n, 52)).astype(np.uint8)
+        fast = g._features_np(b)
+        g.FAST_FEATURES = False
+        try:
+            slow = g.features(b)
+        finally:
+            g.FAST_FEATURES = True
+        for x, y in zip(fast, slow):
+            assert x.dtype == y.dtype and x.shape == y.shape and np.array_equal(x, y)
+
+
 if __name__ == '__main__':
+    test_fast_features_equal_generic()
     test_bucket_sizes()
     test_padded_equals_unpadded()
     print('ok' if torch is not None else 'ok (torch missing: padding test skipped)')
