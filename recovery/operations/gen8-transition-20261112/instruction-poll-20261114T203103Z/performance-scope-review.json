@@ -1,0 +1,52 @@
+{
+  "poll_start": "2026-11-14T20:31:03Z",
+  "branch": "perf/stu-20261114",
+  "revision": "4105021aa98034b3c6cb434e37efc650e4eaf936",
+  "applied": false,
+  "rechecked_unchanged": false,
+  "scope": "Updated/rebased Stu performance branch and bounded P02 allocation to perf on Azure7; no owned source adoption.",
+  "claims": "Retained caveats: fork batching changes draws against old mode0; BF16 changes cards; matrix-size/kernel equivalence needs host checks. Gen8 sg8 profile belongs to Stu self-play.",
+  "disposition": "Retain strict frozen792c4cb and existing DDS2GiB/disk3GiB controls. Fork batching changes trajectories relative to old mode0; BF16 changes cards; matrix/kernel shape equivalence requires host checks. No BRIDGE_* switch, BEN, worker or cache change here.",
+  "commits": [
+    {
+      "sha": "4105021aa98034b3c6cb434e37efc650e4eaf936",
+      "date": "2026-11-14T20:27:26Z",
+      "message": "perf: legal-suit decoding test at the real net's sizes (bit-identical) and within 1e-5 at tiny sizes; README items 4 and Gen 8 profile\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "03f61e621e2dd0417f3da006462b732c0a43939a",
+      "date": "2026-11-14T20:27:26Z",
+      "message": "gen7_net: policy logits decode only the suits holding a legal card (forward_policy, Bf16Forward.policy)\n\nlog_policy_arrays needs only the legal cards' policy logits. 55% of rollout rows follow\nsuit, so most suit decodings and four of five output columns are skipped. The legal\ncards' log-probabilities are identical to the full pass (tests/test_bf16_buckets.py);\nforward pass +5-15% fp32, +0-12% bf16 in the sandbox, end to end within noise there.\nBRIDGE_POLICY_SUITS=0 turns it off. README: Gen 8 self-play profile.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "ce6ea1d26b077978b9ec94cad947ca2db8c8b3f0",
+      "date": "2026-11-14T20:27:26Z",
+      "message": "gen7_net: NumPy features written into one array with a scatter (same numbers, about 2.5x faster)\n\nfeatures() was 9% of a bf16 self-play table. The NumPy path now scatters the state\none-hot and writes the other per-card features in place instead of a [n, 52, 11]\ncomparison and a six-way concatenation: identical arrays (tests/test_bf16_buckets.py),\n1.66 to 0.71 ms at 512 rows, about 7% of a table in the sandbox. JAX keeps the generic\npath; BRIDGE_FAST_FEATURES=0 restores it for NumPy.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "58be0234b45f5ffb40c7c436c731ad41261d6b62",
+      "date": "2026-11-14T20:27:25Z",
+      "message": "8X rollouts: fork continuations ride in the main rows' batches (x8_rollout.FORK_BATCH)\n\nThe fork copies were finished after the main loop one group at a time, two rows a\nnet call: half of all net calls and about 10% of a self-play table. From the step a\nfork is taken its copies are at the main rows' ply, so they now advance in the same\nnet evaluation (Seats.cards_pair), drawing from their own stream so the main rows'\ndraws do not depend on them. Sandbox, 6 boards: fp32 20.3 to 18.3 CPU-s a board,\npadded bf16 12.6 to 9.4, the same cards as the old path on the fork stream (mode 2).\nAgainst the old path on the main stream (BRIDGE_FORK_BATCH=0) the draws after a race's\nfirst round differ: same distribution, not the same cards.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "d8ad7b566dcf2852843194fa463fbae767b76d2f",
+      "date": "2026-11-14T20:27:25Z",
+      "message": "bf16 nets: pad batches to fixed sizes (gen7_net.bucket) so oneDNN stops building kernels for every new size\n\nWith BRIDGE_NET_BF16=1 the rollouts' changing batch sizes made oneDNN build a kernel\nfor each new shape and grow its cache. Padding each bf16 call (Bf16Forward and the\nFitScorer's bf16 layers) to about 25 fixed sizes and cutting the padding off: in the\nsandbox (Sapphire Rapids) self-play goes from 26.0 to 13.9 CPU-s a board and a worker's\npeak memory from 2.3 to 1.4 GB, the same cards on 6 boards, outputs bit-identical.\nNot yet measured on the Zen 4 boxes. BRIDGE_NET_BUCKETS=0 turns it off.\n\ntraining/perf-20261114: profile of a pure-Stu table and the bench scripts.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "9b159b7b92175f296f1977598e8f7b108b2cf41e",
+      "date": "2026-11-14T20:27:25Z",
+      "message": "mailbridge: a mailbox for a Claude session, relayed by a box through an encrypted channel branch\n\nmailbridge.py runs on the box (IMAP poll and SMTP send each minute, allow-listed\nrecipients); client.py runs in the session; branch mail/coord carries CMS\nsign-then-encrypt blobs because the repository is public. Tested end to end with\ntests/test_mailbridge.py against a local bare repository and a fake transport;\nthe Gmail transport is untested until the live box.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "5addd826af8b10d7343df51ada528a7327d059b6",
+      "date": "2026-11-14T20:08:02Z",
+      "message": "Box changes (azure5 to 16 cores, a seventh box) and the review of PR 35 in the plan; the gate's paired SE stated as such\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "c006d22a3a0d81dd608085c6b9c8852ad8e863e5",
+      "date": "2026-11-14T19:45:46Z",
+      "message": "Seat bench: no simulated-seat setting chooses better cards; the width test's first epoch is level with v2's\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ]
+}

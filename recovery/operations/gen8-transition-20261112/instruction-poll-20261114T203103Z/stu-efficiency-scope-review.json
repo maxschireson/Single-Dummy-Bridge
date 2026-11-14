@@ -1,0 +1,53 @@
+{
+  "poll_start": "2026-11-14T20:31:03Z",
+  "pr35": {
+    "number": 35,
+    "title": "Stu efficiency recommendations: Azure now, Mac training workflow next",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T20:22:45Z",
+    "head": "f93d1ceafce93e911c7dacab1170121fa9deaf22",
+    "base": "main",
+    "draft": false
+  },
+  "pr36": {
+    "number": 36,
+    "title": "Stu P01: epoch-zero baseline patch and P08 Mac benchmark plan",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T20:15:45Z",
+    "head": "132177d0cf5d5d5b7f14a79ec3b8f61c01aac9b7",
+    "base": "main",
+    "draft": true
+  },
+  "proposal_blob": "9124c2f31c22a0e0a90713c14f7cc17139e5f66f",
+  "handoff_blob": "63097c3a782c03feba0ba291420de63c31566a00",
+  "review_comment_id": 6883488008,
+  "review_url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883488008",
+  "review_speaker": "Loop session_01N2EvxDPjdoFBFtyygdYP4j; the body explicitly identifies the Stu lead, despite repository login maxschireson.",
+  "approved_scopes": {
+    "P01": "codex-stu-efficiency sandbox implementation; exact R4c acceptance pending; loop next cut execution.",
+    "P02": "perf, bounded3box-hours on Bridgebots7 before collection; no collector change, loop adoption with new run IDs.",
+    "P03": "codex-stu-efficiency narrow published row/chunk reuse and per-record cache, exact input parity pending.",
+    "P04": "loop standing-recipe fallback/idle alert; additional source-work offer awaits handoff.",
+    "P08": "written Mac benchmark plan only; no purchases/installs/spend.",
+    "P09": "loop testing cadence already in effect; not owned Gen8 disabled gate.",
+    "P10": "loop width/capacity research and equal-time strength tests before adoption."
+  },
+  "deferred": [
+    "P05",
+    "P06",
+    "P07"
+  ],
+  "comments_reviewed": [
+    6883488008,
+    6883518768,
+    6883597796,
+    6883672738
+  ],
+  "implementation_vs_deployment": "Scope explicitly requires loop coordination before running boxes/collectors/recipes; implementation approval is not deployment. PR36 is draft, main-based patch handoff into research5addd826, not a merged active runtime.",
+  "code_or_patches_applied_here": false,
+  "commands_or_messages_to_peers": false,
+  "owned_collection_instruction_changed": false,
+  "applied": false
+}

@@ -1,0 +1,46 @@
+{
+  "poll_start": "2026-11-14T20:31:03Z",
+  "revision": "b9dc3599b211d99669c8ac4f93e3733d6df2f58b",
+  "blob": "fa4c327ab8c5316e1c88f5e254e7a8098346d2e7",
+  "new_entries_since_prior_poll": 6,
+  "latest_entry": "2026-11-14T20:29:00Z codex-rollout",
+  "scope": "Named Stu efficiency owners, harvesting proposal review and a dedicated Azure6 rollout experiment allocation; no owned primary collector change.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
+  "disposition": "Current general collection authority continues the frozen Gen8 primary. P01/P03/P08 have scoped sandbox owners, P02 belongs to perf with bounded Azure7 allocation, P04/P09/P10 remain loop-owned; H01-H06 remain proposals. The rollout track reserves Azure6 under separate Max authority and explicitly implies no production adoption. No owned source/model/settings/worker/guard/corpus change or peer command.",
+  "board_commits": [
+    {
+      "sha": "b9dc3599b211d99669c8ac4f93e3733d6df2f58b",
+      "date": "2026-11-14T20:29:12Z",
+      "message": "Reserve one Azure box for Max-authorized rollout experiments"
+    },
+    {
+      "sha": "ccb32937059abafda2c8b5f7c0dde50a015c24e5",
+      "date": "2026-11-14T20:22:58Z",
+      "message": "Coordinate larger approved execution share with Stu lead"
+    },
+    {
+      "sha": "af86bdc90b33ebe7e320b3ade9468d024ddd64f5",
+      "date": "2026-11-14T20:18:10Z",
+      "message": "Request Stu lead review of existing rollout-pair harvesting and frontier curriculum"
+    },
+    {
+      "sha": "398f0b9e92a4a71f194a52a7104548496ebbc91d",
+      "date": "2026-11-14T20:16:06Z",
+      "message": "Checkpoint scoped Stu P01 patch and P08 plan for loop review"
+    },
+    {
+      "sha": "3fbaeb16e7f5ac5f886d80572fb0c305f2cdc74e",
+      "date": "2026-11-14T20:08:29Z",
+      "message": "coord: claim approved P01/P03 sandbox work and P08 plan"
+    },
+    {
+      "sha": "316e1a50b98a720e94c6d222ae258de6a95e782c",
+      "date": "2026-11-14T20:06:11Z",
+      "message": "coord: request Stu lead review of efficiency recommendations (PR #35)"
+    }
+  ],
+  "human_training_evidence": "human-training-scope-review.json",
+  "research_evidence": "research-commit-review.json",
+  "peer_evidence": "genx-stu-peer-review.json",
+  "layout_budget_evidence": "layout-budget-scope-review.json"
+}

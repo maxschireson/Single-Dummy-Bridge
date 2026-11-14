@@ -1,0 +1,84 @@
+{
+  "poll_start": "2026-11-14T20:31:03Z",
+  "branch": "research/rollout-loop-20261113",
+  "revision": "5f887f18ddd6988ac40083a0f7ba2a3a60a02178",
+  "authority_quotes": [
+    {
+      "time": "2026-11-14T17:27:00Z",
+      "quote": "Too much time testing relative to learning"
+    },
+    {
+      "time": "2026-11-14T17:34:00Z",
+      "quote": "likely adopt",
+      "scope": "Stu4c for the loop collections"
+    },
+    {
+      "time": "2026-11-14T17:57:00Z",
+      "quote": "We should continue collecting gen (whichever)"
+    },
+    {
+      "time": "2026-11-14T17:57:00Z",
+      "quote": "New collections should flip",
+      "scope": "Stu one-net self-play sp4t/sp4tb on Azure2/Azure6; existing owned frozen cohort is not a new collection."
+    },
+    {
+      "time": "2026-11-14T17:27:00Z to17:42:00Z",
+      "quote": "long test every few releases; cut releases less often - tripling?",
+      "scope": "Stu cuts and release/mechanism gates, next cut at about three times loop tables."
+    }
+  ],
+  "current_scoped_operations": {
+    "azure1": "Gen8 self-play sg8u1..36, seed9001 deals800000..871999; extend the finite loop collection list.",
+    "azure3": "Stu4c BEN gate stopped at698 without the full2048-deal gate; Gen8 self-play on the named Azure3 loop jobs.",
+    "azure2_and_azure6": "Stu4c twins replace Stu3 in loop one-net self-play collections, sp4t/sp4tb, seed9001 deals760000/780000."
+  },
+  "research_jobs": {
+    "stu_azure1_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure1.txt",
+      "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "sha": "f178000915922f6d171316c185265c179fbaa6fd"
+    },
+    "stu_azure3_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure3.txt",
+      "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "sha": "c99e465686af2801bf7306cf709be7ec7c334294"
+    },
+    "stu_azure3_gen_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure3-gen.txt",
+      "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "sha": "2e09ee9cead37c07041c492584ffcd4721b16302"
+    },
+    "stu_azure2_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure2.txt",
+      "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "sha": "52dc0565abebe8a86f9a37f80efef97fa835a94c"
+    },
+    "stu_azure6_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure6.txt",
+      "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+      "sha": "74cc81f332b5c5d16791d7d6abd902b2373c2ade"
+    }
+  },
+  "scope": "Named Stu/Azure training, perf and rollout experiment tracks. Existing owned Gen8 arena collection continues under unchanged frozen authority; no new own worker/source/capture/mix/predicate change.",
+  "owned_adoption": false,
+  "owned_selfplay_opened": false,
+  "owned_gate_changed": false,
+  "peer_commands_executed": false,
+  "applied": false,
+  "no_peer_board_pooling": true,
+  "plan_blob": "531e445bb156b87300c44ea765acf2446c908254",
+  "readme_blob": "21e31859789969d6fe67f26bef65c869d4869ffb",
+  "historical_650_deal_checkpoint": "Prior18:14 note and earlier poll preserved; latest report gives698 as the stopped gate total.",
+  "capacity_proposal": {
+    "superseded_prior_proposal": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T193037Z/stu-collection-scope-review.json",
+    "current_azure5": "Standard_F16as_v6,16cores64GB; width training restarted19:59.",
+    "new_azure7": "Standard_F8as_v6,8cores, control/status/transfer branches now present; training compute-control then Gen8 self-play per jobs-azure7.",
+    "P02_allocation": "perf approved up to3box-hours on Bridgebots7 before it collects; not this producer.",
+    "local_change": false,
+    "applied": false
+  },
+  "rows_scope": "Arena forks yield2.7x rows perCPU-second versus loop Gen8 self-play in the report. Full row compression/merging and memory limits concern the Stu trainer; no producer budget/capture change. Tables, rows and forks are not independent arena boards.",
+  "efficiency_review_evidence": "stu-efficiency-scope-review.json",
+  "harvesting_review_evidence": "harvesting-scope-review.json",
+  "rollout_experiment_evidence": "rollout-experiment-scope-review.json"
+}
