@@ -10,3 +10,7 @@ g8-high v 8p-32-v41: 500 boards to play (0 done), 8 workers
 450 boards: -0.4689 +- 0.1727 IMPs/board for g8-high; 1288 boards/hour; 0 failed
 500 boards: -0.534 +- 0.1688 IMPs/board for g8-high; 1286 boards/hour; 0 failed
 {"pair": "g8-high~8p-32-v41", "boards": 500, "cpu_per_board": 20.68, "common": {"imps_per_board": -0.534, "se": 0.1688, "boards": 500, "won": 77, "lost": 130, "flat": 293}, "native": {"imps_per_board": -0.534, "se": 0.1688, "boards": 500, "won": 77, "lost": 130, "flat": 293}}
+g8-high v 8p-32-v41: 0 boards to play (500 done), 8 workers
+{"pair": "g8-high~8p-32-v41", "boards": 500, "cpu_per_board": 20.68, "common": {"imps_per_board": -0.534, "se": 0.1688, "boards": 500, "won": 77, "lost": 130, "flat": 293}, "native": {"imps_per_board": -0.534, "se": 0.1688, "boards": 500, "won": 77, "lost": 130, "flat": 293}}
+g8-high v 8p-32-v41: 0 boards to play (500 done), 8 workers
+{"pair": "g8-high~8p-32-v41", "boards": 500, "cpu_per_board": 20.68, "common": {"imps_per_board": -0.534, "se": 0.1688, "boards": 500, "won": 77, "lost": 130, "flat": 293}, "native": {"imps_per_board": -0.534, "se": 0.1688, "boards": 500, "won": 77, "lost": 130, "flat": 293}}

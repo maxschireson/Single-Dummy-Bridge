@@ -13,3 +13,9 @@ g8-greedy0 v g8-passive0: 2000 boards to play (0 done), 8 workers
 600 boards: None +- None IMPs/board for g8-greedy0; 2342 boards/hour; 0 failed
 650 boards: None +- None IMPs/board for g8-greedy0; 2351 boards/hour; 0 failed
 700 boards: None +- None IMPs/board for g8-greedy0; 2344 boards/hour; 0 failed
+g8-greedy0 v g8-passive0: 1289 boards to play (711 done), 8 workers
+board 730716 failed (attempt 1): OSError: [Errno 28] No space left on device
+g8-greedy0 v g8-passive0: 1273 boards to play (727 done), 8 workers
+777 boards: None +- None IMPs/board for g8-greedy0; 2102 boards/hour; 0 failed
+827 boards: None +- None IMPs/board for g8-greedy0; 2213 boards/hour; 0 failed
+877 boards: None +- None IMPs/board for g8-greedy0; 2272 boards/hour; 0 failed

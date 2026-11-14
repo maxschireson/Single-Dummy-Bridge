@@ -256,3 +256,48 @@
 2026-11-14T12:49:40Z end xh-hf-p: exit 0
 2026-11-14T12:49:40Z start xh-s10h-p stus10h-pst~stus10-pst seed 131 first 30000 deals 250 workers 8  (source 1a7116c, nets fp32)
 2026-11-14T12:50:55Z round 4's cut: the human-boards experiment's matches stop where they are; azure5 trains round 4's two nets
+2026-11-14T14:00:07Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:08Z end l0b-stu0: exit 0
+2026-11-14T14:00:08Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:08Z end l0b-p: exit 0
+2026-11-14T14:00:08Z start s8-greedy g8-greedy~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:09Z end s8-greedy: exit 1
+2026-11-14T14:00:09Z job failed: s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
+2026-11-14T14:00:09Z start s8-patient g8-patient~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:09Z end s8-patient: exit 0
+2026-11-14T14:00:09Z start s8-active g8-active~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:09Z end s8-active: exit 0
+2026-11-14T14:00:09Z start s8-passive g8-passive~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:09Z end s8-passive: exit 0
+2026-11-14T14:00:09Z start s8-high g8-high~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:10Z end s8-high: exit 0
+2026-11-14T14:00:10Z start s8-low g8-low~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:10Z end s8-low: exit 0
+2026-11-14T14:00:10Z start s8-greedy0 g8-greedy0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:10Z end s8-greedy0: exit 0
+2026-11-14T14:00:10Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)
+2026-11-14T14:00:10Z end s8-passive0: exit 0
+2026-11-14T14:00:10Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source 2dde349, nets fp32)
+2026-11-14T14:00:50Z round 4 again, as the unit loop-r4 (round4.sh): the arena's rows from a sample, a third as many replay rows
+2026-11-14T14:04:19Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:19Z end l0b-stu0: exit 0
+2026-11-14T14:04:19Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:19Z end l0b-p: exit 0
+2026-11-14T14:04:19Z start s8-greedy g8-greedy~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:19Z end s8-greedy: exit 0
+2026-11-14T14:04:19Z start s8-patient g8-patient~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:19Z end s8-patient: exit 0
+2026-11-14T14:04:19Z start s8-active g8-active~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:19Z end s8-active: exit 0
+2026-11-14T14:04:19Z start s8-passive g8-passive~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:20Z end s8-passive: exit 0
+2026-11-14T14:04:20Z start s8-high g8-high~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:20Z end s8-high: exit 0
+2026-11-14T14:04:20Z start s8-low g8-low~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:20Z end s8-low: exit 0
+2026-11-14T14:04:20Z start s8-greedy0 g8-greedy0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:20Z end s8-greedy0: exit 0
+2026-11-14T14:04:20Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 05cf9ae, nets fp32)
+2026-11-14T14:04:20Z end s8-passive0: exit 0
+2026-11-14T14:04:20Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source 05cf9ae, nets fp32)
+2026-11-14T14:09:27Z the disk was full from 14:00:07 to 14:00:47; records written then are removed (their boards are played again); round 4 again as loop-r4

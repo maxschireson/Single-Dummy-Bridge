@@ -10,3 +10,18 @@ g8-greedy v 8p-32-v41: 500 boards to play (0 done), 8 workers
 450 boards: -0.1711 +- 0.1556 IMPs/board for g8-greedy; 1355 boards/hour; 0 failed
 500 boards: -0.156 +- 0.1461 IMPs/board for g8-greedy; 1344 boards/hour; 0 failed
 {"pair": "g8-greedy~8p-32-v41", "boards": 500, "cpu_per_board": 20.69, "common": {"imps_per_board": -0.156, "se": 0.1461, "boards": 500, "won": 77, "lost": 96, "flat": 327}, "native": {"imps_per_board": -0.156, "se": 0.1461, "boards": 500, "won": 77, "lost": 96, "flat": 327}}
+g8-greedy v 8p-32-v41: 0 boards to play (500 done), 8 workers
+OSError: [Errno 28] No space left on device
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/bridgebots/work/loop/src/scripts/x8_match.py", line 158, in <module>
+    gen8_match.main()
+  File "/home/bridgebots/work/loop/src/scripts/gen8_match.py", line 329, in main
+    (args.out / 'summary.json').write_text(json.dumps(dict(s, failures=failures, boards_per_hour=round(len(fresh) / max(time.time() - started, 1e-9) * 3600)), indent=1))
+  File "/usr/lib/python3.12/pathlib.py", line 1049, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+OSError: [Errno 28] No space left on device
+g8-greedy v 8p-32-v41: 0 boards to play (500 done), 8 workers
+{"pair": "g8-greedy~8p-32-v41", "boards": 500, "cpu_per_board": 20.69, "common": {"imps_per_board": -0.156, "se": 0.1461, "boards": 500, "won": 77, "lost": 96, "flat": 327}, "native": {"imps_per_board": -0.156, "se": 0.1461, "boards": 500, "won": 77, "lost": 96, "flat": 327}}

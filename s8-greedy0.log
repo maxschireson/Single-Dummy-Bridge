@@ -10,3 +10,7 @@ g8-greedy0 v 8p-32-v41: 500 boards to play (0 done), 8 workers
 450 boards: 0.0356 +- 0.1232 IMPs/board for g8-greedy0; 1417 boards/hour; 0 failed
 500 boards: 0.024 +- 0.1154 IMPs/board for g8-greedy0; 1399 boards/hour; 0 failed
 {"pair": "g8-greedy0~8p-32-v41", "boards": 500, "cpu_per_board": 20.24, "common": {"imps_per_board": 0.024, "se": 0.1154, "boards": 500, "won": 62, "lost": 47, "flat": 391}, "native": {"imps_per_board": 0.024, "se": 0.1154, "boards": 500, "won": 62, "lost": 47, "flat": 391}}
+g8-greedy0 v 8p-32-v41: 0 boards to play (500 done), 8 workers
+{"pair": "g8-greedy0~8p-32-v41", "boards": 500, "cpu_per_board": 20.24, "common": {"imps_per_board": 0.024, "se": 0.1154, "boards": 500, "won": 62, "lost": 47, "flat": 391}, "native": {"imps_per_board": 0.024, "se": 0.1154, "boards": 500, "won": 62, "lost": 47, "flat": 391}}
+g8-greedy0 v 8p-32-v41: 0 boards to play (500 done), 8 workers
+{"pair": "g8-greedy0~8p-32-v41", "boards": 500, "cpu_per_board": 20.24, "common": {"imps_per_board": 0.024, "se": 0.1154, "boards": 500, "won": 62, "lost": 47, "flat": 391}, "native": {"imps_per_board": 0.024, "se": 0.1154, "boards": 500, "won": 62, "lost": 47, "flat": 391}}
