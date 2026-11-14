@@ -154,6 +154,7 @@ assert w['stu_scope_review']['latest_efficiency_scope_review']['applied'] is Fal
 assert w['stu_scope_review']['latest_harvesting_scope_review']['applied'] is False
 assert w['stu_scope_review']['latest_rollout_experiment_scope_review']['applied'] is False
 assert len(w['comment_scan']['new_issue_comments'])==4
+w['tracked_file_branches']=read(CASE/'tracked-file-branches.json')['branches']
 p=C/'instruction-watch.json.tmp'
 p.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n')
 os.replace(p,C/'instruction-watch.json')
