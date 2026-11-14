@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 3 $W/runs.log | cut -c1-170; systemctl is-active loop-arena loop-human | tr "\n" " "; tail -n 2 $W/r4arena/arena.log | cut -c1-200; ls $W/in/rows-azure*/ | grep -c npz; ls $W/in/cut-azure*/ 2>/dev/null | grep -c npz; cat $W/r4/timeline.log 2>/dev/null | cut -c1-200 | tail -5; df -h ~ | tail -1; date -u +%T
