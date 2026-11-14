@@ -334,3 +334,5 @@
 2026-11-14T16:33:30Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
 2026-11-14T16:33:30Z end s8-passive0: exit 0
 2026-11-14T16:33:30Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source a470efe, nets fp32)
+2026-11-14T17:00:38Z end sg8t1: exit 0
+2026-11-14T17:00:38Z start sg8t2 g8-patient0~g8-active0 seed 9001 first 732000 deals 2000 workers 8 --episodes --one-room (source a470efe, nets fp32)
