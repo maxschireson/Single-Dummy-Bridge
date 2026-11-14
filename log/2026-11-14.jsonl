@@ -28,3 +28,4 @@
 {"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "stopping"}
 {"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "paused"}
 {"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "running"}
+{"at": "2026-11-14T02:59:00Z", "by": "will", "op": "send", "target": "g9/20261114T0259Z-will-e9-25-ran-at-02-47-and-failed", "note": "e9-25 ran at 02:47 and failed: BEN keras layout (KeyError layers/dense/vars/0)"}
