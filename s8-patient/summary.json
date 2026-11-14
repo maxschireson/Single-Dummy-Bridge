@@ -1,23 +1,23 @@
 {
  "pair": "g8-patient~8p-32-v41",
- "boards": 250,
- "cpu_per_board": 20.49,
+ "boards": 450,
+ "cpu_per_board": 20.62,
  "common": {
-  "imps_per_board": 0.084,
-  "se": 0.2136,
-  "boards": 250,
-  "won": 42,
-  "lost": 42,
-  "flat": 166
+  "imps_per_board": 0.0889,
+  "se": 0.1578,
+  "boards": 450,
+  "won": 70,
+  "lost": 76,
+  "flat": 304
  },
  "native": {
-  "imps_per_board": 0.084,
-  "se": 0.2136,
-  "boards": 250,
-  "won": 42,
-  "lost": 42,
-  "flat": 166
+  "imps_per_board": 0.0889,
+  "se": 0.1578,
+  "boards": 450,
+  "won": 70,
+  "lost": 76,
+  "flat": 304
  },
  "failures": 0,
- "boards_per_hour": 1372
+ "boards_per_hour": 1384
 }
