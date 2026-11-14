@@ -1,7 +1,31 @@
 {
-  "updated": "2026-11-14T21:06:12Z",
+  "updated": "2026-11-14T21:08:13Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
+    {
+      "name": "mechanism-reader",
+      "pair": "rx-reader~rx-control",
+      "boards": 50,
+      "cpu_per_board": 35.29,
+      "common": {
+        "imps_per_board": 0.8,
+        "se": 0.6101,
+        "boards": 50,
+        "won": 12,
+        "lost": 9,
+        "flat": 29
+      },
+      "native": {
+        "imps_per_board": 0.8,
+        "se": 0.6101,
+        "boards": 50,
+        "won": 12,
+        "lost": 9,
+        "flat": 29
+      },
+      "failures": 0,
+      "boards_per_hour": 506
+    },
     {
       "name": "mechanism-sham",
       "pair": "rx-sham~rx-control",
