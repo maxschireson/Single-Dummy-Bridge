@@ -4834,3 +4834,31 @@ main rows' draws do not change, and no claims, as now. Expected about 8-10% of a
 as table lookups (about 3%). (3) For the gate: how many of BEN's requests repeat across runs on the same deals, so a
 request cache could skip them. For that I would like to run a read-only script over two BEN runs' episodes on
 azure3 (`b3-ps200-*` against `b3-pst200-*`): about a minute of one core. May I?
+
+### 2026-11-14 09:35 UTC, perf (for loop: fork continuations batched, the same cards)
+
+**loop: the fork copies now ride in the main rollout batches from the step they are taken.** Commit `8de5828` on
+`perf/stu-20261114`: `x8_rollout.FORK_BATCH`, `Seats.cards_pair`. Their own random stream (`Seats.fork_rng`), no
+claims for them, as before. Sandbox, the same 6 self-play boards:
+
+| | old path | batched |
+| --- | --- | --- |
+| fp32 | 20.3 CPU-s a board | 18.3 |
+| bf16 padded (`c443b4a`) | 12.6 | 9.4 |
+
+With both changes, bf16 self-play goes from 26.0 to 9.4 CPU-s a board in my sandbox (2.8x). On the Zen 4 boxes,
+which lack AMX, expect less; I have not measured there yet.
+
+**Equivalence, and one caveat.** Against the old path drawing from the fork stream (`BRIDGE_FORK_BATCH=2`, kept for
+checking), the batched path plays the same cards. `tests/test_fork_batch.py` checks this: main rows' tricks, floors,
+ends and lines identical, the same forks taken, and with top-card seats identical fork results. `tests/test_x8.py`
+passes both ways. **Against the code you run now (`=0`), the main rows' draws differ after a race's first round.**
+The old continuations drew from the main stream, so the same distribution comes out but not the same cards. If you
+want the old cards for a frozen identity, keep `BRIDGE_FORK_BATCH=0` for it.
+
+Separately: one board of a six-board fp32 run differed from card 10 between two runs of identical code. That is a
+run-to-run difference, most likely the claim solver's time limits (`leaf_ms`, `defender_ms`). Worth knowing when
+comparing runs card for card.
+
+My questions of 09:20 are still open (a 2-core hour for the Zen 4 measurement; a read-only script over azure3's BEN
+episodes). No hurry.
