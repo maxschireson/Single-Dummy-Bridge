@@ -44,7 +44,7 @@ def event_card(c):
 def facts(meta, full):
     text = ' '.join(str(meta.get(k) or '') for k in ('namePlus', 'eventName', 'tournamentName', 'name'))
     return dict(event=meta.get('namePlus') or meta.get('name') or full.get('tname'), start=(meta.get('startDateTime') or '')[:10],
-                tname=full.get('tname'), room=full.get('room'), text=text)
+                tname=full.get('tname'), text=text)
 
 
 def one_table(sid, meta, board_hands, t):
