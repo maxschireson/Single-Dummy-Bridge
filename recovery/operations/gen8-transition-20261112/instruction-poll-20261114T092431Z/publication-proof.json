@@ -1,0 +1,261 @@
+{
+  "status": "verified_pinned_publication",
+  "poll_start": "2026-11-14T09:24:31Z",
+  "verified_epoch": 1794648553.9992232,
+  "revision": "9cec3518d83466b8f77a98b4f8c0a006ce2a9ea4",
+  "remote_ref_matches": true,
+  "publisher_status": {
+    "status": "published",
+    "epoch": 1794648552.616242,
+    "completed": 4503,
+    "commit": "9cec3518d83466b8f77a98b4f8c0a006ce2a9ea4",
+    "branch": "arena-gen8-candidate-codex-20261112-feed"
+  },
+  "published_completed": 4503,
+  "published_receipt_markers": 4503,
+  "active_out_of_order_completion_supported": true,
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "exact_byte_files": {
+    "recovery/operations/instruction-watch.json": {
+      "sha256": "4998e79f1be919a310ff146c028025222a83e2cbf6b264da7252b299013f31a8",
+      "git_blob": "a247a6f2d37ec7b144fc0d1be98e8275578a1588",
+      "bytes": 266339
+    },
+    "recovery/operations/stream.json": {
+      "sha256": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+      "git_blob": "57f7147ef1ad5db53d216ce0980dd7ecfcb7d05c",
+      "bytes": 19659
+    },
+    "recovery/operations/supervise_gen8.py": {
+      "sha256": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+      "git_blob": "c79b4f944c369b18e81080927982b26d265b020f",
+      "bytes": 6577
+    },
+    "recovery/operations/publish_stream.py": {
+      "sha256": "ed901380439261669667225c5a1737866a21d58eae217f86494d4a738da89e25",
+      "git_blob": "9553a1ea1c17514b29abc3064cdf84bc8ac068a8",
+      "bytes": 9459
+    },
+    "recovery/operations/gen8-transition.json": {
+      "sha256": "1c17eee68ba7a36244dea4c7f93ab2b62c92835e991fc9f4fa848323fc163e88",
+      "git_blob": "559a5c42171e6a15c5d70da742edd2fc74f75f15",
+      "bytes": 48439
+    },
+    "recovery/operations/gen71-final-publication.json": {
+      "sha256": "967eac83ffaa7138afbf98b0b0576f05e2ad48630414f6d9001e324aba48c807",
+      "git_blob": "bf73d2b4b2966aea9dd369d8c79a2ae926386142",
+      "bytes": 400
+    },
+    "recovery/manifest.json": {
+      "sha256": "cc1fd53557009bede112bd361fc63e158d893b8fdf42b278b86222c36f17d8d0",
+      "git_blob": "6174cb7d3498e56584135df436cd883bba78028d",
+      "bytes": 18488
+    },
+    "recovery/plan.json": {
+      "sha256": "ab25d3d3b18166216e5b13e6edf622a284af0fb53ca5dd6beffbdec1dc679d9b",
+      "git_blob": "ef7d46f25911557737b2a8da0acfe8f38700bb20",
+      "bytes": 11916
+    },
+    "recovery/environment.json": {
+      "sha256": "e9037e71c52152b1901d3f7a858ac0a61f065c6a69f09b387914d568856bc366",
+      "git_blob": "ce8d5edc2f9f89efccd0e94297f1c3cb0c2baa83",
+      "bytes": 789
+    },
+    "recovery/source-manifest.json": {
+      "sha256": "e2ad595e3ad694e95443bf7ba1a8141c12bfb7aae78018b4306b9205806a3029",
+      "git_blob": "2a4bedcce543c28a0d79332b08d3946bd146abee",
+      "bytes": 11815
+    },
+    "recovery/artifact-source-manifest.json": {
+      "sha256": "283f8e5510bbed50fa1716de68ee9329e9ff0a54a22c4b0a945370a811954294",
+      "git_blob": "c4321d54a76a36b3613b9e8facb04522fdfff05d",
+      "bytes": 766
+    },
+    "recovery/evaluation-exclusion-audit.json": {
+      "sha256": "dc0fa4efede507680901f9b0e0f7233c76a86eaa6885a9b60833807e51281168",
+      "git_blob": "2b6f2fa7eb88967ba6e668ba73a562fe59b495ad",
+      "bytes": 1698
+    },
+    "recovery/preflight.json": {
+      "sha256": "9387a0a62597f979dc0f66f542c89481d3ee3f3ac2c2df81c07d95ece1a896fa",
+      "git_blob": "b1a3afcc18c6f2f10b513546a58e4bbbfe202bea",
+      "bytes": 9349
+    },
+    "recovery/preflight-capture.json": {
+      "sha256": "c5cfa53f14769f9d4faf7987f11523c9b7fe1b745cc60dc858e29f283553d5e7",
+      "git_blob": "48e8d2b8c5bc4d334598facc3cfe5acf07f9cdcb",
+      "bytes": 4693
+    },
+    "recovery/production-validation.json": {
+      "sha256": "0650838a07188cd4b501f4500fab0d819c1f2be122c7cf33807eb7ed3244b437",
+      "git_blob": "43aa2106a328777a24d50c023d6230a904619960",
+      "bytes": 3739
+    },
+    "recovery/validation.json": {
+      "sha256": "849083e7bc662382b66dea35f6ead0a7ac44e7dad0dd6701efcfecaa9ff73089",
+      "git_blob": "57e9883b98ee58b82d9a52875e43b87210764c91",
+      "bytes": 958
+    },
+    "recovery/artifacts/validation/evaluation-exclusions.json": {
+      "sha256": "0b8ac2b7f41b91915f518c42f76701728097b4151acb5d0e964051c261eca0e2",
+      "git_blob": "021ad990486f8ae30c026049cb658ddfe9c04a48",
+      "bytes": 2318256
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/github-refs.json": {
+      "sha256": "2fa914476062fd3281782851b2c4c5182d7fd8a36484ba38426d61f6e62ef3fb",
+      "git_blob": "0e43361f17e7d4411910a7a9251c797ee1b3f49d",
+      "bytes": 28708
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/github-scan.json": {
+      "sha256": "71d59e1821dc48bd3d63ef8a8b78c1fd2a26147fc2ad5d69c1a1a0a496a0ae28",
+      "git_blob": "f528f620785dad6eee0363a192ab1af472bfd4f2",
+      "bytes": 57593
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/verify-publication.py": {
+      "sha256": "5765cdc82da5d04a6e2d63c3f38ffd14c892ab721b539a0e4ed22de95f996388",
+      "git_blob": "e6e357dd2d49a7d3318597ebf9c4b8657343a1b7",
+      "bytes": 4027
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/automation-state.json": {
+      "sha256": "522848a5a636252d5ecdb99bc325277537479b57c84fbd3db4c8fb318c29309f",
+      "git_blob": "38f39beeea07e7ea181a1093f7291bd588a92257",
+      "bytes": 477
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/finalize-watch.py": {
+      "sha256": "e466fe963dfcf381577b58206e9dc3175530b80afef97b6afdefb2e3f88c1c1e",
+      "git_blob": "7fe455b116c6e76a4798ba438ba76a9556ae2ffb",
+      "bytes": 10840
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/poll-health.py": {
+      "sha256": "9c7d774e2ff52241cedf2b05f3e16ac1be13ab4e199740ba7d0d16753bbda6ab",
+      "git_blob": "e27e494555077451391c371515c6b44e7dd9cdef",
+      "bytes": 6911
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/mail-channel-review.json": {
+      "sha256": "f2c007ce11a2453be11119b2f9f740c914e917afa89169920789ee441ea744ef",
+      "git_blob": "f7ba1a09f9135c1165ffb574c8a33e467582a380",
+      "bytes": 837
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/health-after.json": {
+      "sha256": "fd7a87eddf163eee6133899b049a3d6ca47ec738763a93c86504dd75fb8bd071",
+      "git_blob": "a78dfc21f5474f7bf5b702b8f6cd1955bd4d334d",
+      "bytes": 7257
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/environment-status.json": {
+      "sha256": "90894501a70643a3aeedcf8a29c66e0f021ecc1b13dc97cc97c6dc1c9a1e0695",
+      "git_blob": "39aa7da5af2d2230a6897d5052677f8c4a544afe",
+      "bytes": 1141
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/ownership-review.json": {
+      "sha256": "9b08682de8395e5d0a491d9318c80dc981c8d9260acc6e1abb233d4b834129a0",
+      "git_blob": "a389cc72990f1ef85aae8fb80803f7bea3f34589",
+      "bytes": 5355
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/metadata-finalization-review.json": {
+      "sha256": "298ef9856c6caabfbd6d8b44a8b362dec151fcc6754f6b83e1bf4124f0422b23",
+      "git_blob": "ec66c26898b26e73346462bba2472a05437f2a24",
+      "bytes": 591
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/branch-review.json": {
+      "sha256": "e15d5e0bbee792d5762bed002c3faf9befc0b2aec449311082215de2f864fefb",
+      "git_blob": "1fba46a7373099024839087287c6915b12d72313",
+      "bytes": 6242
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/finalize-watch-before-metadata-correction.py": {
+      "sha256": "476f60516ec88ef71a3bd5528b3e4217966f7efe03746d0f73a7588056149336",
+      "git_blob": "8916dac99c4e46a69359f198b611d5a6ff954919",
+      "bytes": 10869
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/instruction-watch-before.json": {
+      "sha256": "93021de4f35d03cc7e0b8b991de181349df1ff253f01fb5d07972da70caf07b2",
+      "git_blob": "c9052feaeb673ec901aa2ed40d329d4024d09c4d",
+      "bytes": 258872
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/genx-stu-peer-review.json": {
+      "sha256": "6bfe5a19bb0338187b55003632d89eb3e5ed80e8227f81411f065cc7446102d8",
+      "git_blob": "85aa2357145c3c9756cd3f4c85a284765165d902",
+      "bytes": 1520
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/health-before.json": {
+      "sha256": "a905eb7f17a0aabc5fee5614613322f508c147bbaa0855337b37342dbeb47ec7",
+      "git_blob": "b12c28b72fb045376035d4dedef9f7a001ce1a6b",
+      "bytes": 7264
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/shared-ladder-review.json": {
+      "sha256": "fb7a983b1f243fbfa18409ef4ed8dc7483ed8e7cb36eedee2a9bccc16d3fd2cf",
+      "git_blob": "2cc2adf89a021131924785eaedeb969d54227889",
+      "bytes": 328
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/commit-comments.json": {
+      "sha256": "142e17d8d5f44386c23e98c7c778a7e692cb83c22ce7c59862f967a8e7155fb1",
+      "git_blob": "fde474ac577c328e7d7e575a266378bf1bfecbbc",
+      "bytes": 200
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/stream-before.json": {
+      "sha256": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+      "git_blob": "57f7147ef1ad5db53d216ce0980dd7ecfcb7d05c",
+      "bytes": 19659
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/live-capture-sample.json": {
+      "sha256": "7f592e04bfc6711eb1f413fe5c18f9acb5dc62ea479be49be76f6641795dd3a8",
+      "git_blob": "aef095d1515b47d0d07c05d0194e1e8a611bf49f",
+      "bytes": 1285
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/coordination-review.json": {
+      "sha256": "e31f2a1f412855b88b48a4faccbec0d31949337483136fb9a2123b4f2808260e",
+      "git_blob": "2b85f108b549b3d2f0f81c7e11bc15df1cc7bef4",
+      "bytes": 2526
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/research-commit-review.json": {
+      "sha256": "33d2f2e0b52b316d89b5b7400a7d5e9ef01acb95c755f854a34027f5ec6bc120",
+      "git_blob": "d5649e818b1213200344576d18cc26ff8c00e037",
+      "bytes": 10869
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/source-amendment-scope-review.json": {
+      "sha256": "c3d46493dc918a0475c1039ae54a9c732c21c6c0b62c8443478b043d247ad10d",
+      "git_blob": "b26a1ed10db181384f098cc2d9346e6e44605b02",
+      "bytes": 1041
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T092431Z/performance-scope-review.json": {
+      "sha256": "2a70ee6f2efd3250c4166de1c2acd0db97b5c0f22c75735855ccc7623aca6d4b",
+      "git_blob": "1af08941ad1482134f137b6a5d8945fadeed76a3",
+      "bytes": 2409
+    },
+    "recovery/receipts/004496.json": {
+      "sha256": "9c0ebdbdfb36867dbb3c20843f088acb7addb7bbeaca4abe05a1a65e0a3ff63b",
+      "git_blob": "0fcb91e75a1015645aac39d6513f78953ca9d350",
+      "bytes": 1102
+    },
+    "recovery/episodes/004496.json.gz": {
+      "sha256": "31182e195e17985c1e71b98154b14612d4008335a1742d57c2cce22c2b0b0d7d",
+      "git_blob": "5098104041aef31270a9fb8a53c3430a06168ca6",
+      "bytes": 467408
+    },
+    "recovery/receipts/004500.json": {
+      "sha256": "e97cd4c4b07e959a828127f7aa0d615e1f4e141b49567956a9786945421f3d6b",
+      "git_blob": "367f778bd8c48ed3a5a10bf6f0fa67b943595220",
+      "bytes": 1102
+    },
+    "recovery/episodes/004500.json.gz": {
+      "sha256": "329e8969089d1089ed9d0d09de5a2e75e8cf477b7b1c5f36b035842c26a825ae",
+      "git_blob": "bc896dcce1dd2f3387bc6d0de61c4b3c402aec9c",
+      "bytes": 206783
+    },
+    "recovery/receipts/004502.json": {
+      "sha256": "c198bc4e3486ff66c26be982e00b7f052f67a3a25513154fba1622026646741e",
+      "git_blob": "19d5db10717c9a680ca0c2c557b000d6dc09102a",
+      "bytes": 1101
+    },
+    "recovery/episodes/004502.json.gz": {
+      "sha256": "4c769ca8e654a31f7e275fbaf8a9e28c9e614b67c486adfeb88d0530fbbbbf59",
+      "git_blob": "442c69f348ba4b123748762011c5426b9df97bb8",
+      "bytes": 321348
+    }
+  },
+  "watch_blob": "a247a6f2d37ec7b144fc0d1be98e8275578a1588",
+  "scientific_identity_unchanged": true,
+  "actual_gap_guess_samples_published": true,
+  "shared_ui_mutated": false,
+  "registry_mutated": false,
+  "attempts": 6
+}
