@@ -1,0 +1,190 @@
+{
+  "poll_start": "2026-11-14T19:30:37Z",
+  "authority": "Max09:25-09:45 Nov14 to Stu/loop; second part cites Max09:43 medium set of other boards.",
+  "research_revision": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+  "feed": "feed/usbc-human-all-20261114",
+  "feed_revision": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+  "readme_blob": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930",
+  "initial_feed": "feed/usbc-human-20261114@8381f8e58a93a87c6097945025457d32576f9ec1",
+  "training_scope": "Adult USBC Open/Senior/Mixed/Women's 2021-2023, every expert table per deal:3841 fitting-auction tables/113489rows and18428 other-auction tables. fit/all/big stages compare familiar/all/blanked-unfamiliar auctions mixed with Stu rows; from-scratch medium nets keep last epoch.",
+  "counts_are_tables_not_independent_families": true,
+  "test_scope": "2025 USBCs and every junior event remain test-only; a human-trained net may be benchmarked on no other USBC tables.",
+  "supersedes": "Latest scoped research expands the earlier1556-board one-table-per-deal experiment to all adult2021-23 tables. Earlier blanket USBC test-only notices were already narrowed by Max09:25-09:45; historical reports remain preserved.",
+  "applied_to_this_stream": false,
+  "datasets_or_models_downloaded": false,
+  "local_training": false,
+  "local_corpus_changed": false,
+  "disposition": "Continue this same immutable Gen8 arena cohort. The Stu plan remains WIP research only; New collections should flip is applied there to sp4t/sp4tb, not an instruction to mutate this existing cohort. Its stopped698-deal gate is adoption without the full gate, not an owned CI completion. The reported arena row efficiency does not change this producer capture/budgets. Width1536 testing and proposed Azure5 resizing are research/host scope; no new released model adopted here. Preserve all old698/650 checkpoint history, full records and exact current exclusion bytes; any future owned cohort requires complete ALL-released-model training membership.",
+  "research_plan_blob": "f9d82da71afcf24569b90d07a3f72f06a2bb9972",
+  "round4_plan": {
+    "with_humans": "stu4",
+    "control": "stu4c",
+    "same_replay": true,
+    "human_rows_draw_replay": false,
+    "gate": "Latest report: Stu4c adopted without the full gate; stopped698deals. Earlier650 checkpoint preserved. No owned gate change.",
+    "scope": "Stu/Azure jobs only; no local adoption",
+    "historical_gate_order": "Stu4 first512 blind BEN200 deals before control turn; control trains second. Scoped to Stu Azure3 gate."
+  },
+  "latest_results_scope": "Dated full-size net/mixed-set results; rollout matches250deals each are inconclusive.22269tables/3569deals are not22269independent boards or a full canonical family-membership proof.",
+  "latest_round4_training_sizing_scope": {
+    "cut": "Dated12:41-12:56 Nov14",
+    "loop_tables": 46494,
+    "selected_arena_records": 23067,
+    "issue": "About600rows per arena record from root/fork tables and both rooms; first training attempt oversized.",
+    "new_sample": "500BEN +2100other arena records; one-third replay rows",
+    "training_disk_guard_GB": 14,
+    "local_disk_guard_GiB_unchanged": 3,
+    "training_files_deleted_locally": false,
+    "applied": false
+  },
+  "latest_round4_as_trained_report": {
+    "source_revision": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+    "trained_window": "14:09-15:16 Nov14",
+    "reported_training_deals": 102811,
+    "reported_training_rows": 6996453,
+    "arena_records": 2600,
+    "arena_rows": 1719627,
+    "replay_rows": 1591633,
+    "model_sha_prefixes_only": {
+      "stu4": "edc5d6cf",
+      "stu4c": "e4b689c8"
+    },
+    "complete_training_family_membership_verified": false,
+    "models_downloaded": false,
+    "adopted": false,
+    "scope": "Dated research report, not independent arena counts or local launch authority."
+  },
+  "latest_human_table_rule": {
+    "authority": "Max15:39 Nov14",
+    "quote": "If there is not a clear gain from the human boards that makes it through, I would rather not use them",
+    "default": "stu4c, without human tables",
+    "exception": "stu4 leads stu4c by more than twoSEs inside the bot (h4c-pst or first512 gate deals each)",
+    "scope": "Stu workflow; experiments remain history.2025 USBC and all juniors remain tests.",
+    "applied_to_this_stream": false
+  },
+  "r4c_model_release": {
+    "policy_sha256": "e4b689c87db2f56b98221a491757dbf348ddaea066e016f06a9331fc671197f2",
+    "model_manifest_blob": "991bc22dee9272452817a5fbfeb36450f5b61ce9",
+    "trained_on": {
+      "start": "round 1's net, 4 epochs at 1e-4 (training/rollout-loop-20261113/README.md, 'Round 4 as trained', a42fe6c1)",
+      "rows": "the arena sample (2,600 records), the loop's own records, the other boxes' row files and replay rows of v2's deals; the control net has no human tables"
+    },
+    "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+    "adopted_by_azure4_peer": true,
+    "adopted_by_this_stream": false,
+    "models_downloaded": false,
+    "complete_training_family_membership_verified_here": false
+  },
+  "current_human_table_authority": "Max15:39 Nov14, recorded in PLAN.md at f8cb58b63cfba59524bd6e9539e2f4e2584594e6; preserves earlier experiment history.",
+  "round4_net_selection": {
+    "poll_start": "2026-11-14T19:30:37Z",
+    "revision": "540e15964750ae8535c2839154d4ddaae01aa516",
+    "readme_blob": "60bc5100aa17cfc7973b8e5e1f84dff03400dce9",
+    "authority": "Max15:39 rule and15:50 preference for bot-trained net, recorded16:36 Nov14.",
+    "selected_net": "stu4c, bots-only control",
+    "observations": {
+      "stu4_vs_stu4c_inside_one_net_rollout_bot": {
+        "imps_per_deal": -0.1,
+        "se": 0.17,
+        "deals": 500
+      },
+      "nets_alone": {
+        "imps_per_deal": 0.03,
+        "se": 0.03,
+        "deals": 8000
+      }
+    },
+    "scoped_action": "Latest18:43 report: Stu4c adopted without full BEN gate, stopped at698. No owned gate/model change or CI completion claim.",
+    "owned_gate_changed": false,
+    "owned_model_changed": false,
+    "local_training": false,
+    "applied_to_this_stream": false,
+    "excerpt": "**No gain from the human tables reaches the bot**, so by Max's rule (15:39 UTC) and his preference for a net trained only on\nbots (15:50), **stu4c is round 4's net**. stu4's gate blocks c to e are dropped (commented in place in the running job\nfile at 16:36 UTC, same length, so the chain's offsets do not move); azure3 plays stu4c alone through its 2,048 deals.\n\n",
+    "historical_scoped_action": "Stu4 BEN gate blocks c-e commented in the running Azure3 job file; Stu4c continues its2048-deal gate.",
+    "latest_collection_evidence": "stu-collection-scope-review.json",
+    "previous_gate_checkpoint": {
+      "completed": 650,
+      "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T182358Z/round4-net-selection-review.json",
+      "historical": true
+    }
+  },
+  "latest_stu_collection_scope": {
+    "poll_start": "2026-11-14T19:30:37Z",
+    "branch": "research/rollout-loop-20261113",
+    "revision": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+    "authority_quotes": [
+      {
+        "time": "2026-11-14T17:27:00Z",
+        "quote": "Too much time testing relative to learning"
+      },
+      {
+        "time": "2026-11-14T17:34:00Z",
+        "quote": "likely adopt",
+        "scope": "Stu4c for the loop collections"
+      },
+      {
+        "time": "2026-11-14T17:57:00Z",
+        "quote": "We should continue collecting gen (whichever)"
+      },
+      {
+        "time": "2026-11-14T17:57:00Z",
+        "quote": "New collections should flip",
+        "scope": "Stu one-net self-play sp4t/sp4tb on Azure2/Azure6; existing owned frozen cohort is not a new collection."
+      },
+      {
+        "time": "2026-11-14T17:27:00Z to17:42:00Z",
+        "quote": "long test every few releases; cut releases less often - tripling?",
+        "scope": "Stu cuts and release/mechanism gates, next cut at about three times loop tables."
+      }
+    ],
+    "current_scoped_operations": {
+      "azure1": "Gen8 self-play sg8u1..36, seed9001 deals800000..871999; extend the finite loop collection list.",
+      "azure3": "Stu4c BEN gate stopped at698 without the full2048-deal gate; Gen8 self-play on the named Azure3 loop jobs.",
+      "azure2_and_azure6": "Stu4c twins replace Stu3 in loop one-net self-play collections, sp4t/sp4tb, seed9001 deals760000/780000."
+    },
+    "research_jobs": {
+      "stu_azure1_jobs": {
+        "path": "training/rollout-loop-20261113/jobs-azure1.txt",
+        "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+        "sha": "f178000915922f6d171316c185265c179fbaa6fd"
+      },
+      "stu_azure3_jobs": {
+        "path": "training/rollout-loop-20261113/jobs-azure3.txt",
+        "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+        "sha": "c99e465686af2801bf7306cf709be7ec7c334294"
+      },
+      "stu_azure3_gen_jobs": {
+        "path": "training/rollout-loop-20261113/jobs-azure3-gen.txt",
+        "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+        "sha": "2e09ee9cead37c07041c492584ffcd4721b16302"
+      },
+      "stu_azure2_jobs": {
+        "path": "training/rollout-loop-20261113/jobs-azure2.txt",
+        "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+        "sha": "52dc0565abebe8a86f9a37f80efef97fa835a94c"
+      },
+      "stu_azure6_jobs": {
+        "path": "training/rollout-loop-20261113/jobs-azure6.txt",
+        "ref": "42caf9330677d86cad1be452c80ae35316f6b738",
+        "sha": "74cc81f332b5c5d16791d7d6abd902b2373c2ade"
+      }
+    },
+    "scope": "The WIP research plan documents named Stu/Azure collections and the trainer. Current owned Gen8 collection already continues; frozen source/models/settings/manifest remain authoritative. Different cuts/width experiments do not authorize an owned transition.",
+    "owned_adoption": false,
+    "owned_selfplay_opened": false,
+    "owned_gate_changed": false,
+    "peer_commands_executed": false,
+    "applied": false,
+    "no_peer_board_pooling": true,
+    "plan_blob": "f9d82da71afcf24569b90d07a3f72f06a2bb9972",
+    "readme_blob": "b290d33964162c306874d2fdd177e0f6c633bfa3",
+    "historical_650_deal_checkpoint": "Prior18:14 note and earlier poll preserved; latest report gives698 as the stopped gate total.",
+    "capacity_proposal": {
+      "experiment": "Width1536 on pool, running on Azure5; Gen8 collection there paused.",
+      "proposed_box": "Azure5 to16cores/128GB; proposed, not done, held until width results.",
+      "local_change": false,
+      "applied": false
+    },
+    "rows_scope": "Arena forks yield2.7x rows perCPU-second versus loop Gen8 self-play in the report. Full row compression/merging and memory limits concern the Stu trainer; no producer budget/capture change. Tables, rows and forks are not independent arena boards."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "poll_start": "2026-11-14T19:30:37Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+  "commits": [
+    {
+      "sha": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "date": "2026-11-14T18:43:39Z",
+      "message": "Round 4 adopted (stu4c); the exponent counted on the pool; rows a CPU-second; the net has no train/held-out gap at the pool's size\n\nREADME: the adoption without the full gate, the exponent with the pool as denominator, what a record costs and holds (the\narena's fork records against the self-play here), disk and memory a row, and rollout net v2 scored on rows it was trained on\nagainst held-out deals. PLAN: Max's decisions from 15:50 to 18:02 UTC. The width test (1,536 wide on the pool) runs on azure5.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu4c adoption in its named new self-play collections, stopped698-deal gate, testing/cut cadence, training-pool denominator, row efficiency and width/memory experiments.",
+  "disposition": "Continue this same immutable Gen8 arena cohort. The Stu plan remains WIP research only; New collections should flip is applied there to sp4t/sp4tb, not an instruction to mutate this existing cohort. Its stopped698-deal gate is adoption without the full gate, not an owned CI completion. The reported arena row efficiency does not change this producer capture/budgets. Width1536 testing and proposed Azure5 resizing are research/host scope; no new released model adopted here. Preserve all old698/650 checkpoint history, full records and exact current exclusion bytes; any future owned cohort requires complete ALL-released-model training membership.",
+  "evidence": [
+    {
+      "sha": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "message": "Round 4 adopted (stu4c); the exponent counted on the pool; rows a CPU-second; the net has no train/held-out gap at the pool's size\n\nREADME: the adoption without the full gate, the exponent with the pool as denominator, what a record costs and holds (the\narena's fork records against the self-play here), disk and memory a row, and rollout net v2 scored on rows it was trained on\nagainst held-out deals. PLAN: Max's decisions from 15:50 to 18:02 UTC. The width test (1,536 wide on the pool) runs on azure5.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "42caf9330677d86cad1be452c80ae35316f6b738"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/PLAN.md",
+        "training/rollout-loop-20261113/README.md"
+      ]
+    },
+    {
+      "sha": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+      "message": "Arena ladder: refresh (2026-11-14T18:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "49b58a126db04cf9ef64080a49e39932b7430b6b"
+      ],
+      "files": [
+        "arena/ladder.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "f9d82da71afcf24569b90d07a3f72f06a2bb9972",
+  "research_plan_status": "Work in progress, research only; updated Max decisions15:50-18:02 concern the Stu workflow, no general arena primary migration.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}

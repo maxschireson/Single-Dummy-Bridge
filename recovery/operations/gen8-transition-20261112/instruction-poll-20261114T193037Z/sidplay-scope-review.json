@@ -1,0 +1,25 @@
+{
+  "poll_start": "2026-11-14T19:30:37Z",
+  "pr33": {
+    "number": 33,
+    "title": "play/: play bridge with Sid: analysis, Sid in your seat, history, replays; Sid = SiD (rollout) Stu R4c",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T17:28:18Z",
+    "head": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74",
+    "base": "main",
+    "draft": false
+  },
+  "reviews": [],
+  "scope": "Max09:08PST auction-reading instruction concerns post-hand analysis in sidplay only; azure1 deployment reported17:28. PR33 remains open/unmerged. No owned engine/source/system change or remote command.",
+  "deployed_or_tested_here": false,
+  "commands_on_azure1": false,
+  "commits": [
+    {
+      "sha": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74",
+      "date": "2026-11-14T17:25:18Z",
+      "message": "play/: the analysis reads the auction (Sid's hand-fit scorer + the cell game)\n\nMax, 14 Nov 09:08 PST: 'The engines should read the auction.' At the person's decisions with 8 cards or fewer, the\nauction weight that ONE line provably wins (cells: East's suit lengths and the holders of up to two honour runs), for\nthe best card and the card played; as a defender, declarer's figure after each alternative. Floors only (proven lower\nbounds). Exchanges in the 'why' are those the auction allows, with where the auction put the deciding card.\ncells.cpp, celllib.py and pipeline.py vendored from research/conditional-claims-20261113. R4c bids deterministically\n(argmax; no randomisation), so Sid's calls are read as precisely as its scorer fits them.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    }
+  ],
+  "rechecked_unchanged": true
+}
