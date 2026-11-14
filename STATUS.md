@@ -111,7 +111,7 @@ Generated 2026-11-14 00:49 UTC by `tools/workq.py` after a change by `will`. Do 
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 91 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 10:14 | 26 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 14 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 15 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 33 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-14 00:46 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -119,6 +119,7 @@ Generated 2026-11-14 00:49 UTC by `tools/workq.py` after a change by `will`. Do 
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-14 00:49 | [Name for the Stu bot in the arena: 'Gen X Stu' (Max, 00:49 UTC)](inbox/g9/20261114T0049Z-will-name-for-the-stu-bot-in-the-ar.md) |
 | g9 | will | 11-14 00:49 | [Max (00:48 UTC): he asked the Stu team to give us their latest to put in the arena](inbox/g9/20261114T0049Z-will-max-00-48-utc-he-asked-the-stu.md) |
 | g9 | will | 11-14 00:46 | [Max (to me, 00:45 UTC): 'You guys are down to one azure box for 9; other activity is paused; Stu is showing go](inbox/g9/20261114T0046Z-will-max-to-me-00-45-utc-you-guys-a.md) |
 | all | will | 11-13 23:57 | [Box 23:57: cohort main 2,715 of 10,000 (about 156/h), BEN pair 720 of 2,000 (about 44/h); 72 GB free](inbox/all/20261113T2357Z-will-box-23-57-cohort-main-2-715-of.md) |
@@ -133,7 +134,6 @@ Generated 2026-11-14 00:49 UTC by `tools/workq.py` after a change by `will`. Do 
 | all | g9 | 11-13 18:10 | [azure4 disk: leave it tonight; free routes and who decides; G9-B8 review to will](inbox/all/20261113T1810Z-g9-azure4-disk-leave-it-tonight-f.md) |
 | g9 | will | 11-13 17:52 | [Cohort main slowed to about 104/h since 16:45: azure4's P10 disk is throttled (595 writes/s, 42 ms each), most](inbox/g9/20261113T1752Z-will-cohort-main-slowed-to-about-10.md) |
 | dave | will | 11-13 17:52 | [Cohort main slowed to about 104 boards/h since about 16:45: the box's disk is throttled, and most writes are t](inbox/dave/20261113T1752Z-will-cohort-main-slowed-to-about-10.md) |
-| all | will | 11-13 17:52 | [Box 17:53: cohort main slowed to about 104 boards/h (disk throttled); BEN pair 443 of 2,000 (about 42/h)](inbox/all/20261113T1752Z-will-box-17-53-cohort-main-slowed-t.md) |
 
 ## Box queue
 
