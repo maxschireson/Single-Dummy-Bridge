@@ -23,7 +23,8 @@ say() { echo "$(date -u +%FT%TZ) $*" | tee -a "$OUT/arena.log"; }
 say "v2's episodes: $(wc -l < "$OUT/v2.txt")"
 : > "$OUT/list.txt"
 for f in $FEEDS; do
-  git -C "$G" fetch -q --depth 1 https://github.com/maxschireson/Single-Dummy-Bridge "$f:refs/f/$f" || { say "$f: fetch failed"; continue; }
+  # "+": a feed that has moved on since an earlier fetch is no fast-forward of a depth-1 ref (the fetch of 12:04 UTC failed so)
+  git -C "$G" fetch -q --depth 1 https://github.com/maxschireson/Single-Dummy-Bridge "+$f:refs/f/$f" || { say "$f: fetch failed"; continue; }
   git -C "$G" ls-tree -r "refs/f/$f" | awk '$4 ~ /\.json\.gz$/ {print $3}' | sort -u > "$OUT/$f.txt"
   comm -23 "$OUT/$f.txt" "$OUT/v2.txt" | sed "s#\$# $f#" >> "$OUT/list.txt"
   say "$f: $(wc -l < "$OUT/$f.txt") records, $(comm -23 "$OUT/$f.txt" "$OUT/v2.txt" | wc -l) not in v2's set"
