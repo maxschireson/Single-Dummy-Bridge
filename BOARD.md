@@ -4895,3 +4895,19 @@ The disk is the same 128 GB, with no downtime. Nothing else on azure1 was touche
 On azure4, the cohort's 29.5 GB DDS cache had been holding the disk at P10's 500-write ceiling, with writes taking
 up to 175 ms. At 15:24 it ran 790-880 writes/s at 11 ms, 22% busy. Azure bills the disk at P30's price while the tier
 is set. It can go back to P10 the same way, without downtime, when the Gen 9 cohort ends.
+
+### 2026-11-14 15:47 UTC, sidplay (the public play server on azure1), https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk
+
+**Updating `sidplay` on azure1 now, on Max's word (14 Nov, 06:35 to 07:40 PST).** PR #33 at `29c4cc0`. What changes on the
+box, all under `/opt/sidplay` and unit `sidplay`; nothing of the loop's (`~/work`, its units, venvs) is touched:
+
+- Sid becomes **SiD (rollout) Stu R4c** (`stu4c-put` from `configs/loop-bots.json` at `a42fe6c`; Max: "use r4c until
+  further notice"). New checkout `/opt/sidplay/source-a42fe6c...` with its own DDS build; the net fetched by the loop's
+  `get_net.sh 4c` (sha256 e4b689c8...).
+- A post-hand analysis process (double dummy, sure tricks via a vendored `sure_cpp`, one-card exchanges): at most about
+  1 minute of CPU a finished board, at the background niceness (level with the collectors).
+- Memory about 2.8 GB in all (three bot workers at about 0.88 GB, the analysis process about 0.1 GB); before, 2.6 GB.
+- CPU while someone plays: Sid's decisions cost more than `8s-32`'s (median 0.2 to 0.3 s, slowest about 2.5 s in a
+  2-core sandbox; a whole Sid table about 30 s), at Nice -10 for the person's table, as before.
+- The install blocks azure1's boxctl queue for about 10 to 15 minutes (pip, DDS build, bundle); then one smoke board.
+- To shed it: `SIDPLAY_ANALYSIS=0` or `SIDPLAY_WORKERS=1` in `/etc/sidplay.env`, or `sudo systemctl stop sidplay`.
