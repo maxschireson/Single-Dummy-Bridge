@@ -9,6 +9,7 @@
 - [Backlog: open work](backlog.md)
 - [Branch inventory](branch-inventory.md)
 - [The 8X bot: rollouts on a rollout net with the winning-line logic (in the arena as 8X v3 once a collector runs its plan)](x8_bot.md)
+- [Gen 9 design (work in progress, not adopted)](gen9/README.md)
 - [Contribution workflow](../CONTRIBUTING.md)
 - [Agent entry point](../AGENTS.md)
 

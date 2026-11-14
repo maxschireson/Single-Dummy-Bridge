@@ -1,0 +1,7 @@
+{"schema": "card-descriptor-v0", "id": "sayc", "name": "Standard American Yellow Card", "family": "natural",
+ "open": {"two": {"2D": {"type": "weak", "hcp": [5, 11], "len": [6, 6]},
+                  "2H": {"type": "weak", "hcp": [5, 11], "len": [6, 6]},
+                  "2S": {"type": "weak", "hcp": [5, 11], "len": [6, 6]}}},
+ "resp": {"two_over_one": "standard", "one_nt_to_major": "nf", "major_2nt": "natural", "splinters": false,
+          "minor_2nt": [13, 15], "minor_3nt": [16, 17]},
+ "slam": {"blackwood": "plain", "gerber": true}}

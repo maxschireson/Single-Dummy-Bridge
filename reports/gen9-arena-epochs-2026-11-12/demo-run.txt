@@ -1,0 +1,16 @@
+epoch 1 played in 25s; decisions: [{"kind": "queued", "player": "3", "event": "retire"}, {"kind": "queued", "player": "7s-32", "event": "submit"}]
+epoch 2 (d8648e330e21), champion 6-32, 12 boards, snapshot 3e7bc4464f1c
+  1            anchor    protected
+  3            retired  
+  5RZ32        anchor    protected
+  6-32         champion 
+  7s-32        candidate
+  pairs: 6-32~1 x8, 6-32~5RZ32 x8, 6-32~6-32 x75, 7s-32~1 x3, 7s-32~5RZ32 x3, 7s-32~6-32 x3
+epoch 2 played in 80s; decisions: []
+epoch 3 (22c1f11bbfd0), champion 6-32, 12 boards, snapshot e7175b696765
+  1            anchor    protected
+  3            retired  
+  5RZ32        anchor    protected
+  6-32         champion 
+  7s-32        candidate
+  pairs: 6-32~1 x8, 6-32~5RZ32 x8, 6-32~6-32 x75, 7s-32~1 x3, 7s-32~5RZ32 x3, 7s-32~6-32 x3

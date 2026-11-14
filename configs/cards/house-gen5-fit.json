@@ -1,0 +1,362 @@
+{
+ "schema": "card-descriptor-v0",
+ "id": "house-gen5-fit",
+ "name": "A card fitted to house Gen 5 (models/bidding/gen5-2026-11-10), not declared by anyone: how near the card language comes to the house system",
+ "family": "natural",
+ "descriptor": {
+  "open.min_hcp": 12,
+  "open.rule_of_20": true,
+  "open.third_seat_min": 12,
+  "open.fourth_seat_rule_of_15": false,
+  "open.light": null,
+  "open.one_level_max": 21,
+  "open.nt": [
+   {
+    "hcp": [
+     15,
+     17
+    ],
+    "seats": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "vul": "any"
+   }
+  ],
+  "open.nt_five_major": true,
+  "open.weak_quality": 1,
+  "open.weak_other_major_max": 4,
+  "open.preempt_seats": [
+   1,
+   2,
+   3
+  ],
+  "open.three_level": {
+   "len": 7,
+   "len_max": 13,
+   "hcp_min": 4,
+   "hcp_max": 10
+  },
+  "open.four_level": null,
+  "open.three_nt": null,
+  "open.strong_2c": {
+   "hcp": 22,
+   "ltc": null
+  },
+  "open.two_nt": [
+   20,
+   21
+  ],
+  "open.two_nt_five_major": true,
+  "open.two": {
+   "2D": {
+    "type": "weak",
+    "hcp": [
+     5,
+     10
+    ],
+    "len": [
+     6,
+     6
+    ]
+   },
+   "2H": {
+    "type": "weak",
+    "hcp": [
+     5,
+     10
+    ],
+    "len": [
+     6,
+     6
+    ]
+   },
+   "2S": {
+    "type": "weak",
+    "hcp": [
+     5,
+     10
+    ],
+    "len": [
+     6,
+     6
+    ]
+   }
+  },
+  "comp.michaels": true,
+  "comp.unusual_2nt": true,
+  "comp.overcall_1": [
+   8,
+   17
+  ],
+  "comp.overcall_2": [
+   12,
+   17
+  ],
+  "comp.overcall_3_min": 13,
+  "comp.overcall_quality": {
+   "1": {
+    "top5": 0
+   },
+   "2": {
+    "top5": 1
+   },
+   "3": {
+    "top5": 1
+   }
+  },
+  "comp.takeout_shape": "all",
+  "comp.takeout_double_min": 12,
+  "comp.strong_double_min": 17,
+  "comp.jump_overcall": "weak",
+  "comp.jump_overcall_len3": 7,
+  "comp.weak_jump_hcp": [
+   5,
+   10
+  ],
+  "comp.jump_first": true,
+  "comp.balancing_jumps": true,
+  "comp.balance": 4,
+  "comp.nt_overcall": [
+   15,
+   18
+  ],
+  "comp.balancing_nt": [
+   12,
+   15
+  ],
+  "comp.vs_nt_double_min": 17,
+  "comp.vs_nt_natural": {
+   "len_major": 6,
+   "len_minor": 6,
+   "hcp": [
+    9,
+    15
+   ],
+   "top3": 0,
+   "top5": 2
+  },
+  "comp.vs_nt_2nt_minors": false,
+  "resp.nt": {
+   "stayman": true,
+   "transfers": "jacoby",
+   "texas": false,
+   "two_spade": null,
+   "super_accept": false,
+   "transfers_first": true,
+   "stayman_five_four": false,
+   "stayman_min_2nt": "game",
+   "slam_first": true,
+   "quantitative": false,
+   "answers": "relays",
+   "game": 25
+  },
+  "resp.single_raise": [
+   6,
+   9
+  ],
+  "resp.inverted_minors": true,
+  "rebid.one_nt": [
+   11,
+   14
+  ],
+  "rebid.reverse_min": 16,
+  "slam.blackwood": "rkc3014"
+ },
+ "provenance": {
+  "source": "fitted to the bidder models/bidding/gen5-2026-11-10/bidder.keras (its greedy auctions, all four seats) by scripts/gen9_fit_card.py: coordinate search over the fields in its SPACE, minimising the rate at which the bidder breaks the card on covered calls (silence counted as a break)",
+  "format": "fitted",
+  "reader": "bill (Gen 9), 12 November 2026",
+  "fit": {
+   "deals": 600,
+   "seed": 6161,
+   "start_card": "rb-standard, its cover dropped (the fitted card covers every context)",
+   "rate_fit": 0.129,
+   "steps": [
+    [
+     "start",
+     "rb-standard",
+     0.1767
+    ],
+    [
+     "open.min_hcp",
+     12,
+     0.1734
+    ],
+    [
+     "open.rule_of_20",
+     true,
+     0.1677
+    ],
+    [
+     "open.light",
+     null,
+     0.1652
+    ],
+    [
+     "open.third_seat_min",
+     12,
+     0.1648
+    ],
+    [
+     "open.nt_five_major",
+     true,
+     0.1599
+    ],
+    [
+     "open.weak_quality",
+     0,
+     0.1587
+    ],
+    [
+     "open.weak_quality",
+     1,
+     0.1583
+    ],
+    [
+     "open.weak_other_major_max",
+     4,
+     0.1579
+    ],
+    [
+     "resp.single_raise",
+     [
+      6,
+      9
+     ],
+     0.1574
+    ],
+    [
+     "resp.inverted_minors",
+     true,
+     0.155
+    ],
+    [
+     "comp.overcall_2",
+     [
+      12,
+      17
+     ],
+     0.1529
+    ],
+    [
+     "comp.overcall_quality",
+     {
+      "1": {
+       "top5": 1
+      },
+      "2": {
+       "top5": 2
+      },
+      "3": {
+       "top5": 2
+      }
+     },
+     0.1451
+    ],
+    [
+     "comp.overcall_quality",
+     {
+      "1": {
+       "top5": 0
+      },
+      "2": {
+       "top5": 1
+      },
+      "3": {
+       "top5": 1
+      }
+     },
+     0.1447
+    ],
+    [
+     "comp.michaels",
+     true,
+     0.1423
+    ],
+    [
+     "comp.unusual_2nt",
+     true,
+     0.1401
+    ],
+    [
+     "comp.balancing_jumps",
+     true,
+     0.1397
+    ],
+    [
+     "comp.strong_double_min",
+     17,
+     0.1385
+    ],
+    [
+     "rebid.one_nt",
+     [
+      11,
+      14
+     ],
+     0.1381
+    ],
+    [
+     "rebid.reverse_min",
+     16,
+     0.1372
+    ],
+    [
+     "slam.blackwood",
+     "rkc3014",
+     0.1295
+    ],
+    [
+     "comp.balance",
+     4,
+     0.129
+    ]
+   ],
+   "rounds": "two (the second found one change)"
+  },
+  "test": {
+   "deals": 600,
+   "seed": 6162,
+   "objective": 0.144,
+   "objective_start_card_full_cover": 0.1737,
+   "rate": 0.144,
+   "covered": 2430,
+   "silent": 0,
+   "calls": 6245,
+   "start_card_full_cover": {
+    "rate": 0.1737,
+    "covered": 2429,
+    "silent": 0
+   },
+   "start_card_own_cover": {
+    "rate": 0.1083,
+    "covered": 1699,
+    "silent": 0
+   },
+   "residual": [
+    "adv_overcall",
+    "ask_answer",
+    "comp_jump",
+    "comp_overcall",
+    "nt_relay2",
+    "open_weak",
+    "rebid_new",
+    "rebid_nt",
+    "rebid_raise",
+    "rebid_suit",
+    "resp_comp",
+    "resp_new",
+    "resp_nt",
+    "resp_nt_relay",
+    "resp_pass",
+    "resp_raise"
+   ]
+  },
+  "not_placed": [
+   "whatever the bidder does where no card field exists; test.residual lists the families still broken on more than 10% of at least 20 calls"
+  ]
+ }
+}
