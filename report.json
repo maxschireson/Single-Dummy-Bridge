@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T22:26:05Z",
+  "updated": "2026-11-14T22:27:07Z",
   "purpose": "development research; BEN pilots and matched strength screen; no adoption decision",
   "runs": [
     {
@@ -73,6 +73,83 @@
       },
       "failures": 0,
       "boards_per_hour": 770
+    },
+    {
+      "pair": "rx2-recursive32~rx-ben64",
+      "boards": 8,
+      "cpu_per_board": 40.63,
+      "common": {
+        "imps_per_board": -0.25,
+        "se": 2.21,
+        "boards": 8,
+        "won": 3,
+        "lost": 3,
+        "flat": 2
+      },
+      "native": {
+        "imps_per_board": -0.25,
+        "se": 2.21,
+        "boards": 8,
+        "won": 3,
+        "lost": 3,
+        "flat": 2
+      },
+      "failures": 0,
+      "unfinished": 0,
+      "attempts": 8,
+      "interpretation": "development only; not a strength or equal-time decision",
+      "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
+      "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
+      "attempt_work": {
+        "wall_seconds": 654.8562231580145,
+        "worker_cpu_seconds": 325.370067802,
+        "solver_cpu_seconds": 9.101576999999999,
+        "inclusive_cpu_seconds": 334.471644802
+      },
+      "actors": {
+        "rx2-recursive32": {
+          "work": {
+            "solver_cpu_seconds": 8.888871,
+            "solver_wall_seconds": 9.513449047255563,
+            "solver_calls": 36759.0,
+            "solver_hits": 1678.0,
+            "solver_timeouts": 0.0,
+            "wall_seconds": 327.59847993205767,
+            "worker_cpu_seconds": 314.58725436699996,
+            "inclusive_cpu_seconds": 323.47612536699995,
+            "initialization_seconds": 9.708036202035146
+          },
+          "recursive": {
+            "opportunities": 224943.0,
+            "calls": 1058.0,
+            "cache_hits": 4.0,
+            "changed": 2072.0,
+            "net_rows": 291226.0,
+            "child_wall_seconds": 222.25946138912695,
+            "argmax_different": 1488.0,
+            "applied_rows": 4191.0,
+            "budget_rejected": 42589.0
+          },
+          "precisions": [
+            [
+              "bf16",
+              "bf16"
+            ]
+          ]
+        },
+        "rx-ben64": {
+          "work": {
+            "wall_seconds": 316.8168649728759,
+            "worker_cpu_seconds": 0.3576625300000664,
+            "external_server_cpu_measured": 0.0
+          },
+          "recursive": {},
+          "precisions": []
+        }
+      },
+      "driver_failure": null,
+      "name": "ben-pilot-recursive32",
+      "validity": "integration pilot"
     }
   ]
 }
