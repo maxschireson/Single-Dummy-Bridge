@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+R=$HOME/work/g9/runs/g9-cohort-azure4; ls $R/run/receipts | wc -l; ls $R/run/failures | wc -l; sudo -n journalctl -u g9-job-g9-cohort-azure4 --since "09:07" --no-pager | grep -iE "error|refus|Traceback|resuming|collector" | head -5 | cut -c1-200; P=$(pgrep -f "g9-cohort-azure4/run --workers" | head -1); tr "\0" "\n" < /proc/$P/environ | grep BRIDGE_DDS_CACHE_SYNC; iostat -dx 10 2 | grep nvme0n1 | tail -1 | awk "{print \"w/s\",\$8,\"w_await\",\$12,\"f/s\",\$(NF-3),\"util\",\$NF}"
