@@ -291,7 +291,8 @@
      "self": "8s-32",
      "*": "8s-32",
      "ben64": "ben64",
-     "ben": "ben"
+     "ben": "ben",
+     "ben200": "ben64"
     },
     "lead": {
      "layouts": 128,
@@ -304,7 +305,7 @@
     }
    },
    "table_opponent": "stu0-psb",
-   "identity": "7ee157856329abe1e013346c0bfcd597ab6d2ff731f515f9ca2bff7d664cdd44"
+   "identity": "0ac2f5b0a5fcf95b3d66eda7b8e79fcdba53ddcae90d00a0fff4029e6aa8d075"
   },
   "6-32": {
    "id": "6-32",
@@ -657,7 +658,8 @@
      "self": "8s-32",
      "*": "8s-32",
      "ben64": "ben64",
-     "ben": "ben"
+     "ben": "ben",
+     "ben200": "ben64"
     },
     "lead": {
      "layouts": 128,
@@ -670,7 +672,7 @@
     }
    },
    "table_opponent": "stu0-psa",
-   "identity": "74ea523d5e144ac7187291806cf5ab1c9fed76ef7d88dec4d7d262675a642a42"
+   "identity": "9ada8c3b0cfe5388c4801692b35e2b4d966a83ca1e5279deb8d8b7ced594e8ad"
   }
  },
  "pair_schedule": [
@@ -698,9 +700,9 @@
  },
  "target": 1073741824,
  "one_room": true,
- "identity": "3c2fbf09a293853304a429655dd01867f77f9e9ae75f49a8aa657badb154fa78",
+ "identity": "7b4648427b89b907198e39beafa7215d30ede0a02f0186fa66f991ffbbfc0217",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 280000,
  "deals": 20000,
- "source_commit": "1a40de0ca034c886228480e0d834550c7a2d19d2"
+ "source_commit": "3cb03efcf575f71363c6f80a53856874d10b6f5a"
 }
