@@ -492,7 +492,7 @@
    "ended": "2026-11-13T05:57:02Z"
   },
   "g9-cohort-azure4": {
-   "state": "waiting",
+   "state": "running",
    "owner": "dave",
    "experiment": "G9-D9",
    "boards": 3617,
@@ -502,10 +502,10 @@
    "priority": 1,
    "cores": 4,
    "started": "2026-11-13T06:45:19Z",
-   "resumed": "2026-11-14T02:55:42Z",
-   "source": "/home/bridgebots/work/g9/src/46b7e004",
-   "rate_per_hour": 84.9,
-   "eta": "2026-11-17T12:15:35Z",
+   "resumed": "2026-11-14T09:06:36Z",
+   "source": "/home/bridgebots/work/g9/src/7e0edac7",
+   "rate_per_hour": null,
+   "eta": null,
    "published_at": "2026-11-14T09:04:14Z",
    "published": "transfer/gen9-g9-cohort-azure4-azure4-20261113@33900c818",
    "short": false,
@@ -524,13 +524,13 @@
    "started": "2026-11-13T07:41:58Z",
    "resumed": "2026-11-13T07:41:58Z",
    "source": "/home/bridgebots/work/g9/src/989a4931",
-   "rate_per_hour": 44.0,
-   "eta": "2026-11-15T05:26:31Z",
+   "rate_per_hour": 44.7,
+   "eta": "2026-11-15T05:07:23Z",
    "published_at": "2026-11-14T09:00:34Z",
    "published": "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@c69294320"
   },
   "e9-25": {
-   "state": "running",
+   "state": "paused",
    "owner": "g9",
    "experiment": "E9-25",
    "boards": 237,
@@ -548,13 +548,13 @@
    "published": "transfer/gen9-e9-25-azure4-20261114@b3f8c2217",
    "retry_seen": 1,
    "short": false,
-   "stopping": true
+   "ended": "2026-11-14T09:06:36Z"
   },
   "g9-genx-stu-azure4": {
    "state": "running",
    "owner": "will",
    "experiment": null,
-   "boards": 338,
+   "boards": 340,
    "target": 4000,
    "restarts": 0,
    "submitted": "2026-11-14T01:28:00Z",
@@ -563,17 +563,17 @@
    "started": "2026-11-14T02:45:11Z",
    "resumed": "2026-11-14T02:45:11Z",
    "source": "/home/bridgebots/work/g9/src/9bba86b6",
-   "rate_per_hour": 52.0,
-   "eta": "2026-11-17T07:31:27Z",
+   "rate_per_hour": 56.9,
+   "eta": "2026-11-17T01:24:51Z",
    "published_at": "2026-11-14T09:00:01Z",
    "published": "transfer/gen9-g9-genx-stu-azure4-azure4-20261114@8dcda8091"
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-14T09:06:04Z",
+ "updated": "2026-11-14T09:06:36Z",
  "bad_jobs": [],
- "cores_busy": 5,
+ "cores_busy": 8,
  "waiting_before": true,
- "idle_core_hours": 3.031,
- "idle_core_hours_while_waiting": 3.031
+ "idle_core_hours": 3.058,
+ "idle_core_hours_while_waiting": 3.058
 }
