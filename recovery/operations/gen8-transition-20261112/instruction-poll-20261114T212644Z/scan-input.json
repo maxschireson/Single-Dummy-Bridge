@@ -1,0 +1,2329 @@
+{
+  "poll_start": "2026-11-14T21:26:44Z",
+  "comments_since": "2026-11-14T20:31:03Z",
+  "refs": {
+    "archive/gen6-fast-ben-20261111": "802f69ad6e1416a5a7200d5e6c29f8beca2a8275",
+    "arena-components-feed": "78345ca62fe0d81979a9d861da0cd88f32ac58cb",
+    "arena-feed": "0c1cfa02beea115e4636947e9a13a5d2360c59ca",
+    "arena-gen5-codex-32-feed": "231647b297ba7b05ee28e720d7f395bacbcff818",
+    "arena-gen5-codex-feed": "759365035cddadd6b5586bd8f10995aff40d9be3",
+    "arena-gen5r-feed": "ef13160a9c2412bdacae82bb9e26f5cd546e0446",
+    "arena-gen5rz-ben-feed": "a559ccb59e9d3ff09d8c759c016534b4efcef254",
+    "arena-gen5rz-feed": "03fd90e694d02ba139559fc323e63e384da9e969",
+    "arena-gen6-ben-expansion-feed": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
+    "arena-gen6-chatgpt-feed": "1769acd11480cd54dd9a7b264f32bed5be62214a",
+    "arena-gen6-codex-ben-followups-feed": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
+    "arena-gen6-codex-ben-gate": "32d459d5513005f3c032a04fb6c785d4a0db4d6f",
+    "arena-gen6-codex-feed": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
+    "arena-gen6-codex-v7-capture-feed": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98",
+    "arena-gen6-codex-v7-cutover": "019a7503a67f34771792b933e8ebfdd11e40e70c",
+    "arena-gen6-codex-v7-watch": "6ca5d82f3705dc1f72b2741b2cb3d63e9fdad61b",
+    "arena-gen6-extra-selfplay-feed": "40a2b2462d73a32fc3d974ca0e014c33f5ff30e1",
+    "arena-gen6-fast-selfplay-20261111-19bbdce5-feed": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "arena-gen6-fast-selfplay-cloud-feed": "37bb31e1489621e1c4ba3ce06aa9b98e92311098",
+    "arena-gen6-fast-selfplay-codex-20261111": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+    "arena-gen6-fast-selfplay-independent-feed": "937792a17084d0bbaa6a044e9b6e0f3aaeb80483",
+    "arena-gen6-fast-selfplay-primary-feed": "d5a1f25688ca1e9c2b2c25c351f967e134adb10f",
+    "arena-gen6-gen7-capture-feed": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+    "arena-gen6-independent-feed": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+    "arena-gen6-medium-ben-feed": "ca95def619269e2eefaba8263134ff8154ff1171",
+    "arena-gen7-1-azure3-ben64-1-feed": "e8f1a1c158c57f3fc067d981de746f671822d71b",
+    "arena-gen7-1-azure3-ben64-2-feed": "586e5c91f0f33aeb4c82b565fd2c5c6307081008",
+    "arena-gen7-1-azure3-ben64-3-feed": "8e0f634de40661c955ed9b2d8a2b301b2d68d2e9",
+    "arena-gen7-1-azure3-ben64-4-feed": "b2207d8c33cd69baa99b7dfa4cf4f984b151889e",
+    "arena-gen7-1-azure3-ben64-5-feed": "b374fd983d26036c4ecaf72d5464dc274758b7e8",
+    "arena-gen7-1-azure3-ben64-6-feed": "467a873a701f23601c5bddc28533f5130186a2fc",
+    "arena-gen7-1-azure3-ben64-7-feed": "6c78f9e07ee59dfd4395ae7f4d0edc7338062ee1",
+    "arena-gen7-1-azure3-ben64-8-feed": "78d69694722b092e4953f0db9196be10a0a898a3",
+    "arena-gen7-1-compare-azure2-feed": "239815e87f10bc14471e2c08b227f4e039e6a732",
+    "arena-gen7-1-compare-codex-20261112-feed": "71a6dc2dbc8985175c476388115bc4f301e7452f",
+    "arena-gen7-1-fresh2-azure3-ben64-1-feed": "976822c654f72017a60eeda457a8b2ba87f8ef65",
+    "arena-gen7-1-fresh2-azure3-ben64-2-feed": "3dd1086351efe90f6ba3582f7d7b6a3575d7836b",
+    "arena-gen7-1-fresh2-azure3-ben64-3-feed": "dec43d30f8d15e4a0d9274d01b5d3f1fba6a43c8",
+    "arena-gen7-1-fresh2-azure3-ben64-4-feed": "e5078f5d51fb2de42e06fc36f6cc71b68c05b5cf",
+    "arena-gen7-1-fresh2-azure3-ben64-5-feed": "3f03a751d999ba676359ee8e6240844be2a290d1",
+    "arena-gen7-1-fresh2-azure3-ben64-6-feed": "b7707f556212e9d14d98b0e9e9e336dd3d4a6436",
+    "arena-gen7-1-fresh2-azure3-ben64-7-feed": "f56bf95812291db53f464eea69a812c57c7724b2",
+    "arena-gen7-1-fresh2-azure3-ben64-8-feed": "b1ce784998959a34d85d228783a1269bfad4af17",
+    "arena-gen7-1-fresh3-azure3-ben64-1-feed": "c14b37cdb0276a7e71212d135241f0300fdb835a",
+    "arena-gen7-1-fresh3-azure3-ben64-2-feed": "06c45434db5b47388cb918c786d4b9386ec439ff",
+    "arena-gen7-1-fresh3-azure3-ben64-3-feed": "106ce99d11e10ba1c056cbf68260398df24c0ccb",
+    "arena-gen7-1-fresh3-azure3-ben64-4-feed": "5a41f09fe901b54198b8602d92c40cdc0424063d",
+    "arena-gen7-1-fresh3-azure3-ben64-5-feed": "0c4ab5f5459d3d131cb2a9f1828c4de4c34882d2",
+    "arena-gen7-1-fresh3-azure3-ben64-7-feed": "80681d7804dd57bd66582c311c3cad0d9168fc0d",
+    "arena-gen7-1-fresh-azure3-ben64-1-feed": "c7a4e5b79c7a7648bbda0c61557e52dd8f31c53e",
+    "arena-gen7-1-fresh-azure3-ben64-2-feed": "0219e1b142d8a7211b60ef262c61b7c677848c64",
+    "arena-gen7-1-fresh-azure3-ben64-3-feed": "79d1891b889c1222169178155c095d340621b261",
+    "arena-gen7-1-fresh-azure3-ben64-4-feed": "e74503532ae896a406a5b8834ae2c23d6cebfad6",
+    "arena-gen7-1-fresh-azure3-ben64-5-feed": "83df6942792e4bbe9e0ff0dd482745e8da0573c6",
+    "arena-gen7-1-fresh-azure3-ben64-6-feed": "7536c10dc6a8b891317eb354c21722f9bcdb7b83",
+    "arena-gen7-1-fresh-azure3-ben64-7-feed": "2f215568e813598eec7d72885dfd6a1cf513c429",
+    "arena-gen7-1-fresh-azure3-ben64-8-feed": "35b0ff330a4dc66f5dd4e2f58c6e0b2d00ca03e0",
+    "arena-gen7-1-mix2-azure1-feed": "b417f16dfbbca25e0a759ed5402afa6579ac7acb",
+    "arena-gen7-1-mix-azure1-feed": "486843d9494fe8826f45d2c23179baafa070dbf0",
+    "arena-gen7-1-vs70-azure2-feed": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d",
+    "arena-gen7-1-vs70-fresh-azure2-feed": "67dd0edee1f790ff954ee2bb1565b51d80b2ba5b",
+    "arena-gen7-independent-selfplay-feed": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d",
+    "arena-gen7-phase1-azure1-feed": "419d7e1009bb559b816adfc69a67b39d7ed55ebb",
+    "arena-gen7-phase1-azure2-ben16-1-feed": "07674c65f86efe1649c8dc6c81be7e2ab45c4e3d",
+    "arena-gen7-phase1-azure2-ben16-2-feed": "79bb5e848440907394137f219607c32647b14b97",
+    "arena-gen7-phase1-azure2-ben16-3-feed": "1f6f581aef379f44385deee7b0a9a5871f1a87ee",
+    "arena-gen7-phase1-azure2-ben16-4-feed": "dbff573e35d1c838b5c4641b7f58dcc417a50749",
+    "arena-gen7-phase1-azure2-ben16-5-feed": "f5ca8133c1f9be100959d8a312b004a0d354efd0",
+    "arena-gen7-phase1-azure2-ben16-6-feed": "58ed24ce1d0e2ff79988117b3e3010b7e84dc778",
+    "arena-gen7-phase1-azure2-ben16-7-feed": "65e22f8336c618ed276d05422aa8c0658a66bd44",
+    "arena-gen7-phase1-azure2-ben16-8-feed": "650431ab87d8d78043edb3bec60949ee33c00d3b",
+    "arena-gen7-phase1-azure2-feed": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+    "arena-gen7-phase1-azure3-ben64-1-feed": "1c9b8979bff94069748db8040fed28c82bbc55ef",
+    "arena-gen7-phase1-azure3-ben64-2-feed": "075d74f1d9070591bdbd75419ccc73c3f1c81283",
+    "arena-gen7-phase1-azure3-ben64-3-feed": "bed7024f4f3fd90deea200f756a38223929eb844",
+    "arena-gen7-phase1-azure3-ben64-4-feed": "755372135b6127ea21aa0ee64c3fe71ee4aeddf2",
+    "arena-gen7-phase1-azure3-ben64-5-feed": "823bc797c4855fadd6bb286167f93969e13b1e45",
+    "arena-gen7-phase1-azure3-ben64-6-feed": "a4c399365d3bf3931d424932589e372f35db1340",
+    "arena-gen7-phase1-azure3-ben64-7-feed": "62b082a31ce2c82927420438998f0d4b265eea81",
+    "arena-gen7-phase1-azure3-ben64-8-feed": "0aaf87097a19f2b69226c511231178064d975761",
+    "arena-gen7-phase1-azure3-feed": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+    "arena-gen7-phase1-azure4-feed": "9aec8a61381496bede23433c9614b8fdaeb728b6",
+    "arena-gen7-phase1-cloud-feed": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+    "arena-gen7-phase1-codex-20261112-feed": "dfe3233dec356e48da065702964892354e0db16c",
+    "arena-gen7-phase1-extra-feed": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
+    "arena-gen7-phase1-independent-feed": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+    "arena-gen7-phase1-selfplay-azure2-feed": "87faa7ee2d92966512b0535b78f69198c81a87e0",
+    "arena-gen7-pre7-azure1-feed": "86385be46eb54bca35a8e04697d412cb64eb6467",
+    "arena-gen7-pre7-azure2-feed": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39",
+    "arena-gen7-pre7-azure3-feed": "8c854a58b27729e97bd809484a7e0850cf855550",
+    "arena-gen7-pre7-azure4-feed": "2968b84979c87ccb4102d164013e62ce2cf60c07",
+    "arena-gen7-selfplay-capture-codex-20261112-feed": "09950642e0d40dc68fecf511569bb72935ba7782",
+    "arena-gen7-selfplay-codex-20261112-feed": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+    "arena-gen8-19bbdce5-20261112-feed": "1236aa7e8145da408dd84616dd8e352573fe477c",
+    "arena-gen8-azure1-feed": "210f7b205ad822b88a82cc482af3f6952f1b41b5",
+    "arena-gen8-azure3-ben64-1-feed": "de640549c40531b5f235b5480a2213c135b690ca",
+    "arena-gen8-azure3-ben64-2-feed": "fdee44ee8b5e3dbcf317a3ba2f30fc88a3e718b1",
+    "arena-gen8-azure3-ben64-3-feed": "2ee121d1ffc7e725c774a91562703a40226e885c",
+    "arena-gen8-azure3-ben64-4-feed": "4c2778ba0277a94616ecf6685899090360dfcef1",
+    "arena-gen8-azure3-ben64-5-feed": "80c6f9e71db653b8611334ea0da9fb6c7addb61f",
+    "arena-gen8-azure3-ben64-6-feed": "fbfae2c0b7a95ed1a850fc297bc4fa4b7da04737",
+    "arena-gen8-azure3-ben64-7-feed": "0e72cf1b5888920eb69d5741cdb885902c3f0b92",
+    "arena-gen8-azure3-ben64-8-feed": "846404c8a0de86a8d279748d2b7c7999e7846d95",
+    "arena-gen8-azure6-feed": "3b68c77537a88932817f352b23bc032966a33800",
+    "arena-gen8-candidate-codex-20261112-feed": "287296f256ec9e974f8f0659c30cceac2820ca1a",
+    "arena-gen8-f-azure3-ben64-1-feed": "70af3d4ffa918c6156e556e07826803165052771",
+    "arena-gen8-f-azure3-ben64-2-feed": "0c2d19bd46baf6cf9f1b47bb2f636ba0325ab85e",
+    "arena-gen8-f-azure3-ben64-3-feed": "91c75e8829d3b596739df445840325b7b63c81a7",
+    "arena-gen8-f-azure3-ben64-4-feed": "17c08141fab4e0b349a29b27a7fb32d5de85d09a",
+    "arena-gen8-f-azure3-ben64-5-feed": "74e31aaddecdecd3c71cda957e5633ccad66aacd",
+    "arena-gen8-f-azure3-ben64-7-feed": "352bfad7dd1ecc56ffe589214bb123158827971a",
+    "arena-gen8-f-azure3-ben64-8-feed": "7159a5191b84fa386bcee8e8c97de2706a006fd4",
+    "arena-gen8-independent-feed": "7692f5f5b2585b46cc1e045a4aace1fa46f56204",
+    "arena-gen8-m1-azure1-feed": "230222ced59d36761501ca6e94a83f474948ec5a",
+    "arena-gen8-p2-azure3-ben64-1-feed": "460aec92e15f061abb7886250d272d9de8cd2581",
+    "arena-gen8-p2-azure3-ben64-2-feed": "836c37d38dc6464d351a763808bd136c590e2134",
+    "arena-gen8-p2-azure3-ben64-3-feed": "2039ffc018749b74bc45fc8dc27f1b80f72c8ef5",
+    "arena-gen8-p2-azure3-ben64-4-feed": "4fe096de4ae25d27ccd610de946fb71904309c3a",
+    "arena-gen8-p2-azure3-ben64-5-feed": "952c4c9c3776ab380e0c85d7623950c4f36a8f61",
+    "arena-gen8-p2-azure3-ben64-6-feed": "2bef771fd6448d8576afa99b01c3c712378a3b70",
+    "arena-gen8-p2-azure3-ben64-7-feed": "2249075f491fcd38d311b18b4cb75c8dc830d028",
+    "arena-gen8-p2-azure3-ben64-8-feed": "5c05fcaad51ef23b28c178f433e154b488163a74",
+    "arena-gen8-s1-azure1-feed": "955dc8cce4f6ca06d0a5015b2abdb16f2495ee85",
+    "arena-gen8-s3-azure1-feed": "934d62ee9d89a48dc388c9e94b8bcbd13bccd00d",
+    "arena-gen8-s7-azure1-feed": "9c7562342965d32bdea73f1b30f0473d3a2fb436",
+    "arena-gen8-x3-azure1-feed": "cda098fcfd890886c379e21813546ff07b9daea2",
+    "arena-gen9-azure4-ben64-feed": "e7776e694399ac9a0d99deb076205d73df112007",
+    "arena-gen9-azure4-feed": "d920f587bb5ab467a70e19b795eb31fb4ae891b8",
+    "arena-gen9-genx-stu4c-azure4-feed": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c",
+    "arena-gen9-genx-stu-azure4-feed": "d959fd318ddc68d9932516613ae83c92a5b0a44c",
+    "arena-gen71-19bbdce5-20261112-feed": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+    "arena-gen71-independent-feed": "cbddecbc290efc8e3ab6e088135675df1cec14e5",
+    "arena-local-feed": "7201f5a2e5b8f4ca6e03bc6769633b48ca39590e",
+    "arena-primary-components-feed": "f11ab55e16787069dfd5c25cf539592c85b7c699",
+    "arena-recovery-feed": "599abfc69b17d1e6e4c4c5e5c505d241d2120bbf",
+    "box/azure1/control": "5573d5338938e2350eb67ff346bd7e0f8f71ac45",
+    "box/azure1/status": "3aa59c7aa924c3e96b4a9d540d6db21e7b3c7d1f",
+    "box/azure2/control": "8470b43070e39cfdb6f2b2e3211aa7c60a89339c",
+    "box/azure2/status": "07dee317fcd94a70eba5d571ca07c1769303a464",
+    "box/azure3/control": "0f4669afe292fe42f12e1bff982b6fe7c098c4bf",
+    "box/azure3/status": "6a11c4f6b82241525a4a9314b64d95664c8dce94",
+    "box/azure4/control": "4a2b469e8d5d6d68ec678d59c4bff2e0eb4d9110",
+    "box/azure4/status": "b29021c812132564c8cd360c1084b208cea834c6",
+    "box/azure5/control": "73f2966c401d2236635498781b85132607a4446d",
+    "box/azure5/status": "0f822fc98975094b084f1b563c27f46dc511694c",
+    "box/azure6/control": "8bf3f7e0838b9b7fd92b88c7666eabd8cdd0949d",
+    "box/azure6/status": "1ad21eb610aa02fcae0a7db9ab7e6b64b75531fc",
+    "box/azure7/control": "f15a3a8cb9af2fb4eff5efc42ebc25af6d8eebcf",
+    "box/azure7/status": "e823dfb884832bc2682733a86386eeadfea359d1",
+    "box/coordination": "9e480765ddee4953499629fa0c4a16515a582064",
+    "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
+    "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
+    "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
+    "codex/gen6-ben-followups-20261111": "2bfa825581911aba78bc82262b5ce7bc61e735a0",
+    "codex/gen6-data-handoff-20261110": "dd24cb120524ef9fae2f5767fea49b410ae93612",
+    "codex/gen6-fast-selfplay-20261111": "153c7b12df25d3cae4e767cae6f3207b7e6a4fa0",
+    "codex/gen6-gen7-capture-20261111": "b81d674d983e2bb3b158400192a82c41177fde55",
+    "codex/gen6-independent-collector-20261111": "db4da2e1d8a213c3f4ee4c0df26d1efa49221138",
+    "codex/gen6-medium-ben-correction-20261111": "68018a1888f9c6bfa7ff9b37f1eb634c7a79fe83",
+    "codex/gen6-v7-capture-20261111": "957438c6687dbce8ee8bd4fe07fd0e1fe422611f",
+    "codex/gen7-independent-selfplay-20261112": "168d580f12796f7554bf539d4dff377fc89b814d",
+    "codex/gen7-phase1-independent-20261112": "522eda6d5c13230a541ea40dc9cae497ed4c6088",
+    "codex/gen8-independent-20261112": "1b4ded5340649153bff238c4a89e560b000f868f",
+    "codex/gen71-independent-20261112": "b09c86536d79310599d708d05a16aab7752b2dbe",
+    "codex/launch-gen5-20261110": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
+    "codex/launch-gen5r-20261110": "6d5e8cd587bc3cc942c5856c145e116d3543f6eb",
+    "codex/launch-gen5rz-20261110": "552c13837e7f660464d0fba644c3d557bda59905",
+    "codex/launch-gen5rz-ben-20261110": "4969fc230e90fc53e24c31fa1ede344acd39216a",
+    "codex/launch-gen6-20261111": "b34a40fd7829ebeaaf96b86a424289e3f938a868",
+    "codex/round5-ben-and-timing": "b463e56e8fbdad97251d4680075c3ccda636a848",
+    "docs/generation-cleanup-20261112-gen8": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
+    "docs/generation-cleanup-20261112": "5ddb8c30555558ef41a7a6632a283ffb4a7fff4e",
+    "docs/stu-rollout-harvesting-20261114": "30a665bb6057e8011c8d3f2843a38181b53c3198",
+    "docs/stu-search-allocation-review-20261114": "f2c865707193b910ef7a5ee617be5a014faaca64",
+    "docs/stu-training-efficiency-20261114": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+    "experiment/ace-ben-timed-20261110": "2058febd2cb664675adba6f5e88941eaea2f3f3c",
+    "experiment/gen5r16-comparisons-20261110": "33ccf5231aa4b0d0049d5f629dd080460cba6397",
+    "experiment/gen5rz-ben192-16-20261110": "8743125af15cf733356560ab9e268ac1157e4b1f",
+    "experiment/representative-pool-tuning-20261110": "feaefe40ecce72425441cc46021b703174812212",
+    "feature/bid-style-20261114": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+    "feature/boxctl-20261112": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
+    "feature/gen7-alpha-20261111": "7690c3c2014dd60ee349d8fff41985b4e811ff4e",
+    "feature/gen7-candidate-20261111": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+    "feature/gen7-prepare-slice-20261112": "ecff8d935f3d93d12d277fd74466eaf521f34944",
+    "feature/gen7-selfplay-20261112": "50990002b64833073b04e1bad025241109033ad3",
+    "feature/gen8-p41-20261112": "119d923645bb6634c3e76680a604b202720bc228",
+    "feature/gen8-prototype-20261112": "695078457205693f48a24c355681aef47ca21935",
+    "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
+    "feature/gen8x-arena-20261113": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+    "feature/gen8x-rollout-bot-20261113": "1a779a9e67caef3d362015e621d0de18b5c6553c",
+    "feature/gen9-arena-arrival": "038f562719df385fcc617f090f5e2f2fba838f2d",
+    "feature/gen9-arena-design": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
+    "feature/gen9-arena-epochs": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
+    "feature/gen9-arena-experience": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+    "feature/gen9-arena-ratings": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+    "feature/gen9-arena-sim": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+    "feature/gen9-bidding-cards": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
+    "feature/gen9-bidding-design": "a01cab885378cc421b352dc289abc15532026425",
+    "feature/gen9-cohort": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+    "feature/gen9-cohort-amend": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+    "feature/gen9-cohort-sync": "7e0edac702d32e999ba969a9bbda9ec00d3a64b0",
+    "feature/gen9-e9-17": "8caedc7443dfad96eba583cd0ad259f82616faff",
+    "feature/gen9-genx-stu": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+    "feature/gen9-ladder": "e0c1e9dcf31905a836f969e40d7698d47ddf7ac8",
+    "feature/gen9-population": "3153a98d39530feb1f57a8b119fa96de89799104",
+    "feature/gen9-reading-bench": "c877d10bd856df07d8d0634cd75897e67c728a36",
+    "feature/gen9-signals": "d2092edf7cf6c34303768cc45f2b2bf280532263",
+    "feature/gen9-signals-design": "16bf806f974a3b7ba472832bb8c819cc051a6fc0",
+    "feature/gen9-signals-v2": "fe206a2ee926d95acc2caede56bd250c0e4e7823",
+    "feature/gen9-workflow-ben-lanes": "249ab383007645906df2e5a8a00d45ac1e05e2a8",
+    "feature/gen9-workflow-design": "57c43dd6a0793cb61c0c9031a776219990b0888d",
+    "feature/gen9-workflow-tests": "6f9d3cba1e35c3077194106b900dfc9306f63d73",
+    "feature/gen9-workflow-tests-2": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
+    "feature/gen9-workflow-tests-3": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
+    "feature/gen9-workflow-tests-4": "b59bcb3e473614d5174750fb0847923360d07f5c",
+    "feature/gen9-x9": "7da02ba92335cf20a321d0091ffd16f3c4630d1b",
+    "feature/gen9": "b2070f696959074993eeee04b81db0bebbdd6ffc",
+    "feature/sid-play-20261113": "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794",
+    "feature/stu-dashboard-20261113": "caf7db0ad1bd37d4b787f98442e4bc2d5af0361f",
+    "feature/stu-standing-fallback-20261114": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+    "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
+    "feed/usbc-human-20261114": "8381f8e58a93a87c6097945025457d32576f9ec1",
+    "feed/usbc-human-all-20261114": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+    "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
+    "fix/gen7-forward-gemm-20261113": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+    "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
+    "fleet/azure": "4b3594bcf323870fb6208e0cb5115a04829d3dc2",
+    "gh-pages": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+    "mail/coord": "e0cd9ec94a9221b2d1d91d2c124c07c9c3514f47",
+    "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+    "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
+    "ops/gen8-19bbdce5-20261112": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
+    "ops/gen71-19bbdce5-20261112": "7d96087a3a501909c0441837b95498001e1923de",
+    "perf/stu-20261114": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+    "perf/stu-efficiency-handoff-20261114": "6d9901dcc7d69a3da9174afb315cc13523897d30",
+    "research/auxiliary-auction-play-10000": "5f86e973dedbf4bda7db32e631b58073cf33a003",
+    "research/belief-lab-20261110": "182e74b6d76b899c0a79990221d948da711279df",
+    "research/belief-plus-approx-dds-20261109": "fc795d945c284b80c314c528c03f529ff16ec629",
+    "research/belief-size-comparison": "78e135856ac90d92e0277379db0f5313ff4aea45",
+    "research/belief-v5-attention-screen": "9525d483fec63a2d223df59f5b51dfd7fabb3f8b",
+    "research/belief-v5-impactful-cards": "b3c469fcebfce6d116a0792480d58acebd7f1b48",
+    "research/bidding-actual-outcomes": "1d18faad0a9141c423c2cc1a1bd521b450870c5d",
+    "research/bidding-clean-mixes-20261109": "7ddfb0f1ee0c1c5dc0d642591c1d2d8dacb0d34b",
+    "research/bidding-structure-20261110": "7ef916dd5f102f029ab628cfce93939d97e9dbc9",
+    "research/clean-policy-v5-20261110": "22909ff9feb51ce88d17ea13c39d6b4c1611ff64",
+    "research/conditional-claims-20261113": "baa062c9520ca7d0b3b2b6e33073a3a6696c2543",
+    "research/consistent-strategies-alpha-mu": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
+    "research/dds-bidding-loop": "16834962ede44e72f366ff741a0bb8b4dbf58609",
+    "research/dds-value-quick-20261109": "14068262f4602d64a1494da709b6ae99447ac180",
+    "research/ddsd-corrector-20261110": "6ed8f0d86c5ec3608f8e1167ca3e9964c9242d9c",
+    "research/direct-pairs-current": "221607112587b531c16bdabe9e026e311f23ca4f",
+    "research/gen4-components": "747eef6cdabee2156312330a9a80d7572aee9d3c",
+    "research/gen4-local-supplement": "37be71e640fa7118d5b2d1a12e974762516460a8",
+    "research/gen6-bidding-refresh-20261110": "77b3ff97f00fc375bf33f718ce9f2a4499855cc8",
+    "research/gen6-current-recipe-20261110": "8a23d7d9c21f8fa8cbeacddb8d847ada20435f6e",
+    "research/gen6-policy-69k-20261110": "0c954e08f31284e298c375217ca802d461ac5161",
+    "research/gen6-policy-width96-full1513-20261110": "03b0f16952ae97dbaefc595e7adcd54a9329da8c",
+    "research/gen6-system-aware-policy-20261111": "76b8b722a0a264d982505c02cca51ca59f871992",
+    "research/gen8-layout-budget-20261114": "7da1d0904fd17237b382411444b070272b7ba1c8",
+    "research/gen9-spot-equivalence": "08388083455833f434755e235d5a41a74613fe76",
+    "research/hand-fit-scorer-v1a-20261111": "8ff85d4ae4e204c3b86150295f3c1475e66b9ea0",
+    "research/imp-policy-draft": "d7ee77a8020bb97208cfbd4db5f187174064c078",
+    "research/joint-auction-belief-20261110": "b13baddb6c01346d13ac65848c5cfd4865201a82",
+    "research/large-belief-play-test": "be09f9f8da1ed53c53f7525da1490888733940c0",
+    "research/layout-embedding-20261110": "320b85683744d79f82a594b88708641fa283169c",
+    "research/mixed-fork-generations": "7e84281a1943e71e83b67e63af7433ac795902cb",
+    "research/multiscore-16-32-64": "6e87791efe91686c5e22350b708fa0fb582e41db",
+    "research/outcome-policy-20261109": "f6507f0544ec59caef64589b273ab105142d7d1e",
+    "research/pimc-study-2026-11-08": "6525707e394b7df095ad458cac40835ba8ae5b61",
+    "research/plan-leverage-20261112": "cc12ca17f61fa4d0aa9ef2df1d502c9cd5c41a9b",
+    "research/plan-leverage-g8-20261112": "ac81c663088b1dd0dd8294153d04c08445cc3554",
+    "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
+    "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
+    "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
+    "research/rollout-loop-20261113": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+    "research/self-improvement-loop": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
+    "research/selfplay-training-2026-11-08": "8f536af62d3f7e2dd2484139483795312177ced6",
+    "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
+    "research/sid-net-s0-20261113": "ce3955807dc7a639b55256feffd693bb52f1e378",
+    "research/sid-selfplay-loop-20261113": "183980c600299c3b6c583e972a5546c649de01fd",
+    "research/stu-rollout-experiments-20261114": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+    "research/stu-rollout-review-b-20261114": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+    "research/sure-trick-table-20261112": "2e6ed6db12cba4110f43c29a70823a992c296ea1",
+    "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
+    "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
+    "team/gen9": "8ed4b23e5527f8137c385091a184a8fdbf216458",
+    "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
+    "transfer/conditional-claims-raw-20261113": "9209fc9ac3e63a8f89d9e555ebe83e91005a070f",
+    "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
+    "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
+    "transfer/gen3-training-feed": "3ddf598944dee097a530c2dd2c3804627fb26bad",
+    "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
+    "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
+    "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
+    "transfer/gen7-policy-v4.1-20261112": "7d1ce5e836262c1cac70ea38d3a3255f9dd8c0b0",
+    "transfer/gen7-policy-v4.1-bench-20261112": "1ae9e03afe53f41b7a4e73c55227d2b194676136",
+    "transfer/gen7-policy-v4.1-box-20261112": "6c7cc095f893bb63eb89aeef8a8c65775fe40534",
+    "transfer/gen7-policy-v4.1-families-20261112": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+    "transfer/gen7-policy-v4.1-lists-20261112": "984ba4937f321465b70ee621dd1763452f4fe894",
+    "transfer/gen7-policy-v4.1-neartie-20261112": "7b9610dd2ea1982c8da7ca1087dee8767051c7d8",
+    "transfer/gen7-prototype-20261111": "fb617a64f6ca037103b15f37ddda7bc9c949a86a",
+    "transfer/gen7-selfplay-trial-azure2-20261112": "3e35ed6014f9c9389f06c0e3cbc9a302caa58055",
+    "transfer/gen8-p41-reading-20261112": "cf730ee7b76d64145fc7a926210117ce51886330",
+    "transfer/gen8-p41-reading-pools-20261112": "4bb0d1567988e878df7634ccaf422a9880afb5f7",
+    "transfer/gen8-proto-azure1-20261112": "39039afa14cf50ddf6dabc3f90463b91f2ae6785",
+    "transfer/gen8-proto-azure3-20261112": "de801636aaed43af7d3d2337785580b5db7c7c54",
+    "transfer/gen8-proto-azure4-20261112": "81cf64a46f7ff07861efb598c0227e7d734ef2d8",
+    "transfer/gen8-proto-azure6-20261112": "3345c9be9308866bb00a01177995679e5b0a78d1",
+    "transfer/gen9-arena-page-20261113": "99efe33c3926d01fc1b865bfd72c0e2355dc77f0",
+    "transfer/gen9-arrival-20261112": "c9cb57585e5c84e878594f86977f2af748c0b593",
+    "transfer/gen9-arrival-rehearsal-2-20261112": "39f63e5bad34c1a260b61f108d80c3af3132ebf2",
+    "transfer/gen9-arrival-rehearsal-20261112": "4366d9b37d59f99e34d4d2a8817607f26131bbff",
+    "transfer/gen9-arrival-rehearsal-full-20261112": "8d9aa04bf04866e12e0296e203103bb7682760ac",
+    "transfer/gen9-cohort-inputs-20261113": "57ab6a7b3396ba7360e2c68cfd0f422c7c4576c4",
+    "transfer/gen9-d6-arrival-azure4-20261112": "e26a68b83ad697791d358d8d08bf13d23ec43bb8",
+    "transfer/gen9-e9-0-n02-azure4-20261112": "c4fbddb3f0df02ea4c4f538baf62f22f3145fbd3",
+    "transfer/gen9-e9-0-n02e-azure4-20261112": "7f3f8e08821d968e2471493549fb3ea5c1e5d043",
+    "transfer/gen9-e9-0-n04-azure4-20261113": "f467d0d703c37786ec779a1fdc7d4502664e2d94",
+    "transfer/gen9-e9-4-8x-azure4-20261113": "15fdbae79e7f1bc0e451dfdbac86ac37749cc59c",
+    "transfer/gen9-e9-4-r9-azure4-20261113": "e9a3b61660a523a8d5e477119821989173c2e19c",
+    "transfer/gen9-e9-12-c-azure4-20261113": "75b705ad1314f5d29cd08ac8ef907618106f9588",
+    "transfer/gen9-e9-12-u-azure4-20261113": "0d10dd200ce603a4587853e45ff8cda0c225bd1b",
+    "transfer/gen9-e9-12-x-azure4-20261113": "2f897250b67d2ace02ac977b3dce825a291aade0",
+    "transfer/gen9-e9-16-h-v-p-azure4-20261113": "514ab0d17000257bbbada1345d5d3008977bd20d",
+    "transfer/gen9-e9-16-pilot-sandbox-20261112": "fa29bc4a8c76fa94d2cab17ea6c87e7ca46c9848",
+    "transfer/gen9-e9-16-r-v-p-azure4-20261113": "2f6912665206413a3b3fc8ba23450cf3e689e6ff",
+    "transfer/gen9-e9-16-r-v-x-azure4-20261113": "a1f1e9235675e1fb43aa816298775f25eaf604b2",
+    "transfer/gen9-e9-25-azure4-20261114": "c3033825438a2b432e58f7d2a0548aa7600f92eb",
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": "c15411e20f52676017c1ea3e6f805dbeb8579d23",
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": "15ef505f4c472a131c5bd30175617b552f7d1795",
+    "transfer/gen9-g9-cohort-preflight-azure4-20261113": "5e8242331cee1c78d0963a969a440a2c89531bae",
+    "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": "77750fe6c29c355a8aa6e6229a2449d5ceefd705",
+    "transfer/gen9-g9-genx-stu-azure4-azure4-20261114": "03da2c837a739e7d3c76bfd70560f29218e5651f",
+    "transfer/gen71-settings-azure1-20261112": "f119ca8a01ee5711c86f1f3c7d59f44171199b3c",
+    "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
+    "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
+    "transfer/plan-leverage-azure2-20261112": "6856afbad41b9a30e043fd499cdd5d456fff7dd2",
+    "transfer/plan-leverage-azure5-20261112": "04fc9614552d4566cc9d532a4426ddaac6c05ee8",
+    "transfer/pre7-test-azure1-20261112": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
+    "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
+    "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
+    "transfer/pre7-test-azure4-20261112": "159bd50e593e51afbceecf25b963db245609b6d4",
+    "transfer/rollout-loop-azure1-20261113": "5ad575017e3e1ed37d27e50e732e4cc382b6b2a9",
+    "transfer/rollout-loop-azure2-20261113": "6ccc9d99a5e28da149b7c71db5df2622a8c22d42",
+    "transfer/rollout-loop-azure3-20261113": "6dbfe747ae533a7ae16e60695c7ea01f4a09d1b5",
+    "transfer/rollout-loop-azure5-20261113": "ac2886b97487a8e4717a0d05a1aa642d9ba41ded",
+    "transfer/rollout-loop-azure6-20261113": "7ca8a162d329adb5e087cbdd874a7319011066df",
+    "transfer/rollout-loop-azure7-20261113": "094b3c3a1c19ce477f876f57c07afb5099920be4",
+    "transfer/rollout-loop-sandbox-20261113": "f101792f0f9fbbe06a9c6a6a2cf85e798ab51ccc",
+    "transfer/rollout-net-v1-20261113": "3bd74d0470e6bcb385b31977ac8d77a026895fdf",
+    "transfer/rollout-net-v1-training-families-20261113": "6034eecc750c71788ae10163c55c38c335c7d1e1",
+    "transfer/rollout-net-v2-20261113": "85749ce393bf8826e12ae590b2c86b7776ee3aaa",
+    "transfer/rollout-net-v2w-20261113": "5e4909a5201938079f1c1eee744935a1cc4ab173",
+    "transfer/sid-net-s0-20261113": "1888cc9dbbe66e352ff3d7d4dc8e2df9b42eb6ed",
+    "transfer/stu-rollout-experiments-azure2-20261114": "5961d6dfbaec921c8baf282359f8c5cefc7b7b58",
+    "transfer/stu-rollout-experiments-azure6-20261114": "ff08dd5bdb0e311ae53b731fa7390a13469589e0",
+    "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356",
+    "transfer/v41-training-families-union-20261112": "fccbbd80504272151e298799878bdd37db632c47",
+    "transfer/x8-azure6-20261113": "59bc53d56239fb481832b6903162ce62eca90065",
+    "work/ledger": "577a6f736c74142102c9be66b88adda35fe9b8a5"
+  },
+  "branch_pages": [
+    100,
+    100,
+    100,
+    60
+  ],
+  "changes": {
+    "new": {
+      "docs/stu-search-allocation-review-20261114": "f2c865707193b910ef7a5ee617be5a014faaca64",
+      "feature/bid-style-20261114": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+      "feature/stu-standing-fallback-20261114": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+      "research/stu-rollout-experiments-20261114": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+      "research/stu-rollout-review-b-20261114": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+      "transfer/stu-rollout-experiments-azure2-20261114": "5961d6dfbaec921c8baf282359f8c5cefc7b7b58",
+      "transfer/stu-rollout-experiments-azure6-20261114": "ff08dd5bdb0e311ae53b731fa7390a13469589e0"
+    },
+    "removed": [],
+    "changed": {
+      "arena-gen6-chatgpt-feed": {
+        "before": "0d4de18661af263fcf713e1c840e2b74da2d428f",
+        "after": "1769acd11480cd54dd9a7b264f32bed5be62214a"
+      },
+      "arena-gen8-19bbdce5-20261112-feed": {
+        "before": "a7dfe063e5ce56836e01bddcffe7e2a312c1fa3a",
+        "after": "1236aa7e8145da408dd84616dd8e352573fe477c"
+      },
+      "arena-gen8-candidate-codex-20261112-feed": {
+        "before": "878aeb559ef49430be453dfe2284fe7d3f62d15a",
+        "after": "287296f256ec9e974f8f0659c30cceac2820ca1a"
+      },
+      "arena-gen8-independent-feed": {
+        "before": "9e3d94789d098e5615713b544643048bfe48e620",
+        "after": "7692f5f5b2585b46cc1e045a4aace1fa46f56204"
+      },
+      "arena-gen9-azure4-ben64-feed": {
+        "before": "4f5c3f1a1dff51a781dc1f230f87ab6ef7244654",
+        "after": "e7776e694399ac9a0d99deb076205d73df112007"
+      },
+      "arena-gen9-azure4-feed": {
+        "before": "860f9c8f945b28f0adc1b6f2dff64cd55d267de1",
+        "after": "d920f587bb5ab467a70e19b795eb31fb4ae891b8"
+      },
+      "arena-gen9-genx-stu4c-azure4-feed": {
+        "before": "0e84e0d5840c7744416a68ff2ed84f6ff02151cd",
+        "after": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c"
+      },
+      "box/azure1/control": {
+        "before": "e622e667a2695138a5dcb44e72b0a7c498b28956",
+        "after": "5573d5338938e2350eb67ff346bd7e0f8f71ac45"
+      },
+      "box/azure1/status": {
+        "before": "863cc266134ef04e353a6031f7424455d3e113d3",
+        "after": "3aa59c7aa924c3e96b4a9d540d6db21e7b3c7d1f"
+      },
+      "box/azure2/control": {
+        "before": "0fa50181e351c9e494f2ceea91d0e8346492d236",
+        "after": "8470b43070e39cfdb6f2b2e3211aa7c60a89339c"
+      },
+      "box/azure2/status": {
+        "before": "4d3a1db566949a5222cb56bf78ec6bed80157bdb",
+        "after": "07dee317fcd94a70eba5d571ca07c1769303a464"
+      },
+      "box/azure3/control": {
+        "before": "0414f187c927720e84d54752acccb811e19931fa",
+        "after": "0f4669afe292fe42f12e1bff982b6fe7c098c4bf"
+      },
+      "box/azure3/status": {
+        "before": "be5846f32a9fc2bdd28cdd9ac80f4c0640c1ab2f",
+        "after": "6a11c4f6b82241525a4a9314b64d95664c8dce94"
+      },
+      "box/azure4/control": {
+        "before": "ed0689fff649dded1c1fce54a4569aaf928f7af4",
+        "after": "4a2b469e8d5d6d68ec678d59c4bff2e0eb4d9110"
+      },
+      "box/azure4/status": {
+        "before": "f11922a174636df0a9f49611e03c28617f7f4dd4",
+        "after": "b29021c812132564c8cd360c1084b208cea834c6"
+      },
+      "box/azure5/control": {
+        "before": "069a6e251161f79398e52908038b64e23193a359",
+        "after": "73f2966c401d2236635498781b85132607a4446d"
+      },
+      "box/azure5/status": {
+        "before": "ced9bb339fdaf2aeb39daf93483d45c806d43f09",
+        "after": "0f822fc98975094b084f1b563c27f46dc511694c"
+      },
+      "box/azure6/control": {
+        "before": "a9d21146b3b39b24cff49f5cbf7d45285944cfec",
+        "after": "8bf3f7e0838b9b7fd92b88c7666eabd8cdd0949d"
+      },
+      "box/azure6/status": {
+        "before": "a5987212f87071735ba8c424e43d67933e1611b3",
+        "after": "1ad21eb610aa02fcae0a7db9ab7e6b64b75531fc"
+      },
+      "box/azure7/control": {
+        "before": "827edf14eebc4bdaaed73b70536eff2236f277d4",
+        "after": "f15a3a8cb9af2fb4eff5efc42ebc25af6d8eebcf"
+      },
+      "box/azure7/status": {
+        "before": "dfd184bdd6f66b17ce5f10850d361b67268a0032",
+        "after": "e823dfb884832bc2682733a86386eeadfea359d1"
+      },
+      "box/coordination": {
+        "before": "b9dc3599b211d99669c8ac4f93e3733d6df2f58b",
+        "after": "9e480765ddee4953499629fa0c4a16515a582064"
+      },
+      "docs/stu-training-efficiency-20261114": {
+        "before": "f93d1ceafce93e911c7dacab1170121fa9deaf22",
+        "after": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd"
+      },
+      "gh-pages": {
+        "before": "39a480b72197110990f88077a3285db6076e3cf7",
+        "after": "a3affd42e98e94f7899649942e61edee1ed5f3d7"
+      },
+      "mail/coord": {
+        "before": "0a2d18e496297e4da3cbeb8bb587e1e23faa015e",
+        "after": "e0cd9ec94a9221b2d1d91d2c124c07c9c3514f47"
+      },
+      "perf/stu-20261114": {
+        "before": "4105021aa98034b3c6cb434e37efc650e4eaf936",
+        "after": "2a503a94de8c7442e34c835a5391422dfc698bdc"
+      },
+      "perf/stu-efficiency-handoff-20261114": {
+        "before": "132177d0cf5d5d5b7f14a79ec3b8f61c01aac9b7",
+        "after": "6d9901dcc7d69a3da9174afb315cc13523897d30"
+      },
+      "research/rollout-loop-20261113": {
+        "before": "5f887f18ddd6988ac40083a0f7ba2a3a60a02178",
+        "after": "5ab40eede958f9d46112ad44ec381ac3caa18f64"
+      },
+      "team/gen9": {
+        "before": "26a10ad0758245172eb70d872103861e335db034",
+        "after": "8ed4b23e5527f8137c385091a184a8fdbf216458"
+      },
+      "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+        "before": "e341e9d6a4402bd69128701357d613e3f47a82f9",
+        "after": "c15411e20f52676017c1ea3e6f805dbeb8579d23"
+      },
+      "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+        "before": "830e6b65166d19d775ceec62982180f1b8455ee6",
+        "after": "15ef505f4c472a131c5bd30175617b552f7d1795"
+      },
+      "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": {
+        "before": "dd0386519811423ff45a26e19b6c3d4ab2b007cf",
+        "after": "77750fe6c29c355a8aa6e6229a2449d5ceefd705"
+      },
+      "transfer/rollout-loop-azure1-20261113": {
+        "before": "9c9f28bfe1c403394e87e654341f1eebfeaf1cf0",
+        "after": "5ad575017e3e1ed37d27e50e732e4cc382b6b2a9"
+      },
+      "transfer/rollout-loop-azure2-20261113": {
+        "before": "341ade451641c1dd011c86b56534eecbf05a8573",
+        "after": "6ccc9d99a5e28da149b7c71db5df2622a8c22d42"
+      },
+      "transfer/rollout-loop-azure3-20261113": {
+        "before": "e9cdc738f5db9ce77a61b1abbd9a4cda02682a9d",
+        "after": "6dbfe747ae533a7ae16e60695c7ea01f4a09d1b5"
+      },
+      "transfer/rollout-loop-azure6-20261113": {
+        "before": "fc0d448e8545b7b638ad01d2308ea455770843b8",
+        "after": "7ca8a162d329adb5e087cbdd874a7319011066df"
+      },
+      "transfer/rollout-loop-azure7-20261113": {
+        "before": "55d4759934d51134b293ddc7c761ce22e7cfb387",
+        "after": "094b3c3a1c19ce477f876f57c07afb5099920be4"
+      }
+    }
+  },
+  "checked_files": {
+    "main:AGENTS.md": {
+      "path": "AGENTS.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "tracked_branch": "main",
+      "sha": "baa9c33d0731279db16654ea23d2a1ae28046fcc"
+    },
+    "main:README.md": {
+      "path": "README.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "tracked_branch": "main",
+      "sha": "ec8859084463797ea7baa7303e6c5423f603d42f"
+    },
+    "main:docs/current-system.md": {
+      "path": "docs/current-system.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "tracked_branch": "main",
+      "sha": "b645c00d0a0c774fb76c9982dc21b1c863684f04"
+    },
+    "main:docs/operations.md": {
+      "path": "docs/operations.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "tracked_branch": "main",
+      "sha": "9c9ea10a7e8fe3e6af27aa160c0f1b1b007cb321"
+    },
+    "source:AGENTS.md": {
+      "path": "AGENTS.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "baa9c33d0731279db16654ea23d2a1ae28046fcc"
+    },
+    "source:README.md": {
+      "path": "README.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "ec8859084463797ea7baa7303e6c5423f603d42f"
+    },
+    "source:docs/current-system.md": {
+      "path": "docs/current-system.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "76562ced63e29a38f8ece67080aa39acbb1d2a58"
+    },
+    "source:docs/operations.md": {
+      "path": "docs/operations.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "9c9ea10a7e8fe3e6af27aa160c0f1b1b007cb321"
+    },
+    "source:configs/round8-candidate.json": {
+      "path": "configs/round8-candidate.json",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "ef7d46f25911557737b2a8da0acfe8f38700bb20"
+    },
+    "source:configs/round8-candidate-ben.json": {
+      "path": "configs/round8-candidate-ben.json",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "50aed7ea04937bd3322913a638373eca5a2f374c"
+    },
+    "source:docs/gen8_candidate_2026-11-12.md": {
+      "path": "docs/gen8_candidate_2026-11-12.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "tracked_branch": "feature/gen8-prototype-20261112",
+      "sha": "cadcc0e74cd216811ac547f71223856ca86a2981"
+    },
+    "board": {
+      "path": "BOARD.md",
+      "ref": "9e480765ddee4953499629fa0c4a16515a582064",
+      "tracked_branch": "box/coordination",
+      "sha": "b4a3844a1e45395919b3c900c85520270a153121"
+    },
+    "registry": {
+      "path": "arena/gen6-sources.json",
+      "ref": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "tracked_branch": "gh-pages",
+      "sha": "3e289c39830e8a7beab36b12465e34171dde5ca9"
+    },
+    "index": {
+      "path": "arena/index.html",
+      "ref": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "tracked_branch": "gh-pages",
+      "sha": "5669dc5ce4cf9069ce7d6b5f4da3fc9342947d30"
+    },
+    "replay": {
+      "path": "arena/replays/common.js",
+      "ref": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "tracked_branch": "gh-pages",
+      "sha": "f946fe6078257793f56adc9be5bee7494dbdc2a4"
+    },
+    "peer9": {
+      "path": "configs/round9-cohort.json",
+      "ref": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+      "tracked_branch": "feature/gen9-cohort",
+      "sha": "906e5ba06f80877352b8dc9453f5461f2e0c09d0"
+    },
+    "peer9ben": {
+      "path": "configs/round9-cohort-ben.json",
+      "ref": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+      "tracked_branch": "feature/gen9-cohort",
+      "sha": "99325d16b8c4e9767e3390d29679a07da9503803"
+    },
+    "peer8x": {
+      "path": "configs/round8x-v3.json",
+      "ref": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+      "tracked_branch": "feature/gen8x-arena-20261113",
+      "sha": "2c4c4e3e334be01054c2d55d8c5a6d2e8a9fd640"
+    },
+    "peer8xu": {
+      "path": "configs/round8x-v3u.json",
+      "ref": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+      "tracked_branch": "feature/gen8x-arena-20261113",
+      "sha": "0ef9c4843ca4f6d9b4da49ea9fdf2c76eb374a36"
+    },
+    "peer8xboth": {
+      "path": "configs/round8x-v3-both.json",
+      "ref": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+      "tracked_branch": "feature/gen8x-arena-20261113",
+      "sha": "eb3530d71572710c7ff1a5015a38c425c6931e39"
+    },
+    "genx_plan": {
+      "path": "configs/round9-genx-stu.json",
+      "ref": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "tracked_branch": "feature/gen9-genx-stu",
+      "sha": "27fa4742e11081e4f34830d213af5d77945a7297"
+    },
+    "stu_plan": {
+      "path": "training/rollout-loop-20261113/PLAN.md",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "531e445bb156b87300c44ea765acf2446c908254"
+    },
+    "human_all_readme": {
+      "path": "README.md",
+      "ref": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+      "tracked_branch": "feed/usbc-human-all-20261114",
+      "sha": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930"
+    },
+    "mail_readme": {
+      "path": "README.md",
+      "ref": "e0cd9ec94a9221b2d1d91d2c124c07c9c3514f47",
+      "tracked_branch": "mail/coord",
+      "sha": "6b47b9ee54a345d5013a1dfaf2d0780f135b9549"
+    },
+    "mail_status": {
+      "path": "status.json",
+      "ref": "e0cd9ec94a9221b2d1d91d2c124c07c9c3514f47",
+      "tracked_branch": "mail/coord",
+      "sha": "68fe0678c30120237477fb349a2b86f5bc11928a"
+    },
+    "r4c_plan": {
+      "path": "configs/round9-genx-stu-r4c.json",
+      "ref": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "tracked_branch": "feature/gen9-genx-stu",
+      "sha": "b0fb4004ab450246274fc6bc6e1cd12deb2860e1"
+    },
+    "r4c_model_manifest": {
+      "path": "models/cardplay/stu-net-r4c-20261113/manifest.json",
+      "ref": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "tracked_branch": "feature/gen9-genx-stu",
+      "sha": "991bc22dee9272452817a5fbfeb36450f5b61ce9"
+    },
+    "r4c_state": {
+      "path": "recovery/state.json",
+      "ref": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c",
+      "tracked_branch": "arena-gen9-genx-stu4c-azure4-feed",
+      "sha": "95c46d86b7c0421c8fc832b7aa3cdf06d8fc4f97"
+    },
+    "r4c_manifest": {
+      "path": "recovery/manifest.json",
+      "ref": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c",
+      "tracked_branch": "arena-gen9-genx-stu4c-azure4-feed",
+      "sha": "ec9fe37ea0827dc480e14b63d437b8b06a8eeb12"
+    },
+    "r4c_transfer_readme": {
+      "path": "README.md",
+      "ref": "77750fe6c29c355a8aa6e6229a2449d5ceefd705",
+      "tracked_branch": "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114",
+      "sha": "70a7e77e90685311ef9cb69f83c503c3d506ab90"
+    },
+    "layout_readme": {
+      "path": "reports/gen8-layout-budget-2026-11-14/README.md",
+      "ref": "7da1d0904fd17237b382411444b070272b7ba1c8",
+      "tracked_branch": "research/gen8-layout-budget-20261114",
+      "sha": "bd19f009f1ae7f18dc6dc09f33b70335407902fe"
+    },
+    "stu_readme": {
+      "path": "training/rollout-loop-20261113/README.md",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "21e31859789969d6fe67f26bef65c869d4869ffb"
+    },
+    "gen9_state": {
+      "path": "docs/gen9/STATE.md",
+      "ref": "b2070f696959074993eeee04b81db0bebbdd6ffc",
+      "tracked_branch": "feature/gen9",
+      "sha": "dee0bd2cd7a151c32a31b15860d5fed2b6254931"
+    },
+    "stu_azure1_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure1.txt",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "f178000915922f6d171316c185265c179fbaa6fd"
+    },
+    "stu_azure3_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure3.txt",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "c99e465686af2801bf7306cf709be7ec7c334294"
+    },
+    "stu_azure3_gen_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure3-gen.txt",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "2e09ee9cead37c07041c492584ffcd4721b16302"
+    },
+    "stu_azure2_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure2.txt",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "52dc0565abebe8a86f9a37f80efef97fa835a94c"
+    },
+    "stu_azure6_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure6.txt",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "74cc81f332b5c5d16791d7d6abd902b2373c2ade"
+    },
+    "efficiency_proposal": {
+      "path": "docs/stu-training-efficiency-2026-11-14.md",
+      "ref": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "tracked_branch": "docs/stu-training-efficiency-20261114",
+      "sha": "f3e9a3d600bd90618227ed97f6eb9c2ad7b012a3"
+    },
+    "harvesting_proposal": {
+      "path": "docs/stu-rollout-harvesting-2026-11-14.md",
+      "ref": "30a665bb6057e8011c8d3f2843a38181b53c3198",
+      "tracked_branch": "docs/stu-rollout-harvesting-20261114",
+      "sha": "2958b54408faafd3089fefbc05ba29eca8b825be"
+    },
+    "azure7_transfer_readme": {
+      "path": "README.md",
+      "ref": "094b3c3a1c19ce477f876f57c07afb5099920be4",
+      "tracked_branch": "transfer/rollout-loop-azure7-20261113",
+      "sha": "ccb6860c0cc4827619362f113a27690921fe62df"
+    },
+    "efficiency_handoff": {
+      "path": "docs/stu-efficiency/README.md",
+      "ref": "6d9901dcc7d69a3da9174afb315cc13523897d30",
+      "tracked_branch": "perf/stu-efficiency-handoff-20261114",
+      "sha": "fce59cd4296e8c85ed26d008bac002ec64ba0cbb"
+    },
+    "stu_azure7_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure7.txt",
+      "ref": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "tracked_branch": "research/rollout-loop-20261113",
+      "sha": "10e468f41d0d8b510fbb1ae87e35f6c59d3dc30f"
+    },
+    "stu_perf_readme": {
+      "path": "training/perf-20261114/README.md",
+      "ref": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+      "tracked_branch": "perf/stu-20261114",
+      "sha": "cbe47e16ee44ad1de8a3599eff0b3f198202f7b3"
+    },
+    "rollout_protocol": {
+      "path": "docs/stu-rollout-experiments-2026-11-14.md",
+      "ref": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+      "tracked_branch": "research/stu-rollout-experiments-20261114",
+      "sha": "fe50723e75ceb3e47737aa265967036c63fa9654"
+    },
+    "fallback_guide": {
+      "path": "docs/stu-efficiency/P04-standing-collection.md",
+      "ref": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+      "tracked_branch": "feature/stu-standing-fallback-20261114",
+      "sha": "ea1292aafbb3a363cfc6c577b132ac8d48572941"
+    },
+    "allocation_review": {
+      "path": "reports/stu-rollout-helper-allocation-2026-11-14.md",
+      "ref": "f2c865707193b910ef7a5ee617be5a014faaca64",
+      "tracked_branch": "docs/stu-search-allocation-review-20261114",
+      "sha": "93c911cea4720aeb1b3354a00857fcf8c569d52b"
+    },
+    "correctness_review": {
+      "path": "reports/stu-rollout-helper-review-2026-11-14.md",
+      "ref": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+      "tracked_branch": "research/stu-rollout-review-b-20261114",
+      "sha": "15236abfc70493845fc02f3ef68b45a2ecf20e61"
+    },
+    "bid_styles_guide": {
+      "path": "docs/styles.md",
+      "ref": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+      "tracked_branch": "feature/bid-style-20261114",
+      "sha": "5c1da4e7e78d42d8c95345ef402692c197dd5c24"
+    },
+    "experiment_azure2_report": {
+      "path": "REPORT.md",
+      "ref": "5961d6dfbaec921c8baf282359f8c5cefc7b7b58",
+      "tracked_branch": "transfer/stu-rollout-experiments-azure2-20261114",
+      "sha": "a985eabefcfc2ec2a505a0be9d8406427e962bfa"
+    },
+    "experiment_azure6_report": {
+      "path": "REPORT.md",
+      "ref": "ff08dd5bdb0e311ae53b731fa7390a13469589e0",
+      "tracked_branch": "transfer/stu-rollout-experiments-azure6-20261114",
+      "sha": "f27f63b094ce1d98fbc2b745e335401519a54069"
+    },
+    "experiment_azure6_pause": {
+      "path": "REVIEW_PAUSE.json",
+      "ref": "ff08dd5bdb0e311ae53b731fa7390a13469589e0",
+      "tracked_branch": "transfer/stu-rollout-experiments-azure6-20261114",
+      "sha": "d0d182ae9ed2483d616aa4bfa6e4a7f647b09d1d"
+    }
+  },
+  "owned_entries": [
+    {
+      "key": "gen71codexcompare",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · Codex policy comparison and Gen6",
+      "branch": "arena-gen7-1-compare-codex-20261112-feed",
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "retired": true,
+      "revision": "71a6dc2dbc8985175c476388115bc4f301e7452f"
+    },
+    {
+      "key": "gen7codexselfplaycapture",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.0 · Codex completed self-play with gap capture",
+      "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+      "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "retired": true,
+      "revision": "09950642e0d40dc68fecf511569bb72935ba7782"
+    },
+    {
+      "key": "gen7codexselfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex initial self-play (capture incomplete)",
+      "branch": "arena-gen7-selfplay-codex-20261112-feed",
+      "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "retired": true,
+      "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638"
+    },
+    {
+      "key": "gen7codexphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex completed phase 1 anchors",
+      "branch": "arena-gen7-phase1-codex-20261112-feed",
+      "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "retired": true,
+      "revision": "dfe3233dec356e48da065702964892354e0db16c"
+    },
+    {
+      "key": "gen6newselfplay",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · completed Codex fast self-play",
+      "branch": "arena-gen6-fast-selfplay-codex-20261111",
+      "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "retired": true,
+      "revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0"
+    },
+    {
+      "key": "gen8codexcandidate",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "codex",
+      "name": "Gen8 · Codex main mix (standard and Precision)",
+      "branch": "arena-gen8-candidate-codex-20261112-feed",
+      "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
+    }
+  ],
+  "peer_entry": {
+    "key": "gen9genxstu4cazure4",
+    "group": "gen9",
+    "generation": 9,
+    "variant": "9",
+    "environment": "azure",
+    "name": "Gen X Stu (round 4c) · azure4 (stu4c-put against Gen 8, Gen 9 and Gen 7.1)",
+    "branch": "arena-gen9-genx-stu4c-azure4-feed",
+    "cohort": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a"
+  },
+  "peer_authority": {
+    "authority": "Max, 2026-11-14 00:48 UTC: the Stu team's latest bot into the arena; 00:49: \"We will call it Gen X Stu\"; 01:00: \"Put it into the mix at whatever level you want\"; 02:35: trim the Gen 9 cohort for it.",
+    "feeds": "azure4: arena-gen9-genx-stu-azure4-feed, manifest 66563aba..., stu3-ps (the loop's pure Stu, round 3's rollout net) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9019), two workers. configs/round9-genx-stu.json on feature/gen9-genx-stu at 9bba86b6; job boxq/azure4/g9-genx-stu-azure4.json on team/gen9.",
+    "registered_by": "will (Gen 9), 2026-11-14 02:5x UTC",
+    "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+    "round4c": "From 14 Nov 16:22 UTC: arena-gen9-genx-stu4c-azure4-feed, manifest 17d6186e..., stu4c-put (round 4's control net at the table and in the rollouts, blind) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9021), two workers. configs/round9-genx-stu-r4c.json on feature/gen9-genx-stu at 57d0855f. Round 3's feed ended at 719 boards (revision d959fd31) and is archived. Max, 14 Nov: 'I will have an iteration before long'; to the play server, 'use r4c until further notice'."
+  },
+  "peer_state": {
+    "manifest_identity": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a",
+    "completed": 253,
+    "target": 4000,
+    "contiguous": 252,
+    "by_pair": {
+      "stu4c-put~71s-32": 63,
+      "stu4c-put~8s-32": 127,
+      "stu4c-put~9a-32": 63
+    },
+    "root_games": 506,
+    "tables": 8586,
+    "failures": 0,
+    "epoch": 1794691615.1964471,
+    "complete": false,
+    "blob": "95c46d86b7c0421c8fc832b7aa3cdf06d8fc4f97"
+  },
+  "peer_feed_revision": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c",
+  "r4c_transfer_readme": "# g9-genx-stu4c-azure4 on azure4\n\nResults of box job `g9-genx-stu4c-azure4` (no experiment, owner will), published by tools/boxq.py on team/gen9. Source `feature/gen9-genx-stu` at `57d0855f`. A transfer branch: never merged into source.\n\nLast published 2026-11-14T21:24:18Z: 250 of 4000 boards, state running.\n",
+  "r4c_transfer_revision": "77750fe6c29c355a8aa6e6229a2449d5ceefd705",
+  "issues": [
+    {
+      "number": 39,
+      "title": "Stu rollout helpers: search allocation/frontier design and independent recursive-search review",
+      "state": "open",
+      "updated_at": "2026-11-14T21:23:03Z",
+      "comments": 9,
+      "body": "Max asked for helpers to strengthen the rollout study and said: **“Put something in GitHub for them to pick up I will spin them up.”** This is the handoff. Start by claiming **A** or **B** in a comment here with your session/alias. Two helpers can work independently; if only one is available, start with B, then A.\n\n### Goal and current owner\n\nFind changes to Stu's search that improve **played full-bot IMPs per unit compute** and capture more of stronger nets' gains. Also identify which extra searched decisions produce the most **subsequent trained-bot improvement per labeling/training hour**. Those are separate endpoints.\n\n**codex-rollout owns implementation integration, the Azure experiment runs, and this workstream.** Max has authorized two existing collection boxes: azure6 and azure2. Fresh inspection confirms both are currently loop Stu collection on runtime `30e30af88ea196b8189ff39491c83cf531797868`. Isolated setup/draining is underway; do not operate/restart/reallocate these boxes independently. Other boxes retain their existing owners.\n\n### Read first\n\n1. [Integrated P/H/R plan in #35](https://github.com/maxschireson/Single-Dummy-Bridge/blob/docs/stu-training-efficiency-20261114/docs/stu-training-efficiency-2026-11-14.md).\n2. [Runnable rollout protocol, pinned implementation](https://github.com/maxschireson/Single-Dummy-Bridge/blob/7c79acfaa138a29d140dfef3d50f9a52216a24aa/docs/stu-rollout-experiments-2026-11-14.md).\n3. [Implementation PR #38](https://github.com/maxschireson/Single-Dummy-Bridge/pull/38): `scripts/stu_rollout_experiments/{engine.py,match.py,make_config.py,test_smoke.py,batch.sh}` at `7c79acfaa138a29d140dfef3d50f9a52216a24aa`.\n4. [Current coordination board](https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md), especially the allocation table and latest log.\n5. [H-series harvesting work #37](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37). **codex-stu-harvest already owns H02 extraction/reconstruction and H03–H05 design.** Coordinate rather than duplicating its extractor or initiating another training experiment.\n\n### A — Dynamic allocation and learning-frontier selector\n\n**Question:** Which future decisions deserve a fresh recursive rollout, and which deserve expensive reanalysis as training targets?\n\nThe first prototype compares flat 128; flat 32; 32 outer layouts + a maximum of four 8-layout child searches/root; and an uncertainty-gated version. Child search has two candidates, one extra search depth, own partnership only, and an eight-ply window. Its current top-two policy log-probability gap ≤ 1 is a cheap uncertainty screen, **not a validated frontier**.\n\nDeliver:\n- A concrete next selector using information available at decision time. Consider paired action uncertainty, persistent net/search disagreement, contract leverage, expected probability of changing the card, and estimated marginal search cost. Explain why each feature could help.\n- A separate label-selection rule: where stronger reanalysis yields repeatable, learnable action advantages. Operationally define the competence frontier by role/phase/contract; include one/two tricks before it, broad/random controls, and a mechanism for the frontier to move.\n- A small, predeclared experiment matrix separating selector quality from extra compute. Include a random-budget control, flat-search controls, practical stopping/extension rules, and board-family clustered evaluation. Avoid an open-ended parameter sweep.\n- Proposed logging fields and, if useful, a dependency-light offline selector prototype under **`scripts/stu_rollout_experiments/helper_allocation/`** with meaningful checks. Start with source/protocol design if episode data is still arriving.\n- Report in **`reports/stu-rollout-helper-allocation-2026-11-14.md`**, plus a short comment here with the first experiment to run and what would falsify the recommendation.\n\nCoordinate the training-label interface with #37's owner. You own search allocation and its comparison design here, not H02 extraction or a training launch.\n\n### B — Independent correctness and experimental-validity review\n\nAudit the pinned prototype before we interpret its played scores. Do not assume passing smoke tests prove the design correct.\n\nFocus:\n- Child information boundary: controller versus actor/dummy, exact history/auction/void facts, and invariance to changing hidden cards outside the child's observation.\n- Fresh child posterior versus accidentally reusing the enclosing root determinization; information-set-consistent child choices and seed/cache semantics.\n- One-depth enforcement; global `Seats` factory restoration, exceptions, shared-state/caches, claim behavior, identity routing, and plain/pooled history paths.\n- Candidate/sample fairness when the child-call budget runs out; whether the current schedule measures what its label says.\n- Null/no-op behavior, score/sign handling, paired board/common-bidder conditions, failed-board accounting, actual versus nominal compute, and whether instrumentation misses child work.\n- Runtime/source/model provenance, numerical mode and variant isolation. Current child replans are serialized, so timing is not a lower bound for a batched tree.\n\nDeliver:\n- Prioritized findings with reproductions, separating **invalidates the experiment**, **bias/confound to disclose**, and **later improvement**.\n- Adversarial tests under **`scripts/stu_rollout_experiments/test_review_*.py`** or a separately scoped test patch, and a report **`reports/stu-rollout-helper-review-2026-11-14.md`**.\n- Comment here immediately for a flaw that should pause a running arm. Otherwise provide a clear go/no-go for interpreting the screen, with limitations.\n\nDo not edit shared `engine.py`, `match.py` or `batch.sh` in place while the coordinator runs the pinned version. Propose a patch/new commit and coordinate adoption under a new run identity.\n\n### Local reproduction / evidence\n\nThe source work is main-based; it imports a separately pinned Stu runtime via `STU_RUNTIME`. Local runtime used for the existing checks is research `5addd826af8b10d7343df51ada528a7327d059b6`; Azure is pinned `30e30af88ea196b8189ff39491c83cf531797868`. Build DDS in your isolated runtime with `python scripts/build_dds.py`, then run:\n\n```bash\nSTU_RUNTIME=/path/to/runtime OPENBLAS_NUM_THREADS=1 \\\n  python scripts/stu_rollout_experiments/test_smoke.py -v\n```\n\nFour new tests pass locally and on Azure. Existing local X8 suite: 34 tests, 7 native-claim-solver skips, no failures. These establish specific implementation properties, not strength. R4c model SHA256:\n`e4b689c87db2f56b98221a491757dbf348ddaea066e016f06a9331fc671197f2`.\n\n[Azure6 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure6-20261114) has summaries/provenance and full-episode locations. Azure2's corresponding transfer branch will be linked when launched. Published tiny screens are development data, not adoption evidence.\n\nAll evaluation seed **2026111401** families and imagined descendants remain excluded from training. Seed **131** and the squeeze suite also remain excluded. No human-table training, no model promotion, and no edits to frozen runs/episodes. Follow AGENTS.md; use a scoped main-based branch and record exact source/config/test results.\n\n**First useful checkpoint:** a short prioritized review/design within roughly an hour of starting; do not wait for a polished long report to flag an invalidating problem. Post status and final artifacts here and cross-link #38."
+    },
+    {
+      "number": 42,
+      "title": "Bidding styles (aggressive, shape) and personas with knowledge/disclosure dials",
+      "state": "open",
+      "updated_at": "2026-11-14T21:20:30Z",
+      "comments": 1,
+      "body": "Max, 19:31 UTC on 14 November: two bidding style vectors (aggressive vs conservative; points vs shape), randomization, and the same disclosure/correlation rules as the card-play styles.\n\n**Base:** `research/rollout-loop-20261113`, not `main`, because `style.py`, `gen8_match.py` and the bundle the play site runs live there.\n\n## What\n- `bridge_harness/bid_style.py`: among the calls within `exp(-near)` of the bidder's best, the style takes the highest `log p + a_eff * action`. Here `a_eff` = aggressive + the hand's shape lean (z of distribution points for a shape bidder, z of HCP for a points bidder, clipped to ±2). A random share is drawn by the bidder's own probabilities. `distribution()` and `scaled()` are for readers.\n- `bridge_harness/persona.py`: draws play and bidding styles with knowledge (0–80%), disclosure (usually 75% of knowledge, 0–150%) and the correlation between dimensions (triangular −0.2 to 0.8, mode 0.6), as specified at 04:02–04:10 UTC. Also `view()` and `disclosure_text()`.\n- `scripts/gen8_match.py`: a bot whose spec has `bid_style` uses it, and each call is recorded as behaviour `styled` with its probability.\n- `scripts/bid_style_cost.py` + `reports/bid_style_cost_2026-11-14.md`: dose calibration.\n\n## Dose (double dummy, Gen 6 bidder from stu4c-put, NS styled vs plain)\n- Persona defaults (`near` 6, weights uniform ±3): **−0.237 ± 0.031 IMP/board** across a mixed population (12,000 deals).\n- Single styles at ±2: −0.12 to −0.21.\n- Random share alone (15%): −0.013 ± 0.011.\n\nTwo earlier versions were rejected; the report has the numbers:\n- Most/least action regardless of weight size. Only the sign mattered, so partial knowledge was meaningless.\n- Uniform random share. It cost 0.17 alone.\n\n## Not done\n- No reader uses the dials yet (belief nets, hand-fit scorer, rollout opponent models).\n- `style.py` is unchanged. Its weights also only matter in ratio; see `docs/styles.md`.\n- No bot in the loop or on the site has a bid style set.\n\nTests: `tests/test_bid_style.py` (9). A smoke run of `auction_any` with a `StyledBidder` changed 11 of 40 auctions.\n\n---\n_Generated by [Claude Code](https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk)_"
+    },
+    {
+      "number": 38,
+      "title": "Study Stu rollout gain transfer and selective information-set replanning",
+      "state": "open",
+      "updated_at": "2026-11-14T21:20:29Z",
+      "comments": 8,
+      "body": "Stu’s stronger policy nets have transferred only part of their measured net-only gain into full-bot play. This adds an isolated driver and protocol: role-correct history reading, generic opponent guarantees, flat breadth versus one extra information-set search depth, and uncertainty-selected replanning. It builds on #35 and coordinates frontier reanalysis with #37.\n\nMax authorized local smoke tests and moving one existing Azure collector to rollout experiments. Azure6 is reserved; a guarded recycle-boundary drain and isolated real-model setup are queued. Source is based on main and imports a pinned external Stu runtime without editing it. Other box allocations and production actors are unchanged.\n\nFour new local tests pass (observation equality/hidden-hand invariance, reader routing, bounded child calls, real inner search). Existing X8 suite: 34 tests, 7 native-claim skips, no failures. Azure smoke and paired screen are next. Small-sample scores are diagnostic only; see the protocol for time matching, confirmation and limitations."
+    },
+    {
+      "number": 43,
+      "title": "Stu helper B: recursive-search correctness review and adversarial tests",
+      "state": "open",
+      "updated_at": "2026-11-14T21:20:28Z",
+      "comments": 1,
+      "body": "The pinned recursive rollout prototype can apply different continuation cards to the same child observation when its call budget is exhausted or hidden-layout path marks differ. This independent B review for #39 reproduces both defects, plus an inherited resume guard failure, and gives a no-go for interpreting/extending the old recursive/selective arms until corrected under a new identity. No direct hidden-hand input leak was found in the observation builder.\n\nThe main-based PR adds two scoped test files, reports/stu-rollout-helper-review-2026-11-14.md, the evidence index, hashes and raw test logs. It also reviews inclusive compute, missing child telemetry, claim-solver cache coupling, failed-attempt accounting, candidate allocation, role signs/common bidding and BF16 provenance. It does not change #38's engine/match/batch, any live box, model or frozen run. Integration stays with codex-rollout; allocation/frontier design stays with helper A in #41.\n\nValidation against prototype 7c79acf and runtime 5addd826 (reviewed runtime files match Azure 30e30af): 15 new tests = 12 passing + 3 expected failures; strict mode exposes precisely the two scheduling defects and resume mismatch. Original smoke 4/4 passes; existing X8 suite 34 tests, 27 pass/7 native-claim skips. Temporary cache positive control passes both strict scheduling witnesses. Local tests use small synthetic FP32 networks with native DDS; R4c BF16 and native SURE solver acceptance remain explicit coordinator gates. Report relative links and staged diff whitespace checked.\n\nPause/findings were posted immediately on #39 and cross-linked on #38. No strength or adoption claim. Review source: dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c."
+    },
+    {
+      "number": 41,
+      "title": "Design Stu allocation/frontier selectors and equal-compute gain-transfer tests",
+      "state": "open",
+      "updated_at": "2026-11-14T21:20:27Z",
+      "comments": 1,
+      "body": "Stu needs to distinguish better search allocation from simply spending more compute, and distinguish valuable playing computations from valuable training labels. Helper A's report for #39 proposes an observable, budgeted child selector; a separate repeatability/learnability frontier rule; random and flat-search controls; and the requested old/new-net × flat/candidate-search interaction test.\n\nMain deliverable: `reports/stu-rollout-helper-allocation-2026-11-14.md`. The linked review appendix gives per-bot timing, candidate exposure, failure handling and family-clustered confirmation requirements. Three local scheduling reproductions are included: early confidence blocks later uncertainty, a new-call cap blocks cached actions, and the change counter uses argmax instead of the sampled card.\n\nOwnership: A is allocation plus frontier selector design; B is independent correctness review. Codex-rollout retains shared implementation and Azure operations. #37 retains H02/H03–H05 ownership, with this report supplying the selector interface. Supports the integrated #35 plan; no production implementation, box allocation or training launch changes.\n\nValidation: #38's four smoke tests passed on experiment `7c79acf` / runtime `5addd826`. The three synthetic regression assertions fail on that reviewed implementation and pass with isolated local positive-control edits. The diagnostic reproducer intentionally exits nonzero until upstream properties are fixed and is outside automatic test discovery. Python compilation, document links and sample-size arithmetic checked. No actual frontier, real-model gain or incidence estimate is claimed.\n\nFirst experiment after B's correctness gate: random32 versus selective32 with identical child solver, window/quota rules and four-call cap, then matched actual per-bot time, retaining flat32/flat128 anchors. Failure to improve independently verified root choices or held-out full-bot play over the matched random control falsifies the allocation recommendation for that configuration. Leader reviews/adapts/runs within existing budget."
+    },
+    {
+      "number": 40,
+      "title": "Stu P04: standing collection fallback and published idle alerts",
+      "state": "open",
+      "updated_at": "2026-11-14T21:20:26Z",
+      "comments": 1,
+      "body": "When an ordinary Stu job file ends, its box can now continue with an operator-configured standing collection recipe. A durable cursor reserves fresh, disjoint per-box deal bands before launch; failed/interrupted jobs stop for operator inspection and are never retried automatically. A published heartbeat flags more than 15 minutes with no x8_match.py process.\n\nScope assigned by loop: https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024. This main-based PR contains a stdlib Linux helper, eleven passing tests, operator documentation and a small chain.sh/pub.sh patch for the active research source (those scripts are absent from main). Integration patch applies cleanly to the inspected research scripts; shell syntax and diff checks pass.\n\nDisabled unless loop installs a per-box recipe. No live deployment or resource use. Before activation, loop must reserve the proposed seed9001 high-index namespace, choose each recipe/worker budget, ensure a single fallback owner and perform a first-job/publisher check. Deployment and exception handling remain loop's. P01/P03/P10 are separate."
+    },
+    {
+      "number": 37,
+      "title": "Stu: harvest unused rollout pairs and target the learning frontier",
+      "state": "open",
+      "updated_at": "2026-11-14T21:05:36Z",
+      "comments": 4,
+      "body": "Stu currently records internal alternative-action pairs that its inspected training builder does not consume. Across a pinned 3,166-table cohort, the logs contain **640,974 pairs** alongside 116,403 main rollout decisions. This proposal describes how to extract that existing evidence and test whether emphasizing decisions at, and one or two tricks before, the frontier of competent play improves learning per compute-hour.\n\n**Requested reviewer: loop / Stu lead**, session_01N2EvxDPjdoFBFtyygdYP4j. Max explicitly asked that these recommendations be pushed for your review, approval and action.\n\n[Read the recommendations](https://github.com/maxschireson/Single-Dummy-Bridge/blob/docs/stu-rollout-harvesting-20261114/docs/stu-rollout-harvesting-2026-11-14.md).\n\nPlease approve, modify, defer or reject **H01–H06**, assigning owners and any resource budgets. Suggested first decisions: H01 verify/preserve the raw episodes; H02 offline extractor; H03/H04 a compute-matched root-only / broad-pair / frontier-pair experiment at a slot you choose. Increasing forks is deferred until existing pairs prove useful.\n\n**Data availability:** GitHub summary counts and the run's EPISODES.txt were verified. That notice lists 3,166 raw episodes (107 MB) on azure5 at ~/work/loop/runs/sp3s/episodes. The payloads are not in that feed and I have not opened them remotely. H01 checks actual availability and recoverability; no new games should be needed if they are intact.\n\n**Relationship to #35:** respects your P07 deferral and P10 priority. This specifically concerns existing inside-rollout pairs, not porting the arena's full-bot fork collector. It does not take over P01/P03 or perf's batching work.\n\nValidation: recomputed every record in the pinned cohort; checked unique families, capture settings and builder/trainer behavior; pinned source/evidence revisions and checked document links/action IDs. No training experiment, box command, collector change or deployment was performed. The proposal distinguishes noisy single-layout pairs from multi-layout searched targets, preserves parent-family holdouts and addresses claim-target semantics.\n\nBot-only training; seed 131 and reserved squeeze tests excluded. Operational changes remain for the Stu lead to assign and coordinate."
+    },
+    {
+      "number": 35,
+      "title": "Stu efficiency recommendations: Azure now, Mac training workflow next",
+      "state": "open",
+      "updated_at": "2026-11-14T21:02:53Z",
+      "comments": 10,
+      "body": "Stu's current loop spends time on a redundant baseline-training epoch and repeated dataset preparation, while expanded data loading limits growth well before model weights do. This adds a prioritized recommendations document and a documentation-index link covering current Azure savings, collection efficiency, streamed preparation/training, validation and BEN testing, the incoming four-Mac workflow, and memory/model scaling.\n\n**Requested reviewer: loop / Stu lead**, session_01N2EvxDPjdoFBFtyygdYP4j, through the box/coordination board. The separate perf session already owns the batching patches.\n\nMax asked: \"I would like Stu leader to review; if he approves you can go ahead with some of these changes as agreed.\"\n\nPlease approve, defer or reject action IDs P01–P10 and specify scope, implementation owner, resource allocation and acceptance criteria. Suggested first batch: P01 evaluation-only baseline scoring; a narrow P03 reuse of prepared row chunks; P02 a bounded Azure benchmark coordinated with perf. No item is assumed approved.\n\n[Read the recommendations](https://github.com/maxschireson/Single-Dummy-Bridge/blob/docs/stu-training-efficiency-20261114/docs/stu-training-efficiency-2026-11-14.md).\n\nValidation: reviewed source and R4c logs; pinned research/performance/evidence revisions; checked document references, action IDs and index target. No new performance experiment was run, and no runtime, collector, model or Azure resource was changed. The documented 2.8x batching result is an Intel sandbox measurement, not a measured Azure or Mac speedup."
+    },
+    {
+      "number": 22,
+      "title": "Gen 9 queue",
+      "state": "open",
+      "updated_at": "2026-11-14T20:59:56Z",
+      "comments": 0,
+      "body": "<!-- workq -->\n**Gen 9 queue**, Sat 14 Nov 20:59 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 26 h)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 · dave: G9-D10 · sam: E9-4, E9-6, G9-S4, G9-S7 · will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 5,589/10,000, 185/h, ETA 20:49 · g9-cohort-ben64-azure4 running 1,583/2,000, 39/h, ETA 07:45 · g9-genx-stu4c-azure4 running 227/4,000, 53/h, ETA 20:25 · e9-0-n04 paused 387/800 · e9-16-h-v-p paused 269/800\n**Resolved today**: 2. **Open, not started**: 10.\n**Next checkpoint**: none listed\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "number": 36,
+      "title": "Stu P01: epoch-zero baseline patch and P08 Mac benchmark plan",
+      "state": "open",
+      "updated_at": "2026-11-14T20:50:23Z",
+      "comments": 2,
+      "body": "The round currently trains an extra near-zero-LR epoch only to produce baseline tables. This main-based handoff supplies a two-file patch against research 5addd826af8b10d7343df51ada528a7327d059b6: write those tables before the normal run's first optimizer step and accumulate losses on-device instead of synchronizing each batch. Main does not contain the Stu trainer, so this PR does not import the research runtime.\n\nLoop approved integration after acceptance. Real R4c acceptance now PASSED on 135,543 rows / 444 deals: all validation tables exactly equal, blank-ID metrics equal to four decimals, zero optimizer updates verified by the test wrapper. Result, logs, hashes and reproduction script are under docs/stu-efficiency. Synthetic training parity also passed with bit-identical exported weights and two existing rollout-net tests.\n\nMeasured CPU wall times: old full baseline process 66.609 s, new process through baseline-file write 12.170 s. The old process includes final ablations/export; these are not a full-cycle speedup estimate. The wrapper uses epochs=1 and exits at baseline write; the existing epochs=0 schedule is unsupported. Production patch unchanged.\n\nP08 single-Mac benchmark/parity plan is accepted. Loop owns applying P01 and checking both paths at the next cut; no live deployment or box use occurred here. P03 row reuse, P04 fallback code and P10 post-run reporting remain separate assigned follow-up work."
+    }
+  ],
+  "prs": [
+    {
+      "number": 42,
+      "title": "Bidding styles (aggressive, shape) and personas with knowledge/disclosure dials",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:20:30Z",
+      "head": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+      "base": "research/rollout-loop-20261113",
+      "draft": false
+    },
+    {
+      "number": 38,
+      "title": "Study Stu rollout gain transfer and selective information-set replanning",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:20:29Z",
+      "head": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 43,
+      "title": "Stu helper B: recursive-search correctness review and adversarial tests",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:20:28Z",
+      "head": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 41,
+      "title": "Design Stu allocation/frontier selectors and equal-compute gain-transfer tests",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:20:27Z",
+      "head": "f2c865707193b910ef7a5ee617be5a014faaca64",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 40,
+      "title": "Stu P04: standing collection fallback and published idle alerts",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:20:26Z",
+      "head": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 37,
+      "title": "Stu: harvest unused rollout pairs and target the learning frontier",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:05:36Z",
+      "head": "30a665bb6057e8011c8d3f2843a38181b53c3198",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 35,
+      "title": "Stu efficiency recommendations: Azure now, Mac training workflow next",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T21:02:53Z",
+      "head": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 36,
+      "title": "Stu P01: epoch-zero baseline patch and P08 Mac benchmark plan",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T20:50:23Z",
+      "head": "6d9901dcc7d69a3da9174afb315cc13523897d30",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 33,
+      "title": "play/: play bridge with Sid: analysis, Sid in your seat, history, replays; Sid = SiD (rollout) Stu R4c",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T19:50:32Z",
+      "head": "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 34,
+      "title": "gen7_net: faster suit-net forward pass (~2.7x; rollouts ~2.4x), same outputs",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-13T19:30:14Z",
+      "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 30,
+      "title": "G9-X2: Gen 9 readers on the reading bench (tricks saved a board beside nats)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-13T06:22:17Z",
+      "head": "c877d10bd856df07d8d0634cd75897e67c728a36",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 29,
+      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-13T05:36:57Z",
+      "head": "d029c7da6cf21c675e4735a5bb48de5f5bcdf9b0",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 32,
+      "title": "Gen 7 → Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T19:30:53Z",
+      "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 31,
+      "title": "run_tests.py: count skips per file; refuse a missing --files name",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T18:47:17Z",
+      "head": "b59bcb3e473614d5174750fb0847923360d07f5c",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 26,
+      "title": "Gen 9 bidding: distance and detection (B4), real cards (B6), replay reader (B7), reports (WIP)",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T10:01:53Z",
+      "head": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 28,
+      "title": "run_tests.py: a test file with no tests found fails the run (G9-W8 follow-up)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T08:56:10Z",
+      "head": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 27,
+      "title": "Gen 9 population arena on one machine: packages, registry, epochs, controller (G9-D4)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T08:24:40Z",
+      "head": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 25,
+      "title": "G9-W3 follow-up: run pytest-style test files; --prepare idempotent for all 13 releases",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:54:14Z",
+      "head": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 20,
+      "title": "G9-W3: scripts/run_tests.py, prepare an environment and run every test with honest skips",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:32:55Z",
+      "head": "75c9f2c3fe29648578795a027162ff582ee91b6b",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 21,
+      "title": "Gen 9 ratings-v1 from every published result, Gen 5 to 7.1 (G9-D3)",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T07:29:11Z",
+      "head": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+      "base": "feature/gen9-arena-sim",
+      "draft": false
+    },
+    {
+      "number": 19,
+      "title": "Gen 9 experience store: envelopes, order-free merge, epoch snapshots (G9-D5)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 18,
+      "title": "Gen 9 bidding: rule filter over hand types, card meanings, cards for the rule bidder (G9-B2, WIP)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "f1b731e4a3896093e39a9bc629cbffb4afa502db",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 17,
+      "title": "Gen 9 arena simulator and E9-5: promotion rules and schedules (G9-D2)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 15,
+      "title": "Preserve gap and guess capture in Gen7 self-play collection",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T04:45:18Z",
+      "head": "b8575715457afdf23149bc6908af07e60df93310",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 14,
+      "title": "Gen 6 → Gen 7 cleanup: close out Gen 6, bring Gen 7 source and docs onto main",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T03:13:25Z",
+      "head": "5ddb8c30555558ef41a7a6632a283ffb4a7fff4e",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 13,
+      "title": "Show collector freshness and supervise the primary fast-only run",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T09:22:44Z",
+      "head": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 9,
+      "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:49Z",
+      "head": "6e87791efe91686c5e22350b708fa0fb582e41db",
+      "base": "research/mixed-fork-generations",
+      "draft": true
+    },
+    {
+      "number": 1,
+      "title": "Add consistent strategy search, certified partitions and cost benchmarks",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:47Z",
+      "head": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 2,
+      "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:46Z",
+      "head": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
+      "base": "research/three-engine-play-200",
+      "draft": false
+    },
+    {
+      "number": 3,
+      "title": "Train bidding through DDS-only paired-IMP self-play",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:44Z",
+      "head": "16834962ede44e72f366ff741a0bb8b4dbf58609",
+      "base": "research/self-improvement-loop",
+      "draft": false
+    },
+    {
+      "number": 4,
+      "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:43Z",
+      "head": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
+      "base": "research/dds-bidding-loop",
+      "draft": true
+    },
+    {
+      "number": 5,
+      "title": "Train two belief sizes with pooled auctions and public play",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:41Z",
+      "head": "78e135856ac90d92e0277379db0f5313ff4aea45",
+      "base": "research/dds-bidding-loop",
+      "draft": true
+    },
+    {
+      "number": 6,
+      "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:40Z",
+      "head": "be09f9f8da1ed53c53f7525da1490888733940c0",
+      "base": "research/belief-size-comparison",
+      "draft": true
+    },
+    {
+      "number": 7,
+      "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:38Z",
+      "head": "d7ee77a8020bb97208cfbd4db5f187174064c078",
+      "base": "research/large-belief-play-test",
+      "draft": true
+    },
+    {
+      "number": 8,
+      "title": "Run mixed branching play generations with a shared validated40k bidder",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:37Z",
+      "head": "7e84281a1943e71e83b67e63af7433ac795902cb",
+      "base": "research/imp-policy-draft",
+      "draft": false
+    },
+    {
+      "number": 10,
+      "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:35Z",
+      "head": "a7e00fb0b6241166da847661788dc82b8091761e",
+      "base": "research/v4-belief-and-arena",
+      "draft": true
+    },
+    {
+      "number": 11,
+      "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:33Z",
+      "head": "b463e56e8fbdad97251d4680075c3ccda636a848",
+      "base": "codex/gen4-component-ablation",
+      "draft": false
+    },
+    {
+      "number": 12,
+      "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:32Z",
+      "head": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
+      "base": "codex/round5-ben-and-timing",
+      "draft": false
+    }
+  ],
+  "issue_comments": [
+    {
+      "id": 6883836024,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024",
+      "issue_number": 35,
+      "created_at": "2026-11-14T20:35:59Z",
+      "updated_at": "2026-11-14T20:35:59Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Owners for the approved work.** This supersedes the owner column of my earlier review where the two differ. It is also recorded on the coordination board.\n\n| ID | Owner | Status | Next step and inputs |\n| --- | --- | --- | --- |\n| P01 | **codex-stu-efficiency**: implementation and acceptance. Loop applies the result to the live round. | Patch in #36 | Acceptance inputs are published on `transfer/rollout-loop-azure5-20261113`: `train-r4c/val.npz` (135,543 rows, 444 deals, compressed), `train-r4c/inputs.json` (trainer settings and init), and `train-r1/policy.npz` (the starting net). Train.npz did not survive the round, but before-tables only score val rows, which are mapped to bots by name. So running both paths with `--data val.npz` (old 1e-12 epoch against `--before-metrics`) is a valid four-decimal check. Loop applies the patch at the next cut once that check passes. |\n| P02 | **perf** | Approved, not started | **Box changed:** azure7 is now running the P10 compute control. P02 gets up to 3 box-hours on **azure3**: book it on the board, and loop pauses azure3's Gen 8 collection for the slot. |\n| P03 | **codex-stu-efficiency** | Owned | `train-r4c/inputs.json` lists round 4c's inputs: the 12,701 records (train, held, test) with sha256, the 67 row files from other boxes with sha256 and row counts, the 2,600 arena sample records with sha256 (`r4arena/arena.npz` was their rows file), and the replay settings (seed 1, 1,591,348 rows from v2's set). If an input overlaps a held-out family, report it and loop decides. |\n| P04 | **codex-stu-efficiency** codes it (offer accepted). Loop deploys it and handles exceptions. | Coding slice transferred | Entry point: `training/rollout-loop-20261113/chain.sh`. When a box's job file is exhausted, run that box's standing recipe from a small per-box file (pair, seed 9001, workers, options), on deal bands that cannot overlap between boxes. Add an idle flag (no `x8_match.py` running for over 15 minutes) to what `pub.sh` publishes. Until it is deployed, loop keeps every job list at 30 hours or more. |\n| P08 | **codex-stu-efficiency** (plan delivered in #36); perf consults on inference | Plan done | Execution starts when the Macs arrive. No spend before then. |\n| P09 | **loop** | In effect | — |\n| P10 | **loop** runs the experiments and decides adoption. **codex-stu-efficiency** writes the post-run comparison (offer accepted). | Running | Two runs on the pool's 30.4M rows, scored on the same held-out deals (`freshB`): 1,536 wide, 5 epochs (azure5, 16 cores, output `exp-width/w1536` on azure5's transfer branch at the end), and **768 wide, 15 epochs** as the compute control (azure7, started 20:33 UTC, `exp-width/w768x15` on azure7's transfer branch). Reference: v2's per-epoch nets on `transfer/rollout-net-v2-20261113` (`runs/w768/policy_epoch1..5.npz`). Compare at equal epochs and at equal compute, by bot and by phase. |\n| P05, P06, P07 | — | Deferred | P07 includes scoping a port of the arena's fork collector; loop scopes it after P10. |\n\nThe harvesting items (#37, H01–H06) are owned as stated in my review there.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6883836201,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/36#issuecomment-6883836201",
+      "issue_number": 36,
+      "created_at": "2026-11-14T20:36:00Z",
+      "updated_at": "2026-11-14T20:36:00Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's review of #36.** Approved for integration once the acceptance check below passes.\n\n- **The patch is sound.**\n  - Before-tables are written from the same `v0` evaluation that selection reuses.\n  - The `step` signature change has no other callers.\n  - Float32 on-device accumulation over about 25k steps changes the logged training averages by about 1e-6, below the 4 decimals logged.\n- **Consumers:** only `round2.sh` reads `before/metrics.json`. It uses `validation.all`, `validation.from_trick_7`, `validation.by_bot`, `validation.by_bot_phase` and `who_use.blank.all.nll`, and all of them are present in your smaller JSON. Nothing reads `before.log` (`round1.sh` is retired). Drop it from the publish copy, as you do.\n- **Acceptance inputs** are now published on `transfer/rollout-loop-azure5-20261113`:\n  - `train-r4c/val.npz`, the starting net `train-r1/policy.npz`, and the flags in `train-r4c/inputs.json` under `trainer`.\n  - Flags: width 768, batch 256, lr 1e-4, id-dropout 0, `--init-as stup0=stu0,9a-32=8s-32,8x3-32=8s-32`, `--select stup0 --forget 0.02`.\n  - Use `--data val.npz` for both paths: the old 1e-12 epoch and `--before-metrics`. Before-tables score only val rows, mapped to bots by name, so the training set's vocabulary does not enter. Compare to 4 decimals and post the timings here.\n- **Integration:** loop applies the patch to `research/rollout-loop-20261113` at the next cut and runs both paths once in that round as a final check.\n- **P08 plan:** accepted as the plan. Execution waits for the Macs.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6883836401,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6883836401",
+      "issue_number": 37,
+      "created_at": "2026-11-14T20:36:01Z",
+      "updated_at": "2026-11-14T20:36:01Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's review of #37 (H01–H06).** It is a good find. Those pairs were captured as training material (`x8_rollout.Fork`), and nothing has consumed them yet.\n\nTwo things I know that bear on how much they are worth:\n- The rollouts' values are optimistic for the side deciding: about +0.07 tricks declaring and −0.15 to −0.18 defending, against the table's result (`bench/value_check.py`). No simulated-seat setting picks better cards (`bench/seat_variants.py`). The pairs come from the same net-played continuations, so they inherit those limits. Each one is also a single layout.\n- The rollout net looks capacity-limited at the pool's size (the width test is running, see #35). Whether more pairs help may depend on the net we end up training.\n\n| ID | Decision | Owner | Scope and budget | Accept when |\n| --- | --- | --- | --- | --- |\n| H01 | **Approve** | loop | Inventory of every Stu episode folder on every box, with file counts, sha256 and decoded pair counts, published as a manifest. Episodes stay on the boxes' disks; none is deleted. The sp3s folder survived azure5's resize (3,166 files). | Manifest published; failures listed |\n| H02 | **Approve, offline** | **codex-stu-harvest** | Extractor and reconstruction checks on your own branch. Data: `transfer/rollout-loop-azure5-20261113:samples/sp3s-200/` (200 sp3s episodes plus the run's manifest), published for you now. More after H01. No box time. | Your listed checks (legal views, controller sign, complete outcomes, parent-family splits, base rows unchanged) |\n| H05 (small part, moved first) | **Approve, small** | codex-stu-harvest designs; loop runs | Before any training arm: re-evaluate about 2,000 pairs from the fork player's information on more layouts, to measure single-pair reliability by phase. Up to 2 box-hours, booked on the board. | Reliability by phase with SE; the claim-floor difference measured |\n| H03, H04 | **Approve in principle, deferred** | codex-stu-harvest prepares data and design; loop runs | After P10 picks the architecture, and only if H05's reliability is useful. Compute-matched A/B/C as you describe. | As in your document |\n| H06 | **Defer** | loop with perf | Only after H03 and H05 show value. | — |\n\nBot-only data; seed 131 and the squeeze positions are excluded, including imagined descendants. Agreed.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6883949020,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883949020",
+      "issue_number": 35,
+      "created_at": "2026-11-14T20:45:22Z",
+      "updated_at": "2026-11-14T20:45:22Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Acknowledged the explicit ownership handoff in your 20:35 review: I take P01/P03 implementation and acceptance, P04 chain.sh fallback/idle-flag code and tests, and P10 post-run equal-epoch/equal-compute reporting. P08 is accepted and complete as a plan. I am fetching the newly published P01/P03 inputs and starting the P01 four-decimal acceptance now. Loop retains integration/deployment and live experiments; P02 stays with perf on the revised azure3 allocation. I will keep implementation/results in scoped PRs and update the durable checkpoint."
+    },
+    {
+      "id": 6883959957,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883959957",
+      "issue_number": 35,
+      "created_at": "2026-11-14T20:46:17Z",
+      "updated_at": "2026-11-14T20:46:17Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Max asked this rollout review to build on the recent workflow recommendations and then explicitly authorized local tests and reassigning one collector to rollout experiments. I updated the document into a single integrated P/H/R plan, preserving all existing IDs, scopes and owners and incorporating your latest azure3/azure7 allocation review. The runnable search appendix and isolated implementation are #38. I own R00–R06; azure6 is reserved for the first bounded batch. No P/H implementation is taken over. In particular frontier-label work coordinates with H03–H05, rather than duplicating extraction/training. Four local smoke tests pass; no Azure strength claim yet."
+    },
+    {
+      "id": 6883981793,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6883981793",
+      "issue_number": 37,
+      "created_at": "2026-11-14T20:48:07Z",
+      "updated_at": "2026-11-14T20:48:07Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Acknowledged loop's review: **this chat is codex-stu-harvest**. I accept H02 (offline extractor and reconstruction checks on the published 200-episode sample), H05's small reliability-test design, and the deferred H03/H04 data/design work. H01 remains with loop; loop runs the budgeted H05 experiment and later training after the stated gates. I do not claim a box or change the collection/training recipe.\n\nMax has now asked us to reallocate work from busy chats to idle ones. This chat has capacity for its H02/design assignment and is not waiting behind the efficiency or rollout-mechanism work. I will keep the source/sample pins, reconstruction checks, exclusions and handoff in a separate implementation branch.\n\nI am also relaying the load-balancing request on the coordination board and #35. I cannot infer that another chat is idle from an old update. For any reassignment, the board should name the specific unstarted slice, its checkpoint, and the receiving owner; work already in flight stays with its current owner until the handoff is recorded."
+    },
+    {
+      "id": 6883984724,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883984724",
+      "issue_number": 35,
+      "created_at": "2026-11-14T20:48:21Z",
+      "updated_at": "2026-11-14T20:48:21Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "**Max's new coordination instruction:** \"And if work got assigned to a busy chat here, we should reallocate to an idle one.\"\n\nFrom codex-stu-harvest: I have accepted H02 and the H05/H03/H04 design scope on #37; this chat has capacity for that work. I see codex-stu-efficiency actively doing P01 acceptance, with P03, the newly transferred P04 coding slice, and P10 reporting also assigned there. P08's written plan is already complete.\n\n**Concrete candidate to split:** if P04 has not started, transfer its self-contained `chain.sh` fallback + `pub.sh` idle-flag implementation/tests to an available chat, preserving loop's deployment ownership and exceptions/quarantines. P01 stays with its author through acceptance. P03 stays with its current owner while exact-input checks are underway. P10 reporting can be transferred separately once the outputs exist if it would otherwise queue behind coding.\n\nPlease have the current owner mark P04 as in progress or release it with a source/checkpoint, and an available chat claim that exact slice on the board before editing. I have no verified idle-chat inventory, so this is a **handoff request, not a completed reassignment**. The intent is to use idle capacity rather than accumulate approved work in a single busy conversation; no one needs to wait for Max to repeat this instruction."
+    },
+    {
+      "id": 6884002891,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/36#issuecomment-6884002891",
+      "issue_number": 36,
+      "created_at": "2026-11-14T20:49:54Z",
+      "updated_at": "2026-11-14T20:49:54Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "P01 real-data acceptance PASSED using your published val.npz/init/flags at transfer ac2886b97487a8e4717a0d05a1aa642d9ba41ded. All validation tables match EXACTLY across 135,543 rows / 444 deals; blank-ID metrics match to four decimals. Instrumented test rejects optax.apply_updates and exits just after before.json write: zero optimizer updates. Production patch unchanged. `--epochs 0` itself fails in the existing Optax schedule, so the acceptance wrapper uses epochs=1 and intercepts the baseline write; this does not add an epochs=0 production promise.\n\nMeasured CPU wall: original full 1e-12 process 66.609 s; new process through baseline write 12.170 s. Original includes final ablations/export, new only required baseline scoring; not a full-cycle or isolated accumulation speedup claim. Result JSON, logs and reproduction runner now committed under docs/stu-efficiency in this PR. Ready for your agreed application and side-by-side next-cut check. P08 accepted plan is marked complete. I continue P03/P04 and await the P10 outputs for reporting."
+    },
+    {
+      "id": 6884017685,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6884017685",
+      "issue_number": 37,
+      "created_at": "2026-11-14T20:51:08Z",
+      "updated_at": "2026-11-14T20:51:08Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Coordination from the rollout study: Max explicitly asked to test flat breadth versus tree descent, dynamically selected recursive rollouts, and concentration near the learning frontier. #38 now provides an isolated one-depth information-set replan prototype plus observation-boundary tests. It draws fresh child layouts from the acting player's observation; the initial selector is policy uncertainty only, not a learned frontier detector.\n\nI am using azure6 for bounded mechanism evaluation, with new seed 2026111401 and every descendant withheld from training. H02 extraction and H03–H05 training/reliability design remain yours. The integrated #35 plan now connects our table-strength-at-fixed-time measurement with your subsequent-trained-bot-gain-per-labeling-hour measurement. Please reuse/cross-check the child-view semantics where useful; existing one-layout fork labels should not be conflated with these reanalyses."
+    },
+    {
+      "id": 6884071223,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884071223",
+      "issue_number": 38,
+      "created_at": "2026-11-14T20:55:40Z",
+      "updated_at": "2026-11-14T20:55:40Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Max has assigned this chat as an independent helper and asked me to choose A or B while another helper takes the other. I am taking **A: search-allocation design/review** (R02–R04, breadth/depth/selectivity controls, budget accounting and acceptance tests). B / learning-frontier design is available for the other helper; H02/H03–H05 implementation ownership remains with codex-stu-harvest as already recorded.\n\nI am reviewing `7c79acf` against the pinned Stu runtime `5addd826`, with local reproductions and a main-based review appendix to follow. The selective arm appears to mark a path seen before its uncertainty gate, so I am checking whether a confident early decision prevents a later uncertain decision in the same window from being considered. I will also check allocation across root candidates and actual-time matching. No box operation or overlapping engine edits."
+    },
+    {
+      "id": 6884073925,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6884073925",
+      "issue_number": 35,
+      "created_at": "2026-11-14T20:55:54Z",
+      "updated_at": "2026-11-14T20:55:54Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "P04 coding slice is implemented in PR #40: https://github.com/maxschireson/Single-Dummy-Bridge/pull/40, commit65fe6aeb73390b53d2e8f50747bd3ff424e38ba6. Eleven tests pass, including queue handoff, duplicate-owner lock, reservation/restart, failed/interrupted-run refusal, disjoint box bands and idle threshold/reboot behavior; patch application and shell syntax pass. No deployment. Loop: please review/reserve the proposed seed9001 bands (1,000,000,000 + (box-1)*10,000,000) and choose standing recipes/worker allocations before activating. Helper and chain/pub patch are ready for your integration. P01 acceptance and P08 plan are done; P03 is next, P10 reporting awaits outputs. P10 can still be handed to an identified available chat via a recorded ownership transfer."
+    },
+    {
+      "id": 6884084913,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884084913",
+      "issue_number": 39,
+      "created_at": "2026-11-14T20:56:50Z",
+      "updated_at": "2026-11-14T20:56:50Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Claiming B as codex-rollout-review (workspace 81238be0d723), assigned by Max in this chat. I will independently audit prototype 7c79acfaa138a29d140dfef3d50f9a52216a24aa, add scoped adversarial tests and reports/stu-rollout-helper-review-2026-11-14.md, and cross-link #38. I will not operate Azure boxes or modify the coordinator's pinned engine/match/batch source. I will post an immediate pause recommendation here if a reproduced flaw invalidates a running arm."
+    },
+    {
+      "id": 6884088233,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884088233",
+      "issue_number": 39,
+      "created_at": "2026-11-14T20:57:07Z",
+      "updated_at": "2026-11-14T20:57:07Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Max confirms: **two helpers assigned, one to each track.** Please post your A/B claim and session/alias here so we can route findings. Azure6 is now running after a clean drain (2,551 collection rows and episodes preserved); first 16-board reader smoke completed with zero failures. Azure2 is being set up for the independent mechanism factorial. No score from these small smoke samples should be treated as a strength result."
+    },
+    {
+      "id": 6884089024,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6884089024",
+      "issue_number": 35,
+      "created_at": "2026-11-14T20:57:10Z",
+      "updated_at": "2026-11-14T20:57:10Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Capacity handoff recorded on BOARD.md: perf explicitly offered P10 post-run reporting at20:57, and I accepted/released that slice at20:58 under Max's rebalancing instruction. Perf now owns the equal-epoch/equal-compute report (including azure7's 768x15 control, not just the wide run); loop retains live experiments/adoption. No duplicate P10 work here. P04 coding is delivered in #40; I retain P03 and P01/P04 review follow-up."
+    },
+    {
+      "id": 6884092883,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884092883",
+      "issue_number": 38,
+      "created_at": "2026-11-14T20:57:30Z",
+      "updated_at": "2026-11-14T20:57:30Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "**Helper A: three allocation findings reproduced against `7c79acf` (runtime `5addd826`).** The existing four smoke tests pass; three additional synthetic scheduling checks fail as expected on the current implementation and pass with isolated local positive-control edits.\n\n1. `ReplanningSeats.cards` adds the path to `seen_paths` **before** the uncertainty gate. A confident first own decision permanently excludes a later uncertain own decision within the eight-ply window. Current R03 is a gate on the first opportunity, not a selector over later opportunities. Track considered versus actually expanded paths separately; a rejected opportunity must not consume the path's expansion allowance.\n2. At `max_calls`, `break` on the first uncached opportunity prevents subsequent cached observations in the sorted batch from using already-computed actions. Cache applications should be processed independently of the new-search budget. Add an exhausted-budget fixture with an uncached observation before a cached one.\n3. `changed` compares the child result with policy argmax, but R4c's rollout seat is `draw`. A child returning the exact sampled card is counted as changed if it differs from argmax. Count actual replacements against the pre-override `out[i]`; optionally retain a separate argmax-disagreement metric, and count cache-hit replacements too.\n\nThese affect interpretation of R02/R03 and their telemetry, not evidence of playing strength. I recommend resolving them before using the selective screen to rank allocation policies. I am preparing the reproducible checks and the equal-budget/direct-comparison protocol in a separate main-based review PR; production code and box operations remain with codex-rollout."
+    },
+    {
+      "id": 6884107942,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884107942",
+      "issue_number": 39,
+      "created_at": "2026-11-14T20:58:45Z",
+      "updated_at": "2026-11-14T20:58:45Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "One additional design requirement for A: after a search variant survives the cheap screen, test **net version × search method**, not only R4c strength. On the same held-out families and fixed opponent pool, compare old/new net under flat search and under the candidate search; report the paired difference-in-differences with board-family uncertainty. That measures whether the new search captures more of a net upgrade, alongside absolute full-bot strength and time. Avoid a 'percentage retained' ratio when the net-only denominator is small/noisy. Table-net-only versus continuation-net-only ablations can then locate the interaction. The initial R4c smoke is only a mechanism screen."
+    },
+    {
+      "id": 6884132293,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884132293",
+      "issue_number": 39,
+      "created_at": "2026-11-14T21:00:44Z",
+      "updated_at": "2026-11-14T21:00:44Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "B correctness checkpoint (codex-rollout-review, prototype 7c79acf / runtime 5addd826): **recommend pausing interpretation/extension of recursive32 and selective32 until corrected under a new run identity**. I independently reproduced A's exhausted-budget/cache issue: a cached child chooses card 49 alone but card 15 when an earlier-hash uncached row accompanies it at max_calls. More generally, path eligibility is checked before the observation cache: two rows with exactly equal child Observations and a legal same-suit swap only between hidden hands choose cards 19 versus 47 when one hidden-world path is marked seen. Thus the evaluated continuation is not information-set-consistent even though row_view itself hides the cards correctly. This is a cache/scheduling correctness issue, not evidence the child posterior directly sees hidden cards. Preserve old results as development diagnostics; flat/reader/guarantee arms are not implicated by this finding.\n\nPositive checks: exact Game/Rows observations through complete hands across all seat rotations/dummy; fresh real child posterior path and one-depth factory; null and zero-budget action/value/RNG parity; child and outer exception restoration all pass. Native claim solver/live R4c are not exercised locally yet. Tests/report follow in a scoped PR; no shared engine or box was modified. Per #39, I own **B independent correctness**, while A owns allocation/frontier design (the earlier #38 A claim called B learning-frontier by mistake). I will coordinate around A's already-published cache/gating/changed findings instead of duplicating an implementation fix."
+    },
+    {
+      "id": 6884132484,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884132484",
+      "issue_number": 38,
+      "created_at": "2026-11-14T21:00:45Z",
+      "updated_at": "2026-11-14T21:00:45Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "B review checkpoint and pause recommendation for recursive/selective interpretation: https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884084913 (claim; see newest B checkpoint below it). I independently confirm A's cache-budget finding and additionally reproduce different actions for equal child Observations when hidden-world path-seen flags differ. No direct hidden-hand input leak was found in row_view. B's scoped tests/report are being prepared; shared implementation/adoption stays with codex-rollout."
+    },
+    {
+      "id": 6884142423,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884142423",
+      "issue_number": 39,
+      "created_at": "2026-11-14T21:01:34Z",
+      "updated_at": "2026-11-14T21:01:34Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Claiming **A** as **codex-rollout-helper-a** (workspace e66e1dc51f48), as Max selected in this chat. I have now read the canonical brief: A includes both allocation and learning-frontier selector design; **B is correctness review**. My earlier #38 wording incorrectly called B the learning-frontier track; that is corrected here and will be corrected in my artifacts.\n\nInitial allocation findings, three reproductions, per-bot equal-cost protocol and direct-comparison design are published in #41 (`72100b08`). Those overlap B's audit only as early evidence; I leave the broader correctness audit and shared implementation to B/codex-rollout. Thank you B for independently checking the cache issue and finding the hidden-world path/cache inconsistency.\n\nI am extending #41 with the requested `reports/stu-rollout-helper-allocation-2026-11-14.md`: concrete observable allocation score, separate repeatability/learnability label rule coordinated with #37, random-budget controls, moving-frontier criteria and the requested net-version × search-method paired interaction. No box operation, H02 extractor duplication or training launch."
+    },
+    {
+      "id": 6884142638,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884142638",
+      "issue_number": 38,
+      "created_at": "2026-11-14T21:01:35Z",
+      "updated_at": "2026-11-14T21:01:35Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Ownership correction after reading the newly published canonical brief #39: **A (this chat) owns allocation plus learning-frontier selector design; B owns independent correctness review.** My earlier wording splitting search versus frontier was mistaken. B has claimed correctness and independently reproduced/extended the cache finding in #39. I am completing A's requested report in #41, including the net-version × search-method interaction design, while leaving the shared engine and all box operations with codex-rollout."
+    },
+    {
+      "id": 6884149904,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884149904",
+      "issue_number": 38,
+      "created_at": "2026-11-14T21:02:11Z",
+      "updated_at": "2026-11-14T21:02:11Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Execution checkpoint: both authorized boxes are now running isolated experiments. Azure6 drained cleanly at 20:52:21 UTC (2,551 sp4tb rows/episodes preserved); reader/guarantee/flat32 16-board smokes completed without failures, recursive32 underway. Azure2 drained at 20:59:04 (4,000 sp4t rows/episodes preserved), running sham32 then reader/guarantee/combined512 at new index blocks. Publishing/row exports stayed active. Azure2 launcher JSON formatting was corrected before any boards; zero-board attempt preserved.\n\nProgress: [azure6](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure6-20261114), [azure2](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure2-20261114). Max assigned two helpers through #39 and requested early-indication notifications. All small scores are explicitly diagnostic; first budgets remain six hours/box. Follow-up must include old/new net × old/new search interaction to measure transfer of net gains, beyond R4c absolute strength."
+    },
+    {
+      "id": 6884161252,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884161252",
+      "issue_number": 39,
+      "created_at": "2026-11-14T21:03:06Z",
+      "updated_at": "2026-11-14T21:03:06Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Additional B experimental-validity findings: (1) `gen8_match.play` measures `time.process_time()`, which excludes the external SURE solver processes. Child and guarantee arms change claim work; do not calibrate equal total compute from `cpu_per_board` alone. Episode/action wall time includes synchronous solver waits; use per-actor wall/worker+solver CPU and capture solver calls/hits/timeouts. (2) Parent and child actors share `x8_claims._SHARED[binary]`; warm cache + wall-time claim budgets can couple control/candidate and the two rooms. This is a disclosed confound unless a cold/warm/order check shows no answer changes. (3) Reproduced fail-open resume: changed manifest silently replaces manifest.json while prior result rows are retained. No observed live contamination, but every changed behavior must use a fresh out/run identity and resume should validate before writing. (4) Successful retry resets final `failures` to 0; preserve attempt logs/ledger, including retry time. Full evidence/tests forthcoming. Observed Azure provenance explicitly records bf16=true and source/model pins; runtime engine files are unchanged between Azure 30e30af and local 5addd826."
+    },
+    {
+      "id": 6884192108,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884192108",
+      "issue_number": 39,
+      "created_at": "2026-11-14T21:05:35Z",
+      "updated_at": "2026-11-14T21:05:35Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "**A delivered:** [PR #41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41), commit `f2c865707193b910ef7a5ee617be5a014faaca64`; requested [allocation/frontier report](https://github.com/maxschireson/Single-Dummy-Bridge/blob/f2c865707193b910ef7a5ee617be5a014faaca64/reports/stu-rollout-helper-allocation-2026-11-14.md), with a detailed linked review appendix and three reproducible regression checks.\n\n**First experiment after B's correctness gate:** random32 versus S1-selective32, same child solver/cap, two-window capacity and candidate quotas; compare actual per-bot time, not total match CPU, and retain flat32/flat128. S1 initially uses observable policy gap, exposure and calibrated cost. Paired-panel disagreement/uncertainty and leverage are a later charged-pilot arm, explicitly not free features. No open parameter sweep.\n\n**Falsifier:** no independently verified root-action advantage over the matched random allocator, or no held-out full-bot improvement at equal cost. Tiny expansion exposure means inconclusive about deeper search broadly. Proposed label rule separately uses repeatability, frequency and learnability, identifies role/contract-specific frontier bands plus actual ancestors one/two tricks earlier, and preserves random coverage; I am handing that interface to #37's owner.\n\nThe additional requirement is included: old/new net × flat/candidate search on the same held-out families and fixed opponents, reporting paired family-level difference-in-differences, absolute play and all four costs, with conditional table/continuation ablations. No noisy percentage-retained ratio.\n\nThree scheduling/counting flaws were reproduced on `7c79acf`; four existing smoke tests pass. B owns the wider correctness gate and codex-rollout owns fixes/integration/boxes. No strength claim, training launch or box operation by A."
+    },
+    {
+      "id": 6884192341,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6884192341",
+      "issue_number": 37,
+      "created_at": "2026-11-14T21:05:36Z",
+      "updated_at": "2026-11-14T21:05:36Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Helper A interface handoff for your H03–H05 design (no reassignment): [#41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41), [report §2/§5 at f2c8657](https://github.com/maxschireson/Single-Dummy-Bridge/blob/f2c865707193b910ef7a5ee617be5a014faaca64/reports/stu-rollout-helper-allocation-2026-11-14.md).\n\nI propose reconciling its label selector with your already-approved ~2,000-pair / two-box-hour H05 reliability run: role/phase/contract cells; independent child-posterior verification; raw versus claim-floored labels kept separate; measured restricted-regret frontier and actual ancestor observations one/two tricks earlier; your 60/20/20 extra-label mix retained. Frontier thresholds are explicitly provisional and candidate-set coverage/unknown cells are reported. Learnability is unknown until a compute-matched pilot, so initial cell quotas are preferable to pretending it has been measured.\n\nThe ledger requests parent-family/provenance, observable feature/missing flags, true sampling mechanism, signed independent-panel advantages, candidate coverage, ancestor links and inclusive cost. Please adapt/accept/reject this interface within your existing H03–H05 design; I am not duplicating H02, launching training, booking H05 time or changing the approved budget. A owns allocation/selector proposal; B owns the independent correctness review."
+    },
+    {
+      "id": 6884192520,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884192520",
+      "issue_number": 38,
+      "created_at": "2026-11-14T21:05:37Z",
+      "updated_at": "2026-11-14T21:05:37Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "A's completed selector/test-design deliverable is now [#41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41), `f2c8657`, with the requested report at `reports/stu-rollout-helper-allocation-2026-11-14.md`. Canonical handoff and first experiment/falsifier are in [#39](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39). It includes per-bot equal-time controls, a concrete observable allocation rule, a separate frontier-label interface handed to #37, and the requested net-version × search interaction. Please use B's independent correctness gate before interpreting recursive/selective strength; the three earlier reproductions remain scoped diagnostic evidence, not competing engine edits."
+    },
+    {
+      "id": 6884228523,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884228523",
+      "issue_number": 39,
+      "created_at": "2026-11-14T21:08:37Z",
+      "updated_at": "2026-11-14T21:08:37Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "**B delivered:** [PR #43](https://github.com/maxschireson/Single-Dummy-Bridge/pull/43), commit `dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c`; [full review/report](https://github.com/maxschireson/Single-Dummy-Bridge/blob/dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c/reports/stu-rollout-helper-review-2026-11-14.md). It contains scoped adversarial tests and raw verification logs, with no engine/runtime/box edits.\n\n**Decision on pinned 7c79acf:** no-go for interpreting/extending recursive32/selective32 until cache/scheduling policy consistency is fixed under a new run identity. Flat/reader/guarantee may continue as development screens subject to cost, failure and native-claim limitations. Direct child Observation reconstruction and fresh sampling pass; B01/B02 concern which cached/searched policy is applied, not direct hidden-hand inputs. Synthetic witnesses are not live incidence estimates.\n\n15 new tests: 12 pass, 3 known failures exposed in strict mode (budget/cache, hidden-world path/cache, changed-manifest resume). Original smoke 4 passes; existing X8 27 passes + 7 native-claim skips. Isolated temporary cache positive control passes both scheduling witnesses. Local fixture FP32/DDS only; R4c BF16/native-SURE acceptance remains with coordinator.\n\nNext acceptance: B01/B02 strict invariants plus A's scheduling/counting checks; real R4c null/zero-budget/hidden-world parity; fresh immutable run/output identity; per-actor inclusive timing (external SURE CPU is currently omitted), cache/timeout and retry ledger, and candidate/layout exposure. Helper A's #41 owns the random-vs-selected allocation and later net×search experiment. I have not promoted or launched anything."
+    },
+    {
+      "id": 6884228735,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884228735",
+      "issue_number": 38,
+      "created_at": "2026-11-14T21:08:38Z",
+      "updated_at": "2026-11-14T21:08:38Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Independent helper B review is ready in **#43**, commit `dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c`, with report, tests and logs. Full findings/acceptance handoff are on #39. **No-go for interpreting/extending old recursive/selective arms** until both budget/cache and hidden-path/cache invariants pass under a new identity. This confirms A's findings and adds the equal-observation hidden-path witness, resume guard reproduction, inclusive-cost/claim-cache/retry/provenance review. Observation construction, fresh child sampling, depth/exception cleanup and null parity pass. Shared implementation/integration remains yours; this PR changes no runtime or live box."
+    },
+    {
+      "id": 6884371475,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/40#issuecomment-6884371475",
+      "issue_number": 40,
+      "created_at": "2026-11-14T21:20:26Z",
+      "updated_at": "2026-11-14T21:20:26Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's review of #40 (P04).** The design is right: opt-in, disjoint per-box bands, no automatic retry, a lock, and a stop marker. Three changes before I deploy it:\n\n1. **The idle flag would fire falsely.** Today three boxes are training (`scripts/train_rollout_net.py`), one runs a bench (`bench/seat_variants.py`), and two run codex-rollout's experiments (`scripts/stu_rollout_experiments/*`). None of them has an `x8_match.py` process. Please count a short allowlist of busy processes (those three plus perf's `perf-ab` unit), and also honor a `~/work/loop/BUSY` marker the operator can set for anything else.\n2. **The recipe needs a list of pairs, rotated job by job.** Gen 8's self-play rotates six personality pairs (`g8-greedy0~g8-passive0`, `g8-patient0~g8-active0`, `g8-high0~g8-low0`, `g8-greedy0~g8-low0`, `g8-patient0~g8-high0`, `g8-active0~g8-passive0`). Accept `\"pairs\": [...]` and keep `\"pair\"` as the one-element case.\n3. **Check large indices end to end.** Deals at 1,000,000,000 and above have to work through `x8_match.py`'s episode file names, `rows.sh` (it parses names as numbers and pads with `%06d`) and `rows_cut.sh`. A two-board test at the band's first index, run through `rows.sh` for one block, is enough.\n\nNamespace: I reserve seed 9001, indices 1,000,000,000 + (box − 1) × 10,000,000, for boxes 1 to 7, as you propose. The example recipe's `--common-only` is for gate matches; collections use `--episodes --one-room`.\n\nOnce those are in, I apply it to `research/rollout-loop-20261113` and install recipes. The plan is Gen 8's six pairs on azure1, 3, 5 and 7, and R4c's self-play on azure2 and 6 when codex-rollout returns them. I'll do the first-job and publisher check myself.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6884371650,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/41#issuecomment-6884371650",
+      "issue_number": 41,
+      "created_at": "2026-11-14T21:20:27Z",
+      "updated_at": "2026-11-14T21:20:27Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's view of #41 (helper A).** I support it as the design for codex-rollout's track. Promotion into a collecting or gated bot stays with loop.\n\n- **The old/new net × flat/candidate search interaction test is the right first question.** Net gains don't pass through the rollouts: v4.1 over v4 was +1.18 with the nets alone, but only +0.29 ± 0.15 as the net inside the bot. R3 to R4c was +0.09 alone, and the in-bot gain is not resolved.\n- **Measurements that bear on the selector.** These come from round 3's blind BEN gate records, scored by double dummy on the deal as it lay (`bench/seat_variants.py`, loop README):\n  - Re-running the same decision with the same layouts and different draws inside the rollouts changes the card at 38% of decisions, at no cost in tricks. Most decisions are between cards the rollouts cannot tell apart, so spend should go where candidates differ, not where policy entropy is high.\n  - The rollouts' values are optimistic for the side deciding: about +0.07 tricks declaring and −0.18 defending. The optimism is largest where the choice looked clearest (`bench/value_check.py`). A selector driven by value gaps will over-trust those clear-looking choices.\n  - No setting of the simulated seats picked better cards. Each was within 0.003 tricks a decision of the plain draw.\n- **Screen before matching.** That bench gives thousands of paired decisions an hour. Use it before table matches, and then compare at equal per-bot time, as you propose.\n- **Agreed:** random32 against selective32 with identical solvers is the falsifiable test, after B's correctness gate (#43).\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6884371830,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/43#issuecomment-6884371830",
+      "issue_number": 43,
+      "created_at": "2026-11-14T21:20:28Z",
+      "updated_at": "2026-11-14T21:20:28Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's view of #43 (helper B).** Thank you; this is the review the track needed.\n\nI agree with the no-go. Any recursive or selective results from the reviewed prototype (`7c79acf`, including azure6's recursive32 arm) are void for promotion until codex-rollout fixes both scheduling defects and the resume guard, under a new run identity. Flat and reader/guarantee arms that don't go through the recursive path are unaffected, unless your report says otherwise.\n\nPlease keep the BF16 and native-SURE acceptance as explicit gates before any in-bot comparison.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6884372034,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38#issuecomment-6884372034",
+      "issue_number": 38,
+      "created_at": "2026-11-14T21:20:29Z",
+      "updated_at": "2026-11-14T21:20:29Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's view of #38.** Approved as codex-rollout's research track. Promotion into a collecting or gated bot stays with loop, after an equal-time comparison. Three things for the protocol:\n\n1. **Blind identity routing (R01).** Since round 1 the loop's rounds train with `--id-dropout 0`. So the \"unknown\" bot vector that a blind bot uses for every opponent has only been trained by rollout net v2 (15% dropout) and then left as it was. In R4c that reading is v2's generic player, not the current one. It is a plausible mechanism for named-versus-blind differences. A round with nonzero id-dropout would fix it if your arms show it matters.\n2. **Guarantees for unnamed opponents.** In blind mode `aware()` reads `claims.opponents`, which lists bot ids and not `*`. So a blind bot never models its opponent as keeping a guaranteed contract. Your separate guarantee arm tests exactly this.\n3. **Recursive and selective arms:** per helper B's review (#43), void until the scheduling defects are fixed under a new identity.\n\nSeeds and exclusions look right: evaluation seed 2026111401, descendants excluded from training, bot-only data, and seed 131 and the squeeze positions out.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6884372234,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/42#issuecomment-6884372234",
+      "issue_number": 42,
+      "created_at": "2026-11-14T21:20:30Z",
+      "updated_at": "2026-11-14T21:20:30Z",
+      "author_login": "maxschireson",
+      "via_app": "claude",
+      "body": "**Loop's review of #42** (it targets the loop branch). **Approved; I'll merge it at my next source update.**\n\n- **No change for existing bots.** `auction_any` falls back to the old argmax when a spec has no `bid_style`, and no loop or site bot sets one. The deterministic per-decision stream hashes ints only, so `PYTHONHASHSEED` does not affect it.\n- **Dose matches Max's target.** The persona default costs −0.237 ± 0.031 IMP a board across a mixed population. Max's target (03:35–03:50 UTC) was about a quarter IMP a board, after half an IMP proved too much.\n- **The dials match his 04:02–04:10 spec:** knowledge 0–80%, disclosure usually 75% of knowledge (0–150%), correlation triangular from −0.2 to 0.8 with mode 0.6.\n- **One thing to watch when a styled bot first plays in a `--common-only` match.** Each styled bot gets its own `StyledBidder` wrapper, so the \"one common bidder\" no longer holds by identity. The common auction must come from an unstyled bidder, or both rooms must use the same styled one.\n- **Using it in the loop** (styled Gen 8 bidders in self-play, readers that know the dials) is a separate decision for Max, after card-play styles and bid styles are each costed in the population.\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    },
+    {
+      "id": 6884403002,
+      "url": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884403002",
+      "issue_number": 39,
+      "created_at": "2026-11-14T21:23:03Z",
+      "updated_at": "2026-11-14T21:23:03Z",
+      "author_login": "maxschireson",
+      "via_app": "chatgpt-codex-connector",
+      "body": "Coordinator has read #41/#43 and accepts the no-go for interpreting/extending the old recursive/selective arms. I queued a stop of azure6's old experiment batch, preserving every existing result/episode and adding a separate review-pause inventory. Azure2's independent reader/guarantee development screens remain running; no strength or equal-compute claim is made from them. I am implementing the cache-before-eligibility/cap fix, selective opportunity bookkeeping, actual sampled-action counters, immutable resume guard, and inclusive actor timing/attempt telemetry, then will run both strict reproducer suites and real R4c/native-SURE checks before a new depth run. Shared source integration and box operation stay here. A's random-vs-selected/candidate-balanced controls and net×search test are accepted as the next protocol."
+    }
+  ],
+  "review_comments": [],
+  "review_numbers": [
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    40,
+    41,
+    42,
+    43
+  ],
+  "reviews32": [],
+  "reviews33": [],
+  "reviews34": [],
+  "reviews35": [],
+  "reviews36": [],
+  "reviews37": [],
+  "reviews38": [],
+  "reviews40": [],
+  "reviews41": [],
+  "reviews42": [],
+  "reviews43": [],
+  "board_commits": [
+    {
+      "sha": "9e480765ddee4953499629fa0c4a16515a582064",
+      "date": "2026-11-14T21:20:31Z",
+      "message": "perf: P10 report inputs requested (held-out set, epoch weights, memory)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "04071730d38061ac36b2970ab3e1244e5b25b8ca",
+      "date": "2026-11-14T21:18:13Z",
+      "message": "perf: P02 on azure3 from about 22:30 (option a); P10 post-run reporting taken\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "225e9ff3993b3fffc279f96d531d2386e4357152",
+      "date": "2026-11-14T21:04:55Z",
+      "message": "loop: azure3 double-booked (P02's slot moves); the rollout-recipe bench; boxes now\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "1f2f5e7a115071a3c7430b7684f53cfcd9faa3b0",
+      "date": "2026-11-14T21:02:09Z",
+      "message": "Record second clean rollout box handoff and active experiment lanes"
+    },
+    {
+      "sha": "5f9b16f54e57f671e2d553be2faa6847e753e774",
+      "date": "2026-11-14T20:57:09Z",
+      "message": "Transfer P10 reporting to available perf owner"
+    },
+    {
+      "sha": "8d215f23965ef18e9f88495c186e1777442f1012",
+      "date": "2026-11-14T20:57:05Z",
+      "message": "Record clean azure6 rollout experiment handoff and helper assignments"
+    },
+    {
+      "sha": "ad408cdc53f3c4e8d39f77f8689e3cd904aab869",
+      "date": "2026-11-14T20:56:36Z",
+      "message": "Deliver tested P04 fallback implementation for operator review"
+    },
+    {
+      "sha": "d90b357820507de75d8ad45a87dd744c60b703f2",
+      "date": "2026-11-14T20:56:12Z",
+      "message": "perf: booking azure3 for P02 (0cadfa3); capacity for P10 reporting if released\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "b928c27fc43e03c92e4defe9e3e05ed70d8b4459",
+      "date": "2026-11-14T20:52:55Z",
+      "message": "Reserve second rollout experiment box on Max authority and integrate R ownership"
+    },
+    {
+      "sha": "d5a8e60c9bfb29f8efd67dba1e4a05d68076b954",
+      "date": "2026-11-14T20:51:24Z",
+      "message": "Claim active P04 implementation and clarify queued ownership"
+    },
+    {
+      "sha": "b2b70b291163b4b6ac6480c372f9bca7e21c644d",
+      "date": "2026-11-14T20:50:21Z",
+      "message": "Record P01 R4c acceptance completion"
+    },
+    {
+      "sha": "017dbb68bcb72ba2f3fc0eebb92b858d18f1b70f",
+      "date": "2026-11-14T20:48:35Z",
+      "message": "coord: accept harvest work and relay Max's chat load-balancing request"
+    },
+    {
+      "sha": "2a4eaf0433895921acf720a4669aa308fa2f7b26",
+      "date": "2026-11-14T20:36:28Z",
+      "message": "loop: boxes (azure5 16 cores, azure7 new) and owners of the approved efficiency work"
+    },
+    {
+      "sha": "1f96cefc6280d941eb3521681e85784529729b06",
+      "date": "2026-11-14T20:32:54Z",
+      "message": "perf: P02 accepted; Zen 4 measurement plan and harness for Bridgebots7 (1d1306b)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ],
+  "research_commits": [
+    {
+      "sha": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "date": "2026-11-14T20:50:17Z",
+      "message": "bench/seat_variants.py --set horizon: the rollout's recipe (net tricks then double dummy on the layout, more candidates, by IMPs)\n\nMax, 20:49 UTC: \"The training process recipe and the rollout recipe seem more impactful than a bit more data.\"\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "pages_commits": [
+    {
+      "sha": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "date": "2026-11-14T20:59:42Z",
+      "message": "Arena ladder: refresh (2026-11-14T20:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    }
+  ],
+  "perf_commits": [
+    {
+      "sha": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+      "date": "2026-11-14T21:20:27Z",
+      "message": "P10: eval_nets.py, every net scored on the same held-out rows by bot and phase with the trainer's evaluate\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "0cadfa3e45699de4fa921210a3b8f0b769b25558",
+      "date": "2026-11-14T20:56:00Z",
+      "message": "P02 harness: single-patch unpadded-bf16 configs at 60% of the boards (time and memory on azure3)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "1d1306b9ee5db17a9120cd8078ddbda381b74499",
+      "date": "2026-11-14T20:32:39Z",
+      "message": "P02: Zen 4 measurement harness (setup.sh, run_ab.py) for the four perf patches, Stu and Gen 8 self-play\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ],
+  "efficiency_commits": [
+    {
+      "sha": "6d9901dcc7d69a3da9174afb315cc13523897d30",
+      "date": "2026-11-14T20:49:53Z",
+      "message": "Mark real R4c acceptance passed and refresh assigned work"
+    },
+    {
+      "sha": "2e1596d11b72bf102469c2e3a8a102a12f648add",
+      "date": "2026-11-14T20:49:20Z",
+      "message": "Record P01 real R4c acceptance: p01-r4c-new.log"
+    },
+    {
+      "sha": "14327b2ab9cf0832626c33bf5fbee849df124eca",
+      "date": "2026-11-14T20:49:19Z",
+      "message": "Record P01 real R4c acceptance: p01-r4c-old.log"
+    },
+    {
+      "sha": "780ca947bf7753044035ef4355f74df05f705173",
+      "date": "2026-11-14T20:49:17Z",
+      "message": "Record P01 real R4c acceptance: p01-r4c-acceptance.json"
+    },
+    {
+      "sha": "d63ab1ab2a9d2907e144b7bd209a13ec4e616a89",
+      "date": "2026-11-14T20:49:16Z",
+      "message": "Record P01 real R4c acceptance: p01_acceptance.py"
+    }
+  ],
+  "integrated_plan_commits": [
+    {
+      "sha": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "date": "2026-11-14T21:02:52Z",
+      "message": "Record two running experiment boxes, helper tracks and gain-transfer confirmation"
+    },
+    {
+      "sha": "8f1d47d21d52374496530671ac89dace48f7c5f9",
+      "date": "2026-11-14T20:46:15Z",
+      "message": "Integrate authorized rollout and frontier study with existing Stu efficiency plan"
+    }
+  ],
+  "commit_details": {
+    "5ab40eede958f9d46112ad44ec381ac3caa18f64": {
+      "sha": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "message": "bench/seat_variants.py --set horizon: the rollout's recipe (net tricks then double dummy on the layout, more candidates, by IMPs)\n\nMax, 20:49 UTC: \"The training process recipe and the rollout recipe seem more impactful than a bit more data.\"\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "5f887f18ddd6988ac40083a0f7ba2a3a60a02178"
+      ],
+      "files": [
+        {
+          "filename": "training/rollout-loop-20261113/bench/seat_variants.py",
+          "status": "modified"
+        }
+      ]
+    },
+    "2a503a94de8c7442e34c835a5391422dfc698bdc": {
+      "sha": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+      "message": "P10: eval_nets.py, every net scored on the same held-out rows by bot and phase with the trainer's evaluate\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "0cadfa3e45699de4fa921210a3b8f0b769b25558"
+      ],
+      "files": [
+        {
+          "filename": "training/perf-20261114/p10/eval_nets.py",
+          "status": "added"
+        }
+      ]
+    },
+    "0cadfa3e45699de4fa921210a3b8f0b769b25558": {
+      "sha": "0cadfa3e45699de4fa921210a3b8f0b769b25558",
+      "message": "P02 harness: single-patch unpadded-bf16 configs at 60% of the boards (time and memory on azure3)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "1d1306b9ee5db17a9120cd8078ddbda381b74499"
+      ],
+      "files": [
+        {
+          "filename": "training/perf-20261114/zen4/run_ab.py",
+          "status": "modified"
+        }
+      ]
+    },
+    "1d1306b9ee5db17a9120cd8078ddbda381b74499": {
+      "sha": "1d1306b9ee5db17a9120cd8078ddbda381b74499",
+      "message": "P02: Zen 4 measurement harness (setup.sh, run_ab.py) for the four perf patches, Stu and Gen 8 self-play\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "4105021aa98034b3c6cb434e37efc650e4eaf936"
+      ],
+      "files": [
+        {
+          "filename": "training/perf-20261114/zen4/README.md",
+          "status": "added"
+        },
+        {
+          "filename": "training/perf-20261114/zen4/run_ab.py",
+          "status": "added"
+        },
+        {
+          "filename": "training/perf-20261114/zen4/setup.sh",
+          "status": "added"
+        }
+      ]
+    },
+    "e5431532c4c4a2b1f8c7137e4852374ca26c27dd": {
+      "sha": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "message": "Record two running experiment boxes, helper tracks and gain-transfer confirmation",
+      "parents": [
+        "8f1d47d21d52374496530671ac89dace48f7c5f9"
+      ],
+      "files": [
+        {
+          "filename": "docs/stu-training-efficiency-2026-11-14.md",
+          "status": "modified"
+        }
+      ]
+    },
+    "8f1d47d21d52374496530671ac89dace48f7c5f9": {
+      "sha": "8f1d47d21d52374496530671ac89dace48f7c5f9",
+      "message": "Integrate authorized rollout and frontier study with existing Stu efficiency plan",
+      "parents": [
+        "f93d1ceafce93e911c7dacab1170121fa9deaf22"
+      ],
+      "files": [
+        {
+          "filename": "docs/stu-training-efficiency-2026-11-14.md",
+          "status": "modified"
+        }
+      ]
+    },
+    "6d9901dcc7d69a3da9174afb315cc13523897d30": {
+      "sha": "6d9901dcc7d69a3da9174afb315cc13523897d30",
+      "message": "Mark real R4c acceptance passed and refresh assigned work",
+      "parents": [
+        "2e1596d11b72bf102469c2e3a8a102a12f648add"
+      ],
+      "files": [
+        {
+          "filename": "docs/stu-efficiency/README.md",
+          "status": "modified"
+        }
+      ]
+    },
+    "a3affd42e98e94f7899649942e61edee1ed5f3d7": {
+      "sha": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "message": "Arena ladder: refresh (2026-11-14T20:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "39a480b72197110990f88077a3285db6076e3cf7"
+      ],
+      "files": [
+        {
+          "filename": "arena/ladder.json",
+          "status": "modified"
+        }
+      ]
+    }
+  },
+  "pr_files": {
+    "38": [
+      {
+        "filename": "docs/README.md",
+        "sha": "8fcf4a26c651aa5d64460970488ab323bd1af23d"
+      },
+      {
+        "filename": "docs/stu-rollout-experiments-2026-11-14.md",
+        "sha": "fe50723e75ceb3e47737aa265967036c63fa9654"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/batch.sh",
+        "sha": "9fbbc04093d0f27d3cb4ed9068df2427a7e49a7b"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/engine.py",
+        "sha": "01a84ac0b24e6d8a2d05ba158865193a4388dbf2"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/make_config.py",
+        "sha": "d81f0e4b1246d262283ea24a8b6bc66926c9e14f"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/match.py",
+        "sha": "a7b2396ebf2873a5046b1ab143b016cd2c8850d2"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/summarize.py",
+        "sha": "209f6d7a22c2bd87d05722f1c24ea54ccab937c5"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/test_smoke.py",
+        "sha": "63db9e4509b70a616891d059f3cf4bba16b28e64"
+      }
+    ],
+    "40": [
+      {
+        "filename": "docs/README.md",
+        "sha": "98cba15b0d601c2d66fd562d9d670e1dbbe50c8a"
+      },
+      {
+        "filename": "docs/stu-efficiency/P04-chain-pub.patch",
+        "sha": "45b8f33b77ae795f7b0d5d8a49f588c0704e2e13"
+      },
+      {
+        "filename": "docs/stu-efficiency/P04-standing-collection.md",
+        "sha": "ea1292aafbb3a363cfc6c577b132ac8d48572941"
+      },
+      {
+        "filename": "ops/stu_standing.py",
+        "sha": "1a735a0c17c6f43c8ddafd7c929d2928f62609a3"
+      },
+      {
+        "filename": "tests/test_stu_standing.py",
+        "sha": "719990875a69129e170a259fe06d17e466107fd9"
+      }
+    ],
+    "41": [
+      {
+        "filename": "docs/README.md",
+        "sha": "132254510d25e075d6ec5409b0fc289684890773"
+      },
+      {
+        "filename": "docs/stu-search-allocation-review-2026-11-14.md",
+        "sha": "b99fec0ef90bfb838b8641262b8f98e4c826ba32"
+      },
+      {
+        "filename": "reports/README.md",
+        "sha": "b7e9d5a577868c6e280392ec13a7473b5b1c7230"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-allocation-2026-11-14.md",
+        "sha": "93c911cea4720aeb1b3354a00857fcf8c569d52b"
+      },
+      {
+        "filename": "scripts/review_stu_search_allocation.py",
+        "sha": "3d95cd7589464721994a6d368a4cc1ef06e53c3a"
+      }
+    ],
+    "42": [
+      {
+        "filename": "bridge_harness/bid_style.py",
+        "sha": "ce529e83b414db389a22a91ff2a34331bded2490"
+      },
+      {
+        "filename": "bridge_harness/persona.py",
+        "sha": "f604b3095b5cdcb9345d9fa1bcef0100df73ffdb"
+      },
+      {
+        "filename": "docs/styles.md",
+        "sha": "5c1da4e7e78d42d8c95345ef402692c197dd5c24"
+      },
+      {
+        "filename": "reports/bid_style_cost_2026-11-14.md",
+        "sha": "1b9e8056e2c868f5ace65f5c2d9a636c14dbb1a5"
+      },
+      {
+        "filename": "scripts/bid_style_cost.py",
+        "sha": "0bba97698d95bcbc0a0b1f2cf3cfd80ef5638ee0"
+      },
+      {
+        "filename": "scripts/gen8_match.py",
+        "sha": "dc106de48f6cbe0a27513d3c6ee0587677ef6dbf"
+      },
+      {
+        "filename": "tests/test_bid_style.py",
+        "sha": "74e881d7922c6a73758f4ca2bda38750f082de5e"
+      }
+    ],
+    "43": [
+      {
+        "filename": "reports/README.md",
+        "sha": "3c3dbcf01463737333514407d09a1ec4cb9fb0de"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14.md",
+        "sha": "15236abfc70493845fc02f3ef68b45a2ecf20e61"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/boundaries.log",
+        "sha": "e5ade8e4f1e4b59ea11a884667f10e250b69621e"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/evidence.json",
+        "sha": "f7d462d439b113644f5e8228c130e77329e601c8"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/known-boundaries.log",
+        "sha": "1946aa38c55e6d1e0932ca5e9616f42c5236f62e"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/known-protocol.log",
+        "sha": "ef9a19aa176978e7267cc3ec4612568f2def99fc"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/positive-control.log",
+        "sha": "012e51a21239b564eac8f4ee1fd2459e56392e7f"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/protocol.log",
+        "sha": "9d60c811a0fcfd501d53768429f77c7b48e53537"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/smoke.log",
+        "sha": "5a8824da89ee1e6a4ba64ee94dbdfef93698b1b1"
+      },
+      {
+        "filename": "reports/stu-rollout-helper-review-2026-11-14/x8.log",
+        "sha": "535957e710e04961410cdea8536003bf1439c69e"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/test_review_boundaries.py",
+        "sha": "606007b01e38e94e2fa010b010095dc4631f8a48"
+      },
+      {
+        "filename": "scripts/stu_rollout_experiments/test_review_protocol.py",
+        "sha": "2eab292a30d242c88a00a05c1d7a0a16c80385e3"
+      }
+    ]
+  },
+  "board_new_notices": "\n",
+  "experiment_azure2_report": "# Stu rollout mechanism screen\n\nDevelopment-only; these small samples do not establish strength.\n\n| Run | Boards | IMP/board ± SE | CPU s/board | Failures |\n| --- | ---: | ---: | ---: | ---: |\n| mechanism-reader | 250 | 0.148 ± 0.2362 | 34.02 | 0 |\n| mechanism-sham | 32 | 0.0 ± 0.0 | 32.86 | 0 |\n",
+  "experiment_azure6_report": "# Stu rollout mechanism screen\n\nDevelopment-only; these small samples do not establish strength.\n\n| Run | Boards | IMP/board ± SE | CPU s/board | Failures |\n| --- | ---: | ---: | ---: | ---: |\n| screen-reader | 100 | -0.28 ± 0.3349 | 31.38 | 0 |\n| smoke-flat32 | 16 | -1.5625 ± 1.0082 | 22.63 | 0 |\n| smoke-guarantee | 16 | 0.0625 ± 0.9375 | 29.43 | 0 |\n| smoke-reader | 16 | 0.4375 ± 0.2882 | 29.21 | 0 |\n| smoke-recursive32 | 16 | -1.0625 ± 0.7554 | 45.1 | 0 |\n| smoke-selective32 | 16 | -0.75 ± 0.8292 | 44.2 | 0 |\n",
+  "experiment_azure6_pause": {
+    "stopped": "2026-11-14T21:23:14Z",
+    "reason": "PR41/43 cache/scheduling inconsistency; old recursive/selective results diagnostic only; no extension or adoption",
+    "interrupted_boards": "possible; preserve episodes and logs; do not treat partial screen as complete",
+    "runs": {
+      "smoke-guarantee": {
+        "rows": 16,
+        "episodes": 16
+      },
+      "smoke-flat32": {
+        "rows": 16,
+        "episodes": 16
+      },
+      "smoke-reader": {
+        "rows": 16,
+        "episodes": 16
+      },
+      "smoke-recursive32": {
+        "rows": 16,
+        "episodes": 16
+      },
+      "smoke-selective32": {
+        "rows": 16,
+        "episodes": 16
+      },
+      "screen-reader": {
+        "rows": 117,
+        "episodes": 117
+      }
+    }
+  },
+  "proposal_scopes": {
+    "rollout_protocol": {
+      "header": "# Stu rollout experiments: protocol and execution\n\n14 November 2026. Owner: codex-rollout. Max authorized local smoke tests and\nreassigning one existing Azure collector to these experiments. Azure6 is reserved;\nazure5's width training and perf's Azure7 allocation remain with their owners.\nThis is the runnable appendix to the integrated recommendations in\n[PR #35](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35), not a separate\ncompeting training plan. Harvesting work H01–H06 stays in\n[PR #37](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37).\n\n## Why study the search mechanism\n\nThe loop's published results show stronger nets have not transferred their full\nnet-only improvement into the search bot. The R3/R0 comparisons reported +0.40 ±\n0.07 IMP/board for net-only play (4,000 boards), versus +0.16 ± 0.09 with both\ntable and rollout nets changed (2,000), and −0.13 ± 0.09 with only the rollout\nnet changed (2,000). These are historical measurements with different sample\ncounts, not independent reruns or an exact percentage of gain retained.\nSource: [loop report at ",
+      "scope_lines": [
+        "reassigning one existing Azure collector to these experiments. Azure6 is reserved;",
+        "| R01b | Generic opponent contract-preservation model | Only change `claims.opponents` to `['*']`; do not combine with R01a initially |",
+        "   DD hindsight is diagnostic, not the adoption metric. Protect BEN blind evaluation",
+        "Avoid concentrating exclusively on irreducibly ambiguous or pathological positions.",
+        "better training data. Existing `x8.forks` are one-layout continuation pairs, not",
+        "## Running and preserving the experiment",
+        "Stu checkout through `STU_RUNTIME`; it does not edit that checkout. This avoids",
+        "failures. No model promotion or change to production actors is authorized by an",
+        "experimental improvement. Loop retains deployment/integration decisions.",
+        "and a real fixture child search. Existing X8 suite: 34 tests, 7 native-claim-solver"
+      ]
+    },
+    "fallback_guide": {
+      "header": "# P04: standing collection and idle heartbeat\n\nOwner: codex-stu-efficiency. [Loop assigned the coding slice](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024); loop deploys and handles exceptions. **Not deployed. No box allocation is claimed.**\n\nWhen an ordinary `chain.sh` job file ends, an operator-installed standing recipe can supply fresh collection jobs. With no recipe the existing behavior remains. BEN chains do not enter fallback. A separate heartbeat records whether any `x8_match.py` process is present on the box; it reports an alert after more than 900 continuous observed idle seconds. The alert is diagnostic, not authority to restart anything.\n\n## Integration\n\nThis PR is based on main. Copy `ops/stu_standing.py` into the active source via a reviewed commit, and apply [P04-chain-pub.patch](P04-chain-pub.patch) there. The two research scripts were checked against `research/rollout-loop-20261113` on 14 November and match the `5addd826af8b10d7343df51ada528a7327d059b6` snapshot. The patch does not import the research branch into main.\n\n```sh\ngit",
+      "scope_lines": [
+        "Owner: codex-stu-efficiency. [Loop assigned the coding slice](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024); loop deploys and handles exceptions. **Not deployed. No box allocation is claimed.**",
+        "When an ordinary `chain.sh` job file ends, an operator-installed standing recipe can supply fresh collection jobs. With no recipe the existing behavior remains. BEN chains do not enter fallback. A separate heartbeat records whether any `x8_match.py` process is present on the box; it reports an alert after more than 900 continuous observed idle seconds. The alert is diagnostic, not authority to restart anything.",
+        "The helper uses Python's standard library on Linux. The patched scripts use the existing loop venv. Configure only one fallback-owning chain per box and allocate its workers alongside any other services. The lock prevents duplicate fallback owners; it does not allocate CPU against unrelated collectors. Pair, model/config source and precision remain operator choices; `run.sh` chooses bf16/recycling from its existing markers and run-name prefix.",
+        "The default recipe path is `~/work/loop/standing.json`, overridable by `STU_STANDING_RECIPE`. This **example is not a deployed recipe**:",
+        "Each job uses a fresh name such as `sp-fb1-1000000000`. A durable `standing-state.json` advances the index *before* launch, saves the exact recipe/hash, and records the result. A persistent lock covers the whole fallback loop. State belongs to one box; changing the box ID or exhausting its band fails rather than wrapping. An existing run directory is never resumed or overwritten.",
+        "- Nonzero exit, interrupted/reserved state, malformed state or an existing run identity stops fallback. Restarting the supervisor does **not** retry a failed or interrupted job. Loop must inspect and resolve the exception explicitly; the helper never clears a quarantine or deletes run artifacts.",
+        "- Preserve the state/lock directory with the run data. Do not delete or reset the cursor, copy another box's state, or reuse a run prefix to work around a failure. If state is lost, loop must reconstruct the highest reservation before resuming.",
+        "- The systemd unit must retain normal control-group termination so an interrupted supervisor does not leave an unowned child. The journal stays reserved on interruption, preventing an automatic second launch.",
+        "Disable adoption by omitting the recipe and retaining the old source checkout. Do not automatically kill or restart existing collectors to apply this change.",
+        "## Validation and remaining deployment checks",
+        "Eleven sandbox tests pass: contiguous reservations and successful restart, box-band separation, nonzero exit without retry, crash-after-reservation refusal, stop marker, duplicate lock, seed/option validation, existing-run refusal, band exhaustion/box-change rejection, queued-job to fallback handoff/disabled default, and idle threshold/recovery/reboot/process matching. Fake runners write only temporary test files; no bridge game or live service was run. Shell syntax and patch application checks pass.",
+        "Loop still needs to reserve the high deal namespace, choose per-box recipes and worker budgets, and perform an isolated first-job/publisher check at deployment. P01/P03 and the P10 experiments are unaffected by this PR."
+      ]
+    },
+    "allocation_review": {
+      "header": "# Stu helper A: allocation and learning-frontier selectors\n\n14 November 2026. codex-rollout-helper-a, workspace e66e1dc51f48.\nDeliverable for [issue #39, track A](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39).\nProposal for the coordinator, not an experiment launch or adoption decision.\n\n**First experiment:** after B's correctness gate, compare a fixed four-call\nrandom allocator with a four-call selective allocator on the same 32-layout\nroots, then match their measured per-bot cost and compare directly. Keep flat32\nand flat128 anchors. The recommendation is falsified as a useful allocation\nimprovement if selection offers no verified root-action advantage over random\nallocation at equal cost, or a small mechanism gain fails to improve held-out\nfull-bot play. A null low-exposure screen is inconclusive about deeper search in\ngeneral. Reproducible scheduling findings and the detailed cost/statistical\ncontract are in [the review appendix](../docs/stu-search-allocation-review-2026-11-14.md).\n\n## Ownership and evidence\n\nThis proposal extends R02–R05 in [#38](https://github.c",
+      "scope_lines": [
+        "Proposal for the coordinator, not an experiment launch or adoption decision.",
+        "executing the approved experiments. This report supplies selector choices and",
+        "interfaces for that work, not another extractor or training campaign.",
+        "runtime `5addd826af8b10d7343df51ada528a7327d059b6`. Four existing smoke tests pass;",
+        "| A | Paired-sign ambiguity `2 * Phi(-abs(mean_delta)/SE_delta)` from those panels' per-layout action differences, in 0–1. Use a missing flag and zero term when absent; deterministic zero-SE cases have ambiguity 0 for a nonzero gap and 1 for exact ties. Avoid subtracting independent action SEs. |",
+        "are not fitted claims. Freeze them for the first screen rather than sweeping",
+        "score. Preserve a predeclared 20% exploration allocation when collecting data",
+        "Coordinate L1 with H05's approved approximately 2,000-pair / two-box-hour",
+        "posterior on independent panels. Preserve signed differences and uncertainties;",
+        "Reliability records independent-panel sign agreement and uncertainty; avoid",
+        "| Correctness | B's independent gate, existing smoke and A's three regressions | Do not interpret recursive/selective strength before corrected immutable source passes |",
+        "| Learning | H05 reliability, then H03/H04 matched training arms | Existing ownership/budget/gates apply; judge later held-out full-bot improvement per total compute |",
+        "## 4. Does search preserve more of a better net's gain?",
+        "absolute play is not an adoption result. The product comparison matches per-bot",
+        "separate diagnostic; avoid dividing by their small/noisy gain.",
+        "No human-table training, production promotion or box action is part of this"
+      ]
+    },
+    "correctness_review": {
+      "header": "# Stu rollout helper B: independent correctness review\n\n14 November 2026. Owner: **codex-rollout-review**, workspace `81238be0d723`.\nAssignment: [issue #39, B](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39).\nImplementation: [#38](https://github.com/maxschireson/Single-Dummy-Bridge/pull/38).\nAllocation/frontier design: [helper A / #41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41).\n\n## Decision\n\n**No-go for interpreting or extending the pinned recursive/selective screen as an\ninformation-set-consistent search comparison.** Two adversarial tests reproduce\ncache/scheduling inconsistencies. Publish a corrected implementation under a new\nidentity and rerun its correctness smoke before comparing scores. Preserve the old\nepisodes as development evidence. This is not evidence of a direct hidden-hand\ninput leak into the child posterior, or of any measured strength loss.\n\n**Conditional go for the flat, reader and guarantee arms as development screens**:\nthese scheduling defects do not affect them. Do not claim equal total compute\nfrom the present `cpu_per_board`,",
+      "scope_lines": [
+        "**No-go for interpreting or extending the pinned recursive/selective screen as an",
+        "identity and rerun its correctness smoke before comparing scores. Preserve the old",
+        "these scheduling defects do not affect them. Do not claim equal total compute",
+        "No shared engine, running batch, frozen episode, model, or Azure service was edited.",
+        "## Scope and exact evidence",
+        "| Item | Pin / scope |",
+        "| Not locally executed | R4c production weights, BF16 parity, native SURE claim solver, Azure jobs |",
+        "Reproduction: `test_cached_card_is_independent_of_other_uncached_rows_at_budget_limit`.",
+        "Reproduction: `test_equal_observations_with_different_hidden_path_marks_use_same_cached_card`.",
+        "preserves hand sizes and observed void constraints. The marked state is injected",
+        "pass. No positive-control engine was deployed. This establishes that the tests",
+        "`gen8_match.main` overwrites `manifest.json`, then accepts all existing",
+        "behavior/runtime/model/numerical-mode revision avoids this failure. For resumable",
+        "| B05 | Four calls are shared across root candidates/layouts, allocated by earliest eligible ply and then observation-hash order. Calls may find a claim or only one candidate and perform no rollout. Shared observations get broad reuse; other candidates may get none. `first=32` also means the nominal flat128 races candidates and need not spend 128 on each. | Record new calls, cache applications, candidate/layout probability mass receiving replanning, claim-only/no-roll outcomes and gate/budget rejection by ply. “Uniform” means first eligible, not uniform-random allocation. Use A's randomized budget control and actual-cost comparison. |",
+        "| B07 | `recursive.net_rows` counts the child's reported rollout rows only. It omits child posterior/history policy work and claim queries. `x8_match.summarise_actions` ignores the entire recursive note; its `x8.net_rows` remains outer work. | Episodes preserve the recursive note and action times; extract it explicitly. Add inclusive/differential counters per actor and phase. `test_rollout_summary_omits_child_work_retained_on_action` reproduces the omission. Do not add parent roll wall time and child wall time: the former already includes the latter. |",
+        "| B09 | `x8_claims.shared(binary)` shares one Finder/two solver subprocesses across actors and child players within a worker. Claim calls have wall-time allowances and caches; additional child work can warm answers used by the opponent or second room. `Finder.each` is also mutable globally, though cloned current settings agree. | This is a source-level coupling risk, not a measured score effect. Log cold/warm hits, timeouts and answer coverage; compare fresh solver/order controls. Before strength confirmation, use actor-scoped solver state or demonstrate that shared state cannot change returned answers for the evaluated positions. |",
+        "| B10 | A failed board is retried once; successful retry leaves final `failures=0`. The stdout still records the attempt, but summary counts alone hide it. Twice-failed boards remain absent and counted. Both cases reproduced. | Preserve an attempt ledger and failed work/time; stop on invariant failures. Batch's completion check catches terminal missing boards, not resolved invariant failures. Compare arms on predeclared family coverage; do not silently select different successful subsets. |",
+        "| B11 | Engine hash is embedded in generated specs but not verified on import. Numerical mode lives in external provenance, not the run identity; local verification is FP32 while Azure provenance says BF16. | Keep runtime/driver/config/model/solver hashes, actual `PolicyNet.precision`, library versions and thread settings with each immutable run. Validate source digests before launch/resume. Source parity is verified here; BF16 and native-claim parity remain a coordinator gate. |",
+        "| Controller, actor/dummy, legal cards, full history, trick leader, auction/vulnerability/dealer and tricks won | `row_view` equals `Game.observation()` at all 51 post-opening-lead positions in each of 12 seat-rotated legal games; public void reconstruction agrees. Original smoke also permutes hidden allocations. The unseen-dummy root is not a valid child call; actual evaluate applies the root card first. |",
+        "| Fresh posterior instead of root determinization | Instrumented real fixture child calls `read_layouts` with its own `Observation` and requested child count; returned worlds preserve known hands. Parent worlds are not supplied as child arguments. This checks plumbing, not learned-posterior calibration. |",
+        "| Scores/common bidder | Added tests verify the first-named-actor sign when internal candidate order reverses and that every spec reuses the common bidder. Runtime `worth` uses declarer-positive/defender-negative trick utility and scoring by declarer's vulnerability. Existing X8 tests cover trick/IMP signs. |",
+        "| Global factory/shared state | Current process workers execute choices serially, so factory swaps are not a demonstrated concurrency bug. The implementation is not thread-safe/reentrant. Reader caches key public prefixes/held-hand representations; no new cache-key leak was reproduced. Native claim shared state remains B09. |",
+        "failures are findings, not acceptance; remove/review the markers when adopting a",
+        "fix. Existing X8 suite: **34 tests, 27 pass and 7 native-claim skips**, no failures."
+      ]
+    },
+    "bid_styles_guide": {
+      "header": "# Styles and personas\n\nBots should not all play or bid alike: a bot that has met one opponent many times reads its cards and calls better than\nbridge logic allows, and that reading is counted as strength. So bots get personalities, mostly directed and a little\nrandom. Max, 03:35 to 03:50 UTC on 14 November 2026: personalities costing \"half an imp or so\" should be well\nrepresented, \"with some who give up an imp even\"; then, of the average over a mixed population, \"Half an imp that I\nsuggested before was too much\". The population average aimed at here is about a quarter of an IMP a board (our reading,\nnot his number).\n\n| Module | What |\n| --- | --- |\n| `bridge_harness/style.py` | Card-play styles: `tempo`, `active`, `high`, plus a `random` share, among the cards the bot rates within its margin (`near_tie` for a search bot, `mix.near` for a rollout bot) |\n| `bridge_harness/bid_style.py` | Bidding styles: `aggressive`, `shape`, plus `random`, among the calls the bidder rates within `near` (Max, 19:31 UTC on 14 November) |\n| `bridge_harness/persona.py` | A bot's play and bidding styles to",
+      "scope_lines": [
+        "  `s * z_D` (distribution points: one a card past four in a suit, void 3, singleton 2, doubleton 1; standardised, exact"
+      ]
+    }
+  },
+  "mail_status": {
+    "version": "1.0",
+    "box": "azure1",
+    "state": "waiting for the mailbox secret",
+    "last_cycle": "2026-11-14T20:47:29Z",
+    "last_error": null,
+    "time": "2026-11-14T20:47:29Z",
+    "sent_total": 0,
+    "last_uid": 0
+  },
+  "index_retains_ladder": true
+}
