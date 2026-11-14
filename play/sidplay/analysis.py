@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 import json
+import math
 import os
 from pathlib import Path
 import select
@@ -42,6 +43,9 @@ DEFAULTS = dict(
     sure_budget=40.0,       # sure-trick seconds for the whole board (decisions are taken cheapest first)
     swap_budget=20.0,       # one-card exchange seconds for the whole board
     swap_worlds=400,        # most exchanges tried for one card
+    auction_cards=8,        # chances of making by the auction (cell game) at decisions with at most this many cards left
+    auction_budget=25.0,    # seconds of those for the whole board (decisions taken cheapest first)
+    auction_ratio=0.05,     # an exchange is one the auction allows if it leaves the layout at least this likely
 )
 
 
@@ -77,6 +81,7 @@ class State:
         self.decl_won = 0
         self.done_tricks = 0
         self.voids = [set() for _ in range(4)]
+        self.played = [set() for _ in range(4)]     # every card each seat has played, the current trick included
 
     @property
     def mover(self):
@@ -102,6 +107,7 @@ class State:
         if self.trick and c // 13 != self.trick[0][1] // 13:
             self.voids[s].add(self.trick[0][1] // 13)
         self.hands[s].remove(c)
+        self.played[s].add(c)
         self.trick.append((s, c))
         won = None
         if len(self.trick) == 4:
@@ -307,10 +313,22 @@ def _solve_many(dds, worlds, st, fixed):
     return [dds.solve(w, st.trump, st.leader, trick)[0] for w in worlds]
 
 
-def explain_exchanges(fixes, tried):
-    """A sentence for the exchanges that would have made the card right."""
+def _exchanged_logw(reader, st, fix, unseen, auction):
+    a, x, b, y = fix
+    hands = [set(h) for h in st.hands]
+    hands[a].remove(x); hands[a].add(y)
+    hands[b].remove(y); hands[b].add(x)
+    return reader.layout_logw(hands, unseen, st.played, auction)
+
+
+def explain_exchanges(fixes, tried, ruled_out=0, where=None):
+    """A sentence for the exchanges that would have made the card right. ruled_out: such exchanges the auction makes
+    too unlikely to count; where(card, seat): the auction's probability that seat holds card."""
     if not tried:
         return None, None
+    if not fixes and ruled_out:
+        return 'clear', ('The only exchanges of one unseen card that make this card right are ones Sid\u2019s reading of the '
+                         'auction rules out, so by the auction it does not turn on where one card lies.')
     if not fixes:
         return 'clear', ('No exchange of one unseen card between the hidden hands makes this card right, so it does not '
                          'turn on where one card lies.')
@@ -321,7 +339,10 @@ def explain_exchanges(fixes, tried):
     (frm, c, to), n = max(count.items(), key=lambda kv: (kv[1], kv[0][1] % 13))
     others = sorted(v for k, v in count.items() if k != (frm, c, to))
     if n >= 2 and (not others or others[-1] < n):
-        return 'layout', f'It turned on the {sym(c)}: with it in {SEAT_NAME[to]}’s hand instead of {SEAT_NAME[frm]}’s, this card would have been right.'
+        odds = (f' By Sid\u2019s reading of the auction, {SEAT_NAME[to]} held it {round(100 * where(c, to))}% of the time.'
+                if where else '')
+        return 'layout', (f'It turned on the {sym(c)}: with it in {SEAT_NAME[to]}\u2019s hand instead of {SEAT_NAME[frm]}\u2019s, '
+                          f'this card would have been right.{odds}')
     a, x, b, y = max(fixes, key=lambda f: (max(f[1] % 13, f[3] % 13), min(f[1] % 13, f[3] % 13)))
     return 'layout', (f'It turned on the layout: had {SEAT_NAME[a]}’s {sym(x)} and {SEAT_NAME[b]}’s {sym(y)} been exchanged, '
                       'this card would have been right.')
@@ -338,10 +359,12 @@ def _s(n, word='trick'):
     return f'{n} {word}{"s" if n != 1 else ""}'
 
 
-def analyse(hands, contract, declarer, play, focus, actor_names=None, dds=None, sure=None, limits=None):
+def analyse(hands, contract, declarer, play, focus, actor_names=None, dds=None, sure=None, limits=None, auction=None,
+            reader=None):
     """hands: four 13-card int tuples (the original deal); contract: '4S', '3NX'...; declarer: seat 0-3; play: [(seat,
     card)] in order; focus: seats whose decisions get the full treatment (the human's, or Sid's in the same chairs;
-    dummy counts as declarer). actor_names: {seat: label} for other seats' cards. Returns a JSON-ready dict."""
+    dummy counts as declarer). actor_names: {seat: label} for other seats' cards. auction: dict(calls, dealer, vul)
+    and reader: an auction.AuctionReader, to read the auction (both or neither). Returns a JSON-ready dict."""
     lim = dict(DEFAULTS, **(limits or {}))
     t0 = time.perf_counter()
     if dds is None:
@@ -429,6 +452,42 @@ def analyse(hands, contract, declarer, play, focus, actor_names=None, dds=None, 
     if own_sure:
         sure.close()
 
+    # ---- pass 2b: chances of making by the auction (cell game), cheapest decisions first --------
+    chance_ok = reader is not None and auction is not None and reader.available()
+    chance_skipped = dict(budget=0, failed=0)
+    if chance_ok:
+        clock = Clock(lim['auction_budget'])
+        todo = [i for i, r in enumerate(cards) if r['focus'] and r['left'] <= lim['auction_cards']]
+        for i in sorted(todo, key=lambda i: (cards[i]['left'], i)):
+            if clock.give(1) <= 0:
+                chance_skipped['budget'] += 1
+                continue
+            row, s, c = cards[i], states[i], play[i][1]
+            try:
+                if s.mover % 2 == decl_side:
+                    r = reader.declaring(s, need, s.played, auction, c)
+                    if r is None or r.get('trivial'):
+                        continue
+                    row['chance'] = dict(kind='declaring', best=r['best'], played=r['played'],
+                                         keep=[code(x) for x, v in sorted(r['chances'].items()) if v is not None and v >= r['best'] - 1e-9])
+                else:
+                    vals = {}
+                    for x in s.legal():
+                        v = reader.after(s, x, need, s.played, auction)
+                        if v is not None:
+                            vals[x] = v
+                    if c not in vals or len(vals) < 2:
+                        continue
+                    low = min(vals.values())
+                    row['chance'] = dict(kind='defending', played=vals[c], lowest=low,
+                                         safe=[code(x) for x, v in sorted(vals.items()) if v <= low + 1e-9])
+            except Exception:
+                chance_skipped['failed'] += 1
+        reader.close()
+
+    def pct(p):
+        return f'{round(100 * p)}%'
+
     # ---- pass 3: events, and why, in the order of play -------------------------------------------
     events, lost, given = [], [], []
     was_guaranteed = None          # after the declaring side's last analysed card: was the contract still guaranteed
@@ -474,6 +533,30 @@ def analyse(hands, contract, declarer, play, focus, actor_names=None, dds=None, 
                                    text=f'Trick {t}: {sym(c)} raised declarer\u2019s guaranteed tricks to {sr["declarer_after"]}; '
                                         f'after {safe}, {sr["lowest"]}.'))
 
+        ch = row.get('chance')
+        if ch and ch['kind'] == 'declaring' and ch['played'] < ch['best'] - 0.10:
+            keep = [_card(k) for k in ch['keep']]
+            ch['text'] = (f'By Sid\u2019s reading of the auction, a line starting with {cards_text(keep)} provably makes in at '
+                          f'least {pct(ch["best"])} of layouts; the best provable line starting with this card, in at least '
+                          f'{pct(ch["played"])}.')
+            same = [e for e in events if e['n'] == row['n'] and e['kind'] in ('gave_away', 'sure_trick')]
+            if same:
+                same[0]['text'] += ' ' + ch['text']
+            else:
+                events.append(dict(n=row['n'], trick=t, card=row['card'], kind='chance_drop', keep=ch['keep'],
+                                   text=f'Trick {t}, {sym(c)}: {ch["text"]}'))
+        elif ch and ch['kind'] == 'defending' and ch['played'] > ch['lowest'] + 0.10:
+            safe = cards_text([_card(k) for k in ch['safe']])
+            ch['text'] = (f'By Sid\u2019s reading of the auction, after this card declarer had a line that provably makes in at '
+                          f'least {pct(ch["played"])} of layouts; after {safe}, the best provable line made in at least '
+                          f'{pct(ch["lowest"])}.')
+            same = [e for e in events if e['n'] == row['n'] and e['kind'] in ('handed_contract', 'handed_trick')]
+            if same:
+                same[0]['text'] += ' ' + ch['text']
+            else:
+                events.append(dict(n=row['n'], trick=t, card=row['card'], kind='chance_handed', safe=ch['safe'],
+                                   text=f'Trick {t}, {sym(c)}: {ch["text"]}'))
+
         if not row['loss']:
             continue
         seat = play[i][0]
@@ -498,21 +581,36 @@ def analyse(hands, contract, declarer, play, focus, actor_names=None, dds=None, 
                 reasons.append('No line guaranteed the contract at this point.')
         elif sr and not sr.get('unknown'):
             reasons.append('Not a sure-trick error: this card gave declarer nothing sure that another card would have withheld.')
+        if ch and ch.get('text'):
+            entry.setdefault('kind', 'chance')
+            reasons.append(ch['text'])
         if swap_clock.give(1) > 0:
             s = states[i]
             viewer = {declarer, dummy} if row['by'] == 'NESW'[declarer] else (
                 {controller(seat), dummy} if (s.done_tricks or s.trick) else {controller(seat)})
             fixes, tried, complete = exchanges(dds, s, c, viewer, lim['swap_worlds'])
-            kind, sentence = explain_exchanges(fixes, tried)
+            allowed, where = fixes, None
+            if chance_ok and fixes:
+                try:
+                    unseen = [x for x in range(4) if x not in viewer]
+                    base = reader.layout_logw(s.hands, unseen, s.played, auction)
+                    floor = math.log(lim['auction_ratio'])
+                    allowed = [f for f in fixes if _exchanged_logw(reader, s, f, unseen, auction) - base >= floor]
+                    marg = reader.marginals(s, unseen, s.played, auction, seed=row['n'])
+                    where = (lambda card, seat: marg[card][seat]) if marg else None
+                except Exception:
+                    allowed, where = fixes, None
+            kind, sentence = explain_exchanges(allowed, tried, ruled_out=len(fixes) - len(allowed), where=where)
             if sentence:
                 entry.setdefault('kind', kind)
-                entry['exchanges'] = dict(tried=tried, fixing=len(fixes), complete=complete, kind=kind)
+                entry['exchanges'] = dict(tried=tried, fixing=len(fixes), allowed=len(allowed), complete=complete, kind=kind)
                 reasons.append(sentence)
         entry.setdefault('kind', 'unexplained')
         entry['text'] = ' '.join(reasons)
         lost.append(entry)
 
     analysed = [r for r in cards if r.get('sure')]
+    chanced = [r for r in cards if r.get('chance')]
     return dict(version=VERSION, contract=contract, declarer='NESW'[declarer], need=need,
                 focus=sorted('NESW'[s] for s in focus), focus_declares=focus_declares,
                 dd_start=cards[0]['dd'] if cards else None, tricks=tricks,
@@ -521,7 +619,10 @@ def analyse(hands, contract, declarer, play, focus, actor_names=None, dds=None, 
                 engines=dict(sure=sure_ok, sure_cards=lim['sure_cards'], sure_need_cards=lim['sure_need_cards'],
                              sure_decisions=len(analysed), sure_unknown=sum(bool(r['sure'].get('unknown')) for r in analysed),
                              sure_skipped=skipped, sure_questions=sure.questions, sure_timeouts=sure.timeouts,
-                             sure_seconds=round(sure.seconds, 2), seconds=round(time.perf_counter() - t0, 2)))
+                             sure_seconds=round(sure.seconds, 2), auction=chance_ok,
+                             auction_cards=lim['auction_cards'] if chance_ok else None, auction_decisions=len(chanced),
+                             auction_skipped=chance_skipped, auction_seconds=round(reader.seconds, 2) if chance_ok else 0.,
+                             seconds=round(time.perf_counter() - t0, 2)))
 
 
 def _card(text):
@@ -555,10 +656,19 @@ def init_worker(source, nice=0):
         sys.path.insert(0, source)
 
 
-def analyse_board(hands, contract, declarer, play, focus, names, limits=None):
-    """Pool entry point. hands: four lists of card ints; play: [(seat, card)]; names: {seat: label}."""
+def analyse_board(hands, contract, declarer, play, focus, names, limits=None, auction=None, scorer=None):
+    """Pool entry point. hands: four lists of card ints; play: [(seat, card)]; names: {seat: label}; auction:
+    dict(calls, dealer (seat), vul) and scorer: the bundle's hand-fit scorer file, to read the auction."""
     if getattr(_LOCAL, 'dds', None) is None:
         from bridge_harness.dds import DDS
         _LOCAL.dds = DDS(cache_path='')
+    reader = None
+    if auction and scorer and Path(scorer).is_file():
+        try:
+            from .auction import AuctionReader
+            reader = AuctionReader(scorer)
+        except Exception:
+            reader = None
     return analyse([tuple(h) for h in hands], contract, declarer, [tuple(p) for p in play], focus,
-                   actor_names={int(k): v for k, v in (names or {}).items()}, dds=_LOCAL.dds, limits=limits)
+                   actor_names={int(k): v for k, v in (names or {}).items()}, dds=_LOCAL.dds, limits=limits,
+                   auction=auction if reader else None, reader=reader)

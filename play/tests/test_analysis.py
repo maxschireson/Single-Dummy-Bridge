@@ -106,3 +106,48 @@ def test_sure_line_rotation():
     rotated = hands[3:] + hands[:3]          # every hand one seat to the left: South's hand is now West's
     st_ns, st_ew = A.State(hands, 0, 2), A.State(rotated, 0, 3)
     assert A.sure_line(st_ns) == A.sure_line(st_ew)
+
+
+# ---- reading the auction (needs Sid's hand-fit scorer: SIDPLAY_SCORER, e.g. a bundle's artifacts/gen6/scorer.npz) ----
+import os   # noqa: E402
+
+SCORER = os.environ.get('SIDPLAY_SCORER')
+A6_AUCTION = dict(calls=['1N', 'PASS', '2H', 'PASS', '2N', 'PASS', '3C', 'PASS', '3D', 'PASS', '3S', 'PASS', '4C', 'PASS',
+                         '4N', 'PASS', '5S', 'PASS', '7S', 'PASS', 'PASS', 'PASS'], dealer=2, vul='None')   # as Sid (R4c) bid A6
+needs_scorer = pytest.mark.skipif(DDS_ is None or not SCORER or not Path(SCORER).is_file(), reason='SIDPLAY_SCORER not set')
+
+
+def reader():
+    from sidplay.auction import AuctionReader
+    r = AuctionReader(SCORER)
+    if not r.available():
+        pytest.skip('play/native/cells not built')
+    return r
+
+
+@needs_scorer
+def test_auction_chances_and_where_the_queen_was():
+    hands = [parse_hand(h) for h in A6_QW]
+    play = play_out(hands, {0: 'HQ', 1: 'H4', 3: 'HK', 4: 'SA', 6: 'S2', 8: 'S4', 10: 'SK', 12: 'D4', 14: 'DJ'})
+    out = A.analyse(hands, '6S', 2, play, [2], dds=DDS_, auction=A6_AUCTION, reader=reader())
+    assert out['engines']['auction'] and out['engines']['auction_decisions'] > 0
+    (lost,) = out['lost']
+    assert lost['kind'] == 'layout' and 'By Sid’s reading of the auction, East held it' in lost['text']
+    for r in out['cards']:
+        ch = r.get('chance')
+        if ch and ch['kind'] == 'declaring':
+            assert 0. <= ch['played'] <= ch['best'] <= 1.
+
+
+@needs_scorer
+def test_auction_floor_for_a_card_beside_a_guarantee():
+    """At trick 7 of A6-QE the spade and club cards guarantee 12; the diamond lead is searched too (its floor is
+    positive: the diamond guess wins in part of the layouts), not left at zero."""
+    hands = [parse_hand(h) for h in A6_QE]
+    play = play_out(hands, {0: 'HQ', 1: 'H4', 3: 'HK', 4: 'SA', 6: 'S2', 8: 'S4', 10: 'SK', 12: 'HA', 14: 'H3',
+                            16: 'C3', 18: 'CK', 20: 'C4', 22: 'CA', 24: 'D4', 26: 'DA'})
+    out = A.analyse(hands, '6S', 2, play, [2], dds=DDS_, auction=A6_AUCTION, reader=reader())
+    d4 = out['cards'][24]
+    assert d4['card'] == 'D4' and d4['chance']['best'] == 1. and 0. < d4['chance']['played'] < 1.
+    gave = [e for e in out['events'] if e['kind'] == 'gave_away'][0]
+    assert 'provably makes in at least 100%' in gave['text']

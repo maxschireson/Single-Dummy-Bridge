@@ -86,10 +86,11 @@ class Bots:
     async def sid_table(self, hands, dealer, vul, board_id, seed, systems):
         return await self._run('background', self.module.sid_table, hands, dealer, vul, board_id, seed, systems)
 
-    async def analyse(self, hands, contract, declarer, play, focus, names, limits=None):
+    async def analyse(self, hands, contract, declarer, play, focus, names, limits=None, auction=None):
+        """auction: dict(calls, dealer, vul), read with the bundle's hand-fit scorer when there is one."""
         from . import analysis
         return await self._run('analysis', analysis.analyse_board, hands, contract, declarer, play, focus, names,
-                               dict(self.config.analysis_limits, **(limits or {})))
+                               dict(self.config.analysis_limits, **(limits or {})), auction, self.config.scorer)
 
     def close(self):
         for p in self.pools.values():

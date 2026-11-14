@@ -44,10 +44,13 @@ echo "== code"
 fetch "$APP_COMMIT" "$ROOT/app-$APP_COMMIT"
 fetch "$SOURCE_COMMIT" "$ROOT/source-$SOURCE_COMMIT"
 
-echo "== sure-trick search (play/native/sure.cpp, for the analyses)"
+echo "== sure-trick search and cell game (play/native/sure.cpp, cells.cpp, for the analyses)"
 if [ ! -x "$ROOT/app-$APP_COMMIT/play/native/sure_cpp" ]; then
   command -v g++ >/dev/null || sudo apt-get install -y -q g++
   (cd "$ROOT/app-$APP_COMMIT/play/native" && { g++ -O2 -march=native -std=c++17 -o sure_cpp sure.cpp || g++ -O2 -std=c++17 -o sure_cpp sure.cpp; })
+fi
+if [ ! -x "$ROOT/app-$APP_COMMIT/play/native/cells" ]; then
+  (cd "$ROOT/app-$APP_COMMIT/play/native" && { g++ -O2 -march=native -std=c++17 -o cells cells.cpp || g++ -O2 -std=c++17 -o cells cells.cpp; })
 fi
 
 echo "== python environment"

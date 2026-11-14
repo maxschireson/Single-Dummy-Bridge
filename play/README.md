@@ -57,10 +57,25 @@ once for Sid's table, from South's chair ("you", or "Sid in your seat"; dummy's 
   ("dropped the guaranteed tricks from 8 to 5"). At a defender's decisions: declarer's guarantee after each card the
   defender could have played ("handed declarer a guaranteed making line"; "raised declarer's guaranteed tricks").
   A guaranteed contract can be given away with no double-dummy loss (the test deal A6 in that directory).
+- **Chances, reading the auction** (`sidplay/auction.py`, with the cell game of `experiments/sure_tricks/cells`
+  vendored as `sidplay/cells.py` and `native/cells.cpp` from `research/conditional-claims-20261113`): Sid's own
+  hand-fit scorer (the bundle's `spec['scorer']`) weighs every card-fit layout of the two hidden hands by how well each
+  fits its seat's calls; the cell game proves, without strategy fusion, which ONE line wins in which cells (East's
+  length in each suit, and who holds the top card of up to two runs of unseen honours). At the person's decisions with
+  8 cards or fewer: the auction weight a line starting with the best card provably wins, and the same for the card
+  played ("a line starting with ♣7 provably makes in at least 96% of layouts; the best provable line starting with
+  this card, in at least 46%"); as a defender, declarer's figure after each card the defender could have played.
+  Every figure is a proven lower bound (cells fix only shapes and two honours, so a line can win part of a cell);
+  ceilings are not shown because they are not upper bounds on the chance. Sid bids deterministically (the bidder's
+  top legal call; no randomisation in R4c), so this reads Sid's calls as precisely as the scorer fits them; a person's
+  calls are read as if made in Sid's system. Measured in the sandbox: median 0.02 s a decision at 8 cards (slowest
+  0.4 s), 0.2 s at 9 (slowest 4.7 s), about 10 s at 10.
 - **Why a double-dummy loss happened.** If the card gave up a guarantee, that is the reason. Otherwise the analysis
   tries every exchange of two cards between the hands the player could not see that is consistent with the
-  show-outs so far, and reports the card whose position decided it ("It turned on the ♦Q: with it in East's hand
-  instead of West's, this card would have been right"), or that no single exchange makes the card right.
+  show-outs so far and that the auction allows (it leaves the layout at least 1/20 as likely, by Sid's scorer), and
+  reports the card whose position decided it with where the auction put it ("It turned on the ♦Q: with it in East's
+  hand instead of West's, this card would have been right. By Sid's reading of the auction, East held it 47% of the
+  time"), or that no single exchange the auction allows makes the card right.
 - **Cost and limits.** Exact guaranteed tricks from 10 cards left in the mover's hand; from 11 to 13 cards only the
   contract question, 1.5 s per question, for the person's play only (Sid's table: from 10 cards); at most 40 s of sure-trick search and 20 s of exchanges per board, cheapest
   decisions first. A question that runs out of time leaves that decision "not analysed" and the page says how many.
@@ -86,6 +101,7 @@ where every seat is Sid, and the analysis of a finished board. The tests and `sm
 | `sidplay/engine.py` | Runs in worker processes: loads the bundle, bids, plays, checks claims, plays Sid's table |
 | `sidplay/analysis.py` | Runs in the analysis process: double dummy, sure tricks and exchanges for a finished board |
 | `native/sure.cpp` | The sure-trick search (vendored; `install.sh` builds `native/sure_cpp`) |
+| `sidplay/auction.py`, `sidplay/cells.py`, `native/cells.cpp` | Reading the auction: scorer weights and the cell game (vendored; `install.sh` builds `native/cells`) |
 | `sidplay/pool.py` | Interactive, background and analysis worker pools |
 | `sidplay/store.py` | SQLite: users (scrypt hashes), sessions, boards with their analyses, participants |
 | `sidplay/fake_engine.py` | A stand-in bot with no models, for tests and interface work |
@@ -206,6 +222,8 @@ sudo sqlite3 /var/lib/sidplay/sidplay.sqlite '.backup /tmp/sidplay-backup.sqlite
 | `SIDPLAY_ANALYSIS_WORKERS` | 1 | Analysis processes (no models: about 0.1 GB each) |
 | `SIDPLAY_SURE_CARDS`, `SIDPLAY_SURE_NEED_CARDS` | 10, 13 | Exact guaranteed tricks up to this many cards left; the contract question up to the second |
 | `SIDPLAY_SURE_BUDGET`, `SIDPLAY_SWAP_BUDGET` | 40, 20 | Seconds per analysis for the sure-trick search and for the exchanges |
+| `SIDPLAY_AUCTION_CARDS`, `SIDPLAY_AUCTION_BUDGET` | 8, 25 | Chances by the auction up to this many cards left; seconds per analysis |
+| `SIDPLAY_SCORER` | the bundle's | Hand-fit scorer the analysis reads the auction with (tests point it at a bundle's) |
 | `SIDPLAY_PACE`, `SIDPLAY_TRICK_PAUSE` | 0.5, 1.2 | Seconds between bot cards, and after a finished trick |
 | `SIDPLAY_SECURE_COOKIES` | 0 | 1 behind HTTPS |
 
@@ -214,8 +232,8 @@ sudo sqlite3 /var/lib/sidplay/sidplay.sqlite '.backup /tmp/sidplay-backup.sqlite
 - Live tables are held in memory: a restart ends them. Finished boards and Sid tables are in SQLite.
 - No password reset and no email. Lost passwords mean a new account.
 - No undo, no alerts or explanations, no chat, no claims by defenders.
-- The analysis judges single-dummy play by guarantees (hand sizes and show-outs only) and double dummy by the real
-  layout; neither reads the auction. Odds between lines that guarantee nothing are not computed.
+- Guarantees are against any layout (hand sizes and show-outs only); the chances read the auction (Sid's scorer) but
+  not the play beyond show-outs, and only from 8 cards left.
 - Abuse limits are basic: per-IP limits on sign-ups, sign-ins and new tables, one open table per person, a global
   table cap.
 - Every board is stored with the full deal, auction, play and the bot's identity. Human-against-Sid boards could

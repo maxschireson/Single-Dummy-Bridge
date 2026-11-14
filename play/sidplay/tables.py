@@ -225,16 +225,17 @@ class Table:
         self.scores.append(dict(number=b.number, **b.result, sid=None, imps=None, board_id=b.db_id, replay=bool(b.replay)))
         if self.config.analysis and c is not None and b.game.history:
             b.analysis = 'pending'
-            self.spawn(self.analyse(b, 'analysis', b.hands, c.text(), c.declarer, list(b.game.history), HUMAN_NAMES))
+            self.spawn(self.analyse(b, 'analysis', b.hands, c.text(), c.declarer, list(b.game.history), HUMAN_NAMES,
+                                    dict(calls=list(b.calls), dealer=b.dealer, vul=b.vul)))
         if b.replay and b.replay.get('sid_table'):
             self.spawn(self.sid_table_done(b, self.scores[-1], b.replay['sid_table'], b.replay.get('sid_analysis')))
         elif self.config.sid_tables:
             b.sid = 'pending'
             self.spawn(self.play_sid_table(b, self.scores[-1]))
 
-    async def analyse(self, b, which, hands, contract, declarer, play, names):
+    async def analyse(self, b, which, hands, contract, declarer, play, names, auction=None):
         """Run one analysis in the analysis pool (stored by the registry). which: 'analysis' or 'sid_analysis'."""
-        result = await self.registry.run_analysis(b.db_id, which, hands, contract, declarer, play, names)
+        result = await self.registry.run_analysis(b.db_id, which, hands, contract, declarer, play, names, auction)
         if result is None:
             setattr(b, which, 'error')
             self.bump()
@@ -284,7 +285,8 @@ class Table:
             b.sid_analysis = 'pending'
             self.bump()
             play = [(SEATS.index(seat), parse_card(c)) for seat, c in sid['play']]
-            await self.analyse(b, 'sid_analysis', b.hands, sid['contract'], SEATS.index(sid['declarer']), play, SID_NAMES)
+            await self.analyse(b, 'sid_analysis', b.hands, sid['contract'], SEATS.index(sid['declarer']), play, SID_NAMES,
+                               dict(calls=list(sid['calls']), dealer=b.dealer, vul=b.vul))
 
     # ---- Sid's turns ---------------------------------------------------------------------
     def kick(self):
@@ -504,7 +506,7 @@ class Registry:
         self.tasks = set()
 
     # ---- analyses -------------------------------------------------------------------------
-    async def run_analysis(self, board_id, which, hands, contract, declarer, play, names):
+    async def run_analysis(self, board_id, which, hands, contract, declarer, play, names, auction=None):
         """One analysis in the analysis pool; stored when the board is saved. None if it failed."""
         key = (board_id, which)
         self.analysing.add(key)
@@ -513,7 +515,7 @@ class Registry:
             # the person's play (Max, 14 Nov).
             limits = None if which == 'analysis' else dict(sure_need_cards=self.config.analysis_limits.get('sure_cards', 10))
             result = await self.bots.analyse([list(h) for h in hands], contract, declarer, [list(p) for p in play], [2], names,
-                                             limits)
+                                             limits, auction)
         except Exception:
             log.exception('Analysis %s of board %s failed', which, board_id)
             self.failed[key] = time.time()
@@ -531,10 +533,10 @@ class Registry:
         """For a stored board (Store.board): the state of both analyses, starting any that is missing (a board from
         before analyses existed, or one whose analysis a restart cut off)."""
         out = {}
-        jobs = {'analysis': (d['contract'], d['declarer'], d['play'], HUMAN_NAMES)}
+        jobs = {'analysis': (d['contract'], d['declarer'], d['play'], HUMAN_NAMES, d['calls'])}
         sid = d.get('sid_table') or {}
-        jobs['sid_analysis'] = (sid.get('contract'), sid.get('declarer'), sid.get('play'), SID_NAMES)
-        for which, (contract, declarer, play, names) in jobs.items():
+        jobs['sid_analysis'] = (sid.get('contract'), sid.get('declarer'), sid.get('play'), SID_NAMES, sid.get('calls'))
+        for which, (contract, declarer, play, names, calls) in jobs.items():
             key = (d['id'], which)
             if d.get(which):
                 out[which] = 'ready'
@@ -549,7 +551,9 @@ class Registry:
                 hands = [[parse_card(c) for c in h] for h in d['hands']]
                 moves = [(SEATS.index(seat), parse_card(c)) for seat, c in play]
                 self.analysing.add(key)            # before the task starts, so a second request does not start another
-                task = asyncio.ensure_future(self.run_analysis(d['id'], which, hands, contract, SEATS.index(declarer), moves, names))
+                auction = dict(calls=list(calls or []), dealer=SEATS.index(d['dealer']), vul=d['vulnerability'])
+                task = asyncio.ensure_future(self.run_analysis(d['id'], which, hands, contract, SEATS.index(declarer), moves, names,
+                                                               auction))
                 self.tasks.add(task)
                 task.add_done_callback(self.tasks.discard)
                 out[which] = 'pending'

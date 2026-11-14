@@ -5,6 +5,16 @@ import os
 from pathlib import Path
 
 
+def _scorer(bundle, meta):
+    """The bot's hand-fit scorer (its spec's `scorer`, inside the bundle), or SIDPLAY_SCORER; None if neither exists."""
+    if os.environ.get('SIDPLAY_SCORER'):
+        return os.environ['SIDPLAY_SCORER']
+    rel = (meta.get('spec') or {}).get('scorer')
+    if bundle is not None and rel and (bundle / rel).is_file():
+        return str(bundle / rel)
+    return None
+
+
 def _int(name, default):
     return int(os.environ.get(name, default))
 
@@ -27,6 +37,7 @@ class Config:
     analysis: bool          # analyse each finished board (yours and Sid's table): double dummy and sure tricks
     analysis_workers: int   # processes for the analysis (no models loaded)
     analysis_limits: dict   # overrides for sidplay.analysis.DEFAULTS
+    scorer: str | None      # the bot's hand-fit scorer file: the analysis reads the auction with it
     pace: float             # seconds between bot cards, so people can follow
     trick_pause: float      # seconds a finished trick stays before a bot leads to the next
     secure_cookies: bool
@@ -61,7 +72,9 @@ class Config:
             analysis=os.environ.get('SIDPLAY_ANALYSIS', '1') == '1',
             analysis_workers=_int('SIDPLAY_ANALYSIS_WORKERS', 1),
             analysis_limits={k: float(os.environ[f'SIDPLAY_{k.upper()}']) for k in
-                             ('sure_cards', 'sure_need_cards', 'sure_budget', 'swap_budget') if os.environ.get(f'SIDPLAY_{k.upper()}')},
+                             ('sure_cards', 'sure_need_cards', 'sure_budget', 'swap_budget', 'auction_cards', 'auction_budget')
+                             if os.environ.get(f'SIDPLAY_{k.upper()}')},
+            scorer=_scorer(bundle, meta),
             pace=_float('SIDPLAY_PACE', 0.5),
             trick_pause=_float('SIDPLAY_TRICK_PAUSE', 1.2),
             secure_cookies=os.environ.get('SIDPLAY_SECURE_COOKIES', '0') == '1',
