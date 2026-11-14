@@ -25,9 +25,10 @@ VG = 'https://vugraph.lovebridge.com'
 UA = 'Mozilla/5.0 (research; USBF bidding and play records for bot evaluation)'
 EVENTS = ('Open', 'Women', 'Senior', 'Mixed', 'Junior', 'Beth Palmer', 'USBC')      # USBF's championships; ACBL events share the server
 NOT_USBF = ('Spingold', 'Vanderbilt', 'Reisinger', 'Wagar', 'Baze', 'Soloway', 'Mitchell', 'Roth', 'NABC', 'GNT', 'Grand National')
-USBF_PAGES = ['https://usbf.org/2024-united-states-bridge-championships/2024-usbc-results', 'https://usbf.org/2025-usbcs/2025-usbc-results',
-              'https://usbf.org/2025-usbcs', 'https://usbf.org/2026-usbcs/2026-usbcs-results', 'https://usbf.org/2026-usbcs',
-              'https://usbf.org/2024-united-states-bridge-championships', 'https://usbf.org/2023-usbcs', 'https://usbf.org/2022-usbcs']
+USBF_PAGES = ['https://usbf.org/2026-usbcs', 'https://usbf.org/2026-usbcs/2026-usbcs-results', 'https://usbf.org/past-tournaments',
+              'https://usbf.org/past-tournaments/2025-usbcs', 'https://usbf.org/past-tournaments/2024-usbcs',
+              'https://usbf.org/past-tournaments/2024-sam-amer-jusbc', 'https://usbf.org/2026-sam-amer-jusbc', 'https://usbf.org/past-tournaments/2023-usbcs',
+              'https://usbf.org/past-tournaments/2022-open-usbc', 'https://usbf.org/past-tournaments/2022-michael-seamon-junior-usbc']
 
 
 class Client:
@@ -58,26 +59,29 @@ class Client:
 
 
 def usbf_screens(c):
-    """vugraph screen ids (usbc/<id>) linked from USBF's results, bracket and round-robin pages, with the page that links them."""
-    seen, todo, screens = set(), list(USBF_PAGES), {}
-    while todo and len(seen) < 400:
-        url = todo.pop(0)
+    """vugraph screen ids (usbc/<id>) linked from USBF's pages: its tournament pages for 2022 to 2026 (results, brackets,
+    round-robin and vugraph pages) and the bracket and round-robin sheets under docs/vugraphs/, with the page that links them."""
+    seen, todo, screens = set(), [(u, 0) for u in USBF_PAGES], {}
+    while todo and len(seen) < 600:
+        url, depth = todo.pop(0)
         if url in seen:
             continue
         seen.add(url)
         html = c.get(url, as_json=False)
         if not html:
             continue
-        for sid in re.findall(r'vugraph\.lovebridge\.com/screen/usbc/(\d+)', html):
+        for sid in re.findall(r'lovebridge\.com/screen/usbc/(\d+)', html):
             screens.setdefault(sid, url)
-        for href in re.findall(r'href="([^"]+)"', html):
-            u = urllib.parse.urljoin(url, href.replace('&amp;', '&'))
-            if 'usbf.org' not in u or u.lower().endswith(('.pdf', '.jpg', '.png', '.ico', '.css', '.js')):
+        for href in re.findall(r'(?:href|src)="([^"]+)"', html):
+            u = urllib.parse.urljoin(url, href.replace('&amp;', '&')).split('#')[0]
+            low = u.lower()
+            if not re.match(r'https?://(www\.)?usbf\.org/', low) or low.endswith(('.pdf', '.jpg', '.png', '.ico', '.css', '.js', '.gif')):
                 continue
-            if 'docs/vugraphs/' in u and ('Bracket.php' in u or 'RRsheet.php' in u):
-                todo.append(u)
-            elif re.search(r'usbc', u, re.I) and re.search(r'result|bracket|round-robin|records|20(2[1-6])', u, re.I) and u.count('/') <= 6:
-                todo.append(u)
+            if 'docs/vugraphs/' in low and ('bracket.php' in low or 'rrsheet.php' in low):
+                todo.append((u, depth + 1))
+            elif depth < 3 and re.search(r'usbc|vugraph|bracket|round-robin|play-records|results', low) and re.search(r'202[2-6]|usbc', low) \
+                    and 'index.php' not in low and 'search' not in low:
+                todo.append((u, depth + 1))
     return screens
 
 
@@ -138,12 +142,16 @@ def main():
     p.add_argument('--since', default='2021-01')
     p.add_argument('--pause', type=float, default=0.25)
     p.add_argument('--limit', type=int, default=0)
+    p.add_argument('--discover-only', action='store_true', help='find the sessions, write OUT/sessions.json and stop')
     p.add_argument('--part', default='0/1', help='K/N: this box takes the sessions whose place in the sorted list is K modulo N')
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     c = Client(a.pause)
     found = sessions(c, a.since)
     (a.out / 'sessions.json').write_text(json.dumps(found, indent=1))
+    if a.discover_only:
+        print(f'{len(found)} sessions; from USBF pages: {sum(1 for m in found.values() if m.get("from_usbf_page"))}', flush=True)
+        return
     index_path = a.out / 'index.json'
     index = json.loads(index_path.read_text()) if index_path.exists() else {}
     print(f'{time.strftime("%FT%TZ", time.gmtime())} sessions found: {len(found)}', flush=True)
