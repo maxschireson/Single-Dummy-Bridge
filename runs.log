@@ -117,3 +117,5 @@
 2026-11-14T00:02:53Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 1a40de0, nets fp32)
 2026-11-14T00:02:54Z end l0b-p: exit 0
 2026-11-14T00:02:54Z start sps0 stu0-psa~stu0-psb seed 9001 first 260000 deals 20000 workers 8 --episodes --one-room (source 1a40de0, nets bf16, --recycle 20)
+2026-11-14T00:21:39Z the collection is paused for jobs-azure5-h3.txt
+2026-11-14T00:21:39Z start h3-n stu3-n~stu0-n seed 131 first 1000 deals 4000 workers 8  (source 59fdfd7, nets fp32)
