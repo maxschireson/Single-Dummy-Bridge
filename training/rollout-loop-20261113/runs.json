@@ -2467,6 +2467,48 @@
    "queue_order": 6
   },
   {
+   "name": "b3-pst200f",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 1536,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 34
+  },
+  {
+   "name": "b3-pst200g",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 2048,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 35
+  },
+  {
    "name": "l0-r3",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
