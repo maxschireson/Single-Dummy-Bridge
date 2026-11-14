@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+ps -o pid,ppid,etimes,pcpu,rss,user,args -p 5704 | cut -c1-400; echo ---; cat /proc/5704/cgroup 2>/dev/null; echo ---; systemctl list-units --type=service --state=running --no-legend --plain | cut -c1-150; echo ---; for u in $(systemctl list-units --type=service --state=running --no-legend --plain | awk "{print \$1}"); do p=$(systemctl show -p MainPID --value $u); [ "$p" = 5704 ] && echo "MAINPID $u $p"; done; echo; systemctl --user list-units --type=service --no-legend --plain 2>/dev/null | cut -c1-150
