@@ -11,4 +11,6 @@
 # v2 alone +0.40 +- 0.07 and round 2's +0.19 +- 0.06 on 4,000 deals each), the lead still rolled out as every other card.
 #stopped sp3sc stu3-psa~stu3-psb 9001 400000 20000 8 --episodes --one-room
 # 05:20 UTC on 14 November (Max: the best data the strongest existing bots make): Gen 8 card play's self-play records
-sg8g g8a~g8b 9001 540000 20000 8 --episodes --one-room
+#stopped sg8g g8a~g8b 9001 540000 20000 8 --episodes --one-room
+# 05:30 UTC on 14 November (Max, 05:24: two boxes of each self-play): the one-net SiD Stu R3's self-play records
+sp3tb stu3-psta~stu3-pstb 9001 620000 20000 8 --episodes --one-room

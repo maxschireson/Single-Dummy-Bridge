@@ -8,7 +8,7 @@
 # Then the split-seat test this box was to play (h3-px), which the first sharpened-seat results make less likely to matter.
 l3-pst stu3-pst~8p-32-v41 131 500 500 8 --episodes
 l3-ps stu3-ps~8p-32-v41 131 500 500 8 --episodes
-l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
-l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
-l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
-h3-px stu3-px~stu0-ps 131 5000 1000 8
+#stopped l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
+#stopped l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
+#stopped l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
+#stopped h3-px stu3-px~stu0-ps 131 5000 1000 8

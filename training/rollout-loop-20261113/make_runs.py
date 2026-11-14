@@ -19,7 +19,7 @@ BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transf
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
-        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pst': 'pure-rs-t', '-p2': 'pure-rs-p2', '-pg': 'pure-rs-top', '-nd': 'net-d', '-px': 'pure-rs-split', '-pu': 'pure-blind', '-pux': 'pure-blind-split', '-pm': 'pure-rs-mix', '-put': 'pure-blind-t', '-psti': 'pure-rs-t-imps', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
+        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pst': 'pure-rs-t', '-p2': 'pure-rs-p2', '-pg': 'pure-rs-top', '-nd': 'net-d', '-px': 'pure-rs-split', '-pu': 'pure-blind', '-pux': 'pure-blind-split', '-pm': 'pure-rs-mix', '-put': 'pure-blind-t', '-psti': 'pure-rs-t-imps', '-psta': 'pure-rs-t', '-pstb': 'pure-rs-t', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
 RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7",
              'b50': 'the blend at tricks 3 to 6 at trust 0.5', 'r6': 'rollouts alone from trick 6', 'r3': 'rollouts alone from trick 3',
              'pure': "the net's opening lead, rollouts alone from the second card on; no double dummy",
@@ -66,13 +66,21 @@ STATIC = [
 ]
 
 
+MOVE_NOTE = "05:30 UTC on 14 November: moved to azure3, the test box (Max: two boxes of each self-play, one for tests)"
+MOVED = {n: MOVE_NOTE for n in ('s8-greedy', 's8-patient', 's8-greedy0', 's8-high', 's8-low', 's8-active', 's8-passive', 's8-passive0',
+                                'h41-p', 'h41-pb', 'h3-pm', 'l3-put', 'l3-pstb', 'l3-psb')}
+MOVED['h3-px'] = "05:30 UTC on 14 November: dropped (sharper seats did nothing: h3-p2, h3-pg)"
+MOVED['sg8h'] = MOVED['sg8g'] = "05:30 UTC on 14 November: the box makes the one-net Stu R3's self-play records instead"
+MOVED['sg8i'] = "05:30 UTC on 14 November: azure3 is the test box; Gen 8 records only when its tests are done (sg8j)"
+
+
 def bot(name):
     """What a bot id says: Stu-family ids are stu<round>[v1][a|b|-rung]; z0a-v2 and z0b-v2 were round 0's first ids."""
     if name in ('z0a-v2', 'z0b-v2'):
         return dict(family='stu', round=0, net='v2', rung='stu')
     if name == 'stuv41-ps':
         return dict(family='stu', round=0, net='v4.1', rung='pure-rs')
-    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-pst|-ps|-p2|-pg|-px|-pux|-put|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
+    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-psta|-pstb|-pst|-ps|-p2|-pg|-px|-pux|-put|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
     if m:
         return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
                     rung=RUNG[m.group(3) or ''])
@@ -123,7 +131,9 @@ def main():
             runs.append(run(name, box, pair, seed, first, deals, '--episodes' in options))
             if '--one-room' in options:             # one table a board, no IMPs (a collection run between two ids of one bot)
                 runs[-1]['tables_a_board'] = 1
-            if stopped:
+            if stopped and name in MOVED:
+                runs[-1]['stopped'] = MOVED[name]
+            elif stopped:
                 runs[-1]['stopped'] = ("at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)"
                                        if not name.startswith(('sps', 'sp3')) else "at 00:45 UTC on 14 November, for round 3's net in the rollouts"
                                        if name.startswith('sps') else "02:50 UTC on 14 November: the box makes Gen 8 card play's self-play records instead"
