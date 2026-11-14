@@ -1,4 +1,4 @@
-# Gen 9: state at Sat 14 Nov 08:20 UTC (hand-over note)
+# Gen 9: state at Sat 14 Nov 10:42 UTC (hand-over note)
 
 > **13 Nov 01:18 UTC: Gen 9 continues in parallel with 8X** (Max, 01:13 and 01:16). 8X is a separate release with
 > more limited goals, a higher-leverage prototype the plan session pushes out quickly; it has first call on anything
@@ -21,16 +21,19 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
 
 - **azure4** (Gen 9's only box: Max to will, 00:45 UTC on 14 Nov, "You guys are down to one azure box for 9; other
   activity is paused"; Stu's loop keeps azure1, 2, 3, 5 and 6): will's job queue (`tools/boxq.py`); `tools/q jobs` shows
-  it. At 08:00 all 8 cores busy, 64 GB free, the disk throttled (644 writes/s at 47 ms, 59% busy; CPU 29% idle).
+  it. At 10:00 all 8 cores busy and CPU-bound (7% idle); the disk at 707 writes/s, 8 ms, 12.7 flushes/s, 17% busy;
+  61 GB free.
   - `g9-cohort-azure4` (dave, priority 1, since 13 Nov 06:44 UTC; 4 cores and 4 workers since 02:45 UTC on Max's "Trim
     cohort now", 02:35, for Gen X Stu): the Gen 9 cohort, `configs/round9-cohort.json` on `feature/gen9-cohort`
     (46b7e004): `9a-32` against `8s-32`, `71s-32` and `8p-32` (the control) on 10,000 fresh deals (seed 9013), cohort
-    identity 75b73937750652a5. 3,527 of 10,000 at 08:00, about 90 boards an hour. Spec replaced by g9 at 08:10 (as lead;
-    dave silent since 13 Nov 10:15): source `feature/gen9-cohort-sync` 7e0edac7, which is 46b7e004 plus will's 9bba86b6
-    (the `BRIDGE_DDS_CACHE_SYNC` switch in `bridge_harness/dds_cache.py`, default FULL), and env
-    `BRIDGE_DDS_CACHE_SYNC=NORMAL`; it takes effect when will drains and retries the job. Cards and results are
-    unchanged; the manifest's `source_sha256`, taken at 46b7e004, does not describe the code after that restart (logged
-    on G9-D9). Feed `arena-gen9-azure4-feed`, generation 9 on the page (`gen9azure4`), the default view since 13 Nov 07:19
+    identity 75b73937750652a5. 3,807 of 10,000 at 10:31, about 164 to 174 boards an hour, so it ends about 16 Nov 01:00.
+    Since 09:24 UTC it runs on `feature/gen9-cohort-amend` 9b2e7ad0 with env `BRIDGE_DDS_CACHE_SYNC=NORMAL` (disk flushes
+    about 140 a second before, 13 after). g9's spec of 08:10 (7e0edac7: 46b7e004 plus will's 9bba86b6, the sync switch
+    in `bridge_harness/dds_cache.py`) was refused at 09:08 by `verify_generation` in `bridge_harness/mixed_arena.py`,
+    which checks the harness hash; g9 had expected no refusal. On Max's word (09:17: "Fix it so that it can run with
+    changed code. Producing the boards is more important") will added `check_source`: a changed harness passes only if
+    the run folder's `source-amendments.json` lists its hash with a reason (here 3f3c01afe8b6). Reviewed by g9; cards and
+    results unchanged; logged on G9-D9. Feed `arena-gen9-azure4-feed`, generation 9 on the page (`gen9azure4`), the default view since 13 Nov 07:19
     (Max). At the freeze (13 Nov 18:00): 1,783 boards; `9a-32`'s IMPs a board against `71s-32` +0.54 +- 0.15 (594),
     `8p-32` +0.30 +- 0.15 (594), `8s-32` +0.17 +- 0.13 (595); the same auction at both tables on all 1,783, so card play
     only. `9a-32` takes 0.354 s per card decision with a choice against `8p-32`'s 0.376 on the same box.
@@ -38,23 +41,24 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
     it into the mix at whatever level you want"), `stu3-ps` against `8s-32` (weight 2), `9a-32` and `71s-32` on 4,000
     fresh deals (seed 9019), `configs/round9-genx-stu.json` on `feature/gen9-genx-stu` (9bba86b6: Stu's
     `research/rollout-loop-20261113` at 545893b merged with the 8X arena line and `feature/gen9-cohort`); its DDS cache
-    syncs NORMAL. Feed `arena-gen9-genx-stu-azure4-feed`. 280 boards at 08:00, about 52 an hour; -0.01 +- 0.24 IMPs a
-    board over its three opponents; the ladder puts it at +0.53 (+0.03 to +1.02) on 279 boards.
+    syncs NORMAL. Feed `arena-gen9-genx-stu-azure4-feed`. 388 boards at 10:00 (417 at 10:31), about 53 an hour. IMPs a
+    board to Gen X Stu: -0.11 +- 0.25 against `8s-32` (193 boards), +0.32 +- 0.40 against `71s-32` (97), -0.04 +- 0.47
+    against `9a-32` (96); all three +0.01 +- 0.20. The ladder puts it at +0.56 (+0.13 to +0.98) on 386 boards.
   - `9a-32~ben64`: job `g9-cohort-ben64-azure4` (dave, 2 cores) since 13 Nov 07:50 UTC, 2,000 fresh deals (seed 9014),
-    feed `arena-gen9-azure4-ben64-feed`, BEN 64 through will's `gen9_ben_lanes serve`. 1,056 of 2,000 at 08:00, about 38
-    an hour, so it ends about 15 Nov 09:00. At the freeze: 454 boards, +0.19 +- 0.18.
-  - `e9-25` (g9, priority 3, 1 core, preemptible): failed at 02:47 UTC loading BEN's net, because `BenLstmBidder` read
-    the output layer under the house bidders' name; fixed on `feature/gen9` at adae5fbb (BEN saves the same Dense inside
-    TimeDistributed), the spec moved there and retried at 08:17. It waits for a free core. Due 15 Nov 18:00.
-  - Paused: `e9-0-n04` (284 of 800), `e9-16-h-v-p` (269 of 800), both g9's.
+    feed `arena-gen9-azure4-ben64-feed`, BEN 64 through will's `gen9_ben_lanes serve`. 1,161 of 2,000 at 10:31, 37 to 40
+    an hour, so it ends between about 07:00 and 09:00 on 15 Nov. At the freeze: 454 boards, +0.19 +- 0.18.
+  - `e9-25` (g9): failed at 02:47 UTC loading BEN's net (`BenLstmBidder` read the house bidders' output layer name);
+    fixed on `feature/gen9` at adae5fbb and retried at 08:17; it ran 09:08 to 09:15 while the cohort was down. Report
+    `reports/gen9-e9-25-2026-11-14` (4724cd7d), submitted to will for the verdict (below).
+  - Paused: `e9-0-n04` (387 of 800; it takes free cores when the cohort stops), `e9-16-h-v-p` (269 of 800), both g9's.
   - **Disk.** The VM is a Standard_F8as_v6 with one disk, the 128 GB Premium_LRS (P10) OS disk, and no temp disk. It was
     at its write limit from about 16:45 to 19:50 on 13 Nov (the cohort at about 105 boards an hour, 160 to 173 otherwise)
     and again from about 01:30 on 14 Nov; most writes are the cohort's `run/dds-cache.sqlite` (6.5 MB a board, WAL with
     `synchronous=FULL` until the restart above). Of will's four options (NORMAL sync, a fresh cache, a faster disk, leave
-    it), NORMAL sync is the one taken; a faster disk costs money, so it would go to Max as a recap first (his standing
-    rule). Space: will expects about 17 GB free when the cohort ends and checks it hourly. The leftover Gen 7 publisher
-    on azure4 (pid 5704, `gen7-phase1-azure4`, g8's) republishes a drained run every minute, about 7.5 MB every 20 s;
-    g9's word at 08:11: will stops it, after checking the unit's name against the pid.
+    it), NORMAL sync is the one taken, running since 09:24; the box has been CPU-bound since. A faster disk costs money,
+    so it would go to Max as a recap first (his standing rule). Space: will expects about 17 GB free when the cohort ends and checks it hourly. The leftover Gen 7 publisher
+    on azure4 (pid 5704, `gen7-phase1-azure4`, g8's) republished a drained run every minute, about 7.5 MB every 20 s;
+    will stopped and disabled it at 09:02 on g9's word and told g8 on the board.
 - **The ladder** (G9-D9, dave and will, accepted 07:24): `arena/ladder.json` and `ladder.js` at the top of the arena page,
   refreshed hourly; the cohort's points appear as its boards come in.
 
@@ -66,9 +70,14 @@ or `team/gen9` unless a branch is named. Experiment files are `team/gen9:experim
   priority but less tied to compute.
 - **G9-B8** was sent back by will (13 Nov 18:24): the done-when was not met (an older ACBL card, a photo-only reading, a
   public ACBL editor card, a PR); what is there checks out (tests and the break counts reproduced). g9 trimmed the
-  done-when to the first version and resubmitted it (08:11); the rest is **G9-B10** (owner bill).
-- **E9-25** and the cohort's cache: above. Max had not commented on the review page by 08:20 (no doc comments, nothing
-  on the queue issue); G9-A6 stays submitted until he has looked.
+  done-when to the first version and resubmitted it (08:11); will accepted it at 09:03. The rest is **G9-B10** (owner
+  bill).
+- **E9-25: not confirmed as registered** (report above). With BEN 64 defending, committed lines failed 8 of 160 times
+  with the scorer's weights and 5 of 165 with Gen 9's: (1) met on the point estimate only (ratio 1.65, 95% interval 0.55
+  to 4.94); (2) not met (p 0.27 and 0.625); (3) not met (Gen 9 3.0% against the house-defended control's 10.0%). The
+  difference is in games, slams and doubled contracts (4 of 74 against 1 of 76). Changes no play setting.
+- **The cohort's cache:** above. Max had not commented on the review page by 10:42 (no doc comments, nothing on the
+  queue issue); G9-A6 stays submitted until he has looked.
 
 ## 13 November (with where they are)
 
@@ -184,14 +193,15 @@ prototype `8p-32` as the base; about 3.6 to 4 IMPs a trick:
 
 ## Waiting
 
-- **bill**: last seen 13 Nov 04:02 UTC. G9-B8 resubmitted to will (14 Nov 08:11); G9-B10, G9-B9, E9-13, G9-B5.
+- **bill**: last seen 13 Nov 04:02 UTC. G9-B8 accepted (14 Nov 09:03); G9-B10, G9-B9, E9-13, G9-B5.
 - **sam**: last seen 00:19 UTC. E9-4 and E9-6 leases expired; G9-S8 new.
 - **dave**: last commit 13 Nov 10:15 UTC. Owns both cohort jobs; g9 replaced the main job's spec as lead (above).
-- will's verdicts: G9-A11 accepted (13:37), E9-19 rejected (13:35).
+- will's verdicts: G9-A11 accepted (13 Nov 13:37), E9-19 rejected (13:35), G9-B8 accepted (14 Nov 09:03); E9-25
+  submitted to him 14 Nov 10:41.
 - Verdicts (will, 10:06): E9-12 adopted (about +0.4 IMPs a board from reading a foreign system by its card; replay
   adds nothing, -0.08 +- 0.10), E9-24 inconclusive (post hoc; E9-25 registered), G9-A10 and G9-S9 accepted.
 - E9-25: scripts on `feature/gen9` (`experiments/e9_25`, 9bb9aed; the BEN loader fix adae5fbb); BEN's net is at
-  `{home}/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras` (will, 10:28); job queued (above).
+  `{home}/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras` (will, 10:28); the job ran 14 Nov 09:08 to 09:15, report 4724cd7d (above).
 - E9-22: the arrival records hold no card decisions; the guests' games must be played again first (logged 10:55).
   Exploratory instead, on the cohort's boards (`reports/gen9-newcomer-rows-2026-11-13`): the `8s-32` row predicts the
   newcomer `8p-32` 0.038 nats a decision better than v2's generic row (known bots' own rows gain 0.037 to 0.039); for
