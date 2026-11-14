@@ -1,0 +1,1168 @@
+{
+  "poll_start": "2026-11-14T19:30:37Z",
+  "comments_since": "2026-11-14T18:23:58Z",
+  "refs": {
+    "archive/gen6-fast-ben-20261111": "802f69ad6e1416a5a7200d5e6c29f8beca2a8275",
+    "arena-components-feed": "78345ca62fe0d81979a9d861da0cd88f32ac58cb",
+    "arena-feed": "0c1cfa02beea115e4636947e9a13a5d2360c59ca",
+    "arena-gen5-codex-32-feed": "231647b297ba7b05ee28e720d7f395bacbcff818",
+    "arena-gen5-codex-feed": "759365035cddadd6b5586bd8f10995aff40d9be3",
+    "arena-gen5r-feed": "ef13160a9c2412bdacae82bb9e26f5cd546e0446",
+    "arena-gen5rz-ben-feed": "a559ccb59e9d3ff09d8c759c016534b4efcef254",
+    "arena-gen5rz-feed": "03fd90e694d02ba139559fc323e63e384da9e969",
+    "arena-gen6-ben-expansion-feed": "b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2",
+    "arena-gen6-chatgpt-feed": "0d4de18661af263fcf713e1c840e2b74da2d428f",
+    "arena-gen6-codex-ben-followups-feed": "9e35788b7db67bd31dd589b9c6087c8e8e92e3be",
+    "arena-gen6-codex-ben-gate": "32d459d5513005f3c032a04fb6c785d4a0db4d6f",
+    "arena-gen6-codex-feed": "20a82a253bc4f90a396a3f8991c935e4530df7f0",
+    "arena-gen6-codex-v7-capture-feed": "84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98",
+    "arena-gen6-codex-v7-cutover": "019a7503a67f34771792b933e8ebfdd11e40e70c",
+    "arena-gen6-codex-v7-watch": "6ca5d82f3705dc1f72b2741b2cb3d63e9fdad61b",
+    "arena-gen6-extra-selfplay-feed": "40a2b2462d73a32fc3d974ca0e014c33f5ff30e1",
+    "arena-gen6-fast-selfplay-20261111-19bbdce5-feed": "cb3a31ca58e9f0927a385d3d1ccf8b63d288cd24",
+    "arena-gen6-fast-selfplay-cloud-feed": "37bb31e1489621e1c4ba3ce06aa9b98e92311098",
+    "arena-gen6-fast-selfplay-codex-20261111": "6c7e9f612cd6f634ab6789f45def351edb4acba0",
+    "arena-gen6-fast-selfplay-independent-feed": "937792a17084d0bbaa6a044e9b6e0f3aaeb80483",
+    "arena-gen6-fast-selfplay-primary-feed": "d5a1f25688ca1e9c2b2c25c351f967e134adb10f",
+    "arena-gen6-gen7-capture-feed": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+    "arena-gen6-independent-feed": "1bf4163f4e5cfff2ac3dffd16ba9df94ad2c3f83",
+    "arena-gen6-medium-ben-feed": "ca95def619269e2eefaba8263134ff8154ff1171",
+    "arena-gen7-1-azure3-ben64-1-feed": "e8f1a1c158c57f3fc067d981de746f671822d71b",
+    "arena-gen7-1-azure3-ben64-2-feed": "586e5c91f0f33aeb4c82b565fd2c5c6307081008",
+    "arena-gen7-1-azure3-ben64-3-feed": "8e0f634de40661c955ed9b2d8a2b301b2d68d2e9",
+    "arena-gen7-1-azure3-ben64-4-feed": "b2207d8c33cd69baa99b7dfa4cf4f984b151889e",
+    "arena-gen7-1-azure3-ben64-5-feed": "b374fd983d26036c4ecaf72d5464dc274758b7e8",
+    "arena-gen7-1-azure3-ben64-6-feed": "467a873a701f23601c5bddc28533f5130186a2fc",
+    "arena-gen7-1-azure3-ben64-7-feed": "6c78f9e07ee59dfd4395ae7f4d0edc7338062ee1",
+    "arena-gen7-1-azure3-ben64-8-feed": "78d69694722b092e4953f0db9196be10a0a898a3",
+    "arena-gen7-1-compare-azure2-feed": "239815e87f10bc14471e2c08b227f4e039e6a732",
+    "arena-gen7-1-compare-codex-20261112-feed": "71a6dc2dbc8985175c476388115bc4f301e7452f",
+    "arena-gen7-1-fresh2-azure3-ben64-1-feed": "976822c654f72017a60eeda457a8b2ba87f8ef65",
+    "arena-gen7-1-fresh2-azure3-ben64-2-feed": "3dd1086351efe90f6ba3582f7d7b6a3575d7836b",
+    "arena-gen7-1-fresh2-azure3-ben64-3-feed": "dec43d30f8d15e4a0d9274d01b5d3f1fba6a43c8",
+    "arena-gen7-1-fresh2-azure3-ben64-4-feed": "e5078f5d51fb2de42e06fc36f6cc71b68c05b5cf",
+    "arena-gen7-1-fresh2-azure3-ben64-5-feed": "3f03a751d999ba676359ee8e6240844be2a290d1",
+    "arena-gen7-1-fresh2-azure3-ben64-6-feed": "b7707f556212e9d14d98b0e9e9e336dd3d4a6436",
+    "arena-gen7-1-fresh2-azure3-ben64-7-feed": "f56bf95812291db53f464eea69a812c57c7724b2",
+    "arena-gen7-1-fresh2-azure3-ben64-8-feed": "b1ce784998959a34d85d228783a1269bfad4af17",
+    "arena-gen7-1-fresh3-azure3-ben64-1-feed": "c14b37cdb0276a7e71212d135241f0300fdb835a",
+    "arena-gen7-1-fresh3-azure3-ben64-2-feed": "06c45434db5b47388cb918c786d4b9386ec439ff",
+    "arena-gen7-1-fresh3-azure3-ben64-3-feed": "106ce99d11e10ba1c056cbf68260398df24c0ccb",
+    "arena-gen7-1-fresh3-azure3-ben64-4-feed": "5a41f09fe901b54198b8602d92c40cdc0424063d",
+    "arena-gen7-1-fresh3-azure3-ben64-5-feed": "0c4ab5f5459d3d131cb2a9f1828c4de4c34882d2",
+    "arena-gen7-1-fresh3-azure3-ben64-7-feed": "80681d7804dd57bd66582c311c3cad0d9168fc0d",
+    "arena-gen7-1-fresh-azure3-ben64-1-feed": "c7a4e5b79c7a7648bbda0c61557e52dd8f31c53e",
+    "arena-gen7-1-fresh-azure3-ben64-2-feed": "0219e1b142d8a7211b60ef262c61b7c677848c64",
+    "arena-gen7-1-fresh-azure3-ben64-3-feed": "79d1891b889c1222169178155c095d340621b261",
+    "arena-gen7-1-fresh-azure3-ben64-4-feed": "e74503532ae896a406a5b8834ae2c23d6cebfad6",
+    "arena-gen7-1-fresh-azure3-ben64-5-feed": "83df6942792e4bbe9e0ff0dd482745e8da0573c6",
+    "arena-gen7-1-fresh-azure3-ben64-6-feed": "7536c10dc6a8b891317eb354c21722f9bcdb7b83",
+    "arena-gen7-1-fresh-azure3-ben64-7-feed": "2f215568e813598eec7d72885dfd6a1cf513c429",
+    "arena-gen7-1-fresh-azure3-ben64-8-feed": "35b0ff330a4dc66f5dd4e2f58c6e0b2d00ca03e0",
+    "arena-gen7-1-mix2-azure1-feed": "b417f16dfbbca25e0a759ed5402afa6579ac7acb",
+    "arena-gen7-1-mix-azure1-feed": "486843d9494fe8826f45d2c23179baafa070dbf0",
+    "arena-gen7-1-vs70-azure2-feed": "4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d",
+    "arena-gen7-1-vs70-fresh-azure2-feed": "67dd0edee1f790ff954ee2bb1565b51d80b2ba5b",
+    "arena-gen7-independent-selfplay-feed": "096d1a1ef55d8b154f312c0b18595f4beb5ebb3d",
+    "arena-gen7-phase1-azure1-feed": "419d7e1009bb559b816adfc69a67b39d7ed55ebb",
+    "arena-gen7-phase1-azure2-ben16-1-feed": "07674c65f86efe1649c8dc6c81be7e2ab45c4e3d",
+    "arena-gen7-phase1-azure2-ben16-2-feed": "79bb5e848440907394137f219607c32647b14b97",
+    "arena-gen7-phase1-azure2-ben16-3-feed": "1f6f581aef379f44385deee7b0a9a5871f1a87ee",
+    "arena-gen7-phase1-azure2-ben16-4-feed": "dbff573e35d1c838b5c4641b7f58dcc417a50749",
+    "arena-gen7-phase1-azure2-ben16-5-feed": "f5ca8133c1f9be100959d8a312b004a0d354efd0",
+    "arena-gen7-phase1-azure2-ben16-6-feed": "58ed24ce1d0e2ff79988117b3e3010b7e84dc778",
+    "arena-gen7-phase1-azure2-ben16-7-feed": "65e22f8336c618ed276d05422aa8c0658a66bd44",
+    "arena-gen7-phase1-azure2-ben16-8-feed": "650431ab87d8d78043edb3bec60949ee33c00d3b",
+    "arena-gen7-phase1-azure2-feed": "73e97fca712257e1ff6b50dde1b682c98d3199ae",
+    "arena-gen7-phase1-azure3-ben64-1-feed": "1c9b8979bff94069748db8040fed28c82bbc55ef",
+    "arena-gen7-phase1-azure3-ben64-2-feed": "075d74f1d9070591bdbd75419ccc73c3f1c81283",
+    "arena-gen7-phase1-azure3-ben64-3-feed": "bed7024f4f3fd90deea200f756a38223929eb844",
+    "arena-gen7-phase1-azure3-ben64-4-feed": "755372135b6127ea21aa0ee64c3fe71ee4aeddf2",
+    "arena-gen7-phase1-azure3-ben64-5-feed": "823bc797c4855fadd6bb286167f93969e13b1e45",
+    "arena-gen7-phase1-azure3-ben64-6-feed": "a4c399365d3bf3931d424932589e372f35db1340",
+    "arena-gen7-phase1-azure3-ben64-7-feed": "62b082a31ce2c82927420438998f0d4b265eea81",
+    "arena-gen7-phase1-azure3-ben64-8-feed": "0aaf87097a19f2b69226c511231178064d975761",
+    "arena-gen7-phase1-azure3-feed": "3c4c7e5e0904db292b0e5159a4f570c211458eb4",
+    "arena-gen7-phase1-azure4-feed": "9aec8a61381496bede23433c9614b8fdaeb728b6",
+    "arena-gen7-phase1-cloud-feed": "1f645f10857ef483af2ddf6582b4e4727bbb6701",
+    "arena-gen7-phase1-codex-20261112-feed": "dfe3233dec356e48da065702964892354e0db16c",
+    "arena-gen7-phase1-extra-feed": "d9745c0ed7ed4100826c9b0854e4b0d6ea78c2ac",
+    "arena-gen7-phase1-independent-feed": "fe58353807589d4f14965aa96e2f9ec2abe1462a",
+    "arena-gen7-phase1-selfplay-azure2-feed": "87faa7ee2d92966512b0535b78f69198c81a87e0",
+    "arena-gen7-pre7-azure1-feed": "86385be46eb54bca35a8e04697d412cb64eb6467",
+    "arena-gen7-pre7-azure2-feed": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39",
+    "arena-gen7-pre7-azure3-feed": "8c854a58b27729e97bd809484a7e0850cf855550",
+    "arena-gen7-pre7-azure4-feed": "2968b84979c87ccb4102d164013e62ce2cf60c07",
+    "arena-gen7-selfplay-capture-codex-20261112-feed": "09950642e0d40dc68fecf511569bb72935ba7782",
+    "arena-gen7-selfplay-codex-20261112-feed": "2df00f7cfb102fdefe1874b76ebc294af47a8638",
+    "arena-gen8-19bbdce5-20261112-feed": "f23b676f034ca8eb7c84fab06e76d424d9b95a55",
+    "arena-gen8-azure1-feed": "210f7b205ad822b88a82cc482af3f6952f1b41b5",
+    "arena-gen8-azure3-ben64-1-feed": "de640549c40531b5f235b5480a2213c135b690ca",
+    "arena-gen8-azure3-ben64-2-feed": "fdee44ee8b5e3dbcf317a3ba2f30fc88a3e718b1",
+    "arena-gen8-azure3-ben64-3-feed": "2ee121d1ffc7e725c774a91562703a40226e885c",
+    "arena-gen8-azure3-ben64-4-feed": "4c2778ba0277a94616ecf6685899090360dfcef1",
+    "arena-gen8-azure3-ben64-5-feed": "80c6f9e71db653b8611334ea0da9fb6c7addb61f",
+    "arena-gen8-azure3-ben64-6-feed": "fbfae2c0b7a95ed1a850fc297bc4fa4b7da04737",
+    "arena-gen8-azure3-ben64-7-feed": "0e72cf1b5888920eb69d5741cdb885902c3f0b92",
+    "arena-gen8-azure3-ben64-8-feed": "846404c8a0de86a8d279748d2b7c7999e7846d95",
+    "arena-gen8-azure6-feed": "3b68c77537a88932817f352b23bc032966a33800",
+    "arena-gen8-candidate-codex-20261112-feed": "3965cdbf245e1fce8c86116b5e84973ba1fd459d",
+    "arena-gen8-f-azure3-ben64-1-feed": "70af3d4ffa918c6156e556e07826803165052771",
+    "arena-gen8-f-azure3-ben64-2-feed": "0c2d19bd46baf6cf9f1b47bb2f636ba0325ab85e",
+    "arena-gen8-f-azure3-ben64-3-feed": "91c75e8829d3b596739df445840325b7b63c81a7",
+    "arena-gen8-f-azure3-ben64-4-feed": "17c08141fab4e0b349a29b27a7fb32d5de85d09a",
+    "arena-gen8-f-azure3-ben64-5-feed": "74e31aaddecdecd3c71cda957e5633ccad66aacd",
+    "arena-gen8-f-azure3-ben64-7-feed": "352bfad7dd1ecc56ffe589214bb123158827971a",
+    "arena-gen8-f-azure3-ben64-8-feed": "7159a5191b84fa386bcee8e8c97de2706a006fd4",
+    "arena-gen8-independent-feed": "e423b03bc0ea1b12492657ad4f4641d8a02687ef",
+    "arena-gen8-m1-azure1-feed": "230222ced59d36761501ca6e94a83f474948ec5a",
+    "arena-gen8-p2-azure3-ben64-1-feed": "460aec92e15f061abb7886250d272d9de8cd2581",
+    "arena-gen8-p2-azure3-ben64-2-feed": "836c37d38dc6464d351a763808bd136c590e2134",
+    "arena-gen8-p2-azure3-ben64-3-feed": "2039ffc018749b74bc45fc8dc27f1b80f72c8ef5",
+    "arena-gen8-p2-azure3-ben64-4-feed": "4fe096de4ae25d27ccd610de946fb71904309c3a",
+    "arena-gen8-p2-azure3-ben64-5-feed": "952c4c9c3776ab380e0c85d7623950c4f36a8f61",
+    "arena-gen8-p2-azure3-ben64-6-feed": "2bef771fd6448d8576afa99b01c3c712378a3b70",
+    "arena-gen8-p2-azure3-ben64-7-feed": "2249075f491fcd38d311b18b4cb75c8dc830d028",
+    "arena-gen8-p2-azure3-ben64-8-feed": "5c05fcaad51ef23b28c178f433e154b488163a74",
+    "arena-gen8-s1-azure1-feed": "955dc8cce4f6ca06d0a5015b2abdb16f2495ee85",
+    "arena-gen8-s3-azure1-feed": "934d62ee9d89a48dc388c9e94b8bcbd13bccd00d",
+    "arena-gen8-s7-azure1-feed": "9c7562342965d32bdea73f1b30f0473d3a2fb436",
+    "arena-gen8-x3-azure1-feed": "cda098fcfd890886c379e21813546ff07b9daea2",
+    "arena-gen9-azure4-ben64-feed": "69169d51909ee0fde18fa35dcf60d024beb9d0e9",
+    "arena-gen9-azure4-feed": "f753ff348be3fc7b9e055bb7cc6db554b4bfc827",
+    "arena-gen9-genx-stu4c-azure4-feed": "2e01054ec1aa0743cbb883d9b4dfde73c5b260ff",
+    "arena-gen9-genx-stu-azure4-feed": "d959fd318ddc68d9932516613ae83c92a5b0a44c",
+    "arena-gen71-19bbdce5-20261112-feed": "d7d6f7b84106b7fb508b7f828a19867bb314c083",
+    "arena-gen71-independent-feed": "cbddecbc290efc8e3ab6e088135675df1cec14e5",
+    "arena-local-feed": "7201f5a2e5b8f4ca6e03bc6769633b48ca39590e",
+    "arena-primary-components-feed": "f11ab55e16787069dfd5c25cf539592c85b7c699",
+    "arena-recovery-feed": "599abfc69b17d1e6e4c4c5e5c505d241d2120bbf",
+    "box/azure1/control": "b3369242c7b7097e114852911f029ff43ee6cb0b",
+    "box/azure1/status": "1c4a400f9f6328bb8a5b664cb23261e4d9bbf92f",
+    "box/azure2/control": "0fa50181e351c9e494f2ceea91d0e8346492d236",
+    "box/azure2/status": "5e1694f0335b4ffa34d4ce75053ca5dbee2f4731",
+    "box/azure3/control": "5b03e8ae018098ea3200ee7a22e2f423899b0a64",
+    "box/azure3/status": "e9f42ba5092d18b46a188352f008664c14c2e95c",
+    "box/azure4/control": "21abc7e7c7a07dda501810a6eab51f718bf0e727",
+    "box/azure4/status": "8c448cb386e1b4e7db1cbf26648ecab1532d948a",
+    "box/azure5/control": "8a8022309844b4f0efaaee57b6e8ea222e2c71fb",
+    "box/azure5/status": "9828059b15155c2fb7d1244a6e387ef63626609f",
+    "box/azure6/control": "7c89bc45b4fc60d85fc58e4551ea5d9d7570e430",
+    "box/azure6/status": "64cb38002873b5f65bec5025b25dc56a6951dd24",
+    "box/coordination": "7742771e21c985d6d11cda18183db3ff54c628e5",
+    "codex/connection-test-2026-11-08": "e5049b1469b3d612dc253504823dce9cba8e22b7",
+    "codex/gen4-component-ablation": "a7e00fb0b6241166da847661788dc82b8091761e",
+    "codex/gen6-auto-ben-20261111": "44cd4b725ceaf096a1dd5170398312dc3d811f9b",
+    "codex/gen6-ben-followups-20261111": "2bfa825581911aba78bc82262b5ce7bc61e735a0",
+    "codex/gen6-data-handoff-20261110": "dd24cb120524ef9fae2f5767fea49b410ae93612",
+    "codex/gen6-fast-selfplay-20261111": "153c7b12df25d3cae4e767cae6f3207b7e6a4fa0",
+    "codex/gen6-gen7-capture-20261111": "b81d674d983e2bb3b158400192a82c41177fde55",
+    "codex/gen6-independent-collector-20261111": "db4da2e1d8a213c3f4ee4c0df26d1efa49221138",
+    "codex/gen6-medium-ben-correction-20261111": "68018a1888f9c6bfa7ff9b37f1eb634c7a79fe83",
+    "codex/gen6-v7-capture-20261111": "957438c6687dbce8ee8bd4fe07fd0e1fe422611f",
+    "codex/gen7-independent-selfplay-20261112": "168d580f12796f7554bf539d4dff377fc89b814d",
+    "codex/gen7-phase1-independent-20261112": "522eda6d5c13230a541ea40dc9cae497ed4c6088",
+    "codex/gen8-independent-20261112": "1b4ded5340649153bff238c4a89e560b000f868f",
+    "codex/gen71-independent-20261112": "b09c86536d79310599d708d05a16aab7752b2dbe",
+    "codex/launch-gen5-20261110": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
+    "codex/launch-gen5r-20261110": "6d5e8cd587bc3cc942c5856c145e116d3543f6eb",
+    "codex/launch-gen5rz-20261110": "552c13837e7f660464d0fba644c3d557bda59905",
+    "codex/launch-gen5rz-ben-20261110": "4969fc230e90fc53e24c31fa1ede344acd39216a",
+    "codex/launch-gen6-20261111": "b34a40fd7829ebeaaf96b86a424289e3f938a868",
+    "codex/round5-ben-and-timing": "b463e56e8fbdad97251d4680075c3ccda636a848",
+    "docs/generation-cleanup-20261112-gen8": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
+    "docs/generation-cleanup-20261112": "5ddb8c30555558ef41a7a6632a283ffb4a7fff4e",
+    "experiment/ace-ben-timed-20261110": "2058febd2cb664675adba6f5e88941eaea2f3f3c",
+    "experiment/gen5r16-comparisons-20261110": "33ccf5231aa4b0d0049d5f629dd080460cba6397",
+    "experiment/gen5rz-ben192-16-20261110": "8743125af15cf733356560ab9e268ac1157e4b1f",
+    "experiment/representative-pool-tuning-20261110": "feaefe40ecce72425441cc46021b703174812212",
+    "feature/boxctl-20261112": "d5bb39f16ce65d36b899079dbdefee37f04ba852",
+    "feature/gen7-alpha-20261111": "7690c3c2014dd60ee349d8fff41985b4e811ff4e",
+    "feature/gen7-candidate-20261111": "fe382f9b91c3c91ea0950281be5d8bf8e25e82ac",
+    "feature/gen7-prepare-slice-20261112": "ecff8d935f3d93d12d277fd74466eaf521f34944",
+    "feature/gen7-selfplay-20261112": "50990002b64833073b04e1bad025241109033ad3",
+    "feature/gen8-p41-20261112": "119d923645bb6634c3e76680a604b202720bc228",
+    "feature/gen8-prototype-20261112": "695078457205693f48a24c355681aef47ca21935",
+    "feature/gen8-systems-20261111": "dba31ae73d0a27e448caeeb4ce1ed4173ce55e96",
+    "feature/gen8x-arena-20261113": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+    "feature/gen8x-rollout-bot-20261113": "1a779a9e67caef3d362015e621d0de18b5c6553c",
+    "feature/gen9-arena-arrival": "038f562719df385fcc617f090f5e2f2fba838f2d",
+    "feature/gen9-arena-design": "b7679039a1b030beaf0fd173cfa6a05d8f92ccce",
+    "feature/gen9-arena-epochs": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
+    "feature/gen9-arena-experience": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+    "feature/gen9-arena-ratings": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+    "feature/gen9-arena-sim": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+    "feature/gen9-bidding-cards": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
+    "feature/gen9-bidding-design": "a01cab885378cc421b352dc289abc15532026425",
+    "feature/gen9-cohort": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+    "feature/gen9-cohort-amend": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+    "feature/gen9-cohort-sync": "7e0edac702d32e999ba969a9bbda9ec00d3a64b0",
+    "feature/gen9-e9-17": "8caedc7443dfad96eba583cd0ad259f82616faff",
+    "feature/gen9-genx-stu": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+    "feature/gen9-ladder": "e0c1e9dcf31905a836f969e40d7698d47ddf7ac8",
+    "feature/gen9-population": "3153a98d39530feb1f57a8b119fa96de89799104",
+    "feature/gen9-reading-bench": "c877d10bd856df07d8d0634cd75897e67c728a36",
+    "feature/gen9-signals": "d2092edf7cf6c34303768cc45f2b2bf280532263",
+    "feature/gen9-signals-design": "16bf806f974a3b7ba472832bb8c819cc051a6fc0",
+    "feature/gen9-signals-v2": "fe206a2ee926d95acc2caede56bd250c0e4e7823",
+    "feature/gen9-workflow-ben-lanes": "249ab383007645906df2e5a8a00d45ac1e05e2a8",
+    "feature/gen9-workflow-design": "57c43dd6a0793cb61c0c9031a776219990b0888d",
+    "feature/gen9-workflow-tests": "6f9d3cba1e35c3077194106b900dfc9306f63d73",
+    "feature/gen9-workflow-tests-2": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
+    "feature/gen9-workflow-tests-3": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
+    "feature/gen9-workflow-tests-4": "b59bcb3e473614d5174750fb0847923360d07f5c",
+    "feature/gen9-x9": "7da02ba92335cf20a321d0091ffd16f3c4630d1b",
+    "feature/gen9": "b2070f696959074993eeee04b81db0bebbdd6ffc",
+    "feature/sid-play-20261113": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74",
+    "feature/stu-dashboard-20261113": "caf7db0ad1bd37d4b787f98442e4bc2d5af0361f",
+    "feature/work-ledger-20261112": "dd20e3f5fd9a165aa9307fbb089c3f5b72d20155",
+    "feed/usbc-human-20261114": "8381f8e58a93a87c6097945025457d32576f9ec1",
+    "feed/usbc-human-all-20261114": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+    "fix/gen6-feed-health-20261111": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
+    "fix/gen7-forward-gemm-20261113": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+    "fix/gen7-selfplay-capture-codex-20261112": "b8575715457afdf23149bc6908af07e60df93310",
+    "fleet/azure": "4b3594bcf323870fb6208e0cb5115a04829d3dc2",
+    "gh-pages": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+    "mail/coord": "c0fea49bc83509e5ac9e7fb7d77e9a448eb3845f",
+    "main": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+    "ops/gen7-fast-selfplay-cloud-20261111": "d0fbb201e48c4ca9336371b9172b9450ce298098",
+    "ops/gen8-19bbdce5-20261112": "c8a138f21d5b60bf56c30a5f59bad92e728c3bac",
+    "ops/gen71-19bbdce5-20261112": "7d96087a3a501909c0441837b95498001e1923de",
+    "perf/stu-20261114": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
+    "research/auxiliary-auction-play-10000": "5f86e973dedbf4bda7db32e631b58073cf33a003",
+    "research/belief-lab-20261110": "182e74b6d76b899c0a79990221d948da711279df",
+    "research/belief-plus-approx-dds-20261109": "fc795d945c284b80c314c528c03f529ff16ec629",
+    "research/belief-size-comparison": "78e135856ac90d92e0277379db0f5313ff4aea45",
+    "research/belief-v5-attention-screen": "9525d483fec63a2d223df59f5b51dfd7fabb3f8b",
+    "research/belief-v5-impactful-cards": "b3c469fcebfce6d116a0792480d58acebd7f1b48",
+    "research/bidding-actual-outcomes": "1d18faad0a9141c423c2cc1a1bd521b450870c5d",
+    "research/bidding-clean-mixes-20261109": "7ddfb0f1ee0c1c5dc0d642591c1d2d8dacb0d34b",
+    "research/bidding-structure-20261110": "7ef916dd5f102f029ab628cfce93939d97e9dbc9",
+    "research/clean-policy-v5-20261110": "22909ff9feb51ce88d17ea13c39d6b4c1611ff64",
+    "research/conditional-claims-20261113": "baa062c9520ca7d0b3b2b6e33073a3a6696c2543",
+    "research/consistent-strategies-alpha-mu": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
+    "research/dds-bidding-loop": "16834962ede44e72f366ff741a0bb8b4dbf58609",
+    "research/dds-value-quick-20261109": "14068262f4602d64a1494da709b6ae99447ac180",
+    "research/ddsd-corrector-20261110": "6ed8f0d86c5ec3608f8e1167ca3e9964c9242d9c",
+    "research/direct-pairs-current": "221607112587b531c16bdabe9e026e311f23ca4f",
+    "research/gen4-components": "747eef6cdabee2156312330a9a80d7572aee9d3c",
+    "research/gen4-local-supplement": "37be71e640fa7118d5b2d1a12e974762516460a8",
+    "research/gen6-bidding-refresh-20261110": "77b3ff97f00fc375bf33f718ce9f2a4499855cc8",
+    "research/gen6-current-recipe-20261110": "8a23d7d9c21f8fa8cbeacddb8d847ada20435f6e",
+    "research/gen6-policy-69k-20261110": "0c954e08f31284e298c375217ca802d461ac5161",
+    "research/gen6-policy-width96-full1513-20261110": "03b0f16952ae97dbaefc595e7adcd54a9329da8c",
+    "research/gen6-system-aware-policy-20261111": "76b8b722a0a264d982505c02cca51ca59f871992",
+    "research/gen8-layout-budget-20261114": "7da1d0904fd17237b382411444b070272b7ba1c8",
+    "research/gen9-spot-equivalence": "08388083455833f434755e235d5a41a74613fe76",
+    "research/hand-fit-scorer-v1a-20261111": "8ff85d4ae4e204c3b86150295f3c1475e66b9ea0",
+    "research/imp-policy-draft": "d7ee77a8020bb97208cfbd4db5f187174064c078",
+    "research/joint-auction-belief-20261110": "b13baddb6c01346d13ac65848c5cfd4865201a82",
+    "research/large-belief-play-test": "be09f9f8da1ed53c53f7525da1490888733940c0",
+    "research/layout-embedding-20261110": "320b85683744d79f82a594b88708641fa283169c",
+    "research/mixed-fork-generations": "7e84281a1943e71e83b67e63af7433ac795902cb",
+    "research/multiscore-16-32-64": "6e87791efe91686c5e22350b708fa0fb582e41db",
+    "research/outcome-policy-20261109": "f6507f0544ec59caef64589b273ab105142d7d1e",
+    "research/pimc-study-2026-11-08": "6525707e394b7df095ad458cac40835ba8ae5b61",
+    "research/plan-leverage-20261112": "cc12ca17f61fa4d0aa9ef2df1d502c9cd5c41a9b",
+    "research/plan-leverage-g8-20261112": "ac81c663088b1dd0dd8294153d04c08445cc3554",
+    "research/policy-branch-ranking-20261109": "ff5eb5b306c7b1cb4fc4b0b966359657f5dd9582",
+    "research/primary-component-diagnosis": "3ab34d0850122eb78632ee58b117ac284d709f38",
+    "research/reauction-existing-10000": "b7a2de97167d1f1895c58a9d1b8bd6a54d62f14e",
+    "research/rollout-loop-20261113": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+    "research/self-improvement-loop": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
+    "research/selfplay-training-2026-11-08": "8f536af62d3f7e2dd2484139483795312177ced6",
+    "research/shared-beliefs-dds-cache": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
+    "research/sid-net-s0-20261113": "ce3955807dc7a639b55256feffd693bb52f1e378",
+    "research/sid-selfplay-loop-20261113": "183980c600299c3b6c583e972a5546c649de01fd",
+    "research/sure-trick-table-20261112": "2e6ed6db12cba4110f43c29a70823a992c296ea1",
+    "research/three-engine-play-200": "ddac02f7fb6a2db6c15b9a7caa243c3bccc5e28b",
+    "research/v4-belief-and-arena": "7a302234e3dfcc4a62c5ac14886bc801117d9e83",
+    "team/gen9": "598b0e219da837ef6a793239081334243872dd8c",
+    "transfer/ben-lanes-azure-20261112": "d1b0763f9d6f1c6a5876fad1e0d7a6cf0298ea55",
+    "transfer/conditional-claims-raw-20261113": "9209fc9ac3e63a8f89d9e555ebe83e91005a070f",
+    "transfer/dds-bidding-40000-20261110": "b852c86054dfdd1ff792fe4512de65d1ebcd184c",
+    "transfer/gen3-resume-3701": "f6a50e2040124116f27b50acdaee34ba1c3c2f8e",
+    "transfer/gen3-training-feed": "3ddf598944dee097a530c2dd2c3804627fb26bad",
+    "transfer/gen6-candidate-bidder-20261111": "75e451b0cccdca3ade63295999945e70f43d70c9",
+    "transfer/gen6-launch-package-20261111": "1faab8e020800f97ebe85a3f238026f818267dc6",
+    "transfer/gen7-capture-forks-20261111": "5e82f769a0e989ee10a6cb911a793a964d1b6ff5",
+    "transfer/gen7-policy-v4.1-20261112": "7d1ce5e836262c1cac70ea38d3a3255f9dd8c0b0",
+    "transfer/gen7-policy-v4.1-bench-20261112": "1ae9e03afe53f41b7a4e73c55227d2b194676136",
+    "transfer/gen7-policy-v4.1-box-20261112": "6c7cc095f893bb63eb89aeef8a8c65775fe40534",
+    "transfer/gen7-policy-v4.1-families-20261112": "1132bcf0aec10f8c4b16e2290d3f2bc01ea4567e",
+    "transfer/gen7-policy-v4.1-lists-20261112": "984ba4937f321465b70ee621dd1763452f4fe894",
+    "transfer/gen7-policy-v4.1-neartie-20261112": "7b9610dd2ea1982c8da7ca1087dee8767051c7d8",
+    "transfer/gen7-prototype-20261111": "fb617a64f6ca037103b15f37ddda7bc9c949a86a",
+    "transfer/gen7-selfplay-trial-azure2-20261112": "3e35ed6014f9c9389f06c0e3cbc9a302caa58055",
+    "transfer/gen8-p41-reading-20261112": "cf730ee7b76d64145fc7a926210117ce51886330",
+    "transfer/gen8-p41-reading-pools-20261112": "4bb0d1567988e878df7634ccaf422a9880afb5f7",
+    "transfer/gen8-proto-azure1-20261112": "39039afa14cf50ddf6dabc3f90463b91f2ae6785",
+    "transfer/gen8-proto-azure3-20261112": "de801636aaed43af7d3d2337785580b5db7c7c54",
+    "transfer/gen8-proto-azure4-20261112": "81cf64a46f7ff07861efb598c0227e7d734ef2d8",
+    "transfer/gen8-proto-azure6-20261112": "3345c9be9308866bb00a01177995679e5b0a78d1",
+    "transfer/gen9-arena-page-20261113": "99efe33c3926d01fc1b865bfd72c0e2355dc77f0",
+    "transfer/gen9-arrival-20261112": "c9cb57585e5c84e878594f86977f2af748c0b593",
+    "transfer/gen9-arrival-rehearsal-2-20261112": "39f63e5bad34c1a260b61f108d80c3af3132ebf2",
+    "transfer/gen9-arrival-rehearsal-20261112": "4366d9b37d59f99e34d4d2a8817607f26131bbff",
+    "transfer/gen9-arrival-rehearsal-full-20261112": "8d9aa04bf04866e12e0296e203103bb7682760ac",
+    "transfer/gen9-cohort-inputs-20261113": "57ab6a7b3396ba7360e2c68cfd0f422c7c4576c4",
+    "transfer/gen9-d6-arrival-azure4-20261112": "e26a68b83ad697791d358d8d08bf13d23ec43bb8",
+    "transfer/gen9-e9-0-n02-azure4-20261112": "c4fbddb3f0df02ea4c4f538baf62f22f3145fbd3",
+    "transfer/gen9-e9-0-n02e-azure4-20261112": "7f3f8e08821d968e2471493549fb3ea5c1e5d043",
+    "transfer/gen9-e9-0-n04-azure4-20261113": "f467d0d703c37786ec779a1fdc7d4502664e2d94",
+    "transfer/gen9-e9-4-8x-azure4-20261113": "15fdbae79e7f1bc0e451dfdbac86ac37749cc59c",
+    "transfer/gen9-e9-4-r9-azure4-20261113": "e9a3b61660a523a8d5e477119821989173c2e19c",
+    "transfer/gen9-e9-12-c-azure4-20261113": "75b705ad1314f5d29cd08ac8ef907618106f9588",
+    "transfer/gen9-e9-12-u-azure4-20261113": "0d10dd200ce603a4587853e45ff8cda0c225bd1b",
+    "transfer/gen9-e9-12-x-azure4-20261113": "2f897250b67d2ace02ac977b3dce825a291aade0",
+    "transfer/gen9-e9-16-h-v-p-azure4-20261113": "514ab0d17000257bbbada1345d5d3008977bd20d",
+    "transfer/gen9-e9-16-pilot-sandbox-20261112": "fa29bc4a8c76fa94d2cab17ea6c87e7ca46c9848",
+    "transfer/gen9-e9-16-r-v-p-azure4-20261113": "2f6912665206413a3b3fc8ba23450cf3e689e6ff",
+    "transfer/gen9-e9-16-r-v-x-azure4-20261113": "a1f1e9235675e1fb43aa816298775f25eaf604b2",
+    "transfer/gen9-e9-25-azure4-20261114": "c3033825438a2b432e58f7d2a0548aa7600f92eb",
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": "74be4e86bcf7a8192097c47140e1116f8c2fdc46",
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": "7e7c63deee94b92d00a068b6f8714df5cb3199b1",
+    "transfer/gen9-g9-cohort-preflight-azure4-20261113": "5e8242331cee1c78d0963a969a440a2c89531bae",
+    "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": "9a5c7e24a37059f8c7946a138a01479a973fdd26",
+    "transfer/gen9-g9-genx-stu-azure4-azure4-20261114": "03da2c837a739e7d3c76bfd70560f29218e5651f",
+    "transfer/gen71-settings-azure1-20261112": "f119ca8a01ee5711c86f1f3c7d59f44171199b3c",
+    "transfer/graded-alternatives-20261110": "e507c583c8092788361edb73220fc7d3b9f0e84c",
+    "transfer/non-v4-policy-play-20261109": "3daa2b3db0a8404283df03c148c78802bdff1d58",
+    "transfer/plan-leverage-azure2-20261112": "6856afbad41b9a30e043fd499cdd5d456fff7dd2",
+    "transfer/plan-leverage-azure5-20261112": "04fc9614552d4566cc9d532a4426ddaac6c05ee8",
+    "transfer/pre7-test-azure1-20261112": "f7e53a9cf4f8f10ea4654709cac15e0cc10d6665",
+    "transfer/pre7-test-azure2-20261112": "49f592aa4246024f1c30a3074d0f7abd801366fe",
+    "transfer/pre7-test-azure3-20261112": "510435029c4be6b725d2496db01a8b64520bdc67",
+    "transfer/pre7-test-azure4-20261112": "159bd50e593e51afbceecf25b963db245609b6d4",
+    "transfer/rollout-loop-azure1-20261113": "a2fad25fa0e0885e13b6c5f9f0cc2aa48233d084",
+    "transfer/rollout-loop-azure2-20261113": "98e70618c81e9d414dae3510e01dca6aade60f51",
+    "transfer/rollout-loop-azure3-20261113": "026991c9051a52ee8f29e8e51640a35c5e14affe",
+    "transfer/rollout-loop-azure5-20261113": "ce16fddbd5b02ab9bd87a75e205da6933bc95f9d",
+    "transfer/rollout-loop-azure6-20261113": "5ea266e933ee51a1797292882e9f381312e8cb56",
+    "transfer/rollout-loop-sandbox-20261113": "f101792f0f9fbbe06a9c6a6a2cf85e798ab51ccc",
+    "transfer/rollout-net-v1-20261113": "3bd74d0470e6bcb385b31977ac8d77a026895fdf",
+    "transfer/rollout-net-v1-training-families-20261113": "6034eecc750c71788ae10163c55c38c335c7d1e1",
+    "transfer/rollout-net-v2-20261113": "85749ce393bf8826e12ae590b2c86b7776ee3aaa",
+    "transfer/rollout-net-v2w-20261113": "5e4909a5201938079f1c1eee744935a1cc4ab173",
+    "transfer/sid-net-s0-20261113": "1888cc9dbbe66e352ff3d7d4dc8e2df9b42eb6ed",
+    "transfer/v4-worker-standby": "2defcf847ef831a3ce2ffefba1b6ff058ae97356",
+    "transfer/v41-training-families-union-20261112": "fccbbd80504272151e298799878bdd37db632c47",
+    "transfer/x8-azure6-20261113": "59bc53d56239fb481832b6903162ce62eca90065",
+    "work/ledger": "577a6f736c74142102c9be66b88adda35fe9b8a5"
+  },
+  "branch_pages": [
+    100,
+    100,
+    100,
+    47
+  ],
+  "changes": {
+    "new": {},
+    "removed": [],
+    "changed": {
+      "arena-gen6-chatgpt-feed": {
+        "before": "91c0dd13f821f87156c30bef29a2333baeaecfea",
+        "after": "0d4de18661af263fcf713e1c840e2b74da2d428f"
+      },
+      "arena-gen8-19bbdce5-20261112-feed": {
+        "before": "6e32047492430a3768e1b94b1ae01f6d8955964e",
+        "after": "f23b676f034ca8eb7c84fab06e76d424d9b95a55"
+      },
+      "arena-gen8-candidate-codex-20261112-feed": {
+        "before": "1b5fbf7a26ce15ef97128212792c194796a1f759",
+        "after": "3965cdbf245e1fce8c86116b5e84973ba1fd459d"
+      },
+      "arena-gen8-independent-feed": {
+        "before": "49ed6c23197e3d8999e7e554c44f4928f0d01a50",
+        "after": "e423b03bc0ea1b12492657ad4f4641d8a02687ef"
+      },
+      "arena-gen9-azure4-ben64-feed": {
+        "before": "228ad92d79cc7338e98907eb6771d2e00b552f46",
+        "after": "69169d51909ee0fde18fa35dcf60d024beb9d0e9"
+      },
+      "arena-gen9-azure4-feed": {
+        "before": "cabf641649a99594c7264e1fc744235b35da60d2",
+        "after": "f753ff348be3fc7b9e055bb7cc6db554b4bfc827"
+      },
+      "arena-gen9-genx-stu4c-azure4-feed": {
+        "before": "4222711125d8f8bbbb0c3188f62777803d3afbab",
+        "after": "2e01054ec1aa0743cbb883d9b4dfde73c5b260ff"
+      },
+      "box/azure1/control": {
+        "before": "276a9d33949e105a3af225b59d9edd738a7e8ca2",
+        "after": "b3369242c7b7097e114852911f029ff43ee6cb0b"
+      },
+      "box/azure1/status": {
+        "before": "92c4081b1534e7f12e90ae4950d3ef65e517471f",
+        "after": "1c4a400f9f6328bb8a5b664cb23261e4d9bbf92f"
+      },
+      "box/azure2/control": {
+        "before": "f469a5157d02fcf938dc59df941ad59cce592fb1",
+        "after": "0fa50181e351c9e494f2ceea91d0e8346492d236"
+      },
+      "box/azure2/status": {
+        "before": "5b4e8cca697283d191a6e4d83276ac9e34c33b13",
+        "after": "5e1694f0335b4ffa34d4ce75053ca5dbee2f4731"
+      },
+      "box/azure3/control": {
+        "before": "f5cba4f10dab48758c885fcb822c5fce3445a533",
+        "after": "5b03e8ae018098ea3200ee7a22e2f423899b0a64"
+      },
+      "box/azure3/status": {
+        "before": "9933a4adc30acccb9a69bd0f35b070ed6ae88529",
+        "after": "e9f42ba5092d18b46a188352f008664c14c2e95c"
+      },
+      "box/azure4/control": {
+        "before": "a12817daa59d810124472e35b1f0b92ee42f3270",
+        "after": "21abc7e7c7a07dda501810a6eab51f718bf0e727"
+      },
+      "box/azure4/status": {
+        "before": "e7202d08ac79d91513d10f26f36a5a9c542f3121",
+        "after": "8c448cb386e1b4e7db1cbf26648ecab1532d948a"
+      },
+      "box/azure5/control": {
+        "before": "c0c002792cbcdfd5937406c4aa908938508e9d6b",
+        "after": "8a8022309844b4f0efaaee57b6e8ea222e2c71fb"
+      },
+      "box/azure5/status": {
+        "before": "952e27bf203124aaabcbccc2ddc0b2e05e81a1b7",
+        "after": "9828059b15155c2fb7d1244a6e387ef63626609f"
+      },
+      "box/azure6/control": {
+        "before": "b28d289d15a05d26b31fbba7a4ab7cd9f50ef22c",
+        "after": "7c89bc45b4fc60d85fc58e4551ea5d9d7570e430"
+      },
+      "box/azure6/status": {
+        "before": "57fb59d54c26dfbeb42d76aff3dd752631f3d006",
+        "after": "64cb38002873b5f65bec5025b25dc56a6951dd24"
+      },
+      "gh-pages": {
+        "before": "49b58a126db04cf9ef64080a49e39932b7430b6b",
+        "after": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7"
+      },
+      "mail/coord": {
+        "before": "8043f87a8348781f277acc17e3be5370fe975c5f",
+        "after": "c0fea49bc83509e5ac9e7fb7d77e9a448eb3845f"
+      },
+      "research/rollout-loop-20261113": {
+        "before": "42caf9330677d86cad1be452c80ae35316f6b738",
+        "after": "b512fdcdbb871911a627a01d33df5b3529ae875a"
+      },
+      "team/gen9": {
+        "before": "c21b9053a4e2ede3f0bdae602540143ec4e7e6d6",
+        "after": "598b0e219da837ef6a793239081334243872dd8c"
+      },
+      "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+        "before": "db5851f48ad2343923194edbbb2419e53e12f499",
+        "after": "74be4e86bcf7a8192097c47140e1116f8c2fdc46"
+      },
+      "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+        "before": "932282a87e0303fa87f41ef44349288c120de334",
+        "after": "7e7c63deee94b92d00a068b6f8714df5cb3199b1"
+      },
+      "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": {
+        "before": "867f0a0b7b24fc9e5dbd5ed26313d6e95b057a84",
+        "after": "9a5c7e24a37059f8c7946a138a01479a973fdd26"
+      },
+      "transfer/rollout-loop-azure1-20261113": {
+        "before": "9f3968eb46248d33dcd1eb4172522cf6813f6c4a",
+        "after": "a2fad25fa0e0885e13b6c5f9f0cc2aa48233d084"
+      },
+      "transfer/rollout-loop-azure2-20261113": {
+        "before": "8a53a5374854d59998a6a7dfbf66f4fd3f627b03",
+        "after": "98e70618c81e9d414dae3510e01dca6aade60f51"
+      },
+      "transfer/rollout-loop-azure3-20261113": {
+        "before": "d626a4ce1b14504cd31b09ad2fc86ff33e0e19ec",
+        "after": "026991c9051a52ee8f29e8e51640a35c5e14affe"
+      },
+      "transfer/rollout-loop-azure5-20261113": {
+        "before": "e8b040218f7122562fcf40699cc251b8652c2e7d",
+        "after": "ce16fddbd5b02ab9bd87a75e205da6933bc95f9d"
+      },
+      "transfer/rollout-loop-azure6-20261113": {
+        "before": "404bf6ce03e186f75e12be8336e6c8aafdd819ee",
+        "after": "5ea266e933ee51a1797292882e9f381312e8cb56"
+      }
+    }
+  },
+  "checked_files": {
+    "main:AGENTS.md": {
+      "path": "AGENTS.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "sha": "baa9c33d0731279db16654ea23d2a1ae28046fcc"
+    },
+    "main:README.md": {
+      "path": "README.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "sha": "ec8859084463797ea7baa7303e6c5423f603d42f"
+    },
+    "main:docs/current-system.md": {
+      "path": "docs/current-system.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "sha": "b645c00d0a0c774fb76c9982dc21b1c863684f04"
+    },
+    "main:docs/operations.md": {
+      "path": "docs/operations.md",
+      "ref": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
+      "sha": "9c9ea10a7e8fe3e6af27aa160c0f1b1b007cb321"
+    },
+    "source:AGENTS.md": {
+      "path": "AGENTS.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "baa9c33d0731279db16654ea23d2a1ae28046fcc"
+    },
+    "source:README.md": {
+      "path": "README.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "ec8859084463797ea7baa7303e6c5423f603d42f"
+    },
+    "source:docs/current-system.md": {
+      "path": "docs/current-system.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "76562ced63e29a38f8ece67080aa39acbb1d2a58"
+    },
+    "source:docs/operations.md": {
+      "path": "docs/operations.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "9c9ea10a7e8fe3e6af27aa160c0f1b1b007cb321"
+    },
+    "source:configs/round8-candidate.json": {
+      "path": "configs/round8-candidate.json",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "ef7d46f25911557737b2a8da0acfe8f38700bb20"
+    },
+    "source:configs/round8-candidate-ben.json": {
+      "path": "configs/round8-candidate-ben.json",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "50aed7ea04937bd3322913a638373eca5a2f374c"
+    },
+    "source:docs/gen8_candidate_2026-11-12.md": {
+      "path": "docs/gen8_candidate_2026-11-12.md",
+      "ref": "695078457205693f48a24c355681aef47ca21935",
+      "sha": "cadcc0e74cd216811ac547f71223856ca86a2981"
+    },
+    "board": {
+      "path": "BOARD.md",
+      "ref": "7742771e21c985d6d11cda18183db3ff54c628e5",
+      "sha": "571b7e0216775ed6070cec186907fd7c6ef4d52c"
+    },
+    "registry": {
+      "path": "arena/gen6-sources.json",
+      "ref": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+      "sha": "3e289c39830e8a7beab36b12465e34171dde5ca9"
+    },
+    "index": {
+      "path": "arena/index.html",
+      "ref": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+      "sha": "5669dc5ce4cf9069ce7d6b5f4da3fc9342947d30"
+    },
+    "replay": {
+      "path": "arena/replays/common.js",
+      "ref": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+      "sha": "f946fe6078257793f56adc9be5bee7494dbdc2a4"
+    },
+    "peer9": {
+      "path": "configs/round9-cohort.json",
+      "ref": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+      "sha": "906e5ba06f80877352b8dc9453f5461f2e0c09d0"
+    },
+    "peer9ben": {
+      "path": "configs/round9-cohort-ben.json",
+      "ref": "989a493105edd2a576c274b36a0cc3ff5efb7120",
+      "sha": "99325d16b8c4e9767e3390d29679a07da9503803"
+    },
+    "peer8x": {
+      "path": "configs/round8x-v3.json",
+      "ref": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+      "sha": "2c4c4e3e334be01054c2d55d8c5a6d2e8a9fd640"
+    },
+    "peer8xu": {
+      "path": "configs/round8x-v3u.json",
+      "ref": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+      "sha": "0ef9c4843ca4f6d9b4da49ea9fdf2c76eb374a36"
+    },
+    "peer8xboth": {
+      "path": "configs/round8x-v3-both.json",
+      "ref": "3d93d7804bd625e7174f7818719f9917a297ae4c",
+      "sha": "eb3530d71572710c7ff1a5015a38c425c6931e39"
+    },
+    "genx_plan": {
+      "path": "configs/round9-genx-stu.json",
+      "ref": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "sha": "27fa4742e11081e4f34830d213af5d77945a7297"
+    },
+    "stu_plan": {
+      "path": "training/rollout-loop-20261113/PLAN.md",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "f9d82da71afcf24569b90d07a3f72f06a2bb9972"
+    },
+    "human_all_readme": {
+      "path": "README.md",
+      "ref": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+      "sha": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930"
+    },
+    "mail_readme": {
+      "path": "README.md",
+      "ref": "c0fea49bc83509e5ac9e7fb7d77e9a448eb3845f",
+      "sha": "6b47b9ee54a345d5013a1dfaf2d0780f135b9549"
+    },
+    "mail_status": {
+      "path": "status.json",
+      "ref": "c0fea49bc83509e5ac9e7fb7d77e9a448eb3845f",
+      "sha": "fa204a820f53e141ab0da7942d584081c7775502"
+    },
+    "r4c_plan": {
+      "path": "configs/round9-genx-stu-r4c.json",
+      "ref": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "sha": "b0fb4004ab450246274fc6bc6e1cd12deb2860e1"
+    },
+    "r4c_model_manifest": {
+      "path": "models/cardplay/stu-net-r4c-20261113/manifest.json",
+      "ref": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+      "sha": "991bc22dee9272452817a5fbfeb36450f5b61ce9"
+    },
+    "r4c_state": {
+      "path": "recovery/state.json",
+      "ref": "2e01054ec1aa0743cbb883d9b4dfde73c5b260ff",
+      "sha": "d743629df7443fc9f0bfc31d7ad5a782ac5a1603"
+    },
+    "r4c_manifest": {
+      "path": "recovery/manifest.json",
+      "ref": "2e01054ec1aa0743cbb883d9b4dfde73c5b260ff",
+      "sha": "ec9fe37ea0827dc480e14b63d437b8b06a8eeb12"
+    },
+    "r4c_transfer_readme": {
+      "path": "README.md",
+      "ref": "9a5c7e24a37059f8c7946a138a01479a973fdd26",
+      "sha": "585756b75c94d4f6938716a2a8404879ec2fb494"
+    },
+    "layout_readme": {
+      "path": "reports/gen8-layout-budget-2026-11-14/README.md",
+      "ref": "7da1d0904fd17237b382411444b070272b7ba1c8",
+      "sha": "bd19f009f1ae7f18dc6dc09f33b70335407902fe"
+    },
+    "stu_readme": {
+      "path": "training/rollout-loop-20261113/README.md",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "b290d33964162c306874d2fdd177e0f6c633bfa3"
+    },
+    "gen9_state": {
+      "path": "docs/gen9/STATE.md",
+      "ref": "b2070f696959074993eeee04b81db0bebbdd6ffc",
+      "sha": "dee0bd2cd7a151c32a31b15860d5fed2b6254931"
+    },
+    "stu_azure1_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure1.txt",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "f178000915922f6d171316c185265c179fbaa6fd"
+    },
+    "stu_azure3_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure3.txt",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "c99e465686af2801bf7306cf709be7ec7c334294"
+    },
+    "stu_azure3_gen_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure3-gen.txt",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "2e09ee9cead37c07041c492584ffcd4721b16302"
+    },
+    "stu_azure2_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure2.txt",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "52dc0565abebe8a86f9a37f80efef97fa835a94c"
+    },
+    "stu_azure6_jobs": {
+      "path": "training/rollout-loop-20261113/jobs-azure6.txt",
+      "ref": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "sha": "74cc81f332b5c5d16791d7d6abd902b2373c2ade"
+    }
+  },
+  "owned_entries": [
+    {
+      "key": "gen71codexcompare",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.1 · Codex policy comparison and Gen6",
+      "branch": "arena-gen7-1-compare-codex-20261112-feed",
+      "cohort": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "retired": true,
+      "revision": "71a6dc2dbc8985175c476388115bc4f301e7452f"
+    },
+    {
+      "key": "gen7codexselfplaycapture",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7.0 · Codex completed self-play with gap capture",
+      "branch": "arena-gen7-selfplay-capture-codex-20261112-feed",
+      "cohort": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "retired": true,
+      "revision": "09950642e0d40dc68fecf511569bb72935ba7782"
+    },
+    {
+      "key": "gen7codexselfplay",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex initial self-play (capture incomplete)",
+      "branch": "arena-gen7-selfplay-codex-20261112-feed",
+      "cohort": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "retired": true,
+      "revision": "2df00f7cfb102fdefe1874b76ebc294af47a8638"
+    },
+    {
+      "key": "gen7codexphase1",
+      "group": "gen7",
+      "generation": 7,
+      "variant": "7",
+      "environment": "codex",
+      "name": "Gen 7 · Codex completed phase 1 anchors",
+      "branch": "arena-gen7-phase1-codex-20261112-feed",
+      "cohort": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "retired": true,
+      "revision": "dfe3233dec356e48da065702964892354e0db16c"
+    },
+    {
+      "key": "gen6newselfplay",
+      "group": "gen6",
+      "generation": 6,
+      "variant": "6",
+      "environment": "codex",
+      "name": "Gen 6 · completed Codex fast self-play",
+      "branch": "arena-gen6-fast-selfplay-codex-20261111",
+      "cohort": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "retired": true,
+      "revision": "6c7e9f612cd6f634ab6789f45def351edb4acba0"
+    },
+    {
+      "key": "gen8codexcandidate",
+      "group": "gen8",
+      "generation": 8,
+      "variant": "8",
+      "environment": "codex",
+      "name": "Gen8 · Codex main mix (standard and Precision)",
+      "branch": "arena-gen8-candidate-codex-20261112-feed",
+      "cohort": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235"
+    }
+  ],
+  "peer_entry": {
+    "key": "gen9genxstu4cazure4",
+    "group": "gen9",
+    "generation": 9,
+    "variant": "9",
+    "environment": "azure",
+    "name": "Gen X Stu (round 4c) · azure4 (stu4c-put against Gen 8, Gen 9 and Gen 7.1)",
+    "branch": "arena-gen9-genx-stu4c-azure4-feed",
+    "cohort": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a"
+  },
+  "peer_authority": {
+    "authority": "Max, 2026-11-14 00:48 UTC: the Stu team's latest bot into the arena; 00:49: \"We will call it Gen X Stu\"; 01:00: \"Put it into the mix at whatever level you want\"; 02:35: trim the Gen 9 cohort for it.",
+    "feeds": "azure4: arena-gen9-genx-stu-azure4-feed, manifest 66563aba..., stu3-ps (the loop's pure Stu, round 3's rollout net) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9019), two workers. configs/round9-genx-stu.json on feature/gen9-genx-stu at 9bba86b6; job boxq/azure4/g9-genx-stu-azure4.json on team/gen9.",
+    "registered_by": "will (Gen 9), 2026-11-14 02:5x UTC",
+    "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+    "round4c": "From 14 Nov 16:22 UTC: arena-gen9-genx-stu4c-azure4-feed, manifest 17d6186e..., stu4c-put (round 4's control net at the table and in the rollouts, blind) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9021), two workers. configs/round9-genx-stu-r4c.json on feature/gen9-genx-stu at 57d0855f. Round 3's feed ended at 719 boards (revision d959fd31) and is archived. Max, 14 Nov: 'I will have an iteration before long'; to the play server, 'use r4c until further notice'."
+  },
+  "peer_state": {
+    "manifest_identity": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a",
+    "completed": 154,
+    "target": 4000,
+    "contiguous": 154,
+    "by_pair": {
+      "stu4c-put~71s-32": 38,
+      "stu4c-put~8s-32": 77,
+      "stu4c-put~9a-32": 39
+    },
+    "root_games": 308,
+    "tables": 5240,
+    "failures": 0,
+    "epoch": 1794684605.3734272,
+    "complete": false,
+    "blob": "d743629df7443fc9f0bfc31d7ad5a782ac5a1603"
+  },
+  "peer_feed_revision": "2e01054ec1aa0743cbb883d9b4dfde73c5b260ff",
+  "r4c_transfer_readme": "# g9-genx-stu4c-azure4 on azure4\n\nResults of box job `g9-genx-stu4c-azure4` (no experiment, owner will), published by tools/boxq.py on team/gen9. Source `feature/gen9-genx-stu` at `57d0855f`. A transfer branch: never merged into source.\n\nLast published 2026-11-14T19:29:42Z: 153 of 4000 boards, state running.\n",
+  "r4c_transfer_revision": "9a5c7e24a37059f8c7946a138a01479a973fdd26",
+  "issues": [
+    {
+      "number": 22,
+      "title": "Gen 9 queue",
+      "state": "open",
+      "updated_at": "2026-11-14T19:00:07Z",
+      "comments": 0,
+      "body": "<!-- workq -->\n**Gen 9 queue**, Sat 14 Nov 19:00 UTC. Rewritten by `workq` (at most every 10 minutes); everything else: [STATUS.md](https://github.com/maxschireson/Single-Dummy-Bridge/blob/team/gen9/STATUS.md).\n\n**Decisions for Max (0)**: none open.\n\n**Reviews waiting (1)**\n- g9: G9-A6 (g9, 24 h)\n\n**Blocked (2)**\n- E9-18 Leave-one-bot-out: how well the net predicts a bot it never : Waits on Max: a training box for full-size nets (docs/gen9/arena-selfplay.md section 10, i\n- G9-A5 Base swap: replace the Gen 8 snapshot when Gen 8 is on main\n\n**In progress (7)**: bill: E9-11 · dave: G9-D10 · sam: E9-4, E9-6, G9-S4, G9-S7 · will: G9-W5\n**Box azure4**: g9-cohort-azure4 running 5,232/10,000, 172/h, ETA 22:40 · g9-cohort-ben64-azure4 running 1,497/2,000, 42/h, ETA 06:47 · g9-genx-stu4c-azure4 running 124/4,000, 44/h, ETA 10:01 · e9-0-n04 paused 387/800 · e9-16-h-v-p paused 269/800\n**Resolved today**: 2. **Open, not started**: 10.\n**Next checkpoint**: none listed\n\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_"
+    }
+  ],
+  "prs": [
+    {
+      "number": 33,
+      "title": "play/: play bridge with Sid: analysis, Sid in your seat, history, replays; Sid = SiD (rollout) Stu R4c",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-14T17:28:18Z",
+      "head": "e7f61d7450f1e0fd3853d1b153d224efec8d3b74",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 34,
+      "title": "gen7_net: faster suit-net forward pass (~2.7x; rollouts ~2.4x), same outputs",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-13T19:30:14Z",
+      "head": "8a45f23ea35fa335fcccf94cb70ad920b77825a7",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 30,
+      "title": "G9-X2: Gen 9 readers on the reading bench (tricks saved a board beside nats)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-13T06:22:17Z",
+      "head": "c877d10bd856df07d8d0634cd75897e67c728a36",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 29,
+      "title": "Gen 9 experience pipeline (G9-D7) and the arrival run's runner (G9-D6)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-13T05:36:57Z",
+      "head": "d029c7da6cf21c675e4735a5bb48de5f5bcdf9b0",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 32,
+      "title": "Gen 7 → Gen 8 generation cleanup: close out Gen 7, Gen 8 onto main",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T19:30:53Z",
+      "head": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 31,
+      "title": "run_tests.py: count skips per file; refuse a missing --files name",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T18:47:17Z",
+      "head": "b59bcb3e473614d5174750fb0847923360d07f5c",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 26,
+      "title": "Gen 9 bidding: distance and detection (B4), real cards (B6), replay reader (B7), reports (WIP)",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T10:01:53Z",
+      "head": "82ab89fe4b7816f24a0e96df020342ffe66e2445",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 28,
+      "title": "run_tests.py: a test file with no tests found fails the run (G9-W8 follow-up)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T08:56:10Z",
+      "head": "56251232ee7523d4cadb3a1070c0d3dc56a90ed9",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 27,
+      "title": "Gen 9 population arena on one machine: packages, registry, epochs, controller (G9-D4)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T08:24:40Z",
+      "head": "b565182a6f58a7a6436df5a3a9d06467a4e977a9",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 25,
+      "title": "G9-W3 follow-up: run pytest-style test files; --prepare idempotent for all 13 releases",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:54:14Z",
+      "head": "1c67beebb0746a6e7c41a59c15fe0fa74f6bd166",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 20,
+      "title": "G9-W3: scripts/run_tests.py, prepare an environment and run every test with honest skips",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:32:55Z",
+      "head": "75c9f2c3fe29648578795a027162ff582ee91b6b",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 21,
+      "title": "Gen 9 ratings-v1 from every published result, Gen 5 to 7.1 (G9-D3)",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T07:29:11Z",
+      "head": "ce77aebce8459daded2f39b68df9b15f9c51f2bc",
+      "base": "feature/gen9-arena-sim",
+      "draft": false
+    },
+    {
+      "number": 19,
+      "title": "Gen 9 experience store: envelopes, order-free merge, epoch snapshots (G9-D5)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "fee94e2a1c4a8126451cd0c9b288f344b55f9a2a",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 18,
+      "title": "Gen 9 bidding: rule filter over hand types, card meanings, cards for the rule bidder (G9-B2, WIP)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "f1b731e4a3896093e39a9bc629cbffb4afa502db",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 17,
+      "title": "Gen 9 arena simulator and E9-5: promotion rules and schedules (G9-D2)",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T07:26:25Z",
+      "head": "bd1b81b7fbbf5550762cfbfe2c27614870442381",
+      "base": "feature/gen9",
+      "draft": false
+    },
+    {
+      "number": 15,
+      "title": "Preserve gap and guess capture in Gen7 self-play collection",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-12T04:45:18Z",
+      "head": "b8575715457afdf23149bc6908af07e60df93310",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 14,
+      "title": "Gen 6 → Gen 7 cleanup: close out Gen 6, bring Gen 7 source and docs onto main",
+      "state": "closed",
+      "merged": true,
+      "updated_at": "2026-11-12T03:13:25Z",
+      "head": "5ddb8c30555558ef41a7a6632a283ffb4a7fff4e",
+      "base": "main",
+      "draft": false
+    },
+    {
+      "number": 13,
+      "title": "Show collector freshness and supervise the primary fast-only run",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T09:22:44Z",
+      "head": "b364ae758fd9e4b5b721085b4c39a69f24a20688",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 9,
+      "title": "Deferred: evaluate nested 16/32/64 scoring for current Gen6",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:49Z",
+      "head": "6e87791efe91686c5e22350b708fa0fb582e41db",
+      "base": "research/mixed-fork-generations",
+      "draft": true
+    },
+    {
+      "number": 1,
+      "title": "Add consistent strategy search, certified partitions and cost benchmarks",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:47Z",
+      "head": "1aaf93aaed441ac39470cabf9110b60e9bcfa9df",
+      "base": "main",
+      "draft": true
+    },
+    {
+      "number": 2,
+      "title": "Launch combined belief-policy v2 self-improvement with time-aware evaluation",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:46Z",
+      "head": "c73c04c184b6a8c289d36ea5dda23e297db5c0a7",
+      "base": "research/three-engine-play-200",
+      "draft": false
+    },
+    {
+      "number": 3,
+      "title": "Train bidding through DDS-only paired-IMP self-play",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:44Z",
+      "head": "16834962ede44e72f366ff741a0bb8b4dbf58609",
+      "base": "research/self-improvement-loop",
+      "draft": false
+    },
+    {
+      "number": 4,
+      "title": "Follow-up: integrate missing bidding-to-belief export and prediction tools",
+      "state": "open",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:43Z",
+      "head": "c78f9fb5b354aa6adb43bae6fa8548c7eda9f422",
+      "base": "research/dds-bidding-loop",
+      "draft": true
+    },
+    {
+      "number": 5,
+      "title": "Train two belief sizes with pooled auctions and public play",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:41Z",
+      "head": "78e135856ac90d92e0277379db0f5313ff4aea45",
+      "base": "research/dds-bidding-loop",
+      "draft": true
+    },
+    {
+      "number": 6,
+      "title": "Promote larger belief net using prediction validation; collect mixed play at 16 samples",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:40Z",
+      "head": "be09f9f8da1ed53c53f7525da1490888733940c0",
+      "base": "research/belief-size-comparison",
+      "draft": true
+    },
+    {
+      "number": 7,
+      "title": "Give the policy direct auction inputs and learn from random fork IMP audits",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:38Z",
+      "head": "d7ee77a8020bb97208cfbd4db5f187174064c078",
+      "base": "research/large-belief-play-test",
+      "draft": true
+    },
+    {
+      "number": 8,
+      "title": "Run mixed branching play generations with a shared validated40k bidder",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:37Z",
+      "head": "7e84281a1943e71e83b67e63af7433ac795902cb",
+      "base": "research/imp-policy-draft",
+      "draft": false
+    },
+    {
+      "number": 10,
+      "title": "Run and publish a recovered six-bot arena with Gen4 policy/belief hybrids",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:35Z",
+      "head": "a7e00fb0b6241166da847661788dc82b8091761e",
+      "base": "research/v4-belief-and-arena",
+      "draft": true
+    },
+    {
+      "number": 11,
+      "title": "Prepare v5 roster, BEN 32-sample matches and dashboard decision timing",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:33Z",
+      "head": "b463e56e8fbdad97251d4680075c3ccda636a848",
+      "base": "codex/gen4-component-ablation",
+      "draft": false
+    },
+    {
+      "number": 12,
+      "title": "Launch Gen5 with 32-vs-historical, BEN 16 and 192-vs-32 control",
+      "state": "closed",
+      "merged": false,
+      "updated_at": "2026-11-11T03:53:32Z",
+      "head": "ae4bb89f0f72b7f6bfd35c58178f085ec40d6606",
+      "base": "codex/round5-ben-and-timing",
+      "draft": false
+    }
+  ],
+  "issue_comments": [],
+  "review_comments": [],
+  "reviews32": [],
+  "reviews33": [],
+  "reviews34": [],
+  "board_commits": [],
+  "research_commits": [
+    {
+      "sha": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "date": "2026-11-14T18:43:39Z",
+      "message": "Round 4 adopted (stu4c); the exponent counted on the pool; rows a CPU-second; the net has no train/held-out gap at the pool's size\n\nREADME: the adoption without the full gate, the exponent with the pool as denominator, what a record costs and holds (the\narena's fork records against the self-play here), disk and memory a row, and rollout net v2 scored on rows it was trained on\nagainst held-out deals. PLAN: Max's decisions from 15:50 to 18:02 UTC. The width test (1,536 wide on the pool) runs on azure5.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "pages_commits": [
+    {
+      "sha": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+      "date": "2026-11-14T18:59:53Z",
+      "message": "Arena ladder: refresh (2026-11-14T18:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    }
+  ],
+  "commit_details": {
+    "b512fdcdbb871911a627a01d33df5b3529ae875a": {
+      "sha": "b512fdcdbb871911a627a01d33df5b3529ae875a",
+      "message": "Round 4 adopted (stu4c); the exponent counted on the pool; rows a CPU-second; the net has no train/held-out gap at the pool's size\n\nREADME: the adoption without the full gate, the exponent with the pool as denominator, what a record costs and holds (the\narena's fork records against the self-play here), disk and memory a row, and rollout net v2 scored on rows it was trained on\nagainst held-out deals. PLAN: Max's decisions from 15:50 to 18:02 UTC. The width test (1,536 wide on the pool) runs on azure5.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "42caf9330677d86cad1be452c80ae35316f6b738"
+      ],
+      "files": [
+        {
+          "filename": "training/rollout-loop-20261113/PLAN.md",
+          "status": "modified",
+          "patch": "@@ -309,6 +309,13 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel\n | 09:39 | \"If we aren't sure we can do a R4a and an R4b\" | round 4 in two nets: `stu4` with every human table, `stu4c` without |\n | 09:37 | the USBC analysis waits until this and round 4 are driven | the claims-played-out rescoring is paused at 99 of 270 sessions |\n | 15:39 | \"If there is not a clear gain from the human boards that makes it through, I would rather not use them\" | `stu4c` is round 4's net unless `stu4` leads it by more than two SEs inside the bot (`h4c-pst`, or the gate's first 512 deals each); then the gate's time goes to `stu4c` alone |\n+| 15:50 | \"I kinda like the idea of being trained only on bots\" | `stu4c` is round 4's net |\n+| 17:11 | \"Should we experiment with different rollout mechanisms?\" | `bench/value_check.py` (the values are optimistic for the side deciding), `bench/seat_variants.py` |\n+| 17:27 to 17:42 | \"Maybe we should be doing bigger rounds between 'in the bot' tests. Too much time testing relative to learning\"; the long test \"every few releases\"; \"cut releases less often - tripling?\" | rounds judged on the offline test and the nets-alone match; the BEN gate for a change of mechanism or a release; the next cut at about three times the loop's tables |\n+| 17:34, 17:57 | \"I think we should likely adopt\"; \"New collections should flip\" | `stu4c` in the one-net self-play (`sp4t`, `sp4tb`); the gate stopped at 698 deals |\n+| 17:57 | \"We should continue collecting gen (whichever)\"; \"If it's by rows we should make sure we have full rows. Do we have enough disk or can we reorganize the process?\" | Gen 8's self-play on azure1 and azure3; rows compressed and unmerged (disk is not the limit, the trainer's memory is); the arena's fork records give 2.7 times the rows a CPU-second |\n+| 18:02 | \"we can reconfigure our mix of azure boxes if we need more memory or disk\" | proposed, not done: azure5 to 16 cores and 128 GB; held until the width test says whether a larger net pays |\n+| 17:43 | \"Do we need a wider net?\" | the pool-trained net has no gap between trained-on and held-out rows; the width test (1,536 wide on the pool) on azure5 |\n \n ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)\n "
+        },
+        {
+          "filename": "training/rollout-loop-20261113/README.md",
+          "status": "modified",
+          "patch": "@@ -448,6 +448,52 @@ The engine's stage already has the settings to test it (`seat` top or draw, `pow\n `power_other`, `cut_other` for the side not deciding); at the table the two tried (top card, power 2) were within\n +-0.17 of the plain draw over 1,000 deals each, which cannot see 0.1.\n \n+## Round 4 adopted; the gate, the rows and the net's size (14 November, 17:27 to 18:45 UTC)\n+\n+**Adopted without the full gate** (Max, 17:27: \"Too much time testing relative to learning\"; 17:34: \"I think we should likely\n+adopt. I also don't know if it's even worth the long test; maybe we only do that every few releases?\"; 17:57: \"New collections\n+should flip\"). stu4c plays the one-net self-play on azure2 (`sp4t`, from 17:41) and azure6 (`sp4tb`, 17:43). The BEN gate was\n+stopped at 698 deals of stu4c: on its first 512, +0.01 +- 0.17 against BEN and +0.10 +- 0.20 by deal against round 3 (it read\n++0.36 at 306 deals and +0.17 at 466). A full gate (2,048 deals, 5.3 hours of a box) resolves 0.10; a round moves the net alone\n+by about 0.1 and the bot by a quarter of that, so rounds are judged on the offline test and the nets-alone match, and the gate\n+is kept for a change of mechanism or a release.\n+\n+**The exponent, counted on the pool.** The 0.37 of the Gen 7 series is per doubling of everything the net trains on. The pool\n+before the loop is 30.4M rows; round 3 added 1.15M, round 4 another 3.6M (1.26M of Stu's, 0.65M of Gen 8's self-play, 1.7M of\n+the arena's): +11.6% from round 3 to round 4 (+4.0% counting Stu's rows alone), for which 0.37 predicts a fall of 4.0% (1.4%)\n+in tricks given up; measured 1.8% and 2.4%. A Stu table counts by its rows (about 41), the low line of the three guessed\n+before round 3. (I first divided by the growth of Stu's tables and reported an exponent of 0.02 to 0.03: the wrong\n+denominator.)\n+\n+**Rows a CPU-second** (250 arena records and 150 of each self-play, from the records' own CPU):\n+\n+| Records | Tables a record | Rows a record | CPU-s a record | Rows a CPU-s |\n+| --- | --- | --- | --- | --- |\n+| the arena's (Gen 8 and 9, two auctions, audit and gap forks) | 36.3 (3.1 root, 33.2 forks) | 764 | 85 | 9.0 |\n+| Gen 8's self-play here (`sg8t`, one table, no forks) | 1 | 41 | 12.5 | 3.3 |\n+| Stu's self-play (`sp3s`) | 1 | 36 | 17.2 | 2.1 |\n+\n+The arena's collector (gap forks) is not in this branch's runner. Round 4 used 1.7M of the 17.6M arena rows on hand. On disk a\n+row is 756 bytes as the sets are written (the pool file is 23 GB, and each net had a merged copy), 51 bytes compressed (the\n+published blocks); in the trainer's memory 465 bytes. azure1 stood idle from 17:15 to 18:09 (its job list had ended).\n+\n+**The net's size is the limit at the pool's size** (Max, 17:43: \"Do we need a wider net?\"). Rollout net v2 (768 wide, 1.74M\n+parameters, 5 epochs on the pool) scored on 400,646 rows it was trained on and on the held-out deals (`freshB`, 123,142 rows):\n+\n+| Bot | Log-loss: trained-on, held-out | Exact card | Tricks given up |\n+| --- | --- | --- | --- |\n+| 71s-32 | 0.4339, 0.4552 | 0.8267, 0.8194 | 0.0182, 0.0196 |\n+| 8s-32 | 0.4380, 0.4581 | 0.8289, 0.8216 | 0.0218, 0.0223 |\n+| 8c-32 | 0.4427, 0.4418 | 0.8291, 0.8270 | 0.0229, 0.0210 |\n+| 5RZ32 | 0.5575, 0.5682 | 0.7704, 0.7602 | |\n+| 1 | 1.0015, 1.0048 | 0.4816, 0.4809 | |\n+\n+It does as badly on the rows it has seen as on rows it has not, so more rows of this kind can close only that small gap. At\n+3.7M rows the same net was far from it (`exp-strong`, 768 wide: training loss 0.36 against 0.79 held out; 512 against 768 wide\n+there: tricks given up 0.0312 against 0.0305). What it does not show is that a larger net does better: what is left may be\n+noise in the labels. **The width test** (`loop-width` on azure5 from 18:37 UTC, its Gen 8 collection paused): v2's recipe at\n+1,536 wide (four times the parameters) on the pool's rows, scored on the same held-out deals; 47 minutes an epoch.\n+\n ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)\n \n lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64."
+        }
+      ]
+    },
+    "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7": {
+      "sha": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+      "message": "Arena ladder: refresh (2026-11-14T18:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "49b58a126db04cf9ef64080a49e39932b7430b6b"
+      ],
+      "files": [
+        {
+          "filename": "arena/ladder.json",
+          "status": "modified"
+        }
+      ]
+    }
+  },
+  "research_plan_header": "# Stu: the plan\n\n**Work in progress, research only.** Kept by the loop session (`https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j`).\nThis page is what is intended and why. What exists and how to run it: [README.md](README.md). What each run is:\n`runs.json`. Who decided what and when, and who holds which box: the board (`box/coordination`, `BOARD.md`, entries\nsigned `loop`). Last revised 13 November 2026, 11:40 UTC.\n\n## The aim\n\nMax: \"I want to eventually build a bot that beats human experts.\" The route he chose on 13 November: a bot whose\ncards come from playing positions out from each seat's own view, not from double-dummy search, improved round by round\non its own games, with the trick at which playouts take over from the search pushed earlier over time (\"we will push\nthe rollout ",
+  "mail_status": {
+    "version": "1.0",
+    "box": "azure1",
+    "state": "waiting for the mailbox secret",
+    "last_cycle": "2026-11-14T18:45:29Z",
+    "last_error": null,
+    "time": "2026-11-14T18:45:29Z",
+    "sent_total": 0,
+    "last_uid": 0
+  },
+  "index_retains_ladder": true
+}
