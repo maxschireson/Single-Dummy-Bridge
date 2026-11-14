@@ -1,22 +1,22 @@
 {
  "pair": "stu3-put~ben200",
- "boards": 50,
- "cpu_per_board": 29.75,
+ "boards": 64,
+ "cpu_per_board": 29.41,
  "common": {
-  "imps_per_board": -0.6,
-  "se": 0.6664,
-  "boards": 50,
-  "won": 20,
-  "lost": 15,
-  "flat": 15
+  "imps_per_board": -0.3281,
+  "se": 0.5713,
+  "boards": 64,
+  "won": 24,
+  "lost": 20,
+  "flat": 20
  },
  "native": {
-  "imps_per_board": -0.6,
-  "se": 0.6664,
-  "boards": 50,
-  "won": 20,
-  "lost": 15,
-  "flat": 15
+  "imps_per_board": -0.3281,
+  "se": 0.5713,
+  "boards": 64,
+  "won": 24,
+  "lost": 20,
+  "flat": 20
  },
  "failures": 0,
  "boards_per_hour": 48
