@@ -1,30 +1,30 @@
 {
-  "updated": "2026-11-14T21:10:15Z",
+  "updated": "2026-11-14T21:12:16Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
     {
       "name": "mechanism-reader",
       "pair": "rx-reader~rx-control",
-      "boards": 50,
-      "cpu_per_board": 35.29,
+      "boards": 100,
+      "cpu_per_board": 34.28,
       "common": {
-        "imps_per_board": 0.8,
-        "se": 0.6101,
-        "boards": 50,
-        "won": 12,
-        "lost": 9,
-        "flat": 29
+        "imps_per_board": 0.95,
+        "se": 0.4066,
+        "boards": 100,
+        "won": 28,
+        "lost": 16,
+        "flat": 56
       },
       "native": {
-        "imps_per_board": 0.8,
-        "se": 0.6101,
-        "boards": 50,
-        "won": 12,
-        "lost": 9,
-        "flat": 29
+        "imps_per_board": 0.95,
+        "se": 0.4066,
+        "boards": 100,
+        "won": 28,
+        "lost": 16,
+        "flat": 56
       },
       "failures": 0,
-      "boards_per_hour": 506
+      "boards_per_hour": 610
     },
     {
       "name": "mechanism-sham",
