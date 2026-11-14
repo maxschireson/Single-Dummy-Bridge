@@ -311,3 +311,26 @@
 2026-11-14T15:32:24Z start h4c3-n stu4c-n~stu3-n seed 131 first 30000 deals 4000 workers 8  (source a470efe, nets fp32)
 2026-11-14T15:37:52Z end h4c3-n: exit 0
 2026-11-14T15:37:52Z start h4c-pst stu4-pst~stu4c-pst seed 131 first 36000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:29Z end h4c-pst: exit 0
+2026-11-14T16:33:29Z jobs-azure5-r4.txt has ended; back to the collection
+2026-11-14T16:33:29Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:29Z end l0b-stu0: exit 0
+2026-11-14T16:33:29Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:29Z end l0b-p: exit 0
+2026-11-14T16:33:29Z start s8-greedy g8-greedy~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:29Z end s8-greedy: exit 0
+2026-11-14T16:33:29Z start s8-patient g8-patient~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:29Z end s8-patient: exit 0
+2026-11-14T16:33:29Z start s8-active g8-active~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:30Z end s8-active: exit 0
+2026-11-14T16:33:30Z start s8-passive g8-passive~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:30Z end s8-passive: exit 0
+2026-11-14T16:33:30Z start s8-high g8-high~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:30Z end s8-high: exit 0
+2026-11-14T16:33:30Z start s8-low g8-low~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:30Z end s8-low: exit 0
+2026-11-14T16:33:30Z start s8-greedy0 g8-greedy0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:30Z end s8-greedy0: exit 0
+2026-11-14T16:33:30Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)
+2026-11-14T16:33:30Z end s8-passive0: exit 0
+2026-11-14T16:33:30Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source a470efe, nets fp32)
