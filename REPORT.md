@@ -9,7 +9,7 @@ Development-only; these small samples do not establish strength.
 | Run | Boards | IMP/board ± SE | Python CPU s/board (solver excluded) | Failures |
 | --- | ---: | ---: | ---: | ---: |
 | calibration-c1 | 16 | -2.4375 ± 1.1104 | 33.95 | 0 |
-| extended-recursive32 | 5 | -1.0 ± 0.7746 | 48.64 | 0 |
+| extended-recursive32 | 13 | -1.5385 ± 1.0415 | 55.09 | 0 |
 | smoke-flat32 | 16 | -2.0 ± 0.9129 | 23.86 | 0 |
 | smoke-recursive32 | 16 | -0.4375 ± 0.8707 | 51.52 | 0 |
 | smoke-selective32 | 16 | -0.9375 ± 0.7609 | 52.77 | 0 |
@@ -25,8 +25,8 @@ Development-only; these small samples do not establish strength.
 
 | Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| rx2-recursive32 | 164.05 | 160.71 | 2.92 | 535.0 | 0.0 |
-| rx2-control | 77.68 | 75.94 | 1.48 | 0 | 0.0 |
+| rx2-recursive32 | 501.67 | 486.62 | 13.33 | 1547.0 | 0.0 |
+| rx2-control | 227.01 | 218.37 | 7.97 | 0 | 1.0 |
 
 ## smoke-flat32 actor costs
 
