@@ -86,7 +86,9 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
-             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti', 'stu0-pst', 'stu3-psta', 'stu3-pstb', 'stu3-psu', 'stu3-putb'])   # every bot that claims and mixes as Stu does
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti', 'stu0-pst', 'stu3-psta', 'stu3-pstb', 'stu3-psu', 'stu3-putb',
+             'stuhf-pst', 'stubf-pst', 'stumf-pst', 'stuhs-pst', 'stubs-pst',
+             'stum10-pst', 'stum10h-pst', 'stum10h4-pst', 'stus10-pst', 'stus10h-pst'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -97,6 +99,7 @@ NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
 R2S = 'models/cardplay/stu-net-r2s-20261113/policy.npz'        # train-r2s/policy.npz on the same branch
 R3A = 'models/cardplay/stu-net-r3a-20261113/policy.npz'        # train-r3a/policy.npz on the same branch: the interim round
 R3 = 'models/cardplay/stu-net-r3-20261113/policy.npz'          # train-r3/policy.npz on the same branch
+HUMAN = 'models/cardplay/stu-exp-human-20261114'               # exp_human.sh: hf, bf, mf, hs, bs .npz
 STRONG = 'models/cardplay/stu-exp-strong-20261114/strong.npz'  # exp_strong.sh: from Gen 8 card play's rows of v2's set only
 MIX = 'models/cardplay/stu-exp-strong-20261114/mix.npz'        # exp_strong.sh: as many rows of v2's set, bots in its proportions
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
@@ -318,6 +321,30 @@ def main():
         bots[f'{xid}-tw'] = dict(copy.deepcopy(x8[xid]), label=f'{xid} under a second id, for self-play on the USBC deals')
     bots['stu3-putb'] = copy.deepcopy(bots['stu3-put'])
     bots['stu3-putb']['label'] = bots['stu3-put']['label'] + ' (under a second id, for blind self-play)'
+    # Max, 09:25 to 09:39 UTC on 14 November: should the USBC's adult boards (2021 to 2023, one table a deal with an auction
+    # our bidder knows; usbc/human_episodes.py) go into round 4? A net trained on the experts' cards against one trained on as
+    # many of the one-net SiD's self-play boards, each fine-tuned from round 3's net and each from scratch, alone and inside
+    # the one-net rollout bot (exp_human.sh). hf/hs: the human boards (the net is told every seat is usbc); bf/bs: the bot
+    # boards (every seat stup0); mf: both together, playing as stup0, which is how round 4 would use the human boards.
+    for tag, own, what in (('hf', 'usbc', "round 3's net fine-tuned on the USBC's human boards"),
+                           ('bf', 'stup0', "round 3's net fine-tuned on as many SiD self-play boards"),
+                           ('mf', 'stup0', "round 3's net fine-tuned on the human boards and the SiD boards together, playing as SiD"),
+                           ('hs', 'usbc', "a net trained from scratch on the USBC's human boards"),
+                           ('bs', 'stup0', 'a net trained from scratch on as many SiD self-play boards'),
+                           # Max, 09:43 UTC: the human boards with a medium set of other boards, and with more weight
+                           ('m10', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards"),
+                           ('m10h', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and the human boards"),
+                           ('m10h4', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and the human boards four times over"),
+                           ('s10', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards'),
+                           ('s10h', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards and the human boards')):
+        path = f'{HUMAN}/{tag}.npz'
+        names = {'self': own, '*': own}
+        bots[f'stu{tag}-n'] = alone(f'{what}, alone: its first card at every trick, no search, no rollouts, no claims', path, names)
+        bots[f'stu{tag}-n']['label'] = bots[f'stu{tag}-n']['label'].replace('Stu round 0 ladder: ', 'Human-boards experiment: ')
+        b = dict(copy.deepcopy(bots['stu3-pst']), rollout_policy=path, gen7_policy=path)
+        b['x8']['names'] = dict(names)
+        b['label'] = f'Human-boards experiment: the one-net SiD (rollouts on the settings of stu3-pst) with {what} inside and at the table'
+        bots[f'stu{tag}-pst'] = b
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])
