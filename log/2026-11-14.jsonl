@@ -66,3 +66,4 @@
 {"at": "2026-11-14T09:07:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "running"}
 {"at": "2026-11-14T09:08:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "failed"}
 {"at": "2026-11-14T09:08:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-25", "note": "running"}
+{"at": "2026-11-14T09:13:00Z", "by": "will", "op": "send", "target": "g9/20261114T0913Z-will-cohort-refused-7e0edac7-pinned", "note": "Cohort refused 7e0edac7 (Pinned generation source changed); job failed at 09:08, spec untouched: please replace back to 46b7e004"}

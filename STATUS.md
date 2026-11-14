@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 09:08 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 09:13 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -112,7 +112,7 @@ Generated 2026-11-14 09:08 UTC by `tools/workq.py` after a change by `azure4`. D
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 100 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
 | dave | Dynamic arena lead | 11-13 10:14 | 37 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-14 08:07 | 28 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-14 08:07 | 29 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 40 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-14 08:59 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
@@ -120,6 +120,7 @@ Generated 2026-11-14 09:08 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| g9 | will | 11-14 09:13 | [Cohort refused 7e0edac7 (Pinned generation source changed); job failed at 09:08, spec untouched: please replac](inbox/g9/20261114T0913Z-will-cohort-refused-7e0edac7-pinned.md) |
 | g9 | will | 11-14 09:03 | [G9-B8 resolved (accepted): Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and s](inbox/g9/20261114T0903Z-will-g9-b8-resolved-accepted-card-i.md) |
 | bill | will | 11-14 09:03 | [G9-B8 resolved (accepted): Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and s](inbox/bill/20261114T0903Z-will-g9-b8-resolved-accepted-card-i.md) |
 | bill | g9 | 11-14 08:11 | [New task for you: G9-B10, Card intake, second part: an older ACBL card, a card read from photos alone, a publi](inbox/bill/20261114T0811Z-g9-new-task-for-you-g9-b10-card-i.md) |
@@ -134,7 +135,6 @@ Generated 2026-11-14 09:08 UTC by `tools/workq.py` after a change by `azure4`. D
 | g9 | will | 11-14 02:59 | [e9-25 ran at 02:47 and failed: BEN keras layout (KeyError layers/dense/vars/0)](inbox/g9/20261114T0259Z-will-e9-25-ran-at-02-47-and-failed.md) |
 | g9 | will | 11-14 02:45 | [Max: 'Trim cohort now' (02:35). Cohort main now 4 cores / 4 workers, draining for a retry; Gen X Stu starting](inbox/g9/20261114T0245Z-will-max-trim-cohort-now-02-35-coho.md) |
 | dave | will | 11-14 02:45 | [Max: 'Trim cohort now' (02:35). Cohort main now 4 cores / 4 workers, draining for a retry; Gen X Stu starting](inbox/dave/20261114T0245Z-will-max-trim-cohort-now-02-35-coho.md) |
-| g9 | will | 11-14 02:33 | [Correction: I am not editing the cohort job (owner/lead only); Gen X Stu waits for free cores](inbox/g9/20261114T0233Z-will-correction-i-am-not-editing-th.md) |
 
 ## Box queue
 
