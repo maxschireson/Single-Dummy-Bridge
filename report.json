@@ -1,27 +1,27 @@
 {
-  "updated": "2026-11-14T22:06:48Z",
+  "updated": "2026-11-14T22:08:49Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
     {
       "name": "mechanism-guarantee",
       "pair": "rx-guarantee~rx-control",
-      "boards": 250,
-      "cpu_per_board": 33.89,
+      "boards": 300,
+      "cpu_per_board": 33.74,
       "common": {
-        "imps_per_board": 0.28,
-        "se": 0.2513,
-        "boards": 250,
-        "won": 57,
-        "lost": 41,
-        "flat": 152
+        "imps_per_board": -0.0133,
+        "se": 0.23,
+        "boards": 300,
+        "won": 64,
+        "lost": 55,
+        "flat": 181
       },
       "native": {
-        "imps_per_board": 0.28,
-        "se": 0.2513,
-        "boards": 250,
-        "won": 57,
-        "lost": 41,
-        "flat": 152
+        "imps_per_board": -0.0133,
+        "se": 0.23,
+        "boards": 300,
+        "won": 64,
+        "lost": 55,
+        "flat": 181
       },
       "failures": 0,
       "boards_per_hour": 741
