@@ -78,6 +78,27 @@ to 0.71 ms at 512 rows). It was 9% of a bf16 table: self-play, the same 6 boards
 **Run-to-run differences.** Twice now a board played identical code differently from about card 10. The claim
 solver's time limits (`leaf_ms`, `defender_ms`) are the likely cause; card-for-card checks need two runs of each side.
 
+## 4. Policy logits from the legal suits only (done: `gen7_net.forward_policy`, `Bf16Forward.policy`)
+
+`log_policy_arrays` needs only the policy head of the legal cards. 55% of rollout rows follow suit (one suit holds
+every legal card), so three of their four suit decodings, and four of the five outputs of each, can be skipped.
+Forward pass: fp32 +5-15%, bf16 +0-12% by batch size. End to end in the sandbox within noise (9.04 and 9.03 against
+8.64 and 9.15 CPU-s a board, the same cards); expect more on Zen 4, where the decoder is a larger share than with
+AMX. `BRIDGE_POLICY_SUITS=0` turns it off.
+
+**Exactness, for this and for items 1 and 2.** All three change the number of rows in a matrix product. At the
+rollout nets' sizes the outputs are bit-identical in every check here (`tests/test_bf16_buckets.py`, 40 random cases
+of the real net, the self-play runs). But BLAS and oneDNN may pick kernels by matrix size, and with tiny test layers
+one case differed in the last bit (2e-7). On the Zen 4 boxes that should be checked, not assumed: the box
+measurement compares cards.
+
+## Gen 8 self-play (two of the collecting boxes), profile
+
+`g8-greedy0~g8-low0`, 6 boards, fp32, sandbox: 12.2 CPU-s a board. DDS 40%, the hand-fit scorer 27%, the net
+reading the play 20%. Its runs (`sg8*`) are fp32 because only `sp*` runs take bf16; in bf16 (now padded) the scorer
+and the net would run about 1.7-1.8x, roughly a fifth off a table, with bf16's small changes to its cards. That is a
+choice for the loop, not an equivalence.
+
 ## Proposed next
 
 - **The hand-fit scorer's first layer as table lookups.** Its input is one-hot per suit, so `x @ Wh` is a sum of

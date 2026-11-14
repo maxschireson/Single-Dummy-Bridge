@@ -79,17 +79,22 @@ def _legal(n, rng):
 
 
 def test_policy_from_legal_suits_only():
+    """At the rollout nets' sizes the legal cards' log-probabilities are bit-identical on the machines tested. BLAS
+    may pick kernels by matrix size, so other sizes can differ in the last bit (2e-7 seen with tiny layers)."""
     rng = np.random.default_rng(6)
-    p = _params(rng)
-    f = g.Bf16Forward(p, torch) if torch is not None else None
-    for n in (1, 2, 3, 9, 40, 131, 300):
-        b = _batch(n, rng)
-        b['legal'] = legal = _legal(n, rng)
-        full, part = g.log_softmax(g.forward(p, b)['policy']), g.log_softmax(g.forward_policy(p, b))
-        assert np.array_equal(full[legal], part[legal])
-        assert (part[~legal] < -1e8).all()
-        if f is not None:
-            assert np.array_equal(g.log_softmax(f(b)['policy'])[legal], g.log_softmax(f.policy(b))[legal])
+    for dims, exact in ((dict(e=192, t=576, d=384), True), (dict(), False)):
+        p = _params(rng, **dims)
+        f = g.Bf16Forward(p, torch) if torch is not None else None
+        for n in (1, 2, 3, 9, 40, 131, 300):
+            b = _batch(n, rng)
+            b['legal'] = legal = _legal(n, rng)
+            full, part = g.log_softmax(g.forward(p, b)['policy']), g.log_softmax(g.forward_policy(p, b))
+            if exact:
+                assert np.array_equal(full[legal], part[legal]), n
+            assert np.allclose(full[legal], part[legal], rtol=0, atol=1e-5), n
+            assert (part[~legal] < -1e8).all()
+            if f is not None and exact:
+                assert np.array_equal(g.log_softmax(f(b)['policy'])[legal], g.log_softmax(f.policy(b))[legal]), n
 
 
 if __name__ == '__main__':
