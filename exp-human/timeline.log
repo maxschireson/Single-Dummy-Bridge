@@ -105,3 +105,9 @@ mf     87595     | 1: 1.0718/0.5109/0.0644 2: 1.0685/0.5134/0.0639 3: 1.0685/0.5
 s10    410008    | 1: 1.3563/0.4171/0.1014 2: 1.3620/0.4338/0.0948 3: 1.3633/0.4422/0.0912 4: 1.3836/0.4498/0.0874 5: 1.4001/0.4503/0.0876 6: 1.4274/0.4516/0.0869 (kept 1; held-out set stu_eval.npz) | 1.2976/0.5125/0.0659
 s10h   454954    | 1: 1.3395/0.4168/0.0996 2: 1.3391/0.4350/0.0927 3: 1.3470/0.4459/0.0883 4: 1.3679/0.4501/0.0878 5: 1.3932/0.4558/0.0845 6: 1.4098/0.4550/0.0855 (kept 2; held-out set stu_eval.npz) | 1.2976/0.5125/0.0659
 2026-11-14T11:24:12Z done: all
+2026-11-14T11:50:58Z stage big; source bd4d0b8; threads 8
+/home/bridgebots/work/loop/exp-human/stu_all.npz: 1154333 rows of 27931 deals (train 22472, validation 2788, test 2671); rows by bot {'stup0': 1154333}; with the rollouts' values 77%
+/home/bridgebots/work/loop/exp-human/hA.npz: 630296 rows of 22269 deals (train 17930, validation 2093, test 2246); rows by bot {'usbc': 630296}; with the rollouts' values 0%
+/home/bridgebots/work/loop/exp-human/bA.npz: 920187 rows of 22269 deals (train 17910, validation 2247, test 2112); rows by bot {'stup0': 920187}; with the rollouts' values 77%
+/home/bridgebots/work/loop/exp-human/sAh.npz: 1550483 rows of 44538 deals (train 35840, validation 4340, test 4358); rows by bot {'stup0': 920187, 'usbc': 630296}; with the rollouts' values 46%
+2026-11-14T11:54:51Z net hA: sha256 228544464cae3224

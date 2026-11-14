@@ -64,3 +64,19 @@ stum10B-n v stum10-n: 4000 boards to play (0 done), 4 workers
 3150 boards: 0.2314 +- 0.0656 IMPs/board for stum10B-n; 22446 boards/hour; 0 failed
 3200 boards: 0.2259 +- 0.0654 IMPs/board for stum10B-n; 22449 boards/hour; 0 failed
 3250 boards: 0.2397 +- 0.065 IMPs/board for stum10B-n; 22446 boards/hour; 0 failed
+3300 boards: 0.2358 +- 0.0642 IMPs/board for stum10B-n; 22433 boards/hour; 0 failed
+3350 boards: 0.2263 +- 0.0642 IMPs/board for stum10B-n; 22439 boards/hour; 0 failed
+3400 boards: 0.2415 +- 0.064 IMPs/board for stum10B-n; 22454 boards/hour; 0 failed
+3450 boards: 0.249 +- 0.0635 IMPs/board for stum10B-n; 22460 boards/hour; 0 failed
+3500 boards: 0.2531 +- 0.063 IMPs/board for stum10B-n; 22457 boards/hour; 0 failed
+3550 boards: 0.253 +- 0.0627 IMPs/board for stum10B-n; 22434 boards/hour; 0 failed
+3600 boards: 0.2511 +- 0.0622 IMPs/board for stum10B-n; 22434 boards/hour; 0 failed
+3650 boards: 0.2444 +- 0.0618 IMPs/board for stum10B-n; 22441 boards/hour; 0 failed
+3700 boards: 0.2441 +- 0.0615 IMPs/board for stum10B-n; 22436 boards/hour; 0 failed
+3750 boards: 0.2368 +- 0.0612 IMPs/board for stum10B-n; 22454 boards/hour; 0 failed
+3800 boards: 0.2342 +- 0.0606 IMPs/board for stum10B-n; 22465 boards/hour; 0 failed
+3850 boards: 0.2299 +- 0.0604 IMPs/board for stum10B-n; 22468 boards/hour; 0 failed
+3900 boards: 0.2308 +- 0.06 IMPs/board for stum10B-n; 22479 boards/hour; 0 failed
+3950 boards: 0.2263 +- 0.0595 IMPs/board for stum10B-n; 22479 boards/hour; 0 failed
+4000 boards: 0.229 +- 0.0591 IMPs/board for stum10B-n; 22483 boards/hour; 0 failed
+{"pair": "stum10B-n~stum10-n", "boards": 4000, "cpu_per_board": 0.61, "common": {"imps_per_board": 0.229, "se": 0.0591, "boards": 4000, "won": 828, "lost": 712, "flat": 2460}, "native": {"imps_per_board": 0.229, "se": 0.0591, "boards": 4000, "won": 828, "lost": 712, "flat": 2460}}
