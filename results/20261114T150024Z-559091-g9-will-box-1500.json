@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 15.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:01:03Z",
+ "id": "20261114T150024Z-559091-g9-will-box-1500",
+ "output_bytes": 450,
+ "output_tail": "g9-cohort-azure4 4546 last60=136 failures=0\ng9-cohort-ben64-azure4 1337 last60=29 failures=0\ng9-genx-stu-azure4 647 last60=48 failures=0\n  53G\n29506.8 MB /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n746.832 MB /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-wal\nw/s 477.70 wkB/s 6112.40 w_await 11.06 f/s 9.60 util 14.62\n 7  0      0 610020 181428 21411544    0    0    23  5062 8254 2486 85  1 13  1  0  0\n",
+ "received": "2026-11-14T15:00:48Z",
+ "script_sha256": "a5a9273e174868b7e76d55e52f0937d1ddb816ab363d03d2fc0d0bb7a087c4ec",
+ "started": "2026-11-14T15:00:48Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

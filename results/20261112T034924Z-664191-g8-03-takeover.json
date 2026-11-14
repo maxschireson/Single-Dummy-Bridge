@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 86.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:51:13Z",
+ "id": "20261112T034924Z-664191-g8-03-takeover",
+ "output_bytes": 370,
+ "output_tail": "arena-gen7: inactive; phase 1 boards on this box: 829; failures: 0; publisher: active\ng8 source: b6ad822 Gen 8 prototype: bidders of either kind at one table, EPBot adapter (WIP)\nqueue: active; 2026-11-12T03:50:13Z start x1-8p-v-7s: 8p-32~7s-32 deals 0+2400 seed 81  (source b6ad822)\n8p-32 v 7s-32: 2400 boards to play (0 done), 1 workers\nload average: 2.69, 5.48, 6.29\n",
+ "received": "2026-11-12T03:49:46Z",
+ "script_sha256": "96ab42e4aab01322b600306ecabba753bd004feffb05a57ce2bacbacc22247e3",
+ "started": "2026-11-12T03:49:46Z",
+ "timed_out": false,
+ "timeout_s": 1200
+}

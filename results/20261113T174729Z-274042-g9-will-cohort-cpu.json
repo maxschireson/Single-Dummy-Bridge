@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:48:03Z",
+ "id": "20261113T174729Z-274042-g9-will-cohort-cpu",
+ "output_bytes": 1734,
+ "output_tail": " 5  1      0 749288 175832 22868312    0    0    20  2511 6627    0 72  1 23  3  0  0\n 4  0      0 794868 175832 22866812    0    0     9  4321 5098 1489 41  0 48 11  0  0\n 2  1      0 658704 175836 22867860    0    0    24  5695 5948 1995 44  1 44 11  0  0\n 2  2      0 712416 175836 22870116    0    0     7  5489 4622 1592 32  0 46 22  0  0\n    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND\n 175194 bridgeb+  20   0 2040844   1.3g 468036 R  47.7   4.2      6,40 python\n 173576 bridgeb+  20   0 2209140   1.1g 429300 S  46.3   3.7      7,37 python\n 175193 bridgeb+  20   0 2066136   1.4g 469220 R  33.1   4.3      6,38 python\n 175188 bridgeb+  20   0 2086188   1.4g 467920 R  31.3   4.4      6,38 python\n 175192 bridgeb+  20   0 2096884   1.4g 468728 R  29.7   4.4      6,41 python\n 175191 bridgeb+  20   0 2171444   1.5g 467620 R  26.3   4.6      6,37 python\n 173629 bridgeb+  20   0 3177472   2.4g 469904 S   9.0   7.7 120:37.11 python\n 173626 bridgeb+  20   0  291608 135232  52976 S   5.8   0.4   1:40.91 python\n 267834 bridgeb+  20   0   15276   8860   7372 S   1.2   0.0   0:00.06 ssh\n    139 root      20   0       0      0      0 S   0.2   0.0   0:16.92 jbd2/nv+\n    417 root       0 -20       0      0      0 I   0.2   0.0   0:06.92 kworker+\n   1540 bridgeb+  20   0   29488  19784  10660 S   0.2   0.1   0:28.91 python3\n 267808 bridgeb+  20   0   12348   5916   3768 R   0.2   0.0   0:00.01 top\n      1 root      20   0   22472  13668   9548 S   0.0   0.0   0:07.88 systemd\n      2 root      20   0       0      0      0 S   0.0   0.0   0:00.14 kthreadd\n701M\t/home/bridgebots/work/g9/runs/g9-cohort-azure4/publication/.git\n650M\t/home/bridgebots/work/g9/runs/g9-cohort-azure4/run/episodes\n1757\n",
+ "received": "2026-11-13T17:47:43Z",
+ "script_sha256": "c6e9ee6581c12f4ec60a3b6850b191567db8a0f7a8d8bc83b7abb6a99805990f",
+ "started": "2026-11-13T17:47:43Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 25.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:11:06Z",
+ "id": "20261112T051023Z-435767-g8-21-skip-x1",
+ "output_bytes": 206,
+ "output_tail": "x1-8p-v-7s stops at: 1616 boards: 0.4121 +- 0.083 IMPs/board for 8p-32; 1330 boards/hour; 0 failed\nposition 1\n2026-11-12T05:10:41Z start c1-7s-v4-v-v0: 7s-32~7s-32-v0 deals 0+2400 seed 83  (source b6ad822)\n",
+ "received": "2026-11-12T05:10:41Z",
+ "script_sha256": "5d5339261a1a054af6e22d62970eec73bf6f6e1623d55d41b242eb398f1184f9",
+ "started": "2026-11-12T05:10:41Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T02:45:11Z",
+ "id": "20261114T024448Z-344690-g9-will-cohort-stop",
+ "output_bytes": 1238,
+ "output_tail": "3042\n-rw-r--r-- 1 bridgebots bridgebots 0 Nov 14 02:45 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/STOP\n 173571   68579 /bin/bash -c python3 /home/bridgebots/work/g9/ben-lanes-src/ops/gen9_ben_lanes.py serve --ben-bot ben64 --source /home/bridgebots/work/capsule-g\n 173572   68579 python3 /home/bridgebots/work/g9/ben-lanes-src/ops/gen9_ben_lanes.py serve --ben-bot ben64 --source /home/bridgebots/work/capsule-gen7-capture/r\n 173614   68573 /home/bridgebots/work/venv/bin/python ops/run_gen9_cohort.py --run /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run --publication /home/\n 173627   68571 /home/bridgebots/work/venv/bin/python /home/bridgebots/work/g9/src/989a4931/ops/gen5_runtime.py --run /home/bridgebots/work/g9/runs/g9-cohort-be\n 175158   67988 /bin/bash -c /home/bridgebots/work/venv/bin/python ops/run_gen9_cohort.py --run /home/bridgebots/work/g9/runs/g9-cohort-azure4/run --publication\n 175159   67988 /home/bridgebots/work/venv/bin/python ops/run_gen9_cohort.py --run /home/bridgebots/work/g9/runs/g9-cohort-azure4/run --publication /home/bridge\n 175166   67988 /home/bridgebots/work/venv/bin/python /home/bridgebots/work/g9/src/46b7e004/ops/gen5_runtime.py --run /home/bridgebots/work/g9/runs/g9-cohort-az\n",
+ "received": "2026-11-14T02:45:11Z",
+ "script_sha256": "0feaf9a016ccfe73346ff61b8e8baad0c6a3c01154dfac37c5d2aaded503b7e8",
+ "started": "2026-11-14T02:45:11Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

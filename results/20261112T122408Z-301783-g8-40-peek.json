@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:24:13Z",
+ "id": "20261112T122408Z-301783-g8-40-peek",
+ "output_bytes": 1708,
+ "output_tail": "== /home/bridgebots/work/g8/est/tune-est.log\ndouble-dummy tables for 12000 deals of seed 501: 370s\nstart: {\"boards\": 12000, \"imps_per_board\": -1.055, \"se\": 0.051, \"won\": 2651, \"lost\": 4246, \"flat\": 5103, \"lost_10_or_more\": 0.1102, \"declared_per_board\": 0.954, \"three_down_share\": 0.0466, \"slams_bid\": 260, \"slams_made\": 189, \"rul\n  est_band 2 -> 1: -0.004 +- 0.008\n  est_band 2 -> 3: +0.004 +- 0.003\n  est_weight 5 -> 3: -0.008 +- 0.012\n  est_weight 5 -> 7: -0.006 +- 0.011\n  est_nv 3 -> 1: +0.011 +- 0.007\n  est_nv 3 -> 5: -0.005 +- 0.007\n  est_v 5 -> 3: -0.006 +- 0.009\n  est_v 5 -> 7: -0.001 +- 0.009\n  est_contest 10 -> 5: +0.015 +- 0.008\n  est_contest 10 -> 15: -0.007 +- 0.007\n  est_sigma 12 -> 9: +0.006 +- 0.014\n  est_sigma 12 -> 15: -0.012 +- 0.015\n  est_reach 2 -> 1: -0.003 +- 0.002\n  est_double 35 -> 25: -0.044 +- 0.014\n  est_double 35 -> 45: +0.008 +- 0.009\n  est_slam_band 0 -> 4: +0.047 +- 0.019  kept\n  est_slam 5 -> 2: +0.005 +- 0.013\n  est_slam 5 -> 8: -0.026 +- 0.014\nafter sweep 1: {\"boards\": 12000, \"imps_per_board\": -1.008, \"se\": 0.051, \"won\": 2673, \"lost\": 4232, \"flat\": 5095, \"lost_10_or_more\": 0.1084, \"declared_per_board\": 0.954, \"three_down_share\": 0.0472, \"slams_bid\": 655, \"slams_made\": 4\n  est_band 2 -> 1: +0.006 +- 0.007\n  est_band 2 -> 3: +0.004 +- 0.003\n  est_weight 5 -> 3: -0.000 +- 0.013\n  est_weight 5 -> 7: -0.010 +- 0.011\n  est_nv 3 -> 1: +0.013 +- 0.007\n  est_nv 3 -> 5: -0.009 +- 0.007\n  est_v 5 -> 3: -0.002 +- 0.009\n  est_v 5 -> 7: -0.003 +- 0.009\n  est_contest 10 -> 5: +0.014 +- 0.008\n  est_contest 10 -> 15: -0.008 +- 0.007\n  est_sigma 12 -> 9: +0.006 +- 0.014\n  est_sigma 12 -> 15: -0.013 +- 0.015\n  est_reach 2 -> 1: -0.003 +- 0.002\nactive inactive inactive ",
+ "received": "2026-11-12T12:24:13Z",
+ "script_sha256": "d22cfa77ee6df3fa3866c3eabbeb44662639bd1f69be51ea69b710dbc00fa46f",
+ "started": "2026-11-12T12:24:13Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

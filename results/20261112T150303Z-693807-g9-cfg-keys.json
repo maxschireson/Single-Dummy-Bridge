@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:03:22Z",
+ "id": "20261112T150303Z-693807-g9-cfg-keys",
+ "output_bytes": 299,
+ "output_tail": "{'box': 'azure4', 'repo': 'git@github.com:maxschireson/Single-Dummy-Bridge.git', 'ssh_key': 'str', 'poll_s': 'int', 'heartbeat_s': 'int'}\n__pycache__\nagent.lock\nagent.py\nconfig.json\nlogs\nrepo.git\nresults\nscripts\nstate.json\nauthorized_keys\nboxctl_github\nboxctl_github.pub\nknown_hosts\nknown_hosts.old\n",
+ "received": "2026-11-12T15:03:22Z",
+ "script_sha256": "c5ee0baed6a4d77f1e7240b844a61ce4987a8775430f0383a42ec98c9f6bf461",
+ "started": "2026-11-12T15:03:22Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

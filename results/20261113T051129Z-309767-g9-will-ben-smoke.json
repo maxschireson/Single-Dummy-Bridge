@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 8.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:11:58Z",
+ "id": "20261113T051129Z-309767-g9-will-ben-smoke",
+ "output_bytes": 611,
+ "output_tail": "Running as unit: g9-ben-smoke-1.service; invocation ID: fcfe42ff52f24e45955a7f7002e33ac0\nlane 1: BEN ready in g9ben-smoke-1 at 127.0.0.1:8089\nup exit 0\ng9-ben-smoke-1 active     now 478 MB, peak 478 MB\ng9-lane-smoke-1 inactive   now None MB, peak None MB\ng9-ben-smoke-1 active     now 478 MB, peak 478 MB\ng9-lane-smoke-1 inactive   now None MB, peak None MB\nmeasure exit 0\nFailed to stop g9-lane-smoke-1.service: Unit g9-lane-smoke-1.service not loaded.\ndown exit 0\nUNIT LOAD ACTIVE SUB DESCRIPTION\n\n0 loaded units listed.\nTo show all installed unit files use 'systemctl list-unit-files'.\nno g9 namespaces left\n",
+ "received": "2026-11-13T05:11:49Z",
+ "script_sha256": "6bb5647c770162e1240d0ede5030b2d7e10be83b5a57bcf6a123ca9609acee93",
+ "started": "2026-11-13T05:11:49Z",
+ "timed_out": false,
+ "timeout_s": 1000
+}

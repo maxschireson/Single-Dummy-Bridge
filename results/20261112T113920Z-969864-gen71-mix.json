@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 30.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:39:54Z",
+ "id": "20261112T113920Z-969864-gen71-mix",
+ "output_bytes": 611,
+ "output_tail": "go71d: active\n11:39:39 tests took 2s\n11:39:39 == plan\nplan: Gen 7.1 \u00b7 standard self-play, and standard with policy v4.1 against Gen 7 standard, deals v4.1 was not trained on, on azure4 | pairs {'71s-32~71s-32': 1, '71s-32~7s-32': 1} | bots ['71s-32', '7s-32'] | artifacts ['gen7_policy', 'gen7_policy_v41']\n11:39:39 == prepare\ncohort 7cefdbdb7771: 1468 deals taken over from cohort 869ada89eaf3 (829 of its 2814 were played, 517 unplayed deals from training families left out); pairs {'71s-32~71s-32': 1, '71s-32~7s-32': 1}; 7s-32 identity f0a578598673 as in phase 1; 71s-32 identity 7b0\n11:39:41 == preflight\n",
+ "received": "2026-11-12T11:39:24Z",
+ "script_sha256": "6f1eea62b27a9a0ee58562bf70847f7566c499e42911c290dfaf7c4e235d9673",
+ "started": "2026-11-12T11:39:24Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

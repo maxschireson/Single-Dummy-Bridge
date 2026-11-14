@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:56:53Z",
+ "id": "20261113T235648Z-940830-g9-will-df",
+ "output_bytes": 112,
+ "output_tail": "/dev/root       123G   52G   72G  42% /\n17G\t/home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n",
+ "received": "2026-11-13T23:56:53Z",
+ "script_sha256": "2b28d185d7795f0f300cf6868b934cf645f72345118ecc2276c597a60e000819",
+ "started": "2026-11-13T23:56:53Z",
+ "timed_out": false,
+ "timeout_s": 40
+}

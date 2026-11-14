@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 15.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:57:39Z",
+ "id": "20261113T235712Z-047016-g9-will-disk-2356",
+ "output_bytes": 90,
+ "output_tail": "15 s: 1051 writes/s, 8.9 MB/s, avg write wait 7.4 ms, busy 47%\n15:37 30:75 45:113 60:156 \n",
+ "received": "2026-11-13T23:57:24Z",
+ "script_sha256": "cb87e42d70a68c1606bb6f1d319e98bc796016d890e81f4b8895754b1a6ed30a",
+ "started": "2026-11-13T23:57:24Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

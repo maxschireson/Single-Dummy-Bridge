@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:46:09Z",
+ "id": "20261113T064547Z-468332-g9-will-cohort-cred-check",
+ "output_bytes": 1270,
+ "output_tail": "{'box': 'azure4', 'repo': 'git@github.com:maxschireson/Single-Dummy-Bridge.git', 'ssh_key': '<path set>', 'poll_s': 30, 'heartbeat_s': 300}\nls: cannot access '/home/bridgebots/.git-credentials': No su\ngit -C \"$P\" push -q origin \"$BR\" 2>&1 | tail -1\n== /home/bridgebots/work/feeds/arena-gen6-codex-feed\norigin\thttps://github.com/maxschireson/Single-Dummy-Bridge (fetch)\norigin\thttps://github.com/maxschireson/Single-Dummy-Bridge (push)\n== /home/bridgebots/work/publication/gen7-phase1-azure4\norigin\tgit@github.com:maxschireson/Single-Dummy-Bridge.git (fetch)\norigin\tgit@github.com:maxschireson/Single-Dummy-Bridge.git (push)\nssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20\ne9-4-8x\ne9-4-r9\ng9-cohort-azure4\ng9-cohort-preflight\ng9-job-g9-cohort-azure4.service loaded active running /bin/bash -c \"/home/bridgebots/work/venv/bin/python ops/run_gen9_cohort.py --run /home/bridgebots/work/g9/runs/g9-cohort-azure4/run --publication /home/bridgebots/work/g9/runs/g9-cohort-azure4/publication --feed arena-gen9-azure4-feed --source /home/bridgebots/work/capsule-gen7-capture/recovery --fresh 10000 --seed 9013 --workers 7; echo \\$? > /home/bridgebots/work/g9/runs/g9-cohort-azure4/.exit\"\n",
+ "received": "2026-11-13T06:46:08Z",
+ "script_sha256": "53f1d5b28ee215be6949c8baa76229fd18ff939fba9b7b01f91e1f7bb21817d9",
+ "started": "2026-11-13T06:46:08Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 314.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:53:02Z",
+ "id": "20261112T074724Z-064049-g8-31-measure-r3",
+ "output_bytes": 754,
+ "output_tail": "seed 307: {\"boards\": 4000, \"imps_per_board\": -1.147, \"se\": 0.083, \"won\": 798, \"lost\": 1472, \"flat\": 1730, \"lost_10_or_more\": 0.0968, \"declared_per_board\": 0.878, \"three_down_share\": 0.0496, \"slams_bid\": 88, \"slams_made\": 70, \"rule_failures\": 0}  (17s)\nseed 302: {\"boards\": 4000, \"imps_per_board\": -1.169, \"se\": 0.083, \"won\": 776, \"lost\": 1439, \"flat\": 1785, \"lost_10_or_more\": 0.1003, \"declared_per_board\": 0.898, \"three_down_share\": 0.0407, \"slams_bid\": 87, \"slams_made\": 61, \"rule_failures\": 0}  (16s)\nseed 301: {\"boards\": 4000, \"imps_per_board\": -1.04, \"se\": 0.083, \"won\": 834, \"lost\": 1415, \"flat\": 1751, \"lost_10_or_more\": 0.096, \"declared_per_board\": 0.874, \"three_down_share\": 0.0406, \"slams_bid\": 73, \"slams_made\": 56, \"rule_failures\": 0}  (16s)\n",
+ "received": "2026-11-12T07:47:47Z",
+ "script_sha256": "dd734d48cb2abb35d781a2eded723e2315beea5f6e6db27c9c172df78441ffad",
+ "started": "2026-11-12T07:47:47Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

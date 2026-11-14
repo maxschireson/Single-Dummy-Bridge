@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 47.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:28:52Z",
+ "id": "20261112T062738Z-142253-g8-26-tune-rule-bidder",
+ "output_bytes": 233,
+ "output_tail": "tune: active; queue: inactive\n2026-11-12T06:25:19Z source now 3f42637 Gen 8 prototype: no outside bidding engine (Max, 12 November 2026)\n2026-11-12T06:25:19Z start c1-7s-v4-v-v0: 7s-32~7s-32-v0 deals 0+2400 seed 83  (source 3f42637)\n",
+ "received": "2026-11-12T06:28:05Z",
+ "script_sha256": "6a8b56eb7b1580ac30835c75c06e266c0fd057da0f9eedfe00e56fb79de7ae23",
+ "started": "2026-11-12T06:28:05Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

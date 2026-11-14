@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 30.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:02:35Z",
+ "id": "20261114T140159Z-252453-g9-will-disk-1402",
+ "output_bytes": 1903,
+ "output_tail": "w/s 397.21 wkB/s 3908.83 w_await 23.14 wareq-sz 9.84 f/s 59.97 aqu 9.23 util 28.82\nw/s 604.90 wkB/s 8123.60 w_await 113.90 wareq-sz 13.43 f/s 5.80 aqu 68.91 util 80.57\nw/s 511.30 wkB/s 6006.80 w_await 174.79 wareq-sz 11.75 f/s 1.90 aqu 89.38 util 95.36\n28640.2 MB /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n0.884736 MB /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-shm\n439.88 MB /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-wal\n591.536 MB /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/dds-cache.sqlite\n0.032768 MB /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/dds-cache.sqlite-shm\n4.13239 MB /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/dds-cache.sqlite-wal\n2006.32 MB /home/bridgebots/work/g9/runs/g9-genx-stu-azure4/run/dds-cache.sqlite\n0.032768 MB /home/bridgebots/work/g9/runs/g9-genx-stu-azure4/run/dds-cache.sqlite-shm\n16.2493 MB /home/bridgebots/work/g9/runs/g9-genx-stu-azure4/run/dds-cache.sqlite-wal\nAverage:     1000    173576      0.00      2.40      0.00       0  python\nAverage:     1000    173627      0.00      0.40      0.00       0  python\nAverage:     1000    173629      0.00     11.99      0.00       0  python\nAverage:     1000    224755      0.00     12.39      0.40       0  python3\nAverage:     1000    374799      0.00     66.33      0.00       0  python\nAverage:     1000    374801      0.00    387.21      0.00       0  python\nAverage:     1000    374804      0.00     43.56      0.00       0  python\nAverage:     1000    473602      0.00     34.77      0.00       0  python\nAverage:     1000    473697      0.00   1586.01      0.00       0  python\nAverage:     1000    473700      4.40   2185.41      0.00       0  python\nAverage:     1000    473701      2.80    581.82      0.00       0  python\nAverage:     1000    473702      5.99   1278.72      0.00       0  python\n",
+ "received": "2026-11-14T14:02:05Z",
+ "script_sha256": "71b9903342bdc055dc42f48bcddfb7b6395c5513dd173b607468cdac64d807cf",
+ "started": "2026-11-14T14:02:05Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

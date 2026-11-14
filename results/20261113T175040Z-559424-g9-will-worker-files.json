@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:50:49Z",
+ "id": "20261113T175040Z-559424-g9-will-worker-files",
+ "output_bytes": 1178,
+ "output_tail": "== 175188\n      2 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-wal\n      2 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n      1 0\n      1 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-shm\n== 175194\n      2 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-wal\n      2 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n      1 0\n      1 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-shm\nartifacts\nassets\ncorpus.jsonl\ndds-cache.sqlite\ndds-cache.sqlite-shm\ndds-cache.sqlite-wal\nepisodes\nfailures\nheartbeat.json\nmanifest.json\npublisher-status.json\nreceipts\nsource-indices.json\nstate.json\n      1 state.json\n      1 publisher-status.json\n      1 heartbeat.json\n      1 episodes/001763.json.gz\n      1 episodes/001761.json.gz\n      1 episodes/001760.json.gz\n      1 dds-cache.sqlite-wal\n      1 dds-cache.sqlite-shm\n    PID                  STARTED COMMAND\n   5704 Thu Nov 12 02:58:56 2026 /home/bridgebots/work/venv/bin/python -u ops/publish_gen5.py --run /home/bridgebots/work/runs/gen7-phase1-azure4 --publication /home/bridgebots/work/publication/gen7-p\n",
+ "received": "2026-11-13T17:50:49Z",
+ "script_sha256": "d364b98019f702cacba21408f7269ed30a47b34884df18ce5f73cbc817f40a3b",
+ "started": "2026-11-13T17:50:49Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

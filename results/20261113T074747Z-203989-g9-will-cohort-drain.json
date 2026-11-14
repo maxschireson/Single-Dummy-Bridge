@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 130.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:50:30Z",
+ "id": "20261113T074747Z-203989-g9-will-cohort-drain",
+ "output_bytes": 113,
+ "output_tail": "STOP at 07:48:20, receipts 218\nunit inactive at 07:50:30; exit 0; receipts 225\nSTOP removed\nno STOP files in run\n",
+ "received": "2026-11-13T07:48:20Z",
+ "script_sha256": "4a1fd5c8567e41fcca68d0baef9169381e7012b21f5c11722ef78d6085e064c1",
+ "started": "2026-11-13T07:48:20Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

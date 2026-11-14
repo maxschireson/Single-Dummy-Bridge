@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:08:13Z",
+ "id": "20261112T060747Z-834602-status",
+ "output_bytes": 968,
+ "output_tail": "BOX {\"box\": \"azure4\", \"time\": 1794463693.0523171, \"load\": [8.3, 8.2, 8.2], \"mem_available_gb\": 18.9, \"disk_free_gb\": 109.8, \"runs\": [{\"name\": \"gen7-phase1-azure4\", \"kind\": \"nonben\", \"gen\": \"7.0\", \"ben\": null, \"lane\": null, \"cohort\": \"869ada89eaf3\", \"shard\": {\"index\": 3, \"of\": 8}, \"target\": 2814, \"completed\": 829, \"pairs\": {\"7s-32~6-32\": {\"n\": 276, \"sum\": 30, \"sumsq\": 2256, \"won\": 40, \"flat\": 206, \"lost\": 30, \"unscored\": 0}, \"7s-32~1\": {\"n\": 276, \"sum\": 582, \"sumsq\": 6012, \"won\": 141, \"flat\": 109, \"lost\": 26, \"unscored\": 0}, \"7s-32~5RZ32\": {\"n\": 277, \"sum\": 302, \"sumsq\": 4588, \"won\": 105, \"flat\": 143, \"lost\": 29, \"unscored\": 0}}, \"last_30min\": 0, \"last_10min\": 0, \"last_epoch\": 1794455406.397709, \"failures\": [], \"stop\": true, \"publish\": {\"status\": \"published\", \"completed\": 829, \"age_s\": 1}, \"source_commit\": \"fe382f9\", \"collector\": \"inactive\", \"publisher\": \"active\"}], \"other_units\": {\"lane-recycle\": \"inactive\", \"switch71\": \"inactive\", \"go71b\": \"inactive\"}}\n",
+ "received": "2026-11-12T06:08:12Z",
+ "script_sha256": "5950a8bdde936cd3d3787d4ed04f13f77ede4083197279652a7b298c95e7b84d",
+ "started": "2026-11-12T06:08:12Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

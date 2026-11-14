@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:59:15Z",
+ "id": "20261113T065911Z-943730-g9-will-cohort-ssh-remote",
+ "output_bytes": 224,
+ "output_tail": "applied\norigin\tgit@github.com:maxschireson/Single-Dummy-Bridge.git (fetch)\nssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20\nactive\n47\n",
+ "received": "2026-11-13T06:59:15Z",
+ "script_sha256": "770dadd489ca52034d13b00f10492c5a17354f815c63757065641021a7e8960d",
+ "started": "2026-11-13T06:59:15Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

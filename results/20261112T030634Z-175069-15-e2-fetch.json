@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:06:59Z",
+ "id": "20261112T030634Z-175069-15-e2-fetch",
+ "output_bytes": 226,
+ "output_tail": "e2-fetch: active\n03:06:43 arena-gen6-gen7-capture-feed 8833c62f83687293ad6b3ebfa10b58d1a25961f7 episodes=725 size=380M\n03:06:50 arena-gen6-codex-v7-capture-feed 84c8213ad4076d38b4ef81dc2a0ccde9dcd3ce98 episodes=1134 size=592M\n",
+ "received": "2026-11-12T03:06:39Z",
+ "script_sha256": "5819e8d4de12bb3e30b6eab2db72593af60bd00489824ce5c030f19f80c4377d",
+ "started": "2026-11-12T03:06:39Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

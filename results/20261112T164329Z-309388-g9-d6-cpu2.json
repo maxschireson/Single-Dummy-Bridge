@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:43:32Z",
+ "id": "20261112T164329Z-309388-g9-d6-cpu2",
+ "output_bytes": 1301,
+ "output_tail": "e0001/slot0.jsonl 600 boards\n   7s-32~1                floor=False n=  67 cpu/board 18.3\n   7s-32~5RZ32            floor=False n=  66 cpu/board 14.7\n   7s-32~8p-32            floor=False n=  68 cpu/board 22.2\n   8p-32~1                floor=False n=  68 cpu/board 18.5\n   8p-32~5RZ32            floor=False n=  66 cpu/board 17.5\n   8p-32~8p-32            floor=False n=  62 cpu/board 12.9\n   9a-32~1                floor=False n=  67 cpu/board 19.5\n   9a-32~5RZ32            floor=False n=  67 cpu/board 20.5\n   9a-32~8p-32            floor=False n=  69 cpu/board 24.5\ne0002/slot0.jsonl 931 boards\n   7s-32~1                floor=False n=  72 cpu/board 15.5\n   7s-32~5RZ32            floor=False n=  72 cpu/board 14.8\n   7s-32~8p-32            floor=False n=  36 cpu/board 23.5\n   8p-32~1                floor=False n=  12 cpu/board 24.4\n   8p-32~8p-32            floor=False n=  60 cpu/board 11.6\n   8p-32~guest-a          floor=True  n= 300 cpu/board 46.6\n   9a-32~8p-32            floor=False n= 180 cpu/board 26.6\n   9a-32~guest-a          floor=True  n= 199 cpu/board 49.9\n 16:43:32 up 14:32,  0 user,  load average: 8.20, 8.19, 8.11\n               total        used        free      shared  buff/cache   available\nMem:              31           8          12           0          10          22\n",
+ "received": "2026-11-12T16:43:32Z",
+ "script_sha256": "d8c5007a2defe67d09c679c3656feef0e7706993cdad0a7595448532285920d5",
+ "started": "2026-11-12T16:43:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

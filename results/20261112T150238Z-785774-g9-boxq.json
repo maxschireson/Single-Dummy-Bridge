@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.2,
+ "exit_code": 1,
+ "finished": "2026-11-12T15:02:51Z",
+ "id": "20261112T150238Z-785774-g9-boxq",
+ "output_bytes": 360,
+ "output_tail": "15:02:51 starting beside g8-publish (left running; BESIDE)\n15:02:51 load 0.07 1.59 4.79; active g8 units: none; other g8 units: none\nTraceback (most recent call last):\n  File \"<stdin>\", line 3, in <module>\nKeyError: 'repo_url'\n15:02:51 == channel tools\n/home/bridgebots/.boxctl/scripts/20261112T150238Z-785774-g9-boxq.sh: line 48: WORKQ_REPO: unbound variable\n",
+ "received": "2026-11-12T15:02:51Z",
+ "script_sha256": "59b52fc9abca6d5355513898c566151fae6abe8a64c6dc66a6acadb4e9b97979",
+ "started": "2026-11-12T15:02:51Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

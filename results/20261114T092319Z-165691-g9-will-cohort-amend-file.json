@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:23:35Z",
+ "id": "20261114T092319Z-165691-g9-will-cohort-amend-file",
+ "output_bytes": 583,
+ "output_tail": "16c6c3cc1ee6d5b3b7957f15c0eb8462452e623496496c282f9b4304b81032ae  /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/source-amendments.json\nsource 3f3c01afe8b6 accepted by source-amendments.json (pinned 9f8fd40a8e40): The DDS position cache may sync NORMAL instead of FULL (BRIDGE_DDS_CACHE_SYNC, bridge_harness/dds_cache.py, 9bba86b6), to lift the disk throttle on azure4; plus check_source, which reads this file (bridge_harness/mixed_arena.py). Cards and results are unchanged: the cache returns the same solver results, and a lost entry is solved again.\nverify_generation passed\n",
+ "received": "2026-11-14T09:23:34Z",
+ "script_sha256": "6eed387cbc98dd7e33c4902108c5c574b64330b448e18cf29c8104871e1e2e2d",
+ "started": "2026-11-14T09:23:34Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

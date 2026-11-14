@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:43:55Z",
+ "id": "20261112T134326Z-773131-g8-49-release-timer",
+ "output_bytes": 390,
+ "output_tail": "Thu 2026-11-12 14:58:00 UTC 1h 14min -                                      - g8-release.timer               g8-release.service\nThu 2026-11-12 15:06:00 UTC 1h 22min -                                      - g8-release2.timer              g8-release2.service\nqueue active at 8 of 9; publish active inactive; user bridgebots\n139 /home/bridgebots/work/g8/runs/b1-8c-v-8a/results.jsonl\n13:43:55\n",
+ "received": "2026-11-12T13:43:55Z",
+ "script_sha256": "557cc123f78c4cbd574df6cc50e3abaaebdc332af1bbb3d61dfbba7b38a87dc5",
+ "started": "2026-11-12T13:43:55Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

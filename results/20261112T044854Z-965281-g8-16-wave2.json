@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:49:17Z",
+ "id": "20261112T044854Z-965281-g8-16-wave2",
+ "output_bytes": 407,
+ "output_tail": "     1\tx1-8p-v-7s 8p-32~7s-32 0 2400 81\n     2\tc1-7s-v4-v-v0 7s-32~7s-32-v0 0 2400 83\n     3\t@source c03498c77184eb987d294c635b52b27bcfae028d\n     4\tg2-8p-v-6 8p-32~6-32 0 800 72\n     5\tg2-7s-v-6 7s-32~6-32 0 800 72\nposition 0\n2026-11-12T03:52:15Z start x1-8p-v-7s: 8p-32~7s-32 deals 0+2400 seed 81  (source b6ad822)\n2026-11-12T04:18:27Z start x1-8p-v-7s: 8p-32~7s-32 deals 0+2400 seed 81  (source b6ad822)\n",
+ "received": "2026-11-12T04:49:17Z",
+ "script_sha256": "a82d9bce7b2bf588e46865bf452df1e3c94bb473efafcd863f54ae5771d24697",
+ "started": "2026-11-12T04:49:17Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

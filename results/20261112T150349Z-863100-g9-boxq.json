@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 49.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:04:44Z",
+ "id": "20261112T150349Z-863100-g9-boxq",
+ "output_bytes": 2185,
+ "output_tail": "15:03:54 starting beside g8-publish (left running; BESIDE)\n15:03:54 load 0.21 1.34 4.48; active g8 units: none; other g8 units: none\n15:03:54 == channel tools\n15:03:54 tools at d987e96 boxq: the boxctl agent's config names the remote 'repo', not '\n15:03:54 == unattended upgrades list restarts instead of making them (p41, board 06:31); this box only\n15:03:54 needrestart: list only\n15:03:54 == what jobs will find (report only)\n15:03:54 {python} is /home/bridgebots/work/venv/bin/python (Python 3.12.3)\nnumpy 2.5.4\nh5py 3.14.0\ntensorflow 2.21.0\nkeras 3.15.1\n15:03:58 capsule: /home/bridgebots/work/capsule-gen7-capture/recovery (13 bots)\n15:03:58 disk free in ~/work: 102G; CPUs 8\n15:03:58 jobs can fetch the public repository over https\n15:03:58 == the queue\ng9-boxq started\n15:04:43 g9-boxq: active\nNov 12 15:03:58 Bridgebots4 systemd[1]: Started g9-boxq.service - /usr/bin/python3 -u /home/bridgebots/work/g9/channel/tools/boxq.py serve --box azure4 --cores 8 --work /home/bridgebots/work/g9.\nNov 12 15:04:11 Bridgebots4 sudo[67477]: bridgebots : PWD=/home/bridgebots/work/g9/channel/tools ; USER=root ; COMMAND=/usr/bin/systemd-run --quiet --unit=g9-job-d6-arrival --uid=bridgebots --working-\nNov 12 15:04:11 Bridgebots4 sudo[67477]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)\nNov 12 15:04:11 Bridgebots4 sudo[67477]: pam_unix(sudo:session): session closed for user root\n{'d6-arrival': 'running', 'e9-0-n005': 'waiting', 'e9-0-n01': 'waiting', 'e9-0-n02': 'waiting', 'e9-0-n02d': 'waiting', 'e9-0-n02e': 'waiting', 'e9-0-n02f': 'waiting', 'e9-0-n02l': 'waiting', 'e9-0-n04': 'waiting', 'e9-10-8x-ben16': 'cancelled', 'e9-10-r9b-ben16': 'cancelled', 'e9-11-p7': 'waiting', 'e9-11-r7': 'waiting', 'e9-11-r8': 'waiting', 'e9-12-c': 'waiting', 'e9-12-cs': 'waiting', 'e9-12-u': 'waiting', 'e9-12-us': 'waiting', 'e9-12-x': 'waiting', 'e9-12-xs': 'waiting', 'e9-4-8x': 'waiting', 'e9-4-r9': 'waiting', 'e9-6-att-vs-reader': 'waiting', 'e9-6-vs-8p': 'waiting', 'e9-6-vs-reader': 'waiting', 'g9-x2-ben16': 'waiting', 'g9-x2-ben64': 'waiting', 'g9-x2-rel-std-50': 'waiting', 'g9-x2-rel-std-80': 'waiting'} []\n15:04:43 load 3.97 2.12 4.58; memory free 27 GB\n",
+ "received": "2026-11-12T15:03:54Z",
+ "script_sha256": "951acf2937e7dbba1a6f97a11fa1a5627185ded9311de49833bdfe9d3f39d831",
+ "started": "2026-11-12T15:03:54Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

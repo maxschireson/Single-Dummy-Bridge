@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:53:03Z",
+ "id": "20261113T075250Z-064468-g9-will-cohort-after-restart",
+ "output_bytes": 314,
+ "output_tail": "workers 5\nmain heartbeat {'completed': 225, 'workers': 6}\n225\nmanifest 75b73937750652a5\n127.0.0.1:8089\n173576 /home/bridgebots/work/g9/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/capsule-gen7-capture/recovery/assets/ben-6\n7\n 07:53:03 up 1 day,  5:41,  0 user,  load average: 4.58, 5.11, 5.60\n",
+ "received": "2026-11-13T07:53:03Z",
+ "script_sha256": "e41dd3305922656b52de44dbb9ca250164443ffc0e1045058ff160d59e927b96",
+ "started": "2026-11-13T07:53:03Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

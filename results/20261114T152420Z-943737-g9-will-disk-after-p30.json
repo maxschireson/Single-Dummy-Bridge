@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 40.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:25:14Z",
+ "id": "20261114T152420Z-943737-g9-will-disk-after-p30",
+ "output_bytes": 453,
+ "output_tail": "w/s 399.95 wkB/s 3972.52 w_await 25.65 aqu 10.29 util 29.68\nw/s 792.73 wkB/s 8866.40 w_await 11.17 aqu 8.90 util 21.67\nw/s 876.73 wkB/s 9074.93 w_await 10.96 aqu 9.62 util 21.70\n 9  0      0 1003800 181516 21042864    0    0    65 13973 9094 1958 91  2  3  4  0  0\n 9  0      0 809108 181516 21043632    0    0    74 16830 8924  903 88  2  5  5  0  0\ng9-cohort-azure4 4606 last15=38\ng9-cohort-ben64-azure4 1349 last15=7\ng9-genx-stu-azure4 667 last15=12\n",
+ "received": "2026-11-14T15:24:34Z",
+ "script_sha256": "2805f88e98951ecc42a5c9bd58de73ca81ccb81184e98d8d0e8083894d770ae7",
+ "started": "2026-11-14T15:24:34Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

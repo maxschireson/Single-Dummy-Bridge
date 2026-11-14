@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T18:21:54Z",
+ "id": "20261113T182144Z-677680-g9-will-tempdisk-check",
+ "output_bytes": 783,
+ "output_tail": "NAME          SIZE TYPE MOUNTPOINT\nsr0           630K rom  \nnvme0n1       128G disk \n\u251c\u2500nvme0n1p1   127G part /\n\u251c\u2500nvme0n1p14    4M part \n\u251c\u2500nvme0n1p15  106M part /boot/efi\n\u2514\u2500nvme0n1p16  913M part /boot\n/dev/root       123G   46G   78G  37% /\n/dev/root       123G   46G   78G  37% /\nos\nos-part1\nos-part14\nos-part15\nos-part16\ntotal 0\ndrwxr-xr-x 2 root root 140 Nov 12 02:11 .\ndrwxr-xr-x 9 root root 180 Nov 12 02:11 ..\nlrwxrwxrwx 1 root root  13 Nov 12 02:11 os -> ../../nvme0n1\nlrwxrwxrwx 1 root root  15 Nov 12 02:11 os-part1 -> ../../nvme0n1p1\nsqlite 3.45.1\nbeside target: ['real.sqlite', 'real.sqlite-shm', 'real.sqlite-wal']\nbeside link: ['link.sqlite']\n/dev/root       123G   46G   78G  37% /\n12G\t/home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n",
+ "received": "2026-11-13T18:21:54Z",
+ "script_sha256": "45782b64e281d789583aac5979dfd9d53a330a27e3cf7b9bb816df063ced0505",
+ "started": "2026-11-13T18:21:54Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

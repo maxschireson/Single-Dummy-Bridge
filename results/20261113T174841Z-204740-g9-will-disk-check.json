@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:49:25Z",
+ "id": "20261113T174841Z-204740-g9-will-disk-check",
+ "output_bytes": 161,
+ "output_tail": "disk nvme0n1\n20 s: reads 44 (2/s), writes 11892 (595/s), write MB 137.1, avg write wait 41.8 ms, avg read wait 0.3 ms, busy 59%\nStandard_F8as_v6 Premium_LRS 128\n",
+ "received": "2026-11-13T17:49:05Z",
+ "script_sha256": "88649b28b7cb5552b99d59160f80f7fc1f856d8b415552b850d0b39bdd17602c",
+ "started": "2026-11-13T17:49:05Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

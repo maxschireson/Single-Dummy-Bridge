@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T20:36:51Z",
+ "id": "20261112T203648Z-763172-g9-d6-cpu4",
+ "output_bytes": 2201,
+ "output_tail": "e0001/slot0.jsonl 600 boards\n   7s-32~1                floor=False n=  67 cpu/board 18.3\n   7s-32~5RZ32            floor=False n=  66 cpu/board 14.7\n   7s-32~8p-32            floor=False n=  68 cpu/board 22.2\n   8p-32~1                floor=False n=  68 cpu/board 18.5\n   8p-32~5RZ32            floor=False n=  66 cpu/board 17.5\n   8p-32~8p-32            floor=False n=  62 cpu/board 12.9\n   9a-32~1                floor=False n=  67 cpu/board 19.5\n   9a-32~5RZ32            floor=False n=  67 cpu/board 20.5\n   9a-32~8p-32            floor=False n=  69 cpu/board 24.5\ne0002/slot0.jsonl 1200 boards\n   7s-32~1                floor=False n=  72 cpu/board 15.5\n   7s-32~5RZ32            floor=False n=  72 cpu/board 14.8\n   7s-32~8p-32            floor=False n=  36 cpu/board 23.5\n   8p-32~1                floor=False n=  12 cpu/board 24.4\n   8p-32~8p-32            floor=False n=  60 cpu/board 11.6\n   8p-32~guest-a          floor=True  n= 300 cpu/board 46.6\n   9a-32~8p-32            floor=False n= 180 cpu/board 26.6\n   9a-32~guest-a          floor=True  n= 300 cpu/board 51.8\n   guest-a~1              floor=False n=  84 cpu/board 31.8\n   guest-a~5RZ32          floor=False n=  84 cpu/board 30.7\ne0003/slot0.jsonl 1200 boards\n   7s-32~1                floor=False n=  84 cpu/board 17.0\n   7s-32~5RZ32            floor=False n=  72 cpu/board 15.7\n   8p-32~1                floor=False n=  18 cpu/board 17.4\n   8p-32~8p-32            floor=False n=  60 cpu/board 12.5\n   8p-32~guest-a          floor=True  n= 300 cpu/board 46.0\n   9a-32~8p-32            floor=False n= 180 cpu/board 25.6\n   9a-32~guest-a          floor=True  n= 300 cpu/board 50.3\n   guest-a~1              floor=False n= 102 cpu/board 30.6\n   guest-a~5RZ32          floor=False n=  84 cpu/board 29.1\ne0004/slot0.jsonl 399 boards\n   8p-32~8p-32            floor=False n=  40 cpu/board 13.1\n   8p-32~guest-a          floor=True  n= 300 cpu/board 45.4\n   8p-32~guest-b          floor=True  n=  59 cpu/board 37.6\n 20:36:51 up 18:25,  0 user,  load average: 8.40, 7.90, 7.94\n               total        used        free      shared  buff/cache   available\nMem:              31           7          10           0          13          24\n",
+ "received": "2026-11-12T20:36:51Z",
+ "script_sha256": "d8c5007a2defe67d09c679c3656feef0e7706993cdad0a7595448532285920d5",
+ "started": "2026-11-12T20:36:51Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

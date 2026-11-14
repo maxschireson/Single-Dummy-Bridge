@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 10.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:01:23Z",
+ "id": "20261114T090057Z-430551-g9-will-cohort-stop-sync",
+ "output_bytes": 165,
+ "output_tail": "3613\n-rw-r--r-- 1 bridgebots bridgebots 0 Nov 14 09:01 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/STOP\nbefore: w/s 828.60 w_await 7.13 f/s 138.40 util 47.83\n",
+ "received": "2026-11-14T09:01:13Z",
+ "script_sha256": "17f295513544a86c00a62ffa099830d13a288739f495263be8dd1e9aaeb94a3f",
+ "started": "2026-11-14T09:01:13Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

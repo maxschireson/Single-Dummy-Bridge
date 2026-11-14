@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.8,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:45:07Z",
+ "id": "20261113T064433Z-757941-g9-boxq-update-count",
+ "output_bytes": 976,
+ "output_tail": "06:44:46 before: 9299c5a azure4: boxq: azure4 status\n06:44:47 after:  874efd5 dave: job g9-cohort-azure4 on azure4\n06:44:47 jobs running: g9-job-e9-0-n04.service g9-job-e9-16-h-v-p.service \n06:45:07 g9-boxq: active; jobs running: \nNov 13 06:44:47 Bridgebots4 sudo[165811]: bridgebots : PWD=/home/bridgebots/work/g9/channel/tools ; USER=root ; COMMAND=/usr/bin/systemctl stop g9-job-e9-0-n04\nNov 13 06:44:47 Bridgebots4 sudo[165811]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)\nNov 13 06:44:47 Bridgebots4 sudo[165811]: pam_unix(sudo:session): session closed for user root\nNov 13 06:44:47 Bridgebots4 sudo[165813]: bridgebots : PWD=/home/bridgebots/work/g9/channel/tools ; USER=root ; COMMAND=/usr/bin/systemctl stop g9-job-e9-16-h-v-p\nNov 13 06:44:47 Bridgebots4 sudo[165813]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)\nNov 13 06:44:47 Bridgebots4 sudo[165813]: pam_unix(sudo:session): session closed for user root\n",
+ "received": "2026-11-13T06:44:46Z",
+ "script_sha256": "95f6f1f005cc67e6e9dd7ca8f8efe782a2cd7ca9882399b836cfce8a225592e4",
+ "started": "2026-11-13T06:44:46Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

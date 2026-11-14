@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 3.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:17:14Z",
+ "id": "20261112T031706Z-454685-g8-02-queue",
+ "output_bytes": 61,
+ "output_tail": "queue: active; publisher: active; jobs listed: 0; position 0\n",
+ "received": "2026-11-12T03:17:11Z",
+ "script_sha256": "dced616ed5273e675fe9c8d330c82ea5a58079b933cb876cc983386eaaac47a0",
+ "started": "2026-11-12T03:17:11Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

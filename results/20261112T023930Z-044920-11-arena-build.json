@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 123.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:41:38Z",
+ "id": "20261112T023930Z-044920-11-arena-build",
+ "output_bytes": 429,
+ "output_tail": "checkout: fe382f9b91c3c91ea0950281be5d8bf8e25e82ac Gen 7: phase 1 authorized (trust 0.3); plans with and without BEN; deal split a\npolicy v4 sha256: d6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13\ndds library: 1266008 bytes\ndds library sha256: 8e2de51a682a1487 (pre-7 checkout: 7fc512eab560156b)\n----------------------------------------------------------------------\nRan 54 tests in 110.898s\n\nOK\ntests took 111s\n",
+ "received": "2026-11-12T02:39:35Z",
+ "script_sha256": "c8a4e8384267b1d9bb28344ba7af7288284376f99ed0cc017e963d45a65e23b1",
+ "started": "2026-11-12T02:39:35Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

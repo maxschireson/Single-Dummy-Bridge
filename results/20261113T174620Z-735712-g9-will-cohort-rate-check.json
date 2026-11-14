@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:46:40Z",
+ "id": "20261113T174620Z-735712-g9-will-cohort-rate-check",
+ "output_bytes": 1267,
+ "output_tail": " 17:46:39 up 1 day, 15:35,  0 user,  load average: 4.96, 4.82, 4.91\nMem:              31           9           0           0          21          22\n/dev/root       123G   45G   79G  37% /\n{'epoch': 1794591991.900086, 'completed': 1755, 'workers': 6, 'ben_workers': 1, 'started_epoch': 1794556323.7094653, 'stopping': False}\n0\n001752.json\n15:25 30:54 45:77 60:107 75:147 90:188 105:228 120:267 \n 173576 75.4   36268 /home/bridgebots/work/g9/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/capsule-gen7-capture/recovery/assets/b\n 175166  1.4   35677 /home/bridgebots/work/venv/bin/python /home/bridgebots/work/g9/src/46b7e004/ops/gen5_runtime.py --run /home/bridgebots/work/g9/ru\n 173627  0.0   36259 /home/bridgebots/work/venv/bin/python /home/bridgebots/work/g9/src/989a4931/ops/gen5_runtime.py --run /home/bridgebots/work/g9/ru\n 263674  0.0    1226 [kworker/u32:4-flush-259:0]\n 258078  0.0    3205 [kworker/u32:2-events_power_efficient]\n 256997  0.0    3561 [kworker/u32:1-writeback]\n 262751  0.0    1542 [kworker/u32:3-writeback]\n 260020  0.0    2508 [kworker/0:0-events]\n 239842  0.0    9676 [kworker/7:2-events]\n 240952  0.0    9296 [kworker/6:1-mm_percpu_wq]\n 260361  0.0    2377 [kworker/4:0-events]\n 259383  0.0    2743 [kworker/5:0-events]\n",
+ "received": "2026-11-13T17:46:39Z",
+ "script_sha256": "66080fcae237e8a1d701cac3fa30a8aa8f499c9e20723036f7349165d822491b",
+ "started": "2026-11-13T17:46:39Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

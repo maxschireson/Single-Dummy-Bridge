@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 31.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:16:09Z",
+ "id": "20261112T031531Z-464048-g8-01-setup",
+ "output_bytes": 714,
+ "output_tail": "checkout: af701a3 Gen 8 prototype: fork-free match runner, play-information measure, prototype bots\npolicy files: 4\ndds library: 1266008 bytes\nh5py 3.14.0 numpy 2.5.4\n/home/bridgebots/work/capsule-gen7-capture/recovery/manifest.json\n\n/home/bridgebots/work/capsule-gen7-capture/recovery/artifacts:\n8s-32 v 7s-32: 2 boards to play (0 done), 2 workers\n2 boards: 3.5 +- 3.5 IMPs/board for 8s-32; 248 boards/hour; 0 failed\n{\"pair\": \"8s-32~7s-32\", \"boards\": 2, \"cpu_per_board\": 23.35, \"common\": {\"imps_per_board\": 3.5, \"se\": 3.5, \"boards\": 2, \"won\": 1, \"lost\": 0, \"flat\": 1}, \"native\": {\"imps_per_board\": 3.5, \"se\": 3.5, \"boards\": 2, \"won\": 1, \"lost\": 0, \"flat\": 1}}\nsetup done on azure4: load average: 7.21, 6.76, 6.25\n",
+ "received": "2026-11-12T03:15:38Z",
+ "script_sha256": "a73a5b37a267085675409cab371da70d751e63cee0c3418382fe60b2703dde39",
+ "started": "2026-11-12T03:15:38Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

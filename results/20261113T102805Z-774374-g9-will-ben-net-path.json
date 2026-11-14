@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:28:35Z",
+ "id": "20261113T102805Z-774374-g9-will-ben-net-path",
+ "output_bytes": 1337,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 18356646 Nov 13 05:06 /home/bridgebots/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\nb0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3  /home/bridgebots/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\nb0dff3dfae590cbe /home/bridgebots/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\n== /home/bridgebots/work/capsule-gen7-capture/recovery/assets/ben-64.conf\nbidder = models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\nopponent = models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\ninfo = models/TF2models/GIB-BBO-8742-Info_2026-10-23-E30.keras\n== /home/bridgebots/work/capsule-gen7-capture/recovery/assets/ben-16.conf\nbidder = models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\nopponent = models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\ninfo = models/TF2models/GIB-BBO-8742-Info_2026-10-23-E30.keras\n== /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/assets/ben-64.conf\nbidder = models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\nopponent = models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\ninfo = models/TF2models/GIB-BBO-8742-Info_2026-10-23-E30.keras\n    \"bidding.bidder\": {\n      \"path\": \"models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras\",\n      \"sha256\": \"b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3\"\n",
+ "received": "2026-11-13T10:28:35Z",
+ "script_sha256": "8a12d5440b78bf5d72ae30c8fdf5d6d23f68907235b136e84945d244903ef754",
+ "started": "2026-11-13T10:28:35Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:22:41Z",
+ "id": "20261113T052228Z-660822-g9-will-ladder-live-check",
+ "output_bytes": 246,
+ "output_tail": "index.html 200 2fed9aff71fe6275 45430\nladder.js?v=g9-ladder-20261113b 200 dfe1b0c111e34005 26139\nladder.json?v=1 200 15d08133d2cfd69e 59892\n9:<section id=\"ladder\" hidden></section>\n10:<script src=\"ladder.js?v=g9-ladder-20261113b\" defer></script>\n",
+ "received": "2026-11-13T05:22:41Z",
+ "script_sha256": "aa721ae416d4dd12eb9988fcb868a8b6a5404f6664efd8fe3e70425b9040ada0",
+ "started": "2026-11-13T05:22:41Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

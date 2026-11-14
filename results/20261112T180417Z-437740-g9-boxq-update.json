@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:04:56Z",
+ "id": "20261112T180417Z-437740-g9-boxq-update",
+ "output_bytes": 1158,
+ "output_tail": "18:04:35 before: d987e96 boxq: the boxctl agent's config names the remote 'repo', not '\n18:04:36 after:  9299c5a azure4: boxq: azure4 status\n18:04:36 jobs running: g9-job-e9-0-n02.service g9-job-e9-0-n02e.service \n18:04:56 g9-boxq: active; jobs running: g9-job-e9-0-n02.service g9-job-e9-0-n02e.service \nNov 12 17:54:01 Bridgebots4 sudo[84100]: pam_unix(sudo:session): session closed for user root\nNov 12 18:04:36 Bridgebots4 systemd[1]: Stopping g9-boxq.service - /usr/bin/python3 -u /home/bridgebots/work/g9/channel/tools/boxq.py serve --box azure4 --cores 8 --work /home/bridgebots/work/g9...\nNov 12 18:04:36 Bridgebots4 systemd[1]: g9-boxq.service: Deactivated successfully.\nNov 12 18:04:36 Bridgebots4 systemd[1]: Stopped g9-boxq.service - /usr/bin/python3 -u /home/bridgebots/work/g9/channel/tools/boxq.py serve --box azure4 --cores 8 --work /home/bridgebots/work/g9.\nNov 12 18:04:36 Bridgebots4 systemd[1]: g9-boxq.service: Consumed 1min 56.500s CPU time.\nNov 12 18:04:36 Bridgebots4 systemd[1]: Started g9-boxq.service - /usr/bin/python3 -u /home/bridgebots/work/g9/channel/tools/boxq.py serve --box azure4 --cores 8 --work /home/bridgebots/work/g9.\n",
+ "received": "2026-11-12T18:04:35Z",
+ "script_sha256": "c74b2f0050511b31fccd93b7c7cacbb81af582cac8d098ee2f6190bf976c4662",
+ "started": "2026-11-12T18:04:35Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

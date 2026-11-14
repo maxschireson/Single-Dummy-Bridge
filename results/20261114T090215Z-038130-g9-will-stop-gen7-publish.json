@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 2.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:02:30Z",
+ "id": "20261114T090215Z-038130-g9-will-stop-gen7-publish",
+ "output_bytes": 394,
+ "output_tail": "MainPID 5704: /home/bridgebots/work/venv/bin/python -u ops/publish_gen5.py --run /home/bridgebots/work/runs/gen7-phase1-azure4 --publication /home/bridgebots/work/publication/gen7-phase1-azure4 \nRemoved \"/etc/systemd/system/multi-user.target.wants/arena-gen7-publish.service\".\ninactive\ndisabled\n5704 gone\n9aec8a6 2026-11-14 09:01:58 +0000 Gen5: 829 verified paired deals, common/native bidding\n",
+ "received": "2026-11-14T09:02:28Z",
+ "script_sha256": "8c8ef5db5973a7d3748337df68220d339feaf6f05a0fef862bc50067e7295374",
+ "started": "2026-11-14T09:02:28Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

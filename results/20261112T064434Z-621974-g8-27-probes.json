@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 5.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:44:44Z",
+ "id": "20261112T064434Z-621974-g8-27-probes",
+ "output_bytes": 651,
+ "output_tail": "needrestart: list only\nazure4: queue active, position 4, restarted now: yes\n     4\t@source 3f4263763010ef1ae759f93cf998c7473337ef4d\n     5\tc1-7s-v4-v-v0 7s-32~7s-32-v0 0 1000 83\n     6\tg2-8p-v-6 8p-32~6-32 0 800 72\n     7\tg2-7s-v-6 7s-32~6-32 0 800 72\nupgrade timer, last ran: apt-daily-upgrade.timer apt-daily-upgrade.service \nqueue unit stops since midnight: 7\n2026-11-12T06:25:19Z start c1-7s-v4-v-v0: 7s-32~7s-32-v0 deals 0+2400 seed 83  (source 3f42637)\n2026-11-12T06:30:14Z start c1-7s-v4-v-v0: 7s-32~7s-32-v0 deals 0+2400 seed 83  (source 3f42637)\n2026-11-12T06:44:39Z start c1-7s-v4-v-v0: 7s-32~7s-32-v0 deals 0+1000 seed 83  (source 3f42637)\n",
+ "received": "2026-11-12T06:44:39Z",
+ "script_sha256": "498a19eaf3ec67cef55614afff78d987fc285e498c004807e0e241fb6ee617d1",
+ "started": "2026-11-12T06:44:39Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

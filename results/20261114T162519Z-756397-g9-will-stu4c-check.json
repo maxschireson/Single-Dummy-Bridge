@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T16:25:38Z",
+ "id": "20261114T162519Z-756397-g9-will-stu4c-check",
+ "output_bytes": 1527,
+ "output_tail": "/home/bridgebots/work/g9/runs/g9-genx-stu4c-azure4:\nbin\npublication\nrun\nrun-inputs\n\n/home/bridgebots/work/g9/runs/g9-genx-stu4c-azure4/bin:\nsure_cpp\n3\n0\n17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a 4000 {'6-32': '153867b49e31', 'stu4c-put': '3167172c2d1a', '9a-32': '38b76a8b1542', '8s-32': '269fdf1854f4', '71s-32': '7b0f58b4c403'} {'training_families': 50818, 'source_corpus': 23233, 'played': 85910}\nNov 14 16:23:00 Bridgebots4 bash[580758]: {\"completed\": 0, \"tables\": 0, \"rate\": {\"pairs\": 0, \"per_hour\": 0.0, \"full_window\": false}, \"files\": 27, \"output\": \"/home/bridgebots/work/g9/runs/g9-genx-stu4c\nNov 14 16:23:20 Bridgebots4 bash[580759]: {\"completed\": 1, \"index\": 0, \"pair\": \"stu4c-put~71s-32\", \"common\": -10, \"native\": -10}\nNov 14 16:23:56 Bridgebots4 bash[580759]: {\"completed\": 2, \"index\": 1, \"pair\": \"stu4c-put~8s-32\", \"common\": 1, \"native\": 1}\nNov 14 16:24:01 Bridgebots4 bash[580758]: {\"completed\": 2, \"tables\": 4, \"rate\": {\"pairs\": 2, \"per_hour\": 54.97287678502726, \"full_window\": false}, \"files\": 30, \"output\": \"/home/bridgebots/work/g9/runs\nNov 14 16:25:03 Bridgebots4 bash[580758]: {\"completed\": 2, \"tables\": 4, \"rate\": {\"pairs\": 2, \"per_hour\": 37.27455851349257, \"full_window\": false}, \"files\": 32, \"output\": \"/home/bridgebots/work/g9/runs\nNov 14 16:25:20 Bridgebots4 bash[580759]: {\"completed\": 3, \"index\": 2, \"pair\": \"stu4c-put~9a-32\", \"common\": 0, \"native\": 0}\nd40710e Gen5: 2 verified paired deals, common/native bidding\nd959fd3 Gen5: 719 verified paired deals, common/native bidding\n",
+ "received": "2026-11-14T16:25:38Z",
+ "script_sha256": "c189e519e77de1f9c1561447cfcf8494f972d4ada8470a62759df079e7013960",
+ "started": "2026-11-14T16:25:38Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 78.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:17:06Z",
+ "id": "20261112T021530Z-815044-01-setup",
+ "output_bytes": 2514,
+ "output_tail": "== packages\ndebconf: unable to initialize frontend: Dialog\ndebconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)\ndebconf: falling back to frontend: Readline\ndebconf: unable to initialize frontend: Readline\ndebconf: (This frontend requires a controlling tty.)\ndebconf: falling back to frontend: Teletype\ndpkg-preconfigure: unable to re-open stdin: \ndebconf: unable to initialize frontend: Dialog\ndebconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)\ndebconf: falling back to frontend: Readline\ndebconf: unable to initialize frontend: Readline\ndebconf: (This frontend requires a controlling tty.)\ndebconf: falling back to frontend: Teletype\n\nRunning kernel seems to be up-to-date.\n\nNo services need to be restarted.\n\nNo containers need to be restarted.\n\nNo user sessions are running outdated binaries.\n\nNo VM guests are running outdated hypervisor (qemu) binaries on this host.\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\n== source (Gen 7 candidate branch)\n1042db5036e0a8071e9cc90f511d941c3de92270 Gen 7 candidate: notice for the collectors, match mix, build package (not authorized)\n== capsule (arena-gen6-gen7-capture-feed)\n8833c62f83687293ad6b3ebfa10b58d1a25961f7 Gen5: 725 verified paired deals, common/native bidding\n116M\tsdb-gen7\n380M\tcapsule-gen7-capture\n== python env\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794449824.085518    3359 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nI0000 00:00:1794449824.114295    3359 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794449825.387484    3359 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\ntensorflow 2.21.0 | numpy 2.5.4 | scipy 1.18.1\n",
+ "received": "2026-11-12T02:15:47Z",
+ "script_sha256": "487c4ebd2da601e96e3b14555819a12ba8d256cc922aa86e75dcac1fdb33e13f",
+ "started": "2026-11-12T02:15:47Z",
+ "timed_out": false,
+ "timeout_s": 3000
+}

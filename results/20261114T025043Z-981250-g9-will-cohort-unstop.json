@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T02:50:48Z",
+ "id": "20261114T025043Z-981250-g9-will-cohort-unstop",
+ "output_bytes": 315,
+ "output_tail": "ls: cannot access '/home/bridgebots/work/g9/runs/g9-cohort-azure4/run/STOP': No such file or directory\n0\n3047\n0\n---e9-25\n1\npositions.jsonl\npositions.log\nshards\n2730 native tables with ben64, 5124 positions {('ben_defends', 8): 1330, ('ben_defends', 7): 1312, ('house_defends', 8): 1255, ('house_defends', 7): 1227}\n",
+ "received": "2026-11-14T02:50:48Z",
+ "script_sha256": "cf95ad449ca8d69b8e3fca4e3835ba1bdd18c3eb6d8c424839ba0acde0e597f9",
+ "started": "2026-11-14T02:50:48Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

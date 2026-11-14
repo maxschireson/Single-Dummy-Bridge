@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T13:30:57Z",
+ "id": "20261113T133052Z-656023-g9-will-src-remote",
+ "output_bytes": 418,
+ "output_tail": "007ff06d\n46b7e004\n491c7f7\n4b54972\n698679e\n83f373d\n8cb0348\n989a4931\nea550d3\nfba1dd52\norigin\tgit@github.com:maxschireson/Single-Dummy-Bridge.git (fetch)\norigin\tgit@github.com:maxschireson/Single-Dummy-Bridge.git (push)\ntrue\ngit@github.com: Permission denied (publickey).\r\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\nfetch origin exit 128\n",
+ "received": "2026-11-13T13:30:56Z",
+ "script_sha256": "8d721f89620b810af7a5281d1b449b3ef00347187406e8c457da74c6b890bce0",
+ "started": "2026-11-13T13:30:56Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

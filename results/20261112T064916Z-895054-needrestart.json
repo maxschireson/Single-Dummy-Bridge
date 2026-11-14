@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:49:22Z",
+ "id": "20261112T064916Z-895054-needrestart",
+ "output_bytes": 808,
+ "output_tail": "already set: $nrconf{restart} = 'l';\ntimers: apt-daily-upgrade.timer: next Thu 2026-11-12 06:58:49, last - - apt-daily-upgrade.timer;apt-daily.timer: next Thu 2026-11-12 13:42:45, last - - apt-daily.timer;\nunattended upgrades today:  run(s) with packages; last lines:\nneedrestart restarts today (journal):\nNov 12 06:44:39 Bridgebots4 sudo[20278]: bridgebots : PWD=/home/bridgebots ; USER=root ; COMMAND=/usr/bin/mkdir -p /etc/needrestart/conf.d\nNov 12 06:44:39 Bridgebots4 sudo[20285]: bridgebots : PWD=/home/bridgebots ; USER=root ; COMMAND=/usr/bin/tee /etc/needrestart/conf.d/50-list-only.conf\nNov 12 06:49:22 Bridgebots4 python3[1540]: 2026-11-12T06:49:22Z running 20261112T064916Z-895054-needrestart (timeout 60s)\nunits stopped today:\n   g8-queue.service: stopped 7 time(s), last Nov 12 06:44:39 \n(end)\n",
+ "received": "2026-11-12T06:49:22Z",
+ "script_sha256": "6d0d315da4842202b674d1061b7a791cb1b4c515e51ad13ac68c67f6ba12974a",
+ "started": "2026-11-12T06:49:22Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

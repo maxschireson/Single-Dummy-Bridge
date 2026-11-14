@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 4.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:41:00Z",
+ "id": "20261112T114044Z-131720-stop-gen71",
+ "output_bytes": 957,
+ "output_tail": "11:40:56\ngo71d was active\ngo71d inactive; arena-gen71 inactive; arena-gen71-publish inactive; leftover preflight processes: 0\nafter: 0\nplan: Gen 7.1 \u00b7 standard self-play, and standard with policy v4.1 against Gen 7 standard, deals v4.1 was not trained on, on azure4 | pairs {'71s-32~71s-32': 1, '71s-32~7s-32': 1} | bots ['71s-32', '7\n11:39:39 == prepare\ncohort 7cefdbdb7771: 1468 deals taken over from cohort 869ada89eaf3 (829 of its 2814 were played, 517 unplayed deals from training families left out); pairs {'71s-32~71s-32': 1, '71s-32~7s-32': 1}; 7s\n11:39:41 == preflight\nload 8.72 7.56 4.73; top processes:\n89.5      98 /home/bridgebots/work/venv/bin/python - 407\n89.4      98 /home/bridgebots/work/venv/bin/python - 407\n89.0      98 /home/bridgebots/work/venv/bin/python - 407\n88.2      98 /home/bridgebots/work/venv/bin/python - 407\n87.4      98 /home/bridgebots/work/venv/bin/python - 407\n87.3      98 /home/bridgebots/work/venv/bin/python - 407\n",
+ "received": "2026-11-12T11:40:56Z",
+ "script_sha256": "a23274bc311b477cb1a4b5081df604e6e011b351d60129c4d829fce60aa3184f",
+ "started": "2026-11-12T11:40:56Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

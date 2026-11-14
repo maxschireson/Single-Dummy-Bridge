@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:50:17Z",
+ "id": "20261113T174941Z-860847-g9-will-io-procs",
+ "output_bytes": 1470,
+ "output_tail": "    26.3 MB    8610 writes   175188 /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n    21.5 MB    7640 writes   175191 /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n    20.3 MB    7119 writes   175194 /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n    18.8 MB    2066 writes   175165 /home/bridgebots/work/venv/bin/python /home/bridgebots/work/g9/src/46b7e004/ops/publish_gen5.py --run /home/br\n    18.3 MB    6032 writes   175193 /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n     8.2 MB    3010 writes   175192 /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n     7.5 MB     778 writes     5704 /home/bridgebots/work/venv/bin/python -u ops/publish_gen5.py --run /home/bridgebots/work/runs/gen7-phase1-azur\n     5.1 MB     559 writes   173626 /home/bridgebots/work/venv/bin/python /home/bridgebots/work/g9/src/989a4931/ops/publish_gen5.py --run /home/br\n     3.4 MB    1060 writes   173629 /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n     0.2 MB    2063 writes   173576 /home/bridgebots/work/g9/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/capsule-gen7-captur\n",
+ "received": "2026-11-13T17:49:57Z",
+ "script_sha256": "544f67c1de5d9d51588a92517bf1a331e20b11b3666f237426e14f9ed99d6b04",
+ "started": "2026-11-13T17:49:57Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

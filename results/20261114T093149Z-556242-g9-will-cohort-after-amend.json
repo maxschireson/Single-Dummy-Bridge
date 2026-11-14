@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 15.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:32:29Z",
+ "id": "20261114T093149Z-556242-g9-will-cohort-after-amend",
+ "output_bytes": 789,
+ "output_tail": "3638\n0\nNov 14 09:31:46 Bridgebots4 bash[473602]: {\"completed\": 3636, \"index\": 3637, \"pair\": \"9a-32~8s-32\", \"common\": 0, \"native\": 0}\nNov 14 09:31:48 Bridgebots4 bash[473602]: {\"completed\": 3637, \"index\": 3635, \"pair\": \"9a-32~8s-32\", \"common\": -5, \"native\": -5}\nNov 14 09:31:54 Bridgebots4 bash[473602]: {\"completed\": 3638, \"index\": 3636, \"pair\": \"9a-32~71s-32\", \"common\": 1, \"native\": 1}\nNov 14 09:32:06 Bridgebots4 bash[473601]: {\"completed\": 3638, \"tables\": 7276, \"rate\": {\"pairs\": 16, \"per_hour\": 192.0, \"full_window\": true}, \"files\": 5149, \"output\": \"/home/bridgebots/work/g9/runs/g9-cohort-azure4/public\nruntime pid 473602\nBRIDGE_DDS_CACHE_SYNC=NORMAL\nw/s 497.40 w_await 10.63 f/s 12.90 util 16.62\n 7  0      0 573412 184296 22144068    0    0     2  2565 7438  720 85  2 12  1  0  0\n",
+ "received": "2026-11-14T09:32:14Z",
+ "script_sha256": "63b67be73dc72523fd5593752efc181b45286fdb2357d768bbe6667bd38b6876",
+ "started": "2026-11-14T09:32:14Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

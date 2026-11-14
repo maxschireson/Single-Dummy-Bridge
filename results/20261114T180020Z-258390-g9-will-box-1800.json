@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 15.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:00:55Z",
+ "id": "20261114T180020Z-258390-g9-will-box-1800",
+ "output_bytes": 278,
+ "output_tail": "g9-cohort-azure4 5067 last60=171 failures=0\ng9-cohort-ben64-azure4 1458 last60=43 failures=0\ng9-genx-stu4c-azure4 80 last60=49 failures=0\n  49G\nw/s 710.80 wkB/s 7461.20 w_await 7.06 util 8.63\n 7  0      0 997464 185796 21089388    0    0    89 10998 8311  992 88  2  9  1  0  0\n",
+ "received": "2026-11-14T18:00:40Z",
+ "script_sha256": "2774b4e144d3041b3f3be36b507dc4f249cf91fb8316784d2c59a74fafa507b5",
+ "started": "2026-11-14T18:00:40Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

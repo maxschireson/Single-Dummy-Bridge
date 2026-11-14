@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:19:57Z",
+ "id": "20261114T151937Z-887075-g9-will-azure-access-check",
+ "output_bytes": 221,
+ "output_tail": "no az cli\nno ~/.azure\nvm Bridgebots4 Standard_F8as_v6 eastus rg Bridgebots_group\nosdisk Bridgebots4_OsDisk 128 Premium_LRS\ndatadisks 0\nmanaged identity token request: HTTP 400\nidentity: invalid_request Identity not found\n",
+ "received": "2026-11-14T15:19:57Z",
+ "script_sha256": "e2adef07f877cea87c9f7c71b6f80d8f60e419929da476e028fbb05a3dddc836",
+ "started": "2026-11-14T15:19:57Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

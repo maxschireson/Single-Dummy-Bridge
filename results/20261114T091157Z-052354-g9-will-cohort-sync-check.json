@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 10.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:12:21Z",
+ "id": "20261114T091157Z-052354-g9-will-cohort-sync-check",
+ "output_bytes": 693,
+ "output_tail": "3617\n0\nNov 14 09:07:21 Bridgebots4 bash[469432]: [gen9-cohort] 2026-11-14T09:07:21Z resuming 75b739377506\nNov 14 09:07:21 Bridgebots4 bash[469432]: [gen9-cohort] 2026-11-14T09:07:21Z collector, 4 workers\nNov 14 09:07:21 Bridgebots4 bash[469439]: Traceback (most recent call last):\nNov 14 09:07:21 Bridgebots4 bash[469439]:     if source_hash() != manifest['source_sha256']: raise ValueError('Pinned generation source changed')\nNov 14 09:07:21 Bridgebots4 bash[469439]: ValueError: Pinned generation source changed\n/home/bridgebots/.boxctl/scripts/20261114T091157Z-052354-g9-will-cohort-sync-check.sh: line 2: /proc//environ: No such file or directory\nw/s 61.90 w_await 2.67 f/s 0.50 util 4.20\n",
+ "received": "2026-11-14T09:12:11Z",
+ "script_sha256": "69dd096d983e60dd85cd0633091a2b90b7da14674625427a9d7f159d1052eb87",
+ "started": "2026-11-14T09:12:11Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

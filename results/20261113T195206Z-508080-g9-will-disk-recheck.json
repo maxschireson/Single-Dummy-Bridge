@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 15.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:52:42Z",
+ "id": "20261113T195206Z-508080-g9-will-disk-recheck",
+ "output_bytes": 125,
+ "output_tail": "/dev/root       123G   47G   77G  39% /\n15 s: 883 writes/s, 8.0 MB/s, avg write wait 6.4 ms, busy 49%\npid 5704 still running\n",
+ "received": "2026-11-13T19:52:27Z",
+ "script_sha256": "ffbbe242ff4c777c84573af541b3e71bfaae7bf2e0c0b7ee6f72ec6e7844ce88",
+ "started": "2026-11-13T19:52:27Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

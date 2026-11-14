@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 201.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:20:18Z",
+ "id": "20261112T071640Z-560171-g8-30-tune-r2",
+ "output_bytes": 189,
+ "output_tail": "tune: active; queue: inactive\n  club_min 16 -> 15: -0.008 +- 0.029\n  club_min 16 -> 17: -0.089 +- 0.029\n  open_min 11 -> 10: -0.057 +- 0.034\n  open_min 11 -> 12: +0.005 +- 0.039\ndd-301.npz ",
+ "received": "2026-11-12T07:16:56Z",
+ "script_sha256": "8acf1f4bb636ab188f99d419a1e9056affcfe85aadff535f6344adf4d0e02afb",
+ "started": "2026-11-12T07:16:56Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

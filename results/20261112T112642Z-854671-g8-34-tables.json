@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 100.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:28:41Z",
+ "id": "20261112T112642Z-854671-g8-34-tables",
+ "output_bytes": 53,
+ "output_tail": "tables unit: active\ndd-301.npz dd-302.npz dd-307.npz ",
+ "received": "2026-11-12T11:27:01Z",
+ "script_sha256": "80c4f0290f2416c3ab1749a4a5d5219a69f25f35ec2d833d19da2afc9fc56032",
+ "started": "2026-11-12T11:27:01Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

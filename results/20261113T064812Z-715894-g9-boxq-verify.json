@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:48:34Z",
+ "id": "20261113T064812Z-715894-g9-boxq-verify",
+ "output_bytes": 116,
+ "output_tail": "e532652 azure4: boxq: azure4 status (e9-0-n04 paused, e9-16-h-v-p paused, g9-cohort-azure4 running)\n1\nactive\nactive\n",
+ "received": "2026-11-13T06:48:34Z",
+ "script_sha256": "994fa21d042a5e0c4d007265c1161c58af383ffd609fe99e99bf2b5cda9bf522",
+ "started": "2026-11-13T06:48:34Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

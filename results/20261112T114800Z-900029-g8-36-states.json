@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:48:29Z",
+ "id": "20261112T114800Z-900029-g8-36-states",
+ "output_bytes": 300,
+ "output_tail": "states unit: active; tables unit: inactive\nseed 409 done in 122 s\ndouble-dummy tables for 4000 deals of seed 410: 124s\nseed 410 done in 124 s\nsource 136211c\ndd-301.npz dd-302.npz dd-307.npz dd-401.npz dd-402.npz dd-403.npz dd-404.npz dd-405.npz dd-406.npz dd-407.npz dd-408.npz dd-409.npz dd-410.npz ",
+ "received": "2026-11-12T11:48:08Z",
+ "script_sha256": "4f35d938b1843fa3350c589f48248462e7f3b9883bb3e797005432c724950266",
+ "started": "2026-11-12T11:48:08Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

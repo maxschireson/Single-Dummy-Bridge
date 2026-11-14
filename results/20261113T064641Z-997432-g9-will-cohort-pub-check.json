@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:47:11Z",
+ "id": "20261113T064641Z-997432-g9-will-cohort-pub-check",
+ "output_bytes": 2718,
+ "output_tail": "origin\thttps://github.com/maxschireson/Single-Dummy-Bridge.git (fetch)\n5746a1c Gen5: 0 verified paired deals, common/native bidding\nNov 13 06:45:35 Bridgebots4 bash[166211]: I0000 00:00:1794552335.274002  166211 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166208]: I0000 00:00:1794552336.222249  166208 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166209]: I0000 00:00:1794552336.248608  166209 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166203]: I0000 00:00:1794552336.248612  166203 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166207]: I0000 00:00:1794552336.286688  166207 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166206]: I0000 00:00:1794552336.305382  166206 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166210]: I0000 00:00:1794552336.320375  166210 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nNov 13 06:45:36 Bridgebots4 bash[166211]: I0000 00:00:1794552336.343225  166211 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\n1\n",
+ "received": "2026-11-13T06:47:10Z",
+ "script_sha256": "0581d85801303602b1eaef7bad6ffddaf8227315bcd84cc38def08b3d9f1ea79",
+ "started": "2026-11-13T06:47:10Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

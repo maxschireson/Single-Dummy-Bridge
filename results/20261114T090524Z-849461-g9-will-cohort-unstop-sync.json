@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:05:33Z",
+ "id": "20261114T090524Z-849461-g9-will-cohort-unstop-sync",
+ "output_bytes": 112,
+ "output_tail": "ls: cannot access '/home/bridgebots/work/g9/runs/g9-cohort-azure4/run/STOP': No such file or directory\n0\n3617\n0\n",
+ "received": "2026-11-14T09:05:33Z",
+ "script_sha256": "3727ca402d7275048324dd7b8d9402184d09ddc53c1e7232aac32c19ed30b28c",
+ "started": "2026-11-14T09:05:33Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

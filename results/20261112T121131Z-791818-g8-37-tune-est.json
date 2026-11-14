@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:12:00Z",
+ "id": "20261112T121131Z-791818-g8-37-tune-est",
+ "output_bytes": 195,
+ "output_tail": "tune unit: active; states unit: active\ndouble-dummy tables for 4000 deals of seed 419: 131s\nseed 419 tables in 131 s\ndouble-dummy tables for 4000 deals of seed 420: 130s\nseed 420 tables in 130 s\n",
+ "received": "2026-11-12T12:11:55Z",
+ "script_sha256": "def4a19e7748c72424134d233639f27d75311763016d1a5bcf2114e444289661",
+ "started": "2026-11-12T12:11:55Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

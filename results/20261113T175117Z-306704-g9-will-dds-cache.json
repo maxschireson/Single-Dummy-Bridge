@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure4",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:51:21Z",
+ "id": "20261113T175117Z-306704-g9-will-dds-cache",
+ "output_bytes": 1523,
+ "output_tail": "11428102144 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite\n32768 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-shm\n11210552 /home/bridgebots/work/g9/runs/g9-cohort-azure4/run/dds-cache.sqlite-wal\n200122368 /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/dds-cache.sqlite\n32768 /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/dds-cache.sqlite-shm\n2698632 /home/bridgebots/work/g9/runs/g9-cohort-ben64-azure4/run/dds-cache.sqlite-wal\ntmpfs            16G   80K   16G   1% /dev/shm\n/home/bridgebots/work/g9/src/46b7e004/ops/gen5_runtime.py:137:        os.environ['BRIDGE_DDS_CACHE']=str(root/'dds-cache.sqlite')\n/home/bridgebots/work/g9/src/46b7e004/bridge_harness/bidding_env.py:228:        self.db.execute('PRAGMA journal_mode=WAL')\n/home/bridgebots/work/g9/src/46b7e004/bridge_harness/dds.py:49:        cache_path = cache_path if cache_path is not None else os.environ.get('BRIDGE_DDS_CACHE')\n/home/bridgebots/work/g9/src/46b7e004/bridge_harness/dds_cache.py:53:        self.db.execute('PRAGMA journal_mode=WAL')\n/home/bridgebots/work/g9/src/46b7e004/bridge_harness/dds_cache.py:54:        self.db.execute('PRAGMA synchronous=FULL')\n/home/bridgebots/work/g9/src/46b7e004/bridge_harness/players.py:46:        # An explicit empty BRIDGE_DDS_CACHE disables persistence for timing.\n/home/bridgebots/work/g9/src/46b7e004/bridge_harness/players.py:48:        cache_path = os.environ.get('BRIDGE_DDS_CACHE',str(cache_root/'single-dummy-bridge'/'dds-positions.sqlite'))\n",
+ "received": "2026-11-13T17:51:20Z",
+ "script_sha256": "1c5675ec62db8c79081f14aba16a3c498497da76f0fecadda52b763955df57b7",
+ "started": "2026-11-13T17:51:21Z",
+ "timed_out": false,
+ "timeout_s": 60
+}
