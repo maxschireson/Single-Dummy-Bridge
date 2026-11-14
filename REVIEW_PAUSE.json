@@ -1,0 +1,31 @@
+{
+  "stopped": "2026-11-14T21:23:14Z",
+  "reason": "PR41/43 cache/scheduling inconsistency; old recursive/selective results diagnostic only; no extension or adoption",
+  "interrupted_boards": "possible; preserve episodes and logs; do not treat partial screen as complete",
+  "runs": {
+    "smoke-guarantee": {
+      "rows": 16,
+      "episodes": 16
+    },
+    "smoke-flat32": {
+      "rows": 16,
+      "episodes": 16
+    },
+    "smoke-reader": {
+      "rows": 16,
+      "episodes": 16
+    },
+    "smoke-recursive32": {
+      "rows": 16,
+      "episodes": 16
+    },
+    "smoke-selective32": {
+      "rows": 16,
+      "episodes": 16
+    },
+    "screen-reader": {
+      "rows": 117,
+      "episodes": 117
+    }
+  }
+}
