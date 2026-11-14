@@ -1,0 +1,33 @@
+{
+  "poll_start": "2026-11-14T17:23:39Z",
+  "status": "verified_pinned_github_watch_readback",
+  "revision": "b6d7a21e4504924729e0dbc8ea99232bbcd50840",
+  "watch_blob": "e7e410c8a70c8654c786a8d41700bb3ba51b5e67",
+  "checks": {
+    "blob": true,
+    "poll": true,
+    "cursor": true,
+    "commentsSince": true,
+    "result": true,
+    "collector": true,
+    "rotation": true,
+    "refs": true,
+    "layoutResearch": true,
+    "stuSelection": true,
+    "peer": true,
+    "retirement": true,
+    "messages": true,
+    "manifest": true
+  },
+  "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+  "checked_refs": 347,
+  "published_completed": 5335,
+  "collector_pid": 292481,
+  "last_rotation_completed": 5051,
+  "cache_rotation_history_entries": 13,
+  "peer_adopted_here": false,
+  "layout_budget_adopted_here": false,
+  "stu4c_selection_applied_here": false,
+  "messages_sent": false,
+  "collection_instruction_changed": false
+}
