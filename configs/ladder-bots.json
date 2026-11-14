@@ -178,6 +178,12 @@
       "group": "Gen X Stu",
       "parent": "8s-32",
       "note": "The loop session's pure Stu (stu3-ps: rollouts on Stu's round 3 net at every card, no double-dummy search), in the arena as Gen X Stu on Gen 9's collector (configs/round9-genx-stu.json on feature/gen9-genx-stu; Max, 14 Nov 00:49 UTC: \"We will call it Gen X Stu\"). Weak prior around its parent: the loop's box figures (pure Stu with net v2 -0.65 +- 0.14 against Gen 8 card play, 1,000 deals; round 3's net -0.09 +- 0.19 relative to that, 500 deals; box/coordination BOARD.md, loop, 14 Nov 00:55 UTC) are a different bot and opponent id, not taken as its prior."
+    },
+    "stu4c-put": {
+      "label": "Gen X Stu (round 4c)",
+      "group": "Gen X Stu",
+      "parent": "stu3-ps",
+      "note": "The loop session's pure Stu with round 4's control net (stu4c-put: the net at the table and in the rollouts, blind to who sits against it), in the arena as Gen X Stu on Gen 9's collector from 14 Nov (configs/round9-genx-stu-r4c.json on feature/gen9-genx-stu). It takes round 3's (stu3-ps) cores; weak prior around round 3's point."
     }
   },
   "candidates": {
