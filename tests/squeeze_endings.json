@@ -1,0 +1,882 @@
+{
+ "what": "Richard Pavlicek's fifty trump strip squeeze endings (study 9Q53, 'Trump Strip Squeeze', rpbridge.net/9q53.htm), as positions for testing the winning-line logic. Spades are trumps and South is on lead in every one; North-South take `win` of the `of` tricks left by his solution, which starts with `lead`. Hands are spades.hearts.diamonds.clubs.",
+ "never_train": "TEST POSITIONS ONLY (Max, 14 November 2026: \"do not train the net on them\"). They are not deals of any collection and must never be played into a training set.",
+ "fields": {
+  "guaranteed_nothing_known": "tricks the declaring side can guarantee from its own view knowing only the hand sizes",
+  "guaranteed_every_show_out": "the same when each defender has shown out of every suit the diagram gives him none of",
+  "layouts_left": "ways the unseen cards can still lie then (1 = show-outs fix every card)",
+  "marked": "versions in which show-outs fix every card: one defender's cards in a suit both hold are replaced by unused low cards of a suit only he holds, kept only where double dummy rates every lead of South's as in the diagram"
+ },
+ "endings": [
+  {
+   "n": 1,
+   "name": "Ruffed squeeze card",
+   "win": 2,
+   "of": 3,
+   "lead": "CA",
+   "north": "-.AJ.K.-",
+   "west": "-.KQ.A.-",
+   "east": "A.54.-.-",
+   "south": "-.32.-.A",
+   "guaranteed_nothing_known": 1,
+   "guaranteed_every_show_out": 1,
+   "layouts_left": 6,
+   "marked": []
+  },
+  {
+   "n": 2,
+   "name": "Ruffout strip squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "CA",
+   "north": "2.-.K95.3",
+   "west": "-.32.32.2",
+   "east": "-.AK.AJT.-",
+   "south": "-.Q4.Q4.A",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 126,
+   "marked": [
+    {
+     "west": "-.-.-.76542",
+     "east": "-.AK.AJT.-"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "name": "Discard-or-ruff strip squeeze",
+   "win": 3,
+   "of": 4,
+   "lead": "C4",
+   "north": "2.432.-.-",
+   "west": "-.AK.K7.-",
+   "east": "-.-.654.A",
+   "south": "-.-.AQ2.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 10,
+   "marked": []
+  },
+  {
+   "n": 4,
+   "name": "Loser-on-loser ruffout strip squeeze",
+   "win": 3,
+   "of": 4,
+   "lead": "C4",
+   "north": "K.4.Q4.-",
+   "west": "-.AK.AK.-",
+   "east": "-.-.JT9.A",
+   "south": "A.Q5.-.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 10,
+   "marked": []
+  },
+  {
+   "n": 5,
+   "name": "Forced-duck establishment strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "-.A52.KQ8.-",
+   "west": "-.7643.32.-",
+   "east": "-.KQJ.AT9.-",
+   "south": "AK.T98.J.-",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 924,
+   "marked": []
+  },
+  {
+   "n": 6,
+   "name": "Forced-duck fork strip squeeze",
+   "win": 4,
+   "of": 6,
+   "lead": "SA",
+   "north": "-.KQJ.4.54",
+   "west": "-.A6.AQ.76",
+   "east": "-.32.-.AK32",
+   "south": "AK.54.K5.-",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 210,
+   "marked": []
+  },
+  {
+   "n": 7,
+   "name": "Elopement fork strip squeeze",
+   "win": 3,
+   "of": 5,
+   "lead": "C4",
+   "north": "3.T4.54.-",
+   "west": "A.AJ9.2.-",
+   "east": "-.2.AK.AK",
+   "south": "2.KQ5.-.4",
+   "guaranteed_nothing_known": 1,
+   "guaranteed_every_show_out": 1,
+   "layouts_left": 35,
+   "marked": []
+  },
+  {
+   "n": 8,
+   "name": "Lunar ruff strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "C4",
+   "north": "-.-.AQ52.AK",
+   "west": "A.KQ.K76.-",
+   "east": "-.-.JT98.32",
+   "south": "2.AJT.4.4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 35,
+   "marked": [
+    {
+     "west": "A.KQ.K76.-",
+     "east": "-.-.-.876532"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "name": "Ruff or double squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "SK",
+   "north": "32.K.A9.-",
+   "west": "T.A2.JT.-",
+   "east": "A9.-.KQ.A",
+   "south": "KQJ.-.4.K",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 35,
+   "marked": []
+  },
+  {
+   "n": 10,
+   "name": "Threat transfer fork strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "HK",
+   "north": "AK.-.J65.2",
+   "west": "2.AT9.-.54",
+   "east": "-.Q87.QT9.-",
+   "south": "-.KJ2.AK4.-",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 20,
+   "marked": []
+  },
+  {
+   "n": 11,
+   "name": "Crossruff strip squeeze",
+   "win": 2,
+   "of": 4,
+   "lead": "CK",
+   "north": "2.4.QJ.-",
+   "west": "-.-.-.AQJT",
+   "east": "A.A.AK.-",
+   "south": "3.K.4.K",
+   "guaranteed_nothing_known": 1,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 1,
+   "marked": [
+    {
+     "west": "-.-.-.AQJT",
+     "east": "A.A.AK.-"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "name": "Crossruff fork strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "C4",
+   "north": "A2.AQT2.-.-",
+   "west": "Q.J54.AQ.-",
+   "east": "-.K98.JT.A",
+   "south": "K.-.K54.K4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 252,
+   "marked": []
+  },
+  {
+   "n": 13,
+   "name": "Nonmaterial ruff-sluff strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "D4",
+   "north": "A.A654.K.-",
+   "west": "-.K2.AQJT.-",
+   "east": "-.T987.-.AK",
+   "south": "2.QJ3.4.Q",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 15,
+   "marked": []
+  },
+  {
+   "n": 14,
+   "name": "Ruff-sluff strip squeeze",
+   "win": 6,
+   "of": 7,
+   "lead": "D4",
+   "north": "AK.A43.K.2",
+   "west": "-.K2.AQJT9.-",
+   "east": "-.T987.-.AKQ",
+   "south": "3.QJ65.4.J",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 5,
+   "layouts_left": 15,
+   "marked": []
+  },
+  {
+   "n": 15,
+   "name": "Entry ruffout strip squeeze",
+   "win": 6,
+   "of": 7,
+   "lead": "SA",
+   "north": "-.KQT93.AT.-",
+   "west": "-.A8762.32.-",
+   "east": "-.J54.QJ.AK",
+   "south": "AK.-.K5.Q54",
+   "guaranteed_nothing_known": 5,
+   "guaranteed_every_show_out": 5,
+   "layouts_left": 792,
+   "marked": []
+  },
+  {
+   "n": 16,
+   "name": "Delayed elopement fork strip squeeze",
+   "win": 3,
+   "of": 5,
+   "lead": "C4",
+   "north": "4.-.KJT9.-",
+   "west": "A.AQ.AQ.-",
+   "east": "-.JT.3.AK",
+   "south": "32.K4.-.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 35,
+   "marked": [
+    {
+     "west": "A.AQ.AQ.-",
+     "east": "-.-.-.AK532"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "name": "Lunar threat transfer fork strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "DK",
+   "north": "AK.AK5.-.K",
+   "west": "-.32.AT98.-",
+   "east": "-.QT9.Q7.A",
+   "south": "-.J4.KJ2.2",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 462,
+   "marked": []
+  },
+  {
+   "n": 18,
+   "name": "Ruff step-winkle",
+   "win": 4,
+   "of": 6,
+   "lead": "SK",
+   "north": "-.A4.Q.K65",
+   "west": "-.KJ8.4.QJ",
+   "east": "-.T9.AK.AT",
+   "south": "AK.Q32.-.4",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 924,
+   "marked": []
+  },
+  {
+   "n": 19,
+   "name": "Crossruff step-winkle",
+   "win": 5,
+   "of": 6,
+   "lead": "C4",
+   "north": "3.JT2.A4.-",
+   "west": "-.A9.Q873.-",
+   "east": "-.KQ8.T9.A",
+   "south": "2.-.KJ65.4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 462,
+   "marked": []
+  },
+  {
+   "n": 20,
+   "name": "Vice forced-duck establishment squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "-.A5.K.K98",
+   "west": "-.KJ9.A.JT",
+   "east": "-.T8.Q.A76",
+   "south": "AK.Q32.-.Q",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 924,
+   "marked": []
+  },
+  {
+   "n": 21,
+   "name": "Elopement establishment or squeeze",
+   "win": 6,
+   "of": 7,
+   "lead": "C4",
+   "north": "A2.K4.J54.-",
+   "west": "KQ.QJT.KQ.-",
+   "east": "J.32.A.AKQ",
+   "south": "43.A965.-.4",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 330,
+   "marked": []
+  },
+  {
+   "n": 22,
+   "name": "Elopement or double squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "CA",
+   "north": "KQ.42.K.-",
+   "west": "AJ.JT.A.-",
+   "east": "2.KQ.-.KQ",
+   "south": "T.A9.-.AJ",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 35,
+   "marked": [
+    {
+     "west": "AJ.JT.A.-",
+     "east": "-.-.-.KQ432"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "name": "Establishment triple strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SA",
+   "north": "-.K.42.AK9",
+   "west": "-.Q32.K.32",
+   "east": "-.A.AQ.QJT",
+   "south": "AK.4.JT.4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 924,
+   "marked": []
+  },
+  {
+   "n": 24,
+   "name": "Knockout strip squeeze",
+   "win": 3,
+   "of": 4,
+   "lead": "C4",
+   "north": "AQ.Q5.-.-",
+   "west": "J.AK.A.-",
+   "east": "T.-.32.A",
+   "south": "K.4.K.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 10,
+   "marked": [
+    {
+     "west": "J.AK.A.-",
+     "east": "-.-.-.A532"
+    }
+   ]
+  },
+  {
+   "n": 25,
+   "name": "Extended knockout strip squeeze",
+   "win": 3,
+   "of": 5,
+   "lead": "C4",
+   "north": "AQ.Q5.4.-",
+   "west": "J.AK.AK.-",
+   "east": "T.-.32.A2",
+   "south": "K.4.Q5.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 20,
+   "marked": [
+    {
+     "west": "J.AK.AK.-",
+     "east": "-.-.-.A6532"
+    }
+   ]
+  },
+  {
+   "n": 26,
+   "name": "Trump extended knockout strip squeeze",
+   "win": 3,
+   "of": 5,
+   "lead": "C4",
+   "north": "KJ3.Q5.-.-",
+   "west": "AT.AK.A.-",
+   "east": "9.32.-.A2",
+   "south": "Q2.4.K.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 35,
+   "marked": [
+    {
+     "west": "AT.AK.A.-",
+     "east": "-.-.-.A6532"
+    }
+   ]
+  },
+  {
+   "n": 27,
+   "name": "Knockout trim fork strip squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "C4",
+   "north": "AK.654.-.-",
+   "west": "Q.KQ9.4.-",
+   "east": "J.32.A.A",
+   "south": "2.AJT.-.4",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 126,
+   "marked": [
+    {
+     "west": "Q.KQ9.4.-",
+     "east": "-.-.-.A6532"
+    }
+   ]
+  },
+  {
+   "n": 28,
+   "name": "Knockout fork strip squeeze",
+   "win": 4,
+   "of": 6,
+   "lead": "C4",
+   "north": "AK4.543.-.-",
+   "west": "QJ.AQ9.4.-",
+   "east": "T.J87.A.A",
+   "south": "32.KT6.-.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 462,
+   "marked": [
+    {
+     "west": "QJ.AQ9.4.-",
+     "east": "-.-.-.A76532"
+    }
+   ]
+  },
+  {
+   "n": 29,
+   "name": "Backwash strip squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "C4",
+   "north": "A.AJ.QJ.-",
+   "west": "-.2.32.KQ",
+   "east": "Q.KQ.AK.-",
+   "south": "K.-.54.A4",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 35,
+   "marked": [
+    {
+     "west": "-.-.-.KQ532",
+     "east": "Q.KQ.AK.-"
+    }
+   ]
+  },
+  {
+   "n": 30,
+   "name": "Extended backwash strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "C4",
+   "north": "AKJ.T65.-.-",
+   "west": "9.2.2.AKQ",
+   "east": "T.KQJ.AK.-",
+   "south": "Q.A4.Q4.4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 84,
+   "marked": []
+  },
+  {
+   "n": 31,
+   "name": "Trump extended backwash strip squeeze",
+   "win": 3,
+   "of": 5,
+   "lead": "C4",
+   "north": "KJT.Q5.-.-",
+   "west": "87.32.-.A",
+   "east": "A9.AK.A.-",
+   "south": "Q2.4.K.4",
+   "guaranteed_nothing_known": 2,
+   "guaranteed_every_show_out": 2,
+   "layouts_left": 70,
+   "marked": [
+    {
+     "west": "-.-.-.A6532",
+     "east": "A9.AK.A.-"
+    }
+   ]
+  },
+  {
+   "n": 32,
+   "name": "Backwash fork strip squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "C4",
+   "north": "A2.Q4.4.-",
+   "west": "-.-.AKQ.KQ",
+   "east": "QJ.KJ.5.-",
+   "south": "K.A5.-.A4",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 4,
+   "marked": []
+  },
+  {
+   "n": 33,
+   "name": "Backwash trim fork strip squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "C4",
+   "north": "AQ.A76.-.-",
+   "west": "-.32.A.AK",
+   "east": "J.KQT.4.-",
+   "south": "K.J54.-.4",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 35,
+   "marked": [
+    {
+     "west": "-.-.-.AK532",
+     "east": "J.KQT.4.-"
+    }
+   ]
+  },
+  {
+   "n": 34,
+   "name": "Backwash ruffout strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "C4",
+   "north": "A.AJ2.Q4.-",
+   "west": "T.3.5.AKQ",
+   "east": "QJ.KQ.AK.-",
+   "south": "K32.4.-.54",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 84,
+   "marked": []
+  },
+  {
+   "n": 35,
+   "name": "Backwash extended ruffout strip squeeze",
+   "win": 6,
+   "of": 7,
+   "lead": "CA",
+   "north": "A.Q54.AK9.-",
+   "west": "T.32.432.2",
+   "east": "QJ.AK.QJT.-",
+   "south": "K2.-.8765.A",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 1716,
+   "marked": [
+    {
+     "west": "T43.-.432.2",
+     "east": "-.AKT9876.-.-"
+    },
+    {
+     "west": "-.-.-.8765432",
+     "east": "QJ.AK.QJT.-"
+    }
+   ]
+  },
+  {
+   "n": 36,
+   "name": "Backwash ruffout fork strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "CA",
+   "north": "A.Q4.AKJ.-",
+   "west": "-.32.432.2",
+   "east": "K.AK.QT9.-",
+   "south": "2.-.8765.A",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 252,
+   "marked": [
+    {
+     "west": "-.-.-.765432",
+     "east": "K.AK.QT9.-"
+    }
+   ]
+  },
+  {
+   "n": 37,
+   "name": "Seesaw ruffout fork strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "A4.-.Q54.2",
+   "west": "-.AKT.KT7.-",
+   "east": "Q.-.A6.AKQ",
+   "south": "K32.QJ4.-.-",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 5,
+   "layouts_left": 10,
+   "marked": []
+  },
+  {
+   "n": 38,
+   "name": "Seesaw ruffout guard strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "A4.-.Q4.QJ",
+   "west": "-.AKQ.AK.K",
+   "east": "Q.-.32.A54",
+   "south": "K32.J54.-.-",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 56,
+   "marked": []
+  },
+  {
+   "n": 39,
+   "name": "Seesaw ruffout fork strip triple squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "A3.KJ4.-.2",
+   "west": "-.AQ.AQ.A4",
+   "east": "Q.32.-.Q65",
+   "south": "K2.-.KJ4.K",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 126,
+   "marked": []
+  },
+  {
+   "n": 40,
+   "name": "Seesaw ruffout fork strip squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "A3.-.JT98.-",
+   "west": "-.AJ9.AKQ.-",
+   "east": "Q.-.32.987",
+   "south": "K2.KQT.-.4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 10,
+   "marked": [
+    {
+     "west": "-.AJ9.AKQ.-",
+     "east": "Q.-.-.98732"
+    }
+   ]
+  },
+  {
+   "n": 41,
+   "name": "Seesaw ruffout fork strip triple squeeze",
+   "win": 5,
+   "of": 6,
+   "lead": "SK",
+   "north": "A3.KQT2.-.-",
+   "west": "-.AJ4.AQ.5",
+   "east": "Q.3.-.9876",
+   "south": "K2.-.KJ4.4",
+   "guaranteed_nothing_known": 4,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 126,
+   "marked": []
+  },
+  {
+   "n": 42,
+   "name": "Elopement or seesaw ruffout squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "H4",
+   "north": "AQT.-.Q4.-",
+   "west": "-.AKQ.AK.-",
+   "east": "K9.-.-.432",
+   "south": "J2.J54.-.-",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 1,
+   "marked": [
+    {
+     "west": "-.AKQ.AK.-",
+     "east": "K9.-.-.432"
+    }
+   ]
+  },
+  {
+   "n": 43,
+   "name": "Crossruff or seesaw ruffout squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "D5",
+   "north": "K3.Q4.4.-",
+   "west": "Q.K.KJ.2",
+   "east": "-.AJ.AQT.-",
+   "south": "A2.-.765.-",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 56,
+   "marked": [
+    {
+     "west": "Q.K32.-.2",
+     "east": "-.-.AQT32.-"
+    },
+    {
+     "west": "Q.K2.-.32",
+     "east": "-.-.AQT32.-"
+    },
+    {
+     "west": "Q.-.KJ2.2",
+     "east": "-.AJ532.-.-"
+    },
+    {
+     "west": "Q.-.KJ.32",
+     "east": "-.AJ532.-.-"
+    }
+   ]
+  },
+  {
+   "n": 44,
+   "name": "Trump triple strip squeeze",
+   "win": 2,
+   "of": 3,
+   "lead": "SA",
+   "north": "J2.-.K.-",
+   "west": "-.A.A.A",
+   "east": "KQ.-.4.-",
+   "south": "A.K.-.K",
+   "guaranteed_nothing_known": 1,
+   "guaranteed_every_show_out": 1,
+   "layouts_left": 2,
+   "marked": [
+    {
+     "west": "-.A2.-.A",
+     "east": "KQ.-.4.-"
+    },
+    {
+     "west": "-.A.-.A2",
+     "east": "KQ.-.4.-"
+    }
+   ]
+  },
+  {
+   "n": 45,
+   "name": "Triple squeeze ruffout step-winkle",
+   "win": 6,
+   "of": 7,
+   "lead": "SA",
+   "north": "-.KQ.-.AKQ76",
+   "west": "-.2.AT8.432",
+   "east": "-.A.KQ.JT98",
+   "south": "AK.4.J94.5",
+   "guaranteed_nothing_known": 5,
+   "guaranteed_every_show_out": 5,
+   "layouts_left": 3432,
+   "marked": []
+  },
+  {
+   "n": 46,
+   "name": "Multiple sluff knockout squeeze",
+   "win": 4,
+   "of": 6,
+   "lead": "HT",
+   "north": "32.-.654.K",
+   "west": "-.J98765.-.-",
+   "east": "Q.32.AK.A",
+   "south": "AK.T.QJ.Q",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 3,
+   "layouts_left": 28,
+   "marked": []
+  },
+  {
+   "n": 47,
+   "name": "Backwash dual fork strip squeeze",
+   "win": 4,
+   "of": 5,
+   "lead": "CA",
+   "north": "A.AQ.AQ.-",
+   "west": "-.-.-.65432",
+   "east": "K.KJ.KJ.-",
+   "south": "-.-.-.AKQJT",
+   "guaranteed_nothing_known": 3,
+   "guaranteed_every_show_out": 4,
+   "layouts_left": 1,
+   "marked": [
+    {
+     "west": "-.-.-.65432",
+     "east": "K.KJ.KJ.-"
+    }
+   ]
+  },
+  {
+   "n": 48,
+   "name": "Tempo denial anti fork strip or squeeze",
+   "win": 2,
+   "of": 6,
+   "lead": "HQ",
+   "north": "-.T42.76.A",
+   "west": "-.K987.A5.-",
+   "east": "A2.5.Q4.Q",
+   "south": "-.AQJ6.KJ.-",
+   "guaranteed_nothing_known": 0,
+   "guaranteed_every_show_out": 0,
+   "layouts_left": 84,
+   "marked": []
+  },
+  {
+   "n": 49,
+   "name": "Trump deluge anti backwash strip squeeze",
+   "win": 3,
+   "of": 6,
+   "lead": "SA",
+   "north": "765.A.32.-",
+   "west": "Q98.4.4.K",
+   "east": "KJT2.-.Q5.-",
+   "south": "A43.-.AK.A",
+   "guaranteed_nothing_known": 1,
+   "guaranteed_every_show_out": 1,
+   "layouts_left": 210,
+   "marked": []
+  },
+  {
+   "n": 50,
+   "name": "Winner retention anti knockout strip squeeze",
+   "win": 3,
+   "of": 7,
+   "lead": "S2",
+   "north": "54.-.KQJ.A2",
+   "west": "KQ.54.65.K",
+   "east": "AJT.6.AT7.-",
+   "south": "32.AK.432.-",
+   "guaranteed_nothing_known": 0,
+   "guaranteed_every_show_out": 1,
+   "layouts_left": 1716,
+   "marked": []
+  }
+ ]
+}
