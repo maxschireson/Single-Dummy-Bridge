@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 15:29 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 15:34 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -138,13 +138,13 @@ Generated 2026-11-14 15:29 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-14 15:29 UTC; idle 3.4 core-hours since 11-12 15:03 UTC, 3.4 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-14 15:34 UTC; idle 3.4 core-hours since 11-12 15:03 UTC, 3.4 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 4,618 of 10,000 | 152.5 | 11-16 02:46 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@a98410c8f` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 1,351 of 2,000 | 30.1 | 11-15 13:02 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@c6c7eba98` |
-| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 670 of 4,000 | 48.2 | 11-17 12:37 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@454c4a8ad` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 4,634 of 10,000 | 159.8 | 11-16 01:09 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@a98410c8f` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 1,354 of 2,000 | 28.3 | 11-15 14:23 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@a39ed83dd` |
+| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 674 of 4,000 | 48.5 | 11-17 12:05 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@59c887e0d` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 387 of 800 | 342.9 |  | `transfer/gen9-e9-0-n04-azure4-20261113@f467d0d70` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
