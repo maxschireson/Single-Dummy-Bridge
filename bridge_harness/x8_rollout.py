@@ -46,13 +46,22 @@ class Seats:
     who    (the deciding side's bot, the other side's bot) as names in a rollout net's vocabulary, for nets that take
            who is playing (gen7_net.PolicyNet.vocab, rollout net v2 on): each row is told the bot of the side to play
            (`bot_own`) and of the other side (`bot_other`). Names the net does not know are read as unknown.
+    seen   the name the OTHER side's seats are told for the deciding side's bot; None: who[0]. ('' = they are told
+           nothing about whom they play against.)
+    cut    'draw': a card whose probability (after `power`) is under `cut` x the likeliest card's is never drawn: the
+           draw stays among the plausible cards. 0 = every legal card can be drawn.
+    other  how the seats of the side that is NOT deciding take their cards, where that is to differ from the deciding
+           side's: {'mode', 'power', 'cut'}. None: all four seats alike. (What a bot knows of its own partnership's play
+           it does not know of its opponents': its own side can play its likeliest card while the others' cards stay drawn.)
     """
 
-    def __init__(self, nets, mode='top', power=1., gap_weight=10., seed=0, who=('', '')):
-        if mode not in ('top', 'draw', 'blend'):
+    def __init__(self, nets, mode='top', power=1., gap_weight=10., seed=0, who=('', ''), seen=None, cut=0., other=None):
+        if mode not in ('top', 'draw', 'blend') or (other is not None and other.get('mode', mode) not in ('top', 'draw', 'blend')):
             raise ValueError(f'Unknown seat mode {mode!r}')
         self.nets, self.mode, self.power, self.gap_weight = list(nets), mode, power, gap_weight
         self.who = tuple(who)
+        self.seen, self.cut = seen, cut
+        self.other = None if other is None else dict(mode=other.get('mode', mode), power=other.get('power', power), cut=other.get('cut', cut))
         self.rng = np.random.default_rng(seed)
         self.net_rows = 0
         self.side, self.publics = None, None
@@ -76,7 +85,8 @@ class Seats:
             use = np.where(controller % 2 == self.side, 0, np.asarray(other)[free])
         logp = np.empty((len(free), 52), np.float32)
         score = logp
-        if self.mode == 'blend':
+        blend = self.mode == 'blend' or (self.other is not None and self.other['mode'] == 'blend')
+        if blend:
             score = np.empty((len(free), 52), np.float32)
         for k in np.unique(use):
             at = np.flatnonzero(use == k)
@@ -87,21 +97,41 @@ class Seats:
             if getattr(net, 'vocab', None):              # a net that takes who is playing: the side to play's bot, then the other's
                 mine = controller[at] % 2 == self.side
                 me, them = net.bot_id(self.who[0]), net.bot_id(self.who[1])
+                seen = me if self.seen is None else net.bot_id(self.seen)
                 b['bot_own'] = np.where(mine, me, them).astype(np.int32)
-                b['bot_other'] = np.where(mine, them, me).astype(np.int32)
-            if self.mode == 'blend':
+                b['bot_other'] = np.where(mine, them, seen).astype(np.int32)
+            if blend:
                 logp[at], gap = self.nets[k].policy_and_gap_arrays(b)
                 score[at] = logp[at] - self.gap_weight * gap
             else:
                 logp[at] = self.nets[k].log_policy_arrays(b)
             self.net_rows += len(at)
-        if self.mode == 'draw':
-            p = np.exp(self.power * logp.astype(np.float64)) * legal[free]
-            cum = np.cumsum(p, axis=1)
-            ticket = self.rng.random(len(free)) * cum[:, -1]
-            out[free] = (cum < ticket[:, None]).sum(axis=1).clip(max=51)
-        else:
-            out[free] = np.where(legal[free], score, -np.inf).argmax(axis=1)
+        if self.other is None and self.cut <= 0:                # all four seats alike, every legal card drawable: as it always was
+            if self.mode == 'draw':
+                p = np.exp(self.power * logp.astype(np.float64)) * legal[free]
+                cum = np.cumsum(p, axis=1)
+                ticket = self.rng.random(len(free)) * cum[:, -1]
+                out[free] = (cum < ticket[:, None]).sum(axis=1).clip(max=51)
+            else:
+                out[free] = np.where(legal[free], score, -np.inf).argmax(axis=1)
+            return out, free, logp
+        mine = controller % 2 == self.side
+        groups = [(np.arange(len(free)), self.mode, self.power, self.cut)] if self.other is None else \
+            [(np.flatnonzero(mine), self.mode, self.power, self.cut),
+             (np.flatnonzero(~mine), self.other['mode'], self.other['power'], self.other['cut'])]
+        for at, mode, power, cut in groups:
+            if not len(at):
+                continue
+            allowed = legal[free[at]]
+            if mode == 'draw':
+                p = np.exp(power * logp[at].astype(np.float64)) * allowed
+                if cut > 0:
+                    p = np.where(p >= cut * p.max(axis=1, keepdims=True), p, 0.)
+                cum = np.cumsum(p, axis=1)
+                ticket = self.rng.random(len(at)) * cum[:, -1]
+                out[free[at]] = (cum < ticket[:, None]).sum(axis=1).clip(max=51)
+            else:
+                out[free[at]] = np.where(allowed, score[at] if mode == 'blend' else logp[at], -np.inf).argmax(axis=1)
         return out, free, logp
 
 

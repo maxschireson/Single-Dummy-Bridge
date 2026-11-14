@@ -9,9 +9,10 @@ Each net is told that the side to play is OWN and the other side OTHER (names in
 net that takes no names), on every row: what a bot's `x8.names` tell its simulated seats. For each net, by phase:
 
   top      tricks given up by its most probable card (nan where the rollouts did not rate that card)
-  draw     expected tricks given up by a card drawn from its probabilities, among the rated cards
+  draw     expected tricks given up by a card drawn from its probabilities, among the rated cards, and (after the
+           slash) the percentage of draws that are cards the rollouts did not rate (0 on a search bot's rows)
   draw^2   the same with the probabilities squared and renormalised (a sharper draw: `power` 2)
-  unrated  the probability that a draw is a card the rollouts did not rate (0 on a search bot's rows)
+  cut.x    the same for a draw among the cards at least x times as likely as the likeliest (the seats' `cut`)
   nats     the entropy of its probabilities over the legal cards
 and, for each net after the first, draw minus the first net's draw on the same rows (paired, SE clustered by deal).
 """
@@ -24,6 +25,7 @@ sys.path.insert(0, str(ROOT))
 from bridge_harness.gen7_net import INPUTS, PolicyNet  # noqa: E402
 
 PHASES = ('lead', 'tricks 1-4', 'tricks 5-8', 'tricks 9-13', 'all')
+WAYS = (('draw', 1., 0.), ('draw^2', 2., 0.), ('cut.1', 1., .1), ('cut.25', 1., .25), ('cut.5', 1., .5))
 
 
 def phase_of(ply):
@@ -55,13 +57,14 @@ def stats(net, own, other, data):
     rows = np.arange(n)
     pick = np.where(legal, p, -1.).argmax(1)
     out = dict(top=np.where(rated[rows, pick], gap[rows, pick], np.nan))
-    for name, q in (('draw', 1.), ('draw2', 2.)):
+    for name, q, cut in WAYS:
         w = p ** q
+        if cut:
+            w = np.where(w >= cut * w.max(1, keepdims=True), w, 0.)
         w /= w.sum(1, keepdims=True)
         mass = (w * rated).sum(1)
         out[name] = (w * g).sum(1) / np.maximum(mass, 1e-12)
-        if q == 1.:
-            out['unrated'] = 1. - mass
+        out[name + ' unrated'] = 1. - mass
     out['nats'] = -(np.where(p > 0, p * np.log(np.maximum(p, 1e-300)), 0.)).sum(1)
     return out
 
@@ -86,13 +89,14 @@ def main():
         path, own, other = (rest.split(':') + ['', ''])[:3]
         s = stats(PolicyNet(path, None), own, other, data)
         print(f'-- {name} (told {own or "nothing"}/{other or "nothing"})')
-        print('   phase         rows    top   draw  draw^2  unrated  nats' + ('   draw minus the first net (paired)' if first else ''))
+        print('   phase         rows    top  ' + '  '.join(f'{name:>11s}' for name, _, _ in WAYS) + '   nats'
+              + ('   draw minus the first net (paired)' if first else ''))
         for i, ph in enumerate(PHASES):
             m = phase == i if i < 4 else np.ones(len(phase), bool)
             if not m.any():
                 continue
-            line = (f'   {ph:12s} {int(m.sum()):5d}  {np.nanmean(s["top"][m]):.4f} {s["draw"][m].mean():.4f}  {s["draw2"][m].mean():.4f}   '
-                    f'{s["unrated"][m].mean():.4f}  {s["nats"][m].mean():.3f}')
+            line = f'   {ph:12s} {int(m.sum()):5d}  {np.nanmean(s["top"][m]):.4f}  ' + '  '.join(
+                f'{s[name][m].mean():.4f}/{100 * s[name + " unrated"][m].mean():4.1f}' for name, _, _ in WAYS) + f'  {s["nats"][m].mean():.3f}'
             if first is not None:
                 d, se = clustered((s['draw'] - first['draw'])[m], data['deal'][m])
                 line += f'   {d:+.4f} +- {se:.4f}'
