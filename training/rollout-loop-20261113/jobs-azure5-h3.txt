@@ -1,0 +1,6 @@
+# Round 3's net alone head to head on azure5 (its collection paused by rungs.sh): the table tests against Gen 8 cannot
+# resolve the change indicator 1 shows (about 0.1 IMPs a board against +-0.14 to 0.19), and a net alone is cheap to play,
+# so the nets meet each other directly, both tables of a board, on 4,000 of the gate seed's deals not used before
+# (1,000 to 4,999): IMPs a board for round 3's net against v2 and against round 2's net.
+h3-n stu3-n~stu0-n 131 1000 4000 8
+h32-n stu3-n~stu2-n 131 1000 4000 8
