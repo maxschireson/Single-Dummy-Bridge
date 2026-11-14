@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep MATCH $W/human.log | tail -n 2 | cut -c1-200; echo "xh-sAh-hA $(wc -l < $W/runs/xh-sAh-hA/results.jsonl)"; grep -o "\"epoch\": [0-9], \"seconds\": [0-9]*" $W/r4/net.log 2>/dev/null | tail -1; tail -n 2 $W/r4go.log | cut -c1-200; tail -n 2 $W/r4/timeline.log | cut -c1-200; systemctl is-active loop-r4
