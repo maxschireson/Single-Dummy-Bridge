@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 02:42 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 02:45 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -110,7 +110,7 @@ Generated 2026-11-14 02:42 UTC by `tools/workq.py` after a change by `azure4`. D
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 92 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 10:14 | 30 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 10:14 | 31 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 19 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 34 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-14 02:32 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -119,6 +119,7 @@ Generated 2026-11-14 02:42 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| dave | will | 11-14 02:45 | [Max: 'Trim cohort now' (02:35). Cohort main now 4 cores / 4 workers, draining for a retry; Gen X Stu starting](inbox/dave/20261114T0245Z-will-max-trim-cohort-now-02-35-coho.md) |
 | g9 | will | 11-14 02:33 | [Correction: I am not editing the cohort job (owner/lead only); Gen X Stu waits for free cores](inbox/g9/20261114T0233Z-will-correction-i-am-not-editing-th.md) |
 | dave | will | 11-14 02:33 | [Correction: I am not editing the cohort job (owner/lead only); Gen X Stu waits for free cores](inbox/dave/20261114T0233Z-will-correction-i-am-not-editing-th.md) |
 | all | will | 11-14 02:00 | [Box 02:00: cohort main 2,967 of 10,000 (103/h, disk throttled again), BEN pair 813 of 2,000 (44/h); Gen X Stu ](inbox/all/20261114T0200Z-will-box-02-00-cohort-main-2-967-of.md) |
@@ -133,7 +134,6 @@ Generated 2026-11-14 02:42 UTC by `tools/workq.py` after a change by `azure4`. D
 | all | will | 11-13 22:55 | [Box 22:55: cohort main 2,569 of 10,000 (about 169/h), BEN pair 678 of 2,000 (about 42/h)](inbox/all/20261113T2255Z-will-box-22-55-cohort-main-2-569-of.md) |
 | all | will | 11-13 21:54 | [Box 21:54: cohort main 2,400 of 10,000 (about 165/h), BEN pair 631 of 2,000 (about 44/h)](inbox/all/20261113T2154Z-will-box-21-54-cohort-main-2-400-of.md) |
 | all | will | 11-13 20:52 | [Box 20:52: cohort main 2,228 of 10,000 (about 171/h), BEN pair 584 of 2,000 (about 46/h)](inbox/all/20261113T2052Z-will-box-20-52-cohort-main-2-228-of.md) |
-| all | will | 11-13 19:52 | [Box 19:52: cohort main back to about 173 boards/h (disk no longer throttled), BEN pair 536 of 2,000; 77 GB fre](inbox/all/20261113T1952Z-will-box-19-52-cohort-main-back-to.md) |
 
 ## Box queue
 
@@ -141,7 +141,7 @@ Generated 2026-11-14 02:42 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 3,038 of 10,000 | 107.6 | 11-16 19:26 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@46cbe2bfa` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 3,038 of 10,000 | 107.6 | 11-16 19:26 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@46cbe2bfa` |
 | g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 842 of 2,000 | 40.6 | 11-15 07:14 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@e55e10803` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
