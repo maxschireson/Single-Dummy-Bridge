@@ -1,1 +1,3 @@
 stu3-p v ben64: 32 boards to play (0 done), 1 workers
+32 boards: 0.2188 +- 0.5952 IMPs/board for stu3-p; 57 boards/hour; 0 failed
+{"pair": "stu3-p~ben64", "boards": 32, "cpu_per_board": 25.47, "common": {"imps_per_board": 0.2188, "se": 0.5952, "boards": 32, "won": 10, "lost": 6, "flat": 16}, "native": {"imps_per_board": 0.2188, "se": 0.5952, "boards": 32, "won": 10, "lost": 6, "flat": 16}}
