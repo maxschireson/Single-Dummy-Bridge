@@ -249,6 +249,61 @@ reference rates by the same rollouts, so this is the noise part of the budget's 
 | SiD (rollout, net lead) Stu R3 against BEN (64), minus Stu R0's, deals 0-255 (`b3-p` against `b0-p`) | +0.21 +- 0.22 (256) |
 | SiD (rollout) Stu R3 head to head against SiD (rollout) Stu R0, gate seed deals 5,000-6,999 (`h3-p`, `h3-pb`) | see PLAN.md |
 
+## Round 3 inside the rollouts, diagnosed (02:30 to 05:45 UTC on 14 November)
+
+The net got better alone (head to head R3 against R0 +0.40 +- 0.07) and not inside the rollouts (-0.13 +- 0.09). What
+was tried, IMPs a board, +- standard error (boards); "reference" is SiD (rollout) Stu R0 (`stu0-ps`):
+
+| Test | Result |
+| --- | --- |
+| The seats draw from the net: R3 told it is Stu is flatter (0.94 nats against 0.55), its drawn card gives up more (`draw_regret.py`) | top card 0.0608 against R0's 0.0631; drawn 0.0791 against 0.0731 tricks a decision |
+| R3 inside, the draw sharpened (power 2), by deal minus plain draw (`h3-p2`) | +0.05 +- 0.17 (1,000) |
+| R3 inside, the seats play the top card, by deal minus plain draw (`h3-pg`) | -0.01 +- 0.17 (1,000) |
+| R3 inside **and at the table** (one net, `stu3-pst`), head to head against the reference (`h3-pt`, `h3-ptb`) | **+0.16 +- 0.09 (2,000)** |
+| the one-net bot against Gen 8, by deal minus R3 inside only (`l3-pst` against `l3-p`) | +0.12 +- 0.23 (500) |
+| the one-net bot against BEN (200), by deal minus R3 inside only (`b3-pst200` against `b3-ps200`), partial | -0.17 +- 0.35 (237) |
+| R3 inside, blind (told nothing about its opponent), against Gen 8, by deal minus `l3-p` (`l3-pu`) | -0.09 +- 0.20 (500) |
+| A net from Gen 8's rows only against one from as many rows of v2's mix (top card on Stu's rows; `exp_strong.sh`) | STRONG 0.0716, MIX 0.0746 at 512 wide; full v2 0.0631: volume with bot ids beats subsetting |
+
+Sharper seats do nothing. One net helps against its own family; against outside opponents it is not yet shown (the
+1,024-board BEN pair and the Gen 8 pair are queued). The worry (Max): a net at the table that was trained on an
+opponent's games reads that opponent's cards, which is knowledge of the opponent, not strength.
+
+**Where the tricks go** (`bench/dd_ledger.py`: every card rated by double dummy on the deal as it lay; hindsight, which
+flatters Gen 8; SiD (rollout, net lead) Stu R3 and Gen 8 against each other, `l3-p`, 994 tables each):
+
+| Tricks given up a table | SiD | Gen 8 |
+| --- | --- | --- |
+| opening lead | 0.120 | 0.103 |
+| declaring, tricks 1-4 / 5-8 / 9-13 | 0.153 / 0.100 / 0.022 | 0.106 / 0.099 / 0.031 |
+| defending, tricks 1-4 / 5-8 / 9-13 | 0.136 / 0.093 / 0.024 | 0.111 / 0.055 / 0.013 |
+| cards that turn the contract, a 100 tables | 17.5 | 13.5 |
+
+SiD's tricks go early and in defence; of them 0.479 a table were a candidate the rollouts rated lower, 0.048 a card the
+net's prior left out. Against BEN (200) the same split holds for SiD R0, R3 and the one-net bot.
+
+**BEN (200) baselines**, deals 0-255: SiD (rollout) Stu R0 -0.13 +- 0.24, R3 -0.04 +- 0.26, Gen 8 -0.16 +- 0.26 (R3 minus
+R0 by deal +0.09 +- 0.29). **The gate is BEN (200)** (Max, 04:23 UTC); matches against our own bots and Gen 8 are diagnostics.
+BEN is installed on azure2 and azure6 as on azure3 (`ben_install.sh`, checked against `ben/manifest.json`).
+
+**BEN in the training data:** in round 3's set BEN is at the table in 528 of 30,816 deals (1.7%; 2.8% of rows, half of
+them BEN's own cards), all from the replayed pre-loop set (17.8% of its deals). The loop's own collections have none.
+
+**The guarantee and Pavlicek's fifty trump strip squeezes** (`tests/test_squeeze_endings.py`; test positions only, never
+trained on): double dummy agrees with his count and lead in all fifty. As drawn, five are certain from declarer's view;
+the rest depend on which defender holds cards of a suit both still hold, which no show-out settles. In the 25 versions
+where show-outs fix every card (20 of the 50 techniques) the logic finds his count every time, each lead rated as
+double dummy rates it.
+
+**Noise in the data from 05:40 UTC** (Max, 05:37): Gen 8 had none (`near_tie` 0, its net's favourite among exact ties).
+Its self-play is now played by its personalities at margin 0 (`bridge_harness/style.py`: among exactly tied cards the one
+the style prefers, a random one 15% of the time), six pairs in turn; Stu's self-play twins mix their defenders' equal cards.
+
+**Boxes from about 06:15 UTC** (Max, 05:24 and 05:30): azure1 and azure5 Gen 8's self-play (azure5 after about 3 hours of
+style calibration), azure2 and azure6 the one-net Stu R3's self-play, azure3 the test box (BEN through the release, then
+the other tests). Round 4 is cut after about 6 hours of collection (about 43,000 tables), with the arena's Gen 8 and Gen 9
+feeds (about 21,500 boards without BEN), and gated on BEN (200) on the 2,560 deals the one-net Stu R3 has played there.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.

@@ -288,6 +288,23 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
   makes about 1.5 to 2 times the tables a box-hour; the arena's feeds already hold about 25,000 Gen 8 and 9 episodes
   newer than v2's set. From 02:50 UTC azure1 makes Gen 8's self-play records (`sg8e`, `g8a~g8b`).
 
+## Max's decisions, 14 November (UTC), from 02:30
+
+| When | His words | What follows |
+| --- | --- | --- |
+| 02:43 | "we should only be doing enough self play to see where we are" | Gen 8's self-play as data; Stu's own only as much as tells where we are |
+| 03:35 to 03:50 | personalities, "mostly directed... a bit of random", "Average in a mixed pop. Half an imp... was too much" | `style.py`; doses set for about a quarter IMP a board across the population |
+| 04:02 to 04:10 | partners' knowledge and disclosure random (knowledge 0 to 80%, disclosure usually 75% of it, 0 to 150%), per dimension, correlated (centred 0.6, -0.2 to 0.8) | the population's dials (not built yet) |
+| 04:10 | "Simpler to have one not two" | one net at the table and in the rollouts (`stu3-pst`) |
+| 04:17 | "test with 4.1 everywhere vs Ben, but let's settle the other issues first" | `b41-ps200` last in azure3's BEN queue |
+| 04:23 | "the gate should be on Ben" | the verdict on a bot is its by-deal difference on BEN (200) |
+| 04:28 | "don't go down in a cold game or slam" | the IMP objective (`stu3-psti`, `h3-pi`); the guarantee already covers certain contracts |
+| 04:30 | BEN's share of training "low" | BEN tables out of the arena feeds; out of the replay from round 4 |
+| 04:34 | Pavlicek's trump strip squeezes, "do not train the net on them" | `tests/test_squeeze_endings.py` |
+| 05:24 to 05:32 | two boxes of each self-play, one for tests; go longer before the release; one box measuring BEN through it; borrow 3 hours for styles | box roles above; round 4 at about 6 hours |
+| 05:31 | arena boards from Gen 9 | the feeds go into round 4 without BEN |
+| 05:37 | noise in the data now | Gen 8's personalities at margin 0 in its self-play |
+
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
 Earliest to latest. Log-loss on Stu's own cards falling is not one of them: in round 2 it fell (1.06 to 0.99) while the
