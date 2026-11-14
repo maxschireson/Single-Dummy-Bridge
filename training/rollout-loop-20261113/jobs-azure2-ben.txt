@@ -1,0 +1,4 @@
+# The gate on more boxes (see jobs-azure6-ben.txt): the one-net bot on deals 1,024 to 1,279 (its control is on azure6), the
+# two-net control on deals 1,280 to 1,535 (the one-net bot is on azure6).
+b3-pst200d stu3-pst~ben200 131 1024 256 8 --episodes
+b3-ps200e stu3-ps~ben200 131 1280 256 8 --episodes

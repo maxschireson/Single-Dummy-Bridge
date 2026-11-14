@@ -14,8 +14,12 @@ for n in $(seq 1 "$LANES"); do      # a box set up by ben_install.sh has no lane
 done
 echo "$(date -u +%FT%TZ) the collection is paused for $(basename "$JOBS")" >> "$W/runs.log"
 mkdir -p "$W/ben"
+CONF_SHA=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['lane_config_sha256'])" "$HERE/ben/manifest.json")
 for n in $(seq 1 "$LANES"); do
-  . "$HOME/work/lanes/$n.env"
+  BEN_CONF=; [ -e "$HOME/work/lanes/$n.env" ] && . "$HOME/work/lanes/$n.env"
+  # the lane's own config where it is azure3's BEN (64) lane config; on a box whose lanes are another round's (azure2's
+  # are BEN (16)) or missing, the copy of azure3's kept here
+  [ "$(sha256sum "${BEN_CONF:-/dev/null}" 2>/dev/null | cut -c1-64)" = "$CONF_SHA" ] || BEN_CONF=$HERE/ben/ben-64-lane.conf
   sed -e 's/^sample_hands_play = .*/sample_hands_play = 200/' -e 's/^min_sample_hands_play = .*/min_sample_hands_play = 20/' \
       -e 's/^min_sample_hands_play_bad = .*/min_sample_hands_play_bad = 20/' "$BEN_CONF" > "$W/ben/ben-200-$n.conf"
   [ "$n" = 1 ] && diff "$BEN_CONF" "$W/ben/ben-200-1.conf" | grep '^[<>]' >> "$W/ben/ben-200.diff"

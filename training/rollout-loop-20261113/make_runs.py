@@ -105,7 +105,8 @@ def main():
                       ('azure1', 'jobs-azure1-hd.txt'), ('azure5', 'jobs-azure5-hd.txt'), ('azure3', 'jobs-azure3-hd.txt'),
                       ('azure6', 'jobs-azure6-blind.txt'), ('azure2', 'jobs-azure2-split.txt'),
                       ('azure1', 'jobs-azure1-styles.txt'), ('azure5', 'jobs-azure5-v41-styles.txt'),
-                      ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt')):
+                      ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt'),
+                      ('azure6', 'jobs-azure6-ben.txt'), ('azure2', 'jobs-azure2-ben.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run
