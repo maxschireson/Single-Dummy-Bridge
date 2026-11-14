@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+iostat -dx 10 3 | grep nvme0n1 | awk "{print \"w/s\",\$8,\"wkB/s\",\$9,\"w_await\",\$12,\"wareq-sz\",\$13,\"f/s\",\$(NF-3),\"aqu\",\$(NF-1),\"util\",\$NF}"; R=$HOME/work/g9/runs; ls -la $R/g9-cohort-azure4/run/dds-cache.sqlite* $R/g9-genx-stu-azure4/run/dds-cache.sqlite* $R/g9-cohort-ben64-azure4/run/dds-cache.sqlite* 2>/dev/null | awk "{print \$5/1e6\" MB\", \$9}"; command -v pidstat >/dev/null && pidstat -d 10 1 | tail -12 || (for p in $(pgrep -f gen5_runtime); do echo "$p $(grep -E "^write_bytes" /proc/$p/io)"; done)
