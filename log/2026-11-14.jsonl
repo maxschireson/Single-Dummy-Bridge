@@ -113,3 +113,4 @@
 {"at": "2026-11-14T16:21:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-genx-stu4c-azure4", "note": "running"}
 {"at": "2026-11-14T16:26:00Z", "by": "will", "op": "send", "target": "all/20261114T1626Z-will-gen-x-stu-now-round-4c-stu4c-p", "note": "Gen X Stu now round 4c (stu4c-put) on azure4 since 16:22; round 3 ended at 719 and is archived"}
 {"at": "2026-11-14T16:44:00Z", "by": "g9", "op": "lease", "target": "G9-B10", "until": "2026-11-14T17:44Z"}
+{"at": "2026-11-14T16:45:00Z", "by": "g9", "op": "log", "target": "G9-B10", "note": "Item 4 done by g9 (bill silent since 13 Nov 04:02): feature/gen9 82007dab. A card without a stated 1NT rebid range now derives the balanced minimum under a 1NT opening from 13 or 14 when there are two points or more below it ((11, 13) for 14-16 with 11-point openings, (12, 13) for 14-17 with 12); we"}
