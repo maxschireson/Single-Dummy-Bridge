@@ -94,7 +94,9 @@ def units(tables):
                 continue
             for role in (('declarer',) if s == dec else ('defense', 'lead') if s == 'NESW'[('NESW'.index(dec) + 1) % 4] else ('defense',)):
                 a = acc[(role, s)]
-                rows.append((i, role, s, (r.get('pids') or {}).get(s), (r.get('names') or {}).get(s), *a))
+                name = ((r.get('names') or {}).get(s) or '').strip()
+                who = ' '.join(name.lower().split()) or (r.get('pids') or {}).get(s)     # players are matched across events by name
+                rows.append((i, role, s, who, name, *a))
     return rows
 
 
