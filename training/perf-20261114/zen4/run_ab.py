@@ -54,13 +54,17 @@ def configs():
     ]
 
 
+SHORT = {'stu-forks', 'stu-forks2', 'stu-features', 'stu-policy'}     # single patches on unpadded bf16: 60% of the boards
+
+
 def jobs(boards, only):
     out = []
     for name, pair, env, heavy in configs():
         if only and name not in only:
             continue
+        n = max(1, round(0.6 * boards)) if name in SHORT else boards
         for rep in (1, 2):
-            out.append(dict(job=f'{name}-{rep}', config=name, pair=pair, env=env, heavy=heavy, boards=boards))
+            out.append(dict(job=f'{name}-{rep}', config=name, pair=pair, env=env, heavy=heavy, boards=n))
     return out
 
 
