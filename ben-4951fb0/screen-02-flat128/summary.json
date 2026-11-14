@@ -1,47 +1,47 @@
 {
   "pair": "rx2-control~rx-ben64",
-  "boards": 3,
-  "cpu_per_board": 17.93,
+  "boards": 12,
+  "cpu_per_board": 19.5,
   "common": {
-    "imps_per_board": 12.6667,
-    "se": 0.3333,
-    "boards": 3,
-    "won": 3,
-    "lost": 0,
-    "flat": 0
+    "imps_per_board": 5.1667,
+    "se": 1.93,
+    "boards": 12,
+    "won": 8,
+    "lost": 2,
+    "flat": 2
   },
   "native": {
-    "imps_per_board": 12.6667,
-    "se": 0.3333,
-    "boards": 3,
-    "won": 3,
-    "lost": 0,
-    "flat": 0
+    "imps_per_board": 5.1667,
+    "se": 1.93,
+    "boards": 12,
+    "won": 8,
+    "lost": 2,
+    "flat": 2
   },
   "failures": 0,
   "unfinished": 7,
-  "attempts": 10,
+  "attempts": 19,
   "interpretation": "development only; not a strength or equal-time decision",
   "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
   "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
   "attempt_work": {
-    "wall_seconds": 126.24380100597045,
-    "worker_cpu_seconds": 53.907810361,
-    "solver_cpu_seconds": 0.4143609999999999,
-    "inclusive_cpu_seconds": 54.322171361
+    "wall_seconds": 609.0858709779859,
+    "worker_cpu_seconds": 234.541273777,
+    "solver_cpu_seconds": 8.115141999999999,
+    "inclusive_cpu_seconds": 242.656415777
   },
   "actors": {
     "rx2-control": {
       "work": {
-        "solver_cpu_seconds": 0.35,
-        "solver_wall_seconds": 0.5146585958136711,
-        "solver_calls": 9052.0,
-        "solver_hits": 2226.0,
+        "solver_cpu_seconds": 7.829999999999999,
+        "solver_wall_seconds": 8.802158551086904,
+        "solver_calls": 60581.0,
+        "solver_hits": 9917.0,
         "solver_timeouts": 0.0,
-        "wall_seconds": 50.532029802852776,
-        "worker_cpu_seconds": 49.89103790399999,
-        "inclusive_cpu_seconds": 50.24103790399999,
-        "initialization_seconds": 3.60899218195118
+        "wall_seconds": 232.62986231807736,
+        "worker_cpu_seconds": 223.1069933429999,
+        "inclusive_cpu_seconds": 230.93699334299998,
+        "initialization_seconds": 9.856438798917225
       },
       "recursive": {},
       "precisions": [
@@ -53,8 +53,8 @@
     },
     "rx-ben64": {
       "work": {
-        "wall_seconds": 71.82904411494383,
-        "worker_cpu_seconds": 0.1371359609999867,
+        "wall_seconds": 365.5011198608845,
+        "worker_cpu_seconds": 0.4836749050000091,
         "external_server_cpu_measured": 0.0
       },
       "recursive": {},
