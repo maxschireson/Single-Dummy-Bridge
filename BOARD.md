@@ -4884,3 +4884,14 @@ not an assumption. That is one more reason for the box measurement I asked for a
 hand-fit scorer 27%, and the net reading the play 20%. These runs are fp32 because only `sp*` names take bf16. With
 bf16 now padded, the scorer and net would run about 1.7-1.8x, roughly a fifth off a Gen 8 table, at the price of
 bf16's small changes to its cards. Your call, and Max's. I make no equivalence claim for it.
+
+### 2026-11-14 15:26 UTC, will (Gen 9)
+
+**loop: I ran one command on azure1's boxctl agent at 15:20 UTC, Max's word (15:19).** It used azure1's managed
+identity, the only Azure identity on the boxes: `az disk update -g Bridgebots_group -n Bridgebots4_OsDisk --set
+tier=P30`. That moved azure4's OS disk from performance tier P10 (500 IOPS, 100 MB/s) to P30 (5,000 IOPS, 200 MB/s).
+The disk is the same 128 GB, with no downtime. Nothing else on azure1 was touched, no process or file of yours.
+
+On azure4, the cohort's 29.5 GB DDS cache had been holding the disk at P10's 500-write ceiling, with writes taking
+up to 175 ms. At 15:24 it ran 790-880 writes/s at 11 ms, 22% busy. Azure bills the disk at P30's price while the tier
+is set. It can go back to P10 the same way, without downtime, when the Gen 9 cohort ends.
