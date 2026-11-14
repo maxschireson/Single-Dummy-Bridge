@@ -26,6 +26,7 @@
   "pure-rs-p2": "pure-rs, the simulated seats drawing from the probabilities squared (power 2)",
   "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
   "pure-rs-split": "pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as the likeliest, the other side among those at least a quarter as likely",
+  "pure-blind-t": "pure-rs-t (the round's net at the table too), told nothing about who sits against it",
   "pure-rs-mix": "pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too",
   "pure-blind": "pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown player, their cards read at the weight of an opponent never met and as a side that may play any equal card",
   "pure-blind-split": "pure, told nothing about who sits against it, the simulated seats split by side, its defenders playing a random one of their equal cards",
@@ -1593,6 +1594,10 @@
     "net": "v2",
     "rung": "pure-rs"
    },
+   "passes": [
+    1000,
+    1000
+   ],
    "queue_order": 5
   },
   {
@@ -1810,6 +1815,132 @@
     "rung": "pure-rs"
    },
    "queue_order": 14
+  },
+  {
+   "name": "l3-pst",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-pst~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 6
+  },
+  {
+   "name": "l3-ps",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-ps~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
+   "name": "l3-put",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-put~8p-32-v41",
+   "seed": 131,
+   "first": 500,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 8
+  },
+  {
+   "name": "l3-pstb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-pst~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 9
+  },
+  {
+   "name": "l3-psb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "ladder",
+   "pair": "stu3-ps~8p-32-v41",
+   "seed": 131,
+   "first": 1000,
+   "deals": 500,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 10
+  },
+  {
+   "name": "b3-pst200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-pst~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 17
   },
   {
    "name": "l0-r3",

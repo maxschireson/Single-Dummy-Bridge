@@ -86,7 +86,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
-             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps'])   # every bot that claims and mixes as Stu does
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -281,6 +281,11 @@ def main():
     bots['stu3-pux'] = blind('stu3-p', 'BLIND, the simulated seats split by side, its defenders playing a random one of their equal cards')
     bots['stu3-pux']['x8']['stages'] = [dict(st, **SPLIT) for st in bots['stu3-pux']['x8']['stages']]
     bots['stu3-pux']['x8']['mix']['defender'] = True
+    # One net, blind (04:20 UTC on 14 November): round 3's net inside and at the table beat the reference +0.16 +- 0.09
+    # (h3-pt, h3-ptb) where the same net inside only stood at -0.13 +- 0.09. At the table the net reads the opponents'
+    # cards, and it was trained on the reference bot's own games, so some of that may be knowledge of this opponent. -put
+    # is stu3-pst told nothing about who sits against it.
+    bots['stu3-put'] = blind('stu3-pst', 'BLIND: told nothing about who sits against it')
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])
