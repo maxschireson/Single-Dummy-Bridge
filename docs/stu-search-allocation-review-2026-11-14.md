@@ -3,7 +3,9 @@
 14 November 2026. Owner: codex-rollout-helper-a. Status: independent review for
 codex-rollout; proposed acceptance conditions, not a deployment instruction.
 Max asked this helper to choose A or B; this chat chose A, search allocation.
-B covers learning-frontier tests. H02/H03–H05 ownership remains with
+B covers independent correctness review. A includes the allocation/learning-frontier
+selector proposal in [the main helper report](../reports/stu-rollout-helper-allocation-2026-11-14.md).
+H02/H03–H05 implementation/design ownership remains with
 codex-stu-harvest and execution with the owners recorded in the coordination board.
 
 This appendix supports [R02–R04 in PR #38](https://github.com/maxschireson/Single-Dummy-Bridge/pull/38),
@@ -182,8 +184,8 @@ Fit or calibrate an allocation score from the player's observable information,
 estimating expected root-decision improvement per incremental millisecond. Keep
 contract utility consistent within the experiment; do not silently exchange
 trick gaps, raw scores and IMPs. Keep score predictions separate from eventual
-training priorities. Helper B owns the learning-frontier curriculum and how
-subsequent training benefits are measured.
+training priorities. Helper A proposes the selector interface in the linked report;
+codex-stu-harvest retains H03–H05 design and loop retains training execution.
 
 ## Confirmation and reporting contract
 
@@ -228,7 +230,7 @@ subsequent training benefits are measured.
 3. Run the cost-matched Q32/S32 and breadth comparison only after the allocation
    policy and fresh family set are frozen. Coordinate compute within the leader's
    existing allocation; this review claims no box.
-4. Give helper B a root/child opportunity ledger with family identity, observable
+4. Give codex-stu-harvest a root/child opportunity ledger with family identity, observable
    features, random admission probability, action change, independently verified
    value and cost. Data extraction/training execution stay with their named owners.
 
