@@ -317,10 +317,12 @@ class FitScorer:
                                 EYE38[HON_HCP[hn].sum(axis=1)], v], axis=1)
             if self.t is not None:
                 torch, t = self.torch, self.t
+                from .gen7_net import BUCKETS_ON, bucket, pad_rows   # padded to fixed sizes: see gen7_net.Bf16Forward
+                xp = pad_rows(x, bucket(n)) if BUCKETS_ON else x
                 with torch.inference_mode():
-                    z = torch.relu(torch.from_numpy(x).to(torch.bfloat16) @ t['Wh'] + torch.from_numpy(np.asarray(auction_part, np.float32)).to(torch.bfloat16))
+                    z = torch.relu(torch.from_numpy(xp).to(torch.bfloat16) @ t['Wh'] + torch.from_numpy(np.asarray(auction_part, np.float32)).to(torch.bfloat16))
                     z = torch.relu(z @ t['W1'] + t['b1'])
-                    z = torch.relu(z @ t['W2'] + t['b2']).float().numpy()
+                    z = torch.relu(z @ t['W2'] + t['b2']).float().numpy()[:n]
             else:
                 z = _relu(x @ p['Wh'] + auction_part)
                 z = _relu(z @ p['W1'] + p['b1'])

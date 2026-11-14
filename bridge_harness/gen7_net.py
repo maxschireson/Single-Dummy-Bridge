@@ -261,6 +261,26 @@ def log_softmax(x):
     return x - np.log(np.exp(x).sum(axis=1, keepdims=True))
 
 
+BUCKETS_ON = os.environ.get('BRIDGE_NET_BUCKETS', '1') != '0'
+_BUCKETS = (1, 2, 4, 8, 16, 24, 32, 48, 64, 80, 96, 128, 160, 192, 224, 256, 320, 384, 448, 512, 640, 768, 896, 1024)
+
+
+def bucket(n):
+    """The batch size a bf16 call is padded to: at most about a quarter more rows, about 25 sizes below 1,024 (then
+    multiples of 256), so oneDNN's kernel cache holds every size it meets."""
+    for b in _BUCKETS:
+        if n <= b:
+            return b
+    return -(-n // 256) * 256
+
+
+def pad_rows(v, m):
+    v = np.asarray(v)
+    if v.ndim == 0 or len(v) >= m:
+        return v
+    return np.concatenate([v, np.zeros((m - len(v),) + v.shape[1:], v.dtype)])
+
+
 class Bf16Forward:
     """`forward` for a suit-shared net with every matrix product in bf16 through torch's CPU kernels (oneDNN, which use
     the AVX512_BF16 instructions where the CPU has them): weights and activations rounded to bf16, sums kept in fp32
@@ -289,6 +309,18 @@ class Bf16Forward:
                   for k in self.KEYS if k in params}
 
     def __call__(self, batch):
+        """Rows are padded with zeros to a few fixed sizes (`bucket`) and the padding cut off the outputs: oneDNN builds
+        and caches kernels for every new batch size, and the rollouts' batch sizes vary call by call, so without the
+        padding a worker keeps building kernels (about a third of the bf16 throughput, measured) and its memory grows by
+        about a gigabyte a net (the kernel cache). BRIDGE_NET_BUCKETS=0 turns the padding off."""
+        n = len(batch['state'])
+        m = bucket(n) if BUCKETS_ON else n
+        if m == n:
+            return self._call(batch)
+        out = self._call({k: pad_rows(v, m) for k, v in batch.items()})
+        return {k: v[:n] for k, v in out.items()}
+
+    def _call(self, batch):
         torch, T = self.torch, self.t
         cards, g = features(batch)
         n = cards.shape[0]
