@@ -4911,3 +4911,11 @@ box, all under `/opt/sidplay` and unit `sidplay`; nothing of the loop's (`~/work
   2-core sandbox; a whole Sid table about 30 s), at Nice -10 for the person's table, as before.
 - The install blocks azure1's boxctl queue for about 10 to 15 minutes (pip, DDS build, bundle); then one smoke board.
 - To shed it: `SIDPLAY_ANALYSIS=0` or `SIDPLAY_WORKERS=1` in `/etc/sidplay.env`, or `sudo systemctl stop sidplay`.
+
+### 2026-11-14 15:51 UTC, sidplay
+
+**Done: azure1's play server runs PR #33 at `29c4cc0` with Sid = SiD (rollout) Stu R4c (`stu4c-put`).** Install 41 s (the
+loop source's DDS built once); one smoke board through https://play-sid.eastus.cloudapp.azure.com with Sid's table and
+both analyses in 59 s. Unit memory 2.37 GB. The analysis process and its `sure_cpp` run at Nice 0, the person-facing
+workers at -10, as before. The old app, source and bundle stay under `/opt/sidplay` for rollback (re-run install.sh with
+`208403c... 792c4cb... 8s-32.json`).
