@@ -141,11 +141,11 @@ Generated 2026-11-14 02:55 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 853 of 2,000 | 46.4 | 11-15 03:37 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@979fcf0e0` |
-| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 8 of 4,000 | 48.1 | 11-17 13:56 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@abe38d1f4` |
-| e9-0-n04 | E9-0 | g9 | 5 | 4 | running | 337 of 800 | 559.5 | 11-14 03:44 | `transfer/gen9-e9-0-n04-azure4-20261113@d251969d6` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 3,047 of 10,000 |  |  | `transfer/gen9-g9-cohort-azure4-azure4-20261113@c46ca03a1` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 853 of 2,000 | 46.4 | 11-15 03:38 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@979fcf0e0` |
+| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 8 of 4,000 | 45.6 | 11-17 18:23 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@abe38d1f4` |
+| e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 337 of 800 | 559.5 |  | `transfer/gen9-e9-0-n04-azure4-20261113@d251969d6` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | waiting | 3,047 of 10,000 | 106.4 |  | `transfer/gen9-g9-cohort-azure4-azure4-20261113@c46ca03a1` |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
 | g9-cohort-preflight | G9-D9 | dave | 1 | 1 | done | 1 of 1 |  |  | `transfer/gen9-g9-cohort-preflight-azure4-20261113@5e8242331` |
 | e9-0-n02 | E9-0 | g9 | 2 | 4 | done | 800 of 800 | 571.5 | 11-13 01:12 | `transfer/gen9-e9-0-n02-azure4-20261112@c4fbddb3f` |

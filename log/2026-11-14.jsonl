@@ -26,3 +26,5 @@
 {"at": "2026-11-14T02:55:00Z", "by": "will", "op": "job-retry", "target": "azure4/g9-cohort-azure4", "note": "retry 2: again: the box had seen retry 1 on 13 Nov 07:51 (dave's later replace reset the file's counter), so retry 1 was ignored", "task": "G9-D9"}
 {"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "retry"}
 {"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "stopping"}
+{"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "paused"}
+{"at": "2026-11-14T02:55:00Z", "by": "azure4", "op": "job", "target": "azure4/g9-cohort-azure4", "note": "running"}
