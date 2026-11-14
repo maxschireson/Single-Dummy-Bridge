@@ -85,7 +85,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
-          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb'])   # every bot that claims and mixes as Stu does
+          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -96,6 +96,8 @@ NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
 R2S = 'models/cardplay/stu-net-r2s-20261113/policy.npz'        # train-r2s/policy.npz on the same branch
 R3A = 'models/cardplay/stu-net-r3a-20261113/policy.npz'        # train-r3a/policy.npz on the same branch: the interim round
 R3 = 'models/cardplay/stu-net-r3-20261113/policy.npz'          # train-r3/policy.npz on the same branch
+STRONG = 'models/cardplay/stu-exp-strong-20261114/strong.npz'  # exp_strong.sh: from Gen 8 card play's rows of v2's set only
+MIX = 'models/cardplay/stu-exp-strong-20261114/mix.npz'        # exp_strong.sh: as many rows of v2's set, bots in its proportions
 V1 = 'models/cardplay/rollout-net-v1-20261113/policy_ft.npz'
 CONTROL = ['n-v41', 'n-v4', 'r7-v41', 'r7x-v4', 'r7x-v0', 'r7f-v4', 'r3-v41']
 
@@ -237,6 +239,14 @@ def main():
     # min_sample_hands_play 20 (lorserker/ben's values), every other setting as BEN (64)'s lanes.
     bots['ben200'] = {'base': 'ben64', 'url': 'http://127.0.0.1:8090', 'samples': 200, 'config': '~/work/loop/ben/ben-200.conf',
                       'label': 'BEN at its upstream play sampling (200 layouts, at least 20), otherwise as BEN (64)'}
+    # Max, 02:26 UTC on 14 November: a net from the strongest bots' data against one from the present mix, the same size
+    # (exp_strong.sh). Both read every side as Gen 8 card play (8s-32), as v2 does in SiD (rollout) Stu R0.
+    for tag, path, what in (('S', STRONG, "Gen 8 card play's rows only"), ('M', MIX, "as many rows in v2's mix of bots")):
+        b = dict(copy.deepcopy(bots['stu0-ps']), rollout_policy=path)
+        b['label'] = f'Strong-data experiment: SiD (rollout) with a net trained from scratch on {what} of v2\'s set'
+        bots[f'stu{tag}-ps'] = b
+        bots[f'stu{tag}-n'] = alone(f'the net trained from scratch on {what} of v2\'s set, alone', path,
+                                    {'self': '8s-32', '*': '8s-32', **BEN})
     bots['8z-ft1'] = copy.deepcopy(x8['8z-ft1'])
     bots['8p-32-v41'] = copy.deepcopy(x8['8p-32-v41'])        # no opponent_play_weight of its own: it reads every opponent at 1.0
 

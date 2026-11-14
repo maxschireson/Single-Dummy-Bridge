@@ -1,0 +1,4 @@
+# The strong-data experiment inside the rollouts (exp_strong.sh; Max, 02:26 UTC): SiD (rollout) with the net from Gen 8
+# card play's rows only against SiD (rollout) with the net from as many rows in v2's mix, head to head, gate seed deals
+# 15000 to 15999 here (the other 1,000 on azure2). The collection pauses for it (rungs.sh).
+hs-p stuS-ps~stuM-ps 131 15000 1000 8

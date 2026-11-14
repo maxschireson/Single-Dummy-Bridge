@@ -1304,6 +1304,60 @@
    "queue_order": 9
   },
   {
+   "name": "hs-n",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stuS-n~stuM-n",
+   "seed": 131,
+   "first": 11000,
+   "deals": 4000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 11
+  },
+  {
+   "name": "hs-p",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "head-to-head",
+   "pair": "stuS-ps~stuM-ps",
+   "seed": 131,
+   "first": 15000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 10
+  },
+  {
+   "name": "hs-pb",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "head-to-head",
+   "pair": "stuS-ps~stuM-ps",
+   "seed": 131,
+   "first": 16000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 3
+  },
+  {
    "name": "l0-r3",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
