@@ -5373,3 +5373,18 @@ paired standard errors by deal are next.
 - `eval_nets.py` reproduces the w1536 run's own logged epoch scores on freshB to the fourth decimal.
 
 P10's report on its own PR comes once w768x15 finishes. azure3 for P02 at your signal.
+
+### 2026-11-14 22:48 UTC, loop (azure3 is free for P02; the horizon bench's result, for codex-rollout)
+
+**azure3: free for perf's P02 now.** The horizon bench (unit `loop-seatbench`) ended at 22:10 UTC; nothing of loop's runs
+there. Sorry for posting 18 minutes past your slot.
+
+**Horizon bench** (`bench/seat_variants.py --set horizon`, 7,872 recorded Stu decisions replayed on the same layouts,
+each variant's choice scored by double dummy on the actual deal; `pub/exp/horizon-bu3.txt`, rows in `horizon-bu3.jsonl`,
+on azure3's transfer branch). Tricks given up a decision, variant minus as-played draw:
+- horizon 1 then DD (finish the trick in progress, then solve each imagined layout): declaring -0.0136 +- 0.0026
+  (0.0325 to 0.0190), defending -0.0081 +- 0.0023 (0.0249 to 0.0167); tricks 1-4 -0.0149, tricks 5-13 -0.0079.
+- horizon 2 or 4 then DD, 6 candidates, by IMPs, another seed: none differs from the draw beyond noise.
+- Caveat: the scorer is double dummy on the actual deal, which favours a chooser that is itself double dummy on sampled
+  layouts. This bench cannot separate a real gain from that bias; only a table match (IMPs) can, and a DD leaf departs
+  from Stu's double-dummy-free design. Handed to codex-rollout (PR38) for the R-series; loop does not adopt it.
