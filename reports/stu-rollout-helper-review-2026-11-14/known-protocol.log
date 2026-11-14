@@ -1,0 +1,20 @@
+test_common_bidder_is_reused_by_every_spec (__main__.ProtocolReview.test_common_bidder_is_reused_by_every_spec) ... ok
+test_resume_rejects_different_manifest_before_relabelling_old_rows (__main__.ProtocolReview.test_resume_rejects_different_manifest_before_relabelling_old_rows) ... FAIL
+test_rollout_summary_omits_child_work_retained_on_action (__main__.ProtocolReview.test_rollout_summary_omits_child_work_retained_on_action) ... ok
+test_row_sign_is_first_named_actor_when_candidate_order_reverses (__main__.ProtocolReview.test_row_sign_is_first_named_actor_when_candidate_order_reverses) ... ok
+test_successful_retry_erases_failure_from_final_summary_but_not_stdout (__main__.ProtocolReview.test_successful_retry_erases_failure_from_final_summary_but_not_stdout) ... ok
+test_twice_failed_board_remains_missing_and_is_counted (__main__.ProtocolReview.test_twice_failed_board_remains_missing_and_is_counted) ... ok
+
+======================================================================
+FAIL: test_resume_rejects_different_manifest_before_relabelling_old_rows (__main__.ProtocolReview.test_resume_rejects_different_manifest_before_relabelling_old_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REVIEW>/scripts/stu_rollout_experiments/test_review_protocol.py", line 63, in test_resume_rejects_different_manifest_before_relabelling_old_rows
+    with self.assertRaises((ValueError, RuntimeError, SystemExit)):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'SystemExit'>) not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.013s
+
+FAILED (failures=1)

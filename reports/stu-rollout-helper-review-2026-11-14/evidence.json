@@ -1,0 +1,60 @@
+{
+  "prototype": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+  "runtime": "5addd826af8b10d7343df51ada528a7327d059b6",
+  "azure_runtime": "30e30af88ea196b8189ff39491c83cf531797868",
+  "runtime_sha256": {
+    "bridge_harness/x8_player.py": "04fa2bf53a05bb391ddaad620328b115f07e2605d92e0b4f5d452446376ec700",
+    "bridge_harness/x8_rollout.py": "ca3fead4828ffdf12541bf549f9410cc5c69f6aa89e7ff377c69bca736c9c316",
+    "bridge_harness/gen7.py": "bf8ad22850b150ff2c24e4a220e0c6326a64a71ddd898ee412cd2a930200885b",
+    "bridge_harness/plan_rollout.py": "c037824c574e13e6cd6fdd1ed42ccc7f6ab95510a2df37e23c2bfcdce76cfa94",
+    "bridge_harness/x8_claims.py": "5d96e36fb93dca1b1e646312ca4c0310563016ff733bba1147ac9250ae2bd696",
+    "scripts/gen8_match.py": "0f793b3cb1d38cff2266dcc81cf314cf64a3e79cb3f99d54e2934df5014d687d",
+    "scripts/x8_match.py": "7bea50abcb12cd131ec3329f2730136e799047c2de6b9811eddc42fe756a9fed"
+  },
+  "engine_sha256": "ed6b791debf4a672c7736dc29d0d0a5ad6bc54c50f0062fde545f9102388a3b5",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "local_precision": "fp32",
+  "native_claim_solver_tested": false,
+  "live_r4c_model_tested": false,
+  "runs": [
+    {
+      "name": "smoke",
+      "returncode": 0,
+      "seconds": 0.812
+    },
+    {
+      "name": "boundaries",
+      "returncode": 0,
+      "seconds": 3.017
+    },
+    {
+      "name": "protocol",
+      "returncode": 0,
+      "seconds": 0.289
+    },
+    {
+      "name": "known-boundaries",
+      "returncode": 1,
+      "seconds": 2.852
+    },
+    {
+      "name": "known-protocol",
+      "returncode": 1,
+      "seconds": 0.358
+    },
+    {
+      "name": "x8",
+      "returncode": 0,
+      "seconds": 33.348
+    }
+  ],
+  "positive_control": {
+    "tests": 2,
+    "passed": 2,
+    "deployed": false,
+    "temporary_changes": [
+      "Look up known observation policy before seen_paths eligibility",
+      "Use continue rather than break when new-call budget is exhausted"
+    ]
+  }
+}
