@@ -86,7 +86,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
-             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti'])   # every bot that claims and mixes as Stu does
+             'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti', 'stu0-pst'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -292,6 +292,11 @@ def main():
     # the contract for an overtrick can win. -psti: the one-net bot with the rollouts choosing by IMPs (the stage's
     # `objective`: each card's swing in IMPs, layout by layout, against the card with the best mean tricks), the lead too.
     bots['stu3-psti'] = seats('stu3-pst', 'the rollouts choose by IMPs in place of mean tricks', objective='imps')
+    # Max, 05:14 UTC on 14 November: "In the one-net comparison do we know if one net R3 improves over earlier one net
+    # versions against Ben?" Not measured: -pst for round 0, rollout net v2 inside and at the table (told what it is told
+    # inside: every seat 8s-32, BEN as BEN), the lead rolled out as stu0-ps. Against BEN (200) on the deals of b3-pst200.
+    bots['stu0-pst'] = dict(copy.deepcopy(bots['stu0-ps']), gen7_policy=V2)
+    bots['stu0-pst']['label'] = bots['stu0-ps']['label'].replace('Stu round 0 ladder: ', 'Stu round 0 ladder, rollout net v2 inside and at the table: ')
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])
