@@ -4,7 +4,7 @@
 Per average board (curve or blend measure, see norm_avg.py), per role and pooled (1/4 declarer, 1/2 defender,
 1/4 lead). The yardstick is every adult player with 20+ boards in the role on adult boards: their mean, and the
 spread of their true scores (variance of the scores minus the mean squared standard error). A named player's
-score is on their adult boards; junior boards are shown on a separate line. + means more tricks lost (worse).
+score is on their adult boards (--by-year: also each year's); junior boards are shown on a separate line. + means more tricks lost (worse).
 Shrunk: the score pulled toward the field mean by the reliability tau^2 / (tau^2 + se^2), with its posterior SD.
 """
 import argparse, collections, math, sys
@@ -32,6 +32,7 @@ def main():
     ap.add_argument('dirs', nargs='+')
     ap.add_argument('--players', nargs='+', default=['Max Schireson'])
     ap.add_argument('--min', type=int, default=20)
+    ap.add_argument('--by-year', action='store_true', help='split each player\'s adult boards by year')
     a = ap.parse_args()
     T = load(a.dirs)
     U = units(T)
@@ -70,7 +71,12 @@ def main():
         for name in a.players:
             ids = {u[3] for u in U if (u[4] or '').lower() == name.lower()}
             print(f'  {name}:')
-            for label, keep in (('adult', lambda k: isad[k]), ('junior', lambda k: not isad[k])):
+            years = sorted({T[u[0]]['year'] for u in U if u[3] in ids})
+            splits = [('adult', lambda k: isad[k])]
+            if a.by_year:
+                splits += [(f'ad {y}', lambda k, y=y: isad[k] and T[U[k][0]]['year'] == y) for y in years]
+            splits += [('junior', lambda k: not isad[k])]
+            for label, keep in splits:
                 s = {}
                 for role in ROLES:
                     ks = np.array([k for k, u in enumerate(U) if u[3] in ids and u[1] == role and keep(k)])
