@@ -1,0 +1,39 @@
+{
+  "poll_start": "2026-11-14T14:21:49Z",
+  "authority": "Max09:25-09:45 Nov14 to Stu/loop; second part cites Max09:43 medium set of other boards.",
+  "research_revision": "a470efe5aa65432e7357352680bdafa7010fdbb8",
+  "feed": "feed/usbc-human-all-20261114",
+  "feed_revision": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+  "readme_blob": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930",
+  "initial_feed": "feed/usbc-human-20261114@8381f8e58a93a87c6097945025457d32576f9ec1",
+  "training_scope": "Adult USBC Open/Senior/Mixed/Women's 2021-2023, every expert table per deal:3841 fitting-auction tables/113489rows and18428 other-auction tables. fit/all/big stages compare familiar/all/blanked-unfamiliar auctions mixed with Stu rows; from-scratch medium nets keep last epoch.",
+  "counts_are_tables_not_independent_families": true,
+  "test_scope": "2025 USBCs and every junior event remain test-only; a human-trained net may be benchmarked on no other USBC tables.",
+  "supersedes": "Latest scoped research expands the earlier1556-board one-table-per-deal experiment to all adult2021-23 tables. Earlier blanket USBC test-only notices were already narrowed by Max09:25-09:45; historical reports remain preserved.",
+  "applied_to_this_stream": false,
+  "datasets_or_models_downloaded": false,
+  "local_training": false,
+  "local_corpus_changed": false,
+  "disposition": "Stu round4.sh now samples500BEN and2100other arena records, uses one-third as many replay rows, removes its own large training files per net, checks14GB free disk and limits row builders to one thread per worker. Its first try incorrectly sized by board count: roots/forks/both rooms yielded about14million arena rows. These are scoped Azure5 training operations and a dated failure report, not general collector controls. Do not adopt14GB guard, delete owned artifacts, adjust record capture, change workers/cache/source/models or restart/clear failures here. Keep three normal/zero BEN, strict792c4cb, DDS2GiB rotation and local3GiB disk guard. Preserve every owned episode/receipt and original exclusions. Future cohorts require complete all-released-model training-family membership, including actual sampled arena/human/bot/replay inputs if released.",
+  "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
+  "round4_plan": {
+    "with_humans": "stu4",
+    "control": "stu4c",
+    "same_replay": true,
+    "human_rows_draw_replay": false,
+    "gate": "Stu4 first512 blind BEN200 deals before control turn; control trains second. Scoped to Stu Azure3 gate.",
+    "scope": "Stu/Azure jobs only; no local adoption"
+  },
+  "latest_results_scope": "Dated full-size net/mixed-set results; rollout matches250deals each are inconclusive.22269tables/3569deals are not22269independent boards or a full canonical family-membership proof.",
+  "latest_round4_training_sizing_scope": {
+    "cut": "Dated12:41-12:56 Nov14",
+    "loop_tables": 46494,
+    "selected_arena_records": 23067,
+    "issue": "About600rows per arena record from root/fork tables and both rooms; first training attempt oversized.",
+    "new_sample": "500BEN +2100other arena records; one-third replay rows",
+    "training_disk_guard_GB": 14,
+    "local_disk_guard_GiB_unchanged": 3,
+    "training_files_deleted_locally": false,
+    "applied": false
+  }
+}
