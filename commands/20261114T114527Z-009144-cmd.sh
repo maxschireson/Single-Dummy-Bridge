@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep MATCH $W/human.log | tail -n +16 | cut -c1-200; grep "failed\|stage\|net [hbs]A" $W/human.log | tail -3 | cut -c1-160; grep "rows of" $W/human.log | tail -4 | cut -c1-200; tail -n 2 $W/runs.log | cut -c1-150; for r in xh-hs-p; do echo "$r $(wc -l < $W/runs/$r/results.jsonl 2>/dev/null)"; done | tr "\n" " "; uptime | cut -c1-80; date -u +%T
