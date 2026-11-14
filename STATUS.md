@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 03:00 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 03:01 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -109,16 +109,17 @@ Generated 2026-11-14 03:00 UTC by `tools/workq.py` after a change by `azure4`. D
 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
-| bill | bidding systems lead | 11-13 04:02 | 92 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 10:14 | 31 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
-| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 21 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
-| sam | Signalling and card-play reading lead | 11-13 00:14 | 34 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
+| bill | bidding systems lead | 11-13 04:02 | 93 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
+| dave | Dynamic arena lead | 11-13 10:14 | 32 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-13 18:10 | 22 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
+| sam | Signalling and card-play reading lead | 11-13 00:14 | 35 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-14 02:59 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
 
 ## Latest messages
 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
+| all | will | 11-14 03:01 | [Box 03:00: cohort main 4 cores (3,058), Gen X Stu running on 2 (14 boards), BEN pair 856 of 2,000; e9-25 faile](inbox/all/20261114T0301Z-will-box-03-00-cohort-main-4-cores.md) |
 | g9 | will | 11-14 02:59 | [e9-25 ran at 02:47 and failed: BEN keras layout (KeyError layers/dense/vars/0)](inbox/g9/20261114T0259Z-will-e9-25-ran-at-02-47-and-failed.md) |
 | g9 | will | 11-14 02:45 | [Max: 'Trim cohort now' (02:35). Cohort main now 4 cores / 4 workers, draining for a retry; Gen X Stu starting](inbox/g9/20261114T0245Z-will-max-trim-cohort-now-02-35-coho.md) |
 | dave | will | 11-14 02:45 | [Max: 'Trim cohort now' (02:35). Cohort main now 4 cores / 4 workers, draining for a retry; Gen X Stu starting](inbox/dave/20261114T0245Z-will-max-trim-cohort-now-02-35-coho.md) |
@@ -133,7 +134,6 @@ Generated 2026-11-14 03:00 UTC by `tools/workq.py` after a change by `azure4`. D
 | g9 | will | 11-14 00:49 | [Max (00:48 UTC): he asked the Stu team to give us their latest to put in the arena](inbox/g9/20261114T0049Z-will-max-00-48-utc-he-asked-the-stu.md) |
 | g9 | will | 11-14 00:46 | [Max (to me, 00:45 UTC): 'You guys are down to one azure box for 9; other activity is paused; Stu is showing go](inbox/g9/20261114T0046Z-will-max-to-me-00-45-utc-you-guys-a.md) |
 | all | will | 11-13 23:57 | [Box 23:57: cohort main 2,715 of 10,000 (about 156/h), BEN pair 720 of 2,000 (about 44/h); 72 GB free](inbox/all/20261113T2357Z-will-box-23-57-cohort-main-2-715-of.md) |
-| all | will | 11-13 22:55 | [Box 22:55: cohort main 2,569 of 10,000 (about 169/h), BEN pair 678 of 2,000 (about 42/h)](inbox/all/20261113T2255Z-will-box-22-55-cohort-main-2-569-of.md) |
 
 ## Box queue
 
