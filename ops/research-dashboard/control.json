@@ -1,6 +1,6 @@
 {
   "schema": "stu-research-control-v1",
-  "updated": "2026-11-14T21:38:54.760Z",
+  "updated": "2026-11-14T21:49:14.371Z",
   "coordinator": "codex-research-traffic",
   "issue": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44",
   "streams": [
@@ -9,8 +9,8 @@
       "name": "Rollout optimization",
       "owner": "codex-rollout",
       "state": "Mixed: running / paused",
-      "summary": "Azure2 mechanism screens continue. Old Azure6 depth arms stay paused; local fixes pass synthetic witnesses, real-model acceptance is next.",
-      "next": "Pass strict A/B regression checks and real-model acceptance; launch corrected depth arms with a new identity.",
+      "summary": "Azure2 reader screen completed 512 boards: +0.1152 ±0.1665 IMP/board (1SE), inconclusive. Azure6 old depth arms remain paused; corrected-source acceptance and independent review remain open.",
+      "next": "Resolve broader BF16 fixture failures; pass actual-model acceptance and independent review before a fresh depth identity.",
       "links": [
         {
           "label": "Experiments #38",
@@ -35,8 +35,8 @@
       "name": "Model recipes & learning",
       "owner": "loop · perf · codex-stu-harvest",
       "state": "Training / analysis",
-      "summary": "Width 1024 on Azure1, width 1536 on Azure5, and width 768 × 15 epochs on Azure7 are reported training. H02 extracts existing rollout pairs.",
-      "next": "Publish every epoch and freshB inputs; perf compares equal epochs and measured compute. Harvest owner evaluates frontier labels.",
+      "summary": "Active epoch outputs now published: width1024 epoch1, width1536 epoch2, width768 control epoch4; weights, freshB and unit memory/thread telemetry available. H02 extraction remains owned by harvest.",
+      "next": "Perf acknowledges shared inputs and builds matched-set comparisons; loop resolves V1 validation proposal. Continue publishing each epoch.",
       "links": [
         {
           "label": "Integrated plan #35",
@@ -53,8 +53,8 @@
       "name": "Performance optimization",
       "owner": "perf · codex-stu-efficiency",
       "state": "Implementation / queued",
-      "summary": "P01 acceptance passed. P04 review revisions pass 13 tests; real row-export acceptance is open. P03 is queued; P02 waits for Azure3 release.",
-      "next": "Loop integrates P01/P04 at a safe boundary; perf starts P02 after explicit Azure3 handoff.",
+      "summary": "P04 end-to-end high-index acceptance passed: 2 boards, 83 rows, matching exports. Loop integration/first-job check remains. P03 can advance; P02 waits for Azure3 release.",
+      "next": "Loop reviews and integrates P01/P04 at a safe boundary; efficiency advances P03; perf waits for explicit Azure3 release.",
       "links": [
         {
           "label": "Baseline #36",
@@ -74,18 +74,18 @@
       "title": "Repair recursive / selective policy consistency",
       "owner": "codex-rollout",
       "status": "working",
-      "detail": "Rollout owner acknowledges #44. Local A/B witnesses pass after fixes; real R4c/BF16/SURE acceptance and independent review remain open.",
-      "next": "Finish fresh-only runner / timing checks, then publish corrected source and run identity",
-      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884403002"
+      "detail": "Corrected d82f9a7 passes 25 new regressions locally and on Azure BF16. Initial acceptance bundle exited 1 after three broader runtime fixture failures, before native_acceptance; follow-up underway. Old depth arms intentionally paused, not stalled.",
+      "next": "Publish actual R4c BF16/null/zero and FP32-fixture results; independent B review, then fresh run identity",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44#issuecomment-6884656387"
     },
     {
       "id": "R-mechanism",
       "stream": "rollout",
       "title": "Reader / guarantee mechanism screens",
       "owner": "codex-rollout",
-      "status": "running",
-      "detail": "Azure2; 512-board arms. Live report below. Development evidence only.",
-      "next": "Complete paired arms and report uncertainty / inclusive costs",
+      "status": "working",
+      "detail": "Azure2 report timestamp 2026-11-14T21:44:35Z: reader completed512, +0.1152 ±0.1665 IMP/board (1SE), zero reported failures. Sham32 exact ties. Next guarantee arm not yet verified published.",
+      "next": "Publish guarantee/combined progress with sample counts, uncertainty and inclusive costs; preserve six-hour cap",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/38"
     },
     {
@@ -94,8 +94,8 @@
       "title": "Width × training-compute comparison",
       "owner": "perf (report), loop (runs)",
       "status": "running",
-      "detail": "1024 / 1536 wide, 768 × 15 control. Control ETA about Nov 15 02:30 UTC; estimate, not a deadline.",
-      "next": "Publish held-out rows, epoch weights and peak memory",
+      "detail": "1024 epoch1: NLL .5817/regret .0278; 1536 epoch2: .5472/.0230; 768 epoch4: .5527/.0249. Same freshB 123,142 rows/144 deals; unequal epochs/threads, no winner claim. Seconds are cumulative elapsed. Unit telemetry published; control ETA Nov15 02:30 UTC remains estimate.",
+      "next": "Perf accepts freshB/weights/train rows, scores matched sets by bot/phase and measured compute; await control completion",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
     },
     {
@@ -124,8 +124,8 @@
       "title": "Reuse prepared row chunks",
       "owner": "codex-stu-efficiency",
       "status": "waiting",
-      "detail": "Owned by codex-stu-efficiency; queued behind P04 review acceptance.",
-      "next": "Report first verified cache reuse and next checkpoint",
+      "detail": "Efficiency retains ownership. P04 sandbox acceptance dependency is now resolved; next cache implementation/reuse checkpoint requested, no completed cache claim.",
+      "next": "Advance P03 and publish first verified reuse/checkpoint",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
     },
     {
@@ -144,9 +144,9 @@
       "title": "Standing fallback & idle alerts",
       "owner": "codex-stu-efficiency → loop",
       "status": "review",
-      "detail": "13 tests pass after busy-workload / pair-rotation review fixes. Actual two-board high-index match → row-export acceptance remains open; no deployment.",
-      "next": "Assemble sandbox runtime and pass real high-index row-export acceptance",
-      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/40"
+      "detail": "All three requested review items addressed; real 2-board high-index run has zero failures and 83 rows/two families. rows.sh and rows_cut.sh arrays and compressed hashes match. Loop deployment/first-job publisher check unverified.",
+      "next": "Loop acknowledges acceptance and integrates at safe boundary; operator verifies first job/publication",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/40#issuecomment-6884691611"
     },
     {
       "id": "V1",
@@ -165,17 +165,17 @@
       "title": "Publish every epoch",
       "from": "loop",
       "to": "dashboard + perf",
-      "state": "requested",
-      "detail": "Current width logs and timestamped metrics are missing from active transfer outputs. Requested in #44; awaiting acknowledgement.",
-      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44"
+      "state": "delivered",
+      "detail": "Verified current logs and epoch weights/SHA files on Azure1 w1024 (1), Azure5 w1536 (2), Azure7 w768x15 (4). Producer timestamps absent in logs; observed this reconciliation, not inferred epoch wall-clock dates.",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44#issuecomment-6884687062"
     },
     {
       "id": "p10-data",
       "title": "Release shared evaluation inputs",
       "from": "loop",
       "to": "perf",
-      "state": "waiting",
-      "detail": "freshB with SHA256, saved epoch weights, peak memory and threads. Needed for comparable by-bot / by-phase scoring.",
+      "state": "partial",
+      "detail": "freshB.npz/SHA256, v2_trained_rows_seed7.npz/SHA file, epoch weights and unit memory/threads delivered on width transfer paths. Perf acceptance pending; v2 original held-out and round4 stu_test not verified delivered. FreshB SHA256 0b39e6a72d841f538f8ee79b52828f9acef913f3fea8c5c0013afcefd9fb9171.",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
     },
     {
@@ -202,7 +202,7 @@
       "box": "Azure1",
       "owner": "loop",
       "work": "Width 1024 training",
-      "next": "Publish epoch metrics"
+      "next": "Continue epoch publication; sidplay reports planned 5–10min CPU overlap, annotate timing"
     },
     {
       "box": "Azure2",
@@ -226,7 +226,7 @@
       "box": "Azure5",
       "owner": "loop",
       "work": "Width 1536 training",
-      "next": "Publish epoch metrics"
+      "next": "Epoch2 published; continue each epoch and memory telemetry"
     },
     {
       "box": "Azure6",
@@ -238,7 +238,7 @@
       "box": "Azure7",
       "owner": "loop",
       "work": "Width 768 × 15 epochs",
-      "next": "Equal-compute control, then perf report"
+      "next": "Epoch4 published; continue to15 then perf report"
     }
   ],
   "rollout_sources": [
@@ -261,6 +261,27 @@
       "path": "exp-width/w1536-8core-epoch1.log",
       "historical": true,
       "target": 5
+    },
+    {
+      "box": "Azure1",
+      "branch": "transfer/rollout-loop-azure1-20261113",
+      "path": "exp-width/w1024/train.log",
+      "label": "Width 1024",
+      "target": 5
+    },
+    {
+      "box": "Azure5",
+      "branch": "transfer/rollout-loop-azure5-20261113",
+      "path": "exp-width/w1536/train.log",
+      "label": "Width 1536",
+      "target": 5
+    },
+    {
+      "box": "Azure7",
+      "branch": "transfer/rollout-loop-azure7-20261113",
+      "path": "exp-width/w768x15/train.log",
+      "label": "Width 768 × 15",
+      "target": 15
     }
   ],
   "width_boxes": [
