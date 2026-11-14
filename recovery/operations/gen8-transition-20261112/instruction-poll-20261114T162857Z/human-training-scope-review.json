@@ -21,8 +21,9 @@
     "control": "stu4c",
     "same_replay": true,
     "human_rows_draw_replay": false,
-    "gate": "Stu4 first512 blind BEN200 deals before control turn; control trains second. Scoped to Stu Azure3 gate.",
-    "scope": "Stu/Azure jobs only; no local adoption"
+    "gate": "Current Max15:39 rule: stu4c is default unless stu4 leads by more than twoSEs inside the bot (h4c-pst or first512 gate deals each); then use stu4 only. Scoped Stu workflow, not this producer.",
+    "scope": "Stu/Azure jobs only; no local adoption",
+    "historical_gate_order": "Stu4 first512 blind BEN200 deals before control turn; control trains second. Scoped to Stu Azure3 gate."
   },
   "latest_results_scope": "Dated full-size net/mixed-set results; rollout matches250deals each are inconclusive.22269tables/3569deals are not22269independent boards or a full canonical family-membership proof.",
   "latest_round4_training_sizing_scope": {
@@ -73,5 +74,6 @@
     "adopted_by_this_stream": false,
     "models_downloaded": false,
     "complete_training_family_membership_verified_here": false
-  }
+  },
+  "current_human_table_authority": "Max15:39 Nov14, recorded in PLAN.md at f8cb58b63cfba59524bd6e9539e2f4e2584594e6; preserves earlier experiment history."
 }
