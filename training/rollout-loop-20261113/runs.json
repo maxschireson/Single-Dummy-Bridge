@@ -26,6 +26,7 @@
   "pure-rs-p2": "pure-rs, the simulated seats drawing from the probabilities squared (power 2)",
   "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
   "pure-rs-split": "pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as the likeliest, the other side among those at least a quarter as likely",
+  "pure-rs-mix": "pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too",
   "pure-blind": "pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown player, their cards read at the weight of an opponent never met and as a side that may play any equal card",
   "pure-blind-split": "pure, told nothing about who sits against it, the simulated seats split by side, its defenders playing a random one of their equal cards",
   "net-d": "the net alone, every card drawn from its probabilities (as a simulated seat of the rollouts draws)",
@@ -1593,6 +1594,174 @@
     "rung": "pure-rs"
    },
    "queue_order": 5
+  },
+  {
+   "name": "s8-greedy",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 5
+  },
+  {
+   "name": "s8-patient",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-patient~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 6
+  },
+  {
+   "name": "s8-greedy0",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "collection",
+   "pair": "g8-greedy0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 7
+  },
+  {
+   "name": "s8-active",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-active~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 13
+  },
+  {
+   "name": "s8-passive",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 14
+  },
+  {
+   "name": "s8-passive0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 15
+  },
+  {
+   "name": "s8-high",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-high~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 14
+  },
+  {
+   "name": "s8-low",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8-low~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 15
+  },
+  {
+   "name": "h3-pm",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pm~stu3-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-mix"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "queue_order": 14
   },
   {
    "name": "l0-r3",
