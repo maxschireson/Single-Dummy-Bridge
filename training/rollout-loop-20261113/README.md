@@ -522,6 +522,20 @@ there: tricks given up 0.0312 against 0.0305). What it does not show is that a l
 noise in the labels. **The width test** (`loop-width` on azure5 from 18:37 UTC, its Gen 8 collection paused): v2's recipe at
 1,536 wide (four times the parameters) on the pool's rows, scored on the same held-out deals; 47 minutes an epoch.
 
+## Inside-rollout pairs: how many, and how good one is (H01, H05; #37; Max, 21:38 UTC on 14 November)
+
+**H01, the inventory** (read-only, every box, 21:35 UTC). Recorded pairs (`x8.forks`) by box: azure6 5,477,364;
+azure2 5,334,763; azure5 3,163,026; azure3 3,025,597; azure1 2,152,317; azure7 none. **19,153,067 in all**, about 5.5 a
+rollout decision. None has been trained on. The largest folders: sp3tb 2.87M and sp3t 2.75M (round 3's twin runs),
+sp0 across boxes 4.35M.
+
+**H05, how reliable one pair's label is** (`bench/pair_reliability.py`, unit `loop-pairs` on azure5 from 21:43 UTC; loop
+took the run on to keep the thread moving, the design is H05's in #37). A pair is one imagined layout at a later turn of
+one rollout: the simulated seat's card and a forced other card, each played out once by the net. The bench rebuilds the
+fork seat's own view, draws up to 128 fresh layouts from that seat's information with the bot's own reader, plays both
+cards on each with the same net and seats (no claims inside, as recorded), and compares the recorded label (the trick
+difference, for the side to play) with the panel's mean. 2,500 pairs from sp3s and 2,500 from sp0; results below when in.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
