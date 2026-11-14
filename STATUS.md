@@ -6,7 +6,7 @@ Generated 2026-11-14 16:45 UTC by `tools/workq.py` after a change by `g9`. Do no
 
 | Owner | leased | submitted | blocked | open | proposed | resolved |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| bill | 1 | 0 | 0 | 2 | 0 | 7 |
+| bill | 0 | 0 | 0 | 3 | 0 | 7 |
 | dave | 1 | 0 | 0 | 0 | 0 | 9 |
 | g9 | 0 | 1 | 1 | 1 | 0 | 8 |
 | pool | 0 | 0 | 0 | 0 | 0 | 1 |
@@ -25,12 +25,12 @@ Generated 2026-11-14 16:45 UTC by `tools/workq.py` after a change by `g9`. Do no
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [G9-S4](tasks/G9-S4.md) | E9-4: reading gain against carding bots, by honesty and scheme | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T04:00Z | lease expired, may be taken over |
 | [G9-S7](tasks/G9-S7.md) | E9-6: what agreed signals are worth to the house pair | sam | sam until 11-13 04:14 | leased | high | 2026-11-13T10:00Z | lease expired, may be taken over |
-| [G9-B10](tasks/G9-B10.md) | Card intake, second part: an older ACBL card, a card read from photos alone, a public ACBL editor card; the derived 1NT rebid range | bill | g9 until 11-14 17:44 | leased | medium |  |  |
 | [G9-W5](tasks/G9-W5.md) | Box job queue and results convention for Gen 9 experiments | will | will until 11-14 18:00 | leased | medium |  |  |
 | [G9-D10](tasks/G9-D10.md) | Arena page for a population: cells, members, champion versions, training mix | dave | dave until 11-13 12:38 | leased | low | 2026-11-15T00:00Z | lease expired, may be taken over |
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 | g9 | submitted | high | 2026-11-14T01:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A9](tasks/G9-A9.md) | Plan: the conditional claims and SiD in Gen 9 | g9 |  | open | high |  |  |
+| [G9-B10](tasks/G9-B10.md) | Card intake, second part: an older ACBL card, a card read from photos alone, a public ACBL editor card; the derived 1NT rebid range | bill |  | open | medium |  |  |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z |  |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
