@@ -49,3 +49,8 @@
 2026-11-14T02:30:55Z start sp3sc stu3-psa~stu3-psb seed 9001 first 400000 deals 20000 workers 8 --episodes --one-room (source 19db74a, nets bf16, --recycle 20)
 2026-11-14T02:39:16Z the collection is paused for jobs-azure6-h3pt.txt
 2026-11-14T02:39:16Z start h3-pt stu3-pst~stu0-ps seed 131 first 17000 deals 1000 workers 8  (source 28b5b06, nets fp32)
+2026-11-14T04:18:36Z end h3-pt: exit 0
+2026-11-14T04:18:36Z jobs-azure6-h3pt.txt has ended; back to the collection
+2026-11-14T04:18:36Z start sp3sc stu3-psa~stu3-psb seed 9001 first 400000 deals 20000 workers 8 --episodes --one-room (source 28b5b06, nets bf16, --recycle 20)
+2026-11-14T04:19:33Z the collection is paused for jobs-azure6-blind.txt
+2026-11-14T04:19:33Z start l3-pu stu3-pu~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source b293707, nets fp32)
