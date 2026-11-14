@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T22:37:18Z",
+  "updated": "2026-11-14T22:38:19Z",
   "purpose": "development research; BEN pilots and matched strength screen; no adoption decision",
   "runs": [
     {
@@ -287,59 +287,59 @@
     },
     {
       "pair": "rx2-recursive32~rx-ben64",
-      "boards": 29,
-      "cpu_per_board": 42.11,
+      "boards": 32,
+      "cpu_per_board": 41.95,
       "common": {
-        "imps_per_board": 0.0345,
-        "se": 0.6326,
-        "boards": 29,
+        "imps_per_board": -0.25,
+        "se": 0.6058,
+        "boards": 32,
         "won": 7,
-        "lost": 6,
-        "flat": 16
+        "lost": 8,
+        "flat": 17
       },
       "native": {
-        "imps_per_board": 0.0345,
-        "se": 0.6326,
-        "boards": 29,
+        "imps_per_board": -0.25,
+        "se": 0.6058,
+        "boards": 32,
         "won": 7,
-        "lost": 6,
-        "flat": 16
+        "lost": 8,
+        "flat": 17
       },
       "failures": 0,
-      "unfinished": 3,
+      "unfinished": 0,
       "attempts": 32,
       "interpretation": "development only; not a strength or equal-time decision",
       "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
       "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
       "attempt_work": {
-        "wall_seconds": 2277.4028510770004,
-        "worker_cpu_seconds": 1222.467486971,
-        "solver_cpu_seconds": 34.099273000000004,
-        "inclusive_cpu_seconds": 1256.566759971
+        "wall_seconds": 2507.4271672210016,
+        "worker_cpu_seconds": 1343.841500552,
+        "solver_cpu_seconds": 36.739991,
+        "inclusive_cpu_seconds": 1380.581491552
       },
       "actors": {
         "rx2-recursive32": {
           "work": {
-            "solver_cpu_seconds": 33.273533,
-            "solver_wall_seconds": 35.517332038522,
-            "solver_calls": 93345.0,
-            "solver_hits": 3490.0,
+            "solver_cpu_seconds": 35.840357999999995,
+            "solver_wall_seconds": 38.123314329073764,
+            "solver_calls": 104128.0,
+            "solver_hits": 4076.0,
             "solver_timeouts": 0.0,
-            "wall_seconds": 1252.3374733536039,
-            "worker_cpu_seconds": 1208.4159301159996,
-            "inclusive_cpu_seconds": 1241.6894631159996,
-            "initialization_seconds": 10.508059678046266
+            "wall_seconds": 1376.2248480475682,
+            "worker_cpu_seconds": 1329.3620719069993,
+            "inclusive_cpu_seconds": 1365.2024299069992,
+            "initialization_seconds": 10.624511907051783
           },
           "recursive": {
-            "opportunities": 790663.0,
-            "calls": 3490.0,
+            "opportunities": 867677.0,
+            "calls": 3846.0,
             "cache_hits": 151.0,
-            "changed": 6903.0,
-            "net_rows": 977152.0,
-            "child_wall_seconds": 840.6509201788867,
-            "argmax_different": 5436.0,
-            "applied_rows": 13549.0,
-            "budget_rejected": 154270.0
+            "changed": 7666.0,
+            "net_rows": 1079848.0,
+            "child_wall_seconds": 926.0890584399749,
+            "argmax_different": 6080.0,
+            "applied_rows": 15080.0,
+            "budget_rejected": 169558.0
           },
           "precisions": [
             [
@@ -350,8 +350,8 @@
         },
         "rx-ben64": {
           "work": {
-            "wall_seconds": 1012.0260916650295,
-            "worker_cpu_seconds": 0.976415297999826,
+            "wall_seconds": 1117.8207057239197,
+            "worker_cpu_seconds": 1.0546062509997016,
             "external_server_cpu_measured": 0.0
           },
           "recursive": {},
@@ -360,6 +360,73 @@
       },
       "driver_failure": null,
       "name": "ben-screen-00-recursive32",
+      "validity": "development screen; no promotion"
+    },
+    {
+      "pair": "rx2-control~rx-ben64",
+      "boards": 3,
+      "cpu_per_board": 19.7,
+      "common": {
+        "imps_per_board": 4.6667,
+        "se": 4.1767,
+        "boards": 3,
+        "won": 2,
+        "lost": 0,
+        "flat": 1
+      },
+      "native": {
+        "imps_per_board": 4.6667,
+        "se": 4.1767,
+        "boards": 3,
+        "won": 2,
+        "lost": 0,
+        "flat": 1
+      },
+      "failures": 0,
+      "unfinished": 8,
+      "attempts": 11,
+      "interpretation": "development only; not a strength or equal-time decision",
+      "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
+      "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
+      "attempt_work": {
+        "wall_seconds": 138.70679222702165,
+        "worker_cpu_seconds": 59.221783603,
+        "solver_cpu_seconds": 0.7886839999999999,
+        "inclusive_cpu_seconds": 60.010467602999995
+      },
+      "actors": {
+        "rx2-control": {
+          "work": {
+            "solver_cpu_seconds": 0.71,
+            "solver_wall_seconds": 0.8734937564004213,
+            "solver_calls": 7778.0,
+            "solver_hits": 288.0,
+            "solver_timeouts": 0.0,
+            "wall_seconds": 56.246893693256425,
+            "worker_cpu_seconds": 55.22299212399999,
+            "inclusive_cpu_seconds": 55.93299212399999,
+            "initialization_seconds": 3.607429723982932
+          },
+          "recursive": {},
+          "precisions": [
+            [
+              "bf16",
+              "bf16"
+            ]
+          ]
+        },
+        "rx-ben64": {
+          "work": {
+            "wall_seconds": 78.5956880140584,
+            "worker_cpu_seconds": 0.13502041800002762,
+            "external_server_cpu_measured": 0.0
+          },
+          "recursive": {},
+          "precisions": []
+        }
+      },
+      "driver_failure": null,
+      "name": "ben-screen-01-flat128",
       "validity": "development screen; no promotion"
     }
   ]
