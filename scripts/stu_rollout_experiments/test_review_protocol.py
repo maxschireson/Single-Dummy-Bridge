@@ -19,6 +19,25 @@ from engine import ExperimentalPlayer
 
 
 class ProtocolReview(unittest.TestCase):
+    def test_ben_worker_endpoint_does_not_mutate_frozen_manifest(self):
+        from queue import Queue
+        endpoints = Queue()
+        endpoints.put('http://127.0.0.1:8182')
+        m = dict(bots={'ben64': dict(engine='ben', url='http://127.0.0.1:8181')})
+        with patch.object(runner.gm, 'start') as start:
+            runner.start_worker('/fixture', m, endpoints)
+        self.assertEqual(m['bots']['ben64']['url'], 'http://127.0.0.1:8181')
+        self.assertEqual(start.call_args.args[1]['bots']['ben64']['url'], 'http://127.0.0.1:8182')
+
+    def test_ben_time_reports_external_cpu_as_unmeasured(self):
+        from bridge_harness.players import Decision
+        p = runner.TimedBen('http://127.0.0.1:8181', samples=64)
+        with patch.object(runner.Round5BenPlayer, 'choose', return_value=Decision(2, {})):
+            r = p.choose(None, None)
+        self.assertGreaterEqual(r.details['experiment_work']['wall_seconds'], 0)
+        self.assertFalse(r.details['experiment_work']['external_server_cpu_measured'])
+        self.assertNotIn('inclusive_cpu_seconds', r.details['experiment_work'])
+
     def test_resume_refused_without_relabelling_or_changing_old_rows(self):
         with tempfile.TemporaryDirectory() as temp:
             out = Path(temp)
