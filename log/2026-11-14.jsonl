@@ -49,3 +49,4 @@
 {"at": "2026-11-14T08:12:00Z", "by": "g9", "op": "job-submit", "target": "azure4/g9-cohort-azure4", "note": "priority 1, 4 cores", "task": "G9-D9"}
 {"at": "2026-11-14T08:17:00Z", "by": "g9", "op": "job-submit", "target": "azure4/e9-25", "note": "priority 3, 1 cores", "task": "E9-25"}
 {"at": "2026-11-14T08:17:00Z", "by": "g9", "op": "job-retry", "target": "azure4/e9-25", "note": "retry 1: after the BEN loader fix (feature/gen9 adae5fbb)", "task": "E9-25"}
+{"at": "2026-11-14T08:17:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-25", "note": "retry"}
