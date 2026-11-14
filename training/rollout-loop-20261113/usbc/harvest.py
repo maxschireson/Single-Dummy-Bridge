@@ -128,7 +128,7 @@ def harvest(c, sid, meta):
                 events = c.get(f'{VG}/api/archive/watch/{sid}/{ns}/{b["boardNumber"]}')
                 if events:
                     tables.append(dict(board=b['boardNumber'], ns_team=ns, home=home, visiting=visiting, events=events))
-    return dict(miniSessionId=sid, meta=meta, boards=boards, teams=teams, matches=[dict(home=h, visiting=v, **i) for (h, v), i in matches.items()],
+    return dict(miniSessionId=sid, meta=meta, boards=boards, teams=teams, matches=[dict(i, home=h, visiting=v) for (h, v), i in matches.items()],
                 tables=tables)
 
 
