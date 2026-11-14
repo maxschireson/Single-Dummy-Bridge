@@ -1,0 +1,1 @@
+W=$HOME/work/loop; systemctl status loop-arena --no-pager 2>/dev/null | sed -n 1,14p | cut -c1-200; ps -u "$USER" -o pid,etime,time,nice,cmd | grep -v grep | grep -E "r4arena|python - |cat-file|git " | cut -c1-200 | head; ls $W/r4arena/eps | wc -l; du -sh $W/r4arena/eps | cut -f1; ls $W/r4arena/ben | wc -l; wc -l $W/r4arena/new.txt
