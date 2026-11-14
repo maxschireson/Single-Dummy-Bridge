@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-13 23:57 UTC by `tools/workq.py` after a change by `will`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 00:02 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -30,7 +30,7 @@ Generated 2026-11-13 23:57 UTC by `tools/workq.py` after a change by `will`. Do 
 | [G9-A6](tasks/G9-A6.md) | Review package for Max | g9 | g9 | submitted | high | 2026-11-14T01:00Z |  |
 | [G9-A5](tasks/G9-A5.md) | Base swap: replace the Gen 8 snapshot when Gen 8 is on main | g9 |  | blocked | medium |  |  |
 | [G9-A9](tasks/G9-A9.md) | Plan: the conditional claims and SiD in Gen 9 | g9 |  | open | high |  |  |
-| [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z |  |
+| [G9-B8](tasks/G9-B8.md) | Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor | bill |  | open | high | 2026-11-14T00:00Z | past due |
 | [G9-B9](tasks/G9-B9.md) | Synthetic players with known systems and styles, from the card descriptor | bill |  | open | medium | 2026-11-15T00:00Z | after G9-B8 |
 | [G9-S8](tasks/G9-S8.md) | Deceivers (honesty by situation) and the declared-understanding measure | sam |  | open | medium | 2026-11-15T00:00Z |  |
 | [G9-W7](tasks/G9-W7.md) | BEN lanes for scripts/gen9_match.py on a Gen 9 box | will |  | open | medium | 2026-11-12T16:00Z | past due |
@@ -137,12 +137,12 @@ Generated 2026-11-13 23:57 UTC by `tools/workq.py` after a change by `will`. Do 
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-13 23:56 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-14 00:02 UTC; idle 2.8 core-hours since 11-12 15:03 UTC, 2.8 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
-| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 2,730 of 10,000 | 146.3 | 11-16 01:37 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@c673dae72` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 723 of 2,000 | 44.1 | 11-15 04:54 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@0b91bdbb4` |
+| g9-cohort-azure4 | G9-D9 | dave | 1 | 6 | running | 2,746 of 10,000 | 154.6 | 11-15 22:57 | `transfer/gen9-g9-cohort-azure4-azure4-20261113@cf9ce1592` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 728 of 2,000 | 46.2 | 11-15 03:34 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@047dda8de` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 284 of 800 | 308.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@fa238a1c8` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | e9-25 | E9-25 | g9 | 3 | 1 | waiting | 0 of 750 |  |  |  |
