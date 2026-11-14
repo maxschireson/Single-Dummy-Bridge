@@ -1,0 +1,23 @@
+{
+ "pair": "stuhA-n~stubA-n",
+ "boards": 2000,
+ "cpu_per_board": 0.6,
+ "common": {
+  "imps_per_board": -0.032,
+  "se": 0.1122,
+  "boards": 2000,
+  "won": 572,
+  "lost": 605,
+  "flat": 823
+ },
+ "native": {
+  "imps_per_board": -0.032,
+  "se": 0.1122,
+  "boards": 2000,
+  "won": 572,
+  "lost": 605,
+  "flat": 823
+ },
+ "failures": 0,
+ "boards_per_hour": 23422
+}
