@@ -3,3 +3,5 @@ stuhf-pst v stubf-pst: 250 boards to play (0 done), 8 workers
 100 boards: 0.01 +- 0.4937 IMPs/board for stuhf-pst; 288 boards/hour; 0 failed
 150 boards: 0.3067 +- 0.3922 IMPs/board for stuhf-pst; 294 boards/hour; 0 failed
 200 boards: 0.355 +- 0.3258 IMPs/board for stuhf-pst; 318 boards/hour; 0 failed
+250 boards: 0.272 +- 0.2784 IMPs/board for stuhf-pst; 314 boards/hour; 0 failed
+{"pair": "stuhf-pst~stubf-pst", "boards": 250, "cpu_per_board": 50.81, "common": {"imps_per_board": 0.272, "se": 0.2784, "boards": 250, "won": 66, "lost": 51, "flat": 133}, "native": {"imps_per_board": 0.272, "se": 0.2784, "boards": 250, "won": 66, "lost": 51, "flat": 133}}
