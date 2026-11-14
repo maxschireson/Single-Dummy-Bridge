@@ -1,0 +1,53 @@
+{
+  "poll_start": "2026-11-14T01:27:36Z",
+  "branch": "feature/gen9-genx-stu",
+  "revision": "43d555eb48be2d80405a5bea86b464bf9d864b19",
+  "plan": {
+    "path": "configs/round9-genx-stu.json",
+    "sha": "27fa4742e11081e4f34830d213af5d77945a7297",
+    "launch_enabled": true,
+    "pending": [],
+    "pair_weights": {
+      "stu3-ps~8s-32": 2,
+      "stu3-ps~9a-32": 1,
+      "stu3-ps~71s-32": 1
+    },
+    "scope": "Explicit Max authority to Gen9/will on Azure4. Not an instruction to switch this Codex collector.",
+    "source": "43d555eb48be2d80405a5bea86b464bf9d864b19",
+    "notes": [
+      "Max, 14 Nov 2026, 00:48 UTC: \"I asked the Stu team to make sure you had access to their latest to put in the arena\"; 00:49 UTC: \"We will call it Gen X Stu.\"; 01:00 UTC: \"Put it into the mix at whatever level you want. It wont be super strong yet but it has good leverage.\" Prepared and run by will (Gen 9) on azure4, Gen 9's box.",
+      "The bot is the loop session's stu3-ps (configs/loop-bots.json on research/rollout-loop-20261113 at 545893b; board box/coordination, loop, 14 Nov 00:55 UTC), its gen7 and x8 blocks unchanged except one entry added to x8.names: 8s-32 is read as 8s-32 (Gen 8 card play), as the loop's own gate reads 8p-32-v41, the same search. Every other opponent is read as stup0 (Stu itself), the loop's default for a bot its names do not list.",
+      "Its rollout net is round 3's (models/cardplay/stu-net-r3-20261113, sha256 a8cf8a94...; restore.py fetches it). The net changes every round: a later round is a new bot id and a new run.",
+      "9a-32, 8s-32 and 71s-32 are configs/round9-cohort.json's entries unchanged, so they are the same actors (identities) as in the Gen 9 cohort. 6-32 is in the roster as the common bidder only.",
+      "Deals: fresh, from bridge_harness.corpus.generate with this run's seed. Left out: policy v4.1's and rollout net v1's training families (transfer/rollout-net-v1-training-families-20261113, gen8x-v3-exclusions.json, 50,818), every family of the source corpus, and every family already played on registered feeds (the cohort's list). Rollout net v2's and the loop's own training deals are not listed; they are arena feed boards up to v2's fetch and fresh deals of other seeds."
+    ]
+  },
+  "authority": "Max00:48-01:00 gives Gen9 the latest Stu bot as Gen X Stu at whatever level Will chooses. Plan notes explicitly say will prepares/runs it on Azure4, Gen9's box. The board does not redirect Codex primary.",
+  "artifacts": {
+    "release": "stu-net-r3-20261113",
+    "files": {
+      "policy": "a8cf8a94ebcf29da88c12d1fb26ad4b53a6322b5518905d41d961f04027428c9"
+    },
+    "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+    "scorer_note": "hand-fit scorer v0 (models/cardplay/hand-fit-scorer-v0-2026-11-11): the loop builds its rows with it (training/rollout-loop-20261113 round*.sh, rows*.sh: SCORER=.../hand_fit_v0.npz)",
+    "trained_on": {
+      "start": "rollout net v2 (transfer/rollout-net-v2-20261113), on v2's rows plus the loop's self-play games",
+      "games": "the loop's collection runs (training/rollout-loop-20261113/runs.json, role collection); rows on transfer/rollout-loop-azure*-20261113"
+    },
+    "made_by": "loop session, transfer/rollout-loop-azure5-20261113 train-r3/policy.npz (board box/coordination, loop, 14 Nov 00:55 UTC)"
+  },
+  "files": {
+    "configs/round9-genx-stu.json": "27fa4742e11081e4f34830d213af5d77945a7297",
+    "models/cardplay/stu-net-r3-20261113/manifest.json": "9b90a12d5c0317403dd3d9d1994c7218e53fa1f7",
+    "models/cardplay/stu-net-r3-20261113/README.md": "4d420818b1b59dbc489fdb9224b18f6cce85cdf2",
+    "ops/run_gen9_cohort.py": "8fc16170e02136c93b5b33c7472dc611eb579a2f"
+  },
+  "new_branch_reviewed": true,
+  "adopted_by_this_stream": false,
+  "peer_launch_enabled": true,
+  "owned_stream_effect": "Retain current canonical Gen8 main mix at frozen source792c4cb, exact actors, existing manifest, exclusions and 3 normal/0 BEN workers. Do not install torch, restore Stu, enable bf16 or run a peer runner.",
+  "future_local_requirements": "An authorized later NEW owned cohort still needs complete pinned training-family membership for ALL released models. This peer plan's notes explicitly omit rollout-v2/loop families on assumptions about fresh seeds; that is not proof of the required full membership for any future local preparation. Preserve the existing v4.1 list and audit.",
+  "scientific_settings_changed": false,
+  "registry_mutated": false,
+  "other_producer_commands": false
+}

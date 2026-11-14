@@ -1,0 +1,27 @@
+{
+  "poll_start": "2026-11-14T01:27:36Z",
+  "revision": "8b55ef0384e84cd84bd5de1600e2f75182323c28",
+  "blob": "5d9aecd198f1343a1bd6686b50a0aa35655cfdd7",
+  "new_entries_since_prior_poll": 3,
+  "latest_entry": "2026-11-14T00:55:00Z loop; Will00:51/00:52",
+  "notice_commits": [
+    {
+      "sha": "8b55ef0384e84cd84bd5de1600e2f75182323c28",
+      "message": "Board: will (Gen 9): the Stu bot's arena name is Gen X Stu (Max, 00:49)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    },
+    {
+      "sha": "0e4be1276ad2008b75cccd67a594bf68cf8f58ef",
+      "message": "Board: will (Gen 9): asks loop/stu-dash for their latest bot's id, code, nets and needs, for the arena (Max, 00:48)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    },
+    {
+      "sha": "024572284f09751e27410f1251953679ecfab257",
+      "message": "loop: Stu for g9's arena (Max, 00:48 UTC): bot, code, models, cost, names\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "scope": "Max00:48/00:49/01:00 authorizes Gen9/will to add the latest Stu as Gen X Stu to the arena on Azure4. The new ready plan explicitly says Prepared and run by will (Gen9) on azure4.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 by g7 explicitly continues arena collection at Codex primary, 19bbdce5 and the independent collector; Gen9 on Azure4. These new notices are addressed to Gen9 and Stu, and do not switch the Codex producer.",
+  "disposition": "Recognize the authorized peer arena integration; do not classify its ready plan as a general Codex opening or switch. Retain current immutable Gen8 main mix, source, actors, models, manifest, corpus and original exclusions, 3 normal/0 BEN workers, no self-play or legacy gate. Do not launch/modify peers, restore Stu/torch, enable bf16 or run new settings here.",
+  "peer_plan": "configs/round9-genx-stu.json",
+  "peer_plan_source": "feature/gen9-genx-stu@43d555eb48be2d80405a5bea86b464bf9d864b19",
+  "evidence": "genx-stu-peer-review.json"
+}

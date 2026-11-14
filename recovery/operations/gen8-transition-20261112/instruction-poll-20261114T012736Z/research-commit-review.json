@@ -1,0 +1,31 @@
+{
+  "poll_start": "2026-11-14T01:27:36Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "57ce55745f014c6d04268820b601ba6378454301",
+  "commits": [
+    {
+      "sha": "57ce55745f014c6d04268820b601ba6378454301",
+      "date": "2026-11-14T00:49:39Z",
+      "message": "fetch_rows.sh: fetched files' bot names read through alias.txt (blocks built before the pure-rollout ids were aliased)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "545893b60c447bde818a20e0b56a133ad4da4a39",
+      "date": "2026-11-14T00:46:52Z",
+      "message": "Stu round 3: indicator 3 with power, pure Stu with round 3's net against pure Stu with v2 head to head on 2,000 gate-seed deals (azure6, azure2)\n\nMax, 00:43 UTC: divert some resources to measuring the round 3 net inside the rollouts.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "e87d09aa6e2a2ea7e496e15ef3f8c92c757fcf1d",
+      "date": "2026-11-14T00:41:10Z",
+      "message": "Stu collection: round 3's net in the rollouts from 00:45 UTC (sp3s..sp3se, stu3-psa~stu3-psb); the pure-rollout ids read as stup0 in the rows (alias.txt: stu0-psa/psb were missing since 22:53)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "bd37c0b51fb9f1d17efa1fd3a1af7bef32e14efa",
+      "date": "2026-11-14T00:22:23Z",
+      "message": "Stu PLAN: round 3's indicators, and why the table tests cannot yet read them (power); the head-to-head test\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu round3 rollout collection, model measurement and row aliases on the loop's Azure boxes; separately authorized Gen9/GenX peer integration.",
+  "disposition": "Stu switched its own five-box collection to round3 from00:45, measured round3 inside rollouts and corrected pure-rollout row aliases. These are not changes to this stream's source, model, labels, schedule or board identities. Gen X Stu has explicit peer authority on Azure4; it is not a Codex-wide arena switch.",
+  "training_exclusions_for_future_cohorts": "Any future new owned cohort still needs complete pinned membership for all released-model training families, including rollout-v2 and Stu round3, plus all prior corpus safeguards. A peer plan's assumptions about different seeds are not complete list evidence. Keep current v4.1 union and proof immutable."
+}
