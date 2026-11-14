@@ -36,7 +36,7 @@ class StandingTests(unittest.TestCase):
         self.assertIn(str(s.ORIGIN + 20), lines[-1])
 
     def test_disjoint_bands(self):
-        for box in (1, 2, 7, 99):
+        for box in (1, 2, 6, 7):
             d = self.w / str(box)
             d.mkdir()
             r = d / 'standing.json'
@@ -123,6 +123,32 @@ class StandingTests(unittest.TestCase):
         lines=(self.w/'calls').read_text().splitlines()
         self.assertEqual(len(lines),3)
         self.assertTrue(lines[-1].startswith('sp-fb1-'))
+
+    def test_pair_rotation_persists(self):
+        cfg=dict(self.config);del cfg['pair'];cfg['pairs']=['A~B','C~D','E~F']
+        self.r.write_text(json.dumps(cfg))
+        s.run(self.r,self.w,self.runner,max_jobs=2)
+        s.run(self.r,self.w,self.runner,max_jobs=2)
+        pairs=[line.split()[1] for line in (self.w/'calls').read_text().splitlines()]
+        self.assertEqual(pairs,['A~B','C~D','E~F','A~B'])
+        for bad in [dict(cfg,pair='A~B'),dict(cfg,pairs=[]),dict(cfg,pairs=['invalid'])]:
+            self.r.write_text(json.dumps(bad))
+            with self.assertRaises(ValueError):s.recipe(self.r)
+
+    def test_busy_sources(self):
+        for path in ['/src/scripts/train_rollout_net.py','/src/bench/seat_variants.py','scripts/stu_rollout_experiments/worker.py']:
+            self.assertTrue(s.busy_token(path.encode()))
+        self.assertFalse(s.busy_token(b'/src/other/seat_variants.py'))
+        (self.w/'BUSY').touch()
+        self.assertEqual(s.busy_count(self.w),(1,'operator BUSY marker'))
+        (self.w/'BUSY').unlink()
+        with patch.object(s,'match_count',return_value=0):
+            with patch.object(s.subprocess,'run',return_value=subprocess.CompletedProcess([],0,'active\n','')):
+                self.assertEqual(s.busy_count(self.w),(1,'perf-ab.service'))
+            with patch.object(s.subprocess,'run',return_value=subprocess.CompletedProcess([],0,'inactive\n','')):
+                self.assertEqual(s.busy_count(self.w)[0],0)
+            with patch.object(s.subprocess,'run',side_effect=OSError('no systemd')):
+                self.assertIsNone(s.busy_count(self.w)[0])
 
     def test_process_match_is_exact(self):
         p = self.w / '123'
