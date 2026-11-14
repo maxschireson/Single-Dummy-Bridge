@@ -136,22 +136,6 @@
    "table_opponent": "stubs-n",
    "identity": "6349baf9c51c984f368bf30ed0420a3bfd5ca6fbfd92dc224d4fe0ce93166216"
   },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
-  },
   "stubs-n": {
    "id": "stubs-n",
    "samples": 32,
@@ -229,6 +213,22 @@
    },
    "table_opponent": "stuhs-n",
    "identity": "ae2785c9e18f31944597a70ccf8acf20044de14359cfd80bc0f5c73f99b89145"
+  },
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   }
  },
  "pair_schedule": [
@@ -258,7 +258,7 @@
  "identity": "3b45db1e0d082e01bcb601aaae8d234f8f8ea2f5384066f282414887edae22b6",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 30000,
- "deals": 2000,
+ "deals": 4000,
  "deals_file": null,
  "book": null,
  "source_commit": "b4e1eaef0c12160b2f74511bd14a95494532b6a0"

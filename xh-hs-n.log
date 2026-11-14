@@ -40,3 +40,18 @@ stuhs-n v stubs-n: 2000 boards to play (0 done), 8 workers
 1950 boards: 0.9759 +- 0.1329 IMPs/board for stuhs-n; 47776 boards/hour; 0 failed
 2000 boards: 0.953 +- 0.1316 IMPs/board for stuhs-n; 47796 boards/hour; 0 failed
 {"pair": "stuhs-n~stubs-n", "boards": 2000, "cpu_per_board": 0.6, "common": {"imps_per_board": 0.953, "se": 0.1316, "boards": 2000, "won": 869, "lost": 566, "flat": 565}, "native": {"imps_per_board": 0.953, "se": 0.1316, "boards": 2000, "won": 869, "lost": 566, "flat": 565}}
+stuhs-n v stubs-n: 2000 boards to play (2000 done), 4 workers
+2050 boards: 0.9439 +- 0.1293 IMPs/board for stuhs-n; 20645 boards/hour; 0 failed
+2100 boards: 0.9481 +- 0.1274 IMPs/board for stuhs-n; 21635 boards/hour; 0 failed
+2150 boards: 0.9451 +- 0.1264 IMPs/board for stuhs-n; 22485 boards/hour; 0 failed
+2200 boards: 0.9255 +- 0.1253 IMPs/board for stuhs-n; 20565 boards/hour; 0 failed
+2250 boards: 0.9053 +- 0.1239 IMPs/board for stuhs-n; 19223 boards/hour; 0 failed
+2300 boards: 0.8939 +- 0.1223 IMPs/board for stuhs-n; 18460 boards/hour; 0 failed
+2350 boards: 0.9157 +- 0.1212 IMPs/board for stuhs-n; 17706 boards/hour; 0 failed
+2400 boards: 0.92 +- 0.1199 IMPs/board for stuhs-n; 17243 boards/hour; 0 failed
+2450 boards: 0.8935 +- 0.1191 IMPs/board for stuhs-n; 16951 boards/hour; 0 failed
+2500 boards: 0.9 +- 0.1175 IMPs/board for stuhs-n; 16684 boards/hour; 0 failed
+2550 boards: 0.8808 +- 0.1161 IMPs/board for stuhs-n; 16520 boards/hour; 0 failed
+2600 boards: 0.8973 +- 0.1146 IMPs/board for stuhs-n; 16371 boards/hour; 0 failed
+2650 boards: 0.8962 +- 0.1133 IMPs/board for stuhs-n; 16325 boards/hour; 0 failed
+2700 boards: 0.8981 +- 0.1124 IMPs/board for stuhs-n; 16228 boards/hour; 0 failed
