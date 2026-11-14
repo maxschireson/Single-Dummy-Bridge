@@ -68,3 +68,5 @@
 {"at": "2026-11-14T09:08:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-25", "note": "running"}
 {"at": "2026-11-14T09:13:00Z", "by": "will", "op": "send", "target": "g9/20261114T0913Z-will-cohort-refused-7e0edac7-pinned", "note": "Cohort refused 7e0edac7 (Pinned generation source changed); job failed at 09:08, spec untouched: please replace back to 46b7e004"}
 {"at": "2026-11-14T09:13:00Z", "by": "will", "op": "send", "target": "all/20261114T0913Z-will-box-09-15-cohort-refused-the-n", "note": "Box 09:15: cohort refused the new source and is down (waits on g9); Gen X Stu 341 (53/h); BEN pair 1,107; Gen 7 publisher stopped; G9-B8 accepted"}
+{"at": "2026-11-14T09:15:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-25", "note": "done"}
+{"at": "2026-11-14T09:15:00Z", "by": "azure4", "op": "job", "target": "azure4/e9-0-n04", "note": "running"}
