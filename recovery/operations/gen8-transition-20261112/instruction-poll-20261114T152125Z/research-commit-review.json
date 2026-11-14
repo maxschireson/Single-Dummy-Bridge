@@ -1,0 +1,62 @@
+{
+  "poll_start": "2026-11-14T15:21:25Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+  "commits": [
+    {
+      "sha": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+      "date": "2026-11-14T15:17:20Z",
+      "message": "Round 4 as trained: sizes, the two nets' shas, offline tests; round 3's blind baseline -0.09 +- 0.09\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "ae5f5e3957a04da16559d6c26ca2f937f953f8ce",
+      "date": "2026-11-14T14:59:02Z",
+      "message": "players.py: --by-year splits each player's adult boards by year\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "830661d1da6d9c1968592b0121dcb0fff6e95a43",
+      "date": "2026-11-14T14:47:02Z",
+      "message": "USBC: named players in SDs beyond luck (players.py); human tables plus Stu boards beat human tables alone by +0.71\n\nnorm_avg.py's expectations become a function that players.py reuses. players.py measures named players on their\nadult boards against every adult player with 20+ boards in the role, in units of the field's skill spread (SD\nbeyond luck, with a bootstrap error), raw and shrunk by reliability. The from-scratch nets at full size: both sets\ntogether beat the human tables alone by +0.71 +- 0.08 over 4,000 deals (nets alone).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu4/stu4c as-trained sizes/hash-prefix report, offline tests and BEN-gate progress; USBC named-player analysis.",
+  "disposition": "README reports round4 trained14:09-15:16 on102811deals/6996453rows, including2600arena records and1591633replay rows; model SHA prefixes edc5d6cf(stu4) and e4b689c8(stu4c), offline tests and gate start14:55. These are scoped Stu research reports, not a complete full-hash/training-family proof or general collector/GenX actor replacement. R3 BEN baseline -0.09+-0.09 on2047deals is a dated peer result, not an owned stop/self-play gate. players.py normalizes human-player reports and splits years; arena scoring unchanged. Retain strict792c4cb Gen8 actors, immutable current corpus/exclusions, three normal/zero BEN and original guards. No new model/source/settings/worker change, local training/import, gate, self-play, promotion or peer operation. Any future new cohort requires complete pinned training-family membership of ALL released models, including actual R4 human/bot/arena/replay inputs; current original bytes/proofs stay unchanged.",
+  "evidence": [
+    {
+      "sha": "a42fe6c1f9f66c17a8889e66a9d2542b60b32646",
+      "message": "Round 4 as trained: sizes, the two nets' shas, offline tests; round 3's blind baseline -0.09 +- 0.09\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "ae5f5e3957a04da16559d6c26ca2f937f953f8ce"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/README.md"
+      ]
+    },
+    {
+      "sha": "ae5f5e3957a04da16559d6c26ca2f937f953f8ce",
+      "message": "players.py: --by-year splits each player's adult boards by year\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "830661d1da6d9c1968592b0121dcb0fff6e95a43"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/players.py"
+      ]
+    },
+    {
+      "sha": "830661d1da6d9c1968592b0121dcb0fff6e95a43",
+      "message": "USBC: named players in SDs beyond luck (players.py); human tables plus Stu boards beat human tables alone by +0.71\n\nnorm_avg.py's expectations become a function that players.py reuses. players.py measures named players on their\nadult boards against every adult player with 20+ boards in the role, in units of the field's skill spread (SD\nbeyond luck, with a bootstrap error), raw and shrunk by reliability. The from-scratch nets at full size: both sets\ntogether beat the human tables alone by +0.71 +- 0.08 over 4,000 deals (nets alone).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "a470efe5aa65432e7357352680bdafa7010fdbb8"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/README.md",
+        "training/rollout-loop-20261113/usbc/norm_avg.py",
+        "training/rollout-loop-20261113/usbc/players.py"
+      ]
+    }
+  ],
+  "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
+  "research_plan_status": "Work in progress, research only.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
