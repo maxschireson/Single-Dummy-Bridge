@@ -76,3 +76,5 @@
 2026-11-14T06:47:51Z azure2's role from here (Max, 05:24 UTC): the one-net Stu R3's self-play (jobs-azure2.txt, source 69b94df); its other queued tests are on azure3 or dropped
 2026-11-14T06:47:51Z start sp3t stu3-psta~stu3-pstb seed 9001 first 600000 deals 20000 workers 8 --episodes --one-room (source 69b94df, nets bf16, --recycle 20)
 2026-11-14T06:48:53Z the row publisher takes sp3t besides sp3sd
+2026-11-14T17:41:29Z round 4's net (stu4c) takes over the one-net self-play (source 30e30af; Max, 17:34 UTC: likely adopt)
+2026-11-14T17:41:29Z start sp4t stu4c-psta~stu4c-pstb seed 9001 first 760000 deals 20000 workers 8 --episodes --one-room (source 30e30af, nets bf16, --recycle 20)
