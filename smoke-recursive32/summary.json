@@ -1,0 +1,23 @@
+{
+ "pair": "rx-recursive32~rx-control",
+ "boards": 16,
+ "cpu_per_board": 45.1,
+ "common": {
+  "imps_per_board": -1.0625,
+  "se": 0.7554,
+  "boards": 16,
+  "won": 0,
+  "lost": 4,
+  "flat": 12
+ },
+ "native": {
+  "imps_per_board": -1.0625,
+  "se": 0.7554,
+  "boards": 16,
+  "won": 0,
+  "lost": 4,
+  "flat": 12
+ },
+ "failures": 0,
+ "boards_per_hour": 282
+}
