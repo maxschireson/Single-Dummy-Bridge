@@ -15,3 +15,6 @@
 2026-11-14T00:44:18Z start sp3sd stu3-psa~stu3-psb seed 9001 first 420000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets bf16, --recycle 20)
 2026-11-14T00:47:43Z the collection is paused for jobs-azure2-h3p.txt
 2026-11-14T00:47:43Z start h3-pb stu3-ps~stu0-ps seed 131 first 6000 deals 1000 workers 8  (source 545893b, nets fp32)
+2026-11-14T02:21:11Z end h3-pb: exit 0
+2026-11-14T02:21:11Z jobs-azure2-h3p.txt has ended; back to the collection
+2026-11-14T02:21:11Z start sp3sd stu3-psa~stu3-psb seed 9001 first 420000 deals 20000 workers 8 --episodes --one-room (source 545893b, nets bf16, --recycle 20)
