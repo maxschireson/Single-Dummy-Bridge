@@ -1,0 +1,44 @@
+--- a/training/rollout-loop-20261113/chain.sh
++++ b/training/rollout-loop-20261113/chain.sh
+@@ -10,3 +10,10 @@
+   # shellcheck disable=SC2086
+   bash "$HERE/${2:-run.sh}" $line || echo "$(date -u +%FT%TZ) job failed: $line" >> "$HOME/work/loop/runs.log"
+ done < "$1"
++
++# Opt-in: only the operator installs a standing recipe after allocating this chain's workers.
++W=$HOME/work/loop
++RECIPE=${STU_STANDING_RECIPE:-$W/standing.json}
++if [ "${2:-run.sh}" = run.sh ] && [ -f "$RECIPE" ]; then
++  "$W/venv/bin/python" "$HERE/../../ops/stu_standing.py" run --recipe "$RECIPE" --work "$W" --runner "$HERE/run.sh"
++fi
+--- a/training/rollout-loop-20261113/pub.sh
++++ b/training/rollout-loop-20261113/pub.sh
+@@ -2,13 +2,16 @@
+ # Pushes the loop's small outputs from a box to transfer/rollout-loop-<box>-20261113 every ten minutes:
+ # each run's results.jsonl, summary.json and manifest.json, the logs and runs.log. Episodes (large) stay on the box.
+ # Research data: not an arena cohort and not a feed. Never merge the transfer branch.
++HERE=$(cd "$(dirname "$0")" && pwd)
+ BOX=$1; W=$HOME/work/loop; D=$W/pub; BR=transfer/rollout-loop-$BOX-20261113
+ export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/boxctl_github -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+ if [ ! -d "$D/.git" ]; then
+   git init -q "$D"; git -C "$D" remote add origin ssh://git@github.com/maxschireson/Single-Dummy-Bridge.git
+   if git -C "$D" fetch -q --depth 1 origin "$BR" 2>/dev/null; then git -C "$D" checkout -q -b "$BR" FETCH_HEAD; else git -C "$D" checkout -q --orphan "$BR"; fi
+ fi
++heartbeat() { "$W/venv/bin/python" "$HERE/../../ops/stu_standing.py" heartbeat --work "$W"; }
+ while true; do
++  heartbeat || true
+   for d in "$W"/runs/*/; do n=$(basename "$d"); [ -e "$d/results.jsonl" ] || continue; mkdir -p "$D/$n"
+     cp -f "$d/summary.json" "$d/manifest.json" "$d/results.jsonl" "$D/$n/" 2>/dev/null
+     [ -d "$d/episodes" ] && echo "$(ls "$d/episodes" | wc -l) episode files, $(du -sm "$d/episodes" | cut -f1) MB, on $BOX under ~/work/loop/runs/$n/episodes" > "$D/$n/EPISODES.txt"
+@@ -30,5 +33,10 @@
+ Claude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+     git -C "$D" push -q origin "$BR" 2>&1 | tail -1
+   fi
+-  sleep 600
++  # Keep ordinary publication cadence; sample idle state each minute and publish early on alert.
++  for tick in {1..10}; do
++    sleep 60
++    heartbeat; hb_rc=$?
++    [ "$hb_rc" = 2 ] && break
++  done
+ done
