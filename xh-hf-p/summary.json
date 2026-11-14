@@ -1,23 +1,23 @@
 {
  "pair": "stuhf-pst~stubf-pst",
- "boards": 150,
- "cpu_per_board": 52.15,
+ "boards": 200,
+ "cpu_per_board": 51.43,
  "common": {
-  "imps_per_board": 0.3067,
-  "se": 0.3922,
-  "boards": 150,
-  "won": 41,
-  "lost": 36,
-  "flat": 73
+  "imps_per_board": 0.355,
+  "se": 0.3258,
+  "boards": 200,
+  "won": 57,
+  "lost": 43,
+  "flat": 100
  },
  "native": {
-  "imps_per_board": 0.3067,
-  "se": 0.3922,
-  "boards": 150,
-  "won": 41,
-  "lost": 36,
-  "flat": 73
+  "imps_per_board": 0.355,
+  "se": 0.3258,
+  "boards": 200,
+  "won": 57,
+  "lost": 43,
+  "flat": 100
  },
  "failures": 0,
- "boards_per_hour": 294
+ "boards_per_hour": 318
 }
