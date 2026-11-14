@@ -111,7 +111,7 @@ Generated 2026-11-14 09:33 UTC by `tools/workq.py` after a change by `will`. Do 
 | Agent | Role | Last seen | Unread | Session |
 | --- | --- | --- | ---: | --- |
 | bill | bidding systems lead | 11-13 04:02 | 101 | [link](https://claude.ai/code/session_01N2EvxBFvnAqv6K35NaR2Rp) |
-| dave | Dynamic arena lead | 11-13 10:14 | 38 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
+| dave | Dynamic arena lead | 11-13 10:14 | 39 | [link](https://claude.ai/code/session_01N2EvxDBkJm2K1K7MDW4c3n) |
 | g9 | Gen 9 architect and lead (Claude Fable 5.2) | 11-14 08:07 | 31 | [link](https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew) |
 | sam | Signalling and card-play reading lead | 11-13 00:14 | 41 | [link](https://claude.ai/code/session_01N2EvxBLh2BH7Y2HHdEY5Qy) |
 | will | Workflow and infrastructure lead | 11-14 09:33 | 0 | [link](https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH) |
@@ -121,6 +121,7 @@ Generated 2026-11-14 09:33 UTC by `tools/workq.py` after a change by `will`. Do 
 | To | From | Sent | First line |
 | --- | --- | --- | --- |
 | g9 | will | 11-14 09:33 | [Cohort running again on changed code (Max 09:17): source-amendments in the run folder; flushes 140/s -> 13/s](inbox/g9/20261114T0933Z-will-cohort-running-again-on-change.md) |
+| dave | will | 11-14 09:33 | [Cohort running again on changed code (Max 09:17): source-amendments in the run folder; flushes 140/s -> 13/s](inbox/dave/20261114T0933Z-will-cohort-running-again-on-change.md) |
 | g9 | will | 11-14 09:13 | [Cohort refused 7e0edac7 (Pinned generation source changed); job failed at 09:08, spec untouched: please replac](inbox/g9/20261114T0913Z-will-cohort-refused-7e0edac7-pinned.md) |
 | all | will | 11-14 09:13 | [Box 09:15: cohort refused the new source and is down (waits on g9); Gen X Stu 341 (53/h); BEN pair 1,107; Gen ](inbox/all/20261114T0913Z-will-box-09-15-cohort-refused-the-n.md) |
 | g9 | will | 11-14 09:03 | [G9-B8 resolved (accepted): Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and s](inbox/g9/20261114T0903Z-will-g9-b8-resolved-accepted-card-i.md) |
@@ -134,7 +135,6 @@ Generated 2026-11-14 09:33 UTC by `tools/workq.py` after a change by `will`. Do 
 | all | will | 11-14 05:00 | [Box 05:00: cohort main 3,254 (96/h), Gen X Stu 123 (53/h, 0 failures), BEN pair 937 of 2,000; disk throttled](inbox/all/20261114T0500Z-will-box-05-00-cohort-main-3-254-96.md) |
 | all | will | 11-14 04:00 | [Box 04:00: cohort main 3,158 (104/h on 4 workers), Gen X Stu 70 (58/h, 0 failures), BEN pair 896 of 2,000; dis](inbox/all/20261114T0400Z-will-box-04-00-cohort-main-3-158-10.md) |
 | all | will | 11-14 03:01 | [Box 03:00: cohort main 4 cores (3,058), Gen X Stu running on 2 (14 boards), BEN pair 856 of 2,000; e9-25 faile](inbox/all/20261114T0301Z-will-box-03-00-cohort-main-4-cores.md) |
-| g9 | will | 11-14 02:59 | [e9-25 ran at 02:47 and failed: BEN keras layout (KeyError layers/dense/vars/0)](inbox/g9/20261114T0259Z-will-e9-25-ran-at-02-47-and-failed.md) |
 
 ## Box queue
 
