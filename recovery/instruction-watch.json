@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794659440.484497,
+  "checked_epoch": 1794662791.3101835,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -112,29 +112,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 5152,
+      "completed": 5265,
       "target": 16036,
-      "contiguous": 5149,
+      "contiguous": 5265,
       "by_pair": {
-        "8s-32~71s-32": 1718,
-        "8s-32~1": 859,
-        "8s-32~5RZ32": 858,
-        "8c-32~8s-32": 858,
-        "8c-32~71s-32": 859
+        "8s-32~71s-32": 1755,
+        "8s-32~1": 878,
+        "8s-32~5RZ32": 878,
+        "8c-32~8s-32": 877,
+        "8c-32~71s-32": 877
       },
-      "root_games": 17172,
-      "tables": 212742,
+      "root_games": 17550,
+      "tables": 217319,
       "failures": 0,
-      "epoch": 1794659410.8955295,
+      "epoch": 1794662764.4760098,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794659430.897672,
-      "completed": 5152,
+      "epoch": 1794662784.4776201,
+      "completed": 5265,
       "in_flight": [
-        5149,
-        5153,
-        5154
+        5265,
+        5266,
+        5267
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -142,15 +142,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794659419.352862,
+      "epoch": 1794662779.6584933,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794659379.985661,
+      "epoch": 1794662778.0689995,
       "status": "published",
-      "completed": 5150
+      "completed": 5265
     },
     "process.json": {
       "pid": 262634,
@@ -180,7 +180,7 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T11:24:32Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T12:30:40Z",
   "reviewed_discussions": [
     {
       "number": 22,
@@ -190,7 +190,7 @@
   ],
   "observed_notices": [],
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
-  "previous_checked_epoch": 1794655472.015251,
+  "previous_checked_epoch": 1794659440.484497,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -211,11 +211,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 9.586825132369995,
-  "publisher_age": 60.498836040496826,
-  "free_bytes": 18575900672,
+  "heartbeat_age": 6.832563400268555,
+  "publisher_age": 13.241183996200562,
+  "free_bytes": 17841446912,
   "new_applicable_instructions": [],
-  "registry_revision": "9e41d7f2f77366b889fe22578718efb818050628",
+  "registry_revision": "04968b41ec0e5008a16f91941e1ca6b0a3f923f0",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -360,7 +360,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 21.131635189056396,
+  "watchdog_age": 11.651690244674683,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
