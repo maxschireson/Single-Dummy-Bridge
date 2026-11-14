@@ -41,6 +41,7 @@ say "$(for r in ${RUNS//,/ }; do echo -n "$r $(wc -l < "$W/runs/$r/results.jsonl
 round() {   # name, the human tables or nothing
   local name=$1 human=$2
   [ "$(free_gb)" -ge "$MIN_FREE_GB" ] || fail "only $(free_gb) GB of disk free before $name"
+  export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1      # the row builders: one thread a worker (round2.sh sets the trainer's)
   THREADS=8 SELECT=stup0 FORGET=0.02 TEST=300 EXTRA="$EXTRA" NOREPLAY="$human" REPLAY=$REPLAY \
     INIT_AS="9a-32=8s-32,8x3-32=8s-32${human:+,usbc=stu0}" bash $T/round2.sh "$name" "$RUNS" 300 4 1e-4 > "$W/$name.out" 2>&1 \
     || fail "round2.sh $name: $(tail -n 6 "$W/$name.out" | tr '\n' ' ' | cut -c1-500)"
