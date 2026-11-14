@@ -89,5 +89,5 @@ p=C/'instruction-watch.json.tmp'
 p.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n')
 os.replace(p,C/'instruction-watch.json')
 (CASE/'live-capture-sample.json').write_text(json.dumps(h['live_capture_sample'],indent=2)+'\n')
-(CASE/'branch-review.json').write_text(json.dumps({'poll_start':start,'total':len(newrefs),'new_branches':newbranches,'removed_branches':removed,'changed_refs':{k:{'before':oldrefs[k],'after':v} for k,v in newrefs.items() if oldrefs[k]!=v},'complete':True},indent=2)+'\n')
+(CASE/'branch-review.json').write_text(json.dumps({'poll_start':start,'total':len(newrefs),'new_branches':newbranches,'removed_branches':removed,'changed_refs':{k:{'before':oldrefs.get(k),'after':v} for k,v in newrefs.items() if oldrefs.get(k)!=v},'complete':True},indent=2)+'\n')
 print(json.dumps({'poll_start':start,'comments_since':scan['comments_since'],'next_comment_scan_since':w['next_comment_scan_since'],'result':w['result'],'completed':h['state']['completed'],'source_unchanged':True,'watch_bytes':(C/'instruction-watch.json').stat().st_size,'next_check':w['next_check']}))

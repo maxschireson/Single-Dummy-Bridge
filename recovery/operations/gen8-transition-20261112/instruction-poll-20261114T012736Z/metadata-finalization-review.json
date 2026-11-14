@@ -1,0 +1,11 @@
+{
+  "poll_start": "2026-11-14T01:27:36Z",
+  "phase": "watch metadata finalization",
+  "observed_error": "KeyError: feature/gen9-genx-stu in the ancillary changed-refs map",
+  "atomic_watch_write_had_completed": true,
+  "scope": "Only branch-review.json generation; no collector, publisher, manifest, model, receipt, failure or scientific setting was changed.",
+  "correction": "Changed the prior-ref lookup to return null for a new branch, wrote the reviewed branch map from the preserved before-state, verified the watch and exact integer seed, and reran full recovery publication verification.",
+  "resolved": true,
+  "collector_or_publisher_restarted": false,
+  "failures_cleared": false
+}
