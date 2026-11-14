@@ -32,7 +32,7 @@ for row in capture['samples']:
         name=f'{idx:06d}'+suffix
         paths['recovery/'+folder+'/'+name]=RUN/folder/name
 
-for attempt in range(1,16):
+for attempt in range(1,21):
     try:
         status=json.loads((RUN/'publisher-status.json').read_text())
         assert status['status']=='published'
@@ -61,7 +61,7 @@ for attempt in range(1,16):
         print(json.dumps(dict(exact_byte_files=len(exact))),flush=True)
         break
     except (AssertionError,subprocess.CalledProcessError) as exc:
-        if attempt==15:
+        if attempt==20:
             raise
         print(json.dumps(dict(attempt=attempt,waiting_for_existing_publisher=str(exc))),flush=True)
         time.sleep(5)

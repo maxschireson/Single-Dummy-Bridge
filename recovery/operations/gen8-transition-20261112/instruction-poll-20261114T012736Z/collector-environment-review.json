@@ -1,0 +1,15 @@
+{
+  "poll_start": "2026-11-14T01:27:36Z",
+  "collector_pid": 200165,
+  "frozen_net_and_scorer_have_no_bf16_path": true,
+  "supervisor_unchanged": true,
+  "all_current_lock_owners_match_processes": true,
+  "source_and_scientific_files_verified": true,
+  "local_memory_bytes": 6723670016,
+  "local_memory_limit": "17179869184",
+  "source_hashes": {
+    "bridge_harness/gen7_net.py": "32be1745db52a4fa4e1ba043606c822f2060acfcb9fa9fdde668c25b49f06ff0",
+    "bridge_harness/gen6_nets.py": "4b5e55b84f5002331e0b21825c958003b73f70560c80c7515e288433bde2b799"
+  },
+  "scope": "No Gen X Stu, torch, BF16, new scorer or peer recycling has been adopted. Current collector/supervisor/publisher and last cache journal are unchanged since previous poll."
+}

@@ -21,7 +21,10 @@ oldrefs=w['watched_source_refs']
 newrefs=scan['refs']
 newbranches=sorted(set(newrefs)-set(oldrefs))
 removed=sorted(set(oldrefs)-set(newrefs))
-assert not newbranches and not removed,(newbranches,removed)
+assert newbranches==['feature/gen9-genx-stu'] and not removed,(newbranches,removed)
+peer_review=read(CASE/'genx-stu-peer-review.json')
+assert peer_review['new_branch_reviewed'] and not peer_review['adopted_by_this_stream']
+assert newrefs['feature/gen9-genx-stu']==peer_review['revision']=='43d555eb48be2d80405a5bea86b464bf9d864b19'
 for path,sha in scan['main_files'].items():
     assert w['file_revisions'][path]==sha,(path,sha)
 for path,sha in scan['source_files'].items():
@@ -29,7 +32,10 @@ for path,sha in scan['source_files'].items():
 assert scan['pages']['owned_entries']==w['registry_review']['owned_entries']
 oldcase=Path(w['scan_evidence_path']).parent
 oldscan=read(oldcase/'github-scan.json')
-assert scan['versioned_plans']==oldscan['versioned_plans']
+for path,row in oldscan['versioned_plans'].items():
+    assert scan['versioned_plans'][path]==row,path
+assert set(scan['versioned_plans'])-set(oldscan['versioned_plans'])=={'configs/round9-genx-stu.json'}
+assert scan['versioned_plans']['configs/round9-genx-stu.json']['scope'].startswith('Explicit Max authority to Gen9/will on Azure4')
 assert h['same_pids_as_previous_poll'] and h['cache_rotation_already_diagnosed']
 assert len(h['all_lineage_locks'])==18
 assert not scan['comments']['issue_comments'] and not scan['comments']['review_comments']
@@ -65,7 +71,10 @@ w['source_file_revisions']={'ref':newrefs['feature/gen8-prototype-20261112'],'pa
 w['poll_checkpoint_note']='Comments scan is anchored to poll START, not finish. Current watch/recovery publication is independently verified after the existing publisher captures these exact bytes; proof is in this case.'
 w['completion_status']={'completed':h['state']['completed'],'target':s['target'],'complete':False,'source_budget_only':True,'gen71_comparison_gate_enabled':False,'selfplay_launch_enabled':False}
 w['stu_scope_review']['latest_poll_review']={'poll_start':start,'revision':research['revision'],'commits':research['commits'],'scope':research['scope'],'disposition':research['disposition'],'applied':False,'evidence':str(CASE/'research-commit-review.json')}
-w['latest_scope_review']={'revision':scan['coordination']['revision'],'blob':scan['coordination']['blob'],'entry':scan['coordination']['latest_entry'],'scope':scan['coordination']['scope'],'disposition':scan['coordination']['disposition'],'continuing_authority':scan['coordination']['continuing_general_authority'],'current_effect':'Continue immutable Gen8 source792c4cb, manifestcd98, five-pair main mix, three normal workers, zero BEN and source budget18283. Preserve FP32 source, existing cache semantics, all retired cohorts and the disabled legacy gates.'}
+w['latest_scope_review']={'revision':scan['coordination']['revision'],'blob':scan['coordination']['blob'],'entry':scan['coordination']['latest_entry'],'scope':scan['coordination']['scope'],'disposition':scan['coordination']['disposition'],'continuing_authority':scan['coordination']['continuing_general_authority'],'current_effect':'Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18283. The Gen X Stu opening is specifically for Will/Gen9 on Azure4. No all-collector switch or Codex actor/source/settings change is authorized.'}
+w['genx_stu_peer_review']=peer_review
+w['research_disposition']='Gen X Stu is now authorized for Will/Gen9 on Azure4 under its own ready plan. That scoped peer opening does not redirect this Codex collector. Stu loop training, model measurement, row aliases and further research remain unadopted by this stream. Preserve the current immutable Gen8 cohort and all released-model exclusion requirements for any later new cohort.'
+w['future_gen9_review']['latest_genx_peer_review']={'poll_start':start,'branch':peer_review['branch'],'revision':peer_review['revision'],'plan':peer_review['plan']['path'],'plan_blob':peer_review['plan']['sha'],'launch_enabled':True,'scope':'Will/Gen9 on Azure4 only; no local switch','adopted_by_this_stream':False,'evidence':str(CASE/'genx-stu-peer-review.json')}
 w['performance_proposal_review']['research_revision']=research['revision']
 w['performance_proposal_review']['applied']=False
 w['performance_proposal_review']['latest_poll_review']={'number':34,'head':scan['performance_proposal']['head'],'state':scan['performance_proposal']['state'],'merged':scan['performance_proposal']['merged'],'reviews':[],'frozen_source_retained':True,'conditional_bf16_guidance_applies':False,'current_runtime_has_no_bf16_path':True}
