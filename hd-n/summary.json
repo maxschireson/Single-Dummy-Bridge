@@ -1,0 +1,23 @@
+{
+ "pair": "stu3-nd~stu0-nd",
+ "boards": 2000,
+ "cpu_per_board": 0.67,
+ "common": {
+  "imps_per_board": -0.5255,
+  "se": 0.1055,
+  "boards": 2000,
+  "won": 425,
+  "lost": 682,
+  "flat": 893
+ },
+ "native": {
+  "imps_per_board": -0.5255,
+  "se": 0.1055,
+  "boards": 2000,
+  "won": 425,
+  "lost": 682,
+  "flat": 893
+ },
+ "failures": 0,
+ "boards_per_hour": 42401
+}

@@ -23,3 +23,7 @@
 2026-11-14T00:45:08Z start sp3se stu3-psa~stu3-psb seed 9001 first 440000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets bf16, --recycle 20)
 2026-11-14T02:46:57Z sp3se stopped: the box makes Gen 8 card play's self-play records (sg8e)
 2026-11-14T02:46:57Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source 5414b8a, nets fp32)
+2026-11-14T03:07:21Z the collection is paused for jobs-azure1-hd.txt
+2026-11-14T03:07:21Z start hd-n stu3-nd~stu0-nd seed 131 first 19000 deals 2000 workers 8  (source fc8202f, nets fp32)
+2026-11-14T03:10:11Z end hd-n: exit 0
+2026-11-14T03:10:11Z start h3-p2 stu3-p2~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source fc8202f, nets fp32)
