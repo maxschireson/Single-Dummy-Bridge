@@ -7,5 +7,6 @@ s8-passive g8-passive~8p-32-v41 131 25000 500 8 --episodes
 s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
 # Last (Max, 04:17 UTC: "let's settle the other issues first"): policy v4.1 playing the simulated seats in place of a rollout net (Max, 04:07 UTC on 14 November: "And R3 vs 4.1
 # running the rollouts?"), against the reference SiD (rollout) Stu R0, head to head, on the deals of h3-p (5,000 to 5,999;
-# half on azure5, half on azure3), so v4.1 inside, R0 inside and R3 inside compare deal by deal.
+# both halves here: azure3 plays the gate against BEN), so v4.1 inside, R0 inside and R3 inside compare deal by deal.
 h41-p stuv41-ps~stu0-ps 131 5000 500 8
+h41-pb stuv41-ps~stu0-ps 131 5500 500 8
