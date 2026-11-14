@@ -304,6 +304,10 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 | 05:24 to 05:32 | two boxes of each self-play, one for tests; go longer before the release; one box measuring BEN through it; borrow 3 hours for styles | box roles above; round 4 at about 6 hours |
 | 05:31 | arena boards from Gen 9 | the feeds go into round 4 without BEN |
 | 05:37 | noise in the data now | Gen 8's personalities at margin 0 in its self-play |
+| 06:22 | "We should only grade the bot on 'blind' opponents"; BEN's share "about the same" | the gate is blind (`stu3-put`); BEN at round 3's share |
+| 09:25 to 09:45 | train a net on the USBC's adult boards against one on as many bot boards; "you can take a machine"; "this is the big question" | `exp_human.sh` on azure5: the human tables help at every dose (README) |
+| 09:39 | "If we aren't sure we can do a R4a and an R4b" | round 4 in two nets: `stu4` with every human table, `stu4c` without |
+| 09:37 | the USBC analysis waits until this and round 4 are driven | the claims-played-out rescoring is paused at 99 of 270 sessions |
 
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 

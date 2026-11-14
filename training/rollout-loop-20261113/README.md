@@ -304,6 +304,53 @@ style calibration), azure2 and azure6 the one-net Stu R3's self-play, azure3 the
 the other tests). Round 4 is cut after about 6 hours of collection (about 43,000 tables), with the arena's Gen 8 and Gen 9
 feeds (about 21,500 boards without BEN), and gated on BEN (200) on the 2,560 deals the one-net Stu R3 has played there.
 
+## Human boards as training data (`exp_human.sh`, `usbc/human_episodes.py`, `usbc/human_sets.py`; Max, 09:25 to 09:45 UTC on 14 November)
+
+Max: "Take the adult boards. Train a net on them. Have it play, net only, against a net trained on the same number of bot
+boards"; then "fine tuned model and from scratch", "rollouts on both", the human boards "with a medium set of other
+boards", "with higher weights"; "this is the big question". azure5 was lent to it from 09:50 UTC (its Gen 8 collection
+paused). The boards are the adult USBCs (Open, Senior, Mixed, Women's) of 2021 to 2023 from the vugraph records; the
+target is the card the expert played (no rollout values); the net knows them as a bot of its own, `usbc`. **The 2025
+USBCs and every junior event stay test data**, and a net trained on these tables can be benchmarked on nothing else of the
+USBCs. A familiar auction is one whose every call the common bidder gives at least 0.05: 3,841 of the 22,269 usable
+tables (17%), on 1,556 of the 3,569 deals.
+
+Matches are the nets alone (first card, no rollouts) on the gate's seed from deal 30000, IMPs a deal for the first net,
+by deal. "Offline" is the tricks the net's first card gives up against the rollouts' values on 998 held-out boards of the
+one-net SiD's self-play (32,596 rated decisions), paired, the standard error clustered by deal (`regret_pairs.py`).
+
+| Question | Nets | Match | Offline |
+| --- | --- | --- | --- |
+| Teacher against teacher, 1,556 boards each, from scratch (256 wide) | human boards against SiD self-play boards | **+0.94 +- 0.09** (4,000) | 0.101 against 0.106 |
+| The same, round 3's net fine-tuned (4 epochs at 1e-4) | human against SiD boards | +0.14 +- 0.05 (8,000) | 0.0645 both (round 3's net 0.0659) |
+| Both together, playing as SiD | against SiD boards alone | +0.08 +- 0.04 (8,000) | -0.0006 +- 0.0005 |
+| Round 4 in small: round 1's net tuned as a round is on 10,000 pure-Stu boards (0.0676 offline), with human tables added | 1,556 (one familiar table a deal) | +0.08 +- 0.04 (6,000) | -0.0013 +- 0.0003 |
+| | those four times over | +0.20 +- 0.05 (6,000) | -0.0017 +- 0.0004 |
+| | 3,841 (every familiar table) | +0.17 +- 0.05 (4,000) | -0.0015 +- 0.0004 |
+| | 22,269 (every table, auctions as bid) | **+0.24 +- 0.06** (4,000) | -0.0016 +- 0.0005 |
+| | 22,269, the unfamiliar auctions blanked | +0.23 +- 0.06 (4,000) | 0.0660 against 0.0676 |
+| From scratch on those 10,000 boards (512 wide), with the 1,556 | against without | +0.21 +- 0.11 (2,000) | -0.0014 +- 0.0009 |
+| Inside the one-net rollout bot: the 10,000-board net with the 1,556 four times over | against without | +0.22 +- 0.27 (250) | |
+
+- **The human boards are the better teacher board for board**, by nearly an IMP a deal from scratch, although a human board
+  carries fewer decisions (29 against 41: experts claim earlier) and no values.
+- **Added to SiD's own boards they help at every dose, and more of them helps more** in the matches (+0.08, +0.17, +0.20,
+  +0.24). Offline the gain is there at the smallest dose and does not grow clearly (-0.0013 to -0.0017 a decision, about
+  0.05 tricks a board; the opening lead gains most). The 10,000-board net with human tables scores what round 3's
+  28,000-board net does (difference 0.0000 +- 0.0005).
+- **Unfamiliar auctions cost nothing**: every table as bid and every table with the unfamiliar auctions blanked play the
+  same (+0.24, +0.23), so the 18,428 tables our bidder would not have bid that way are as usable as the others.
+- **Inside the rollout bot it is not measured**: 250 deals give +-0.27, and an effect of 0.1 to 0.2 needs several thousand.
+  That is the BEN gate's job (round 4 below).
+- Void: `xh-s10h-n` (its two nets were kept at different epochs; replayed as `xh-s10h-n6`). A from-scratch net's epoch is
+  not chosen by its log-loss on the one-net bot's rows: that rises while the tricks given up fall (the rows' defenders
+  mix their equal cards), so the last epoch is kept.
+
+**Round 4 is therefore cut in two nets** (Max, 09:39: "If we aren't sure we can do a R4a and an R4b"): `stu4`, the round as
+planned plus every human table (as bid; they draw no replay rows, `round2.sh` NOREPLAY, so both nets train beside the same
+replay), and `stu4c`, the control without them. Both are gated blind on BEN (200) in turns on the same deals
+(`jobs-azure3-ben8.txt`), after a nets-alone match between them (`jobs-azure5-r4.txt`).
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.

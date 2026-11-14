@@ -27,6 +27,8 @@ SCORER=models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz
 ALIAS=$(cat "$(dirname "$0")/alias.txt")
 EXTRA=${EXTRA:-}; SELECT=${SELECT:-}; FORGET=${FORGET:-0.02}
 INIT_AS=${INIT_AS:-}   # more NEW=OLD pairs for bots the starting net lacks (round 4: 9a-32=8s-32,8x3-32=8s-32)
+NOREPLAY=${NOREPLAY:-}   # more row files to train on that draw no replay rows (round 4: the USBC's human tables, so that
+                         # the net with them and its control without them train beside the same replay rows)
 TEST=${TEST:-0}     # the TEST most recent boards of the second run are held out as a test set (stu_test.npz): no training, no choice of epoch
 cd "$(dirname "$0")/../.."
 R=$W/$NAME; rm -rf "$R"; mkdir -p "$R/train" "$R/held" "$R/test"
@@ -67,7 +69,9 @@ rows=$("$PY" -c "import numpy as np, sys; print(int(sum(len(np.load(f)['deal']) 
 [ -z "$EXTRA" ] || say "with $(echo $EXTRA | wc -w) more row files from other boxes"
 nice -n 10 "$PY" $T/sample_set.py "$BIG" "$R/replay.npz" --rows "$rows" --seed 1 | tee -a "$R/timeline.log"
 # shellcheck disable=SC2086
-nice -n 10 "$PY" $M "$R/train.npz" "$R/stu_train.npz" $EXTRA "$R/replay.npz" | tee -a "$R/timeline.log"
+[ -z "$NOREPLAY" ] || say "with $(echo $NOREPLAY | wc -w) row files that draw no replay"
+# shellcheck disable=SC2086
+nice -n 10 "$PY" $M "$R/train.npz" "$R/stu_train.npz" $EXTRA $NOREPLAY "$R/replay.npz" | tee -a "$R/timeline.log"
 nice -n 10 "$PY" $M "$R/val.npz" "$R/stu_held.npz" "$FRESH" | tee -a "$R/timeline.log"
 
 # 4. The net before (pure Stu's vectors are Stu's and nothing is trained: a rate of 1e-12) and after, on the same held-out rows.
