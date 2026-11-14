@@ -22,6 +22,10 @@
   "pure-sl": "pure with a searched opening lead: the search decides the lead, rollouts alone from the second card on",
   "pure-rl": "pure with the opening lead from rollouts: every distinct lead on 512 layouts of the three hidden hands, none dropped; rollouts alone from the second card on",
   "pure-rs": "pure with the opening lead from rollouts on the settings of every other card (at most 4 candidates by the net's prior, 32 then up to 128 layouts with the race); rollouts alone from the second card on",
+  "pure-rs-t": "pure-rs with the round's net at the table too (candidates, reading the play) in place of policy v4.1",
+  "pure-rs-p2": "pure-rs, the simulated seats drawing from the probabilities squared (power 2)",
+  "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
+  "net-d": "the net alone, every card drawn from its probabilities (as a simulated seat of the rollouts draws)",
   "net-s": "the net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards within a limit on forgetting)",
   "pure-t": "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
   "pure-v": "pure, the rollouts' simulated seats playing by the net's value head (seat blend) in place of a draw from its probabilities",
@@ -1388,7 +1392,10 @@
    "deals": 1000,
    "records": false,
    "first_bot": {
-    "family": "other"
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
    },
    "second_bot": {
     "family": "stu",
@@ -1409,7 +1416,10 @@
    "deals": 1000,
    "records": false,
    "first_bot": {
-    "family": "other"
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-t"
    },
    "second_bot": {
     "family": "stu",
@@ -1418,6 +1428,102 @@
     "rung": "pure-rs"
    },
    "queue_order": 4
+  },
+  {
+   "name": "hd-n",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-nd~stu0-nd",
+   "seed": 131,
+   "first": 19000,
+   "deals": 2000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "net-d"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "net-d"
+   },
+   "queue_order": 3
+  },
+  {
+   "name": "h3-p2",
+   "box": "azure1",
+   "branch": "transfer/rollout-loop-azure1-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-p2~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-p2"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 4
+  },
+  {
+   "name": "h3-pg",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "head-to-head",
+   "pair": "stu3-pg~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs-top"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 12
+  },
+  {
+   "name": "h0-p2",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "head-to-head",
+   "pair": "stu0-p2~stu0-ps",
+   "seed": 131,
+   "first": 5000,
+   "deals": 1000,
+   "records": false,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs-p2"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "queue_order": 13
   },
   {
    "name": "l0-r3",

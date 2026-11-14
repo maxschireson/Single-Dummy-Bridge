@@ -85,7 +85,8 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + STU1 + ['stu1' + r for r in RUNGS] + ['stu0-pa', 'stu0-pb', 'stu0-pl']
           + ['stu0-pr', 'stu0-pra', 'stu0-prb'] + ['stu0-pt', 'stu0-pv', 'stu2-p', 'stu2-pr', 'stu2-pt', 'stu2-pv']
           + ['stu3-p', 'stu3-pr', 'stu3-pa', 'stu3-pb', 'stu3-pra', 'stu3-prb']
-          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst'])   # every bot that claims and mixes as Stu does
+          + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
+             'stu3-p2', 'stu3-pg', 'stu0-p2'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -244,6 +245,25 @@ def main():
     bots['stu3-pst'] = dict(copy.deepcopy(bots['stu3-ps']), gen7_policy=R3)
     bots['stu3-pst']['label'] = ("Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the "
                                  'opening lead from rollouts on the settings of every other card')
+    # How the simulated seats take their cards (03:05 UTC on 14 November, draw_regret.py): the seats DRAW from the net, and a
+    # card drawn from round 3's net told it is Stu gives up more than one drawn from v2 told it is Gen 8 (its probabilities
+    # are flatter: 0.94 nats against 0.55), though its most probable card gives up less. -p2: the draw sharpened (the
+    # probabilities squared, `power` 2); -pg: the most probable card (`seat: top`). The lead is rolled out the same way.
+    def seats(base, label, **change):
+        b = copy.deepcopy(bots[base])
+        b['x8']['stages'] = [dict(st, **change) for st in b['x8']['stages']]
+        b['x8']['lead'] = dict(b['x8']['lead'], **change)
+        b['label'] = b['label'] + '; ' + label
+        return b
+    bots['stu3-p2'] = seats('stu3-ps', 'the simulated seats draw from the probabilities squared (power 2)', power=2.)
+    bots['stu3-pg'] = seats('stu3-ps', "the simulated seats play the net's most probable card (seat top)", seat='top')
+    bots['stu0-p2'] = seats('stu0-ps', 'the simulated seats draw from the probabilities squared (power 2)', power=2.)
+    # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
+    for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
+        b = copy.deepcopy(bots[base])
+        b['gen7']['net_sample'] = True
+        b['label'] = b['label'] + '; every card DRAWN from its probabilities, as a simulated seat of the rollouts'
+        bots[name] = b
     # Max, 02:26 UTC on 14 November: a net from the strongest bots' data against one from the present mix, the same size
     # (exp_strong.sh). Both read every side as Gen 8 card play (8s-32), as v2 does in SiD (rollout) Stu R0.
     for tag, path, what in (('S', STRONG, "Gen 8 card play's rows only"), ('M', MIX, "as many rows in v2's mix of bots")):

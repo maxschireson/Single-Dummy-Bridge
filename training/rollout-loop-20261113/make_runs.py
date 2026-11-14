@@ -19,7 +19,7 @@ BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transf
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
-        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
+        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pst': 'pure-rs-t', '-p2': 'pure-rs-p2', '-pg': 'pure-rs-top', '-nd': 'net-d', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
 RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7",
              'b50': 'the blend at tricks 3 to 6 at trust 0.5', 'r6': 'rollouts alone from trick 6', 'r3': 'rollouts alone from trick 3',
              'pure': "the net's opening lead, rollouts alone from the second card on; no double dummy",
@@ -28,6 +28,10 @@ RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, ble
                          'dropped; rollouts alone from the second card on'),
              'pure-rs': ("pure with the opening lead from rollouts on the settings of every other card (at most 4 candidates by the net's "
                          'prior, 32 then up to 128 layouts with the race); rollouts alone from the second card on'),
+             'pure-rs-t': "pure-rs with the round's net at the table too (candidates, reading the play) in place of policy v4.1",
+             'pure-rs-p2': 'pure-rs, the simulated seats drawing from the probabilities squared (power 2)',
+             'pure-rs-top': "pure-rs, the simulated seats playing the net's most probable card",
+             'net-d': "the net alone, every card drawn from its probabilities (as a simulated seat of the rollouts draws)",
              'net-s': "the net alone, a longer-trained variant of the round's net (the epoch best on pure Stu's held-out cards within a limit on forgetting)",
              'pure-t': "pure, with the rollout net at the table as well (its lead, first choices and reading of the play) in place of policy v4.1",
              'pure-v': "pure, the rollouts' simulated seats playing by the net's value head (seat blend) in place of a draw from its probabilities",
@@ -57,7 +61,7 @@ def bot(name):
     """What a bot id says: Stu-family ids are stu<round>[v1][a|b|-rung]; z0a-v2 and z0b-v2 were round 0's first ids."""
     if name in ('z0a-v2', 'z0b-v2'):
         return dict(family='stu', round=0, net='v2', rung='stu')
-    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-ps|-pa|-pb|-pl|-pt|-pv|-p|-ns|-n)?', name)
+    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-pst|-ps|-p2|-pg|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
     if m:
         return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
                     rung=RUNG[m.group(3) or ''])
@@ -86,7 +90,8 @@ def main():
                       ('azure6', 'jobs-azure6.txt'), ('azure6', 'jobs-azure6b.txt'), ('azure5', 'jobs-azure5-r2.txt'),
                       ('azure6', 'jobs-azure6-r0c.txt'), ('azure6', 'jobs-azure6-r2.txt'), ('azure6', 'jobs-azure6-r2s.txt'),
                       ('azure2', 'jobs-azure2.txt'), ('azure2', 'jobs-azure2b.txt'), ('azure1', 'jobs-azure1.txt'), ('azure1', 'jobs-azure1b.txt'),
-                      ('azure5', 'jobs-azure5-r3a.txt'), ('azure5', 'jobs-azure5-r3.txt'), ('azure1', 'jobs-azure1-r3.txt'), ('azure5', 'jobs-azure5-h3.txt'), ('azure6', 'jobs-azure6-h3p.txt'), ('azure2', 'jobs-azure2-h3p.txt'), ('azure6', 'jobs-azure6-h3t.txt'), ('azure5', 'jobs-azure5-hs.txt'), ('azure6', 'jobs-azure6-hs.txt'), ('azure2', 'jobs-azure2-hs.txt'), ('azure6', 'jobs-azure6-h3pt.txt'), ('azure2', 'jobs-azure2-h3pt.txt')):
+                      ('azure5', 'jobs-azure5-r3a.txt'), ('azure5', 'jobs-azure5-r3.txt'), ('azure1', 'jobs-azure1-r3.txt'), ('azure5', 'jobs-azure5-h3.txt'), ('azure6', 'jobs-azure6-h3p.txt'), ('azure2', 'jobs-azure2-h3p.txt'), ('azure6', 'jobs-azure6-h3t.txt'), ('azure5', 'jobs-azure5-hs.txt'), ('azure6', 'jobs-azure6-hs.txt'), ('azure2', 'jobs-azure2-hs.txt'), ('azure6', 'jobs-azure6-h3pt.txt'), ('azure2', 'jobs-azure2-h3pt.txt'),
+                      ('azure1', 'jobs-azure1-hd.txt'), ('azure5', 'jobs-azure5-hd.txt'), ('azure3', 'jobs-azure3-hd.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run
