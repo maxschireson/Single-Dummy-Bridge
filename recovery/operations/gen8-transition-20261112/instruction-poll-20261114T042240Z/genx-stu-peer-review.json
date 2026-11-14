@@ -1,0 +1,70 @@
+{
+  "poll_start": "2026-11-14T04:22:40Z",
+  "registered": true,
+  "adopted_by_this_stream": false,
+  "registration": {
+    "revision": "b90a4a8efc2ef192be02d5d97f246179cb5f9a02",
+    "blob": "5255da6a2bdf7d15ce0a52169f214eaa20055414",
+    "entry": {
+      "key": "gen9genxstuazure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen X Stu · azure4 (stu3-ps against Gen 8, Gen 9 and Gen 7.1)",
+      "branch": "arena-gen9-genx-stu-azure4-feed",
+      "cohort": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091"
+    },
+    "authority": {
+      "authority": "Max, 2026-11-14 00:48 UTC: the Stu team's latest bot into the arena; 00:49: \"We will call it Gen X Stu\"; 01:00: \"Put it into the mix at whatever level you want\"; 02:35: trim the Gen 9 cohort for it.",
+      "feeds": "azure4: arena-gen9-genx-stu-azure4-feed, manifest 66563aba..., stu3-ps (the loop's pure Stu, round 3's rollout net) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9019), two workers. configs/round9-genx-stu.json on feature/gen9-genx-stu at 9bba86b6; job boxq/azure4/g9-genx-stu-azure4.json on team/gen9.",
+      "registered_by": "will (Gen 9), 2026-11-14 02:5x UTC",
+      "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    }
+  },
+  "feed_revision": "66def7e8eabcb10d4cf0f9fb8c404416800ab777",
+  "current_branch_revision": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+  "manifest": {
+    "identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+    "source_commit": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+    "target": 4000,
+    "pair_weights": {
+      "stu3-ps~8s-32": 2,
+      "stu3-ps~9a-32": 1,
+      "stu3-ps~71s-32": 1
+    },
+    "evaluation_exclusions": {
+      "path": "artifacts/validation/evaluation-exclusions.json",
+      "sha256": "72fafc4cce9ed62e6427b021103533e62e1bdfedc6acc96bf01c81186a88ee7a",
+      "families": 50818,
+      "reason": "Exclude released-policy training families from fresh comparisons"
+    },
+    "actors": {
+      "stu3-ps": "0a83287898510439291560b72e145670528bea5af8bdc2e9ff92bfeac9e290d0",
+      "9a-32": "38b76a8b15429622a5903798203ec5ff9dd913dd8f4b67263b05fb530153cc96",
+      "8s-32": "269fdf1854f474f4ec19429bba453ce810d68681ed55c8118897b6d9f25b5a6a",
+      "71s-32": "7b0f58b4c40337fe021d8df495e343dcaf009beeb9d6e1052e31e7fc0f246c0f",
+      "6-32": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
+    },
+    "blob": "17357db1f2bad0970ff93ad9ce3ad159a89bedef"
+  },
+  "state": {
+    "manifest_identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+    "completed": 89,
+    "target": 4000,
+    "contiguous": 89,
+    "by_pair": {
+      "stu3-ps~8s-32": 44,
+      "stu3-ps~71s-32": 23,
+      "stu3-ps~9a-32": 22
+    },
+    "root_games": 178,
+    "tables": 3209,
+    "failures": 0,
+    "epoch": 1794630093.8585732,
+    "complete": false,
+    "blob": "0b3adf999802e8d966e8140370d963acd223b0e5"
+  },
+  "scope": "Unchanged registered GenX/Azure4 cohort. Latest Stu experiments and rollout-policy-v4.1 jobs do not replace this peer's pinned R3 actor or any owned Gen8 actor. Observe read-only; do not trim, reschedule or mutate peers.",
+  "peer_commands_executed": false
+}
