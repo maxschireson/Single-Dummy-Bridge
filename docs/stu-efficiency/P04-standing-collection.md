@@ -2,7 +2,7 @@
 
 Owner: codex-stu-efficiency. [Loop assigned the coding slice](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024); loop deploys and handles exceptions. **Not deployed. No box allocation is claimed.**
 
-When an ordinary `chain.sh` job file ends, an operator-installed standing recipe can supply fresh collection jobs. With no recipe the existing behavior remains. BEN chains do not enter fallback. A separate heartbeat records whether any `x8_match.py` process is present on the box; it reports an alert after more than 900 continuous observed idle seconds. The alert is diagnostic, not authority to restart anything.
+When an ordinary `chain.sh` job file ends, an operator-installed standing recipe can supply fresh collection jobs. With no recipe the existing behavior remains. BEN chains do not enter fallback. A separate heartbeat records whether an allowlisted collection, training, benchmark or rollout-experiment process, the `perf-ab` service, or an operator `BUSY` marker is present on the box; it reports an alert after more than 900 continuous observed idle seconds. The alert is diagnostic, not authority to restart anything.
 
 ## Integration
 
@@ -25,18 +25,18 @@ The default recipe path is `~/work/loop/standing.json`, overridable by `STU_STAN
 ```json
 {
   "box": 1,
-  "pair": "stu4c-psta~stu4c-pstb",
+  "pairs": ["g8-greedy0~g8-passive0", "g8-patient0~g8-active0", "g8-high0~g8-low0", "g8-greedy0~g8-low0", "g8-patient0~g8-high0", "g8-active0~g8-passive0"],
   "seed": 9001,
   "workers": 2,
   "deals": 1000,
-  "options": ["--episodes", "--one-room", "--common-only"],
+  "options": ["--episodes", "--one-room"],
   "name_prefix": "sp"
 }
 ```
 
-Loop must choose the actual standing pair, options, workers and prefix for each box, pin its source/models, and reserve this namespace before activation. **Proposed namespace:** seed 9001, first index `1,000,000,000 + (box - 1) * 10,000,000`, exclusive upper bound `first + 10,000,000`, box IDs 1–99. This makes all supported box bands mathematically disjoint. It does not prove that another experiment has never used this high range; loop must check/reserve it globally. No seed-131 or squeeze data is introduced. Only episodes, one-room, common-only and positive recycle arguments are accepted; options cannot override seed, output, deal count, bots or inputs.
+Loop reserved this namespace for boxes 1–7 in the PR review. Loop still chooses each recipe, workers, source/models and prefix before activation. **Reserved namespace:** seed 9001, first index `1,000,000,000 + (box - 1) * 10,000,000`, exclusive upper bound `first + 10,000,000`, box IDs 1–7. This makes all supported box bands mathematically disjoint. It does not prove that another experiment has never used this high range; loop retains global allocation authority. No seed-131 or squeeze data is introduced. Only episodes, one-room, common-only and positive recycle arguments are accepted; options cannot override seed, output, deal count, bots or inputs.
 
-Each job uses a fresh name such as `sp-fb1-1000000000`. A durable `standing-state.json` advances the index *before* launch, saves the exact recipe/hash, and records the result. A persistent lock covers the whole fallback loop. State belongs to one box; changing the box ID or exhausting its band fails rather than wrapping. An existing run directory is never resumed or overwritten.
+Recipes accept exactly one of `pair` (one pair) or `pairs` (a nonempty ordered list). A durable job counter rotates pairs across successful restarts. A failed reservation remains blocked for operator inspection. Each job uses a fresh name such as `sp-fb1-1000000000`. A durable `standing-state.json` advances the index *before* launch, saves the exact recipe/hash, and records the result. A persistent lock covers the whole fallback loop. State belongs to one box; changing the box ID or exhausting its band fails rather than wrapping. An existing run directory is never resumed or overwritten.
 
 ## Stop, failures and resume
 
@@ -50,12 +50,12 @@ Disable adoption by omitting the recipe and retaining the old source checkout. D
 
 ## Heartbeat
 
-`pub/collection-heartbeat.json` contains process count, observation time, monotonic idle duration, boot ID and `idle_over_15m`. Process matching requires an argv token whose basename is exactly `x8_match.py`; an unreadable process table produces unknown state instead of a false idle assertion. Reboot resets the duration. Any matching process counts as active; this is **not** a stalled-worker or throughput detector.
+`pub/collection-heartbeat.json` contains process count, observation time, monotonic idle duration, boot ID and `idle_over_15m`. Busy matching recognizes `x8_match.py`, `train_rollout_net.py`, `bench/seat_variants.py`, and Python scripts under `stu_rollout_experiments/`. It also queries `perf-ab.service` and honors `~/work/loop/BUSY`. Unreadable process/unit state is unknown rather than a false idle assertion. The output records `busy_activities` and `busy_reason`. The operator must remove BUSY when the unlisted job ends; it is not an automatic resource allocation. Reboot resets the duration. Any matching process, busy service or marker counts as active; this is **not** a stalled-worker or throughput detector.
 
 `pub.sh` samples once per minute during its normal ten-minute publication wait and publishes early when the idle flag becomes true. First absence detection can lag up to one minute; publication/remote visibility also depends on Git push success. Active/unknown observations clear the idle interval. No automatic resource assignment or recovery follows the flag; loop handles intentional training/maintenance and failures.
 
 ## Validation and remaining deployment checks
 
-Eleven sandbox tests pass: contiguous reservations and successful restart, box-band separation, nonzero exit without retry, crash-after-reservation refusal, stop marker, duplicate lock, seed/option validation, existing-run refusal, band exhaustion/box-change rejection, queued-job to fallback handoff/disabled default, and idle threshold/recovery/reboot/process matching. Fake runners write only temporary test files; no bridge game or live service was run. Shell syntax and patch application checks pass.
+Thirteen sandbox tests pass: contiguous reservations and successful restart, box-band separation, nonzero exit without retry, crash-after-reservation refusal, stop marker, duplicate lock, seed/option validation, existing-run refusal, band exhaustion/box-change rejection, queued-job to fallback handoff/disabled default, idle threshold/recovery/reboot/process matching, persisted pair rotation, and all requested busy sources including unavailable systemd. Fake runners write only temporary test files; no bridge game or live service was run. Shell syntax and patch application checks pass.
 
-Loop still needs to reserve the high deal namespace, choose per-box recipes and worker budgets, and perform an isolated first-job/publisher check at deployment. P01/P03 and the P10 experiments are unaffected by this PR.
+**Deployment gate still open:** loop requested an actual two-board run at the high first index through x8_match episode generation and rows.sh/rows_cut.sh. That end-to-end test has not yet been run; the fake-runner and filename inspection tests do not replace it. Loop will choose per-box recipes/worker budgets and perform a first-job/publisher check at deployment. P01/P03 and the P10 experiments are unaffected by this PR.
