@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep MATCH $W/human.log | tail -n +14 | cut -c1-200; grep "failed\|stage" $W/human.log | tail -2 | cut -c1-160; tail -n 3 $W/runs.log | cut -c1-150; for r in xh-m10h4-p xh-hs-p xh-m10A-n xh-m10B-n; do echo "$r $(wc -l < $W/runs/$r/results.jsonl 2>/dev/null)"; done | tr "\n" " "; date -u +%T
