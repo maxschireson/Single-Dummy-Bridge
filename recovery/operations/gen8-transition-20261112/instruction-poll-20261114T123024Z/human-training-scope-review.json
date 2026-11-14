@@ -1,0 +1,27 @@
+{
+  "poll_start": "2026-11-14T12:30:24Z",
+  "authority": "Max09:25-09:45 Nov14 to Stu/loop; second part cites Max09:43 medium set of other boards.",
+  "research_revision": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+  "feed": "feed/usbc-human-all-20261114",
+  "feed_revision": "7bdc4ab762e218f8e8a4a629a0c04c1ddae3da9c",
+  "readme_blob": "4af2fb7ea313fc4fa3529b8cb0e9116b79784930",
+  "initial_feed": "feed/usbc-human-20261114@8381f8e58a93a87c6097945025457d32576f9ec1",
+  "training_scope": "Adult USBC Open/Senior/Mixed/Women's 2021-2023, every expert table per deal:3841 fitting-auction tables/113489rows and18428 other-auction tables. fit/all/big stages compare familiar/all/blanked-unfamiliar auctions mixed with Stu rows; from-scratch medium nets keep last epoch.",
+  "counts_are_tables_not_independent_families": true,
+  "test_scope": "2025 USBCs and every junior event remain test-only; a human-trained net may be benchmarked on no other USBC tables.",
+  "supersedes": "Latest scoped research expands the earlier1556-board one-table-per-deal experiment to all adult2021-23 tables. Earlier blanket USBC test-only notices were already narrowed by Max09:25-09:45; historical reports remain preserved.",
+  "applied_to_this_stream": false,
+  "datasets_or_models_downloaded": false,
+  "local_training": false,
+  "local_corpus_changed": false,
+  "disposition": "Max09:39 authorizes Stu R4a/R4b: stu4 with every adult2021-23 human table and stu4c without, using the same replay; blind BEN200 gates alternate on the same deals after a nets-alone match. The updated PLAN remains explicitly work in progress, research only. round4_arena.sh refetches moving shallow refs and sets non-board gz files aside for its own training importer. No local training, data import, BEN job/gate, source change, self-play opening, model promotion or producer repair is authorized/needed. GenX/Azure4 stays pinnedR3. Any future new cohort excludes complete pinned training-family membership of ALL released models, including both round4 variants human/bot/arena/replay sets if released; keep current original list/proofs unchanged.",
+  "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
+  "round4_plan": {
+    "with_humans": "stu4",
+    "control": "stu4c",
+    "same_replay": true,
+    "human_rows_draw_replay": false,
+    "gate": "Blind BEN200 in turns, same deals; nets-alone match first",
+    "scope": "Stu/Azure jobs only; no local adoption"
+  }
+}

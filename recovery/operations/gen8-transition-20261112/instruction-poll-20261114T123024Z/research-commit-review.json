@@ -1,0 +1,83 @@
+{
+  "poll_start": "2026-11-14T12:30:24Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+  "commits": [
+    {
+      "sha": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+      "date": "2026-11-14T12:17:06Z",
+      "message": "round4_arena.sh: a feed's file that is no board record is set aside\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "c7d78f1e9f9a5c42486a6d8ce3d6260324565026",
+      "date": "2026-11-14T12:04:56Z",
+      "message": "round4_arena.sh: refetch a feed that has moved on (a depth-1 ref is no fast-forward)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "76972f2b0e9298c25c085ee1e99392f0acc80050",
+      "date": "2026-11-14T11:52:55Z",
+      "message": "The human-boards experiment's results so far and round 4 in two nets (README, PLAN); round2.sh NOREPLAY\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "7dc5823c5f5543e7f101ec3f5509c2a252b1a05f",
+      "date": "2026-11-14T11:46:19Z",
+      "message": "Round 4 in two nets: stu4 (with the USBC's human tables) and stu4c (the control), their bots, the nets-alone matches and the blind BEN gate in turns; the human-boards experiment's matches listed\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu round4 two-net training/gate plan and arena-training importer repairs; WIP research-only PLAN.",
+  "disposition": "Max09:39 authorizes Stu R4a/R4b: stu4 with every adult2021-23 human table and stu4c without, using the same replay; blind BEN200 gates alternate on the same deals after a nets-alone match. The updated PLAN remains explicitly work in progress, research only. round4_arena.sh refetches moving shallow refs and sets non-board gz files aside for its own training importer. No local training, data import, BEN job/gate, source change, self-play opening, model promotion or producer repair is authorized/needed. GenX/Azure4 stays pinnedR3. Any future new cohort excludes complete pinned training-family membership of ALL released models, including both round4 variants human/bot/arena/replay sets if released; keep current original list/proofs unchanged.",
+  "evidence": [
+    {
+      "sha": "1a7116c902a116e40ff3034f969136a0cf67b4bf",
+      "message": "round4_arena.sh: a feed's file that is no board record is set aside\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "c7d78f1e9f9a5c42486a6d8ce3d6260324565026"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/round4_arena.sh"
+      ]
+    },
+    {
+      "sha": "c7d78f1e9f9a5c42486a6d8ce3d6260324565026",
+      "message": "round4_arena.sh: refetch a feed that has moved on (a depth-1 ref is no fast-forward)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "76972f2b0e9298c25c085ee1e99392f0acc80050"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/round4_arena.sh"
+      ]
+    },
+    {
+      "sha": "76972f2b0e9298c25c085ee1e99392f0acc80050",
+      "message": "The human-boards experiment's results so far and round 4 in two nets (README, PLAN); round2.sh NOREPLAY\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "7dc5823c5f5543e7f101ec3f5509c2a252b1a05f"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/PLAN.md",
+        "training/rollout-loop-20261113/README.md",
+        "training/rollout-loop-20261113/round2.sh"
+      ]
+    },
+    {
+      "sha": "7dc5823c5f5543e7f101ec3f5509c2a252b1a05f",
+      "message": "Round 4 in two nets: stu4 (with the USBC's human tables) and stu4c (the control), their bots, the nets-alone matches and the blind BEN gate in turns; the human-boards experiment's matches listed\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "bd4d0b82aded9c4f96f9aa22d34c247db979718f"
+      ],
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/jobs-azure3-ben8.txt",
+        "training/rollout-loop-20261113/jobs-azure5-human.txt",
+        "training/rollout-loop-20261113/jobs-azure5-r4.txt",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
+  "research_plan_status": "Work in progress, research only.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
