@@ -57,3 +57,22 @@
 2026-11-14T06:09:03Z start b3-ps200e-6 stu3-ps~ben200 seed 131 first 1440 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
 2026-11-14T06:09:03Z start b3-ps200e-7 stu3-ps~ben200 seed 131 first 1472 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
 2026-11-14T06:09:03Z start b3-ps200e-8 stu3-ps~ben200 seed 131 first 1504 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)
+2026-11-14T06:41:51Z end b3-ps200e-7: exit 0
+2026-11-14T06:42:18Z end b3-ps200e-3: exit 0
+2026-11-14T06:42:58Z end b3-ps200e-5: exit 0
+2026-11-14T06:43:07Z end b3-ps200e-1: exit 0
+2026-11-14T06:43:59Z end b3-ps200e-2: exit 0
+2026-11-14T06:44:34Z end b3-ps200e-4: exit 0
+2026-11-14T06:44:55Z end b3-ps200e-8: exit 0
+2026-11-14T06:47:17Z end b3-ps200e-6: exit 0
+2026-11-14T06:47:26Z jobs-azure2-ben.txt has ended; BEN (200) servers stopped; back to the collection
+2026-11-14T06:47:26Z start sp3sd stu3-psa~stu3-psb seed 9001 first 420000 deals 20000 workers 8 --episodes --one-room (source a0bc029, nets bf16, --recycle 20)
+2026-11-14T06:47:26Z the collection is paused for jobs-azure2-onenet.txt
+2026-11-14T06:47:26Z start l3-pst stu3-pst~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a0bc029, nets fp32)
+2026-11-14T06:47:26Z end l3-pst: exit 0
+2026-11-14T06:47:26Z start l3-ps stu3-ps~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a0bc029, nets fp32)
+2026-11-14T06:47:26Z end l3-ps: exit 0
+2026-11-14T06:47:26Z start l3-put stu3-put~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source a0bc029, nets fp32)
+2026-11-14T06:47:51Z azure2's role from here (Max, 05:24 UTC): the one-net Stu R3's self-play (jobs-azure2.txt, source 69b94df); its other queued tests are on azure3 or dropped
+2026-11-14T06:47:51Z start sp3t stu3-psta~stu3-pstb seed 9001 first 600000 deals 20000 workers 8 --episodes --one-room (source 69b94df, nets bf16, --recycle 20)
+2026-11-14T06:48:53Z the row publisher takes sp3t besides sp3sd

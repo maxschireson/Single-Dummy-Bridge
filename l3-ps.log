@@ -10,3 +10,5 @@ stu3-ps v 8p-32-v41: 500 boards to play (0 done), 8 workers
 450 boards: -0.8022 +- 0.181 IMPs/board for stu3-ps; 891 boards/hour; 0 failed
 500 boards: -0.76 +- 0.168 IMPs/board for stu3-ps; 888 boards/hour; 0 failed
 {"pair": "stu3-ps~8p-32-v41", "boards": 500, "cpu_per_board": 31.43, "common": {"imps_per_board": -0.76, "se": 0.168, "boards": 500, "won": 78, "lost": 165, "flat": 257}, "native": {"imps_per_board": -0.76, "se": 0.168, "boards": 500, "won": 78, "lost": 165, "flat": 257}}
+stu3-ps v 8p-32-v41: 0 boards to play (500 done), 8 workers
+{"pair": "stu3-ps~8p-32-v41", "boards": 500, "cpu_per_board": 31.43, "common": {"imps_per_board": -0.76, "se": 0.168, "boards": 500, "won": 78, "lost": 165, "flat": 257}, "native": {"imps_per_board": -0.76, "se": 0.168, "boards": 500, "won": 78, "lost": 165, "flat": 257}}
