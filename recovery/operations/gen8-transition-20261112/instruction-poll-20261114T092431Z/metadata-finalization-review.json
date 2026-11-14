@@ -1,0 +1,10 @@
+{
+  "status": "corrected_before_atomic_watch_write",
+  "poll_start": "2026-11-14T09:24:31Z",
+  "failure": "TypeError: str object does not support item assignment at operational_channel_scope/latest_mail_channel_review",
+  "diagnosis": "Existing operational_channel_scope is a prose string. Store current mail-channel review in a separate metadata field, preserving the original policy string.",
+  "watch_unchanged_before_fix": true,
+  "collection_affected": false,
+  "scientific_or_runtime_files_changed": false,
+  "failed_script_preserved": "finalize-watch-before-metadata-correction.py"
+}
