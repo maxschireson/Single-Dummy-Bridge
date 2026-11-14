@@ -39,7 +39,8 @@ _S = {}
 
 class ArenaSid:
     """A bot exactly as the arena runtime of the bundle's source builds it: its bidder (a BEN-format net, or a Gen 8
-    system bidder named by `bidder`), and its card player from `ops/gen5_runtime.player`.
+    system bidder named by `bidder`), and its card player from `ops/gen5_runtime.player`, or for an 8X (rollout) spec
+    (`engine: gen8x`, e.g. SiD (rollout) Stu) from `bridge_harness.x8_player.player`, as scripts/x8_match.py builds it.
 
     Two player instances: one facing humans (a Gen 8 bot reads unknown opponents' plays at its
     `opponent_play_weight` '*' factor) and one facing Sid. Before each card the table's declared systems are bound
@@ -63,6 +64,8 @@ class ArenaSid:
             from ops.gen5_runtime import player as factory     # every engine the bundle's source knows
         except ImportError:
             from bridge_harness.gen7 import player as factory
+        if spec.get('engine') == 'gen8x':
+            from bridge_harness.x8_player import player as factory
         self.players = {}
         for facing in ('human', 'sid'):
             p = factory(spec, str(bundle))
@@ -96,6 +99,10 @@ def init_worker(bundle_dir, nice=0):
     if nice:
         os.nice(nice)
     os.environ.setdefault('TF_CPP_MIN_LOG_LEVEL', '2')
+    for var in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS'):
+        os.environ.setdefault(var, '1')           # one core a worker on a shared box
+    # The claim solver an 8X bot asks (x8_claims.py): the vendored sure-trick binary unless the environment names one.
+    os.environ.setdefault('SURE_BIN', str(Path(__file__).resolve().parents[1] / 'native' / 'sure_cpp'))
     os.environ['BRIDGE_DDS_CACHE'] = ''          # no persistent position cache: nothing to grow or lock
     bundle = Path(bundle_dir)
     meta = json.loads((bundle / 'bundle.json').read_text())

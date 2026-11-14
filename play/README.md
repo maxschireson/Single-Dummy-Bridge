@@ -1,8 +1,12 @@
 # Play with Sid
 
-A web server where people play bridge with and against Sid. Sid is not any of the project's current bots: it does
-not exist yet, and this server is ready for it. Until it does, a stand-in plays Sid's seats: `8s-32`, Gen 8 standard.
-The page says so, and names the stand-in, whenever the installed bundle is marked `stand_in`.
+A web server where people play bridge with and against Sid. **Sid** is any of the project's bots with no double dummy
+in its play (Max, 14 Nov), named by its flavor and net. The installed bot is **SiD (rollout) Stu R4c** (`stu4c-put`,
+recipe `bundles/stu4c-put.json`; Max, 07:40 PST on 14 Nov: "use r4c until further notice"): every card, the opening
+lead included, from rollouts on Stu's round 4 control net (trained without the USBC's human tables), the same net at
+the table, told nothing about its opponents (the R4 gate's blind bot); it bids with the Gen 6 bidder. The recipe for
+the round 4 net with the human tables, **SiD (rollout) Stu R4** (`stu4-put`), is `bundles/stu4-put.json`. Swapping the bot is building another bundle (below); the earlier stand-in
+`8s-32` (Gen 8 standard) still has its recipe, and the page names any bundle marked `stand_in` as a stand-in.
 
 You just show up: you sit South, Sid is your partner North, and two more Sids sit East–West. After each board:
 
@@ -87,13 +91,24 @@ where every seat is Sid, and the analysis of a finished board. The tests and `sm
 | `sidplay/fake_engine.py` | A stand-in bot with no models, for tests and interface work |
 | `sidplay/static/` | The page (vanilla JS, self-hosted OFL fonts) |
 | `bundle.py` | Builds a Sid bundle: a bot spec, its artifacts checked by sha256, and the source that runs it |
-| `bundles/8s-32.json` | Recipe for Gen 8 standard: the spec copied from the `gen8-s7-azure1` cohort manifest |
+| `bundles/stu4c-put.json`, `bundles/stu4-put.json` | SiD (rollout) Stu R4c (installed) and R4: the loop's blind R4 bots |
+| `bundles/8s-32.json` | Recipe for Gen 8 standard (the earlier stand-in): the spec copied from the `gen8-s7-azure1` cohort manifest |
 | `smoke.py` | Plays whole boards through the public API (standard library only) |
 | `deploy/` | `install.sh`, `sidplay.service`, `sidplay.env`, `expose.sh`, `caddy.sh` |
 
 **The bundle is what makes Sid swappable.** The server does not name a generation. It loads one bundle: the bot's
-spec, its artifacts, a source checkout at the commit the bot was frozen with (`8s-32`: `792c4cb` on
-`feature/gen8-prototype-20261112`), an entry point, and the `stand_in` flag. To install Sid: add a recipe
+spec, its artifacts, a source checkout at the commit the bot was frozen with (`stu4c-put` and `stu4-put`: `a42fe6c` on
+`research/rollout-loop-20261113`; `8s-32`: `792c4cb` on `feature/gen8-prototype-20261112`), an entry point, the
+`stand_in` flag and a one-line description for the page. A recipe may list `restore` commands for models not kept in
+git (`stu4c-put`: the loop's `get_net.sh 4c <sha256>` fetches `train-r4c/policy.npz` from
+`transfer/rollout-loop-azure5-20261113` and checks it); `bundle.py from-models --restore` runs them first.
+
+**The specs** are `configs/loop-bots.json["stu4c-put"]` and `["stu4-put"]` at `a42fe6c` (they differ only in the net), resolved on its base bot 6-32 the way
+`scripts/gen8_match.build_manifest` does it; the base fields are those of the prepared Gen X Stu manifest
+(`transfer/gen9-g9-genx-stu-azure4-azure4-20261114`, `bots["stu3-ps"]` less its loop overrides). `ArenaSid` builds a
+`gen8x` spec with `bridge_harness.x8_player.player`, as `scripts/x8_match.py` does, and points `SURE_BIN` at the
+vendored `native/sure_cpp` (the same source the loop builds, `2e6ed6d`). Measured in a 2-core sandbox: a whole Sid table
+31.5 s; decisions facing a person median 0.31 s, 90th percentile 1.4 s, slowest 2.6 s; 880 MB a worker process. To install Sid: add a recipe
 (`bundles/sid-….json`, `stand_in` false), run `install.sh` with its source commit, and the symlink
 `/opt/sidplay/bundle` moves. Finished boards record the bot and its identity, so the stand-in's boards stay
 separable from Sid's.
@@ -130,10 +145,10 @@ pip install -r play/requirements.txt pytest httpx
 SIDPLAY_ENGINE=fake SIDPLAY_DATA=/tmp/sidplay uvicorn sidplay.app:app --app-dir play --port 8090
 
 # With Sid: build a bundle from a checkout of the bot's source commit, with DDS built there
-git clone --depth 1 --branch feature/gen8-prototype-20261112 https://github.com/maxschireson/Single-Dummy-Bridge.git /tmp/sdb-gen8
-(cd /tmp/sdb-gen8 && python scripts/build_dds.py)
-python play/bundle.py from-models --recipe play/bundles/8s-32.json --source /tmp/sdb-gen8 --out /tmp/bundle-8s32 --allow-commit
-SIDPLAY_BUNDLE=/tmp/bundle-8s32 SIDPLAY_DATA=/tmp/sidplay SIDPLAY_WORKERS=1 uvicorn sidplay.app:app --app-dir play --port 8090
+git clone --depth 1 --branch research/rollout-loop-20261113 https://github.com/maxschireson/Single-Dummy-Bridge.git /tmp/sdb-loop
+(cd /tmp/sdb-loop && python scripts/build_dds.py)
+python play/bundle.py from-models --recipe play/bundles/stu4c-put.json --source /tmp/sdb-loop --out /tmp/bundle-stu4c --restore
+SIDPLAY_BUNDLE=/tmp/bundle-stu4c SIDPLAY_DATA=/tmp/sidplay SIDPLAY_WORKERS=1 uvicorn sidplay.app:app --app-dir play --port 8090
 
 # The analyses need DDS in the source checkout and the sure-trick binary
 python scripts/build_dds.py
@@ -144,15 +159,15 @@ cd play && python -m pytest tests -q
 python play/smoke.py http://127.0.0.1:8090 --boards 2 --sid --analysis
 ```
 
-`--allow-commit` is needed above only because the branch head is two documentation-only commits past `792c4cb`.
-The installer fetches `792c4cb` itself.
+The installer fetches the recipe's source commit itself (`--allow-commit` overrides the check when a branch head has
+moved on with no change to play).
 
 ## Deploy on a box
 
 All through [boxctl](../docs/boxctl.md); nothing needs SSH.
 
 1. **Install** on the host box (listens on 127.0.0.1:8090 only):
-   `bash play/deploy/install.sh <app commit> 792c4cb3f647ec71273f0cc57d95be1d0a0a5954`.
+   `bash play/deploy/install.sh <app commit> a42fe6c1f9f66c17a8889e66a9d2542b60b32646 stu4c-put.json`.
    It creates the unprivileged `sidplay` user and puts code, venv and bundle under `/opt/sidplay` (root-owned) and
    data in `/var/lib/sidplay`. Then it installs and starts `sidplay.service` and waits for `/api/health`. The bundle is built
    from the model releases in the source checkout, not copied from any arena run directory.

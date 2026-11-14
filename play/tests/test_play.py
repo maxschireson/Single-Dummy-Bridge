@@ -66,7 +66,7 @@ def check_boundary(s):
     assert me in visible
 
 
-def play_board(c, tid, bid_first='1N', claim_at=None, timeout=60):
+def play_board(c, tid, bid_first='1N', claim_at=None, timeout=180):
     """Act whenever it is this client's turn until the board is done. Returns the final state."""
     s = state(c, tid)
     deadline = time.time() + timeout

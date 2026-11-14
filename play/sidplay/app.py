@@ -166,7 +166,8 @@ async def me(request: Request, response: Response):
     v = ensure_anon(request, response, viewer(request))
     t = STATE['registry'].current(v)
     return dict(user=v.name, table=t.id if t else None,
-                bot=dict(label=CONFIG.bot_label, system=CONFIG.bot_system, stand_in=CONFIG.bot_stand_in),
+                bot=dict(label=CONFIG.bot_label, system=CONFIG.bot_system, stand_in=CONFIG.bot_stand_in,
+                         description=CONFIG.bot_description),
                 sid_tables=CONFIG.sid_tables, analysis=CONFIG.analysis)
 
 

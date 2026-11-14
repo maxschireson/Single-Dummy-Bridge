@@ -154,7 +154,7 @@ async function refreshMe() {
   const sys = SYSTEMS[app.me.bot.system] || 'It makes no alerts and gives no explanations.';
   document.getElementById('colophon').replaceChildren(h('p', {}, app.me.bot.stand_in
     ? `Sid is a bridge program in development and is not released yet. Until it is, the seats marked Sid are played by ${app.me.bot.label}, the project\u2019s current arena bot. ${sys}`
-    : `Sid is a bridge program in development. These tables run ${app.me.bot.label}. ${sys}`));
+    : `Sid is a bridge program in development. These tables run ${app.me.bot.label}. ${app.me.bot.description ? app.me.bot.description + ' ' : ''}${sys}`));
 }
 
 async function logout() {

@@ -20,6 +20,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shlex
 import shutil
 import subprocess
 import time
@@ -54,9 +55,10 @@ def artifact_paths(spec):
     return out
 
 
-def write_bundle(out, bot, spec, system, source, origin, label=None, provenance=None, entry=None, stand_in=False):
+def write_bundle(out, bot, spec, system, source, origin, label=None, provenance=None, entry=None, stand_in=False, description=None):
     out = Path(out)
     meta = dict(schema=SCHEMA, bot=bot, label=label or bot, system=system, spec=spec, entry=entry, stand_in=bool(stand_in),
+                description=description,
                 source=dict(path=str(Path(source).resolve()), commit=git_commit(source)),
                 origin=origin, provenance=provenance or {}, created_epoch=time.time())
     (out / 'bundle.json').write_text(json.dumps(meta, indent=1, sort_keys=True))
@@ -109,12 +111,15 @@ def model_index(source):
     return index
 
 
-def from_models(recipe, source, out, allow_commit=False):
+def from_models(recipe, source, out, allow_commit=False, restore=False):
     recipe = json.loads(Path(recipe).read_text())
     spec, out = recipe['spec'], Path(out).expanduser()
     commit, wanted = git_commit(source), recipe.get('provenance', {}).get('source_commit')
     if wanted and commit and not commit.startswith(wanted) and not wanted.startswith(commit) and not allow_commit:
         raise SystemExit(f'Source checkout is at {commit}, the recipe names {wanted} (use --allow-commit to override)')
+    if restore:                 # models not kept in git (a loop round's net): the recipe's own commands fetch and check them
+        for command in recipe.get('restore', []):
+            subprocess.run(shlex.split(command), cwd=source, check=True)
     index = model_index(source)
     out.mkdir(parents=True, exist_ok=False)
     for key, (rel, digest) in artifact_paths(spec).items():
@@ -130,7 +135,7 @@ def from_models(recipe, source, out, allow_commit=False):
             raise SystemExit(f'{key}: restored file does not match {digest}')
     return write_bundle(out, recipe['bot'], spec, recipe.get('system'), source, origin=dict(kind='models', recipe=recipe),
                         label=recipe.get('label'), provenance=recipe.get('provenance'), entry=recipe.get('entry'),
-                        stand_in=recipe.get('stand_in', False))
+                        stand_in=recipe.get('stand_in', False), description=recipe.get('description'))
 
 
 if __name__ == '__main__':
@@ -150,10 +155,11 @@ if __name__ == '__main__':
     b.add_argument('--source', required=True)
     b.add_argument('--out', required=True)
     b.add_argument('--allow-commit', action='store_true')
+    b.add_argument('--restore', action='store_true', help="first run the recipe's restore commands in the source checkout")
     args = p.parse_args()
     if args.cmd == 'from-run':
         meta = from_run(args.run, args.bot, args.source, args.out, args.allow_commit, args.label, args.entry, args.stand_in)
     else:
-        meta = from_models(args.recipe, args.source, args.out, args.allow_commit)
+        meta = from_models(args.recipe, args.source, args.out, args.allow_commit, args.restore)
     print(json.dumps(dict(bot=meta['bot'], label=meta['label'], stand_in=meta['stand_in'], entry=meta['entry'], system=meta['system'],
                           source=meta['source'], artifacts=sorted(meta['spec']['artifact_sha256']))))

@@ -4,8 +4,9 @@
 #   bash install.sh APP_COMMIT SOURCE_COMMIT [RECIPE]
 #
 #   APP_COMMIT     full sha of the commit carrying play/ (this server)
-#   SOURCE_COMMIT  full sha of the source the bot was frozen with (8s-32: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954)
-#   RECIPE         bot recipe under play/bundles/ (default 8s-32.json)
+#   SOURCE_COMMIT  full sha of the source the bot was frozen with (the recipe's provenance.source_commit; stu4c-put, stu4-put:
+#                  a42fe6c1f9f66c17a8889e66a9d2542b60b32646, 8s-32: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954)
+#   RECIPE         bot recipe under play/bundles/ (default stu4c-put.json)
 #
 # Layout: /opt/sidplay/{app-<sha>,source-<sha>,bundles/<bot>-<sha>,venv} owned by root; symlinks app, source, bundle;
 # data in /var/lib/sidplay owned by the unprivileged `sidplay` user, which runs the service. Listens on 127.0.0.1:8090
@@ -14,7 +15,7 @@
 set -euo pipefail
 APP_COMMIT=${1:?app commit}
 SOURCE_COMMIT=${2:?source commit}
-RECIPE=${3:-8s-32.json}
+RECIPE=${3:-stu4c-put.json}
 REPO=https://github.com/maxschireson/Single-Dummy-Bridge.git
 ROOT=/opt/sidplay
 PY=python3
@@ -66,7 +67,7 @@ BUNDLE="$ROOT/bundles/$BOT-$SOURCE_COMMIT-$RECIPE_SHA"
 if [ ! -f "$BUNDLE/bundle.json" ]; then
   rm -rf "$BUNDLE"
   "$ROOT/venv/bin/python" "$ROOT/app-$APP_COMMIT/play/bundle.py" from-models \
-    --recipe "$ROOT/app-$APP_COMMIT/play/bundles/$RECIPE" --source "$ROOT/source-$SOURCE_COMMIT" --out "$BUNDLE"
+    --recipe "$ROOT/app-$APP_COMMIT/play/bundles/$RECIPE" --source "$ROOT/source-$SOURCE_COMMIT" --out "$BUNDLE" --restore
 fi
 
 echo "== switch"
