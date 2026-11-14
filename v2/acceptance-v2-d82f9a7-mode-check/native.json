@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "parity": [
+    {
+      "seed": 2026111401,
+      "plies": 16,
+      "null_zero_parity": true,
+      "card": 36
+    },
+    {
+      "seed": 2026111402,
+      "plies": 28,
+      "null_zero_parity": true,
+      "card": 36
+    },
+    {
+      "seed": 2026111403,
+      "plies": 40,
+      "null_zero_parity": true,
+      "card": 46
+    },
+    {
+      "seed": 2026111404,
+      "plies": 24,
+      "null_zero_parity": true,
+      "card": 38
+    }
+  ],
+  "child_calls": 1,
+  "precision": "bf16",
+  "manifest_identity": "5ba2ec42cb5ad8539dc8e97068280d9565bf22afbf8a795a4e4b6ff1a3e282f0",
+  "purpose": "correctness only; generated-view seeds above also excluded from training"
+}

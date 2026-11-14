@@ -1,0 +1,50 @@
+test_a_declarer_that_holds_a_guarantee_keeps_it_and_makes (test_x8.ClaimTests.test_a_declarer_that_holds_a_guarantee_keeps_it_and_makes) ... ok
+test_a_hand_over_is_a_guarantee_declarer_did_not_have_to_find (test_x8.ClaimTests.test_a_hand_over_is_a_guarantee_declarer_did_not_have_to_find)
+Where a defender's card hands declarer a guarantee in the true layout, declarer's next decision (if the ... ok
+test_an_audited_bot_names_plain_gen8s_card_where_a_feature_changed_it (test_x8.ClaimTests.test_an_audited_bot_names_plain_gen8s_card_where_a_feature_changed_it) ... ok
+test_claims_play_a_card_that_takes_every_trick_and_rollouts_name_gen8s_card (test_x8.ClaimTests.test_claims_play_a_card_that_takes_every_trick_and_rollouts_name_gen8s_card) ... ok
+test_rollouts_end_where_every_trick_is_claimed (test_x8.ClaimTests.test_rollouts_end_where_every_trick_is_claimed) ... ok
+test_the_defender_rule_moves_only_to_the_fewest_hand_overs_within_the_margin (test_x8.ClaimTests.test_the_defender_rule_moves_only_to_the_fewest_hand_overs_within_the_margin) ... ok
+test_the_three_questions_against_the_game_and_the_first_wrapper (test_x8.ClaimTests.test_the_three_questions_against_the_game_and_the_first_wrapper) ... /home/bridgebots/work/rollout-experiments-20261114/runtime/bridge_harness/claims.py:123: ResourceWarning: unclosed file <_io.TextIOWrapper name=9 encoding='UTF-8'>
+  self.proc = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_a_share_of_mixing_only_changes_is_forked_by_position (test_x8.MixForkTests.test_a_share_of_mixing_only_changes_is_forked_by_position)
+capture.mix_share forks that share of the decisions the mix alone changed, chosen by a hash of the position ... ok
+test_paired_standard_error (test_x8.PieceTests.test_paired_standard_error) ... ok
+test_touching_cards_are_one_run_until_a_live_card_comes_between (test_x8.PieceTests.test_touching_cards_are_one_run_until_a_live_card_comes_between) ... ok
+test_worth_counts_tricks_or_imps_from_the_deciders_side (test_x8.PieceTests.test_worth_counts_tricks_or_imps_from_the_deciders_side) ... ok
+test_a_blend_stage_and_a_tree_stage_may_not_share_a_trick (test_x8.PlayerTests.test_a_blend_stage_and_a_tree_stage_may_not_share_a_trick) ... ok
+test_a_mixers_card_is_read_as_its_run_of_touching_cards (test_x8.PlayerTests.test_a_mixers_card_is_read_as_its_run_of_touching_cards)
+For every hidden chooser's play, the pooled probability in a layout is the net's probability of the run of ... ok
+test_a_mixing_declarer_plays_its_equal_cards_alike_and_a_defender_does_not (test_x8.PlayerTests.test_a_mixing_declarer_plays_its_equal_cards_alike_and_a_defender_does_not) ... ok
+test_a_race_of_zero_plays_every_candidate_on_every_layout (test_x8.PlayerTests.test_a_race_of_zero_plays_every_candidate_on_every_layout) ... ok
+test_factory (test_x8.PlayerTests.test_factory) ... ok
+test_full_tables_with_rollouts_and_the_blend (test_x8.PlayerTests.test_full_tables_with_rollouts_and_the_blend) ... ok
+test_with_a_power_equal_cards_are_mixed_as_the_nets_probability_to_that_power (test_x8.PlayerTests.test_with_a_power_equal_cards_are_mixed_as_the_nets_probability_to_that_power) ... ok
+test_with_nothing_switched_on_it_plays_gen7s_game_card_for_card (test_x8.PlayerTests.test_with_nothing_switched_on_it_plays_gen7s_game_card_for_card) ... ok
+test_a_blind_bot_is_told_nothing_about_its_opponent (test_x8.RolloutTests.test_a_blind_bot_is_told_nothing_about_its_opponent)
+`blind`: whoever sits against the bot, every setting keyed by the opponent's id takes its '*' value. ... ok
+test_a_horizon_stops_and_solves (test_x8.RolloutTests.test_a_horizon_stops_and_solves) ... ok
+test_a_net_that_takes_who_is_playing_is_told_each_rows_side (test_x8.RolloutTests.test_a_net_that_takes_who_is_playing_is_told_each_rows_side)
+With a rollout net that has bot vectors, every row's choice is the net's on that row with the side to play's ... ok
+test_another_net_plays_the_other_side_where_the_layout_says_so (test_x8.RolloutTests.test_another_net_plays_the_other_side_where_the_layout_says_so)
+With a second net for the other side in layout 1 only, layout 0's rollouts are unchanged, and layout 1's are ... ok
+test_forks_replay_to_their_seat_and_their_results (test_x8.RolloutTests.test_forks_replay_to_their_seat_and_their_results) ... ok
+test_layouts_and_results_round_trip (test_x8.RolloutTests.test_layouts_and_results_round_trip) ... ok
+test_the_batch_takes_what_card_by_card_playouts_take (test_x8.RolloutTests.test_the_batch_takes_what_card_by_card_playouts_take) ... ok
+test_the_other_side_can_take_its_cards_another_way (test_x8.RolloutTests.test_the_other_side_can_take_its_cards_another_way)
+`other`: the deciding side's seats play by the seats' own settings, the other side's by `other`; a `cut` keeps a ... ok
+test_bad_settings_are_refused (test_x8.SettingsTests.test_bad_settings_are_refused) ... ok
+test_defaults_are_inert_and_written_out (test_x8.SettingsTests.test_defaults_are_inert_and_written_out) ... ok
+test_later_settings_are_pinned_only_where_set (test_x8.SettingsTests.test_later_settings_are_pinned_only_where_set)
+The seat settings of 14 November (cut, seat_other, power_other, cut_other) and `blind` are written into a ... ok
+test_a_missing_solver_is_an_error_at_once (test_x8.SolverProcessTests.test_a_missing_solver_is_an_error_at_once) ... ok
+test_answers_are_remembered_and_a_slow_question_is_abandoned (test_x8.SolverProcessTests.test_answers_are_remembered_and_a_slow_question_is_abandoned) ... ok
+test_holds (test_x8.SolverProcessTests.test_holds) ... ok
+test_a_games_only_stage_leaves_undoubled_partscores_to_the_search (test_x8.StageClassTests.test_a_games_only_stage_leaves_undoubled_partscores_to_the_search) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 92.939s
+
+OK

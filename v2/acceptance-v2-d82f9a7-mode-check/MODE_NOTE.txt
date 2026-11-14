@@ -1,0 +1,1 @@
+Original test_x8 fixtures directly call FP32 forward and mutate params after BF16 construction; run those unmodified in FP32. Actual R4c null/zero/child acceptance runs BF16. Original failed BF16 evidence retained.
