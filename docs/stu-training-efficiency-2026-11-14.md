@@ -27,8 +27,8 @@ they do not fix biased continuations or a mismatch between simulated and table p
 
 | Workstream | Current owner and scope | How it connects |
 | --- | --- | --- |
-| P01/P03/P08; P04 code; P10 post-run report | codex-stu-efficiency, per [loop's review](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024); implementation in #36 | Recover time and measure learning/compute efficiency |
-| P02 | perf; loop now allocates up to 3 box-hours on azure3 (azure7 is assigned to P10) | Cheaper inference can fund more useful search or data |
+| P01/P03/P08; P04 code | codex-stu-efficiency, per [loop's review](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024); implementation in #36 | Recover time and measure learning/compute efficiency |
+| P02; P10 post-run report | perf; P10 reporting transferred at 20:58 UTC; P02 gets up to 3 box-hours on azure3 (azure7 is assigned to P10) | Cheaper inference can fund more useful search or data |
 | P09 and P10 experiments/adoption | loop; azure5 width run and azure7 compute control | Separate larger-net value from extra training compute |
 | H01–H05 | H01 loop; H02 and H03–H05 design codex-stu-harvest; [review and protocol in #37](https://github.com/maxschireson/Single-Dummy-Bridge/pull/37) | Harvest existing pairs, then selectively reanalyze from the child's own information |
 | R00–R06 | codex-rollout; Max explicitly authorized execution and one Azure collector reassignment | Study mechanisms that retain net gains in full-bot play; [runnable appendix and implementation #38](https://github.com/maxschireson/Single-Dummy-Bridge/pull/38) |
@@ -54,21 +54,31 @@ authorization does not silently approve those recipe changes or promote a bot.
 5. **Further mechanisms:** score/IMP objective, calibrated net/search blending and
    learned cutoffs after the first screen; keep objective-dependent thresholds explicit.
 
+**Gain-transfer confirmation:** after screening, compare old/new net × baseline/candidate search on the same held-out families and fixed opponent pool. Report the paired difference-in-differences and uncertainty, alongside absolute strength and compute. Table-net-only and continuation-net-only ablations can locate the interaction. Avoid unstable retained-gain percentages when the net-only gain is small or noisy.
+
 At the table, optimize IMPs at fixed move time. For training, optimize subsequent
 held-out full-bot IMP improvement per labeling/training hour. These are different
 measurements; a difficult or uncertain position is not automatically valuable for
 either. A single imagined-layout fork is not a strong posterior-search label.
 
-**Execution checkpoint:** four new local tests pass, including hidden-information
-invariance and a real nested fixture search. Existing X8 suite passes 34 tests with
-7 native claim-solver skips. Main-based #38 pins implementation and imports a
-separate Stu runtime. Azure6 is reserved for a first batch bounded at six hours;
-its collector is being drained at a normal recycle boundary. Initial Azure runs
-are 16-board correctness/cost smokes followed by 128-board diagnostic screens;
-no playing-strength gain is yet established. See #38 and the coordination board
-for the subsequent live status. New evaluation seed families and all descendants
-are excluded from training; seed 131 and the squeeze suite remain excluded.
+**Execution checkpoint — 21:03 UTC:** Max authorized a second collection box and
+assigned two helpers ([handoff #39](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39)):
+A allocation/frontier design, B independent correctness review. Four new tests pass
+locally and on both boxes; existing local X8 suite passes 34 tests, 7 native-claim
+skips. **Azure6 and azure2 are both now running isolated experiments**, each initially
+capped at six hours. Collection drained cleanly: 2,551 sp4tb rows/episodes on azure6,
+4,000 sp4t rows/episodes on azure2, all preserved; original publishing/row export remain alive.
 
+Azure6 runs five 16-board smokes then five 128-board screens. Azure2 runs a 32-board
+sham control then reader/guarantee/combined 512-board arms on separate indices.
+The first reader/guarantee/flat32 smokes completed without failures; these tiny
+samples establish no strength gain. [Azure6 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure6-20261114)
+and [azure2 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure2-20261114)
+preserve manifests, provenance, summaries, records and episode locations. Main-based
+#38 pins the driver and imports a separate frozen runtime. New evaluation seed
+2026111401 families and all descendants are excluded from training; seed 131 and
+the squeeze suite remain excluded. Max requested early indications; bounded hourly
+reviews are scheduled, with tiny-sample uncertainty stated explicitly.
 
 ## Evidence and its limits
 
