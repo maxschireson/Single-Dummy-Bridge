@@ -41,3 +41,5 @@ g8-greedy0 v g8-passive0: 1832 boards to play (168 done), 8 workers
 1968 boards: None +- None IMPs/board for g8-greedy0; 1974 boards/hour; 0 failed
 2000 boards: None +- None IMPs/board for g8-greedy0; 1970 boards/hour; 0 failed
 {"pair": "g8-greedy0~g8-passive0", "boards": 2000, "cpu_per_board": 14.14}
+g8-greedy0 v g8-passive0: 0 boards to play (2000 done), 8 workers
+{"pair": "g8-greedy0~g8-passive0", "boards": 2000, "cpu_per_board": 14.14}

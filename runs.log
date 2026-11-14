@@ -847,3 +847,7 @@
 2026-11-14T20:33:36Z start sg8v2 g8-patient0~g8-active0 seed 9001 first 882000 deals 2000 workers 8 --episodes --one-room (source 42caf93, nets fp32)
 2026-11-14T20:57:20Z the collection stops for the rollout-recipe bench (seat_variants --set horizon; Max, 20:49 UTC)
 2026-11-14T20:57:20Z rollout-recipe bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)
+2026-11-14T22:10:31Z rollout-recipe bench ended: exit 0; 7872 decisions
+2026-11-14T22:10:31Z start sg8v1 g8-greedy0~g8-passive0 seed 9001 first 880000 deals 2000 workers 8 --episodes --one-room (source 5ab40ee, nets fp32)
+2026-11-14T22:10:31Z end sg8v1: exit 0
+2026-11-14T22:10:31Z start sg8v2 g8-patient0~g8-active0 seed 9001 first 882000 deals 2000 workers 8 --episodes --one-room (source 5ab40ee, nets fp32)
