@@ -37,14 +37,14 @@ l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
 l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
 l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
 #   the personalities of Gen 8 card play against Gen 8 card play (margin 0.1 first, then two at margin 0)
-s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
-s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
-s8-active g8-active~8p-32-v41 131 25000 500 8 --episodes
-s8-passive g8-passive~8p-32-v41 131 25000 500 8 --episodes
-s8-high g8-high~8p-32-v41 131 25000 500 8 --episodes
-s8-low g8-low~8p-32-v41 131 25000 500 8 --episodes
-s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
-s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-active g8-active~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-passive g8-passive~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-high g8-high~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-low g8-low~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
+#stopped s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
 #   what SiD's own randomization costs; policy v4.1 inside (both against the reference, head to head)
 h3-pm stu3-pm~stu3-ps 131 5000 1000 8
 h41-p stuv41-ps~stu0-ps 131 5000 500 8
