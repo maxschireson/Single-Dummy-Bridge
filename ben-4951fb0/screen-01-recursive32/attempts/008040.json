@@ -2,7 +2,11 @@
   "index": 8040,
   "seed": 2026111401,
   "attempt": 1,
-  "status": "running",
+  "status": "complete",
   "pid": 374799,
-  "started": "2026-11-14T22:42:39Z"
+  "started": "2026-11-14T22:42:39Z",
+  "wall_seconds": 80.47912520199316,
+  "worker_cpu_seconds": 41.98227846500001,
+  "solver_cpu_seconds": 3.081715,
+  "inclusive_cpu_seconds": 45.06399346500001
 }
